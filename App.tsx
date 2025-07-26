@@ -1,33 +1,44 @@
-import 'react-native-gesture-handler';
-
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
-import BottomTabNavigator from './components/BottomTabNavigator';
+import { StyleSheet, View } from 'react-native';
+import { SafeAreaProvider } from "react-native-safe-area-context"
+import { Toaster } from 'sonner-native';
+import BottomTabNavigator from "./components/BottomTabNavigator";
 import SplashScreen from './components/SplashScreen';
+import React from 'react';
 import { theme } from './theme';
+
+function RootStack() {
+  return (
+    <BottomTabNavigator />
+  );
+}
 
 export default function App() {
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
+    const timer = setTimeout(() => setIsLoading(false), 1500); // fake loading
     return () => clearTimeout(timer);
   }, []);
 
   if (isLoading) {
-    return (
-      <SafeAreaProvider>
-        <SplashScreen />
-      </SafeAreaProvider>
-    );
+    return <SplashScreen />;
   }
+
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={styles.container}>
+      <Toaster />
       <NavigationContainer>
-        <BottomTabNavigator />
+        <RootStack />
       </NavigationContainer>
     </SafeAreaProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    userSelect: "none",
+    backgroundColor: theme.colors.background,
+  }
+});

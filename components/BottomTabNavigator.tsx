@@ -5,12 +5,14 @@ import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
 
 import HomeScreen from '../screens/HomeScreen';
-import FeedScreen from '../screens/FeedScreen';
-import UploadScreen from '../screens/UploadScreen';
-import DMScreen from '../screens/DMScreen';
-import ProfileScreen from '../screens/ProfileScreen';
 
-// Placeholder screens
+// Placeholder screens - these will be replaced with actual content later
+// remove "const HomeScreen = () => <View style={styles.container}><Text>Home Screen</Text></View>;"
+const FeedScreen = () => <View style={styles.container}><Text>Feed Screen</Text></View>;
+const UploadScreen = () => <View style={styles.container}><Text>Upload Screen</Text></View>;
+const DMScreen = () => <View style={styles.container}><Text>DM Screen</Text></View>;
+const ProfileScreen = () => <View style={styles.container}><Text>Profile Screen</Text></View>;
+
 const Tab = createBottomTabNavigator();
 
 function BottomTabNavigator() {
@@ -32,15 +34,23 @@ function BottomTabNavigator() {
           } else if (route.name === 'Profile') {
             iconName = focused ? 'person' : 'person-outline';
           } else {
-            iconName = 'help-circle-outline';
+            iconName = 'help-circle-outline'; // Default or fallback icon
           }
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: theme.colors.accent,
-        tabBarInactiveTintColor: theme.colors.mutedForeground,
-        tabBarStyle: styles.tabBar,
-        tabBarLabelStyle: styles.tabLabel,
+        tabBarInactiveTintColor: 'gray',
+        tabBarStyle: {
+          backgroundColor: theme.colors.card,
+          borderTopWidth: 0, // Remove top border
+          paddingBottom: 5,
+          paddingTop: 5,
+          height: 60,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+        },
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
@@ -52,27 +62,13 @@ function BottomTabNavigator() {
   );
 }
 
-export default BottomTabNavigator;
-
 const styles = StyleSheet.create({
-  screenContainer: {
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: theme.colors.background,
-  },
-  screenText: {
-    color: theme.colors.foreground,
-    fontSize: 16,
-  },
-  tabBar: {
-    backgroundColor: theme.colors.card,
-    borderTopWidth: 0,
-    paddingBottom: theme.spacing.sm,
-    paddingTop: theme.spacing.sm,
-    height: 60,
-  },
-  tabLabel: {
-    fontSize: 12,
+    backgroundColor: theme.colors.background, // Dark background for screens
   },
 });
+
+export default BottomTabNavigator;
