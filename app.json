@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "a0-project",
+    "slug": "a0-project",
+    "version": "1.0.0",
+    "platforms": ["ios", "android", "web"],
+    "newArchEnabled": true,
+    "orientation": "portrait",
+    "icon": "./assets/banner.png",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "jsEngine": "hermes"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "jsEngine": "hermes"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
