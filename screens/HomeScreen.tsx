@@ -7,19 +7,27 @@ import { theme } from '../theme';
 
 // Placeholder for a video card component
 const VideoCard = ({ title, views, duration, creator, live }: { title: string, views: string, duration?: string, creator: string, live?: boolean }) => (
-  <View style={videoCardStyles.card}>
-    <View style={videoCardStyles.thumbnailContainer}>
-      <View style={videoCardStyles.thumbnailPlaceholder}>
+  <View className="bg-theme-neutrals-800 rounded-lg my-2 overflow-hidden">
+    <View className="w-full h-48 bg-theme-neutrals-700 justify-center items-center">
+      <View>
         <Ionicons name="image-outline" size={50} color="#aaa" />
       </View>
-      {live && <View style={videoCardStyles.liveBadge}><Text style={videoCardStyles.liveBadgeText}>LIVE</Text></View>}
-      {duration && !live && <View style={videoCardStyles.durationOverlay}><Text style={videoCardStyles.durationText}>{duration}</Text></View>}
+      {live && (
+        <View className="absolute top-2 left-2 bg-red-600 rounded px-1.5 py-0.5">
+          <Text className="text-white text-xs font-bold">LIVE</Text>
+        </View>
+      )}
+      {duration && !live && (
+        <View className="absolute bottom-2 right-2 bg-black/60 rounded px-1.5 py-0.5">
+          <Text className="text-white text-xs">{duration}</Text>
+        </View>
+      )}
     </View>
-    <View style={videoCardStyles.infoContainer}>
-      <Text style={videoCardStyles.title}>{title}</Text>
-      <View style={videoCardStyles.detailsContainer}>
-        <Text style={videoCardStyles.creator}>{creator}</Text>
-        <Text style={videoCardStyles.views}>{views} views</Text>
+    <View className="p-3">
+      <Text className="text-base font-bold text-theme-neutrals-100 mb-1">{title}</Text>
+      <View className="flex-row justify-between items-center">
+        <Text className="text-sm text-theme-neutrals-300">{creator}</Text>
+        <Text className="text-sm text-theme-neutrals-300">{views} views</Text>
       </View>
     </View>
   </View>
@@ -97,27 +105,31 @@ const categories = ['All', 'Live', 'NFT', 'Minecraft', 'Rocket', 'League', 'Valo
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.header}>
-        <View style={styles.headerLeft}>
-          <Image source={require('../assets/banner.png')} style={styles.banner} resizeMode="contain" />
-          <TouchableOpacity style={styles.leaderboardButton}>
-            <Ionicons name="trophy-outline" size={20} color="white" />
-            <Text style={styles.leaderboardText}>Leaderboard</Text>
+    <SafeAreaView className="flex-1 bg-theme-neutrals-900">
+      <View className="flex-row justify-between items-center p-4 border-b border-theme-neutrals-700">
+        <View className="flex-row items-center">
+          <Image
+            source={require('../assets/banner.png')}
+            className="w-32 h-11 mx-2"
+            resizeMode="contain"
+          />
+          <TouchableOpacity className="flex-row items-center bg-theme-neutrals-700 py-1 px-2 rounded">
+            <Ionicons name="trophy-outline" size={14} color="white" />
+            <Text className="text-theme-neutrals-100 ml-1 text-[8px]">Leaderboard</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.headerRight}>
-          <TouchableOpacity style={styles.iconButton}>
+        <View className="flex-row items-center">
+          <TouchableOpacity className="p-1">
             <Ionicons name="search" size={24} color="white" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.connectButton}>
+          <TouchableOpacity className="rounded-lg ml-2 overflow-hidden">
             <LinearGradient
               colors={[theme.colors.accent, theme.colors.accentSecondary]}
               start={[0, 0]}
               end={[1, 0]}
               style={styles.connectButtonGradient}
             >
-              <Text style={styles.connectButtonText}>Connect</Text>
+              <Text className="text-theme-neutrals-900 font-bold">Connect</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>
@@ -126,18 +138,17 @@ export default function HomeScreen() {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        style={styles.categoryScroll}
-        contentContainerStyle={styles.categoryContainer}
+        className="py-1 px-2 border-b border-theme-neutrals-700 max-h-12"
+        contentContainerStyle={{ alignItems: 'center' }}
       >
         {categories.map((category, index) => (
-          <TouchableOpacity key={index} style={styles.categoryButton}>
-            <Text style={styles.categoryButtonText}>{category}</Text>
+          <TouchableOpacity key={index} className="bg-theme-neutrals-700 py-1.5 px-4 rounded-full mx-1">
+            <Text className="text-theme-neutrals-100 text-sm">{category}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
 
-      <ScrollView style={styles.contentScroll}>
-        {/* Placeholder Video Cards */}
+      <ScrollView className="flex-1 px-4 pt-2">
         <VideoCard title="WHAT IS A NFT" creator="DEHUB GAMES" views="1.6K" duration="06:24" />
         <VideoCard title="What is an NFT?" creator="Crypto Gaming" views="851" duration="10:01" />
         <VideoCard title="This is the DeHub SO..." creator="SAFIE ACHERY" views="240" duration="08:15" />
@@ -151,7 +162,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: theme.colors.background,
   },
   header: {
     flexDirection: 'row',
