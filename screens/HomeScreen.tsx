@@ -100,7 +100,7 @@ export default function HomeScreen() {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.header}>
         <View style={styles.headerLeft}>
-          <Image source={{ uri: 'https://api.a0.dev/assets/image?text=DEHUB&aspect=1:1&seed=1' }} style={styles.banner} resizeMode="contain" />
+          <Image source={require('../assets/banner.png')} style={styles.banner} resizeMode="contain" />
           <TouchableOpacity style={styles.leaderboardButton}>
             <Ionicons name="trophy-outline" size={20} color="white" />
             <Text style={styles.leaderboardText}>Leaderboard</Text>
@@ -207,17 +207,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   categoryScroll: {
-    paddingVertical: theme.spacing.sm,
+    paddingVertical: theme.spacing.xs,
     paddingHorizontal: theme.spacing.sm,
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.border,
+    maxHeight: 50, // Constrain the height
   },
   categoryContainer: {
     alignItems: 'center',
   },
   categoryButton: {
     backgroundColor: theme.colors.muted,
-    paddingVertical: theme.spacing.xs,
+    paddingVertical: 6,
     paddingHorizontal: theme.spacing.md,
     borderRadius: theme.radius.full,
     marginHorizontal: theme.spacing.xs,

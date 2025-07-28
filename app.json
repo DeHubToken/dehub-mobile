@@ -19,12 +19,13 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#000"
       },
       "package": "com.anonymous.snackaa38f9105016454d90402fb99243ab4e"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     },
     "description": "Quickly generate React Native components with AI",
     "jsEngine": "hermes"
