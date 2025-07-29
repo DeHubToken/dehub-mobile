@@ -2,6 +2,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import { Toaster } from 'sonner-native';
+import 'react-native-reanimated';
+import './global.css';
 import BottomTabNavigator from "./components/BottomTabNavigator";
 import SplashScreen from './components/SplashScreen';
 import React from 'react';
