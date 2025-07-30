@@ -5,13 +5,16 @@ import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
 
 import HomeScreen from '../screens/HomeScreen';
+import { ScreenNames } from './ScreenNames';
+import FeedScreen from '../screens/FeedScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 // Placeholder screens - these will be replaced with actual content later
 // remove "const HomeScreen = () => <View style={styles.container}><Text>Home Screen</Text></View>;"
-const FeedScreen = () => <View style={styles.container}><Text>Feed Screen</Text></View>;
+// const FeedScreen = () => <View style={styles.container}><Text>Feed Screen</Text></View>;
 const UploadScreen = () => <View style={styles.container}><Text>Upload Screen</Text></View>;
-const DMScreen = () => <View style={styles.container}><Text>DM Screen</Text></View>;
-const ProfileScreen = () => <View style={styles.container}><Text>Profile Screen</Text></View>;
+// const DMScreen = () => <View style={styles.container}><Text>DM Screen</Text></View>;
+// const ProfileScreen = () => <View style={styles.container}><Text>Profile Screen</Text></View>;
 
 const Tab = createBottomTabNavigator();
 
@@ -23,15 +26,15 @@ function BottomTabNavigator() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: keyof typeof Ionicons.glyphMap;
 
-          if (route.name === 'Home') {
+          if (route.name === ScreenNames.Home) {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'Feed') {
+          } else if (route.name === ScreenNames.Feed) {
             iconName = focused ? 'compass' : 'compass-outline';
-          } else if (route.name === 'Upload') {
+          } else if (route.name === ScreenNames.Upload) {
             iconName = focused ? 'add-circle' : 'add-circle-outline';
-          } else if (route.name === 'DM') {
+          } else if (route.name === ScreenNames.DM) {
             iconName = focused ? 'chatbox' : 'chatbox-outline';
-          } else if (route.name === 'Profile') {
+          } else if (route.name === ScreenNames.Profile) {
             iconName = focused ? 'person' : 'person-outline';
           } else {
             iconName = 'help-circle-outline'; // Default or fallback icon
@@ -53,11 +56,11 @@ function BottomTabNavigator() {
         },
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Feed" component={FeedScreen} />
-      <Tab.Screen name="Upload" component={UploadScreen} />
-      <Tab.Screen name="DM" component={DMScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name={ScreenNames.Home} component={HomeScreen} />
+      {/* <Tab.Screen name={ScreenNames.Feed} component={FeedScreen} /> */}
+      <Tab.Screen name={ScreenNames.Upload} component={UploadScreen} />
+      {/* <Tab.Screen name={ScreenNames.DM} component={DMScreen} /> */}
+      <Tab.Screen name={ScreenNames.Profile} component={ProfileScreen} />
     </Tab.Navigator>
   );
 }

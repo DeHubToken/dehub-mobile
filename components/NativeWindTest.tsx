@@ -8,7 +8,7 @@ export default function NativeWindTest() {
         NativeWind Test
       </Text>
       <TouchableOpacity className="bg-blue-500 p-4 rounded-lg">
-        <Text className="text-white text-center font-semibold">
+        <Text className="text-theme-neutrals-200 text-center font-semibold">
           Tailwind Button
         </Text>
       </TouchableOpacity>
