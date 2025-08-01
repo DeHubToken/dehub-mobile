@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 
 const ProfileStats = () => {
   return (
-    <View className="flex-row justify-around mb-6">
+    <View className="flex-row justify-around my-4">
       {['Followers', 'Following', 'Likes', 'Tips earned', 'Tips given'].map((stat) => (
         <View key={stat} className="items-center">
           <Text className="text-lg text-white font-bold">0</Text>

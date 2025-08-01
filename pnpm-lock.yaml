@@ -56,6 +56,9 @@ importers:
       expo-camera:
         specifier: 16.1.11
         version: 16.1.11(expo@52.0.47(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1))(react-native-web@0.19.13(react-dom@19.1.0(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1)
+      expo-clipboard:
+        specifier: ~7.0.1
+        version: 7.0.1(expo@52.0.47(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1)
       expo-linear-gradient:
         specifier: 14.1.5
         version: 14.1.5(expo@52.0.47(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1)
@@ -92,6 +95,9 @@ importers:
       react-native-svg:
         specifier: 15.12.0
         version: 15.12.0(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1)
+      react-native-tab-view:
+        specifier: ^4.1.2
+        version: 4.1.2(react-native-pager-view@6.8.1(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1)
       react-native-web:
         specifier: ~0.19.6
         version: 0.19.13(react-dom@19.1.0(react@18.3.1))(react@18.3.1)
@@ -2478,6 +2484,13 @@ packages:
       react-native-web:
         optional: true
 
+  expo-clipboard@7.0.1:
+    resolution: {integrity: sha512-rqYk0+WoqitPcPKxmMxSpLonX1E5Ije3LBYfnYMbH3xU5Gr8EAH9QnOWOi4BgahUPvcot6nbFEnx+DqARrmxKQ==}
+    peerDependencies:
+      expo: '*'
+      react: '*'
+      react-native: '*'
+
   expo-constants@17.0.8:
     resolution: {integrity: sha512-XfWRyQAf1yUNgWZ1TnE8pFBMqGmFP5Gb+SFSgszxDdOoheB/NI5D4p7q86kI2fvGyfTrxAe+D+74nZkfsGvUlg==}
     peerDependencies:
@@ -3960,6 +3973,12 @@ packages:
       react: '*'
       react-native: '*'
 
+  react-native-pager-view@6.8.1:
+    resolution: {integrity: sha512-XIyVEMhwq7sZqM7GobOJZXxFCfdFgVNq/CFB2rZIRNRSVPJqE1k1fsc8xfQKfdzsp6Rpt6I7VOIvhmP7/YHdVg==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
+
   react-native-reanimated@3.16.7:
     resolution: {integrity: sha512-qoUUQOwE1pHlmQ9cXTJ2MX9FQ9eHllopCLiWOkDkp6CER95ZWeXhJCP4cSm6AD4jigL5jHcZf/SkWrg8ttZUsw==}
     peerDependencies:
@@ -3984,6 +4003,13 @@ packages:
     peerDependencies:
       react: '*'
       react-native: '*'
+
+  react-native-tab-view@4.1.2:
+    resolution: {integrity: sha512-uzC1hxZGNXeQay8rSjCc7egnoYGHRpB/Y1tAwK5/nnZwrziKry7T6+gNscZgoq88+7Aag/JeNOifdWMZyRclOA==}
+    peerDependencies:
+      react: '>= 18.2.0'
+      react-native: '*'
+      react-native-pager-view: '>= 6.0.0'
 
   react-native-web@0.19.13:
     resolution: {integrity: sha512-etv3bN8rJglrRCp/uL4p7l8QvUNUC++QwDbdZ8CB7BvZiMvsxfFIRM1j04vxNldG3uo2puRd6OSWR3ibtmc29A==}
@@ -7934,6 +7960,12 @@ snapshots:
     optionalDependencies:
       react-native-web: 0.19.13(react-dom@19.1.0(react@18.3.1))(react@18.3.1)
 
+  expo-clipboard@7.0.1(expo@52.0.47(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1):
+    dependencies:
+      expo: 52.0.47(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
+      react-native: 0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1)
+
   expo-constants@17.0.8(expo@52.0.47(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1)):
     dependencies:
       '@expo/config': 10.0.11
@@ -9555,6 +9587,11 @@ snapshots:
       react: 18.3.1
       react-native: 0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1)
 
+  react-native-pager-view@6.8.1(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-native: 0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1)
+
   react-native-reanimated@3.16.7(@babel/core@7.28.0)(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/core': 7.28.0
@@ -9594,6 +9631,13 @@ snapshots:
       react: 18.3.1
       react-native: 0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1)
       warn-once: 0.1.1
+
+  react-native-tab-view@4.1.2(react-native-pager-view@6.8.1(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-native: 0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1)
+      react-native-pager-view: 6.8.1(react-native@0.76.9(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.2.79)(react@18.3.1))(react@18.3.1)
+      use-latest-callback: 0.2.4(react@18.3.1)
 
   react-native-web@0.19.13(react-dom@19.1.0(react@18.3.1))(react@18.3.1):
     dependencies:
