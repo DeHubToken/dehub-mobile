@@ -10,9 +10,9 @@ const ProfileScreen = () => {
     <SafeAreaView className="flex-1 bg-theme-neutrals-900">
       <ScrollView>
         <ProfileHeader />
-        {/* <ProfileStats />
+        <ProfileStats />
         <ProfileAssets />
-        <ProfileTabs /> */}
+        <ProfileTabs />
       </ScrollView>
     </SafeAreaView>
   );

@@ -17,7 +17,7 @@ const CompactVideoCard: React.FC<CompactVideoCardProps> = ({
   thumbnail,
   likes,
 }) => (
-    <View className="m-4 px-4 py-2">
+    <View className="m-1 px-4 py-2">
       <TouchableOpacity className="bg-theme-neutrals-900 rounded-lg overflow-hidden flex-row items-center p-2 border border-theme-neutrals-700">
         <Image
           source={{ uri: thumbnail }}
