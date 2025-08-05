@@ -5,7 +5,7 @@ applyTo: "**/*.tsx"
 
 ## Styling
 - Use React Native and Tailwind (`className`) via NativeWind for styling.
-- Always use Tailwind classes.
+- use Tailwind classes or `StyleSheet.create`.
 - Prefer Tailwind (`className`) for consistency and maintainability.
 - Avoid style duplication — extract shared styles into reusable components.
 
@@ -14,7 +14,7 @@ applyTo: "**/*.tsx"
 - Always define explicit TypeScript types — no implicit `any`.
 - Group code logically: props → hooks → handlers → return JSX.
 - Avoid large monolithic components. Break complex screens into smaller, modular, reusable components.
-- Use `SafeAreaView` and `KeyboardAvoidingView` where appropriate the app is already wrapped in `SafeAreaView`.
+- Use `SafeAreaView` and `KeyboardAvoidingView` where appropriate.
 
 ## Performance Optimization
 - Use `useCallback` and `useMemo` to prevent unnecessary re-renders.
@@ -35,7 +35,6 @@ applyTo: "**/*.tsx"
 - Create service files for specific domains (e.g., `auth.service.ts`, `user.service.ts`) that use the general `api.ts` instance.
 - Use proper error handling and async/await syntax.
 - Define API response types and DTOs using TypeScript.
-- Use optimistic updates and error handling to improve user experience.
 - Use SWR or React Query for caching, pagination, and background fetching.
 
 ## WebSocket Best Practices
