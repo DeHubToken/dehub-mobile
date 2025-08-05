@@ -1,11 +1,14 @@
 import React from 'react';
-import { View, TouchableOpacity, Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, TouchableOpacity, Image, Text } from 'react-native';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
+// import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenNames } from '../navigation/ScreenNames';
+import { useAuth } from '../context/AuthContext';
 
 const HomeHeader = () => {
   const navigation = useNavigation<any>();
+  const { isSignedIn } = useAuth();
 
   return (
     <View className="flex-row justify-between items-center p-4 border-b border-theme-neutrals-700">
@@ -20,12 +23,20 @@ const HomeHeader = () => {
         <TouchableOpacity className="p-1" onPress={() => navigation.navigate(ScreenNames.Leaderboard)}>
           <Ionicons name="trophy-outline" size={24} color="white" />
         </TouchableOpacity>
-        <TouchableOpacity className="p-1 ml-4" onPress={() => navigation.navigate(ScreenNames.Notifications)}>
-          <Ionicons name="notifications-outline" size={24} color="white" />
-        </TouchableOpacity>
+        {isSignedIn ? (
+          <TouchableOpacity className="p-1 ml-4" onPress={() => navigation.navigate(ScreenNames.Notifications)}>
+            <Ionicons name="notifications-outline" size={24} color="white" />
+          </TouchableOpacity>
+        ) : null}
         <TouchableOpacity className="p-1 ml-4" onPress={() => navigation.navigate(ScreenNames.Search)}>
           <Ionicons name="search" size={24} color="white" />
         </TouchableOpacity>
+        {!isSignedIn && (
+          <TouchableOpacity className="p-1 ml-4" onPress={() => navigation.navigate(ScreenNames.SignIn)}>
+            <Ionicons name="person-circle-outline" size={24} color="white" />
+            {/* <AntDesign name="login" size={24} color="white" /> */}
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
