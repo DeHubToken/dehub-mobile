@@ -3,6 +3,8 @@
   "compilerOptions": {
     "strict": true,
     "jsx": "react",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "module": "esnext", // or "es2020", "es2022", etc.
+    "target": "esnext"
   }
 }

@@ -1,7 +1,17 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, View, Alert } from 'react-native';
 import { theme } from '../theme';
-import { hasSeenAuth, setHasSeenAuth, getAuthUser, getAuthToken, setAuthUser } from '../libs/authUtils';
+import { 
+  hasSeenAuth, 
+  setHasSeenAuth, 
+  getAuthUser, 
+  getAuthToken, 
+  setAuthUser, 
+  setAuthToken, 
+  clearAuthData 
+} from '../libs/authUtils';
+import { AuthService } from '../services/auth.service';
+import { apiClient } from '../libs/apiClient';
 
 // Define the shape of the user object
 export interface User {
@@ -23,6 +33,7 @@ interface AuthContextType {
   signOut: () => Promise<void>;
   skipAuth: () => Promise<void>;
   updateUserProfile: (userData: Partial<User>) => Promise<void>;
+  signInWithWallet: (walletAddress: string, chainId: number) => Promise<void>;
   // Add more auth methods as needed
 }
 
@@ -67,10 +78,33 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     loadAuthState();
   }, []);
 
+  // Sign in with wallet
+  const signInWithWallet = async (walletAddress: string, chainId: number) => {
+    setIsLoading(true);
+    try {
+      // Use the auth service to authenticate with wallet
+      const { user: walletUser, token } = await AuthService.signInWithWallet(walletAddress, chainId);
+      
+      // Store user and token (handled by service, but we still need to update the state)
+      await setHasSeenAuth();
+      
+      // Update state
+      setUser(walletUser);
+      setIsSignedIn(true);
+      setIsFirstTimeUser(false);
+    } catch (error) {
+      console.error('Wallet sign in error:', error);
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Sign out method
   const signOut = async () => {
     setIsLoading(true);
     try {
+      await clearAuthData();
       setUser(null);
       setIsSignedIn(false);
     } catch (error) {
@@ -115,6 +149,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     isFirstTimeUser,
     signOut,
     skipAuth,
+    signInWithWallet,
     updateUserProfile: async (userData: Partial<User>) => {
       const updated = await updateUserProfile(userData);
       return;

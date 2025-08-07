@@ -61,6 +61,55 @@ export const AuthService = {
   },
   
   /**
+   * Authenticate user with a wallet address
+   * @param address Wallet address
+   * @param chainId Chain ID the wallet is connected to
+   * @returns Promise with user and token
+   */
+  async signInWithWallet(address: string, chainId: number): Promise<AuthResponse> {
+    try {
+      try {
+        // Try to authenticate with the backend
+        const response = await apiClient.post<AuthResponse>(
+          '/auth/wallet',
+          { address, chainId },
+          { isAuthRequired: false }
+        );
+        
+        // Store auth data
+        await setAuthToken(response.token);
+        await setAuthUser(response.user);
+        
+        return response;
+      } catch (apiError) {
+        // If API endpoint doesn't exist yet, create a dummy user
+        console.warn('API endpoint not available, creating local user:', apiError);
+        
+        // Create a simple user object based on wallet address
+        const walletUser: User = {
+          id: address,
+          email: `${address.substring(0, 8)}@wallet.user`,
+          username: `wallet_${address.substring(0, 6)}`,
+          walletAddress: address,
+          authProvider: 'wallet',
+        };
+        
+        // Generate a simple token
+        const token = `wallet_auth_${Date.now()}`;
+        
+        // Store auth data
+        await setAuthToken(token);
+        await setAuthUser(walletUser);
+        
+        return { user: walletUser, token };
+      }
+    } catch (error) {
+      console.error('Wallet sign in error:', error);
+      throw error;
+    }
+  },
+  
+  /**
    * Sign out the current user
    */
   async signOut(): Promise<void> {

@@ -40,7 +40,8 @@
     "description": "Quickly generate React Native components with AI",
     "jsEngine": "hermes",
     "plugins": [
-      "expo-secure-store"
+      "expo-secure-store",
+      "./libs/reown.queries.js"
     ]
   }
 }

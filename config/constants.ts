@@ -1,8 +1,8 @@
-import BaseIcon from "../assets/chains/base-icon.svg";
+import env from "./env";
+import BaseIcon from "../assets/chains/ethereum-icon.png";
 import BnbIcon from "../assets/chains/bnb-icon.png";
 import BnbTestnet from "../assets/chains/bnb-icon.png";
 import GorliTestnet from "../assets/chains/gorli-icon.png";
-import env from "./env";
 
 export const isDevMode = env.APP_ENV === "development";
 
