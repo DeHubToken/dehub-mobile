@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   ScrollView,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SvgXml } from "react-native-svg";
 import { useAuth } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useAppKit } from "@reown/appkit-ethers5-react-native";
+import { ChainId, isDevMode } from "../../config/constants";
 
 const googleIcon = `
 <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,47 +34,246 @@ const DUMMY_SOCIAL_LOGINS = [
   { provider: "twitter", name: "Twitter", icon: twitterIcon },
 ];
 
-export default function SignInScreen({ navigation }: any) {
+// Define the component interface
+interface SignInScreenProps {
+  navigation: any; // Consider using proper NavigationProp type if you have @react-navigation/native
+}
+
+export default function SignInScreen({ navigation }: SignInScreenProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const [isWalletLoading, setIsWalletLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
-   const { open } = useAppKit();
+  const [walletAddress, setWalletAddress] = useState<string | null>(null);
+  const { open, account, connector } = useAppKit();
+  const componentMounted = React.useRef(true);
 
-  const { skipAuth, isFirstTimeUser } = useAuth();
+  const { skipAuth, isFirstTimeUser, signInWithWallet } = useAuth();
+  
+  // Clean up on unmount
+  useEffect(() => {
+    return () => {
+      componentMounted.current = false;
+    };
+  }, []);
 
-  const handleSocialLogin = async (provider: string) => {
-    setIsLoading(true);
-    setCurrentProvider(provider);
+  // Check and track wallet connection status
+  useEffect(() => {
+    if (account?.address) {
+      setWalletAddress(account.address);
+    } else {
+      setWalletAddress(null);
+    }
+  }, [account?.address]);
+
+  // Get the preferred chain ID based on environment
+  const getPreferredChainId = useCallback(() => {
+    return isDevMode ? ChainId.GORLI : ChainId.BASE_MAINNET;
+  }, []);
+
+  // Check if the current chain is supported
+  const isSupportedChain = useCallback((chainId: number): boolean => {
+    const supportedChains = isDevMode
+      ? [ChainId.GORLI, ChainId.BSC_TESTNET]
+      : [ChainId.BSC_MAINNET, ChainId.BASE_MAINNET];
+
+    return supportedChains.includes(chainId);
+  }, []);
+
+  // Get chain name for display
+  const getChainName = useCallback((chainId: number): string => {
+    const chainNames: Record<number, string> = {
+      [ChainId.GORLI]: "Goerli Testnet",
+      [ChainId.BSC_MAINNET]: "BNB Chain",
+      [ChainId.BSC_TESTNET]: "BNB Testnet",
+      [ChainId.BASE_MAINNET]: "Base",
+    };
+
+    return chainNames[chainId] || `Chain ID ${chainId}`;
+  }, []);
+
+  // Authenticate with backend using wallet
+  const authenticateWithWallet = useCallback(async (address: string, chainId: number) => {
+    try {
+      await signInWithWallet(address, chainId);
+
+      // Navigate to home screen after successful auth
+      if (componentMounted.current) {
+        navigation.navigate(ScreenNames.Home);
+      }
+    } catch (error) {
+      console.error("Wallet authentication error:", error);
+      if (componentMounted.current) {
+        Alert.alert(
+          "Authentication Failed",
+          "Failed to authenticate with your wallet. Please try again."
+        );
+      }
+    }
+  }, [signInWithWallet, navigation]);
+
+  // Handle external wallet connection
+  const handleWalletConnect = useCallback(async () => {
+    if (isWalletLoading) return; // Prevent multiple clicks
+    setIsWalletLoading(true);
 
     try {
-      // Simulate login process
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      Alert.alert("Login Successful", `Logged in with ${provider}`);
-    } catch (error) {
-      Alert.alert(
-        "Login Failed",
-        `Failed to login with ${provider}. Please try again.`
-      );
-    } finally {
-      setIsLoading(false);
-      setCurrentProvider("");
-    }
-  };
+      // If already connected, use that connection
+      if (walletAddress && account?.address && connector?.chainId) {
+        const chainId = connector.chainId;
+        await authenticateWithWallet(account.address, chainId);
+        if (componentMounted.current) {
+          setIsWalletLoading(false);
+        }
+        return;
+      }
 
-  const handleSkipOrClose = async () => {
+      // Open AppKit wallet modal to connect wallet
+      open();
+
+      // Set a simple timeout to reset loading state if connection takes too long
+      setTimeout(() => {
+        if (componentMounted.current) {
+          setIsWalletLoading(false);
+        }
+      }, 30000);
+    } catch (error) {
+      console.error("Wallet connection error:", error);
+      if (componentMounted.current) {
+        Alert.alert(
+          "Wallet Connection Failed",
+          error instanceof Error
+            ? error.message
+            : "Failed to connect wallet. Please try again."
+        );
+        setIsWalletLoading(false);
+      }
+    }
+  }, [open, authenticateWithWallet, walletAddress, account, connector]);
+  
+  // Handle wallet connection and chain changes
+  useEffect(() => {
+    const handleWalletConnection = async () => {
+      // Only proceed if the component is still mounted and we're in loading state
+      if (!componentMounted.current || !isWalletLoading) return;
+      
+      if (account?.address && connector?.chainId) {
+        // Check if chain is supported
+        const isSupported = isSupportedChain(connector.chainId);
+
+        // If not on supported chain, prompt to switch
+        if (!isSupported) {
+          const preferredChainId = getPreferredChainId();
+          const preferredChainName = getChainName(preferredChainId);
+          
+          Alert.alert(
+            "Wrong Network",
+            `Please switch to ${preferredChainName} to continue.`,
+            [
+              { text: "Cancel", style: "cancel", onPress: () => {
+                if (componentMounted.current) {
+                  setIsWalletLoading(false);
+                }
+              }},
+              { 
+                text: "Switch Network", 
+                onPress: async () => {
+                  try {
+                    // Request chain switch via AppKit
+                    await connector.switchChain({ chainId: preferredChainId });
+                    // Chain switch will trigger this effect again with the new chainId
+                  } catch (error) {
+                    console.error("Chain switch error:", error);
+                    if (componentMounted.current) {
+                      Alert.alert(
+                        "Network Switch Failed",
+                        "Failed to switch networks. Please try again or switch manually."
+                      );
+                      setIsWalletLoading(false);
+                    }
+                  }
+                }
+              }
+            ]
+          );
+        } else {
+          // Chain is supported, proceed with authentication
+          try {
+            await authenticateWithWallet(account.address, connector.chainId);
+          } catch (error) {
+            console.error("Wallet authentication error:", error);
+          } finally {
+            if (componentMounted.current) {
+              setIsWalletLoading(false);
+            }
+          }
+        }
+      }
+    };
+
+    // Run the connection handler when dependencies change
+    if (isWalletLoading && account?.address && connector?.chainId) {
+      handleWalletConnection();
+    }
+  }, [
+    account?.address, 
+    connector?.chainId, 
+    isWalletLoading, 
+    isSupportedChain, 
+    getPreferredChainId,
+    getChainName,
+    authenticateWithWallet
+  ]);
+
+  // Handle social login providers
+  const handleSocialLogin = useCallback(
+    async (provider: string) => {
+      setIsLoading(true);
+      setCurrentProvider(provider);
+
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        if (componentMounted.current) {
+          Alert.alert("Login Successful", `Logged in with ${provider}`);
+          // Navigate to home screen after successful auth
+          navigation.navigate(ScreenNames.Home);
+        }
+      } catch (error) {
+        if (componentMounted.current) {
+          Alert.alert(
+            "Login Failed",
+            `Failed to login with ${provider}. Please try again.`
+          );
+        }
+      } finally {
+        if (componentMounted.current) {
+          setIsLoading(false);
+          setCurrentProvider("");
+        }
+      }
+    },
+    [navigation]
+  );
+
+  // Handle skip or close button
+  const handleSkipOrClose = useCallback(async () => {
     await skipAuth();
     if (isFirstTimeUser) {
       navigation.navigate(ScreenNames.Home);
     } else {
       navigation.goBack();
     }
-  };
+  }, [skipAuth, isFirstTimeUser, navigation]);
 
   return (
     <SafeAreaView className="flex-1 bg-black">
-      {/* Skip or Close button */}
       <TouchableOpacity
         className="absolute right-5 top-3 z-10 px-3 py-2 rounded-full bg-gray-800"
         onPress={handleSkipOrClose}
+        accessibilityLabel={
+          isFirstTimeUser
+            ? "Skip authentication"
+            : "Close authentication screen"
+        }
       >
         <Text className="text-white font-medium">
           {isFirstTimeUser ? "Skip" : "Close"}
@@ -90,10 +291,42 @@ export default function SignInScreen({ navigation }: any) {
           </Text>
         </View>
 
-        <TouchableOpacity className="bg-theme-accent rounded-lg py-4 px-5 items-center mb-6" onClick={() => open()}>
-          <Text className="text-white text-lg font-medium">
-            Login with external wallets
-          </Text>
+        <TouchableOpacity
+          className={`bg-theme-accent rounded-lg py-4 px-5 items-center mb-6 flex-row justify-center ${
+            isWalletLoading ? "opacity-70" : ""
+          }`}
+          onPress={handleWalletConnect}
+          disabled={isWalletLoading}
+          accessibilityLabel={
+            walletAddress ? "Continue with connected wallet" : "Connect wallet"
+          }
+          accessibilityRole="button"
+          accessibilityState={{
+            disabled: isWalletLoading,
+            busy: isWalletLoading,
+          }}
+        >
+          {isWalletLoading ? (
+            <>
+              <ActivityIndicator
+                size="small"
+                color="#FFFFFF"
+                className="mr-2"
+              />
+              <Text className="text-white text-lg font-medium">
+                Connecting...
+              </Text>
+            </>
+          ) : walletAddress ? (
+            <Text className="text-white text-lg font-medium">
+              Connected: {walletAddress.substring(0, 6)}...
+              {walletAddress.substring(walletAddress.length - 4)}
+            </Text>
+          ) : (
+            <Text className="text-white text-lg font-medium">
+              Sign in with external wallet
+            </Text>
+          )}
         </TouchableOpacity>
 
         <View className="flex-row items-center my-4">
@@ -113,8 +346,16 @@ export default function SignInScreen({ navigation }: any) {
               }`}
               onPress={() => handleSocialLogin(social.provider)}
               disabled={isLoading}
+              accessibilityLabel={`Sign in with ${social.name}`}
+              accessibilityRole="button"
             >
-              <SvgXml xml={social.icon} width={24} height={24} className="mr-2" />
+              <SvgXml
+                xml={social.icon}
+                width={24}
+                height={24}
+                className="mr-2"
+                accessibilityLabel={`${social.name} logo`}
+              />
               <Text className="text-white text-base">{social.name}</Text>
             </TouchableOpacity>
           ))}

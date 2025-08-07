@@ -10,6 +10,7 @@ import { theme } from "./theme";
 import { AuthProvider } from "./context/AuthContext";
 import RootNavigator from "./navigation/RootNavigator";
 import { AppKit } from "@reown/appkit-ethers5-react-native";
+import SafeAppKit from "./components/SafeAppKit";
 
 export default function App() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -50,6 +51,7 @@ export default function App() {
         </SafeAreaView>
       </AuthProvider>
       <AppKit />
+      {/* <SafeAppKit onError={(error) => console.error('AppKit Error:', error)} /> */}
     </SafeAreaProvider>
   );
 }
