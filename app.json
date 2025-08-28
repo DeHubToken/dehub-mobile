@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "dehub",
     "name": "Dehub",
     "slug": "snack-aa38f910-5016-454d-9040-2fb99243ab4e",
     "version": "1.0.0",
@@ -39,9 +40,6 @@
     },
     "description": "Quickly generate React Native components with AI",
     "jsEngine": "hermes",
-    "plugins": [
-      "expo-secure-store",
-      "./libs/reown.queries.js"
-    ]
+    "plugins": ["expo-secure-store", "./libs/reown.queries.js"]
   }
 }

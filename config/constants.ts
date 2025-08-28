@@ -4,7 +4,8 @@ import BnbIcon from "../assets/chains/bnb-icon.png";
 import BnbTestnet from "../assets/chains/bnb-icon.png";
 import GorliTestnet from "../assets/chains/gorli-icon.png";
 
-export const isDevMode = env.APP_ENV === "development";
+// export const isDevMode = env.APP_ENV === "development";
+export const isDevMode = false;
 
 export enum ChainId {
   MAINNET = 1,
@@ -402,7 +403,7 @@ export const supportedTokensForAddBounty = supportedTokens;
 export const supportedChainIdsForMinting = [ChainId.BSC_MAINNET, ChainId.BASE_MAINNET];
 export const supportedChainIds = isDevMode
   ? [ChainId.BSC_TESTNET, ChainId.GORLI]
-  : [ChainId.MAINNET, ChainId.BSC_MAINNET, ChainId.POLYGON_MAINNET, ChainId.BASE_MAINNET];
+  : [ChainId.BSC_MAINNET, ChainId.BASE_MAINNET];
 export const defaultChainId = isDevMode ? ChainId.GORLI : ChainId.BSC_MAINNET;
 export const defaultTokenSymbol = "DHB";
 export const defaultWatchTimeForPPV = 2 * 60 * 60; // second unit

@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
@@ -11,8 +11,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { SvgXml } from "react-native-svg";
 import { useAuth } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import { useAppKit } from "@reown/appkit-ethers5-react-native";
-import { ChainId, isDevMode } from "../../config/constants";
+import { useWalletAuth } from "../../hooks/useWalletAuth";
 
 const googleIcon = `
 <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,228 +40,36 @@ interface SignInScreenProps {
 
 export default function SignInScreen({ navigation }: SignInScreenProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const [isWalletLoading, setIsWalletLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
-  const [walletAddress, setWalletAddress] = useState<string | null>(null);
-  const { open, account, connector } = useAppKit();
-  const componentMounted = React.useRef(true);
+  const { skipAuth, isFirstTimeUser } = useAuth();
+  const { isWalletLoading, walletAddress, handleWalletConnect } =
+    useWalletAuth(navigation);
 
-  const { skipAuth, isFirstTimeUser, signInWithWallet } = useAuth();
-  
-  // Clean up on unmount
-  useEffect(() => {
-    return () => {
-      componentMounted.current = false;
-    };
+  const handleSocialLogin = useCallback(async (provider: string) => {
+    setIsLoading(true);
+    setCurrentProvider(provider);
+    // Simulate social login
+    setTimeout(() => {
+      Alert.alert("Social Login", `${provider} login is not implemented yet.`);
+      setIsLoading(false);
+      setCurrentProvider("");
+    }, 1500);
   }, []);
 
-  // Check and track wallet connection status
-  useEffect(() => {
-    if (account?.address) {
-      setWalletAddress(account.address);
-    } else {
-      setWalletAddress(null);
-    }
-  }, [account?.address]);
-
-  // Get the preferred chain ID based on environment
-  const getPreferredChainId = useCallback(() => {
-    return isDevMode ? ChainId.GORLI : ChainId.BASE_MAINNET;
-  }, []);
-
-  // Check if the current chain is supported
-  const isSupportedChain = useCallback((chainId: number): boolean => {
-    const supportedChains = isDevMode
-      ? [ChainId.GORLI, ChainId.BSC_TESTNET]
-      : [ChainId.BSC_MAINNET, ChainId.BASE_MAINNET];
-
-    return supportedChains.includes(chainId);
-  }, []);
-
-  // Get chain name for display
-  const getChainName = useCallback((chainId: number): string => {
-    const chainNames: Record<number, string> = {
-      [ChainId.GORLI]: "Goerli Testnet",
-      [ChainId.BSC_MAINNET]: "BNB Chain",
-      [ChainId.BSC_TESTNET]: "BNB Testnet",
-      [ChainId.BASE_MAINNET]: "Base",
-    };
-
-    return chainNames[chainId] || `Chain ID ${chainId}`;
-  }, []);
-
-  // Authenticate with backend using wallet
-  const authenticateWithWallet = useCallback(async (address: string, chainId: number) => {
-    try {
-      await signInWithWallet(address, chainId);
-
-      // Navigate to home screen after successful auth
-      if (componentMounted.current) {
-        navigation.navigate(ScreenNames.Home);
-      }
-    } catch (error) {
-      console.error("Wallet authentication error:", error);
-      if (componentMounted.current) {
-        Alert.alert(
-          "Authentication Failed",
-          "Failed to authenticate with your wallet. Please try again."
-        );
-      }
-    }
-  }, [signInWithWallet, navigation]);
-
-  // Handle external wallet connection
-  const handleWalletConnect = useCallback(async () => {
-    if (isWalletLoading) return; // Prevent multiple clicks
-    setIsWalletLoading(true);
-
-    try {
-      // If already connected, use that connection
-      if (walletAddress && account?.address && connector?.chainId) {
-        const chainId = connector.chainId;
-        await authenticateWithWallet(account.address, chainId);
-        if (componentMounted.current) {
-          setIsWalletLoading(false);
-        }
-        return;
-      }
-
-      // Open AppKit wallet modal to connect wallet
-      open();
-
-      // Set a simple timeout to reset loading state if connection takes too long
-      setTimeout(() => {
-        if (componentMounted.current) {
-          setIsWalletLoading(false);
-        }
-      }, 30000);
-    } catch (error) {
-      console.error("Wallet connection error:", error);
-      if (componentMounted.current) {
-        Alert.alert(
-          "Wallet Connection Failed",
-          error instanceof Error
-            ? error.message
-            : "Failed to connect wallet. Please try again."
-        );
-        setIsWalletLoading(false);
-      }
-    }
-  }, [open, authenticateWithWallet, walletAddress, account, connector]);
-  
-  // Handle wallet connection and chain changes
-  useEffect(() => {
-    const handleWalletConnection = async () => {
-      // Only proceed if the component is still mounted and we're in loading state
-      if (!componentMounted.current || !isWalletLoading) return;
-      
-      if (account?.address && connector?.chainId) {
-        // Check if chain is supported
-        const isSupported = isSupportedChain(connector.chainId);
-
-        // If not on supported chain, prompt to switch
-        if (!isSupported) {
-          const preferredChainId = getPreferredChainId();
-          const preferredChainName = getChainName(preferredChainId);
-          
-          Alert.alert(
-            "Wrong Network",
-            `Please switch to ${preferredChainName} to continue.`,
-            [
-              { text: "Cancel", style: "cancel", onPress: () => {
-                if (componentMounted.current) {
-                  setIsWalletLoading(false);
-                }
-              }},
-              { 
-                text: "Switch Network", 
-                onPress: async () => {
-                  try {
-                    // Request chain switch via AppKit
-                    await connector.switchChain({ chainId: preferredChainId });
-                    // Chain switch will trigger this effect again with the new chainId
-                  } catch (error) {
-                    console.error("Chain switch error:", error);
-                    if (componentMounted.current) {
-                      Alert.alert(
-                        "Network Switch Failed",
-                        "Failed to switch networks. Please try again or switch manually."
-                      );
-                      setIsWalletLoading(false);
-                    }
-                  }
-                }
-              }
-            ]
-          );
-        } else {
-          // Chain is supported, proceed with authentication
-          try {
-            await authenticateWithWallet(account.address, connector.chainId);
-          } catch (error) {
-            console.error("Wallet authentication error:", error);
-          } finally {
-            if (componentMounted.current) {
-              setIsWalletLoading(false);
-            }
-          }
-        }
-      }
-    };
-
-    // Run the connection handler when dependencies change
-    if (isWalletLoading && account?.address && connector?.chainId) {
-      handleWalletConnection();
-    }
-  }, [
-    account?.address, 
-    connector?.chainId, 
-    isWalletLoading, 
-    isSupportedChain, 
-    getPreferredChainId,
-    getChainName,
-    authenticateWithWallet
-  ]);
-
-  // Handle social login providers
-  const handleSocialLogin = useCallback(
-    async (provider: string) => {
-      setIsLoading(true);
-      setCurrentProvider(provider);
-
-      try {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        if (componentMounted.current) {
-          Alert.alert("Login Successful", `Logged in with ${provider}`);
-          // Navigate to home screen after successful auth
-          navigation.navigate(ScreenNames.Home);
-        }
-      } catch (error) {
-        if (componentMounted.current) {
-          Alert.alert(
-            "Login Failed",
-            `Failed to login with ${provider}. Please try again.`
-          );
-        }
-      } finally {
-        if (componentMounted.current) {
-          setIsLoading(false);
-          setCurrentProvider("");
-        }
-      }
-    },
-    [navigation]
-  );
-
-  // Handle skip or close button
   const handleSkipOrClose = useCallback(async () => {
-    await skipAuth();
     if (isFirstTimeUser) {
-      navigation.navigate(ScreenNames.Home);
-    } else {
-      navigation.goBack();
+      // Do not navigate manually; RootNavigator will switch to App when this flag flips
+      await skipAuth();
+      return;
     }
-  }, [skipAuth, isFirstTimeUser, navigation]);
+    // If this screen was opened modally from inside the app, close it
+    if (navigation?.canGoBack?.()) {
+      navigation.goBack();
+    } else {
+      // Fallback: ensure we land on the main app stack
+      navigation.navigate(ScreenNames.Root as never);
+    }
+  }, [isFirstTimeUser, skipAuth, navigation]);
 
   return (
     <SafeAreaView className="flex-1 bg-black">
@@ -308,23 +115,14 @@ export default function SignInScreen({ navigation }: SignInScreenProps) {
         >
           {isWalletLoading ? (
             <>
-              <ActivityIndicator
-                size="small"
-                color="#FFFFFF"
-                className="mr-2"
-              />
-              <Text className="text-white text-lg font-medium">
+              <ActivityIndicator color="#fff" className="mr-2" />
+              <Text className="text-white text-lg font-semibold">
                 Connecting...
               </Text>
             </>
-          ) : walletAddress ? (
-            <Text className="text-white text-lg font-medium">
-              Connected: {walletAddress.substring(0, 6)}...
-              {walletAddress.substring(walletAddress.length - 4)}
-            </Text>
           ) : (
-            <Text className="text-white text-lg font-medium">
-              Sign in with external wallet
+            <Text className="text-white text-lg font-semibold">
+              {walletAddress ? "Continue" : "Connect Wallet"}
             </Text>
           )}
         </TouchableOpacity>
@@ -349,13 +147,17 @@ export default function SignInScreen({ navigation }: SignInScreenProps) {
               accessibilityLabel={`Sign in with ${social.name}`}
               accessibilityRole="button"
             >
-              <SvgXml
-                xml={social.icon}
-                width={24}
-                height={24}
-                className="mr-2"
-                accessibilityLabel={`${social.name} logo`}
-              />
+              {isLoading && currentProvider === social.provider ? (
+                <ActivityIndicator color="#fff" className="mr-2" />
+              ) : (
+                <SvgXml
+                  xml={social.icon}
+                  width={24}
+                  height={24}
+                  className="mr-2"
+                  accessibilityLabel={`${social.name} logo`}
+                />
+              )}
               <Text className="text-white text-base">{social.name}</Text>
             </TouchableOpacity>
           ))}
