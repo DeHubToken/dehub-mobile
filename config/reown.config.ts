@@ -60,17 +60,25 @@ try {
 
 console.log("Creating AppKit at module level with:", {
   projectId: projectId.substring(0, 10) + "...",
-  chainsCount: chains.length,
+  chainsCount: Array.isArray(chains) ? chains.length : 0,
   metadata: metadata.name,
 });
 
-// initializeAppKit
-createAppKit({
-  projectId,
-  metadata,
-  chains,
-  config,
-  enableAnalytics: true,
-});
+// initializeAppKit (guard against multiple inits on Fast Refresh)
+const APPKIT_GLOBAL_KEY = "__REOWN_APPKIT_INITIALIZED__" as const;
 
-console.log("AppKit created at module level");
+if (!(globalThis as any)[APPKIT_GLOBAL_KEY]) {
+  createAppKit({
+    projectId,
+    metadata,
+    chains,
+    config,
+    enableAnalytics: true,
+    // relayUrl: "wss://relay.walletconnect.com",
+  });
+
+  (globalThis as any)[APPKIT_GLOBAL_KEY] = true;
+  console.log("AppKit created at module level");
+} else {
+  console.log("AppKit already initialized, skipping");
+}
