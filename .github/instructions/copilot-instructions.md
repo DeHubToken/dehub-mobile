@@ -34,6 +34,7 @@ applyTo: "**/*.tsx"
 - Centralize API logic in a general `api.ts` file using Axios or Fetch.
 - Create service files for specific domains (e.g., `auth.service.ts`, `user.service.ts`) that use the general `api.ts` instance.
 - Use proper error handling and async/await syntax.
+- Log the errors
 - Define API response types and DTOs using TypeScript.
 - Use optimistic updates and error handling to improve user experience.
 - Use SWR or React Query for caching, pagination, and background fetching.

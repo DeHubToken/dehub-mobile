@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
-import { Alert } from "react-native";
-import { useAppKit } from "@reown/appkit-ethers5-react-native";
+import { toastError, toastInfo } from '../libs';
+import { useAppKit, useAppKitAccount } from "@reown/appkit-ethers5-react-native";
 import { useAuth } from "../context/AuthContext";
 import { ChainId, isDevMode } from "../config/constants";
 
@@ -27,26 +27,24 @@ const getChainName = (chainId: number): string => {
 export const useWalletAuth = (_navigation: any) => {
   const [isWalletLoading, setIsWalletLoading] = useState(false);
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
-  const { open, account, connector } = useAppKit();
+  const { open } = useAppKit();
+  const { address: accountAddress, chainId: currentChainId, isConnected } = useAppKitAccount();
   const { signInWithWallet } = useAuth();
 
   // Keep local state in sync with AppKit account
   useEffect(() => {
-    setWalletAddress(account?.address ?? null);
+    setWalletAddress(accountAddress ?? null);
     // If no account, ensure loading is not shown
-    if (!account?.address) setIsWalletLoading(false);
-  }, [account?.address]);
+    if (!accountAddress) setIsWalletLoading(false);
+  }, [accountAddress]);
 
   const authenticateWithWallet = useCallback(
     async (address: string, chainId: number) => {
       try {
         await signInWithWallet(address, chainId);
       } catch (error) {
-        console.error("Wallet authentication error:", error);
-        Alert.alert(
-          "Authentication Failed",
-          "Failed to authenticate with your wallet. Please try again."
-        );
+  console.error('[WalletAuth] authentication error', error);
+  toastError(error, 'Wallet authentication failed. Please try again.');
       }
     },
     [signInWithWallet]
@@ -54,73 +52,43 @@ export const useWalletAuth = (_navigation: any) => {
 
   const handleWalletConnect = useCallback(async () => {
     // If already connected, authenticate immediately
-    if (account?.address && connector?.chainId) {
+    if (accountAddress && currentChainId) {
       setIsWalletLoading(true);
-      await authenticateWithWallet(account.address, connector.chainId);
+      await authenticateWithWallet(accountAddress, currentChainId);
       setIsWalletLoading(false);
       return;
     }
 
     // Open AppKit modal without toggling loading yet
     open();
-  }, [account?.address, connector?.chainId, open, authenticateWithWallet]);
+  }, [accountAddress, currentChainId, open, authenticateWithWallet]);
 
   // When account and chain become available (user finished connection)
   useEffect(() => {
-    if (!account?.address || !connector?.chainId) return;
+  if (!accountAddress || !currentChainId) return;
 
     const proceed = async () => {
       setIsWalletLoading(true);
-      const chainId = connector.chainId;
+  const chainId = currentChainId;
 
       if (isSupportedChain(chainId)) {
-        await authenticateWithWallet(account.address, chainId);
+  await authenticateWithWallet(accountAddress, chainId);
         setIsWalletLoading(false);
       } else {
         const preferredChainId = getPreferredChainId();
         const preferredChainName = getChainName(preferredChainId);
 
-        Alert.alert(
-          "Wrong Network",
-          `Please switch to ${preferredChainName} to continue.`,
-          [
-            {
-              text: "Cancel",
-              style: "cancel",
-              onPress: () => setIsWalletLoading(false),
-            },
-            {
-              text: "Switch Network",
-              onPress: async () => {
-                try {
-                  // Ask wallet to switch network via connector
-                  await connector.switchChain({ chainId: preferredChainId });
-                  // If switched, try auth
-                  if (connector?.chainId === preferredChainId) {
-                    await authenticateWithWallet(
-                      account.address,
-                      preferredChainId
-                    );
-                  }
-                } catch (e) {
-                  console.error("Chain switch error:", e);
-                  Alert.alert(
-                    "Network Switch Failed",
-                    "Failed to switch networks. Please try again or switch manually."
-                  );
-                } finally {
-                  setIsWalletLoading(false);
-                }
-              },
-            },
-          ]
-        );
+    console.warn('[WalletAuth] wrong network', { current: chainId, preferred: preferredChainId });
+  toastInfo(`Switch to ${preferredChainName} to continue.`);
+    // Auto switch not available through useAppKitAccount; prompt user manually
+    toastInfo('Open your wallet and change network.');
+    setIsWalletLoading(false);
       }
     };
 
     proceed();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account?.address, connector?.chainId]);
+  }, [accountAddress, currentChainId]);
 
   return {
     isWalletLoading,

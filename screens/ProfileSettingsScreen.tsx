@@ -1,16 +1,6 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ActivityIndicator,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  Alert,
-  Image,
-} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView, Image } from 'react-native';
+import { toastSuccess, toastError, toastInfo } from '../libs';
 import { useAuth } from '../context/AuthContext';
 import { useUserProfile } from '../hooks/useUserProfile';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -27,7 +17,7 @@ export default function ProfileSettingsScreen({ navigation }) {
 
   const handleUpdateProfile = async () => {
     if (!username.trim()) {
-      Alert.alert('Error', 'Username cannot be empty');
+  toastError('Please enter a username.');
       return;
     }
     
@@ -36,9 +26,10 @@ export default function ProfileSettingsScreen({ navigation }) {
     try {
       await updateProfile({ username });
       setIsEditing(false);
-      Alert.alert('Success', 'Profile updated successfully');
+  toastSuccess('Profile updated.');
     } catch (error) {
-      Alert.alert('Error', 'Failed to update profile');
+  console.error('[ProfileSettings] updateProfile error', error);
+  toastError(error, 'Could not update profile. Try again.');
     } finally {
       setIsSaving(false);
     }
@@ -49,26 +40,14 @@ export default function ProfileSettingsScreen({ navigation }) {
       await signOut();
       // Navigation will be handled by RootNavigator
     } catch (error) {
-      Alert.alert('Error', 'Failed to sign out');
+      console.error('[ProfileSettings] signOut error', error);
+  toastError('Sign out failed.');
     }
   };
 
   const confirmSignOut = () => {
-    Alert.alert(
-      'Sign Out',
-      'Are you sure you want to sign out?',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-        {
-          text: 'Sign Out',
-          onPress: handleSignOut,
-          style: 'destructive',
-        },
-      ]
-    );
+  toastInfo('Signing out...');
+    handleSignOut();
   };
 
   const navigateToSignIn = () => {
