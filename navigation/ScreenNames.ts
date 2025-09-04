@@ -14,6 +14,7 @@ export enum ScreenNames {
   DirectMessages = 'DirectMessages',
   VideoPlayer = 'VideoPlayer',
   ImageViewer = 'ImageViewer',
+  AccountSettings = 'AccountSettings',
   // Auth screen
   SignIn = 'SignIn',
 }

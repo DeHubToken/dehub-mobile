@@ -50,7 +50,6 @@ export const NETWORK_URLS: {
   [ChainId.BSC_TESTNET]: `https://data-seed-prebsc-1-s2.binance.org:8545`, //'https://bsc-testnet-rpc.publicnode.com',//`
   [ChainId.POLYGON_MAINNET]: "https://polygon-rpc.co",
   [ChainId.BASE_MAINNET]: `https://base-sepolia.infura.io/v3/${infuraKey}`,
-  // [ChainId.SEPOLIA]: `https://sepolia.infura.io/v3/${infuraKey}`
 };
 const testNetworks = [
     {
@@ -110,47 +109,10 @@ const mainNetworks = [
         iconUrl:"https://basescan.org/assets/base/images/svg/logos/chain-light.svg?v=25.1.2.0"
     }
 ];
-//   {
-//     id: ChainId.BSC_MAINNET,
-//     chainId: ChainId.BSC_MAINNET,
-//     ticker: "BNB",
-//     name: "BNB Chain",
-//     shortName: "BNBChain",
-//     rpcUrl: NETWORK_URLS[ChainId.BSC_MAINNET],
-//     explorerUrl: "https://bscscan.com/",
-//     value: "BNB Chain",
-//     label: "BNB Chain",
-//     customAbbreviation: "bnb_chain",
-//     iconUrl:""
-//   },{
-//     id: ChainId.BASE_MAINNET,
-//     chainId: ChainId.BASE_MAINNET,
-//     ticker: "ETH",
-//     name: "Base",
-//     shortName: "Base",
-//     rpcUrl: NETWORK_URLS[ChainId.BASE_MAINNET],
-//     explorerUrl: "https://basescan.org/",
-//     value: "Base",
-//     label: "Base",
-//     customAbbreviation: "base",
-//     iconUrl:"https://basescan.org/assets/base/images/svg/logos/chain-light.svg?v=25.1.2.0"
-//   }
-// ];
 
 export const supportedNetworks = isDevMode ? testNetworks : mainNetworks;
 
 const TEST_NETWORKS = {
-  // [ChainId.GORLI]: {
-  //   chainId: "0x5",
-  //   chainName: "Goerli",
-  //   nativeCurrency: {
-  //     name: "Ethereum",
-  //     symbol: "ETH",
-  //     decimals: 18,
-  //   },
-  //   rpcUrls: [NETWORK_URLS[ChainId.GORLI]],
-  //   blockExplorerUrls: ["https://etherscan.io"],
-  // },
   [ChainId.BSC_TESTNET]: {
     chainId: "0x61",
     chainName: "BSC Testnet",
@@ -162,31 +124,9 @@ const TEST_NETWORKS = {
     rpcUrls: [NETWORK_URLS[ChainId.BSC_TESTNET]],
     blockExplorerUrls: ["https://testnet.bscscan.com/"],
   },
-  // [ChainId.SEPOLIA]: {
-  //   chainId: "0xaa36a7", // Hex for 11155111
-  //   chainName: "Sepolia Testnet",
-  //   nativeCurrency: {
-  //     name: "Sepolia Ether",
-  //     symbol: "ETH",
-  //     decimals: 18
-  //   },
-  //   rpcUrls: [NETWORK_URLS[ChainId.SEPOLIA]],
-  //   blockExplorerUrls: ["https://sepolia.etherscan.io/"],
-  // }
 };
 
 const MAIN_NETWORKS = {
-  // [ChainId.MAINNET]: {
-  //   chainId: "0x1",
-  //   chainName: "Ethereum",
-  //   nativeCurrency: {
-  //     name: "Ethereum",
-  //     symbol: "ETH",
-  //     decimals: 18,
-  //   },
-  //   rpcUrls: [`https://rpc.ankr.com/eth`],
-  //   blockExplorerUrls: ["https://etherscan.io"],
-  // },
   [ChainId.FANTOM_MAINNET]: {
     chainId: "0xfa",
     chainName: "Fantom",
@@ -231,17 +171,6 @@ const MAIN_NETWORKS = {
     rpcUrls: ["https://exchainrpc.okex.org"],
     blockExplorerUrls: ["https://www.oklink.com/en/okc"]
   },
-  // [ChainId.POLYGON_MAINNET]: {
-  //   chainId: "0x89",
-  //   chainName: "Polygon",
-  //   nativeCurrency: {
-  //     name: "Matic",
-  //     symbol: "MATIC",
-  //     decimals: 18,
-  //   },
-  //   rpcUrls: ["https://polygon-rpc.com"],
-  //   blockExplorerUrls: ["https://polygonscan.com"],
-  // },
   [ChainId.BASE_MAINNET]: {
     chainId: "0x2105",
     chainName: "Base Mainnet",
@@ -255,6 +184,5 @@ const MAIN_NETWORKS = {
   }
 };
 export const SUPPORTED_NETWORKS = isDevMode ? TEST_NETWORKS : MAIN_NETWORKS;
-// export const extraRpcUrls = (chainId: any) => {
-//   return chainId === ChainId.BSC_MAINNET ? env.NEXT_PUBLIC_BSC_NODE : undefined;
-// };
+
+export const appScheme = "dehub"

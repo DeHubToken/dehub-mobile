@@ -1,11 +1,11 @@
+import 'react-native-gesture-handler';
 import "react-native-get-random-values";
 import "react-native-url-polyfill/auto";
 import "@ethersproject/shims";
 import "@walletconnect/react-native-compat";
 import "react-native-reanimated";
-import { Buffer } from "buffer";
 
-global.Buffer = Buffer;
+import "./globals";
 
 import "./config/reown.config";
 

@@ -71,7 +71,7 @@ export const AuthService = {
       try {
         // Try to authenticate with the backend
         const response = await apiClient.post<AuthResponse>(
-          '/auth/wallet',
+          'mobile/auth',
           { address, chainId },
           { isAuthRequired: false }
         );

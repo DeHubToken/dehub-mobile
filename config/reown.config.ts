@@ -5,7 +5,7 @@ import {
   defaultConfig,
 } from "@reown/appkit-ethers5-react-native";
 import env from "./env";
-import { supportedNetworks } from "./web3.constants";
+import { appScheme, supportedNetworks } from "./web3.constants";
 
 // 1. Validate projectId
 export const projectId = env.REOWN_PROJECT_ID;
@@ -22,7 +22,7 @@ export const metadata = {
   url: "https://dehub.io",
   icons: ["https://avatars.githubusercontent.com/u/179229932"],
   redirect: {
-    native: "dehub://",
+    native: `${appScheme}://`,
     universal: "https://dehub.io",
   },
 };
@@ -30,6 +30,22 @@ export const metadata = {
 export const config = defaultConfig({ metadata });
 
 // 4. Validate and prepare chains
+const mainnet = {
+  chainId: 1,
+  name: "Ethereum",
+  currency: "ETH",
+  explorerUrl: "https://etherscan.io",
+  rpcUrl: "https://cloudflare-eth.com",
+};
+
+const polygon = {
+  chainId: 137,
+  name: "Polygon",
+  currency: "MATIC",
+  explorerUrl: "https://polygonscan.com",
+  rpcUrl: "https://polygon-rpc.com",
+};
+
 let chains;
 try {
   if (Array.isArray(supportedNetworks) && supportedNetworks.length > 0) {
@@ -55,6 +71,7 @@ try {
   console.error("Error with supportedNetworks:", error);
   // chains = [mainnet, polygon];
 }
+chains = [mainnet, polygon];
 
 // export const chains = [mainnet, polygon];
 
@@ -75,6 +92,8 @@ if (!(globalThis as any)[APPKIT_GLOBAL_KEY]) {
     config,
     enableAnalytics: true,
     // relayUrl: "wss://relay.walletconnect.com",
+    // relayUrl: "wss://relay.walletconnect.org"
+
   });
 
   (globalThis as any)[APPKIT_GLOBAL_KEY] = true;

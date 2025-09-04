@@ -1,60 +1,91 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect, useMemo } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   ScrollView,
-  Alert,
   ActivityIndicator,
 } from "react-native";
+import { toastError, toastInfo } from "../../libs";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { SvgXml } from "react-native-svg";
+import { SvgXml } from "react-native-svg"; // Keeping for other potential uses
 import { useAuth } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useWalletAuth } from "../../hooks/useWalletAuth";
+import {
+  SOCIAL_PROVIDERS,
+  loginWithSocial,
+  deriveAddressFromPrivateKey,
+  isWeb3AuthConfigured,
+  initWeb3Auth,
+} from "../../config/web3auth.config";
+import { ChainId } from "../../config/constants";
 
-const googleIcon = `
-<svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M28.0194 16.7729C28.0194 15.922 27.9431 15.1038 27.8012 14.3184H16.4998V18.9602H22.9577C22.6796 20.4601 21.8341 21.731 20.5633 22.582V25.5928H24.4413C26.7104 23.5038 28.0194 20.4274 28.0194 16.7729Z" fill="#4285F4"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M16.5007 28.4997C19.7406 28.4997 22.4568 27.4252 24.4422 25.5925L20.5642 22.5816C19.4897 23.3016 18.1152 23.727 16.5007 23.727C13.3753 23.727 10.7299 21.6161 9.78632 18.7798H5.77734V21.8889C7.75183 25.8107 11.8099 28.4997 16.5007 28.4997Z" fill="#34A853"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M9.7853 18.7799C9.5453 18.0599 9.40895 17.2908 9.40895 16.4999C9.40895 15.709 9.5453 14.9399 9.7853 14.2199V11.1108H5.77633C4.96362 12.7308 4.5 14.5635 4.5 16.4999C4.5 18.4363 4.96362 20.269 5.77633 21.889L9.7853 18.7799Z" fill="#FBBC05"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M16.5007 9.2727C18.2624 9.2727 19.8442 9.87815 21.0878 11.0672L24.5295 7.62544C22.4514 5.68908 19.7351 4.5 16.5007 4.5C11.8099 4.5 7.75183 7.18908 5.77734 11.1109L9.78632 14.2199C10.7299 11.3836 13.3753 9.2727 16.5007 9.2727Z" fill="#EA4335"/>
-</svg>
-`;
+// Removed unused AppKitButton import (was commented out) to keep component lean
 
-const twitterIcon = `
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 248 248">
-  <path fill="#1d9bf0" d="M221.95 51.29c.15 2.17.15 4.34.15 6.53 0 66.73-50.8 143.69-143.69 143.69v-.04c-27.44.04-54.31-7.82-77.41-22.64 3.99.48 8 .72 12.02.73 22.74.02 44.83-7.61 62.72-21.66-21.61-.41-40.56-14.5-47.18-35.07 7.57 1.46 15.37 1.16 22.8-.87-23.56-4.76-40.51-25.46-40.51-49.5v-.64c7.02 3.91 14.88 6.08 22.92 6.32C11.58 63.31 4.74 33.79 18.14 10.71c25.64 31.55 63.47 50.73 104.08 52.76-4.07-17.54 1.49-35.92 14.61-48.25 20.34-19.12 52.33-18.14 71.45 2.19 11.31-2.23 22.15-6.38 32.07-12.26-3.77 11.69-11.66 21.62-22.2 27.93 10.01-1.18 19.79-3.86 29-7.95-6.78 10.16-15.32 19.01-25.2 26.16z"/>
-</svg>
-`;
-
-const DUMMY_SOCIAL_LOGINS = [
-  { provider: "google", name: "Google", icon: googleIcon },
-  { provider: "twitter", name: "Twitter", icon: twitterIcon },
-];
+// Target chain for wallet sign-in (Base Mainnet)
+const TARGET_CHAIN_ID = ChainId.BASE_MAINNET;
 
 // Define the component interface
 interface SignInScreenProps {
-  navigation: any; // Consider using proper NavigationProp type if you have @react-navigation/native
+  navigation: any; // TODO: tighten type with proper NavigationProp
 }
 
-export default function SignInScreen({ navigation }: SignInScreenProps) {
+const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
-  const { skipAuth, isFirstTimeUser } = useAuth();
+  const { skipAuth, isFirstTimeUser, signInWithWallet } = useAuth();
   const { isWalletLoading, walletAddress, handleWalletConnect } =
     useWalletAuth(navigation);
 
-  const handleSocialLogin = useCallback(async (provider: string) => {
-    setIsLoading(true);
-    setCurrentProvider(provider);
-    // Simulate social login
-    setTimeout(() => {
-      Alert.alert("Social Login", `${provider} login is not implemented yet.`);
-      setIsLoading(false);
-      setCurrentProvider("");
-    }, 1500);
+  // Pre-initialize Web3Auth once to reduce first-click latency
+  useEffect(() => {
+    let mounted = true;
+    if (isWeb3AuthConfigured()) {
+      initWeb3Auth().catch((e) => {
+        if (mounted) console.warn("[SignIn] Web3Auth pre-init failed", e);
+      });
+    }
+    return () => {
+      mounted = false;
+    };
   }, []);
+
+  const handleSocialLogin = useCallback(
+    async (provider: string) => {
+      if (!isWeb3AuthConfigured()) {
+        console.warn("[SignIn] Web3Auth client id missing");
+        toastError("Social login unavailable. Please try again later.");
+        return;
+      }
+      setIsLoading(true);
+      setCurrentProvider(provider);
+      try {
+        const result = await loginWithSocial(provider as any);
+        const address =
+          result.address || deriveAddressFromPrivateKey(result.privateKey);
+        if (!address)
+          throw new Error("Failed to obtain wallet address from Web3Auth");
+        await signInWithWallet(address, TARGET_CHAIN_ID);
+      } catch (e: any) {
+        console.error("[SignIn] Social login error", e);
+        toastError(e, "Login failed. Please retry.");
+      } finally {
+        setIsLoading(false);
+        setCurrentProvider("");
+      }
+    },
+    [signInWithWallet]
+  );
+
+  // Memoize handlers to avoid creating inline functions in JSX
+  const socialHandlers = useMemo(() => {
+    const map: Record<string, () => void> = {};
+    SOCIAL_PROVIDERS.forEach((sp) => {
+      map[sp.provider] = () => handleSocialLogin(sp.provider);
+    });
+    return map;
+  }, [handleSocialLogin]);
 
   const handleSkipOrClose = useCallback(async () => {
     if (isFirstTimeUser) {
@@ -126,6 +157,7 @@ export default function SignInScreen({ navigation }: SignInScreenProps) {
             </Text>
           )}
         </TouchableOpacity>
+        {/* <AppKitButton /> */}
 
         <View className="flex-row items-center my-4">
           <View className="flex-1 h-px bg-gray-600" />
@@ -134,33 +166,34 @@ export default function SignInScreen({ navigation }: SignInScreenProps) {
         </View>
 
         <View className="flex-row justify-center space-x-4 mt-6">
-          {DUMMY_SOCIAL_LOGINS.map((social) => (
-            <TouchableOpacity
-              key={social.provider}
-              className={`bg-gray-800 rounded-lg py-3 px-5 flex-row items-center ${
-                isLoading && currentProvider === social.provider
-                  ? "opacity-70"
-                  : ""
-              }`}
-              onPress={() => handleSocialLogin(social.provider)}
-              disabled={isLoading}
-              accessibilityLabel={`Sign in with ${social.name}`}
-              accessibilityRole="button"
-            >
-              {isLoading && currentProvider === social.provider ? (
-                <ActivityIndicator color="#fff" className="mr-2" />
-              ) : (
-                <SvgXml
-                  xml={social.icon}
-                  width={24}
-                  height={24}
-                  className="mr-2"
-                  accessibilityLabel={`${social.name} logo`}
-                />
-              )}
-              <Text className="text-white text-base">{social.name}</Text>
-            </TouchableOpacity>
-          ))}
+          {SOCIAL_PROVIDERS.map((social) => {
+            const busy = isLoading && currentProvider === social.provider;
+            return (
+              <TouchableOpacity
+                key={social.provider}
+                className={`bg-gray-800 rounded-lg mx-2 py-3 px-5 flex-row items-center ${
+                  busy ? "opacity-70" : ""
+                }`}
+                onPress={socialHandlers[social.provider]}
+                disabled={isLoading}
+                accessibilityLabel={`Sign in with ${social.name}`}
+                accessibilityRole="button"
+              >
+                {busy ? (
+                  <ActivityIndicator color="#fff" className="mr-2" />
+                ) : (
+                  <SvgXml
+                    xml={social.icon}
+                    width={24}
+                    height={24}
+                    className="mr-2"
+                    accessibilityLabel={`${social.name} logo`}
+                  />
+                )}
+                <Text className="text-white text-base">{social.name}</Text>
+              </TouchableOpacity>
+            );
+          })}
         </View>
 
         <View className="mt-6">
@@ -173,4 +206,6 @@ export default function SignInScreen({ navigation }: SignInScreenProps) {
       </ScrollView>
     </SafeAreaView>
   );
-}
+};
+
+export default SignInScreen;

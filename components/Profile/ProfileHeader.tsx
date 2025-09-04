@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
+import { ScreenNames } from '../../navigation/ScreenNames';
 
 import { copyToClipboard } from "../../libs";
 import profileImage from "../../assets/favicon.png";
@@ -14,6 +16,7 @@ import bannerImage from "../../assets/banner.png";
 import { theme } from "../../theme";
 
 const ProfileHeader = () => {
+  const navigation = useNavigation<any>();
   return (
     <View className="w-full">
       <ImageBackground
@@ -24,13 +27,26 @@ const ProfileHeader = () => {
         resizeMode="contain"
       >
         <View className="relative px-4 py-6 w-full h-full">
-          <TouchableOpacity className="absolute top-2 right-2 bg-theme-neutrals-900 p-2 rounded-lg border border-theme-neutrals-200">
-            <Ionicons
-              name="share-social"
-              size={20}
-              color={theme.colors.accentForeground}
-            />
-          </TouchableOpacity>
+          <View className="absolute top-2 right-2 flex-row gap-2">
+            <TouchableOpacity className="bg-theme-neutrals-900 p-2 rounded-lg border border-theme-neutrals-200">
+              <Ionicons
+                name="share-social"
+                size={20}
+                color={theme.colors.accentForeground}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              className="bg-theme-neutrals-900 p-2 rounded-lg border border-theme-neutrals-200"
+              onPress={() => navigation.navigate(ScreenNames.AccountSettings)}
+              accessibilityLabel="Open settings"
+            >
+              <Ionicons
+                name="settings-outline"
+                size={20}
+                color={theme.colors.accentForeground}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       </ImageBackground>
       <View className="flex-row items-end mt-[-36px] px-4">

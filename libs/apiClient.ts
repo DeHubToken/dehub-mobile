@@ -1,7 +1,8 @@
+import env from '../config/env';
 import { createAuthHeaders, getAuthToken } from './authUtils';
 
 // Base API URL - replace with your actual API URL
-const API_BASE_URL = 'https://api.your-app.com';
+const API_BASE_URL = env.API_URL;
 
 interface ApiOptions {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
@@ -57,22 +58,57 @@ export const apiClient = {
     
     try {
       const response = await fetch(url, requestOptions);
-      
-      // Parse the response body as JSON
-      const data = await response.json();
-      
-      // Check for error responses
+
+      const status = response.status;
+      const contentType = response.headers.get('content-type') || '';
+      let rawBody: string | undefined;
+      let data: any = undefined;
+
+      // Handle 204 / 205 no content early
+      if (status === 204 || status === 205) {
+        // @ts-expect-error allow void when caller expects something
+        return undefined;
+      }
+
+      // Decide how to parse body
+      if (contentType.includes('application/json')) {
+        try {
+          data = await response.json();
+        } catch (jsonErr: any) {
+          // Fallback to text to inspect unexpected HTML or error pages
+            rawBody = await response.text();
+            console.warn('[apiClient] JSON parse failed, raw body snippet:', rawBody.slice(0, 200));
+            throw new Error(`Invalid JSON response (status ${status}): ${jsonErr?.message}`);
+        }
+      } else {
+        rawBody = await response.text();
+        // Try a best-effort JSON parse if body starts with '{' or '['
+        const trimmed = rawBody.trim();
+        if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+          try {
+            data = JSON.parse(trimmed);
+          } catch {
+            data = { raw: trimmed };
+          }
+        } else {
+          // Likely HTML / plain text error page
+          data = { raw: trimmed };
+        }
+      }
+
       if (!response.ok) {
-        // Handle authentication errors
-        if (response.status === 401) {
-          // You could trigger a sign out or token refresh here
+        if (status === 401) {
           throw new Error('Authentication required');
         }
-        
-        throw new Error(data.message || 'API request failed');
+
+        // Prefer API provided message
+        const message = data?.message || data?.error || (typeof data === 'string' ? data : undefined) || 'API request failed';
+        // Add hint if we got HTML
+        const htmlHint = rawBody && rawBody.trim().startsWith('<') ? ' (Received HTML instead of JSON - check endpoint URL / server / proxy / CORS)' : '';
+        throw new Error(message + htmlHint);
       }
-      
-      return data;
+
+      return data as T;
     } catch (error) {
       console.error(`API Error (${url}):`, error);
       throw error;
