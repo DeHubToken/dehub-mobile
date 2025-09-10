@@ -16,7 +16,7 @@
     "ios": {
       "supportsTablet": true,
       "jsEngine": "jsc",
-      "bundleIdentifier": "com.your.app",
+      "bundleIdentifier": "io.dehub.mobile",
       "infoPlist": {
         "LSApplicationQueriesSchemes": [
           "metamask",
@@ -32,7 +32,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
       },
-      "package": "com.anonymous.snackaa38f9105016454d90402fb99243ab4e"
+      "package": "io.dehub.mobile"
     },
     "web": {
       "favicon": "./assets/favicon.png",

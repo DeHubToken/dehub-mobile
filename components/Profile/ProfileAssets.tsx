@@ -1,17 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import defaultIcon from "../../assets/icon.png";
+import dhbIcon from "../../assets/tokens/DHB.png";
+import usdcIcon from "../../assets/tokens/USDC.png";
+import usdtIcon from "../../assets/tokens/USDT.png";
+import ethIcon from "../../assets/tokens/eth.png";
+import { useAuth } from "../../context/AuthContext";
+import { formatCompactNumber } from "../../libs/numbers.util";
 
 const ProfileAssets = () => {
+  const { user } = useAuth();
   const [showDHBOptions, setShowDHBOptions] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
-  const assets = [
-    { name: "DHB", balance: "0", icon: defaultIcon, hasActions: true },
-    { name: "USDC", balance: "0", icon: defaultIcon },
-    { name: "USDT", balance: "0", icon: defaultIcon },
-    { name: "ETH", balance: "0", icon: defaultIcon },
-  ];
+  const walletBalances =
+    (user?.tokenBalances as Record<string, number> | undefined) || {};
+
+  const assets = useMemo(() => {
+    const order: Array<"DHB" | "USDC" | "USDT" | "ETH"> = [
+      "DHB",
+      "USDC",
+      "USDT",
+      "ETH",
+    ];
+    const iconMap: Record<string, any> = {
+      DHB: dhbIcon,
+      USDC: usdcIcon,
+      USDT: usdtIcon,
+      ETH: ethIcon,
+    };
+    return order.map((symbol) => ({
+      name: symbol,
+      balance: walletBalances[symbol] ?? 0,
+      icon: iconMap[symbol] || dhbIcon,
+      hasActions: symbol === "DHB",
+    }));
+  }, [walletBalances]);
 
   const dhbActions = [
     { label: "Top up", disabled: false },
@@ -24,8 +48,48 @@ const ProfileAssets = () => {
   };
 
   return (
-    <View className="mx-4 my-3 border border-gray-700 rounded-lg p-4">
-      <Text className="text-base text-white font-semibold mb-2">Assets</Text>
+    <View className="mx-4 my-3 border border-gray-700 rounded-lg p-4 relative">
+      <View className="flex-row items-center justify-between mb-2">
+        <Text className="text-base text-white font-semibold">Assets</Text>
+        <TouchableOpacity
+          onPress={() => setShowInfo((v) => !v)}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          className="pl-3"
+        >
+          <Ionicons
+            name="information-circle-outline"
+            size={18}
+            color="#9CA3AF"
+          />
+        </TouchableOpacity>
+      </View>
+      {showInfo && (
+        <View className="absolute inset-0 z-20" pointerEvents="box-none">
+          <TouchableOpacity
+            className="absolute inset-0"
+            activeOpacity={1}
+            onPress={() => setShowInfo(false)}
+          />
+          <View className="absolute right-2 top-10 w-64 bg-theme-neutrals-900 border border-gray-700 rounded-lg p-3">
+            <Text className="text-[11px] leading-4 text-white">
+              Balances shown are on Base network (chain 8453). DHB is the
+              platform token used for tipping & rewards. ETH is your gas
+              balance. Values may lag a few seconds. Bridge or transfer assets
+              to Base to use them here.
+            </Text>
+            <View className="flex-row justify-end mt-2">
+              <TouchableOpacity
+                onPress={() => setShowInfo(false)}
+                className="px-2 py-1 rounded bg-theme-neutrals-700"
+              >
+                <Text className="text-[11px] text-white font-medium">
+                  Got it
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      )}
 
       {assets.map((asset) => (
         <View key={asset.name} className="mb-1">
@@ -48,7 +112,9 @@ const ProfileAssets = () => {
                 />
               )}
             </TouchableOpacity>
-            <Text className="text-sm text-gray-300">{asset.balance}</Text>
+            <Text className="text-sm text-gray-300">
+              {formatCompactNumber(Number(asset.balance || 0))}
+            </Text>
           </View>
 
           {asset.hasActions && showDHBOptions && (

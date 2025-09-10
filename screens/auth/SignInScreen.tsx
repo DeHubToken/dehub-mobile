@@ -1,4 +1,10 @@
-import React, { useState, useCallback, useEffect, useMemo } from "react";
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import {
   View,
   Text,
@@ -8,10 +14,9 @@ import {
 } from "react-native";
 import { toastError, toastInfo } from "../../libs";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { SvgXml } from "react-native-svg"; // Keeping for other potential uses
 import { useAuth } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import { useWalletAuth } from "../../hooks/useWalletAuth";
+// import { useWalletAuth } from "../../hooks/useWalletAuth"; // (wallet connect temporarily disabled)
 import {
   SOCIAL_PROVIDERS,
   loginWithSocial,
@@ -20,6 +25,8 @@ import {
   initWeb3Auth,
 } from "../../config/web3auth.config";
 import { ChainId } from "../../config/constants";
+import FullScreenLoader from "../../components/FullScreenLoader";
+import SocialLoginIcons from "../../components/auth/SocialLoginIcons";
 
 // Removed unused AppKitButton import (was commented out) to keep component lean
 
@@ -32,18 +39,25 @@ interface SignInScreenProps {
 }
 
 const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLocalLoading, setIsLocalLoading] = useState(false); // retain local for social provider press UX
   const [currentProvider, setCurrentProvider] = useState("");
-  const { skipAuth, isFirstTimeUser, signInWithWallet } = useAuth();
-  const { isWalletLoading, walletAddress, handleWalletConnect } =
-    useWalletAuth(navigation);
+  const {
+    skipAuth,
+    isFirstTimeUser,
+    signInWithWallet,
+    isLoading: authLoading,
+    needsUsername,
+    isSignedIn,
+  } = useAuth();
+  const navigatedAfterSignInRef = useRef(false);
+  // const { isWalletLoading, walletAddress, handleWalletConnect } = useWalletAuth(navigation); // disabled for now
 
-  // Pre-initialize Web3Auth once to reduce first-click latency
   useEffect(() => {
     let mounted = true;
     if (isWeb3AuthConfigured()) {
       initWeb3Auth().catch((e) => {
-        if (mounted) console.warn("[SignIn] Web3Auth pre-init failed", e);
+        if (mounted)
+          console.warn("[SignIn] Web3Auth pre-init failed woefuly", e);
       });
     }
     return () => {
@@ -58,7 +72,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         toastError("Social login unavailable. Please try again later.");
         return;
       }
-      setIsLoading(true);
+      setIsLocalLoading(true);
       setCurrentProvider(provider);
       try {
         const result = await loginWithSocial(provider as any);
@@ -67,25 +81,33 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         if (!address)
           throw new Error("Failed to obtain wallet address from Web3Auth");
         await signInWithWallet(address, TARGET_CHAIN_ID);
+        // Navigation now handled in effect watching isSignedIn & needsUsername
       } catch (e: any) {
         console.error("[SignIn] Social login error", e);
         toastError(e, "Login failed. Please retry.");
       } finally {
-        setIsLoading(false);
+        setIsLocalLoading(false);
         setCurrentProvider("");
       }
     },
     [signInWithWallet]
   );
 
+  // Navigate once after successful sign-in when username not required
+  useEffect(() => {
+    if (navigatedAfterSignInRef.current) return;
+    if (isSignedIn && !needsUsername) {
+      navigatedAfterSignInRef.current = true;
+      if (navigation?.canGoBack?.()) {
+        navigation.goBack();
+      } else {
+        navigation.navigate(ScreenNames.Root as never);
+      }
+    }
+  }, [isSignedIn, needsUsername, navigation]);
+
   // Memoize handlers to avoid creating inline functions in JSX
-  const socialHandlers = useMemo(() => {
-    const map: Record<string, () => void> = {};
-    SOCIAL_PROVIDERS.forEach((sp) => {
-      map[sp.provider] = () => handleSocialLogin(sp.provider);
-    });
-    return map;
-  }, [handleSocialLogin]);
+  // Icon component will call handleSocialLogin directly.
 
   const handleSkipOrClose = useCallback(async () => {
     if (isFirstTimeUser) {
@@ -104,16 +126,24 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
 
   return (
     <SafeAreaView className="flex-1 bg-black">
+      {/* Loading overlay while auth in progress but before username gating finishes */}
+      {(authLoading || isLocalLoading) && !needsUsername && (
+        <FullScreenLoader message="Signing you in…" />
+      )}
+
       <TouchableOpacity
         className="absolute right-5 top-3 z-10 px-3 py-2 rounded-full bg-gray-800"
         onPress={handleSkipOrClose}
+        disabled={authLoading || isLocalLoading || needsUsername}
         accessibilityLabel={
           isFirstTimeUser
             ? "Skip authentication"
             : "Close authentication screen"
         }
       >
-        <Text className="text-white font-medium">
+        <Text
+          className={`text-white font-medium ${authLoading || isLocalLoading || needsUsername ? "opacity-40" : ""}`}
+        >
           {isFirstTimeUser ? "Skip" : "Close"}
         </Text>
       </TouchableOpacity>
@@ -129,72 +159,19 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           </Text>
         </View>
 
-        <TouchableOpacity
-          className={`bg-theme-accent rounded-lg py-4 px-5 items-center mb-6 flex-row justify-center ${
-            isWalletLoading ? "opacity-70" : ""
-          }`}
-          onPress={handleWalletConnect}
-          disabled={isWalletLoading}
-          accessibilityLabel={
-            walletAddress ? "Continue with connected wallet" : "Connect wallet"
-          }
-          accessibilityRole="button"
-          accessibilityState={{
-            disabled: isWalletLoading,
-            busy: isWalletLoading,
-          }}
-        >
-          {isWalletLoading ? (
-            <>
-              <ActivityIndicator color="#fff" className="mr-2" />
-              <Text className="text-white text-lg font-semibold">
-                Connecting...
-              </Text>
-            </>
-          ) : (
-            <Text className="text-white text-lg font-semibold">
-              {walletAddress ? "Continue" : "Connect Wallet"}
-            </Text>
-          )}
-        </TouchableOpacity>
-        {/* <AppKitButton /> */}
+        {/** Wallet connect button & divider commented out (keeping only Web3Auth social logins) **/}
+        {/**
+  <TouchableOpacity ...wallet connect code... />
+  <View className="flex-row items-center my-4"> ...divider... </View>
+  **/}
 
-        <View className="flex-row items-center my-4">
-          <View className="flex-1 h-px bg-gray-600" />
-          <Text className="text-gray-400 mx-4">or continue with</Text>
-          <View className="flex-1 h-px bg-gray-600" />
-        </View>
+        <View className="mt-6" />
 
-        <View className="flex-row justify-center space-x-4 mt-6">
-          {SOCIAL_PROVIDERS.map((social) => {
-            const busy = isLoading && currentProvider === social.provider;
-            return (
-              <TouchableOpacity
-                key={social.provider}
-                className={`bg-gray-800 rounded-lg mx-2 py-3 px-5 flex-row items-center ${
-                  busy ? "opacity-70" : ""
-                }`}
-                onPress={socialHandlers[social.provider]}
-                disabled={isLoading}
-                accessibilityLabel={`Sign in with ${social.name}`}
-                accessibilityRole="button"
-              >
-                {busy ? (
-                  <ActivityIndicator color="#fff" className="mr-2" />
-                ) : (
-                  <SvgXml
-                    xml={social.icon}
-                    width={24}
-                    height={24}
-                    className="mr-2"
-                    accessibilityLabel={`${social.name} logo`}
-                  />
-                )}
-                <Text className="text-white text-base">{social.name}</Text>
-              </TouchableOpacity>
-            );
-          })}
-        </View>
+        <SocialLoginIcons
+          onPress={(p) => handleSocialLogin(p)}
+          busyProvider={isLocalLoading ? currentProvider : undefined}
+          disabled={isLocalLoading}
+        />
 
         <View className="mt-6">
           <Text className="text-gray-500 text-xs text-center">

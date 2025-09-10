@@ -33,11 +33,14 @@ export const apiClient = {
     const url = `${API_BASE_URL}${endpoint}`;
     
     // Prepare headers
+    const isFormData = (typeof FormData !== 'undefined') && body instanceof FormData;
     const requestHeaders: Record<string, string> = {
-      'Content-Type': 'application/json',
       'Accept': 'application/json',
       ...headers,
     };
+    if (!isFormData) {
+      requestHeaders['Content-Type'] = 'application/json';
+    }
     
     // Add auth headers if required
     if (isAuthRequired) {
@@ -53,7 +56,7 @@ export const apiClient = {
     
     // Add body if provided
     if (body) {
-      requestOptions.body = JSON.stringify(body);
+      requestOptions.body = isFormData ? body : JSON.stringify(body);
     }
     
     try {

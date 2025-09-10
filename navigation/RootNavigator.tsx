@@ -1,28 +1,37 @@
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { useAuth, AuthLoadingScreen } from '../context/AuthContext';
-import AppNavigator from './AppNavigator';
-import AuthNavigator from './AuthNavigator';
+import React, { useEffect } from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import { useAuth } from "../context/AuthContext";
+import AppNavigator from "./AppNavigator";
+import AuthNavigator from "./AuthNavigator";
 
 const Stack = createStackNavigator();
 
 export default function RootNavigator() {
-  const { isSignedIn, isLoading, isFirstTimeUser } = useAuth();
+  const { isSignedIn, isBootLoading, isFirstTimeUser, needsUsername } =
+    useAuth();
 
-  if (isLoading) {
-    return <AuthLoadingScreen />;
-  }
+  // Show splash during initial hydration only
+  console.log("[RootNavigator] isBootLoading", isBootLoading, {
+    isSignedIn,
+    isFirstTimeUser,
+    needsUsername,
+  });
 
-  // We've updated the navigation logic:
-  // 1. If user is already signed in, go straight to the app
-  // 2. If it's the first time using the app, show auth screens first (with skip option)
-  // 3. If they've used the app before but aren't signed in, go straight to app
+  const showAuth = (isFirstTimeUser && !isSignedIn) || needsUsername;
+  // useEffect(() => {
+  //   console.log("[RootNavigator] Updated statde", {
+  //     isSignedIn,
+  //     isFirstTimeUser,
+  //     needsUsername,
+  //   });
+  // }, [isSignedIn, isFirstTimeUser, needsUsername]);
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {isFirstTimeUser && !isSignedIn ? (
-        <Stack.Screen name="Auth" component={AuthNavigator} />
+      {showAuth ? (
+        <Stack.Screen name="Auth" component={AuthNavigator} key="auth" />
       ) : (
-        <Stack.Screen name="App" component={AppNavigator} />
+        <Stack.Screen name="App" component={AppNavigator} key="app" />
       )}
     </Stack.Navigator>
   );

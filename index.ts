@@ -7,7 +7,7 @@ import "react-native-reanimated";
 
 import "./globals";
 
-import "./config/reown.config";
+// import "./config/reown.config";
 
 import { registerRootComponent } from "expo";
 import App from "./App";

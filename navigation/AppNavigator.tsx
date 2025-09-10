@@ -11,6 +11,7 @@ import ImageViewerScreen from "../screens/ImageViewerScreen";
 import SearchScreen from "../screens/SearchScreen";
 import ProfileSettingsScreen from "../screens/ProfileSettingsScreen";
 import AccountSettingsScreen from "../screens/AccountSettingsScreen";
+import YourVideosScreen from "../screens/YourVideosScreen";
 import SignInScreen from "../screens/auth/SignInScreen";
 
 const Stack = createStackNavigator();
@@ -55,6 +56,10 @@ export default function AppNavigator() {
       <Stack.Screen
         name={ScreenNames.AccountSettings}
         component={AccountSettingsScreen}
+      />
+      <Stack.Screen
+        name={ScreenNames.YourVideos}
+        component={YourVideosScreen}
       />
 
       {/* Auth screen - also accessible from the app for users who want to sign in later */}

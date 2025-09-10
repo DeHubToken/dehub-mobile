@@ -10,24 +10,21 @@ import { useNetworkStatus } from "./hooks/useNetworkStatus";
 import React, { useEffect } from "react";
 import { theme } from "./theme";
 import { AuthProvider } from "./context/AuthContext";
+import { useAuth } from './context/AuthContext';
+import { UserProfileSheetProvider } from './context/UserProfileSheetContext';
+import { UsernameGate } from './components/auth/UsernameGate';
 import RootNavigator from "./navigation/RootNavigator";
-import { AppKit } from "@reown/appkit-ethers5-react-native";
-// import SafeAppKit from "./components/SafeAppKit";
+import { prewarmWeb3Auth } from './config/web3auth.config';
 
 export default function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const { hasInternet, isConnected, checkConnection } = useNetworkStatus();
 
-  // React.useEffect(() => {
-  //   const initialize = async () => {
-
-  //     // Show splash screen for a minimum time
-  //     const timer = setTimeout(() => setIsLoading(false), 1500);
-  //     return () => clearTimeout(timer);
-  //   };
-
-  //   initialize();
-  // }, []);
+  React.useEffect(() => {
+    // Minimal splash handling (currently disabled setIsLoading logic)
+    // Kick off background Web3Auth prewarm to avoid first SignIn lag
+    prewarmWeb3Auth();
+  }, []);
 
   if (isLoading || hasInternet === null || isConnected === null) {
     return <SplashScreen />;
@@ -46,13 +43,18 @@ export default function App() {
     <SafeAreaProvider className="flex-1 select-none bg-theme-background">
       <GestureHandlerRootView style={{ flex: 1 }}>
         <AuthProvider>
-          <SafeAreaView className="flex-1">
-            <NavigationContainer>
-              <RootNavigator />
-            </NavigationContainer>
-          </SafeAreaView>
+          <BootGate>
+            <SafeAreaView className="flex-1">
+              <NavigationContainer>
+                <UserProfileSheetProvider>
+                  <RootNavigator />
+                  <UsernameGate />
+                </UserProfileSheetProvider>
+              </NavigationContainer>
+            </SafeAreaView>
+          </BootGate>
         </AuthProvider>
-        <AppKit />
+        {/* <AppKit /> */}
         <Toaster
           position="top-center"
           offset={56}
@@ -61,8 +63,14 @@ export default function App() {
             style: toastTheme.containerStyle,
           }}
         />
-        {/* <SafeAppKit onError={(error) => console.error('AppKit Error:', error)} /> */}
       </GestureHandlerRootView>
     </SafeAreaProvider>
   );
 }
+
+// Keeps splash visible until AuthProvider finishes boot loading
+const BootGate: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { isBootLoading } = useAuth();
+  if (isBootLoading) return <SplashScreen />;
+  return <>{children}</>;
+};
