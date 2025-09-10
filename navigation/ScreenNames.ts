@@ -15,6 +15,7 @@ export enum ScreenNames {
   VideoPlayer = 'VideoPlayer',
   ImageViewer = 'ImageViewer',
   AccountSettings = 'AccountSettings',
+  YourVideos = 'YourVideos',
   // Auth screen
   SignIn = 'SignIn',
 }

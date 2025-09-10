@@ -154,40 +154,6 @@ const productionTokens = [
     isSubscriptionSupported: true
   },
   {
-    value: "dhb",
-    label: "DHB",
-    symbol: "DHB",
-    customAbbreviation: "dhb",
-    chainId: 1,
-    address: "0x99BB69Ee1BbFC7706C3ebb79b21C5B698fe58EC0",
-    iconUrl: "/icons/DHB.png", 
-    mintBlockNumber: 16428469,
-    decimals: 18
-  },
-  {
-    value: "dhb",
-    label: "DHB",
-    symbol: "DHB",
-    customAbbreviation: "dhb",
-    chainId: 56,
-    address: "0x680D3113caf77B61b510f332D5Ef4cf5b41A761D",
-    iconUrl: "/icons/DHB.png", 
-    mintBlockNumber: 24867920,
-    decimals: 18,
-    isSubscriptionSupported: true
-  },
-  {
-    value: "dhb",
-    label: "DHB",
-    symbol: "DHB",
-    customAbbreviation: "dhb",
-    chainId: 137,
-    address: "0x6051e59eb50BB568415B6C476Fbd394EEF83834D",
-    iconUrl: "/icons/DHB.png", 
-    mintBlockNumber: 38197541,
-    decimals: 18
-  },
-  {
     value: "usdc",
     label: "USDC",
     symbol: "USDC",
@@ -208,17 +174,6 @@ const productionTokens = [
     iconUrl: "/icons/tokens/eth.png",
     decimals: 18
   },
-
-  {
-    value: "weth",
-    label: "WETH",
-    symbol: "WETH",
-    customAbbreviation: "weth",
-    chainId: 137,
-    address: "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
-    iconUrl: "/icons/tokens/eth.png",
-    decimals: 18
-  },
   {
     value: "usdt",
     label: "USDT",
@@ -230,121 +185,6 @@ const productionTokens = [
     decimals: 6,
     isSubscriptionSupported: true
   },
-  {
-    value: "usdc",
-    label: "USDC",
-    symbol: "USDC",
-    customAbbreviation: "usdc",
-    chainId: 1,
-    address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-    iconUrl: "/icons/tokens/USDC.png",
-    decimals: 6
-  },
-  {
-    value: "usdc",
-    label: "USDC",
-    symbol: "USDC",
-    customAbbreviation: "usdc",
-    chainId: 56,
-    address: "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d",
-    iconUrl: "/icons/tokens/USDC.png",
-    decimals: 18,
-    isSubscriptionSupported: true
-  },
-  {
-    value: "usdc",
-    label: "USDC",
-    symbol: "USDC",
-    customAbbreviation: "usdc",
-    chainId: 137,
-    address: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
-    iconUrl: "/icons/tokens/USDC.png",
-    decimals: 6
-  },
-  {
-    value: "usdt",
-    label: "USDT",
-    symbol: "USDT",
-    customAbbreviation: "usdt",
-    chainId: 1,
-    address: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
-    iconUrl: "/icons/tokens/USDT.png",
-    decimals: 18
-  },
-  {
-    value: "usdt",
-    label: "USDT",
-    symbol: "USDT",
-    customAbbreviation: "usdt",
-    chainId: 56,
-    address: "0x55d398326f99059ff775485246999027b3197955",
-    iconUrl: "/icons/tokens/USDT.png",
-    decimals: 18,
-    isSubscriptionSupported: true
-  },
-  {
-    value: "usdt",
-    label: "USDT",
-    symbol: "USDT",
-    customAbbreviation: "usdt",
-    chainId: 137,
-    address: "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
-    iconUrl: "/icons/tokens/USDT.png",
-    decimals: 18
-  },
-  {
-    value: "doge",
-    label: "DOGE",
-    symbol: "DOGE",
-    customAbbreviation: "doge",
-    chainId: 56,
-    address: "0xbA2aE424d960c26247Dd6c32edC70B295c744C43",
-    iconUrl: "/icons/tokens/DOGE.png",
-    decimals: 8,
-    isSubscriptionSupported: true
-  },
-  {
-    value: "floki",
-    label: "FLOKI",
-    symbol: "FLOKI",
-    customAbbreviation: "floki",
-    chainId: 1,
-    address: "0xcf0c122c6b73ff809c693db761e7baebe62b6a2e",
-    iconUrl: "/icons/tokens/FLOKI.png",
-    decimals: 9
-  },
-  {
-    value: "floki",
-    label: "FLOKI",
-    symbol: "FLOKI",
-    customAbbreviation: "floki",
-    chainId: 56,
-    address: "0xfb5b838b6cfeedc2873ab27866079ac55363d37e",
-    iconUrl: "/icons/tokens/FLOKI.png",
-    decimals: 9,
-    isSubscriptionSupported: true
-  },
-
-  {
-    value: "eth",
-    label: "ETH",
-    symbol: "ETH",
-    customAbbreviation: "eth",
-    chainId: 56,
-    address: "0x2170Ed0880ac9A755fd29B2688956BD959F933F8", // Update to relevant address if needed
-    iconUrl: "/icons/tokens/eth.png",
-    decimals: 18
-  },
-  {
-    value: "bnb",
-    label: "BNB",
-    symbol: "BNB",
-    customAbbreviation: "bnb",
-    chainId: 56,
-    address: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c", // Update to relevant address if needed
-    iconUrl: "/icons/tokens/BNB.png",
-    decimals: 18 
-  }
 ];
 export const supportedTokens = isDevMode ? devTokens : productionTokens;
 export const supportedCurrencies = [
@@ -507,6 +347,7 @@ export const DHB_ADDRESSESS: { [chainId: number]: string } = {
   [ChainId.POLYGON_MAINNET]: "0x6051e59eb50BB568415B6C476Fbd394EEF83834D",
   [ChainId.BASE_MAINNET]: "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c"
 };
+
 export const SB_ADDRESS: { [chainId: number]: string } = {
   [ChainId.BSC_TESTNET]: "0xEbCea2213AE6c69c74F6f648fcFF6A27842c78F1", //'0x3A76858fb35520c3CA20E826901c7cB73F715251',
   [ChainId.BSC_MAINNET]: "0x64eD1cEf5ba5655DAe565Ee592b6eb229e8CB05C",

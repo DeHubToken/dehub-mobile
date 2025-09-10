@@ -4,7 +4,14 @@ import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../../theme';
 import { statusOptions } from '../../libs';
 
-const StatusFilterBottomSheet = ({ visible, onClose, selectedStatus, onStatusChange }) => {
+type StatusFilterBottomSheetProps = {
+  visible: boolean;
+  onClose: () => void;
+  selectedSortMode: string;
+  onSortModeChange: (mode: string) => void;
+};
+
+const StatusFilterBottomSheet: React.FC<StatusFilterBottomSheetProps> = ({ visible, onClose, selectedSortMode, onSortModeChange }) => {
   const slideAnim = useRef(new Animated.Value(Dimensions.get('window').height)).current;
   const backdropOpacity = useRef(new Animated.Value(0)).current;
 
@@ -60,8 +67,8 @@ const StatusFilterBottomSheet = ({ visible, onClose, selectedStatus, onStatusCha
     },
   });
 
-  const handleStatusSelect = (statusId) => {
-    onStatusChange(statusId);
+  const handleStatusSelect = (statusId: string) => {
+    onSortModeChange(statusId);
     setTimeout(() => {
       onClose();
     }, 150);
@@ -104,7 +111,7 @@ const StatusFilterBottomSheet = ({ visible, onClose, selectedStatus, onStatusCha
           <ScrollView style={styles.sheetContent} showsVerticalScrollIndicator={false}>
             <View style={styles.statusGrid}>
               {statusOptions.map((option) => {
-                const isSelected = selectedStatus === option.id;
+                const isSelected = selectedSortMode === option.id;
                 return (
                   <TouchableOpacity
                     key={option.id}

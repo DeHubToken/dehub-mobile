@@ -42,6 +42,7 @@
     "expo": "~52.0.47",
     "expo-application": "~6.0.2",
     "expo-camera": "~16.0.18",
+    "expo-av": "~15.0.2",
     "expo-clipboard": "~7.0.1",
     "expo-dev-client": "~5.0.20",
     "expo-linear-gradient": "~14.0.2",
@@ -72,14 +73,13 @@
     "text-encoding": "^0.7.0",
     "valtio": "1.11.2",
     "react-native-pager-view": "6.5.1",
-    "expo-modules-core": "~2.2.3",
     "expo-system-ui": "~4.0.9"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@babel/plugin-transform-runtime": "^7.28.0",
     "@react-native-community/cli": "^20.0.1",
-    "@types/react": "~18.2.14",
+    "@types/react": "~18.3.12",
     "expo-modules-core": "~2.2.3",
     "react-native-css-transformer": "^2.0.0",
     "react-native-svg-transformer": "^1.5.0",

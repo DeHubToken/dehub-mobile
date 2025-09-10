@@ -6,6 +6,7 @@ import { ScreenNames } from '../navigation/ScreenNames';
 import { toastSuccess, toastError } from '../libs';
 import ScreenHeader from '../components/ScreenHeader';
 import { logoutWeb3Auth } from '../config/web3auth.config';
+import FullScreenLoader from '../components/FullScreenLoader';
 
 // Lightweight Account Settings screen focused on account-level actions.
 // Extend later with preferences, linked wallets, notifications, privacy, etc.
@@ -14,23 +15,28 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   const [signingOut, setSigningOut] = useState<boolean>(false);
 
   const handleSignOut = useCallback(async () => {
-    if (signingOut) return; 
+    if (signingOut) return;
     setSigningOut(true);
     try {
-      await logoutWeb3Auth();
-      await signOut();
-  toastSuccess('Logout successful');
-      navigation.navigate(ScreenNames.Root as never);
+      await logoutWeb3Auth(); // end remote Web3Auth session
+      await signOut();        // clear local auth + tokens
+      toastSuccess('Logout successful');
+            // Let RootNavigator react to isSignedIn flip; no manual reset.
+      // Let root navigator swap stacks; fallback to root if still mounted
+      if (navigation?.navigate) {
+        navigation.navigate(ScreenNames.Root as never);
+      }
     } catch (e) {
-  console.error('[AccountSettings] signOut error', e);
-  toastError(e, 'Sign out failed.');
+      console.error('[AccountSettings] signOut error', e);
+      toastError(e, 'Sign out failed.');
     } finally {
       setSigningOut(false);
     }
-  }, [signingOut, signOut, navigation]);
+  }, [signingOut, signOut]);
 
   return (
     <SafeAreaView className="flex-1 bg-black" edges={['top','bottom']}>
+      {(signingOut) && <FullScreenLoader message="Signing out…" />}
       <ScreenHeader title="Settings" canGoBack />
       <ScrollView className="flex-1" contentContainerStyle={{ padding: 16 }}>
         <View className="mb-8">

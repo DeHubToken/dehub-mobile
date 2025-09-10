@@ -1,5 +1,5 @@
-import "@walletconnect/react-native-compat";
-import "@ethersproject/shims";
+// Side-effect imports for walletconnect & ethers shims are already loaded once in index.ts.
+// Avoid duplicating them here to prevent multiple relayer/event listener registrations.
 import {
   createAppKit,
   defaultConfig,
@@ -99,5 +99,5 @@ if (!(globalThis as any)[APPKIT_GLOBAL_KEY]) {
   (globalThis as any)[APPKIT_GLOBAL_KEY] = true;
   console.log("AppKit created at module level");
 } else {
-  console.log("AppKit already initialized, skipping");
+  console.log("AppKit already initialized, skipping.");
 }

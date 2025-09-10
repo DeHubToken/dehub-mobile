@@ -47,37 +47,57 @@ export const SOCIAL_PROVIDER_MAP: Record<string, SocialProviderMeta> =
   SOCIAL_PROVIDERS.reduce((acc, p) => ({ ...acc, [p.provider]: p }), {});
 
 // Web3Auth set up from main site
-import Web3Auth, {
-  WEB3AUTH_NETWORK,
-  LOGIN_PROVIDER,
-  ChainNamespace,
-} from "@web3auth/react-native-sdk";
 import * as WebBrowser from "expo-web-browser";
 import * as SecureStore from "expo-secure-store";
-import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import Constants, { AppOwnership } from "expo-constants";
 import * as Linking from "expo-linking";
 import EncryptedStorage from "react-native-encrypted-storage";
 
-// Base Mainnet chain config (replace with env-based switch if needed)
-const chainConfig = {
-  chainNamespace: ChainNamespace.EIP155,
-  chainId: WEB3AUTH_CHAIN_ID,
-  rpcTarget: WEB3AUTH_RPC_TARGET,
-  displayName: "Base Mainnet",
-  blockExplorerUrl: "https://basescan.org",
-  ticker: "ETH",
-  tickerName: "Ether",
-  decimals: 18,
-  logo: "https://basescan.org/assets/base/images/svg/logos/chain-light.svg",
-};
+// --- Lazy SDK Instance ------------------------------------------------------
+// We defer importing heavy SDK modules until actually needed to avoid initial navigation lag
+// when the SignIn screen is first opened.
+let web3auth: any | null = null;
+let isCreating = false;
 
+async function getOrCreateInstance() {
+  if (web3auth || isCreating) return web3auth;
+  isCreating = true;
+  const [{ default: Web3Auth, WEB3AUTH_NETWORK, LOGIN_PROVIDER, ChainNamespace }, { EthereumPrivateKeyProvider }] = await Promise.all([
+    import("@web3auth/react-native-sdk"),
+    import("@web3auth/ethereum-provider"),
+  ]);
 
-const privateKeyProvider = new EthereumPrivateKeyProvider({
-  config: {
-    chainConfig,
-  },
-});
+  const chainConfig = {
+    chainNamespace: ChainNamespace.EIP155,
+    chainId: WEB3AUTH_CHAIN_ID,
+    rpcTarget: WEB3AUTH_RPC_TARGET,
+    displayName: "Base Mainnet",
+    blockExplorerUrl: "https://basescan.org",
+    ticker: "ETH",
+    tickerName: "Ether",
+    decimals: 18,
+    logo: "https://basescan.org/assets/base/images/svg/logos/chain-light.svg",
+  };
+
+  const privateKeyProvider = new EthereumPrivateKeyProvider({
+    config: { chainConfig },
+  });
+
+  const SdkInitParams = {
+    clientId: WEB3AUTH_CLIENT_ID,
+    network: WEB3AUTH_NETWORK.SAPPHIRE_MAINNET,
+    redirectUrl: WEB3AUTH_REDIRECT_URL,
+    privateKeyProvider,
+    logLevel: "debug",
+    loginConfig: {},
+  };
+
+  web3auth = new Web3Auth(WebBrowser, SecureStore, SdkInitParams);
+  // Attach enums we still reference indirectly
+  (web3auth as any)._LOGIN_PROVIDER = LOGIN_PROVIDER;
+  isCreating = false;
+  return web3auth;
+}
 
 // (Optional) dynamic redirect resolution if needed for Expo Go vs standalone
 // const resolvedRedirectUrl =
@@ -87,25 +107,7 @@ const privateKeyProvider = new EthereumPrivateKeyProvider({
 
 // console.log("Resolved redirect URL:", WEB3AUTH_REDIRECT_URL);
 
-const SdkInitParams = {
-  clientId: WEB3AUTH_CLIENT_ID,
-  network: WEB3AUTH_NETWORK.SAPPHIRE_MAINNET,
-  redirectUrl: WEB3AUTH_REDIRECT_URL,
-  privateKeyProvider,
-  logLevel: "debug",
-  loginConfig: {
-    // google: {
-    //   verifier: "dehub-mainnet",
-    //   verifierSubIdentifier: "w3a-google",
-    //   typeOfLogin: "google",
-    //   clientId:
-    //     "478161212424-hv362l391248qdh8apfe6lvbockfnmqd.apps.googleusercontent.com",
-    // },
-  },
-};
-
-const web3auth = new Web3Auth(WebBrowser, SecureStore, SdkInitParams);
-// const web3auth = new Web3Auth(WebBrowser, EncryptedStorage, SdkInitParams);
+// (Legacy comments retained above for reference.)
 
 // --- Runtime State ----------------------------------------------------------
 let isInitialized = false;
@@ -117,15 +119,16 @@ export const isWeb3AuthConfigured = () =>
 
 export const ensureWeb3AuthReady = async () => {
   if (!isWeb3AuthConfigured()) throw new Error("WEB3AUTH_CLIENT_ID not set");
-  if (isInitialized) return web3auth;
+  if (isInitialized && web3auth) return web3auth;
   try {
-    await web3auth.init();
+    const instance = await getOrCreateInstance();
+    await instance.init();
     isInitialized = true;
+    return instance;
   } catch (e: any) {
     console.error("[Web3Auth] init error", e);
     throw e;
   }
-  return web3auth;
 };
 
 // Alias matching official usage naming
@@ -133,8 +136,8 @@ export const initWeb3Auth = ensureWeb3AuthReady;
 
 // Provider mapping (string -> enum)
 const LOGIN_PROVIDER_MAP: Record<string, any> = {
-  google: LOGIN_PROVIDER.GOOGLE,
-  twitter: LOGIN_PROVIDER.TWITTER,
+  google: (web3auth as any)?._LOGIN_PROVIDER?.GOOGLE ?? 'google',
+  twitter: (web3auth as any)?._LOGIN_PROVIDER?.TWITTER ?? 'twitter',
 };
 
 // Derive address from private key using ethers Wallet
@@ -163,7 +166,8 @@ export const loginWithSocial = async (
   provider: string
 ): Promise<Web3AuthLoginResult> => {
   const instance = await ensureWeb3AuthReady();
-  const mapped = LOGIN_PROVIDER_MAP[provider] || provider; // allow raw string fallback
+  // Re-evaluate mapping after instance created (enums now attached)
+  const mapped = (instance as any)._LOGIN_PROVIDER?.[provider?.toUpperCase?.()] || LOGIN_PROVIDER_MAP[provider] || provider;
   try {
     const beforeState = {
       privKeyPresent: false,
@@ -195,39 +199,6 @@ export const loginWithSocial = async (
   }
 };
 
-// export const loginWithSocial = async (provider: string): Promise<Web3AuthLoginResult> => {
-//   const instance = await ensureWeb3AuthReady();
-//   const mapped = LOGIN_PROVIDER_MAP[provider];
-//   if (!mapped) throw new Error(`Unsupported provider: ${provider}`);
-//   try {
-// 	console.log('[Web3Auth] initiating login with provider', provider, mapped);
-//   const connectedProvider: any = await instance.login({ loginProvider: mapped });
-//   console.log('[Web3Auth] connected provider', connectedProvider);
-//     // Try standard EIP-1193 methods to pull accounts
-//     let accounts: string[] = [];
-//     try {
-//       accounts = await connectedProvider.request({ method: 'eth_accounts' });
-//     } catch (e) {
-//       try { accounts = await connectedProvider.request({ method: 'personal_listAccounts' }); } catch (_) {}
-//     }
-// 	console.log('[Web3Auth] fetched accounts', accounts);
-//     const address = accounts?.[0] || null;
-//     // Attempt to fetch private key (non-standard):
-//     let priv: string | null = null;
-//     try {
-//       priv = await connectedProvider.request({ method: 'eth_private_key' });
-//     } catch (e) {
-//       // fallback custom
-//       try { priv = await connectedProvider.request({ method: 'private_key' }); } catch (_) {}
-//     }
-//     const finalAddress = address || deriveAddressFromPrivateKey(priv);
-//     return { address: finalAddress, privateKey: priv, userInfo: null, provider };
-//   } catch (e: any) {
-//     console.error('[Web3Auth] connect/login error', e);
-//     throw new Error(e?.message || 'Web3Auth login failed');
-//   }
-// };
-
 export const getUserInfo = async () => {
   // For v8 provider, user info may be available via instance.userInfo or not exposed; return null placeholder.
   return null;
@@ -243,10 +214,28 @@ export const getPrivateKey = async (): Promise<string | null> => {
 };
 
 export const logoutWeb3Auth = async () => {
-  if (!isInitialized) return;
+  if (!isInitialized || !web3auth) return;
   try {
     await web3auth.logout();
   } catch (e) {
     console.warn("[Web3Auth] logout warning", e);
   }
 };
+
+// Allow pre-warming (create + init) in background (e.g., after splash) to remove first-screen lag
+export const prewarmWeb3Auth = async () => {
+  if (isInitialized || !isWeb3AuthConfigured()) return;
+  try {
+    await ensureWeb3AuthReady();
+  } catch (e) {
+    // Non-fatal: just log
+    console.warn('[Web3Auth] prewarm failed', e);
+  }
+};
+
+// ---------------------------------------------------------------------------
+// Extended Helpers for Web3 / EVM interactions via Web3Auth provider
+// ---------------------------------------------------------------------------
+// (All extended helper implementations have been moved to services/web3auth.service.ts)
+// (Extended helpers removed to services/web3auth.service.ts)
+
