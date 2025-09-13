@@ -1,5 +1,5 @@
 import { web3AuthService } from '../services/web3auth.service';
-import { getAuthUser, setAuthUser } from './authUtils';
+import { getAuthUser, setAuthUser } from './auth.utils';
 
 export interface StoredSignatureMeta {
   address: string;

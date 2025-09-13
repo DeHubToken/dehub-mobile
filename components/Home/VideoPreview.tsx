@@ -9,6 +9,7 @@ interface VideoPreviewProps {
   previewUrl: string;
   onStart?: () => void;
   onEnd?: () => void;
+  handlePressVideo?: () => void;
 }
 
 const PREVIEW_SECONDS = 10; // clamp preview length
@@ -17,10 +18,12 @@ export default function VideoPreview({
   previewUrl,
   onStart,
   onEnd,
+  handlePressVideo,
 }: VideoPreviewProps) {
   const videoRef = useRef<Video | null>(null);
   const [phase, setPhase] = useState<"idle" | "buffering" | "playing">("idle");
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(0); // real buffering progress
+  const [fakeProgress, setFakeProgress] = useState(0); // synthetic progress up to threshold
   const [effectivePreview, setEffectivePreview] = useState(
     PREVIEW_SECONDS * 1000
   ); // ms
@@ -45,14 +48,13 @@ export default function VideoPreview({
       if (phase === "buffering") {
         const p = Math.min(1, playable / previewMs);
         setProgress(p);
-
         if (p >= 1) {
           videoRef.current?.setStatusAsync({
             shouldPlay: true,
             isMuted: true,
             positionMillis: 0,
             rate: 2.5,
-            shouldCorrectPitch: false, // needed for faster playback
+            shouldCorrectPitch: false,
           });
           setPhase("playing");
           onStart?.();
@@ -91,6 +93,7 @@ export default function VideoPreview({
     if (phase !== "idle") return;
     setPhase("buffering");
     setProgress(0);
+    setFakeProgress(0);
     stopperRef.current = () => stopPreview();
     await videoRef.current?.setStatusAsync({
       shouldPlay: false,
@@ -101,17 +104,15 @@ export default function VideoPreview({
     });
   }, [phase, stopPreview]);
 
-  // Single tap while preview is active stops it
   const handlePress = useCallback(() => {
     if (phase === "playing" || phase === "buffering") {
       stopPreview();
     }
+    if (handlePressVideo) handlePressVideo();
   }, [phase, stopPreview]);
 
-  // Screen/navigation change: force stop this preview
   useEffect(() => {
     const handleBlur = () => {
-      // stop this preview if active
       if (phase !== "idle") {
         stopPreview();
       } else {
@@ -136,6 +137,36 @@ export default function VideoPreview({
       stopPreview(false);
     };
   }, []);
+
+  // Fake buffering to 25% over ~1.5s unless real progress overtakes
+  const FAKE_MAX = 0.25;
+  const FAKE_DURATION = 1500; // ms
+  useEffect(() => {
+    if (phase !== "buffering") {
+      if (fakeProgress !== 0) setFakeProgress(0);
+      return;
+    }
+    if (progress >= FAKE_MAX) {
+      if (fakeProgress !== FAKE_MAX) setFakeProgress(FAKE_MAX);
+      return;
+    }
+    const start = Date.now();
+    let frame: number;
+    const step = () => {
+      const elapsed = Date.now() - start;
+      const pct = Math.min(1, elapsed / FAKE_DURATION);
+      const target = pct * FAKE_MAX;
+      setFakeProgress((prev) => (target > prev ? target : prev));
+      if (pct < 1 && progress < FAKE_MAX && phase === "buffering") {
+        frame = requestAnimationFrame(step);
+      }
+    };
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
+  }, [phase, progress, fakeProgress]);
+
+  const displayProgress =
+    progress >= FAKE_MAX ? progress : Math.min(FAKE_MAX, fakeProgress);
 
   return (
     <Pressable
@@ -169,7 +200,7 @@ export default function VideoPreview({
             >
               <View
                 style={{
-                  width: `${progress * 100}%`,
+                  width: `${displayProgress * 100}%`,
                   height: "100%",
                   backgroundColor: "#ff0000",
                 }}

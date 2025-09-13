@@ -1,5 +1,5 @@
 import { apiClient } from "../libs";
-import { setAuthToken, setAuthUser, clearAuthData } from "../libs/authUtils";
+import { setAuthToken, setAuthUser, clearAuthData } from "../libs/auth.utils";
 import {
   getOrCreateAuthSignature,
   buildAuthRequestPayload,

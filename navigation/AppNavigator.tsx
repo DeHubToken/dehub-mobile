@@ -30,6 +30,37 @@ export default function AppNavigator() {
       <Stack.Screen
         name={ScreenNames.VideoPlayer}
         component={VideoPlayerScreen}
+        options={{
+          presentation: 'transparentModal',
+          cardStyle: { backgroundColor: 'transparent' },
+          cardOverlayEnabled: true,
+          cardStyleInterpolator: ({ current, layouts }) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateY: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.height, 0],
+                      extrapolate: 'clamp',
+                    }),
+                  },
+                ],
+              },
+              overlayStyle: {
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                opacity: current.progress.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, 1],
+                  extrapolate: 'clamp',
+                }),
+              },
+            };
+          },
+          gestureDirection: 'vertical',
+          gestureEnabled: true,
+          gestureResponseDistance: 250,
+        }}
       />
       <Stack.Screen
         name={ScreenNames.Leaderboard}

@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ScreenNames } from '../../navigation/ScreenNames';
 
 import { copyToClipboard } from "../../libs";
-import profileImage from "../../assets/favicon.png"; // fallback
+import profileImage from "../../assets/default-avatar.png"; // fallback
 import bannerImage from "../../assets/banner.png"; // fallback
 import { theme } from "../../theme";
 import { useAuth } from '../../context/AuthContext';

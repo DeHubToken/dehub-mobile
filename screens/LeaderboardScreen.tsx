@@ -12,7 +12,7 @@ import { useAuth } from '../context/AuthContext';
 import { useUserProfileSheet } from '../context/UserProfileSheetContext';
 import { ScreenNames } from '../navigation/ScreenNames';
 
-const defaultAvatar = require('../assets/icon.png');
+const defaultAvatar = require('../assets/default-avatar.png');
 
 interface LBRow {
   rank: number;

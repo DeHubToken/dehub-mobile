@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useContext,
   useCallback,
+  useRef,
 } from "react";
 import { getWeb3AuthProvider } from "../services/web3auth.service";
 import { ActivityIndicator, View, Alert } from "react-native";
@@ -17,12 +18,13 @@ import {
   setAuthUser,
   setAuthToken,
   clearAuthData,
-} from "../libs/authUtils";
+} from "../libs/auth.utils";
 import { AuthService } from "../services/auth.service";
-import { getAccount } from "../services/user.service";
+import { getAccount, getNotifications } from "../services/user.service";
 import { ethersService } from "../services/ethers.service";
 import { supportedTokens } from "../config/constants";
-import { apiClient } from "../libs/apiClient";
+import { apiClient } from "../libs/api.client";
+import { maxStacked } from "../libs/validators.util";
 
 // Define the shape of the user object
 export interface User {
@@ -54,9 +56,9 @@ export interface User {
   youtubeLink?: string;
   telegramLink?: string;
   balances?: number[];
-  walletBalances?: number[] | null;
   tokenBalances?: { [symbol: string]: number };
   badge?: { name: string; amount: number };
+  notificationCount?: number; // unread notifications (capped display)
   receivedTips?: number;
   sentTips?: number;
   address?: string; // sometimes returned as address
@@ -71,6 +73,7 @@ export interface User {
 }
 
 // Define the shape of the auth context
+type ProviderStatus = "idle" | "initializing" | "ready" | "error";
 interface AuthContextType {
   user: User | null;
   // Ongoing operation loading (sign-in, sign-out, profile actions)
@@ -90,9 +93,13 @@ interface AuthContextType {
   refreshUser: () => Promise<void>;
   requireAuth: (action: () => void) => void;
   // Apply a partial user update (merge + persist). Accepts object or function.
-  patchUser: (update: Partial<User> | ((prev: User) => Partial<User>)) => Promise<User | null>;
+  patchUser: (
+    update: Partial<User> | ((prev: User) => Partial<User>)
+  ) => Promise<User | null>;
   provider?: any | null;
   chainId?: number;
+  providerStatus: ProviderStatus;
+  ensureProvider: () => Promise<void>;
   // Add more auth methods as needed
 }
 
@@ -119,63 +126,123 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [provider, setProvider] = useState<any | null>(null);
   const [chainId, setChainId] = useState<number | undefined>(undefined);
+  const [providerStatus, setProviderStatus] = useState<ProviderStatus>("idle");
+  const providerInitPromiseRef = useRef<Promise<void> | null>(null);
+  const isMountedRef = useRef(true);
 
-  // Initialize auth state
   useEffect(() => {
-    // Load auth state from SecureStore
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
+  /**
+   * Provider initialization with timeout + retries + single-flight protection.
+   */
+  const ensureProvider = useCallback(async () => {
+    if (provider || providerStatus === "ready") return;
+    if (providerInitPromiseRef.current) return providerInitPromiseRef.current;
+
+    const attemptInit = async (attempt: number, maxAttempts: number) => {
+      const start = Date.now();
+      try {
+        setProviderStatus("initializing");
+        const p = await withTimeout(getWeb3AuthProvider(), 12000);
+        if (!p) throw new Error("Provider returned null/undefined");
+        if (!isMountedRef.current) return;
+        setProvider(p);
+        // Resolve chainId (fallback safe parse)
+        try {
+          const cid = await p.request?.({ method: "eth_chainId" });
+          if (cid) {
+            const parsed =
+              typeof cid === "string"
+                ? parseInt(cid, 16) || parseInt(cid, 10) || undefined
+                : Number(cid);
+            if (parsed && !Number.isNaN(parsed)) setChainId(parsed);
+          }
+        } catch (e) {
+          console.warn("[AuthContext] failed to read chainId from provider", e);
+        }
+        setProviderStatus("ready");
+        console.log(
+          `[AuthContext] provider initialized in ${Date.now() - start}ms (attempt ${attempt + 1})`
+        );
+      } catch (e) {
+        console.warn(
+          `[AuthContext] provider init attempt ${attempt + 1} failed`,
+          e
+        );
+        if (attempt + 1 < maxAttempts) {
+          const backoff = [400, 1500, 3000][attempt] || 5000;
+          await sleep(backoff);
+          return attemptInit(attempt + 1, maxAttempts);
+        } else {
+          if (!isMountedRef.current) return;
+          setProviderStatus("error");
+          throw e;
+        }
+      }
+    };
+
+    const initPromise = attemptInit(0, 3).catch(() => {});
+    providerInitPromiseRef.current = initPromise;
+    await initPromise;
+    providerInitPromiseRef.current = null;
+  }, [provider, providerStatus]);
+
+  // Helpers
+  const sleep = (ms: number) => new Promise((res) => setTimeout(res, ms));
+  const withTimeout = <T,>(promise: Promise<T>, ms: number): Promise<T> => {
+    return new Promise((resolve, reject) => {
+      const to = setTimeout(
+        () => reject(new Error(`Timeout after ${ms}ms`)),
+        ms
+      );
+      promise
+        .then((val) => {
+          clearTimeout(to);
+          resolve(val);
+        })
+        .catch((err) => {
+          clearTimeout(to);
+          reject(err);
+        });
+    });
+  };
+
+  // Initialize auth state & kick provider initialization (non-blocking for boot)
+  useEffect(() => {
     const loadAuthState = async () => {
       try {
-        const userData = await getAuthUser<User>();
-        const token = await getAuthToken();
-        const seenAuth = await hasSeenAuth();
-
-        // console.log("Auth state loaded:", { userData, token });
+        const [userData, token, seenAuth] = await Promise.all([
+          getAuthUser<User>(),
+          getAuthToken(),
+          hasSeenAuth(),
+        ]);
         if (userData && token) {
           setUser(userData);
           setIsSignedIn(true);
-          // Attempt to hydrate provider & chainId immediately
-          try {
-            const p = await getWeb3AuthProvider();
-            setProvider(p);
-            try {
-              const chainHex = await p.request?.({ method: 'eth_chainId' });
-              if (chainHex) setChainId(parseInt(chainHex, 16));
-            } catch {}
-          } catch (e) {
-            console.warn('[AuthContext] provider hydrate on boot failed', e);
-          }
+          // Start provider init in background; don't await to keep boot fast
+          ensureProvider().catch((e) =>
+            console.warn("[AuthContext] background provider init failed", e)
+          );
         }
-
         if (seenAuth) setIsFirstTimeUser(false);
-      } catch (error) {
-        console.error("Failed to load auth state:", error);
+      } catch (e) {
+        console.error("Failed to load auth state:", e);
       } finally {
         setIsBootLoading(false);
       }
     };
-
     loadAuthState();
-  }, []);
+  }, [ensureProvider]);
 
   // Fallback: if user is set but provider not yet loaded (e.g., provider init race)
-  useEffect(() => {
-    if (user && isSignedIn && !provider) {
-      (async () => {
-        try {
-          const p = await getWeb3AuthProvider();
-          setProvider(p);
-          try {
-            const chainHex = await p.request?.({ method: 'eth_chainId' });
-            if (chainHex) setChainId(parseInt(chainHex, 16));
-          } catch {}
-        } catch (e) {
-          console.warn('[AuthContext] deferred provider hydrate failed', e);
-        }
-      })();
-    }
-  }, [user, isSignedIn, provider]);
+  // Remove deferred provider hydrate: we no longer auto-init provider on boot
+  // Provider only created on fresh sign-in.
 
-  // Sign in with wallet
+  // Sign in with wallet (will always (re)initialize provider immediately after backend sign-in)
   const signInWithWallet = async (walletAddress: string, chainId: number) => {
     setIsLoading(true);
     try {
@@ -188,13 +255,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         token,
         needsUsername: need,
       } = await AuthService.signInWithWallet(walletAddress, chainId);
-      // Load / attach provider after successful low-level sign-in (before enrichment)
+      // Force re-init provider fresh for this session
+      setProvider(null);
+      setChainId(chainId);
       try {
-        const p = await getWeb3AuthProvider();
-        setProvider(p);
-        setChainId(chainId); // supplied by caller
+        await ensureProvider();
       } catch (e) {
-        console.warn('[AuthContext] provider init failed', e);
+        console.warn("[AuthContext] provider init during signIn failed", e);
       }
       await setHasSeenAuth();
       console.log("[AuthContext] signInWithWallet result", {
@@ -253,6 +320,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     } catch (e) {
       console.warn("[AuthContext] account fetch failed", e);
     }
+    // Notifications (unread count) - backend returns only unread for given address
+    try {
+      const addr = enriched.walletAddress || enriched.address;
+      if (addr) {
+        const nRes: any = await getNotifications(addr, { unit: 20 });
+        const notificationRes = nRes?.data?.result || nRes?.result || nRes;
+        if (notificationRes) {
+          const unread = (notificationRes as any[]).length;
+          enriched = { ...enriched, notificationCount: unread };
+        }
+      }
+    } catch (e) {
+      console.warn("[AuthContext] notifications fetch failed", e);
+    }
     // Fetch balances (native + selected tokens)
     try {
       const acctAddr = enriched.walletAddress || enriched.address;
@@ -270,6 +351,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       console.warn("[AuthContext] balance fetch failed", e);
     }
     try {
+      // Derive stakedDHB from balanceData if not already present or outdated
+      if (enriched?.balanceData?.length) {
+        const derivedStake = maxStacked(enriched.balanceData);
+        if (typeof derivedStake === "number") {
+          enriched = { ...enriched, stakedDHB: derivedStake };
+        }
+      }
       setUser(enriched);
       await setAuthUser(enriched);
     } catch (e) {
@@ -309,6 +397,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setIsSignedIn(false);
       setProvider(null);
       setChainId(undefined);
+      setProviderStatus("idle");
     } catch (error) {
       console.error("Sign out error:", error);
       throw error;
@@ -343,21 +432,21 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const patchUser: AuthContextType['patchUser'] = async (update) => {
+  const patchUser: AuthContextType["patchUser"] = async (update) => {
     try {
       if (!user) return null; // silently ignore if no user
-      const partial = typeof update === 'function' ? update(user) : update;
-      if (!partial || typeof partial !== 'object') return user;
+      const partial = typeof update === "function" ? update(user) : update;
+      if (!partial || typeof partial !== "object") return user;
       const merged: User = { ...user, ...partial };
       setUser(merged); // optimistic in-memory update
       try {
         await setAuthUser(merged); // persist
       } catch (e) {
-        console.warn('[AuthContext] patchUser persist failed', e);
+        console.warn("[AuthContext] patchUser persist failed", e);
       }
       return merged;
     } catch (e) {
-      console.warn('[AuthContext] patchUser error', e);
+      console.warn("[AuthContext] patchUser error", e);
       return user;
     }
   };
@@ -392,6 +481,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     patchUser,
     provider,
     chainId,
+    providerStatus,
+    ensureProvider,
   };
 
   return (

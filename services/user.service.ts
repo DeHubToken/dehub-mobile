@@ -1,4 +1,4 @@
-import { apiClient } from '../libs/apiClient';
+import { apiClient } from '../libs/api.client';
 import { User } from '../context/AuthContext';
 import { getNFTs, GetNFTsResponse, SearchParams } from './nft.service';
 
@@ -12,6 +12,17 @@ export interface ApiResponse<T> {
 
 interface AccountInfoResponse { result: User }
 interface UsersSearchResponse { result: User[] }
+// Notification types (simplified). Adjust shape based on backend response
+export interface NotificationItem {
+  id: string | number;
+  type: string;
+  content: string;
+  updatedAt?: string;
+  imageUrl?: string;
+  read?: boolean;
+}
+
+interface NotificationsResponse { result: NotificationItem[] }
 
 // Params accepted for user content queries
 export interface UserContentSearchParams {
@@ -51,6 +62,33 @@ export async function usersSearch(searchParam: string) {
     } as typeof response;
   }
   return response;
+}
+
+/**
+ * Fetch unread notifications for a specific address.
+ * Backend returns ONLY unread notifications when provided an address.
+ */
+export async function getNotifications(address: string, params?: Record<string, any>) {
+  if (!address) return { success: true, data: { result: [] } } as ApiResponse<NotificationsResponse>;
+  const cleaned = params
+    ? Object.fromEntries(Object.entries(params).filter(([, v]) => v !== undefined && v !== null && v !== ''))
+    : {};
+  const search = new URLSearchParams({ address, ...cleaned }).toString();
+  const url = `/notification?${search}`;
+  const response = await apiClient.get<ApiResponse<NotificationsResponse>>(url, { isAuthRequired: true });
+  return response;
+}
+
+/** Mark a single notification as read (PATCH /notification/:id) */
+export async function markNotificationAsRead(id: string | number) {
+  if (!id) return null;
+  const url = `/notification/${encodeURIComponent(String(id))}`;
+  try {
+    return await apiClient.patch<any>(url, {}, { isAuthRequired: true });
+  } catch (e) {
+    console.warn('[user.service] markNotificationAsRead error', e);
+    throw e;
+  }
 }
 
 /**

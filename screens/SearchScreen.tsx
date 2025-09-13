@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
   TextInput,
@@ -6,153 +6,216 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import CompactVideoCard from "../components/Home/CompactVideoCard";
+// Video card logic moved into SearchMediaList component.
+import {
+  fetchSuggestions,
+  performSearch,
+  getHistory,
+  addToHistory,
+  topHistorySubset,
+} from "../services/search.service";
+import SearchSkeleton from "../components/Search/SearchSkeleton";
+import SearchResultsTabs from "../components/Search/SearchResultsTabs";
+import type { FC } from "react";
 
-const dummyResults = [
-  {
-    title: "Video title 1",
-    views: 12000,
-    createdAt: "4 Feb, 2025",
-    thumbnail: "https://example.com/thumbnail1.jpg",
-    likes: 100,
-  },
-  {
-    title: "Video title 2",
-    views: 8500,
-    createdAt: "3 Feb, 2025",
-    thumbnail: "https://example.com/thumbnail2.jpg",
-    likes: 85,
-  },
-  {
-    title: "Video title 3",
-    views: 2400,
-    createdAt: "2 Feb, 2025",
-    thumbnail: "https://example.com/thumbnail3.jpg",
-    likes: 45,
-  },
-];
-const SearchScreen = () => {
+// Removed dummy results; real search now uses backend endpoints.
+const SearchScreen: FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [results, setResults] = useState<any[]>([]); // Replace with actual result type
-  const [searchHistory, setSearchHistory] = useState<string[]>([
-    "History 1",
-    "History 2",
-    "History 3",
-  ]);
+  const [accounts, setAccounts] = useState<any[]>([]);
+  const [videos, setVideos] = useState<any[]>([]);
+  const [livestreams, setLivestreams] = useState<any[]>([]);
+  const [pageAccounts, setPageAccounts] = useState(0);
+  const [pageVideos, setPageVideos] = useState(0);
+  const [pageLivestreams, setPageLivestreams] = useState(0);
+  const PAGE_SIZE = 20;
+  const [searchHistory, setSearchHistory] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
   const navigation = useNavigation();
 
-  const handleSearch = () => {
-    if (searchQuery.trim()) {
-      // Simulate search logic with video data
-      setResults(dummyResults);
-      setSearchHistory((prev) => [
-        searchQuery,
-        ...prev.filter((item) => item !== searchQuery),
-      ]);
-      setSuggestions([]); // Clear suggestions when showing results
-    }
-  };
+  const loadHistory = useCallback(async () => {
+    const h = await getHistory();
+    setSearchHistory(h);
+  }, []);
 
-  const handleSuggestionClick = (suggestion: string) => {
-    setSearchQuery(suggestion);
-    setResults(dummyResults);
-    // Trigger search with the selected suggestion
-    setTimeout(() => handleSearch(), 0);
-  };
+  useEffect(() => {
+    loadHistory();
+  }, [loadHistory]);
 
-  const handleReplaceSearchBox = (suggestion: string) => {
-    setSearchQuery(suggestion);
-  };
+  const executeSearch = useCallback(
+    async (term: string) => {
+      const q = term.trim();
+      if (!q) return;
+      setLoading(true);
+      setHasSearched(true);
+      const res = await performSearch(q, { unit: PAGE_SIZE, page: 0 });
+      setAccounts(res.result.accounts);
+      setVideos(res.result.videos);
+      setLivestreams(res.result.livestreams);
+      setPageAccounts(res.result.accounts.length ? 1 : 0);
+      setPageVideos(res.result.videos.length ? 1 : 0);
+      setPageLivestreams(res.result.livestreams.length ? 1 : 0);
+      await addToHistory(q);
+      loadHistory();
+      setSuggestions([]);
+      setLoading(false);
+    },
+    [loadHistory]
+  );
 
+  const handleSearch = useCallback(() => {
+    executeSearch(searchQuery);
+  }, [executeSearch, searchQuery]);
+  const handleSuggestionClick = (s: string) => {
+    setSearchQuery(s);
+    executeSearch(s);
+  };
+  const handleReplaceSearchBox = (s: string) => {
+    setSearchQuery(s);
+  };
   const clearSearch = () => {
     setSearchQuery("");
-    setResults([]);
+    setAccounts([]);
+    setVideos([]);
+    setLivestreams([]);
     setSuggestions([]);
+    setHasSearched(false);
+    setPageAccounts(0);
+    setPageVideos(0);
+    setPageLivestreams(0);
   };
 
   useEffect(() => {
-    if (searchQuery.trim() && results.length === 0) {
-      // Simulate fetching suggestions only when there are no results yet
-      setSuggestions(["Suggestion 1", "Suggestion 2", "Suggestion 3"]);
-    } else if (!searchQuery.trim()) {
-      setSuggestions([]);
-      setResults([]);
-    }
+    let cancelled = false;
+    const run = async () => {
+      const q = searchQuery.trim();
+      if (!q) {
+        setSuggestions([]);
+        setAccounts([]);
+        setVideos([]);
+        setLivestreams([]);
+        return;
+      }
+      const sugg = await fetchSuggestions(q);
+      if (!cancelled) setSuggestions(sugg.slice(0, 3));
+    };
+    if (searchQuery) run();
+    return () => {
+      cancelled = true;
+    };
   }, [searchQuery]);
 
   // Determine what content to show
   const getContentToRender = () => {
-    if (results.length > 0) {
-      // Show search results using CompactVideoCard
+    // Case: search executed
+    if (loading) {
+      return <SearchSkeleton />;
+    }
+    if (hasSearched) {
+      const total = accounts.length + videos.length + livestreams.length;
+      if (total === 0) {
+        return (
+          <View className="flex-1 items-center mt-20 px-6">
+            <Text className="text-theme-neutrals-300 font-semibold text-sm mb-2">
+              No results found
+            </Text>
+            <Text className="text-theme-neutrals-500 text-xs text-center">
+              Try refining your search terms or check your spelling.
+            </Text>
+          </View>
+        );
+      }
       return (
-        <FlatList
-          data={results}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            <CompactVideoCard
-              title={item.title}
-              views={item.views}
-              createdAt={item.createdAt}
-              thumbnail={item.thumbnail}
-              likes={item.likes}
-            />
-          )}
-          showsVerticalScrollIndicator={false}
-        />
-      );
-    } else {
-      // Show suggestions or search history
-      return (
-        <FlatList
-          data={searchQuery.trim() ? suggestions : searchHistory}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) =>
-            searchQuery.trim() ? (
-              <TouchableOpacity
-                className="p-4 border-b border-theme-neutrals-800 flex-row items-center"
-                onPress={() => handleSuggestionClick(item)}
-              >
-                <Ionicons
-                  name="search-outline"
-                  size={20}
-                  color="white"
-                  className="mr-4"
-                />
-                <Text className="text-white flex-1">{item}</Text>
-                <TouchableOpacity
-                  className="p-2"
-                  onPress={() => handleReplaceSearchBox(item)}
-                >
-                  <Ionicons name="arrow-forward" size={20} color="white" />
-                </TouchableOpacity>
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                className="p-4 border-b border-theme-neutrals-800 flex-row items-center"
-                onPress={() => handleSuggestionClick(item)}
-              >
-                <Ionicons
-                  name="time-outline"
-                  size={20}
-                  color="white"
-                  className="mr-4"
-                />
-                <Text className="text-white flex-1">{item}</Text>
-              </TouchableOpacity>
-            )
-          }
-          ListEmptyComponent={
-            <View className="flex-1 justify-center items-center mt-20">
-              <Text className="text-theme-neutrals-400">No results found</Text>
-            </View>
-          }
+        <SearchResultsTabs
+          query={searchQuery}
+          accounts={accounts}
+          videos={videos}
+          livestreams={livestreams}
+          pageAccounts={pageAccounts}
+          pageVideos={pageVideos}
+          pageLivestreams={pageLivestreams}
+          setAccounts={setAccounts}
+          setVideos={setVideos}
+          setLivestreams={setLivestreams}
+          setPageAccounts={setPageAccounts}
+          setPageVideos={setPageVideos}
+          setPageLivestreams={setPageLivestreams}
         />
       );
     }
+    // Not searched yet: show suggestions (if typing) or history
+    const typing = !!searchQuery.trim();
+    if (typing) {
+      if (suggestions.length === 0) return null; // show nothing while typing with no suggestions
+      return (
+        <FlatList
+          data={suggestions}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              className="p-4 border-b border-theme-neutrals-800 flex-row items-center"
+              onPress={() => handleSuggestionClick(item)}
+            >
+              <Ionicons
+                name="search-outline"
+                size={20}
+                color="white"
+                className="mr-4"
+              />
+              <Text className="text-white flex-1">{item}</Text>
+              <TouchableOpacity
+                className="p-2"
+                onPress={() => handleReplaceSearchBox(item)}
+              >
+                <Ionicons
+                  name="arrow-up"
+                  size={20}
+                  color="white"
+                  style={{ transform: [{ rotate: '45deg' }] }}
+                />
+              </TouchableOpacity>
+            </TouchableOpacity>
+          )}
+        />
+      );
+    }
+    // History view
+    const historySubset = topHistorySubset(searchHistory, 6);
+    if (historySubset.length === 0) {
+      return (
+        <View className="mt-10 px-6">
+          <Text className="text-theme-neutrals-400 text-xs text-center">
+            No search history yet.
+          </Text>
+          <Text className="text-theme-neutrals-600 text-xs text-center mt-2">
+            Try searching for creators, videos, or tokens.
+          </Text>
+        </View>
+      );
+    }
+    return (
+      <FlatList
+        data={historySubset}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            className="p-4 border-b border-theme-neutrals-800 flex-row items-center"
+            onPress={() => handleSuggestionClick(item)}
+          >
+            <Ionicons
+              name="time-outline"
+              size={20}
+              color="white"
+              className="mr-4"
+            />
+            <Text className="text-white flex-1">{item}</Text>
+          </TouchableOpacity>
+        )}
+      />
+    );
   };
 
   return (
@@ -168,7 +231,7 @@ const SearchScreen = () => {
           value={searchQuery}
           onChangeText={setSearchQuery}
           onSubmitEditing={handleSearch}
-          autoFocus={true}
+          autoFocus
           returnKeyType="search"
         />
         <TouchableOpacity
@@ -176,7 +239,9 @@ const SearchScreen = () => {
           onPress={searchQuery.trim() ? clearSearch : handleSearch}
         >
           <Ionicons
-            name={searchQuery.trim() ? "close" : "search"}
+            name={
+              searchQuery.trim() ? "close" : loading ? "hourglass" : "search"
+            }
             size={24}
             color="white"
           />

@@ -40,5 +40,40 @@ export function formatJoinedDate(createdAt?: string | null): string | null {
   }
 }
 
-export const DateUtil = { secondsToHMMSS, msToHHMMSS, formatJoinedDate };
+function formatTime(date: Date) {
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const ampm = hours >= 12 ? "PM" : "AM";
+  const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+  const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+  return `${formattedHours}:${formattedMinutes}${ampm}`;
+}
+
+export function formatNotificationDate(isoDateString: Date) {
+  const date = new Date(isoDateString);
+  const now = new Date();
+  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  if (
+    date.getDate() === now.getDate() &&
+    date.getMonth() === now.getMonth() &&
+    date.getFullYear() === now.getFullYear()
+  ) {
+    return formatTime(date) + ", Today";
+  }
+
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+
+  if (
+    date.getDate() === yesterday.getDate() &&
+    date.getMonth() === yesterday.getMonth() &&
+    date.getFullYear() === yesterday.getFullYear()
+  ) {
+    return formatTime(date) + ", Yesterday";
+  }
+
+  return formatTime(date) + ", " + daysOfWeek[date.getDay()];
+}
+export const DateUtil = { secondsToHMMSS, msToHHMMSS, formatJoinedDate, formatNotificationDate };
 export default DateUtil;

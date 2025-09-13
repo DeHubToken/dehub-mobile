@@ -4,6 +4,7 @@ import * as SecureStore from 'expo-secure-store';
 export const AUTH_USER_KEY = 'auth_user';
 export const AUTH_TOKEN_KEY = 'auth_token';
 export const HAS_SEEN_AUTH_KEY = 'has_seen_auth';
+export const WEB3_PROVIDER_KEY = 'web3_provider_info';
 
 /**
  * Gets the authentication token from SecureStore
@@ -72,6 +73,7 @@ export async function setHasSeenAuth(): Promise<void> {
 export async function clearAuthData(): Promise<void> {
   await removeAuthToken();
   await removeAuthUser();
+  await SecureStore.deleteItemAsync(WEB3_PROVIDER_KEY);
 }
 
 /**
@@ -111,4 +113,33 @@ export function isTokenExpired(token: string): boolean {
     // If token is not a valid JWT or doesn't have an exp claim
     return true;
   }
+}
+
+// ---------------- Web3 Provider Persistence (lightweight metadata) ----------------
+// We avoid serializing full provider objects (non-serializable, circular). Instead store
+// minimal connection metadata (e.g., chainId, timestamp) to decide whether a fresh init is needed.
+
+export interface StoredProviderMeta {
+  chainId?: number;
+  storedAt: number; // epoch ms
+}
+
+export async function setStoredProviderMeta(meta: StoredProviderMeta): Promise<void> {
+  try {
+    await SecureStore.setItemAsync(WEB3_PROVIDER_KEY, JSON.stringify(meta));
+  } catch {}
+}
+
+export async function getStoredProviderMeta(): Promise<StoredProviderMeta | null> {
+  try {
+    const raw = await SecureStore.getItemAsync(WEB3_PROVIDER_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+export async function clearStoredProviderMeta(): Promise<void> {
+  try { await SecureStore.deleteItemAsync(WEB3_PROVIDER_KEY); } catch {}
 }

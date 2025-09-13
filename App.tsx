@@ -15,6 +15,14 @@ import { UserProfileSheetProvider } from './context/UserProfileSheetContext';
 import { UsernameGate } from './components/auth/UsernameGate';
 import RootNavigator from "./navigation/RootNavigator";
 import { prewarmWeb3Auth } from './config/web3auth.config';
+// Optional: silence Reanimated strict-mode warnings in development
+// See https://docs.swmansion.com/react-native-reanimated/docs/debugging/logger-configuration
+import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
+
+configureReanimatedLogger({
+  level: ReanimatedLogLevel.warn,
+  strict: false,
+});
 
 export default function App() {
   const [isLoading, setIsLoading] = React.useState(false);

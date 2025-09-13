@@ -244,7 +244,7 @@ export const supportedChainIdsForMinting = [ChainId.BSC_MAINNET, ChainId.BASE_MA
 export const supportedChainIds = isDevMode
   ? [ChainId.BSC_TESTNET, ChainId.GORLI]
   : [ChainId.BSC_MAINNET, ChainId.BASE_MAINNET];
-export const defaultChainId = isDevMode ? ChainId.GORLI : ChainId.BSC_MAINNET;
+export const defaultChainId = isDevMode ? ChainId.GORLI : ChainId.BASE_MAINNET;
 export const defaultTokenSymbol = "DHB";
 export const defaultWatchTimeForPPV = 2 * 60 * 60; // second unit
 export const devFee = 0.1;

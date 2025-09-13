@@ -5,22 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-  ScrollView,
-  Dimensions,
-  Animated,
-  PanResponder,
-  BackHandler,
-  Platform,
-  Share,
-  Modal as RNModal,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Dimensions, Animated, PanResponder, Modal as RNModal, ActivityIndicator, Image } from "react-native";
 import Modal from "react-native-modal";
 import { Ionicons } from "@expo/vector-icons";
 import { getAccount, followUser, unfollowUser } from "../../services/user.service";
@@ -47,6 +32,10 @@ import { theme } from "../../theme";
 import { Dimensions as RNDimensions } from "react-native";
 import { useAuth } from "../../context/AuthContext";
 import TipModal from "../Tip/TipModal";
+import UserProfileHeader from "./UserProfileHeader";
+import UserProfileActions from "./UserProfileActions";
+import UserProfileStatsRow from "./UserProfileStatsRow";
+import { maxStacked } from "../../libs/validators.util";
 
 interface UserProfileBottomSheetProps {
   visible: boolean;
@@ -69,7 +58,7 @@ interface RemoteUser {
   likes?: any[];
 }
 
-const FallbackAvatar = require("../../assets/favicon.png");
+const FallbackAvatar = require("../../assets/default-avatar.png");
 const FallbackBanner = require("../../assets/banner.png");
 
 const WIN_HEIGHT = Dimensions.get("window").height;
@@ -202,8 +191,14 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
 
   const avatarUrl = getAvatarUrl(data?.avatarImageUrl);
   const coverUrl = getCoverUrl(data?.coverImageUrl);
-  const badge = getBadgeName(data?.stakedDHB as number);
-  const badgeImage = getBadgeUrl(data?.stakedDHB as number);
+  const stakedDHB = useMemo(() => {
+    if (!data) return 0;
+    const fromBalances = maxStacked((data as any)?.balanceData);
+    const direct = (data as any)?.stakedDHB || 0;
+    return fromBalances > 0 ? fromBalances : direct || 0;
+  }, [data]);
+  const badge = getBadgeName(stakedDHB as number);
+  const badgeImage = getBadgeUrl(stakedDHB as number);
   const badgeIcon = "trophy-outline";
   const address = data?.address || data?.walletAddress || "";
   const hasUsername = !!data?.username;
@@ -243,18 +238,15 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     ];
   }, [data]);
 
-  const handleOpenImage = useCallback(
-    (type: "avatar" | "cover") => {
-      const imgUrl = type === "avatar" ? avatarUrl : coverUrl;
-      if (!imgUrl || imgUrl.startsWith("default")) return;
-      (navigation as any).navigate(ScreenNames.ImageViewer, {
-        images: [{ uri: imgUrl }],
-        index: 0,
-        isModal: true,
-      });
-    },
-    [avatarUrl, coverUrl, navigation]
-  );
+  const handleOpenImage = useCallback((type: "avatar" | "cover") => {
+    const imgUrl = type === "avatar" ? avatarUrl : coverUrl;
+    if (!imgUrl || imgUrl.startsWith("default")) return;
+    (navigation as any).navigate(ScreenNames.ImageViewer, {
+      images: [{ uri: imgUrl }],
+      index: 0,
+      isModal: true,
+    });
+  }, [avatarUrl, coverUrl, navigation]);
 
   const handleShare = useCallback(async () => {
     const profileSlug = username || address;
@@ -348,13 +340,13 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
         case "videos":
           return (
             <View style={{ flex: 1 }}>
-              <VideosRoute address={address} />
+              <VideosRoute address={address} showCreator={false} />
             </View>
           );
         case "livestreams":
           return (
             <View style={{ flex: 1 }}>
-              <LivestreamsRoute address={address} />
+              <LivestreamsRoute address={address} showCreator={false} />
             </View>
           );
         default:
@@ -419,177 +411,38 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
             className="flex-1 mt-2"
           >
             <View>
-              <View>
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  onPress={() => handleOpenImage("cover")}
-                >
-                  <ImageBackground
-                    source={
-                      coverUrl === "default-banner"
-                        ? FallbackBanner
-                        : { uri: coverUrl }
-                    }
-                    style={{ height: 120 }}
-                    className="w-full bg-cover bg-center"
-                    resizeMode="cover"
-                  >
-                    <TouchableOpacity
-                      onPress={handleShare}
-                      className="absolute top-2 right-2 bg-theme-neutrals-900/60 p-2 rounded-full"
-                      accessibilityLabel="Share profile"
-                    >
-                      <Ionicons name="share-social" size={16} color="#fff" />
-                    </TouchableOpacity>
-                  </ImageBackground>
-                </TouchableOpacity>
-                <View className="flex-row items-end mt-[-42px] px-4">
-                  <TouchableOpacity
-                    activeOpacity={0.85}
-                    onPress={() => handleOpenImage("avatar")}
-                  >
-                    <Image
-                      source={
-                        avatarUrl === "default-avatar"
-                          ? FallbackAvatar
-                          : { uri: avatarUrl }
-                      }
-                      className="w-24 h-24 rounded-full border-[8px] border-theme-neutrals-900"
-                    />
-                  </TouchableOpacity>
-                </View>
-              </View>
+              <UserProfileHeader
+                avatarUrl={avatarUrl}
+                coverUrl={coverUrl}
+                displayName={displayName}
+                badge={badge}
+                badgeImage={badgeImage}
+                badgeIcon={badgeIcon}
+                address={address}
+                shortAddr={shortAddr}
+                username={username}
+                hasUsername={hasUsername}
+                joinedDate={joinedDate}
+                onOpenImage={handleOpenImage}
+                onShare={handleShare}
+                FallbackAvatar={FallbackAvatar}
+                FallbackBanner={FallbackBanner}
+              />
               <View className="px-6 mt-2">
-                <View className="flex-row items-center gap-2 flex-wrap pr-8">
-                  <Text
-                    className="text-white text-2xl font-bold"
-                    numberOfLines={1}
-                  >
-                    {displayName}
-                  </Text>
-                  {badge && (
-                    <View className="flex-row items-center gap-1 bg-theme-neutrals-800 px-2 py-1 rounded-full">
-                      {badgeImage ? (
-                        <Image source={badgeImage} className="w-3 h-3" />
-                      ) : (
-                        <Ionicons
-                          name={badgeIcon as any}
-                          size={10}
-                          color="gold"
-                        />
-                      )}
-                    </View>
-                  )}
-                  {!!address && (
-                    <TouchableOpacity
-                      onPress={() => copyToClipboard(address)}
-                      className="flex-row items-center"
-                      accessibilityLabel="Copy address"
-                    >
-                      <Text
-                        className="text-gray-500 text-[11px] mr-1"
-                        numberOfLines={1}
-                      >
-                        {shortAddr}
-                      </Text>
-                      <Ionicons name="copy-outline" size={14} color="#9ca3af" />
-                    </TouchableOpacity>
-                  )}
-                </View>
-                {username && (
-                  <TouchableOpacity
-                    onPress={() => copyToClipboard(username)}
-                    className="mt-1 self-start"
-                    accessibilityLabel="Copy username"
-                  >
-                    <Text className="text-gray-400 text-xs" numberOfLines={1}>
-                      @{username}
-                    </Text>
-                  </TouchableOpacity>
-                )}
-                {!hasUsername && (
-                  <View className="mt-2 bg-theme-neutrals-800/60 rounded-lg p-3">
-                    <Text className="text-theme-neutrals-200 text-xs leading-4">
-                      This user hasn't fully joined yet. They haven't claimed a username or completed profile setup. You can still view public activity and send tips if available.
-                    </Text>
-                  </View>
-                )}
-                {joinedDate && (
-                  <Text className="text-gray-500 text-[10px] mt-1">
-                    Joined at {joinedDate}
-                  </Text>
-                )}
-                <View className="flex-row gap-3 mt-2 relative">
-                  {!isFollowing ? (
-                    <TouchableOpacity
-                      disabled={disableActions}
-                      onPress={disableActions ? undefined : handleFollow}
-                      className={`flex-1 bg-theme-accent py-2 rounded-lg items-center flex-row justify-center gap-2 ${disableActions ? 'opacity-40' : ''}`}
-                    >
-                      <Ionicons name="person-add-outline" size={16} color="#fff" />
-                      <Text className="text-white text-sm font-semibold">Follow</Text>
-                    </TouchableOpacity>
-                  ) : (
-                    <TouchableOpacity
-                      onPress={() => !followLoading && !disableActions && setShowUnfollowSheet(true)}
-                      disabled={followLoading || disableActions}
-                      className={`flex-1 bg-theme-neutrals-800 py-2 rounded-lg items-center flex-row justify-center gap-1 ${(followLoading || disableActions) ? 'opacity-60' : ''}`}
-                    >
-                      {followLoading ? (
-                        <ActivityIndicator size="small" color="#fff" />
-                      ) : (
-                        <>
-                          <Text className="text-white text-sm font-semibold">
-                            Following
-                          </Text>
-                          <Ionicons
-                            name="chevron-down"
-                            size={14}
-                            color="#fff"
-                          />
-                        </>
-                      )}
-                    </TouchableOpacity>
-                  )}
-                  <View className={`flex-1 ${disableActions ? 'opacity-40' : ''}`} pointerEvents={disableActions ? 'none' : 'auto'}>
-                    <TipModal toAddress={address} />
-                  </View>
-                  <TouchableOpacity
-                    disabled={disableActions}
-                    onPress={disableActions ? undefined : handleVideos}
-                    className={`flex-1 bg-theme-neutrals-800 py-2 rounded-lg items-center flex-row justify-center gap-2 ${disableActions ? 'opacity-40' : ''}`}
-                  >
-                    <Ionicons name="film-outline" size={16} color="#fff" />
-                    <Text className="text-white text-sm font-semibold">
-                      Videos
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                {stats.length > 0 && (
-                  <View className="flex-row justify-around my-4">
-                    {stats.map((s) => (
-                      <View key={s.key} className="items-center">
-                        <Text className="text-white text-sm font-bold">
-                          {formatCompactNumber(s.value)}
-                        </Text>
-                        <Text className="text-gray-400 text-[10px]">
-                          {s.label}
-                        </Text>
-                      </View>
-                    ))}
-                  </View>
-                )}
+                <UserProfileActions
+                  isFollowing={isFollowing}
+                  followLoading={followLoading}
+                  disableActions={disableActions}
+                  address={address}
+                  onFollow={handleFollow}
+                  onOpenUnfollow={() => setShowUnfollowSheet(true)}
+                  onOpenVideos={handleVideos}
+                />
+                <UserProfileStatsRow stats={stats as any} />
                 {data?.aboutMe && (
                   <View className="mt-2">
-                    <Text className="text-gray-400 text-xs uppercase tracking-wide mb-1">
-                      About
-                    </Text>
-                    <Text
-                      className="text-white text-sm leading-5"
-                      numberOfLines={6}
-                    >
-                      {data.aboutMe}
-                    </Text>
+                    <Text className="text-gray-400 text-xs uppercase tracking-wide mb-1">About</Text>
+                    <Text className="text-white text-sm leading-5" numberOfLines={6}>{data.aboutMe}</Text>
                   </View>
                 )}
                 <UserProfileSocials socials={data as any} />
