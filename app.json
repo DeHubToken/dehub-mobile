@@ -1,22 +1,23 @@
 {
   "expo": {
     "scheme": "dehub",
-    "name": "Dehub",
-    "slug": "snack-aa38f910-5016-454d-9040-2fb99243ab4e",
+    "name": "DeHub",
+    "slug": "dehub",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/1024.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/default-banner.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "ios": {
       "supportsTablet": true,
       "jsEngine": "jsc",
       "bundleIdentifier": "io.dehub.mobile",
+      "icon": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/1024.png",
       "infoPlist": {
         "LSApplicationQueriesSchemes": [
           "metamask",
@@ -28,18 +29,28 @@
       }
     },
     "android": {
+      "icon": "./assets/AppIcons/android/mipmap-xxxhdpi/dehub-icon.png",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/AppIcons/android/mipmap-xxxhdpi/dehub-icon.png",
         "backgroundColor": "#000000"
       },
       "package": "io.dehub.mobile"
     },
     "web": {
-      "favicon": "./assets/favicon.png",
+      "favicon": "./assets/AppIcons/web/favicon.png",
       "bundler": "metro"
     },
-    "description": "Quickly generate React Native components with AI",
+    "description": "The decentralised entertainment hub, watch, shop & play on-chain today.",
     "jsEngine": "hermes",
-    "plugins": ["expo-secure-store", "./libs/reown.queries.js"]
+    "plugins": [
+      "expo-secure-store",
+      "./libs/reown.queries.js"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "061f3290-d881-487e-a85a-1f150376003d"
+      }
+    },
+    "owner": "an0nym0usang3l"
   }
 }

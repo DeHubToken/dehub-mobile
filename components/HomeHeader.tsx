@@ -9,7 +9,10 @@ import { toastError, toastInfo, toastSuccess } from "../libs";
 
 const HomeHeader = () => {
   const navigation = useNavigation<any>();
-  const { isSignedIn } = useAuth();
+  const { isSignedIn, user } = useAuth();
+  const notifCount = user?.notificationCount || 0;
+  const displayCount =
+    notifCount > 4 ? "4+" : notifCount > 0 ? String(notifCount) : "";
 
   return (
     <View className="flex-row justify-between items-center p-4 border-b border-theme-neutrals-700">
@@ -29,10 +32,19 @@ const HomeHeader = () => {
         </TouchableOpacity>
         {isSignedIn ? (
           <TouchableOpacity
-          className="p-1 ml-4"
+            className="p-1 ml-4"
             onPress={() => navigation.navigate(ScreenNames.Notifications)}
           >
-            <Ionicons name="notifications-outline" size={24} color="white" />
+            <View>
+              <Ionicons name="notifications-outline" size={24} color="white" />
+              {displayCount !== "" && (
+                <View className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1.5 bg-theme-accent rounded-full items-center justify-center">
+                  <Text className="text-white text-[9px] font-semibold leading-none">
+                    {displayCount}
+                  </Text>
+                </View>
+              )}
+            </View>
           </TouchableOpacity>
         ) : null}
         <TouchableOpacity

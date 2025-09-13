@@ -1,4 +1,4 @@
-import { apiClient } from '../libs/apiClient';
+import { apiClient } from '../libs/api.client';
 
 interface LeaderboardUser {
   account: string;

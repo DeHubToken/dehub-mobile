@@ -1,5 +1,5 @@
 import env from '../config/env';
-import { createAuthHeaders, getAuthToken } from './authUtils';
+import { createAuthHeaders, getAuthToken } from './auth.utils';
 
 // Base API URL - replace with your actual API URL
 const API_BASE_URL = env.API_URL;

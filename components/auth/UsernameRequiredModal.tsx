@@ -3,7 +3,7 @@ import { View, Text, Modal, TextInput, TouchableOpacity, ActivityIndicator } fro
 import { AuthService } from '../../services/auth.service';
 import { useDebounceCallback } from '../../hooks/useDebounceCallback';
 import { toastError, toastSuccess } from '../../libs';
-import { setAuthToken, setAuthUser } from '../../libs/authUtils';
+import { setAuthToken, setAuthUser } from '../../libs/auth.utils';
 import { User } from '../../context/AuthContext';
 
 interface Props {

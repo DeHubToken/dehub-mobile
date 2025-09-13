@@ -20,6 +20,14 @@ export function buildCdnPath(path?: string | null): string | undefined {
   return `${env.CDN_BASE_URL}/${path}`;
 }
 
+// Build standard video URL from tokenId (supports number | string). Returns undefined if invalid.
+export function getVideoUrl(tokenId?: string | number | null): string | undefined {
+  if (tokenId === null || tokenId === undefined) return undefined;
+  const id = typeof tokenId === 'number' ? tokenId.toString() : tokenId.trim();
+  if (!id) return undefined;
+  return `${env.CDN_BASE_URL}/videos/${id}.mp4`;
+}
+
 export function resolveThumbnail(obj: Record<string, any>): string | undefined {
   const raw = obj.thumbnail || obj.thumbnailUrl || obj.imageUrl;
   return raw ? `${env.CDN_BASE_URL}/${raw}` : "default-banner";
@@ -130,6 +138,7 @@ export const Misc = {
   buildCdnPath,
   resolveThumbnail,
   getImageUrl,
+  getVideoUrl,
   getBadgeUrl,
   getBadgeName,
   shareProfile,

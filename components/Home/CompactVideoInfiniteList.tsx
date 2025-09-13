@@ -17,13 +17,7 @@ import CompactVideoCard from "./CompactVideoCard";
 import CompactVideoCardSkeleton from "./CompactVideoCardSkeleton";
 import { getUserVideos, getUserLiveVideos } from "../../services/user.service";
 import { GetNFTsResult } from "../../services/nft.service";
-import { secondsToHMMSS } from "../../libs/date.util";
-import {
-  getAvatarUrl,
-  resolveThumbnail,
-  getImageUrl,
-  getBadgeUrl,
-} from "../../libs";
+import { resolveThumbnail } from "../../libs"; // keep minimal import if needed
 
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
 const DEFAULT_AVATAR = require("../../assets/default-avatar.png");
@@ -36,6 +30,7 @@ interface CompactVideoInfiniteListProps {
   bottomPadding?: number; // extra bottom inset (e.g., tab bar height)
   variant?: "videos" | "live";
   ListHeaderComponent?: React.ReactElement | null;
+  showCreator?: boolean; // forward to CompactVideoCard
 }
 
 interface VideoItem extends GetNFTsResult {}
@@ -50,6 +45,7 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
   bottomPadding = 0,
   variant = "videos",
   ListHeaderComponent = null,
+  showCreator = true,
 }) => {
   const [items, setItems] = useState<VideoItem[]>([]);
   const [page, setPage] = useState(0);
@@ -113,121 +109,26 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
     loadPage(0, true);
   }, [loadPage]);
 
-  const keyExtractor = useCallback(
-    (item: VideoItem, index: number) =>
-      `${item.id || item.tokenId || "vid"}-${index}`,
-    []
-  );
+  const keyExtractor = useCallback((item: VideoItem, index: number) => {
+    const created =
+      (item as any).createdAt ||
+      (item as any).stream?.createdAt ||
+      (item as any).created_at ||
+      "nocreated";
+    return `${item.id || (item as any).tokenId || "vid"}-${created}-${index}`;
+  }, []);
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<VideoItem>) => {
-      const duration = item.videoDuration
-        ? secondsToHMMSS(item.videoDuration)
-        : undefined;
-      // Stream / account resolution (support legacy shapes)
-      const streamInfo =
-        (item as any).streamInfo || (item as any).stream?.streamInfo;
-      const tokenId = item.tokenId || (item as any).stream?.tokenId;
-      const status: string | undefined =
-        (item as any).status ||
-        ((item as any).meta?.isActive === false && (item as any).streamKey)
-          ? "ENDED"
-          : undefined;
-      const isLive = !!(item as any).streamKey || !!streamInfo?.isLive;
-      // Thumbnail resolution (live vs recorded) mimicking InfiniteVideoFeed logic
-      const rawThumb =
-        (item as any).thumbnail ||
-        (item as any).stream?.thumbnail ||
-        item.thumbnailUrl ||
-        item.imageUrl ||
-        "";
-      const thumbUrl = isLive
-        ? resolveThumbnail(item as any)
-        : getImageUrl(rawThumb, 640, 360);
-      const thumb = thumbUrl && thumbUrl.length > 0 ? thumbUrl : DEFAULT_BANNER;
-      // Avatar & badge
-      const avatarUrl = getAvatarUrl((item as any).minterAvatarUrl || "");
-      const avatar =
-        avatarUrl && avatarUrl !== "default-avatar"
-          ? avatarUrl
-          : DEFAULT_AVATAR;
-      const stakeForBadge = (item as any).minterStaked || 0;
-      const badgeImage = getBadgeUrl(stakeForBadge, "dark");
-      // Title & creator
-      const title =
-        (item as any).name ||
-        (item as any).title ||
-        (item as any).stream?.title ||
-        "Untitled";
-      const creatorName =
-        (item as any).minterDisplayName ||
-        (item as any).mintername ||
-        (item as any).minter ||
-        (item as any).owner ||
-        (item as any).account.displayName ||
-        (item as any).account.username ||
-        (item as any).account.address ||
-        "Unknown";
-      const creatorUsername =
-        (item as any).account?.username ||
-        (item as any).mintername ||
-        undefined;
-      const creatorAddress =
-        (item as any).account?.address ||
-        (item as any).minter ||
-        (item as any).owner ||
-        undefined;
-      // Likes / Views
-      const likes =
-        item.likes ||
-        (item as any).totalVotes?.for ||
-        (item as any).stream?.likes ||
-        0;
-      const views =
-        item.views ||
-        (item as any).peakViewers ||
-        (item as any).totalViews ||
-        (item as any).stream?.totalViews ||
-        0;
-      // createdAt fallback
-      const createdAt =
-        item.createdAt ||
-        (item as any).stream?.createdAt ||
-        new Date().toISOString();
-      // Flags
-      const isBounty = !!streamInfo?.isAddBounty;
-      const bountyAmount = streamInfo?.addBountyAmount;
-      const bountyTokenSymbol = streamInfo?.addBountyTokenSymbol;
       return (
         <CompactVideoCard
-          id={(item as any).id || tokenId}
-          tokenId={tokenId as any}
-          title={title}
-          views={views}
-          createdAt={createdAt}
-          thumbnail={thumb as any}
-          likes={likes}
-          duration={duration}
+          nft={item as any}
           enablePreview={resolvedEnablePreview}
-          isLive={isLive}
-          isPayPerView={streamInfo?.isPayPerView}
-          payPerViewAmount={streamInfo?.payPerViewAmount}
-          payPerViewTokenSymbol={streamInfo?.payPerViewTokenSymbol}
-          isLocked={streamInfo?.isLockContent}
-          lockContentAmount={streamInfo?.lockContentAmount}
-          lockContentTokenSymbol={streamInfo?.lockContentTokenSymbol}
-          isBounty={isBounty}
-          bountyAmount={bountyAmount}
-          bountyTokenSymbol={bountyTokenSymbol}
-          creator={creatorName}
-          username={creatorUsername}
-          address={creatorAddress}
-          badgeImage={badgeImage}
-          status={status as any}
+          showCreator={showCreator}
         />
       );
     },
-    [resolvedEnablePreview]
+    [resolvedEnablePreview, showCreator]
   );
 
   const ListFooter = useMemo(() => {

@@ -1,4 +1,6 @@
 import { Linking } from "react-native";
+import * as WebBrowser from "expo-web-browser";
+import { supportedNetworks } from "../config/web3.constants";
 
 /**
  * Normalize a raw social input (username or partial/full link) into a full https URL for a given host.
@@ -50,4 +52,37 @@ export async function openExternalLink(rawUrl?: string) {
   }
 }
 
-export default { getSocialLink, openExternalLink };
+/** Open a URL inside the in-app browser (Expo WebBrowser), falling back to OS if needed. */
+export async function openInApp(rawUrl?: string) {
+  if (!rawUrl) return;
+  try {
+    let url = rawUrl.trim();
+    if (!/^https?:\/\//i.test(url)) url = `https://${url}`;
+    url = url.replace(/\s/g, '%20');
+    try {
+      await WebBrowser.openBrowserAsync(url, {
+        enableBarCollapsing: true,
+        dismissButtonStyle: 'done',
+      } as any);
+    } catch (e) {
+      // Fallback to system browser
+      const ok = await Linking.canOpenURL(url);
+      if (ok) await Linking.openURL(url);
+    }
+  } catch (e) {
+    console.warn('[openInApp] failed', e);
+  }
+}
+
+export function getTransactionLink(chainId: number, txHash: string) {
+  const chainData = (supportedNetworks as any[]).find(
+    (network: any) => network.chainId?.toString() === chainId?.toString()
+  );
+  if (!chainData) return null;
+  if (txHash) {
+    return `${chainData.explorerUrl}/tx/${txHash}`;
+  }
+  return `${chainData.explorerUrl}`;
+}
+
+export default { getSocialLink, openExternalLink, openInApp, getTransactionLink };

@@ -55,3 +55,10 @@ export async function withParsedError<T>(fn: () => Promise<T>, context: TxContex
     return { ok: false, error: parseTxError(e, context), raw: e };
   }
 }
+
+// Gas margin helper (simple 20% bump)
+const GAS_MARGIN_NUMERATOR = 120;
+const GAS_MARGIN_DENOMINATOR = 100;
+export function applyGasMargin(value: any) {
+  try { return value.mul(GAS_MARGIN_NUMERATOR).div(GAS_MARGIN_DENOMINATOR); } catch { return value; }
+}

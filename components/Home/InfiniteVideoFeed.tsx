@@ -58,7 +58,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     __listKey: string;
   }
   const [items, setItems] = useState<FeedItem[]>([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   // Start as true so we don't briefly render the empty state before resetAndLoad sets loading
   const [initialLoading, setInitialLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -76,9 +76,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     setInitialLoading(true);
     setError(null);
     endReachedRef.current = false;
-    setPage(1);
+    setPage(0);
     try {
-      const res = await getNFTs({ ...(params || {}), unit: pageSize, page: 1 });
+      const res = await getNFTs({ ...(params || {}), unit: pageSize, page: 0 });
       const mapped: FeedItem[] = (res.result || []).map((it, idx) => {
         // Always include page + index to guarantee uniqueness even if backend returns duplicate ids
         const base =
@@ -89,9 +89,14 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           (it as any).stream?.id ||
           (it as any).stream?.streamKey ||
           `auto`; // fallback
+        const created =
+          (it as any).createdAt ||
+          (it as any).stream?.createdAt ||
+          (it as any).created_at ||
+          `nocreated`;
         return {
           ...it,
-          __listKey: `${base}-p1-i${idx}`,
+          __listKey: `${base}-${created}-p0-i${idx}`,
         };
       });
       setItems(mapped);
@@ -130,9 +135,14 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           (it as any).stream?.id ||
           (it as any).stream?.streamKey ||
           `auto`;
+        const created =
+          (it as any).createdAt ||
+          (it as any).stream?.createdAt ||
+          (it as any).created_at ||
+          `nocreated`;
         return {
           ...it,
-          __listKey: `${base}-p${nextPage}-i${idx}`,
+          __listKey: `${base}-${created}-p${nextPage}-i${idx}`,
         };
       });
       setItems((prev) => [...prev, ...newItems]);
@@ -255,35 +265,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     const bountyTokenSymbol = streamInfo?.addBountyTokenSymbol;
   const creatorUsername = (item as any).account?.username || (item as any).mintername || undefined;
   const creatorAddress = (item as any).account?.address || (item as any).minter || (item as any).owner || undefined;
-  return (
-      <VideoCard
-        title={title}
-        creator={creatorName}
-    username={creatorUsername}
-    address={creatorAddress}
-        views={views}
-        duration={duration}
-        thumbnail={thumb}
-        createdAt={createdAt}
-        likes={likes}
-        isLive={isLive}
-        isPayPerView={streamInfo?.isPayPerView}
-        payPerViewAmount={streamInfo?.payPerViewAmount}
-        payPerViewTokenSymbol={streamInfo?.payPerViewTokenSymbol}
-        isLocked={streamInfo?.isLockContent}
-        lockContentAmount={streamInfo?.lockContentAmount}
-        lockContentTokenSymbol={streamInfo?.lockContentTokenSymbol}
-        isBounty={isBounty}
-        bountyAmount={bountyAmount}
-        bountyTokenSymbol={bountyTokenSymbol}
-        profilePicture={avatar}
-        badgeIcon="star"
-        badgeImage={badgeImage}
-        tokenId={tokenId}
-        enablePreview={true}
-        status={status as any}
-      />
-    );
+  return (<VideoCard nft={item as any} enablePreview />);
   };
 
   const keyExtractor = useCallback((item: FeedItem) => item.__listKey, []);
