@@ -5,6 +5,7 @@ import { getAvatarUrl, getBadgeName, getBadgeUrl } from "../../libs/misc";
 import { truncateAddress } from "../../libs/strings.util";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import { useAuth } from "../../context/AuthContext";
 
 export type Creator = {
   username?: string;
@@ -90,6 +91,7 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
     [creator?.username, creator?.walletAddress, creator?.address, fallbackMinter]
   );
   const { showUserProfile } = useUserProfileSheet();
+  const { requireAuth } = useAuth();
   const handleOpenProfile = useCallback(() => {
     if (!profileId) return;
     showUserProfile(profileId);
@@ -97,9 +99,11 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
 
   const handlePress = useCallback(() => {
     if (isSelf) return;
-    if (isFollowing) onUnfollow();
-    else onFollow();
-  }, [isSelf, isFollowing, onFollow, onUnfollow]);
+    requireAuth(() => {
+      if (isFollowing) onUnfollow();
+      else onFollow();
+    });
+  }, [isSelf, isFollowing, onFollow, onUnfollow, requireAuth]);
 
   if (loading) {
     return (

@@ -103,7 +103,9 @@ try {
 // NODE_ENV / debug flags
 const isDev = typeof __DEV__ === 'boolean' && __DEV__;
 process.env = process.env || {};
-process.env.NODE_ENV = isDev ? 'development' : 'production';
+Object.assign(process.env, {
+  NODE_ENV: isDev ? 'development' : 'production',
+});
 try {
   // Optional localStorage debug flag (ignored in RN but harmless if polyfilled)
   if (typeof localStorage !== 'undefined') {

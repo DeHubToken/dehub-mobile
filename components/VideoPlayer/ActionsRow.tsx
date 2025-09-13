@@ -6,6 +6,7 @@ import { getTransactionLink, openInApp } from "../../libs/links.utils";
 import LikeButton from "./LikeButton";
 import env from "../../config/env";
 import { shareProfile } from "../../libs/misc";
+import { useAuth } from "../../context/AuthContext";
 
 export interface ActionsRowProps {
   likes: number;
@@ -28,6 +29,7 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
 }) => {
   const [tipOpen, setTipOpen] = useState(false);
   const [userVote, setUserVote] = useState<'like' | 'dislike' | null>(initialUserVote ?? null);
+  const { requireAuth } = useAuth();
   const handleShare = useCallback(async () => {
     if (!tokenId) return;
     const url = `${env.APP_ORIGIN}/stream/${tokenId}`;
@@ -45,7 +47,7 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
         toAddress={minter as string}
         trigger={
           <TouchableOpacity
-            onPress={() => setTipOpen(true)}
+            onPress={() => requireAuth(() => setTipOpen(true))}
             className="flex-row items-center bg-theme-accent px-3 py-1.5 rounded-full mr-2"
           >
             <Ionicons name="cash-outline" size={14} color="#000" />
