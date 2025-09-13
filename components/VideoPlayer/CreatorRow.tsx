@@ -76,6 +76,7 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
     () => (Array.isArray(creator?.followers) ? creator!.followers!.length : 0),
     [creator?.followers]
   );
+  console.log({creator})
   const stakedForBadge = creator?.stakedDHB || 0;
   const badgeName = getBadgeName(stakedForBadge as any);
   const badgeImage = getBadgeUrl(stakedForBadge as any);

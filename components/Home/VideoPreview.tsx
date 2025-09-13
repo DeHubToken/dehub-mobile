@@ -184,6 +184,7 @@ export default function VideoPreview({
             resizeMode={ResizeMode.COVER}
             shouldPlay={false}
             isLooping={false}
+            isMuted={true}
             onPlaybackStatusUpdate={onStatusUpdate}
             style={{ width: "100%", height: "100%" }}
           />
