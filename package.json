@@ -12,7 +12,6 @@
     "web": "npx expo start --web"
   },
   "dependencies": {
-    "@auth0/auth0-react": "2.0.1",
     "@babel/runtime": "^7.28.2",
     "@clerk/clerk-react": "5.0.0",
     "@ethersproject/shims": "^5.8.0",
@@ -33,13 +32,12 @@
     "@web3auth/react-native-sdk": "^8.1.0",
     "@web3modal/wagmi-react-native": "^2.0.5",
     "buffer": "^6.0.3",
-    "convex": "1.25.4",
     "crypto-browserify": "^3.12.1",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.1",
     "empty-module": "^0.0.2",
     "ethers": "^5.7.2",
-    "expo": "^54.0.6",
+    "expo": "^54.0.7",
     "expo-application": "~7.0.7",
     "expo-av": "~16.0.7",
     "expo-camera": "~17.0.7",
