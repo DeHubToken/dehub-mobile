@@ -2,7 +2,8 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "jsx": "react",
+    "moduleResolution": "node",
+    "jsx": "react-native",
     "noImplicitAny": false,
     "module": "esnext", // or "es2020", "es2022", etc.
     "target": "esnext"

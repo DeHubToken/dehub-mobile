@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { View, Pressable } from "react-native";
-import { Video, AVPlaybackStatus, ResizeMode } from "expo-av";
+import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
 import { useNavigation } from "@react-navigation/native";
 // Registry no longer enforced for single active; previews self-manage.
 import { clearActivePreview } from "../../libs/previewRegistry";
@@ -20,7 +20,7 @@ export default function VideoPreview({
   onEnd,
   handlePressVideo,
 }: VideoPreviewProps) {
-  const videoRef = useRef<Video | null>(null);
+  const viewRef = useRef<VideoView | null>(null);
   const [phase, setPhase] = useState<"idle" | "buffering" | "playing">("idle");
   const [progress, setProgress] = useState(0); // real buffering progress
   const [fakeProgress, setFakeProgress] = useState(0); // synthetic progress up to threshold
@@ -29,64 +29,62 @@ export default function VideoPreview({
   ); // ms
   const navigation = useNavigation<any>();
   const rootRef = useRef<View | null>(null);
-  const stopperRef = useRef<() => void>();
+  const stopperRef = useRef<(() => void) | undefined>(undefined);
 
-  // handle video status updates
-  const onStatusUpdate = useCallback(
-    (status: AVPlaybackStatus) => {
-      if (!status.isLoaded) return;
+  // Create a player without auto-play; we'll manually control
+  const player: VideoPlayer = useVideoPlayer(previewUrl ?? null, (p) => {
+    p.loop = false;
+    p.muted = true;
+    p.playbackRate = 2.5;
+    p.timeUpdateEventInterval = 0.2;
+  });
 
-      const playable = (status as any).playableDurationMillis ?? 0;
-      const duration = (status as any).durationMillis ?? PREVIEW_SECONDS * 1000;
-
-      // clamp preview time to duration
-      const previewMs = Math.min(PREVIEW_SECONDS * 1000, duration);
-      if (previewMs !== effectivePreview) {
+  // Subscribe to events
+  useEffect(() => {
+    const subs = [
+      player.addListener("sourceLoad", ({ duration }) => {
+        const durationMs = Math.floor((duration ?? 0) * 1000) || PREVIEW_SECONDS * 1000;
+        const previewMs = Math.min(PREVIEW_SECONDS * 1000, durationMs);
         setEffectivePreview(previewMs);
-      }
-
-      if (phase === "buffering") {
-        const p = Math.min(1, playable / previewMs);
-        setProgress(p);
-        if (p >= 1) {
-          videoRef.current?.setStatusAsync({
-            shouldPlay: true,
-            isMuted: true,
-            positionMillis: 0,
-            rate: 2.5,
-            shouldCorrectPitch: false,
-          });
-          setPhase("playing");
-          onStart?.();
+      }),
+      player.addListener("timeUpdate", ({ currentTime, bufferedPosition }) => {
+        if (phase === "buffering") {
+          const playableMs = Math.max(0, Math.floor((bufferedPosition ?? 0) * 1000));
+          const p = Math.min(1, effectivePreview ? playableMs / effectivePreview : 0);
+          setProgress(p);
+          if (p >= 1) {
+            player.currentTime = 0;
+            player.play();
+            setPhase("playing");
+            onStart?.();
+          }
         }
-      }
-
-      if (phase === "playing") {
-        const pos = (status as any).positionMillis ?? 0;
-        if (pos >= previewMs) {
-          videoRef.current?.setStatusAsync({
-            positionMillis: 0,
-            shouldPlay: true,
-            rate: 2.5,
-            shouldCorrectPitch: false,
-          });
+        if (phase === "playing") {
+          const posMs = Math.floor((currentTime ?? 0) * 1000);
+          if (posMs >= effectivePreview) {
+            player.currentTime = 0;
+            player.play();
+          }
         }
-      }
-    },
-    [phase, onStart, effectivePreview]
-  );
+      }),
+    ];
+    return () => subs.forEach((s) => s.remove());
+  }, [player, phase, effectivePreview, onStart]);
+
+  // Derived effects are handled in the listener above
 
   const stopPreview = useCallback(
     async (invokeEnd: boolean = true) => {
       if (phase === "idle") return;
       try {
-        await videoRef.current?.stopAsync();
+        player.pause();
+        player.currentTime = 0;
       } catch {}
       setPhase("idle");
       setProgress(0);
       if (invokeEnd) onEnd?.();
     },
-    [phase, onEnd]
+    [phase, onEnd, player]
   );
 
   const startPreview = useCallback(async () => {
@@ -95,14 +93,11 @@ export default function VideoPreview({
     setProgress(0);
     setFakeProgress(0);
     stopperRef.current = () => stopPreview();
-    await videoRef.current?.setStatusAsync({
-      shouldPlay: false,
-      isMuted: true,
-      positionMillis: 0,
-      rate: 2.5,
-      shouldCorrectPitch: false,
-    });
-  }, [phase, stopPreview]);
+    player.muted = true;
+    player.playbackRate = 2.5;
+    player.pause();
+    player.currentTime = 0;
+  }, [phase, stopPreview, player]);
 
   const handlePress = useCallback(() => {
     if (phase === "playing" || phase === "buffering") {
@@ -178,14 +173,11 @@ export default function VideoPreview({
     >
       {(phase === "buffering" || phase === "playing") && (
         <>
-          <Video
-            ref={(r) => (videoRef.current = r)}
-            source={{ uri: previewUrl }}
-            resizeMode={ResizeMode.COVER}
-            shouldPlay={false}
-            isLooping={false}
-            isMuted={true}
-            onPlaybackStatusUpdate={onStatusUpdate}
+          <VideoView
+            ref={(r) => (viewRef.current = r)}
+            player={player}
+            contentFit="cover"
+            nativeControls={false}
             style={{ width: "100%", height: "100%" }}
           />
           {phase === "buffering" && (
