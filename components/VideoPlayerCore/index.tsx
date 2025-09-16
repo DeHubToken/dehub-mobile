@@ -10,14 +10,8 @@ import {
   Animated,
   Dimensions,
 } from "react-native";
-import {
-  Video,
-  ResizeMode,
-  AVPlaybackStatus,
-  Audio,
-  InterruptionModeIOS,
-  InterruptionModeAndroid,
-} from "expo-av";
+import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
+import { setAudioModeAsync } from "expo-audio";
 import { Ionicons } from "@expo/vector-icons";
 import TopControls from "./TopControls";
 import CenterControls from "./CenterControls";
@@ -58,7 +52,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   onProgress,
   onClose,
 }) => {
-  const videoRef = useRef<Video | null>(null);
+  const viewRef = useRef<VideoView | null>(null);
   const navigation = useNavigation<any>();
   const [isReady, setIsReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(autoplay);
@@ -107,53 +101,67 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     hideTimerRef.current = setTimeout(() => setShowControls(false), HIDE_DELAY);
   };
 
-  const handlePlaybackStatus = (status: AVPlaybackStatus) => {
-    if (!status.isLoaded) return;
-    if (!isReady) {
-      setIsReady(true);
-      setDuration(status.durationMillis ?? 0);
-      onReady?.(status.durationMillis || 0);
-    }
-    setPosition(status.positionMillis || 0);
-    setDuration(status.durationMillis || 0);
-    setIsBuffering(status.isBuffering || false);
-    onProgress?.(status.positionMillis || 0, status.durationMillis || 0);
-    if (status.didJustFinish && loop) {
-      // Loop handled automatically by prop; ensure state reflects playing
-      setIsPlaying(true);
-    }
-  };
+  // Create VideoPlayer instance
+  const player: VideoPlayer = useVideoPlayer(sourceUrl ?? null, (player) => {
+    player.loop = loop;
+    player.muted = false; // start unmuted per behavior above
+    player.timeUpdateEventInterval = 0.25; // smoothish progress updates
+    if (autoplay) player.play();
+  });
 
-  const togglePlay = useCallback(async () => {
-    const inst = videoRef.current;
-    if (!inst) return;
-    const status = await inst.getStatusAsync();
-    if (!status.isLoaded) return;
-    if (status.isPlaying) {
-      await inst.pauseAsync();
-      setIsPlaying(false);
-      onPlayStateChange?.(false);
+  // Subscribe to player events and reflect into local state
+  useEffect(() => {
+    const subs = [
+      player.addListener("playingChange", ({ isPlaying }) => {
+        setIsPlaying(isPlaying);
+        onPlayStateChange?.(isPlaying);
+      }),
+      player.addListener("statusChange", ({ status }) => {
+        setIsBuffering(status === "loading");
+        if (!isReady && (status === "readyToPlay" || status === "loading")) {
+          setIsReady(true);
+        }
+      }),
+      player.addListener("sourceLoad", ({ duration: durSec }) => {
+        const durMs = Math.max(0, Math.floor((durSec ?? 0) * 1000));
+        if (durMs && durMs !== duration) {
+          setDuration(durMs);
+          onReady?.(durMs);
+        }
+      }),
+      player.addListener("timeUpdate", ({ currentTime, bufferedPosition: buf }) => {
+        const curMs = Math.max(0, Math.floor((currentTime ?? 0) * 1000));
+        setPosition((prev) => (prev !== curMs ? curMs : prev));
+        onProgress?.(curMs, duration);
+        if (typeof buf === "number" && buf >= 0) {
+          setBufferedPosition(Math.floor(buf * 1000));
+        }
+      }),
+    ];
+    return () => subs.forEach((s) => s.remove());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [player, onPlayStateChange, onReady, onProgress, isReady, duration]);
+
+  const togglePlay = useCallback(() => {
+    if (player.playing) {
+      player.pause();
     } else {
-      await inst.playAsync();
-      setIsPlaying(true);
-      onPlayStateChange?.(true);
+      player.play();
     }
-  }, [onPlayStateChange]);
+  }, [player]);
 
-  const toggleMute = useCallback(async () => {
-    const inst = videoRef.current;
-    if (!inst) return;
-    await inst.setIsMutedAsync(!isMuted);
-    setIsMuted((m) => !m);
-  }, [isMuted]);
+  const toggleMute = useCallback(() => {
+    const next = !isMuted;
+    player.muted = next;
+    setIsMuted(next);
+  }, [isMuted, player]);
 
   const toggleFullscreen = useCallback(async () => {
-    const inst = videoRef.current;
-    if (!inst) return;
+    const view = viewRef.current;
+    if (!view) return;
     try {
       if (fullscreen) {
-        // Contract: exit fullscreen and return to portrait
-        await inst.dismissFullscreenPlayer();
+        await view.exitFullscreen();
         setFullscreen(false);
         try {
           await ScreenOrientation.lockAsync(
@@ -161,8 +169,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
           );
         } catch {}
       } else {
-        // Expand: enter fullscreen and rotate to landscape
-        await inst.presentFullscreenPlayer();
+        await view.enterFullscreen();
         setFullscreen(true);
         try {
           await ScreenOrientation.lockAsync(
@@ -250,20 +257,11 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   const lastTapRef = useRef<number>(0);
   const lastSideRef = useRef<"left" | "right" | null>(null);
   const handleDoubleTap = async (side: "left" | "right") => {
-    const inst = videoRef.current;
-    if (!inst) return;
     try {
-      const status = await inst.getStatusAsync();
-      if (!status.isLoaded) return;
-      const forwardDelta = 10000; // +10s
-      const backwardDelta = 30000; // -30s for left
+      const forwardDelta = 10; // seconds
+      const backwardDelta = 30; // seconds
       const delta = side === "right" ? forwardDelta : -backwardDelta;
-      let newPos = status.positionMillis + delta;
-      if (newPos < 0) newPos = 0;
-      if (status.durationMillis && newPos > status.durationMillis)
-        newPos = status.durationMillis;
-      await inst.setPositionAsync(newPos);
-      setPosition(newPos);
+      player.seekBy(delta);
       showSeekFeedback(side === "right" ? "+10" : "-30");
     } catch {}
   };
@@ -285,16 +283,15 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
 
   useEffect(() => {
     showAndScheduleHide();
-    // Configure audio to play even if iOS device is on silent
+    // Configure audio to play even if device is on silent (iOS)
     (async () => {
       try {
-        await Audio.setAudioModeAsync({
-          playsInSilentModeIOS: true,
-          staysActiveInBackground: false,
-          allowsRecordingIOS: false,
-          interruptionModeIOS: InterruptionModeIOS.DoNotMix,
-          interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
-          shouldDuckAndroid: true,
+        await setAudioModeAsync({
+          playsInSilentMode: true,
+          allowsRecording: false,
+          shouldPlayInBackground: false,
+          interruptionMode: "doNotMix",
+          interruptionModeAndroid: "duckOthers",
         });
         // Ensure unmuted (some devices may default to muted on autoplay)
         setIsMuted(false);
@@ -314,12 +311,11 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   }, []);
 
   const seekToRatio = async (ratio: number) => {
-    const inst = videoRef.current;
-    if (!inst || !duration) return;
-    const newPos = Math.min(Math.max(ratio, 0), 1) * duration;
+    if (!duration) return;
+    const newPosMs = Math.min(Math.max(ratio, 0), 1) * duration;
     try {
-      await inst.setPositionAsync(newPos);
-      setPosition(newPos);
+      player.currentTime = newPosMs / 1000;
+      setPosition(newPosMs);
     } catch {}
   };
 
@@ -368,31 +364,20 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     })
   ).current;
 
-  // Track buffered position (simple approximation using status update)
+  // Track buffered position (from timeUpdate event in seconds -> ms)
   const [bufferedPosition, setBufferedPosition] = useState(0);
-  const handlePlaybackStatusWithBuffer = (status: AVPlaybackStatus) => {
-    handlePlaybackStatus(status);
-    if ("isLoaded" in status && status.isLoaded) {
-      // expo-av doesn't expose full buffer ranges; approximate using playableDurationMillis if available
-      // @ts-ignore
-      const playable = (status.playableDurationMillis as number) || 0;
-      if (playable) setBufferedPosition(playable);
-    }
-  };
 
   return (
     <View className="w-full aspect-video bg-black overflow-hidden">
       {sourceUrl && (
-        <Video
-          ref={(r) => (videoRef.current = r)}
-          source={{ uri: sourceUrl }}
+        <VideoView
+          ref={(r) => (viewRef.current = r)}
+          player={player}
           style={{ width: "100%", height: "100%" }}
-          resizeMode={ResizeMode.CONTAIN}
-          shouldPlay={autoplay}
-          isMuted={isMuted}
-          volume={1.0}
-          isLooping={loop}
-          onPlaybackStatusUpdate={handlePlaybackStatusWithBuffer}
+          contentFit="contain"
+          nativeControls={false}
+          onFullscreenEnter={() => setFullscreen(true)}
+          onFullscreenExit={() => setFullscreen(false)}
         />
       )}
       {!sourceUrl && (

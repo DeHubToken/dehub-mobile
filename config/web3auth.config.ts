@@ -51,7 +51,6 @@ import * as WebBrowser from "expo-web-browser";
 import * as SecureStore from "expo-secure-store";
 import Constants, { AppOwnership } from "expo-constants";
 import * as Linking from "expo-linking";
-import EncryptedStorage from "react-native-encrypted-storage";
 
 // --- Lazy SDK Instance ------------------------------------------------------
 // We defer importing heavy SDK modules until actually needed to avoid initial navigation lag
@@ -60,6 +59,7 @@ let web3auth: any | null = null;
 let isCreating = false;
 
 async function getOrCreateInstance() {
+  console.log({web3auth, isCreating})
   if (web3auth || isCreating) return web3auth;
   isCreating = true;
   const [{ default: Web3Auth, WEB3AUTH_NETWORK, LOGIN_PROVIDER, ChainNamespace }, { EthereumPrivateKeyProvider }] = await Promise.all([
@@ -79,9 +79,11 @@ async function getOrCreateInstance() {
     logo: "https://basescan.org/assets/base/images/svg/logos/chain-light.svg",
   };
 
+  console.log({chainConfig})
   const privateKeyProvider = new EthereumPrivateKeyProvider({
     config: { chainConfig },
   });
+  console.log({privateKeyProvider})
 
   const SdkInitParams = {
     clientId: WEB3AUTH_CLIENT_ID,
@@ -91,6 +93,7 @@ async function getOrCreateInstance() {
     logLevel: "debug",
     loginConfig: {},
   };
+  console.log({SdkInitParams})
 
   web3auth = new Web3Auth(WebBrowser, SecureStore, SdkInitParams);
   // Attach enums we still reference indirectly
@@ -122,6 +125,7 @@ export const ensureWeb3AuthReady = async () => {
   if (isInitialized && web3auth) return web3auth;
   try {
     const instance = await getOrCreateInstance();
+    console.log({instance})
     await instance.init();
     isInitialized = true;
     return instance;

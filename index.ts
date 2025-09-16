@@ -4,6 +4,7 @@ import "react-native-url-polyfill/auto";
 import "@ethersproject/shims";
 import "@walletconnect/react-native-compat";
 import "react-native-reanimated";
+import "react-native-worklets";
 
 import "./globals";
 

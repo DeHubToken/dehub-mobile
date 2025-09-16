@@ -1,12 +1,6 @@
 import React, { useEffect } from "react";
-import {
-  View,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  RefreshControl,
-  ScrollView,
-} from "react-native";
+import { View, Text, TouchableOpacity, RefreshControl, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileStats from "../components/Profile/ProfileStats";
 import ProfileAssets from "../components/Profile/ProfileAssets";

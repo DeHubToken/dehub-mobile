@@ -15,7 +15,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "jsEngine": "jsc",
+      "jsEngine": "hermes",
       "bundleIdentifier": "io.dehub.mobile",
       "icon": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/1024.png",
       "infoPlist": {
@@ -44,7 +44,16 @@
     "jsEngine": "hermes",
     "plugins": [
       "expo-secure-store",
-      "./libs/reown.queries.js"
+      "./libs/reown.queries.js",
+      [
+        "expo-video",
+        {
+          "supportsBackgroundPlayback": true,
+          "supportsPictureInPicture": true
+        }
+      ],
+      "expo-audio",
+      "expo-font"
     ],
     "extra": {
       "eas": {

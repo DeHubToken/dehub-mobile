@@ -6,6 +6,10 @@ module.exports = function (api) {
       ["babel-preset-expo", { jsxImportSource: "nativewind" }],
       "nativewind/babel",
     ],
-    plugins: ["module:react-native-dotenv", "react-native-reanimated/plugin"],
+    plugins: [
+      "module:react-native-dotenv",
+      // Reanimated 4: plugin moved to react-native-worklets
+      "react-native-worklets/plugin",
+    ],
   };
 };
