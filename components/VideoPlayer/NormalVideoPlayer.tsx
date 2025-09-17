@@ -5,11 +5,11 @@ import React, {
   useRef,
   useCallback,
 } from "react";
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, Platform, Keyboard } from "react-native";
+import { View, Text, TouchableOpacity, Platform, Keyboard } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { formatDistance } from "date-fns";
 import { formatCompactNumber } from "../../libs/numbers.util";
-import { ScrollView } from "react-native-gesture-handler";
+// Using RN ScrollView to avoid RNGH old API PanGestureHandler issues
 import VideoPlayerSkeleton from "./VideoPlayerSkeleton";
 import VideoArea from "./VideoArea";
 import ActionsRow from "./ActionsRow";
@@ -31,6 +31,8 @@ import CreatorRow from "./CreatorRow";
 import CommentComposer from "./CommentComposer";
 import CommentsPanel from "./CommentsPanel";
 import SuggestedVideos from "./SuggestedVideos";
+import { ScrollView } from "react-native-gesture-handler";
+import useKeyboard from "../../hooks/useKeyboard";
 
 interface NormalVideoPlayerProps {
   tokenId?: string | number;
@@ -46,8 +48,6 @@ interface NormalVideoPlayerProps {
   isTranscoding?: boolean;
 }
 
-const SAMPLE_THUMB = "https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg";
-const DEFAULT_AVATAR = require("../../assets/default-avatar.png");
 
 const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
   tokenId,
@@ -63,6 +63,7 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
   isTranscoding,
 }) => {
   const { user, isSignedIn, requireAuth } = useAuth();
+  const { height: keyboardHeight, isVisible: keyboardVisible } = useKeyboard();
   const [showDesc, setShowDesc] = useState(false);
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
@@ -494,12 +495,18 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
         tokenId={tokenId as any}
         onProgress={onProgressRecord}
       />
-      {/* Scrollable metadata & interactions OR comments */}
+      {/* Scrollable metadata & interactions; keep both sections mounted to avoid refetch */}
       <ScrollView
         className="flex-1"
+        keyboardShouldPersistTaps="handled"
+        // Ensure vertical scroll isn't blocked by nested views
+        pointerEvents="auto"
         contentContainerStyle={{ paddingBottom: commentsOpen ? 120 : 80 }}
       >
-        {!commentsOpen && (
+        <View
+          style={{ display: commentsOpen ? 'none' as const : 'flex' as const }}
+          pointerEvents={commentsOpen ? 'none' : 'auto'}
+        >
           <>
             <View className="px-4 pt-2">
               <Text
@@ -612,17 +619,18 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
             </View>
             <SuggestedVideos excludeTokenId={tokenId} />
           </>
-        )}
-        {commentsOpen && (
+        </View>
+        <View
+          style={{ display: commentsOpen ? 'flex' as const : 'none' as const }}
+          pointerEvents={commentsOpen ? 'auto' : 'none'}
+        >
           <CommentsPanel
             comments={comments}
             nftLoading={nftLoading}
             onClose={() => setCommentsOpen(false)}
             onReply={(target) => {
               setReplyTo(target);
-              // if panel already open, just focus
               setComposerFocusSignal((s) => s + 1);
-              // nudge focus again after a tiny delay for reliability (Android/layout)
               setTimeout(() => setComposerFocusSignal((s) => s + 1), 60);
             }}
             scrollTargetId={scrollTargetId}
@@ -633,14 +641,20 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
             }}
             expandThreadId={expandThreadId}
           />
-        )}
+        </View>
       </ScrollView>
       {commentsOpen && (
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : undefined}
-          keyboardVerticalOffset={80}
+        <View
+          // Absolutely position composer; lift above keyboard when visible
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: Platform.OS === "ios" ? keyboardHeight : keyboardHeight,
+          }}
+          pointerEvents="box-none"
         >
-          <View className="absolute bottom-0 left-0 right-0 px-4 pb-3">
+          <View className="px-4 pb-3">
             <CommentComposer
               value={draftComment}
               onChangeText={setDraftComment}
@@ -653,7 +667,7 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
               onSend={handleSend}
             />
           </View>
-        </KeyboardAvoidingView>
+        </View>
       )}
     </View>
   );

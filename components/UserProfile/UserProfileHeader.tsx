@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { View, Text, Image, ImageBackground, TouchableOpacity } from "react-native";
+import Avatar from "../common/Avatar";
 import { Ionicons } from "@expo/vector-icons";
 import { copyToClipboard } from "../../libs";
 
@@ -66,12 +67,13 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           </ImageBackground>
         </TouchableOpacity>
         <View className="flex-row items-end mt-[-42px] px-4">
-          <TouchableOpacity activeOpacity={0.85} onPress={() => onOpenImage("avatar")}>
-            <Image
-              source={avatarUrl === "default-avatar" ? FallbackAvatar : { uri: avatarUrl as string }}
-              className="w-24 h-24 rounded-full border-[8px] border-theme-neutrals-900"
-            />
-          </TouchableOpacity>
+          <Avatar
+            uri={avatarUrl || undefined}
+            size={96}
+            onPress={() => onOpenImage("avatar")}
+            borderWidth={8}
+            borderColor="#0a0a0a"
+          />
         </View>
       </View>
       <View className="px-6 mt-2">

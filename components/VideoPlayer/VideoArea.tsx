@@ -207,7 +207,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   }
 
   return (
-    <View className="w-full aspect-video bg-black">
+  <View className="w-full aspect-video bg-black" pointerEvents="auto">
       <VideoPlayerCore
         sourceUrl={normalizedUrl}
         autoplay

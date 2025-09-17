@@ -105,7 +105,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   const player: VideoPlayer = useVideoPlayer(sourceUrl ?? null, (player) => {
     player.loop = loop;
     player.muted = false; // start unmuted per behavior above
-    player.timeUpdateEventInterval = 0.25; // smoothish progress updates
+    player.timeUpdateEventInterval = 0.5; // reduce update churn
     if (autoplay) player.play();
   });
 
@@ -371,7 +371,9 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     <View className="w-full aspect-video bg-black overflow-hidden">
       {sourceUrl && (
         <VideoView
-          ref={(r) => (viewRef.current = r)}
+          ref={(r) => {
+            viewRef.current = r as any;
+          }}
           player={player}
           style={{ width: "100%", height: "100%" }}
           contentFit="contain"
@@ -385,14 +387,25 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
           <ActivityIndicator color="#fff" />
         </View>
       )}
-      {/* Interaction layers */}
+      {/* Interaction layers: use narrow edge zones to avoid blocking vertical scroll */}
       <View
-        className="absolute inset-0 flex-row"
-        // Disable double-tap capture when controls are visible so user can interact with progress bar
+        className="absolute inset-0"
+        // When controls are visible, don't intercept to allow UI interaction
         pointerEvents={showControls ? "none" : "auto"}
       >
-        <Pressable className="flex-1" onPress={handleSurfaceTouch("left")} />
-        <Pressable className="flex-1" onPress={handleSurfaceTouch("right")} />
+        {/* Center tap area: single tap shows/hides controls */}
+        <Pressable
+          style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}
+          onPress={handleSurfacePress}
+        />
+        <Pressable
+          style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 72 }}
+          onPress={handleSurfaceTouch('left')}
+        />
+        <Pressable
+          style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 72 }}
+          onPress={handleSurfaceTouch('right')}
+        />
       </View>
       {showControls && (
         <View className="absolute inset-0 justify-between px-2 py-2">

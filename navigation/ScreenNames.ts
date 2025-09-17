@@ -1,4 +1,5 @@
 export enum ScreenNames {
+  Test = 'Test',
   Root = 'Root',
   Home = 'Home',
   NoInternet = 'NoInternet',

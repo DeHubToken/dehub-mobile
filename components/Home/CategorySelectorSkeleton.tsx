@@ -12,7 +12,7 @@ const CategorySelectorSkeleton: React.FC = () => {
           <View
             key={i}
             style={{ width: w }}
-            className="h-8 mr-2 rounded-full bg-theme-neutrals-800"
+            className="h-8 mr-2 rounded-full bg-theme-neutrals-800 animate-pulse"
           />
         ))}
       </View>

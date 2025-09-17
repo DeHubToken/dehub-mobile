@@ -1,11 +1,13 @@
 import React, { useMemo, useCallback } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
+import Avatar from "../common/Avatar";
 import { Ionicons } from "@expo/vector-icons";
 import { getAvatarUrl, getBadgeName, getBadgeUrl } from "../../libs/misc";
 import { truncateAddress } from "../../libs/strings.util";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useAuth } from "../../context/AuthContext";
+import { maxStacked } from "../../libs/validators.util";
 
 export type Creator = {
   username?: string;
@@ -47,7 +49,10 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
   const targetAddr = useMemo(
     () =>
       (
-        (creator?.walletAddress || creator?.address || creator?.username || "") as string
+        (creator?.walletAddress ||
+          creator?.address ||
+          creator?.username ||
+          "") as string
       ).toLowerCase(),
     [creator?.walletAddress, creator?.address, creator?.username]
   );
@@ -66,30 +71,47 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
       creator?.displayName ||
       (hasUsername
         ? (creator?.username as string)
-        : truncateAddress(creator?.address || creator?.walletAddress || "", 4, 4)) ||
+        : truncateAddress(
+            creator?.address || creator?.walletAddress || "",
+            4,
+            4
+          )) ||
       (fallbackMinter as string) ||
       "Creator"
     );
-  }, [creator?.displayName, creator?.username, creator?.address, creator?.walletAddress, fallbackMinter]);
+  }, [
+    creator?.displayName,
+    creator?.username,
+    creator?.address,
+    creator?.walletAddress,
+    fallbackMinter,
+  ]);
 
   const followerCount = useMemo(
     () => (Array.isArray(creator?.followers) ? creator!.followers!.length : 0),
     [creator?.followers]
   );
-  console.log({creator})
-  const stakedForBadge = creator?.stakedDHB || 0;
-  const badgeName = getBadgeName(stakedForBadge as any);
-  const badgeImage = getBadgeUrl(stakedForBadge as any);
+  const stakedDHB = useMemo(() => {
+    if (!creator) return 0;
+    const fromBalances = maxStacked((creator as any)?.balanceData);
+    const direct = (creator as any)?.stakedDHB || 0;
+    return fromBalances > 0 ? fromBalances : direct || 0;
+  }, [creator]);
+  const badgeName = getBadgeName(stakedDHB as any);
+  const badgeImage = getBadgeUrl(stakedDHB as any);
 
   const profileId = useMemo(
     () =>
-      (
-        creator?.username ||
+      (creator?.username ||
         creator?.walletAddress ||
         creator?.address ||
-        (fallbackMinter != null ? String(fallbackMinter) : "")
-      ) as string,
-    [creator?.username, creator?.walletAddress, creator?.address, fallbackMinter]
+        (fallbackMinter != null ? String(fallbackMinter) : "")) as string,
+    [
+      creator?.username,
+      creator?.walletAddress,
+      creator?.address,
+      fallbackMinter,
+    ]
   );
   const { showUserProfile } = useUserProfileSheet();
   const { requireAuth } = useAuth();
@@ -129,10 +151,13 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
         onPress={handleOpenProfile}
         className="flex-row items-center flex-1"
       >
-        <Image source={{ uri: avatarUrl }} className="w-10 h-10 rounded-full mr-3" />
+  <Avatar uri={avatarUrl} size={40} onPress={handleOpenProfile} />
         <View className="flex-1">
           <View className="flex-row items-center">
-            <Text className="text-theme-neutrals-100 text-sm font-medium" numberOfLines={1}>
+            <Text
+              className="text-theme-neutrals-100 text-sm font-medium"
+              numberOfLines={1}
+            >
               {displayName}
             </Text>
             {badgeName ? (
@@ -146,9 +171,14 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
                   style={{ marginLeft: 4 }}
                 />
               )
-            ) : <></>}
+            ) : (
+              <></>
+            )}
           </View>
-          <Text className="text-theme-neutrals-500 text-[10px]" numberOfLines={1}>
+          <Text
+            className="text-theme-neutrals-500 text-[10px]"
+            numberOfLines={1}
+          >
             {formatCompactNumber(followerCount)} followers
           </Text>
         </View>
@@ -157,10 +187,18 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
         <TouchableOpacity
           onPress={handlePress}
           disabled={followLoading}
-          className={`px-4 py-2 rounded-lg ${isFollowing ? "bg-theme-neutrals-800" : "bg-theme-accent"} ${followLoading ? "opacity-60" : ""}`}
+          className={`px-4 py-2 rounded-lg ${
+            isFollowing ? "bg-theme-neutrals-800" : "bg-theme-accent"
+          } ${followLoading ? "opacity-60" : ""}`}
           activeOpacity={0.85}
         >
-          <Text className={`text-xs font-semibold ${isFollowing ? "text-theme-neutrals-100" : "text-theme-neutrals-900"}`}>
+          <Text
+            className={`text-xs font-semibold ${
+              isFollowing
+                ? "text-theme-neutrals-100"
+                : "text-theme-neutrals-900"
+            }`}
+          >
             {isFollowing ? "Following" : "Follow"}
           </Text>
         </TouchableOpacity>

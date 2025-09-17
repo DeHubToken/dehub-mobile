@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Modal, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import GlassModal from '../ui/GlassModal';
 import { AuthService } from '../../services/auth.service';
 import { useDebounceCallback } from '../../hooks/useDebounceCallback';
 import { toastError, toastSuccess } from '../../libs';
@@ -60,9 +61,9 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
   };
 
   return (
-    <Modal visible={visible} transparent animationType="fade">
-      <View className="flex-1 bg-black/80 items-center justify-center px-6">
-        <View className="w-full bg-neutral-900 rounded-xl p-6">
+    <GlassModal visible={visible} onClose={() => {}} presentation="center" blurIntensity={50}>
+      <View className="items-center justify-center px-6 py-6">
+        <View className="w-full rounded-xl p-6 bg-transparent">
           <Text className="text-white text-xl font-semibold mb-4">Choose a username</Text>
           <Text className="text-neutral-400 text-sm mb-4">Set a username to continue. You can change it later.</Text>
           <TextInput
@@ -112,6 +113,6 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
           </TouchableOpacity>
         </View>
       </View>
-    </Modal>
+    </GlassModal>
   );
 };

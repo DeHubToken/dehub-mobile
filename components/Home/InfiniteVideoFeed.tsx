@@ -272,7 +272,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   if (initialLoading && items.length === 0) {
     return (
-      <View className="flex-1 px-0 pt-2">
+      <View className="flex-1 px-2 pt-2">
         <VideoCardSkeleton count={4} />
       </View>
     );
@@ -300,11 +300,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         data={items}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
-        initialNumToRender={6}
-        maxToRenderPerBatch={6}
-        windowSize={10}
+        initialNumToRender={4}
+        maxToRenderPerBatch={4}
+        windowSize={7}
         removeClippedSubviews
-        updateCellsBatchingPeriod={50}
+        updateCellsBatchingPeriod={80}
         contentContainerStyle={
           contentContainerStyle || {
             paddingHorizontal: 16,

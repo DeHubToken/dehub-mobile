@@ -44,7 +44,9 @@ const MiniPlayerOverlay: React.FC<Props> = ({ sourceUrl, transform, width, heigh
       <Pressable onPress={onExpand} className="flex-1 bg-black">
         {sourceUrl && (
           <VideoView
-            ref={r => (videoRef.current = r)}
+            ref={(r) => {
+              videoRef.current = r as any;
+            }}
             player={player}
             style={{ width: '100%', height: '100%' }}
             contentFit="cover"

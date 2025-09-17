@@ -1,9 +1,10 @@
 import React, { FC, useCallback } from "react";
-import { FlatList, View, Text, Image, TouchableOpacity } from "react-native";
+import { FlatList, View, Text, TouchableOpacity } from "react-native";
 import AccountSkeleton from "./AccountSkeleton";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { getAvatarUrl } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
+import Avatar from "../common/Avatar";
 
 export interface AccountItem {
   _id?: string;
@@ -87,10 +88,7 @@ const SearchAccountsList: FC<SearchAccountsListProps> = ({
         const avatarSrc = getAvatarUrl(
           item.avatarImageUrl || item.avatarUrl || ""
         );
-        const displayAvatar =
-          avatarSrc && avatarSrc !== "default-avatar"
-            ? { uri: avatarSrc }
-            : undefined;
+  const displayAvatar = avatarSrc && avatarSrc !== "default-avatar" ? avatarSrc : undefined;
         const sent = item.sentTips ?? item.tipsSentTotal ?? 0;
         const received = item.receivedTips ?? item.tipsReceivedTotal ?? 0;
         const about = item.aboutMe || "";
@@ -100,13 +98,7 @@ const SearchAccountsList: FC<SearchAccountsListProps> = ({
             onPress={() => handlePress(item.username || item.address)}
             className="px-4 py-3 border-b border-theme-neutrals-800 flex-row"
           >
-            <View className="w-10 h-10 rounded-full bg-theme-neutrals-700 overflow-hidden items-center justify-center">
-              {displayAvatar ? (
-                <Image source={displayAvatar} className="w-full h-full" />
-              ) : (
-                <Text className="text-[10px] text-theme-neutrals-400">@</Text>
-              )}
-            </View>
+            <Avatar uri={displayAvatar} size={40} />
             <View className="flex-1 ml-3">
               <View className="flex-row items-center justify-between">
                 <Text className="text-white font-medium" numberOfLines={1}>
