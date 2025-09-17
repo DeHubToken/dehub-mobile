@@ -154,6 +154,35 @@ export async function getUserLiveVideos(userOrAddress: User | string, params?: U
   return getNFTs(searchParams);
 }
 
+// ---------------- Liked Videos ----------------
+
+export interface LikedVideosParams { page?: number; unit?: number }
+
+/**
+ * Fetch videos liked by a viewer address.
+ * Endpoint: GET /liked_videos?address=<addr>&page=<page>&unit=<unit>
+ */
+export async function getLikedNFTs(address: string, params?: LikedVideosParams): Promise<GetNFTsResponse> {
+  if (!address) return { result: [] };
+  const cleaned: Record<string, any> = Object.fromEntries(
+    Object.entries({ address, page: params?.page, unit: params?.unit ?? 40 })
+      .filter(([, v]) => v !== undefined && v !== null && v !== '')
+  );
+  const query = new URLSearchParams(cleaned as any).toString();
+  const url = `/liked_videos${query ? `?${query}` : ''}`;
+  try {
+    const res = await apiClient.get<any>(url, { isAuthRequired: true });
+    // Normalize common shapes
+    if (Array.isArray(res)) return { result: res } as GetNFTsResponse;
+    if (res?.result && Array.isArray(res.result)) return res as GetNFTsResponse;
+    if (Array.isArray(res?.data)) return { result: res.data } as GetNFTsResponse;
+    return { result: [] };
+  } catch (e) {
+    console.warn('[user.service] getLikedNFTs error', e);
+    throw e;
+  }
+}
+
 // ---------------- Follow / Unfollow ----------------
 
 /**

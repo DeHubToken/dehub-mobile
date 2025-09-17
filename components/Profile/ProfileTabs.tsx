@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { View, Text, Dimensions } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 import { theme } from "../../theme";
@@ -7,41 +7,14 @@ import VideosRoute from "./VideosRoute";
 import FeedRoute from "./FeedRoute";
 import ActivityRoute from "./ActivityRoute";
 import LivestreamsRoute from "./LivestreamsRoute";
+import { useAuth } from "../../context/AuthContext";
 
 const initialLayout = { width: Dimensions.get("window").width };
 
-const renderScene = ({ route }) => {
-  switch (route.key) {
-    case "videos":
-      return (
-        <View style={{ flex: 1 }}>
-          <VideosRoute />
-        </View>
-      );
-    case "feed":
-      return (
-        <View style={{ flex: 1 }}>
-          <FeedRoute />
-        </View>
-      );
-    case "activity":
-      return (
-        <View style={{ flex: 1 }}>
-          <ActivityRoute />
-        </View>
-      );
-    case "livestreams":
-      return (
-        <View style={{ flex: 1 }}>
-          <LivestreamsRoute />
-        </View>
-      );
-    default:
-      return null;
-  }
-};
-
 const ProfileTabs: React.FC = () => {
+  const { user } = useAuth() as any;
+  const address = useMemo(() => user?.walletAddress || user?.address || undefined, [user]);
+
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: "videos", title: "Videos" },
@@ -49,6 +22,37 @@ const ProfileTabs: React.FC = () => {
     { key: "activity", title: "Activity" },
     { key: "livestreams", title: "Livestreams" },
   ]);
+
+  const renderScene = ({ route }) => {
+    switch (route.key) {
+      case "videos":
+        return (
+          <View style={{ flex: 1 }}>
+            <VideosRoute address={address} />
+          </View>
+        );
+      case "feed":
+        return (
+          <View style={{ flex: 1 }}>
+            <FeedRoute />
+          </View>
+        );
+      case "activity":
+        return (
+          <View style={{ flex: 1 }}>
+            <ActivityRoute />
+          </View>
+        );
+      case "livestreams":
+        return (
+          <View style={{ flex: 1 }}>
+            <LivestreamsRoute address={address} />
+          </View>
+        );
+      default:
+        return null;
+    }
+  };
 
   const renderTabBar = (props) => (
     <TabBar
@@ -93,5 +97,4 @@ const ProfileTabs: React.FC = () => {
     </View>
   );
 };
-
 export default ProfileTabs;

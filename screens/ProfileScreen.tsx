@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { View, Text, TouchableOpacity, RefreshControl, ScrollView } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileStats from "../components/Profile/ProfileStats";
 import ProfileAssets from "../components/Profile/ProfileAssets";
@@ -51,7 +50,7 @@ const ProfileScreen: React.FC = () => {
 
   if (!isSignedIn) {
     return (
-      <SafeAreaView className="flex-1 bg-theme-neutrals-900 justify-center items-center px-6">
+      <View className="flex-1 bg-theme-neutrals-900 justify-center items-center px-6">
         <Text
           style={{
             color: theme.colors.foreground,
@@ -92,12 +91,12 @@ const ProfileScreen: React.FC = () => {
             Sign In
           </Text>
         </TouchableOpacity>
-      </SafeAreaView>
+      </View>
     );
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-theme-neutrals-900">
+    <View className="flex-1 bg-theme-neutrals-900">
       <ScrollView
         contentContainerStyle={{ paddingBottom: 0, flexGrow: 0 }}
         refreshControl={
@@ -113,7 +112,7 @@ const ProfileScreen: React.FC = () => {
         <ProfileAssets />
         <ProfileMenu />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 

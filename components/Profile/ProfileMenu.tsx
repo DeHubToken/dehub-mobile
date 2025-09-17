@@ -15,10 +15,12 @@ const ProfileMenu: React.FC = () => {
   const navigation = useNavigation<any>();
 
   const goVideos = useCallback(() => navigation.navigate(ScreenNames.YourVideos), [navigation]);
+  const goLiked = useCallback(() => navigation.navigate(ScreenNames.LikedVideos), [navigation]);
   const goSettings = useCallback(() => navigation.navigate(ScreenNames.AccountSettings), [navigation]);
 
   const items: MenuItem[] = [
     { key: 'videos', title: 'Your Videos', icon: 'videocam', onPress: goVideos },
+    { key: 'liked-videos', title: 'Liked Videos', icon: 'thumbs-up', onPress: goLiked },
     { key: 'settings', title: 'Settings', icon: 'settings', onPress: goSettings },
   ];
 

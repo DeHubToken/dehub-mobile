@@ -6,15 +6,6 @@ import ERC20_ABI from '../config/abis/erc20.json';
 import { useAuth } from '../context/AuthContext';
 import { STREAM_CONTROLLER_CONTRACT_ADDRESSES, STREAM_COLLECTION_CONTRACT_ADDRESSES } from '../config/web3.constants';
 
-// Minimal ERC20 ABI subset required for allowance/approve/balance
-const ERC20_MIN_ABI = [
-  'function approve(address spender, uint256 amount) returns (bool)',
-  'function allowance(address owner, address spender) view returns (uint256)',
-  'function balanceOf(address owner) view returns (uint256)',
-  'function decimals() view returns (uint8)',
-  'function symbol() view returns (string)'
-];
-
 // Generic contract factory using ethers if available
 async function loadEthers() { return await import('ethers'); }
 
@@ -32,11 +23,25 @@ export function useWeb3Provider(): Web3State {
 interface ContractParams { address?: string; abi: any; withSigner?: boolean; }
 
 async function buildContract(provider: any, abi: any, address?: string, withSigner = true) {
-  if (!provider || !address) return undefined;
-  const ethers = await loadEthers();
-  const ethProvider = new ethers.providers.Web3Provider(provider as any);
-  const signerOrProvider = withSigner ? ethProvider.getSigner() : ethProvider;
-  return new ethers.Contract(address, abi, signerOrProvider);
+  try {
+    if (!provider) throw new Error("Provider is missing");
+    if (!address || typeof address !== "string") throw new Error(`Invalid contract address: ${address}`);
+    if (!abi) throw new Error("ABI is missing");
+
+    const { ethers } = await import("ethers");
+    console.log("[buildContract] Creating contract", { address, withSigner });
+
+    const ethProvider = new ethers.providers.Web3Provider(provider as any);
+    const signerOrProvider = withSigner ? ethProvider.getSigner() : ethProvider;
+
+    const contract = new ethers.Contract(address, abi, signerOrProvider);
+    console.log("[buildContract] Contract created successfully:", contract.address);
+
+    return contract;
+  } catch (err) {
+    console.error("[buildContract] Failed to build contract", err);
+    return undefined;
+  }
 }
 
 function useEthersContract({ address, abi, withSigner = true }: ContractParams) {

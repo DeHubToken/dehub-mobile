@@ -27,6 +27,8 @@ import {
 import { ChainId } from "../../config/constants";
 import FullScreenLoader from "../../components/FullScreenLoader";
 import SocialLoginIcons from "../../components/auth/SocialLoginIcons";
+import { openInApp } from "../../libs/links.utils";
+import { TERMS_OF_SERVICE_LINK, PRIVACY_POLICY_LINK } from "../../config/links";
 
 // Removed unused AppKitButton import (was commented out) to keep component lean
 
@@ -142,7 +144,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         }
       >
         <Text
-          className={`text-white font-medium ${authLoading || isLocalLoading || needsUsername ? "opacity-40" : ""}`}
+          className={`text-white font-medium ${
+            authLoading || isLocalLoading || needsUsername ? "opacity-40" : ""
+          }`}
         >
           {isFirstTimeUser ? "Skip" : "Close"}
         </Text>
@@ -176,8 +180,20 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         <View className="mt-6">
           <Text className="text-gray-500 text-xs text-center">
             By continuing, you agree to our{" "}
-            <Text className="text-blue-400">Terms of Service</Text> and{" "}
-            <Text className="text-blue-400">Privacy Policy</Text>.
+            <Text
+              className="text-blue-400"
+              onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
+            >
+              Terms of Service
+            </Text>{" "}
+            and{" "}
+            <Text
+              className="text-blue-400"
+              onPress={() => openInApp(PRIVACY_POLICY_LINK)}
+            >
+              Privacy Policy
+            </Text>
+            .
           </Text>
         </View>
       </ScrollView>

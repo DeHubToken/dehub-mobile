@@ -90,7 +90,7 @@ async function getOrCreateInstance() {
   // console.log("Created sdk (static imports)");
 
   const chainConfig = {
-    chainNamespace: CHAIN_NAMESPACES.EIP155,
+    chainNamespace: ChainNamespace.EIP155,
     chainId: WEB3AUTH_CHAIN_ID,
     rpcTarget: WEB3AUTH_RPC_TARGET,
     displayName: "Base Mainnet",

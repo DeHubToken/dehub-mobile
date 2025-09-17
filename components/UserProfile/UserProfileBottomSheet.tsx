@@ -72,8 +72,10 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   onClose,
   usernameOrAddress,
 }) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState<RemoteUser | null>(null);
+  const [shown, setShown] = useState<boolean>(false);
+  const lastRequestedRef = useRef<string | null>(null);
   const [viewerOpen, setViewerOpen] = useState(false);
   const [viewerImage, setViewerImage] = useState<{ uri: string } | null>(null);
   const [mode, setMode] = useState<"profile" | "videos">("profile");
@@ -103,14 +105,15 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     return () => heightAnim.removeListener(id);
   }, [heightAnim]);
 
-  const load = useCallback(async () => {
-    if (!usernameOrAddress) return;
+  const load = useCallback(async (who: string) => {
+    if (!who) return;
+    lastRequestedRef.current = who;
     setLoading(true);
     setData(null);
     try {
-      const res: any = await getAccount(usernameOrAddress);
+      const res: any = await getAccount(who);
       const payload = res?.data?.result || res?.result || res;
-      if (payload) {
+      if (payload && lastRequestedRef.current === who) {
         setData(payload);
         // Derive follow state if authenticated
         const acct = (
@@ -133,15 +136,23 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     } finally {
       setLoading(false);
     }
-  }, [usernameOrAddress, authUser?.walletAddress, authUser?.address]);
+  }, [authUser?.walletAddress, authUser?.address]);
 
   useEffect(() => {
-    if (visible && usernameOrAddress) {
-      // Reset to mid height and animate in (optional subtle effect)
-      heightAnim.setValue(MID_HEIGHT);
-      load();
-      setMode("profile"); // always start at profile view
+    let hideTimer: ReturnType<typeof setTimeout> | null = null;
+    if (visible) {
+      setShown(true);
+      if (usernameOrAddress) {
+        heightAnim.setValue(MID_HEIGHT);
+        setMode("profile");
+        load(usernameOrAddress);
+      }
+    } else {
+      hideTimer = setTimeout(() => setShown(false), 150);
     }
+    return () => {
+      if (hideTimer) clearTimeout(hideTimer);
+    };
   }, [visible, usernameOrAddress, load, heightAnim]);
 
   // (Hardware back handled by react-native-modal via onBackButtonPress prop.)
@@ -381,7 +392,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
 
   return (
     <Modal
-      isVisible={visible}
+      isVisible={shown}
       onBackdropPress={onClose}
       onSwipeComplete={onClose}
       onBackButtonPress={onClose}
