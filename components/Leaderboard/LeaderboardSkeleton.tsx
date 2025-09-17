@@ -9,14 +9,14 @@ const LeaderboardSkeleton: React.FC = () => {
     <View className="mt-2">
       {Array.from({ length: ROWS }).map((_, i) => (
         <View key={i} className="flex-row items-center py-2 px-2">
-          <View className="w-8 h-4 bg-theme-neutrals-800 rounded mr-2" />
+          <View className="w-8 h-4 bg-theme-neutrals-800 rounded mr-2 animate-pulse" />
           <View className="flex-row items-center w-32 mr-2">
-            <View className="w-6 h-6 bg-theme-neutrals-800 rounded-full mr-2" />
-            <View className="h-4 flex-1 bg-theme-neutrals-800 rounded" />
+            <View className="w-6 h-6 bg-theme-neutrals-800 rounded-full mr-2 animate-pulse" />
+            <View className="h-4 flex-1 bg-theme-neutrals-800 rounded animate-pulse" />
           </View>
-          <View className="w-16 h-4 bg-theme-neutrals-800 rounded mr-2" />
-          <View className="w-16 h-4 bg-theme-neutrals-800 rounded mr-2" />
-          <View className="w-16 h-4 bg-theme-neutrals-800 rounded" />
+          <View className="w-16 h-4 bg-theme-neutrals-800 rounded mr-2 animate-pulse" />
+          <View className="w-16 h-4 bg-theme-neutrals-800 rounded mr-2 animate-pulse" />
+          <View className="w-16 h-4 bg-theme-neutrals-800 rounded animate-pulse" />
         </View>
       ))}
     </View>

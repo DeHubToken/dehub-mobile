@@ -49,26 +49,48 @@ export const SOCIAL_PROVIDER_MAP: Record<string, SocialProviderMeta> =
 // Web3Auth set up from main site
 import * as WebBrowser from "expo-web-browser";
 import * as SecureStore from "expo-secure-store";
-import Constants, { AppOwnership } from "expo-constants";
 import * as Linking from "expo-linking";
+import { Platform } from "react-native";
+// Stop dynamic imports: use static top-level imports
+import Web3Auth, {
+  ChainNamespace,
+  LOGIN_PROVIDER,
+  WEB3AUTH_NETWORK,
+} from "@web3auth/react-native-sdk";
+import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
+import { CHAIN_NAMESPACES } from "@web3auth/base";
+
+// // Destructure needed members from SDK (keeps types flexible across versions)
+// const { Web3Auth, WEB3AUTH_NETWORK, LOGIN_PROVIDER } = Web3AuthSDK as any;
 
 // --- Lazy SDK Instance ------------------------------------------------------
 // We defer importing heavy SDK modules until actually needed to avoid initial navigation lag
 // when the SignIn screen is first opened.
 let web3auth: any | null = null;
 let isCreating = false;
+let createPromise: Promise<any> | null = null;
+
+function resolveRedirectUrl(): string {
+  try {
+    const url = Linking.createURL("auth", {
+      scheme: WEB3AUTH_DEEP_LINK_SCHEME,
+    });
+    return url;
+  } catch {
+    return `${WEB3AUTH_DEEP_LINK_SCHEME}://auth`;
+  }
+}
 
 async function getOrCreateInstance() {
-  console.log({web3auth, isCreating})
-  if (web3auth || isCreating) return web3auth;
+  // console.log({ web3auth, isCreating, createPromise, WEB3AUTH_CLIENT_ID });
+  if (web3auth) return web3auth;
+  if (isCreating && createPromise) return await createPromise;
   isCreating = true;
-  const [{ default: Web3Auth, WEB3AUTH_NETWORK, LOGIN_PROVIDER, ChainNamespace }, { EthereumPrivateKeyProvider }] = await Promise.all([
-    import("@web3auth/react-native-sdk"),
-    import("@web3auth/ethereum-provider"),
-  ]);
+  // console.log("Creating Web3Auth instance...");
+  // console.log("Created sdk (static imports)");
 
   const chainConfig = {
-    chainNamespace: ChainNamespace.EIP155,
+    chainNamespace: CHAIN_NAMESPACES.EIP155,
     chainId: WEB3AUTH_CHAIN_ID,
     rpcTarget: WEB3AUTH_RPC_TARGET,
     displayName: "Base Mainnet",
@@ -79,27 +101,39 @@ async function getOrCreateInstance() {
     logo: "https://basescan.org/assets/base/images/svg/logos/chain-light.svg",
   };
 
-  console.log({chainConfig})
+  // console.log({ chainConfig });
   const privateKeyProvider = new EthereumPrivateKeyProvider({
     config: { chainConfig },
   });
-  console.log({privateKeyProvider})
+  // console.log({ privateKeyProvider });
 
+  const redirectUrl = resolveRedirectUrl();
+  // console.log("[Web3Auth] Resolved redirect URL:", redirectUrl);
   const SdkInitParams = {
     clientId: WEB3AUTH_CLIENT_ID,
     network: WEB3AUTH_NETWORK.SAPPHIRE_MAINNET,
-    redirectUrl: WEB3AUTH_REDIRECT_URL,
+    redirectUrl,
     privateKeyProvider,
     logLevel: "debug",
     loginConfig: {},
   };
-  console.log({SdkInitParams})
+  // console.log({ SdkInitParams, LOGIN_PROVIDER });
 
-  web3auth = new Web3Auth(WebBrowser, SecureStore, SdkInitParams);
-  // Attach enums we still reference indirectly
-  (web3auth as any)._LOGIN_PROVIDER = LOGIN_PROVIDER;
-  isCreating = false;
-  return web3auth;
+  //   console.log("[DEBUG] SdkInitParams", SdkInitParams);
+  // console.log("[DEBUG] Web3Auth class", Web3Auth);
+  // console.log("[DEBUG] EthereumPrivateKeyProvider", EthereumPrivateKeyProvider);
+  try {
+    const instance = new Web3Auth(WebBrowser, SecureStore, SdkInitParams);
+    // createPromise = Promise.resolve(instance);
+    // web3auth = await createPromise;
+    //   return web3auth;
+    web3auth = instance;
+    (web3auth as any)._LOGIN_PROVIDER = LOGIN_PROVIDER;
+    return instance;
+  } finally {
+    isCreating = false;
+    createPromise = null;
+  }
 }
 
 // (Optional) dynamic redirect resolution if needed for Expo Go vs standalone
@@ -125,7 +159,6 @@ export const ensureWeb3AuthReady = async () => {
   if (isInitialized && web3auth) return web3auth;
   try {
     const instance = await getOrCreateInstance();
-    console.log({instance})
     await instance.init();
     isInitialized = true;
     return instance;
@@ -140,8 +173,8 @@ export const initWeb3Auth = ensureWeb3AuthReady;
 
 // Provider mapping (string -> enum)
 const LOGIN_PROVIDER_MAP: Record<string, any> = {
-  google: (web3auth as any)?._LOGIN_PROVIDER?.GOOGLE ?? 'google',
-  twitter: (web3auth as any)?._LOGIN_PROVIDER?.TWITTER ?? 'twitter',
+  google: "google",
+  twitter: "twitter",
 };
 
 // Derive address from private key using ethers Wallet
@@ -171,7 +204,10 @@ export const loginWithSocial = async (
 ): Promise<Web3AuthLoginResult> => {
   const instance = await ensureWeb3AuthReady();
   // Re-evaluate mapping after instance created (enums now attached)
-  const mapped = (instance as any)._LOGIN_PROVIDER?.[provider?.toUpperCase?.()] || LOGIN_PROVIDER_MAP[provider] || provider;
+  const mapped =
+    (LOGIN_PROVIDER as any)?.[provider?.toUpperCase?.()] ||
+    LOGIN_PROVIDER_MAP[provider] ||
+    provider;
   try {
     const beforeState = {
       privKeyPresent: false,
@@ -179,7 +215,7 @@ export const loginWithSocial = async (
 
     await instance.login({
       loginProvider: mapped,
-      redirectUrl: WEB3AUTH_REDIRECT_URL,
+      redirectUrl: resolveRedirectUrl(),
       curve: "secp256k1",
     });
 
@@ -233,7 +269,7 @@ export const prewarmWeb3Auth = async () => {
     await ensureWeb3AuthReady();
   } catch (e) {
     // Non-fatal: just log
-    console.warn('[Web3Auth] prewarm failed', e);
+    console.warn("[Web3Auth] prewarm failed", e);
   }
 };
 
@@ -242,4 +278,3 @@ export const prewarmWeb3Auth = async () => {
 // ---------------------------------------------------------------------------
 // (All extended helper implementations have been moved to services/web3auth.service.ts)
 // (Extended helpers removed to services/web3auth.service.ts)
-

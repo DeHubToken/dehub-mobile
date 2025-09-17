@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity, RefreshControl, ListRenderItem } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, RefreshControl, ListRenderItem } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import ScreenHeader from '../components/ScreenHeader';
@@ -11,8 +11,7 @@ import { truncate } from '../libs/strings.util';
 import { useAuth } from '../context/AuthContext';
 import { useUserProfileSheet } from '../context/UserProfileSheetContext';
 import { ScreenNames } from '../navigation/ScreenNames';
-
-const defaultAvatar = require('../assets/default-avatar.png');
+import Avatar from '../components/common/Avatar';
 
 interface LBRow {
   rank: number;
@@ -40,11 +39,7 @@ const LeaderboardRow: React.FC<RowProps> = React.memo(({ item, onPress }) => {
     >
       <Text className="text-theme-neutrals-200 text-xs text-center w-8">{item.rank}</Text>
       <View className="flex-row items-center w-32">
-        {item.avatarUrl && item.avatarUrl !== 'default-avatar' ? (
-          <Image source={{ uri: item.avatarUrl }} className="w-6 h-6 rounded-full mr-2" />
-        ) : (
-          <Image source={defaultAvatar} className="w-6 h-6 rounded-full mr-2" />
-        )}
+        <Avatar uri={item.avatarUrl} size={24} className="mr-2" />
         <Text className="text-theme-neutrals-200 text-xs" numberOfLines={1}>{truncate(item.holder, 10, '..')}</Text>
       </View>
       <Text className="text-theme-neutrals-200 text-xs text-center w-16">{formatCompactNumber(item.total)}</Text>

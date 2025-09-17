@@ -10,9 +10,9 @@ import {
   Text,
   TouchableOpacity,
   ActivityIndicator,
-  Modal,
   Animated,
 } from "react-native";
+import GlassModal from "../ui/GlassModal";
 import { Ionicons } from "@expo/vector-icons";
 import AnimatedCheck from "../shared/AnimatedCheck";
 import { useAuth } from "../../context/AuthContext";
@@ -241,7 +241,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
                       Number(numericAmount || 0)
                   ),
                 },
-              }) as any
+              } as any)
           );
           // Do not close or call onSuccess yet; wait for user to tap Continue
         } catch (e) {
@@ -273,13 +273,15 @@ const PPVModal: React.FC<PPVModalProps> = ({
   ]);
 
   const renderTrigger = () => {
-  // If a custom trigger is provided, render it as-is (assumed to handle touch itself)
-  if (trigger) return <>{trigger}</>;
+    // If a custom trigger is provided, render it as-is (assumed to handle touch itself)
+    if (trigger) return <>{trigger}</>;
     return (
       <TouchableOpacity
         onPress={openModal}
         disabled={!toAddress}
-        className={`flex-1 bg-theme-accent px-4 py-2 rounded-lg items-center flex-row justify-center gap-2  max-h-9  ${!toAddress ? "opacity-50" : ""} ${triggerClassName || ""}`}
+        className={`flex-1 bg-theme-accent px-4 py-2 rounded-lg items-center flex-row justify-center gap-2  max-h-9  ${
+          !toAddress ? "opacity-50" : ""
+        } ${triggerClassName || ""}`}
       >
         <Ionicons name="pricetag-outline" size={16} color="#fff" />
         <Text className="text-white text-sm font-semibold">{triggerText}</Text>
@@ -291,133 +293,136 @@ const PPVModal: React.FC<PPVModalProps> = ({
     <>
       {renderTrigger()}
       {actualOpen && (
-        <Modal visible transparent animationType="fade" onRequestClose={close}>
+        <GlassModal
+          visible={true}
+          onClose={close}
+          presentation="center"
+          blurIntensity={45}
+        >
           <TouchableOpacity
             activeOpacity={1}
-            onPress={close}
-            className="flex-1 bg-black/60 px-6 justify-center"
+            onPress={() => {}}
+            className="p-6 gap-5"
           >
-            <TouchableOpacity
-              activeOpacity={1}
-              onPress={() => {}}
-              className="bg-theme-neutrals-900 rounded-2xl p-6 gap-5"
-            >
-              <View className="gap-2">
-                <Text className="text-white font-bold text-3xl tracking-wider">
-                  Unlock video
-                </Text>
-                <Text className="text-white/70 text-xs">
-                  Recipient: {toAddress.slice(0, 6)}...{toAddress.slice(-4)}
-                </Text>
-              </View>
-              {phase !== "sent" ? (
-                <>
-                  <View>
-                    <Text className="text-base text-white mb-2">
-                      You are about to spend{" "}
-                      <Text className="text-theme-accent font-semibold">
-                        {amount} {tokenSymbol}
-                      </Text>{" "}
-                      to unlock this video.
-                    </Text>
-                    <View className="flex-row justify-between mt-1">
-                      <Text className="text-[11px] text-white/50">
-                        ETH: {ethBalance !== "" ? ethBalance : "..."}
-                      </Text>
-                      <Text className="text-[11px] text-white/30">
-                        Gas Balance
-                      </Text>
-                    </View>
-                    <View className="flex-row justify-between mt-1">
-                      <Text className="text-[11px] text-white/50">
-                        {tokenSymbol}: {Number(userTokenBal).toFixed(4)}
-                      </Text>
-                      <Text className="text-[11px] text-white/30">
-                        Token Balance
-                      </Text>
-                    </View>
-                    {insufficient && (
-                      <Text className="text-xs text-red-400 mt-2">
-                        Insufficient {tokenSymbol} balance
-                      </Text>
-                    )}
-                    {isSelf && (
-                      <Text className="text-xs text-red-400 mt-2">
-                        You can't pay yourself
-                      </Text>
-                    )}
-                    {ppvError && (
-                      <Text className="text-xs text-red-400 mt-2">
-                        {ppvError}
-                      </Text>
-                    )}
-                  </View>
-                  <View className="flex-row items-center justify-center gap-3">
-                    <TouchableOpacity
-                      disabled={isBusy || insufficient || isSelf}
-                      onPress={handleUnlock}
-                      className={`flex-row items-center gap-2 px-5 h-11 rounded-full bg-theme-accent ${isBusy || insufficient || isSelf ? "opacity-60" : ""}`}
-                    >
-                      {isBusy ? (
-                        <ActivityIndicator color="#fff" />
-                      ) : phase === "error" ? (
-                        <Ionicons
-                          name="alert-circle-outline"
-                          size={20}
-                          color="#fff"
-                        />
-                      ) : (
-                        <Ionicons
-                          name="pricetag-outline"
-                          size={18}
-                          color="#fff"
-                        />
-                      )}
-                      <Text className="text-white font-semibold">
-                        {phase === "approving" && "Approving..."}
-                        {phase === "sending" && "Processing..."}
-                        {phase === "idle" && "Confirm"}
-                        {phase === "error" && "Retry"}
-                      </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      disabled={isBusy}
-                      onPress={close}
-                      className={`px-5 h-11 rounded-full bg-theme-neutrals-700 items-center justify-center ${isBusy ? "opacity-60" : ""}`}
-                    >
-                      <Text className="text-white font-semibold">Cancel</Text>
-                    </TouchableOpacity>
-                  </View>
-                </>
-              ) : (
-                <View className="items-center gap-6 mt-2">
-                  <AnimatedCheck
-                    size={80}
-                    className="bg-theme-accent"
-                    iconColor="#fff"
-                    animateKey={phase}
-                  />
-                  <Text className="text-white text-base font-semibold">
-                    Unlocked successfully
+            <View className="gap-2">
+              <Text className="text-white font-bold text-3xl tracking-wider">
+                Unlock video
+              </Text>
+              <Text className="text-white/70 text-xs">
+                Recipient: {toAddress.slice(0, 6)}...{toAddress.slice(-4)}
+              </Text>
+            </View>
+            {phase !== "sent" ? (
+              <>
+                <View>
+                  <Text className="text-base text-white mb-2">
+                    You are about to spend{" "}
+                    <Text className="text-theme-accent font-semibold">
+                      {amount} {tokenSymbol}
+                    </Text>{" "}
+                    to unlock this video.
                   </Text>
-                  <View className="flex-row gap-3">
-                    <TouchableOpacity
-                      onPress={() => {
-                        try {
-                          onSuccess?.();
-                        } catch {}
-                        setOpen(false);
-                      }}
-                      className="px-5 h-11 rounded-full bg-theme-accent items-center justify-center"
-                    >
-                      <Text className="text-white font-semibold">Continue</Text>
-                    </TouchableOpacity>
+                  <View className="flex-row justify-between mt-1">
+                    <Text className="text-[11px] text-white/50">
+                      ETH: {ethBalance !== "" ? ethBalance : "..."}
+                    </Text>
+                    <Text className="text-[11px] text-white/30">
+                      Gas Balance
+                    </Text>
                   </View>
+                  <View className="flex-row justify-between mt-1">
+                    <Text className="text-[11px] text-white/50">
+                      {tokenSymbol}: {Number(userTokenBal).toFixed(4)}
+                    </Text>
+                    <Text className="text-[11px] text-white/30">
+                      Token Balance
+                    </Text>
+                  </View>
+                  {insufficient && (
+                    <Text className="text-xs text-red-400 mt-2">
+                      Insufficient {tokenSymbol} balance
+                    </Text>
+                  )}
+                  {isSelf && (
+                    <Text className="text-xs text-red-400 mt-2">
+                      You can't pay yourself
+                    </Text>
+                  )}
+                  {ppvError && (
+                    <Text className="text-xs text-red-400 mt-2">
+                      {ppvError}
+                    </Text>
+                  )}
                 </View>
-              )}
-            </TouchableOpacity>
+                <View className="flex-row items-center justify-center gap-3">
+                  <TouchableOpacity
+                    disabled={isBusy || insufficient || isSelf}
+                    onPress={handleUnlock}
+                    className={`flex-row items-center gap-2 px-5 h-11 rounded-full bg-theme-accent ${
+                      isBusy || insufficient || isSelf ? "opacity-60" : ""
+                    }`}
+                  >
+                    {isBusy ? (
+                      <ActivityIndicator color="#fff" />
+                    ) : phase === "error" ? (
+                      <Ionicons
+                        name="alert-circle-outline"
+                        size={20}
+                        color="#fff"
+                      />
+                    ) : (
+                      <Ionicons
+                        name="pricetag-outline"
+                        size={18}
+                        color="#fff"
+                      />
+                    )}
+                    <Text className="text-white font-semibold">
+                      {phase === "approving" && "Approving..."}
+                      {phase === "sending" && "Processing..."}
+                      {phase === "idle" && "Confirm"}
+                      {phase === "error" && "Retry"}
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    disabled={isBusy}
+                    onPress={close}
+                    className={`px-5 h-11 rounded-full bg-theme-neutrals-700 items-center justify-center ${
+                      isBusy ? "opacity-60" : ""
+                    }`}
+                  >
+                    <Text className="text-white font-semibold">Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              </>
+            ) : (
+              <View className="items-center gap-6 mt-2">
+                <AnimatedCheck
+                  size={80}
+                  className="bg-theme-accent"
+                  iconColor="#fff"
+                  animateKey={phase}
+                />
+                <Text className="text-white text-base font-semibold">
+                  Unlocked successfully
+                </Text>
+                <View className="flex-row gap-3">
+                  <TouchableOpacity
+                    onPress={() => {
+                      try {
+                        onSuccess?.();
+                      } catch {}
+                      setOpen(false);
+                    }}
+                    className="px-5 h-11 rounded-full bg-theme-accent items-center justify-center"
+                  >
+                    <Text className="text-white font-semibold">Continue</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            )}
           </TouchableOpacity>
-        </Modal>
+        </GlassModal>
       )}
     </>
   );

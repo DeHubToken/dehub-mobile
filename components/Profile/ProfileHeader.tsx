@@ -16,6 +16,7 @@ import env from '../../config/env';
 import { truncate, truncateAddress } from '../../libs/strings.util';
 import { formatJoinedDate } from '../../libs/date.util';
 import { shareProfile } from '../../libs/misc';
+import Avatar from "../common/Avatar";
 
 const ProfileHeader = () => {
   const navigation = useNavigation<any>();
@@ -81,10 +82,7 @@ const ProfileHeader = () => {
         </View>
       </ImageBackground>
       <View className="flex-row items-end mt-[-36px] px-4">
-        <Image
-          source={avatarUrl === 'default-avatar' ? profileImage : { uri: avatarUrl }}
-          className="w-24 h-24 rounded-full border-[8px] border-theme-neutrals-900"
-        />
+        <Avatar uri={avatarUrl === 'default-avatar' ? undefined : avatarUrl} size={96} borderWidth={8} borderColor="#0a0a0a" />
 
         <TouchableOpacity className="ml-auto bg-gray-600 px-4 py-2 rounded-full">
           <Text className="text-white text-sm">Edit Profile</Text>

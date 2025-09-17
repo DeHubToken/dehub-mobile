@@ -5,8 +5,8 @@ import {
   TouchableOpacity,
   Animated,
   InteractionManager,
+  ScrollView,
 } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import VideoPlayerSkeleton from "./VideoPlayerSkeleton";
 import CommentItem from "./CommentItem";

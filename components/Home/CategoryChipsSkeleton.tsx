@@ -10,7 +10,7 @@ const CategoryChipsSkeleton: React.FC = () => {
         <View
           key={i}
           style={{ width: w }}
-          className="h-7 rounded-full bg-theme-neutrals-800 mr-2 mb-2"
+          className="h-7 rounded-full bg-theme-neutrals-800 mr-2 mb-2 animate-pulse"
         />
       ))}
     </View>

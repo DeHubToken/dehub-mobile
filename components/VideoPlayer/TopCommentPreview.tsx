@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { TouchableOpacity, View, Text, Image, ImageSourcePropType } from 'react-native';
+import Avatar from '../common/Avatar';
 import { formatCompactNumber } from '../../libs/numbers.util';
 const DEFAULT_AVATAR = require('../../assets/default-avatar.png');
 
@@ -24,7 +25,7 @@ const TopCommentPreview: React.FC<TopCommentPreviewProps> = ({ comment, total, o
         </Text>
       </View>
       <View className="mt-3 flex-row items-start px-1">
-        <Image source={avatarSource} className="w-6 h-6 rounded-full mr-3" />
+  <Avatar uri={typeof avatarSource === 'number' ? undefined : (avatarSource as any)?.uri} size={24} />
         <View className="flex-1">
           <Text className="text-theme-neutrals-100 text-sm" numberOfLines={2}>{comment.text}</Text>
         </View>

@@ -1,30 +1,35 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Toaster } from "sonner-native";
-import { toastTheme } from './theme/toastTheme';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { toastTheme } from "./theme/toastTheme";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "./global.css";
 import SplashScreen from "./screens/SplashScreen";
 import NoInternetScreen from "./screens/NoInternetScreen";
 import { useNetworkStatus } from "./hooks/useNetworkStatus";
 import React, { useEffect } from "react";
+import { BackHandler, LogBox } from "react-native";
+import * as WebBrowser from "expo-web-browser";
 import { theme } from "./theme";
 import { AuthProvider } from "./context/AuthContext";
-import { useAuth } from './context/AuthContext';
-import { UserProfileSheetProvider } from './context/UserProfileSheetContext';
-import { UsernameGate } from './components/auth/UsernameGate';
+import { useAuth } from "./context/AuthContext";
+import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
+import { UsernameGate } from "./components/auth/UsernameGate";
 import RootNavigator from "./navigation/RootNavigator";
-import { prewarmWeb3Auth } from './config/web3auth.config';
-// Optional: silence Reanimated strict-mode warnings in development
-// See https://docs.swmansion.com/react-native-reanimated/docs/debugging/logger-configuration
-import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
-
-configureReanimatedLogger({
-  level: ReanimatedLogLevel.warn,
-  strict: false,
-});
+import { prewarmWeb3Auth } from "./config/web3auth.config";
 
 export default function App() {
+  // Complete any pending browser auth sessions (Web3Auth, OAuth)
+  WebBrowser.maybeCompleteAuthSession();
+
+  // Temporary shim for older libs expecting BackHandler.removeEventListener(fn)
+  // New API is BackHandler.removeEventListener('event', fn). Avoid crash by providing a no-op fallback.
+  // @ts-ignore
+  // if (typeof BackHandler.removeEventListener !== "function") {
+  //   // @ts-ignore
+  //   BackHandler.removeEventListener = () => {};
+  // }
+
   const [isLoading, setIsLoading] = React.useState(false);
   const { hasInternet, isConnected, checkConnection } = useNetworkStatus();
 
@@ -38,7 +43,6 @@ export default function App() {
     return <SplashScreen />;
   }
 
-  // Show no internet screen if not connected
   if (!hasInternet) {
     return (
       <SafeAreaProvider className="flex-1 select-none bg-theme-background">
@@ -48,8 +52,8 @@ export default function App() {
   }
 
   return (
-    <SafeAreaProvider className="flex-1 select-none bg-theme-background">
-      <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider className="flex-1 select-none bg-theme-background">
         <AuthProvider>
           <BootGate>
             <SafeAreaView className="flex-1">
@@ -62,7 +66,6 @@ export default function App() {
             </SafeAreaView>
           </BootGate>
         </AuthProvider>
-        {/* <AppKit /> */}
         <Toaster
           position="top-center"
           offset={56}
@@ -71,12 +74,11 @@ export default function App() {
             style: toastTheme.containerStyle,
           }}
         />
-      </GestureHandlerRootView>
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
 
-// Keeps splash visible until AuthProvider finishes boot loading
 const BootGate: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isBootLoading } = useAuth();
   if (isBootLoading) return <SplashScreen />;

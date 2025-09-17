@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import GlassModal from '../ui/GlassModal';
 import { SOCIAL_PROVIDERS, loginWithSocial, deriveAddressFromPrivateKey, isWeb3AuthConfigured } from '../../config/web3auth.config';
 import { ChainId } from '../../config/constants';
 import { useAuth } from '../../context/AuthContext';
@@ -43,9 +44,8 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({ visible, onClos
   }, [handleSocialLogin]);
 
   return (
-    <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
-      <View className="flex-1 bg-black/80 justify-end">
-        <SafeAreaView className="bg-black rounded-t-2xl max-h-[88%]">
+    <GlassModal visible={visible} onClose={onClose} presentation="bottom" blurIntensity={50}>
+      <SafeAreaView className="max-h-[88%]">
           {(authLoading || isLocalLoading) && !needsUsername && (
             <FullScreenLoader message="Signing you in…" />
           )}
@@ -75,9 +75,8 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({ visible, onClos
               </Text>
             </View>
           </ScrollView>
-        </SafeAreaView>
-      </View>
-    </Modal>
+      </SafeAreaView>
+    </GlassModal>
   );
 };
 

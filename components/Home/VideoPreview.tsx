@@ -22,6 +22,7 @@ export default function VideoPreview({
 }: VideoPreviewProps) {
   const viewRef = useRef<VideoView | null>(null);
   const [phase, setPhase] = useState<"idle" | "buffering" | "playing">("idle");
+  const [mounted, setMounted] = useState(false);
   const [progress, setProgress] = useState(0); // real buffering progress
   const [fakeProgress, setFakeProgress] = useState(0); // synthetic progress up to threshold
   const [effectivePreview, setEffectivePreview] = useState(
@@ -32,16 +33,17 @@ export default function VideoPreview({
   const stopperRef = useRef<(() => void) | undefined>(undefined);
 
   // Create a player without auto-play; we'll manually control
-  const player: VideoPlayer = useVideoPlayer(previewUrl ?? null, (p) => {
+  const player: VideoPlayer | null = useVideoPlayer(mounted ? previewUrl ?? null : null, (p) => {
     p.loop = false;
     p.muted = true;
     p.playbackRate = 2.5;
-    p.timeUpdateEventInterval = 0.2;
+    p.timeUpdateEventInterval = 0.3;
   });
 
   // Subscribe to events
   useEffect(() => {
-    const subs = [
+  if (!player) return;
+  const subs = [
       player.addListener("sourceLoad", ({ duration }) => {
         const durationMs = Math.floor((duration ?? 0) * 1000) || PREVIEW_SECONDS * 1000;
         const previewMs = Math.min(PREVIEW_SECONDS * 1000, durationMs);
@@ -77,11 +79,12 @@ export default function VideoPreview({
     async (invokeEnd: boolean = true) => {
       if (phase === "idle") return;
       try {
-        player.pause();
-        player.currentTime = 0;
+        player?.pause();
+        if (player) player.currentTime = 0;
       } catch {}
       setPhase("idle");
       setProgress(0);
+      setMounted(false);
       if (invokeEnd) onEnd?.();
     },
     [phase, onEnd, player]
@@ -89,14 +92,17 @@ export default function VideoPreview({
 
   const startPreview = useCallback(async () => {
     if (phase !== "idle") return;
+    setMounted(true);
     setPhase("buffering");
     setProgress(0);
     setFakeProgress(0);
     stopperRef.current = () => stopPreview();
-    player.muted = true;
-    player.playbackRate = 2.5;
-    player.pause();
-    player.currentTime = 0;
+    if (player) {
+      player.muted = true;
+      player.playbackRate = 2.5;
+      player.pause();
+      player.currentTime = 0;
+    }
   }, [phase, stopPreview, player]);
 
   const handlePress = useCallback(() => {
@@ -127,7 +133,7 @@ export default function VideoPreview({
 
   // Cleanup on unmount
   useEffect(() => {
-    return () => {
+  return () => {
       if (stopperRef.current) clearActivePreview(stopperRef.current);
       stopPreview(false);
     };
@@ -171,11 +177,13 @@ export default function VideoPreview({
       ref={rootRef as any}
       style={{ width: "100%", height: "100%" }}
     >
-      {(phase === "buffering" || phase === "playing") && (
+  {mounted && (phase === "buffering" || phase === "playing") && (
         <>
           <VideoView
-            ref={(r) => (viewRef.current = r)}
-            player={player}
+            ref={(r) => {
+              viewRef.current = r as any;
+            }}
+    player={player as any}
             contentFit="cover"
             nativeControls={false}
             style={{ width: "100%", height: "100%" }}

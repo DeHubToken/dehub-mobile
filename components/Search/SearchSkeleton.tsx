@@ -22,7 +22,7 @@ const SearchSkeleton: React.FC = () => {
       <View className="flex-row border-b border-theme-neutrals-800">
         {[0, 1, 2].map((i) => (
           <View key={i} className="flex-1 p-3 items-center">
-            <View className="h-3 w-16 bg-theme-neutrals-800 rounded-full" />
+            <View className="h-3 w-16 bg-theme-neutrals-800 rounded-full animate-pulse" />
           </View>
         ))}
       </View>

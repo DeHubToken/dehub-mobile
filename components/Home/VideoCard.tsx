@@ -12,6 +12,7 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { getAvatarUrl, resolveThumbnail, getImageUrl, getBadgeUrl, getVideoUrl } from "../../libs";
 import { useStreamAccessInfo } from "../../libs/validators.util";
+import Avatar from "../common/Avatar";
 
 interface VideoCardProps { nft: any; enablePreview?: boolean; badgeIcon?: string; }
 
@@ -149,17 +150,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({ nft, enablePreview, badg
       <View className="p-3">
         <View className="flex-row items-center mb-1">
           <TouchableOpacity activeOpacity={0.7} onPress={handlePressAvatar}>
-            {typeof profilePicture === "string" ? (
-              <Image
-                source={{ uri: profilePicture }}
-                className="w-8 h-8 rounded-full mr-2"
-              />
-            ) : (
-              <Image
-                source={profilePicture}
-                className="w-8 h-8 rounded-full mr-2"
-              />
-            )}
+            <Avatar uri={typeof profilePicture === 'string' ? profilePicture : undefined} size={32} className="mr-2" />
           </TouchableOpacity>
           <View className="flex flex-col">
             <Text className="text-base font-bold text-theme-neutrals-100 mr-2">
