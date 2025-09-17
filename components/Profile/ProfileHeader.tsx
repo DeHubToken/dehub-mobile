@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback } from "react";
-import { View, Text, ImageBackground, Image, TouchableOpacity } from "react-native";
+import { View, Text, ImageBackground, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import { Linking } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
@@ -17,11 +17,20 @@ import { truncate, truncateAddress } from '../../libs/strings.util';
 import { formatJoinedDate } from '../../libs/date.util';
 import { shareProfile } from '../../libs/misc';
 import Avatar from "../common/Avatar";
+import * as ImagePicker from 'expo-image-picker';
+import { ImageEditor } from 'expo-image-editor';
+import * as ImageManipulator from 'expo-image-manipulator';
+import { AuthService } from '../../services/auth.service';
+import { toastError, toastSuccess } from '../../libs/toast';
 
 const ProfileHeader = () => {
   const navigation = useNavigation<any>();
-  const { user } = useAuth();
+  const { user, refreshUser, patchUser } = useAuth() as any;
   const [expanded, setExpanded] = useState(false);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
+  const [uploadingCover, setUploadingCover] = useState(false);
+  const [editorVisible, setEditorVisible] = useState<false | { uri: string; kind: 'avatar' | 'cover' }>(false);
+  const cropState = editorVisible && typeof editorVisible === 'object' ? editorVisible : null;
 
   const displayName = user?.displayName ||  'Unknown';
   const username = user?.username || user?.address || '' ;
@@ -56,21 +65,122 @@ const ProfileHeader = () => {
     await shareProfile(url, message);
   }, [username, address]);
 
+  const requestPickerPermission = useCallback(async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      toastError('Permission to access photos is required.');
+      return false;
+    }
+    return true;
+  }, []);
+
+  const pickImage = useCallback(async () => {
+    const ok = await requestPickerPermission();
+    if (!ok) return null;
+    const res = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: false,
+      quality: 0.9,
+      exif: false,
+    });
+    if (res.canceled || !res.assets?.length) return null;
+    return res.assets[0]?.uri || null;
+  }, [requestPickerPermission]);
+
+  const openViewer = useCallback((uri?: string) => {
+    if (!uri) return;
+    (navigation as any).navigate(ScreenNames.ImageViewer, {
+      images: [{ uri }],
+      index: 0,
+      isModal: true,
+    });
+  }, [navigation]);
+
+  const startChangeAvatar = useCallback(async () => {
+    try {
+      const uri = await pickImage();
+      if (!uri) return;
+      setEditorVisible({ uri, kind: 'avatar' });
+    } catch (e) {
+      toastError(e, 'Could not pick image');
+    }
+  }, [pickImage]);
+
+  const startChangeCover = useCallback(async () => {
+    try {
+      const uri = await pickImage();
+      if (!uri) return;
+      setEditorVisible({ uri, kind: 'cover' });
+    } catch (e) {
+      toastError(e, 'Could not pick image');
+    }
+  }, [pickImage]);
+
+  const processAndUpload = useCallback(async (kind: 'avatar' | 'cover', uri: string) => {
+    const isAvatar = kind === 'avatar';
+    try {
+      isAvatar ? setUploadingAvatar(true) : setUploadingCover(true);
+      // Resize/compress
+      const target = isAvatar ? { width: 512, height: 512 } : { width: 1500, height: 500 };
+      const manip = await ImageManipulator.manipulateAsync(
+        uri,
+        [
+          { resize: target },
+        ],
+        { compress: 0.85, format: ImageManipulator.SaveFormat.JPEG }
+      );
+      const file = {
+        uri: manip.uri,
+        name: `${kind}_${Date.now()}.jpg`,
+        type: 'image/jpeg',
+      } as any;
+      const payload: Record<string, any> = isAvatar
+        ? { avatar: file, avatarImage: file }
+        : { cover: file, coverImage: file };
+      await AuthService.updateProfile(payload);
+      toastSuccess(isAvatar ? 'Avatar updated' : 'Cover updated');
+      // Optimistic bump + background refresh
+      if (isAvatar) {
+        await patchUser?.({ avatarImageUrl: `${user?.avatarImageUrl || ''}` });
+      } else {
+        await patchUser?.({ coverImageUrl: `${user?.coverImageUrl || ''}` });
+      }
+      await refreshUser?.();
+    } catch (e) {
+      toastError(e, 'Upload failed');
+    } finally {
+      isAvatar ? setUploadingAvatar(false) : setUploadingCover(false);
+    }
+  }, [user]);
+
+  const onEditComplete = useCallback(async (result: any) => {
+    const current = editorVisible && typeof editorVisible === 'object' ? editorVisible : null;
+    setEditorVisible(false);
+    if (!current) return;
+    try {
+      const editedUri: string | undefined = result?.uri || result;
+      await processAndUpload(current.kind, editedUri || current.uri);
+    } catch (e) {
+      toastError(e, 'Could not process image');
+    }
+  }, [editorVisible, processAndUpload]);
+
   return (
+    <>
     <View className="w-full">
       <ImageBackground
         source={coverUrl === 'default-banner' ? bannerImage : { uri: coverUrl }}
-        style={{ height: 100 }}
+        style={{ height: 120 }}
         className="w-full bg-cover bg-center"
-        imageStyle={{ borderRadius: 4 }}
-        resizeMode="contain"
+        imageStyle={{ borderRadius: 4, opacity: uploadingCover ? 0.6 : 1 }}
+        resizeMode="cover"
       >
         <View className="relative px-4 py-6 w-full h-full">
           <View className="absolute top-2 right-2 flex-row gap-2">
             <TouchableOpacity
               onPress={handleShare}
               accessibilityLabel="Share profile"
-              className="bg-theme-neutrals-900 p-2 rounded-lg border border-theme-neutrals-200 active:opacity-80"
+              className="bg-theme-neutrals-900/70 p-2 rounded-lg border border-theme-neutrals-700 active:opacity-80"
             >
               <Ionicons
                 name="share-social"
@@ -78,11 +188,66 @@ const ProfileHeader = () => {
                 color={theme.colors.accentForeground}
               />
             </TouchableOpacity>
+            {coverUrl !== 'default-banner' && (
+              <TouchableOpacity
+                onPress={startChangeCover}
+                accessibilityLabel="Change cover"
+                className="bg-theme-neutrals-900/70 p-2 rounded-lg border border-theme-neutrals-700 active:opacity-80"
+              >
+                <Ionicons name="camera" size={18} color="#fff" />
+              </TouchableOpacity>
+            )}
           </View>
+          {coverUrl === 'default-banner' && (
+            <View className="absolute inset-0 items-center justify-center">
+              <TouchableOpacity
+                onPress={startChangeCover}
+                className="bg-black/50 rounded-full p-4"
+                accessibilityLabel="Add cover image"
+              >
+                <Ionicons name="camera" size={28} color="#fff" />
+              </TouchableOpacity>
+            </View>
+          )}
+          {uploadingCover && (
+            <View className="absolute inset-0 items-center justify-center">
+              <ActivityIndicator color="#fff" />
+            </View>
+          )}
         </View>
       </ImageBackground>
       <View className="flex-row items-end mt-[-36px] px-4">
-        <Avatar uri={avatarUrl === 'default-avatar' ? undefined : avatarUrl} size={96} borderWidth={8} borderColor="#0a0a0a" />
+        <View>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={avatarUrl === 'default-avatar' ? startChangeAvatar : () => openViewer(avatarUrl)}
+            className=""
+          >
+            <View className="">
+              <Avatar
+                uri={avatarUrl === 'default-avatar' ? undefined : avatarUrl}
+                size={96}
+                borderWidth={8}
+                borderColor="#0a0a0a"
+              />
+              {(uploadingAvatar) && (
+                <View className="absolute inset-0 bg-black/40 rounded-full items-center justify-center">
+                  <ActivityIndicator color="#fff" />
+                </View>
+              )}
+            </View>
+          </TouchableOpacity>
+          {avatarUrl !== 'default-avatar' && (
+            <TouchableOpacity
+              onPress={startChangeAvatar}
+              className="absolute -bottom-1 -right-1 bg-black/80 p-2 rounded-full border border-theme-neutrals-700"
+              accessibilityLabel="Change avatar"
+              activeOpacity={0.8}
+            >
+              <Ionicons name="camera" size={14} color="#fff" />
+            </TouchableOpacity>
+          )}
+        </View>
 
         <TouchableOpacity className="ml-auto bg-gray-600 px-4 py-2 rounded-full">
           <Text className="text-white text-sm">Edit Profile</Text>
@@ -186,6 +351,19 @@ const ProfileHeader = () => {
         </View>
       )}
     </View>
+    {cropState && (
+      <ImageEditor
+        visible
+        imageUri={cropState!.uri}
+        fixedCropAspectRatio={cropState!.kind === 'avatar' ? 1 : 3}
+        lockAspectRatio
+        onEditingComplete={onEditComplete}
+        onCloseEditor={() => setEditorVisible(false)}
+        mode="full"
+        minimumCropDimensions={{ width: 120, height: 120 }}
+      />
+    )}
+    </>
   );
 };
 

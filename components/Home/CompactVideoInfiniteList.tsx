@@ -15,7 +15,7 @@ import {
 } from "react-native";
 import CompactVideoCard from "./CompactVideoCard";
 import CompactVideoCardSkeleton from "./CompactVideoCardSkeleton";
-import { getUserVideos, getUserLiveVideos } from "../../services/user.service";
+import { getUserVideos, getUserLiveVideos, getLikedNFTs } from "../../services/user.service";
 import { GetNFTsResult } from "../../services/nft.service";
 import { resolveThumbnail } from "../../libs"; // keep minimal import if needed
 
@@ -28,7 +28,7 @@ interface CompactVideoInfiniteListProps {
   enablePreview?: boolean; // preview disabled automatically for live unless forced
   onLoadedFirstPage?: (count: number) => void;
   bottomPadding?: number; // extra bottom inset (e.g., tab bar height)
-  variant?: "videos" | "live";
+  variant?: "videos" | "live" | "liked";
   ListHeaderComponent?: React.ReactElement | null;
   showCreator?: boolean; // forward to CompactVideoCard
 }
@@ -56,9 +56,9 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
 
   const fetcher = useCallback(
     (addr: string, opts: { page: number; unit: number }) => {
-      return variant === "live"
-        ? getUserLiveVideos(addr, opts as any)
-        : getUserVideos(addr, opts as any);
+      if (variant === "live") return getUserLiveVideos(addr, opts as any);
+      if (variant === "liked") return getLikedNFTs(addr, opts as any);
+      return getUserVideos(addr, opts as any);
     },
     [variant]
   );
