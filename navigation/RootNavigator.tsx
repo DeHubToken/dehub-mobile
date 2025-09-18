@@ -20,13 +20,6 @@ export default function RootNavigator() {
   });
 
   const showAuth = (isFirstTimeUser && !isSignedIn) || needsUsername;
-  // useEffect(() => {
-  //   console.log("[RootNavigator] Updated statde", {
-  //     isSignedIn,
-  //     isFirstTimeUser,
-  //     needsUsername,
-  //   });
-  // }, [isSignedIn, isFirstTimeUser, needsUsername]);
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>

@@ -14,6 +14,7 @@ const LikedVideosScreen: React.FC = () => {
         address={address}
         bottomPadding={80}
         variant="liked"
+        showCreator={false}
       />
     </View>
   );

@@ -18,6 +18,7 @@ export enum ScreenNames {
   AccountSettings = 'AccountSettings',
   YourVideos = 'YourVideos',
   LikedVideos = 'LikedVideos',
+  EditProfile = 'EditProfile',
   // Auth screen
   SignIn = 'SignIn',
 }

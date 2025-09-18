@@ -85,4 +85,73 @@ export function getTransactionLink(chainId: number, txHash: string) {
   return `${chainData.explorerUrl}`;
 }
 
+export type SocialPlatform = "facebook" | "instagram" | "twitter" | "x" | "discord";
+
+const trimInput = (v: string) => (v || "").trim();
+const stripAtAndSlash = (v: string) => trimInput(v).replace(/^@+/, "").replace(/^\/+/, "").replace(/\/+$/, "");
+const hasProtocol = (v: string) => /^https?:\/\//i.test(v);
+
+const asUrl = (base: string, handle: string) => `${base}/${stripAtAndSlash(handle)}`;
+
+const validators = {
+  facebook(urlOrHandle: string) {
+    const v = trimInput(urlOrHandle);
+    if (!v) return { valid: true, normalized: "" };
+    const normalized = hasProtocol(v) ? v : asUrl("https://facebook.com", v);
+    const re = /^https?:\/\/(www\.)?facebook\.com\/[A-Za-z0-9\.]{3,}(?:\/?|$)/i;
+    return re.test(normalized)
+      ? { valid: true, normalized }
+      : { valid: false, normalized: v, reason: "Enter a valid facebook.com profile/page URL or handle" };
+  },
+  instagram(urlOrHandle: string) {
+    const v = trimInput(urlOrHandle);
+    if (!v) return { valid: true, normalized: "" };
+    const normalized = hasProtocol(v) ? v : asUrl("https://instagram.com", v);
+    const re = /^https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9._]{1,30}(?:\/?|$)/i;
+    return re.test(normalized)
+      ? { valid: true, normalized }
+      : { valid: false, normalized: v, reason: "Enter a valid instagram.com username or handle" };
+  },
+  twitter(urlOrHandle: string) {
+    const v = trimInput(urlOrHandle);
+    if (!v) return { valid: true, normalized: "" };
+    const normalized = hasProtocol(v) ? v : asUrl("https://x.com", v);
+    const re = /^https?:\/\/(www\.)?(x\.com|twitter\.com)\/[A-Za-z0-9_]{1,15}(?:\/?|$)/i;
+    return re.test(normalized)
+      ? { valid: true, normalized }
+      : { valid: false, normalized: v, reason: "Enter a valid x.com/twitter.com username or handle" };
+  },
+  discord(urlOrCode: string) {
+    const v = trimInput(urlOrCode);
+    if (!v) return { valid: true, normalized: "" };
+    let normalized = v;
+    if (!hasProtocol(v)) {
+      // For Discord, require full URLs — best effort if it's an invite code
+      const code = stripAtAndSlash(v);
+      normalized = `https://discord.gg/${code}`;
+    }
+    const re = /^https?:\/\/(www\.)?discord\.(gg|com)\/(invite\/)?[A-Za-z0-9-]{2,}|^https?:\/\/discord\.com\/users\/[0-9]+$/i;
+    return re.test(normalized)
+      ? { valid: true, normalized }
+      : { valid: false, normalized: v, reason: "Enter a valid discord.gg invite or discord.com/users link" };
+  },
+} as const;
+
+export const validateSocial = (platform: SocialPlatform, value: string) => {
+  switch (platform) {
+    case "facebook":
+      return validators.facebook(value);
+    case "instagram":
+      return validators.instagram(value);
+    case "twitter":
+    case "x":
+      return validators.twitter(value);
+    case "discord":
+      return validators.discord(value);
+    default:
+      return { valid: true, normalized: trimInput(value) };
+  }
+};
+
+
 export default { getSocialLink, openExternalLink, openInApp, getTransactionLink };
