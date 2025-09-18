@@ -6,7 +6,10 @@ import usdcIcon from "../../assets/tokens/USDC.png";
 import usdtIcon from "../../assets/tokens/USDT.png";
 import ethIcon from "../../assets/tokens/eth.png";
 import { useAuth } from "../../context/AuthContext";
+import { BUY_FROM_DEX_LINK } from "../../config/links";
+import { openInApp } from "../../libs/links.utils";
 import { formatCompactNumber } from "../../libs/numbers.util";
+import TransferModal from "../Transfer/TransferModal";
 
 const ProfileAssets = () => {
   const { user } = useAuth();
@@ -37,6 +40,7 @@ const ProfileAssets = () => {
     }));
   }, [walletBalances]);
 
+  const [transferOpen, setTransferOpen] = useState(false);
   const dhbActions = [
     { label: "Top up", disabled: false },
     { label: "Bridge", subtitle: "coming soon", disabled: true },
@@ -125,6 +129,15 @@ const ProfileAssets = () => {
                   className={`py-2 px-3 rounded-md flex-1 mx-1 rounded ${
                     action.disabled ? "bg-gray-800" : "bg-gray-700"
                   }`}
+                  onPress={
+                    action.disabled
+                      ? undefined
+                      : action.label === "Top up"
+                      ? () => openInApp(BUY_FROM_DEX_LINK)
+                      : action.label === "Transfer"
+                      ? () => setTransferOpen(true)
+                      : undefined
+                  }
                   disabled={action.disabled}
                 >
                   <View className="items-center">
@@ -142,6 +155,7 @@ const ProfileAssets = () => {
           )}
         </View>
       ))}
+      <TransferModal open={transferOpen} onOpenChange={setTransferOpen} />
     </View>
   );
 };

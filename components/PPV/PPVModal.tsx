@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import { Ionicons } from "@expo/vector-icons";
-import AnimatedCheck from "../shared/AnimatedCheck";
+import AnimatedCheck from "../common/AnimatedCheck";
 import { useAuth } from "../../context/AuthContext";
 import {
   useWeb3Provider,

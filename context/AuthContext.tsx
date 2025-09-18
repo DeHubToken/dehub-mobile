@@ -143,6 +143,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (provider || providerStatus === "ready") return;
     if (providerInitPromiseRef.current) return providerInitPromiseRef.current;
 
+    const normalizeChainId = (val: any): number | undefined => {
+      if (val == null) return undefined;
+      if (typeof val === "number") return Number(val);
+      if (typeof val === "string") {
+        const s = val.trim();
+        const parsed = s.startsWith("0x") ? parseInt(s, 16) : parseInt(s, 10);
+        return Number.isNaN(parsed) ? undefined : parsed;
+      }
+      return undefined;
+    };
+
     const attemptInit = async (attempt: number, maxAttempts: number) => {
       const start = Date.now();
       try {
@@ -150,17 +161,31 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         const p = await withTimeout(getWeb3AuthProvider(), 12000);
         if (!p) throw new Error("Provider returned null/undefined");
         if (!isMountedRef.current) return;
+        // console.log({p})
         setProvider(p);
         // Resolve chainId (fallback safe parse)
         try {
+          let resolved: number | undefined;
           const cid = await p.request?.({ method: "eth_chainId" });
-          if (cid) {
-            const parsed =
-              typeof cid === "string"
-                ? parseInt(cid, 16) || parseInt(cid, 10) || undefined
-                : Number(cid);
-            if (parsed && !Number.isNaN(parsed)) setChainId(parsed);
+          resolved = normalizeChainId(cid);
+          if (!resolved) {
+            const fromDirect = (p as any).chainId;
+            const fromConfig = (p as any).chainConfig?.chainId;
+            const fromNetworksKey = Object.keys(((p as any).networks || {}))[0];
+            resolved =
+              normalizeChainId(fromDirect) ||
+              normalizeChainId(fromConfig) ||
+              normalizeChainId(fromNetworksKey);
           }
+          if (resolved && !Number.isNaN(resolved)) setChainId(resolved);
+          // Listen for future chain changes
+          const onChainChanged = (next: any) => {
+            const parsed = normalizeChainId(next);
+            if (parsed && !Number.isNaN(parsed)) setChainId(parsed);
+          };
+          try {
+            (p as any).on?.("chainChanged", onChainChanged);
+          } catch {}
         } catch (e) {
           console.warn("[AuthContext] failed to read chainId from provider", e);
         }

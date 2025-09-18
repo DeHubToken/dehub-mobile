@@ -18,7 +18,7 @@ import GlassModal from "../ui/GlassModal";
 import { Ionicons } from "@expo/vector-icons";
 import { useAuth } from "../../context/AuthContext";
 import { limitTip, supportedTokens } from "../../config/constants";
-import AnimatedCheck from "../shared/AnimatedCheck";
+import AnimatedCheck from "../common/AnimatedCheck";
 import {
   useWeb3Provider,
   useERC20Contract,
