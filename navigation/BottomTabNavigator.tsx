@@ -8,6 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import { ScreenNames } from './ScreenNames';
 import FeedScreen from '../screens/FeedScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import { useNavigation } from '@react-navigation/native';
 
 // Placeholder screens - these will be replaced with actual content later
 // remove "const HomeScreen = () => <View style={styles.container}><Text>Home Screen</Text></View>;"
@@ -19,6 +20,7 @@ const UploadScreen = () => <View style={styles.container}><Text>Upload Screen</T
 const Tab = createBottomTabNavigator();
 
 function BottomTabNavigator() {
+  const navigation = useNavigation<any>();
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -58,7 +60,16 @@ function BottomTabNavigator() {
     >
       <Tab.Screen name={ScreenNames.Home} component={HomeScreen} />
       {/* <Tab.Screen name={ScreenNames.Feed} component={FeedScreen} /> */}
-      <Tab.Screen name={ScreenNames.Upload} component={UploadScreen} />
+      <Tab.Screen
+        name={ScreenNames.Upload}
+        component={UploadScreen}
+        listeners={{
+          tabPress: (e) => {
+            e.preventDefault();
+            navigation.navigate(ScreenNames.Upload);
+          },
+        }}
+      />
       {/* <Tab.Screen name={ScreenNames.DM} component={DMScreen} /> */}
       <Tab.Screen name={ScreenNames.Profile} component={ProfileScreen} />
     </Tab.Navigator>

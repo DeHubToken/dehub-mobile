@@ -3,7 +3,13 @@ module.exports = function (api) {
   return {
     // ignore: ["**/*.css"],
     presets: [
-      ["babel-preset-expo", { jsxImportSource: "nativewind" }],
+      [
+        "babel-preset-expo",
+        {
+          jsxImportSource: "nativewind",
+          unstable_transformImportMeta: true,
+        },
+      ],
       "nativewind/babel",
     ],
     plugins: [

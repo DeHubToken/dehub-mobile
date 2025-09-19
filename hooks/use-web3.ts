@@ -45,7 +45,7 @@ async function buildContract(
     if (!abi) throw new Error("ABI is missing");
 
     const ethProvider = new ethers.providers.Web3Provider(provider as any);
-    console.log("[DEBUG]", {withSigner, signer: ethProvider.getSigner()})
+    // console.log("[DEBUG]", {withSigner, signer: ethProvider.getSigner()})
     const signerOrProvider = withSigner ? ethProvider.getSigner() : ethProvider;
 
     const contract = new ethers.Contract(address, abi, signerOrProvider);

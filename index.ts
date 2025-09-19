@@ -16,6 +16,7 @@ import "./globals";
 // LogBox.ignoreLogs(["Failed to obtain view for PanGestureHandler"]);
 
 import { registerRootComponent } from "expo";
+
 import App from "./App";
 
 // registerRootComponent calls AppRegistry.registerComponent('main', () => App);

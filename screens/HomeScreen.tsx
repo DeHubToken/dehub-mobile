@@ -9,7 +9,7 @@ import HomeHeader from "../components/HomeHeader";
 import { getSelectedStatusLabel, getSelectedStatusIcon } from "../libs";
 import CategorySelector from "../components/Home/CategorySelector";
 import CategorySelectorSkeleton from "../components/Home/CategorySelectorSkeleton";
-import { getCategories } from "../services/nft.service";
+import { getCategoriesCached } from "../services/nft.service";
 
 const fallbackCategories = ["All"];
 
@@ -44,7 +44,7 @@ export default function HomeScreen() {
     let mounted = true;
     const load = async () => {
       setCategoriesLoading(true);
-      const list = await getCategories();
+      const list = await getCategoriesCached();
       if (mounted && list && list.length) {
         // Ensure 'All' is first and unique
         const cleaned = [

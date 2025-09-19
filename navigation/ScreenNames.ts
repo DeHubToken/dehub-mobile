@@ -11,6 +11,8 @@ export enum ScreenNames {
   Leaderboard = 'Leaderboard',
   Feed = 'Feed',
   Upload = 'Upload',
+  VideoTrim = 'VideoTrim',
+  VideoUpload = 'VideoUpload',
   DM = 'DM',
   DirectMessages = 'DirectMessages',
   VideoPlayer = 'VideoPlayer',
