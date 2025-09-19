@@ -29,12 +29,12 @@ export const toastTheme = {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.colors.card,
-    borderRadius: 12,
+    backgroundColor: 'rgba(20,20,20,0.45)',
+    borderRadius: 16,
     paddingVertical: 14,
     paddingHorizontal: 16,
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: 'rgba(255,255,255,0.12)',
   },
   text: {
     color: theme.colors.foreground,

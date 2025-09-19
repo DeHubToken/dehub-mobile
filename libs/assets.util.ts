@@ -74,3 +74,25 @@ export const createRNImageFile = (
   name: `${namePrefix}_${Date.now()}.jpg`,
   type: mime,
 });
+
+export const getFileName = (uri: string, fallback: string): string => {
+  try {
+    const p = uri.split('?')[0];
+    const name = p.substring(p.lastIndexOf('/') + 1) || fallback;
+    return name;
+  } catch {
+    return fallback;
+  }
+};
+
+export const guessMime = (uri: string, fallback: string): string => {
+  const lower = (uri || '').toLowerCase();
+  if (lower.endsWith('.mp4')) return 'video/mp4';
+  if (lower.endsWith('.mov')) return 'video/quicktime';
+  if (lower.endsWith('.m4v')) return 'video/x-m4v';
+  if (lower.endsWith('.webm')) return 'video/webm';
+  if (lower.endsWith('.jpg') || lower.endsWith('.jpeg')) return 'image/jpeg';
+  if (lower.endsWith('.png')) return 'image/png';
+  if (lower.endsWith('.webp')) return 'image/webp';
+  return fallback;
+};

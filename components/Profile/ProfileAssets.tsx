@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import InfoTooltip from "../ui/InfoTooltip";
 import dhbIcon from "../../assets/tokens/DHB.png";
 import usdcIcon from "../../assets/tokens/USDC.png";
 import usdtIcon from "../../assets/tokens/USDT.png";
@@ -55,45 +56,23 @@ const ProfileAssets = () => {
     <View className="mx-4 my-3 border border-gray-700 rounded-lg p-4 relative">
       <View className="flex-row items-center justify-between mb-2">
         <Text className="text-base text-white font-semibold">Assets</Text>
-        <TouchableOpacity
-          onPress={() => setShowInfo((v) => !v)}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          className="pl-3"
-        >
-          <Ionicons
-            name="information-circle-outline"
-            size={18}
-            color="#9CA3AF"
-          />
-        </TouchableOpacity>
-      </View>
-      {showInfo && (
-        <View className="absolute inset-0 z-20" pointerEvents="box-none">
-          <TouchableOpacity
-            className="absolute inset-0"
-            activeOpacity={1}
-            onPress={() => setShowInfo(false)}
-          />
-          <View className="absolute right-2 top-10 w-64 bg-theme-neutrals-900 border border-gray-700 rounded-lg p-3">
-            <Text className="text-[11px] leading-4 text-white">
-              Balances shown are on Base network (chain 8453). DHB is the
-              platform token used for tipping & rewards. ETH is your gas
-              balance. Values may lag a few seconds. Bridge or transfer assets
-              to Base to use them here.
-            </Text>
-            <View className="flex-row justify-end mt-2">
-              <TouchableOpacity
-                onPress={() => setShowInfo(false)}
-                className="px-2 py-1 rounded bg-theme-neutrals-700"
-              >
-                <Text className="text-[11px] text-white font-medium">
-                  Got it
-                </Text>
-              </TouchableOpacity>
-            </View>
+        <InfoTooltip open={showInfo} onOpenChange={setShowInfo} triggerClassName="pl-3">
+          <Text className="text-[11px] leading-4 text-white">
+            Balances shown are on Base network (chain 8453). DHB is the
+            platform token used for tipping & rewards. ETH is your gas
+            balance. Values may lag a few seconds. Bridge or transfer assets
+            to Base to use them here.
+          </Text>
+          <View className="flex-row justify-end mt-2">
+            <TouchableOpacity onPress={() => setShowInfo(false)} className="px-2 py-1 rounded bg-zinc-800">
+              <Text className="text-[11px] text-white font-medium">
+                Got it
+              </Text>
+            </TouchableOpacity>
           </View>
-        </View>
-      )}
+        </InfoTooltip>
+      </View>
+      
 
       {assets.map((asset) => (
         <View key={asset.name} className="mb-1">

@@ -141,8 +141,11 @@ const ProfileHeader = () => {
   const pickImage = useCallback(async () => {
     const ok = await requestPickerPermission();
     if (!ok) return null;
+    const mediaTypesCompat: any = (ImagePicker as any).MediaType
+      ? [(ImagePicker as any).MediaType.image]
+      : (ImagePicker as any).MediaTypeOptions?.Images ?? ImagePicker.MediaTypeOptions.Images;
     const res = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: mediaTypesCompat,
       allowsEditing: false,
       quality: 0.9,
       exif: false,

@@ -12,6 +12,8 @@ import {
   defaultTokenSymbol as DEFAULT_TOKEN_SYMBOL,
   ChainId,
 } from "../config/constants";
+import type { User } from "../context/AuthContext";
+import { streamInfoKeys } from "../config/constants";
 
 export interface UserBalanceEntry {
   chainId: number;
@@ -234,4 +236,146 @@ export default {
   useStreamAccessInfo,
   isOwner,
   maxStacked,
+};
+
+// ---------------- Upload/Mint Validation ----------------
+export const lockAmountMin = 0.001;
+export const bountyAmountMin = 0.001;
+
+export const getTotalBountyAmount = (
+  streamInfo: Record<string, any>,
+): number => {
+  const amt = Number(streamInfo?.[streamInfoKeys.addBountyAmount] || 0) || 0;
+  const viewers = Number(streamInfo?.[streamInfoKeys.addBountyFirstXViewers] || 0) || 0;
+  const comments = Number(streamInfo?.[streamInfoKeys.addBountyFirstXComments] || 0) || 0;
+  return amt * (viewers + comments);
+};
+
+export const isValidDataForMinting = (
+  title: string,
+  description: string,
+  streamInfo: Record<string, string | number | boolean>,
+  user: User | null,
+  tokenBalances: any
+) => {
+  const t = String(title || "").trim();
+  const d = String(description || "").trim();
+  if (t.length < 3) return { isError: true, error: "Title is too short" };
+  if (d.length < 3) return { isError: true, error: "Description is too short" };
+
+  if (streamInfo[streamInfoKeys.isLockContent]) {
+    let errorKey = "";
+    const amount = Number(streamInfo[streamInfoKeys.lockContentAmount] || 0);
+    if (!amount) errorKey = "Amount";
+    if (!streamInfo[streamInfoKeys.lockContentChainIds]) errorKey = "Network";
+    if (!streamInfo[streamInfoKeys.lockContentTokenSymbol]) errorKey = "Token";
+    if (errorKey)
+      return {
+        isError: true,
+        error: `${errorKey} for lock content is invalid!`,
+        errorKey: streamInfoKeys.lockContentAmount,
+      };
+    if (amount < lockAmountMin)
+      return {
+        isError: true,
+        error: "Amount for lock content is too small!",
+        errorKey: streamInfoKeys.lockContentAmount,
+      };
+  }
+
+  if (streamInfo[streamInfoKeys.isPayPerView]) {
+    let errorKey = "";
+    const amount = Number(streamInfo[streamInfoKeys.payPerViewAmount] || 0);
+    if (!amount) errorKey = "Amount";
+    if (!streamInfo[streamInfoKeys.payPerViewChainIds]) errorKey = "Network";
+    if (!streamInfo[streamInfoKeys.payPerViewTokenSymbol]) errorKey = "Token";
+    if (errorKey)
+      return {
+        isError: true,
+        error: `${errorKey} for pay per view is invalid!`,
+        errorKey: streamInfoKeys.payPerViewAmount,
+      };
+  }
+
+  if (streamInfo[streamInfoKeys.isAddBounty]) {
+    let errorKey = "";
+    const amount = Number(streamInfo[streamInfoKeys.addBountyAmount] || 0);
+    if (!amount) errorKey = "Amount";
+    if (!streamInfo[streamInfoKeys.addBountyChainId]) errorKey = "Network";
+    if (!streamInfo[streamInfoKeys.addBountyTokenSymbol]) errorKey = "Token";
+    if (errorKey)
+      return {
+        isError: true,
+        error: `${errorKey} for bounty is invalid!`,
+        errorKey: streamInfoKeys.addBountyAmount,
+      };
+
+    const addBountyToken = supportedTokens.find(
+      (e) =>
+        e.symbol === streamInfo[streamInfoKeys.addBountyTokenSymbol] &&
+        e.chainId === streamInfo[streamInfoKeys.addBountyChainId]
+    );
+    const addBountyTotalAmount = getTotalBountyAmount(streamInfo as any);
+    if (!addBountyToken) {
+      return {
+        isError: true,
+        error: "Token or Chain is not selected!",
+        errorKey: streamInfoKeys.addBountyTokenSymbol,
+      };
+    }
+
+    if (!addBountyTotalAmount || addBountyTotalAmount < bountyAmountMin) {
+      return {
+        isError: true,
+        error: "You need to input correct bounty amount!",
+        errorKey: addBountyToken.symbol,
+      };
+    }
+
+    // Mobile tokenBalances may be by symbol; accept both address and symbol keys.
+    const balanceByAddress = tokenBalances?.[addBountyToken.address] ?? undefined;
+    const symbolKey = addBountyToken.symbol;
+    const balanceBySymbol = (user as any)?.tokenBalances?.[symbolKey];
+    const bountyTokenBalance = Number(balanceByAddress ?? balanceBySymbol ?? 0);
+    if (bountyTokenBalance < addBountyTotalAmount) {
+      return {
+        isError: true,
+        error: `You need to have enough token balance to add bounty!\n You balance is ${bountyTokenBalance} ${addBountyToken.symbol}`,
+        errorKey: addBountyToken.symbol,
+      };
+    }
+  }
+  return { isError: false };
+};
+
+// ---------------- Upload helpers ----------------
+export const filteredStreamInfo = (info: Record<string, any> | null | undefined) => {
+  const src = { ...(info || {}) } as Record<string, any>;
+  const clean = (obj: Record<string, any>) => {
+    Object.keys(obj).forEach((k) => {
+      const v = obj[k];
+      if (v === undefined || v === null || v === "") delete obj[k];
+    });
+  };
+  if (!src[streamInfoKeys.isLockContent]) {
+    delete src[streamInfoKeys.lockContentAmount];
+    delete src[streamInfoKeys.lockContentTokenSymbol];
+    delete src[streamInfoKeys.lockContentChainIds];
+    delete src[streamInfoKeys.lockContentContractAddress];
+  }
+  if (!src[streamInfoKeys.isPayPerView]) {
+    delete src[streamInfoKeys.payPerViewAmount];
+    delete src[streamInfoKeys.payPerViewTokenSymbol];
+    delete src[streamInfoKeys.payPerViewChainIds];
+    delete src[streamInfoKeys.payPerViewContractAddress];
+  }
+  if (!src[streamInfoKeys.isAddBounty]) {
+    delete src[streamInfoKeys.addBountyAmount];
+    delete src[streamInfoKeys.addBountyTokenSymbol];
+    delete src[streamInfoKeys.addBountyChainId];
+    delete src[streamInfoKeys.addBountyFirstXViewers];
+    delete src[streamInfoKeys.addBountyFirstXComments];
+  }
+  clean(src);
+  return src;
 };

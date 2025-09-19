@@ -132,3 +132,45 @@ try {
   // eslint-disable-next-line no-console
   console.log('[globals] base64 test', Buffer.from('Hello World!', 'utf-8').toString('base64'));
 } catch {}
+
+
+import { BackHandler } from "react-native";
+
+// BackHandler compatibility shim: support legacy removeEventListener('hardwareBackPress', handler)
+// New RN API returns a subscription from addEventListener; call subscription.remove().
+// Some transitive deps still call the legacy remove API, which is undefined on newer RN.
+(() => {
+	const bh: any = BackHandler as any;
+	const originalAdd = bh.addEventListener?.bind(BackHandler);
+	if (!originalAdd) return;
+
+	// Track handler -> subscription so we can remove by handler later
+	if (!bh.__handlerMap) bh.__handlerMap = new Map();
+
+	// Wrap addEventListener to store mapping
+	bh.addEventListener = (eventName: string, handler: any) => {
+		const sub = originalAdd(eventName, handler);
+		try {
+			if (handler) bh.__handlerMap.set(handler, sub);
+		} catch {}
+		return sub;
+	};
+
+	// Provide legacy removeEventListener implementation if missing or not a function
+	if (typeof bh.removeEventListener !== "function") {
+		bh.removeEventListener = (eventName: string, handler: any) => {
+			try {
+				const sub = handler && bh.__handlerMap.get(handler);
+				if (sub && typeof sub.remove === "function") {
+					sub.remove();
+					bh.__handlerMap.delete(handler);
+					return;
+				}
+				// Fallback: if a subscription-like object is passed
+				if (handler && typeof handler.remove === "function") {
+					handler.remove();
+				}
+			} catch {}
+		};
+	}
+})();

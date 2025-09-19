@@ -15,6 +15,9 @@ import YourVideosScreen from "../screens/YourVideosScreen";
 import LikedVideosScreen from "../screens/LikedVideosScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
 import SignInScreen from "../screens/auth/SignInScreen";
+import UploadScreen from "../screens/UploadScreen";
+import VideoTrimScreen from "../screens/VideoTrimScreen";
+import VideoUploadScreen from "../screens/VideoUploadScreen";
 
 const Stack = createStackNavigator();
 
@@ -29,6 +32,52 @@ export default function AppNavigator() {
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name={ScreenNames.Upload}
+        component={UploadScreen}
+        options={{
+          headerShown: false,
+          presentation: 'transparentModal',
+          cardStyle: { backgroundColor: 'transparent' },
+          cardOverlayEnabled: true,
+          cardStyleInterpolator: ({ current, layouts }) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateY: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.height, 0],
+                      extrapolate: 'clamp',
+                    }),
+                  },
+                ],
+              },
+              overlayStyle: {
+                backgroundColor: 'rgba(0,0,0,0.6)',
+                opacity: current.progress.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, 1],
+                  extrapolate: 'clamp',
+                }),
+              },
+            };
+          },
+          gestureDirection: 'vertical',
+          gestureEnabled: true,
+          gestureResponseDistance: 30,
+        }}
+      />
+      {/* <Stack.Screen
+        name={ScreenNames.VideoTrim}
+        component={VideoTrimScreen}
+        options={{ headerShown: false, presentation: "card" }}
+      />
+      <Stack.Screen
+        name={ScreenNames.VideoUpload}
+        component={VideoUploadScreen}
+        options={{ headerShown: false, presentation: "card" }}
+      /> */}
       <Stack.Screen
         name={ScreenNames.VideoPlayer}
         component={VideoPlayerScreen}

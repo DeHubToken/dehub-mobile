@@ -1,4 +1,5 @@
 import { apiClient } from "../libs";
+import { streamInfoKeys } from "../config/constants";
 
 // ---------------- Types ----------------
 export interface SearchParams {
@@ -135,6 +136,9 @@ export async function getNFTsPage(page: number, params?: Omit<SearchParams, 'pag
 }
 
 // ---------------- Categories ----------------
+let __categoriesCache: { at: number; data: string[] } | null = null;
+const DEFAULT_CATEGORIES_TTL = 10 * 60 * 1000; // 10 minutes
+
 export async function getCategories(): Promise<string[]> {
   try {
     const res = await apiClient.get<any>('/get_categories', { isAuthRequired: false });
@@ -146,6 +150,20 @@ export async function getCategories(): Promise<string[]> {
     console.error('[NFTService] getCategories error', e);
     return [];
   }
+}
+
+/**
+ * Cached categories with TTL. Set `forceRefresh` to bypass cache.
+ */
+export async function getCategoriesCached(options?: { ttlMs?: number; forceRefresh?: boolean }): Promise<string[]> {
+  const ttlMs = options?.ttlMs ?? DEFAULT_CATEGORIES_TTL;
+  const now = Date.now();
+  if (!options?.forceRefresh && __categoriesCache && (now - __categoriesCache.at) < ttlMs) {
+    return __categoriesCache.data;
+  }
+  const data = await getCategories();
+  __categoriesCache = { at: now, data };
+  return data;
 }
 
 // ---------------- Record View ----------------
@@ -209,6 +227,39 @@ export async function postComment(input: PostCommentInput): Promise<PostCommentR
     return res;
   } catch (e) {
     console.error('[NFTService] postComment error', e);
+    throw e;
+  }
+}
+
+// ---------------- Mint (Upload) ----------------
+export interface MintNftResponse {
+  r: string;
+  s: string;
+  v: number;
+  createdTokenId: number;
+  timestamp: number;
+  error: boolean;
+  msg?: string;
+  [k: string]: any;
+}
+
+/**
+ * Remove irrelevant or unset fields from streamInfo before sending to backend
+ */
+// filteredStreamInfo moved to libs/validators.util.ts
+
+/**
+ * Upload & Mint endpoint. Expects multipart FormData with:
+ * - name, description, postType, category (stringified array or comma-separated)
+ * - files: video and thumbnail appended under the same key 'files'
+ * - streamInfo: JSON string of filteredStreamInfo
+ */
+export async function minNft(data: FormData): Promise<MintNftResponse> {
+  try {
+    const res = await apiClient.post<MintNftResponse>(`/user_mint`, data, { isAuthRequired: true });
+    return res;
+  } catch (e) {
+    console.error('[NFTService] minNft error', e);
     throw e;
   }
 }

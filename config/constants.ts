@@ -237,8 +237,10 @@ export const supportedCurrencies = [
 ];
 
 export const supportedTokensForLockContent = supportedTokens.filter((e) => e.symbol === "DHB");
-export const supportedTokensForPPV = supportedTokens;
-export const supportedTokensForAddBounty = supportedTokens;
+// export const supportedTokensForPPV = supportedTokens;
+// export const supportedTokensForAddBounty = supportedTokens;
+export const supportedTokensForPPV = supportedTokensForLockContent;
+export const supportedTokensForAddBounty = supportedTokensForLockContent;
 
 export const supportedChainIdsForMinting = [ChainId.BSC_MAINNET, ChainId.BASE_MAINNET];
 export const supportedChainIds = isDevMode
