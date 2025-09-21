@@ -53,6 +53,7 @@ import {
 import { streamInfoKeys } from "../../config/constants";
 import { useAuth } from "../../context/AuthContext";
 import { toastError, toastSuccess } from "../../libs/toast";
+import { parseTxError } from "../../libs/web3.util";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 
@@ -133,11 +134,19 @@ export default function VideosTab({ onClose }: Props) {
   void screenWidth;
   void insets;
 
-  const { user, tokenBalances } = (useAuth() as any) || {};
+  const { user, tokenBalances, isSignedIn, requireAuth } =
+    (useAuth() as any) || {};
   const { chainId } = useWeb3Provider();
   const streamController = useStreamControllerContract();
   const streamCollectionContract = useStreamCollectionContract();
   const navigation = useNavigation();
+
+  // Derive ETH balance from auth state (used for gas checks)
+  const ethBalance = useMemo(() => {
+    const b: unknown = (user?.tokenBalances?.ETH ?? tokenBalances?.ETH) as any;
+    const n = typeof b === "string" ? Number(b) : typeof b === "number" ? b : 0;
+    return Number.isFinite(n) ? n : 0;
+  }, [user?.tokenBalances?.ETH, tokenBalances?.ETH]);
 
   // Options for selects
   const lockTokenOptions = useMemo(
@@ -550,6 +559,13 @@ export default function VideosTab({ onClose }: Props) {
   ]);
 
   const onUploadMint = useCallback(async () => {
+    // Block if user has no ETH to pay gas
+    if (ethBalance <= 0) {
+      toastError(
+        "You need ETH for gas to mint on-chain. Please fund your wallet and try again."
+      );
+      return;
+    }
     if (!media?.uri) return;
     if (fileSize == null) {
       try {
@@ -617,11 +633,18 @@ export default function VideosTab({ onClose }: Props) {
     );
     setShowBountyApprove(false);
     setShowConfirm(true);
-  }, [media?.uri, fileSize, buildPayload]);
+  }, [media?.uri, fileSize, buildPayload, ethBalance]);
 
   const handleUpload = useCallback(async () => {
     const payload = buildPayload();
     if (!payload) return;
+    // Safety: prevent upload if no ETH for gas
+    if (ethBalance <= 0) {
+      toastError(
+        "You need ETH for gas to mint on-chain. Please fund your wallet and try again."
+      );
+      return;
+    }
     try {
       setIsUploading(true);
       setUploadStage("uploading");
@@ -773,12 +796,14 @@ export default function VideosTab({ onClose }: Props) {
       (navigation as any).replace(ScreenNames.YourVideos as never);
     } catch (e: any) {
       console.error("[handleUpload]", e);
-      toastError(e?.message || "Upload failed");
+      const inMintPhase = ["awaiting-wallet", "minting", "finalizing"].includes(uploadStage);
+      const msg = inMintPhase ? parseTxError(e, "send") : (e?.message || "Upload failed");
+      toastError(msg);
     } finally {
       setIsUploading(false);
-      if (uploadStage !== "idle") setUploadStage("idle");
+      setUploadStage("idle");
     }
-  }, [buildPayload, coverUri, thumbUri, lockNetwork, ppvNetwork, bountyChain, uploadStage]);
+  }, [buildPayload, coverUri, thumbUri, lockNetwork, ppvNetwork, bountyChain, uploadStage, ethBalance]);
 
   return (
     <View className="flex-1">
@@ -944,13 +969,22 @@ export default function VideosTab({ onClose }: Props) {
       {/* Footer CTA */}
       <View className="px-4 pt-2 pb-6 mb-14">
         <TouchableOpacity
-          disabled={!isFormValid}
-          onPress={onUploadMint}
+          disabled={isSignedIn ? !isFormValid : false}
+          onPress={() => {
+            if (!isSignedIn) {
+              // Trigger sign-in gateway; continue to upload after successful sign-in
+              requireAuth(() => onUploadMint());
+              return;
+            }
+            onUploadMint();
+          }}
           className={`h-12 rounded-xl items-center justify-center ${
-            isFormValid ? "bg-blue-600" : "bg-zinc-700"
+            !isSignedIn || isFormValid ? "bg-blue-600" : "bg-zinc-700"
           }`}
         >
-          <Text className="text-white font-semibold">Upload & Mint</Text>
+          <Text className="text-white font-semibold">
+            {isSignedIn ? "Upload & Mint" : "Sign In"}
+          </Text>
         </TouchableOpacity>
         {media && fileSize != null && fileSize > MAX_VIDEO_SIZE_BYTES && (
           <Text className="text-xs text-red-500 mt-1">

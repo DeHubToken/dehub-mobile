@@ -227,13 +227,11 @@ const EditProfileScreen = () => {
       };
       if (localAvatar) {
         const avatarFile = createRNImageFile(localAvatar, "avatar");
-        payload.avatar = avatarFile;
-        payload.avatarImage = avatarFile;
+        payload.avatarImg = avatarFile;
       }
       if (localCover) {
         const coverFile = createRNImageFile(localCover, "cover");
-        payload.cover = coverFile;
-        payload.coverImage = coverFile;
+        payload.coverImg = coverFile;
       }
       await AuthService.updateProfile(payload);
       await refreshUser?.();

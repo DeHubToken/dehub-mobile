@@ -8,13 +8,13 @@ import {
   Linking,
   Platform,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuth } from "../context/AuthContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { toastSuccess, toastError, toastInfo } from "../libs";
 import ScreenHeader from "../components/ScreenHeader";
 import { logoutWeb3Auth } from "../config/web3auth.config";
 import FullScreenLoader from "../components/FullScreenLoader";
+import ReportBugModal from "../components/Settings/ReportBugModal";
 import { Ionicons } from "@expo/vector-icons";
 import { openInApp } from "../libs/links.utils";
 import {
@@ -30,6 +30,7 @@ import {
 const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   const { signOut, user } = useAuth();
   const [signingOut, setSigningOut] = useState<boolean>(false);
+  const [bugModalVisible, setBugModalVisible] = useState<boolean>(false);
 
   const handleSignOut = useCallback(async () => {
     if (signingOut) return;
@@ -51,60 +52,9 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
     }
   }, [signingOut, signOut]);
 
-  const handleReportBug = useCallback(async () => {
-    try {
-      const username = (
-        user?.username ||
-        user?.email ||
-        "Anonymous"
-      ).toString();
-      const subject = `Dehub.io | Bug Report | ${username}`;
-      const toList = [SUPPORT_MAIL, DEV_MAIL].filter(Boolean).join(",");
-
-      const body = [
-        "Please describe the issue and steps to reproduce:",
-        "",
-        `User: ${username}`,
-        `Device: ${Platform.OS} ${Platform.Version}`,
-        "App Version: v1.0.0",
-      ].join("\n");
-
-      const url = `mailto:${toList}?subject=${encodeURIComponent(
-        subject
-      )}&body=${encodeURIComponent(body)}`;
-
-      try {
-        const supported = await Linking.canOpenURL(url);
-        if (supported) {
-          await Linking.openURL(url);
-          return;
-        }
-      } catch (e) {
-        console.warn("[Settings] Full mailto failed, trying minimal", e);
-      }
-
-      // Fallback 1: Just email addresses
-      try {
-        await Linking.openURL(`mailto:${toList}`);
-        return;
-      } catch (e) {
-        console.warn("[Settings] Minimal mailto failed", e);
-      }
-
-      // Fallback 2: Copy to clipboard
-      try {
-        const { Clipboard } = require("@react-native-clipboard/clipboard");
-        const emailContent = `To: ${toList}\nSubject: ${subject}\n\n${body}`;
-        await Clipboard.setString(emailContent);
-        toastInfo("Email details copied to clipboard");
-      } catch (e) {
-        toastError("Could not open email app or copy details");
-      }
-    } catch (e) {
-      console.warn("[Settings] report bug failed", e);
-      toastError("Could not open your email app.");
-    }
-  }, [user]);
+  const handleReportBug = useCallback(() => {
+    setBugModalVisible(true);
+  }, []);
 
   return (
     <View className="flex-1 bg-black">
@@ -283,6 +233,11 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
           </Text>
         </View>
       </ScrollView>
+      <ReportBugModal
+        visible={bugModalVisible}
+        onClose={() => setBugModalVisible(false)}
+        username={(user?.username || user?.email || "Anonymous") as string}
+      />
     </View>
   );
 };

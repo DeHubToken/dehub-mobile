@@ -152,6 +152,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
       if (!loading) {
         setData(null);
         setLoading(true);
+        setMode("profile");
       }
     }
   }, [visible, usernameOrAddress, load, heightAnim]);

@@ -94,36 +94,13 @@ const TipModal: React.FC<TipModalProps> = ({
   const tokenContract = useERC20Contract(tokenAddress);
   const controllerContract = useStreamControllerContract();
   const [tipError, setTipError] = useState<string | null>(null);
-  const [ethBalance, setEthBalance] = useState<string>("");
-
-  // Fetch native ETH balance (for gas awareness) when modal open & dependencies ready
-  useEffect(() => {
-    let cancelled = false;
-    const load = async () => {
-      if (!actualOpen || !provider || !account) {
-        setEthBalance("");
-        return;
-      }
-      try {
-        const ethers = (ethersImport as any).ethers || ethersImport;
-        const ethersProvider = new (ethers.providers.Web3Provider as any)(
-          provider
-        );
-        const bal = await ethersProvider.getBalance(account);
-        if (cancelled) return;
-        const formatted = Number(ethers.utils.formatEther(bal));
-        setEthBalance(formatted.toFixed(formatted >= 1 ? 4 : 6));
-      } catch (e) {
-        if (!cancelled) setEthBalance("");
-      }
-    };
-    load();
-    const interval = setInterval(load, 15_000); // refresh every 15s while open
-    return () => {
-      cancelled = true;
-      clearInterval(interval);
-    };
-  }, [actualOpen, provider, account]);
+  const ethBalanceStr = useMemo(() => {
+    const raw = (user as any)?.tokenBalances?.ETH;
+    if (raw == null) return "";
+    const num = Number(raw);
+    if (!Number.isFinite(num)) return "";
+    return num.toFixed(num >= 1 ? 4 : 6);
+  }, [user?.tokenBalances?.ETH]);
 
   const resetState = useCallback(() => {
     setAmount("");
@@ -367,7 +344,7 @@ const TipModal: React.FC<TipModalProps> = ({
                   </View>
                   <View className="flex-row justify-between mt-1">
                     <Text className="text-[11px] text-white/50">
-                      ETH: {ethBalance !== "" ? ethBalance : "..."}
+                      ETH: {ethBalanceStr !== "" ? ethBalanceStr : "..."}
                     </Text>
                     <Text className="text-[11px] text-white/30">
                       Gas Balance
