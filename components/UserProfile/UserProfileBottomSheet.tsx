@@ -74,7 +74,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
 }) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<RemoteUser | null>(null);
-  const [shown, setShown] = useState<boolean>(false);
+  const [contentReady, setContentReady] = useState<boolean>(false);
   const lastRequestedRef = useRef<string | null>(null);
   const [viewerOpen, setViewerOpen] = useState(false);
   const [viewerImage, setViewerImage] = useState<{ uri: string } | null>(null);
@@ -108,6 +108,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   const load = useCallback(async (who: string) => {
     if (!who) return;
     lastRequestedRef.current = who;
+    // loading & data are reset synchronously on id change; keep here for safety
     setLoading(true);
     setData(null);
     try {
@@ -138,21 +139,21 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     }
   }, [authUser?.walletAddress, authUser?.address]);
 
+
   useEffect(() => {
-    let hideTimer: ReturnType<typeof setTimeout> | null = null;
-    if (visible) {
-      setShown(true);
-      if (usernameOrAddress) {
-        heightAnim.setValue(MID_HEIGHT);
-        setMode("profile");
-        load(usernameOrAddress);
-      }
-    } else {
-      hideTimer = setTimeout(() => setShown(false), 150);
+    if (visible && usernameOrAddress) {
+      // Immediately reset state to avoid flashing previous data
+      setContentReady(false);
+      heightAnim.setValue(MID_HEIGHT);
+      load(usernameOrAddress);
     }
-    return () => {
-      if (hideTimer) clearTimeout(hideTimer);
-    };
+    if (!visible) {
+      setContentReady(false);
+      if (!loading) {
+        setData(null);
+        setLoading(true);
+      }
+    }
   }, [visible, usernameOrAddress, load, heightAnim]);
 
   // (Hardware back handled by react-native-modal via onBackButtonPress prop.)
@@ -392,7 +393,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
 
   return (
     <Modal
-      isVisible={shown}
+      isVisible={visible}
       onBackdropPress={onClose}
       onSwipeComplete={onClose}
       onBackButtonPress={onClose}
@@ -400,6 +401,23 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
       backdropOpacity={0.5}
       style={{ justifyContent: "flex-end", margin: 0 }}
       propagateSwipe
+      useNativeDriver
+      useNativeDriverForBackdrop
+      hardwareAccelerated
+      hideModalContentWhileAnimating
+      animationIn="slideInUp"
+      animationOut="slideOutDown"
+      animationInTiming={220}
+      animationOutTiming={180}
+      backdropTransitionInTiming={120}
+      backdropTransitionOutTiming={120}
+      onModalWillShow={() => setContentReady(false)}
+      onModalShow={() => setContentReady(true)}
+      onModalWillHide={() => setContentReady(false)}
+      onModalHide={() => {
+        setData(null);
+        setLoading(true);
+      }}
     >
       <Animated.View
         className="bg-theme-neutrals-900 rounded-t-2xl overflow-hidden"
@@ -412,14 +430,26 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
         >
           <View className="w-16 h-1.5 bg-theme-neutrals-700 rounded-full" />
         </View>
-        {loading || !data ? (
-          <ScrollView showsVerticalScrollIndicator={false} className="flex-1">
+        {!contentReady ? (
+          <View className="flex-1 items-center justify-center">
+            <ActivityIndicator color="#fff" />
+            {/* <UserProfileSkeleton /> */}
+          </View>
+        ) : loading || !data ? (
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            className="flex-1"
+            removeClippedSubviews
+            scrollEventThrottle={16}
+          >
             <UserProfileSkeleton />
           </ScrollView>
         ) : mode === "profile" ? (
           <ScrollView
             showsVerticalScrollIndicator={false}
             className="flex-1 mt-2"
+            removeClippedSubviews
+            scrollEventThrottle={16}
           >
             <View>
               <UserProfileHeader
@@ -480,6 +510,13 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                 onIndexChange={setTabIndex}
                 initialLayout={{ width: Dimensions.get("window").width }}
                 renderTabBar={renderVideoTabBar}
+                lazy
+                lazyPreloadDistance={0}
+                renderLazyPlaceholder={() => (
+                  <View className="flex-1 items-center justify-center">
+                    <ActivityIndicator color="#fff" />
+                  </View>
+                )}
               />
             </View>
           </View>

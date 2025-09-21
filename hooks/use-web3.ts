@@ -44,16 +44,95 @@ async function buildContract(
       throw new Error(`Invalid contract address: ${address}`);
     if (!abi) throw new Error("ABI is missing");
 
-    const ethProvider = new ethers.providers.Web3Provider(provider as any);
-    // console.log("[DEBUG]", {withSigner, signer: ethProvider.getSigner()})
-    const signerOrProvider = withSigner ? ethProvider.getSigner() : ethProvider;
-
+    const { signerOrProvider } = await deriveSignerOrProvider(provider, withSigner);
     const contract = new ethers.Contract(address, abi, signerOrProvider);
-
     return contract;
   } catch (err) {
     console.error("[buildContract] Failed to build contract", err);
     return undefined;
+  }
+}
+
+/**
+ * Try to derive an ethers Signer from an EIP-1193 provider. Logs detailed diagnostics on failure.
+ */
+async function deriveSignerOrProvider(eip1193: any, withSigner: boolean) {
+  try {
+    const hasRequest = typeof eip1193?.request === "function";
+    if (!hasRequest) {
+      console.warn("[use-web3] Provider missing request() method", { keys: Object.keys(eip1193 || {}) });
+      throw new Error("Provider missing request method");
+    }
+
+    // First, get the accounts to ensure the provider is properly connected
+    let accounts: string[] = [];
+    try {
+      accounts = await eip1193.request({ method: "eth_accounts" });
+      // console.log("[use-web3] Retrieved accounts:", accounts);
+    } catch (e) {
+      console.warn("[use-web3] Failed to get accounts:", e);
+      // Try alternative method for Web3Auth
+      try {
+        const privateKey = await eip1193.request({ method: "private_key" });
+        if (privateKey) {
+          // Derive address from private key
+          const wallet = new ethers.Wallet(privateKey);
+          accounts = [wallet.address];
+          // console.log("[use-web3] Derived address from private key:", accounts[0]);
+        }
+      } catch (pkError) {
+        console.warn("[use-web3] Failed to get private key:", pkError);
+      }
+    }
+
+    if (!accounts || accounts.length === 0) {
+      throw new Error("No accounts available from provider");
+    }
+
+    // Create the ethers provider
+    const ethProvider = new ethers.providers.Web3Provider(eip1193 as any);
+    
+    if (!withSigner) {
+      return { signerOrProvider: ethProvider };
+    }
+
+    // Get signer and verify it has an address
+    const signer = ethProvider.getSigner();
+    
+    try {
+      // Force the address to be the first account we retrieved
+      const signerWithAddress = signer.connect(ethProvider);
+      
+      // Verify we can get the address
+      const addr = await signerWithAddress.getAddress();
+      // console.log("[use-web3] Signer verified with address:", addr);
+      
+      return { signerOrProvider: signerWithAddress };
+    } catch (addressError) {
+      console.warn("[use-web3] Signer address verification failed:", addressError);
+      
+      // Fallback: create signer directly from private key
+      try {
+        const privateKey = await eip1193.request({ method: "private_key" });
+        if (privateKey) {
+          const directSigner = new ethers.Wallet(privateKey, ethProvider);
+          // console.log("[use-web3] Created direct signer with address:", directSigner.address);
+          return { signerOrProvider: directSigner };
+        }
+      } catch (pkError) {
+        console.error("[use-web3] Failed to create direct signer:", pkError);
+      }
+      
+      throw addressError;
+    }
+    
+  } catch (e) {
+    console.error("[use-web3] Failed to derive signer from provider", {
+      hasRequest: typeof eip1193?.request === "function",
+      providerKeys: Object.keys(eip1193 || {}),
+      error: (e as any)?.message || String(e),
+    });
+    throw e;
   }
 }
 

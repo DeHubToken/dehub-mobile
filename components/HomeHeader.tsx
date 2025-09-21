@@ -17,11 +17,13 @@ const HomeHeader = () => {
   return (
     <View className="flex-row justify-between items-center p-4 border-b border-theme-neutrals-700">
       <View className="flex-row items-center">
-        <Image
-          source={require("../assets/banner.png")}
-          className="w-32 h-11 mx-2"
-          resizeMode="contain"
-        />
+        <TouchableOpacity onPress={() =>{ toastInfo("DHB v1.0.0"); toastInfo("DHB v1.0.0", {description:"but with more"})}}>
+          <Image
+            source={require("../assets/banner.png")}
+            className="w-32 h-11 mx-2"
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
       </View>
       <View className="flex-row items-center">
         <TouchableOpacity

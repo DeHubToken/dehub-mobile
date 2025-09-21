@@ -12,7 +12,7 @@ export default function AuthNavigator() {
       initialRouteName={ScreenNames.SignIn}
       screenOptions={{
         headerShown: false,
-        cardStyle: { backgroundColor: 'transparent' },
+        cardStyle: { backgroundColor: '#000' },
         cardOverlayEnabled: true,
         cardStyleInterpolator: ({ current, layouts }) => {
           return {
@@ -28,6 +28,7 @@ export default function AuthNavigator() {
               ],
             },
             overlayStyle: {
+              backgroundColor: 'rgba(0,0,0,0.6)',
               opacity: current.progress.interpolate({
                 inputRange: [0, 1],
                 outputRange: [0, 0.5],

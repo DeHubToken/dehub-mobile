@@ -13,17 +13,22 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   const [identifier, setIdentifier] = useState<string | null>(null);
 
   const showUserProfile = useCallback((id: string) => {
+    // Set identifier first, then show, to ensure content resets correctly
     setIdentifier(id);
     setVisible(true);
   }, []);
-  const hideUserProfile = useCallback(() => setVisible(false), []);
+  const hideUserProfile = useCallback(() => {
+    setVisible(false);
+    // Clear identifier to prevent flashing previous data on next open
+    setIdentifier(null);
+  }, []);
 
   return (
     <UserProfileSheetContext.Provider value={{ showUserProfile, hideUserProfile }}>
       {children}
       <UserProfileBottomSheet
         visible={visible}
-        usernameOrAddress={identifier || undefined}
+        usernameOrAddress={identifier}
         onClose={hideUserProfile}
       />
     </UserProfileSheetContext.Provider>

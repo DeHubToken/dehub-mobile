@@ -25,6 +25,7 @@ function BottomTabNavigator() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
+        sceneContainerStyle: { backgroundColor: '#000' },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: keyof typeof Ionicons.glyphMap;
 
@@ -47,7 +48,7 @@ function BottomTabNavigator() {
         tabBarActiveTintColor: theme.colors.accent,
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
-          backgroundColor: theme.colors.card,
+          backgroundColor: '#000',
           borderTopWidth: 0, // Remove top border
           paddingBottom: 5,
           paddingTop: 5,
