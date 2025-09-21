@@ -119,6 +119,14 @@ export default function VideosTab({ onClose }: Props) {
   const [confirmText, setConfirmText] = useState("");
   const [showBountyApprove, setShowBountyApprove] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [uploadStage, setUploadStage] = useState<
+    | "idle"
+    | "uploading"
+    | "processing"
+    | "awaiting-wallet"
+    | "minting"
+    | "finalizing"
+  >("idle");
 
   const { width: screenWidth } = useWindowDimensions();
   const insets = useSafeAreaInsets();
@@ -616,8 +624,9 @@ export default function VideosTab({ onClose }: Props) {
     if (!payload) return;
     try {
       setIsUploading(true);
+      setUploadStage("uploading");
 
-      // Recompute streamInfo with chainIds per active selections
+      // // Recompute streamInfo with chainIds per active selections
       const info: Record<string, any> = { ...payload.streamInfo };
       if (info.isLockContent) {
         const net = supportedNetworks.find(
@@ -672,7 +681,7 @@ export default function VideosTab({ onClose }: Props) {
       }
 
       const res = await minNft(formData);
-      console.log({ res });
+      setUploadStage("processing");
       const result: any = (res as any)?.data ?? res;
       if (result?.error) {
         throw new Error(
@@ -700,6 +709,7 @@ export default function VideosTab({ onClose }: Props) {
         if (!chainId || !streamController) {
           throw new Error("Wallet not ready to mint with bounty");
         }
+        setUploadStage("awaiting-wallet");
         const tokenSymbol =
           payload.streamInfo[streamInfoKeys.addBountyTokenSymbol] || "DHB";
         const bountyToken = supportedTokens.find(
@@ -722,10 +732,17 @@ export default function VideosTab({ onClose }: Props) {
           firstXViewer,
           firstXComment
         );
+        setUploadStage("minting");
         await tx?.wait?.(1);
         setShowConfirm(false);
-        toastSuccess("Minted successfully!");
-        (navigation as any).navigate(ScreenNames.YourVideos as never);
+        setUploadStage("finalizing");
+        toastSuccess("Minted successfully!", {
+          description:
+            "It may take a few minutes for your video to appear in your profile",
+        });
+        setUploadStage("idle");
+        setIsUploading(false);
+        (navigation as any).replace(ScreenNames.YourVideos as never);
         return;
       }
 
@@ -734,6 +751,7 @@ export default function VideosTab({ onClose }: Props) {
         throw new Error("Wallet not ready to mint");
       }
       console.log("Minting...");
+      setUploadStage("awaiting-wallet");
       const tx = await mintNftOnChain(
         streamCollectionContract,
         createdTokenId,
@@ -742,17 +760,25 @@ export default function VideosTab({ onClose }: Props) {
         r,
         s
       );
+      setUploadStage("minting");
       await tx?.wait?.(1);
       setShowConfirm(false);
-      toastSuccess("Minted successfully!");
-      (navigation as any).navigate(ScreenNames.YourVideos as never);
+      setUploadStage("finalizing");
+      toastSuccess("Minted successfully!", {
+        description:
+          "It may take a few minutes for your video to appear in your profile",
+      });
+      setUploadStage("idle");
+      setIsUploading(false);
+      (navigation as any).replace(ScreenNames.YourVideos as never);
     } catch (e: any) {
       console.error("[handleUpload]", e);
       toastError(e?.message || "Upload failed");
     } finally {
       setIsUploading(false);
+      if (uploadStage !== "idle") setUploadStage("idle");
     }
-  }, [buildPayload, coverUri, thumbUri, lockNetwork, ppvNetwork, bountyChain]);
+  }, [buildPayload, coverUri, thumbUri, lockNetwork, ppvNetwork, bountyChain, uploadStage]);
 
   return (
     <View className="flex-1">
@@ -937,7 +963,7 @@ export default function VideosTab({ onClose }: Props) {
       <GlassModal
         visible={showConfirm}
         onClose={() => {
-          if (!isUploading) setShowConfirm(false);
+          if (!isUploading && uploadStage === "idle") setShowConfirm(false);
         }}
         presentation="center"
         maxHeight="60%"
@@ -950,27 +976,37 @@ export default function VideosTab({ onClose }: Props) {
           <Text className="text-gray-300 text-sm">{confirmText}</Text>
           <View className="flex-row justify-end mt-4">
             <TouchableOpacity
-              disabled={isUploading}
+              disabled={isUploading || uploadStage !== "idle"}
               onPress={() => setShowConfirm(false)}
               className={`px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700 mr-2 ${
-                isUploading ? "opacity-50" : ""
+                isUploading || uploadStage !== "idle" ? "opacity-50" : ""
               }`}
             >
               <Text className="text-white">Cancel</Text>
             </TouchableOpacity>
             {showBountyApprove ? (
               <TouchableOpacity
-                disabled={isUploading}
+                disabled={isUploading || uploadStage !== "idle"}
                 onPress={handleUpload}
                 className={`px-3 py-2 rounded-lg bg-blue-600 ${
-                  isUploading ? "opacity-80" : ""
+                  isUploading || uploadStage !== "idle" ? "opacity-80" : ""
                 }`}
               >
-                {isUploading ? (
+                {isUploading || uploadStage !== "idle" ? (
                   <View className="flex-row items-center">
                     <ActivityIndicator color="#FFFFFF" size="small" />
                     <Text className="text-white font-semibold ml-2">
-                      Processing…
+                      {uploadStage === "uploading"
+                        ? "Uploading…"
+                        : uploadStage === "processing"
+                        ? "Uploading…"
+                        : uploadStage === "awaiting-wallet"
+                        ? "Minting…"
+                        : uploadStage === "minting"
+                        ? "Minting…"
+                        : uploadStage === "finalizing"
+                        ? "Finalizing…"
+                        : "Processing…"}
                     </Text>
                   </View>
                 ) : (
@@ -979,17 +1015,27 @@ export default function VideosTab({ onClose }: Props) {
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
-                disabled={isUploading}
+                disabled={isUploading || uploadStage !== "idle"}
                 onPress={handleUpload}
                 className={`px-3 py-2 rounded-lg bg-blue-600 ${
-                  isUploading ? "opacity-80" : ""
+                  isUploading || uploadStage !== "idle" ? "opacity-80" : ""
                 }`}
               >
-                {isUploading ? (
+                {isUploading || uploadStage !== "idle" ? (
                   <View className="flex-row items-center">
                     <ActivityIndicator color="#FFFFFF" size="small" />
                     <Text className="text-white font-semibold ml-2">
-                      Processing…
+                      {uploadStage === "uploading"
+                        ? "Uploading…"
+                        : uploadStage === "processing"
+                        ? "Uploading…"
+                        : uploadStage === "awaiting-wallet"
+                        ? "Minting…"
+                        : uploadStage === "minting"
+                        ? "Minting…"
+                        : uploadStage === "finalizing"
+                        ? "Finalizing…"
+                        : "Processing…"}
                     </Text>
                   </View>
                 ) : (

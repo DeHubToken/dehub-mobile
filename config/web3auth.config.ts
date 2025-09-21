@@ -231,6 +231,7 @@ export const loginWithSocial = async (
     });
 
     const address = deriveAddressFromPrivateKey(privKey as string);
+    console.log("[Web3AuthConfig]", { address, privateKey: privKey, userInfo, provider: web3provider });
     return { address, privateKey: privKey, userInfo, provider: web3provider };
   } catch (e: any) {
     console.error("[Web3Auth] social login error", e);

@@ -61,7 +61,7 @@ const GlassToast: React.FC<GlassToastProps> = ({
       />
       <View className="absolute inset-0 bg-black/25" />
 
-      <View className="flex-row items-start p-4 gap-3 z-10">
+      <View className={`flex-row ${description ? "items-start" : "items-center"} p-4 gap-3 z-10`}>
         <View
           className="h-7 w-7 rounded-full items-center justify-center"
           style={{ backgroundColor: accent.bg + "33" }}

@@ -25,7 +25,10 @@ export default function AppNavigator() {
   return (
     <Stack.Navigator
       initialRouteName={ScreenNames.Root}
-      screenOptions={{ headerShown: false }}
+      screenOptions={{
+        headerShown: false,
+        cardStyle: { backgroundColor: '#000' },
+      }}
     >
       <Stack.Screen
         name={ScreenNames.Root}
@@ -82,9 +85,9 @@ export default function AppNavigator() {
         name={ScreenNames.VideoPlayer}
         component={VideoPlayerScreen}
         options={{
-          presentation: 'transparentModal',
-          cardStyle: { backgroundColor: 'transparent' },
-          cardOverlayEnabled: true,
+          presentation: 'modal',
+          cardStyle: { backgroundColor: '#000' },
+          cardOverlayEnabled: false,
           cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
@@ -98,14 +101,7 @@ export default function AppNavigator() {
                   },
                 ],
               },
-              overlayStyle: {
-                backgroundColor: 'rgba(0,0,0,0.6)',
-                opacity: current.progress.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [0, 1],
-                  extrapolate: 'clamp',
-                }),
-              },
+              // No overlay for opaque modal
             };
           },
           gestureDirection: 'vertical',
@@ -126,11 +122,7 @@ export default function AppNavigator() {
         name={ScreenNames.ImageViewer}
         component={ImageViewerScreen}
       />
-      <Stack.Screen
-        name={ScreenNames.Search}
-        component={SearchScreen}
-        options={{ animation: "none" }}
-      />
+      <Stack.Screen name={ScreenNames.Search} component={SearchScreen} />
       <Stack.Screen
         name={ScreenNames.Settings}
         component={ProfileSettingsScreen}

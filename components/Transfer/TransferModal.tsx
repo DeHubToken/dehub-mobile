@@ -24,8 +24,9 @@ import { getAvatarUrl } from "../../libs/misc";
 import Avatar from "../common/Avatar";
 import { truncateAddress } from "../../libs/strings.util";
 import { useERC20Contract, useWeb3Provider } from "../../hooks/use-web3";
-import { ethers } from 'ethers';
+import { ethers, providers } from "ethers";
 import { toastError, toastSuccess } from "../../libs/toast";
+import { parseTxError } from "../../libs/web3.util";
 
 export interface TransferModalProps {
   open: boolean;
@@ -36,7 +37,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
   open,
   onOpenChange,
 }) => {
-  const { user, requireAuth, patchUser } = useAuth();
+  const { user, requireAuth, patchUser, provider } = useAuth();
   const { chainId, account } = useWeb3Provider();
   const [amount, setAmount] = useState<string>("");
   const [query, setQuery] = useState<string>("");
@@ -47,7 +48,8 @@ const TransferModal: React.FC<TransferModalProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [showResults, setShowResults] = useState<boolean>(false);
   const searchIdRef = useRef<number>(0);
-  const [recipientFromAddress, setRecipientFromAddress] = useState<boolean>(false);
+  const [recipientFromAddress, setRecipientFromAddress] =
+    useState<boolean>(false);
 
   const selectedLabel = useMemo(() => {
     if (!recipient) return "";
@@ -69,6 +71,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
   const tokenAddress = dhbMeta?.address;
   const tokenDecimals = dhbMeta?.decimals || 18;
   const tokenContract = useERC20Contract(tokenAddress);
+  // console.log("[TransferModal] tokenContract", { tokenAddress, dhbMeta, chainId, provider });
   const balance = (user?.tokenBalances?.DHB ?? 0) as number;
   const numericAmount = Number(amount) || 0;
   const insufficient = numericAmount > balance;
@@ -138,18 +141,72 @@ const TransferModal: React.FC<TransferModalProps> = ({
   const handleSend = useCallback(async () => {
     requireAuth(async () => {
       if (sending || !canSend) return;
+      if (account?.toLowerCase() === recipient?.walletAddress?.toLowerCase()) {
+        setError("You cannot send tokens to yourself");
+        return;
+      }
       setError(null);
       if (!tokenContract || !recipient || !tokenAddress) return;
       try {
         setSending(true);
         const toAddr = (recipient.walletAddress || recipient.address) as string;
         const amountBN = ethers.utils.parseUnits(String(amount), tokenDecimals);
-//         console.log("[DEBUG] tokenContract", tokenContract);
-// console.log("[DEBUG] tokenContract signer", tokenContract?.signer);
-// console.log("[DEBUG] tokenContract provider", tokenContract?.provider);
-// console.log("[DEBUG] tokenAddress", tokenAddress);
-// console.log("[DEBUG] recipient", recipient?.walletAddress || recipient?.address);
-        const tx = await tokenContract.transfer(toAddr, amountBN);
+        console.log("[DEBUG] tokenAddress", tokenAddress);
+        console.log(
+          "[DEBUG] recipient",
+          recipient?.walletAddress || recipient?.address
+        );
+
+        // Preflight diagnostics to avoid opaque reverts
+        try {
+          const signerAddr = await tokenContract.signer.getAddress?.();
+          const signerChainId = await tokenContract.signer.getChainId?.();
+          const onchainBal = await tokenContract.balanceOf(signerAddr);
+          const dec = await tokenContract.decimals?.();
+          const sym = await tokenContract.symbol?.();
+          console.log("[TransferModal] preflight", {
+            signerAddr,
+            signerChainId,
+            tokenAddress,
+            tokenDecimals,
+            onchainBal: onchainBal?.toString?.(),
+            amountBN: amountBN.toString(),
+            symbol: sym,
+            decimals: dec,
+          });
+          if (onchainBal && onchainBal.lt(amountBN)) {
+            setError("Insufficient on-chain balance for this token");
+            setSending(false);
+            return;
+          }
+        } catch (pfErr) {
+          console.warn("[TransferModal] preflight checks failed", pfErr);
+        }
+
+        // Static call first to catch reverts early
+        try {
+          await tokenContract.callStatic.transfer(toAddr, amountBN);
+        } catch (staticErr: any) {
+          console.warn("[TransferModal] callStatic.transfer reverted", staticErr);
+          setError(parseTxError(staticErr?.message || "execution reverted", "send"));
+          setSending(false);
+          return;
+        }
+
+        // Try to estimate gas; if it fails but static call succeeded, use a safe fallback
+        let gasLimitOverride: any = undefined;
+        try {
+          const est = await tokenContract.estimateGas.transfer(toAddr, amountBN);
+          // Add 20% safety margin
+          gasLimitOverride = est.mul(120).div(100);
+        } catch (egErr) {
+          console.warn("[TransferModal] estimateGas failed, applying fallback", egErr);
+          // Typical ERC20 transfer fits well under 100k on L2s
+          gasLimitOverride = ethers.BigNumber.from(120000);
+        }
+        const tx = await tokenContract.transfer(toAddr, amountBN, {
+          gasLimit: gasLimitOverride,
+        });
         await tx.wait?.(1);
         toastSuccess("Transfer sent");
         try {
@@ -170,8 +227,8 @@ const TransferModal: React.FC<TransferModalProps> = ({
         close();
       } catch (e: any) {
         console.warn("[TransferModal] transfer failed", e);
-        setError(e?.message || "Transfer failed");
-        toastError(e, "Transfer failed");
+        setError(parseTxError(e?.message, "send"));
+        // toastError(e, "Transfer failed");
       } finally {
         setSending(false);
       }
@@ -305,10 +362,13 @@ const TransferModal: React.FC<TransferModalProps> = ({
                 value={query}
                 onChangeText={(t) => {
                   setQuery(t);
-                  const trimmed = (t || '').trim();
+                  const trimmed = (t || "").trim();
                   // If a valid address is pasted/typed, set as recipient and bypass search
                   if (ethers.utils?.isAddress?.(trimmed)) {
-                    setRecipient({ address: trimmed, walletAddress: trimmed } as any);
+                    setRecipient({
+                      address: trimmed,
+                      walletAddress: trimmed,
+                    } as any);
                     setRecipientFromAddress(true);
                     setResults([]);
                     setLoading(false);
@@ -317,7 +377,10 @@ const TransferModal: React.FC<TransferModalProps> = ({
                     return;
                   }
                   // If editing after setting address, clear recipient
-                  if (recipientFromAddress && !ethers.utils?.isAddress?.(trimmed)) {
+                  if (
+                    recipientFromAddress &&
+                    !ethers.utils?.isAddress?.(trimmed)
+                  ) {
                     setRecipient(null);
                     setRecipientFromAddress(false);
                   }
@@ -331,13 +394,17 @@ const TransferModal: React.FC<TransferModalProps> = ({
                     setShowResults(trimmed.length >= 2);
                   }
                 }}
-                onFocus={() => setShowResults(!recipientFromAddress && (query || '').trim().length >= 2)}
+                onFocus={() =>
+                  setShowResults(
+                    !recipientFromAddress && (query || "").trim().length >= 2
+                  )
+                }
                 className="border border-theme-neutrals-700 rounded-lg pr-10 pl-3 h-12 text-white text-base"
               />
               {recipientFromAddress && (
                 <TouchableOpacity
                   onPress={() => {
-                    setQuery('');
+                    setQuery("");
                     setRecipient(null);
                     setRecipientFromAddress(false);
                     setResults([]);
@@ -361,7 +428,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
                   />
                   <View className="ml-2 flex-1">
                     <Text className="text-white text-sm" numberOfLines={1}>
-                      {recipientFromAddress ? 'Transferring to' : selectedLabel}
+                      {recipientFromAddress ? "Transferring to" : selectedLabel}
                     </Text>
                     <Text
                       className="text-theme-neutrals-400 text-[11px]"

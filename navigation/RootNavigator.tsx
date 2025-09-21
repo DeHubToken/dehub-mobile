@@ -22,7 +22,12 @@ export default function RootNavigator() {
   const showAuth = (isFirstTimeUser && !isSignedIn) || needsUsername;
 
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        cardStyle: { backgroundColor: '#000' },
+      }}
+    >
       {/* <Stack.Screen name={ScreenNames.Test} component={NativeWindTest} /> */}
 
       {showAuth ? (

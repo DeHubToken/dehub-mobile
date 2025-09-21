@@ -10,34 +10,88 @@ import { useAuth } from "../../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { secondsToHMMSS } from "../../libs/date.util";
-import { getAvatarUrl, resolveThumbnail, getImageUrl, getBadgeUrl, getVideoUrl } from "../../libs";
+import {
+  getAvatarUrl,
+  resolveThumbnail,
+  getImageUrl,
+  getBadgeUrl,
+  getVideoUrl,
+} from "../../libs";
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import Avatar from "../common/Avatar";
 
-interface VideoCardProps { nft: any; enablePreview?: boolean; badgeIcon?: string; }
+interface VideoCardProps {
+  nft: any;
+  enablePreview?: boolean;
+  badgeIcon?: string;
+}
 
-const VideoCardComponent: React.FC<VideoCardProps> = ({ nft, enablePreview, badgeIcon = 'star' }) => {
+const VideoCardComponent: React.FC<VideoCardProps> = ({
+  nft,
+  enablePreview,
+  badgeIcon = "star",
+}) => {
   // Derivations centralised here
   const streamInfo = nft.streamInfo || (nft as any).stream?.streamInfo;
   const tokenId = nft.tokenId || (nft as any).stream?.tokenId;
   const rawStatus: string | undefined = (nft as any).status;
   const status = rawStatus ? rawStatus.toUpperCase() : undefined;
   const isLive = !!(nft as any).streamKey || !!streamInfo?.isLive;
-  const duration = nft.videoDuration ? secondsToHMMSS(nft.videoDuration) : undefined;
-  const rawThumb = (nft as any).thumbnail || (nft as any).stream?.thumbnail || nft.thumbnailUrl || nft.imageUrl || '';
-  const thumbUrl = isLive ? resolveThumbnail(nft) : getImageUrl(rawThumb, 640, 360);
-  const thumbnail = thumbUrl && thumbUrl.length > 0 ? thumbUrl : require('../../assets/default-banner.png');
-  const avatarUrl = getAvatarUrl((nft as any).minterAvatarUrl || (nft as any).account?.avatarImageUrl || '');
-  const profilePicture = avatarUrl && avatarUrl !== 'default-avatar' ? avatarUrl : require('../../assets/default-avatar.png');
+  const duration = nft.videoDuration
+    ? secondsToHMMSS(nft.videoDuration)
+    : undefined;
+  const rawThumb =
+    (nft as any).thumbnail ||
+    (nft as any).stream?.thumbnail ||
+    nft.thumbnailUrl ||
+    nft.imageUrl ||
+    "";
+  const thumbUrl = isLive
+    ? resolveThumbnail(nft)
+    : getImageUrl(rawThumb, 640, 360);
+  const thumbnail =
+    thumbUrl && thumbUrl.length > 0
+      ? thumbUrl
+      : require("../../assets/default-banner.png");
+  const avatarUrl = getAvatarUrl(
+    (nft as any).minterAvatarUrl || (nft as any).account?.avatarImageUrl || ""
+  );
+  const profilePicture =
+    avatarUrl && avatarUrl !== "default-avatar"
+      ? avatarUrl
+      : require("../../assets/default-avatar.png");
   const stakeForBadge = (nft as any).minterStaked || 0;
-  const badgeImage = getBadgeUrl(stakeForBadge, 'dark');
-  const title = (nft as any).name || (nft as any).title || (nft as any).stream?.title || 'Untitled';
-  const creator = (nft as any).minterDisplayName || (nft as any).mintername || (nft as any).minter || (nft as any).owner || (nft as any).account?.displayName || (nft as any).account?.username || (nft as any).account?.address || 'Unknown';
-  const username = (nft as any).account?.username || (nft as any).mintername || undefined;
-  const address = (nft as any).account?.address || (nft as any).minter || (nft as any).owner || undefined;
+  const badgeImage = getBadgeUrl(stakeForBadge, "dark");
+  const title =
+    (nft as any).name ||
+    (nft as any).title ||
+    (nft as any).stream?.title ||
+    "Untitled";
+  const creator =
+    (nft as any).minterDisplayName ||
+    (nft as any).mintername ||
+    (nft as any).minter ||
+    (nft as any).owner ||
+    (nft as any).account?.displayName ||
+    (nft as any).account?.username ||
+    (nft as any).account?.address ||
+    "Unknown";
+  const username =
+    (nft as any).account?.username || (nft as any).mintername || undefined;
+  const address =
+    (nft as any).account?.address ||
+    (nft as any).minter ||
+    (nft as any).owner ||
+    undefined;
   const likes = nft.totalVotes?.for || (nft as any).stream?.likes || 0;
-  const views = nft.views || (nft as any).peakViewers || nft.totalViews || (nft as any).stream?.totalViews || 0;
-  const createdAt = nft.createdAt || (nft as any).stream?.createdAt || new Date().toISOString();
+  const views =
+    nft.views ||
+    (nft as any).peakViewers ||
+    nft.totalViews ||
+    (nft as any).stream?.totalViews ||
+    0;
+  const createdAt =
+    nft.createdAt || (nft as any).stream?.createdAt || new Date().toISOString();
   const isPayPerView = streamInfo?.isPayPerView;
   const payPerViewAmount = streamInfo?.payPerViewAmount;
   const payPerViewTokenSymbol = streamInfo?.payPerViewTokenSymbol;
@@ -58,7 +112,10 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({ nft, enablePreview, badg
     const isSelf =
       selfUsernames.includes(id as any) || selfAddresses.includes(id as any);
     if (isSelf) {
-      navigation.navigate(ScreenNames.Profile);
+      navigation.navigate(ScreenNames.Root as any, {
+        screen: ScreenNames.Profile,
+        // params: { address: addr },
+      });
       return;
     }
     showUserProfile(id);
@@ -69,11 +126,11 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({ nft, enablePreview, badg
   const accessInfo = useStreamAccessInfo(nft);
   const handlePressVideo = useCallback(() => {
     if (tokenId == null) return; // require valid tokenId
-    navigation.navigate(ScreenNames.VideoPlayer, {
+    navigation.navigate(ScreenNames.VideoPlayer as never, {
       isLive,
       nft,
       accessInfo,
-    });
+    } as never);
   }, [navigation, tokenId, isLive, nft, accessInfo]);
   return (
     <TouchableOpacity
@@ -112,7 +169,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({ nft, enablePreview, badg
           typeof thumbnail === "string" &&
           hasThumb && (
             <VideoPreview
-              previewUrl={getVideoUrl(tokenId) || ''}
+              previewUrl={getVideoUrl(tokenId) || ""}
               onStart={undefined}
               onEnd={undefined}
               handlePressVideo={handlePressVideo}
@@ -150,7 +207,13 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({ nft, enablePreview, badg
       <View className="p-3">
         <View className="flex-row items-center mb-1">
           <TouchableOpacity activeOpacity={0.7} onPress={handlePressAvatar}>
-            <Avatar uri={typeof profilePicture === 'string' ? profilePicture : undefined} size={32} className="mr-2" />
+            <Avatar
+              uri={
+                typeof profilePicture === "string" ? profilePicture : undefined
+              }
+              size={32}
+              className="mr-2"
+            />
           </TouchableOpacity>
           <View className="flex flex-col">
             <Text className="text-base font-bold text-theme-neutrals-100 mr-2">
@@ -204,7 +267,10 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({ nft, enablePreview, badg
 };
 
 // Shallow props comparison to avoid unnecessary re-renders inside FlatList
-const areEqual = (prev: VideoCardProps, next: VideoCardProps) => prev.nft === next.nft && prev.enablePreview === next.enablePreview && prev.badgeIcon === next.badgeIcon;
+const areEqual = (prev: VideoCardProps, next: VideoCardProps) =>
+  prev.nft === next.nft &&
+  prev.enablePreview === next.enablePreview &&
+  prev.badgeIcon === next.badgeIcon;
 
 const VideoCard = React.memo(VideoCardComponent, areEqual);
 

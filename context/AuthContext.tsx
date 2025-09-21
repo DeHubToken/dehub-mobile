@@ -21,7 +21,7 @@ import {
 } from "../libs/auth.utils";
 import { AuthService } from "../services/auth.service";
 import { getAccount, getNotifications } from "../services/user.service";
-import { ethersService } from "../services/ethers.service";
+import { EthersService, ethersService } from "../services/ethers.service";
 import { supportedTokens } from "../config/constants";
 import { apiClient } from "../libs/api.client";
 import { maxStacked } from "../libs/validators.util";
@@ -127,7 +127,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [provider, setProvider] = useState<any | null>(null);
   const [chainId, setChainId] = useState<number | undefined>(undefined);
   const [providerStatus, setProviderStatus] = useState<ProviderStatus>("idle");
-  const providerInitPromiseRef = useRef<Promise<void> | null>(null);
+  const providerInitInFlightRef = useRef<Promise<void> | null>(null);
   const isMountedRef = useRef(true);
 
   useEffect(() => {
@@ -137,104 +137,105 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   /**
-   * Provider initialization with timeout + retries + single-flight protection.
+   * Provider initialization (simplified, doc-aligned) with single-flight.
+   * - Grabs Web3Auth EIP-1193 provider
+   * - Reads chainId and accounts via RPC
+   * - Adds chainChanged listener
+   * Note: EIP-1193 providers do not expose a .signer property — this is normal.
    */
   const ensureProvider = useCallback(async () => {
-    if (provider || providerStatus === "ready") return;
-    if (providerInitPromiseRef.current) return providerInitPromiseRef.current;
+    if (provider || providerStatus === "ready") {
+      // console.log("[AuthContext] ensureProvider: already ready", {
+      //   hasProvider: !!provider,
+      //   providerStatus,
+      // });
+      return;
+    }
+    if (providerInitInFlightRef.current) return providerInitInFlightRef.current;
 
-    const normalizeChainId = (val: any): number | undefined => {
-      if (val == null) return undefined;
-      if (typeof val === "number") return Number(val);
-      if (typeof val === "string") {
-        const s = val.trim();
-        const parsed = s.startsWith("0x") ? parseInt(s, 16) : parseInt(s, 10);
-        return Number.isNaN(parsed) ? undefined : parsed;
-      }
-      return undefined;
-    };
-
-    const attemptInit = async (attempt: number, maxAttempts: number) => {
-      const start = Date.now();
+    const init = (async () => {
+      setProviderStatus("initializing");
+      const startTs = Date.now();
       try {
-        setProviderStatus("initializing");
-        const p = await withTimeout(getWeb3AuthProvider(), 12000);
-        if (!p) throw new Error("Provider returned null/undefined");
-        if (!isMountedRef.current) return;
-        // console.log({p})
-        setProvider(p);
-        // Resolve chainId (fallback safe parse)
-        try {
-          let resolved: number | undefined;
-          const cid = await p.request?.({ method: "eth_chainId" });
-          resolved = normalizeChainId(cid);
-          if (!resolved) {
-            const fromDirect = (p as any).chainId;
-            const fromConfig = (p as any).chainConfig?.chainId;
-            const fromNetworksKey = Object.keys(((p as any).networks || {}))[0];
-            resolved =
-              normalizeChainId(fromDirect) ||
-              normalizeChainId(fromConfig) ||
-              normalizeChainId(fromNetworksKey);
-          }
-          if (resolved && !Number.isNaN(resolved)) setChainId(resolved);
-          // Listen for future chain changes
-          const onChainChanged = (next: any) => {
-            const parsed = normalizeChainId(next);
-            if (parsed && !Number.isNaN(parsed)) setChainId(parsed);
-          };
-          try {
-            (p as any).on?.("chainChanged", onChainChanged);
-          } catch {}
-        } catch (e) {
-          console.warn("[AuthContext] failed to read chainId from provider", e);
-        }
-        setProviderStatus("ready");
-        console.log(
-          `[AuthContext] provider initialized in ${Date.now() - start}ms (attempt ${attempt + 1})`
-        );
-      } catch (e) {
-        console.warn(
-          `[AuthContext] provider init attempt ${attempt + 1} failed`,
-          e
-        );
-        if (attempt + 1 < maxAttempts) {
-          const backoff = [400, 1500, 3000][attempt] || 5000;
-          await sleep(backoff);
-          return attemptInit(attempt + 1, maxAttempts);
-        } else {
-          if (!isMountedRef.current) return;
-          setProviderStatus("error");
-          throw e;
-        }
-      }
-    };
+        // console.log(
+        //   "[AuthContext] ensureProvider: requesting Web3Auth provider..."
+        // );
+        const eip1193 = await getWeb3AuthProvider();
+        if (!eip1193)
+          throw new Error("getWeb3AuthProvider returned null/undefined");
 
-    const initPromise = attemptInit(0, 3).catch(() => {});
-    providerInitPromiseRef.current = initPromise;
-    await initPromise;
-    providerInitPromiseRef.current = null;
+        // Basic diagnostics
+        const hasRequest = typeof eip1193.request === "function";
+        const providerType = Object.prototype.toString.call(eip1193);
+        // console.log("[AuthContext] provider acquired", {
+        //   hasRequest,
+        //   providerType,
+        //   keys: Object.keys(eip1193 || {}),
+        // });
+
+        if (!isMountedRef.current) return;
+        setProvider(eip1193);
+
+        // Read chainId
+        try {
+          // const rawChainId: any = await eip1193.request({
+          //   method: "eth_chainId",
+          // });
+          const rawChainId: any = await eip1193?.chainConfig.chainId;
+          const parsedChainId =
+            typeof rawChainId === "string" && rawChainId.startsWith("0x")
+              ? parseInt(rawChainId, 16)
+              : Number(rawChainId);
+          // console.log("[AuthContext] chainId", { rawChainId, parsedChainId });
+          if (!Number.isNaN(parsedChainId)) setChainId(parsedChainId);
+        } catch (e) {
+          console.warn("[AuthContext] eth_chainId failed", e);
+        }
+
+        // Read accounts (optional diagnostics)
+        // try {
+        //   const accounts: any = await eip1193.request({
+        //     method: "eth_accounts",
+        //   });
+        //   console.log("[AuthContext] accounts", { accounts });
+        // } catch (e) {
+        //   console.warn("[AuthContext] eth_accounts failed", e);
+        // }
+
+        // Listen for chain changes
+        try {
+          const onChainChanged = (next: any) => {
+            const parsed =
+              typeof next === "string" && next.startsWith("0x")
+                ? parseInt(next, 16)
+                : Number(next);
+            console.log("[AuthContext] chainChanged", { next, parsed });
+            if (!Number.isNaN(parsed)) setChainId(parsed);
+          };
+          (eip1193 as any).on?.("chainChanged", onChainChanged);
+        } catch (e) {
+          console.warn("[AuthContext] add chainChanged listener failed", e);
+        }
+
+        setProviderStatus("ready");
+        console.log("[AuthContext] provider initialized", {
+          ms: Date.now() - startTs,
+        });
+      } catch (e) {
+        console.error("[AuthContext] ensureProvider failed", e);
+        setProviderStatus("error");
+        throw e;
+      }
+    })();
+
+    providerInitInFlightRef.current = init;
+    await init.finally(() => {
+      providerInitInFlightRef.current = null;
+    });
   }, [provider, providerStatus]);
 
   // Helpers
-  const sleep = (ms: number) => new Promise((res) => setTimeout(res, ms));
-  const withTimeout = <T,>(promise: Promise<T>, ms: number): Promise<T> => {
-    return new Promise((resolve, reject) => {
-      const to = setTimeout(
-        () => reject(new Error(`Timeout after ${ms}ms`)),
-        ms
-      );
-      promise
-        .then((val) => {
-          clearTimeout(to);
-          resolve(val);
-        })
-        .catch((err) => {
-          clearTimeout(to);
-          reject(err);
-        });
-    });
-  };
+  // Removed retry/timeout helpers to simplify provider setup per docs.
 
   // Initialize auth state & kick provider initialization (non-blocking for boot)
   useEffect(() => {
@@ -248,9 +249,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         if (userData && token) {
           setUser(userData);
           setIsSignedIn(true);
-          // Start provider init in background; don't await to keep boot fast
+          // Initialize provider in background (non-blocking)
           ensureProvider().catch((e) =>
-            console.warn("[AuthContext] background provider init failed", e)
+            console.warn("[AuthContext] provider init during boot failed", e)
           );
         }
         if (seenAuth) setIsFirstTimeUser(false);
@@ -263,24 +264,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     loadAuthState();
   }, [ensureProvider]);
 
-  // Fallback: if user is set but provider not yet loaded (e.g., provider init race)
-  // Remove deferred provider hydrate: we no longer auto-init provider on boot
-  // Provider only created on fresh sign-in.
-
   // Sign in with wallet (will always (re)initialize provider immediately after backend sign-in)
   const signInWithWallet = async (walletAddress: string, chainId: number) => {
     setIsLoading(true);
     try {
-      console.log("[AuthContext] signInWithWallet called", {
-        walletAddress,
-        chainId,
-      });
+      // console.log("[AuthContext] signInWithWallet called", {
+      //   walletAddress,
+      //   chainId,
+      // });
       const {
         user: walletUser,
         token,
         needsUsername: need,
       } = await AuthService.signInWithWallet(walletAddress, chainId);
-      // Force re-init provider fresh for this session
+      // Initialize provider now that we have a session
       setProvider(null);
       setChainId(chainId);
       try {
@@ -289,10 +286,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         console.warn("[AuthContext] provider init during signIn failed", e);
       }
       await setHasSeenAuth();
-      console.log("[AuthContext] signInWithWallet result", {
-        need,
-        walletUserUsername: walletUser?.username,
-      });
+      // console.log("[AuthContext] signInWithWallet result", {
+      //   need,
+      //   walletUserUsername: walletUser?.username,
+      // });
       if (need) {
         setNeedsUsername(true);
         setProvisionalUser(walletUser);
@@ -315,9 +312,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const completeUsername = (finalUser: User) => {
-    console.log("[AuthContext] completeUsername", {
-      finalUserUsername: finalUser?.username,
-    });
+    // console.log("[AuthContext] completeUsername", {
+    //   finalUserUsername: finalUser?.username,
+    // });
     setIsSignedIn(true);
     setIsFirstTimeUser(false);
     setNeedsUsername(false);
@@ -475,6 +472,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       return user;
     }
   };
+
+  // console.log("[AuthContext]", { provider });
+  if (provider && !("signer" in (provider as any))) {
+    // EIP-1193 providers do not expose a signer property; ethers derives it via Web3Provider
+    console.log(
+      "[AuthContext] Provider is EIP-1193; .signer not present (expected). Ethers will create a Signer via Web3Provider."
+    );
+  }
 
   // Create the context value object
   const authContextValue: AuthContextType = {
