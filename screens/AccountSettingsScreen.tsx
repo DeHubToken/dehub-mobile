@@ -15,6 +15,7 @@ import ScreenHeader from "../components/ScreenHeader";
 import { logoutWeb3Auth } from "../config/web3auth.config";
 import FullScreenLoader from "../components/FullScreenLoader";
 import ReportBugModal from "../components/Settings/ReportBugModal";
+import ExportPrivateKeyModal from "../components/Settings/ExportPrivateKeyModal";
 import { Ionicons } from "@expo/vector-icons";
 import { openInApp } from "../libs/links.utils";
 import {
@@ -31,6 +32,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   const { signOut, user } = useAuth();
   const [signingOut, setSigningOut] = useState<boolean>(false);
   const [bugModalVisible, setBugModalVisible] = useState<boolean>(false);
+  const [exportPkVisible, setExportPkVisible] = useState<boolean>(false);
 
   const handleSignOut = useCallback(async () => {
     if (signingOut) return;
@@ -76,6 +78,19 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                 {user?.username || user?.email || "Anonymous"}
               </Text>
             </View>
+            <TouchableOpacity
+              onPress={() => setExportPkVisible(true)}
+              className="px-4 py-4 flex-row items-center justify-between"
+            >
+              <View>
+                <Text className="text-white text-sm">Export Private Key</Text>
+                <Text className="text-gray-500 text-xs mt-1">
+                  Reveal your wallet’s private key (advanced)
+                </Text>
+              </View>
+              <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
+            </TouchableOpacity>
+            <View className="h-px bg-gray-800" />
             <TouchableOpacity
               onPress={handleSignOut}
               disabled={signingOut}
@@ -237,6 +252,10 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
         visible={bugModalVisible}
         onClose={() => setBugModalVisible(false)}
         username={(user?.username || user?.email || "Anonymous") as string}
+      />
+      <ExportPrivateKeyModal
+        visible={exportPkVisible}
+        onClose={() => setExportPkVisible(false)}
       />
     </View>
   );
