@@ -9,7 +9,7 @@ import NotificationScreen from "../screens/NotificationScreen";
 import FeedScreen from "../screens/FeedScreen";
 import ImageViewerScreen from "../screens/ImageViewerScreen";
 import SearchScreen from "../screens/SearchScreen";
-import ProfileSettingsScreen from "../screens/ProfileSettingsScreen";
+// import ProfileSettingsScreen from "../screens/ProfileSettingsScreen";
 import AccountSettingsScreen from "../screens/AccountSettingsScreen";
 import YourVideosScreen from "../screens/YourVideosScreen";
 import LikedVideosScreen from "../screens/LikedVideosScreen";
@@ -123,10 +123,10 @@ export default function AppNavigator() {
         component={ImageViewerScreen}
       />
       <Stack.Screen name={ScreenNames.Search} component={SearchScreen} />
-      <Stack.Screen
+      {/* <Stack.Screen
         name={ScreenNames.Settings}
         component={ProfileSettingsScreen}
-      />
+      /> */}
       <Stack.Screen
         name={ScreenNames.AccountSettings}
         component={AccountSettingsScreen}

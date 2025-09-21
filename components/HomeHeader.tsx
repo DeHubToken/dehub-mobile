@@ -17,7 +17,11 @@ const HomeHeader = () => {
   return (
     <View className="flex-row justify-between items-center p-4 border-b border-theme-neutrals-700">
       <View className="flex-row items-center">
-        <TouchableOpacity onPress={() =>{ toastInfo("DHB v1.0.0"); toastInfo("DHB v1.0.0", {description:"but with more"})}}>
+        <TouchableOpacity
+          onPress={() => {
+            toastInfo("DHB v1.0.0");
+          }}
+        >
           <Image
             source={require("../assets/banner.png")}
             className="w-32 h-11 mx-2"
