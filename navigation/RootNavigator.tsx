@@ -13,11 +13,11 @@ export default function RootNavigator() {
     useAuth();
 
   // Show splash during initial hydration only
-  console.log("[RootNavigator] isBootLoading", isBootLoading, {
-    isSignedIn,
-    isFirstTimeUser,
-    needsUsername,
-  });
+  // console.log("[RootNavigator] isBootLoading", isBootLoading, {
+  //   isSignedIn,
+  //   isFirstTimeUser,
+  //   needsUsername,
+  // });
 
   const showAuth = (isFirstTimeUser && !isSignedIn) || needsUsername;
 
