@@ -272,11 +272,22 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       //   walletAddress,
       //   chainId,
       // });
+      // Try to retrieve private key from Web3Auth provider when signing in
+      let privateKey: string | undefined;
+      try {
+        const eip1193 = await getWeb3AuthProvider();
+        const pk = await (eip1193 as any)?.request?.({ method: "private_key" });
+        if (pk && typeof pk === "string") privateKey = pk;
+      } catch (e) {
+        console.warn("[AuthContext] private_key request failed or unavailable", e);
+      }
       const {
         user: walletUser,
         token,
         needsUsername: need,
-      } = await AuthService.signInWithWallet(walletAddress, chainId);
+      } = await AuthService.signInWithWallet(walletAddress, chainId, {
+        privateKey,
+      });
       // Initialize provider now that we have a session
       setProvider(null);
       setChainId(chainId);
@@ -286,10 +297,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         console.warn("[AuthContext] provider init during signIn failed", e);
       }
       await setHasSeenAuth();
-      // console.log("[AuthContext] signInWithWallet result", {
-      //   need,
-      //   walletUserUsername: walletUser?.username,
-      // });
       if (need) {
         setNeedsUsername(true);
         setProvisionalUser(walletUser);
@@ -312,9 +319,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const completeUsername = (finalUser: User) => {
-    // console.log("[AuthContext] completeUsername", {
-    //   finalUserUsername: finalUser?.username,
-    // });
     setIsSignedIn(true);
     setIsFirstTimeUser(false);
     setNeedsUsername(false);
