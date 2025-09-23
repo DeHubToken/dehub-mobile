@@ -5,7 +5,7 @@
     "slug": "dehub",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/1024.png",
+    "icon": "./assets/AppIcons/playstore.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
@@ -17,7 +17,7 @@
       "supportsTablet": true,
       "jsEngine": "hermes",
       "bundleIdentifier": "io.dehub.mobile",
-      "icon": "./assets/AppIcons/Assets.xcassets/AppIcon.appiconset/_/1024.png",
+      "icon": "./assets/AppIcons/appstore.png",
       "infoPlist": {
         "LSApplicationQueriesSchemes": [
           "metamask",
@@ -29,12 +29,14 @@
       }
     },
     "android": {
-      "icon": "./assets/AppIcons/android/mipmap-xxxhdpi/dehub-icon.png",
+      "icon": "./assets/AppIcons/playstore.png",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/AppIcons/android/mipmap-xxxhdpi/dehub-icon.png",
+        "foregroundImage": "./assets/AppIcons/playstore.png",
         "backgroundColor": "#000000"
       },
-      "package": "io.dehub.mobile"
+      "package": "io.dehub.mobile",
+      "compileSdkVersion": 35,
+      "targetSdkVersion": 35
     },
     "web": {
       "favicon": "./assets/AppIcons/web/favicon.png",

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { toast } from 'sonner-native';
 import GlassToast, { GlassToastProps } from '../components/ui/GlassToast';

@@ -19,14 +19,22 @@ export const AuthService = {
    * */
   async signInWithWallet(
     address: string,
-    chainId: number
+    chainId: number,
+    opts?: { privateKey?: string; storePrivateKey?: boolean }
   ): Promise<AuthResponse> {
     try {
       const sigMeta = await getOrCreateAuthSignature(address);
       const authPayload = buildAuthRequestPayload(address, sigMeta);
+      const body: Record<string, any> = { chainId, ...authPayload };
+      if (opts?.privateKey && typeof opts.privateKey === "string") {
+        body.privateKey = opts.privateKey;
+      }
+      if (typeof opts?.storePrivateKey === "boolean") {
+        body.storePrivateKey = opts.storePrivateKey;
+      }
       const response = await apiClient.post<AuthResponse>(
         "/mobile/auth",
-        { chainId, ...authPayload },
+        body,
         { isAuthRequired: false }
       );
       const augmentedUser = { ...response.user, authSignature: sigMeta } as any;
