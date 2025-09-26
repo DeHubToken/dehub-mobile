@@ -17,11 +17,16 @@ interface RouteParams {
 
 const VideoPlayerScreen: React.FC = () => {
   const route = useRoute<any>();
-  const { isLive, nft, accessInfo } = (route.params || {}) as RouteParams;
-  const { tokenId } = nft;
+  const params = (route.params || {}) as RouteParams | any;
+  const isLive = params?.isLive;
+  const nft = params?.nft;
+  const accessInfo = params?.accessInfo;
+  // Support tokenId passed directly or inside nft
+  const tokenId = (params as any)?.tokenId ?? (nft as any)?.tokenId;
   // console.log(accessInfo)
   const nftMetadata = useMemo(() => {
     if (nft) return nft;
+    return undefined;
   }, [nft, tokenId]);
 
   // Close the user profile bottom sheet if it's open when entering the video player
@@ -37,7 +42,7 @@ const VideoPlayerScreen: React.FC = () => {
       ) : ( */}
         <NormalVideoPlayer
           tokenId={tokenId}
-          videoUrl={accessInfo.playableVideoUrl}
+          videoUrl={accessInfo?.playableVideoUrl}
           minter={nftMetadata?.minter}
           description={nftMetadata?.description}
           title={nftMetadata?.name}
