@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -14,6 +14,9 @@ import { useWindowDimensions } from "react-native";
 import LiveTab from "../components/Upload/LiveTab";
 import FeedTab from "../components/Upload/FeedTab";
 import VideosTab from "../components/Upload/VideosTab";
+import LiveTabSkeleton from "../components/Upload/Skeletons/LiveTabSkeleton";
+import VideosTabSkeleton from "../components/Upload/Skeletons/VideosTabSkeleton";
+import FeedTabSkeleton from "../components/Upload/Skeletons/FeedTabSkeleton";
 
 // theme removed in favor of NativeWind classes
 
@@ -27,6 +30,13 @@ export default function UploadScreen() {
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const scrollRef = useRef<ScrollView>(null);
+
+  // Lazy mount tabs to avoid heavy work on initial open (e.g., LiveTab fetching)
+  const [mounted, setMounted] = useState<Record<TabKey, boolean>>({
+    Live: false,
+    Videos: true, // first screen
+    Feed: false,
+  });
 
   useEffect(() => {
     const idx = tabs.indexOf(active);
@@ -45,7 +55,9 @@ export default function UploadScreen() {
   const onScrollEnd = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       const idx = Math.round(e.nativeEvent.contentOffset.x / width);
-      setActive(tabs[idx]);
+      const key = tabs[idx];
+      setActive(key);
+      setMounted((m) => (m[key] ? m : { ...m, [key]: true }));
     },
     [width]
   );
@@ -54,6 +66,8 @@ export default function UploadScreen() {
     (k: TabKey) => {
       const idx = tabs.indexOf(k);
       setActive(k);
+      // Ensure destination tab is mounted before scroll for a smooth transition
+      setMounted((m) => (m[k] ? m : { ...m, [k]: true }));
       goToIndex(idx);
     },
     [goToIndex]
@@ -91,13 +105,21 @@ export default function UploadScreen() {
         onMomentumScrollEnd={onScrollEnd}
       >
         <View style={{ width }} className="flex-1">
-          <LiveTab />
+          {mounted.Live ? (
+            <LiveTab onClose={nav.goBack} />
+          ) : (
+            <LiveTabSkeleton />
+          )}
         </View>
         <View style={{ width }} className="flex-1">
-          <VideosTab onClose={() => nav.goBack()} />
+          {mounted.Videos ? (
+            <VideosTab onClose={nav.goBack} />
+          ) : (
+            <VideosTabSkeleton />
+          )}
         </View>
         <View style={{ width }} className="flex-1">
-          <FeedTab />
+          {mounted.Feed ? <FeedTab /> : <FeedTabSkeleton />}
         </View>
       </ScrollView>
 

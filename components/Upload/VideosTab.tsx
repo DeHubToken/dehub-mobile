@@ -5,13 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
 import * as VideoThumbnails from "expo-video-thumbnails";
@@ -31,7 +25,7 @@ import {
   useStreamControllerContract,
   useStreamCollectionContract,
 } from "../../hooks/use-web3";
-import GlassModal from "../ui/GlassModal";
+import GlassModal from "../ui/GlassModal"; // still used by TrimModal
 import { useVideoPlayer } from "expo-video";
 import { useEvent } from "expo";
 import UploadHeader from "./UploadHeader";
@@ -56,6 +50,7 @@ import { toastError, toastSuccess } from "../../libs/toast";
 import { parseTxError } from "../../libs/web3.util";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import ConfirmUploadModal from "./ConfirmUploadModal";
 
 export type PickedMedia = ImagePicker.ImagePickerAsset | null;
 
@@ -993,93 +988,14 @@ export default function VideosTab({ onClose }: Props) {
         )}
       </View>
 
-      {/* Confirm Upload Modal */}
-      <GlassModal
+      <ConfirmUploadModal
         visible={showConfirm}
-        onClose={() => {
-          if (!isUploading && uploadStage === "idle") setShowConfirm(false);
-        }}
-        presentation="center"
-        maxHeight="60%"
-        blurIntensity={30}
-      >
-        <View className="p-4">
-          <Text className="text-white font-bold text-lg mb-2">
-            Are you absolutely sure?
-          </Text>
-          <Text className="text-gray-300 text-sm">{confirmText}</Text>
-          <View className="flex-row justify-end mt-4">
-            <TouchableOpacity
-              disabled={isUploading || uploadStage !== "idle"}
-              onPress={() => setShowConfirm(false)}
-              className={`px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700 mr-2 ${
-                isUploading || uploadStage !== "idle" ? "opacity-50" : ""
-              }`}
-            >
-              <Text className="text-white">Cancel</Text>
-            </TouchableOpacity>
-            {showBountyApprove ? (
-              <TouchableOpacity
-                disabled={isUploading || uploadStage !== "idle"}
-                onPress={handleUpload}
-                className={`px-3 py-2 rounded-lg bg-blue-600 ${
-                  isUploading || uploadStage !== "idle" ? "opacity-80" : ""
-                }`}
-              >
-                {isUploading || uploadStage !== "idle" ? (
-                  <View className="flex-row items-center">
-                    <ActivityIndicator color="#FFFFFF" size="small" />
-                    <Text className="text-white font-semibold ml-2">
-                      {uploadStage === "uploading"
-                        ? "Uploading…"
-                        : uploadStage === "processing"
-                        ? "Uploading…"
-                        : uploadStage === "awaiting-wallet"
-                        ? "Minting…"
-                        : uploadStage === "minting"
-                        ? "Minting…"
-                        : uploadStage === "finalizing"
-                        ? "Finalizing…"
-                        : "Processing…"}
-                    </Text>
-                  </View>
-                ) : (
-                  <Text className="text-white font-semibold">Proceed</Text>
-                )}
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                disabled={isUploading || uploadStage !== "idle"}
-                onPress={handleUpload}
-                className={`px-3 py-2 rounded-lg bg-blue-600 ${
-                  isUploading || uploadStage !== "idle" ? "opacity-80" : ""
-                }`}
-              >
-                {isUploading || uploadStage !== "idle" ? (
-                  <View className="flex-row items-center">
-                    <ActivityIndicator color="#FFFFFF" size="small" />
-                    <Text className="text-white font-semibold ml-2">
-                      {uploadStage === "uploading"
-                        ? "Uploading…"
-                        : uploadStage === "processing"
-                        ? "Uploading…"
-                        : uploadStage === "awaiting-wallet"
-                        ? "Minting…"
-                        : uploadStage === "minting"
-                        ? "Minting…"
-                        : uploadStage === "finalizing"
-                        ? "Finalizing…"
-                        : "Processing…"}
-                    </Text>
-                  </View>
-                ) : (
-                  <Text className="text-white font-semibold">Continue</Text>
-                )}
-              </TouchableOpacity>
-            )}
-          </View>
-        </View>
-      </GlassModal>
+        onClose={() => setShowConfirm(false)}
+        onConfirm={handleUpload}
+        confirmText={confirmText}
+        stage={uploadStage}
+        variant={showBountyApprove ? "bounty" : "default"}
+      />
     </View>
   );
 }

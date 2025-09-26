@@ -9,15 +9,14 @@ import NotificationScreen from "../screens/NotificationScreen";
 import FeedScreen from "../screens/FeedScreen";
 import ImageViewerScreen from "../screens/ImageViewerScreen";
 import SearchScreen from "../screens/SearchScreen";
-// import ProfileSettingsScreen from "../screens/ProfileSettingsScreen";
 import AccountSettingsScreen from "../screens/AccountSettingsScreen";
 import YourVideosScreen from "../screens/YourVideosScreen";
 import LikedVideosScreen from "../screens/LikedVideosScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
 import SignInScreen from "../screens/auth/SignInScreen";
 import UploadScreen from "../screens/UploadScreen";
-import VideoTrimScreen from "../screens/VideoTrimScreen";
-import VideoUploadScreen from "../screens/VideoUploadScreen";
+import LiveProducerScreen from "../screens/LiveProducerScreen";
+import LiveViewerScreen from "../screens/LiveViewerScreen";
 
 const Stack = createStackNavigator();
 
@@ -104,6 +103,56 @@ export default function AppNavigator() {
               // No overlay for opaque modal
             };
           },
+          gestureDirection: 'vertical',
+          gestureEnabled: true,
+          gestureResponseDistance: 250,
+        }}
+      />
+      <Stack.Screen
+        name={ScreenNames.LiveProducer}
+        component={LiveProducerScreen}
+        options={{
+          presentation: 'modal',
+          cardStyle: { backgroundColor: '#000' },
+          cardOverlayEnabled: false,
+          cardStyleInterpolator: ({ current, layouts }) => ({
+            cardStyle: {
+              transform: [
+                {
+                  translateY: current.progress.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [layouts.screen.height, 0],
+                    extrapolate: 'clamp',
+                  }),
+                },
+              ],
+            },
+          }),
+          gestureDirection: 'vertical',
+          gestureEnabled: true,
+          gestureResponseDistance: 250,
+        }}
+      />
+      <Stack.Screen
+        name={ScreenNames.LiveViewer}
+        component={LiveViewerScreen}
+        options={{
+          presentation: 'modal',
+          cardStyle: { backgroundColor: '#000' },
+          cardOverlayEnabled: false,
+          cardStyleInterpolator: ({ current, layouts }) => ({
+            cardStyle: {
+              transform: [
+                {
+                  translateY: current.progress.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [layouts.screen.height, 0],
+                    extrapolate: 'clamp',
+                  }),
+                },
+              ],
+            },
+          }),
           gestureDirection: 'vertical',
           gestureEnabled: true,
           gestureResponseDistance: 250,

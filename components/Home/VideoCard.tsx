@@ -126,7 +126,8 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const accessInfo = useStreamAccessInfo(nft);
   const handlePressVideo = useCallback(() => {
     if (tokenId == null) return; // require valid tokenId
-    navigation.navigate(ScreenNames.VideoPlayer as never, {
+    const target = isLive ? ScreenNames.LiveViewer : ScreenNames.VideoPlayer;
+    navigation.navigate(target as never, {
       isLive,
       nft,
       accessInfo,
