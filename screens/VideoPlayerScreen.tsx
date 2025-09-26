@@ -32,9 +32,9 @@ const VideoPlayerScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      {isLive ? (
+      {/* {isLive ? (
         <LiveStreamPlayer tokenId={tokenId} />
-      ) : (
+      ) : ( */}
         <NormalVideoPlayer
           tokenId={tokenId}
           videoUrl={accessInfo.playableVideoUrl}
@@ -47,7 +47,7 @@ const VideoPlayerScreen: React.FC = () => {
           accessInfo={accessInfo}
           isTranscoding={nftMetadata?.transcodingStatus === "on"}
         />
-      )}
+      {/* )} */}
     </View>
   );
 };
