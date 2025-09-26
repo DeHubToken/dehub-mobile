@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useRef } from "react";
+import React, { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,9 @@ import {
   TouchableOpacity,
   RefreshControl,
   Animated,
+  LayoutAnimation,
+  Platform,
+  UIManager,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import ScreenHeader from "../components/ScreenHeader";
@@ -23,6 +26,28 @@ const NotificationScreen = () => {
   const [notifications, setNotifications] = useState<any[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  // Enable LayoutAnimation on Android for smooth list reflow
+  useEffect(() => {
+    // Avoid calling in Fabric/New Arch where it's a no-op warning
+    const isFabric = (global as any)?.nativeFabricUIManager != null;
+    if (
+      Platform.OS === "android" &&
+      UIManager.setLayoutAnimationEnabledExperimental &&
+      !isFabric
+    ) {
+      UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+  }, []);
+
+  // Resolve a stable unique key for a notification item
+  const resolveItemKey = useCallback((n: any, index?: number) => {
+    const primary = n?.id || n?._id || n?.notificationId;
+    if (primary != null) return String(primary);
+    const composite = `${n?.type ?? ""}-${n?.tokenId ?? ""}-${n?.updatedAt ?? ""}-${n?.createdAt ?? ""}`;
+    if (composite.replace(/-/g, "").length > 0) return composite;
+    return index !== undefined ? `idx-${index}` : `${Math.random()}`;
+  }, []);
 
   const fetchNotifications = useCallback(
     async (address?: string) => {
@@ -67,23 +92,26 @@ const NotificationScreen = () => {
 
   // Optimistic removal helper
   const optimisticRemove = useCallback(
-    (id: string | number) => {
-      setNotifications((prev) => prev.filter((n) => n.id !== id));
+    (resolvedKey: string) => {
+      // Remove by the exact key used by FlatList
+      setNotifications((prev) => prev.filter((n, i) => resolveItemKey(n, i) !== resolvedKey));
       if (user?.notificationCount && user.notificationCount > 0) {
         patchUser?.({
           notificationCount: Math.max(0, user.notificationCount - 1),
         });
       }
     },
-    [patchUser, user?.notificationCount]
+    [patchUser, resolveItemKey, user?.notificationCount]
   );
 
   // Row component with slide-left + optimistic removal
   const NotificationRow = useCallback(
-    ({ item }: { item: any }) => {
+    ({ item, index }: { item: any; index: number }) => {
   // console.log('[NotificationRow] item', item)
       const translateX = useRef(new Animated.Value(0)).current;
+      const opacity = useRef(new Animated.Value(1)).current;
       const animatingRef = useRef(false);
+      const effectiveKey = resolveItemKey(item, index);
 
       const iconName =
         item.type === "subscribe"
@@ -99,35 +127,56 @@ const NotificationScreen = () => {
       const handlePress = () => {
         if (animatingRef.current) return;
         animatingRef.current = true;
+        // Snapshot values to avoid issues during re-render/removal
         const addr = user?.walletAddress || user?.address;
+        const itemType: string | undefined = item?.type;
+        const tokenId: number | string | undefined = item?.tokenId;
 
-        // Start slide-left animation and remove when finished
-        Animated.timing(translateX, {
-          toValue: -160, // enough to visually slide out
-          duration: 180,
-          useNativeDriver: true,
-        }).start(() => {
-          optimisticRemove(item.id);
+        // Smooth slide-left + fade out, then collapse space with LayoutAnimation
+        Animated.parallel([
+          Animated.timing(opacity, {
+            toValue: 0,
+            duration: 180,
+            useNativeDriver: true,
+          }),
+          Animated.spring(translateX, {
+            toValue: -50,
+            useNativeDriver: true,
+            friction: 7,
+            tension: 70,
+          }),
+        ]).start(() => {
+          LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+          optimisticRemove(effectiveKey);
         });
 
         // Fire-and-forget mark as read (optimistic) with error handling & revert
-        markNotificationAsRead(item._id).catch((err) => {
+        if (item?._id) {
+          markNotificationAsRead(item._id).catch((err) => {
           console.error("[NotificationRow] mark as read error", err);
           setNotifications(prev => {
-            const exists = prev.some(n => n.id === item.id || n._id === item._id);
-            if (exists) return prev; // already present, nothing to do
+            // Avoid duplicates by comparing resolved keys
+            const removedKey = effectiveKey;
+            const exists = prev.some((n, i) => resolveItemKey(n, i) === removedKey);
+            if (exists) return prev; // already present
             return [...prev, item];
           });
           // toastError(err, 'Failed to mark notification');
           if (user?.notificationCount !== undefined) {
             patchUser?.({ notificationCount: (user.notificationCount || 0) + 1 });
           }
-        });
+          });
+        }
 
         // Navigate concurrently
-        if (["like", "dislike", "comment"].includes(item.type)) {
-          navigation.navigate(ScreenNames.VideoPlayer as any, { tokenId: item.tokenId });
-        } else if (["tip", "following", "follow"].includes(item.type)) {
+        if (["like", "dislike", "comment"].includes(itemType ?? "")) {
+          if (tokenId != null) {
+            navigation.navigate(ScreenNames.VideoPlayer as any, { tokenId });
+          } else {
+            // Fallback: ignore navigation if tokenId missing
+            // Optionally: toastError(new Error('Missing token id'), 'Unable to open video');
+          }
+        } else if (["tip", "following", "follow"].includes(itemType ?? "")) {
           // Profile tab lives inside BottomTabNavigator mounted at Root
           navigation.navigate(ScreenNames.Root as any, {
             screen: ScreenNames.Profile,
@@ -139,7 +188,7 @@ const NotificationScreen = () => {
       return (
         <TouchableOpacity activeOpacity={0.7} onPress={handlePress}>
           <Animated.View
-            style={{ transform: [{ translateX }] }}
+            style={{ transform: [{ translateX }], opacity }}
             className="flex-row items-center p-4 border-b border-theme-neutrals-700"
           >
             <View className="flex-row items-center flex-1">
@@ -164,9 +213,12 @@ const NotificationScreen = () => {
   );
 
   const renderItem = useCallback(
-    ({ item }: { item: any }) => <NotificationRow item={item} />,
+    ({ item, index }: { item: any; index: number }) => (
+      <NotificationRow item={item} index={index} />
+    ),
     [NotificationRow]
   );
+  const keyExtractor = useCallback((item: any, index: number) => resolveItemKey(item, index), [resolveItemKey]);
 
   // Skeleton rows
   const skeletonData = useMemo(
@@ -199,7 +251,7 @@ const NotificationScreen = () => {
       ) : (
         <FlatList
           data={notifications}
-          keyExtractor={(item) => String(item.id)}
+          keyExtractor={keyExtractor}
           renderItem={renderItem}
           refreshControl={
             <RefreshControl
