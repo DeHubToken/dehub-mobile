@@ -7,7 +7,13 @@ import React, {
   useRef,
 } from "react";
 import { getWeb3AuthProvider } from "../services/web3auth.service";
-import { ActivityIndicator, View, Alert } from "react-native";
+import {
+  ActivityIndicator,
+  View,
+  Alert,
+  AppState,
+  AppStateStatus,
+} from "react-native";
 import SignInGatewayModal from "../components/auth/SignInGatewayModal";
 import { theme } from "../theme";
 import {
@@ -25,6 +31,7 @@ import { EthersService, ethersService } from "../services/ethers.service";
 import { supportedTokens } from "../config/constants";
 import { apiClient } from "../libs/api.client";
 import { maxStacked } from "../libs/validators.util";
+import { toastError } from "../libs";
 
 // Define the shape of the user object
 export interface User {
@@ -100,6 +107,7 @@ interface AuthContextType {
   chainId?: number;
   providerStatus: ProviderStatus;
   ensureProvider: () => Promise<void>;
+  ensureFreshProvider: () => Promise<void>; // validates & reinitializes if stale
   // Add more auth methods as needed
 }
 
@@ -129,8 +137,27 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [providerStatus, setProviderStatus] = useState<ProviderStatus>("idle");
   const providerInitInFlightRef = useRef<Promise<void> | null>(null);
   const isMountedRef = useRef(true);
+  const providerValidationInFlightRef = useRef<Promise<void> | null>(null);
+  const lastValidationTsRef = useRef<number>(0);
+  const lastReinitTsRef = useRef<number>(0);
+  const appStateRef = useRef<AppStateStatus>(AppState.currentState);
+  const providerGenerationRef = useRef<number>(0); // increments on each successful init
+  const healthIntervalRef = useRef<any>(null);
+  const REINIT_BACKOFF_MS = 3000; // minimal gap between forced re-inits
+  const VALIDATION_THROTTLE_MS = 15000; // cap validation frequency
+  const HEALTHCHECK_INTERVAL_MS = 120000; // 2 min health check
+  const consecutiveEmptyAccountsRef = useRef<number>(0);
 
-  console.log({user, provider})
+  // Optional debug flag (toggle to true for verbose logs)
+  const DEBUG_PROVIDER = false;
+  const debugLog = useCallback(
+    (...args: any[]) => {
+      if (DEBUG_PROVIDER) console.log("[AuthContext][provider]", ...args);
+    },
+    [DEBUG_PROVIDER]
+  );
+
+  // console.log({user, provider})
   useEffect(() => {
     return () => {
       isMountedRef.current = false;
@@ -144,96 +171,236 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
    * - Adds chainChanged listener
    * Note: EIP-1193 providers do not expose a .signer property — this is normal.
    */
-  const ensureProvider = useCallback(async () => {
-    if (provider || providerStatus === "ready") {
-      // console.log("[AuthContext] ensureProvider: already ready", {
-      //   hasProvider: !!provider,
-      //   providerStatus,
-      // });
-      return;
-    }
-    if (providerInitInFlightRef.current) return providerInitInFlightRef.current;
-
-    const init = (async () => {
-      setProviderStatus("initializing");
-      const startTs = Date.now();
+  const fetchAccounts = useCallback(
+    async (prov: any): Promise<string[] | null> => {
+      if (!prov?.request) return null;
       try {
-        // console.log(
-        //   "[AuthContext] ensureProvider: requesting Web3Auth provider..."
-        // );
-        const eip1193 = await getWeb3AuthProvider();
-        if (!eip1193)
-          throw new Error("getWeb3AuthProvider returned null/undefined");
-
-        // Basic diagnostics
-        const hasRequest = typeof eip1193.request === "function";
-        const providerType = Object.prototype.toString.call(eip1193);
-        // console.log("[AuthContext] provider acquired", {
-        //   hasRequest,
-        //   providerType,
-        //   keys: Object.keys(eip1193 || {}),
-        // });
-
-        if (!isMountedRef.current) return;
-        setProvider(eip1193);
-
-        // Read chainId
-        try {
-          // const rawChainId: any = await eip1193.request({
-          //   method: "eth_chainId",
-          // });
-          const rawChainId: any = await eip1193?.chainConfig.chainId;
-          const parsedChainId =
-            typeof rawChainId === "string" && rawChainId.startsWith("0x")
-              ? parseInt(rawChainId, 16)
-              : Number(rawChainId);
-          // console.log("[AuthContext] chainId", { rawChainId, parsedChainId });
-          if (!Number.isNaN(parsedChainId)) setChainId(parsedChainId);
-        } catch (e) {
-          console.warn("[AuthContext] eth_chainId failed", e);
-        }
-
-        // Read accounts (optional diagnostics)
-        // try {
-        //   const accounts: any = await eip1193.request({
-        //     method: "eth_accounts",
-        //   });
-        //   console.log("[AuthContext] accounts", { accounts });
-        // } catch (e) {
-        //   console.warn("[AuthContext] eth_accounts failed", e);
-        // }
-
-        // Listen for chain changes
-        try {
-          const onChainChanged = (next: any) => {
-            const parsed =
-              typeof next === "string" && next.startsWith("0x")
-                ? parseInt(next, 16)
-                : Number(next);
-            console.log("[AuthContext] chainChanged", { next, parsed });
-            if (!Number.isNaN(parsed)) setChainId(parsed);
-          };
-          (eip1193 as any).on?.("chainChanged", onChainChanged);
-        } catch (e) {
-          console.warn("[AuthContext] add chainChanged listener failed", e);
-        }
-
-        setProviderStatus("ready");
-        console.log("[AuthContext] provider initialized", {
-          ms: Date.now() - startTs,
-        });
+        const accounts: any = await prov.request({ method: "eth_accounts" });
+        if (Array.isArray(accounts)) return accounts as string[];
+        return [];
       } catch (e) {
-        console.error("[AuthContext] ensureProvider failed", e);
-        setProviderStatus("error");
-        throw e;
+        debugLog("eth_accounts failed", e);
+        return null;
       }
-    })();
+    },
+    [debugLog]
+  );
 
+  const attachProviderEventListeners = useCallback((prov: any) => {
+    try {
+      prov?.on?.("chainChanged", (next: any) => {
+        const parsed =
+          typeof next === "string" && next.startsWith("0x")
+            ? parseInt(next, 16)
+            : Number(next);
+        debugLog("chainChanged", { next, parsed });
+        if (!Number.isNaN(parsed)) setChainId(parsed);
+      });
+    } catch (e) {
+      console.warn("[AuthContext] chainChanged listener attach failed", e);
+    }
+    try {
+      prov?.on?.("accountsChanged", (accs: string[]) => {
+        debugLog("accountsChanged", accs);
+        if (!accs || accs.length === 0) {
+          // schedule validation quickly
+          validateAndMaybeReinit("accountsChanged-empty");
+        }
+      });
+    } catch (e) {
+      console.warn("[AuthContext] accountsChanged listener attach failed", e);
+    }
+    try {
+      prov?.on?.("disconnect", (err: any) => {
+        console.warn("[AuthContext] provider disconnect", err?.message || err);
+        validateAndMaybeReinit("disconnect");
+      });
+    } catch (e) {
+      /* ignore */
+    }
+  }, []);
+
+  const internalInitializeProvider = useCallback(async () => {
+    setProviderStatus("initializing");
+    const startTs = Date.now();
+    try {
+      const eip1193 = await getWeb3AuthProvider();
+      if (!eip1193)
+        throw new Error("getWeb3AuthProvider returned null/undefined");
+      if (!isMountedRef.current) return;
+      setProvider(eip1193);
+      providerGenerationRef.current += 1;
+
+      // Chain id attempt (try request first, fallback to chainConfig)
+      try {
+        let rawChainId: any;
+        if (typeof eip1193.request === "function") {
+          rawChainId = await eip1193.request({ method: "eth_chainId" });
+        }
+        if (!rawChainId) rawChainId = eip1193?.chainConfig?.chainId;
+        const parsed =
+          typeof rawChainId === "string" && rawChainId.startsWith("0x")
+            ? parseInt(rawChainId, 16)
+            : Number(rawChainId);
+        if (!Number.isNaN(parsed)) setChainId(parsed);
+      } catch (e) {
+        console.warn("[AuthContext] chainId fetch failed", e);
+      }
+
+      attachProviderEventListeners(eip1193);
+
+      // Initial account validation (non-blocking reinit if missing)
+      const accounts = await fetchAccounts(eip1193);
+      if (!accounts || accounts.length === 0) {
+        debugLog("initial accounts empty; scheduling validation");
+        setTimeout(
+          () => validateAndMaybeReinit("initial-accounts-empty"),
+          1500
+        );
+      }
+
+      setProviderStatus("ready");
+      debugLog("provider initialized", {
+        ms: Date.now() - startTs,
+        gen: providerGenerationRef.current,
+      });
+    } catch (e) {
+      console.error("[AuthContext] internalInitializeProvider failed", e);
+      setProviderStatus("error");
+      throw e;
+    }
+  }, [attachProviderEventListeners, fetchAccounts, debugLog]);
+
+  const attemptReinitializeProvider = useCallback(
+    async (reason: string) => {
+      const now = Date.now();
+      if (now - lastReinitTsRef.current < REINIT_BACKOFF_MS) {
+        debugLog("reinit suppressed (backoff)", { reason });
+        return;
+      }
+      lastReinitTsRef.current = now;
+      debugLog("attemptReinitializeProvider", { reason });
+      setProvider(null);
+      setProviderStatus("idle");
+      try {
+        await internalInitializeProvider();
+      } catch (e) {
+        console.warn("[AuthContext] reinit failed", e);
+      }
+    },
+    [internalInitializeProvider, debugLog]
+  );
+
+  // Sign out method (moved earlier so other callbacks can depend on it safely)
+  const signOut = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      await clearAuthData();
+      setUser(null);
+      setIsSignedIn(false);
+      setProvider(null);
+      setChainId(undefined);
+      setProviderStatus("idle");
+    } catch (error) {
+      console.error("Sign out error:", error);
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const handleSessionExpired = useCallback(
+    async (trigger: string) => {
+      console.warn("[AuthContext] Session expired detected", trigger);
+      toastError?.("Session expired, login again");
+      try {
+        await signOut();
+      } catch (e) {
+        console.warn("[AuthContext] signOut during session expire failed", e);
+      }
+      // Open sign-in bottom sheet/modal
+      setShowSignInModal(true);
+      consecutiveEmptyAccountsRef.current = 0; // reset counter
+    },
+    [signOut]
+  );
+
+  const validateAndMaybeReinit = useCallback(
+    async (reason: string) => {
+      if (providerValidationInFlightRef.current)
+        return providerValidationInFlightRef.current;
+      const run = (async () => {
+        const now = Date.now();
+        if (now - lastValidationTsRef.current < VALIDATION_THROTTLE_MS) return;
+        lastValidationTsRef.current = now;
+        if (!provider || providerStatus !== "ready") return;
+        const accounts = await fetchAccounts(provider);
+        if (!accounts || accounts.length === 0) {
+          debugLog("validation detected empty accounts", { reason });
+          consecutiveEmptyAccountsRef.current += 1;
+          await attemptReinitializeProvider(reason + "->empty-accounts");
+          // Re-check after short delay to confirm
+          setTimeout(async () => {
+            if (!provider || providerStatus !== "ready") return; // already changed state
+            const postAccounts = await fetchAccounts(provider);
+            if (!postAccounts || postAccounts.length === 0) {
+              consecutiveEmptyAccountsRef.current += 1;
+            } else {
+              consecutiveEmptyAccountsRef.current = 0;
+            }
+            if (consecutiveEmptyAccountsRef.current >= 2 && user) {
+              await handleSessionExpired(reason);
+            }
+          }, 1200);
+        } else {
+          // reset counter on healthy accounts
+          if (consecutiveEmptyAccountsRef.current !== 0) {
+            consecutiveEmptyAccountsRef.current = 0;
+          }
+        }
+      })();
+      providerValidationInFlightRef.current = run;
+      await run.finally(() => {
+        providerValidationInFlightRef.current = null;
+      });
+    },
+    [
+      provider,
+      providerStatus,
+      fetchAccounts,
+      attemptReinitializeProvider,
+      debugLog,
+    ]
+  );
+
+  const ensureProvider = useCallback(async () => {
+    if (provider || providerStatus === "ready") return;
+    if (providerInitInFlightRef.current) return providerInitInFlightRef.current;
+    const init = internalInitializeProvider();
     providerInitInFlightRef.current = init;
     await init.finally(() => {
       providerInitInFlightRef.current = null;
     });
-  }, [provider, providerStatus]);
+  }, [provider, providerStatus, internalInitializeProvider]);
+
+  const ensureFreshProvider = useCallback(async () => {
+    if (!provider || providerStatus !== "ready") {
+      await ensureProvider();
+      return;
+    }
+    await validateAndMaybeReinit("explicit-ensure-fresh");
+  }, [provider, providerStatus, ensureProvider, validateAndMaybeReinit]);
+
+  // Auto ensure freshness shortly after provider becomes ready while signed in
+  useEffect(() => {
+    if (isSignedIn && providerStatus === "ready" && provider) {
+      // slight delay to allow any lazy internals to hydrate
+      const t = setTimeout(() => {
+        ensureFreshProvider().catch(() => {});
+      }, 800);
+      return () => clearTimeout(t);
+    }
+  }, [isSignedIn, providerStatus, provider, ensureFreshProvider]);
 
   // Helpers
   // Removed retry/timeout helpers to simplify provider setup per docs.
@@ -265,6 +432,30 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     loadAuthState();
   }, [ensureProvider]);
 
+  // AppState resume validation
+  useEffect(() => {
+    const sub = AppState.addEventListener("change", (next) => {
+      const prev = appStateRef.current;
+      appStateRef.current = next;
+      if (prev.match(/inactive|background/) && next === "active") {
+        validateAndMaybeReinit("app-resume");
+      }
+    });
+    return () => sub.remove();
+  }, [validateAndMaybeReinit]);
+
+  // Periodic health check
+  useEffect(() => {
+    if (healthIntervalRef.current) clearInterval(healthIntervalRef.current);
+    healthIntervalRef.current = setInterval(() => {
+      if (AppState.currentState === "active")
+        validateAndMaybeReinit("health-interval");
+    }, HEALTHCHECK_INTERVAL_MS);
+    return () => {
+      if (healthIntervalRef.current) clearInterval(healthIntervalRef.current);
+    };
+  }, [validateAndMaybeReinit]);
+
   // Sign in with wallet (will always (re)initialize provider immediately after backend sign-in)
   const signInWithWallet = async (walletAddress: string, chainId: number) => {
     setIsLoading(true);
@@ -280,7 +471,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         const pk = await (eip1193 as any)?.request?.({ method: "private_key" });
         if (pk && typeof pk === "string") privateKey = pk;
       } catch (e) {
-        console.warn("[AuthContext] private_key request failed or unavailable", e);
+        console.warn(
+          "[AuthContext] private_key request failed or unavailable",
+          e
+        );
       }
       const {
         user: walletUser,
@@ -415,24 +609,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  // Sign out method
-  const signOut = async () => {
-    setIsLoading(true);
-    try {
-      await clearAuthData();
-      setUser(null);
-      setIsSignedIn(false);
-      setProvider(null);
-      setChainId(undefined);
-      setProviderStatus("idle");
-    } catch (error) {
-      console.error("Sign out error:", error);
-      throw error;
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   // Skip auth method - allows users to use the app without signing in
   const skipAuth = async () => {
     try {
@@ -518,6 +694,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     chainId,
     providerStatus,
     ensureProvider,
+    ensureFreshProvider,
   };
 
   return (
