@@ -12,6 +12,7 @@ import { BackHandler, LogBox, StatusBar } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import { theme } from "./theme";
 import { AuthProvider } from "./context/AuthContext";
+import { WebSocketProvider } from "./context/WebSocketContext";
 import { useAuth } from "./context/AuthContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
 import { UsernameGate } from "./components/auth/UsernameGate";
@@ -55,29 +56,31 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#000" }}>
       <SafeAreaProvider className="flex-1 select-none bg-theme-background">
         <AuthProvider>
-          <BootGate>
-            <SafeAreaView className="flex-1 bg-theme-background">
-              <StatusBar barStyle="light-content" backgroundColor="#000" />
-              <NavigationContainer
-                theme={{
-                  ...RNDarkTheme,
-                  colors: {
-                    ...RNDarkTheme.colors,
-                    background: "#000000",
-                    card: "#000000",
-                    border: "#000000",
-                    text: "#ffffff",
-                    primary: theme.colors.accent,
-                  },
-                }}
-              >
-                <UserProfileSheetProvider>
-                  <RootNavigator />
-                  <UsernameGate />
-                </UserProfileSheetProvider>
-              </NavigationContainer>
-            </SafeAreaView>
-          </BootGate>
+          <WebSocketProvider>
+            <BootGate>
+              <SafeAreaView className="flex-1 bg-theme-background">
+                <StatusBar barStyle="light-content" backgroundColor="#000" />
+                <NavigationContainer
+                  theme={{
+                    ...RNDarkTheme,
+                    colors: {
+                      ...RNDarkTheme.colors,
+                      background: "#000000",
+                      card: "#000000",
+                      border: "#000000",
+                      text: "#ffffff",
+                      primary: theme.colors.accent,
+                    },
+                  }}
+                >
+                  <UserProfileSheetProvider>
+                    <RootNavigator />
+                    <UsernameGate />
+                  </UserProfileSheetProvider>
+                </NavigationContainer>
+              </SafeAreaView>
+            </BootGate>
+          </WebSocketProvider>
         </AuthProvider>
         <Toaster
           position="top-center"

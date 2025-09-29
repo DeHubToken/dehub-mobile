@@ -130,6 +130,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const providerInitInFlightRef = useRef<Promise<void> | null>(null);
   const isMountedRef = useRef(true);
 
+  console.log({user, provider})
   useEffect(() => {
     return () => {
       isMountedRef.current = false;
