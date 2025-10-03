@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createLiveSession } from "../services/live.service";
 import { toastError } from "../libs/toast";
+import { LivestreamEvents } from '../services/enums/livestream.enum';
+// RTMP publisher removed in WebRTC mode; keep commented imports for future fallback if needed.
+// import { getRtmpPublisher } from '../services/rtmp.publisher';
+// import { LIVEPEER_RTMP_SERVER } from '../config/constants';
 
 export type LiveStage =
   | "idle"
@@ -24,8 +28,13 @@ export interface UseLiveOptions {
   }) => void;
 }
 
-export const useLive = (opts?: UseLiveOptions) => {
-  const [stage, setStage] = useState<LiveStage>("idle");
+interface UseLiveInternalOpts extends UseLiveOptions {
+  livepeerId?: string;        // livepeer stream object id
+  livepeerApiKey?: string;    // for polling fallback
+}
+
+export const useLive = (opts?: UseLiveInternalOpts) => {
+  const [stage, setStage] = useState<LiveStage>('ready');
   const [streamId, setStreamId] = useState<string | null>(null);
   const [ingestUrl, setIngestUrl] = useState<string | null>(null);
   const [streamKey, setStreamKey] = useState<string | null>(null);
@@ -89,13 +98,68 @@ export const useLive = (opts?: UseLiveOptions) => {
   );
 
   // Placeholder start/stop transitions; wire to backend later
-  const start = useCallback(async () => {
-    setStage((s) => (s === "ready" ? "live" : s));
+  // Store a registrar function from WebSocket context: (event, handler) => unsubscribe
+  const socketOnRef = useRef<((event: string, handler: (data: any) => void) => (() => void) | void) | null>(null);
+  const [socketVersion, setSocketVersion] = useState(0); // trigger re-subscribe when binding changes
+
+  const bindSocket = useCallback((onFn: (event: string, handler: (data: any) => void) => (() => void) | void) => {
+    socketOnRef.current = onFn;
+    setSocketVersion(v => v + 1);
   }, []);
 
+  const startingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const endingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pollAbortRef = useRef<AbortController | null>(null);
+  const stageRef = useRef(stage);
+  useEffect(() => { stageRef.current = stage; }, [stage]);
+
+  const start = useCallback(async () => {
+    if (stage !== 'ready' || !streamKey) return;
+    // In WebRTC mode, UI component (WebRTCPublisher) performs the offer/answer. We just mark starting.
+    setStage('starting');
+    // Timeout safety: if we never receive StartStream event, revert to ready after 20s
+    startingTimeoutRef.current && clearTimeout(startingTimeoutRef.current);
+    startingTimeoutRef.current = setTimeout(() => {
+      setStage(s => (s === 'starting' ? 'ready' : s));
+    }, 20000);
+  }, [stage, streamKey]);
+
   const end = useCallback(async () => {
-    setStage((s) => (s === "live" ? "ended" : s));
+    if (stage !== 'live') return;
+    setStage('ending');
+    pollAbortRef.current?.abort();
+    // WebRTCPublisher will teardown when active flag becomes false (stage not starting/live)
+    endingTimeoutRef.current && clearTimeout(endingTimeoutRef.current);
+    endingTimeoutRef.current = setTimeout(() => {
+      setStage(s => (s === 'ending' ? 'ended' : s));
+    }, 15000);
+  }, [stage]);
+
+  const publisherFailed = useCallback((reason?: string) => {
+    if (stageRef.current === 'starting') {
+      startingTimeoutRef.current && clearTimeout(startingTimeoutRef.current);
+      pollAbortRef.current?.abort();
+      setStage('ready');
+      if (reason) toastError(reason);
+    }
   }, []);
+
+  useEffect(() => {
+    if (!socketOnRef.current) return;
+    const unsubStart = socketOnRef.current(LivestreamEvents.StartStream, () => {
+      startingTimeoutRef.current && clearTimeout(startingTimeoutRef.current);
+      pollAbortRef.current?.abort();
+      setStage('live');
+    }) || (() => {});
+    const unsubEnd = socketOnRef.current(LivestreamEvents.EndStream, () => {
+      endingTimeoutRef.current && clearTimeout(endingTimeoutRef.current);
+      setStage('ended');
+    }) || (() => {});
+    return () => {
+      unsubStart();
+      unsubEnd();
+    };
+  }, [socketVersion]);
 
   return {
     stage,
@@ -105,9 +169,11 @@ export const useLive = (opts?: UseLiveOptions) => {
     createdTokenId,
     signature,
     reset,
+    bindSocket,
     create,
     start,
     end,
+    publisherFailed,
   };
 };
 
