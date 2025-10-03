@@ -388,3 +388,5 @@ export enum StreamStatus {
 }
 
 export const LIVEPEER_RTMP_SERVER = "rtmp://rtmp.livepeer.com/live";
+// Placeholder WHIP endpoint for Livepeer WebRTC ingest (adjust if your API returns a specific per-stream URL)
+export const LIVEPEER_WHIP_ENDPOINT = "https://livepeer.whip.live/whip";

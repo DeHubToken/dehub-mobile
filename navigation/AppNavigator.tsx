@@ -15,8 +15,21 @@ import LikedVideosScreen from "../screens/LikedVideosScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
 import SignInScreen from "../screens/auth/SignInScreen";
 import UploadScreen from "../screens/UploadScreen";
-import LiveProducerScreen from "../screens/LiveProducerScreen";
-import LiveViewerScreen from "../screens/LiveViewerScreen";
+import LiveProducerScreen from "../screens/LiveProducerScreen"; // keep direct import for types (optional remove)
+import LiveViewerScreen from "../screens/LiveViewerScreen"; // keep direct import for types
+import { LivepeerProvider } from "../config/livepeer.config";
+
+// Per-screen provider wrappers (navigation cannot host provider directly as child)
+const LiveProducerWithProvider: React.FC<any> = (props) => (
+  <LivepeerProvider>
+    <LiveProducerScreen {...props} />
+  </LivepeerProvider>
+);
+const LiveViewerWithProvider: React.FC<any> = (props) => (
+  <LivepeerProvider>
+    <LiveViewerScreen {...props} />
+  </LivepeerProvider>
+);
 
 const Stack = createStackNavigator();
 
@@ -110,7 +123,7 @@ export default function AppNavigator() {
       />
       <Stack.Screen
         name={ScreenNames.LiveProducer}
-        component={LiveProducerScreen}
+        component={LiveProducerWithProvider}
         options={{
           presentation: 'modal',
           cardStyle: { backgroundColor: '#000' },
@@ -135,7 +148,7 @@ export default function AppNavigator() {
       />
       <Stack.Screen
         name={ScreenNames.LiveViewer}
-        component={LiveViewerScreen}
+        component={LiveViewerWithProvider}
         options={{
           presentation: 'modal',
           cardStyle: { backgroundColor: '#000' },

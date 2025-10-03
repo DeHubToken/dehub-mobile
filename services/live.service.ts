@@ -157,10 +157,10 @@ export async function getScheduledLives(): Promise<ScheduledLiveItem[]> {
 export async function getUserScheduledLives(address: string): Promise<ScheduledLiveItem[]> {
   if (!address) return [];
   try {
-    const res = await apiClient.get<any>(`/live/user/${encodeURIComponent(address)}/scheduled`, { isAuthRequired: true });
+    const res = await apiClient.get<any>(`/live/user/${encodeURIComponent(address)}/scheduled?futureOnly=false`, { isAuthRequired: true });
     const arr: any[] = Array.isArray(res?.result) ? res.result : Array.isArray(res) ? res : [];
     return arr
-      .filter((i) => i && i.scheduledFor && new Date(i.scheduledFor).getTime() > Date.now())
+      // .filter((i) => i && i.scheduledFor && new Date(i.scheduledFor).getTime() > Date.now())
       .map((i) => ({
         streamId: i._id || i.streamId || i.id || String(i._id || i.streamId || i.id),
         name: i.title || i.name || 'Untitled',
@@ -171,4 +171,58 @@ export async function getUserScheduledLives(address: string): Promise<ScheduledL
     console.warn('[live.service] getUserScheduledLives error', e);
     return [];
   }
+}
+
+// --- New Live Stream helpers (backend unified /live endpoints) ---
+
+export interface LiveStreamEntity {
+  _id?: string;
+  title: string;
+  description?: string;
+  thumbnail?: string;
+  streamUrl?: string;
+  streamKey: string;
+  livepeerId: string;
+  playbackId: string;
+  status: string; // e.g. OFFLINE | LIVE | SCHEDULED
+  isActive: boolean;
+  startedAt?: string;
+  endedAt?: string;
+  scheduledFor?: string;
+  categories?: string[];
+  settings?: Record<string, any>;
+  peakViewers?: number;
+  totalViews?: number;
+  likes?: number;
+  likesCount?: number;
+  likesRecord?: Record<string, boolean>;
+  totalTips?: number;
+  duration?: number;
+  address: string;
+  activities?: any[];
+  viewers?: any[];
+  meta?: Record<string, any>;
+  streamDelay?: number;
+  tokenId?: number;
+  streamInfo?: any;
+  [k: string]: any;
+}
+
+export async function getLiveStream(streamId: string) {
+  if (!streamId) throw new Error('streamId required');
+  return apiClient.get<LiveStreamEntity | { result?: LiveStreamEntity }>(`/live/${encodeURIComponent(streamId)}`, { isAuthRequired: false });
+}
+
+export async function getLiveVideos() {
+  return apiClient.get<any>(`/live`, { isAuthRequired: false });
+}
+
+export async function getStreamKey(streamId: string) {
+  if (!streamId) throw new Error('streamId required');
+  return apiClient.get<{ streamKey: string }>(`/live/${encodeURIComponent(streamId)}/key`, { isAuthRequired: true });
+}
+
+export async function checkIfBroadcastOwner(address: string | `0x${string}` | undefined, stream: { address?: string } | null | undefined) {
+  if (!address || !stream) return false;
+  return stream.address?.toLowerCase() === address.toLowerCase();
 }
