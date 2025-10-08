@@ -70,7 +70,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
     (nft as any).minter ||
     (nft as any).owner ||
     undefined;
-  const likes = (nft as any).totalVotes?.for || (nft as any).stream?.likes || 0;
+  const likes = (nft as any).totalVotes?.for || (nft as any).stream?.likes || (nft as any).likes || 0;
   const views =
     nft.views ||
     (nft as any).peakViewers ||
@@ -123,11 +123,15 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const handlePressVideo = useCallback(() => {
     if (tokenId == null) return; // require valid tokenId
     const target = isLive ? ScreenNames.LiveViewer : ScreenNames.VideoPlayer;
-    navigation.navigate(target as never, {
-      isLive,
-      nft,
-      accessInfo,
-    } as never);
+    navigation.navigate(
+      target as never,
+      {
+        isLive,
+        nft,
+        accessInfo,
+        streamId: nft?._id, // for livestreams
+      } as never
+    );
   }, [navigation, tokenId, isLive, nft, accessInfo]);
   return (
     <View className="m-1 px-4 py-1">

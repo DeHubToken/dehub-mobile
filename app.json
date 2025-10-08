@@ -25,7 +25,9 @@
           "safe",
           "rainbow",
           "uniswap"
-        ]
+        ],
+        "NSCameraUsageDescription": "This app requires access to your camera.",
+        "NSMicrophoneUsageDescription": "This app requires access to your microphone."
       }
     },
     "android": {
@@ -36,7 +38,11 @@
       },
       "package": "io.dehub.mobile",
       "compileSdkVersion": 35,
-      "targetSdkVersion": 35
+      "targetSdkVersion": 35,
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/AppIcons/web/favicon.png",
@@ -56,7 +62,8 @@
       ],
       "expo-audio",
       "expo-font",
-      "expo-asset"
+      "expo-asset",
+      "@config-plugins/react-native-webrtc"
     ],
     "extra": {
       "eas": {

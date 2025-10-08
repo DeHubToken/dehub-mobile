@@ -3,10 +3,12 @@ import { useAuth } from './AuthContext';
 import { WebSocketClient } from '../services/ws/socket-client';
 import env from '../config/env';
 import { AppState } from 'react-native';
+import { getAuthToken as readStoredAuthToken } from '../libs/auth.utils';
 
 interface WebSocketContextValue {
   connected: boolean;
   emit: (event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => void;
+  emitAuthed: (event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => void;
   on: (event: string, handler: (data: any) => void) => () => void;
   off: (event: string, handler: (data: any) => void) => void;
   /** Direct access to the underlying client for advanced use-cases (avoid in generic UI code) */
@@ -17,28 +19,85 @@ const WebSocketContext = createContext<WebSocketContextValue | null>(null);
 
 export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user } = useAuth();
-  // We don't store token in context currently; reopen using persisted token when signed in.
-  const getAuthToken = useCallback(() => (user ? (user as any)?.token || null : null), [user]);
+  // Keep latest user in a ref so getters always read current values
+  const userRef = useRef<any>(user);
+  useEffect(() => { userRef.current = user; }, [user]);
+  // Keep latest token from SecureStore
+  const tokenRef = useRef<string | null>(null);
+  const refreshTokenFromStore = useCallback(async () => {
+    try {
+      const tk = await readStoredAuthToken();
+      tokenRef.current = tk || null;
+    } catch {
+      tokenRef.current = null;
+    }
+  }, []);
+  // Load token initially and whenever user changes
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      await refreshTokenFromStore();
+      if (!cancelled) clientRef.current?.updateAuth();
+    })();
+    return () => { cancelled = true; };
+  }, [user, refreshTokenFromStore]);
+  // Also refresh token on foreground
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', async (s) => {
+      if (s === 'active') {
+        await refreshTokenFromStore();
+        clientRef.current?.updateAuth();
+      }
+    });
+    return () => { sub.remove(); };
+  }, [refreshTokenFromStore]);
+  // Stable getters (no deps) that read from ref; the socket will call these at reconnect/build time
+  const getAuthToken = useCallback(() => tokenRef.current, []);
+  const getAddress = useCallback(() => {
+    const u = userRef.current;
+    return u ? ((u as any)?.walletAddress || (u as any)?.address || null) : null;
+  }, []);
   const clientRef = useRef<WebSocketClient | null>(null);
   const [connected, setConnected] = useState(false);
+  const reconnectListenersRef = useRef<Set<() => void>>(new Set());
   // No domain state kept (stream-specific logic removed)
 
   // Initialize or update auth
   useEffect(() => {
     if (!clientRef.current) {
+      const url = env?.WEBSOCKET_URL?.replace(/\/$/, '') || 'https://api.dehub.io';
       clientRef.current = new WebSocketClient({
-        url: env?.WEBSOCKET_URL?.replace(/\/$/, '') || 'https://api.dehub.io',
+        url,
         getAuthToken,
+        getAddress,
         autoConnect: true,
-        debug: false,
+        debug: true,
       });
-      clientRef.current.on('connected', () => setConnected(true));
-      clientRef.current.on('disconnected', () => setConnected(false));
+      clientRef.current.on('connect_error', (err: any) => {
+        console.log('[WebSocketContext] connect_error', { url, message: err?.message, stack: err?.stack });
+      });
+      clientRef.current.on('connected', () => { 
+        console.log('[WebSocketContext] connected');
+        setConnected(true);
+        // Notify reconnect listeners
+        reconnectListenersRef.current.forEach((fn) => {
+          try { fn(); } catch {}
+        });
+      });
+      clientRef.current.on('disconnected', () => { 
+        console.log('[WebSocketContext] disconnected');
+        setConnected(false);
+      });
       // No domain event listeners registered.
     } else {
       clientRef.current.updateAuth();
     }
-  }, [getAuthToken]);
+  }, [getAuthToken, getAddress]);
+
+  // When user changes (token/address), ask client to refresh handshake auth
+  useEffect(() => {
+    clientRef.current?.updateAuth();
+  }, [user]);
 
   // App foreground resume
   useEffect(() => {
@@ -51,26 +110,36 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const emit = useCallback((event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => {
     clientRef.current?.emit(event, payload, ack);
   }, []);
+  // Authed emitter: merges current token into payload
+  const emitAuthed = useCallback((event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => {
+    const token = tokenRef.current;
+    const merged = token ? { ...(payload || {}), token } : payload;
+    clientRef.current?.emit(event, merged, ack);
+  }, []);
   // Since WebSocketClient.on returns an unsubscribe, we wrap it to also track handlers for a lightweight off.
-  const handlerMapRef = useRef<Map<string, Set<Function>>>(new Map());
+  // event -> (handler -> unsubscribe)
+  const handlerMapRef = useRef<Map<string, Map<Function, Function>>>(new Map());
   const on = useCallback((event: string, handler: (data: any) => void) => {
     const unsubscribe = clientRef.current?.on(event, handler) || (() => {});
-    // Track for potential off
-    let set = handlerMapRef.current.get(event);
-    if (!set) { set = new Set(); handlerMapRef.current.set(event, set); }
-    set.add(handler);
-    return () => { set?.delete(handler); unsubscribe(); };
+    // Track unsubscribe for this handler
+    let map = handlerMapRef.current.get(event);
+    if (!map) { map = new Map(); handlerMapRef.current.set(event, map); }
+    map.set(handler, unsubscribe);
+    // Return an unsubscribe that calls the actual underlying unsubscribe and removes tracking
+    return () => {
+      try { unsubscribe(); } catch {}
+      map?.delete(handler);
+    };
   }, []);
   const off = useCallback((event: string, handler: (data: any) => void) => {
-    const set = handlerMapRef.current.get(event);
-    if (set && set.has(handler)) {
-      // Re-register all except the one to remove by clearing then re-adding remaining would be heavy;
-      // Instead rely on stored unsubscribe: since we didn't keep each unsubscribe individually, we call a new temp on/off cycle.
-      // Simplify: just delete reference; original unsubscribe not called (minor leak until next reconnect) – acceptable for now.
-      set.delete(handler);
+    const map = handlerMapRef.current.get(event);
+    const unsub = map?.get(handler);
+    if (unsub) {
+      try { unsub(); } catch {}
+      map?.delete(handler);
     }
   }, []);
-  const value = useMemo(() => ({ connected, emit, on, off, client: clientRef.current }), [connected, emit, on, off]);
+  const value = useMemo(() => ({ connected, emit, emitAuthed, on, off, client: clientRef.current }), [connected, emit, emitAuthed, on, off]);
 
   return <WebSocketContext.Provider value={value}>{children}</WebSocketContext.Provider>;
 };

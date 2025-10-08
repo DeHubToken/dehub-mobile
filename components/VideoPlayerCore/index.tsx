@@ -26,6 +26,7 @@ interface VideoPlayerCoreProps {
   autoplay?: boolean;
   loop?: boolean;
   initialMuted?: boolean;
+  liveMode?: boolean; // when true, disable seeking and hide skip controls
   onReady?(durationMs: number): void;
   onPlayStateChange?(playing: boolean): void;
   onProgress?(positionMs: number, durationMs: number): void;
@@ -51,6 +52,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   onPlayStateChange,
   onProgress,
   onClose,
+  liveMode = false,
 }) => {
   const viewRef = useRef<VideoView | null>(null);
   const navigation = useNavigation<any>();
@@ -257,6 +259,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   const lastTapRef = useRef<number>(0);
   const lastSideRef = useRef<"left" | "right" | null>(null);
   const handleDoubleTap = async (side: "left" | "right") => {
+    if (liveMode) return; // disable seeking in live mode
     try {
       const forwardDelta = 10; // seconds
       const backwardDelta = 30; // seconds
@@ -311,6 +314,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   }, []);
 
   const seekToRatio = async (ratio: number) => {
+    if (liveMode) return; // disable seeking in live mode
     if (!duration) return;
     const newPosMs = Math.min(Math.max(ratio, 0), 1) * duration;
     try {
@@ -320,6 +324,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   };
 
   const onProgressBarPress = (e: GestureResponderEvent) => {
+    if (liveMode) return; // disable seeking in live mode
     const { locationX } = e.nativeEvent;
     if (!progressBarWidth) return;
     const ratio = locationX / progressBarWidth;
@@ -334,6 +339,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
       onPanResponderGrant: (evt) => {
+        if (liveMode) return; // disable seeking in live mode
         draggingRef.current = true;
         showAndScheduleHide();
         if (progressBarWidth) {
@@ -342,7 +348,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
         }
       },
       onPanResponderMove: (evt, gesture) => {
-        if (!draggingRef.current) return;
+        if (!draggingRef.current || liveMode) return;
         if (progressBarWidth) {
           const x = Math.min(
             Math.max(evt.nativeEvent.locationX, 0),
@@ -353,11 +359,13 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
         }
       },
       onPanResponderRelease: () => {
+        if (liveMode) return; // disable seeking in live mode
         draggingRef.current = false;
         scheduleHide();
       },
       onPanResponderTerminationRequest: () => false,
       onPanResponderTerminate: () => {
+        if (liveMode) return; // disable seeking in live mode
         draggingRef.current = false;
         scheduleHide();
       },
@@ -422,6 +430,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
             onTogglePlay={togglePlay}
             onSeekBack={() => handleDoubleTap("left")}
             onSeekForward={() => handleDoubleTap("right")}
+            hideSeekButtons={liveMode}
           />
           <ProgressBar
             position={position}
@@ -429,12 +438,13 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
             bufferedPosition={bufferedPosition}
             onLayoutWidth={(w) => setProgressBarWidth(w)}
             onPressBar={(x) => {
-              if (!progressBarWidth) return;
+              if (!progressBarWidth || liveMode) return;
               const ratio = x / progressBarWidth;
               seekToRatio(ratio);
               showAndScheduleHide();
             }}
-            panHandlers={panResponder.panHandlers}
+            panHandlers={liveMode ? {} : panResponder.panHandlers}
+            liveMode={liveMode}
           />
         </View>
       )}

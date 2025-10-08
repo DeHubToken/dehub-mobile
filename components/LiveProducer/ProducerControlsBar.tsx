@@ -16,6 +16,7 @@ interface Props {
   onFlipCamera: () => void;
   externalMode: boolean;
   onToggleExternal: () => void;
+  startDisabled?: boolean; // externally enforced preconditions (e.g. missing streamKey/livepeerId)
 }
 
 const circleBtn = 'w-12 h-12 rounded-full items-center justify-center';
@@ -35,13 +36,16 @@ const ProducerControlsBar: React.FC<Props> = ({
   onFlipCamera,
   externalMode,
   onToggleExternal,
+  startDisabled,
 }) => {
   const isLive = stage === 'live';
   const isStarting = stage === 'starting';
   const isEnding = stage === 'ending';
   const isReady = stage === 'ready';
-  const canStart = isReady && !isStarting;
+  const canStart = isReady && !isStarting && !startDisabled;
   const canEnd = isLive && !isEnding;
+
+  const hideExternalToggle = isStarting || isLive || isEnding || stage === 'ended';
 
   return (
     <View className="absolute bottom-0 left-0 right-0 p-4 pb-6">
@@ -64,19 +68,21 @@ const ProducerControlsBar: React.FC<Props> = ({
           <Gift color="white" size={22} />
         </TouchableOpacity> */}
         <View className="flex-1" />
-        {/* External stream toggle */}
-        <TouchableOpacity
-          onPress={onToggleExternal}
-          activeOpacity={tap}
-          className={`mr-2 ${circleBtn} border border-white/10 ${externalMode ? 'bg-indigo-600' : 'bg-black/40'}`}
-        >
-          <Server color="white" size={20} />
-          {!externalMode && (
-            <View className="absolute -bottom-1.5">
-              <Text className="text-[9px] text-white/60">EXT</Text>
-            </View>
-          )}
-        </TouchableOpacity>
+        {/* External stream toggle (hidden once starting/live/ending/ended) */}
+        {!hideExternalToggle && (
+          <TouchableOpacity
+            onPress={onToggleExternal}
+            activeOpacity={tap}
+            className={`mr-2 ${circleBtn} border border-white/10 ${externalMode ? 'bg-indigo-600' : 'bg-black/40'}`}
+          >
+            <Server color="white" size={20} />
+            {!externalMode && (
+              <View className="absolute -bottom-1.5">
+                <Text className="text-[9px] text-white/60">EXT</Text>
+              </View>
+            )}
+          </TouchableOpacity>
+        )}
         {isLive ? (
           <TouchableOpacity
             onPress={canEnd ? onEnd : undefined}
@@ -93,7 +99,7 @@ const ProducerControlsBar: React.FC<Props> = ({
               className={`px-6 h-12 rounded-full items-center justify-center flex-row ${externalMode || !canStart ? 'bg-zinc-700/70' : 'bg-green-600'}`}
             >
               <Radio color="white" size={20} className="mr-2" />
-              <Text className="text-white font-semibold text-sm">{isStarting ? 'Setting Up…' : 'Go Live'}</Text>
+              <Text className="text-white font-semibold text-sm">{isStarting ? 'Setting Up…' : startDisabled ? 'Preparing…' : 'Go Live'}</Text>
             </TouchableOpacity>
         )}
       </View>
