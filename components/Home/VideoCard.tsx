@@ -83,7 +83,11 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
     (nft as any).minter ||
     (nft as any).owner ||
     undefined;
-  const likes = nft.totalVotes?.for || (nft as any).stream?.likes || 0;
+  const likes =
+    nft.totalVotes?.for ||
+    (nft as any).stream?.likes ||
+    (nft as any).likes ||
+    0;
   const views =
     nft.views ||
     (nft as any).peakViewers ||
@@ -127,11 +131,15 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const handlePressVideo = useCallback(() => {
     if (tokenId == null) return; // require valid tokenId
     const target = isLive ? ScreenNames.LiveViewer : ScreenNames.VideoPlayer;
-    navigation.navigate(target as never, {
-      isLive,
-      nft,
-      accessInfo,
-    } as never);
+    navigation.navigate(
+      target as never,
+      {
+        isLive,
+        nft,
+        accessInfo,
+        streamId: nft?._id, // for livestreams
+      } as never
+    );
   }, [navigation, tokenId, isLive, nft, accessInfo]);
   return (
     <TouchableOpacity

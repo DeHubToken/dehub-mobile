@@ -17,6 +17,7 @@ export interface VideoAreaProps {
   minter?: string;
   tokenId: number | string | undefined;
   onProgress?: (positionMs: number, durationMs: number) => void;
+  isLive?: boolean;
 }
 
 const VideoArea: React.FC<VideoAreaProps> = ({
@@ -29,6 +30,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   minter,
   tokenId,
   onProgress,
+  isLive,
 }) => {
   const normalizedUrl: string | null =
     effectiveVideoUrl === undefined ? null : effectiveVideoUrl;
@@ -87,6 +89,30 @@ const VideoArea: React.FC<VideoAreaProps> = ({
         <Text className="text-theme-neutrals-300 mt-2 text-sm">
           Transcoding…
         </Text>
+      </View>
+    );
+  }
+
+  // Live streams require sign in even if free
+  if (isLive && !isSignedIn) {
+    return (
+      <View className="w-full aspect-video bg-black items-center justify-center px-6">
+        <Ionicons name="log-in" size={46} color="#888" />
+        <Text
+          className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
+          numberOfLines={3}
+        >
+          Sign in to view this live.
+        </Text>
+        <TouchableOpacity
+          onPress={handleSignIn}
+          className="mt-4 px-5 py-2 rounded-full bg-theme-accent"
+          activeOpacity={0.85}
+        >
+          <Text className="text-theme-neutrals-900 text-xs font-semibold">
+            Sign In
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -213,6 +239,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
         autoplay
         loop
         initialMuted
+        liveMode={!!isLive}
         onProgress={onProgress}
       />
     </View>

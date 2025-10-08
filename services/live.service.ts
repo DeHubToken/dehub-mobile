@@ -226,3 +226,19 @@ export async function checkIfBroadcastOwner(address: string | `0x${string}` | un
   if (!address || !stream) return false;
   return stream.address?.toLowerCase() === address.toLowerCase();
 }
+
+// Like a live stream (auth via token; body optional)
+export async function likeLiveStream(streamId: string, payload: Record<string, any> = {}) {
+  if (!streamId) throw new Error('streamId required');
+  return apiClient.post<any>(`/live/${encodeURIComponent(streamId)}/like`, payload, {
+    isAuthRequired: true,
+  });
+}
+
+// Record a live gift on backend after on-chain send succeeds
+export async function recordLiveGift(streamId: string, data: any) {
+  if (!streamId) throw new Error('streamId required');
+  return apiClient.post<any>(`/live/${encodeURIComponent(streamId)}/gift`, data, {
+    isAuthRequired: true,
+  });
+}

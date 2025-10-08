@@ -121,7 +121,7 @@ const TipModal: React.FC<TipModalProps> = ({
 
   const handleTip = useCallback(() => {
     requireAuth(async () => {
-      if (disableTip || phase !== "idle") return;
+      if (disableTip || (phase !== "idle" && phase !== "error")) return;
       setTipError(null);
       if (
         !provider ||

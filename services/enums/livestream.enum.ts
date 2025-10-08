@@ -27,3 +27,11 @@ export enum StreamActivityType {
   LEFT = "LEFT",
   TIP = "TIP"
 }
+
+export enum StreamStatus {
+  OFFLINE = 'OFFLINE',
+  LIVE = 'LIVE',
+  ENDED = 'ENDED',
+  SCHEDULED = 'SCHEDULED',
+}
+

@@ -11,7 +11,11 @@ export interface LivepeerStreamInfo {
 
 const LIVEPEER_BASE = 'https://livepeer.studio/api';
 
-async function lpFetch(path: string, apiKey: string) {
+import env from '../config/env';
+
+async function lpFetch(path: string) {
+  const apiKey = env.LIVEPEER_API_KEY;
+  if (!apiKey) throw new Error('Missing LIVEPEER_API_KEY env');
   const res = await fetch(`${LIVEPEER_BASE}${path}`, {
     headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
   });
@@ -19,26 +23,25 @@ async function lpFetch(path: string, apiKey: string) {
   return res.json();
 }
 
-export async function getLivepeerStream(livepeerId: string, apiKey: string): Promise<LivepeerStreamInfo> {
-  return lpFetch(`/stream/${encodeURIComponent(livepeerId)}`, apiKey);
+export async function getLivepeerStream(livepeerId: string): Promise<LivepeerStreamInfo> {
+  return lpFetch(`/stream/${encodeURIComponent(livepeerId)}`);
 }
 
 export async function waitForLivepeerActive(params: {
   livepeerId: string;
-  apiKey: string;
   timeoutMs?: number;
   intervalMs?: number;
   consecutive?: number;
   abortSignal?: AbortSignal;
   onTick?: (info: LivepeerStreamInfo) => void;
 }): Promise<boolean> {
-  const { livepeerId, apiKey, timeoutMs = 25000, intervalMs = 3500, consecutive = 2, abortSignal, onTick } = params;
+  const { livepeerId, timeoutMs = 25000, intervalMs = 3500, consecutive = 2, abortSignal, onTick } = params;
   const start = Date.now();
   let streak = 0;
   while (Date.now() - start < timeoutMs) {
     if (abortSignal?.aborted) return false;
     try {
-      const info = await getLivepeerStream(livepeerId, apiKey);
+      const info = await getLivepeerStream(livepeerId);
       onTick?.(info);
       if (info.isActive) {
         streak += 1;

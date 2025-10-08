@@ -12,7 +12,7 @@ export interface UseStreamDetailsResult {
   refetchStreamKey: () => void;
 }
 
-export const useStreamDetails = (streamId?: string): UseStreamDetailsResult => {
+export const useStreamDetails = (streamId?: string, fetchKey: boolean = true): UseStreamDetailsResult => {
   const [streamEntity, setStreamEntity] = useState<LiveStreamEntity | null>(null);
   const [streamLoading, setStreamLoading] = useState<boolean>(!!streamId);
   const [streamError, setStreamError] = useState<string | null>(null);
@@ -36,7 +36,7 @@ export const useStreamDetails = (streamId?: string): UseStreamDetailsResult => {
   };
 
   const fetchStreamKey = () => {
-    if (!streamId) return;
+    if (!streamId || !fetchKey) return;
     setStreamKeyLoading(true);
     setStreamKeyError(null);
     getStreamKey(streamId)
@@ -51,8 +51,8 @@ export const useStreamDetails = (streamId?: string): UseStreamDetailsResult => {
   useEffect(() => {
     if (!streamId) return;
     fetchStream();
-    fetchStreamKey();
-  }, [streamId]);
+    if (fetchKey) fetchStreamKey();
+  }, [streamId, fetchKey]);
 
   return {
     streamEntity,

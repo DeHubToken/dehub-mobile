@@ -6,14 +6,18 @@ import LiveStreamPlayer from "../components/VideoPlayer/LiveStreamPlayer";
 type RouteParams = {
   tokenId?: string | number;
   streamKey?: string;
+  streamId?: string;
+  playbackId?: string;
+  nft?: any;
+  accessInfo?: any;
 };
 
 const LiveViewerScreen: React.FC = () => {
   const route = useRoute<any>();
-  const { tokenId, streamKey } = (route.params || {}) as RouteParams;
+  const params = (route.params || {}) as RouteParams;
   return (
     <View className="flex-1 bg-black">
-      <LiveStreamPlayer tokenId={tokenId} streamKey={streamKey} />
+      <LiveStreamPlayer {...params} />
     </View>
   );
 };

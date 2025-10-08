@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { ChevronDown } from 'lucide-react-native';
+import { ChevronDown, Video, VideoOff, Mic, MicOff } from 'lucide-react-native';
 
 interface Props {
   stage: 'idle' | 'creating' | 'ready' | 'starting' | 'live' | 'ending' | 'ended';
@@ -8,8 +8,11 @@ interface Props {
   bitrateKbps?: number;
   viewers?: number;
   likes?: number;
-  onRequestClose?: () => void; // attempt to close screen
-  onRequestEndConfirmation?: () => void; // open end stream confirmation when not allowed to close
+  micMuted?: boolean;
+  cameraOff?: boolean;
+  startingHint?: string;
+  onRequestClose?: () => void;
+  onRequestEndConfirmation?: () => void;
 }
 
 const formatDuration = (start?: number | null) => {
@@ -22,7 +25,7 @@ const formatDuration = (start?: number | null) => {
   return `${h}:${m}:${s}`;
 };
 
-const ProducerStatusBar: React.FC<Props> = ({ stage, startTimestamp, bitrateKbps = 3200, viewers = 0, likes = 0, onRequestClose, onRequestEndConfirmation }) => {
+const ProducerStatusBar: React.FC<Props> = ({ stage, startTimestamp, bitrateKbps = 3200, viewers = 0, likes = 0, micMuted, cameraOff, startingHint, onRequestClose, onRequestEndConfirmation }) => {
   const [, force] = useState(0);
   useEffect(() => {
     if (stage !== 'live') return;
@@ -56,12 +59,24 @@ const ProducerStatusBar: React.FC<Props> = ({ stage, startTimestamp, bitrateKbps
         </TouchableOpacity>
         <View className="w-2 h-2 rounded-full mx-2" style={{ backgroundColor: isLive ? '#ef4444' : isStarting ? '#f59e0b' : isEnding ? '#f59e0b' : '#6b7280' }} />
         <Text className="text-white font-semibold text-xs mr-3">{statusLabel}</Text>
+        {isStarting && startingHint ? (
+          <Text className="text-white/70 text-xs mr-3">{startingHint}</Text>
+        ) : null}
         {isLive && (
           <Text className="text-white/70 text-xs mr-3">{formatDuration(startTimestamp)}</Text>
         )}
         <Text className="text-white/70 text-xs mr-3">{bitrateKbps} kbps</Text>
-        <Text className="text-white/70 text-xs mr-3" numberOfLines={1}>{viewers} watching</Text>
-        <Text className="text-white/70 text-xs" numberOfLines={1}>{likes} likes</Text>
+        {isLive && (
+          <>
+            <Text className="text-white/70 text-xs mr-3" numberOfLines={1}>{viewers} watching</Text>
+            <Text className="text-white/70 text-xs mr-3" numberOfLines={1}>{likes} likes</Text>
+          </>
+        )}
+        <View className="flex-row items-center">
+          {cameraOff ? <VideoOff color="#ccc" size={12} /> : <Video color="#ccc" size={12} />}
+          <View className="w-2" />
+            {micMuted ? <MicOff color="#ccc" size={12} /> : <Mic color="#ccc" size={12} />}
+        </View>
       </View>
       <View className="flex-row items-center" />
     </View>

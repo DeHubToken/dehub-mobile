@@ -31,7 +31,7 @@ import {
   ScheduledLiveItem,
   createLiveStream,
 } from "../../services/live.service";
-import { minNft } from "../../services/nft.service";
+import { getCategoriesCached, minNft } from "../../services/nft.service";
 import { mintWithBounty, mintNftOnChain } from "../../services/mint.service";
 import { streamInfoKeys, supportedTokens } from "../../config/constants";
 import {
@@ -45,6 +45,9 @@ import { Ionicons } from "@expo/vector-icons";
 import InteractionOptionsSection from "./InteractionOptionsSection";
 import ConfirmUploadModal from "./ConfirmUploadModal";
 import ScheduledLivesModal from "./ScheduledLivesModal";
+import { getUserLiveVideos } from "../../services/user.service";
+import { mediaDevices, RTCPeerConnection, RTCView } from "react-native-webrtc";
+
 
 const DESCRIPTION_MAX = 400;
 const CATEGORIES_MIN = 1;
@@ -56,14 +59,7 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState<string[]>([]);
-  const [allCategories] = useState<string[]>([
-    "Gaming",
-    "IRL",
-    "Music",
-    "Sports",
-    "Tech",
-    "Crypto",
-  ]);
+  const [allCategories, setAllCategories] = useState<string[]>([]);
   const [categoryQuery, setCategoryQuery] = useState("");
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
@@ -103,6 +99,7 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
   const [minTip, setMinTip] = useState<string>("1000");
 
   const [scheduledLives, setScheduledLives] = useState<ScheduledLiveItem[]>([]);
+  const [dueLives, setDueLives] = useState<ScheduledLiveItem[]>([]);
   const [showScheduledModal, setShowScheduledModal] = useState(false);
   const [nextScheduledCountdown, setNextScheduledCountdown] = useState<
     string | null
@@ -146,17 +143,71 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
   }, [scheduledLives]);
 
   useEffect(() => {
+  console.log('[WebRTCPublisher] mediaDevices raw =', mediaDevices);
+  console.log('mediaDevices keys =', Object.keys(mediaDevices));
+
+}, []);
+
+  useEffect(() => {
     let mounted = true;
     const address = (user as any)?.walletAddress || (user as any)?.address;
     if (!address) return; // load only when we have address
     (async () => {
       const list = await getUserScheduledLives(address);
       if (mounted) setScheduledLives(list);
+      // Fetch top 10 user live streams to derive "due" (offline, unscheduled)
+      try {
+        const livesRes = await getUserLiveVideos(address, { unit: 10 });
+        const items = Array.isArray(livesRes?.result) ? livesRes.result : [];
+        const due = items
+          .filter((i: any) => {
+            const statusRaw = (i?.status || i?.streamInfo?.status || "")
+              .toString()
+              .toUpperCase();
+            const isLive =
+              statusRaw === "LIVE" || i?.streamInfo?.isLive === true;
+            const isScheduled =
+              statusRaw === "SCHEDULED" || !!i?.scheduledFor || !!i?.scheduleAt;
+            const isOffline = !isLive && statusRaw !== "ENDED";
+            return isOffline && !isScheduled;
+          })
+          .slice(0, 10)
+          .map((i: any) => ({
+            streamId: String(
+              i?._id || i?.id || i?.streamId || i?.tokenId || ""
+            ),
+            name: i?.name || i?.title || "Untitled",
+            // Use createdAt as the date reference for due streams so UI can show date/relative
+            scheduleAt: i?.createdAt ? new Date(i.createdAt).getTime() : null,
+            thumbnailUrl:
+              i?.thumbnailUrl || i?.imageUrl || i?.thumbnail || null,
+          }))
+          .filter((x: any) => x.streamId);
+        if (mounted) setDueLives(due);
+      } catch (e) {
+        // quietly ignore
+      }
     })();
     return () => {
       mounted = false;
     };
   }, [user?.walletAddress, user?.address]);
+
+  // Fetch categories with cache
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const data = await getCategoriesCached();
+        if (mounted) setAllCategories(data);
+      } catch (e) {
+        console.warn("Failed to load categories", e);
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const lockTokenDropdown = useMemo(
     () =>
@@ -466,7 +517,7 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
       <UploadHeader title="Create Livestream" onClose={onClose} />
       <ScrollView className="flex-1 px-4">
         <View className="flex-row items-center justify-end">
-          {scheduledLives.length > 0 && (
+          {scheduledLives.length + dueLives.length > 0 && (
             <TouchableOpacity
               onPress={() => setShowScheduledModal(true)}
               className="flex-row items-center px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-700"
@@ -475,7 +526,7 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
               <Text className="text-white text-xs ml-1">Scheduled</Text>
               <View className="ml-2 px-1.5 py-0.5 rounded bg-blue-600">
                 <Text className="text-[10px] text-white font-semibold">
-                  {scheduledLives.length}
+                  {scheduledLives.length + dueLives.length}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -633,6 +684,7 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
         visible={showScheduledModal}
         onClose={() => setShowScheduledModal(false)}
         scheduledLives={scheduledLives}
+        dueLives={dueLives}
         onOpen={(item) => {
           if (!item?.streamId) return;
           navigation.navigate(ScreenNames.LiveProducer as any, {
@@ -648,9 +700,7 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
         confirmText={confirmText}
         stage={stage as any}
         variant={showBountyApprove ? "bounty" : "default"}
-        title={
-          showBountyApprove ? "Confirm Bounty Live" : "Confirm Details"
-        }
+        title={showBountyApprove ? "Confirm Bounty Live" : "Confirm Details"}
       />
     </View>
   );
