@@ -337,11 +337,16 @@ export class WebSocketClient {
   }
 
   emit<T = any>(event: string, payload?: T, ack?: (resp?: any, err?: any) => void) {
+    // Queue if not connected yet
     if (!this.socket || !this.socket.connected) {
       this.queuedEmits.push({ event, payload, ack });
       return;
     }
-    this.socket.emit(event, payload, ack);
+    if (typeof ack === "function") {
+      this.socket.emit(event, payload, ack);
+    } else {
+      this.socket.emit(event, payload);
+    }
   }
 
   private flushQueue() {
@@ -349,7 +354,12 @@ export class WebSocketClient {
     while (this.queuedEmits.length) {
       const item = this.queuedEmits.shift();
       if (!item) break;
-      this.socket.emit(item.event, item.payload, item.ack);
+      const { event, payload, ack } = item;
+      if (typeof ack === "function") {
+        this.socket.emit(event, payload, ack);
+      } else {
+        this.socket.emit(event, payload);
+      }
     }
   }
 

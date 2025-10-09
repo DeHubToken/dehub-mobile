@@ -119,8 +119,13 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   // Authed emitter: merges current token into payload
   const emitAuthed = useCallback((event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => {
     const token = tokenRef.current;
-    const merged = token ? { ...(payload || {}), token } : payload;
-    clientRef.current?.emit(event, merged, ack);
+    // const merged = token ? { ...(payload || {}), token } : payload;
+     const merged = { ...(payload || {}) };
+     if (ack) {
+      clientRef.current?.emit(event, merged, ack);
+    } else {
+      clientRef.current?.emit(event, merged);
+    }
   }, []);
   // Since WebSocketClient.on returns an unsubscribe, we wrap it to also track handlers for a lightweight off.
   // event -> (handler -> unsubscribe)
