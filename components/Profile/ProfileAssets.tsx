@@ -53,26 +53,30 @@ const ProfileAssets = () => {
   };
 
   return (
-    <View className="mx-4 my-3 border border-gray-700 rounded-lg p-4 relative">
+    <View className="mx-4 my-3 bg-theme-neutrals-800 rounded-2xl p-4 relative">
       <View className="flex-row items-center justify-between mb-2">
         <Text className="text-base text-white font-semibold">Assets</Text>
-        <InfoTooltip open={showInfo} onOpenChange={setShowInfo} triggerClassName="pl-3">
+        <InfoTooltip
+          open={showInfo}
+          onOpenChange={setShowInfo}
+          triggerClassName="pl-3"
+        >
           <Text className="text-[11px] leading-4 text-white">
-            Balances shown are on Base network (chain 8453). DHB is the
-            platform token used for tipping & rewards. ETH is your gas
-            balance. Values may lag a few seconds. Bridge or transfer assets
-            to Base to use them here.
+            Balances shown are on Base network (chain 8453). DHB is the platform
+            token used for tipping & rewards. ETH is your gas balance. Values
+            may lag a few seconds. Bridge or transfer assets to Base to use them
+            here.
           </Text>
           <View className="flex-row justify-end mt-2">
-            <TouchableOpacity onPress={() => setShowInfo(false)} className="px-2 py-1 rounded bg-zinc-800">
-              <Text className="text-[11px] text-white font-medium">
-                Got it
-              </Text>
+            <TouchableOpacity
+              onPress={() => setShowInfo(false)}
+              className="px-2 py-1 rounded bg-zinc-800"
+            >
+              <Text className="text-[11px] text-white font-medium">Got it</Text>
             </TouchableOpacity>
           </View>
         </InfoTooltip>
       </View>
-      
 
       {assets.map((asset) => (
         <View key={asset.name} className="mb-1">
@@ -85,7 +89,7 @@ const ProfileAssets = () => {
                 source={asset.icon}
                 className="w-8 h-8 rounded-full mr-3"
               />
-              <Text className="text-md text-white">{asset.name}</Text>
+              <Text className="text-lg text-white">{asset.name}</Text>
               {asset.hasActions && (
                 <Ionicons
                   name={showDHBOptions ? "chevron-down" : "chevron-forward"}
@@ -95,7 +99,7 @@ const ProfileAssets = () => {
                 />
               )}
             </TouchableOpacity>
-            <Text className="text-sm text-gray-300">
+            <Text className="text-lg text-gray-300">
               {formatCompactNumber(Number(asset.balance || 0))}
             </Text>
           </View>
@@ -105,7 +109,7 @@ const ProfileAssets = () => {
               {dhbActions.map((action) => (
                 <TouchableOpacity
                   key={action.label}
-                  className={`py-2 px-3 rounded-md flex-1 mx-1 rounded ${
+                  className={`py-2 px-3 rounded-2xl flex-1 mx-1 rounded ${
                     action.disabled ? "bg-gray-800" : "bg-gray-700"
                   }`}
                   onPress={

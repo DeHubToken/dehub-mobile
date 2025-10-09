@@ -70,7 +70,11 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
     (nft as any).minter ||
     (nft as any).owner ||
     undefined;
-  const likes = (nft as any).totalVotes?.for || (nft as any).stream?.likes || (nft as any).likes || 0;
+  const likes =
+    (nft as any).totalVotes?.for ||
+    (nft as any).stream?.likes ||
+    (nft as any).likes ||
+    0;
   const views =
     nft.views ||
     (nft as any).peakViewers ||
@@ -211,6 +215,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
               </TouchableOpacity>
             </View>
           )}
+         
           <View className="flex-row items-center mt-1">
             <Text className="text-theme-neutrals-300 text-xs">
               {views} views
@@ -225,12 +230,12 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
               {relativeTime}
             </Text>
             <View className="flex-1" />
-            <View className="flex-row items-center">
-              <Ionicons name="heart" size={12} color="red" />
+            {/* <View className="flex-row items-center">
+              <Ionicons name="heart" size={12} color="#D1D5DB" />
               <Text className="text-theme-neutrals-300 text-xs ml-1">
                 {likes}
               </Text>
-            </View>
+            </View> */}
           </View>
           {(isLive || isPayPerView || isLocked || isBounty) && (
             <View className="flex-row flex-wrap items-center mt-1 gap-1">
@@ -264,6 +269,14 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
               )}
             </View>
           )}
+           <View className="flex-row items-center gap-2 my-2">
+            <View className="flex-row items-center bg-theme-neutrals-700 rounded-full px-2 py-0.5">
+              <Ionicons name="heart" size={8} color="#D1D5DB" />
+              <Text className="ml-1 text-[9px] text-theme-neutrals-200">
+                {likes}
+              </Text>
+            </View>
+          </View>
         </View>
       </TouchableOpacity>
     </View>

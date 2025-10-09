@@ -1,6 +1,8 @@
 import React from "react";
-import { View, TouchableOpacity, Image, Text } from "react-native";
-import { Ionicons, AntDesign } from "@expo/vector-icons";
+import { View, TouchableOpacity, Text } from "react-native";
+import SmartImage from "./common/SmartImage";
+import * as Application from "expo-application";
+import { Ionicons } from "@expo/vector-icons";
 // import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -15,17 +17,24 @@ const HomeHeader = () => {
     notifCount > 4 ? "4+" : notifCount > 0 ? String(notifCount) : "";
 
   return (
-    <View className="flex-row justify-between items-center p-4 border-b border-theme-neutrals-700">
+    <View className="flex-row justify-between items-center p-4">
       <View className="flex-row items-center">
         <TouchableOpacity
+          activeOpacity={1}
           onPress={() => {
-            toastInfo("DHB v1.0.0");
+            const ver = Application.nativeApplicationVersion || "0.0.0";
+            const build = Application.nativeBuildVersion
+              ? ` (${Application.nativeBuildVersion})`
+              : "";
+            toastInfo(`DHB v${ver}${build}`);
           }}
         >
-          <Image
+          <SmartImage
             source={require("../assets/banner.png")}
-            className="w-32 h-11 mx-2"
-            resizeMode="contain"
+            style={{ width: 128, height: 44, marginHorizontal: 8 }}
+            contentFit="contain"
+            cachePolicy="memory-disk"
+            transition={150}
           />
         </TouchableOpacity>
       </View>
@@ -34,7 +43,7 @@ const HomeHeader = () => {
           className="p-1"
           onPress={() => navigation.navigate(ScreenNames.Leaderboard)}
         >
-          <Ionicons name="trophy-outline" size={24} color="white" />
+          <Ionicons name="trophy" size={24} color="#A6A9AC" />
         </TouchableOpacity>
         {isSignedIn ? (
           <TouchableOpacity
@@ -42,7 +51,7 @@ const HomeHeader = () => {
             onPress={() => navigation.navigate(ScreenNames.Notifications)}
           >
             <View>
-              <Ionicons name="notifications-outline" size={24} color="white" />
+              <Ionicons name="notifications" size={24} color="#A6A9AC" />
               {displayCount !== "" && (
                 <View className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1.5 bg-theme-accent rounded-full items-center justify-center">
                   <Text className="text-white text-[9px] font-semibold leading-none">
@@ -58,15 +67,14 @@ const HomeHeader = () => {
           onPress={() => navigation.navigate(ScreenNames.Search)}
           // onPress={() => toastError("Hello, World!")}
         >
-          <Ionicons name="search" size={24} color="white" />
+          <Ionicons name="search" size={24} color="#A6A9AC" />
         </TouchableOpacity>
         {!isSignedIn && (
           <TouchableOpacity
             className="p-1 ml-4"
             onPress={() => navigation.navigate(ScreenNames.SignIn)}
           >
-            <Ionicons name="person-circle-outline" size={24} color="white" />
-            {/* <AntDesign name="login" size={24} color="white" /> */}
+            <Ionicons name="person-circle" size={24} color="#A6A9AC" />
           </TouchableOpacity>
         )}
       </View>

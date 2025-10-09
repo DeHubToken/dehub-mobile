@@ -5,6 +5,7 @@ import {
   FlatList,
   Text,
   TouchableOpacity,
+  StyleSheet,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -19,6 +20,7 @@ import {
 import SearchSkeleton from "../components/Search/SearchSkeleton";
 import SearchResultsTabs from "../components/Search/SearchResultsTabs";
 import type { FC } from "react";
+import ScreenHeader from "../components/ScreenHeader";
 
 // Removed dummy results; real search now uses backend endpoints.
 const SearchScreen: FC = () => {
@@ -108,9 +110,7 @@ const SearchScreen: FC = () => {
     };
   }, [searchQuery]);
 
-  // Determine what content to show
   const getContentToRender = () => {
-    // Case: search executed
     if (loading) {
       return <SearchSkeleton />;
     }
@@ -151,35 +151,47 @@ const SearchScreen: FC = () => {
     if (typing) {
       if (suggestions.length === 0) return null; // show nothing while typing with no suggestions
       return (
-        <FlatList
-          data={suggestions}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              className="p-4 border-b border-theme-neutrals-800 flex-row items-center"
-              onPress={() => handleSuggestionClick(item)}
-            >
-              <Ionicons
-                name="search-outline"
-                size={20}
-                color="white"
-                className="mr-4"
-              />
-              <Text className="text-white flex-1">{item}</Text>
-              <TouchableOpacity
-                className="p-2"
-                onPress={() => handleReplaceSearchBox(item)}
-              >
-                <Ionicons
-                  name="arrow-up"
-                  size={20}
-                  color="white"
-                  style={{ transform: [{ rotate: '45deg' }] }}
-                />
-              </TouchableOpacity>
-            </TouchableOpacity>
-          )}
-        />
+        <View className="px-4 pt-3 pb-6">
+          <View className="rounded-2xl overflow-hidden bg-theme-neutrals-800">
+            <FlatList
+              data={suggestions}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({ item, index }) => (
+                <TouchableOpacity
+                  className="px-4 py-3 flex-row items-center"
+                  onPress={() => handleSuggestionClick(item)}
+                  activeOpacity={0.8}
+                  style={{
+                    borderBottomWidth:
+                      index === suggestions.length - 1
+                        ? 0
+                        : StyleSheet.hairlineWidth,
+                    borderBottomColor: "#333",
+                  }}
+                >
+                  <Ionicons name="time-outline" size={18} color="#9CA3AF" />
+                  <Text
+                    className="text-theme-neutrals-100 flex-1 ml-3"
+                    numberOfLines={1}
+                  >
+                    {item}
+                  </Text>
+                  <TouchableOpacity
+                    className="w-8 h-8 rounded-full bg-theme-neutrals-700 items-center justify-center"
+                    onPress={() => handleReplaceSearchBox(item)}
+                  >
+                    <Ionicons
+                      name="arrow-up"
+                      size={16}
+                      color="#E5E7EB"
+                      style={{ transform: [{ rotate: "45deg" }] }}
+                    />
+                  </TouchableOpacity>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
+        </View>
       );
     }
     // History view
@@ -197,55 +209,63 @@ const SearchScreen: FC = () => {
       );
     }
     return (
-      <FlatList
-        data={historySubset}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            className="p-4 border-b border-theme-neutrals-800 flex-row items-center"
-            onPress={() => handleSuggestionClick(item)}
-          >
-            <Ionicons
-              name="time-outline"
-              size={20}
-              color="white"
-              className="mr-4"
-            />
-            <Text className="text-white flex-1">{item}</Text>
-          </TouchableOpacity>
-        )}
-      />
+      <View className="px-4 pt-3 pb-6">
+        <View className="rounded-2xl overflow-hidden bg-theme-neutrals-800">
+          <FlatList
+            data={historySubset}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => (
+              <TouchableOpacity
+                className="px-4 py-3 flex-row items-center"
+                onPress={() => handleSuggestionClick(item)}
+                activeOpacity={0.8}
+                style={{
+                  borderBottomWidth:
+                    index === historySubset.length - 1
+                      ? 0
+                      : StyleSheet.hairlineWidth,
+                  borderBottomColor: "#333",
+                }}
+              >
+                <Ionicons name="time-outline" size={18} color="#9CA3AF" />
+                <Text
+                  className="text-theme-neutrals-100 flex-1 ml-3"
+                  numberOfLines={1}
+                >
+                  {item}
+                </Text>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+      </View>
     );
   };
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <View className="flex-row items-center p-4 border-b border-theme-neutrals-700">
-        <TouchableOpacity className="p-2" onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={24} color="white" />
-        </TouchableOpacity>
-        <TextInput
-          className="flex-1 bg-theme-neutrals-800 text-white px-4 py-2 rounded-md ml-2"
-          placeholder="Search Dehub"
-          placeholderTextColor="gray"
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-          onSubmitEditing={handleSearch}
-          autoFocus
-          returnKeyType="search"
-        />
-        <TouchableOpacity
-          className="p-2 ml-2"
-          onPress={searchQuery.trim() ? clearSearch : handleSearch}
-        >
-          <Ionicons
-            name={
-              searchQuery.trim() ? "close" : loading ? "hourglass" : "search"
-            }
-            size={24}
-            color="white"
+      <ScreenHeader title="Search" />
+      <View className="px-4">
+        <View className="flex-row items-center bg-theme-neutrals-800 rounded-full px-3 py-2">
+          <TextInput
+            className="flex-1 text-white px-2 py-1"
+            placeholder="Search DeHub"
+            placeholderTextColor="#9CA3AF"
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+            onSubmitEditing={handleSearch}
+            autoFocus
+            returnKeyType="search"
           />
-        </TouchableOpacity>
+          <TouchableOpacity
+            accessibilityRole="button"
+            className="w-9 h-9 rounded-full bg-theme-neutrals-700 items-center justify-center ml-2 active:opacity-80"
+            onPress={handleSearch}
+            disabled={loading}
+          >
+            <Ionicons name="search" size={18} color="#E5E7EB" />
+          </TouchableOpacity>
+        </View>
       </View>
       {getContentToRender()}
     </View>

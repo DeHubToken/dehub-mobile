@@ -517,7 +517,6 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <View className="flex-1 bg-black">
-      <UploadHeader title="Create Livestream" onClose={onClose} />
       <ScrollView className="flex-1 px-4">
         <View className="flex-row items-center justify-end">
           {scheduledLives.length + dueLives.length > 0 && (
@@ -645,7 +644,7 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
         />
       </ScrollView>
 
-      <View className="px-4 pt-2 pb-6 mb-14">
+      <View className="px-4 pt-2 pb-6 mb-6">
         <TouchableOpacity
           disabled={!canSubmit}
           onPress={() => {

@@ -46,8 +46,9 @@ const StatusFilterBottomSheet: React.FC<StatusFilterBottomSheetProps> = ({ visib
   }, [visible]);
 
   const panResponder = PanResponder.create({
+    onStartShouldSetPanResponder: () => true,
     onMoveShouldSetPanResponder: (evt, gestureState) => {
-      return gestureState.dy > 5;
+      return gestureState.dy > 2;
     },
     onPanResponderMove: (evt, gestureState) => {
       if (gestureState.dy > 0) {
@@ -97,9 +98,10 @@ const StatusFilterBottomSheet: React.FC<StatusFilterBottomSheetProps> = ({ visib
             styles.bottomSheet,
             { transform: [{ translateY: slideAnim }] }
           ]}
-          {...panResponder.panHandlers}
         >
-          <View style={styles.dragHandle} />
+          <View style={styles.dragArea} {...panResponder.panHandlers}>
+            <View style={styles.dragHandle} />
+          </View>
           
           <View style={styles.sheetHeader}>
             <Text style={styles.sheetTitle}>Content Type</Text>
@@ -110,29 +112,31 @@ const StatusFilterBottomSheet: React.FC<StatusFilterBottomSheetProps> = ({ visib
 
           <ScrollView style={styles.sheetContent} showsVerticalScrollIndicator={false}>
             <View style={styles.statusGrid}>
-              {statusOptions.map((option) => {
+              {statusOptions.map((option, idx) => {
                 const isSelected = selectedSortMode === option.id;
+                const isLast = idx === statusOptions.length - 1;
+                const isFirst = idx === 0;
                 return (
                   <TouchableOpacity
                     key={option.id}
-                    style={[styles.statusOption, isSelected && styles.statusOptionSelected]}
+                    style={[
+                      styles.statusOption,
+                      isSelected ? styles.statusOptionSelected : styles.statusOptionUnselected,
+                      !isLast && styles.statusOptionDivider,
+                      isFirst && styles.statusOptionTopRound,
+                      isLast && styles.statusOptionBottomRound,
+                    ]}
                     onPress={() => handleStatusSelect(option.id)}
                   >
-                    <View style={[styles.iconContainer, { backgroundColor: option.color || theme.colors.accent }]}>
-                      <Ionicons 
-                        name={option.icon} 
-                        size={24} 
-                        color="white"
-                      />
-                    </View>
+                    <Ionicons
+                      name={option.icon}
+                      size={20}
+                      color={isSelected ? theme.colors.foreground : theme.colors.mutedForeground}
+                      style={{ marginRight: 12 }}
+                    />
                     <Text style={[styles.statusOptionText, isSelected && styles.statusOptionTextSelected]}>
                       {option.label}
                     </Text>
-                    {isSelected && (
-                      <View style={styles.checkmark}>
-                        <Ionicons name="checkmark-circle" size={20} color={theme.colors.accent} />
-                      </View>
-                    )}
                   </TouchableOpacity>
                 );
               })}
@@ -160,7 +164,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     maxHeight: Dimensions.get('window').height * 0.7,
-    minHeight: Dimensions.get('window').height * 0.4,
+    minHeight: Dimensions.get('window').height * 0.45,
   },
   dragHandle: {
     width: 40,
@@ -170,14 +174,16 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 12,
   },
+  dragArea: {
+    paddingTop: 8,
+    paddingBottom: 8,
+  },
   sheetHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.border,
   },
   sheetTitle: {
     fontSize: 20,
@@ -190,7 +196,7 @@ const styles = StyleSheet.create({
   sheetContent: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingTop: 10,
   },
   statusGrid: {
     paddingBottom: 20,
@@ -200,14 +206,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 16,
     paddingHorizontal: 16,
-    borderRadius: theme.radius.md,
-    marginBottom: theme.spacing.sm,
+    borderRadius: 0,
     backgroundColor: theme.colors.card,
   },
   statusOptionSelected: {
-    backgroundColor: theme.colors.muted,
-    borderWidth: 2,
-    borderColor: theme.colors.accent,
+    backgroundColor: '#2A2A2A',
+  },
+  statusOptionUnselected: {
+    backgroundColor: theme.colors.card,
   },
   iconContainer: {
     width: 40,
@@ -224,10 +230,23 @@ const styles = StyleSheet.create({
     color: theme.colors.foreground,
   },
   statusOptionTextSelected: {
-    color: theme.colors.accent,
+    color: theme.colors.foreground,
     fontWeight: '600',
   },
   checkmark: {
     marginLeft: 8,
+  },
+  statusOptionDivider: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: theme.colors.border,
+  },
+  statusOptionTopRound: {
+    borderTopLeftRadius: theme.radius.md,
+    borderTopRightRadius: theme.radius.md,
+  },
+  statusOptionBottomRound: {
+    borderBottomLeftRadius: theme.radius.md,
+    borderBottomRightRadius: theme.radius.md,
+    marginBottom: theme.spacing.sm,
   },
 });

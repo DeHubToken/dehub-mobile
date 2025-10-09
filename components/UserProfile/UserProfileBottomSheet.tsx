@@ -34,6 +34,7 @@ import { useAuth } from "../../context/AuthContext";
 import TipModal from "../Tip/TipModal";
 import UserProfileHeader from "./UserProfileHeader";
 import UserProfileActions from "./UserProfileActions";
+import DescriptionBlock from "../VideoPlayer/DescriptionBlock";
 import UserProfileStatsRow from "./UserProfileStatsRow";
 import { maxStacked } from "../../libs/validators.util";
 
@@ -237,7 +238,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
         label: "Following",
         value: data.followings?.length || 0,
       },
-      { key: "likes", label: "Likes", value: data.likes?.length || 0 },
+      // { key: "likes", label: "Likes", value: data.likes?.length || 0 },
       {
         key: "tipsReceived",
         label: "Tips earned",
@@ -469,8 +470,10 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                 onShare={handleShare}
                 FallbackAvatar={FallbackAvatar}
                 FallbackBanner={FallbackBanner}
+                socials={data as any}
               />
               <View className="px-6 mt-2">
+                <UserProfileStatsRow stats={stats as any} />
                 <UserProfileActions
                   isFollowing={isFollowing}
                   followLoading={followLoading}
@@ -480,14 +483,10 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                   onOpenUnfollow={() => setShowUnfollowSheet(true)}
                   onOpenVideos={handleVideos}
                 />
-                <UserProfileStatsRow stats={stats as any} />
                 {data?.aboutMe && (
-                  <View className="mt-2">
-                    <Text className="text-gray-400 text-xs uppercase tracking-wide mb-1">About</Text>
-                    <Text className="text-white text-sm leading-5" numberOfLines={6}>{data.aboutMe}</Text>
-                  </View>
+                  <AboutSection content={data.aboutMe} />
                 )}
-                <UserProfileSocials socials={data as any} />
+                {/* <UserProfileSocials socials={data as any} /> */}
               </View>
               <View style={{ height: 40 }} />
             </View>
@@ -572,3 +571,18 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
 };
 
 export default UserProfileBottomSheet;
+
+// Local lightweight wrapper for DescriptionBlock to manage its state
+const AboutSection: React.FC<{ content: string }> = ({ content }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <View className="mt-2">
+      <DescriptionBlock
+        title="About"
+        description={content}
+        showDesc={open}
+        onToggle={() => setOpen((o) => !o)}
+      />
+    </View>
+  );
+};

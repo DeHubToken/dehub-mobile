@@ -108,7 +108,6 @@ const ProfileScreen: React.FC = () => {
         }
       >
         <ProfileHeader />
-        <ProfileStats />
         <ProfileAssets />
         <ProfileMenu />
       </ScrollView>

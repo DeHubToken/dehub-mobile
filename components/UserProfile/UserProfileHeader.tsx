@@ -3,6 +3,7 @@ import { View, Text, Image, ImageBackground, TouchableOpacity } from "react-nati
 import Avatar from "../common/Avatar";
 import { Ionicons } from "@expo/vector-icons";
 import { copyToClipboard } from "../../libs";
+import CoverSocialsOverlay from "./CoverSocialsOverlay";
 
 export interface UserProfileHeaderProps {
   avatarUrl?: string | null;
@@ -20,6 +21,7 @@ export interface UserProfileHeaderProps {
   onShare: () => void;
   FallbackAvatar: any;
   FallbackBanner: any;
+  socials?: Partial<Record<string, string>>;
 }
 
 const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
@@ -38,6 +40,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   onShare,
   FallbackAvatar,
   FallbackBanner,
+  socials,
 }) => {
   const handleCopyAddress = useCallback(() => {
     if (address) copyToClipboard(address);
@@ -47,65 +50,70 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
     if (username) copyToClipboard(username);
   }, [username]);
 
+  const handlePressShare = useCallback(() => onShare(), [onShare]);
+
   return (
     <View>
       <View>
         <TouchableOpacity activeOpacity={0.8} onPress={() => onOpenImage("cover")}>
           <ImageBackground
             source={coverUrl === "default-banner" ? FallbackBanner : { uri: coverUrl as string }}
-            style={{ height: 120 }}
-            className="w-full bg-cover bg-center"
+            style={{ height: 140 }}
+            className="w-full bg-cover bg-center rounded-2xl mx-4 overflow-hidden relative"
             resizeMode="cover"
           >
-            <TouchableOpacity
-              onPress={onShare}
-              className="absolute top-2 right-2 bg-theme-neutrals-900/60 p-2 rounded-full"
-              accessibilityLabel="Share profile"
-            >
-              <Ionicons name="share-social" size={16} color="#fff" />
-            </TouchableOpacity>
+            <View className="absolute right-0 bottom-0 mx-8 mb-3">
+              <CoverSocialsOverlay socials={socials} onShare={handlePressShare} />
+            </View>
           </ImageBackground>
         </TouchableOpacity>
-        <View className="flex-row items-end mt-[-42px] px-4">
+      </View>
+      <View className="px-6 mt-3">
+        {/* Name row with avatar */}
+        <View className="flex-row items-center pr-8">
           <Avatar
             uri={avatarUrl || undefined}
-            size={96}
+            size={44}
             onPress={() => onOpenImage("avatar")}
-            borderWidth={8}
-            borderColor="#0a0a0a"
           />
-        </View>
-      </View>
-      <View className="px-6 mt-2">
-        <View className="flex-row items-center gap-2 flex-wrap pr-8">
-          <Text className="text-white text-2xl font-bold" numberOfLines={1}>
-            {displayName}
-          </Text>
-          {badge && (
-            <View className="flex-row items-center gap-1 bg-theme-neutrals-800 px-2 py-1 rounded-full">
-              {badgeImage ? (
-                <Image source={badgeImage} className="w-3 h-3" />
-              ) : (
-                <Ionicons name={badgeIcon as any} size={10} color="gold" />
+          <View className="ml-3 flex-1">
+            <View className="flex-row items-center gap-2">
+              <Text className="text-white text-2xl font-bold" numberOfLines={1}>
+                {displayName}
+              </Text>
+              {badge && (
+                <View className="w-5 h-5 rounded-full bg-theme-neutrals-800 items-center justify-center">
+                  {badgeImage ? (
+                    <Image source={badgeImage} className="w-3 h-3" />
+                  ) : (
+                    <Ionicons name="star" size={12} color="#fff" />
+                  )}
+                </View>
               )}
             </View>
-          )}
-          {!!address && (
-            <TouchableOpacity onPress={handleCopyAddress} className="flex-row items-center" accessibilityLabel="Copy address">
-              <Text className="text-gray-500 text-[11px] mr-1" numberOfLines={1}>
-                {shortAddr}
-              </Text>
-              <Ionicons name="copy-outline" size={14} color="#9ca3af" />
-            </TouchableOpacity>
-          )}
+            {/* Subtitle: @username • address + copy */}
+            <View className="flex-row items-center mt-1" accessibilityLabel="profile identifiers">
+              {!!username && (
+                <TouchableOpacity onPress={handleCopyUsername} activeOpacity={0.7}>
+                  <Text className="text-theme-neutrals-500 text-xs" numberOfLines={1}>@{username}</Text>
+                </TouchableOpacity>
+              )}
+              {!!username && !!address && (
+                <Text className="text-theme-neutrals-600 mx-2">•</Text>
+              )}
+              {!!address && (
+                <View className="flex-row items-center">
+                  <Text className="text-theme-neutrals-500 text-xs mr-1" numberOfLines={1}>
+                    {shortAddr}
+                  </Text>
+                  <TouchableOpacity onPress={handleCopyAddress} accessibilityLabel="Copy address" hitSlop={{ top: 6, right: 6, bottom: 6, left: 6 }}>
+                    <Ionicons name="copy-outline" size={14} color="#9ca3af" />
+                  </TouchableOpacity>
+                </View>
+              )}
+            </View>
+          </View>
         </View>
-        {username && (
-          <TouchableOpacity onPress={handleCopyUsername} className="mt-1 self-start" accessibilityLabel="Copy username">
-            <Text className="text-gray-400 text-xs" numberOfLines={1}>
-              @{username}
-            </Text>
-          </TouchableOpacity>
-        )}
         {!hasUsername && (
           <View className="mt-2 bg-theme-neutrals-800/60 rounded-lg p-3">
             <Text className="text-theme-neutrals-200 text-xs leading-4">
@@ -113,9 +121,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             </Text>
           </View>
         )}
-        {joinedDate && (
+        {/* {joinedDate && (
           <Text className="text-gray-500 text-[10px] mt-1">Joined at {joinedDate}</Text>
-        )}
+        )} */}
       </View>
     </View>
   );

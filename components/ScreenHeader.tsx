@@ -28,23 +28,23 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
 
   return (
     <View
-      className="flex-row items-center justify-between px-4 h-16 bg-theme-neutrals-900/95 border-b border-theme-neutrals-700/60"
-      style={{ paddingTop: 0, ...(Platform.OS === 'android' ? { elevation: 4 } : {}) }}
+      className="flex-row items-center justify-between px-4 h-16 bg-theme-neutrals-900"
+      style={{ paddingTop: 0, ...(Platform.OS === 'android' ? { elevation: 0 } : {}) }}
     >
       <View className="flex-row items-center flex-1">
         {showBack && (
           <TouchableOpacity
             onPress={handleBack}
-            className="w-10 h-10 mr-2 rounded-full bg-theme-neutrals-800/70 items-center justify-center active:opacity-70"
+            className="w-10 h-10 mr-2 items-center justify-center active:opacity-70"
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           >
-            <Ionicons name="arrow-back" size={22} color="#fff" />
+            <Ionicons name="arrow-back" size={22} color="#E5E7EB" />
           </TouchableOpacity>
         )}
         <View className="flex-shrink">
           <Text
             numberOfLines={1}
-            className="text-theme-neutrals-100 text-2xl font-semibold tracking-wide"
+            className="text-theme-neutrals-100 text-2xl font-medium tracking-wide"
           >
             {title}
           </Text>

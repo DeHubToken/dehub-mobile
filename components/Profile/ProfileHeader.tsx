@@ -1,12 +1,6 @@
 import React, { useState, useMemo, useCallback } from "react";
-import {
-  View,
-  Text,
-  ImageBackground,
-  Image,
-  TouchableOpacity,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text, Image, TouchableOpacity, ActivityIndicator } from "react-native";
+import SmartImage from "../common/SmartImage";
 import { BlurView } from "expo-blur";
 import { Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -31,10 +25,19 @@ import { formatJoinedDate } from "../../libs/date.util";
 import { shareProfile } from "../../libs/misc";
 import Avatar from "../common/Avatar";
 import * as ImagePicker from "expo-image-picker";
-import { openCroppedImagePicker, resizeAndCompress, createRNImageFile } from "../../libs/assets.util";
-import { runWithPermissions, ensureMediaLibraryPermission, waitAfterPermissionIfNeeded } from "../../libs/permissions.util";
+import {
+  openCroppedImagePicker,
+  resizeAndCompress,
+  createRNImageFile,
+} from "../../libs/assets.util";
+import {
+  runWithPermissions,
+  ensureMediaLibraryPermission,
+  waitAfterPermissionIfNeeded,
+} from "../../libs/permissions.util";
 import { AuthService } from "../../services/auth.service";
 import { toastError, toastSuccess } from "../../libs/toast";
+import ProfileStats from "./ProfileStats";
 
 const ProfileHeader = () => {
   const navigation = useNavigation<any>();
@@ -120,6 +123,18 @@ const ProfileHeader = () => {
     socials.length
   );
 
+  // About card state (collapsible) and toggle visibility
+  const aboutText = (user?.aboutMe || "").trim();
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const [aboutTotalLines, setAboutTotalLines] = useState<number | null>(null);
+  const hasExtrasForAbout = !!(
+    createdAtFormatted ||
+    user?.displayName ||
+    user?.username ||
+    socials.length
+  );
+  const showAboutToggle = (aboutTotalLines ?? 0) > 3 || hasExtrasForAbout;
+
   // openExternalLink reused from misc
   const handleShare = useCallback(async () => {
     const profileSlug = username || address;
@@ -137,7 +152,8 @@ const ProfileHeader = () => {
     await waitAfterPermissionIfNeeded(perm.justGranted);
     const mediaTypesCompat: any = (ImagePicker as any).MediaType
       ? [(ImagePicker as any).MediaType.image]
-      : (ImagePicker as any).MediaTypeOptions?.Images ?? ImagePicker.MediaTypeOptions.Images;
+      : (ImagePicker as any).MediaTypeOptions?.Images ??
+        ImagePicker.MediaTypeOptions.Images;
     const pick = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: mediaTypesCompat,
       allowsEditing: false,
@@ -243,47 +259,56 @@ const ProfileHeader = () => {
 
   return (
     <>
-      <View className="w-full">
-        <ImageBackground
-          source={
-            localCoverUri
-              ? { uri: localCoverUri }
-              : coverUrl === "default-banner"
-              ? bannerImage
-              : { uri: coverUrl }
-          }
-          style={{ height: 120 }}
-          className="w-full bg-cover bg-center"
-          imageStyle={{ borderRadius: 4, opacity: uploadingCover ? 0.6 : 1 }}
-          resizeMode="cover"
-        >
-          <View className="relative px-4 py-6 w-full h-full">
-            {/* Tap anywhere on cover to view (keep under controls) */}
+      <View className="w-full px-2">
+        <View className="w-full m-2 rounded-2xl overflow-hidden" style={{ height: 120 }}>
+          <SmartImage
+            source={
+              localCoverUri
+                ? { uri: localCoverUri }
+                : coverUrl === "default-banner"
+                ? bannerImage
+                : { uri: coverUrl }
+            }
+            contentFit="cover"
+            cachePolicy="memory-disk"
+            transition={150}
+            style={{ width: "100%", height: "100%", opacity: uploadingCover ? 0.6 : 1 }}
+          />
+          <View className="absolute inset-0 px-4 py-6 w-full h-full">
             <TouchableOpacity
               activeOpacity={0.8}
               className="absolute inset-0 z-0"
               onPress={() =>
                 openViewer(
-                  localCoverUri || (coverUrl !== "default-banner" ? coverUrl : undefined)
+                  localCoverUri ||
+                    (coverUrl !== "default-banner" ? coverUrl : undefined)
                 )
               }
             />
-            <View className="absolute top-2 right-2 flex-row gap-2 z-20">
-              <TouchableOpacity
-                onPress={handleShare}
-                accessibilityLabel="Share profile"
-                className="bg-theme-neutrals-900/70 p-2 rounded-lg border border-theme-neutrals-700 active:opacity-80"
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            <View className="absolute right-0 bottom-0 z-20 m-2">
+              <BlurView
+                intensity={60}
+                tint="dark"
+                className="rounded-full overflow-hidden"
               >
-                <Ionicons
-                  name="share-social"
-                  size={20}
-                  color={theme.colors.accentForeground}
-                />
-              </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() =>
+                    (navigation as any).navigate(ScreenNames.EditProfile)
+                  }
+                  accessibilityLabel="Edit profile"
+                  activeOpacity={0.85}
+                  className="px-0 py-0"
+                >
+                  <View className="bg-white/5 px-5 py-2 rounded-full">
+                    <Text className="text-white font-medium">Edit profile</Text>
+                  </View>
+                </TouchableOpacity>
+              </BlurView>
             </View>
-            {/* Always show center camera to change cover */}
-            <View className="absolute inset-0 items-center justify-center z-20" pointerEvents="box-none">
+            <View
+              className="absolute inset-0 items-center justify-center z-20"
+              pointerEvents="box-none"
+            >
               <TouchableOpacity
                 onPress={startChangeCover}
                 className="bg-black/50 rounded-full p-4"
@@ -299,201 +324,197 @@ const ProfileHeader = () => {
               </View>
             )}
           </View>
-        </ImageBackground>
-        <View className="flex-row items-end mt-[-36px] px-4">
-          <View className="relative" style={{ width: 96, height: 96 }}>
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={
-                localAvatarUri
-                  ? () => openViewer(localAvatarUri)
-                  : avatarUrl === "default-avatar"
-                  ? startChangeAvatar
-                  : () => openViewer(avatarUrl)
+        </View>
+        <View className="px-3 mt-3">
+          <View className="flex-row items-center pr-2">
+            <Avatar
+              uri={avatarUrl === "default-avatar" ? undefined : avatarUrl}
+              size={44}
+              onPress={() =>
+                openViewer(
+                  avatarUrl === "default-avatar" ? undefined : avatarUrl
+                )
               }
-              className="rounded-full overflow-hidden"
-            >
-              <View className="">
-                <Avatar
-                  uri={
-                    localAvatarUri
-                      ? localAvatarUri
-                      : avatarUrl === "default-avatar"
-                      ? undefined
-                      : avatarUrl
-                  }
-                  size={96}
-                  borderWidth={8}
-                  borderColor="#0a0a0a"
-                />
-                {uploadingAvatar && (
-                  <View className="absolute inset-0 bg-black/40 rounded-full items-center justify-center">
-                    <ActivityIndicator color="#fff" />
-                  </View>
-                )}
-              </View>
-            </TouchableOpacity>
-            {avatarUrl === "default-avatar" && !localAvatarUri && (
-              <View className="absolute bottom-1 right-1 rounded-full overflow-hidden">
-                <BlurView
-                  intensity={20}
-                  tint="dark"
-                  style={{ borderRadius: 9999 }}
+            />
+            <View className="ml-3 flex-1">
+              <View className="flex-row items-center gap-2">
+                <Text
+                  className="text-white text-2xl font-bold"
+                  numberOfLines={1}
                 >
-                  <TouchableOpacity
-                    onPress={startChangeAvatar}
-                    className="p-1 rounded-full border border-theme-neutrals-700"
-                    accessibilityLabel="Change avatar"
-                    activeOpacity={0.8}
-                  >
-                    <Ionicons name="camera" size={16} color="#fff" />
-                  </TouchableOpacity>
-                </BlurView>
+                  {displayName}
+                </Text>
+                {badge && (
+                  <View className="w-5 h-5 rounded-full bg-theme-neutrals-800 items-center justify-center overflow-hidden">
+                    {badgeImage ? (
+                      <SmartImage source={badgeImage as any} contentFit="cover" cachePolicy="memory-disk" style={{ width: 12, height: 12 }} />
+                    ) : (
+                      <Ionicons name="star" size={12} color="#fff" />
+                    )}
+                  </View>
+                )}
               </View>
-            )}
-          </View>
-
-          <TouchableOpacity
-            onPress={() => (navigation as any).navigate(ScreenNames.EditProfile)}
-            className="ml-auto bg-gray-600 px-4 py-2 rounded-full"
-          >
-            <Text className="text-white text-sm">Edit Profile</Text>
-          </TouchableOpacity>
-        </View>
-        <View className="flex-row px-6 mt-2 gap-1 items-center">
-          <TouchableOpacity
-            onPress={() => copyToClipboard(username as string)}
-            accessibilityLabel="Copy username"
-            className="active:opacity-70"
-          >
-            <Text className="text-white text-3xl font-bold" numberOfLines={1}>
-              {truncatedHeaderName}
-            </Text>
-          </TouchableOpacity>
-          {badge && (
-            <View className="flex-row items-center gap-1 bg-theme-neutrals-800 px-2 py-1 rounded-full">
-              {badgeImage ? (
-                <Image source={badgeImage} className="w-3 h-3" />
-              ) : (
-                <Ionicons name={badgeIcon as any} size={10} color="gold" />
-              )}
-            </View>
-          )}
-          {address ? (
-            <View className="flex-row px-2 mt-1">
-              <TouchableOpacity onPress={() => copyToClipboard(address)}>
-                <View className="flex-row items-center">
-                  <Text className="text-gray-400 text-sm mr-2">
-                    {shortAddr}
-                  </Text>
-                  <Ionicons name="copy-outline" size={16} color="#9ca3af" />
-                </View>
-              </TouchableOpacity>
-            </View>
-          ) : null}
-        </View>
-
-        {hasExtra && (
-          <View className="px-6 mt-2">
-            <TouchableOpacity
-              className="flex-row items-center "
-              onPress={() => setExpanded((e) => !e)}
-              accessibilityLabel={
-                expanded ? "Hide details" : "Show more profile details"
-              }
-            >
-              <Text
-                className="text-gray-400 font-medium mr-2 text-[12px]"
-                style={{ textDecorationLine: "underline" }}
-              >
-                {expanded ? "Hide details" : "See more"}
-              </Text>
-            </TouchableOpacity>
-            {expanded && (
-              <View className="mt-3 gap-3">
-                {createdAtFormatted && (
-                  <View className="flex-row">
-                    <Text className="text-gray-400 w-32 text-xs uppercase tracking-wide">
-                      Joined
+              <View className="flex-row items-center mt-1">
+                {!!username && (
+                  <TouchableOpacity
+                    onPress={() => copyToClipboard(username)}
+                    activeOpacity={0.7}
+                  >
+                    <Text
+                      className="text-theme-neutrals-500 text-xs"
+                      numberOfLines={1}
+                    >
+                      @{username}
                     </Text>
-                    <Text className="text-white text-sm">
-                      {createdAtFormatted}
-                    </Text>
-                  </View>
+                  </TouchableOpacity>
                 )}
-                {user?.displayName && (
-                  <View className="flex-row">
-                    <Text className="text-gray-400 w-32 text-xs uppercase tracking-wide">
-                      Display Name
-                    </Text>
-                    <Text className="text-white text-sm" numberOfLines={1}>
-                      {user.displayName}
-                    </Text>
-                  </View>
+                {!!username && !!address && (
+                  <Text className="text-theme-neutrals-600 mx-2">•</Text>
                 )}
-                {user?.username && (
+                {!!address && (
                   <View className="flex-row items-center">
-                    <Text className="text-gray-400 w-32 text-xs uppercase tracking-wide">
-                      Username
+                    <Text
+                      className="text-theme-neutrals-500 text-xs mr-1"
+                      numberOfLines={1}
+                    >
+                      {shortAddr}
                     </Text>
                     <TouchableOpacity
-                      onPress={() => copyToClipboard(user.username!)}
-                      accessibilityLabel="Copy username"
-                      className="flex-row items-center"
+                      onPress={() => copyToClipboard(address)}
+                      accessibilityLabel="Copy address"
+                      hitSlop={{ top: 6, right: 6, bottom: 6, left: 6 }}
                     >
-                      <Text className="text-white text-sm" numberOfLines={1}>
-                        @{user.username}
-                      </Text>
-                      <Ionicons
-                        name="copy-outline"
-                        size={14}
-                        color={theme.colors.accentForeground}
-                        style={{ marginLeft: 6 }}
-                      />
+                      <Ionicons name="copy-outline" size={14} color="#9ca3af" />
                     </TouchableOpacity>
                   </View>
                 )}
-                {user?.aboutMe && (
-                  <View>
-                    <Text className="text-gray-400 text-xs uppercase tracking-wide mb-1">
-                      About
-                    </Text>
-                    <Text className="text-white text-sm leading-5">
-                      {user.aboutMe}
-                    </Text>
-                  </View>
-                )}
-                {socials.length > 0 && (
-                  <View>
-                    <Text className="text-gray-400 text-xs uppercase tracking-wide mb-2">
-                      Socials
-                    </Text>
-                    <View className="flex-row flex-wrap gap-3">
-                      {socials.map((s) => (
-                        <TouchableOpacity
-                          key={s.key}
-                          className="flex-row items-center bg-theme-neutrals-800 px-3 py-2 rounded-full"
-                          onPress={() => openExternalLink(s.url)}
-                        >
-                          <Ionicons
-                            name={s.icon as any}
-                            size={16}
-                            color={theme.colors.accentForeground}
-                          />
-                          <Text className="ml-2 text-white text-xs font-medium">
-                            {s.label}
-                          </Text>
-                        </TouchableOpacity>
-                      ))}
-                    </View>
-                  </View>
-                )}
               </View>
-            )}
+            </View>
+            <TouchableOpacity
+              onPress={handleShare}
+              accessibilityLabel="Share profile"
+              className="active:opacity-80"
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            >
+              <Ionicons name="share-social" size={20} color="#A6A9AC" />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <ProfileStats />
+        {(aboutText || hasExtrasForAbout) && (
+          <View className="px-2 mt-1">
+            <View className="bg-theme-neutrals-800 rounded-2xl p-4 overflow-hidden">
+              <Text className="text-theme-neutrals-400 text-[10px] uppercase tracking-wide mb-2">
+                About
+              </Text>
+              {!!aboutText && (
+                <Text
+                  className="text-white text-sm"
+                  numberOfLines={aboutOpen ? undefined : 3}
+                  ellipsizeMode="tail"
+                >
+                  {aboutText}
+                </Text>
+              )}
+              {aboutTotalLines == null && !!aboutText && (
+                <Text
+                  className="absolute opacity-0 -z-10 text-sm"
+                  onTextLayout={(e) => {
+                    if (aboutTotalLines == null) {
+                      // @ts-ignore platform differences
+                      setAboutTotalLines(e.nativeEvent.lines?.length || 0);
+                    }
+                  }}
+                >
+                  {aboutText}
+                </Text>
+              )}
+              {aboutOpen && (
+                <View className="mt-3 gap-3">
+                  {createdAtFormatted && (
+                    <View className="flex-row items-baseline justify-start gap-2">
+                      <Text className="text-theme-neutrals-400 text-xs">
+                        Joined
+                      </Text>
+                      <Text className="text-white text-xs">
+                        {createdAtFormatted}
+                      </Text>
+                    </View>
+                  )}
+                  {user?.displayName && (
+                    <View className="flex-row items-baseline justify-start gap-2">
+                      <Text className="text-theme-neutrals-400 text-xs">
+                        Display Name
+                      </Text>
+                      <Text className="text-white text-xs" numberOfLines={1}>
+                        {user.displayName}
+                      </Text>
+                    </View>
+                  )}
+                  {user?.username && (
+                    <View className="flex-row items-center justify-start gap-2">
+                      <Text className="text-theme-neutrals-400 text-xs">
+                        Username
+                      </Text>
+                      <TouchableOpacity
+                        onPress={() => copyToClipboard(user.username!)}
+                        accessibilityLabel="Copy username"
+                        className="flex-row items-center"
+                      >
+                        <Text className="text-white text-xs" numberOfLines={1}>
+                          @{user.username}
+                        </Text>
+                        <Ionicons
+                          name="copy-outline"
+                          size={14}
+                          color={theme.colors.accentForeground}
+                          style={{ marginLeft: 6 }}
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                  {socials.length > 0 && (
+                    <View>
+                      <Text className="text-theme-neutrals-400 text-xs mb-2">
+                        Socials
+                      </Text>
+                      <View className="flex-row flex-wrap gap-3">
+                        {socials.map((s) => (
+                          <TouchableOpacity
+                            key={s.key}
+                            className="flex-row items-center bg-theme-neutrals-700 px-3 py-2 rounded-full"
+                            onPress={() => openExternalLink(s.url)}
+                          >
+                            <Ionicons
+                              name={s.icon as any}
+                              size={16}
+                              color={theme.colors.accentForeground}
+                            />
+                            <Text className="ml-2 text-white text-xs font-medium">
+                              {s.label}
+                            </Text>
+                          </TouchableOpacity>
+                        ))}
+                      </View>
+                    </View>
+                  )}
+                </View>
+              )}
+              {showAboutToggle && (
+                <TouchableOpacity
+                  onPress={() => setAboutOpen((o) => !o)}
+                  activeOpacity={0.7}
+                  className="mt-2 self-start"
+                >
+                  <Text className="text-theme-neutrals-500 text-[10px]">
+                    {aboutOpen ? "Show less" : "Show more"}
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </View>
           </View>
         )}
       </View>
-      {/* No inline editor; using native crop UI */}
     </>
   );
 };

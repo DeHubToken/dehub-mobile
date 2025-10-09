@@ -17,10 +17,12 @@ import VideosTab from "../components/Upload/VideosTab";
 import LiveTabSkeleton from "../components/Upload/Skeletons/LiveTabSkeleton";
 import VideosTabSkeleton from "../components/Upload/Skeletons/VideosTabSkeleton";
 import FeedTabSkeleton from "../components/Upload/Skeletons/FeedTabSkeleton";
+import ScreenHeader from "../components/ScreenHeader";
 
 // theme removed in favor of NativeWind classes
 
-const tabs = ["Live", "Videos", "Feed"] as const;
+// Order: Video, Live, Feed (Feed disabled)
+const tabs = ["Videos", "Live", "Feed"] as const;
 
 type TabKey = (typeof tabs)[number];
 
@@ -30,6 +32,7 @@ export default function UploadScreen() {
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const scrollRef = useRef<ScrollView>(null);
+  const lastAllowedIndexRef = useRef<number>(0); // 0: Videos, 1: Live
 
   // Lazy mount tabs to avoid heavy work on initial open (e.g., LiveTab fetching)
   const [mounted, setMounted] = useState<Record<TabKey, boolean>>({
@@ -54,7 +57,12 @@ export default function UploadScreen() {
 
   const onScrollEnd = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-      const idx = Math.round(e.nativeEvent.contentOffset.x / width);
+      let idx = Math.round(e.nativeEvent.contentOffset.x / width);
+      // Prevent landing on disabled Feed (index 2)
+      if (idx > 1) {
+        idx = lastAllowedIndexRef.current;
+        scrollRef.current?.scrollTo({ x: idx * width, animated: true });
+      }
       const key = tabs[idx];
       setActive(key);
       setMounted((m) => (m[key] ? m : { ...m, [key]: true }));
@@ -64,39 +72,68 @@ export default function UploadScreen() {
 
   const onPressTab = useCallback(
     (k: TabKey) => {
+      // Feed is disabled
+      if (k === "Feed") return;
       const idx = tabs.indexOf(k);
+      lastAllowedIndexRef.current = idx; // 0 or 1
       setActive(k);
-      // Ensure destination tab is mounted before scroll for a smooth transition
       setMounted((m) => (m[k] ? m : { ...m, [k]: true }));
       goToIndex(idx);
     },
     [goToIndex]
   );
 
-  const TabText = ({
+  const Segment = ({
     label,
     onPress,
     active,
+    disabled,
   }: {
-    label: TabKey;
+    label: string;
     onPress: () => void;
     active: boolean;
+    disabled?: boolean;
   }) => (
     <TouchableOpacity
       onPress={onPress}
-      className={
-        (active
-          ? "bg-zinc-800 border-zinc-700"
-          : "") +
-        " px-4 py-2 rounded-full border"
-      }
+      disabled={disabled}
+      activeOpacity={0.8}
+      className={`px-4 py-1.5 rounded-full ${
+        active ? "bg-white/10" : ""
+      } ${disabled ? "opacity-40" : ""}`}
     >
-      <Text className={active ? "text-white" : "text-gray-400"}>{label}</Text>
+      <Text className={active ? "text-white" : "text-theme-neutrals-400"}>
+        {label}
+      </Text>
     </TouchableOpacity>
   );
 
   return (
     <View className="flex-1 bg-black">
+      <ScreenHeader title="Upload" />
+      <View className="px-4 pt-3 pb-2">
+        <View className="flex-row items-center justify-between">
+          <Text className="text-theme-neutrals-300 text-2xl font-semibold">Content type</Text>
+          <View className="bg-theme-neutrals-800 rounded-full px-0 py-0 flex-row items-center">
+            <Segment
+              label="Video"
+              onPress={() => onPressTab("Videos")}
+              active={active === "Videos"}
+            />
+            <Segment
+              label="Live"
+              onPress={() => onPressTab("Live")}
+              active={active === "Live"}
+            />
+            <Segment
+              label="Feed"
+              onPress={() => onPressTab("Feed")}
+              active={active === "Feed"}
+              disabled
+            />
+          </View>
+        </View>
+      </View>
       <ScrollView
         ref={scrollRef}
         horizontal
@@ -105,13 +142,6 @@ export default function UploadScreen() {
         onMomentumScrollEnd={onScrollEnd}
       >
         <View style={{ width }} className="flex-1">
-          {mounted.Live ? (
-            <LiveTab onClose={nav.goBack} />
-          ) : (
-            <LiveTabSkeleton />
-          )}
-        </View>
-        <View style={{ width }} className="flex-1">
           {mounted.Videos ? (
             <VideosTab onClose={nav.goBack} />
           ) : (
@@ -119,21 +149,16 @@ export default function UploadScreen() {
           )}
         </View>
         <View style={{ width }} className="flex-1">
+          {mounted.Live ? (
+            <LiveTab onClose={nav.goBack} />
+          ) : (
+            <LiveTabSkeleton />
+          )}
+        </View>
+        <View style={{ width }} className="flex-1">
           {mounted.Feed ? <FeedTab /> : <FeedTabSkeleton />}
         </View>
       </ScrollView>
-
-      <View
-        style={{ position: "absolute", left: 0, right: 0, bottom: insets.bottom + 12 }}
-      >
-        <View className="flex-row justify-center items-center">
-          {tabs.map((k) => (
-            <View key={k} className="mx-1.5">
-              <TabText label={k} onPress={() => onPressTab(k)} active={active === k} />
-            </View>
-          ))}
-        </View>
-      </View>
     </View>
   );
 }

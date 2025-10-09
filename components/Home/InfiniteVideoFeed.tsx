@@ -38,6 +38,7 @@ interface InfiniteVideoFeedProps {
   params?: Partial<SearchParams>; // any search params except page which we control
   pageSize?: number; // unit (default 10)
   contentContainerStyle?: any;
+  headerComponent?: React.ReactNode;
   onEndReachedAll?: () => void; // callback when no more pages
   onScrollDirectionChange?: (direction: "up" | "down", offsetY: number) => void; // notify parent
   onClearFilters?: () => void; // allow empty state clear
@@ -50,6 +51,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   params,
   pageSize = 10,
   contentContainerStyle,
+  headerComponent,
   onEndReachedAll,
   onScrollDirectionChange,
   onClearFilters,
@@ -300,6 +302,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         data={items}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
+        ListHeaderComponent={headerComponent as any}
         initialNumToRender={4}
         maxToRenderPerBatch={4}
         windowSize={7}

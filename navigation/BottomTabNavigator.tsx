@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text, View, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../theme';
+import GradientIcon from '../components/ui/GradientIcon';
 
 import HomeScreen from '../screens/HomeScreen';
 import { ScreenNames } from './ScreenNames';
@@ -21,41 +22,70 @@ const Tab = createBottomTabNavigator();
 
 function BottomTabNavigator() {
   const navigation = useNavigation<any>();
+  const accent = useMemo(() => theme.colors.accent || '#4F8EF7', []);
+
+  const renderIcon = (
+    routeName: string,
+    focused: boolean,
+    size: number,
+  ) => {
+    let iconName: keyof typeof Ionicons.glyphMap;
+    // Choose base icon names (filled variant when focused for subtle difference)
+    if (routeName === ScreenNames.Home) {
+      iconName = 'home';
+    } else if (routeName === ScreenNames.Feed) {
+      iconName = 'compass';
+    } else if (routeName === ScreenNames.Upload) {
+      // Use filled upload icon
+      iconName = 'add-circle';
+    } else if (routeName === ScreenNames.DM) {
+      iconName = 'chatbox';
+    } else if (routeName === ScreenNames.Profile) {
+      iconName = 'person';
+    } else {
+      iconName = 'ellipse';
+    }
+
+  const color = '#9CA3AF'; // gray for unfocused icon
+  const containerPad = routeName === ScreenNames.Upload ? 10 : 8;
+  const containerSize = size + containerPad * 2;
+  const radius = containerSize / 2;
+
+    return (
+      <View style={[styles.iconWrapper, { width: containerSize, height: containerSize }]} pointerEvents="none">
+        {focused ? (
+          <View style={[styles.focusBg, { borderRadius: radius }]}
+          >
+            <GradientIcon
+              name={iconName}
+              size={routeName === ScreenNames.Upload ? size + 6 : size}
+              colors={[accent, '#A7C5FF']}
+            />
+          </View>
+        ) : (
+          <Ionicons
+            name={iconName}
+            size={routeName === ScreenNames.Upload ? size + 4 : size}
+            color={color}
+          />
+        )}
+      </View>
+    );
+  };
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
         sceneContainerStyle: { backgroundColor: '#000' },
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName: keyof typeof Ionicons.glyphMap;
-
-          if (route.name === ScreenNames.Home) {
-            iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === ScreenNames.Feed) {
-            iconName = focused ? 'compass' : 'compass-outline';
-          } else if (route.name === ScreenNames.Upload) {
-            iconName = focused ? 'add-circle' : 'add-circle-outline';
-          } else if (route.name === ScreenNames.DM) {
-            iconName = focused ? 'chatbox' : 'chatbox-outline';
-          } else if (route.name === ScreenNames.Profile) {
-            iconName = focused ? 'person' : 'person-outline';
-          } else {
-            iconName = 'help-circle-outline'; // Default or fallback icon
-          }
-
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: theme.colors.accent,
-        tabBarInactiveTintColor: 'gray',
+        tabBarShowLabel: false,
+        tabBarIcon: ({ focused, size }) => renderIcon(route.name, focused, size),
         tabBarStyle: {
-          backgroundColor: '#000',
-          borderTopWidth: 0, // Remove top border
+          backgroundColor: '#0a0a0a',
+          borderTopWidth: 0,
           paddingBottom: 5,
-          paddingTop: 5,
-          height: 60,
-        },
-        tabBarLabelStyle: {
-          fontSize: 12,
+          paddingTop: 10,
+          paddingHorizontal: 20,
+          height: 70,
         },
       })}
     >
@@ -83,6 +113,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: theme.colors.background, // Dark background for screens
+  },
+  iconWrapper: {
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  focusBg: {
+    backgroundColor: 'rgba(156,163,175,0.15)', // gray-400 with transparency
+    paddingHorizontal: 18,
+    paddingVertical: 10,
   },
 });
 
