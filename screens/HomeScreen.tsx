@@ -29,10 +29,40 @@ export default function HomeScreen() {
     [selectedCategory, selectedSortMode]
   );
 
+  const statusButton = (
+    <TouchableOpacity
+      onPress={() => setStatusFilterVisible(true)}
+      className={`flex-row items-center self-start rounded-full px-3 py-2 mb-2 ${
+        selectedSortMode ? 'bg-theme-neutrals-800' : 'bg-theme-neutrals-800'
+      }`}
+      accessibilityRole="button"
+      accessibilityLabel="Open status filter"
+    >
+      <Ionicons
+        name={getSelectedStatusIcon(selectedSortMode)}
+        size={16}
+        color={theme.colors.mutedForeground}
+      />
+      <Text
+        className={`mx-2 text-sm font-medium ${
+          selectedSortMode ? 'text-theme-neutrals-200' : 'text-theme-neutrals-300'
+        }`}
+      >
+        {getSelectedStatusLabel(selectedSortMode)}
+      </Text>
+      <Ionicons
+        name="chevron-down"
+        size={14}
+        color={theme.colors.mutedForeground}
+      />
+    </TouchableOpacity>
+  );
+
   const content = (
     <InfiniteVideoFeed
       params={feedParams}
       pageSize={10}
+      headerComponent={<View style={{ paddingHorizontal: 0, paddingTop: theme.spacing.xs }}>{statusButton}</View>}
       onClearFilters={() => {
         setSelectedCategory("All");
         setSelectedSortMode("trends");
@@ -67,32 +97,6 @@ export default function HomeScreen() {
       <HomeHeader />
 
       <View style={styles.filterSection}>
-        <TouchableOpacity
-          style={[
-            styles.statusFilterButton,
-            selectedSortMode && styles.statusFilterButtonActive,
-          ]}
-          onPress={() => setStatusFilterVisible(true)}
-        >
-          <Ionicons
-            name={getSelectedStatusIcon(selectedSortMode)}
-            size={16}
-            color={theme.colors.accentForeground}
-          />
-          <Text
-            style={[
-              styles.statusFilterText,
-              selectedSortMode && styles.statusFilterTextActive,
-            ]}
-          >
-            {getSelectedStatusLabel(selectedSortMode)}
-          </Text>
-          <Ionicons
-            name="chevron-down-outline"
-            size={16}
-            color={theme.colors.accentForeground}
-          />
-        </TouchableOpacity>
         {categoriesLoading ? (
           <CategorySelectorSkeleton />
         ) : (
@@ -100,6 +104,15 @@ export default function HomeScreen() {
             categories={categories}
             selectedCategory={selectedCategory}
             onCategoryPress={setSelectedCategory}
+            showLiveChip
+            isLiveActive={selectedSortMode === 'live'}
+            onPressLive={() => {
+              if (selectedSortMode === 'live') {
+                setStatusFilterVisible(true);
+              } else {
+                setSelectedSortMode('live');
+              }
+            }}
           />
         )}
       </View>
@@ -128,32 +141,13 @@ const styles = StyleSheet.create({
   // Filter Section Styles
   filterSection: {
     paddingHorizontal: theme.spacing.md,
-    paddingVertical: theme.spacing.sm,
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.border,
+    paddingVertical: theme.spacing.xs,
+    // keep categories fixed at top; no bottom border
   },
 
-  // Status Filter Button
-  statusFilterButton: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: theme.colors.muted,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: theme.radius.md,
-    marginBottom: theme.spacing.sm,
-    alignSelf: "flex-start",
-  },
-  statusFilterButtonActive: {
-    backgroundColor: theme.colors.accent,
-  },
-  statusFilterText: {
-    color: theme.colors.foreground,
-    fontSize: 14,
-    fontWeight: "500",
-    marginHorizontal: 8,
-  },
-  statusFilterTextActive: {
-    color: theme.colors.accentForeground,
-  },
+  // Status button now styled via Tailwind className above; keep placeholders to satisfy StyleSheet type
+  statusFilterButton: {},
+  statusFilterButtonActive: {},
+  statusFilterText: {},
+  statusFilterTextActive: {},
 });

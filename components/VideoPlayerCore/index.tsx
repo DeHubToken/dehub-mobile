@@ -159,11 +159,9 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   }, [isMuted, player]);
 
   const toggleFullscreen = useCallback(async () => {
-    const view = viewRef.current;
-    if (!view) return;
+    // Use an in-app fullscreen approach so our custom controls remain accessible
     try {
       if (fullscreen) {
-        await view.exitFullscreen();
         setFullscreen(false);
         try {
           await ScreenOrientation.lockAsync(
@@ -171,7 +169,6 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
           );
         } catch {}
       } else {
-        await view.enterFullscreen();
         setFullscreen(true);
         try {
           await ScreenOrientation.lockAsync(
@@ -376,7 +373,10 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   const [bufferedPosition, setBufferedPosition] = useState(0);
 
   return (
-    <View className="w-full aspect-video bg-black overflow-hidden">
+    <View
+      className={`bg-black overflow-hidden ${fullscreen ? '' : 'w-full aspect-video'}`}
+      style={fullscreen ? { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, zIndex: 1000 } : undefined}
+    >
       {sourceUrl && (
         <VideoView
           ref={(r) => {
@@ -386,8 +386,6 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
           style={{ width: "100%", height: "100%" }}
           contentFit="contain"
           nativeControls={false}
-          onFullscreenEnter={() => setFullscreen(true)}
-          onFullscreenExit={() => setFullscreen(false)}
         />
       )}
       {!sourceUrl && (

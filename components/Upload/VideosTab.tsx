@@ -815,7 +815,6 @@ export default function VideosTab({ onClose }: Props) {
 
   return (
     <View className="flex-1">
-      <UploadHeader title="Mint Video" onClose={onClose} />
       <ScrollView
         className="flex-1"
         contentContainerStyle={{ padding: 16 }}
@@ -975,7 +974,7 @@ export default function VideosTab({ onClose }: Props) {
       />
 
       {/* Footer CTA */}
-      <View className="px-4 pt-2 pb-6 mb-14">
+      <View className="px-4 pt-2 pb-6 mb-6">
         <TouchableOpacity
           disabled={isSignedIn ? !isFormValid : false}
           onPress={() => {

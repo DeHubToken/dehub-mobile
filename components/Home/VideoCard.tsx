@@ -145,12 +145,12 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
     <TouchableOpacity
       activeOpacity={0.85}
       onPress={handlePressVideo}
-      className="bg-theme-neutrals-800 rounded-lg my-2 overflow-hidden"
+      className="rounded-lg my-4 overflow-hidden"
     >
       <TouchableOpacity
         activeOpacity={0.85}
         onPress={handlePressVideo}
-        className="relative w-full h-48 bg-theme-neutrals-700 justify-center items-center"
+        className="relative w-full h-48 bg-theme-neutrals-700 justify-center items-center rounded-xl overflow-hidden"
       >
         {hasThumb ? (
           typeof thumbnail === "string" ? (
@@ -184,7 +184,6 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
               handlePressVideo={handlePressVideo}
             />
           )}
-        {/* Status-based badge (LIVE / ENDED / OFFLINE / SCHEDULED) */}
         {status && <StatusBadge status={status} />}
         {isPayPerView && (
           <View className="absolute top-2 right-2 bg-blue-600 px-2 py-1 rounded">
@@ -207,67 +206,70 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
             </Text>
           </View>
         )}
+        <View className="absolute bottom-2 left-2 bg-black/60 rounded px-1.5 py-0.5">
+          <Text className="text-theme-neutrals-200 text-xs">
+            {formatDistance(new Date(createdAt), new Date(), { addSuffix: true })}
+          </Text>
+        </View>
+
         {duration && (
-          <View className="absolute bottom-2 left-2 bg-black/60 rounded px-1.5 py-0.5">
+          <View className="absolute bottom-2 right-2 bg-black/60 rounded px-1.5 py-0.5">
             <Text className="text-theme-neutrals-200 text-xs">{duration}</Text>
           </View>
         )}
       </TouchableOpacity>
       <View className="p-3">
-        <View className="flex-row items-center mb-1">
-          <TouchableOpacity activeOpacity={0.7} onPress={handlePressAvatar}>
-            <Avatar
-              uri={
-                typeof profilePicture === "string" ? profilePicture : undefined
-              }
-              size={32}
-              className="mr-2"
-            />
-          </TouchableOpacity>
-          <View className="flex flex-col">
-            <Text className="text-base font-bold text-theme-neutrals-100 mr-2">
-              {title}
-            </Text>
-            <View className="flex-1 flex-row items-center gap-1">
+        <View className="flex-row justify-between items-start">
+          <View className="flex-row flex-1 min-w-0">
+            <TouchableOpacity activeOpacity={0.7} onPress={handlePressAvatar}>
+              <Avatar
+                uri={
+                  typeof profilePicture === "string" ? profilePicture : undefined
+                }
+                size={32}
+                className="mr-2"
+              />
+            </TouchableOpacity>
+            <View className="flex-1 min-w-0">
               <Text
-                className="text-[10px] text-theme-neutrals-300"
-                onPress={handlePressCreator}
+                className="text-base font-bold text-theme-neutrals-100 mr-2"
+                numberOfLines={1}
+                ellipsizeMode="tail"
               >
-                {creator}
+                {title}
               </Text>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={handlePressCreator}
-              >
-                {badgeImage ? (
-                  <Image source={badgeImage} className="w-3 h-3" />
-                ) : (
-                  <Ionicons name={badgeIcon as any} size={10} color="gold" />
-                )}
-              </TouchableOpacity>
+              <View className="flex-row items-center gap-1">
+                <Text
+                  className="text-[10px] text-theme-neutrals-300"
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                  onPress={handlePressCreator}
+                >
+                  {creator}
+                </Text>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={handlePressCreator}
+                >
+                  {badgeImage ? (
+                    <Image source={badgeImage} className="w-3 h-3" />
+                  ) : (
+                    <Ionicons name={badgeIcon as any} size={10} color="gold" />
+                  )}
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-        </View>
-        <View className="flex-row justify-between items-center mt-2">
-          <View className="flex-row items-center gap-1">
-            <Text className="text-xs text-theme-neutrals-300">
-              {views} views
-            </Text>
-            <Ionicons
-              name="ellipse"
-              size={4}
-              color="#A3A3A3"
-              style={{ marginHorizontal: 4 }}
-            />
-            <Text className="text-xs text-theme-neutrals-300">
-              {formatDistance(new Date(createdAt), new Date(), {
-                addSuffix: true,
-              })}
-            </Text>
-          </View>
-          <View className="flex-row items-center gap-1">
-            <Ionicons name="heart" size={16} color="red" />
-            <Text className="text-sm text-theme-neutrals-300">{likes}</Text>
+
+          <View className="flex-row items-center gap-2 ml-2 shrink-0">
+            <View className="flex-row items-center bg-theme-neutrals-700 rounded-full px-3 py-1">
+              <Ionicons name="eye" size={14} color="#D1D5DB" />
+              <Text className="ml-1 text-xs text-theme-neutrals-200">{views}</Text>
+            </View>
+            <View className="flex-row items-center bg-theme-neutrals-700 rounded-full px-3 py-1">
+              <Ionicons name="heart" size={14} color="#D1D5DB" />
+              <Text className="ml-1 text-xs text-theme-neutrals-200">{likes}</Text>
+            </View>
           </View>
         </View>
       </View>

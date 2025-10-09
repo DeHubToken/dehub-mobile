@@ -48,7 +48,6 @@ interface NormalVideoPlayerProps {
   isTranscoding?: boolean;
 }
 
-
 const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
   tokenId,
   videoUrl,
@@ -80,7 +79,9 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
   const [composerFocusSignal, setComposerFocusSignal] = useState(0);
   const [scrollTargetId, setScrollTargetId] = useState<number | null>(null);
   const [highlightedId, setHighlightedId] = useState<number | null>(null);
-  const [expandThreadId, setExpandThreadId] = useState<number | string | null>(null);
+  const [expandThreadId, setExpandThreadId] = useState<number | string | null>(
+    null
+  );
   const createdAtDate = createdAt ? new Date(createdAt) : new Date();
   // NFT fetch & metadata loading
   const [nftLoading, setNftLoading] = useState<boolean>(false);
@@ -480,7 +481,16 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
         setPosting(false);
       }
     });
-  }, [draftComment, posting, requireAuth, user?.walletAddress, user?.address, setNftData, replyTo, tokenId]);
+  }, [
+    draftComment,
+    posting,
+    requireAuth,
+    user?.walletAddress,
+    user?.address,
+    setNftData,
+    replyTo,
+    tokenId,
+  ]);
 
   return (
     <View className="flex-1" key="loaded-player">
@@ -504,8 +514,10 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
         contentContainerStyle={{ paddingBottom: commentsOpen ? 120 : 80 }}
       >
         <View
-          style={{ display: commentsOpen ? 'none' as const : 'flex' as const }}
-          pointerEvents={commentsOpen ? 'none' : 'auto'}
+          style={{
+            display: commentsOpen ? ("none" as const) : ("flex" as const),
+          }}
+          pointerEvents={commentsOpen ? "none" : "auto"}
         >
           <>
             <View className="px-4 pt-2">
@@ -517,12 +529,29 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
                 {resolvedTitle && resolvedTitle.length > 60 ? "…" : ""}
               </Text>
               <Text className="text-theme-neutrals-400 text-[11px] mt-1">
-                {resolvedViews.toLocaleString()} views •{" "}
-                {formatCompactNumber(resolvedTotalTips)} tips •{" "}
                 {formatDistance(new Date(resolvedCreatedAt), new Date(), {
                   addSuffix: true,
-                })}
+                })}{" "}
+                • {resolvedViews.toLocaleString()} views •{" "}
+                {formatCompactNumber(resolvedTotalTips)} total tips
               </Text>
+              <CreatorRow
+                key={
+                  creatorLoading
+                    ? "creator-loading"
+                    : `creator-${
+                        creator?.walletAddress || creator?.address || "none"
+                      }`
+                }
+                loading={creatorLoading}
+                creator={creator}
+                viewerAddress={(user?.walletAddress || user?.address) as string}
+                isFollowing={isFollowing}
+                followLoading={followLoading}
+                onFollow={handleFollow}
+                onUnfollow={handleUnfollow}
+                fallbackMinter={minter}
+              />
               {nftLoading ? (
                 <View className="flex-row mt-4">
                   {Array.from({ length: 4 }).map((_, i) => (
@@ -542,8 +571,8 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
                     nftData?.isLiked || nftData?.result?.isLiked
                       ? "like"
                       : nftData?.isDisliked || nftData?.result?.isDisliked
-                        ? "dislike"
-                        : null
+                      ? "dislike"
+                      : null
                   }
                   chainId={
                     (nftData?.chainId ?? nftData?.result?.chainId) as any
@@ -553,22 +582,6 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
                   }
                 />
               )}
-              {/* Channel Row with its own loading state */}
-              <CreatorRow
-                key={
-                  creatorLoading
-                    ? "creator-loading"
-                    : `creator-${creator?.walletAddress || creator?.address || "none"}`
-                }
-                loading={creatorLoading}
-                creator={creator}
-                viewerAddress={(user?.walletAddress || user?.address) as string}
-                isFollowing={isFollowing}
-                followLoading={followLoading}
-                onFollow={handleFollow}
-                onUnfollow={handleUnfollow}
-                fallbackMinter={minter}
-              />
               {/* Description (can sshow partial before, updated after) */}
               <DescriptionBlock
                 description={resolvedDescription}
@@ -621,8 +634,10 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
           </>
         </View>
         <View
-          style={{ display: commentsOpen ? 'flex' as const : 'none' as const }}
-          pointerEvents={commentsOpen ? 'auto' : 'none'}
+          style={{
+            display: commentsOpen ? ("flex" as const) : ("none" as const),
+          }}
+          pointerEvents={commentsOpen ? "auto" : "none"}
         >
           <CommentsPanel
             comments={comments}

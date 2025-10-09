@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { memo, useCallback, useMemo, useState } from "react";
 import {
   View,
   Text,
   FlatList,
   Image,
   TouchableOpacity,
-  StyleSheet,
-  ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
@@ -17,7 +15,18 @@ import CategorySelector from "../components/Home/CategorySelector";
 
 const feedTabs = ["All","For You", "Subscribed", "Followed", "Liked", "Saved"];
 
-const feedData = [
+type FeedPost = {
+  id: number;
+  user: string;
+  time: string;
+  content: string;
+  images: number[]; // require(...) resolves to number in RN
+  likes: number;
+  comments: number;
+  category: string;
+};
+
+const feedData: FeedPost[] = [
   {
     id: 1,
     user: "jules",
@@ -76,18 +85,13 @@ const feedData = [
   },
 ];
 
-const FeedScreen = () => {
-  const navigation = useNavigation<any>();
-  const [activeTab, setActiveTab] = useState("All");
+type FeedItemProps = {
+  item: FeedPost;
+  onOpenImage: (images: number[], index: number) => void;
+};
 
-  const filteredData = feedData.filter((item) => {
-    if (activeTab === "For You") {
-      return true;
-    }
-    return item.category === activeTab;
-  });
-
-  const renderItem = ({ item }) => (
+const FeedItem = memo(({ item, onOpenImage }: FeedItemProps) => {
+  return (
     <View className="p-4 border-b border-theme-neutrals-700">
       <View className="flex-row items-center justify-between mb-2">
         <View>
@@ -110,12 +114,7 @@ const FeedScreen = () => {
           {item.images.map((image, index) => (
             <TouchableOpacity
               key={index}
-              onPress={() =>
-                navigation.navigate(ScreenNames.ImageViewer, {
-                  images: item.images,
-                  index,
-                })
-              }
+              onPress={() => onOpenImage(item.images, index)}
               className="mr-2 mb-2"
             >
               <Image source={image} className="w-24 h-24 rounded-md" />
@@ -144,8 +143,35 @@ const FeedScreen = () => {
       </View>
     </View>
   );
+});
 
-  const renderEmptyState = () => (
+const FeedScreen = () => {
+  const navigation = useNavigation<any>();
+  const [activeTab, setActiveTab] = useState("All");
+
+  const filteredData = useMemo(() => {
+    if (activeTab === "For You") return feedData;
+    if (activeTab === "All") return feedData;
+    return feedData.filter((item) => item.category === activeTab);
+  }, [activeTab]);
+
+  const handleOpenImage = useCallback(
+    (images: number[], index: number) => {
+      navigation.navigate(ScreenNames.ImageViewer, { images, index });
+    },
+    [navigation]
+  );
+
+  const renderItem = useCallback(
+    ({ item }: { item: FeedPost }) => (
+      <FeedItem item={item} onOpenImage={handleOpenImage} />
+    ),
+    [handleOpenImage]
+  );
+
+  const keyExtractor = useCallback((item: FeedPost) => item.id.toString(), []);
+
+  const renderEmptyState = useCallback(() => (
     <View className="flex-1 justify-center items-center p-8">
       <Text className="text-theme-neutrals-400 text-base text-center">
         No posts in {activeTab} yet
@@ -154,7 +180,9 @@ const FeedScreen = () => {
         Check back later for new content
       </Text>
     </View>
-  );
+  ), [activeTab]);
+
+  
 
   return (
     <SafeAreaView className="flex-1 bg-theme-neutrals-900">
@@ -166,10 +194,16 @@ const FeedScreen = () => {
       />
       <FlatList
         data={filteredData}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={keyExtractor}
         renderItem={renderItem}
         ListEmptyComponent={renderEmptyState}
         showsVerticalScrollIndicator={false}
+        initialNumToRender={4}
+        maxToRenderPerBatch={4}
+        updateCellsBatchingPeriod={80}
+        windowSize={7}
+        removeClippedSubviews
+        contentContainerStyle={{ paddingBottom: 16 }}
       />
     </SafeAreaView>
   );
