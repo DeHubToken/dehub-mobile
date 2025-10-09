@@ -1,4 +1,5 @@
 import { Buffer } from "buffer";
+import { createLogger } from './libs/logger';
 
 if (!global.Buffer) {
   // Assign Buffer polyfill
@@ -130,7 +131,8 @@ try {
 // Debug sample (can be commented out after validation)
 try {
   // eslint-disable-next-line no-console
-  console.log('[globals] base64 test', Buffer.from('Hello World!', 'utf-8').toString('base64'));
+  const gLog = createLogger('globals');
+  gLog.debug('base64 test', Buffer.from('Hello World!', 'utf-8').toString('base64'));
 } catch {}
 
 

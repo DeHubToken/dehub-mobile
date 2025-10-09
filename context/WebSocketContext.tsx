@@ -4,6 +4,7 @@ import { WebSocketClient } from '../services/ws/socket-client';
 import env from '../config/env';
 import { AppState } from 'react-native';
 import { getAuthToken as readStoredAuthToken } from '../libs/auth.utils';
+import { createLogger } from '../libs/logger';
 
 interface WebSocketContextValue {
   connected: boolean;
@@ -18,6 +19,7 @@ interface WebSocketContextValue {
 const WebSocketContext = createContext<WebSocketContextValue | null>(null);
 
 export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const log = useMemo(() => createLogger('WebSocketContext'), []);
   const { user } = useAuth();
   // Keep latest user in a ref so getters always read current values
   const userRef = useRef<any>(user);
@@ -65,19 +67,23 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   // Initialize or update auth
   useEffect(() => {
     if (!clientRef.current) {
-      const url = env?.WEBSOCKET_URL?.replace(/\/$/, '') || 'https://api.dehub.io';
+      const baseRaw = env?.WEBSOCKET_URL || 'https://api.dehub.io';
+      // Ensure base URL does not already include the socket.io path
+      const base = (baseRaw || '').replace(/\/socket\.io\/?$/i, '');
+      const url = base.replace(/\/$/, '');
+      log.debug('init with URL:', url);
       clientRef.current = new WebSocketClient({
         url,
         getAuthToken,
         getAddress,
         autoConnect: true,
-        debug: true,
+        debug: !!env.DEBUG,
       });
       clientRef.current.on('connect_error', (err: any) => {
-        console.log('[WebSocketContext] connect_error', { url, message: err?.message, stack: err?.stack });
+        log.warn('connect_error', { url, message: err?.message, stack: err?.stack });
       });
       clientRef.current.on('connected', () => { 
-        console.log('[WebSocketContext] connected');
+        log.info('connected');
         setConnected(true);
         // Notify reconnect listeners
         reconnectListenersRef.current.forEach((fn) => {
@@ -85,7 +91,7 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         });
       });
       clientRef.current.on('disconnected', () => { 
-        console.log('[WebSocketContext] disconnected');
+        log.info('disconnected');
         setConnected(false);
       });
       // No domain event listeners registered.

@@ -1,4 +1,5 @@
-import { REOWN_PROJECT_ID, API_URL, APP_ENV, INFURA_KEY, WEB3AUTH_CLIENT_ID, CDN_BASE_URL, APP_ORIGIN, WEBSOCKET_URL, LIVEPEER_API_KEY } from '@env';
+import { REOWN_PROJECT_ID, API_URL, APP_ENV, INFURA_KEY, WEB3AUTH_CLIENT_ID, CDN_BASE_URL, APP_ORIGIN, WEBSOCKET_URL, LIVEPEER_API_KEY, DEBUG } from '@env';
+import { createLogger } from '../libs/logger';
 
 const env = {
   REOWN_PROJECT_ID: REOWN_PROJECT_ID,
@@ -10,7 +11,9 @@ const env = {
   APP_ORIGIN: APP_ORIGIN || "https://dehub.io",
   WEBSOCKET_URL: WEBSOCKET_URL || API_URL?.replace(/\/$/, '') || "https://api.dehub.io",
   LIVEPEER_API_KEY: LIVEPEER_API_KEY,
+  DEBUG: DEBUG,
 };
 
-console.log("REOWN_PROJECT_ID:", REOWN_PROJECT_ID);
+// const log = createLogger('env');
+// log.debug('REOWN_PROJECT_ID:', REOWN_PROJECT_ID);
 export default env;
