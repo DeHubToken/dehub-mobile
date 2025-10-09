@@ -8,4 +8,5 @@ declare module '@env' {
     export const REOWN_PROJECT_ID: string;
     export const WEBSOCKET_URL: string;
     export const LIVEPEER_API_KEY: string;
+    export const DEBUG: string;
 }

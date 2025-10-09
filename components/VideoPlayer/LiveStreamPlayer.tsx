@@ -423,6 +423,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     if (!connected || !streamId) return;
     socketEmitAuthed(LivestreamEvents.JoinRoom, { streamId });
     if (isLiveEffective && isSignedIn) {
+      console.log("Stream Id in joining stream", {streamId})
       socketEmitAuthed(LivestreamEvents.JoinStream, { streamId });
     }
   }, [connected, streamId, isLiveEffective, isSignedIn, socketEmitAuthed]);
