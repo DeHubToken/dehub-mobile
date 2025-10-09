@@ -31,12 +31,8 @@ import { formatJoinedDate } from "../../libs/date.util";
 import { shareProfile } from "../../libs/misc";
 import Avatar from "../common/Avatar";
 import * as ImagePicker from "expo-image-picker";
-import {
-  requestMediaLibraryPermission,
-  openCroppedImagePicker,
-  resizeAndCompress,
-  createRNImageFile
-} from "../../libs/assets.util";
+import { openCroppedImagePicker, resizeAndCompress, createRNImageFile } from "../../libs/assets.util";
+import { runWithPermissions, ensureMediaLibraryPermission, waitAfterPermissionIfNeeded } from "../../libs/permissions.util";
 import { AuthService } from "../../services/auth.service";
 import { toastError, toastSuccess } from "../../libs/toast";
 
@@ -132,27 +128,25 @@ const ProfileHeader = () => {
     await shareProfile(url, message);
   }, [username, address]);
 
-  const requestPickerPermission = useCallback(async () => {
-    const ok = await requestMediaLibraryPermission();
-    if (!ok) toastError("Permission to access photos is required.");
-    return ok;
-  }, []);
-
   const pickImage = useCallback(async () => {
-    const ok = await requestPickerPermission();
-    if (!ok) return null;
+    const perm = await ensureMediaLibraryPermission();
+    if (!perm.granted) {
+      toastError("Permission to access photos is required.");
+      return null;
+    }
+    await waitAfterPermissionIfNeeded(perm.justGranted);
     const mediaTypesCompat: any = (ImagePicker as any).MediaType
       ? [(ImagePicker as any).MediaType.image]
       : (ImagePicker as any).MediaTypeOptions?.Images ?? ImagePicker.MediaTypeOptions.Images;
-    const res = await ImagePicker.launchImageLibraryAsync({
+    const pick = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: mediaTypesCompat,
       allowsEditing: false,
       quality: 0.9,
       exif: false,
     });
-    if (res.canceled || !res.assets?.length) return null;
-    return res.assets[0]?.uri || null;
-  }, [requestPickerPermission]);
+    if (pick.canceled || !pick.assets?.length) return null;
+    return pick.assets[0]?.uri || null;
+  }, []);
 
   const openViewer = useCallback(
     (uri?: string) => {
@@ -165,44 +159,6 @@ const ProfileHeader = () => {
     },
     [navigation]
   );
-
-  const startChangeAvatar = useCallback(async () => {
-    try {
-      const ok = await requestPickerPermission();
-      if (!ok) return;
-      const pickedUri = await openCroppedImagePicker({
-        width: 800,
-        height: 800,
-        circle: false,
-        quality: 0.9,
-        forceJpg: true,
-      });
-      if (!pickedUri) return;
-      setLocalAvatarUri(pickedUri);
-      await processAndUpload("avatar", pickedUri);
-    } catch (e) {
-      toastError(e, "Could not pick image");
-    }
-  }, [pickImage]);
-
-  const startChangeCover = useCallback(async () => {
-    try {
-      const ok = await requestPickerPermission();
-      if (!ok) return;
-      const pickedUri = await openCroppedImagePicker({
-        width: 1800,
-        height: 600,
-        circle: false,
-        quality: 0.9,
-        forceJpg: true,
-      });
-      if (!pickedUri) return;
-      setLocalCoverUri(pickedUri);
-      await processAndUpload("cover", pickedUri);
-    } catch (e) {
-      toastError(e, "Could not pick image");
-    }
-  }, [pickImage]);
 
   const processAndUpload = useCallback(
     async (kind: "avatar" | "cover", uri: string) => {
@@ -246,6 +202,44 @@ const ProfileHeader = () => {
     },
     [user]
   );
+
+  const startChangeAvatar = useCallback(async () => {
+    try {
+      await runWithPermissions([ensureMediaLibraryPermission], async () => {
+        const pickedUri = await openCroppedImagePicker({
+          width: 800,
+          height: 800,
+          circle: false,
+          quality: 0.9,
+          forceJpg: true,
+        });
+        if (!pickedUri) return;
+        setLocalAvatarUri(pickedUri);
+        await processAndUpload("avatar", pickedUri);
+      });
+    } catch (e) {
+      toastError(e, "Could not pick image");
+    }
+  }, [processAndUpload]);
+
+  const startChangeCover = useCallback(async () => {
+    try {
+      await runWithPermissions([ensureMediaLibraryPermission], async () => {
+        const pickedUri = await openCroppedImagePicker({
+          width: 1800,
+          height: 600,
+          circle: false,
+          quality: 0.9,
+          forceJpg: true,
+        });
+        if (!pickedUri) return;
+        setLocalCoverUri(pickedUri);
+        await processAndUpload("cover", pickedUri);
+      });
+    } catch (e) {
+      toastError(e, "Could not pick image");
+    }
+  }, [processAndUpload]);
 
   return (
     <>

@@ -16,12 +16,8 @@ import { useAuth } from "../context/AuthContext";
 import { getAvatarUrl, getCoverUrl } from "../libs/misc";
 import Avatar from "../components/common/Avatar";
 import { theme } from "../theme";
-import {
-  requestMediaLibraryPermission,
-  openCroppedImagePicker,
-  resizeAndCompress,
-  createRNImageFile,
-} from "../libs/assets.util";
+import { openCroppedImagePicker, resizeAndCompress, createRNImageFile } from "../libs/assets.util";
+import { runWithPermissions, ensureMediaLibraryPermission } from "../libs/permissions.util";
 import { AuthService } from "../services/auth.service";
 import { toastError, toastSuccess } from "../libs/toast";
 import ScreenHeader from "../components/ScreenHeader";
@@ -137,64 +133,64 @@ const EditProfileScreen = () => {
   }, [username]);
 
   const handlePickAvatar = useCallback(async () => {
-    const ok = await requestMediaLibraryPermission();
-    if (!ok) return toastError("Permission to access photos is required.");
     try {
       setProcessingAvatar(true);
-      const picked = await openCroppedImagePicker({
-        width: 800,
-        height: 800,
-        circle: false,
-        quality: 0.9,
-        forceJpg: true,
+      await runWithPermissions([ensureMediaLibraryPermission], async () => {
+        const picked = await openCroppedImagePicker({
+          width: 800,
+          height: 800,
+          circle: false,
+          quality: 0.9,
+          forceJpg: true,
+        });
+        if (!picked) return;
+        setLocalAvatar(picked);
+        const manip = await resizeAndCompress(picked, {
+          width: 512,
+          height: 512,
+          compress: 0.85,
+          format: "jpeg",
+        });
+        setLocalAvatar(manip);
+        // Do not upload now; will upload on Save
       });
-      if (!picked) return;
-      setLocalAvatar(picked);
-      const manip = await resizeAndCompress(picked, {
-        width: 512,
-        height: 512,
-        compress: 0.85,
-        format: "jpeg",
-      });
-      setLocalAvatar(manip);
-      // Do not upload now; will upload on Save
     } catch (e) {
       toastError(e, "Avatar update failed");
       setLocalAvatar(null);
     } finally {
       setProcessingAvatar(false);
     }
-  }, [requestMediaLibraryPermission]);
+  }, []);
 
   const handlePickCover = useCallback(async () => {
-    const ok = await requestMediaLibraryPermission();
-    if (!ok) return toastError("Permission to access photos is required.");
     try {
       setProcessingCover(true);
-      const picked = await openCroppedImagePicker({
-        width: 1800,
-        height: 600,
-        circle: false,
-        quality: 0.9,
-        forceJpg: true,
+      await runWithPermissions([ensureMediaLibraryPermission], async () => {
+        const picked = await openCroppedImagePicker({
+          width: 1800,
+          height: 600,
+          circle: false,
+          quality: 0.9,
+          forceJpg: true,
+        });
+        if (!picked) return;
+        setLocalCover(picked);
+        const manip = await resizeAndCompress(picked, {
+          width: 1500,
+          height: 500,
+          compress: 0.85,
+          format: "jpeg",
+        });
+        setLocalCover(manip);
+        // Do not upload now; will upload on Save
       });
-      if (!picked) return;
-      setLocalCover(picked);
-      const manip = await resizeAndCompress(picked, {
-        width: 1500,
-        height: 500,
-        compress: 0.85,
-        format: "jpeg",
-      });
-      setLocalCover(manip);
-      // Do not upload now; will upload on Save
     } catch (e) {
       toastError(e, "Cover update failed");
       setLocalCover(null);
     } finally {
       setProcessingCover(false);
     }
-  }, [requestMediaLibraryPermission]);
+  }, []);
 
   const onSave = useCallback(async () => {
     try {

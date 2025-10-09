@@ -8,6 +8,7 @@ import React, {
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
+import { runWithPermissions, ensureMediaLibraryPermission, waitAfterPermissionIfNeeded } from "../../libs/permissions.util";
 import * as VideoThumbnails from "expo-video-thumbnails";
 import * as FileSystem from "expo-file-system/legacy";
 import { getCategoriesCached, minNft } from "../../services";
@@ -245,6 +246,12 @@ export default function VideosTab({ onClose }: Props) {
   }, []);
 
   const pickVideo = useCallback(async () => {
+    const perm = await ensureMediaLibraryPermission();
+    if (!perm.granted) {
+      toastError("Permission to access photos and videos is required.");
+      return;
+    }
+    await waitAfterPermissionIfNeeded(perm.justGranted);
     const mediaTypesCompat: any = (ImagePicker as any).MediaType
       ? [(ImagePicker as any).MediaType.video]
       : (ImagePicker as any).MediaTypeOptions?.Videos ??
@@ -397,6 +404,12 @@ export default function VideosTab({ onClose }: Props) {
   }, [player]);
 
   const pickCoverImage = useCallback(async () => {
+    const perm = await ensureMediaLibraryPermission();
+    if (!perm.granted) {
+      toastError("Permission to access photos is required.");
+      return;
+    }
+    await waitAfterPermissionIfNeeded(perm.justGranted);
     const imageTypesCompat: any = (ImagePicker as any).MediaType
       ? [(ImagePicker as any).MediaType.image]
       : (ImagePicker as any).MediaTypeOptions?.Images ??

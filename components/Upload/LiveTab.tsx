@@ -26,6 +26,7 @@ import {
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import { toastError } from "../../libs/toast";
 import * as ImagePicker from "expo-image-picker";
+import { runWithPermissions, ensureMediaLibraryPermission } from "../../libs/permissions.util";
 import {
   getUserScheduledLives,
   ScheduledLiveItem,
@@ -281,15 +282,17 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
 
   const pickThumbnail = useCallback(async () => {
     try {
-      const res = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [16, 9],
-        quality: 0.9,
+      await runWithPermissions([ensureMediaLibraryPermission], async () => {
+        const res = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          aspect: [16, 9],
+          quality: 0.9,
+        });
+        if (!res.canceled && res.assets?.[0]?.uri) {
+          setThumbnailUri(res.assets[0].uri);
+        }
       });
-      if (!res.canceled && res.assets?.[0]?.uri) {
-        setThumbnailUri(res.assets[0].uri);
-      }
     } catch (e) {
       toastError(e, "Thumbnail pick failed");
     }
