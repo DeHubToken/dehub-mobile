@@ -21,6 +21,8 @@ import LiveChatPanel from "../components/LiveProducer/LiveChatPanel";
 import MetadataCard from "../components/LiveProducer/MetadataCard";
 import StreamDetailsTooltip from "../components/LiveProducer/StreamDetailsTooltip";
 import EphemeralMessages from "../components/LiveProducer/EphemeralMessages";
+import TipAnimationsOverlay from "../components/LiveProducer/TipAnimationsOverlay";
+import { useTipAnimations } from "../hooks/useTipAnimations";
 import { useStreamDetails } from "../hooks/useStreamDetails";
 import { useEphemeralMessages } from "../hooks/useEphemeralMessages";
 import GlassModal from "../components/ui/GlassModal";
@@ -87,6 +89,7 @@ const LiveProducerScreen: React.FC = () => {
   const [uiHidden, setUiHidden] = useState(false);
   const uiTimerRef = useRef<NodeJS.Timeout | null>(null);
   const { ephemeral, addEphemeral, fadeAnim } = useEphemeralMessages();
+  const { items: tipEffects, enqueueFromGift, clearAll } = useTipAnimations({ maxConcurrent: 2 });
   // Centralized chat activity list for LiveChatPanel
   const [chatActivities, setChatActivities] = useState<Array<{
     status: any;
@@ -192,6 +195,13 @@ const LiveProducerScreen: React.FC = () => {
       if (!isNaN(amt) && amt > 0) setTotalTips((t) => t + amt);
       // Also reflect in chat activity
       const gift = payload?.gift;
+      // Enqueue visual effect per tier
+      enqueueFromGift({
+        amount: gift?.meta?.amount,
+        message: gift?.meta?.message,
+        username: gift?.meta?.username || gift?.meta?.displayName,
+        selectedTier: gift?.meta?.selectedTier,
+      } as any);
       addChatActivity({
         status: StreamActivityType.TIP,
         address: gift?.meta?.address,
@@ -242,6 +252,7 @@ const LiveProducerScreen: React.FC = () => {
           u();
         } catch {}
       });
+      clearAll();
       const meta = viewUpdateMetaRef.current;
       if (meta.timer) {
         clearTimeout(meta.timer);
@@ -587,6 +598,8 @@ const LiveProducerScreen: React.FC = () => {
       android_disableSound
     >
       <View className="flex-1 bg-black">
+  {/* Tiered Tip Animations Overlay */}
+  <TipAnimationsOverlay items={tipEffects} />
         {/* Publisher area or skeleton placeholder for instant open */}
         {redirecting ? (
           <View className="absolute inset-0 items-center justify-center">

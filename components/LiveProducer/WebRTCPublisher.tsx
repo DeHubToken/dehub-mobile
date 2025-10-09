@@ -5,8 +5,9 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { View, Platform, Text, PermissionsAndroid } from "react-native";
+import { View, Platform, Text } from "react-native";
 import { mediaDevices, RTCPeerConnection, RTCView } from "react-native-webrtc";
+import { ensureCameraPermission, ensureMicrophonePermission, waitAfterPermissionIfNeeded } from "../../libs/permissions.util";
 
 // Types
 type Facing = "front" | "back";
@@ -26,21 +27,15 @@ export interface WebRTCPublisherProps {
   disconnectGraceMs?: number;
 }
 
-// Utility: request Android runtime permissions
-async function ensureAndroidPermissions(): Promise<boolean> {
-  if (Platform.OS !== "android") return true;
+// Utility: request runtime permissions via centralized helper
+async function ensureCapturePermissions(): Promise<boolean> {
   try {
-    const res = await PermissionsAndroid.requestMultiple([
-      PermissionsAndroid.PERMISSIONS.CAMERA,
-      PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
-    ]);
-    const cam =
-      res?.[PermissionsAndroid.PERMISSIONS.CAMERA] ===
-      PermissionsAndroid.RESULTS.GRANTED;
-    const mic =
-      res?.[PermissionsAndroid.PERMISSIONS.RECORD_AUDIO] ===
-      PermissionsAndroid.RESULTS.GRANTED;
-    return cam && mic;
+    const cam = await ensureCameraPermission();
+    if (!cam.granted) return false;
+    const mic = await ensureMicrophonePermission();
+    if (!mic.granted) return false;
+    await waitAfterPermissionIfNeeded(cam.justGranted || mic.justGranted);
+    return true;
   } catch {
     return false;
   }
@@ -130,7 +125,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
       if (acquiringRef.current) { dbg('acquire() skipped: already acquiring'); return; }
       acquiringRef.current = true;
       dbg('acquire() start', { facing, micMuted, cameraOff, Platform: Platform.OS });
-      const granted = await ensureAndroidPermissions();
+      const granted = await ensureCapturePermissions();
       if (!granted) {
         const err = new Error("Camera/Microphone permission denied");
         dbe('permission denied');
