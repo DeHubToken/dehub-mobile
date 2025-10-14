@@ -110,7 +110,8 @@ Object.assign(process.env, {
 try {
   // Optional localStorage debug flag (ignored in RN but harmless if polyfilled)
   if (typeof localStorage !== 'undefined') {
-    (localStorage as any).debug = isDev ? '*' : '';
+    // (localStorage as any).debug = isDev ? '*' : '';
+    (localStorage as any).debug = '';
   }
 } catch {}
 

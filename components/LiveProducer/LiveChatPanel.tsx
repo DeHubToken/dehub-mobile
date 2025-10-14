@@ -87,27 +87,24 @@ const LiveChatPanel: React.FC<Props> = ({
       socketEmit(LivestreamEvents.JoinRoom, { streamId });
       joinedRoomRef.current = streamId;
     } catch {}
-  }, [visible, streamId, socketEmit]);
-
-  // Self-contained JoinStream when becoming effectively live
-  useEffect(() => {
-    if (!visible || !streamId) return;
-    if (!isLiveEffective) return;
-    if (joinedStreamRef.current === streamId) return;
-    try {
-      socketEmit(LivestreamEvents.JoinStream, { streamId });
-      joinedStreamRef.current = streamId;
-    } catch {}
   }, [visible, streamId, isLiveEffective, socketEmit]);
 
-  // Re-emit on reconnect
+  // Self-contained JoinStream when becoming effectively live
+  // useEffect(() => {
+  //   if (!visible || !streamId) return;
+  //   if (!isLiveEffective) return;
+  //   if (joinedStreamRef.current === streamId) return;
+  //   try {
+  //     socketEmit(LivestreamEvents.JoinStream, { streamId });
+  //     joinedStreamRef.current = streamId;
+  //   } catch {}
+  // }, [visible, streamId, isLiveEffective, socketEmit]);
+
+  // Re-emit JoinRoom on reconnect (no JoinStream from panel)
   useEffect(() => {
     if (!connected || !visible || !streamId) return;
     try { socketEmit(LivestreamEvents.JoinRoom, { streamId }); } catch {}
-    if (isLiveEffective) {
-      try { socketEmit(LivestreamEvents.JoinStream, { streamId }); } catch {}
-    }
-  }, [connected, visible, streamId, isLiveEffective, socketEmit]);
+  }, [connected, visible, streamId, socketEmit]);
 
   // Auto scroll to bottom when new activity arrives
   useEffect(() => {
