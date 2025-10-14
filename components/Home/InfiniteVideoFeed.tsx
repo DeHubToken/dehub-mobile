@@ -42,6 +42,7 @@ interface InfiniteVideoFeedProps {
   onEndReachedAll?: () => void; // callback when no more pages
   onScrollDirectionChange?: (direction: "up" | "down", offsetY: number) => void; // notify parent
   onClearFilters?: () => void; // allow empty state clear
+  onRetry?: () => void; // fired when user taps Retry on error state
 }
 
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
@@ -55,6 +56,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   onEndReachedAll,
   onScrollDirectionChange,
   onClearFilters,
+  onRetry,
 }) => {
   interface FeedItem extends GetNFTsResult {
     __listKey: string;
@@ -178,8 +180,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   }, [resetAndLoad]);
 
   const handleRetry = useCallback(() => {
+    try { onRetry && onRetry(); } catch {}
     resetAndLoad();
-  }, [resetAndLoad]);
+  }, [onRetry, resetAndLoad]);
 
   const handleScroll = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {

@@ -63,6 +63,23 @@ export default function HomeScreen() {
       params={feedParams}
       pageSize={10}
       headerComponent={<View style={{ paddingHorizontal: 0, paddingTop: theme.spacing.xs }}>{statusButton}</View>}
+      onRetry={async () => {
+        // Re-fetch categories on retry to restore the header chips when initial load failed
+        setCategoriesLoading(true);
+        try {
+          const list = await getCategoriesCached({ forceRefresh: true });
+          if (list && list.length) {
+            const cleaned = [
+              "All",
+              ...list.filter((c) => c && c.toLowerCase() !== "all"),
+            ];
+            setCategories(cleaned);
+            if (!cleaned.includes(selectedCategory)) setSelectedCategory("All");
+          }
+        } finally {
+          setCategoriesLoading(false);
+        }
+      }}
       onClearFilters={() => {
         setSelectedCategory("All");
         setSelectedSortMode("trends");

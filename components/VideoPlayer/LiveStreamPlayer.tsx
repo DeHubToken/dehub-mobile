@@ -321,6 +321,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     return (resolvedStreamId || streamEntity?._id || null) as string | null;
   }, [resolvedStreamId, streamEntity?._id]);
 
+  // Ownership/redirect gating for JoinStream
+  const [ownerStatus, setOwnerStatus] = useState<"unknown" | "owner" | "viewer">("unknown");
+  const didJoinRef = useRef<boolean>(false);
+
   // Always join the room as a viewer (presence, history, etc.) as soon as we know the streamId
   const joinRoomSentRef = useRef<string | null>(null);
   useEffect(() => {
@@ -422,13 +426,13 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   useEffect(() => {
     if (!connected || !streamId) return;
     socketEmitAuthed(LivestreamEvents.JoinRoom, { streamId });
-    if (isLiveEffective && isSignedIn) {
-      console.log("Stream Id in joining stream", {streamId})
+    if (isLiveEffective && isSignedIn && ownerStatus === "viewer") {
       socketEmitAuthed(LivestreamEvents.JoinStream, { streamId });
+      didJoinRef.current = true;
     }
-  }, [connected, streamId, isLiveEffective, isSignedIn, socketEmitAuthed]);
+  }, [connected, streamId, isLiveEffective, isSignedIn, ownerStatus, socketEmitAuthed]);
 
-  // Always listen for Start/End to update local effective status
+// Always listen for Start/End to update local effective status
   useEffect(() => {
     if (!streamId) return;
     const subs: Array<() => void> = [];
@@ -451,9 +455,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const recordedLiveViewRef = useRef<string | null>(null);
   useEffect(() => {
     if (!streamId || !isLiveEffective) return;
-    // Join as viewer (only when signed in)
-    if (isSignedIn) {
+    // Join as viewer (only when signed in and not owner)
+    if (isSignedIn && ownerStatus === "viewer") {
       socketEmitAuthed(LivestreamEvents.JoinStream, { streamId });
+      didJoinRef.current = true;
     }
     // Record view once per stream on first live join
     if (recordedLiveViewRef.current !== streamId) {
@@ -477,6 +482,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     isLiveEffective,
     socketEmitAuthed,
     isSignedIn,
+    ownerStatus,
     streamEntity?.tokenId,
     tokenId,
   ]);
@@ -630,7 +636,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     return () => {
       if (!streamId) return;
       try {
-        socketEmitAuthed(LivestreamEvents.LeaveStream, { streamId });
+        if (didJoinRef.current) {
+          socketEmitAuthed(LivestreamEvents.LeaveStream, { streamId });
+        }
       } catch {}
     };
   }, [streamId, socketEmitAuthed]);
@@ -690,17 +698,20 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     const status = String(streamEntity.status || "").toUpperCase();
     if (status === "ENDED") {
       redirectCheckedRef.current = true;
+      setOwnerStatus("viewer");
       return;
     }
     const addr = (user?.walletAddress || user?.address) as string | undefined;
     if (!addr) {
       redirectCheckedRef.current = true;
+      setOwnerStatus("viewer");
       return;
     }
     (async () => {
       try {
         const isOwner = await checkIfBroadcastOwner(addr, streamEntity);
         if (isOwner) {
+          setOwnerStatus("owner");
           redirectCheckedRef.current = true;
           navigation.replace(ScreenNames.LiveProducer as any, {
             streamId: streamEntity._id || streamId,
@@ -708,9 +719,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           });
         } else {
           redirectCheckedRef.current = true;
+          setOwnerStatus("viewer");
         }
       } catch {
         redirectCheckedRef.current = true;
+        setOwnerStatus("viewer");
       }
     })();
   }, [
@@ -884,7 +897,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                   ? "ended"
                   : "live"
               }
-              socketEmit={(evt, payload, ack) => socketEmitAuthed(evt, payload, ack)}
+              socketEmit={(evt, payload, ack) => {
+                if (evt === LivestreamEvents.JoinStream && ownerStatus !== "viewer") return;
+                socketEmitAuthed(evt, payload, ack);
+              }}
               activities={activities}
               addActivity={addActivity}
               mode="stack"

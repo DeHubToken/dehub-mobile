@@ -9,4 +9,5 @@ declare module '@env' {
     export const WEBSOCKET_URL: string;
     export const LIVEPEER_API_KEY: string;
     export const DEBUG: string;
+    export const AUTH_PROVIDER: string;
 }

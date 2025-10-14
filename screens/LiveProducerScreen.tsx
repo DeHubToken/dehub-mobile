@@ -43,7 +43,12 @@ const LiveProducerScreen: React.FC = () => {
   const route = useRoute<any>();
   const { streamId, tokenId, ingestUrl, streamKey } = (route.params ||
     {}) as RouteParams;
-  const { on: socketOn, emitAuthed: socketEmitAuthed, connected } = useWebSocket();
+  const {
+    on: socketOn,
+    emitAuthed: socketEmitAuthed,
+    connected,
+  } = useWebSocket();
+  // console.log("LiveProducers", { connected });
   const [showEndConfirm, setShowEndConfirm] = useState(false);
 
   const [chatVisible, setChatVisible] = useState(false);
@@ -89,16 +94,24 @@ const LiveProducerScreen: React.FC = () => {
   const [uiHidden, setUiHidden] = useState(false);
   const uiTimerRef = useRef<NodeJS.Timeout | null>(null);
   const { ephemeral, addEphemeral, fadeAnim } = useEphemeralMessages();
-  const { items: tipEffects, enqueueFromGift, clearAll } = useTipAnimations({ maxConcurrent: 2 });
+  const {
+    items: tipEffects,
+    enqueueFromGift,
+    clearAll,
+  } = useTipAnimations({ maxConcurrent: 2 });
   // Centralized chat activity list for LiveChatPanel
-  const [chatActivities, setChatActivities] = useState<Array<{
-    status: any;
-    address?: string;
-    createdAt?: number;
-    meta?: any;
-  }>>([]);
+  const [chatActivities, setChatActivities] = useState<
+    Array<{
+      status: any;
+      address?: string;
+      createdAt?: number;
+      meta?: any;
+    }>
+  >([]);
   const addChatActivity = useCallback((a: any) => {
-    setChatActivities((prev) => prev.concat({ ...a, createdAt: Date.now() }).slice(-400));
+    setChatActivities((prev) =>
+      prev.concat({ ...a, createdAt: Date.now() }).slice(-400)
+    );
   }, []);
   // Single-capture: WebRTCPublisher handles preview + publish
   // Realtime dynamic counters (decoupled from initial streamEntity)
@@ -118,18 +131,19 @@ const LiveProducerScreen: React.FC = () => {
   useEffect(() => {
     if (!streamId || joinedRoomRef.current === true) return;
     console.log("[LiveProducer] emit JoinRoom (once)", streamId);
-  socketEmitAuthed(LivestreamEvents.JoinRoom, { streamId });
+    socketEmitAuthed(LivestreamEvents.JoinRoom, { streamId });
     joinedRoomRef.current = true;
   }, [streamId, socketEmitAuthed]);
 
   // Rejoin on reconnect
   useEffect(() => {
     if (!connected || !streamId) return;
-    console.log('[LiveProducer] Reconnected, rejoin room');
+    console.log("[LiveProducer] Reconnected, rejoin room");
     socketEmitAuthed(LivestreamEvents.JoinRoom, { streamId });
-    if (stage === 'starting' || stage === 'live') {
-      socketEmitAuthed(LivestreamEvents.JoinStream, { streamId });
-    }
+    // don't JoinStream as streamer, only join room.
+    // if (stage === 'starting' || stage === 'live') {
+    //   socketEmitAuthed(LivestreamEvents.JoinStream, { streamId });
+    // }
   }, [connected, streamId, stage, socketEmitAuthed]);
 
   // Throttle metadata for view count updates (500ms window)
@@ -153,12 +167,18 @@ const LiveProducerScreen: React.FC = () => {
     make(LivestreamEvents.StartStream, (data) => {
       console.log("[LiveProducer] Socket StartStream event", data);
       setStartedAt((prev) => prev || Date.now());
-      addChatActivity({ status: StreamActivityType.START, meta: { message: 'Stream has started.' } });
+      addChatActivity({
+        status: StreamActivityType.START,
+        meta: { message: "Stream has started." },
+      });
     });
     make(LivestreamEvents.EndStream, (data) => {
       console.log("[LiveProducer] Socket EndStream event", data);
       // Stage change handled by hook via bind, but we can snapshot viewers
-  addChatActivity({ status: StreamActivityType.END, meta: { message: 'Stream has ended.' } });
+      addChatActivity({
+        status: StreamActivityType.END,
+        meta: { message: "Stream has ended." },
+      });
     });
     make(LivestreamEvents.ViewCountUpdate, ({ viewerCount }: any) => {
       console.log("[LiveProducer] Socket ViewCountUpdate event", {
@@ -205,7 +225,10 @@ const LiveProducerScreen: React.FC = () => {
       addChatActivity({
         status: StreamActivityType.TIP,
         address: gift?.meta?.address,
-        meta: { username: gift?.meta?.username || gift?.meta?.displayName, amount: Number(gift?.meta?.amount) || 0 },
+        meta: {
+          username: gift?.meta?.username || gift?.meta?.displayName,
+          amount: Number(gift?.meta?.amount) || 0,
+        },
       });
     });
     // Chat message and presence events
@@ -224,8 +247,8 @@ const LiveProducerScreen: React.FC = () => {
       const textContent = meta?.content || m?.content || m?.meta?.content;
       if (textContent) {
         addEphemeral({
-          id: String(Date.now()) + '-' + Math.random().toString(36).slice(2),
-          user: meta?.username || m?.user?.username || meta?.address || 'user',
+          id: String(Date.now()) + "-" + Math.random().toString(36).slice(2),
+          user: meta?.username || m?.user?.username || meta?.address || "user",
           message: textContent,
           createdAt: Date.now(),
         } as any);
@@ -235,14 +258,20 @@ const LiveProducerScreen: React.FC = () => {
       addChatActivity({
         status: StreamActivityType.JOINED,
         address: data?.user?.address,
-        meta: { username: data?.user?.username, avatarImageUrl: data?.user?.avatarImageUrl },
+        meta: {
+          username: data?.user?.username,
+          avatarImageUrl: data?.user?.avatarImageUrl,
+        },
       });
     });
     make(LivestreamEvents.LeaveStream, (data: any) => {
       addChatActivity({
         status: StreamActivityType.LEFT,
         address: data?.user?.address,
-        meta: { username: data?.user?.username, avatarImageUrl: data?.user?.avatarImageUrl },
+        meta: {
+          username: data?.user?.username,
+          avatarImageUrl: data?.user?.avatarImageUrl,
+        },
       });
     });
     return () => {
@@ -555,7 +584,7 @@ const LiveProducerScreen: React.FC = () => {
       navigation.replace(ScreenNames.LiveViewer as any, {
         tokenId: tokenId || (streamEntity as any)?.tokenId,
         streamKey: streamKeyValue || streamKey,
-        streamId: streamEntity?._id
+        streamId: streamEntity?._id,
       });
     }
   }, [
@@ -598,8 +627,8 @@ const LiveProducerScreen: React.FC = () => {
       android_disableSound
     >
       <View className="flex-1 bg-black">
-  {/* Tiered Tip Animations Overlay */}
-  <TipAnimationsOverlay items={tipEffects} />
+        {/* Tiered Tip Animations Overlay */}
+        <TipAnimationsOverlay items={tipEffects} />
         {/* Publisher area or skeleton placeholder for instant open */}
         {redirecting ? (
           <View className="absolute inset-0 items-center justify-center">
@@ -699,7 +728,9 @@ const LiveProducerScreen: React.FC = () => {
             visible
             onClose={() => setChatVisible(false)}
             chatEnabled={true}
-            socketEmit={(evt, payload, ack) => socketEmitAuthed(evt, payload, ack)}
+            socketEmit={(evt, payload, ack) =>
+              socketEmitAuthed(evt, payload, ack)
+            }
             activities={chatActivities}
             addActivity={addChatActivity}
             // status bar is top-4 with rounded container (~56px), controls bar has p-4 pb-6 (~96px)
