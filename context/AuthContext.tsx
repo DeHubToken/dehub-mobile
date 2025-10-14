@@ -7,6 +7,8 @@ import React, {
   useRef,
 } from "react";
 import { getWeb3AuthProvider } from "../services/web3auth.service";
+// Adapter abstraction (currently only web3auth implementation)
+import { createAuthAdapter, AuthAdapter } from "../services/auth/authAdapter";
 import {
   ActivityIndicator,
   View,
@@ -142,6 +144,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const lastReinitTsRef = useRef<number>(0);
   const appStateRef = useRef<AppStateStatus>(AppState.currentState);
   const providerGenerationRef = useRef<number>(0); // increments on each successful init
+  const authAdapterRef = useRef<AuthAdapter | null>(null);
   const healthIntervalRef = useRef<any>(null);
   const REINIT_BACKOFF_MS = 3000; // minimal gap between forced re-inits
   const VALIDATION_THROTTLE_MS = 15000; // cap validation frequency
@@ -224,7 +227,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setProviderStatus("initializing");
     const startTs = Date.now();
     try {
-      const eip1193 = await getWeb3AuthProvider();
+      if (!authAdapterRef.current) authAdapterRef.current = createAuthAdapter();
+      const eip1193 = await authAdapterRef.current.getProvider();
       if (!eip1193)
         throw new Error("getWeb3AuthProvider returned null/undefined");
       if (!isMountedRef.current) return;
@@ -467,14 +471,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       // Try to retrieve private key from Web3Auth provider when signing in
       let privateKey: string | undefined;
       try {
-        const eip1193 = await getWeb3AuthProvider();
-        const pk = await (eip1193 as any)?.request?.({ method: "private_key" });
-        if (pk && typeof pk === "string") privateKey = pk;
+        if (!authAdapterRef.current) authAdapterRef.current = createAuthAdapter();
+        privateKey = await authAdapterRef.current.getPrivateKey?.();
       } catch (e) {
-        console.warn(
-          "[AuthContext] private_key request failed or unavailable",
-          e
-        );
+        console.warn("[AuthContext] adapter.getPrivateKey failed", e);
       }
       const {
         user: walletUser,
