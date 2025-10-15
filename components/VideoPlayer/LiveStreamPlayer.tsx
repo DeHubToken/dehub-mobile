@@ -5,7 +5,14 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { View, Text, ScrollView, Keyboard, Platform } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Keyboard,
+  Platform,
+  AppState,
+} from "react-native";
 import ActionsRow from "./ActionsRow";
 import CreatorRow from "./CreatorRow";
 import DescriptionBlock from "./DescriptionBlock";
@@ -30,9 +37,10 @@ import {
 import { toastError } from "../../libs";
 import { useStreamDetails } from "../../hooks/useStreamDetails";
 import { Eye } from "lucide-react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { checkIfBroadcastOwner } from "../../services/live.service";
+import { createViewCountUpdater, seedViewerStats } from "../../libs/viewers.util";
 
 type LiveStreamPlayerProps = {
   // Minimal inputs; additional params may be forwarded from route
@@ -81,8 +89,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     resolvedStreamId || undefined,
     false
   );
-
-  console.log({likes: streamEntity?.likes, streamIdProp, tokenId, views: streamEntity?.peakViewers, streamEntity})
 
   const accessInput = useMemo(() => {
     if (streamEntity) {
@@ -689,24 +695,33 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     // Dedupe optimistic gifts with server TipStreamer confirmation
     bind(LivestreamEvents.TipStreamer, (payload: any) => {
       const amt = Number(payload?.gift?.meta?.amount || 0);
-      const sender = (payload?.gift?.meta?.address || "").toLowerCase();
-      const username = payload?.gift?.meta?.username;
-      const me = (
-        (user?.walletAddress || user?.address || "") as string
-      ).toLowerCase();
-      if (me && sender === me) {
+      const username = payload?.gift?.meta?.username || payload?.gift?.meta?.displayName;
+      const senderRaw =
+        payload?.gift?.meta?.address ||
+        payload?.gift?.address ||
+        payload?.gift?.user?.address ||
+        payload?.user?.address ||
+        "";
+      const sender = String(senderRaw || "").toLowerCase();
+      const me = String((user?.walletAddress || user?.address || "")).toLowerCase();
+      const now = Date.now();
+      // If it's our own confirmed gift, try to confirm an optimistic one instead of adding a duplicate
+      if (me && sender && sender === me) {
         setActivities((prev) => {
-          const now = Date.now();
-          const idx = prev.findIndex(
-            (a) =>
-              a.optimistic &&
-              a.status === StreamActivityType.TIP &&
-              (a.address || "").toLowerCase() === me &&
-              Number(a?.meta?.amount) === amt &&
-              now - (a.createdAt || now) < 15000
-          );
+          const copy = prev.slice();
+          // find most recent optimistic TIP from me with same amount in the last 15s
+          const idx = copy
+            .map((a, i) => ({ a, i }))
+            .reverse()
+            .find(
+              (x) =>
+                x.a.optimistic &&
+                x.a.status === StreamActivityType.TIP &&
+                String(x.a.address || "").toLowerCase() === me &&
+                Number(x.a?.meta?.amount) === amt &&
+                now - (x.a.createdAt || now) < 15000
+            )?.i ?? -1;
           if (idx >= 0) {
-            const copy = prev.slice();
             const existing = copy[idx];
             copy[idx] = {
               ...existing,
@@ -716,7 +731,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             } as Activity;
             return copy;
           }
-          return prev
+          // No optimistic found (edge case: optimistic was pruned) — add a single confirmed entry
+          return copy
             .concat({
               status: StreamActivityType.TIP,
               address: sender,
@@ -725,48 +741,31 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             } as Activity)
             .slice(-400);
         });
-      } else {
-        addActivity({
-          status: StreamActivityType.TIP,
-          address: sender,
-          meta: { username, amount: amt },
-        });
+        return;
       }
+      // Gifts from other users: add once
+      addActivity({
+        status: StreamActivityType.TIP,
+        address: sender,
+        meta: { username, amount: amt },
+      });
     });
-    // Throttle viewer count updates (~2Hz) to reduce re-renders
-    let viewTimer: any = null;
-    let lastPush = 0;
-    let latest = 0;
-    const push = () => {
-      setLiveViewers(latest);
-      lastPush = Date.now();
-    };
+    // Debounced viewer count updates using shared util
+    const updater = createViewCountUpdater({
+      setLive: setLiveViewers,
+      setPeak: setPeakViewers,
+      getPeak: () => peakViewersRef.current,
+      debounceMs: 500,
+    });
     bind(LivestreamEvents.ViewCountUpdate as any, ({ viewerCount }: any) => {
-      const vc = typeof viewerCount === "number" ? viewerCount : 0;
-      latest = vc;
-      const now = Date.now();
-      const delta = now - lastPush;
-      if (delta >= 500) {
-        push();
-      } else if (!viewTimer) {
-        viewTimer = setTimeout(() => {
-          try {
-            clearTimeout(viewTimer);
-          } catch {}
-          viewTimer = null;
-          push();
-        }, 500 - delta);
-      }
-      setPeakViewers((p) => (vc > p ? vc : p));
+      updater.onViewCount(typeof viewerCount === "number" ? viewerCount : 0);
     });
     return () => {
       try {
         /* likesTimer may be pending */ if (likesTimer)
           clearTimeout(likesTimer);
       } catch {}
-      try {
-        if (viewTimer) clearTimeout(viewTimer);
-      } catch {}
+      try { updater.dispose(); } catch {}
       subs.forEach((u) => {
         try {
           u();
@@ -787,16 +786,107 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     };
   }, [streamId, socketEmitAuthed]);
 
+  // Emit LeaveStream on navigation blur and re-Join on focus
+  useFocusEffect(
+    useCallback(() => {
+      // On focus: ensure room/join are sent if eligible
+      if (streamId) {
+        try {
+          maybeJoinRoom(streamId);
+          maybeJoinStream(streamId);
+        } catch {}
+      }
+      // On blur: emit LeaveStream if we previously joined
+      return () => {
+        if (!streamId) return;
+        try {
+          if (didJoinRef.current) {
+            socketEmitAuthed(LivestreamEvents.LeaveStream, { streamId });
+          }
+        } catch {}
+      };
+    }, [streamId, maybeJoinRoom, maybeJoinStream, socketEmitAuthed])
+  );
+
+  // Emit LeaveStream when app goes background/inactive, re-Join on active
+  useEffect(() => {
+    const onAppStateChange = (state: string) => {
+      if (!streamId) return;
+      if (state === "active") {
+        // Re-join when coming back if eligible
+        try {
+          maybeJoinRoom(streamId);
+          maybeJoinStream(streamId);
+        } catch {}
+      } else if (state === "background" || state === "inactive") {
+        // Leave on background/inactive
+        try {
+          if (didJoinRef.current) {
+            socketEmitAuthed(LivestreamEvents.LeaveStream, { streamId });
+          }
+        } catch {}
+      }
+    };
+    const sub = AppState.addEventListener("change", onAppStateChange);
+    return () => {
+      try {
+        sub.remove();
+      } catch {}
+    };
+  }, [streamId, maybeJoinRoom, maybeJoinStream, socketEmitAuthed]);
+
+  // Web: emit leave on page hide/unload; re-join on visibility return
+  useEffect(() => {
+    if (Platform.OS !== "web") return;
+    if (!streamId) return;
+    const onVisibility = () => {
+      if (typeof document === "undefined") return;
+      const hidden = (document as any).hidden === true;
+      if (hidden) {
+        try {
+          if (didJoinRef.current) {
+            socketEmitAuthed(LivestreamEvents.LeaveStream, { streamId });
+          }
+        } catch {}
+      } else {
+        try {
+          maybeJoinRoom(streamId);
+          maybeJoinStream(streamId);
+        } catch {}
+      }
+    };
+    const onBeforeUnload = () => {
+      try {
+        if (didJoinRef.current) {
+          socketEmitAuthed(LivestreamEvents.LeaveStream, { streamId });
+        }
+      } catch {}
+    };
+    try {
+      document.addEventListener("visibilitychange", onVisibility);
+    } catch {}
+    try {
+      window.addEventListener("beforeunload", onBeforeUnload);
+    } catch {}
+    return () => {
+      try {
+        document.removeEventListener("visibilitychange", onVisibility);
+      } catch {}
+      try {
+        window.removeEventListener("beforeunload", onBeforeUnload);
+      } catch {}
+    };
+  }, [streamId, maybeJoinRoom, maybeJoinStream, socketEmitAuthed]);
+
   // Chat availability: allowed to send if content is playable (free or unlocked)
   const canChat = isPlayable && isSignedIn;
-  const [liveViewers, setLiveViewers] = useState<number>(
-    typeof (streamEntity as any)?.totalViews === 'number'
-      ? (((streamEntity as any)?.totalViews as number) || 0)
-      : 0
-  );
-  const [peakViewers, setPeakViewers] = useState<number>(
-    typeof streamEntity?.peakViewers === 'number' ? (streamEntity?.peakViewers as number) : 0
-  );
+  const seeded = seedViewerStats(streamEntity);
+  const [liveViewers, setLiveViewers] = useState<number>(seeded.liveViewers);
+  const [peakViewers, setPeakViewers] = useState<number>(seeded.peakViewers);
+  const peakViewersRef = useRef<number>(seeded.peakViewers);
+  useEffect(() => {
+    peakViewersRef.current = peakViewers;
+  }, [peakViewers]);
   // Live likes state (synced from details and socket)
   const [liveLikes, setLiveLikes] = useState<number>(
     typeof streamEntity?.likes === "number"
@@ -826,12 +916,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     const sid = (streamEntity as any)?._id || streamId;
     if (!sid) return;
     if (seededViewersRef.current === sid) return;
-    const initialLive = typeof (streamEntity as any)?.totalViews === 'number'
-      ? (((streamEntity as any)?.totalViews as number) || 0)
-      : 0;
-    const initialPeak = typeof streamEntity?.peakViewers === 'number' ? (streamEntity?.peakViewers as number) : 0;
-    setLiveViewers(initialLive);
-    setPeakViewers(initialPeak);
+    const init = seedViewerStats(streamEntity);
+    setLiveViewers(init.liveViewers);
+    setPeakViewers(init.peakViewers);
+    peakViewersRef.current = init.peakViewers;
     seededViewersRef.current = sid;
   }, [streamEntity, streamId]);
 
@@ -839,9 +927,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const onGiftOptimistic = useCallback(
     ({ amount, message }: { amount: number; message?: string }) => {
       const username = (user as any)?.username || undefined;
-      const address = (user?.walletAddress || user?.address) as
+      const address = ((user?.walletAddress || user?.address) as
         | string
-        | undefined;
+        | undefined)?.toLowerCase();
       const id = `opt-tip-${Date.now()}-${Math.random()
         .toString(36)
         .slice(2, 8)}`;
@@ -1001,7 +1089,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           <Text className="text-white/80 text-[11px] ml-1">
             {Math.max(0, liveViewers)}
           </Text>
-          <Text className="text-white/60 text-[11px] ml-3">Peak: {Math.max(liveViewers, peakViewers)}</Text>
+          <Text className="text-white/60 text-[11px] ml-3">
+            Peak: {Math.max(liveViewers, peakViewers)}
+          </Text>
         </View>
       </View>
       {/* Body: top details fixed + chat fills to bottom (only chat scrolls) */}
@@ -1030,6 +1120,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             streamId={streamId as any}
             liveActive={!!isLiveEffective}
             recipientAddress={(streamEntity?.address as any) || ""}
+            stream={streamEntity}
             onGiftSent={onGiftOptimistic}
           />
           <CreatorRow
@@ -1067,7 +1158,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
               onClose={() => {
                 /* no-op in stacked mode */
               }}
-              chatEnabled={!!canChat && !!isLiveEffective}
+              chatEnabled={!!canChat && !!isLiveEffective && !!(streamEntity as any)?.settings?.chat?.enabled}
               autoJoinRoom={false}
               phase={
                 isScheduledEffective

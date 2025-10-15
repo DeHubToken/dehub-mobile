@@ -30,6 +30,7 @@ import { LivestreamEvents } from "../services/enums/livestream.enum";
 import { toastSuccess } from "../libs/toast";
 import { StreamActivityType } from "../services/enums/livestream.enum";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { createViewCountUpdater, seedViewerStats } from "../libs/viewers.util";
 
 type RouteParams = {
   streamId?: string;
@@ -206,6 +207,8 @@ const LiveProducerScreen: React.FC = () => {
   // Realtime dynamic counters (decoupled from initial streamEntity)
   const [liveViewers, setLiveViewers] = useState<number>(0);
   const [peakViewers, setPeakViewers] = useState<number>(0);
+  const peakViewersRef = useRef<number>(0);
+  useEffect(() => { peakViewersRef.current = peakViewers; }, [peakViewers]);
   const [liveLikes, setLiveLikes] = useState<number>(
     typeof streamEntity?.likes === "number"
       ? (streamEntity?.likes as number)
@@ -214,6 +217,7 @@ const LiveProducerScreen: React.FC = () => {
       : 0
   );
   const [totalTips, setTotalTips] = useState<number>(0);
+  // Shared viewer update utils
   // Hydrate live hook with fetched stream details (streamKeyValue etc.)
   useEffect(() => {
     if (streamKeyValue || streamId || ingestUrl) {
@@ -277,31 +281,15 @@ const LiveProducerScreen: React.FC = () => {
         meta: { message: "Stream has ended." },
       });
     });
+    const updater = createViewCountUpdater({
+      setLive: setLiveViewers,
+      setPeak: setPeakViewers,
+      getPeak: () => peakViewersRef.current,
+      debounceMs: 500,
+    });
     make(LivestreamEvents.ViewCountUpdate, ({ viewerCount }: any) => {
       console.log('[producer] frontend received', LivestreamEvents.ViewCountUpdate, { viewerCount });
-      console.log("[LiveProducer] Socket ViewCountUpdate event", {
-        viewerCount,
-      });
-      const vc = viewerCount || 0;
-      const meta = viewUpdateMetaRef.current;
-      meta.latest = vc;
-      const now = Date.now();
-      const push = () => {
-        setLiveViewers(meta.latest);
-        setPeakViewers((p) => (meta.latest > p ? meta.latest : p));
-        meta.last = Date.now();
-      };
-      if (now - meta.last >= 500) {
-        push();
-      } else if (!meta.timer) {
-        meta.timer = setTimeout(() => {
-          if (meta.timer) {
-            clearTimeout(meta.timer);
-            meta.timer = null;
-          }
-          push();
-        }, 500 - (now - meta.last));
-      }
+      updater.onViewCount(typeof viewerCount === 'number' ? viewerCount : 0);
     });
     make(LivestreamEvents.LikeStream, (payload: any) => {
       console.log('[producer] frontend received', LivestreamEvents.LikeStream, payload);
@@ -408,11 +396,7 @@ const LiveProducerScreen: React.FC = () => {
         } catch {}
       });
       clearAll();
-      const meta = viewUpdateMetaRef.current;
-      if (meta.timer) {
-        clearTimeout(meta.timer);
-        meta.timer = null;
-      }
+      try { updater.dispose(); } catch {}
     };
   }, [streamId, socketOn]);
 
@@ -423,16 +407,9 @@ const LiveProducerScreen: React.FC = () => {
     const sid = (streamEntity as any)?._id || streamId;
     if (!sid) return;
     if (seededViewersRef.current === sid) return;
-    const initialLive =
-      typeof (streamEntity as any)?.totalViews === "number"
-        ? (((streamEntity as any)?.totalViews as number) || 0)
-        : 0;
-    const initialPeak =
-      typeof (streamEntity as any)?.peakViewers === "number"
-        ? (((streamEntity as any)?.peakViewers as number) || 0)
-        : 0;
-    setLiveViewers(initialLive);
-    setPeakViewers(initialPeak);
+    const init = seedViewerStats(streamEntity);
+    setLiveViewers(init.liveViewers);
+    setPeakViewers(init.peakViewers);
     seededViewersRef.current = sid;
   }, [streamEntity, streamId]);
 
@@ -885,7 +862,7 @@ const LiveProducerScreen: React.FC = () => {
             live={stage === "live"}
             visible
             onClose={() => setChatVisible(false)}
-            chatEnabled={true}
+            chatEnabled={!!(streamEntity as any)?.settings?.chat?.enabled}
             autoJoinRoom={false}
             socketEmit={(evt, payload, ack) =>
               socketEmitAuthed(evt, payload, ack)
