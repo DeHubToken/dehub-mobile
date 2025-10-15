@@ -106,18 +106,113 @@ const LiveProducerScreen: React.FC = () => {
       address?: string;
       createdAt?: number;
       meta?: any;
+      optimistic?: boolean;
     }>
   >([]);
-  const addChatActivity = useCallback((a: any) => {
-    setChatActivities((prev) =>
-      prev.concat({ ...a, createdAt: Date.now() }).slice(-400)
-    );
+
+    // Keep a small rolling memory of recent optimistic messages to dedupe server echoes
+  const recentOptimisticRef = useRef<Array<{ key: string; ts: number }>>([]);
+  const rememberOptimistic = useCallback((key: string) => {
+    const now = Date.now();
+    recentOptimisticRef.current = recentOptimisticRef.current
+      .filter((it) => now - it.ts < 15000)
+      .concat({ key, ts: now })
+      .slice(-50);
   }, []);
+  const hasRecentOptimistic = useCallback((key: string) => {
+    const now = Date.now();
+    recentOptimisticRef.current = recentOptimisticRef.current.filter((it) => now - it.ts < 15000);
+    return recentOptimisticRef.current.some((it) => it.key === key);
+  }, []);
+
+  const addChatActivity = useCallback((a: any) => {
+    // If this is an optimistic local message, remember it for echo dedupe
+    if (
+      a?.optimistic === true &&
+      a?.status === StreamActivityType.MESSAGE &&
+      (a?.meta?.content || '').trim()
+    ) {
+      const key = `${String((a.address || a?.meta?.username || '')).toLowerCase()}::${String(
+        (a?.meta?.content || '').trim()
+      )}`;
+      try { rememberOptimistic(key); } catch {}
+    }
+    setChatActivities((prev) =>
+      prev.concat({ ...a, createdAt: a?.createdAt ?? Date.now() }).slice(-400)
+    );
+  }, [rememberOptimistic]);
+
+
+
+  // Seed initial chat activities from streamEntity so panel mode mirrors stack behavior
+  const seededInitialActivitiesRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!streamEntity) return;
+    const sid = (streamEntity as any)?._id || streamId;
+    if (!sid) return;
+    if (seededInitialActivitiesRef.current === sid) return;
+    const rawAct =
+      (streamEntity as any)?.activities?.act ||
+      (streamEntity as any)?.activities ||
+      (streamEntity as any)?.act;
+    if (!Array.isArray(rawAct) || rawAct.length === 0) {
+      seededInitialActivitiesRef.current = sid;
+      return;
+    }
+    const mapStatus = (s: any): StreamActivityType | 'SYSTEM' => {
+      const u = String(s || '').toUpperCase();
+      switch (u) {
+        case 'MESSAGE':
+          return StreamActivityType.MESSAGE;
+        case 'JOINED':
+        case 'JOIN':
+        case 'ENTER':
+          return StreamActivityType.JOINED;
+        case 'LEFT':
+        case 'LEAVE':
+        case 'EXIT':
+          return StreamActivityType.LEFT;
+        case 'TIP':
+        case 'GIFT':
+          return StreamActivityType.TIP;
+        case 'START':
+        case 'STREAM_START':
+          return StreamActivityType.START;
+        case 'END':
+        case 'ENDED':
+        case 'STREAM_END':
+          return StreamActivityType.END;
+        default:
+          return 'SYSTEM';
+      }
+    };
+    const initial = (rawAct as any[])
+      .map((it: any) => ({
+        status: mapStatus(it?.status),
+        address: (it?.address as string | undefined) || (it?.user?.address as string | undefined),
+        createdAt: it?.createdAt ? new Date(it.createdAt).getTime() : Date.now(),
+        meta: it?.meta || it?.message?.meta || {
+          username: it?.user?.username,
+          content: it?.message?.content,
+          amount: it?.gift?.meta?.amount,
+          avatarImageUrl: it?.user?.avatarImageUrl,
+        },
+      }))
+      .sort((a: any, b: any) => (a.createdAt || 0) - (b.createdAt || 0));
+    setChatActivities((prev) => ([...initial, ...prev]).slice(-400));
+    seededInitialActivitiesRef.current = sid;
+  }, [streamEntity, streamId]);
   // Single-capture: WebRTCPublisher handles preview + publish
   // Realtime dynamic counters (decoupled from initial streamEntity)
   const [liveViewers, setLiveViewers] = useState<number>(0);
   const [peakViewers, setPeakViewers] = useState<number>(0);
-  const [liveLikes, setLiveLikes] = useState<number>(0);
+  const [liveLikes, setLiveLikes] = useState<number>(
+    typeof streamEntity?.likes === "number"
+      ? (streamEntity?.likes as number)
+      : typeof (streamEntity as any)?.likesCount === "number"
+      ? ((streamEntity as any)?.likesCount as number)
+      : 0
+  );
   const [totalTips, setTotalTips] = useState<number>(0);
   // Hydrate live hook with fetched stream details (streamKeyValue etc.)
   useEffect(() => {
@@ -165,6 +260,7 @@ const LiveProducerScreen: React.FC = () => {
     };
 
     make(LivestreamEvents.StartStream, (data) => {
+      console.log('[producer] frontend received', LivestreamEvents.StartStream, data);
       console.log("[LiveProducer] Socket StartStream event", data);
       setStartedAt((prev) => prev || Date.now());
       addChatActivity({
@@ -173,6 +269,7 @@ const LiveProducerScreen: React.FC = () => {
       });
     });
     make(LivestreamEvents.EndStream, (data) => {
+      console.log('[producer] frontend received', LivestreamEvents.EndStream, data);
       console.log("[LiveProducer] Socket EndStream event", data);
       // Stage change handled by hook via bind, but we can snapshot viewers
       addChatActivity({
@@ -181,6 +278,7 @@ const LiveProducerScreen: React.FC = () => {
       });
     });
     make(LivestreamEvents.ViewCountUpdate, ({ viewerCount }: any) => {
+      console.log('[producer] frontend received', LivestreamEvents.ViewCountUpdate, { viewerCount });
       console.log("[LiveProducer] Socket ViewCountUpdate event", {
         viewerCount,
       });
@@ -206,10 +304,12 @@ const LiveProducerScreen: React.FC = () => {
       }
     });
     make(LivestreamEvents.LikeStream, (payload: any) => {
+      console.log('[producer] frontend received', LivestreamEvents.LikeStream, payload);
       console.log("[LiveProducer] Socket LikeStream event", payload);
       if (typeof payload?.likes === "number") setLiveLikes(payload.likes);
     });
     make(LivestreamEvents.TipStreamer, (payload: any) => {
+      console.log('[producer] frontend received', LivestreamEvents.TipStreamer, payload);
       console.log("[LiveProducer] Socket TipStreamer event", payload);
       const amt = Number(payload?.gift?.meta?.amount || 0);
       if (!isNaN(amt) && amt > 0) setTotalTips((t) => t + amt);
@@ -235,24 +335,50 @@ const LiveProducerScreen: React.FC = () => {
     make(LivestreamEvents.SendMessage, (payload: any) => {
       const m = payload?.message || payload;
       const meta = m?.meta || payload?.meta || {};
+      const content = meta?.content || m?.content || m?.meta?.content;
+      const username = m?.user?.username || meta?.username;
+      const addr = m?.user?.address || meta?.address;
+      if (!content) return;
+      const key = `${(addr || username || '').toLowerCase()}::${String(content).trim()}`;
+      // If we have a recent optimistic with the same key, confirm it instead of adding a duplicate
+      if (hasRecentOptimistic(key)) {
+        setChatActivities((prev) => {
+          const copy = prev.slice();
+          const idx =
+            copy
+              .map((a, i) => ({ a, i }))
+              .reverse()
+              .find((x) =>
+                x.a.optimistic &&
+                x.a.status === StreamActivityType.MESSAGE &&
+                ((x.a.address || '').toLowerCase() === (addr || '').toLowerCase() ||
+                  (x.a.meta?.username || '').toLowerCase() === (username || '').toLowerCase()) &&
+                String(x.a.meta?.content || '').trim() === String(content).trim()
+              )?.i ?? -1;
+          if (idx >= 0) {
+            const existing = copy[idx];
+            copy[idx] = { ...existing, optimistic: false } as any;
+            return copy;
+          }
+          return prev;
+        });
+        return;
+      }
       addChatActivity({
         status: StreamActivityType.MESSAGE,
-        address: m?.user?.address || meta?.address,
+        address: addr,
         meta: {
-          username: m?.user?.username || meta?.username,
-          content: meta?.content || m?.content || m?.meta?.content,
+          username,
+          content,
           avatarImageUrl: m?.user?.avatarImageUrl || meta?.avatarImageUrl,
         },
       });
-      const textContent = meta?.content || m?.content || m?.meta?.content;
-      if (textContent) {
-        addEphemeral({
-          id: String(Date.now()) + "-" + Math.random().toString(36).slice(2),
-          user: meta?.username || m?.user?.username || meta?.address || "user",
-          message: textContent,
-          createdAt: Date.now(),
-        } as any);
-      }
+      addEphemeral({
+        id: String(Date.now()) + "-" + Math.random().toString(36).slice(2),
+        user: username || addr || "user",
+        message: content,
+        createdAt: Date.now(),
+      } as any);
     });
     make(LivestreamEvents.JoinStream, (data: any) => {
       addChatActivity({
@@ -289,6 +415,38 @@ const LiveProducerScreen: React.FC = () => {
       }
     };
   }, [streamId, socketOn]);
+
+  // Seed initial viewers/peak from stream details once per stream
+  const seededViewersRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!streamEntity) return;
+    const sid = (streamEntity as any)?._id || streamId;
+    if (!sid) return;
+    if (seededViewersRef.current === sid) return;
+    const initialLive =
+      typeof (streamEntity as any)?.totalViews === "number"
+        ? (((streamEntity as any)?.totalViews as number) || 0)
+        : 0;
+    const initialPeak =
+      typeof (streamEntity as any)?.peakViewers === "number"
+        ? (((streamEntity as any)?.peakViewers as number) || 0)
+        : 0;
+    setLiveViewers(initialLive);
+    setPeakViewers(initialPeak);
+    seededViewersRef.current = sid;
+  }, [streamEntity, streamId]);
+
+  // Mirror likes from stream details when it loads/changes
+  useEffect(() => {
+    const nextLikes =
+      (typeof streamEntity?.likes === "number"
+        ? (streamEntity?.likes as number)
+        : undefined) ??
+      (typeof (streamEntity as any)?.likesCount === "number"
+        ? ((streamEntity as any)?.likesCount as number)
+        : undefined);
+    if (typeof nextLikes === "number") setLiveLikes(nextLikes);
+  }, [streamEntity?.likes, (streamEntity as any)?.likesCount]);
   const [publishStats, setPublishStats] = useState<{
     fps?: number;
     bitrateKbps?: number;
@@ -728,6 +886,7 @@ const LiveProducerScreen: React.FC = () => {
             visible
             onClose={() => setChatVisible(false)}
             chatEnabled={true}
+            autoJoinRoom={false}
             socketEmit={(evt, payload, ack) =>
               socketEmitAuthed(evt, payload, ack)
             }

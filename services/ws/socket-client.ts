@@ -1,6 +1,7 @@
 import { io, Socket } from "socket.io-client";
 import { GenericHandler } from "./events";
 import { createLogger } from "../../libs/logger";
+import { LivestreamEvents } from "../enums/livestream.enum";
 
 export interface WebSocketClientOptions {
   url: string;
@@ -48,12 +49,12 @@ export class WebSocketClient {
 
   private log(...args: any[]) {
     // Delegate logging to shared logger; still honor opts.debug
-    if (!this.logger) this.logger = createLogger('WS');
+    if (!this.logger) this.logger = createLogger("WS");
     if (!this.opts.debug) return;
     this.logger.debug(...args);
   }
 
-  private logger = createLogger('WS');
+  private logger = createLogger("WS");
 
   private buildSocket() {
     // ensure any previous "connecting" state is cleared when (re)building
@@ -69,8 +70,8 @@ export class WebSocketClient {
     if (token) handshakeAuth.token = token;
     if (address) handshakeAuth.address = address;
 
-    const transports = ["polling", "websocket"] as const;
-    const path = "/socket.io/"; // FE parity (trailing slash)
+  const transports = ["polling", "websocket"] as const; // prefer websocket first on RN
+    const path = "/socket.io"; // match NestJS gateway path exactly
 
     this.log(
       "buildSocket(): url=",
@@ -99,7 +100,36 @@ export class WebSocketClient {
     // Optional: observe server-sent heartbeat event if any
     this.socket.on("heartbeat", (data: any) => {
       this.log("heartbeat <- recv", data);
+      this.emitInternal("heartbeat", data);
     });
+
+    // Explicitly forward all livestream events to internal bus
+    const forward = (evt: string) => {
+      this.socket?.on(evt, (payload: any) => {
+        // Unconditional console for mobile diagnostics
+        try { console.log('[ws] event <-', evt, payload); } catch {}
+        this.log("<-", evt, payload);
+        this.emitInternal(evt, payload);
+      });
+    };
+    const allowlist = new Set<string>([
+      LivestreamEvents.StartStream,
+      LivestreamEvents.EndStream,
+      LivestreamEvents.JoinRoom,
+      LivestreamEvents.JoinStream,
+      LivestreamEvents.LeaveStream,
+      LivestreamEvents.SendMessage,
+      LivestreamEvents.LikeStream,
+      LivestreamEvents.ViewCountUpdate,
+      LivestreamEvents.TipStreamer,
+      LivestreamEvents.StreamPaused,
+      LivestreamEvents.StreamResumed,
+      LivestreamEvents.UserBanned,
+      LivestreamEvents.UserMuted,
+      LivestreamEvents.StreamError,
+      LivestreamEvents.StreamData,
+    ]);
+    allowlist.forEach((e) => forward(e));
 
     this.socket.on("connect", () => {
       this.log("connected", this.socket?.id);
@@ -141,7 +171,9 @@ export class WebSocketClient {
       this.startConnectAttemptTimer();
     });
     // @ts-ignore
-    this.socket.io.on("reconnect_error", (e: any) => this.log("reconnect_error", e?.message || e));
+    this.socket.io.on("reconnect_error", (e: any) =>
+      this.log("reconnect_error", e?.message || e)
+    );
     // @ts-ignore
     this.socket.io.on("reconnect_failed", () => this.log("reconnect_failed"));
 
@@ -176,6 +208,18 @@ export class WebSocketClient {
         if (t === "ping" || t === "pong") this.log("engine", t);
       });
     }
+
+    // Also attach onAny to debug any unexpected event names from the server.
+    try {
+      this.socket.onAny((event: string, ...args: any[]) => {
+        try { console.log('[ws][onAny] <-', event, args?.[0]); } catch {}
+        this.log('[onAny] <-', event, args?.[0]);
+        if (!allowlist.has(event)) {
+          const payload = args && args.length === 1 ? args[0] : (args?.length ? args : undefined);
+          this.emitInternal(event, payload);
+        }
+      });
+    } catch {}
   }
 
   connect() {
@@ -262,15 +306,20 @@ export class WebSocketClient {
       // Prefer Socket.IO timeout helper if available
       if (typeof sAny.timeout === "function") {
         try {
-          sAny.timeout(timeoutMs).emit("ping", { ts }, (err: any, resp: any) => {
-            if (err) {
-              this.log("pingCheck timeout", { afterMs: Date.now() - ts, stillConnected: !!this.socket?.connected });
-            } else {
-              const rtt = Date.now() - ts;
-              this.log("pingCheck <- ack", { rttMs: rtt, resp });
-            }
-            resolve();
-          });
+          sAny
+            .timeout(timeoutMs)
+            .emit("ping", { ts }, (err: any, resp: any) => {
+              if (err) {
+                this.log("pingCheck timeout", {
+                  afterMs: Date.now() - ts,
+                  stillConnected: !!this.socket?.connected,
+                });
+              } else {
+                const rtt = Date.now() - ts;
+                this.log("pingCheck <- ack", { rttMs: rtt, resp });
+              }
+              resolve();
+            });
           return;
         } catch {}
       }
@@ -279,7 +328,10 @@ export class WebSocketClient {
       const to = setTimeout(() => {
         if (!settled) {
           settled = true;
-          this.log("pingCheck timeout", { afterMs: Date.now() - ts, stillConnected: !!this.socket?.connected });
+          this.log("pingCheck timeout", {
+            afterMs: Date.now() - ts,
+            stillConnected: !!this.socket?.connected,
+          });
           resolve();
         }
       }, timeoutMs);
@@ -327,7 +379,8 @@ export class WebSocketClient {
     if (this.destroyed) return;
     const newToken = this.opts.getAuthToken();
     const newAddress = this.opts.getAddress ? this.opts.getAddress() : null;
-    if (newToken === this.lastAuthToken && newAddress === this.lastAddress) return;
+    if (newToken === this.lastAuthToken && newAddress === this.lastAddress)
+      return;
     this.log("auth/address updated, reconnecting");
     this.lastAuthToken = newToken;
     this.lastAddress = newAddress;
@@ -336,7 +389,11 @@ export class WebSocketClient {
     this.connect();
   }
 
-  emit<T = any>(event: string, payload?: T, ack?: (resp?: any, err?: any) => void) {
+  emit<T = any>(
+    event: string,
+    payload?: T,
+    ack?: (resp?: any, err?: any) => void
+  ) {
     // Queue if not connected yet
     if (!this.socket || !this.socket.connected) {
       this.queuedEmits.push({ event, payload, ack });

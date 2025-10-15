@@ -64,7 +64,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     createdAt: createdAtProp,
   } = props;
   const { user, requireAuth, isSignedIn } = useAuth();
-  const { on: socketOn, emitAuthed: socketEmitAuthed, connected } = useWebSocket();
+  const {
+    on: socketOn,
+    emitAuthed: socketEmitAuthed,
+    connected,
+  } = useWebSocket();
   const navigation = useNavigation<any>();
 
   // Resolve streamId for fetching livestream details (prefer explicit prop)
@@ -78,7 +82,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     false
   );
 
-  // console.log({likes: streamEntity?.likes, streamIdProp, tokenId, views: streamEntity?.peakViewers})
+  console.log({likes: streamEntity?.likes, streamIdProp, tokenId, views: streamEntity?.peakViewers, streamEntity})
 
   const accessInput = useMemo(() => {
     if (streamEntity) {
@@ -317,24 +321,119 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     },
     []
   );
+
+  // Track recent optimistic chat messages for dedupe/confirm (15s window)
+  const recentOptimisticRef = useRef<
+    Array<{ key: string; idx?: number; ts: number }>
+  >([]);
+  const rememberOptimistic = useCallback((key: string, idx?: number) => {
+    const now = Date.now();
+    recentOptimisticRef.current = recentOptimisticRef.current
+      .filter((it) => now - it.ts < 15000)
+      .concat({ key, idx, ts: now })
+      .slice(-50);
+  }, []);
+  const popRecentOptimistic = useCallback((key: string) => {
+    const now = Date.now();
+    recentOptimisticRef.current = recentOptimisticRef.current.filter(
+      (it) => now - it.ts < 15000
+    );
+    const found = recentOptimisticRef.current.find((it) => it.key === key);
+    return found;
+  }, []);
   const streamId = useMemo(() => {
     return (resolvedStreamId || streamEntity?._id || null) as string | null;
   }, [resolvedStreamId, streamEntity?._id]);
 
   // Ownership/redirect gating for JoinStream
-  const [ownerStatus, setOwnerStatus] = useState<"unknown" | "owner" | "viewer">("unknown");
+  const [ownerStatus, setOwnerStatus] = useState<
+    "unknown" | "owner" | "viewer"
+  >("unknown");
   const didJoinRef = useRef<boolean>(false);
 
-  // Always join the room as a viewer (presence, history, etc.) as soon as we know the streamId
-  const joinRoomSentRef = useRef<string | null>(null);
+  // Dedupe mechanics across reconnects: track connection epochs and per-epoch sends
+  const connectedGenRef = useRef<number>(0);
+  const prevConnectedRef = useRef<boolean>(false);
+  const joinRoomSentKeyRef = useRef<string | null>(null);
+  const joinStreamSentKeyRef = useRef<string | null>(null);
+
+  // Compact meta row: status, elapsed, viewers, bitrate (if available)
+  const rawStatus = (streamEntity?.status || "") as string;
+  const statusUpper = rawStatus.toUpperCase() as
+    | keyof typeof StreamStatus
+    | string;
+  const statusEnum = (Object.values(StreamStatus) as string[]).includes(
+    statusUpper as string
+  )
+    ? (statusUpper as StreamStatus)
+    : undefined;
+  const isLiveStatus = statusEnum === StreamStatus.LIVE;
+  const isEndedStatus = statusEnum === StreamStatus.ENDED;
+  const scheduledForRaw: any = (streamEntity as any)?.scheduledFor;
+  const scheduledForDate = scheduledForRaw ? new Date(scheduledForRaw) : null;
+  const isScheduledStatus =
+    statusEnum === StreamStatus.SCHEDULED ||
+    (!!scheduledForDate && scheduledForDate.getTime() > Date.now());
+
+  // Socket-driven overrides for timely UI transitions without waiting for backend refresh
+  const [socketStatus, setSocketStatus] = useState<"LIVE" | "ENDED" | null>(
+    null
+  );
+  const isLiveEffective =
+    socketStatus === "LIVE" || (isLiveStatus && socketStatus !== "ENDED");
+  const isEndedEffective = socketStatus === "ENDED" || isEndedStatus;
+  const isScheduledEffective =
+    !isLiveEffective && !isEndedEffective && isScheduledStatus;
+  // Offline when not live, not ended, and not scheduled
+  const isOfflineEffective =
+    !isLiveEffective && !isEndedEffective && !isScheduledEffective;
+
+  const makeKey = useCallback((sid: string | null | undefined) => {
+    return sid ? `${sid}:${connectedGenRef.current}` : "";
+  }, []);
+
+  const maybeJoinRoom = useCallback(
+    (sid?: string | null) => {
+      const s = sid || streamId;
+      if (!s) return;
+      const key = makeKey(s);
+      if (joinRoomSentKeyRef.current === key) return;
+      try {
+        socketEmitAuthed(LivestreamEvents.JoinRoom, { streamId: s });
+        joinRoomSentKeyRef.current = key;
+      } catch {}
+    },
+    [streamId, makeKey, socketEmitAuthed]
+  );
+
+  const maybeJoinStream = useCallback(
+    (sid?: string | null) => {
+      const s = sid || streamId;
+      if (!s) return;
+      if (!(isLiveEffective && isSignedIn && ownerStatus === "viewer")) return;
+      const key = makeKey(s);
+      if (joinStreamSentKeyRef.current === key) return;
+      try {
+        socketEmitAuthed(LivestreamEvents.JoinStream, { streamId: s });
+        joinStreamSentKeyRef.current = key;
+        didJoinRef.current = true;
+      } catch {}
+    },
+    [
+      streamId,
+      isLiveEffective,
+      isSignedIn,
+      ownerStatus,
+      makeKey,
+      socketEmitAuthed,
+    ]
+  );
+
+  // Join room on stream change if already connected (once per connection epoch)
   useEffect(() => {
-    if (!streamId) return;
-    if (joinRoomSentRef.current === streamId) return;
-    try {
-      socketEmitAuthed(LivestreamEvents.JoinRoom, { streamId });
-      joinRoomSentRef.current = streamId;
-    } catch {}
-  }, [streamId, socketEmitAuthed]);
+    if (!streamId || !connected) return;
+    maybeJoinRoom(streamId);
+  }, [streamId, connected, maybeJoinRoom]);
 
   // Rejoin on reconnect is defined later after effective status is computed
 
@@ -394,45 +493,21 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     seededInitialActivitiesRef.current = sid;
   }, [streamEntity, streamId]);
 
-  // Compact meta row: status, elapsed, viewers, bitrate (if available)
-  const rawStatus = (streamEntity?.status || "") as string;
-  const statusUpper = rawStatus.toUpperCase() as
-    | keyof typeof StreamStatus
-    | string;
-  const statusEnum = (Object.values(StreamStatus) as string[]).includes(
-    statusUpper as string
-  )
-    ? (statusUpper as StreamStatus)
-    : undefined;
-  const isLiveStatus = statusEnum === StreamStatus.LIVE;
-  const isEndedStatus = statusEnum === StreamStatus.ENDED;
-  const scheduledForRaw: any = (streamEntity as any)?.scheduledFor;
-  const scheduledForDate = scheduledForRaw ? new Date(scheduledForRaw) : null;
-  const isScheduledStatus =
-    statusEnum === StreamStatus.SCHEDULED ||
-    (!!scheduledForDate && scheduledForDate.getTime() > Date.now());
-
-  // Socket-driven overrides for timely UI transitions without waiting for backend refresh
-  const [socketStatus, setSocketStatus] = useState<"LIVE" | "ENDED" | null>(
-    null
-  );
-  const isLiveEffective =
-    socketStatus === "LIVE" || (isLiveStatus && socketStatus !== "ENDED");
-  const isEndedEffective = socketStatus === "ENDED" || isEndedStatus;
-  const isScheduledEffective =
-    !isLiveEffective && !isEndedEffective && isScheduledStatus;
-  
-  // Rejoin room/stream on reconnect now that effective status is known
+  // On reconnect rising edge, bump epoch and re-emit joins exactly once per stream
   useEffect(() => {
-    if (!connected || !streamId) return;
-    socketEmitAuthed(LivestreamEvents.JoinRoom, { streamId });
-    if (isLiveEffective && isSignedIn && ownerStatus === "viewer") {
-      socketEmitAuthed(LivestreamEvents.JoinStream, { streamId });
-      didJoinRef.current = true;
+    const prev = prevConnectedRef.current;
+    if (!prev && connected) {
+      connectedGenRef.current += 1;
+      if (streamId) {
+        // Clear per-epoch keys by virtue of new epoch; then emit
+        maybeJoinRoom(streamId);
+        maybeJoinStream(streamId);
+      }
     }
-  }, [connected, streamId, isLiveEffective, isSignedIn, ownerStatus, socketEmitAuthed]);
+    prevConnectedRef.current = connected;
+  }, [connected, streamId, maybeJoinRoom, maybeJoinStream]);
 
-// Always listen for Start/End to update local effective status
+  // Always listen for Start/End to update local effective status
   useEffect(() => {
     if (!streamId) return;
     const subs: Array<() => void> = [];
@@ -440,8 +515,22 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       const off = socketOn(evt, handler) || (() => {});
       subs.push(off);
     };
-    bind(LivestreamEvents.StartStream, () => setSocketStatus("LIVE"));
-    bind(LivestreamEvents.EndStream, () => setSocketStatus("ENDED"));
+    bind(LivestreamEvents.StartStream, (data: any) => {
+      console.log(
+        "[viewer] frontend received",
+        LivestreamEvents.StartStream,
+        data
+      );
+      setSocketStatus("LIVE");
+    });
+    bind(LivestreamEvents.EndStream, (data: any) => {
+      console.log(
+        "[viewer] frontend received",
+        LivestreamEvents.EndStream,
+        data
+      );
+      setSocketStatus("ENDED");
+    });
     return () => {
       subs.forEach((u) => {
         try {
@@ -455,12 +544,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const recordedLiveViewRef = useRef<string | null>(null);
   useEffect(() => {
     if (!streamId || !isLiveEffective) return;
-    // Join as viewer (only when signed in and not owner)
+    // Join as viewer when stream becomes live (deduped per epoch)
     if (isSignedIn && ownerStatus === "viewer") {
-      socketEmitAuthed(LivestreamEvents.JoinStream, { streamId });
-      didJoinRef.current = true;
+      maybeJoinStream(streamId);
     }
-    // Record view once per stream on first live join
+    // Record view once per stream on first live join (server updates totals/peaks)
     if (recordedLiveViewRef.current !== streamId) {
       const viewTokenId = (streamEntity?.tokenId ?? tokenId) as any;
       if (viewTokenId != null && isSignedIn) {
@@ -480,7 +568,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   }, [
     streamId,
     isLiveEffective,
-    socketEmitAuthed,
+    maybeJoinStream,
     isSignedIn,
     ownerStatus,
     streamEntity?.tokenId,
@@ -501,12 +589,51 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     bind(LivestreamEvents.SendMessage, (payload: any) => {
       const m = payload?.message || payload;
       const meta = m?.meta || payload?.meta || {};
+      const content = meta?.content || m?.content || m?.meta?.content;
+      const username = m?.user?.username || meta?.username;
+      const addr = m?.user?.address || meta?.address;
+      if (!content) return;
+      const key = `${(addr || username || "").toLowerCase()}::${(
+        content || ""
+      ).trim()}`;
+      // If recent optimistic exists, mark it confirmed and skip adding a duplicate
+      const found = popRecentOptimistic(key);
+      if (found) {
+        setActivities((prev) => {
+          const copy = prev.slice();
+          // find last optimistic matching this key
+          const idx =
+            typeof found.idx === "number"
+              ? found.idx
+              : copy
+                  .map((a, i) => ({ a, i }))
+                  .reverse()
+                  .find(
+                    (x) =>
+                      x.a.optimistic &&
+                      x.a.status === StreamActivityType.MESSAGE &&
+                      ((x.a.address || "").toLowerCase() ===
+                        (addr || "").toLowerCase() ||
+                        (x.a.meta?.username || "").toLowerCase() ===
+                          (username || "").toLowerCase()) &&
+                      String(x.a.meta?.content || "").trim() ===
+                        String(content).trim()
+                  )?.i ?? -1;
+          if (idx >= 0) {
+            const existing = copy[idx];
+            copy[idx] = { ...existing, optimistic: false } as Activity;
+            return copy;
+          }
+          return prev;
+        });
+        return;
+      }
       addActivity({
         status: StreamActivityType.MESSAGE,
-        address: m?.user?.address || meta?.address,
+        address: addr,
         meta: {
-          username: m?.user?.username || meta?.username,
-          content: meta?.content || m?.content || m?.meta?.content,
+          username,
+          content,
           avatarImageUrl: m?.user?.avatarImageUrl || meta?.avatarImageUrl,
         },
       });
@@ -540,7 +667,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       likesLast = Date.now();
     };
     bind(LivestreamEvents.LikeStream as any, (payload: any) => {
-      if (typeof payload?.likes === 'number') {
+      if (typeof payload?.likes === "number") {
         likesLatest = payload.likes;
       } else {
         likesLatest = (likesLatest || liveLikesRef.current || 0) + 1;
@@ -551,7 +678,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         pushLikes();
       } else if (!likesTimer) {
         likesTimer = setTimeout(() => {
-          try { clearTimeout(likesTimer); } catch {}
+          try {
+            clearTimeout(likesTimer);
+          } catch {}
           likesTimer = null;
           pushLikes();
         }, 500 - delta);
@@ -560,14 +689,21 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     // Dedupe optimistic gifts with server TipStreamer confirmation
     bind(LivestreamEvents.TipStreamer, (payload: any) => {
       const amt = Number(payload?.gift?.meta?.amount || 0);
-      const sender = (payload?.gift?.meta?.address || '').toLowerCase();
+      const sender = (payload?.gift?.meta?.address || "").toLowerCase();
       const username = payload?.gift?.meta?.username;
-      const me = ((user?.walletAddress || user?.address || '') as string).toLowerCase();
+      const me = (
+        (user?.walletAddress || user?.address || "") as string
+      ).toLowerCase();
       if (me && sender === me) {
         setActivities((prev) => {
           const now = Date.now();
           const idx = prev.findIndex(
-            (a) => a.optimistic && a.status === StreamActivityType.TIP && (a.address || '').toLowerCase() === me && Number(a?.meta?.amount) === amt && now - (a.createdAt || now) < 15000
+            (a) =>
+              a.optimistic &&
+              a.status === StreamActivityType.TIP &&
+              (a.address || "").toLowerCase() === me &&
+              Number(a?.meta?.amount) === amt &&
+              now - (a.createdAt || now) < 15000
           );
           if (idx >= 0) {
             const copy = prev.slice();
@@ -606,7 +742,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       lastPush = Date.now();
     };
     bind(LivestreamEvents.ViewCountUpdate as any, ({ viewerCount }: any) => {
-      const vc = typeof viewerCount === 'number' ? viewerCount : 0;
+      const vc = typeof viewerCount === "number" ? viewerCount : 0;
       latest = vc;
       const now = Date.now();
       const delta = now - lastPush;
@@ -614,15 +750,23 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         push();
       } else if (!viewTimer) {
         viewTimer = setTimeout(() => {
-          try { clearTimeout(viewTimer); } catch {}
+          try {
+            clearTimeout(viewTimer);
+          } catch {}
           viewTimer = null;
           push();
         }, 500 - delta);
       }
+      setPeakViewers((p) => (vc > p ? vc : p));
     });
     return () => {
-      try { /* likesTimer may be pending */ if (likesTimer) clearTimeout(likesTimer); } catch {}
-      try { if (viewTimer) clearTimeout(viewTimer); } catch {}
+      try {
+        /* likesTimer may be pending */ if (likesTimer)
+          clearTimeout(likesTimer);
+      } catch {}
+      try {
+        if (viewTimer) clearTimeout(viewTimer);
+      } catch {}
       subs.forEach((u) => {
         try {
           u();
@@ -646,9 +790,12 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // Chat availability: allowed to send if content is playable (free or unlocked)
   const canChat = isPlayable && isSignedIn;
   const [liveViewers, setLiveViewers] = useState<number>(
-    typeof streamEntity?.peakViewers === "number"
-      ? streamEntity?.peakViewers || 0
+    typeof (streamEntity as any)?.totalViews === 'number'
+      ? (((streamEntity as any)?.totalViews as number) || 0)
       : 0
+  );
+  const [peakViewers, setPeakViewers] = useState<number>(
+    typeof streamEntity?.peakViewers === 'number' ? (streamEntity?.peakViewers as number) : 0
   );
   // Live likes state (synced from details and socket)
   const [liveLikes, setLiveLikes] = useState<number>(
@@ -672,22 +819,42 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         : undefined);
     if (typeof nextLikes === "number") setLiveLikes(nextLikes);
   }, [streamEntity?.likes, (streamEntity as any)?.likesCount]);
-  // Viewer bitrate not available from expo-video; keep placeholder for future wiring
-  const bitrateKbps: number | undefined = undefined;
+  // Seed initial viewers/peak from stream details once per stream
+  const seededViewersRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!streamEntity) return;
+    const sid = (streamEntity as any)?._id || streamId;
+    if (!sid) return;
+    if (seededViewersRef.current === sid) return;
+    const initialLive = typeof (streamEntity as any)?.totalViews === 'number'
+      ? (((streamEntity as any)?.totalViews as number) || 0)
+      : 0;
+    const initialPeak = typeof streamEntity?.peakViewers === 'number' ? (streamEntity?.peakViewers as number) : 0;
+    setLiveViewers(initialLive);
+    setPeakViewers(initialPeak);
+    seededViewersRef.current = sid;
+  }, [streamEntity, streamId]);
 
   // Optimistic gift echo: ActionsRow will call this on on-chain success
-  const onGiftOptimistic = useCallback(({ amount, message }: { amount: number; message?: string }) => {
-    const username = (user as any)?.username || undefined;
-    const address = (user?.walletAddress || user?.address) as string | undefined;
-    const id = `opt-tip-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-    addActivity({
-      id,
-      status: StreamActivityType.TIP,
-      address,
-      meta: { username, amount, message },
-      optimistic: true,
-    });
-  }, [user, addActivity]);
+  const onGiftOptimistic = useCallback(
+    ({ amount, message }: { amount: number; message?: string }) => {
+      const username = (user as any)?.username || undefined;
+      const address = (user?.walletAddress || user?.address) as
+        | string
+        | undefined;
+      const id = `opt-tip-${Date.now()}-${Math.random()
+        .toString(36)
+        .slice(2, 8)}`;
+      addActivity({
+        id,
+        status: StreamActivityType.TIP,
+        address,
+        meta: { username, amount, message },
+        optimistic: true,
+      });
+    },
+    [user, addActivity]
+  );
 
   // First-load redirect: if not ended and current user is owner, go to LiveProducer
   const redirectCheckedRef = useRef(false);
@@ -744,7 +911,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
   return (
     <View className="flex-1">
-      {isEndedStatus ? (
+      {isEndedEffective ? (
         <View className="px-4 py-10 items-center justify-center bg-black/50 border-b border-white/10">
           <Text className="text-white font-semibold">
             This stream has ended
@@ -758,7 +925,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             </Text>
           ) : null}
         </View>
-      ) : isScheduledStatus ? (
+      ) : isScheduledEffective ? (
         <View className="px-4 py-10 items-center justify-center bg-black/50 border-b border-white/10">
           <Text className="text-white font-semibold">
             This stream is scheduled
@@ -771,6 +938,17 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
               })}
             </Text>
           ) : null}
+        </View>
+      ) : isOfflineEffective ? (
+        <View className="px-4 py-10 items-center justify-center bg-black/50 border-b border-white/10">
+          <Text className="text-white font-semibold">
+            This stream is offline
+          </Text>
+          {/* {createdAtDate ? (
+            <Text className="text-white/70 text-[12px] mt-1">
+              Last updated {formatDistance(new Date(createdAtDate), new Date(), { addSuffix: true })}
+            </Text>
+          ) : null} */}
         </View>
       ) : (
         <VideoArea
@@ -800,15 +978,17 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
               ? "LIVE"
               : isEndedEffective
               ? "ENDED"
-              : statusEnum || "—"}
+              : isScheduledEffective
+              ? "SCHEDULED"
+              : "OFFLINE"}
           </Text>
-          {isEndedStatus ? (
+          {isEndedEffective ? (
             endedDurationText ? (
               <Text className="text-white/70 text-[11px]">
                 Duration {endedDurationText}
               </Text>
             ) : null
-          ) : createdAtDate ? (
+          ) : !isOfflineEffective && createdAtDate ? (
             <Text className="text-white/70 text-[11px]">
               {formatDistance(new Date(createdAtDate), new Date(), {
                 addSuffix: true,
@@ -818,12 +998,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         </View>
         <View className="flex-row items-center">
           <Eye color="#fff" size={14} />
-          <Text className="text-white/80 text-[11px] ml-1 mr-3">
+          <Text className="text-white/80 text-[11px] ml-1">
             {Math.max(0, liveViewers)}
           </Text>
-          <Text className="text-white/60 text-[11px]">
-            {typeof bitrateKbps === "number" ? `${bitrateKbps} kbps` : "— kbps"}
-          </Text>
+          <Text className="text-white/60 text-[11px] ml-3">Peak: {Math.max(liveViewers, peakViewers)}</Text>
         </View>
       </View>
       {/* Body: top details fixed + chat fills to bottom (only chat scrolls) */}
@@ -890,6 +1068,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 /* no-op in stacked mode */
               }}
               chatEnabled={!!canChat && !!isLiveEffective}
+              autoJoinRoom={false}
               phase={
                 isScheduledEffective
                   ? "scheduled"
@@ -898,7 +1077,29 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                   : "live"
               }
               socketEmit={(evt, payload, ack) => {
-                if (evt === LivestreamEvents.JoinStream && ownerStatus !== "viewer") return;
+                if (
+                  evt === LivestreamEvents.JoinStream &&
+                  ownerStatus !== "viewer"
+                )
+                  return;
+                // Remember optimistic message key right before sending to server
+                if (evt === LivestreamEvents.SendMessage && payload?.content) {
+                  const addr = (
+                    user?.walletAddress ||
+                    user?.address ||
+                    ""
+                  ).toLowerCase();
+                  const username = (user as any)?.username;
+                  const key = `${(
+                    addr ||
+                    username ||
+                    ""
+                  ).toLowerCase()}::${String(payload?.content).trim()}`;
+                  const idx = activities.length; // predicted index after push
+                  try {
+                    (rememberOptimistic as any)(key, idx);
+                  } catch {}
+                }
                 socketEmitAuthed(evt, payload, ack);
               }}
               activities={activities}
