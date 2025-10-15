@@ -19,6 +19,8 @@ export interface ChatActivity {
     avatarImageUrl?: string;
     message?: string;
   };
+  // mark activities created locally before server confirmation
+  optimistic?: boolean;
 }
 
 interface Props {
@@ -40,6 +42,8 @@ interface Props {
   // Optional insets to avoid status bar/controls when in panel mode
   topOffset?: number;
   bottomOffset?: number;
+  // Control whether the panel auto-joins the room on mount/reconnect (default true)
+  autoJoinRoom?: boolean;
 }
 
 const panelBg = 'bg-black/60';
@@ -59,6 +63,7 @@ const LiveChatPanel: React.FC<Props> = ({
   onGiftPress,
   topOffset,
   bottomOffset,
+  autoJoinRoom = true,
 }) => {
   const { user } = useAuth();
   const { connected } = useWebSocket();
@@ -79,32 +84,23 @@ const LiveChatPanel: React.FC<Props> = ({
 
   const isLiveEffective = useMemo(() => effectivePhase === 'live', [effectivePhase]);
 
-  // Self-contained JoinRoom when visible
+  // Self-contained JoinRoom when visible (can be disabled when parent handles it)
   useEffect(() => {
+    if (!autoJoinRoom) return;
     if (!visible || !streamId) return;
     if (joinedRoomRef.current === streamId) return;
     try {
       socketEmit(LivestreamEvents.JoinRoom, { streamId });
       joinedRoomRef.current = streamId;
     } catch {}
-  }, [visible, streamId, isLiveEffective, socketEmit]);
+  }, [autoJoinRoom, visible, streamId, isLiveEffective, socketEmit]);
 
-  // Self-contained JoinStream when becoming effectively live
-  // useEffect(() => {
-  //   if (!visible || !streamId) return;
-  //   if (!isLiveEffective) return;
-  //   if (joinedStreamRef.current === streamId) return;
-  //   try {
-  //     socketEmit(LivestreamEvents.JoinStream, { streamId });
-  //     joinedStreamRef.current = streamId;
-  //   } catch {}
-  // }, [visible, streamId, isLiveEffective, socketEmit]);
-
-  // Re-emit JoinRoom on reconnect (no JoinStream from panel)
+  // Re-emit JoinRoom on reconnect (no JoinStream from panel) when enabled
   useEffect(() => {
+    if (!autoJoinRoom) return;
     if (!connected || !visible || !streamId) return;
     try { socketEmit(LivestreamEvents.JoinRoom, { streamId }); } catch {}
-  }, [connected, visible, streamId, socketEmit]);
+  }, [autoJoinRoom, connected, visible, streamId, socketEmit]);
 
   // Auto scroll to bottom when new activity arrives
   useEffect(() => {
@@ -116,29 +112,32 @@ const LiveChatPanel: React.FC<Props> = ({
   const sendMessage = useCallback(() => {
     const content = message.trim();
     if (!content || !canSend) return;
+    // Optimistic add immediately
+    const tempId = `msg-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    const createdAt = Date.now();
+    addActivity?.({
+      status: StreamActivityType.MESSAGE,
+      address: user?.address,
+      meta: { username: (user as any)?.username || 'You', content, tempId },
+      createdAt,
+      optimistic: true,
+    });
+    onEphemeral?.({
+      id: tempId,
+      user: (user as any)?.username || 'You',
+      message: content,
+      createdAt,
+    });
     // clear input immediately for snappier UX
     setMessage('');
+    // Fire the socket emit (we're not relying on ack for UI responsiveness)
     socketEmit(
       LivestreamEvents.SendMessage,
       { streamId, content },
       (resp?: any, err?: any) => {
         if (err || resp?.error) {
           toastError('Failed to send message');
-          return;
         }
-        // Only echo after success; server will also broadcast, light duplication is acceptable
-        addActivity?.({
-          status: StreamActivityType.MESSAGE,
-          address: user?.address,
-          meta: { username: (user as any)?.username || 'You', content },
-          createdAt: Date.now(),
-        });
-        onEphemeral?.({
-          id: String(Date.now()),
-          user: (user as any)?.username || 'You',
-          message: content,
-          createdAt: Date.now(),
-        });
       }
     );
   }, [message, canSend, socketEmit, streamId, user, addActivity, onEphemeral]);
@@ -189,9 +188,17 @@ const LiveChatPanel: React.FC<Props> = ({
               {(a.meta?.username || shortAddr(a.address) || 'user') + ':'}
             </Text>
             {!!a.meta?.content && (
-              <Text className="flex-1 text-white text-[12px] leading-5" selectable>
-                {a.meta?.content}
-              </Text>
+              <View className="flex-1 flex-row items-baseline">
+                <Text
+                  className={`flex-shrink text-white text-[12px] leading-5 ${a.optimistic ? 'opacity-70' : ''}`}
+                  selectable
+                >
+                  {a.meta?.content}
+                </Text>
+                {a.optimistic ? (
+                  <Text className="ml-2 text-white/40 text-[10px]">sending…</Text>
+                ) : null}
+              </View>
             )}
           </View>
         );
