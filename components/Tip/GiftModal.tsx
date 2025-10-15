@@ -158,7 +158,15 @@ const GiftModal: React.FC<GiftModalProps> = ({
   const [lastAmount, setLastAmount] = useState<number | null>(null);
   const successScale = useRef(new Animated.Value(0.6)).current;
 
-  const minTip = useMemo(() => Number(stream?.settings?.minTip ?? 1), [stream]);
+  // Enforce minimum tip from stream settings (default to 1 DHB when missing)
+  const minTip = useMemo(() => {
+    const v = Number(stream?.settings?.minTip);
+    return Number.isFinite(v) && v > 0 ? v : 1;
+  }, [stream]);
+  // Selected tier based on the entered amount (keep hook at top-level to avoid conditional calls)
+  const selectedTier = useMemo(() => {
+    return (giftTiers as any).find((t: any) => Number(amount) === t.min);
+  }, [amount]);
   const numericAmount = Number(amount) || 0;
   const balance = (user?.tokenBalances?.DHB ?? 0) as number;
   const overLimit = numericAmount > limitTip;
@@ -419,17 +427,11 @@ const GiftModal: React.FC<GiftModalProps> = ({
                 }}
               />
             </View>
-            {useMemo(() => {
-              const selected = (giftTiers as any).find(
-                (t: any) => Number(amount) === t.min
-              );
-              if (!selected) return null;
-              return (
-                <Text className="text-white/70 text-[11px] mt-1">
-                  {selected.description}
-                </Text>
-              );
-            }, [amount])}
+            {selectedTier ? (
+              <Text className="text-white/70 text-[11px] mt-1">
+                {selectedTier.description}
+              </Text>
+            ) : null}
 
             <View className="mt-4">
               <Text className="text-white text-xs mb-1">Amount (DHB)</Text>

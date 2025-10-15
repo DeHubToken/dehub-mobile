@@ -143,7 +143,7 @@ export default function AppNavigator() {
           }),
           gestureDirection: 'vertical',
           gestureEnabled: true,
-          gestureResponseDistance: 250,
+          gestureResponseDistance: 25,
         }}
       />
       <Stack.Screen
@@ -168,7 +168,7 @@ export default function AppNavigator() {
           }),
           gestureDirection: 'vertical',
           gestureEnabled: true,
-          gestureResponseDistance: 250,
+          gestureResponseDistance: 25,
         }}
       />
       <Stack.Screen

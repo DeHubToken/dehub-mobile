@@ -24,6 +24,8 @@ export interface ActionsRowProps {
   liveActive?: boolean; // whether the stream is currently live (enables like/tip)
   recipientAddress?: string | null; // for live gifts
   onGiftSent?: (payload: { amount: number; message?: string }) => void;
+  // Optional stream entity (or subset) to forward settings like minTip to GiftModal
+  stream?: any;
 }
 
 const ActionsRow: React.FC<ActionsRowProps> = ({
@@ -39,6 +41,7 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
   liveActive,
   recipientAddress,
   onGiftSent,
+  stream,
 }) => {
   const [tipOpen, setTipOpen] = useState(false);
   const [giftOpen, setGiftOpen] = useState(false);
@@ -118,7 +121,7 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
             onOpenChange={setGiftOpen}
             tokenId={(tokenId as number) || 0}
             toAddress={(recipientAddress || minter || '') as string}
-            stream={{ _id: streamId }}
+            stream={stream || { _id: streamId }}
             onSent={({ amount, message }) => {
               // Let parent (viewer) optimistically echo the gift in chat
               try { onGiftSent?.({ amount, message }); } catch {}

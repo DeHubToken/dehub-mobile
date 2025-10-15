@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, FlatList, Animated } from 'react-native';
 import { toastError } from '../../libs/toast';
 import { X, ArrowUpCircle } from 'lucide-react-native';
 import { LivestreamEvents, StreamActivityType } from '../../services/enums/livestream.enum';
@@ -68,9 +68,14 @@ const LiveChatPanel: React.FC<Props> = ({
   const { user } = useAuth();
   const { connected } = useWebSocket();
   const [message, setMessage] = useState('');
-  const scrollRef = useRef<ScrollView | null>(null);
+  const listRef = useRef<FlatList<ChatActivity> | null>(null);
   const joinedRoomRef = useRef<string | null>(null);
   const joinedStreamRef = useRef<string | null>(null);
+  const visibilityAnim = useRef(new Animated.Value(0)).current; // 0 hidden, 1 visible
+  const [showSkeleton, setShowSkeleton] = useState(false);
+  const wasVisibleRef = useRef(false);
+  const shouldSnapToBottomRef = useRef(false);
+  const [inputContainerHeight, setInputContainerHeight] = useState(0);
 
   // Back-compat: default to 'live' when live flag is true, else 'ended'
   const effectivePhase: 'live' | 'ended' | 'scheduled' = useMemo(() => {
@@ -102,12 +107,39 @@ const LiveChatPanel: React.FC<Props> = ({
     try { socketEmit(LivestreamEvents.JoinRoom, { streamId }); } catch {}
   }, [autoJoinRoom, connected, visible, streamId, socketEmit]);
 
-  // Auto scroll to bottom when new activity arrives
+  // Animate visibility on toggle; show skeleton briefly to mask heavy mount work on first open
   useEffect(() => {
-    if (!scrollRef.current) return;
-    const t = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 100);
+    if (visible) {
+      if (!wasVisibleRef.current) {
+        // First frame after becoming visible, ensure we snap to bottom
+        shouldSnapToBottomRef.current = true;
+        // Only show skeleton if we have no content to show
+        setShowSkeleton(activities.length === 0);
+      } else {
+        setShowSkeleton(false);
+      }
+      Animated.timing(visibilityAnim, {
+        toValue: 1,
+        duration: 150,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      Animated.timing(visibilityAnim, {
+        toValue: 0,
+        duration: 120,
+        useNativeDriver: true,
+      }).start();
+    }
+    wasVisibleRef.current = visible;
+  }, [visible, visibilityAnim, activities.length]);
+
+  // Auto scroll to bottom when new activity arrives if visible (but skip if we're about to snap)
+  useEffect(() => {
+    if (!visible) return;
+    if (shouldSnapToBottomRef.current) return;
+    const t = setTimeout(() => listRef.current?.scrollToOffset?.({ offset: 0, animated: true }), 80);
     return () => clearTimeout(t);
-  }, [activities.length]);
+  }, [activities.length, visible]);
 
   const sendMessage = useCallback(() => {
     const content = message.trim();
@@ -142,8 +174,7 @@ const LiveChatPanel: React.FC<Props> = ({
     );
   }, [message, canSend, socketEmit, streamId, user, addActivity, onEphemeral]);
 
-  if (!visible) return null;
-
+  // Deterministic color per username/address for vibrant name labels
   // Deterministic color per username/address for vibrant name labels
   const usernamePalette = useMemo(
     () => [
@@ -175,68 +206,20 @@ const LiveChatPanel: React.FC<Props> = ({
     [usernamePalette]
   );
 
-  const renderActivity = (a: ChatActivity, idx: number) => {
-    switch (a.status) {
-      case StreamActivityType.MESSAGE:
-        return (
-          <View key={idx} className="mb-2 flex-row items-start">
-            <Text
-              className="text-[12px] font-semibold mr-2"
-              style={{ color: colorForUser(a.meta?.username || a.address) }}
-              numberOfLines={1}
-            >
-              {(a.meta?.username || shortAddr(a.address) || 'user') + ':'}
-            </Text>
-            {!!a.meta?.content && (
-              <View className="flex-1 flex-row items-baseline">
-                <Text
-                  className={`flex-shrink text-white text-[12px] leading-5 ${a.optimistic ? 'opacity-70' : ''}`}
-                  selectable
-                >
-                  {a.meta?.content}
-                </Text>
-                {a.optimistic ? (
-                  <Text className="ml-2 text-white/40 text-[10px]">sending…</Text>
-                ) : null}
-              </View>
-            )}
-          </View>
-        );
-      case StreamActivityType.JOINED:
-        return (
-          <SystemLine
-            key={idx}
-            text={`${a.meta?.username || shortAddr(a.address)} joined the stream`}
-            icon="👋"
-          />
-        );
-      case StreamActivityType.LEFT:
-        return (
-          <SystemLine
-            key={idx}
-            text={`${a.meta?.username || shortAddr(a.address)} left the stream`}
-            icon="👋"
-          />
-        );
-      case StreamActivityType.TIP:
-        return (
-          <SystemLine
-            key={idx}
-            text={`${a.meta?.username || shortAddr(a.address)} tipped ${a.meta?.amount} DHB`}
-            icon="💰"
-          />
-        );
-      case StreamActivityType.START:
-        return <SystemLine key={idx} text={`Stream has started`} icon="🔴" />;
-      case StreamActivityType.END:
-        return <SystemLine key={idx} text={`Stream has ended`} icon="⏹️" />;
-      default:
-        return null;
-    }
-  };
+  const renderItem = useCallback(
+    ({ item }: { item: ChatActivity }) => <ChatRow a={item} colorForUser={colorForUser} />,
+    [colorForUser]
+  );
+  const keyExtractor = useCallback((a: ChatActivity, idx: number) => {
+    const t = a.createdAt || 0;
+    const who = (a.address || a.meta?.username || '').toLowerCase();
+    const contentKey = (a.meta?.content ? String(a.meta?.content).slice(0, 16) : '') || String(a.meta?.amount || '');
+    return `${t}:${a.status}:${who}:${contentKey}:${idx}`;
+  }, []);
+  const dataReversed = useMemo(() => activities.slice().reverse(), [activities]);
 
   const { height: keyboardHeight, isVisible: kbVisible } = useKeyboard();
-  const inputBottom = kbVisible ? keyboardHeight : 0;
+  const inputBottom = kbVisible ? (mode === 'panel' ? keyboardHeight * 0.3 : keyboardHeight * 0.9) : 0;
 
   const containerClass =
     mode === 'panel'
@@ -248,8 +231,18 @@ const LiveChatPanel: React.FC<Props> = ({
       ? [{ top: topOffset ?? 0, bottom: bottomOffset ?? 0, width: '70%' }]
       : undefined;
 
+  const animatedStyle = useMemo(() => {
+    const translateX = visibilityAnim.interpolate({ inputRange: [0, 1], outputRange: [40, 0] });
+    const opacity = visibilityAnim;
+    return { transform: [{ translateX }], opacity } as any;
+  }, [visibilityAnim]);
+
   return (
-    <View className={containerClass} style={containerStyle as any}>
+    <Animated.View
+      className={containerClass}
+      style={[containerStyle as any, animatedStyle]}
+      pointerEvents={visible ? 'auto' : 'none'}
+    >
       {/* Header */}
       <View
         className={`flex-row items-center justify-between px-4 py-3 ${
@@ -268,22 +261,62 @@ const LiveChatPanel: React.FC<Props> = ({
       {effectivePhase === 'scheduled' ? (
         <CenterNotice text="Chat will open when the stream goes live" />
       ) : showMessages ? (
-        <ScrollView
-          ref={(r) => {
-            scrollRef.current = r;
-          }}
-          className="flex-1 px-4"
-          contentContainerStyle={{ paddingBottom: 64, paddingTop: 8 }}
-        >
-          {activities.map(renderActivity)}
-        </ScrollView>
+        showSkeleton ? (
+          <View className="flex-1 px-4 py-2">
+            <View className="h-4 w-24 bg-white/10 rounded mb-3" />
+            {Array.from({ length: 10 }).map((_, i) => (
+              <View key={i} className="mb-3">
+                <View className="h-3 w-16 bg-white/10 rounded mb-2" />
+                <View className="h-4 w-3/4 bg-white/5 rounded" />
+              </View>
+            ))}
+          </View>
+        ) : (
+          <FlatList
+            ref={(r) => {
+              // @ts-ignore FlatList has scrollToEnd
+              listRef.current = r as any;
+            }}
+            data={dataReversed}
+            renderItem={renderItem}
+            keyExtractor={keyExtractor}
+            className="flex-1 px-4"
+            contentContainerStyle={{
+              // Inverted list: add paddingTop to reserve space for the bottom input
+              paddingTop: Math.max(64, inputContainerHeight + 12),
+              paddingBottom: 8,
+            }}
+            initialNumToRender={16}
+            maxToRenderPerBatch={24}
+            windowSize={7}
+            removeClippedSubviews
+            inverted
+            maintainVisibleContentPosition={{ minIndexForVisible: 0 }}
+            onContentSizeChange={() => {
+              if (visible && shouldSnapToBottomRef.current) {
+                listRef.current?.scrollToOffset?.({ offset: 0, animated: false });
+                shouldSnapToBottomRef.current = false;
+              }
+            }}
+            onLayout={() => {
+              if (visible && shouldSnapToBottomRef.current) {
+                listRef.current?.scrollToOffset?.({ offset: 0, animated: false });
+                shouldSnapToBottomRef.current = false;
+              }
+            }}
+          />
+        )
       ) : (
         <CenterNotice text="Stream is not live" />
       )}
 
       {/* Input anchored to bottom (both modes), lifted above keyboard */}
-      <View className={`absolute left-0 right-0 px-3 pb-3 ${mode === 'panel' ? '' : ''}`} style={{ bottom: inputBottom }}>
-        <View className="flex-row items-center bg-white/8 rounded-2xl px-3 py-2 border border-white/10">
+      <View
+        className={`absolute left-0 right-0 px-3 pb-3 ${mode === 'panel' ? '' : ''}`}
+        style={{ bottom: inputBottom }}
+        onLayout={(e) => setInputContainerHeight(e.nativeEvent.layout.height)}
+      >
+        <View className="flex-row items-center bg-theme-neutrals-900 rounded-2xl px-3 py-2 border border-white/10">
           <TextInput
             value={message}
             onChangeText={setMessage}
@@ -307,14 +340,6 @@ const LiveChatPanel: React.FC<Props> = ({
               }
             }}
           />
-          {/* <TouchableOpacity
-            onPress={onGiftPress || (() => {})}
-            disabled={!canSend}
-            className="ml-2 px-2 py-2 rounded-full bg-white/10 disabled:opacity-50"
-            activeOpacity={0.8}
-          >
-            <Gift color="#fff" size={18} />
-          </TouchableOpacity> */}
           <TouchableOpacity
             onPress={sendMessage}
             disabled={!message.trim() || !canSend}
@@ -325,7 +350,7 @@ const LiveChatPanel: React.FC<Props> = ({
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </Animated.View>
   );
 };
 
@@ -357,3 +382,50 @@ const timeAgo = (ts: number) => {
 };
 
 export default memo(LiveChatPanel);
+
+// Memoized row components
+const ChatRow: React.FC<{ a: ChatActivity; colorForUser: (k?: string) => string }> = memo(({ a, colorForUser }) => {
+  switch (a.status) {
+    case StreamActivityType.MESSAGE:
+      return (
+        <View className="mb-2 flex-row items-start">
+          <Text
+            className="text-[12px] font-semibold mr-2"
+            style={{ color: colorForUser(a.meta?.username || a.address) }}
+            numberOfLines={1}
+          >
+            {(a.meta?.username || shortAddr(a.address) || 'user') + ':'}
+          </Text>
+          {!!a.meta?.content && (
+            <View className="flex-1 flex-row items-baseline">
+              <Text
+                className={`flex-shrink text-white text-[12px] leading-5 ${a.optimistic ? 'opacity-70' : ''}`}
+                selectable
+              >
+                {a.meta?.content}
+              </Text>
+              {a.optimistic ? (
+                <Text className="ml-2 text-white/40 text-[10px]">sending…</Text>
+              ) : null}
+            </View>
+          )}
+        </View>
+      );
+    case StreamActivityType.JOINED:
+      return (
+        <SystemLine text={`${a.meta?.username || shortAddr(a.address)} joined the stream`} icon="👋" />
+      );
+    case StreamActivityType.LEFT:
+      return (
+        <SystemLine text={`${a.meta?.username || shortAddr(a.address)} left the stream`} icon="👋" />
+      );
+    case StreamActivityType.TIP:
+      return <SystemLine text={`${a.meta?.username || shortAddr(a.address)} tipped ${a.meta?.amount} DHB`} icon="💰" />;
+    case StreamActivityType.START:
+      return <SystemLine text={`Stream has started`} icon="🔴" />;
+    case StreamActivityType.END:
+      return <SystemLine text={`Stream has ended`} icon="⏹️" />;
+    default:
+      return null;
+  }
+});
