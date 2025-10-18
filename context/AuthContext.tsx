@@ -93,7 +93,6 @@ interface AuthContextType {
   isFirstTimeUser: boolean;
   signOut: () => Promise<void>;
   skipAuth: () => Promise<void>;
-  updateUserProfile: (userData: Partial<User>) => Promise<void>;
   signInWithWallet: (walletAddress: string, chainId: number) => Promise<void>;
   needsUsername: boolean;
   provisionalUser: any | null;
@@ -471,7 +470,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       // Try to retrieve private key from Web3Auth provider when signing in
       let privateKey: string | undefined;
       try {
-        if (!authAdapterRef.current) authAdapterRef.current = createAuthAdapter();
+        if (!authAdapterRef.current)
+          authAdapterRef.current = createAuthAdapter();
         privateKey = await authAdapterRef.current.getPrivateKey?.();
       } catch (e) {
         console.warn("[AuthContext] adapter.getPrivateKey failed", e);
@@ -528,64 +528,87 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   // Central enrichment logic (account info + balances) ---------------------------------
-  const enrichAndStoreUser = useCallback(async (base: User): Promise<User> => {
-    let enriched = base;
-    try {
-      const key = base.username || base.walletAddress || base.address;
-      if (key) {
-        const res: any = await getAccount(key);
-        if (res?.result) {
-          enriched = { ...base, ...res.result };
+  const enrichAndStoreUser = useCallback(
+    async (
+      base: User,
+      opts?: { refetch?: boolean; cacheBustImages?: boolean }
+    ): Promise<User> => {
+      const shouldRefetch = !!opts?.refetch;
+      let enriched = base;
+      try {
+        if (shouldRefetch) {
+          const key = base.username || base.walletAddress || base.address;
+          if (key) {
+            const res: any = await getAccount(key);
+            const core = res?.data?.result || res?.result || null;
+            if (core) enriched = { ...base, ...core } as User;
+          }
         }
+      } catch (e) {
+        console.warn("[AuthContext] account fetch failed", e);
       }
-    } catch (e) {
-      console.warn("[AuthContext] account fetch failed", e);
-    }
-    // Notifications (unread count) - backend returns only unread for given address
-    try {
-      const addr = enriched.walletAddress || enriched.address;
-      if (addr) {
-        const nRes: any = await getNotifications(addr, { unit: 20 });
-        const notificationRes = nRes?.data?.result || nRes?.result || nRes;
-        if (notificationRes) {
-          const unread = (notificationRes as any[]).length;
-          enriched = { ...enriched, notificationCount: unread };
+      // Notifications (unread count) - backend returns only unread for given address
+      try {
+        const addr = enriched.walletAddress || enriched.address;
+        if (addr) {
+          const nRes: any = await getNotifications(addr, { unit: 20 });
+          const notificationRes = nRes?.data?.result || nRes?.result || nRes;
+          if (notificationRes) {
+            const unread = (notificationRes as any[]).length;
+            enriched = { ...enriched, notificationCount: unread };
+          }
         }
+      } catch (e) {
+        console.warn("[AuthContext] notifications fetch failed", e);
       }
-    } catch (e) {
-      console.warn("[AuthContext] notifications fetch failed", e);
-    }
-    // Fetch balances (native + selected tokens)
-    try {
-      const acctAddr = enriched.walletAddress || enriched.address;
-      if (acctAddr) {
-        const BASE_CHAIN_ID = 8453; // Base mainnet
-        const symbols = ["DHB", "USDC", "USDT", "WETH"];
-        const balances = await ethersService.getTokenBalances(
-          acctAddr,
-          BASE_CHAIN_ID,
-          symbols
-        );
-        enriched = { ...enriched, tokenBalances: balances } as any;
-      }
-    } catch (e) {
-      console.warn("[AuthContext] balance fetch failed", e);
-    }
-    try {
-      // Derive stakedDHB from balanceData if not already present or outdated
-      if (enriched?.balanceData?.length) {
-        const derivedStake = maxStacked(enriched.balanceData);
-        if (typeof derivedStake === "number") {
-          enriched = { ...enriched, stakedDHB: derivedStake };
+      // Fetch balances (native + selected tokens)
+      try {
+        const acctAddr = enriched.walletAddress || enriched.address;
+        if (acctAddr) {
+          const BASE_CHAIN_ID = 8453; // Base mainnet
+          const symbols = ["DHB", "USDC", "USDT", "WETH"];
+          const balances = await ethersService.getTokenBalances(
+            acctAddr,
+            BASE_CHAIN_ID,
+            symbols
+          );
+          enriched = { ...enriched, tokenBalances: balances } as any;
         }
+      } catch (e) {
+        console.warn("[AuthContext] balance fetch failed", e);
       }
-      setUser(enriched);
-      await setAuthUser(enriched);
-    } catch (e) {
-      console.warn("[AuthContext] setAuthUser failed", e);
-    }
-    return enriched;
-  }, []);
+      try {
+        // Derive stakedDHB from balanceData if not already present or outdated
+        if (enriched?.balanceData?.length) {
+          const derivedStake = maxStacked(enriched.balanceData);
+          if (typeof derivedStake === "number") {
+            enriched = { ...enriched, stakedDHB: derivedStake };
+          }
+        }
+        // Optionally cache-bust avatar/cover URLs so UI picks up new images after refresh
+        if (opts?.cacheBustImages) {
+          const bust = (u?: string) =>
+            u
+              ? u.includes("ts=")
+                ? u.replace(/([?&])ts=\d+/, `$1ts=${Date.now()}`)
+                : `${u}${u.includes("?") ? "&" : "?"}ts=${Date.now()}`
+              : u;
+          const next: Partial<User> = {};
+          if (enriched.avatarImageUrl)
+            next.avatarImageUrl = bust(enriched.avatarImageUrl);
+          if (enriched.coverImageUrl)
+            next.coverImageUrl = bust(enriched.coverImageUrl);
+          enriched = { ...enriched, ...next } as User;
+        }
+        setUser(enriched);
+        await setAuthUser(enriched);
+      } catch (e) {
+        console.warn("[AuthContext] setAuthUser failed", e);
+      }
+      return enriched;
+    },
+    []
+  );
 
   // If user just became signed in and there is a pending protected action, run it
   useEffect(() => {
@@ -616,21 +639,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setIsFirstTimeUser(false);
     } catch (error) {
       console.error("Skip auth error:", error);
-      throw error;
-    }
-  };
-
-  // Update user profile
-  const updateUserProfile = async (userData: Partial<User>) => {
-    try {
-      if (!user) throw new Error("User not authenticated");
-      // In a real app, you would call an API to update the profile
-      const updatedUser = { ...user, ...userData };
-      await setAuthUser(updatedUser);
-      setUser(updatedUser);
-      return updatedUser;
-    } catch (error) {
-      console.error("Update profile error:", error);
       throw error;
     }
   };
@@ -679,14 +687,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     refreshUser: async () => {
       try {
         if (!user) return;
-        await enrichAndStoreUser(user);
+        // Refetch core fields and then enrich/persist
+        await enrichAndStoreUser(user, { refetch: true, cacheBustImages: true });
       } catch (e) {
         console.warn("[AuthContext] refreshUser error", e);
       }
-    },
-    updateUserProfile: async (userData: Partial<User>) => {
-      const updated = await updateUserProfile(userData);
-      return;
     },
     requireAuth,
     patchUser,
