@@ -193,6 +193,8 @@ const EditProfileScreen = () => {
   }, []);
 
   const onSave = useCallback(async () => {
+    // Snapshot current user to allow revert on failure
+    const prevUserSnapshot = user;
     try {
       setSaving(true);
       // Normalize socials first
@@ -221,19 +223,43 @@ const EditProfileScreen = () => {
         twitterLink: tw.normalized,
         discordLink: dc.normalized,
       };
+      // Do an optimistic patch before sending network request (excluding images)
+      await patchUser?.({
+        displayName: payload.displayName,
+        username: payload.username,
+        email: payload.email,
+        aboutMe: payload.aboutMe,
+        facebookLink: payload.facebookLink,
+        instagramLink: payload.instagramLink,
+        twitterLink: payload.twitterLink,
+        discordLink: payload.discordLink,
+        // Also bump avatar/cover like ProfileHeader to trigger subscribers
+        ...(localAvatar ? { avatarImageUrl: localAvatar } : {}),
+        ...(localCover ? { coverImageUrl: localCover } : {}),
+      });
       if (localAvatar) {
         const avatarFile = createRNImageFile(localAvatar, "avatar");
+        // Match ProfileHeader: include both keys to satisfy backend
+        payload.avatar = avatarFile;
         payload.avatarImg = avatarFile;
       }
       if (localCover) {
         const coverFile = createRNImageFile(localCover, "cover");
+        // Match ProfileHeader: include both keys to satisfy backend
+        payload.cover = coverFile;
         payload.coverImg = coverFile;
       }
-      await AuthService.updateProfile(payload);
+      const res = await AuthService.updateProfile(payload);
       await refreshUser?.();
       toastSuccess("Profile updated");
       navigation.goBack();
     } catch (e) {
+      // Revert optimistic patch if request failed
+      if (prevUserSnapshot && typeof patchUser === "function") {
+        try {
+          await patchUser(prevUserSnapshot as any);
+        } catch {}
+      }
       toastError(e, "Update failed");
     } finally {
       setSaving(false);
@@ -247,6 +273,12 @@ const EditProfileScreen = () => {
     instagramLink,
     twitterLink,
     discordLink,
+    localAvatar,
+    localCover,
+    user,
+    patchUser,
+    refreshUser,
+    navigation,
   ]);
 
   const onDiscard = useCallback(() => {
