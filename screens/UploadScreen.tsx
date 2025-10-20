@@ -7,7 +7,7 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useWindowDimensions } from "react-native";
@@ -28,7 +28,23 @@ type TabKey = (typeof tabs)[number];
 
 export default function UploadScreen() {
   const nav = useNavigation<any>();
-  const [active, setActive] = useState<TabKey>("Videos");
+  const route = useRoute<any>();
+
+  const normalizeTabParam = useCallback((raw?: unknown): TabKey => {
+    const v = String(raw || "").toLowerCase();
+    if (v === "live") return "Live";
+    if (v === "feed") return "Feed";
+    return "Videos";
+  }, []);
+
+  // Determine initial tab from route params but clamp to allowed (Feed remains disabled)
+  const initialTab = useMemo<TabKey>(() => {
+    const desired = normalizeTabParam(route?.params?.tab);
+    // Feed is disabled, so fallback to Videos
+    return desired === "Feed" ? "Videos" : desired;
+  }, [route?.params?.tab, normalizeTabParam]);
+
+  const [active, setActive] = useState<TabKey>(initialTab);
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const scrollRef = useRef<ScrollView>(null);
@@ -36,9 +52,9 @@ export default function UploadScreen() {
 
   // Lazy mount tabs to avoid heavy work on initial open (e.g., LiveTab fetching)
   const [mounted, setMounted] = useState<Record<TabKey, boolean>>({
-    Live: false,
-    Videos: true, // first screen
-    Feed: false,
+    Videos: initialTab === "Videos",
+    Live: initialTab === "Live",
+    Feed: initialTab === "Feed", // still disabled, but keep generic
   });
 
   useEffect(() => {
@@ -82,6 +98,20 @@ export default function UploadScreen() {
     },
     [goToIndex]
   );
+
+  // Respond to route param changes while screen is mounted
+  useEffect(() => {
+    const desired = normalizeTabParam(route?.params?.tab);
+    const target: TabKey = desired === "Feed" ? "Videos" : desired; // clamp
+    if (target !== active) {
+      const idx = tabs.indexOf(target);
+      lastAllowedIndexRef.current = idx;
+      setActive(target);
+      setMounted((m) => (m[target] ? m : { ...m, [target]: true }));
+      goToIndex(idx);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [route?.params?.tab]);
 
   const Segment = ({
     label,
@@ -129,7 +159,7 @@ export default function UploadScreen() {
               label="Feed"
               onPress={() => onPressTab("Feed")}
               active={active === "Feed"}
-              disabled
+              // disabled
             />
           </View>
         </View>

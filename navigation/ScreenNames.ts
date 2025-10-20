@@ -10,6 +10,7 @@ export enum ScreenNames {
   Search = 'Search',
   Leaderboard = 'Leaderboard',
   Feed = 'Feed',
+  FeedDetail = 'FeedDetail',
   Upload = 'Upload',
   VideoTrim = 'VideoTrim',
   VideoUpload = 'VideoUpload',
