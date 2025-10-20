@@ -7,6 +7,7 @@ import VideoPlayerScreen from "../screens/VideoPlayerScreen";
 import LeaderboardScreen from "../screens/LeaderboardScreen";
 import NotificationScreen from "../screens/NotificationScreen";
 import FeedScreen from "../screens/FeedScreen";
+import FeedDetailScreen from "../screens/FeedDetailScreen";
 import ImageViewerScreen from "../screens/ImageViewerScreen";
 import SearchScreen from "../screens/SearchScreen";
 import AccountSettingsScreen from "../screens/AccountSettingsScreen";
@@ -180,6 +181,7 @@ export default function AppNavigator() {
         component={NotificationScreen}
       />
       <Stack.Screen name={ScreenNames.Feed} component={FeedScreen} />
+  <Stack.Screen name={ScreenNames.FeedDetail} component={FeedDetailScreen} />
       <Stack.Screen
         name={ScreenNames.ImageViewer}
         component={ImageViewerScreen}

@@ -53,6 +53,25 @@ export function getImageUrl(
   }
 }
 
+// API image URL builders (for signed feed images) ---------------------------
+export function getImageUrlApi(
+  tokenId: string | number,
+  address?: string,
+  width?: number,
+  height?: number
+): string {
+  const base = env.API_URL?.replace(/\/+$/, "") || "";
+  const q = width && height ? `&w=${width}&h=${height}` : "";
+  const addr = address ? String(address) : "";
+  return `${base}/nfts/images/${+tokenId}?address=${encodeURIComponent(addr)}${q}`;
+}
+
+export function getImageUrlApiSimple(url: string): string {
+  const base = env.API_URL?.replace(/\/+$/, "") || "";
+  const path = url?.replace(/^\/+/, "");
+  return `${base}/${path}`;
+}
+
 // Badge utilities ---------------------------------------------------------
 interface BadgeDef {
   name: string;
@@ -141,6 +160,8 @@ export const Misc = {
   getVideoUrl,
   getBadgeUrl,
   getBadgeName,
+  getImageUrlApi,
+  getImageUrlApiSimple,
   shareProfile,
 };
 export default Misc;

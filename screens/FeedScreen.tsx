@@ -1,211 +1,178 @@
-import React, { memo, useCallback, useMemo, useState } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import HomeHeader from "../components/HomeHeader";
 import { theme } from "../theme";
 import CategorySelector from "../components/Home/CategorySelector";
+import { Ionicons } from "@expo/vector-icons";
+import CommentsBottomSheet from "../components/Feed/CommentsBottomSheet";
+import { toastSuccess } from "../libs/toast";
+import InfiniteFeed from "../components/Feed/InfiniteFeed";
+import type { GetNFTsResult, SearchParams } from "../services/nft.service";
+import { getImageUrl } from "../libs";
+import { useAppKitAccount } from "@reown/appkit-ethers5-react-native";
+import FeedCard from "../components/Feed/FeedCard";
+import { useAuth } from "../context/AuthContext";
+import { getSavedPosts } from "../services";
 
-const feedTabs = ["All","For You", "Subscribed", "Followed", "Liked", "Saved"];
-
-type FeedPost = {
-  id: number;
-  user: string;
-  time: string;
-  content: string;
-  images: number[]; // require(...) resolves to number in RN
-  likes: number;
-  comments: number;
-  category: string;
-};
-
-const feedData: FeedPost[] = [
-  {
-    id: 1,
-    user: "jules",
-    time: "2 months ago",
-    content: "ELON'S 'FREE SPEECH' RULE: AGREE WITH ME OR VANISH?!",
-    images: [
-      require("../assets/bike.jpg"),
-      require("../assets/bike.jpg"),
-      require("../assets/bike.jpg"),
-    ],
-    likes: 7,
-    comments: 0,
-    category: "For You",
-  },
-  {
-    id: 2,
-    user: "jules",
-    time: "2 months ago",
-    content:
-      "Where's my coffee? 😜 Lazy Saturday and I couldn't be more happy!",
-    images: [require("../assets/bike.jpg")],
-    likes: 5,
-    comments: 0,
-    category: "Subscribed",
-  },
-  {
-    id: 3,
-    user: "emucoins",
-    time: "3 months ago",
-    content: "Motorcycle $DHB Motorcycle emu",
-    images: [require("../assets/bike.jpg")],
-    likes: 7,
-    comments: 0,
-    category: "For You",
-  },
-  {
-    id: 4,
-    user: "techguru",
-    time: "1 week ago",
-    content:
-      "Just discovered this amazing new feature! Can't wait to share it with everyone.",
-    images: [require("../assets/bike.jpg"), require("../assets/bike.jpg")],
-    likes: 12,
-    comments: 3,
-    category: "Followed",
-  },
-  {
-    id: 5,
-    user: "cryptoexpert",
-    time: "3 days ago",
-    content: "The future of blockchain is here! #Web3 #Blockchain",
-    images: [require("../assets/bike.jpg")],
-    likes: 25,
-    comments: 8,
-    category: "Liked",
-  },
+// Tabs: no "All" or "Live"; default is "For You". Others are shown but disabled except "Saved".
+const feedTabs = [
+  "For You",
+  //  "Subscribed", "Followed", "Liked",
+  "Saved",
 ];
 
-type FeedItemProps = {
-  item: FeedPost;
-  onOpenImage: (images: number[], index: number) => void;
-};
-
-const FeedItem = memo(({ item, onOpenImage }: FeedItemProps) => {
-  return (
-    <View className="p-4 border-b border-theme-neutrals-700">
-      <View className="flex-row items-center justify-between mb-2">
-        <View>
-          <Text className="text-theme-neutrals-200 text-sm font-bold">
-            {item.user}
-          </Text>
-          <Text className="text-theme-neutrals-400 text-xs">{item.time}</Text>
-        </View>
-        <TouchableOpacity className="p-1">
-          <Text className="text-theme-neutrals-400 text-lg">⋯</Text>
-        </TouchableOpacity>
-      </View>
-
-      <Text className="text-theme-neutrals-200 text-sm mt-2 leading-5">
-        {item.content}
-      </Text>
-
-      {item.images && item.images.length > 0 && (
-        <View className="flex-row flex-wrap mt-3">
-          {item.images.map((image, index) => (
-            <TouchableOpacity
-              key={index}
-              onPress={() => onOpenImage(item.images, index)}
-              className="mr-2 mb-2"
-            >
-              <Image source={image} className="w-24 h-24 rounded-md" />
-            </TouchableOpacity>
-          ))}
-        </View>
-      )}
-
-      <View className="flex-row justify-between items-center mt-3 pt-2 border-t border-theme-neutrals-800">
-        <TouchableOpacity className="flex-row items-center">
-          <Text className="text-theme-neutrals-400 text-xs">
-            ❤️ {item.likes}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="flex-row items-center">
-          <Text className="text-theme-neutrals-400 text-xs">
-            💬 {item.comments}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="flex-row items-center">
-          <Text className="text-theme-neutrals-400 text-xs">🔗</Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="flex-row items-center">
-          <Text className="text-theme-neutrals-400 text-xs">📤</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-});
+// FeedCard moved to components/Feed/FeedCard.tsx; use a single comment sheet at screen level
 
 const FeedScreen = () => {
   const navigation = useNavigation<any>();
-  const [activeTab, setActiveTab] = useState("All");
-
-  const filteredData = useMemo(() => {
-    if (activeTab === "For You") return feedData;
-    if (activeTab === "All") return feedData;
-    return feedData.filter((item) => item.category === activeTab);
-  }, [activeTab]);
+  const [activeTab, setActiveTab] = useState("For You");
+  const { user, isSignedIn } = useAuth();
+  
+  const [commentSheetOpen, setCommentSheetOpen] = useState(false);
+  const [commentPost, setCommentPost] = useState<GetNFTsResult | null>(null);
+  // Bottom sheet now fetches comments itself
 
   const handleOpenImage = useCallback(
-    (images: number[], index: number) => {
+    (images: any[], index: number) => {
       navigation.navigate(ScreenNames.ImageViewer, { images, index });
     },
     [navigation]
   );
 
-  const renderItem = useCallback(
-    ({ item }: { item: FeedPost }) => (
-      <FeedItem item={item} onOpenImage={handleOpenImage} />
-    ),
-    [handleOpenImage]
+  // Derive viewer address and memoize to avoid unnecessary param changes
+  const viewerAddress = useMemo(
+    () => user?.walletAddress || user?.address || undefined,
+    [user?.walletAddress, user?.address]
   );
 
-  const keyExtractor = useCallback((item: FeedPost) => item.id.toString(), []);
+  const feedParams = useMemo<Partial<SearchParams>>(
+    () => {
+      const base: Partial<SearchParams> = {
+        category: undefined,
+        address: viewerAddress,
+        postType: "feed-all",
+      };
+      if (activeTab === "Saved") {
+        base.sortMode = "saved";
+      } else if (activeTab === "My Posts") {
+        base.minter = viewerAddress;
+        base.owner = viewerAddress;
+        base.sortMode = undefined;
+      } else {
+        base.sortMode = undefined;
+        base.minter = undefined;
+      }
+      return base;
+    },
+    [activeTab, viewerAddress]
+  );
 
-  const renderEmptyState = useCallback(() => (
-    <View className="flex-1 justify-center items-center p-8">
-      <Text className="text-theme-neutrals-400 text-base text-center">
-        No posts in {activeTab} yet
-      </Text>
-      <Text className="text-theme-neutrals-500 text-sm text-center mt-2">
-        Check back later for new content
-      </Text>
-    </View>
-  ), [activeTab]);
+  // Saved tab uses explicit savedPosts endpoint
+  const savedFetcher = useCallback(
+    (page: number, unit: number) => getSavedPosts({ page, unit, address: viewerAddress }),
+    [viewerAddress]
+  );
 
-  
+  // Only show Saved when authenticated
+  const categories = useMemo(
+    () => (isSignedIn ? ["For You", "Saved", "My Posts"] : ["For You"]),
+    [isSignedIn]
+  );
+
+  // If user signs out while on Saved, reset to For You
+  useEffect(() => {
+    if (!isSignedIn && (activeTab === "Saved" || activeTab === "My Posts")) setActiveTab("For You");
+  }, [isSignedIn, activeTab]);
+
+  const handleOpenComments = useCallback((post: GetNFTsResult) => {
+    setCommentPost(post);
+    setCommentSheetOpen(true);
+  }, []);
+
+  const handleCommentDelta = useCallback((tid: number | string, delta: number) => {
+    // Update the commentPost local reference so the count shows updated if the card re-renders
+    setCommentPost((prev) => {
+      if (!prev) return prev;
+      const prevId = (prev as any).tokenId ?? (prev as any).id;
+      if (String(prevId) !== String(tid)) return prev;
+      const current = (prev as any).commentCount ?? 0;
+      const nextCount = Math.max(0, current + delta);
+      return { ...(prev as any), commentCount: nextCount } as any;
+    });
+  }, []);
+
+  const handleGoToUpload = useCallback(() => {
+    navigation.navigate(ScreenNames.Upload, { tab: 'feed' });
+  }, [navigation]);
+
 
   return (
-    <SafeAreaView className="flex-1 bg-theme-neutrals-900">
+    <View className="flex-1 bg-theme-neutrals-900">
       <HomeHeader />
-      <CategorySelector
-        categories={feedTabs}
-        selectedCategory={activeTab}
-        onCategoryPress={(category) => setActiveTab(category)}
-      />
-      <FlatList
-        data={filteredData}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
-        ListEmptyComponent={renderEmptyState}
-        showsVerticalScrollIndicator={false}
-        initialNumToRender={4}
-        maxToRenderPerBatch={4}
-        updateCellsBatchingPeriod={80}
-        windowSize={7}
-        removeClippedSubviews
-        contentContainerStyle={{ paddingBottom: 16 }}
-      />
-    </SafeAreaView>
+      <View className="flex-1 px-6">
+        <CategorySelector
+          categories={categories}
+          selectedCategory={activeTab}
+          onCategoryPress={(category) => {
+            if (category === "For You" || category === "Saved" || category === "My Posts") {
+              setActiveTab(category);
+            } else {
+              toastSuccess("This tab is coming soon");
+            }
+          }}
+        />
+        <InfiniteFeed
+          params={feedParams}
+          pageSize={20}
+          fetchPage={activeTab === "Saved" ? savedFetcher : undefined}
+          contentContainerStyle={{ paddingBottom: 16 }}
+          emptyComponent={
+            <View className="items-center">
+              <Text className="text-theme-neutrals-400 text-sm mb-1">
+                {activeTab === "Saved"
+                  ? "You haven’t saved any posts yet."
+                  : activeTab === "My Posts"
+                  ? "You haven’t posted anything yet."
+                  : "No posts yet."}
+              </Text>
+              <Text className="text-theme-neutrals-500 text-xs">
+                {activeTab === "Saved"
+                  ? "Save posts to see them here."
+                  : activeTab === "My Posts"
+                  ? "Create a post to get started."
+                  : "Pull to refresh or try again later."}
+              </Text>
+              {activeTab === "My Posts" && (
+                <TouchableOpacity
+                  onPress={handleGoToUpload}
+                  activeOpacity={0.8}
+                  className="mt-3 flex-row items-center px-4 py-2 rounded-full bg-theme-accent"
+                >
+                  <Ionicons name="pencil" size={18} color={theme.colors.foreground} />
+                  <Text className="ml-2 text-theme-neutrals-100 font-medium">Create a post</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          }
+          renderItem={({ item }) => (
+            <FeedCard
+              item={item}
+              onOpenImage={handleOpenImage}
+              onOpenComments={handleOpenComments}
+            />
+          )}
+        />
+        <CommentsBottomSheet
+          visible={commentSheetOpen}
+          onClose={() => setCommentSheetOpen(false)}
+          tokenId={(commentPost as any)?.tokenId ?? (commentPost as any)?.id}
+          onTopLevelCommentDelta={handleCommentDelta}
+        />
+      </View>
+    </View>
   );
 };
 

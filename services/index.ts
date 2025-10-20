@@ -3,3 +3,4 @@ export * from './nft.service';
 export * from './view.service';
 export * from './mint.service';
 export * from './live.service';
+export * from './feed.service';

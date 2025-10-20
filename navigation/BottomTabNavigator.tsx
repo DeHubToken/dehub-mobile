@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 // remove "const HomeScreen = () => <View style={styles.container}><Text>Home Screen</Text></View>;"
 // const FeedScreen = () => <View style={styles.container}><Text>Feed Screen</Text></View>;
 const UploadScreen = () => <View style={styles.container}><Text>Upload Screen</Text></View>;
-// const DMScreen = () => <View style={styles.container}><Text>DM Screen</Text></View>;
+const DMScreen = () => <View style={styles.container}><Text>DM Screen</Text></View>;
 // const ProfileScreen = () => <View style={styles.container}><Text>Profile Screen</Text></View>;
 
 const Tab = createBottomTabNavigator();
@@ -29,42 +29,49 @@ function BottomTabNavigator() {
     focused: boolean,
     size: number,
   ) => {
-    let iconName: keyof typeof Ionicons.glyphMap;
-    // Choose base icon names (filled variant when focused for subtle difference)
+    let iconNameFilled: keyof typeof Ionicons.glyphMap;
+    let iconNameOutline: keyof typeof Ionicons.glyphMap;
+    // Use filled for focused and outline for unfocused to match visuals
     if (routeName === ScreenNames.Home) {
-      iconName = 'home';
+      iconNameFilled = 'home';
+      iconNameOutline = 'home'; // unchanged
     } else if (routeName === ScreenNames.Feed) {
-      iconName = 'compass';
+      // Use albums icon (stacked cards) per design image
+      iconNameFilled = 'albums';
+      iconNameOutline = 'albums-outline';
     } else if (routeName === ScreenNames.Upload) {
-      // Use filled upload icon
-      iconName = 'add-circle';
+      iconNameFilled = 'add-circle';
+      iconNameOutline = 'add-circle'; // unchanged
     } else if (routeName === ScreenNames.DM) {
-      iconName = 'chatbox';
+      // Use chat bubble per design image
+      iconNameFilled = 'chatbubble';
+      iconNameOutline = 'chatbubble';
     } else if (routeName === ScreenNames.Profile) {
-      iconName = 'person';
+      iconNameFilled = 'person';
+      iconNameOutline = 'person'; // unchanged
     } else {
-      iconName = 'ellipse';
+      iconNameFilled = 'ellipse';
+      iconNameOutline = 'ellipse';
     }
 
-  const color = '#9CA3AF'; // gray for unfocused icon
-  const containerPad = routeName === ScreenNames.Upload ? 10 : 8;
-  const containerSize = size + containerPad * 2;
-  const radius = containerSize / 2;
+    const color = '#9CA3AF'; // gray for unfocused icon
+    const containerPad = routeName === ScreenNames.Upload ? 10 : 8;
+    const containerSize = size + containerPad * 2;
+    const radius = containerSize / 2;
 
     return (
       <View style={[styles.iconWrapper, { width: containerSize, height: containerSize }]} pointerEvents="none">
         {focused ? (
-          <View style={[styles.focusBg, { borderRadius: radius }]}
-          >
+          <View style={[styles.focusBg, { borderRadius: radius }]}>
             <GradientIcon
-              name={iconName}
+              name={iconNameFilled}
               size={routeName === ScreenNames.Upload ? size + 6 : size}
               colors={[accent, '#A7C5FF']}
             />
           </View>
         ) : (
           <Ionicons
-            name={iconName}
+            name={iconNameOutline}
             size={routeName === ScreenNames.Upload ? size + 4 : size}
             color={color}
           />
@@ -90,7 +97,7 @@ function BottomTabNavigator() {
       })}
     >
       <Tab.Screen name={ScreenNames.Home} component={HomeScreen} />
-      {/* <Tab.Screen name={ScreenNames.Feed} component={FeedScreen} /> */}
+      <Tab.Screen name={ScreenNames.Feed} component={FeedScreen} />
       <Tab.Screen
         name={ScreenNames.Upload}
         component={UploadScreen}
@@ -101,7 +108,7 @@ function BottomTabNavigator() {
           },
         }}
       />
-      {/* <Tab.Screen name={ScreenNames.DM} component={DMScreen} /> */}
+      <Tab.Screen name={ScreenNames.DM} component={DMScreen} />
       <Tab.Screen name={ScreenNames.Profile} component={ProfileScreen} />
     </Tab.Navigator>
   );

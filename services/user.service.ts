@@ -201,3 +201,24 @@ export async function unfollowUser(followerAddress: string, followingAddress: st
   const url = `/request_follow?address=${encodeURIComponent(followerAddress)}&following=${encodeURIComponent(followingAddress)}&unFollowing=true`;
   return apiClient.get<any>(url, { isAuthRequired: true });
 }
+
+// ---------------- Follow state check (lightweight) ----------------
+
+export interface IsFollowingResult { isFollowing: boolean }
+
+/**
+ * Lightweight check if the authenticated viewer is following target.
+ * Endpoint (GET, AuthGuard): /is_following?target=<targetAddress>
+ */
+export async function isFollowing(targetAddress: string): Promise<IsFollowingResult> {
+  if (!targetAddress) return { isFollowing: false };
+  const url = `/is_following?target=${encodeURIComponent(targetAddress)}`;
+  try {
+    const res = await apiClient.get<any>(url, { isAuthRequired: true });
+    const val = (res?.result?.isFollowing ?? res?.result ?? res?.isFollowing ?? false) as boolean;
+    return { isFollowing: !!val };
+  } catch (e) {
+    // Treat failures as not-following to keep UI permissive; follow action will still be gated
+    return { isFollowing: false };
+  }
+}
