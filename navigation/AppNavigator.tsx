@@ -19,6 +19,7 @@ import UploadScreen from "../screens/UploadScreen";
 import LiveProducerScreen from "../screens/LiveProducerScreen"; // keep direct import for types (optional remove)
 import LiveViewerScreen from "../screens/LiveViewerScreen"; // keep direct import for types
 import { LivepeerProvider } from "../config/livepeer.config";
+import ChatScreen from "../screens/ChatScreen";
 
 // Per-screen provider wrappers (navigation cannot host provider directly as child)
 const LiveProducerWithProvider: React.FC<any> = (props) => (
@@ -185,6 +186,11 @@ export default function AppNavigator() {
       <Stack.Screen
         name={ScreenNames.ImageViewer}
         component={ImageViewerScreen}
+      />
+      <Stack.Screen
+        name={ScreenNames.Chat}
+        component={ChatScreen as any}
+        options={{ headerShown: false }}
       />
       <Stack.Screen name={ScreenNames.Search} component={SearchScreen} />
       {/* <Stack.Screen

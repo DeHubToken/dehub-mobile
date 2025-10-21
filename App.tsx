@@ -17,6 +17,7 @@ import { useAuth } from "./context/AuthContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
 import { UsernameGate } from "./components/auth/UsernameGate";
 import RootNavigator from "./navigation/RootNavigator";
+import { MessagingProvider } from "./context/MessagingContext";
 import { prewarmWeb3Auth } from "./config/web3auth.config";
 
 export default function App() {
@@ -74,8 +75,10 @@ export default function App() {
                   }}
                 >
                   <UserProfileSheetProvider>
-                    <RootNavigator />
-                    <UsernameGate />
+                    <MessagingProvider>
+                      <RootNavigator />
+                      <UsernameGate />
+                    </MessagingProvider>
                   </UserProfileSheetProvider>
                 </NavigationContainer>
               </SafeAreaView>

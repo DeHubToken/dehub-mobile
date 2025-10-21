@@ -2,10 +2,13 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-  "moduleResolution": "bundler",
+    "moduleResolution": "bundler",
     "jsx": "react-native",
     "noImplicitAny": false,
     "module": "esnext", // or "es2020", "es2022", etc.
     "target": "esnext"
-  }
+  },
+  "exclude": [
+    "components/messages/**"
+  ]
 }

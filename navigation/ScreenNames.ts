@@ -18,6 +18,7 @@ export enum ScreenNames {
   DirectMessages = 'DirectMessages',
   VideoPlayer = 'VideoPlayer',
   ImageViewer = 'ImageViewer',
+  Chat = 'Chat',
   LiveProducer = 'LiveProducer',
   LiveViewer = 'LiveViewer',
   AccountSettings = 'AccountSettings',
