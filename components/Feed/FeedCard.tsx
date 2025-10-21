@@ -88,7 +88,7 @@ const FeedCard: React.FC<FeedCardProps> = memo(
     React.useEffect(() => {
       let cancelled = false;
       const run = async () => {
-        if (!showFollow) return;
+        if (!showFollow || !address) return;
         if (!targetKey) {
           setIsFollowing(false);
           return;
@@ -282,15 +282,17 @@ const FeedCard: React.FC<FeedCardProps> = memo(
 
     const handleSavePress = useCallback(() => {
       const tokenId = (item as any).tokenId ?? (item as any).id;
-      if (tokenId == null) {
+      requireAuth?.(() => {
+        if (tokenId == null) {
+          setSaved((s) => !s);
+          return;
+        }
+        // Optimistic toggle
         setSaved((s) => !s);
-        return;
-      }
-      // Optimistic toggle
-      setSaved((s) => !s);
-      savePost(Number(tokenId), address).catch(() => {
-        // revert on failure
-        setSaved((s) => !s);
+        savePost(Number(tokenId), address).catch(() => {
+          // revert on failure
+          setSaved((s) => !s);
+        });
       });
     }, [item, address]);
 
@@ -330,8 +332,8 @@ const FeedCard: React.FC<FeedCardProps> = memo(
     const avatar = getAvatarUrl((item as any).minterAvatarUrl || "");
     const badgeImg = getBadgeUrl((item as any).minterStaked || 0, "dark");
     const [descExpanded, setDescExpanded] = useState(false);
-    const descriptionText =
-      (item as any).description || (item as any).name || "";
+    const titleText = (item as any).name || (item as any).title || "";
+    const descriptionText = (item as any).description || "";
     const CHAR_LIMIT_FOR_TOGGLE = 160; // approx ~2-3 lines for our font/width
     const shouldTruncate =
       (descriptionText?.trim().length || 0) > CHAR_LIMIT_FOR_TOGGLE;
@@ -390,7 +392,7 @@ const FeedCard: React.FC<FeedCardProps> = memo(
                   </Text>
                 </View>
               </View>
-              {showFollow ? (
+              {showFollow && address ? (
                 creatorLoading ? (
                   // Skeleton placeholder for follow button area
                   <View className="px-8 py-2 rounded-lg bg-theme-neutrals-800 ml-2 animate-pulse" />
@@ -422,31 +424,49 @@ const FeedCard: React.FC<FeedCardProps> = memo(
             </View>
           </View>
 
-          {/* Content */}
-          {!!descriptionText && (
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={() =>
-                shouldTruncate ? setDescExpanded((p) => !p) : handleFeedPress()
-              }
-              className="px-3 py-2"
-            >
-              <Text
-                className="text-theme-neutrals-200 text-[13px] leading-5"
-                numberOfLines={shouldTruncate && !descExpanded ? 2 : undefined}
-                ellipsizeMode="tail"
-              >
-                {descriptionText}
-              </Text>
-              {shouldTruncate && (
-                <Text
-                  className="text-theme-neutrals-500 text-sm"
-                  onPress={() => setDescExpanded((p) => !p)}
-                >
-                  {descExpanded ? "Show less" : "Show more"}
-                </Text>
+          {/* Title & Description */}
+          {(!!titleText || !!descriptionText) && (
+            <View className="px-3 py-2">
+              {!!titleText && (
+                <TouchableOpacity activeOpacity={0.8} onPress={handleFeedPress}>
+                  <Text
+                    className="text-theme-neutrals-100 text-[14px] font-semibold"
+                    numberOfLines={2}
+                  >
+                    {titleText}
+                  </Text>
+                </TouchableOpacity>
               )}
-            </TouchableOpacity>
+              {!!descriptionText && (
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() =>
+                    shouldTruncate
+                      ? setDescExpanded((p) => !p)
+                      : handleFeedPress()
+                  }
+                  className={titleText ? "mt-1" : ""}
+                >
+                  <Text
+                    className="text-theme-neutrals-200 text-[13px] leading-5"
+                    numberOfLines={
+                      shouldTruncate && !descExpanded ? 2 : undefined
+                    }
+                    ellipsizeMode="tail"
+                  >
+                    {descriptionText}
+                  </Text>
+                  {shouldTruncate && (
+                    <Text
+                      className="text-theme-neutrals-500 text-sm"
+                      onPress={() => setDescExpanded((p) => !p)}
+                    >
+                      {descExpanded ? "Show less" : "Show more"}
+                    </Text>
+                  )}
+                </TouchableOpacity>
+              )}
+            </View>
           )}
 
           {/* Image */}

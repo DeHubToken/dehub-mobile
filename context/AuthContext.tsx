@@ -34,6 +34,7 @@ import { supportedTokens } from "../config/constants";
 import { apiClient } from "../libs/api.client";
 import { maxStacked } from "../libs/validators.util";
 import { toastError } from "../libs";
+import { createLogger } from "../libs/logger";
 
 // Define the shape of the user object
 export interface User {
@@ -121,6 +122,7 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  const log = createLogger("AuthContext");
   const [user, setUser] = useState<User | null>(null);
   // Runtime operation loading (sign in/out). Starts false so UI (SignInScreen) remains mounted.
   const [isLoading, setIsLoading] = useState(false);
@@ -150,19 +152,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const HEALTHCHECK_INTERVAL_MS = 120000; // 2 min health check
   const consecutiveEmptyAccountsRef = useRef<number>(0);
 
-  // Optional debug flag (toggle to true for verbose logs)
-  const DEBUG_PROVIDER = false;
-  const debugLog = useCallback(
-    (...args: any[]) => {
-      if (DEBUG_PROVIDER) console.log("[AuthContext][provider]", ...args);
-    },
-    [DEBUG_PROVIDER]
-  );
+  // Logging handled via createLogger; set DEBUG env var to enable debug-level logs.
 
   // console.log({user, provider})
   useEffect(() => {
     return () => {
       isMountedRef.current = false;
+      // log.debug("unmount");
     };
   }, []);
 
@@ -181,11 +177,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         if (Array.isArray(accounts)) return accounts as string[];
         return [];
       } catch (e) {
-        debugLog("eth_accounts failed", e);
+        log.debug("eth_accounts:failed", e);
         return null;
       }
     },
-    [debugLog]
+    [log]
   );
 
   const attachProviderEventListeners = useCallback((prov: any) => {
@@ -195,7 +191,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           typeof next === "string" && next.startsWith("0x")
             ? parseInt(next, 16)
             : Number(next);
-        debugLog("chainChanged", { next, parsed });
+        // log.info("provider:event:chainChanged", { next, parsed });
         if (!Number.isNaN(parsed)) setChainId(parsed);
       });
     } catch (e) {
@@ -203,7 +199,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
     try {
       prov?.on?.("accountsChanged", (accs: string[]) => {
-        debugLog("accountsChanged", accs);
+        // log.info("provider:event:accountsChanged", { count: accs?.length || 0 });
         if (!accs || accs.length === 0) {
           // schedule validation quickly
           validateAndMaybeReinit("accountsChanged-empty");
@@ -215,6 +211,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       prov?.on?.("disconnect", (err: any) => {
         console.warn("[AuthContext] provider disconnect", err?.message || err);
+        log.warn("provider:event:disconnect", err?.message || err);
         validateAndMaybeReinit("disconnect");
       });
     } catch (e) {
@@ -223,6 +220,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   const internalInitializeProvider = useCallback(async () => {
+    // log.info("provider:init:start");
     setProviderStatus("initializing");
     const startTs = Date.now();
     try {
@@ -233,6 +231,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       if (!isMountedRef.current) return;
       setProvider(eip1193);
       providerGenerationRef.current += 1;
+      // log.info("provider:init:got-provider", { gen: providerGenerationRef.current });
 
       // Chain id attempt (try request first, fallback to chainConfig)
       try {
@@ -246,16 +245,19 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             ? parseInt(rawChainId, 16)
             : Number(rawChainId);
         if (!Number.isNaN(parsed)) setChainId(parsed);
+        // log.debug("provider:init:chainId", { rawChainId, parsed });
       } catch (e) {
         console.warn("[AuthContext] chainId fetch failed", e);
+        log.warn("provider:init:chainId:error", e);
       }
 
       attachProviderEventListeners(eip1193);
 
       // Initial account validation (non-blocking reinit if missing)
       const accounts = await fetchAccounts(eip1193);
+      // log.debug("provider:init:eth_accounts", { count: accounts?.length || 0 });
       if (!accounts || accounts.length === 0) {
-        debugLog("initial accounts empty; scheduling validation");
+        log.warn("provider:init:accounts:empty:schedule-validate");
         setTimeout(
           () => validateAndMaybeReinit("initial-accounts-empty"),
           1500
@@ -263,39 +265,39 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
 
       setProviderStatus("ready");
-      debugLog("provider initialized", {
-        ms: Date.now() - startTs,
-        gen: providerGenerationRef.current,
-      });
+      // log.info("provider:init:ready", { ms: Date.now() - startTs, gen: providerGenerationRef.current });
     } catch (e) {
       console.error("[AuthContext] internalInitializeProvider failed", e);
+      log.error("provider:init:error", e);
       setProviderStatus("error");
       throw e;
     }
-  }, [attachProviderEventListeners, fetchAccounts, debugLog]);
+  }, [attachProviderEventListeners, fetchAccounts, log]);
 
   const attemptReinitializeProvider = useCallback(
     async (reason: string) => {
       const now = Date.now();
       if (now - lastReinitTsRef.current < REINIT_BACKOFF_MS) {
-        debugLog("reinit suppressed (backoff)", { reason });
+        // log.debug("reinit:suppressed", { reason });
         return;
       }
       lastReinitTsRef.current = now;
-      debugLog("attemptReinitializeProvider", { reason });
+      // log.info("reinit:attempt", { reason });
       setProvider(null);
       setProviderStatus("idle");
       try {
         await internalInitializeProvider();
       } catch (e) {
         console.warn("[AuthContext] reinit failed", e);
+        log.warn("reinit:failed", e);
       }
     },
-    [internalInitializeProvider, debugLog]
+    [internalInitializeProvider]
   );
 
   // Sign out method (moved earlier so other callbacks can depend on it safely)
   const signOut = useCallback(async () => {
+    // log.info("signOut:start");
     setIsLoading(true);
     try {
       await clearAuthData();
@@ -306,20 +308,24 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setProviderStatus("idle");
     } catch (error) {
       console.error("Sign out error:", error);
+      log.error("signOut:error", error);
       throw error;
     } finally {
       setIsLoading(false);
+      // log.info("signOut:done");
     }
   }, []);
 
   const handleSessionExpired = useCallback(
     async (trigger: string) => {
       console.warn("[AuthContext] Session expired detected", trigger);
+      log.warn("session:expired", { trigger });
       toastError?.("Session expired, login again");
       try {
         await signOut();
       } catch (e) {
         console.warn("[AuthContext] signOut during session expire failed", e);
+        log.warn("session:expired:signOut:failed", e);
       }
       // Open sign-in bottom sheet/modal
       setShowSignInModal(true);
@@ -339,7 +345,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         if (!provider || providerStatus !== "ready") return;
         const accounts = await fetchAccounts(provider);
         if (!accounts || accounts.length === 0) {
-          debugLog("validation detected empty accounts", { reason });
+          log.warn("validate:empty-accounts", { reason });
           consecutiveEmptyAccountsRef.current += 1;
           await attemptReinitializeProvider(reason + "->empty-accounts");
           // Re-check after short delay to confirm
@@ -352,6 +358,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
               consecutiveEmptyAccountsRef.current = 0;
             }
             if (consecutiveEmptyAccountsRef.current >= 2 && user) {
+              log.warn("validate:session-expired:threshold-reached", {
+                count: consecutiveEmptyAccountsRef.current,
+              });
               await handleSessionExpired(reason);
             }
           }, 1200);
@@ -367,22 +376,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         providerValidationInFlightRef.current = null;
       });
     },
-    [
-      provider,
-      providerStatus,
-      fetchAccounts,
-      attemptReinitializeProvider,
-      debugLog,
-    ]
+    [provider, providerStatus, fetchAccounts, attemptReinitializeProvider]
   );
 
   const ensureProvider = useCallback(async () => {
+    // log.debug("ensureProvider:entry", { hasProvider: !!provider, status: providerStatus, inFlight: !!providerInitInFlightRef.current });
     if (provider || providerStatus === "ready") return;
     if (providerInitInFlightRef.current) return providerInitInFlightRef.current;
     const init = internalInitializeProvider();
     providerInitInFlightRef.current = init;
     await init.finally(() => {
       providerInitInFlightRef.current = null;
+      // log.debug("ensureProvider:done");
     });
   }, [provider, providerStatus, internalInitializeProvider]);
 
@@ -411,25 +416,33 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // Initialize auth state & kick provider initialization (non-blocking for boot)
   useEffect(() => {
     const loadAuthState = async () => {
+      // log.info("boot:loadAuthState:start");
       try {
         const [userData, token, seenAuth] = await Promise.all([
           getAuthUser<User>(),
           getAuthToken(),
           hasSeenAuth(),
         ]);
+        // log.debug("boot:loadAuthState:fetched", { hasUser: !!userData, hasToken: !!token, seenAuth });
         if (userData && token) {
           setUser(userData);
           setIsSignedIn(true);
           // Initialize provider in background (non-blocking)
-          ensureProvider().catch((e) =>
-            console.warn("[AuthContext] provider init during boot failed", e)
-          );
+          ensureProvider()
+            // .then(() => log.debug("boot:ensureProvider:ok"))
+            .catch((e) => {
+              console.warn("[AuthContext] provider init during boot failed", e);
+              log.warn("boot:ensureProvider:failed", e);
+            });
+          // log.info("boot:hydrated:user");
         }
         if (seenAuth) setIsFirstTimeUser(false);
       } catch (e) {
         console.error("Failed to load auth state:", e);
+        log.error("boot:loadAuthState:error", e);
       } finally {
         setIsBootLoading(false);
+        // log.info("boot:loadAuthState:done");
       }
     };
     loadAuthState();
@@ -440,7 +453,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const sub = AppState.addEventListener("change", (next) => {
       const prev = appStateRef.current;
       appStateRef.current = next;
+      log.debug("appstate:change", { prev, next });
       if (prev.match(/inactive|background/) && next === "active") {
+        log.info("app-resume:validate");
         validateAndMaybeReinit("app-resume");
       }
     });
@@ -461,6 +476,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   // Sign in with wallet (will always (re)initialize provider immediately after backend sign-in)
   const signInWithWallet = async (walletAddress: string, chainId: number) => {
+    const mask = (addr?: string) =>
+      addr ? `${addr.slice(0, 6)}...${addr.slice(-4)}` : undefined;
+    log.info("signInWithWallet:start", {
+      walletAddress: mask(walletAddress),
+      chainId,
+    });
     setIsLoading(true);
     try {
       // console.log("[AuthContext] signInWithWallet called", {
@@ -472,10 +493,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       try {
         if (!authAdapterRef.current)
           authAdapterRef.current = createAuthAdapter();
+        log.debug("getPrivateKey:begin");
         privateKey = await authAdapterRef.current.getPrivateKey?.();
+        log.debug("getPrivateKey:done", {
+          hasKey: !!privateKey,
+          length: privateKey?.length || 0,
+        });
       } catch (e) {
         console.warn("[AuthContext] adapter.getPrivateKey failed", e);
+        log.warn("getPrivateKey:error", e);
       }
+      log.info("backend:signInWithWallet:request");
       const {
         user: walletUser,
         token,
@@ -483,19 +511,28 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       } = await AuthService.signInWithWallet(walletAddress, chainId, {
         privateKey,
       });
+      log.info("backend:signInWithWallet:success", {
+        needsUsername: need,
+        userId: walletUser?.id,
+      });
       // Initialize provider now that we have a session
       setProvider(null);
       setChainId(chainId);
       try {
+        log.info("ensureProvider:start");
         await ensureProvider();
+        log.info("ensureProvider:ok");
       } catch (e) {
         console.warn("[AuthContext] provider init during signIn failed", e);
+        log.warn("ensureProvider:failed", e);
       }
       await setHasSeenAuth();
+      log.debug("setHasSeenAuth:done");
       if (need) {
         setNeedsUsername(true);
         setProvisionalUser(walletUser);
         setProvisionalToken(token); // retaned but not required later
+        log.info("signInWithWallet:needsUsername");
       } else {
         // Mark signed in early for downstream UI (will be immediately enriched)
         setIsSignedIn(true);
@@ -503,17 +540,22 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setNeedsUsername(false);
         setProvisionalUser(null);
         setProvisionalToken(null);
+        log.info("signInWithWallet:enrich:start");
         await enrichAndStoreUser(walletUser);
+        log.info("signInWithWallet:enrich:done");
       }
     } catch (error) {
       console.error("Wallet sign in error:", error);
+      log.error("signInWithWallet:error", error);
       throw error;
     } finally {
       setIsLoading(false);
+      log.info("signInWithWallet:finish");
     }
   };
 
   const completeUsername = (finalUser: User) => {
+    log.info("completeUsername:start", { userId: finalUser?.id });
     setIsSignedIn(true);
     setIsFirstTimeUser(false);
     setNeedsUsername(false);
@@ -522,6 +564,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // Enrich asynchronously (fire and forget)
     enrichAndStoreUser(finalUser).catch((e) => {
       console.warn("[AuthContext] enrich after completeUsername failed", e);
+      log.warn("completeUsername:enrich:error", e);
       setUser(finalUser); // fallback minimal
       setAuthUser(finalUser).catch(() => {});
     });
@@ -533,6 +576,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       base: User,
       opts?: { refetch?: boolean; cacheBustImages?: boolean }
     ): Promise<User> => {
+      log.debug("enrich:start", {
+        baseId: base?.id,
+        refetch: !!opts?.refetch,
+        cacheBustImages: !!opts?.cacheBustImages,
+      });
       const shouldRefetch = !!opts?.refetch;
       let enriched = base;
       try {
@@ -542,10 +590,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             const res: any = await getAccount(key);
             const core = res?.data?.result || res?.result || null;
             if (core) enriched = { ...base, ...core } as User;
+            log.debug("enrich:getAccount:done", { key, merged: !!core });
           }
         }
       } catch (e) {
         console.warn("[AuthContext] account fetch failed", e);
+        log.warn("enrich:getAccount:error", e);
       }
       // Notifications (unread count) - backend returns only unread for given address
       try {
@@ -556,10 +606,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           if (notificationRes) {
             const unread = (notificationRes as any[]).length;
             enriched = { ...enriched, notificationCount: unread };
+            log.debug("enrich:notifications:count", { unread });
           }
         }
       } catch (e) {
         console.warn("[AuthContext] notifications fetch failed", e);
+        log.warn("enrich:notifications:error", e);
       }
       // Fetch balances (native + selected tokens)
       try {
@@ -573,9 +625,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             symbols
           );
           enriched = { ...enriched, tokenBalances: balances } as any;
+          log.debug("enrich:balances:done", { symbols });
         }
       } catch (e) {
         console.warn("[AuthContext] balance fetch failed", e);
+        log.warn("enrich:balances:error", e);
       }
       try {
         // Derive stakedDHB from balanceData if not already present or outdated
@@ -602,8 +656,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         }
         setUser(enriched);
         await setAuthUser(enriched);
+        log.debug("enrich:setAuthUser:done", { userId: enriched?.id });
       } catch (e) {
         console.warn("[AuthContext] setAuthUser failed", e);
+        log.warn("enrich:setAuthUser:error", e);
       }
       return enriched;
     },
@@ -624,11 +680,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, [isSignedIn, pendingAction, needsUsername]);
 
   const requireAuth = (action: () => void) => {
+    log.debug("requireAuth:called", { isSignedIn, needsUsername });
     if (isSignedIn && !needsUsername) {
       action();
     } else {
       setPendingAction(() => action);
       setShowSignInModal(true);
+      log.info("requireAuth:gate:showSignInModal");
     }
   };
 
@@ -663,12 +721,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   // console.log("[AuthContext]", { provider });
-  if (provider && !("signer" in (provider as any))) {
-    // EIP-1193 providers do not expose a signer property; ethers derives it via Web3Provider
-    console.log(
-      "[AuthContext] Provider is EIP-1193; .signer not present (expected). Ethers will create a Signer via Web3Provider."
-    );
-  }
+  // if (provider && !("signer" in (provider as any))) {
+  //   // EIP-1193 providers do not expose a signer property; ethers derives it via Web3Provider
+  //   console.log(
+  //     "[AuthContext] Provider is EIP-1193; .signer not present (expected). Ethers will create a Signer via Web3Provider."
+  //   );
+  // }
 
   // Create the context value object
   const authContextValue: AuthContextType = {
@@ -688,7 +746,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       try {
         if (!user) return;
         // Refetch core fields and then enrich/persist
-        await enrichAndStoreUser(user, { refetch: true, cacheBustImages: true });
+        await enrichAndStoreUser(user, {
+          refetch: true,
+          cacheBustImages: true,
+        });
       } catch (e) {
         console.warn("[AuthContext] refreshUser error", e);
       }

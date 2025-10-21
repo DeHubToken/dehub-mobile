@@ -13,6 +13,7 @@ import { formatDistance } from 'date-fns';
 import { getAvatarUrl } from '../libs';
 import { useAuth } from '../context/AuthContext';
 import useKeyboard from '../hooks/useKeyboard';
+import { useUserProfileSheet } from '../context/UserProfileSheetContext';
 
 // Card skeleton matching FeedCard structure
 const CardSkeleton: React.FC = () => (
@@ -35,6 +36,7 @@ export default function FeedDetailScreen() {
 
   const inputRef = useRef<CommentInputRef>(null);
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
+  const { showUserProfile } = useUserProfileSheet();
 
   const fetchData = useCallback(async () => {
     if (tokenId == null) return;
@@ -170,7 +172,7 @@ export default function FeedDetailScreen() {
         )}
         renderItem={({ item: c }) => (
           <View className="px-4" style={{ paddingLeft: c.replyToId ? 24 : 0 }}>
-            <CommentItem comment={c} onReplyPress={(cm) => {
+            <CommentItem comment={c} onUserPress={(id) => showUserProfile(id, { initialHeightPct: 0.4, source: 'comment' })} onReplyPress={(cm) => {
               setReplyTo(cm);
               requestAnimationFrame(() => inputRef.current?.focus());
             }} />

@@ -16,17 +16,20 @@ export type Comment = {
 type Props = {
   comment: Comment;
   onReplyPress?: (comment: Comment) => void;
+  onUserPress?: (identifier: string) => void;
 };
 
-const CommentItem: React.FC<Props> = memo(({ comment, onReplyPress }) => {
+const CommentItem: React.FC<Props> = memo(({ comment, onReplyPress, onUserPress }) => {
   return (
     <View className="flex-row items-start gap-3 px-4 py-3">
-      <Avatar size={28} uri={comment.avatarUri} />
+      <Avatar size={28} uri={comment.avatarUri} onPress={() => onUserPress?.(comment.user)} />
       <View className="flex-1">
         <View className="flex-row items-baseline gap-2">
-          <Text className="text-white text-[13px] font-semibold">
-            {comment.user}
-          </Text>
+          <TouchableOpacity activeOpacity={0.8} onPress={() => onUserPress?.(comment.user)}>
+            <Text className="text-white text-[13px] font-semibold">
+              {comment.user}
+            </Text>
+          </TouchableOpacity>
           <Text className="text-theme-neutrals-500 text-[11px]">
             {comment.time}
           </Text>

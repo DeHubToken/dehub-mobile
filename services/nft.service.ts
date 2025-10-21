@@ -231,6 +231,51 @@ export async function postComment(input: PostCommentInput): Promise<PostCommentR
   }
 }
 
+// Fetch comments for a tokenId (paginated)
+export interface GetCommentsParams {
+  page?: number;
+  unit?: number;
+  skip?: number;
+  limit?: number;
+}
+
+export interface GetCommentsResult {
+  items: any[];
+  totalCount: number;
+  skip: number;
+  limit: number;
+  hasMore: boolean;
+}
+
+export interface GetCommentsResponse { result: GetCommentsResult; [k: string]: any }
+
+export async function getCommentsForToken(
+  tokenId: number | string,
+  params?: GetCommentsParams
+): Promise<GetCommentsResponse> {
+  if (tokenId == null) throw new Error('tokenId required');
+  const base = `/nft/${encodeURIComponent(String(tokenId))}/comments`;
+  const q = objectToGetParams(removeUndefined({
+    page: params?.page,
+    unit: params?.unit,
+    skip: params?.skip,
+    limit: params?.limit,
+  }));
+  const url = `${base}${q}`;
+  try {
+    const res = await apiClient.get<any>(url, { isAuthRequired: false });
+    if (res?.result) return res as GetCommentsResponse;
+    // Fallback normalization
+    if (Array.isArray(res)) {
+      return { result: { items: res, totalCount: res.length, skip: 0, limit: res.length, hasMore: false } };
+    }
+    return { result: { items: [], totalCount: 0, skip: 0, limit: params?.limit ?? params?.unit ?? 20, hasMore: false } };
+  } catch (e) {
+    console.error('[NFTService] getCommentsForToken error', e);
+    throw e;
+  }
+}
+
 // ---------------- Mint (Upload) ----------------
 export interface MintNftResponse {
   r: string;

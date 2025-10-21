@@ -21,7 +21,7 @@ import ScreenHeader from "../components/ScreenHeader";
 
 // theme removed in favor of NativeWind classes
 
-// Order: Video, Live, Feed (Feed disabled)
+// Order: Video, Live, Feed
 const tabs = ["Videos", "Live", "Feed"] as const;
 
 type TabKey = (typeof tabs)[number];
@@ -37,25 +37,25 @@ export default function UploadScreen() {
     return "Videos";
   }, []);
 
-  // Determine initial tab from route params but clamp to allowed (Feed remains disabled)
+  // Determine initial tab from route params
   const initialTab = useMemo<TabKey>(() => {
     const desired = normalizeTabParam(route?.params?.tab);
-    // Feed is disabled, so fallback to Videos
-    return desired === "Feed" ? "Videos" : desired;
+    return desired;
   }, [route?.params?.tab, normalizeTabParam]);
 
   const [active, setActive] = useState<TabKey>(initialTab);
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const scrollRef = useRef<ScrollView>(null);
-  const lastAllowedIndexRef = useRef<number>(0); // 0: Videos, 1: Live
-
+  const lastAllowedIndexRef = useRef<number>(tabs.indexOf(initialTab));
+  
   // Lazy mount tabs to avoid heavy work on initial open (e.g., LiveTab fetching)
   const [mounted, setMounted] = useState<Record<TabKey, boolean>>({
     Videos: initialTab === "Videos",
     Live: initialTab === "Live",
     Feed: initialTab === "Feed", // still disabled, but keep generic
   });
+  console.log({initialTab, routeTab: route?.params?.tab, active, mounted});
 
   useEffect(() => {
     const idx = tabs.indexOf(active);
@@ -74,11 +74,6 @@ export default function UploadScreen() {
   const onScrollEnd = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       let idx = Math.round(e.nativeEvent.contentOffset.x / width);
-      // Prevent landing on disabled Feed (index 2)
-      if (idx > 1) {
-        idx = lastAllowedIndexRef.current;
-        scrollRef.current?.scrollTo({ x: idx * width, animated: true });
-      }
       const key = tabs[idx];
       setActive(key);
       setMounted((m) => (m[key] ? m : { ...m, [key]: true }));
@@ -88,10 +83,8 @@ export default function UploadScreen() {
 
   const onPressTab = useCallback(
     (k: TabKey) => {
-      // Feed is disabled
-      if (k === "Feed") return;
       const idx = tabs.indexOf(k);
-      lastAllowedIndexRef.current = idx; // 0 or 1
+      lastAllowedIndexRef.current = idx;
       setActive(k);
       setMounted((m) => (m[k] ? m : { ...m, [k]: true }));
       goToIndex(idx);
@@ -102,12 +95,11 @@ export default function UploadScreen() {
   // Respond to route param changes while screen is mounted
   useEffect(() => {
     const desired = normalizeTabParam(route?.params?.tab);
-    const target: TabKey = desired === "Feed" ? "Videos" : desired; // clamp
-    if (target !== active) {
-      const idx = tabs.indexOf(target);
+    if (desired !== active) {
+      const idx = tabs.indexOf(desired);
       lastAllowedIndexRef.current = idx;
-      setActive(target);
-      setMounted((m) => (m[target] ? m : { ...m, [target]: true }));
+      setActive(desired);
+      setMounted((m) => (m[desired] ? m : { ...m, [desired]: true }));
       goToIndex(idx);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -159,7 +151,6 @@ export default function UploadScreen() {
               label="Feed"
               onPress={() => onPressTab("Feed")}
               active={active === "Feed"}
-              // disabled
             />
           </View>
         </View>
