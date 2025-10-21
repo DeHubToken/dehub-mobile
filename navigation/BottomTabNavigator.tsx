@@ -11,6 +11,7 @@ import FeedScreen from '../screens/FeedScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import { useNavigation } from '@react-navigation/native';
 import UploadScreen from '../screens/UploadScreen';
+import DirectMessagesScreen from '../screens/DirectMessagesScreen';
 
 // Placeholder screens - these will be replaced with actual content later
 // remove "const HomeScreen = () => <View style={styles.container}><Text>Home Screen</Text></View>;"
@@ -109,7 +110,7 @@ function BottomTabNavigator() {
           },
         }}
       />
-      <Tab.Screen name={ScreenNames.DM} component={DMScreen} />
+      <Tab.Screen name={ScreenNames.DM} component={DirectMessagesScreen} />
       <Tab.Screen name={ScreenNames.Profile} component={ProfileScreen} />
     </Tab.Navigator>
   );
