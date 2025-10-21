@@ -69,6 +69,10 @@ const MID_HEIGHT = Math.round(WIN_HEIGHT * 0.7);
 const MAX_HEIGHT = Math.round(WIN_HEIGHT * 0.85);
 const SNAP_POINTS = [MIN_HEIGHT, MID_HEIGHT, MAX_HEIGHT];
 
+// Lightweight in-memory cache (stale-while-revalidate) to make open feel instant
+const PROFILE_CACHE_TTL = 60_000; // 60s
+const profileCache = new Map<string, { data: RemoteUser; ts: number }>();
+
 const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   visible,
   onClose,
@@ -116,14 +120,25 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
 
   const load = useCallback(async (who: string) => {
     if (!who) return;
+    const key = (who || '').toLowerCase();
     lastRequestedRef.current = who;
-    // loading & data are reset synchronously on id change; keep here for safety
-    setLoading(true);
-    setData(null);
+    // Try cache first for instant paint
+    const cached = profileCache.get(key);
+    if (cached && Date.now() - cached.ts < PROFILE_CACHE_TTL) {
+      setData(cached.data);
+      setLoading(false);
+      // Continue to revalidate in background
+    } else {
+      // Reset only if no fresh cache
+      setLoading(true);
+      setData(null);
+    }
     try {
       const res: any = await getAccount(who);
       const payload = res?.data?.result || res?.result || res;
       if (payload && lastRequestedRef.current === who) {
+        // cache fresh data
+        profileCache.set(key, { data: payload, ts: Date.now() });
         setData(payload);
         // Derive follow state if authenticated
         const acct = (
@@ -161,28 +176,25 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           return;
         }
       } catch {}
-      // Immediately reset state to avoid flashing previous data
-      setContentReady(false);
+      // Prepare visual state before opening
       heightAnim.setValue(initialHeight);
-      load(usernameOrAddress);
     }
     if (!visible) {
       setContentReady(false);
-      if (!loading) {
-        setData(null);
-        setLoading(true);
-        setMode("profile");
-      }
+      setData(null);
+      setLoading(true);
+      setMode("profile");
     }
-  }, [visible, usernameOrAddress, load, heightAnim]);
+  }, [visible, usernameOrAddress, heightAnim, initialHeight, authUser?.walletAddress, authUser?.address, navigation, onClose]);
 
   // (Hardware back handled by react-native-modal via onBackButtonPress prop.)
 
   const animateTo = useCallback(
     (to: number) => {
-      Animated.timing(heightAnim, {
+      Animated.spring(heightAnim, {
         toValue: to,
-        duration: 180,
+        friction: 18,
+        tension: 220,
         useNativeDriver: false,
       }).start();
     },
@@ -221,8 +233,8 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     })
   ).current;
 
-  const avatarUrl = getAvatarUrl(data?.avatarImageUrl);
-  const coverUrl = getCoverUrl(data?.coverImageUrl);
+  const avatarUrl = useMemo(() => getAvatarUrl(data?.avatarImageUrl), [data?.avatarImageUrl]);
+  const coverUrl = useMemo(() => getCoverUrl(data?.coverImageUrl), [data?.coverImageUrl]);
   const stakedDHB = useMemo(() => {
     if (!data) return 0;
     const fromBalances = maxStacked((data as any)?.balanceData);
@@ -432,7 +444,12 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
       backdropTransitionInTiming={120}
       backdropTransitionOutTiming={120}
       onModalWillShow={() => setContentReady(false)}
-      onModalShow={() => setContentReady(true)}
+      onModalShow={() => {
+        setContentReady(true);
+        if (usernameOrAddress) {
+          load(usernameOrAddress);
+        }
+      }}
       onModalWillHide={() => setContentReady(false)}
       onModalHide={() => {
         setData(null);
