@@ -10,11 +10,12 @@ import { ScreenNames } from './ScreenNames';
 import FeedScreen from '../screens/FeedScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import { useNavigation } from '@react-navigation/native';
+import UploadScreen from '../screens/UploadScreen';
 
 // Placeholder screens - these will be replaced with actual content later
 // remove "const HomeScreen = () => <View style={styles.container}><Text>Home Screen</Text></View>;"
 // const FeedScreen = () => <View style={styles.container}><Text>Feed Screen</Text></View>;
-const UploadScreen = () => <View style={styles.container}><Text>Upload Screen</Text></View>;
+// const UploadScreen = () => <View style={styles.container}><Text>Upload Screen</Text></View>;
 const DMScreen = () => <View style={styles.container}><Text>DM Screen</Text></View>;
 // const ProfileScreen = () => <View style={styles.container}><Text>Profile Screen</Text></View>;
 

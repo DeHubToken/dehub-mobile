@@ -18,9 +18,10 @@ import CommentInput, { CommentInputRef } from "./CommentInput";
 import CommentsSkeleton from "./CommentsSkeleton";
 import { useAuth } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs";
-import { getNFT, postComment } from "../../services/nft.service";
+import { getCommentsForToken, postComment } from "../../services/nft.service";
 import { formatDistance } from "date-fns";
 import useKeyboard from "../../hooks/useKeyboard";
+import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 
 type Props = {
   visible: boolean;
@@ -102,8 +103,9 @@ const CommentsBottomSheet: React.FC<Props> = ({
   const replyToLabel = replyTo?.user || undefined;
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
   const inputRef = useRef<CommentInputRef>(null);
+  const { showUserProfile } = useUserProfileSheet();
 
-  // Fetch on open
+  // Fetch on open (comments only)
   useEffect(() => {
     let cancelled = false;
     const run = async () => {
@@ -111,10 +113,10 @@ const CommentsBottomSheet: React.FC<Props> = ({
       if (tokenId == null) return;
       setLoading(true);
       try {
-        const res = await getNFT(tokenId as any, viewer);
+        const res = await getCommentsForToken(tokenId as any, { limit: 100 });
         if (cancelled) return;
         const payload: any = res?.result || res || {};
-        const rawComments: any[] = Array.isArray(payload?.comments) ? payload.comments : [];
+        const rawComments: any[] = Array.isArray(payload?.items) ? payload.items : [];
         // Build flattened list: parent -> its replies
         const replyIdSet = new Set<number>();
         rawComments.forEach((c: any) => Array.isArray(c?.replyIds) && c.replyIds.forEach((id: any) => replyIdSet.add(Number(id))));
@@ -264,6 +266,7 @@ const CommentsBottomSheet: React.FC<Props> = ({
                 <View style={{ paddingLeft: item.replyToId ? 24 : 0 }}>
                   <CommentItem
                     comment={item}
+                    onUserPress={(id) => showUserProfile(id, { initialHeightPct: 0.4, source: 'comment' })}
                     onReplyPress={(c) => {
                       setReplyTo(c);
                       setComposerAutoFocus(true);

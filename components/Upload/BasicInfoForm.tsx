@@ -7,6 +7,7 @@ type Props = {
   descriptionMax: number;
   onChangeTitle: (v: string) => void;
   onChangeDescription: (v: string) => void;
+  descriptionPlaceholder?: string;
 };
 
 const BasicInfoForm: React.FC<Props> = ({
@@ -15,6 +16,7 @@ const BasicInfoForm: React.FC<Props> = ({
   descriptionMax,
   onChangeTitle,
   onChangeDescription,
+  descriptionPlaceholder,
 }) => {
   return (
     <View className="mt-2">
@@ -37,7 +39,7 @@ const BasicInfoForm: React.FC<Props> = ({
         <TextInput
           value={description}
           onChangeText={onChangeDescription}
-          placeholder="Describe your video"
+          placeholder={descriptionPlaceholder ?? "Describe your video"}
           placeholderTextColor="#9CA3AF"
           multiline
           numberOfLines={4}

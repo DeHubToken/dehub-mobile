@@ -8,6 +8,7 @@ type LoginProvider = string; // Narrow later if you add explicit union
 import env from "./env";
 import { ChainId } from "./constants";
 import { SUPPORTED_NETWORKS, appScheme } from "./web3.constants";
+import { createLogger } from "../libs/logger";
 
 // --- Environment & Constants -------------------------------------------------
 // You can map these to process.env.* (already done in env.ts). Add WEB3AUTH vars there when available.
@@ -70,14 +71,19 @@ let web3auth: any | null = null;
 let isCreating = false;
 let createPromise: Promise<any> | null = null;
 
+const log = createLogger("Web3AuthConfig");
+
 function resolveRedirectUrl(): string {
   try {
     const url = Linking.createURL("auth", {
       scheme: WEB3AUTH_DEEP_LINK_SCHEME,
     });
+    log.debug("resolveRedirectUrl", { url });
     return url;
   } catch {
-    return `${WEB3AUTH_DEEP_LINK_SCHEME}://auth`;
+    const fallback = `${WEB3AUTH_DEEP_LINK_SCHEME}://auth`;
+    log.warn("resolveRedirectUrl:fallback", { fallback });
+    return fallback;
   }
 }
 
@@ -108,7 +114,7 @@ async function getOrCreateInstance() {
   // console.log({ privateKeyProvider });
 
   const redirectUrl = resolveRedirectUrl();
-  // console.log("[Web3Auth] Resolved redirect URL:", redirectUrl);
+  log.debug("resolvedRedirectUrl", { redirectUrl });
   const SdkInitParams = {
     clientId: WEB3AUTH_CLIENT_ID,
     network: WEB3AUTH_NETWORK.SAPPHIRE_MAINNET,
@@ -117,13 +123,14 @@ async function getOrCreateInstance() {
     logLevel: "debug",
     loginConfig: {},
   };
-  // console.log({ SdkInitParams, LOGIN_PROVIDER });
+  log.debug("sdk:init:params", { hasClientId: !!WEB3AUTH_CLIENT_ID });
 
   //   console.log("[DEBUG] SdkInitParams", SdkInitParams);
   // console.log("[DEBUG] Web3Auth class", Web3Auth);
   // console.log("[DEBUG] EthereumPrivateKeyProvider", EthereumPrivateKeyProvider);
   try {
     const instance = new Web3Auth(WebBrowser, SecureStore, SdkInitParams);
+    log.info("sdk:instance:created");
     // createPromise = Promise.resolve(instance);
     // web3auth = await createPromise;
     //   return web3auth;
@@ -158,12 +165,14 @@ export const ensureWeb3AuthReady = async () => {
   if (!isWeb3AuthConfigured()) throw new Error("WEB3AUTH_CLIENT_ID not set");
   if (isInitialized && web3auth) return web3auth;
   try {
+    log.info("sdk:init:start");
     const instance = await getOrCreateInstance();
     await instance.init();
     isInitialized = true;
+    log.info("sdk:init:ready");
     return instance;
   } catch (e: any) {
-    console.error("[Web3Auth] init error", e);
+    log.error("sdk:init:error", e);
     throw e;
   }
 };
@@ -188,7 +197,7 @@ export const deriveAddressFromPrivateKey = (
     const w = new Wallet(normalized);
     return w.address;
   } catch (e) {
-    console.warn("[Web3Auth] derive address failed", e);
+    log.warn("deriveAddressFromPrivateKey:error", e);
     return null;
   }
 };
@@ -202,12 +211,14 @@ export interface Web3AuthLoginResult {
 export const loginWithSocial = async (
   provider: string
 ): Promise<Web3AuthLoginResult> => {
+  log.info("loginWithSocial:start", { provider });
   const instance = await ensureWeb3AuthReady();
   // Re-evaluate mapping after instance created (enums now attached)
   const mapped =
     (LOGIN_PROVIDER as any)?.[provider?.toUpperCase?.()] ||
     LOGIN_PROVIDER_MAP[provider] ||
     provider;
+  log.debug("loginWithSocial:mapped", { provider, mapped });
   try {
     const beforeState = {
       privKeyPresent: false,
@@ -218,6 +229,7 @@ export const loginWithSocial = async (
       redirectUrl: resolveRedirectUrl(),
       curve: "secp256k1",
     });
+    log.info("loginWithSocial:web3auth:logged-in");
 
     const userInfo = (instance as any).userInfo
       ? (instance as any).userInfo()
@@ -229,12 +241,17 @@ export const loginWithSocial = async (
     const privKey = await web3provider?.request({
       method: "private_key",
     });
+    const maskedAddress = deriveAddressFromPrivateKey(privKey as string);
+    log.info("loginWithSocial:session", {
+      addr: maskedAddress ? `${maskedAddress.slice(0, 6)}...${maskedAddress.slice(-4)}` : null,
+      hasPrivKey: !!privKey,
+      userInfoPresent: !!userInfo,
+    });
 
-    const address = deriveAddressFromPrivateKey(privKey as string);
-    console.log("[Web3AuthConfig]", { address, privateKey: privKey, userInfo, provider: web3provider });
+    const address = maskedAddress;
     return { address, privateKey: privKey, userInfo, provider: web3provider };
   } catch (e: any) {
-    console.error("[Web3Auth] social login error", e);
+    log.error("loginWithSocial:error", e);
     // Surface raw message but keep generic fallback
     throw new Error(e?.message || "Web3Auth social login failed");
   }
@@ -258,8 +275,9 @@ export const logoutWeb3Auth = async () => {
   if (!isInitialized || !web3auth) return;
   try {
     await web3auth.logout();
+    log.info("logout:ok");
   } catch (e) {
-    console.warn("[Web3Auth] logout warning", e);
+    log.warn("logout:warning", e);
   }
 };
 
@@ -268,9 +286,10 @@ export const prewarmWeb3Auth = async () => {
   if (isInitialized || !isWeb3AuthConfigured()) return;
   try {
     await ensureWeb3AuthReady();
+    log.debug("prewarm:ok");
   } catch (e) {
     // Non-fatal: just log
-    console.warn("[Web3Auth] prewarm failed", e);
+    log.warn("prewarm:failed", e);
   }
 };
 

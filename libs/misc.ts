@@ -1,12 +1,14 @@
 import env from "../config/env";
 import { Share, Platform } from "react-native";
 
-// Simple helpers that just prepend the configured CDN base URL.
-
 export function getAvatarUrl(url: string | undefined | null): string {
   if (!url) return "default-avatar"; // handled by Image source resolver with local asset mapping
   const fileName = url.split("/").pop();
-  return `${env.CDN_BASE_URL}/avatars/${fileName}`;
+  const base = `${env.CDN_BASE_URL}/avatars/${fileName}`;
+  // TODO: Remove this cache busting mechanism later
+  const perHalfHourKey  = Math.floor(Date.now() / (30 * 60 * 1000));
+  const join = base.includes("?") ? "&" : "?";
+  return `${base}${join}v=${perHalfHourKey}`;
 }
 
 export function getCoverUrl(url: string | undefined | null): string {

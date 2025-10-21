@@ -42,6 +42,7 @@ interface UserProfileBottomSheetProps {
   visible: boolean;
   onClose: () => void;
   usernameOrAddress?: string | null;
+  initialHeightPct?: number; // 0..1 of screen height; overrides default mid height when provided
 }
 
 interface RemoteUser {
@@ -63,7 +64,7 @@ const FallbackAvatar = require("../../assets/default-avatar.png");
 const FallbackBanner = require("../../assets/banner.png");
 
 const WIN_HEIGHT = Dimensions.get("window").height;
-const MIN_HEIGHT = Math.round(WIN_HEIGHT * 0.5);
+const MIN_HEIGHT = Math.round(WIN_HEIGHT * 0.3); // allow 30% minimal snap for compact open
 const MID_HEIGHT = Math.round(WIN_HEIGHT * 0.7);
 const MAX_HEIGHT = Math.round(WIN_HEIGHT * 0.85);
 const SNAP_POINTS = [MIN_HEIGHT, MID_HEIGHT, MAX_HEIGHT];
@@ -72,6 +73,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   visible,
   onClose,
   usernameOrAddress,
+  initialHeightPct,
 }) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<RemoteUser | null>(null);
@@ -93,7 +95,13 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     []
   );
   const navigation = useNavigation<any>();
-  const heightAnim = useRef(new Animated.Value(MID_HEIGHT)).current;
+  const initialHeight = useMemo(() => {
+    if (typeof initialHeightPct === 'number' && initialHeightPct > 0 && initialHeightPct <= 1) {
+      return Math.round(WIN_HEIGHT * initialHeightPct);
+    }
+    return MID_HEIGHT;
+  }, [initialHeightPct]);
+  const heightAnim = useRef(new Animated.Value(initialHeight)).current;
   const currentHeightRef = useRef(MID_HEIGHT);
   const startHeightRef = useRef(MID_HEIGHT);
   const { requireAuth, user: authUser, patchUser } = useAuth() as any;
@@ -143,9 +151,19 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
 
   useEffect(() => {
     if (visible && usernameOrAddress) {
+      // If the requested profile is the current user, redirect to Profile screen
+      try {
+        const meAddr = (authUser?.walletAddress || authUser?.address || '').toLowerCase();
+        const target = (usernameOrAddress || '').toLowerCase();
+        if (meAddr && (target === meAddr)) {
+          onClose?.();
+          (navigation as any).navigate?.(ScreenNames.Profile as never);
+          return;
+        }
+      } catch {}
       // Immediately reset state to avoid flashing previous data
       setContentReady(false);
-      heightAnim.setValue(MID_HEIGHT);
+      heightAnim.setValue(initialHeight);
       load(usernameOrAddress);
     }
     if (!visible) {
