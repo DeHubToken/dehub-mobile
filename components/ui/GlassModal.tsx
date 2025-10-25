@@ -22,6 +22,8 @@ export interface GlassModalProps {
   backdropScope?: "full" | "panel";
   panelHeight?: number | Animated.Value;
   wrapPanel?: boolean;
+  // When false, disable closing via backdrop press and Android back button
+  dismissible?: boolean;
 }
 
 /**
@@ -40,13 +42,15 @@ const GlassModal: React.FC<GlassModalProps> = ({
   backdropScope = "panel",
   panelHeight,
   wrapPanel = true,
+  dismissible = true,
 }) => {
   return (
     <Modal
       visible={visible}
       transparent
       animationType="fade"
-      onRequestClose={onClose}
+      // Prevent Android back button from closing when not dismissible
+      onRequestClose={dismissible ? onClose : () => {}}
       statusBarTranslucent
       hardwareAccelerated
     >
@@ -54,7 +58,13 @@ const GlassModal: React.FC<GlassModalProps> = ({
         {/* Backdrop */}
         {/* Default: non-blurred dim backdrop; no full-screen blur */}
         {backdropScope === "full" ? (
-          <TouchableOpacity activeOpacity={1} onPress={onClose} style={StyleSheet.absoluteFill}>
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => {
+              if (dismissible) onClose();
+            }}
+            style={StyleSheet.absoluteFill}
+          >
             <BlurView
               intensity={blurIntensity}
               tint={blurTint}
@@ -64,7 +74,13 @@ const GlassModal: React.FC<GlassModalProps> = ({
             <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.25)" }} />
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity activeOpacity={1} onPress={onClose} style={StyleSheet.absoluteFill}>
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => {
+              if (dismissible) onClose();
+            }}
+            style={StyleSheet.absoluteFill}
+          >
             <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.35)" }} />
           </TouchableOpacity>
         )}

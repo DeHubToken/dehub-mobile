@@ -46,7 +46,7 @@ export const AuthService = {
         return { user: augmentedUser, token: response.token, needsUsername };
       }
       await setAuthToken(response.token);
-      await setAuthUser(augmentedUser);
+      // await setAuthUser(augmentedUser);
       return {
         user: augmentedUser,
         token: response.token,

@@ -3,6 +3,7 @@ import {
   API_URL,
   APP_ENV,
   INFURA_KEY,
+  ALCHEMY_API_KEY,
   WEB3AUTH_CLIENT_ID,
   CDN_BASE_URL,
   APP_ORIGIN,
@@ -15,9 +16,11 @@ import { createLogger } from "../libs/logger";
 
 const env = {
   REOWN_PROJECT_ID: REOWN_PROJECT_ID,
-  API_URL: API_URL,
+  // API_URL: API_URL,
+  API_URL: "http://192.168.1.233:9015/api",
   APP_ENV: APP_ENV || "development",
   INFURA_KEY: INFURA_KEY,
+  ALCHEMY_API_KEY: ALCHEMY_API_KEY,
   WEB3AUTH_CLIENT_ID: WEB3AUTH_CLIENT_ID,
   CDN_BASE_URL: CDN_BASE_URL,
   APP_ORIGIN: APP_ORIGIN || "https://dehub.io",
@@ -28,6 +31,6 @@ const env = {
   AUTH_PROVIDER: AUTH_PROVIDER,
 };
 
-// const log = createLogger('env');
-// log.debug('REOWN_PROJECT_ID:', REOWN_PROJECT_ID);
+const log = createLogger('env');
+log.debug('API_URL:', API_URL);
 export default env;

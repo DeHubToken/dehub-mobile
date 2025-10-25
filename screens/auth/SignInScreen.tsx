@@ -27,6 +27,7 @@ import {
 import { ChainId } from "../../config/constants";
 import FullScreenLoader from "../../components/FullScreenLoader";
 import SocialLoginIcons from "../../components/auth/SocialLoginIcons";
+import ImportWallet from "../../components/auth/ImportWallet";
 import { openInApp } from "../../libs/links.utils";
 import { TERMS_OF_SERVICE_LINK, PRIVACY_POLICY_LINK } from "../../config/links";
 
@@ -176,6 +177,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           busyProvider={isLocalLoading ? currentProvider : undefined}
           disabled={isLocalLoading}
         />
+
+        {/* Import external wallet (shared component) */}
+        <ImportWallet />
 
         <View className="mt-6">
           <Text className="text-gray-500 text-xs text-center">

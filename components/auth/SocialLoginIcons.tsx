@@ -3,7 +3,7 @@ import { View, TouchableOpacity, ActivityIndicator } from "react-native";
 import { SvgXml } from "react-native-svg";
 
 // Explicitly define supported providers (keys must match the provider id used by Web3Auth config)
-export type SocialProvider = "google" | "twitter";
+export type SocialProvider = "google" | "twitter" | "discord";
 
 interface SocialLoginIconsProps {
   onPress: (provider: SocialProvider) => void;
@@ -26,16 +26,23 @@ const X_ICON = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' aria
   </g>
 </svg>`;
 
+const DISCORD_ICON = `<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+  <g transform='translate(12 12) scale(1.35) translate(-12 -12)'>
+    <path fill='#FFFFFF' d='M18.59 5.89C17.36 5.32 16.05 4.9 14.67 4.66c-.17.3-.37.71-.5 1.04a12.09 12.09 0 0 0-4.34 0c-.14-.33-.34-.74-.5-1.04A15.38 15.38 0 0 0 5.4 5.89c-2.48 3.74-3.16 7.39-2.82 10.98 1.65 1.23 3.25 1.97 4.81 2.48.39-.53.73-1.09 1.03-1.69-.56-.2-1.09-.45-1.6-.75.14-.11.27-.22.4-.33 3.13 1.46 6.51 1.46 9.6 0 .13.11.26.22.4.33-.5.3-1.04.55-1.6.75.3.6.64 1.16 1.03 1.69 1.56-.51 3.16-1.25 4.82-2.48.37-4.17-.68-7.78-2.83-10.98ZM8.84 14.67a1.95 1.95 0 1 1 0-3.88 1.95 1.95 0 0 1 0 3.88Zm6.31 0a1.95 1.95 0 1 1 0-3.88 1.95 1.95 0 0 1 0 3.88Z'/>
+  </g>
+</svg>`;
+
 const ICON_MAP: Record<SocialProvider, string> = {
   google: GOOGLE_ICON,
   twitter: X_ICON,
+  discord: DISCORD_ICON,
 };
 
 export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   onPress,
   busyProvider,
   disabled,
-  providers = ["google", "twitter"],
+  providers = ["google", "twitter", "discord"],
 }) => {
   const items = useMemo(
     () => providers.filter((p) => ICON_MAP[p]),
@@ -43,15 +50,19 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   );
 
   return (
-  <View className="flex-row justify-center flex-wrap mt-4">
+    <View className="flex-row justify-center flex-wrap mt-2">
       {items.map((provider) => {
         const busy = !!busyProvider && busyProvider === provider;
         return (
           <TouchableOpacity
             key={provider}
-            accessibilityLabel={`Sign in with ${provider === "twitter" ? "X" : "Google"}`}
+            accessibilityLabel={`Sign in with ${
+              provider === "twitter" ? "X" : "Google"
+            }`}
             accessibilityRole="button"
-      className={`border border-gray-600 bg-transparent rounded-lg m-2 w-14 h-14 items-center justify-center ${disabled ? "opacity-50" : ""}`}
+            className={`border border-gray-600 bg-transparent rounded-lg m-2 w-14 h-14 items-center justify-center ${
+              disabled ? "opacity-50" : ""
+            }`}
             disabled={disabled}
             onPress={() => onPress(provider)}
           >

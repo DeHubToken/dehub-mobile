@@ -75,7 +75,6 @@ const TransferModal: React.FC<TransferModalProps> = ({
   const balance = (user?.tokenBalances?.DHB ?? 0) as number;
   const numericAmount = Number(amount) || 0;
   const insufficient = numericAmount > balance;
-
   // Debounced user search
   const performSearch = useCallback(
     async (text: string) => {
