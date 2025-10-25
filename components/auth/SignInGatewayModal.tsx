@@ -13,6 +13,7 @@ import { useAuth } from "../../context/AuthContext";
 import FullScreenLoader from "../FullScreenLoader";
 import { toastError } from "../../libs";
 import SocialLoginIcons from "./SocialLoginIcons";
+import ImportWallet from "./ImportWallet";
 import { openInApp } from "../../libs/links.utils";
 import { TERMS_OF_SERVICE_LINK, PRIVACY_POLICY_LINK } from "../../config/links";
 
@@ -30,6 +31,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   const { signInWithWallet, needsUsername, isLoading: authLoading } = useAuth();
   const [isLocalLoading, setIsLocalLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
+  const isBusy = (authLoading || isLocalLoading) && !needsUsername;
 
   const handleSocialLogin = useCallback(
     async (provider: string) => {
@@ -70,9 +72,11 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       onClose={onClose}
       presentation="bottom"
       blurIntensity={50}
+      // Block closing while sign-in is in progress
+      dismissible={!isBusy}
     >
-      <SafeAreaView className="max-h-[88%]">
-        {(authLoading || isLocalLoading) && !needsUsername && (
+      <SafeAreaView className="max-h-[98%]">
+        {isBusy && (
           <FullScreenLoader message="Signing you in…" />
         )}
         <TouchableOpacity
@@ -103,6 +107,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
             busyProvider={isLocalLoading ? currentProvider : undefined}
             disabled={isLocalLoading}
           />
+          <ImportWallet />
           <View className="mt-6 mb-4">
             <Text className="text-gray-500 text-[11px] text-center">
               By continuing, you agree to our{" "}

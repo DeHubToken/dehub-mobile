@@ -99,7 +99,7 @@ export class WebSocketClient {
 
     // Optional: observe server-sent heartbeat event if any
     this.socket.on("heartbeat", (data: any) => {
-      this.log("heartbeat <- recv", data);
+      // this.log("heartbeat <- recv", data);
       this.emitInternal("heartbeat", data);
     });
 
@@ -181,7 +181,7 @@ export class WebSocketClient {
     // @ts-ignore
     this.socket.io.on("ping", () => {
       this.lastIoPingAt = Date.now();
-      this.log("io ping");
+      // this.log("io ping");
     });
     // @ts-ignore
     this.socket.io.on("pong", (ms: number) => {
@@ -212,8 +212,8 @@ export class WebSocketClient {
     // Also attach onAny to debug any unexpected event names from the server.
     try {
       this.socket.onAny((event: string, ...args: any[]) => {
-        try { console.log('[ws][onAny] <-', event, args?.[0]); } catch {}
-        this.log('[onAny] <-', event, args?.[0]);
+        // try { console.log('[ws][onAny] <-', event, args?.[0]); } catch {}
+        // this.log('[onAny] <-', event, args?.[0]);
         if (!allowlist.has(event)) {
           const payload = args && args.length === 1 ? args[0] : (args?.length ? args : undefined);
           this.emitInternal(event, payload);
@@ -263,7 +263,7 @@ export class WebSocketClient {
     // Match frontend: emit 'heartbeat' every ~10s by default; respect configured interval
     this.heartbeatTimer = setInterval(() => {
       if (this.socket?.connected) {
-        this.log("heartbeat -> emit", new Date().toISOString());
+        // this.log("heartbeat -> emit", new Date().toISOString());
         this.socket.emit("heartbeat");
       }
     }, Math.max(10000, this.opts.heartbeatIntervalMs));
@@ -300,10 +300,9 @@ export class WebSocketClient {
       return;
     }
     const ts = Date.now();
-    this.log("pingCheck -> emit 'ping'", { ts, timeoutMs });
+    // this.log("pingCheck -> emit 'ping'", { ts, timeoutMs });
     const sAny: any = this.socket as any;
     return new Promise<void>((resolve) => {
-      // Prefer Socket.IO timeout helper if available
       if (typeof sAny.timeout === "function") {
         try {
           sAny

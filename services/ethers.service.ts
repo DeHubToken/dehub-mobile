@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
-import { supportedTokens, ChainId } from "../config/constants";
+import { supportedTokens, ChainId, MULTICALL2_ADDRESSES } from "../config/constants";
+import { createLogger } from "../libs/logger";
 
 // Simple JSON RPC endpoints (could be moved to env)
 const RPC_ENDPOINTS: Record<number, string> = {
@@ -17,6 +18,20 @@ const ERC20_ABI = [
 
 export class EthersService {
   private providers: Map<number, ethers.providers.JsonRpcProvider> = new Map();
+  private log = createLogger("EthersService");
+
+  private getMulticallContract(chainId: number) {
+    const addr = MULTICALL2_ADDRESSES[chainId];
+    if (!addr) return null;
+    const provider = this.getProvider(chainId);
+    // Use require to avoid TS JSON module config constraints
+    const multicallAbi = require("../config/abis/multicall.json");
+    return new ethers.Contract(addr, multicallAbi, provider);
+  }
+
+  private erc20Iface = new ethers.utils.Interface([
+    "function balanceOf(address owner) view returns (uint256)",
+  ]);
 
   getProvider(chainId: number) {
     if (!this.providers.has(chainId)) {
@@ -50,24 +65,125 @@ export class EthersService {
     );
     const balances: Record<string, number> = {};
     const provider = this.getProvider(chainId);
-    const native = await provider
-      .getBalance(address)
-      .catch(() => ethers.BigNumber.from(0));
-    // Treat native as ETH/WETH alias for display (use ETH key)
+    // Try multicall fast-path first
     try {
+      const mc = this.getMulticallContract(chainId);
+      if (mc) {
+        const t0 = Date.now();
+        const calls: { target: string; callData: string }[] = [];
+        // getEthBalance via multicall helper
+        try {
+          const mcIface = mc.interface as ethers.utils.Interface;
+          const data = mcIface.encodeFunctionData("getEthBalance", [address]);
+          calls.push({ target: mc.address, callData: data });
+        } catch {}
+        // ERC20 balanceOf calls
+        for (const t of tokens) {
+          try {
+            const data = this.erc20Iface.encodeFunctionData("balanceOf", [
+              address,
+            ]);
+            calls.push({ target: t.address, callData: data });
+          } catch {}
+        }
+        if (calls.length > 0) {
+          const res: any[] = await mc.tryAggregate(false, calls);
+          let idx = 0;
+          // Native
+          if (res.length > 0) {
+            try {
+              const nativeReturn = res[idx++];
+              const ok = nativeReturn?.success;
+              const ret: string = nativeReturn?.returnData;
+              if (ok && ret) {
+                const mcIface = mc.interface as ethers.utils.Interface;
+                const decoded = mcIface.decodeFunctionResult(
+                  "getEthBalance",
+                  ret
+                );
+                const eth = decoded?.[0] as ethers.BigNumber;
+                balances["ETH"] = parseFloat(ethers.utils.formatEther(eth));
+              } else {
+                const fallback = await provider
+                  .getBalance(address)
+                  .catch(() => ethers.BigNumber.from(0));
+                balances["ETH"] = parseFloat(
+                  ethers.utils.formatEther(fallback)
+                );
+              }
+            } catch {
+              const fallback = await provider
+                .getBalance(address)
+                .catch(() => ethers.BigNumber.from(0));
+              balances["ETH"] = parseFloat(
+                ethers.utils.formatEther(fallback)
+              );
+            }
+          }
+          // Tokens
+          for (const t of tokens) {
+            try {
+              const r = res[idx++];
+              if (r?.success && r?.returnData) {
+                const [raw] = this.erc20Iface.decodeFunctionResult(
+                  "balanceOf",
+                  r.returnData
+                );
+                const val = parseFloat(
+                  ethers.utils.formatUnits(raw as ethers.BigNumber, t.decimals)
+                );
+                balances[t.symbol] = val;
+              } else {
+                balances[t.symbol] = 0;
+              }
+            } catch (e) {
+              balances[t.symbol] = 0;
+            }
+          }
+          this.log.debug("balances:multicall:done", {
+            totalMs: Date.now() - t0,
+            count: tokens.length + 1,
+          });
+          return balances;
+        }
+      }
+    } catch (e) {
+      this.log.warn("balances:multicall:error", e);
+    }
+    const t0 = Date.now();
+    // Native balance timing
+    try {
+      const tNative = Date.now();
+      const native = await provider
+        .getBalance(address)
+        .catch(() => ethers.BigNumber.from(0));
       balances["ETH"] = parseFloat(ethers.utils.formatEther(native));
+      this.log.debug("balances:native", {
+        chainId,
+        ms: Date.now() - tNative,
+      });
     } catch {
       balances["ETH"] = 0;
     }
-    for (const t of tokens) {
-      try {
-        const raw = await this.getErc20Balance(t.address, address, chainId);
-        const val = parseFloat(ethers.utils.formatUnits(raw, t.decimals));
-        balances[t.symbol] = val;
-      } catch {
-        balances[t.symbol] = 0;
-      }
-    }
+    // ERC-20 balances in parallel with per-token timing
+    await Promise.all(
+      tokens.map(async (t) => {
+        const tTok = Date.now();
+        try {
+          const raw = await this.getErc20Balance(t.address, address, chainId);
+          const val = parseFloat(ethers.utils.formatUnits(raw, t.decimals));
+          balances[t.symbol] = val;
+          this.log.debug("balances:token", {
+            symbol: t.symbol,
+            ms: Date.now() - tTok,
+          });
+        } catch (e) {
+          balances[t.symbol] = 0;
+          this.log.warn("balances:token:error", { symbol: t.symbol, e });
+        }
+      })
+    );
+    this.log.debug("balances:all:done", { totalMs: Date.now() - t0 });
     return balances;
   }
 

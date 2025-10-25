@@ -8,7 +8,8 @@ export function getAvatarUrl(url: string | undefined | null): string {
   // TODO: Remove this cache busting mechanism later
   const perHalfHourKey  = Math.floor(Date.now() / (30 * 60 * 1000));
   const join = base.includes("?") ? "&" : "?";
-  return `${base}${join}v=${perHalfHourKey}`;
+  // return `${base}${join}v=${perHalfHourKey}`;
+  return `${base}`;
 }
 
 export function getCoverUrl(url: string | undefined | null): string {

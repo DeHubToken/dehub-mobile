@@ -77,7 +77,7 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         getAuthToken,
         getAddress,
         autoConnect: true,
-        debug: !!env.DEBUG,
+        // debug: !!env.DEBUG,
       });
       clientRef.current.on('connect_error', (err: any) => {
         log.warn('connect_error', { url, message: err?.message, stack: err?.stack });

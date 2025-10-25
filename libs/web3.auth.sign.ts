@@ -1,4 +1,5 @@
 import { web3AuthService } from '../services/web3auth.service';
+import { getSigningProvider } from './provider.registry';
 import { getAuthUser, setAuthUser } from './auth.utils';
 
 export interface StoredSignatureMeta {
@@ -19,7 +20,7 @@ function isSignatureValid(meta: StoredSignatureMeta | undefined, address: string
 }
 
 // Retrieve signature info; if missing/expired prompts new personal sign via Web3Auth
-export async function getOrCreateAuthSignature(address: string): Promise<StoredSignatureMeta> {
+export async function getOrCreateAuthSignature(address: string, provider?: any): Promise<StoredSignatureMeta> {
   // We can stash it inside stored user (if matches) or request a fresh one.
   let existingUser = await getAuthUser<any>();
   const existingSig: StoredSignatureMeta | undefined = existingUser?.authSignature;
@@ -30,7 +31,20 @@ export async function getOrCreateAuthSignature(address: string): Promise<StoredS
 
   const timestamp = Math.floor(Date.now() / 1000);
   const message = generateSignMessage(address, timestamp, true);
-  const signature = await web3AuthService.signPersonalMessage(message, address);
+  // Prefer an injected EIP-1193 provider (local private key) if available
+  const injected = provider || getSigningProvider();
+  let signature: string;
+  if (injected && typeof injected.request === 'function') {
+    try {
+      // EIP-1193 personal_sign usually expects params [data, address]
+      signature = await injected.request({ method: 'personal_sign', params: [message, address] });
+    } catch (e1) {
+      // Fallback param order [address, data]
+      signature = await injected.request({ method: 'personal_sign', params: [address, message] });
+    }
+  } else {
+    signature = await web3AuthService.signPersonalMessage(message, address);
+  }
 
   const meta: StoredSignatureMeta = { address, signature, timestamp };
 

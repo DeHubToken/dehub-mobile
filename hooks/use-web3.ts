@@ -44,7 +44,10 @@ async function buildContract(
       throw new Error(`Invalid contract address: ${address}`);
     if (!abi) throw new Error("ABI is missing");
 
-    const { signerOrProvider } = await deriveSignerOrProvider(provider, withSigner);
+    const { signerOrProvider } = await deriveSignerOrProvider(
+      provider,
+      withSigner
+    );
     const contract = new ethers.Contract(address, abi, signerOrProvider);
     return contract;
   } catch (err) {
@@ -54,78 +57,132 @@ async function buildContract(
 }
 
 /**
- * Try to derive an ethers Signer from an EIP-1193 provider. Logs detailed diagnostics on failure.
+ * Try to derive an ethers Signer the "former" simple way first (Web3Provider + getSigner()),
+ * only falling back to provider-specific/local logic if that fails. Verbose logs at each step.
  */
 async function deriveSignerOrProvider(eip1193: any, withSigner: boolean) {
+  const logPrefix = "[use-web3][derive]";
   try {
+    // Fast-path: if we were given an ethers Signer or Provider directly, just return it
+    if ((eip1193 as any)?._isSigner) {
+      console.log(`${logPrefix} detected ethers Signer; returning as-is`);
+      return { signerOrProvider: eip1193 };
+    }
+    if ((eip1193 as any)?._isProvider) {
+      console.log(`${logPrefix} detected ethers Provider; returning as-is`);
+      if (!withSigner) return { signerOrProvider: eip1193 };
+      // If a signer was requested but only a provider was provided, proceed with normal flow below
+    }
     const hasRequest = typeof eip1193?.request === "function";
-    if (!hasRequest) {
-      console.warn("[use-web3] Provider missing request() method", { keys: Object.keys(eip1193 || {}) });
-      throw new Error("Provider missing request method");
-    }
+    console.log(`${logPrefix} start`, {
+      hasRequest,
+      providerKeys: Object.keys(eip1193 || {}),
+      withSigner,
+    });
 
-    // First, get the accounts to ensure the provider is properly connected
-    let accounts: string[] = [];
-    try {
-      accounts = await eip1193.request({ method: "eth_accounts" });
-      // console.log("[use-web3] Retrieved accounts:", accounts);
-    } catch (e) {
-      console.warn("[use-web3] Failed to get accounts:", e);
-      // Try alternative method for Web3Auth
-      try {
-        const privateKey = await eip1193.request({ method: "private_key" });
-        if (privateKey) {
-          // Derive address from private key
-          const wallet = new ethers.Wallet(privateKey);
-          accounts = [wallet.address];
-          // console.log("[use-web3] Derived address from private key:", accounts[0]);
-        }
-      } catch (pkError) {
-        console.warn("[use-web3] Failed to get private key:", pkError);
-      }
-    }
+    if (!eip1193) throw new Error("Missing EIP-1193 provider instance");
 
-    if (!accounts || accounts.length === 0) {
-      throw new Error("No accounts available from provider");
-    }
-
-    // Create the ethers provider
+    // Step 1: Create ethers Web3Provider
     const ethProvider = new ethers.providers.Web3Provider(eip1193 as any);
-    
+    console.log(`${logPrefix} created Web3Provider`);
     if (!withSigner) {
+      console.log(`${logPrefix} returning provider only (withSigner=false)`);
       return { signerOrProvider: ethProvider };
     }
 
-    // Get signer and verify it has an address
-    const signer = ethProvider.getSigner();
-    
+    // Attempt A: Former/simple path — use default getSigner()
     try {
-      // Force the address to be the first account we retrieved
-      const signerWithAddress = signer.connect(ethProvider);
-      
-      // Verify we can get the address
-      const addr = await signerWithAddress.getAddress();
-      // console.log("[use-web3] Signer verified with address:", addr);
-      
-      return { signerOrProvider: signerWithAddress };
-    } catch (addressError) {
-      console.warn("[use-web3] Signer address verification failed:", addressError);
-      
-      // Fallback: create signer directly from private key
+      const signerA = ethProvider.getSigner();
+      const addrA = await signerA.getAddress();
+      console.log(`${logPrefix} getSigner() success`, { address: addrA });
+      return { signerOrProvider: signerA };
+    } catch (eA) {
+      console.warn(`${logPrefix} getSigner() failed`, eA);
+    }
+
+    // Attempt B: Query eth_accounts then bind signer to first account
+    let accounts: string[] = [];
+    if (hasRequest) {
+      try {
+        const res = await eip1193.request({ method: "eth_accounts" });
+        if (Array.isArray(res)) accounts = res as string[];
+        console.log(`${logPrefix} eth_accounts`, {
+          count: accounts.length,
+          first: accounts[0],
+        });
+      } catch (eB1) {
+        console.warn(`${logPrefix} eth_accounts failed`, eB1);
+      }
+    } else {
+      console.warn(`${logPrefix} provider has no request(); skipping eth_accounts`);
+    }
+
+    if (accounts.length > 0) {
+      try {
+        const signerB = ethProvider.getSigner(accounts[0]);
+        const addrB = await signerB.getAddress();
+        console.log(`${logPrefix} getSigner(account[0]) success`, {
+          address: addrB,
+        });
+        return { signerOrProvider: signerB };
+      } catch (eB2) {
+        console.warn(`${logPrefix} getSigner(account[0]) failed`, eB2);
+      }
+    } else {
+      console.warn(`${logPrefix} no accounts from eth_accounts`);
+    }
+
+    // Attempt C: Some providers require explicit authorization
+    if (hasRequest) {
+      try {
+        const req = await eip1193.request({ method: "eth_requestAccounts" });
+        const reqAccounts = Array.isArray(req) ? (req as string[]) : [];
+        console.log(`${logPrefix} eth_requestAccounts`, {
+          count: reqAccounts.length,
+          first: reqAccounts[0],
+        });
+        if (reqAccounts.length > 0) {
+          try {
+            const signerC = ethProvider.getSigner(reqAccounts[0]);
+            const addrC = await signerC.getAddress();
+            console.log(`${logPrefix} getSigner(requested[0]) success`, {
+              address: addrC,
+            });
+            return { signerOrProvider: signerC };
+          } catch (eC2) {
+            console.warn(`${logPrefix} getSigner(requested[0]) failed`, eC2);
+          }
+        }
+      } catch (eC1) {
+        console.warn(`${logPrefix} eth_requestAccounts failed`, eC1);
+      }
+    }
+
+    // Attempt D (local-provider specific): request private key and construct a Wallet signer
+    if (hasRequest) {
       try {
         const privateKey = await eip1193.request({ method: "private_key" });
         if (privateKey) {
-          const directSigner = new ethers.Wallet(privateKey, ethProvider);
-          // console.log("[use-web3] Created direct signer with address:", directSigner.address);
-          return { signerOrProvider: directSigner };
+          const signerD = new ethers.Wallet(privateKey, ethProvider);
+          const addrD = await signerD.getAddress();
+          console.log(`${logPrefix} local fallback via private_key success`, {
+            address: addrD,
+          });
+          return { signerOrProvider: signerD };
+        } else {
+          console.warn(`${logPrefix} private_key returned empty value`);
         }
-      } catch (pkError) {
-        console.error("[use-web3] Failed to create direct signer:", pkError);
+      } catch (eD) {
+        console.warn(`${logPrefix} private_key fallback failed`, eD);
       }
-      
-      throw addressError;
     }
-    
+
+    // Out of options — throw with context
+    const error = new Error(
+      "Unable to derive signer: default getSigner + accounts + requestAccounts + local fallback all failed"
+    );
+    console.error(`${logPrefix} final failure`, error);
+    throw error;
   } catch (e) {
     console.error("[use-web3] Failed to derive signer from provider", {
       hasRequest: typeof eip1193?.request === "function",
@@ -148,6 +205,7 @@ function useEthersContract({
 
 export function useERC20Contract(tokenAddress?: string) {
   const { provider } = useWeb3Provider();
+  console.log({provider})
   const [contract, setContract] = useState<any>();
   useEffect(() => {
     if (!provider || !tokenAddress) {

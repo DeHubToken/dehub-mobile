@@ -13,7 +13,7 @@ import { formatCompactNumber } from "../../libs/numbers.util";
 import TransferModal from "../Transfer/TransferModal";
 
 const ProfileAssets = () => {
-  const { user } = useAuth();
+  const { user, balancesLoading } = useAuth();
   const [showDHBOptions, setShowDHBOptions] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
 
@@ -99,9 +99,13 @@ const ProfileAssets = () => {
                 />
               )}
             </TouchableOpacity>
-            <Text className="text-lg text-gray-300">
-              {formatCompactNumber(Number(asset.balance || 0))}
-            </Text>
+            {balancesLoading ? (
+              <View className="w-14 h-4 rounded bg-theme-neutrals-700 animate-pulse" />
+            ) : (
+              <Text className="text-lg text-gray-300">
+                {formatCompactNumber(Number(asset.balance || 0))}
+              </Text>
+            )}
           </View>
 
           {asset.hasActions && showDHBOptions && (
