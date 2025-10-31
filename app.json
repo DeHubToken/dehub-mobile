@@ -39,6 +39,7 @@
       "package": "io.dehub.mobile",
       "compileSdkVersion": 35,
       "targetSdkVersion": 35,
+      "softwareKeyboardLayoutMode": "resize",
       "permissions": [
         "CAMERA",
         "RECORD_AUDIO"

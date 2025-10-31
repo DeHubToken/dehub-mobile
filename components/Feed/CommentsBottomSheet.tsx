@@ -9,7 +9,6 @@ import {
   PanResponder,
   Dimensions,
   KeyboardAvoidingView,
-  Platform,
   Pressable,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -225,6 +224,7 @@ const CommentsBottomSheet: React.FC<Props> = ({
       animationType="slide"
       onRequestClose={onClose}
     >
+      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
       <View className="flex-1 justify-end bg-black/50">
         {/* Tap outside to close */}
         <Pressable onPress={onClose} className="absolute inset-0" />
@@ -281,11 +281,7 @@ const CommentsBottomSheet: React.FC<Props> = ({
           )}
 
           {/* Input */}
-          <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : undefined}
-            keyboardVerticalOffset={Platform.OS === "ios" ? 12 : 0}
-            style={{ paddingBottom: kbVisible ? kbHeight + 10 : 0 }}
-          >
+          <View style={{ paddingBottom: kbVisible ? kbHeight + 10 : 0 }}>
             <CommentInput
               ref={inputRef}
               onSend={handleSend}
@@ -294,9 +290,10 @@ const CommentsBottomSheet: React.FC<Props> = ({
               replyToLabel={replyToLabel}
               onCancelReply={() => setReplyTo(null)}
             />
-          </KeyboardAvoidingView>
+          </View>
         </Animated.View>
       </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };

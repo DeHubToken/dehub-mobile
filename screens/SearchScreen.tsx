@@ -6,6 +6,8 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -245,29 +247,35 @@ const SearchScreen: FC = () => {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title="Search" />
-      <View className="px-4">
-        <View className="flex-row items-center bg-theme-neutrals-800 rounded-full px-3 py-2">
-          <TextInput
-            className="flex-1 text-white px-2 py-1"
-            placeholder="Search DeHub"
-            placeholderTextColor="#9CA3AF"
-            value={searchQuery}
-            onChangeText={setSearchQuery}
-            onSubmitEditing={handleSearch}
-            autoFocus
-            returnKeyType="search"
-          />
-          <TouchableOpacity
-            accessibilityRole="button"
-            className="w-9 h-9 rounded-full bg-theme-neutrals-700 items-center justify-center ml-2 active:opacity-80"
-            onPress={handleSearch}
-            disabled={loading}
-          >
-            <Ionicons name="search" size={18} color="#E5E7EB" />
-          </TouchableOpacity>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+      >
+        <View className="px-4">
+          <View className="flex-row items-center bg-theme-neutrals-800 rounded-full px-3 py-2">
+            <TextInput
+              className="flex-1 text-white px-2 py-1"
+              placeholder="Search DeHub"
+              placeholderTextColor="#9CA3AF"
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+              onSubmitEditing={handleSearch}
+              autoFocus
+              returnKeyType="search"
+            />
+            <TouchableOpacity
+              accessibilityRole="button"
+              className="w-9 h-9 rounded-full bg-theme-neutrals-700 items-center justify-center ml-2 active:opacity-80"
+              onPress={handleSearch}
+              disabled={loading}
+            >
+              <Ionicons name="search" size={18} color="#E5E7EB" />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-      {getContentToRender()}
+        {getContentToRender()}
+      </KeyboardAvoidingView>
     </View>
   );
 };

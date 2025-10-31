@@ -4,13 +4,13 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  ActivityIndicator,
   Linking,
   Platform,
+  ActivityIndicator,
 } from "react-native";
 import { useAuth } from "../context/AuthContext";
 import { ScreenNames } from "../navigation/ScreenNames";
-import { toastSuccess, toastError, toastInfo } from "../libs";
+import { toastSuccess, toastError } from "../libs";
 import ScreenHeader from "../components/ScreenHeader";
 import { logoutWeb3Auth } from "../config/web3auth.config";
 import FullScreenLoader from "../components/FullScreenLoader";
@@ -25,14 +25,17 @@ import {
   SUPPORT_MAIL,
   DEV_MAIL,
 } from "../config/links";
+import DMSettingsSection from "../components/Settings/DMSettingsSection";
 
 // Lightweight Account Settings screen focused on account-level actions.
 // Extend later with preferences, linked wallets, notifications, privacy, etc.
 const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
-  const { signOut, user } = useAuth();
+  const { signOut, user, patchUser } = useAuth();
   const [signingOut, setSigningOut] = useState<boolean>(false);
   const [bugModalVisible, setBugModalVisible] = useState<boolean>(false);
   const [exportPkVisible, setExportPkVisible] = useState<boolean>(false);
+
+  // DM Settings moved into components/Settings/DMSettingsSection
 
   const handleSignOut = useCallback(async () => {
     if (signingOut) return;
@@ -110,6 +113,8 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         </View>
+        {/* Direct Messages */}
+        <DMSettingsSection />
 
         {/* Preferences */}
         <View className="mb-8">

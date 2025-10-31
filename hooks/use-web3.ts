@@ -205,7 +205,7 @@ function useEthersContract({
 
 export function useERC20Contract(tokenAddress?: string) {
   const { provider } = useWeb3Provider();
-  console.log({provider})
+  // console.log({provider})
   const [contract, setContract] = useState<any>();
   useEffect(() => {
     if (!provider || !tokenAddress) {

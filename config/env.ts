@@ -24,8 +24,9 @@ const env = {
   WEB3AUTH_CLIENT_ID: WEB3AUTH_CLIENT_ID,
   CDN_BASE_URL: CDN_BASE_URL,
   APP_ORIGIN: APP_ORIGIN || "https://dehub.io",
-  WEBSOCKET_URL:
-    WEBSOCKET_URL || API_URL?.replace(/\/$/, "") || "https://api.dehub.io",
+  // WEBSOCKET_URL:
+  //   WEBSOCKET_URL || API_URL?.replace(/\/$/, "") || "https://api.dehub.io",
+  WEBSOCKET_URL: "http://192.168.1.233:9015",
   LIVEPEER_API_KEY: LIVEPEER_API_KEY,
   DEBUG: DEBUG,
   AUTH_PROVIDER: AUTH_PROVIDER,

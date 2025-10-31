@@ -13,6 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import UploadScreen from "../screens/UploadScreen";
 import DirectMessagesScreen from "../screens/DirectMessagesScreen";
 import { useAuth } from "../context/AuthContext";
+import { useUnreadConversationsCount } from "../store/dm.state";
 
 // Placeholder screens - these will be replaced with actual content later
 // remove "const HomeScreen = () => <View style={styles.container}><Text>Home Screen</Text></View>;"
@@ -26,9 +27,10 @@ const Tab = createBottomTabNavigator();
 function BottomTabNavigator() {
   const navigation = useNavigation<any>();
   const { isSignedIn, needsUsername } = useAuth();
+  const { user } = useAuth();
   const isAuthed = isSignedIn && !needsUsername;
   const accent = useMemo(() => theme.colors.accent || "#4F8EF7", []);
-
+  const unreadConvs = useUnreadConversationsCount((user as any)?.id);
   const renderIcon = (routeName: string, focused: boolean, size: number) => {
     let iconNameFilled: keyof typeof Ionicons.glyphMap;
     let iconNameOutline: keyof typeof Ionicons.glyphMap;
@@ -83,6 +85,13 @@ function BottomTabNavigator() {
             color={color}
           />
         )}
+        {routeName === ScreenNames.DM && isAuthed && unreadConvs > 0 ? (
+          <View style={styles.badgeContainer}>
+            <Text style={styles.badgeText}>
+              {unreadConvs > 4 ? "4+" : String(unreadConvs)}
+            </Text>
+          </View>
+        ) : null}
       </View>
     );
   };
@@ -142,6 +151,23 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(156,163,175,0.15)", // gray-400 with transparency
     paddingHorizontal: 18,
     paddingVertical: 10,
+  },
+  badgeContainer: {
+    position: "absolute",
+    right: 2,
+    top: 2,
+    minWidth: 16,
+    height: 16,
+    paddingHorizontal: 4,
+    borderRadius: 9,
+    backgroundColor: "#ef4444", // red-500
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  badgeText: {
+    color: "#fff",
+    fontSize: 9,
+    fontWeight: "700",
   },
 });
 
