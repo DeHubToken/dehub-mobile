@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { hydrateFromStorage, actions } from '../store/messages.state';
 import { useChatSocket } from '../services/ws/chat.socket';
-import { fetchConversations } from '../services/conversations';
+import { fetchConversations } from '../services/dm/conversations';
 import { createLogger } from '../libs/logger';
 
 const log = createLogger('MessagingProvider');

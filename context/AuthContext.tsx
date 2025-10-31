@@ -25,6 +25,7 @@ import { useProviderLifecycle, type EIP1193Provider, type ProviderStatus } from 
 import { useBalances } from "../hooks/useBalances";
 import { useAuthBoot } from "../hooks/useAuthBoot";
 import { useAuthSession } from "../hooks/useAuthSession";
+// DM data bootstrap is handled in DM hooks to keep AuthContext modular
 
 // Define the shape of the user object
 export interface User {
@@ -70,6 +71,25 @@ export interface User {
   unlocked?: string[];
   createdAt?: string;
   info?: { walletBalances?: { [key: string]: number } };
+  dmSettings?: {
+    address: string;
+    disables: ("NEW_DM" | "ALL" | "ACTIVE_ALL")[];
+    minTipDhb: number;
+  };
+  // Blocklist info (from getAccountInfo)
+  blocklist?: {
+    blocked: Array<{
+      address?: string;
+      username?: string;
+      reportId?: string; // needed for precise unblocking on server
+    }>;
+    blockedBy: Array<{
+      address?: string;
+      username?: string;
+      reportId?: string; // may be provided by backend for reference
+    }>;
+    adminBlocked: boolean;
+  };
 }
 
 // Define the shape of the auth context
@@ -240,6 +260,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setShowSignInModal(false);
     }
   }, [isSignedIn, pendingAction, needsUsername]);
+
+  // Note: DM contacts/messages bootstrap is intentionally not done here to avoid
+  // cross-domain coupling. See hooks/useDM for the canonical bootstrap flow.
 
   const requireAuth = useCallback((action: () => void) => {
     log.debug("requireAuth:called", { isSignedIn, needsUsername });

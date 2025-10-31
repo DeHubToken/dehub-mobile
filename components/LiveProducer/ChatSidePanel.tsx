@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, Platform, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import ChatMessageList, { ChatMessage } from './ChatMessageList';
 import { X } from 'lucide-react-native';
 
@@ -24,26 +24,24 @@ const ChatSidePanel: React.FC<ChatSidePanelProps> = ({ messages, input, onChange
       {isLive ? (
         <>
           <ChatMessageList messages={messages} />
-          <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} keyboardVerticalOffset={80}>
-            <View className="px-2 pb-2">
-              <View className="flex-row items-center bg-white/10 rounded-full px-3">
-                <TextInput
-                  value={input}
-                  onChangeText={onChangeInput}
-                  placeholder="Say something..."
-                  placeholderTextColor="#8e8e8e"
-                  className="flex-1 text-white text-[12px] py-2"
-                  multiline
-                  maxLength={240}
-                />
-                <TouchableOpacity onPress={onSend} className="pl-2 py-2" disabled={!input.trim()}>
-                  <Text className={[ 'text-[12px] font-semibold', input.trim() ? 'text-emerald-400' : 'text-white/30' ].join(' ')}>
-                    Send
-                  </Text>
-                </TouchableOpacity>
-              </View>
+          <View className="px-2 pb-2">
+            <View className="flex-row items-center bg-white/10 rounded-full px-3">
+              <TextInput
+                value={input}
+                onChangeText={onChangeInput}
+                placeholder="Say something..."
+                placeholderTextColor="#8e8e8e"
+                className="flex-1 text-white text-[12px] py-2"
+                multiline
+                maxLength={240}
+              />
+              <TouchableOpacity onPress={onSend} className="pl-2 py-2" disabled={!input.trim()}>
+                <Text className={[ 'text-[12px] font-semibold', input.trim() ? 'text-emerald-400' : 'text-white/30' ].join(' ')}>
+                  Send
+                </Text>
+              </TouchableOpacity>
             </View>
-          </KeyboardAvoidingView>
+          </View>
         </>
       ) : (
         <View className="flex-1 items-center justify-center px-4">

@@ -1,5 +1,5 @@
-import { apiClient } from '../libs/api.client';
-import { Attachment, ID, Message, Reaction } from '../store/messages.types';
+import { apiClient } from '../../libs/api.client';
+import { Attachment, ID, Message, Reaction } from '../../store/messages.types';
 
 export type Paginated<T> = { items: T[]; nextCursor?: string };
 

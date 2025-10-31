@@ -1,81 +1,60 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useState } from "react";
 import {
-  Alert,
   FlatList,
-  Image,
-  KeyboardAvoidingView,
   Modal,
-  Platform,
+  RefreshControl,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import ScreenHeader from '../components/ScreenHeader';
-import { useNavigation } from '@react-navigation/native';
-import { ScreenNames } from '../navigation/ScreenNames';
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import ScreenHeader from "../components/ScreenHeader";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenNames } from "../navigation/ScreenNames";
+import NewDMModal from "../components/DM/NewDMModal";
+import DMSearchBox from "../components/DM/DMSearchBox";
+import DMSettingsModal from "../components/DM/DMSettingsModal";
+import DMSettingsMenu from "../components/DM/DMSettingsMenu";
+import DMConversationItem from "../components/DM/DMConversationItem";
+import { User, useAuth } from "../context/AuthContext";
+import { truncateAddress } from "../libs/strings.util";
+import { toastInfo } from "../libs/toast";
+import { useDM } from "../hooks/useDM";
+import { useUnreadCount } from "../store/dm.state";
+import Avatar from "../components/common/Avatar";
+import { getAvatarUrl } from "../libs/misc";
+import { theme } from "../theme";
+import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 
-type Conversation = {
-  id: string;
-  name: string;
-  avatar: any; // Static require for demo
-  verified?: boolean;
-  lastMessage: string;
-  updatedAt: number; // epoch ms
-  unread: boolean;
-  highlighted?: boolean;
-};
-
-type MenuProps = {
-  visible: boolean;
-  onClose: () => void;
-  onNewDM: () => void;
-  dnd: boolean;
-  onToggleDnd: () => void;
-};
-
-const SettingsMenu: React.FC<MenuProps> = ({ visible, onClose, onNewDM, dnd, onToggleDnd }) => {
-  if (!visible) return null;
-  return (
-    <Modal visible transparent animationType="fade" onRequestClose={onClose}>
-      <TouchableOpacity
-        activeOpacity={1}
-        onPress={onClose}
-        className="flex-1 bg-black/40"
-      >
-        <View className="absolute right-3 top-16 w-44 rounded-xl bg-theme-neutrals-800 shadow-lg overflow-hidden">
-          <TouchableOpacity
-            className="flex-row items-center px-3 py-3 active:opacity-70"
-            onPress={onNewDM}
-            accessibilityRole="button"
-          >
-            <Ionicons name="chatbox-ellipses-outline" size={18} color="#E5E7EB" />
-            <Text className="ml-2 text-theme-neutrals-100 text-sm">New DM</Text>
-          </TouchableOpacity>
-          <View className="h-[1px] bg-theme-neutrals-700/60" />
-          <TouchableOpacity
-            className="flex-row items-center px-3 py-3 active:opacity-70"
-            onPress={onToggleDnd}
-            accessibilityRole="button"
-          >
-            <Ionicons
-              name={dnd ? 'moon' : 'moon-outline'}
-              size={18}
-              color={dnd ? '#60A5FA' : '#E5E7EB'}
-            />
-            <Text className="ml-2 text-theme-neutrals-100 text-sm">{dnd ? 'DND: On' : 'DND'}</Text>
-          </TouchableOpacity>
-        </View>
-      </TouchableOpacity>
-    </Modal>
-  );
+type DmContact = {
+  _id: string;
+  conversationType: "dm" | "group";
+  participants: Array<{
+    participant: {
+      _id: string;
+      username?: string;
+      address?: string;
+      displayName?: string;
+      avatarImageUrl?: string;
+    };
+  }>;
+  lastMessageAt?: string;
+  createdAt: string;
+  updatedAt: string;
+  messages?: Array<{
+    _id: string;
+    content?: string;
+    createdAt: string;
+    author?: "me" | "other";
+  }>;
 };
 
 const formatRelativeTime = (ts: number): string => {
   const diff = Math.max(0, Date.now() - ts);
   const m = Math.floor(diff / 60000);
-  if (m < 1) return 'now';
+  if (m < 1) return "now";
   if (m < 60) return `${m}m`;
   const h = Math.floor(m / 60);
   if (h < 24) return `${h}h`;
@@ -83,159 +62,130 @@ const formatRelativeTime = (ts: number): string => {
   return `${d}d`;
 };
 
-type ConversationItemProps = {
-  item: Conversation;
-  onPress: (c: Conversation) => void;
-};
-
-const ConversationItem: React.FC<ConversationItemProps> = memo(({ item, onPress }) => {
-  const handlePress = useCallback(() => onPress(item), [item, onPress]);
-  return (
-    <TouchableOpacity
-      onPress={handlePress}
-      className="flex-row items-center px-4 py-3"
-      accessibilityRole="button"
-    >
-      <Image
-        source={item.avatar}
-        className="w-11 h-11 rounded-full mr-3"
-        resizeMode="cover"
-      />
-
-      <View className="flex-1">
-        <View className="flex-row items-center">
-          <Text className="text-theme-neutrals-100 font-medium text-[15px]" numberOfLines={1}>
-            {item.name}
-          </Text>
-          {item.verified ? (
-            <Ionicons name="checkmark-circle" size={14} color="#9CA3AF" style={{ marginLeft: 6 }} />
-          ) : null}
-          <Text className="text-theme-neutrals-500 text-xs ml-2">{formatRelativeTime(item.updatedAt)}</Text>
-        </View>
-
-        {item.highlighted ? (
-          <View className="mt-2 bg-theme-neutrals-800 rounded-2xl px-3 py-2">
-            <Text className="text-theme-neutrals-200 text-[13px]" numberOfLines={2}>
-              {item.lastMessage}
-            </Text>
-          </View>
-        ) : (
-          <Text className="text-theme-neutrals-300 text-[13px] mt-1" numberOfLines={1}>
-            {item.lastMessage}
-          </Text>
-        )}
-      </View>
-
-      {item.unread ? <View className="w-2.5 h-2.5 rounded-full bg-blue-500 ml-2" /> : null}
-    </TouchableOpacity>
-  );
-});
-ConversationItem.displayName = 'ConversationItem';
+// Settings menu and conversation item extracted into components/DM
 
 const DirectMessagesScreen: React.FC = () => {
   const navigation = useNavigation<any>();
-  const [query, setQuery] = useState<string>('');
+  const { user } = useAuth();
+  const { conversations, contactsLoading, refreshContacts } = useDM();
+  const [query, setQuery] = useState<string>("");
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
   const [dnd, setDnd] = useState<boolean>(false);
   const [newDmVisible, setNewDmVisible] = useState<boolean>(false);
-  const [newDmUser, setNewDmUser] = useState<string>('');
+  const [dmSettingsVisible, setDmSettingsVisible] = useState<boolean>(false);
 
-  // Local demo conversations for first render; replaced by store load/fetch below
-  const [conversations, setConversations] = useState<Conversation[]>([
-    {
-      id: '1',
-      name: 'Username',
-  avatar: require('../assets/avatar.png'),
-      verified: true,
-      lastMessage: "You: Hi! I'm doing great.",
-      updatedAt: Date.now() - 46 * 60000,
-      unread: false,
-      highlighted: true,
-    },
-    {
-      id: '2',
-      name: 'Username',
-  avatar: require('../assets/default-avatar.png'),
-      lastMessage: 'Sent an attachment',
-      updatedAt: Date.now() - 2 * 60000,
-      unread: true,
-    },
-    {
-      id: '3',
-      name: 'Username',
-  avatar: require('../assets/banner.png'),
-      lastMessage: 'Hey buddy! how have you be...',
-      updatedAt: Date.now() - 45 * 60000,
-      unread: false,
-    },
-    {
-      id: '4',
-      name: 'Username',
-  avatar: require('../assets/bike.jpg'),
-      lastMessage: 'Rae: Hey guys, just posted a...',
-      updatedAt: Date.now() - 60 * 60000,
-      unread: true,
-    },
-  ]);
-
-  const searchRef = useRef<TextInput | null>(null);
+  // No input ref needed with DMSearchBox
 
   // Using only local demo conversations for now (disconnected from services/store)
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     const list = q
-      ? conversations.filter(
-          c => c.name.toLowerCase().includes(q) || c.lastMessage.toLowerCase().includes(q)
-        )
+      ? conversations.filter((c: DmContact) => {
+          const other = c.participants?.[0]?.participant || {};
+          const title = (
+            other.displayName ||
+            other.username ||
+            other.address ||
+            ""
+          ).toLowerCase();
+          const preview =
+            c.messages && c.messages.length > 0
+              ? c.messages[0].content || ""
+              : "";
+          return title.includes(q) || preview.toLowerCase().includes(q);
+        })
       : conversations;
-    return [...list].sort((a, b) => b.updatedAt - a.updatedAt);
+    return [...list].sort(
+      (a: DmContact, b: DmContact) =>
+        +new Date(b.updatedAt || b.lastMessageAt || 0) -
+        +new Date(a.updatedAt || a.lastMessageAt || 0)
+    );
   }, [conversations, query]);
+  const hasConversations = useMemo(
+    () => (conversations?.length || 0) > 0,
+    [conversations]
+  );
 
   const openMenu = useCallback(() => setMenuVisible(true), []);
   const closeMenu = useCallback(() => setMenuVisible(false), []);
-  const toggleDnd = useCallback(() => setDnd(prev => !prev), []);
+  const toggleDnd = useCallback(() => setDnd((prev) => !prev), []);
   const openNewDM = useCallback(() => {
     closeMenu();
-    setNewDmUser('');
     setNewDmVisible(true);
   }, [closeMenu]);
+  const openDmSettings = useCallback(() => {
+    closeMenu();
+    setDmSettingsVisible(true);
+  }, [closeMenu]);
   const closeNewDM = useCallback(() => setNewDmVisible(false), []);
+  const closeDmSettings = useCallback(() => setDmSettingsVisible(false), []);
 
   const handleOpenConversation = useCallback(
-    (c: Conversation) => {
-      setConversations(prev => prev.map(p => (p.id === c.id ? { ...p, unread: false } : p)));
-      navigation.navigate(ScreenNames.Chat as any, { conversationId: c.id, title: c.name });
+    (c: DmContact) => {
+      const other = c.participants?.[0]?.participant || {};
+      const title =
+        other.displayName ||
+        other.username ||
+        truncateAddress(other.address || "");
+      navigation.navigate(ScreenNames.Chat as any, {
+        conversationId: c._id,
+        title,
+      });
     },
     [navigation]
   );
 
   const handleChangeQuery = useCallback((text: string) => setQuery(text), []);
-  const clearQuery = useCallback(() => setQuery(''), []);
+  const clearQuery = useCallback(() => setQuery(""), []);
 
-  const keyExtractor = useCallback((item: Conversation) => item.id, []);
+  const keyExtractor = useCallback((item: DmContact) => String(item._id), []);
   const renderItem = useCallback(
-    ({ item }: { item: Conversation }) => (
-      <ConversationItem item={item} onPress={handleOpenConversation} />
+    ({ item }: { item: DmContact }) => (
+      <DMConversationItem item={item as any} onPress={handleOpenConversation} />
     ),
     [handleOpenConversation]
   );
 
-  const handleCreateNewDM = useCallback(() => {
-    const name = newDmUser.trim();
-    if (!name) return;
-    const newItem: Conversation = {
-      id: `${Date.now()}`,
-      name,
-  avatar: require('../assets/default-avatar.png'),
-      lastMessage: 'Say hi!',
-      updatedAt: Date.now(),
-      unread: false,
-    };
-    setConversations(prev => [newItem, ...prev]);
-    setNewDmVisible(false);
-    Alert.alert('New DM', `Started a new DM with ${name}`);
-  }, [newDmUser]);
+  const startDMWith = useCallback(
+    (u: User) => {
+      const addr = (u.walletAddress || (u as any).address || "").toLowerCase();
+      const selfAddr = (
+        (user as any)?.walletAddress ||
+        (user as any)?.address ||
+        ""
+      ).toLowerCase();
+      if (addr && addr === selfAddr) {
+        toastInfo("You can’t message yourself");
+        return;
+      }
+      const title =
+        (u as any).displayName || (u as any).username || truncateAddress(addr);
+      // Check if user already exists in contacts
+      const existing = (conversations as any[]).find(
+        (c: any) =>
+          Array.isArray(c?.participants) &&
+          c.participants.some(
+            (p: any) => (p?.participant?.address || "").toLowerCase() === addr
+          )
+      );
+      if (existing) {
+        navigation.navigate(ScreenNames.Chat as any, {
+          conversationId: existing._id,
+          title,
+        });
+      } else {
+        // Open chat screen in target-by-address mode (no existing conversation)
+        navigation.navigate(ScreenNames.Chat as any, {
+          targetAddress: addr,
+          title,
+          targetUser: u,
+        });
+      }
+      setNewDmVisible(false);
+    },
+    [navigation, conversations]
+  );
 
   const RightHeader = useMemo(
     () => (
@@ -251,93 +201,100 @@ const DirectMessagesScreen: React.FC = () => {
     [openMenu]
   );
 
-  return (
-    <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title="Messages" subtitle={dnd ? 'Do Not Disturb is ON' : undefined} rightContent={RightHeader} />
+  const listEmpty = useMemo(() => {
+    if (!hasConversations) {
+      return (
+        <View className="items-center mt-16 px-6">
+          <Text className="text-theme-neutrals-400 mb-3">
+            No conversations yet
+          </Text>
+          <TouchableOpacity
+            onPress={openNewDM}
+            activeOpacity={0.8}
+            className="mt-3 flex-row items-center px-4 py-2 rounded-full bg-theme-accent"
+          >
+            <Ionicons name="chatbubbles" size={18} color="white" />
+            <Text className="ml-2 text-theme-neutrals-100 font-medium">
+              Start a new conversation
+            </Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+    // Has conversations but none match search
+    return (
+      <View className="items-center mt-10">
+        <Text className="text-theme-neutrals-400">No conversations found</Text>
+      </View>
+    );
+  }, [hasConversations, filtered?.length, openNewDM]);
 
-      {/* Search */}
-      <View className="px-4 mt-2">
-        <View className="flex-row items-center bg-theme-neutrals-800 rounded-full px-3 py-2">
-          <Ionicons name="search" size={18} color="#9CA3AF" />
-          <TextInput
-            ref={searchRef}
-            value={query}
-            onChangeText={handleChangeQuery}
-            placeholder="Search"
-            placeholderTextColor="#9CA3AF"
-            className="flex-1 text-theme-neutrals-100 px-2 text-[15px]"
-            returnKeyType="search"
-          />
-          {query ? (
-            <TouchableOpacity onPress={clearQuery} className="w-7 h-7 items-center justify-center">
-              <Ionicons name="close-circle" size={18} color="#9CA3AF" />
-            </TouchableOpacity>
+  return (
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+      style={{ flex: 1 }}
+    >
+      <View className="flex-1 bg-theme-neutrals-900">
+        <ScreenHeader
+          title="Messages"
+          subtitle={dnd ? "Do Not Disturb is ON" : undefined}
+          rightContent={RightHeader}
+          canGoBack={false}
+        />
+
+        <View className="px-4 mt-2">
+          {/* <DMSocketTest className="mb-3" /> */}
+          {hasConversations ? (
+            <DMSearchBox
+              value={query}
+              onChangeText={handleChangeQuery}
+              onClear={clearQuery}
+              placeholder="Search"
+            />
           ) : null}
         </View>
+
+        <FlatList
+          data={filtered as any}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          contentContainerStyle={{ paddingBottom: 24 }}
+          className="flex-1"
+          refreshControl={
+            <RefreshControl
+              refreshing={!!contactsLoading}
+              onRefresh={refreshContacts}
+              tintColor="#9CA3AF"
+            />
+          }
+          ListEmptyComponent={listEmpty}
+          ItemSeparatorComponent={() => (
+            <View className="h-[1px] bg-theme-neutrals-800/70 mx-4" />
+          )}
+        />
+
+        <DMSettingsMenu
+          visible={menuVisible}
+          onClose={closeMenu}
+          onNewDM={openNewDM}
+          onOpenDmSettings={openDmSettings}
+          dnd={dnd}
+          onToggleDnd={toggleDnd}
+        />
+
+        <NewDMModal
+          open={newDmVisible}
+          onOpenChange={setNewDmVisible}
+          onSelect={startDMWith}
+        />
+
+        <DMSettingsModal
+          open={dmSettingsVisible}
+          onOpenChange={setDmSettingsVisible}
+        />
       </View>
-
-      {/* List */}
-      <FlatList
-        data={filtered}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
-        contentContainerStyle={{ paddingBottom: 24 }}
-        className="flex-1"
-        ListEmptyComponent={
-          <View className="items-center mt-10">
-            <Text className="text-theme-neutrals-400">No conversations found</Text>
-          </View>
-        }
-        ItemSeparatorComponent={() => <View className="h-[1px] bg-theme-neutrals-800/70 mx-4" />}
-      />
-
-      {/* Settings Menu */}
-      <SettingsMenu
-        visible={menuVisible}
-        onClose={closeMenu}
-        onNewDM={openNewDM}
-        dnd={dnd}
-        onToggleDnd={toggleDnd}
-      />
-
-      {/* New DM Modal */}
-      <Modal visible={newDmVisible} transparent animationType="slide" onRequestClose={closeNewDM}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-          className="flex-1 justify-end"
-        >
-          <TouchableOpacity className="flex-1 bg-black/40" activeOpacity={1} onPress={closeNewDM} />
-          <View className="bg-theme-neutrals-800 rounded-t-2xl p-4">
-            <Text className="text-theme-neutrals-100 text-lg font-medium mb-3">Start a new DM</Text>
-            <View className="flex-row items-center bg-theme-neutrals-700 rounded-xl px-3 py-2">
-              <Ionicons name="at" size={18} color="#D1D5DB" />
-              <TextInput
-                value={newDmUser}
-                onChangeText={setNewDmUser}
-                placeholder="Enter username"
-                placeholderTextColor="#9CA3AF"
-                className="flex-1 text-theme-neutrals-100 px-2 text-[15px]"
-                autoFocus
-                returnKeyType="done"
-                onSubmitEditing={handleCreateNewDM}
-              />
-            </View>
-            <View className="flex-row justify-end mt-4">
-              <TouchableOpacity onPress={closeNewDM} className="px-4 py-2 mr-2 rounded-xl bg-theme-neutrals-700 active:opacity-80">
-                <Text className="text-theme-neutrals-100">Cancel</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={handleCreateNewDM}
-                disabled={!newDmUser.trim()}
-                className="px-4 py-2 rounded-xl bg-blue-600 active:opacity-80 disabled:opacity-40"
-              >
-                <Text className="text-white">Start</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </KeyboardAvoidingView>
-      </Modal>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

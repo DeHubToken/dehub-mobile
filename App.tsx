@@ -1,4 +1,7 @@
-import { NavigationContainer, DarkTheme as RNDarkTheme } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DarkTheme as RNDarkTheme,
+} from "@react-navigation/native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Toaster } from "sonner-native";
 import { toastTheme } from "./theme/toastTheme";
@@ -8,17 +11,24 @@ import SplashScreen from "./screens/SplashScreen";
 import NoInternetScreen from "./screens/NoInternetScreen";
 import { useNetworkStatus } from "./hooks/useNetworkStatus";
 import React, { useEffect } from "react";
-import { BackHandler, LogBox, StatusBar } from "react-native";
+import {
+  BackHandler,
+  KeyboardAvoidingView,
+  LogBox,
+  StatusBar,
+} from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import { theme } from "./theme";
 import { AuthProvider } from "./context/AuthContext";
 import { WebSocketProvider } from "./context/WebSocketContext";
+import { DMProvider } from "./context/DMContext";
 import { useAuth } from "./context/AuthContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
 import { UsernameGate } from "./components/auth/UsernameGate";
 import RootNavigator from "./navigation/RootNavigator";
 import { MessagingProvider } from "./context/MessagingContext";
 import { prewarmWeb3Auth } from "./config/web3auth.config";
+import { Platform } from "react-native";
 
 export default function App() {
   // Complete any pending browser auth sessions (Web3Auth, OAuth)
@@ -58,31 +68,34 @@ export default function App() {
       <SafeAreaProvider className="flex-1 select-none bg-theme-background">
         <AuthProvider>
           <WebSocketProvider>
-            <BootGate>
-              <SafeAreaView className="flex-1 bg-theme-background">
-                <StatusBar barStyle="light-content" backgroundColor="#000" />
-                <NavigationContainer
-                  theme={{
-                    ...RNDarkTheme,
-                    colors: {
-                      ...RNDarkTheme.colors,
-                      background: "#000000",
-                      card: "#000000",
-                      border: "#000000",
-                      text: "#ffffff",
-                      primary: theme.colors.accent,
-                    },
-                  }}
-                >
-                  <UserProfileSheetProvider>
-                    <MessagingProvider>
-                      <RootNavigator />
-                      <UsernameGate />
-                    </MessagingProvider>
-                  </UserProfileSheetProvider>
-                </NavigationContainer>
-              </SafeAreaView>
-            </BootGate>
+            <DMProvider>
+              <BootGate>
+                <SafeAreaView className="flex-1 bg-theme-background">
+                  <StatusBar barStyle="light-content" backgroundColor="#000" />
+
+                    <NavigationContainer
+                      theme={{
+                        ...RNDarkTheme,
+                        colors: {
+                          ...RNDarkTheme.colors,
+                          background: "#000000",
+                          card: "#000000",
+                          border: "#000000",
+                          text: "#ffffff",
+                          primary: theme.colors.accent,
+                        },
+                      }}
+                    >
+                      <UserProfileSheetProvider>
+                        <MessagingProvider>
+                          <RootNavigator />
+                          <UsernameGate />
+                        </MessagingProvider>
+                      </UserProfileSheetProvider>
+                    </NavigationContainer>
+                </SafeAreaView>
+              </BootGate>
+            </DMProvider>
           </WebSocketProvider>
         </AuthProvider>
         <Toaster

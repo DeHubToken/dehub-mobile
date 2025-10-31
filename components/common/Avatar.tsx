@@ -17,6 +17,7 @@ interface AvatarProps {
   fallback?: ImageSourcePropType;
   borderWidth?: number;
   borderColor?: string;
+  className?: string;
 }
 
 const Avatar: React.FC<AvatarProps> = ({
@@ -28,6 +29,7 @@ const Avatar: React.FC<AvatarProps> = ({
   fallback,
   borderWidth = 0,
   borderColor = "#000",
+  className,
 }) => {
   const [loaded, setLoaded] = useState(false);
   const radius = rounded ? size / 2 : 8;
@@ -39,6 +41,7 @@ const Avatar: React.FC<AvatarProps> = ({
 
   const content = (
     <View
+      className={!onPress ? className : undefined}
       style={[
         {
           width: size,
@@ -78,7 +81,8 @@ const Avatar: React.FC<AvatarProps> = ({
 
   if (onPress) {
     return (
-      <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
+      <TouchableOpacity activeOpacity={0.8} onPress={onPress} className={className}
+      >
         {content}
       </TouchableOpacity>
     );

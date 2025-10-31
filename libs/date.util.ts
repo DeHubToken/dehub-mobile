@@ -75,5 +75,54 @@ export function formatNotificationDate(isoDateString: Date) {
 
   return formatTime(date) + ", " + daysOfWeek[date.getDay()];
 }
-export const DateUtil = { secondsToHMMSS, msToHHMMSS, formatJoinedDate, formatNotificationDate };
+/**
+ * Relative time formatter for chat/DM contexts.
+ * Returns human strings like:
+ * - now
+ * - 1 min ago / 2 mins ago
+ * - 1 hour ago / 3 hours ago
+ * - 1 day ago / 5 days ago
+ */
+export function formatRelativeFromNow(input?: string | number | Date | null): string {
+  if (!input) return 'now';
+  const d = input instanceof Date ? input : new Date(input);
+  const t = d.getTime();
+  if (!Number.isFinite(t)) return 'now';
+  const diffMs = Math.max(0, Date.now() - t);
+  const minutes = Math.floor(diffMs / 60000);
+  if (minutes < 1) return 'now';
+  if (minutes < 60) return minutes === 1 ? '1 min ago' : `${minutes} mins ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return hours === 1 ? '1 hour ago' : `${hours} hours ago`;
+  const days = Math.floor(hours / 24);
+  return days === 1 ? '1 day ago' : `${days} days ago`;
+}
+
+/**
+ * Smart chat timestamp:
+ * - For messages newer than `thresholdHours` (default 6h), show relative (e.g., "45 mins ago", "2 hours ago").
+ * - For older messages, show absolute local time in h:mm am/pm (e.g., "4:23 am").
+ */
+export function formatChatTimeSmart(
+  input?: string | number | Date | null,
+  thresholdHours = 6
+): string {
+  if (!input) return 'now';
+  const d = input instanceof Date ? input : new Date(input);
+  const t = d.getTime();
+  if (!Number.isFinite(t)) return 'now';
+  const diffMs = Date.now() - t;
+  const thresholdMs = Math.max(0, thresholdHours) * 3600 * 1000;
+  if (diffMs < thresholdMs) {
+    return formatRelativeFromNow(d);
+  }
+  // Absolute local time in h:mm am/pm
+  const hh = d.getHours();
+  const mm = d.getMinutes();
+  const ampm = hh >= 12 ? 'PM' : 'AM';
+  const h12 = hh % 12 === 0 ? 12 : hh % 12;
+  const mmStr = mm < 10 ? `0${mm}` : String(mm);
+  return `${h12}:${mmStr} ${ampm}`;
+}
+export const DateUtil = { secondsToHMMSS, msToHHMMSS, formatJoinedDate, formatNotificationDate, formatRelativeFromNow, formatChatTimeSmart };
 export default DateUtil;

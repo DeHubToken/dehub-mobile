@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   View,
   Text,
@@ -6,6 +12,8 @@ import {
   ScrollView,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -48,14 +56,14 @@ export default function UploadScreen() {
   const insets = useSafeAreaInsets();
   const scrollRef = useRef<ScrollView>(null);
   const lastAllowedIndexRef = useRef<number>(tabs.indexOf(initialTab));
-  
+
   // Lazy mount tabs to avoid heavy work on initial open (e.g., LiveTab fetching)
   const [mounted, setMounted] = useState<Record<TabKey, boolean>>({
     Videos: initialTab === "Videos",
     Live: initialTab === "Live",
     Feed: initialTab === "Feed", // still disabled, but keep generic
   });
-  console.log({initialTab, routeTab: route?.params?.tab, active, mounted});
+  console.log({ initialTab, routeTab: route?.params?.tab, active, mounted });
 
   useEffect(() => {
     const idx = tabs.indexOf(active);
@@ -120,9 +128,9 @@ export default function UploadScreen() {
       onPress={onPress}
       disabled={disabled}
       activeOpacity={0.8}
-      className={`px-4 py-1.5 rounded-full ${
-        active ? "bg-white/10" : ""
-      } ${disabled ? "opacity-40" : ""}`}
+      className={`px-4 py-1.5 rounded-full ${active ? "bg-white/10" : ""} ${
+        disabled ? "opacity-40" : ""
+      }`}
     >
       <Text className={active ? "text-white" : "text-theme-neutrals-400"}>
         {label}
@@ -131,55 +139,63 @@ export default function UploadScreen() {
   );
 
   return (
-    <View className="flex-1 bg-black">
-      <ScreenHeader title="Upload" />
-      <View className="px-4 pt-3 pb-2">
-        <View className="flex-row items-center justify-between">
-          <Text className="text-theme-neutrals-300 text-2xl font-semibold">Content type</Text>
-          <View className="bg-theme-neutrals-800 rounded-full px-0 py-0 flex-row items-center">
-            <Segment
-              label="Video"
-              onPress={() => onPressTab("Videos")}
-              active={active === "Videos"}
-            />
-            <Segment
-              label="Live"
-              onPress={() => onPressTab("Live")}
-              active={active === "Live"}
-            />
-            <Segment
-              label="Feed"
-              onPress={() => onPressTab("Feed")}
-              active={active === "Feed"}
-            />
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+    >
+      <View className="flex-1 bg-black">
+        <ScreenHeader title="Upload" />
+        <View className="px-4 pt-3 pb-2">
+          <View className="flex-row items-center justify-between">
+            <Text className="text-theme-neutrals-300 text-2xl font-semibold">
+              Content type
+            </Text>
+            <View className="bg-theme-neutrals-800 rounded-full px-0 py-0 flex-row items-center">
+              <Segment
+                label="Video"
+                onPress={() => onPressTab("Videos")}
+                active={active === "Videos"}
+              />
+              <Segment
+                label="Live"
+                onPress={() => onPressTab("Live")}
+                active={active === "Live"}
+              />
+              <Segment
+                label="Feed"
+                onPress={() => onPressTab("Feed")}
+                active={active === "Feed"}
+              />
+            </View>
           </View>
         </View>
+        <ScrollView
+          ref={scrollRef}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          onMomentumScrollEnd={onScrollEnd}
+        >
+          <View style={{ width }} className="flex-1">
+            {mounted.Videos ? (
+              <VideosTab onClose={nav.goBack} />
+            ) : (
+              <VideosTabSkeleton />
+            )}
+          </View>
+          <View style={{ width }} className="flex-1">
+            {mounted.Live ? (
+              <LiveTab onClose={nav.goBack} />
+            ) : (
+              <LiveTabSkeleton />
+            )}
+          </View>
+          <View style={{ width }} className="flex-1">
+            {mounted.Feed ? <FeedTab /> : <FeedTabSkeleton />}
+          </View>
+        </ScrollView>
       </View>
-      <ScrollView
-        ref={scrollRef}
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        onMomentumScrollEnd={onScrollEnd}
-      >
-        <View style={{ width }} className="flex-1">
-          {mounted.Videos ? (
-            <VideosTab onClose={nav.goBack} />
-          ) : (
-            <VideosTabSkeleton />
-          )}
-        </View>
-        <View style={{ width }} className="flex-1">
-          {mounted.Live ? (
-            <LiveTab onClose={nav.goBack} />
-          ) : (
-            <LiveTabSkeleton />
-          )}
-        </View>
-        <View style={{ width }} className="flex-1">
-          {mounted.Feed ? <FeedTab /> : <FeedTabSkeleton />}
-        </View>
-      </ScrollView>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
