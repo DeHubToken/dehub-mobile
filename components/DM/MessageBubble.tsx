@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useState } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import React, { memo, useCallback, useMemo, useState } from 'react';
+import { Text, View, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { Message } from '../../store/messages.types';
 import { formatChatTimeSmart } from '../../libs/date.util';
 
@@ -25,6 +25,18 @@ const MessageBubble: React.FC<MessageBubbleProps> = memo(({ msg, isMe }) => {
     setShowMeta((prev) => !prev);
   }, []);
 
+  const media = useMemo(() => {
+    const anyMsg: any = msg as any;
+    const list: Array<{ url: string; type?: string; mimeType?: string }> = Array.isArray(anyMsg.mediaUrls)
+      ? anyMsg.mediaUrls
+      : Array.isArray(anyMsg.attachments)
+        ? anyMsg.attachments.map((a: any) => ({ url: a?.url, type: a?.type, mimeType: a?.mimeType }))
+        : [];
+    return list;
+  }, [msg]);
+
+  const [imgLoaded, setImgLoaded] = useState(false);
+
   return (
     <View>
       {showMeta ? (
@@ -34,11 +46,41 @@ const MessageBubble: React.FC<MessageBubbleProps> = memo(({ msg, isMe }) => {
           {statusLabel ? `${tsLabel} • ${statusLabel}` : tsLabel}
         </Text>
       ) : null}
-      <TouchableOpacity activeOpacity={0.9} onLongPress={onLongPress} className={`max-w-[82%] rounded-2xl px-3 py-2 ${bg} ${align}`}>
-        {msg.text ? (
-          <Text className={`text-[15px] ${isMe ? 'text-white' : 'text-theme-neutrals-100'}`}>{msg.text}</Text>
-        ) : null}
-      </TouchableOpacity>
+      {media && media.length > 0 ? (
+        <TouchableOpacity
+          activeOpacity={0.9}
+          onLongPress={onLongPress}
+          className={`max-w-[82%] ${align}`}
+        >
+          <View className="rounded-2xl overflow-hidden bg-theme-neutrals-800">
+            <View style={{ width: 200, height: 200 }} className="items-center justify-center">
+              {!imgLoaded ? (
+                <View className="absolute inset-0 items-center justify-center bg-theme-neutrals-800">
+                  <ActivityIndicator size="small" />
+                </View>
+              ) : null}
+              <Image
+                source={{ uri: media[0].url }}
+                style={{ width: '100%', height: '100%' }}
+                resizeMode="cover"
+                onLoadStart={() => setImgLoaded(false)}
+                onLoadEnd={() => setImgLoaded(true)}
+              />
+            </View>
+            {msg.text ? (
+              <View className="px-3 py-2">
+                <Text className={`text-[15px] ${isMe ? 'text-white' : 'text-theme-neutrals-100'}`}>{msg.text}</Text>
+              </View>
+            ) : null}
+          </View>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity activeOpacity={0.9} onLongPress={onLongPress} className={`max-w-[82%] rounded-2xl px-3 py-2 ${bg} ${align}`}>
+          {msg.text ? (
+            <Text className={`text-[15px] ${isMe ? 'text-white' : 'text-theme-neutrals-100'}`}>{msg.text}</Text>
+          ) : null}
+        </TouchableOpacity>
+      )}
     </View>
   );
 });

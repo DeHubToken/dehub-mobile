@@ -9,7 +9,8 @@
     "dev": "expo start",
     "android": "npx expo run:android",
     "ios": "npx expo run:ios",
-    "web": "npx expo start --web"
+    "web": "npx expo start --web",
+    "postinstall": "patch-package || exit 0"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.2",
@@ -36,6 +37,7 @@
     "@web3auth/ethereum-provider": "^9.7.0",
     "@web3auth/react-native-sdk": "^8.1.0",
     "@web3modal/wagmi-react-native": "^2.0.5",
+    "axios": "^1.13.1",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.1",
     "date-fns": "^4.1.0",
@@ -76,6 +78,7 @@
     "react-native": "0.81.4",
     "react-native-dotenv": "^3.4.11",
     "react-native-element-dropdown": "^2.12.4",
+    "react-native-emoji-selector": "^0.2.0",
     "react-native-gesture-handler": "~2.28.0",
     "react-native-get-random-values": "~1.11.0",
     "react-native-image-crop-picker": "^0.51.0",

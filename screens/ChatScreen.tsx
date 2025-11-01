@@ -47,6 +47,7 @@ type UiMessage = {
   author?: "me" | "other";
   kind: "text" | "media" | "system";
   text?: string;
+  mediaUrls?: Array<{ url: string; type?: string; mimeType?: string }>;
   status: "sending" | "sent" | "delivered" | "read" | "failed";
   createdAt: string;
 };
@@ -73,7 +74,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const ws = useWebSocket();
   const list: UiMessage[] = useMemo(() => {
     // Adapt dm messages to UI message shape without mutating store
-    return (dmMessages || []).map((m) => ({
+    const adapted = (dmMessages || []).map((m) => ({
       id: String(m._id),
       conversationId: String(m.conversation),
       senderId: String((m.sender && (m.sender._id || m.sender)) || "other"),
@@ -81,16 +82,22 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         (m as any)?.sender?.address ||
           (m as any)?.address ||
           (m as any)?.senderAddress ||
-          "" ||
           ""
       ),
       author: (m as any)?.author,
       kind:
         Array.isArray(m.mediaUrls) && m.mediaUrls.length > 0 ? "media" : "text",
       text: m.content || "",
+      mediaUrls: Array.isArray((m as any)?.mediaUrls)
+        ? (m as any).mediaUrls.map((x: any) => ({ url: x?.url, type: x?.type, mimeType: x?.mimeType }))
+        : undefined,
       status: "sent",
       createdAt: String(m.createdAt || new Date().toISOString()),
-    }));
+    } as UiMessage));
+    // Sort newest first for inverted list rendering
+    return adapted.sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
   }, [dmMessages]);
   // Show typing only for the other user (remote typing). Local typing should not trigger header subtitle.
   const [remoteTyping, setRemoteTyping] = useState(false);
@@ -108,9 +115,30 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const [confirmMode, setConfirmMode] = useState<"block" | "unblock">("block");
   const [blockActionLoading, setBlockActionLoading] = useState(false);
   const { showUserProfile } = useUserProfileSheet();
-  
+
   const listRef = useRef<FlatList<any> | null>(null);
   const isAtBottomRef = useRef<boolean>(true);
+  const [showJumpButton, setShowJumpButton] = useState<boolean>(false);
+  const inverted = true;
+
+  // Force scroll to bottom regardless of current position
+  const scrollToBottomNow = useCallback(() => {
+    try {
+      if (!listRef.current) return;
+      requestAnimationFrame(() => {
+        try {
+          // With inverted list, bottom is offset 0
+          listRef.current?.scrollToOffset({ offset: 0, animated: true });
+        } catch {}
+      });
+      // Safety re-issue shortly after to catch fresh renders
+      setTimeout(() => {
+        try {
+          listRef.current?.scrollToOffset({ offset: 0, animated: true });
+        } catch {}
+      }, 120);
+    } catch {}
+  }, []);
 
   const onScroll = useCallback((e: any) => {
     try {
@@ -118,10 +146,13 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         e.nativeEvent || {};
       if (!contentOffset || !layoutMeasurement || !contentSize) return;
       const paddingToBottom = 40; // px threshold
-      const atBottom =
-        contentOffset.y + layoutMeasurement.height >=
-        (contentSize.height || 0) - paddingToBottom;
+      // For inverted list, bottom is near offset 0
+      const atBottom = inverted
+        ? contentOffset.y <= paddingToBottom
+        : contentOffset.y + layoutMeasurement.height >=
+          (contentSize.height || 0) - paddingToBottom;
       isAtBottomRef.current = !!atBottom;
+      setShowJumpButton(!atBottom);
     } catch {}
   }, []);
 
@@ -131,13 +162,13 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       if (!isAtBottomRef.current) {
         requestAnimationFrame(() => {
           try {
-            listRef.current?.scrollToEnd({ animated: true });
+            listRef.current?.scrollToOffset({ offset: 0, animated: true });
           } catch {}
         });
         // Re-issue once shortly after to catch fresh renders
         setTimeout(() => {
           try {
-            listRef.current?.scrollToEnd({ animated: true });
+            listRef.current?.scrollToOffset({ offset: 0, animated: true });
           } catch {}
         }, 180);
       }
@@ -145,32 +176,93 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   }, []);
 
   // Determine if DM should be disabled due to blocklist/admin status
-  const computeBlockDmState = useCallback((acct: any): { disabled: boolean; reason: string | null } => {
-    const myAddr = String((user as any)?.walletAddress || (user as any)?.address || "").toLowerCase();
-    const peerAddr = String(acct?.address || (acct?.dmSettings?.address) || "").toLowerCase();
-    const blockedArray: any[] = (acct?.blocklist?.blocked as any[]) || [];
-    const theyBlockedMe = !!(myAddr && blockedArray.some((b: any) => String(b?.address || "").toLowerCase() === myAddr));
-    const iBlockedThem = !!(peerAddr && ((user as any)?.blocklist?.blocked || []).some((b: any) => String(b?.address || "").toLowerCase() === peerAddr));
-    const adminBlocked = Boolean(acct?.blocklist?.adminBlocked);
-    if (iBlockedThem && theyBlockedMe) return { disabled: true, reason: "You’ve blocked this user and they’ve blocked you." };
-    if (theyBlockedMe) return { disabled: true, reason: "This user has blocked you." };
-    if (iBlockedThem) return { disabled: true, reason: "You’ve blocked this user." };
-    if (adminBlocked) return { disabled: true, reason: "This account has been blocked and cannot receive messages." };
-    return { disabled: false, reason: null };
-  }, [user]);
+  const computeBlockDmState = useCallback(
+    (acct: any): { disabled: boolean; reason: string | null } => {
+      const myAddr = String(
+        (user as any)?.walletAddress || (user as any)?.address || ""
+      ).toLowerCase();
+      const peerAddr = String(
+        acct?.address || acct?.dmSettings?.address || ""
+      ).toLowerCase();
+      const blockedArray: any[] = (acct?.blocklist?.blocked as any[]) || [];
+      const theyBlockedMe = !!(
+        myAddr &&
+        blockedArray.some(
+          (b: any) => String(b?.address || "").toLowerCase() === myAddr
+        )
+      );
+      const iBlockedThem = !!(
+        peerAddr &&
+        ((user as any)?.blocklist?.blocked || []).some(
+          (b: any) => String(b?.address || "").toLowerCase() === peerAddr
+        )
+      );
+      const adminBlocked = Boolean(acct?.blocklist?.adminBlocked);
+      if (iBlockedThem && theyBlockedMe)
+        return {
+          disabled: true,
+          reason: "You’ve blocked this user and they’ve blocked you.",
+        };
+      if (theyBlockedMe)
+        return { disabled: true, reason: "This user has blocked you." };
+      if (iBlockedThem)
+        return { disabled: true, reason: "You’ve blocked this user." };
+      if (adminBlocked)
+        return {
+          disabled: true,
+          reason: "This account has been blocked and cannot receive messages.",
+        };
+      return { disabled: false, reason: null };
+    },
+    [user]
+  );
 
   // iBlockedThem is computed after `peer` is available
 
   // Keep last message visible when the keyboard opens
   useEffect(() => {
-    const showEvent = Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";
-    const sub = Keyboard.addListener(showEvent as any, () => {
-      requestAnimationFrame(() => {
-        try { listRef.current?.scrollToEnd({ animated: true }); } catch {}
-      });
-    });
-    return () => { try { sub.remove(); } catch {} };
-  }, []);
+    const showEvent =
+      Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";
+    const hideEvent =
+      Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide";
+    const onShow = () => {
+      // Respect user position: only snap if already at bottom
+      if (isAtBottomRef.current) scrollToBottomNow();
+    };
+    const onHide = () => {
+      if (isAtBottomRef.current) scrollToBottomNow();
+    };
+    const subShow = Keyboard.addListener(showEvent as any, onShow);
+    const subHide = Keyboard.addListener(hideEvent as any, onHide);
+    return () => {
+      try {
+        subShow.remove();
+      } catch {}
+      try {
+        subHide.remove();
+      } catch {}
+    };
+  }, [scrollToBottomNow]);
+
+  const onContentSizeChange = useCallback(() => {
+    // Auto-scroll only when already at bottom; otherwise show jump button
+    if (isAtBottomRef.current) {
+      scrollToBottomNow();
+    } else {
+      setShowJumpButton(true);
+    }
+  }, [scrollToBottomNow]);
+
+  const onPressJumpToBottom = useCallback(() => {
+    scrollToBottomNow();
+  }, [scrollToBottomNow]);
+
+  // When the screen opens or conversation changes, scroll to most recent
+  useEffect(() => {
+    // Give a small delay for initial content render
+    const t = setTimeout(() => scrollToBottomNow(), 150);
+    return () => clearTimeout(t);
+  }, [convId, scrollToBottomNow]);
 
   // Derive peer identifier (username/address) for actions
   const peer = useMemo(() => {
@@ -197,10 +289,16 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
   const iBlockedThem = useMemo(() => {
     const peerAddr = String(
-      (target as any)?.address || (target as any)?.walletAddress || peer?.address || ""
+      (target as any)?.address ||
+        (target as any)?.walletAddress ||
+        peer?.address ||
+        ""
     ).toLowerCase();
     return !!(
-      peerAddr && ((user as any)?.blocklist?.blocked || []).some((b: any) => String(b?.address || "").toLowerCase() === peerAddr)
+      peerAddr &&
+      ((user as any)?.blocklist?.blocked || []).some(
+        (b: any) => String(b?.address || "").toLowerCase() === peerAddr
+      )
     );
   }, [user, target, peer?.address]);
 
@@ -245,71 +343,102 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     );
   }, [peer?.username, peer?.address]);
 
-  const applyLocalBlockToggle = useCallback(async (mode: "block" | "unblock") => {
-    const addr = String(peer?.address || (target as any)?.address || "").toLowerCase();
-    if (!addr) return;
-    // Optimistic local update via patchUser
-    await patchUser((prev) => {
-      const current = prev || ({} as any);
-      const bl = current.blocklist || { blocked: [], blockedBy: [], adminBlocked: false };
-      const blocked = Array.isArray(bl.blocked) ? [...bl.blocked] : [];
-      if (mode === "block") {
-        if (!blocked.some((b: any) => String(b?.address || "").toLowerCase() === addr)) {
-          blocked.push({ address: addr, username: peer?.username });
+  const applyLocalBlockToggle = useCallback(
+    async (mode: "block" | "unblock") => {
+      const addr = String(
+        peer?.address || (target as any)?.address || ""
+      ).toLowerCase();
+      if (!addr) return;
+      // Optimistic local update via patchUser
+      await patchUser((prev) => {
+        const current = prev || ({} as any);
+        const bl = current.blocklist || {
+          blocked: [],
+          blockedBy: [],
+          adminBlocked: false,
+        };
+        const blocked = Array.isArray(bl.blocked) ? [...bl.blocked] : [];
+        if (mode === "block") {
+          if (
+            !blocked.some(
+              (b: any) => String(b?.address || "").toLowerCase() === addr
+            )
+          ) {
+            blocked.push({ address: addr, username: peer?.username });
+          }
+          return { blocklist: { ...bl, blocked } } as any;
         }
-        return { blocklist: { ...bl, blocked } } as any;
-      }
-      // unblock
-      const next = blocked.filter((b: any) => String(b?.address || "").toLowerCase() !== addr);
-      return { blocklist: { ...bl, blocked: next } } as any;
-    });
-    // Immediate UI feedback without waiting for context re-render:
-    let nextDisabled = false;
-    let nextReason: string | null = null;
-    if (mode === "block") {
-      nextDisabled = true;
-      nextReason = "You’ve blocked this user.";
-    } else {
-      // After unblocking, still disabled if they blocked me or adminBlocked
-      const myAddr = String((user as any)?.walletAddress || (user as any)?.address || "").toLowerCase();
-      const theyBlockedMe = !!(myAddr && ((target as any)?.blocklist?.blocked || []).some((b: any) => String(b?.address || "").toLowerCase() === myAddr));
-      const adminBlocked = Boolean((target as any)?.blocklist?.adminBlocked);
-      if (theyBlockedMe) {
+        // unblock
+        const next = blocked.filter(
+          (b: any) => String(b?.address || "").toLowerCase() !== addr
+        );
+        return { blocklist: { ...bl, blocked: next } } as any;
+      });
+      // Immediate UI feedback without waiting for context re-render:
+      let nextDisabled = false;
+      let nextReason: string | null = null;
+      if (mode === "block") {
         nextDisabled = true;
-        nextReason = "This user has blocked you.";
-      } else if (adminBlocked) {
-        nextDisabled = true;
-        nextReason = "This account has been blocked and cannot receive messages.";
+        nextReason = "You’ve blocked this user.";
       } else {
-        nextDisabled = false;
-        nextReason = null;
+        // After unblocking, still disabled if they blocked me or adminBlocked
+        const myAddr = String(
+          (user as any)?.walletAddress || (user as any)?.address || ""
+        ).toLowerCase();
+        const theyBlockedMe = !!(
+          myAddr &&
+          ((target as any)?.blocklist?.blocked || []).some(
+            (b: any) => String(b?.address || "").toLowerCase() === myAddr
+          )
+        );
+        const adminBlocked = Boolean((target as any)?.blocklist?.adminBlocked);
+        if (theyBlockedMe) {
+          nextDisabled = true;
+          nextReason = "This user has blocked you.";
+        } else if (adminBlocked) {
+          nextDisabled = true;
+          nextReason =
+            "This account has been blocked and cannot receive messages.";
+        } else {
+          nextDisabled = false;
+          nextReason = null;
+        }
       }
-    }
-    setDmDisabled(nextDisabled);
-    setDmReason(nextReason);
-    // Keep peer policy cache consistent with UI
-    try {
-      dmActions.setPeerPolicy(addr, {
-        disabled: nextDisabled,
-        reason: nextReason,
-        status: nextDisabled ? "BLOCKLIST" : "ACTIVE_ALL",
-      } as any);
-    } catch {}
-  }, [patchUser, peer?.address, peer?.username, target, computeBlockDmState]);
+      setDmDisabled(nextDisabled);
+      setDmReason(nextReason);
+      // Keep peer policy cache consistent with UI
+      try {
+        dmActions.setPeerPolicy(addr, {
+          disabled: nextDisabled,
+          reason: nextReason,
+          status: nextDisabled ? "BLOCKLIST" : "ACTIVE_ALL",
+        } as any);
+      } catch {}
+    },
+    [patchUser, peer?.address, peer?.username, target, computeBlockDmState]
+  );
 
   const onConfirmBlockToggle = useCallback(async () => {
     let prevBlocked: any[] = [];
     try {
       setBlockActionLoading(true);
-      const addr = String((user as any)?.walletAddress || (user as any)?.address || "").toLowerCase();
+      const addr = String(
+        (user as any)?.walletAddress || (user as any)?.address || ""
+      ).toLowerCase();
       if (!convId) {
         throw new Error("No conversation to (un)block");
       }
       // Snapshot for rollback and data we need (e.g., reportId)
-      prevBlocked = ((user as any)?.blocklist?.blocked || []).map((x: any) => ({ ...x }));
-      const peerAddr = String(peer?.address || (target as any)?.address || "").toLowerCase();
+      prevBlocked = ((user as any)?.blocklist?.blocked || []).map((x: any) => ({
+        ...x,
+      }));
+      const peerAddr = String(
+        peer?.address || (target as any)?.address || ""
+      ).toLowerCase();
       const prevPolicy = getPeerPolicy(peerAddr);
-      const existing = prevBlocked.find((b: any) => String(b?.address || "").toLowerCase() === peerAddr);
+      const existing = prevBlocked.find(
+        (b: any) => String(b?.address || "").toLowerCase() === peerAddr
+      );
       const existingReportId = existing?.reportId as string | undefined;
       // Optimistic update
       await applyLocalBlockToggle(confirmMode);
@@ -320,29 +449,46 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         if (newReportId) {
           // Store reportId on the blocked entry for future unblocking
           await patchUser((prev) => {
-            const bl = (prev as any)?.blocklist || { blocked: [], blockedBy: [], adminBlocked: false };
+            const bl = (prev as any)?.blocklist || {
+              blocked: [],
+              blockedBy: [],
+              adminBlocked: false,
+            };
             const blocked = Array.isArray(bl.blocked) ? [...bl.blocked] : [];
-            const idx = blocked.findIndex((b: any) => String(b?.address || "").toLowerCase() === peerAddr);
-            if (idx >= 0) blocked[idx] = { ...blocked[idx], reportId: newReportId };
+            const idx = blocked.findIndex(
+              (b: any) => String(b?.address || "").toLowerCase() === peerAddr
+            );
+            if (idx >= 0)
+              blocked[idx] = { ...blocked[idx], reportId: newReportId };
             return { blocklist: { ...bl, blocked } } as any;
           });
         }
       } else {
         await unBlockDm(convId, addr, existingReportId);
       }
-      toastSuccess(confirmMode === "block" ? `Blocked ${peerLabel}` : `Unblocked ${peerLabel}`);
+      toastSuccess(
+        confirmMode === "block"
+          ? `Blocked ${peerLabel}`
+          : `Unblocked ${peerLabel}`
+      );
     } catch (e) {
       // Rollback optimistic change
       try {
         await patchUser(() => {
-          const bl = ((user as any)?.blocklist) || { blocked: [], blockedBy: [], adminBlocked: false };
+          const bl = (user as any)?.blocklist || {
+            blocked: [],
+            blockedBy: [],
+            adminBlocked: false,
+          };
           return { blocklist: { ...bl, blocked: prevBlocked } } as any;
         });
         const nextState = computeBlockDmState(target);
         setDmDisabled(nextState.disabled);
         setDmReason(nextState.reason);
         // Restore peer policy cache
-        const peerAddr = String(peer?.address || (target as any)?.address || "").toLowerCase();
+        const peerAddr = String(
+          peer?.address || (target as any)?.address || ""
+        ).toLowerCase();
         if (peerAddr) {
           const snapshot = getPeerPolicy(peerAddr);
           if (snapshot) {
@@ -356,12 +502,27 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           }
         }
       } catch {}
-      toastError(e, confirmMode === "block" ? "Failed to block user" : "Failed to unblock user");
+      toastError(
+        e,
+        confirmMode === "block"
+          ? "Failed to block user"
+          : "Failed to unblock user"
+      );
     } finally {
       setBlockActionLoading(false);
       setConfirmVisible(false);
     }
-  }, [applyLocalBlockToggle, confirmMode, peerLabel, convId, user, patchUser, peer?.address, target, computeBlockDmState]);
+  }, [
+    applyLocalBlockToggle,
+    confirmMode,
+    peerLabel,
+    convId,
+    user,
+    patchUser,
+    peer?.address,
+    target,
+    computeBlockDmState,
+  ]);
 
   // Keep DM disabled state in sync with blocklist changes in auth user or target
   useEffect(() => {
@@ -417,9 +578,14 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   }, [convId, targetAddress]);
   useEffect(() => {
     if (convId) {
-      loadMessages(convId, { limit: 30 }).catch(() => {});
+      loadMessages(convId, { limit: 30 })
+        .then(() => {
+          // When initial batch loads, jump to bottom
+          scrollToBottomNow();
+        })
+        .catch(() => {});
     }
-  }, [convId, loadMessages]);
+  }, [convId, loadMessages, scrollToBottomNow]);
 
   // Always (re)check target account info when we know the peer address, even if a conversation already exists
   useEffect(() => {
@@ -605,7 +771,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             createdAt: new Date().toISOString(),
           };
           setPending((prev) => [...prev, uiMsg]);
-          scrollToBottomIfNeeded();
+          // Always snap to bottom when sending
+          scrollToBottomNow();
           const id = await ensureConversation();
           ws.emitAuthed(DMSocketEvent.SendMessage, {
             dmId: id,
@@ -614,7 +781,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           });
           // Clear pending once we switched to real conversation; server event will populate store
           setPending([]);
-          scrollToBottomIfNeeded();
+          scrollToBottomNow();
           return;
         }
         // Existing conversation
@@ -623,14 +790,48 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           content,
           type: "msg",
         });
-        scrollToBottomIfNeeded();
+        // Always snap to bottom when sending
+        scrollToBottomNow();
       } catch (e) {
         toastError(e, "Failed to send message");
         // Clear any pending optimistic if we created one
         if (!convId) setPending([]);
       }
     },
-    [convId, ws, ensureConversation, user]
+    [convId, ws, ensureConversation, user, scrollToBottomNow]
+  );
+
+  const onSendGif = useCallback(
+    async (gifUrl: string, caption?: string) => {
+      if (!gifUrl) return;
+      if (dmDisabled) {
+        toastWarning(dmReason || "Can't send messages right now");
+        return;
+      }
+      try {
+        if (!convId) {
+          const id = await ensureConversation();
+          ws.emitAuthed(DMSocketEvent.SendMessage, {
+            dmId: id,
+            content: caption || "",
+            type: "gif",
+            gif: gifUrl,
+          });
+          scrollToBottomNow();
+          return;
+        }
+        ws.emitAuthed(DMSocketEvent.SendMessage, {
+          dmId: convId,
+          content: caption || "",
+          type: "gif",
+          gif: gifUrl,
+        });
+        scrollToBottomNow();
+      } catch (e) {
+        toastError(e, "Failed to send GIF");
+      }
+    },
+    [convId, ws, ensureConversation, dmDisabled, dmReason, scrollToBottomNow]
   );
 
   const title =
@@ -640,9 +841,15 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         (target as any).displayName ||
         truncateAddress(target.address || "")
       : "Chat");
+  const pendingSorted = useMemo(() => {
+    return [...pending].sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+  }, [pending]);
+
   const combinedList = useMemo(
-    () => (convId ? list : [...list, ...pending]),
-    [convId, list, pending]
+    () => (convId ? list : [...pendingSorted, ...list]),
+    [convId, list, pendingSorted]
   );
 
   // proceedToCreate no longer used; creation happens implicitly in onSend when needed
@@ -663,7 +870,14 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         onUnblockUser={onUnblockUser}
       />
     ),
-    [menuVisible, closeMenu, onViewProfile, iBlockedThem, onBlockUser, onUnblockUser]
+    [
+      menuVisible,
+      closeMenu,
+      onViewProfile,
+      iBlockedThem,
+      onBlockUser,
+      onUnblockUser,
+    ]
   );
 
   // Global socket error handler: toast the reason and re-check account info (useful if peer toggled DND/DMs)
@@ -739,8 +953,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={"padding"}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? headerHeight : 0}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
     >
       <View className="flex-1 bg-theme-neutrals-900">
         <View onLayout={(e) => setHeaderHeight(e.nativeEvent.layout.height)}>
@@ -754,6 +968,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         <View className="flex-1">
           <FlatList
             ref={listRef}
+            inverted={inverted}
             data={combinedList}
             keyExtractor={(m) => m.id}
             renderItem={({ item }) => {
@@ -775,11 +990,25 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             keyboardShouldPersistTaps="handled"
             onScroll={onScroll}
             scrollEventThrottle={16}
+            // Keep newest in view only if already at bottom
+            onContentSizeChange={onContentSizeChange}
           />
+          {showJumpButton && !dmDisabled ? (
+            <View className="absolute right-4 bottom-24">
+              <TouchableOpacity
+                onPress={onPressJumpToBottom}
+                activeOpacity={0.8}
+                className="bg-theme-neutrals-700/90 rounded-full px-3 py-2 flex-row items-center"
+              >
+                <Text className="text-theme-neutrals-100 text-sm">↓ New</Text>
+              </TouchableOpacity>
+            </View>
+          ) : null}
           {dmDisabled ? (
             <View className="px-4 py-2 bg-theme-neutrals-800">
               <Text className="text-theme-neutrals-300 text-xs">
-                {dmReason || "This account is not accepting messages right now."}
+                {dmReason ||
+                  "This account is not accepting messages right now."}
               </Text>
               {iBlockedThem && !!convId && (
                 <TouchableOpacity
@@ -796,6 +1025,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           ) : (
             <MessageInput
               onSend={onSend}
+              onSendGif={onSendGif}
               // Intentionally omit onTypingChange so local typing does not show in the header.
               disabled={false}
             />

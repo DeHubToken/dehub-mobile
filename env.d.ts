@@ -11,4 +11,5 @@ declare module '@env' {
     export const LIVEPEER_API_KEY: string;
     export const DEBUG: string;
     export const AUTH_PROVIDER: string;
+    export const TENOR_API_KEY: string;
 }
