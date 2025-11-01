@@ -33,7 +33,14 @@ export const apiClient = {
     const url = `${API_BASE_URL}${endpoint}`;
     
     // Prepare headers
-    const isFormData = (typeof FormData !== 'undefined') && body instanceof FormData;
+    // Robust RN FormData detection: works across polyfills/realms
+    const isFormData = (
+      typeof FormData !== 'undefined' && (
+        (body as any) instanceof FormData ||
+        (body && (body as any)[Symbol.toStringTag] === 'FormData') ||
+        (body && typeof (body as any).append === 'function' && typeof (body as any).getParts === 'function')
+      )
+    );
     const requestHeaders: Record<string, string> = {
       'Accept': 'application/json',
       ...headers,

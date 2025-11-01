@@ -50,6 +50,29 @@ const DMConversationItem: React.FC<ConversationItemProps> = memo(
       truncateAddress(other.address || "");
     const preview =
       item.messages && item.messages.length > 0 ? item.messages[0] : undefined; // newest first
+    const { previewType, previewCaption } = React.useMemo(() => {
+      const out = { previewType: 'text' as 'text'|'gif'|'image'|'video', previewCaption: '' };
+      if (!preview) return out;
+      const p: any = preview as any;
+      const caption = String(p?.content || '').trim();
+      if (p?.msgType === 'gif') {
+        out.previewType = 'gif';
+        out.previewCaption = caption;
+        return out;
+      }
+      if (p?.msgType === 'media' && Array.isArray(p?.mediaUrls) && p.mediaUrls.length) {
+        const first = p.mediaUrls.find((m: any) => m && m.type) || p.mediaUrls[0];
+        const t = String(first?.type || '').toLowerCase();
+        if (t === 'video') out.previewType = 'video';
+        else if (t === 'image') out.previewType = 'image';
+        else out.previewType = 'text';
+        out.previewCaption = caption;
+        return out;
+      }
+      out.previewType = 'text';
+      out.previewCaption = caption;
+      return out;
+    }, [preview]);
     const updatedAt = item.updatedAt || item.lastMessageAt || item.createdAt;
     const unreadCount = useUnreadCount(item._id as any, (user as any)?.id);
     const hasUnread = (unreadCount || 0) > 0; // overall unread (for dot indicator)
@@ -87,19 +110,44 @@ const DMConversationItem: React.FC<ConversationItemProps> = memo(
               {formatRelativeFromNow(updatedAt)}
             </Text>
           </View>
-          {preview?.content ? (
-            <Text
-              className={
-                (previewUnreadFromOther
-                  ? "text-white font-medium"
-                  : "text-theme-neutrals-400") + " text-[13px] mt-1"
-              }
-              numberOfLines={1}
-            >
-              {preview.author === "me" ? "You: " : ""}
-              {preview.content}
-            </Text>
-          ) : null}
+          {(() => {
+            if (!preview) return null;
+            const baseTextClass = (previewUnreadFromOther ? "text-white font-medium" : "text-theme-neutrals-400") + " text-[13px] mt-1 flex-row items-center";
+            // GIF stays as text prefix
+            if (previewType === 'gif') {
+              const txt = previewCaption ? `GIF: ${previewCaption}` : 'GIF';
+              return (
+                <Text className={baseTextClass} numberOfLines={1}>
+                  {preview?.author === 'me' ? 'You: ' : ''}
+                  {txt}
+                </Text>
+              );
+            }
+            // Image / Video: show icon then caption (or default label)
+            if (previewType === 'image' || previewType === 'video') {
+              const iconName = previewType === 'image' ? 'image-outline' : 'videocam-outline';
+              const label = previewCaption || (previewType === 'image' ? 'Photo' : 'Video');
+              const iconColor = previewUnreadFromOther ? '#FFFFFF' : '#9CA3AF';
+              return (
+                <View className="flex-row items-end mt-1">
+                  {preview?.author === 'me' ? (
+                    <Text className={baseTextClass}>You: </Text>
+                  ) : null}
+                  <Ionicons name={iconName as any} size={14} color={iconColor} style={{ marginRight: 4 }} />
+                  <Text className={baseTextClass} numberOfLines={1}>{label}</Text>
+                </View>
+              );
+            }
+            // Default text message
+            const txt = previewCaption;
+            if (!txt) return null;
+            return (
+              <Text className={baseTextClass} numberOfLines={1}>
+                {preview?.author === 'me' ? 'You: ' : ''}
+                {txt}
+              </Text>
+            );
+          })()}
         </View>
         {previewUnreadFromOther && (
           <View className="mr-2">

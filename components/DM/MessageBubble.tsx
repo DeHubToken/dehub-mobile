@@ -1,7 +1,15 @@
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Text, View, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { Message } from '../../store/messages.types';
 import { formatChatTimeSmart } from '../../libs/date.util';
+import { resolveDisplayUri, downloadToLocal } from '../../libs/dm-media.local';
+import { useWebSocket } from '../../context/WebSocketContext';
+import { DMSocketEvent } from '../../services/enums/dm-socket-events.enum';
+import { dmActions } from '../../store/dm.state';
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { ScreenNames } from '../../navigation/ScreenNames';
+import FullScreenVideoPlayer from '../common/FullScreenVideoPlayer';
 
 export type MessageBubbleProps = {
   msg: Message;
@@ -24,6 +32,9 @@ const MessageBubble: React.FC<MessageBubbleProps> = memo(({ msg, isMe }) => {
   const onLongPress = useCallback(() => {
     setShowMeta((prev) => !prev);
   }, []);
+  const onPressHideMeta = useCallback(() => {
+    if (showMeta) setShowMeta(false);
+  }, [showMeta]);
 
   const media = useMemo(() => {
     const anyMsg: any = msg as any;
@@ -36,6 +47,94 @@ const MessageBubble: React.FC<MessageBubbleProps> = memo(({ msg, isMe }) => {
   }, [msg]);
 
   const [imgLoaded, setImgLoaded] = useState(false);
+  const [displayUri, setDisplayUri] = useState<string | undefined>(undefined);
+  const [downloading, setDownloading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const ws = useWebSocket();
+  const navigation = useNavigation<any>();
+  const [videoOpen, setVideoOpen] = useState(false);
+
+  const isDownloaded = (msg as any)?.isDownloaded === true;
+  const mediaType: 'image' | 'video' | undefined = useMemo(() => {
+    if (!media || !media.length) return undefined;
+    const m = media[0];
+    if ((m.type || '').startsWith('video') || (m.mimeType || '').startsWith('video')) return 'video';
+    if ((m.type || '').startsWith('image') || (m.mimeType || '').startsWith('image')) return 'image';
+    return 'image';
+  }, [media]);
+
+  const isGif = useMemo(() => {
+    const anyMsg: any = msg as any;
+    if (anyMsg?.msgType === 'gif') return true;
+    const m = media?.[0];
+    const t = String(m?.type || '').toLowerCase();
+    const mt = String(m?.mimeType || '').toLowerCase();
+    return t === 'gif' || mt === 'image/gif';
+  }, [msg, media]);
+
+  const dims = useMemo(() => {
+    // Slightly larger for images/videos, a bit smaller for GIFs
+    if (isGif) return { width: 200, height: 200 };
+    if (mediaType === 'image') return { width: 240, height: 240 };
+    if (mediaType === 'video') return { width: 240, height: 240 };
+    return { width: 220, height: 220 };
+  }, [isGif, mediaType]);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const remote = media?.[0]?.url;
+        const uri = await resolveDisplayUri(String((msg as any)?.id || (msg as any)?._id || ''), remote);
+        if (!cancelled) setDisplayUri(uri);
+      } catch {
+        if (!cancelled) setDisplayUri(media?.[0]?.url);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [msg, media?.[0]?.url]);
+
+  const showDownload = useMemo(() => {
+    // Only for non-mine media messages with a remote URL and not yet marked downloaded
+    if (isMe) return false;
+    if (!mediaType) return false;
+    const remote = media?.[0]?.url;
+    if (!remote) return false;
+    if (isDownloaded) return false;
+    // If we already resolved a local URI, no need to show
+    if (displayUri && displayUri.startsWith('file')) return false;
+    return true;
+  }, [isMe, mediaType, media, isDownloaded, displayUri]);
+
+  const isSending = useMemo(() => {
+    const st = String((msg as any)?.status || '').toLowerCase();
+    return isMe && (st === 'sending' || st === 'pending');
+  }, [msg, isMe]);
+
+  const onDownload = useCallback(async () => {
+    if (!mediaType) return;
+    const remote = media?.[0]?.url;
+    if (!remote) return;
+    try {
+      setDownloading(true);
+      setProgress(0);
+      const res = await downloadToLocal(remote, String((msg as any)?.id || (msg as any)?._id || ''), mediaType, (pct) => setProgress(pct));
+      setDisplayUri(res.localUri);
+      // Mark downloaded server-side and locally
+      try {
+        ws.emitAuthed(DMSocketEvent.markAsDownloaded, { dmId: (msg as any)?.conversationId || (msg as any)?.conversation, messageId: (msg as any)?.id });
+      } catch {}
+      try {
+        const cId = String((msg as any)?.conversationId || (msg as any)?.conversation || '');
+        const mId = String((msg as any)?.id || (msg as any)?._id || '');
+        if (cId && mId) dmActions.upsertMessages(cId, [{ _id: mId, isDownloaded: true } as any]);
+      } catch {}
+    } catch {
+      // ignore for now
+    } finally {
+      setDownloading(false);
+    }
+  }, [media, mediaType, msg, ws]);
 
   return (
     <View>
@@ -46,26 +145,80 @@ const MessageBubble: React.FC<MessageBubbleProps> = memo(({ msg, isMe }) => {
           {statusLabel ? `${tsLabel} • ${statusLabel}` : tsLabel}
         </Text>
       ) : null}
-      {media && media.length > 0 ? (
+      {media && media.length > 0 && (
+        <View>
         <TouchableOpacity
           activeOpacity={0.9}
           onLongPress={onLongPress}
+          onPress={() => {
+            if (isSending || showDownload) { onPressHideMeta(); return; }
+            if (mediaType === 'video') {
+              setVideoOpen(true);
+              return;
+            }
+            // Open image viewer (including GIF)
+            const uri = displayUri || media[0].url;
+            if (uri) navigation.navigate(ScreenNames.ImageViewer as any, { images: [{ uri }], index: 0, isModal: true });
+          }}
           className={`max-w-[82%] ${align}`}
         >
           <View className="rounded-2xl overflow-hidden bg-theme-neutrals-800">
-            <View style={{ width: 200, height: 200 }} className="items-center justify-center">
+            <View style={{ width: dims.width, height: dims.height }} className="items-center justify-center">
               {!imgLoaded ? (
                 <View className="absolute inset-0 items-center justify-center bg-theme-neutrals-800">
                   <ActivityIndicator size="small" />
                 </View>
               ) : null}
               <Image
-                source={{ uri: media[0].url }}
+                source={{ uri: displayUri || media[0].url }}
                 style={{ width: '100%', height: '100%' }}
                 resizeMode="cover"
                 onLoadStart={() => setImgLoaded(false)}
                 onLoadEnd={() => setImgLoaded(true)}
               />
+              {/* Top-left icon badge (only when not sending and not needing download) */}
+              {!isSending && !showDownload ? (
+                <View className="absolute top-2 left-2">
+                  {isGif ? (
+                    <View className="bg-black/60 px-2 py-0.5 rounded">
+                      <Text className="text-white text-[11px] font-semibold">GIF</Text>
+                    </View>
+                  ) : mediaType === 'image' ? (
+                    <Ionicons name="image-outline" size={16} color="#fff" />
+                  ) : null}
+                </View>
+              ) : null}
+              {isSending ? (
+                <View className="absolute inset-0 items-center justify-center bg-black/35">
+                  <ActivityIndicator size="small" color="#FFFFFF" />
+                </View>
+              ) : null}
+              {/* Video play overlay when ready */}
+              {!isSending && !showDownload && mediaType === 'video' ? (
+                <View className="absolute inset-0 items-center justify-center">
+                  <Ionicons name="play-circle" size={56} color="#FFFFFF" />
+                </View>
+              ) : null}
+              {showDownload && !isGif ? (
+                <View className="absolute inset-0 items-center justify-center bg-black/25">
+                  <TouchableOpacity
+                    onPress={onDownload}
+                    disabled={downloading}
+                    className="items-center justify-center"
+                  >
+                    {downloading ? (
+                      <Text className="text-white text-xs">{progress}%</Text>
+                    ) : (
+                      <Ionicons name="arrow-down-circle" size={36} color="#FFFFFF" />
+                    )}
+                  </TouchableOpacity>
+                </View>
+              ) : null}
+              {!showDownload && isDownloaded && displayUri && !displayUri.startsWith('file') ? (
+                <View className="absolute inset-0 items-center justify-center bg-black/25">
+                  <Ionicons name="alert-circle" size={28} color="#FFFFFF" />
+                </View>
+              ) : null}
             </View>
             {msg.text ? (
               <View className="px-3 py-2">
@@ -74,8 +227,11 @@ const MessageBubble: React.FC<MessageBubbleProps> = memo(({ msg, isMe }) => {
             ) : null}
           </View>
         </TouchableOpacity>
-      ) : (
-        <TouchableOpacity activeOpacity={0.9} onLongPress={onLongPress} className={`max-w-[82%] rounded-2xl px-3 py-2 ${bg} ${align}`}>
+        <FullScreenVideoPlayer visible={videoOpen} uri={displayUri || media[0].url} onClose={() => setVideoOpen(false)} />
+        </View>
+      )}
+      {(!media || media.length === 0) && (
+        <TouchableOpacity activeOpacity={0.9} onLongPress={onLongPress} onPress={onPressHideMeta} className={`max-w-[82%] rounded-2xl px-3 py-2 ${bg} ${align}`}>
           {msg.text ? (
             <Text className={`text-[15px] ${isMe ? 'text-white' : 'text-theme-neutrals-100'}`}>{msg.text}</Text>
           ) : null}

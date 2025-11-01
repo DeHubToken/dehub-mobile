@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Image, Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import env from '../../config/env';
 
 export type GifPickerProps = {
@@ -110,6 +111,8 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
     );
   }, [onPick]);
 
+  const onPressClose = useCallback(() => onClose(), [onClose]);
+
   return (
     <Modal visible={visible} animationType="slide" onRequestClose={onClose} transparent>
       <View className="flex-1 justify-end">
@@ -123,8 +126,13 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
               onChangeText={onChangeText}
               className="flex-1 h-11 px-3 rounded-lg bg-theme-neutrals-800 text-theme-neutrals-100"
             />
-            <TouchableOpacity onPress={onClose} className="ml-2 px-3 py-2 rounded-lg bg-theme-neutrals-800">
-              <Text className="text-theme-neutrals-100">Close</Text>
+            <TouchableOpacity
+              onPress={onPressClose}
+              accessibilityRole="button"
+              accessibilityLabel="Close"
+              className="ml-2 w-10 h-10 rounded-full bg-theme-neutrals-800 items-center justify-center active:opacity-80"
+            >
+              <Ionicons name="close" size={18} color="#E5E7EB" />
             </TouchableOpacity>
           </View>
           {loading ? (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -20,11 +20,29 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
 }) => {
   const navigation = useNavigation();
   const showBack = canGoBack && (navigation as any).canGoBack?.();
+  const backLockRef = useRef(false);
+  const backTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleBack = () => {
-    if (onBackPress) return onBackPress();
-    if (showBack) (navigation as any).goBack();
-  };
+  const handleBack = useCallback(() => {
+    // Debounce back to avoid rapid multiple navigations
+    if (backLockRef.current) return;
+    backLockRef.current = true;
+    try {
+      if (onBackPress) onBackPress();
+      else if (showBack) (navigation as any).goBack();
+    } finally {
+      if (backTimerRef.current) clearTimeout(backTimerRef.current);
+      backTimerRef.current = setTimeout(() => {
+        backLockRef.current = false;
+      }, 600);
+    }
+  }, [navigation, onBackPress, showBack]);
+
+  useEffect(() => {
+    return () => {
+      if (backTimerRef.current) clearTimeout(backTimerRef.current);
+    };
+  }, []);
 
   return (
     <View

@@ -182,12 +182,12 @@ export default function FeedTab() {
   ]);
 
   const onUploadPress = useCallback(() => {
-    if (ethBalance <= 0) {
-      toastError(
-        "You need ETH for gas to mint on-chain. Please fund your wallet and try again."
-      );
-      return;
-    }
+    // if (ethBalance <= 0) {
+    //   toastError(
+    //     "You need ETH for gas to mint on-chain. Please fund your wallet and try again."
+    //   );
+    //   return;
+    // }
     if (!isFormValid) return;
     setConfirmText(
       "Are you sure the details are correct and you wish to proceed? Feed uploads are on-chain and immutable."

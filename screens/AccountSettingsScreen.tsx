@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import {
   View,
   Text,
@@ -26,14 +26,19 @@ import {
   DEV_MAIL,
 } from "../config/links";
 import DMSettingsSection from "../components/Settings/DMSettingsSection";
+import { ChainId } from "../config/constants";
+import ChainSwitchModal from "../components/Settings/ChainSwitchModal";
+import BlockedAccountsModal from "../components/Settings/BlockedAccountsModal";
 
 // Lightweight Account Settings screen focused on account-level actions.
 // Extend later with preferences, linked wallets, notifications, privacy, etc.
 const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
-  const { signOut, user, patchUser } = useAuth();
+  const { signOut, user, patchUser, chainId } = useAuth();
   const [signingOut, setSigningOut] = useState<boolean>(false);
   const [bugModalVisible, setBugModalVisible] = useState<boolean>(false);
   const [exportPkVisible, setExportPkVisible] = useState<boolean>(false);
+  const [chainModalVisible, setChainModalVisible] = useState<boolean>(false);
+  const [blockedModalVisible, setBlockedModalVisible] = useState<boolean>(false);
 
   // DM Settings moved into components/Settings/DMSettingsSection
 
@@ -81,6 +86,31 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                 {user?.username || user?.email || "Anonymous"}
               </Text>
             </View>
+            {/* Active Chain (opens modal) */}
+            <TouchableOpacity
+              onPress={() => setChainModalVisible(true)}
+              className="px-4 py-4 flex-row items-center justify-between"
+            >
+              <View className="flex-1 pr-2">
+                <Text className="text-white text-sm">Switch Active Chain</Text>
+                <Text className="text-gray-500 text-xs mt-1">
+                  {chainId === ChainId.BASE_MAINNET ? 'Base' : chainId === ChainId.BSC_MAINNET ? 'BNB (disabled)' : `Chain ID ${chainId ?? 'N/A'}`}
+                </Text>
+              </View>
+              <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
+            </TouchableOpacity>
+            <View className="h-px bg-gray-800" />
+            {/* Gas Sponsorship status */}
+            <View className="px-4 py-4 flex-row items-center justify-between">
+              <View className="flex-1 pr-2">
+                <Text className="text-white text-sm">Gas Sponsorship</Text>
+                <Text className="text-gray-500 text-xs mt-1">Transaction fees covered by the app</Text>
+              </View>
+              <View className="bg-emerald-500/20 px-2 py-1 rounded-full">
+                <Text className="text-emerald-400 text-[10px] font-semibold">Enabled</Text>
+              </View>
+            </View>
+            <View className="h-px bg-gray-800" />
             <TouchableOpacity
               onPress={() => setExportPkVisible(true)}
               className="px-4 py-4 flex-row items-center justify-between"
@@ -170,16 +200,18 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
           </Text>
           <View className="bg-gray-900 rounded-lg overflow-hidden border border-gray-800">
             <TouchableOpacity
-              disabled
-              className="px-4 py-4 flex-row items-center justify-between opacity-60"
+              onPress={() => setBlockedModalVisible(true)}
+              className="px-4 py-4 flex-row items-center justify-between"
             >
               <View>
                 <Text className="text-white text-sm">Blocked Accounts</Text>
                 <Text className="text-gray-500 text-xs mt-1">
-                  Manage your block list
+                  {((user?.blocklist?.blocked?.length || 0) as number) > 0
+                    ? `${user?.blocklist?.blocked?.length} blocked`
+                    : 'You haven’t blocked anyone'}
                 </Text>
               </View>
-              <Ionicons name="chevron-forward" size={18} color="#6b7280" />
+              <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
             </TouchableOpacity>
             <View className="h-px bg-gray-800" />
             <TouchableOpacity
@@ -262,6 +294,8 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
         visible={exportPkVisible}
         onClose={() => setExportPkVisible(false)}
       />
+      <ChainSwitchModal visible={chainModalVisible} onClose={() => setChainModalVisible(false)} />
+      <BlockedAccountsModal visible={blockedModalVisible} onClose={() => setBlockedModalVisible(false)} />
     </View>
   );
 };
