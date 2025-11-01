@@ -224,6 +224,14 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
             <View className="py-3">
               <Text className="text-theme-neutrals-100 text-[15px] font-medium">Minimum tip (DHB)</Text>
               <Text className="text-theme-neutrals-400 text-[12px] mt-1">Set to 0 to allow without a tip.</Text>
+              {/* Audit notice */}
+              <View className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-2 mt-2 flex-row items-start">
+                <Ionicons name="information-circle-outline" size={16} color="#FBBF24" />
+                <Text className="text-amber-300 text-[12px] ml-2 flex-1">
+                  Tipped messages contracts are currently being audited. Minimum tip enforcement may not work yet.
+                  As a temporary measure, you can turn off new DMs or disable DMs entirely.
+                </Text>
+              </View>
               <View className="flex-row items-center mt-2">
                 <TextInput
                   value={minTip}

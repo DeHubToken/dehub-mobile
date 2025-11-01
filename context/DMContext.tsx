@@ -96,6 +96,50 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     unsubs.push(ws.on(DMSocketEvent.TipUpdate, (payload: any) => log.info('TipUpdate', payload)));
     unsubs.push(ws.on(DMSocketEvent.FetchMessage, (payload: any) => log.debug('FetchMessage', payload)));
     unsubs.push(ws.on(DMSocketEvent.ReValidateMessage, (payload: any) => log.debug('ReValidateMessage', payload)));
+    // Upload progress/completion: server emits jobMessageId with message payload updates
+    unsubs.push(ws.on(DMSocketEvent.JobMessageId, (payload: any) => {
+      try {
+        // Handle both shapes:
+        // 1) { _id, conversation, ... }
+        // 2) { dmId, message: { _id, conversation, ... }, status }
+        const raw = payload?.message || payload;
+        const msgId = String(raw?._id || '');
+        const cId = String(raw?.conversation || payload?.dmId || '');
+        if (!cId || !msgId) {
+          log.debug('jobMessageId: missing ids', payload);
+          return;
+        }
+        // Normalize author like SendMessage handler
+        const providedAuthor = (raw?.author === 'me' || raw?.author === 'other') ? raw.author : undefined;
+        let author: 'me' | 'other' | undefined = providedAuthor;
+        if (!author) {
+          const senderId = String(raw?.sender?._id || raw?.sender || raw?.senderId || '');
+          const senderAddr = String(raw?.sender?.address || raw?.address || raw?.senderAddress || '').toLowerCase();
+          const meId = String(userId || '');
+          const meAddr = String(address || '');
+          const isMine = (!!meId && senderId === meId) || (!!meAddr && senderAddr === meAddr);
+          author = isMine ? 'me' : 'other';
+        }
+        const normalized = { ...raw, author };
+        dmActions.upsertMessages(cId, [normalized as any]);
+        log.debug('jobMessageId -> upserted', { conversation: cId, msgId, author: normalized.author });
+      } catch (err) {
+        log.error('jobMessageId handler error', err);
+      }
+    }));
+    // Download receipt: server confirms/propagates isDownloaded change
+    unsubs.push(ws.on(DMSocketEvent.downloadReceipt, (payload: any) => {
+      try {
+        const dmId = String(payload?.dmId || '');
+        const messageId = String(payload?.messageId || '');
+        if (!dmId || !messageId) return;
+        dmActions.upsertMessages(dmId, [{ _id: messageId, isDownloaded: true } as any]);
+        log.debug('downloadReceipt -> marked isDownloaded', { dmId, messageId });
+      } catch (err) {
+        log.error('downloadReceipt handler error', err);
+      }
+    }));
+
     unsubs.push(ws.on(DMSocketEvent.ReConnect, () => log.info('DM ReConnect')));
     unsubs.push(ws.on(DMSocketEvent.Ping, () => log.debug('DM ping')));
     unsubs.push(ws.on(DMSocketEvent.Pong, () => log.debug('DM pong')));

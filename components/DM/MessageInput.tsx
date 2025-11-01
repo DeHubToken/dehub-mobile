@@ -1,20 +1,32 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { Animated, Easing, Keyboard, Text, TextInput, TextInputSelectionChangeEventData, TouchableOpacity, View } from 'react-native';
+import { Animated, Easing, Keyboard, Text, TextInput, TextInputSelectionChangeEventData, TouchableOpacity, View, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import useKeyboard from '../../hooks/useKeyboard';
 import EmojiPicker from './EmojiPicker';
 import GifPicker from './GifPicker';
+import AttachPicker from './AttachPicker';
+import * as ImagePicker from 'expo-image-picker';
+import * as VideoThumbnails from 'expo-video-thumbnails';
+import { ensureMediaLibraryPermission, waitAfterPermissionIfNeeded } from '../../libs/permissions.util';
+import { openCroppedImagePicker } from '../../libs/assets.util';
 
 export type MessageInputProps = {
   onSend: (text: string) => void;
   onSendGif?: (url: string, caption?: string) => void;
   disabled?: boolean;
   onTypingChange?: (isTyping: boolean) => void;
+  onSendImage?: (uri: string, caption?: string) => void;
+  onSendVideo?: (uri: string, caption?: string) => void;
 };
 
 const EMOJI_PANEL_HEIGHT = 280;
+const ATTACH_PANEL_HEIGHT = 132;
 
-const MessageInput: React.FC<MessageInputProps> = ({ onSend, onSendGif, disabled, onTypingChange }) => {
+type SelectedMedia =
+  | { kind: 'image'; uri: string }
+  | { kind: 'video'; uri: string; thumb?: string; duration?: number };
+
+const MessageInput: React.FC<MessageInputProps> = ({ onSend, onSendGif, disabled, onTypingChange, onSendImage, onSendVideo }) => {
   const [text, setText] = useState('');
   const [selection, setSelection] = useState<{ start: number; end: number }>({ start: 0, end: 0 });
   const stopTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -24,6 +36,8 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend, onSendGif, disabled
   const emojiAnim = useRef(new Animated.Value(0)).current; // 0 closed, 1 open
   const [gifOpen, setGifOpen] = useState<boolean>(false);
   const [selectedGifUrl, setSelectedGifUrl] = useState<string | null>(null);
+  const [attachVisible, setAttachVisible] = useState<boolean>(false);
+  const [selectedMedia, setSelectedMedia] = useState<SelectedMedia | null>(null);
 
   const containerClass = useMemo(
     () => `px-3 py-2 bg-theme-neutrals-900${keyboardVisible ? ' mb-10' : ''}`,
@@ -43,13 +57,34 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend, onSendGif, disabled
       setSelection({ start: 0, end: 0 });
       return;
     }
+    if (selectedMedia) {
+      if (selectedMedia.kind === 'image') {
+        if (onSendImage) {
+          onSendImage(selectedMedia.uri, t || undefined);
+          setSelectedMedia(null);
+          setText('');
+          notifyTyping(false);
+          setSelection({ start: 0, end: 0 });
+        }
+        return;
+      } else if (selectedMedia.kind === 'video') {
+        if (onSendVideo) {
+          onSendVideo(selectedMedia.uri, t || undefined);
+          setSelectedMedia(null);
+          setText('');
+          notifyTyping(false);
+          setSelection({ start: 0, end: 0 });
+        }
+        return;
+      }
+    }
     if (!t) return;
     onSend(t);
     setText('');
     notifyTyping(false);
     // keep caret at start after clearing
     setSelection({ start: 0, end: 0 });
-  }, [text, onSend, notifyTyping, onSendGif, selectedGifUrl]);
+  }, [text, onSend, notifyTyping, onSendGif, selectedGifUrl, selectedMedia, onSendImage, onSendVideo]);
   const hasText = useMemo(() => !!text.trim(), [text]);
 
   const openEmoji = useCallback(() => {
@@ -86,11 +121,14 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend, onSendGif, disabled
     }
   }, [emojiOpen, openEmoji, closeEmoji]);
   const onPressGif = useCallback(() => {
+    setAttachVisible(false);
     setGifOpen(true);
   }, []);
   const onPressAttach = useCallback(() => {
-    // Placeholder for future attachment picker
-  }, []);
+    if (emojiOpen) closeEmoji();
+    setGifOpen(false);
+    setAttachVisible(true);
+  }, [emojiOpen, closeEmoji]);
   const onChange = React.useCallback((t: string) => {
     setText(t);
     // typing start
@@ -159,24 +197,112 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend, onSendGif, disabled
 
   const handlePickGif = useCallback((url: string) => {
     setGifOpen(false);
+    setSelectedMedia(null);
     setSelectedGifUrl(url);
+  }, []);
+
+  const handleRemoveSelectedGif = useCallback(() => {
+    setSelectedGifUrl(null);
+  }, []);
+
+  const handlePickPhoto = useCallback(async () => {
+    try {
+      setAttachVisible(false);
+      // Use in-app cropper (single image) with free crop
+      const uri = await openCroppedImagePicker({ free: true, quality: 0.9, forceJpg: true });
+      if (uri) {
+        // Clear any GIF selection to keep one-at-a-time
+        setSelectedGifUrl(null);
+        setSelectedMedia({ kind: 'image', uri });
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
+  const handlePickVideo = useCallback(async () => {
+    try {
+      const perm = await ensureMediaLibraryPermission();
+      if (!perm.granted) return;
+      await waitAfterPermissionIfNeeded(perm.justGranted);
+      const mediaTypes: any = (ImagePicker as any).MediaTypeOptions?.Videos ?? ImagePicker.MediaTypeOptions.Videos;
+      const res = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes,
+        allowsMultipleSelection: false,
+        quality: 0.8,
+        selectionLimit: 1,
+      });
+      setAttachVisible(false);
+      if (!res.canceled && res.assets && res.assets.length > 0) {
+        const asset = res.assets[0];
+        const uri = asset.uri;
+        const duration = (asset as any)?.duration ?? undefined;
+        // Generate a quick thumbnail for preview (best-effort)
+        let thumb: string | undefined;
+        try {
+          const th = await VideoThumbnails.getThumbnailAsync(uri, { time: 500 });
+          thumb = th.uri;
+        } catch {}
+        setSelectedGifUrl(null);
+        setSelectedMedia({ kind: 'video', uri, thumb, duration });
+      }
+    } catch (e) {
+      // ignore
+    }
   }, []);
 
   return (
     <View className={containerClass}>
+      {/* Selected media preview (image or video) */}
+      {selectedMedia ? (
+        <View className="mb-2 flex-row items-center">
+          <View className="w-20 h-20 rounded-lg overflow-hidden bg-theme-neutrals-800 mr-3 relative">
+            {selectedMedia.kind === 'image' ? (
+              <Image source={{ uri: selectedMedia.uri }} style={{ width: '100%', height: '100%' }} resizeMode="cover" />
+            ) : (
+              <>
+                <Image source={{ uri: selectedMedia.thumb || selectedMedia.uri }} style={{ width: '100%', height: '100%' }} resizeMode="cover" />
+                <View className="absolute inset-0 items-center justify-center">
+                  <Ionicons name="videocam" size={22} color="#FFFFFF" />
+                </View>
+                {typeof selectedMedia.duration === 'number' ? (
+                  <View className="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-black/60">
+                    <Text className="text-white text-[10px]">
+                      {(() => {
+                        const d = Math.max(0, Math.floor(selectedMedia.duration/1000 || 0));
+                        const mm = Math.floor(d / 60).toString().padStart(2, '0');
+                        const ss = (d % 60).toString().padStart(2, '0');
+                        return `${mm}:${ss}`;
+                      })()}
+                    </Text>
+                  </View>
+                ) : null}
+              </>
+            )}
+            <TouchableOpacity
+              onPress={() => setSelectedMedia(null)}
+              accessibilityRole="button"
+              accessibilityLabel="Remove media"
+              className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-black/60 items-center justify-center"
+            >
+              <Ionicons name="close" size={14} color="#FFFFFF" />
+            </TouchableOpacity>
+          </View>
+        </View>
+      ) : null}
       {selectedGifUrl ? (
         <View className="mb-2 flex-row items-center">
-          <View className="w-16 h-16 rounded-lg overflow-hidden bg-theme-neutrals-800 mr-3">
+          <View className="w-16 h-16 rounded-lg overflow-hidden bg-theme-neutrals-800 mr-3 relative">
             <Animated.Image source={{ uri: selectedGifUrl }} style={{ width: '100%', height: '100%' }} resizeMode="cover" />
+            <TouchableOpacity
+              onPress={handleRemoveSelectedGif}
+              accessibilityRole="button"
+              accessibilityLabel="Remove GIF"
+              className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-black/60 items-center justify-center"
+            >
+              <Ionicons name="close" size={14} color="#FFFFFF" />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            onPress={() => setSelectedGifUrl(null)}
-            className="px-3 py-2 rounded-lg bg-theme-neutrals-800"
-            accessibilityRole="button"
-            accessibilityLabel="Remove GIF"
-          >
-            <Text className="text-theme-neutrals-100 text-[13px]">Remove</Text>
-          </TouchableOpacity>
         </View>
       ) : null}
       <View className="flex-row items-center">
@@ -205,7 +331,7 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend, onSendGif, disabled
           onFocus={onInputFocus}
         />
         <View className="flex-row items-center ml-2">
-          {!hasText && !selectedGifUrl ? (
+          {!hasText && !selectedGifUrl && !selectedMedia ? (
             <>
               <TouchableOpacity
                 onPress={onPressGif}
@@ -262,6 +388,13 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend, onSendGif, disabled
         visible={gifOpen}
         onClose={() => setGifOpen(false)}
         onPick={handlePickGif}
+      />
+      {/* Attach Picker */}
+      <AttachPicker
+        visible={attachVisible}
+        onClose={() => setAttachVisible(false)}
+        onPickPhoto={handlePickPhoto}
+        onPickVideo={handlePickVideo}
       />
     </View>
   );

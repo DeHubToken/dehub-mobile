@@ -8,26 +8,31 @@ export const requestMediaLibraryPermission = async (): Promise<boolean> => {
 };
 
 export type CropOptions = {
-  width: number;
-  height: number;
+  width?: number; // omit for free crop
+  height?: number; // omit for free crop
   forceJpg?: boolean;
   quality?: number; // 0..1
   circle?: boolean;
+  free?: boolean; // enable free-style crop (no aspect lock)
 };
 
-export const openCroppedImagePicker = async (
-  opts: CropOptions
-): Promise<string | null> => {
-  const { width, height, forceJpg = true, quality = 0.9, circle = false } = opts;
-  const img = await ImageCropPicker.openPicker({
-    width,
-    height,
+export const openCroppedImagePicker = async (opts: CropOptions): Promise<string | null> => {
+  const { width, height, forceJpg = true, quality = 0.9, circle = false, free = false } = opts;
+  const pickerOpts: any = {
     cropping: true,
     cropperCircleOverlay: circle,
     mediaType: "photo",
     compressImageQuality: quality,
     forceJpg,
-  });
+  };
+  // If free crop, do not enforce width/height and enable freestyle if supported
+  if (!free) {
+    if (width) pickerOpts.width = width;
+    if (height) pickerOpts.height = height;
+  } else {
+    pickerOpts.freeStyleCropEnabled = true;
+  }
+  const img = await ImageCropPicker.openPicker(pickerOpts);
   const pickedUri = (img as any)?.path || (img as any)?.sourceURL;
   return pickedUri ?? null;
 };

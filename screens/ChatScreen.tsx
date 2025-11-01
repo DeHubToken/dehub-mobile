@@ -36,6 +36,9 @@ import ChatHeaderMenuButton from "../components/Chat/ChatHeaderMenuButton";
 import ChatMenu from "../components/Chat/ChatMenu";
 import ConfirmBlockModal from "../components/common/ConfirmBlockModal";
 import { blockDm, unBlockDm } from "../services/dm.service";
+import { copyPickedToLocal, setMapping } from "../libs/dm-media.local";
+import { uploadDmMedia } from "../services/dm/upload";
+import { guessMime } from "../libs/assets.util";
 
 type ID = string;
 type UiMessage = {
@@ -74,29 +77,43 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const ws = useWebSocket();
   const list: UiMessage[] = useMemo(() => {
     // Adapt dm messages to UI message shape without mutating store
-    const adapted = (dmMessages || []).map((m) => ({
-      id: String(m._id),
-      conversationId: String(m.conversation),
-      senderId: String((m.sender && (m.sender._id || m.sender)) || "other"),
-      senderAddress: String(
-        (m as any)?.sender?.address ||
-          (m as any)?.address ||
-          (m as any)?.senderAddress ||
-          ""
-      ),
-      author: (m as any)?.author,
-      kind:
-        Array.isArray(m.mediaUrls) && m.mediaUrls.length > 0 ? "media" : "text",
-      text: m.content || "",
-      mediaUrls: Array.isArray((m as any)?.mediaUrls)
-        ? (m as any).mediaUrls.map((x: any) => ({ url: x?.url, type: x?.type, mimeType: x?.mimeType }))
-        : undefined,
-      status: "sent",
-      createdAt: String(m.createdAt || new Date().toISOString()),
-    } as UiMessage));
+    const adapted = (dmMessages || []).map(
+      (m) =>
+        ({
+          id: String(m._id),
+          conversationId: String(m.conversation),
+          senderId: String((m.sender && (m.sender._id || m.sender)) || "other"),
+          senderAddress: String(
+            (m as any)?.sender?.address ||
+              (m as any)?.address ||
+              (m as any)?.senderAddress ||
+              ""
+          ),
+          author: (m as any)?.author,
+          kind:
+            Array.isArray(m.mediaUrls) && m.mediaUrls.length > 0
+              ? "media"
+              : "text",
+          text: m.content || "",
+          mediaUrls: Array.isArray((m as any)?.mediaUrls)
+            ? (m as any).mediaUrls.map((x: any) => ({
+                url: x?.url,
+                type: x?.type,
+                mimeType: x?.mimeType,
+              }))
+            : undefined,
+          // server may provide this flag for received messages
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          isDownloaded: (m as any)?.isDownloaded === true,
+          status: "sent",
+          createdAt: String(m.createdAt || new Date().toISOString()),
+        } as UiMessage)
+    );
     // Sort newest first for inverted list rendering
     return adapted.sort(
-      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
   }, [dmMessages]);
   // Show typing only for the other user (remote typing). Local typing should not trigger header subtitle.
@@ -755,50 +772,49 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         return;
       }
       try {
-        // If no conversation yet (first time), optimistically show the message and create+send behind the scenes
-        if (!convId) {
-          const tempId: ID = `temp-${Date.now()}-${Math.random()
-            .toString(36)
-            .slice(2, 8)}`;
-          const uiMsg: UiMessage = {
-            id: tempId,
-            tempId,
-            conversationId: "temp" as any,
-            senderId: String((user as any)?.id || "me"),
-            kind: "text",
-            text: content,
-            status: "sending",
-            createdAt: new Date().toISOString(),
-          };
-          setPending((prev) => [...prev, uiMsg]);
-          // Always snap to bottom when sending
-          scrollToBottomNow();
-          const id = await ensureConversation();
-          ws.emitAuthed(DMSocketEvent.SendMessage, {
-            dmId: id,
-            content,
-            type: "msg",
-          });
-          // Clear pending once we switched to real conversation; server event will populate store
-          setPending([]);
-          scrollToBottomNow();
-          return;
-        }
-        // Existing conversation
+        // Optimistic text bubble
+        const tempId: ID = `temp-${Date.now()}-${Math.random()
+          .toString(36)
+          .slice(2, 8)}`;
+        const optimistic: UiMessage = {
+          id: tempId,
+          tempId,
+          conversationId: String(convId || "temp"),
+          senderId: String((user as any)?.id || "me"),
+          author: "me",
+          kind: "text",
+          text: content,
+          status: "sending",
+          createdAt: new Date().toISOString(),
+        };
+        (optimistic as any)._sig = { t: "msg", content };
+        setPending((prev) => [optimistic, ...prev]);
+        scrollToBottomNow();
+        const id = await ensureConversation();
         ws.emitAuthed(DMSocketEvent.SendMessage, {
-          dmId: convId,
+          dmId: id,
           content,
           type: "msg",
         });
-        // Always snap to bottom when sending
-        scrollToBottomNow();
       } catch (e) {
         toastError(e, "Failed to send message");
-        // Clear any pending optimistic if we created one
-        if (!convId) setPending([]);
+        // Remove the optimistic pending bubble on error
+        setPending((prev) =>
+          prev.filter(
+            (m: any) => !(m?._sig?.t === "msg" && m?._sig?.content === content)
+          )
+        );
       }
     },
-    [convId, ws, ensureConversation, user, scrollToBottomNow]
+    [
+      convId,
+      ws,
+      ensureConversation,
+      user,
+      scrollToBottomNow,
+      dmDisabled,
+      dmReason,
+    ]
   );
 
   const onSendGif = useCallback(
@@ -809,19 +825,32 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         return;
       }
       try {
-        if (!convId) {
-          const id = await ensureConversation();
-          ws.emitAuthed(DMSocketEvent.SendMessage, {
-            dmId: id,
-            content: caption || "",
-            type: "gif",
-            gif: gifUrl,
-          });
-          scrollToBottomNow();
-          return;
-        }
+        // Optimistic GIF bubble
+        const tempId: ID = `temp-${Date.now()}-${Math.random()
+          .toString(36)
+          .slice(2, 8)}`;
+        const optimistic: UiMessage = {
+          id: tempId,
+          tempId,
+          conversationId: String(convId || "temp"),
+          senderId: String((user as any)?.id || "me"),
+          author: "me",
+          kind: "media",
+          text: caption || "",
+          mediaUrls: [{ url: gifUrl, type: "gif", mimeType: "image/gif" }],
+          status: "sending",
+          createdAt: new Date().toISOString(),
+        };
+        (optimistic as any)._sig = {
+          t: "gif",
+          gif: gifUrl,
+          caption: caption || "",
+        };
+        setPending((prev) => [optimistic, ...prev]);
+        scrollToBottomNow();
+        const id = await ensureConversation();
         ws.emitAuthed(DMSocketEvent.SendMessage, {
-          dmId: convId,
+          dmId: id,
           content: caption || "",
           type: "gif",
           gif: gifUrl,
@@ -829,10 +858,240 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         scrollToBottomNow();
       } catch (e) {
         toastError(e, "Failed to send GIF");
+        setPending((prev) =>
+          prev.filter(
+            (m: any) =>
+              !(
+                m?._sig?.t === "gif" &&
+                m?._sig?.gif === gifUrl &&
+                String(m?._sig?.caption || "") === String(caption || "")
+              )
+          )
+        );
       }
     },
-    [convId, ws, ensureConversation, dmDisabled, dmReason, scrollToBottomNow]
+    [
+      convId,
+      ws,
+      ensureConversation,
+      dmDisabled,
+      dmReason,
+      scrollToBottomNow,
+      user,
+    ]
   );
+
+  const onSendImage = useCallback(
+    async (uri: string, caption?: string) => {
+      if (!uri || !user) return;
+      if (dmDisabled) {
+        toastWarning(dmReason || "Can't send messages right now");
+        return;
+      }
+      try {
+        const id = await ensureConversation();
+        // Copy into managed local folder first
+        const copied = await copyPickedToLocal(uri, "image");
+        // Optimistic bubble with local URI
+        const tempId: ID = `temp-${Date.now()}-${Math.random()
+          .toString(36)
+          .slice(2, 8)}`;
+        const optimistic: UiMessage = {
+          id: tempId,
+          tempId,
+          conversationId: id,
+          senderId: String((user as any)?.id || "me"),
+          author: "me",
+          kind: "media",
+          text: caption || "",
+          mediaUrls: [
+            { url: copied.localUri, type: "image", mimeType: "image/*" },
+          ],
+          status: "sending",
+          createdAt: new Date().toISOString(),
+        };
+        (optimistic as any)._sig = { t: "media", caption: caption || "" };
+        setPending((prev) => [optimistic, ...prev]);
+        scrollToBottomNow();
+        // Use the original picked URI for upload (more compatible on Android),
+        // but keep the copied local file for display & mapping
+        const mime = guessMime(uri, "image/jpeg");
+        const file = { uri, name: copied.name, type: mime } as any;
+        console.log("[DM] Upload file meta (image)", file);
+        // Send to backend
+        const resp: any = await uploadDmMedia({
+          conversationId: id,
+          senderId: user.address as string,
+          files: [file],
+          caption,
+        });
+        // Try to read messageId from response to persist mapping
+        const msgId: string = String(
+          resp?.data?._id || resp?.message?._id || resp?._id || resp?.id || ""
+        );
+        if (msgId) {
+          await setMapping(msgId, copied.name, "image");
+        }
+        scrollToBottomNow();
+      } catch (e) {
+        toastError(e, "Failed to send image");
+        setPending((prev) =>
+          prev.filter(
+            (m: any) =>
+              !(
+                m?._sig?.t === "media" &&
+                String(m?._sig?.caption || "") === String(caption || "")
+              )
+          )
+        );
+      }
+    },
+    [ensureConversation, dmDisabled, dmReason, scrollToBottomNow, user]
+  );
+
+  const onSendVideo = useCallback(
+    async (uri: string, caption?: string) => {
+      if (!uri || !user) return;
+      if (dmDisabled) {
+        toastWarning(dmReason || "Can't send messages right now");
+        return;
+      }
+      try {
+        const id = await ensureConversation();
+        const copied = await copyPickedToLocal(uri, "video");
+        const tempId: ID = `temp-${Date.now()}-${Math.random()
+          .toString(36)
+          .slice(2, 8)}`;
+        const optimistic: UiMessage = {
+          id: tempId,
+          tempId,
+          conversationId: id,
+          senderId: String((user as any)?.id || "me"),
+          author: "me",
+          kind: "media",
+          text: caption || "",
+          mediaUrls: [
+            { url: copied.localUri, type: "video", mimeType: "video/*" },
+          ],
+          status: "sending",
+          createdAt: new Date().toISOString(),
+        };
+        (optimistic as any)._sig = { t: "media", caption: caption || "" };
+        setPending((prev) => [optimistic, ...prev]);
+        scrollToBottomNow();
+        const mime = guessMime(uri, "video/mp4");
+        const file = { uri, name: copied.name, type: mime } as any;
+        // console.log("[DM] Upload file meta (video)", file);
+        const resp: any = await uploadDmMedia({
+          conversationId: id,
+          senderId: user.address  as string,
+          files: [file],
+          caption,
+        });
+        const msgId: string = String(
+          resp?.data?._id || resp?.message?._id || resp?._id || resp?.id || ""
+        );
+        if (msgId) {
+          await setMapping(msgId, copied.name, "video");
+        }
+        scrollToBottomNow();
+      } catch (e) {
+        toastError(e, "Failed to send video");
+        setPending((prev) =>
+          prev.filter(
+            (m: any) =>
+              !(
+                m?._sig?.t === "media" &&
+                String(m?._sig?.caption || "") === String(caption || "")
+              )
+          )
+        );
+      }
+    },
+    [ensureConversation, dmDisabled, dmReason, scrollToBottomNow, user]
+  );
+
+  // Reconcile pending items when server confirms
+  useEffect(() => {
+    const onServerMessage = (payload: any) => {
+      try {
+        const cId = String(payload?.conversation || "");
+        if (!cId || (convId && String(cId) !== String(convId))) return;
+        if (payload?.author !== "me") return;
+        const msgType = payload?.msgType;
+        const content = payload?.content || "";
+        const gif =
+          Array.isArray(payload?.mediaUrls) &&
+          payload.mediaUrls[0]?.type === "gif"
+            ? payload.mediaUrls[0]?.url
+            : undefined;
+        setPending((prev) => {
+          if (!prev.length) return prev;
+          const idx = prev.findIndex((m: any) => {
+            const sig = m?._sig;
+            if (!sig) return false;
+            if (msgType === "msg")
+              return sig.t === "msg" && sig.content === content;
+            if (msgType === "gif")
+              return (
+                sig.t === "gif" &&
+                sig.gif === gif &&
+                String(sig.caption || "") === String(content || "")
+              );
+            if (msgType === "media")
+              return (
+                sig.t === "media" &&
+                String(sig.caption || "") === String(content || "")
+              );
+            return false;
+          });
+          if (idx < 0) return prev;
+          const next = [...prev];
+          next.splice(idx, 1);
+          return next;
+        });
+      } catch {}
+    };
+    const onJobMessage = (payload: any) => {
+      try {
+        const message = payload?.message || payload;
+        const cId = String(message?.conversation || payload?.dmId || "");
+        if (!cId || (convId && String(cId) !== String(convId))) return;
+        // Prefer matching by caption/content when available
+        const content = message?.content || payload?.content || "";
+        setPending((prev) => {
+          if (!prev.length) return prev;
+          let idx = prev.findIndex(
+            (m: any) =>
+              m?._sig?.t === "media" &&
+              String(m?._sig?.caption || "") === String(content || "")
+          );
+          if (idx < 0) {
+            // Fallback: remove the most recent media optimistic
+            idx = prev.findIndex((m: any) => m?._sig?.t === "media");
+          }
+          if (idx < 0) return prev;
+          const next = [...prev];
+          next.splice(idx, 1);
+          return next;
+        });
+      } catch {}
+    };
+    try {
+      ws.on(DMSocketEvent.SendMessage, onServerMessage);
+    } catch {}
+    try {
+      ws.on(DMSocketEvent.JobMessageId, onJobMessage);
+    } catch {}
+    return () => {
+      try {
+        ws.off(DMSocketEvent.SendMessage, onServerMessage);
+      } catch {}
+      try {
+        ws.off(DMSocketEvent.JobMessageId, onJobMessage);
+      } catch {}
+    };
+  }, [ws, convId]);
 
   const title =
     route?.params?.title ||
@@ -843,14 +1102,18 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       : "Chat");
   const pendingSorted = useMemo(() => {
     return [...pending].sort(
-      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
   }, [pending]);
 
-  const combinedList = useMemo(
-    () => (convId ? list : [...pendingSorted, ...list]),
-    [convId, list, pendingSorted]
-  );
+  const combinedList = useMemo(() => {
+    const merged = [...pendingSorted, ...list];
+    return merged.sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+  }, [list, pendingSorted]);
 
   // proceedToCreate no longer used; creation happens implicitly in onSend when needed
 
@@ -1026,6 +1289,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             <MessageInput
               onSend={onSend}
               onSendGif={onSendGif}
+              onSendImage={onSendImage}
+              onSendVideo={onSendVideo}
               // Intentionally omit onTypingChange so local typing does not show in the header.
               disabled={false}
             />
