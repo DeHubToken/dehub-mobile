@@ -11,6 +11,7 @@ import {
   LIVEPEER_API_KEY,
   DEBUG,
   AUTH_PROVIDER,
+  TENOR_API_KEY,
 } from "@env";
 import { createLogger } from "../libs/logger";
 
@@ -30,6 +31,7 @@ const env = {
   LIVEPEER_API_KEY: LIVEPEER_API_KEY,
   DEBUG: DEBUG,
   AUTH_PROVIDER: AUTH_PROVIDER,
+  TENOR_API_KEY: TENOR_API_KEY,
 };
 
 const log = createLogger('env');

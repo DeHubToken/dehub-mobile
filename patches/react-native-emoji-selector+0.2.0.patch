@@ -1,0 +1,60 @@
+diff --git a/node_modules/react-native-emoji-selector/index.js b/node_modules/react-native-emoji-selector/index.js
+index 0737acd..1287f0d 100644
+--- a/node_modules/react-native-emoji-selector/index.js
++++ b/node_modules/react-native-emoji-selector/index.js
+@@ -7,9 +7,9 @@ import {
+   TextInput,
+   Platform,
+   ActivityIndicator,
+-  AsyncStorage,
+   FlatList
+ } from "react-native";
++import AsyncStorage from "@react-native-async-storage/async-storage";
+ import emoji from "emoji-datasource";
+ 
+ export const Categories = {
+@@ -69,7 +69,7 @@ const sortEmoji = list => list.sort((a, b) => a.sort_order - b.sort_order);
+ const categoryKeys = Object.keys(Categories);
+ 
+ const TabBar = ({ theme, activeCategory, onPress, width }) => {
+-  const tabSize = width / categoryKeys.length;
++  const tabSize = Math.max(1, width / categoryKeys.length);
+ 
+   return categoryKeys.map(c => {
+     const category = Categories[c];
+@@ -91,7 +91,7 @@ const TabBar = ({ theme, activeCategory, onPress, width }) => {
+             style={{
+               textAlign: "center",
+               paddingBottom: 8,
+-              fontSize: tabSize - 24
++              fontSize: Math.max(10, tabSize - 24)
+             }}
+           >
+             {category.symbol}
+@@ -112,7 +112,7 @@ const EmojiCell = ({ emoji, colSize, ...other }) => (
+     }}
+     {...other}
+   >
+-    <Text style={{ color: "#FFFFFF", fontSize: colSize - 12 }}>
++    <Text style={{ color: "#FFFFFF", fontSize: Math.max(12, colSize - 12) }}>
+       {charFromEmojiObject(emoji)}
+     </Text>
+   </TouchableOpacity>
+@@ -247,7 +247,7 @@ export default class EmojiSelector extends Component {
+     this.setState(
+       {
+         emojiList,
+-        colSize: Math.floor(this.state.width / this.props.columns)
++        colSize: Math.max(16, Math.floor(this.state.width / this.props.columns) || 0)
+       },
+       callback
+     );
+@@ -326,7 +326,7 @@ export default class EmojiSelector extends Component {
+                 )}
+                 <FlatList
+                   style={styles.scrollview}
+-                  contentContainerStyle={{ paddingBottom: colSize }}
++                  contentContainerStyle={{ paddingBottom: Math.max(0, colSize) }}
+                   data={this.returnSectionData()}
+                   renderItem={this.renderEmojiCell}
+                   horizontal={false}
