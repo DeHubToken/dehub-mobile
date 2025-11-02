@@ -4,7 +4,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  FlatList,
+  ScrollView,
+  Dimensions,
   ActivityIndicator,
 } from "react-native";
 import GlassModal from "../ui/GlassModal";
@@ -28,6 +29,7 @@ export interface ImportWalletModalProps {
 }
 
 const TARGET_CHAIN_ID = ChainId.BASE_MAINNET;
+const LIST_MAX_HEIGHT = Math.round(Dimensions.get("window").height * 0.45);
 
 const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
   ({ visible, onClose }) => {
@@ -253,41 +255,50 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
             </View>
           </View>
 
-          <FlatList
-            data={accounts}
-            keyExtractor={(item) => item.address}
-            ListEmptyComponent={() => (
+          <View className="px-5">
+            {accounts.length === 0 ? (
               <Text className="text-theme-neutrals-500 text-xs text-center mt-3 mb-6">
                 No imported accounts yet.
               </Text>
-            )}
-            renderItem={({ item }) => (
-              <View className="px-5 py-3 border-b border-theme-neutrals-800 flex-row items-center justify-between">
-                <View>
-                  <Text className="text-white text-sm font-medium">
-                    {item.username || "Imported account"}
-                  </Text>
-                  <Text className="text-theme-neutrals-500 text-xs">
-                    {miniAddress(item.address)}
-                  </Text>
-                </View>
-                <View className="flex-row items-center">
-                  <TouchableOpacity
-                    onPress={() => handleUse(item.address)}
-                    className="px-3 py-2 rounded-lg bg-theme-neutrals-800 mr-2"
+            ) : (
+              <ScrollView
+                showsVerticalScrollIndicator
+                keyboardShouldPersistTaps="handled"
+                style={{ maxHeight: LIST_MAX_HEIGHT }}
+                contentContainerStyle={{ paddingBottom: 12 }}
+              >
+                {accounts.map((item) => (
+                  <View
+                    key={item.address}
+                    className="py-3 border-b border-theme-neutrals-800 flex-row items-center justify-between"
                   >
-                    <Text className="text-white text-xs">Use</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => handleDelete(item.address)}
-                    className="p-2 rounded-lg bg-theme-neutrals-900"
-                  >
-                    <Ionicons name="trash-outline" size={18} color="#EF4444" />
-                  </TouchableOpacity>
-                </View>
-              </View>
+                    <View>
+                      <Text className="text-white text-sm font-medium">
+                        {item.username || "Imported account"}
+                      </Text>
+                      <Text className="text-theme-neutrals-500 text-xs">
+                        {miniAddress(item.address)}
+                      </Text>
+                    </View>
+                    <View className="flex-row items-center">
+                      <TouchableOpacity
+                        onPress={() => handleUse(item.address)}
+                        className="px-3 py-2 rounded-lg bg-theme-neutrals-800 mr-2"
+                      >
+                        <Text className="text-white text-xs">Use</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => handleDelete(item.address)}
+                        className="p-2 rounded-lg bg-theme-neutrals-900"
+                      >
+                        <Ionicons name="trash-outline" size={18} color="#EF4444" />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                ))}
+              </ScrollView>
             )}
-          />
+          </View>
 
           <View className="px-5 py-4">
             <Text className="text-theme-neutrals-500 text-[11px] text-center">

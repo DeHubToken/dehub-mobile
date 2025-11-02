@@ -33,14 +33,14 @@ import BlockedAccountsModal from "../components/Settings/BlockedAccountsModal";
 // Lightweight Account Settings screen focused on account-level actions.
 // Extend later with preferences, linked wallets, notifications, privacy, etc.
 const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
-  const { signOut, user, patchUser, chainId } = useAuth();
+  const { signOut, user, patchUser, chainId, authMethod } = useAuth();
   const [signingOut, setSigningOut] = useState<boolean>(false);
   const [bugModalVisible, setBugModalVisible] = useState<boolean>(false);
   const [exportPkVisible, setExportPkVisible] = useState<boolean>(false);
   const [chainModalVisible, setChainModalVisible] = useState<boolean>(false);
   const [blockedModalVisible, setBlockedModalVisible] = useState<boolean>(false);
+  const isImported = authMethod === 'local';
 
-  // DM Settings moved into components/Settings/DMSettingsSection
 
   const handleSignOut = useCallback(async () => {
     if (signingOut) return;
@@ -83,7 +83,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                 Logged in as
               </Text>
               <Text className="text-gray-400 text-sm mt-1">
-                {user?.username || user?.email || "Anonymous"}
+                {(user?.username || user?.email || "Anonymous") + (isImported ? " (imported)" : "")}
               </Text>
             </View>
             {/* Active Chain (opens modal) */}
@@ -104,11 +104,21 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
             <View className="px-4 py-4 flex-row items-center justify-between">
               <View className="flex-1 pr-2">
                 <Text className="text-white text-sm">Gas Sponsorship</Text>
-                <Text className="text-gray-500 text-xs mt-1">Transaction fees covered by the app</Text>
+                {isImported ? (
+                  <Text className="text-gray-500 text-xs mt-1">Gas sponsorship is unavailable for imported accounts</Text>
+                ) : (
+                  <Text className="text-gray-500 text-xs mt-1">Transaction fees covered by the app</Text>
+                )}
               </View>
-              <View className="bg-emerald-500/20 px-2 py-1 rounded-full">
-                <Text className="text-emerald-400 text-[10px] font-semibold">Enabled</Text>
-              </View>
+              {isImported ? (
+                <View className="bg-gray-600/30 px-2 py-1 rounded-full">
+                  <Text className="text-gray-400 text-[10px] font-semibold">Disabled</Text>
+                </View>
+              ) : (
+                <View className="bg-emerald-500/20 px-2 py-1 rounded-full">
+                  <Text className="text-emerald-400 text-[10px] font-semibold">Enabled</Text>
+                </View>
+              )}
             </View>
             <View className="h-px bg-gray-800" />
             <TouchableOpacity

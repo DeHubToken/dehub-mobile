@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { TouchableOpacity, View, Text } from "react-native";
 import { useAuth } from "../../context/AuthContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -42,12 +42,32 @@ const DMConversationItem: React.FC<ConversationItemProps> = memo(
   ({ item, onPress }) => {
     const { user } = useAuth();
     const { showUserProfile } = useUserProfileSheet();
-    const handlePress = useCallback(() => onPress(item), [item, onPress]);
-    const other = item.participants?.[0]?.participant || {};
-    const title =
-      other.displayName ||
-      other.username ||
-      truncateAddress(other.address || "");
+
+    const myAddr = useMemo(() => {
+      const a = (user as any)?.address || (user as any)?.walletAddress;
+      return typeof a === 'string' ? a.toLowerCase() : undefined;
+    }, [user]);
+
+    const other = useMemo(() => {
+      const arr = Array.isArray(item?.participants) ? item.participants : [];
+      for (const p of arr) {
+        const part = (p as any)?.participant;
+        if (!part) continue;
+        const addr = typeof part.address === 'string' ? part.address.toLowerCase() : undefined;
+        if (addr && myAddr && addr === myAddr) continue; // skip self
+        return part as any;
+      }
+      return null as any;
+    }, [item, myAddr]);
+
+    const isUnknown = !other;
+    const handlePress = useCallback(() => {
+      if (!isUnknown) onPress(item);
+    }, [isUnknown, item, onPress]);
+
+    const title = isUnknown
+      ? "Unknown user"
+      : (other.displayName || other.username || truncateAddress(other.address || ""));
     const preview =
       item.messages && item.messages.length > 0 ? item.messages[0] : undefined; // newest first
     const { previewType, previewCaption } = React.useMemo(() => {
@@ -73,7 +93,7 @@ const DMConversationItem: React.FC<ConversationItemProps> = memo(
       out.previewCaption = caption;
       return out;
     }, [preview]);
-    const updatedAt = item.updatedAt || item.lastMessageAt || item.createdAt;
+  const updatedAt = item.updatedAt || item.lastMessageAt || item.createdAt;
     const unreadCount = useUnreadCount(item._id as any, (user as any)?.id);
     const hasUnread = (unreadCount || 0) > 0; // overall unread (for dot indicator)
     const previewUnreadFromOther = !!(
@@ -85,15 +105,17 @@ const DMConversationItem: React.FC<ConversationItemProps> = memo(
     return (
       <TouchableOpacity
         onPress={handlePress}
-        className="flex-row items-center px-4 py-3"
+        disabled={isUnknown}
+        className={`flex-row items-center px-4 py-3 ${isUnknown ? 'opacity-50' : ''}`}
         accessibilityRole="button"
+        accessibilityState={{ disabled: isUnknown }}
       >
         <Avatar
-          uri={getAvatarUrl((other as any)?.avatarImageUrl)}
+          uri={isUnknown ? undefined : getAvatarUrl((other as any)?.avatarImageUrl)}
           size={44}
           onPress={() => {
-            const id =
-              (other as any)?.username || (other as any)?.address || "";
+            if (isUnknown) return;
+            const id = (other as any)?.username || (other as any)?.address || "";
             if (id) showUserProfile(String(id), { source: "dm-list" });
           }}
         />
@@ -149,7 +171,7 @@ const DMConversationItem: React.FC<ConversationItemProps> = memo(
             );
           })()}
         </View>
-        {previewUnreadFromOther && (
+        {previewUnreadFromOther && !isUnknown && (
           <View className="mr-2">
             <Ionicons name="ellipse" size={12} color={theme.colors.accent} />
           </View>

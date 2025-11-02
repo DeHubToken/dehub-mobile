@@ -6,6 +6,7 @@ import { upsertLocalAccount, getLocalAccount } from "../libs/wallets.local";
 
 import type { User } from "../context/AuthContext";
 import { createAuthAdapter } from "../services/auth/authAdapter";
+import { setAuthMethod, clearAuthMethod } from "../libs/auth.utils";
 import { AuthService } from "../services";
 // balances fetching centralized in useBalances
 
@@ -35,6 +36,7 @@ type SessionDeps = {
   clearAuthData: () => Promise<void>;
   providerReset: () => void;
   isMountedRef: { current: boolean };
+  setAuthMethodState: (v: 'local' | 'web3auth' | null) => void;
 };
 
 export function useAuthSession({
@@ -57,6 +59,7 @@ export function useAuthSession({
   clearAuthData,
   providerReset,
   isMountedRef,
+  setAuthMethodState,
 }: SessionDeps) {
   const persistLocalAccountIfPossible = useCallback(async (enriched: User) => {
     try {
@@ -130,7 +133,6 @@ export function useAuthSession({
           sinceStart: Date.now() - t0,
         });
       }
-      // Balances are now fetched centrally in useBalances; skip ad-hoc fetching here
       if (opts?.skipBalances) {
         log.debug("enrich:balances:skipped", { sinceStart: Date.now() - t0 });
       }
@@ -172,7 +174,7 @@ export function useAuthSession({
       }
       return enriched;
     },
-  [isMountedRef, log, setAuthUser, setUser]
+    [isMountedRef, log, setAuthUser, setUser]
   );
 
   const signOut = useCallback(async () => {
@@ -183,6 +185,7 @@ export function useAuthSession({
       setIsSignedIn(false);
       setBalancesLoading(false);
       providerReset();
+      try { setAuthMethodState(null); } catch {}
     } finally {
       setIsLoading(false);
     }
@@ -193,6 +196,7 @@ export function useAuthSession({
     setIsLoading,
     setIsSignedIn,
     setUser,
+    setAuthMethodState,
   ]);
 
   const handleSessionExpired = useCallback(
@@ -220,6 +224,12 @@ export function useAuthSession({
         // capture override provider BEFORE any flow clears it
         const preOverride = getSigningProvider();
         const hasOverride = !!preOverride;
+        // Persist the chosen auth method up-front; clear if the login fails
+        try {
+          const methodNow = (hasOverride ? "local" : "web3auth");
+          await setAuthMethod(methodNow, walletAddress);
+          try { setAuthMethodState(methodNow); } catch {}
+        } catch {}
         let privateKey: string | undefined;
         if (!hasOverride) {
           try {
@@ -234,15 +244,25 @@ export function useAuthSession({
             log.warn("getPrivateKey:error", e);
           }
         }
-        const {
-          user: walletUser,
-          token,
-          needsUsername,
-        } = await AuthService.signInWithWallet(
-          walletAddress,
-          chainId,
-          hasOverride ? undefined : { privateKey }
-        );
+        let walletUser: any;
+        let token: any;
+        let needsUsername: boolean = false;
+        try {
+          const res = await AuthService.signInWithWallet(
+            walletAddress,
+            chainId,
+            hasOverride ? undefined : { privateKey }
+          );
+          walletUser = (res as any).user;
+          token = (res as any).token;
+          needsUsername = !!(res as any).needsUsername;
+        } catch (e) {
+          try {
+            await clearAuthMethod();
+          } catch {}
+          try { setAuthMethodState(null); } catch {}
+          throw e;
+        }
         try {
           // prefer the captured override even if a later read is cleared
           if (preOverride && typeof preOverride.request === "function")
@@ -267,8 +287,12 @@ export function useAuthSession({
             skipBalances: true, // skip on first load; fetch in background with loading state
           });
           await persistLocalAccountIfPossible(enriched);
-          try { setBalancesLoading(true); } catch {}
-          try { fetchAndStoreBalances(enriched).catch(() => {}); } catch {}
+          try {
+            setBalancesLoading(true);
+          } catch {}
+          try {
+            fetchAndStoreBalances(enriched).catch(() => {});
+          } catch {}
         }
       } finally {
         setIsLoading(false);
@@ -301,8 +325,12 @@ export function useAuthSession({
       enrichAndStoreUser(finalUser, { refetch: true, skipBalances: true })
         .then(async (u) => {
           await persistLocalAccountIfPossible(u);
-          try { setBalancesLoading(true); } catch {}
-          try { fetchAndStoreBalances(u).catch(() => {}); } catch {}
+          try {
+            setBalancesLoading(true);
+          } catch {}
+          try {
+            fetchAndStoreBalances(u).catch(() => {});
+          } catch {}
         })
         .catch(async () => {
           setUser(finalUser);
@@ -359,12 +387,15 @@ export function useAuthSession({
   const refreshUser = useCallback(
     async (current: User | null) => {
       if (!current) return;
-      await enrichAndStoreUser(current, {
+      const updated = await enrichAndStoreUser(current, {
         refetch: true,
         cacheBustImages: true,
       });
+      // Also refresh on-chain balances as part of a manual refresh
+      try { setBalancesLoading(true); } catch {}
+      try { await fetchAndStoreBalances(updated); } catch {}
     },
-    [enrichAndStoreUser]
+    [enrichAndStoreUser, fetchAndStoreBalances, setBalancesLoading]
   );
 
   return {

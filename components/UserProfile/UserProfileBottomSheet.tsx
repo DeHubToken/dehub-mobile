@@ -20,7 +20,7 @@ import { formatCompactNumber } from "../../libs/numbers.util";
 import { formatJoinedDate } from "../../libs/date.util";
 import env from "../../config/env";
 import { shareProfile } from "../../libs/misc";
-import { copyToClipboard, toastError } from "../../libs";
+import { copyToClipboard, toastError, toastInfo } from "../../libs";
 import UserProfileSkeleton from "./UserProfileSkeleton";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -31,6 +31,7 @@ import { TabView, TabBar } from "react-native-tab-view";
 import { theme } from "../../theme";
 import { Dimensions as RNDimensions } from "react-native";
 import { useAuth } from "../../context/AuthContext";
+import { useDM } from "../../hooks/useDM";
 import TipModal from "../Tip/TipModal";
 import UserProfileHeader from "./UserProfileHeader";
 import UserProfileActions from "./UserProfileActions";
@@ -109,6 +110,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   const currentHeightRef = useRef(MID_HEIGHT);
   const startHeightRef = useRef(MID_HEIGHT);
   const { requireAuth, user: authUser, patchUser } = useAuth() as any;
+  const { conversations } = useDM();
 
   // Keep ref updated
   useEffect(() => {
@@ -378,6 +380,50 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     setMode("videos");
   }, []);
 
+  const handleMessage = useCallback(() => {
+    requireAuth(() => {
+      const addr = (
+        (data as any)?.walletAddress || (data as any)?.address || address || ""
+      ).toLowerCase();
+      const selfAddr = (
+        (authUser as any)?.walletAddress || (authUser as any)?.address || ""
+      ).toLowerCase();
+      if (!addr) return;
+      if (addr === selfAddr) {
+        toastInfo("You can’t message yourself");
+        return;
+      }
+      const title = (data as any)?.displayName || (data as any)?.username || truncateAddress(addr);
+      const existing = (conversations as any[])?.find(
+        (c: any) =>
+          Array.isArray(c?.participants) &&
+          c.participants.some(
+            (p: any) => ((p?.participant?.address || "").toLowerCase() === addr)
+          )
+      );
+      if (existing) {
+        (navigation as any).navigate?.(ScreenNames.Chat as never, {
+          conversationId: existing._id,
+          title,
+        } as never);
+      } else {
+        const targetUser = {
+          username: (data as any)?.username,
+          displayName: (data as any)?.displayName,
+          walletAddress: addr,
+          address: addr,
+          avatarImageUrl: (data as any)?.avatarImageUrl,
+        } as any;
+        (navigation as any).navigate?.(ScreenNames.Chat as never, {
+          targetAddress: addr,
+          title,
+          targetUser,
+        } as never);
+      }
+      onClose?.();
+    });
+  }, [requireAuth, data, address, authUser, conversations, navigation, onClose]);
+
   const renderVideoScene = useCallback(
     ({ route }) => {
       switch (route.key) {
@@ -503,6 +549,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                 joinedDate={joinedDate}
                 onOpenImage={handleOpenImage}
                 onShare={handleShare}
+                onMessage={handleMessage}
                 FallbackAvatar={FallbackAvatar}
                 FallbackBanner={FallbackBanner}
                 socials={data as any}

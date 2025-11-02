@@ -266,7 +266,7 @@ const DMSettingsSection: React.FC = () => {
             Set to 0 to allow without a tip.
           </Text>
           {/* Audit notice for tipped messages */}
-          <View className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 mb-0 flex-row items-start">
+          <View className="bg-amber-500/10 border border-black/30 rounded-lg p-3 mt-1 flex-row items-start">
             <Ionicons
               name="information-circle-outline"
               size={16}

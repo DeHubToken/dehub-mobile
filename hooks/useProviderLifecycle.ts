@@ -6,6 +6,7 @@ import { getLocalAccountDetails } from "../libs/wallets.local";
 import { createLocalEip1193Provider } from "../services/localwallet.provider";
 import { SUPPORTED_NETWORKS } from "../config/web3.constants";
 import { ChainId } from "../config/constants";
+import { getAuthMethod } from "../libs/auth.utils";
 
 export type ProviderStatus = "idle" | "initializing" | "ready" | "error";
 
@@ -167,7 +168,12 @@ export function useProviderLifecycle({
       if (!eip1193) throw new Error("getWeb3AuthProvider returned null/undefined");
       if (!providerMetaRef.current.isMounted) return;
       log.info("provider:init:adopt");
-      await adoptProvider(eip1193, { setReady: false, mode: "auth" });
+      let mode: "local" | "override" | "auth" = "auth";
+      try {
+        const { method } = await getAuthMethod();
+        if (method === "local") mode = "local";
+      } catch {}
+      await adoptProvider(eip1193, { setReady: false, mode });
       providerMetaRef.current.providerGeneration += 1;
       try {
         let rawChainId: any;
