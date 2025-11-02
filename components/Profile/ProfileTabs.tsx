@@ -18,7 +18,7 @@ const ProfileTabs: React.FC = () => {
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: "videos", title: "Videos" },
-    { key: "feed", title: "Feed" },
+    // { key: "feed", title: "Feed" },
     { key: "activity", title: "Activity" },
     { key: "livestreams", title: "Livestreams" },
   ]);
@@ -31,12 +31,12 @@ const ProfileTabs: React.FC = () => {
             <VideosRoute address={address} />
           </View>
         );
-      case "feed":
-        return (
-          <View style={{ flex: 1 }}>
-            <FeedRoute />
-          </View>
-        );
+      // case "feed":
+      //   return (
+      //     <View style={{ flex: 1 }}>
+      //       <FeedRoute />
+      //     </View>
+      //   );
       case "activity":
         return (
           <View style={{ flex: 1 }}>

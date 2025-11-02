@@ -3,7 +3,7 @@ import { getSigningProvider, setSigningProvider } from '../../libs/provider.regi
 import { NETWORK_URLS } from '../../config/web3.constants';
 import { defaultChainId } from '../../config/constants';
 import { getLocalAccountDetails } from '../../libs/wallets.local';
-import { getAuthUser } from '../../libs/auth.utils';
+import { getAuthUser, getAuthMethod } from '../../libs/auth.utils';
 import { ethers } from 'ethers';
 import { ethersService } from '../ethers.service';
 
@@ -118,6 +118,13 @@ export class LocalProviderAdapter implements AuthAdapter {
   }
 
   async getProvider(): Promise<any | null> {
+    // Only serve a local provider if the stored method is 'local'
+    try {
+      const { method } = await getAuthMethod();
+      if (method && method !== 'local') {
+        return null;
+      }
+    } catch {}
     // Prefer existing override set elsewhere
     const existing = getSigningProvider();
     if (existing) return existing;

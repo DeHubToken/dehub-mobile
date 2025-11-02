@@ -159,16 +159,10 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             Welcome to DeHub
           </Text>
           <Text className="text-gray-400 text-center text-base mb-6">
-            Connect your wallet or sign in to start gaming, sharing content, and
-            earning rewards in the ultimate gaming platform.
+            Connect your wallet or sign in to start streaming, sharing content, and
+            earning rewards in the ultimate streaming platform.
           </Text>
         </View>
-
-        {/** Wallet connect button & divider commented out (keeping only Web3Auth social logins) **/}
-        {/**
-  <TouchableOpacity ...wallet connect code... />
-  <View className="flex-row items-center my-4"> ...divider... </View>
-  **/}
 
         <View className="mt-6" />
 

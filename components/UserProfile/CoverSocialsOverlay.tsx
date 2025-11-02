@@ -7,6 +7,7 @@ import { getSocialLink, openExternalLink } from "../../libs/links.utils";
 export type CoverSocialsOverlayProps = {
   socials?: Partial<Record<string, string>> | null;
   onShare: () => void;
+  onMessage?: () => void;
 };
 
 type SocialMeta = { icon: string; host: string; label: string };
@@ -31,7 +32,7 @@ const ORDER: Array<keyof typeof SOCIAL_ICON_MAP> = [
   "telegram",
 ];
 
-export const CoverSocialsOverlay: React.FC<CoverSocialsOverlayProps> = ({ socials, onShare }) => {
+export const CoverSocialsOverlay: React.FC<CoverSocialsOverlayProps> = ({ socials, onShare, onMessage }) => {
   const items = useMemo(() => {
     if (!socials) return [] as { key: string; url: string; icon: string; label: string }[];
     const list: { key: string; url: string; icon: string; label: string }[] = [];
@@ -67,6 +68,16 @@ export const CoverSocialsOverlay: React.FC<CoverSocialsOverlayProps> = ({ social
               </TouchableOpacity>
             ))}
           </View>
+        )}
+        {!!onMessage && (
+          <TouchableOpacity
+            onPress={onMessage}
+            accessibilityLabel="Message user"
+            activeOpacity={0.85}
+            className="w-9 h-9 rounded-full bg-black/30 items-center justify-center ml-1"
+          >
+            <Ionicons name="chatbubble-ellipses-outline" size={16} color="#fff" />
+          </TouchableOpacity>
         )}
         <TouchableOpacity
           onPress={onShare}

@@ -5,6 +5,8 @@ export const AUTH_USER_KEY = 'auth_user';
 export const AUTH_TOKEN_KEY = 'auth_token';
 export const HAS_SEEN_AUTH_KEY = 'has_seen_auth';
 export const WEB3_PROVIDER_KEY = 'web3_provider_info';
+export const AUTH_METHOD_KEY = 'auth_method';
+export const AUTH_METHOD_ADDR_KEY = 'auth_method_address';
 
 /**
  * Gets the authentication token from SecureStore
@@ -74,6 +76,8 @@ export async function clearAuthData(): Promise<void> {
   await removeAuthToken();
   await removeAuthUser();
   await SecureStore.deleteItemAsync(WEB3_PROVIDER_KEY);
+  try { await SecureStore.deleteItemAsync(AUTH_METHOD_KEY); } catch {}
+  try { await SecureStore.deleteItemAsync(AUTH_METHOD_ADDR_KEY); } catch {}
 }
 
 /**
@@ -142,4 +146,34 @@ export async function getStoredProviderMeta(): Promise<StoredProviderMeta | null
 
 export async function clearStoredProviderMeta(): Promise<void> {
   try { await SecureStore.deleteItemAsync(WEB3_PROVIDER_KEY); } catch {}
+}
+
+// ---------------- Auth Method Persistence ----------------
+export type AuthMethod = 'local' | 'web3auth';
+
+export async function setAuthMethod(method: AuthMethod, address?: string | null): Promise<void> {
+  try {
+    await SecureStore.setItemAsync(AUTH_METHOD_KEY, method);
+  } catch {}
+  if (address) {
+    try { await SecureStore.setItemAsync(AUTH_METHOD_ADDR_KEY, address.toLowerCase()); } catch {}
+  }
+}
+
+export async function getAuthMethod(): Promise<{ method: AuthMethod | null; address: string | null; }> {
+  try {
+    const [m, a] = await Promise.all([
+      SecureStore.getItemAsync(AUTH_METHOD_KEY),
+      SecureStore.getItemAsync(AUTH_METHOD_ADDR_KEY),
+    ]);
+    const method = (m === 'local' || m === 'web3auth') ? (m as AuthMethod) : null;
+    return { method, address: a || null };
+  } catch {
+    return { method: null, address: null };
+  }
+}
+
+export async function clearAuthMethod(): Promise<void> {
+  try { await SecureStore.deleteItemAsync(AUTH_METHOD_KEY); } catch {}
+  try { await SecureStore.deleteItemAsync(AUTH_METHOD_ADDR_KEY); } catch {}
 }

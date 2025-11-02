@@ -19,6 +19,7 @@ export interface UserProfileHeaderProps {
   joinedDate?: string | null;
   onOpenImage: (type: "avatar" | "cover") => void;
   onShare: () => void;
+  onMessage?: () => void;
   FallbackAvatar: any;
   FallbackBanner: any;
   socials?: Partial<Record<string, string>>;
@@ -38,6 +39,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   joinedDate,
   onOpenImage,
   onShare,
+  onMessage,
   FallbackAvatar,
   FallbackBanner,
   socials,
@@ -63,7 +65,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             resizeMode="cover"
           >
             <View className="absolute right-0 bottom-0 mx-8 mb-3">
-              <CoverSocialsOverlay socials={socials} onShare={handlePressShare} />
+              <CoverSocialsOverlay socials={socials} onShare={handlePressShare} onMessage={onMessage} />
             </View>
           </ImageBackground>
         </TouchableOpacity>

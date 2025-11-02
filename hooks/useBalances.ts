@@ -2,6 +2,7 @@ import { useCallback } from "react";
 
 import type { User } from "../context/AuthContext"; // only for type reference
 import { defaultChainId } from "../config/constants";
+import { ethersService } from "../services/ethers.service";
 
 type Logger = { debug: (...a: any[]) => void; warn: (...a: any[]) => void };
 
@@ -27,7 +28,7 @@ export function useBalances({ log, setBalancesLoading, setUser, isMountedRef, se
       const symbols = ["DHB", "USDC", "USDT", "WETH"];
       const t0 = Date.now();
       log.debug("balances:bg:start", { addr, symbols, chainId: activeChainId });
-      const { ethersService } = await import("../services/ethers.service");
+      // const { ethersService } = await import("../services/ethers.service");
       const balances = await ethersService.getTokenBalances(addr, activeChainId, symbols);
       if (!isMountedRef.current) return;
       setUser((prev) => {

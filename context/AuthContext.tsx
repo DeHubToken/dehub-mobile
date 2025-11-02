@@ -18,6 +18,7 @@ import {
   getAuthToken,
   setAuthUser,
   clearAuthData,
+  getAuthMethod,
 } from "../libs/auth.utils";
 import { createLogger } from "../libs/logger";
 import { getSigningProvider } from "../libs/provider.registry";
@@ -121,6 +122,7 @@ interface AuthContextType {
   providerStatus: ProviderStatus;
   ensureProvider: () => Promise<void>;
   ensureFreshProvider: () => Promise<void>; // validates & reinitializes if stale
+  authMethod?: 'local' | 'web3auth' | null;
   // Add more auth methods as needed
 }
 
@@ -147,6 +149,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [provisionalToken, setProvisionalToken] = useState<string | null>(null); // kept for backward compatibility
   const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
   const [showSignInModal, setShowSignInModal] = useState(false);
+  const [authMethod, setAuthMethodState] = useState<'local' | 'web3auth' | null>(null);
   const isMountedRef = useRef(true);
   const authAdapterRef = useRef<AuthAdapter | null>(null);
   // Keep user in ref for async flows
@@ -199,6 +202,21 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     log,
   });
 
+  // Load persisted auth method once and when user changes
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const res = await getAuthMethod();
+        if (!mounted) return;
+        setAuthMethodState(res?.method ?? null);
+      } catch {
+        if (mounted) setAuthMethodState(null);
+      }
+    })();
+    return () => { mounted = false; };
+  }, [user?.address, user?.walletAddress, user?.username]);
+
   // --- Helpers: chainId parsing and provider adoption ------------------------
   // Auto ensure freshness shortly after provider becomes ready while signed in
   useEffect(() => {
@@ -207,6 +225,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       return () => clearTimeout(t);
     }
   }, [isSignedIn, providerStatus, provider, ensureFreshProvider]);
+
+  // When app boots or user changes, fetch balances once provider is ready and balances are missing
+  useEffect(() => {
+    if (!isSignedIn || !user) return;
+    if (providerStatus !== "ready") return;
+    if (balancesLoading) return;
+    const hasBalances = !!user.tokenBalances && Object.keys(user.tokenBalances || {}).length > 0;
+    if (!hasBalances) {
+      try { fetchAndStoreBalances(user).catch(() => {}); } catch {}
+    }
+  }, [isSignedIn, user, providerStatus, balancesLoading, fetchAndStoreBalances, chainId]);
 
   // Helpers
   // Removed retry/timeout helpers to simplify provider setup per docs.
@@ -242,6 +271,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     clearAuthData,
     providerReset: resetProviderState,
     isMountedRef,
+    setAuthMethodState,
   });
   // Update session-expired handler ref
   useEffect(() => { sessionExpiredHandlerRef.current = handleSessionExpired; }, [handleSessionExpired]);
@@ -315,6 +345,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     providerStatus,
     ensureProvider,
     ensureFreshProvider,
+    authMethod,
   }), [
     user,
     isLoading,
@@ -337,6 +368,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     providerStatus,
     ensureProvider,
     ensureFreshProvider,
+    authMethod,
   ]);
 
   return (

@@ -18,16 +18,17 @@ import { createLogger } from "../libs/logger";
 const env = {
   REOWN_PROJECT_ID: REOWN_PROJECT_ID,
   // API_URL: API_URL,
-  API_URL: "http://192.168.1.233:9015/api",
+  // API_URL: "http://192.168.1.233:9015/api",
+  API_URL: "https://api.dehub.io/api",
   APP_ENV: APP_ENV || "development",
   INFURA_KEY: INFURA_KEY,
   ALCHEMY_API_KEY: ALCHEMY_API_KEY,
   WEB3AUTH_CLIENT_ID: WEB3AUTH_CLIENT_ID,
   CDN_BASE_URL: CDN_BASE_URL,
   APP_ORIGIN: APP_ORIGIN || "https://dehub.io",
-  // WEBSOCKET_URL:
-  //   WEBSOCKET_URL || API_URL?.replace(/\/$/, "") || "https://api.dehub.io",
-  WEBSOCKET_URL: "http://192.168.1.233:9015",
+  WEBSOCKET_URL:
+    WEBSOCKET_URL || API_URL?.replace(/\/$/, "") || "https://api.dehub.io",
+  // WEBSOCKET_URL: "http://192.168.1.233:9015",
   LIVEPEER_API_KEY: LIVEPEER_API_KEY,
   DEBUG: DEBUG,
   AUTH_PROVIDER: AUTH_PROVIDER,
