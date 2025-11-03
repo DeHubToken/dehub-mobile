@@ -60,6 +60,10 @@ import Web3Auth, {
 } from "@web3auth/react-native-sdk";
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { CHAIN_NAMESPACES } from "@web3auth/base";
+import {
+  AccountAbstractionProvider,
+  SafeSmartAccount,
+} from "@web3auth/account-abstraction-provider";
 
 // // Destructure needed members from SDK (keeps types flexible across versions)
 // const { Web3Auth, WEB3AUTH_NETWORK, LOGIN_PROVIDER } = Web3AuthSDK as any;
@@ -113,6 +117,25 @@ async function getOrCreateInstance() {
   });
   // console.log({ privateKeyProvider });
 
+  const accountAbstractionProvider = new AccountAbstractionProvider({
+    config: {
+      chainConfig,
+      bundlerConfig: {
+        // Get the pimlico API Key from dashboard.pimlico.io
+        url: `https://api.pimlico.io/v2/${Number(
+          WEB3AUTH_CHAIN_ID
+        )}/rpc?apikey=${env.PIMLICO_API_KEY}`,
+      },
+      smartAccountInit: new SafeSmartAccount(),
+      paymasterConfig: {
+        // Get the pimlico API Key from dashboard.pimlico.io
+        url: `https://api.pimlico.io/v2/${Number(
+          WEB3AUTH_CHAIN_ID
+        )}/rpc?apikey=${env.PIMLICO_API_KEY}`,
+      },
+    },
+  });
+
   const redirectUrl = resolveRedirectUrl();
   log.debug("resolvedRedirectUrl", { redirectUrl });
   const SdkInitParams = {
@@ -120,6 +143,11 @@ async function getOrCreateInstance() {
     network: WEB3AUTH_NETWORK.SAPPHIRE_MAINNET,
     redirectUrl,
     privateKeyProvider,
+    accountAbstractionProvider,
+    // This will allow you to use EthereumPrivateKeyProvider for
+    // external wallets, while use the AccountAbstractionProvider
+    // for Web3Auth embedded wallets.
+    useAAWithExternalWallet: false,
     logLevel: "debug",
     loginConfig: {},
   };
@@ -220,36 +248,37 @@ export const loginWithSocial = async (
     provider;
   log.debug("loginWithSocial:mapped", { provider, mapped });
   try {
-    const beforeState = {
-      privKeyPresent: false,
-    };
-
     await instance.login({
       loginProvider: mapped,
       redirectUrl: resolveRedirectUrl(),
       curve: "secp256k1",
     });
     log.info("loginWithSocial:web3auth:logged-in");
-
     const userInfo = (instance as any).userInfo
       ? (instance as any).userInfo()
       : null;
 
-    // Validate session by checking for privKey
+    // With Account Abstraction smart accounts, there is no private key exposed.
+    // Derive the connected address via standard RPC.
     const web3provider = instance.provider;
-
-    const privKey = await web3provider?.request({
-      method: "private_key",
-    });
-    const maskedAddress = deriveAddressFromPrivateKey(privKey as string);
+    let address: string | null = null;
+    try {
+      const accs = await web3provider?.request?.({ method: "eth_accounts" });
+      if (Array.isArray(accs) && accs.length > 0) address = accs[0];
+      if (!address) {
+        const req = await web3provider?.request?.({ method: "eth_requestAccounts" });
+        if (Array.isArray(req) && req.length > 0) address = req[0];
+      }
+    } catch (e) {
+      log.warn("loginWithSocial:accounts:error", e as any);
+    }
     log.info("loginWithSocial:session", {
-      addr: maskedAddress ? `${maskedAddress.slice(0, 6)}...${maskedAddress.slice(-4)}` : null,
-      hasPrivKey: !!privKey,
+      addr: address ? `${address.slice(0, 6)}...${address.slice(-4)}` : null,
+      hasPrivKey: false,
       userInfoPresent: !!userInfo,
     });
 
-    const address = maskedAddress;
-    return { address, privateKey: privKey, userInfo, provider: web3provider };
+    return { address, privateKey: null, userInfo, provider: web3provider };
   } catch (e: any) {
     log.error("loginWithSocial:error", e);
     // Surface raw message but keep generic fallback

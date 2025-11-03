@@ -38,15 +38,8 @@ export class Web3AuthAdapter implements AuthAdapter {
   }
 
   async getPrivateKey(): Promise<string | undefined> {
-    try {
-      const prov: any = await this.getProvider();
-      if (!prov?.request) return undefined;
-      const pk = await prov.request({ method: 'private_key' });
-      if (pk && typeof pk === 'string') return pk;
-      return undefined;
-    } catch (e) {
-      console.warn('[Web3AuthAdapter] getPrivateKey unavailable', e);
-      return undefined;
-    }
+    // Smart accounts do not expose private keys. Return undefined to signal callers to use
+    // the connected provider + address flow instead of private key auth.
+    return undefined;
   }
 }

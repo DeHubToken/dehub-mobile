@@ -192,30 +192,10 @@ export class EthersService {
       throw new Error("Web3Auth provider is required");
     }
 
-    // For React Native, don't use BrowserProvider
-    // Use Web3Provider from ethers v5 or JsonRpcProvider for v6
-
-    // If using ethers v6:
-    const provider = new ethers.providers.JsonRpcProvider(
-      "https://mainnet.base.org",
-      {
-        chainId: 8453,
-        name: "base-mainnet",
-      }
-    );
-
-    // Get private key from Web3Auth
-    const privateKey = await web3authProvider.request({
-      method: "private_key",
-    });
-
-    if (!privateKey) {
-      throw new Error("Failed to get private key from Web3Auth");
-    }
-
-    // Create wallet with provider
-    const wallet = new ethers.Wallet(privateKey, provider);
-    return { provider, signer: wallet };
+    // For React Native with Web3Auth AA, use ethers v5 Web3Provider and derive signer from it.
+    const provider = new ethers.providers.Web3Provider(web3authProvider as any);
+    const signer = provider.getSigner();
+    return { provider, signer };
   };
 
   // Alternative for ethers v5 (if you're using v5):

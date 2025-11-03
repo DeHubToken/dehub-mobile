@@ -91,22 +91,32 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           ),
           author: (m as any)?.author,
           kind:
-            Array.isArray(m.mediaUrls) && m.mediaUrls.length > 0
+            (m as any)?.msgType === "media" || (Array.isArray(m.mediaUrls) && m.mediaUrls.length > 0)
               ? "media"
-              : "text",
+              : (String((m as any)?.msgType || "") === "gif" ? "media" : "text"),
           text: m.content || "",
-          mediaUrls: Array.isArray((m as any)?.mediaUrls)
+          mediaUrls: Array.isArray((m as any)?.mediaUrls) && (m as any).mediaUrls.length > 0
             ? (m as any).mediaUrls.map((x: any) => ({
                 url: x?.url,
                 type: x?.type,
                 mimeType: x?.mimeType,
               }))
-            : undefined,
+            : ((m as any)?.msgType === "gif"
+                ? [{ url: (m as any)?.mediaUrls?.[0]?.url, type: "gif", mimeType: "image/gif" }]
+                : ((m as any)?.msgType === "media"
+                    ? [{ url: undefined as unknown as string, type: (m as any)?.mediaUrls?.[0]?.type, mimeType: (m as any)?.mediaUrls?.[0]?.mimeType }]
+                    : undefined)),
           // server may provide this flag for received messages
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           isDownloaded: (m as any)?.isDownloaded === true,
-          status: "sent",
+          status: ((m as any)?.author === "me" && String((m as any)?.uploadStatus || "").toLowerCase() === "pending")
+            ? ("pending" as any)
+            : ("sent" as any),
+          // preserve server msgType (e.g., gif, media) for downstream rendering hints
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          msgType: (m as any)?.msgType,
           createdAt: String(m.createdAt || new Date().toISOString()),
         } as UiMessage)
     );
@@ -559,7 +569,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       try {
         const res: any = await getAccount(targetAddress);
         const acct: User | undefined = res?.data?.result || res?.result;
-        console.log("Fetched target account for DM:", acct);
+        // console.log("Fetched target account for DM:", acct);
         if (!cancelled && acct) {
           setTarget(acct);
           // Blocklist/admin checks take precedence

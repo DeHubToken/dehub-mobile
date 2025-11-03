@@ -56,12 +56,16 @@ const MessageBubble: React.FC<MessageBubbleProps> = memo(({ msg, isMe }) => {
 
   const isDownloaded = (msg as any)?.isDownloaded === true;
   const mediaType: 'image' | 'video' | undefined = useMemo(() => {
-    if (!media || !media.length) return undefined;
+    if (!media || !media.length) {
+      const t = String((msg as any)?.msgType || '').toLowerCase();
+      if (t === 'media' || t === 'gif') return 'image';
+      return undefined;
+    }
     const m = media[0];
     if ((m.type || '').startsWith('video') || (m.mimeType || '').startsWith('video')) return 'video';
     if ((m.type || '').startsWith('image') || (m.mimeType || '').startsWith('image')) return 'image';
     return 'image';
-  }, [media]);
+  }, [media, msg]);
 
   const isGif = useMemo(() => {
     const anyMsg: any = msg as any;
@@ -145,7 +149,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = memo(({ msg, isMe }) => {
           {statusLabel ? `${tsLabel} • ${statusLabel}` : tsLabel}
         </Text>
       ) : null}
-      {media && media.length > 0 && (
+      {((media && media.length > 0) || ((msg as any)?.msgType === 'media')) && (
         <View>
         <TouchableOpacity
           activeOpacity={0.9}
@@ -157,25 +161,31 @@ const MessageBubble: React.FC<MessageBubbleProps> = memo(({ msg, isMe }) => {
               return;
             }
             // Open image viewer (including GIF)
-            const uri = displayUri || media[0].url;
+            const uri = displayUri || media?.[0]?.url;
             if (uri) navigation.navigate(ScreenNames.ImageViewer as any, { images: [{ uri }], index: 0, isModal: true });
           }}
           className={`max-w-[82%] ${align}`}
         >
           <View className="rounded-2xl overflow-hidden bg-theme-neutrals-800">
             <View style={{ width: dims.width, height: dims.height }} className="items-center justify-center">
-              {!imgLoaded ? (
+              {!imgLoaded && (displayUri || media?.[0]?.url) ? (
                 <View className="absolute inset-0 items-center justify-center bg-theme-neutrals-800">
                   <ActivityIndicator size="small" />
                 </View>
               ) : null}
-              <Image
-                source={{ uri: displayUri || media[0].url }}
-                style={{ width: '100%', height: '100%' }}
-                resizeMode="cover"
-                onLoadStart={() => setImgLoaded(false)}
-                onLoadEnd={() => setImgLoaded(true)}
-              />
+              {(displayUri || media?.[0]?.url) ? (
+                <Image
+                  source={{ uri: displayUri || (media?.[0]?.url as string) }}
+                  style={{ width: '100%', height: '100%' }}
+                  resizeMode="cover"
+                  onLoadStart={() => setImgLoaded(false)}
+                  onLoadEnd={() => setImgLoaded(true)}
+                />
+              ) : (
+                <View className="absolute inset-0 items-center justify-center bg-theme-neutrals-800">
+                  <ActivityIndicator size="small" />
+                </View>
+              )}
               {/* Top-left icon badge (only when not sending and not needing download) */}
               {!isSending && !showDownload ? (
                 <View className="absolute top-2 left-2">

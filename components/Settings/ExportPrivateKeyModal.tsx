@@ -31,7 +31,8 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
   visible,
   onClose,
 }) => {
-  const { ensureProvider, providerStatus, provider } = useAuth();
+  const { ensureProvider, providerStatus, provider, authMethod } = useAuth();
+  const isLocal = useMemo(() => authMethod === 'local', [authMethod]);
   const [step, setStep] = useState<Step>("warn");
   const [confirmText, setConfirmText] = useState<string>("");
   const [isFetching, setIsFetching] = useState<boolean>(false);
@@ -64,6 +65,11 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
     setIsFetching(true);
     setError("");
     try {
+      if (!isLocal) {
+        throw new Error(
+          "Private keys cannot be exported for smart accounts. Use an imported/local wallet."
+        );
+      }
       await ensureProvider();
       const ready = providerStatus === "ready" && provider;
       if (!ready) throw new Error("Wallet provider is not ready");
@@ -83,15 +89,19 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
     } finally {
       setIsFetching(false);
     }
-  }, [ensureProvider, providerStatus, provider]);
+  }, [ensureProvider, providerStatus, provider, isLocal]);
 
   const handleProceed = useCallback(() => {
+    if (!isLocal) {
+      toastInfo("Private keys are not available for this smart account");
+      return;
+    }
     if (!canContinue) {
       toastInfo(`Type "${REQUIRED_PHRASE}" to proceed`);
       return;
     }
     void fetchPrivateKey();
-  }, [canContinue, fetchPrivateKey]);
+  }, [canContinue, fetchPrivateKey, isLocal]);
 
   const toggleMasked = useCallback(() => {
     setMasked((m) => !m);
@@ -141,62 +151,88 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
             <Text className="text-white font-bold text-lg mb-2">
               Export Private Key
             </Text>
-            <Text className="text-red-400 text-sm mb-2">
-              Highly sensitive — handle with extreme care.
-            </Text>
-            <View className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 mb-3">
-              <Text className="text-gray-300 text-sm">
-                - Anyone with your private key can move your funds.
-              </Text>
-              <Text className="text-gray-300 text-sm mt-1">
-                - Never share it. We will never ask for it.
-              </Text>
-              <Text className="text-gray-300 text-sm mt-1">
-                - Store securely in a password manager or offline.
-              </Text>
-              <Text className="text-gray-300 text-sm mt-1">
-                - We cannot recover lost funds or compromised keys.
-              </Text>
-            </View>
-            <Text className="text-gray-400 text-xs mb-1">
-              Type "{REQUIRED_PHRASE}" to continue
-            </Text>
-            <TextInput
-              value={confirmText}
-              onChangeText={setConfirmText}
-              placeholder={REQUIRED_PHRASE}
-              placeholderTextColor="#6b7280"
-              className="border border-zinc-700 rounded-md px-3 py-2 text-white bg-zinc-900"
-            />
-            {error ? (
-              <Text className="text-red-500 text-xs mt-2">{error}</Text>
-            ) : null}
-            <View className="flex-row justify-end mt-4">
-              <TouchableOpacity
-                onPress={handleClose}
-                className="px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700 mr-2"
-              >
-                <Text className="text-white">Cancel</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                disabled={!canContinue || isFetching}
-                onPress={handleProceed}
-                className={`px-3 py-2 rounded-lg ${
-                  canContinue ? "bg-blue-600" : "bg-zinc-700"
-                } ${isFetching ? "opacity-80" : ""}`}
-              >
-                {isFetching ? (
-                  <View className="flex-row items-center">
-                    <ActivityIndicator color="#FFFFFF" size="small" />
-                    <Text className="text-white font-semibold ml-2">
-                      Preparing…
-                    </Text>
-                  </View>
-                ) : (
-                  <Text className="text-white font-semibold">I Understand</Text>
-                )}
-              </TouchableOpacity>
-            </View>
+            {isLocal ? (
+              <>
+                <Text className="text-red-400 text-sm mb-2">
+                  Highly sensitive — handle with extreme care.
+                </Text>
+                <View className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 mb-3">
+                  <Text className="text-gray-300 text-sm">
+                    - Anyone with your private key can move your funds.
+                  </Text>
+                  <Text className="text-gray-300 text-sm mt-1">
+                    - Never share it. We will never ask for it.
+                  </Text>
+                  <Text className="text-gray-300 text-sm mt-1">
+                    - Store securely in a password manager or offline.
+                  </Text>
+                  <Text className="text-gray-300 text-sm mt-1">
+                    - We cannot recover lost funds or compromised keys.
+                  </Text>
+                </View>
+                <Text className="text-gray-400 text-xs mb-1">
+                  Type "{REQUIRED_PHRASE}" to continue
+                </Text>
+                <TextInput
+                  value={confirmText}
+                  onChangeText={setConfirmText}
+                  placeholder={REQUIRED_PHRASE}
+                  placeholderTextColor="#6b7280"
+                  className="border border-zinc-700 rounded-md px-3 py-2 text-white bg-zinc-900"
+                />
+                {error ? (
+                  <Text className="text-red-500 text-xs mt-2">{error}</Text>
+                ) : null}
+                <View className="flex-row justify-end mt-4">
+                  <TouchableOpacity
+                    onPress={handleClose}
+                    className="px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700 mr-2"
+                  >
+                    <Text className="text-white">Cancel</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    disabled={!canContinue || isFetching}
+                    onPress={handleProceed}
+                    className={`px-3 py-2 rounded-lg ${
+                      canContinue ? "bg-blue-600" : "bg-zinc-700"
+                    } ${isFetching ? "opacity-80" : ""}`}
+                  >
+                    {isFetching ? (
+                      <View className="flex-row items-center">
+                        <ActivityIndicator color="#FFFFFF" size="small" />
+                        <Text className="text-white font-semibold ml-2">
+                          Preparing…
+                        </Text>
+                      </View>
+                    ) : (
+                      <Text className="text-white font-semibold">I Understand</Text>
+                    )}
+                  </TouchableOpacity>
+                </View>
+              </>
+            ) : (
+              <>
+                <View className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 mb-3">
+                  <Text className="text-gray-300 text-sm">
+                    This account uses a smart account (Web3Auth). Private keys cannot be exported.
+                  </Text>
+                  <Text className="text-gray-300 text-sm mt-1">
+                    To export a private key, switch to an imported/local wallet.
+                  </Text>
+                </View>
+                {error ? (
+                  <Text className="text-red-500 text-xs mt-2">{error}</Text>
+                ) : null}
+                <View className="flex-row justify-end mt-2">
+                  <TouchableOpacity
+                    onPress={handleClose}
+                    className="px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700"
+                  >
+                    <Text className="text-white">Close</Text>
+                  </TouchableOpacity>
+                </View>
+              </>
+            )}
           </>
         )}
 
