@@ -23,7 +23,11 @@ export const AuthService = {
     opts?: { privateKey?: string; storePrivateKey?: boolean }
   ): Promise<AuthResponse> {
     try {
-      const sigMeta = await getOrCreateAuthSignature(address);
+      const sigMeta = await getOrCreateAuthSignature(
+        address,
+        undefined,
+        chainId
+      );
       const authPayload = buildAuthRequestPayload(address, sigMeta);
       const body: Record<string, any> = { chainId, ...authPayload };
       if (opts?.privateKey && typeof opts.privateKey === "string") {
