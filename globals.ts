@@ -7,6 +7,11 @@ if (!global.Buffer) {
   global.Buffer = Buffer;
 }
 
+// add bigint
+if (typeof BigInt === 'undefined') {
+    global.BigInt = require('big-integer');
+}
+
 // Provide __dirname / __filename shims if missing
 // @ts-ignore
 if (typeof __dirname === 'undefined') global.__dirname = '/';

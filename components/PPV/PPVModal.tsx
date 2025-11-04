@@ -24,6 +24,7 @@ import {
 import * as ethersImport from "ethers";
 import { supportedTokens } from "../../config/constants";
 import { applyGasMargin, parseTxError } from "../../libs/web3.util";
+import { writeContractAA } from "../../libs/aa.write";
 
 export interface PPVModalProps {
   open?: boolean;
@@ -182,11 +183,12 @@ const PPVModal: React.FC<PPVModalProps> = ({
           try {
             const bal = await tokenContract.balanceOf(account);
             const approveAmt = bal.gte(amountBN) ? bal : amountBN;
-            const approveTx = await tokenContract.approve(
-              controllerAddress,
-              approveAmt
+            await writeContractAA(
+              tokenContract,
+              "approve",
+              [controllerAddress, approveAmt],
+              { context: "approve" }
             );
-            await approveTx.wait?.(1);
           } catch (e) {
             setPhase("error");
             setPpvError(parseTxError(e, "approve"));
@@ -194,36 +196,13 @@ const PPVModal: React.FC<PPVModalProps> = ({
           }
         }
         setPhase("sending");
-        const ethersProvider = new (ethers.providers.Web3Provider as any)(
-          provider
-        );
-        let gasPrice;
         try {
-          gasPrice = await ethersProvider.getGasPrice();
-        } catch {}
-        const bumped = gasPrice ? gasPrice.mul(110).div(100) : undefined;
-        let gasLimit;
-        try {
-          const est = await controllerContract.estimateGas.sendFundsForPPV(
-            tokenId,
-            amountBN,
-            toAddress,
-            tokenAddress
+          await writeContractAA(
+            controllerContract,
+            "sendFundsForPPV",
+            [tokenId, amountBN, toAddress, tokenAddress],
+            { context: "send" }
           );
-          gasLimit = applyGasMargin(est);
-        } catch {}
-        try {
-          const tx = await controllerContract.sendFundsForPPV(
-            tokenId,
-            amountBN,
-            toAddress,
-            tokenAddress,
-            {
-              ...(bumped ? { gasPrice: bumped } : {}),
-              ...(gasLimit ? { gasLimit } : {}),
-            }
-          );
-          await tx.wait?.(1);
           setPhase("sent");
           // Mark token unlocked locally
           const idStr = String(tokenId);

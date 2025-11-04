@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
 import { applyGasMargin } from "../libs/web3.util";
+import { writeContractAA } from "../libs/aa.write";
 
 export type MinimalToken = {
   address: string;
@@ -28,11 +29,11 @@ export async function mintWithBounty(
   if (!controllerContract) throw new Error("Controller contract unavailable");
   const amountBN = toBigAmount(bountyAmount, bountyToken);
   const path = `/${createdTokenId}.json`;
-
-  // Try to estimate gas and bump; fallback to a safe upper bound
-  let gasLimit: any;
-  try {
-    const est = await controllerContract.estimateGas.mintWithBounty(
+  // Use AA-aware writer; return shim with wait() for caller compatibility
+  const res = await writeContractAA(
+    controllerContract,
+    "mintWithBounty",
+    [
       createdTokenId,
       timestamp,
       v,
@@ -42,35 +43,11 @@ export async function mintWithBounty(
       amountBN,
       countOfViewers,
       countOfCommentor,
-      bountyToken.address
-    );
-    gasLimit = applyGasMargin(est);
-  } catch {
-    gasLimit = ethers.utils.hexlify(3_000_000);
-  }
-
-  // Bump gas price slightly if provider supports it
-  let txOpts: Record<string, any> = { gasLimit };
-  try {
-    const provider = controllerContract.signer?.provider || controllerContract.provider;
-    const gp = await provider.getGasPrice();
-    txOpts.gasPrice = gp.mul(110).div(100);
-  } catch {}
-
-  const tx = await controllerContract.mintWithBounty(
-    createdTokenId,
-    timestamp,
-    v,
-    r,
-    s,
-    path,
-    amountBN,
-    countOfViewers,
-    countOfCommentor,
-    bountyToken.address,
-    txOpts
+      bountyToken.address,
+    ],
+    { context: "send" }
   );
-  return tx;
+  return res as any;
 }
 
 export async function mintNftOnChain(
@@ -83,43 +60,11 @@ export async function mintNftOnChain(
 ) {
   if (!streamCollectionContract) throw new Error("Collection contract unavailable");
   const path = `${createdTokenId}.json`;
-
-  // Optional gas price bump
-  let gasPrice: any;
-  try {
-    const provider = streamCollectionContract.signer?.provider || streamCollectionContract.provider;
-    const gp = await provider.getGasPrice();
-    gasPrice = gp.mul(110).div(100);
-  } catch {}
-
-  let gasLimit: any;
-  try {
-    const est = await streamCollectionContract.estimateGas.mint(
-      createdTokenId,
-      timestamp,
-      v,
-      r,
-      s,
-      [],
-      1000,
-      path
-    );
-    gasLimit = applyGasMargin(est);
-  } catch {}
-
-  const tx = await streamCollectionContract.mint(
-    createdTokenId,
-    timestamp,
-    v,
-    r,
-    s,
-    [],
-    1000,
-    path,
-    {
-      ...(gasLimit ? { gasLimit } : {}),
-      ...(gasPrice ? { gasPrice } : {}),
-    }
+  const res = await writeContractAA(
+    streamCollectionContract,
+    "mint",
+    [createdTokenId, timestamp, v, r, s, [], 1000, path],
+    { context: "send" }
   );
-  return tx;
+  return res as any;
 }

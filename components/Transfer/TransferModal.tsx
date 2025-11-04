@@ -27,6 +27,7 @@ import { useERC20Contract, useWeb3Provider } from "../../hooks/use-web3";
 import { ethers, providers } from "ethers";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { parseTxError } from "../../libs/web3.util";
+import { erc20TransferAA } from "../../libs/aa.write";
 
 export interface TransferModalProps {
   open: boolean;
@@ -71,7 +72,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
   const tokenAddress = dhbMeta?.address;
   const tokenDecimals = dhbMeta?.decimals || 18;
   const tokenContract = useERC20Contract(tokenAddress);
-  // console.log("[TransferModal] tokenContract", { tokenAddress, dhbMeta, chainId, provider });
+  // console.log("[TransferModal] tokenContract", { tokenContract });
   const balance = (user?.tokenBalances?.DHB ?? 0) as number;
   const numericAmount = Number(amount) || 0;
   const insufficient = numericAmount > balance;
@@ -182,31 +183,9 @@ const TransferModal: React.FC<TransferModalProps> = ({
           console.warn("[TransferModal] preflight checks failed", pfErr);
         }
 
-        // Static call first to catch reverts early
-        try {
-          await tokenContract.callStatic.transfer(toAddr, amountBN);
-        } catch (staticErr: any) {
-          console.warn("[TransferModal] callStatic.transfer reverted", staticErr);
-          setError(parseTxError(staticErr?.message || "execution reverted", "send"));
-          setSending(false);
-          return;
-        }
-
-        // Try to estimate gas; if it fails but static call succeeded, use a safe fallback
-        let gasLimitOverride: any = undefined;
-        try {
-          const est = await tokenContract.estimateGas.transfer(toAddr, amountBN);
-          // Add 20% safety margin
-          gasLimitOverride = est.mul(120).div(100);
-        } catch (egErr) {
-          console.warn("[TransferModal] estimateGas failed, applying fallback", egErr);
-          // Typical ERC20 transfer fits well under 100k on L2s
-          gasLimitOverride = ethers.BigNumber.from(120000);
-        }
-        const tx = await tokenContract.transfer(toAddr, amountBN, {
-          gasLimit: gasLimitOverride,
-        });
-        await tx.wait?.(1);
+        // Use AA-aware write helper which handles web3auth vs local EOA paths
+        await erc20TransferAA(tokenContract, toAddr, amountBN, { context: "send" });
+        close();
         toastSuccess("Transfer sent");
         try {
           await patchUser(
@@ -223,7 +202,6 @@ const TransferModal: React.FC<TransferModalProps> = ({
               } as any)
           );
         } catch {}
-        close();
       } catch (e: any) {
         console.warn("[TransferModal] transfer failed", e);
         setError(parseTxError(e?.message, "send"));

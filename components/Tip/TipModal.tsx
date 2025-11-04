@@ -26,6 +26,7 @@ import {
 } from "../../hooks/use-web3";
 import * as ethersImport from "ethers";
 import { applyGasMargin, parseTxError } from "../../libs/web3.util";
+import { writeContractAA } from "../../libs/aa.write";
 
 export interface TipModalProps {
   open?: boolean;
@@ -158,11 +159,12 @@ const TipModal: React.FC<TipModalProps> = ({
             const approveAmount = userTokenBal.gte(amountBN)
               ? userTokenBal
               : amountBN;
-            const approveTx = await tokenContract.approve(
-              controllerAddress,
-              approveAmount
+            await writeContractAA(
+              tokenContract,
+              "approve",
+              [controllerAddress, approveAmount],
+              { context: "approve" }
             );
-            await approveTx.wait?.(1);
           } catch (e) {
             setPhase("error");
             setTipError(parseTxError(e, "approve"));
@@ -170,44 +172,18 @@ const TipModal: React.FC<TipModalProps> = ({
           }
         }
         setPhase("sending");
-        const ethersProvider = new (ethers.providers.Web3Provider as any)(
-          provider
-        );
-        let gasPrice;
         try {
-          gasPrice = await ethersProvider.getGasPrice();
-        } catch (e) {
-          // Non-fatal, let node estimate
-        }
-        const bumpedGasPrice = gasPrice
-          ? gasPrice.mul(110).div(100)
-          : undefined;
-        let gasLimit;
-        try {
-          const estimated = await controllerContract.estimateGas.sendTip(
-            tokenId,
-            amountBN,
-            toAddress,
-            tokenAddress
+          const res = await writeContractAA(
+            controllerContract,
+            "sendTip",
+            [tokenId, amountBN, toAddress, tokenAddress],
+            { context: "send" }
           );
-          gasLimit = applyGasMargin(estimated);
-        } catch (e) {
-          // estimation issues handled later if tx fails
-        }
-        try {
-          const tx = await controllerContract.sendTip(
-            tokenId,
-            amountBN,
-            toAddress,
-            tokenAddress,
-            {
-              ...(bumpedGasPrice ? { gasPrice: bumpedGasPrice } : {}),
-              ...(gasLimit ? { gasLimit } : {}),
-            }
-          );
-          await tx.wait?.(1);
+          const receipt = await res.wait?.(1);
+          const txHash = res.hash || receipt?.transactionHash;
           setPhase("sent");
           setLastAmount(numericAmount);
+          // Optionally you can record txHash with backend if needed here
           // Optimistically update local DHB balance in AuthContext
           try {
             await patchUser(

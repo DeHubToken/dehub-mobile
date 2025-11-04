@@ -37,6 +37,7 @@ import {
 } from "../../hooks/use-web3";
 import * as ethersImport from "ethers";
 import { applyGasMargin, parseTxError } from "../../libs/web3.util";
+import { writeContractAA } from "../../libs/aa.write";
 import { recordLiveGift } from "../../services/live.service";
 
 export interface GiftModalProps {
@@ -227,11 +228,12 @@ const GiftModal: React.FC<GiftModalProps> = ({
             const approveAmount = userTokenBal.gte(amountBN)
               ? userTokenBal
               : amountBN;
-            const approveTx = await tokenContract.approve(
-              controllerAddress,
-              approveAmount
+            await writeContractAA(
+              tokenContract,
+              "approve",
+              [controllerAddress, approveAmount],
+              { context: "approve" }
             );
-            await approveTx.wait?.(1);
           } catch (e) {
             setPhase("error");
             setGiftError(parseTxError(e, "approve"));
@@ -239,37 +241,16 @@ const GiftModal: React.FC<GiftModalProps> = ({
           }
         }
         setPhase("sending");
-        const ethersProvider = new ((ethers as any).providers
-          .Web3Provider as any)(provider);
-        let gasPrice: any;
         try {
-          gasPrice = await ethersProvider.getGasPrice();
-        } catch {}
-        const bumpedGasPrice = gasPrice
-          ? gasPrice.mul(110).div(100)
-          : undefined;
-        let gasLimit: any;
-        try {
-          const estimated = await controllerContract.estimateGas.sendTip(
-            Number(tokenId) || 0,
-            amountBN,
-            toAddress,
-            tokenAddress
+          const tokenIdNum = Number(tokenId) || 0;
+          const res = await writeContractAA(
+            controllerContract,
+            "sendTip",
+            [tokenIdNum, amountBN, toAddress, tokenAddress],
+            { context: "send" }
           );
-          gasLimit = applyGasMargin(estimated);
-        } catch {}
-        try {
-          const tx = await controllerContract.sendTip(
-            Number(tokenId) || 0,
-            amountBN,
-            toAddress,
-            tokenAddress,
-            {
-              ...(bumpedGasPrice ? { gasPrice: bumpedGasPrice } : {}),
-              ...(gasLimit ? { gasLimit } : {}),
-            }
-          );
-          await tx.wait?.(1);
+          const receipt = await res.wait?.(1);
+          const txHash = res.hash || receipt?.transactionHash;
           setPhase("sent");
           setLastAmount(numericAmount);
           try {
@@ -301,7 +282,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
                 selectedTier: selectedTier?.name,
                 tokenAddress,
                 tokenId: Number(tokenId) || 0,
-                transactionHash: tx.hash,
+                transactionHash: txHash,
               });
             }
           } catch (e) {
