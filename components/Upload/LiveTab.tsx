@@ -439,6 +439,7 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
         tokenId: createdTokenId,
       });
     } catch (e: any) {
+      console.error("Minting error:", e);
       toastError(e?.message || "Live creation failed");
       setStage("idle");
     }

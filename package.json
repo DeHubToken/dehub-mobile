@@ -39,6 +39,7 @@
     "@web3auth/react-native-sdk": "^8.1.0",
     "@web3modal/wagmi-react-native": "^2.0.5",
     "axios": "^1.13.1",
+    "big-integer": "^1.6.52",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.1",
     "date-fns": "^4.1.0",

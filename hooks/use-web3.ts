@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, useCallback } from "react";
-import { web3AuthService } from "../services/web3auth.service";
+import { getWeb3AuthProvider } from "../services/web3auth.service";
 import STREAM_CONTROLLER_ABI from "../config/abis/stream-controller.json";
 import STREAMNFT_ABI from "../config/abis/erc1155.json";
 import ERC20_ABI from "../config/abis/erc20.json";
@@ -9,6 +9,8 @@ import {
   STREAM_COLLECTION_CONTRACT_ADDRESSES,
 } from "../config/web3.constants";
 import { ethers } from "ethers";
+import { getAuthMethod } from "../libs/auth.utils";
+import { writeContractAA } from "../libs/aa.write";
 
 // Generic contract factory using ethers if available
 async function loadEthers() {
@@ -48,6 +50,20 @@ async function buildContract(
       provider,
       withSigner
     );
+    if (signerOrProvider._isSigner) {
+      try {
+        const signerAddy = await signerOrProvider.getAddress();
+        const signerChainId= await signerOrProvider.getChainId?.();
+        console.log("[buildContract] Signer validation params", {signerAddy, signerChainId, signerOrProvider: signerOrProvider.provider?.writeContract});
+      } catch (e) {
+        console.warn("[buildContract] Signer validation failed, retrying", e);
+        const { signerOrProvider: newSigner } = await deriveSignerOrProvider(
+          provider,
+          withSigner
+        );
+        return new ethers.Contract(address, abi, newSigner);
+      }
+    }
     const contract = new ethers.Contract(address, abi, signerOrProvider);
     return contract;
   } catch (err) {
@@ -63,16 +79,52 @@ async function buildContract(
 async function deriveSignerOrProvider(eip1193: any, withSigner: boolean) {
   const logPrefix = "[use-web3][derive]";
   try {
+    // Check persisted auth method to branch logic early
+    let authMethod: 'local' | 'web3auth' | null = null;
+    try {
+      const { method } = await getAuthMethod();
+      authMethod = method;
+    } catch {}
+
+    // If using Web3Auth (smart account), construct signer/provider from the canonical Web3Auth provider
+    if (authMethod === 'web3auth') {
+      try {
+        const wap = await getWeb3AuthProvider();
+        const ethProvider = new ethers.providers.Web3Provider(wap as any, "any");
+        if (!withSigner) {
+          console.log(`${logPrefix} web3auth: returning provider only`);
+          return { signerOrProvider: ethProvider };
+        }
+        const signer = ethProvider.getSigner();
+        try {
+          const addr = await signer.getAddress();
+          console.log(`${logPrefix} web3auth signer ready`, { address: addr });
+        } catch (e) {
+          console.warn(`${logPrefix} web3auth signer getAddress failed`, e);
+        }
+        return { signerOrProvider: signer };
+      } catch (wae) {
+        console.warn(`${logPrefix} web3auth path failed; falling back`, wae);
+        // Continue to generic derivation below
+      }
+    }
+
     // Fast-path: if we were given an ethers Signer or Provider directly, just return it
     if ((eip1193 as any)?._isSigner) {
       console.log(`${logPrefix} detected ethers Signer; returning as-is`);
       return { signerOrProvider: eip1193 };
     }
     if ((eip1193 as any)?._isProvider) {
-      console.log(`${logPrefix} detected ethers Provider; returning as-is`);
       if (!withSigner) return { signerOrProvider: eip1193 };
       // If a signer was requested but only a provider was provided, proceed with normal flow below
     }
+
+    if (typeof eip1193.getSigner === "function") {
+      console.log(`${logPrefix} detected getSigner-capable provider; returning signer`);
+      const signer = eip1193.getSigner();
+      return { signerOrProvider: signer };
+    }
+
     const hasRequest = typeof eip1193?.request === "function";
     console.log(`${logPrefix} start`, {
       hasRequest,
@@ -83,7 +135,10 @@ async function deriveSignerOrProvider(eip1193: any, withSigner: boolean) {
     if (!eip1193) throw new Error("Missing EIP-1193 provider instance");
 
     // Step 1: Create ethers Web3Provider
-    const ethProvider = new ethers.providers.Web3Provider(eip1193 as any);
+    const ethProvider = new ethers.providers.Web3Provider(
+      eip1193 as any,
+      "any"
+    );
     console.log(`${logPrefix} created Web3Provider`);
     if (!withSigner) {
       console.log(`${logPrefix} returning provider only (withSigner=false)`);
@@ -94,7 +149,10 @@ async function deriveSignerOrProvider(eip1193: any, withSigner: boolean) {
     try {
       const signerA = ethProvider.getSigner();
       const addrA = await signerA.getAddress();
-      console.log(`${logPrefix} getSigner() success`, { address: addrA });
+      console.log(`${logPrefix} getSigner() success`, {
+        signerA,
+        address: addrA,
+      });
       return { signerOrProvider: signerA };
     } catch (eA) {
       console.warn(`${logPrefix} getSigner() failed`, eA);
@@ -114,7 +172,9 @@ async function deriveSignerOrProvider(eip1193: any, withSigner: boolean) {
         console.warn(`${logPrefix} eth_accounts failed`, eB1);
       }
     } else {
-      console.warn(`${logPrefix} provider has no request(); skipping eth_accounts`);
+      console.warn(
+        `${logPrefix} provider has no request(); skipping eth_accounts`
+      );
     }
 
     if (accounts.length > 0) {
@@ -159,7 +219,7 @@ async function deriveSignerOrProvider(eip1193: any, withSigner: boolean) {
     }
 
     // Attempt D (local-provider specific): request private key and construct a Wallet signer
-    if (hasRequest) {
+    if (hasRequest && authMethod === 'local') {
       try {
         const privateKey = await eip1193.request({ method: "private_key" });
         if (privateKey) {
@@ -304,8 +364,7 @@ export async function ensureAllowance(
     const allowance: any = await tokenContract.allowance(owner, spender);
     if (ethers.BigNumber.from(allowance).gte(ethers.BigNumber.from(amountWei)))
       return true;
-    const tx = await tokenContract.approve(spender, amountWei);
-    await tx.wait?.(1);
+    await writeContractAA(tokenContract, "approve", [spender, amountWei], { context: "approve" });
     return true;
   } catch (e) {
     console.warn("[ensureAllowance]", e);

@@ -225,6 +225,12 @@ export default function FeedTab() {
       if (!streamCollectionContract)
         throw new Error("Wallet not ready to mint");
       setUploadStage("awaiting-wallet");
+      // console.log({        streamCollectionContract,
+      //   createdTokenId,
+      //   timestamp,
+      //   v,
+      //   r,
+      //   s})
       const tx = await mintNftOnChain(
         streamCollectionContract,
         createdTokenId,
@@ -249,6 +255,7 @@ export default function FeedTab() {
         );
       } catch {}
     } catch (e: any) {
+      console.error("Minting error:", e);
       const inMintPhase = ["awaiting-wallet", "minting", "finalizing"].includes(
         uploadStage
       );

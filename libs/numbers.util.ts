@@ -35,8 +35,13 @@ export function formatCompactNumber(value: number | undefined | null): string {
     const trimmed = fixed.replace(/\.?(0+)$/,'').replace(/\.0+$/,'');
     return sign + (trimmed === '' ? '0' : trimmed);
   }
+  // For values between 1 and 999.999..., cap to 2 decimals and trim trailing zeros
+  if (abs < 1000) {
+    const fixed = abs % 1 === 0 ? abs.toString() : abs.toFixed(2);
+    const trimmed = fixed.replace(/\.?0+$/, '');
+    return sign + trimmed;
+  }
   const fmt = (num: number) => (num % 1 === 0 ? num.toString() : num.toFixed(1));
-  if (abs < 1000) return sign + abs.toString();
   if (abs < 1_000_000) return sign + fmt(abs / 1_000) + 'K';
   if (abs < 1_000_000_000) return sign + fmt(abs / 1_000_000) + 'M';
   return sign + fmt(abs / 1_000_000_000) + 'B';
