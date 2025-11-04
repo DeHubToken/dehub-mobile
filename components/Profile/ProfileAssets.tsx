@@ -6,14 +6,16 @@ import dhbIcon from "../../assets/tokens/DHB.png";
 import usdcIcon from "../../assets/tokens/USDC.png";
 import usdtIcon from "../../assets/tokens/USDT.png";
 import ethIcon from "../../assets/tokens/eth.png";
+import bnbIcon from "../../assets/chains/bnb-icon.png";
 import { useAuth } from "../../context/AuthContext";
+import { ChainId } from "../../config/constants";
 import { BUY_FROM_DEX_LINK } from "../../config/links";
 import { openInApp } from "../../libs/links.utils";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import TransferModal from "../Transfer/TransferModal";
 
 const ProfileAssets = () => {
-  const { user, balancesLoading } = useAuth();
+  const { user, balancesLoading, chainId } = useAuth();
   const [showDHBOptions, setShowDHBOptions] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
 
@@ -21,29 +23,40 @@ const ProfileAssets = () => {
     (user?.tokenBalances as Record<string, number> | undefined) || {};
 
   const assets = useMemo(() => {
-    const order: Array<"DHB" | "USDC" | "USDT" | "ETH"> = [
+    const isBase = chainId === 8453; // ChainId.BASE_MAINNET
+    const isBNB = chainId === 56; // ChainId.BSC_MAINNET
+    const nativeSymbol = isBNB ? "BNB" : "ETH";
+    const order: Array<"DHB" | "USDC" | "USDT" | "ETH" | "BNB"> = [
       "DHB",
       "USDC",
       "USDT",
-      "ETH",
+      nativeSymbol as any,
     ];
     const iconMap: Record<string, any> = {
       DHB: dhbIcon,
       USDC: usdcIcon,
       USDT: usdtIcon,
       ETH: ethIcon,
+      BNB: bnbIcon,
     };
-    return order.map((symbol) => ({
-      name: symbol,
-      balance: walletBalances[symbol] ?? 0,
-      icon: iconMap[symbol] || dhbIcon,
-      hasActions: symbol === "DHB",
-    }));
-  }, [walletBalances]);
+    return order.map((symbol) => {
+      const isNative = symbol === "ETH" || symbol === "BNB";
+      // Fallback: if store still uses 'ETH' key for native on BNB, read it
+      const balance = isNative
+        ? walletBalances[symbol] ?? walletBalances["ETH"] ?? 0
+        : walletBalances[symbol] ?? 0;
+      return {
+        name: symbol,
+        balance,
+        icon: iconMap[symbol] || dhbIcon,
+        hasActions: symbol === "DHB",
+      };
+    });
+  }, [walletBalances, chainId]);
 
   const [transferOpen, setTransferOpen] = useState(false);
   const dhbActions = [
-    { label: "Top up", disabled: false },
+    { label: "Top up", subtitle: "reviewing", disabled: true },
     { label: "Bridge", subtitle: "coming soon", disabled: true },
     { label: "Transfer", disabled: false },
   ];
@@ -62,10 +75,19 @@ const ProfileAssets = () => {
           triggerClassName="pl-3"
         >
           <Text className="text-[11px] leading-4 text-white">
-            Balances shown are on Base network (chain 8453). DHB is the platform
-            token used for tipping & rewards. ETH is your gas balance. Values
-            may lag a few seconds. Bridge or transfer assets to Base to use them
-            here.
+            {(() => {
+              const isBase = chainId === ChainId.BASE_MAINNET;
+              const isBNB = chainId === ChainId.BSC_MAINNET;
+              const netName = isBase
+                ? "Base"
+                : isBNB
+                ? "BNB Chain"
+                : `Chain ${chainId ?? "N/A"}`;
+              const gasSym = isBase ? "ETH" : isBNB ? "BNB" : "ETH";
+              return `Balances shown are on ${netName} (chain ${
+                chainId ?? "N/A"
+              }). DHB is the platform token used for tipping & rewards. ${gasSym} is your gas balance. Values may lag a few seconds. Bridge or transfer assets to ${netName} to use them here.`;
+            })()}
           </Text>
           <View className="flex-row justify-end mt-2">
             <TouchableOpacity

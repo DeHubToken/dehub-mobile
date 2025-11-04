@@ -59,6 +59,7 @@ export async function getWeb3AuthProvider(): Promise<any> {
 async function withWeb3AuthProvider<T>(fn: (p: any) => Promise<T>): Promise<T> {
   try {
     const provider = await getProvider();
+    // console.log({provider})
     return await fn(provider);
   } catch (e) {
     const parsed = parseRPCError(e);

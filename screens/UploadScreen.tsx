@@ -26,6 +26,10 @@ import LiveTabSkeleton from "../components/Upload/Skeletons/LiveTabSkeleton";
 import VideosTabSkeleton from "../components/Upload/Skeletons/VideosTabSkeleton";
 import FeedTabSkeleton from "../components/Upload/Skeletons/FeedTabSkeleton";
 import ScreenHeader from "../components/ScreenHeader";
+import { useAuth } from "../context/AuthContext";
+import { ChainId } from "../config/constants";
+import ChainSwitchModal from "../components/Settings/ChainSwitchModal";
+import { Image } from "react-native";
 
 // theme removed in favor of NativeWind classes
 
@@ -37,6 +41,7 @@ type TabKey = (typeof tabs)[number];
 export default function UploadScreen() {
   const nav = useNavigation<any>();
   const route = useRoute<any>();
+  const { chainId, isSwitchingChain } = useAuth();
 
   const normalizeTabParam = useCallback((raw?: unknown): TabKey => {
     const v = String(raw || "").toLowerCase();
@@ -63,6 +68,7 @@ export default function UploadScreen() {
     Live: initialTab === "Live",
     Feed: initialTab === "Feed", // still disabled, but keep generic
   });
+  const [chainModalVisible, setChainModalVisible] = useState(false);
   console.log({ initialTab, routeTab: route?.params?.tab, active, mounted });
 
   useEffect(() => {
@@ -138,6 +144,31 @@ export default function UploadScreen() {
     </TouchableOpacity>
   );
 
+  const ChainButton = useCallback(() => {
+    const onOpen = () => setChainModalVisible(true);
+    const isBase = chainId === ChainId.BASE_MAINNET;
+    const isBNB = chainId === ChainId.BSC_MAINNET;
+    return (
+      <TouchableOpacity
+        onPress={onOpen}
+        disabled={!!isSwitchingChain}
+        activeOpacity={0.8}
+        className={`w-10 h-10 rounded-full bg-theme-neutrals-800 items-center justify-center ml-2 ${isSwitchingChain ? 'opacity-50' : ''}`}
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+      >
+        {isBase && (
+          <Image source={require("../assets/chains/base-icon.png")} style={{ width: 20, height: 20 }} />
+        )}
+        {isBNB && (
+          <Image source={require("../assets/chains/bnb-icon.png")} style={{ width: 20, height: 20 }} />
+        )}
+        {!isBase && !isBNB && (
+          <Text className="text-theme-neutrals-300 text-xs">—</Text>
+        )}
+      </TouchableOpacity>
+    );
+  }, [chainId, isSwitchingChain]);
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -145,7 +176,10 @@ export default function UploadScreen() {
       keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
     >
       <View className="flex-1 bg-black">
-        <ScreenHeader title="Upload" />
+        <ScreenHeader
+          title="Upload"
+          rightContent={<ChainButton />}
+        />
         <View className="px-4 pt-3 pb-2">
           <View className="flex-row items-center justify-between">
             <Text className="text-theme-neutrals-300 text-2xl font-semibold">
@@ -196,6 +230,10 @@ export default function UploadScreen() {
           </View>
         </ScrollView>
       </View>
+      <ChainSwitchModal
+        visible={chainModalVisible}
+        onClose={() => setChainModalVisible(false)}
+      />
     </KeyboardAvoidingView>
   );
 }

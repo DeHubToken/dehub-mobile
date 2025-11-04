@@ -13,6 +13,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
+    "updates": {
+      "enabled": true,
+      "fallbackToCacheTimeout": 0
+    },
     "ios": {
       "supportsTablet": true,
       "jsEngine": "hermes",
@@ -40,10 +44,7 @@
       "compileSdkVersion": 35,
       "targetSdkVersion": 35,
       "softwareKeyboardLayoutMode": "resize",
-      "permissions": [
-        "CAMERA",
-        "RECORD_AUDIO"
-      ]
+      "permissions": ["CAMERA", "RECORD_AUDIO"]
     },
     "web": {
       "favicon": "./assets/AppIcons/web/favicon.png",

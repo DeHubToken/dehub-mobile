@@ -30,6 +30,7 @@ import SocialLoginIcons from "../../components/auth/SocialLoginIcons";
 import ImportWallet from "../../components/auth/ImportWallet";
 import { openInApp } from "../../libs/links.utils";
 import { TERMS_OF_SERVICE_LINK, PRIVACY_POLICY_LINK } from "../../config/links";
+import { getPreferredChainId } from "../../libs/auth.utils";
 
 // Removed unused AppKitButton import (was commented out) to keep component lean
 
@@ -83,7 +84,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           result.address || deriveAddressFromPrivateKey(result.privateKey);
         if (!address)
           throw new Error("Failed to obtain wallet address from Web3Auth");
-        await signInWithWallet(address, TARGET_CHAIN_ID);
+        const preferred = await getPreferredChainId();
+        const effectiveChainId = preferred ?? TARGET_CHAIN_ID;
+        await signInWithWallet(address, effectiveChainId);
         // Navigation now handled in effect watching isSignedIn & needsUsername
       } catch (e: any) {
         console.error("[SignIn] Social login error", e);

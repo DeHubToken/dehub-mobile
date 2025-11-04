@@ -128,6 +128,7 @@ export function useProviderLifecycle({
     (prov: EIP1193Provider | null) => {
       if (!prov) return () => {};
       const onChainChanged = (next: any) => {
+        log.debug("chainChanged in provider lifecycle",{next})
         const parsed =
           typeof next === "string" && next.startsWith("0x")
             ? parseInt(next, 16)

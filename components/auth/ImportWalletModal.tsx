@@ -22,6 +22,7 @@ import { createLocalEip1193Provider } from "../../services/localwallet.provider"
 import { setSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
 import { useAuth } from "../../context/AuthContext";
 import { toastError, toastInfo } from "../../libs";
+import { getPreferredChainId } from "../../libs/auth.utils";
 
 export interface ImportWalletModalProps {
   visible: boolean;
@@ -101,16 +102,18 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
         setIsImporting(true);
         const address = deriveAddressFromPrivateKey(privateKey)?.toLowerCase();
         if (!address) throw new Error("Invalid private key");
-        // Create a local EIP-1193 provider and sign-in using it (do not store yet)
-        const net = SUPPORTED_NETWORKS[ChainId.BASE_MAINNET];
-        const rpcUrl = net?.rpcUrls?.[0] || "https://mainnet.base.org";
-        const chainIdHex = net?.chainId || "0x2105";
+        // Choose preferred chain (fallback to Base) for local EIP-1193 provider
+        const preferred = await getPreferredChainId();
+        const effectiveChainId = preferred ?? TARGET_CHAIN_ID;
+        const net = SUPPORTED_NETWORKS[effectiveChainId] || SUPPORTED_NETWORKS[ChainId.BASE_MAINNET];
+        const rpcUrl = net?.rpcUrls?.[0] || SUPPORTED_NETWORKS[ChainId.BASE_MAINNET]?.rpcUrls?.[0] || "https://mainnet.base.org";
+        const chainIdHex = (net?.chainId as string) || ('0x' + Number(effectiveChainId).toString(16)) || "0x2105";
         const localProvider = createLocalEip1193Provider({ privateKey, rpcUrl, chainIdHex });
         setSigningProvider(localProvider);
         try {
             // Persist the address + private key immediately; username will be added later in AuthContext
             await upsertLocalAccount({ address, privateKey });
-          await signInWithWallet(address, TARGET_CHAIN_ID);
+          await signInWithWallet(address, effectiveChainId);
           // Local account persistence will occur centrally after username is available
           toastInfo("Wallet imported");
           setPrivateKey("");
@@ -137,13 +140,15 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
             );
             return;
           }
-          const net = SUPPORTED_NETWORKS[ChainId.BASE_MAINNET];
-          const rpcUrl = net?.rpcUrls?.[0] || "https://mainnet.base.org";
-          const chainIdHex = net?.chainId || "0x2105";
+          const preferred = await getPreferredChainId();
+          const effectiveChainId = preferred ?? TARGET_CHAIN_ID;
+          const net = SUPPORTED_NETWORKS[effectiveChainId] || SUPPORTED_NETWORKS[ChainId.BASE_MAINNET];
+          const rpcUrl = net?.rpcUrls?.[0] || SUPPORTED_NETWORKS[ChainId.BASE_MAINNET]?.rpcUrls?.[0] || "https://mainnet.base.org";
+          const chainIdHex = (net?.chainId as string) || ('0x' + Number(effectiveChainId).toString(16)) || "0x2105";
           const localProvider = createLocalEip1193Provider({ privateKey: pk, rpcUrl, chainIdHex });
           setSigningProvider(localProvider);
           try {
-            await signInWithWallet(address, TARGET_CHAIN_ID);
+            await signInWithWallet(address, effectiveChainId);
             // Ensure the account is persisted with its private key (idempotent)
             await upsertLocalAccount({ address, privateKey: pk });
             onClose();

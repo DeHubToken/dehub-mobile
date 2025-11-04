@@ -26,6 +26,15 @@ import { useProviderLifecycle, type EIP1193Provider, type ProviderStatus } from 
 import { useBalances } from "../hooks/useBalances";
 import { useAuthBoot } from "../hooks/useAuthBoot";
 import { useAuthSession } from "../hooks/useAuthSession";
+import FullScreenLoader from "../components/FullScreenLoader";
+import { toastSuccess, toastError } from "../libs";
+import { getPreferredChainId, setPreferredChainId } from "../libs/auth.utils";
+import { AuthService } from "../services";
+  // --- Chain switching (centralized) --------------------------------------
+  import { SUPPORTED_NETWORKS, supportedNetworks } from "../config/web3.constants";
+  import { setLocalAuthChainId } from "../services/auth/localProviderAdapter";
+  import { clearSigningProvider } from "../libs/provider.registry";
+  import { addWeb3AuthChain, switchWeb3AuthChain, reconfigureWeb3AuthChain } from "../config/web3auth.config";
 // DM data bootstrap is handled in DM hooks to keep AuthContext modular
 
 // Define the shape of the user object
@@ -123,6 +132,9 @@ interface AuthContextType {
   ensureProvider: () => Promise<void>;
   ensureFreshProvider: () => Promise<void>; // validates & reinitializes if stale
   authMethod?: 'local' | 'web3auth' | null;
+  // Switch active chain and block UI until done
+  switchChain: (targetChainId: number) => Promise<void>;
+  isSwitchingChain?: boolean;
   // Add more auth methods as needed
 }
 
@@ -151,6 +163,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [authMethod, setAuthMethodState] = useState<'local' | 'web3auth' | null>(null);
   const isMountedRef = useRef(true);
+  const [isSwitchingChain, setIsSwitchingChain] = useState(false);
+  const preferredChainRef = useRef<number | null>(null);
+  const appliedPreferredRef = useRef(false);
   const authAdapterRef = useRef<AuthAdapter | null>(null);
   // Keep user in ref for async flows
   const userRef = useRef<User | null>(null);
@@ -217,6 +232,124 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return () => { mounted = false; };
   }, [user?.address, user?.walletAddress, user?.username]);
 
+  // Load preferred chain id on mount
+  useEffect(() => {
+    let m = true;
+    (async () => {
+      try {
+        const pref = await getPreferredChainId();
+        if (!m) return;
+        preferredChainRef.current = pref ?? null;
+      } catch {}
+    })();
+    return () => { m = false; };
+  }, []);
+
+
+  const toHexChainId = (id: number) => '0x' + Number(id).toString(16);
+
+  // Poll the actual provider for eth_chainId to avoid React state closure races
+  const waitForChain = useCallback(async (targetId: number, timeoutMs = 15000) => {
+    const start = Date.now();
+    while (Date.now() - start < timeoutMs) {
+      try {
+        let raw: any = undefined;
+        if (provider && typeof (provider as any).request === 'function') {
+          raw = await (provider as any).request({ method: 'eth_chainId' });
+        }
+        if (!raw) raw = (provider as any)?.chainConfig?.chainId;
+        const current = typeof raw === 'string' && raw.startsWith('0x') ? parseInt(raw, 16) : Number(raw);
+        if (!Number.isNaN(current) && current === targetId) return true;
+      } catch {}
+      await new Promise((r) => setTimeout(r, 250));
+    }
+    return false;
+  }, [provider]);
+
+  const switchChain = useCallback(async (targetChainId: number) => {
+    if (!targetChainId) return;
+    if (chainId === targetChainId && providerStatus === 'ready') return;
+    setIsSwitchingChain(true);
+    try {
+      const currentMethod = authMethod;
+      const hex = toHexChainId(targetChainId);
+      log.info('switchChain:start', { method: currentMethod, targetChainId, hex, providerReady: !!provider });
+      // Web3Auth / AA path: disable wallet_add/switch and SDK switch; rely solely on reconfigure()
+      if (currentMethod === 'web3auth') {
+        log.info('switchChain:web3auth:reconfigure-only:start', { targetChainId, hex });
+        try {
+          const updated = await reconfigureWeb3AuthChain(targetChainId);
+          log.info('switchChain:web3auth:reconfigure-only:done', { updated, targetChainId });
+        } catch (e) {
+          log.warn('switchChain:web3auth:reconfigure-only:error', e as any);
+          throw e;
+        }
+      } else {
+        // Local (private key) path: set override and re-init provider
+        try { setLocalAuthChainId(targetChainId); log.debug('switchChain:local:setChainOverride', { targetChainId }); } catch {}
+        try { clearSigningProvider(); log.debug('switchChain:local:clearSigningProvider'); } catch {}
+        resetProviderState();
+        await ensureProvider();
+      }
+      // Wait for chain and provider to settle
+      const ok = await waitForChain(targetChainId, 20000);
+      log.info('switchChain:waitForChain', { targetChainId, ok });
+      if (!ok) {
+        // Try validating and reinit once more
+        log.warn('switchChain:waitForChain:retry:ensureFreshProvider');
+        await ensureFreshProvider();
+        // Give the provider a brief moment to settle before proceeding
+        const ok2 = await waitForChain(targetChainId, 5000);
+        log.info('switchChain:waitForChain:second', { targetChainId, ok: ok2 });
+      }
+      // Re-authenticate on the new chain (no enrichment or balance fetch; app will restart)
+      if (userRef.current) {
+        const addr = userRef.current.walletAddress || userRef.current.address;
+        if (addr) {
+          try {
+            log.debug('switchChain:reauth:start', { addr: `${addr.slice(0,6)}...${addr.slice(-4)}`, targetChainId });
+            await AuthService.signInWithWallet(addr, targetChainId);
+            log.debug('switchChain:reauth:done', { targetChainId });
+          } catch (reauthErr) {
+            log.warn('switchChain:reauth:error', reauthErr as any);
+          }
+        }
+      }
+      try { await setPreferredChainId(targetChainId); log.debug('switchChain:persistPreferred:ok', { targetChainId }); } catch {}
+      try {
+        const name = SUPPORTED_NETWORKS?.[targetChainId]?.chainName || `Chain ${targetChainId}`;
+        toastSuccess(`Switched to ${name}`);
+      } catch {}
+    } catch (e) {
+      log.error('switchChain:failed', e as any);
+      try { toastError(e, 'Failed to switch network'); } catch {}
+      throw e;
+    } finally {
+      setIsSwitchingChain(false);
+    }
+  }, [authMethod, provider, ensureProvider, ensureFreshProvider, resetProviderState, waitForChain, fetchAndStoreBalances]);
+
+  // Enforce preferred chain once when provider first becomes ready (boot restore)
+  useEffect(() => {
+    if (appliedPreferredRef.current) return;
+    if (!provider || providerStatus !== 'ready') return;
+    const preferred = preferredChainRef.current;
+    if (!preferred) return;
+    // For local auth, LocalProviderAdapter already initializes on preferred chain; avoid switch overlay
+    if (authMethod === 'local') {
+      appliedPreferredRef.current = true;
+      return;
+    }
+    if (chainId === preferred) {
+      appliedPreferredRef.current = true;
+      return;
+    }
+    appliedPreferredRef.current = true;
+    // Web3Auth path: switch after ready (may show overlay)
+            log.debug('useEffect:chain:switch:done', { preffered: preferredChainRef.current, applied: appliedPreferredRef.current, chainId });
+    switchChain(preferred).catch(() => {});
+  }, [provider, providerStatus, chainId, switchChain, authMethod]);
+
   // --- Helpers: chainId parsing and provider adoption ------------------------
   // Auto ensure freshness shortly after provider becomes ready while signed in
   useEffect(() => {
@@ -226,16 +359,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, [isSignedIn, providerStatus, provider, ensureFreshProvider]);
 
-  // When app boots or user changes, fetch balances once provider is ready and balances are missing
-  useEffect(() => {
-    if (!isSignedIn || !user) return;
-    if (providerStatus !== "ready") return;
-    if (balancesLoading) return;
-    const hasBalances = !!user.tokenBalances && Object.keys(user.tokenBalances || {}).length > 0;
-    if (!hasBalances) {
-      try { fetchAndStoreBalances(user).catch(() => {}); } catch {}
-    }
-  }, [isSignedIn, user, providerStatus, balancesLoading, fetchAndStoreBalances, chainId]);
+  // One consolidated effect is declared later, after useAuthSession exposes enrichAndStoreUser
+  const didBootRefetchRef = useRef(false);
 
   // Helpers
   // Removed retry/timeout helpers to simplify provider setup per docs.
@@ -276,6 +401,28 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // Update session-expired handler ref
   useEffect(() => { sessionExpiredHandlerRef.current = handleSessionExpired; }, [handleSessionExpired]);
 
+  // One consolidated effect, split logically via guards:
+  // - Once post-boot, refresh profile details (skip balances)
+  // - When provider is ready, fetch balances once per (address, chainId)
+  const lastBalancesFetchKeyRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!isSignedIn || !user) return;
+    // One-time enrich after boot hydration
+    if (!isBootLoading && !didBootRefetchRef.current) {
+      didBootRefetchRef.current = true;
+      try { enrichAndStoreUser(user, { refetch: true, skipBalances: true }).catch(() => {}); } catch {}
+    }
+    // Balances fetch: run once when provider becomes ready for a given (address, chainId)
+    if (providerStatus !== "ready") return;
+    if (isSwitchingChain) return;
+    if (!chainId) return; // ensure we only fetch for a known active chain
+    const addr = user.walletAddress || user.address;
+    if (!addr) return;
+    const key = `${addr}-${chainId}`;
+    if (lastBalancesFetchKeyRef.current === key) return; // already fetched for this combo
+    lastBalancesFetchKeyRef.current = key;
+    try { fetchAndStoreBalances(user, chainId).catch(() => {}); } catch {}
+  }, [isBootLoading, isSignedIn, user, providerStatus, isSwitchingChain, chainId, enrichAndStoreUser, fetchAndStoreBalances]);
   // Sign-in, enrichment and local persistence moved into useAuthSession hook
 
   // If user just became signed in and there is a pending protected action, run it
@@ -346,6 +493,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     ensureProvider,
     ensureFreshProvider,
     authMethod,
+    switchChain,
+    isSwitchingChain,
   }), [
     user,
     isLoading,
@@ -369,11 +518,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     ensureProvider,
     ensureFreshProvider,
     authMethod,
+    switchChain,
+    isSwitchingChain,
   ]);
 
   return (
     <AuthContext.Provider value={authContextValue}>
       {children}
+      {isSwitchingChain && (
+        <FullScreenLoader message="Switching network…" />
+      )}
       {showSignInModal && !isSignedIn && !needsUsername && (
         <SignInGatewayModal
           visible={showSignInModal}
