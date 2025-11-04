@@ -6,7 +6,7 @@ import { upsertLocalAccount, getLocalAccount } from "../libs/wallets.local";
 
 import type { User } from "../context/AuthContext";
 import { createAuthAdapter } from "../services/auth/authAdapter";
-import { setAuthMethod, clearAuthMethod } from "../libs/auth.utils";
+import { setAuthMethod, clearAuthMethod, getPreferredChainId } from "../libs/auth.utils";
 import { AuthService } from "../services";
 // balances fetching centralized in useBalances
 
@@ -218,6 +218,7 @@ export function useAuthSession({
       log.info("signInWithWallet:start", {
         walletAddress: mask(walletAddress),
         chainId,
+        preferred: await getPreferredChainId()
       });
       setIsLoading(true);
       try {

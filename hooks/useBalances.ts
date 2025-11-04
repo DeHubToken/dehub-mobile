@@ -17,19 +17,21 @@ type UseBalancesParams = {
 };
 
 export function useBalances({ log, setBalancesLoading, setUser, isMountedRef, setAuthUser, getChainId }: UseBalancesParams) {
-  const fetchAndStoreBalances = useCallback(async (u: User) => {
+  const fetchAndStoreBalances = useCallback(async (u: User, chainIdOverride?: number) => {
     if (!isMountedRef.current) return;
     try {
       setBalancesLoading(true);
       const addr = u?.walletAddress || u?.address;
       if (!addr) return;
       // Use active provider chainId when available; fallback to app default
-      const activeChainId = (typeof getChainId === "function" ? getChainId() : undefined) ?? defaultChainId;
+      log.debug("balances:bg:start", { addr, chainId: chainIdOverride ?? (typeof getChainId === "function" && getChainId()) });
+      const activeChainId = chainIdOverride ?? ((typeof getChainId === "function" ? getChainId() : undefined) ?? defaultChainId);
       const symbols = ["DHB", "USDC", "USDT", "WETH"];
       const t0 = Date.now();
       log.debug("balances:bg:start", { addr, symbols, chainId: activeChainId });
       // const { ethersService } = await import("../services/ethers.service");
       const balances = await ethersService.getTokenBalances(addr, activeChainId, symbols);
+      log.debug("balances:bg:progress", { addr, balances });
       if (!isMountedRef.current) return;
       setUser((prev) => {
         const merged: User | null = prev

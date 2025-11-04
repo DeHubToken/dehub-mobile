@@ -301,14 +301,14 @@ const PPVModal: React.FC<PPVModalProps> = ({
                     </Text>{" "}
                     to unlock this video.
                   </Text>
-                  <View className="flex-row justify-between mt-1">
+                  {/* <View className="flex-row justify-between mt-1">
                     <Text className="text-[11px] text-white/50">
                       ETH: {ethBalance !== "" ? ethBalance : "..."}
                     </Text>
                     <Text className="text-[11px] text-white/30">
                       Gas Balance
                     </Text>
-                  </View>
+                  </View> */}
                   <View className="flex-row justify-between mt-1">
                     <Text className="text-[11px] text-white/50">
                       {tokenSymbol}: {Number(userTokenBal).toFixed(4)}

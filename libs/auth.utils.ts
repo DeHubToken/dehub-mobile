@@ -7,6 +7,7 @@ export const HAS_SEEN_AUTH_KEY = 'has_seen_auth';
 export const WEB3_PROVIDER_KEY = 'web3_provider_info';
 export const AUTH_METHOD_KEY = 'auth_method';
 export const AUTH_METHOD_ADDR_KEY = 'auth_method_address';
+export const PREFERRED_CHAIN_ID_KEY = 'preferred_chain_id';
 
 /**
  * Gets the authentication token from SecureStore
@@ -78,6 +79,7 @@ export async function clearAuthData(): Promise<void> {
   await SecureStore.deleteItemAsync(WEB3_PROVIDER_KEY);
   try { await SecureStore.deleteItemAsync(AUTH_METHOD_KEY); } catch {}
   try { await SecureStore.deleteItemAsync(AUTH_METHOD_ADDR_KEY); } catch {}
+  try { await SecureStore.deleteItemAsync(PREFERRED_CHAIN_ID_KEY); } catch {}
 }
 
 /**
@@ -176,4 +178,18 @@ export async function getAuthMethod(): Promise<{ method: AuthMethod | null; addr
 export async function clearAuthMethod(): Promise<void> {
   try { await SecureStore.deleteItemAsync(AUTH_METHOD_KEY); } catch {}
   try { await SecureStore.deleteItemAsync(AUTH_METHOD_ADDR_KEY); } catch {}
+}
+
+// ---------------- Preferred Chain Persistence ----------------
+export async function setPreferredChainId(id: number): Promise<void> {
+  try { await SecureStore.setItemAsync(PREFERRED_CHAIN_ID_KEY, String(id)); } catch {}
+}
+
+export async function getPreferredChainId(): Promise<number | null> {
+  try {
+    const raw = await SecureStore.getItemAsync(PREFERRED_CHAIN_ID_KEY);
+    if (!raw) return null;
+    const n = Number(raw);
+    return Number.isNaN(n) ? null : n;
+  } catch { return null; }
 }

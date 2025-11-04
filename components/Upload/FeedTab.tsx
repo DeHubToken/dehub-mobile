@@ -28,6 +28,7 @@ import {
 import { mintNftOnChain } from "../../services/mint.service";
 import { parseTxError } from "../../libs/web3.util";
 import { getOrCreateAuthSignature } from "../../libs/web3.auth.sign";
+import { web3AuthService } from "../../services/web3auth.service";
 
 type PickedImage = ImagePicker.ImagePickerAsset;
 
@@ -37,7 +38,7 @@ export default function FeedTab() {
   const CATEGORIES_MAX = 5;
 
   const navigation = useNavigation();
-  const { user, tokenBalances, isSignedIn } = (useAuth() as any) || {};
+  const { user, tokenBalances, isSignedIn, authMethod } = (useAuth() as any) || {};
   const { chainId } = useWeb3Provider();
   const streamCollectionContract = useStreamCollectionContract();
 
@@ -182,18 +183,17 @@ export default function FeedTab() {
   ]);
 
   const onUploadPress = useCallback(() => {
-    // if (ethBalance <= 0) {
-    //   toastError(
-    //     "You need ETH for gas to mint on-chain. Please fund your wallet and try again."
-    //   );
-    //   return;
-    // }
+    // For imported (local) accounts, require ETH for gas; Web3Auth users are gas sponsored
+    if (authMethod === 'local' && ethBalance <= 0) {
+      toastError("Gas sponsorship isn't available for imported accounts. Please deposit ETH for gas and try again.");
+      return;
+    }
     if (!isFormValid) return;
     setConfirmText(
       "Are you sure the details are correct and you wish to proceed? Feed uploads are on-chain and immutable."
     );
     setShowConfirm(true);
-  }, [ethBalance, isFormValid]);
+  }, [ethBalance, isFormValid, authMethod]);
 
   const handleUpload = useCallback(async () => {
     try {

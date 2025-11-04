@@ -3,7 +3,7 @@ import { getSigningProvider, setSigningProvider } from '../../libs/provider.regi
 import { NETWORK_URLS } from '../../config/web3.constants';
 import { defaultChainId } from '../../config/constants';
 import { getLocalAccountDetails } from '../../libs/wallets.local';
-import { getAuthUser, getAuthMethod } from '../../libs/auth.utils';
+import { getAuthUser, getAuthMethod, getPreferredChainId } from '../../libs/auth.utils';
 import { ethers } from 'ethers';
 import { ethersService } from '../ethers.service';
 
@@ -16,6 +16,12 @@ type Eip1193Shim = {
 
 function toHexChainId(id: number): string {
   return '0x' + id.toString(16);
+}
+
+// Module-scoped override to allow switching chains for local (private key) accounts
+let LOCAL_CHAIN_ID_OVERRIDE: number | null = null;
+export function setLocalAuthChainId(id: number) {
+  LOCAL_CHAIN_ID_OVERRIDE = id;
 }
 
 async function buildLocalEip1193FromPrivateKey(pk: string, chainId: number): Promise<{ shim: Eip1193Shim; signer: ethers.Wallet; provider: ethers.providers.JsonRpcProvider; address: string; chainId: number; } | null> {
@@ -136,7 +142,15 @@ export class LocalProviderAdapter implements AuthAdapter {
       if (activeAddr) {
         const details = await getLocalAccountDetails(activeAddr);
         if (details?.privateKey) {
-          const built = await buildLocalEip1193FromPrivateKey(details.privateKey, this.chainId);
+          // Prefer stored preferred chain id on boot if present
+          let targetChainId = LOCAL_CHAIN_ID_OVERRIDE || this.chainId || defaultChainId;
+          try {
+            const pref = await getPreferredChainId();
+            if (typeof pref === 'number' && !Number.isNaN(pref)) {
+              targetChainId = pref;
+            }
+          } catch {}
+          const built = await buildLocalEip1193FromPrivateKey(details.privateKey, targetChainId);
           if (built) {
             this.shim = built.shim;
             this.signer = built.signer;

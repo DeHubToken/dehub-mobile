@@ -3,9 +3,10 @@ import { toastError, toastInfo } from '../libs';
 import { useAppKit, useAppKitAccount } from "@reown/appkit-ethers5-react-native";
 import { useAuth } from "../context/AuthContext";
 import { ChainId, isDevMode } from "../config/constants";
+import { getPreferredChainId as getStoredPreferredChainId } from "../libs/auth.utils";
 
-const getPreferredChainId = () =>
-  isDevMode ? ChainId.GORLI : ChainId.BASE_MAINNET;
+// Determine default fallback chain (Base) when no stored preference exists
+const getDefaultChainId = () => ChainId.BASE_MAINNET;
 
 const isSupportedChain = (chainId: number): boolean => {
   const supportedChains = isDevMode
@@ -41,7 +42,9 @@ export const useWalletAuth = (_navigation: any) => {
   const authenticateWithWallet = useCallback(
     async (address: string, chainId: number) => {
       try {
-        await signInWithWallet(address, chainId);
+        const preferred = await getStoredPreferredChainId();
+        const effectiveChainId = preferred ?? chainId ?? getDefaultChainId();
+        await signInWithWallet(address, effectiveChainId);
       } catch (error) {
   console.error('[WalletAuth] authentication error', error);
   toastError(error, 'Wallet authentication failed. Please try again.');
@@ -51,7 +54,7 @@ export const useWalletAuth = (_navigation: any) => {
   );
 
   const handleWalletConnect = useCallback(async () => {
-    // If already connected, authenticate immediately
+    // If already connected, authenticate immediately (respect preferred chain)
     if (accountAddress && currentChainId) {
       setIsWalletLoading(true);
       await authenticateWithWallet(accountAddress, currentChainId);
@@ -71,19 +74,9 @@ export const useWalletAuth = (_navigation: any) => {
       setIsWalletLoading(true);
   const chainId = currentChainId;
 
-      if (isSupportedChain(chainId)) {
-  await authenticateWithWallet(accountAddress, chainId);
-        setIsWalletLoading(false);
-      } else {
-        const preferredChainId = getPreferredChainId();
-        const preferredChainName = getChainName(preferredChainId);
-
-    console.warn('[WalletAuth] wrong network', { current: chainId, preferred: preferredChainId });
-  toastInfo(`Switch to ${preferredChainName} to continue.`);
-    // Auto switch not available through useAppKitAccount; prompt user manually
-    toastInfo('Open your wallet and change network.');
-    setIsWalletLoading(false);
-      }
+      // Always prefer stored preferred chain for authentication
+      await authenticateWithWallet(accountAddress, chainId);
+      setIsWalletLoading(false);
     };
 
     proceed();

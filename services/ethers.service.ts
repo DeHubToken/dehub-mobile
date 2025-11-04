@@ -102,12 +102,14 @@ export class EthersService {
                   ret
                 );
                 const eth = decoded?.[0] as ethers.BigNumber;
-                balances["ETH"] = parseFloat(ethers.utils.formatEther(eth));
+                const nativeKey = chainId === ChainId.BSC_MAINNET ? "BNB" : "ETH";
+                balances[nativeKey] = parseFloat(ethers.utils.formatEther(eth));
               } else {
                 const fallback = await provider
                   .getBalance(address)
                   .catch(() => ethers.BigNumber.from(0));
-                balances["ETH"] = parseFloat(
+                const nativeKey = chainId === ChainId.BSC_MAINNET ? "BNB" : "ETH";
+                balances[nativeKey] = parseFloat(
                   ethers.utils.formatEther(fallback)
                 );
               }
@@ -115,7 +117,8 @@ export class EthersService {
               const fallback = await provider
                 .getBalance(address)
                 .catch(() => ethers.BigNumber.from(0));
-              balances["ETH"] = parseFloat(
+              const nativeKey = chainId === ChainId.BSC_MAINNET ? "BNB" : "ETH";
+              balances[nativeKey] = parseFloat(
                 ethers.utils.formatEther(fallback)
               );
             }
@@ -157,13 +160,15 @@ export class EthersService {
       const native = await provider
         .getBalance(address)
         .catch(() => ethers.BigNumber.from(0));
-      balances["ETH"] = parseFloat(ethers.utils.formatEther(native));
+      const nativeKey = chainId === ChainId.BSC_MAINNET ? "BNB" : "ETH";
+      balances[nativeKey] = parseFloat(ethers.utils.formatEther(native));
       this.log.debug("balances:native", {
         chainId,
         ms: Date.now() - tNative,
       });
     } catch {
-      balances["ETH"] = 0;
+      const nativeKey = chainId === ChainId.BSC_MAINNET ? "BNB" : "ETH";
+      balances[nativeKey] = 0;
     }
     // ERC-20 balances in parallel with per-token timing
     await Promise.all(

@@ -318,14 +318,14 @@ const TipModal: React.FC<TipModalProps> = ({
                       Max: {limitTip}
                     </Text>
                   </View>
-                  <View className="flex-row justify-between mt-1">
+                  {/* <View className="flex-row justify-between mt-1">
                     <Text className="text-[11px] text-white/50">
                       ETH: {ethBalanceStr !== "" ? ethBalanceStr : "..."}
                     </Text>
                     <Text className="text-[11px] text-white/30">
                       Gas Balance
                     </Text>
-                  </View>
+                  </View> */}
                   {insufficient && (
                     <Text className="text-xs text-red-400 mt-1">
                       Insufficient balance

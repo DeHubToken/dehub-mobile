@@ -50,11 +50,12 @@ async function buildContract(
       provider,
       withSigner
     );
+
     if (signerOrProvider._isSigner) {
       try {
         const signerAddy = await signerOrProvider.getAddress();
         const signerChainId= await signerOrProvider.getChainId?.();
-        console.log("[buildContract] Signer validation params", {signerAddy, signerChainId, signerOrProvider: signerOrProvider.provider?.writeContract});
+        // console.log("[buildContract] Signer validation params", {signerAddy, signerChainId, signerOrProvider: signerOrProvider.provider?.writeContract});
       } catch (e) {
         console.warn("[buildContract] Signer validation failed, retrying", e);
         const { signerOrProvider: newSigner } = await deriveSignerOrProvider(

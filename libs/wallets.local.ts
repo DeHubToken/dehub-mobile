@@ -169,7 +169,7 @@ export async function getLocalAccountDetails(address: string): Promise<LocalAcco
   if (!meta) return null;
   const privateKey = await getPrivateKeyForAddress(address);
   const details = { ...meta, privateKey } as LocalAccountDetails;
-  log.debug("getLocalAccountDetails:done", { address: meta.address, hasPk: !!privateKey });
+  log.debug("getLocalAccountDetails:done", { address: meta.address, hasPk: !!privateKey, meta });
   return details;
 }
 

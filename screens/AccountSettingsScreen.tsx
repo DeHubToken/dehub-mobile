@@ -94,7 +94,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
               <View className="flex-1 pr-2">
                 <Text className="text-white text-sm">Switch Active Chain</Text>
                 <Text className="text-gray-500 text-xs mt-1">
-                  {chainId === ChainId.BASE_MAINNET ? 'Base' : chainId === ChainId.BSC_MAINNET ? 'BNB (disabled)' : `Chain ID ${chainId ?? 'N/A'}`}
+                  {chainId === ChainId.BASE_MAINNET ? 'Base' : chainId === ChainId.BSC_MAINNET ? 'BNB' : `Chain ID ${chainId ?? 'N/A'}`}
                 </Text>
               </View>
               <Ionicons name="chevron-forward" size={18} color="#9ca3af" />

@@ -18,9 +18,9 @@ import { createLogger } from "../libs/logger";
 
 const env = {
   REOWN_PROJECT_ID: REOWN_PROJECT_ID,
-  // API_URL: API_URL,
+  API_URL: API_URL,
   // API_URL: "http://192.168.1.233:9015/api",
-  API_URL: "https://api.dehub.io/api",
+  // API_URL: "https://api.dehub.io/api",
   APP_ENV: APP_ENV || "development",
   INFURA_KEY: INFURA_KEY,
   ALCHEMY_API_KEY: ALCHEMY_API_KEY,

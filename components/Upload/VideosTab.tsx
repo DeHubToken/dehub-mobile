@@ -130,7 +130,7 @@ export default function VideosTab({ onClose }: Props) {
   void screenWidth;
   void insets;
 
-  const { user, tokenBalances, isSignedIn, requireAuth } =
+  const { user, tokenBalances, isSignedIn, requireAuth, authMethod } =
     (useAuth() as any) || {};
   const { chainId } = useWeb3Provider();
   const streamController = useStreamControllerContract();
@@ -568,10 +568,9 @@ export default function VideosTab({ onClose }: Props) {
 
   const onUploadMint = useCallback(async () => {
     // Block if user has no ETH to pay gas
-    if (ethBalance <= 0) {
-      toastError(
-        "You need ETH for gas to mint on-chain. Please fund your wallet and try again."
-      );
+    // For imported (local) accounts, block when no ETH; sponsored users (web3auth) proceed
+    if (authMethod === 'local' && ethBalance <= 0) {
+      toastError("Gas sponsorship isn't available for imported accounts. Please deposit ETH for gas and try again.");
       return;
     }
     if (!media?.uri) return;
@@ -647,10 +646,9 @@ export default function VideosTab({ onClose }: Props) {
     const payload = buildPayload();
     if (!payload) return;
     // Safety: prevent upload if no ETH for gas
-    if (ethBalance <= 0) {
-      toastError(
-        "You need ETH for gas to mint on-chain. Please fund your wallet and try again."
-      );
+    // For imported (local) accounts, block when no ETH; sponsored users (web3auth) proceed
+    if (authMethod === 'local' && ethBalance <= 0) {
+      toastError("Gas sponsorship isn't available for imported accounts. Please deposit ETH for gas and try again.");
       return;
     }
     try {

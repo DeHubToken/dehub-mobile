@@ -16,6 +16,7 @@ import SocialLoginIcons from "./SocialLoginIcons";
 import ImportWallet from "./ImportWallet";
 import { openInApp } from "../../libs/links.utils";
 import { TERMS_OF_SERVICE_LINK, PRIVACY_POLICY_LINK } from "../../config/links";
+import { getPreferredChainId } from "../../libs/auth.utils";
 
 interface SignInGatewayModalProps {
   visible: boolean;
@@ -47,7 +48,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
           result.address || deriveAddressFromPrivateKey(result.privateKey);
         if (!address)
           throw new Error("Failed to obtain wallet address from Web3Auth");
-        await signInWithWallet(address, TARGET_CHAIN_ID);
+        const preferred = await getPreferredChainId();
+        const effectiveChainId = preferred ?? TARGET_CHAIN_ID;
+        await signInWithWallet(address, effectiveChainId);
       } catch (e: any) {
         console.error("[SignInGatewayModal] Social login error", e);
         toastError(e, "Login failed. Please retry.");
