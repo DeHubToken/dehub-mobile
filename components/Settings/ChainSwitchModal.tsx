@@ -5,7 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import { ChainId } from '../../config/constants';
 import { Ionicons } from '@expo/vector-icons';
 import { toastInfo } from '../../libs';
-import Updates from "expo-updates"
+import * as Updates from "expo-updates"
 
 export type ChainSwitchModalProps = {
   visible: boolean;

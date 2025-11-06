@@ -20,7 +20,7 @@ import {
   supportedTokensForPPV,
   supportedNetworks,
 } from "../../config";
-import { supportedTokens } from "../../config/constants";
+import { supportedTokens, defaultChainId as DEFAULT_CHAIN_ID } from "../../config/constants";
 import {
   useWeb3Provider,
   useStreamControllerContract,
@@ -144,50 +144,47 @@ export default function VideosTab({ onClose }: Props) {
     return Number.isFinite(n) ? n : 0;
   }, [user?.tokenBalances?.ETH, tokenBalances?.ETH]);
 
-  // Options for selects
-  const lockTokenOptions = useMemo(
-    () =>
-      Array.from(new Set(supportedTokensForLockContent.map((t) => t.symbol))),
-    []
-  );
-  const ppvTokenOptions = useMemo(
-    () => Array.from(new Set(supportedTokensForPPV.map((t) => t.symbol))),
-    []
-  );
-  const networkOptions = useMemo(
-    () =>
-      Array.from(new Set(supportedNetworks.map((n: any) => n.label || n.name))),
-    []
-  );
-  const lockTokenDropdown = useMemo(
-    () =>
-      lockTokenOptions.map((sym) => ({
-        label: sym,
-        value: sym,
-        disabled: sym.toLowerCase() === "bnb",
-      })),
-    [lockTokenOptions]
-  );
-  const ppvTokenDropdown = useMemo(
-    () =>
-      ppvTokenOptions.map((sym) => ({
-        label: sym,
-        value: sym,
-        disabled: sym.toLowerCase() === "bnb",
-      })),
-    [ppvTokenOptions]
-  );
-  const networkDropdown = useMemo(
-    () =>
-      networkOptions.map((n) => ({
-        label: n,
-        value: n,
-        disabled:
-          n.toLowerCase().includes("bnb") ||
-          n.toLowerCase().includes("binance"),
-      })),
-    [networkOptions]
-  );
+  // Active chain label and filtered dropdowns tied to active chain
+  const activeChainId = useMemo(() => chainId || DEFAULT_CHAIN_ID, [chainId]);
+  const activeNetworkLabel = useMemo(() => {
+    const n = supportedNetworks.find((n: any) => n.chainId === activeChainId);
+    return (n?.label || n?.name || "").toString();
+  }, [activeChainId]);
+  // Keep network states synced to active chain label
+  useEffect(() => {
+    if (activeNetworkLabel) {
+      setLockNetwork((prev) => (prev === activeNetworkLabel ? prev : activeNetworkLabel));
+      setPpvNetwork((prev) => (prev === activeNetworkLabel ? prev : activeNetworkLabel));
+      setBountyChain((prev) => (prev === activeNetworkLabel ? prev : activeNetworkLabel));
+    }
+  }, [activeNetworkLabel]);
+
+  // Options for selects restricted by active chain
+  const lockTokenDropdown = useMemo(() => {
+    const list = supportedTokensForLockContent.filter((t) => t.chainId === activeChainId);
+    const symbols = Array.from(new Set(list.map((t) => t.symbol)));
+    return symbols.map((sym) => ({
+      label: sym,
+      value: sym,
+      disabled: sym.toLowerCase() === "bnb",
+    }));
+  }, [activeChainId]);
+
+  const ppvTokenDropdown = useMemo(() => {
+    const list = supportedTokensForPPV.filter((t) => t.chainId === activeChainId);
+    const symbols = Array.from(new Set(list.map((t) => t.symbol)));
+    return symbols.map((sym) => ({
+      label: sym,
+      value: sym,
+      disabled: sym.toLowerCase() === "bnb",
+    }));
+  }, [activeChainId]);
+
+  const networkDropdown = useMemo(() => {
+    return activeNetworkLabel
+      ? [{ label: activeNetworkLabel, value: activeNetworkLabel, disabled: false }]
+      : [];
+  }, [activeNetworkLabel]);
 
   const player = useVideoPlayer(null, (p) => {
     p.loop = false;

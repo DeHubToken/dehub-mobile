@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Animated, Dimensions } from "react-native";
+import { Platform } from "react-native";
 import { ScreenNames } from "./ScreenNames";
 import BottomTabNavigator from "./BottomTabNavigator";
 import VideoPlayerScreen from "../screens/VideoPlayerScreen";
@@ -41,6 +41,7 @@ export default function AppNavigator() {
       initialRouteName={ScreenNames.Root}
       screenOptions={{
         headerShown: false,
+        // Use cardStyle for this stack version
         cardStyle: { backgroundColor: '#000' },
       }}
     >
@@ -54,9 +55,10 @@ export default function AppNavigator() {
         component={UploadScreen}
         options={{
           headerShown: false,
-          presentation: 'transparentModal',
-          cardStyle: { backgroundColor: 'transparent' },
-          cardOverlayEnabled: true,
+          // Avoid transparentModal on Android to reduce flicker
+          presentation: Platform.OS === 'android' ? 'modal' : 'transparentModal',
+          // Keep a solid background on Android; allow transparent on iOS
+          cardStyle: { backgroundColor: Platform.OS === 'android' ? '#000' : 'transparent' },
           cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
@@ -101,7 +103,6 @@ export default function AppNavigator() {
         options={{
           presentation: 'modal',
           cardStyle: { backgroundColor: '#000' },
-          cardOverlayEnabled: false,
           cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
@@ -129,7 +130,6 @@ export default function AppNavigator() {
         options={{
           presentation: 'modal',
           cardStyle: { backgroundColor: '#000' },
-          cardOverlayEnabled: false,
           cardStyleInterpolator: ({ current, layouts }) => ({
             cardStyle: {
               transform: [
@@ -154,7 +154,6 @@ export default function AppNavigator() {
         options={{
           presentation: 'modal',
           cardStyle: { backgroundColor: '#000' },
-          cardOverlayEnabled: false,
           cardStyleInterpolator: ({ current, layouts }) => ({
             cardStyle: {
               transform: [

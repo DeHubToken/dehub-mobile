@@ -12,7 +12,8 @@ import {
   DEBUG,
   AUTH_PROVIDER,
   TENOR_API_KEY,
-  PIMLICO_API_KEY
+  PIMLICO_API_KEY,
+  STRIPE_PUBLISHABLE_KEY
 } from "@env";
 import { createLogger } from "../libs/logger";
 
@@ -35,6 +36,7 @@ const env = {
   AUTH_PROVIDER: AUTH_PROVIDER,
   TENOR_API_KEY: TENOR_API_KEY,
   PIMLICO_API_KEY: PIMLICO_API_KEY,
+  STRIPE_PUBLISHABLE_KEY: STRIPE_PUBLISHABLE_KEY
 };
 
 const log = createLogger('env');

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useCallback } from "react";
 import { View, Text, ActivityIndicator, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import VideoPlayerCore from "../VideoPlayerCore";
@@ -6,6 +6,9 @@ import { BUY_FROM_DEX_LINK } from "../../config/links";
 import { openInApp } from "../../libs/links.utils";
 import { useAuth } from "../../context/AuthContext";
 import PPVModal from "../PPV/PPVModal";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenNames } from "../../navigation/ScreenNames";
+import { ChainId, supportedChainIds } from "../../config/constants";
 
 export interface VideoAreaProps {
   isTranscoding: boolean;
@@ -34,7 +37,8 @@ const VideoArea: React.FC<VideoAreaProps> = ({
 }) => {
   const normalizedUrl: string | null =
     effectiveVideoUrl === undefined ? null : effectiveVideoUrl;
-  const { user, isSignedIn, requireAuth } = useAuth();
+  const { user, isSignedIn, requireAuth, chainId } = useAuth() as any;
+  const navigation = useNavigation<any>();
   const userDhbBalance: number =
     (user?.tokenBalances?.DHB as number) || (user?.stakedDHB as number) || 0;
   const isFree = accessInfo?.streamStatus?.isFree === true;
@@ -58,6 +62,29 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   const ppvAmount = streamInfo?.payPerViewAmount;
   const ppvSymbol = streamInfo?.payPerViewTokenSymbol;
   const [ppvOpen, setPpvOpen] = useState(false);
+  const ppvChainIdsRaw: any = (streamInfo as any)?.payPerViewChainIds;
+  const ppvChainIds: number[] = Array.isArray(ppvChainIdsRaw)
+    ? (ppvChainIdsRaw as number[])
+    : ppvChainIdsRaw != null
+    ? [Number(ppvChainIdsRaw)]
+    : [];
+  const hasSupportedPPVChain = ppvChainIds.length === 0
+    ? true
+    : ppvChainIds.some((id) => supportedChainIds.includes(Number(id)));
+  const isWrongChainForPPV = Boolean(
+    isLockedOrPPV && ppvChainIds.length > 0 && chainId != null && !ppvChainIds.includes(Number(chainId))
+  );
+
+  const requiredChainLabel = useMemo(() => {
+    if (!ppvChainIds.length) return "";
+    const toLabel = (id: number) =>
+      id === ChainId.BASE_MAINNET ? "Base" : id === ChainId.BSC_MAINNET ? "BSC" : `Chain ${id}`;
+    return ppvChainIds.map(toLabel).join(" or ");
+  }, [ppvChainIds]);
+
+  const goToSettings = useCallback(() => {
+    navigation.navigate(ScreenNames.AccountSettings as any);
+  }, [navigation]);
 
   // openInApp centralized in libs/links.utils
 
@@ -186,6 +213,46 @@ const VideoArea: React.FC<VideoAreaProps> = ({
     if (isLockedWithPPV) {
       const ppvAmt = streamInfo?.payPerViewAmount ?? "—";
       const ppvSymbol = streamInfo?.payPerViewTokenSymbol || "";
+      // If the PPV network(s) are not supported by this app, inform the user and block unlock
+      if (ppvChainIds.length > 0 && !hasSupportedPPVChain) {
+        return (
+          <View className="w-full aspect-video bg-black items-center justify-center px-6">
+            <Ionicons name="warning" size={46} color="#888" />
+            <Text
+              className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
+              numberOfLines={3}
+            >
+              This content requires a network that is no longer available.
+            </Text>
+            <Text className="text-theme-neutrals-400 mt-2 text-center text-xs leading-5" numberOfLines={3}>
+              PPV is unavailable for this video due to unsupported network configuration.
+            </Text>
+          </View>
+        );
+      }
+      if (isWrongChainForPPV) {
+        return (
+          <View className="w-full aspect-video bg-black items-center justify-center px-6">
+            <Ionicons name="swap-horizontal" size={46} color="#888" />
+            <Text
+              className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
+              numberOfLines={3}
+            >
+              You are on the wrong network.
+            </Text>
+            <Text className="text-theme-neutrals-400 mt-2 text-center text-xs leading-5" numberOfLines={3}>
+              This content requires PPV on {requiredChainLabel || "another network"}. Go to Settings and switch to the required network to pay.
+            </Text>
+            <TouchableOpacity
+              onPress={goToSettings}
+              className="mt-4 px-5 py-2 rounded-full bg-theme-accent"
+              activeOpacity={0.85}
+            >
+              <Text className="text-theme-neutrals-900 text-xs font-semibold">Open Settings</Text>
+            </TouchableOpacity>
+          </View>
+        );
+      }
       return (
         <View className="w-full aspect-video bg-black items-center justify-center px-6">
           <Ionicons name="pricetag" size={46} color="#888" />

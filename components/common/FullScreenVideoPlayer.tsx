@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Modal, View, TouchableOpacity, Text } from 'react-native';
+import { Modal, View, TouchableOpacity, Text, AppState } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { VideoView, useVideoPlayer, type VideoPlayer } from 'expo-video';
 import * as ScreenOrientation from 'expo-screen-orientation';
@@ -18,33 +18,48 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
   const [duration, setDuration] = useState<number>(0);
   const [isLandscape, setIsLandscape] = useState<boolean>(false);
   const seekingRef = useRef<boolean>(false);
+  const [sessionKey, setSessionKey] = useState<string | null>(null);
   const player: VideoPlayer = useVideoPlayer(sourceUrl ?? null, (p) => {
-    p.loop = false;
+    p.loop = true;
     p.muted = false;
     p.timeUpdateEventInterval = 0.5; // ensure frequent progress updates
-    if (visible) p.play();
+    // do not auto-play here; wait for sourceLoad
   });
 
   const unlockOrientation = useCallback(async () => {
     try { await ScreenOrientation.unlockAsync(); } catch {}
   }, []);
 
+  // On visible toggle: reset UI state and force a fresh session key
   useEffect(() => {
-    if (!visible) {
-      // Pause and cleanup when hidden
+    if (visible) {
+      setSessionKey(`${Date.now()}-${sourceUrl || 'novid'}`);
+      setPosition(0);
+      setDuration(0);
+      setIsPlaying(true);
+    } else {
       try { player.pause(); } catch {}
       setIsPlaying(false);
       setIsLandscape(false);
-      (async () => { await unlockOrientation(); })();
-    } else {
-      try { player.play(); } catch {}
+      ScreenOrientation.unlockAsync().catch(() => {});
+  try { player.replace(null as any); } catch {}
     }
     return () => {
-      // Cleanup on unmount
-      unlockOrientation();
+      // Ensure orientation is unlocked on unmount
+      ScreenOrientation.unlockAsync().catch(() => {});
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
+
+  // Replace source whenever URI changes (ensures fresh load even for same URI across opens)
+  useEffect(() => {
+    if (!sourceUrl) return;
+    try { player.replace(sourceUrl); } catch {}
+    return () => {
+      try { player.pause(); } catch {}
+  try { player.replace(null as any); } catch {}
+    };
+  }, [sourceUrl, player]);
 
   // Subscribe to player events and reflect into local state
   useEffect(() => {
@@ -55,6 +70,9 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
       player.addListener('sourceLoad', ({ duration: durSec }) => {
         const durMs = Math.max(0, Math.floor((durSec ?? 0) * 1000));
         setDuration(durMs);
+        if (visible) {
+          try { player.play(); } catch {}
+        }
       }),
       player.addListener('timeUpdate', ({ currentTime }) => {
         if (seekingRef.current) return;
@@ -63,6 +81,16 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
       }),
     ];
     return () => subs.forEach((s) => s.remove());
+  }, [player, visible]);
+
+  // Pause when app is backgrounded
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state !== 'active') {
+        try { player.pause(); } catch {}
+      }
+    });
+    return () => { try { sub.remove(); } catch {} };
   }, [player]);
 
   const handleClose = useCallback(async () => {
@@ -128,8 +156,9 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
         </View>
 
         {/* Video Area */}
-        {sourceUrl ? (
+        {visible && sourceUrl ? (
           <VideoView
+            key={sessionKey || undefined}
             player={player}
             style={{ flex: 1, backgroundColor: 'black' }}
             contentFit="contain"

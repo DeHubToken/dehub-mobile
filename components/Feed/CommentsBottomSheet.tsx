@@ -29,14 +29,16 @@ type Props = {
   title?: string;
   // Notify parent to bump or revert top-level comment count
   onTopLevelCommentDelta?: (tokenId: number | string, delta: number) => void;
+  commentCount?: number;
 };
-
+// style={{ paddingBottom: kbVisible ? kbHeight + 10 : 0 }}>
 const CommentsBottomSheet: React.FC<Props> = ({
   visible,
   onClose,
   tokenId,
   title,
   onTopLevelCommentDelta,
+  commentCount
 }) => {
   const { user, requireAuth } = useAuth();
   const viewer = (user?.walletAddress || user?.address || "") as string;
@@ -110,6 +112,7 @@ const CommentsBottomSheet: React.FC<Props> = ({
     const run = async () => {
       if (!visible) return;
       if (tokenId == null) return;
+      if(!commentCount || commentCount <= 0) return
       setLoading(true);
       try {
         const res = await getCommentsForToken(tokenId as any, { limit: 100 });
@@ -281,7 +284,7 @@ const CommentsBottomSheet: React.FC<Props> = ({
           )}
 
           {/* Input */}
-          <View style={{ paddingBottom: kbVisible ? kbHeight + 10 : 0 }}>
+          <View className="absolute bottom-0 left-0 right-0 ">
             <CommentInput
               ref={inputRef}
               onSend={handleSend}

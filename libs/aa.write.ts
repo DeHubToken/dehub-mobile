@@ -86,7 +86,17 @@ export async function writeContractAA(
           gas = est as Hex;
         } catch {}
       }
-      const txHash = await web3AuthService.sendTransaction({ to: contract.address, data, value: valueHex, gas });
+      // Get AA gas price suggestion where required (e.g., BNB)
+      let fee: { maxFeePerGas?: Hex; maxPriorityFeePerGas?: Hex } = {};
+      try { fee = await web3AuthService.getUserOperationGasPrice(); } catch {}
+      const txHash = await web3AuthService.sendTransaction({
+        to: contract.address,
+        data,
+        value: valueHex,
+        gas,
+        ...(fee.maxFeePerGas ? { maxFeePerGas: fee.maxFeePerGas } : {}),
+        ...(fee.maxPriorityFeePerGas ? { maxPriorityFeePerGas: fee.maxPriorityFeePerGas } : {}),
+      });
       const wait = async (_confirmations = 1) => {
         const receipt = await web3AuthService.waitForReceipt(txHash, 60000, 2500);
         if (!receipt) throw new Error("Transaction not confirmed in time");

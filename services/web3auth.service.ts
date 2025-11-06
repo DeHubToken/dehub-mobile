@@ -70,6 +70,66 @@ async function withWeb3AuthProvider<T>(fn: (p: any) => Promise<T>): Promise<T> {
 
 // ---------------- Service Class --------------------------------------------
 export class Web3AuthService {
+  // Bundler / Gas price helpers -------------------------------------------
+  private async getBundlerUrl(): Promise<string | null> {
+    try {
+      const p: any = await getProvider();
+      const url = p?.bundlerConfig?.url || p?.paymasterConfig?.url;
+      return typeof url === "string" ? url : null;
+    } catch {
+      return null;
+    }
+  }
+
+  /**
+   * Try to get AA gas price suggestions. Prefers provider.request to the bundler, then falls back to HTTP, then normal RPC.
+   */
+  async getUserOperationGasPrice(): Promise<{ maxFeePerGas?: Hex; maxPriorityFeePerGas?: Hex }> {
+    // 1) Try via provider.request (if AA provider forwards custom methods)
+    try {
+      const p: any = await getProvider();
+      const res: any = await p.request({ method: "pimlico_getUserOperationGasPrice", params: [] });
+      const pick = (obj: any) => {
+        if (!obj) return {} as any;
+        if (obj.standard) return { maxFeePerGas: obj.standard.maxFeePerGas as Hex, maxPriorityFeePerGas: obj.standard.maxPriorityFeePerGas as Hex };
+        return { maxFeePerGas: obj.maxFeePerGas as Hex, maxPriorityFeePerGas: obj.maxPriorityFeePerGas as Hex };
+      };
+      const out = pick(res?.result ?? res);
+      if (out.maxFeePerGas || out.maxPriorityFeePerGas) return out;
+    } catch {}
+    // 2) Try direct HTTP to bundler url if available
+    try {
+      const url = await this.getBundlerUrl();
+      if (url) {
+        const body = JSON.stringify({ jsonrpc: "2.0", id: 1, method: "pimlico_getUserOperationGasPrice", params: [] });
+        const resp = await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body });
+        if (resp.ok) {
+          const json: any = await resp.json();
+          const r = json?.result ?? json;
+          const pick = (obj: any) => {
+            if (!obj) return {} as any;
+            if (obj.standard) return { maxFeePerGas: obj.standard.maxFeePerGas as Hex, maxPriorityFeePerGas: obj.standard.maxPriorityFeePerGas as Hex };
+            return { maxFeePerGas: obj.maxFeePerGas as Hex, maxPriorityFeePerGas: obj.maxPriorityFeePerGas as Hex };
+          };
+          const out = pick(r);
+          if (out.maxFeePerGas || out.maxPriorityFeePerGas) return out;
+        }
+      }
+    } catch {}
+    // 3) Fallback to standard RPC gas price
+    try {
+      const p: any = await getProvider();
+      const gasPrice: string = await p.request({ method: "eth_gasPrice" });
+      let maxPrio: string | undefined;
+      try { maxPrio = await p.request({ method: "eth_maxPriorityFeePerGas" }); } catch {}
+      const maxFee = (maxPrio || gasPrice) as Hex;
+      const maxPriorityFeePerGas = (maxPrio || gasPrice) as Hex;
+      return { maxFeePerGas: maxFee, maxPriorityFeePerGas };
+    } catch {
+      return {};
+    }
+  }
+
   // Accounts & Chain --------------------------------------------------------
   async getAccounts(): Promise<string[]> {
     return withWeb3AuthProvider(async (p) => {

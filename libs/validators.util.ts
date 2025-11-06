@@ -153,7 +153,9 @@ const computeStreamAccessInfo = (
         }
       });
       // Primary rule (new one): base wallet + bsc staked
-      const lockedTokenBalance = baseWalletBalance + bscStaked;
+      // const lockedTokenBalance = baseWalletBalance + bscStaked;
+      // Extra
+      const lockedTokenBalance = baseWalletBalance + bscWalletBalance + bscStaked;
       // Primary rule (requested): base wallet + base staked + bsc staked
       //   const lockedTokenBalance = baseWalletBalance + baseStaked + bscStaked;
       // Alternative variant 1 (commented): base wallet + base staked only
@@ -165,10 +167,11 @@ const computeStreamAccessInfo = (
         streamStatus.isLockedWithLockContent = false;
       else streamStatus.isLockedWithLockContent = true;
     }
+    // Use active chain (from hook param) to resolve the lock token, not a hardcoded default
     lockTokenWithLockContent =
       supportedTokens.find(
         (t) =>
-          t.chainId === DEFAULT_CHAIN_ID &&
+          t.chainId === chainId &&
           t.symbol === (info.lockContentTokenSymbol || DEFAULT_TOKEN_SYMBOL)
       ) || null;
   }
@@ -179,10 +182,11 @@ const computeStreamAccessInfo = (
     if (!unlockedArray.includes(tokenIdStr) && !unlockedArray.includes(Number(tokenIdStr))) {
       streamStatus.isLockedWithPPV = true;
     }
+    // Resolve PPV token on the active chain only (no default)
     ppvToken =
       supportedTokens.find(
         (t) =>
-          t.chainId === DEFAULT_CHAIN_ID &&
+          t.chainId === chainId &&
           t.symbol === (info.payPerViewTokenSymbol || DEFAULT_TOKEN_SYMBOL)
       ) || null;
   }

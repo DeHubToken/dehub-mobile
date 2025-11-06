@@ -68,8 +68,25 @@ const DMConversationItem: React.FC<ConversationItemProps> = memo(
     const title = isUnknown
       ? "Unknown user"
       : (other.displayName || other.username || truncateAddress(other.address || ""));
-    const preview =
-      item.messages && item.messages.length > 0 ? item.messages[0] : undefined; // newest first
+    // Expect newest-first per store normalization; defensively pick max(createdAt)
+    const preview = useMemo(() => {
+      const list = Array.isArray(item?.messages) ? item.messages : [];
+      if (!list.length) return undefined;
+      // Newest-first fast-path
+      const first = list[0];
+      const firstTs = +new Date((first as any)?.createdAt || 0);
+      const anyOlderAhead = list.some((m) => +new Date((m as any)?.createdAt || 0) > firstTs);
+      if (!anyOlderAhead) return first;
+      // Fallback: compute newest
+      let newest = first as any;
+      let maxTs = firstTs;
+      for (const m of list as any[]) {
+        const t = +new Date(m?.createdAt || 0);
+        if (t > maxTs) { maxTs = t; newest = m; }
+      }
+      return newest;
+    }, [item?.messages]);
+    // console.log({preview, itemMessages: item?.messages?.[0]});
     const { previewType, previewCaption } = React.useMemo(() => {
       const out = { previewType: 'text' as 'text'|'gif'|'image'|'video', previewCaption: '' };
       if (!preview) return out;
@@ -95,7 +112,7 @@ const DMConversationItem: React.FC<ConversationItemProps> = memo(
     }, [preview]);
   const updatedAt = item.updatedAt || item.lastMessageAt || item.createdAt;
     const unreadCount = useUnreadCount(item._id as any, (user as any)?.id);
-    const hasUnread = (unreadCount || 0) > 0; // overall unread (for dot indicator)
+    const hasUnread = (unreadCount || 0) > 0; // overall unread for dot indicator
     const previewUnreadFromOther = !!(
       preview &&
       preview.author !== "me" &&
@@ -134,7 +151,7 @@ const DMConversationItem: React.FC<ConversationItemProps> = memo(
           </View>
           {(() => {
             if (!preview) return null;
-            const baseTextClass = (previewUnreadFromOther ? "text-white font-medium" : "text-theme-neutrals-400") + " text-[13px] mt-1 flex-row items-center";
+            const baseTextClass = ((previewUnreadFromOther || hasUnread) ? "text-white font-medium" : "text-theme-neutrals-400") + " text-[13px] mt-1 flex-row items-center";
             // GIF stays as text prefix
             if (previewType === 'gif') {
               const txt = previewCaption ? `GIF: ${previewCaption}` : 'GIF';
@@ -149,7 +166,7 @@ const DMConversationItem: React.FC<ConversationItemProps> = memo(
             if (previewType === 'image' || previewType === 'video') {
               const iconName = previewType === 'image' ? 'image-outline' : 'videocam-outline';
               const label = previewCaption || (previewType === 'image' ? 'Photo' : 'Video');
-              const iconColor = previewUnreadFromOther ? '#FFFFFF' : '#9CA3AF';
+              const iconColor = (previewUnreadFromOther || hasUnread) ? '#FFFFFF' : '#9CA3AF';
               return (
                 <View className="flex-row items-end mt-1">
                   {preview?.author === 'me' ? (
@@ -171,7 +188,7 @@ const DMConversationItem: React.FC<ConversationItemProps> = memo(
             );
           })()}
         </View>
-        {previewUnreadFromOther && !isUnknown && (
+        {(hasUnread || previewUnreadFromOther) && !isUnknown && (
           <View className="mr-2">
             <Ionicons name="ellipse" size={12} color={theme.colors.accent} />
           </View>

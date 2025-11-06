@@ -7,14 +7,17 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useAuth } from "../context/AuthContext";
+import { useHasUnseenNotifications } from "../libs/notifications.seen";
 import { toastError, toastInfo, toastSuccess } from "../libs";
+import { theme } from "../theme";
 
 const HomeHeader = () => {
   const navigation = useNavigation<any>();
   const { isSignedIn, user } = useAuth();
   const notifCount = user?.notificationCount || 0;
-  const displayCount =
-    notifCount > 4 ? "4+" : notifCount > 0 ? String(notifCount) : "";
+  const address = (user?.walletAddress || user?.address) as string | undefined;
+  // Show only a dot when there are unseen notifications; keep count functionality internal
+  const hasUnseen = useHasUnseenNotifications(address, notifCount);
 
   return (
     <View className="flex-row justify-between items-center p-4">
@@ -52,12 +55,11 @@ const HomeHeader = () => {
           >
             <View>
               <Ionicons name="notifications" size={24} color="#A6A9AC" />
-              {displayCount !== "" && (
-                <View className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1.5 bg-theme-accent rounded-full items-center justify-center">
-                  <Text className="text-white text-[9px] font-semibold leading-none">
-                    {displayCount}
-                  </Text>
-                </View>
+              {hasUnseen && (
+                <View className="absolute -top-0.5 -right-1">
+                                    <Ionicons name="ellipse" size={10} color={theme.colors.accent} />
+                                  </View>
+                // <View className="absolute -top-0.5 -right-0.5 w-[9px] h-[9px] bg-theme-accent rounded-full" />
               )}
             </View>
           </TouchableOpacity>

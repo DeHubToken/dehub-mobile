@@ -101,6 +101,7 @@ async function getOrCreateInstance() {
   // console.log("Created sdk (static imports)");
   // Determine initial chain from preferredChainId if present; else default to Base
   const preferred = (await getPreferredChainId()) || (ChainId as any).BASE_MAINNET || 8453;
+  // log.info("sdk:prefferedchain", { preferred, fromstore: await getPreferredChainId() });
   const baseCfg = (SUPPORTED_NETWORKS as any)?.[preferred] || (SUPPORTED_NETWORKS as any)?.[8453];
   const initialHex = (baseCfg?.chainId as string) || WEB3AUTH_CHAIN_ID;
   const initialRpc = Array.isArray(baseCfg?.rpcUrls) ? baseCfg.rpcUrls[0] : (baseCfg?.rpcUrls || WEB3AUTH_RPC_TARGET);

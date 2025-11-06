@@ -5,7 +5,7 @@ import InfoTooltip from "../ui/InfoTooltip";
 import dhbIcon from "../../assets/tokens/DHB.png";
 import usdcIcon from "../../assets/tokens/USDC.png";
 import usdtIcon from "../../assets/tokens/USDT.png";
-import ethIcon from "../../assets/tokens/eth.png";
+import ethIcon from "../../assets/chains/base-icon.png";
 import bnbIcon from "../../assets/chains/bnb-icon.png";
 import { useAuth } from "../../context/AuthContext";
 import { ChainId } from "../../config/constants";

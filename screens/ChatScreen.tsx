@@ -19,6 +19,7 @@ import {
 // import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ScreenHeader from "../components/ScreenHeader";
 import MessageBubble from "../components/DM/MessageBubble";
+import FullScreenVideoPlayer from "../components/common/FullScreenVideoPlayer";
 import MessageInput from "../components/DM/MessageInput";
 import { useAuth } from "../context/AuthContext";
 import { useDM } from "../hooks/useDM";
@@ -138,6 +139,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const createdConvIdRef = useRef<ID | null>(null);
   const [pending, setPending] = useState<UiMessage[]>([]);
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
+  const [selectedVideoUri, setSelectedVideoUri] = useState<string | null>(null);
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [confirmMode, setConfirmMode] = useState<"block" | "unblock">("block");
   const [blockActionLoading, setBlockActionLoading] = useState(false);
@@ -1255,7 +1257,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 (item.senderAddress || "").toLowerCase() === meAddr;
               return (
                 <View className="px-3 py-2">
-                  <MessageBubble msg={item as any} isMe={isMine} />
+                  <MessageBubble
+                    msg={item as any}
+                    isMe={isMine}
+                    onOpenVideo={(uri) => setSelectedVideoUri(uri)}
+                  />
                 </View>
               );
             }}
@@ -1312,6 +1318,12 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             onConfirm={onConfirmBlockToggle}
             onCancel={() => setConfirmVisible(false)}
             loading={blockActionLoading}
+          />
+          {/* Shared full-screen video player */}
+          <FullScreenVideoPlayer
+            visible={!!selectedVideoUri}
+            uri={selectedVideoUri}
+            onClose={() => setSelectedVideoUri(null)}
           />
         </View>
       </View>
