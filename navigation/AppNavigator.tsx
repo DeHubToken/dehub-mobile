@@ -18,6 +18,7 @@ import SignInScreen from "../screens/auth/SignInScreen";
 import UploadScreen from "../screens/UploadScreen";
 import LiveProducerScreen from "../screens/LiveProducerScreen"; // keep direct import for types (optional remove)
 import LiveViewerScreen from "../screens/LiveViewerScreen"; // keep direct import for types
+import DpayScreen from "../screens/DpayScreen";
 import { LivepeerProvider } from "../config/livepeer.config";
 import ChatScreen from "../screens/ChatScreen";
 
@@ -85,6 +86,15 @@ export default function AppNavigator() {
           gestureDirection: 'vertical',
           gestureEnabled: true,
           gestureResponseDistance: 30,
+        }}
+      />
+      <Stack.Screen
+        name={ScreenNames.Dpay}
+        component={DpayScreen}
+        options={{
+          headerShown: false,
+          presentation: 'card',
+          cardStyle: { backgroundColor: '#000' },
         }}
       />
       {/* <Stack.Screen

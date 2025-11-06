@@ -9,13 +9,15 @@ import ethIcon from "../../assets/chains/base-icon.png";
 import bnbIcon from "../../assets/chains/bnb-icon.png";
 import { useAuth } from "../../context/AuthContext";
 import { ChainId } from "../../config/constants";
-import { BUY_FROM_DEX_LINK } from "../../config/links";
-import { openInApp } from "../../libs/links.utils";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenNames } from "../../navigation/ScreenNames";
+import { toastInfo } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import TransferModal from "../Transfer/TransferModal";
 
 const ProfileAssets = () => {
   const { user, balancesLoading, chainId } = useAuth();
+  const navigation = useNavigation<any>();
   const [showDHBOptions, setShowDHBOptions] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
 
@@ -56,10 +58,18 @@ const ProfileAssets = () => {
 
   const [transferOpen, setTransferOpen] = useState(false);
   const dhbActions = [
-    { label: "Top up", subtitle: "reviewing", disabled: true },
+    { label: "Top up", subtitle: undefined, disabled: false },
     { label: "Bridge", subtitle: "coming soon", disabled: true },
     { label: "Transfer", disabled: false },
   ];
+
+  const handleTopUp = React.useCallback(() => {
+    if (chainId !== ChainId.BASE_MAINNET) {
+      toastInfo("Dpay is only available on Base.");
+      return;
+    }
+    navigation.navigate(ScreenNames.Dpay);
+  }, [chainId, navigation]);
 
   const toggleDHBOptions = () => {
     setShowDHBOptions((prev) => !prev);
@@ -142,7 +152,7 @@ const ProfileAssets = () => {
                     action.disabled
                       ? undefined
                       : action.label === "Top up"
-                      ? () => openInApp(BUY_FROM_DEX_LINK)
+                      ? handleTopUp
                       : action.label === "Transfer"
                       ? () => setTransferOpen(true)
                       : undefined
