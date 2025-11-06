@@ -2,8 +2,7 @@ import React, { useMemo, useState, useCallback } from "react";
 import { View, Text, ActivityIndicator, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import VideoPlayerCore from "../VideoPlayerCore";
-import { BUY_FROM_DEX_LINK } from "../../config/links";
-import { openInApp } from "../../libs/links.utils";
+import { toastInfo } from "../../libs";
 import { useAuth } from "../../context/AuthContext";
 import PPVModal from "../PPV/PPVModal";
 import { useNavigation } from "@react-navigation/native";
@@ -93,7 +92,11 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   };
 
   const handleTopUp = (_neededAmt: any, _neededSymbol: string) => {
-    openInApp(BUY_FROM_DEX_LINK);
+    if (chainId !== ChainId.BASE_MAINNET) {
+      toastInfo("Dpay is only available on Base.");
+      return;
+    }
+    navigation.navigate(ScreenNames.Dpay);
   };
 
   const handleUnlockPPV = (_ppvAmt: any, _ppvSymbol: string) => {

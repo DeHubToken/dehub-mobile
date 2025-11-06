@@ -9,6 +9,7 @@ import { useAuth } from "../context/AuthContext";
 import { theme } from "../theme";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
+import ProfileApps from "../components/Profile/ProfileApps";
 
 const REFRESH_INTERVAL_MS = 60_000; // 1 min periodic refresh
 
@@ -109,6 +110,7 @@ const ProfileScreen: React.FC = () => {
       >
         <ProfileHeader />
         <ProfileAssets />
+        <ProfileApps />
         <ProfileMenu />
       </ScrollView>
     </View>
