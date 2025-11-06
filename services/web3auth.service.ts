@@ -84,7 +84,7 @@ export class Web3AuthService {
   /**
    * Try to get AA gas price suggestions. Prefers provider.request to the bundler, then falls back to HTTP, then normal RPC.
    */
-  async getUserOperationGasPrice(): Promise<{ maxFeePerGas?: Hex; maxPriorityFeePerGas?: Hex }> {
+  async getUserOperationGasPrice(): Promise<{ maxFeePerGas?: Hex; maxPriorityFeePerGas?: Hex; __source?: 'provider' | 'http' | 'rpc' }> {
     // 1) Try via provider.request (if AA provider forwards custom methods)
     try {
       const p: any = await getProvider();
@@ -112,7 +112,7 @@ export class Web3AuthService {
             return { maxFeePerGas: obj.maxFeePerGas as Hex, maxPriorityFeePerGas: obj.maxPriorityFeePerGas as Hex };
           };
           const out = pick(r);
-          if (out.maxFeePerGas || out.maxPriorityFeePerGas) return out;
+          if (out.maxFeePerGas || out.maxPriorityFeePerGas) return { ...out, __source: 'http' };
         }
       }
     } catch {}
@@ -124,9 +124,9 @@ export class Web3AuthService {
       try { maxPrio = await p.request({ method: "eth_maxPriorityFeePerGas" }); } catch {}
       const maxFee = (maxPrio || gasPrice) as Hex;
       const maxPriorityFeePerGas = (maxPrio || gasPrice) as Hex;
-      return { maxFeePerGas: maxFee, maxPriorityFeePerGas };
+      return { maxFeePerGas: maxFee, maxPriorityFeePerGas, __source: 'rpc' };
     } catch {
-      return {};
+      return {} as any;
     }
   }
 

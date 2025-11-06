@@ -87,15 +87,17 @@ export async function writeContractAA(
         } catch {}
       }
       // Get AA gas price suggestion where required (e.g., BNB)
-      let fee: { maxFeePerGas?: Hex; maxPriorityFeePerGas?: Hex } = {};
-      try { fee = await web3AuthService.getUserOperationGasPrice(); } catch {}
+  let fee: { maxFeePerGas?: Hex; maxPriorityFeePerGas?: Hex; __source?: 'provider'|'http'|'rpc' } = {} as any;
+  try { fee = await web3AuthService.getUserOperationGasPrice(); } catch {}
+  // If fallback source is plain RPC, omit explicit fees to let RPC/bundler choose best values.
+  const includeFees = fee && fee.__source && fee.__source !== 'rpc';
       const txHash = await web3AuthService.sendTransaction({
         to: contract.address,
         data,
         value: valueHex,
         gas,
-        ...(fee.maxFeePerGas ? { maxFeePerGas: fee.maxFeePerGas } : {}),
-        ...(fee.maxPriorityFeePerGas ? { maxPriorityFeePerGas: fee.maxPriorityFeePerGas } : {}),
+        ...(includeFees && fee.maxFeePerGas ? { maxFeePerGas: fee.maxFeePerGas } : {}),
+        ...(includeFees && fee.maxPriorityFeePerGas ? { maxPriorityFeePerGas: fee.maxPriorityFeePerGas } : {}),
       });
       const wait = async (_confirmations = 1) => {
         const receipt = await web3AuthService.waitForReceipt(txHash, 60000, 2500);
