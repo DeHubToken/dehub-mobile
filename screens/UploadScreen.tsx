@@ -26,6 +26,7 @@ import LiveTabSkeleton from "../components/Upload/Skeletons/LiveTabSkeleton";
 import VideosTabSkeleton from "../components/Upload/Skeletons/VideosTabSkeleton";
 import FeedTabSkeleton from "../components/Upload/Skeletons/FeedTabSkeleton";
 import ScreenHeader from "../components/ScreenHeader";
+import TabButton from "../components/Upload/TabButton";
 import { useAuth } from "../context/AuthContext";
 import { ChainId } from "../config/constants";
 import ChainSwitchModal from "../components/Settings/ChainSwitchModal";
@@ -69,7 +70,7 @@ export default function UploadScreen() {
     Feed: initialTab === "Feed", // still disabled, but keep generic
   });
   const [chainModalVisible, setChainModalVisible] = useState(false);
-  console.log({ initialTab, routeTab: route?.params?.tab, active, mounted });
+  // console.log({ initialTab, routeTab: route?.params?.tab, active, mounted });
 
   useEffect(() => {
     const idx = tabs.indexOf(active);
@@ -84,7 +85,7 @@ export default function UploadScreen() {
     },
     [width]
   );
-
+  
   const onScrollEnd = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       let idx = Math.round(e.nativeEvent.contentOffset.x / width);
@@ -119,30 +120,10 @@ export default function UploadScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route?.params?.tab]);
 
-  const Segment = ({
-    label,
-    onPress,
-    active,
-    disabled,
-  }: {
-    label: string;
-    onPress: () => void;
-    active: boolean;
-    disabled?: boolean;
-  }) => (
-    <TouchableOpacity
-      onPress={onPress}
-      disabled={disabled}
-      activeOpacity={0.8}
-      className={`px-4 py-1.5 rounded-full ${active ? "bg-white/10" : ""} ${
-        disabled ? "opacity-40" : ""
-      }`}
-    >
-      <Text className={active ? "text-white" : "text-theme-neutrals-400"}>
-        {label}
-      </Text>
-    </TouchableOpacity>
-  );
+  // Tab button callbacks
+  const onPressVideos = useCallback(() => onPressTab("Videos"), [onPressTab]);
+  const onPressLive = useCallback(() => onPressTab("Live"), [onPressTab]);
+  const onPressFeed = useCallback(() => onPressTab("Feed"), [onPressTab]);
 
   const ChainButton = useCallback(() => {
     const onOpen = () => setChainModalVisible(true);
@@ -185,22 +166,10 @@ export default function UploadScreen() {
             <Text className="text-theme-neutrals-300 text-2xl font-semibold">
               Content type
             </Text>
-            <View className="bg-theme-neutrals-800 rounded-full px-0 py-0 flex-row items-center">
-              <Segment
-                label="Video"
-                onPress={() => onPressTab("Videos")}
-                active={active === "Videos"}
-              />
-              <Segment
-                label="Live"
-                onPress={() => onPressTab("Live")}
-                active={active === "Live"}
-              />
-              <Segment
-                label="Feed"
-                onPress={() => onPressTab("Feed")}
-                active={active === "Feed"}
-              />
+            <View className="bg-theme-neutrals-800 rounded-full px-0 py-0 flex-row items-center z-10">
+              <TabButton label="Video" onPress={onPressVideos} active={active === "Videos"} />
+              <TabButton label="Live" onPress={onPressLive} active={active === "Live"} />
+              <TabButton label="Feed" onPress={onPressFeed} active={active === "Feed"} />
             </View>
           </View>
         </View>

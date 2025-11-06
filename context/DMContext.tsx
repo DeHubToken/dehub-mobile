@@ -39,14 +39,38 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
   useEffect(() => {
     if (!isSignedIn || !address) {
       setDmCacheKey(null);
-      clearDmStore().catch(() => {}); // clear in-memory on logout
+      const t0 = Date.now();
+      log.info('boot:address:none:clear:start');
+      clearDmStore()
+        .then(() => {
+          const ms = Date.now() - t0;
+          log.info('boot:address:none:clear:done', { ms });
+        })
+        .catch((e) => log.warn('boot:address:none:clear:error', e));
       return;
     }
     // Switch to per-account cache key and hydrate
+    const short = `${address.slice(0, 6)}...${address.slice(-4)}`;
+    log.info('boot:address:setCacheKey', { address: short });
     setDmCacheKey(address);
     (async () => {
-      await clearDmStore(); // ensure clean memory before hydrating this account
-      await hydrateDmFromStorage(address);
+      const t0 = Date.now();
+      // ensure clean memory before hydrating this account
+      const tClear = Date.now();
+      try {
+        await clearDmStore();
+        log.info('hydrate:clear:done', { ms: Date.now() - tClear, sinceStart: Date.now() - t0 });
+      } catch (e) {
+        log.warn('hydrate:clear:error', e);
+      }
+      const tHydrate = Date.now();
+      try {
+        await hydrateDmFromStorage(address);
+        log.info('hydrate:storage:done', { ms: Date.now() - tHydrate, sinceStart: Date.now() - t0 });
+      } catch (e) {
+        log.warn('hydrate:storage:error', e);
+      }
+      log.info('hydrate:total:done', { totalMs: Date.now() - t0 });
     })();
   }, [isSignedIn, address]);
 
@@ -153,15 +177,39 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
   }, [ws, log, userId, address]);
 
   const refreshContacts = useCallback(async () => {
-    if (!isSignedIn || !address || fetchingRef.current) return;
+    if (!isSignedIn) {
+      log.debug('contacts:fetch:skip', { reason: 'not-signed-in' });
+      return;
+    }
+    if (!address) {
+      log.debug('contacts:fetch:skip', { reason: 'no-address' });
+      return;
+    }
+    if (fetchingRef.current) {
+      log.debug('contacts:fetch:skip', { reason: 'in-flight' });
+      return;
+    }
     fetchingRef.current = true;
     setContactsLoading(true);
     setContactsError(null);
+    const t0 = Date.now();
+    const short = `${address.slice(0, 6)}...${address.slice(-4)}`;
+    log.info('contacts:fetch:start', { address: short });
     try {
       const contacts = await getContactsByAddress(address);
-      if (!Array.isArray(contacts)) return;
-      dmActions.upsertContacts(contacts as any);
+      const count = Array.isArray(contacts) ? contacts.length : 0;
+      // console.log({contacts, texts: contacts.map(c => c.messages.map(m => m.content).join('\n'))})
+      if (Array.isArray(contacts)) dmActions.upsertContacts(contacts as any);
+      const withMessages = Array.isArray(contacts)
+        ? contacts.filter((c: any) => Array.isArray(c?.messages) && c.messages.length > 0).length
+        : 0;
+      log.info('contacts:fetch:done', {
+        count,
+        withMessages,
+        ms: Date.now() - t0,
+      });
     } catch (e: any) {
+      log.error('contacts:fetch:error', { ms: Date.now() - t0, message: e?.message || String(e) });
       setContactsError(e?.message || 'Failed to fetch contacts');
     } finally {
       setContactsLoading(false);
@@ -171,19 +219,54 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
 
   // Auto-refresh when signed in
   useEffect(() => {
-    if (!isSignedIn || !address) return;
+    if (!isSignedIn || !address) {
+      log.debug('contacts:auto:skip', { isSignedIn, hasAddress: !!address });
+      return;
+    }
+    const short = `${address.slice(0, 6)}...${address.slice(-4)}`;
+    log.info('contacts:auto:trigger', { address: short });
     refreshContacts();
   }, [isSignedIn, address, refreshContacts]);
 
   // Auto-refresh contacts when signed in (kept separate)
 
   const loadMessages = useCallback(async (conversationId: ID, opts: LoadMessagesOptions = {}) => {
-    if (!isSignedIn || !address) return [] as any[];
-    const resp = await getMessagesDm(conversationId, { address, q: opts.q, skip: opts.skip, limit: opts.limit });
-    const arr = Array.isArray(resp?.messages) ? resp.messages : [];
-    if (arr.length) dmActions.upsertMessages(conversationId, arr as any);
-    return arr as any[];
-  }, [isSignedIn, address]);
+    if (!isSignedIn) {
+      log.debug('messages:fetch:skip', { conversationId: String(conversationId), reason: 'not-signed-in' });
+      return [] as any[];
+    }
+    if (!address) {
+      log.debug('messages:fetch:skip', { conversationId: String(conversationId), reason: 'no-address' });
+      return [] as any[];
+    }
+    const t0 = Date.now();
+    const meta: any = { conversationId: String(conversationId) };
+    if (opts?.q) meta.q = String(opts.q);
+    if (typeof opts?.skip === 'number') meta.skip = opts.skip;
+    if (typeof opts?.limit === 'number') meta.limit = opts.limit;
+    log.info('messages:fetch:start', meta);
+    try {
+      const resp = await getMessagesDm(conversationId, { address, q: opts.q, skip: opts.skip, limit: opts.limit });
+      const arrRaw = Array.isArray(resp?.messages) ? resp.messages : [];
+      const normalized = arrRaw.map((raw: any) => {
+        const providedAuthor = raw?.author === 'me' || raw?.author === 'other' ? raw.author : undefined;
+        if (providedAuthor) return raw;
+        const senderId = String(raw?.sender?._id || raw?.sender || raw?.senderId || '');
+        const senderAddr = String(raw?.sender?.address || raw?.address || raw?.senderAddress || '').toLowerCase();
+        const meId = String(userId || '');
+        const meAddr = String(address || '');
+        const isMine = (!!meId && senderId === meId) || (!!meAddr && senderAddr === meAddr);
+        return { ...raw, author: isMine ? 'me' : 'other' };
+      });
+      const count = normalized.length;
+      if (count) dmActions.upsertMessages(conversationId, normalized as any);
+      log.info('messages:fetch:done', { conversationId: String(conversationId), count, ms: Date.now() - t0 });
+      return normalized as any[];
+    } catch (e: any) {
+      log.error('messages:fetch:error', { conversationId: String(conversationId), ms: Date.now() - t0, message: e?.message || String(e) });
+      return [] as any[];
+    }
+  }, [isSignedIn, address, userId]);
 
   const conversations = useDmContacts();
 

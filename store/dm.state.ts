@@ -144,8 +144,14 @@ function sortAscByCreated(a?: string, b?: string) {
 export const dmActions = {
   upsertContacts(contacts: DmContact[]) {
     for (const c of contacts) {
-      const prev = dmState.contactsById[c._id] || {} as DmContact;
-      dmState.contactsById[c._id] = { ...prev, ...c } as DmContact;
+      const prev = dmState.contactsById[c._id] || ({} as DmContact);
+      // Normalize contact.messages to newest-first for UI preview consistency
+      let newestFirst: DmMessage[] | undefined = undefined;
+      if (Array.isArray(c.messages) && c.messages.length) {
+        const sortedDesc = [...c.messages].sort((x, y) => +new Date(y.createdAt) - +new Date(x.createdAt));
+        newestFirst = sortedDesc;
+      }
+      dmState.contactsById[c._id] = { ...prev, ...c, ...(newestFirst ? { messages: newestFirst as any } : {}) } as DmContact;
       // If payload includes messages, seed them
       if (Array.isArray(c.messages) && c.messages.length) {
         const existing = dmState.messagesByConversation[c._id] || [];

@@ -34,7 +34,7 @@ import {
 } from "../../services/live.service";
 import { getCategoriesCached, minNft } from "../../services/nft.service";
 import { mintWithBounty, mintNftOnChain } from "../../services/mint.service";
-import { streamInfoKeys, supportedTokens } from "../../config/constants";
+import { streamInfoKeys, supportedTokens, defaultChainId as DEFAULT_CHAIN_ID } from "../../config/constants";
 import {
   useWeb3Provider,
   useStreamControllerContract,
@@ -210,40 +210,60 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
     };
   }, []);
 
+  const { chainId } = useWeb3Provider();
+
+  // Active chain label and filtered dropdowns tied to active chain
+  const activeChainId = useMemo(() => chainId || DEFAULT_CHAIN_ID, [chainId]);
+  const activeNetworkLabel = useMemo(() => {
+    const n = supportedNetworks.find((n: any) => n.chainId === activeChainId);
+    return (n?.label || n?.name || "").toString();
+  }, [activeChainId]);
+
+  // Keep network states synced to active chain label
+  useEffect(() => {
+    if (activeNetworkLabel) {
+      setLockNetwork((prev) => (prev === activeNetworkLabel ? prev : activeNetworkLabel));
+      setPpvNetwork((prev) => (prev === activeNetworkLabel ? prev : activeNetworkLabel));
+      setBountyChain((prev) => (prev === activeNetworkLabel ? prev : activeNetworkLabel));
+    }
+  }, [activeNetworkLabel]);
+
   const lockTokenDropdown = useMemo(
     () =>
       Array.from(
-        new Set(supportedTokensForLockContent.map((t) => t.symbol))
+        new Set(
+          supportedTokensForLockContent
+            .filter((t) => t.chainId === activeChainId)
+            .map((t) => t.symbol)
+        )
       ).map((sym) => ({
         label: sym,
         value: sym,
         disabled: sym.toLowerCase() === "bnb",
       })),
-    []
+    [activeChainId]
   );
   const ppvTokenDropdown = useMemo(
     () =>
-      Array.from(new Set(supportedTokensForPPV.map((t) => t.symbol))).map(
-        (sym) => ({
-          label: sym,
-          value: sym,
-          disabled: sym.toLowerCase() === "bnb",
-        })
-      ),
-    []
+      Array.from(
+        new Set(
+          supportedTokensForPPV
+            .filter((t) => t.chainId === activeChainId)
+            .map((t) => t.symbol)
+        )
+      ).map((sym) => ({
+        label: sym,
+        value: sym,
+        disabled: sym.toLowerCase() === "bnb",
+      })),
+    [activeChainId]
   );
   const networkDropdown = useMemo(
     () =>
-      Array.from(
-        new Set(supportedNetworks.map((n: any) => n.label || n.name))
-      ).map((n) => ({
-        label: n,
-        value: n,
-        disabled:
-          n.toLowerCase().includes("bnb") ||
-          n.toLowerCase().includes("binance"),
-      })),
-    []
+      activeNetworkLabel
+        ? [{ label: activeNetworkLabel, value: activeNetworkLabel, disabled: false }]
+        : [],
+    [activeNetworkLabel]
   );
 
   const addCategory = useCallback(
@@ -264,7 +284,7 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
     );
   }, []);
 
-  const { chainId } = useWeb3Provider();
+  // chainId already defined above
   const streamController = useStreamControllerContract();
   const streamCollectionContract = useStreamCollectionContract();
   const navigation = useNavigation<any>();
@@ -306,14 +326,15 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
       const info: Record<string, any> = {
         isLockContent: lockContent,
         lockContentTokenSymbol: lockTokenSymbol,
-        lockContentChainIds: lockNetwork ? [lockNetwork] : undefined,
+        // tie to active chain id
+        lockContentChainIds: lockContent ? activeChainId : undefined,
         lockContentAmount: lockAmount,
         isPayPerView: payPerView,
         payPerViewTokenSymbol: ppvTokenSymbol,
-        payPerViewChainIds: ppvNetwork ? [ppvNetwork] : undefined,
+        payPerViewChainIds: payPerView ? activeChainId : undefined,
         payPerViewAmount: ppvAmount,
         isAddBounty: bounty,
-        addBountyChainId: bountyChain,
+        addBountyChainId: bounty ? activeChainId : undefined,
         addBountyTokenSymbol: bountyTokenSymbol,
         addBountyFirstXViewers: bountyFirstXViewer,
         addBountyFirstXComments: bountyFirstXComment,

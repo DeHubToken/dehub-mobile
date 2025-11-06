@@ -13,12 +13,13 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import ScreenHeader from "../components/ScreenHeader";
-import { getNotifications, markNotificationAsRead } from "../services/user.service";
+import { getNotifications } from "../services/user.service";
 import { toastError } from "../libs";
 import { useAuth } from "../context/AuthContext";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { formatNotificationDate } from "../libs/date.util";
+import { markAllSeenForAddress } from "../libs/notifications.seen";
 
 const NotificationScreen = () => {
   const { patchUser, user } = useAuth();
@@ -64,6 +65,11 @@ const NotificationScreen = () => {
           if (user?.notificationCount !== payload.length) {
             await patchUser?.({ notificationCount: payload.length });
           }
+          // Update lastTopKey and mark seen when viewing this screen
+          try {
+            const addr = address || user?.walletAddress || user?.address || null;
+            await markAllSeenForAddress(addr, (payload as any[])?.length ?? 0);
+          } catch {}
         } else {
           setNotifications([]);
         }
@@ -124,69 +130,11 @@ const NotificationScreen = () => {
                 ? "thumbs-up"
                 : "alert-circle";
 
-      const handlePress = () => {
-        if (animatingRef.current) return;
-        animatingRef.current = true;
-        // Snapshot values to avoid issues during re-render/removal
-        const addr = user?.walletAddress || user?.address;
-        const itemType: string | undefined = item?.type;
-        const tokenId: number | string | undefined = item?.tokenId;
-
-        // Smooth slide-left + fade out, then collapse space with LayoutAnimation
-        Animated.parallel([
-          Animated.timing(opacity, {
-            toValue: 0,
-            duration: 180,
-            useNativeDriver: true,
-          }),
-          Animated.spring(translateX, {
-            toValue: -50,
-            useNativeDriver: true,
-            friction: 7,
-            tension: 70,
-          }),
-        ]).start(() => {
-          LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-          optimisticRemove(effectiveKey);
-        });
-
-        // Fire-and-forget mark as read (optimistic) with error handling & revert
-        if (item?._id) {
-          markNotificationAsRead(item._id).catch((err) => {
-          console.error("[NotificationRow] mark as read error", err);
-          setNotifications(prev => {
-            // Avoid duplicates by comparing resolved keys
-            const removedKey = effectiveKey;
-            const exists = prev.some((n, i) => resolveItemKey(n, i) === removedKey);
-            if (exists) return prev; // already present
-            return [...prev, item];
-          });
-          // toastError(err, 'Failed to mark notification');
-          if (user?.notificationCount !== undefined) {
-            patchUser?.({ notificationCount: (user.notificationCount || 0) + 1 });
-          }
-          });
-        }
-
-        // Navigate concurrently
-        if (["like", "dislike", "comment"].includes(itemType ?? "")) {
-          if (tokenId != null) {
-            navigation.navigate(ScreenNames.VideoPlayer as any, { tokenId });
-          } else {
-            // Fallback: ignore navigation if tokenId missing
-            // Optionally: toastError(new Error('Missing token id'), 'Unable to open video');
-          }
-        } else if (["tip", "following", "follow"].includes(itemType ?? "")) {
-          // Profile tab lives inside BottomTabNavigator mounted at Root
-          navigation.navigate(ScreenNames.Root as any, {
-            screen: ScreenNames.Profile,
-            params: { address: addr },
-          });
-        }
-      };
+      // Disabled: clicking does nothing per requirement (no markAsRead, no navigation)
+      const handlePress = () => {};
 
       return (
-        <TouchableOpacity activeOpacity={0.7} onPress={handlePress}>
+  <TouchableOpacity activeOpacity={1} onPress={handlePress}>
           <Animated.View
             style={{ transform: [{ translateX }], opacity }}
             className="flex-row items-center p-4 border-b border-theme-neutrals-700"

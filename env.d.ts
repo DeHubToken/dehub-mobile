@@ -13,4 +13,5 @@ declare module '@env' {
     export const AUTH_PROVIDER: string;
     export const TENOR_API_KEY: string;
     export const PIMLICO_API_KEY: string;
+    export const STRIPE_PUBLISHABLE_KEY: string;
 }

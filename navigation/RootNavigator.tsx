@@ -19,7 +19,7 @@ export default function RootNavigator() {
   //   needsUsername,
   // });
 
-  const showAuth = (isFirstTimeUser && !isSignedIn) || needsUsername;
+  const showAuth = !isSignedIn || needsUsername;
 
   return (
     <Stack.Navigator

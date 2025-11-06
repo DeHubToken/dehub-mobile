@@ -17,9 +17,10 @@ import FeedCard from "../components/Feed/FeedCard";
 import { useAuth } from "../context/AuthContext";
 import { getSavedPosts } from "../services";
 
-// Tabs: no "All" or "Live"; default is "For You". Others are shown but disabled except "Saved".
+// Tabs: New, Trending, Saved/My Posts (when signed in)
 const feedTabs = [
-  "For You",
+  "New",
+  "Trending",
   //  "Subscribed", "Followed", "Liked",
   "Saved",
 ];
@@ -28,11 +29,12 @@ const feedTabs = [
 
 const FeedScreen = () => {
   const navigation = useNavigation<any>();
-  const [activeTab, setActiveTab] = useState("For You");
+  const [activeTab, setActiveTab] = useState("New");
   const { user, isSignedIn } = useAuth();
   
   const [commentSheetOpen, setCommentSheetOpen] = useState(false);
   const [commentPost, setCommentPost] = useState<GetNFTsResult | null>(null);
+  const [activeCommentCount, setActiveCommentCount] = useState<number | null>(0);
   // Bottom sheet now fetches comments itself
 
   const handleOpenImage = useCallback(
@@ -48,27 +50,28 @@ const FeedScreen = () => {
     [user?.walletAddress, user?.address]
   );
 
-  const feedParams = useMemo<Partial<SearchParams>>(
-    () => {
-      const base: Partial<SearchParams> = {
-        category: undefined,
-        address: viewerAddress,
-        postType: "feed-all",
-      };
-      if (activeTab === "Saved") {
-        base.sortMode = "saved";
-      } else if (activeTab === "My Posts") {
-        base.minter = viewerAddress;
-        base.owner = viewerAddress;
-        base.sortMode = undefined;
-      } else {
-        base.sortMode = undefined;
-        base.minter = undefined;
-      }
-      return base;
-    },
-    [activeTab, viewerAddress]
-  );
+  const feedParams = useMemo<Partial<SearchParams>>(() => {
+    const base: Partial<SearchParams> = {
+      category: undefined,
+      address: viewerAddress,
+      postType: "feed-all",
+    };
+    if (activeTab === "Saved") {
+      base.sortMode = "saved";
+    } else if (activeTab === "My Posts") {
+      base.minter = viewerAddress;
+      base.owner = viewerAddress;
+      base.sortMode = undefined;
+    } else if (activeTab === "New") {
+      base.sortMode = "new";
+    } else if (activeTab === "Trending") {
+      base.sortMode = "mostLiked";
+    } else {
+      base.sortMode = undefined;
+      base.minter = undefined;
+    }
+    return base;
+  }, [activeTab, viewerAddress]);
 
   // Saved tab uses explicit savedPosts endpoint
   const savedFetcher = useCallback(
@@ -78,7 +81,7 @@ const FeedScreen = () => {
 
   // Only show Saved when authenticated
   const categories = useMemo(
-    () => (isSignedIn ? ["For You", "Saved", "My Posts"] : ["For You"]),
+    () => (isSignedIn ? ["New", "Trending", "Saved", "My Posts"] : ["New", "Trending"]),
     [isSignedIn]
   );
 
@@ -88,6 +91,7 @@ const FeedScreen = () => {
   }, [isSignedIn, activeTab]);
 
   const handleOpenComments = useCallback((post: GetNFTsResult) => {
+    setActiveCommentCount(post.commentCount || 0);
     setCommentPost(post);
     setCommentSheetOpen(true);
   }, []);
@@ -117,7 +121,12 @@ const FeedScreen = () => {
           categories={categories}
           selectedCategory={activeTab}
           onCategoryPress={(category) => {
-            if (category === "For You" || category === "Saved" || category === "My Posts") {
+            if (
+              category === "New" ||
+              category === "Trending" ||
+              category === "Saved" ||
+              category === "My Posts"
+            ) {
               setActiveTab(category);
             } else {
               toastSuccess("This tab is coming soon");
@@ -170,6 +179,7 @@ const FeedScreen = () => {
           onClose={() => setCommentSheetOpen(false)}
           tokenId={(commentPost as any)?.tokenId ?? (commentPost as any)?.id}
           onTopLevelCommentDelta={handleCommentDelta}
+          commentCount={activeCommentCount || undefined}
         />
       </View>
     </View>

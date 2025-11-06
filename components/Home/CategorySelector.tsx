@@ -34,7 +34,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
           return (
             <React.Fragment key={`cat-${index}-${category}`}>
               <TouchableOpacity
-                className={`px-4 py-2 rounded-full mr-2 ${
+                className={`px-4 h-8 items-center justify-center rounded-full mr-2 ${
                   selectedCategory === category
                     ? 'bg-theme-accent'
                     : 'bg-theme-neutrals-800'
@@ -47,6 +47,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
                       ? 'text-theme-accent-foreground'
                       : 'text-theme-neutrals-400'
                   }`}
+                  style={{ includeFontPadding: false, lineHeight: 18 }}
                 >
                   {category}
                 </Text>
@@ -56,7 +57,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
                 <TouchableOpacity
                   accessibilityRole="button"
                   onPress={onPressLive}
-                  className={`flex-row items-center px-4 py-2 rounded-full mr-2 ${
+                  className={`flex-row items-center justify-center px-4 h-8 rounded-full mr-2 ${
                     isLiveActive ? 'bg-theme-accent' : 'bg-theme-neutrals-800'
                   }`}
                   hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
@@ -70,6 +71,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
                         ? 'text-theme-accent-foreground'
                         : 'text-theme-neutrals-300'
                     }`}
+                    style={{ includeFontPadding: false, lineHeight: 18 }}
                   >
                     Live
                   </Text>
