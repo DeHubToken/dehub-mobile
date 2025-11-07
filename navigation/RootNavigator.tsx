@@ -19,22 +19,23 @@ export default function RootNavigator() {
   //   needsUsername,
   // });
 
-  const showAuth = !isSignedIn || needsUsername;
+  // Desired behavior:
+  // - First-time users (or users needing username) start on Auth
+  // - Everyone else (including signed-out returning users) starts on App (public mode)
+  // Always register both stacks so we can reset between them without route-missing warnings.
+  const initial = (isFirstTimeUser || needsUsername) ? ScreenNames.Auth : ScreenNames.App;
 
   return (
     <Stack.Navigator
+      initialRouteName={initial}
       screenOptions={{
         headerShown: false,
         cardStyle: { backgroundColor: '#000' },
       }}
     >
       {/* <Stack.Screen name={ScreenNames.Test} component={NativeWindTest} /> */}
-
-      {showAuth ? (
-        <Stack.Screen name="Auth" component={AuthNavigator} key="auth" />
-      ) : (
-        <Stack.Screen name="App" component={AppNavigator} key="app" />
-      )}
+      <Stack.Screen name={ScreenNames.Auth} component={AuthNavigator} />
+      <Stack.Screen name={ScreenNames.App} component={AppNavigator} />
     </Stack.Navigator>
   );
 }

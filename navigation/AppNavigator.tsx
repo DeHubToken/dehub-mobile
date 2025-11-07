@@ -21,6 +21,7 @@ import LiveViewerScreen from "../screens/LiveViewerScreen"; // keep direct impor
 import DpayScreen from "../screens/DpayScreen";
 import { LivepeerProvider } from "../config/livepeer.config";
 import ChatScreen from "../screens/ChatScreen";
+import { useAuth } from "../context/AuthContext";
 
 // Per-screen provider wrappers (navigation cannot host provider directly as child)
 const LiveProducerWithProvider: React.FC<any> = (props) => (
@@ -37,6 +38,8 @@ const LiveViewerWithProvider: React.FC<any> = (props) => (
 const Stack = createStackNavigator();
 
 export default function AppNavigator() {
+  const { isSignedIn, needsUsername } = useAuth();
+  const isAuthed = isSignedIn && !needsUsername;
   return (
     <Stack.Navigator
       initialRouteName={ScreenNames.Root}
@@ -56,9 +59,7 @@ export default function AppNavigator() {
         component={UploadScreen}
         options={{
           headerShown: false,
-          // Avoid transparentModal on Android to reduce flicker
           presentation: Platform.OS === 'android' ? 'modal' : 'transparentModal',
-          // Keep a solid background on Android; allow transparent on iOS
           cardStyle: { backgroundColor: Platform.OS === 'android' ? '#000' : 'transparent' },
           cardStyleInterpolator: ({ current, layouts }) => {
             return {
@@ -88,15 +89,20 @@ export default function AppNavigator() {
           gestureResponseDistance: 30,
         }}
       />
-      <Stack.Screen
-        name={ScreenNames.Dpay}
-        component={DpayScreen}
-        options={{
-          headerShown: false,
-          presentation: 'card',
-          cardStyle: { backgroundColor: '#000' },
-        }}
-      />
+      {/* Auth-gated screens */}
+      {isAuthed && (
+        <>
+          <Stack.Screen
+            name={ScreenNames.Dpay}
+            component={DpayScreen}
+            options={{
+              headerShown: false,
+              presentation: 'card',
+              cardStyle: { backgroundColor: '#000' },
+            }}
+          />
+        </>
+      )}
       {/* <Stack.Screen
         name={ScreenNames.VideoTrim}
         component={VideoTrimScreen}
@@ -126,7 +132,6 @@ export default function AppNavigator() {
                   },
                 ],
               },
-              // No overlay for opaque modal
             };
           },
           gestureDirection: 'vertical',
@@ -134,30 +139,32 @@ export default function AppNavigator() {
           gestureResponseDistance: 250,
         }}
       />
-      <Stack.Screen
-        name={ScreenNames.LiveProducer}
-        component={LiveProducerWithProvider}
-        options={{
-          presentation: 'modal',
-          cardStyle: { backgroundColor: '#000' },
-          cardStyleInterpolator: ({ current, layouts }) => ({
-            cardStyle: {
-              transform: [
-                {
-                  translateY: current.progress.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [layouts.screen.height, 0],
-                    extrapolate: 'clamp',
-                  }),
-                },
-              ],
-            },
-          }),
-          gestureDirection: 'vertical',
-          gestureEnabled: true,
-          gestureResponseDistance: 25,
-        }}
-      />
+      {isAuthed && (
+        <Stack.Screen
+          name={ScreenNames.LiveProducer}
+          component={LiveProducerWithProvider}
+          options={{
+            presentation: 'modal',
+            cardStyle: { backgroundColor: '#000' },
+            cardStyleInterpolator: ({ current, layouts }) => ({
+              cardStyle: {
+                transform: [
+                  {
+                    translateY: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.height, 0],
+                      extrapolate: 'clamp',
+                    }),
+                  },
+                ],
+              },
+            }),
+            gestureDirection: 'vertical',
+            gestureEnabled: true,
+            gestureResponseDistance: 25,
+          }}
+        />
+      )}
       <Stack.Screen
         name={ScreenNames.LiveViewer}
         component={LiveViewerWithProvider}
@@ -186,42 +193,50 @@ export default function AppNavigator() {
         name={ScreenNames.Leaderboard}
         component={LeaderboardScreen}
       />
-      <Stack.Screen
-        name={ScreenNames.Notifications}
-        component={NotificationScreen}
-      />
+      {isAuthed && (
+        <Stack.Screen
+          name={ScreenNames.Notifications}
+          component={NotificationScreen}
+        />
+      )}
       <Stack.Screen name={ScreenNames.Feed} component={FeedScreen} />
   <Stack.Screen name={ScreenNames.FeedDetail} component={FeedDetailScreen} />
       <Stack.Screen
         name={ScreenNames.ImageViewer}
         component={ImageViewerScreen}
       />
-      <Stack.Screen
-        name={ScreenNames.Chat}
-        component={ChatScreen as any}
-        options={{ headerShown: false }}
-      />
+      {isAuthed && (
+        <Stack.Screen
+          name={ScreenNames.Chat}
+          component={ChatScreen as any}
+          options={{ headerShown: false }}
+        />
+      )}
       <Stack.Screen name={ScreenNames.Search} component={SearchScreen} />
       {/* <Stack.Screen
         name={ScreenNames.Settings}
         component={ProfileSettingsScreen}
       /> */}
-      <Stack.Screen
-        name={ScreenNames.AccountSettings}
-        component={AccountSettingsScreen}
-      />
-      <Stack.Screen
-        name={ScreenNames.YourVideos}
-        component={YourVideosScreen}
-      />
-      <Stack.Screen
-        name={ScreenNames.LikedVideos}
-        component={LikedVideosScreen}
-      />
-      <Stack.Screen
-        name={ScreenNames.EditProfile}
-        component={EditProfileScreen}
-      />
+      {isAuthed && (
+        <>
+          <Stack.Screen
+            name={ScreenNames.AccountSettings}
+            component={AccountSettingsScreen}
+          />
+          <Stack.Screen
+            name={ScreenNames.YourVideos}
+            component={YourVideosScreen}
+          />
+          <Stack.Screen
+            name={ScreenNames.LikedVideos}
+            component={LikedVideosScreen}
+          />
+          <Stack.Screen
+            name={ScreenNames.EditProfile}
+            component={EditProfileScreen}
+          />
+        </>
+      )}
 
       {/* Auth screen - also accessible from the app for users who want to sign in later */}
       <Stack.Screen

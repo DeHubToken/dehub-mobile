@@ -104,10 +104,15 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     if (navigatedAfterSignInRef.current) return;
     if (isSignedIn && !needsUsername) {
       navigatedAfterSignInRef.current = true;
+      // If this screen was opened modally from within the app, simply close it.
       if (navigation?.canGoBack?.()) {
         navigation.goBack();
       } else {
-        navigation.navigate(ScreenNames.Root as never);
+        // When SignIn is the first screen, reset the parent (Root stack) to App
+        // so the BottomTab (ScreenNames.Root) becomes active without warnings.
+        try {
+          navigation?.getParent?.()?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] });
+        } catch {}
       }
     }
   }, [isSignedIn, needsUsername, navigation]);
@@ -119,15 +124,19 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     if (isFirstTimeUser) {
       // Do not navigate manually; RootNavigator will switch to App when this flag flips
       await skipAuth();
+      // After first-time skip, take user to App immediately when this is the first screen
+      if (!navigation?.canGoBack?.()) {
+        try { navigation?.getParent?.()?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] }); } catch {}
+      }
       return;
     }
     // If this screen was opened modally from inside the app, close it
     if (navigation?.canGoBack?.()) {
       navigation.goBack();
-    } else {
-      // Fallback: ensure we land on the main app stack
-      navigation.navigate(ScreenNames.Root as never);
+      return;
     }
+    // If this is the first screen (no back stack), reset to App so Home is visible
+    try { navigation?.getParent?.()?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] }); } catch {}
   }, [isFirstTimeUser, skipAuth, navigation]);
 
   return (

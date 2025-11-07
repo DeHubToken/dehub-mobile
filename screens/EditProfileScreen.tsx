@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState, useEffect } from "react";
+import { useGateToHome } from "../hooks/useGateToHome";
 import {
   View,
   Text,
@@ -27,7 +28,9 @@ import { validateSocial } from "../libs/links.utils";
 
 const EditProfileScreen = () => {
   const navigation = useNavigation<any>();
-  const { user, refreshUser, patchUser } = useAuth() as any;
+  const { user, refreshUser, patchUser, isSignedIn, needsUsername } = useAuth() as any;
+  const allow = isSignedIn && !needsUsername;
+  useGateToHome(allow);
 
   const [displayName, setDisplayName] = useState<string>(
     user?.displayName || ""

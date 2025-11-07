@@ -27,6 +27,7 @@ import Avatar from "../components/common/Avatar";
 import { getAvatarUrl } from "../libs/misc";
 import { theme } from "../theme";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
+import { useGateToHome } from "../hooks/useGateToHome";
 
 type DmContact = {
   _id: string;
@@ -58,6 +59,9 @@ const formatRelativeTime = (ts: number): string => {
   if (m < 60) return `${m}m`;
   const h = Math.floor(m / 60);
   if (h < 24) return `${h}h`;
+    const { isSignedIn, needsUsername } = useAuth();
+    const allow = isSignedIn && !needsUsername;
+    useGateToHome(allow);
   const d = Math.floor(h / 24);
   return `${d}d`;
 };

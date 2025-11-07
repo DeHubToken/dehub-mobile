@@ -40,6 +40,7 @@ import { blockDm, unBlockDm } from "../services/dm.service";
 import { copyPickedToLocal, setMapping } from "../libs/dm-media.local";
 import { uploadDmMedia } from "../services/dm/upload";
 import { guessMime } from "../libs/assets.util";
+import { useGateToHome } from "../hooks/useGateToHome";
 
 type ID = string;
 type UiMessage = {
@@ -75,6 +76,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const { loadMessages, useMessages, conversations } = useDM();
   const dmMessages = useMessages(convId) as any[];
   const navigation = useNavigation<any>();
+  const { isSignedIn, needsUsername } = useAuth();
+  const allow = isSignedIn && !needsUsername;
+  useGateToHome(allow);
   const ws = useWebSocket();
   const list: UiMessage[] = useMemo(() => {
     // Adapt dm messages to UI message shape without mutating store

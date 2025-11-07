@@ -31,6 +31,8 @@ import { toastSuccess } from "../libs/toast";
 import { StreamActivityType } from "../services/enums/livestream.enum";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { createViewCountUpdater, seedViewerStats } from "../libs/viewers.util";
+import { useAuth } from "../context/AuthContext";
+import { useGateToHome } from "../hooks/useGateToHome";
 
 type RouteParams = {
   streamId?: string;
@@ -42,6 +44,9 @@ type RouteParams = {
 const LiveProducerScreen: React.FC = () => {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
+  const { isSignedIn, needsUsername } = useAuth();
+  const allow = isSignedIn && !needsUsername;
+  useGateToHome(allow);
   const { streamId, tokenId, ingestUrl, streamKey } = (route.params ||
     {}) as RouteParams;
   const {
