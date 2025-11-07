@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useAuth } from "../context/AuthContext";
+import { useGateToHome } from "../hooks/useGateToHome";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { toastSuccess, toastError } from "../libs";
 import ScreenHeader from "../components/ScreenHeader";
@@ -33,14 +34,16 @@ import BlockedAccountsModal from "../components/Settings/BlockedAccountsModal";
 // Lightweight Account Settings screen focused on account-level actions.
 // Extend later with preferences, linked wallets, notifications, privacy, etc.
 const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
-  const { signOut, user, patchUser, chainId, authMethod } = useAuth();
+  const { signOut, user, patchUser, chainId, authMethod, isSignedIn, needsUsername } = useAuth();
   const [signingOut, setSigningOut] = useState<boolean>(false);
   const [bugModalVisible, setBugModalVisible] = useState<boolean>(false);
   const [exportPkVisible, setExportPkVisible] = useState<boolean>(false);
   const [chainModalVisible, setChainModalVisible] = useState<boolean>(false);
-  const [blockedModalVisible, setBlockedModalVisible] = useState<boolean>(false);
-  const isImported = authMethod === 'local';
-
+  const [blockedModalVisible, setBlockedModalVisible] =
+    useState<boolean>(false);
+  const isImported = authMethod === "local";
+  const allow = isSignedIn && !needsUsername;
+  useGateToHome(allow);
 
   const handleSignOut = useCallback(async () => {
     if (signingOut) return;
@@ -49,11 +52,28 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
       await logoutWeb3Auth(); // end remote Web3Auth session
       await signOut(); // clear local auth + tokens
       toastSuccess("Logout successful");
-      // Let RootNavigator react to isSignedIn flip; no manual reset.
-      // Let root navigator swap stacks; fallback to root if still mounted
-      if (navigation?.navigate) {
-        navigation.navigate(ScreenNames.Root as never);
-      }
+      // Reset the root navigator to App -> Root (tabs) -> Home specifically
+      navigation?.getParent?.()?.reset({
+        index: 0,
+        routes: [
+          {
+            name: ScreenNames.App as never,
+            // Nested state to land on BottomTabNavigator Root -> Home tab
+            state: {
+              index: 0,
+              routes: [
+                {
+                  name: ScreenNames.Root as never,
+                  state: {
+                    index: 0,
+                    routes: [{ name: ScreenNames.Home as never }],
+                  },
+                } as never,
+              ],
+            },
+          } as never,
+        ],
+      });
     } catch (e) {
       console.error("[AccountSettings] signOut error", e);
       toastError(e, "Sign out failed.");
@@ -83,7 +103,8 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                 Logged in as
               </Text>
               <Text className="text-gray-400 text-sm mt-1">
-                {(user?.username || user?.email || "Anonymous") + (isImported ? " (imported)" : "")}
+                {(user?.username || user?.email || "Anonymous") +
+                  (isImported ? " (imported)" : "")}
               </Text>
             </View>
             {/* Active Chain (opens modal) */}
@@ -94,7 +115,11 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
               <View className="flex-1 pr-2">
                 <Text className="text-white text-sm">Switch Active Chain</Text>
                 <Text className="text-gray-500 text-xs mt-1">
-                  {chainId === ChainId.BASE_MAINNET ? 'Base' : chainId === ChainId.BSC_MAINNET ? 'BNB' : `Chain ID ${chainId ?? 'N/A'}`}
+                  {chainId === ChainId.BASE_MAINNET
+                    ? "Base"
+                    : chainId === ChainId.BSC_MAINNET
+                    ? "BNB"
+                    : `Chain ID ${chainId ?? "N/A"}`}
                 </Text>
               </View>
               <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
@@ -105,18 +130,26 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
               <View className="flex-1 pr-2">
                 <Text className="text-white text-sm">Gas Sponsorship</Text>
                 {isImported ? (
-                  <Text className="text-gray-500 text-xs mt-1">Gas sponsorship is unavailable for imported accounts</Text>
+                  <Text className="text-gray-500 text-xs mt-1">
+                    Gas sponsorship is unavailable for imported accounts
+                  </Text>
                 ) : (
-                  <Text className="text-gray-500 text-xs mt-1">Transaction fees covered by the app</Text>
+                  <Text className="text-gray-500 text-xs mt-1">
+                    Transaction fees covered by the app
+                  </Text>
                 )}
               </View>
               {isImported ? (
                 <View className="bg-gray-600/30 px-2 py-1 rounded-full">
-                  <Text className="text-gray-400 text-[10px] font-semibold">Disabled</Text>
+                  <Text className="text-gray-400 text-[10px] font-semibold">
+                    Disabled
+                  </Text>
                 </View>
               ) : (
                 <View className="bg-emerald-500/20 px-2 py-1 rounded-full">
-                  <Text className="text-emerald-400 text-[10px] font-semibold">Enabled</Text>
+                  <Text className="text-emerald-400 text-[10px] font-semibold">
+                    Enabled
+                  </Text>
                 </View>
               )}
             </View>
@@ -218,7 +251,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                 <Text className="text-gray-500 text-xs mt-1">
                   {((user?.blocklist?.blocked?.length || 0) as number) > 0
                     ? `${user?.blocklist?.blocked?.length} blocked`
-                    : 'You haven’t blocked anyone'}
+                    : "You haven’t blocked anyone"}
                 </Text>
               </View>
               <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
@@ -304,8 +337,14 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
         visible={exportPkVisible}
         onClose={() => setExportPkVisible(false)}
       />
-      <ChainSwitchModal visible={chainModalVisible} onClose={() => setChainModalVisible(false)} />
-      <BlockedAccountsModal visible={blockedModalVisible} onClose={() => setBlockedModalVisible(false)} />
+      <ChainSwitchModal
+        visible={chainModalVisible}
+        onClose={() => setChainModalVisible(false)}
+      />
+      <BlockedAccountsModal
+        visible={blockedModalVisible}
+        onClose={() => setBlockedModalVisible(false)}
+      />
     </View>
   );
 };

@@ -1,4 +1,6 @@
 import React from "react";
+import { useAuth } from "../context/AuthContext";
+import { useGateToHome } from "../hooks/useGateToHome";
 import {
   View,
   Text,
@@ -17,6 +19,9 @@ import { getSupply, getSuccessTotal, getDpayPrice } from "../services";
 import { ChainId } from "../config/constants";
 
 const DpayScreen: React.FC = () => {
+  const { isSignedIn, needsUsername } = useAuth();
+  const allow = isSignedIn && !needsUsername;
+  useGateToHome(allow);
   const [minReady, setMinReady] = React.useState<boolean>(false);
   const [dataReady, setDataReady] = React.useState<boolean>(false);
   const [transfersTotal, setTransfersTotal] = React.useState<number | null>(null);

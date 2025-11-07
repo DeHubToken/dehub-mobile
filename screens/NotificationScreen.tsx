@@ -16,13 +16,16 @@ import ScreenHeader from "../components/ScreenHeader";
 import { getNotifications } from "../services/user.service";
 import { toastError } from "../libs";
 import { useAuth } from "../context/AuthContext";
+import { useGateToHome } from "../hooks/useGateToHome";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { formatNotificationDate } from "../libs/date.util";
 import { markAllSeenForAddress } from "../libs/notifications.seen";
 
 const NotificationScreen = () => {
-  const { patchUser, user } = useAuth();
+  const { patchUser, user, isSignedIn, needsUsername } = useAuth();
+  const allow = isSignedIn && !needsUsername;
+  useGateToHome(allow);
   const navigation = useNavigation<any>();
   const [notifications, setNotifications] = useState<any[]>([]);
   const [refreshing, setRefreshing] = useState(false);
