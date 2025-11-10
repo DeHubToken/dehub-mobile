@@ -22,8 +22,8 @@ const DpayScreen: React.FC = () => {
   const { isSignedIn, needsUsername } = useAuth();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
-  const [minReady, setMinReady] = React.useState<boolean>(false);
   const [dataReady, setDataReady] = React.useState<boolean>(false);
+  const [progress, setProgress] = React.useState<number>(0);
   const [transfersTotal, setTransfersTotal] = React.useState<number | null>(null);
   const [supplyAmount, setSupplyAmount] = React.useState<number | null>(null);
   const [supplyData, setSupplyData] = React.useState<Record<string, Record<string, number>> | null>(null);
@@ -45,11 +45,13 @@ const DpayScreen: React.FC = () => {
     let cancelled = false;
     async function bootstrap() {
       try {
+        setProgress(0.1);
         // Fetch required data in parallel
         const [supplyRes, totalRes] = await Promise.all([
           getSupply().catch((e) => { console.warn('[DpayScreen] getSupply failed', e?.message || e); return null; }),
           getSuccessTotal().catch((e) => { console.warn('[DpayScreen] getSuccessTotal failed', e?.message || e); return null; }),
         ]);
+        setProgress(0.45);
 
         // Derive Supply (Base, DHB)
         try {
@@ -61,7 +63,7 @@ const DpayScreen: React.FC = () => {
           const supVal = dhbKey ? Number(baseMap[dhbKey]) : undefined;
           if (Number.isFinite(supVal as number)) setSupplyAmount(supVal as number);
           else if (supVal === 0) setSupplyAmount(0);
-        } catch {}
+  } catch {}
 
         // Derive Transfers Total (Base, DHB)
         try {
@@ -82,7 +84,10 @@ const DpayScreen: React.FC = () => {
           if (typeof p === 'number') setInitialPrice(p);
         } catch {}
       } finally {
-        if (!cancelled) setDataReady(true);
+        if (!cancelled) {
+          setProgress(1);
+          setDataReady(true);
+        }
       }
     }
     bootstrap();
@@ -160,42 +165,37 @@ const DpayScreen: React.FC = () => {
     }
   }, [requestPrice]);
 
+  if (!dataReady) {
+    return (
+      <View className="flex-1 bg-theme-neutrals-900">
+        <DpayLoader progress={progress} />
+      </View>
+    );
+  }
+
   return (
-    <View className="flex-1 bg-theme-neutrals-900">
-      {!(minReady && dataReady) && (
-        <DpayLoader
-          minDurationMs={1200}
-          onMinDuration={() => setMinReady(true)}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+      style={{ flex: 1 }}
+    >
+      <ScrollView
+        className="flex-1 px-0 pt-6"
+        contentContainerStyle={{ paddingBottom: 24 }}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
+      >
+        <DpayHeader
+          title="Fiat Gateway"
+          subtitle="Buy DHB with cards and local methods."
         />
-      )}
-
-      {minReady && dataReady && (
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
-          style={{ flex: 1 }}
-        >
-          <ScrollView
-            className="flex-1 px-0 pt-6"
-            contentContainerStyle={{ paddingBottom: 24 }}
-            refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
-          >
-            <DpayHeader
-              title="Fiat Gateway"
-              subtitle="Buy DHB with cards and local methods."
-            />
-
-            {/* Padded content container (everything besides header) */}
-            <View className="px-5">
-              <DpayTopUpForm initialPrice={initialPrice ?? undefined} supplyData={supplyData ?? undefined} />
-              <DpayInfoCards transfersTotal={transfersTotal ?? undefined} supplyAmount={supplyAmount ?? undefined} />
-              <DpayTransactions />
-              <DpayAbout />
-            </View>
-          </ScrollView>
-        </KeyboardAvoidingView>
-      )}
-    </View>
+        <View className="px-5">
+          <DpayTopUpForm initialPrice={initialPrice ?? undefined} supplyData={supplyData ?? undefined} />
+          <DpayInfoCards transfersTotal={transfersTotal ?? undefined} supplyAmount={supplyAmount ?? undefined} />
+          <DpayTransactions />
+          <DpayAbout />
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
