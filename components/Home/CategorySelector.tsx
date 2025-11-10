@@ -31,22 +31,17 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
       >
         {categories.map((category, index) => {
           const isAll = category === 'All';
+          const isSelected = selectedCategory === category;
           return (
             <React.Fragment key={`cat-${index}-${category}`}>
               <TouchableOpacity
-                className={`px-4 h-8 items-center justify-center rounded-full mr-2 ${
-                  selectedCategory === category
-                    ? 'bg-theme-accent'
-                    : 'bg-theme-neutrals-800'
+                className={`px-4 h-8 items-center justify-center rounded-full mr-2 bg-theme-neutrals-800 ${
+                  isSelected && !isAll ? 'border border-theme-neutrals-400' : ''
                 }`}
                 onPress={() => onCategoryPress(category)}
               >
                 <Text
-                  className={`text-sm font-medium ${
-                    selectedCategory === category
-                      ? 'text-theme-accent-foreground'
-                      : 'text-theme-neutrals-400'
-                  }`}
+                  className={`text-sm font-medium text-theme-neutrals-400`}
                   style={{ includeFontPadding: false, lineHeight: 18 }}
                 >
                   {category}
