@@ -1,12 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-  Platform,
-} from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Image, Platform } from "react-native";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
 import UploadHeader from "./UploadHeader";
 import BasicInfoForm from "./BasicInfoForm";
 import UploadCategoriesSelector from "./UploadCategoriesSelector";
@@ -667,41 +661,42 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
       </ScrollView>
 
       <View className="px-4 pt-2 pb-6 mb-6">
-        <TouchableOpacity
-          disabled={!canSubmit}
-          onPress={() => {
-            if (!isSignedIn) {
-              requireAuth(() => {});
-              return;
-            }
-            initiateCreate();
-          }}
-          className={`h-12 rounded-xl items-center justify-center ${
-            canSubmit ? "bg-blue-600" : "bg-zinc-700"
-          }`}
-        >
-          <Text className="text-white font-semibold">
-            {(() => {
-              if (!isSignedIn) return "Sign In";
-              switch (stage) {
-                case "uploading":
-                  return "Preparing Metadata…";
-                case "processing":
-                  return "Processing…";
-                case "awaiting-wallet":
-                  return "Confirm In Wallet…";
-                case "minting":
-                  return "Minting…";
-                case "finalizing":
-                  return "Finalizing…";
-                case "done":
-                  return "Created";
-                default:
-                  return "Create Livestream";
+        <AccentButtonGradient>
+          <TouchableOpacity
+            disabled={!canSubmit}
+            onPress={() => {
+              if (!isSignedIn) {
+                requireAuth(() => {});
+                return;
               }
-            })()}
-          </Text>
-        </TouchableOpacity>
+              initiateCreate();
+            }}
+            className="h-12 rounded-xl items-center justify-center"
+            style={{ backgroundColor: 'transparent' }}
+          >
+            <Text className="text-white font-semibold">
+              {(() => {
+                if (!isSignedIn) return "Sign In";
+                switch (stage) {
+                  case "uploading":
+                    return "Preparing Metadata…";
+                  case "processing":
+                    return "Processing…";
+                  case "awaiting-wallet":
+                    return "Confirm In Wallet…";
+                  case "minting":
+                    return "Minting…";
+                  case "finalizing":
+                    return "Finalizing…";
+                  case "done":
+                    return "Created";
+                  default:
+                    return "Create Livestream";
+                }
+              })()}
+            </Text>
+          </TouchableOpacity>
+        </AccentButtonGradient>
       </View>
 
       <ScheduledLivesModal

@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
+  Platform,
 } from "react-native";
 import { toastError, toastInfo } from "../../libs";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -31,6 +32,7 @@ import ImportWallet from "../../components/auth/ImportWallet";
 import { openInApp } from "../../libs/links.utils";
 import { TERMS_OF_SERVICE_LINK, PRIVACY_POLICY_LINK } from "../../config/links";
 import { getPreferredChainId } from "../../libs/auth.utils";
+import { KeyboardAvoidingView } from "react-native";
 
 // Removed unused AppKitButton import (was commented out) to keep component lean
 
@@ -70,7 +72,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   }, []);
 
   const handleSocialLogin = useCallback(
-    async (provider: string) => {
+    async (provider: string, email?: string) => {
       if (!isWeb3AuthConfigured()) {
         console.warn("[SignIn] Web3Auth client id missing");
         toastError("Social login unavailable. Please try again later.");
@@ -79,7 +81,14 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       setIsLocalLoading(true);
       setCurrentProvider(provider);
       try {
-        const result = await loginWithSocial(provider as any);
+        const extraLoginOptions =
+          provider === "email_passwordless" && email
+            ? { login_hint: email }
+            : undefined;
+        const result = await loginWithSocial(
+          provider as any,
+          extraLoginOptions
+        );
         const address =
           result.address || deriveAddressFromPrivateKey(result.privateKey);
         if (!address)
@@ -111,7 +120,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         // When SignIn is the first screen, reset the parent (Root stack) to App
         // so the BottomTab (ScreenNames.Root) becomes active without warnings.
         try {
-          navigation?.getParent?.()?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] });
+          navigation
+            ?.getParent?.()
+            ?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] });
         } catch {}
       }
     }
@@ -126,7 +137,11 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       await skipAuth();
       // After first-time skip, take user to App immediately when this is the first screen
       if (!navigation?.canGoBack?.()) {
-        try { navigation?.getParent?.()?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] }); } catch {}
+        try {
+          navigation
+            ?.getParent?.()
+            ?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] });
+        } catch {}
       }
       return;
     }
@@ -136,7 +151,11 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       return;
     }
     // If this is the first screen (no back stack), reset to App so Home is visible
-    try { navigation?.getParent?.()?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] }); } catch {}
+    try {
+      navigation
+        ?.getParent?.()
+        ?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] });
+    } catch {}
   }, [isFirstTimeUser, skipAuth, navigation]);
 
   return (
@@ -165,48 +184,60 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         </Text>
       </TouchableOpacity>
 
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }} className="p-5">
-        <View className="items-center mt-10">
-          <Text className="text-white text-3xl font-bold mb-4">
-            Welcome to DeHub
-          </Text>
-          <Text className="text-gray-400 text-center text-base mb-6">
-            Connect your wallet or sign in to start streaming, sharing content, and
-            earning rewards in the ultimate streaming platform.
-          </Text>
-        </View>
-
-        <View className="mt-6" />
-
-        <SocialLoginIcons
-          onPress={(p) => handleSocialLogin(p)}
-          busyProvider={isLocalLoading ? currentProvider : undefined}
-          disabled={isLocalLoading}
-        />
-
-        {/* Import external wallet (shared component) */}
-        <ImportWallet />
-
-        <View className="mt-6">
-          <Text className="text-gray-500 text-xs text-center">
-            By continuing, you agree to our{" "}
-            <Text
-              className="text-blue-400"
-              onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
-            >
-              Terms of Service
-            </Text>{" "}
-            and{" "}
-            <Text
-              className="text-blue-400"
-              onPress={() => openInApp(PRIVACY_POLICY_LINK)}
-            >
-              Privacy Policy
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+        style={{ flex: 1 }}
+      >
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }} className="p-5">
+          <View className="items-center mt-10">
+            <Text className="text-white text-3xl font-bold mb-4">
+              Welcome to DeHub
             </Text>
-            .
-          </Text>
-        </View>
-      </ScrollView>
+            <Text className="text-gray-400 text-center text-base mb-6">
+              Sign up or log in with a few clicks and dive straight in to a
+              utopian future for both content creators and consumers!
+            </Text>
+          </View>
+
+          <View className="mt-6" />
+
+          <SocialLoginIcons
+            onPress={(provider, email) => {
+              if (provider === "email_passwordless" && email) {
+                handleSocialLogin("email_passwordless", email);
+              } else {
+                handleSocialLogin(provider);
+              }
+            }}
+            busyProvider={isLocalLoading ? currentProvider : undefined}
+            disabled={isLocalLoading}
+            showEmailButton
+          />
+
+          <ImportWallet />
+
+          <View className="mt-6">
+            <Text className="text-gray-500 text-xs text-center">
+              By continuing, you agree to our{" "}
+              <Text
+                className="text-blue-400"
+                onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
+              >
+                Terms of Service
+              </Text>{" "}
+              and{" "}
+              <Text
+                className="text-blue-400"
+                onPress={() => openInApp(PRIVACY_POLICY_LINK)}
+              >
+                Privacy Policy
+              </Text>
+              .
+            </Text>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

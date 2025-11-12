@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 type DpayHeaderProps = {
@@ -12,42 +12,37 @@ const DpayHeader: React.FC<DpayHeaderProps> = ({ title, subtitle, right }) => {
   const hasRight = !!right;
 
   return (
-    // <LinearGradient
-    //   colors={["#0D0D0D", "#1A1A1A"]}
-    //   start={{ x: 0, y: 0 }}
-    //   end={{ x: 1, y: 1 }}
-    //   className="px-5 pt-6 pb-4 rounded-b-3xl shadow-lg shadow-black/30"
-    // >
-      <View
-        className={`flex-row items-center px-5 pt-4 pb-4 ${
-          hasRight ? "justify-between" : "justify-center"
-        }`}
-      >
-        <View
-          className={`${
-            hasRight ? "flex-1 pr-3" : "items-center"
-          }`}
-        >
-          <Text
-            className={`text-white font-bold ${
+    <View
+      className={`flex-row items-center px-5 pt-4 pb-4 ${
+        hasRight ? "justify-between" : "justify-center"
+      }`}
+    >
+      <View className={`${hasRight ? "flex-1 pr-3" : "items-center"}`}>
+        <Image
+          source={require('../../assets/banner.png')}
+          className="w-32 h-10 rounded-lg mb-2"
+          resizeMode="contain"
+          style={{ alignSelf: hasRight ? 'flex-start' : 'center' }}
+        />
+        {/* <Text
+            className={`text-white font-semibold font-sans ${
               hasRight ? "text-2xl" : "text-3xl"
             } tracking-tight`}
+            style={{ fontFamily: 'Inter', fontWeight: '600', includeFontPadding: false, lineHeight: hasRight ? 32 : 38 }}
           >
             {title}
+          </Text> */}
+        {subtitle ? (
+          <Text
+            className={`text-gray-400 ${hasRight ? "text-sm" : "text-base text-center"} font-sans`}
+            style={{ fontFamily: 'Inter', fontWeight: '400', includeFontPadding: false, lineHeight: hasRight ? 20 : 24 }}
+          >
+            {subtitle}
           </Text>
-          {subtitle ? (
-            <Text
-              className={`${
-                hasRight ? "text-gray-400 text-sm mt-1" : "text-gray-400 text-base mt-1 text-center"
-              }`}
-            >
-              {subtitle}
-            </Text>
-          ) : null}
-        </View>
-        {hasRight && <View className="items-end">{right}</View>}
+        ) : null}
       </View>
-    // </LinearGradient>
+      {hasRight && <View className="items-end">{right}</View>}
+    </View>
   );
 };
 

@@ -222,14 +222,14 @@ const DMSettingsSection: React.FC = () => {
 
   return (
     <View className="mb-8">
-      <Text className="text-gray-400 text-xs uppercase mb-2">
+      <Text className="text-theme-neutrals-400 text-xs uppercase mb-2 tracking-widest font-semibold">
         Direct Messages
       </Text>
-      <View className="bg-gray-900 rounded-lg overflow-hidden border border-gray-800">
+      <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
         <View className="px-4 py-4 flex-row items-center justify-between">
           <View>
-            <Text className="text-white text-sm">Enable DMs</Text>
-            <Text className="text-gray-500 text-xs mt-1">
+            <Text className="text-theme-neutrals-100 text-sm font-medium">Enable DMs</Text>
+            <Text className="text-theme-neutrals-500 text-xs mt-1">
               Turn off to block all messages.
             </Text>
           </View>
@@ -237,17 +237,19 @@ const DMSettingsSection: React.FC = () => {
             value={dmsEnabled}
             onValueChange={onToggleDmsEnabled}
             disabled={dmSubmitting}
+            trackColor={{ false: '#374151', true: '#10b981' }}
+            thumbColor={dmsEnabled ? '#34D399' : '#6B7280'}
           />
         </View>
-        <View className="h-px bg-gray-800" />
+        <View className="h-px bg-theme-neutrals-700" />
         <View
           className={`px-4 py-4 flex-row items-center justify-between ${
             !dmsEnabled ? "opacity-60" : ""
           }`}
         >
           <View className="flex-1 pr-3">
-            <Text className="text-white text-sm">Allow New DMs</Text>
-            <Text className="text-gray-500 text-xs mt-1">
+            <Text className="text-theme-neutrals-100 text-sm font-medium">Allow New DMs</Text>
+            <Text className="text-theme-neutrals-500 text-xs mt-1">
               {dmsEnabled
                 ? "If off, only people you've chatted with can message you."
                 : "Turn on DMs to allow new messages."}
@@ -257,12 +259,14 @@ const DMSettingsSection: React.FC = () => {
             value={allowNew}
             onValueChange={onToggleAllowNew}
             disabled={!dmsEnabled || dmSubmitting}
+            trackColor={{ false: '#374151', true: '#10b981' }}
+            thumbColor={allowNew ? '#34D399' : '#6B7280'}
           />
         </View>
-        <View className="h-px bg-gray-800" />
+        <View className="h-px bg-theme-neutrals-700" />
         <View className="px-4 py-4">
-          <Text className="text-white text-sm">Minimum tip (DHB)</Text>
-          <Text className="text-gray-500 text-xs mt-1">
+          <Text className="text-theme-neutrals-100 text-sm font-medium">Minimum tip (DHB)</Text>
+          <Text className="text-theme-neutrals-500 text-xs mt-1">
             Set to 0 to allow without a tip.
           </Text>
           {/* Audit notice for tipped messages */}
@@ -287,7 +291,7 @@ const DMSettingsSection: React.FC = () => {
               keyboardType="numeric"
               placeholder="0"
               placeholderTextColor="#9ca3af"
-              className="flex-1 text-white bg-gray-950 border border-gray-800 rounded-lg px-3 h-11"
+              className="flex-1 text-theme-neutrals-100 bg-theme-neutrals-900 border border-theme-neutrals-700 rounded-lg px-3 h-11"
               editable={!dmSubmitting && !tipSubmitting}
             />
             {tipSubmitting ? (

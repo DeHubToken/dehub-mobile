@@ -87,22 +87,22 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   }, []);
 
   return (
-    <View className="flex-1 bg-black">
+  <View className="flex-1 bg-theme-neutrals-900">
       {signingOut && <FullScreenLoader message="Signing out…" />}
-      <ScreenHeader title="Settings" canGoBack />
+  <ScreenHeader title="Settings" canGoBack />
       <ScrollView
         className="flex-1"
-        contentContainerStyle={{ padding: 16, paddingBottom: 28 }}
+        contentContainerStyle={{ padding: 20, paddingBottom: 32 }}
       >
         {/* Account */}
         <View className="mb-8">
-          <Text className="text-gray-400 text-xs uppercase mb-2">Account</Text>
-          <View className="bg-gray-900 rounded-lg overflow-hidden border border-gray-800">
-            <View className="px-4 py-3 border-b border-gray-800">
-              <Text className="text-white text-sm font-medium">
+          <Text className="text-theme-neutrals-400 text-xs uppercase mb-2 tracking-widest font-semibold">Account</Text>
+          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
+            <View className="px-4 py-3 border-b border-theme-neutrals-700">
+              <Text className="text-theme-accent-foreground text-sm font-semibold">
                 Logged in as
               </Text>
-              <Text className="text-gray-400 text-sm mt-1">
+              <Text className="text-theme-neutrals-400 text-sm mt-1">
                 {(user?.username || user?.email || "Anonymous") +
                   (isImported ? " (imported)" : "")}
               </Text>
@@ -110,11 +110,11 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
             {/* Active Chain (opens modal) */}
             <TouchableOpacity
               onPress={() => setChainModalVisible(true)}
-              className="px-4 py-4 flex-row items-center justify-between"
+              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
             >
               <View className="flex-1 pr-2">
-                <Text className="text-white text-sm">Switch Active Chain</Text>
-                <Text className="text-gray-500 text-xs mt-1">
+                <Text className="text-theme-neutrals-100 text-sm font-medium">Switch Active Chain</Text>
+                <Text className="text-theme-neutrals-500 text-xs mt-1">
                   {chainId === ChainId.BASE_MAINNET
                     ? "Base"
                     : chainId === ChainId.BSC_MAINNET
@@ -124,24 +124,24 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
               </View>
               <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
             </TouchableOpacity>
-            <View className="h-px bg-gray-800" />
+            <View className="h-px bg-theme-neutrals-700" />
             {/* Gas Sponsorship status */}
             <View className="px-4 py-4 flex-row items-center justify-between">
               <View className="flex-1 pr-2">
-                <Text className="text-white text-sm">Gas Sponsorship</Text>
+                <Text className="text-theme-neutrals-100 text-sm font-medium">Gas Sponsorship</Text>
                 {isImported ? (
-                  <Text className="text-gray-500 text-xs mt-1">
+                  <Text className="text-theme-neutrals-500 text-xs mt-1">
                     Gas sponsorship is unavailable for imported accounts
                   </Text>
                 ) : (
-                  <Text className="text-gray-500 text-xs mt-1">
+                  <Text className="text-theme-neutrals-500 text-xs mt-1">
                     Transaction fees covered by the app
                   </Text>
                 )}
               </View>
               {isImported ? (
-                <View className="bg-gray-600/30 px-2 py-1 rounded-full">
-                  <Text className="text-gray-400 text-[10px] font-semibold">
+                <View className="bg-theme-neutrals-700/30 px-2 py-1 rounded-full">
+                  <Text className="text-theme-neutrals-400 text-[10px] font-semibold">
                     Disabled
                   </Text>
                 </View>
@@ -153,10 +153,10 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                 </View>
               )}
             </View>
-            <View className="h-px bg-gray-800" />
+            <View className="h-px bg-theme-neutrals-700" />
             <TouchableOpacity
               onPress={() => setExportPkVisible(true)}
-              className="px-4 py-4 flex-row items-center justify-between"
+              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
             >
               <View>
                 <Text className="text-white text-sm">Export Private Key</Text>
@@ -166,11 +166,11 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
               </View>
               <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
             </TouchableOpacity>
-            <View className="h-px bg-gray-800" />
+            <View className="h-px bg-theme-neutrals-700" />
             <TouchableOpacity
               onPress={handleSignOut}
               disabled={signingOut}
-              className={`px-4 py-4 flex-row items-center justify-between ${
+              className={`px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700 ${
                 signingOut ? "opacity-50" : ""
               }`}
             >
@@ -178,7 +178,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                 {signingOut && (
                   <ActivityIndicator size="small" color="#f87171" />
                 )}
-                <Text className="text-red-500 font-semibold text-sm ml-2">
+                <Text className="text-destructive font-semibold text-sm ml-2">
                   {signingOut ? "Logging out..." : "Log Out"}
                 </Text>
               </View>
@@ -187,47 +187,47 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
           </View>
         </View>
         {/* Direct Messages */}
-        <DMSettingsSection />
+  <DMSettingsSection />
 
         {/* Preferences */}
         <View className="mb-8">
-          <Text className="text-gray-400 text-xs uppercase mb-2">
+          <Text className="text-theme-neutrals-400 text-xs uppercase mb-2 tracking-widest font-semibold">
             Preferences
           </Text>
-          <View className="bg-gray-900 rounded-lg overflow-hidden border border-gray-800">
+          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
             <TouchableOpacity
               disabled
               className="px-4 py-4 flex-row items-center justify-between opacity-60"
             >
               <View>
-                <Text className="text-white text-sm">Appearance</Text>
-                <Text className="text-gray-500 text-xs mt-1">
+                <Text className="text-theme-neutrals-100 text-sm">Appearance</Text>
+                <Text className="text-theme-neutrals-500 text-xs mt-1">
                   Theme, dark mode
                 </Text>
               </View>
               <Ionicons name="chevron-forward" size={18} color="#6b7280" />
             </TouchableOpacity>
-            <View className="h-px bg-gray-800" />
+            <View className="h-px bg-theme-neutrals-700" />
             <TouchableOpacity
               disabled
               className="px-4 py-4 flex-row items-center justify-between opacity-60"
             >
               <View>
-                <Text className="text-white text-sm">Notifications</Text>
-                <Text className="text-gray-500 text-xs mt-1">
+                <Text className="text-theme-neutrals-100 text-sm">Notifications</Text>
+                <Text className="text-theme-neutrals-500 text-xs mt-1">
                   Push, mentions
                 </Text>
               </View>
               <Ionicons name="chevron-forward" size={18} color="#6b7280" />
             </TouchableOpacity>
-            <View className="h-px bg-gray-800" />
+            <View className="h-px bg-theme-neutrals-700" />
             <TouchableOpacity
               disabled
               className="px-4 py-4 flex-row items-center justify-between opacity-60"
             >
               <View>
-                <Text className="text-white text-sm">Data Saver</Text>
-                <Text className="text-gray-500 text-xs mt-1">
+                <Text className="text-theme-neutrals-100 text-sm">Data Saver</Text>
+                <Text className="text-theme-neutrals-500 text-xs mt-1">
                   Reduce image/video usage
                 </Text>
               </View>
@@ -238,17 +238,17 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
 
         {/* Privacy & Security */}
         <View className="mb-8">
-          <Text className="text-gray-400 text-xs uppercase mb-2">
+          <Text className="text-theme-neutrals-400 text-xs uppercase mb-2 tracking-widest font-semibold">
             Privacy & Security
           </Text>
-          <View className="bg-gray-900 rounded-lg overflow-hidden border border-gray-800">
+          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
             <TouchableOpacity
               onPress={() => setBlockedModalVisible(true)}
-              className="px-4 py-4 flex-row items-center justify-between"
+              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
             >
               <View>
-                <Text className="text-white text-sm">Blocked Accounts</Text>
-                <Text className="text-gray-500 text-xs mt-1">
+                <Text className="text-theme-neutrals-100 text-sm font-medium">Blocked Accounts</Text>
+                <Text className="text-theme-neutrals-500 text-xs mt-1">
                   {((user?.blocklist?.blocked?.length || 0) as number) > 0
                     ? `${user?.blocklist?.blocked?.length} blocked`
                     : "You haven’t blocked anyone"}
@@ -256,33 +256,25 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
               </View>
               <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
             </TouchableOpacity>
-            <View className="h-px bg-gray-800" />
+            <View className="h-px bg-theme-neutrals-700" />
             <TouchableOpacity
               disabled
               className="px-4 py-4 flex-row items-center justify-between opacity-60"
             >
               <View>
-                <Text className="text-white text-sm">
-                  Two-factor Authentication
-                </Text>
-                <Text className="text-gray-500 text-xs mt-1">
-                  Add extra security
-                </Text>
+                <Text className="text-theme-neutrals-100 text-sm">Two-factor Authentication</Text>
+                <Text className="text-theme-neutrals-500 text-xs mt-1">Add extra security</Text>
               </View>
               <Ionicons name="chevron-forward" size={18} color="#6b7280" />
             </TouchableOpacity>
-            <View className="h-px bg-gray-800" />
+            <View className="h-px bg-theme-neutrals-700" />
             <TouchableOpacity
               onPress={() => openInApp(DELETE_DATA_OR_ACCOUNT_LINK)}
-              className="px-4 py-4 flex-row items-center justify-between"
+              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
             >
               <View>
-                <Text className="text-white text-sm">
-                  Delete Account / Data
-                </Text>
-                <Text className="text-gray-500 text-xs mt-1">
-                  Learn how to request deletion
-                </Text>
+                <Text className="text-theme-neutrals-100 text-sm font-medium">Delete Account / Data</Text>
+                <Text className="text-theme-neutrals-500 text-xs mt-1">Learn how to request deletion</Text>
               </View>
               <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
             </TouchableOpacity>
@@ -291,31 +283,31 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
 
         {/* Support & Legals */}
         <View className="mb-8">
-          <Text className="text-gray-400 text-xs uppercase mb-2">
+          <Text className="text-theme-neutrals-400 text-xs uppercase mb-2 tracking-widest font-semibold">
             Support & Legals
           </Text>
-          <View className="bg-gray-900 rounded-lg overflow-hidden border border-gray-800">
+          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
             <TouchableOpacity
               onPress={handleReportBug}
-              className="px-4 py-4 flex-row items-center justify-between"
+              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
             >
-              <Text className="text-white text-sm">Report a Bug</Text>
+              <Text className="text-theme-neutrals-100 text-sm font-medium">Report a Bug</Text>
               <Ionicons name="open-outline" size={18} color="#9ca3af" />
             </TouchableOpacity>
-            <View className="h-px bg-gray-800" />
+            <View className="h-px bg-theme-neutrals-700" />
             <TouchableOpacity
               onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
-              className="px-4 py-4 flex-row items-center justify-between"
+              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
             >
-              <Text className="text-white text-sm">Terms of Service</Text>
+              <Text className="text-theme-neutrals-100 text-sm font-medium">Terms of Service</Text>
               <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
             </TouchableOpacity>
-            <View className="h-px bg-gray-800" />
+            <View className="h-px bg-theme-neutrals-700" />
             <TouchableOpacity
               onPress={() => openInApp(PRIVACY_POLICY_LINK)}
-              className="px-4 py-4 flex-row items-center justify-between"
+              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
             >
-              <Text className="text-white text-sm">Privacy Policy</Text>
+              <Text className="text-theme-neutrals-100 text-sm font-medium">Privacy Policy</Text>
               <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
             </TouchableOpacity>
           </View>
@@ -323,7 +315,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
 
         {/* About */}
         <View className="mt-4">
-          <Text className="text-center text-gray-600 text-xs">
+          <Text className="text-center text-theme-neutrals-600 text-xs">
             v1.0.0 • More preferences coming soon
           </Text>
         </View>

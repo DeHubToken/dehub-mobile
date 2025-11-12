@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { FlatList, View, Text } from "react-native";
-import CompactVideoCard from "../Home/CompactVideoCard";
+import VideoCard from "../Home/VideoCard";
 import CompactVideoCardSkeleton from "../Home/CompactVideoCardSkeleton";
 
 export interface MediaItem {
@@ -91,7 +91,9 @@ const SearchMediaList: FC<SearchMediaListProps> = ({
         </View>
       }
       renderItem={({ item }) => (
-        <CompactVideoCard nft={item as any} enablePreview />
+        <View style={{paddingHorizontal: 16}}>
+          <VideoCard nft={item as any} enablePreview />
+        </View>
       )}
     />
   );

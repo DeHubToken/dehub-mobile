@@ -29,6 +29,7 @@ import {
   isFollowing as isFollowingApi,
 } from "../../services/user.service";
 import FeedImageGallery from "./FeedImageGallery";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
 
 export type FeedCardProps = {
   item: GetNFTsResult;
@@ -397,6 +398,7 @@ const FeedCard: React.FC<FeedCardProps> = memo(
                   // Skeleton placeholder for follow button area
                   <View className="px-8 py-2 rounded-lg bg-theme-neutrals-800 ml-2 animate-pulse" />
                 ) : (
+                  <AccentButtonGradient>
                   <TouchableOpacity
                     onPress={onToggleFollow}
                     disabled={
@@ -406,7 +408,7 @@ const FeedCard: React.FC<FeedCardProps> = memo(
                     }
                     activeOpacity={0.85}
                     className={`px-3 py-1.5 rounded-lg ${
-                      isFollowing ? "bg-theme-neutrals-800" : "bg-theme-accent"
+                      isFollowing ? "bg-theme-neutrals-800" : "bg-transparent"
                     } ${followLoading ? "opacity-60" : ""}`}
                   >
                     <Text
@@ -419,6 +421,7 @@ const FeedCard: React.FC<FeedCardProps> = memo(
                       {isFollowing ? "Following" : "Follow"}
                     </Text>
                   </TouchableOpacity>
+                  </AccentButtonGradient>
                 )
               ) : null}
             </View>

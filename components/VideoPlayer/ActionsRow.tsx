@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import TipModal from "../Tip/TipModal";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
 import GiftModal from "../Tip/GiftModal";
 import { getTransactionLink, openInApp } from "../../libs/links.utils";
 import LikeButton from "./LikeButton";
@@ -135,15 +136,18 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
           tokenId={(tokenId as number) || 0}
           toAddress={minter as string}
           trigger={
-            <TouchableOpacity
-              onPress={() => requireAuth(() => setTipOpen(true))}
-              className="flex-row items-center bg-theme-accent px-3 py-1.5 rounded-full mr-2"
-            >
-              <Ionicons name="cash-outline" size={14} color="#000" />
-              <Text className="text-theme-neutrals-900 text-xs ml-1 font-semibold">
-                Tip
-              </Text>
-            </TouchableOpacity>
+            <AccentButtonGradient style={{ borderRadius: 999, marginRight: 8 }}>
+              <TouchableOpacity
+                onPress={() => requireAuth(() => setTipOpen(true))}
+                className="flex-row items-center px-3 py-1.5 rounded-full"
+                style={{ backgroundColor: 'transparent' }}
+              >
+                <Ionicons name="cash-outline" size={14} color="#000" />
+                <Text className="text-theme-neutrals-900 text-xs ml-1 font-semibold">
+                  Tip
+                </Text>
+              </TouchableOpacity>
+            </AccentButtonGradient>
           }
         />
       )}
