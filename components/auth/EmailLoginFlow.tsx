@@ -77,7 +77,7 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
           color: "#fff",
           backgroundColor: "transparent",
         }}
-        onBlur={() => setShowInput(false)}
+
       />
       <TouchableOpacity
         onPress={() => {

@@ -34,8 +34,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   const [currentProvider, setCurrentProvider] = useState("");
   const isBusy = (authLoading || isLocalLoading) && !needsUsername;
 
+
   const handleSocialLogin = useCallback(
-    async (provider: string) => {
+    async (provider: string, email?: string) => {
       if (!isWeb3AuthConfigured()) {
         toastError("Social login unavailable. Please try again later.");
         return;
@@ -43,7 +44,12 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       setIsLocalLoading(true);
       setCurrentProvider(provider);
       try {
-        const result = await loginWithSocial(provider as any);
+        let result;
+        if (provider === "email_passwordless" && email) {
+          result = await loginWithSocial(provider as any, { login_hint: email });
+        } else {
+          result = await loginWithSocial(provider as any);
+        }
         const address =
           result.address || deriveAddressFromPrivateKey(result.privateKey);
         if (!address)
@@ -63,8 +69,8 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   );
 
   const handleProviderPress = useCallback(
-    (provider: string) => {
-      handleSocialLogin(provider);
+    (provider: string, email?: string) => {
+      handleSocialLogin(provider, email);
     },
     [handleSocialLogin]
   );
