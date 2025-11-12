@@ -100,21 +100,30 @@ async function getOrCreateInstance() {
   // console.log("Creating Web3Auth instance...");
   // console.log("Created sdk (static imports)");
   // Determine initial chain from preferredChainId if present; else default to Base
-  const preferred = (await getPreferredChainId()) || (ChainId as any).BASE_MAINNET || 8453;
+  const preferred =
+    (await getPreferredChainId()) || (ChainId as any).BASE_MAINNET || 8453;
   // log.info("sdk:prefferedchain", { preferred, fromstore: await getPreferredChainId() });
-  const baseCfg = (SUPPORTED_NETWORKS as any)?.[preferred] || (SUPPORTED_NETWORKS as any)?.[8453];
+  const baseCfg =
+    (SUPPORTED_NETWORKS as any)?.[preferred] ||
+    (SUPPORTED_NETWORKS as any)?.[8453];
   const initialHex = (baseCfg?.chainId as string) || WEB3AUTH_CHAIN_ID;
-  const initialRpc = Array.isArray(baseCfg?.rpcUrls) ? baseCfg.rpcUrls[0] : (baseCfg?.rpcUrls || WEB3AUTH_RPC_TARGET);
+  const initialRpc = Array.isArray(baseCfg?.rpcUrls)
+    ? baseCfg.rpcUrls[0]
+    : baseCfg?.rpcUrls || WEB3AUTH_RPC_TARGET;
   const chainConfig = {
     chainNamespace: ChainNamespace.EIP155,
     chainId: initialHex,
     rpcTarget: initialRpc,
     displayName: baseCfg?.chainName || "Base Mainnet",
-    blockExplorerUrl: Array.isArray(baseCfg?.blockExplorerUrls) ? baseCfg.blockExplorerUrls[0] : (baseCfg?.blockExplorerUrls || "https://basescan.org"),
+    blockExplorerUrl: Array.isArray(baseCfg?.blockExplorerUrls)
+      ? baseCfg.blockExplorerUrls[0]
+      : baseCfg?.blockExplorerUrls || "https://basescan.org",
     ticker: baseCfg?.nativeCurrency?.symbol || "ETH",
     tickerName: baseCfg?.nativeCurrency?.name || "Ether",
     decimals: baseCfg?.nativeCurrency?.decimals ?? 18,
-    logo: (baseCfg as any)?.iconUrls?.[0] || "https://basescan.org/assets/base/images/svg/logos/chain-light.svg",
+    logo:
+      (baseCfg as any)?.iconUrls?.[0] ||
+      "https://basescan.org/assets/base/images/svg/logos/chain-light.svg",
   } as any;
 
   // console.log({ chainConfig });
@@ -128,12 +137,18 @@ async function getOrCreateInstance() {
       chainConfig,
       bundlerConfig: {
         // Get the pimlico API Key from dashboard.pimlico.io
-        url: `https://api.pimlico.io/v2/${parseInt(String(initialHex), 16)}/rpc?apikey=${env.PIMLICO_API_KEY}`,
+        url: `https://api.pimlico.io/v2/${parseInt(
+          String(initialHex),
+          16
+        )}/rpc?apikey=${env.PIMLICO_API_KEY}`,
       },
       smartAccountInit: new SafeSmartAccount(),
       paymasterConfig: {
         // Get the pimlico API Key from dashboard.pimlico.io
-        url: `https://api.pimlico.io/v2/${parseInt(String(initialHex), 16)}/rpc?apikey=${env.PIMLICO_API_KEY}`,
+        url: `https://api.pimlico.io/v2/${parseInt(
+          String(initialHex),
+          16
+        )}/rpc?apikey=${env.PIMLICO_API_KEY}`,
       },
     },
   });
@@ -164,7 +179,7 @@ async function getOrCreateInstance() {
     // createPromise = Promise.resolve(instance);
     // web3auth = await createPromise;
     //   return web3auth;
-      // await instance.addChain(bscChain);
+    // await instance.addChain(bscChain);
     web3auth = instance;
     (web3auth as any)._LOGIN_PROVIDER = LOGIN_PROVIDER;
     return instance;
@@ -215,6 +230,7 @@ export const initWeb3Auth = ensureWeb3AuthReady;
 const LOGIN_PROVIDER_MAP: Record<string, any> = {
   google: "google",
   twitter: "twitter",
+  passwordless: "email_passwordless",
 };
 
 // Derive address from private key using ethers Wallet
@@ -240,7 +256,8 @@ export interface Web3AuthLoginResult {
   provider: any;
 }
 export const loginWithSocial = async (
-  provider: string
+  provider: string, 
+  extraLoginOptions?: any
 ): Promise<Web3AuthLoginResult> => {
   log.info("loginWithSocial:start", { provider });
   const instance = await ensureWeb3AuthReady();
@@ -255,6 +272,7 @@ export const loginWithSocial = async (
       loginProvider: mapped,
       redirectUrl: resolveRedirectUrl(),
       curve: "secp256k1",
+      extraLoginOptions,
     });
     log.info("loginWithSocial:web3auth:logged-in");
     const userInfo = (instance as any).userInfo
@@ -269,7 +287,9 @@ export const loginWithSocial = async (
       const accs = await web3provider?.request?.({ method: "eth_accounts" });
       if (Array.isArray(accs) && accs.length > 0) address = accs[0];
       if (!address) {
-        const req = await web3provider?.request?.({ method: "eth_requestAccounts" });
+        const req = await web3provider?.request?.({
+          method: "eth_requestAccounts",
+        });
         if (Array.isArray(req) && req.length > 0) address = req[0];
       }
     } catch (e) {
@@ -360,7 +380,10 @@ export const addWeb3AuthChain = async (targetChainId: number) => {
   }
   try {
     await (instance as any).addChain(chainCfg);
-    log.info("web3auth:addChain:ok", { chainId: chainCfg.chainId, name: chainCfg.displayName });
+    log.info("web3auth:addChain:ok", {
+      chainId: chainCfg.chainId,
+      name: chainCfg.displayName,
+    });
     return true;
   } catch (e) {
     log.warn("web3auth:addChain:error", e as any);
@@ -373,13 +396,18 @@ export const switchWeb3AuthChain = async (targetChainId: number) => {
   const instance = await ensureWeb3AuthReady();
   const hex = "0x" + Number(targetChainId).toString(16);
   const baseCfg = (SUPPORTED_NETWORKS as any)?.[targetChainId];
-  if (!baseCfg) throw new Error(`No supported network config for chainId ${targetChainId}`);
+  if (!baseCfg)
+    throw new Error(`No supported network config for chainId ${targetChainId}`);
   log.debug("web3auth:switchChain:capabilities", {
     hasSetChain: typeof (instance as any).setChain === "function",
     hasSwitchChain: typeof (instance as any).switchChain === "function",
     hasAddChain: typeof (instance as any).addChain === "function",
   });
-  log.info("web3auth:switchChain:start", { targetChainId, hex, name: baseCfg?.chainName });
+  log.info("web3auth:switchChain:start", {
+    targetChainId,
+    hex,
+    name: baseCfg?.chainName,
+  });
   const chainCfg = {
     chainNamespace: ChainNamespace.EIP155,
     chainId: baseCfg.chainId || hex,
@@ -398,8 +426,15 @@ export const switchWeb3AuthChain = async (targetChainId: number) => {
     if (typeof (instance as any).setChain === "function") {
       log.debug("web3auth:setChain:attempt", { chainId: chainCfg.chainId });
       await (instance as any).setChain(chainCfg);
-      log.info("web3auth:setChain:ok", { chainId: chainCfg.chainId, name: chainCfg.displayName });
-      try { await reconfigureWeb3AuthChain(targetChainId); } catch (e) { log.warn("web3auth:setChain:reconfigure:error", e as any); }
+      log.info("web3auth:setChain:ok", {
+        chainId: chainCfg.chainId,
+        name: chainCfg.displayName,
+      });
+      try {
+        await reconfigureWeb3AuthChain(targetChainId);
+      } catch (e) {
+        log.warn("web3auth:setChain:reconfigure:error", e as any);
+      }
       return true;
     }
   } catch (e) {
@@ -408,10 +443,16 @@ export const switchWeb3AuthChain = async (targetChainId: number) => {
   // Then try switchChain(hex) if exposed
   try {
     if (typeof (instance as any).switchChain === "function") {
-      log.debug("web3auth:switchChain:attempt", { chainId: baseCfg.chainId || hex });
+      log.debug("web3auth:switchChain:attempt", {
+        chainId: baseCfg.chainId || hex,
+      });
       await (instance as any).switchChain(baseCfg.chainId || hex);
       log.info("web3auth:switchChain:ok", { chainId: baseCfg.chainId || hex });
-      try { await reconfigureWeb3AuthChain(targetChainId); } catch (e) { log.warn("web3auth:switchChain:reconfigure:error", e as any); }
+      try {
+        await reconfigureWeb3AuthChain(targetChainId);
+      } catch (e) {
+        log.warn("web3auth:switchChain:reconfigure:error", e as any);
+      }
       return true;
     }
   } catch (e) {
@@ -425,10 +466,18 @@ export const switchWeb3AuthChain = async (targetChainId: number) => {
 export const reconfigureWeb3AuthChain = async (targetChainId: number) => {
   const instance = await ensureWeb3AuthReady();
   const baseCfg = (SUPPORTED_NETWORKS as any)?.[targetChainId];
-  if (!baseCfg) throw new Error(`No supported network config for chainId ${targetChainId}`);
-  const hex = baseCfg.chainId || ("0x" + Number(targetChainId).toString(16));
-  const rpcTarget = Array.isArray(baseCfg.rpcUrls) ? baseCfg.rpcUrls[0] : baseCfg.rpcUrls;
-  log.info("web3auth:reconfigure:start", { targetChainId, hex, rpcTarget, name: baseCfg?.chainName });
+  if (!baseCfg)
+    throw new Error(`No supported network config for chainId ${targetChainId}`);
+  const hex = baseCfg.chainId || "0x" + Number(targetChainId).toString(16);
+  const rpcTarget = Array.isArray(baseCfg.rpcUrls)
+    ? baseCfg.rpcUrls[0]
+    : baseCfg.rpcUrls;
+  log.info("web3auth:reconfigure:start", {
+    targetChainId,
+    hex,
+    rpcTarget,
+    name: baseCfg?.chainName,
+  });
   const chainConfig = {
     chainNamespace: ChainNamespace.EIP155,
     chainId: hex,
@@ -446,7 +495,9 @@ export const reconfigureWeb3AuthChain = async (targetChainId: number) => {
   const pimlicoUrl = `https://api.pimlico.io/v2/${decId}/rpc?apikey=${env.PIMLICO_API_KEY}`;
   log.debug("web3auth:reconfigure:providers:build", { pimlicoUrl });
 
-  const privateKeyProvider = new EthereumPrivateKeyProvider({ config: { chainConfig } });
+  const privateKeyProvider = new EthereumPrivateKeyProvider({
+    config: { chainConfig },
+  });
   const accountAbstractionProvider = new AccountAbstractionProvider({
     config: {
       chainConfig,
@@ -458,8 +509,14 @@ export const reconfigureWeb3AuthChain = async (targetChainId: number) => {
 
   if (typeof (instance as any).updateProvider === "function") {
     log.debug("web3auth:reconfigure:updateProvider:attempt");
-    (instance as any).updateProvider({ privateKeyProvider, accountAbstractionProvider });
-    log.info("web3auth:reconfigure:updateProvider:ok", { chainId: hex, rpcTarget });
+    (instance as any).updateProvider({
+      privateKeyProvider,
+      accountAbstractionProvider,
+    });
+    log.info("web3auth:reconfigure:updateProvider:ok", {
+      chainId: hex,
+      rpcTarget,
+    });
     try {
       // Ensure top-level fields exist for consumers that read them directly
       const prov: any = (instance as any).provider;
@@ -468,26 +525,40 @@ export const reconfigureWeb3AuthChain = async (targetChainId: number) => {
         prov.bundlerConfig = { url: pimlicoUrl } as any;
         prov.paymasterConfig = { url: pimlicoUrl } as any;
         // Shim eth_chainId so upstream waiters can observe the new chain id
-        const prevReq = typeof prov.request === 'function' ? prov.request.bind(prov) : undefined;
+        const prevReq =
+          typeof prov.request === "function"
+            ? prov.request.bind(prov)
+            : undefined;
         prov.request = async (args: any) => {
-          const method = args?.method || (Array.isArray(args) ? args[0]?.method : undefined);
-          if (method === 'eth_chainId') return chainConfig.chainId;
+          const method =
+            args?.method || (Array.isArray(args) ? args[0]?.method : undefined);
+          if (method === "eth_chainId") return chainConfig.chainId;
           if (prevReq) return prevReq(args);
-          throw new Error('Provider request not available');
+          throw new Error("Provider request not available");
         };
       }
     } catch {}
     try {
-      const ch = await (instance as any).provider?.request?.({ method: "eth_chainId" });
-      log.debug("web3auth:reconfigure:post-update:eth_chainId", { reported: ch });
+      const ch = await (instance as any).provider?.request?.({
+        method: "eth_chainId",
+      });
+      log.debug("web3auth:reconfigure:post-update:eth_chainId", {
+        reported: ch,
+      });
     } catch {}
     return true;
   }
   // Fallback: replace known references so downstream callers see the new provider
   log.debug("web3auth:reconfigure:fallback:assignments:start");
-  try { (instance as any).privateKeyProvider = privateKeyProvider; } catch {}
-  try { (instance as any).accountAbstractionProvider = accountAbstractionProvider; } catch {}
-  try { (instance as any).provider = accountAbstractionProvider as any; } catch {}
+  try {
+    (instance as any).privateKeyProvider = privateKeyProvider;
+  } catch {}
+  try {
+    (instance as any).accountAbstractionProvider = accountAbstractionProvider;
+  } catch {}
+  try {
+    (instance as any).provider = accountAbstractionProvider as any;
+  } catch {}
   try {
     const prov: any = (instance as any).provider;
     if (prov && prov.internalConfig) {
@@ -501,18 +572,27 @@ export const reconfigureWeb3AuthChain = async (targetChainId: number) => {
       prov.bundlerConfig = { url: pimlicoUrl } as any;
       prov.paymasterConfig = { url: pimlicoUrl } as any;
       // Shim eth_chainId
-      const prevReq = typeof prov.request === 'function' ? prov.request.bind(prov) : undefined;
+      const prevReq =
+        typeof prov.request === "function"
+          ? prov.request.bind(prov)
+          : undefined;
       prov.request = async (args: any) => {
-        const method = args?.method || (Array.isArray(args) ? args[0]?.method : undefined);
-        if (method === 'eth_chainId') return chainConfig.chainId;
+        const method =
+          args?.method || (Array.isArray(args) ? args[0]?.method : undefined);
+        if (method === "eth_chainId") return chainConfig.chainId;
         if (prevReq) return prevReq(args);
-        throw new Error('Provider request not available');
+        throw new Error("Provider request not available");
       };
     }
   } catch {}
-  log.info("web3auth:reconfigure:fallback:replaced-provider", { chainId: hex, rpcTarget });
+  log.info("web3auth:reconfigure:fallback:replaced-provider", {
+    chainId: hex,
+    rpcTarget,
+  });
   try {
-    const ch = await (instance as any).provider?.request?.({ method: "eth_chainId" });
+    const ch = await (instance as any).provider?.request?.({
+      method: "eth_chainId",
+    });
     log.debug("web3auth:reconfigure:fallback:eth_chainId", { reported: ch });
   } catch {}
   return true;

@@ -109,6 +109,15 @@ export default function HomeScreen() {
     };
   }, []);
 
+  // Custom handler for category press
+  const handleCategoryPress = (cat: string) => {
+    if (cat === selectedCategory) return;
+    if (cat === 'All' && selectedSortMode === 'live') {
+      setSelectedSortMode('trends');
+    }
+    setSelectedCategory(cat);
+  };
+
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <HomeHeader />
@@ -120,7 +129,7 @@ export default function HomeScreen() {
           <CategorySelector
             categories={categories}
             selectedCategory={selectedCategory}
-            onCategoryPress={setSelectedCategory}
+            onCategoryPress={handleCategoryPress}
             showLiveChip
             isLiveActive={selectedSortMode === 'live'}
             onPressLive={() => {

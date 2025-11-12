@@ -1,15 +1,17 @@
 import React, { useMemo } from "react";
-import { View, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, TouchableOpacity, ActivityIndicator, Text } from "react-native";
 import { SvgXml } from "react-native-svg";
+import EmailLoginFlow from "./EmailLoginFlow";
 
 // Explicitly define supported providers (keys must match the provider id used by Web3Auth config)
 export type SocialProvider = "google" | "twitter" | "discord";
 
 interface SocialLoginIconsProps {
-  onPress: (provider: SocialProvider) => void;
+  onPress: (provider: string, email?: string) => void;
   busyProvider?: string; // provider currently performing login
   disabled?: boolean;
   providers?: SocialProvider[]; // optional override (defaults to ['google','twitter'])
+  showEmailButton?: boolean;
 }
 
 // Monochrome Google glyph (white) enlarged to visually match X
@@ -43,6 +45,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   busyProvider,
   disabled,
   providers = ["google", "twitter", "discord"],
+  showEmailButton,
 }) => {
   const items = useMemo(
     () => providers.filter((p) => ICON_MAP[p]),
@@ -50,30 +53,43 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   );
 
   return (
-    <View className="flex-row justify-center flex-wrap mt-2">
-      {items.map((provider) => {
-        const busy = !!busyProvider && busyProvider === provider;
-        return (
-          <TouchableOpacity
-            key={provider}
-            accessibilityLabel={`Sign in with ${
-              provider === "twitter" ? "X" : "Google"
-            }`}
-            accessibilityRole="button"
-            className={`border border-gray-600 bg-transparent rounded-lg m-2 w-14 h-14 items-center justify-center ${
-              disabled ? "opacity-50" : ""
-            }`}
-            disabled={disabled}
-            onPress={() => onPress(provider)}
-          >
-            {busy ? (
-              <ActivityIndicator color="#fff" />
-            ) : (
-              <SvgXml xml={ICON_MAP[provider]} width={24} height={24} />
-            )}
-          </TouchableOpacity>
-        );
-      })}
+    <View className="flex-col items-center mt-2 w-full">
+      <View className="flex-row justify-center flex-wrap">
+        {items.map((provider) => {
+          const busy = !!busyProvider && busyProvider === provider;
+          return (
+            <TouchableOpacity
+              key={provider}
+              accessibilityLabel={`Sign in with ${
+                provider === "twitter"
+                  ? "X"
+                  : provider.charAt(0).toUpperCase() + provider.slice(1)
+              }`}
+              accessibilityRole="button"
+              className={`border border-gray-600 bg-transparent rounded-lg m-2 w-14 h-14 items-center justify-center ${
+                disabled ? "opacity-50" : ""
+              }`}
+              disabled={disabled}
+              onPress={() => onPress(provider)}
+            >
+              {busy ? (
+                <ActivityIndicator color="#fff" />
+              ) : (
+                <SvgXml xml={ICON_MAP[provider]} width={24} height={24} />
+              )}
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+      {/* Email login button and input flow */}
+      {showEmailButton && (
+        <EmailLoginFlow
+          onSubmit={onPress}
+          loading={busyProvider === "email_passwordless"}
+          disabled={disabled}
+        />
+      )}
+
     </View>
   );
 };

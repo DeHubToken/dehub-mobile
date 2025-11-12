@@ -14,6 +14,7 @@ import {
   Modal,
   Animated,
 } from "react-native";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
 import GlassModal from "../ui/GlassModal";
 import { Ionicons } from "@expo/vector-icons";
 import { useAuth } from "../../context/AuthContext";
@@ -253,16 +254,17 @@ const TipModal: React.FC<TipModalProps> = ({
     // If a custom trigger is provided, render it as-is (it already handles touch)
     if (trigger) return <>{trigger}</>;
     return (
-      <TouchableOpacity
-        onPress={openModal}
-        disabled={!toAddress}
-        className={`flex-1 bg-theme-accent py-2 rounded-lg items-center flex-row justify-center gap-2 ${
-          !toAddress ? "opacity-50" : ""
-        } ${triggerClassName || ""}`}
-      >
-        <Ionicons name="cash-outline" size={16} color="#fff" />
-        <Text className="text-white text-sm font-semibold">{triggerText}</Text>
-      </TouchableOpacity>
+      <AccentButtonGradient style={{ flex: 1, opacity: !toAddress ? 0.5 : 1 }}>
+        <TouchableOpacity
+          onPress={openModal}
+          disabled={!toAddress}
+          className={`py-2 rounded-lg items-center flex-row justify-center gap-2 ${triggerClassName || ""}`}
+          style={{ backgroundColor: 'transparent', flex: 1 }}
+        >
+          <Ionicons name="cash-outline" size={16} color="#fff" />
+          <Text className="text-white text-sm font-semibold">{triggerText}</Text>
+        </TouchableOpacity>
+      </AccentButtonGradient>
     );
   };
 
@@ -343,31 +345,34 @@ const TipModal: React.FC<TipModalProps> = ({
                   )}
                 </View>
                 <View className="flex-row items-center justify-center gap-3">
-                  <TouchableOpacity
-                    disabled={disableTip && phase === "idle"}
-                    onPress={handleTip}
-                    className={`flex-row items-center gap-2 px-5 h-11 rounded-full bg-theme-accent ${
-                      disableTip && phase === "idle" ? "opacity-60" : ""
-                    }`}
-                  >
-                    {isBusy ? (
-                      <ActivityIndicator color="#fff" />
-                    ) : phase === "error" ? (
-                      <Ionicons
-                        name="alert-circle-outline"
-                        size={20}
-                        color="#fff"
-                      />
-                    ) : (
-                      <Ionicons name="cash-outline" size={18} color="#fff" />
-                    )}
-                    <Text className="text-white font-semibold">
-                      {phase === "approving" && "Approving..."}
-                      {phase === "sending" && "Sending..."}
-                      {phase === "idle" && "Tip"}
-                      {phase === "error" && "Retry"}
-                    </Text>
-                  </TouchableOpacity>
+                  <AccentButtonGradient style={{ borderRadius: 999 }}>
+                    <TouchableOpacity
+                      disabled={disableTip && phase === "idle"}
+                      onPress={handleTip}
+                      className={`flex-row items-center gap-2 px-5 h-11 rounded-full ${
+                        disableTip && phase === "idle" ? "opacity-60" : ""
+                      }`}
+                      style={{ backgroundColor: 'transparent' }}
+                    >
+                      {isBusy ? (
+                        <ActivityIndicator color="#fff" />
+                      ) : phase === "error" ? (
+                        <Ionicons
+                          name="alert-circle-outline"
+                          size={20}
+                          color="#fff"
+                        />
+                      ) : (
+                        <Ionicons name="cash-outline" size={18} color="#fff" />
+                      )}
+                      <Text className="text-white font-semibold">
+                        {phase === "approving" && "Approving..."}
+                        {phase === "sending" && "Sending..."}
+                        {phase === "idle" && "Tip"}
+                        {phase === "error" && "Retry"}
+                      </Text>
+                    </TouchableOpacity>
+                  </AccentButtonGradient>
                   <TouchableOpacity
                     disabled={isBusy}
                     onPress={close}

@@ -1,4 +1,5 @@
 import React, { useMemo, useCallback } from "react";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import Avatar from "../common/Avatar";
 import { Ionicons } from "@expo/vector-icons";
@@ -184,24 +185,25 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
         </View>
       </TouchableOpacity>
       {!isSelf ? (
-        <TouchableOpacity
-          onPress={handlePress}
-          disabled={followLoading}
-          className={`px-4 py-2 rounded-lg ${
-            isFollowing ? "bg-theme-neutrals-800" : "bg-theme-accent"
-          } ${followLoading ? "opacity-60" : ""}`}
-          activeOpacity={0.85}
-        >
-          <Text
-            className={`text-xs font-semibold ${
-              isFollowing
-                ? "text-theme-neutrals-100"
-                : "text-theme-neutrals-900"
-            }`}
+        <AccentButtonGradient style={{ borderRadius: 12 }}>
+          <TouchableOpacity
+            onPress={handlePress}
+            disabled={followLoading}
+            className={`px-4 py-2 rounded-lg ${followLoading ? "opacity-60" : ""}`}
+            style={{ backgroundColor: 'transparent' }}
+            activeOpacity={0.85}
           >
-            {isFollowing ? "Following" : "Follow"}
-          </Text>
-        </TouchableOpacity>
+            <Text
+              className={`text-xs font-semibold ${
+                isFollowing
+                  ? "text-theme-neutrals-100"
+                  : "text-theme-neutrals-900"
+              }`}
+            >
+              {isFollowing ? "Following" : "Follow"}
+            </Text>
+          </TouchableOpacity>
+        </AccentButtonGradient>
       ) : null}
     </View>
   );

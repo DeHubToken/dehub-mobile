@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { useNavigation } from "@react-navigation/native";
@@ -364,21 +365,22 @@ export default function FeedTab() {
 
       {/* Footer CTA */}
       <View className="px-4 pt-2 pb-6 mb-6">
-        <TouchableOpacity
-          disabled={isSignedIn ? !isFormValid : false}
-          onPress={onUploadPress}
-          className={`h-12 rounded-xl items-center justify-center ${
-            !isSignedIn || isFormValid ? "bg-blue-600" : "bg-zinc-700"
-          }`}
-        >
-          <Text className="text-white font-semibold">
-            {isSignedIn
-              ? isFormValid
-                ? "Post"
-                : "Complete form to post"
-              : "Sign in to post"}
-          </Text>
-        </TouchableOpacity>
+        <AccentButtonGradient>
+          <TouchableOpacity
+            disabled={isSignedIn ? !isFormValid : false}
+            onPress={onUploadPress}
+            className="h-12 rounded-xl items-center justify-center"
+            style={{ backgroundColor: 'transparent' }}
+          >
+            <Text className="text-white font-semibold">
+              {isSignedIn
+                ? isFormValid
+                  ? "Post"
+                  : "Complete form to post"
+                : "Sign in to post"}
+            </Text>
+          </TouchableOpacity>
+        </AccentButtonGradient>
       </View>
 
       <ConfirmUploadModal

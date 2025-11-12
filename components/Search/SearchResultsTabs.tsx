@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect, useCallback } from "react";
 import { View, TouchableOpacity, Text } from "react-native";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { performSearchByType } from "../../services/search.service";
 import SearchAccountsList from "./SearchAccountsList";
 import SearchMediaList from "./SearchMediaList";
@@ -94,13 +95,9 @@ const SearchResultsTabs: FC<SearchResultsTabsProps> = ({
 
   const tabs = [
     { key: "videos" as const, label: "Videos", count: videos.length },
-    {
-      key: "livestreams" as const,
-      label: "Livestreams",
-      count: livestreams.length,
-    },
+    { key: "livestreams" as const, label: "Livestreams", count: livestreams.length },
     { key: "accounts" as const, label: "Accounts", count: accounts.length },
-  ].filter((t) => t.count > 0);
+  ];
 
   const fmt = (n: number) => (n >= 99 ? "99+" : String(n));
 
@@ -200,19 +197,46 @@ const SearchResultsTabs: FC<SearchResultsTabsProps> = ({
   return (
     <View className="flex-1">
       <View className="flex-row px-3 py-3">
-        {tabs.map((t) => (
-          <TouchableOpacity
-            key={t.key}
-            onPress={() => setActive(t.key)}
-            className={`px-4 py-2 rounded-md mr-2 ${active === t.key ? "bg-theme-accent" : "bg-theme-neutrals-800"}`}
-          >
+        {tabs.map((t) => {
+          const isActive = active === t.key;
+          const isDisabled = t.count === 0;
+          const tabContent = (
             <Text
-              className={`text-xs font-semibold ${active === t.key ? "text-theme-neutrals-900" : "text-white"}`}
+              className={`text-xs font-semibold ${
+                isActive ? "text-white" : isDisabled ? "text-theme-neutrals-600" : "text-white/80"
+              }`}
             >
               {t.label} ({fmt(t.count)})
             </Text>
-          </TouchableOpacity>
-        ))}
+          );
+          if (isActive) {
+            return (
+              <AccentButtonGradient key={t.key} style={{ marginRight: 8, opacity: isDisabled ? 0.5 : 1 }}>
+                <TouchableOpacity
+                  onPress={() => {}}
+                  className="px-4 py-2 rounded-md"
+                  activeOpacity={0.85}
+                  disabled={isDisabled}
+                >
+                  {tabContent}
+                </TouchableOpacity>
+              </AccentButtonGradient>
+            );
+          }
+          return (
+            <TouchableOpacity
+              key={t.key}
+              onPress={() => {
+                if (!isDisabled) setActive(t.key);
+              }}
+              className={`px-4 py-2 rounded-md bg-theme-neutrals-800 mr-2 ${isDisabled ? "opacity-50" : ""}`}
+              disabled={isDisabled}
+              activeOpacity={isDisabled ? 1 : 0.85}
+            >
+              {tabContent}
+            </TouchableOpacity>
+          );
+        })}
       </View>
       {body}
     </View>

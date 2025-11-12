@@ -109,6 +109,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
             onPress={handleProviderPress as any}
             busyProvider={isLocalLoading ? currentProvider : undefined}
             disabled={isLocalLoading}
+            showEmailButton
           />
           <ImportWallet />
           <View className="mt-6 mb-4">

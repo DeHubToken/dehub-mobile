@@ -28,6 +28,7 @@ import { ethers, providers } from "ethers";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { parseTxError } from "../../libs/web3.util";
 import { erc20TransferAA } from "../../libs/aa.write";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
 
 export interface TransferModalProps {
   open: boolean;
@@ -184,7 +185,9 @@ const TransferModal: React.FC<TransferModalProps> = ({
         }
 
         // Use AA-aware write helper which handles web3auth vs local EOA paths
-        await erc20TransferAA(tokenContract, toAddr, amountBN, { context: "send" });
+        await erc20TransferAA(tokenContract, toAddr, amountBN, {
+          context: "send",
+        });
         close();
         toastSuccess("Transfer sent");
         try {
@@ -440,22 +443,24 @@ const TransferModal: React.FC<TransferModalProps> = ({
           </View>
         </View>
         <View className="flex-row items-center justify-center gap-3">
-          <TouchableOpacity
-            disabled={!canSend || sending}
-            onPress={handleSend}
-            className={`flex-row items-center gap-2 px-5 h-11 rounded-full bg-theme-accent ${
-              !canSend || sending ? "opacity-60" : ""
-            }`}
-          >
-            {sending ? (
-              <ActivityIndicator color="#fff" />
-            ) : (
-              <Ionicons name="swap-horizontal" size={18} color="#fff" />
-            )}
-            <Text className="text-white font-semibold">
-              {sending ? "Transferring..." : "Transfer"}
-            </Text>
-          </TouchableOpacity>
+          <AccentButtonGradient>
+            <TouchableOpacity
+              disabled={!canSend || sending}
+              onPress={handleSend}
+              className={`flex-row items-center gap-2 px-5 h-11 rounded-full bg-transparent ${
+                !canSend || sending ? "opacity-60" : ""
+              }`}
+            >
+              {sending ? (
+                <ActivityIndicator color="#fff" />
+              ) : (
+                <Ionicons name="swap-horizontal" size={18} color="#fff" />
+              )}
+              <Text className="text-white font-semibold">
+                {sending ? "Transferring..." : "Transfer"}
+              </Text>
+            </TouchableOpacity>
+          </AccentButtonGradient>
           <TouchableOpacity
             disabled={sending}
             onPress={close}

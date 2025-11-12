@@ -28,6 +28,7 @@ import { getAvatarUrl } from "../libs/misc";
 import { theme } from "../theme";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { useGateToHome } from "../hooks/useGateToHome";
+import AccentButtonGradient from "../components/ui/AccentButtonGradient";
 
 type DmContact = {
   _id: string;
@@ -59,9 +60,9 @@ const formatRelativeTime = (ts: number): string => {
   if (m < 60) return `${m}m`;
   const h = Math.floor(m / 60);
   if (h < 24) return `${h}h`;
-    const { isSignedIn, needsUsername } = useAuth();
-    const allow = isSignedIn && !needsUsername;
-    useGateToHome(allow);
+  const { isSignedIn, needsUsername } = useAuth();
+  const allow = isSignedIn && !needsUsername;
+  useGateToHome(allow);
   const d = Math.floor(h / 24);
   return `${d}d`;
 };
@@ -212,16 +213,18 @@ const DirectMessagesScreen: React.FC = () => {
           <Text className="text-theme-neutrals-400 mb-3">
             No conversations yet
           </Text>
-          <TouchableOpacity
-            onPress={openNewDM}
-            activeOpacity={0.8}
-            className="mt-3 flex-row items-center px-4 py-2 rounded-full bg-theme-accent"
-          >
-            <Ionicons name="chatbubbles" size={18} color="white" />
-            <Text className="ml-2 text-theme-neutrals-100 font-medium">
-              Start a new conversation
-            </Text>
-          </TouchableOpacity>
+          <AccentButtonGradient>
+            <TouchableOpacity
+              onPress={openNewDM}
+              activeOpacity={0.8}
+              className=" flex-row items-center px-4 py-2 rounded-full bg-transparent"
+            >
+              <Ionicons name="chatbubbles" size={18} color="white" />
+              <Text className="ml-2 text-theme-neutrals-100 font-medium">
+                Start a new conversation
+              </Text>
+            </TouchableOpacity>
+          </AccentButtonGradient>
         </View>
       );
     }

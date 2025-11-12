@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
 import { runWithPermissions, ensureMediaLibraryPermission, waitAfterPermissionIfNeeded } from "../../libs/permissions.util";
@@ -970,24 +971,25 @@ export default function VideosTab({ onClose }: Props) {
 
       {/* Footer CTA */}
       <View className="px-4 pt-2 pb-6 mb-6">
-        <TouchableOpacity
-          disabled={isSignedIn ? !isFormValid : false}
-          onPress={() => {
-            if (!isSignedIn) {
-              // Trigger sign-in gateway; continue to upload after successful sign-in
-              requireAuth(() => onUploadMint());
-              return;
-            }
-            onUploadMint();
-          }}
-          className={`h-12 rounded-xl items-center justify-center ${
-            !isSignedIn || isFormValid ? "bg-blue-600" : "bg-zinc-700"
-          }`}
-        >
-          <Text className="text-white font-semibold">
-            {isSignedIn ? "Upload & Mint" : "Sign In"}
-          </Text>
-        </TouchableOpacity>
+        <AccentButtonGradient>
+          <TouchableOpacity
+            disabled={isSignedIn ? !isFormValid : false}
+            onPress={() => {
+              if (!isSignedIn) {
+                // Trigger sign-in gateway; continue to upload after successful sign-in
+                requireAuth(() => onUploadMint());
+                return;
+              }
+              onUploadMint();
+            }}
+            className="h-12 rounded-xl items-center justify-center"
+            style={{ backgroundColor: 'transparent' }}
+          >
+            <Text className="text-white font-semibold">
+              {isSignedIn ? "Upload & Mint" : "Sign In"}
+            </Text>
+          </TouchableOpacity>
+        </AccentButtonGradient>
         {media && fileSize != null && fileSize > MAX_VIDEO_SIZE_BYTES && (
           <Text className="text-xs text-red-500 mt-1">
             Video exceeds max size of 200MB.
