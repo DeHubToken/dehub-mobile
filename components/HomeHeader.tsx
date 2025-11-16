@@ -24,13 +24,13 @@ const HomeHeader = () => {
       <View className="flex-row items-center">
         <TouchableOpacity
           activeOpacity={1}
-          onPress={() => {
-            const ver = Application.nativeApplicationVersion || "0.0.0";
-            const build = Application.nativeBuildVersion
-              ? ` (${Application.nativeBuildVersion})`
-              : "";
-            toastInfo(`DHB v${ver}${build}`);
-          }}
+          // onPress={() => {
+          //   const ver = Application.nativeApplicationVersion || "0.0.0";
+          //   const build = Application.nativeBuildVersion
+          //     ? ` (${Application.nativeBuildVersion})`
+          //     : "";
+          //   toastInfo(`DHB v${ver}${build}`);
+          // }}
         >
           <SmartImage
             source={require("../assets/banner.png")}
