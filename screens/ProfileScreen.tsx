@@ -10,6 +10,9 @@ import { theme } from "../theme";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import ProfileApps from "../components/Profile/ProfileApps";
+import { Ionicons } from "@expo/vector-icons";
+import ProfileSignInPrompt from "../components/Profile/ProfileSignInPrompt";
+
 
 const REFRESH_INTERVAL_MS = 60_000; // 1 min periodic refresh
 
@@ -50,50 +53,7 @@ const ProfileScreen: React.FC = () => {
   }, [user]);
 
   if (!isSignedIn) {
-    return (
-      <View className="flex-1 bg-theme-neutrals-900 justify-center items-center px-6">
-        <Text
-          style={{
-            color: theme.colors.foreground,
-            fontSize: 20,
-            fontWeight: "600",
-            textAlign: "center",
-            marginBottom: 12,
-          }}
-        >
-          Sign in to view your profile
-        </Text>
-        <Text
-          style={{
-            color: theme.colors.muted,
-            fontSize: 14,
-            textAlign: "center",
-            marginBottom: 24,
-          }}
-        >
-          Access stats, assets, activity and personalize your account.
-        </Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate(ScreenNames.SignIn)}
-          style={{
-            backgroundColor: theme.colors.accent,
-            paddingVertical: 14,
-            paddingHorizontal: 28,
-            borderRadius: theme.radius.lg,
-          }}
-        >
-          <Text
-            style={{
-              color: theme.colors.accentForeground,
-              fontSize: 16,
-              fontWeight: "600",
-            }}
-          >
-            Sign In
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
+    return <ProfileSignInPrompt />;
   }
 
   return (
