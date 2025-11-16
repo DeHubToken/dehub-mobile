@@ -31,19 +31,21 @@ const ImportWallet: React.FC<ImportWalletProps> = memo(
           <View className="flex-1 h-[1px] bg-theme-neutrals-800" />
         </View>
 
-        <TouchableOpacity
-          onPress={handlePress}
-          disabled={isDisabled}
-          accessibilityRole="button"
-          className="bg-theme-neutrals-800 rounded-xl px-4 py-3 items-center active:opacity-80 disabled:opacity-50"
-        >
-          <View className="flex-row items-center">
-            <Ionicons name="key-outline" size={16} color="#E5E7EB" />
-            <Text className="text-white text-sm ml-2">
-              Import external wallet
-            </Text>
-          </View>
-        </TouchableOpacity>
+        <View className="w-full flex items-center">
+          <TouchableOpacity
+            onPress={handlePress}
+            disabled={isDisabled}
+            accessibilityRole="button"
+            className="bg-theme-neutrals-800 rounded-xl px-4 py-3 items-center active:opacity-80 disabled:opacity-50 w-[90%] max-w-md"
+          >
+            <View className="flex-row items-center">
+              <Ionicons name="key-outline" size={16} color="#E5E7EB" />
+              <Text className="text-white text-sm ml-2">
+                Import external wallet
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
         <ImportWalletModal
           visible={showModal}
           onClose={() => setShowModal(false)}

@@ -229,7 +229,7 @@ const SearchResultsTabs: FC<SearchResultsTabsProps> = ({
               onPress={() => {
                 if (!isDisabled) setActive(t.key);
               }}
-              className={`px-4 py-2 rounded-md bg-theme-neutrals-800 mr-2 ${isDisabled ? "opacity-50" : ""}`}
+              className={`px-4 py-2 rounded-full bg-theme-neutrals-800 mr-2 ${isDisabled ? "opacity-50" : ""}`}
               disabled={isDisabled}
               activeOpacity={isDisabled ? 1 : 0.85}
             >

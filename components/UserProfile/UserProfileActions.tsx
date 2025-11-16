@@ -68,7 +68,7 @@ const UserProfileActions: React.FC<UserProfileActionsProps> = ({
       <TouchableOpacity
         disabled={disableActions}
         onPress={disableActions ? undefined : onOpenVideos}
-        className={`flex-1 bg-theme-neutrals-800 py-2 rounded-lg items-center flex-row justify-center gap-2 ${
+        className={`flex-1 bg-theme-neutrals-800 py-2 rounded-full items-center flex-row justify-center gap-2 ${
           disableActions ? "opacity-40" : ""
         }`}
       >
