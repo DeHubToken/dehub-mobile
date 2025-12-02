@@ -26,7 +26,7 @@ const ReportBugModal: React.FC<ReportBugModalProps> = ({
   );
 
   const toList = useMemo(() => {
-    return [SUPPORT_MAIL, DEV_MAIL].filter(Boolean).join(",");
+    return [SUPPORT_MAIL].filter(Boolean).join(",");
   }, []);
 
   const subject = useMemo(() => {

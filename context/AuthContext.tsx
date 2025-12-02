@@ -408,11 +408,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     if (!isSignedIn || !user) return;
     // One-time enrich after boot hydration
+    setBalancesLoading(true);
     if (!isBootLoading && !didBootRefetchRef.current) {
       didBootRefetchRef.current = true;
-      try { enrichAndStoreUser(user, { refetch: true, skipBalances: true }).catch(() => {}); } catch {}
+      try { enrichAndStoreUser(user, { refetch: true }).catch(() => {}); } catch {}
     }
     // Balances fetch: run once when provider becomes ready for a given (address, chainId)
+    // if (providerStatus !== "ready" || isSwitchingChain || !chainId ) return;
     if (providerStatus !== "ready") return;
     if (isSwitchingChain) return;
     if (!chainId) return; // ensure we only fetch for a known active chain

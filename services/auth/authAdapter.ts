@@ -24,7 +24,6 @@ import { Web3AuthAdapter } from './web3authAdapter';
 // Use require to avoid eager resolution issues in Metro bundler / TS when file may be added later
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { LocalProviderAdapter } = require('./localProviderAdapter');
-import { getSigningProvider } from '../../libs/provider.registry';
 // Privy adapter imported with require to avoid type resolution issues if optional dep missing
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { PrivyAuthAdapter } = require('./privyAuthAdapter');

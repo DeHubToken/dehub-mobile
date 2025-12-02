@@ -5,10 +5,6 @@ import {
   clearSigningProvider,
   getSigningProvider,
 } from "../libs/provider.registry";
-import { getLocalAccountDetails } from "../libs/wallets.local";
-import { createLocalEip1193Provider } from "../services/localwallet.provider";
-import { SUPPORTED_NETWORKS } from "../config/web3.constants";
-import { ChainId } from "../config/constants";
 import { getAuthMethod } from "../libs/auth.utils";
 
 export type ProviderStatus = "idle" | "initializing" | "ready" | "error";

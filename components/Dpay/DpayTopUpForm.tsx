@@ -5,13 +5,14 @@ import { useAuth } from "../../context/AuthContext";
 import { miniAddress } from "../../libs/strings.util";
 import PrimaryButton from "../ui/PrimaryButton";
 import Dropdown from "../ui/Dropdown";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { supportedCurrencies, ChainId } from "../../config/constants";
 import { supportedNetworks } from "../../config/web3.constants";
 import GlassModal from "../ui/GlassModal";
 import { useDebounceCallback } from "../../hooks/useDebounceCallback";
 import { dpayCreateOrder, getDpayPrice } from "../../services";
 import { toastError, toastSuccess } from "../../libs/toast";
-import { WEBSITE_LINK, TERMS_OF_SERVICE_LINK } from "../../config/links";
+import { WEBSITE_LINK, TERMS_OF_SERVICE_LINK, LEGACY_WEBSITE_LINK } from "../../config/links";
 import { openInApp } from "../../libs/links.utils";
 import { theme } from "../../theme";
 import { appScheme } from "../../config/web3.constants";
@@ -339,7 +340,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
         toastSuccess("Redirecting to checkout…");
       } else if (sessionId) {
         // Fallback: use website to handle Stripe redirect by sessionId
-        const url = `${WEBSITE_LINK}/dpay/checkout?sessionId=${encodeURIComponent(
+        const url = `${LEGACY_WEBSITE_LINK}/dpay/checkout?sessionId=${encodeURIComponent(
           sessionId
         )}`;
         await openInApp(url);
@@ -449,13 +450,24 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
         </Text>
       </View>
 
-      <PrimaryButton
-        title={loadingCheckout ? "Processing..." : "Buy now"}
-        onPress={onBuyNow}
-        disabled={
-          loadingCheckout || !!amountValidationError || !address || loadingPrice
-        }
-      />
+      <AccentButtonGradient>
+        <TouchableOpacity
+          onPress={onBuyNow}
+          disabled={
+            loadingCheckout || !!amountValidationError || !address || loadingPrice
+          }
+          activeOpacity={0.8}
+          className={`py-3 rounded-xl items-center ${
+            loadingCheckout || !!amountValidationError || !address || loadingPrice
+              ? "opacity-50"
+              : ""
+          }`}
+        >
+          <Text className="text-white font-semibold">
+            {loadingCheckout ? "Processing..." : "Buy now"}
+          </Text>
+        </TouchableOpacity>
+      </AccentButtonGradient>
 
       {/* Confirm Modal */}
       <GlassModal

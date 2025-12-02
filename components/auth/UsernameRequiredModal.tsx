@@ -15,6 +15,7 @@ interface Props {
 
 export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUser, onComplete }) => {
   const [username, setUsername] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [checking, setChecking] = useState(false);
   const [available, setAvailable] = useState<boolean | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -22,6 +23,7 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
   useEffect(() => {
     if (!visible) {
       setUsername('');
+      setDisplayName('');
       setAvailable(null);
       setChecking(false);
       setSubmitting(false);
@@ -41,14 +43,19 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
     runAvailability(text.trim());
   };
 
-  const disabled = !username.trim() || available === false || checking || submitting;
+  const handleDisplayNameChange = (text: string) => {
+    setDisplayName(text);
+  };
+
+  const isDisplayNameValid = displayName.trim().length >= 2 && displayName.trim().length <= 50;
+  const disabled = !username.trim() || available === false || checking || submitting || !isDisplayNameValid;
 
   const handleSubmit = async () => {
     if (disabled) return;
     setSubmitting(true);
     try {
-  await AuthService.updateProfile({ username: username.trim() });
-      const finalUser: User = { ...provisionalUser, username: username.trim() };
+      await AuthService.updateProfile({ username: username.trim(), displayName: displayName.trim() });
+      const finalUser: User = { ...provisionalUser, username: username.trim(), displayName: displayName.trim() };
   // token already stored during initial sign in
       await setAuthUser(finalUser);
       toastSuccess('Username set');
@@ -64,8 +71,8 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
     <GlassModal visible={visible} onClose={() => {}} presentation="center" blurIntensity={50}>
       <View className="items-center justify-center px-6 py-6">
         <View className="w-full rounded-xl p-6 bg-transparent">
-          <Text className="text-white text-xl font-semibold mb-4">Choose a username</Text>
-          <Text className="text-neutral-400 text-sm mb-4">Set a username to continue. You can change it later.</Text>
+          <Text className="text-white text-xl font-semibold mb-4">Set your profile</Text>
+          <Text className="text-neutral-400 text-sm mb-4">Choose a username and display name to continue. You can change them later.</Text>
           <TextInput
             value={username}
             onChangeText={handleChange}
@@ -102,6 +109,24 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
             )}
             {available === null && !checking && username.length === 0 && (
               <Text className="text-[10px] text-neutral-500">3-30 chars: letters, numbers, underscore.</Text>
+            )}
+          </View>
+          <View className="mt-4" />
+          <TextInput
+            value={displayName}
+            onChangeText={handleDisplayNameChange}
+            autoCapitalize="words"
+            autoCorrect={false}
+            placeholder="Display name"
+            placeholderTextColor="#666"
+            className="border border-neutral-700 rounded-md px-4 py-3 text-white"
+          />
+          <View className="mt-2 min-h-[20px]">
+            {!isDisplayNameValid && displayName.length > 0 && (
+              <Text className="text-[10px] text-red-400">Display name must be 2-50 characters.</Text>
+            )}
+            {displayName.length === 0 && (
+              <Text className="text-[10px] text-neutral-500">Your public name shown on your profile.</Text>
             )}
           </View>
           <TouchableOpacity

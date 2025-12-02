@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { miniAddress } from "../../libs/strings.util";
-import { DPAY_TX_LINK } from "../../config/links";
+import { DPAY_TX_LINK, LEGACY_WEBSITE_LINK } from "../../config/links";
 import { openInApp, getTransactionLink } from "../../libs/links.utils";
 import { getDpayTnx } from "../../services";
 import { formatRelativeFromNow } from "../../libs/date.util";
@@ -75,7 +75,8 @@ const DpayTransactions: React.FC = () => {
     return () => { cancelled = true; };
   }, []);
   const onShowAll = React.useCallback(() => {
-    openInApp(DPAY_TX_LINK);
+    // openInApp(DPAY_TX_LINK);
+    openInApp(`${LEGACY_WEBSITE_LINK}/dpay/tnx`);
   }, []);
 
   const renderItem = React.useCallback((tx: Tx) => {
