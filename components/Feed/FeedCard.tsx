@@ -30,6 +30,7 @@ import {
 } from "../../services/user.service";
 import FeedImageGallery from "./FeedImageGallery";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
+import { theme } from "../../theme";
 
 export type FeedCardProps = {
   item: GetNFTsResult;

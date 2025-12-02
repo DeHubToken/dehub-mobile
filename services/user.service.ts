@@ -156,7 +156,7 @@ export async function getUserLiveVideos(userOrAddress: User | string, params?: U
 
 // ---------------- Liked Videos ----------------
 
-export interface LikedVideosParams { page?: number; unit?: number }
+export interface LikedVideosParams { page?: number; unit?: number; contentType?: 'video' | 'post' | 'all' }
 
 /**
  * Fetch videos liked by a viewer address.
@@ -164,19 +164,26 @@ export interface LikedVideosParams { page?: number; unit?: number }
  */
 export async function getLikedNFTs(address: string, params?: LikedVideosParams): Promise<GetNFTsResponse> {
   if (!address) return { result: [] };
+  // Backend expects 1-based page and `limit`; default contentType to 'video'
+  const page1 = (params?.page ?? 0) + 1;
+  const limit = params?.unit ?? 40;
+  const contentType = params?.contentType ?? 'video';
   const cleaned: Record<string, any> = Object.fromEntries(
-    Object.entries({ address, page: params?.page, unit: params?.unit ?? 40 })
+    Object.entries({ address, page: page1, limit, contentType })
       .filter(([, v]) => v !== undefined && v !== null && v !== '')
   );
   const query = new URLSearchParams(cleaned as any).toString();
   const url = `/liked_videos${query ? `?${query}` : ''}`;
   try {
     const res = await apiClient.get<any>(url, { isAuthRequired: true });
-    // Normalize common shapes
-    if (Array.isArray(res)) return { result: res } as GetNFTsResponse;
-    if (res?.result && Array.isArray(res.result)) return res as GetNFTsResponse;
-    if (Array.isArray(res?.data)) return { result: res.data } as GetNFTsResponse;
-    return { result: [] };
+    // Expected shape: { result: { items, totalCount, page, limit, contentType } }
+    const wrapper = (res?.data?.result ?? res?.result ?? res) as any;
+    const items = Array.isArray(wrapper)
+      ? wrapper
+      : Array.isArray(wrapper?.items)
+        ? wrapper.items
+        : [];
+    return { result: items, totalCount: wrapper?.totalCount, page: wrapper?.page, limit: wrapper?.limit } as GetNFTsResponse;
   } catch (e) {
     console.warn('[user.service] getLikedNFTs error', e);
     throw e;
