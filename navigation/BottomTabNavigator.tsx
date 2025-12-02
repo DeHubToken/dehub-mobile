@@ -31,6 +31,7 @@ function BottomTabNavigator() {
   const isAuthed = isSignedIn && !needsUsername;
   const accent = useMemo(() => theme.colors.accent || "#4F8EF7", []);
   const unreadConvs = useUnreadConversationsCount((user as any)?.id);
+  const [currentTab, setCurrentTab] = React.useState<string>(ScreenNames.Home);
   const renderIcon = (routeName: string, focused: boolean, size: number) => {
     let iconNameFilled: keyof typeof Ionicons.glyphMap;
     let iconNameOutline: keyof typeof Ionicons.glyphMap;
@@ -112,6 +113,17 @@ function BottomTabNavigator() {
           height: 70,
         },
       })}
+      screenListeners={{
+        state: (e) => {
+          const state = e.data.state;
+          if (state && state.index !== undefined && state.routes) {
+            const activeRoute = state.routes[state.index];
+            if (activeRoute?.name) {
+              setCurrentTab(activeRoute.name);
+            }
+          }
+        },
+      }}
     >
       <Tab.Screen name={ScreenNames.Home} component={HomeScreen} />
       <Tab.Screen name={ScreenNames.Feed} component={FeedScreen} />
@@ -122,7 +134,8 @@ function BottomTabNavigator() {
           listeners={{
             tabPress: (e) => {
               e.preventDefault();
-              navigation.navigate(ScreenNames.Upload);
+              const uploadTab = currentTab === ScreenNames.Feed ? 'feed' : undefined;
+              navigation.navigate(ScreenNames.Upload, { tab: uploadTab });
             },
           }}
         />

@@ -35,7 +35,7 @@ type PickedImage = ImagePicker.ImagePickerAsset;
 
 export default function FeedTab() {
   const DESCRIPTION_MAX = 500;
-  const CATEGORIES_MIN = 1;
+  const CATEGORIES_MIN = 0;
   const CATEGORIES_MAX = 5;
 
   const navigation = useNavigation();
@@ -113,7 +113,7 @@ export default function FeedTab() {
     const t = title.trim();
     const d = description.trim();
     const hasBasics =
-      t.length >= 3 && d.length >= 3 && categories.length >= CATEGORIES_MIN;
+      t.length >= 3 && categories.length <= CATEGORIES_MAX;
     // Images are optional (0-4)
     const withinLimit = images.length <= 4;
     return hasBasics && withinLimit;
@@ -226,12 +226,13 @@ export default function FeedTab() {
       if (!streamCollectionContract)
         throw new Error("Wallet not ready to mint");
       setUploadStage("awaiting-wallet");
-      // console.log({        streamCollectionContract,
+      // console.log({ 
       //   createdTokenId,
       //   timestamp,
       //   v,
       //   r,
       //   s})
+      //   return;
       const tx = await mintNftOnChain(
         streamCollectionContract,
         createdTokenId,
@@ -281,9 +282,10 @@ export default function FeedTab() {
           title={title}
           description={description}
           descriptionMax={DESCRIPTION_MAX}
-          descriptionPlaceholder="Share what your post is about"
+          descriptionPlaceholder="Share what your post is about (optional)"
           onChangeTitle={setTitle}
           onChangeDescription={setDescription}
+          type="feed"
         />
 
         <UploadCategoriesSelector
@@ -297,6 +299,7 @@ export default function FeedTab() {
           max={CATEGORIES_MAX}
           onAdd={addCategory}
           onRemove={removeCategory}
+          type="feed"
         />
 
         {/* Images picker */}

@@ -13,6 +13,7 @@ export type UploadCategoriesSelectorProps = {
   max: number;
   onAdd: (name: string) => void;
   onRemove: (name: string) => void;
+  type?: 'feed' | 'video' | 'live';
 };
 
 const UploadCategoriesSelector: React.FC<UploadCategoriesSelectorProps> = ({
@@ -26,6 +27,7 @@ const UploadCategoriesSelector: React.FC<UploadCategoriesSelectorProps> = ({
   max,
   onAdd,
   onRemove,
+  type,
 }) => {
   const filtered = useMemo(() => {
     const list = categoryQuery
@@ -40,7 +42,7 @@ const UploadCategoriesSelector: React.FC<UploadCategoriesSelectorProps> = ({
     <View className="mb-4">
       <View className="flex-row items-center justify-between mb-1">
         <Text className="text-gray-400">
-          Categories <Text className="text-red-500">*</Text>
+          Categories {type !== 'feed' && <Text className="text-red-500">*</Text>}
         </Text>
         <Text
           className={`text-xs ${
