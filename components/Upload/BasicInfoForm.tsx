@@ -8,6 +8,7 @@ type Props = {
   onChangeTitle: (v: string) => void;
   onChangeDescription: (v: string) => void;
   descriptionPlaceholder?: string;
+  type?: 'feed' | 'video' | 'live';
 };
 
 const BasicInfoForm: React.FC<Props> = ({
@@ -17,6 +18,7 @@ const BasicInfoForm: React.FC<Props> = ({
   onChangeTitle,
   onChangeDescription,
   descriptionPlaceholder,
+  type,
 }) => {
   return (
     <View className="mt-2">
@@ -34,7 +36,7 @@ const BasicInfoForm: React.FC<Props> = ({
       </View>
       <View className="mb-4">
         <Text className="text-gray-400 mb-1">
-          Description <Text className="text-red-500">*</Text>
+          Description {type !== 'feed' && <Text className="text-red-500">*</Text>}
         </Text>
         <TextInput
           value={description}
