@@ -37,7 +37,7 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
           </View>
           <Text className="text-gray-300 text-lg font-semibold ml-2">DHB</Text>
         </View>
-        <Text className="text-emerald-400 text-2xl font-bold">
+        <Text className="text-theme-accent text-2xl font-bold">
           {typeof transfersTotal === "number"
             ? transfersTotal.toLocaleString()
             : "—"}
@@ -60,7 +60,7 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
               DHB : <Text className="text-rose-400">No Supply</Text>
             </Text>
           ) : (
-            <Text className="text-emerald-400 text-2xl font-bold">
+            <Text className="text-theme-accent text-2xl font-bold">
               {supplyAmount.toLocaleString(undefined, {
                 maximumFractionDigits: 4,
               })}
