@@ -14,6 +14,7 @@ import {
   getCoverUrl,
   getBadgeName,
   getBadgeUrl,
+  getDefaultBanner,
 } from "../../libs/misc";
 import { truncateAddress } from "../../libs/strings.util";
 import { formatCompactNumber } from "../../libs/numbers.util";
@@ -62,7 +63,6 @@ interface RemoteUser {
 }
 
 const FallbackAvatar = require("../../assets/default-avatar.png");
-const FallbackBanner = require("../../assets/banner.png");
 
 const WIN_HEIGHT = Dimensions.get("window").height;
 const MIN_HEIGHT = Math.round(WIN_HEIGHT * 0.3); // allow 30% minimal snap for compact open
@@ -237,6 +237,10 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
 
   const avatarUrl = useMemo(() => getAvatarUrl(data?.avatarImageUrl), [data?.avatarImageUrl]);
   const coverUrl = useMemo(() => getCoverUrl(data?.coverImageUrl), [data?.coverImageUrl]);
+  const defaultBanner = useMemo(() => 
+    getDefaultBanner(data?.username || data?.address || data?.walletAddress || ""), 
+    [data?.username, data?.address, data?.walletAddress]
+  );
   const stakedDHB = useMemo(() => {
     if (!data) return 0;
     const fromBalances = maxStacked((data as any)?.balanceData);
@@ -551,7 +555,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                 onShare={handleShare}
                 onMessage={handleMessage}
                 FallbackAvatar={FallbackAvatar}
-                FallbackBanner={FallbackBanner}
+                FallbackBanner={defaultBanner}
                 socials={data as any}
               />
               <View className="px-6 mt-2">

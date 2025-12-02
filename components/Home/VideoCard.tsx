@@ -16,6 +16,7 @@ import {
   getImageUrl,
   getBadgeUrl,
   getVideoUrl,
+  getDefaultBanner,
 } from "../../libs";
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import Avatar from "../common/Avatar";
@@ -52,7 +53,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const thumbnail =
     thumbUrl && thumbUrl.length > 0
       ? thumbUrl
-      : require("../../assets/default-banner.png");
+      : getDefaultBanner(tokenId || (nft as any).id || (nft as any)._id || "");
   const avatarUrl = getAvatarUrl(
     (nft as any).minterAvatarUrl || (nft as any).account?.avatarImageUrl || ""
   );

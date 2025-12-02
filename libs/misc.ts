@@ -128,6 +128,23 @@ const BADGE_IMAGES: Record<string, number> = {
   Meglodon: require("../assets/badges/Meglodon.png"),
 };
 
+const DEFAULT_BANNERS = [
+  require("../assets/banners/1.png"),
+  require("../assets/banners/2.png"),
+  require("../assets/banners/3.png"),
+  require("../assets/banners/4.png"),
+];
+
+export function getDefaultBanner(identifier: string = ""): number {
+  if (!identifier) return DEFAULT_BANNERS[0];
+  let hash = 0;
+  for (let i = 0; i < identifier.length; i++) {
+    hash = identifier.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const index = Math.abs(hash) % DEFAULT_BANNERS.length;
+  return DEFAULT_BANNERS[index];
+}
+
 export function getBadgeUrl(
   stakingAmount: number | string,
   theme: "light" | "dark" = "light"
@@ -163,6 +180,7 @@ export const Misc = {
   getVideoUrl,
   getBadgeUrl,
   getBadgeName,
+  getDefaultBanner,
   getImageUrlApi,
   getImageUrlApiSimple,
   shareProfile,

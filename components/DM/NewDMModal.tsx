@@ -16,6 +16,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { User } from "../../context/AuthContext";
+import { theme } from "../../theme";
 import { usersSearch } from "../../services/user.service";
 import { useDebounceCallback } from "../../hooks/useDebounceCallback";
 import Avatar from "../common/Avatar";
@@ -238,7 +239,8 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
             <View className="w-9 h-9 rounded-xl bg-theme-brand-primary/15 items-center justify-center mr-2">
               <Ionicons
                 name="chatbubble-ellipses-outline"
-                color="#6EE7B7"
+                color={theme.colors.accent}
+                // className="text-theme-accent"
                 size={18}
               />
             </View>
@@ -258,9 +260,9 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
               ref={searchRef}
               value={query}
               onChangeText={onChangeSearch}
-              placeholder="Search username or paste address"
+              placeholder="Enter address or username to chat"
               placeholderTextColor="#9CA3AF"
-              className="flex-1 text-theme-neutrals-100 px-3 text-[16px]"
+              className="flex-1 text-theme-neutrals-100 px-3 text-[15px]"
               returnKeyType="search"
               onFocus={() => setShowResults((query || "").trim().length >= 2)}
               autoFocus
@@ -376,14 +378,14 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
             </View>
           ) : (
             <View className="py-4">
-              <View className="flex-row items-start bg-theme-neutrals-800/60 border border-theme-neutrals-700 rounded-2xl p-3">
+              <View className="flex-row items-center bg-theme-neutrals-800/60 border border-theme-neutrals-700 rounded-2xl p-3">
                 <Ionicons
                   name="information-circle-outline"
                   size={18}
                   color="#9CA3AF"
                   style={{ marginTop: 2 }}
                 />
-                <Text className="text-theme-neutrals-400 text-[12px] ml-2">
+                <Text className="text-theme-neutrals-400 text-[12px] mx-2">
                   Paste an address or type a username to start a chat
                 </Text>
               </View>

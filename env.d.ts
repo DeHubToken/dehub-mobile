@@ -14,4 +14,5 @@ declare module '@env' {
     export const TENOR_API_KEY: string;
     export const PIMLICO_API_KEY: string;
     export const STRIPE_PUBLISHABLE_KEY: string;
+    export const LEGACY_APP_ORIGIN: string;
 }

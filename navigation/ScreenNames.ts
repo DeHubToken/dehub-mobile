@@ -14,6 +14,7 @@ export enum ScreenNames {
   Feed = 'Feed',
   FeedDetail = 'FeedDetail',
   Upload = 'Upload',
+  UploadTab = 'UploadTab',
   VideoTrim = 'VideoTrim',
   VideoUpload = 'VideoUpload',
   DM = 'DM',

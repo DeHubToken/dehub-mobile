@@ -58,16 +58,18 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
     <View>
       <View>
         <TouchableOpacity activeOpacity={0.8} onPress={() => onOpenImage("cover")}>
-          <ImageBackground
-            source={coverUrl === "default-banner" ? FallbackBanner : { uri: coverUrl as string }}
-            style={{ height: 140 }}
-            className="w-full bg-cover bg-center rounded-2xl mx-4 overflow-hidden relative"
-            resizeMode="cover"
-          >
-            <View className="absolute right-0 bottom-0 mx-8 mb-3">
-              <CoverSocialsOverlay socials={socials} onShare={handlePressShare} onMessage={onMessage} />
-            </View>
-          </ImageBackground>
+          <View className="mx-4 rounded-2xl overflow-hidden" style={{ height: 140 }}>
+            <ImageBackground
+              source={coverUrl === "default-banner" ? FallbackBanner : { uri: coverUrl as string }}
+              style={{ width: "100%", height: "100%" }}
+              imageStyle={{ borderRadius: 16 }}
+              resizeMode="cover"
+            >
+              <View className="absolute right-0 bottom-0 mx-4 mb-3">
+                <CoverSocialsOverlay socials={socials} onShare={handlePressShare} onMessage={onMessage} />
+              </View>
+            </ImageBackground>
+          </View>
         </TouchableOpacity>
       </View>
       <View className="px-6 mt-3">

@@ -42,7 +42,7 @@ function BottomTabNavigator() {
       // Use albums icon (stacked cards) per design image
       iconNameFilled = "albums";
       iconNameOutline = "albums-outline";
-    } else if (routeName === ScreenNames.Upload) {
+    } else if (routeName === ScreenNames.UploadTab) {
       iconNameFilled = "add-circle";
       iconNameOutline = "add-circle"; // unchanged
     } else if (routeName === ScreenNames.DM) {
@@ -58,7 +58,7 @@ function BottomTabNavigator() {
     }
 
     const color = "#9CA3AF"; // gray for unfocused icon
-    const containerPad = routeName === ScreenNames.Upload ? 10 : 8;
+    const containerPad = routeName === ScreenNames.UploadTab ? 10 : 8;
     const containerSize = size + containerPad * 2;
     const radius = containerSize / 2;
 
@@ -74,14 +74,14 @@ function BottomTabNavigator() {
           <View style={[styles.focusBg, { borderRadius: radius }]}>
             <GradientIcon
               name={iconNameFilled}
-              size={routeName === ScreenNames.Upload ? size + 6 : size}
+              size={routeName === ScreenNames.UploadTab ? size + 6 : size}
               colors={[accent, "#A7C5FF"]}
             />
           </View>
         ) : (
           <Ionicons
             name={iconNameOutline}
-            size={routeName === ScreenNames.Upload ? size + 4 : size}
+            size={routeName === ScreenNames.UploadTab ? size + 4 : size}
             color={color}
           />
         )}
@@ -117,7 +117,7 @@ function BottomTabNavigator() {
       <Tab.Screen name={ScreenNames.Feed} component={FeedScreen} />
       {isAuthed && (
         <Tab.Screen
-          name={ScreenNames.Upload}
+          name={ScreenNames.UploadTab}
           component={UploadScreen}
           listeners={{
             tabPress: (e) => {
