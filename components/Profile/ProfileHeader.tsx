@@ -9,7 +9,6 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 
 import { copyToClipboard } from "../../libs";
 import profileImage from "../../assets/default-avatar.png"; // fallback
-import bannerImage from "../../assets/banner.png"; // fallback
 import { theme } from "../../theme";
 import { useAuth } from "../../context/AuthContext";
 import {
@@ -17,6 +16,7 @@ import {
   getCoverUrl,
   getBadgeName,
   getBadgeUrl,
+  getDefaultBanner,
 } from "../../libs/misc";
 import { openExternalLink } from "../../libs/links.utils";
 import env from "../../config/env";
@@ -59,6 +59,13 @@ const ProfileHeader = () => {
   const badge = getBadgeName(user?.stakedDHB as number);
   const badgeImage = getBadgeUrl(user?.stakedDHB as number);
   const badgeIcon = "trophy-outline";
+  
+  // Deterministic default banner based on user ID/address
+  const defaultBanner = useMemo(() => 
+    getDefaultBanner(user?.id || user?.username || user?.address || ""), 
+    [user?.id, user?.username, user?.address]
+  );
+
   const truncatedHeaderName = useMemo(
     () => truncate(username, 8, ".."),
     [username]
@@ -266,7 +273,7 @@ const ProfileHeader = () => {
               localCoverUri
                 ? { uri: localCoverUri }
                 : coverUrl === "default-banner"
-                ? bannerImage
+                ? defaultBanner
                 : { uri: coverUrl }
             }
             contentFit="cover"

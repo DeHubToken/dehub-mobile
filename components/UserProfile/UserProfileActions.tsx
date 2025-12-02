@@ -43,7 +43,7 @@ const UserProfileActions: React.FC<UserProfileActionsProps> = ({
         <TouchableOpacity
           onPress={() => !followLoading && !disableActions && onOpenUnfollow()}
           disabled={followLoading || disableActions}
-          className={`flex-1 bg-theme-neutrals-800 py-2 rounded-lg items-center flex-row justify-center gap-1 ${
+          className={`flex-1 bg-theme-neutrals-800 py-2 rounded-full items-center flex-row justify-center gap-1 ${
             followLoading || disableActions ? "opacity-60" : ""
           }`}
         >
