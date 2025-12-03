@@ -4,7 +4,7 @@ type IonIconName = keyof typeof Ionicons.glyphMap;
 
 // Adapted to backend sortMode values
 export const statusOptions: { id: string; label: string; icon: IonIconName; color?: string }[] = [
-  { id: 'trends', label: 'Trending', icon: 'trending-up-outline', color: '#FF6B35' },
+  { id: 'trends', label: 'Most viewed', icon: 'trending-up-outline', color: '#FF6B35' },
   { id: 'live', label: 'Live', icon: 'radio-outline', color: '#FF0000' },
   { id: 'new', label: 'New', icon: 'flash-outline', color: '#00FF88' },
   { id: 'mostLiked', label: 'Most Liked', icon: 'heart-outline', color: '#EF4444' },

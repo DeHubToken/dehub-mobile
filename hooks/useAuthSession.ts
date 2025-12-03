@@ -217,13 +217,14 @@ export function useAuthSession({
   );
 
   const signInWithWallet = useCallback(
-    async (walletAddress: string, chainId: number) => {
+    async (walletAddress: string, chainId: number, overridePrivateKey?: string) => {
       const mask = (addr?: string) =>
         addr ? `${addr.slice(0, 6)}...${addr.slice(-4)}` : undefined;
       log.info("signInWithWallet:start", {
         walletAddress: mask(walletAddress),
         chainId,
         preferred: await getPreferredChainId(),
+        hasOverridePk: !!overridePrivateKey,
       });
       setIsLoading(true);
       try {
@@ -256,12 +257,15 @@ export function useAuthSession({
         let walletUser: any;
         let token: any;
         let needsUsername: boolean = false;
-        console.log("Signing in with wallet:", {hasOverride, privateKey})
         try {
           const res = await AuthService.signInWithWallet(
             walletAddress,
             chainId,
-            hasOverride ? undefined : privateKey ? { privateKey } : undefined
+            hasOverride && overridePrivateKey
+              ? { privateKey: overridePrivateKey }
+              : privateKey
+              ? { privateKey }
+              : undefined
           );
           walletUser = (res as any).user;
           token = (res as any).token;

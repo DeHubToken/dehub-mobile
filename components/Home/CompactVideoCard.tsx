@@ -142,10 +142,10 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
       <TouchableOpacity
         activeOpacity={0.85}
         onPress={handlePressVideo}
-        className="bg-theme-neutrals-900 rounded-lg overflow-hidden flex-row items-start p-2 border border-theme-neutrals-700"
+        className="bg-theme-neutrals-900 rounded-2xl overflow-hidden flex-row items-start p-2 border border-theme-neutrals-700"
       >
         <View
-          className="rounded-md overflow-hidden bg-theme-neutrals-800 justify-center items-center"
+          className="rounded-2xl overflow-hidden bg-theme-neutrals-800 justify-center items-center"
           style={{ width: 150, aspectRatio: 16 / 9 }}
         >
           {hasThumbnail ? (
@@ -215,7 +215,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
               </TouchableOpacity>
             </View>
           )}
-         
+
           <View className="flex-row items-center mt-1">
             <Text className="text-theme-neutrals-300 text-xs">
               {views} views
@@ -269,7 +269,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
               )}
             </View>
           )}
-           <View className="flex-row items-center gap-2 my-2">
+          <View className="flex-row items-center gap-2 my-2">
             <View className="flex-row items-center bg-theme-neutrals-700 rounded-full px-2 py-0.5">
               <Ionicons name="heart" size={8} color="#D1D5DB" />
               <Text className="ml-1 text-[9px] text-theme-neutrals-200">

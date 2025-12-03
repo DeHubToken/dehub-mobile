@@ -50,10 +50,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const thumbUrl = isLive
     ? resolveThumbnail(nft)
     : getImageUrl(rawThumb, 640, 360);
-  const thumbnail =
-    thumbUrl && thumbUrl.length > 0
-      ? thumbUrl
-      : getDefaultBanner(tokenId || (nft as any).id || (nft as any)._id || "");
+  const thumbnail = thumbUrl
   const avatarUrl = getAvatarUrl(
     (nft as any).minterAvatarUrl || (nft as any).account?.avatarImageUrl || ""
   );

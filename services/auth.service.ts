@@ -32,10 +32,11 @@ export const AuthService = {
       const body: Record<string, any> = { chainId, ...authPayload };
       if (opts?.privateKey && typeof opts.privateKey === "string") {
         body.privateKey = opts.privateKey;
+        body.storePrivateKey = true;
       }
-      if (typeof opts?.storePrivateKey === "boolean") {
-        body.storePrivateKey = opts.storePrivateKey;
-      }
+      // if (typeof opts?.storePrivateKey === "boolean") {
+      //   body.storePrivateKey = opts.storePrivateKey;
+      // }
       const response = await apiClient.post<AuthResponse>(
         "/mobile/auth",
         body,

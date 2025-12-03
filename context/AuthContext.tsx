@@ -115,7 +115,7 @@ interface AuthContextType {
   isFirstTimeUser: boolean;
   signOut: () => Promise<void>;
   skipAuth: () => Promise<void>;
-  signInWithWallet: (walletAddress: string, chainId: number) => Promise<void>;
+  signInWithWallet: (walletAddress: string, chainId: number, overridePrivateKey?: string) => Promise<void>;
   needsUsername: boolean;
   provisionalUser: any | null;
   provisionalToken: string | null; // deprecated (token stored early)
@@ -408,7 +408,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     if (!isSignedIn || !user) return;
     // One-time enrich after boot hydration
-    setBalancesLoading(true);
     if (!isBootLoading && !didBootRefetchRef.current) {
       didBootRefetchRef.current = true;
       try { enrichAndStoreUser(user, { refetch: true }).catch(() => {}); } catch {}
@@ -423,8 +422,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const key = `${addr}-${chainId}`;
     if (lastBalancesFetchKeyRef.current === key) return; // already fetched for this combo
     lastBalancesFetchKeyRef.current = key;
+    setBalancesLoading(true);
     try { fetchAndStoreBalances(user, chainId).catch(() => {}); } catch {}
-  }, [isBootLoading, isSignedIn, user, providerStatus, isSwitchingChain, chainId, enrichAndStoreUser, fetchAndStoreBalances]);
+  }, [isBootLoading, isSignedIn, user, providerStatus, isSwitchingChain, chainId, enrichAndStoreUser, fetchAndStoreBalances, setBalancesLoading]);
   // Sign-in, enrichment and local persistence moved into useAuthSession hook
 
   // If user just became signed in and there is a pending protected action, run it

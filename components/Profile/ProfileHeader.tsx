@@ -62,8 +62,8 @@ const ProfileHeader = () => {
   
   // Deterministic default banner based on user ID/address
   const defaultBanner = useMemo(() => 
-    getDefaultBanner(user?.id || user?.username || user?.address || ""), 
-    [user?.id, user?.username, user?.address]
+    getDefaultBanner(user?.address || ""), 
+    [user?.address]
   );
 
   const truncatedHeaderName = useMemo(

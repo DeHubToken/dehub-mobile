@@ -113,7 +113,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
         try {
             // Persist the address + private key immediately; username will be added later in AuthContext
             await upsertLocalAccount({ address, privateKey });
-          await signInWithWallet(address, effectiveChainId);
+          await signInWithWallet(address, effectiveChainId, privateKey);
           // Local account persistence will occur centrally after username is available
           toastInfo("Wallet imported");
           setPrivateKey("");
@@ -148,7 +148,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           const localProvider = createLocalEip1193Provider({ privateKey: pk, rpcUrl, chainIdHex });
           setSigningProvider(localProvider);
           try {
-            await signInWithWallet(address, effectiveChainId);
+            await signInWithWallet(address, effectiveChainId, pk);
             // Ensure the account is persisted with its private key (idempotent)
             await upsertLocalAccount({ address, privateKey: pk });
             onClose();
