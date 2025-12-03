@@ -2,16 +2,18 @@ import React, { useMemo } from "react";
 import { View, TouchableOpacity, ActivityIndicator, Text } from "react-native";
 import { SvgXml } from "react-native-svg";
 import EmailLoginFlow from "./EmailLoginFlow";
+import PhoneLoginFlow from "./PhoneLoginFlow";
 
 // Explicitly define supported providers (keys must match the provider id used by Web3Auth config)
 export type SocialProvider = "google" | "twitter" | "discord";
 
 interface SocialLoginIconsProps {
-  onPress: (provider: string, email?: string) => void;
+  onPress: (provider: string, emailOrPhone?: string) => void;
   busyProvider?: string; // provider currently performing login
   disabled?: boolean;
   providers?: SocialProvider[]; // optional override (defaults to ['google','twitter'])
   showEmailButton?: boolean;
+  showPhoneButton?: boolean;
 }
 
 // Monochrome Google glyph (white) enlarged to visually match X
@@ -46,6 +48,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   disabled,
   providers = ["google", "twitter", "discord"],
   showEmailButton,
+  showPhoneButton,
 }) => {
   const items = useMemo(
     () => providers.filter((p) => ICON_MAP[p]),
@@ -86,6 +89,14 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
         <EmailLoginFlow
           onSubmit={onPress}
           loading={busyProvider === "email_passwordless"}
+          disabled={disabled}
+        />
+      )}
+      {/* Phone login button and input flow */}
+      {showPhoneButton && (
+        <PhoneLoginFlow
+          onSubmit={onPress}
+          loading={busyProvider === "sms_passwordless"}
           disabled={disabled}
         />
       )}

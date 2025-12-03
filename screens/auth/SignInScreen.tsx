@@ -72,7 +72,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   }, []);
 
   const handleSocialLogin = useCallback(
-    async (provider: string, email?: string) => {
+    async (provider: string, emailOrPhone?: string) => {
       if (!isWeb3AuthConfigured()) {
         console.warn("[SignIn] Web3Auth client id missing");
         toastError("Social login unavailable. Please try again later.");
@@ -82,8 +82,8 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       setCurrentProvider(provider);
       try {
         const extraLoginOptions =
-          provider === "email_passwordless" && email
-            ? { login_hint: email }
+          (provider === "email_passwordless" || provider === "sms_passwordless") && emailOrPhone
+            ? { login_hint: emailOrPhone }
             : undefined;
         const result = await loginWithSocial(
           provider as any,
@@ -203,9 +203,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           <View className="mt-6" />
 
           <SocialLoginIcons
-            onPress={(provider, email) => {
-              if (provider === "email_passwordless" && email) {
-                handleSocialLogin("email_passwordless", email);
+            onPress={(provider, emailOrPhone) => {
+              if ((provider === "email_passwordless" || provider === "sms_passwordless") && emailOrPhone) {
+                handleSocialLogin(provider, emailOrPhone);
               } else {
                 handleSocialLogin(provider);
               }
@@ -213,6 +213,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             busyProvider={isLocalLoading ? currentProvider : undefined}
             disabled={isLocalLoading}
             showEmailButton
+            showPhoneButton
           />
 
           <ImportWallet />

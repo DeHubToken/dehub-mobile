@@ -36,7 +36,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
 
 
   const handleSocialLogin = useCallback(
-    async (provider: string, email?: string) => {
+    async (provider: string, emailOrPhone?: string) => {
       if (!isWeb3AuthConfigured()) {
         toastError("Social login unavailable. Please try again later.");
         return;
@@ -45,8 +45,8 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       setCurrentProvider(provider);
       try {
         let result;
-        if (provider === "email_passwordless" && email) {
-          result = await loginWithSocial(provider as any, { login_hint: email });
+        if ((provider === "email_passwordless" || provider === "sms_passwordless") && emailOrPhone) {
+          result = await loginWithSocial(provider as any, { login_hint: emailOrPhone });
         } else {
           result = await loginWithSocial(provider as any);
         }
@@ -69,8 +69,8 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   );
 
   const handleProviderPress = useCallback(
-    (provider: string, email?: string) => {
-      handleSocialLogin(provider, email);
+    (provider: string, emailOrPhone?: string) => {
+      handleSocialLogin(provider, emailOrPhone);
     },
     [handleSocialLogin]
   );
@@ -116,6 +116,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
             busyProvider={isLocalLoading ? currentProvider : undefined}
             disabled={isLocalLoading}
             showEmailButton
+            showPhoneButton
           />
           <ImportWallet />
           <View className="mt-6 mb-4">
