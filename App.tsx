@@ -29,6 +29,8 @@ import RootNavigator from "./navigation/RootNavigator";
 import { MessagingProvider } from "./context/MessagingContext";
 import { prewarmWeb3Auth } from "./config/web3auth.config";
 import { Platform } from "react-native";
+import UpdateAppModal from "./components/UpdateAppModal";
+import { useAppUpdate } from "./hooks/useAppUpdate";
 
 export default function App() {
   // Complete any pending browser auth sessions (Web3Auth, OAuth)
@@ -113,6 +115,21 @@ export default function App() {
 
 const BootGate: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isBootLoading } = useAuth();
+  const { updateInfo, showModal, closeModal } = useAppUpdate();
+
   if (isBootLoading) return <SplashScreen />;
-  return <>{children}</>;
+  
+  return (
+    <>
+      {children}
+      <UpdateAppModal
+        visible={showModal}
+        onClose={closeModal}
+        isRequired={updateInfo.isRequired}
+        version={updateInfo.latestVersion}
+        releaseNotes={updateInfo.releaseNotes}
+        downloadUrl={updateInfo.downloadUrl}
+      />
+    </>
+  );
 };

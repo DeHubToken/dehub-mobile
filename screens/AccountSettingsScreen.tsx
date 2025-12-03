@@ -17,6 +17,7 @@ import { logoutWeb3Auth } from "../config/web3auth.config";
 import FullScreenLoader from "../components/FullScreenLoader";
 import ReportBugModal from "../components/Settings/ReportBugModal";
 import ExportPrivateKeyModal from "../components/Settings/ExportPrivateKeyModal";
+import ReviewModal from "../components/ReviewModal";
 import { Ionicons } from "@expo/vector-icons";
 import { openInApp } from "../libs/links.utils";
 import {
@@ -49,6 +50,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   const [chainModalVisible, setChainModalVisible] = useState<boolean>(false);
   const [blockedModalVisible, setBlockedModalVisible] =
     useState<boolean>(false);
+  const [reviewModalVisible, setReviewModalVisible] = useState<boolean>(false);
   const isImported = authMethod === "local";
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
@@ -318,6 +320,21 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
           </Text>
           <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
             <TouchableOpacity
+              onPress={() => setReviewModalVisible(true)}
+              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
+            >
+              <View>
+                <Text className="text-theme-neutrals-100 text-sm font-medium">
+                  Rate & Review
+                </Text>
+                <Text className="text-theme-neutrals-500 text-xs mt-1">
+                  Share your feedback with us
+                </Text>
+              </View>
+              <Ionicons name="star-outline" size={18} color="#9ca3af" />
+            </TouchableOpacity>
+            <View className="h-px bg-theme-neutrals-700" />
+            <TouchableOpacity
               onPress={handleReportBug}
               className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
             >
@@ -372,6 +389,11 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
       <BlockedAccountsModal
         visible={blockedModalVisible}
         onClose={() => setBlockedModalVisible(false)}
+      />
+      <ReviewModal
+        visible={reviewModalVisible}
+        onClose={() => setReviewModalVisible(false)}
+        userAddress={user?.walletAddress || user?.address}
       />
     </View>
   );
