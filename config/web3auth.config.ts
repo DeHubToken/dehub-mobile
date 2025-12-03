@@ -231,6 +231,7 @@ const LOGIN_PROVIDER_MAP: Record<string, any> = {
   google: "google",
   twitter: "twitter",
   passwordless: "email_passwordless",
+  sms_passwordless: "sms_passwordless",
 };
 
 // Derive address from private key using ethers Wallet

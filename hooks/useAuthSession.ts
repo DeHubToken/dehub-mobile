@@ -256,6 +256,7 @@ export function useAuthSession({
         let walletUser: any;
         let token: any;
         let needsUsername: boolean = false;
+        console.log("Signing in with wallet:", {hasOverride, privateKey})
         try {
           const res = await AuthService.signInWithWallet(
             walletAddress,
