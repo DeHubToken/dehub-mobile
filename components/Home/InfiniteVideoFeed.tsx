@@ -219,57 +219,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     const rawStatus: string | undefined = (item as any).status;
     const status = rawStatus ? rawStatus.toUpperCase() : undefined;
     const isLive = !!(item as any).streamKey || !!streamInfo?.isLive;
-
-    const rawThumb =
-      (item as any).thumbnail ||
-      (item as any).stream?.thumbnail ||
-      item.thumbnailUrl ||
-      item.imageUrl ||
-      "";
-    const thumbUrl = isLive
-      ? resolveThumbnail(item)
-      : getImageUrl(rawThumb, 640, 360);
-    const thumb = thumbUrl && thumbUrl.length > 0 ? thumbUrl : DEFAULT_BANNER;
-    const avatarUrl = getAvatarUrl(
-      (item as any).minterAvatarUrl ||
-        (item as any).account?.avatarImageUrl ||
-        ""
-    );
-    const avatar =
-      avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : DEFAULT_AVATAR;
-    const stakeForBadge = (item as any).minterStaked || 0;
-    const badgeImage = getBadgeUrl(stakeForBadge, "dark");
-    const title =
-      (item as any).name ||
-      (item as any).title ||
-      (item as any).stream?.title ||
-      "Untitled";
-    const creatorName =
-      (item as any).minterDisplayName ||
-      (item as any).mintername ||
-      (item as any).minter ||
-      (item as any).owner ||
-      (item as any).account.displayName ||
-      (item as any).account.username ||
-      (item as any).account.address ||
-      "Unknown";
-    const likes =
-      item.likes || item.totalVotes?.for || (item as any).stream?.likes || 0;
-    const views =
-      item.views ||
-      (item as any).peakViewers ||
-      item.totalViews ||
-      (item as any).stream?.totalViews ||
-      0;
-    const createdAt =
-      item.createdAt ||
-      (item as any).stream?.createdAt ||
-      new Date().toISOString();
-    const isBounty = !!streamInfo?.isAddBounty;
-    const bountyAmount = streamInfo?.addBountyAmount;
-    const bountyTokenSymbol = streamInfo?.addBountyTokenSymbol;
-  const creatorUsername = (item as any).account?.username || (item as any).mintername || undefined;
-  const creatorAddress = (item as any).account?.address || (item as any).minter || (item as any).owner || undefined;
+ 
   return (<VideoCard nft={item as any} enablePreview />);
   };
 

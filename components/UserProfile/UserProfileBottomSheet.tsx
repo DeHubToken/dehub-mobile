@@ -238,8 +238,8 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   const avatarUrl = useMemo(() => getAvatarUrl(data?.avatarImageUrl), [data?.avatarImageUrl]);
   const coverUrl = useMemo(() => getCoverUrl(data?.coverImageUrl), [data?.coverImageUrl]);
   const defaultBanner = useMemo(() => 
-    getDefaultBanner(data?.username || data?.address || data?.walletAddress || ""), 
-    [data?.username, data?.address, data?.walletAddress]
+    getDefaultBanner(data?.address || data?.walletAddress), 
+    [data?.address, data?.walletAddress]
   );
   const stakedDHB = useMemo(() => {
     if (!data) return 0;

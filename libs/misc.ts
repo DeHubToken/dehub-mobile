@@ -133,6 +133,13 @@ const DEFAULT_BANNERS = [
   require("../assets/banners/2.png"),
   require("../assets/banners/3.png"),
   require("../assets/banners/4.png"),
+  require("../assets/banners/5.png"),
+  require("../assets/banners/6.png"),
+  require("../assets/banners/7.png"),
+  require("../assets/banners/8.png"),
+  require("../assets/banners/9.png"),
+  require("../assets/banners/10.png"),
+  require("../assets/banners/11.png"),
 ];
 
 export function getDefaultBanner(identifier: string = ""): number {
