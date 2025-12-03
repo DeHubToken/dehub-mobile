@@ -194,14 +194,16 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
           </View>
         )}
         {isBounty && (
-          <View className="absolute -left-4 top-[20px] rotate-[-40deg] bg-pink-600 px-4 py-0.5 rounded">
-            <Text className="text-theme-neutrals-200 text-[10px] font-bold">
-              W2E: {bountyAmount} {bountyTokenSymbol}
-            </Text>
+          <View className="absolute -left-4 top-0 w-32 origin-top-left" style={{ transform: [{ rotate: '-45deg' }, { translateX: -30 }, { translateY: 8 }] }}>
+            <View className="bg-pink-600 py-0.5">
+              <Text className="text-theme-neutrals-200 text-[10px] font-bold text-center">
+                W2E: {bountyAmount} {bountyTokenSymbol}
+              </Text>
+            </View>
           </View>
         )}
         {isLocked && (
-          <View className="absolute bottom-2 right-2 bg-purple-600 px-2 py-1 rounded">
+          <View className="absolute bottom-2 mb-5 right-2 bg-purple-600 px-2 py-1 rounded">
             <Text className="text-theme-neutrals-200 text-xs font-bold">
               Lock: {lockContentAmount} {lockContentTokenSymbol}
             </Text>
