@@ -49,7 +49,8 @@ export const SOCIAL_PROVIDER_MAP: Record<string, SocialProviderMeta> =
   SOCIAL_PROVIDERS.reduce((acc, p) => ({ ...acc, [p.provider]: p }), {});
 
 // Web3Auth set up from main site
-import * as WebBrowser from "expo-web-browser";
+// import * as WebBrowser from "expo-web-browser";
+import * as WebBrowser from '@toruslabs/react-native-web-browser'
 import * as SecureStore from "expo-secure-store";
 import * as Linking from "expo-linking";
 import { Platform } from "react-native";

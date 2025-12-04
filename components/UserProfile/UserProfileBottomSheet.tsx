@@ -28,6 +28,7 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import UserProfileSocials from "./UserProfileSocials";
 import VideosRoute from "../Profile/VideosRoute";
 import LivestreamsRoute from "../Profile/LivestreamsRoute";
+import FeedRoute from "../Profile/FeedRoute";
 import { TabView, TabBar } from "react-native-tab-view";
 import { theme } from "../../theme";
 import { Dimensions as RNDimensions } from "react-native";
@@ -95,6 +96,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   const videoTabs = useMemo(
     () => [
       { key: "videos", title: "Videos" },
+      { key: "feed", title: "Feed" },
       { key: "livestreams", title: "Livestreams" },
     ],
     []
@@ -435,6 +437,12 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           return (
             <View style={{ flex: 1 }}>
               <VideosRoute address={address} showCreator={false} />
+            </View>
+          );
+        case "feed":
+          return (
+            <View style={{ flex: 1 }}>
+              <FeedRoute address={address} />
             </View>
           );
         case "livestreams":

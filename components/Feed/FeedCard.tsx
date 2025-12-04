@@ -37,10 +37,11 @@ export type FeedCardProps = {
   onOpenImage: (images: any[], index: number) => void;
   onOpenComments: (item: GetNFTsResult) => void;
   showFollow?: boolean;
+  onFeedPress?: (item: GetNFTsResult) => void;
 };
 
 const FeedCard: React.FC<FeedCardProps> = memo(
-  ({ item, onOpenImage, onOpenComments, showFollow }) => {
+  ({ item, onOpenImage, onOpenComments, showFollow, onFeedPress }) => {
     const navigation = useNavigation<any>();
     const [liked, setLiked] = useState<boolean>(!!(item as any).isLiked);
     const [saved, setSaved] = useState<boolean>(!!(item as any).isSaved);
@@ -299,11 +300,15 @@ const FeedCard: React.FC<FeedCardProps> = memo(
     }, [item, address]);
 
     const handleFeedPress = useCallback(() => {
-      const tokenId = (item as any).tokenId ?? (item as any).id;
-      if (tokenId != null) {
-        navigation.navigate(ScreenNames.FeedDetail as any, { tokenId });
+      if (onFeedPress) {
+        onFeedPress(item);
+      } else {
+        const tokenId = (item as any).tokenId ?? (item as any).id;
+        if (tokenId != null) {
+          navigation.navigate(ScreenNames.FeedDetail as any, { tokenId });
+        }
       }
-    }, [item]);
+    }, [item, onFeedPress, navigation]);
 
     const handleSharePress = useCallback(() => {
       const tokenId = (item as any).tokenId ?? (item as any).id;
