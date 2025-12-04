@@ -73,7 +73,7 @@ const UserProfileActions: React.FC<UserProfileActionsProps> = ({
         }`}
       >
         <Ionicons name="film-outline" size={16} color="#fff" />
-        <Text className="text-white text-sm font-semibold">Videos</Text>
+        <Text className="text-white text-sm font-semibold">Posts</Text>
       </TouchableOpacity>
     </View>
   );
