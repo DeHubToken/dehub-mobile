@@ -40,6 +40,7 @@ import UserProfileActions from "./UserProfileActions";
 import DescriptionBlock from "../VideoPlayer/DescriptionBlock";
 import UserProfileStatsRow from "./UserProfileStatsRow";
 import { maxStacked } from "../../libs/validators.util";
+import { LEGACY_WEBSITE_LINK } from "../../config";
 
 interface UserProfileBottomSheetProps {
   visible: boolean;
@@ -303,7 +304,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   const handleShare = useCallback(async () => {
     const profileSlug = username || address;
     if (!profileSlug) return;
-    const url = `${env.APP_ORIGIN}/${profileSlug}`;
+    const url = `${LEGACY_WEBSITE_LINK}/${profileSlug}`;
     const message = `Check out this dehub profile ${url}`;
     await shareProfile(url, message);
   }, [username, address]);
