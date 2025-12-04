@@ -38,6 +38,7 @@ import {
 import { AuthService } from "../../services/auth.service";
 import { toastError, toastSuccess } from "../../libs/toast";
 import ProfileStats from "./ProfileStats";
+import { LEGACY_WEBSITE_LINK } from "../../config";
 
 const ProfileHeader = () => {
   const navigation = useNavigation<any>();
@@ -145,7 +146,7 @@ const ProfileHeader = () => {
   // openExternalLink reused from misc
   const handleShare = useCallback(async () => {
     const profileSlug = username || address;
-    const url = `${env.APP_ORIGIN}/${profileSlug}`;
+    const url = `${LEGACY_WEBSITE_LINK}/${profileSlug}`;
     const message = `Check out my dehub profile ${url}`;
     await shareProfile(url, message);
   }, [username, address]);

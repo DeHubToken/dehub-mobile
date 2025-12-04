@@ -15,7 +15,7 @@ import { listLocalAccounts, removeLocalAccount, LocalAccount, getPrivateKeyForAd
 import { miniAddress } from "../../libs/strings.util";
 import * as Clipboard from "expo-clipboard";
 import { openInApp } from "../../libs/links.utils";
-import { WEBSITE_LINK } from "../../config";
+import { LEGACY_WEBSITE_LINK, WEBSITE_LINK } from "../../config";
 import { ChainId } from "../../config/constants";
 import { SUPPORTED_NETWORKS } from "../../config/web3.constants";
 import { createLocalEip1193Provider } from "../../services/localwallet.provider";
@@ -194,7 +194,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
               accounts from
               <Text
                 className="text-blue-400"
-                onPress={() => openInApp(WEBSITE_LINK)}
+                onPress={() => openInApp(LEGACY_WEBSITE_LINK)}
               >
                 {" "}
                 dehub.io
@@ -310,7 +310,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
               Learn more at
               <Text
                 className="text-blue-400"
-                onPress={() => openInApp(WEBSITE_LINK)}
+                onPress={() => openInApp(LEGACY_WEBSITE_LINK)}
               >
                 {" "}
                 dehub.io
