@@ -4,6 +4,7 @@ import { Text, View, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../theme";
 import GradientIcon from "../components/ui/GradientIcon";
+import FeedIcon from "../components/ui/FeedIcon";
 
 import HomeScreen from "../screens/HomeScreen";
 import { ScreenNames } from "./ScreenNames";
@@ -35,14 +36,36 @@ function BottomTabNavigator() {
   const renderIcon = (routeName: string, focused: boolean, size: number) => {
     let iconNameFilled: keyof typeof Ionicons.glyphMap;
     let iconNameOutline: keyof typeof Ionicons.glyphMap;
+    
+    // Special case for Feed icon - use custom component
+    if (routeName === ScreenNames.Feed) {
+      const containerPad = 8;
+      const containerSize = size + containerPad * 2;
+      const radius = containerSize / 2;
+      
+      return (
+        <View
+          style={[
+            styles.iconWrapper,
+            { width: containerSize, height: containerSize },
+          ]}
+          pointerEvents="none"
+        >
+          {focused ? (
+            <View style={[styles.focusBg, { borderRadius: radius }]}>
+              <FeedIcon size={size} focused={true} />
+            </View>
+          ) : (
+            <FeedIcon size={size} color="#9CA3AF" focused={false} />
+          )}
+        </View>
+      );
+    }
+    
     // Use filled for focused and outline for unfocused to match visuals
     if (routeName === ScreenNames.Home) {
       iconNameFilled = "home";
       iconNameOutline = "home"; // unchanged
-    } else if (routeName === ScreenNames.Feed) {
-      // Use albums icon (stacked cards) per design image
-      iconNameFilled = "albums";
-      iconNameOutline = "albums-outline";
     } else if (routeName === ScreenNames.UploadTab) {
       iconNameFilled = "add-circle";
       iconNameOutline = "add-circle"; // unchanged
