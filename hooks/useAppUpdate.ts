@@ -48,24 +48,6 @@ export function useAppUpdate() {
     try {
       setIsChecking(true);
 
-      // Check if we should skip this check
-      if (!force) {
-        const lastCheck = await AsyncStorage.getItem(UPDATE_CHECK_KEY);
-        if (lastCheck) {
-          const timeSinceCheck = Date.now() - parseInt(lastCheck, 10);
-          if (timeSinceCheck < CHECK_INTERVAL) {
-            setIsChecking(false);
-            return;
-          }
-        }
-
-        const dismissedVersion = await AsyncStorage.getItem(UPDATE_DISMISSED_KEY);
-        if (dismissedVersion) {
-          setIsChecking(false);
-          return;
-        }
-      }
-
       // Check backend API for update information
       const platform = Platform.OS === "ios" ? "ios" : "android";
       const apiUrl = `${env.API_URL}/mobile/app/version?platform=${platform}&current_version=${currentVersion}`;
@@ -92,6 +74,32 @@ export function useAppUpdate() {
         downloadUrl: data.download_url,
       });
 
+      // Always show modal for forced updates, regardless of dismissal
+      if (hasUpdate && isRequired) {
+        setShowModal(true);
+        await AsyncStorage.setItem(UPDATE_CHECK_KEY, Date.now().toString());
+        setIsChecking(false);
+        return;
+      }
+
+      // For optional updates, check if we should skip
+      if (hasUpdate && !isRequired && !force) {
+        const lastCheck = await AsyncStorage.getItem(UPDATE_CHECK_KEY);
+        if (lastCheck) {
+          const timeSinceCheck = Date.now() - parseInt(lastCheck, 10);
+          if (timeSinceCheck < CHECK_INTERVAL) {
+            setIsChecking(false);
+            return;
+          }
+        }
+
+        const dismissedVersion = await AsyncStorage.getItem(UPDATE_DISMISSED_KEY);
+        if (dismissedVersion === data.latest_version) {
+          setIsChecking(false);
+          return;
+        }
+      }
+
       if (hasUpdate) {
         setShowModal(true);
       }
@@ -106,22 +114,29 @@ export function useAppUpdate() {
   }, [currentVersion]);
 
   const dismissUpdate = useCallback(async () => {
-    if (updateInfo.latestVersion && !updateInfo.isRequired) {
+    // Never dismiss forced updates
+    if (updateInfo.isRequired) {
+      return;
+    }
+    
+    if (updateInfo.latestVersion) {
       await AsyncStorage.setItem(UPDATE_DISMISSED_KEY, updateInfo.latestVersion);
     }
     setShowModal(false);
   }, [updateInfo]);
 
   const closeModal = useCallback(() => {
-    if (!updateInfo.isRequired) {
-      dismissUpdate();
+    // Don't allow closing forced updates
+    if (updateInfo.isRequired) {
+      return;
     }
+    dismissUpdate();
   }, [updateInfo.isRequired, dismissUpdate]);
 
   useEffect(() => {
-    // Check for updates on mount
-    checkForUpdates(true);
-  }, []);
+    // Always check for updates on mount to catch forced updates
+    checkForUpdates(false);
+  }, [checkForUpdates]);
 
   return {
     updateInfo,
