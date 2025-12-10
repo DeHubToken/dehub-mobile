@@ -294,7 +294,29 @@ export function useProviderLifecycle({
         if (!accounts || accounts.length === 0) {
           log.warn("validate:empty-accounts", { reason });
           providerMetaRef.current.consecutiveEmptyAccounts += 1;
+          
+          // Don't reinit immediately - give provider a chance to recover
+          // This helps when app resumes after being backgrounded
+          if (providerMetaRef.current.consecutiveEmptyAccounts === 1) {
+            log.info("first empty accounts check - waiting before reinit");
+            setTimeout(async () => {
+              if (!provider || providerStatus !== "ready") return;
+              const retryAccounts = await fetchAccounts(provider);
+              if (!retryAccounts || retryAccounts.length === 0) {
+                log.warn("still no accounts after wait - attempting reinit");
+                await attemptReinitializeProvider(reason + "->delayed-empty-accounts");
+              } else {
+                log.info("accounts recovered after wait");
+                providerMetaRef.current.consecutiveEmptyAccounts = 0;
+              }
+            }, 3000); // Wait 3 seconds for provider to stabilize
+            return;
+          }
+          
+          // After first attempt, try reinit
           await attemptReinitializeProvider(reason + "->empty-accounts");
+          
+          // Final check after reinit with longer timeout
           setTimeout(async () => {
             if (!provider || providerStatus !== "ready") return;
             const postAccounts = await fetchAccounts(provider);
@@ -303,10 +325,13 @@ export function useProviderLifecycle({
             } else {
               providerMetaRef.current.consecutiveEmptyAccounts = 0;
             }
-            if (providerMetaRef.current.consecutiveEmptyAccounts >= 2) {
+            // Only trigger session expired after 3+ failed attempts
+            // Web3Auth tokens expire after 2 hours - at this point we need re-auth
+            if (providerMetaRef.current.consecutiveEmptyAccounts >= 3) {
+              log.error("session expired - Web3Auth token likely expired (2hr TTL)");
               await onSessionExpired(reason);
             }
-          }, 1200);
+          }, 2500); // Give more time for reinit to complete
         } else if (providerMetaRef.current.consecutiveEmptyAccounts !== 0) {
           providerMetaRef.current.consecutiveEmptyAccounts = 0;
         }

@@ -168,6 +168,9 @@ async function getOrCreateInstance() {
     useAAWithExternalWallet: false,
     logLevel: "debug",
     loginConfig: {},
+    // Extended session time (30 days) to reduce re-auth frequency
+    // but this helps with local session management
+    sessionTime: 86400 * 30, // 30 days in seconds
   };
   log.debug("sdk:init:params", { hasClientId: !!WEB3AUTH_CLIENT_ID });
 
