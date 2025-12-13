@@ -17,6 +17,7 @@ export default function HomeScreen() {
   const [statusFilterVisible, setStatusFilterVisible] = useState(false);
   const [selectedSortMode, setSelectedSortMode] = useState("trends"); // sortMode values
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedRange, setSelectedRange] = useState("");
   const [categories, setCategories] = useState<string[]>(fallbackCategories);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
 
@@ -25,8 +26,9 @@ export default function HomeScreen() {
     () => ({
       category: selectedCategory !== "All" ? selectedCategory : undefined,
       sortMode: selectedSortMode || "trends",
+      range: selectedRange || undefined,
     }),
-    [selectedCategory, selectedSortMode]
+    [selectedCategory, selectedSortMode, selectedRange]
   );
 
   const statusButton = (
@@ -83,6 +85,7 @@ export default function HomeScreen() {
       onClearFilters={() => {
         setSelectedCategory("All");
         setSelectedSortMode("trends");
+        setSelectedRange("");
       }}
     />
   );
@@ -150,6 +153,8 @@ export default function HomeScreen() {
         onClose={() => setStatusFilterVisible(false)}
         selectedSortMode={selectedSortMode}
         onSortModeChange={setSelectedSortMode}
+        selectedRange={selectedRange}
+        onRangeChange={setSelectedRange}
       />
     </View>
   );
