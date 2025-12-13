@@ -1,9 +1,9 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { View, Text, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import SmartImage from "../common/SmartImage";
-import { BlurView } from "expo-blur";
 import { Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import LiquidGlass from "../ui/LiquidGlass";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 
@@ -294,24 +294,18 @@ const ProfileHeader = () => {
               }
             />
             <View className="absolute right-0 bottom-0 z-20 m-2">
-              <BlurView
-                intensity={60}
-                tint="dark"
-                className="rounded-full overflow-hidden"
-              >
+              <LiquidGlass className="rounded-full" intensity={40}>
                 <TouchableOpacity
                   onPress={() =>
                     (navigation as any).navigate(ScreenNames.EditProfile)
                   }
                   accessibilityLabel="Edit profile"
                   activeOpacity={0.85}
-                  className="px-0 py-0"
+                  className="px-5 py-2"
                 >
-                  <View className="bg-white/5 px-5 py-2 rounded-full">
-                    <Text className="text-white font-medium">Edit profile</Text>
-                  </View>
+                  <Text className="text-white font-medium">Edit profile</Text>
                 </TouchableOpacity>
-              </BlurView>
+              </LiquidGlass>
             </View>
             <View
               className="absolute inset-0 items-center justify-center z-20"

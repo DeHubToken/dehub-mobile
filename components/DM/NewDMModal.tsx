@@ -378,7 +378,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
             </View>
           ) : (
             <View className="py-4">
-              <View className="flex-row items-center bg-theme-neutrals-800/60 border border-theme-neutrals-700 rounded-2xl p-3">
+              {/* <View className="flex-row items-center bg-theme-neutrals-800/60 border border-theme-neutrals-700 rounded-2xl p-3">
                 <Ionicons
                   name="information-circle-outline"
                   size={18}
@@ -388,7 +388,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
                 <Text className="text-theme-neutrals-400 text-[12px] mx-2">
                   Paste an address or type a username to start a chat
                 </Text>
-              </View>
+              </View> */}
             </View>
           )}
         </View>
@@ -397,7 +397,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
         <View className="px-5 pb-5 pt-2 flex-row justify-end">
           <TouchableOpacity
             onPress={close}
-            className="px-4 h-11 rounded-xl bg-theme-neutrals-700 items-center justify-center active:opacity-80"
+            className="px-4 h-11 rounded-full bg-theme-neutrals-700 items-center justify-center active:opacity-80"
           >
             <Text className="text-theme-neutrals-100">Close</Text>
           </TouchableOpacity>

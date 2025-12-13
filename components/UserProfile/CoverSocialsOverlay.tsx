@@ -1,8 +1,8 @@
 import React, { useMemo, useCallback } from "react";
 import { View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { BlurView } from "expo-blur";
 import { getSocialLink, openExternalLink } from "../../libs/links.utils";
+import FakeGlass from "../ui/FakeGlass";
 
 export type CoverSocialsOverlayProps = {
   socials?: Partial<Record<string, string>> | null;
@@ -52,8 +52,8 @@ export const CoverSocialsOverlay: React.FC<CoverSocialsOverlayProps> = ({ social
   }, []);
 
   return (
-    <BlurView intensity={60} tint="dark" className="rounded-full overflow-hidden">
-      <View className="flex-row items-center bg-white/5 px-2 py-1.5">
+    <FakeGlass className="rounded-full">
+      <View className="flex-row items-center px-2 py-1.5">
         {items.length > 0 && (
           <View className="flex-row items-center">
             {items.map((s) => (
@@ -62,7 +62,7 @@ export const CoverSocialsOverlay: React.FC<CoverSocialsOverlayProps> = ({ social
                 accessibilityLabel={`Open ${s.label}`}
                 onPress={() => handleOpen(s.url)}
                 activeOpacity={0.85}
-                className="w-9 h-9 rounded-full bg-black/30 items-center justify-center mx-1"
+                className="w-9 h-9 rounded-full items-center justify-center mx-1"
               >
                 <Ionicons name={s.icon as any} size={16} color="#fff" />
               </TouchableOpacity>
@@ -74,7 +74,7 @@ export const CoverSocialsOverlay: React.FC<CoverSocialsOverlayProps> = ({ social
             onPress={onMessage}
             accessibilityLabel="Message user"
             activeOpacity={0.85}
-            className="w-9 h-9 rounded-full bg-black/30 items-center justify-center ml-1"
+            className="w-9 h-9 rounded-full items-center justify-center ml-1"
           >
             <Ionicons name="chatbubble-ellipses-outline" size={16} color="#fff" />
           </TouchableOpacity>
@@ -83,12 +83,12 @@ export const CoverSocialsOverlay: React.FC<CoverSocialsOverlayProps> = ({ social
           onPress={onShare}
           accessibilityLabel="Share profile"
           activeOpacity={0.85}
-          className="w-9 h-9 rounded-full bg-black/30 items-center justify-center ml-1"
+          className="w-9 h-9 rounded-full items-center justify-center ml-1"
         >
           <Ionicons name="share-social" size={16} color="#fff" />
         </TouchableOpacity>
       </View>
-    </BlurView>
+    </FakeGlass>
   );
 };
 
