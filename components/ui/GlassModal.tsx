@@ -8,6 +8,7 @@ import {
   UIManager,
   Animated,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
 
 export interface GlassModalProps {
@@ -86,20 +87,14 @@ const GlassModal: React.FC<GlassModalProps> = ({
         )}
 
         {/* Foreground panel */}
-        <View
-          pointerEvents="box-none"
+        <SafeAreaView
           style={[
             styles.foregroundWrapper,
             {
               justifyContent: presentation === "bottom" ? "flex-end" : "center",
-              paddingBottom:
-                presentation === "bottom"
-                  ? Platform.OS === "ios"
-                    ? 24
-                    : 16
-                  : 0,
             },
           ]}
+          edges={presentation === "bottom" ? ['bottom'] : ['top', 'bottom']}
         >
           {wrapPanel ? (
             <View
@@ -124,7 +119,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
           ) : (
             children
           )}
-        </View>
+        </SafeAreaView>
       </View>
     </Modal>
   );

@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal, Animated, PanResponder, Dimensions } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { theme } from '../../theme';
 import { statusOptions } from '../../libs';
@@ -99,18 +100,19 @@ const StatusFilterBottomSheet: React.FC<StatusFilterBottomSheetProps> = ({ visib
             { transform: [{ translateY: slideAnim }] }
           ]}
         >
-          <View style={styles.dragArea} {...panResponder.panHandlers}>
-            <View style={styles.dragHandle} />
-          </View>
-          
-          <View style={styles.sheetHeader}>
-            <Text style={styles.sheetTitle}>Content Type</Text>
-            <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-              <Ionicons name="close" size={24} color={theme.colors.foreground} />
-            </TouchableOpacity>
-          </View>
+          <SafeAreaView style={{ flex: 1 }} edges={['bottom']}>
+            <View style={styles.dragArea} {...panResponder.panHandlers}>
+              <View style={styles.dragHandle} />
+            </View>
+            
+            <View style={styles.sheetHeader}>
+              <Text style={styles.sheetTitle}>Content Type</Text>
+              <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+                <Ionicons name="close" size={24} color={theme.colors.foreground} />
+              </TouchableOpacity>
+            </View>
 
-          <ScrollView style={styles.sheetContent} showsVerticalScrollIndicator={false}>
+            <ScrollView style={styles.sheetContent} showsVerticalScrollIndicator={false}>
             <View style={styles.statusGrid}>
               {statusOptions.map((option, idx) => {
                 const isSelected = selectedSortMode === option.id;
@@ -142,6 +144,7 @@ const StatusFilterBottomSheet: React.FC<StatusFilterBottomSheetProps> = ({ visib
               })}
             </View>
           </ScrollView>
+          </SafeAreaView>
         </Animated.View>
       </View>
     </Modal>

@@ -182,7 +182,7 @@ const FeedScreen = () => {
                   ? "You haven’t posted anything yet."
                   : "No posts yet."}
               </Text>
-              <Text className="text-theme-neutrals-500 text-xs">
+              <Text className="text-theme-neutrals-500 text-xs  mb-2">
                 {activeTab === "Saved"
                   ? "Save posts to see them here."
                   : activeTab === "Liked"
@@ -196,7 +196,7 @@ const FeedScreen = () => {
                   <TouchableOpacity
                     onPress={handleGoToUpload}
                     activeOpacity={0.8}
-                    className=" flex-row items-center px-4 py-2 rounded-full bg-transparent"
+                    className="flex-row items-center px-4 py-2 rounded-full bg-transparent"
                   >
                     <Ionicons name="pencil" size={16} color="white" />
                     <Text className="ml-2 text-theme-neutrals-100 font-medium">
