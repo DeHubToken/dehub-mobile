@@ -9,6 +9,7 @@ import {
   Pressable,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  Platform,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../../theme";
@@ -166,7 +167,7 @@ export const InfiniteFeed: React.FC<InfiniteFeedProps> = ({
     return (
       <View className="flex-1 items-center justify-center px-4">
         <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
-        <View className="px-5 py-2 rounded-md bg-theme-neutrals-700">
+        <View className="px-5 py-2 rounded-full bg-theme-neutrals-700">
           <Text onPress={resetAndLoad} className="text-theme-neutrals-50 font-medium">Retry</Text>
         </View>
       </View>
@@ -194,7 +195,7 @@ export const InfiniteFeed: React.FC<InfiniteFeedProps> = ({
         initialNumToRender={4}
         maxToRenderPerBatch={4}
         windowSize={7}
-        removeClippedSubviews
+        removeClippedSubviews={Platform.OS === "android" ? false : true}
         updateCellsBatchingPeriod={80}
         contentContainerStyle={
           contentContainerStyle || { paddingBottom: 80 }

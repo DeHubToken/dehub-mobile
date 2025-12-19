@@ -4,6 +4,7 @@ import { View, Text, TextInput } from "react-native";
 type Props = {
   title: string;
   description: string;
+  titleMax?: number;
   descriptionMax: number;
   onChangeTitle: (v: string) => void;
   onChangeDescription: (v: string) => void;
@@ -14,6 +15,7 @@ type Props = {
 const BasicInfoForm: React.FC<Props> = ({
   title,
   description,
+  titleMax,
   descriptionMax,
   onChangeTitle,
   onChangeDescription,
@@ -31,8 +33,18 @@ const BasicInfoForm: React.FC<Props> = ({
           onChangeText={onChangeTitle}
           placeholder="Add a title"
           placeholderTextColor="#9CA3AF"
+          maxLength={titleMax}
           className="h-12 px-3 rounded-xl bg-zinc-900 border border-zinc-800 text-white"
         />
+        <View className="mt-1 flex-row justify-end">
+          <Text
+            className={`text-xs ${
+              title.length >= (titleMax ?? Infinity) ? "text-red-500" : "text-gray-500"
+            }`}
+          >
+            {title.length} / {titleMax}
+          </Text>
+        </View>
       </View>
       <View className="mb-4">
         <Text className="text-gray-400 mb-1">
