@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import Avatar from "../common/Avatar";
 import { Ionicons } from "@expo/vector-icons";
@@ -20,12 +20,20 @@ type Props = {
 };
 
 const CommentItem: React.FC<Props> = memo(({ comment, onReplyPress, onUserPress }) => {
+  const handleUserPress = useCallback(() => {
+    onUserPress?.(comment.user);
+  }, [comment.user, onUserPress]);
+
+  const handleReplyPress = useCallback(() => {
+    onReplyPress?.(comment);
+  }, [comment, onReplyPress]);
+
   return (
     <View className="flex-row items-start gap-3 px-4 py-3">
-      <Avatar size={28} uri={comment.avatarUri} onPress={() => onUserPress?.(comment.user)} />
+      <Avatar size={28} uri={comment.avatarUri} onPress={handleUserPress} />
       <View className="flex-1">
         <View className="flex-row items-baseline gap-2">
-          <TouchableOpacity activeOpacity={0.8} onPress={() => onUserPress?.(comment.user)}>
+          <TouchableOpacity activeOpacity={0.8} onPress={handleUserPress}>
             <Text className="text-white text-[13px] font-semibold">
               {comment.user}
             </Text>
@@ -42,7 +50,7 @@ const CommentItem: React.FC<Props> = memo(({ comment, onReplyPress, onUserPress 
             <TouchableOpacity
               activeOpacity={0.8}
               className="flex-row items-center"
-              onPress={() => onReplyPress?.(comment)}
+              onPress={handleReplyPress}
             >
               <Text className="text-theme-neutrals-500 text-[11px]">Reply</Text>
             </TouchableOpacity>
