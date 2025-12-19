@@ -8,7 +8,7 @@ import {
   UIManager,
   Animated,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
 
 export interface GlassModalProps {
@@ -45,6 +45,15 @@ const GlassModal: React.FC<GlassModalProps> = ({
   wrapPanel = true,
   dismissible = true,
 }) => {
+  const insets = useSafeAreaInsets();
+
+  const safeAreaStyle = React.useMemo(() => {
+    if (presentation === "bottom") {
+      return { paddingBottom: insets.bottom };
+    }
+    return { paddingTop: insets.top, paddingBottom: insets.bottom };
+  }, [insets.bottom, insets.top, presentation]);
+
   return (
     <Modal
       visible={visible}
@@ -87,14 +96,14 @@ const GlassModal: React.FC<GlassModalProps> = ({
         )}
 
         {/* Foreground panel */}
-        <SafeAreaView
+        <View
           style={[
             styles.foregroundWrapper,
             {
               justifyContent: presentation === "bottom" ? "flex-end" : "center",
             },
+            safeAreaStyle,
           ]}
-          edges={presentation === "bottom" ? ['bottom'] : ['top', 'bottom']}
         >
           {wrapPanel ? (
             <View
@@ -119,7 +128,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
           ) : (
             children
           )}
-        </SafeAreaView>
+        </View>
       </View>
     </Modal>
   );
