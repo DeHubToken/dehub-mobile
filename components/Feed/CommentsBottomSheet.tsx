@@ -10,6 +10,7 @@ import {
   Dimensions,
   KeyboardAvoidingView,
   Pressable,
+  InteractionManager,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import CommentItem, { Comment } from "./CommentItem";
@@ -41,14 +42,19 @@ const CommentsBottomSheet: React.FC<Props> = ({
   commentCount
 }) => {
   const { user, requireAuth } = useAuth();
-  const viewer = (user?.walletAddress || user?.address || "") as string;
 
   // Draggable height state (65% - 95%)
   const MIN_PCT = 0.65;
   const MAX_PCT = 0.95;
   const [heightPct, setHeightPct] = useState<number>(MIN_PCT);
+  const heightPctRef = useRef<number>(MIN_PCT);
   const heightAnim = useRef(new Animated.Value(MIN_PCT)).current;
   const screenH = Dimensions.get("window").height;
+
+  useEffect(() => {
+    heightPctRef.current = heightPct;
+  }, [heightPct]);
+
   useEffect(() => {
     Animated.timing(heightAnim, {
       toValue: heightPct,
@@ -75,7 +81,7 @@ const CommentsBottomSheet: React.FC<Props> = ({
           // dy positive -> dragging down -> reduce height
           const denom = Math.max(300, screenH); // avoid over-sensitivity on small screens
           const deltaPct = -(gesture.dy / denom); // scale drag to percent of screen
-          const next = Math.max(MIN_PCT, Math.min(MAX_PCT, heightPct + deltaPct));
+          const next = Math.max(MIN_PCT, Math.min(MAX_PCT, heightPctRef.current + deltaPct));
           heightAnim.setValue(next);
         },
         onPanResponderRelease: (_, gesture) => {
@@ -87,13 +93,13 @@ const CommentsBottomSheet: React.FC<Props> = ({
           }
           const denom = Math.max(300, screenH);
           const deltaPct = -(gesture.dy / denom);
-          const next = Math.max(MIN_PCT, Math.min(MAX_PCT, heightPct + deltaPct));
+          const next = Math.max(MIN_PCT, Math.min(MAX_PCT, heightPctRef.current + deltaPct));
           // snap to nearest of MIN or MAX if close, else keep
           const snap = Math.abs(next - MIN_PCT) < 0.08 ? MIN_PCT : Math.abs(next - MAX_PCT) < 0.08 ? MAX_PCT : next;
           setHeightPct(snap);
         },
       }),
-    [heightPct, heightAnim, screenH]
+    [heightAnim, onClose, screenH]
   );
 
   // NFT comments state
@@ -106,63 +112,140 @@ const CommentsBottomSheet: React.FC<Props> = ({
   const inputRef = useRef<CommentInputRef>(null);
   const { showUserProfile } = useUserProfileSheet();
 
+  const heightStyle = useMemo(() => {
+    return { height: Animated.multiply(heightAnim, screenH) as any };
+  }, [heightAnim, screenH]);
+
+  const listBottomPadding = useMemo(() => {
+    // Keep last item visible above the input + keyboard.
+    const base = 80;
+    return base + (kbVisible ? kbHeight : 0);
+  }, [kbHeight, kbVisible]);
+
+  const shouldSkipFetch = useMemo(() => {
+    // Only skip when we *know* there are zero comments.
+    return visible && tokenId != null && commentCount === 0;
+  }, [commentCount, tokenId, visible]);
+
+  const lastTokenRef = useRef<number | string | undefined>(undefined);
+  useEffect(() => {
+    if (!visible) return;
+    if (tokenId == null) return;
+    if (lastTokenRef.current !== tokenId) {
+      lastTokenRef.current = tokenId;
+      setItems([]);
+      setReplyTo(null);
+      setComposerAutoFocus(false);
+    }
+  }, [tokenId, visible]);
+
+  const buildFlatComments = useCallback((rawComments: any[]): Comment[] => {
+    const safe: any[] = Array.isArray(rawComments) ? rawComments : [];
+
+    const replyIdSet = new Set<number>();
+    safe.forEach((c: any) =>
+      Array.isArray(c?.replyIds) && c.replyIds.forEach((id: any) => replyIdSet.add(Number(id)))
+    );
+
+    const byId = new Map<number, any>();
+    safe.forEach((c) => byId.set(Number(c?.id), c));
+    const topLevel = safe.filter((c) => !replyIdSet.has(Number(c?.id)));
+
+    const toComment = (c: any, parentId?: number | string): Comment => {
+      const u = c?.writor?.username || c?.address || "";
+      const avatar = getAvatarUrl(c?.writor?.avatarUrl) || undefined;
+      const text = String(c?.content || "").replace(/<[^>]+>/g, "");
+      const created = c?.createdAt ? new Date(c.createdAt) : undefined;
+      const time = created ? formatDistance(created, new Date(), { addSuffix: true }) : "";
+      return {
+        id: String(c?.id),
+        user: u,
+        avatarUri: avatar,
+        text,
+        time,
+        replyToId: parentId,
+      };
+    };
+
+    const flat: Comment[] = [];
+    topLevel.forEach((c) => {
+      flat.push(toComment(c));
+      if (Array.isArray(c?.replyIds)) {
+        c.replyIds.forEach((rid: any) => {
+          const rc = byId.get(Number(rid));
+          if (rc) flat.push(toComment(rc, c?.id));
+        });
+      }
+    });
+
+    return flat;
+  }, []);
+
   // Fetch on open (comments only)
   useEffect(() => {
     let cancelled = false;
-    const run = async () => {
-      if (!visible) return;
-      if (tokenId == null) return;
-      if(!commentCount || commentCount <= 0) return
-      setLoading(true);
+
+    if (!visible) return;
+    if (tokenId == null) return;
+    if (shouldSkipFetch) {
+      setItems([]);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    const task = InteractionManager.runAfterInteractions(async () => {
       try {
         const res = await getCommentsForToken(tokenId as any, { limit: 100 });
         if (cancelled) return;
         const payload: any = res?.result || res || {};
         const rawComments: any[] = Array.isArray(payload?.items) ? payload.items : [];
-        // Build flattened list: parent -> its replies
-        const replyIdSet = new Set<number>();
-        rawComments.forEach((c: any) => Array.isArray(c?.replyIds) && c.replyIds.forEach((id: any) => replyIdSet.add(Number(id))));
-        const byId = new Map<number, any>();
-        rawComments.forEach((c) => byId.set(Number(c?.id), c));
-        const topLevel = rawComments.filter((c) => !replyIdSet.has(Number(c?.id)));
-        const flat: Comment[] = [];
-        const toComment = (c: any, parentId?: number | string): Comment => {
-          const u = c?.writor?.username || c?.address || "";
-          const avatar = getAvatarUrl(c?.writor?.avatarUrl) || undefined;
-          const text = String(c?.content || "").replace(/<[^>]+>/g, "");
-          const created = c?.createdAt ? new Date(c.createdAt) : undefined;
-          const time = created ? formatDistance(created, new Date(), { addSuffix: true }) : "";
-          return {
-            id: String(c?.id),
-            user: u,
-            avatarUri: avatar,
-            text,
-            time,
-            replyToId: parentId,
-          };
-        };
-        topLevel.forEach((c) => {
-          flat.push(toComment(c));
-          if (Array.isArray(c?.replyIds)) {
-            c.replyIds.forEach((rid: any) => {
-              const rc = byId.get(Number(rid));
-              if (rc) flat.push(toComment(rc, c?.id));
-            });
-          }
-        });
+        const flat = buildFlatComments(rawComments);
         setItems(flat);
         setComposerAutoFocus(false);
       } catch (e) {
+        console.error("CommentsBottomSheet: failed to fetch comments", e);
         setItems([]);
       } finally {
         if (!cancelled) setLoading(false);
       }
-    };
-    run();
+    });
+
     return () => {
       cancelled = true;
+      (task as any)?.cancel?.();
     };
-  }, [visible, tokenId, viewer]);
+  }, [visible, tokenId, shouldSkipFetch, buildFlatComments]);
+
+  const handleUserPress = useCallback(
+    (identifier: string) => {
+      showUserProfile(identifier, { initialHeightPct: 0.4, source: "comment" });
+    },
+    [showUserProfile]
+  );
+
+  const handleReplyPress = useCallback((c: Comment) => {
+    setReplyTo(c);
+    setComposerAutoFocus(true);
+    requestAnimationFrame(() => inputRef.current?.focus());
+  }, []);
+
+  const renderItem = useCallback(
+    ({ item }: { item: Comment }) => {
+      return (
+        <View className={item.replyToId ? "pl-6" : ""}>
+          <CommentItem
+            comment={item}
+            onUserPress={handleUserPress}
+            onReplyPress={handleReplyPress}
+          />
+        </View>
+      );
+    },
+    [handleReplyPress, handleUserPress]
+  );
+
+  const keyExtractor = useCallback((c: Comment) => c.id, []);
 
   // Send handler with optimistic insert
   const handleSend = useCallback(
@@ -217,7 +300,7 @@ const CommentsBottomSheet: React.FC<Props> = ({
         }
       });
     },
-    [requireAuth, tokenId, replyTo, user?.username, user?.avatarUrl, onTopLevelCommentDelta]
+    [requireAuth, tokenId, replyTo, user?.username, user?.avatarUrl, user?.avatarImageUrl, onTopLevelCommentDelta]
   );
 
   return (
@@ -233,7 +316,7 @@ const CommentsBottomSheet: React.FC<Props> = ({
         <Pressable onPress={onClose} className="absolute inset-0" />
         <Animated.View
           // height = heightPct * screen height
-          style={{ height: Animated.multiply(heightAnim, screenH) as any }}
+          style={heightStyle}
           className="bg-theme-neutrals-900 rounded-t-2xl overflow-hidden border border-theme-neutrals-800"
         >
           {/* Header */}
@@ -264,22 +347,14 @@ const CommentsBottomSheet: React.FC<Props> = ({
           ) : (
             <FlatList
               data={items}
-              keyExtractor={(c) => c.id}
-              renderItem={({ item }) => (
-                <View style={{ paddingLeft: item.replyToId ? 24 : 0 }}>
-                  <CommentItem
-                    comment={item}
-                    onUserPress={(id) => showUserProfile(id, { initialHeightPct: 0.4, source: 'comment' })}
-                    onReplyPress={(c) => {
-                      setReplyTo(c);
-                      setComposerAutoFocus(true);
-                      // ensure focus brings keyboard up
-                      requestAnimationFrame(() => inputRef.current?.focus());
-                    }}
-                  />
-                </View>
-              )}
-              contentContainerStyle={{ paddingBottom: 8 }}
+              keyExtractor={keyExtractor}
+              renderItem={renderItem}
+              keyboardShouldPersistTaps="handled"
+              removeClippedSubviews={false}
+              initialNumToRender={10}
+              maxToRenderPerBatch={10}
+              windowSize={7}
+              contentContainerStyle={{ paddingBottom: listBottomPadding }}
             />
           )}
 
