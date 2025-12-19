@@ -8,7 +8,6 @@ import {
   Animated,
   PanResponder,
   Dimensions,
-  KeyboardAvoidingView,
   Pressable,
   InteractionManager,
 } from "react-native";
@@ -20,8 +19,9 @@ import { useAuth } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs";
 import { getCommentsForToken, postComment } from "../../services/nft.service";
 import { formatDistance } from "date-fns";
-import useKeyboard from "../../hooks/useKeyboard";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import useKeyboard from "../../hooks/useKeyboard";
 
 type Props = {
   visible: boolean;
@@ -42,6 +42,7 @@ const CommentsBottomSheet: React.FC<Props> = ({
   commentCount
 }) => {
   const { user, requireAuth } = useAuth();
+  const insets = useSafeAreaInsets();
 
   // Draggable height state (65% - 95%)
   const MIN_PCT = 0.65;
@@ -108,19 +109,26 @@ const CommentsBottomSheet: React.FC<Props> = ({
   const [replyTo, setReplyTo] = useState<Comment | null>(null);
   const [composerAutoFocus, setComposerAutoFocus] = useState<boolean>(false);
   const replyToLabel = replyTo?.user || undefined;
-  const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
   const inputRef = useRef<CommentInputRef>(null);
   const { showUserProfile } = useUserProfileSheet();
+  const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
 
   const heightStyle = useMemo(() => {
-    return { height: Animated.multiply(heightAnim, screenH) as any };
-  }, [heightAnim, screenH]);
+    const baseHeight = Math.max(0, screenH - (insets.bottom || 0));
+    return { height: Animated.multiply(heightAnim, baseHeight) as any };
+  }, [heightAnim, insets.bottom, screenH]);
+
+  const inputLift = useMemo(() => {
+    if (!kbVisible) return 0;
+    // Avoid double-counting the bottom safe-area when keyboard height already includes it.
+    return Math.max(0, kbHeight);
+  }, [insets.bottom, kbHeight, kbVisible]);
 
   const listBottomPadding = useMemo(() => {
-    // Keep last item visible above the input + keyboard.
-    const base = 80;
-    return base + (kbVisible ? kbHeight : 0);
-  }, [kbHeight, kbVisible]);
+    // Base accounts for the input height; add keyboard height when visible.
+    const base = 88;
+    return base + inputLift + (insets.bottom || 0);
+  }, [insets.bottom, inputLift]);
 
   const shouldSkipFetch = useMemo(() => {
     // Only skip when we *know* there are zero comments.
@@ -310,68 +318,74 @@ const CommentsBottomSheet: React.FC<Props> = ({
       animationType="slide"
       onRequestClose={onClose}
     >
-      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
       <View className="flex-1 justify-end bg-black/50">
         {/* Tap outside to close */}
         <Pressable onPress={onClose} className="absolute inset-0" />
+
         <Animated.View
           // height = heightPct * screen height
           style={heightStyle}
           className="bg-theme-neutrals-900 rounded-t-2xl overflow-hidden border border-theme-neutrals-800"
         >
-          {/* Header */}
-          <View
-            className="flex-row items-center justify-between px-4 py-3 border-b border-theme-neutrals-800"
-            {...responder.panHandlers}
-          >
-            <View className="absolute left-0 right-0 -top-2 items-center">
-              <View className="w-10 h-1.5 bg-theme-neutrals-700 rounded-full" />
-            </View>
-            <Text className="text-white font-semibold text-base">
-              {title || "Comments"}
-            </Text>
-            <TouchableOpacity onPress={onClose} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-              <Ionicons name="close" size={20} color="#9CA3AF" />
-            </TouchableOpacity>
-          </View>
-
-          {/* Content */}
-          {loading ? (
-            <CommentsSkeleton />
-          ) : items.length === 0 ? (
-            <View className="px-4 py-6">
-              <Text className="text-theme-neutrals-400 text-sm">
-                No comments yet, add yours.
+          <View className="flex-1" style={insets.bottom ? { paddingBottom: insets.bottom } : undefined}>
+            {/* Header */}
+            <View
+              className="flex-row items-center justify-between px-4 py-3 border-b border-theme-neutrals-800"
+              {...responder.panHandlers}
+            >
+              <View className="absolute left-0 right-0 -top-2 items-center">
+                <View className="w-10 h-1.5 bg-theme-neutrals-700 rounded-full" />
+              </View>
+              <Text className="text-white font-semibold text-base">
+                {title || "Comments"}
               </Text>
+              <TouchableOpacity
+                onPress={onClose}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              >
+                <Ionicons name="close" size={20} color="#9CA3AF" />
+              </TouchableOpacity>
             </View>
-          ) : (
-            <FlatList
-              data={items}
-              keyExtractor={keyExtractor}
-              renderItem={renderItem}
-              keyboardShouldPersistTaps="handled"
-              removeClippedSubviews={false}
-              initialNumToRender={10}
-              maxToRenderPerBatch={10}
-              windowSize={7}
-              contentContainerStyle={{ paddingBottom: listBottomPadding }}
-            />
-          )}
 
-          {/* Input */}
-          <View className="absolute bottom-0 left-0 right-0 ">
-            <CommentInput
-              ref={inputRef}
-              onSend={handleSend}
-              placeholder={replyTo ? "Replying…" : undefined}
-              autoFocus={composerAutoFocus}
-              replyToLabel={replyToLabel}
-              onCancelReply={() => setReplyTo(null)}
-            />
+            {/* Content */}
+            <View className="flex-1">
+              {loading ? (
+                <CommentsSkeleton />
+              ) : items.length === 0 ? (
+                <View className="px-4 py-6">
+                  <Text className="text-theme-neutrals-400 text-sm">
+                    No comments yet, add yours.
+                  </Text>
+                </View>
+              ) : (
+                <FlatList
+                  data={items}
+                  keyExtractor={keyExtractor}
+                  renderItem={renderItem}
+                  keyboardShouldPersistTaps="handled"
+                  removeClippedSubviews={false}
+                  initialNumToRender={10}
+                  maxToRenderPerBatch={10}
+                  windowSize={7}
+                  contentContainerStyle={{ paddingBottom: listBottomPadding }}
+                />
+              )}
+            </View>
+
+            {/* Input */}
+            <View style={inputLift ? { marginBottom: inputLift } : undefined}>
+              <CommentInput
+                ref={inputRef}
+                onSend={handleSend}
+                placeholder={replyTo ? "Replying…" : undefined}
+                autoFocus={composerAutoFocus}
+                replyToLabel={replyToLabel}
+                onCancelReply={() => setReplyTo(null)}
+              />
+            </View>
           </View>
         </Animated.View>
       </View>
-      </KeyboardAvoidingView>
     </Modal>
   );
 };

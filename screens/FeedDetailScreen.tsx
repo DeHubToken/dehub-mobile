@@ -38,6 +38,15 @@ export default function FeedDetailScreen() {
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
   const { showUserProfile } = useUserProfileSheet();
 
+  const inputLift = useMemo(() => {
+    return kbVisible ? kbHeight : 0;
+  }, [kbHeight, kbVisible]);
+
+  const listBottomPadding = useMemo(() => {
+    const base = 88;
+    return base + inputLift;
+  }, [inputLift]);
+
   const fetchData = useCallback(async () => {
     if (tokenId == null) return;
     setLoading(true);
@@ -90,6 +99,33 @@ export default function FeedDetailScreen() {
     // No-op for detail; clicking chat icon should focus input instead
     requestAnimationFrame(() => inputRef.current?.focus());
   }, []);
+
+  const handleUserPress = useCallback(
+    (identifier: string) => {
+      showUserProfile(identifier, { initialHeightPct: 0.4, source: "comment" });
+    },
+    [showUserProfile]
+  );
+
+  const handleReplyPress = useCallback((cm: Comment) => {
+    setReplyTo(cm);
+    requestAnimationFrame(() => inputRef.current?.focus());
+  }, []);
+
+  const renderCommentItem = useCallback(
+    ({ item: c }: { item: Comment }) => {
+      return (
+        <View className="px-4" style={{ paddingLeft: c.replyToId ? 24 : 0 }}>
+          <CommentItem
+            comment={c}
+            onUserPress={handleUserPress}
+            onReplyPress={handleReplyPress}
+          />
+        </View>
+      );
+    },
+    [handleReplyPress, handleUserPress]
+  );
 
   const handleSend = useCallback((text: string) => {
     if (!text || tokenId == null) return;
@@ -170,19 +206,15 @@ export default function FeedDetailScreen() {
             <CommentsSkeleton />
           </View>
         )}
-        renderItem={({ item: c }) => (
-          <View className="px-4" style={{ paddingLeft: c.replyToId ? 24 : 0 }}>
-            <CommentItem comment={c} onUserPress={(id) => showUserProfile(id, { initialHeightPct: 0.4, source: 'comment' })} onReplyPress={(cm) => {
-              setReplyTo(cm);
-              requestAnimationFrame(() => inputRef.current?.focus());
-            }} />
-          </View>
-        )}
+        renderItem={renderCommentItem}
         // Keep room for the input and keyboard
-        contentContainerStyle={{ paddingBottom: (kbVisible ? kbHeight : 0) + 76 }}
+        contentContainerStyle={{ paddingBottom: listBottomPadding }}
         keyboardShouldPersistTaps="handled"
       />
-      <View className="border-t border-theme-neutrals-800" style={{ paddingBottom: kbVisible ? kbHeight : 0 }}>
+      <View
+        className="border-t border-theme-neutrals-800"
+        style={inputLift ? { marginBottom: inputLift } : undefined}
+      >
         <CommentInput
           ref={inputRef}
           onSend={handleSend}
