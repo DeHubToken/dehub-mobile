@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import {
   View,
   FlatList,
@@ -49,6 +50,10 @@ export const InfiniteFeed: React.FC<InfiniteFeedProps> = ({
   const endReachedRef = useRef(false);
   const listRef = useRef<FlatList<FeedItem>>(null);
   const prevYRef = useRef(0);
+  const navigation = useNavigation<any>();
+  const isFocused = useIsFocused();
+
+  useScrollToTop(listRef);
 
   const mapWithKey = useCallback((arr: GetNFTsResult[], pageNum: number) => {
     return (arr || []).map((it, idx) => {
@@ -58,28 +63,32 @@ export const InfiniteFeed: React.FC<InfiniteFeedProps> = ({
     });
   }, []);
 
-  const resetAndLoad = useCallback(async () => {
-    setItems([]);
-    setInitialLoading(true);
+  const loadFirstPage = useCallback(async () => {
     setError(null);
     endReachedRef.current = false;
     setPage(0);
+    const res = fetchPage
+      ? await fetchPage(0, pageSize)
+      : await getFeedNFTs({ ...(params || {}), unit: pageSize, page: 0, postType: (params as any)?.postType || "feed-all" });
+    const mapped = mapWithKey(res.result || [], 0);
+    setItems(mapped);
+    if (!res.result || (res.result as any[]).length < pageSize) {
+      endReachedRef.current = true;
+      onEndReachedAll && onEndReachedAll();
+    }
+  }, [params, pageSize, onEndReachedAll, mapWithKey, fetchPage]);
+
+  const resetAndLoad = useCallback(async () => {
+    setItems([]);
+    setInitialLoading(true);
     try {
-      const res = fetchPage
-        ? await fetchPage(0, pageSize)
-        : await getFeedNFTs({ ...(params || {}), unit: pageSize, page: 0, postType: (params as any)?.postType || "feed-all" });
-      const mapped = mapWithKey(res.result || [], 0);
-      setItems(mapped);
-      if (!res.result || (res.result as any[]).length < pageSize) {
-        endReachedRef.current = true;
-        onEndReachedAll && onEndReachedAll();
-      }
+      await loadFirstPage();
     } catch (e: any) {
       setError(e?.message || "Failed to load feed");
     } finally {
       setInitialLoading(false);
     }
-  }, [params, pageSize, onEndReachedAll, mapWithKey, fetchPage]);
+  }, [loadFirstPage]);
 
   useEffect(() => {
     resetAndLoad();
@@ -109,12 +118,25 @@ export const InfiniteFeed: React.FC<InfiniteFeedProps> = ({
   }, [initialLoading, loadingMore, refreshing, page, params, pageSize, onEndReachedAll, mapWithKey, fetchPage]);
 
   const onRefresh = useCallback(async () => {
+    // Keep existing items so the RefreshControl spinner is visible (no skeleton snap).
     setRefreshing(true);
-    setItems([]);
-    setInitialLoading(true);
-    await resetAndLoad();
-    setRefreshing(false);
-  }, [resetAndLoad]);
+    try {
+      await loadFirstPage();
+    } catch (e: any) {
+      setError(e?.message || "Failed to load feed");
+    } finally {
+      setRefreshing(false);
+    }
+  }, [loadFirstPage]);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("tabPress", () => {
+      if (!isFocused) return;
+      onRefresh();
+      listRef.current?.scrollToOffset({ offset: 0, animated: true });
+    });
+    return unsubscribe;
+  }, [navigation, isFocused, onRefresh]);
 
   const _keyExtractor = useCallback((item: FeedItem, index: number) => item.__listKey, []);
 

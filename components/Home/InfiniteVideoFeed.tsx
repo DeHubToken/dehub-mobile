@@ -5,6 +5,7 @@ import React, {
   useState,
   useMemo,
 } from "react";
+import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import {
   View,
   FlatList,
@@ -73,47 +74,55 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const listRef = useRef<FlatList<FeedItem>>(null);
   const prevYRef = useRef(0);
   const lastDirectionRef = useRef<"up" | "down" | null>(null);
+  const navigation = useNavigation<any>();
+  const isFocused = useIsFocused();
 
-  const resetAndLoad = useCallback(async () => {
-    // show skeleton immediately
-    setItems([]);
-    setInitialLoading(true);
+  useScrollToTop(listRef);
+
+  const loadFirstPage = useCallback(async () => {
     setError(null);
     endReachedRef.current = false;
     setPage(0);
+    const res = await getNFTs({ ...(params || {}), unit: pageSize, page: 0 });
+    const mapped: FeedItem[] = (res.result || []).map((it, idx) => {
+      // Always include page + index to guarantee uniqueness even if backend returns duplicate ids
+      const base =
+        (it as any).tokenId ||
+        (it as any).id ||
+        (it as any).nftId ||
+        (it as any).streamKey ||
+        (it as any).stream?.id ||
+        (it as any).stream?.streamKey ||
+        `auto`; // fallback
+      const created =
+        (it as any).createdAt ||
+        (it as any).stream?.createdAt ||
+        (it as any).created_at ||
+        `nocreated`;
+      return {
+        ...it,
+        __listKey: `${base}-${created}-p0-i${idx}`,
+      };
+    });
+    setItems(mapped);
+    if (!res.result || res.result.length < pageSize) {
+      endReachedRef.current = true;
+      onEndReachedAll && onEndReachedAll();
+    }
+  }, [params, pageSize, onEndReachedAll]);
+
+  const resetAndLoad = useCallback(async () => {
+    // Show skeleton immediately for initial load / param changes.
+    setItems([]);
+    setInitialLoading(true);
     try {
-      const res = await getNFTs({ ...(params || {}), unit: pageSize, page: 0 });
-      const mapped: FeedItem[] = (res.result || []).map((it, idx) => {
-        // Always include page + index to guarantee uniqueness even if backend returns duplicate ids
-        const base =
-          (it as any).tokenId ||
-          (it as any).id ||
-          (it as any).nftId ||
-          (it as any).streamKey ||
-          (it as any).stream?.id ||
-          (it as any).stream?.streamKey ||
-          `auto`; // fallback
-        const created =
-          (it as any).createdAt ||
-          (it as any).stream?.createdAt ||
-          (it as any).created_at ||
-          `nocreated`;
-        return {
-          ...it,
-          __listKey: `${base}-${created}-p0-i${idx}`,
-        };
-      });
-      setItems(mapped);
-      if (!res.result || res.result.length < pageSize) {
-        endReachedRef.current = true;
-        onEndReachedAll && onEndReachedAll();
-      }
+      await loadFirstPage();
     } catch (e: any) {
       setError(e?.message || "Failed to load");
     } finally {
       setInitialLoading(false);
     }
-  }, [params, pageSize, onEndReachedAll]);
+  }, [loadFirstPage]);
 
   useEffect(() => {
     resetAndLoad();
@@ -171,13 +180,26 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   ]);
 
   const onRefresh = useCallback(async () => {
-    // Mirror behavior of compact list: clear items & show skeleton instantly.
+    // Keep existing items so the RefreshControl spinner is visible (no skeleton snap).
     setRefreshing(true);
-    setItems([]); // triggers skeleton placeholder when initialLoading flips
-    setInitialLoading(true);
-    await resetAndLoad();
-    setRefreshing(false);
-  }, [resetAndLoad]);
+    try {
+      await loadFirstPage();
+    } catch (e: any) {
+      setError(e?.message || "Failed to load");
+    } finally {
+      setRefreshing(false);
+    }
+  }, [loadFirstPage]);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("tabPress", () => {
+      if (!isFocused) return;
+      // Tap active tab: start refresh immediately; spinner will be visible once we're near the top.
+      onRefresh();
+      listRef.current?.scrollToOffset({ offset: 0, animated: true });
+    });
+    return unsubscribe;
+  }, [navigation, isFocused, onRefresh]);
 
   const handleRetry = useCallback(() => {
     try { onRetry && onRetry(); } catch {}
