@@ -17,6 +17,7 @@ import {
   getBadgeUrl,
   getVideoUrl,
   getDefaultBanner,
+  formatCompactNumber,
 } from "../../libs";
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import Avatar from "../common/Avatar";
@@ -186,15 +187,18 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
         {isPayPerView && (
           <View className="absolute top-2 right-2 bg-blue-600 px-2 py-1 rounded">
             <Text className="text-theme-neutrals-200 text-xs font-bold">
-              PPV: {payPerViewAmount} {payPerViewTokenSymbol}
+              PPV: {formatCompactNumber(payPerViewAmount)} {payPerViewTokenSymbol}
             </Text>
           </View>
         )}
         {isBounty && (
-          <View className="absolute -left-4 top-0 w-32 origin-top-left" style={{ transform: [{ rotate: '-45deg' }, { translateX: -30 }, { translateY: 8 }] }}>
-            <View className="bg-pink-600 py-0.5">
+          <View
+            className="absolute -left-8 top-0 w-40 origin-top-left bg-pink-600"
+            style={{ transform: [{ rotate: "-45deg" }, { translateX: -30 }, { translateY: 8 }, { scaleX: 1.15 }] }}
+          >
+            <View className="w-full py-0.5">
               <Text className="text-theme-neutrals-200 text-[10px] font-bold text-center">
-                W2E: {bountyAmount} {bountyTokenSymbol}
+                W2E: {formatCompactNumber(bountyAmount)} {bountyTokenSymbol}
               </Text>
             </View>
           </View>
@@ -202,7 +206,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
         {isLocked && (
           <View className="absolute bottom-2 mb-5 right-2 bg-purple-600 px-2 py-1 rounded">
             <Text className="text-theme-neutrals-200 text-xs font-bold">
-              Lock: {lockContentAmount} {lockContentTokenSymbol}
+              Lock: {formatCompactNumber(lockContentAmount)} {lockContentTokenSymbol}
             </Text>
           </View>
         )}
