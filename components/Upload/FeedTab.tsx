@@ -34,6 +34,7 @@ import { web3AuthService } from "../../services/web3auth.service";
 type PickedImage = ImagePicker.ImagePickerAsset;
 
 export default function FeedTab() {
+  const TITLE_MAX = 140;
   const DESCRIPTION_MAX = 500;
   const CATEGORIES_MIN = 0;
   const CATEGORIES_MAX = 5;
@@ -90,6 +91,13 @@ export default function FeedTab() {
     };
   }, []);
 
+  const handleTitleChange = useCallback(
+    (v: string) => {
+      setTitle(v);
+    },
+    []
+  );
+
   const addCategory = useCallback(
     (name: string) => {
       const n = name.trim();
@@ -112,13 +120,13 @@ export default function FeedTab() {
   const isFormValid = useMemo(() => {
     const t = title.trim();
     const d = description.trim();
+    console.log({le: t?.length})
     const hasBasics =
-      t.length >= 3 && categories.length <= CATEGORIES_MAX;
+      t.length >= 3 && t.length <= TITLE_MAX  && d.length <= DESCRIPTION_MAX && categories.length <= CATEGORIES_MAX;
     // Images are optional (0-4)
     const withinLimit = images.length <= 4;
     return hasBasics && withinLimit;
-  }, [title, description, categories.length, images.length]);
-
+  }, [title, description, categories.length, images.length, TITLE_MAX, DESCRIPTION_MAX]);
   const pickImages = useCallback(async () => {
     const perm = await ensureMediaLibraryPermission();
     if (!perm.granted) {
@@ -281,9 +289,10 @@ export default function FeedTab() {
         <BasicInfoForm
           title={title}
           description={description}
+          titleMax={TITLE_MAX}
           descriptionMax={DESCRIPTION_MAX}
           descriptionPlaceholder="Share what your post is about (optional)"
-          onChangeTitle={setTitle}
+          onChangeTitle={handleTitleChange}
           onChangeDescription={setDescription}
           type="feed"
         />

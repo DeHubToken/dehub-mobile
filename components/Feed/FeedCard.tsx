@@ -29,6 +29,7 @@ import {
   isFollowing as isFollowingApi,
 } from "../../services/user.service";
 import FeedImageGallery from "./FeedImageGallery";
+import FeedDescription from "./FeedDescription";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { theme } from "../../theme";
 import { LEGACY_WEBSITE_LINK } from "../../config";
@@ -339,18 +340,10 @@ const FeedCard: React.FC<FeedCardProps> = memo(
       : "";
     const avatar = getAvatarUrl((item as any).minterAvatarUrl || "");
     const badgeImg = getBadgeUrl((item as any).minterStaked || 0, "dark");
-    const [descExpanded, setDescExpanded] = useState(false);
     const titleText = (item as any).name || (item as any).title || "";
     const descriptionText = (item as any).description || "";
-    const CHAR_LIMIT_FOR_TOGGLE = 160; // approx ~2-3 lines for our font/width
-    const shouldTruncate =
-      (descriptionText?.trim().length || 0) > CHAR_LIMIT_FOR_TOGGLE;
 
-    // Reset description measurement/toggle when content changes
-    React.useEffect(() => {
-      setDescExpanded(false);
-    }, [descriptionText]);
-
+    // console.log({titleText})
     //   console.log({liked: item?.isLiked, saved: item?.isSaved })
 
     return (
@@ -435,49 +428,11 @@ const FeedCard: React.FC<FeedCardProps> = memo(
           </View>
 
           {/* Title & Description */}
-          {(!!titleText || !!descriptionText) && (
-            <View className="px-3 py-2">
-              {!!titleText && (
-                <TouchableOpacity activeOpacity={0.8} onPress={handleFeedPress}>
-                  <Text
-                    className="text-theme-neutrals-100 text-[14px] font-semibold"
-                    numberOfLines={2}
-                  >
-                    {titleText}
-                  </Text>
-                </TouchableOpacity>
-              )}
-              {!!descriptionText && (
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  onPress={() =>
-                    shouldTruncate
-                      ? setDescExpanded((p) => !p)
-                      : handleFeedPress()
-                  }
-                  className={titleText ? "mt-1" : ""}
-                >
-                  <Text
-                    className="text-theme-neutrals-200 text-[13px] leading-5"
-                    numberOfLines={
-                      shouldTruncate && !descExpanded ? 2 : undefined
-                    }
-                    ellipsizeMode="tail"
-                  >
-                    {descriptionText}
-                  </Text>
-                  {shouldTruncate && (
-                    <Text
-                      className="text-theme-neutrals-500 text-sm"
-                      onPress={() => setDescExpanded((p) => !p)}
-                    >
-                      {descExpanded ? "Show less" : "Show more"}
-                    </Text>
-                  )}
-                </TouchableOpacity>
-              )}
-            </View>
-          )}
+          <FeedDescription
+            titleText={titleText}
+            descriptionText={descriptionText}
+            onPressTitle={handleFeedPress}
+          />
 
           {/* Image */}
           {hasImages && (
