@@ -240,7 +240,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         <Pressable
           accessibilityRole="button"
           onPress={handleRetry}
-          className="px-5 py-2 rounded-md bg-theme-neutrals-700 active:opacity-80"
+          className="px-5 py-2 rounded-full bg-theme-neutrals-700 active:opacity-80"
         >
           <Text className="text-theme-neutrals-50 font-medium">Retry</Text>
         </Pressable>
