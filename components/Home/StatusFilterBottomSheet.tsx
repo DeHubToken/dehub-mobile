@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal, Animated, PanResponder, Dimensions } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
-import { theme } from '../../theme';
-import { statusOptions } from '../../libs';
-import AccentButtonGradient from '../ui/AccentButtonGradient';
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
+import { theme } from "../../theme";
+import { statusOptions } from "../../libs";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
+import GlassModal from "../ui/GlassModal";
 
 type StatusFilterBottomSheetProps = {
   visible: boolean;
@@ -18,432 +19,294 @@ type StatusFilterBottomSheetProps = {
 type RangeOption = {
   id: string;
   label: string;
-  icon: string;
+  icon: keyof typeof Ionicons.glyphMap;
 };
 
 const rangeOptions: RangeOption[] = [
-  { id: 'all', label: 'All', icon: 'infinite-outline' },
-  { id: 'day', label: 'Today', icon: 'today-outline' },
-  { id: 'week', label: 'This Week', icon: 'calendar-outline' },
-  { id: 'month', label: 'This Month', icon: 'calendar-number-outline' },
-  { id: 'year', label: 'This Year', icon: 'time-outline' },
+  { id: "all", label: "All", icon: "infinite-outline" },
+  { id: "day", label: "Today", icon: "today-outline" },
+  { id: "week", label: "This Week", icon: "calendar-outline" },
+  { id: "month", label: "This Month", icon: "calendar-number-outline" },
+  { id: "year", label: "This Year", icon: "time-outline" },
 ];
 
-const StatusFilterBottomSheet: React.FC<StatusFilterBottomSheetProps> = ({ 
-  visible, 
-  onClose, 
-  selectedSortMode, 
-  onSortModeChange,
-  selectedRange = '',
-  onRangeChange 
+type StatusOption = {
+  id: string;
+  label: string;
+  icon: string;
+};
+
+const ListSeparator: React.FC = () => <View className="h-2" />;
+
+type OptionRowProps = {
+  label: string;
+  icon: keyof typeof Ionicons.glyphMap;
+  selected: boolean;
+  onPress: () => void;
+  size?: "md" | "sm";
+  showCheck?: boolean;
+  labelLines?: number;
+  showIcon?: boolean;
+};
+
+const OptionRow: React.FC<OptionRowProps> = ({
+  label,
+  icon,
+  selected,
+  onPress,
+  size = "md",
+  showCheck = true,
+  labelLines = 1,
+  showIcon = true,
 }) => {
-  const slideAnim = useRef(new Animated.Value(Dimensions.get('window').height)).current;
-  const backdropOpacity = useRef(new Animated.Value(0)).current;
+  return (
+    <TouchableOpacity
+      className={`flex-row items-center rounded-xl border ${
+        size === "sm" ? "py-4 px-2" : "py-3.5 px-2"
+      } ${
+        selected
+          ? "bg-theme-accent/10 border-theme-accent"
+          : "bg-black/15 border-theme-neutrals-800"
+      }`}
+      onPress={onPress}
+      activeOpacity={0.8}
+      accessibilityRole="button"
+      accessibilityState={{ selected }}
+    >
+      {showIcon && (
+        <View
+          className={`items-center justify-center mr-2 ${
+            size === "sm" ? "w-8 h-8" : "w-9 h-9"
+          }`}
+        >
+          <Ionicons
+            name={icon}
+            size={size === "sm" ? 14 : 18}
+            color={
+              selected ? theme.colors.accent : theme.colors.mutedForeground
+            }
+          />
+        </View>
+      )}
+      <Text
+        className={`flex-1 ${size === "sm" ? "text-[12px]" : "text-[15px]"} ${
+          selected
+            ? "text-theme-neutrals-100 font-bold"
+            : "text-theme-neutrals-400 font-semibold"
+        }`}
+        numberOfLines={labelLines}
+      >
+        {label}
+      </Text>
+      {showCheck && selected && (
+        <Ionicons
+          name="checkmark-circle"
+          size={size === "sm" ? 16 : 20}
+          color={theme.colors.accent}
+        />
+      )}
+    </TouchableOpacity>
+  );
+};
+
+const StatusFilterBottomSheet: React.FC<StatusFilterBottomSheetProps> = ({
+  visible,
+  onClose,
+  selectedSortMode,
+  onSortModeChange,
+  selectedRange = "",
+  onRangeChange,
+}) => {
   const [localSortMode, setLocalSortMode] = useState(selectedSortMode);
   const [localRange, setLocalRange] = useState(selectedRange);
 
-  React.useEffect(() => {
+  const noop = useCallback(() => {}, []);
+
+  useEffect(() => {
     if (visible) {
-      // Reset local state to current selections when modal opens
       setLocalSortMode(selectedSortMode);
       setLocalRange(selectedRange);
-      
-      Animated.parallel([
-        Animated.timing(slideAnim, {
-          toValue: 0,
-          duration: 250,
-          useNativeDriver: true,
-        }),
-        Animated.timing(backdropOpacity, {
-          toValue: 0.5,
-          duration: 250,
-          useNativeDriver: true,
-        }),
-      ]).start();
-    } else {
-      Animated.parallel([
-        Animated.timing(slideAnim, {
-          toValue: Dimensions.get('window').height,
-          duration: 200,
-          useNativeDriver: true,
-        }),
-        Animated.timing(backdropOpacity, {
-          toValue: 0,
-          duration: 200,
-          useNativeDriver: true,
-        }),
-      ]).start();
     }
   }, [visible, selectedSortMode, selectedRange]);
 
-  const panResponder = PanResponder.create({
-    onStartShouldSetPanResponder: () => true,
-    onMoveShouldSetPanResponder: (evt, gestureState) => {
-      return gestureState.dy > 2;
-    },
-    onPanResponderMove: (evt, gestureState) => {
-      if (gestureState.dy > 0) {
-        slideAnim.setValue(gestureState.dy);
-      }
-    },
-    onPanResponderRelease: (evt, gestureState) => {
-      if (gestureState.dy > 100 || gestureState.vy > 0.5) {
-        onClose();
-      } else {
-        Animated.timing(slideAnim, {
-          toValue: 0,
-          duration: 200,
-          useNativeDriver: true,
-        }).start();
-      }
-    },
-  });
+  const statusPressHandlers = useMemo(() => {
+    const handlers: Record<string, () => void> = {};
+    for (const option of statusOptions) {
+      handlers[option.id] = () => setLocalSortMode(option.id);
+    }
+    return handlers;
+  }, [setLocalSortMode, statusOptions]);
 
-  const handleStatusSelect = (statusId: string) => {
-    setLocalSortMode(statusId);
-  };
+  const rangePressHandlers = useMemo(() => {
+    const handlers: Record<string, () => void> = {};
+    for (const option of rangeOptions) {
+      handlers[option.id] = () => setLocalRange(option.id);
+    }
+    return handlers;
+  }, [setLocalRange]);
 
-  const handleRangeSelect = (rangeId: string) => {
-    setLocalRange(rangeId);
-  };
+  const renderStatusItem = useCallback(
+    ({ item }: { item: StatusOption }) => {
+      const onPress = statusPressHandlers[item.id] ?? noop;
+      return (
+        <OptionRow
+          label={item.label}
+          icon={item.icon as keyof typeof Ionicons.glyphMap}
+          selected={localSortMode === item.id}
+          onPress={onPress}
+          // labelLines={2}
+        />
+      );
+    },
+    [localSortMode, noop, statusPressHandlers]
+  );
 
-  const handleApply = () => {
-    // Apply the changes to parent state
+  const renderRangeItem = useCallback(
+    ({ item }: { item: RangeOption }) => {
+      const isSelected =
+        (localRange === "" && item.id === "all") || localRange === item.id;
+      const onPress = rangePressHandlers[item.id] ?? noop;
+      return (
+        <OptionRow
+          label={item.label.replace("This ", "")}
+          icon={item.icon}
+          selected={isSelected}
+          onPress={onPress}
+          size="sm"
+          showCheck
+          showIcon={false}
+        />
+      );
+    },
+    [localRange, noop, rangePressHandlers]
+  );
+
+  const handleApply = useCallback(() => {
     onSortModeChange(localSortMode);
     if (onRangeChange) {
-      onRangeChange(localRange === 'all' ? '' : localRange);
+      onRangeChange(localRange === "all" ? "" : localRange);
     }
-    
-    setTimeout(() => {
-      onClose();
-    }, 150);
-  };
+    setTimeout(() => onClose(), 150);
+  }, [localSortMode, localRange, onSortModeChange, onRangeChange, onClose]);
 
   return (
-    <Modal
+    <GlassModal
       visible={visible}
-      transparent
-      animationType="none"
-      onRequestClose={onClose}
+      onClose={onClose}
+      presentation="bottom"
+      maxHeight="90%"
+      blurIntensity={40}
     >
-      <View style={styles.modalContainer}>
-        <Animated.View 
-          style={[styles.backdrop, { opacity: backdropOpacity }]}
-        >
-          <TouchableOpacity 
-            style={StyleSheet.absoluteFill} 
+      <SafeAreaView edges={["bottom"]} className="max-h-[98%]">
+        {/* Grabber */}
+        <View className="items-center pt-2">
+          <View className="w-10 h-1 rounded-full bg-white/15" />
+        </View>
+
+        {/* Header */}
+        <View className="flex-row justify-between items-start px-5 pt-4 pb-4">
+          <View className="flex-1 pr-3">
+            <Text className="text-theme-neutrals-100 font-bold text-[22px]">
+              Filter Content
+            </Text>
+            <Text className="text-theme-neutrals-400 text-[13px] mt-0.5">
+              Choose type and time range
+            </Text>
+          </View>
+          <TouchableOpacity
             onPress={onClose}
-            activeOpacity={1}
-          />
-        </Animated.View>
-        
-        <Animated.View
-          style={[
-            styles.bottomSheet,
-            { transform: [{ translateY: slideAnim }] }
-          ]}
-        >
-          <SafeAreaView style={{ flex: 1 }} edges={['bottom']}>
-            <View style={styles.dragArea} {...panResponder.panHandlers}>
-              <View style={styles.dragHandle} />
-            </View>
-            
-            <View style={styles.sheetHeader}>
-              <View>
-                <Text style={styles.sheetTitle}>Filter Content</Text>
-                <Text style={styles.sheetSubtitle}>Choose type and time range</Text>
+            className="p-2 bg-white/5 rounded-full"
+            activeOpacity={0.8}
+            accessibilityRole="button"
+            accessibilityLabel="Close filters"
+          >
+            <Ionicons
+              name="close"
+              size={20}
+              color={theme.colors.mutedForeground}
+            />
+          </TouchableOpacity>
+        </View>
+
+        {/* Content */}
+        <View className="px-5 pb-4">
+          <View className="flex-row gap-3">
+            {/* Left - Content Type */}
+            <View className="flex-1">
+              <View className="rounded-2xl border border-theme-neutrals-800 bg-black/15 overflow-hidden">
+                <View className="flex-row items-center gap-2 px-4 pt-4 pb-3 border-b border-white/5">
+                  <Ionicons
+                    name="grid-outline"
+                    size={16}
+                    color={theme.colors.accent}
+                  />
+                  <Text className="text-theme-neutrals-100 text-[12px] font-bold uppercase tracking-wider">
+                    Content Type
+                  </Text>
+                </View>
+                <FlatList
+                  data={statusOptions as StatusOption[]}
+                  keyExtractor={(item) => item.id}
+                  showsVerticalScrollIndicator={false}
+                  contentContainerStyle={{ padding: 12, paddingTop: 10 }}
+                  ItemSeparatorComponent={ListSeparator}
+                  renderItem={renderStatusItem}
+                />
               </View>
-              <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-                <Ionicons name="close" size={24} color={theme.colors.mutedForeground} />
+            </View>
+
+            {/* Right - Time Range */}
+            <View className="w-36 shrink-0">
+              <View className="rounded-2xl border border-theme-neutrals-800 bg-black/15 overflow-hidden">
+                <View className="flex-row items-center gap-2 px-4 pt-4 pb-3 border-b border-white/5">
+                  <Ionicons
+                    name="time-outline"
+                    size={16}
+                    color={theme.colors.accent}
+                  />
+                  <Text className="text-theme-neutrals-100 text-[12px] font-bold uppercase tracking-wider">
+                    Time
+                  </Text>
+                </View>
+                <FlatList
+                  data={rangeOptions}
+                  keyExtractor={(item) => item.id}
+                  showsVerticalScrollIndicator={false}
+                  contentContainerStyle={{ padding: 12, paddingTop: 10 }}
+                  ItemSeparatorComponent={ListSeparator}
+                  renderItem={renderRangeItem}
+                />
+              </View>
+            </View>
+          </View>
+
+          {/* Apply Button */}
+          <View className="pt-5 pb-2">
+            <AccentButtonGradient borderRadius={9999}>
+              <TouchableOpacity
+                className="py-4 rounded-full items-center flex-row justify-center"
+                onPress={handleApply}
+                activeOpacity={0.85}
+                accessibilityRole="button"
+                accessibilityLabel="Apply filters"
+              >
+                <View className="mr-2">
+                  <Ionicons
+                    name="checkmark-circle"
+                    size={20}
+                    color={theme.colors.accentForeground}
+                  />
+                </View>
+                <Text className="text-white text-base font-bold tracking-wide">
+                  Apply Filters
+                </Text>
               </TouchableOpacity>
-            </View>
-
-            <View style={styles.sheetContent}>
-              <View style={styles.twoColumnContainer}>
-                {/* Left Column - Content Type */}
-                <View style={styles.leftColumn}>
-                  <View style={styles.columnHeader}>
-                    <Ionicons name="grid-outline" size={16} color={theme.colors.accent} />
-                    <Text style={styles.columnTitle}>Content Type</Text>
-                  </View>
-                  <ScrollView showsVerticalScrollIndicator={false} style={styles.columnScroll}>
-                    {statusOptions.map((option, idx) => {
-                      const isSelected = localSortMode === option.id;
-                      const isLast = idx === statusOptions.length - 1;
-                      const isFirst = idx === 0;
-                      return (
-                        <TouchableOpacity
-                          key={option.id}
-                          style={[
-                            styles.statusOption,
-                            isSelected && styles.statusOptionSelected,
-                            isFirst && styles.statusOptionTopRound,
-                            isLast && styles.statusOptionBottomRound,
-                          ]}
-                          onPress={() => handleStatusSelect(option.id)}
-                          activeOpacity={0.7}
-                        >
-                          <View style={[styles.iconCircle, isSelected && styles.iconCircleSelected]}>
-                            <Ionicons
-                              name={option.icon as any}
-                              size={18}
-                              color={isSelected ? theme.colors.accent : theme.colors.mutedForeground}
-                            />
-                          </View>
-                          <Text style={[styles.statusOptionText, isSelected && styles.statusOptionTextSelected]}>
-                            {option.label}
-                          </Text>
-                          {isSelected && (
-                            <Ionicons name="checkmark-circle" size={20} color={theme.colors.accent} />
-                          )}
-                        </TouchableOpacity>
-                      );
-                    })}
-                  </ScrollView>
-                </View>
-
-                {/* Right Column - Time Range */}
-                <View style={styles.rightColumn}>
-                  <View style={styles.columnHeader}>
-                    <Ionicons name="time-outline" size={16} color={theme.colors.accent} />
-                    <Text style={styles.columnTitle}>Time</Text>
-                  </View>
-                  <ScrollView showsVerticalScrollIndicator={false} style={styles.columnScroll}>
-                    {rangeOptions.map((option, idx) => {
-                      const isSelected = (localRange === '' && option.id === 'all') || localRange === option.id;
-                      const isLast = idx === rangeOptions.length - 1;
-                      const isFirst = idx === 0;
-                      return (
-                        <TouchableOpacity
-                          key={option.id}
-                          style={[
-                            styles.rangeOption,
-                            isSelected && styles.rangeOptionSelected,
-                            isFirst && styles.statusOptionTopRound,
-                            isLast && styles.statusOptionBottomRound,
-                          ]}
-                          onPress={() => handleRangeSelect(option.id)}
-                          activeOpacity={0.7}
-                        >
-                          <View style={[styles.iconCircleSmall, isSelected && styles.iconCircleSelected]}>
-                            <Ionicons
-                              name={option.icon as any}
-                              size={14}
-                              color={isSelected ? theme.colors.accent : theme.colors.mutedForeground}
-                            />
-                          </View>
-                          <Text style={[styles.rangeOptionText, isSelected && styles.rangeOptionTextSelected]} numberOfLines={1}>
-                            {option.label.replace('This ', '')}
-                          </Text>
-                        </TouchableOpacity>
-                      );
-                    })}
-                  </ScrollView>
-                </View>
-              </View>
-
-              {/* Apply Button */}
-              <View style={styles.applyButtonContainer}>
-                <AccentButtonGradient borderRadius={9999}>
-                  <TouchableOpacity 
-                    style={styles.applyButton}
-                    onPress={handleApply}
-                    activeOpacity={0.8}
-                  >
-                    <Ionicons name="checkmark-circle" size={20} color="#fff" style={{ marginRight: 8 }} />
-                    <Text style={styles.applyButtonText}>Apply Filters</Text>
-                  </TouchableOpacity>
-                </AccentButtonGradient>
-              </View>
-            </View>
-          </SafeAreaView>
-        </Animated.View>
-      </View>
-    </Modal>
+            </AccentButtonGradient>
+          </View>
+        </View>
+      </SafeAreaView>
+    </GlassModal>
   );
 };
 
 export default StatusFilterBottomSheet;
-
-const styles = StyleSheet.create({
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  backdrop: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'black',
-  },
-  bottomSheet: {
-    backgroundColor: theme.colors.background,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    maxHeight: Dimensions.get('window').height * 0.75,
-    height: Dimensions.get('window').height * 0.6,
-  },
-  dragHandle: {
-    width: 40,
-    height: 4,
-    backgroundColor: theme.colors.muted,
-    borderRadius: 2,
-    alignSelf: 'center',
-    marginTop: 12,
-  },
-  dragArea: {
-    paddingTop: 8,
-    paddingBottom: 8,
-  },
-  sheetHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    paddingHorizontal: 20,
-    paddingTop: 8,
-    paddingBottom: 20,
-  },
-  sheetTitle: {
-    fontSize: 22,
-    fontWeight: '700',
-    color: theme.colors.foreground,
-    marginBottom: 2,
-  },
-  sheetSubtitle: {
-    fontSize: 13,
-    color: theme.colors.mutedForeground,
-  },
-  closeButton: {
-    padding: 4,
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
-    borderRadius: 20,
-  },
-  sheetContent: {
-    flex: 1,
-    paddingTop: 10,
-    // minHeight: 0,
-  },
-  twoColumnContainer: {
-    flexDirection: 'row',
-    flex: 1,
-    paddingHorizontal: 20,
-    gap: 16,
-  },
-  leftColumn: {
-    flex: 2.2,
-  },
-  rightColumn: {
-    flex: 1,
-  },
-  columnHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    marginBottom: 12,
-  },
-  columnTitle: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: theme.colors.foreground,
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
-  },
-  columnScroll: {
-    flex: 1,
-  },
-  statusOption: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 14,
-    backgroundColor: 'rgba(255, 255, 255, 0.04)',
-    marginBottom: 8,
-    borderRadius: 12,
-    borderWidth: 1.5,
-    borderColor: 'transparent',
-  },
-  statusOptionSelected: {
-    backgroundColor: 'rgba(79, 142, 247, 0.12)',
-    borderColor: theme.colors.accent,
-  },
-  iconCircle: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: 'rgba(255, 255, 255, 0.06)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 12,
-  },
-  iconCircleSelected: {
-    backgroundColor: 'rgba(79, 142, 247, 0.2)',
-  },
-  iconCircleSmall: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: 'rgba(255, 255, 255, 0.06)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 8,
-  },
-  statusOptionText: {
-    flex: 1,
-    fontSize: 15,
-    fontWeight: '600',
-    color: theme.colors.mutedForeground,
-  },
-  statusOptionTextSelected: {
-    color: theme.colors.foreground,
-    fontWeight: '700',
-  },
-  rangeOption: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    backgroundColor: 'rgba(255, 255, 255, 0.04)',
-    marginBottom: 8,
-    borderRadius: 10,
-    borderWidth: 1.5,
-    borderColor: 'transparent',
-  },
-  rangeOptionSelected: {
-    backgroundColor: 'rgba(79, 142, 247, 0.12)',
-    borderColor: theme.colors.accent,
-  },
-  rangeOptionText: {
-    flex: 1,
-    fontSize: 12,
-    fontWeight: '600',
-    color: theme.colors.mutedForeground,
-  },
-  rangeOptionTextSelected: {
-    color: theme.colors.foreground,
-    fontWeight: '700',
-  },
-  statusOptionTopRound: {
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
-  },
-  statusOptionBottomRound: {
-    borderBottomLeftRadius: 12,
-    borderBottomRightRadius: 12,
-  },
-  applyButtonContainer: {
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    paddingBottom: 24,
-  },
-  applyButton: {
-    paddingVertical: 16,
-    borderRadius: 14,
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  applyButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '700',
-    letterSpacing: 0.5,
-  },
-});
