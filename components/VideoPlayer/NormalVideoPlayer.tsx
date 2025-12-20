@@ -30,7 +30,7 @@ import { toastError } from "../../libs";
 import CreatorRow from "./CreatorRow";
 import CommentComposer from "./CommentComposer";
 import CommentsPanel from "./CommentsPanel";
-import SuggestedVideos from "./SuggestedVideos";
+import SuggestedVideos, { SuggestedVideosHandle } from "./SuggestedVideos";
 import { ScrollView } from "react-native-gesture-handler";
 import useKeyboard from "../../hooks/useKeyboard";
 
@@ -193,6 +193,7 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
   // --- View recording: 5s-or-full threshold, signed-in only, once per view ---
   const hasRecordedRef = useRef(false);
   const pendingRecordRef = useRef(false);
+  const suggestedRef = useRef<SuggestedVideosHandle>(null);
   const onProgressRecord = async (positionMs: number, durationMs: number) => {
     if (hasRecordedRef.current || pendingRecordRef.current) return;
     if (!isSignedIn) return;
@@ -227,6 +228,18 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
     totalTips) as number;
   const resolvedCreatedAt =
     nftData?.createdAt || nftData?.result?.createdAt || createdAtDate;
+
+  const handleScroll = useCallback((e: any) => {
+    const { layoutMeasurement, contentOffset, contentSize } = e?.nativeEvent || {};
+    if (!layoutMeasurement || !contentOffset || !contentSize) return;
+    const paddingToBottom = 320;
+    if (
+      layoutMeasurement.height + contentOffset.y >=
+      contentSize.height - paddingToBottom
+    ) {
+      suggestedRef.current?.loadMore();
+    }
+  }, []);
 
   const handleFollow = useCallback(() => {
     if (!creator) return;
@@ -512,6 +525,8 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
         // Ensure vertical scroll isn't blocked by nested views
         pointerEvents="auto"
         contentContainerStyle={{ paddingBottom: commentsOpen ? 120 : 80 }}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
       >
         <View
           style={{
@@ -630,7 +645,7 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
                 </>
               )}
             </View>
-            <SuggestedVideos excludeTokenId={tokenId} />
+            <SuggestedVideos ref={suggestedRef} excludeTokenId={tokenId} />
           </>
         </View>
         <View
