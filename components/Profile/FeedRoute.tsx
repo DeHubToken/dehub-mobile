@@ -46,6 +46,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({ address }) => {
   return (
     <View className="flex-1 px-4">
       <InfiniteFeed
+        insideNavigatorScreen={false}
         params={feedParams}
         pageSize={20}
         contentContainerStyle={{ paddingBottom: 80, paddingTop: 8 }}

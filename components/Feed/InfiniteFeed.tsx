@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import {
   View,
@@ -27,9 +27,29 @@ export interface InfiniteFeedProps {
   emptyComponent?: React.ReactNode;
   /** Optional custom page fetcher override. If provided, it will be used instead of getFeedNFTs. */
   fetchPage?: (page: number, unit: number) => Promise<GetNFTsResponse>;
+  /**
+   * Set false when rendering this feed outside of a React Navigation Screen (e.g. inside a bottom sheet/tab view).
+   * Prevents screen-only hooks (useIsFocused/useScrollToTop) from running.
+   */
+  insideNavigatorScreen?: boolean;
 }
 
-export const InfiniteFeed: React.FC<InfiniteFeedProps> = ({
+interface FeedItem extends GetNFTsResult {
+  __listKey: string;
+}
+
+type InfiniteFeedInternalProps = Omit<InfiniteFeedProps, "insideNavigatorScreen">;
+
+const InfiniteFeedBase: React.FC<
+  InfiniteFeedInternalProps & {
+    isFocused?: boolean;
+    listRef: React.RefObject<FlatList<FeedItem> | null>;
+    navigationForTabPress?: {
+      addListener: (event: string, callback: () => void) => () => void;
+      isFocused?: () => boolean;
+    } | null;
+  }
+> = ({
   params,
   pageSize = 20,
   contentContainerStyle,
@@ -39,8 +59,10 @@ export const InfiniteFeed: React.FC<InfiniteFeedProps> = ({
   keyExtractor,
   emptyComponent,
   fetchPage,
+  isFocused,
+  listRef,
+  navigationForTabPress = null,
 }) => {
-  interface FeedItem extends GetNFTsResult { __listKey: string }
   const [items, setItems] = useState<FeedItem[]>([]);
   const [page, setPage] = useState(0);
   const [initialLoading, setInitialLoading] = useState(true);
@@ -49,12 +71,12 @@ export const InfiniteFeed: React.FC<InfiniteFeedProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const endReachedRef = useRef(false);
-  const listRef = useRef<FlatList<FeedItem>>(null);
   const prevYRef = useRef(0);
-  const navigation = useNavigation<any>();
-  const isFocused = useIsFocused();
 
-  useScrollToTop(listRef);
+  const renderFeedItem = useCallback<ListRenderItem<FeedItem>>(
+    (info) => renderItem(info as unknown as { item: GetNFTsResult; index: number; separators: any }),
+    [renderItem]
+  );
 
   const mapWithKey = useCallback((arr: GetNFTsResult[], pageNum: number) => {
     return (arr || []).map((it, idx) => {
@@ -131,13 +153,24 @@ export const InfiniteFeed: React.FC<InfiniteFeedProps> = ({
   }, [loadFirstPage]);
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener("tabPress", () => {
-      if (!isFocused) return;
+    if (!navigationForTabPress) return;
+
+    const unsubscribe = navigationForTabPress.addListener("tabPress", () => {
+      // If isFocused was provided (screen mode), respect it.
+      // Otherwise (embedded mode), fall back to navigation.isFocused() when available.
+      const actuallyFocused =
+        typeof isFocused === "boolean"
+          ? isFocused
+          : typeof navigationForTabPress.isFocused === "function"
+            ? navigationForTabPress.isFocused()
+            : true;
+
+      if (!actuallyFocused) return;
       onRefresh();
       listRef.current?.scrollToOffset({ offset: 0, animated: true });
     });
     return unsubscribe;
-  }, [navigation, isFocused, onRefresh]);
+  }, [navigationForTabPress, isFocused, onRefresh, listRef]);
 
   const _keyExtractor = useCallback((item: FeedItem, index: number) => item.__listKey, []);
 
@@ -190,7 +223,7 @@ export const InfiniteFeed: React.FC<InfiniteFeedProps> = ({
         ref={listRef}
         data={items}
         keyExtractor={keyExtractor || _keyExtractor}
-        renderItem={renderItem}
+        renderItem={renderFeedItem}
         ListHeaderComponent={headerComponent as any}
         initialNumToRender={4}
         maxToRenderPerBatch={4}
@@ -239,6 +272,23 @@ export const InfiniteFeed: React.FC<InfiniteFeedProps> = ({
       )}
     </View>
   );
+};
+
+const InfiniteFeedScreen: React.FC<InfiniteFeedInternalProps> = (props) => {
+  const listRef = useRef<FlatList<FeedItem>>(null);
+  const navigation = useNavigation<any>();
+  const isFocused = useIsFocused();
+  useScrollToTop(listRef);
+  return <InfiniteFeedBase {...props} listRef={listRef} isFocused={isFocused} navigationForTabPress={navigation} />;
+};
+
+const InfiniteFeedEmbedded: React.FC<InfiniteFeedInternalProps> = (props) => {
+  const listRef = useRef<FlatList<FeedItem>>(null);
+  return <InfiniteFeedBase {...props} listRef={listRef} />;
+};
+
+export const InfiniteFeed: React.FC<InfiniteFeedProps> = ({ insideNavigatorScreen = true, ...rest }) => {
+  return insideNavigatorScreen ? <InfiniteFeedScreen {...rest} /> : <InfiniteFeedEmbedded {...rest} />;
 };
 
 export default InfiniteFeed;

@@ -142,7 +142,7 @@ const FeedScreen = () => {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <HomeHeader />
-      <View className="flex-1 px-6">
+      <View className="flex-1 px-4">
         <CategorySelector
           categories={categories}
           selectedCategory={activeTab}

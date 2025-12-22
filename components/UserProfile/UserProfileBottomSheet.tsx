@@ -41,6 +41,7 @@ import DescriptionBlock from "../VideoPlayer/DescriptionBlock";
 import UserProfileStatsRow from "./UserProfileStatsRow";
 import { maxStacked } from "../../libs/validators.util";
 import { LEGACY_WEBSITE_LINK } from "../../config";
+import UserProfileBottomContentTabs from "./UserProfileBottomContentTabs";
 
 interface UserProfileBottomSheetProps {
   visible: boolean;
@@ -84,8 +85,9 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
 }) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<RemoteUser | null>(null);
-  const [contentReady, setContentReady] = useState<boolean>(false);
   const lastRequestedRef = useRef<string | null>(null);
+  const followStateTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isMountedRef = useRef(true);
   const [viewerOpen, setViewerOpen] = useState(false);
   const [viewerImage, setViewerImage] = useState<{ uri: string } | null>(null);
   const [mode, setMode] = useState<"profile" | "videos">("profile");
@@ -114,6 +116,17 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   const startHeightRef = useRef(MID_HEIGHT);
   const { requireAuth, user: authUser, patchUser } = useAuth() as any;
   const { conversations } = useDM();
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+      if (followStateTimerRef.current) {
+        clearTimeout(followStateTimerRef.current);
+        followStateTimerRef.current = null;
+      }
+    };
+  }, []);
 
   // Keep ref updated
   useEffect(() => {
@@ -145,21 +158,27 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
         // cache fresh data
         profileCache.set(key, { data: payload, ts: Date.now() });
         setData(payload);
-        // Derive follow state if authenticated
+        // Defer follow state computation so the modal can animate first
+        setIsFollowing(false);
+        if (followStateTimerRef.current) {
+          clearTimeout(followStateTimerRef.current);
+          followStateTimerRef.current = null;
+        }
         const acct = (
           authUser?.walletAddress ||
           authUser?.address ||
           ""
         ).toLowerCase();
-        if (acct && Array.isArray(payload?.followers)) {
+        followStateTimerRef.current = setTimeout(() => {
+          if (!isMountedRef.current) return;
+          if (lastRequestedRef.current !== who) return;
+          if (!acct || !Array.isArray(payload?.followers)) return;
           setIsFollowing(
-            payload.followers
-              .map((f: string) => (f || "").toLowerCase())
-              .includes(acct)
+            payload.followers.some(
+              (f: string) => (f || "").toLowerCase() === acct
+            )
           );
-        } else {
-          setIsFollowing(false);
-        }
+        }, 0);
       }
     } catch (e) {
       console.warn("[UserProfileBottomSheet] load error", e);
@@ -181,15 +200,9 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           return;
         }
       } catch {}
-      // Prepare visual state before opening
-      heightAnim.setValue(initialHeight);
     }
-    if (!visible) {
-      setContentReady(false);
-      setData(null);
-      setLoading(true);
-      setMode("profile");
-    }
+    // IMPORTANT: do not clear data/loading here when closing.
+    // react-native-modal animates out after isVisible flips false; clearing here causes a skeleton flash.
   }, [visible, usernameOrAddress, heightAnim, initialHeight, authUser?.walletAddress, authUser?.address, navigation, onClose]);
 
   // (Hardware back handled by react-native-modal via onBackButtonPress prop.)
@@ -443,7 +456,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
         case "feed":
           return (
             <View style={{ flex: 1 }}>
-              <FeedRoute address={address} />
+              <FeedRoute address={address}  />
             </View>
           );
         case "livestreams":
@@ -495,24 +508,29 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
       useNativeDriver
       useNativeDriverForBackdrop
       hardwareAccelerated
-      hideModalContentWhileAnimating
       animationIn="slideInUp"
       animationOut="slideOutDown"
       animationInTiming={220}
       animationOutTiming={180}
       backdropTransitionInTiming={120}
       backdropTransitionOutTiming={120}
-      onModalWillShow={() => setContentReady(false)}
       onModalShow={() => {
-        setContentReady(true);
         if (usernameOrAddress) {
           load(usernameOrAddress);
         }
       }}
-      onModalWillHide={() => setContentReady(false)}
       onModalHide={() => {
+        if (followStateTimerRef.current) {
+          clearTimeout(followStateTimerRef.current);
+          followStateTimerRef.current = null;
+        }
         setData(null);
         setLoading(true);
+        setMode("profile");
+        // Reset height only when fully closed
+        heightAnim.setValue(initialHeight);
+        currentHeightRef.current = initialHeight;
+        startHeightRef.current = initialHeight;
       }}
     >
       <Animated.View
@@ -526,12 +544,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
         >
           <View className="w-16 h-1.5 bg-theme-neutrals-700 rounded-full" />
         </View>
-        {!contentReady ? (
-          <View className="flex-1 items-center justify-center">
-            <ActivityIndicator color="#fff" />
-            {/* <UserProfileSkeleton /> */}
-          </View>
-        ) : loading || !data ? (
+        {loading || !data ? (
           <ScrollView
             showsVerticalScrollIndicator={false}
             className="flex-1"
@@ -581,6 +594,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                 {data?.aboutMe && (
                   <AboutSection content={data.aboutMe} />
                 )}
+                <UserProfileBottomContentTabs address={address} onClose={onClose} />
                 {/* <UserProfileSocials socials={data as any} /> */}
               </View>
               <View style={{ height: 40 }} />

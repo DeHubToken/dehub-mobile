@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, { createContext, useCallback, useContext, useRef, useState } from 'react';
 import UserProfileBottomSheet from '../components/UserProfile/UserProfileBottomSheet';
 
 interface CtxValue {
@@ -12,8 +12,14 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   const [visible, setVisible] = useState(false);
   const [identifier, setIdentifier] = useState<string | null>(null);
   const [options, setOptions] = useState<{ initialHeightPct?: number; source?: string } | null>(null);
+  const clearTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const CLOSE_CLEAR_DELAY_MS = 250;
 
   const showUserProfile = useCallback((id: string, opts?: { initialHeightPct?: number; source?: string }) => {
+    if (clearTimerRef.current) {
+      clearTimeout(clearTimerRef.current);
+      clearTimerRef.current = null;
+    }
     // Set identifier first, then show, to ensure content resets correctly
     setIdentifier(id);
     setOptions(opts || null);
@@ -21,9 +27,17 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   }, []);
   const hideUserProfile = useCallback(() => {
     setVisible(false);
-    // Clear identifier to prevent flashing previous data on next open
-    setIdentifier(null);
-    setOptions(null);
+    // Delay clearing identifier/options until the close animation finishes.
+    // Clearing immediately can cause the sheet to re-render placeholders during the animation.
+    if (clearTimerRef.current) {
+      clearTimeout(clearTimerRef.current);
+      clearTimerRef.current = null;
+    }
+    clearTimerRef.current = setTimeout(() => {
+      setIdentifier(null);
+      setOptions(null);
+      clearTimerRef.current = null;
+    }, CLOSE_CLEAR_DELAY_MS);
   }, []);
 
   return (
