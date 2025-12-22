@@ -40,11 +40,21 @@ export type FeedCardProps = {
   onOpenComments: (item: GetNFTsResult) => void;
   showFollow?: boolean;
   onFeedPress?: (item: GetNFTsResult) => void;
+  /**
+   * When true, FeedCard will not call React Navigation hooks.
+   * Use this for rendering inside contexts that may not be under a navigator (e.g. bottom sheet / modal).
+   */
+  disableNavigationHook?: boolean;
+  /** Optional navigation object to use when disableNavigationHook is true. */
+  navigation?: { navigate: (name: any, params?: any) => void };
 };
 
-const FeedCard: React.FC<FeedCardProps> = memo(
-  ({ item, onOpenImage, onOpenComments, showFollow, onFeedPress }) => {
-    const navigation = useNavigation<any>();
+type FeedCardBaseProps = Omit<FeedCardProps, "disableNavigationHook"> & {
+  navigation?: { navigate: (name: any, params?: any) => void };
+};
+
+const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
+  ({ item, onOpenImage, onOpenComments, showFollow, onFeedPress, navigation }) => {
     const [liked, setLiked] = useState<boolean>(!!(item as any).isLiked);
     const [saved, setSaved] = useState<boolean>(!!(item as any).isSaved);
     const initialLikes = (item.totalVotes?.for ||
@@ -207,7 +217,7 @@ const FeedCard: React.FC<FeedCardProps> = memo(
       const isSelf =
         selfUsernames.includes(id as any) || selfAddresses.includes(id as any);
       if (isSelf) {
-        navigation.navigate(ScreenNames.Root as any, {
+        navigation?.navigate?.(ScreenNames.Root as any, {
           screen: ScreenNames.Profile,
         });
         return;
@@ -307,7 +317,7 @@ const FeedCard: React.FC<FeedCardProps> = memo(
       } else {
         const tokenId = (item as any).tokenId ?? (item as any).id;
         if (tokenId != null) {
-          navigation.navigate(ScreenNames.FeedDetail as any, { tokenId });
+          navigation?.navigate?.(ScreenNames.FeedDetail as any, { tokenId });
         }
       }
     }, [item, onFeedPress, navigation]);
@@ -501,5 +511,17 @@ const FeedCard: React.FC<FeedCardProps> = memo(
     );
   }
 );
+
+const FeedCardWithNav: React.FC<Omit<FeedCardProps, "navigation">> = (props) => {
+  const navigation = useNavigation<any>();
+  return <FeedCardBase {...props} navigation={navigation} />;
+};
+
+const FeedCard: React.FC<FeedCardProps> = (props) => {
+  if (props.disableNavigationHook) {
+    return <FeedCardBase {...props} navigation={props.navigation} />;
+  }
+  return <FeedCardWithNav {...props} />;
+};
 
 export default FeedCard;

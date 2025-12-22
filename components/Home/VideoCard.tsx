@@ -26,12 +26,14 @@ interface VideoCardProps {
   nft: any;
   enablePreview?: boolean;
   badgeIcon?: string;
+  onBeforeNavigate?: () => void;
 }
 
 const VideoCardComponent: React.FC<VideoCardProps> = ({
   nft,
   enablePreview,
   badgeIcon = "star",
+  onBeforeNavigate,
 }) => {
   // Derivations centralised here
   const streamInfo = nft.streamInfo || (nft as any).stream?.streamInfo;
@@ -129,6 +131,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const accessInfo = useStreamAccessInfo(nft);
   const handlePressVideo = useCallback(() => {
     if (tokenId == null) return; // require valid tokenId
+    onBeforeNavigate?.();
     const target = isLive ? ScreenNames.LiveViewer : ScreenNames.VideoPlayer;
     navigation.navigate(
       target as never,
@@ -139,7 +142,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
         streamId: nft?._id, // for livestreams
       } as never
     );
-  }, [navigation, tokenId, isLive, nft, accessInfo]);
+  }, [navigation, tokenId, isLive, nft, accessInfo, onBeforeNavigate]);
   return (
     <TouchableOpacity
       activeOpacity={0.85}
@@ -285,7 +288,8 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
 const areEqual = (prev: VideoCardProps, next: VideoCardProps) =>
   prev.nft === next.nft &&
   prev.enablePreview === next.enablePreview &&
-  prev.badgeIcon === next.badgeIcon;
+  prev.badgeIcon === next.badgeIcon &&
+  prev.onBeforeNavigate === next.onBeforeNavigate;
 
 const VideoCard = React.memo(VideoCardComponent, areEqual);
 
