@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useRef, useState } from 'react';
+import React, { createContext, useCallback, useContext, useRef, useState, useMemo, useEffect } from 'react';
 import UserProfileBottomSheet from '../components/UserProfile/UserProfileBottomSheet';
 
 interface CtxValue {
@@ -13,22 +13,22 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   const [identifier, setIdentifier] = useState<string | null>(null);
   const [options, setOptions] = useState<{ initialHeightPct?: number; source?: string } | null>(null);
   const clearTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const CLOSE_CLEAR_DELAY_MS = 250;
+  const CLOSE_CLEAR_DELAY_MS = 300; // Match react-native-modal animation timing
 
   const showUserProfile = useCallback((id: string, opts?: { initialHeightPct?: number; source?: string }) => {
     if (clearTimerRef.current) {
       clearTimeout(clearTimerRef.current);
       clearTimerRef.current = null;
     }
-    // Set identifier first, then show, to ensure content resets correctly
+    // Set all state together to prevent flicker
     setIdentifier(id);
     setOptions(opts || null);
     setVisible(true);
   }, []);
+  
   const hideUserProfile = useCallback(() => {
     setVisible(false);
-    // Delay clearing identifier/options until the close animation finishes.
-    // Clearing immediately can cause the sheet to re-render placeholders during the animation.
+    // Delay clearing identifier/options until the close animation finishes to prevent flicker
     if (clearTimerRef.current) {
       clearTimeout(clearTimerRef.current);
       clearTimerRef.current = null;
@@ -40,8 +40,21 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
     }, CLOSE_CLEAR_DELAY_MS);
   }, []);
 
+  // Memoize context value to prevent unnecessary re-renders
+  const contextValue = useMemo(() => ({ showUserProfile, hideUserProfile }), [showUserProfile, hideUserProfile]);
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (clearTimerRef.current) {
+        clearTimeout(clearTimerRef.current);
+        clearTimerRef.current = null;
+      }
+    };
+  }, []);
+
   return (
-    <UserProfileSheetContext.Provider value={{ showUserProfile, hideUserProfile }}>
+    <UserProfileSheetContext.Provider value={contextValue}>
       {children}
       <UserProfileBottomSheet
         visible={visible}
