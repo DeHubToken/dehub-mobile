@@ -19,7 +19,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   onBackPress,
 }) => {
   const navigation = useNavigation();
-  const showBack = canGoBack && (navigation as any).canGoBack?.();
+  const showBack = canGoBack && (onBackPress || (navigation as any).canGoBack?.());
   const backLockRef = useRef(false);
   const backTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
