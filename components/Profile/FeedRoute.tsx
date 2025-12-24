@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import { View } from 'react-native';
+import { View, FlatList } from 'react-native';
 import InfiniteFeed from '../Feed/InfiniteFeed';
 import FeedCard from '../Feed/FeedCard';
 import type { GetNFTsResult, SearchParams } from '../../services/nft.service';
@@ -9,9 +9,12 @@ import { useUserProfileSheet } from '../../context/UserProfileSheetContext';
 
 interface FeedRouteProps {
   address?: string;
+  scrollEnabled?: boolean;
+  onScroll?: any;
+  listRef?: React.RefObject<FlatList<any> | null>;
 }
 
-const FeedRoute: React.FC<FeedRouteProps> = ({ address }) => {
+const FeedRoute: React.FC<FeedRouteProps> = ({ address, scrollEnabled, onScroll, listRef }) => {
   const navigation = useNavigation<any>();
   const { hideUserProfile } = useUserProfileSheet();
 
@@ -50,6 +53,10 @@ const FeedRoute: React.FC<FeedRouteProps> = ({ address }) => {
         params={feedParams}
         pageSize={20}
         contentContainerStyle={{ paddingBottom: 80, paddingTop: 8 }}
+        scrollEnabled={scrollEnabled}
+        onScroll={onScroll}
+        listRef={listRef}
+        enableBackToTop={false}
         renderItem={({ item }) => (
           <FeedCard
             item={item}
