@@ -121,7 +121,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
 
   if (loading || !data) {
     return (
-      <View className="flex-1 p-6">
+      <View className="flex-1 p-2">
         <UserProfileSkeleton />
       </View>
     );

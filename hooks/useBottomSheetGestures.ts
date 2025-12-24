@@ -3,6 +3,7 @@ import { Dimensions } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
+  useDerivedValue,
   withSpring,
   runOnJS,
   useAnimatedScrollHandler,
@@ -42,6 +43,13 @@ export const useBottomSheetGestures = (
   const isScrollEnabled = useSharedValue(false);
   const startHeight = useSharedValue(COLLAPSED_HEIGHT);
   const touchStartY = useSharedValue(0);
+
+  const fullScreenProgress = useDerivedValue(() => {
+    const denom = FULL_HEIGHT - COLLAPSED_HEIGHT;
+    if (denom <= 0) return 1;
+    const raw = (height.value - COLLAPSED_HEIGHT) / denom;
+    return Math.max(0, Math.min(1, raw));
+  });
 
   // Sync SharedValue to React state for FlatList
   useAnimatedReaction(
@@ -232,6 +240,7 @@ export const useBottomSheetGestures = (
   return {
     animatedStyle,
     isFullScreen,
+    fullScreenProgress,
     scrollEnabled,
     registerScrollToTop,
     composedGesture,

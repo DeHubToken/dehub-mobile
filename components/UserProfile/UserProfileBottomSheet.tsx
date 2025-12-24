@@ -1,6 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View, Dimensions, Modal, Pressable } from "react-native";
-import Animated from "react-native-reanimated";
+import Animated, {
+  Extrapolate,
+  interpolate,
+  useAnimatedStyle,
+} from "react-native-reanimated";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ScreenHeader from "../ScreenHeader";
@@ -64,6 +68,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   const {
     animatedStyle,
     isFullScreen,
+    fullScreenProgress,
     scrollEnabled,
     registerScrollToTop,
     composedGesture,
@@ -94,16 +99,41 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   const handleBackToProfile = useCallback(() => {
     if (mode === "videos") {
       setMode("profile");
-    } else if (isFullScreen) {
-      collapseToInitial();
     } else {
       onClose();
     }
-  }, [mode, isFullScreen, collapseToInitial, onClose]);
+  }, [mode, onClose]);
 
   const handleMessageWrapper = useCallback(() => {
     handleMessage(onClose);
   }, [handleMessage, onClose]);
+
+  const sheetChromeStyle = useAnimatedStyle(() => {
+    const p = fullScreenProgress.value;
+    return {
+      borderTopLeftRadius: interpolate(p, [0, 1], [16, 0], Extrapolate.CLAMP),
+      borderTopRightRadius: interpolate(p, [0, 1], [16, 0], Extrapolate.CLAMP),
+      paddingTop: interpolate(p, [0, 1], [0, insets.top], Extrapolate.CLAMP),
+    };
+  }, [insets.top]);
+
+  const headerStyle = useAnimatedStyle(() => {
+    const p = fullScreenProgress.value;
+    const opacity = interpolate(p, [0.55, 0.85], [0, 1], Extrapolate.CLAMP);
+    return { opacity };
+  });
+
+  const headerSpacerStyle = useAnimatedStyle(() => {
+    const p = fullScreenProgress.value;
+    const height = interpolate(p, [0.55, 0.85], [0, 64], Extrapolate.CLAMP);
+    return { height };
+  });
+
+  const handleStyle = useAnimatedStyle(() => {
+    const p = fullScreenProgress.value;
+    const opacity = interpolate(p, [0.2, 0.5], [1, 0], Extrapolate.CLAMP);
+    return { opacity };
+  });
 
   return (
     <Modal
@@ -125,24 +155,23 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           <GestureDetector gesture={composedGesture}>
             <Animated.View
               className="bg-theme-neutrals-900 overflow-hidden"
-              style={[
-                animatedStyle,
-                {
-                  borderTopLeftRadius: isFullScreen ? 0 : 16,
-                  borderTopRightRadius: isFullScreen ? 0 : 16,
-                  paddingTop: isFullScreen ? insets.top : 0,
-                },
-              ]}
+              style={[animatedStyle, sheetChromeStyle]}
             >
               {/* Header */}
-              <View
-                className="w-full items-center"
-                style={{
-                  paddingTop: isFullScreen ? 0 : 12,
-                  paddingBottom: isFullScreen ? 0 : 8,
-                }}
-              >
-                {isFullScreen ? (
+              <View className="w-full" style={{ position: "relative" }}>
+                <Animated.View style={headerSpacerStyle} />
+                <Animated.View
+                  style={[
+                    headerStyle,
+                    {
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                    },
+                  ]}
+                  pointerEvents={isFullScreen ? "auto" : "none"}
+                >
                   <ScreenHeader
                     title={
                       mode === "videos"
@@ -152,9 +181,23 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                     canGoBack={true}
                     onBackPress={handleBackToProfile}
                   />
-                ) : (
-                  <View className="w-16 h-1.5 bg-theme-neutrals-700 rounded-full" />
-                )}
+                </Animated.View>
+
+                {!isFullScreen && (
+                  <Animated.View
+                    style={[
+                      handleStyle,
+                      {
+                        alignItems: "center",
+                        paddingTop: 12,
+                        paddingBottom: 8,
+                      },
+                    ]}
+                    pointerEvents={isFullScreen ? "none" : "auto"}
+                  >
+                    <View className="w-16 h-1.5 bg-theme-neutrals-700 rounded-full" />
+                  </Animated.View>
+                )} 
               </View>
 
               {/* Content */}
