@@ -6,6 +6,7 @@ import UserProfileHeader from "./UserProfileHeader";
 import UserProfileStatsRow from "./UserProfileStatsRow";
 import UserProfileActions from "./UserProfileActions";
 import UserProfileAboutSection from "./UserProfileAboutSection";
+import UserProfileBottomContentTabs from "./UserProfileBottomContentTabs";
 
 const FallbackAvatar = require("../../assets/default-avatar.png");
 
@@ -88,6 +89,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
             onOpenVideos={onOpenVideos}
           />
           {data?.aboutMe && <UserProfileAboutSection content={data.aboutMe} />}
+          <UserProfileBottomContentTabs address={profileData.address} onClose={onClose} />
         </View>
       </View>
     );

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View, Dimensions, Modal } from "react-native";
 import Animated from "react-native-reanimated";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ScreenHeader from "../ScreenHeader";
 import UserProfileSheetContent from "./UserProfileSheetContent";
@@ -28,7 +29,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   const [mode, setMode] = useState<"profile" | "videos">("profile");
   const [tabIndex, setTabIndex] = useState(0);
   const [showUnfollowSheet, setShowUnfollowSheet] = useState(false);
-  
+
   const insets = useSafeAreaInsets();
 
   const initialHeight = useMemo(() => {
@@ -108,86 +109,87 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     <Modal
       visible={visible}
       transparent
-      animationType="slide"
+      animationType="none"
       onRequestClose={onClose}
-      statusBarTranslucent
+      presentationStyle="overFullScreen"
     >
-      <View 
-        style={{ 
-          flex: 1, 
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          justifyContent: 'flex-end'
-        }}
-      >
-        <GestureDetector gesture={composedGesture}>
-        <Animated.View
-          className="bg-theme-neutrals-900 overflow-hidden"
-          style={[
-            animatedStyle,
-            {
-              borderTopLeftRadius: isFullScreen ? 0 : 16,
-              borderTopRightRadius: isFullScreen ? 0 : 16,
-              paddingTop: isFullScreen ? insets.top : 0,
-            },
-          ]}
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            justifyContent: "flex-end",
+          }}
         >
-          {/* Header */}
-          <View
-            className="w-full items-center"
-            style={{
-              paddingTop: isFullScreen ? 0 : 12,
-              paddingBottom: isFullScreen ? 0 : 8,
-            }}
-          >
-            {isFullScreen ? (
-              <ScreenHeader
-                title={
-                  mode === "videos"
-                    ? "Content"
-                    : profileData?.displayName || "Profile"
-                }
-                canGoBack={true}
-                onBackPress={handleBackToProfile}
-              />
-            ) : (
-              <View className="w-16 h-1.5 bg-theme-neutrals-700 rounded-full" />
-            )}
-          </View>
+          <GestureDetector gesture={composedGesture}>
+            <Animated.View
+              className="bg-theme-neutrals-900 overflow-hidden"
+              style={[
+                animatedStyle,
+                {
+                  borderTopLeftRadius: isFullScreen ? 0 : 16,
+                  borderTopRightRadius: isFullScreen ? 0 : 16,
+                  paddingTop: isFullScreen ? insets.top : 0,
+                },
+              ]}
+            >
+              {/* Header */}
+              <View
+                className="w-full items-center"
+                style={{
+                  paddingTop: isFullScreen ? 0 : 12,
+                  paddingBottom: isFullScreen ? 0 : 8,
+                }}
+              >
+                {isFullScreen ? (
+                  <ScreenHeader
+                    title={
+                      mode === "videos"
+                        ? "Content"
+                        : profileData?.displayName || "Profile"
+                    }
+                    canGoBack={true}
+                    onBackPress={handleBackToProfile}
+                  />
+                ) : (
+                  <View className="w-16 h-1.5 bg-theme-neutrals-700 rounded-full" />
+                )}
+              </View>
 
-          {/* Content */}
-          {mode === "profile" ? (
-            <UserProfileSheetContent
-              loading={loading}
-              data={data}
-              profileData={profileData}
-              isFollowing={isFollowing}
-              followLoading={followLoading}
-              avatarUrl={avatarUrl}
-              coverUrl={coverUrl}
-              defaultBanner={defaultBanner}
-              stats={stats}
-              scrollEnabled={scrollEnabled}
-              flatListRef={flatListRef}
-              onScroll={scrollHandler}
-              onFollow={handleFollow}
-              onOpenUnfollow={() => setShowUnfollowSheet(true)}
-              onOpenVideos={handleVideos}
-              onMessage={handleMessageWrapper}
-              onShare={handleShare}
-              onOpenImage={handleOpenImage}
-              onClose={onClose}
-            />
-          ) : (
-            <UserProfileVideosContent
-              profileAddress={profileData?.address || ""}
-              tabIndex={tabIndex}
-              onTabIndexChange={setTabIndex}
-            />
-          )}
-        </Animated.View>
-      </GestureDetector>
-      </View>
-
+              {/* Content */}
+              {mode === "profile" ? (
+                <UserProfileSheetContent
+                  loading={loading}
+                  data={data}
+                  profileData={profileData}
+                  isFollowing={isFollowing}
+                  followLoading={followLoading}
+                  avatarUrl={avatarUrl}
+                  coverUrl={coverUrl}
+                  defaultBanner={defaultBanner}
+                  stats={stats}
+                  scrollEnabled={scrollEnabled}
+                  flatListRef={flatListRef}
+                  onScroll={scrollHandler}
+                  onFollow={handleFollow}
+                  onOpenUnfollow={() => setShowUnfollowSheet(true)}
+                  onOpenVideos={handleVideos}
+                  onMessage={handleMessageWrapper}
+                  onShare={handleShare}
+                  onOpenImage={handleOpenImage}
+                  onClose={onClose}
+                />
+              ) : (
+                <UserProfileVideosContent
+                  profileAddress={profileData?.address || ""}
+                  tabIndex={tabIndex}
+                  onTabIndexChange={setTabIndex}
+                />
+              )}
+            </Animated.View>
+          </GestureDetector>
+        </View>
+      </GestureHandlerRootView>
       {/* Unfollow Sheet */}
       <UnfollowSheet
         visible={showUnfollowSheet && isFollowing}

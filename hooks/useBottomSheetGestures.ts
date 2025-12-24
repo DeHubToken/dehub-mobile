@@ -6,7 +6,6 @@ import Animated, {
   withSpring,
   runOnJS,
   useAnimatedScrollHandler,
-  useDerivedValue,
   useAnimatedReaction,
 } from "react-native-reanimated";
 import {
@@ -32,6 +31,7 @@ export const useBottomSheetGestures = (
   const scrollY = useSharedValue(0);
   const isScrollEnabled = useSharedValue(false);
   const startHeight = useSharedValue(COLLAPSED_HEIGHT);
+  const touchStartY = useSharedValue(0);
 
   // Sync SharedValue to React state for FlatList
   useAnimatedReaction(
@@ -65,15 +65,37 @@ export const useBottomSheetGestures = (
   }, []);
 
   const panGesture = Gesture.Pan()
+    .manualActivation(true)
+    .onTouchesDown((event) => {
+      'worklet';
+      touchStartY.value = event.allTouches[0]?.y ?? 0;
+    })
+    .onTouchesMove((event, state) => {
+      'worklet';
+      const currentY = event.allTouches[0]?.y ?? touchStartY.value;
+      const dy = currentY - touchStartY.value;
+
+      // Collapsed: sheet drag should always work
+      if (!isScrollEnabled.value) {
+        state.activate();
+        return;
+      }
+
+      // Fullscreen: only allow sheet drag when list is at top and user drags down
+      if (scrollY.value <= 0 && dy > 0) {
+        state.activate();
+        return;
+      }
+
+      // Otherwise, fail so FlatList scroll wins.
+      state.fail();
+    })
     .onStart(() => {
       'worklet';
       startHeight.value = height.value;
     })
     .onUpdate((event) => {
       'worklet';
-      // Only allow pan when scroll is at top or scroll is disabled
-      if (isScrollEnabled.value && scrollY.value > 5) return;
-
       const proposed = startHeight.value - event.translationY;
       const clamped = Math.max(
         COLLAPSED_HEIGHT,
