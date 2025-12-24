@@ -47,13 +47,6 @@ const GlassModal: React.FC<GlassModalProps> = ({
 }) => {
   const insets = useSafeAreaInsets();
 
-  const safeAreaStyle = React.useMemo(() => {
-    if (presentation === "bottom") {
-      return { paddingBottom: insets.bottom };
-    }
-    return { paddingTop: insets.top, paddingBottom: insets.bottom };
-  }, [insets.bottom, insets.top, presentation]);
-
   return (
     <Modal
       visible={visible}
@@ -61,10 +54,9 @@ const GlassModal: React.FC<GlassModalProps> = ({
       animationType="fade"
       // Prevent Android back button from closing when not dismissible
       onRequestClose={dismissible ? onClose : () => {}}
-      statusBarTranslucent
       hardwareAccelerated
     >
-      <View style={styles.container}>
+      <View style={[styles.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
         {/* Backdrop */}
         {/* Default: non-blurred dim backdrop; no full-screen blur */}
         {backdropScope === "full" ? (
@@ -102,7 +94,6 @@ const GlassModal: React.FC<GlassModalProps> = ({
             {
               justifyContent: presentation === "bottom" ? "flex-end" : "center",
             },
-            safeAreaStyle,
           ]}
         >
           {wrapPanel ? (
