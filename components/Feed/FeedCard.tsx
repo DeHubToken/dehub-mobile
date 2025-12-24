@@ -325,7 +325,7 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
     const handleSharePress = useCallback(() => {
       const tokenId = (item as any).tokenId ?? (item as any).id;
       if (tokenId == null) return;
-      const url = `${LEGACY_WEBSITE_LINK || ""}/feed/${tokenId}`;
+      const url = `${LEGACY_WEBSITE_LINK || ""}/feeds/${tokenId}`;
       const message = `Check out this post ${url}`;
       try {
         // shareProfile handles platform differences
