@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,9 +6,18 @@ import {
   TextInput,
   Platform,
   Linking,
-  Animated,
 } from "react-native";
 import Constants from "expo-constants";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withRepeat,
+  withSequence,
+  withSpring,
+  Easing,
+  runOnJS,
+} from "react-native-reanimated";
 // import * as Device from "expo-device";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "./ui/GlassModal";
@@ -40,53 +49,54 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Animation values
-  const heartScale = useRef(new Animated.Value(1)).current;
-  const starScale = useRef(new Animated.Value(0.3)).current;
-  const starRotate = useRef(new Animated.Value(0)).current;
-  const contentOpacity = useRef(new Animated.Value(1)).current;
+  const heartScale = useSharedValue(1);
+  const starScale = useSharedValue(0.3);
+  const starRotate = useSharedValue(0);
+  const contentOpacity = useSharedValue(1);
 
-  // Pulsing heart animation
+  // Pulsing heart animation - cancel when step changes
   useEffect(() => {
     if (step === "initial") {
-      const pulse = Animated.loop(
-        Animated.sequence([
-          Animated.timing(heartScale, {
-            toValue: 1.15,
-            duration: 1000,
-            useNativeDriver: true,
-          }),
-          Animated.timing(heartScale, {
-            toValue: 1,
-            duration: 1000,
-            useNativeDriver: true,
-          }),
-        ])
+      heartScale.value = 1;
+      heartScale.value = withRepeat(
+        withSequence(
+          withTiming(1.15, { duration: 1000, easing: Easing.inOut(Easing.ease) }),
+          withTiming(1, { duration: 1000, easing: Easing.inOut(Easing.ease) })
+        ),
+        -1,
+        false
       );
-      pulse.start();
-      return () => pulse.stop();
+    } else {
+      // Cancel animation when leaving initial step
+      heartScale.value = withTiming(1, { duration: 200 });
     }
-  }, [step, heartScale]);
+  }, [step]);
 
   // Star animation when transitioning to rate-store
   useEffect(() => {
     if (step === "rate-store") {
-      starScale.setValue(0.3);
-      starRotate.setValue(0);
-      Animated.parallel([
-        Animated.spring(starScale, {
-          toValue: 1,
-          friction: 6,
-          tension: 140,
-          useNativeDriver: true,
-        }),
-        Animated.timing(starRotate, {
-          toValue: 1,
-          duration: 600,
-          useNativeDriver: true,
-        }),
-      ]).start();
+      starScale.value = 0.3;
+      starRotate.value = 0;
+      starScale.value = withSpring(1, {
+        damping: 10,
+        stiffness: 140,
+      });
+      starRotate.value = withTiming(360, {
+        duration: 600,
+        easing: Easing.out(Easing.ease),
+      });
+    } else {
+      // Reset to default state
+      starScale.value = 0.3;
+      starRotate.value = 0;
     }
-  }, [step, starScale, starRotate]);
+  }, [step]);
+
+  // Content opacity for step transitions
+  useEffect(() => {
+    contentOpacity.value = 0;
+    contentOpacity.value = withTiming(1, { duration: 300, easing: Easing.out(Easing.ease) });
+  }, [step]);
 
   const handleReset = () => {
     setStep("initial");
@@ -95,6 +105,11 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
     setTelegram("");
     setDiscord("");
     setIsSubmitting(false);
+    // Reset animation states
+    contentOpacity.value = 1;
+    heartScale.value = 1;
+    starScale.value = 0.3;
+    starRotate.value = 0;
   };
 
   const handleClose = () => {
@@ -103,18 +118,8 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
   };
 
   const handleEnjoyingApp = (enjoying: boolean) => {
-    Animated.timing(contentOpacity, {
-      toValue: 0,
-      duration: 200,
-      useNativeDriver: true,
-    }).start(() => {
-      if (enjoying) {
-        setStep("rate-store");
-      } else {
-        setStep("star-rating");
-      }
-      contentOpacity.setValue(1);
-    });
+    // Transition handled by step change in JS
+    setStep(enjoying ? "rate-store" : "star-rating");
   };
 
   const handleGoToStore = async () => {
@@ -214,12 +219,27 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
     }
   };
 
+  const heartAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: heartScale.value }],
+  }));
+
+  const contentAnimatedStyle = useAnimatedStyle(() => ({
+    opacity: contentOpacity.value,
+  }));
+
+  const starAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      { scale: starScale.value },
+      { rotate: `${starRotate.value}deg` },
+    ],
+  }));
+
   const renderInitialStep = () => (
-    <Animated.View style={{ opacity: contentOpacity }} className="p-6">
+    <Animated.View style={contentAnimatedStyle} className="p-6">
       <View className="items-center mb-4">
         <Animated.View
           className="bg-theme-accent/10 rounded-full p-4"
-          style={{ transform: [{ scale: heartScale }] }}
+          style={heartAnimatedStyle}
         >
           <Ionicons
             name="heart-outline"
@@ -260,19 +280,12 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
   );
 
   const renderRateStoreStep = () => {
-    const spin = starRotate.interpolate({
-      inputRange: [0, 1],
-      outputRange: ["0deg", "360deg"],
-    });
-
     return (
-      <Animated.View style={{ opacity: contentOpacity }} className="p-6">
+      <Animated.View style={contentAnimatedStyle} className="p-6">
         <View className="items-center mb-4">
           <Animated.View
             className="bg-theme-accent/10 rounded-full p-4"
-            style={{
-              transform: [{ scale: starScale }, { rotate: spin }],
-            }}
+            style={starAnimatedStyle}
           >
             <Ionicons name="star" size={48} color={theme.colors.accent} />
           </Animated.View>
