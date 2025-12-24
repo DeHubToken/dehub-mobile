@@ -14,6 +14,7 @@ import {
   type ListRenderItemInfo,
   TouchableOpacity,
 } from "react-native";
+import Animated from "react-native-reanimated";
 import { TabView, TabBar } from "react-native-tab-view";
 import { theme } from "../../theme";
 import VideoCard from "../Home/VideoCard";
@@ -24,19 +25,24 @@ import type { GetNFTsResult } from "../../services/nft.service";
 interface UserProfileBottomContentTabsProps {
   address: string;
   onClose: () => void;
+  scrollEnabled: boolean;
+  onScroll: any;
+  registerScrollToTop: (handler: (() => void) | null) => void;
 }
 
 const PAGE_SIZE = 20;
 
 const UserProfileBottomContentTabs: React.FC<
   UserProfileBottomContentTabsProps
-> = ({ address, onClose }) => {
+> = ({ address, onClose, scrollEnabled, onScroll, registerScrollToTop }) => {
   const [tabIndex, setTabIndex] = useState(0);
   const [videoItems, setVideoItems] = useState<GetNFTsResult[]>([]);
   const [videoPage, setVideoPage] = useState(0);
   const [videoHasMore, setVideoHasMore] = useState(true);
   const [videoLoading, setVideoLoading] = useState(true);
   const videoLoadingRef = useRef(false);
+  const videosListRef = useRef<FlatList<GetNFTsResult> | null>(null);
+  const feedListRef = useRef<FlatList<any> | null>(null);
 
   const routes = useMemo(
     () => [
@@ -84,6 +90,21 @@ const UserProfileBottomContentTabs: React.FC<
     videoLoadingRef.current = false;
     loadVideoPage(0, true);
   }, [address]);
+
+  const scrollVideosToTop = useCallback(() => {
+    videosListRef.current?.scrollToOffset({ offset: 0, animated: false });
+  }, []);
+
+  const scrollFeedToTop = useCallback(() => {
+    feedListRef.current?.scrollToOffset({ offset: 0, animated: false });
+  }, []);
+
+  useEffect(() => {
+    registerScrollToTop(tabIndex === 0 ? scrollVideosToTop : scrollFeedToTop);
+    return () => {
+      registerScrollToTop(null);
+    };
+  }, [registerScrollToTop, scrollFeedToTop, scrollVideosToTop, tabIndex]);
 
   const onVideoEndReached = useCallback(() => {
     if (!videoHasMore || videoLoadingRef.current) return;
@@ -147,10 +168,14 @@ const UserProfileBottomContentTabs: React.FC<
       switch (route.key) {
         case "videos":
           return (
-            <FlatList
+            <Animated.FlatList
+              ref={videosListRef as any}
               data={videoItems}
               keyExtractor={keyExtractor}
               renderItem={renderVideoItem}
+              scrollEnabled={scrollEnabled}
+              onScroll={onScroll}
+              scrollEventThrottle={16}
               onEndReached={onVideoEndReached}
               onEndReachedThreshold={0.5}
               ListFooterComponent={VideoListFooter}
@@ -162,8 +187,13 @@ const UserProfileBottomContentTabs: React.FC<
           );
         case "feed":
           return (
-            <View style={{ flex: 1}}>
-              <FeedRoute address={address} />
+            <View style={{ flex: 1 }}>
+              <FeedRoute
+                address={address}
+                scrollEnabled={scrollEnabled}
+                onScroll={onScroll}
+                listRef={feedListRef}
+              />
             </View>
           );
         default:
@@ -178,6 +208,8 @@ const UserProfileBottomContentTabs: React.FC<
       onVideoEndReached,
       VideoListFooter,
       VideoListEmpty,
+      onScroll,
+      scrollEnabled,
     ]
   );
 
@@ -218,6 +250,14 @@ const UserProfileBottomContentTabs: React.FC<
     []
   );
 
+  const renderLazyPlaceholder = useCallback(() => {
+    return (
+      <View className="flex-1 items-center justify-center">
+        <ActivityIndicator color="#fff" />
+      </View>
+    );
+  }, []);
+
   if (!address) return null;
 
   return (
@@ -230,11 +270,7 @@ const UserProfileBottomContentTabs: React.FC<
         renderTabBar={renderTabBar}
         lazy
         lazyPreloadDistance={0}
-        renderLazyPlaceholder={() => (
-          <View className="flex-1 items-center justify-center">
-            <ActivityIndicator color="#fff" />
-          </View>
-        )}
+        renderLazyPlaceholder={renderLazyPlaceholder}
       />
     </View>
   );

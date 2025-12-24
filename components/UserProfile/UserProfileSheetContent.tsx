@@ -1,6 +1,5 @@
 import React, { memo, useMemo } from "react";
-import { View, FlatList } from "react-native";
-import Animated, { SharedValue, useAnimatedProps } from "react-native-reanimated";
+import { View } from "react-native";
 import UserProfileSkeleton from "./UserProfileSkeleton";
 import UserProfileHeader from "./UserProfileHeader";
 import UserProfileStatsRow from "./UserProfileStatsRow";
@@ -21,8 +20,8 @@ interface UserProfileSheetContentProps {
   defaultBanner: any;
   stats: any[];
   scrollEnabled: boolean;
-  flatListRef: React.RefObject<FlatList | null>;
   onScroll: any;
+  registerScrollToTop: (handler: (() => void) | null) => void;
   onFollow: () => void;
   onOpenUnfollow: () => void;
   onOpenVideos: () => void;
@@ -43,8 +42,8 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   defaultBanner,
   stats,
   scrollEnabled,
-  flatListRef,
   onScroll,
+  registerScrollToTop,
   onFollow,
   onOpenUnfollow,
   onOpenVideos,
@@ -89,7 +88,13 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
             onOpenVideos={onOpenVideos}
           />
           {data?.aboutMe && <UserProfileAboutSection content={data.aboutMe} />}
-          <UserProfileBottomContentTabs address={profileData.address} onClose={onClose} />
+          <UserProfileBottomContentTabs
+            address={profileData.address}
+            onClose={onClose}
+            scrollEnabled={scrollEnabled}
+            onScroll={onScroll}
+            registerScrollToTop={registerScrollToTop}
+          />
         </View>
       </View>
     );
@@ -108,6 +113,10 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     onFollow,
     onOpenUnfollow,
     onOpenVideos,
+    onClose,
+    onScroll,
+    registerScrollToTop,
+    scrollEnabled,
   ]);
 
   if (loading || !data) {
@@ -121,20 +130,10 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   if (!profileData) return null;
 
   return (
-    <Animated.FlatList
-      ref={flatListRef as any}
-      data={[]}
-      renderItem={() => null}
-      ListHeaderComponent={ListHeaderComponent}
-      scrollEnabled={scrollEnabled}
-      showsVerticalScrollIndicator={false}
-      className="flex-1"
-      removeClippedSubviews
-      scrollEventThrottle={16}
-      onScroll={onScroll}
-      bounces={false}
-      ListFooterComponent={<View style={{ height: 40 }} />}
-    />
+    <View className="flex-1">
+      {ListHeaderComponent}
+      <View style={{ height: 40 }} />
+    </View>
   );
 };
 

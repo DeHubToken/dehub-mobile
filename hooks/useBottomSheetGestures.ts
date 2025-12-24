@@ -1,5 +1,5 @@
-import { useCallback, useRef, useState, useEffect } from "react";
-import { Dimensions, FlatList } from "react-native";
+import { useCallback, useRef, useState } from "react";
+import { Dimensions } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -14,10 +14,18 @@ import {
 } from "react-native-gesture-handler";
 
 const WIN_HEIGHT = Dimensions.get("window").height;
-const COLLAPSED_HEIGHT = Math.round(WIN_HEIGHT * 0.5);
 const FULL_HEIGHT = WIN_HEIGHT;
 const EXPAND_THRESHOLD = Math.round(WIN_HEIGHT * 0.8);
 const COLLAPSE_THRESHOLD = Math.round(WIN_HEIGHT * 0.6);
+
+const SNAP_SPRING = {
+  damping: 28,
+  stiffness: 520,
+  mass: 0.9,
+  overshootClamping: true,
+  restDisplacementThreshold: 0.5,
+  restSpeedThreshold: 2,
+} as const;
 
 export const useBottomSheetGestures = (
   initialHeight: number,
@@ -25,9 +33,11 @@ export const useBottomSheetGestures = (
 ) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [scrollEnabled, setScrollEnabled] = useState(false);
+
+  const COLLAPSED_HEIGHT = initialHeight;
   
   const height = useSharedValue(initialHeight);
-  const flatListRef = useRef<FlatList>(null);
+  const scrollToTopHandlerRef = useRef<(() => void) | null>(null);
   const scrollY = useSharedValue(0);
   const isScrollEnabled = useSharedValue(false);
   const startHeight = useSharedValue(COLLAPSED_HEIGHT);
@@ -44,24 +54,22 @@ export const useBottomSheetGestures = (
   const expandToFullScreen = () => {
     'worklet';
     isScrollEnabled.value = true;
-    height.value = withSpring(FULL_HEIGHT, {
-      damping: 18,
-      stiffness: 220,
-    });
+    height.value = withSpring(FULL_HEIGHT, SNAP_SPRING);
   };
 
   const collapseToInitial = () => {
     'worklet';
     isScrollEnabled.value = false;
     scrollY.value = 0;
-    height.value = withSpring(COLLAPSED_HEIGHT, {
-      damping: 18,
-      stiffness: 220,
-    });
+    height.value = withSpring(COLLAPSED_HEIGHT, SNAP_SPRING);
   };
 
+  const registerScrollToTop = useCallback((handler: (() => void) | null) => {
+    scrollToTopHandlerRef.current = handler;
+  }, []);
+
   const scrollToTop = useCallback(() => {
-    flatListRef.current?.scrollToOffset({ offset: 0, animated: false });
+    scrollToTopHandlerRef.current?.();
   }, []);
 
   const panGesture = Gesture.Pan()
@@ -132,12 +140,21 @@ export const useBottomSheetGestures = (
         (velocity < -500 && !isScrollEnabled.value)
       ) {
         runOnJS(setIsFullScreen)(true);
-        expandToFullScreen();
+        height.value = withSpring(FULL_HEIGHT, {
+          ...SNAP_SPRING,
+          velocity: -velocity,
+        });
+        isScrollEnabled.value = true;
       } else if (finalHeight <= COLLAPSE_THRESHOLD || velocity > 500) {
         if (isScrollEnabled.value) {
           runOnJS(setIsFullScreen)(false);
           runOnJS(scrollToTop)();
-          collapseToInitial();
+          height.value = withSpring(COLLAPSED_HEIGHT, {
+            ...SNAP_SPRING,
+            velocity: -velocity,
+          });
+          isScrollEnabled.value = false;
+          scrollY.value = 0;
         } else {
           runOnJS(onClose)();
         }
@@ -148,11 +165,20 @@ export const useBottomSheetGestures = (
 
         if (distToFull < distToCollapsed) {
           runOnJS(setIsFullScreen)(true);
-          expandToFullScreen();
+          height.value = withSpring(FULL_HEIGHT, {
+            ...SNAP_SPRING,
+            velocity: -velocity,
+          });
+          isScrollEnabled.value = true;
         } else {
           runOnJS(setIsFullScreen)(false);
           runOnJS(scrollToTop)();
-          collapseToInitial();
+          height.value = withSpring(COLLAPSED_HEIGHT, {
+            ...SNAP_SPRING,
+            velocity: -velocity,
+          });
+          isScrollEnabled.value = false;
+          scrollY.value = 0;
         }
       }
     })
@@ -179,22 +205,16 @@ export const useBottomSheetGestures = (
   const expandToFullScreenJS = useCallback(() => {
     setIsFullScreen(true);
     isScrollEnabled.value = true;
-    height.value = withSpring(FULL_HEIGHT, {
-      damping: 18,
-      stiffness: 220,
-    });
+    height.value = withSpring(FULL_HEIGHT, SNAP_SPRING);
   }, [height, isScrollEnabled]);
 
   const collapseToInitialJS = useCallback(() => {
     setIsFullScreen(false);
     isScrollEnabled.value = false;
     scrollY.value = 0;
-    flatListRef.current?.scrollToOffset({ offset: 0, animated: false });
-    height.value = withSpring(COLLAPSED_HEIGHT, {
-      damping: 18,
-      stiffness: 220,
-    });
-  }, [height, isScrollEnabled, scrollY]);
+    scrollToTop();
+    height.value = withSpring(COLLAPSED_HEIGHT, SNAP_SPRING);
+  }, [height, isScrollEnabled, scrollY, scrollToTop]);
 
   const resetGestureState = useCallback(() => {
     setIsFullScreen(false);
@@ -213,7 +233,7 @@ export const useBottomSheetGestures = (
     animatedStyle,
     isFullScreen,
     scrollEnabled,
-    flatListRef,
+    registerScrollToTop,
     composedGesture,
     GestureDetector,
     expandToFullScreen: expandToFullScreenJS,

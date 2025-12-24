@@ -11,6 +11,7 @@ import {
   NativeScrollEvent,
   Platform,
 } from "react-native";
+import Animated from "react-native-reanimated";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../../theme";
 import { getFeedNFTs, type GetNFTsResult, type GetNFTsResponse, type SearchParams } from "../../services";
@@ -27,6 +28,14 @@ export interface InfiniteFeedProps {
   emptyComponent?: React.ReactNode;
   /** Optional custom page fetcher override. If provided, it will be used instead of getFeedNFTs. */
   fetchPage?: (page: number, unit: number) => Promise<GetNFTsResponse>;
+  /** Optional external ref for driving scroll (e.g. bottom sheet collapse-to-top). */
+  listRef?: React.RefObject<FlatList<any> | null>;
+  /** Controls scroll enablement (e.g. disable when sheet is collapsed). */
+  scrollEnabled?: boolean;
+  /** Optional scroll handler (supports Reanimated worklet handlers). */
+  onScroll?: any;
+  /** Disable back-to-top affordance (useful when onScroll is driven by Reanimated). */
+  enableBackToTop?: boolean;
   /**
    * Set false when rendering this feed outside of a React Navigation Screen (e.g. inside a bottom sheet/tab view).
    * Prevents screen-only hooks (useIsFocused/useScrollToTop) from running.
@@ -59,6 +68,9 @@ const InfiniteFeedBase: React.FC<
   keyExtractor,
   emptyComponent,
   fetchPage,
+  scrollEnabled,
+  onScroll,
+  enableBackToTop = true,
   isFocused,
   listRef,
   navigationForTabPress = null,
@@ -176,12 +188,13 @@ const InfiniteFeedBase: React.FC<
 
   const handleScroll = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      if (!enableBackToTop) return;
       const y = e.nativeEvent.contentOffset.y;
       if (y > 400 && !showBackToTop) setShowBackToTop(true);
       else if (y <= 400 && showBackToTop) setShowBackToTop(false);
       prevYRef.current = y;
     },
-    [showBackToTop]
+    [enableBackToTop, showBackToTop]
   );
 
   const scrollToTop = useCallback(() => {
@@ -219,7 +232,7 @@ const InfiniteFeedBase: React.FC<
 
   return (
     <View className="flex-1">
-      <FlatList
+      <Animated.FlatList
         ref={listRef}
         data={items}
         keyExtractor={keyExtractor || _keyExtractor}
@@ -233,7 +246,8 @@ const InfiniteFeedBase: React.FC<
         contentContainerStyle={
           contentContainerStyle || { paddingBottom: 80 }
         }
-        onScroll={handleScroll}
+        scrollEnabled={scrollEnabled}
+        onScroll={onScroll ?? (enableBackToTop ? handleScroll : undefined)}
         scrollEventThrottle={16}
         onEndReached={endReachedRef.current ? undefined : loadMore}
         onEndReachedThreshold={0.4}
@@ -256,7 +270,7 @@ const InfiniteFeedBase: React.FC<
           ) : null
         }
       />
-      {showBackToTop && (
+      {enableBackToTop && showBackToTop && (
         <Pressable
           onPress={scrollToTop}
           accessibilityRole="button"
@@ -275,7 +289,8 @@ const InfiniteFeedBase: React.FC<
 };
 
 const InfiniteFeedScreen: React.FC<InfiniteFeedInternalProps> = (props) => {
-  const listRef = useRef<FlatList<FeedItem>>(null);
+  const internalRef = useRef<FlatList<FeedItem>>(null);
+  const listRef = (props.listRef as React.RefObject<FlatList<FeedItem> | null> | undefined) ?? internalRef;
   const navigation = useNavigation<any>();
   const isFocused = useIsFocused();
   useScrollToTop(listRef);
@@ -283,7 +298,8 @@ const InfiniteFeedScreen: React.FC<InfiniteFeedInternalProps> = (props) => {
 };
 
 const InfiniteFeedEmbedded: React.FC<InfiniteFeedInternalProps> = (props) => {
-  const listRef = useRef<FlatList<FeedItem>>(null);
+  const internalRef = useRef<FlatList<FeedItem>>(null);
+  const listRef = (props.listRef as React.RefObject<FlatList<FeedItem> | null> | undefined) ?? internalRef;
   return <InfiniteFeedBase {...props} listRef={listRef} />;
 };
 

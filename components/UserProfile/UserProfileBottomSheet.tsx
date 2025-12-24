@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { View, Dimensions, Modal } from "react-native";
+import { View, Dimensions, Modal, Pressable } from "react-native";
 import Animated from "react-native-reanimated";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -65,7 +65,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     animatedStyle,
     isFullScreen,
     scrollEnabled,
-    flatListRef,
+    registerScrollToTop,
     composedGesture,
     GestureDetector,
     expandToFullScreen,
@@ -121,6 +121,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
             justifyContent: "flex-end",
           }}
         >
+          <Pressable style={{ flex: 1 }} onPress={onClose} />
           <GestureDetector gesture={composedGesture}>
             <Animated.View
               className="bg-theme-neutrals-900 overflow-hidden"
@@ -169,7 +170,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                   defaultBanner={defaultBanner}
                   stats={stats}
                   scrollEnabled={scrollEnabled}
-                  flatListRef={flatListRef}
+                  registerScrollToTop={registerScrollToTop}
                   onScroll={scrollHandler}
                   onFollow={handleFollow}
                   onOpenUnfollow={() => setShowUnfollowSheet(true)}
