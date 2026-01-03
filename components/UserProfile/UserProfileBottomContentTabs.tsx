@@ -36,7 +36,14 @@ type ActiveTab = "videos" | "feed";
 
 const UserProfileBottomContentTabs: React.FC<
   UserProfileBottomContentTabsProps
-> = ({ address, onClose, scrollEnabled, isFullScreen, onScroll, registerScrollToTop }) => {
+> = ({
+  address,
+  onClose,
+  scrollEnabled,
+  isFullScreen,
+  onScroll,
+  registerScrollToTop,
+}) => {
   const [activeTab, setActiveTab] = useState<ActiveTab>("videos");
   const [videoItems, setVideoItems] = useState<GetNFTsResult[]>([]);
   const [videoPage, setVideoPage] = useState(0);
@@ -104,7 +111,9 @@ const UserProfileBottomContentTabs: React.FC<
   }, []);
 
   useEffect(() => {
-    registerScrollToTop(activeTab === "videos" ? scrollVideosToTop : scrollFeedToTop);
+    registerScrollToTop(
+      activeTab === "videos" ? scrollVideosToTop : scrollFeedToTop
+    );
     return () => {
       registerScrollToTop(null);
     };
@@ -170,21 +179,36 @@ const UserProfileBottomContentTabs: React.FC<
   if (!address) return null;
 
   return (
-    <View className="mt-4" style={isFullScreen ? { flex: 1 } : { height: listHeight }}>
+    <View
+      className="mt-4"
+      style={isFullScreen ? { flex: 1 } : { height: listHeight }}
+    >
       <View className="flex-row items-center justify-start">
-        <View className="flex-row bg-theme-neutrals-800 rounded-full p-1">
+        <View
+          style={{
+            flexDirection: "row",
+            borderRadius: 20,
+            padding: 0,
+            overflow: "hidden",
+          }}
+        >
           <TouchableOpacity onPress={onPressVideos} activeOpacity={0.85}>
             <View
-              className={`px-4 py-2 rounded-full ${
-                activeTab === "videos" ? "bg-theme-neutrals-700" : "bg-transparent"
-              }`}
+              style={{
+                paddingHorizontal: 16,
+                paddingVertical: 8,
+                borderRadius: 16,
+                overflow: "hidden",
+                backgroundColor:
+                  activeTab === "videos" ? "#1D1F21" : "rgba(0,0,0,0)",
+              }}
             >
               <Text
-                className={`text-sm font-semibold ${
-                  activeTab === "videos"
-                    ? "text-theme-neutrals-200"
-                    : "text-theme-neutrals-500"
-                }`}
+                style={{
+                  fontSize: 12,
+                  fontWeight: "600",
+                  color: activeTab === "videos" ? "#e5e5e5" : "#737373",
+                }}
               >
                 Videos
               </Text>
@@ -193,16 +217,21 @@ const UserProfileBottomContentTabs: React.FC<
 
           <TouchableOpacity onPress={onPressFeed} activeOpacity={0.85}>
             <View
-              className={`px-4 py-2 rounded-full ${
-                activeTab === "feed" ? "bg-theme-neutrals-700" : "bg-transparent"
-              }`}
+              style={{
+                paddingHorizontal: 16,
+                paddingVertical: 8,
+                borderRadius: 16,
+                overflow: "hidden",
+                backgroundColor:
+                  activeTab === "feed" ? "#1D1F21" : "rgba(0,0,0,0)",
+              }}
             >
               <Text
-                className={`text-sm font-semibold ${
-                  activeTab === "feed"
-                    ? "text-theme-neutrals-200"
-                    : "text-theme-neutrals-500"
-                }`}
+                style={{
+                  fontSize: 12,
+                  fontWeight: "600",
+                  color: activeTab === "feed" ? "#e5e5e5" : "#737373",
+                }}
               >
                 Feed
               </Text>
@@ -211,7 +240,7 @@ const UserProfileBottomContentTabs: React.FC<
         </View>
       </View>
 
-      <View className="flex-1 mt-3">
+      <View className="flex-1 mt-1 pb-16">
         {activeTab === "videos" ? (
           <FlatList
             ref={videosListRef}
@@ -237,6 +266,7 @@ const UserProfileBottomContentTabs: React.FC<
               scrollEnabled={!!scrollEnabled}
               onScroll={onScroll}
               listRef={feedListRef}
+              noPadding
             />
           </View>
         )}

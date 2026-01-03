@@ -12,9 +12,10 @@ interface FeedRouteProps {
   scrollEnabled?: boolean;
   onScroll?: any;
   listRef?: React.RefObject<FlatList<any> | null>;
+  noPadding?: boolean;
 }
 
-const FeedRoute: React.FC<FeedRouteProps> = ({ address, scrollEnabled, onScroll, listRef }) => {
+const FeedRoute: React.FC<FeedRouteProps> = ({ address, scrollEnabled, onScroll, listRef, noPadding }) => {
   const navigation = useNavigation<any>();
   const { hideUserProfile } = useUserProfileSheet();
 
@@ -47,12 +48,12 @@ const FeedRoute: React.FC<FeedRouteProps> = ({ address, scrollEnabled, onScroll,
   }), [address]);
 
   return (
-    <View className="flex-1 px-4">
+    <View className={`flex-1 ${noPadding ? '' : 'px-4'}`}>
       <InfiniteFeed
         insideNavigatorScreen={false}
         params={feedParams}
         pageSize={20}
-        contentContainerStyle={{ paddingBottom: 80, paddingTop: 8 }}
+        contentContainerStyle={{ paddingBottom: 80, paddingTop: noPadding ? 0 : 8 }}
         scrollEnabled={scrollEnabled}
         onScroll={onScroll}
         listRef={listRef}
