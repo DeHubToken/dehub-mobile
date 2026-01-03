@@ -197,7 +197,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                   >
                     <View className="w-16 h-1.5 bg-theme-neutrals-700 rounded-full" />
                   </Animated.View>
-                )} 
+                )}
               </View>
 
               {/* Content */}
@@ -213,6 +213,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                   defaultBanner={defaultBanner}
                   stats={stats}
                   scrollEnabled={scrollEnabled}
+                  isFullScreen={isFullScreen}
                   registerScrollToTop={registerScrollToTop}
                   onScroll={scrollHandler}
                   onFollow={handleFollow}
