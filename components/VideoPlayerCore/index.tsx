@@ -1,149 +1,242 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from 'react';
 import {
   View,
-  Text,
-  TouchableOpacity,
   ActivityIndicator,
   Pressable,
-  GestureResponderEvent,
-  PanResponder,
-  Animated,
-  Dimensions,
-} from "react-native";
-import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
-import { setAudioModeAsync } from "expo-audio";
-import { Ionicons } from "@expo/vector-icons";
-import TopControls from "./TopControls";
-import CenterControls from "./CenterControls";
-import ProgressBar from "./ProgressBar";
-import SeekOverlay from "./SeekOverlay";
-// import MiniPlayerOverlay from './MiniPlayerOverlay';
-import * as ScreenOrientation from "expo-screen-orientation";
-import { useNavigation } from "@react-navigation/native";
+  StatusBar,
+  StyleSheet,
+} from 'react-native';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withSequence,
+  withDelay,
+  runOnJS,
+  Easing,
+} from 'react-native-reanimated';
+import {
+  Gesture,
+  GestureDetector,
+  GestureHandlerRootView,
+} from 'react-native-gesture-handler';
+import { VideoView, useVideoPlayer, VideoPlayer } from 'expo-video';
+import { setAudioModeAsync } from 'expo-audio';
+import TopControls from './TopControls';
+import CenterControls from './CenterControls';
+import ProgressBar from './ProgressBar';
+import SeekOverlay from './SeekOverlay';
+import {
+  PLAYER_CONSTANTS,
+  SeekDirection,
+} from './utils';
+import * as ScreenOrientation from 'expo-screen-orientation';
+import { useNavigation } from '@react-navigation/native';
+import { createLogger } from '../../libs/logger';
+
+const logger = createLogger('VideoPlayerCore');
 
 interface VideoPlayerCoreProps {
   sourceUrl: string | null;
   autoplay?: boolean;
   loop?: boolean;
   initialMuted?: boolean;
-  liveMode?: boolean; // when true, disable seeking and hide skip controls
-  onReady?(durationMs: number): void;
-  onPlayStateChange?(playing: boolean): void;
-  onProgress?(positionMs: number, durationMs: number): void;
-  onClose?(): void;
+  liveMode?: boolean;
+  title?: string;
+  onReady?: (durationMs: number) => void;
+  onPlayStateChange?: (playing: boolean) => void;
+  onProgress?: (positionMs: number, durationMs: number) => void;
+  onClose?: () => void;
+  onError?: (error: Error) => void;
 }
-
-const HIDE_DELAY = 3000;
-
-const formatTime = (ms: number) => {
-  if (!ms || ms < 0) return "0:00";
-  const totalSec = Math.floor(ms / 1000);
-  const m = Math.floor(totalSec / 60);
-  const s = totalSec % 60;
-  return `${m}:${s.toString().padStart(2, "0")}`;
-};
 
 const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   sourceUrl,
   autoplay = true,
   loop = true,
   initialMuted = false,
+  liveMode = false,
+  title,
   onReady,
   onPlayStateChange,
   onProgress,
   onClose,
-  liveMode = false,
+  onError,
 }) => {
+  // Refs
   const viewRef = useRef<VideoView | null>(null);
   const navigation = useNavigation<any>();
+  const hideTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const lastTapRef = useRef<{ time: number; side: 'left' | 'right' | null }>({
+    time: 0,
+    side: null,
+  });
+  const isMountedRef = useRef(true);
+
+  // State
   const [isReady, setIsReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(autoplay);
-  // Always start unmuted regardless of prop (platforms may still gate autoplay sound by policy)
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(initialMuted);
   const [showControls, setShowControls] = useState(true);
-  const [duration, setDuration] = useState(0); // ms
-  const [position, setPosition] = useState(0); // ms
+  const [duration, setDuration] = useState(0);
+  const [position, setPosition] = useState(0);
+  const [bufferedPosition, setBufferedPosition] = useState(0);
   const [isBuffering, setIsBuffering] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [progressBarWidth, setProgressBarWidth] = useState(0);
-  // Minimize feature (temporarily disabled)
-  // const [isMinimized, setIsMinimized] = useState(false);
-  const hideTimerRef = useRef<NodeJS.Timeout | null>(null);
-  // Seek feedback overlay
-  const [seekFeedback, setSeekFeedback] = useState<string | null>(null);
-  const seekOpacity = useRef(new Animated.Value(0)).current;
-  const showSeekFeedback = (label: string) => {
-    setSeekFeedback(label);
-    seekOpacity.setValue(0);
-    Animated.sequence([
-      Animated.timing(seekOpacity, {
-        toValue: 1,
-        duration: 120,
-        useNativeDriver: true,
-      }),
-      Animated.delay(380),
-      Animated.timing(seekOpacity, {
-        toValue: 0,
-        duration: 220,
-        useNativeDriver: true,
-      }),
-    ]).start(({ finished }) => {
-      if (finished) setSeekFeedback(null);
-    });
-  };
+  const [isSeeking, setIsSeeking] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
-  const clearHideTimer = () => {
+  // Seek feedback animation
+  const [seekFeedback, setSeekFeedback] = useState<{
+    label: string;
+    direction: SeekDirection;
+  } | null>(null);
+  const seekOpacity = useSharedValue(0);
+
+  // Callback to clear seek feedback (called from worklet)
+  const clearSeekFeedback = useCallback(() => {
+    if (isMountedRef.current) {
+      setSeekFeedback(null);
+    }
+  }, []);
+
+  // Show seek feedback overlay with animation
+  const showSeekFeedback = useCallback(
+    (label: string, direction: SeekDirection) => {
+      if (!isMountedRef.current) return;
+
+      setSeekFeedback({ label, direction });
+      
+      seekOpacity.value = withSequence(
+        withTiming(1, {
+          duration: PLAYER_CONSTANTS.SEEK_FADE_IN_DURATION,
+          easing: Easing.out(Easing.ease),
+        }),
+        withDelay(
+          PLAYER_CONSTANTS.SEEK_VISIBLE_DURATION,
+          withTiming(0, {
+            duration: PLAYER_CONSTANTS.SEEK_FADE_OUT_DURATION,
+            easing: Easing.in(Easing.ease),
+          })
+        )
+      );
+
+      // Clear feedback after animation completes
+      setTimeout(() => {
+        clearSeekFeedback();
+      }, PLAYER_CONSTANTS.SEEK_FADE_IN_DURATION + PLAYER_CONSTANTS.SEEK_VISIBLE_DURATION + PLAYER_CONSTANTS.SEEK_FADE_OUT_DURATION);
+    },
+    [seekOpacity, clearSeekFeedback]
+  );
+
+  // Timer management for hiding controls
+  const clearHideTimer = useCallback(() => {
     if (hideTimerRef.current) {
       clearTimeout(hideTimerRef.current);
       hideTimerRef.current = null;
     }
-  };
-  const scheduleHide = () => {
+  }, []);
+
+  const scheduleHide = useCallback(() => {
     clearHideTimer();
-    hideTimerRef.current = setTimeout(() => setShowControls(false), HIDE_DELAY);
-  };
+    hideTimerRef.current = setTimeout(() => {
+      if (isMountedRef.current) {
+        setShowControls(false);
+      }
+    }, PLAYER_CONSTANTS.HIDE_CONTROLS_DELAY);
+  }, [clearHideTimer]);
+
+  const showAndScheduleHide = useCallback(() => {
+    setShowControls(true);
+    scheduleHide();
+  }, [scheduleHide]);
 
   // Create VideoPlayer instance
-  const player: VideoPlayer = useVideoPlayer(sourceUrl ?? null, (player) => {
-    player.loop = loop;
-    player.muted = false; // start unmuted per behavior above
-    player.timeUpdateEventInterval = 0.5; // reduce update churn
-    if (autoplay) player.play();
+  const player: VideoPlayer = useVideoPlayer(sourceUrl ?? null, (p) => {
+    p.loop = loop;
+    p.muted = initialMuted;
+    p.timeUpdateEventInterval = PLAYER_CONSTANTS.TIME_UPDATE_INTERVAL;
+    if (autoplay && sourceUrl) {
+      p.play();
+    }
   });
 
-  // Subscribe to player events and reflect into local state
+  // Subscribe to player events
   useEffect(() => {
-    const subs = [
-      player.addListener("playingChange", ({ isPlaying }) => {
-        setIsPlaying(isPlaying);
-        onPlayStateChange?.(isPlaying);
+    const subscriptions = [
+      player.addListener('playingChange', ({ isPlaying: playing }) => {
+        if (!isMountedRef.current) return;
+        setIsPlaying(playing);
+        onPlayStateChange?.(playing);
       }),
-      player.addListener("statusChange", ({ status }) => {
-        setIsBuffering(status === "loading");
-        if (!isReady && (status === "readyToPlay" || status === "loading")) {
+
+      player.addListener('statusChange', ({ status, error }) => {
+        if (!isMountedRef.current) return;
+
+        setIsBuffering(status === 'loading');
+
+        if (status === 'error' && error) {
+          setHasError(true);
+          logger.error('[VideoPlayerCore] Playback error:', error);
+          onError?.(new Error(String(error)));
+        }
+
+        if (!isReady && (status === 'readyToPlay' || status === 'loading')) {
           setIsReady(true);
+          setHasError(false);
         }
       }),
-      player.addListener("sourceLoad", ({ duration: durSec }) => {
+
+      player.addListener('sourceLoad', ({ duration: durSec }) => {
+        if (!isMountedRef.current) return;
         const durMs = Math.max(0, Math.floor((durSec ?? 0) * 1000));
         if (durMs && durMs !== duration) {
           setDuration(durMs);
           onReady?.(durMs);
         }
       }),
-      player.addListener("timeUpdate", ({ currentTime, bufferedPosition: buf }) => {
-        const curMs = Math.max(0, Math.floor((currentTime ?? 0) * 1000));
-        setPosition((prev) => (prev !== curMs ? curMs : prev));
-        onProgress?.(curMs, duration);
-        if (typeof buf === "number" && buf >= 0) {
-          setBufferedPosition(Math.floor(buf * 1000));
-        }
-      }),
-    ];
-    return () => subs.forEach((s) => s.remove());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [player, onPlayStateChange, onReady, onProgress, isReady, duration]);
 
+      player.addListener(
+        'timeUpdate',
+        ({ currentTime, bufferedPosition: buf }) => {
+          if (!isMountedRef.current) return;
+          const curMs = Math.max(0, Math.floor((currentTime ?? 0) * 1000));
+          setPosition((prev) => (prev !== curMs ? curMs : prev));
+          onProgress?.(curMs, duration);
+
+          if (typeof buf === 'number' && buf >= 0) {
+            setBufferedPosition(Math.floor(buf * 1000));
+          }
+        }
+      ),
+    ];
+
+    return () => {
+      subscriptions.forEach((sub) => sub.remove());
+    };
+  }, [player, onPlayStateChange, onReady, onProgress, isReady, duration, onError]);
+
+  // Handle navigation events to stop playback when leaving screen
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', () => {
+      // Stop playback immediately when navigating away
+      try {
+        player.pause();
+        player.muted = true;
+      } catch {}
+    });
+
+    return unsubscribe;
+  }, [navigation, player]);
+
+  // Playback controls
   const togglePlay = useCallback(() => {
     if (player.playing) {
       player.pause();
@@ -153,306 +246,370 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   }, [player]);
 
   const toggleMute = useCallback(() => {
-    const next = !isMuted;
-    player.muted = next;
-    setIsMuted(next);
+    const nextMuted = !isMuted;
+    player.muted = nextMuted;
+    setIsMuted(nextMuted);
   }, [isMuted, player]);
 
   const toggleFullscreen = useCallback(async () => {
-    // Use an in-app fullscreen approach so our custom controls remain accessible
     try {
       if (fullscreen) {
         setFullscreen(false);
-        try {
-          await ScreenOrientation.lockAsync(
-            ScreenOrientation.OrientationLock.PORTRAIT_UP
-          );
-        } catch {}
+        StatusBar.setHidden(false);
+        await ScreenOrientation.lockAsync(
+          ScreenOrientation.OrientationLock.PORTRAIT_UP
+        ).catch(() => {});
       } else {
         setFullscreen(true);
-        try {
-          await ScreenOrientation.lockAsync(
-            ScreenOrientation.OrientationLock.LANDSCAPE
-          );
-        } catch {}
+        StatusBar.setHidden(true);
+        await ScreenOrientation.lockAsync(
+          ScreenOrientation.OrientationLock.LANDSCAPE
+        ).catch(() => {});
       }
-    } catch (e) {
-      console.warn("Fullscreen toggle error", e);
+    } catch (error) {
+      logger.warn('[VideoPlayerCore] Fullscreen toggle error:', error);
     }
   }, [fullscreen]);
 
-  // Remove separate rotate control; fullscreen button controls rotation
-
-  const showAndScheduleHide = () => {
-    setShowControls(true);
-    scheduleHide();
-  };
-
-  const handleSurfacePress = () => {
-    // Not used directly after simplifying tap logic, kept for potential future usage
-    if (!showControls) showAndScheduleHide();
-    else scheduleHide();
-  };
-
-  // // Mini player drag & snap logic (disabled)
-  // const screen = Dimensions.get('window');
-  // const MINI_WIDTH = 180;
-  // const MINI_HEIGHT = (MINI_WIDTH * 9) / 16;
-  // const MARGIN = 12;
-  // const initialMini = { x: screen.width - MINI_WIDTH - MARGIN, y: screen.height - MINI_HEIGHT - (80 + MARGIN) };
-  // const miniPos = useRef(new Animated.ValueXY(initialMini)).current; // bottom-right above nav
-  // const miniDragging = useRef(false);
-  // const latestMiniRef = useRef(initialMini);
-  // const miniPanResponder = useRef(
-  //   PanResponder.create({
-  //     onStartShouldSetPanResponder: () => true,
-  //     onMoveShouldSetPanResponder: () => true,
-  //     onPanResponderGrant: () => { miniDragging.current = true; miniPos.stopAnimation(); },
-  //     onPanResponderMove: (_, g) => {
-  //       const nx = Math.min(Math.max(g.dx + miniStartRef.current.x, 0), screen.width - MINI_WIDTH);
-  //       const ny = Math.min(Math.max(g.dy + miniStartRef.current.y, 0), screen.height - MINI_HEIGHT - 80);
-  //       latestMiniRef.current = { x: nx, y: ny };
-  //       miniPos.setValue(latestMiniRef.current);
-  //     },
-  //     onPanResponderRelease: (_, g) => {
-  //       miniDragging.current = false;
-  //       miniStartRef.current = { ...latestMiniRef.current };
-  //       const currentX = latestMiniRef.current.x;
-  //       const snapLeft = currentX < (screen.width - MINI_WIDTH) / 2;
-  //       const targetX = snapLeft ? MARGIN : screen.width - MINI_WIDTH - MARGIN;
-  //       Animated.spring(miniPos, { toValue: { x: targetX, y: miniStartRef.current.y }, useNativeDriver: false, friction: 7 })
-  //         .start(() => { miniStartRef.current = { x: targetX, y: miniStartRef.current.y }; });
-  //     },
-  //     onPanResponderTerminate: () => { miniDragging.current = false; },
-  //     onPanResponderStart: () => { miniStartRef.current = { ...latestMiniRef.current }; }
-  //   })
-  // ).current;
-  // const miniStartRef = useRef({ ...initialMini });
-
-  const handleClosePress = () => {
-    // Ensure portrait on close/back
-    (async () => {
-      try {
-        await ScreenOrientation.lockAsync(
-          ScreenOrientation.OrientationLock.PORTRAIT_UP
-        );
-      } catch {}
-    })();
-    if (onClose) onClose();
-    else navigation.goBack();
-  };
-
-  // const handleMiniExpand = () => {
-  //   setIsMinimized(false);
-  //   showAndScheduleHide();
-  // };
-
-  // const handleMiniHardClose = () => {
-  //   setIsMinimized(false);
-  //   if (onClose) onClose(); else navigation.goBack();
-  // };
-
-  // Double-tap to seek ±10s (basic implementation)
-  const lastTapRef = useRef<number>(0);
-  const lastSideRef = useRef<"left" | "right" | null>(null);
-  const handleDoubleTap = async (side: "left" | "right") => {
-    if (liveMode) return; // disable seeking in live mode
+  // Close handler - ensure portrait orientation and stop playback
+  const handleClosePress = useCallback(() => {
+    // Stop playback immediately to prevent lingering audio
     try {
-      const forwardDelta = 10; // seconds
-      const backwardDelta = 30; // seconds
-      const delta = side === "right" ? forwardDelta : -backwardDelta;
-      player.seekBy(delta);
-      showSeekFeedback(side === "right" ? "+10" : "-30");
+      player.pause();
+      player.muted = true;
     } catch {}
-  };
-  const handleSurfaceTouch = (side: "left" | "right") => () => {
-    const now = Date.now();
-    const isDouble =
-      lastSideRef.current === side && now - lastTapRef.current < 300;
-    lastTapRef.current = now;
-    lastSideRef.current = side;
-    if (isDouble) {
-      handleDoubleTap(side);
-      // Keep controls visible on double for feedback
-      showAndScheduleHide();
-      return;
-    }
-    // Single tap: immediately show controls
-    showAndScheduleHide();
-  };
 
+    // Reset orientation and status bar
+    StatusBar.setHidden(false);
+    ScreenOrientation.lockAsync(
+      ScreenOrientation.OrientationLock.PORTRAIT_UP
+    ).catch(() => {});
+
+    if (onClose) {
+      onClose();
+    } else {
+      navigation.goBack();
+    }
+  }, [onClose, navigation, player]);
+
+  // Seek functionality
+  const seekToPosition = useCallback(
+    (positionMs: number) => {
+      if (liveMode || !duration) return;
+      const clampedPosition = Math.min(Math.max(positionMs, 0), duration);
+      try {
+        player.currentTime = clampedPosition / 1000;
+        setPosition(clampedPosition);
+      } catch (error) {
+        logger.warn('[VideoPlayerCore] Seek error:', error);
+      }
+    },
+    [liveMode, duration, player]
+  );
+
+  const seekToRatio = useCallback(
+    (ratio: number) => {
+      if (liveMode || !duration) return;
+      const clampedRatio = Math.min(Math.max(ratio, 0), 1);
+      seekToPosition(clampedRatio * duration);
+    },
+    [liveMode, duration, seekToPosition]
+  );
+
+  const handleSeek = useCallback(
+    (direction: SeekDirection) => {
+      if (liveMode) return;
+
+      const delta =
+        direction === 'forward'
+          ? PLAYER_CONSTANTS.SEEK_FORWARD_SECONDS
+          : -PLAYER_CONSTANTS.SEEK_BACKWARD_SECONDS;
+
+      try {
+        player.seekBy(delta);
+        const label =
+          direction === 'forward'
+            ? `+${PLAYER_CONSTANTS.SEEK_FORWARD_SECONDS}`
+            : `-${PLAYER_CONSTANTS.SEEK_BACKWARD_SECONDS}`;
+        showSeekFeedback(label, direction);
+      } catch (error) {
+        logger.warn('[VideoPlayerCore] Seek error:', error);
+      }
+    },
+    [liveMode, player, showSeekFeedback]
+  );
+
+  // Double-tap detection for seeking
+  const handleSurfaceTouch = useCallback(
+    (side: 'left' | 'right') => {
+      const now = Date.now();
+      const { time: lastTime, side: lastSide } = lastTapRef.current;
+      const isDoubleTap =
+        lastSide === side &&
+        now - lastTime < PLAYER_CONSTANTS.DOUBLE_TAP_DELAY;
+
+      lastTapRef.current = { time: now, side };
+
+      if (isDoubleTap && !liveMode) {
+        handleSeek(side === 'right' ? 'forward' : 'backward');
+      }
+
+      showAndScheduleHide();
+    },
+    [liveMode, handleSeek, showAndScheduleHide]
+  );
+
+  // Initialize audio mode and controls visibility
   useEffect(() => {
+    isMountedRef.current = true;
     showAndScheduleHide();
+
     // Configure audio to play even if device is on silent (iOS)
-    (async () => {
+    const setupAudio = async () => {
       try {
         await setAudioModeAsync({
           playsInSilentMode: true,
           allowsRecording: false,
           shouldPlayInBackground: false,
-          interruptionMode: "doNotMix",
-          interruptionModeAndroid: "duckOthers",
+          interruptionMode: 'doNotMix',
+          interruptionModeAndroid: 'duckOthers',
         });
-        // Ensure unmuted (some devices may default to muted on autoplay)
-        setIsMuted(false);
-      } catch (e) {
-        console.warn("[VideoPlayerCore] setAudioModeAsync failed", e);
+      } catch (error) {
+        logger.warn('[VideoPlayerCore] setAudioModeAsync failed:', error);
       }
-    })();
-    return () => {
-      // On unmount, ensure portrait and clear timer
-      try {
-        ScreenOrientation.lockAsync(
-          ScreenOrientation.OrientationLock.PORTRAIT_UP
-        );
-      } catch {}
-      clearHideTimer();
     };
-  }, []);
 
-  const seekToRatio = async (ratio: number) => {
-    if (liveMode) return; // disable seeking in live mode
-    if (!duration) return;
-    const newPosMs = Math.min(Math.max(ratio, 0), 1) * duration;
-    try {
-      player.currentTime = newPosMs / 1000;
-      setPosition(newPosMs);
-    } catch {}
-  };
+    setupAudio();
 
-  const onProgressBarPress = (e: GestureResponderEvent) => {
-    if (liveMode) return; // disable seeking in live mode
-    const { locationX } = e.nativeEvent;
-    if (!progressBarWidth) return;
-    const ratio = locationX / progressBarWidth;
-    seekToRatio(ratio);
+    return () => {
+      isMountedRef.current = false;
+      clearHideTimer();
+
+      // Stop playback immediately to prevent lingering audio
+      try {
+        player.pause();
+        player.muted = true;
+      } catch {}
+
+      // Reset orientation on unmount
+      ScreenOrientation.lockAsync(
+        ScreenOrientation.OrientationLock.PORTRAIT_UP
+      ).catch(() => {});
+
+      StatusBar.setHidden(false);
+    };
+  }, [showAndScheduleHide, clearHideTimer, player]);
+
+  // Progress bar press handler
+  const handleProgressBarPress = useCallback(
+    (locationX: number) => {
+      if (liveMode || !progressBarWidth) return;
+      const ratio = locationX / progressBarWidth;
+      seekToRatio(ratio);
+      showAndScheduleHide();
+    },
+    [liveMode, progressBarWidth, seekToRatio, showAndScheduleHide]
+  );
+
+  // Seeking state for gesture handler
+  const startSeeking = useCallback(() => {
+    setIsSeeking(true);
     showAndScheduleHide();
-  };
+  }, [showAndScheduleHide]);
 
-  // Drag (scrub) support
-  const draggingRef = useRef(false);
-  const panResponder = useRef(
-    PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: () => true,
-      onPanResponderGrant: (evt) => {
-        if (liveMode) return; // disable seeking in live mode
-        draggingRef.current = true;
-        showAndScheduleHide();
-        if (progressBarWidth) {
-          const ratio = evt.nativeEvent.locationX / progressBarWidth;
-          seekToRatio(ratio);
-        }
-      },
-      onPanResponderMove: (evt, gesture) => {
-        if (!draggingRef.current || liveMode) return;
-        if (progressBarWidth) {
-          const x = Math.min(
-            Math.max(evt.nativeEvent.locationX, 0),
-            progressBarWidth
-          );
-          const ratio = x / progressBarWidth;
-          seekToRatio(ratio);
-        }
-      },
-      onPanResponderRelease: () => {
-        if (liveMode) return; // disable seeking in live mode
-        draggingRef.current = false;
-        scheduleHide();
-      },
-      onPanResponderTerminationRequest: () => false,
-      onPanResponderTerminate: () => {
-        if (liveMode) return; // disable seeking in live mode
-        draggingRef.current = false;
-        scheduleHide();
-      },
-    })
-  ).current;
+  const stopSeeking = useCallback(() => {
+    setIsSeeking(false);
+    scheduleHide();
+  }, [scheduleHide]);
 
-  // Track buffered position (from timeUpdate event in seconds -> ms)
-  const [bufferedPosition, setBufferedPosition] = useState(0);
+  const handleSeekGesture = useCallback(
+    (x: number) => {
+      if (liveMode || !progressBarWidth) return;
+      const clampedX = Math.min(Math.max(x, 0), progressBarWidth);
+      const ratio = clampedX / progressBarWidth;
+      seekToRatio(ratio);
+    },
+    [liveMode, progressBarWidth, seekToRatio]
+  );
+
+  // Pan gesture for progress bar scrubbing using reanimated
+  const progressBarPanGesture = useMemo(
+    () =>
+      Gesture.Pan()
+        .enabled(!liveMode)
+        .onStart((event) => {
+          runOnJS(startSeeking)();
+          runOnJS(handleSeekGesture)(event.x);
+        })
+        .onUpdate((event) => {
+          runOnJS(handleSeekGesture)(event.x);
+        })
+        .onEnd(() => {
+          runOnJS(stopSeeking)();
+        })
+        .onFinalize(() => {
+          runOnJS(stopSeeking)();
+        }),
+    [liveMode, startSeeking, stopSeeking, handleSeekGesture]
+  );
+
+  // Container styles for fullscreen
+  const containerStyle = useMemo(
+    () =>
+      fullscreen
+        ? styles.fullscreenContainer
+        : styles.normalContainer,
+    [fullscreen]
+  );
 
   return (
     <View
-      className={`bg-black overflow-hidden ${fullscreen ? '' : 'w-full aspect-video'}`}
-      style={fullscreen ? { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, zIndex: 1000 } : undefined}
+      className={`bg-black overflow-hidden ${
+        fullscreen ? '' : 'w-full aspect-video'
+      }`}
+      style={containerStyle}
     >
+      {/* Video View */}
       {sourceUrl && (
         <VideoView
           ref={(r) => {
-            viewRef.current = r as any;
+            viewRef.current = r as VideoView | null;
           }}
           player={player}
-          style={{ width: "100%", height: "100%" }}
+          style={styles.video}
           contentFit="contain"
           nativeControls={false}
         />
       )}
+
+      {/* Loading state when no source */}
       {!sourceUrl && (
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator color="#fff" />
+          <ActivityIndicator size="large" color="#fff" />
         </View>
       )}
-      {/* Interaction layers: use narrow edge zones to avoid blocking vertical scroll */}
+
+      {/* Error state */}
+      {hasError && (
+        <View className="absolute inset-0 items-center justify-center bg-black/80">
+          <View className="items-center">
+            <ActivityIndicator size="large" color="#fff" />
+          </View>
+        </View>
+      )}
+
+      {/* Tap interaction layers */}
       <View
         className="absolute inset-0"
-        // When controls are visible, don't intercept to allow UI interaction
-        pointerEvents={showControls ? "none" : "auto"}
+        pointerEvents={showControls ? 'none' : 'auto'}
       >
-        {/* Center tap area: single tap shows/hides controls */}
+        {/* Center tap area */}
         <Pressable
-          style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}
-          onPress={handleSurfacePress}
+          style={styles.centerTapArea}
+          onPress={showAndScheduleHide}
+          accessibilityLabel="Tap to show controls"
         />
+
+        {/* Left double-tap zone for seeking backward */}
         <Pressable
-          style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 72 }}
-          onPress={handleSurfaceTouch('left')}
+          style={styles.leftTapZone}
+          onPress={() => handleSurfaceTouch('left')}
+          accessibilityLabel="Double tap to rewind"
         />
+
+        {/* Right double-tap zone for seeking forward */}
         <Pressable
-          style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 72 }}
-          onPress={handleSurfaceTouch('right')}
+          style={styles.rightTapZone}
+          onPress={() => handleSurfaceTouch('right')}
+          accessibilityLabel="Double tap to skip forward"
         />
       </View>
+
+      {/* Controls Overlay */}
       {showControls && (
-        <View className="absolute inset-0 justify-between px-2 py-2">
+        <View className="absolute inset-0 justify-between px-3 py-3">
+          {/* Top Controls */}
           <TopControls
             onClose={handleClosePress}
             onMute={toggleMute}
             onFullscreen={toggleFullscreen}
             isMuted={isMuted}
             fullscreen={fullscreen}
+            title={title}
+            showTitle={fullscreen}
           />
+
+          {/* Center Controls */}
           <CenterControls
             isPlaying={isPlaying}
             isBuffering={isBuffering}
             onTogglePlay={togglePlay}
-            onSeekBack={() => handleDoubleTap("left")}
-            onSeekForward={() => handleDoubleTap("right")}
+            onSeekBack={() => handleSeek('backward')}
+            onSeekForward={() => handleSeek('forward')}
             hideSeekButtons={liveMode}
           />
+
+          {/* Progress Bar */}
           <ProgressBar
             position={position}
             duration={duration}
             bufferedPosition={bufferedPosition}
-            onLayoutWidth={(w) => setProgressBarWidth(w)}
-            onPressBar={(x) => {
-              if (!progressBarWidth || liveMode) return;
-              const ratio = x / progressBarWidth;
-              seekToRatio(ratio);
-              showAndScheduleHide();
-            }}
-            panHandlers={liveMode ? {} : panResponder.panHandlers}
+            onLayoutWidth={setProgressBarWidth}
+            onPressBar={handleProgressBarPress}
+            panGesture={progressBarPanGesture}
             liveMode={liveMode}
+            isSeeking={isSeeking}
           />
         </View>
       )}
+
+      {/* Seek Feedback Overlay */}
       {seekFeedback && (
-        <SeekOverlay label={seekFeedback} opacity={seekOpacity} />
+        <SeekOverlay
+          label={seekFeedback.label}
+          opacity={seekOpacity}
+          direction={seekFeedback.direction}
+        />
       )}
-      {/* Mini Player Overlay (disabled) */}
-      {false && <View />}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  fullscreenContainer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    zIndex: 1000,
+  },
+  normalContainer: {},
+  video: {
+    width: '100%',
+    height: '100%',
+  },
+  centerTapArea: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+  },
+  leftTapZone: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+    width: 80,
+  },
+  rightTapZone: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    bottom: 0,
+    width: 80,
+  },
+});
 
 export default VideoPlayerCore;

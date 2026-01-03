@@ -308,7 +308,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
         sourceUrl={normalizedUrl}
         autoplay
         loop
-        initialMuted
+        // initialMuted
         liveMode={!!isLive}
         onProgress={onProgress}
       />

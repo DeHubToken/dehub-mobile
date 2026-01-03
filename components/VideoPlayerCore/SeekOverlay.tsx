@@ -1,14 +1,52 @@
-import React from 'react';
-import { Animated, View, Text } from 'react-native';
+import React, { memo } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import Animated, { SharedValue, useAnimatedStyle } from 'react-native-reanimated';
+import { Ionicons } from '@expo/vector-icons';
+import type { SeekDirection } from './utils';
 
-type Props = { label: string; opacity: Animated.Value };
+interface SeekOverlayProps {
+  label: string;
+  opacity: SharedValue<number>;
+  direction?: SeekDirection;
+}
 
-const SeekOverlay: React.FC<Props> = ({ label, opacity }) => (
-  <Animated.View pointerEvents="none" style={{ opacity }} className="absolute inset-0 items-center justify-center">
-    <View className="bg-black/60 px-5 py-3 rounded-full">
-      <Text className="text-white font-semibold text-base">{label}</Text>
-    </View>
-  </Animated.View>
-);
+const SeekOverlay: React.FC<SeekOverlayProps> = ({
+  label,
+  opacity,
+  direction,
+}) => {
+  const isForward = direction === 'forward' || label.startsWith('+');
+  const iconName = isForward ? 'play-forward' : 'play-back';
 
-export default SeekOverlay;
+  const animatedStyle = useAnimatedStyle(() => ({
+    opacity: opacity.value,
+  }));
+
+  return (
+    <Animated.View
+      pointerEvents="none"
+      style={[styles.container, animatedStyle]}
+      accessibilityElementsHidden
+      importantForAccessibility="no-hide-descendants"
+    >
+      <View className="bg-black/70 px-6 py-4 rounded-2xl items-center">
+        <Ionicons name={iconName} size={32} color="#fff" />
+        <Text className="text-white font-bold text-lg mt-1">{label}s</Text>
+      </View>
+    </Animated.View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
+export default memo(SeekOverlay);
