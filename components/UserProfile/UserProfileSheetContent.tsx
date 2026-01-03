@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from "react";
-import { View } from "react-native";
+import { View, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import UserProfileSkeleton from "./UserProfileSkeleton";
 import UserProfileHeader from "./UserProfileHeader";
 import UserProfileStatsRow from "./UserProfileStatsRow";
@@ -20,7 +20,8 @@ interface UserProfileSheetContentProps {
   defaultBanner: any;
   stats: any[];
   scrollEnabled: boolean;
-  onScroll: any;
+  isFullScreen: boolean;
+  onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   registerScrollToTop: (handler: (() => void) | null) => void;
   onFollow: () => void;
   onOpenUnfollow: () => void;
@@ -42,6 +43,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   defaultBanner,
   stats,
   scrollEnabled,
+  isFullScreen,
   onScroll,
   registerScrollToTop,
   onFollow,
@@ -91,7 +93,8 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           <UserProfileBottomContentTabs
             address={profileData.address}
             onClose={onClose}
-            scrollEnabled={scrollEnabled}
+            scrollEnabled={isFullScreen}
+            isFullScreen={isFullScreen}
             onScroll={onScroll}
             registerScrollToTop={registerScrollToTop}
           />
@@ -117,6 +120,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     onScroll,
     registerScrollToTop,
     scrollEnabled,
+    isFullScreen,
   ]);
 
   if (loading || !data) {
@@ -128,6 +132,56 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   }
 
   if (!profileData) return null;
+
+  // When fullscreen, we need the tabs to fill available space
+  // Render header separately and let tabs expand
+  if (isFullScreen) {
+    return (
+      <View className="flex-1">
+        <UserProfileHeader
+          avatarUrl={avatarUrl}
+          coverUrl={coverUrl}
+          displayName={profileData.displayName}
+          badge={profileData.badge}
+          badgeImage={profileData.badgeImage}
+          badgeIcon="trophy-outline"
+          address={profileData.address}
+          shortAddr={profileData.shortAddr}
+          username={profileData.username}
+          hasUsername={profileData.hasUsername}
+          joinedDate={profileData.joinedDate}
+          onOpenImage={onOpenImage}
+          onShare={onShare}
+          onMessage={onMessage}
+          FallbackAvatar={FallbackAvatar}
+          FallbackBanner={defaultBanner}
+          socials={data}
+        />
+        <View className="px-6 mt-2">
+          <UserProfileStatsRow stats={stats} />
+          <UserProfileActions
+            isFollowing={isFollowing}
+            followLoading={followLoading}
+            disableActions={profileData.disableActions}
+            address={profileData.address}
+            onFollow={onFollow}
+            onOpenUnfollow={onOpenUnfollow}
+            onOpenVideos={onOpenVideos}
+          />
+        </View>
+        <View className="flex-1 px-6">
+          <UserProfileBottomContentTabs
+            address={profileData.address}
+            onClose={onClose}
+            scrollEnabled={true}
+            isFullScreen={true}
+            onScroll={onScroll}
+            registerScrollToTop={registerScrollToTop}
+          />
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View className="flex-1">

@@ -13,10 +13,9 @@ import {
   FlatList,
   type ListRenderItemInfo,
   TouchableOpacity,
+  type NativeSyntheticEvent,
+  type NativeScrollEvent,
 } from "react-native";
-import Animated from "react-native-reanimated";
-import { TabView, TabBar } from "react-native-tab-view";
-import { theme } from "../../theme";
 import VideoCard from "../Home/VideoCard";
 import FeedRoute from "../Profile/FeedRoute";
 import { getUserVideos } from "../../services/user.service";
@@ -26,16 +25,19 @@ interface UserProfileBottomContentTabsProps {
   address: string;
   onClose: () => void;
   scrollEnabled: boolean;
-  onScroll: any;
+  isFullScreen: boolean;
+  onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   registerScrollToTop: (handler: (() => void) | null) => void;
 }
 
 const PAGE_SIZE = 20;
 
+type ActiveTab = "videos" | "feed";
+
 const UserProfileBottomContentTabs: React.FC<
   UserProfileBottomContentTabsProps
-> = ({ address, onClose, scrollEnabled, onScroll, registerScrollToTop }) => {
-  const [tabIndex, setTabIndex] = useState(0);
+> = ({ address, onClose, scrollEnabled, isFullScreen, onScroll, registerScrollToTop }) => {
+  const [activeTab, setActiveTab] = useState<ActiveTab>("videos");
   const [videoItems, setVideoItems] = useState<GetNFTsResult[]>([]);
   const [videoPage, setVideoPage] = useState(0);
   const [videoHasMore, setVideoHasMore] = useState(true);
@@ -44,18 +46,20 @@ const UserProfileBottomContentTabs: React.FC<
   const videosListRef = useRef<FlatList<GetNFTsResult> | null>(null);
   const feedListRef = useRef<FlatList<any> | null>(null);
 
-  const routes = useMemo(
-    () => [
-      { key: "videos", title: "Videos" },
-      { key: "feed", title: "Feed" },
-    ],
-    []
-  );
+  const onPressVideos = useCallback(() => {
+    setActiveTab("videos");
+  }, []);
 
+  const onPressFeed = useCallback(() => {
+    setActiveTab("feed");
+  }, []);
+
+  // When fullscreen, don't constrain height - let it fill available space
   const listHeight = useMemo(() => {
+    if (isFullScreen) return undefined;
     const winH = Dimensions.get("window").height;
     return Math.min(560, Math.max(360, Math.round(winH * 0.55)));
-  }, []);
+  }, [isFullScreen]);
 
   const loadVideoPage = useCallback(
     async (targetPage: number, replace = false) => {
@@ -100,11 +104,11 @@ const UserProfileBottomContentTabs: React.FC<
   }, []);
 
   useEffect(() => {
-    registerScrollToTop(tabIndex === 0 ? scrollVideosToTop : scrollFeedToTop);
+    registerScrollToTop(activeTab === "videos" ? scrollVideosToTop : scrollFeedToTop);
     return () => {
       registerScrollToTop(null);
     };
-  }, [registerScrollToTop, scrollFeedToTop, scrollVideosToTop, tabIndex]);
+  }, [activeTab, registerScrollToTop, scrollFeedToTop, scrollVideosToTop]);
 
   const onVideoEndReached = useCallback(() => {
     if (!videoHasMore || videoLoadingRef.current) return;
@@ -163,115 +167,80 @@ const UserProfileBottomContentTabs: React.FC<
     );
   }, [videoLoading]);
 
-  const renderScene = useCallback(
-    ({ route }: { route: { key: string; title: string } }) => {
-      switch (route.key) {
-        case "videos":
-          return (
-            <Animated.FlatList
-              ref={videosListRef as any}
-              data={videoItems}
-              keyExtractor={keyExtractor}
-              renderItem={renderVideoItem}
-              scrollEnabled={scrollEnabled}
-              onScroll={onScroll}
-              scrollEventThrottle={16}
-              onEndReached={onVideoEndReached}
-              onEndReachedThreshold={0.5}
-              ListFooterComponent={VideoListFooter}
-              ListEmptyComponent={VideoListEmpty}
-              contentContainerStyle={{ paddingBottom: 24 }}
-              showsVerticalScrollIndicator={false}
-              removeClippedSubviews
-            />
-          );
-        case "feed":
-          return (
-            <View style={{ flex: 1 }}>
-              <FeedRoute
-                address={address}
-                scrollEnabled={scrollEnabled}
-                onScroll={onScroll}
-                listRef={feedListRef}
-              />
-            </View>
-          );
-        default:
-          return null;
-      }
-    },
-    [
-      address,
-      videoItems,
-      keyExtractor,
-      renderVideoItem,
-      onVideoEndReached,
-      VideoListFooter,
-      VideoListEmpty,
-      onScroll,
-      scrollEnabled,
-    ]
-  );
-
-  const renderTabBar = useCallback(
-    (props: any) => (
-      <TabBar
-        {...props}
-        indicatorStyle={{ backgroundColor: "transparent" }}
-        style={{ backgroundColor: "transparent" }}
-        renderTabBarItem={({ route, navigationState, onPress }) => {
-          const focused =
-            navigationState.index ===
-            navigationState.routes.findIndex((r) => r.key === route.key);
-
-          return (
-            <TouchableOpacity onPress={onPress} activeOpacity={0.85}>
-              <View
-                className={`px-5 py-2 rounded-full ${
-                  focused ? "bg-theme-neutrals-800" : "bg-transparent"
-                }`}
-              >
-                <Text
-                  className={`text-sm font-semibold ${
-                    focused
-                      ? "text-theme-neutrals-200"
-                      : "text-theme-neutrals-500"
-                  }`}
-                >
-                  {route.title}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          );
-        }}
-        pressColor="transparent"
-      />
-    ),
-    []
-  );
-
-  const renderLazyPlaceholder = useCallback(() => {
-    return (
-      <View className="flex-1 items-center justify-center">
-        <ActivityIndicator color="#fff" />
-      </View>
-    );
-  }, []);
-
   if (!address) return null;
 
   return (
-    <View className="mt-4" style={{ height: listHeight }}>
-      <TabView
-        navigationState={{ index: tabIndex, routes }}
-        renderScene={renderScene}
-        onIndexChange={setTabIndex}
-        initialLayout={{ width: Dimensions.get("window").width }}
-        renderTabBar={renderTabBar}
-        lazy
-        lazyPreloadDistance={0}
-        renderLazyPlaceholder={renderLazyPlaceholder}
-      />
+    <View className="mt-4" style={isFullScreen ? { flex: 1 } : { height: listHeight }}>
+      <View className="flex-row items-center justify-start">
+        <View className="flex-row bg-theme-neutrals-800 rounded-full p-1">
+          <TouchableOpacity onPress={onPressVideos} activeOpacity={0.85}>
+            <View
+              className={`px-4 py-2 rounded-full ${
+                activeTab === "videos" ? "bg-theme-neutrals-700" : "bg-transparent"
+              }`}
+            >
+              <Text
+                className={`text-sm font-semibold ${
+                  activeTab === "videos"
+                    ? "text-theme-neutrals-200"
+                    : "text-theme-neutrals-500"
+                }`}
+              >
+                Videos
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={onPressFeed} activeOpacity={0.85}>
+            <View
+              className={`px-4 py-2 rounded-full ${
+                activeTab === "feed" ? "bg-theme-neutrals-700" : "bg-transparent"
+              }`}
+            >
+              <Text
+                className={`text-sm font-semibold ${
+                  activeTab === "feed"
+                    ? "text-theme-neutrals-200"
+                    : "text-theme-neutrals-500"
+                }`}
+              >
+                Feed
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      <View className="flex-1 mt-3">
+        {activeTab === "videos" ? (
+          <FlatList
+            ref={videosListRef}
+            style={{ flex: 1 }}
+            data={videoItems}
+            keyExtractor={keyExtractor}
+            renderItem={renderVideoItem}
+            scrollEnabled={!!scrollEnabled}
+            onScroll={onScroll}
+            scrollEventThrottle={16}
+            onEndReached={onVideoEndReached}
+            onEndReachedThreshold={0.5}
+            ListFooterComponent={VideoListFooter}
+            ListEmptyComponent={VideoListEmpty}
+            contentContainerStyle={{ paddingBottom: 24 }}
+            showsVerticalScrollIndicator={false}
+            removeClippedSubviews
+          />
+        ) : (
+          <View style={{ flex: 1 }}>
+            <FeedRoute
+              address={address}
+              scrollEnabled={!!scrollEnabled}
+              onScroll={onScroll}
+              listRef={feedListRef}
+            />
+          </View>
+        )}
+      </View>
     </View>
   );
 };

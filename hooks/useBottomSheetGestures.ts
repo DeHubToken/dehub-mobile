@@ -1,12 +1,11 @@
 import { useCallback, useRef, useState } from "react";
-import { Dimensions } from "react-native";
+import { Dimensions, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   useDerivedValue,
   withSpring,
   runOnJS,
-  useAnimatedScrollHandler,
   useAnimatedReaction,
 } from "react-native-reanimated";
 import {
@@ -43,6 +42,7 @@ export const useBottomSheetGestures = (
   const isScrollEnabled = useSharedValue(false);
   const startHeight = useSharedValue(COLLAPSED_HEIGHT);
   const touchStartY = useSharedValue(0);
+  const lastFullScreen = useSharedValue(false);
 
   const fullScreenProgress = useDerivedValue(() => {
     const denom = FULL_HEIGHT - COLLAPSED_HEIGHT;
@@ -56,6 +56,29 @@ export const useBottomSheetGestures = (
     () => isScrollEnabled.value,
     (value) => {
       runOnJS(setScrollEnabled)(value);
+    }
+  );
+
+  // Drive fullscreen mode from UI thread height so header/handle switch doesn't lag.
+  useAnimatedReaction(
+    () => height.value,
+    (h) => {
+      const shouldEnableScroll = h >= FULL_HEIGHT - 24;
+      const shouldDisableScroll = h <= COLLAPSED_HEIGHT + 8;
+
+      if (shouldEnableScroll) {
+        if (!isScrollEnabled.value) isScrollEnabled.value = true;
+        if (!lastFullScreen.value) {
+          lastFullScreen.value = true;
+          runOnJS(setIsFullScreen)(true);
+        }
+      } else if (shouldDisableScroll) {
+        if (isScrollEnabled.value) isScrollEnabled.value = false;
+        if (lastFullScreen.value) {
+          lastFullScreen.value = false;
+          runOnJS(setIsFullScreen)(false);
+        }
+      }
     }
   );
 
@@ -91,20 +114,24 @@ export const useBottomSheetGestures = (
       const currentY = event.allTouches[0]?.y ?? touchStartY.value;
       const dy = currentY - touchStartY.value;
 
-      // Collapsed: sheet drag should always work
+      // Not fullscreen: sheet drag should own the gesture (both up and down)
       if (!isScrollEnabled.value) {
         state.activate();
         return;
       }
 
-      // Fullscreen: only allow sheet drag when list is at top and user drags down
-      if (scrollY.value <= 0 && dy > 0) {
+      // Fullscreen mode: only activate pan when at scroll top AND pulling down
+      const atScrollTop = scrollY.value <= 1;
+      const pullingDown = dy > 8;
+      
+      if (atScrollTop && pullingDown) {
         state.activate();
         return;
       }
 
-      // Otherwise, fail so FlatList scroll wins.
-      state.fail();
+      // Don't activate - let the native scroll view handle this gesture
+      // Note: We don't call state.fail() because that ends gesture tracking entirely.
+      // By not activating, the gesture remains in BEGAN state and other handlers can claim it.
     })
     .onStart(() => {
       'worklet';
@@ -125,7 +152,7 @@ export const useBottomSheetGestures = (
       const velocity = event.velocityY;
 
       // Close if swiped down fast from collapsed state
-      if (!isScrollEnabled.value && velocity > 1200) {
+      if (height.value <= COLLAPSED_HEIGHT + 10 && velocity > 1200) {
         runOnJS(onClose)();
         return;
       }
@@ -189,14 +216,10 @@ export const useBottomSheetGestures = (
           scrollY.value = 0;
         }
       }
-    })
-    .enabled(true);
+    });
 
-  // Native scroll gesture for FlatList
-  const scrollGesture = Gesture.Native();
-
-  // Compose gestures to allow simultaneous pan and scroll
-  const composedGesture = Gesture.Simultaneous(panGesture, scrollGesture);
+  // Pan gesture only - FlatList handles its own scroll natively
+  const composedGesture = panGesture;
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -204,11 +227,10 @@ export const useBottomSheetGestures = (
     };
   });
 
-  const scrollHandler = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      scrollY.value = event.contentOffset.y;
-    },
-  });
+  // Regular JS scroll handler - updates shared value for pan coordination
+  const scrollHandler = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    scrollY.value = event.nativeEvent.contentOffset.y;
+  }, [scrollY]);
 
   const expandToFullScreenJS = useCallback(() => {
     setIsFullScreen(true);
