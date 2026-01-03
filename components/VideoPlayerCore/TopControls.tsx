@@ -1,29 +1,107 @@
-import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import React, { memo, useCallback } from 'react';
+import { View, TouchableOpacity, Text, AccessibilityInfo } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-type Props = {
+interface TopControlsProps {
   onClose: () => void;
   onMute: () => void;
   onFullscreen: () => void;
   isMuted: boolean;
   fullscreen: boolean;
+  title?: string;
+  showTitle?: boolean;
+}
+
+const TopControls: React.FC<TopControlsProps> = ({
+  onClose,
+  onMute,
+  onFullscreen,
+  isMuted,
+  fullscreen,
+  title,
+  showTitle = false,
+}) => {
+  const handleClose = useCallback(() => {
+    onClose();
+  }, [onClose]);
+
+  const handleMute = useCallback(() => {
+    onMute();
+    AccessibilityInfo.announceForAccessibility(
+      isMuted ? 'Sound on' : 'Sound muted'
+    );
+  }, [onMute, isMuted]);
+
+  const handleFullscreen = useCallback(() => {
+    onFullscreen();
+    AccessibilityInfo.announceForAccessibility(
+      fullscreen ? 'Exiting fullscreen' : 'Entering fullscreen'
+    );
+  }, [onFullscreen, fullscreen]);
+
+  return (
+    <View className="flex-row justify-between items-center">
+      {/* Left side - Close button */}
+      <View className="flex-row items-center flex-1">
+        <TouchableOpacity
+          onPress={handleClose}
+          className="bg-black/60 rounded-full p-2.5"
+          activeOpacity={0.7}
+          accessibilityLabel="Close video"
+          accessibilityRole="button"
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        >
+          <Ionicons name="chevron-down" size={22} color="#fff" />
+        </TouchableOpacity>
+        
+        {/* Title (optional) */}
+        {showTitle && title && (
+          <Text
+            className="text-white text-sm font-medium ml-3 flex-1"
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
+            {title}
+          </Text>
+        )}
+      </View>
+
+      {/* Right side - Controls */}
+      <View className="flex-row items-center gap-2">
+        <TouchableOpacity
+          onPress={handleMute}
+          className="bg-black/60 rounded-full p-2.5"
+          activeOpacity={0.7}
+          accessibilityLabel={isMuted ? 'Unmute' : 'Mute'}
+          accessibilityRole="button"
+          accessibilityState={{ selected: isMuted }}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        >
+          <Ionicons
+            name={isMuted ? 'volume-mute' : 'volume-high'}
+            size={20}
+            color="#fff"
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={handleFullscreen}
+          className="bg-black/60 rounded-full p-2.5"
+          activeOpacity={0.7}
+          accessibilityLabel={fullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+          accessibilityRole="button"
+          accessibilityState={{ expanded: fullscreen }}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        >
+          <Ionicons
+            name={fullscreen ? 'contract' : 'expand'}
+            size={20}
+            color="#fff"
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 };
 
-const TopControls: React.FC<Props> = ({ onClose, onMute, onFullscreen, isMuted, fullscreen }) => (
-  <View className="flex-row justify-between items-center">
-    <TouchableOpacity onPress={onClose} className="bg-black/50 rounded-full p-2 mr-2" activeOpacity={0.7}>
-      <Ionicons name="chevron-down" size={20} color="#fff" />
-    </TouchableOpacity>
-    <View className="flex-row items-center">
-      <TouchableOpacity onPress={onMute} className="bg-black/50 rounded-full p-2 mr-2">
-        <Ionicons name={isMuted ? 'volume-mute' : 'volume-high'} size={18} color="#fff" />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={onFullscreen} className="bg-black/50 rounded-full p-2">
-        <Ionicons name={fullscreen ? 'contract' : 'expand'} size={18} color="#fff" />
-      </TouchableOpacity>
-    </View>
-  </View>
-);
-
-export default TopControls;
+export default memo(TopControls);
