@@ -1,28 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useAuth } from "../context/AuthContext";
 import AppNavigator from "./AppNavigator";
 import AuthNavigator from "./AuthNavigator";
-import NativeWindTest from "../components/NativeWindTest";
 import { ScreenNames } from "./ScreenNames";
+import type { RootStackParamList } from "./types";
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 export default function RootNavigator() {
-  const { isSignedIn, isBootLoading, isFirstTimeUser, needsUsername } =
-    useAuth();
-
-  // Show splash during initial hydration only
-  // console.log("[RootNavigator] isBootLoading", isBootLoading, {
-  //   isSignedIn,
-  //   isFirstTimeUser,
-  //   needsUsername,
-  // });
+  const { isFirstTimeUser, needsUsername } = useAuth();
 
   // Desired behavior:
   // - First-time users (or users needing username) start on Auth
   // - Everyone else (including signed-out returning users) starts on App (public mode)
-  // Always register both stacks so we can reset between them without route-missing warnings.
   const initial = (isFirstTimeUser || needsUsername) ? ScreenNames.Auth : ScreenNames.App;
 
   return (
@@ -33,7 +24,6 @@ export default function RootNavigator() {
         cardStyle: { backgroundColor: '#000' },
       }}
     >
-      {/* <Stack.Screen name={ScreenNames.Test} component={NativeWindTest} /> */}
       <Stack.Screen name={ScreenNames.Auth} component={AuthNavigator} />
       <Stack.Screen name={ScreenNames.App} component={AppNavigator} />
     </Stack.Navigator>

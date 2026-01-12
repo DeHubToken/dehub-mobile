@@ -1,10 +1,33 @@
 import React from 'react';
-import { createStackNavigator } from "@react-navigation/stack";
-import { Animated } from 'react-native';
+import { createStackNavigator, StackCardStyleInterpolator } from "@react-navigation/stack";
 import { ScreenNames } from "./ScreenNames";
+import type { AuthStackParamList } from "./types";
 import SignInScreen from "../screens/auth/SignInScreen";
 
-const Stack = createStackNavigator();
+/** Slide up with overlay fade animation */
+const slideFromBottomWithOverlay: StackCardStyleInterpolator = ({ current, layouts }) => ({
+  cardStyle: {
+    transform: [
+      {
+        translateY: current.progress.interpolate({
+          inputRange: [0, 1],
+          outputRange: [layouts.screen.height, 0],
+          extrapolate: 'clamp',
+        }),
+      },
+    ],
+  },
+  overlayStyle: {
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    opacity: current.progress.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, 0.5],
+      extrapolate: 'clamp',
+    }),
+  },
+});
+
+const Stack = createStackNavigator<AuthStackParamList>();
 
 export default function AuthNavigator() {
   return (
@@ -14,32 +37,10 @@ export default function AuthNavigator() {
         headerShown: false,
         cardStyle: { backgroundColor: '#000' },
         cardOverlayEnabled: true,
-        cardStyleInterpolator: ({ current, layouts }) => {
-          return {
-            cardStyle: {
-              transform: [
-                {
-                  translateY: current.progress.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [layouts.screen.height, 0],
-                    extrapolate: 'clamp',
-                  }),
-                },
-              ],
-            },
-            overlayStyle: {
-              backgroundColor: 'rgba(0,0,0,0.6)',
-              opacity: current.progress.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, 0.5],
-                extrapolate: 'clamp',
-              }),
-            },
-          };
-        },
+        cardStyleInterpolator: slideFromBottomWithOverlay,
         gestureDirection: 'vertical',
         gestureEnabled: true,
-        gestureResponseDistance: 300,
+        gestureResponseDistance: 150,
       }}
     >
       <Stack.Screen name={ScreenNames.SignIn} component={SignInScreen} />

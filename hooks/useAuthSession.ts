@@ -13,6 +13,7 @@ import {
 } from "../libs/auth.utils";
 import { AuthService } from "../services";
 import { clearSigningProvider } from "../libs/provider.registry";
+import { clearPersistedNavigationState } from "./useNavigationPersistence";
 // balances fetching centralized in useBalances
 
 type Logger = {
@@ -187,7 +188,9 @@ export function useAuthSession({
       setIsSignedIn(false);
       setBalancesLoading(false);
       providerReset();
-      clearSigningProvider()
+      clearSigningProvider();
+      // Clear persisted navigation state to prevent restoring auth-gated screens
+      clearPersistedNavigationState();
       try {
         setAuthMethodState(null);
       } catch {}

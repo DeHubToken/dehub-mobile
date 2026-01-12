@@ -1,0 +1,140 @@
+/**
+ * Navigation Type Definitions
+ * 
+ * This file contains all TypeScript type definitions for the navigation system.
+ * Using proper types ensures compile-time safety when navigating between screens.
+ */
+
+import type { StackScreenProps, StackNavigationProp } from '@react-navigation/stack';
+import type {
+  BottomTabScreenProps as RNBottomTabScreenProps,
+  BottomTabNavigationProp,
+} from '@react-navigation/bottom-tabs';
+import type { CompositeScreenProps, CompositeNavigationProp, NavigatorScreenParams } from '@react-navigation/native';
+import { ScreenNames } from './ScreenNames';
+
+// =============================================================================
+// Root Navigator Types
+// =============================================================================
+
+export type RootStackParamList = {
+  [ScreenNames.App]: NavigatorScreenParams<AppStackParamList> | undefined;
+  [ScreenNames.Auth]: NavigatorScreenParams<AuthStackParamList> | undefined;
+  [ScreenNames.Test]: undefined;
+};
+
+export type RootStackScreenProps<T extends keyof RootStackParamList> = StackScreenProps<
+  RootStackParamList,
+  T
+>;
+
+// =============================================================================
+// Auth Navigator Types
+// =============================================================================
+
+export type AuthStackParamList = {
+  [ScreenNames.SignIn]: undefined;
+};
+
+export type AuthStackScreenProps<T extends keyof AuthStackParamList> = CompositeScreenProps<
+  StackScreenProps<AuthStackParamList, T>,
+  RootStackScreenProps<keyof RootStackParamList>
+>;
+
+// =============================================================================
+// App Navigator Types (Main Stack)
+// =============================================================================
+
+export type AppStackParamList = {
+  [ScreenNames.Root]: NavigatorScreenParams<BottomTabParamList> | undefined;
+  [ScreenNames.Upload]: { tab?: 'feed' | undefined } | undefined;
+  [ScreenNames.VideoPlayer]: {
+    videoId?: string;
+    sourceUrl?: string;
+    title?: string;
+    autoplay?: boolean;
+  };
+  [ScreenNames.LiveProducer]: undefined;
+  [ScreenNames.LiveViewer]: {
+    streamId?: string;
+    playbackId?: string;
+    hostUsername?: string;
+  };
+  [ScreenNames.Leaderboard]: undefined;
+  [ScreenNames.Notifications]: undefined;
+  [ScreenNames.Feed]: undefined;
+  [ScreenNames.FeedDetail]: {
+    postId: string;
+  };
+  [ScreenNames.ImageViewer]: {
+    imageUrl: string;
+    images?: string[];
+    initialIndex?: number;
+  };
+  [ScreenNames.Chat]: {
+    recipientId: string;
+    recipientUsername?: string;
+  };
+  [ScreenNames.Search]: {
+    query?: string;
+  } | undefined;
+  [ScreenNames.AccountSettings]: undefined;
+  [ScreenNames.YourVideos]: undefined;
+  [ScreenNames.LikedVideos]: undefined;
+  [ScreenNames.EditProfile]: undefined;
+  [ScreenNames.Dpay]: undefined;
+  [ScreenNames.SignIn]: undefined; // Modal sign-in from app
+};
+
+export type AppStackScreenProps<T extends keyof AppStackParamList> = CompositeScreenProps<
+  StackScreenProps<AppStackParamList, T>,
+  RootStackScreenProps<keyof RootStackParamList>
+>;
+
+export type AppStackNavigationProp<T extends keyof AppStackParamList> = CompositeNavigationProp<
+  StackNavigationProp<AppStackParamList, T>,
+  StackNavigationProp<RootStackParamList>
+>;
+
+// =============================================================================
+// Bottom Tab Navigator Types
+// =============================================================================
+
+export type BottomTabParamList = {
+  [ScreenNames.Home]: undefined;
+  [ScreenNames.Feed]: undefined;
+  [ScreenNames.UploadTab]: undefined;
+  [ScreenNames.DM]: undefined;
+  [ScreenNames.Profile]: undefined;
+};
+
+export type BottomTabScreenProps<T extends keyof BottomTabParamList> = CompositeScreenProps<
+  RNBottomTabScreenProps<BottomTabParamList, T>,
+  AppStackScreenProps<keyof AppStackParamList>
+>;
+
+// =============================================================================
+// Convenience Types for Components
+// =============================================================================
+
+/**
+ * Generic navigation prop that can be used in components that don't need
+ * specific screen params. Prefer using screen-specific props when possible.
+ */
+export type AppNavigationProp = AppStackNavigationProp<keyof AppStackParamList>;
+
+/**
+ * Type helper for useNavigation hook
+ * Usage: const navigation = useNavigation<UseNavigationType>();
+ */
+export type UseNavigationType = AppStackNavigationProp<keyof AppStackParamList>;
+
+// =============================================================================
+// Declaration Merge for useNavigation type inference
+// =============================================================================
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
