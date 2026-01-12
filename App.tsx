@@ -1,6 +1,7 @@
 import {
   NavigationContainer,
   DarkTheme as RNDarkTheme,
+  NavigationState,
 } from "@react-navigation/native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Toaster } from "sonner-native";
@@ -10,7 +11,7 @@ import "./global.css";
 import SplashScreen from "./screens/SplashScreen";
 import NoInternetScreen from "./screens/NoInternetScreen";
 import { useNetworkStatus } from "./hooks/useNetworkStatus";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import {
   BackHandler,
   KeyboardAvoidingView,
@@ -31,21 +32,29 @@ import { prewarmWeb3Auth } from "./config/web3auth.config";
 import { Platform } from "react-native";
 import UpdateAppModal from "./components/UpdateAppModal";
 import { useAppUpdate } from "./hooks/useAppUpdate";
+import { useNavigationPersistence } from "./hooks/useNavigationPersistence";
+import { ErrorBoundary } from "./components/ErrorBoundary";
+import { useAppLifecycle } from "./hooks/useAppLifecycle";
+import { createLogger } from "./libs/logger";
+
+const logger = createLogger('App');
 
 export default function App() {
   // Complete any pending browser auth sessions (Web3Auth, OAuth)
   WebBrowser.maybeCompleteAuthSession();
 
-  // Temporary shim for older libs expecting BackHandler.removeEventListener(fn)
-  // New API is BackHandler.removeEventListener('event', fn). Avoid crash by providing a no-op fallback.
-  // @ts-ignore
-  // if (typeof BackHandler.removeEventListener !== "function") {
-  //   // @ts-ignore
-  //   BackHandler.removeEventListener = () => {};
-  // }
-
   const [isLoading, setIsLoading] = React.useState(false);
   const { hasInternet, isConnected, checkConnection } = useNetworkStatus();
+
+  // App lifecycle management
+  const { appState, wasLikelyKilled, backgroundDuration } = useAppLifecycle({
+    onForeground: useCallback(() => {
+      logger.info('App came to foreground', { backgroundDuration });
+    }, []),
+    onBackground: useCallback(() => {
+      logger.info('App went to background');
+    }, []),
+  });
 
   React.useEffect(() => {
     // Minimal splash handling (currently disabled setIsLoading logic)
@@ -66,62 +75,89 @@ export default function App() {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#000" }}>
-      <SafeAreaProvider className="flex-1 select-none bg-theme-background">
-        <AuthProvider>
-          <WebSocketProvider>
-            <DMProvider>
-              <BootGate>
-                <SafeAreaView className="flex-1 bg-theme-background">
-                  <StatusBar barStyle="light-content" backgroundColor="#000" />
-
-                    <NavigationContainer
-                      theme={{
-                        ...RNDarkTheme,
-                        colors: {
-                          ...RNDarkTheme.colors,
-                          background: "#000000",
-                          card: "#000000",
-                          border: "#000000",
-                          text: "#ffffff",
-                          primary: theme.colors.accent,
-                        },
-                      }}
-                    >
-                      <UserProfileSheetProvider>
-                        <MessagingProvider>
-                          <RootNavigator />
-                          <UsernameGate />
-                        </MessagingProvider>
-                      </UserProfileSheetProvider>
-                    </NavigationContainer>
-                </SafeAreaView>
-              </BootGate>
-            </DMProvider>
-          </WebSocketProvider>
-        </AuthProvider>
-        <Toaster
-          position="top-center"
-          offset={56}
-          richColors
-          toastOptions={{
-            style: toastTheme.containerStyle,
-          }}
-        />
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
+    <ErrorBoundary showDetails={__DEV__}>
+      <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#000" }}>
+        <SafeAreaProvider className="flex-1 select-none bg-theme-background">
+          <AuthProvider>
+            <WebSocketProvider>
+              <DMProvider>
+                <BootGate />
+              </DMProvider>
+            </WebSocketProvider>
+          </AuthProvider>
+          <Toaster
+            position="top-center"
+            offset={56}
+            richColors
+            toastOptions={{
+              style: toastTheme.containerStyle,
+            }}
+          />
+        </SafeAreaProvider>
+      </GestureHandlerRootView>
+    </ErrorBoundary>
   );
 }
 
-const BootGate: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isBootLoading } = useAuth();
+const BootGate: React.FC = () => {
+  const { isBootLoading, isSignedIn, needsUsername } = useAuth();
   const { updateInfo, showModal, closeModal } = useAppUpdate();
+  const isAuthenticated = isSignedIn && !needsUsername;
+  const navigationRef = useRef<any>(null);
+  
+  // Navigation persistence with error handling
+  const { isReady, initialState, onStateChange } = useNavigationPersistence(isAuthenticated);
 
-  if (isBootLoading) return <SplashScreen />;
+  // Handle navigation state change with error protection
+  const handleStateChange = useCallback((state: NavigationState | undefined) => {
+    try {
+      onStateChange(state);
+    } catch (error) {
+      logger.error('Navigation state change error', error);
+    }
+  }, [onStateChange]);
+
+  // Show splash while loading auth state or navigation state
+  if (isBootLoading || !isReady) return <SplashScreen />;
   
   return (
     <>
-      {children}
+      <SafeAreaView className="flex-1 bg-theme-background">
+        <StatusBar barStyle="light-content" backgroundColor="#000" />
+        <ErrorBoundary
+          showDetails={__DEV__}
+          onError={(error) => {
+            logger.error('Navigation error boundary caught', error);
+          }}
+        >
+          <NavigationContainer
+            ref={navigationRef}
+            initialState={initialState}
+            onStateChange={handleStateChange}
+            theme={{
+              ...RNDarkTheme,
+              colors: {
+                ...RNDarkTheme.colors,
+                background: "#000000",
+                card: "#000000",
+                border: "#000000",
+                text: "#ffffff",
+                primary: theme.colors.accent,
+              },
+            }}
+            onReady={() => {
+              logger.info('Navigation container ready');
+            }}
+          >
+            <UserProfileSheetProvider>
+              <MessagingProvider>
+                <RootNavigator />
+                <UsernameGate />
+              </MessagingProvider>
+            </UserProfileSheetProvider>
+          </NavigationContainer>
+        </ErrorBoundary>
+      </SafeAreaView>
       <UpdateAppModal
         visible={showModal}
         onClose={closeModal}

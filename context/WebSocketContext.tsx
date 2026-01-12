@@ -141,16 +141,36 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     dmClientRef.current?.updateAuth();
   }, [user]);
 
-  // App foreground resume
+  // Track background timestamp for smart reconnection
+  const backgroundTimestampRef = useRef<number | null>(null);
+  
+  // App foreground resume with smart reconnection
   useEffect(() => {
     const sub = AppState.addEventListener('change', (s) => {
-      if (s === 'active') {
-        clientRef.current?.connect();
-        dmClientRef.current?.connect();
+      if (s === 'background' || s === 'inactive') {
+        backgroundTimestampRef.current = Date.now();
+      } else if (s === 'active') {
+        const bgTime = backgroundTimestampRef.current;
+        const wasLongBackground = bgTime && (Date.now() - bgTime) > 30000; // 30 seconds
+        
+        // If app was in background for a long time, delay reconnection slightly
+        // to let other initialization complete first
+        const delay = wasLongBackground ? 500 : 0;
+        
+        setTimeout(() => {
+          try {
+            clientRef.current?.connect();
+            dmClientRef.current?.connect();
+          } catch (error) {
+            log.error('Failed to reconnect WebSocket on foreground', error);
+          }
+        }, delay);
+        
+        backgroundTimestampRef.current = null;
       }
     });
     return () => { sub.remove(); };
-  }, []);
+  }, [log]);
 
   const isDmEvent = useCallback((event: string) => DMSocketEventSet.has(event), []);
   const emit = useCallback((event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => {

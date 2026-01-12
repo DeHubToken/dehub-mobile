@@ -1,39 +1,32 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useCallback } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text, View, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../theme";
 import GradientIcon from "../components/ui/GradientIcon";
 import FeedIcon from "../components/ui/FeedIcon";
-
 import HomeScreen from "../screens/HomeScreen";
-import { ScreenNames } from "./ScreenNames";
 import FeedScreen from "../screens/FeedScreen";
 import ProfileScreen from "../screens/ProfileScreen";
-import { useNavigation } from "@react-navigation/native";
 import UploadScreen from "../screens/UploadScreen";
 import DirectMessagesScreen from "../screens/DirectMessagesScreen";
+import { ScreenNames } from "./ScreenNames";
+import type { BottomTabParamList, AppStackNavigationProp } from "./types";
+import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../context/AuthContext";
 import { useUnreadConversationsCount } from "../store/dm.state";
 
-// Placeholder screens - these will be replaced with actual content later
-// remove "const HomeScreen = () => <View style={styles.container}><Text>Home Screen</Text></View>;"
-// const FeedScreen = () => <View style={styles.container}><Text>Feed Screen</Text></View>;
-// const UploadScreen = () => <View style={styles.container}><Text>Upload Screen</Text></View>;
-// const DMScreen = () => <View style={styles.container}><Text>DM Screen</Text></View>;
-// const ProfileScreen = () => <View style={styles.container}><Text>Profile Screen</Text></View>;
-
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 function BottomTabNavigator() {
-  const navigation = useNavigation<any>();
-  const { isSignedIn, needsUsername } = useAuth();
-  const { user } = useAuth();
+  const navigation = useNavigation<AppStackNavigationProp<typeof ScreenNames.Root>>();
+  const { isSignedIn, needsUsername, user } = useAuth();
   const isAuthed = isSignedIn && !needsUsername;
   const accent = useMemo(() => theme.colors.accent || "#4F8EF7", []);
   const unreadConvs = useUnreadConversationsCount((user as any)?.id);
-  const [currentTab, setCurrentTab] = React.useState<string>(ScreenNames.Home);
-  const renderIcon = (routeName: string, focused: boolean, size: number) => {
+  const [currentTab, setCurrentTab] = useState<string>(ScreenNames.Home);
+
+  const renderIcon = useCallback((routeName: string, focused: boolean, size: number) => {
     let iconNameFilled: keyof typeof Ionicons.glyphMap;
     let iconNameOutline: keyof typeof Ionicons.glyphMap;
     
@@ -118,7 +111,8 @@ function BottomTabNavigator() {
         ) : null}
       </View>
     );
-  };
+  }, [accent, isAuthed, unreadConvs]);
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
