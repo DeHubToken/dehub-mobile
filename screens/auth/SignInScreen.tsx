@@ -2,7 +2,6 @@ import React, {
   useState,
   useCallback,
   useEffect,
-  useMemo,
   useRef,
 } from "react";
 import {
@@ -10,16 +9,13 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  ActivityIndicator,
   Platform,
 } from "react-native";
-import { toastError, toastInfo } from "../../libs";
+import { toastError } from "../../libs";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuth } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
-// import { useWalletAuth } from "../../hooks/useWalletAuth"; // (wallet connect temporarily disabled)
 import {
-  SOCIAL_PROVIDERS,
   loginWithSocial,
   deriveAddressFromPrivateKey,
   isWeb3AuthConfigured,
@@ -34,18 +30,16 @@ import { TERMS_OF_SERVICE_LINK, PRIVACY_POLICY_LINK } from "../../config/links";
 import { getPreferredChainId } from "../../libs/auth.utils";
 import { KeyboardAvoidingView } from "react-native";
 
-// Removed unused AppKitButton import (was commented out) to keep component lean
-
 // Target chain for wallet sign-in (Base Mainnet)
 const TARGET_CHAIN_ID = ChainId.BASE_MAINNET;
 
 // Define the component interface
 interface SignInScreenProps {
-  navigation: any; // TODO: tighten type with proper NavigationProp
+  navigation: any;
 }
 
 const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
-  const [isLocalLoading, setIsLocalLoading] = useState(false); // retain local for social provider press UX
+  const [isLocalLoading, setIsLocalLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
   const {
     skipAuth,
@@ -54,16 +48,16 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     isLoading: authLoading,
     needsUsername,
     isSignedIn,
+    provisionalUser,
   } = useAuth();
   const navigatedAfterSignInRef = useRef(false);
-  // const { isWalletLoading, walletAddress, handleWalletConnect } = useWalletAuth(navigation); // disabled for now
 
   useEffect(() => {
     let mounted = true;
     if (isWeb3AuthConfigured()) {
       initWeb3Auth().catch((e) => {
         if (mounted)
-          console.warn("[SignIn] Web3Auth pre-init failed woefuly", e);
+          console.warn("[SignIn] Web3Auth pre-init failed", e);
       });
     }
     return () => {
@@ -96,7 +90,6 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         const preferred = await getPreferredChainId();
         const effectiveChainId = preferred ?? TARGET_CHAIN_ID;
         await signInWithWallet(address, effectiveChainId);
-        // Navigation now handled in effect watching isSignedIn & needsUsername
       } catch (e: any) {
         console.error("[SignIn] Social login error", e);
         toastError(e, "Login failed. Please retry.");
@@ -108,34 +101,42 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     [signInWithWallet]
   );
 
-  // Navigate once after successful sign-in when username not required
   useEffect(() => {
     if (navigatedAfterSignInRef.current) return;
+    
+    // If user needs to set username, navigate to SetProfile screen
+    // This navigation is needed because AuthNavigator's initialRoute doesn't re-evaluate
+    // after mount, so we need to push to SetProfile manually when needsUsername changes
+    if (needsUsername && provisionalUser) {
+      navigatedAfterSignInRef.current = true;
+      // Use reset to prevent going back to SignIn without completing profile
+      navigation.reset({
+        index: 0,
+        routes: [{ name: ScreenNames.SetProfile }],
+      });
+      return;
+    }
+    
+    // If fully signed in, go to app
     if (isSignedIn && !needsUsername) {
       navigatedAfterSignInRef.current = true;
-      // If this screen was opened modally from within the app, simply close it.
-      if (navigation?.canGoBack?.()) {
-        navigation.goBack();
-      } else {
-        // When SignIn is the first screen, reset the parent (Root stack) to App
-        // so the BottomTab (ScreenNames.Root) becomes active without warnings.
-        try {
-          navigation
-            ?.getParent?.()
-            ?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] });
-        } catch {}
+      // Reset to App to clear auth stack
+      try {
+        navigation
+          ?.getParent?.()
+          ?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] });
+      } catch {
+        // Fallback: try going back
+        if (navigation?.canGoBack?.()) {
+          navigation.goBack();
+        }
       }
     }
-  }, [isSignedIn, needsUsername, navigation]);
-
-  // Memoize handlers to avoid creating inline functions in JSX
-  // Icon component will call handleSocialLogin directly.
+  }, [isSignedIn, needsUsername, navigation, provisionalUser]);
 
   const handleSkipOrClose = useCallback(async () => {
     if (isFirstTimeUser) {
-      // Do not navigate manually; RootNavigator will switch to App when this flag flips
       await skipAuth();
-      // After first-time skip, take user to App immediately when this is the first screen
       if (!navigation?.canGoBack?.()) {
         try {
           navigation
@@ -145,12 +146,10 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       }
       return;
     }
-    // If this screen was opened modally from inside the app, close it
     if (navigation?.canGoBack?.()) {
       navigation.goBack();
       return;
     }
-    // If this is the first screen (no back stack), reset to App so Home is visible
     try {
       navigation
         ?.getParent?.()
@@ -160,48 +159,30 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
 
   return (
     <SafeAreaView className="flex-1 bg-black">
-      {/* Loading overlay while auth in progress but before username gating finishes */}
       {(authLoading || isLocalLoading) && !needsUsername && (
         <FullScreenLoader message="Signing you in…" />
       )}
-
-      <TouchableOpacity
-        className="absolute right-5 top-3 z-10 px-3 py-2 rounded-full bg-gray-800"
-        onPress={handleSkipOrClose}
-        disabled={authLoading || isLocalLoading || needsUsername}
-        accessibilityLabel={
-          isFirstTimeUser
-            ? "Skip authentication"
-            : "Close authentication screen"
-        }
-      >
-        <Text
-          className={`text-white font-medium ${
-            authLoading || isLocalLoading || needsUsername ? "opacity-40" : ""
-          }`}
-        >
-          {isFirstTimeUser ? "Skip" : "Close"}
-        </Text>
-      </TouchableOpacity>
 
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
         style={{ flex: 1 }}
       >
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }} className="p-5">
-          <View className="items-center mt-10">
-            <Text className="text-white text-3xl font-bold mb-4">
+        <ScrollView 
+          contentContainerStyle={{ flexGrow: 1 }} 
+          className="px-6"
+        >
+          {/* Header */}
+          <View className="items-center mt-12 mb-8">
+            <Text className="text-white text-2xl font-bold mb-3">
               Welcome to DeHub
             </Text>
-            <Text className="text-gray-400 text-center text-base mb-6">
-              Sign up or log in with a few clicks and dive straight in to a
-              utopian future for both content creators and consumers!
+            <Text className="text-gray-400 text-center text-base">
+              Jump in with your preferred sign-in{"\n"}option.
             </Text>
           </View>
 
-          <View className="mt-6" />
-
+          {/* Social Icons Row (Google, X, Discord) */}
           <SocialLoginIcons
             onPress={(provider, emailOrPhone) => {
               if ((provider === "email_passwordless" || provider === "sms_passwordless") && emailOrPhone) {
@@ -216,26 +197,51 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             showPhoneButton
           />
 
-          <ImportWallet />
+          {/* Import Wallet */}
+          <ImportWallet disabled={isLocalLoading} />
 
+          {/* Terms and Privacy */}
           <View className="mt-6">
-            <Text className="text-gray-500 text-xs text-center">
+            <Text className="text-gray-500 text-sm text-center">
               By continuing, you agree to our{" "}
               <Text
-                className="text-blue-400"
+                style={{ textDecorationLine: "underline" }}
+                className="text-white"
                 onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
               >
                 Terms of Service
-              </Text>{" "}
-              and{" "}
+              </Text>
+              {"\n"}and{" "}
               <Text
-                className="text-blue-400"
+                style={{ textDecorationLine: "underline" }}
+                className="text-white"
                 onPress={() => openInApp(PRIVACY_POLICY_LINK)}
               >
                 Privacy Policy
               </Text>
               .
             </Text>
+          </View>
+
+          {/* Spacer */}
+          <View className="flex-1" />
+
+          {/* Explore without signing in button */}
+          <View className="items-center mb-8">
+            <TouchableOpacity
+              className="border border-gray-600 rounded-full px-5 py-3"
+              onPress={handleSkipOrClose}
+              disabled={authLoading || isLocalLoading || needsUsername}
+              accessibilityLabel={isFirstTimeUser ? "Explore DeHub without signing in" : "Continue exploring DeHub"}
+            >
+              <Text
+                className={`text-white text-sm ${
+                  authLoading || isLocalLoading || needsUsername ? "opacity-40" : ""
+                }`}
+              >
+                {isFirstTimeUser ? "Explore DeHub without signing in" : "Continue exploring DeHub"}
+              </Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

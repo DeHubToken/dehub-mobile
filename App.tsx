@@ -25,7 +25,6 @@ import { WebSocketProvider } from "./context/WebSocketContext";
 import { DMProvider } from "./context/DMContext";
 import { useAuth } from "./context/AuthContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
-import { UsernameGate } from "./components/auth/UsernameGate";
 import RootNavigator from "./navigation/RootNavigator";
 import { MessagingProvider } from "./context/MessagingContext";
 import { prewarmWeb3Auth } from "./config/web3auth.config";
@@ -157,7 +156,6 @@ const BootGate: React.FC = () => {
             <UserProfileSheetProvider>
               <MessagingProvider>
                 <RootNavigator />
-                <UsernameGate />
               </MessagingProvider>
             </UserProfileSheetProvider>
           </NavigationContainer>

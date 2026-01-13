@@ -186,6 +186,9 @@ export function useAuthSession({
       await clearAuthData();
       setUser(null);
       setIsSignedIn(false);
+      setNeedsUsername(false);
+      setProvisionalUser(null);
+      setProvisionalToken(null);
       setBalancesLoading(false);
       providerReset();
       clearSigningProvider();
@@ -203,6 +206,9 @@ export function useAuthSession({
     setBalancesLoading,
     setIsLoading,
     setIsSignedIn,
+    setNeedsUsername,
+    setProvisionalUser,
+    setProvisionalToken,
     setUser,
     setAuthMethodState,
   ]);
