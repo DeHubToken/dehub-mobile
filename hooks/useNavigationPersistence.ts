@@ -24,7 +24,7 @@ const NAVIGATION_STATE_KEY = '@dhb_navigation_state';
 const STATE_VERSION = 1; // Increment when navigation structure changes significantly
 
 // 🔧 DEV: Set to true to disable navigation persistence (for testing onboarding, etc.)
-const DEV_DISABLE_PERSISTENCE = true;
+const DEV_DISABLE_PERSISTENCE = false;
 
 interface PersistedState {
   version: number;

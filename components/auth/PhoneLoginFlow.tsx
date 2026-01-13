@@ -79,39 +79,40 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
   if (!showInput) {
     return (
       <TouchableOpacity
-        className="flex-row items-center justify-center h-11 rounded-lg border border-gray-600 bg-transparent mt-2 mb-2 w-[90%] max-w-md"
+        className="flex-row items-center justify-center rounded-2xl bg-neutral-800 border border-neutral-700"
+        style={{ width: "100%", height: 60 }}
         onPress={() => setShowInput(true)}
         disabled={disabled}
         accessibilityLabel="Continue with Phone"
       >
-        {!!loading && (
-          <ActivityIndicator color="#fff" style={{ marginRight: 8 }} />
-        )}
-        <View className="flex-1 items-center">
-          <Text className="text-base font-medium text-theme-neutrals-100">
+        <Ionicons name="call" size={20} color="#FFFFFF" style={{ marginRight: 10 }} />
+        {!!loading ? (
+          <ActivityIndicator color="#fff" />
+        ) : (
+          <Text className="text-xl font-medium text-white">
             Continue with Phone
           </Text>
-        </View>
+        )}
       </TouchableOpacity>
     );
   }
 
   return (
     <View
-      className="flex-row items-center border border-theme-accent rounded-lg bg-transparent mt-2 mb-2 w-[90%] max-w-md px-3 h-11"
-      style={{ minHeight: 44 }}
+      className="flex-row items-center border border-neutral-700 rounded-2xl bg-neutral-800 px-4"
+      style={{ width: "100%", height: 62 }}
     >
       <Ionicons
-        name="call-outline"
-        size={22}
-        color="#A0AEC0"
-        style={{ marginLeft: 4, marginRight: 8 }}
+        name="call"
+        size={20}
+        color="#FFFFFF"
+        style={{ marginRight: 10 }}
       />
       <TextInput
         ref={inputRef}
-        className="flex-1 text-base text-theme-neutrals-100"
+        className="flex-1 text-xl text-white"
         placeholder="+(00)123456"
-        placeholderTextColor="#A0AEC0"
+        placeholderTextColor="#6B7280"
         value={phone}
         onChangeText={setPhone}
         editable={!loading && !disabled}
@@ -120,7 +121,6 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
         autoCorrect={false}
         style={{
           paddingVertical: 0,
-          minHeight: 40,
           color: "#fff",
           backgroundColor: "transparent",
         }}
@@ -135,7 +135,7 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
           <ActivityIndicator color="#A0AEC0" size="small" />
         ) : (
           <Text
-            className="text-theme-accent font-medium"
+            className="text-theme-accent font-medium text-base"
             style={{
               opacity: loading || disabled || !isValidPhone(phone) ? 0.5 : 1,
             }}

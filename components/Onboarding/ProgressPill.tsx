@@ -9,6 +9,7 @@ interface ProgressPillProps {
 }
 
 const ProgressPill: React.FC<ProgressPillProps> = ({ index, activeIndex, progress }) => {
+    // @ts-ignore
   const animatedStyle = useAnimatedStyle(() => {
     const isActive = Math.round(activeIndex.value) === index;
     const isPast = Math.round(activeIndex.value) > index;

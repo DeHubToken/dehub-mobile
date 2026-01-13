@@ -1,8 +1,6 @@
 import React, { memo, useCallback, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-// import { openInApp } from "../../libs/links.utils";
-// import { WEBSITE_LINK } from "../../config";
 import ImportWalletModal from "./ImportWalletModal";
 
 export type ImportWalletProps = {
@@ -15,41 +13,48 @@ export type ImportWalletProps = {
 const ImportWallet: React.FC<ImportWalletProps> = memo(
   ({ onImport, disabled, busy, className }) => {
     const isDisabled = !!disabled || !!busy;
-    const [showModal, setShowModal] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+    
     const handlePress = useCallback(() => {
-      if (onImport) onImport();
-      else setShowModal(true);
+      if (onImport) {
+        onImport();
+      } else {
+        // Show modal when used in contexts without navigation (e.g., SignInGatewayModal)
+        setModalVisible(true);
+      }
     }, [onImport]);
 
+    const handleCloseModal = useCallback(() => {
+      setModalVisible(false);
+    }, []);
+
     return (
-      <View className={`mt-4 ${className || ""}`.trim()}>
-        <View className="flex-row items-center my-3">
-          <View className="flex-1 h-[1px] bg-theme-neutrals-800" />
-          <Text className="mx-3 text-theme-neutrals-500 text-[11px] uppercase tracking-wider">
+      <View className={`mt-2 ${className || ""}`.trim()}>
+        {/* OR divider */}
+        <View className="flex-row items-center my-4">
+          <View className="flex-1 h-[1px] bg-neutral-700 mt-2 " />
+          <Text className="mx-4 mt-2 text-gray-500 text-base font-medium uppercase tracking-wider">
             or
           </Text>
-          <View className="flex-1 h-[1px] bg-theme-neutrals-800" />
+          <View className="flex-1 h-[1px] bg-neutral-700 mt-2 " />
         </View>
 
-        <View className="w-full flex items-center">
-          <TouchableOpacity
-            onPress={handlePress}
-            disabled={isDisabled}
-            accessibilityRole="button"
-            className="bg-theme-neutrals-800 rounded-xl px-4 py-3 items-center active:opacity-80 disabled:opacity-50 w-[90%] max-w-md"
-          >
-            <View className="flex-row items-center">
-              <Ionicons name="key-outline" size={16} color="#E5E7EB" />
-              <Text className="text-white text-sm ml-2">
-                Import external wallet
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-        <ImportWalletModal
-          visible={showModal}
-          onClose={() => setShowModal(false)}
-        />
+        {/* Import wallet button */}
+        <TouchableOpacity
+          onPress={handlePress}
+          disabled={isDisabled}
+          accessibilityRole="button"
+          className="mt-4 flex-row items-center justify-center rounded-2xl bg-neutral-800 border border-neutral-700 active:opacity-80"
+          style={{ width: "100%", height: 60, opacity: isDisabled ? 0.5 : 1 }}
+        >
+          <Ionicons name="key" size={20} color="#FFFFFF" style={{ marginRight: 10,}} />
+          <Text className="text-xl font-medium text-white">
+            Import external wallet
+          </Text>
+        </TouchableOpacity>
+
+        {/* Import Wallet Modal - shown when used outside navigation context */}
+        <ImportWalletModal visible={modalVisible} onClose={handleCloseModal} />
       </View>
     );
   }

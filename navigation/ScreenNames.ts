@@ -32,4 +32,6 @@ export enum ScreenNames {
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',
+  SetProfile = 'SetProfile',
+  ImportWallet = 'ImportWallet',
 }

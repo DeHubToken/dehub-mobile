@@ -11,6 +11,7 @@ import React, {
 import { AuthAdapter } from "../services/auth/authAdapter";
 import { AppStateStatus } from "react-native";
 import SignInGatewayModal from "../components/auth/SignInGatewayModal";
+import { UsernameRequiredModal } from "../components/auth/UsernameRequiredModal";
 import {
   hasSeenAuth,
   setHasSeenAuth,
@@ -530,12 +531,24 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       {isSwitchingChain && (
         <FullScreenLoader message="Switching network…" />
       )}
+      {/* SignIn modal for protected actions - shown when user needs to sign in */}
       {showSignInModal && !isSignedIn && !needsUsername && (
         <SignInGatewayModal
           visible={showSignInModal}
           onClose={() => {
             setShowSignInModal(false);
             setPendingAction(null);
+          }}
+        />
+      )}
+      {/* Username modal - shown when user signed in via modal but needs username */}
+      {showSignInModal && needsUsername && provisionalUser && (
+        <UsernameRequiredModal
+          visible={true}
+          provisionalUser={provisionalUser}
+          onComplete={(finalUser) => {
+            completeUsername(finalUser);
+            // Modal will close automatically when needsUsername becomes false
           }}
         />
       )}

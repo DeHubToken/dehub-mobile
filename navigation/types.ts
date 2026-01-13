@@ -35,6 +35,8 @@ export type RootStackScreenProps<T extends keyof RootStackParamList> = StackScre
 export type AuthStackParamList = {
   [ScreenNames.Onboarding]: undefined;
   [ScreenNames.SignIn]: undefined;
+  [ScreenNames.SetProfile]: undefined;
+  [ScreenNames.ImportWallet]: undefined;
 };
 
 export type AuthStackScreenProps<T extends keyof AuthStackParamList> = CompositeScreenProps<

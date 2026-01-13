@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { View, TouchableOpacity, ActivityIndicator, Text } from "react-native";
 import { SvgXml } from "react-native-svg";
+import { Ionicons } from "@expo/vector-icons";
 import EmailLoginFlow from "./EmailLoginFlow";
 import PhoneLoginFlow from "./PhoneLoginFlow";
 
@@ -56,8 +57,9 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   );
 
   return (
-    <View className="flex-col items-center mt-2 w-full">
-      <View className="flex-row justify-center flex-wrap">
+    <View className="flex-col items-center w-full">
+      {/* Social Icons Row */}
+      <View className="flex-row justify-center mb-6">
         {items.map((provider) => {
           const busy = !!busyProvider && busyProvider === provider;
           return (
@@ -69,7 +71,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
                   : provider.charAt(0).toUpperCase() + provider.slice(1)
               }`}
               accessibilityRole="button"
-              className={`border border-gray-600 bg-transparent rounded-lg m-2 w-14 h-14 items-center justify-center ${
+              className={`bg-neutral-800 rounded-2xl mx-2 w-16 h-16 items-center justify-center border border-neutral-700 ${
                 disabled ? "opacity-50" : ""
               }`}
               disabled={disabled}
@@ -84,23 +86,28 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
           );
         })}
       </View>
-      {/* Email login button and input flow */}
+
+      {/* Email Button */}
       {showEmailButton && (
-        <EmailLoginFlow
-          onSubmit={onPress}
-          loading={busyProvider === "email_passwordless"}
-          disabled={disabled}
-        />
-      )}
-      {/* Phone login button and input flow */}
-      {showPhoneButton && (
-        <PhoneLoginFlow
-          onSubmit={onPress}
-          loading={busyProvider === "sms_passwordless"}
-          disabled={disabled}
-        />
+        <View className="w-full mb-3">
+          <EmailLoginFlow
+            onSubmit={onPress}
+            loading={busyProvider === "email_passwordless"}
+            disabled={disabled}
+          />
+        </View>
       )}
 
+      {/* Phone Button */}
+      {showPhoneButton && (
+        <View className="w-full">
+          <PhoneLoginFlow
+            onSubmit={onPress}
+            loading={busyProvider === "sms_passwordless"}
+            disabled={disabled}
+          />
+        </View>
+      )}
     </View>
   );
 };
