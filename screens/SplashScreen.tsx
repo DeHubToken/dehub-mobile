@@ -1,26 +1,38 @@
-import React from 'react';
-import { View, StyleSheet, ActivityIndicator, Image } from 'react-native';
-import { theme } from '../theme';
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import { Fit, RiveView, useRiveFile, useRive } from "@rive-app/react-native";
 
 export default function SplashScreen() {
+  const { riveFile } = useRiveFile(
+    require("../assets/riv/dehub_-_loading_screen.riv")
+  );
+  const { riveViewRef, setHybridRef } = useRive();
+
   return (
-    <View style={styles.container} className='flex-1 justify-center items-center bg-theme-neutrals-900'>
-      <Image source={require('../assets/banner.png')} style={styles.banner} resizeMode="contain" />
-      <ActivityIndicator size="large" color={theme.colors.accent} />
+    <View style={styles.container}>
+      {riveFile && (
+        <RiveView
+          hybridRef={setHybridRef}
+          file={riveFile}
+          autoPlay={true}
+          stateMachineName="MainSM"
+          style={styles.rive}
+          fit={Fit.Contain}
+        />
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // backgroundColor: theme.colors.background,
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    flex: 1,
+    // backgroundColor: "transparent",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  banner: {
-    width: 160,
-    height: 45,
-    marginBottom: theme.spacing.lg,
+  rive: {
+    width: "100%",
+    height: "100%",
   },
 });
