@@ -37,7 +37,7 @@ import { ErrorBoundary } from "./components/ErrorBoundary";
 import { useAppLifecycle } from "./hooks/useAppLifecycle";
 import { createLogger } from "./libs/logger";
 
-const logger = createLogger('App');
+const logger = createLogger("App");
 
 export default function App() {
   // Complete any pending browser auth sessions (Web3Auth, OAuth)
@@ -49,10 +49,10 @@ export default function App() {
   // App lifecycle management
   const { appState, wasLikelyKilled, backgroundDuration } = useAppLifecycle({
     onForeground: useCallback(() => {
-      logger.info('App came to foreground', { backgroundDuration });
+      logger.info("App came to foreground", { backgroundDuration });
     }, []),
     onBackground: useCallback(() => {
-      logger.info('App went to background');
+      logger.info("App went to background");
     }, []),
   });
 
@@ -104,22 +104,27 @@ const BootGate: React.FC = () => {
   const { updateInfo, showModal, closeModal } = useAppUpdate();
   const isAuthenticated = isSignedIn && !needsUsername;
   const navigationRef = useRef<any>(null);
-  
+
   // Navigation persistence with error handling
-  const { isReady, initialState, onStateChange } = useNavigationPersistence(isAuthenticated);
+  const { isReady, initialState, onStateChange } =
+    useNavigationPersistence(isAuthenticated);
 
   // Handle navigation state change with error protection
-  const handleStateChange = useCallback((state: NavigationState | undefined) => {
-    try {
-      onStateChange(state);
-    } catch (error) {
-      logger.error('Navigation state change error', error);
-    }
-  }, [onStateChange]);
+  const handleStateChange = useCallback(
+    (state: NavigationState | undefined) => {
+      try {
+        onStateChange(state);
+      } catch (error) {
+        logger.error("Navigation state change error", error);
+      }
+    },
+    [onStateChange]
+  );
 
   // Show splash while loading auth state or navigation state
   if (isBootLoading || !isReady) return <SplashScreen />;
-  
+  // if (true) return <SplashScreen />;
+
   return (
     <>
       <SafeAreaView className="flex-1 bg-theme-background">
@@ -127,7 +132,7 @@ const BootGate: React.FC = () => {
         <ErrorBoundary
           showDetails={__DEV__}
           onError={(error) => {
-            logger.error('Navigation error boundary caught', error);
+            logger.error("Navigation error boundary caught", error);
           }}
         >
           <NavigationContainer
@@ -146,7 +151,7 @@ const BootGate: React.FC = () => {
               },
             }}
             onReady={() => {
-              logger.info('Navigation container ready');
+              logger.info("Navigation container ready");
             }}
           >
             <UserProfileSheetProvider>

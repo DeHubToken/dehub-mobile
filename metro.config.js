@@ -1,3 +1,4 @@
+
 const { getDefaultConfig } = require('expo/metro-config');
 const { withNativeWind } = require('nativewind/metro');
 
@@ -30,6 +31,11 @@ config.resolver.extraNodeModules = {
 // Keep SVGs as assets (we're using inline SVG XML, not transformer) – merge without dropping defaults
 if (config.resolver.assetExts && !config.resolver.assetExts.includes('svg')) {
 	config.resolver.assetExts.push('svg');
+}
+
+// Add Rive files as assets
+if (config.resolver.assetExts && !config.resolver.assetExts.includes('riv')) {
+	config.resolver.assetExts.push('riv');
 }
 
 // Ensure TypeScript/TSX supported (Expo already includes these; safeguard only)

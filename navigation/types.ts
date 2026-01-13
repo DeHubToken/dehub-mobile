@@ -33,6 +33,7 @@ export type RootStackScreenProps<T extends keyof RootStackParamList> = StackScre
 // =============================================================================
 
 export type AuthStackParamList = {
+  [ScreenNames.Onboarding]: undefined;
   [ScreenNames.SignIn]: undefined;
 };
 

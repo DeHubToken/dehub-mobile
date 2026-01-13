@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useAuth } from "../context/AuthContext";
 import AppNavigator from "./AppNavigator";
@@ -8,13 +8,18 @@ import type { RootStackParamList } from "./types";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
+// 🔧 DEV: Set to true to force show onboarding for design/testing
+const DEV_FORCE_ONBOARDING = true;
+
 export default function RootNavigator() {
   const { isFirstTimeUser, needsUsername } = useAuth();
 
   // Desired behavior:
-  // - First-time users (or users needing username) start on Auth
+  // - First-time users (or users needing username) start on Auth (Onboarding → SignIn)
   // - Everyone else (including signed-out returning users) starts on App (public mode)
-  const initial = (isFirstTimeUser || needsUsername) ? ScreenNames.Auth : ScreenNames.App;
+  const initial = (__DEV__ && DEV_FORCE_ONBOARDING) 
+    ? ScreenNames.Auth 
+    : (isFirstTimeUser || needsUsername) ? ScreenNames.Auth : ScreenNames.App;
 
   return (
     <Stack.Navigator
@@ -24,8 +29,18 @@ export default function RootNavigator() {
         cardStyle: { backgroundColor: '#000' },
       }}
     >
-      <Stack.Screen name={ScreenNames.Auth} component={AuthNavigator} />
-      <Stack.Screen name={ScreenNames.App} component={AppNavigator} />
+      {/* DEV: Put Auth first when forcing onboarding so it renders first */}
+      {(__DEV__ && DEV_FORCE_ONBOARDING) ? (
+        <>
+          <Stack.Screen name={ScreenNames.Auth} component={AuthNavigator} />
+          <Stack.Screen name={ScreenNames.App} component={AppNavigator} />
+        </>
+      ) : (
+        <>
+          <Stack.Screen name={ScreenNames.App} component={AppNavigator} />
+          <Stack.Screen name={ScreenNames.Auth} component={AuthNavigator} />
+        </>
+      )}
     </Stack.Navigator>
   );
 }

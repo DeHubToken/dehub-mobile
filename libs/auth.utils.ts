@@ -4,6 +4,7 @@ import * as SecureStore from 'expo-secure-store';
 export const AUTH_USER_KEY = 'auth_user';
 export const AUTH_TOKEN_KEY = 'auth_token';
 export const HAS_SEEN_AUTH_KEY = 'has_seen_auth';
+export const HAS_SEEN_ONBOARDING_KEY = 'has_seen_onboarding';
 export const WEB3_PROVIDER_KEY = 'web3_provider_info';
 export const AUTH_METHOD_KEY = 'auth_method';
 export const AUTH_METHOD_ADDR_KEY = 'auth_method_address';
@@ -68,6 +69,31 @@ export async function hasSeenAuth(): Promise<boolean> {
  */
 export async function setHasSeenAuth(): Promise<void> {
   return SecureStore.setItemAsync(HAS_SEEN_AUTH_KEY, 'true');
+}
+
+/**
+ * Checks if the user has completed onboarding
+ */
+export async function hasSeenOnboarding(): Promise<boolean> {
+  const value = await SecureStore.getItemAsync(HAS_SEEN_ONBOARDING_KEY);
+  return value === 'true';
+}
+
+/**
+ * Sets that the user has completed onboarding
+ */
+export async function setHasSeenOnboarding(): Promise<void> {
+  return SecureStore.setItemAsync(HAS_SEEN_ONBOARDING_KEY, 'true');
+}
+
+/**
+ * DEV ONLY: Resets onboarding/auth flags to simulate first-time user
+ * Call this from console or a dev button to test onboarding flow
+ */
+export async function __DEV_resetOnboardingFlags(): Promise<void> {
+  await SecureStore.deleteItemAsync(HAS_SEEN_AUTH_KEY);
+  await SecureStore.deleteItemAsync(HAS_SEEN_ONBOARDING_KEY);
+  console.log('[DEV] Onboarding flags reset - restart app to see onboarding');
 }
 
 /**
