@@ -118,7 +118,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
             showEmailButton
             showPhoneButton
           />
-          <ImportWallet />
+          {/* <ImportWallet /> */}
           <View className="mt-6 mb-4">
             <Text className="text-gray-500 text-[11px] text-center">
               By continuing, you agree to our{" "}
