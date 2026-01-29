@@ -51,6 +51,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     provisionalUser,
   } = useAuth();
   const navigatedAfterSignInRef = useRef(false);
+  const navigationAttemptCountRef = useRef(0);
 
   useEffect(() => {
     let mounted = true;
@@ -65,6 +66,54 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     };
   }, []);
 
+  // Helper function to navigate to App with retry logic
+  const navigateToApp = useCallback(() => {
+    const maxAttempts = 3;
+    const attemptNavigation = () => {
+      navigationAttemptCountRef.current += 1;
+      const attempt = navigationAttemptCountRef.current;
+      
+      try {
+        // Method 1: Reset parent navigator
+        const parent = navigation?.getParent?.();
+        if (parent?.reset) {
+          parent.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] });
+          console.log(`[SignIn] Navigation success via parent.reset (attempt ${attempt})`);
+          return true;
+        }
+      } catch (e) {
+        console.warn(`[SignIn] parent.reset failed (attempt ${attempt})`, e);
+      }
+      
+      try {
+        // Method 2: Go back if possible
+        if (navigation?.canGoBack?.()) {
+          navigation.goBack();
+          console.log(`[SignIn] Navigation success via goBack (attempt ${attempt})`);
+          return true;
+        }
+      } catch (e) {
+        console.warn(`[SignIn] goBack failed (attempt ${attempt})`, e);
+      }
+      
+      try {
+        // Method 3: Direct navigate
+        navigation?.navigate?.(ScreenNames.App as never);
+        console.log(`[SignIn] Navigation success via navigate (attempt ${attempt})`);
+        return true;
+      } catch (e) {
+        console.warn(`[SignIn] navigate failed (attempt ${attempt})`, e);
+      }
+      
+      return false;
+    };
+    
+    if (!attemptNavigation() && navigationAttemptCountRef.current < maxAttempts) {
+      // Retry after a short delay
+      setTimeout(attemptNavigation, 500);
+    }
+  }, [navigation]);
+
   const handleSocialLogin = useCallback(
     async (provider: string, emailOrPhone?: string) => {
       if (!isWeb3AuthConfigured()) {
@@ -72,6 +121,10 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         toastError("Social login unavailable. Please try again later.");
         return;
       }
+      // Reset navigation tracking when starting new sign-in attempt
+      navigatedAfterSignInRef.current = false;
+      navigationAttemptCountRef.current = 0;
+      
       setIsLocalLoading(true);
       setCurrentProvider(provider);
       try {
@@ -109,6 +162,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     // after mount, so we need to push to SetProfile manually when needsUsername changes
     if (needsUsername && provisionalUser) {
       navigatedAfterSignInRef.current = true;
+      console.log('[SignIn] Navigating to SetProfile - username required');
       // Use reset to prevent going back to SignIn without completing profile
       navigation.reset({
         index: 0,
@@ -120,19 +174,26 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     // If fully signed in, go to app
     if (isSignedIn && !needsUsername) {
       navigatedAfterSignInRef.current = true;
-      // Reset to App to clear auth stack
-      try {
-        navigation
-          ?.getParent?.()
-          ?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] });
-      } catch {
-        // Fallback: try going back
-        if (navigation?.canGoBack?.()) {
-          navigation.goBack();
-        }
-      }
+      console.log('[SignIn] User signed in, navigating to App');
+      navigateToApp();
     }
-  }, [isSignedIn, needsUsername, navigation, provisionalUser]);
+  }, [isSignedIn, needsUsername, navigation, provisionalUser, navigateToApp]);
+
+  // Fallback: If signed in but still on this screen after timeout, force navigate
+  useEffect(() => {
+    if (!isSignedIn || needsUsername) return;
+    
+    const fallbackTimeout = setTimeout(() => {
+      if (isSignedIn && !needsUsername) {
+        console.warn('[SignIn] Fallback navigation triggered - screen still visible after sign-in');
+        navigatedAfterSignInRef.current = false; // Reset to allow navigation
+        navigationAttemptCountRef.current = 0;
+        navigateToApp();
+      }
+    }, 2000); // 2 second fallback
+    
+    return () => clearTimeout(fallbackTimeout);
+  }, [isSignedIn, needsUsername, navigateToApp]);
 
   const handleSkipOrClose = useCallback(async () => {
     if (isFirstTimeUser) {
