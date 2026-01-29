@@ -14,6 +14,10 @@ export interface StoredSignatureMeta {
   timestamp: number; // epoch seconds
 }
 
+// Maximum signature age in seconds (30 days) - signatures older than this are considered invalid
+// This prevents indefinitely valid signatures which could be a security risk
+const SIGNATURE_MAX_AGE_SECONDS = 30 * 24 * 60 * 60; // 30 days
+
 function generateSignMessage(
   address: string,
   timestamp: number,
@@ -26,10 +30,30 @@ function generateSignMessage(
 
 function isSignatureValid(
   meta: StoredSignatureMeta | undefined,
-  address: string
+  address: string,
+  maxAgeSeconds: number = SIGNATURE_MAX_AGE_SECONDS
 ): boolean {
   if (!meta) return false;
-  return meta.address.toLowerCase() === address.toLowerCase();
+  
+  // Check address match
+  if (meta.address.toLowerCase() !== address.toLowerCase()) {
+    return false;
+  }
+  
+  // Check timestamp - signature should not be older than maxAgeSeconds
+  const currentTime = Math.floor(Date.now() / 1000);
+  const signatureAge = currentTime - meta.timestamp;
+  
+  if (signatureAge > maxAgeSeconds) {
+    return false; // Signature is too old
+  }
+  
+  // Also reject signatures with future timestamps (clock skew protection)
+  if (meta.timestamp > currentTime + 300) { // Allow 5 minutes of clock skew
+    return false;
+  }
+  
+  return true;
 }
 
 // Retrieve signature info; if missing/expired prompts new personal sign via Web3Auth
