@@ -37,9 +37,12 @@ export interface UserContentSearchParams {
 
 /**
  * Fetch a single account (by username or address)
+ * @param usernameOrAddress - The username or wallet address to look up
+ * @param viewerAddress - Optional: Your wallet address to get relationship info (isFollowing, followsYou)
  */
-export async function getAccount(usernameOrAddress: string) {
-  const url = `/account_info/${encodeURIComponent(usernameOrAddress)}`;
+export async function getAccount(usernameOrAddress: string, viewerAddress?: string) {
+  const baseUrl = `/account_info/${encodeURIComponent(usernameOrAddress)}`;
+  const url = viewerAddress ? `${baseUrl}?address=${encodeURIComponent(viewerAddress)}` : baseUrl;
   const response = await apiClient.get<ApiResponse<AccountInfoResponse>>(url, { isAuthRequired: true });
   return response;
 }
@@ -94,13 +97,15 @@ export async function markNotificationAsRead(id: string | number) {
 /**
  * Convenience method to safely refresh current account by preferred identifier.
  * Falls back from username to walletAddress.
+ * @param currentUser - The current user to refresh
+ * @param viewerAddress - Optional: Viewer's address to get relationship info
  */
-export async function refreshAccount(currentUser: User | null) {
+export async function refreshAccount(currentUser: User | null, viewerAddress?: string) {
   if (!currentUser) return null;
   const key = currentUser.username || currentUser.walletAddress;
   if (!key) return currentUser;
   try {
-    const res: any = await getAccount(key);
+    const res: any = await getAccount(key, viewerAddress);
     if (res?.success && res.data?.result) return res.data.result as User;
     return currentUser;
   } catch (e) {

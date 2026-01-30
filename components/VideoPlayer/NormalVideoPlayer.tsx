@@ -140,19 +140,26 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
       if (!minterAddr) return;
       setCreatorLoading(true);
       try {
-        const res: any = await getAccount(minterAddr);
+        // Pass viewer address to get isFollowing from backend
+        const viewerAddr = user?.walletAddress || user?.address;
+        const res: any = await getAccount(minterAddr, viewerAddr);
         if (cancelled) return;
         const payload = res?.data?.result || res?.result || res || null;
         setCreator(payload);
-        // derive follow state
-        const acct = (user?.walletAddress || user?.address || "").toLowerCase();
-        if (acct && Array.isArray(payload?.followers)) {
-          const isF = payload.followers
-            .map((f: string) => (f || "").toLowerCase())
-            .includes(acct);
-          setIsFollowing(isF);
+        // Use isFollowing from API response if available, otherwise fallback to checking followers array
+        if (typeof payload?.isFollowing === 'boolean') {
+          setIsFollowing(payload.isFollowing);
         } else {
-          setIsFollowing(false);
+          // Fallback for backwards compatibility
+          const acct = (viewerAddr || "").toLowerCase();
+          if (acct && Array.isArray(payload?.followers)) {
+            const isF = payload.followers
+              .map((f: string) => (f || "").toLowerCase())
+              .includes(acct);
+            setIsFollowing(isF);
+          } else {
+            setIsFollowing(false);
+          }
         }
       } catch (e) {
         if (!cancelled) setCreator(null);
@@ -190,16 +197,19 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
     }
   }, [commentsOpen, composerAutoFocus]);
 
-  // --- View recording: 5s-or-full threshold, signed-in only, once per view ---
+  // --- View recording: 10% or 3s threshold (matches web), signed-in only, once per view ---
   const hasRecordedRef = useRef(false);
   const pendingRecordRef = useRef(false);
   const suggestedRef = useRef<SuggestedVideosHandle>(null);
   const onProgressRecord = async (positionMs: number, durationMs: number) => {
     if (hasRecordedRef.current || pendingRecordRef.current) return;
     if (!isSignedIn) return;
-    // If duration >= 5s, require >=5s watched; else require full duration
-    const threshold =
-      durationMs && durationMs > 0 ? Math.min(5000, durationMs) : 5000;
+    // Threshold: 10% of duration OR 3 seconds, whichever comes first
+    const THREE_SECONDS = 3000;
+    const TEN_PERCENT = 0.10;
+    const threshold = durationMs && durationMs > 0 
+      ? Math.min(durationMs * TEN_PERCENT, THREE_SECONDS) 
+      : THREE_SECONDS;
     if (positionMs + 200 < threshold) return; // small epsilon
     pendingRecordRef.current = true;
     try {
