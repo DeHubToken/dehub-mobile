@@ -259,7 +259,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           />
 
           {/* Import Wallet */}
-          <ImportWallet disabled={isLocalLoading} />
+          {/* <ImportWallet disabled={isLocalLoading} /> */}
 
           {/* Terms and Privacy */}
           <View className="mt-6">
