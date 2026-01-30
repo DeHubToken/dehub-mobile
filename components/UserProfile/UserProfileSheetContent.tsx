@@ -14,6 +14,7 @@ interface UserProfileSheetContentProps {
   data: any;
   profileData: any;
   isFollowing: boolean;
+  followsYou?: boolean;
   followLoading: boolean;
   avatarUrl: string;
   coverUrl: string;
@@ -37,6 +38,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   data,
   profileData,
   isFollowing,
+  followsYou,
   followLoading,
   avatarUrl,
   coverUrl,
@@ -71,6 +73,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           username={profileData.username}
           hasUsername={profileData.hasUsername}
           joinedDate={profileData.joinedDate}
+          followsYou={followsYou}
           onOpenImage={onOpenImage}
           onShare={onShare}
           onMessage={onMessage}
@@ -101,6 +104,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     data,
     stats,
     isFollowing,
+    followsYou,
     followLoading,
     onOpenImage,
     onShare,
