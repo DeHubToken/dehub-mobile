@@ -29,7 +29,7 @@ const stageLabel = (stage: UploadStage) => {
     case "processing":
       return "Uploading…";
     case "awaiting-wallet":
-      return "Confirm In Wallet…";
+      return "Confirming…";
     case "minting":
       return "Minting…";
     case "finalizing":

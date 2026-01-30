@@ -83,17 +83,23 @@ export const useUserProfileData = (
           setData(cached.data);
           setLoading(false);
 
-          const acct = (
-            authUser?.walletAddress ||
-            authUser?.address ||
-            ""
-          ).toLowerCase();
-          if (acct && Array.isArray(cached.data?.followers)) {
-            setIsFollowing(
-              cached.data.followers.some(
-                (f: string) => (f || "").toLowerCase() === acct
-              )
-            );
+          // Use isFollowing from cached response if available
+          if (typeof (cached.data as any)?.isFollowing === 'boolean') {
+            setIsFollowing((cached.data as any).isFollowing);
+          } else {
+            // Fallback for backwards compatibility
+            const acct = (
+              authUser?.walletAddress ||
+              authUser?.address ||
+              ""
+            ).toLowerCase();
+            if (acct && Array.isArray(cached.data?.followers)) {
+              setIsFollowing(
+                cached.data.followers.some(
+                  (f: string) => (f || "").toLowerCase() === acct
+                )
+              );
+            }
           }
         }
       } else {
@@ -103,7 +109,9 @@ export const useUserProfileData = (
       }
 
       try {
-        const res: any = await getAccount(who);
+        // Pass viewer address to get relationship info (isFollowing, followsYou) from backend
+        const viewerAddress = authUser?.walletAddress || authUser?.address;
+        const res: any = await getAccount(who, viewerAddress);
         const payload = res?.data?.result || res?.result || res;
 
         if (
@@ -117,17 +125,19 @@ export const useUserProfileData = (
           setData(payload);
           setLoading(false);
 
-          const acct = (
-            authUser?.walletAddress ||
-            authUser?.address ||
-            ""
-          ).toLowerCase();
-          if (acct && Array.isArray(payload?.followers)) {
-            setIsFollowing(
-              payload.followers.some(
-                (f: string) => (f || "").toLowerCase() === acct
-              )
-            );
+          // Use isFollowing from API response if available, otherwise fallback to checking followers array
+          if (typeof payload?.isFollowing === 'boolean') {
+            setIsFollowing(payload.isFollowing);
+          } else {
+            // Fallback for backwards compatibility
+            const acct = (viewerAddress || "").toLowerCase();
+            if (acct && Array.isArray(payload?.followers)) {
+              setIsFollowing(
+                payload.followers.some(
+                  (f: string) => (f || "").toLowerCase() === acct
+                )
+              );
+            }
           }
         }
       } catch (e) {

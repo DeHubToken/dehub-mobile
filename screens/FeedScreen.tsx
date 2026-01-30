@@ -163,6 +163,7 @@ const FeedScreen = () => {
         <InfiniteFeed
           params={feedParams}
           pageSize={20}
+          isSignedIn={isSignedIn}
           fetchPage={
             activeTab === "Saved"
               ? savedFetcher

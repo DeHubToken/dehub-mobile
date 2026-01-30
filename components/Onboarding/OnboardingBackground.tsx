@@ -9,9 +9,9 @@ import Animated, {
 
 // Placeholder: using cards.riv for all slides, replace with actual files later
 const SLIDE_ANIMATIONS = [
-  require("../../../assets/riv/card_01.riv"),
-  require("../../../assets/riv/card_02.riv"),
-  require("../../../assets/riv/card_03.riv"),
+  require("../../assets/riv/card_01.riv"),
+  require("../../assets/riv/card_02.riv"),
+  require("../../assets/riv/card_03.riv"),
 ];
 
 interface OnboardingBackgroundProps {

@@ -10,12 +10,18 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
   Platform,
+  ViewToken,
 } from "react-native";
 import Animated from "react-native-reanimated";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../../theme";
 import { getFeedNFTs, type GetNFTsResult, type GetNFTsResponse, type SearchParams } from "../../services";
 import FeedCardSkeleton from "./FeedCardSkeleton";
+import {
+  createPostViewTracker,
+  forceFlushBatchViews,
+  type TokenId,
+} from "../../services/view.service";
 
 export interface InfiniteFeedProps {
   params?: Partial<SearchParams>;
@@ -41,6 +47,8 @@ export interface InfiniteFeedProps {
    * Prevents screen-only hooks (useIsFocused/useScrollToTop) from running.
    */
   insideNavigatorScreen?: boolean;
+  /** Whether user is signed in (required for view tracking). */
+  isSignedIn?: boolean;
 }
 
 interface FeedItem extends GetNFTsResult {
@@ -57,6 +65,7 @@ const InfiniteFeedBase: React.FC<
       addListener: (event: string, callback: () => void) => () => void;
       isFocused?: () => boolean;
     } | null;
+    isSignedIn?: boolean;
   }
 > = ({
   params,
@@ -74,6 +83,7 @@ const InfiniteFeedBase: React.FC<
   isFocused,
   listRef,
   navigationForTabPress = null,
+  isSignedIn = false,
 }) => {
   const [items, setItems] = useState<FeedItem[]>([]);
   const [page, setPage] = useState(0);
@@ -84,6 +94,54 @@ const InfiniteFeedBase: React.FC<
   const [showBackToTop, setShowBackToTop] = useState(false);
   const endReachedRef = useRef(false);
   const prevYRef = useRef(0);
+
+  // View tracking: map of tokenId -> tracker
+  const viewTrackersRef = useRef<Map<string, ReturnType<typeof createPostViewTracker>>>(new Map());
+
+  // Cleanup view trackers and flush batch on unmount
+  useEffect(() => {
+    return () => {
+      viewTrackersRef.current.forEach(tracker => tracker.cleanup());
+      viewTrackersRef.current.clear();
+      forceFlushBatchViews();
+    };
+  }, []);
+
+  // Get or create a view tracker for a token
+  const getViewTracker = useCallback((tokenId: TokenId) => {
+    const key = String(tokenId);
+    let tracker = viewTrackersRef.current.get(key);
+    if (!tracker) {
+      tracker = createPostViewTracker(tokenId, isSignedIn);
+      viewTrackersRef.current.set(key, tracker);
+    }
+    return tracker;
+  }, [isSignedIn]);
+
+  // Viewability config: item is "viewable" when 50% visible
+  const viewabilityConfig = useRef({
+    itemVisiblePercentThreshold: 50,
+    minimumViewTime: 0, // We handle timing ourselves in the tracker
+  }).current;
+
+  // Handle viewable items change for view tracking
+  const onViewableItemsChanged = useRef(({ changed }: { 
+    viewableItems: ViewToken[]; 
+    changed: ViewToken[]; 
+  }) => {
+    if (!isSignedIn) return;
+    
+    for (const entry of changed) {
+      const item = entry.item as FeedItem | undefined;
+      const tokenId = item?.tokenId || (item as any)?.id;
+      if (!tokenId) continue;
+      
+      const tracker = getViewTracker(tokenId);
+      // When FlatList says item is viewable (50%+ visible), report 0.6 visibility
+      // When not viewable, report 0
+      tracker.onVisibilityChange(entry.isViewable ? 0.6 : 0);
+    }
+  }).current;
 
   const renderFeedItem = useCallback<ListRenderItem<FeedItem>>(
     (info) => renderItem(info as unknown as { item: GetNFTsResult; index: number; separators: any }),
@@ -251,6 +309,9 @@ const InfiniteFeedBase: React.FC<
         scrollEventThrottle={16}
         onEndReached={endReachedRef.current ? undefined : loadMore}
         onEndReachedThreshold={0.4}
+        // View tracking: track which items are visible for recording views
+        viewabilityConfig={viewabilityConfig}
+        onViewableItemsChanged={isSignedIn ? onViewableItemsChanged : undefined}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
@@ -288,19 +349,19 @@ const InfiniteFeedBase: React.FC<
   );
 };
 
-const InfiniteFeedScreen: React.FC<InfiniteFeedInternalProps> = (props) => {
+const InfiniteFeedScreen: React.FC<InfiniteFeedInternalProps & { isSignedIn?: boolean }> = (props) => {
   const internalRef = useRef<FlatList<FeedItem>>(null);
   const listRef = (props.listRef as React.RefObject<FlatList<FeedItem> | null> | undefined) ?? internalRef;
   const navigation = useNavigation<any>();
   const isFocused = useIsFocused();
   useScrollToTop(listRef);
-  return <InfiniteFeedBase {...props} listRef={listRef} isFocused={isFocused} navigationForTabPress={navigation} />;
+  return <InfiniteFeedBase {...props} listRef={listRef} isFocused={isFocused} navigationForTabPress={navigation} isSignedIn={props.isSignedIn} />;
 };
 
-const InfiniteFeedEmbedded: React.FC<InfiniteFeedInternalProps> = (props) => {
+const InfiniteFeedEmbedded: React.FC<InfiniteFeedInternalProps & { isSignedIn?: boolean }> = (props) => {
   const internalRef = useRef<FlatList<FeedItem>>(null);
   const listRef = (props.listRef as React.RefObject<FlatList<FeedItem> | null> | undefined) ?? internalRef;
-  return <InfiniteFeedBase {...props} listRef={listRef} />;
+  return <InfiniteFeedBase {...props} listRef={listRef} isSignedIn={props.isSignedIn} />;
 };
 
 export const InfiniteFeed: React.FC<InfiniteFeedProps> = ({ insideNavigatorScreen = true, ...rest }) => {
