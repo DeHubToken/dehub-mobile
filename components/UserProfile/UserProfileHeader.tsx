@@ -17,6 +17,7 @@ export interface UserProfileHeaderProps {
   username?: string | null;
   hasUsername: boolean;
   joinedDate?: string | null;
+  followsYou?: boolean;
   onOpenImage: (type: "avatar" | "cover") => void;
   onShare: () => void;
   onMessage?: () => void;
@@ -37,6 +38,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   username,
   hasUsername,
   joinedDate,
+  followsYou,
   onOpenImage,
   onShare,
   onMessage,
@@ -95,14 +97,19 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                 </View>
               )}
             </View>
-            {/* Subtitle: @username • address + copy */}
-            <View className="flex-row items-center mt-1" accessibilityLabel="profile identifiers">
+            {/* Subtitle: @username • follows you badge • address + copy */}
+            <View className="flex-row items-center mt-1 flex-wrap" accessibilityLabel="profile identifiers">
               {!!username && (
                 <TouchableOpacity onPress={handleCopyUsername} activeOpacity={0.7}>
                   <Text className="text-theme-neutrals-500 text-xs" numberOfLines={1}>@{username}</Text>
                 </TouchableOpacity>
               )}
-              {!!username && !!address && (
+              {followsYou && (
+                <View className="ml-2 px-2 py-0.5 bg-theme-neutrals-800 rounded-full">
+                  <Text className="text-theme-neutrals-400 text-[10px] font-medium">Follows you</Text>
+                </View>
+              )}
+              {!!address && (!!username || followsYou) && (
                 <Text className="text-theme-neutrals-600 mx-2">•</Text>
               )}
               {!!address && (

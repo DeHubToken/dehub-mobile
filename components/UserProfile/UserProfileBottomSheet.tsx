@@ -53,6 +53,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     data,
     profileData,
     isFollowing,
+    followsYou,
     followLoading,
     avatarUrl,
     coverUrl,
@@ -207,6 +208,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                   data={data}
                   profileData={profileData}
                   isFollowing={isFollowing}
+                  followsYou={followsYou}
                   followLoading={followLoading}
                   avatarUrl={avatarUrl}
                   coverUrl={coverUrl}

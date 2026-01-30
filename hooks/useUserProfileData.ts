@@ -53,6 +53,7 @@ export const useUserProfileData = (
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<RemoteUser | null>(null);
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
+  const [followsYou, setFollowsYou] = useState<boolean>(false);
   const [followLoading, setFollowLoading] = useState<boolean>(false);
   
   const lastRequestedRef = useRef<string | null>(null);
@@ -83,10 +84,14 @@ export const useUserProfileData = (
           setData(cached.data);
           setLoading(false);
 
-          // Use isFollowing from cached response if available
+          // Use isFollowing/followsYou from cached response if available
           if (typeof (cached.data as any)?.isFollowing === 'boolean') {
             setIsFollowing((cached.data as any).isFollowing);
-          } else {
+          }
+          if (typeof (cached.data as any)?.followsYou === 'boolean') {
+            setFollowsYou((cached.data as any).followsYou);
+          }
+          if (typeof (cached.data as any)?.isFollowing !== 'boolean') {
             // Fallback for backwards compatibility
             const acct = (
               authUser?.walletAddress ||
@@ -125,10 +130,14 @@ export const useUserProfileData = (
           setData(payload);
           setLoading(false);
 
-          // Use isFollowing from API response if available, otherwise fallback to checking followers array
+          // Use isFollowing/followsYou from API response if available, otherwise fallback to checking followers array
           if (typeof payload?.isFollowing === 'boolean') {
             setIsFollowing(payload.isFollowing);
-          } else {
+          }
+          if (typeof payload?.followsYou === 'boolean') {
+            setFollowsYou(payload.followsYou);
+          }
+          if (typeof payload?.isFollowing !== 'boolean') {
             // Fallback for backwards compatibility
             const acct = (viewerAddress || "").toLowerCase();
             if (acct && Array.isArray(payload?.followers)) {
@@ -161,6 +170,7 @@ export const useUserProfileData = (
       setData(null);
       setLoading(false);
       setIsFollowing(false);
+      setFollowsYou(false);
       setFollowLoading(false);
       lastRequestedRef.current = null;
     }
@@ -457,6 +467,7 @@ export const useUserProfileData = (
     data,
     profileData,
     isFollowing,
+    followsYou,
     followLoading,
     avatarUrl,
     coverUrl,
