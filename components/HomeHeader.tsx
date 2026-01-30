@@ -7,17 +7,13 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useAuth } from "../context/AuthContext";
-import { useHasUnseenNotifications } from "../libs/notifications.seen";
-import { toastError, toastInfo, toastSuccess } from "../libs";
 import { theme } from "../theme";
 
 const HomeHeader = () => {
   const navigation = useNavigation<any>();
   const { isSignedIn, user } = useAuth();
-  const notifCount = user?.notificationCount || 0;
-  const address = (user?.walletAddress || user?.address) as string | undefined;
-  // Show only a dot when there are unseen notifications; keep count functionality internal
-  const hasUnseen = useHasUnseenNotifications(address, notifCount);
+  // Show blue dot when there are unread notifications
+  const hasUnread = (user?.notificationCount || 0) > 0;
 
   return (
     <View className="flex-row justify-between items-center p-4">
@@ -55,11 +51,10 @@ const HomeHeader = () => {
           >
             <View>
               <Ionicons name="notifications" size={24} color="#A6A9AC" />
-              {hasUnseen && (
+              {hasUnread && (
                 <View className="absolute -top-0.5 -right-1">
-                                    <Ionicons name="ellipse" size={10} color={theme.colors.accent} />
-                                  </View>
-                // <View className="absolute -top-0.5 -right-0.5 w-[9px] h-[9px] bg-theme-accent rounded-full" />
+                  <Ionicons name="ellipse" size={10} color={theme.colors.accent} />
+                </View>
               )}
             </View>
           </TouchableOpacity>
@@ -67,7 +62,6 @@ const HomeHeader = () => {
         <TouchableOpacity
           className="p-1 ml-4"
           onPress={() => navigation.navigate(ScreenNames.Search)}
-          // onPress={() => toastError("Hello, World!")}
         >
           <Ionicons name="search" size={24} color="#A6A9AC" />
         </TouchableOpacity>

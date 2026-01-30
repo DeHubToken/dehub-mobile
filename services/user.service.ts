@@ -12,14 +12,63 @@ export interface ApiResponse<T> {
 
 interface AccountInfoResponse { result: User }
 interface UsersSearchResponse { result: User[] }
-// Notification types (simplified). Adjust shape based on backend response
+
+// =============================================================================
+// Notification Types
+// =============================================================================
+
+/** Post type for notification content */
+export type NotificationPostType = 'video' | 'feed-images' | 'feed-simple';
+
+/** Notification type categories */
+export type NotificationType = 
+  | 'like' 
+  | 'comment' 
+  | 'comment_reply' 
+  | 'following' 
+  | 'tip' 
+  | 'subscription' 
+  | 'ppv_purchase' 
+  | 'video_milestone' 
+  | 'livestream_start' 
+  | 'video_removal';
+
+/** Notification category for filtering */
+export type NotificationCategory = 'engagement' | 'social' | 'monetization' | 'content' | 'system';
+
+/** Full notification item from backend */
 export interface NotificationItem {
-  id: string | number;
-  type: string;
+  _id: string;
+  address: string;
+  type: NotificationType;
+  category: NotificationCategory;
   content: string;
-  updatedAt?: string;
-  imageUrl?: string;
-  read?: boolean;
+  read: boolean;
+  createdAt: string;
+  updatedAt: string;
+  // Actor info (who triggered the notification)
+  actorAddress?: string;
+  actorUsername?: string;
+  actorAvatar?: string;
+  // Content info
+  tokenId?: number;
+  tokenTitle?: string;
+  tokenThumbnail?: string;
+  postType?: NotificationPostType;
+  // Aggregation
+  aggregatedCount?: number;
+  latestActorNames?: string[];
+  // Monetization fields
+  amount?: number;
+  currency?: string;
+}
+
+/** Query params for fetching notifications */
+export interface GetNotificationsParams {
+  unreadOnly?: boolean;
+  category?: NotificationCategory;
+  page?: number;
+  limit?: number;
 }
 
 interface NotificationsResponse { result: NotificationItem[] }
@@ -68,28 +117,57 @@ export async function usersSearch(searchParam: string) {
 }
 
 /**
- * Fetch unread notifications for a specific address.
- * Backend returns ONLY unread notifications when provided an address.
+ * Fetch notifications for the authenticated user.
+ * @param params - Optional filtering and pagination params
  */
-export async function getNotifications(address: string, params?: Record<string, any>) {
-  if (!address) return { success: true, data: { result: [] } } as ApiResponse<NotificationsResponse>;
-  const cleaned = params
-    ? Object.fromEntries(Object.entries(params).filter(([, v]) => v !== undefined && v !== null && v !== ''))
-    : {};
-  const search = new URLSearchParams({ address, ...cleaned }).toString();
-  const url = `/notification?${search}`;
+export async function getNotifications(params?: GetNotificationsParams) {
+  const cleaned: Record<string, string> = {};
+  
+  // unreadOnly defaults to true on backend, pass "false" string to get all
+  if (params?.unreadOnly === false) {
+    cleaned.unreadOnly = 'false';
+  }
+  if (params?.category) {
+    cleaned.category = params.category;
+  }
+  if (params?.page !== undefined) {
+    cleaned.page = String(params.page);
+  }
+  if (params?.limit !== undefined) {
+    cleaned.limit = String(params.limit);
+  }
+  
+  const search = new URLSearchParams(cleaned).toString();
+  const url = `/notification${search ? `?${search}` : ''}`;
   const response = await apiClient.get<ApiResponse<NotificationsResponse>>(url, { isAuthRequired: true });
   return response;
 }
 
 /** Mark a single notification as read (PATCH /notification/:id) */
-export async function markNotificationAsRead(id: string | number) {
-  if (!id) return null;
-  const url = `/notification/${encodeURIComponent(String(id))}`;
+export async function markNotificationAsRead(notificationId: string) {
+  if (!notificationId) return null;
+  const url = `/notification/${encodeURIComponent(notificationId)}`;
   try {
     return await apiClient.patch<any>(url, {}, { isAuthRequired: true });
   } catch (e) {
     console.warn('[user.service] markNotificationAsRead error', e);
+    throw e;
+  }
+}
+
+/**
+ * Mark all notifications as read.
+ * @param category - Optional: Only mark notifications in this category as read
+ */
+export async function markAllNotificationsAsRead(category?: NotificationCategory) {
+  const url = category 
+    ? `/notification/mark-all-read?category=${encodeURIComponent(category)}`
+    : '/notification/mark-all-read';
+  try {
+    const response = await apiClient.post<{ message: string; count: number }>(url, {}, { isAuthRequired: true });
+    return response;
+  } catch (e) {
+    console.warn('[user.service] markAllNotificationsAsRead error', e);
     throw e;
   }
 }

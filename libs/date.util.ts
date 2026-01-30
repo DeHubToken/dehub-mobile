@@ -49,7 +49,7 @@ function formatTime(date: Date) {
   return `${formattedHours}:${formattedMinutes}${ampm}`;
 }
 
-export function formatNotificationDate(isoDateString: Date) {
+export function formatNotificationDate(isoDateString: Date | string) {
   const date = new Date(isoDateString);
   const now = new Date();
   const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
