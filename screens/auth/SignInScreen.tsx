@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { toastError } from "../../libs";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import {
   loginWithSocial,
@@ -29,198 +29,181 @@ import { openInApp } from "../../libs/links.utils";
 import { TERMS_OF_SERVICE_LINK, PRIVACY_POLICY_LINK } from "../../config/links";
 import { getPreferredChainId } from "../../libs/auth.utils";
 import { KeyboardAvoidingView } from "react-native";
+import { CommonActions } from "@react-navigation/native";
+import { createLogger } from "../../libs/logger";
+
+const log = createLogger("SignInScreen");
 
 // Target chain for wallet sign-in (Base Mainnet)
 const TARGET_CHAIN_ID = ChainId.BASE_MAINNET;
 
-// Define the component interface
 interface SignInScreenProps {
   navigation: any;
 }
 
+/**
+ * SignInScreen - Handles user authentication
+ * 
+ * Navigation flow:
+ * 1. User signs in successfully without needing username → Navigate to App
+ * 2. User signs in but needs username → Navigate to SetProfile
+ * 3. User skips auth → Navigate to App
+ */
 const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const [isLocalLoading, setIsLocalLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
-  const {
-    skipAuth,
-    isFirstTimeUser,
-    signInWithWallet,
-    isLoading: authLoading,
-    needsUsername,
-    isSignedIn,
-    provisionalUser,
-  } = useAuth();
-  const navigatedAfterSignInRef = useRef(false);
-  const navigationAttemptCountRef = useRef(0);
+  
+  const { isFirstTimeUser, provisionalUser } = useAuthState();
+  const { skipAuth, signInWithWallet } = useAuthActions();
+  const { isLoading: authLoading, needsUsername, isSignedIn } = useAuth();
+  
+  // Track if we've already handled navigation for this sign-in attempt
+  const hasNavigatedRef = useRef(false);
+  const isMountedRef = useRef(true);
 
   useEffect(() => {
-    let mounted = true;
-    if (isWeb3AuthConfigured()) {
-      initWeb3Auth().catch((e) => {
-        if (mounted)
-          console.warn("[SignIn] Web3Auth pre-init failed", e);
-      });
-    }
-    return () => {
-      mounted = false;
-    };
+    isMountedRef.current = true;
+    return () => { isMountedRef.current = false; };
   }, []);
 
-  // Helper function to navigate to App with retry logic
-  const navigateToApp = useCallback(() => {
-    const maxAttempts = 3;
-    const attemptNavigation = () => {
-      navigationAttemptCountRef.current += 1;
-      const attempt = navigationAttemptCountRef.current;
-      
-      try {
-        // Method 1: Reset parent navigator
-        const parent = navigation?.getParent?.();
-        if (parent?.reset) {
-          parent.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] });
-          console.log(`[SignIn] Navigation success via parent.reset (attempt ${attempt})`);
-          return true;
-        }
-      } catch (e) {
-        console.warn(`[SignIn] parent.reset failed (attempt ${attempt})`, e);
-      }
-      
-      try {
-        // Method 2: Go back if possible
-        if (navigation?.canGoBack?.()) {
-          navigation.goBack();
-          console.log(`[SignIn] Navigation success via goBack (attempt ${attempt})`);
-          return true;
-        }
-      } catch (e) {
-        console.warn(`[SignIn] goBack failed (attempt ${attempt})`, e);
-      }
-      
-      try {
-        // Method 3: Direct navigate
-        navigation?.navigate?.(ScreenNames.App as never);
-        console.log(`[SignIn] Navigation success via navigate (attempt ${attempt})`);
-        return true;
-      } catch (e) {
-        console.warn(`[SignIn] navigate failed (attempt ${attempt})`, e);
-      }
-      
-      return false;
-    };
-    
-    if (!attemptNavigation() && navigationAttemptCountRef.current < maxAttempts) {
-      // Retry after a short delay
-      setTimeout(attemptNavigation, 500);
+  // Initialize Web3Auth on mount
+  useEffect(() => {
+    if (isWeb3AuthConfigured()) {
+      initWeb3Auth().catch((e) => {
+        log.warn("Web3Auth pre-init failed", e);
+      });
     }
+  }, []);
+
+  /**
+   * Navigate to the main app
+   * Uses reset to clear the auth stack from history
+   */
+  const navigateToApp = useCallback(() => {
+    if (!isMountedRef.current) return;
+    
+    log.info("Navigating to App");
+    
+    // Reset to App stack, clearing auth from history
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: ScreenNames.App }],
+      })
+    );
   }, [navigation]);
+
+  /**
+   * Navigate to SetProfile screen
+   * Uses reset to prevent going back to SignIn
+   */
+  const navigateToSetProfile = useCallback(() => {
+    if (!isMountedRef.current) return;
+    
+    log.info("Navigating to SetProfile");
+    
+    navigation.reset({
+      index: 0,
+      routes: [{ name: ScreenNames.SetProfile }],
+    });
+  }, [navigation]);
+
+  // Handle auth state changes for navigation
+  useEffect(() => {
+    // Skip if already navigating or still loading
+    if (hasNavigatedRef.current || authLoading || isLocalLoading) {
+      return;
+    }
+
+    // User needs to set username - go to SetProfile
+    if (needsUsername && provisionalUser) {
+      hasNavigatedRef.current = true;
+      log.info("Auth complete, username required");
+      navigateToSetProfile();
+      return;
+    }
+
+    // Fully signed in - go to App
+    if (isSignedIn && !needsUsername) {
+      hasNavigatedRef.current = true;
+      log.info("Auth complete, fully signed in");
+      navigateToApp();
+      return;
+    }
+  }, [
+    isSignedIn, 
+    needsUsername, 
+    provisionalUser, 
+    authLoading, 
+    isLocalLoading,
+    navigateToApp, 
+    navigateToSetProfile
+  ]);
 
   const handleSocialLogin = useCallback(
     async (provider: string, emailOrPhone?: string) => {
       if (!isWeb3AuthConfigured()) {
-        console.warn("[SignIn] Web3Auth client id missing");
+        log.warn("Web3Auth client id missing");
         toastError("Social login unavailable. Please try again later.");
         return;
       }
-      // Reset navigation tracking when starting new sign-in attempt
-      navigatedAfterSignInRef.current = false;
-      navigationAttemptCountRef.current = 0;
+
+      // Reset navigation tracking for new sign-in attempt
+      hasNavigatedRef.current = false;
       
       setIsLocalLoading(true);
       setCurrentProvider(provider);
+      
       try {
         const extraLoginOptions =
           (provider === "email_passwordless" || provider === "sms_passwordless") && emailOrPhone
             ? { login_hint: emailOrPhone }
             : undefined;
-        const result = await loginWithSocial(
-          provider as any,
-          extraLoginOptions
-        );
-        const address =
-          result.address || deriveAddressFromPrivateKey(result.privateKey);
-        if (!address)
+            
+        const result = await loginWithSocial(provider as any, extraLoginOptions);
+        
+        const address = result.address || deriveAddressFromPrivateKey(result.privateKey);
+        if (!address) {
           throw new Error("Failed to obtain wallet address from Web3Auth");
+        }
+        
         const preferred = await getPreferredChainId();
         const effectiveChainId = preferred ?? TARGET_CHAIN_ID;
+        
+        log.info("Social login successful, signing in with wallet", { 
+          provider, 
+          chainId: effectiveChainId 
+        });
+        
         await signInWithWallet(address, effectiveChainId);
+        // Navigation will be handled by the useEffect watching auth state
+        
       } catch (e: any) {
-        console.error("[SignIn] Social login error", e);
+        log.error("Social login error", e);
         toastError(e, "Login failed. Please retry.");
+        hasNavigatedRef.current = false; // Allow retry
       } finally {
-        setIsLocalLoading(false);
-        setCurrentProvider("");
+        if (isMountedRef.current) {
+          setIsLocalLoading(false);
+          setCurrentProvider("");
+        }
       }
     },
     [signInWithWallet]
   );
 
-  useEffect(() => {
-    if (navigatedAfterSignInRef.current) return;
-    
-    // If user needs to set username, navigate to SetProfile screen
-    // This navigation is needed because AuthNavigator's initialRoute doesn't re-evaluate
-    // after mount, so we need to push to SetProfile manually when needsUsername changes
-    if (needsUsername && provisionalUser) {
-      navigatedAfterSignInRef.current = true;
-      console.log('[SignIn] Navigating to SetProfile - username required');
-      // Use reset to prevent going back to SignIn without completing profile
-      navigation.reset({
-        index: 0,
-        routes: [{ name: ScreenNames.SetProfile }],
-      });
-      return;
-    }
-    
-    // If fully signed in, go to app
-    if (isSignedIn && !needsUsername) {
-      navigatedAfterSignInRef.current = true;
-      console.log('[SignIn] User signed in, navigating to App');
-      navigateToApp();
-    }
-  }, [isSignedIn, needsUsername, navigation, provisionalUser, navigateToApp]);
-
-  // Fallback: If signed in but still on this screen after timeout, force navigate
-  useEffect(() => {
-    if (!isSignedIn || needsUsername) return;
-    
-    const fallbackTimeout = setTimeout(() => {
-      if (isSignedIn && !needsUsername) {
-        console.warn('[SignIn] Fallback navigation triggered - screen still visible after sign-in');
-        navigatedAfterSignInRef.current = false; // Reset to allow navigation
-        navigationAttemptCountRef.current = 0;
-        navigateToApp();
-      }
-    }, 2000); // 2 second fallback
-    
-    return () => clearTimeout(fallbackTimeout);
-  }, [isSignedIn, needsUsername, navigateToApp]);
-
   const handleSkipOrClose = useCallback(async () => {
     if (isFirstTimeUser) {
       await skipAuth();
-      if (!navigation?.canGoBack?.()) {
-        try {
-          navigation
-            ?.getParent?.()
-            ?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] });
-        } catch {}
-      }
-      return;
     }
-    if (navigation?.canGoBack?.()) {
-      navigation.goBack();
-      return;
-    }
-    try {
-      navigation
-        ?.getParent?.()
-        ?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] });
-    } catch {}
-  }, [isFirstTimeUser, skipAuth, navigation]);
+    navigateToApp();
+  }, [isFirstTimeUser, skipAuth, navigateToApp]);
 
+  const isLoading = authLoading || isLocalLoading;
+  const showLoader = isLoading && !needsUsername;;
   return (
     <SafeAreaView className="flex-1 bg-black">
-      {(authLoading || isLocalLoading) && !needsUsername && (
+      {showLoader && (
         <FullScreenLoader message="Signing you in…" />
       )}
 
@@ -253,13 +236,13 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
               }
             }}
             busyProvider={isLocalLoading ? currentProvider : undefined}
-            disabled={isLocalLoading}
+            disabled={isLoading}
             showEmailButton
             showPhoneButton
           />
 
           {/* Import Wallet */}
-          {/* <ImportWallet disabled={isLocalLoading} /> */}
+          {/* <ImportWallet disabled={isLoading} /> */}
 
           {/* Terms and Privacy */}
           <View className="mt-6">
@@ -292,12 +275,12 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             <TouchableOpacity
               className="border border-gray-600 rounded-full px-5 py-3"
               onPress={handleSkipOrClose}
-              disabled={authLoading || isLocalLoading || needsUsername}
+              disabled={isLoading || needsUsername}
               accessibilityLabel={isFirstTimeUser ? "Explore DeHub without signing in" : "Continue exploring DeHub"}
             >
               <Text
                 className={`text-white text-sm ${
-                  authLoading || isLocalLoading || needsUsername ? "opacity-40" : ""
+                  isLoading || needsUsername ? "opacity-40" : ""
                 }`}
               >
                 {isFirstTimeUser ? "Explore DeHub without signing in" : "Continue exploring DeHub"}

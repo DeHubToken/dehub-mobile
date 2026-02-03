@@ -8,7 +8,7 @@ import { getTransactionLink, openInApp } from "../../libs/links.utils";
 import LikeButton from "./LikeButton";
 import env from "../../config/env";
 import { shareProfile } from "../../libs/misc";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthActions } from "../../context/AuthContext";
 import { likeLiveStream } from "../../services/live.service";
 import { toastError, toastInfo } from "../../libs/toast";
 import { LEGACY_WEBSITE_LINK } from "../../config";
@@ -48,7 +48,8 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
   const [tipOpen, setTipOpen] = useState(false);
   const [giftOpen, setGiftOpen] = useState(false);
   const [userVote, setUserVote] = useState<'like' | 'dislike' | null>(initialUserVote ?? null);
-  const { requireAuth, user } = useAuth();
+  const { requireAuth } = useAuthActions();
+  const user = useUser();
   const [likeCount, setLikeCount] = useState<number>(Number(likes));
   const [likePending, setLikePending] = useState(false);
 

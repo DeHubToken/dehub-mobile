@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useRef, useState, useEffect } from "react";
 import { TouchableOpacity, Text, View, Animated } from "react-native";
-import { useAuth } from "../../context/AuthContext";
+import { useAuthActions } from "../../context/AuthContext";
 import { useWeb3Provider } from "../../hooks/use-web3";
 import { Ionicons } from "@expo/vector-icons";
 import { toastInfo, toastError } from "../../libs/toast";
@@ -16,7 +16,7 @@ export interface LikeButtonProps {
 }
 
 const LikeButton: React.FC<LikeButtonProps> = ({ vote, tokenId, votes = 0, className, userVote = null, onVoted }) => {
-  const { requireAuth } = useAuth();
+  const { requireAuth } = useAuthActions();
   const { account } = useWeb3Provider();
   const [count, setCount] = useState<number>(Number(votes) || 0);
   const [pending, setPending] = useState(false);

@@ -17,7 +17,7 @@ import {
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import GlassModal from "../ui/GlassModal";
 import { Ionicons } from "@expo/vector-icons";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthActions } from "../../context/AuthContext";
 import { limitTip, supportedTokens } from "../../config/constants";
 import AnimatedCheck from "../common/AnimatedCheck";
 import {
@@ -52,7 +52,8 @@ const TipModal: React.FC<TipModalProps> = ({
   triggerClassName,
   triggerText = "Tip",
 }) => {
-  const { user, requireAuth, patchUser } = useAuth();
+  const user = useUser();
+  const { requireAuth, patchUser } = useAuthActions();
   const { provider, account, chainId } = useWeb3Provider();
   const [amount, setAmount] = useState<string>("");
   const [phase, setPhase] = useState<

@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 import { View, Text } from 'react-native';
-import { useAuth } from '../../context/AuthContext';
+import { useUser } from '../../context/AuthContext';
 import { formatCompactNumber } from '../../libs/numbers.util';
 
 interface StatItem { label: string; value: number; key: string }
 
 const ProfileStats: React.FC = () => {
-  const { user } = useAuth();
+  const user = useUser();
 
   const stats = useMemo<StatItem[]>(() => {
     if (!user) return [];

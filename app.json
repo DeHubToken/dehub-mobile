@@ -6,10 +6,10 @@
     "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/AppIcons/playstore.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/default-banner.png",
+      "image": "./assets/banner.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
@@ -53,6 +53,7 @@
     "description": "The decentralised entertainment hub, watch, shop & play on-chain today.",
     "jsEngine": "hermes",
     "plugins": [
+      "expo-splash-screen",
       "expo-secure-store",
       "./libs/reown.queries.js",
       [

@@ -17,13 +17,14 @@ import {
   KeyboardAvoidingView,
   LogBox,
   StatusBar,
+  View,
 } from "react-native";
 import * as WebBrowser from "expo-web-browser";
+import * as ExpoSplashScreen from "expo-splash-screen";
 import { theme } from "./theme";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider, useAuthState } from "./context/AuthContext";
 import { WebSocketProvider } from "./context/WebSocketContext";
 import { DMProvider } from "./context/DMContext";
-import { useAuth } from "./context/AuthContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
 import RootNavigator from "./navigation/RootNavigator";
 import { MessagingProvider } from "./context/MessagingContext";
@@ -38,11 +39,18 @@ import { createLogger } from "./libs/logger";
 
 const logger = createLogger("App");
 
+// Keep the native splash screen visible until we explicitly hide it
+// This prevents white flash between native splash and React app
+ExpoSplashScreen.preventAutoHideAsync().catch(() => {
+  // Ignore errors - splash screen might already be hidden
+});
+
 export default function App() {
   // Complete any pending browser auth sessions (Web3Auth, OAuth)
   WebBrowser.maybeCompleteAuthSession();
 
   const [isLoading, setIsLoading] = React.useState(false);
+  const [appReady, setAppReady] = React.useState(false);
   const { hasInternet, isConnected, checkConnection } = useNetworkStatus();
 
   // App lifecycle management
@@ -56,13 +64,31 @@ export default function App() {
   });
 
   React.useEffect(() => {
-    // Minimal splash handling (currently disabled setIsLoading logic)
     // Kick off background Web3Auth prewarm to avoid first SignIn lag
     prewarmWeb3Auth();
   }, []);
 
+  // Hide native splash once network status is determined
+  // This ensures our SplashScreen component is mounted and ready
+  React.useEffect(() => {
+    if (hasInternet !== null && isConnected !== null) {
+      // Small delay to ensure our SplashScreen is rendered
+      const timer = setTimeout(() => {
+        ExpoSplashScreen.hideAsync().catch(() => {});
+        setAppReady(true);
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [hasInternet, isConnected]);
+
+  // Show our SplashScreen while checking network/loading
+  // The native splash stays visible until appReady
   if (isLoading || hasInternet === null || isConnected === null) {
-    return <SplashScreen />;
+    return (
+      <View style={{ flex: 1, backgroundColor: '#000000' }}>
+        <SplashScreen />
+      </View>
+    );
   }
 
   if (!hasInternet) {
@@ -99,7 +125,7 @@ export default function App() {
 }
 
 const BootGate: React.FC = () => {
-  const { isBootLoading, isSignedIn, needsUsername } = useAuth();
+  const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
   const { updateInfo, showModal, closeModal } = useAppUpdate();
   const isAuthenticated = isSignedIn && !needsUsername;
   const navigationRef = useRef<any>(null);
@@ -121,8 +147,14 @@ const BootGate: React.FC = () => {
   );
 
   // Show splash while loading auth state or navigation state
-  if (isBootLoading || !isReady) return <SplashScreen />;
-  // if (true) return <SplashScreen />;
+  // Wrapped in black View to prevent any white flash
+  if (isBootLoading || !isReady) {
+    return (
+      <View style={{ flex: 1, backgroundColor: '#000000' }}>
+        <SplashScreen />
+      </View>
+    );
+  }
 
   return (
     <>

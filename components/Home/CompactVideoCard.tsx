@@ -14,7 +14,7 @@ import {
   getVideoUrl,
 } from "../../libs";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { useAuth } from "../../context/AuthContext";
+import { useUser } from "../../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useStreamAccessInfo } from "../../libs/validators.util";
@@ -94,7 +94,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const bountyTokenSymbol = streamInfo?.addBountyTokenSymbol;
   const badgeImage = getBadgeUrl((nft as any).minterStaked || 0, "dark");
   const { showUserProfile } = useUserProfileSheet();
-  const { user } = useAuth();
+  const user = useUser();
   const navigation = useNavigation<any>();
   const handlePressCreator = useCallback(() => {
     const id = username || creator || address;

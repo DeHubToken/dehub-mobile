@@ -15,7 +15,7 @@ import {
 } from "../../libs";
 import { formatDistance } from "date-fns";
 import env from "../../config/env";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthActions } from "../../context/AuthContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import {
   getOrCreateAuthSignature,
@@ -61,7 +61,8 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
       (item as any).likes ||
       0) as number;
     const [likeCount, setLikeCount] = useState<number>(initialLikes);
-    const { user, requireAuth, patchUser } = useAuth();
+    const user = useUser();
+    const { requireAuth, patchUser } = useAuthActions();
     const address = user?.address || user?.walletAddress || "";
     const [sigMeta, setSigMeta] = useState<StoredSignatureMeta | null>(null);
 

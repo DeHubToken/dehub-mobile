@@ -13,14 +13,15 @@ import DirectMessagesScreen from "../screens/DirectMessagesScreen";
 import { ScreenNames } from "./ScreenNames";
 import type { BottomTabParamList, AppStackNavigationProp } from "./types";
 import { useNavigation } from "@react-navigation/native";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useAuthState } from "../context/AuthContext";
 import { useUnreadConversationsCount } from "../store/dm.state";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 function BottomTabNavigator() {
   const navigation = useNavigation<AppStackNavigationProp<typeof ScreenNames.Root>>();
-  const { isSignedIn, needsUsername, user } = useAuth();
+  const { isSignedIn, needsUsername } = useAuthState();
+  const user = useUser();
   const isAuthed = isSignedIn && !needsUsername;
   const accent = useMemo(() => theme.colors.accent || "#4F8EF7", []);
   const unreadConvs = useUnreadConversationsCount((user as any)?.id);

@@ -9,7 +9,7 @@ import {
   isWeb3AuthConfigured,
 } from "../../config/web3auth.config";
 import { ChainId } from "../../config/constants";
-import { useAuth } from "../../context/AuthContext";
+import { useAuthActions, useAuthState } from "../../context/AuthContext";
 import FullScreenLoader from "../FullScreenLoader";
 import { toastError } from "../../libs";
 import SocialLoginIcons from "./SocialLoginIcons";
@@ -29,7 +29,8 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   visible,
   onClose,
 }) => {
-  const { signInWithWallet, needsUsername, isLoading: authLoading } = useAuth();
+  const { signInWithWallet } = useAuthActions();
+  const { needsUsername, isLoading: authLoading } = useAuthState();
   const [isLocalLoading, setIsLocalLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
   const isBusy = (authLoading || isLocalLoading) && !needsUsername;
