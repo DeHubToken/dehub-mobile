@@ -5,7 +5,7 @@ import ProfileStats from "../components/Profile/ProfileStats";
 import ProfileAssets from "../components/Profile/ProfileAssets";
 // Removed inline ProfileTabs usage; menu now navigates to a dedicated screen.
 import ProfileMenu from "../components/Profile/ProfileMenu";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { theme } from "../theme";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -17,7 +17,9 @@ import ProfileSignInPrompt from "../components/Profile/ProfileSignInPrompt";
 const REFRESH_INTERVAL_MS = 60_000; // 1 min periodic refresh
 
 const ProfileScreen: React.FC = () => {
-  const { isSignedIn, user, refreshUser } = useAuth();
+  const { isSignedIn } = useAuthState();
+  const user = useUser();
+  const { refreshUser } = useAuthActions();
   const navigation = useNavigation<any>();
   const [refreshing, setRefreshing] = React.useState(false);
 

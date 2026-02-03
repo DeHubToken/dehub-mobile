@@ -6,6 +6,7 @@ import React, {
   useCallback,
   useRef,
   useMemo,
+  memo,
 } from "react";
 // Adapter abstraction (currently only web3auth implementation)
 import { AuthAdapter } from "../services/auth/authAdapter";
@@ -139,7 +140,57 @@ interface AuthContextType {
   // Add more auth methods as needed
 }
 
-// Create the context with a default value
+// === SPLIT CONTEXTS FOR PERFORMANCE ===
+// These separate contexts prevent re-render cascades across the app
+// Components only subscribe to the specific data they need
+
+// User data context (updates rarely - only on profile changes)
+interface UserContextType {
+  user: User | null;
+}
+
+// Auth state context (updates on sign in/out)
+interface AuthStateContextType {
+  isLoading: boolean;
+  isBootLoading: boolean;
+  isSignedIn: boolean;
+  isFirstTimeUser: boolean;
+  needsUsername: boolean;
+  provisionalUser: any | null;
+  provisionalToken: string | null;
+  balancesLoading: boolean;
+}
+
+// Provider context (updates on wallet/chain changes)
+interface ProviderContextType {
+  provider?: EIP1193Provider | null;
+  chainId?: number;
+  providerStatus: ProviderStatus;
+  authMethod?: 'local' | 'web3auth' | null;
+  isSwitchingChain?: boolean;
+}
+
+// Auth actions context (never updates - stable function references)
+interface AuthActionsContextType {
+  signOut: () => Promise<void>;
+  skipAuth: () => Promise<void>;
+  signInWithWallet: (walletAddress: string, chainId: number, overridePrivateKey?: string) => Promise<void>;
+  completeUsername: (finalUser: User) => void;
+  refreshUser: () => Promise<void>;
+  requireAuth: (action: () => void) => void;
+  patchUser: (update: Partial<User> | ((prev: User) => Partial<User>)) => Promise<User | null>;
+  ensureProvider: () => Promise<void>;
+  ensureFreshProvider: () => Promise<void>;
+  switchChain: (targetChainId: number) => Promise<void>;
+}
+
+// Create split contexts
+const UserContext = createContext<UserContextType | undefined>(undefined);
+const AuthStateContext = createContext<AuthStateContextType | undefined>(undefined);
+const ProviderContext = createContext<ProviderContextType | undefined>(undefined);
+const AuthActionsContext = createContext<AuthActionsContextType | undefined>(undefined);
+
+// Legacy combined context (for backward compatibility)
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Auth provider props
@@ -464,15 +515,54 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return await patchUserRaw(current as any, update as any);
   }, [patchUserRaw]);
 
-  // console.log("[AuthContext]", { provider });
-  // if (provider && !("signer" in (provider as any))) {
-  //   // EIP-1193 providers do not expose a signer property; ethers derives it via Web3Provider
-  //   console.log(
-  //     "[AuthContext] Provider is EIP-1193; .signer not present (expected). Ethers will create a Signer via Web3Provider."
-  //   );
-  // }
+  // === SPLIT CONTEXT VALUES (each memoized independently for performance) ===
+  
+  // User context - only updates when user object changes
+  const userContextValue = useMemo<UserContextType>(() => ({
+    user,
+  }), [user]);
 
-  // Create the context value object
+  // Auth state context - updates on auth state changes
+  const authStateContextValue = useMemo<AuthStateContextType>(() => ({
+    isLoading,
+    isBootLoading,
+    isSignedIn,
+    isFirstTimeUser,
+    needsUsername,
+    provisionalUser,
+    provisionalToken,
+    balancesLoading,
+  }), [isLoading, isBootLoading, isSignedIn, isFirstTimeUser, needsUsername, provisionalUser, provisionalToken, balancesLoading]);
+
+  // Provider context - updates on wallet/chain changes
+  const providerContextValue = useMemo<ProviderContextType>(() => ({
+    provider,
+    chainId,
+    providerStatus,
+    authMethod,
+    isSwitchingChain,
+  }), [provider, chainId, providerStatus, authMethod, isSwitchingChain]);
+
+  // Stable refresh function wrapper
+  const refreshUserStable = useCallback(async () => {
+    if (userRef.current) await refreshUser(userRef.current);
+  }, [refreshUser]);
+
+  // Actions context - stable function references (rarely if ever changes)
+  const authActionsContextValue = useMemo<AuthActionsContextType>(() => ({
+    signOut,
+    skipAuth: skipAuthLocal,
+    signInWithWallet,
+    completeUsername,
+    refreshUser: refreshUserStable,
+    requireAuth,
+    patchUser,
+    ensureProvider,
+    ensureFreshProvider,
+    switchChain,
+  }), [signOut, skipAuthLocal, signInWithWallet, completeUsername, refreshUserStable, requireAuth, patchUser, ensureProvider, ensureFreshProvider, switchChain]);
+
+  // Legacy combined context value (for backward compatibility with useAuth)
   const authContextValue: AuthContextType = useMemo(() => ({
     user,
     isLoading,
@@ -487,7 +577,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     provisionalUser,
     provisionalToken,
     completeUsername,
-    refreshUser: async () => { if (userRef.current) await refreshUser(userRef.current); },
+    refreshUser: refreshUserStable,
     requireAuth,
     patchUser,
     provider,
@@ -512,7 +602,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     provisionalUser,
     provisionalToken,
     completeUsername,
-    refreshUser,
+    refreshUserStable,
     requireAuth,
     patchUser,
     provider,
@@ -526,33 +616,41 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   ]);
 
   return (
-    <AuthContext.Provider value={authContextValue}>
-      {children}
-      {isSwitchingChain && (
-        <FullScreenLoader message="Switching network…" />
-      )}
-      {/* SignIn modal for protected actions - shown when user needs to sign in */}
-      {showSignInModal && !isSignedIn && !needsUsername && (
-        <SignInGatewayModal
-          visible={showSignInModal}
-          onClose={() => {
-            setShowSignInModal(false);
-            setPendingAction(null);
-          }}
-        />
-      )}
-      {/* Username modal - shown when user signed in via modal but needs username */}
-      {showSignInModal && needsUsername && provisionalUser && (
-        <UsernameRequiredModal
-          visible={true}
-          provisionalUser={provisionalUser}
-          onComplete={(finalUser) => {
-            completeUsername(finalUser);
-            // Modal will close automatically when needsUsername becomes false
-          }}
-        />
-      )}
-    </AuthContext.Provider>
+    <UserContext.Provider value={userContextValue}>
+      <AuthStateContext.Provider value={authStateContextValue}>
+        <ProviderContext.Provider value={providerContextValue}>
+          <AuthActionsContext.Provider value={authActionsContextValue}>
+            <AuthContext.Provider value={authContextValue}>
+              {children}
+              {isSwitchingChain && (
+                <FullScreenLoader message="Switching network…" />
+              )}
+              {/* SignIn modal for protected actions - shown when user needs to sign in */}
+              {showSignInModal && !isSignedIn && !needsUsername && (
+                <SignInGatewayModal
+                  visible={showSignInModal}
+                  onClose={() => {
+                    setShowSignInModal(false);
+                    setPendingAction(null);
+                  }}
+                />
+              )}
+              {/* Username modal - shown when user signed in via modal but needs username */}
+              {showSignInModal && needsUsername && provisionalUser && (
+                <UsernameRequiredModal
+                  visible={true}
+                  provisionalUser={provisionalUser}
+                  onComplete={(finalUser) => {
+                    completeUsername(finalUser);
+                    // Modal will close automatically when needsUsername becomes false
+                  }}
+                />
+              )}
+            </AuthContext.Provider>
+          </AuthActionsContext.Provider>
+        </ProviderContext.Provider>
+      </AuthStateContext.Provider>
+    </UserContext.Provider>
   );
 };
 
@@ -563,4 +661,65 @@ export const useAuth = (): AuthContextType => {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
+};
+
+// === OPTIMIZED SELECTOR HOOKS ===
+// These hooks only subscribe to specific parts of the auth state,
+// preventing unnecessary re-renders when unrelated state changes.
+
+/**
+ * Hook to access only user data. Components using this will only re-render
+ * when the user object changes, not when loading states or provider changes.
+ */
+export const useUser = (): User | null => {
+  const context = useContext(UserContext);
+  if (context === undefined) {
+    throw new Error("useUser must be used within an AuthProvider");
+  }
+  return context.user;
+};
+
+/**
+ * Hook to access auth state (loading, signed in status, etc).
+ * Use this when you only need to check auth state without user details.
+ */
+export const useAuthState = (): AuthStateContextType => {
+  const context = useContext(AuthStateContext);
+  if (context === undefined) {
+    throw new Error("useAuthState must be used within an AuthProvider");
+  }
+  return context;
+};
+
+/**
+ * Hook to access web3 provider state.
+ * Use this for wallet/chain related operations.
+ */
+export const useProvider = (): ProviderContextType => {
+  const context = useContext(ProviderContext);
+  if (context === undefined) {
+    throw new Error("useProvider must be used within an AuthProvider");
+  }
+  return context;
+};
+
+/**
+ * Hook to access auth actions (signOut, signIn, etc).
+ * These are stable function references that rarely change.
+ */
+export const useAuthActions = (): AuthActionsContextType => {
+  const context = useContext(AuthActionsContext);
+  if (context === undefined) {
+    throw new Error("useAuthActions must be used within an AuthProvider");
+  }
+  return context;
+};
+
+// Export types for external use
+export type { 
+  AuthContextType, 
+  UserContextType, 
+  AuthStateContextType, 
+  ProviderContextType, 
+  AuthActionsContextType 
 };

@@ -19,7 +19,7 @@ import {
   type NotificationCategory,
 } from "../services/user.service";
 import { getNFT } from "../services/nft.service";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -108,7 +108,9 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({ selected, onSelect }) => (
 // =============================================================================
 
 const NotificationScreen = () => {
-  const { patchUser, user, isSignedIn, needsUsername } = useAuth();
+  const { patchUser } = useAuthActions();
+  const user = useUser();
+  const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
   const navigation = useNavigation<any>();

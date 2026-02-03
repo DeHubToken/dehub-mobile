@@ -6,12 +6,13 @@ import { Ionicons } from "@expo/vector-icons";
 // import AntDesign from '@expo/vector-icons/AntDesign';
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useAuthState } from "../context/AuthContext";
 import { theme } from "../theme";
 
 const HomeHeader = () => {
   const navigation = useNavigation<any>();
-  const { isSignedIn, user } = useAuth();
+  const { isSignedIn } = useAuthState();
+  const user = useUser();
   // Show blue dot when there are unread notifications
   const hasUnread = (user?.notificationCount || 0) > 0;
 

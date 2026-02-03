@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { createStackNavigator, StackCardStyleInterpolator } from "@react-navigation/stack";
 import { ScreenNames } from "./ScreenNames";
 import type { AuthStackParamList } from "./types";
@@ -6,32 +6,12 @@ import SignInScreen from "../screens/auth/SignInScreen";
 import OnboardingScreen from "../screens/auth/OnboardingScreen";
 import SetProfileScreen from "../screens/auth/SetProfileScreen";
 import ImportWalletScreen from "../screens/auth/ImportWalletScreen";
-import { useAuth } from "../context/AuthContext";
+import { useAuthState } from "../context/AuthContext";
+import { createLogger } from "../libs/logger";
 
-/** Slide up with overlay fade animation - for SignIn */
-const slideFromBottomWithOverlay: StackCardStyleInterpolator = ({ current, layouts }) => ({
-  cardStyle: {
-    transform: [
-      {
-        translateY: current.progress.interpolate({
-          inputRange: [0, 1],
-          outputRange: [layouts.screen.height, 0],
-          extrapolate: 'clamp',
-        }),
-      },
-    ],
-  },
-  overlayStyle: {
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    opacity: current.progress.interpolate({
-      inputRange: [0, 1],
-      outputRange: [0, 0.5],
-      extrapolate: 'clamp',
-    }),
-  },
-});
+const log = createLogger("AuthNavigator");
 
-/** Slide from right animation - for Onboarding to SignIn transition */
+/** Slide from right animation - standard iOS-style */
 const slideFromRight: StackCardStyleInterpolator = ({ current, next, layouts }) => ({
   cardStyle: {
     transform: [
@@ -58,45 +38,56 @@ const slideFromRight: StackCardStyleInterpolator = ({ current, next, layouts }) 
 const Stack = createStackNavigator<AuthStackParamList>();
 
 /**
- * AuthNavigator handles the first-time user experience:
- * Onboarding → SignIn → SetProfile (if needed)
+ * AuthNavigator - Handles the authentication flow
  * 
- * Once a user completes onboarding (or skips), setHasSeenAuth() is called,
- * and on next app launch they go directly to App (public mode).
+ * Flow states:
+ * 1. First time user: Onboarding → SignIn → (optional) SetProfile → App
+ * 2. Returning user needs sign-in: SignIn → (optional) SetProfile → App
+ * 3. User needs username: SetProfile → App
  * 
- * When needsUsername is true (user authenticated but no username),
- * SetProfile is shown as the initial route and back navigation is disabled.
+ * Initial route is determined once on mount to prevent navigation flickering.
  */
 export default function AuthNavigator() {
-  const { needsUsername, provisionalUser } = useAuth();
+  const { needsUsername, provisionalUser, isFirstTimeUser } = useAuthState();
+  const hasInitializedRef = useRef(false);
+
+  // Determine initial route ONLY on first mount
+  const initialRouteRef = useRef<keyof AuthStackParamList>(ScreenNames.Onboarding);
   
-  // If user needs username, start directly on SetProfile
-  // This handles cases where user signs in via modal and needs to complete profile
-  const initialRoute = (needsUsername && provisionalUser) 
-    ? ScreenNames.SetProfile 
-    : ScreenNames.Onboarding;
+  if (!hasInitializedRef.current) {
+    if (needsUsername && provisionalUser) {
+      // User authenticated but needs to set profile
+      initialRouteRef.current = ScreenNames.SetProfile;
+    } else if (!isFirstTimeUser) {
+      // Returning user who hasn't seen onboarding recently
+      initialRouteRef.current = ScreenNames.SignIn;
+    } else {
+      // First time user
+      initialRouteRef.current = ScreenNames.Onboarding;
+    }
+    hasInitializedRef.current = true;
+    log.info("AuthNavigator initial route", { route: initialRouteRef.current });
+  }
 
   return (
     <Stack.Navigator
-      initialRouteName={initialRoute}
+      initialRouteName={initialRouteRef.current}
       screenOptions={{
         headerShown: false,
         cardStyle: { backgroundColor: '#000' },
         gestureEnabled: false, // Disable back gesture for auth flow
+        cardStyleInterpolator: slideFromRight,
       }}
     >
       <Stack.Screen
         name={ScreenNames.Onboarding}
         component={OnboardingScreen}
-        options={{
-          cardStyleInterpolator: slideFromRight,
-        }}
       />
       <Stack.Screen
         name={ScreenNames.SignIn}
         component={SignInScreen}
         options={{
-          cardStyleInterpolator: slideFromRight,
+          gestureEnabled: true,
           gestureDirection: 'horizontal',
         }}
       />
@@ -104,16 +95,15 @@ export default function AuthNavigator() {
         name={ScreenNames.SetProfile}
         component={SetProfileScreen}
         options={{
-          cardStyleInterpolator: slideFromRight,
-          gestureDirection: 'horizontal',
-          gestureEnabled: false, // Never allow gesture back - must complete profile
+          // Never allow gesture back from SetProfile - must complete or sign out
+          gestureEnabled: false,
         }}
       />
       <Stack.Screen
         name={ScreenNames.ImportWallet}
         component={ImportWalletScreen}
         options={{
-          cardStyleInterpolator: slideFromRight,
+          gestureEnabled: true,
           gestureDirection: 'horizontal',
         }}
       />

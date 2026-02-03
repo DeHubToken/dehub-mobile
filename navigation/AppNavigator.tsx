@@ -22,7 +22,7 @@ import LiveViewerScreen from "../screens/LiveViewerScreen";
 import DpayScreen from "../screens/DpayScreen";
 import { LivepeerProvider } from "../config/livepeer.config";
 import ChatScreen from "../screens/ChatScreen";
-import { useAuth } from "../context/AuthContext";
+import { useAuthState } from "../context/AuthContext";
 
 // =============================================================================
 // Constants
@@ -105,7 +105,7 @@ const LiveViewerWithProvider: React.FC<any> = (props) => (
 const Stack = createStackNavigator<AppStackParamList>();
 
 export default function AppNavigator() {
-  const { isSignedIn, needsUsername } = useAuth();
+  const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
 
   return (

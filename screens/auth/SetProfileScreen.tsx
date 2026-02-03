@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   View,
   Text,
@@ -12,8 +12,8 @@ import {
   BackHandler,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useFocusEffect } from "@react-navigation/native";
-import { useAuth } from "../../context/AuthContext";
+import { useFocusEffect, CommonActions } from "@react-navigation/native";
+import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { AuthService } from "../../services/auth.service";
 import { useDebounceCallback } from "../../hooks/useDebounceCallback";
 import { toastError, toastSuccess, toastInfo } from "../../libs";
@@ -21,6 +21,9 @@ import { setAuthUser } from "../../libs/auth.utils";
 import { User } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import AccentButtonGradient from "../../components/ui/AccentButtonGradient";
+import { createLogger } from "../../libs/logger";
+
+const log = createLogger("SetProfileScreen");
 
 // 3D user image
 const USER_3D_IMAGE = require("../../assets/onboarding/user-3d.png");
@@ -29,25 +32,56 @@ interface SetProfileScreenProps {
   navigation: any;
 }
 
+/**
+ * SetProfileScreen - Handles username and display name setup
+ * 
+ * This screen is shown when a user has authenticated but doesn't have a username.
+ * The user cannot navigate away without completing profile or signing out.
+ */
 const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
-  const { provisionalUser, completeUsername, needsUsername, signOut } = useAuth();
+  const { provisionalUser, needsUsername } = useAuthState();
+  const { completeUsername, signOut } = useAuthActions();
   
   const [username, setUsername] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [checking, setChecking] = useState(false);
   const [available, setAvailable] = useState<boolean | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  
+  const isMountedRef = useRef(true);
+  const hasNavigatedRef = useRef(false);
 
-  // Prevent hardware back button when username is needed
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => { isMountedRef.current = false; };
+  }, []);
+
+  /**
+   * Navigate to the main app
+   */
+  const navigateToApp = useCallback(() => {
+    if (!isMountedRef.current || hasNavigatedRef.current) return;
+    
+    hasNavigatedRef.current = true;
+    log.info("Navigating to App");
+    
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: ScreenNames.App }],
+      })
+    );
+  }, [navigation]);
+
+  // Prevent hardware back button
   useFocusEffect(
     useCallback(() => {
       const onBackPress = () => {
         if (needsUsername) {
-          // Block back navigation - user must complete profile or sign out
           toastInfo("Please complete your profile to continue");
-          return true; // Prevents default back behavior
+          return true; // Block back navigation
         }
-        return false; // Allow default back behavior
+        return false;
       };
 
       const subscription = BackHandler.addEventListener(
@@ -59,46 +93,30 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
     }, [needsUsername])
   );
 
-  // Disable swipe/gesture back when username is needed
+  // Disable swipe/gesture back
   useEffect(() => {
     if (needsUsername) {
-      navigation.setOptions({
-        gestureEnabled: false,
-      });
+      navigation.setOptions({ gestureEnabled: false });
     }
   }, [needsUsername, navigation]);
 
-  // Redirect if user doesn't need username (profile completed)
+  // Navigate to App when profile is complete (needsUsername becomes false)
   useEffect(() => {
-    if (!needsUsername && !submitting) {
-      // User already has username, go to app
-      try {
-        navigation
-          ?.getParent?.()
-          ?.reset({ index: 0, routes: [{ name: ScreenNames.App as never }] });
-      } catch {
-        // Fallback: try resetting current navigator
-        try {
-          navigation.reset({
-            index: 0,
-            routes: [{ name: ScreenNames.Onboarding }],
-          });
-        } catch {}
-      }
+    if (!needsUsername && !submitting && !hasNavigatedRef.current) {
+      log.info("Profile complete, navigating to App");
+      navigateToApp();
     }
-  }, [needsUsername, navigation, submitting]);
+  }, [needsUsername, submitting, navigateToApp]);
 
-  // If there's no provisional user and username is not needed, something is wrong
-  // This handles edge cases where user navigates here incorrectly
+  // Handle edge case: arrived here without provisional user
   useEffect(() => {
-    if (!provisionalUser && !needsUsername) {
-      // Redirect to sign in
-      try {
-        navigation.reset({
-          index: 0,
-          routes: [{ name: ScreenNames.SignIn }],
-        });
-      } catch {}
+    if (!provisionalUser && !needsUsername && !hasNavigatedRef.current) {
+      log.warn("No provisional user, redirecting to SignIn");
+      hasNavigatedRef.current = true;
+      navigation.reset({
+        index: 0,
+        routes: [{ name: ScreenNames.SignIn }],
+      });
     }
   }, [provisionalUser, needsUsername, navigation]);
 
@@ -147,6 +165,9 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
       };
       await setAuthUser(finalUser);
       toastSuccess("Profile set successfully!");
+      
+      // completeUsername will set needsUsername to false,
+      // which triggers navigation via the useEffect above
       completeUsername(finalUser);
     } catch (e: any) {
       toastError(e, "Failed to set profile");
@@ -283,11 +304,17 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
             <TouchableOpacity
               onPress={async () => {
                 try {
+                  log.info("User cancelled, signing out");
                   await signOut();
-                  // Navigation will happen automatically via RootNavigator
-                  // when needsUsername becomes false
+                  // After sign out, navigate back to SignIn
+                  if (isMountedRef.current) {
+                    navigation.reset({
+                      index: 0,
+                      routes: [{ name: ScreenNames.SignIn }],
+                    });
+                  }
                 } catch (e) {
-                  console.warn("[SetProfile] Sign out error:", e);
+                  log.warn("Sign out error", e);
                 }
               }}
               disabled={submitting}

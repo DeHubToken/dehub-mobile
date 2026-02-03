@@ -7,7 +7,7 @@ import { getAvatarUrl, getBadgeName, getBadgeUrl } from "../../libs/misc";
 import { truncateAddress } from "../../libs/strings.util";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { useAuth } from "../../context/AuthContext";
+import { useAuthActions } from "../../context/AuthContext";
 import { maxStacked } from "../../libs/validators.util";
 
 export type Creator = {
@@ -115,7 +115,7 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
     ]
   );
   const { showUserProfile } = useUserProfileSheet();
-  const { requireAuth } = useAuth();
+  const { requireAuth } = useAuthActions();
   const handleOpenProfile = useCallback(() => {
     if (!profileId) return;
     showUserProfile(profileId);

@@ -14,7 +14,7 @@ import type { GetNFTsResult, SearchParams } from "../services/nft.service";
 import { getImageUrl } from "../libs";
 import { useAppKitAccount } from "@reown/appkit-ethers5-react-native";
 import FeedCard from "../components/Feed/FeedCard";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useAuthState } from "../context/AuthContext";
 import { getSavedPosts, getLikedNFTs } from "../services";
 import AccentButtonGradient from "../components/ui/AccentButtonGradient";
 
@@ -31,7 +31,8 @@ const feedTabs = [
 const FeedScreen = () => {
   const navigation = useNavigation<any>();
   const [activeTab, setActiveTab] = useState("New");
-  const { user, isSignedIn } = useAuth();
+  const user = useUser();
+  const { isSignedIn } = useAuthState();
 
   const [commentSheetOpen, setCommentSheetOpen] = useState(false);
   const [commentPost, setCommentPost] = useState<GetNFTsResult | null>(null);

@@ -27,7 +27,7 @@ import {
   Gift as GiftIcon,
   Heart,
 } from "lucide-react-native";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthActions } from "../../context/AuthContext";
 import { limitTip, supportedTokens } from "../../config/constants";
 import AnimatedCheck from "../common/AnimatedCheck";
 import {
@@ -134,7 +134,8 @@ const GiftModal: React.FC<GiftModalProps> = ({
   stream,
   onSent,
 }) => {
-  const { user, patchUser, requireAuth } = useAuth();
+  const user = useUser();
+  const { patchUser, requireAuth } = useAuthActions();
   const { provider, account, chainId } = useWeb3Provider();
   const tokenMeta = useMemo(() => {
     if (!chainId) return undefined;
