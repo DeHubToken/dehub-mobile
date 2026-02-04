@@ -14,6 +14,7 @@ import {
 import { AuthService } from "../services";
 import { clearSigningProvider } from "../libs/provider.registry";
 import { clearPersistedNavigationState } from "./useNavigationPersistence";
+import { unregisterPushTokens } from "../services/push/push.service";
 // balances fetching centralized in useBalances
 
 type Logger = {
@@ -120,7 +121,7 @@ export function useAuthSession({
         const tNotifStart = Date.now();
         const addr = enriched.walletAddress || enriched.address;
         if (addr) {
-          const nRes: any = await getNotifications(addr, { unit: 20 });
+          const nRes: any = await getNotifications({ limit: 20 });
           const notificationRes = nRes?.data?.result || nRes?.result || nRes;
           if (notificationRes) {
             const unread = (notificationRes as any[]).length;
@@ -183,6 +184,12 @@ export function useAuthSession({
   const signOut = useCallback(async () => {
     setIsLoading(true);
     try {
+      // Unregister push tokens before clearing auth
+      try {
+        await unregisterPushTokens();
+      } catch (e) {
+        log.warn('signOut:unregisterPushTokens:error', e as any);
+      }
       await clearAuthData();
       setUser(null);
       setIsSignedIn(false);
@@ -201,6 +208,7 @@ export function useAuthSession({
       setIsLoading(false);
     }
   }, [
+    log,
     clearAuthData,
     providerReset,
     setBalancesLoading,

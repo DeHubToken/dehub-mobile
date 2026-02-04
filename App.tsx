@@ -28,6 +28,7 @@ import { DMProvider } from "./context/DMContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
 import RootNavigator from "./navigation/RootNavigator";
 import { MessagingProvider } from "./context/MessagingContext";
+import { PushNotificationsProvider } from "./services/push";
 import { prewarmWeb3Auth } from "./config/web3auth.config";
 import { Platform } from "react-native";
 import UpdateAppModal from "./components/UpdateAppModal";
@@ -185,11 +186,13 @@ const BootGate: React.FC = () => {
               logger.info("Navigation container ready");
             }}
           >
-            <UserProfileSheetProvider>
-              <MessagingProvider>
-                <RootNavigator />
-              </MessagingProvider>
-            </UserProfileSheetProvider>
+            <PushNotificationsProvider>
+              <UserProfileSheetProvider>
+                <MessagingProvider>
+                  <RootNavigator />
+                </MessagingProvider>
+              </UserProfileSheetProvider>
+            </PushNotificationsProvider>
           </NavigationContainer>
         </ErrorBoundary>
       </SafeAreaView>

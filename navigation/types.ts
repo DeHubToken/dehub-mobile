@@ -65,6 +65,7 @@ export type AppStackParamList = {
   };
   [ScreenNames.Leaderboard]: undefined;
   [ScreenNames.Notifications]: undefined;
+  [ScreenNames.NotificationSettings]: undefined;
   [ScreenNames.Feed]: undefined;
   [ScreenNames.FeedDetail]: {
     postId: string;

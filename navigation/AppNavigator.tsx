@@ -7,6 +7,7 @@ import BottomTabNavigator from "./BottomTabNavigator";
 import VideoPlayerScreen from "../screens/VideoPlayerScreen";
 import LeaderboardScreen from "../screens/LeaderboardScreen";
 import NotificationScreen from "../screens/NotificationScreen";
+import NotificationSettingsScreen from "../screens/NotificationSettingsScreen";
 import FeedScreen from "../screens/FeedScreen";
 import FeedDetailScreen from "../screens/FeedDetailScreen";
 import ImageViewerScreen from "../screens/ImageViewerScreen";
@@ -220,6 +221,10 @@ export default function AppNavigator() {
             <Stack.Screen
               name={ScreenNames.Notifications}
               component={NotificationScreen}
+            />
+            <Stack.Screen
+              name={ScreenNames.NotificationSettings}
+              component={NotificationSettingsScreen}
             />
             <Stack.Screen
               name={ScreenNames.Chat}

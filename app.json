@@ -57,6 +57,13 @@
       "expo-secure-store",
       "./libs/reown.queries.js",
       [
+        "expo-notifications",
+        {
+          "color": "#8b5cf6",
+          "defaultChannel": "default"
+        }
+      ],
+      [
         "expo-video",
         {
           "supportsBackgroundPlayback": true,
