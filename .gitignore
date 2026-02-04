@@ -48,3 +48,5 @@ node_modules
 /.expo
 
 .env
+
+dhb-service-key.json

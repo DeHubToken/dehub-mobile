@@ -43,13 +43,28 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   const appStateRef = useRef<AppStateStatus>(AppState.currentState);
   const hasRegisteredRef = useRef(false);
   const pushTokenRef = useRef<string | null>(null);
+  // Store pending navigation to execute after auth completes
+  const pendingNavigationRef = useRef<NotificationData | null>(null);
 
   // ==========================================================================
   // Navigation Handler
   // ==========================================================================
 
   const handleNotificationNavigation = useCallback((data: NotificationData) => {
-    const { type, tokenId, actorAddress, actorUsername, postType } = data;
+    // Guard: Don't navigate if no valid notification type
+    if (!data?.type) {
+      logger.debug('Skipping navigation - no notification type', { data });
+      return;
+    }
+
+    // Guard: If user isn't fully signed in, store for later
+    if (!isFullySignedIn) {
+      logger.debug('User not authenticated, storing pending navigation', { type: data.type });
+      pendingNavigationRef.current = data;
+      return;
+    }
+
+    const { type, tokenId, postType } = data;
 
     logger.info('Handling notification tap', { type, tokenId });
 
@@ -97,21 +112,18 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           navigation.navigate(ScreenNames.Notifications);
           break;
 
-        // Default
+        // Default - only navigate if we have a valid type
         default:
-          navigation.navigate(ScreenNames.Notifications);
+          if (type) {
+            navigation.navigate(ScreenNames.Notifications);
+          }
           break;
       }
     } catch (error) {
       logger.error('Navigation failed', error);
-      // Fallback to notifications screen
-      try {
-        navigation.navigate(ScreenNames.Notifications);
-      } catch {
-        // Ignore if navigation fails completely
-      }
+      // Don't try fallback navigation - could cause loops
     }
-  }, [navigation]);
+  }, [navigation, isFullySignedIn]);
 
   // ==========================================================================
   // Registration
@@ -146,12 +158,23 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       registerPushToken();
     }
 
+    // Handle pending navigation after auth completes
+    if (isFullySignedIn && pendingNavigationRef.current) {
+      const pendingData = pendingNavigationRef.current;
+      pendingNavigationRef.current = null;
+      // Small delay to ensure navigation is ready
+      setTimeout(() => {
+        handleNotificationNavigation(pendingData);
+      }, 500);
+    }
+
     // Reset registration flag when user signs out
     if (!isFullySignedIn) {
       hasRegisteredRef.current = false;
       pushTokenRef.current = null;
+      pendingNavigationRef.current = null;
     }
-  }, [isFullySignedIn, registerPushToken]);
+  }, [isFullySignedIn, registerPushToken, handleNotificationNavigation]);
 
   useEffect(() => {
     // Handle foreground notifications
@@ -169,10 +192,12 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       (response) => {
         const data = response.notification.request.content.data as NotificationData;
         
-        logger.info('User tapped notification', { type: data?.type });
-
-        if (data) {
+        // Only process if we have valid notification data with a type
+        if (data?.type) {
+          logger.info('User tapped notification', { type: data.type });
           handleNotificationNavigation(data);
+        } else {
+          logger.debug('Ignoring notification response without valid type', { data });
         }
       }
     );
