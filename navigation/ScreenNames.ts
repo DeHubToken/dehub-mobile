@@ -9,6 +9,7 @@ export enum ScreenNames {
   Profile = 'Profile',
   Settings = 'Settings',
   Notifications = 'Notifications',
+  NotificationSettings = 'NotificationSettings',
   Search = 'Search',
   Leaderboard = 'Leaderboard',
   Feed = 'Feed',

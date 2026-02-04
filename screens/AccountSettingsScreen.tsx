@@ -227,18 +227,18 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
             </TouchableOpacity>
             <View className="h-px bg-theme-neutrals-700" />
             <TouchableOpacity
-              disabled
-              className="px-4 py-4 flex-row items-center justify-between opacity-60"
+              onPress={() => navigation.navigate(ScreenNames.NotificationSettings)}
+              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
             >
               <View>
-                <Text className="text-theme-neutrals-100 text-sm">
+                <Text className="text-theme-neutrals-100 text-sm font-medium">
                   Notifications
                 </Text>
                 <Text className="text-theme-neutrals-500 text-xs mt-1">
-                  Push, mentions
+                  Push, in-app, quiet hours
                 </Text>
               </View>
-              <Ionicons name="chevron-forward" size={18} color="#6b7280" />
+              <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
             </TouchableOpacity>
             <View className="h-px bg-theme-neutrals-700" />
             <TouchableOpacity
