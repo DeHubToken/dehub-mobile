@@ -4,18 +4,18 @@
  * Handles the complete push notification lifecycle:
  * - Permission requests and token registration
  * - Notification listeners (foreground & response)
- * - Deep linking/navigation from notification taps
  * - Token refresh handling
  * - Cleanup on logout
  * 
- * Usage: Call usePushNotifications() in your app's root component.
+ * NOTE: Navigation from notification taps is handled globally by PushNotificationsProvider.
+ * This hook is for registration/status only.
+ * 
+ * Usage: Call usePushNotifications() in components that need push notification status.
  */
 import { useEffect, useRef, useCallback, useState } from 'react';
 import * as Notifications from 'expo-notifications';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { AppState, AppStateStatus } from 'react-native';
 import { useUser, useAuthState } from '../context/AuthContext';
-import { ScreenNames } from '../navigation/ScreenNames';
 import {
   registerForPushNotifications,
   registerPushTokenWithBackend,
@@ -61,7 +61,6 @@ export function usePushNotifications(
 ): UsePushNotificationsReturn {
   const { autoRegister = true, onNotificationReceived, onNotificationResponse } = options;
   
-  const navigation = useNavigation<NavigationProp<any>>();
   const user = useUser();
   const { isSignedIn } = useAuthState();
   
@@ -76,73 +75,6 @@ export function usePushNotifications(
   const tokenRefreshListener = useRef<Notifications.Subscription | null>(null);
   const appStateRef = useRef<AppStateStatus>(AppState.currentState);
   const hasRegisteredRef = useRef(false);
-
-  // ==========================================================================
-  // Navigation Handler
-  // ==========================================================================
-
-  const handleNotificationNavigation = useCallback((data: NotificationData) => {
-    const { type, tokenId, actorAddress, actorUsername, postType } = data;
-
-    logger.info('Handling notification navigation', { type, tokenId });
-
-    switch (type) {
-      // Engagement - navigate to content
-      case 'like':
-      case 'comment':
-      case 'comment_reply':
-      case 'video_milestone':
-        if (tokenId) {
-          // Check if it's a feed post or video
-          if (postType === 'feed-images' || postType === 'feed-simple') {
-            navigation.navigate(ScreenNames.FeedDetail, { tokenId });
-          } else {
-            navigation.navigate(ScreenNames.VideoPlayer, { tokenId });
-          }
-        } else {
-          navigation.navigate(ScreenNames.Notifications);
-        }
-        break;
-
-      // Social - navigate to profile or notifications
-      case 'following':
-        // Show the actor's profile
-        if (actorUsername || actorAddress) {
-          // Profile navigation handled by UserProfileSheet typically
-          // For now, go to notifications where user can tap to see profile
-          navigation.navigate(ScreenNames.Notifications);
-        }
-        break;
-
-      // Monetization - navigate to earnings/notifications
-      case 'tip':
-      case 'subscription':
-      case 'ppv_purchase':
-        // Could navigate to earnings screen if you have one
-        // For now, navigate to notifications
-        navigation.navigate(ScreenNames.Notifications);
-        break;
-
-      // Livestream - navigate to live viewer
-      case 'livestream_start':
-        if (tokenId) {
-          navigation.navigate(ScreenNames.LiveViewer, { streamId: String(tokenId) });
-        } else {
-          navigation.navigate(ScreenNames.Notifications);
-        }
-        break;
-
-      // Content moderation
-      case 'video_removal':
-        navigation.navigate(ScreenNames.Notifications);
-        break;
-
-      // Default - go to notifications screen
-      default:
-        navigation.navigate(ScreenNames.Notifications);
-        break;
-    }
-  }, [navigation]);
 
   // ==========================================================================
   // Registration
@@ -211,22 +143,22 @@ export function usePushNotifications(
     );
 
     // Handle notification tap/response
+    // NOTE: Navigation is handled by PushNotificationsProvider globally
+    // This listener is only for custom callback handling and state updates
     responseListener.current = Notifications.addNotificationResponseReceivedListener(
       (response) => {
         const data = response.notification.request.content.data as NotificationData;
         
-        logger.info('User tapped notification', {
+        logger.debug('Notification response received', {
           type: data?.type,
           actionIdentifier: response.actionIdentifier,
         });
 
-        // Custom callback first
+        // Call custom callback if provided
         onNotificationResponse?.(response);
-
-        // Default navigation handling
-        if (data) {
-          handleNotificationNavigation(data);
-        }
+        
+        // Update local state with the notification
+        setLastNotification(response.notification);
       }
     );
 
@@ -253,7 +185,7 @@ export function usePushNotifications(
         tokenRefreshListener.current.remove();
       }
     };
-  }, [onNotificationReceived, onNotificationResponse, handleNotificationNavigation, isSignedIn, user?.walletAddress]);
+  }, [onNotificationReceived, onNotificationResponse, isSignedIn, user?.walletAddress]);
 
   // ==========================================================================
   // App State Handling - Clear badge when app comes to foreground

@@ -29,6 +29,7 @@ import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
 import RootNavigator from "./navigation/RootNavigator";
 import { MessagingProvider } from "./context/MessagingContext";
 import { PushNotificationsProvider } from "./services/push";
+import { linkingConfig } from "./navigation/linking.config";
 import { prewarmWeb3Auth } from "./config/web3auth.config";
 import { Platform } from "react-native";
 import UpdateAppModal from "./components/UpdateAppModal";
@@ -169,6 +170,7 @@ const BootGate: React.FC = () => {
         >
           <NavigationContainer
             ref={navigationRef}
+            linking={linkingConfig}
             initialState={initialState}
             onStateChange={handleStateChange}
             theme={{

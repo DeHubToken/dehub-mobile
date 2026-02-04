@@ -22,6 +22,9 @@
       "jsEngine": "hermes",
       "bundleIdentifier": "io.dehub.mobile",
       "icon": "./assets/AppIcons/appstore.png",
+      "associatedDomains": [
+        "applinks:legacy.dehub.io"
+      ],
       "infoPlist": {
         "LSApplicationQueriesSchemes": [
           "metamask",
@@ -44,7 +47,27 @@
       "compileSdkVersion": 35,
       "targetSdkVersion": 35,
       "softwareKeyboardLayoutMode": "resize",
-      "permissions": ["CAMERA", "RECORD_AUDIO"]
+      "permissions": ["CAMERA", "RECORD_AUDIO"],
+      "googleServicesFile": "./google-services.json",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "legacy.dehub.io",
+              "pathPrefix": "/stream"
+            },
+            {
+              "scheme": "https",
+              "host": "legacy.dehub.io",
+              "pathPrefix": "/feeds"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
     },
     "web": {
       "favicon": "./assets/AppIcons/web/favicon.png",
