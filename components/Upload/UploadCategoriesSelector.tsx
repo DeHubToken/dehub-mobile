@@ -14,6 +14,12 @@ export type UploadCategoriesSelectorProps = {
   onAdd: (name: string) => void;
   onRemove: (name: string) => void;
   type?: 'feed' | 'video' | 'live';
+  /** Hide the selected-category pills inside the selector */
+  hidePills?: boolean;
+  /** Hide the header row (title + count) */
+  hideHeader?: boolean;
+  /** Custom placeholder for the search input */
+  placeholder?: string;
 };
 
 const UploadCategoriesSelector: React.FC<UploadCategoriesSelectorProps> = ({
@@ -28,6 +34,9 @@ const UploadCategoriesSelector: React.FC<UploadCategoriesSelectorProps> = ({
   onAdd,
   onRemove,
   type,
+  hidePills,
+  hideHeader,
+  placeholder: placeholderProp,
 }) => {
   const filtered = useMemo(() => {
     const list = categoryQuery
@@ -40,19 +49,21 @@ const UploadCategoriesSelector: React.FC<UploadCategoriesSelectorProps> = ({
 
   return (
     <View className="mb-4">
-      <View className="flex-row items-center justify-between mb-1">
-        <Text className="text-gray-400">
-          Categories {type !== 'feed' && <Text className="text-red-500">*</Text>}
-        </Text>
-        <Text
-          className={`text-xs ${
-            categories.length >= max ? "text-red-500" : "text-gray-500"
-          }`}
-        >
-          {categories.length}/{max}
-        </Text>
-      </View>
-      {categories.length > 0 && (
+      {!hideHeader && (
+        <View className="flex-row items-center justify-between mb-1">
+          <Text className="text-gray-400">
+            Categories {type !== 'feed' && <Text className="text-red-500">*</Text>}
+          </Text>
+          <Text
+            className={`text-xs ${
+              categories.length >= max ? "text-red-500" : "text-gray-500"
+            }`}
+          >
+            {categories.length}/{max}
+          </Text>
+        </View>
+      )}
+      {!hidePills && categories.length > 0 && (
         <View className="flex-row flex-wrap gap-2 mb-2">
           {categories.map((c) => (
             <View
@@ -91,9 +102,11 @@ const UploadCategoriesSelector: React.FC<UploadCategoriesSelectorProps> = ({
               onSubmitEditing={() => onAdd(categoryQuery)}
               returnKeyType="done"
               placeholder={
-                categories.length
-                  ? "Add more categories"
-                  : "Search or type a category"
+                placeholderProp
+                  ? placeholderProp
+                  : categories.length
+                    ? "Add more categories"
+                    : "Search or type a category"
               }
               placeholderTextColor="#9CA3AF"
               className="text-white"

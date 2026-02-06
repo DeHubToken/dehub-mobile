@@ -33,6 +33,7 @@ export enum ScreenNames {
   Dpay = 'Dpay',
   FollowList = 'FollowList',
   PrivacySettings = 'PrivacySettings',
+  Drafts = 'Drafts',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',

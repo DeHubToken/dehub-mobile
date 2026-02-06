@@ -23,9 +23,6 @@ const logger = createLogger('NavigationPersistence');
 const NAVIGATION_STATE_KEY = '@dhb_navigation_state';
 const STATE_VERSION = 1; // Increment when navigation structure changes significantly
 
-// 🔧 DEV: Set to true to disable navigation persistence (for testing onboarding, etc.)
-const DEV_DISABLE_PERSISTENCE = false;
-
 interface PersistedState {
   version: number;
   state: NavigationState;
@@ -192,13 +189,6 @@ export function useNavigationPersistence(
   // Load persisted state on mount
   useEffect(() => {
     const loadState = async () => {
-      // DEV: Skip persistence entirely when disabled
-      if (__DEV__ && DEV_DISABLE_PERSISTENCE) {
-        logger.info('DEV: Navigation persistence disabled');
-        setIsReady(true);
-        return;
-      }
-
       try {
         const raw = await AsyncStorage.getItem(NAVIGATION_STATE_KEY);
         
