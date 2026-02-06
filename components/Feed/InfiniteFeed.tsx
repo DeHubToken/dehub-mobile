@@ -311,7 +311,7 @@ const InfiniteFeedBase: React.FC<
         onEndReachedThreshold={0.4}
         // View tracking: track which items are visible for recording views
         viewabilityConfig={viewabilityConfig}
-        onViewableItemsChanged={isSignedIn ? onViewableItemsChanged : undefined}
+        onViewableItemsChanged={onViewableItemsChanged}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}

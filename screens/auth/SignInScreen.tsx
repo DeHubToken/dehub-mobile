@@ -95,14 +95,29 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
 
   /**
    * Navigate to SetProfile screen
-   * Uses navigate (not reset) since SetProfile is a sibling in the Auth stack
+   * SignInScreen can be rendered in two contexts:
+   *   1. Inside AuthNavigator (SetProfile is a sibling screen)
+   *   2. As a modal in AppNavigator (SetProfile does NOT exist here)
+   * To handle both, reset to the Auth stack with SetProfile as the initial route.
    */
   const navigateToSetProfile = useCallback(() => {
     if (!isMountedRef.current) return;
     
-    log.info("Navigating to SetProfile");
+    log.info("Navigating to SetProfiless");
     
-    navigation.navigate(ScreenNames.SetProfile);
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [
+          {
+            name: ScreenNames.Auth,
+            state: {
+              routes: [{ name: ScreenNames.SetProfile }],
+            },
+          },
+        ],
+      })
+    );
   }, [navigation]);
 
   // Handle auth state changes for navigation

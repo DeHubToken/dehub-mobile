@@ -50,7 +50,7 @@ export type AuthStackScreenProps<T extends keyof AuthStackParamList> = Composite
 
 export type AppStackParamList = {
   [ScreenNames.Root]: NavigatorScreenParams<BottomTabParamList> | undefined;
-  [ScreenNames.Upload]: { tab?: 'feed' | undefined } | undefined;
+  [ScreenNames.Upload]: { tab?: 'feed' | undefined; draft?: import('../hooks/useDrafts').Draft } | undefined;
   [ScreenNames.VideoPlayer]: {
     videoId?: string;
     sourceUrl?: string;
@@ -89,6 +89,7 @@ export type AppStackParamList = {
   [ScreenNames.EditProfile]: undefined;
   [ScreenNames.Dpay]: undefined;
   [ScreenNames.PrivacySettings]: undefined;
+  [ScreenNames.Drafts]: undefined;
   [ScreenNames.SignIn]: undefined; // Modal sign-in from app
   [ScreenNames.FollowList]: {
     address: string;

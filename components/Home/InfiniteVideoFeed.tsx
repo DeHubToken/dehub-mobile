@@ -384,7 +384,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         scrollEventThrottle={16}
         // View tracking for feed posts (not videos)
         viewabilityConfig={viewabilityConfig}
-        onViewableItemsChanged={isSignedIn ? onViewableItemsChanged : undefined}
+        onViewableItemsChanged={onViewableItemsChanged}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}

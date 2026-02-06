@@ -10,9 +10,6 @@ import { createLogger } from "../libs/logger";
 const log = createLogger("RootNavigator");
 const Stack = createStackNavigator<RootStackParamList>();
 
-// 🔧 DEV: Set to true to force show onboarding for design/testing
-const DEV_FORCE_ONBOARDING = false;
-
 /**
  * RootNavigator - Single source of truth for app navigation structure
  * 
@@ -29,10 +26,6 @@ export default function RootNavigator() {
   // Determine initial route ONLY on first mount
   // After that, navigation is handled imperatively by screens
   const getInitialRoute = useCallback(() => {
-    if (__DEV__ && DEV_FORCE_ONBOARDING) {
-      return ScreenNames.Auth;
-    }
-    
     // First time users go to onboarding
     if (isFirstTimeUser) {
       return ScreenNames.Auth;

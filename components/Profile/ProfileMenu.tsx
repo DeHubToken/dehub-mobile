@@ -18,6 +18,10 @@ const ProfileMenu: React.FC = () => {
     () => navigation.navigate(ScreenNames.YourVideos),
     [navigation]
   );
+  const goDrafts = useCallback(
+    () => navigation.navigate(ScreenNames.Drafts),
+    [navigation]
+  );
   const goLiked = useCallback(
     () => navigation.navigate(ScreenNames.LikedVideos),
     [navigation]
@@ -37,6 +41,12 @@ const ProfileMenu: React.FC = () => {
       title: "Your Posts",
       icon: "grid",
       onPress: goVideos,
+    },
+    {
+      key: "drafts",
+      title: "Drafts",
+      icon: "document-text",
+      onPress: goDrafts,
     },
     {
       key: "liked-posts",
