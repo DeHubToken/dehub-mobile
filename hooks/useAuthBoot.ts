@@ -62,5 +62,6 @@ export function useAuthBoot<User>({
       }
     };
     loadAuthState();
-  }, [ensureProvider, getAuthToken, getAuthUser, hasSeenAuth, log, setIsBootLoading, setIsFirstTimeUser, setIsSignedIn, setUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Only run once on mount - all functions are stable refs
 }

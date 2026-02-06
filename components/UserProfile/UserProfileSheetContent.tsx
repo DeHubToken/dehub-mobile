@@ -14,8 +14,11 @@ interface UserProfileSheetContentProps {
   data: any;
   profileData: any;
   isFollowing: boolean;
+  isFollowRequestPending?: boolean;
   followsYou?: boolean;
   followLoading: boolean;
+  isPrivate?: boolean;
+  canViewContent?: boolean;
   avatarUrl: string;
   coverUrl: string;
   defaultBanner: any;
@@ -26,11 +29,11 @@ interface UserProfileSheetContentProps {
   registerScrollToTop: (handler: (() => void) | null) => void;
   onFollow: () => void;
   onOpenUnfollow: () => void;
-  onOpenVideos: () => void;
   onMessage: () => void;
   onShare: () => void;
   onOpenImage: (type: "avatar" | "cover") => void;
   onClose: () => void;
+  onStatPress?: (key: string) => void;
 }
 
 const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
@@ -38,8 +41,11 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   data,
   profileData,
   isFollowing,
+  isFollowRequestPending,
   followsYou,
   followLoading,
+  isPrivate,
+  canViewContent,
   avatarUrl,
   coverUrl,
   defaultBanner,
@@ -50,11 +56,11 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   registerScrollToTop,
   onFollow,
   onOpenUnfollow,
-  onOpenVideos,
   onMessage,
   onShare,
   onOpenImage,
   onClose,
+  onStatPress,
 }) => {
   const ProfileHeader = useMemo(() => {
     if (!profileData) return null;
@@ -74,6 +80,8 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           hasUsername={profileData.hasUsername}
           joinedDate={profileData.joinedDate}
           followsYou={followsYou}
+          isPrivate={isPrivate}
+          canViewContent={canViewContent}
           onOpenImage={onOpenImage}
           onShare={onShare}
           onMessage={onMessage}
@@ -82,15 +90,15 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           socials={data}
         />
         <View className="px-6 mt-2">
-          <UserProfileStatsRow stats={stats} />
+          <UserProfileStatsRow stats={stats} onStatPress={onStatPress} />
           <UserProfileActions
             isFollowing={isFollowing}
+            isFollowRequestPending={isFollowRequestPending}
             followLoading={followLoading}
             disableActions={profileData.disableActions}
             address={profileData.address}
             onFollow={onFollow}
             onOpenUnfollow={onOpenUnfollow}
-            onOpenVideos={onOpenVideos}
           />
           {data?.aboutMe && <UserProfileAboutSection content={data.aboutMe} />}
         </View>
@@ -104,6 +112,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     data,
     stats,
     isFollowing,
+    isFollowRequestPending,
     followsYou,
     followLoading,
     onOpenImage,
@@ -111,7 +120,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     onMessage,
     onFollow,
     onOpenUnfollow,
-    onOpenVideos,
+    onStatPress,
   ]);
 
   if (loading || !data) {
@@ -136,6 +145,10 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           isFullScreen={isFullScreen}
           onScroll={onScroll}
           registerScrollToTop={registerScrollToTop}
+          isPrivate={isPrivate}
+          canViewContent={canViewContent}
+          isFollowRequestPending={isFollowRequestPending}
+          onFollow={onFollow}
         />
       </View>
       {!isFullScreen && <View style={{ height: 40 }} />}

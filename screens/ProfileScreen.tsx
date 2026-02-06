@@ -19,6 +19,7 @@ const REFRESH_INTERVAL_MS = 60_000; // 1 min periodic refresh
 const ProfileScreen: React.FC = () => {
   const { isSignedIn } = useAuthState();
   const user = useUser();
+
   const { refreshUser } = useAuthActions();
   const navigation = useNavigation<any>();
   const [refreshing, setRefreshing] = React.useState(false);

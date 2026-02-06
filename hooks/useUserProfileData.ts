@@ -21,15 +21,16 @@ import { LEGACY_WEBSITE_LINK } from "../config";
 interface RemoteUser {
   username?: string;
   address?: string;
-  walletAddress?: string;
   displayName?: string;
   aboutMe?: string;
   avatarImageUrl?: string;
   coverImageUrl?: string;
   stakedDHB?: number;
   createdAt?: string;
-  followers?: any[];
-  followings?: any[];
+  followers?: number;
+  followings?: number;
+  hideFollowers?: boolean;
+  isPrivate?: boolean;
   likes?: any[];
 }
 
@@ -53,6 +54,7 @@ export const useUserProfileData = (
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<RemoteUser | null>(null);
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
+  const [isFollowRequestPending, setIsFollowRequestPending] = useState<boolean>(false);
   const [followsYou, setFollowsYou] = useState<boolean>(false);
   const [followLoading, setFollowLoading] = useState<boolean>(false);
   
@@ -84,27 +86,15 @@ export const useUserProfileData = (
           setData(cached.data);
           setLoading(false);
 
-          // Use isFollowing/followsYou from cached response if available
+          // Use isFollowing/followsYou from cached response
           if (typeof (cached.data as any)?.isFollowing === 'boolean') {
             setIsFollowing((cached.data as any).isFollowing);
           }
           if (typeof (cached.data as any)?.followsYou === 'boolean') {
             setFollowsYou((cached.data as any).followsYou);
           }
-          if (typeof (cached.data as any)?.isFollowing !== 'boolean') {
-            // Fallback for backwards compatibility
-            const acct = (
-              authUser?.walletAddress ||
-              authUser?.address ||
-              ""
-            ).toLowerCase();
-            if (acct && Array.isArray(cached.data?.followers)) {
-              setIsFollowing(
-                cached.data.followers.some(
-                  (f: string) => (f || "").toLowerCase() === acct
-                )
-              );
-            }
+          if (typeof (cached.data as any)?.isFollowRequestPending === 'boolean') {
+            setIsFollowRequestPending((cached.data as any).isFollowRequestPending);
           }
         }
       } else {
@@ -114,9 +104,8 @@ export const useUserProfileData = (
       }
 
       try {
-        // Pass viewer address to get relationship info (isFollowing, followsYou) from backend
-        const viewerAddress = authUser?.walletAddress || authUser?.address;
-        const res: any = await getAccount(who, viewerAddress);
+        // Auth token is sent automatically — backend uses it for relationship info
+        const res: any = await getAccount(who);
         const payload = res?.data?.result || res?.result || res;
 
         if (
@@ -130,23 +119,15 @@ export const useUserProfileData = (
           setData(payload);
           setLoading(false);
 
-          // Use isFollowing/followsYou from API response if available, otherwise fallback to checking followers array
+          // Use isFollowing/followsYou from API response
           if (typeof payload?.isFollowing === 'boolean') {
             setIsFollowing(payload.isFollowing);
           }
           if (typeof payload?.followsYou === 'boolean') {
             setFollowsYou(payload.followsYou);
           }
-          if (typeof payload?.isFollowing !== 'boolean') {
-            // Fallback for backwards compatibility
-            const acct = (viewerAddress || "").toLowerCase();
-            if (acct && Array.isArray(payload?.followers)) {
-              setIsFollowing(
-                payload.followers.some(
-                  (f: string) => (f || "").toLowerCase() === acct
-                )
-              );
-            }
+          if (typeof payload?.isFollowRequestPending === 'boolean') {
+            setIsFollowRequestPending(payload.isFollowRequestPending);
           }
         }
       } catch (e) {
@@ -156,7 +137,7 @@ export const useUserProfileData = (
         }
       }
     },
-    [authUser?.walletAddress, authUser?.address]
+    []
   );
 
   useEffect(() => {
@@ -170,6 +151,7 @@ export const useUserProfileData = (
       setData(null);
       setLoading(false);
       setIsFollowing(false);
+      setIsFollowRequestPending(false);
       setFollowsYou(false);
       setFollowLoading(false);
       lastRequestedRef.current = null;
@@ -187,8 +169,8 @@ export const useUserProfileData = (
   );
   
   const defaultBanner = useMemo(
-    () => getDefaultBanner(data?.address || data?.walletAddress),
-    [data?.address, data?.walletAddress]
+    () => getDefaultBanner(data?.address),
+    [data?.address]
   );
 
   const profileData = useMemo(() => {
@@ -199,7 +181,7 @@ export const useUserProfileData = (
     const stakedDHB = fromBalances > 0 ? fromBalances : direct || 0;
     const badge = getBadgeName(stakedDHB);
     const badgeImage = getBadgeUrl(stakedDHB);
-    const address = data?.address || data?.walletAddress || "";
+    const address = data?.address || "";
     const hasUsername = !!data?.username;
     const username = data?.username || address;
     const displayName =
@@ -229,12 +211,12 @@ export const useUserProfileData = (
       {
         key: "followers",
         label: "Followers",
-        value: data.followers?.length || 0,
+        value: data.followers ?? 0,
       },
       {
         key: "following",
         label: "Following",
-        value: data.followings?.length || 0,
+        value: data.followings ?? 0,
       },
       {
         key: "tipsReceived",
@@ -250,64 +232,70 @@ export const useUserProfileData = (
   }, [data]);
 
   const handleFollow = useCallback(() => {
-    if (isFollowing || !profileData) return;
+    if (isFollowing || isFollowRequestPending || !profileData) return;
 
     requireAuth(async () => {
-      const acct = (
-        authUser?.walletAddress ||
-        authUser?.address ||
-        ""
-      ).toLowerCase();
-      const target = (
-        data?.walletAddress ||
-        data?.address ||
-        profileData.address
-      ).toLowerCase();
+      const acct = (authUser?.address || "").toLowerCase();
+      const target = (data?.address || profileData.address).toLowerCase();
 
       if (!acct || !target) return;
 
-      setIsFollowing(true);
+      const isTargetPrivate = data?.isPrivate === true;
 
-      setData((prev) => {
-        if (!prev) return prev;
-        const followers = prev.followers || [];
-        if (followers.some((f: string) => (f || "").toLowerCase() === acct))
-          return prev;
-        return { ...prev, followers: [...followers, acct] } as any;
-      });
+      if (isTargetPrivate) {
+        // Delay the optimistic update so the Follow button's touch gesture
+        // fully completes before React swaps it to "Requested" — prevents
+        // the touch-up from bleeding into the newly mounted Requested button.
+        setTimeout(() => setIsFollowRequestPending(true), 300);
+      } else {
+        // Optimistic: instant follow for public accounts
+        setIsFollowing(true);
 
-      patchUser?.((u: any) => {
-        const followings = u.followings || [];
-        if (followings.some((f: string) => (f || "").toLowerCase() === target))
-          return {};
-        return { followings: [...followings, target] };
-      });
-
-      try {
-        await followUser(acct, target);
-      } catch (e) {
-        setIsFollowing(false);
+        // Optimistic update: increment follower count
         setData((prev) => {
           if (!prev) return prev;
-          return {
-            ...prev,
-            followers: (prev.followers || []).filter(
-              (f: string) => (f || "").toLowerCase() !== acct
-            ),
-          } as any;
+          const currentCount = typeof prev.followers === 'number' ? prev.followers : 0;
+          return { ...prev, followers: currentCount + 1 };
         });
-        patchUser?.((u: any) => ({
-          followings: (u.followings || []).filter(
-            (f: string) => (f || "").toLowerCase() !== target
-          ),
-        }));
+
+        // Update auth user's following count
+        patchUser?.((u: any) => {
+          const currentCount = typeof u.followings === 'number' ? u.followings : 0;
+          return { followings: currentCount + 1 };
+        });
+      }
+
+      try {
+        const res = await followUser(acct, target);
+
+        // If private account → follow request sent (pending), not instant follow
+        if (res.status === 'pending') {
+          setIsFollowing(false);
+          setIsFollowRequestPending(true);
+        }
+      } catch (e) {
+        if (isTargetPrivate) {
+          setIsFollowRequestPending(false);
+        } else {
+          setIsFollowing(false);
+          // Rollback: decrement follower count
+          setData((prev) => {
+            if (!prev) return prev;
+            const currentCount = typeof prev.followers === 'number' ? prev.followers : 0;
+            return { ...prev, followers: Math.max(0, currentCount - 1) };
+          });
+          patchUser?.((u: any) => {
+            const currentCount = typeof u.followings === 'number' ? u.followings : 0;
+            return { followings: Math.max(0, currentCount - 1) };
+          });
+        }
         toastError("Failed to follow user");
       }
     });
   }, [
     requireAuth,
     isFollowing,
-    authUser?.walletAddress,
+    isFollowRequestPending,
     authUser?.address,
     profileData,
     data,
@@ -315,45 +303,44 @@ export const useUserProfileData = (
   ]);
 
   const handleUnfollow = useCallback(() => {
-    if (followLoading || !isFollowing || !profileData) return;
+    if (followLoading || !profileData) return;
+    // Allow unfollow if following OR if there's a pending request to cancel
+    if (!isFollowing && !isFollowRequestPending) return;
 
     requireAuth(async () => {
-      const acct = (
-        authUser?.walletAddress ||
-        authUser?.address ||
-        ""
-      ).toLowerCase();
-      const target = (
-        data?.walletAddress ||
-        data?.address ||
-        profileData.address
-      ).toLowerCase();
+      const acct = (authUser?.address || "").toLowerCase();
+      const target = (data?.address || profileData.address).toLowerCase();
 
       if (!acct || !target) return;
 
       setFollowLoading(true);
+      const wasPending = isFollowRequestPending;
 
       try {
         await unfollowUser(acct, target);
-        setIsFollowing(false);
 
-        setData((prev) => {
-          if (!prev) return prev;
-          return {
-            ...prev,
-            followers: (prev.followers || []).filter(
-              (f: string) => (f || "").toLowerCase() !== acct
-            ),
-          } as any;
-        });
+        if (wasPending) {
+          // Cancelled a pending request
+          setIsFollowRequestPending(false);
+        } else {
+          // Actually unfollowed
+          setIsFollowing(false);
 
-        patchUser?.((u: any) => ({
-          followings: (u.followings || []).filter(
-            (f: string) => (f || "").toLowerCase() !== target
-          ),
-        }));
+          // Optimistic update: decrement follower count
+          setData((prev) => {
+            if (!prev) return prev;
+            const currentCount = typeof prev.followers === 'number' ? prev.followers : 0;
+            return { ...prev, followers: Math.max(0, currentCount - 1) };
+          });
+
+          // Update auth user's following count
+          patchUser?.((u: any) => {
+            const currentCount = typeof u.followings === 'number' ? u.followings : 0;
+            return { followings: Math.max(0, currentCount - 1) };
+          });
+        }
       } catch (e) {
-        toastError("Failed to unfollow user");
+        toastError(wasPending ? "Failed to cancel request" : "Failed to unfollow user");
       } finally {
         setFollowLoading(false);
       }
@@ -362,7 +349,7 @@ export const useUserProfileData = (
     requireAuth,
     followLoading,
     isFollowing,
-    authUser?.walletAddress,
+    isFollowRequestPending,
     authUser?.address,
     profileData,
     data,
@@ -397,17 +384,8 @@ export const useUserProfileData = (
       if (!profileData || !data) return;
 
       requireAuth(() => {
-        const addr = (
-          data?.walletAddress ||
-          data?.address ||
-          profileData.address ||
-          ""
-        ).toLowerCase();
-        const selfAddr = (
-          authUser?.walletAddress ||
-          authUser?.address ||
-          ""
-        ).toLowerCase();
+        const addr = (data?.address || profileData.address || "").toLowerCase();
+        const selfAddr = (authUser?.address || "").toLowerCase();
 
         if (!addr) return;
         if (addr === selfAddr) {
@@ -436,7 +414,6 @@ export const useUserProfileData = (
           const targetUser = {
             username: data?.username,
             displayName: data?.displayName,
-            walletAddress: addr,
             address: addr,
             avatarImageUrl: data?.avatarImageUrl,
           } as any;
@@ -467,8 +444,11 @@ export const useUserProfileData = (
     data,
     profileData,
     isFollowing,
+    isFollowRequestPending,
     followsYou,
     followLoading,
+    isPrivate: data?.isPrivate ?? false,
+    canViewContent: !data?.isPrivate || isFollowing,
     avatarUrl,
     coverUrl,
     defaultBanner,

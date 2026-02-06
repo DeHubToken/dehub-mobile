@@ -275,7 +275,22 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                 <Text className="text-theme-neutrals-500 text-xs mt-1">
                   {((user?.blocklist?.blocked?.length || 0) as number) > 0
                     ? `${user?.blocklist?.blocked?.length} blocked`
-                    : "You haven’t blocked anyone"}
+                    : "You haven't blocked anyone"}
+                </Text>
+              </View>
+              <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
+            </TouchableOpacity>
+            <View className="h-px bg-theme-neutrals-700" />
+            <TouchableOpacity
+              onPress={() => navigation.navigate(ScreenNames.PrivacySettings)}
+              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
+            >
+              <View>
+                <Text className="text-theme-neutrals-100 text-sm font-medium">
+                  Account Privacy
+                </Text>
+                <Text className="text-theme-neutrals-500 text-xs mt-1">
+                  Private account, hide followers
                 </Text>
               </View>
               <Ionicons name="chevron-forward" size={18} color="#9ca3af" />

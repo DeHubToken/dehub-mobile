@@ -1,70 +1,134 @@
-import React, { useState, useMemo } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
+import React, { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { View, StyleSheet } from "react-native";
 import { theme } from "../theme";
-import StatusFilterBottomSheet from "../components/Home/StatusFilterBottomSheet";
 import InfiniteVideoFeed from "../components/Home/InfiniteVideoFeed";
 import HomeHeader from "../components/HomeHeader";
-import { getSelectedStatusLabel, getSelectedStatusIcon } from "../libs";
 import CategorySelector from "../components/Home/CategorySelector";
 import CategorySelectorSkeleton from "../components/Home/CategorySelectorSkeleton";
+import FeedFilterPanel, { 
+  FeedFilters, 
+  SortOption, 
+  DateRangeOption, 
+  PostTypeOption 
+} from "../components/Home/FeedFilterPanel";
 import { getCategoriesCached } from "../services/nft.service";
+import type { FeedRange, FeedSortBy, FeedPostType } from "../services/feed.unified.service";
 
 const fallbackCategories = ["All"];
 
+// Shuffle seed expiry time (30 minutes in ms)
+const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
+
+// Generate a shuffle seed from timestamp
+const generateShuffleSeed = () => String(Date.now());
+
+// Default filter state - random sort by default
+const defaultFilters: FeedFilters = {
+  sortBy: "random",
+  dateRange: "",
+  postType: "all",
+  contentAccess: [],
+};
+
 export default function HomeScreen() {
-  const [statusFilterVisible, setStatusFilterVisible] = useState(false);
-  const [selectedSortMode, setSelectedSortMode] = useState("trends"); // sortMode values
+  const [filterPanelVisible, setFilterPanelVisible] = useState(false);
+  const [filters, setFilters] = useState<FeedFilters>(defaultFilters);
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedRange, setSelectedRange] = useState("");
   const [categories, setCategories] = useState<string[]>(fallbackCategories);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
+  
+  // Shuffle seed management
+  const [shuffleSeed, setShuffleSeed] = useState<string>(generateShuffleSeed);
+  const shuffleSeedTimestamp = useRef<number>(Date.now());
 
-  // Filter section now static (animation removed)
-  const feedParams = useMemo(
-    () => ({
+  // Check and refresh shuffle seed if expired
+  useEffect(() => {
+    const checkSeedExpiry = () => {
+      const now = Date.now();
+      if (now - shuffleSeedTimestamp.current >= SHUFFLE_SEED_EXPIRY_MS) {
+        setShuffleSeed(generateShuffleSeed());
+        shuffleSeedTimestamp.current = now;
+      }
+    };
+
+    // Check on mount and set up interval
+    checkSeedExpiry();
+    const interval = setInterval(checkSeedExpiry, 60000); // Check every minute
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Function to manually refresh the shuffle seed (called on pull-to-refresh)
+  const refreshShuffleSeed = useCallback(() => {
+    setShuffleSeed(generateShuffleSeed());
+    shuffleSeedTimestamp.current = Date.now();
+  }, []);
+
+  // Convert filter panel state to API params
+  const feedParams = useMemo(() => {
+    const params: Record<string, any> = {
       category: selectedCategory !== "All" ? selectedCategory : undefined,
-      sortMode: selectedSortMode || "trends",
-      range: selectedRange || undefined,
-    }),
-    [selectedCategory, selectedSortMode, selectedRange]
-  );
+      sortBy: filters.sortBy as FeedSortBy,
+      sortOrder: "desc" as const,
+    };
 
-  const statusButton = (
-    <TouchableOpacity
-      onPress={() => setStatusFilterVisible(true)}
-      className={`flex-row items-center self-start rounded-full px-3 py-2 mb-2 ${
-        selectedSortMode ? 'bg-theme-neutrals-800' : 'bg-theme-neutrals-800'
-      }`}
-      accessibilityRole="button"
-      accessibilityLabel="Open status filter"
-    >
-      <Ionicons
-        name={getSelectedStatusIcon(selectedSortMode)}
-        size={16}
-        color={theme.colors.mutedForeground}
-      />
-      <Text
-        className={`mx-2 text-sm font-medium ${
-          selectedSortMode ? 'text-theme-neutrals-200' : 'text-theme-neutrals-300'
-        }`}
-      >
-        {getSelectedStatusLabel(selectedSortMode)}
-      </Text>
-      <Ionicons
-        name="chevron-down"
-        size={14}
-        color={theme.colors.mutedForeground}
-      />
-    </TouchableOpacity>
-  );
+    // Add shuffle seed for random sort
+    if (filters.sortBy === "random") {
+      params.shuffleSeed = shuffleSeed;
+    }
+
+    // Date range
+    if (filters.dateRange) {
+      params.range = filters.dateRange as FeedRange;
+    }
+
+    // Post type
+    if (filters.postType !== "all") {
+      params.postType = filters.postType as FeedPostType;
+    }
+
+    // Content access filters (multiple can be selected)
+    if (filters.contentAccess.includes("ppv")) {
+      params.isPPV = true;
+    }
+    if (filters.contentAccess.includes("bounty")) {
+      params.hasBounty = true;
+    }
+    if (filters.contentAccess.includes("locked")) {
+      params.isLocked = true;
+    }
+
+    return params;
+  }, [selectedCategory, filters, shuffleSeed]);
+
+  const handleFiltersChange = useCallback((newFilters: FeedFilters) => {
+    setFilters(newFilters);
+  }, []);
+
+  const handleFilterPress = useCallback(() => {
+    setFilterPanelVisible((prev) => !prev);
+  }, []);
+
+  // Close filter panel when scrolling starts
+  const handleScrollBegin = useCallback(() => {
+    if (filterPanelVisible) {
+      setFilterPanelVisible(false);
+    }
+  }, [filterPanelVisible]);
+
+  // Handle category selection from hashtag in feed cards
+  const handleCategorySelect = useCallback((category: string) => {
+    setSelectedCategory(category);
+    setFilterPanelVisible(false);
+  }, []);
 
   const content = (
     <InfiniteVideoFeed
       params={feedParams}
       pageSize={10}
-      headerComponent={<View style={{ paddingHorizontal: 0, paddingTop: theme.spacing.xs }}>{statusButton}</View>}
+      onRefresh={refreshShuffleSeed}
+      onScrollBegin={handleScrollBegin}
+      onCategorySelect={handleCategorySelect}
       onRetry={async () => {
         // Re-fetch categories on retry to restore the header chips when initial load failed
         setCategoriesLoading(true);
@@ -84,8 +148,8 @@ export default function HomeScreen() {
       }}
       onClearFilters={() => {
         setSelectedCategory("All");
-        setSelectedSortMode("trends");
-        setSelectedRange("");
+        setFilters(defaultFilters);
+        refreshShuffleSeed();
       }}
     />
   );
@@ -113,13 +177,15 @@ export default function HomeScreen() {
   }, []);
 
   // Custom handler for category press
-  const handleCategoryPress = (cat: string) => {
+  const handleCategoryPress = useCallback((cat: string) => {
     if (cat === selectedCategory) return;
-    if (cat === 'All' && selectedSortMode === 'live') {
-      setSelectedSortMode('trends');
-    }
     setSelectedCategory(cat);
-  };
+    
+    // Reset filters to default when "All" is selected
+    if (cat === "All") {
+      setFilters(defaultFilters);
+    }
+  }, [selectedCategory]);
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
@@ -133,52 +199,28 @@ export default function HomeScreen() {
             categories={categories}
             selectedCategory={selectedCategory}
             onCategoryPress={handleCategoryPress}
-            showLiveChip
-            isLiveActive={selectedSortMode === 'live'}
-            onPressLive={() => {
-              if (selectedSortMode === 'live') {
-                setStatusFilterVisible(true);
-              } else {
-                setSelectedSortMode('live');
-              }
-            }}
+            onFilterPress={handleFilterPress}
+            isFilterOpen={filterPanelVisible}
           />
         )}
       </View>
 
-      {content}
-
-      <StatusFilterBottomSheet
-        visible={statusFilterVisible}
-        onClose={() => setStatusFilterVisible(false)}
-        selectedSortMode={selectedSortMode}
-        onSortModeChange={setSelectedSortMode}
-        selectedRange={selectedRange}
-        onRangeChange={setSelectedRange}
+      {/* Sliding filter panel */}
+      <FeedFilterPanel
+        visible={filterPanelVisible}
+        filters={filters}
+        onFiltersChange={handleFiltersChange}
       />
+
+      {content}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  connectButtonGradient: {
-    paddingVertical: theme.spacing.xs,
-    paddingHorizontal: theme.spacing.md,
-    borderRadius: theme.radius.md,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
   // Filter Section Styles
   filterSection: {
     paddingHorizontal: theme.spacing.md,
     paddingVertical: theme.spacing.xs,
-    // keep categories fixed at top; no bottom border
   },
-
-  // Status button now styled via Tailwind className above; keep placeholders to satisfy StyleSheet type
-  statusFilterButton: {},
-  statusFilterButtonActive: {},
-  statusFilterText: {},
-  statusFilterTextActive: {},
 });

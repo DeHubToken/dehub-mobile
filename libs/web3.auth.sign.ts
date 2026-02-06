@@ -7,6 +7,9 @@ import { getAuthUser, setAuthUser } from "./auth.utils";
 import { ethers } from "ethers";
 import { parseTxError } from "./web3.util";
 import { supportedNetworks } from "../config/web3.constants";
+import { createLogger } from "./logger";
+
+const log = createLogger("web3.auth.sign");
 
 export interface StoredSignatureMeta {
   address: string;
@@ -56,6 +59,199 @@ function isSignatureValid(
   return true;
 }
 
+// =============================================================================
+// Smart Account Deployment
+// =============================================================================
+
+const DEPLOYMENT_MAX_RETRIES = 3;
+const DEPLOYMENT_RETRY_DELAY_MS = 2000;
+const DEPLOYMENT_VERIFICATION_RETRIES = 5;
+const DEPLOYMENT_VERIFICATION_DELAY_MS = 3000;
+
+/**
+ * Check if a smart account is already deployed at the given address
+ */
+async function isSmartAccountDeployed(
+  address: string,
+  rpcProvider: ethers.providers.JsonRpcProvider
+): Promise<boolean> {
+  try {
+    const code = await rpcProvider.getCode(address);
+    return code !== "0x" && code !== "0x0" && code.length > 2;
+  } catch (err) {
+    log.warn("isSmartAccountDeployed:check:error", { address, err });
+    return false;
+  }
+}
+
+/**
+ * Wait for smart account deployment to be confirmed on-chain
+ * Polls the RPC provider until code is present at the address
+ */
+async function waitForDeploymentConfirmation(
+  address: string,
+  rpcProvider: ethers.providers.JsonRpcProvider,
+  maxRetries: number = DEPLOYMENT_VERIFICATION_RETRIES,
+  delayMs: number = DEPLOYMENT_VERIFICATION_DELAY_MS
+): Promise<boolean> {
+  for (let i = 0; i < maxRetries; i++) {
+    log.debug("waitForDeploymentConfirmation:poll", { 
+      attempt: i + 1, 
+      maxRetries, 
+      address 
+    });
+    
+    const deployed = await isSmartAccountDeployed(address, rpcProvider);
+    if (deployed) {
+      log.info("waitForDeploymentConfirmation:confirmed", { address, attempt: i + 1 });
+      return true;
+    }
+    
+    // Wait before next poll
+    if (i < maxRetries - 1) {
+      await new Promise(resolve => setTimeout(resolve, delayMs));
+    }
+  }
+  
+  return false;
+}
+
+/**
+ * Deploy smart account by sending a no-op transaction
+ * This triggers the AA bundler to deploy the smart contract wallet
+ */
+async function deploySmartAccount(
+  address: string,
+  rpcProvider: ethers.providers.JsonRpcProvider
+): Promise<void> {
+  log.info("deploySmartAccount:start", { address });
+  
+  const aa = await getWeb3AuthProvider();
+  if (!aa) {
+    throw new Error("Web3Auth provider not available for deployment");
+  }
+  
+  const ethersProvider = new ethers.providers.Web3Provider(aa as any);
+  const aaSigner = ethersProvider.getSigner();
+  
+  // Send a no-op transaction to self to trigger deployment
+  // The AA bundler will deploy the smart contract wallet as part of this
+  log.debug("deploySmartAccount:sendingTx", { address });
+  
+  const tx = await aaSigner.sendTransaction({
+    to: address,
+    value: 0,
+    data: "0x",
+  });
+  
+  log.debug("deploySmartAccount:txSent", { hash: tx.hash });
+  
+  // Wait for transaction to be mined
+  const receipt = await tx.wait();
+  log.info("deploySmartAccount:txMined", { 
+    hash: tx.hash, 
+    blockNumber: receipt.blockNumber,
+    status: receipt.status 
+  });
+  
+  if (receipt.status !== 1) {
+    throw new Error("Smart account deployment transaction failed");
+  }
+}
+
+/**
+ * Ensures the smart account is deployed before proceeding with signing
+ * This MUST complete before any auth signature is requested
+ * 
+ * Flow:
+ * 1. Check if smart account already has code deployed
+ * 2. If not, trigger deployment via no-op transaction
+ * 3. Wait and verify deployment is complete
+ * 4. Retry if needed
+ */
+export async function ensureSmartAccountDeployed(
+  address: string,
+  chainId: number = 8453
+): Promise<void> {
+  log.info("ensureSmartAccountDeployed:start", { address, chainId });
+  
+  // Get RPC provider for the target chain
+  const selectedNetwork =
+    supportedNetworks.find(
+      (n: any) => Number(n.chainId) === Number(chainId)
+    ) ||
+    supportedNetworks.find(
+      (n: any) => String(n.shortName).toLowerCase() === "base"
+    );
+    
+  const rpcUrl: string | undefined = (selectedNetwork as any)?.rpcUrl;
+  if (!rpcUrl) {
+    log.warn("ensureSmartAccountDeployed:noRpcUrl", { chainId });
+    // Can't verify deployment without RPC, proceed optimistically
+    return;
+  }
+  
+  const rpcProvider = new ethers.providers.JsonRpcProvider(rpcUrl);
+  
+  // Check if already deployed
+  const alreadyDeployed = await isSmartAccountDeployed(address, rpcProvider);
+  if (alreadyDeployed) {
+    log.info("ensureSmartAccountDeployed:alreadyDeployed", { address });
+    return;
+  }
+  
+  log.info("ensureSmartAccountDeployed:needsDeployment", { address });
+  
+  // Attempt deployment with retries
+  let lastError: Error | null = null;
+  for (let attempt = 0; attempt < DEPLOYMENT_MAX_RETRIES; attempt++) {
+    try {
+      log.debug("ensureSmartAccountDeployed:attempt", { 
+        attempt: attempt + 1, 
+        maxRetries: DEPLOYMENT_MAX_RETRIES 
+      });
+      
+      // Deploy the smart account
+      await deploySmartAccount(address, rpcProvider);
+      
+      // Wait for deployment to be confirmed on-chain
+      const confirmed = await waitForDeploymentConfirmation(address, rpcProvider);
+      
+      if (confirmed) {
+        log.info("ensureSmartAccountDeployed:success", { address });
+        return;
+      }
+      
+      log.warn("ensureSmartAccountDeployed:notConfirmed", { 
+        address, 
+        attempt: attempt + 1 
+      });
+      
+    } catch (err: any) {
+      lastError = err;
+      log.error("ensureSmartAccountDeployed:attemptFailed", { 
+        attempt: attempt + 1, 
+        error: err?.message 
+      });
+      
+      // Wait before retry
+      if (attempt < DEPLOYMENT_MAX_RETRIES - 1) {
+        await new Promise(resolve => setTimeout(resolve, DEPLOYMENT_RETRY_DELAY_MS));
+      }
+    }
+  }
+  
+  // All retries exhausted
+  const friendly = lastError ? parseTxError(lastError, "send") : null;
+  throw new Error(
+    friendly || lastError?.message || "Smart account deployment failed after multiple attempts"
+  );
+}
+
+// =============================================================================
+// Auth Signature
+// =============================================================================
+
 // Retrieve signature info; if missing/expired prompts new personal sign via Web3Auth
 export async function getOrCreateAuthSignature(
   address: string,
@@ -79,43 +275,8 @@ export async function getOrCreateAuthSignature(
   // If this appears to be a Web3Auth/AA flow (no injected.request), check deployment via AA provider
   const isWeb3Auth = !injected || typeof injected.request !== "function";
   if (isWeb3Auth) {
-    try {
-      const selectedNetwork =
-        supportedNetworks.find(
-          (n: any) => Number(n.chainId) === Number(chainId)
-        ) ||
-        supportedNetworks.find(
-          (n: any) => String(n.shortName).toLowerCase() === "base"
-        );
-      const rpcUrl: string | undefined = (selectedNetwork as any)?.rpcUrl;
-      if (rpcUrl) {
-        const rpcProvider = new ethers.providers.JsonRpcProvider(rpcUrl);
-        const code = await rpcProvider.getCode(address);
-        if (code === "0x") {
-          // Deploy smart account via AA provider by sending a no-op tx
-          try {
-            const aa = await getWeb3AuthProvider();
-            const ethersProvider = new ethers.providers.Web3Provider(aa as any);
-            const aaSigner = ethersProvider.getSigner();
-            const tx = await aaSigner.sendTransaction({
-              to: address,
-              value: 0,
-              data: "0x",
-            });
-            await tx.wait();
-          } catch (deployErr: any) {
-            const friendly = parseTxError(deployErr, "send");
-            throw new Error(friendly || "Smart account deployment failed");
-          }
-          const postCode = await rpcProvider.getCode(address);
-          if (!postCode || postCode === "0x") {
-            throw new Error("Smart account deployment did not complete");
-          }
-        }
-      }
-    } catch (err: any) {
-      throw new Error(err?.message || "Smart account deployment failed");
-    }
+    // Ensure smart account is deployed BEFORE attempting to sign
+    await ensureSmartAccountDeployed(address, chainId);
   }
 
   // Sign the message: injected personal_sign if present, else Web3Auth service helper

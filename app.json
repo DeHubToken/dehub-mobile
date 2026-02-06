@@ -6,6 +6,10 @@
     "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/AppIcons/playstore.png",
+    "notification": {
+      "icon": "./assets/AppIcons/notification_badge.png",
+      "color": "#8b5cf6"
+    },
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {

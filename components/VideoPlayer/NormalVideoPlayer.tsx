@@ -5,7 +5,7 @@ import React, {
   useRef,
   useCallback,
 } from "react";
-import { View, Text, TouchableOpacity, Platform, Keyboard } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { formatDistance } from "date-fns";
 import { formatCompactNumber } from "../../libs/numbers.util";
@@ -14,25 +14,21 @@ import VideoPlayerSkeleton from "./VideoPlayerSkeleton";
 import VideoArea from "./VideoArea";
 import ActionsRow from "./ActionsRow";
 import DescriptionBlock from "./DescriptionBlock";
-import { getVideoUrl } from "../../libs/misc";
+import BountyClaimBanner from "./BountyClaimBanner";
+import { getVideoUrl, getAvatarUrl } from "../../libs/misc";
 import { useAuth } from "../../context/AuthContext";
 import TopCommentPreview from "./TopCommentPreview";
 import { useStreamAccessInfo } from "../../libs/validators.util";
-import { getNFT, recordView, postComment } from "../../services";
+import { getNFT, recordView } from "../../services";
 import {
-  getAccount,
   followUser,
   unfollowUser,
 } from "../../services/user.service";
-import { getAvatarUrl, getBadgeName, getBadgeUrl } from "../../libs/misc";
-import { truncateAddress } from "../../libs/strings.util";
 import { toastError } from "../../libs";
 import CreatorRow from "./CreatorRow";
-import CommentComposer from "./CommentComposer";
-import CommentsPanel from "./CommentsPanel";
 import SuggestedVideos, { SuggestedVideosHandle } from "./SuggestedVideos";
 import { ScrollView } from "react-native-gesture-handler";
-import useKeyboard from "../../hooks/useKeyboard";
+import { CommentBottomSheet } from "../Comments";
 
 interface NormalVideoPlayerProps {
   tokenId?: string | number;
@@ -62,30 +58,16 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
   isTranscoding,
 }) => {
   const { user, isSignedIn, requireAuth } = useAuth();
-  const { height: keyboardHeight, isVisible: keyboardVisible } = useKeyboard();
   const [showDesc, setShowDesc] = useState(false);
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
-  // Channel (creator) section state
-  const [creatorLoading, setCreatorLoading] = useState<boolean>(true);
-  const [creator, setCreator] = useState<any | null>(null);
-  const [isFollowing, setIsFollowing] = useState<boolean>(false);
-  const [followLoading, setFollowLoading] = useState<boolean>(false);
-  const [commentsOpen, setCommentsOpen] = useState(false);
-  const [composerAutoFocus, setComposerAutoFocus] = useState(false);
-  const [draftComment, setDraftComment] = useState("");
-  const [replyTo, setReplyTo] = useState<any | null>(null);
-  const [posting, setPosting] = useState(false);
-  const [composerFocusSignal, setComposerFocusSignal] = useState(0);
-  const [scrollTargetId, setScrollTargetId] = useState<number | null>(null);
-  const [highlightedId, setHighlightedId] = useState<number | null>(null);
-  const [expandThreadId, setExpandThreadId] = useState<number | string | null>(
-    null
-  );
+  // Comments bottom sheet state (using shared CommentBottomSheet like HomeFeedCard)
+  const [showComments, setShowComments] = useState(false);
   const createdAtDate = createdAt ? new Date(createdAt) : new Date();
   // NFT fetch & metadata loading
   const [nftLoading, setNftLoading] = useState<boolean>(false);
   const [nftData, setNftData] = useState<any | null>(null);
+  const [privateError, setPrivateError] = useState(false);
   // Recompute access based on latest user.unlock and nft data; fallback to prop
   const accessComputed = useStreamAccessInfo(nftData);
   const resolvedAccessInfo = accessComputed?.streamStatus
@@ -103,18 +85,20 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
       if (tokenId == null) return;
       setNftLoading(true);
       try {
-        const res: any = await getNFT(
-          tokenId as any,
-          user?.address || user?.walletAddress || ""
-        );
+        const res: any = await getNFT(tokenId as any);
         if (!cancelled) {
+          setPrivateError(false);
           const payload = res?.result || res || null;
           setLikes(payload?.totalVotes?.for || 0);
           setDislikes(payload?.totalVotes?.against || 0);
           setNftData(payload);
         }
-      } catch (e) {
+      } catch (e: any) {
         if (!cancelled) {
+          const msg = e?.message || e?.toString() || '';
+          if (msg.toLowerCase().includes('private account')) {
+            setPrivateError(true);
+          }
           setNftData(null);
         }
         console.warn("[NormalVideoPlayer] NFT fetch failed", e);
@@ -130,55 +114,40 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
 
   // Suggestions moved to SuggestedVideos component
 
-  // Fetch creator account for channel section
+  // Use minterUser from NFT response instead of separate API call - much faster!
+  // Creator data is already included in getNFT response as minterUser
+  const creator = useMemo(() => {
+    const minterUser = nftData?.minterUser;
+    if (!minterUser) return null;
+    // Map minterUser fields to creator format expected by CreatorRow
+    return {
+      username: minterUser.username,
+      displayName: minterUser.displayName,
+      address: minterUser.address,
+      walletAddress: minterUser.address,
+      avatarImageUrl: minterUser.avatarImageUrl,
+      followers: minterUser.followers || [],
+      stakedDHB: minterUser.staked || 0,
+    };
+  }, [nftData?.minterUser]);
+
+  // isFollowing comes directly from getNFT response
+  const [isFollowing, setIsFollowing] = useState<boolean>(false);
+  const [isFollowRequestPending, setIsFollowRequestPending] = useState<boolean>(false);
+  const [followLoading, setFollowLoading] = useState<boolean>(false);
+
+  // Sync isFollowing state when nftData changes
   useEffect(() => {
-    let cancelled = false;
-    const run = async () => {
-      const minterAddr = (nftData?.minter ||
-        nftData?.result?.minter ||
-        minter) as string | undefined;
-      if (!minterAddr) return;
-      setCreatorLoading(true);
-      try {
-        // Pass viewer address to get isFollowing from backend
-        const viewerAddr = user?.walletAddress || user?.address;
-        const res: any = await getAccount(minterAddr, viewerAddr);
-        if (cancelled) return;
-        const payload = res?.data?.result || res?.result || res || null;
-        setCreator(payload);
-        // Use isFollowing from API response if available, otherwise fallback to checking followers array
-        if (typeof payload?.isFollowing === 'boolean') {
-          setIsFollowing(payload.isFollowing);
-        } else {
-          // Fallback for backwards compatibility
-          const acct = (viewerAddr || "").toLowerCase();
-          if (acct && Array.isArray(payload?.followers)) {
-            const isF = payload.followers
-              .map((f: string) => (f || "").toLowerCase())
-              .includes(acct);
-            setIsFollowing(isF);
-          } else {
-            setIsFollowing(false);
-          }
-        }
-      } catch (e) {
-        if (!cancelled) setCreator(null);
-        console.warn("[NormalVideoPlayer] getAccount(minter) failed", e);
-      } finally {
-        if (!cancelled) setCreatorLoading(false);
-      }
-    };
-    run();
-    return () => {
-      cancelled = true;
-    };
-  }, [
-    nftData?.minter,
-    nftData?.result?.minter,
-    minter,
-    user?.walletAddress,
-    user?.address,
-  ]);
+    if (nftData?.isFollowing !== undefined) {
+      setIsFollowing(nftData.isFollowing);
+    }
+    if ((nftData as any)?.isFollowRequestPending !== undefined) {
+      setIsFollowRequestPending(!!(nftData as any).isFollowRequestPending);
+    }
+  }, [nftData?.isFollowing, (nftData as any)?.isFollowRequestPending]);
+
+  // Creator loading follows NFT loading since creator data comes from NFT response
+  const creatorLoading = nftLoading;
 
   const effectiveVideoUrl = useMemo(() => {
     if (isTranscoding) return null;
@@ -189,13 +158,6 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
     if (isPlayable) return getVideoUrl(tokenId) || (videoUrl ?? null);
     return null;
   }, [isTranscoding, resolvedAccessInfo, videoUrl, tokenId]);
-
-  // Reset autofocus after opening the comments composer once
-  useEffect(() => {
-    if (!commentsOpen && composerAutoFocus) {
-      setComposerAutoFocus(false);
-    }
-  }, [commentsOpen, composerAutoFocus]);
 
   // --- View recording: 10% or 3s threshold (matches web), signed-in only, once per view ---
   const hasRecordedRef = useRef(false);
@@ -238,6 +200,8 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
     totalTips) as number;
   const resolvedCreatedAt =
     nftData?.createdAt || nftData?.result?.createdAt || createdAtDate;
+  const resolvedCategories: string[] =
+    nftData?.category || nftData?.result?.category || [];
 
   const handleScroll = useCallback((e: any) => {
     const { layoutMeasurement, contentOffset, contentSize } = e?.nativeEvent || {};
@@ -253,7 +217,7 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
 
   const handleFollow = useCallback(() => {
     if (!creator) return;
-    if (isFollowing) return;
+    if (isFollowing || isFollowRequestPending) return;
     const viewer = (user?.walletAddress || user?.address || "").toLowerCase();
     const target = (
       (creator?.walletAddress ||
@@ -264,41 +228,27 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
     if (!viewer || !target) return;
     requireAuth?.(async () => {
       setFollowLoading(true);
-      // optimistic
+      // optimistic update
       setIsFollowing(true);
-      setCreator((prev: any) => {
-        if (!prev) return prev;
-        const followers = prev.followers || [];
-        if (
-          followers.map((f: string) => (f || "").toLowerCase()).includes(viewer)
-        )
-          return prev;
-        return { ...prev, followers: [...followers, viewer] };
-      });
       try {
-        await followUser(viewer, target);
+        const res = await followUser(viewer, target);
+        if (res.status === 'pending') {
+          setIsFollowing(false);
+          setIsFollowRequestPending(true);
+        }
       } catch (e) {
-        // revert
+        // revert on error
         setIsFollowing(false);
-        setCreator((prev: any) => {
-          if (!prev) return prev;
-          const followers = prev.followers || [];
-          return {
-            ...prev,
-            followers: followers.filter(
-              (f: string) => (f || "").toLowerCase() !== viewer
-            ),
-          };
-        });
         toastError("Failed to follow user");
       } finally {
         setFollowLoading(false);
       }
     });
-  }, [creator, isFollowing, user?.walletAddress, user?.address]);
+  }, [creator, isFollowing, isFollowRequestPending, user?.walletAddress, user?.address, requireAuth]);
 
   const handleUnfollow = useCallback(() => {
-    if (!creator || !isFollowing || followLoading) return;
+    if (!creator || followLoading) return;
+    if (!isFollowing && !isFollowRequestPending) return;
     const viewer = (user?.walletAddress || user?.address || "").toLowerCase();
     const target = (
       (creator?.walletAddress ||
@@ -309,214 +259,86 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
     if (!viewer || !target) return;
     requireAuth?.(async () => {
       setFollowLoading(true);
+      const wasPending = isFollowRequestPending;
+      if (wasPending) {
+        setIsFollowRequestPending(false);
+      } else {
+        setIsFollowing(false);
+      }
       try {
         await unfollowUser(viewer, target);
-        setIsFollowing(false);
-        setCreator((prev: any) => {
-          if (!prev) return prev;
-          const followers = prev.followers || [];
-          return {
-            ...prev,
-            followers: followers.filter(
-              (f: string) => (f || "").toLowerCase() !== viewer
-            ),
-          };
-        });
       } catch (e) {
-        toastError("Failed to unfollow user");
+        // revert on error
+        if (wasPending) {
+          setIsFollowRequestPending(true);
+        } else {
+          setIsFollowing(true);
+        }
+        toastError(wasPending ? "Failed to cancel request" : "Failed to unfollow user");
       } finally {
         setFollowLoading(false);
       }
     });
-  }, [creator, isFollowing, followLoading, user?.walletAddress, user?.address]);
+  }, [creator, isFollowing, isFollowRequestPending, followLoading, user?.walletAddress, user?.address, requireAuth]);
 
-  // derive channel display (kept for backwards compat; now handled in CreatorRow)
-  const stakedForBadge = (creator as any)?.stakedDHB || 0;
-  const badgeName = getBadgeName(stakedForBadge);
-  const badgeImage = getBadgeUrl(stakedForBadge);
-
-  // Comments from NFT payload
-  const comments: any[] = Array.isArray((nftData as any)?.comments)
-    ? ((nftData as any).comments as any[])
-    : [];
-  // Compute top-level comments (exclude items that are listed as a replyId of another comment)
-  const replyIdSet = useMemo(() => {
-    const set = new Set<number>();
+  // Comment count from NFT payload for preview
+  const commentCount = useMemo(() => {
+    const comments: any[] = Array.isArray((nftData as any)?.comments)
+      ? ((nftData as any).comments as any[])
+      : [];
+    // Compute top-level comments count (exclude items that are listed as a replyId of another comment)
+    const replyIdSet = new Set<number>();
     comments.forEach((c: any) => {
       if (Array.isArray(c?.replyIds)) {
-        c.replyIds.forEach((id: any) => set.add(Number(id)));
+        c.replyIds.forEach((id: any) => replyIdSet.add(Number(id)));
       }
     });
-    return set;
-  }, [comments]);
-  const topLevelComments = useMemo(
-    () => comments.filter((c: any) => !replyIdSet.has(Number(c?.id))),
-    [comments, replyIdSet]
-  );
-  // console.log({comments})
+    return comments.filter((c: any) => !replyIdSet.has(Number(c?.id))).length;
+  }, [nftData]);
+
+  // Preview comment for TopCommentPreview
   const previewComment = useMemo(() => {
-    const c = topLevelComments[0];
+    const comments: any[] = Array.isArray((nftData as any)?.comments)
+      ? ((nftData as any).comments as any[])
+      : [];
+    // Get top-level comments
+    const replyIdSet = new Set<number>();
+    comments.forEach((c: any) => {
+      if (Array.isArray(c?.replyIds)) {
+        c.replyIds.forEach((id: any) => replyIdSet.add(Number(id)));
+      }
+    });
+    const topLevel = comments.filter((c: any) => !replyIdSet.has(Number(c?.id)));
+    const c = topLevel[0];
     if (!c) return null;
     return {
       user: c?.writor?.username || (c?.address as string) || "",
       avatar: getAvatarUrl(c?.writor?.avatarUrl) || undefined,
       text: String(c?.content || "").replace(/<[^>]+>/g, ""),
     };
-  }, [topLevelComments]);
+  }, [nftData]);
 
-  // Send handler (comments and replies) with optimistic updates
-  const handleSend = useCallback(() => {
-    const text = (draftComment || "").trim();
-    if (!text || posting) return;
-
-    requireAuth?.(async () => {
-      setPosting(true);
-      const now = new Date().toISOString();
-      const viewerAddr = (user?.walletAddress || user?.address || "") as string;
-      const tempId = -Date.now();
-      const replyTarget = replyTo ? { ...replyTo } : null;
-
-      // Optimistic list update + counts/preview impact
-      setNftData((prev: any) => {
-        const base = prev || {};
-        const prevComments: any[] = Array.isArray(base?.comments)
-          ? [...base.comments]
-          : [];
-        if (replyTarget && replyTarget.id != null) {
-          // Add reply item and connect to parent
-          const optimisticReply: any = {
-            id: tempId,
-            address: viewerAddr,
-            content: text,
-            updatedAt: now,
-            writor: {
-              username: user?.username,
-              avatarUrl: user?.avatarUrl || (user as any)?.avatarImageUrl,
-            },
-          };
-          const parentIdx = prevComments.findIndex(
-            (x: any) => Number(x?.id) === Number(replyTarget.id)
-          );
-          if (parentIdx >= 0) {
-            const parent = { ...(prevComments[parentIdx] || {}) };
-            const replyIds: any[] = Array.isArray(parent.replyIds)
-              ? [...parent.replyIds]
-              : [];
-            replyIds.push(tempId);
-            prevComments[parentIdx] = { ...parent, replyIds };
-          }
-          prevComments.push(optimisticReply);
-          // Ensure thread expands and we scroll to new reply
-          setExpandThreadId(replyTarget?.id ?? null);
-        } else {
-          // New top-level comment (prepend so preview updates)
-          const optimisticComment: any = {
-            id: tempId,
-            address: viewerAddr,
-            content: text,
-            updatedAt: now,
-            replyIds: [],
-            writor: {
-              username: user?.username,
-              avatarUrl: user?.avatarUrl || (user as any)?.avatarImageUrl,
-            },
-          };
-          prevComments.unshift(optimisticComment);
-        }
-        return { ...(base || {}), comments: prevComments };
-      });
-
-      // Optimistically exit reply mode immediately
-      if (replyTarget) setReplyTo(null);
-
-      // Clear input and dismiss keyboard
-      setDraftComment("");
-      Keyboard.dismiss();
-
-      // Highlight + scroll to the new item
-      setHighlightedId(tempId);
-      setScrollTargetId(tempId);
-
-      try {
-        const payload: any = {
-          streamTokenId: tokenId as any,
-          content: text,
-          commentId: replyTarget?.id,
-        };
-        const res: any = await postComment(payload);
-        const newId = res?.result?.id ?? res?.id ?? undefined;
-        if (newId != null) {
-          // Reconcile temp id to server id (and parent.replyIds)
-          setNftData((prev: any) => {
-            if (!prev) return prev;
-            const list: any[] = Array.isArray(prev.comments)
-              ? [...prev.comments]
-              : [];
-            const idx = list.findIndex((x) => Number(x?.id) === Number(tempId));
-            if (idx >= 0) list[idx] = { ...list[idx], id: newId };
-            if (replyTarget?.id != null) {
-              const pIdx = list.findIndex(
-                (x) => Number(x?.id) === Number(replyTarget.id)
-              );
-              if (pIdx >= 0) {
-                const parent = { ...(list[pIdx] || {}) };
-                const rids: any[] = Array.isArray(parent.replyIds)
-                  ? [...parent.replyIds]
-                  : [];
-                const ridx = rids.findIndex(
-                  (rid) => Number(rid) === Number(tempId)
-                );
-                if (ridx >= 0) rids[ridx] = newId;
-                list[pIdx] = { ...parent, replyIds: rids };
-              }
-            }
-            return { ...prev, comments: list };
-          });
-        }
-      } catch (e) {
-        // Revert optimistic update on failure
-        setNftData((prev: any) => {
-          if (!prev) return prev;
-          const list: any[] = Array.isArray(prev.comments)
-            ? [...prev.comments]
-            : [];
-          const next = list.filter((x) => Number(x?.id) !== Number(tempId));
-          if (replyTarget?.id != null) {
-            const pIdx = next.findIndex(
-              (x) => Number(x?.id) === Number(replyTarget.id)
-            );
-            if (pIdx >= 0) {
-              const parent = { ...(next[pIdx] || {}) };
-              const rids: any[] = Array.isArray(parent.replyIds)
-                ? parent.replyIds.filter(
-                    (rid: any) => Number(rid) !== Number(tempId)
-                  )
-                : [];
-              next[pIdx] = { ...parent, replyIds: rids };
-            }
-          }
-          return { ...prev, comments: next };
-        });
-        setScrollTargetId(null);
-        setHighlightedId(null);
-        toastError("Failed to post comment");
-      } finally {
-        setPosting(false);
-      }
-    });
-  }, [
-    draftComment,
-    posting,
-    requireAuth,
-    user?.walletAddress,
-    user?.address,
-    setNftData,
-    replyTo,
-    tokenId,
-  ]);
+  // Handler to open comments
+  const handleOpenComments = useCallback(() => {
+    setShowComments(true);
+  }, []);
 
   return (
     <View className="flex-1" key="loaded-player">
+      {privateError ? (
+        <View className="flex-1 items-center justify-center px-6">
+          <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
+            <Ionicons name="lock-closed" size={40} color="#666" />
+          </View>
+          <Text className="text-white text-lg font-bold text-center mb-2">
+            Private Content
+          </Text>
+          <Text className="text-gray-400 text-center text-sm leading-5">
+            This content is from a private account. Follow the creator to view their posts.
+          </Text>
+        </View>
+      ) : (
+        <>
       <VideoArea
         isTranscoding={!!isTranscoding}
         isLockedOrPPV={!!isLockedOrPPV}
@@ -528,186 +350,144 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
         tokenId={tokenId as any}
         onProgress={onProgressRecord}
       />
-      {/* Scrollable metadata & interactions; keep both sections mounted to avoid refetch */}
+      {/* Scrollable metadata & interactions */}
       <ScrollView
         className="flex-1"
         keyboardShouldPersistTaps="handled"
-        // Ensure vertical scroll isn't blocked by nested views
         pointerEvents="auto"
-        contentContainerStyle={{ paddingBottom: commentsOpen ? 120 : 80 }}
+        contentContainerStyle={{ paddingBottom: 80 }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
       >
-        <View
-          style={{
-            display: commentsOpen ? ("none" as const) : ("flex" as const),
-          }}
-          pointerEvents={commentsOpen ? "none" : "auto"}
-        >
-          <>
-            <View className="px-4 pt-2">
-              <Text
-                className="text-theme-neutrals-100 font-semibold text-base"
-                numberOfLines={2}
-              >
-                {(resolvedTitle || "")?.slice(0, 60)}
-                {resolvedTitle && resolvedTitle.length > 60 ? "…" : ""}
-              </Text>
-              <Text className="text-theme-neutrals-400 text-[11px] mt-1">
-                {formatDistance(new Date(resolvedCreatedAt), new Date(), {
-                  addSuffix: true,
-                })}{" "}
-                • {resolvedViews.toLocaleString()} views •{" "}
-                {formatCompactNumber(resolvedTotalTips)} total tips
-              </Text>
-              <CreatorRow
-                key={
-                  creatorLoading
-                    ? "creator-loading"
-                    : `creator-${
-                        creator?.walletAddress || creator?.address || "none"
-                      }`
-                }
-                loading={creatorLoading}
-                creator={creator}
-                viewerAddress={(user?.walletAddress || user?.address) as string}
-                isFollowing={isFollowing}
-                followLoading={followLoading}
-                onFollow={handleFollow}
-                onUnfollow={handleUnfollow}
-                fallbackMinter={minter}
-              />
-              {nftLoading ? (
-                <View className="flex-row mt-4">
-                  {Array.from({ length: 4 }).map((_, i) => (
-                    <View
-                      key={i}
-                      className="h-9 w-16 rounded-full bg-theme-neutrals-800 mr-3 animate-pulse"
-                    />
-                  ))}
-                </View>
-              ) : (
-                <ActionsRow
-                  tokenId={tokenId}
-                  minter={minter || nftData?.minter || nftData?.result?.minter}
-                  likes={likes}
-                  dislikes={dislikes}
-                  userVote={
-                    nftData?.isLiked || nftData?.result?.isLiked
-                      ? "like"
-                      : nftData?.isDisliked || nftData?.result?.isDisliked
-                      ? "dislike"
-                      : null
-                  }
-                  chainId={
-                    (nftData?.chainId ?? nftData?.result?.chainId) as any
-                  }
-                  mintTxHash={
-                    (nftData?.mintTxHash ?? nftData?.result?.mintTxHash) as any
-                  }
-                />
-              )}
-              {/* Description (can sshow partial before, updated after) */}
-              <DescriptionBlock
-                description={resolvedDescription}
-                showDesc={showDesc}
-                onToggle={() => setShowDesc((d) => !d)}
-              />
-              {/* Top Comment Preview or empty state */}
-              {nftLoading ? (
-                <View className="mt-5">
-                  <View className="h-4 w-40 bg-theme-neutrals-800 rounded mb-2 animate-pulse" />
-                  <View className="h-3 w-56 bg-theme-neutrals-800 rounded animate-pulse" />
-                </View>
-              ) : (
-                <>
-                  {topLevelComments.length > 0 && previewComment ? (
-                    <TopCommentPreview
-                      comment={previewComment}
-                      total={topLevelComments.length}
-                      onOpen={() => setCommentsOpen(true)}
-                    />
-                  ) : (
-                    <View className="mt-4 rounded-2xl border border-theme-neutrals-800 p-3">
-                      <View className="flex-row items-center justify-between px-1">
-                        <Text className="text-theme-neutrals-400 text-xs font-semibold">
-                          Comments{" "}
-                          <Text className="text-theme-neutrals-500 font-normal">
-                            0
-                          </Text>
-                        </Text>
-                      </View>
-                      <View className="py-4 px-1">
-                        <Text className="text-theme-neutrals-400 text-sm mb-3">
-                          No comments yet.
-                        </Text>
-                        <CommentComposer
-                          readOnly
-                          placeholder="Add your comment"
-                          onPress={() => {
-                            setCommentsOpen(true);
-                            setComposerAutoFocus(true);
-                          }}
-                        />
-                      </View>
-                    </View>
-                  )}
-                </>
-              )}
-            </View>
-            <SuggestedVideos ref={suggestedRef} excludeTokenId={tokenId} />
-          </>
-        </View>
-        <View
-          style={{
-            display: commentsOpen ? ("flex" as const) : ("none" as const),
-          }}
-          pointerEvents={commentsOpen ? "auto" : "none"}
-        >
-          <CommentsPanel
-            comments={comments}
-            nftLoading={nftLoading}
-            onClose={() => setCommentsOpen(false)}
-            onReply={(target) => {
-              setReplyTo(target);
-              setComposerFocusSignal((s) => s + 1);
-              setTimeout(() => setComposerFocusSignal((s) => s + 1), 60);
-            }}
-            scrollTargetId={scrollTargetId}
-            highlightedId={highlightedId}
-            onHighlightDone={() => {
-              setHighlightedId(null);
-              setScrollTargetId(null);
-            }}
-            expandThreadId={expandThreadId}
+        <View className="px-4 pt-2">
+          <Text
+            className="text-theme-neutrals-100 font-semibold text-base"
+            numberOfLines={2}
+          >
+            {(resolvedTitle || "")?.slice(0, 60)}
+            {resolvedTitle && resolvedTitle.length > 60 ? "…" : ""}
+          </Text>
+          <Text className="text-theme-neutrals-400 text-[11px] mt-1">
+            {formatDistance(new Date(resolvedCreatedAt), new Date(), {
+              addSuffix: true,
+            })}{" "}
+            • {resolvedViews.toLocaleString()} views •{" "}
+            {formatCompactNumber(resolvedTotalTips)} total tips
+          </Text>
+          <CreatorRow
+            key={
+              creatorLoading
+                ? "creator-loading"
+                : `creator-${
+                    creator?.walletAddress || creator?.address || "none"
+                  }`
+            }
+            loading={creatorLoading}
+            creator={creator}
+            viewerAddress={(user?.walletAddress || user?.address) as string}
+            isFollowing={isFollowing}
+            isFollowRequestPending={isFollowRequestPending}
+            followLoading={followLoading}
+            onFollow={handleFollow}
+            onUnfollow={handleUnfollow}
+            fallbackMinter={minter}
           />
-        </View>
-      </ScrollView>
-      {commentsOpen && (
-        <View
-          // Absolutely position composer; lift above keyboard when visible
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: Platform.OS === "ios" ? keyboardHeight : keyboardHeight,
-          }}
-          pointerEvents="box-none"
-        >
-          <View className="px-4 pb-3">
-            <CommentComposer
-              value={draftComment}
-              onChangeText={setDraftComment}
-              placeholder={replyTo ? "Replying…" : "Add your comment"}
-              autoFocus={composerAutoFocus}
-              replyToLabel={replyTo?.label}
-              onCancelReply={() => setReplyTo(null)}
-              focusSignal={composerFocusSignal}
-              disabled={posting}
-              onSend={handleSend}
+          {nftLoading ? (
+            <View className="flex-row mt-4">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <View
+                  key={i}
+                  className="h-9 w-16 rounded-full bg-theme-neutrals-800 mr-3 animate-pulse"
+                />
+              ))}
+            </View>
+          ) : (
+            <ActionsRow
+              tokenId={tokenId}
+              minter={minter || nftData?.minter || nftData?.result?.minter}
+              likes={likes}
+              dislikes={dislikes}
+              userVote={
+                nftData?.isLiked || nftData?.result?.isLiked
+                  ? "like"
+                  : nftData?.isDisliked || nftData?.result?.isDisliked
+                  ? "dislike"
+                  : null
+              }
+              chainId={
+                (nftData?.chainId ?? nftData?.result?.chainId) as any
+              }
+              mintTxHash={
+                (nftData?.mintTxHash ?? nftData?.result?.mintTxHash) as any
+              }
             />
-          </View>
+          )}
+          {/* Bounty Claim Banner - shown when video has bounty configured */}
+          {!nftLoading && tokenId != null && (
+            <BountyClaimBanner
+              tokenId={tokenId}
+              streamInfo={nftData?.streamInfo || nftData?.result?.streamInfo}
+              minter={nftData?.minter || nftData?.result?.minter || minter}
+            />
+          )}
+          {/* Description */}
+          <DescriptionBlock
+            description={resolvedDescription}
+            categories={resolvedCategories}
+            showDesc={showDesc}
+            onToggle={() => setShowDesc((d) => !d)}
+          />
+          {/* Top Comment Preview or empty state - opens CommentBottomSheet like HomeFeedCard */}
+          {nftLoading ? (
+            <View className="mt-5">
+              <View className="h-4 w-40 bg-theme-neutrals-800 rounded mb-2 animate-pulse" />
+              <View className="h-3 w-56 bg-theme-neutrals-800 rounded animate-pulse" />
+            </View>
+          ) : (
+            <>
+              {commentCount > 0 && previewComment ? (
+                <TopCommentPreview
+                  comment={previewComment}
+                  total={commentCount}
+                  onOpen={handleOpenComments}
+                />
+              ) : (
+                <TouchableOpacity
+                  onPress={handleOpenComments}
+                  activeOpacity={0.7}
+                  className="mt-4 rounded-2xl border border-theme-neutrals-800 p-3"
+                >
+                  <View className="flex-row items-center justify-between px-1">
+                    <Text className="text-theme-neutrals-400 text-xs font-semibold">
+                      Comments{" "}
+                      <Text className="text-theme-neutrals-500 font-normal">
+                        0
+                      </Text>
+                    </Text>
+                  </View>
+                  <View className="py-4 px-1">
+                    <Text className="text-theme-neutrals-400 text-sm">
+                      No comments yet. Be the first to comment!
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              )}
+            </>
+          )}
         </View>
+        <SuggestedVideos ref={suggestedRef} excludeTokenId={tokenId} />
+      </ScrollView>
+      
+      {/* Comment Bottom Sheet - same as HomeFeedCard */}
+      {tokenId != null && (
+        <CommentBottomSheet
+          visible={showComments}
+          onClose={() => setShowComments(false)}
+          tokenId={tokenId}
+          contentType="video"
+        />
+      )}
+        </>
       )}
     </View>
   );

@@ -64,6 +64,8 @@ const OnboardingScreen: React.FC = () => {
   const isAnimating = useRef(true);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const swipeButtonRef = useRef<SwipeButtonRef>(null);
+  // Track current index in ref to avoid reading .value on JS thread
+  const currentIndexRef = useRef(0);
 
   const handleComplete = useCallback(async () => {
     isAnimating.current = false;
@@ -88,7 +90,8 @@ const OnboardingScreen: React.FC = () => {
   const advanceSlide = useCallback(() => {
     if (!isAnimating.current) return;
     
-    const nextIndex = (activeIndex.value + 1) % SLIDES.length;
+    const nextIndex = (currentIndexRef.current + 1) % SLIDES.length;
+    currentIndexRef.current = nextIndex;
     activeIndex.value = nextIndex;
     startProgress();
   }, [activeIndex, startProgress]);
@@ -116,6 +119,7 @@ const OnboardingScreen: React.FC = () => {
   // Go to specific slide
   const goToSlide = useCallback((index: number) => {
     if (timerRef.current) clearTimeout(timerRef.current);
+    currentIndexRef.current = index;
     activeIndex.value = index;
     startProgress();
     
@@ -133,16 +137,17 @@ const OnboardingScreen: React.FC = () => {
 
   // Tap left/right to navigate slides
   const handleTap = useCallback((x: number) => {
+    const currentIdx = currentIndexRef.current;
     if (x < SCREEN_WIDTH / 3) {
       // Tap left - go to previous
-      const prevIndex = activeIndex.value > 0 ? activeIndex.value - 1 : SLIDES.length - 1;
+      const prevIndex = currentIdx > 0 ? currentIdx - 1 : SLIDES.length - 1;
       goToSlide(prevIndex);
     } else if (x > (SCREEN_WIDTH * 2) / 3) {
       // Tap right - go to next
-      const nextIndex = (activeIndex.value + 1) % SLIDES.length;
+      const nextIndex = (currentIdx + 1) % SLIDES.length;
       goToSlide(nextIndex);
     }
-  }, [activeIndex, goToSlide]);
+  }, [goToSlide]);
 
   // Update Rive swipe progress
   const updateSwipeProgress = useCallback((swipeProgress: number) => {

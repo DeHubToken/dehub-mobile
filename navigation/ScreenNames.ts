@@ -28,8 +28,11 @@ export enum ScreenNames {
   AccountSettings = 'AccountSettings',
   YourVideos = 'YourVideos',
   LikedVideos = 'LikedVideos',
+  SavedPosts = 'SavedPosts',
   EditProfile = 'EditProfile',
   Dpay = 'Dpay',
+  FollowList = 'FollowList',
+  PrivacySettings = 'PrivacySettings',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',

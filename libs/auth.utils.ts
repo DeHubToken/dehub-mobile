@@ -43,10 +43,46 @@ export async function getAuthUser<T = any>(): Promise<T | null> {
 }
 
 /**
+ * Essential user fields to persist in SecureStore (keep under 2KB limit)
+ */
+const ESSENTIAL_USER_FIELDS = [
+  '_id',
+  'address',
+  'walletAddress', 
+  'username',
+  'displayName',
+  'bio',
+  'avatarImageUrl',
+  'avatarUrl',
+  'bannerImageUrl',
+  'bannerUrl',
+  'isCreator',
+  'isVerified',
+  'followersCount',
+  'followingCount',
+  'notificationCount',
+  'socialLinks',
+  'createdAt',
+] as const;
+
+/**
  * Sets the authenticated user data in SecureStore
+ * Only stores essential fields to stay under the 2KB limit
  */
 export async function setAuthUser<T = any>(user: T): Promise<void> {
-  return SecureStore.setItemAsync(AUTH_USER_KEY, JSON.stringify(user));
+  if (!user || typeof user !== 'object') {
+    return SecureStore.setItemAsync(AUTH_USER_KEY, JSON.stringify(user));
+  }
+  
+  // Extract only essential fields to keep storage size minimal
+  const essentialUser: Record<string, any> = {};
+  for (const field of ESSENTIAL_USER_FIELDS) {
+    if ((user as any)[field] !== undefined) {
+      essentialUser[field] = (user as any)[field];
+    }
+  }
+  
+  return SecureStore.setItemAsync(AUTH_USER_KEY, JSON.stringify(essentialUser));
 }
 
 /**

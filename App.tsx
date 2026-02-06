@@ -38,6 +38,7 @@ import { useNavigationPersistence } from "./hooks/useNavigationPersistence";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { useAppLifecycle } from "./hooks/useAppLifecycle";
 import { createLogger } from "./libs/logger";
+import { forceFlushBatchViews } from "./services/view.service";
 
 const logger = createLogger("App");
 
@@ -62,6 +63,8 @@ export default function App() {
     }, []),
     onBackground: useCallback(() => {
       logger.info("App went to background");
+      // Flush any pending feed view batches when app goes to background
+      forceFlushBatchViews();
     }, []),
   });
 

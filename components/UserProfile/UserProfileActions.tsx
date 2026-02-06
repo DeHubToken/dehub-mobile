@@ -6,46 +6,76 @@ import AccentButtonGradient from "../ui/AccentButtonGradient";
 
 export interface UserProfileActionsProps {
   isFollowing: boolean;
+  isFollowRequestPending?: boolean;
   followLoading: boolean;
   disableActions: boolean;
   address?: string;
   onFollow: () => void;
   onOpenUnfollow: () => void;
-  onOpenVideos: () => void;
 }
 
 const UserProfileActions: React.FC<UserProfileActionsProps> = ({
   isFollowing,
+  isFollowRequestPending = false,
   followLoading,
   disableActions,
   address,
   onFollow,
   onOpenUnfollow,
-  onOpenVideos,
 }) => {
   return (
-    <View className="flex-row gap-3 mt-2 relative">
-      {!isFollowing ? (
+    <View className="flex-row gap-3 mt-2 items-stretch min-h-[40px]">
+      {isFollowRequestPending ? (
+        <TouchableOpacity
+          onPress={() => !followLoading && !disableActions && onOpenUnfollow()}
+          disabled={followLoading || disableActions}
+          activeOpacity={0.7}
+          className={`flex-1 bg-theme-neutrals-800 py-2 rounded-full items-center flex-row justify-center gap-1 ${
+            followLoading || disableActions ? "opacity-60" : ""
+          }`}
+          style={{ minHeight: 30 }}
+        >
+          {followLoading ? (
+            <ActivityIndicator size="small" color="#fff" />
+          ) : (
+            <>
+              <Ionicons name="time-outline" size={16} color="#fff" />
+              <Text className="text-white text-sm font-semibold">
+                Requested
+              </Text>
+            </>
+          )}
+        </TouchableOpacity>
+      ) : !isFollowing ? (
         <AccentButtonGradient
-          style={{ flex: 1, opacity: disableActions ? 0.4 : 1 }}
+          style={{ flex: 1, opacity: disableActions ? 0.4 : 1, minHeight: 30 }}
         >
           <TouchableOpacity
-            disabled={disableActions}
+            disabled={disableActions || followLoading}
             onPress={disableActions ? undefined : onFollow}
-            className="py-2 rounded-lg items-center flex-row justify-center gap-2"
+            activeOpacity={0.7}
+            className="py-2 items-center flex-row justify-center gap-2"
             style={{ backgroundColor: "transparent", flex: 1 }}
           >
-            <Ionicons name="person-add-outline" size={16} color="#fff" />
-            <Text className="text-white text-sm font-semibold">Follow</Text>
+            {followLoading ? (
+              <ActivityIndicator size="small" color="#fff" />
+            ) : (
+              <>
+                <Ionicons name="person-add-outline" size={16} color="#fff" />
+                <Text className="text-white text-sm font-semibold">Follow</Text>
+              </>
+            )}
           </TouchableOpacity>
         </AccentButtonGradient>
       ) : (
         <TouchableOpacity
           onPress={() => !followLoading && !disableActions && onOpenUnfollow()}
           disabled={followLoading || disableActions}
+          activeOpacity={0.7}
           className={`flex-1 bg-theme-neutrals-800 py-2 rounded-full items-center flex-row justify-center gap-1 ${
             followLoading || disableActions ? "opacity-60" : ""
           }`}
+          style={{ minHeight: 30 }}
         >
           {followLoading ? (
             <ActivityIndicator size="small" color="#fff" />
@@ -65,16 +95,6 @@ const UserProfileActions: React.FC<UserProfileActionsProps> = ({
       >
         <TipModal toAddress={address as string} />
       </View>
-      <TouchableOpacity
-        disabled={disableActions}
-        onPress={disableActions ? undefined : onOpenVideos}
-        className={`flex-1 bg-theme-neutrals-800 py-2 rounded-full items-center flex-row justify-center gap-2 ${
-          disableActions ? "opacity-40" : ""
-        }`}
-      >
-        <Ionicons name="film-outline" size={16} color="#fff" />
-        <Text className="text-white text-sm font-semibold">Posts</Text>
-      </TouchableOpacity>
     </View>
   );
 };

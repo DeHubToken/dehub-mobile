@@ -33,6 +33,7 @@ import {
   arePushNotificationsEnabled,
   getNotificationPermissionStatus,
 } from '../services/push/push.service';
+import { theme } from '../theme';
 
 const logger = createLogger('NotificationSettings');
 
@@ -134,6 +135,22 @@ const NOTIFICATION_TYPES: NotificationTypeConfig[] = [
     iconColor: '#fbbf24',
     category: 'content',
   },
+  {
+    key: 'accountAlerts',
+    label: 'Account Alerts',
+    description: 'Important security and account updates',
+    icon: 'shield-checkmark',
+    iconColor: '#ef4444',
+    category: 'content',
+  },
+  {
+    key: 'announcements',
+    label: 'Announcements',
+    description: 'Platform news and feature updates',
+    icon: 'megaphone',
+    iconColor: '#3b82f6',
+    category: 'content',
+  },
 ];
 
 const CATEGORIES = [
@@ -188,9 +205,9 @@ const SettingRow: React.FC<SettingRowProps> = ({
       value={value}
       onValueChange={onToggle}
       disabled={disabled}
-      trackColor={{ false: '#3f3f46', true: '#8b5cf6' }}
-      thumbColor={value ? '#ffffff' : '#a1a1aa'}
-      ios_backgroundColor="#3f3f46"
+      trackColor={{ false: '#374151', true: '#10b981' }}
+      thumbColor={value ? '#34D399' : '#6B7280'}
+      ios_backgroundColor="#374151"
     />
   </View>
 );
@@ -213,49 +230,53 @@ const TypeRow: React.FC<TypeRowProps> = ({
   onPushToggle,
   inAppDisabled,
   pushDisabled,
-}) => (
-  <View className="px-4 py-3 border-b border-theme-neutrals-700/50">
-    <View className="flex-row items-center mb-2">
-      <View className="mr-3 w-8 h-8 rounded-full bg-theme-neutrals-700/50 items-center justify-center">
-        <Ionicons name={config.icon} size={16} color={config.iconColor} />
+}) => {
+  const allDisabled = inAppDisabled && pushDisabled;
+  
+  return (
+    <View className={`px-4 py-3 border-b border-theme-neutrals-700/50 ${allDisabled ? 'opacity-50' : ''}`}>
+      <View className="flex-row items-center mb-2">
+        <View className="mr-3 w-8 h-8 rounded-full bg-theme-neutrals-700/50 items-center justify-center">
+          <Ionicons name={config.icon} size={16} color={allDisabled ? '#6B7280' : config.iconColor} />
+        </View>
+        <View className="flex-1">
+          <Text className={`text-sm font-medium ${allDisabled ? 'text-theme-neutrals-500' : 'text-theme-neutrals-100'}`}>{config.label}</Text>
+          <Text className={`text-xs ${allDisabled ? 'text-theme-neutrals-600' : 'text-theme-neutrals-500'}`}>{config.description}</Text>
+        </View>
       </View>
-      <View className="flex-1">
-        <Text className="text-sm font-medium text-theme-neutrals-100">{config.label}</Text>
-        <Text className="text-xs text-theme-neutrals-500">{config.description}</Text>
+      <View className="flex-row justify-end items-center mt-1 ml-11">
+        <View className={`flex-row items-center mr-6 ${inAppDisabled ? 'opacity-50' : ''}`}>
+          <Text className={`text-xs mr-2 ${inAppDisabled ? 'text-theme-neutrals-600' : 'text-theme-neutrals-400'}`}>
+            In-App
+          </Text>
+          <Switch
+            value={inAppDisabled ? false : inAppValue}
+            onValueChange={onInAppToggle}
+            disabled={inAppDisabled}
+            trackColor={{ false: '#374151', true: '#10b981' }}
+            thumbColor={inAppValue && !inAppDisabled ? '#34D399' : '#6B7280'}
+            ios_backgroundColor="#374151"
+            style={{ transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }] }}
+          />
+        </View>
+        <View className={`flex-row items-center ${pushDisabled ? 'opacity-50' : ''}`}>
+          <Text className={`text-xs mr-2 ${pushDisabled ? 'text-theme-neutrals-600' : 'text-theme-neutrals-400'}`}>
+            Push
+          </Text>
+          <Switch
+            value={pushDisabled ? false : pushValue}
+            onValueChange={onPushToggle}
+            disabled={pushDisabled}
+            trackColor={{ false: '#374151', true: '#10b981' }}
+            thumbColor={pushValue && !pushDisabled ? '#34D399' : '#6B7280'}
+            ios_backgroundColor="#374151"
+            style={{ transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }] }}
+          />
+        </View>
       </View>
     </View>
-    <View className="flex-row justify-end items-center mt-1 ml-11">
-      <View className="flex-row items-center mr-6">
-        <Text className={`text-xs mr-2 ${inAppDisabled ? 'text-theme-neutrals-600' : 'text-theme-neutrals-400'}`}>
-          In-App
-        </Text>
-        <Switch
-          value={inAppValue}
-          onValueChange={onInAppToggle}
-          disabled={inAppDisabled}
-          trackColor={{ false: '#3f3f46', true: '#8b5cf6' }}
-          thumbColor={inAppValue ? '#ffffff' : '#a1a1aa'}
-          ios_backgroundColor="#3f3f46"
-          style={{ transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }] }}
-        />
-      </View>
-      <View className="flex-row items-center">
-        <Text className={`text-xs mr-2 ${pushDisabled ? 'text-theme-neutrals-600' : 'text-theme-neutrals-400'}`}>
-          Push
-        </Text>
-        <Switch
-          value={pushValue}
-          onValueChange={onPushToggle}
-          disabled={pushDisabled}
-          trackColor={{ false: '#3f3f46', true: '#22c55e' }}
-          thumbColor={pushValue ? '#ffffff' : '#a1a1aa'}
-          ios_backgroundColor="#3f3f46"
-          style={{ transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }] }}
-        />
-      </View>
-    </View>
-  </View>
-);
+  );
+};
 
 // =============================================================================
 // Main Screen
@@ -375,7 +396,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
       <View className="flex-1 bg-theme-neutrals-900">
         <ScreenHeader title="Notifications" canGoBack />
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#8b5cf6" />
+          <ActivityIndicator size="large" color={theme.colors.accent} />
         </View>
       </View>
     );

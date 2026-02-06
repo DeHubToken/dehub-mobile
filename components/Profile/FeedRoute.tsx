@@ -1,11 +1,13 @@
 import React, { useCallback, useMemo } from 'react';
 import { View, FlatList } from 'react-native';
 import InfiniteFeed from '../Feed/InfiniteFeed';
-import FeedCard from '../Feed/FeedCard';
+import HomeFeedCard from '../Home/HomeFeedCard';
 import type { GetNFTsResult, SearchParams } from '../../services/nft.service';
+import type { UnifiedFeedItem } from '../../services/feed.unified.service';
 import { useNavigation } from '@react-navigation/native';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import { useUserProfileSheet } from '../../context/UserProfileSheetContext';
+import { useAuthState } from '../../context/AuthContext';
 
 interface FeedRouteProps {
   address?: string;
@@ -18,20 +20,7 @@ interface FeedRouteProps {
 const FeedRoute: React.FC<FeedRouteProps> = ({ address, scrollEnabled, onScroll, listRef, noPadding }) => {
   const navigation = useNavigation<any>();
   const { hideUserProfile } = useUserProfileSheet();
-
-  const handleOpenImage = useCallback(
-    (images: any[], index: number) => {
-      hideUserProfile();
-      navigation.navigate(ScreenNames.ImageViewer, { images, index });
-    },
-    [navigation, hideUserProfile]
-  );
-
-  const handleOpenComments = useCallback((post: GetNFTsResult) => {
-    const tokenId = (post as any).tokenId ?? (post as any).id;
-    hideUserProfile();
-    navigation.navigate(ScreenNames.FeedDetail as any, { tokenId });
-  }, [navigation, hideUserProfile]);
+  const { isSignedIn } = useAuthState();
 
   const handleFeedPress = useCallback((post: GetNFTsResult) => {
     const tokenId = (post as any).tokenId ?? (post as any).id;
@@ -53,17 +42,16 @@ const FeedRoute: React.FC<FeedRouteProps> = ({ address, scrollEnabled, onScroll,
         insideNavigatorScreen={false}
         params={feedParams}
         pageSize={20}
+        isSignedIn={isSignedIn}
         contentContainerStyle={{ paddingBottom: 80, paddingTop: noPadding ? 0 : 8 }}
         scrollEnabled={scrollEnabled}
         onScroll={onScroll}
         listRef={listRef}
         enableBackToTop={false}
         renderItem={({ item }) => (
-          <FeedCard
-            item={item}
-            onOpenImage={handleOpenImage}
-            onOpenComments={handleOpenComments}
-            onFeedPress={handleFeedPress}
+          <HomeFeedCard
+            item={item as UnifiedFeedItem}
+            onPress={() => handleFeedPress(item)}
           />
         )}
       />

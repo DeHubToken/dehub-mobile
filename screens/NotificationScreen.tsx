@@ -15,10 +15,11 @@ import {
   getNotifications, 
   markNotificationAsRead, 
   markAllNotificationsAsRead,
+  acceptFollowRequest,
+  rejectFollowRequest,
   type NotificationItem,
   type NotificationCategory,
 } from "../services/user.service";
-import { getNFT } from "../services/nft.service";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
@@ -26,37 +27,13 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { formatNotificationDate } from "../libs/date.util";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { getAvatarUrl } from "../libs";
+import { openInApp } from "../libs/links.utils";
 import Avatar from "../components/common/Avatar";
-
-// =============================================================================
-// Notification Icon Mapping
-// =============================================================================
-
-const getNotificationIcon = (type: string): { name: keyof typeof Ionicons.glyphMap; color: string } => {
-  switch (type) {
-    case 'like':
-      return { name: 'heart', color: '#ef4444' };
-    case 'comment':
-    case 'comment_reply':
-      return { name: 'chatbubble', color: '#3b82f6' };
-    case 'following':
-      return { name: 'person-add', color: '#8b5cf6' };
-    case 'tip':
-      return { name: 'cash', color: '#22c55e' };
-    case 'subscription':
-      return { name: 'checkmark-circle', color: '#f59e0b' };
-    case 'ppv_purchase':
-      return { name: 'lock-open', color: '#06b6d4' };
-    case 'video_milestone':
-      return { name: 'trophy', color: '#fbbf24' };
-    case 'livestream_start':
-      return { name: 'radio', color: '#ef4444' };
-    case 'video_removal':
-      return { name: 'alert-circle', color: '#f97316' };
-    default:
-      return { name: 'notifications', color: '#9ca3af' };
-  }
-};
+import {
+  NotificationType,
+  getNotificationIconConfig,
+  NON_CLICKABLE_TYPES,
+} from "../services/enums/notification.enums";
 
 // =============================================================================
 // Category Filter Tabs
@@ -74,9 +51,10 @@ const CATEGORY_TABS: { key: NotificationCategory | 'all'; label: string }[] = [
 interface CategoryTabsProps {
   selected: NotificationCategory | 'all';
   onSelect: (category: NotificationCategory | 'all') => void;
+  disabled?: boolean;
 }
 
-const CategoryTabs: React.FC<CategoryTabsProps> = ({ selected, onSelect }) => (
+const CategoryTabs: React.FC<CategoryTabsProps> = ({ selected, onSelect, disabled }) => (
   <View className="flex-row px-4 py-2 border-b border-theme-neutrals-800">
     <FlatList
       horizontal
@@ -86,9 +64,12 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({ selected, onSelect }) => (
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() => onSelect(item.key)}
+          disabled={disabled}
+          activeOpacity={0.7}
           className={`px-4 py-2 mr-2 rounded-full ${
             selected === item.key ? 'bg-theme-primary-500' : 'bg-theme-neutrals-800'
           }`}
+          style={disabled && selected !== item.key ? { opacity: 0.5 } : undefined}
         >
           <Text
             className={`text-xs font-medium ${
@@ -102,6 +83,62 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({ selected, onSelect }) => (
     />
   </View>
 );
+
+// =============================================================================
+// Helper Functions
+// =============================================================================
+
+/**
+ * Check if notification is clickable based on type and available data
+ */
+const isNotificationClickable = (notification: NotificationItem): boolean => {
+  const type = notification.type as NotificationType;
+  
+  // Non-clickable types (dislike doesn't generate notifications but just in case)
+  if (NON_CLICKABLE_TYPES.has(type)) return false;
+  
+  // Follow request — handled via inline accept/reject buttons, not clickable to navigate
+  if (type === NotificationType.FOLLOW_REQUEST) return false;
+
+  // Follow request accepted — navigate to the requester's profile
+  if (type === NotificationType.FOLLOW_REQUEST_ACCEPTED) {
+    return !!(notification.actorAddress || notification.actorUsername);
+  }
+
+  // Following/Subscription - need actor info to show profile
+  if (type === NotificationType.FOLLOWING || type === NotificationType.SUBSCRIPTION) {
+    return !!(notification.actorAddress || notification.actorUsername);
+  }
+  
+  // Content types - need tokenId
+  if (type === NotificationType.LIKE ||
+      type === NotificationType.COMMENT ||
+      type === NotificationType.COMMENT_REPLY ||
+      type === NotificationType.COMMENT_LIKE ||
+      type === NotificationType.TIP ||
+      type === NotificationType.PPV_PURCHASE ||
+      type === NotificationType.BOUNTY_AVAILABLE ||
+      type === NotificationType.BOUNTY_CLAIMED ||
+      type === NotificationType.VIDEO_MILESTONE ||
+      type === NotificationType.MENTION) {
+    return !!notification.tokenId;
+  }
+  
+  // Livestream - need tokenId
+  if (type === NotificationType.LIVESTREAM_START) {
+    return !!notification.tokenId;
+  }
+  
+  // System notifications - not clickable unless they have external link
+  if (type === NotificationType.SYSTEM || 
+      type === NotificationType.VIDEO_REMOVAL || 
+      type === NotificationType.ACCOUNT_WARNING) {
+    return !!(notification.metadata?.articleUrl);
+  }
+  
+  // Default: clickable if has tokenId or actor info
+  return !!(notification.tokenId || notification.actorAddress || notification.actorUsername);
+};
 
 // =============================================================================
 // Main Screen
@@ -123,6 +160,7 @@ const NotificationScreen = () => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [isChangingCategory, setIsChangingCategory] = useState(false);
 
   // Enable LayoutAnimation on Android
   useEffect(() => {
@@ -140,136 +178,164 @@ const NotificationScreen = () => {
   // Navigation Handlers
   // ==========================================================================
 
-  const navigateToVideo = useCallback(async (tokenId: number) => {
-    try {
-      // Fetch NFT data to pass to VideoPlayer
-      const address = user?.walletAddress || user?.address;
-      const res: any = await getNFT(tokenId, address);
-      const nft = res?.result || res;
-      
-      navigation.navigate(ScreenNames.VideoPlayer, {
-        tokenId,
-        nft,
-        accessInfo: nft?.accessInfo,
-      });
-    } catch (e) {
-      console.warn('[NotificationScreen] Failed to fetch video', e);
-      // Navigate anyway with just tokenId
-      navigation.navigate(ScreenNames.VideoPlayer, { tokenId });
-    }
-  }, [navigation, user?.walletAddress, user?.address]);
-
-  const navigateToFeed = useCallback((tokenId: number) => {
-    navigation.navigate(ScreenNames.FeedDetail, { tokenId });
+  const navigateToVideo = useCallback((tokenId: number, commentId?: string) => {
+    // Navigate immediately - let VideoPlayer handle loading
+    navigation.navigate(ScreenNames.VideoPlayer, { tokenId, commentId });
   }, [navigation]);
 
-  const navigateToProfile = useCallback((actorAddress?: string, actorUsername?: string) => {
+  const navigateToFeed = useCallback((tokenId: number, commentId?: string) => {
+    navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
+  }, [navigation]);
+
+  const openUserProfile = useCallback((actorAddress?: string, actorUsername?: string) => {
     const identifier = actorUsername || actorAddress;
     if (!identifier) return;
     showUserProfile(identifier);
   }, [showUserProfile]);
 
-  const navigateToLivestream = useCallback((tokenId?: number) => {
-    if (!tokenId) return;
-    navigation.navigate(ScreenNames.LiveViewer, { streamId: String(tokenId) });
+  const navigateToLivestream = useCallback((tokenId?: number, streamId?: string) => {
+    const id = streamId || (tokenId ? String(tokenId) : null);
+    if (!id) return;
+    navigation.navigate(ScreenNames.LiveViewer, { streamId: id });
   }, [navigation]);
 
-  const handleNotificationPress = useCallback(async (notification: NotificationItem) => {
-    const { _id, type, postType, tokenId, actorAddress, actorUsername } = notification;
+  const navigateToDM = useCallback((conversationId: string) => {
+    navigation.navigate(ScreenNames.Chat, { conversationId });
+  }, [navigation]);
+
+  /**
+   * Fire-and-forget mark as read
+   */
+  const markAsReadAsync = useCallback((notificationId: string) => {
+    markNotificationAsRead(notificationId).catch((e) => {
+      console.warn('[NotificationScreen] markAsRead failed', e);
+    });
+  }, []);
+
+  /**
+   * Handle notification press - navigate immediately, mark read in background
+   */
+  const handleNotificationPress = useCallback((notification: NotificationItem) => {
+    const { _id, type, postType, tokenId, actorAddress, actorUsername, commentId, metadata } = notification;
     
-    // Mark as read optimistically
+    // Check if clickable
+    if (!isNotificationClickable(notification)) return;
+    
+    // Mark as read (fire and forget) - only if unread
     if (!notification.read) {
       setNotifications((prev) =>
         prev.map((n) => (n._id === _id ? { ...n, read: true } : n))
       );
-      // Update unread count
       const currentCount = user?.notificationCount || 0;
       if (currentCount > 0) {
         patchUser?.({ notificationCount: currentCount - 1 });
       }
-      markNotificationAsRead(_id).catch(() => {
-        // Revert on failure
-        setNotifications((prev) =>
-          prev.map((n) => (n._id === _id ? { ...n, read: false } : n))
-        );
-        // Revert count
-        patchUser?.({ notificationCount: currentCount });
-      });
+      markAsReadAsync(_id);
     }
 
     // Navigate based on notification type
-    switch (type) {
-      case 'following':
-        // Open user profile bottom sheet
-        navigateToProfile(actorAddress, actorUsername);
+    switch (type as string) {
+      case NotificationType.FOLLOWING:
+      case NotificationType.SUBSCRIPTION:
+      case NotificationType.FOLLOW_REQUEST_ACCEPTED:
+        openUserProfile(actorAddress, actorUsername);
         break;
 
       case 'like':
-      case 'comment':
-      case 'comment_reply':
-      case 'tip':
-        // Navigate based on post type
         if (tokenId) {
-          if (postType === 'video') {
-            navigateToVideo(tokenId);
-          } else if (postType === 'feed-images' || postType === 'feed-simple') {
+          if (postType === 'feed-images' || postType === 'feed-simple') {
             navigateToFeed(tokenId);
           } else {
-            // Default to video if postType unknown
             navigateToVideo(tokenId);
           }
         }
         break;
 
-      case 'subscription':
+      case 'comment':
+      case 'comment_reply':
+      case 'comment_like':
+        if (tokenId) {
+          if (postType === 'feed-images' || postType === 'feed-simple') {
+            navigateToFeed(tokenId, commentId);
+          } else {
+            navigateToVideo(tokenId, commentId);
+          }
+        }
+        break;
+
+      case 'tip':
       case 'ppv_purchase':
-        // Open the actor's profile or navigate to content
-        if (tokenId && postType === 'video') {
-          navigateToVideo(tokenId);
-        } else {
-          navigateToProfile(actorAddress, actorUsername);
+      case 'bounty_available':
+      case 'bounty_claimed':
+        if (tokenId) {
+          if (postType === 'feed-images' || postType === 'feed-simple') {
+            navigateToFeed(tokenId);
+          } else {
+            navigateToVideo(tokenId);
+          }
         }
         break;
 
       case 'video_milestone':
-        // Navigate to the video
-        if (tokenId) {
-          navigateToVideo(tokenId);
-        }
+        if (tokenId) navigateToVideo(tokenId);
         break;
 
       case 'livestream_start':
-        // Navigate to livestream
-        navigateToLivestream(tokenId);
+        if (tokenId) navigateToLivestream(tokenId, undefined);
+        break;
+
+      case 'new_message':
+        if (metadata?.deepLink) {
+          const match = metadata.deepLink.match(/\/dm\/(.+)/);
+          if (match?.[1]) navigateToDM(match[1]);
+        }
         break;
 
       case 'video_removal':
-        // System notification - could navigate to settings or just show info
-        // For now, do nothing special
+      case 'account_warning':
+      case 'system':
+        if (metadata?.articleUrl) openInApp(metadata.articleUrl);
+        break;
+
+      case 'mention':
+        if (tokenId) {
+          if (postType === 'feed-images' || postType === 'feed-simple') {
+            navigateToFeed(tokenId, commentId);
+          } else {
+            navigateToVideo(tokenId, commentId);
+          }
+        }
         break;
 
       default:
-        // Try to navigate to content if tokenId exists
+        // Fallback: try to navigate to content if tokenId exists
         if (tokenId) {
-          if (postType === 'video') {
-            navigateToVideo(tokenId);
-          } else {
+          if (postType === 'feed-images' || postType === 'feed-simple') {
             navigateToFeed(tokenId);
+          } else {
+            navigateToVideo(tokenId);
           }
         }
         break;
     }
-  }, [navigateToVideo, navigateToFeed, navigateToProfile, navigateToLivestream, patchUser, user?.notificationCount]);
+  }, [
+    navigateToVideo, 
+    navigateToFeed, 
+    openUserProfile, 
+    navigateToLivestream, 
+    navigateToDM,
+    markAsReadAsync,
+    patchUser, 
+    user?.notificationCount
+  ]);
 
   // ==========================================================================
   // Data Fetching
   // ==========================================================================
 
-  // Use refs to avoid dependency issues in callbacks
   const pageRef = useRef(1);
   const selectedCategoryRef = useRef<NotificationCategory | 'all'>('all');
   
-  // Keep refs in sync with state
   useEffect(() => {
     pageRef.current = page;
   }, [page]);
@@ -302,7 +368,6 @@ const NotificationScreen = () => {
         
         setHasMore(payload.length >= 30);
         
-        // Update notification count (unread count) on refresh
         if (isRefresh) {
           const unreadCount = payload.filter((n: NotificationItem) => !n.read).length;
           patchUser?.({ notificationCount: unreadCount });
@@ -315,124 +380,206 @@ const NotificationScreen = () => {
         setLoadingMore(false);
       }
     },
-    [patchUser] // Minimal dependencies - using refs for the rest
+    [patchUser]
   );
 
-  // Track if initial fetch has happened
+  // Store fetchNotifications in a ref to avoid dependency issues
+  const fetchNotificationsRef = useRef(fetchNotifications);
+  fetchNotificationsRef.current = fetchNotifications;
+
   const hasFetchedRef = useRef(false);
 
-  // Initial load and focus effect
   useFocusEffect(
     useCallback(() => {
-      hasFetchedRef.current = true;
-      setLoading(true);
-      fetchNotifications(true);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []) // Empty deps - runs once on focus
+      // Only show skeleton on first load, not when returning from another screen
+      if (!hasFetchedRef.current) {
+        hasFetchedRef.current = true;
+        setLoading(true);
+      }
+      // Always refresh data in background
+      fetchNotificationsRef.current(true);
+    }, [])
   );
 
-  // Handle category change (skip initial render)
   const isFirstCategoryRender = useRef(true);
   useEffect(() => {
     if (isFirstCategoryRender.current) {
       isFirstCategoryRender.current = false;
       return;
     }
+    // Clear data and show loading when changing category
     setNotifications([]);
     setPage(1);
-    setLoading(true);
-    fetchNotifications(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setIsChangingCategory(true);
+    fetchNotificationsRef.current(true).finally(() => {
+      setIsChangingCategory(false);
+    });
   }, [selectedCategory]);
 
-  // Handle pagination (skip page 1 as it's handled by refresh/category change)
   useEffect(() => {
     if (page > 1) {
       setLoadingMore(true);
-      fetchNotifications(false);
+      fetchNotificationsRef.current(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     setPage(1);
-    fetchNotifications(true);
-  }, [fetchNotifications]);
+    fetchNotificationsRef.current(true);
+  }, []);
 
   const onLoadMore = useCallback(() => {
-    if (loadingMore || !hasMore) return;
+    if (loadingMore || !hasMore || isChangingCategory) return;
     setPage((p) => p + 1);
-  }, [loadingMore, hasMore]);
+  }, [loadingMore, hasMore, isChangingCategory]);
 
   const handleCategoryChange = useCallback((category: NotificationCategory | 'all') => {
-    if (category === selectedCategory) return;
+    if (category === selectedCategory || isChangingCategory) return;
     setSelectedCategory(category);
-  }, [selectedCategory]);
+  }, [selectedCategory, isChangingCategory]);
 
   const handleMarkAllRead = useCallback(async () => {
-    try {
-      // Optimistic update
-      setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
-      patchUser?.({ notificationCount: 0 });
-      
-      await markAllNotificationsAsRead(
-        selectedCategoryRef.current === 'all' ? undefined : selectedCategoryRef.current
-      );
-    } catch (e) {
+    // Optimistic update immediately
+    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+    patchUser?.({ notificationCount: 0 });
+    
+    // Fire and forget
+    markAllNotificationsAsRead(
+      selectedCategoryRef.current === 'all' ? undefined : selectedCategoryRef.current
+    ).catch((e) => {
       console.warn('[NotificationScreen] markAllRead error', e);
-      // Refetch on error
-      fetchNotifications(true);
+    });
+  }, [patchUser]);
+
+  // ==========================================================================
+  // Follow Request Handlers
+  // ==========================================================================
+
+  const handleAcceptFollowRequest = useCallback(async (notification: NotificationItem) => {
+    const followId = notification.metadata?.followId;
+    if (!followId) {
+      console.warn('[NotificationScreen] Missing followId in notification metadata');
+      return;
     }
-  }, [patchUser, fetchNotifications]);
+    // Optimistic: remove from list
+    setNotifications((prev) => prev.filter((n) => n._id !== notification._id));
+    try {
+      await acceptFollowRequest(followId);
+      // Increment follower count
+      const currentCount = user?.followers || 0;
+      patchUser?.({ followers: currentCount + 1 });
+    } catch (e) {
+      console.warn('[NotificationScreen] acceptFollowRequest error', e);
+      // Revert
+      setNotifications((prev) => {
+        const exists = prev.some((n) => n._id === notification._id);
+        if (exists) return prev;
+        return [notification, ...prev];
+      });
+    }
+  }, [patchUser, user?.followers]);
+
+  const handleRejectFollowRequest = useCallback(async (notification: NotificationItem) => {
+    const followId = notification.metadata?.followId;
+    if (!followId) {
+      console.warn('[NotificationScreen] Missing followId in notification metadata');
+      return;
+    }
+    // Optimistic: remove from list
+    setNotifications((prev) => prev.filter((n) => n._id !== notification._id));
+    try {
+      await rejectFollowRequest(followId);
+    } catch (e) {
+      console.warn('[NotificationScreen] rejectFollowRequest error', e);
+      // Revert
+      setNotifications((prev) => {
+        const exists = prev.some((n) => n._id === notification._id);
+        if (exists) return prev;
+        return [notification, ...prev];
+      });
+    }
+  }, []);
 
   // ==========================================================================
   // Render Items
   // ==========================================================================
 
-  const NotificationRow = useCallback(
+  const renderItem = useCallback(
     ({ item }: { item: NotificationItem }) => {
-      const icon = getNotificationIcon(item.type);
+      const icon = getNotificationIconConfig(item.type);
       const avatarUrl = getAvatarUrl(item.actorAvatar);
-      const hasAvatar = !!item.actorAvatar && item.type !== 'video_milestone' && item.type !== 'video_removal';
+      const hasAvatar = !!item.actorAvatar && 
+        item.type !== NotificationType.VIDEO_MILESTONE && 
+        item.type !== NotificationType.VIDEO_REMOVAL &&
+        item.type !== NotificationType.SYSTEM &&
+        item.type !== NotificationType.ACCOUNT_WARNING;
+      
+      const clickable = isNotificationClickable(item);
       
       return (
         <TouchableOpacity
-          activeOpacity={0.7}
           onPress={() => handleNotificationPress(item)}
-          className={`flex-row items-start p-4 border-b border-theme-neutrals-800 ${
-            !item.read ? 'bg-theme-neutrals-850' : ''
-          }`}
+          disabled={!clickable}
+          activeOpacity={0.5}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+            padding: 16,
+            borderBottomWidth: 1,
+            borderBottomColor: '#27272a',
+            backgroundColor: !item.read ? '#1a1a1d' : 'transparent',
+          }}
         >
           {/* Avatar or Icon */}
-          <View className="relative">
+          <View style={{ position: 'relative' }}>
             {hasAvatar ? (
               <Avatar uri={avatarUrl || undefined} size={44} />
             ) : (
               <View 
-                className="w-11 h-11 rounded-full items-center justify-center"
-                style={{ backgroundColor: `${icon.color}20` }}
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: 22,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: `${icon.color}20`,
+                }}
               >
-                <Ionicons name={icon.name} size={22} color={icon.color} />
+                <Ionicons name={icon.name as any} size={22} color={icon.color} />
               </View>
             )}
             {/* Type badge overlay for avatar */}
             {hasAvatar && (
               <View 
-                className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full items-center justify-center border-2 border-theme-neutrals-900"
-                style={{ backgroundColor: icon.color }}
+                style={{
+                  position: 'absolute',
+                  bottom: -4,
+                  right: -4,
+                  width: 20,
+                  height: 20,
+                  borderRadius: 10,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderWidth: 2,
+                  borderColor: '#0a0a0a',
+                  backgroundColor: icon.color,
+                }}
               >
-                <Ionicons name={icon.name} size={10} color="white" />
+                <Ionicons name={icon.name as any} size={10} color="white" />
               </View>
             )}
           </View>
 
           {/* Content */}
-          <View className="flex-1 ml-3">
+          <View style={{ flex: 1, marginLeft: 12 }}>
             <Text 
-              className={`text-sm leading-5 ${
-                !item.read ? 'text-theme-neutrals-100 font-medium' : 'text-theme-neutrals-300'
-              }`}
+              style={{
+                fontSize: 14,
+                lineHeight: 20,
+                color: !item.read ? '#f5f5f5' : '#a3a3a3',
+                fontWeight: !item.read ? '500' : '400',
+              }}
               numberOfLines={3}
             >
               {item.content}
@@ -440,40 +587,87 @@ const NotificationScreen = () => {
             
             {/* Aggregation indicator */}
             {item.aggregatedCount && item.aggregatedCount > 1 && item.latestActorNames && (
-              <Text className="text-theme-neutrals-500 text-xs mt-1">
+              <Text style={{ color: '#6b7280', fontSize: 12, marginTop: 4 }}>
                 {item.latestActorNames.slice(0, 3).join(', ')}
                 {item.aggregatedCount > 3 && ` and ${item.aggregatedCount - 3} others`}
               </Text>
             )}
             
             {/* Timestamp */}
-            <Text className="text-theme-neutrals-500 text-xs mt-1">
+            <Text style={{ color: '#6b7280', fontSize: 12, marginTop: 4 }}>
               {formatNotificationDate(item.updatedAt || item.createdAt)}
             </Text>
 
-            {/* Tip amount badge */}
-            {item.type === 'tip' && item.amount && (
-              <View className="flex-row items-center mt-2">
-                <View className="bg-green-500/20 px-2 py-1 rounded-full">
-                  <Text className="text-green-400 text-xs font-semibold">
+            {/* Tip/Bounty amount badge */}
+            {(item.type === NotificationType.TIP || 
+              item.type === NotificationType.BOUNTY_CLAIMED ||
+              item.type === NotificationType.PPV_PURCHASE) && item.amount && (
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
+                <View style={{ backgroundColor: 'rgba(34, 197, 94, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
+                  <Text style={{ color: '#4ade80', fontSize: 12, fontWeight: '600' }}>
                     +{item.amount} {item.currency || 'DHB'}
                   </Text>
                 </View>
+              </View>
+            )}
+
+            {/* Bounty available badge */}
+            {item.type === NotificationType.BOUNTY_AVAILABLE && (
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
+                <View style={{ backgroundColor: 'rgba(245, 158, 11, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
+                  <Text style={{ color: '#fbbf24', fontSize: 12, fontWeight: '600' }}>
+                    💰 Claim your bounty
+                  </Text>
+                </View>
+              </View>
+            )}
+
+            {/* Follow request accept/reject buttons */}
+            {(item.type as string) === NotificationType.FOLLOW_REQUEST && (
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10, gap: 8 }}>
+                <TouchableOpacity
+                  onPress={() => handleAcceptFollowRequest(item)}
+                  activeOpacity={0.85}
+                  style={{
+                    backgroundColor: '#256DFA',
+                    paddingHorizontal: 16,
+                    paddingVertical: 7,
+                    borderRadius: 8,
+                  }}
+                >
+                  <Text style={{ color: '#fff', fontSize: 13, fontWeight: '600' }}>
+                    Accept
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => handleRejectFollowRequest(item)}
+                  activeOpacity={0.85}
+                  style={{
+                    backgroundColor: '#27272a',
+                    paddingHorizontal: 16,
+                    paddingVertical: 7,
+                    borderRadius: 8,
+                  }}
+                >
+                  <Text style={{ color: '#a3a3a3', fontSize: 13, fontWeight: '600' }}>
+                    Decline
+                  </Text>
+                </TouchableOpacity>
               </View>
             )}
           </View>
 
           {/* Thumbnail for content notifications */}
           {item.tokenThumbnail && (
-            <View className="ml-3">
+            <View style={{ marginLeft: 12 }}>
               <Image
                 source={{ uri: item.tokenThumbnail }}
-                className="w-14 h-14 rounded-lg"
+                style={{ width: 56, height: 56, borderRadius: 8 }}
                 resizeMode="cover"
               />
               {item.postType === 'video' && (
-                <View className="absolute inset-0 items-center justify-center">
-                  <View className="bg-black/50 rounded-full p-1">
+                <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center', justifyContent: 'center' }}>
+                  <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: 12, padding: 4 }}>
                     <Ionicons name="play" size={12} color="white" />
                   </View>
                 </View>
@@ -481,19 +675,16 @@ const NotificationScreen = () => {
             </View>
           )}
 
-          {/* Unread indicator */}
-          {!item.read && (
-            <View className="absolute top-4 right-4 w-2 h-2 rounded-full bg-theme-primary-500" />
+          {/* Clickable indicator */}
+          {clickable && (
+            <View style={{ position: 'absolute', top: 16, right: 16 }}>
+              <Ionicons name="chevron-forward" size={16} color="#6b7280" />
+            </View>
           )}
         </TouchableOpacity>
       );
     },
-    [handleNotificationPress]
-  );
-
-  const renderItem = useCallback(
-    ({ item }: { item: NotificationItem }) => <NotificationRow item={item} />,
-    [NotificationRow]
+    [handleNotificationPress, handleAcceptFollowRequest, handleRejectFollowRequest]
   );
 
   const keyExtractor = useCallback((item: NotificationItem) => item._id, []);
@@ -507,13 +698,25 @@ const NotificationScreen = () => {
   const renderSkeleton = useCallback(
     () => (
       <View className="flex-row items-start p-4 border-b border-theme-neutrals-800">
-        <View className="w-11 h-11 rounded-full bg-theme-neutrals-700" />
-        <View className="flex-1 ml-3">
-          <View className="h-4 w-4/5 bg-theme-neutrals-700 rounded mb-2" />
-          <View className="h-3 w-2/3 bg-theme-neutrals-800 rounded mb-2" />
-          <View className="h-3 w-1/4 bg-theme-neutrals-800 rounded" />
+        {/* Avatar with badge overlay */}
+        <View className="relative">
+          <View className="w-11 h-11 rounded-full bg-theme-neutrals-800" />
+          {/* Type badge */}
+          <View 
+            className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-theme-neutrals-700"
+            style={{ borderWidth: 2, borderColor: '#0a0a0a' }}
+          />
         </View>
-        <View className="w-14 h-14 rounded-lg bg-theme-neutrals-800 ml-3" />
+        
+        {/* Content */}
+        <View className="flex-1 ml-3">
+          {/* Main text lines */}
+          <View className="w-full h-4 bg-theme-neutrals-800 rounded" />
+          <View className="w-4/5 h-4 bg-theme-neutrals-800 rounded mt-1.5" />
+          <View className="w-2/3 h-4 bg-theme-neutrals-800 rounded mt-1.5" />
+          {/* Timestamp */}
+          <View className="w-16 h-3 bg-theme-neutrals-800 rounded mt-2" />
+        </View>
       </View>
     ),
     []
@@ -531,30 +734,34 @@ const NotificationScreen = () => {
 
   // Header with mark all read button
   const hasUnread = notifications.some((n) => !n.read);
+  const showLoading = loading || isChangingCategory;
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader 
         title="Notifications"
         rightContent={
-          hasUnread ? (
-            <TouchableOpacity
-              onPress={handleMarkAllRead}
-              className="px-3 py-1"
-              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            >
-              <Text className="text-theme-primary-500 text-sm font-medium">
-                Mark all read
-              </Text>
-            </TouchableOpacity>
-          ) : undefined
+          <TouchableOpacity
+            onPress={handleMarkAllRead}
+            disabled={!hasUnread}
+            className="px-3 py-1"
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
+            <Text className={`text-sm font-medium ${hasUnread ? 'text-theme-neutrals-100' : 'text-theme-neutrals-500'}`}>
+              Mark all read
+            </Text>
+          </TouchableOpacity>
         }
       />
       
       {/* Category Filter Tabs */}
-      <CategoryTabs selected={selectedCategory} onSelect={handleCategoryChange} />
+      <CategoryTabs 
+        selected={selectedCategory} 
+        onSelect={handleCategoryChange} 
+        disabled={isChangingCategory}
+      />
       
-      {loading ? (
+      {showLoading ? (
         <FlatList
           data={skeletonData}
           keyExtractor={(item) => item.key}

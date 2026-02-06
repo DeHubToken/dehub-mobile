@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback } from "react";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, ActivityIndicator } from "react-native";
 import Avatar from "../common/Avatar";
 import { Ionicons } from "@expo/vector-icons";
 import { getAvatarUrl, getBadgeName, getBadgeUrl } from "../../libs/misc";
@@ -25,6 +25,7 @@ interface CreatorRowProps {
   creator: Creator;
   viewerAddress?: string;
   isFollowing: boolean;
+  isFollowRequestPending?: boolean;
   followLoading: boolean;
   onFollow: () => void;
   onUnfollow: () => void;
@@ -38,6 +39,7 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
   creator,
   viewerAddress,
   isFollowing,
+  isFollowRequestPending = false,
   followLoading,
   onFollow,
   onUnfollow,
@@ -185,25 +187,46 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
         </View>
       </TouchableOpacity>
       {!isSelf ? (
-        <AccentButtonGradient style={{ borderRadius: 12 }}>
+        isFollowRequestPending ? (
           <TouchableOpacity
             onPress={handlePress}
             disabled={followLoading}
-            className={`px-4 py-2 rounded-lg ${followLoading ? "opacity-60" : ""}`}
-            style={{ backgroundColor: 'transparent' }}
+            className="border border-theme-neutrals-600 px-4 py-2 rounded-xl flex-row items-center gap-1"
             activeOpacity={0.85}
           >
-            <Text
-              className={`text-xs font-semibold ${
-                isFollowing
-                  ? "text-theme-neutrals-100"
-                  : "text-theme-neutrals-900"
-              }`}
-            >
-              {isFollowing ? "Following" : "Follow"}
-            </Text>
+            {followLoading && (
+              <ActivityIndicator size="small" color="#fff" />
+            )}
+            <Text className="text-white text-xs font-semibold">Requested</Text>
           </TouchableOpacity>
-        </AccentButtonGradient>
+        ) : !isFollowing ? (
+          <AccentButtonGradient style={{ borderRadius: 12 }}>
+            <TouchableOpacity
+              onPress={handlePress}
+              disabled={followLoading}
+              className="px-4 py-2 flex-row items-center gap-1"
+              style={{ backgroundColor: 'transparent' }}
+              activeOpacity={0.85}
+            >
+              {followLoading && (
+                <ActivityIndicator size="small" color="#fff" />
+              )}
+              <Text className="text-theme-neutrals-900 text-xs font-semibold">Follow</Text>
+            </TouchableOpacity>
+          </AccentButtonGradient>
+        ) : (
+          <TouchableOpacity
+            onPress={handlePress}
+            disabled={followLoading}
+            className="bg-theme-neutrals-800 px-4 py-2 rounded-xl flex-row items-center gap-1"
+            activeOpacity={0.85}
+          >
+            {followLoading && (
+              <ActivityIndicator size="small" color="#fff" />
+            )}
+            <Text className="text-white text-xs font-semibold">Following</Text>
+          </TouchableOpacity>
+        )
       ) : null}
     </View>
   );

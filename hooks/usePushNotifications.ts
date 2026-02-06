@@ -19,6 +19,7 @@ import { useUser, useAuthState } from '../context/AuthContext';
 import {
   registerForPushNotifications,
   registerPushTokenWithBackend,
+  isValidExpoPushToken,
   clearBadge,
   type NotificationData,
 } from '../services/push/push.service';
@@ -62,7 +63,9 @@ export function usePushNotifications(
   const { autoRegister = true, onNotificationReceived, onNotificationResponse } = options;
   
   const user = useUser();
-  const { isSignedIn } = useAuthState();
+  const { isSignedIn, needsUsername } = useAuthState();
+  const isFullySignedIn = isSignedIn && !needsUsername;
+  const userAddress = user?.walletAddress || user?.address;
   
   const [pushToken, setPushToken] = useState<string | null>(null);
   const [isEnabled, setIsEnabled] = useState(false);
@@ -89,7 +92,7 @@ export function usePushNotifications(
     setIsRegistering(true);
 
     try {
-      // Get Expo push token
+      // Service layer handles caching and deduplication
       const token = await registerForPushNotifications();
 
       if (!token) {
@@ -101,8 +104,8 @@ export function usePushNotifications(
       setPushToken(token);
       setIsEnabled(true);
 
-      // Register with backend if user is signed in
-      if (isSignedIn && user?.walletAddress) {
+      // Service layer handles backend deduplication
+      if (isFullySignedIn && userAddress) {
         await registerPushTokenWithBackend(token);
       }
 
@@ -115,18 +118,18 @@ export function usePushNotifications(
     } finally {
       setIsRegistering(false);
     }
-  }, [isRegistering, pushToken, isSignedIn, user?.walletAddress]);
+  }, [isRegistering, pushToken, isFullySignedIn, userAddress]);
 
   // ==========================================================================
   // Notification Listeners Setup
   // ==========================================================================
 
   useEffect(() => {
-    // Auto-register on mount if enabled and signed in
-    if (autoRegister && isSignedIn && !hasRegisteredRef.current) {
+    // Auto-register on mount if enabled and fully signed in
+    if (autoRegister && isFullySignedIn && userAddress && !hasRegisteredRef.current) {
       register();
     }
-  }, [autoRegister, isSignedIn, register]);
+  }, [autoRegister, isFullySignedIn, userAddress, register]);
 
   useEffect(() => {
     // Handle foreground notifications
@@ -162,14 +165,21 @@ export function usePushNotifications(
       }
     );
 
-    // Handle token refresh
-    tokenRefreshListener.current = Notifications.addPushTokenListener(({ data }) => {
-      logger.info('Push token refreshed');
-      setPushToken(data);
+    // Handle token refresh - service layer handles deduplication
+    tokenRefreshListener.current = Notifications.addPushTokenListener(async () => {
+      // Service layer caches token and handles deduplication
+      const expoToken = await registerForPushNotifications();
+      if (expoToken && isValidExpoPushToken(expoToken)) {
+        setPushToken(expoToken);
 
-      // Re-register with backend
-      if (isSignedIn && user?.walletAddress) {
-        registerPushTokenWithBackend(data);
+        // Service layer handles backend deduplication
+        if (isSignedIn && userAddress) {
+          try {
+            await registerPushTokenWithBackend(expoToken);
+          } catch (error) {
+            logger.error('Failed to re-register refreshed token', error);
+          }
+        }
       }
     });
 
@@ -209,11 +219,13 @@ export function usePushNotifications(
   // ==========================================================================
 
   useEffect(() => {
-    if (isSignedIn && pushToken && user?.walletAddress) {
-      // User just signed in and we have a token - register it
-      registerPushTokenWithBackend(pushToken);
+    if (isFullySignedIn && pushToken && userAddress && isValidExpoPushToken(pushToken)) {
+      // Service layer handles deduplication
+      registerPushTokenWithBackend(pushToken).catch((error) => {
+        logger.error('Failed to register push token on sign in', error);
+      });
     }
-  }, [isSignedIn, pushToken, user?.walletAddress]);
+  }, [isFullySignedIn, pushToken, userAddress]);
 
   return {
     pushToken,

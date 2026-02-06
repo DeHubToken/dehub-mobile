@@ -19,12 +19,83 @@ import { ScreenNames } from '../../navigation/ScreenNames';
 import {
   registerForPushNotifications,
   registerPushTokenWithBackend,
+  isValidExpoPushToken,
   clearBadge,
-  type NotificationData,
 } from './push.service';
 import { createLogger } from '../../libs/logger';
+import { NotificationType, NotificationCategory } from '../enums/notification.enums';
 
 const logger = createLogger('PushProvider');
+
+// =============================================================================
+// Types - aligned with backend push notification payload
+// =============================================================================
+
+export interface NotificationData {
+  type: NotificationType;
+  category: NotificationCategory;
+  deepLink?: string;
+  // Content-related
+  tokenId?: number;
+  postType?: 'video' | 'feed-images' | 'feed-simple';
+  commentId?: string;
+  parentCommentId?: string;
+  // Actor-related  
+  actorAddress?: string;
+  actorUsername?: string;
+  // Monetization
+  amount?: number;
+  currency?: string;
+  bountyType?: 'viewer' | 'commentor';
+  planId?: string;
+  // Livestream
+  streamId?: string;
+  // Messages
+  conversationId?: string;
+  conversationType?: 'dm' | 'group';
+  senderName?: string;
+  // Milestone
+  milestone?: string;
+  // System
+  articleUrl?: string;
+  // Aggregation
+  aggregatedCount?: number;
+}
+
+/**
+ * Types that can navigate to content
+ */
+const CONTENT_NAVIGABLE_TYPES = new Set([
+  NotificationType.LIKE,
+  NotificationType.COMMENT,
+  NotificationType.COMMENT_REPLY,
+  NotificationType.COMMENT_LIKE,
+  NotificationType.TIP,
+  NotificationType.PPV_PURCHASE,
+  NotificationType.BOUNTY_AVAILABLE,
+  NotificationType.BOUNTY_CLAIMED,
+  NotificationType.VIDEO_MILESTONE,
+  NotificationType.MENTION,
+]);
+
+/**
+ * Types that navigate to user profile
+ */
+const PROFILE_NAVIGABLE_TYPES = new Set([
+  NotificationType.FOLLOWING,
+  NotificationType.SUBSCRIPTION,
+  NotificationType.FOLLOW_REQUEST_ACCEPTED,
+]);
+
+/**
+ * Types that are not navigable - just open notifications
+ */
+const NON_NAVIGABLE_TYPES = new Set([
+  NotificationType.DISLIKE,
+  NotificationType.SYSTEM,
+  NotificationType.ACCOUNT_WARNING,
+  NotificationType.VIDEO_REMOVAL,
+]);
 
 interface PushNotificationsProviderProps {
   children: React.ReactNode;
@@ -35,6 +106,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
   const isFullySignedIn = isSignedIn && !needsUsername;
+  const userAddress = user?.walletAddress || user?.address;
   
   // Refs for subscriptions
   const notificationListener = useRef<Notifications.Subscription | null>(null);
@@ -42,6 +114,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   const tokenRefreshListener = useRef<Notifications.Subscription | null>(null);
   const appStateRef = useRef<AppStateStatus>(AppState.currentState);
   const hasRegisteredRef = useRef(false);
+  const isRegisteringRef = useRef(false);
   const pushTokenRef = useRef<string | null>(null);
   // Store pending navigation to execute after auth completes
   const pendingNavigationRef = useRef<NotificationData | null>(null);
@@ -64,17 +137,34 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       return;
     }
 
-    const { type, tokenId, postType } = data;
+    const { type, tokenId, postType, commentId, actorAddress, actorUsername, streamId, conversationId } = data;
 
-    logger.info('Handling notification tap', { type, tokenId });
+    logger.info('Handling notification tap', { type, tokenId, commentId });
 
     try {
+      // Non-navigable types - just open notifications screen
+      if (NON_NAVIGABLE_TYPES.has(type as NotificationType)) {
+        navigation.navigate(ScreenNames.Notifications);
+        return;
+      }
+
       switch (type) {
-        // Engagement - navigate to content
-        case 'like':
-        case 'comment':
-        case 'comment_reply':
-        case 'video_milestone':
+        // =====================================================================
+        // Social - Open notifications (profile handled via in-app notification)
+        // =====================================================================
+        case NotificationType.FOLLOWING:
+        case NotificationType.SUBSCRIPTION:
+        case NotificationType.FOLLOW_REQUEST:
+        case NotificationType.FOLLOW_REQUEST_ACCEPTED:
+          // For push notifications, navigate to notifications screen
+          // Follow requests have inline accept/reject buttons there
+          navigation.navigate(ScreenNames.Notifications);
+          break;
+
+        // =====================================================================
+        // Content Engagement - Navigate to content
+        // =====================================================================
+        case NotificationType.LIKE:
           if (tokenId) {
             if (postType === 'feed-images' || postType === 'feed-simple') {
               navigation.navigate(ScreenNames.FeedDetail, { tokenId });
@@ -86,42 +176,98 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           }
           break;
 
-        // Social - navigate to notifications (user can tap to see profile)
-        case 'following':
-          navigation.navigate(ScreenNames.Notifications);
-          break;
-
-        // Monetization
-        case 'tip':
-        case 'subscription':
-        case 'ppv_purchase':
-          navigation.navigate(ScreenNames.Notifications);
-          break;
-
-        // Livestream
-        case 'livestream_start':
+        case NotificationType.COMMENT:
+        case NotificationType.COMMENT_REPLY:
+        case NotificationType.COMMENT_LIKE:
+          // Navigate to content with commentId
           if (tokenId) {
-            navigation.navigate(ScreenNames.LiveViewer, { streamId: String(tokenId) });
+            if (postType === 'feed-images' || postType === 'feed-simple') {
+              navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
+            } else {
+              navigation.navigate(ScreenNames.VideoPlayer, { tokenId, commentId });
+            }
           } else {
             navigation.navigate(ScreenNames.Notifications);
           }
           break;
 
-        // Content moderation
-        case 'video_removal':
-          navigation.navigate(ScreenNames.Notifications);
-          break;
-
-        // Default - only navigate if we have a valid type
-        default:
-          if (type) {
+        case NotificationType.MENTION:
+          if (tokenId) {
+            if (postType === 'feed-images' || postType === 'feed-simple') {
+              navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
+            } else {
+              navigation.navigate(ScreenNames.VideoPlayer, { tokenId, commentId });
+            }
+          } else {
             navigation.navigate(ScreenNames.Notifications);
           }
+          break;
+
+        // =====================================================================
+        // Monetization - Navigate to content
+        // =====================================================================
+        case NotificationType.TIP:
+        case NotificationType.PPV_PURCHASE:
+        case NotificationType.BOUNTY_AVAILABLE:
+        case NotificationType.BOUNTY_CLAIMED:
+          if (tokenId) {
+            if (postType === 'feed-images' || postType === 'feed-simple') {
+              navigation.navigate(ScreenNames.FeedDetail, { tokenId });
+            } else {
+              navigation.navigate(ScreenNames.VideoPlayer, { tokenId });
+            }
+          } else {
+            navigation.navigate(ScreenNames.Notifications);
+          }
+          break;
+
+        // =====================================================================
+        // Content - Milestones and Livestreams
+        // =====================================================================
+        case NotificationType.VIDEO_MILESTONE:
+          if (tokenId) {
+            navigation.navigate(ScreenNames.VideoPlayer, { tokenId });
+          } else {
+            navigation.navigate(ScreenNames.Notifications);
+          }
+          break;
+
+        case NotificationType.LIVESTREAM_START:
+          if (streamId || tokenId) {
+            navigation.navigate(ScreenNames.LiveViewer, { 
+              streamId: streamId || String(tokenId) 
+            });
+          } else {
+            navigation.navigate(ScreenNames.Notifications);
+          }
+          break;
+
+        // =====================================================================
+        // Messages
+        // =====================================================================
+        case NotificationType.NEW_MESSAGE:
+          if (conversationId) {
+            navigation.navigate(ScreenNames.Chat, { conversationId });
+          } else {
+            navigation.navigate(ScreenNames.DirectMessages);
+          }
+          break;
+
+        // =====================================================================
+        // Default - Open notifications screen
+        // =====================================================================
+        default:
+          navigation.navigate(ScreenNames.Notifications);
           break;
       }
     } catch (error) {
       logger.error('Navigation failed', error);
-      // Don't try fallback navigation - could cause loops
+      // Fallback to notifications screen
+      try {
+        navigation.navigate(ScreenNames.Notifications);
+      } catch (e) {
+        // Ignore - navigation not ready
+      }
     }
   }, [navigation, isFullySignedIn]);
 
@@ -130,32 +276,50 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   // ==========================================================================
 
   const registerPushToken = useCallback(async () => {
-    if (hasRegisteredRef.current || !isFullySignedIn) return;
+    // Guard: Already registered or registration in progress
+    if (hasRegisteredRef.current || isRegisteringRef.current || !isFullySignedIn) return;
+    
+    // Guard: Need user address for backend registration
+    if (!userAddress) {
+      logger.debug('Waiting for user address before push registration');
+      return;
+    }
+
+    isRegisteringRef.current = true;
 
     try {
+      // Service layer handles caching and deduplication
       const token = await registerForPushNotifications();
-      if (!token) return;
+      if (!token) {
+        isRegisteringRef.current = false;
+        return;
+      }
 
       pushTokenRef.current = token;
-      hasRegisteredRef.current = true;
 
-      // Register with backend
-      if (user?.walletAddress) {
-        await registerPushTokenWithBackend(token);
-      }
+      // Service layer handles backend deduplication
+      logger.info('Registering push token with backend', { userAddress: userAddress.slice(0, 10) + '...' });
+      await registerPushTokenWithBackend(token);
+      
+      hasRegisteredRef.current = true;
     } catch (error) {
       logger.error('Push registration failed', error);
+    } finally {
+      isRegisteringRef.current = false;
     }
-  }, [isFullySignedIn, user?.walletAddress]);
+  }, [isFullySignedIn, userAddress]);
 
   // ==========================================================================
   // Setup Listeners
   // ==========================================================================
 
   useEffect(() => {
-    // Register when user signs in
-    if (isFullySignedIn && !hasRegisteredRef.current) {
-      registerPushToken();
+    // Register when user signs in - add delay to ensure auth is fully propagated
+    if (isFullySignedIn && userAddress && !hasRegisteredRef.current) {
+      const timer = setTimeout(() => {
+        registerPushToken();
+      }, 1000); // 1 second delay to ensure JWT is ready
+      return () => clearTimeout(timer);
     }
 
     // Handle pending navigation after auth completes
@@ -171,10 +335,11 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
     // Reset registration flag when user signs out
     if (!isFullySignedIn) {
       hasRegisteredRef.current = false;
+      isRegisteringRef.current = false;
       pushTokenRef.current = null;
       pendingNavigationRef.current = null;
     }
-  }, [isFullySignedIn, registerPushToken, handleNotificationNavigation]);
+  }, [isFullySignedIn, userAddress, registerPushToken, handleNotificationNavigation]);
 
   useEffect(() => {
     // Handle foreground notifications
@@ -190,7 +355,8 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
     // Handle notification tap
     responseListener.current = Notifications.addNotificationResponseReceivedListener(
       (response) => {
-        const data = response.notification.request.content.data as NotificationData;
+        const rawData = response.notification.request.content.data;
+        const data = rawData as unknown as NotificationData;
         
         // Only process if we have valid notification data with a type
         if (data?.type) {
@@ -202,13 +368,21 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       }
     );
 
-    // Handle token refresh
-    tokenRefreshListener.current = Notifications.addPushTokenListener(({ data }) => {
-      logger.info('Push token refreshed');
-      pushTokenRef.current = data;
+    // Handle token refresh - service layer handles deduplication
+    tokenRefreshListener.current = Notifications.addPushTokenListener(async () => {
+      // Service layer caches token and handles deduplication
+      const expoToken = await registerForPushNotifications();
+      if (expoToken && isValidExpoPushToken(expoToken)) {
+        pushTokenRef.current = expoToken;
 
-      if (isFullySignedIn && user?.walletAddress) {
-        registerPushTokenWithBackend(data);
+        if (isFullySignedIn && userAddress) {
+          try {
+            // Service layer handles backend deduplication
+            await registerPushTokenWithBackend(expoToken);
+          } catch (error) {
+            logger.error('Failed to re-register refreshed token', error);
+          }
+        }
       }
     });
 
@@ -223,7 +397,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
         tokenRefreshListener.current.remove();
       }
     };
-  }, [handleNotificationNavigation, isFullySignedIn, user?.walletAddress]);
+  }, [handleNotificationNavigation, isFullySignedIn, userAddress]);
 
   // ==========================================================================
   // Badge Management - Clear on foreground

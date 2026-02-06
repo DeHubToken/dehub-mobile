@@ -95,17 +95,14 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
 
   /**
    * Navigate to SetProfile screen
-   * Uses reset to prevent going back to SignIn
+   * Uses navigate (not reset) since SetProfile is a sibling in the Auth stack
    */
   const navigateToSetProfile = useCallback(() => {
     if (!isMountedRef.current) return;
     
     log.info("Navigating to SetProfile");
     
-    navigation.reset({
-      index: 0,
-      routes: [{ name: ScreenNames.SetProfile }],
-    });
+    navigation.navigate(ScreenNames.SetProfile);
   }, [navigation]);
 
   // Handle auth state changes for navigation
