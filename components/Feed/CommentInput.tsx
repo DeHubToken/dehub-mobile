@@ -1,6 +1,9 @@
 import React, { useMemo, useState, useCallback, forwardRef, useImperativeHandle, useRef, useEffect } from "react";
-import { View, TextInput, TouchableOpacity, Keyboard, Text } from "react-native";
+import { View, TextInput, TouchableOpacity, Keyboard, Text, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import Avatar from "../common/Avatar";
+import { getAvatarUrl } from "../../libs";
+import { theme } from "../../theme";
 
 type Props = {
   onSend: (text: string) => void;
@@ -8,6 +11,10 @@ type Props = {
   autoFocus?: boolean;
   replyToLabel?: string;
   onCancelReply?: () => void;
+  /** User's avatar URL */
+  userAvatarUrl?: string;
+  /** Show loading state on send button */
+  isSending?: boolean;
 };
 
 export type CommentInputRef = {
@@ -16,10 +23,19 @@ export type CommentInputRef = {
   clear: () => void;
 };
 
-const CommentInput = forwardRef<CommentInputRef, Props>(({ onSend, placeholder, autoFocus, replyToLabel, onCancelReply }, ref) => {
+const CommentInput = forwardRef<CommentInputRef, Props>(({ 
+  onSend, 
+  placeholder, 
+  autoFocus, 
+  replyToLabel, 
+  onCancelReply,
+  userAvatarUrl,
+  isSending = false,
+}, ref) => {
   const [text, setText] = useState("");
-  const canSend = text.trim().length > 0;
+  const canSend = text.trim().length > 0 && !isSending;
   const inputRef = useRef<TextInput>(null);
+  const avatarUri = getAvatarUrl(userAvatarUrl || "");
 
   useImperativeHandle(ref, () => ({
     focus: () => inputRef.current?.focus?.(),
@@ -37,48 +53,64 @@ const CommentInput = forwardRef<CommentInputRef, Props>(({ onSend, placeholder, 
 
   const handleSend = useCallback(() => {
     const msg = text.trim();
-    if (!msg) return;
+    if (!msg || isSending) return;
     onSend(msg);
     setText("");
     Keyboard.dismiss();
-  }, [text, onSend]);
+  }, [text, onSend, isSending]);
 
   return (
-    <View className="px-3 py-2 bg-theme-neutrals-900 border-t border-theme-neutrals-800">
+    <View className="px-4 py-2 bg-theme-neutrals-900">
+      {/* Replying to indicator */}
       {!!replyToLabel && (
-        <View className="flex-row items-center justify-between px-1 mb-1">
-          <Text className="text-theme-neutrals-400 text-[11px]">
-            Replying to <Text className="text-theme-accent font-semibold">{replyToLabel}</Text>
+        <View className="flex-row items-center justify-between px-1 mb-2 bg-theme-neutrals-800/50 py-2 rounded-lg">
+          <Text className="flex-1 text-xs text-theme-neutrals-400">
+            Replying to <Text className="font-semibold text-theme-accent">{replyToLabel}</Text>
           </Text>
           <TouchableOpacity
             onPress={onCancelReply}
             hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
             accessibilityLabel="Cancel reply"
           >
-            <Ionicons name="close" size={14} color="#9CA3AF" />
+            <Ionicons name="close" size={18} color={theme.colors.mutedForeground} />
           </TouchableOpacity>
         </View>
       )}
-      <View className="flex-row items-center bg-theme-neutrals-800 rounded-full px-4 py-2">
+      
+      {/* Input row with avatar */}
+      <View className="flex-row items-center">
+        <Avatar
+          uri={avatarUri && avatarUri !== "default-avatar" ? avatarUri : undefined}
+          size={32}
+        />
         <TextInput
           ref={inputRef}
-          className="text-white text-[13px]"
-          placeholder={placeholder || "Write a comment..."}
-          placeholderTextColor="#9CA3AF"
+          className="flex-1 mx-3 text-sm text-theme-neutrals-100"
+          placeholder={placeholder || "Add a comment..."}
+          placeholderTextColor={theme.colors.mutedForeground}
           value={text}
           onChangeText={setText}
           multiline
-          numberOfLines={1}
-          autoFocus={false}
-          style={{ flex: 1, paddingTop: 6, paddingBottom: 6 }}
+          style={{ maxHeight: 80 }}
+          returnKeyType="send"
+          onSubmitEditing={handleSend}
         />
         <TouchableOpacity
           onPress={handleSend}
           disabled={!canSend}
-          className={`ml-2 p-2 ${canSend ? "opacity-100" : "opacity-50"}`}
+          activeOpacity={0.7}
+          className="p-2"
           accessibilityLabel="Send comment"
         >
-          <Ionicons name="send" size={18} color="#60A5FA" />
+          {isSending ? (
+            <ActivityIndicator size="small" color={theme.colors.accent} />
+          ) : (
+            <Ionicons 
+              name="send" 
+              size={24} 
+              color={canSend ? theme.colors.accent : theme.colors.mutedForeground} 
+            />
+          )}
         </TouchableOpacity>
       </View>
     </View>

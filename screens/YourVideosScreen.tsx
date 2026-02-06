@@ -1,21 +1,19 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenHeader from '../components/ScreenHeader';
-import ProfileTabs from '../components/Profile/ProfileTabs';
 import { View } from 'react-native';
+import PostsInfiniteList from '../components/Profile/PostsInfiniteList';
 import { useAuth } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 
-// Screen that hosts the old profile tab content (videos, feed, activity, livestreams)
-// Reuses ProfileTabs with its own header.
+// Screen that shows the user's own posts (videos, feed items)
 const YourVideosScreen: React.FC = () => {
   const { isSignedIn, needsUsername } = useAuth();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
   return (
-    <View className="flex-1 bg-black"> 
-      <ScreenHeader title="Your Videos" />
-      <ProfileTabs />
+    <View className="flex-1 bg-theme-neutrals-900"> 
+      <ScreenHeader title="Your Posts" />
+      <PostsInfiniteList variant="myPosts" bottomPadding={80} />
     </View>
   );
 };

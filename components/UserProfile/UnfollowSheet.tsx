@@ -14,10 +14,12 @@ interface UnfollowSheetProps {
   followLoading: boolean;
   onClose: () => void;
   onUnfollow: () => void;
+  /** When true, shows "Cancel Request" instead of "Unfollow" */
+  isCancelRequest?: boolean;
 }
 
 const UnfollowSheet: React.FC<UnfollowSheetProps> = memo(
-  ({ visible, username, followLoading, onClose, onUnfollow }) => {
+  ({ visible, username, followLoading, onClose, onUnfollow, isCancelRequest = false }) => {
     return (
       <RNModal
         visible={visible}
@@ -33,7 +35,9 @@ const UnfollowSheet: React.FC<UnfollowSheetProps> = memo(
           <View className="mt-auto bg-theme-neutrals-800 rounded-t-2xl px-5 pt-4 pb-6">
             <View className="w-12 h-1 bg-theme-neutrals-600 self-center rounded-full mb-4" />
             <Text className="text-white text-base font-semibold mb-3 text-center">
-              Following @{username}
+              {isCancelRequest
+                ? `Cancel follow request to @${username}?`
+                : `Following @${username}`}
             </Text>
             <TouchableOpacity
               disabled={followLoading}
@@ -47,11 +51,13 @@ const UnfollowSheet: React.FC<UnfollowSheetProps> = memo(
               ) : (
                 <>
                   <Ionicons
-                    name="person-remove-outline"
+                    name={isCancelRequest ? "close-circle-outline" : "person-remove-outline"}
                     size={18}
                     color="#fff"
                   />
-                  <Text className="text-white font-medium">Unfollow</Text>
+                  <Text className="text-white font-medium">
+                    {isCancelRequest ? "Cancel Request" : "Unfollow"}
+                  </Text>
                 </>
               )}
             </TouchableOpacity>

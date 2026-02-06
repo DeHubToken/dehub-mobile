@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { View, Text, ActivityIndicator, Dimensions } from "react-native";
+import { View, Text, ActivityIndicator, Dimensions, TouchableOpacity } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
+import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../../theme";
 import VideosRoute from "../Profile/VideosRoute";
 import LivestreamsRoute from "../Profile/LivestreamsRoute";
@@ -10,10 +11,13 @@ interface UserProfileVideosContentProps {
   profileAddress: string;
   tabIndex: number;
   onTabIndexChange: (index: number) => void;
+  canViewContent?: boolean;
+  isPrivate?: boolean;
+  onFollow?: () => void;
 }
 
 const UserProfileVideosContent: React.FC<UserProfileVideosContentProps> = memo(
-  ({ profileAddress, tabIndex, onTabIndexChange }) => {
+  ({ profileAddress, tabIndex, onTabIndexChange, canViewContent = true, isPrivate = false, onFollow }) => {
     const videoTabs = useMemo(
       () => [
         { key: "videos", title: "Videos" },
@@ -75,6 +79,32 @@ const UserProfileVideosContent: React.FC<UserProfileVideosContentProps> = memo(
       ),
       []
     );
+
+    // Private account message
+    if (!canViewContent) {
+      return (
+        <View className="flex-1 items-center justify-center px-8">
+          <View className="bg-theme-neutrals-800/50 rounded-full p-6 mb-6">
+            <Ionicons name="lock-closed" size={48} color="#666" />
+          </View>
+          <Text className="text-white text-xl font-bold text-center mb-2">
+            This Account is Private
+          </Text>
+          <Text className="text-gray-400 text-center text-base leading-6 mb-6">
+            Follow this account to see their videos, feed, and livestreams.
+          </Text>
+          {onFollow && (
+            <TouchableOpacity
+              onPress={onFollow}
+              className="bg-blue-500 px-10 py-3.5 rounded-full"
+              activeOpacity={0.8}
+            >
+              <Text className="text-white font-semibold text-base">Follow</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      );
+    }
 
     return (
       <View className="flex-1">

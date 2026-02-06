@@ -18,6 +18,8 @@ export interface UserProfileHeaderProps {
   hasUsername: boolean;
   joinedDate?: string | null;
   followsYou?: boolean;
+  isPrivate?: boolean;
+  canViewContent?: boolean;
   onOpenImage: (type: "avatar" | "cover") => void;
   onShare: () => void;
   onMessage?: () => void;
@@ -39,6 +41,8 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   hasUsername,
   joinedDate,
   followsYou,
+  isPrivate,
+  canViewContent,
   onOpenImage,
   onShare,
   onMessage,
@@ -107,6 +111,12 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
               {followsYou && (
                 <View className="ml-2 px-2 py-0.5 bg-theme-neutrals-800 rounded-full">
                   <Text className="text-theme-neutrals-400 text-[10px] font-medium">Follows you</Text>
+                </View>
+              )}
+              {isPrivate && !canViewContent && (
+                <View className="ml-2 px-2 py-0.5 bg-theme-neutrals-800 rounded-full flex-row items-center gap-1">
+                  <Ionicons name="lock-closed" size={10} color="#9ca3af" />
+                  <Text className="text-theme-neutrals-400 text-[10px] font-medium">Private</Text>
                 </View>
               )}
               {!!address && (!!username || followsYou) && (

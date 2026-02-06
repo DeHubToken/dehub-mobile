@@ -95,7 +95,7 @@ export async function getNFTs(params?: SearchParams): Promise<GetNFTsResponse> {
   const query = objectToGetParams(removeUndefined(baseParams));
   const url = `/search_nfts${query}`;
   try {
-    const res = await apiClient.get<any>(url, { isAuthRequired: false });
+    const res = await apiClient.get<any>(url, { isAuthRequired: true });
     // Expected shape: { result: [] } but handle array fallback
     if (Array.isArray(res)) return { result: res } as GetNFTsResponse;
     if (res?.result && Array.isArray(res.result)) return res as GetNFTsResponse;
@@ -112,14 +112,21 @@ export async function getNFTs(params?: SearchParams): Promise<GetNFTsResponse> {
 export interface SingleNFTResponse { result: GetNFTsResult; [k: string]: any }
 
 /**
- * Fetch a single NFT (video) by tokenId for a given viewer address.
- * Endpoint shape expected: /nft_info/{tokenId}?address={address}
+ * Fetch a single NFT (video) by tokenId.
+ * Auth token is sent automatically for viewer context (isLiked, isFollowing, etc.).
+ * Endpoint shape expected: /nft_info/{tokenId}?commentId={commentId}
  */
-export async function getNFT(tokenId: number | string, address: string = ''): Promise<SingleNFTResponse> {
+export async function getNFT(
+  tokenId: number | string, 
+  options?: { commentId?: number | string }
+): Promise<SingleNFTResponse> {
   if (tokenId == null) throw new Error('tokenId required');
-  const url = `/nft_info/${tokenId}?address=${encodeURIComponent(address || '')}`;
+  let url = `/nft_info/${tokenId}`;
+  if (options?.commentId != null) {
+    url += `?commentId=${encodeURIComponent(String(options.commentId))}`;
+  }
   try {
-    const res = await apiClient.get<any>(url, { isAuthRequired: false });
+    const res = await apiClient.get<any>(url, { isAuthRequired: true });
     // Normalize: ensure res.result exists and is object
     if (res?.result && !Array.isArray(res.result)) return res as SingleNFTResponse;
     if (res && !res.result) return { result: res } as SingleNFTResponse;
@@ -237,10 +244,38 @@ export interface GetCommentsParams {
   unit?: number;
   skip?: number;
   limit?: number;
+  address?: string; // viewer address for isLiked field
+  commentId?: number | string; // highlight specific comment (for sharing)
+}
+
+export interface CommentUser {
+  address?: string;
+  username?: string;
+  displayName?: string;
+  avatarImageUrl?: string;
+  followers?: number;
+  followings?: number;
+  sentTips?: number;
+  receivedTips?: number;
+  createdAt?: string;
+}
+
+export interface Comment {
+  id: number;
+  address?: string;
+  content: string;
+  imageUrl?: string;
+  createdAt: string;
+  parentId?: number;
+  replyIds?: number[];
+  likeCount: number;
+  isLiked?: boolean;
+  notFound?: boolean;
+  user?: CommentUser;
 }
 
 export interface GetCommentsResult {
-  items: any[];
+  items: Comment[];
   totalCount: number;
   skip: number;
   limit: number;
@@ -260,6 +295,8 @@ export async function getCommentsForToken(
     unit: params?.unit,
     skip: params?.skip,
     limit: params?.limit,
+    address: params?.address,
+    commentId: params?.commentId,
   }));
   const url = `${base}${q}`;
   try {
@@ -272,6 +309,97 @@ export async function getCommentsForToken(
     return { result: { items: [], totalCount: 0, skip: 0, limit: params?.limit ?? params?.unit ?? 20, hasMore: false } };
   } catch (e) {
     console.error('[NFTService] getCommentsForToken error', e);
+    throw e;
+  }
+}
+
+// Like/unlike a comment (toggleable)
+export interface LikeCommentInput {
+  commentId: number | string;
+}
+
+export interface LikeCommentResult {
+  result: boolean;
+  liked: boolean;
+  likes: number;
+}
+
+export async function likeComment(input: LikeCommentInput): Promise<LikeCommentResult> {
+  const { commentId } = input;
+  if (commentId == null) throw new Error('commentId required');
+  try {
+    const res = await apiClient.post<LikeCommentResult>(
+      '/like_comment',
+      { commentId: Number(commentId) },
+      { isAuthRequired: true }
+    );
+    return res;
+  } catch (e) {
+    console.error('[NFTService] likeComment error', e);
+    throw e;
+  }
+}
+
+// Edit a comment
+export interface EditCommentInput {
+  commentId: number | string;
+  content: string;
+}
+
+export interface EditCommentResult {
+  result: boolean;
+  commentId: number;
+  content: string;
+  edited: boolean;
+}
+
+export async function editComment(input: EditCommentInput): Promise<EditCommentResult> {
+  const { commentId, content } = input;
+  if (commentId == null) throw new Error('commentId required');
+  if (!content?.trim()) throw new Error('content required');
+  try {
+    const url = `/edit_comment?commentId=${encodeURIComponent(String(commentId))}&content=${encodeURIComponent(content)}`;
+    const res = await apiClient.post<EditCommentResult>(url, {}, { isAuthRequired: true });
+    return res;
+  } catch (e) {
+    console.error('[NFTService] editComment error', e);
+    throw e;
+  }
+}
+
+// ---------------- Bounty Claim ----------------
+export interface BountySignature {
+  v: number;
+  r: string;
+  s: string;
+}
+
+export interface ClaimBountyResponse {
+  error?: boolean | string;
+  result: {
+    viewer?: BountySignature;
+    commentor?: BountySignature;
+    viewer_claimed?: boolean;
+    commentor_claimed?: boolean;
+  };
+  claimed?: {
+    viewer?: boolean;
+    commentor?: boolean;
+  };
+}
+
+/**
+ * Check eligibility and get signature for bounty claim
+ * Returns signatures for eligible bounty types (viewer/commentor)
+ */
+export async function getClaimBountySignature(tokenId: number | string): Promise<ClaimBountyResponse> {
+  if (tokenId == null) throw new Error('tokenId required');
+  try {
+    const url = `/claim-bounty?tokenId=${encodeURIComponent(String(tokenId))}`;
+    const res = await apiClient.get<ClaimBountyResponse>(url, { isAuthRequired: true });
+    return res;
+  } catch (e) {
+    console.error('[NFTService] getClaimBountySignature error', e);
     throw e;
   }
 }

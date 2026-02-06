@@ -8,6 +8,7 @@ import VideoPlayerScreen from "../screens/VideoPlayerScreen";
 import LeaderboardScreen from "../screens/LeaderboardScreen";
 import NotificationScreen from "../screens/NotificationScreen";
 import NotificationSettingsScreen from "../screens/NotificationSettingsScreen";
+import PrivacySettingsScreen from "../screens/PrivacySettingsScreen";
 import FeedScreen from "../screens/FeedScreen";
 import FeedDetailScreen from "../screens/FeedDetailScreen";
 import ImageViewerScreen from "../screens/ImageViewerScreen";
@@ -15,12 +16,14 @@ import SearchScreen from "../screens/SearchScreen";
 import AccountSettingsScreen from "../screens/AccountSettingsScreen";
 import YourVideosScreen from "../screens/YourVideosScreen";
 import LikedVideosScreen from "../screens/LikedVideosScreen";
+import SavedPostsScreen from "../screens/SavedPostsScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
 import SignInScreen from "../screens/auth/SignInScreen";
 import UploadScreen from "../screens/UploadScreen";
 import LiveProducerScreen from "../screens/LiveProducerScreen";
 import LiveViewerScreen from "../screens/LiveViewerScreen";
 import DpayScreen from "../screens/DpayScreen";
+import FollowListScreen from "../screens/FollowListScreen";
 import { LivepeerProvider } from "../config/livepeer.config";
 import ChatScreen from "../screens/ChatScreen";
 import { useAuthState } from "../context/AuthContext";
@@ -149,6 +152,10 @@ export default function AppNavigator() {
           name={ScreenNames.ImageViewer}
           component={ImageViewerScreen}
         />
+        <Stack.Screen
+          name={ScreenNames.FollowList}
+          component={FollowListScreen}
+        />
       </Stack.Group>
 
       {/* ===================================================================== */}
@@ -227,6 +234,10 @@ export default function AppNavigator() {
               component={NotificationSettingsScreen}
             />
             <Stack.Screen
+              name={ScreenNames.PrivacySettings}
+              component={PrivacySettingsScreen}
+            />
+            <Stack.Screen
               name={ScreenNames.Chat}
               component={ChatScreen as any}
             />
@@ -241,6 +252,10 @@ export default function AppNavigator() {
             <Stack.Screen
               name={ScreenNames.LikedVideos}
               component={LikedVideosScreen}
+            />
+            <Stack.Screen
+              name={ScreenNames.SavedPosts}
+              component={SavedPostsScreen}
             />
             <Stack.Screen
               name={ScreenNames.EditProfile}

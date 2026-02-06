@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export type StreamStatus = "OFFLINE" | "LIVE" | "ENDED" | "SCHEDULED" | string;
 
@@ -21,12 +22,20 @@ const StatusBadge: React.FC<BadgeProps> = ({ status, className }) => {
   const key = (status || "").toUpperCase();
   const style = STATUS_STYLES[key] || null;
   if (!style) return null; // unsupported status -> no badge
+  
+  const isLive = key === "LIVE";
+  
   return (
     <View
-      className={`absolute left-2 top-2 rounded-full px-2 py-0.5 ${
+      className={`absolute left-2 top-2 rounded-full px-2 py-0.5 flex-row items-center ${
         style.container
       } ${className || ""}`}
     >
+      {isLive ? (
+        <View className="w-2 h-2 rounded-full bg-white mr-1.5" />
+      ) : (
+        <Ionicons name="radio-outline" size={10} color="white" style={{ marginRight: 4 }} />
+      )}
       <Text className="text-white text-[10px] font-semibold uppercase tracking-wide">
         {style.label}
       </Text>

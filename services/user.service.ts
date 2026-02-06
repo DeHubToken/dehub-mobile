@@ -10,8 +10,61 @@ export interface ApiResponse<T> {
   error?: string;
 }
 
+// Account info response - followers/followings are now just counts
 interface AccountInfoResponse { result: User }
 interface UsersSearchResponse { result: User[] }
+
+// =============================================================================
+// Follow List Types
+// =============================================================================
+
+/** User info returned in follow list */
+export interface FollowListUser {
+  address: string;
+  username?: string;
+  displayName?: string;
+  avatarImageUrl?: string;
+  followers: number;
+  followings: number;
+  sentTips?: number;
+  receivedTips?: number;
+  createdAt?: string;
+}
+
+/** Single item in follow list */
+export interface FollowListItem {
+  followedAt: string;
+  user: FollowListUser;
+}
+
+/** Pagination info for follow list */
+export interface FollowListPagination {
+  page: number;
+  limit: number;
+  totalCount: number;
+  totalPages: number;
+  hasMore: boolean;
+}
+
+/** Response from follow_list endpoint */
+export interface FollowListResponse {
+  status: boolean;
+  result: {
+    items: FollowListItem[];
+    pagination: FollowListPagination;
+  };
+}
+
+/** Params for getting follow list */
+export interface GetFollowListParams {
+  address: string;
+  type: 'followers' | 'following';
+  page?: number;
+  limit?: number;
+  search?: string;
+  sortBy?: 'createdAt' | 'username' | 'displayName';
+  sortOrder?: 'asc' | 'desc';
+}
 
 // =============================================================================
 // Notification Types
@@ -25,16 +78,23 @@ export type NotificationType =
   | 'like' 
   | 'comment' 
   | 'comment_reply' 
+  | 'comment_like'
   | 'following' 
+  | 'mention'
   | 'tip' 
   | 'subscription' 
   | 'ppv_purchase' 
+  | 'bounty_available'
+  | 'bounty_claimed'
   | 'video_milestone' 
   | 'livestream_start' 
-  | 'video_removal';
+  | 'new_message'
+  | 'video_removal'
+  | 'account_warning'
+  | 'system';
 
 /** Notification category for filtering */
-export type NotificationCategory = 'engagement' | 'social' | 'monetization' | 'content' | 'system';
+export type NotificationCategory = 'engagement' | 'social' | 'monetization' | 'content' | 'messages' | 'system';
 
 /** Full notification item from backend */
 export interface NotificationItem {
@@ -55,12 +115,24 @@ export interface NotificationItem {
   tokenTitle?: string;
   tokenThumbnail?: string;
   postType?: NotificationPostType;
+  // Comment info
+  commentId?: string;
+  parentCommentId?: string;
   // Aggregation
   aggregatedCount?: number;
   latestActorNames?: string[];
   // Monetization fields
   amount?: number;
   currency?: string;
+  bountyType?: 'viewer' | 'commentor';
+  // Metadata with deep link and external URLs
+  metadata?: {
+    deepLink?: string;
+    articleUrl?: string;
+    streamId?: string;
+    planId?: string;
+    followId?: string;
+  };
 }
 
 /** Query params for fetching notifications */
@@ -86,12 +158,11 @@ export interface UserContentSearchParams {
 
 /**
  * Fetch a single account (by username or address)
+ * Backend identifies the viewer from the auth token to return relationship info (isFollowing, followsYou).
  * @param usernameOrAddress - The username or wallet address to look up
- * @param viewerAddress - Optional: Your wallet address to get relationship info (isFollowing, followsYou)
  */
-export async function getAccount(usernameOrAddress: string, viewerAddress?: string) {
-  const baseUrl = `/account_info/${encodeURIComponent(usernameOrAddress)}`;
-  const url = viewerAddress ? `${baseUrl}?address=${encodeURIComponent(viewerAddress)}` : baseUrl;
+export async function getAccount(usernameOrAddress: string) {
+  const url = `/account_info/${encodeURIComponent(usernameOrAddress)}`;
   const response = await apiClient.get<ApiResponse<AccountInfoResponse>>(url, { isAuthRequired: true });
   return response;
 }
@@ -176,14 +247,13 @@ export async function markAllNotificationsAsRead(category?: NotificationCategory
  * Convenience method to safely refresh current account by preferred identifier.
  * Falls back from username to walletAddress.
  * @param currentUser - The current user to refresh
- * @param viewerAddress - Optional: Viewer's address to get relationship info
  */
-export async function refreshAccount(currentUser: User | null, viewerAddress?: string) {
+export async function refreshAccount(currentUser: User | null) {
   if (!currentUser) return null;
   const key = currentUser.username || currentUser.walletAddress;
   if (!key) return currentUser;
   try {
-    const res: any = await getAccount(key, viewerAddress);
+    const res: any = await getAccount(key);
     if (res?.success && res.data?.result) return res.data.result as User;
     return currentUser;
   } catch (e) {
@@ -237,78 +307,248 @@ export async function getUserLiveVideos(userOrAddress: User | string, params?: U
   return getNFTs(searchParams);
 }
 
-// ---------------- Liked Videos ----------------
+// ---------------- Liked Posts ----------------
 
-export interface LikedVideosParams { page?: number; unit?: number; contentType?: 'video' | 'post' | 'all' }
+export interface PostsParams { page?: number; unit?: number; }
 
 /**
- * Fetch videos liked by a viewer address.
- * Endpoint: GET /liked_videos?address=<addr>&page=<page>&unit=<unit>
+ * Fetch posts liked by the authenticated user.
+ * Endpoint: GET /liked_videos?page=<page>&limit=<limit>
  */
-export async function getLikedNFTs(address: string, params?: LikedVideosParams): Promise<GetNFTsResponse> {
-  if (!address) return { result: [] };
-  // Backend expects 1-based page and `limit`; default contentType to 'video'
+export async function getLikedPosts(params?: PostsParams): Promise<GetNFTsResponse> {
   const page1 = (params?.page ?? 0) + 1;
-  const limit = params?.unit ?? 40;
-  const contentType = params?.contentType ?? 'video';
-  const cleaned: Record<string, any> = Object.fromEntries(
-    Object.entries({ address, page: page1, limit, contentType })
-      .filter(([, v]) => v !== undefined && v !== null && v !== '')
-  );
-  const query = new URLSearchParams(cleaned as any).toString();
-  const url = `/liked_videos${query ? `?${query}` : ''}`;
+  const limit = params?.unit ?? 20;
+  const query = new URLSearchParams({ page: String(page1), limit: String(limit) }).toString();
+  const url = `/liked_videos?${query}`;
   try {
     const res = await apiClient.get<any>(url, { isAuthRequired: true });
-    // Expected shape: { result: { items, totalCount, page, limit, contentType } }
     const wrapper = (res?.data?.result ?? res?.result ?? res) as any;
-    const items = Array.isArray(wrapper)
-      ? wrapper
-      : Array.isArray(wrapper?.items)
-        ? wrapper.items
-        : [];
-    return { result: items, totalCount: wrapper?.totalCount, page: wrapper?.page, limit: wrapper?.limit } as GetNFTsResponse;
+    const items = Array.isArray(wrapper) ? wrapper : Array.isArray(wrapper?.items) ? wrapper.items : [];
+    const pagination = res?.data?.pagination ?? res?.pagination;
+    return { result: items, totalCount: pagination?.totalCount, page: pagination?.page, hasMore: pagination?.hasMore } as GetNFTsResponse;
   } catch (e) {
-    console.warn('[user.service] getLikedNFTs error', e);
+    console.warn('[user.service] getLikedPosts error', e);
     throw e;
   }
+}
+
+/** @deprecated Use getLikedPosts instead */
+export async function getLikedNFTs(address: string, params?: PostsParams): Promise<GetNFTsResponse> {
+  return getLikedPosts(params);
+}
+
+// ---------------- My Posts ----------------
+
+/**
+ * Fetch posts created by the authenticated user.
+ * Endpoint: GET /myPosts?page=<page>&limit=<limit>
+ */
+export async function getMyPosts(params?: PostsParams): Promise<GetNFTsResponse> {
+  const page1 = (params?.page ?? 0) + 1;
+  const limit = params?.unit ?? 20;
+  const query = new URLSearchParams({ page: String(page1), limit: String(limit) }).toString();
+  const url = `/myPosts?${query}`;
+  try {
+    const res = await apiClient.get<any>(url, { isAuthRequired: true });
+    const wrapper = (res?.data?.result ?? res?.result ?? res) as any;
+    const items = Array.isArray(wrapper) ? wrapper : Array.isArray(wrapper?.items) ? wrapper.items : [];
+    const pagination = res?.data?.pagination ?? res?.pagination;
+    return { result: items, totalCount: pagination?.totalCount, page: pagination?.page, hasMore: pagination?.hasMore } as GetNFTsResponse;
+  } catch (e) {
+    console.warn('[user.service] getMyPosts error', e);
+    throw e;
+  }
+}
+
+// ---------------- Saved Posts ----------------
+
+/**
+ * Fetch posts saved by the authenticated user.
+ * Endpoint: GET /savedPosts?page=<page>&limit=<limit>
+ */
+export async function getSavedPosts(params?: PostsParams): Promise<GetNFTsResponse> {
+  const page1 = (params?.page ?? 0) + 1;
+  const limit = params?.unit ?? 20;
+  const query = new URLSearchParams({ page: String(page1), limit: String(limit) }).toString();
+  const url = `/savedPosts?${query}`;
+  try {
+    const res = await apiClient.get<any>(url, { isAuthRequired: true });
+    const wrapper = (res?.data?.result ?? res?.result ?? res) as any;
+    const items = Array.isArray(wrapper) ? wrapper : Array.isArray(wrapper?.items) ? wrapper.items : [];
+    const pagination = res?.data?.pagination ?? res?.pagination;
+    return { result: items, totalCount: pagination?.totalCount, page: pagination?.page, hasMore: pagination?.hasMore } as GetNFTsResponse;
+  } catch (e) {
+    console.warn('[user.service] getSavedPosts error', e);
+    throw e;
+  }
+}
+
+// ---------------- Follow List ----------------
+
+/**
+ * Get paginated follow list (followers or following) for a user.
+ * Endpoint (GET): /follow_list/{address}
+ */
+export async function getFollowList(params: GetFollowListParams): Promise<FollowListResponse> {
+  const { address, type, page = 1, limit = 20, search, sortBy, sortOrder } = params;
+  const queryParams = new URLSearchParams();
+  queryParams.set('type', type);
+  queryParams.set('page', String(page));
+  queryParams.set('limit', String(limit));
+  if (search) queryParams.set('search', search);
+  if (sortBy) queryParams.set('sortBy', sortBy);
+  if (sortOrder) queryParams.set('sortOrder', sortOrder);
+
+  const url = `/follow_list/${encodeURIComponent(address)}?${queryParams.toString()}`;
+  return apiClient.get<FollowListResponse>(url, { isAuthRequired: true });
 }
 
 // ---------------- Follow / Unfollow ----------------
 
 /**
- * Follow a user (follower -> following). Uses the /request_follow endpoint.
- * Endpoint (GET): /request_follow?address=<follower>&following=<target>
+ * Response from the follow endpoint.
+ * When the target has a private account, status will be 'pending' (follow request sent).
+ * When the target has a public account, status will be 'following' (instant follow).
  */
-export async function followUser(followerAddress: string, followingAddress: string) {
-  const url = `/request_follow?address=${encodeURIComponent(followerAddress)}&following=${encodeURIComponent(followingAddress)}`;
-  return apiClient.get<any>(url, { isAuthRequired: true });
+export interface FollowResponse {
+  status: 'following' | 'pending' | 'unfollowed' | 'cancelled';
+  isPrivateAccount?: boolean;
+  wasPending?: boolean;
 }
 
 /**
- * Unfollow a user. /request_follow?address=<follower>&following=<target>&unFollowing=true
+ * Follow a user (follower -> following). Uses the /request_follow endpoint.
+ * Endpoint (GET): /request_follow?address=<follower>&following=<target>
+ *
+ * Returns FollowResponse so callers can distinguish between instant follow and pending request.
  */
-export async function unfollowUser(followerAddress: string, followingAddress: string) {
+export async function followUser(followerAddress: string, followingAddress: string): Promise<FollowResponse> {
+  const url = `/request_follow?address=${encodeURIComponent(followerAddress)}&following=${encodeURIComponent(followingAddress)}`;
+  const res = await apiClient.get<any>(url, { isAuthRequired: true });
+  const payload = res?.data?.result || res?.result || res;
+  return {
+    status: payload?.status || 'following',
+    isPrivateAccount: !!payload?.isPrivateAccount,
+    wasPending: !!payload?.wasPending,
+  };
+}
+
+/**
+ * Unfollow a user (or cancel a pending follow request).
+ * Endpoint (GET): /request_follow?address=<follower>&following=<target>&unFollowing=true
+ */
+export async function unfollowUser(followerAddress: string, followingAddress: string): Promise<FollowResponse> {
   const url = `/request_follow?address=${encodeURIComponent(followerAddress)}&following=${encodeURIComponent(followingAddress)}&unFollowing=true`;
-  return apiClient.get<any>(url, { isAuthRequired: true });
+  const res = await apiClient.get<any>(url, { isAuthRequired: true });
+  const payload = res?.data?.result || res?.result || res;
+  return {
+    status: payload?.status || 'unfollowed',
+    isPrivateAccount: !!payload?.isPrivateAccount,
+    wasPending: !!payload?.wasPending,
+  };
 }
 
 // ---------------- Follow state check (lightweight) ----------------
 
-export interface IsFollowingResult { isFollowing: boolean }
+export interface IsFollowingResult {
+  isFollowing: boolean;
+  isFollowRequestPending?: boolean;
+}
 
 /**
  * Lightweight check if the authenticated viewer is following target.
+ * Also returns isFollowRequestPending for private accounts.
  * Endpoint (GET, AuthGuard): /is_following?target=<targetAddress>
  */
 export async function isFollowing(targetAddress: string): Promise<IsFollowingResult> {
-  if (!targetAddress) return { isFollowing: false };
+  if (!targetAddress) return { isFollowing: false, isFollowRequestPending: false };
   const url = `/is_following?target=${encodeURIComponent(targetAddress)}`;
   try {
     const res = await apiClient.get<any>(url, { isAuthRequired: true });
-    const val = (res?.result?.isFollowing ?? res?.result ?? res?.isFollowing ?? false) as boolean;
-    return { isFollowing: !!val };
+    const payload = res?.result || res;
+    const val = (payload?.isFollowing ?? false) as boolean;
+    const pending = (payload?.isFollowRequestPending ?? false) as boolean;
+    return { isFollowing: !!val, isFollowRequestPending: !!pending };
   } catch (e) {
-    // Treat failures as not-following to keep UI permissive; follow action will still be gated
-    return { isFollowing: false };
+    // Treat failures as not-following to keep UI permissive
+    return { isFollowing: false, isFollowRequestPending: false };
   }
+}
+
+// ---------------- Follow Requests ----------------
+
+/** A single follow request item from the /follow-requests endpoint */
+export interface FollowRequestItem {
+  requestId: string;
+  requestedAt: string;
+  user: {
+    address: string;
+    username?: string;
+    displayName?: string;
+    avatarImageUrl?: string;
+  };
+}
+
+export interface FollowRequestsResponse {
+  status: boolean;
+  items: FollowRequestItem[];
+  pagination: {
+    page: number;
+    limit: number;
+    totalCount: number;
+    totalPages: number;
+    hasMore: boolean;
+  };
+}
+
+/**
+ * Get pending follow requests for the authenticated user.
+ * Endpoint (GET): /follow-requests?page=<page>&limit=<limit>
+ */
+export async function getFollowRequests(page = 1, limit = 20): Promise<FollowRequestsResponse> {
+  const url = `/follow-requests?page=${page}&limit=${limit}`;
+  const res = await apiClient.get<any>(url, { isAuthRequired: true });
+  // apiClient returns parsed JSON directly; normalize possible wrappers
+  const payload = res?.data || res;
+  return {
+    status: !!payload?.status,
+    items: Array.isArray(payload?.items) ? payload.items : [],
+    pagination: payload?.pagination || { page, limit, totalCount: 0, totalPages: 0, hasMore: false },
+  };
+}
+
+/**
+ * Accept a follow request.
+ * Endpoint (POST): /follow-requests/:requestId/accept
+ */
+export async function acceptFollowRequest(requestId: string) {
+  const url = `/follow-requests/${encodeURIComponent(requestId)}/accept`;
+  return apiClient.post<any>(url, {}, { isAuthRequired: true });
+}
+
+/**
+ * Reject (decline) a follow request.
+ * Endpoint (POST): /follow-requests/:requestId/reject
+ */
+export async function rejectFollowRequest(requestId: string) {
+  const url = `/follow-requests/${encodeURIComponent(requestId)}/reject`;
+  return apiClient.post<any>(url, {}, { isAuthRequired: true });
+}
+
+/**
+ * Accept all pending follow requests at once.
+ * Endpoint (POST): /follow-requests/accept-all
+ */
+export async function acceptAllFollowRequests(): Promise<{ status: boolean; message: string; accepted: number }> {
+  const res = await apiClient.post<any>('/follow-requests/accept-all', {}, { isAuthRequired: true });
+  return res?.data || res;
+}
+
+/**
+ * Reject all pending follow requests at once.
+ * Endpoint (POST): /follow-requests/reject-all
+ */
+export async function rejectAllFollowRequests(): Promise<{ status: boolean; message: string; rejected: number }> {
+  const res = await apiClient.post<any>('/follow-requests/reject-all', {}, { isAuthRequired: true });
+  return res?.data || res;
 }

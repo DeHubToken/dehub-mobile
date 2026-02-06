@@ -1,12 +1,12 @@
-import React, { useCallback } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import React, { useCallback, useState, useRef } from "react";
+import { View, Text, Image, TouchableOpacity, Animated, Linking } from "react-native";
 import env from "../../config/env"; // retained if used elsewhere
 import VideoPreview from "./VideoPreview";
 import { Ionicons } from "@expo/vector-icons";
 import StatusBadge from "./StatusBadge";
 import { formatDistance } from "date-fns";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth, useAuthActions } from "../../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { secondsToHMMSS } from "../../libs/date.util";
@@ -18,15 +18,23 @@ import {
   getVideoUrl,
   getDefaultBanner,
   formatCompactNumber,
+  shareProfile,
+  toastError,
 } from "../../libs";
 import { useStreamAccessInfo } from "../../libs/validators.util";
-import Avatar from "../common/Avatar";
+import { voteOnNFT } from "../../services/nft.service";
+import { savePost } from "../../services/feed.service";
+import { LEGACY_WEBSITE_LINK } from "../../config";
+import { FeedCardHeader } from "./FeedCardHeader";
+import { FeedCaption } from "./FeedCaption";
+import { CommentBottomSheet } from "../Comments";
 
 interface VideoCardProps {
   nft: any;
   enablePreview?: boolean;
   badgeIcon?: string;
   onBeforeNavigate?: () => void;
+  onCategorySelect?: (category: string) => void;
 }
 
 const VideoCardComponent: React.FC<VideoCardProps> = ({
@@ -34,6 +42,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   enablePreview,
   badgeIcon = "star",
   onBeforeNavigate,
+  onCategorySelect,
 }) => {
   // Derivations centralised here
   const streamInfo = nft.streamInfo || (nft as any).stream?.streamInfo;
@@ -54,8 +63,14 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
     ? resolveThumbnail(nft)
     : getImageUrl(rawThumb, 640, 360);
   const thumbnail = thumbUrl
+  // Prefer nested minterUser object over individual fields
+  const minterUser = (nft as any).minterUser;
+  
   const avatarUrl = getAvatarUrl(
-    (nft as any).minterAvatarUrl || (nft as any).account?.avatarImageUrl || ""
+    minterUser?.avatarImageUrl ||
+    (nft as any).minterAvatarUrl ||
+    (nft as any).account?.avatarImageUrl ||
+    ""
   );
   const profilePicture =
     avatarUrl && avatarUrl !== "default-avatar"
@@ -68,7 +83,11 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
     (nft as any).title ||
     (nft as any).stream?.title ||
     "Untitled";
+  const description = (nft as any).description || (nft as any).stream?.description || "";
+  const categories: string[] = (nft as any).category || [];
   const creator =
+    minterUser?.displayName ||
+    minterUser?.username ||
     (nft as any).minterDisplayName ||
     (nft as any).mintername ||
     (nft as any).minter ||
@@ -78,8 +97,12 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
     (nft as any).account?.address ||
     "Unknown";
   const username =
-    (nft as any).account?.username || (nft as any).mintername || undefined;
+    minterUser?.username ||
+    (nft as any).account?.username ||
+    (nft as any).mintername ||
+    undefined;
   const address =
+    minterUser?.address ||
     (nft as any).account?.address ||
     (nft as any).minter ||
     (nft as any).owner ||
@@ -88,6 +111,16 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
     nft.totalVotes?.for ||
     (nft as any).stream?.likes ||
     (nft as any).likes ||
+    0;
+  const dislikes =
+    nft.totalVotes?.against ||
+    (nft as any).stream?.dislikes ||
+    (nft as any).dislikes ||
+    0;
+  const comments =
+    (nft as any).commentCount ||
+    (nft as any).stream?.commentCount ||
+    (nft as any).comments ||
     0;
   const views =
     nft.views ||
@@ -106,9 +139,30 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const isBounty = !!streamInfo?.isAddBounty;
   const bountyAmount = streamInfo?.addBountyAmount;
   const bountyTokenSymbol = streamInfo?.addBountyTokenSymbol;
+  const mintTxHash = (nft as any).mintTxHash || (nft as any).transactionHash || (nft as any).txHash;
+  const chainId = (nft as any).chainId || 8453; // Default to Base
+  
+  // Interactive state
+  const [liked, setLiked] = useState<boolean>(!!nft.isLiked);
+  const [disliked, setDisliked] = useState<boolean>(!!nft.isDisliked);
+  const [saved, setSaved] = useState<boolean>(!!nft.isSaved);
+  const [likeCount, setLikeCount] = useState<number>(likes);
+  const [dislikeCount, setDislikeCount] = useState<number>(dislikes);
+  const [showComments, setShowComments] = useState<boolean>(false);
+  
+  // Animation refs
+  const likeScale = useRef(new Animated.Value(1)).current;
+  const dislikeScale = useRef(new Animated.Value(1)).current;
+  const saveScale = useRef(new Animated.Value(1)).current;
+  const shareScale = useRef(new Animated.Value(1)).current;
+  const infoScale = useRef(new Animated.Value(1)).current;
+  const commentScale = useRef(new Animated.Value(1)).current;
+  
   const { showUserProfile } = useUserProfileSheet();
   const { user } = useAuth();
+  const { requireAuth } = useAuthActions();
   const navigation = useNavigation<any>();
+  const userAddress = user?.address || user?.walletAddress || "";
   const handlePressCreator = useCallback(() => {
     const id = username || creator || address;
     if (!id) return;
@@ -143,12 +197,154 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
       } as never
     );
   }, [navigation, tokenId, isLive, nft, accessInfo, onBeforeNavigate]);
+  
+  // Bounce animation helper
+  const bounceAnimation = useCallback((scale: Animated.Value) => {
+    scale.setValue(1);
+    Animated.sequence([
+      Animated.timing(scale, {
+        toValue: 1.3,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.spring(scale, {
+        toValue: 1,
+        useNativeDriver: true,
+        friction: 4,
+        tension: 150,
+      }),
+    ]).start();
+  }, []);
+  
+  const handleLikePress = useCallback(() => {
+    if (tokenId == null) return;
+    requireAuth?.(() => {
+      const wasLiked = liked;
+      const wasDisliked = disliked;
+      
+      bounceAnimation(likeScale);
+      
+      if (wasLiked) {
+        setLiked(false);
+        setLikeCount((c) => Math.max(0, c - 1));
+      } else {
+        setLiked(true);
+        setLikeCount((c) => c + 1);
+        if (wasDisliked) {
+          setDisliked(false);
+          setDislikeCount((c) => Math.max(0, c - 1));
+        }
+      }
+      
+      voteOnNFT({
+        streamTokenId: tokenId,
+        vote: true,
+        account: userAddress,
+      }).catch(() => {
+        // Revert optimistic update
+        setLiked(wasLiked);
+        setDisliked(wasDisliked);
+        setLikeCount((c) => wasLiked ? c + 1 : Math.max(0, c - 1));
+        if (wasDisliked) setDislikeCount((c) => c + 1);
+        toastError("Failed to update vote");
+      });
+    });
+  }, [tokenId, liked, disliked, userAddress, likeScale, bounceAnimation, requireAuth]);
+  
+  const handleDislikePress = useCallback(() => {
+    if (tokenId == null) return;
+    requireAuth?.(() => {
+      const wasLiked = liked;
+      const wasDisliked = disliked;
+      
+      bounceAnimation(dislikeScale);
+      
+      if (wasDisliked) {
+        setDisliked(false);
+        setDislikeCount((c) => Math.max(0, c - 1));
+      } else {
+        setDisliked(true);
+        setDislikeCount((c) => c + 1);
+        if (wasLiked) {
+          setLiked(false);
+          setLikeCount((c) => Math.max(0, c - 1));
+        }
+      }
+      
+      voteOnNFT({
+        streamTokenId: tokenId,
+        vote: false,
+        account: userAddress,
+      }).catch(() => {
+        // Revert optimistic update
+        setLiked(wasLiked);
+        setDisliked(wasDisliked);
+        setDislikeCount((c) => wasDisliked ? c + 1 : Math.max(0, c - 1));
+        if (wasLiked) setLikeCount((c) => c + 1);
+        toastError("Failed to update vote");
+      });
+    });
+  }, [tokenId, liked, disliked, userAddress, dislikeScale, bounceAnimation, requireAuth]);
+  
+  const handleSavePress = useCallback(() => {
+    requireAuth?.(() => {
+      const wasSaved = saved;
+      bounceAnimation(saveScale);
+      setSaved((s) => !s);
+      if (tokenId != null) {
+        savePost(Number(tokenId), userAddress).catch(() => {
+          // Revert optimistic update
+          setSaved(wasSaved);
+          toastError("Failed to save");
+        });
+      }
+    });
+  }, [tokenId, userAddress, saved, saveScale, bounceAnimation, requireAuth]);
+  
+  const handleSharePress = useCallback(() => {
+    bounceAnimation(shareScale);
+    if (tokenId == null) return;
+    const url = `${LEGACY_WEBSITE_LINK || ""}/stream/${tokenId}`;
+    const message = `Check out this video ${url}`;
+    try {
+      shareProfile(url, message);
+    } catch {}
+  }, [tokenId, shareScale, bounceAnimation]);
+  
+  const handleCommentPress = useCallback(() => {
+    bounceAnimation(commentScale);
+    if (tokenId != null) {
+      setShowComments(true);
+    }
+  }, [tokenId, commentScale, bounceAnimation]);
+  
+  const handleInfoPress = useCallback(() => {
+    bounceAnimation(infoScale);
+    if (mintTxHash) {
+      // Open transaction on block explorer
+      const explorerUrl = chainId === 8453
+        ? `https://basescan.org/tx/${mintTxHash}`
+        : `https://etherscan.io/tx/${mintTxHash}`;
+      Linking.openURL(explorerUrl);
+    }
+  }, [mintTxHash, chainId, infoScale, bounceAnimation]);
+  
   return (
     <TouchableOpacity
       activeOpacity={0.85}
       onPress={handlePressVideo}
       className="rounded-lg my-4 overflow-hidden"
     >
+      {/* Avatar row - moved to top */}
+      <FeedCardHeader
+        avatarUrl={typeof profilePicture === "string" ? profilePicture : undefined}
+        displayName={creator}
+        username={username}
+        badgeImage={badgeImage}
+        badgeIcon={badgeIcon}
+        onUserPress={handlePressCreator}
+      />
+
       <TouchableOpacity
         activeOpacity={0.85}
         onPress={handlePressVideo}
@@ -213,11 +409,6 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
             </Text>
           </View>
         )}
-        <View className="absolute bottom-2 left-2 bg-black/60 rounded px-1.5 py-0.5">
-          <Text className="text-theme-neutrals-200 text-xs">
-            {formatDistance(new Date(createdAt), new Date(), { addSuffix: true })}
-          </Text>
-        </View>
 
         {duration && (
           <View className="absolute bottom-2 right-2 bg-black/60 rounded px-1.5 py-0.5">
@@ -225,61 +416,122 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
           </View>
         )}
       </TouchableOpacity>
-      <View className="p-3">
-        <View className="flex-row justify-between items-start">
-          <View className="flex-row flex-1 min-w-0">
-            <TouchableOpacity activeOpacity={0.7} onPress={handlePressAvatar}>
-              <Avatar
-                uri={
-                  typeof profilePicture === "string" ? profilePicture : undefined
-                }
-                size={32}
-                className="mr-2"
-              />
-            </TouchableOpacity>
-            <View className="flex-1 min-w-0">
-              <Text
-                className="text-base font-bold text-theme-neutrals-100 mr-2"
-                numberOfLines={1}
-                ellipsizeMode="tail"
-              >
-                {title}
-              </Text>
-              <View className="flex-row items-center gap-1">
-                <Text
-                  className="text-[10px] text-theme-neutrals-300"
-                  numberOfLines={1}
-                  ellipsizeMode="tail"
-                  onPress={handlePressCreator}
-                >
-                  {creator}
-                </Text>
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  onPress={handlePressCreator}
-                >
-                  {badgeImage ? (
-                    <Image source={badgeImage} className="w-3 h-3" />
-                  ) : (
-                    <Ionicons name={badgeIcon as any} size={10} color="gold" />
-                  )}
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
 
-          <View className="flex-row items-center gap-2 ml-2 shrink-0">
-            <View className="flex-row items-center bg-theme-neutrals-700 rounded-full px-3 py-1">
-              <Ionicons name="eye" size={14} color="#D1D5DB" />
-              <Text className="ml-1 text-xs text-theme-neutrals-200">{views}</Text>
-            </View>
-            <View className="flex-row items-center bg-theme-neutrals-700 rounded-full px-3 py-1">
-              <Ionicons name="heart" size={14} color="#D1D5DB" />
-              <Text className="ml-1 text-xs text-theme-neutrals-200">{likes}</Text>
-            </View>
-          </View>
+      {/* Title, Description & Categories */}
+      <FeedCaption
+        title={title}
+        description={description}
+        categories={categories}
+        onCategoryPress={onCategorySelect}
+        showCategories={false}
+      />
+
+      {/* Time and Views row */}
+      <View className="flex-row items-center gap-2 pt-1">
+        <Text className="text-xs text-theme-neutrals-400">
+          {(() => {
+            const d = new Date(createdAt);
+            const diffMs = Date.now() - d.getTime();
+            const mins = Math.floor(diffMs / 60000);
+            if (mins < 60) return `${mins || 1}m`;
+            const hrs = Math.floor(mins / 60);
+            if (hrs < 24) return `${hrs}h`;
+            const days = Math.floor(hrs / 24);
+            if (days < 7) return `${days}d`;
+            const weeks = Math.floor(days / 7);
+            if (weeks < 4) return `${weeks}w`;
+            const months = Math.floor(days / 30);
+            return `${months}mo`;
+          })()}
+        </Text>
+        <Text className="text-xs text-theme-neutrals-500">·</Text>
+        <View className="flex-row items-center gap-1">
+          <Ionicons name="eye-outline" size={14} color="#9CA3AF" />
+          <Text className="text-xs text-theme-neutrals-400">{views}</Text>
         </View>
       </View>
+
+      {/* Action bar */}
+      <View className="flex-row items-center justify-between pt-2">
+        <View className="flex-row items-center gap-4">
+          {/* Like */}
+          <TouchableOpacity
+            onPress={handleLikePress}
+            activeOpacity={0.7}
+            className="flex-row items-center gap-1"
+          >
+            <Animated.View style={{ transform: [{ scale: likeScale }] }}>
+              <Ionicons
+                name={liked ? "thumbs-up" : "thumbs-up-outline"}
+                size={18}
+                color={liked ? "#FFFFFF" : "#9CA3AF"}
+              />
+            </Animated.View>
+            <Text className="text-xs text-theme-neutrals-400">{likeCount}</Text>
+          </TouchableOpacity>
+          {/* Dislike */}
+          <TouchableOpacity
+            onPress={handleDislikePress}
+            activeOpacity={0.7}
+            className="flex-row items-center gap-1"
+          >
+            <Animated.View style={{ transform: [{ scale: dislikeScale }] }}>
+              <Ionicons
+                name={disliked ? "thumbs-down" : "thumbs-down-outline"}
+                size={18}
+                color={disliked ? "#FFFFFF" : "#9CA3AF"}
+              />
+            </Animated.View>
+            <Text className="text-xs text-theme-neutrals-400">{dislikeCount}</Text>
+          </TouchableOpacity>
+          {/* Comments */}
+          <TouchableOpacity
+            onPress={handleCommentPress}
+            activeOpacity={0.7}
+            className="flex-row items-center gap-1"
+          >
+            <Animated.View style={{ transform: [{ scale: commentScale }] }}>
+              <Ionicons name="chatbubble-outline" size={18} color="#9CA3AF" />
+            </Animated.View>
+            <Text className="text-xs text-theme-neutrals-400">{comments}</Text>
+          </TouchableOpacity>
+          {/* Share */}
+          <TouchableOpacity
+            onPress={handleSharePress}
+            activeOpacity={0.7}
+            className="flex-row items-center gap-1"
+          >
+            <Animated.View style={{ transform: [{ scale: shareScale }] }}>
+              <Ionicons name="share-social-outline" size={18} color="#9CA3AF" />
+            </Animated.View>
+          </TouchableOpacity>
+        </View>
+        <View className="flex-row items-center gap-4">
+          {/* Bookmark */}
+          <TouchableOpacity onPress={handleSavePress} activeOpacity={0.7}>
+            <Animated.View style={{ transform: [{ scale: saveScale }] }}>
+              <Ionicons
+                name={saved ? "bookmark" : "bookmark-outline"}
+                size={18}
+                color={saved ? "#FFFFFF" : "#9CA3AF"}
+              />
+            </Animated.View>
+          </TouchableOpacity>
+          {/* Info */}
+          <TouchableOpacity onPress={handleInfoPress} activeOpacity={0.7}>
+            <Animated.View style={{ transform: [{ scale: infoScale }] }}>
+              <Ionicons name="information-circle-outline" size={18} color="#9CA3AF" />
+            </Animated.View>
+          </TouchableOpacity>
+        </View>
+      </View>
+      
+      {/* Comment Bottom Sheet */}
+      <CommentBottomSheet
+        visible={showComments}
+        onClose={() => setShowComments(false)}
+        tokenId={tokenId}
+      />
     </TouchableOpacity>
   );
 };

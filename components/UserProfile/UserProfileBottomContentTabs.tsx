@@ -1,12 +1,5 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import {
-  ActivityIndicator,
   Dimensions,
   Text,
   View,
@@ -16,10 +9,21 @@ import {
   type NativeSyntheticEvent,
   type NativeScrollEvent,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import HomeFeedCard from "../Home/HomeFeedCard";
 import VideoCard from "../Home/VideoCard";
-import FeedRoute from "../Profile/FeedRoute";
-import { getUserVideos } from "../../services/user.service";
+import InfiniteFeed from "../Feed/InfiniteFeed";
 import type { GetNFTsResult } from "../../services/nft.service";
+import type { GetNFTsResponse } from "../../services/feed.service";
+import {
+  getUnifiedFeed,
+  type UnifiedFeedItem,
+} from "../../services/feed.unified.service";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenNames } from "../../navigation/ScreenNames";
+import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import { useAuthState } from "../../context/AuthContext";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
 
 interface UserProfileBottomContentTabsProps {
   address: string;
@@ -28,11 +32,16 @@ interface UserProfileBottomContentTabsProps {
   isFullScreen: boolean;
   onScroll: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   registerScrollToTop: (handler: (() => void) | null) => void;
+  isPrivate?: boolean;
+  canViewContent?: boolean;
+  isFollowRequestPending?: boolean;
+  onFollow?: () => void;
 }
 
-const PAGE_SIZE = 20;
-
-type ActiveTab = "videos" | "feed";
+// Helper to determine if item is a video
+const isVideoItem = (item: GetNFTsResult): boolean => {
+  return !(item as any).postType || (item as any).postType === "video";
+};
 
 const UserProfileBottomContentTabs: React.FC<
   UserProfileBottomContentTabsProps
@@ -43,138 +52,115 @@ const UserProfileBottomContentTabs: React.FC<
   isFullScreen,
   onScroll,
   registerScrollToTop,
+  isPrivate = false,
+  canViewContent = true,
+  isFollowRequestPending = false,
+  onFollow,
 }) => {
-  const [activeTab, setActiveTab] = useState<ActiveTab>("videos");
-  const [videoItems, setVideoItems] = useState<GetNFTsResult[]>([]);
-  const [videoPage, setVideoPage] = useState(0);
-  const [videoHasMore, setVideoHasMore] = useState(true);
-  const [videoLoading, setVideoLoading] = useState(true);
-  const videoLoadingRef = useRef(false);
-  const videosListRef = useRef<FlatList<GetNFTsResult> | null>(null);
-  const feedListRef = useRef<FlatList<any> | null>(null);
+  const navigation = useNavigation<any>();
+  const { hideUserProfile } = useUserProfileSheet();
+  const { isSignedIn } = useAuthState();
+  const listRef = useRef<FlatList<any> | null>(null);
 
-  const onPressVideos = useCallback(() => {
-    setActiveTab("videos");
-  }, []);
-
-  const onPressFeed = useCallback(() => {
-    setActiveTab("feed");
-  }, []);
-
-  // When fullscreen, don't constrain height - let it fill available space
+  // When fullscreen, don't constrain height — let it fill available space
   const listHeight = useMemo(() => {
     if (isFullScreen) return undefined;
     const winH = Dimensions.get("window").height;
     return Math.min(560, Math.max(360, Math.round(winH * 0.55)));
   }, [isFullScreen]);
 
-  const loadVideoPage = useCallback(
-    async (targetPage: number, replace = false) => {
-      if (videoLoadingRef.current) return;
-      if (!replace && !videoHasMore) return;
-      videoLoadingRef.current = true;
-      if (targetPage === 0 && !replace) setVideoLoading(true);
-      try {
-        const res = await getUserVideos(address, {
-          page: targetPage,
-          unit: PAGE_SIZE,
-        } as any);
-        const newItems = res?.result || [];
-        setVideoHasMore(newItems.length === PAGE_SIZE);
-        setVideoItems((prev) => (replace ? newItems : [...prev, ...newItems]));
-        setVideoPage(targetPage);
-      } catch (e) {
-        console.warn("[UserProfileBottomContentTabs] load videos error", e);
-      } finally {
-        videoLoadingRef.current = false;
-        setVideoLoading(false);
-      }
+  // Custom fetcher that uses the /feed endpoint instead of /search_nfts
+  const fetchPage = useCallback(
+    async (page: number, limit: number): Promise<GetNFTsResponse> => {
+      const res = await getUnifiedFeed({
+        minter: address,
+        postType: "all",
+        sortBy: "createdAt",
+        sortOrder: "desc",
+        page: page + 1, // /feed uses 1-indexed pages
+        limit,
+      });
+      return { result: res.result as unknown as GetNFTsResult[] };
     },
     [address]
   );
 
-  useEffect(() => {
-    setVideoItems([]);
-    setVideoPage(0);
-    setVideoHasMore(true);
-    setVideoLoading(true);
-    videoLoadingRef.current = false;
-    loadVideoPage(0, true);
-  }, [address]);
-
-  const scrollVideosToTop = useCallback(() => {
-    videosListRef.current?.scrollToOffset({ offset: 0, animated: false });
-  }, []);
-
-  const scrollFeedToTop = useCallback(() => {
-    feedListRef.current?.scrollToOffset({ offset: 0, animated: false });
+  const scrollToTop = useCallback(() => {
+    listRef.current?.scrollToOffset({ offset: 0, animated: false });
   }, []);
 
   useEffect(() => {
-    registerScrollToTop(
-      activeTab === "videos" ? scrollVideosToTop : scrollFeedToTop
-    );
+    registerScrollToTop(scrollToTop);
     return () => {
       registerScrollToTop(null);
     };
-  }, [activeTab, registerScrollToTop, scrollFeedToTop, scrollVideosToTop]);
+  }, [registerScrollToTop, scrollToTop]);
 
-  const onVideoEndReached = useCallback(() => {
-    if (!videoHasMore || videoLoadingRef.current) return;
-    loadVideoPage(videoPage + 1);
-  }, [videoHasMore, videoPage, loadVideoPage]);
+  const handlePostPress = useCallback(
+    (post: GetNFTsResult) => {
+      const tokenId = (post as any).tokenId ?? (post as any).id;
+      hideUserProfile();
+      onClose();
+      if (isVideoItem(post)) {
+        navigation.navigate(ScreenNames.VideoPlayer, { tokenId });
+      } else {
+        navigation.navigate(ScreenNames.FeedDetail as any, { tokenId });
+      }
+    },
+    [navigation, hideUserProfile, onClose]
+  );
 
-  const keyExtractor = useCallback((item: GetNFTsResult, index: number) => {
-    const created =
-      (item as any).createdAt || (item as any).created_at || "nocreated";
-    return `${(item as any).tokenId || item.id || "vid"}-${created}-${index}`;
-  }, []);
-
-  const renderVideoItem = useCallback(
+  const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<GetNFTsResult>) => {
+      if (isVideoItem(item)) {
+        return (
+          <VideoCard
+            nft={item}
+            enablePreview={false}
+            onBeforeNavigate={onClose}
+          />
+        );
+      }
       return (
-        <VideoCard
-          nft={item}
-          enablePreview={false}
-          onBeforeNavigate={onClose}
+        <HomeFeedCard
+          item={item as UnifiedFeedItem}
+          onPress={() => handlePostPress(item)}
         />
       );
     },
-    [onClose]
+    [onClose, handlePostPress]
   );
 
-  const VideoListFooter = useMemo(() => {
-    if (!videoHasMore) {
-      return videoItems.length > 0 ? (
-        <View className="py-4 items-center">
-          <Text className="text-theme-neutrals-400 text-xs">
-            No more videos
-          </Text>
-        </View>
-      ) : null;
-    }
+  // Private account message component
+  const PrivateAccountMessage = useMemo(() => {
+    if (canViewContent) return null;
     return (
-      <></>
-      //   <View className="py-4 items-center">
-      //     <ActivityIndicator color="#fff" />
-      //   </View>
-    );
-  }, [videoHasMore, videoItems.length]);
-
-  const VideoListEmpty = useMemo(() => {
-    if (videoLoading) {
-      return (
-        <View className="flex-1 items-center justify-center pt-8">
-          <ActivityIndicator color="#fff" />
+      <View className="flex-1 items-center justify-center px-6 py-12">
+        <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
+          <Ionicons name="lock-closed" size={40} color="#666" />
         </View>
-      );
-    }
-    return (
-      <View className="flex-1 items-center justify-center pt-8 px-6">
-        <Text className="text-theme-neutrals-400 text-sm">No videos yet.</Text>
+        <Text className="text-white text-lg font-bold text-center mb-2">
+          This Account is Private
+        </Text>
+        <Text className="text-gray-400 text-center text-sm leading-5 mb-5">
+          {isFollowRequestPending
+            ? "Your follow request has been sent. You'll be able to see their posts once they approve your request."
+            : "Follow this account to see their posts."}
+        </Text>
+        {!isFollowRequestPending && onFollow && (
+          <AccentButtonGradient>
+            <TouchableOpacity
+              onPress={onFollow}
+              className="bg-transparent px-8 py-3 rounded-full"
+              activeOpacity={0.8}
+            >
+              <Text className="text-white font-semibold text-sm">Follow</Text>
+            </TouchableOpacity>
+          </AccentButtonGradient>
+        )}
       </View>
     );
-  }, [videoLoading]);
+  }, [canViewContent, isFollowRequestPending, onFollow]);
 
   if (!address) return null;
 
@@ -183,92 +169,44 @@ const UserProfileBottomContentTabs: React.FC<
       className="mt-4"
       style={isFullScreen ? { flex: 1 } : { height: listHeight }}
     >
+      {/* Posts Header */}
       <View className="flex-row items-center justify-start">
         <View
           style={{
-            flexDirection: "row",
-            borderRadius: 20,
-            padding: 0,
-            overflow: "hidden",
+            paddingHorizontal: 16,
+            paddingVertical: 8,
+            borderRadius: 16,
+            backgroundColor: "#1D1F21",
           }}
         >
-          <TouchableOpacity onPress={onPressVideos} activeOpacity={0.85}>
-            <View
-              style={{
-                paddingHorizontal: 16,
-                paddingVertical: 8,
-                borderRadius: 16,
-                overflow: "hidden",
-                backgroundColor:
-                  activeTab === "videos" ? "#1D1F21" : "rgba(0,0,0,0)",
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 12,
-                  fontWeight: "600",
-                  color: activeTab === "videos" ? "#e5e5e5" : "#737373",
-                }}
-              >
-                Videos
-              </Text>
-            </View>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={onPressFeed} activeOpacity={0.85}>
-            <View
-              style={{
-                paddingHorizontal: 16,
-                paddingVertical: 8,
-                borderRadius: 16,
-                overflow: "hidden",
-                backgroundColor:
-                  activeTab === "feed" ? "#1D1F21" : "rgba(0,0,0,0)",
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 12,
-                  fontWeight: "600",
-                  color: activeTab === "feed" ? "#e5e5e5" : "#737373",
-                }}
-              >
-                Feed
-              </Text>
-            </View>
-          </TouchableOpacity>
+          <Text
+            style={{
+              fontSize: 12,
+              fontWeight: "600",
+              color: "#e5e5e5",
+            }}
+          >
+            Posts
+          </Text>
         </View>
       </View>
 
       <View className="flex-1 mt-1 pb-16">
-        {activeTab === "videos" ? (
-          <FlatList
-            ref={videosListRef}
-            style={{ flex: 1 }}
-            data={videoItems}
-            keyExtractor={keyExtractor}
-            renderItem={renderVideoItem}
-            scrollEnabled={!!scrollEnabled}
-            onScroll={onScroll}
-            scrollEventThrottle={16}
-            onEndReached={onVideoEndReached}
-            onEndReachedThreshold={0.5}
-            ListFooterComponent={VideoListFooter}
-            ListEmptyComponent={VideoListEmpty}
-            contentContainerStyle={{ paddingBottom: 24 }}
-            showsVerticalScrollIndicator={false}
-            removeClippedSubviews
-          />
+        {!canViewContent ? (
+          PrivateAccountMessage
         ) : (
-          <View style={{ flex: 1 }}>
-            <FeedRoute
-              address={address}
-              scrollEnabled={!!scrollEnabled}
-              onScroll={onScroll}
-              listRef={feedListRef}
-              noPadding
-            />
-          </View>
+          <InfiniteFeed
+            insideNavigatorScreen={false}
+            fetchPage={fetchPage}
+            pageSize={20}
+            isSignedIn={isSignedIn}
+            contentContainerStyle={{ paddingBottom: 24 }}
+            scrollEnabled={scrollEnabled}
+            onScroll={onScroll}
+            listRef={listRef}
+            enableBackToTop={false}
+            renderItem={renderItem}
+          />
         )}
       </View>
     </View>

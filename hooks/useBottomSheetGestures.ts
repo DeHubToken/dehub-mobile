@@ -114,9 +114,12 @@ export const useBottomSheetGestures = (
       const currentY = event.allTouches[0]?.y ?? touchStartY.value;
       const dy = currentY - touchStartY.value;
 
-      // Not fullscreen: sheet drag should own the gesture (both up and down)
+      // Not fullscreen: only activate pan when the user has dragged enough vertically
+      // to distinguish from a button tap (prevents stealing taps on Follow/Unfollow etc.)
       if (!isScrollEnabled.value) {
-        state.activate();
+        if (Math.abs(dy) > 10) {
+          state.activate();
+        }
         return;
       }
 

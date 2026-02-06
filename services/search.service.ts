@@ -1,24 +1,179 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { apiClient } from '../libs/api.client';
 
-const HISTORY_KEY = 'search_history_v1';
+const HISTORY_KEY = 'search_history_v2';
 const MAX_HISTORY = 25;
 
-export interface SearchResultItem {
-  id?: string | number;
-  title?: string;
-  type?: string;
-  // extend as backend evolves
-  [k: string]: any;
+// =============================================================================
+// Types - aligned with new /api/search endpoint
+// =============================================================================
+
+export type SearchType = 'accounts' | 'content';
+export type SearchPostType = 'all' | 'video' | 'live' | 'feed-all' | 'feed' | 'feed-simple' | 'feed-images';
+
+export interface SearchParams {
+  q: string;
+  page?: number;
+  limit?: number;
+  type?: SearchType;
+  postType?: SearchPostType;
 }
 
-export interface StructuredSearchResult {
-  accounts: any[];
-  videos: any[];
-  livestreams: any[];
+export interface SearchAccountResult {
+  _id?: string;
+  address: string;
+  username?: string;
+  displayName?: string;
+  avatarImageUrl?: string;
+  aboutMe?: string;
+  isPrivate?: boolean;
+  followers?: number;
+  followings?: number;
+  createdAt?: string;
+  staked?: number;
 }
 
-export interface SearchResponse { result: SearchResultItem[] | StructuredSearchResult }
+export interface SearchContentResult {
+  tokenId: number;
+  name?: string;
+  description?: string;
+  imageUrl?: string;
+  videoUrl?: string;
+  postType?: 'video' | 'live' | 'feed-simple' | 'feed-images';
+  views?: number;
+  totalVotes?: { for?: number; against?: number };
+  createdAt?: string;
+  minterUser?: {
+    address?: string;
+    username?: string;
+    displayName?: string;
+    avatarImageUrl?: string;
+    followers?: number;
+    followings?: number;
+    staked?: number;
+  };
+  minterStaked?: number;
+  stream?: {
+    status?: string;
+    playbackId?: string;
+    thumbnail?: string;
+    peakViewers?: number;
+    totalViews?: number;
+  };
+  isLiked?: boolean;
+  isDisliked?: boolean;
+  isSaved?: boolean;
+  isFollowing?: boolean;
+  commentCount?: number;
+  // Additional fields for unified feed compatibility
+  minter?: string;
+  minterUsername?: string;
+  minterDisplayName?: string;
+  minterAvatarUrl?: string;
+  thumbnailUrl?: string;
+  imageUrls?: string[];
+  category?: string[];
+  likes?: number;
+  dislikes?: number;
+}
+
+export interface SearchPagination {
+  page: number;
+  limit: number;
+  totalCount: number;
+  totalPages: number;
+  hasMore: boolean;
+}
+
+export interface SearchResponse<T> {
+  status: boolean;
+  result: T[];
+  pagination: SearchPagination;
+}
+
+// =============================================================================
+// Search API
+// =============================================================================
+
+/**
+ * Unified search endpoint - searches accounts and/or content
+ */
+export async function search<T = SearchContentResult | SearchAccountResult>(
+  params: SearchParams
+): Promise<SearchResponse<T>> {
+  const { q, page = 1, limit = 20, type, postType } = params;
+  
+  if (!q?.trim()) {
+    return {
+      status: true,
+      result: [],
+      pagination: { page: 1, limit: 20, totalCount: 0, totalPages: 0, hasMore: false }
+    };
+  }
+
+  const queryParams = new URLSearchParams();
+  queryParams.set('q', q.trim());
+  queryParams.set('page', String(page));
+  queryParams.set('limit', String(limit));
+  if (type) queryParams.set('type', type);
+  if (postType && postType !== 'all') queryParams.set('postType', postType);
+
+  try {
+    const res = await apiClient.get<any>(`/search?${queryParams.toString()}`);
+    const data = res as any;
+    
+    return {
+      status: data?.status ?? true,
+      result: data?.result || [],
+      pagination: data?.pagination || {
+        page,
+        limit,
+        totalCount: data?.result?.length || 0,
+        totalPages: 1,
+        hasMore: false
+      }
+    };
+  } catch (e) {
+    console.warn('[search.service] search error', e);
+    return {
+      status: false,
+      result: [],
+      pagination: { page, limit, totalCount: 0, totalPages: 0, hasMore: false }
+    };
+  }
+}
+
+/**
+ * Search only accounts
+ */
+export async function searchAccounts(
+  q: string,
+  options?: { page?: number; limit?: number }
+): Promise<SearchResponse<SearchAccountResult>> {
+  return search<SearchAccountResult>({
+    q,
+    type: 'accounts',
+    ...options
+  });
+}
+
+/**
+ * Search only content (videos, posts, livestreams)
+ */
+export async function searchContent(
+  q: string,
+  options?: { page?: number; limit?: number; postType?: SearchPostType }
+): Promise<SearchResponse<SearchContentResult>> {
+  return search<SearchContentResult>({
+    q,
+    type: 'content',
+    ...options
+  });
+}
+
+// =============================================================================
+// Suggestions API
+// =============================================================================
 
 export async function fetchSuggestions(q: string): Promise<string[]> {
   if (!q?.trim()) return [];
@@ -31,53 +186,9 @@ export async function fetchSuggestions(q: string): Promise<string[]> {
   }
 }
 
-export async function performSearch(q: string, opts?: { page?: number; unit?: number; address?: string }): Promise<{ result: StructuredSearchResult }> {
-  if (!q?.trim()) return { result: { accounts: [], videos: [], livestreams: [] } };
-  const params = new URLSearchParams();
-  params.set('q', q.trim());
-  if (opts?.page != null) params.set('page', String(opts.page));
-  if (opts?.unit != null) params.set('unit', String(opts.unit));
-  if (opts?.address) params.set('address', opts.address);
-  try {
-    const res = await apiClient.get<any>(`/search?${params.toString()}`);
-    const raw = (res as any)?.result || res?.result || res;
-    if (raw && (raw.accounts || raw.videos || raw.livestreams)) {
-      return {
-        result: {
-          accounts: raw.accounts || [],
-          videos: raw.videos || [],
-          livestreams: raw.livestreams || [],
-        }
-      };
-    }
-    return { result: { accounts: [], videos: [], livestreams: [] } };
-  } catch (e) {
-    console.warn('[search.service] performSearch error', e);
-    return { result: { accounts: [], videos: [], livestreams: [] } };
-  }
-}
-
-export async function performSearchByType(q: string, type: 'accounts' | 'videos' | 'livestreams', opts?: { page?: number; unit?: number; address?: string }): Promise<StructuredSearchResult> {
-  if (!q?.trim()) return { accounts: [], videos: [], livestreams: [] };
-  const params = new URLSearchParams();
-  params.set('q', q.trim());
-  params.set('type', type);
-  if (opts?.page != null) params.set('page', String(opts.page));
-  if (opts?.unit != null) params.set('unit', String(opts.unit));
-  if (opts?.address) params.set('address', opts.address);
-  try {
-    const res = await apiClient.get<any>(`/search?${params.toString()}`);
-    const raw = (res as any)?.result || res?.result || res;
-    return {
-      accounts: raw.accounts || [],
-      videos: raw.videos || [],
-      livestreams: raw.livestreams || [],
-    };
-  } catch (e) {
-    console.warn('[search.service] performSearchByType error', e);
-    return { accounts: [], videos: [], livestreams: [] };
-  }
-}
+// =============================================================================
+// Search History (local storage)
+// =============================================================================
 
 export async function getHistory(): Promise<string[]> {
   try {
@@ -91,7 +202,7 @@ export async function getHistory(): Promise<string[]> {
   }
 }
 
-export async function addToHistory(term: string) {
+export async function addToHistory(term: string): Promise<void> {
   const t = term.trim().toLowerCase();
   if (!t) return;
   try {
@@ -103,10 +214,89 @@ export async function addToHistory(term: string) {
   }
 }
 
-export async function clearHistory() {
-  try { await AsyncStorage.removeItem(HISTORY_KEY); } catch (e) { console.warn('[search.service] clearHistory error', e); }
+export async function clearHistory(): Promise<void> {
+  try {
+    await AsyncStorage.removeItem(HISTORY_KEY);
+  } catch (e) {
+    console.warn('[search.service] clearHistory error', e);
+  }
 }
 
-export function topHistorySubset(history: string[], limit = 6) {
+export function topHistorySubset(history: string[], limit = 6): string[] {
   return history.slice(0, limit);
+}
+
+// =============================================================================
+// Legacy exports for backwards compatibility
+// =============================================================================
+
+export interface StructuredSearchResult {
+  accounts: any[];
+  videos: any[];
+  livestreams: any[];
+}
+
+/**
+ * @deprecated Use search() instead
+ */
+export async function performSearch(
+  q: string,
+  opts?: { page?: number; unit?: number }
+): Promise<{ result: StructuredSearchResult }> {
+  // Call new unified endpoint
+  const contentRes = await searchContent(q, {
+    page: opts?.page ? opts.page + 1 : 1, // old API was 0-indexed
+    limit: opts?.unit || 20,
+  });
+
+  const accountsRes = await searchAccounts(q, {
+    page: opts?.page ? opts.page + 1 : 1,
+    limit: opts?.unit || 20,
+  });
+
+  // Separate content into videos and livestreams
+  const videos = contentRes.result.filter(
+    (item) => item.postType === 'video' || (!item.postType && !item.stream?.status)
+  );
+  const livestreams = contentRes.result.filter(
+    (item) => item.postType === 'live' || item.stream?.status
+  );
+
+  return {
+    result: {
+      accounts: accountsRes.result,
+      videos,
+      livestreams
+    }
+  };
+}
+
+/**
+ * @deprecated Use search() with type parameter instead
+ */
+export async function performSearchByType(
+  q: string,
+  type: 'accounts' | 'videos' | 'livestreams',
+  opts?: { page?: number; unit?: number }
+): Promise<StructuredSearchResult> {
+  if (type === 'accounts') {
+    const res = await searchAccounts(q, {
+      page: opts?.page ? opts.page + 1 : 1,
+      limit: opts?.unit || 20,
+    });
+    return { accounts: res.result, videos: [], livestreams: [] };
+  }
+
+  const postType = type === 'livestreams' ? 'live' : 'video';
+  const res = await searchContent(q, {
+    page: opts?.page ? opts.page + 1 : 1,
+    limit: opts?.unit || 20,
+    postType,
+  });
+
+  return {
+    accounts: [],
+    videos: type === 'videos' ? res.result : [],
+    livestreams: type === 'livestreams' ? res.result : []
+  };
 }

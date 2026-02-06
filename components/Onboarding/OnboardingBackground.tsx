@@ -61,7 +61,7 @@ const SlideBackground: React.FC<SlideBackgroundProps> = ({ index, activeIndex })
         file={riveFile}
         autoPlay={true}
         style={styles.rive}
-        fit={Fit.Contain}
+        fit={Fit.Cover}
       />
     </Animated.View>
   );

@@ -7,12 +7,13 @@ import Animated, {
 } from "react-native-reanimated";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../ScreenHeader";
 import UserProfileSheetContent from "./UserProfileSheetContent";
-import UserProfileVideosContent from "./UserProfileVideosContent";
 import UnfollowSheet from "./UnfollowSheet";
 import { useUserProfileData } from "../../hooks/useUserProfileData";
 import { useBottomSheetGestures } from "../../hooks/useBottomSheetGestures";
+import { ScreenNames } from "../../navigation/ScreenNames";
 
 interface UserProfileBottomSheetProps {
   visible: boolean;
@@ -30,10 +31,9 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   usernameOrAddress,
   initialHeightPct,
 }) => {
-  const [mode, setMode] = useState<"profile" | "videos">("profile");
-  const [tabIndex, setTabIndex] = useState(0);
   const [showUnfollowSheet, setShowUnfollowSheet] = useState(false);
 
+  const navigation = useNavigation();
   const insets = useSafeAreaInsets();
 
   const initialHeight = useMemo(() => {
@@ -53,8 +53,11 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     data,
     profileData,
     isFollowing,
+    isFollowRequestPending,
     followsYou,
     followLoading,
+    isPrivate,
+    canViewContent,
     avatarUrl,
     coverUrl,
     defaultBanner,
@@ -83,31 +86,31 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   // Reset state when modal closes
   useEffect(() => {
     if (!visible) {
-      setMode("profile");
-      setTabIndex(0);
       setShowUnfollowSheet(false);
       resetGestureState();
     }
   }, [visible, resetGestureState]);
 
-  const handleVideos = useCallback(() => {
-    setMode("videos");
-    if (!isFullScreen) {
-      expandToFullScreen();
-    }
-  }, [isFullScreen, expandToFullScreen]);
-
   const handleBackToProfile = useCallback(() => {
-    if (mode === "videos") {
-      setMode("profile");
-    } else {
-      onClose();
-    }
-  }, [mode, onClose]);
+    onClose();
+  }, [onClose]);
 
   const handleMessageWrapper = useCallback(() => {
     handleMessage(onClose);
   }, [handleMessage, onClose]);
+
+  const handleStatPress = useCallback((key: string) => {
+    if (!profileData?.address) return;
+    const initialTab = key === "following" ? "following" : "followers";
+    onClose();
+    (navigation as any).navigate(ScreenNames.FollowList, {
+      address: profileData.address,
+      username: profileData.username,
+      initialTab,
+      hideFollowers: data?.hideFollowers,
+      isOwnProfile: false,
+    });
+  }, [navigation, profileData, data, onClose]);
 
   const sheetChromeStyle = useAnimatedStyle(() => {
     const p = fullScreenProgress.value;
@@ -174,11 +177,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                   pointerEvents={isFullScreen ? "auto" : "none"}
                 >
                   <ScreenHeader
-                    title={
-                      mode === "videos"
-                        ? "Content"
-                        : profileData?.displayName || "Profile"
-                    }
+                    title={profileData?.displayName || "Profile"}
                     canGoBack={true}
                     onBackPress={handleBackToProfile}
                   />
@@ -202,48 +201,44 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
               </View>
 
               {/* Content */}
-              {mode === "profile" ? (
-                <UserProfileSheetContent
-                  loading={loading}
-                  data={data}
-                  profileData={profileData}
-                  isFollowing={isFollowing}
-                  followsYou={followsYou}
-                  followLoading={followLoading}
-                  avatarUrl={avatarUrl}
-                  coverUrl={coverUrl}
-                  defaultBanner={defaultBanner}
-                  stats={stats}
-                  scrollEnabled={scrollEnabled}
-                  isFullScreen={isFullScreen}
-                  registerScrollToTop={registerScrollToTop}
-                  onScroll={scrollHandler}
-                  onFollow={handleFollow}
-                  onOpenUnfollow={() => setShowUnfollowSheet(true)}
-                  onOpenVideos={handleVideos}
-                  onMessage={handleMessageWrapper}
-                  onShare={handleShare}
-                  onOpenImage={handleOpenImage}
-                  onClose={onClose}
-                />
-              ) : (
-                <UserProfileVideosContent
-                  profileAddress={profileData?.address || ""}
-                  tabIndex={tabIndex}
-                  onTabIndexChange={setTabIndex}
-                />
-              )}
+              <UserProfileSheetContent
+                loading={loading}
+                data={data}
+                profileData={profileData}
+                isFollowing={isFollowing}
+                isFollowRequestPending={isFollowRequestPending}
+                followsYou={followsYou}
+                followLoading={followLoading}
+                isPrivate={isPrivate}
+                canViewContent={canViewContent}
+                avatarUrl={avatarUrl}
+                coverUrl={coverUrl}
+                defaultBanner={defaultBanner}
+                stats={stats}
+                scrollEnabled={scrollEnabled}
+                isFullScreen={isFullScreen}
+                registerScrollToTop={registerScrollToTop}
+                onScroll={scrollHandler}
+                onFollow={handleFollow}
+                onOpenUnfollow={() => setShowUnfollowSheet(true)}
+                onMessage={handleMessageWrapper}
+                onShare={handleShare}
+                onOpenImage={handleOpenImage}
+                onClose={onClose}
+                onStatPress={handleStatPress}
+              />
             </Animated.View>
           </GestureDetector>
         </View>
       </GestureHandlerRootView>
-      {/* Unfollow Sheet */}
+      {/* Unfollow / Cancel Request Sheet */}
       <UnfollowSheet
-        visible={showUnfollowSheet && isFollowing}
+        visible={showUnfollowSheet && (isFollowing || isFollowRequestPending)}
         username={profileData?.username || usernameOrAddress || ""}
         followLoading={followLoading}
         onClose={() => setShowUnfollowSheet(false)}
         onUnfollow={handleUnfollow}
+        isCancelRequest={isFollowRequestPending}
       />
     </Modal>
   );

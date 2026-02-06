@@ -31,12 +31,36 @@ function BottomTabNavigator() {
     let iconNameFilled: keyof typeof Ionicons.glyphMap;
     let iconNameOutline: keyof typeof Ionicons.glyphMap;
     
-    // Special case for Feed icon - use custom component
+    // Feed icon - use image icon
     if (routeName === ScreenNames.Feed) {
       const containerPad = 8;
       const containerSize = size + containerPad * 2;
       const radius = containerSize / 2;
+      const color = "#9CA3AF";
       
+      return (
+        <View
+          style={[
+            styles.iconWrapper,
+            { width: containerSize, height: containerSize },
+          ]}
+          pointerEvents="none"
+        >
+          {focused ? (
+            <View style={[styles.focusBg, { borderRadius: radius }]}>
+              <GradientIcon
+                name="image-outline"
+                size={size}
+                colors={[accent, "#A7C5FF"]}
+              />
+            </View>
+          ) : (
+            <Ionicons name="image-outline" size={size} color={color} />
+          )}
+        </View>
+      );
+      
+      /* OLD FeedIcon implementation - kept for reference
       return (
         <View
           style={[
@@ -54,6 +78,7 @@ function BottomTabNavigator() {
           )}
         </View>
       );
+      */
     }
     
     // Use filled for focused and outline for unfocused to match visuals

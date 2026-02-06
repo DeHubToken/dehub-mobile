@@ -27,7 +27,9 @@ export type NotificationPreferenceKey =
   | 'subscriptions'
   | 'ppvPurchases'
   | 'milestones'
-  | 'livestreamStart';
+  | 'livestreamStart'
+  | 'accountAlerts'
+  | 'announcements';
 
 export interface QuietHours {
   enabled: boolean;
@@ -53,12 +55,33 @@ export interface PushTokenPayload {
 
 export interface NotificationData {
   type: string;
+  category?: string;
+  deepLink?: string;
+  // Content-related
   tokenId?: number;
+  postType?: 'video' | 'feed-images' | 'feed-simple';
+  commentId?: string;
+  parentCommentId?: string;
+  // Actor-related  
   actorAddress?: string;
   actorUsername?: string;
-  postType?: string;
+  // Monetization
   amount?: number;
   currency?: string;
+  bountyType?: 'viewer' | 'commentor';
+  planId?: string;
+  // Livestream
+  streamId?: string;
+  // Messages
+  conversationId?: string;
+  conversationType?: 'dm' | 'group';
+  senderName?: string;
+  // Milestone
+  milestone?: string;
+  // System
+  articleUrl?: string;
+  // Aggregation
+  aggregatedCount?: number;
   [key: string]: unknown;
 }
 
@@ -81,11 +104,64 @@ Notifications.setNotificationHandler({
 // Permission & Token Management
 // =============================================================================
 
+// Singleton state for token registration
+let cachedExpoPushToken: string | null = null;
+let isRegistrationInProgress = false;
+let registrationPromise: Promise<string | null> | null = null;
+let androidChannelsConfigured = false;
+
+/**
+ * Validate that a token is a valid Expo push token format.
+ * Expo push tokens start with "ExponentPushToken[" and end with "]".
+ */
+export function isValidExpoPushToken(token: string | null | undefined): boolean {
+  if (!token || typeof token !== 'string') return false;
+  return token.startsWith('ExponentPushToken[') && token.endsWith(']');
+}
+
+/**
+ * Get cached Expo push token without triggering a new registration.
+ */
+export function getCachedPushToken(): string | null {
+  return cachedExpoPushToken;
+}
+
 /**
  * Request push notification permissions and get Expo push token.
  * Returns null if permissions denied or not on physical device.
+ * 
+ * Uses singleton pattern - if already registered, returns cached token.
+ * If registration in progress, returns the same promise.
  */
 export async function registerForPushNotifications(): Promise<string | null> {
+  // Return cached token if already registered
+  if (cachedExpoPushToken) {
+    return cachedExpoPushToken;
+  }
+
+  // If registration is in progress, return the existing promise
+  if (isRegistrationInProgress && registrationPromise) {
+    return registrationPromise;
+  }
+
+  // Start new registration
+  isRegistrationInProgress = true;
+  registrationPromise = doRegisterForPushNotifications();
+  
+  try {
+    const token = await registrationPromise;
+    cachedExpoPushToken = token;
+    return token;
+  } finally {
+    isRegistrationInProgress = false;
+    registrationPromise = null;
+  }
+}
+
+/**
+ * Internal function that does the actual registration work.
+ */
+async function doRegisterForPushNotifications(): Promise<string | null> {
   // Must be a physical device for push notifications
   if (!Device.isDevice) {
     logger.warn('Push notifications require a physical device');
@@ -121,9 +197,10 @@ export async function registerForPushNotifications(): Promise<string | null> {
 
     logger.info('Expo push token obtained', { token: token.substring(0, 20) + '...' });
 
-    // Set up Android notification channels
-    if (Platform.OS === 'android') {
+    // Set up Android notification channels (only once)
+    if (Platform.OS === 'android' && !androidChannelsConfigured) {
       await setupAndroidChannels();
+      androidChannelsConfigured = true;
     }
 
     return token;
@@ -208,11 +285,37 @@ async function setupAndroidChannels(): Promise<void> {
 // Backend Token Registration
 // =============================================================================
 
+// Track the last token registered with backend to avoid duplicates
+let lastBackendRegisteredToken: string | null = null;
+let backendRegistrationInProgress = false;
+
 /**
  * Register push token with backend for the authenticated user.
  * Backend will use this to send push notifications to this device.
+ * 
+ * Includes deduplication - won't register the same token twice.
  */
 export async function registerPushTokenWithBackend(token: string): Promise<boolean> {
+  // Validate token format before sending to backend
+  if (!isValidExpoPushToken(token)) {
+    logger.error('Invalid Expo push token format', { token: token?.substring(0, 30) });
+    throw new Error('Invalid Expo push token format');
+  }
+
+  // Skip if same token already registered
+  if (lastBackendRegisteredToken === token) {
+    logger.debug('Token already registered with backend, skipping');
+    return true;
+  }
+
+  // Skip if registration already in progress
+  if (backendRegistrationInProgress) {
+    logger.debug('Backend registration already in progress, skipping');
+    return false;
+  }
+
+  backendRegistrationInProgress = true;
+
   try {
     const deviceId = Device.deviceName || `${Platform.OS}-${Date.now()}`;
     
@@ -227,6 +330,7 @@ export async function registerPushTokenWithBackend(token: string): Promise<boole
     
     if (response?.success) {
       logger.info('Push token registered with backend');
+      lastBackendRegisteredToken = token;
       return true;
     }
     
@@ -235,7 +339,18 @@ export async function registerPushTokenWithBackend(token: string): Promise<boole
   } catch (error) {
     logger.error('Failed to register push token with backend', error);
     return false;
+  } finally {
+    backendRegistrationInProgress = false;
   }
+}
+
+/**
+ * Clear the cached registration state (call on logout).
+ */
+export function clearPushTokenCache(): void {
+  cachedExpoPushToken = null;
+  lastBackendRegisteredToken = null;
+  androidChannelsConfigured = false;
 }
 
 /**
@@ -286,17 +401,25 @@ export function getDefaultNotificationPreferences(): NotificationPreferences {
     ppvPurchases: true,
     milestones: true,
     livestreamStart: true,
+    accountAlerts: true,
+    announcements: true,
+  };
+
+  // Push defaults: likes off by default (can be noisy), rest on
+  const defaultPushPrefs: Record<NotificationPreferenceKey, boolean> = {
+    ...defaultTypePrefs,
+    likes: false, // Off by default for push (can be noisy)
   };
 
   return {
     inAppEnabled: true,
     pushEnabled: true,
     inApp: { ...defaultTypePrefs },
-    push: { ...defaultTypePrefs },
+    push: { ...defaultPushPrefs },
     quietHours: {
       enabled: false,
       start: 22, // 10 PM
-      end: 7,    // 7 AM
+      end: 8,    // 8 AM (matching API docs)
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     },
   };
@@ -304,18 +427,22 @@ export function getDefaultNotificationPreferences(): NotificationPreferences {
 
 /**
  * Update notification preferences on the backend.
+ * Uses the /update_profile endpoint with notificationPreferences field.
  */
 export async function updateNotificationPreferences(
   preferences: Partial<NotificationPreferences>
 ): Promise<boolean> {
   try {
-    const response = await apiClient.post(
-      '/user/update_profile',
-      { notificationPreferences: JSON.stringify(preferences) },
+    const formData = new FormData();
+    formData.append('notificationPreferences', JSON.stringify(preferences));
+    
+    const response = await apiClient.post<any>(
+      '/update_profile',
+      formData,
       { isAuthRequired: true }
     );
 
-    if (response?.success) {
+    if (response?.result || response?.success) {
       logger.info('Notification preferences updated');
       return true;
     }
@@ -477,6 +604,9 @@ export default {
   registerPushTokenWithBackend,
   unregisterPushTokens,
   unregisterCurrentDeviceToken,
+  isValidExpoPushToken,
+  getCachedPushToken,
+  clearPushTokenCache,
   getDefaultNotificationPreferences,
   updateNotificationPreferences,
   getBadgeCount,

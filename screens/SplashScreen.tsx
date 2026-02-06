@@ -53,7 +53,7 @@ export default function SplashScreen() {
             autoPlay={true}
             stateMachineName="MainSM"
             style={styles.rive}
-            fit={Fit.Contain}
+            fit={Fit.Cover}
           />
         )}
       </View>

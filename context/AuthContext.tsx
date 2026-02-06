@@ -72,13 +72,16 @@ export interface User {
   tokenBalances?: { [symbol: string]: number };
   badge?: { name: string; amount: number };
   notificationCount?: number; // unread notifications (capped display)
+  pendingFollowRequests?: number; // count of pending follow requests
   receivedTips?: number;
   sentTips?: number;
   address?: string; // sometimes returned as address
   stakedDHB?: number;
   uploads?: number;
-  followers?: string[];
-  followings?: string[];
+  followers?: number; // count of followers
+  followings?: number; // count of following
+  hideFollowers?: boolean; // privacy setting to hide follow lists
+  isPrivate?: boolean; // privacy setting to make account private
   likes?: string[];
   unlocked?: string[];
   createdAt?: string;

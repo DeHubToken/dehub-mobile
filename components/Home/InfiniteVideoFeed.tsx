@@ -16,16 +16,21 @@ import {
   Pressable,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  ViewToken,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import EmptyFeedState from "./EmptyFeedState";
 import VideoCard from "./VideoCard";
 import VideoCardSkeleton from "./VideoCardSkeleton";
+import HomeFeedCard from "./HomeFeedCard";
+import LiveStreamCard from "./LiveStreamCard";
+import { useAuth } from "../../context/AuthContext";
 import {
-  getNFTs,
-  GetNFTsResult,
-  SearchParams,
-} from "../../services/nft.service";
+  getUnifiedFeed,
+  UnifiedFeedItem,
+  UnifiedFeedParams,
+  isVideoItem,
+} from "../../services/feed.unified.service";
 import { secondsToHMMSS } from "../../libs/date.util";
 import {
   getAvatarUrl,
@@ -34,9 +39,14 @@ import {
   getBadgeUrl,
 } from "../../libs";
 import { theme } from "../../theme";
+import {
+  createPostViewTracker,
+  forceFlushBatchViews,
+  type TokenId,
+} from "../../services/view.service";
 
 interface InfiniteVideoFeedProps {
-  params?: Partial<SearchParams>; // any search params except page which we control
+  params?: Partial<UnifiedFeedParams>; // any search params except page which we control
   pageSize?: number; // unit (default 10)
   contentContainerStyle?: any;
   headerComponent?: React.ReactNode;
@@ -44,6 +54,9 @@ interface InfiniteVideoFeedProps {
   onScrollDirectionChange?: (direction: "up" | "down", offsetY: number) => void; // notify parent
   onClearFilters?: () => void; // allow empty state clear
   onRetry?: () => void; // fired when user taps Retry on error state
+  onRefresh?: () => void; // fired when user does pull-to-refresh
+  onScrollBegin?: () => void; // fired when scroll starts
+  onCategorySelect?: (category: string) => void; // fired when category hashtag is clicked
 }
 
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
@@ -58,8 +71,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   onScrollDirectionChange,
   onClearFilters,
   onRetry,
+  onRefresh: onRefreshProp,
+  onScrollBegin,
+  onCategorySelect,
 }) => {
-  interface FeedItem extends GetNFTsResult {
+  interface FeedItem extends UnifiedFeedItem {
     __listKey: string;
   }
   const [items, setItems] = useState<FeedItem[]>([]);
@@ -76,14 +92,68 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const lastDirectionRef = useRef<"up" | "down" | null>(null);
   const navigation = useNavigation<any>();
   const isFocused = useIsFocused();
+  const { isSignedIn } = useAuth();
+
+  // View tracking: map of tokenId -> tracker (for feed posts only, not videos)
+  const viewTrackersRef = useRef<Map<string, ReturnType<typeof createPostViewTracker>>>(new Map());
+
+  // Cleanup view trackers and flush batch on unmount
+  useEffect(() => {
+    return () => {
+      viewTrackersRef.current.forEach(tracker => tracker.cleanup());
+      viewTrackersRef.current.clear();
+      forceFlushBatchViews();
+    };
+  }, []);
+
+  // Get or create a view tracker for a feed post token
+  const getViewTracker = useCallback((tokenId: TokenId) => {
+    const key = String(tokenId);
+    let tracker = viewTrackersRef.current.get(key);
+    if (!tracker) {
+      tracker = createPostViewTracker(tokenId, isSignedIn);
+      viewTrackersRef.current.set(key, tracker);
+    }
+    return tracker;
+  }, [isSignedIn]);
+
+  // Viewability config: item is "viewable" when 50% visible
+  const viewabilityConfig = useRef({
+    itemVisiblePercentThreshold: 50,
+    minimumViewTime: 0, // We handle timing ourselves in the tracker
+  }).current;
+
+  // Handle viewable items change for view tracking (feed posts only)
+  const onViewableItemsChanged = useRef(({ changed }: { 
+    viewableItems: ViewToken[]; 
+    changed: ViewToken[]; 
+  }) => {
+    if (!isSignedIn) return;
+    
+    for (const entry of changed) {
+      const item = entry.item as FeedItem | undefined;
+      if (!item) continue;
+      
+      // Only track feed posts, not videos (videos have their own view tracking via playback)
+      if (isVideoItem(item)) continue;
+      
+      const tokenId = item.tokenId || (item as any).id;
+      if (!tokenId) continue;
+      
+      const tracker = getViewTracker(tokenId);
+      // When FlatList says item is viewable (50%+ visible), report 0.6 visibility
+      // When not viewable, report 0
+      tracker.onVisibilityChange(entry.isViewable ? 0.6 : 0);
+    }
+  }).current;
 
   useScrollToTop(listRef);
 
   const loadFirstPage = useCallback(async () => {
     setError(null);
     endReachedRef.current = false;
-    setPage(0);
-    const res = await getNFTs({ ...(params || {}), unit: pageSize, page: 0 });
+    setPage(1);
+    const res = await getUnifiedFeed({ ...(params || {}), limit: pageSize, page: 1 });
     const mapped: FeedItem[] = (res.result || []).map((it, idx) => {
       // Always include page + index to guarantee uniqueness even if backend returns duplicate ids
       const base =
@@ -101,11 +171,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         `nocreated`;
       return {
         ...it,
-        __listKey: `${base}-${created}-p0-i${idx}`,
+        __listKey: `${base}-${created}-p1-i${idx}`,
       };
     });
     setItems(mapped);
-    if (!res.result || res.result.length < pageSize) {
+    if (!res.result || res.result.length < pageSize || !res.pagination?.hasMore) {
       endReachedRef.current = true;
       onEndReachedAll && onEndReachedAll();
     }
@@ -134,9 +204,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     setLoadingMore(true);
     try {
       const nextPage = page + 1;
-      const res = await getNFTs({
+      const res = await getUnifiedFeed({
         ...(params || {}),
-        unit: pageSize,
+        limit: pageSize,
         page: nextPage,
       });
       const newItems = (res.result || []).map((it, idx) => {
@@ -160,7 +230,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       });
       setItems((prev) => [...prev, ...newItems]);
       setPage(nextPage);
-      if (newItems.length < pageSize) {
+      if (newItems.length < pageSize || !res.pagination?.hasMore) {
         endReachedRef.current = true;
         onEndReachedAll && onEndReachedAll();
       }
@@ -180,6 +250,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   ]);
 
   const onRefresh = useCallback(async () => {
+    // Call external refresh callback (e.g., to refresh shuffle seed)
+    onRefreshProp?.();
     // Keep existing items so the RefreshControl spinner is visible (no skeleton snap).
     setRefreshing(true);
     try {
@@ -189,7 +261,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     } finally {
       setRefreshing(false);
     }
-  }, [loadFirstPage]);
+  }, [loadFirstPage, onRefreshProp]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("tabPress", () => {
@@ -231,21 +303,36 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
   }, []);
 
-  const renderItem: ListRenderItem<FeedItem> = ({ item }) => {
-    const duration = item.videoDuration
-      ? secondsToHMMSS(item.videoDuration)
-      : undefined;
-    // Support two shapes: recorded video vs live stream (stream/account)
-    const streamInfo = item.streamInfo || (item as any).stream?.streamInfo;
-    const tokenId = item.tokenId || (item as any).stream?.tokenId;
-    const rawStatus: string | undefined = (item as any).status;
-    const status = rawStatus ? rawStatus.toUpperCase() : undefined;
-    const isLive = !!(item as any).streamKey || !!streamInfo?.isLive;
- 
-  return (<VideoCard nft={item as any} enablePreview />);
+  const renderItem: ListRenderItem<FeedItem> = ({ item, index }) => {
+    // Determine content type
+    const isVideo = isVideoItem(item);
+    const isLive = item.postType === "live";
+    
+    if (isLive) {
+      // Render LiveStreamCard for live streams
+      return <LiveStreamCard item={item} onCategorySelect={onCategorySelect} />;
+    }
+    
+    if (isVideo) {
+      // Render VideoCard for video content
+      return <VideoCard nft={item as any} enablePreview onCategorySelect={onCategorySelect} />;
+    }
+    
+    // Render HomeFeedCard for feed posts (images, text)
+    return <HomeFeedCard item={item} onCategorySelect={onCategorySelect} />;
   };
 
   const keyExtractor = useCallback((item: FeedItem) => item.__listKey, []);
+
+  // Handle scroll begin to close filter panel
+  const handleScrollBeginDrag = useCallback(() => {
+    onScrollBegin?.();
+  }, [onScrollBegin]);
+
+  // Handle touch start to close filter panel immediately
+  const handleTouchStart = useCallback(() => {
+    onScrollBegin?.();
+  }, [onScrollBegin]);
 
   if (initialLoading && items.length === 0) {
     return (
@@ -271,7 +358,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   }
 
   return (
-    <View className="flex-1">
+    <View className="flex-1" onTouchStart={handleTouchStart}>
       <FlatList
         ref={listRef}
         data={items}
@@ -293,7 +380,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         onEndReached={endReachedRef.current ? undefined : loadMore}
         onEndReachedThreshold={0.4}
         onScroll={handleScroll}
+        onScrollBeginDrag={handleScrollBeginDrag}
         scrollEventThrottle={16}
+        // View tracking for feed posts (not videos)
+        viewabilityConfig={viewabilityConfig}
+        onViewableItemsChanged={isSignedIn ? onViewableItemsChanged : undefined}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
@@ -309,7 +400,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           ) : endReachedRef.current && items.length > 0 ? (
             <View className="px-4 py-6 items-center">
               <Text className="text-theme-neutrals-400 text-xs">
-                No more videos
+                No more content
               </Text>
             </View>
           ) : null
@@ -317,7 +408,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         ListEmptyComponent={
           !initialLoading && !error ? (
             <EmptyFeedState
-              message="No videos match your filters"
+              message="No content matches your filters"
               onClear={onClearFilters}
               clearLabel="Clear Filters"
             />

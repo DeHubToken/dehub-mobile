@@ -22,6 +22,10 @@ const ProfileMenu: React.FC = () => {
     () => navigation.navigate(ScreenNames.LikedVideos),
     [navigation]
   );
+  const goSaved = useCallback(
+    () => navigation.navigate(ScreenNames.SavedPosts),
+    [navigation]
+  );
   const goSettings = useCallback(
     () => navigation.navigate(ScreenNames.AccountSettings),
     [navigation]
@@ -29,16 +33,22 @@ const ProfileMenu: React.FC = () => {
 
   const items: MenuItem[] = [
     {
-      key: "videos",
-      title: "Your Videos",
-      icon: "videocam",
+      key: "posts",
+      title: "Your Posts",
+      icon: "grid",
       onPress: goVideos,
     },
     {
-      key: "liked-videos",
-      title: "Liked Videos",
-      icon: "thumbs-up",
+      key: "liked-posts",
+      title: "Liked Posts",
+      icon: "heart",
       onPress: goLiked,
+    },
+    {
+      key: "saved-posts",
+      title: "Saved Posts",
+      icon: "bookmark",
+      onPress: goSaved,
     },
     {
       key: "settings",

@@ -103,6 +103,7 @@ export function useAuthSession({
         if (shouldRefetch) {
           const key = base.username || base.walletAddress || base.address;
           if (key) {
+            // Auth token is sent automatically — backend uses it for owner-only fields
             const res: any = await getAccount(key);
             const core = res?.data?.result || res?.result || null;
             if (core) enriched = { ...base, ...core } as User;

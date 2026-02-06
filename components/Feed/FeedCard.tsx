@@ -98,6 +98,7 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
       "") as string;
     const targetLower = (targetKey || "").toLowerCase();
     const [isFollowing, setIsFollowing] = useState<boolean>(false);
+    const [isFollowRequestPending, setIsFollowRequestPending] = useState<boolean>(false);
     const [creatorLoading, setCreatorLoading] = useState<boolean>(true);
     const [followLoading, setFollowLoading] = useState<boolean>(false);
     // Lightweight follow-state check instead of fetching full account
@@ -107,11 +108,13 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
         if (!showFollow || !address) return;
         if (!targetKey) {
           setIsFollowing(false);
+          setIsFollowRequestPending(false);
           return;
         }
         if (viewerLower && targetLower && viewerLower === targetLower) {
           // self; no need to fetch
           setIsFollowing(false);
+          setIsFollowRequestPending(false);
           return;
         }
         setCreatorLoading(true);
@@ -119,8 +122,12 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
           const res = await isFollowingApi(targetLower);
           if (cancelled) return;
           setIsFollowing(!!res?.isFollowing);
+          setIsFollowRequestPending(!!res?.isFollowRequestPending);
         } catch (e) {
-          if (!cancelled) setIsFollowing(false);
+          if (!cancelled) {
+            setIsFollowing(false);
+            setIsFollowRequestPending(false);
+          }
         } finally {
           if (!cancelled) setCreatorLoading(false);
         }
@@ -133,6 +140,23 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
     const onToggleFollow = useCallback(() => {
       if (!showFollow) return;
       if (!viewerLower || !targetLower || viewerLower === targetLower) return;
+
+      // If there's a pending request, cancel it
+      if (isFollowRequestPending) {
+        requireAuth?.(async () => {
+          setFollowLoading(true);
+          setIsFollowRequestPending(false);
+          try {
+            await unfollowUser(viewerLower, targetLower);
+          } catch (e) {
+            setIsFollowRequestPending(true);
+          } finally {
+            setFollowLoading(false);
+          }
+        });
+        return;
+      }
+
       requireAuth?.(async () => {
         setFollowLoading(true);
         const next = !isFollowing;
@@ -161,8 +185,26 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
           });
         }
         try {
-          if (next) await followUser(viewerLower, targetLower);
-          else await unfollowUser(viewerLower, targetLower);
+          if (next) {
+            const res = await followUser(viewerLower, targetLower);
+            // If private account → pending request, not instant follow
+            if (res.status === 'pending') {
+              setIsFollowing(false);
+              setIsFollowRequestPending(true);
+              // Rollback optimistic followings patch
+              patchUser?.((u: any) => {
+                const followings: string[] = Array.isArray(u?.followings)
+                  ? u.followings
+                  : [];
+                const updated = followings.filter(
+                  (f: string) => (f || "").toLowerCase() !== targetLower
+                );
+                return { followings: updated } as any;
+              });
+            }
+          } else {
+            await unfollowUser(viewerLower, targetLower);
+          }
         } catch (e) {
           setIsFollowing((v) => !v);
           // Revert optimistic patch
@@ -199,6 +241,7 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
       viewerLower,
       targetLower,
       isFollowing,
+      isFollowRequestPending,
       requireAuth,
       patchUser,
     ]);
@@ -408,28 +451,38 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
                 creatorLoading ? (
                   // Skeleton placeholder for follow button area
                   <View className="px-8 py-2 rounded-lg bg-theme-neutrals-800 ml-2 animate-pulse" />
+                ) : isFollowRequestPending ? (
+                  <TouchableOpacity
+                    onPress={onToggleFollow}
+                    disabled={followLoading || !targetLower || viewerLower === targetLower}
+                    activeOpacity={0.85}
+                    className={`px-3 py-1.5 rounded-lg border border-theme-neutrals-600 ${followLoading ? "opacity-60" : ""}`}
+                  >
+                    <Text className="text-theme-neutrals-100 text-xs font-semibold">
+                      Requested
+                    </Text>
+                  </TouchableOpacity>
+                ) : isFollowing ? (
+                  <TouchableOpacity
+                    onPress={onToggleFollow}
+                    disabled={followLoading || !targetLower || viewerLower === targetLower}
+                    activeOpacity={0.85}
+                    className={`px-3 py-1.5 rounded-lg bg-theme-neutrals-800 ${followLoading ? "opacity-60" : ""}`}
+                  >
+                    <Text className="text-theme-neutrals-100 text-xs font-semibold">
+                      Following
+                    </Text>
+                  </TouchableOpacity>
                 ) : (
                   <AccentButtonGradient>
                   <TouchableOpacity
                     onPress={onToggleFollow}
-                    disabled={
-                      followLoading ||
-                      !targetLower ||
-                      viewerLower === targetLower
-                    }
+                    disabled={followLoading || !targetLower || viewerLower === targetLower}
                     activeOpacity={0.85}
-                    className={`px-3 py-1.5 rounded-lg ${
-                      isFollowing ? "bg-theme-neutrals-800" : "bg-transparent"
-                    } ${followLoading ? "opacity-60" : ""}`}
+                    className={`px-3 py-1.5 rounded-lg bg-transparent ${followLoading ? "opacity-60" : ""}`}
                   >
-                    <Text
-                      className={`${
-                        isFollowing
-                          ? "text-theme-neutrals-100"
-                          : "text-theme-neutrals-900"
-                      } text-xs font-semibold`}
-                    >
-                      {isFollowing ? "Following" : "Follow"}
+                    <Text className="text-theme-neutrals-900 text-xs font-semibold">
+                      Follow
                     </Text>
                   </TouchableOpacity>
                   </AccentButtonGradient>

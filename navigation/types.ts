@@ -85,9 +85,18 @@ export type AppStackParamList = {
   [ScreenNames.AccountSettings]: undefined;
   [ScreenNames.YourVideos]: undefined;
   [ScreenNames.LikedVideos]: undefined;
+  [ScreenNames.SavedPosts]: undefined;
   [ScreenNames.EditProfile]: undefined;
   [ScreenNames.Dpay]: undefined;
+  [ScreenNames.PrivacySettings]: undefined;
   [ScreenNames.SignIn]: undefined; // Modal sign-in from app
+  [ScreenNames.FollowList]: {
+    address: string;
+    username?: string;
+    initialTab?: 'followers' | 'following';
+    hideFollowers?: boolean;
+    isOwnProfile?: boolean;
+  };
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> = CompositeScreenProps<

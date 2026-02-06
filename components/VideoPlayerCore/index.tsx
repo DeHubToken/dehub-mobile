@@ -287,7 +287,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
 
     if (onClose) {
       onClose();
-    } else {
+    } else if (navigation.canGoBack()) {
       navigation.goBack();
     }
   }, [onClose, navigation, player]);
