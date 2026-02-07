@@ -223,6 +223,12 @@ export const ensureWeb3AuthReady = async () => {
     return instance;
   } catch (e: any) {
     log.error("sdk:init:error", e);
+    // If init fails (e.g. stale Google Play Services after long background),
+    // discard the cached instance so the next call creates a fresh one.
+    web3auth = null;
+    isInitialized = false;
+    isCreating = false;
+    createPromise = null;
     throw e;
   }
 };
@@ -340,13 +346,15 @@ export const logoutWeb3Auth = async () => {
 
 // Allow pre-warming (create + init) in background (e.g., after splash) to remove first-screen lag
 export const prewarmWeb3Auth = async () => {
-  if (isInitialized || !isWeb3AuthConfigured()) return;
+  if (isInitialized && web3auth) return;
+  if (!isWeb3AuthConfigured()) return;
   try {
     await ensureWeb3AuthReady();
     log.debug("prewarm:ok");
   } catch (e) {
-    // Non-fatal: just log
-    log.warn("prewarm:failed", e);
+    // Non-fatal: instance was already discarded by ensureWeb3AuthReady,
+    // next call will create a fresh one.
+    log.warn("prewarm:failed (will retry on next use)", e);
   }
 };
 
