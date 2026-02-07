@@ -60,6 +60,10 @@ export default function App() {
   const { appState, wasLikelyKilled, backgroundDuration } = useAppLifecycle({
     onForeground: useCallback(() => {
       logger.info("App came to foreground", { backgroundDuration });
+      // Re-prewarm Web3Auth on resume – if the session went stale while
+      // backgrounded the old instance was already discarded so this creates
+      // a fresh one silently.
+      prewarmWeb3Auth();
     }, []),
     onBackground: useCallback(() => {
       logger.info("App went to background");
