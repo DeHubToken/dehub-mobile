@@ -13,6 +13,7 @@ import {
   Animated,
 } from "react-native";
 import GlassModal from "../ui/GlassModal";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { Ionicons } from "@expo/vector-icons";
 import AnimatedCheck from "../common/AnimatedCheck";
 import { useAuth } from "../../context/AuthContext";
@@ -334,35 +335,36 @@ const PPVModal: React.FC<PPVModalProps> = ({
                   )}
                 </View>
                 <View className="flex-row items-center justify-center gap-3">
-                  <TouchableOpacity
-                    disabled={isBusy || insufficient || isSelf}
-                    onPress={handleUnlock}
-                    className={`flex-row items-center gap-2 px-5 h-11 rounded-full bg-theme-accent ${
-                      isBusy || insufficient || isSelf ? "opacity-60" : ""
-                    }`}
-                  >
-                    {isBusy ? (
-                      <ActivityIndicator color="#fff" />
-                    ) : phase === "error" ? (
-                      <Ionicons
-                        name="alert-circle-outline"
-                        size={20}
-                        color="#fff"
-                      />
-                    ) : (
-                      <Ionicons
-                        name="pricetag-outline"
-                        size={18}
-                        color="#fff"
-                      />
-                    )}
-                    <Text className="text-white font-semibold">
-                      {phase === "approving" && "Approving..."}
-                      {phase === "sending" && "Processing..."}
-                      {phase === "idle" && "Confirm"}
-                      {phase === "error" && "Retry"}
-                    </Text>
-                  </TouchableOpacity>
+                  <AccentButtonGradient style={{ borderRadius: 9999, opacity: isBusy || insufficient || isSelf ? 0.6 : 1 }}>
+                    <TouchableOpacity
+                      disabled={isBusy || insufficient || isSelf}
+                      onPress={handleUnlock}
+                      className="flex-row items-center gap-2 px-5 h-11"
+                      activeOpacity={0.85}
+                    >
+                      {isBusy ? (
+                        <ActivityIndicator color="#fff" />
+                      ) : phase === "error" ? (
+                        <Ionicons
+                          name="alert-circle-outline"
+                          size={20}
+                          color="#fff"
+                        />
+                      ) : (
+                        <Ionicons
+                          name="pricetag-outline"
+                          size={18}
+                          color="#fff"
+                        />
+                      )}
+                      <Text className="text-white font-semibold">
+                        {phase === "approving" && "Approving..."}
+                        {phase === "sending" && "Processing..."}
+                        {phase === "idle" && "Confirm"}
+                        {phase === "error" && "Retry"}
+                      </Text>
+                    </TouchableOpacity>
+                  </AccentButtonGradient>
                   <TouchableOpacity
                     disabled={isBusy}
                     onPress={close}
@@ -386,17 +388,20 @@ const PPVModal: React.FC<PPVModalProps> = ({
                   Unlocked successfully
                 </Text>
                 <View className="flex-row gap-3">
-                  <TouchableOpacity
-                    onPress={() => {
-                      try {
-                        onSuccess?.();
-                      } catch {}
-                      setOpen(false);
-                    }}
-                    className="px-5 h-11 rounded-full bg-theme-accent items-center justify-center"
-                  >
-                    <Text className="text-white font-semibold">Continue</Text>
-                  </TouchableOpacity>
+                  <AccentButtonGradient style={{ borderRadius: 9999 }}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        try {
+                          onSuccess?.();
+                        } catch {}
+                        setOpen(false);
+                      }}
+                      className="px-5 h-11 items-center justify-center"
+                      activeOpacity={0.85}
+                    >
+                      <Text className="text-white font-semibold">Continue</Text>
+                    </TouchableOpacity>
+                  </AccentButtonGradient>
                 </View>
               </View>
             )}

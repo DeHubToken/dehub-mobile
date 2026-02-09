@@ -43,6 +43,7 @@ import { WEBSITE_LINK } from "../../config";
 import { getTransactionLink, openInApp } from "../../libs/links.utils";
 import { FeedCaption } from "./FeedCaption";
 import { CommentBottomSheet } from "../Comments";
+import PostOptionsMenu from "../common/PostOptionsMenu";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const IMAGE_WIDTH = SCREEN_WIDTH - 32; // Account for padding
@@ -87,7 +88,7 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   onCategorySelect, 
   fullContent = false, 
   disablePress = false, 
-  onCommentPressProp,
+  onCommentPress: onCommentPressProp,
   showFollowButton = false,
   isFollowing = false,
   isFollowRequestPending = false,
@@ -99,6 +100,17 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   const { requireAuth } = useAuthActions();
   const { showUserProfile } = useUserProfileSheet();
   
+  // Owner & visibility
+  const isOwnerPost = !!(item as any).isOwner;
+  const [isHidden, setIsHidden] = useState<boolean>(!!((item as any).isHidden));
+  const [isFollowingCreator, setIsFollowingCreator] = useState<boolean>(!!((item as any).isFollowing));
+  const [isFollowReqPending, setIsFollowReqPending] = useState<boolean>(!!((item as any).isFollowRequestPending));
+  const [showOptionsMenu, setShowOptionsMenu] = useState<boolean>(false);
+  const [localTitle, setLocalTitle] = useState<string>(item.name || item.title || "");
+  const [localDescription, setLocalDescription] = useState<string>(item.description || "");
+  const [localCategories, setLocalCategories] = useState<string[]>(item.category || []);
+  const [isDeleted, setIsDeleted] = useState<boolean>(false);
+
   // State
   const [liked, setLiked] = useState<boolean>(!!item.isLiked);
   const [disliked, setDisliked] = useState<boolean>(!!item.isDisliked);
@@ -353,6 +365,29 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
       if (url) openInApp(url);
     }
   }, [mintTxHash, chainId, infoScale, bounceAnimation]);
+
+  const handleOpenOptions = useCallback(() => {
+    setShowOptionsMenu(true);
+  }, []);
+
+  const handleFollowChange = useCallback((following: boolean, pending?: boolean) => {
+    setIsFollowingCreator(following);
+    setIsFollowReqPending(!!pending);
+  }, []);
+
+  const handleVisibilityChange = useCallback((hidden: boolean) => {
+    setIsHidden(hidden);
+  }, []);
+
+  const handleEditSuccess = useCallback((data: { name?: string; description?: string; category?: string[] }) => {
+    if (data.name !== undefined) setLocalTitle(data.name);
+    if (data.description !== undefined) setLocalDescription(data.description);
+    if (data.category !== undefined) setLocalCategories(data.category);
+  }, []);
+
+  const handleDeleteSuccess = useCallback(() => {
+    setIsDeleted(true);
+  }, []);
   
   // Reanimated scroll handler - runs on UI thread
   const updateIndex = useCallback((index: number) => {
@@ -442,6 +477,9 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
     );
   };
   
+  // Don't render if deleted
+  if (isDeleted) return null;
+
   return (
     <TouchableOpacity
       activeOpacity={disablePress ? 1 : 0.95}
@@ -449,30 +487,45 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
       disabled={disablePress}
       className="my-4"
     >
-      {/* Header - uses shared FeedCardHeader */}
-      <FeedCardHeader
-        avatarUrl={avatar}
-        displayName={displayName}
-        username={username}
-        badgeImage={badgeImg}
-        onUserPress={handleUserPress}
-        showFollowButton={showFollowButton}
-        isFollowing={isFollowing}
-        isFollowRequestPending={isFollowRequestPending}
-        followLoading={followLoading}
-        onFollowPress={onFollowPress}
-      />
+      {/* Header - uses shared FeedCardHeader + options trigger */}
+      <View className="flex-row items-start">
+        <View className="flex-1">
+          <FeedCardHeader
+            avatarUrl={avatar}
+            displayName={displayName}
+            username={username}
+            badgeImage={badgeImg}
+            onUserPress={handleUserPress}
+            showFollowButton={showFollowButton}
+            isFollowing={isFollowing}
+            isFollowRequestPending={isFollowRequestPending}
+            followLoading={followLoading}
+            onFollowPress={onFollowPress}
+          />
+        </View>
+        <TouchableOpacity
+          onPress={handleOpenOptions}
+          activeOpacity={0.7}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          className="flex-row items-center ml-1 mt-1"
+        >
+          {isHidden && (
+            <Ionicons name="eye-off" size={14} color="#9CA3AF" style={{ marginRight: 4 }} />
+          )}
+          <Ionicons name="ellipsis-vertical" size={18} color="#9CA3AF" />
+        </TouchableOpacity>
+      </View>
       
       {/* Images */}
       {renderImages()}
       
       {/* Title, Description & Categories */}
       <FeedCaption
-        title={title || undefined}
-        description={description || undefined}
-        categories={item.category}
+        title={localTitle || undefined}
+        description={localDescription || undefined}
+        categories={localCategories}
         onCategoryPress={onCategorySelect}
-    fullContent={fullContent}
+        fullContent={fullContent}
         showCategories={fullContent}
       />
 
@@ -591,6 +644,26 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
           tokenId={tokenId}
         />
       )}
+
+      {/* Post Options Menu */}
+      <PostOptionsMenu
+        visible={showOptionsMenu}
+        onClose={() => setShowOptionsMenu(false)}
+        tokenId={tokenId}
+        isOwner={isOwnerPost}
+        isHidden={isHidden}
+        creatorDisplayName={displayName}
+        creatorIdentifier={minterAddress || username || ""}
+        isFollowing={isFollowingCreator}
+        isFollowRequestPending={isFollowReqPending}
+        currentTitle={localTitle}
+        currentDescription={localDescription}
+        currentCategories={localCategories}
+        onFollowChange={handleFollowChange}
+        onVisibilityChange={handleVisibilityChange}
+        onEditSuccess={handleEditSuccess}
+        onDeleteSuccess={handleDeleteSuccess}
+      />
     </TouchableOpacity>
   );
 };
