@@ -109,29 +109,33 @@ const MessageBubble: React.FC<MessageBubbleProps> = memo(({ msg, isMe, onOpenVid
     return { width: 220, height: 220 };
   }, [isGif, mediaType]);
 
+  const firstMediaUrl = media?.[0]?.url;
+
   useEffect(() => {
     let cancelled = false;
     (async () => {
       try {
-        const remoteRaw = media?.[0]?.url;
-        const remoteCdn =
-          remoteRaw && !/^https?:/i.test(remoteRaw)
+        const remoteRaw = firstMediaUrl;
+        // Skip placeholder URLs used for pending media uploads
+        const isPlaceholder = remoteRaw === "__pending__";
+        const remoteCdn = !isPlaceholder
+          ? remoteRaw && !/^https?:/i.test(remoteRaw)
             ? buildCdnPath(remoteRaw)
-            : remoteRaw;
+            : remoteRaw
+          : undefined;
         const uri = await resolveDisplayUri(
           String((msg as any)?.id || (msg as any)?._id || ""),
           remoteCdn
         );
-        // if(msg?.mediaUrls?.length > 0 && msg?.mediaUrls[0]?.mimeType === "image/jpeg")  console.log({uri, remoteCdn})
         if (!cancelled) setDisplayUri(uri);
       } catch {
-        if (!cancelled) setDisplayUri(media?.[0]?.url);
+        if (!cancelled && firstMediaUrl !== "__pending__") setDisplayUri(firstMediaUrl);
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, [msg, media?.[0]?.url]);
+  }, [msg?.id, firstMediaUrl]);
 
   const showDownload = useMemo(() => {
     // Only for non-mine media messages with a remote URL and not yet marked downloaded
@@ -205,7 +209,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = memo(({ msg, isMe, onOpenVid
           {statusLabel ? `${tsLabel} • ${statusLabel}` : tsLabel}
         </Text>
       ) : null}
-      {((media && media.length > 0) || (msg as any)?.msgType === "media") && (
+      {media && media.length > 0 && media.some((m) => !!m.url) && (
         <View>
           <TouchableOpacity
             activeOpacity={0.9}
@@ -238,12 +242,12 @@ const MessageBubble: React.FC<MessageBubbleProps> = memo(({ msg, isMe, onOpenVid
                 style={{ width: dims.width, height: dims.height }}
                 className="items-center justify-center"
               >
-                {!imgLoaded && (displayUri || media?.[0]?.url) ? (
+                {!imgLoaded && (displayUri || (media?.[0]?.url && media[0].url !== "__pending__")) ? (
                   <View className="absolute inset-0 items-center justify-center bg-theme-neutrals-800">
                     <ActivityIndicator size="small" />
                   </View>
                 ) : null}
-                {displayUri || media?.[0]?.url ? (
+                {displayUri || (media?.[0]?.url && media[0].url !== "__pending__") ? (
                   <Image
                     source={{ uri: displayUri || (media?.[0]?.url as string) }}
                     style={{ width: "100%", height: "100%" }}
@@ -331,7 +335,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = memo(({ msg, isMe, onOpenVid
           {/* Video player is rendered at ChatScreen level */}
         </View>
       )}
-      {(!media || media.length === 0) && (
+      {(!media || media.length === 0 || !media.some((m) => !!m.url)) && (
         <TouchableOpacity
           activeOpacity={0.9}
           onLongPress={onLongPress}

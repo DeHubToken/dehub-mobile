@@ -14,6 +14,18 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { toastInfo } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import TransferModal from "../Transfer/TransferModal";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
+
+/** Shimmering placeholder shown while balances load for the first time. */
+const BalanceSkeleton: React.FC = () => (
+  <View className="w-16 h-5 rounded-md bg-theme-neutrals-700 overflow-hidden">
+    <Animated.View
+      entering={FadeIn.duration(600)}
+      exiting={FadeOut.duration(300)}
+      className="w-full h-full bg-theme-neutrals-600 opacity-40"
+    />
+  </View>
+);
 
 const ProfileAssets = () => {
   const { user, balancesLoading, chainId } = useAuth();
@@ -23,6 +35,20 @@ const ProfileAssets = () => {
 
   const walletBalances =
     (user?.tokenBalances as Record<string, number> | undefined) || {};
+
+  // True when we have NEVER received real balance data yet.
+  // Once any token value is populated (even 0 after a fetch), this becomes false
+  // because fetchAndStoreBalances always writes at least {}. tokenBalances being
+  // `undefined` means no fetch has completed.
+  const isInitialLoad = useMemo(
+    () => !user?.tokenBalances || Object.keys(user.tokenBalances).length === 0,
+    [user?.tokenBalances]
+  );
+
+  // Show skeleton only on the very first fetch — never during background refreshes
+  // when we already have data to display.
+  // Also show skeleton if balances have never loaded yet (provider not ready).
+  const showSkeleton = isInitialLoad;
 
   const assets = useMemo(() => {
     const isBase = chainId === 8453; // ChainId.BASE_MAINNET
@@ -131,8 +157,8 @@ const ProfileAssets = () => {
                 />
               )}
             </TouchableOpacity>
-            {balancesLoading ? (
-              <View className="w-14 h-4 rounded bg-theme-neutrals-700 animate-pulse" />
+            {showSkeleton ? (
+              <BalanceSkeleton />
             ) : (
               <Text className="text-lg text-gray-300">
                 {formatCompactNumber(Number(asset.balance || 0))}

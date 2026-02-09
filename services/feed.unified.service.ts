@@ -127,6 +127,8 @@ export interface UnifiedFeedItem {
   isLiked?: boolean;
   isDisliked?: boolean;
   isSaved?: boolean;
+  isOwner?: boolean;
+  isUnlocked?: boolean;
   
   // Timestamps
   createdAt?: string;

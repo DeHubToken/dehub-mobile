@@ -41,6 +41,11 @@ import { copyPickedToLocal, setMapping } from "../libs/dm-media.local";
 import { uploadDmMedia } from "../services/dm/upload";
 import { guessMime } from "../libs/assets.util";
 import { useGateToHome } from "../hooks/useGateToHome";
+import * as FileSystem from "expo-file-system/legacy";
+
+// DM media size limits (server is small)
+const DM_MAX_IMAGE_BYTES = 10 * 1024 * 1024; // 10 MB
+const DM_MAX_VIDEO_BYTES = 50 * 1024 * 1024; // 50 MB
 
 type ID = string;
 type UiMessage = {
@@ -83,8 +88,37 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const list: UiMessage[] = useMemo(() => {
     // Adapt dm messages to UI message shape without mutating store
     const adapted = (dmMessages || []).map(
-      (m) =>
-        ({
+      (m) => {
+        // Compute valid mediaUrls first, then derive kind from it
+        const computedMedia = (() => {
+          const rawMedia = (m as any)?.mediaUrls;
+          if (Array.isArray(rawMedia) && rawMedia.length > 0) {
+            const mapped = rawMedia
+              .map((x: any) => ({
+                url: x?.url,
+                type: x?.type,
+                mimeType: x?.mimeType,
+              }))
+              .filter((x: any) => !!x.url);
+            if (mapped.length > 0) return mapped;
+          }
+          if ((m as any)?.msgType === "gif") {
+            const gifUrl =
+              rawMedia?.[0]?.url || (m as any)?.gif || undefined;
+            if (gifUrl)
+              return [{ url: gifUrl, type: "gif", mimeType: "image/gif" }];
+          }
+          // Server created a media message but mediaUrls not populated yet
+          // (uploadStatus: 'pending' — async processing). Use a placeholder
+          // so MessageBubble can resolve the local file via dm-media mapping.
+          if ((m as any)?.msgType === "media") {
+            return [{ url: "__pending__", type: "image", mimeType: "image/*" }];
+          }
+          return undefined;
+        })();
+        const hasMedia = Array.isArray(computedMedia) && computedMedia.length > 0;
+
+        return {
           id: String(m._id),
           conversationId: String(m.conversation),
           senderId: String((m.sender && (m.sender._id || m.sender)) || "other"),
@@ -95,22 +129,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               ""
           ),
           author: (m as any)?.author,
-          kind:
-            (m as any)?.msgType === "media" || (Array.isArray(m.mediaUrls) && m.mediaUrls.length > 0)
-              ? "media"
-              : (String((m as any)?.msgType || "") === "gif" ? "media" : "text"),
+          kind: hasMedia ? "media" : "text",
           text: m.content || "",
-          mediaUrls: Array.isArray((m as any)?.mediaUrls) && (m as any).mediaUrls.length > 0
-            ? (m as any).mediaUrls.map((x: any) => ({
-                url: x?.url,
-                type: x?.type,
-                mimeType: x?.mimeType,
-              }))
-            : ((m as any)?.msgType === "gif"
-                ? [{ url: (m as any)?.mediaUrls?.[0]?.url, type: "gif", mimeType: "image/gif" }]
-                : ((m as any)?.msgType === "media"
-                    ? [{ url: undefined as unknown as string, type: (m as any)?.mediaUrls?.[0]?.type, mimeType: (m as any)?.mediaUrls?.[0]?.mimeType }]
-                    : undefined)),
+          mediaUrls: computedMedia,
           // server may provide this flag for received messages
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
@@ -123,7 +144,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           // @ts-ignore
           msgType: (m as any)?.msgType,
           createdAt: String(m.createdAt || new Date().toISOString()),
-        } as UiMessage)
+        } as UiMessage;
+      }
     );
     // Sort newest first for inverted list rendering
     return adapted.sort(
@@ -787,11 +809,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         toastWarning(dmReason || "Can't send messages right now");
         return;
       }
+      const tempId: ID = `temp-${Date.now()}-${Math.random()
+        .toString(36)
+        .slice(2, 8)}`;
       try {
         // Optimistic text bubble
-        const tempId: ID = `temp-${Date.now()}-${Math.random()
-          .toString(36)
-          .slice(2, 8)}`;
         const optimistic: UiMessage = {
           id: tempId,
           tempId,
@@ -803,7 +825,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           status: "sending",
           createdAt: new Date().toISOString(),
         };
-        (optimistic as any)._sig = { t: "msg", content };
+        (optimistic as any)._sig = { t: "msg", content, tempId };
         setPending((prev) => [optimistic, ...prev]);
         scrollToBottomNow();
         const id = await ensureConversation();
@@ -816,9 +838,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         toastError(e, "Failed to send message");
         // Remove the optimistic pending bubble on error
         setPending((prev) =>
-          prev.filter(
-            (m: any) => !(m?._sig?.t === "msg" && m?._sig?.content === content)
-          )
+          prev.filter((m) => m.tempId !== tempId)
         );
       }
     },
@@ -840,11 +860,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         toastWarning(dmReason || "Can't send messages right now");
         return;
       }
+      const tempId: ID = `temp-${Date.now()}-${Math.random()
+        .toString(36)
+        .slice(2, 8)}`;
       try {
         // Optimistic GIF bubble
-        const tempId: ID = `temp-${Date.now()}-${Math.random()
-          .toString(36)
-          .slice(2, 8)}`;
         const optimistic: UiMessage = {
           id: tempId,
           tempId,
@@ -861,6 +881,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           t: "gif",
           gif: gifUrl,
           caption: caption || "",
+          tempId,
         };
         setPending((prev) => [optimistic, ...prev]);
         scrollToBottomNow();
@@ -874,16 +895,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         scrollToBottomNow();
       } catch (e) {
         toastError(e, "Failed to send GIF");
-        setPending((prev) =>
-          prev.filter(
-            (m: any) =>
-              !(
-                m?._sig?.t === "gif" &&
-                m?._sig?.gif === gifUrl &&
-                String(m?._sig?.caption || "") === String(caption || "")
-              )
-          )
-        );
+        setPending((prev) => prev.filter((m) => m.tempId !== tempId));
       }
     },
     [
@@ -904,14 +916,23 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         toastWarning(dmReason || "Can't send messages right now");
         return;
       }
+      const tempId: ID = `temp-${Date.now()}-${Math.random()
+        .toString(36)
+        .slice(2, 8)}`;
       try {
+        // Check file size before uploading
+        try {
+          const info = await FileSystem.getInfoAsync(uri);
+          const size = (info as any)?.size as number | undefined;
+          if (size && size > DM_MAX_IMAGE_BYTES) {
+            toastWarning(`Image is too large (${(size / 1024 / 1024).toFixed(1)} MB). Max is ${DM_MAX_IMAGE_BYTES / 1024 / 1024} MB.`);
+            return;
+          }
+        } catch {}
         const id = await ensureConversation();
         // Copy into managed local folder first
         const copied = await copyPickedToLocal(uri, "image");
         // Optimistic bubble with local URI
-        const tempId: ID = `temp-${Date.now()}-${Math.random()
-          .toString(36)
-          .slice(2, 8)}`;
         const optimistic: UiMessage = {
           id: tempId,
           tempId,
@@ -926,7 +947,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           status: "sending",
           createdAt: new Date().toISOString(),
         };
-        (optimistic as any)._sig = { t: "media", caption: caption || "" };
+        (optimistic as any)._sig = { t: "media", caption: caption || "", tempId };
         setPending((prev) => [optimistic, ...prev]);
         scrollToBottomNow();
         // Use the original picked URI for upload (more compatible on Android),
@@ -942,24 +963,28 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           caption,
         });
         // Try to read messageId from response to persist mapping
+        const serverMsg = resp?.data || resp?.message || resp;
         const msgId: string = String(
-          resp?.data?._id || resp?.message?._id || resp?._id || resp?.id || ""
+          serverMsg?._id || serverMsg?.id || ""
         );
         if (msgId) {
           await setMapping(msgId, copied.name, "image");
         }
+        // Upsert the server message into the store WITH local media so it renders
+        // immediately while the backend processes the upload asynchronously.
+        if (msgId && id) {
+          dmActions.upsertMessages(id, [{
+            ...serverMsg,
+            author: "me",
+            mediaUrls: [{ url: copied.localUri, type: "image", mimeType: "image/*" }],
+          } as any]);
+        }
+        // Now safe to remove the optimistic pending item — the store has our message.
+        setPending((prev) => prev.filter((m) => m.tempId !== tempId));
         scrollToBottomNow();
       } catch (e) {
         toastError(e, "Failed to send image");
-        setPending((prev) =>
-          prev.filter(
-            (m: any) =>
-              !(
-                m?._sig?.t === "media" &&
-                String(m?._sig?.caption || "") === String(caption || "")
-              )
-          )
-        );
+        setPending((prev) => prev.filter((m) => m.tempId !== tempId));
       }
     },
     [ensureConversation, dmDisabled, dmReason, scrollToBottomNow, user]
@@ -972,12 +997,21 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         toastWarning(dmReason || "Can't send messages right now");
         return;
       }
+      const tempId: ID = `temp-${Date.now()}-${Math.random()
+        .toString(36)
+        .slice(2, 8)}`;
       try {
+        // Check file size before uploading
+        try {
+          const info = await FileSystem.getInfoAsync(uri);
+          const size = (info as any)?.size as number | undefined;
+          if (size && size > DM_MAX_VIDEO_BYTES) {
+            toastWarning(`Video is too large (${(size / 1024 / 1024).toFixed(1)} MB). Max is ${DM_MAX_VIDEO_BYTES / 1024 / 1024} MB.`);
+            return;
+          }
+        } catch {}
         const id = await ensureConversation();
         const copied = await copyPickedToLocal(uri, "video");
-        const tempId: ID = `temp-${Date.now()}-${Math.random()
-          .toString(36)
-          .slice(2, 8)}`;
         const optimistic: UiMessage = {
           id: tempId,
           tempId,
@@ -992,7 +1026,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           status: "sending",
           createdAt: new Date().toISOString(),
         };
-        (optimistic as any)._sig = { t: "media", caption: caption || "" };
+        (optimistic as any)._sig = { t: "media", caption: caption || "", tempId };
         setPending((prev) => [optimistic, ...prev]);
         scrollToBottomNow();
         const mime = guessMime(uri, "video/mp4");
@@ -1004,24 +1038,28 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           files: [file],
           caption,
         });
+        const serverMsg = resp?.data || resp?.message || resp;
         const msgId: string = String(
-          resp?.data?._id || resp?.message?._id || resp?._id || resp?.id || ""
+          serverMsg?._id || serverMsg?.id || ""
         );
         if (msgId) {
           await setMapping(msgId, copied.name, "video");
         }
+        // Upsert the server message into the store WITH local media so it renders
+        // immediately while the backend processes the upload asynchronously.
+        if (msgId && id) {
+          dmActions.upsertMessages(id, [{
+            ...serverMsg,
+            author: "me",
+            mediaUrls: [{ url: copied.localUri, type: "video", mimeType: "video/*" }],
+          } as any]);
+        }
+        // Now safe to remove the optimistic pending item — the store has our message.
+        setPending((prev) => prev.filter((m) => m.tempId !== tempId));
         scrollToBottomNow();
       } catch (e) {
         toastError(e, "Failed to send video");
-        setPending((prev) =>
-          prev.filter(
-            (m: any) =>
-              !(
-                m?._sig?.t === "media" &&
-                String(m?._sig?.caption || "") === String(caption || "")
-              )
-          )
-        );
+        setPending((prev) => prev.filter((m) => m.tempId !== tempId));
       }
     },
     [ensureConversation, dmDisabled, dmReason, scrollToBottomNow, user]
@@ -1029,11 +1067,33 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
   // Reconcile pending items when server confirms
   useEffect(() => {
+    const isMinePayload = (payload: any): boolean => {
+      if (payload?.author === "me") return true;
+      if (payload?.author === "other") return false;
+      // Infer: compare sender to current user
+      const senderId = String(
+        payload?.sender?._id || payload?.sender || payload?.senderId || ""
+      );
+      const senderAddr = String(
+        payload?.sender?.address ||
+          payload?.address ||
+          payload?.senderAddress ||
+          ""
+      ).toLowerCase();
+      const meId = String((user as any)?.id || "");
+      const meAddr = String(
+        (user as any)?.walletAddress || (user as any)?.address || ""
+      ).toLowerCase();
+      return (
+        (!!meId && senderId === meId) || (!!meAddr && senderAddr === meAddr)
+      );
+    };
+
     const onServerMessage = (payload: any) => {
       try {
         const cId = String(payload?.conversation || "");
         if (!cId || (convId && String(cId) !== String(convId))) return;
-        if (payload?.author !== "me") return;
+        if (!isMinePayload(payload)) return;
         const msgType = payload?.msgType;
         const content = payload?.content || "";
         const gif =
@@ -1107,7 +1167,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         ws.off(DMSocketEvent.JobMessageId, onJobMessage);
       } catch {}
     };
-  }, [ws, convId]);
+  }, [ws, convId, user]);
 
   const title =
     route?.params?.title ||

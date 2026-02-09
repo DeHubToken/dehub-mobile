@@ -135,6 +135,7 @@ export default function App() {
 
 const BootGate: React.FC = () => {
   const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
+  // Only run update checks in production builds
   const { updateInfo, showModal, closeModal } = useAppUpdate();
   const isAuthenticated = isSignedIn && !needsUsername;
   const navigationRef = useRef<any>(null);
@@ -205,14 +206,16 @@ const BootGate: React.FC = () => {
           </NavigationContainer>
         </ErrorBoundary>
       </SafeAreaView>
-      <UpdateAppModal
-        visible={showModal}
-        onClose={closeModal}
-        isRequired={updateInfo.isRequired}
-        version={updateInfo.latestVersion}
-        releaseNotes={updateInfo.releaseNotes}
-        downloadUrl={updateInfo.downloadUrl}
-      />
+      {!__DEV__ && (
+        <UpdateAppModal
+          visible={showModal}
+          onClose={closeModal}
+          isRequired={updateInfo.isRequired}
+          version={updateInfo.latestVersion}
+          releaseNotes={updateInfo.releaseNotes}
+          downloadUrl={updateInfo.downloadUrl}
+        />
+      )}
     </>
   );
 };

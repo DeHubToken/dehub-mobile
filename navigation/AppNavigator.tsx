@@ -24,7 +24,8 @@ import LiveProducerScreen from "../screens/LiveProducerScreen";
 import LiveViewerScreen from "../screens/LiveViewerScreen";
 import DpayScreen from "../screens/DpayScreen";
 import FollowListScreen from "../screens/FollowListScreen";
-import DraftsScreen from "../screens/DraftsScreen";
+import DraftsScreen from '../screens/DraftsScreen';
+import PostResolverScreen from '../screens/PostResolverScreen';
 import { LivepeerProvider } from "../config/livepeer.config";
 import ChatScreen from "../screens/ChatScreen";
 import { useAuthState } from "../context/AuthContext";
@@ -140,6 +141,10 @@ export default function AppNavigator() {
         <Stack.Screen
           name={ScreenNames.Feed}
           component={FeedScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.PostResolver}
+          component={PostResolverScreen}
         />
         <Stack.Screen
           name={ScreenNames.FeedDetail}

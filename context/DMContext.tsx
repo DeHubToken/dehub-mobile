@@ -3,6 +3,8 @@ import { useAuth } from './AuthContext';
 import { useWebSocket } from './WebSocketContext';
 import { DMSocketEvent } from '../services/enums/dm-socket-events.enum';
 import { dmActions, hydrateDmFromStorage, useDmContacts, useDmMessages, clearDmStore, setDmCacheKey } from '../store/dm.state';
+import { setMsgCacheKey } from '../store/messages.state';
+import { setViewAccount } from '../services/view.service';
 import type { ID } from '../store/dm.state';
 import { getContactsByAddress, getMessagesDm } from '../services/dm/dm.service';
 import { createLogger } from '../libs/logger';
@@ -20,9 +22,6 @@ type DMContextValue = {
 
 const DMContext = createContext<DMContextValue | null>(null);
 
-// Module-level guards (per app session)
-let BOUND_ONCE = false;
-
 export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const log = useMemo(() => createLogger('DMProvider'), []);
   const { isSignedIn, user } = useAuth();
@@ -34,11 +33,18 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
   const [contactsError, setContactsError] = useState<string | null>(null);
   const fetchingRef = useRef(false);
   const socketBoundRef = useRef(false);
+  // Refs for stable access in socket closures (avoid stale closures on sign-in/out)
+  const userIdRef = useRef(userId);
+  const addressRef = useRef(address);
+  useEffect(() => { userIdRef.current = userId; }, [userId]);
+  useEffect(() => { addressRef.current = address; }, [address]);
 
   // Set active DM cache per-account and hydrate when address changes
   useEffect(() => {
     if (!isSignedIn || !address) {
       setDmCacheKey(null);
+      setMsgCacheKey(null);
+      setViewAccount(null);
       const t0 = Date.now();
       log.info('boot:address:none:clear:start');
       clearDmStore()
@@ -53,6 +59,8 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     const short = `${address.slice(0, 6)}...${address.slice(-4)}`;
     log.info('boot:address:setCacheKey', { address: short });
     setDmCacheKey(address);
+    setMsgCacheKey(address);
+    setViewAccount(address);
     (async () => {
       const t0 = Date.now();
       // ensure clean memory before hydrating this account
@@ -90,8 +98,8 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
         if (!author) {
           const senderId = String(payload?.sender?._id || payload?.sender || payload?.senderId || '');
           const senderAddr = String(payload?.sender?.address || payload?.address || payload?.senderAddress || '').toLowerCase();
-          const meId = String(userId || '');
-          const meAddr = String(address || '');
+          const meId = String(userIdRef.current || '');
+          const meAddr = String(addressRef.current || '');
           const isMine = (!!meId && senderId === meId) || (!!meAddr && senderAddr === meAddr);
           author = isMine ? 'me' : 'other';
         }
@@ -139,8 +147,8 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
         if (!author) {
           const senderId = String(raw?.sender?._id || raw?.sender || raw?.senderId || '');
           const senderAddr = String(raw?.sender?.address || raw?.address || raw?.senderAddress || '').toLowerCase();
-          const meId = String(userId || '');
-          const meAddr = String(address || '');
+          const meId = String(userIdRef.current || '');
+          const meAddr = String(addressRef.current || '');
           const isMine = (!!meId && senderId === meId) || (!!meAddr && senderAddr === meAddr);
           author = isMine ? 'me' : 'other';
         }

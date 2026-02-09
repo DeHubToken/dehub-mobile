@@ -1,8 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { apiClient } from '../libs/api.client';
 
-const HISTORY_KEY = 'search_history_v2';
+const HISTORY_KEY_PREFIX = 'search_history_v2';
 const MAX_HISTORY = 25;
+
+function historyKey(address?: string): string {
+  if (address) return `${HISTORY_KEY_PREFIX}:${address.toLowerCase()}`;
+  return HISTORY_KEY_PREFIX;
+}
 
 // =============================================================================
 // Types - aligned with new /api/search endpoint
@@ -190,9 +195,9 @@ export async function fetchSuggestions(q: string): Promise<string[]> {
 // Search History (local storage)
 // =============================================================================
 
-export async function getHistory(): Promise<string[]> {
+export async function getHistory(address?: string): Promise<string[]> {
   try {
-    const raw = await AsyncStorage.getItem(HISTORY_KEY);
+    const raw = await AsyncStorage.getItem(historyKey(address));
     if (!raw) return [];
     const arr = JSON.parse(raw);
     return Array.isArray(arr) ? arr : [];
@@ -202,21 +207,21 @@ export async function getHistory(): Promise<string[]> {
   }
 }
 
-export async function addToHistory(term: string): Promise<void> {
+export async function addToHistory(term: string, address?: string): Promise<void> {
   const t = term.trim().toLowerCase();
   if (!t) return;
   try {
-    const current = await getHistory();
+    const current = await getHistory(address);
     const next = [t, ...current.filter(x => x !== t)].slice(0, MAX_HISTORY);
-    await AsyncStorage.setItem(HISTORY_KEY, JSON.stringify(next));
+    await AsyncStorage.setItem(historyKey(address), JSON.stringify(next));
   } catch (e) {
     console.warn('[search.service] addToHistory error', e);
   }
 }
 
-export async function clearHistory(): Promise<void> {
+export async function clearHistory(address?: string): Promise<void> {
   try {
-    await AsyncStorage.removeItem(HISTORY_KEY);
+    await AsyncStorage.removeItem(historyKey(address));
   } catch (e) {
     console.warn('[search.service] clearHistory error', e);
   }

@@ -34,6 +34,7 @@ export enum ScreenNames {
   FollowList = 'FollowList',
   PrivacySettings = 'PrivacySettings',
   Drafts = 'Drafts',
+  PostResolver = 'PostResolver',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',

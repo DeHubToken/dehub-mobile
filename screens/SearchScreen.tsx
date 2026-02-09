@@ -34,6 +34,7 @@ import SearchAccountCard from "../components/Search/SearchAccountCard";
 import AccentButtonGradient from "../components/ui/AccentButtonGradient";
 import CompactVideoCardSkeleton from "../components/Home/CompactVideoCardSkeleton";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
+import { useAuth } from "../context/AuthContext";
 
 // =============================================================================
 // Types
@@ -64,6 +65,8 @@ const PAGE_SIZE = 20;
 
 const SearchScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
+  const { user: authUser } = useAuth() as any;
+  const userAddress: string | undefined = authUser?.address;
   
   // Search state
   const [searchQuery, setSearchQuery] = useState("");
@@ -87,8 +90,8 @@ const SearchScreen: React.FC = () => {
 
   // Load history on mount
   useEffect(() => {
-    getHistory().then(setSearchHistory);
-  }, []);
+    getHistory(userAddress).then(setSearchHistory);
+  }, [userAddress]);
 
   // Fetch suggestions as user types
   useEffect(() => {
@@ -161,8 +164,8 @@ const SearchScreen: React.FC = () => {
       
       // Add to history only on first search
       if (page === 1) {
-        await addToHistory(q);
-        getHistory().then(setSearchHistory);
+        await addToHistory(q, userAddress);
+        getHistory(userAddress).then(setSearchHistory);
         setSuggestions([]);
         lastQuery.current = q;
       }

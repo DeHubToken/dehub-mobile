@@ -51,6 +51,8 @@ export interface GetNFTsResult {
   minterAvatarUrl?: string;
   minterStaked?: number;
   streamInfo?: StreamInfo;
+  isOwner?: boolean;
+  isUnlocked?: boolean;
   [key: string]: any; // allow forward compatibility
 }
 

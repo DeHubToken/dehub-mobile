@@ -126,10 +126,10 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
       address: minterUser.address,
       walletAddress: minterUser.address,
       avatarImageUrl: minterUser.avatarImageUrl,
-      followers: minterUser.followers || [],
-      stakedDHB: minterUser.staked || 0,
+      followers: minterUser.followers ?? 0,
+      stakedDHB: nftData?.minterStaked || (minterUser as any).staked || 0,
     };
-  }, [nftData?.minterUser]);
+  }, [nftData?.minterUser, nftData?.minterStaked]);
 
   // isFollowing comes directly from getNFT response
   const [isFollowing, setIsFollowing] = useState<boolean>(false);

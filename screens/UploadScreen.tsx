@@ -78,7 +78,7 @@ export default function UploadScreen() {
   const titleRef = useRef<TextInput>(null);
   const descriptionRef = useRef<TextInput>(null);
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
-  const { saveDraft, deleteDraft } = useDrafts();
+  const { saveDraft, deleteDraft } = useDrafts(authUser?.address);
 
   const avatarUri = useMemo(
     () => getAvatarUrl(authUser?.avatarImageUrl),
@@ -296,16 +296,22 @@ export default function UploadScreen() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [confirmText, setConfirmText] = useState("");
 
-  const getPayload = useCallback((): UploadPayload => ({
-    bodyText,
-    description,
-    categories,
-    pickedImages,
-    pickedVideo,
-    thumbnailUri,
-    coverUri,
-    monetization,
-  }), [bodyText, description, categories, pickedImages, pickedVideo, thumbnailUri, coverUri, monetization]);
+  const getPayload = useCallback((): UploadPayload => {
+    // For non-video posts the "title" input IS the description on the backend.
+    // Send empty bodyText (name) so only description is populated.
+    // Videos keep separate title (name) + description.
+    const isVideo = !!pickedVideo;
+    return {
+      bodyText: isVideo ? bodyText : "",
+      description: isVideo ? description : bodyText,
+      categories,
+      pickedImages,
+      pickedVideo,
+      thumbnailUri,
+      coverUri,
+      monetization,
+    };
+  }, [bodyText, description, categories, pickedImages, pickedVideo, thumbnailUri, coverUri, monetization]);
 
   const handlePost = useCallback(() => {
     if (!canPost || isUploading) return;
@@ -815,44 +821,46 @@ export default function UploadScreen() {
             {/* ── Description & Category section ─────────── */}
             {showExtras && (
               <View className="mt-4">
-                {/* Description: toggle text or expanded input */}
-                {!showDescription ? (
-                  <TouchableOpacity
-                    onPress={handleShowDescription}
-                    activeOpacity={0.7}
-                    className="flex-row items-center"
-                  >
-                    <Ionicons name="document-text-outline" size={18} color="#6F7174" />
-                    <Text className="text-theme-neutrals-400 text-sm ml-1.5">
-                      Add description
-                    </Text>
-                  </TouchableOpacity>
-                ) : (
-                  <View>
-                    <TextInput
-                      ref={descriptionRef}
-                      value={description}
-                      onChangeText={handleDescriptionChange}
-                      placeholder="Add a description…"
-                      placeholderTextColor="#6F7174"
-                      multiline
-                      blurOnSubmit={false}
-                      returnKeyType="default"
-                      maxLength={DESCRIPTION_MAX}
-                      className="text-white text-sm"
-                      style={{ textAlignVertical: "top" }}
-                      scrollEnabled={false}
-                    />
-                    <Text
-                      className={`text-xs mt-1 self-end ${
-                        description.length >= DESCRIPTION_MAX
-                          ? "text-theme-red-500"
-                          : "text-theme-neutrals-500"
-                      }`}
+                {/* Description: only shown for video posts */}
+                {mediaMode === "video" && (
+                  !showDescription ? (
+                    <TouchableOpacity
+                      onPress={handleShowDescription}
+                      activeOpacity={0.7}
+                      className="flex-row items-center"
                     >
-                      {description.length}/{DESCRIPTION_MAX}
-                    </Text>
-                  </View>
+                      <Ionicons name="document-text-outline" size={18} color="#6F7174" />
+                      <Text className="text-theme-neutrals-400 text-sm ml-1.5">
+                        Add description
+                      </Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <View>
+                      <TextInput
+                        ref={descriptionRef}
+                        value={description}
+                        onChangeText={handleDescriptionChange}
+                        placeholder="Add a description…"
+                        placeholderTextColor="#6F7174"
+                        multiline
+                        blurOnSubmit={false}
+                        returnKeyType="default"
+                        maxLength={DESCRIPTION_MAX}
+                        className="text-white text-sm"
+                        style={{ textAlignVertical: "top" }}
+                        scrollEnabled={false}
+                      />
+                      <Text
+                        className={`text-xs mt-1 self-end ${
+                          description.length >= DESCRIPTION_MAX
+                            ? "text-theme-red-500"
+                            : "text-theme-neutrals-500"
+                        }`}
+                      >
+                        {description.length}/{DESCRIPTION_MAX}
+                      </Text>
+                    </View>
+                  )
                 )}
 
                 {/* Category: selected pills + toggle text or expanded picker */}

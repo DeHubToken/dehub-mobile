@@ -16,7 +16,7 @@ import { useDM } from "./useDM";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { maxStacked } from "../libs/validators.util";
-import { LEGACY_WEBSITE_LINK } from "../config";
+import { WEBSITE_LINK } from "../config";
 
 interface RemoteUser {
   username?: string;
@@ -374,7 +374,7 @@ export const useUserProfileData = (
   const handleShare = useCallback(async () => {
     const profileSlug = profileData?.username || profileData?.address;
     if (!profileSlug) return;
-    const url = `${LEGACY_WEBSITE_LINK}/${profileSlug}`;
+    const url = `${WEBSITE_LINK}/${profileSlug}`;
     const message = `Check out this dehub profile ${url}`;
     await shareProfile(url, message);
   }, [profileData?.username, profileData?.address]);

@@ -1,11 +1,12 @@
 import React, { memo, useCallback } from 'react';
 import { View, TouchableOpacity, Text, AccessibilityInfo } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 interface TopControlsProps {
   onClose: () => void;
   onMute: () => void;
   onFullscreen: () => void;
+  onRotateToPortrait?: () => void;
   isMuted: boolean;
   fullscreen: boolean;
   title?: string;
@@ -16,6 +17,7 @@ const TopControls: React.FC<TopControlsProps> = ({
   onClose,
   onMute,
   onFullscreen,
+  onRotateToPortrait,
   isMuted,
   fullscreen,
   title,
@@ -83,6 +85,19 @@ const TopControls: React.FC<TopControlsProps> = ({
             color="#fff"
           />
         </TouchableOpacity>
+
+        {fullscreen && onRotateToPortrait && (
+          <TouchableOpacity
+            onPress={onRotateToPortrait}
+            className="bg-black/60 rounded-full p-2.5"
+            activeOpacity={0.7}
+            accessibilityLabel="Rotate to portrait"
+            accessibilityRole="button"
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
+            <MaterialCommunityIcons name="screen-rotation" size={20} color="#fff" />
+          </TouchableOpacity>
+        )}
 
         <TouchableOpacity
           onPress={handleFullscreen}

@@ -45,6 +45,9 @@ type UseProviderLifecycleReturn = {
   validateAndMaybeReinit: (reason: string) => Promise<void>;
   adoptSigningProviderIfAvailable: () => Promise<boolean>;
   resetProviderState: () => void;
+  /** Tear down current provider + cached adapter and re-initialize from scratch.
+   *  Unlike ensureProvider this is NOT guarded by stale closure state. */
+  forceReinitProvider: () => Promise<void>;
 };
 
 export function useProviderLifecycle({
@@ -416,6 +419,23 @@ export function useProviderLifecycle({
     setProviderStatus("idle");
   }, []);
 
+  /** Tear down everything and re-initialize from scratch.
+   *  This avoids the stale-closure guard in `ensureProvider` by clearing
+   *  cached refs and calling `internalInitializeProvider` directly. */
+  const forceReinitProvider = useCallback(async () => {
+    // 1. Reset React state (provider / status / chainId)
+    setProvider(null);
+    setChainId(undefined);
+    setProviderStatus("idle");
+
+    // 2. Clear cached adapter so a fresh one is created for the new chain
+    providerMetaRef.current.authAdapter = null;
+    providerMetaRef.current.providerInitInFlight = null;
+
+    // 3. Directly call init (no guard checks)
+    await internalInitializeProvider();
+  }, [internalInitializeProvider]);
+
   const adoptSigningProviderIfAvailable =
     useCallback(async (): Promise<boolean> => {
       const override = getSigningProvider();
@@ -439,12 +459,14 @@ export function useProviderLifecycle({
       validateAndMaybeReinit,
       adoptSigningProviderIfAvailable,
       resetProviderState,
+      forceReinitProvider,
     }),
     [
       adoptProvider,
       chainId,
       ensureFreshProvider,
       ensureProvider,
+      forceReinitProvider,
       provider,
       providerStatus,
       resetProviderState,

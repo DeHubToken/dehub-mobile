@@ -170,7 +170,23 @@ export const dmActions = {
   upsertMessages(conversationId: ID, msgs: DmMessage[]) {
     const existing = dmState.messagesByConversation[conversationId] || [];
     const map = new Map<string, DmMessage>(existing.map((m) => [m._id, m]));
-    for (const m of msgs) map.set(String(m._id), { ...(map.get(String(m._id)) || {}), ...m });
+    for (const m of msgs) {
+      const prev = map.get(String(m._id));
+      const merged_msg = { ...(prev || {}), ...m };
+      // Protect local/populated mediaUrls from being overwritten by empty server payloads
+      // (server creates media messages with uploadStatus:'pending' and empty mediaUrls;
+      // the real URLs arrive later via JobMessageId)
+      if (
+        prev &&
+        Array.isArray(prev.mediaUrls) &&
+        (prev.mediaUrls as any[]).length > 0 &&
+        Array.isArray(m.mediaUrls) &&
+        (m.mediaUrls as any[]).length === 0
+      ) {
+        merged_msg.mediaUrls = prev.mediaUrls;
+      }
+      map.set(String(m._id), merged_msg);
+    }
     const merged = Array.from(map.values());
     merged.sort((x, y) => sortAscByCreated(x.createdAt, y.createdAt));
     dmState.messagesByConversation[conversationId] = merged;

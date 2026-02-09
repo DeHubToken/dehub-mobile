@@ -19,8 +19,29 @@ const BATCH_FLUSH_INTERVAL_MS = 5000; // Flush batch every 5 seconds
 const BATCH_FLUSH_ON_COUNT = 20; // Flush when batch reaches this size
 
 // Rate limiting (server enforces 30s per token, we track 24h for unique views)
-const VIEW_COOLDOWN_STORAGE_KEY = "dhb_view_cooldowns";
+const VIEW_COOLDOWN_PREFIX = "dhb_view_cooldowns";
 const VIEW_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+// Active account for scoped cooldown storage
+let activeViewAccount: string | null = null;
+
+/** Set the active account for view cooldown scoping. Call on login/switch. */
+export function setViewAccount(address: string | null): void {
+  const prev = activeViewAccount;
+  activeViewAccount = address ? address.toLowerCase() : null;
+  // Reset in-memory state when account changes
+  if (prev !== activeViewAccount) {
+    viewCooldowns = {};
+    cooldownsLoaded = false;
+    recordedViews.clear();
+  }
+}
+
+function viewCooldownKey(): string {
+  return activeViewAccount
+    ? `${VIEW_COOLDOWN_PREFIX}:${activeViewAccount}`
+    : VIEW_COOLDOWN_PREFIX;
+}
 
 // ============================================================================
 // In-memory state
@@ -71,7 +92,7 @@ export interface BatchViewResponse {
 async function loadCooldowns(): Promise<void> {
   if (cooldownsLoaded) return;
   try {
-    const stored = await AsyncStorage.getItem(VIEW_COOLDOWN_STORAGE_KEY);
+    const stored = await AsyncStorage.getItem(viewCooldownKey());
     if (stored) {
       viewCooldowns = JSON.parse(stored);
       // Prune expired entries
@@ -91,7 +112,7 @@ async function loadCooldowns(): Promise<void> {
 
 async function saveCooldowns(): Promise<void> {
   try {
-    await AsyncStorage.setItem(VIEW_COOLDOWN_STORAGE_KEY, JSON.stringify(viewCooldowns));
+    await AsyncStorage.setItem(viewCooldownKey(), JSON.stringify(viewCooldowns));
   } catch (e) {
     console.warn("[ViewService] Failed to save cooldowns", e);
   }

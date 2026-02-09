@@ -11,7 +11,7 @@ import { shareProfile } from "../../libs/misc";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { likeLiveStream } from "../../services/live.service";
 import { toastError, toastInfo } from "../../libs/toast";
-import { LEGACY_WEBSITE_LINK } from "../../config";
+import { WEBSITE_LINK } from "../../config";
 
 export interface ActionsRowProps {
   likes: number;
@@ -58,8 +58,8 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
     setLikeCount(Number(likes ?? 0));
   }, [likes]);
   const handleShare = useCallback(async () => {
-    const liveUrl = isLive && streamId ? `${LEGACY_WEBSITE_LINK}/live/${streamId}` : null;
-    const vodUrl = tokenId ? `${LEGACY_WEBSITE_LINK}/stream/${tokenId}` : null;
+    const liveUrl = isLive && streamId ? `${WEBSITE_LINK}/app/post/${streamId}` : null;
+    const vodUrl = tokenId ? `${WEBSITE_LINK}/app/post/${tokenId}` : null;
     const url = liveUrl || vodUrl;
     if (!url) return;
     const message = `Check out this stream ${url}`;

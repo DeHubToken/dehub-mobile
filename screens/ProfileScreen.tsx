@@ -26,10 +26,10 @@ const ProfileScreen: React.FC = () => {
 
   // Periodic background refresh of account info
   useEffect(() => {
+    if (!isSignedIn) return;
     let interval: NodeJS.Timeout | null = null;
     let cancelled = false;
     const run = async () => {
-      if (!user) return;
       try {
         await refreshUser();
       } catch (_) {}
@@ -38,12 +38,14 @@ const ProfileScreen: React.FC = () => {
     const schedule = () => {
       interval = setTimeout(run, REFRESH_INTERVAL_MS);
     };
-    if (isSignedIn && user) schedule();
+    schedule();
     return () => {
       cancelled = true;
       if (interval) clearTimeout(interval);
     };
-  }, [isSignedIn, user]);
+    // Only depend on isSignedIn — refreshUser is stable and reads user from ref
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSignedIn]);
 
   const onManualRefresh = React.useCallback(async () => {
     if (!user) return;

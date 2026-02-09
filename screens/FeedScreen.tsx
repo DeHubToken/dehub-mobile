@@ -233,6 +233,7 @@ const FeedScreen = () => {
       sortBy: filters.sortBy as FeedSortBy,
       sortOrder: "desc" as const,
       postType: "feed-images", // Always feed-images for FeedScreen
+      status: "minted" as const,
     };
 
     // Date range

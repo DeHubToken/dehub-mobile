@@ -7,6 +7,7 @@ import {
   Linking,
   Platform,
   ActivityIndicator,
+  Image,
 } from "react-native";
 import { useAuth } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
@@ -31,6 +32,11 @@ import DMSettingsSection from "../components/Settings/DMSettingsSection";
 import { ChainId } from "../config/constants";
 import ChainSwitchModal from "../components/Settings/ChainSwitchModal";
 import BlockedAccountsModal from "../components/Settings/BlockedAccountsModal";
+
+const CHAIN_ICONS: Record<number, any> = {
+  [ChainId.BASE_MAINNET]: require("../assets/chains/base-icon.png"),
+  [ChainId.BSC_MAINNET]: require("../assets/chains/bnb-icon.png"),
+};
 
 // Lightweight Account Settings screen focused on account-level actions.
 // Extend later with preferences, linked wallets, notifications, privacy, etc.
@@ -124,17 +130,25 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
               onPress={() => setChainModalVisible(true)}
               className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
             >
-              <View className="flex-1 pr-2">
-                <Text className="text-theme-neutrals-100 text-sm font-medium">
-                  Switch Active Chain
-                </Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-1">
-                  {chainId === ChainId.BASE_MAINNET
-                    ? "Base"
-                    : chainId === ChainId.BSC_MAINNET
-                    ? "BNB"
-                    : `Chain ID ${chainId ?? "N/A"}`}
-                </Text>
+              <View className="flex-row items-center flex-1 pr-2">
+                {chainId && CHAIN_ICONS[chainId] && (
+                  <Image
+                    source={CHAIN_ICONS[chainId]}
+                    className="w-6 h-6 rounded-full mr-3"
+                  />
+                )}
+                <View>
+                  <Text className="text-theme-neutrals-100 text-sm font-medium">
+                    Switch Active Chain
+                  </Text>
+                  <Text className="text-theme-neutrals-500 text-xs mt-1">
+                    {chainId === ChainId.BASE_MAINNET
+                      ? "Base"
+                      : chainId === ChainId.BSC_MAINNET
+                        ? "BNB"
+                        : `Chain ID ${chainId ?? "N/A"}`}
+                  </Text>
+                </View>
               </View>
               <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
             </TouchableOpacity>
@@ -211,7 +225,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
             Preferences
           </Text>
           <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
-            <TouchableOpacity
+            {/* <TouchableOpacity
               disabled
               className="px-4 py-4 flex-row items-center justify-between opacity-60"
             >
@@ -224,10 +238,12 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                 </Text>
               </View>
               <Ionicons name="chevron-forward" size={18} color="#6b7280" />
-            </TouchableOpacity>
-            <View className="h-px bg-theme-neutrals-700" />
+            </TouchableOpacity> */}
+            {/* <View className="h-px bg-theme-neutrals-700" /> */}
             <TouchableOpacity
-              onPress={() => navigation.navigate(ScreenNames.NotificationSettings)}
+              onPress={() =>
+                navigation.navigate(ScreenNames.NotificationSettings)
+              }
               className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
             >
               <View>
@@ -296,7 +312,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
               <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
             </TouchableOpacity>
             <View className="h-px bg-theme-neutrals-700" />
-            <TouchableOpacity
+            {/* <TouchableOpacity
               disabled
               className="px-4 py-4 flex-row items-center justify-between opacity-60"
             >
@@ -309,8 +325,8 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                 </Text>
               </View>
               <Ionicons name="chevron-forward" size={18} color="#6b7280" />
-            </TouchableOpacity>
-            <View className="h-px bg-theme-neutrals-700" />
+            </TouchableOpacity> */}
+            {/* <View className="h-px bg-theme-neutrals-700" /> */}
             <TouchableOpacity
               onPress={() => openInApp(DELETE_DATA_OR_ACCOUNT_LINK)}
               className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"

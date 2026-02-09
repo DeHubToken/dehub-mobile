@@ -61,7 +61,6 @@ import Web3Auth, {
   WEB3AUTH_NETWORK,
 } from "@web3auth/react-native-sdk";
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
-import { CHAIN_NAMESPACES } from "@web3auth/base";
 import {
   AccountAbstractionProvider,
   SafeSmartAccount,
@@ -122,9 +121,7 @@ async function getOrCreateInstance() {
     ticker: baseCfg?.nativeCurrency?.symbol || "ETH",
     tickerName: baseCfg?.nativeCurrency?.name || "Ether",
     decimals: baseCfg?.nativeCurrency?.decimals ?? 18,
-    logo:
-      (baseCfg as any)?.iconUrls?.[0] ||
-      "https://basescan.org/assets/base/images/svg/logos/chain-light.svg",
+    logo: (baseCfg as any)?.iconUrls?.[0] || "",
   } as any;
 
   // console.log({ chainConfig });
@@ -344,6 +341,26 @@ export const logoutWeb3Auth = async () => {
   }
 };
 
+/**
+ * Destroy the cached Web3Auth instance so the next ensureWeb3AuthReady()
+ * creates a fresh one configured for whatever preferredChainId is persisted.
+ * Call this when switching chains in-place (no app restart).
+ *
+ * IMPORTANT: We intentionally do NOT call logout() here.
+ * logout() invalidates the session on Web3Auth's server and removes the
+ * sessionId from SecureStore. That means the new instance's init() would
+ * find no session → no private key → signing fails with
+ * "Invalid signature produced". By keeping the session intact the new
+ * instance restores it automatically during init() on the target chain.
+ */
+export const resetWeb3AuthInstance = () => {
+  web3auth = null;
+  isInitialized = false;
+  isCreating = false;
+  createPromise = null;
+  log.info("sdk:instance:reset");
+};
+
 // Allow pre-warming (create + init) in background (e.g., after splash) to remove first-screen lag
 export const prewarmWeb3Auth = async () => {
   if (isInitialized && web3auth) return;
@@ -363,250 +380,6 @@ export const prewarmWeb3Auth = async () => {
 // ---------------------------------------------------------------------------
 // (All extended helper implementations have been moved to services/web3auth.service.ts)
 // (Extended helpers removed to services/web3auth.service.ts)
-
-// Ensure the Web3Auth SDK instance knows about the target chain by adding chainConfig.
-// This differs from EIP-3085 and uses SDK-specific fields (rpcTarget, displayName, ticker, etc.).
-export const addWeb3AuthChain = async (targetChainId: number) => {
-  const instance = await ensureWeb3AuthReady();
-  const hex = "0x" + Number(targetChainId).toString(16);
-  // Build from SUPPORTED_NETWORKS (EIP-3085 shape) into SDK chainConfig shape
-  const baseCfg = (SUPPORTED_NETWORKS as any)?.[targetChainId];
-  if (!baseCfg) {
-    throw new Error(`No supported network config for chainId ${targetChainId}`);
-  }
-  const chainCfg = {
-    chainNamespace: ChainNamespace.EIP155,
-    chainId: baseCfg.chainId || hex,
-    rpcTarget: Array.isArray(baseCfg.rpcUrls) ? baseCfg.rpcUrls[0] : undefined,
-    displayName: baseCfg.chainName,
-    blockExplorerUrl: Array.isArray(baseCfg.blockExplorerUrls)
-      ? baseCfg.blockExplorerUrls[0]
-      : undefined,
-    ticker: baseCfg.nativeCurrency?.symbol,
-    tickerName: baseCfg.nativeCurrency?.name,
-    decimals: baseCfg.nativeCurrency?.decimals ?? 18,
-    logo: (baseCfg as any)?.iconUrls?.[0],
-  } as any;
-  if (typeof (instance as any).addChain !== "function") {
-    // Older SDKs may not expose addChain; nothing to do here.
-    return false;
-  }
-  try {
-    await (instance as any).addChain(chainCfg);
-    log.info("web3auth:addChain:ok", {
-      chainId: chainCfg.chainId,
-      name: chainCfg.displayName,
-    });
-    return true;
-  } catch (e) {
-    log.warn("web3auth:addChain:error", e as any);
-    throw e;
-  }
-};
-
-// Switch chain using the Web3Auth RN SDK preferred methods
-export const switchWeb3AuthChain = async (targetChainId: number) => {
-  const instance = await ensureWeb3AuthReady();
-  const hex = "0x" + Number(targetChainId).toString(16);
-  const baseCfg = (SUPPORTED_NETWORKS as any)?.[targetChainId];
-  if (!baseCfg)
-    throw new Error(`No supported network config for chainId ${targetChainId}`);
-  log.debug("web3auth:switchChain:capabilities", {
-    hasSetChain: typeof (instance as any).setChain === "function",
-    hasSwitchChain: typeof (instance as any).switchChain === "function",
-    hasAddChain: typeof (instance as any).addChain === "function",
-  });
-  log.info("web3auth:switchChain:start", {
-    targetChainId,
-    hex,
-    name: baseCfg?.chainName,
-  });
-  const chainCfg = {
-    chainNamespace: ChainNamespace.EIP155,
-    chainId: baseCfg.chainId || hex,
-    rpcTarget: Array.isArray(baseCfg.rpcUrls) ? baseCfg.rpcUrls[0] : undefined,
-    displayName: baseCfg.chainName,
-    blockExplorerUrl: Array.isArray(baseCfg.blockExplorerUrls)
-      ? baseCfg.blockExplorerUrls[0]
-      : undefined,
-    ticker: baseCfg.nativeCurrency?.symbol,
-    tickerName: baseCfg.nativeCurrency?.name,
-    decimals: baseCfg.nativeCurrency?.decimals ?? 18,
-    logo: (baseCfg as any)?.iconUrls?.[0],
-  } as any;
-  // Try SDK-native setChain first
-  try {
-    if (typeof (instance as any).setChain === "function") {
-      log.debug("web3auth:setChain:attempt", { chainId: chainCfg.chainId });
-      await (instance as any).setChain(chainCfg);
-      log.info("web3auth:setChain:ok", {
-        chainId: chainCfg.chainId,
-        name: chainCfg.displayName,
-      });
-      try {
-        await reconfigureWeb3AuthChain(targetChainId);
-      } catch (e) {
-        log.warn("web3auth:setChain:reconfigure:error", e as any);
-      }
-      return true;
-    }
-  } catch (e) {
-    log.warn("web3auth:setChain:error", e as any);
-  }
-  // Then try switchChain(hex) if exposed
-  try {
-    if (typeof (instance as any).switchChain === "function") {
-      log.debug("web3auth:switchChain:attempt", {
-        chainId: baseCfg.chainId || hex,
-      });
-      await (instance as any).switchChain(baseCfg.chainId || hex);
-      log.info("web3auth:switchChain:ok", { chainId: baseCfg.chainId || hex });
-      try {
-        await reconfigureWeb3AuthChain(targetChainId);
-      } catch (e) {
-        log.warn("web3auth:switchChain:reconfigure:error", e as any);
-      }
-      return true;
-    }
-  } catch (e) {
-    log.warn("web3auth:switchChain:error", e as any);
-  }
-  return false;
-};
-
-// Rebuild and reattach providers (PK + AA) for the target chain so all layers
-// (signing, bundler, paymaster) point to the same network.
-export const reconfigureWeb3AuthChain = async (targetChainId: number) => {
-  const instance = await ensureWeb3AuthReady();
-  const baseCfg = (SUPPORTED_NETWORKS as any)?.[targetChainId];
-  if (!baseCfg)
-    throw new Error(`No supported network config for chainId ${targetChainId}`);
-  const hex = baseCfg.chainId || "0x" + Number(targetChainId).toString(16);
-  const rpcTarget = Array.isArray(baseCfg.rpcUrls)
-    ? baseCfg.rpcUrls[0]
-    : baseCfg.rpcUrls;
-  log.info("web3auth:reconfigure:start", {
-    targetChainId,
-    hex,
-    rpcTarget,
-    name: baseCfg?.chainName,
-  });
-  const chainConfig = {
-    chainNamespace: ChainNamespace.EIP155,
-    chainId: hex,
-    rpcTarget,
-    displayName: baseCfg.chainName,
-    blockExplorerUrl: Array.isArray(baseCfg.blockExplorerUrls)
-      ? baseCfg.blockExplorerUrls[0]
-      : baseCfg.blockExplorerUrls,
-    ticker: baseCfg.nativeCurrency?.symbol,
-    tickerName: baseCfg.nativeCurrency?.name,
-    decimals: baseCfg.nativeCurrency?.decimals ?? 18,
-    logo: (baseCfg as any)?.iconUrls?.[0],
-  } as any;
-  const decId = Number(targetChainId);
-  const pimlicoUrl = `https://api.pimlico.io/v2/${decId}/rpc?apikey=${env.PIMLICO_API_KEY}`;
-  log.debug("web3auth:reconfigure:providers:build", { pimlicoUrl });
-
-  const privateKeyProvider = new EthereumPrivateKeyProvider({
-    config: { chainConfig },
-  });
-  const accountAbstractionProvider = new AccountAbstractionProvider({
-    config: {
-      chainConfig,
-      bundlerConfig: { url: pimlicoUrl },
-      paymasterConfig: { url: pimlicoUrl },
-      smartAccountInit: new SafeSmartAccount(),
-    },
-  });
-
-  if (typeof (instance as any).updateProvider === "function") {
-    log.debug("web3auth:reconfigure:updateProvider:attempt");
-    (instance as any).updateProvider({
-      privateKeyProvider,
-      accountAbstractionProvider,
-    });
-    log.info("web3auth:reconfigure:updateProvider:ok", {
-      chainId: hex,
-      rpcTarget,
-    });
-    try {
-      // Ensure top-level fields exist for consumers that read them directly
-      const prov: any = (instance as any).provider;
-      if (prov) {
-        prov.chainConfig = chainConfig;
-        prov.bundlerConfig = { url: pimlicoUrl } as any;
-        prov.paymasterConfig = { url: pimlicoUrl } as any;
-        // Shim eth_chainId so upstream waiters can observe the new chain id
-        const prevReq =
-          typeof prov.request === "function"
-            ? prov.request.bind(prov)
-            : undefined;
-        prov.request = async (args: any) => {
-          const method =
-            args?.method || (Array.isArray(args) ? args[0]?.method : undefined);
-          if (method === "eth_chainId") return chainConfig.chainId;
-          if (prevReq) return prevReq(args);
-          throw new Error("Provider request not available");
-        };
-      }
-    } catch {}
-    try {
-      const ch = await (instance as any).provider?.request?.({
-        method: "eth_chainId",
-      });
-      log.debug("web3auth:reconfigure:post-update:eth_chainId", {
-        reported: ch,
-      });
-    } catch {}
-    return true;
-  }
-  // Fallback: replace known references so downstream callers see the new provider
-  log.debug("web3auth:reconfigure:fallback:assignments:start");
-  try {
-    (instance as any).privateKeyProvider = privateKeyProvider;
-  } catch {}
-  try {
-    (instance as any).accountAbstractionProvider = accountAbstractionProvider;
-  } catch {}
-  try {
-    (instance as any).provider = accountAbstractionProvider as any;
-  } catch {}
-  try {
-    const prov: any = (instance as any).provider;
-    if (prov && prov.internalConfig) {
-      prov.internalConfig.chainConfig = chainConfig;
-      prov.internalConfig.bundlerConfig = { url: pimlicoUrl } as any;
-      prov.internalConfig.paymasterConfig = { url: pimlicoUrl } as any;
-    }
-    if (prov) {
-      // Also set top-level fields for easier detection in app code
-      prov.chainConfig = chainConfig;
-      prov.bundlerConfig = { url: pimlicoUrl } as any;
-      prov.paymasterConfig = { url: pimlicoUrl } as any;
-      // Shim eth_chainId
-      const prevReq =
-        typeof prov.request === "function"
-          ? prov.request.bind(prov)
-          : undefined;
-      prov.request = async (args: any) => {
-        const method =
-          args?.method || (Array.isArray(args) ? args[0]?.method : undefined);
-        if (method === "eth_chainId") return chainConfig.chainId;
-        if (prevReq) return prevReq(args);
-        throw new Error("Provider request not available");
-      };
-    }
-  } catch {}
-  log.info("web3auth:reconfigure:fallback:replaced-provider", {
-    chainId: hex,
-    rpcTarget,
-  });
-  try {
-    const ch = await (instance as any).provider?.request?.({
-      method: "eth_chainId",
-    });
-    log.debug("web3auth:reconfigure:fallback:eth_chainId", { reported: ch });
-  } catch {}
-  return true;
-};
+// Chain-switch helpers (addWeb3AuthChain, switchWeb3AuthChain, reconfigureWeb3AuthChain)
+// were removed in favour of Option A: persist preferred chain → restart the app.
+// Web3Auth re-initializes on the preferred chain during cold boot automatically.

@@ -23,11 +23,21 @@ export const state = proxy<Entities>({
   lastReadByConversation: {},
 });
 
-// Persistence (lightweight)
-const STORAGE_KEY = 'msg-cache-v1';
-export async function hydrateFromStorage() {
+// Persistence (lightweight) — account-scoped
+const MSG_CACHE_PREFIX = 'msg-cache-v1';
+let activeMsgCacheKey: string | null = null;
+
+/** Set the active account for message cache scoping. Call on login/switch. */
+export function setMsgCacheKey(address: string | null): void {
+  activeMsgCacheKey = address ? `${MSG_CACHE_PREFIX}:${address.toLowerCase()}` : null;
+}
+
+export async function hydrateFromStorage(addressOverride?: string) {
   try {
-    const raw = await AsyncStorage.getItem(STORAGE_KEY);
+    const key = addressOverride
+      ? `${MSG_CACHE_PREFIX}:${addressOverride.toLowerCase()}`
+      : (activeMsgCacheKey || MSG_CACHE_PREFIX);
+    const raw = await AsyncStorage.getItem(key);
     if (!raw) return;
     const data = JSON.parse(raw) as Partial<Entities>;
     Object.assign(state.users, data.users || {});
@@ -50,6 +60,7 @@ subscribe(state, () => {
 
 async function persist() {
   try {
+    if (!activeMsgCacheKey) return; // do not persist without an active account key
     const data: Entities = {
       users: state.users,
       conversations: state.conversations,
@@ -58,7 +69,7 @@ async function persist() {
       typingByConversation: state.typingByConversation,
       lastReadByConversation: state.lastReadByConversation,
     };
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    await AsyncStorage.setItem(activeMsgCacheKey, JSON.stringify(data));
   } catch (e) {
     log.warn('persist failed', e);
   }

@@ -7,31 +7,8 @@ import { getAvatarUrl } from "../../libs/misc";
 import { truncateAddress } from "../../libs/strings.util";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../../theme";
-import { useUnreadCount } from "../../store/dm.state";
+import { useUnreadCount, DmContact } from "../../store/dm.state";
 import { formatRelativeFromNow } from "../../libs/date.util";
-
-export type DmContact = {
-  _id: string;
-  conversationType: "dm" | "group";
-  participants: Array<{
-    participant: {
-      _id: string;
-      username?: string;
-      address?: string;
-      displayName?: string;
-      avatarImageUrl?: string;
-    };
-  }>;
-  lastMessageAt?: string;
-  createdAt: string;
-  updatedAt: string;
-  messages?: Array<{
-    _id: string;
-    content?: string;
-    createdAt: string;
-    author?: "me" | "other";
-  }>;
-};
 
 export type ConversationItemProps = {
   item: DmContact;

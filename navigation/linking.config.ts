@@ -5,8 +5,9 @@
  * Follows the pattern used by YouTube, Twitter, and Instagram.
  * 
  * Supported URL formats:
- * - Custom scheme: dehub://stream/123
- * - Universal links: https://legacy.dehub.io/stream/123
+ * - Custom scheme: dehub://app/post/123
+ * - Universal links: https://dehub.io/app/post/123
+ * - Profile links: https://dehub.io/username
  * 
  * To add a new deep link:
  * 1. Add the path pattern to the appropriate screen in LINKING_CONFIG.screens
@@ -18,6 +19,7 @@ import { LinkingOptions, getStateFromPath } from '@react-navigation/native';
 import { ScreenNames } from './ScreenNames';
 import type { RootStackParamList } from './types';
 import { createLogger } from '../libs/logger';
+import { emitProfileDeepLink } from '../libs/deeplink.events';
 
 const logger = createLogger('DeepLink');
 
@@ -30,10 +32,8 @@ const logger = createLogger('DeepLink');
  * Add more domains as needed (e.g., 'dehub.io', 'app.dehub.io')
  */
 export const UNIVERSAL_LINK_DOMAINS = [
-  'legacy.dehub.io',
-  // Add future domains here:
-  // 'dehub.io',
-  // 'app.dehub.io',
+  'dehub.io',
+  'legacy.dehub.io', // backward compat
 ] as const;
 
 /**
@@ -67,34 +67,20 @@ export const getDeepLinkPrefix = (): string[] => {
  * Centralized for easy maintenance and documentation
  */
 export const DeepLinkPaths = {
-  // Content (ACTIVE)
-  STREAM: 'stream/:videoId',
-  FEED: 'feeds/:postId',
-  
-  // TODO: Uncomment when ready to enable
-  // // Live
-  // LIVE: 'live/:streamId',
-  // 
-  // // Social
-  // PROFILE: 'profile/:username',
-  // USER: 'u/:username', // Short alias
-  // 
-  // // Notifications
-  // NOTIFICATIONS: 'notifications',
-  // 
-  // // Search
-  // SEARCH: 'search',
-  // SEARCH_QUERY: 'search/:query',
-  // 
-  // // Settings
-  // SETTINGS: 'settings',
-  // 
-  // // Auth (for magic links, invites, etc.)
-  // INVITE: 'invite/:code',
-  // 
-  // // DMs
-  // CHAT: 'chat/:recipientId',
-  // MESSAGES: 'messages',
+  // Content — dehub.io/app/post/:tokenId
+  POST: 'app/post/:tokenId',
+
+  // Legacy content paths (backward compat)
+  LEGACY_STREAM: 'stream/:videoId',
+  LEGACY_FEED: 'feeds/:postId',
+
+  // Profile — dehub.io/:username
+  PROFILE: ':username',
+
+  // App sections — dehub.io/app/...
+  NOTIFICATIONS: 'app/notifications',
+  LEADERBOARD: 'app/leaderboard',
+  MESSAGES: 'app/messages',
 } as const;
 
 // =============================================================================
@@ -120,84 +106,46 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
         // Nested screens within AppNavigator
         screens: {
           // -------------------------------------------------------------------
-          // Video Player
-          // URL: legacy.dehub.io/stream/abc123
+          // Post resolver (detects video vs feed and redirects)
+          // URL: dehub.io/app/post/:tokenId  (also handles ?c=commentId)
+          // -------------------------------------------------------------------
+          [ScreenNames.PostResolver]: {
+            path: DeepLinkPaths.POST,
+            parse: {
+              tokenId: (tokenId: string) => tokenId,
+            },
+          },
+
+          // -------------------------------------------------------------------
+          // Legacy: Video Player  (stream/:videoId)
+          // Kept for backward compatibility with old shared links
+          // Legacy /feeds/:postId is handled via getStateFromPath redirect
           // -------------------------------------------------------------------
           [ScreenNames.VideoPlayer]: {
-            path: DeepLinkPaths.STREAM,
+            path: DeepLinkPaths.LEGACY_STREAM,
             parse: {
               videoId: (videoId: string) => videoId,
             },
           },
-          
+
           // -------------------------------------------------------------------
-          // Feed Detail
-          // URL: legacy.dehub.io/feeds/post123
+          // Notifications — dehub.io/app/notifications
           // -------------------------------------------------------------------
-          [ScreenNames.FeedDetail]: {
-            path: DeepLinkPaths.FEED,
-            parse: {
-              postId: (postId: string) => postId,
+          [ScreenNames.Notifications]: DeepLinkPaths.NOTIFICATIONS,
+
+          // -------------------------------------------------------------------
+          // Leaderboard — dehub.io/app/leaderboard
+          // -------------------------------------------------------------------
+          [ScreenNames.Leaderboard]: DeepLinkPaths.LEADERBOARD,
+
+          // -------------------------------------------------------------------
+          // Messages (DM list) — dehub.io/app/messages
+          // -------------------------------------------------------------------
+          [ScreenNames.Root]: {
+            screens: {
+              [ScreenNames.DM]: DeepLinkPaths.MESSAGES,
             },
           },
-          
-          // TODO: Uncomment when ready to enable these deep links
-          // // -------------------------------------------------------------------
-          // // Live Viewer
-          // // URL: legacy.dehub.io/live/stream123
-          // // -------------------------------------------------------------------
-          // [ScreenNames.LiveViewer]: {
-          //   path: DeepLinkPaths.LIVE,
-          //   parse: {
-          //     streamId: (streamId: string) => streamId,
-          //   },
-          // },
-          // 
-          // // -------------------------------------------------------------------
-          // // Notifications
-          // // URL: legacy.dehub.io/notifications
-          // // -------------------------------------------------------------------
-          // [ScreenNames.Notifications]: DeepLinkPaths.NOTIFICATIONS,
-          // 
-          // // -------------------------------------------------------------------
-          // // Search
-          // // URL: legacy.dehub.io/search or legacy.dehub.io/search/query
-          // // -------------------------------------------------------------------
-          // [ScreenNames.Search]: {
-          //   path: DeepLinkPaths.SEARCH_QUERY,
-          //   parse: {
-          //     query: (query: string) => decodeURIComponent(query),
-          //   },
-          // },
-          // 
-          // // -------------------------------------------------------------------
-          // // Chat / DM
-          // // URL: legacy.dehub.io/chat/user123
-          // // -------------------------------------------------------------------
-          // [ScreenNames.Chat]: {
-          //   path: DeepLinkPaths.CHAT,
-          //   parse: {
-          //     recipientId: (recipientId: string) => recipientId,
-          //   },
-          // },
-          // 
-          // // -------------------------------------------------------------------
-          // // Settings
-          // // URL: legacy.dehub.io/settings
-          // // -------------------------------------------------------------------
-          // [ScreenNames.AccountSettings]: DeepLinkPaths.SETTINGS,
-          // 
-          // // -------------------------------------------------------------------
-          // // Root Tab Navigator (Home, Feed, DM, Profile tabs)
-          // // -------------------------------------------------------------------
-          // [ScreenNames.Root]: {
-          //   screens: {
-          //     [ScreenNames.Home]: 'home',
-          //     [ScreenNames.Feed]: 'feed',
-          //     [ScreenNames.DM]: DeepLinkPaths.MESSAGES,
-          //     [ScreenNames.Profile]: 'profile',
-          //   },
-          // },
         },
       },
       
@@ -224,17 +172,55 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
   getStateFromPath: (path, options) => {
     logger.info('Processing deep link', { path });
     
-    // Normalize the path (remove leading slashes, decode URI)
+    // Normalize the path
     const normalizedPath = path.replace(/^\/+/, '');
+    const parts = normalizedPath.split('?');
+    const pathOnly = parts[0] || '';
+    const queryString = parts[1] || '';
+    const segments = pathOnly.split('/').filter(Boolean);
+
+    // ---------------------------------------------------------------
+    // Legacy redirect:  /feeds/:postId  →  /app/post/:postId
+    // ---------------------------------------------------------------
+    if (segments[0] === 'feeds' && segments[1]) {
+      const newPath = `/app/post/${segments[1]}${queryString ? `?${queryString}` : ''}`;
+      logger.info('Legacy feed redirect', { from: path, to: newPath });
+      return getStateFromPath(newPath, options);
+    }
+
+    // ---------------------------------------------------------------
+    // Profile route:  /:username  (single segment, NOT a reserved prefix)
+    // ---------------------------------------------------------------
+    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome'];
+    if (
+      segments.length === 1 &&
+      !RESERVED_PREFIXES.includes(segments[0])
+    ) {
+      const username = decodeURIComponent(segments[0]);
+      logger.info('Profile deep link', { username });
+      // Emit event so UserProfileSheetProvider can open the profile bottom sheet
+      emitProfileDeepLink(username);
+      // Navigate to Home tab
+      return {
+        routes: [
+          {
+            name: ScreenNames.App,
+            state: {
+              routes: [
+                {
+                  name: ScreenNames.Root,
+                  state: {
+                    routes: [{ name: ScreenNames.Home }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      } as any;
+    }
     
-    // Handle legacy URL patterns or redirects here
-    // Example: Redirect old URLs to new format
-    // if (normalizedPath.startsWith('video/')) {
-    //   const newPath = normalizedPath.replace('video/', 'stream/');
-    //   return getStateFromPath(newPath, options);
-    // }
-    
-    // Use default path matching
+    // Use default path matching for everything else
     const state = getStateFromPath(path, options);
     
     if (state) {
@@ -285,17 +271,21 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 // =============================================================================
 
 /**
+ * Base URL for share links (dehub.io)
+ */
+const SHARE_BASE = `https://${UNIVERSAL_LINK_DOMAINS[0]}`;
+
+/**
  * Generate a deep link URL for sharing
  * 
  * @example
- * createDeepLink('STREAM', { videoId: 'abc123' })
- * // Returns: 'https://legacy.dehub.io/stream/abc123'
+ * createDeepLink('POST', { tokenId: 'abc123' })
+ * // Returns: 'https://dehub.io/app/post/abc123'
  */
 export const createDeepLink = (
   type: keyof typeof DeepLinkPaths,
   params: Record<string, string>
 ): string => {
-  const baseDomain = UNIVERSAL_LINK_DOMAINS[0];
   let path: string = DeepLinkPaths[type];
   
   // Replace path parameters
@@ -303,18 +293,26 @@ export const createDeepLink = (
     path = path.replace(`:${key}`, encodeURIComponent(value));
   });
   
-  return `https://${baseDomain}/${path}`;
+  return `${SHARE_BASE}/${path}`;
 };
 
 /**
  * Generate share links for content
  */
 export const ShareLinks = {
-  video: (videoId: string) => createDeepLink('STREAM', { videoId }),
-  feed: (postId: string) => createDeepLink('FEED', { postId }),
-  // TODO: Uncomment when ready
-  // live: (streamId: string) => createDeepLink('LIVE', { streamId }),
-  // profile: (username: string) => createDeepLink('PROFILE', { username }),
+  /** Feed post or video — dehub.io/app/post/:tokenId */
+  post: (tokenId: string | number) => `${SHARE_BASE}/app/post/${encodeURIComponent(String(tokenId))}`,
+  /** Profile — dehub.io/:username */
+  profile: (username: string) => `${SHARE_BASE}/${encodeURIComponent(username)}`,
+  /** Comment on a post — dehub.io/app/post/:tokenId?c=commentId */
+  comment: (tokenId: string | number, commentId: string | number) =>
+    `${SHARE_BASE}/app/post/${encodeURIComponent(String(tokenId))}?c=${encodeURIComponent(String(commentId))}`,
+  /** Notifications */
+  notifications: () => `${SHARE_BASE}/app/notifications`,
+  /** Leaderboard */
+  leaderboard: () => `${SHARE_BASE}/app/leaderboard`,
+  /** Messages */
+  messages: () => `${SHARE_BASE}/app/messages`,
 };
 
 /**
@@ -330,29 +328,47 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
     }
     
     const pathParts = parsed.path.split('/').filter(Boolean);
+    const qp = (parsed.queryParams || {}) as Record<string, string>;
     
-    // Match against known patterns
+    // New canonical:  /app/post/:tokenId
+    if (pathParts[0] === 'app' && pathParts[1] === 'post' && pathParts[2]) {
+      return { type: 'post', params: { tokenId: pathParts[2], ...qp } };
+    }
+
+    // /app/notifications
+    if (pathParts[0] === 'app' && pathParts[1] === 'notifications') {
+      return { type: 'notifications', params: qp };
+    }
+
+    // /app/leaderboard
+    if (pathParts[0] === 'app' && pathParts[1] === 'leaderboard') {
+      return { type: 'leaderboard', params: qp };
+    }
+
+    // /app/messages
+    if (pathParts[0] === 'app' && pathParts[1] === 'messages') {
+      return { type: 'messages', params: qp };
+    }
+
+    // Legacy: /stream/:videoId
     if (pathParts[0] === 'stream' && pathParts[1]) {
       return { type: 'stream', params: { videoId: pathParts[1] } };
     }
     
+    // Legacy: /feeds/:postId
     if (pathParts[0] === 'feeds' && pathParts[1]) {
       return { type: 'feed', params: { postId: pathParts[1] } };
     }
+
+    // Profile: /:username (single segment)
+    if (pathParts.length === 1 && pathParts[0] !== 'app') {
+      return { type: 'profile', params: { username: pathParts[0] } };
+    }
     
-    // TODO: Uncomment when ready
-    // if (pathParts[0] === 'live' && pathParts[1]) {
-    //   return { type: 'live', params: { streamId: pathParts[1] } };
-    // }
-    // 
-    // if (pathParts[0] === 'profile' && pathParts[1]) {
-    //   return { type: 'profile', params: { username: pathParts[1] } };
-    // }
-    
-    // Query params
+    // Fallback
     return {
       type: pathParts[0] || 'unknown',
-      params: parsed.queryParams as Record<string, string> || {},
+      params: qp,
     };
   } catch (error) {
     logger.error('Failed to parse deep link', { url, error });

@@ -110,13 +110,13 @@ const DraftItem: React.FC<DraftItemProps> = React.memo(
 // ── Screen ─────────────────────────────────────────────────
 
 const DraftsScreen: React.FC = () => {
-  const { isSignedIn, needsUsername } = useAuth();
+  const { isSignedIn, needsUsername, user: authUser } = useAuth() as any;
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 
   const nav = useNavigation<any>();
   const insets = useSafeAreaInsets();
-  const { drafts, loading, reload, deleteDraft } = useDrafts();
+  const { drafts, loading, reload, deleteDraft } = useDrafts(authUser?.address);
 
   // Refresh when screen comes into focus
   useFocusEffect(

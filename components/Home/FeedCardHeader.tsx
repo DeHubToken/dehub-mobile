@@ -70,35 +70,36 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           />
         </TouchableOpacity>
         <View className="flex-1 min-w-0">
-          {/* Display name as main text */}
-          <Text
-            className="text-base font-bold text-theme-neutrals-100 mr-2"
-            numberOfLines={1}
-            ellipsizeMode="tail"
-            onPress={onUserPress}
-          >
-            {displayName}
-          </Text>
-          {/* @username + badge */}
-          <View className="flex-row items-center gap-1 mt-0.5">
-            {username ? (
-              <Text
-                className="text-[10px] text-theme-neutrals-300"
-                numberOfLines={1}
-                ellipsizeMode="tail"
-                onPress={onUserPress}
-              >
-                @{username}
-              </Text>
-            ) : null}
-            <TouchableOpacity activeOpacity={0.7} onPress={onUserPress}>
+          {/* Display name + badge */}
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text
+              className="text-base font-bold text-theme-neutrals-100"
+              numberOfLines={1}
+              ellipsizeMode="tail"
+              onPress={onUserPress}
+              style={{ flexShrink: 1 }}
+            >
+              {displayName}
+            </Text>
+            <TouchableOpacity activeOpacity={0.7} onPress={onUserPress} style={{ marginLeft: 4, flexShrink: 0 }}>
               {badgeImage ? (
-                <Image source={badgeImage} className="w-3 h-3" resizeMode="contain" />
+                <Image source={badgeImage} style={{ width: 12, height: 12 }} resizeMode="contain" />
               ) : (
-                <Ionicons name={badgeIcon as any} size={10} color="gold" />
+                <Ionicons name={badgeIcon as any} size={12} color="gold" />
               )}
             </TouchableOpacity>
           </View>
+          {/* @username */}
+          {username ? (
+            <Text
+              className="text-[10px] text-theme-neutrals-300 mt-0.5"
+              numberOfLines={1}
+              ellipsizeMode="tail"
+              onPress={onUserPress}
+            >
+              @{username}
+            </Text>
+          ) : null}
         </View>
       </View>
       

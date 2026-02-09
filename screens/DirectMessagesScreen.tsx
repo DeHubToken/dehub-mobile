@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import {
   FlatList,
-  Modal,
   RefreshControl,
   Text,
   TouchableOpacity,
@@ -22,56 +21,17 @@ import { User, useAuth } from "../context/AuthContext";
 import { truncateAddress } from "../libs/strings.util";
 import { toastInfo } from "../libs/toast";
 import { useDM } from "../hooks/useDM";
-import { useUnreadCount } from "../store/dm.state";
-import Avatar from "../components/common/Avatar";
-import { getAvatarUrl } from "../libs/misc";
-import { theme } from "../theme";
-import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { useGateToHome } from "../hooks/useGateToHome";
+import { DmContact } from "../store/dm.state";
 import AccentButtonGradient from "../components/ui/AccentButtonGradient";
-
-type DmContact = {
-  _id: string;
-  conversationType: "dm" | "group";
-  participants: Array<{
-    participant: {
-      _id: string;
-      username?: string;
-      address?: string;
-      displayName?: string;
-      avatarImageUrl?: string;
-    };
-  }>;
-  lastMessageAt?: string;
-  createdAt: string;
-  updatedAt: string;
-  messages?: Array<{
-    _id: string;
-    content?: string;
-    createdAt: string;
-    author?: "me" | "other";
-  }>;
-};
-
-const formatRelativeTime = (ts: number): string => {
-  const diff = Math.max(0, Date.now() - ts);
-  const m = Math.floor(diff / 60000);
-  if (m < 1) return "now";
-  if (m < 60) return `${m}m`;
-  const h = Math.floor(m / 60);
-  if (h < 24) return `${h}h`;
-  const { isSignedIn, needsUsername } = useAuth();
-  const allow = isSignedIn && !needsUsername;
-  useGateToHome(allow);
-  const d = Math.floor(h / 24);
-  return `${d}d`;
-};
-
-// Settings menu and conversation item extracted into components/DM
 
 const DirectMessagesScreen: React.FC = () => {
   const navigation = useNavigation<any>();
-  const { user } = useAuth();
+  const { user, isSignedIn, needsUsername } = useAuth();
+
+  // Gate: redirect to Home if not signed in or missing username
+  const allow = isSignedIn && !needsUsername;
+  useGateToHome(allow);
   const { conversations, contactsLoading, refreshContacts } = useDM();
   const [query, setQuery] = useState<string>("");
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
@@ -189,7 +149,7 @@ const DirectMessagesScreen: React.FC = () => {
       }
       setNewDmVisible(false);
     },
-    [navigation, conversations]
+    [navigation, conversations, user]
   );
 
   const RightHeader = useMemo(
@@ -250,8 +210,7 @@ const DirectMessagesScreen: React.FC = () => {
           canGoBack={false}
         />
 
-        <View className="px-4 mt-2">
-          {/* <DMSocketTest className="mb-3" /> */}
+        <View className="px-4 mt-3 mb-1">
           {hasConversations ? (
             <DMSearchBox
               value={query}

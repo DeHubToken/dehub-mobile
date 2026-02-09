@@ -134,7 +134,8 @@ export function useAppUpdate() {
   }, [updateInfo.isRequired, dismissUpdate]);
 
   useEffect(() => {
-    // Always check for updates on mount to catch forced updates
+    // Only check for updates in production builds
+    if (__DEV__) return;
     checkForUpdates(false);
   }, [checkForUpdates]);
 
