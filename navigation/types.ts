@@ -67,8 +67,15 @@ export type AppStackParamList = {
   [ScreenNames.Notifications]: undefined;
   [ScreenNames.NotificationSettings]: undefined;
   [ScreenNames.Feed]: undefined;
+  [ScreenNames.PostResolver]: {
+    tokenId?: string;
+    postId?: string;
+    commentId?: string;
+  };
   [ScreenNames.FeedDetail]: {
-    postId: string;
+    postId?: string;
+    tokenId?: string;
+    commentId?: string;
   };
   [ScreenNames.ImageViewer]: {
     imageUrl: string;

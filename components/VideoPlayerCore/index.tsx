@@ -271,6 +271,19 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     }
   }, [fullscreen]);
 
+  // Rotate to portrait while staying in fullscreen mode (like YouTube)
+  const handleRotateToPortrait = useCallback(async () => {
+    try {
+      setFullscreen(false);
+      StatusBar.setHidden(false);
+      await ScreenOrientation.lockAsync(
+        ScreenOrientation.OrientationLock.PORTRAIT_UP
+      ).catch(() => {});
+    } catch (error) {
+      logger.warn('[VideoPlayerCore] Rotate to portrait error:', error);
+    }
+  }, []);
+
   // Close handler - ensure portrait orientation and stop playback
   const handleClosePress = useCallback(() => {
     // Stop playback immediately to prevent lingering audio
@@ -533,6 +546,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
             onClose={handleClosePress}
             onMute={toggleMute}
             onFullscreen={toggleFullscreen}
+            onRotateToPortrait={handleRotateToPortrait}
             isMuted={isMuted}
             fullscreen={fullscreen}
             title={title}

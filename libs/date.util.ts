@@ -82,6 +82,9 @@ export function formatNotificationDate(isoDateString: Date | string) {
  * - 1 min ago / 2 mins ago
  * - 1 hour ago / 3 hours ago
  * - 1 day ago / 5 days ago
+ * - 1 week ago / 3 weeks ago
+ * - 1 month ago / 6 months ago
+ * - 1 year ago / 3 years ago
  */
 export function formatRelativeFromNow(input?: string | number | Date | null): string {
   if (!input) return 'now';
@@ -95,13 +98,23 @@ export function formatRelativeFromNow(input?: string | number | Date | null): st
   const hours = Math.floor(minutes / 60);
   if (hours < 24) return hours === 1 ? '1 hour ago' : `${hours} hours ago`;
   const days = Math.floor(hours / 24);
-  return days === 1 ? '1 day ago' : `${days} days ago`;
+  if (days < 7) return days === 1 ? '1 day ago' : `${days} days ago`;
+  const weeks = Math.floor(days / 7);
+  if (weeks < 5) return weeks === 1 ? '1 week ago' : `${weeks} weeks ago`;
+  const months = Math.floor(days / 30);
+  if (months < 12) return months === 1 ? '1 month ago' : `${months} months ago`;
+  const years = Math.floor(days / 365);
+  return years === 1 ? '1 year ago' : `${years} years ago`;
 }
 
 /**
- * Smart chat timestamp:
- * - For messages newer than `thresholdHours` (default 6h), show relative (e.g., "45 mins ago", "2 hours ago").
- * - For older messages, show absolute local time in h:mm am/pm (e.g., "4:23 am").
+ * Smart chat timestamp for MessageBubble long-press:
+ * - For messages newer than `thresholdHours` (default 6h), show relative (e.g., "45 mins ago").
+ * - Same day (but older than threshold): show time only (e.g., "4:23 PM").
+ * - Yesterday: "4:23 PM, Yesterday".
+ * - Within 7 days: "4:23 PM, Wed".
+ * - Same year: "4:23 PM, Feb 9".
+ * - Different year: "4:23 PM, Feb 9, 2024".
  */
 export function formatChatTimeSmart(
   input?: string | number | Date | null,
@@ -111,7 +124,8 @@ export function formatChatTimeSmart(
   const d = input instanceof Date ? input : new Date(input);
   const t = d.getTime();
   if (!Number.isFinite(t)) return 'now';
-  const diffMs = Date.now() - t;
+  const now = new Date();
+  const diffMs = now.getTime() - t;
   const thresholdMs = Math.max(0, thresholdHours) * 3600 * 1000;
   if (diffMs < thresholdMs) {
     return formatRelativeFromNow(d);
@@ -122,7 +136,28 @@ export function formatChatTimeSmart(
   const ampm = hh >= 12 ? 'PM' : 'AM';
   const h12 = hh % 12 === 0 ? 12 : hh % 12;
   const mmStr = mm < 10 ? `0${mm}` : String(mm);
-  return `${h12}:${mmStr} ${ampm}`;
+  const timeStr = `${h12}:${mmStr} ${ampm}`;
+  // Same calendar day → just time
+  const sameDay = d.getDate() === now.getDate() && d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+  if (sameDay) return timeStr;
+  // Yesterday
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+  const isYesterday = d.getDate() === yesterday.getDate() && d.getMonth() === yesterday.getMonth() && d.getFullYear() === yesterday.getFullYear();
+  if (isYesterday) return `${timeStr}, Yesterday`;
+  // Within last 7 days → show day name
+  const diffDays = Math.floor(diffMs / 86400000);
+  if (diffDays < 7) {
+    const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][d.getDay()];
+    return `${timeStr}, ${dayName}`;
+  }
+  // Same year → show month & day
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  if (d.getFullYear() === now.getFullYear()) {
+    return `${timeStr}, ${monthNames[d.getMonth()]} ${d.getDate()}`;
+  }
+  // Different year → show full date
+  return `${timeStr}, ${monthNames[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
 }
 export const DateUtil = { secondsToHMMSS, msToHHMMSS, formatJoinedDate, formatNotificationDate, formatRelativeFromNow, formatChatTimeSmart };
 export default DateUtil;

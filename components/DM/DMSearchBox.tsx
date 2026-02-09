@@ -13,13 +13,13 @@ export type DMSearchBoxProps = {
 const DMSearchBox: React.FC<DMSearchBoxProps> = ({ value, onChangeText, onClear, placeholder = 'Search', className }) => {
   return (
     <View className={className}>
-      <View className="flex-row items-center bg-[#1F2124] rounded-full pl-5 pr-2 py-2 h-14">
+      <View className="flex-row items-center bg-[#1F2124] rounded-full  pl-5 p-2  h-14">
         <TextInput
           value={value}
           onChangeText={onChangeText}
           placeholder={placeholder}
           placeholderTextColor="#9CA3AF"
-          className="flex-1 text-theme-neutrals-100 pr-3 text-[16px]"
+          className="flex-1 items-center py-2 text-theme-neutrals-100 pr-3 text-[16px]"
           returnKeyType="search"
         />
         {value ? (

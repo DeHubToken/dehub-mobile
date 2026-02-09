@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useRef } from "react";
-import { View, Text, Image, TouchableOpacity, Animated, Linking } from "react-native";
+import { View, Text, Image, TouchableOpacity, Animated } from "react-native";
 import env from "../../config/env"; // retained if used elsewhere
 import VideoPreview from "./VideoPreview";
 import { Ionicons } from "@expo/vector-icons";
@@ -24,7 +24,8 @@ import {
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import { voteOnNFT } from "../../services/nft.service";
 import { savePost } from "../../services/feed.service";
-import { LEGACY_WEBSITE_LINK } from "../../config";
+import { WEBSITE_LINK } from "../../config";
+import { getTransactionLink, openInApp } from "../../libs/links.utils";
 import { FeedCardHeader } from "./FeedCardHeader";
 import { FeedCaption } from "./FeedCaption";
 import { CommentBottomSheet } from "../Comments";
@@ -304,7 +305,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const handleSharePress = useCallback(() => {
     bounceAnimation(shareScale);
     if (tokenId == null) return;
-    const url = `${LEGACY_WEBSITE_LINK || ""}/stream/${tokenId}`;
+    const url = `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
     const message = `Check out this video ${url}`;
     try {
       shareProfile(url, message);
@@ -321,11 +322,8 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const handleInfoPress = useCallback(() => {
     bounceAnimation(infoScale);
     if (mintTxHash) {
-      // Open transaction on block explorer
-      const explorerUrl = chainId === 8453
-        ? `https://basescan.org/tx/${mintTxHash}`
-        : `https://etherscan.io/tx/${mintTxHash}`;
-      Linking.openURL(explorerUrl);
+      const url = getTransactionLink(chainId, mintTxHash);
+      if (url) openInApp(url);
     }
   }, [mintTxHash, chainId, infoScale, bounceAnimation]);
   
@@ -419,8 +417,8 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
 
       {/* Title, Description & Categories */}
       <FeedCaption
-        title={title}
-        description={description}
+        title={title || undefined}
+        description={description || undefined}
         categories={categories}
         onCategoryPress={onCategorySelect}
         showCategories={false}
@@ -441,7 +439,9 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
             const weeks = Math.floor(days / 7);
             if (weeks < 4) return `${weeks}w`;
             const months = Math.floor(days / 30);
-            return `${months}mo`;
+            if (months < 12) return `${months}mo`;
+            const years = Math.floor(days / 365);
+            return `${years}y`;
           })()}
         </Text>
         <Text className="text-xs text-theme-neutrals-500">·</Text>

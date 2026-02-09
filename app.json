@@ -27,6 +27,7 @@
       "bundleIdentifier": "io.dehub.mobile",
       "icon": "./assets/AppIcons/appstore.png",
       "associatedDomains": [
+        "applinks:dehub.io",
         "applinks:legacy.dehub.io"
       ],
       "infoPlist": {
@@ -58,6 +59,11 @@
           "action": "VIEW",
           "autoVerify": true,
           "data": [
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/app"
+            },
             {
               "scheme": "https",
               "host": "legacy.dehub.io",

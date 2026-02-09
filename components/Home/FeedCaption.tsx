@@ -2,10 +2,61 @@
  * FeedCaption - Instagram-style expandable caption with hashtag categories
  * 
  * Shows title, description (max 2 lines with "see more"), and clickable category hashtags.
+ * Detects URLs in text and renders them as blue, tappable links opened in-app.
  */
-import React, { memo, useState, useCallback } from "react";
+import React, { memo, useState, useCallback, useMemo } from "react";
 import { View, Text, TouchableOpacity, NativeSyntheticEvent, TextLayoutEventData } from "react-native";
+import { openInApp } from "../../libs/links.utils";
 
+// ── Link parsing helpers ────────────────────────────────────
+type Segment =
+  | { type: "text"; value: string }
+  | { type: "link"; value: string; url: string };
+
+const ensureUrl = (raw: string): string => {
+  const trimmed = (raw || "").trim();
+  if (!trimmed) return "";
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+};
+
+const parseTextToSegments = (input: string): Segment[] => {
+  if (!input) return [];
+  const urlRegex = /\b((?:https?:\/\/|www\.)[^\s]+|(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/[^\s]*)?)/gi;
+  const matches = Array.from(input.matchAll(urlRegex));
+  if (matches.length === 0) return [{ type: "text", value: input }];
+
+  const segments: Segment[] = [];
+  let cursor = 0;
+
+  for (const m of matches) {
+    let value = m[0];
+    const index = m.index ?? 0;
+    if (index > cursor) {
+      segments.push({ type: "text", value: input.slice(cursor, index) });
+    }
+    // Strip trailing punctuation from link
+    let trailing = "";
+    while (value.length > 0 && /[\]\)\}.,!?;:]+$/.test(value)) {
+      trailing = value.slice(-1) + trailing;
+      value = value.slice(0, -1);
+    }
+    const url = ensureUrl(value);
+    if (url) {
+      segments.push({ type: "link", value, url });
+    } else {
+      segments.push({ type: "text", value });
+    }
+    if (trailing) segments.push({ type: "text", value: trailing });
+    cursor = index + m[0].length;
+  }
+  if (cursor < input.length) {
+    segments.push({ type: "text", value: input.slice(cursor) });
+  }
+  return segments;
+};
+
+// ── Component ───────────────────────────────────────────────
 interface FeedCaptionProps {
   title?: string;
   description?: string;
@@ -31,15 +82,11 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   const [showSeeMore, setShowSeeMore] = useState(false);
 
   const handleTextLayout = useCallback((e: NativeSyntheticEvent<TextLayoutEventData>) => {
-    // Don't show "see more" if fullContent is enabled
     if (fullContent) return;
-    // Check if text was truncated (more lines than max)
     const { lines } = e.nativeEvent;
     if (!expanded && lines.length >= maxLines) {
-      // Check if the last line was truncated
       const lastLine = lines[lines.length - 1];
       if (lastLine && lines.length === maxLines) {
-        // Text might be truncated, show see more
         setShowSeeMore(true);
       }
     }
@@ -53,12 +100,39 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
     onCategoryPress?.(cat);
   }, [onCategoryPress]);
 
+  const handleOpenLink = useCallback((url: string) => {
+    openInApp(url);
+  }, []);
+
+  // Parse links in title & description
+  const titleSegments = useMemo(() => parseTextToSegments(title || ""), [title]);
+  const descSegments = useMemo(() => parseTextToSegments(description || ""), [description]);
+
+  const renderSegments = useCallback(
+    (segments: Segment[], keyPrefix: string) =>
+      segments.map((seg, idx) => {
+        if (seg.type === "link") {
+          return (
+            <Text
+              key={`${keyPrefix}-${idx}`}
+              className="text-blue-400"
+              onPress={() => handleOpenLink(seg.url)}
+              suppressHighlighting
+            >
+              {seg.value}
+            </Text>
+          );
+        }
+        return <Text key={`${keyPrefix}-${idx}`}>{seg.value}</Text>;
+      }),
+    [handleOpenLink],
+  );
+
   // Build the caption text
   const hasTitle = !!title?.trim();
   const hasDescription = !!description?.trim();
   const hasCategories = showCategories && categories && categories.length > 0;
 
-  // If no content, don't render
   if (!hasTitle && !hasDescription && !hasCategories) {
     return null;
   }
@@ -72,7 +146,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
           numberOfLines={fullContent ? undefined : 2}
           ellipsizeMode="tail"
         >
-          {title}
+          {renderSegments(titleSegments, "t")}
         </Text>
       )}
 
@@ -85,7 +159,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
             ellipsizeMode="tail"
             onTextLayout={handleTextLayout}
           >
-            {description}
+            {renderSegments(descSegments, "d")}
           </Text>
           {showSeeMore && !fullContent && (
             <TouchableOpacity onPress={toggleExpanded} activeOpacity={0.7}>

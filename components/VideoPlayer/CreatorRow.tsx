@@ -16,7 +16,7 @@ export type Creator = {
   address?: string;
   walletAddress?: string;
   avatarImageUrl?: string;
-  followers?: string[];
+  followers?: string[] | number;
   stakedDHB?: number | string;
 } | null;
 
@@ -91,7 +91,12 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
   ]);
 
   const followerCount = useMemo(
-    () => (Array.isArray(creator?.followers) ? creator!.followers!.length : 0),
+    () =>
+      typeof creator?.followers === "number"
+        ? creator.followers
+        : Array.isArray(creator?.followers)
+          ? creator!.followers!.length
+          : 0,
     [creator?.followers]
   );
   const stakedDHB = useMemo(() => {

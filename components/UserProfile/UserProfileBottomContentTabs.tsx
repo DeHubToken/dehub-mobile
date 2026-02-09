@@ -77,6 +77,7 @@ const UserProfileBottomContentTabs: React.FC<
         postType: "all",
         sortBy: "createdAt",
         sortOrder: "desc",
+        status: "minted",
         page: page + 1, // /feed uses 1-indexed pages
         limit,
       });

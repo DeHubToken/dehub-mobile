@@ -3,8 +3,10 @@ import { View, Text, ActivityIndicator, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import VideoPlayerCore from "../VideoPlayerCore";
 import { toastInfo } from "../../libs";
+import { formatCompactNumber } from "../../libs/numbers.util";
 import { useAuth } from "../../context/AuthContext";
 import PPVModal from "../PPV/PPVModal";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { ChainId, supportedChainIds } from "../../config/constants";
@@ -134,15 +136,18 @@ const VideoArea: React.FC<VideoAreaProps> = ({
         >
           Sign in to view this live.
         </Text>
-        <TouchableOpacity
-          onPress={handleSignIn}
-          className="mt-4 px-5 py-2 rounded-full bg-theme-accent"
-          activeOpacity={0.85}
-        >
-          <Text className="text-theme-neutrals-900 text-xs font-semibold">
-            Sign In
-          </Text>
-        </TouchableOpacity>
+        <AccentButtonGradient style={{ marginTop: 16 }}>
+          <TouchableOpacity
+            onPress={handleSignIn}
+            className="px-5 py-2"
+            style={{ backgroundColor: 'transparent' }}
+            activeOpacity={0.85}
+          >
+            <Text className="text-white text-xs font-semibold">
+              Sign In
+            </Text>
+          </TouchableOpacity>
+        </AccentButtonGradient>
       </View>
     );
   }
@@ -157,15 +162,18 @@ const VideoArea: React.FC<VideoAreaProps> = ({
         >
           Sign in to unlock and view this video.
         </Text>
-        <TouchableOpacity
-          onPress={handleSignIn}
-          className="mt-4 px-5 py-2 rounded-full bg-theme-accent"
-          activeOpacity={0.85}
-        >
-          <Text className="text-theme-neutrals-900 text-xs font-semibold">
-            Sign In
-          </Text>
-        </TouchableOpacity>
+        <AccentButtonGradient style={{ marginTop: 16 }}>
+          <TouchableOpacity
+            onPress={handleSignIn}
+            className="px-5 py-2"
+            style={{ backgroundColor: 'transparent' }}
+            activeOpacity={0.85}
+          >
+            <Text className="text-white text-xs font-semibold">
+              Sign In
+            </Text>
+          </TouchableOpacity>
+        </AccentButtonGradient>
       </View>
     );
   }
@@ -196,20 +204,23 @@ const VideoArea: React.FC<VideoAreaProps> = ({
             className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
             numberOfLines={3}
           >
-            Please hold at least {neededAmt} {neededSymbol} to unlock.
+            Please hold at least {formatCompactNumber(neededAmt)} {neededSymbol} to unlock.
           </Text>
           <Text className="text-theme-neutrals-400 mt-2 text-[11px]">
-            Your DHB balance: {userDhbBalance}
+            Your DHB balance: {formatCompactNumber(userDhbBalance)}
           </Text>
-          <TouchableOpacity
-            onPress={() => handleTopUp(neededAmt, neededSymbol)}
-            className="mt-4 px-5 py-2 rounded-full bg-theme-accent"
-            activeOpacity={0.85}
-          >
-            <Text className="text-theme-neutrals-900 text-xs font-semibold">
-              Top Up
-            </Text>
-          </TouchableOpacity>
+          <AccentButtonGradient style={{ marginTop: 16 }}>
+            <TouchableOpacity
+              onPress={() => handleTopUp(neededAmt, neededSymbol)}
+              className="px-5 py-2"
+              style={{ backgroundColor: 'transparent' }}
+              activeOpacity={0.85}
+            >
+              <Text className="text-white text-xs font-semibold">
+                Top Up
+              </Text>
+            </TouchableOpacity>
+          </AccentButtonGradient>
         </View>
       );
     }
@@ -246,13 +257,16 @@ const VideoArea: React.FC<VideoAreaProps> = ({
             <Text className="text-theme-neutrals-400 mt-2 text-center text-xs leading-5" numberOfLines={3}>
               This content requires PPV on {requiredChainLabel || "another network"}. Go to Settings and switch to the required network to pay.
             </Text>
-            <TouchableOpacity
-              onPress={goToSettings}
-              className="mt-4 px-5 py-2 rounded-full bg-theme-accent"
-              activeOpacity={0.85}
-            >
-              <Text className="text-theme-neutrals-900 text-xs font-semibold">Open Settings</Text>
-            </TouchableOpacity>
+            <AccentButtonGradient style={{ marginTop: 16 }}>
+              <TouchableOpacity
+                onPress={goToSettings}
+                className="px-5 py-2"
+                style={{ backgroundColor: 'transparent' }}
+                activeOpacity={0.85}
+              >
+                <Text className="text-white text-xs font-semibold">Open Settings</Text>
+              </TouchableOpacity>
+            </AccentButtonGradient>
           </View>
         );
       }
@@ -263,7 +277,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
             className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
             numberOfLines={3}
           >
-            Unlock PPV stream with {ppvAmt} {ppvSymbol}
+            Unlock PPV stream with {formatCompactNumber(ppvAmt)} {ppvSymbol}
           </Text>
           <PPVModal
             open={ppvOpen}
@@ -273,16 +287,19 @@ const VideoArea: React.FC<VideoAreaProps> = ({
             amount={ppvAmount as any}
             tokenSymbol={ppvSymbol as string}
             trigger={
-              <TouchableOpacity
-                onPress={() => handleUnlockPPV(ppvAmt, ppvSymbol)}
-                className="flex-1 flex-row items-center gap-2 max-h-9 mt-4 px-5 py-2 rounded-full bg-theme-accent"
-                activeOpacity={0.85}
-              >
-                <Ionicons name="pricetag-outline" size={16} color="#000" />
-                <Text className="text-theme-neutrals-900 text-xs font-semibold">
-                  Unlock
-                </Text>
-              </TouchableOpacity>
+              <AccentButtonGradient style={{ marginTop: 16 }}>
+                <TouchableOpacity
+                  onPress={() => handleUnlockPPV(ppvAmt, ppvSymbol)}
+                  className="flex-row items-center gap-2 px-5 py-2"
+                  style={{ backgroundColor: 'transparent' }}
+                  activeOpacity={0.85}
+                >
+                  <Ionicons name="pricetag-outline" size={16} color="#fff" />
+                  <Text className="text-white text-xs font-semibold">
+                    Unlock
+                  </Text>
+                </TouchableOpacity>
+              </AccentButtonGradient>
             }
             onSuccess={() => {}}
           />

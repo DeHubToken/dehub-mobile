@@ -14,7 +14,6 @@ import {
   Dimensions,
   NativeSyntheticEvent,
   NativeScrollEvent,
-  Linking,
 } from "react-native";
 import Reanimated, {
   useSharedValue,
@@ -40,7 +39,8 @@ import {
 import { voteOnNFT } from "../../services/nft.service";
 import { savePost } from "../../services/feed.service";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
-import { LEGACY_WEBSITE_LINK } from "../../config";
+import { WEBSITE_LINK } from "../../config";
+import { getTransactionLink, openInApp } from "../../libs/links.utils";
 import { FeedCaption } from "./FeedCaption";
 import { CommentBottomSheet } from "../Comments";
 
@@ -330,7 +330,7 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   const handleSharePress = useCallback(() => {
     bounceAnimation(shareScale);
     if (tokenId == null) return;
-    const url = `${LEGACY_WEBSITE_LINK || ""}/feeds/${tokenId}`;
+    const url = `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
     const message = `Check out this post ${url}`;
     try {
       shareProfile(url, message);
@@ -349,11 +349,8 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   const handleInfoPress = useCallback(() => {
     bounceAnimation(infoScale);
     if (mintTxHash) {
-      // Open transaction on block explorer
-      const explorerUrl = chainId === 8453
-        ? `https://basescan.org/tx/${mintTxHash}`
-        : `https://etherscan.io/tx/${mintTxHash}`;
-      Linking.openURL(explorerUrl);
+      const url = getTransactionLink(chainId, mintTxHash);
+      if (url) openInApp(url);
     }
   }, [mintTxHash, chainId, infoScale, bounceAnimation]);
   
@@ -471,11 +468,11 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
       
       {/* Title, Description & Categories */}
       <FeedCaption
-        title={fullContent ? title : (title || description.slice(0, 60) || "Post")}
-        description={fullContent ? description : (title ? description : undefined)}
+        title={title || undefined}
+        description={description || undefined}
         categories={item.category}
         onCategoryPress={onCategorySelect}
-        fullContent={fullContent}
+    fullContent={fullContent}
         showCategories={fullContent}
       />
 
@@ -495,7 +492,9 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
             const weeks = Math.floor(days / 7);
             if (weeks < 4) return `${weeks}w`;
             const months = Math.floor(days / 30);
-            return `${months}mo`;
+            if (months < 12) return `${months}mo`;
+            const years = Math.floor(days / 365);
+            return `${years}y`;
           })()}
         </Text>
         <Text className="text-xs text-theme-neutrals-500">·</Text>

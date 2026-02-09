@@ -17,7 +17,7 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useAuth } from "../../context/AuthContext";
 import { LikeCommentResult } from "../../services/nft.service";
 import type { Comment } from "../../services/nft.service";
-import { LEGACY_WEBSITE_LINK } from "../../config";
+import { WEBSITE_LINK } from "../../config";
 
 // Format time in short form: 1s, 1m, 1h, 1d, 1w, 1mo, 1y
 function formatShortTime(date: Date | string | undefined): string {
@@ -198,10 +198,9 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   // Share the content link with comment reference
   const handleShare = useCallback(async () => {
     try {
-      let shareUrl = LEGACY_WEBSITE_LINK;
+      let shareUrl = WEBSITE_LINK;
       if (tokenId) {
-        const basePath = contentType === "feed" ? "feeds" : "stream";
-        shareUrl = `${LEGACY_WEBSITE_LINK}/${basePath}/${tokenId}?c=${comment.id}`;
+        shareUrl = `${WEBSITE_LINK}/app/post/${tokenId}?c=${comment.id}`;
       }
       await Share.share({
         message: `Check this out: ${shareUrl}`,

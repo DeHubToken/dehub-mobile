@@ -70,6 +70,7 @@ export default function HomeScreen() {
       category: selectedCategory !== "All" ? selectedCategory : undefined,
       sortBy: filters.sortBy as FeedSortBy,
       sortOrder: "desc" as const,
+      status: "minted" as const,
     };
 
     // Add shuffle seed for random sort

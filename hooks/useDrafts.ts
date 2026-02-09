@@ -26,16 +26,21 @@ export interface Draft {
 
 // ── Constants ──────────────────────────────────────────────
 
-const STORAGE_KEY = "@dhb_drafts";
+const STORAGE_PREFIX = "@dhb_drafts";
+
+function draftsKey(address?: string): string {
+  if (address) return `${STORAGE_PREFIX}:${address.toLowerCase()}`;
+  return STORAGE_PREFIX;
+}
 
 // ── Helpers ────────────────────────────────────────────────
 
 const generateId = (): string =>
   `draft_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 
-const readDrafts = async (): Promise<Draft[]> => {
+const readDrafts = async (address?: string): Promise<Draft[]> => {
   try {
-    const raw = await AsyncStorage.getItem(STORAGE_KEY);
+    const raw = await AsyncStorage.getItem(draftsKey(address));
     if (!raw) return [];
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed) ? parsed : [];
@@ -44,9 +49,9 @@ const readDrafts = async (): Promise<Draft[]> => {
   }
 };
 
-const writeDrafts = async (drafts: Draft[]): Promise<void> => {
+const writeDrafts = async (drafts: Draft[], address?: string): Promise<void> => {
   try {
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(drafts));
+    await AsyncStorage.setItem(draftsKey(address), JSON.stringify(drafts));
   } catch (e) {
     console.error("[useDrafts] write error:", e);
   }
@@ -54,15 +59,15 @@ const writeDrafts = async (drafts: Draft[]): Promise<void> => {
 
 // ── Hook ───────────────────────────────────────────────────
 
-export function useDrafts() {
+export function useDrafts(address?: string) {
   const [drafts, setDrafts] = useState<Draft[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Load drafts on mount
+  // Load drafts on mount or when address changes
   useEffect(() => {
     let mounted = true;
     (async () => {
-      const data = await readDrafts();
+      const data = await readDrafts(address);
       if (mounted) {
         setDrafts(data);
         setLoading(false);
@@ -71,13 +76,13 @@ export function useDrafts() {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [address]);
 
   /** Reload drafts from storage (useful after navigating back) */
   const reload = useCallback(async () => {
-    const data = await readDrafts();
+    const data = await readDrafts(address);
     setDrafts(data);
-  }, []);
+  }, [address]);
 
   /** Save a new draft and return its id */
   const saveDraft = useCallback(
@@ -86,10 +91,10 @@ export function useDrafts() {
       const entry: Draft = { ...draft, id, createdAt: Date.now() };
       const updated = [entry, ...drafts];
       setDrafts(updated);
-      await writeDrafts(updated);
+      await writeDrafts(updated, address);
       return id;
     },
-    [drafts],
+    [drafts, address],
   );
 
   /** Delete a draft by id */
@@ -97,16 +102,16 @@ export function useDrafts() {
     async (id: string): Promise<void> => {
       const updated = drafts.filter((d) => d.id !== id);
       setDrafts(updated);
-      await writeDrafts(updated);
+      await writeDrafts(updated, address);
     },
-    [drafts],
+    [drafts, address],
   );
 
   /** Delete all drafts */
   const clearAllDrafts = useCallback(async (): Promise<void> => {
     setDrafts([]);
-    await writeDrafts([]);
-  }, []);
+    await writeDrafts([], address);
+  }, [address]);
 
   return {
     drafts,

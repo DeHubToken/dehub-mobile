@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   staticLogo: {
-    width: 200,
-    height: 80,
+    width: 280,
+    height: 60,
   },
 });

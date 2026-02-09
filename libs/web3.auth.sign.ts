@@ -5,7 +5,6 @@ import {
 import { getSigningProvider } from "./provider.registry";
 import { getAuthUser, setAuthUser } from "./auth.utils";
 import { ethers } from "ethers";
-import { parseTxError } from "./web3.util";
 import { supportedNetworks } from "../config/web3.constants";
 import { createLogger } from "./logger";
 
@@ -122,21 +121,37 @@ async function waitForDeploymentConfirmation(
  */
 async function deploySmartAccount(
   address: string,
-  rpcProvider: ethers.providers.JsonRpcProvider
+  rpcProvider: ethers.providers.JsonRpcProvider,
+  chainId: number
 ): Promise<void> {
-  log.info("deploySmartAccount:start", { address });
+  log.info("deploySmartAccount:start", { address, chainId });
   
   const aa = await getWeb3AuthProvider();
   if (!aa) {
     throw new Error("Web3Auth provider not available for deployment");
   }
+
+  // Verify the AA provider is on the expected chain
+  try {
+    const providerChain = await aa.request?.({ method: "eth_chainId" });
+    const parsedChain = typeof providerChain === "string" && providerChain.startsWith("0x")
+      ? parseInt(providerChain, 16)
+      : Number(providerChain);
+    if (!Number.isNaN(parsedChain) && parsedChain !== chainId) {
+      log.warn("deploySmartAccount:chainMismatch", {
+        expected: chainId,
+        actual: parsedChain,
+        msg: "AA provider is on a different chain than target — deployment may fail",
+      });
+    }
+  } catch {}
   
   const ethersProvider = new ethers.providers.Web3Provider(aa as any);
   const aaSigner = ethersProvider.getSigner();
   
   // Send a no-op transaction to self to trigger deployment
   // The AA bundler will deploy the smart contract wallet as part of this
-  log.debug("deploySmartAccount:sendingTx", { address });
+  log.debug("deploySmartAccount:sendingTx", { address, chainId });
   
   const tx = await aaSigner.sendTransaction({
     to: address,
@@ -144,18 +159,19 @@ async function deploySmartAccount(
     data: "0x",
   });
   
-  log.debug("deploySmartAccount:txSent", { hash: tx.hash });
+  log.debug("deploySmartAccount:txSent", { hash: tx.hash, chainId });
   
   // Wait for transaction to be mined
   const receipt = await tx.wait();
   log.info("deploySmartAccount:txMined", { 
     hash: tx.hash, 
     blockNumber: receipt.blockNumber,
-    status: receipt.status 
+    status: receipt.status,
+    chainId,
   });
   
   if (receipt.status !== 1) {
-    throw new Error("Smart account deployment transaction failed");
+    throw new Error(`Smart account deployment transaction failed on chain ${chainId}`);
   }
 }
 
@@ -196,11 +212,11 @@ export async function ensureSmartAccountDeployed(
   // Check if already deployed
   const alreadyDeployed = await isSmartAccountDeployed(address, rpcProvider);
   if (alreadyDeployed) {
-    log.info("ensureSmartAccountDeployed:alreadyDeployed", { address });
+    log.info("ensureSmartAccountDeployed:alreadyDeployed", { address, chainId });
     return;
   }
   
-  log.info("ensureSmartAccountDeployed:needsDeployment", { address });
+  log.info("ensureSmartAccountDeployed:needsDeployment", { address, chainId });
   
   // Attempt deployment with retries
   let lastError: Error | null = null;
@@ -208,30 +224,33 @@ export async function ensureSmartAccountDeployed(
     try {
       log.debug("ensureSmartAccountDeployed:attempt", { 
         attempt: attempt + 1, 
-        maxRetries: DEPLOYMENT_MAX_RETRIES 
+        maxRetries: DEPLOYMENT_MAX_RETRIES,
+        chainId,
       });
       
       // Deploy the smart account
-      await deploySmartAccount(address, rpcProvider);
+      await deploySmartAccount(address, rpcProvider, chainId);
       
       // Wait for deployment to be confirmed on-chain
       const confirmed = await waitForDeploymentConfirmation(address, rpcProvider);
       
       if (confirmed) {
-        log.info("ensureSmartAccountDeployed:success", { address });
+        log.info("ensureSmartAccountDeployed:success", { address, chainId });
         return;
       }
       
       log.warn("ensureSmartAccountDeployed:notConfirmed", { 
         address, 
-        attempt: attempt + 1 
+        attempt: attempt + 1,
+        chainId,
       });
       
     } catch (err: any) {
       lastError = err;
       log.error("ensureSmartAccountDeployed:attemptFailed", { 
         attempt: attempt + 1, 
-        error: err?.message 
+        error: err?.message,
+        chainId,
       });
       
       // Wait before retry
@@ -241,11 +260,14 @@ export async function ensureSmartAccountDeployed(
     }
   }
   
-  // All retries exhausted
-  const friendly = lastError ? parseTxError(lastError, "send") : null;
-  throw new Error(
-    friendly || lastError?.message || "Smart account deployment failed after multiple attempts"
-  );
+  // All retries exhausted — surface the error and abort.
+  const msg = lastError?.message || "Smart account deployment failed";
+  log.error("ensureSmartAccountDeployed:allRetriesFailed", {
+    address,
+    chainId,
+    lastError: msg,
+  });
+  throw new Error(`Could not deploy smart account: ${msg}`);
 }
 
 // =============================================================================

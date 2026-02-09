@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 export type UploadCategoriesSelectorProps = {
@@ -114,21 +114,28 @@ const UploadCategoriesSelector: React.FC<UploadCategoriesSelectorProps> = ({
           </TouchableOpacity>
           {open && (
             <View className="mt-1 rounded-xl bg-zinc-900 border border-zinc-800">
-              {filtered.length === 0 ? (
-                <TouchableOpacity onPress={() => onAdd(categoryQuery)} className="px-3 py-3">
-                  <Text className="text-white">Create “{categoryQuery.trim() || "…"}”</Text>
-                </TouchableOpacity>
-              ) : (
-                filtered.map((opt) => (
-                  <TouchableOpacity
-                    key={opt}
-                    onPress={() => onAdd(opt)}
-                    className="px-3 py-3 border-b border-zinc-800 last:border-b-0"
-                  >
-                    <Text className="text-white">{opt}</Text>
+              <ScrollView
+                style={{ maxHeight: 200 }}
+                keyboardShouldPersistTaps="handled"
+                nestedScrollEnabled
+                showsVerticalScrollIndicator
+              >
+                {filtered.length === 0 ? (
+                  <TouchableOpacity onPress={() => onAdd(categoryQuery)} className="px-3 py-3">
+                    <Text className="text-white">Create "{categoryQuery.trim() || "…"}"</Text>
                   </TouchableOpacity>
-                ))
-              )}
+                ) : (
+                  filtered.map((opt) => (
+                    <TouchableOpacity
+                      key={opt}
+                      onPress={() => onAdd(opt)}
+                      className="px-3 py-3 border-b border-zinc-800 last:border-b-0"
+                    >
+                      <Text className="text-white">{opt}</Text>
+                    </TouchableOpacity>
+                  ))
+                )}
+              </ScrollView>
             </View>
           )}
         </View>

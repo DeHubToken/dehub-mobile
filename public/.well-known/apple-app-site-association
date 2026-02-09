@@ -1,0 +1,27 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "TEAM_ID.io.dehub.mobile",
+        "paths": [
+          "/app/post/*",
+          "/app/notifications",
+          "/app/leaderboard",
+          "/app/messages",
+          "/stream/*",
+          "/feeds/*",
+          "NOT /dpay/*",
+          "NOT /delete-account",
+          "NOT /docs/*",
+          "/*"
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "TEAM_ID.io.dehub.mobile"
+    ]
+  }
+}

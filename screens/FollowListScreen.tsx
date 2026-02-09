@@ -242,7 +242,10 @@ const FollowListScreen: React.FC = () => {
   const isOwner = isOwnProfile || authUser?.address?.toLowerCase() === address.toLowerCase();
   const canViewList = !hideFollowers || isOwner;
 
-  const [activeTab, setActiveTab] = useState<TabKey>(initialTab as TabKey);
+  const isPrivateForTab = authUser?.isPrivate === true;
+  const [activeTab, setActiveTab] = useState<TabKey>(
+    initialTab === "requests" && !(isOwner && isPrivateForTab) ? "followers" : initialTab as TabKey
+  );
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState<SortOption>("recent");
   const [showSortPicker, setShowSortPicker] = useState(false);
@@ -264,14 +267,15 @@ const FollowListScreen: React.FC = () => {
   const [requestsLoadingMore, setRequestsLoadingMore] = useState(false);
   const [requestsCount, setRequestsCount] = useState(authUser?.pendingFollowRequests || 0);
 
-  // Build tabs dynamically — only show "Requests" for own profile
+  // Build tabs dynamically — only show "Requests" for own private profile
+  const isPrivateAccount = authUser?.isPrivate === true;
   const tabs = useMemo(() => {
     const base = [...TAB_OPTIONS];
-    if (isOwner) {
+    if (isOwner && isPrivateAccount) {
       base.push({ key: "requests", label: "Requests" });
     }
     return base;
-  }, [isOwner]);
+  }, [isOwner, isPrivateAccount]);
 
   // Debounce search
   const [debouncedSearch, setDebouncedSearch] = useState("");

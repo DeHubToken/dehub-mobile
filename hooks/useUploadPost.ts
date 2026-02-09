@@ -112,10 +112,10 @@ export function useUploadPost() {
   // ── Validation ───────────────────────────────────────
   const validate = useCallback((p: UploadPayload): ValidationResult => {
     const mode = p.pickedVideo ? "video" : p.pickedImages.length > 0 ? "images" : "text";
-    const title = p.bodyText.trim();
 
     // Video mode: title + video + thumbnail required
     if (mode === "video") {
+      const title = p.bodyText.trim();
       if (title.length < 1) return { valid: false, error: "Title is required for video posts." };
       if (!p.pickedVideo) return { valid: false, error: "A video is required." };
       if (!p.coverUri && !p.thumbnailUri) return { valid: false, error: "A thumbnail is required for video posts." };
@@ -126,9 +126,9 @@ export function useUploadPost() {
       if (p.pickedImages.length < 1) return { valid: false, error: "At least one image is required." };
     }
 
-    // Text mode: title required
+    // Text mode: description required (the title input maps to description for non-video posts)
     if (mode === "text") {
-      if (title.length < 1) return { valid: false, error: "Title is required for text posts." };
+      if (p.description.trim().length < 1) return { valid: false, error: "Write something to post." };
     }
 
     // Monetization validation (only for video)

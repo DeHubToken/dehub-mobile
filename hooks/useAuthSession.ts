@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
 import { maxStacked } from "../libs/validators.util";
 import { setHasSeenAuth, toastError } from "../libs";
 import { getAccount, getNotifications } from "../services/user.service";
@@ -39,7 +39,7 @@ type SessionDeps = {
   getSigningProvider: () => any;
   ensureProvider: () => Promise<void>;
   adoptProvider: (prov: any) => Promise<void>;
-  fetchAndStoreBalances: (u: User) => Promise<void>;
+  fetchAndStoreBalances: (u: User, chainIdOverride?: number) => Promise<void>;
   clearAuthData: () => Promise<void>;
   providerReset: () => void;
   isMountedRef: { current: boolean };
@@ -81,12 +81,17 @@ export function useAuthSession({
     } catch {}
   }, []);
 
+  // Throttle guard: skip getAccount if called within this window (ms)
+  const ENRICH_THROTTLE_MS = 15_000;
+  const lastEnrichTsRef = useRef<number>(0);
+
   const enrichAndStoreUser = useCallback(
     async (
       base: User,
       opts?: {
         refetch?: boolean;
         cacheBustImages?: boolean;
+        force?: boolean; // bypass throttle
       }
     ): Promise<User> => {
       const t0 = Date.now();
@@ -100,9 +105,12 @@ export function useAuthSession({
       let enriched = base;
       try {
         const tFetchStart = Date.now();
-        if (shouldRefetch) {
+        const sinceLastEnrich = tFetchStart - lastEnrichTsRef.current;
+        const throttled = !opts?.force && sinceLastEnrich < ENRICH_THROTTLE_MS;
+        if (shouldRefetch && !throttled) {
           const key = base.username || base.walletAddress || base.address;
           if (key) {
+            lastEnrichTsRef.current = tFetchStart;
             // Auth token is sent automatically — backend uses it for owner-only fields
             const res: any = await getAccount(key);
             const core = res?.data?.result || res?.result || null;
@@ -114,6 +122,11 @@ export function useAuthSession({
               sinceStart: Date.now() - t0,
             });
           }
+        } else if (shouldRefetch && throttled) {
+          log.debug("enrich:getAccount:throttled", {
+            sinceLastMs: sinceLastEnrich,
+            throttleMs: ENRICH_THROTTLE_MS,
+          });
         }
       } catch (e) {
         log.warn("enrich:getAccount:error", { error: e, ms: Date.now() - t0 });
@@ -324,7 +337,7 @@ export function useAuthSession({
             setBalancesLoading(true);
           } catch {}
           try {
-            fetchAndStoreBalances(enriched).catch(() => {});
+            fetchAndStoreBalances(enriched, chainId).catch(() => {});
           } catch {}
         }
       } finally {
@@ -423,6 +436,7 @@ export function useAuthSession({
       const updated = await enrichAndStoreUser(current, {
         refetch: true,
         cacheBustImages: true,
+        force: true, // bypass throttle for explicit refresh
       });
       // Also refresh on-chain balances as part of a manual refresh
       try {

@@ -32,7 +32,7 @@ import FeedImageGallery from "./FeedImageGallery";
 import FeedDescription from "./FeedDescription";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { theme } from "../../theme";
-import { LEGACY_WEBSITE_LINK } from "../../config";
+import { WEBSITE_LINK } from "../../config";
 
 export type FeedCardProps = {
   item: GetNFTsResult;
@@ -369,7 +369,7 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
     const handleSharePress = useCallback(() => {
       const tokenId = (item as any).tokenId ?? (item as any).id;
       if (tokenId == null) return;
-      const url = `${LEGACY_WEBSITE_LINK || ""}/feeds/${tokenId}`;
+      const url = `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
       const message = `Check out this post ${url}`;
       try {
         // shareProfile handles platform differences
