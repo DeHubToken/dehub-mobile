@@ -29,6 +29,7 @@ import { getTransactionLink, openInApp } from "../../libs/links.utils";
 import { FeedCardHeader } from "./FeedCardHeader";
 import { FeedCaption } from "./FeedCaption";
 import { CommentBottomSheet } from "../Comments";
+import PostOptionsMenu from "../common/PostOptionsMenu";
 
 interface VideoCardProps {
   nft: any;
@@ -143,6 +144,17 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const mintTxHash = (nft as any).mintTxHash || (nft as any).transactionHash || (nft as any).txHash;
   const chainId = (nft as any).chainId || 8453; // Default to Base
   
+  // Owner & visibility derivations
+  const isOwnerPost = !!(nft as any).isOwner;
+  const [isHidden, setIsHidden] = useState<boolean>(!!((nft as any).isHidden));
+  const [isFollowingCreator, setIsFollowingCreator] = useState<boolean>(!!((nft as any).isFollowing));
+  const [isFollowRequestPending, setIsFollowRequestPending] = useState<boolean>(!!((nft as any).isFollowRequestPending));
+  const [showOptionsMenu, setShowOptionsMenu] = useState<boolean>(false);
+  const [localTitle, setLocalTitle] = useState<string>(title);
+  const [localDescription, setLocalDescription] = useState<string>(description);
+  const [localCategories, setLocalCategories] = useState<string[]>(categories);
+  const [isDeleted, setIsDeleted] = useState<boolean>(false);
+
   // Interactive state
   const [liked, setLiked] = useState<boolean>(!!nft.isLiked);
   const [disliked, setDisliked] = useState<boolean>(!!nft.isDisliked);
@@ -326,6 +338,32 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
       if (url) openInApp(url);
     }
   }, [mintTxHash, chainId, infoScale, bounceAnimation]);
+
+  const handleOpenOptions = useCallback(() => {
+    setShowOptionsMenu(true);
+  }, []);
+
+  const handleFollowChange = useCallback((following: boolean, pending?: boolean) => {
+    setIsFollowingCreator(following);
+    setIsFollowRequestPending(!!pending);
+  }, []);
+
+  const handleVisibilityChange = useCallback((hidden: boolean) => {
+    setIsHidden(hidden);
+  }, []);
+
+  const handleEditSuccess = useCallback((data: { name?: string; description?: string; category?: string[] }) => {
+    if (data.name !== undefined) setLocalTitle(data.name);
+    if (data.description !== undefined) setLocalDescription(data.description);
+    if (data.category !== undefined) setLocalCategories(data.category);
+  }, []);
+
+  const handleDeleteSuccess = useCallback(() => {
+    setIsDeleted(true);
+  }, []);
+
+  // Don't render if deleted
+  if (isDeleted) return null;
   
   return (
     <TouchableOpacity
@@ -333,15 +371,30 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
       onPress={handlePressVideo}
       className="rounded-lg my-4 overflow-hidden"
     >
-      {/* Avatar row - moved to top */}
-      <FeedCardHeader
-        avatarUrl={typeof profilePicture === "string" ? profilePicture : undefined}
-        displayName={creator}
-        username={username}
-        badgeImage={badgeImage}
-        badgeIcon={badgeIcon}
-        onUserPress={handlePressCreator}
-      />
+      {/* Avatar row + menu trigger */}
+      <View className="flex-row items-start">
+        <View className="flex-1">
+          <FeedCardHeader
+            avatarUrl={typeof profilePicture === "string" ? profilePicture : undefined}
+            displayName={creator}
+            username={username}
+            badgeImage={badgeImage}
+            badgeIcon={badgeIcon}
+            onUserPress={handlePressCreator}
+          />
+        </View>
+        <TouchableOpacity
+          onPress={handleOpenOptions}
+          activeOpacity={0.7}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          className="flex-row items-center ml-1 mt-1"
+        >
+          {isHidden && (
+            <Ionicons name="eye-off" size={14} color="#9CA3AF" style={{ marginRight: 4 }} />
+          )}
+          <Ionicons name="ellipsis-vertical" size={18} color="#9CA3AF" />
+        </TouchableOpacity>
+      </View>
 
       <TouchableOpacity
         activeOpacity={0.85}
@@ -417,9 +470,9 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
 
       {/* Title, Description & Categories */}
       <FeedCaption
-        title={title || undefined}
-        description={description || undefined}
-        categories={categories}
+        title={localTitle || undefined}
+        description={localDescription || undefined}
+        categories={localCategories}
         onCategoryPress={onCategorySelect}
         showCategories={false}
       />
@@ -531,6 +584,26 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
         visible={showComments}
         onClose={() => setShowComments(false)}
         tokenId={tokenId}
+      />
+
+      {/* Post Options Menu */}
+      <PostOptionsMenu
+        visible={showOptionsMenu}
+        onClose={() => setShowOptionsMenu(false)}
+        tokenId={tokenId}
+        isOwner={isOwnerPost}
+        isHidden={isHidden}
+        creatorDisplayName={creator}
+        creatorIdentifier={address || username || ""}
+        isFollowing={isFollowingCreator}
+        isFollowRequestPending={isFollowRequestPending}
+        currentTitle={localTitle}
+        currentDescription={localDescription}
+        currentCategories={localCategories}
+        onFollowChange={handleFollowChange}
+        onVisibilityChange={handleVisibilityChange}
+        onEditSuccess={handleEditSuccess}
+        onDeleteSuccess={handleDeleteSuccess}
       />
     </TouchableOpacity>
   );

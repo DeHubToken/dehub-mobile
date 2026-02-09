@@ -438,3 +438,169 @@ export async function minNft(data: FormData): Promise<MintNftResponse> {
     throw e;
   }
 }
+
+// ---------------- Edit Post ----------------
+export interface EditPostInput {
+  name?: string;
+  description?: string;
+  category?: string[];
+}
+
+export interface EditPostResponse {
+  result: boolean;
+  data?: { tokenId: number; name?: string; description?: string; category?: string[] };
+}
+
+/**
+ * Edit the title, description, and/or categories of your own post.
+ * PATCH /api/nft/{tokenId}
+ */
+export async function editPost(tokenId: number | string, input: EditPostInput): Promise<EditPostResponse> {
+  if (tokenId == null) throw new Error('tokenId required');
+  try {
+    const res = await apiClient.patch<EditPostResponse>(`/nft/${encodeURIComponent(String(tokenId))}`, input, { isAuthRequired: true });
+    return res;
+  } catch (e) {
+    console.error('[NFTService] editPost error', e);
+    throw e;
+  }
+}
+
+// ---------------- Toggle Visibility ----------------
+export interface ToggleVisibilityResponse {
+  result: boolean;
+  data?: Record<string, any>;
+}
+
+/**
+ * Toggle visibility of a video (show/hide from public feeds).
+ * POST /api/token_visibility
+ */
+export async function togglePostVisibility(tokenId: number | string, isHidden: boolean): Promise<ToggleVisibilityResponse> {
+  if (tokenId == null) throw new Error('tokenId required');
+  try {
+    const res = await apiClient.post<ToggleVisibilityResponse>('/token_visibility', { id: Number(tokenId), isHidden }, { isAuthRequired: true });
+    return res;
+  } catch (e) {
+    console.error('[NFTService] togglePostVisibility error', e);
+    throw e;
+  }
+}
+
+// ---------------- Delete Post (Soft Delete) ----------------
+export interface DeletePostResponse {
+  result: boolean;
+  message?: string;
+}
+
+/**
+ * Soft deletes a video/post by setting isDeleted to true.
+ * DELETE /api/nft/{tokenId}
+ */
+export async function deletePost(tokenId: number | string): Promise<DeletePostResponse> {
+  if (tokenId == null) throw new Error('tokenId required');
+  try {
+    const res = await apiClient.delete<DeletePostResponse>(`/nft/${encodeURIComponent(String(tokenId))}`, { isAuthRequired: true });
+    return res;
+  } catch (e) {
+    console.error('[NFTService] deletePost error', e);
+    throw e;
+  }
+}
+
+// ---------------- Report Content ----------------
+export interface ReportContentInput {
+  tokenId: number | string;
+  reason: string;
+  additionalInfo?: string;
+}
+
+export interface ReportResponse {
+  result: boolean;
+  message?: string;
+}
+
+/**
+ * Report content for review.
+ * POST /api/report/content
+ */
+export async function reportContent(input: ReportContentInput): Promise<ReportResponse> {
+  if (input.tokenId == null) throw new Error('tokenId required');
+  try {
+    const res = await apiClient.post<ReportResponse>('/report/content', {
+      tokenId: Number(input.tokenId),
+      reason: input.reason,
+      additionalInfo: input.additionalInfo || '',
+    }, { isAuthRequired: true });
+    return res;
+  } catch (e) {
+    console.error('[NFTService] reportContent error', e);
+    throw e;
+  }
+}
+
+// ---------------- Report User ----------------
+export interface ReportUserInput {
+  userId: string;
+  reason: string;
+  additionalInfo?: string;
+}
+
+/**
+ * Report a user for review.
+ * POST /api/report/user
+ */
+export async function reportUser(input: ReportUserInput): Promise<ReportResponse> {
+  if (!input.userId) throw new Error('userId required');
+  try {
+    const res = await apiClient.post<ReportResponse>('/report/user', {
+      userId: input.userId,
+      reason: input.reason,
+      additionalInfo: input.additionalInfo || '',
+    }, { isAuthRequired: true });
+    return res;
+  } catch (e) {
+    console.error('[NFTService] reportUser error', e);
+    throw e;
+  }
+}
+
+// ---------------- Report Status ----------------
+export interface ReportStatusResponse {
+  hasReported: boolean;
+  reportId?: string;
+}
+
+/**
+ * Check if the current user has already reported this content.
+ * GET /api/report/content/status/:tokenId
+ */
+export async function getContentReportStatus(tokenId: number | string): Promise<ReportStatusResponse> {
+  try {
+    const res = await apiClient.get<ReportStatusResponse>(
+      `/report/content/status/${tokenId}`,
+      { isAuthRequired: true }
+    );
+    return res;
+  } catch (e) {
+    console.error('[NFTService] getContentReportStatus error', e);
+    throw e;
+  }
+}
+
+/**
+ * Check if the current user has already reported this user.
+ * GET /api/report/user/status/:userId
+ */
+export async function getUserReportStatus(userId: string): Promise<ReportStatusResponse> {
+  try {
+    const res = await apiClient.get<ReportStatusResponse>(
+      `/report/user/status/${userId}`,
+      { isAuthRequired: true }
+    );
+    return res;
+  } catch (e) {
+    console.error('[NFTService] getUserReportStatus error', e);
+    throw e;
+  }
+}

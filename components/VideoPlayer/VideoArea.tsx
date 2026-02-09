@@ -22,6 +22,7 @@ export interface VideoAreaProps {
   tokenId: number | string | undefined;
   onProgress?: (positionMs: number, durationMs: number) => void;
   isLive?: boolean;
+  onPPVSuccess?: () => void;
 }
 
 const VideoArea: React.FC<VideoAreaProps> = ({
@@ -35,6 +36,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   tokenId,
   onProgress,
   isLive,
+  onPPVSuccess,
 }) => {
   const normalizedUrl: string | null =
     effectiveVideoUrl === undefined ? null : effectiveVideoUrl;
@@ -301,7 +303,10 @@ const VideoArea: React.FC<VideoAreaProps> = ({
                 </TouchableOpacity>
               </AccentButtonGradient>
             }
-            onSuccess={() => {}}
+            onSuccess={() => {
+              setPpvOpen(false);
+              onPPVSuccess?.();
+            }}
           />
         </View>
       );

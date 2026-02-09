@@ -323,6 +323,23 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
     setShowComments(true);
   }, []);
 
+  // PPV success — re-fetch NFT so isUnlocked flips to true and video unlocks
+  const handlePPVSuccess = useCallback(async () => {
+    if (tokenId == null) return;
+    try {
+      setNftLoading(true);
+      const res: any = await getNFT(tokenId as any);
+      const payload = res?.result || res || null;
+      setNftData(payload);
+      setLikes(payload?.totalVotes?.for || 0);
+      setDislikes(payload?.totalVotes?.against || 0);
+    } catch (e) {
+      console.warn("[NormalVideoPlayer] PPV re-fetch failed", e);
+    } finally {
+      setNftLoading(false);
+    }
+  }, [tokenId]);
+
   return (
     <View className="flex-1" key="loaded-player">
       {privateError ? (
@@ -349,6 +366,7 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
         minter={nftData?.minter || nftData?.result?.minter || (minter as any)}
         tokenId={tokenId as any}
         onProgress={onProgressRecord}
+        onPPVSuccess={handlePPVSuccess}
       />
       {/* Scrollable metadata & interactions */}
       <ScrollView

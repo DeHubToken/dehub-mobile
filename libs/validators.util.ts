@@ -1,7 +1,10 @@
 // Stream / access validation utilities
-// Refactored: now exposes a React hook `getStreamAccessInfo` (alias to `useStreamAccessInfo`)
-// which internally pulls supported tokens & defaults from constants and user / chainId from AuthContext.
-// The pure computation is kept internal for testability.
+//
+// Server-first approach (YouTube / Netflix pattern):
+// - `isOwner` from API → owner always bypasses all locks
+// - `isUnlocked` from API → source of truth for PPV unlock status
+// - Lock-content uses cross-chain aggregated balance (wallet + staked) locally
+// - After on-the-spot PPV payment, caller re-fetches and the hook auto-recomputes
 
 import { useMemo } from "react";
 import { useAuth } from "../context/AuthContext";
@@ -64,7 +67,11 @@ export interface NFTMetadataLike {
   createdAt?: string | number | Date;
   streamInfo?: StreamInfoShape;
   videoUrl?: string; // direct URL for free streams
-  // any other dynamic properties ignored
+  /** Server-provided: true when the authenticated user is the content creator */
+  isOwner?: boolean;
+  /** Server-provided: true when the authenticated user has already unlocked PPV */
+  isUnlocked?: boolean;
+  [key: string]: any; // allow forward compatibility
 }
 
 // (Deprecated) Kept for backward compatibility types only. No longer used externally.
@@ -98,12 +105,15 @@ export const maxStacked = (balanceData: any): number => {
 const toArray = <T>(v: T | T[] | undefined): T[] =>
   Array.isArray(v) ? v : v === undefined ? [] : [v];
 
-// Internal pure computer. Uses imported constants.
+// ---------------------------------------------------------------------------
+// Core access computation — server-first, locally augmented
+// ---------------------------------------------------------------------------
 const computeStreamAccessInfo = (
   nftMetadata: NFTMetadataLike | null | undefined,
   userInfo: UserInfoLite | null,
   chainId: number
 ): StreamAccessResult => {
+  // No metadata → nothing to resolve
   if (!nftMetadata)
     return {
       streamStatus: null,
@@ -122,52 +132,43 @@ const computeStreamAccessInfo = (
   let ppvToken: SupportedToken | null = null;
   const info = nftMetadata.streamInfo;
 
+  // ----- 1. Owner bypass — owners always see their own content -----
+  if (nftMetadata.isOwner === true) {
+    return {
+      streamStatus,
+      lockTokenWithLockContent: null,
+      ppvToken: null,
+      playableVideoUrl: nftMetadata.videoUrl || null,
+    };
+  }
+
+  // ----- 2. Lock-content check (threshold-based, cross-chain) -----
   if (info?.isLockContent) {
-    const chainIdsRaw = info.lockContentChainIds ?? DEFAULT_CHAIN_ID;
-    const supportedChainIds = toArray(chainIdsRaw);
     streamStatus.isFree = false;
+
     if (!userInfo?.balanceData?.length) {
+      // Not signed in / no balance data → locked
       streamStatus.isLockedWithLockContent = true;
     } else {
-      //   streamStatus.isLockedWithLockContent = true;
       const targetSymbol = info.lockContentTokenSymbol || DEFAULT_TOKEN_SYMBOL;
-      let baseWalletBalance = 0;
-      let baseStaked = 0;
-      let bscStaked = 0;
-      // (Optional variables for commented alternative calculations)
-      let bscWalletBalance = 0;
+      const needed = Number(info.lockContentAmount || 0);
+
+      // Aggregate wallet + staked across ALL chains for the target token
+      let totalBalance = 0;
       userInfo.balanceData.forEach((entry) => {
-        // if (!supportedChainIds.includes(entry.chainId)) return;
         const tokenItem = supportedTokensForLockContent.find(
-          (token) =>
-            token.address.toLowerCase() === entry.tokenAddress &&
-            token.chainId === entry.chainId
+          (t) =>
+            t.address.toLowerCase() === entry.tokenAddress &&
+            t.chainId === entry.chainId
         );
         if (!tokenItem || tokenItem.symbol !== targetSymbol) return;
-        if (entry.chainId === ChainId.BASE_MAINNET) {
-          baseWalletBalance = entry.walletBalance || 0;
-          baseStaked = entry.staked || 0;
-        } else if (entry.chainId === ChainId.BSC_MAINNET) {
-          bscStaked = entry.staked || 0;
-          bscWalletBalance = entry.walletBalance || 0; // captured for alternative variants
-        }
+        totalBalance += (entry.walletBalance || 0) + (entry.staked || 0);
       });
-      // Primary rule (new one): base wallet + bsc staked
-      // const lockedTokenBalance = baseWalletBalance + bscStaked;
-      // Extra
-      const lockedTokenBalance = baseWalletBalance + bscWalletBalance + bscStaked;
-      // Primary rule (requested): base wallet + base staked + bsc staked
-      //   const lockedTokenBalance = baseWalletBalance + baseStaked + bscStaked;
-      // Alternative variant 1 (commented): base wallet + base staked only
-      // const lockedTokenBalanceBaseOnly = baseWalletBalance + baseStaked;
-      // Alternative variant 2 (commented): all four (base+bsc wallet + base+bsc staked)
-      // const lockedTokenBalanceAllFour = baseWalletBalance + baseStaked + bscWalletBalance + bscStaked;
-      const needed = Number(info.lockContentAmount || 0);
-      if (lockedTokenBalance >= needed)
-        streamStatus.isLockedWithLockContent = false;
-      else streamStatus.isLockedWithLockContent = true;
+
+      streamStatus.isLockedWithLockContent = totalBalance < needed;
     }
-    // Use active chain (from hook param) to resolve the lock token, not a hardcoded default
+
+    // Resolve lock token on the active chain for UI display
     lockTokenWithLockContent =
       supportedTokens.find(
         (t) =>
@@ -175,14 +176,19 @@ const computeStreamAccessInfo = (
           t.symbol === (info.lockContentTokenSymbol || DEFAULT_TOKEN_SYMBOL)
       ) || null;
   }
+
+  // ----- 3. PPV check — trust the server's isUnlocked flag -----
   if (info?.isPayPerView) {
     streamStatus.isFree = false;
-    const tokenIdStr = String(nftMetadata.tokenId ?? "");
-    const unlockedArray = userInfo?.unlocked || [];
-    if (!unlockedArray.includes(tokenIdStr) && !unlockedArray.includes(Number(tokenIdStr))) {
+
+    // Server says unlocked → user paid or was granted access
+    if (nftMetadata.isUnlocked === true) {
+      streamStatus.isLockedWithPPV = false;
+    } else {
       streamStatus.isLockedWithPPV = true;
     }
-    // Resolve PPV token on the active chain only (no default)
+
+    // Resolve PPV token for the payment UI
     ppvToken =
       supportedTokens.find(
         (t) =>
@@ -191,25 +197,37 @@ const computeStreamAccessInfo = (
       ) || null;
   }
 
-  const playableVideoUrl = streamStatus.isFree
-    ? nftMetadata.videoUrl || null
-    : null;
+  // ----- 4. Derive playable URL -----
+  const isPlayable =
+    !streamStatus.isLockedWithLockContent && !streamStatus.isLockedWithPPV;
+  const playableVideoUrl = isPlayable ? nftMetadata.videoUrl || null : null;
+
   return { streamStatus, lockTokenWithLockContent, ppvToken, playableVideoUrl };
 };
 
-// New hook wrapper leveraging auth context & constants
+// Hook wrapper — builds UserInfoLite from auth context, delegates to pure fn
 export const useStreamAccessInfo = (
   nftMetadata: NFTMetadataLike | null | undefined
 ): StreamAccessResult => {
   const { user, chainId } = useAuth();
   return useMemo(() => {
-    // Build userInfoLite from auth user (balanceData built from supportedTokensForLockContent)
-    const balanceData = supportedTokens.map((t) => ({
-      chainId: t.chainId,
-      tokenAddress: t.address.toLowerCase(),
-      walletBalance: (user as any)?.tokenBalances?.[t.symbol] || 0,
-      staked: (user as any)?.stakedDHB || 0,
-    }));
+    // Prefer server-provided balanceData (per-chain wallet + staked).
+    // Fall back to local tokenBalances if server data is missing.
+    const balanceData: UserBalanceEntry[] =
+      user?.balanceData?.length
+        ? user.balanceData.map((e) => ({
+            chainId: e.chainId,
+            tokenAddress: (e.tokenAddress || "").toLowerCase(),
+            walletBalance: e.walletBalance || 0,
+            staked: e.staked || 0,
+          }))
+        : supportedTokens.map((t) => ({
+            chainId: t.chainId,
+            tokenAddress: t.address.toLowerCase(),
+            walletBalance: (user as any)?.tokenBalances?.[t.symbol] || 0,
+            staked: (user as any)?.stakedDHB || 0,
+          }));
+
     const userInfo: UserInfoLite | null = user
       ? {
           walletAddress: user.walletAddress || user.address,
