@@ -222,7 +222,7 @@ async function setupAndroidChannels(): Promise<void> {
       description: 'General notifications',
       importance: Notifications.AndroidImportance.HIGH,
       vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#8b5cf6', // DeHub purple
+      lightColor: '#000000',
       sound: 'default',
     });
 
@@ -232,7 +232,7 @@ async function setupAndroidChannels(): Promise<void> {
       description: 'Notifications for likes, comments, and replies',
       importance: Notifications.AndroidImportance.HIGH,
       vibrationPattern: [0, 200],
-      lightColor: '#ef4444', // Red for hearts
+      lightColor: '#000000',
       sound: 'default',
     });
 
@@ -242,7 +242,7 @@ async function setupAndroidChannels(): Promise<void> {
       description: 'Followers, mentions, and social interactions',
       importance: Notifications.AndroidImportance.DEFAULT,
       vibrationPattern: [0, 200],
-      lightColor: '#8b5cf6', // Purple
+      lightColor: '#000000',
       sound: 'default',
     });
 
@@ -252,7 +252,7 @@ async function setupAndroidChannels(): Promise<void> {
       description: 'Tips, subscriptions, and purchase notifications',
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 100, 250],
-      lightColor: '#22c55e', // Green for money
+      lightColor: '#000000',
       sound: 'default',
     });
 
@@ -262,7 +262,7 @@ async function setupAndroidChannels(): Promise<void> {
       description: 'When creators you follow go live',
       importance: Notifications.AndroidImportance.HIGH,
       vibrationPattern: [0, 300, 100, 300],
-      lightColor: '#ef4444', // Red for live
+      lightColor: '#000000',
       sound: 'default',
     });
 
@@ -271,7 +271,7 @@ async function setupAndroidChannels(): Promise<void> {
       name: 'Content Updates',
       description: 'Milestones, content status, and moderation',
       importance: Notifications.AndroidImportance.DEFAULT,
-      lightColor: '#fbbf24', // Gold for achievements
+      lightColor: '#000000',
       sound: 'default',
     });
 
