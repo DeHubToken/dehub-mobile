@@ -79,6 +79,7 @@ export interface User {
   receivedTips?: number;
   sentTips?: number;
   address?: string; // sometimes returned as address
+  badgeBalance?: number; // backend-computed badge balance
   stakedDHB?: number;
   uploads?: number;
   followers?: number; // count of followers

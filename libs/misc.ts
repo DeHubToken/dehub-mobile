@@ -78,37 +78,45 @@ export function getImageUrlApiSimple(url: string): string {
 // Badge utilities ---------------------------------------------------------
 interface BadgeDef {
   name: string;
-  min: number;
+  min: number; // minimum holdings required to earn this badge
 }
-// Ordered ascending by min stake requirement
+
+// Ordered ascending by min threshold.
+// Each amount is the *minimum* DHB holdings required for that badge.
+// Users with < 10,000 DHB get NO badge.
 const BADGE_LEVELS: BadgeDef[] = [
-  { name: "Tortoise", min: 0 },
-  { name: "Crab", min: 100 },
-  { name: "Piranha", min: 250 },
-  { name: "Lobster", min: 500 },
-  { name: "Octopus", min: 1000 },
-  { name: "Cobra", min: 2500 },
-  { name: "Crocodite", min: 5000 },
-  { name: "Dolphin", min: 7500 },
-  { name: "Tiger Shark", min: 10000 },
-  { name: "Great White Shark", min: 15000 },
-  { name: "Killer Whale", min: 25000 },
-  { name: "Blue Whale", min: 50000 },
-  { name: "Meglodon", min: 100000 },
+  { name: "Crab", min: 10_000 },
+  { name: "Lobster", min: 25_000 },
+  { name: "Piranha", min: 50_000 },
+  { name: "Tortoise", min: 100_000 },
+  { name: "Cobra", min: 250_000 },
+  { name: "Octopus", min: 500_000 },
+  { name: "Crocodite", min: 1_000_000 },
+  { name: "Dolphin", min: 2_000_000 },
+  { name: "Tiger Shark", min: 3_000_000 },
+  { name: "Killer Whale", min: 5_000_000 },
+  { name: "Great White Shark", min: 10_000_000 },
+  { name: "Blue Whale", min: 25_000_000 },
+  { name: "Meglodon", min: 50_000_000 },
 ];
 
-export function getBadgeName(stakingAmount: number | string): string {
+/**
+ * Get badge name for a given staking/holdings amount.
+ * Returns the highest badge whose min threshold the user meets.
+ * Returns undefined if holdings < 10,000 (no badge).
+ */
+export function getBadgeName(stakingAmount: number | string): string | undefined {
   const amt =
     typeof stakingAmount === "string"
       ? parseFloat(stakingAmount)
       : stakingAmount;
-  if (!Number.isFinite(amt)) return BADGE_LEVELS[0].name;
-  let current = BADGE_LEVELS[0].name;
-  for (const b of BADGE_LEVELS) {
-    if (amt >= b.min) current = b.name;
+  if (!Number.isFinite(amt) || amt < BADGE_LEVELS[0].min) return undefined;
+  let matched: string | undefined;
+  for (const badge of BADGE_LEVELS) {
+    if (amt >= badge.min) matched = badge.name;
     else break;
   }
-  return current;
+  return matched;
 }
 
 // Preload badge images (static requires; dynamic requires not supported by Metro)
@@ -157,7 +165,28 @@ export function getBadgeUrl(
   theme: "light" | "dark" = "light"
 ): number | undefined {
   const badge = getBadgeName(stakingAmount);
-  return BADGE_IMAGES[badge];
+  return badge ? BADGE_IMAGES[badge] : undefined;
+}
+
+/**
+ * Resolve the badge balance from a user-like object.
+ * Prefers `badgeBalance` (backend-computed) over `stakedDHB` / `staked` / `minterStaked`.
+ */
+export function resolveBadgeBalance(
+  userOrItem: Record<string, any> | null | undefined
+): number {
+  if (!userOrItem) return 0;
+  // Prefer the explicit badgeBalance field from backend
+  if (typeof userOrItem.badgeBalance === "number" && userOrItem.badgeBalance > 0)
+    return userOrItem.badgeBalance;
+  // Fallback chain: stakedDHB → staked → minterStaked → balanceData max staked
+  if (typeof userOrItem.stakedDHB === "number" && userOrItem.stakedDHB > 0)
+    return userOrItem.stakedDHB;
+  if (typeof userOrItem.staked === "number" && userOrItem.staked > 0)
+    return userOrItem.staked;
+  if (typeof userOrItem.minterStaked === "number" && userOrItem.minterStaked > 0)
+    return userOrItem.minterStaked;
+  return 0;
 }
 
 /** Generic share helper.
@@ -187,6 +216,7 @@ export const Misc = {
   getVideoUrl,
   getBadgeUrl,
   getBadgeName,
+  resolveBadgeBalance,
   getDefaultBanner,
   getImageUrlApi,
   getImageUrlApiSimple,

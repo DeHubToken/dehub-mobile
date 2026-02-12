@@ -1,175 +1,164 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import {
   View,
-  Text,
   FlatList,
-  TouchableOpacity,
   RefreshControl,
   ListRenderItem,
+  ActivityIndicator,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
+import LeaderboardCategoryPills, {
+  SortCategory,
+} from "../components/Leaderboard/LeaderboardCategoryPills";
+import LeaderboardSearchBar from "../components/Leaderboard/LeaderboardSearchBar";
+import LeaderboardRowItem, {
+  LBRow,
+} from "../components/Leaderboard/LeaderboardRow";
 import LeaderboardSkeleton from "../components/Leaderboard/LeaderboardSkeleton";
 import { getLeaderboard } from "../services/leaderboard.service";
-import { formatCompactNumber } from "../libs/numbers.util";
 import { getAvatarUrl } from "../libs/misc";
-import { truncate } from "../libs/strings.util";
 import { useAuth } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { ScreenNames } from "../navigation/ScreenNames";
-import Avatar from "../components/common/Avatar";
-
-interface LBRow {
-  rank: number;
-  holder: string;
-  total: number;
-  sentTips?: number;
-  receivedTips?: number;
-  avatarUrl?: string;
-}
 
 // Approximate fixed row height for getItemLayout optimization
-const ROW_HEIGHT = 44; // padding + text + border
+const ROW_HEIGHT = 64;
 
-interface RowProps {
-  item: LBRow;
-  onPress: (holder: string) => void;
+// ─── Stable list header to prevent ScrollView remount ────────────
+interface ListHeaderContentProps {
+  sortCategory: SortCategory;
+  onCategoryChange: (cat: SortCategory) => void;
+  searchQuery: string;
+  onSearchChange: (text: string) => void;
 }
 
-const LeaderboardRow: React.FC<RowProps> = React.memo(({ item, onPress }) => {
-  return (
-    <TouchableOpacity
-      onPress={() => onPress(item.holder)}
-      activeOpacity={0.75}
-      className="flex-row justify-between items-center p-2 py-5"
-    >
-      <Text className="text-theme-neutrals-200 text-xs text-center w-8">
-        {item.rank}
-      </Text>
-      <View className="flex-row items-center w-32">
-        <Avatar uri={item.avatarUrl} size={28} className="mr-2" />
-        <Text className="text-theme-neutrals-200 text-sm" numberOfLines={1}>
-          {truncate(item.holder, 10, "..")}
-        </Text>
-      </View>
-      <Text className="text-theme-neutrals-200 text-sm text-center w-16">
-        {formatCompactNumber(item.total)}
-      </Text>
-      <Text className="text-theme-neutrals-200 text-sm text-center w-16">
-        {formatCompactNumber(item.sentTips || 0)}
-      </Text>
-      <Text className="text-theme-neutrals-200 text-sm text-center w-16">
-        {formatCompactNumber(item.receivedTips || 0)}
-      </Text>
-    </TouchableOpacity>
-  );
-});
+const ListHeaderContent = React.memo<ListHeaderContentProps>(
+  ({ sortCategory, onCategoryChange, searchQuery, onSearchChange }) => (
+    <View>
+      <LeaderboardCategoryPills active={sortCategory} onSelect={onCategoryChange} />
+      <LeaderboardSearchBar value={searchQuery} onChangeText={onSearchChange} />
+    </View>
+  )
+);
 
 const LeaderboardScreen = () => {
   const navigation = useNavigation();
   const { user: authUser } = useAuth();
   const { showUserProfile } = useUserProfileSheet();
 
-  const [baseData, setBaseData] = useState<LBRow[]>([]); // un-sorted raw data
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<LBRow[]>([]);
+  const [loading, setLoading] = useState(true); // only for initial load
   const [refreshing, setRefreshing] = useState(false);
-  const [showWorkingSkeleton, setShowWorkingSkeleton] = useState(false); // shows while sorting
-  const [sortConfig, setSortConfig] = useState<{
-    key: keyof LBRow | "sentTips" | "receivedTips";
-    direction: "asc" | "desc";
-  }>({ key: "total", direction: "desc" });
+  const [sortCategory, setSortCategory] = useState<SortCategory>("holdings");
+  const [selectedPill, setSelectedPill] = useState<SortCategory>("holdings");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [switching, setSwitching] = useState(false);
+  const hasLoadedOnce = useRef(false);
+  const pendingCategoryRef = useRef<SortCategory>("holdings");
 
-  // Fetch data (only when explicitly requested)
+  // ─── Data fetching ──────────────────────────────────────────────
   const loadData = useCallback(
-    async (sortKey: string = "total") => {
-      setLoading((prev) => prev && baseData.length === 0);
+    async (sort: SortCategory, isRefresh = false) => {
+      // Only show skeleton on very first load
+      if (!hasLoadedOnce.current && !isRefresh) setLoading(true);
       try {
-        const backendSort = sortKey === "total" ? "holdings" : sortKey;
-        const res = await getLeaderboard({ sort: backendSort });
+        const res = await getLeaderboard({ sort });
         if (res.success && res.data?.result?.byWalletBalance) {
           const rows: LBRow[] = res.data.result.byWalletBalance.map(
             (u, index) => ({
               rank: index + 1,
-              holder: u.username || u.userDisplayName || u.account,
-              total: u.total,
-              sentTips: (u as any).sentTips || (u as any).tipsGiven || 0,
-              receivedTips:
-                (u as any).receivedTips || (u as any).tipsReceived || 0,
-              avatarUrl: getAvatarUrl(
-                (u as any).avatarUrl || (u as any).avatarImageUrl
-              ),
+              account: u.account,
+              username: u.username || "",
+              displayName: u.userDisplayName || u.username || "",
+              avatarUrl: getAvatarUrl(u.avatarUrl),
+              total: u.total ?? 0,
+              sentTips: u.sentTips ?? 0,
+              receivedTips: u.receivedTips ?? 0,
+              followers: u.followers ?? 0,
+              likes: u.likes ?? 0,
             })
           );
-          setBaseData(rows);
+          // Update data and sort category together to prevent flash
+          setData(rows);
+          setSortCategory(sort);
+          hasLoadedOnce.current = true;
         }
       } finally {
         setLoading(false);
         setRefreshing(false);
+        setSwitching(false);
       }
     },
-    [baseData.length]
+    []
   );
 
+  // Initial load
   useEffect(() => {
-    loadData("total");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    loadData("holdings");
+  }, [loadData]);
 
+  // ─── Category change → re-fetch from backend ────────────────────
+  const handleCategoryChange = useCallback(
+    (cat: SortCategory) => {
+      if (cat === pendingCategoryRef.current) return;
+      pendingCategoryRef.current = cat;
+      setSelectedPill(cat); // instant visual feedback on pills
+      setSearchQuery("");
+      setSwitching(true);
+      loadData(cat);
+    },
+    [loadData]
+  );
+
+  // ─── Pull-to-refresh ────────────────────────────────────────────
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    loadData(sortConfig.key as string);
-  }, [loadData, sortConfig.key]);
+    loadData(sortCategory, true);
+  }, [loadData, sortCategory]);
 
-  // Derived & memoized sorted data; only recalculates when baseData or sortConfig changes
-  const sortedData = useMemo(() => {
-    if (!baseData.length) return baseData;
-    const copy = [...baseData];
-    const { key, direction } = sortConfig;
-    copy.sort((a, b) => {
-      const aVal = (a as any)[key] ?? 0;
-      const bVal = (b as any)[key] ?? 0;
-      if (aVal < bVal) return direction === "asc" ? -1 : 1;
-      if (aVal > bVal) return direction === "asc" ? 1 : -1;
-      return 0;
-    });
-    // Recompute rank based on displayed order without mutating base
-    return copy.map((row, idx) => ({ ...row, rank: idx + 1 }));
-  }, [baseData, sortConfig]);
+  // ─── Local search filter ────────────────────────────────────────
+  const filteredData = useMemo(() => {
+    if (!searchQuery.trim()) return data;
+    const q = searchQuery.toLowerCase();
+    return data
+      .filter(
+        (row) =>
+          row.username.toLowerCase().includes(q) ||
+          row.displayName.toLowerCase().includes(q) ||
+          row.account.toLowerCase().includes(q)
+      )
+      .map((row, idx) => ({ ...row, rank: idx + 1 }));
+  }, [data, searchQuery]);
 
-  const sortData = useCallback((key: "total" | "sentTips" | "receivedTips") => {
-    setShowWorkingSkeleton(true);
-    setSortConfig((prev) => {
-      const direction =
-        prev.key === key && prev.direction === "asc" ? "desc" : "asc";
-      return { key, direction };
-    });
-    // brief skeleton flash
-    setTimeout(() => setShowWorkingSkeleton(false), 160);
-  }, []);
-
-  // Memoized action for row press
+  // ─── Row press → navigate to profile ────────────────────────────
   const handlePressRow = useCallback(
-    (holder: string) => {
-      if (!holder) return;
-      const myUsername = authUser?.username;
-      if (myUsername && holder === myUsername) {
+    (username: string) => {
+      if (!username) return;
+      if (authUser?.username && username === authUser.username) {
         (navigation as any).navigate(ScreenNames.Profile);
         return;
       }
-      showUserProfile(holder);
+      showUserProfile(username);
     },
     [authUser?.username, navigation, showUserProfile]
   );
 
+  // ─── FlatList helpers ───────────────────────────────────────────
   const keyExtractor = useCallback(
-    (item: LBRow) => `${item.holder}-${item.rank}`,
+    (item: LBRow) => `${item.account}-${item.rank}`,
     []
   );
 
   const renderItem: ListRenderItem<LBRow> = useCallback(
-    ({ item }) => <LeaderboardRow item={item} onPress={handlePressRow} />,
-    [handlePressRow]
+    ({ item }) => (
+      <LeaderboardRowItem
+        item={item}
+        sort={sortCategory}
+        onPress={handlePressRow}
+      />
+    ),
+    [sortCategory, handlePressRow]
   );
 
   const getItemLayout = useCallback(
@@ -181,97 +170,57 @@ const LeaderboardScreen = () => {
     []
   );
 
-  const dataToRender = loading ? [] : sortedData; // avoid initial extra work during skeleton
+  // ─── List header (stable callback to avoid ScrollView remount) ─
+  const renderListHeader = useCallback(
+    () => (
+      <ListHeaderContent
+        sortCategory={selectedPill}
+        onCategoryChange={handleCategoryChange}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+      />
+    ),
+    [selectedPill, handleCategoryChange, searchQuery]
+  );
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title="Leaderboard" />
-      <View className="flex-row justify-between items-center p-2 border-b border-theme-neutrals-700">
-        <View className="w-10 items-center justify-center">
-          <Ionicons name="stats-chart" size={14} color="#E5E7EB" />
+      {loading && !refreshing ? (
+        <View>
+          {renderListHeader()}
+          <LeaderboardSkeleton />
         </View>
-        <Text className="text-theme-neutrals-200 text-sm text-center w-32 font-bold">
-          Holders
-        </Text>
-        <TouchableOpacity className="w-16" onPress={() => sortData("total")}>
-          <View className="flex-row items-center justify-center">
-            <Text className="text-theme-neutrals-200 text-[10px] font-bold">
-              Holdings
-            </Text>
-            {sortConfig.key === "total" ? (
-              <Ionicons
-                name={
-                  sortConfig.direction === "asc" ? "arrow-up" : "arrow-down"
-                }
-                size={12}
-                color="white"
-              />
-            ) : (
-              <Ionicons name="swap-vertical" size={12} color="white" />
-            )}
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity className="w-16" onPress={() => sortData("sentTips")}>
-          <View className="flex-row items-center justify-center">
-            <Text className="text-theme-neutrals-200 text-[10px] font-bold">
-              Tips Given
-            </Text>
-            {sortConfig.key === "sentTips" ? (
-              <Ionicons
-                name={
-                  sortConfig.direction === "asc" ? "arrow-up" : "arrow-down"
-                }
-                size={12}
-                color="white"
-              />
-            ) : (
-              <Ionicons name="swap-vertical" size={12} color="white" />
-            )}
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          className="w-16"
-          onPress={() => sortData("receivedTips")}
-        >
-          <View className="flex-row items-center justify-center">
-            <Text className="text-theme-neutrals-200 text-[10px] font-bold">
-              Tips Recv
-            </Text>
-            {sortConfig.key === "receivedTips" ? (
-              <Ionicons
-                name={
-                  sortConfig.direction === "asc" ? "arrow-up" : "arrow-down"
-                }
-                size={12}
-                color="white"
-              />
-            ) : (
-              <Ionicons name="swap-vertical" size={12} color="white" />
-            )}
-          </View>
-        </TouchableOpacity>
-      </View>
-      {loading || refreshing || showWorkingSkeleton ? (
-        <LeaderboardSkeleton />
       ) : (
-        <FlatList
-          data={dataToRender}
-          keyExtractor={keyExtractor}
-          renderItem={renderItem}
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-              tintColor="#fff"
+        <>
+          {renderListHeader()}
+          {switching ? (
+            <View className="flex-1 items-center justify-center">
+              <ActivityIndicator size="large" color="#fff" />
+            </View>
+          ) : (
+            <FlatList
+              data={filteredData}
+              keyExtractor={keyExtractor}
+              renderItem={renderItem}
+              refreshControl={
+                <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={onRefresh}
+                  tintColor="#fff"
+                />
+              }
+              initialNumToRender={20}
+              windowSize={10}
+              maxToRenderPerBatch={20}
+              updateCellsBatchingPeriod={50}
+              removeClippedSubviews
+              getItemLayout={getItemLayout}
+              keyboardShouldPersistTaps="handled"
+              keyboardDismissMode="on-drag"
             />
-          }
-          initialNumToRender={20}
-          windowSize={10}
-          maxToRenderPerBatch={20}
-          updateCellsBatchingPeriod={50}
-          removeClippedSubviews
-          getItemLayout={getItemLayout}
-        />
+          )}
+        </>
       )}
     </View>
   );

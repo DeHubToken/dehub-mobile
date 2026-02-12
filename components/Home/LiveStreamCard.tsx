@@ -98,7 +98,7 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
     "Unknown";
   const username = minterUser?.username || item.minterUsername || item.minter || "";
   const avatar = getAvatarUrl(minterUser?.avatarImageUrl || item.minterAvatarUrl || "");
-  const badgeImg = getBadgeUrl(item.minterStaked || 0, "dark");
+  const badgeImg = getBadgeUrl((item.minterUser as any)?.badgeBalance || item.minterStaked || 0, "dark");
   
   // Stats - item.likes/views for general, stream.peakViewers/totalViews for live-specific
   const likes = stream?.likes || item.likes || 0;

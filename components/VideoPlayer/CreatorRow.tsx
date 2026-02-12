@@ -17,6 +17,7 @@ export type Creator = {
   walletAddress?: string;
   avatarImageUrl?: string;
   followers?: string[] | number;
+  badgeBalance?: number;
   stakedDHB?: number | string;
 } | null;
 
@@ -101,6 +102,9 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
   );
   const stakedDHB = useMemo(() => {
     if (!creator) return 0;
+    // Prefer badgeBalance from backend
+    if (typeof (creator as any)?.badgeBalance === 'number' && (creator as any).badgeBalance > 0)
+      return (creator as any).badgeBalance;
     const fromBalances = maxStacked((creator as any)?.balanceData);
     const direct = (creator as any)?.stakedDHB || 0;
     return fromBalances > 0 ? fromBalances : direct || 0;

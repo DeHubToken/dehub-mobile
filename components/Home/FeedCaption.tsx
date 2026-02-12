@@ -7,6 +7,7 @@
 import React, { memo, useState, useCallback, useMemo } from "react";
 import { View, Text, TouchableOpacity, NativeSyntheticEvent, TextLayoutEventData } from "react-native";
 import { openInApp } from "../../libs/links.utils";
+import { hasValidTLD } from "../../libs/tlds";
 
 // ── Link parsing helpers ────────────────────────────────────
 type Segment =
@@ -42,7 +43,8 @@ const parseTextToSegments = (input: string): Segment[] => {
       value = value.slice(0, -1);
     }
     const url = ensureUrl(value);
-    if (url) {
+    // Only treat as link if the domain has a valid IANA TLD
+    if (url && hasValidTLD(value)) {
       segments.push({ type: "link", value, url });
     } else {
       segments.push({ type: "text", value });

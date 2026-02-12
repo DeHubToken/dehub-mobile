@@ -71,6 +71,7 @@ export interface MinterUser {
   followings?: number;
   sentTips?: number;
   receivedTips?: number;
+  badgeBalance?: number;
   createdAt?: string;
 }
 

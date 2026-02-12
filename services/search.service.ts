@@ -55,6 +55,7 @@ export interface SearchContentResult {
     avatarImageUrl?: string;
     followers?: number;
     followings?: number;
+    badgeBalance?: number;
     staked?: number;
   };
   minterStaked?: number;

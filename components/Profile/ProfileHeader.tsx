@@ -57,8 +57,9 @@ const ProfileHeader = () => {
   const avatarUrl = getAvatarUrl(user?.avatarImageUrl);
 
   const coverUrl = getCoverUrl(user?.coverImageUrl);
-  const badge = getBadgeName(user?.stakedDHB as number);
-  const badgeImage = getBadgeUrl(user?.stakedDHB as number);
+  const badgeVal = (user as any)?.badgeBalance || user?.stakedDHB || 0;
+  const badge = getBadgeName(badgeVal as number);
+  const badgeImage = getBadgeUrl(badgeVal as number);
   const badgeIcon = "trophy-outline";
   
   // Deterministic default banner based on user ID/address

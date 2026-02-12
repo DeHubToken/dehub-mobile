@@ -531,8 +531,13 @@ const NotificationScreen = () => {
             backgroundColor: !item.read ? '#1a1a1d' : 'transparent',
           }}
         >
-          {/* Avatar or Icon */}
-          <View style={{ position: 'relative' }}>
+          {/* Avatar or Icon — tap to open profile */}
+          <TouchableOpacity
+            activeOpacity={0.7}
+            disabled={!item.actorUsername && !item.actorAddress}
+            onPress={() => openUserProfile(item.actorAddress, item.actorUsername)}
+            style={{ position: 'relative' }}
+          >
             {hasAvatar ? (
               <Avatar uri={avatarUrl || undefined} size={44} />
             ) : (
@@ -569,7 +574,7 @@ const NotificationScreen = () => {
                 <Ionicons name={icon.name as any} size={10} color="white" />
               </View>
             )}
-          </View>
+          </TouchableOpacity>
 
           {/* Content */}
           <View style={{ flex: 1, marginLeft: 12 }}>
@@ -684,7 +689,7 @@ const NotificationScreen = () => {
         </TouchableOpacity>
       );
     },
-    [handleNotificationPress, handleAcceptFollowRequest, handleRejectFollowRequest]
+    [handleNotificationPress, handleAcceptFollowRequest, handleRejectFollowRequest, openUserProfile]
   );
 
   const keyExtractor = useCallback((item: NotificationItem) => item._id, []);

@@ -5,9 +5,11 @@ interface LeaderboardUser {
   username?: string;
   userDisplayName?: string;
   avatarUrl?: string;
-  total: number; // holdings or metric sorted by
-  sentTips?: number;
-  receivedTips?: number;
+  total: number;
+  sentTips: number;
+  receivedTips: number;
+  followers: number;
+  likes: number;
 }
 
 interface LeaderboardResult {
@@ -27,7 +29,7 @@ interface CacheShape {
 }
 
 const CACHE_DURATION = 2 * 60 * 1000; // 2 minutes
-let leaderboardCache: CacheShape = { timestamp: 0 };
+const sortCaches = new Map<string, CacheShape>();
 
 function objectToGetParams(obj: Record<string, any>): string {
   const params = Object.entries(obj)
@@ -40,8 +42,9 @@ function objectToGetParams(obj: Record<string, any>): string {
 export async function getLeaderboard(params?: { sort?: string }): Promise<LeaderboardResponse> {
   const { sort = 'holdings' } = params || {};
   const now = Date.now();
-  if (leaderboardCache.data && leaderboardCache.sort === sort && now - leaderboardCache.timestamp < CACHE_DURATION) {
-    return { success: true, data: leaderboardCache.data };
+  const cached = sortCaches.get(sort);
+  if (cached?.data && now - cached.timestamp < CACHE_DURATION) {
+    return { success: true, data: cached.data };
   }
   try {
     const query = objectToGetParams({ sort });
@@ -51,13 +54,13 @@ export async function getLeaderboard(params?: { sort?: string }): Promise<Leader
       ? { success: true, data: res }
       : { success: false, error: res?.error || 'Failed to fetch leaderboard data' };
     if (shaped.success && shaped.data) {
-      leaderboardCache = { data: shaped.data, timestamp: now, sort };
+      sortCaches.set(sort, { data: shaped.data, timestamp: now, sort });
     }
     return shaped;
   } catch (error) {
     console.error('Error fetching leaderboard:', error);
-    if (leaderboardCache.data) {
-      return { success: true, data: leaderboardCache.data };
+    if (cached?.data) {
+      return { success: true, data: cached.data };
     }
     return { success: false, error: 'Failed to fetch leaderboard data' };
   }

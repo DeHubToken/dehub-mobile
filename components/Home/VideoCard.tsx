@@ -78,7 +78,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
     avatarUrl && avatarUrl !== "default-avatar"
       ? avatarUrl
       : require("../../assets/default-avatar.png");
-  const stakeForBadge = (nft as any).minterStaked || 0;
+  const stakeForBadge = (nft as any).minterUser?.badgeBalance || (nft as any).minterStaked || 0;
   const badgeImage = getBadgeUrl(stakeForBadge, "dark");
   const title =
     (nft as any).name ||

@@ -104,7 +104,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
       </View>
       
       {/* Follow button */}
-      {showFollowButton && (
+      {/* {showFollowButton && (
         <View className="ml-2">
           {isFollowRequestPending ? (
             <TouchableOpacity
@@ -144,7 +144,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             </TouchableOpacity>
           )}
         </View>
-      )}
+      )} */}
     </View>
   );
 };
