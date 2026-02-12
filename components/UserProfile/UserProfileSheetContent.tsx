@@ -133,24 +133,28 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
 
   if (!profileData) return null;
 
-  // Single render - tabs component is always the same instance to prevent refetching
+  /*
+   * Single render tree: one UserProfileBottomContentTabs is always mounted
+   * so InfiniteFeed keeps its data across collapsed ↔ fullscreen transitions
+   * (no skeleton flash). In fullscreen the profile header is injected into
+   * the FlatList header; in collapsed it sits above the tabs statically.
+   */
   return (
     <View className="flex-1">
-      {ProfileHeader}
-      <View className={isFullScreen ? "flex-1 px-6" : "px-6"}>
-        <UserProfileBottomContentTabs
-          address={profileData.address}
-          onClose={onClose}
-          scrollEnabled={isFullScreen}
-          isFullScreen={isFullScreen}
-          onScroll={onScroll}
-          registerScrollToTop={registerScrollToTop}
-          isPrivate={isPrivate}
-          canViewContent={canViewContent}
-          isFollowRequestPending={isFollowRequestPending}
-          onFollow={onFollow}
-        />
-      </View>
+      {!isFullScreen && ProfileHeader}
+      <UserProfileBottomContentTabs
+        address={profileData.address}
+        onClose={onClose}
+        scrollEnabled={isFullScreen}
+        isFullScreen={isFullScreen}
+        onScroll={onScroll}
+        registerScrollToTop={registerScrollToTop}
+        isPrivate={isPrivate}
+        canViewContent={canViewContent}
+        isFollowRequestPending={isFollowRequestPending}
+        onFollow={onFollow}
+        profileHeader={isFullScreen ? ProfileHeader : undefined}
+      />
       {!isFullScreen && <View style={{ height: 40 }} />}
     </View>
   );
