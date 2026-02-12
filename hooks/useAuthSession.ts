@@ -156,7 +156,10 @@ export function useAuthSession({
       // Balances fetching is no longer handled inside enrich; done elsewhere
       try {
         const tPostStart = Date.now();
-        if (enriched?.balanceData?.length) {
+        // Prefer badgeBalance from backend; fall back to derived from balanceData
+        if (typeof (enriched as any).badgeBalance === 'number' && (enriched as any).badgeBalance > 0) {
+          enriched = { ...enriched, stakedDHB: (enriched as any).badgeBalance };
+        } else if (enriched?.balanceData?.length) {
           const derivedStake = maxStacked(enriched.balanceData);
           if (typeof derivedStake === "number")
             enriched = { ...enriched, stakedDHB: derivedStake };

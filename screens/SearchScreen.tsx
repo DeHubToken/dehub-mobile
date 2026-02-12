@@ -270,7 +270,7 @@ const SearchScreen: React.FC = () => {
       minterUsername: contentItem.minterUsername || contentItem.minterUser?.username,
       minterDisplayName: contentItem.minterDisplayName || contentItem.minterUser?.displayName,
       minterAvatarUrl: contentItem.minterAvatarUrl || contentItem.minterUser?.avatarImageUrl,
-      minterStaked: contentItem.minterStaked || contentItem.minterUser?.staked || 0,
+      minterStaked: contentItem.minterUser?.badgeBalance || contentItem.minterStaked || contentItem.minterUser?.staked || 0,
       stream: contentItem.stream,
       isLiked: contentItem.isLiked,
       isDisliked: contentItem.isDisliked,

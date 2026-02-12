@@ -127,6 +127,7 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
       walletAddress: minterUser.address,
       avatarImageUrl: minterUser.avatarImageUrl,
       followers: minterUser.followers ?? 0,
+      badgeBalance: (minterUser as any).badgeBalance || 0,
       stakedDHB: nftData?.minterStaked || (minterUser as any).staked || 0,
     };
   }, [nftData?.minterUser, nftData?.minterStaked]);

@@ -5,6 +5,7 @@ import {
   getCoverUrl,
   getBadgeName,
   getBadgeUrl,
+  resolveBadgeBalance,
   getDefaultBanner,
   shareProfile,
 } from "../libs/misc";
@@ -25,6 +26,7 @@ interface RemoteUser {
   aboutMe?: string;
   avatarImageUrl?: string;
   coverImageUrl?: string;
+  badgeBalance?: number;
   stakedDHB?: number;
   createdAt?: string;
   followers?: number;
@@ -176,9 +178,9 @@ export const useUserProfileData = (
   const profileData = useMemo(() => {
     if (!data) return null;
 
-    const fromBalances = maxStacked((data as any)?.balanceData);
-    const direct = (data as any)?.stakedDHB || 0;
-    const stakedDHB = fromBalances > 0 ? fromBalances : direct || 0;
+    const badgeVal = resolveBadgeBalance(data as any);
+    const fromBalances = badgeVal > 0 ? badgeVal : maxStacked((data as any)?.balanceData);
+    const stakedDHB = fromBalances > 0 ? fromBalances : ((data as any)?.stakedDHB || 0);
     const badge = getBadgeName(stakedDHB);
     const badgeImage = getBadgeUrl(stakedDHB);
     const address = data?.address || "";

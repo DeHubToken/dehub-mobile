@@ -11,6 +11,8 @@ import {
   Pressable,
   StatusBar,
   StyleSheet,
+  useWindowDimensions,
+  Platform,
 } from 'react-native';
 import Animated, {
   useSharedValue,
@@ -37,6 +39,7 @@ import {
   SeekDirection,
 } from './utils';
 import * as ScreenOrientation from 'expo-screen-orientation';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { createLogger } from '../../libs/logger';
 
@@ -72,6 +75,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   // Refs
   const viewRef = useRef<VideoView | null>(null);
   const navigation = useNavigation<any>();
+  const insets = useSafeAreaInsets();
   const hideTimerRef = useRef<NodeJS.Timeout | null>(null);
   const lastTapRef = useRef<{ time: number; side: 'left' | 'right' | null }>({
     time: 0,
@@ -251,15 +255,47 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     setIsMuted(nextMuted);
   }, [isMuted, player]);
 
+  // Landscape state tracks whether the video is rotated sideways
+  const [isLandscape, setIsLandscape] = useState(false);
+
+  // Fullscreen: toggle portrait fullscreen (immersive, no status bar)
   const toggleFullscreen = useCallback(async () => {
     try {
       if (fullscreen) {
         setFullscreen(false);
         StatusBar.setHidden(false);
+        // If we were landscape, also reset to portrait orientation
+        if (isLandscape) {
+          setIsLandscape(false);
+          await ScreenOrientation.lockAsync(
+            ScreenOrientation.OrientationLock.PORTRAIT_UP
+          ).catch(() => {});
+        }
+      } else {
+        setFullscreen(true);
+        StatusBar.setHidden(true);
+        // Stay in current orientation (portrait fullscreen)
+      }
+    } catch (error) {
+      logger.warn('[VideoPlayerCore] Fullscreen toggle error:', error);
+    }
+  }, [fullscreen, isLandscape]);
+
+  // Rotate: toggle between landscape and portrait orientation
+  const handleRotateToPortrait = useCallback(async () => {
+    try {
+      if (isLandscape) {
+        // Currently landscape → rotate back to portrait
+        setIsLandscape(false);
+        if (!fullscreen) {
+          StatusBar.setHidden(false);
+        }
         await ScreenOrientation.lockAsync(
           ScreenOrientation.OrientationLock.PORTRAIT_UP
         ).catch(() => {});
       } else {
+        // Currently portrait → rotate to landscape
+        setIsLandscape(true);
         setFullscreen(true);
         StatusBar.setHidden(true);
         await ScreenOrientation.lockAsync(
@@ -267,22 +303,9 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
         ).catch(() => {});
       }
     } catch (error) {
-      logger.warn('[VideoPlayerCore] Fullscreen toggle error:', error);
+      logger.warn('[VideoPlayerCore] Rotate orientation error:', error);
     }
-  }, [fullscreen]);
-
-  // Rotate to portrait while staying in fullscreen mode (like YouTube)
-  const handleRotateToPortrait = useCallback(async () => {
-    try {
-      setFullscreen(false);
-      StatusBar.setHidden(false);
-      await ScreenOrientation.lockAsync(
-        ScreenOrientation.OrientationLock.PORTRAIT_UP
-      ).catch(() => {});
-    } catch (error) {
-      logger.warn('[VideoPlayerCore] Rotate to portrait error:', error);
-    }
-  }, []);
+  }, [isLandscape, fullscreen]);
 
   // Close handler - ensure portrait orientation and stop playback
   const handleClosePress = useCallback(() => {
@@ -292,7 +315,9 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
       player.muted = true;
     } catch {}
 
-    // Reset orientation and status bar
+    // Reset all states and orientation
+    setFullscreen(false);
+    setIsLandscape(false);
     StatusBar.setHidden(false);
     ScreenOrientation.lockAsync(
       ScreenOrientation.OrientationLock.PORTRAIT_UP
@@ -466,23 +491,30 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     [liveMode, startSeeking, stopSeeking, handleSeekGesture]
   );
 
-  // Container styles for fullscreen
-  const containerStyle = useMemo(
-    () =>
-      fullscreen
-        ? styles.fullscreenContainer
-        : styles.normalContainer,
-    [fullscreen]
-  );
+  // ─── Fullscreen uses reactive screen dimensions ────────────────
+  // useWindowDimensions automatically updates when orientation changes,
+  // unlike Dimensions.get('window') which is a one-time snapshot.
+  const { width: screenW, height: screenH } = useWindowDimensions();
+
+  const fullscreenStyle = fullscreen
+    ? ({
+        position: 'absolute' as const,
+        top: 0,
+        left: 0,
+        width: screenW,
+        height: screenH,
+        zIndex: 9999,
+        elevation: 9999, // Android
+        backgroundColor: '#000',
+      })
+    : undefined;
 
   return (
     <View
-      className={`bg-black overflow-hidden ${
-        fullscreen ? '' : 'w-full aspect-video'
-      }`}
-      style={containerStyle}
+      className={fullscreen ? '' : 'w-full aspect-video bg-black overflow-hidden'}
+      style={fullscreenStyle}
     >
-      {/* Video View */}
+      {/* Video View — always mounted, never moves between trees */}
       {sourceUrl && (
         <VideoView
           ref={(r) => {
@@ -540,7 +572,19 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
 
       {/* Controls Overlay */}
       {showControls && (
-        <View className="absolute inset-0 justify-between px-3 py-3">
+        <View
+          className="absolute inset-0 justify-between"
+          style={{
+            paddingTop: fullscreen ? insets.top + 8 : 12,
+            paddingBottom: fullscreen ? insets.bottom + 36 : 12,
+            paddingLeft: fullscreen
+              ? Math.max(insets.left, insets.right, 16)
+              : 12,
+            paddingRight: fullscreen
+              ? Math.max(insets.left, insets.right, 16)
+              : 12,
+          }}
+        >
           {/* Top Controls */}
           <TopControls
             onClose={handleClosePress}
@@ -590,15 +634,6 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
 };
 
 const styles = StyleSheet.create({
-  fullscreenContainer: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    zIndex: 1000,
-  },
-  normalContainer: {},
   video: {
     width: '100%',
     height: '100%',

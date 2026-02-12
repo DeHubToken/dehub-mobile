@@ -86,12 +86,12 @@ const TopControls: React.FC<TopControlsProps> = ({
           />
         </TouchableOpacity>
 
-        {fullscreen && onRotateToPortrait && (
+        {onRotateToPortrait && (
           <TouchableOpacity
             onPress={onRotateToPortrait}
             className="bg-black/60 rounded-full p-2.5"
             activeOpacity={0.7}
-            accessibilityLabel="Rotate to portrait"
+            accessibilityLabel="Rotate orientation"
             accessibilityRole="button"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
