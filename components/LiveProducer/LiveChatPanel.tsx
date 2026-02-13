@@ -1,11 +1,12 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, FlatList, Animated } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, FlatList, Animated, Platform } from 'react-native';
 import { toastError } from '../../libs/toast';
 import { X, ArrowUpCircle } from 'lucide-react-native';
 import { LivestreamEvents, StreamActivityType } from '../../services/enums/livestream.enum';
 import { useAuth } from '../../context/AuthContext';
 import { useKeyboard } from '../../hooks/useKeyboard';
 import { useWebSocket } from '../../context/WebSocketContext';
+import AccentButtonGradient from '../ui/AccentButtonGradient';
 
 // Activity shape (loosely mirrors web implementation)
 export interface ChatActivity {
@@ -219,7 +220,16 @@ const LiveChatPanel: React.FC<Props> = ({
   const dataReversed = useMemo(() => activities.slice().reverse(), [activities]);
 
   const { height: keyboardHeight, isVisible: kbVisible } = useKeyboard();
-  const inputBottom = kbVisible ? (mode === 'panel' ? keyboardHeight * 0.3 : keyboardHeight * 0.9) : 0;
+  // In 'stack' mode the parent wraps in KeyboardAvoidingView, but since our input is
+  // absolutely positioned at the bottom of the chat container, we still need a small offset
+  // on Android where KAV behavior="height" doesn't fully account for absolute children.
+  // In 'panel' mode (absolute overlay) we offset the input by the full keyboard height.
+  const inputBottom = useMemo(() => {
+    if (!kbVisible) return 0;
+    if (mode === 'panel') return keyboardHeight;
+    // stack mode: on iOS the parent KAV handles it; on Android provide a fallback offset
+    return Platform.OS === 'android' ? keyboardHeight : 0;
+  }, [kbVisible, mode, keyboardHeight]);
 
   const containerClass =
     mode === 'panel'
@@ -340,14 +350,19 @@ const LiveChatPanel: React.FC<Props> = ({
               }
             }}
           />
-          <TouchableOpacity
-            onPress={sendMessage}
-            disabled={!message.trim() || !canSend}
-            className="ml-2 px-2 py-2 rounded-full bg-emerald-600/90 disabled:bg-white/10"
-            activeOpacity={0.9}
+          <AccentButtonGradient
+            borderRadius={20}
+            style={!message.trim() || !canSend ? { opacity: 0.4 } : undefined}
           >
-            <ArrowUpCircle color="#fff" size={20} />
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={sendMessage}
+              disabled={!message.trim() || !canSend}
+              className="ml-0 px-2 py-2"
+              activeOpacity={0.85}
+            >
+              <ArrowUpCircle color="#fff" size={20} />
+            </TouchableOpacity>
+          </AccentButtonGradient>
         </View>
       </View>
     </Animated.View>

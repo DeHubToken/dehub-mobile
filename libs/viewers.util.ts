@@ -3,11 +3,12 @@ export type ViewerStats = {
   peakViewers: number;
 };
 
-// Extract initial viewer stats from a stream entity with safe fallbacks
+// Extract initial viewer stats from a stream entity with safe fallbacks.
+// Backend fields: peakViewers = current concurrent viewers, totalViews = all-time peak.
 export function seedViewerStats(entity: any | null | undefined): ViewerStats {
-  const live = typeof (entity as any)?.totalViews === 'number' ? (entity as any).totalViews as number : 0;
-  const peak = typeof (entity as any)?.peakViewers === 'number' ? (entity as any).peakViewers as number : 0;
-  return { liveViewers: live || 0, peakViewers: peak || 0 };
+  const live = typeof (entity as any)?.peakViewers === 'number' ? (entity as any).peakViewers as number : 0;
+  const peak = typeof (entity as any)?.totalViews === 'number' ? (entity as any).totalViews as number : 0;
+  return { liveViewers: live || 0, peakViewers: Math.max(peak, live) };
 }
 
 type UpdaterParams = {
@@ -25,6 +26,7 @@ export function createViewCountUpdater({ setLive, setPeak, getPeak, debounceMs =
 
   const push = () => {
     setLive(latest);
+    // Only update peak (all-time) when current viewers actually exceed it
     const currentPeak = getPeak();
     if (latest > currentPeak) {
       setPeak(latest);

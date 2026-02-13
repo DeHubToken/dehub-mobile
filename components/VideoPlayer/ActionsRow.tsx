@@ -10,7 +10,7 @@ import env from "../../config/env";
 import { shareProfile } from "../../libs/misc";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { likeLiveStream } from "../../services/live.service";
-import { toastError, toastInfo } from "../../libs/toast";
+import { toastError } from "../../libs/toast";
 import { WEBSITE_LINK } from "../../config";
 
 export interface ActionsRowProps {
@@ -57,6 +57,10 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
   useEffect(() => {
     setLikeCount(Number(likes ?? 0));
   }, [likes]);
+  // Keep local userVote in sync when the parent-provided vote prop changes (e.g. stream entity loads async)
+  useEffect(() => {
+    if (initialUserVote !== undefined) setUserVote(initialUserVote);
+  }, [initialUserVote]);
   const handleShare = useCallback(async () => {
     const liveUrl = isLive && streamId ? `${WEBSITE_LINK}/app/post/${streamId}` : null;
     const vodUrl = tokenId ? `${WEBSITE_LINK}/app/post/${tokenId}` : null;
@@ -69,29 +73,40 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
   const handleLiveLike = useCallback(() => {
     if (!isLive || !streamId || liveActive === false) return;
     if (likePending) return;
-    // prevent double-like in this session
-    if (userVote === 'like') {
-      toastInfo("You already liked this stream");
-      return;
-    }
+    const isUnliking = userVote === 'like';
     requireAuth(async () => {
       try {
         setLikePending(true);
         // Optimistic update
-        setLikeCount((c) => c + 1);
-        // Backend uses auth guard and address from req context; no body needed
-        await likeLiveStream(streamId, {});
-        setUserVote('like');
-        toastInfo('Liked stream');
+        if (isUnliking) {
+          setLikeCount((c) => Math.max(0, c - 1));
+          setUserVote(null);
+        } else {
+          setLikeCount((c) => c + 1);
+          setUserVote('like');
+        }
+        // Same endpoint toggles like/unlike on the backend
+        const res: any = await likeLiveStream(streamId, {});
+        // Backend returns { likes, isLiked } — reconcile with server truth
+        const serverLikes = res?.likes ?? res?.result?.likes;
+        const serverIsLiked = res?.isLiked ?? res?.result?.isLiked;
+        if (typeof serverLikes === 'number') setLikeCount(serverLikes);
+        if (typeof serverIsLiked === 'boolean') setUserVote(serverIsLiked ? 'like' : null);
       } catch (e) {
-        // Revert optimistic like
-        setLikeCount((c) => Math.max(0, c - 1));
-        toastError(e, 'Failed to like stream');
+        // Revert optimistic update
+        if (isUnliking) {
+          setLikeCount((c) => c + 1);
+          setUserVote('like');
+        } else {
+          setLikeCount((c) => Math.max(0, c - 1));
+          setUserVote(null);
+        }
+        console.warn('[ActionsRow] like/unlike failed', e);
       } finally {
         setLikePending(false);
       }
     });
-  }, [isLive, streamId, liveActive, requireAuth, user?.walletAddress, user?.address, likePending, userVote]);
+  }, [isLive, streamId, liveActive, requireAuth, likePending, userVote]);
   return (
     <View className="flex-row mt-3 items-center">
       {isLive && streamId ? (
@@ -109,16 +124,22 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
       {/* Live Gift (glass modal) or VOD Tip */}
       {isLive && streamId ? (
         <>
-          <TouchableOpacity
-            onPress={() => requireAuth(() => setGiftOpen(true))}
-            className={`flex-row items-center bg-theme-accent px-3 py-1.5 rounded-full mr-2 ${liveActive === false ? 'opacity-60' : ''}`}
-            disabled={liveActive === false}
+          <AccentButtonGradient
+            style={liveActive === false ? { opacity: 0.5 } : undefined}
           >
-            <Ionicons name="gift" size={14} color="#000" />
-            <Text className="text-theme-neutrals-900 text-xs ml-1 font-semibold">
-              Gift
-            </Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => requireAuth(() => setGiftOpen(true))}
+              className="flex-row items-center px-3 py-1.5"
+              disabled={liveActive === false}
+              activeOpacity={0.85}
+            >
+              <Ionicons name="gift" size={14} color="#fff" />
+              <Text className="text-white text-xs ml-1 font-semibold">
+                Gift
+              </Text>
+            </TouchableOpacity>
+          </AccentButtonGradient>
+          <View className="w-2" />
           <GiftModal
             open={giftOpen}
             onOpenChange={setGiftOpen}

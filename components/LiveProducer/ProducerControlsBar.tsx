@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { MessageSquare, Gift, Radio, Video, VideoOff, Mic, MicOff, Repeat2, Server } from 'lucide-react-native';
+import { MessageSquare, Gift, Radio, Video, VideoOff, Mic, MicOff, Repeat2, Server, MessageCircleOff } from 'lucide-react-native';
 
 interface Props {
   stage: 'idle' | 'creating' | 'ready' | 'starting' | 'live' | 'ending' | 'ended';
@@ -17,6 +17,8 @@ interface Props {
   externalMode: boolean;
   onToggleExternal: () => void;
   startDisabled?: boolean; // externally enforced preconditions (e.g. missing streamKey/livepeerId)
+  chatEnabled?: boolean;
+  onToggleChatEnabled?: () => void;
 }
 
 const circleBtn = 'w-12 h-12 rounded-full items-center justify-center';
@@ -37,6 +39,8 @@ const ProducerControlsBar: React.FC<Props> = ({
   externalMode,
   onToggleExternal,
   startDisabled,
+  chatEnabled,
+  onToggleChatEnabled,
 }) => {
   const isLive = stage === 'live';
   const isStarting = stage === 'starting';
@@ -94,12 +98,12 @@ const ProducerControlsBar: React.FC<Props> = ({
           </TouchableOpacity>
         ) : (
             <TouchableOpacity
-              onPress={externalMode || !canStart ? undefined : onStart}
-              activeOpacity={externalMode || !canStart ? 1 : 0.9}
-              className={`px-6 h-12 rounded-full items-center justify-center flex-row ${externalMode || !canStart ? 'bg-zinc-700/70' : 'bg-green-600'}`}
+              onPress={!canStart ? undefined : onStart}
+              activeOpacity={!canStart ? 1 : 0.9}
+              className={`px-6 h-12 rounded-full items-center justify-center flex-row ${!canStart ? 'bg-zinc-700/70' : externalMode ? 'bg-indigo-600' : 'bg-green-600'}`}
             >
               <Radio color="white" size={20} className="mr-2" />
-              <Text className="text-white font-semibold text-sm">{isStarting ? 'Setting Up…' : startDisabled ? 'Preparing…' : 'Go Live'}</Text>
+              <Text className="text-white font-semibold text-sm">{isStarting ? 'Setting Up…' : startDisabled ? 'Preparing…' : externalMode ? 'Start External' : 'Go Live'}</Text>
             </TouchableOpacity>
         )}
       </View>
@@ -125,6 +129,16 @@ const ProducerControlsBar: React.FC<Props> = ({
         >
           {cameraOff ? <VideoOff color="white" size={20} /> : <Video color="white" size={20} />}
         </TouchableOpacity>
+        {/* Chat enabled/disabled toggle (owner control while live) */}
+        {isLive && onToggleChatEnabled && (
+          <TouchableOpacity
+            onPress={onToggleChatEnabled}
+            activeOpacity={tap}
+            className={`${circleBtn} border border-white/10 mr-3 ${chatEnabled ? 'bg-black/40' : 'bg-red-600/60'}`}
+          >
+            {chatEnabled ? <MessageSquare color="white" size={18} /> : <MessageCircleOff color="white" size={18} />}
+          </TouchableOpacity>
+        )}
         <View className="flex-1" />
       </View>
     </View>

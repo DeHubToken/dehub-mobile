@@ -196,6 +196,7 @@ export interface LiveStreamEntity {
   likes?: number;
   likesCount?: number;
   likesRecord?: Record<string, boolean>;
+  isLiked?: boolean;
   totalTips?: number;
   duration?: number;
   address: string;
@@ -210,7 +211,7 @@ export interface LiveStreamEntity {
 
 export async function getLiveStream(streamId: string) {
   if (!streamId) throw new Error('streamId required');
-  return apiClient.get<LiveStreamEntity | { result?: LiveStreamEntity }>(`/live/${encodeURIComponent(streamId)}`, { isAuthRequired: false });
+  return apiClient.get<LiveStreamEntity | { result?: LiveStreamEntity }>(`/live/${encodeURIComponent(streamId)}`, { isAuthRequired: true });
 }
 
 export async function getLiveVideos() {
@@ -241,4 +242,26 @@ export async function recordLiveGift(streamId: string, data: any) {
   return apiClient.post<any>(`/live/${encodeURIComponent(streamId)}/gift`, data, {
     isAuthRequired: true,
   });
+}
+
+// Update stream settings while live (PATCH /live/:streamId/settings)
+export async function updateStreamSettings(
+  streamId: string,
+  settings: { chat?: { enabled: boolean }; minTip?: number }
+) {
+  if (!streamId) throw new Error('streamId required');
+  return apiClient.patch<any>(
+    `/live/${encodeURIComponent(streamId)}/settings`,
+    { settings },
+    { isAuthRequired: true }
+  );
+}
+
+// Fetch ingest URL (owner only) — GET /live/:streamId/ingesturl
+export async function getIngestUrl(streamId: string) {
+  if (!streamId) throw new Error('streamId required');
+  return apiClient.get<{ ingestUrl: string }>(
+    `/live/${encodeURIComponent(streamId)}/ingesturl`,
+    { isAuthRequired: true }
+  );
 }

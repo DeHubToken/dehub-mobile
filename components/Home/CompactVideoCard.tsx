@@ -133,7 +133,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
         isLive,
         nft,
         accessInfo,
-        streamId: nft?._id, // for livestreams
+        streamId: (nft as any)?.stream?._id || (nft as any)?.stream?.id || nft?._id, // for livestreams
       } as never
     );
   }, [navigation, tokenId, isLive, nft, accessInfo]);

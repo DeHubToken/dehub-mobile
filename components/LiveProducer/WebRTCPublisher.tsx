@@ -111,8 +111,9 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
   const [reconnecting, setReconnecting] = useState(false);
   const acquiringRef = useRef(false);
 
-  // Derived config with defaults
-  const graceMs = useMemo(() => (typeof disconnectGraceMs === 'number' ? disconnectGraceMs : 12000), [disconnectGraceMs]);
+  // Derived config with defaults — match the backend grace period (90s) so we don't
+  // escalate a disconnect as fatal before the server has had a chance to resume.
+  const graceMs = useMemo(() => (typeof disconnectGraceMs === 'number' ? disconnectGraceMs : 90000), [disconnectGraceMs]);
 
   useEffect(() => {
     dbg('config', { graceMs });

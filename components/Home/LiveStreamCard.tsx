@@ -49,8 +49,8 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
   // StreamInfo is at item level for monetization settings
   const streamInfo = (item as any).streamInfo;
   
-  // Stream identifiers
-  const streamId = (item as any)._id || stream?._id;
+  // Stream identifiers – prefer the nested stream doc _id (livestream ID) over item._id (NFT ID)
+  const streamId = stream?._id || stream?.id || (item as any)._id;
   const tokenId = item.tokenId;
   
   // Status - use stream.status for live streams
@@ -100,9 +100,10 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
   const avatar = getAvatarUrl(minterUser?.avatarImageUrl || item.minterAvatarUrl || "");
   const badgeImg = getBadgeUrl((item.minterUser as any)?.badgeBalance || item.minterStaked || 0, "dark");
   
-  // Stats - item.likes/views for general, stream.peakViewers/totalViews for live-specific
+  // Stats - item.likes/views for general, stream.peakViewers = current, stream.totalViews = all-time peak
   const likes = stream?.likes || item.likes || 0;
-  const totalViews = stream?.totalViews || stream?.peakViewers || item.views || 0;
+  const currentViewers = stream?.peakViewers || 0;
+  const peakViews = stream?.totalViews || item.views || 0;
   const createdAt = item.createdAt || stream?.createdAt;
   
   // Title from item (name field)
@@ -253,16 +254,21 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
         )}
       </View>
       
-      {/* Stats row - likes and views only, no action bar */}
+      {/* Stats row - likes, current viewers, and peak */}
       <View className="flex-row items-center justify-between mt-2">
         <View className="flex-row items-center gap-1">
           <Ionicons name="heart" size={16} color="#ef4444" />
           <Text className="text-white text-sm">{formatCompactNumber(likes)}</Text>
         </View>
-        
-        <View className="flex-row items-center gap-1">
-          <Ionicons name="eye-outline" size={16} color="#9CA3AF" />
-          <Text className="text-gray-400 text-sm">{formatCompactNumber(totalViews)}</Text>
+
+        <View className="flex-row items-center gap-3">
+          <View className="flex-row items-center gap-1">
+            <Ionicons name="eye-outline" size={16} color="#9CA3AF" />
+            <Text className="text-gray-400 text-sm">{formatCompactNumber(currentViewers)}</Text>
+          </View>
+          {peakViews > 0 && (
+            <Text className="text-gray-500 text-xs">Peak: {formatCompactNumber(peakViews)}</Text>
+          )}
         </View>
       </View>
     </TouchableOpacity>

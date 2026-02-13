@@ -57,7 +57,12 @@ export type AppStackParamList = {
     title?: string;
     autoplay?: boolean;
   };
-  [ScreenNames.LiveProducer]: undefined;
+  [ScreenNames.LiveProducer]: {
+    streamId?: string;
+    tokenId?: number;
+    ingestUrl?: string;
+    streamKey?: string;
+  } | undefined;
   [ScreenNames.LiveViewer]: {
     streamId?: string;
     playbackId?: string;

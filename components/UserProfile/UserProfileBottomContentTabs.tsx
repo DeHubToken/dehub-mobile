@@ -14,6 +14,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import HomeFeedCard from "../Home/HomeFeedCard";
 import VideoCard from "../Home/VideoCard";
+import LiveStreamCard from "../Home/LiveStreamCard";
 import InfiniteFeed from "../Feed/InfiniteFeed";
 import type { GetNFTsResult } from "../../services/nft.service";
 import type { GetNFTsResponse } from "../../services/feed.service";
@@ -132,7 +133,11 @@ const UserProfileBottomContentTabs: React.FC<
       const tokenId = (post as any).tokenId ?? (post as any).id;
       hideUserProfile();
       onClose();
-      if (isVideoItem(post)) {
+      if ((post as any).postType === "live") {
+        const stream = (post as any).stream;
+        const streamId = stream?._id || stream?.id || (post as any)._id;
+        navigation.navigate(ScreenNames.LiveViewer as any, { streamId, tokenId, nft: post });
+      } else if (isVideoItem(post)) {
         navigation.navigate(ScreenNames.VideoPlayer, { tokenId });
       } else {
         navigation.navigate(ScreenNames.FeedDetail as any, { tokenId });
@@ -143,18 +148,25 @@ const UserProfileBottomContentTabs: React.FC<
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<GetNFTsResult>) => {
-      const card = isVideoItem(item) ? (
-        <VideoCard
-          nft={item}
-          enablePreview={false}
-          onBeforeNavigate={onClose}
-        />
-      ) : (
-        <HomeFeedCard
-          item={item as UnifiedFeedItem}
-          onPress={() => handlePostPress(item)}
-        />
-      );
+      let card: React.ReactElement;
+      if ((item as any).postType === "live") {
+        card = <LiveStreamCard item={item as unknown as UnifiedFeedItem} />;
+      } else if (isVideoItem(item)) {
+        card = (
+          <VideoCard
+            nft={item}
+            enablePreview={false}
+            onBeforeNavigate={onClose}
+          />
+        );
+      } else {
+        card = (
+          <HomeFeedCard
+            item={item as UnifiedFeedItem}
+            onPress={() => handlePostPress(item)}
+          />
+        );
+      }
       return (
         <View style={{ paddingHorizontal: CONTENT_PX }}>
           {card}

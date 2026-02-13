@@ -48,12 +48,17 @@ import AccentButtonGradient from "../components/ui/AccentButtonGradient";
 import UploadCategoriesSelector from "../components/Upload/UploadCategoriesSelector";
 import MonetizationPanel from "../components/Upload/MonetizationPanel";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
+import LiveSettingsPanel from "../components/Upload/LiveSettingsPanel";
+import type { LiveSettingsState } from "../components/Upload/LiveSettingsPanel";
+import { INITIAL_LIVE_SETTINGS } from "../components/Upload/LiveSettingsPanel";
 import ConfirmUploadModal from "../components/Upload/ConfirmUploadModal";
 import { useUploadPost } from "../hooks/useUploadPost";
+import { useUploadLive } from "../hooks/useUploadLive";
 import { useDrafts } from "../hooks/useDrafts";
 import type { Draft } from "../hooks/useDrafts";
 import GlassModal from "../components/ui/GlassModal";
 import type { UploadPayload } from "../hooks/useUploadPost";
+import type { LiveUploadPayload } from "../hooks/useUploadLive";
 import type { AppStackParamList } from "../navigation/types";
 import { ScreenNames } from "../navigation/ScreenNames";
 
@@ -113,6 +118,12 @@ export default function UploadScreen() {
   const [coverUri, setCoverUri] = useState<string | null>(null);
   const [coverHidden, setCoverHidden] = useState(false);
 
+  // ── livestream mode state ──────────────────────────────
+  const [isLiveMode, setIsLiveMode] = useState(false);
+  const [liveSettings, setLiveSettings] = useState<LiveSettingsState>(INITIAL_LIVE_SETTINGS);
+  const [showLiveSettings, setShowLiveSettings] = useState(false);
+  const [liveThumbnailUri, setLiveThumbnailUri] = useState<string | null>(null);
+
   // ── draft modal states ─────────────────────────────────
   const [showSaveDraftModal, setShowSaveDraftModal] = useState(false);
   const [showDiscardModal, setShowDiscardModal] = useState(false);
@@ -134,6 +145,21 @@ export default function UploadScreen() {
     overflow: "hidden" as const,
   }));
 
+  // ── reanimated: live settings slide ────────────────────
+  const liveSettingsProgress = useSharedValue(0);
+
+  useEffect(() => {
+    liveSettingsProgress.value = withTiming(showLiveSettings ? 1 : 0, {
+      duration: 250,
+    });
+  }, [showLiveSettings, liveSettingsProgress]);
+
+  const liveSettingsAnimStyle = useAnimatedStyle(() => ({
+    opacity: liveSettingsProgress.value,
+    maxHeight: liveSettingsProgress.value * 500,
+    overflow: "hidden" as const,
+  }));
+
   // ── derived ────────────────────────────────────────────
   const mediaMode: MediaMode = useMemo(() => {
     if (pickedVideo) return "video";
@@ -143,11 +169,12 @@ export default function UploadScreen() {
 
   const hasMedia = mediaMode !== "none";
   const hasContent = bodyText.trim().length > 0 || hasMedia;
-  const canPost = bodyText.trim().length > 0 || hasMedia;
+  const canPost = !isLiveMode && (bodyText.trim().length > 0 || hasMedia);
+  const canGoLive = isLiveMode && bodyText.trim().length > 0 && !!(liveThumbnailUri || coverUri);
 
   // Show description/category area when user has typed or picked media
   // Once opened, they stay even if title is cleared (to preserve filled data)
-  const showExtras = hasContent || showDescription || showCategory
+  const showExtras = isLiveMode || hasContent || showDescription || showCategory
     || description.length > 0 || categories.length > 0;
 
   // image button disabled when: video selected OR 4 images already
@@ -248,8 +275,10 @@ export default function UploadScreen() {
       description.trim().length > 0 ||
       categories.length > 0 ||
       pickedImages.length > 0 ||
-      !!pickedVideo,
-    [bodyText, description, categories, pickedImages, pickedVideo],
+      !!pickedVideo ||
+      !!liveThumbnailUri ||
+      isLiveMode,
+    [bodyText, description, categories, pickedImages, pickedVideo, liveThumbnailUri, isLiveMode],
   );
 
   // ── handlers ───────────────────────────────────────────
@@ -280,10 +309,22 @@ export default function UploadScreen() {
     isUploading,
   } = useUploadPost();
 
+  // ── live upload hook ─────────────────────────────────
+  const {
+    validate: validateLive,
+    buildConfirmText: buildLiveConfirmText,
+    upload: uploadLive,
+    uploadStage: liveUploadStage,
+    isUploading: isLiveUploading,
+  } = useUploadLive();
+
+  const activeIsUploading = isLiveMode ? isLiveUploading : isUploading;
+  const activeUploadStage = isLiveMode ? liveUploadStage : uploadStage;
+
   // Intercept Android back button (placed after useUploadPost for isUploading)
   useEffect(() => {
     const sub = BackHandler.addEventListener("hardwareBackPress", () => {
-      if (isUploading) return true; // prevent closing during upload
+      if (activeIsUploading) return true; // prevent closing during upload
       if (formHasContent) {
         setShowDiscardModal(true);
         return true;
@@ -291,7 +332,7 @@ export default function UploadScreen() {
       return false; // let default back happen
     });
     return () => sub.remove();
-  }, [formHasContent, isUploading]);
+  }, [formHasContent, activeIsUploading]);
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [confirmText, setConfirmText] = useState("");
@@ -313,8 +354,90 @@ export default function UploadScreen() {
     };
   }, [bodyText, description, categories, pickedImages, pickedVideo, thumbnailUri, coverUri, monetization]);
 
+  // ── livestream handlers ────────────────────────────────
+  const handleToggleLiveMode = useCallback(() => {
+    setIsLiveMode((prev) => {
+      const next = !prev;
+      if (next) {
+        // Entering live mode: clear media, hide monetization
+        setPickedVideo(null);
+        setPickedImages([]);
+        setShowMonetization(false);
+        setThumbnailUri(null);
+        setCoverUri(null);
+        setCoverHidden(false);
+      } else {
+        // Leaving live mode: clear live-specific state
+        setShowLiveSettings(false);
+        setLiveThumbnailUri(null);
+        setLiveSettings(INITIAL_LIVE_SETTINGS);
+      }
+      return next;
+    });
+  }, []);
+
+  const handlePickLiveThumbnail = useCallback(async () => {
+    try {
+      await runWithPermissions([ensureMediaLibraryPermission], async () => {
+        const picked = await openCroppedImagePicker({
+          width: 640,
+          height: 360,
+          quality: 0.9,
+          forceJpg: true,
+        });
+        if (picked) {
+          setLiveThumbnailUri(picked);
+        }
+      });
+    } catch (err) {
+      console.error("[UploadScreen] live thumbnail pick error:", err);
+    }
+  }, []);
+
+  const getLivePayload = useCallback((): LiveUploadPayload => ({
+    title: bodyText,
+    description,
+    categories,
+    thumbnailUri: liveThumbnailUri,
+    coverUri: null,
+    settings: liveSettings,
+  }), [bodyText, description, categories, liveThumbnailUri, liveSettings]);
+
+  const handleGoLive = useCallback(() => {
+    if (!canGoLive || activeIsUploading) return;
+    const payload = getLivePayload();
+
+    const validation = validateLive(payload);
+    if (!validation.valid) {
+      toastError(validation.error ?? "Please fill in required fields.");
+      return;
+    }
+
+    const text = buildLiveConfirmText(payload);
+    setConfirmText(text);
+    setShowConfirm(true);
+  }, [canGoLive, activeIsUploading, getLivePayload, validateLive, buildLiveConfirmText]);
+
+  const handleConfirmGoLive = useCallback(async () => {
+    const payload = getLivePayload();
+    await uploadLive(payload);
+  }, [getLivePayload, uploadLive]);
+
+  const handleLiveSettingsChange = useCallback((next: LiveSettingsState) => {
+    setLiveSettings(next);
+  }, []);
+
+  const toggleLiveSettings = useCallback(() => {
+    setShowLiveSettings((prev) => !prev);
+  }, []);
+
   const handlePost = useCallback(() => {
-    if (!canPost || isUploading) return;
+    if (activeIsUploading) return;
+    if (isLiveMode) {
+      handleGoLive();
+      return;
+    }
+    if (!canPost) return;
     const payload = getPayload();
 
     // Validate form
@@ -335,7 +458,7 @@ export default function UploadScreen() {
     const text = buildConfirmText(payload);
     setConfirmText(text);
     setShowConfirm(true);
-  }, [canPost, isUploading, getPayload, validate, preUploadCheck, buildConfirmText]);
+  }, [canPost, activeIsUploading, isLiveMode, getPayload, validate, preUploadCheck, buildConfirmText, handleGoLive]);
 
   const handleConfirmUpload = useCallback(async () => {
     const payload = getPayload();
@@ -601,7 +724,7 @@ export default function UploadScreen() {
         </TouchableOpacity>
 
         <View className="flex-row items-center">
-          {formHasContent && !isUploading && (
+          {formHasContent && !activeIsUploading && (
             <TouchableOpacity
               onPress={handleDraftButton}
               activeOpacity={0.7}
@@ -612,17 +735,19 @@ export default function UploadScreen() {
             </TouchableOpacity>
           )}
 
-          <AccentButtonGradient style={{ opacity: canPost ? 1 : 0.5 }}>
+          <AccentButtonGradient style={{ opacity: (isLiveMode ? canGoLive : canPost) ? 1 : 0.5 }}>
             <TouchableOpacity
               onPress={handlePost}
-              disabled={!canPost || isUploading}
+              disabled={isLiveMode ? (!canGoLive || activeIsUploading) : (!canPost || activeIsUploading)}
               activeOpacity={0.8}
               className="px-5 py-2"
             >
-              {isUploading ? (
+              {activeIsUploading ? (
                 <ActivityIndicator size="small" color="#fff" />
               ) : (
-                <Text className="text-white font-bold text-sm">Post</Text>
+                <Text className="text-white font-bold text-sm">
+                  {isLiveMode ? "Go Live" : "Post"}
+                </Text>
               )}
             </TouchableOpacity>
           </AccentButtonGradient>
@@ -682,8 +807,61 @@ export default function UploadScreen() {
               {bodyText.length}/{TITLE_MAX}
             </Text>
 
+            {/* ── Live mode indicator ─────────────────── */}
+            {isLiveMode && (
+              <View className="mt-2 flex-row items-center">
+                <View className="w-2.5 h-2.5 rounded-full bg-red-500 mr-2" />
+                <Text className="text-red-400 text-xs font-semibold uppercase tracking-wide">
+                  Livestream Mode
+                </Text>
+              </View>
+            )}
+
+            {/* ── Live thumbnail picker ───────────────── */}
+            {isLiveMode && (
+              <View className="mt-3">
+                {liveThumbnailUri ? (
+                  <View className="w-full rounded-xl overflow-hidden border border-theme-neutrals-700 relative"
+                    style={{ aspectRatio: 16 / 9 }}
+                  >
+                    <Image
+                      source={{ uri: liveThumbnailUri }}
+                      style={{ width: "100%", height: "100%" }}
+                      resizeMode="cover"
+                    />
+                    <View className="absolute top-2 right-2 flex-row">
+                      <TouchableOpacity
+                        onPress={handlePickLiveThumbnail}
+                        activeOpacity={0.7}
+                        className="mr-2 w-8 h-8 rounded-full bg-black/60 items-center justify-center border border-white/10"
+                      >
+                        <Ionicons name="pencil" size={14} color="#fff" />
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => setLiveThumbnailUri(null)}
+                        activeOpacity={0.7}
+                        className="w-8 h-8 rounded-full bg-black/60 items-center justify-center border border-white/10"
+                      >
+                        <Ionicons name="trash" size={14} color="#fff" />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                ) : (
+                  <TouchableOpacity
+                    onPress={handlePickLiveThumbnail}
+                    className="h-32 rounded-xl border border-dashed border-theme-neutrals-700 bg-theme-neutrals-800 items-center justify-center"
+                  >
+                    <Ionicons name="image" size={28} color="#9CA3AF" />
+                    <Text className="text-gray-400 text-xs mt-2">
+                      Add Thumbnail <Text className="text-red-500">*</Text>
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+            )}
+
             {/* ── Image previews ──────────────────────── */}
-            {mediaMode === "images" && (
+            {!isLiveMode && mediaMode === "images" && (
               <View className="mt-3 flex-row flex-wrap -m-1">
                 {pickedImages.map((img, idx) => (
                   <View
@@ -723,7 +901,7 @@ export default function UploadScreen() {
             )}
 
             {/* ── Video preview ───────────────────────── */}
-            {mediaMode === "video" && pickedVideo && (
+            {!isLiveMode && mediaMode === "video" && pickedVideo && (
               <View className="mt-3 rounded-xl overflow-hidden border border-theme-neutrals-700 relative">
                 <VideoView
                   player={player}
@@ -805,7 +983,7 @@ export default function UploadScreen() {
             )}
 
             {/* Show cover toggle – visible only when cover is hidden */}
-            {mediaMode === "video" && coverHidden && (thumbnailUri || coverUri) && (
+            {!isLiveMode && mediaMode === "video" && coverHidden && (thumbnailUri || coverUri) && (
               <TouchableOpacity
                 onPress={toggleCoverHidden}
                 activeOpacity={0.7}
@@ -821,8 +999,8 @@ export default function UploadScreen() {
             {/* ── Description & Category section ─────────── */}
             {showExtras && (
               <View className="mt-4">
-                {/* Description: only shown for video posts */}
-                {mediaMode === "video" && (
+                {/* Description: shown for video posts and live mode */}
+                {(mediaMode === "video" || isLiveMode) && (
                   !showDescription ? (
                     <TouchableOpacity
                       onPress={handleShowDescription}
@@ -933,15 +1111,27 @@ export default function UploadScreen() {
         </Pressable>
       </ScrollView>
 
-      {/* ── Monetization slide-up panel (animated) ── */}
-      <Animated.View style={monetizationAnimStyle}>
-        <MonetizationPanel
-          state={monetization}
-          onChange={handleMonetizationChange}
-          autoExpandSection={autoExpandSection}
-          onAutoExpandHandled={handleAutoExpandHandled}
-        />
-      </Animated.View>
+      {/* ── Monetization slide-up panel (animated, post mode only) ── */}
+      {!isLiveMode && (
+        <Animated.View style={monetizationAnimStyle}>
+          <MonetizationPanel
+            state={monetization}
+            onChange={handleMonetizationChange}
+            autoExpandSection={autoExpandSection}
+            onAutoExpandHandled={handleAutoExpandHandled}
+          />
+        </Animated.View>
+      )}
+
+      {/* ── Live Settings slide-up panel (animated, live mode only) ── */}
+      {isLiveMode && (
+        <Animated.View style={liveSettingsAnimStyle}>
+          <LiveSettingsPanel
+            state={liveSettings}
+            onChange={handleLiveSettingsChange}
+          />
+        </Animated.View>
+      )}
 
       {/* ── Divider ─────────────────────────────────── */}
       <View className="h-px bg-theme-neutrals-700 mx-4" />
@@ -951,51 +1141,77 @@ export default function UploadScreen() {
         className="flex-row items-center px-4 h-12"
         style={{ marginBottom: bottomPad > 0 ? bottomPad : 0 }}
       >
+        {/* Media buttons: hidden in live mode */}
+        {!isLiveMode && (
+          <>
+            <TouchableOpacity
+              onPress={handlePickImage}
+              disabled={imageDisabled}
+              activeOpacity={0.7}
+              className="mr-4"
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              style={{ opacity: imageDisabled ? 0.3 : 1 }}
+            >
+              <Ionicons name="image-outline" size={24} color="#fff" />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={handlePickVideo}
+              disabled={videoDisabled}
+              activeOpacity={0.7}
+              className="mr-4"
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              style={{ opacity: videoDisabled ? 0.3 : 1 }}
+            >
+              <Ionicons name="videocam-outline" size={24} color="#fff" />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              disabled
+              activeOpacity={0.7}
+              className="mr-4"
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              style={{ opacity: 0.3 }}
+            >
+              <Ionicons name="film-outline" size={24} color="#fff" />
+            </TouchableOpacity>
+          </>
+        )}
+
+        {/* Radio button: toggles live mode */}
         <TouchableOpacity
-          onPress={handlePickImage}
-          disabled={imageDisabled}
+          onPress={handleToggleLiveMode}
           activeOpacity={0.7}
-          className="mr-4"
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          style={{ opacity: imageDisabled ? 0.3 : 1 }}
+          className={isLiveMode ? "" : "mr-4"}
         >
-          <Ionicons name="image-outline" size={24} color="#fff" />
+          <Ionicons
+            name="radio-outline"
+            size={24}
+            color={isLiveMode ? "#EF4444" : "#fff"}
+          />
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={handlePickVideo}
-          disabled={videoDisabled}
-          activeOpacity={0.7}
-          className="mr-4"
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          style={{ opacity: videoDisabled ? 0.3 : 1 }}
-        >
-          <Ionicons name="videocam-outline" size={24} color="#fff" />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          disabled
-          activeOpacity={0.7}
-          className="mr-4"
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          style={{ opacity: 0.3 }}
-        >
-          <Ionicons name="film-outline" size={24} color="#fff" />
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          disabled
-          activeOpacity={0.7}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          style={{ opacity: 0.3 }}
-        >
-          <Ionicons name="radio-outline" size={24} color="#fff" />
-        </TouchableOpacity>
-
-        {/* Spacer to push monetization trigger to the right */}
+        {/* Spacer to push right-side controls */}
         <View className="flex-1" />
 
-        {mediaMode === "video" && (
+        {/* Live mode: gear icon for settings */}
+        {isLiveMode && (
+          <TouchableOpacity
+            onPress={toggleLiveSettings}
+            activeOpacity={0.7}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <Ionicons
+              name="settings-outline"
+              size={22}
+              color={showLiveSettings ? "#256DFA" : "#fff"}
+            />
+          </TouchableOpacity>
+        )}
+
+        {/* Post mode: monetization controls */}
+        {!isLiveMode && mediaMode === "video" && (
           <View className="flex-row items-center">
             {/* Show enabled monetization icons when panel is closed */}
             {!showMonetization && monetization.ppvEnabled && (
@@ -1047,13 +1263,13 @@ export default function UploadScreen() {
       <ConfirmUploadModal
         visible={showConfirm}
         onClose={() => {
-          if (!isUploading) setShowConfirm(false);
+          if (!activeIsUploading) setShowConfirm(false);
         }}
-        onConfirm={handleConfirmUpload}
+        onConfirm={isLiveMode ? handleConfirmGoLive : handleConfirmUpload}
         confirmText={confirmText}
-        stage={uploadStage}
-        variant={monetization.bountyEnabled ? "bounty" : "default"}
-        title="Confirm Upload"
+        stage={activeUploadStage}
+        variant={!isLiveMode && monetization.bountyEnabled ? "bounty" : "default"}
+        title={isLiveMode ? "Confirm Livestream" : "Confirm Upload"}
       />
 
       {/* ── Save Draft Modal ───────────────────────── */}

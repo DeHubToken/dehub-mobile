@@ -12,6 +12,7 @@ import {
   Keyboard,
   Platform,
   AppState,
+  KeyboardAvoidingView,
 } from "react-native";
 import ActionsRow from "./ActionsRow";
 import CreatorRow from "./CreatorRow";
@@ -19,7 +20,6 @@ import DescriptionBlock from "./DescriptionBlock";
 import VideoArea from "./VideoArea";
 import { useAuth } from "../../context/AuthContext";
 import { useStreamAccessInfo } from "../../libs/validators.util";
-import { recordView } from "../../services";
 import {
   getAccount,
   followUser,
@@ -28,6 +28,12 @@ import {
 import { formatDistance } from "date-fns";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import LiveChatPanel from "../LiveProducer/LiveChatPanel";
+import ReactionOverlay from "../LiveProducer/ReactionOverlay";
+import ReactionBar from "../LiveProducer/ReactionBar";
+import TipAnimationsOverlay from "../LiveProducer/TipAnimationsOverlay";
+import { useTipAnimations } from "../../hooks/useTipAnimations";
+import { useReactions } from "../../hooks/useReactions";
+import type { ReactionType } from "../LiveProducer/ReactionOverlay";
 import { useWebSocket } from "../../context/WebSocketContext";
 import {
   LivestreamEvents,
@@ -78,6 +84,13 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     connected,
   } = useWebSocket();
   const navigation = useNavigation<any>();
+
+  // Refs for cleanup closures — always read latest values, never stale
+  const socketEmitRef = useRef(socketEmitAuthed);
+  useEffect(() => { socketEmitRef.current = socketEmitAuthed; }, [socketEmitAuthed]);
+  const streamIdRef = useRef<string | null>(null);
+  const isSignedInRef = useRef(isSignedIn);
+  useEffect(() => { isSignedInRef.current = isSignedIn; }, [isSignedIn]);
 
   // Resolve streamId for fetching livestream details (prefer explicit prop)
   const resolvedStreamId = useMemo(() => {
@@ -304,6 +317,38 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     optimistic?: boolean;
   };
   const [activities, setActivities] = useState<Activity[]>([]);
+
+  // Tip animations (viewer sees same tiered effects as producer)
+  const { items: tipEffects, enqueueFromGift, clearAll: clearTipEffects } = useTipAnimations({ maxConcurrent: 2 });
+  // Floating reaction bubbles
+  const { reactions, addReaction, removeReaction, clearReactions } = useReactions();
+  // Stream paused/resumed state
+  const [streamPaused, setStreamPaused] = useState(false);
+  // Dynamic chat enabled (settings can change mid-stream)
+  const [liveChatEnabled, setLiveChatEnabled] = useState(true);
+
+  // Sync from initial entity
+  useEffect(() => {
+    const chatSetting = (streamEntity as any)?.settings?.chat?.enabled ??
+      (streamEntity as any)?.settings?.enableChat;
+    if (typeof chatSetting === 'boolean') setLiveChatEnabled(chatSetting);
+    // Seed paused state if stream entity loaded as PAUSED
+    const entityStatus = String((streamEntity as any)?.status || '').toUpperCase();
+    if (entityStatus === 'PAUSED' && !streamPaused) {
+      setStreamPaused(true);
+      // Calculate remaining grace from pausedAt if available
+      const pausedAt = (streamEntity as any)?.pausedAt;
+      const defaultGrace = 90;
+      if (pausedAt) {
+        const elapsed = Math.floor((Date.now() - new Date(pausedAt).getTime()) / 1000);
+        const remaining = Math.max(0, defaultGrace - elapsed);
+        setGraceCountdown(remaining);
+      } else {
+        setGraceCountdown(defaultGrace);
+      }
+    }
+  }, [streamEntity]);
+
   const addActivity = useCallback(
     (
       a: Partial<Activity> & {
@@ -350,18 +395,23 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const streamId = useMemo(() => {
     return (resolvedStreamId || streamEntity?._id || null) as string | null;
   }, [resolvedStreamId, streamEntity?._id]);
+  // Keep streamIdRef in sync
+  useEffect(() => { streamIdRef.current = streamId; }, [streamId]);
 
   // Ownership/redirect gating for JoinStream
   const [ownerStatus, setOwnerStatus] = useState<
     "unknown" | "owner" | "viewer"
   >("unknown");
   const didJoinRef = useRef<boolean>(false);
+  const didLeaveRef = useRef<boolean>(false);
 
   // Dedupe mechanics across reconnects: track connection epochs and per-epoch sends
   const connectedGenRef = useRef<number>(0);
   const prevConnectedRef = useRef<boolean>(false);
   const joinRoomSentKeyRef = useRef<string | null>(null);
   const joinStreamSentKeyRef = useRef<string | null>(null);
+  const maybeJoinRoomRef = useRef<(sid?: string | null) => void>(() => {});
+  const maybeJoinStreamRef = useRef<(sid?: string | null) => void>(() => {});
 
   // Compact meta row: status, elapsed, viewers, bitrate (if available)
   const rawStatus = (streamEntity?.status || "") as string;
@@ -373,7 +423,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   )
     ? (statusUpper as StreamStatus)
     : undefined;
-  const isLiveStatus = statusEnum === StreamStatus.LIVE;
+  const isLiveStatus = statusEnum === StreamStatus.LIVE || statusEnum === StreamStatus.PAUSED;
   const isEndedStatus = statusEnum === StreamStatus.ENDED;
   const scheduledForRaw: any = (streamEntity as any)?.scheduledFor;
   const scheduledForDate = scheduledForRaw ? new Date(scheduledForRaw) : null;
@@ -382,11 +432,47 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     (!!scheduledForDate && scheduledForDate.getTime() > Date.now());
 
   // Socket-driven overrides for timely UI transitions without waiting for backend refresh
-  const [socketStatus, setSocketStatus] = useState<"LIVE" | "ENDED" | null>(
+  const [socketStatus, setSocketStatus] = useState<"LIVE" | "ENDED" | "PAUSED" | null>(
     null
   );
+  // Grace period countdown for PAUSED state
+  const [gracePeriodSeconds, setGracePeriodSeconds] = useState<number>(90);
+  const [graceCountdown, setGraceCountdown] = useState<number>(0);
+  const graceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const isPausedEffective = socketStatus === "PAUSED" || (statusEnum === StreamStatus.PAUSED && socketStatus !== "LIVE" && socketStatus !== "ENDED");
+
+  // Grace period countdown tick
+  useEffect(() => {
+    if (!streamPaused || graceCountdown <= 0) {
+      if (graceTimerRef.current) {
+        clearInterval(graceTimerRef.current);
+        graceTimerRef.current = null;
+      }
+      return;
+    }
+    graceTimerRef.current = setInterval(() => {
+      setGraceCountdown((prev) => {
+        if (prev <= 1) {
+          if (graceTimerRef.current) {
+            clearInterval(graceTimerRef.current);
+            graceTimerRef.current = null;
+          }
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => {
+      if (graceTimerRef.current) {
+        clearInterval(graceTimerRef.current);
+        graceTimerRef.current = null;
+      }
+    };
+  }, [streamPaused, graceCountdown]);
+
+  // Treat PAUSED as "still live" — keep player mounted, chat open, tips/likes allowed
   const isLiveEffective =
-    socketStatus === "LIVE" || (isLiveStatus && socketStatus !== "ENDED");
+    socketStatus === "LIVE" || isPausedEffective || (isLiveStatus && socketStatus !== "ENDED");
   const isEndedEffective = socketStatus === "ENDED" || isEndedStatus;
   const isScheduledEffective =
     !isLiveEffective && !isEndedEffective && isScheduledStatus;
@@ -411,6 +497,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     },
     [streamId, makeKey, socketEmitAuthed]
   );
+  useEffect(() => { maybeJoinRoomRef.current = maybeJoinRoom; }, [maybeJoinRoom]);
 
   const maybeJoinStream = useCallback(
     (sid?: string | null) => {
@@ -423,6 +510,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         socketEmitAuthed(LivestreamEvents.JoinStream, { streamId: s });
         joinStreamSentKeyRef.current = key;
         didJoinRef.current = true;
+        didLeaveRef.current = false;
       } catch {}
     },
     [
@@ -434,12 +522,27 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       socketEmitAuthed,
     ]
   );
+  useEffect(() => { maybeJoinStreamRef.current = maybeJoinStream; }, [maybeJoinStream]);
 
-  // Join room on stream change if already connected (once per connection epoch)
+  // Join room + stream on stream change if already connected (once per connection epoch)
+  // Automatically joins as viewer if logged in, even before we confirm LIVE status
   useEffect(() => {
     if (!streamId || !connected) return;
     maybeJoinRoom(streamId);
-  }, [streamId, connected, maybeJoinRoom]);
+    // Auto-join stream for signed-in users (don't wait for isLiveEffective or ownerStatus resolution)
+    // Owner redirect will happen separately; double-join is harmless
+    if (isSignedIn && ownerStatus !== "owner") {
+      const key = makeKey(streamId);
+      if (joinStreamSentKeyRef.current !== key) {
+        try {
+          socketEmitAuthed(LivestreamEvents.JoinStream, { streamId });
+          joinStreamSentKeyRef.current = key;
+          didJoinRef.current = true;
+          didLeaveRef.current = false;
+        } catch {}
+      }
+    }
+  }, [streamId, connected, maybeJoinRoom, isSignedIn, ownerStatus, makeKey, socketEmitAuthed]);
 
   // Rejoin on reconnect is defined later after effective status is computed
 
@@ -528,6 +631,13 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         data
       );
       setSocketStatus("LIVE");
+      // Clear any paused state on stream start/resume
+      setStreamPaused(false);
+      setGraceCountdown(0);
+      if (graceTimerRef.current) {
+        clearInterval(graceTimerRef.current);
+        graceTimerRef.current = null;
+      }
     });
     bind(LivestreamEvents.EndStream, (data: any) => {
       console.log(
@@ -536,6 +646,13 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         data
       );
       setSocketStatus("ENDED");
+      // Clear paused state on end
+      setStreamPaused(false);
+      setGraceCountdown(0);
+      if (graceTimerRef.current) {
+        clearInterval(graceTimerRef.current);
+        graceTimerRef.current = null;
+      }
     });
     return () => {
       subs.forEach((u) => {
@@ -546,40 +663,14 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     };
   }, [streamId, socketOn]);
 
-  // Join stream + record view when we become effectively live
-  const recordedLiveViewRef = useRef<string | null>(null);
+  // Join stream when we become effectively live
   useEffect(() => {
     if (!streamId || !isLiveEffective) return;
     // Join as viewer when stream becomes live (deduped per epoch)
     if (isSignedIn && ownerStatus === "viewer") {
       maybeJoinStream(streamId);
     }
-    // Record view once per stream on first live join (server updates totals/peaks)
-    if (recordedLiveViewRef.current !== streamId) {
-      const viewTokenId = (streamEntity?.tokenId ?? tokenId) as any;
-      if (viewTokenId != null && isSignedIn) {
-        (async () => {
-          try {
-            await recordView(viewTokenId as any);
-            recordedLiveViewRef.current = streamId;
-          } catch (e) {
-            // non-fatal
-            console.warn("[LiveStreamPlayer] recordView(live) failed", e);
-          }
-        })();
-      } else {
-        recordedLiveViewRef.current = streamId; // prevent repeat even if not signed in yet
-      }
-    }
-  }, [
-    streamId,
-    isLiveEffective,
-    maybeJoinStream,
-    isSignedIn,
-    ownerStatus,
-    streamEntity?.tokenId,
-    tokenId,
-  ]);
+  }, [streamId, isLiveEffective, maybeJoinStream, isSignedIn, ownerStatus]);
 
   // Keep a ref of liveLikes for debounced updates (value mirrored later)
   const liveLikesRef = useRef<number>(0);
@@ -707,6 +798,13 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       const now = Date.now();
       // If it's our own confirmed gift, try to confirm an optimistic one instead of adding a duplicate
       if (me && sender && sender === me) {
+        // Enqueue tip visual effect for own gifts too
+        enqueueFromGift({
+          amount: amt,
+          message: payload?.gift?.meta?.message,
+          username,
+          selectedTier: payload?.gift?.meta?.selectedTier,
+        } as any);
         setActivities((prev) => {
           const copy = prev.slice();
           // find most recent optimistic TIP from me with same amount in the last 15s
@@ -749,6 +847,44 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         address: sender,
         meta: { username, amount: amt },
       });
+      // Enqueue tip visual effect for other users' gifts
+      enqueueFromGift({
+        amount: amt,
+        message: payload?.gift?.meta?.message,
+        username,
+        selectedTier: payload?.gift?.meta?.selectedTier,
+      } as any);
+    });
+    // Reaction events from other viewers or self-echo
+    bind(LivestreamEvents.StreamReaction as any, (data: any) => {
+      const type = data?.type as ReactionType;
+      const rUsername = data?.user?.username;
+      if (type) addReaction(type, rUsername);
+    });
+    // Settings updates from streamer (e.g. chat toggled)
+    bind(LivestreamEvents.SettingsUpdate as any, (data: any) => {
+      const settings = data?.settings;
+      if (settings) {
+        const chatEnabled = settings?.chat?.enabled ?? settings?.enableChat;
+        if (typeof chatEnabled === 'boolean') setLiveChatEnabled(chatEnabled);
+      }
+    });
+    // Stream paused/resumed with grace period countdown
+    bind(LivestreamEvents.StreamPaused as any, (data: any) => {
+      setStreamPaused(true);
+      setSocketStatus("PAUSED");
+      const grace = typeof data?.gracePeriodSeconds === 'number' ? data.gracePeriodSeconds : 90;
+      setGracePeriodSeconds(grace);
+      setGraceCountdown(grace);
+    });
+    bind(LivestreamEvents.StreamResumed as any, () => {
+      setStreamPaused(false);
+      setSocketStatus("LIVE");
+      setGraceCountdown(0);
+      if (graceTimerRef.current) {
+        clearInterval(graceTimerRef.current);
+        graceTimerRef.current = null;
+      }
     });
     // Debounced viewer count updates using shared util
     const updater = createViewCountUpdater({
@@ -766,6 +902,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           clearTimeout(likesTimer);
       } catch {}
       try { updater.dispose(); } catch {}
+      try { clearTipEffects(); } catch {}
+      try { clearReactions(); } catch {}
       subs.forEach((u) => {
         try {
           u();
@@ -774,57 +912,75 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     };
   }, [streamId, socketOn, addActivity, user?.walletAddress, user?.address]);
 
-  // Emit LeaveStream on unmount / stream switch
+  // Emit LeaveStream on unmount — guarded by didLeaveRef so it only fires once.
   useEffect(() => {
     return () => {
-      if (!streamId) return;
+      const sid = streamIdRef.current;
+      if (!sid || didLeaveRef.current) return;
+      didLeaveRef.current = true;
+      console.log('[LiveStreamPlayer] unmount cleanup: emitting LeaveStream', { streamId: sid });
       try {
-        if (didJoinRef.current) {
-          socketEmitAuthed(LivestreamEvents.LeaveStream, { streamId });
-        }
-      } catch {}
+        socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
+      } catch (e) {
+        console.warn('[LiveStreamPlayer] unmount LeaveStream emit failed', e);
+      }
     };
-  }, [streamId, socketEmitAuthed]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  // Emit LeaveStream on navigation blur and re-Join on focus
+  // Emit LeaveStream on navigation blur and re-Join on focus.
+  // Uses [] deps + refs so React never tears down / re-creates this effect
+  // when maybeJoinRoom/Stream identity changes (which caused spurious blur→focus).
   useFocusEffect(
     useCallback(() => {
-      // On focus: ensure room/join are sent if eligible
-      if (streamId) {
+      // On focus: re-join if we previously left
+      const sid = streamIdRef.current;
+      if (sid) {
         try {
-          maybeJoinRoom(streamId);
-          maybeJoinStream(streamId);
+          maybeJoinRoomRef.current(sid);
+          maybeJoinStreamRef.current(sid);
         } catch {}
       }
-      // On blur: emit LeaveStream if we previously joined
+      // On blur: emit LeaveStream (once)
       return () => {
-        if (!streamId) return;
+        const sid = streamIdRef.current;
+        if (!sid || didLeaveRef.current) return;
+        didLeaveRef.current = true;
+        // Reset join keys so next focus can re-join
+        joinRoomSentKeyRef.current = null;
+        joinStreamSentKeyRef.current = null;
+        console.log('[LiveStreamPlayer] blur cleanup: emitting LeaveStream', { streamId: sid });
         try {
-          if (didJoinRef.current) {
-            socketEmitAuthed(LivestreamEvents.LeaveStream, { streamId });
-          }
-        } catch {}
+          socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
+        } catch (e) {
+          console.warn('[LiveStreamPlayer] blur LeaveStream emit failed', e);
+        }
       };
-    }, [streamId, maybeJoinRoom, maybeJoinStream, socketEmitAuthed])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
   );
 
   // Emit LeaveStream when app goes background/inactive, re-Join on active
   useEffect(() => {
     const onAppStateChange = (state: string) => {
-      if (!streamId) return;
+      const sid = streamIdRef.current;
+      if (!sid) return;
       if (state === "active") {
-        // Re-join when coming back if eligible
         try {
-          maybeJoinRoom(streamId);
-          maybeJoinStream(streamId);
+          maybeJoinRoomRef.current(sid);
+          maybeJoinStreamRef.current(sid);
         } catch {}
       } else if (state === "background" || state === "inactive") {
-        // Leave on background/inactive
+        if (didLeaveRef.current) return;
+        didLeaveRef.current = true;
+        joinRoomSentKeyRef.current = null;
+        joinStreamSentKeyRef.current = null;
+        console.log('[LiveStreamPlayer] app background: emitting LeaveStream', { streamId: sid });
         try {
-          if (didJoinRef.current) {
-            socketEmitAuthed(LivestreamEvents.LeaveStream, { streamId });
-          }
-        } catch {}
+          socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
+        } catch (e) {
+          console.warn('[LiveStreamPlayer] background LeaveStream emit failed', e);
+        }
       }
     };
     const sub = AppState.addEventListener("change", onAppStateChange);
@@ -833,33 +989,38 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         sub.remove();
       } catch {}
     };
-  }, [streamId, maybeJoinRoom, maybeJoinStream, socketEmitAuthed]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Web: emit leave on page hide/unload; re-join on visibility return
   useEffect(() => {
     if (Platform.OS !== "web") return;
-    if (!streamId) return;
     const onVisibility = () => {
       if (typeof document === "undefined") return;
+      const sid = streamIdRef.current;
+      if (!sid) return;
       const hidden = (document as any).hidden === true;
       if (hidden) {
+        if (didLeaveRef.current) return;
+        didLeaveRef.current = true;
+        joinRoomSentKeyRef.current = null;
+        joinStreamSentKeyRef.current = null;
         try {
-          if (didJoinRef.current) {
-            socketEmitAuthed(LivestreamEvents.LeaveStream, { streamId });
-          }
+          socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
         } catch {}
       } else {
         try {
-          maybeJoinRoom(streamId);
-          maybeJoinStream(streamId);
+          maybeJoinRoomRef.current(sid);
+          maybeJoinStreamRef.current(sid);
         } catch {}
       }
     };
     const onBeforeUnload = () => {
+      const sid = streamIdRef.current;
+      if (!sid || didLeaveRef.current) return;
+      didLeaveRef.current = true;
       try {
-        if (didJoinRef.current) {
-          socketEmitAuthed(LivestreamEvents.LeaveStream, { streamId });
-        }
+        socketEmitRef.current(LivestreamEvents.LeaveStream, { streamId: sid });
       } catch {}
     };
     try {
@@ -876,7 +1037,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         window.removeEventListener("beforeunload", onBeforeUnload);
       } catch {}
     };
-  }, [streamId, maybeJoinRoom, maybeJoinStream, socketEmitAuthed]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Chat availability: allowed to send if content is playable (free or unlocked)
   const canChat = isPlayable && isSignedIn;
@@ -944,6 +1106,14 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     [user, addActivity]
   );
 
+  // Send a reaction via socket
+  const handleSendReaction = useCallback((type: ReactionType) => {
+    if (!streamId || !isLiveEffective || !isSignedIn) return;
+    // Optimistic local bubble
+    addReaction(type, (user as any)?.username);
+    socketEmitAuthed(LivestreamEvents.StreamReaction as any, { streamId, type });
+  }, [streamId, isLiveEffective, isSignedIn, addReaction, socketEmitAuthed, user]);
+
   // First-load redirect: if not ended and current user is owner, go to LiveProducer
   const redirectCheckedRef = useRef(false);
   useEffect(() => {
@@ -990,15 +1160,24 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     streamId,
   ]);
 
-  // Derive user vote for ActionsRow from live likesRecord
+  // Derive user vote for ActionsRow from isLiked field in stream entity
   const actionsUserVote = useMemo(() => {
+    // Backend now returns isLiked boolean on the stream entity
+    if (typeof (streamEntity as any)?.isLiked === 'boolean') {
+      return (streamEntity as any).isLiked ? 'like' : null;
+    }
+    // Fallback to likesRecord for older backend responses
     const addr = (user?.walletAddress || user?.address || "").toLowerCase();
     const rec = (streamEntity?.likesRecord || {}) as Record<string, boolean>;
     return addr && rec && !!rec[addr] ? "like" : null;
-  }, [user?.walletAddress, user?.address, streamEntity?.likesRecord]);
+  }, [user?.walletAddress, user?.address, streamEntity?.likesRecord, (streamEntity as any)?.isLiked]);
 
   return (
     <View className="flex-1">
+      {/* Tip Animations Overlay (renders above everything) */}
+      <TipAnimationsOverlay items={tipEffects} />
+      {/* Floating Reaction Bubbles */}
+      <ReactionOverlay reactions={reactions} onRemove={removeReaction} />
       {isEndedEffective ? (
         <View className="px-4 py-10 items-center justify-center bg-black/50 border-b border-white/10">
           <Text className="text-white font-semibold">
@@ -1054,15 +1233,35 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           isLive={true}
         />
       )}
+      {/* Stream paused overlay with countdown */}
+      {streamPaused && isLiveEffective && (
+        <View className="absolute inset-0 z-30 items-center justify-center bg-black/70" pointerEvents="none">
+          <View className="bg-theme-neutrals-900/90 rounded-2xl px-6 py-5 items-center border border-white/10 mx-8">
+            <Text className="text-yellow-400 text-2xl mb-2">⏸</Text>
+            <Text className="text-white font-semibold text-sm">Stream Paused</Text>
+            <Text className="text-white/70 text-xs mt-1 text-center">Streamer may be reconnecting…</Text>
+            {graceCountdown > 0 && (
+              <View className="mt-3 items-center">
+                <Text className="text-white font-bold text-2xl">
+                  {Math.floor(graceCountdown / 60)}:{String(graceCountdown % 60).padStart(2, '0')}
+                </Text>
+                <Text className="text-white/50 text-[10px] mt-1">Stream will end if not resumed</Text>
+              </View>
+            )}
+          </View>
+        </View>
+      )}
       {/* Compact meta row under player */}
       <View className="px-4 py-2 bg-black/40 border-t border-white/10 flex-row items-center justify-between">
         <View className="flex-row items-center">
           <View
             className="w-2 h-2 rounded-full mr-2"
-            style={{ backgroundColor: isLiveEffective ? "#ef4444" : "#6b7280" }}
+            style={{ backgroundColor: isPausedEffective ? "#eab308" : isLiveEffective ? "#ef4444" : "#6b7280" }}
           />
           <Text className="text-white font-semibold text-[11px] mr-3">
-            {isLiveEffective
+            {isPausedEffective
+              ? "PAUSED"
+              : isLiveEffective
               ? "LIVE"
               : isEndedEffective
               ? "ENDED"
@@ -1090,12 +1289,16 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             {Math.max(0, liveViewers)}
           </Text>
           <Text className="text-white/60 text-[11px] ml-3">
-            Peak: {Math.max(liveViewers, peakViewers)}
+            Peak: {Math.max(0, peakViewers)}
           </Text>
         </View>
       </View>
       {/* Body: top details fixed + chat fills to bottom (only chat scrolls) */}
-      <View className="flex-1">
+      <KeyboardAvoidingView
+        className="flex-1"
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 30}
+      >
         <View className="px-4 pt-2">
           <Text
             className="text-theme-neutrals-100 font-semibold text-base"
@@ -1123,6 +1326,13 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             stream={streamEntity}
             onGiftSent={onGiftOptimistic}
           />
+          {/* Reaction bar for viewers */}
+          {isLiveEffective && (
+            <ReactionBar
+              onReact={handleSendReaction}
+              disabled={!isSignedIn}
+            />
+          )}
           <CreatorRow
             key={
               creatorLoading
@@ -1158,7 +1368,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
               onClose={() => {
                 /* no-op in stacked mode */
               }}
-              chatEnabled={!!canChat && !!isLiveEffective && !!(streamEntity as any)?.settings?.chat?.enabled}
+              chatEnabled={!!canChat && !!isLiveEffective && liveChatEnabled}
               autoJoinRoom={false}
               phase={
                 isScheduledEffective
@@ -1197,17 +1407,17 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
               addActivity={addActivity}
               mode="stack"
             />
-            {(!isLiveStatus ||
+            {(!isLiveEffective ||
               !canChat ||
-              isEndedStatus ||
-              isScheduledStatus) && (
+              isEndedEffective ||
+              isScheduledEffective) && (
               <View className="px-4 py-3 bg-black/40 border-t border-white/10">
                 <Text className="text-white/60 text-[11px]">
-                  {isScheduledStatus
+                  {isScheduledEffective
                     ? "Chat will open when the stream goes live."
-                    : isEndedStatus
+                    : isEndedEffective
                     ? "Chat is read-only. Stream has ended."
-                    : !isLiveStatus
+                    : !isLiveEffective
                     ? "Chat is available when the stream is live."
                     : "Sign in and unlock access to participate in chat."}
                 </Text>
@@ -1215,7 +1425,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             )}
           </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
 };
