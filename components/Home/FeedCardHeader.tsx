@@ -82,11 +82,13 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
               {displayName}
             </Text>
             <TouchableOpacity activeOpacity={0.7} onPress={onUserPress} style={{ marginLeft: 4, flexShrink: 0 }}>
-              {badgeImage ? (
+              {badgeImage && (
                 <Image source={badgeImage} style={{ width: 12, height: 12 }} resizeMode="contain" />
-              ) : (
-                <Ionicons name={badgeIcon as any} size={12} color="gold" />
-              )}
+              ) 
+              // : (
+              //   <Ionicons name={badgeIcon as any} size={12} color="gold" />
+              // )
+              }
             </TouchableOpacity>
           </View>
           {/* @username */}

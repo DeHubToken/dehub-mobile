@@ -660,7 +660,7 @@ const FeedScreen = () => {
 
       {/* Floating Grid Button - only show in feed view */}
       {!isGridView && (
-        <View style={[styles.floatingButtonContainer, { bottom: insets.bottom + 10 }]}>
+        <View style={[styles.floatingButtonContainer, { bottom: insets.bottom  }]}>
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={toggleViewMode}
@@ -673,7 +673,7 @@ const FeedScreen = () => {
               {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
             >
               <View style={styles.glassOverlay} />
-              <MaterialIcons name="grid-on" size={24} color="#FFFFFF" />
+              <MaterialIcons name="grid-on" size={18} color="#FFFFFF" />
             </BlurView>
           </TouchableOpacity>
         </View>
@@ -695,8 +695,8 @@ const styles = StyleSheet.create({
     zIndex: 100,
   },
   floatingButton: {
-    width: 56,
-    height: 56,
+    width: 45,
+    height: 45,
     borderRadius: 28,
     overflow: "hidden",
     // Add shadow for depth

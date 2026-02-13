@@ -42,7 +42,7 @@ interface VideoCardProps {
 const VideoCardComponent: React.FC<VideoCardProps> = ({
   nft,
   enablePreview,
-  badgeIcon = "star",
+  badgeIcon,
   onBeforeNavigate,
   onCategorySelect,
 }) => {
@@ -51,7 +51,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const tokenId = nft.tokenId || (nft as any).stream?.tokenId;
   const rawStatus: string | undefined = (nft as any).status;
   const status = rawStatus ? rawStatus.toUpperCase() : undefined;
-  const isLive = !!(nft as any).streamKey || !!streamInfo?.isLive;
+  const isLive = (nft as any).postType === "live" || !!(nft as any).streamKey || !!streamInfo?.isLive;
   const duration = nft.videoDuration
     ? secondsToHMMSS(nft.videoDuration)
     : undefined;
@@ -206,7 +206,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
         isLive,
         nft,
         accessInfo,
-        streamId: nft?._id, // for livestreams
+        streamId: (nft as any)?.stream?._id || (nft as any)?.stream?.id || nft?._id, // prefer livestream doc ID over NFT ID
       } as never
     );
   }, [navigation, tokenId, isLive, nft, accessInfo, onBeforeNavigate]);

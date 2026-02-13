@@ -7,6 +7,7 @@ interface Props {
   startTimestamp?: number | null;
   bitrateKbps?: number;
   viewers?: number;
+  peakViewers?: number;
   likes?: number;
   micMuted?: boolean;
   cameraOff?: boolean;
@@ -25,7 +26,7 @@ const formatDuration = (start?: number | null) => {
   return `${h}:${m}:${s}`;
 };
 
-const ProducerStatusBar: React.FC<Props> = ({ stage, startTimestamp, bitrateKbps = 3200, viewers = 0, likes = 0, micMuted, cameraOff, startingHint, onRequestClose, onRequestEndConfirmation }) => {
+const ProducerStatusBar: React.FC<Props> = ({ stage, startTimestamp, bitrateKbps = 3200, viewers = 0, peakViewers = 0, likes = 0, micMuted, cameraOff, startingHint, onRequestClose, onRequestEndConfirmation }) => {
   const [, force] = useState(0);
   useEffect(() => {
     if (stage !== 'live') return;
@@ -69,6 +70,9 @@ const ProducerStatusBar: React.FC<Props> = ({ stage, startTimestamp, bitrateKbps
         {isLive && (
           <>
             <Text className="text-white/70 text-xs mr-3" numberOfLines={1}>{viewers} watching</Text>
+            {peakViewers > 0 && (
+              <Text className="text-white/50 text-xs mr-3" numberOfLines={1}>Peak: {peakViewers}</Text>
+            )}
             <Text className="text-white/70 text-xs mr-3" numberOfLines={1}>{likes} likes</Text>
           </>
         )}

@@ -13,7 +13,9 @@ export enum LivestreamEvents {
   StreamResumed = "stream.resumed",
   UserBanned = "stream.user.banned",
   UserMuted = "stream.user.muted",
-  StreamError = "stream.error"
+  StreamError = "stream.error",
+  StreamReaction = "stream.reaction",
+  SettingsUpdate = "stream.settings.update"
 }
 
 export enum StreamActivityType {
@@ -31,6 +33,7 @@ export enum StreamActivityType {
 export enum StreamStatus {
   OFFLINE = 'OFFLINE',
   LIVE = 'LIVE',
+  PAUSED = 'PAUSED',
   ENDED = 'ENDED',
   SCHEDULED = 'SCHEDULED',
 }

@@ -16,6 +16,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import HomeFeedCard from "../Home/HomeFeedCard";
 import VideoCard from "../Home/VideoCard";
+import LiveStreamCard from "../Home/LiveStreamCard";
 import VideoCardSkeleton from "../Home/VideoCardSkeleton";
 import { getMyPosts, getLikedPosts, getSavedPosts } from "../../services/user.service";
 import { GetNFTsResponse, GetNFTsResult } from "../../services/nft.service";
@@ -111,6 +112,15 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<PostItem>) => {
+      // Render LiveStreamCard for livestream content
+      if ((item as any).postType === "live") {
+        return (
+          <LiveStreamCard
+            item={item as any}
+            onCategorySelect={() => {}}
+          />
+        );
+      }
       // Render VideoCard for video content, HomeFeedCard for feed posts
       if (isVideoItem(item)) {
         return (

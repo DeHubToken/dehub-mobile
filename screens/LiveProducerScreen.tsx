@@ -22,15 +22,17 @@ import MetadataCard from "../components/LiveProducer/MetadataCard";
 import StreamDetailsTooltip from "../components/LiveProducer/StreamDetailsTooltip";
 import EphemeralMessages from "../components/LiveProducer/EphemeralMessages";
 import TipAnimationsOverlay from "../components/LiveProducer/TipAnimationsOverlay";
+import ReactionOverlay from "../components/LiveProducer/ReactionOverlay";
 import { useTipAnimations } from "../hooks/useTipAnimations";
+import { useReactions } from "../hooks/useReactions";
 import { useStreamDetails } from "../hooks/useStreamDetails";
 import { useEphemeralMessages } from "../hooks/useEphemeralMessages";
 import GlassModal from "../components/ui/GlassModal";
-import { LivestreamEvents } from "../services/enums/livestream.enum";
-import { toastSuccess } from "../libs/toast";
-import { StreamActivityType } from "../services/enums/livestream.enum";
+import { LivestreamEvents, StreamActivityType, StreamStatus } from "../services/enums/livestream.enum";
+import { toastSuccess, toastError, toastInfo } from "../libs/toast";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { createViewCountUpdater, seedViewerStats } from "../libs/viewers.util";
+import { updateStreamSettings } from "../services/live.service";
 import { useAuth } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 
@@ -74,6 +76,7 @@ const LiveProducerScreen: React.FC = () => {
     streamKeyLoading,
     streamKeyError,
   } = useStreamDetails(streamId);
+  console.log({streamEntity, streamId, tokenId, ingestUrl, streamKey})
   const {
     stage,
     start,
@@ -105,6 +108,57 @@ const LiveProducerScreen: React.FC = () => {
     enqueueFromGift,
     clearAll,
   } = useTipAnimations({ maxConcurrent: 2 });
+  const { reactions, addReaction, removeReaction, clearReactions } = useReactions();
+  // Stream paused/resumed state
+  const [streamPaused, setStreamPaused] = useState(false);
+  // Grace period countdown for PAUSED state
+  const [gracePeriodSeconds, setGracePeriodSeconds] = useState<number>(90);
+  const [graceCountdown, setGraceCountdown] = useState<number>(0);
+  const graceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  // Live settings state (mirrors stream entity settings, can be toggled while live)
+  const [liveChatEnabled, setLiveChatEnabled] = useState(true);
+  // Scheduled stream info
+  const isScheduled = (streamEntity as any)?.status?.toUpperCase?.() === 'SCHEDULED' ||
+    !!((streamEntity as any)?.scheduledFor && new Date((streamEntity as any)?.scheduledFor).getTime() > Date.now());
+  const scheduledForDate = (streamEntity as any)?.scheduledFor
+    ? new Date((streamEntity as any).scheduledFor) : null;
+
+  // Sync liveChatEnabled from stream entity settings
+  useEffect(() => {
+    const chatSetting = (streamEntity as any)?.settings?.chat?.enabled ??
+      (streamEntity as any)?.settings?.enableChat;
+    if (typeof chatSetting === 'boolean') setLiveChatEnabled(chatSetting);
+  }, [streamEntity]);
+
+  // Grace period countdown tick
+  useEffect(() => {
+    if (!streamPaused || graceCountdown <= 0) {
+      if (graceTimerRef.current) {
+        clearInterval(graceTimerRef.current);
+        graceTimerRef.current = null;
+      }
+      return;
+    }
+    graceTimerRef.current = setInterval(() => {
+      setGraceCountdown((prev) => {
+        if (prev <= 1) {
+          if (graceTimerRef.current) {
+            clearInterval(graceTimerRef.current);
+            graceTimerRef.current = null;
+          }
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => {
+      if (graceTimerRef.current) {
+        clearInterval(graceTimerRef.current);
+        graceTimerRef.current = null;
+      }
+    };
+  }, [streamPaused, graceCountdown]);
+
   // Centralized chat activity list for LiveChatPanel
   const [chatActivities, setChatActivities] = useState<
     Array<{
@@ -272,6 +326,13 @@ const LiveProducerScreen: React.FC = () => {
       console.log('[producer] frontend received', LivestreamEvents.StartStream, data);
       console.log("[LiveProducer] Socket StartStream event", data);
       setStartedAt((prev) => prev || Date.now());
+      // Clear any paused state on stream start/resume
+      setStreamPaused(false);
+      setGraceCountdown(0);
+      if (graceTimerRef.current) {
+        clearInterval(graceTimerRef.current);
+        graceTimerRef.current = null;
+      }
       addChatActivity({
         status: StreamActivityType.START,
         meta: { message: "Stream has started." },
@@ -280,6 +341,13 @@ const LiveProducerScreen: React.FC = () => {
     make(LivestreamEvents.EndStream, (data) => {
       console.log('[producer] frontend received', LivestreamEvents.EndStream, data);
       console.log("[LiveProducer] Socket EndStream event", data);
+      // Clear paused state on end
+      setStreamPaused(false);
+      setGraceCountdown(0);
+      if (graceTimerRef.current) {
+        clearInterval(graceTimerRef.current);
+        graceTimerRef.current = null;
+      }
       // Stage change handled by hook via bind, but we can snapshot viewers
       addChatActivity({
         status: StreamActivityType.END,
@@ -393,6 +461,38 @@ const LiveProducerScreen: React.FC = () => {
         },
       });
     });
+    // Reaction events from viewers
+    make(LivestreamEvents.StreamReaction, (data: any) => {
+      const type = data?.type as import('../components/LiveProducer/ReactionOverlay').ReactionType;
+      const username = data?.user?.username;
+      if (type) addReaction(type, username);
+    });
+    // Settings update (echoed back when we PATCH, or from admin)
+    make(LivestreamEvents.SettingsUpdate, (data: any) => {
+      console.log('[producer] frontend received', LivestreamEvents.SettingsUpdate, data);
+      const settings = data?.settings;
+      if (settings) {
+        const chatEnabled = settings?.chat?.enabled ?? settings?.enableChat;
+        if (typeof chatEnabled === 'boolean') setLiveChatEnabled(chatEnabled);
+      }
+    });
+    // Stream paused/resumed (e.g. temporary ingest interruption) with grace period
+    make(LivestreamEvents.StreamPaused, (data: any) => {
+      console.log('[producer] stream paused', data);
+      setStreamPaused(true);
+      const grace = typeof data?.gracePeriodSeconds === 'number' ? data.gracePeriodSeconds : 90;
+      setGracePeriodSeconds(grace);
+      setGraceCountdown(grace);
+    });
+    make(LivestreamEvents.StreamResumed, () => {
+      console.log('[producer] stream resumed');
+      setStreamPaused(false);
+      setGraceCountdown(0);
+      if (graceTimerRef.current) {
+        clearInterval(graceTimerRef.current);
+        graceTimerRef.current = null;
+      }
+    });
     return () => {
       console.log("[LiveProducer] unbinding socket listeners");
       subs.forEach((u) => {
@@ -401,6 +501,7 @@ const LiveProducerScreen: React.FC = () => {
         } catch {}
       });
       clearAll();
+      clearReactions();
       try { updater.dispose(); } catch {}
     };
   }, [streamId, socketOn]);
@@ -437,8 +538,14 @@ const LiveProducerScreen: React.FC = () => {
 
   const onStart = useCallback(() => {
     console.log("[LiveProducer] onStart invoked. Current stage:", stage);
-    // Ensure video is enabled before starting publishing to avoid blank preview
-    setCameraOff(false);
+    if (!externalMode) {
+      // Ensure video is enabled before starting publishing to avoid blank preview
+      setCameraOff(false);
+    } else {
+      // External mode: signal publisher as "connected" so live polling can begin
+      // (The actual video ingest comes from external software)
+      setPublisherConnected(true);
+    }
     start()
       .then(() => {
         console.log(
@@ -450,17 +557,21 @@ const LiveProducerScreen: React.FC = () => {
       .catch((err) => {
         console.log("[LiveProducer] start() promise rejected:", err);
       });
-  }, [start, stage]);
+  }, [start, stage, externalMode, setPublisherConnected]);
 
   const onEnd = useCallback(() => {
     console.log("[LiveProducer] onEnd invoked. Current stage:", stage);
-    // Fire-and-forget end; don't wait for Livepeer. Navigating back will unmount publisher and stop media immediately.
+    // Emit stream.end to server so all viewers get notified
+    if (streamId) {
+      try { socketEmitAuthed(LivestreamEvents.EndStream, { streamId }); } catch {}
+    }
+    // Fire-and-forget end; don't wait for Livepeer.
     end().catch(() => {});
     // Mark ended to avoid duplicate end on unmount
     endedRef.current = true;
     toastSuccess("Livestream ended");
     navigation.goBack();
-  }, [end, navigation, stage]);
+  }, [end, navigation, stage, streamId, socketEmitAuthed]);
 
   const requestClose = useCallback(() => {
     // End stream immediately if live-ish; do not wait
@@ -468,12 +579,36 @@ const LiveProducerScreen: React.FC = () => {
       console.log(
         "[LiveProducer] requestClose -> immediate end without waiting"
       );
+      if (streamId) {
+        try { socketEmitAuthed(LivestreamEvents.EndStream, { streamId }); } catch {}
+      }
       end().catch(() => {});
       endedRef.current = true;
       toastSuccess("Livestream ended");
     }
     navigation.goBack();
-  }, [navigation, stage, end]);
+  }, [navigation, stage, end, streamId, socketEmitAuthed]);
+
+  // Toggle chat enabled while live (PATCH /live/:streamId/settings)
+  const [settingsUpdating, setSettingsUpdating] = useState(false);
+  const handleToggleLiveChat = useCallback(async () => {
+    const sid = streamId || (streamEntity as any)?._id;
+    if (!sid || stage !== 'live') return;
+    const newVal = !liveChatEnabled;
+    setSettingsUpdating(true);
+    // Optimistic
+    setLiveChatEnabled(newVal);
+    try {
+      await updateStreamSettings(sid, { chat: { enabled: newVal } });
+      toastInfo(newVal ? 'Chat enabled' : 'Chat disabled');
+    } catch (e: any) {
+      // Revert
+      setLiveChatEnabled(!newVal);
+      toastError(e?.message || 'Failed to update settings');
+    } finally {
+      setSettingsUpdating(false);
+    }
+  }, [streamId, streamEntity, stage, liveChatEnabled]);
 
   const openEndConfirm = useCallback(() => {
     setShowEndConfirm(true);
@@ -715,17 +850,22 @@ const LiveProducerScreen: React.FC = () => {
     const status = (
       (streamEntity as any)?.status as string | undefined
     )?.toLowerCase();
-    if (status === "live" || status === "ended") {
+    if (status === "ended") {
+      // Stream already ended — redirect to viewer for recap
       setRedirecting(true);
-      console.log(
-        "[LiveProducer] redirecting to LiveViewer due to initial status",
-        status
-      );
+      console.log("[LiveProducer] redirecting to LiveViewer due to ENDED status");
       navigation.replace(ScreenNames.LiveViewer as any, {
         tokenId: tokenId || (streamEntity as any)?.tokenId,
         streamKey: streamKeyValue || streamKey,
         streamId: streamEntity?._id,
       });
+    } else if (status === "live") {
+      // Stream is already LIVE — could be external streaming.
+      // Stay on producer but set stage to live for external monitoring.
+      console.log("[LiveProducer] stream already LIVE on load — entering external monitoring");
+      setStartedAt(Date.now());
+      setExternalMode(true);
+      setPublisherConnected(true);
     }
   }, [
     streamLoading,
@@ -736,23 +876,23 @@ const LiveProducerScreen: React.FC = () => {
     navigation,
   ]);
 
-  // Network offline detection -> end stream to avoid ghost live sessions
+  // Network offline detection: show warning but do NOT end the stream.
+  // The backend grace period (90s) handles temporary disconnections.
+  // If the streamer reconnects within the grace window, Livepeer will
+  // fire stream.started → backend resumes → viewers see stream.resumed.
   useEffect(() => {
     const unsub = NetInfo.addEventListener((state) => {
       if (state.isConnected === false || state.isInternetReachable === false) {
         if (stage === "live" || stage === "starting") {
           console.log(
-            "[LiveProducer] network offline detected -> ending stream"
+            "[LiveProducer] network offline detected -> stream will be paused by backend grace period"
           );
-          end().catch(() => {});
-          endedRef.current = true;
-          toastSuccess("Livestream ended");
-          navigation.goBack();
+          toastInfo("Network lost — stream paused. Reconnecting…");
         }
       }
     });
     return () => unsub();
-  }, [stage, end, navigation]);
+  }, [stage]);
 
   const onGlobalPress = useCallback(() => {
     bumpUiTimer();
@@ -769,6 +909,8 @@ const LiveProducerScreen: React.FC = () => {
       <View className="flex-1 bg-black">
         {/* Tiered Tip Animations Overlay */}
         <TipAnimationsOverlay items={tipEffects} />
+        {/* Floating Reaction Bubbles */}
+        <ReactionOverlay reactions={reactions} onRemove={removeReaction} />
         {/* Publisher area or skeleton placeholder for instant open */}
         {redirecting ? (
           <View className="absolute inset-0 items-center justify-center">
@@ -843,6 +985,7 @@ const LiveProducerScreen: React.FC = () => {
           startTimestamp={startedAt}
           bitrateKbps={publishStats.bitrateKbps || 3200}
           viewers={typeof liveViewers === "number" ? liveViewers : 0}
+          peakViewers={typeof peakViewers === "number" ? peakViewers : 0}
           likes={
             liveLikes || streamEntity?.likes || streamEntity?.likesCount || 0
           }
@@ -853,12 +996,48 @@ const LiveProducerScreen: React.FC = () => {
             stage === "starting"
               ? publisherConnected
                 ? "Waiting for Livepeer…"
+                : externalMode
+                ? "Waiting for external source…"
                 : "Setting up publisher…"
               : undefined
           }
           onRequestClose={requestClose}
           onRequestEndConfirmation={openEndConfirm}
         />
+
+        {/* Stream paused overlay with countdown */}
+        {streamPaused && stage === "live" && (
+          <View className="absolute inset-0 z-30 items-center justify-center bg-black/70" pointerEvents="box-none">
+            <View className="bg-theme-neutrals-900/90 rounded-2xl px-6 py-5 items-center border border-white/10 mx-8">
+              <Text className="text-yellow-400 text-2xl mb-2">⏸</Text>
+              <Text className="text-white font-semibold text-sm">Connection Interrupted</Text>
+              <Text className="text-white/70 text-xs mt-1 text-center">Your stream is paused. Reconnecting…</Text>
+              {graceCountdown > 0 && (
+                <View className="mt-3 items-center">
+                  <Text className="text-white font-bold text-2xl">
+                    {Math.floor(graceCountdown / 60)}:{String(graceCountdown % 60).padStart(2, '0')}
+                  </Text>
+                  <Text className="text-white/50 text-[10px] mt-1">Stream will end if not reconnected</Text>
+                </View>
+              )}
+            </View>
+          </View>
+        )}
+
+        {/* Scheduled stream banner (when status is SCHEDULED and not yet live) */}
+        {isScheduled && stage !== "live" && stage !== "starting" && !uiHidden && (
+          <View className="absolute top-16 left-4 right-4 z-30" pointerEvents="none">
+            <View className="bg-indigo-600/80 rounded-xl px-4 py-2 items-center">
+              <Text className="text-white font-semibold text-xs">📅 Scheduled Stream</Text>
+              {scheduledForDate && (
+                <Text className="text-white/80 text-[10px] mt-0.5">
+                  Scheduled for {scheduledForDate.toLocaleDateString()} at {scheduledForDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </Text>
+              )}
+              <Text className="text-white/70 text-[10px] mt-0.5">Press Go Live when ready to start broadcasting</Text>
+            </View>
+          </View>
+        )}
 
         {/* Side chat panel (overlay) */}
         {chatVisible && !uiHidden && (
@@ -867,7 +1046,8 @@ const LiveProducerScreen: React.FC = () => {
             live={stage === "live"}
             visible
             onClose={() => setChatVisible(false)}
-            chatEnabled={!!(streamEntity as any)?.settings?.chat?.enabled}
+            chatEnabled={liveChatEnabled}
+            phase={stage === 'live' ? 'live' : isScheduled ? 'scheduled' : 'ended'}
             autoJoinRoom={false}
             socketEmit={(evt, payload, ack) =>
               socketEmitAuthed(evt, payload, ack)
@@ -941,6 +1121,8 @@ const LiveProducerScreen: React.FC = () => {
             externalMode={externalMode}
             onToggleExternal={toggleExternal}
             startDisabled={!streamKeyValue || !streamEntity?.livepeerId}
+            chatEnabled={liveChatEnabled}
+            onToggleChatEnabled={handleToggleLiveChat}
           />
         )}
 

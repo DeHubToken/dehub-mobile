@@ -13,8 +13,13 @@ import {
   ActivityIndicator,
   Animated,
   FlatList,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Keyboard,
 } from "react-native";
 import GlassModal from "../ui/GlassModal";
+import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { Ionicons } from "@expo/vector-icons";
 import {
   Trophy,
@@ -357,7 +362,16 @@ const GiftModal: React.FC<GiftModalProps> = ({
       maxHeight="85%"
       blurIntensity={30}
     >
-      <TouchableOpacity activeOpacity={1} onPress={() => {}} className="p-5">
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 0}
+      >
+      <ScrollView
+        bounces={false}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
+      <TouchableOpacity activeOpacity={1} onPress={Keyboard.dismiss} className="p-5">
         <View className="gap-1">
           <Text className="text-white text-2xl font-bold">Send a Gift</Text>
           <Text className="text-white/70 text-[12px]">
@@ -470,31 +484,34 @@ const GiftModal: React.FC<GiftModalProps> = ({
               >
                 <Text className="text-white font-semibold">Cancel</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                disabled={disableSend}
-                onPress={handleSend}
-                className={`flex-row items-center gap-2 px-5 h-11 rounded-full bg-theme-accent ${
-                  disableSend ? "opacity-60" : ""
-                }`}
+              <AccentButtonGradient
+                style={disableSend ? { opacity: 0.5 } : undefined}
               >
-                {isBusy ? (
-                  <ActivityIndicator color="#fff" />
-                ) : phase === "error" ? (
-                  <Ionicons
-                    name="alert-circle-outline"
-                    size={20}
-                    color="#fff"
-                  />
-                ) : (
-                  <Ionicons name="gift-outline" size={18} color="#fff" />
-                )}
-                <Text className="text-white font-semibold">
-                  {phase === "approving" && "Approving..."}
-                  {phase === "sending" && "Sending..."}
-                  {phase === "idle" && "Send Gift"}
-                  {phase === "error" && "Retry"}
-                </Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  disabled={disableSend}
+                  onPress={handleSend}
+                  activeOpacity={0.85}
+                  className="flex-row items-center gap-2 px-5 h-11"
+                >
+                  {isBusy ? (
+                    <ActivityIndicator color="#fff" />
+                  ) : phase === "error" ? (
+                    <Ionicons
+                      name="alert-circle-outline"
+                      size={20}
+                      color="#fff"
+                    />
+                  ) : (
+                    <Ionicons name="gift-outline" size={18} color="#fff" />
+                  )}
+                  <Text className="text-white font-semibold">
+                    {phase === "approving" && "Approving..."}
+                    {phase === "sending" && "Sending..."}
+                    {phase === "idle" && "Send Gift"}
+                    {phase === "error" && "Retry"}
+                  </Text>
+                </TouchableOpacity>
+              </AccentButtonGradient>
             </View>
           </>
         ) : (
@@ -509,18 +526,21 @@ const GiftModal: React.FC<GiftModalProps> = ({
               You gifted {lastAmount} DHB
             </Text>
             <View className="flex-row gap-3">
-              <TouchableOpacity
-                onPress={() => {
-                  setPhase("idle");
-                  setAmount(lastAmount ? String(lastAmount) : "");
-                }}
-                className="px-5 h-11 rounded-full bg-theme-accent items-center justify-center"
-              >
-                <Text className="text-white font-semibold">Resend</Text>
-              </TouchableOpacity>
+              <AccentButtonGradient>
+                <TouchableOpacity
+                  onPress={() => {
+                    setPhase("idle");
+                    setAmount(lastAmount ? String(lastAmount) : "");
+                  }}
+                  activeOpacity={0.85}
+                  className="px-5 h-11 items-center justify-center"
+                >
+                  <Text className="text-white font-semibold">Resend</Text>
+                </TouchableOpacity>
+              </AccentButtonGradient>
               <TouchableOpacity
                 onPress={() => onOpenChange(false)}
-                className="px-5 h-11 rounded-full bg-theme-neutrals-700 items-center justify-center"
+                className="px-5 h-11 rounded-full bg-white/10 items-center justify-center"
               >
                 <Text className="text-white font-semibold">Close</Text>
               </TouchableOpacity>
@@ -528,6 +548,8 @@ const GiftModal: React.FC<GiftModalProps> = ({
           </View>
         )}
       </TouchableOpacity>
+      </ScrollView>
+      </KeyboardAvoidingView>
     </GlassModal>
   );
 };
