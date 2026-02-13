@@ -13,6 +13,8 @@
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
+      "image": "./assets/AppIcons/playstore.png",
+      "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
     "updates": {
