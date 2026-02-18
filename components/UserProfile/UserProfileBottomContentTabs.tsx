@@ -40,6 +40,8 @@ interface UserProfileBottomContentTabsProps {
   canViewContent?: boolean;
   isFollowRequestPending?: boolean;
   onFollow?: () => void;
+  isOwnProfile?: boolean;
+  onEditProfile?: () => void;
   /** In fullscreen, the profile header is rendered inside the FlatList for unified scroll. */
   profileHeader?: React.ReactNode;
 }
@@ -71,6 +73,8 @@ const UserProfileBottomContentTabs: React.FC<
   canViewContent = true,
   isFollowRequestPending = false,
   onFollow,
+  isOwnProfile = false,
+  onEditProfile,
   profileHeader,
 }) => {
   const navigation = useNavigation<any>();
@@ -273,18 +277,30 @@ const UserProfileBottomContentTabs: React.FC<
     );
   }, [canViewContent, isFollowRequestPending, onFollow]);
 
-  // Fullscreen list header: profile header + Posts pill inside FlatList
+  // Fullscreen list header: profile header + optional Edit Profile + Posts pill inside FlatList
   const fullScreenListHeader = useMemo(() => {
     if (!profileHeader) return undefined;
     return (
       <View>
         <View onLayout={handleHeaderLayout}>
           {profileHeader}
+          {isOwnProfile && isFullScreen && !!onEditProfile && (
+            <View className="px-6 mt-2 mb-1">
+              <TouchableOpacity
+                onPress={onEditProfile}
+                activeOpacity={0.8}
+                className="flex-row items-center justify-center gap-2 border border-theme-neutrals-700 py-2 rounded-full"
+              >
+                <Ionicons name="pencil-outline" size={15} color="#e5e5e5" />
+                <Text className="text-white text-sm font-semibold">Edit Profile</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
         {PostsPill}
       </View>
     );
-  }, [profileHeader, handleHeaderLayout, PostsPill]);
+  }, [profileHeader, handleHeaderLayout, PostsPill, isOwnProfile, isFullScreen, onEditProfile]);
 
   if (!address) return null;
 

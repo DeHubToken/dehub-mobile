@@ -58,6 +58,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     followLoading,
     isPrivate,
     canViewContent,
+    isOwnProfile,
     avatarUrl,
     coverUrl,
     defaultBanner,
@@ -68,6 +69,11 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     handleShare,
     handleMessage,
   } = useUserProfileData(visible, usernameOrAddress);
+
+  const handleEditProfile = useCallback(() => {
+    onClose();
+    (navigation as any).navigate(ScreenNames.EditProfile);
+  }, [onClose, navigation]);
 
   const {
     animatedStyle,
@@ -211,6 +217,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                 followLoading={followLoading}
                 isPrivate={isPrivate}
                 canViewContent={canViewContent}
+                isOwnProfile={isOwnProfile}
                 avatarUrl={avatarUrl}
                 coverUrl={coverUrl}
                 defaultBanner={defaultBanner}
@@ -226,6 +233,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                 onOpenImage={handleOpenImage}
                 onClose={onClose}
                 onStatPress={handleStatPress}
+                onEditProfile={handleEditProfile}
               />
             </Animated.View>
           </GestureDetector>
