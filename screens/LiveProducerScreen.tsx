@@ -76,7 +76,6 @@ const LiveProducerScreen: React.FC = () => {
     streamKeyLoading,
     streamKeyError,
   } = useStreamDetails(streamId);
-  console.log({streamEntity, streamId, tokenId, ingestUrl, streamKey})
   const {
     stage,
     start,
@@ -538,6 +537,8 @@ const LiveProducerScreen: React.FC = () => {
 
   const onStart = useCallback(() => {
     console.log("[LiveProducer] onStart invoked. Current stage:", stage);
+    // Mark that this device started the stream
+    startedFromThisDeviceRef.current = true;
     if (!externalMode) {
       // Ensure video is enabled before starting publishing to avoid blank preview
       setCameraOff(false);
@@ -567,7 +568,7 @@ const LiveProducerScreen: React.FC = () => {
     }
     // Fire-and-forget end; don't wait for Livepeer.
     end().catch(() => {});
-    // Mark ended to avoid duplicate end on unmount
+    // Mark ended so the stage-transition effect doesn't also toast + goBack
     endedRef.current = true;
     toastSuccess("Livestream ended");
     navigation.goBack();
@@ -746,7 +747,9 @@ const LiveProducerScreen: React.FC = () => {
     }
     latestStageRef.current = stage;
     // On ended, notify and leave the screen automatically
-    if (stage === "ended") {
+    // Guard with endedRef so the toast only fires once (not also from onEnd)
+    if (stage === "ended" && !endedRef.current) {
+      endedRef.current = true;
       toastSuccess("Livestream ended");
       navigation.goBack();
     }
@@ -840,8 +843,12 @@ const LiveProducerScreen: React.FC = () => {
   }, []);
 
   // If stream is already live or ended, redirect to viewer instead of producer
+  // Also detect if the stream started externally (LIVE on load but we never pressed Go Live)
   const [redirecting, setRedirecting] = useState(false);
   const initialRedirectCheckedRef = useRef(false);
+  // Track whether this producer actually started the stream from this device
+  const startedFromThisDeviceRef = useRef(false);
+
   useEffect(() => {
     // Only evaluate redirect once, on first load resolution
     if (initialRedirectCheckedRef.current) return;
@@ -860,12 +867,17 @@ const LiveProducerScreen: React.FC = () => {
         streamId: streamEntity?._id,
       });
     } else if (status === "live") {
-      // Stream is already LIVE — could be external streaming.
-      // Stay on producer but set stage to live for external monitoring.
-      console.log("[LiveProducer] stream already LIVE on load — entering external monitoring");
-      setStartedAt(Date.now());
-      setExternalMode(true);
-      setPublisherConnected(true);
+      // Stream is already LIVE on load and we didn't start it from this device
+      // → must have been started externally (OBS/streaming software)
+      if (!startedFromThisDeviceRef.current) {
+        console.log("[LiveProducer] stream already LIVE on load — entering external monitoring mode");
+        const realStart = (streamEntity as any)?.startedAt
+          ? new Date((streamEntity as any).startedAt).getTime()
+          : Date.now();
+        setStartedAt(realStart);
+        setExternalMode(true);
+        setPublisherConnected(true);
+      }
     }
   }, [
     streamLoading,
@@ -919,7 +931,7 @@ const LiveProducerScreen: React.FC = () => {
         ) : mountPublisher ? (
           <WebRTCPublisher
             streamKey={streamKey || streamKeyValue || ""}
-            active={stage === "starting" || stage === "live"}
+            active={(stage === "starting" || stage === "live") && !externalMode}
             facing={cameraFacing}
             micMuted={micMuted}
             cameraOff={cameraOff}
@@ -957,6 +969,7 @@ const LiveProducerScreen: React.FC = () => {
               streamKeyValue={streamKeyValue}
               streamKeyLoading={streamKeyLoading}
               onExitExternal={() => setExternalMode(false)}
+              isLive={stage === "live"}
             />
           </View>
         )}
@@ -983,7 +996,7 @@ const LiveProducerScreen: React.FC = () => {
         <ProducerStatusBar
           stage={stage}
           startTimestamp={startedAt}
-          bitrateKbps={publishStats.bitrateKbps || 3200}
+          bitrateKbps={publishStats.bitrateKbps || 0}
           viewers={typeof liveViewers === "number" ? liveViewers : 0}
           peakViewers={typeof peakViewers === "number" ? peakViewers : 0}
           likes={

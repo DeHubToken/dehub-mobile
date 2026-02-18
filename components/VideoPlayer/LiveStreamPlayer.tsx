@@ -45,7 +45,6 @@ import { useStreamDetails } from "../../hooks/useStreamDetails";
 import { Eye } from "lucide-react-native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import { checkIfBroadcastOwner } from "../../services/live.service";
 import { createViewCountUpdater, seedViewerStats } from "../../libs/viewers.util";
 
 type LiveStreamPlayerProps = {
@@ -127,46 +126,35 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     return !st.isLockedWithLockContent && !st.isLockedWithPPV;
   }, [resolvedAccessInfo, isFree]);
 
-  // Creator/channel state (mirrors NormalVideoPlayer)
+  // Creator/channel state — seeded from streamEntity.account (no extra fetch needed)
   const [creatorLoading, setCreatorLoading] = useState<boolean>(true);
   const [creator, setCreator] = useState<any | null>(null);
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [followLoading, setFollowLoading] = useState<boolean>(false);
   useEffect(() => {
-    let cancelled = false;
-    const run = async () => {
-      const minterAddr = (streamEntity?.address || minterProp) as
-        | string
-        | undefined;
-      if (!minterAddr) {
-        setCreatorLoading(false);
-        return;
-      }
+    if (!streamEntity) return;
+    const account = (streamEntity as any)?.account || null;
+    if (account) {
+      setCreator(account);
+    } else {
+      // Fallback: fetch separately only if account not embedded
+      let cancelled = false;
+      const minterAddr = (streamEntity.address || minterProp) as string | undefined;
+      if (!minterAddr) { setCreatorLoading(false); return; }
       setCreatorLoading(true);
-      try {
-        const res: any = await getAccount(minterAddr);
+      getAccount(minterAddr).then((res: any) => {
         if (cancelled) return;
-        const payload = res?.data?.result || res?.result || res || null;
-        setCreator(payload);
-        const acct = (user?.walletAddress || user?.address || "").toLowerCase();
-        if (acct && Array.isArray(payload?.followers)) {
-          const isF = payload.followers
-            .map((f: string) => (f || "").toLowerCase())
-            .includes(acct);
-          setIsFollowing(isF);
-        } else setIsFollowing(false);
-      } catch (e) {
-        if (!cancelled) setCreator(null);
-        console.warn("[LiveStreamPlayer] getAccount(minter) failed", e);
-      } finally {
-        if (!cancelled) setCreatorLoading(false);
-      }
-    };
-    run();
-    return () => {
-      cancelled = true;
-    };
-  }, [streamEntity?.address, minterProp, user?.walletAddress, user?.address]);
+        setCreator(res?.data?.result || res?.result || res || null);
+      }).catch(() => { if (!cancelled) setCreator(null); })
+        .finally(() => { if (!cancelled) setCreatorLoading(false); });
+      return () => { cancelled = true; };
+    }
+    // Seed isFollowing from streamEntity (backend returns isFollowing alongside isLiked)
+    if (typeof (streamEntity as any)?.isFollowing === 'boolean') {
+      setIsFollowing((streamEntity as any).isFollowing);
+    }
+    setCreatorLoading(false);
+  }, [streamEntity, minterProp]);
 
   const handleFollow = useCallback(() => {
     if (!creator || isFollowing) return;
@@ -524,25 +512,15 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   );
   useEffect(() => { maybeJoinStreamRef.current = maybeJoinStream; }, [maybeJoinStream]);
 
-  // Join room + stream on stream change if already connected (once per connection epoch)
-  // Automatically joins as viewer if logged in, even before we confirm LIVE status
+  // Join room on connect; only JoinStream when stream is actually LIVE and we're a viewer
   useEffect(() => {
     if (!streamId || !connected) return;
     maybeJoinRoom(streamId);
-    // Auto-join stream for signed-in users (don't wait for isLiveEffective or ownerStatus resolution)
-    // Owner redirect will happen separately; double-join is harmless
-    if (isSignedIn && ownerStatus !== "owner") {
-      const key = makeKey(streamId);
-      if (joinStreamSentKeyRef.current !== key) {
-        try {
-          socketEmitAuthed(LivestreamEvents.JoinStream, { streamId });
-          joinStreamSentKeyRef.current = key;
-          didJoinRef.current = true;
-          didLeaveRef.current = false;
-        } catch {}
-      }
+    // Only join as active viewer when stream is confirmed LIVE and user is signed in viewer
+    if (isSignedIn && ownerStatus === "viewer" && isLiveEffective) {
+      maybeJoinStream(streamId);
     }
-  }, [streamId, connected, maybeJoinRoom, isSignedIn, ownerStatus, makeKey, socketEmitAuthed]);
+  }, [streamId, connected, maybeJoinRoom, maybeJoinStream, isSignedIn, ownerStatus, isLiveEffective]);
 
   // Rejoin on reconnect is defined later after effective status is computed
 
@@ -663,13 +641,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     };
   }, [streamId, socketOn]);
 
-  // Join stream when we become effectively live
+  // Join stream when we become effectively live (deduped per epoch)
   useEffect(() => {
-    if (!streamId || !isLiveEffective) return;
-    // Join as viewer when stream becomes live (deduped per epoch)
-    if (isSignedIn && ownerStatus === "viewer") {
-      maybeJoinStream(streamId);
-    }
+    if (!streamId || !isLiveEffective || !isSignedIn || ownerStatus !== "viewer") return;
+    maybeJoinStream(streamId);
   }, [streamId, isLiveEffective, maybeJoinStream, isSignedIn, ownerStatus]);
 
   // Keep a ref of liveLikes for debounced updates (value mirrored later)
@@ -1115,50 +1090,30 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   }, [streamId, isLiveEffective, isSignedIn, addReaction, socketEmitAuthed, user]);
 
   // First-load redirect: if not ended and current user is owner, go to LiveProducer
+  // Uses isOwner from streamEntity (set by backend) — no extra checkIfBroadcastOwner call needed
   const redirectCheckedRef = useRef(false);
   useEffect(() => {
     if (redirectCheckedRef.current) return;
     if (streamLoading) return;
     if (!streamEntity) return;
+    redirectCheckedRef.current = true;
     const status = String(streamEntity.status || "").toUpperCase();
     if (status === "ENDED") {
-      redirectCheckedRef.current = true;
       setOwnerStatus("viewer");
       return;
     }
-    const addr = (user?.walletAddress || user?.address) as string | undefined;
-    if (!addr) {
-      redirectCheckedRef.current = true;
+    // Backend now returns isOwner on the stream entity (same pattern as isLiked/isFollowing)
+    const isOwner = (streamEntity as any)?.isOwner === true;
+    if (isOwner) {
+      setOwnerStatus("owner");
+      navigation.replace(ScreenNames.LiveProducer as any, {
+        streamId: streamEntity._id || streamId,
+        tokenId: streamEntity.tokenId,
+      });
+    } else {
       setOwnerStatus("viewer");
-      return;
     }
-    (async () => {
-      try {
-        const isOwner = await checkIfBroadcastOwner(addr, streamEntity);
-        if (isOwner) {
-          setOwnerStatus("owner");
-          redirectCheckedRef.current = true;
-          navigation.replace(ScreenNames.LiveProducer as any, {
-            streamId: streamEntity._id || streamId,
-            tokenId: streamEntity.tokenId,
-          });
-        } else {
-          redirectCheckedRef.current = true;
-          setOwnerStatus("viewer");
-        }
-      } catch {
-        redirectCheckedRef.current = true;
-        setOwnerStatus("viewer");
-      }
-    })();
-  }, [
-    streamLoading,
-    streamEntity,
-    user?.walletAddress,
-    user?.address,
-    navigation,
-    streamId,
-  ]);
+  }, [streamLoading, streamEntity, navigation, streamId]);
 
   // Derive user vote for ActionsRow from isLiked field in stream entity
   const actionsUserVote = useMemo(() => {
@@ -1176,8 +1131,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     <View className="flex-1">
       {/* Tip Animations Overlay (renders above everything) */}
       <TipAnimationsOverlay items={tipEffects} />
-      {/* Floating Reaction Bubbles */}
-      <ReactionOverlay reactions={reactions} onRemove={removeReaction} />
       {isEndedEffective ? (
         <View className="px-4 py-10 items-center justify-center bg-black/50 border-b border-white/10">
           <Text className="text-white font-semibold">
@@ -1426,6 +1379,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           </View>
         </View>
       </KeyboardAvoidingView>
+      {/* Floating Reaction Bubbles — absolute so they float over all content */}
+      <ReactionOverlay reactions={reactions} onRemove={removeReaction} />
     </View>
   );
 };
