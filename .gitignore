@@ -31,22 +31,26 @@ yarn-error.*
 
 # local env files
 .env*.local
+.env
 
 # typescript
 *.tsbuildinfo
 
-  node_modules
-  .env
-  .expo
-  .env.local
-  .env.development.local
-  .env.test.local
-  .env.production.local
-/node_modules
-node_modules
-/android
-/.expo
+# Android build outputs (keep android/ folder, ignore build artifacts)
+android/app/build/
+android/build/
+android/.gradle/
+android/local.properties
+*.apk
+*.aab
 
-.env
+# iOS build outputs (keep ios/ folder, ignore build artifacts)
+ios/build/
+ios/Pods/
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcodeproj/xcuserdata/
+*.ipa
 
+# Service keys
 dhb-service-key.json
+google-services.json
