@@ -280,10 +280,13 @@ const InfiniteFeedBase: React.FC<
 
   if (!initialLoading && !error && items.length === 0) {
     return (
-      <View className="flex-1 items-center justify-center px-6">
-        {emptyComponent ?? (
-          <Text className="text-theme-neutrals-400 text-sm">No posts yet.</Text>
-        )}
+      <View className="flex-1">
+        {!!headerComponent && <View>{headerComponent}</View>}
+        <View className="flex-1 items-center justify-center px-6">
+          {emptyComponent ?? (
+            <Text className="text-theme-neutrals-400 text-sm">No posts yet.</Text>
+          )}
+        </View>
       </View>
     );
   }

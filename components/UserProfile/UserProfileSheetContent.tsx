@@ -19,6 +19,7 @@ interface UserProfileSheetContentProps {
   followLoading: boolean;
   isPrivate?: boolean;
   canViewContent?: boolean;
+  isOwnProfile?: boolean;
   avatarUrl: string;
   coverUrl: string;
   defaultBanner: any;
@@ -34,6 +35,7 @@ interface UserProfileSheetContentProps {
   onOpenImage: (type: "avatar" | "cover") => void;
   onClose: () => void;
   onStatPress?: (key: string) => void;
+  onEditProfile?: () => void;
 }
 
 const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
@@ -46,6 +48,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   followLoading,
   isPrivate,
   canViewContent,
+  isOwnProfile = false,
   avatarUrl,
   coverUrl,
   defaultBanner,
@@ -61,6 +64,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   onOpenImage,
   onClose,
   onStatPress,
+  onEditProfile,
 }) => {
   const ProfileHeader = useMemo(() => {
     if (!profileData) return null;
@@ -84,22 +88,24 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           canViewContent={canViewContent}
           onOpenImage={onOpenImage}
           onShare={onShare}
-          onMessage={onMessage}
+          onMessage={isOwnProfile ? undefined : onMessage}
           FallbackAvatar={FallbackAvatar}
           FallbackBanner={defaultBanner}
           socials={data}
         />
         <View className="px-6 mt-2">
           <UserProfileStatsRow stats={stats} onStatPress={onStatPress} />
-          <UserProfileActions
-            isFollowing={isFollowing}
-            isFollowRequestPending={isFollowRequestPending}
-            followLoading={followLoading}
-            disableActions={profileData.disableActions}
-            address={profileData.address}
-            onFollow={onFollow}
-            onOpenUnfollow={onOpenUnfollow}
-          />
+          {!isOwnProfile && (
+            <UserProfileActions
+              isFollowing={isFollowing}
+              isFollowRequestPending={isFollowRequestPending}
+              followLoading={followLoading}
+              disableActions={profileData.disableActions}
+              address={profileData.address}
+              onFollow={onFollow}
+              onOpenUnfollow={onOpenUnfollow}
+            />
+          )}
           {data?.aboutMe && <UserProfileAboutSection content={data.aboutMe} />}
         </View>
       </View>
@@ -115,6 +121,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     isFollowRequestPending,
     followsYou,
     followLoading,
+    isOwnProfile,
     onOpenImage,
     onShare,
     onMessage,
@@ -153,6 +160,8 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         canViewContent={canViewContent}
         isFollowRequestPending={isFollowRequestPending}
         onFollow={onFollow}
+        isOwnProfile={isOwnProfile}
+        onEditProfile={onEditProfile}
         profileHeader={isFullScreen ? ProfileHeader : undefined}
       />
       {!isFullScreen && <View style={{ height: 40 }} />}

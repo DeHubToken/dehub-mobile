@@ -441,6 +441,11 @@ export const useUserProfileData = (
     ]
   );
 
+  const isOwnProfile = useMemo(() => {
+    if (!authUser?.address || !data?.address) return false;
+    return authUser.address.toLowerCase() === data.address.toLowerCase();
+  }, [authUser?.address, data?.address]);
+
   return {
     loading,
     data,
@@ -450,7 +455,8 @@ export const useUserProfileData = (
     followsYou,
     followLoading,
     isPrivate: data?.isPrivate ?? false,
-    canViewContent: !data?.isPrivate || isFollowing,
+    canViewContent: !data?.isPrivate || isFollowing || isOwnProfile,
+    isOwnProfile,
     avatarUrl,
     coverUrl,
     defaultBanner,
