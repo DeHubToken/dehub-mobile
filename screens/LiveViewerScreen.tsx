@@ -13,7 +13,7 @@ type RouteParams = {
 };
 
 /**
- * LiveViewerScreen – thin wrapper around LiveStreamPlayer for the viewer flow.
+ * LiveViewerScreen – immersive fullscreen wrapper around LiveStreamPlayer.
  *
  * All join/leave socket logic lives exclusively inside LiveStreamPlayer so
  * there is exactly one source of truth and no duplicate emissions.
@@ -32,9 +32,11 @@ const LiveViewerScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-black">
-      {Platform.OS !== "web" && (
-        <StatusBar barStyle="light-content" backgroundColor="black" />
-      )}
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent={Platform.OS === "android"}
+      />
       <LiveStreamPlayer {...params} streamId={streamId ?? params.streamId} />
     </View>
   );

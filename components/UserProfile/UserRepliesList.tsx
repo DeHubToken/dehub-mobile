@@ -95,6 +95,7 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
       paginationRef.current = res.result.pagination;
       pageRef.current = page;
       if (replace) {
+        console.log(res.result.items[0]);
         setItems(res.result.items);
       } else {
         setItems((prev) => [...prev, ...res.result.items]);

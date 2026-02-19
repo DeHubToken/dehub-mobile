@@ -14,12 +14,18 @@ import {
   FlatList,
   ActivityIndicator,
   Keyboard,
+  Platform,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CommentItem from "./CommentItem";
 import CommentContextMenu from "./CommentContextMenu";
 import type { CommentLayout } from "./CommentContextMenu";
+import CommentMediaPreview from "./CommentMediaPreview";
+import type { MediaAttachment } from "./CommentMediaPreview";
+import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "./VoiceNoteRecorder";
+import type { VoiceNoteResult } from "./VoiceNoteRecorder";
+import GifPicker from "../DM/GifPicker";
 import Avatar from "../common/Avatar";
 import { useAuth, useAuthActions } from "../../context/AuthContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -29,9 +35,13 @@ import {
   likeComment,
   editComment,
   deleteComment,
+  postImageComment,
+  postGifComment,
+  postAudioComment,
   Comment,
 } from "../../services/nft.service";
 import { getAvatarUrl, toastError } from "../../libs";
+import { openCroppedImagePicker, getFileName, guessMime } from "../../libs/assets.util";
 import { theme } from "../../theme";
 import useKeyboard from "../../hooks/useKeyboard";
 
@@ -80,6 +90,29 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const [contextComment, setContextComment] = useState<Comment | null>(null);
   const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
   const [contextMeta, setContextMeta] = useState<{ liked: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
+
+  // Media attachment state
+  const [mediaAttachment, setMediaAttachment] = useState<MediaAttachment | null>(null);
+  const [mediaPosting, setMediaPosting] = useState(false);
+
+  // Voice recording callbacks (defined before hook call)
+  const handleVoiceRecordingComplete = useCallback((result: VoiceNoteResult) => {
+    setMediaAttachment({ type: "audio", uri: result.uri, durationMs: result.durationMs });
+    setInputText("");
+  }, []);
+
+  const handleVoiceRecordingCancel = useCallback(() => {
+    // Hook manages isRecording state internally
+  }, []);
+
+  // Voice recorder hook
+  const recorder = useVoiceRecorder({
+    onRecordingComplete: handleVoiceRecordingComplete,
+    onCancel: handleVoiceRecordingCancel,
+  });
+
+  // GIF picker state
+  const [gifPickerVisible, setGifPickerVisible] = useState(false);
 
   const userAddress = user?.address || user?.walletAddress || undefined;
   const userAvatar = getAvatarUrl(user?.avatarImageUrl || "");
@@ -174,7 +207,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       });
 
       const { items } = res.result;
-      console.log("commentid", highlightCommentId,"Loaded comments:", items); // --- IGNORE ---
       const flat = buildFlatComments(items);
       setFlatComments(flat);
 
@@ -237,6 +269,162 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     setInputText("");
   }, []);
 
+  // --- Media action handlers ---
+
+  // Pick image → open cropper → set preview
+  const handlePickImage = useCallback(async () => {
+    if (!requireAuth) return;
+    await requireAuth(async () => {
+      try {
+        const uri = await openCroppedImagePicker({
+          width: 800,
+          height: 600,
+          forceJpg: true,
+          quality: 0.85,
+        });
+        if (uri) {
+          setMediaAttachment({ type: "image", uri });
+          setInputText("");
+          Keyboard.dismiss();
+        }
+      } catch (e: any) {
+        if (e?.code !== "E_PICKER_CANCELLED") {
+          console.error("[CommentSection] image picker error", e);
+          toastError("Failed to pick image");
+        }
+      }
+    });
+  }, [requireAuth]);
+
+  // Open GIF picker
+  const handleOpenGifPicker = useCallback(() => {
+    if (!requireAuth) return;
+    requireAuth(() => {
+      setGifPickerVisible(true);
+    });
+  }, [requireAuth]);
+
+  // GIF selected from picker
+  const handleGifPicked = useCallback((url: string) => {
+    setGifPickerVisible(false);
+    setMediaAttachment({ type: "gif", url });
+    setInputText("");
+    Keyboard.dismiss();
+  }, []);
+
+  const handleCloseGifPicker = useCallback(() => {
+    setGifPickerVisible(false);
+  }, []);
+
+  // (Voice recording handlers moved above useVoiceRecorder hook call)
+
+  // Remove media attachment
+  const handleRemoveMedia = useCallback(() => {
+    setMediaAttachment(null);
+  }, []);
+
+  // Send media comment
+  const handleSendMedia = useCallback(async () => {
+    if (!mediaAttachment || mediaPosting) return;
+    if (!requireAuth) return;
+
+    await requireAuth(async () => {
+      setMediaPosting(true);
+      const now = new Date().toISOString();
+      const tempId = -Date.now();
+      const replyToId = replyingTo?.id;
+
+      // Build optimistic comment
+      const optimistic: FlatComment = {
+        id: tempId,
+        content: "",
+        createdAt: now,
+        user: {
+          username: user?.username,
+          displayName: user?.displayName,
+          avatarImageUrl: user?.avatarImageUrl,
+          address: userAddress,
+        },
+        likeCount: 0,
+        isLiked: false,
+        replyIds: [],
+        isReply: !!replyingTo,
+        // Optimistic media fields
+        imageUrl: mediaAttachment.type === "image" ? mediaAttachment.uri : undefined,
+        gifUrl: mediaAttachment.type === "gif" ? mediaAttachment.url : undefined,
+        audioUrl: mediaAttachment.type === "audio" ? mediaAttachment.uri : undefined,
+        audioDuration: mediaAttachment.type === "audio" ? Math.round(mediaAttachment.durationMs / 1000) : undefined,
+      };
+
+      // Insert optimistically
+      if (replyingTo) {
+        setFlatComments((prev) => {
+          const parentIndex = prev.findIndex((c) => c.id === replyingTo.id);
+          if (parentIndex === -1) return [...prev, optimistic];
+          let insertIndex = parentIndex + 1;
+          while (insertIndex < prev.length && prev[insertIndex].isReply) insertIndex++;
+          const newList = [...prev];
+          newList.splice(insertIndex, 0, optimistic);
+          return newList;
+        });
+      } else {
+        setFlatComments((prev) => [optimistic, ...prev]);
+      }
+
+      const savedMedia = mediaAttachment;
+      setMediaAttachment(null);
+      setReplyingTo(null);
+
+      try {
+        let newId: number | undefined;
+
+        if (savedMedia.type === "image") {
+          const fileName = getFileName(savedMedia.uri, "comment_image.jpg");
+          const mimeType = guessMime(savedMedia.uri, "image/jpeg");
+          const res = await postImageComment({
+            streamTokenId: tokenId,
+            fileUri: savedMedia.uri,
+            fileName,
+            mimeType,
+            commentId: replyToId,
+          });
+          newId = res?.commentId;
+        } else if (savedMedia.type === "gif") {
+          const res = await postGifComment({
+            streamTokenId: tokenId,
+            gifUrl: savedMedia.url,
+            commentId: replyToId,
+          });
+          newId = res?.commentId;
+        } else if (savedMedia.type === "audio") {
+          const fileName = getFileName(savedMedia.uri, "voice_note.m4a");
+          const mimeType = Platform.OS === "ios" ? "audio/m4a" : "audio/mp4";
+          const res = await postAudioComment({
+            streamTokenId: tokenId,
+            fileUri: savedMedia.uri,
+            fileName,
+            mimeType,
+            commentId: replyToId,
+          });
+          newId = res?.commentId;
+        }
+
+        // Reconcile temp ID
+        if (newId != null) {
+          setFlatComments((prev) =>
+            prev.map((c) => (c.id === tempId ? { ...c, id: newId! } : c))
+          );
+        }
+      } catch (e) {
+        console.error("[CommentSection] media post error", e);
+        setFlatComments((prev) => prev.filter((c) => c.id !== tempId));
+        toastError("Failed to send media comment");
+      } finally {
+        setMediaPosting(false);
+      }
+    });
+  }, [mediaAttachment, mediaPosting, requireAuth, tokenId, replyingTo, user, userAddress]);
+
   // Post comment or save edit - with optimistic updates
   const handlePost = useCallback(async () => {
     if (!inputText.trim() || posting) return;
@@ -267,7 +455,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           const optimisticComment: FlatComment = {
             id: tempId,
             content: text,
-            updatedAt: now,
             createdAt: now,
             user: {
               username: user?.username,
@@ -275,7 +462,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
               avatarImageUrl: user?.avatarImageUrl,
               address: userAddress,
             },
-            likes: 0,
+            likeCount: 0,
             isLiked: false,
             replyIds: [],
             isReply: !!replyingTo,
@@ -489,7 +676,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         style={{ marginBottom: inputLift, paddingBottom: insets.bottom || 8 }}
       >
         {/* Replying to / Editing indicator */}
-        {(replyingTo || editingComment) && (
+        {(replyingTo || editingComment) && !recorder.isRecording && (
           <View className="flex-row items-center px-4 py-2 bg-theme-neutrals-800/50">
             <Text className="flex-1 text-xs text-theme-neutrals-400">
               {editingComment ? (
@@ -509,42 +696,103 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           </View>
         )}
 
-        {/* Input row */}
-        <View className="flex-row items-center px-4 py-2">
-          <Avatar
-            uri={userAvatar && userAvatar !== "default-avatar" ? userAvatar : undefined}
-            size={32}
+        {/* Voice recorder overlay — replaces entire input when recording */}
+        {recorder.isRecording ? (
+          <VoiceNoteRecordingOverlay recorder={recorder} />
+        ) : mediaAttachment ? (
+          /* Media preview — shows selected image/GIF/audio before sending */
+          <CommentMediaPreview
+            media={mediaAttachment}
+            onRemove={handleRemoveMedia}
+            onSend={handleSendMedia}
+            sending={mediaPosting}
           />
-          <TextInput
-            ref={inputRef}
-            value={inputText}
-            onChangeText={setInputText}
-            placeholder={editingComment ? "Edit your comment..." : replyingTo ? "Write a reply..." : "Add a comment..."}
-            placeholderTextColor={theme.colors.mutedForeground}
-            className="flex-1 mx-3 text-sm text-theme-neutrals-100"
-            style={{ maxHeight: 80 }}
-            multiline
-            returnKeyType="send"
-            onSubmitEditing={handlePost}
-          />
-          <TouchableOpacity
-            onPress={handlePost}
-            disabled={posting || !inputText.trim()}
-            activeOpacity={0.7}
-            className="p-2"
-          >
-            {posting ? (
-              <ActivityIndicator size="small" color={theme.colors.accent} />
+        ) : (
+          /* Standard input row */
+          <View className="flex-row items-center px-4 py-2">
+            <Avatar
+              uri={userAvatar && userAvatar !== "default-avatar" ? userAvatar : undefined}
+              size={32}
+            />
+            <TextInput
+              ref={inputRef}
+              value={inputText}
+              onChangeText={setInputText}
+              placeholder={editingComment ? "Edit your comment..." : replyingTo ? "Write a reply..." : "Add a comment..."}
+              placeholderTextColor={theme.colors.mutedForeground}
+              className="flex-1 mx-3 text-sm text-theme-neutrals-100"
+              style={{ maxHeight: 80 }}
+              multiline
+              returnKeyType="send"
+              onSubmitEditing={handlePost}
+            />
+
+            {inputText.trim() || editingComment ? (
+              /* Send button when text is typed or editing */
+              <TouchableOpacity
+                onPress={handlePost}
+                disabled={posting || !inputText.trim()}
+                activeOpacity={0.7}
+                className="p-2"
+              >
+                {posting ? (
+                  <ActivityIndicator size="small" color="#fff" />
+                ) : (
+                  <View
+                    className={`w-9 h-9 rounded-full items-center justify-center ${inputText.trim() ? "bg-white" : "bg-theme-neutrals-700"}`}
+                  >
+                    <Ionicons
+                      name="send"
+                      size={16}
+                      color={inputText.trim() ? "#000" : theme.colors.mutedForeground}
+                    />
+                  </View>
+                )}
+              </TouchableOpacity>
             ) : (
-              <Ionicons
-                name="send"
-                size={24}
-                color={inputText.trim() ? theme.colors.accent : theme.colors.mutedForeground}
-              />
+              /* Media buttons: image, GIF, mic */
+              <View className="flex-row items-center gap-1">
+                {/* Image picker */}
+                <TouchableOpacity
+                  onPress={handlePickImage}
+                  activeOpacity={0.7}
+                  className="p-2"
+                >
+                  <Ionicons name="image-outline" size={22} color={theme.colors.mutedForeground} />
+                </TouchableOpacity>
+
+                {/* GIF picker */}
+                <TouchableOpacity
+                  onPress={handleOpenGifPicker}
+                  activeOpacity={0.7}
+                  className="p-2"
+                >
+                  <Text className="text-xs font-bold text-theme-neutrals-400 px-0.5">GIF</Text>
+                </TouchableOpacity>
+
+                {/* Mic — tap to start recording */}
+                <TouchableOpacity
+                  onPress={() => {
+                    Keyboard.dismiss();
+                    recorder.startRecording();
+                  }}
+                  activeOpacity={0.7}
+                  className="p-2"
+                >
+                  <Ionicons name="mic-outline" size={22} color={theme.colors.mutedForeground} />
+                </TouchableOpacity>
+              </View>
             )}
-          </TouchableOpacity>
-        </View>
+          </View>
+        )}
       </View>
+
+      {/* GIF picker modal */}
+      <GifPicker
+        visible={gifPickerVisible}
+        onClose={handleCloseGifPicker}
+        onPick={handleGifPicked}
+      />
 
       {/* WhatsApp/IG-style context menu overlay */}
       <CommentContextMenu

@@ -267,6 +267,9 @@ export interface Comment {
   address?: string;
   content: string;
   imageUrl?: string;
+  gifUrl?: string;
+  audioUrl?: string;
+  audioDuration?: number;
   createdAt: string;
   parentId?: number;
   replyIds?: number[];
@@ -391,6 +394,134 @@ export async function deleteComment(input: DeleteCommentInput): Promise<DeleteCo
     return res;
   } catch (e) {
     console.error('[NFTService] deleteComment error', e);
+    throw e;
+  }
+}
+
+// Post a comment with an image attachment (multipart/form-data)
+export interface PostImageCommentInput {
+  streamTokenId: number | string;
+  fileUri: string;
+  fileName?: string;
+  mimeType?: string;
+  content?: string;
+  commentId?: number | string;
+}
+
+export interface PostImageCommentResponse {
+  result: boolean;
+  commentId: number;
+}
+
+export async function postImageComment(input: PostImageCommentInput): Promise<PostImageCommentResponse> {
+  const { streamTokenId, fileUri, fileName, mimeType, content, commentId } = input;
+  if (streamTokenId == null) throw new Error('streamTokenId required');
+  if (!fileUri) throw new Error('fileUri required');
+
+  const formData = new FormData();
+  formData.append('file', {
+    uri: fileUri,
+    name: fileName || `comment_image_${Date.now()}.jpg`,
+    type: mimeType || 'image/jpeg',
+  } as any);
+
+  const qs = new URLSearchParams();
+  qs.set('streamTokenId', String(streamTokenId));
+  if (content?.trim()) qs.set('content', content.trim());
+  if (commentId != null) qs.set('commentId', String(commentId));
+
+  try {
+    const res = await apiClient.post<PostImageCommentResponse>(
+      `/comment_image?${qs.toString()}`,
+      formData,
+      { isAuthRequired: true }
+    );
+    return res;
+  } catch (e) {
+    console.error('[NFTService] postImageComment error', e);
+    throw e;
+  }
+}
+
+// Post a comment with a GIF URL (Giphy / Tenor)
+export interface PostGifCommentInput {
+  streamTokenId: number | string;
+  gifUrl: string;
+  content?: string;
+  commentId?: number | string;
+}
+
+export interface PostGifCommentResponse {
+  result: boolean;
+  commentId: number;
+}
+
+export async function postGifComment(input: PostGifCommentInput): Promise<PostGifCommentResponse> {
+  const { streamTokenId, gifUrl, content, commentId } = input;
+  if (streamTokenId == null) throw new Error('streamTokenId required');
+  if (!gifUrl) throw new Error('gifUrl required');
+
+  try {
+    const res = await apiClient.post<PostGifCommentResponse>(
+      '/comment_gif',
+      {
+        streamTokenId: Number(streamTokenId),
+        gifUrl,
+        ...(content?.trim() ? { content: content.trim() } : {}),
+        ...(commentId != null ? { commentId: Number(commentId) } : {}),
+      },
+      { isAuthRequired: true }
+    );
+    return res;
+  } catch (e) {
+    console.error('[NFTService] postGifComment error', e);
+    throw e;
+  }
+}
+
+// Post a voice note comment (multipart/form-data, max 30s)
+export interface PostAudioCommentInput {
+  streamTokenId: number | string;
+  fileUri: string;
+  fileName?: string;
+  mimeType?: string;
+  content?: string;
+  commentId?: number | string;
+}
+
+export interface PostAudioCommentResponse {
+  result: boolean;
+  commentId: number;
+  audioUrl: string;
+  audioDuration: number;
+}
+
+export async function postAudioComment(input: PostAudioCommentInput): Promise<PostAudioCommentResponse> {
+  const { streamTokenId, fileUri, fileName, mimeType, content, commentId } = input;
+  if (streamTokenId == null) throw new Error('streamTokenId required');
+  if (!fileUri) throw new Error('fileUri required');
+
+  const formData = new FormData();
+  formData.append('file', {
+    uri: fileUri,
+    name: fileName || `voice_note_${Date.now()}.m4a`,
+    type: mimeType || 'audio/m4a',
+  } as any);
+
+  const qs = new URLSearchParams();
+  qs.set('streamTokenId', String(streamTokenId));
+  if (content?.trim()) qs.set('content', content.trim());
+  if (commentId != null) qs.set('commentId', String(commentId));
+
+  try {
+    const res = await apiClient.post<PostAudioCommentResponse>(
+      `/comment_audio?${qs.toString()}`,
+      formData,
+      { isAuthRequired: true }
+    );
+    return res;
+  } catch (e) {
+    console.error('[NFTService] postAudioComment error', e);
     throw e;
   }
 }

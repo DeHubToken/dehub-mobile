@@ -16,11 +16,21 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Avatar from "../common/Avatar";
+import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
 import { getAvatarUrl, getImageUrl } from "../../libs";
+import { buildCdnPath } from "../../libs/misc";
 import type { UserReplyItem } from "../../services/user.service";
 import { likeComment, type LikeCommentResult } from "../../services/nft.service";
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
+
+/** Resolve a media path: local file URIs pass through, relative paths go through CDN. */
+const resolveMediaUrl = (path: string): string => {
+  if (path.startsWith('file://') || path.startsWith('/') || path.startsWith('http://') || path.startsWith('https://')) {
+    return path;
+  }
+  return buildCdnPath(path) ?? path;
+};
 
 /** Short-form elapsed time (matching CommentItem convention). */
 const formatShortTime = (date: string | undefined): string => {
@@ -184,32 +194,60 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
                 </Text>
               ) : null}
               <Text className="text-xs text-theme-neutrals-500 ml-1.5">{timeAgo}</Text>
+              {item.isHidden ? (
+                <Ionicons name="eye-off" size={12} color="#6F7174" style={{ marginLeft: 6 }} />
+              ) : null}
             </View>
 
             {/* Comment text with @mentions bolded */}
-            <Text className="text-sm text-theme-neutrals-300 mt-1 leading-5" numberOfLines={4}>
-              {parsedContent.map((part, idx) => (
-                <Text
-                  key={idx}
-                  className={
-                    part.isMention
-                      ? "font-bold text-theme-neutrals-100"
-                      : "font-normal"
-                  }
-                >
-                  {part.text}
-                </Text>
-              ))}
-            </Text>
+            {item.content ? (
+              <Text className="text-sm text-theme-neutrals-300 mt-1 leading-5" numberOfLines={4}>
+                {parsedContent.map((part, idx) => (
+                  <Text
+                    key={idx}
+                    className={
+                      part.isMention
+                        ? "font-bold text-theme-neutrals-100"
+                        : "font-normal"
+                    }
+                  >
+                    {part.text}
+                  </Text>
+                ))}
+              </Text>
+            ) : null}
 
-            {/* Comment image (if any) */}
+            {/* Media content: image */}
             {item.imageUrl ? (
-              <Image
-                source={{ uri: getImageUrl(item.imageUrl) }}
-                className="mt-2 rounded-lg"
-                style={{ width: 160, height: 100 }}
-                resizeMode="cover"
-              />
+              <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-800" style={{ maxWidth: 200 }}>
+                <Image
+                  source={{ uri: resolveMediaUrl(item.imageUrl) }}
+                  style={{ width: 200, height: 150 }}
+                  resizeMode="cover"
+                />
+              </View>
+            ) : null}
+
+            {/* Media content: GIF */}
+            {item.gifUrl ? (
+              <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-800" style={{ maxWidth: 200 }}>
+                <Image
+                  source={{ uri: item.gifUrl }}
+                  style={{ width: 200, height: 150 }}
+                  resizeMode="cover"
+                />
+              </View>
+            ) : null}
+
+            {/* Media content: voice note */}
+            {item.audioUrl ? (
+              <View className="mt-1.5 rounded-lg bg-theme-neutrals-800/60 px-2" style={{ maxWidth: 240 }}>
+                <VoiceNotePlayer
+                  audioUrl={resolveMediaUrl(item.audioUrl)}
+                  duration={item.audioDuration}
+                  compact
+                />
+              </View>
             ) : null}
 
             {/* Post context badge ── shows what post this comment is on */}

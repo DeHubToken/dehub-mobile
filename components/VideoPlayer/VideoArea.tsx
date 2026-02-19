@@ -23,6 +23,8 @@ export interface VideoAreaProps {
   onProgress?: (positionMs: number, durationMs: number) => void;
   isLive?: boolean;
   onPPVSuccess?: () => void;
+  /** When true, video fills the entire container instead of using 16:9 aspect ratio */
+  fullscreen?: boolean;
 }
 
 const VideoArea: React.FC<VideoAreaProps> = ({
@@ -37,6 +39,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   onProgress,
   isLive,
   onPPVSuccess,
+  fullscreen,
 }) => {
   const normalizedUrl: string | null =
     effectiveVideoUrl === undefined ? null : effectiveVideoUrl;
@@ -324,8 +327,12 @@ const VideoArea: React.FC<VideoAreaProps> = ({
     );
   }
 
+  const containerClass = fullscreen
+    ? "flex-1 bg-black"
+    : "w-full aspect-video bg-black";
+
   return (
-  <View className="w-full aspect-video bg-black" pointerEvents="auto">
+  <View className={containerClass} pointerEvents="auto">
       <VideoPlayerCore
         sourceUrl={normalizedUrl}
         autoplay

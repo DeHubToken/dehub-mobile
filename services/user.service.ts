@@ -586,6 +586,10 @@ export interface UserReplyItem {
   tokenId: number;
   content: string;
   imageUrl?: string;
+  gifUrl?: string;
+  audioUrl?: string;
+  audioDuration?: number;
+  isHidden?: boolean;
   address: string;
   parentId: number | null;
   isReply: boolean;

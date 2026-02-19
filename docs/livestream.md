@@ -199,7 +199,30 @@ Returns full stream data with streamer account info, recent activities, and view
   "streamInfo": {},
   "createdAt": "2024-01-01T00:00:00Z",
   "updatedAt": "2024-01-01T01:00:00Z",
-  "activities": [],
+  "activities": [
+    {
+      "_id": "660a...",
+      "streamId": "6507...",
+      "status": "MESSAGE",
+      "address": "0xViewer...",
+      "meta": { "address": "0xViewer...", "content": "Hello!" },
+      "createdAt": "2024-01-01T00:05:00Z",
+      "account": {
+        "address": "0xViewer...",
+        "username": "viewer1",
+        "displayName": "Active Viewer",
+        "avatarImageUrl": "https://...",
+        "followers": 200,
+        "followings": 30,
+        "sentTips": 100,
+        "receivedTips": 0,
+        "createdAt": "2023-08-01T00:00:00Z",
+        "isPrivate": false,
+        "hideFollowers": false,
+        "badgeBalance": 0
+      }
+    }
+  ],
   "account": {
     "address": "0x...",
     "username": "streamer",
@@ -322,6 +345,66 @@ This is a **toggle** endpoint. If the user has already liked the stream, calling
 
 Returns all activities (chat messages, tips, joins, likes, reactions, etc.) sorted chronologically (oldest first). No query parameters.
 
+Each activity includes an `account` field with the full `userReferenceProjection` of the user who performed the action. For old activities created before user references were added, the backend falls back to looking up the account by `address`.
+
+#### Response
+
+```json
+[
+  {
+    "_id": "660a...",
+    "streamId": "6507...",
+    "status": "MESSAGE",
+    "address": "0xViewer...",
+    "meta": { "address": "0xViewer...", "content": "Hello!" },
+    "createdAt": "2024-01-01T00:05:00Z",
+    "account": {
+      "address": "0xViewer...",
+      "username": "viewer1",
+      "displayName": "Active Viewer",
+      "avatarImageUrl": "https://...",
+      "followers": 200,
+      "followings": 30,
+      "sentTips": 100,
+      "receivedTips": 0,
+      "createdAt": "2023-08-01T00:00:00Z",
+      "isPrivate": false,
+      "hideFollowers": false,
+      "badgeBalance": 0
+    }
+  },
+  {
+    "_id": "660b...",
+    "streamId": "6507...",
+    "status": "TIP",
+    "address": "0xTipper...",
+    "meta": { "address": "0xTipper...", "amount": 5000, "message": "Great stream!" },
+    "createdAt": "2024-01-01T00:10:00Z",
+    "account": {
+      "address": "0xTipper...",
+      "username": "bigtipper",
+      "displayName": "Big Tipper",
+      "avatarImageUrl": "https://...",
+      "followers": 500,
+      "followings": 100,
+      "sentTips": 50000,
+      "receivedTips": 200,
+      "createdAt": "2023-05-01T00:00:00Z",
+      "isPrivate": false,
+      "hideFollowers": false,
+      "badgeBalance": 3
+    }
+  }
+]
+```
+
+| Field     | Type   | Description                                                |
+| --------- | ------ | ---------------------------------------------------------- |
+| `status`  | string | Activity type: `MESSAGE`, `TIP`, `LIKE`, `REACTION`, `JOIN`, `LEAVE`, `START`, `END`, `PAUSED`, `RESUMED` |
+| `address` | string | Wallet address of the user who performed the action        |
+| `meta`    | object | Activity-specific data (content, amount, reactionType, etc.) |
+| `account` | object | Full user reference (see `userReferenceProjection` fields) |
+
 ---
 
 ### 10. Update Stream Settings (Owner Only)
@@ -406,13 +489,13 @@ Valid values for `stream.reaction` -> `reactionType`:
 | `stream.paused`            | `{ streamId, status: 'PAUSED', pausedAt, gracePeriodSeconds }` | Stream interrupted — grace period started. `gracePeriodSeconds` = 90. Frontend should show reconnecting overlay with countdown. |
 | `stream.resumed`           | `{ streamId, status: 'LIVE' }`                                                        | Streamer reconnected within grace period. Cancel countdown, resume playback. |
 | `stream.end`               | `{ streamId }` or `{ streamId, status, endedAt, duration }`                          | Stream ended. Minimal payload from socket-initiated end; full payload from webhook/grace expiry. |
-| `stream.join`              | `{ viewerCount, user: { address, username } }`                                        | A viewer joined                   |
-| `stream.left`              | `{ viewerCount, user: { address, username } }`                                        | A viewer left                     |
+| `stream.join`              | `{ viewerCount, user: <userRef> }`                                                    | A viewer joined (user has full `userReferenceProjection` fields) |
+| `stream.left`              | `{ viewerCount, user: <userRef> }`                                                    | A viewer left (user has full `userReferenceProjection` fields) |
 | `stream.viewers.update`    | `{ viewerCount }`                                                                     | Viewer count changed              |
 | `stream.like`              | `{ likes }`                                                                           | Someone liked (or unliked) the stream |
-| `streamer.tip`             | `{ gift: { address, amount, message, ... } }`                                         | Someone tipped the streamer       |
-| `stream.message`           | `{ message: { content, user, ... } }`                                                 | Chat message received             |
-| `stream.reaction`          | `{ reactionType, user: { address, username } }`                                       | A viewer sent a reaction. Note: uses `reactionType` not `type`. |
+| `streamer.tip`             | `{ gift: { address, amount, message, account: <userRef>, ... } }`                     | Someone tipped the streamer. `gift` is the full activity object with enriched `account`. |
+| `stream.message`           | `{ message: { content, account: <userRef>, user: <userRef>, ... } }`                  | Chat message received. Both `account` and `user` carry the full user reference. |
+| `stream.reaction`          | `{ reactionType, user: <userRef> }`                                                   | A viewer sent a reaction. `user` has full `userReferenceProjection` fields. Note: uses `reactionType` not `type`. |
 | `stream.settings.update`   | `{ streamId, settings }`                                                              | Stream settings changed by owner  |
 | `stream.user.banned`       | `{ streamId, address }`                                                               | A user was banned from stream (reserved) |
 | `stream.user.muted`        | `{ streamId, address }`                                                               | A user was muted in stream (reserved)  |
@@ -421,6 +504,29 @@ Valid values for `stream.reaction` -> `reactionType`:
 | `update-online-users`      | `string[]`                                                                            | Array of online user addresses    |
 
 > **Reserved events:** `stream.user.banned`, `stream.user.muted`, and `stream.error` are defined in the events enum but not actively emitted yet. They are reserved for future use.
+
+#### User Reference Shape (`<userRef>`)
+
+All socket events that include a `user` or `account` field now return the full `userReferenceProjection` object:
+
+```json
+{
+  "address": "0x...",
+  "username": "viewer1",
+  "displayName": "Cool Viewer",
+  "avatarImageUrl": "https://...",
+  "followers": 200,
+  "followings": 30,
+  "sentTips": 100,
+  "receivedTips": 0,
+  "createdAt": "2023-08-01T00:00:00Z",
+  "isPrivate": false,
+  "hideFollowers": false,
+  "badgeBalance": 0
+}
+```
+
+> **Backward compatibility:** The `address` and `username` fields are always present. Older clients that only read `user.address` and `user.username` will continue to work. New clients can use the additional fields (`displayName`, `avatarImageUrl`, `badgeBalance`, etc.) to render richer user badges, avatars, and profile cards in the chat and viewer list.
 
 ---
 
@@ -452,8 +558,8 @@ socket.on('stream.start', (data) => {
 
 // 5b. Listen for reactions
 socket.on('stream.reaction', (data) => {
-  // data = { reactionType, user: { address, username } }
-  // Show reaction animation overlay
+  // data = { reactionType, user: { address, username, displayName, avatarImageUrl, badgeBalance, ... } }
+  // Show reaction animation overlay — use avatarImageUrl and displayName for rich UI
   showReactionAnimation(data.reactionType, data.user);
 });
 
@@ -514,8 +620,8 @@ socket.on('streamer.tip', (data) => { /* show tip animation: data.gift */ });
 socket.on('stream.viewers.update', (data) => { /* update viewer count: data.viewerCount */ });
 socket.on('stream.end', (data) => { /* show ended state */ });
 socket.on('stream.reaction', (data) => {
-  // data = { reactionType, user: { address, username } }
-  // Show floating reaction animation
+  // data = { reactionType, user: { address, username, displayName, avatarImageUrl, badgeBalance, ... } }
+  // Show floating reaction animation with avatar and display name
   showReactionAnimation(data.reactionType, data.user);
 });
 socket.on('stream.settings.update', (data) => {
@@ -671,10 +777,11 @@ Restores a soft-deleted stream (`isDeleted: false`).
 5. **Anonymous viewers supported** — `stream.join.room` does not require authentication, so anyone can watch. Sending messages, reactions, and registering as a viewer require auth.
 6. **Chat works during PAUSED** — Chat messages and reactions are accepted when the stream is `LIVE` or `PAUSED`. Viewers remain connected during the grace period and can continue chatting.
 7. **Chat messages validated** — Messages are trimmed and capped at 500 characters. Empty messages are rejected.
-8. **User data uses `userReferenceProjection`** — All user lookups return consistent fields: `address, username, displayName, avatarImageUrl, followers, followings, sentTips, receivedTips, createdAt, isPrivate, hideFollowers, badgeBalance`.
+8. **User data uses `userReferenceProjection` everywhere** — All user data across REST responses AND socket emissions uses the same `userReferenceProjection`: `address, username, displayName, avatarImageUrl, followers, followings, sentTips, receivedTips, createdAt, isPrivate, hideFollowers, badgeBalance`. This includes stream activities (each has an `account` field), chat messages, reactions, join/leave events, and tip notifications. Old records without a `user` ObjectId ref are resolved by falling back to address-based lookup, ensuring backward compatibility.
 9. **Redis tracks viewer counts** — `stream:{streamId}:viewers` key in Redis for fast viewer count reads. Counts are clamped to 0 minimum.
 10. **Likes are toggleable** — `POST /live/:streamId/like` toggles like/unlike and returns the new state. A `stream.like` event with the updated count is broadcast.
 11. **Settings updates are real-time** — PATCH settings route broadcasts changes via `stream.settings.update` socket event. Settings can be updated regardless of stream status.
 12. **End stream emits everywhere** — Whether ended via socket, REST admin force-end, or Livepeer webhook grace expiry, all paths emit the `stream.end` socket event to connected viewers.
 13. **Admin audit trail** — All admin actions (test flag, force-end, delete, restore) are logged via `AdminActivityService`.
 14. **Ingest URL is RTMP** — The `GET /live/:streamId/ingesturl` endpoint returns an RTMP URL. For WHIP (WebRTC) streaming from the browser, construct: `https://playback.livepeer.studio/webrtc/{playbackId}`.
+15. **Backward-compatible user references** — Models store both `address` (string) and `user` (ObjectId ref to accounts). All aggregations try the `user` ObjectId first, then fall back to `address` string lookup for old records. Socket emissions always include `address` and `username` at the root of the user object, so older clients continue to work. A backfill script (`scripts/backfill-livestream-user-refs.ts`) is available to populate `user` refs on existing `StreamActivity`, `StreamViewer`, and `LiveStream` documents.
