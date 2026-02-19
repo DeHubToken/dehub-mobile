@@ -80,8 +80,11 @@ export interface NotificationData {
   milestone?: string;
   // System
   articleUrl?: string;
+  broadcastId?: string;
   // Aggregation
   aggregatedCount?: number;
+  // Moderation (in-app metadata)
+  moderationType?: string;
   [key: string]: unknown;
 }
 

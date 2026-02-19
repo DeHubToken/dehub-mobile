@@ -53,7 +53,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
     (nft as any).name ||
     (nft as any).title ||
     (nft as any).stream?.title ||
-    "Untitled";
+    "";
   const creator =
     (nft as any).minterDisplayName ||
     (nft as any).mintername ||
@@ -99,19 +99,8 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const handlePressCreator = useCallback(() => {
     const id = username || creator || address;
     if (!id) return;
-    const selfUsernames = [user?.username, user?.displayName].filter(Boolean);
-    const selfAddresses = [user?.walletAddress, user?.address].filter(Boolean);
-    const isSelf =
-      selfUsernames.includes(id as any) || selfAddresses.includes(id as any);
-    if (isSelf) {
-      navigation.navigate(ScreenNames.Root as any, {
-        screen: ScreenNames.Profile,
-        // params: { address: addr },
-      });
-      return;
-    }
     showUserProfile(id);
-  }, [username, creator, address, showUserProfile, user, navigation]);
+  }, [username, creator, address, showUserProfile]);
   const handlePressAvatar = handlePressCreator;
   let relativeTime = createdAt as string;
   try {

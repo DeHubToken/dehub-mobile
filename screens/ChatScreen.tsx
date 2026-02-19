@@ -36,7 +36,7 @@ import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import ChatHeaderMenuButton from "../components/Chat/ChatHeaderMenuButton";
 import ChatMenu from "../components/Chat/ChatMenu";
 import ConfirmBlockModal from "../components/common/ConfirmBlockModal";
-import { blockDm, unBlockDm } from "../services/dm.service";
+import { blockUser, unblockUser } from "../services/block.service";
 import { copyPickedToLocal, setMapping } from "../libs/dm-media.local";
 import { uploadDmMedia } from "../services/dm/upload";
 import { guessMime } from "../libs/assets.util";
@@ -230,38 +230,26 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     } catch {}
   }, []);
 
-  // Determine if DM should be disabled due to blocklist/admin status
+  // Determine if DM should be disabled due to block status
   const computeBlockDmState = useCallback(
     (acct: any): { disabled: boolean; reason: string | null } => {
-      const myAddr = String(
-        (user as any)?.walletAddress || (user as any)?.address || ""
-      ).toLowerCase();
-      const peerAddr = String(
-        acct?.address || acct?.dmSettings?.address || ""
-      ).toLowerCase();
-      const blockedArray: any[] = (acct?.blocklist?.blocked as any[]) || [];
-      const theyBlockedMe = !!(
-        myAddr &&
-        blockedArray.some(
-          (b: any) => String(b?.address || "").toLowerCase() === myAddr
-        )
-      );
-      const iBlockedThem = !!(
-        peerAddr &&
-        ((user as any)?.blocklist?.blocked || []).some(
-          (b: any) => String(b?.address || "").toLowerCase() === peerAddr
-        )
-      );
+      // Use block flags from account info response
+      const youBlockedFlag = !!(acct?.youBlocked);
+      const blockedYouFlag = !!(acct?.blockedYou);
+      const isBlockedFlag = !!(acct?.isBlocked);
       const adminBlocked = Boolean(acct?.blocklist?.adminBlocked);
-      if (iBlockedThem && theyBlockedMe)
+
+      if (youBlockedFlag && blockedYouFlag)
         return {
           disabled: true,
-          reason: "You’ve blocked this user and they’ve blocked you.",
+          reason: "You've blocked this user and they've blocked you.",
         };
-      if (theyBlockedMe)
+      if (blockedYouFlag)
         return { disabled: true, reason: "This user has blocked you." };
-      if (iBlockedThem)
-        return { disabled: true, reason: "You’ve blocked this user." };
+      if (youBlockedFlag)
+        return { disabled: true, reason: "You've blocked this user." };
+      if (isBlockedFlag)
+        return { disabled: true, reason: "Messaging is restricted due to a block." };
       if (adminBlocked)
         return {
           disabled: true,
@@ -269,7 +257,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         };
       return { disabled: false, reason: null };
     },
-    [user]
+    []
   );
 
   // iBlockedThem is computed after `peer` is available
@@ -343,19 +331,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   }, [convId, conversations, target, targetAddress]);
 
   const iBlockedThem = useMemo(() => {
-    const peerAddr = String(
-      (target as any)?.address ||
-        (target as any)?.walletAddress ||
-        peer?.address ||
-        ""
-    ).toLowerCase();
-    return !!(
-      peerAddr &&
-      ((user as any)?.blocklist?.blocked || []).some(
-        (b: any) => String(b?.address || "").toLowerCase() === peerAddr
-      )
-    );
-  }, [user, target, peer?.address]);
+    // Use block flags from target account info
+    return !!(target as any)?.youBlocked;
+  }, [target]);
 
   const openMenu = useCallback(() => setMenuVisible(true), []);
   const closeMenu = useCallback(() => setMenuVisible(false), []);
@@ -372,23 +350,17 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
   const onBlockUser = useCallback(() => {
     closeMenu();
-    if (!convId) {
-      toastWarning("Start a conversation before blocking");
-      return;
-    }
+    
     setConfirmMode("block");
     setConfirmVisible(true);
-  }, [closeMenu, convId]);
+  }, [closeMenu]);
 
   const onUnblockUser = useCallback(() => {
     closeMenu();
-    if (!convId) {
-      toastWarning("Start a conversation before unblocking");
-      return;
-    }
+    
     setConfirmMode("unblock");
     setConfirmVisible(true);
-  }, [closeMenu, convId]);
+  }, [closeMenu]);
 
   const peerLabel = useMemo(() => {
     return (
@@ -404,50 +376,18 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         peer?.address || (target as any)?.address || ""
       ).toLowerCase();
       if (!addr) return;
-      // Optimistic local update via patchUser
-      await patchUser((prev) => {
-        const current = prev || ({} as any);
-        const bl = current.blocklist || {
-          blocked: [],
-          blockedBy: [],
-          adminBlocked: false,
-        };
-        const blocked = Array.isArray(bl.blocked) ? [...bl.blocked] : [];
-        if (mode === "block") {
-          if (
-            !blocked.some(
-              (b: any) => String(b?.address || "").toLowerCase() === addr
-            )
-          ) {
-            blocked.push({ address: addr, username: peer?.username });
-          }
-          return { blocklist: { ...bl, blocked } } as any;
-        }
-        // unblock
-        const next = blocked.filter(
-          (b: any) => String(b?.address || "").toLowerCase() !== addr
-        );
-        return { blocklist: { ...bl, blocked: next } } as any;
-      });
-      // Immediate UI feedback without waiting for context re-render:
+
+      // Immediate UI feedback
       let nextDisabled = false;
       let nextReason: string | null = null;
       if (mode === "block") {
         nextDisabled = true;
-        nextReason = "You’ve blocked this user.";
+        nextReason = "You've blocked this user.";
       } else {
-        // After unblocking, still disabled if they blocked me or adminBlocked
-        const myAddr = String(
-          (user as any)?.walletAddress || (user as any)?.address || ""
-        ).toLowerCase();
-        const theyBlockedMe = !!(
-          myAddr &&
-          ((target as any)?.blocklist?.blocked || []).some(
-            (b: any) => String(b?.address || "").toLowerCase() === myAddr
-          )
-        );
+        // After unblocking, check if they still blocked us
+        const blockedYouFlag = !!(target as any)?.blockedYou;
         const adminBlocked = Boolean((target as any)?.blocklist?.adminBlocked);
-        if (theyBlockedMe) {
+        if (blockedYouFlag) {
           nextDisabled = true;
           nextReason = "This user has blocked you.";
         } else if (adminBlocked) {
@@ -470,56 +410,25 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         } as any);
       } catch {}
     },
-    [patchUser, peer?.address, peer?.username, target, computeBlockDmState]
+    [peer?.address, target]
   );
 
   const onConfirmBlockToggle = useCallback(async () => {
-    let prevBlocked: any[] = [];
     try {
       setBlockActionLoading(true);
-      const addr = String(
-        (user as any)?.walletAddress || (user as any)?.address || ""
-      ).toLowerCase();
-      if (!convId) {
-        throw new Error("No conversation to (un)block");
-      }
-      // Snapshot for rollback and data we need (e.g., reportId)
-      prevBlocked = ((user as any)?.blocklist?.blocked || []).map((x: any) => ({
-        ...x,
-      }));
       const peerAddr = String(
         peer?.address || (target as any)?.address || ""
       ).toLowerCase();
-      const prevPolicy = getPeerPolicy(peerAddr);
-      const existing = prevBlocked.find(
-        (b: any) => String(b?.address || "").toLowerCase() === peerAddr
-      );
-      const existingReportId = existing?.reportId as string | undefined;
+      if (!peerAddr) throw new Error("No peer address for block action");
+
       // Optimistic update
       await applyLocalBlockToggle(confirmMode);
-      // Server call
+
+      // Server call using platform block service
       if (confirmMode === "block") {
-        const resp = await blockDm(convId, addr, "Blocked from chat");
-        const newReportId = (resp as any)?.reportId as string | undefined;
-        if (newReportId) {
-          // Store reportId on the blocked entry for future unblocking
-          await patchUser((prev) => {
-            const bl = (prev as any)?.blocklist || {
-              blocked: [],
-              blockedBy: [],
-              adminBlocked: false,
-            };
-            const blocked = Array.isArray(bl.blocked) ? [...bl.blocked] : [];
-            const idx = blocked.findIndex(
-              (b: any) => String(b?.address || "").toLowerCase() === peerAddr
-            );
-            if (idx >= 0)
-              blocked[idx] = { ...blocked[idx], reportId: newReportId };
-            return { blocklist: { ...bl, blocked } } as any;
-          });
-        }
+        await blockUser(peerAddr, "Blocked from chat");
       } else {
-        await unBlockDm(convId, addr, existingReportId);
+        await unblockUser(peerAddr);
       }
       toastSuccess(
         confirmMode === "block"
@@ -529,32 +438,18 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     } catch (e) {
       // Rollback optimistic change
       try {
-        await patchUser(() => {
-          const bl = (user as any)?.blocklist || {
-            blocked: [],
-            blockedBy: [],
-            adminBlocked: false,
-          };
-          return { blocklist: { ...bl, blocked: prevBlocked } } as any;
-        });
         const nextState = computeBlockDmState(target);
         setDmDisabled(nextState.disabled);
         setDmReason(nextState.reason);
-        // Restore peer policy cache
         const peerAddr = String(
           peer?.address || (target as any)?.address || ""
         ).toLowerCase();
         if (peerAddr) {
-          const snapshot = getPeerPolicy(peerAddr);
-          if (snapshot) {
-            dmActions.setPeerPolicy(peerAddr, snapshot as any);
-          } else {
-            dmActions.setPeerPolicy(peerAddr, {
-              disabled: nextState.disabled,
-              reason: nextState.reason,
-              status: nextState.disabled ? "BLOCKLIST" : "ACTIVE_ALL",
-            } as any);
-          }
+          dmActions.setPeerPolicy(peerAddr, {
+            disabled: nextState.disabled,
+            reason: nextState.reason,
+            status: nextState.disabled ? "BLOCKLIST" : "ACTIVE_ALL",
+          } as any);
         }
       } catch {}
       toastError(
@@ -571,15 +466,12 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     applyLocalBlockToggle,
     confirmMode,
     peerLabel,
-    convId,
-    user,
-    patchUser,
     peer?.address,
     target,
     computeBlockDmState,
   ]);
 
-  // Keep DM disabled state in sync with blocklist changes in auth user or target
+  // Keep DM disabled state in sync with target block flags
   useEffect(() => {
     const state = computeBlockDmState(target);
     if (state.disabled) {
@@ -587,7 +479,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       setDmReason(state.reason);
     }
     // If state is not disabled, we don't forcibly enable here to preserve other DM policies
-  }, [(user as any)?.blocklist, target, computeBlockDmState]);
+  }, [target, computeBlockDmState]);
 
   // Fetch target account info when opening by address (no conversation yet)
   useEffect(() => {

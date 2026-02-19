@@ -464,13 +464,9 @@ const FollowListScreen: React.FC = () => {
 
   const handleUserPress = useCallback(
     (userAddress: string) => {
-      if (authUser?.address?.toLowerCase() === userAddress.toLowerCase()) {
-        (navigation as any).navigate(ScreenNames.Profile);
-      } else {
-        showUserProfile(userAddress);
-      }
+      showUserProfile(userAddress);
     },
-    [authUser?.address, navigation, showUserProfile]
+    [showUserProfile]
   );
 
   const handleTabChange = useCallback((tab: TabKey) => {

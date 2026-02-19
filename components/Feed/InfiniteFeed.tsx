@@ -7,6 +7,7 @@ import {
   ListRenderItem,
   Text,
   Pressable,
+  ActivityIndicator,
   NativeSyntheticEvent,
   NativeScrollEvent,
   Platform,
@@ -49,6 +50,8 @@ export interface InfiniteFeedProps {
   insideNavigatorScreen?: boolean;
   /** Whether user is signed in (required for view tracking). */
   isSignedIn?: boolean;
+  /** Optional custom loading component to replace the default skeleton. When provided, the headerComponent is preserved above this loading indicator. */
+  loadingComponent?: React.ReactNode;
 }
 
 interface FeedItem extends GetNFTsResult {
@@ -84,6 +87,7 @@ const InfiniteFeedBase: React.FC<
   listRef,
   navigationForTabPress = null,
   isSignedIn = false,
+  loadingComponent,
 }) => {
   const [items, setItems] = useState<FeedItem[]>([]);
   const [page, setPage] = useState(0);
@@ -261,8 +265,13 @@ const InfiniteFeedBase: React.FC<
 
   if (initialLoading && items.length === 0) {
     return (
-      <View className="flex-1 px-2 pt-2">
-        <FeedCardSkeleton count={4} />
+      <View className="flex-1">
+        {!!headerComponent && <View>{headerComponent}</View>}
+        {loadingComponent ?? (
+          <View className="flex-1 px-2 pt-2">
+            <FeedCardSkeleton count={4} />
+          </View>
+        )}
       </View>
     );
   }

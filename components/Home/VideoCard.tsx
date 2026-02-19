@@ -84,7 +84,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
     (nft as any).name ||
     (nft as any).title ||
     (nft as any).stream?.title ||
-    "Untitled";
+    "";
   const description = (nft as any).description || (nft as any).stream?.description || "";
   const categories: string[] = (nft as any).category || [];
   const creator =
@@ -179,19 +179,8 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const handlePressCreator = useCallback(() => {
     const id = username || creator || address;
     if (!id) return;
-    const selfUsernames = [user?.username, user?.displayName].filter(Boolean);
-    const selfAddresses = [user?.walletAddress, user?.address].filter(Boolean);
-    const isSelf =
-      selfUsernames.includes(id as any) || selfAddresses.includes(id as any);
-    if (isSelf) {
-      navigation.navigate(ScreenNames.Root as any, {
-        screen: ScreenNames.Profile,
-        // params: { address: addr },
-      });
-      return;
-    }
     showUserProfile(id);
-  }, [username, creator, address, showUserProfile, user, navigation]);
+  }, [username, creator, address, showUserProfile]);
   const handlePressAvatar = handlePressCreator;
   const isStringThumb = typeof thumbnail === "string";
   const hasThumb = isStringThumb ? thumbnail.trim().length > 0 : true; // local require numbers considered valid

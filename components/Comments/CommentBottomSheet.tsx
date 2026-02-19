@@ -130,37 +130,37 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
         </Animated.View>
 
         {/* Sheet */}
-        <GestureDetector gesture={gesture}>
-          <Animated.View
-            style={[
-              {
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: SHEET_HEIGHT,
-                backgroundColor: "#121212",
-                borderTopLeftRadius: 16,
-                borderTopRightRadius: 16,
-                overflow: "hidden",
-              },
-              sheetStyle,
-            ]}
-          >
-            {/* Handle */}
-            <View className="items-center py-2">
+        <Animated.View
+          style={[
+            {
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: SHEET_HEIGHT,
+              backgroundColor: "#121212",
+              borderTopLeftRadius: 16,
+              borderTopRightRadius: 16,
+              overflow: "hidden",
+            },
+            sheetStyle,
+          ]}
+        >
+          {/* Handle - only this area responds to swipe-to-close */}
+          <GestureDetector gesture={gesture}>
+            <Animated.View className="items-center py-2">
               <View className="w-10 h-1 rounded-full bg-theme-neutrals-600" />
-            </View>
+            </Animated.View>
+          </GestureDetector>
 
-            {/* Content */}
-            <CommentSection
-              tokenId={tokenId}
-              onClose={closeSheet}
-              highlightCommentId={highlightCommentId}
-              contentType={contentType}
-            />
-          </Animated.View>
-        </GestureDetector>
+          {/* Content */}
+          <CommentSection
+            tokenId={tokenId}
+            onClose={closeSheet}
+            highlightCommentId={highlightCommentId}
+            contentType={contentType}
+          />
+        </Animated.View>
       </GestureHandlerRootView>
     </Modal>
   );

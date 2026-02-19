@@ -11,6 +11,9 @@ type Props = {
   autoFocus?: boolean;
   replyToLabel?: string;
   onCancelReply?: () => void;
+  /** Label shown when editing (e.g. "Editing comment") */
+  editingLabel?: string;
+  onCancelEdit?: () => void;
   /** User's avatar URL */
   userAvatarUrl?: string;
   /** Show loading state on send button */
@@ -21,6 +24,7 @@ export type CommentInputRef = {
   focus: () => void;
   blur: () => void;
   clear: () => void;
+  setText: (text: string) => void;
 };
 
 const CommentInput = forwardRef<CommentInputRef, Props>(({ 
@@ -29,6 +33,8 @@ const CommentInput = forwardRef<CommentInputRef, Props>(({
   autoFocus, 
   replyToLabel, 
   onCancelReply,
+  editingLabel,
+  onCancelEdit,
   userAvatarUrl,
   isSending = false,
 }, ref) => {
@@ -41,6 +47,7 @@ const CommentInput = forwardRef<CommentInputRef, Props>(({
     focus: () => inputRef.current?.focus?.(),
     blur: () => inputRef.current?.blur?.(),
     clear: () => setText(""),
+    setText: (t: string) => setText(t),
   }), []);
 
   // Ensure keyboard pops when autoFocus toggles true
@@ -61,8 +68,24 @@ const CommentInput = forwardRef<CommentInputRef, Props>(({
 
   return (
     <View className="px-4 py-2 bg-theme-neutrals-900">
+      {/* Editing indicator */}
+      {!!editingLabel && (
+        <View className="flex-row items-center justify-between px-1 mb-2 bg-theme-neutrals-800/50 py-2 rounded-lg">
+          <Text className="flex-1 text-xs text-theme-neutrals-400">
+            {editingLabel}
+          </Text>
+          <TouchableOpacity
+            onPress={onCancelEdit}
+            hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+            accessibilityLabel="Cancel edit"
+          >
+            <Ionicons name="close" size={18} color={theme.colors.mutedForeground} />
+          </TouchableOpacity>
+        </View>
+      )}
+
       {/* Replying to indicator */}
-      {!!replyToLabel && (
+      {!!replyToLabel && !editingLabel && (
         <View className="flex-row items-center justify-between px-1 mb-2 bg-theme-neutrals-800/50 py-2 rounded-lg">
           <Text className="flex-1 text-xs text-theme-neutrals-400">
             Replying to <Text className="font-semibold text-theme-accent">{replyToLabel}</Text>

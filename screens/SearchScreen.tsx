@@ -3,6 +3,7 @@ import {
   View,
   TextInput,
   FlatList,
+  ScrollView,
   Text,
   TouchableOpacity,
   StyleSheet,
@@ -15,8 +16,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   search,
-  searchAccounts,
-  searchContent,
   fetchSuggestions,
   getHistory,
   addToHistory,
@@ -25,15 +24,18 @@ import {
   SearchAccountResult,
   SearchPostType,
   SearchPagination,
+  UnifiedSearchResponse,
 } from "../services/search.service";
 import ScreenHeader from "../components/ScreenHeader";
 import VideoCard from "../components/Home/VideoCard";
 import HomeFeedCard from "../components/Home/HomeFeedCard";
 import LiveStreamCard from "../components/Home/LiveStreamCard";
 import SearchAccountCard from "../components/Search/SearchAccountCard";
+import SearchAccountChip from "../components/Search/SearchAccountChip";
 import AccentButtonGradient from "../components/ui/AccentButtonGradient";
 import CompactVideoCardSkeleton from "../components/Home/CompactVideoCardSkeleton";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
+import type { FollowState } from "../components/Search/SearchAccountChip";
 import { useAuth } from "../context/AuthContext";
 
 // =============================================================================
@@ -46,18 +48,55 @@ interface Tab {
   key: TabKey;
   label: string;
   postType?: SearchPostType;
-  searchType?: "accounts" | "content";
 }
 
 const TABS: Tab[] = [
   { key: "all", label: "All" },
-  { key: "accounts", label: "Accounts", searchType: "accounts" },
-  { key: "videos", label: "Videos", postType: "video", searchType: "content" },
-  { key: "live", label: "Live", postType: "live", searchType: "content" },
-  { key: "feeds", label: "Posts", postType: "feed-all", searchType: "content" },
+  { key: "accounts", label: "Accounts" },
+  { key: "videos", label: "Videos", postType: "video" },
+  { key: "live", label: "Live", postType: "live" },
+  { key: "feeds", label: "Posts", postType: "feed-all" },
 ];
 
 const PAGE_SIZE = 20;
+
+// =============================================================================
+// Helpers
+// =============================================================================
+
+/** Map a SearchContentResult → UnifiedFeedItem for card components */
+const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
+  tokenId: item.tokenId,
+  id: String(item.tokenId),
+  name: item.name,
+  title: item.name,
+  description: item.description,
+  imageUrl: item.imageUrl,
+  videoUrl: item.videoUrl,
+  videoDuration: item.videoDuration,
+  thumbnailUrl: item.thumbnailUrl || item.imageUrl,
+  imageUrls: item.imageUrls,
+  postType: (item.postType as UnifiedFeedItem["postType"]) ?? "video",
+  views: item.views ?? 0,
+  likes: item.totalVotes?.for ?? item.likes ?? 0,
+  dislikes: item.totalVotes?.against ?? item.dislikes ?? 0,
+  createdAt: item.createdAt,
+  minter: item.minter || item.minterUser?.address,
+  minterUser: item.minterUser,
+  minterUsername: item.minterUsername || item.minterUser?.username,
+  minterDisplayName: item.minterDisplayName || item.minterUser?.displayName,
+  minterAvatarUrl: item.minterAvatarUrl || item.minterUser?.avatarImageUrl,
+  minterStaked: item.minterUser?.badgeBalance ?? item.minterStaked ?? 0,
+  stream: item.stream,
+  isLiked: item.isLiked,
+  isDisliked: item.isDisliked,
+  isSaved: item.isSaved,
+  isFollowing: item.isFollowing,
+  isOwner: item.isOwner,
+  isUnlocked: item.isUnlocked,
+  commentCount: item.commentCount ?? 0,
+  category: item.category,
+});
 
 // =============================================================================
 // Component
@@ -65,295 +104,388 @@ const PAGE_SIZE = 20;
 
 const SearchScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
-  const { user: authUser } = useAuth() as any;
-  const userAddress: string | undefined = authUser?.address;
-  
+  const { user: authUser } = useAuth() as { user: { address?: string } | null };
+  const userAddress = authUser?.address;
+
   // Search state
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState<TabKey>("all");
   const [hasSearched, setHasSearched] = useState(false);
-  
-  // Results state
-  const [results, setResults] = useState<(SearchContentResult | SearchAccountResult)[]>([]);
-  const [pagination, setPagination] = useState<SearchPagination | null>(null);
+
+  // Result buckets
+  const [accounts, setAccounts] = useState<SearchAccountResult[]>([]);
+  const [content, setContent] = useState<SearchContentResult[]>([]);
+  const [accountsPagination, setAccountsPagination] = useState<SearchPagination | null>(null);
+  const [contentPagination, setContentPagination] = useState<SearchPagination | null>(null);
+
+  // Loading
   const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  
+
   // Suggestions & history
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
-  
+
   // Refs
   const inputRef = useRef<TextInput>(null);
-  const lastQuery = useRef<string>("");
+  const lastQuery = useRef("");
 
+  // ---------------------------------------------------------------------------
   // Load history on mount
+  // ---------------------------------------------------------------------------
   useEffect(() => {
     getHistory(userAddress).then(setSearchHistory);
   }, [userAddress]);
 
-  // Fetch suggestions as user types
+  // ---------------------------------------------------------------------------
+  // Suggestions debounce
+  // ---------------------------------------------------------------------------
   useEffect(() => {
     let cancelled = false;
     const q = searchQuery.trim();
-    
     if (!q) {
       setSuggestions([]);
       return;
     }
-    
-    // Don't fetch suggestions if we already searched this query
     if (hasSearched && q === lastQuery.current) return;
-    
+
     const timer = setTimeout(async () => {
       const sugg = await fetchSuggestions(q);
       if (!cancelled) setSuggestions(sugg.slice(0, 5));
-    }, 300); // Debounce
-    
+    }, 300);
+
     return () => {
       cancelled = true;
       clearTimeout(timer);
     };
   }, [searchQuery, hasSearched]);
 
+  // ---------------------------------------------------------------------------
   // Execute search
-  const executeSearch = useCallback(async (
-    query: string,
-    tab: TabKey = activeTab,
-    page: number = 1,
-    append: boolean = false
-  ) => {
-    const q = query.trim();
-    if (!q) return;
-    
-    if (page === 1) {
-      setLoading(true);
-      setResults([]);
-    } else {
-      setLoadingMore(true);
-    }
-    
-    try {
-      const tabConfig = TABS.find(t => t.key === tab);
-      
-      let res;
-      if (tab === "all") {
-        // For "all" tab, search content (includes everything)
-        res = await search({
+  // ---------------------------------------------------------------------------
+  const executeSearch = useCallback(
+    async (query: string, tab: TabKey = activeTab, page: number = 1, append: boolean = false) => {
+      const q = query.trim();
+      if (!q) return;
+
+      if (page === 1) {
+        setLoading(true);
+        if (!append) {
+          setAccounts([]);
+          setContent([]);
+        }
+      } else {
+        setLoadingMore(true);
+      }
+
+      try {
+        const tabConfig = TABS.find((t) => t.key === tab);
+
+        // Build search params based on active tab
+        const type =
+          tab === "all" ? undefined : tab === "accounts" ? "accounts" : "content";
+        const postType: SearchPostType | undefined =
+          tab === "accounts" || tab === "all" ? undefined : tabConfig?.postType;
+
+        const res: UnifiedSearchResponse = await search({
           q,
           page,
           limit: PAGE_SIZE,
+          type: type as any,
+          postType,
         });
-      } else if (tabConfig?.searchType === "accounts") {
-        res = await searchAccounts(q, { page, limit: PAGE_SIZE });
-      } else {
-        res = await searchContent(q, {
-          page,
-          limit: PAGE_SIZE,
-          postType: tabConfig?.postType,
-        });
-      }
-      
-      if (append) {
-        setResults(prev => [...prev, ...res.result]);
-      } else {
-        setResults(res.result);
-      }
-      setPagination(res.pagination);
-      
-      // Add to history only on first search
-      if (page === 1) {
-        await addToHistory(q, userAddress);
-        getHistory(userAddress).then(setSearchHistory);
-        setSuggestions([]);
-        lastQuery.current = q;
-      }
-      
-      setHasSearched(true);
-    } catch (e) {
-      console.error("[SearchScreen] Search error:", e);
-    } finally {
-      setLoading(false);
-      setLoadingMore(false);
-      setRefreshing(false);
-    }
-  }, [activeTab]);
 
-  // Handle search submit
+        // --- Accounts ---
+        if (res.accounts) {
+          if (append) {
+            setAccounts((prev) => [...prev, ...res.accounts!.items]);
+          } else {
+            setAccounts(res.accounts.items);
+          }
+          setAccountsPagination(res.accounts.pagination);
+        } else if (!append) {
+          setAccounts([]);
+          setAccountsPagination(null);
+        }
+
+        // --- Content ---
+        if (res.content) {
+          if (append) {
+            setContent((prev) => [...prev, ...res.content!.items]);
+          } else {
+            setContent(res.content.items);
+          }
+          setContentPagination(res.content.pagination);
+        } else if (!append) {
+          setContent([]);
+          setContentPagination(null);
+        }
+
+        // History & state (first page only)
+        if (page === 1) {
+          await addToHistory(q, userAddress);
+          getHistory(userAddress).then(setSearchHistory);
+          setSuggestions([]);
+          lastQuery.current = q;
+        }
+
+        setHasSearched(true);
+      } catch (e) {
+        console.error("[SearchScreen] Search error:", e);
+      } finally {
+        setLoading(false);
+        setLoadingMore(false);
+        setRefreshing(false);
+      }
+    },
+    [activeTab, userAddress],
+  );
+
+  // ---------------------------------------------------------------------------
+  // Handlers
+  // ---------------------------------------------------------------------------
   const handleSearch = useCallback(() => {
     if (!searchQuery.trim()) return;
     executeSearch(searchQuery, activeTab, 1);
   }, [searchQuery, activeTab, executeSearch]);
 
-  // Handle suggestion/history click
-  const handleSuggestionClick = useCallback((term: string) => {
-    setSearchQuery(term);
-    executeSearch(term, activeTab, 1);
-  }, [activeTab, executeSearch]);
+  const handleSuggestionClick = useCallback(
+    (term: string) => {
+      setSearchQuery(term);
+      executeSearch(term, activeTab, 1);
+    },
+    [activeTab, executeSearch],
+  );
 
-  // Handle tab change
-  const handleTabChange = useCallback((tab: TabKey) => {
-    if (tab === activeTab) return;
-    setActiveTab(tab);
-    if (hasSearched && searchQuery.trim()) {
-      executeSearch(searchQuery, tab, 1);
-    }
-  }, [activeTab, hasSearched, searchQuery, executeSearch]);
+  const handleTabChange = useCallback(
+    (tab: TabKey) => {
+      if (tab === activeTab) return;
+      setActiveTab(tab);
+      if (hasSearched && searchQuery.trim()) {
+        executeSearch(searchQuery, tab, 1);
+      }
+    },
+    [activeTab, hasSearched, searchQuery, executeSearch],
+  );
 
-  // Handle load more
   const handleLoadMore = useCallback(() => {
-    if (loadingMore || !pagination?.hasMore) return;
-    executeSearch(searchQuery, activeTab, pagination.page + 1, true);
-  }, [loadingMore, pagination, searchQuery, activeTab, executeSearch]);
+    if (loadingMore) return;
 
-  // Handle refresh
+    if (activeTab === "accounts") {
+      if (!accountsPagination?.hasMore) return;
+      executeSearch(searchQuery, activeTab, accountsPagination.page + 1, true);
+    } else {
+      // "all" or content tabs — paginate content
+      if (!contentPagination?.hasMore) return;
+      executeSearch(searchQuery, activeTab, contentPagination.page + 1, true);
+    }
+  }, [loadingMore, activeTab, accountsPagination, contentPagination, searchQuery, executeSearch]);
+
   const handleRefresh = useCallback(() => {
     if (!searchQuery.trim()) return;
     setRefreshing(true);
     executeSearch(searchQuery, activeTab, 1);
   }, [searchQuery, activeTab, executeSearch]);
 
-  // Clear search
   const clearSearch = useCallback(() => {
     setSearchQuery("");
-    setResults([]);
-    setPagination(null);
+    setAccounts([]);
+    setContent([]);
+    setAccountsPagination(null);
+    setContentPagination(null);
     setSuggestions([]);
     setHasSearched(false);
     lastQuery.current = "";
     inputRef.current?.focus();
   }, []);
 
-  // Replace search box text (arrow button in suggestions)
   const handleReplaceSearchBox = useCallback((term: string) => {
     setSearchQuery(term);
     inputRef.current?.focus();
   }, []);
 
-  // Determine if item is an account
-  const isAccountItem = useCallback((item: any): item is SearchAccountResult => {
-    return 'address' in item && !('tokenId' in item);
+  // Propagate follow state changes to account list
+  const handleFollowChange = useCallback((address: string, newState: FollowState) => {
+    setAccounts((prev) =>
+      prev.map((a) =>
+        a.address.toLowerCase() === address.toLowerCase()
+          ? { ...a, isFollowing: newState.isFollowing, isFollowRequestPending: newState.isFollowRequestPending }
+          : a,
+      ),
+    );
   }, []);
 
-  // Render item based on type
-  const renderItem = useCallback(({ item }: { item: SearchContentResult | SearchAccountResult }) => {
-    if (isAccountItem(item)) {
+  // ---------------------------------------------------------------------------
+  // Render helpers
+  // ---------------------------------------------------------------------------
+  const renderContentItem = useCallback(
+    ({ item }: { item: SearchContentResult }) => {
+      const feedItem = toFeedItem(item);
+      const postType = item.postType;
+
+      if (postType === "live" || item.stream?.status) {
+        return (
+          <View className="px-4">
+            <LiveStreamCard item={feedItem} />
+          </View>
+        );
+      }
+
+      if (postType === "feed-simple" || postType === "feed-images") {
+        return (
+          <View className="px-4">
+            <HomeFeedCard item={feedItem} />
+          </View>
+        );
+      }
+
       return (
         <View className="px-4">
-          <SearchAccountCard account={item} />
+          <VideoCard nft={feedItem as any} enablePreview />
         </View>
       );
-    }
-    
-    // Content item - render based on postType
-    const contentItem = item as SearchContentResult;
-    const postType = contentItem.postType;
-    
-    // Map to UnifiedFeedItem format for consistency
-    const feedItem: UnifiedFeedItem = {
-      tokenId: contentItem.tokenId,
-      id: String(contentItem.tokenId),
-      name: contentItem.name,
-      title: contentItem.name,
-      description: contentItem.description,
-      imageUrl: contentItem.imageUrl,
-      thumbnailUrl: contentItem.thumbnailUrl || contentItem.imageUrl,
-      imageUrls: contentItem.imageUrls,
-      postType: postType as any,
-      views: contentItem.views || 0,
-      likes: contentItem.totalVotes?.for || contentItem.likes || 0,
-      dislikes: contentItem.totalVotes?.against || contentItem.dislikes || 0,
-      createdAt: contentItem.createdAt,
-      minter: contentItem.minter || contentItem.minterUser?.address,
-      minterUser: contentItem.minterUser,
-      minterUsername: contentItem.minterUsername || contentItem.minterUser?.username,
-      minterDisplayName: contentItem.minterDisplayName || contentItem.minterUser?.displayName,
-      minterAvatarUrl: contentItem.minterAvatarUrl || contentItem.minterUser?.avatarImageUrl,
-      minterStaked: contentItem.minterUser?.badgeBalance || contentItem.minterStaked || contentItem.minterUser?.staked || 0,
-      stream: contentItem.stream,
-      isLiked: contentItem.isLiked,
-      isDisliked: contentItem.isDisliked,
-      isSaved: contentItem.isSaved,
-      isFollowing: contentItem.isFollowing,
-      commentCount: contentItem.commentCount || 0,
-      category: contentItem.category,
-    };
-    
-    // Render based on post type
-    if (postType === 'live' || contentItem.stream?.status) {
-      return (
-        <View className="px-4">
-          <LiveStreamCard item={feedItem} />
-        </View>
-      );
-    }
-    
-    if (postType === 'feed-simple' || postType === 'feed-images') {
-      return (
-        <View className="px-4">
-          <HomeFeedCard item={feedItem} />
-        </View>
-      );
-    }
-    
-    // Default: video card
-    return (
+    },
+    [],
+  );
+
+  const renderAccountItem = useCallback(
+    ({ item }: { item: SearchAccountResult }) => (
       <View className="px-4">
-        <VideoCard nft={feedItem as any} enablePreview />
+        <SearchAccountCard account={item} onFollowChange={handleFollowChange} />
+      </View>
+    ),
+    [handleFollowChange],
+  );
+
+  const contentKeyExtractor = useCallback(
+    (item: SearchContentResult, index: number) => `content-${item.tokenId}-${index}`,
+    [],
+  );
+
+  const accountKeyExtractor = useCallback(
+    (item: SearchAccountResult, index: number) => `account-${item.address}-${index}`,
+    [],
+  );
+
+  // ---------------------------------------------------------------------------
+  // Horizontal accounts carousel (Twitter-style, "all" tab only)
+  // ---------------------------------------------------------------------------
+  const AccountsCarousel = useMemo(() => {
+    if (activeTab !== "all" || accounts.length === 0) return null;
+
+    return (
+      <View className="mb-2">
+        <View className="flex-row items-center justify-between px-4 mb-2">
+          <Text className="text-theme-neutrals-400 text-xs font-semibold">
+            Accounts
+          </Text>
+          <TouchableOpacity
+            onPress={() => handleTabChange("accounts")}
+            activeOpacity={0.7}
+          >
+            <Text className="text-theme-accent text-xs font-semibold">
+              See All
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 16 }}
+        >
+          {accounts.map((account) => (
+            <SearchAccountChip
+              key={account.address}
+              account={account}
+              onFollowChange={handleFollowChange}
+            />
+          ))}
+        </ScrollView>
       </View>
     );
-  }, [isAccountItem]);
+  }, [activeTab, accounts, handleFollowChange, handleTabChange]);
 
-  // Key extractor
-  const keyExtractor = useCallback((item: SearchContentResult | SearchAccountResult, index: number) => {
-    if (isAccountItem(item)) {
-      return `account-${item.address}-${index}`;
-    }
-    return `content-${(item as SearchContentResult).tokenId}-${index}`;
-  }, [isAccountItem]);
-
+  // ---------------------------------------------------------------------------
   // List footer
+  // ---------------------------------------------------------------------------
   const ListFooter = useMemo(() => {
     if (loadingMore) {
       return (
         <View className="py-4">
-          {[0, 1, 2].map(i => (
+          {[0, 1, 2].map((i) => (
             <CompactVideoCardSkeleton key={i} />
           ))}
         </View>
       );
     }
-    
-    if (results.length > 0 && !pagination?.hasMore) {
+
+    const activePagination = activeTab === "accounts" ? accountsPagination : contentPagination;
+    const hasItems = activeTab === "accounts" ? accounts.length > 0 : content.length > 0;
+
+    if (hasItems && !activePagination?.hasMore) {
       return (
         <View className="py-6">
-          <Text className="text-center text-theme-neutrals-500 text-xs">
-            End of results
-          </Text>
+          <Text className="text-center text-theme-neutrals-500 text-xs">End of results</Text>
         </View>
       );
     }
-    
-    return null;
-  }, [loadingMore, results.length, pagination?.hasMore]);
 
-  // Render content based on state
+    return null;
+  }, [loadingMore, activeTab, accountsPagination, contentPagination, accounts.length, content.length]);
+
+  // ---------------------------------------------------------------------------
+  // Main content
+  // ---------------------------------------------------------------------------
   const renderContent = () => {
-    // Loading state
+    // Loading
     if (loading) {
       return (
-        <View className="flex-1 px-4 pt-4">
-          {[0, 1, 2, 3, 4, 5].map(i => (
-            <CompactVideoCardSkeleton key={i} />
-          ))}
+        <View className="flex-1 items-center justify-center">
+          <ActivityIndicator size="large" color="#fff" />
         </View>
       );
     }
-    
-    // Results
+
+    // ---- Results ----
     if (hasSearched) {
-      if (results.length === 0) {
+      // "accounts" tab → vertical list of account cards
+      if (activeTab === "accounts") {
+        if (accounts.length === 0) {
+          return (
+            <View className="flex-1 items-center justify-center px-6">
+              <Ionicons name="people-outline" size={48} color="#6B7280" />
+              <Text className="text-theme-neutrals-300 font-semibold text-base mt-4">
+                No accounts found
+              </Text>
+              <Text className="text-theme-neutrals-500 text-sm text-center mt-2">
+                Try different keywords or check your spelling
+              </Text>
+            </View>
+          );
+        }
+
+        return (
+          <FlatList
+            data={accounts}
+            renderItem={renderAccountItem}
+            keyExtractor={accountKeyExtractor}
+            onEndReached={handleLoadMore}
+            onEndReachedThreshold={0.5}
+            ListFooterComponent={ListFooter}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#fff" />
+            }
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingHorizontal: 0, paddingTop: 8, paddingBottom: insets.bottom + 20 }}
+          />
+        );
+      }
+
+      // "all" or a content tab — horizontal accounts carousel + content list
+      const isEmpty = content.length === 0 && accounts.length === 0;
+
+      if (isEmpty) {
         return (
           <View className="flex-1 items-center justify-center px-6">
             <Ionicons name="search-outline" size={48} color="#6B7280" />
@@ -366,29 +498,35 @@ const SearchScreen: React.FC = () => {
           </View>
         );
       }
-      
+
       return (
         <FlatList
-          data={results}
-          renderItem={renderItem}
-          keyExtractor={keyExtractor}
+          data={content}
+          renderItem={renderContentItem}
+          keyExtractor={contentKeyExtractor}
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.5}
+          ListHeaderComponent={AccountsCarousel}
           ListFooterComponent={ListFooter}
+          ListEmptyComponent={
+            accounts.length > 0 ? (
+              <View className="py-6">
+                <Text className="text-center text-theme-neutrals-500 text-xs">
+                  No content results
+                </Text>
+              </View>
+            ) : null
+          }
           refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={handleRefresh}
-              tintColor="#fff"
-            />
+            <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#fff" />
           }
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingTop: 8, paddingBottom: insets.bottom + 20 }}
+          contentContainerStyle={{ paddingHorizontal: 0, paddingTop: 8, paddingBottom: insets.bottom + 20 }}
         />
       );
     }
-    
-    // Typing - show suggestions
+
+    // ---- Pre-search: suggestions or history ----
     const isTyping = !!searchQuery.trim();
     if (isTyping && suggestions.length > 0) {
       return (
@@ -426,8 +564,8 @@ const SearchScreen: React.FC = () => {
         </View>
       );
     }
-    
-    // Not typing - show history
+
+    // Not typing → show history
     const historySubset = topHistorySubset(searchHistory, 8);
     if (historySubset.length === 0) {
       return (
@@ -439,7 +577,7 @@ const SearchScreen: React.FC = () => {
         </View>
       );
     }
-    
+
     return (
       <View className="px-4 pt-3">
         <Text className="text-theme-neutrals-400 text-xs font-semibold mb-2 px-1">
@@ -468,10 +606,13 @@ const SearchScreen: React.FC = () => {
     );
   };
 
+  // ===========================================================================
+  // Render
+  // ===========================================================================
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title="Search" />
-      
+
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -515,28 +656,23 @@ const SearchScreen: React.FC = () => {
             </TouchableOpacity>
           </View>
         </View>
-        
-        {/* Tabs - only show after search */}
+
+        {/* Tabs — only after a search */}
         {hasSearched && (
-          <View className="flex-row px-3 py-2">
+          <View className="flex-row px-4 py-2">
             {TABS.map((tab) => {
               const isActive = activeTab === tab.key;
-              
+
               if (isActive) {
                 return (
                   <AccentButtonGradient key={tab.key} style={{ marginRight: 8, borderRadius: 20 }}>
-                    <TouchableOpacity
-                      className="px-4 py-2"
-                      activeOpacity={0.85}
-                    >
-                      <Text className="text-white text-xs font-semibold">
-                        {tab.label}
-                      </Text>
+                    <TouchableOpacity className="px-4 py-2" activeOpacity={0.85}>
+                      <Text className="text-white text-xs font-semibold">{tab.label}</Text>
                     </TouchableOpacity>
                   </AccentButtonGradient>
                 );
               }
-              
+
               return (
                 <TouchableOpacity
                   key={tab.key}
@@ -544,15 +680,13 @@ const SearchScreen: React.FC = () => {
                   className="px-4 py-2 rounded-full bg-theme-neutrals-800 mr-2"
                   activeOpacity={0.85}
                 >
-                  <Text className="text-white/80 text-xs font-semibold">
-                    {tab.label}
-                  </Text>
+                  <Text className="text-white/80 text-xs font-semibold">{tab.label}</Text>
                 </TouchableOpacity>
               );
             })}
           </View>
         )}
-        
+
         {/* Content */}
         {renderContent()}
       </KeyboardAvoidingView>

@@ -254,20 +254,8 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
         (item as any).owner ||
         undefined;
       if (!id) return;
-      const selfUsernames = [user?.username, user?.displayName].filter(Boolean);
-      const selfAddresses = [user?.walletAddress, user?.address].filter(
-        Boolean
-      );
-      const isSelf =
-        selfUsernames.includes(id as any) || selfAddresses.includes(id as any);
-      if (isSelf) {
-        navigation?.navigate?.(ScreenNames.Root as any, {
-          screen: ScreenNames.Profile,
-        });
-        return;
-      }
       showUserProfile(id);
-    }, [item, showUserProfile, user, navigation]);
+    }, [item, showUserProfile]);
 
     //   console.log({item})
 

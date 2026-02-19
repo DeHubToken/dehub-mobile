@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect, useCallback } from "react";
 import { View, TouchableOpacity, Text } from "react-native";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
-import { performSearchByType } from "../../services/search.service";
+import { searchAccounts, searchContent } from "../../services/search.service";
 import SearchAccountsList from "./SearchAccountsList";
 import SearchMediaList from "./SearchMediaList";
 
@@ -123,10 +123,14 @@ const SearchResultsTabs: FC<SearchResultsTabsProps> = ({
         : active === "livestreams"
           ? pageLivestreams
           : pageAccounts;
-    const res = await performSearchByType(query, active, {
-      page: currentPage,
-      unit: PAGE_SIZE,
-    });
+    const res = active === "accounts"
+      ? await searchAccounts(query, { page: currentPage + 1, limit: PAGE_SIZE })
+        .then((r) => ({ accounts: r.items, videos: [] as any[], livestreams: [] as any[] }))
+      : active === "videos"
+        ? await searchContent(query, { page: currentPage + 1, limit: PAGE_SIZE, postType: "video" })
+          .then((r) => ({ accounts: [] as any[], videos: r.items, livestreams: [] as any[] }))
+        : await searchContent(query, { page: currentPage + 1, limit: PAGE_SIZE, postType: "live" })
+          .then((r) => ({ accounts: [] as any[], videos: [] as any[], livestreams: r.items }));
     if (active === "videos") {
       if (res.videos.length) {
         setVideos([...videos, ...res.videos]);

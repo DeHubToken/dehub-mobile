@@ -23,6 +23,7 @@ const VideoPlayerScreen: React.FC = () => {
   const accessInfo = params?.accessInfo;
   // Support tokenId passed directly or inside nft
   const tokenId = (params as any)?.tokenId ?? (nft as any)?.tokenId;
+  const commentId: string | number | undefined = (params as any)?.commentId ?? (params as any)?.c;
   // console.log(accessInfo)
   const nftMetadata = useMemo(() => {
     if (nft) return nft;
@@ -51,6 +52,7 @@ const VideoPlayerScreen: React.FC = () => {
           createdAt={nftMetadata?.createdAt}
           accessInfo={accessInfo}
           isTranscoding={nftMetadata?.transcodingStatus === "on"}
+          commentId={commentId}
         />
       {/* )} */}
     </View>

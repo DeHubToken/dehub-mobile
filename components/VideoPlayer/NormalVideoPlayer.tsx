@@ -42,6 +42,8 @@ interface NormalVideoPlayerProps {
   userDisplay?: { avatar?: string; name?: string; subscribers?: number } | null;
   accessInfo?: any; // { streamStatus: { isFree, isLockedWithLockContent, isLockedWithPPV } ... }
   isTranscoding?: boolean;
+  /** Optional commentId to auto-open comments and highlight */
+  commentId?: string | number;
 }
 
 const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
@@ -56,6 +58,7 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
   userDisplay,
   accessInfo,
   isTranscoding,
+  commentId,
 }) => {
   const { user, isSignedIn, requireAuth } = useAuth();
   const [showDesc, setShowDesc] = useState(false);
@@ -63,6 +66,15 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
   const [dislikes, setDislikes] = useState(0);
   // Comments bottom sheet state (using shared CommentBottomSheet like HomeFeedCard)
   const [showComments, setShowComments] = useState(false);
+
+  // Auto-open comments when commentId is present (shared comment deep link)
+  useEffect(() => {
+    if (commentId != null) {
+      // Delay slightly to let player initialize first
+      const timer = setTimeout(() => setShowComments(true), 400);
+      return () => clearTimeout(timer);
+    }
+  }, [commentId]);
   const createdAtDate = createdAt ? new Date(createdAt) : new Date();
   // NFT fetch & metadata loading
   const [nftLoading, setNftLoading] = useState<boolean>(false);
@@ -203,6 +215,8 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
     nftData?.createdAt || nftData?.result?.createdAt || createdAtDate;
   const resolvedCategories: string[] =
     nftData?.category || nftData?.result?.category || [];
+  const resolvedPpvBuyerCount: number =
+    nftData?.ppvBuyerCount ?? nftData?.result?.ppvBuyerCount ?? 0;
 
   const handleScroll = useCallback((e: any) => {
     const { layoutMeasurement, contentOffset, contentSize } = e?.nativeEvent || {};
@@ -392,6 +406,9 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
             })}{" "}
             • {resolvedViews.toLocaleString()} views •{" "}
             {formatCompactNumber(resolvedTotalTips)} total tips
+            {resolvedPpvBuyerCount != null && nftData?.isPayPerView
+              ? ` • ${formatCompactNumber(resolvedPpvBuyerCount)} unlocks`
+              : ""}
           </Text>
           <CreatorRow
             key={
@@ -504,6 +521,7 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
           contentType="video"
+          highlightCommentId={commentId}
         />
       )}
         </>

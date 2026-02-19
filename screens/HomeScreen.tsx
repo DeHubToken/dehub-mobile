@@ -22,9 +22,9 @@ const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
 // Generate a shuffle seed from timestamp
 const generateShuffleSeed = () => String(Date.now());
 
-// Default filter state - random sort by default
+// Default filter state - latest (createdAt) sort by default
 const defaultFilters: FeedFilters = {
-  sortBy: "random",
+  sortBy: "createdAt",
   dateRange: "",
   postType: "all",
   contentAccess: [],

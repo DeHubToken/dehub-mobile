@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { View, Dimensions, Modal, Pressable } from "react-native";
+import { View, Dimensions, Modal, Pressable, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import Animated, {
   Extrapolate,
   interpolate,
@@ -32,6 +33,12 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   initialHeightPct,
 }) => {
   const [showUnfollowSheet, setShowUnfollowSheet] = useState(false);
+  const [menuTrigger, setMenuTrigger] = React.useState<(() => void) | null>(null);
+
+  const handleRegisterMenuTrigger = useCallback((trigger: () => void) => {
+    // Must wrap in arrow — passing a function directly to setState invokes it as a functional updater
+    setMenuTrigger(() => trigger);
+  }, []);
 
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
@@ -65,6 +72,12 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     stats,
     handleFollow,
     handleUnfollow,
+    handleBlock,
+    handleUnblock,
+    youBlocked,
+    blockedYou,
+    isBlocked,
+    blockLoading,
     handleOpenImage,
     handleShare,
     handleMessage,
@@ -186,6 +199,18 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                     title={profileData?.displayName || "Profile"}
                     canGoBack={true}
                     onBackPress={handleBackToProfile}
+                    rightContent={
+                      !isOwnProfile && menuTrigger ? (
+                        <TouchableOpacity
+                          onPress={menuTrigger}
+                          activeOpacity={0.7}
+                          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                          className="w-10 h-10 items-center justify-center"
+                        >
+                          <Ionicons name="ellipsis-vertical" size={20} color="#e5e5e5" />
+                        </TouchableOpacity>
+                      ) : undefined
+                    }
                   />
                 </Animated.View>
 
@@ -234,6 +259,13 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                 onClose={onClose}
                 onStatPress={handleStatPress}
                 onEditProfile={handleEditProfile}
+                youBlocked={youBlocked}
+                blockedYou={blockedYou}
+                isBlocked={isBlocked}
+                blockLoading={blockLoading}
+                onBlock={handleBlock}
+                onUnblock={handleUnblock}
+                onRegisterMenuTrigger={handleRegisterMenuTrigger}
               />
             </Animated.View>
           </GestureDetector>

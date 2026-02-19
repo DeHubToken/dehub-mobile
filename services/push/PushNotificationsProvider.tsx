@@ -6,8 +6,9 @@
  * 
  * It handles:
  * - Requesting permissions and registering tokens
- * - Listening for incoming notifications
+ * - Listening for incoming notifications (foreground + background)
  * - Handling notification taps with deep linking
+ * - Cold-start notification handling via getLastNotificationResponseAsync
  * - Badge management
  */
 import React, { useEffect, useRef, useCallback } from 'react';
@@ -58,8 +59,11 @@ export interface NotificationData {
   milestone?: string;
   // System
   articleUrl?: string;
+  broadcastId?: string;
   // Aggregation
   aggregatedCount?: number;
+  // Moderation (in-app metadata)
+  moderationType?: string;
 }
 
 /**
@@ -83,7 +87,6 @@ const CONTENT_NAVIGABLE_TYPES = new Set([
  */
 const PROFILE_NAVIGABLE_TYPES = new Set([
   NotificationType.FOLLOWING,
-  NotificationType.SUBSCRIPTION,
   NotificationType.FOLLOW_REQUEST_ACCEPTED,
 ]);
 
@@ -118,16 +121,29 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   const pushTokenRef = useRef<string | null>(null);
   // Store pending navigation to execute after auth completes
   const pendingNavigationRef = useRef<NotificationData | null>(null);
+  // Track if cold-start notification has been checked
+  const coldStartCheckedRef = useRef(false);
+  // Track the last processed notification identifier to avoid double-handling
+  const lastProcessedIdRef = useRef<string | null>(null);
 
   // ==========================================================================
   // Navigation Handler
   // ==========================================================================
 
-  const handleNotificationNavigation = useCallback((data: NotificationData) => {
+  const handleNotificationNavigation = useCallback((data: NotificationData, responseId?: string) => {
     // Guard: Don't navigate if no valid notification type
     if (!data?.type) {
       logger.debug('Skipping navigation - no notification type', { data });
       return;
+    }
+
+    // Guard: Avoid double-processing the same notification
+    if (responseId && lastProcessedIdRef.current === responseId) {
+      logger.debug('Skipping duplicate notification response', { responseId });
+      return;
+    }
+    if (responseId) {
+      lastProcessedIdRef.current = responseId;
     }
 
     // Guard: If user isn't fully signed in, store for later
@@ -150,15 +166,37 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
 
       switch (type) {
         // =====================================================================
-        // Social - Open notifications (profile handled via in-app notification)
+        // Social - Follow interactions
         // =====================================================================
         case NotificationType.FOLLOWING:
-        case NotificationType.SUBSCRIPTION:
+          // New follower → open FollowList on followers tab
+          if (userAddress) {
+            navigation.navigate(ScreenNames.FollowList, {
+              address: userAddress,
+              initialTab: 'followers',
+              isOwnProfile: true,
+            });
+          } else {
+            navigation.navigate(ScreenNames.Notifications);
+          }
+          break;
+
         case NotificationType.FOLLOW_REQUEST:
-        case NotificationType.FOLLOW_REQUEST_ACCEPTED:
-          // For push notifications, navigate to notifications screen
-          // Follow requests have inline accept/reject buttons there
+          // Follow request → notifications screen (has accept/reject buttons)
           navigation.navigate(ScreenNames.Notifications);
+          break;
+
+        case NotificationType.FOLLOW_REQUEST_ACCEPTED:
+          // Accepted → open FollowList on following tab
+          if (userAddress) {
+            navigation.navigate(ScreenNames.FollowList, {
+              address: userAddress,
+              initialTab: 'following',
+              isOwnProfile: true,
+            });
+          } else {
+            navigation.navigate(ScreenNames.Notifications);
+          }
           break;
 
         // =====================================================================
@@ -204,12 +242,24 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           break;
 
         // =====================================================================
-        // Monetization - Navigate to content
+        // Monetization
         // =====================================================================
         case NotificationType.TIP:
-        case NotificationType.PPV_PURCHASE:
+          // Tip → open the tipper's profile
+          if (actorAddress || actorUsername) {
+            navigation.navigate(ScreenNames.Profile, {
+              address: actorAddress,
+              username: actorUsername,
+            });
+          } else {
+            navigation.navigate(ScreenNames.Notifications);
+          }
+          break;
+
         case NotificationType.BOUNTY_AVAILABLE:
         case NotificationType.BOUNTY_CLAIMED:
+        case NotificationType.PPV_PURCHASE:
+          // Bounty / PPV → open content if tokenId exists, otherwise notifications
           if (tokenId) {
             if (postType === 'feed-images' || postType === 'feed-simple') {
               navigation.navigate(ScreenNames.FeedDetail, { tokenId });
@@ -219,6 +269,11 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           } else {
             navigation.navigate(ScreenNames.Notifications);
           }
+          break;
+
+        case NotificationType.SUBSCRIPTION:
+          // New subscriber → open notifications (no SubscribersScreen yet)
+          navigation.navigate(ScreenNames.Notifications);
           break;
 
         // =====================================================================
@@ -269,7 +324,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
         // Ignore - navigation not ready
       }
     }
-  }, [navigation, isFullySignedIn]);
+  }, [navigation, isFullySignedIn, userAddress]);
 
   // ==========================================================================
   // Registration
@@ -322,7 +377,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       return () => clearTimeout(timer);
     }
 
-    // Handle pending navigation after auth completes
+    // Handle pending navigation after auth completes (cold-start stored pending)
     if (isFullySignedIn && pendingNavigationRef.current) {
       const pendingData = pendingNavigationRef.current;
       pendingNavigationRef.current = null;
@@ -341,6 +396,53 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
     }
   }, [isFullySignedIn, userAddress, registerPushToken, handleNotificationNavigation]);
 
+  // ==========================================================================
+  // Cold-Start Notification Handling
+  // ==========================================================================
+  // When the app is launched from a killed state by tapping a notification,
+  // addNotificationResponseReceivedListener may fire before this component
+  // mounts or the event can be lost entirely. We use
+  // getLastNotificationResponseAsync() to retrieve it on mount.
+
+  useEffect(() => {
+    if (coldStartCheckedRef.current) return;
+    coldStartCheckedRef.current = true;
+
+    const checkColdStartNotification = async () => {
+      try {
+        const lastResponse = await Notifications.getLastNotificationResponseAsync();
+        if (!lastResponse) return;
+
+        const data = lastResponse.notification.request.content.data as unknown as NotificationData;
+        if (!data?.type) return;
+
+        // Only process if it was received recently (within 15 seconds)
+        // This prevents re-processing old notifications on subsequent mounts
+        const receivedAt = lastResponse.notification.date;
+        const now = Date.now();
+        const timeSinceNotification = now - receivedAt;
+
+        if (timeSinceNotification > 15_000) {
+          logger.debug('Ignoring stale cold-start notification', {
+            type: data.type,
+            age: timeSinceNotification,
+          });
+          return;
+        }
+
+        const responseId = lastResponse.notification.request.identifier;
+        logger.info('Processing cold-start notification', { type: data.type, responseId });
+        handleNotificationNavigation(data, responseId);
+      } catch (error) {
+        logger.error('Failed to check cold-start notification', error);
+      }
+    };
+
+    // Small delay to ensure navigation container is fully mounted and ready
+    const timer = setTimeout(checkColdStartNotification, 750);
+    return () => clearTimeout(timer);
+  }, [handleNotificationNavigation]);
+
   useEffect(() => {
     // Handle foreground notifications
     notificationListener.current = Notifications.addNotificationReceivedListener(
@@ -352,16 +454,17 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       }
     );
 
-    // Handle notification tap
+    // Handle notification tap (foreground and background — but NOT cold-start)
     responseListener.current = Notifications.addNotificationResponseReceivedListener(
       (response) => {
         const rawData = response.notification.request.content.data;
         const data = rawData as unknown as NotificationData;
+        const responseId = response.notification.request.identifier;
         
         // Only process if we have valid notification data with a type
         if (data?.type) {
-          logger.info('User tapped notification', { type: data.type });
-          handleNotificationNavigation(data);
+          logger.info('User tapped notification', { type: data.type, responseId });
+          handleNotificationNavigation(data, responseId);
         } else {
           logger.debug('Ignoring notification response without valid type', { data });
         }

@@ -17,6 +17,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "../ui/GlassModal";
 import ConfirmModal from "./ConfirmModal";
+import ConfirmBlockModal from "./ConfirmBlockModal";
 import EditPostModal from "./EditPostModal";
 import ReportModal from "./ReportModal";
 import {
@@ -25,6 +26,7 @@ import {
   deletePost,
 } from "../../services/nft.service";
 import { followUser, unfollowUser } from "../../services/user.service";
+import { blockUser, unblockUser } from "../../services/block.service";
 import { useAuth, useAuthActions } from "../../context/AuthContext";
 import { toastSuccess, toastError } from "../../libs";
 
@@ -63,6 +65,12 @@ export interface PostOptionsMenuProps {
   onEditSuccess?: (data: { name?: string; description?: string; category?: string[] }) => void;
   /** Called after delete success */
   onDeleteSuccess?: () => void;
+  /** Whether the viewer has blocked the creator */
+  isBlocked?: boolean;
+  /** Called after block/unblock to update parent state */
+  onBlockChange?: (blocked: boolean) => void;
+  /** Hide the report content option (e.g., for livestreams) */
+  hideReportContent?: boolean;
 }
 
 // =============================================================================
@@ -126,7 +134,8 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onVisibilityChange,
   onEditSuccess,
   onDeleteSuccess,
-}) => {
+  isBlocked: isBlockedProp = false,
+  onBlockChange,  hideReportContent = false,}) => {
   const { user } = useAuth();
   const { requireAuth } = useAuthActions();
 
@@ -135,11 +144,13 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [showReportContent, setShowReportContent] = useState(false);
   const [showReportUser, setShowReportUser] = useState(false);
+  const [showBlockConfirm, setShowBlockConfirm] = useState(false);
 
   // Loading states
   const [followLoading, setFollowLoading] = useState(false);
   const [visibilityLoading, setVisibilityLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
+  const [blockLoading, setBlockLoading] = useState(false);
 
   // --- Follow / Unfollow ---
   const handleFollowToggle = useCallback(() => {
@@ -253,6 +264,36 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     });
   }, [onClose, requireAuth]);
 
+  // --- Block / Unblock ---
+  const handleOpenBlock = useCallback(() => {
+    requireAuth?.(() => {
+      onClose();
+      setTimeout(() => setShowBlockConfirm(true), 200);
+    });
+  }, [onClose, requireAuth]);
+
+  const handleConfirmBlock = useCallback(async () => {
+    if (!creatorIdentifier) return;
+    setBlockLoading(true);
+    try {
+      if (isBlockedProp) {
+        await unblockUser(creatorIdentifier);
+        onBlockChange?.(false);
+        toastSuccess(`Unblocked ${creatorDisplayName}`);
+      } else {
+        await blockUser(creatorIdentifier);
+        onBlockChange?.(true);
+        toastSuccess(`Blocked ${creatorDisplayName}`);
+      }
+    } catch (e) {
+      console.error("[PostOptionsMenu] block toggle error", e);
+      toastError(isBlockedProp ? "Failed to unblock user" : "Failed to block user");
+    } finally {
+      setBlockLoading(false);
+      setShowBlockConfirm(false);
+    }
+  }, [creatorIdentifier, creatorDisplayName, isBlockedProp, onBlockChange]);
+
   // --- Delete prompt ---
   const handleOpenDelete = useCallback(() => {
     onClose();
@@ -328,19 +369,32 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {/* Report — for non-owners */}
           {!isOwner && (
             <>
-              <OptionRow
-                icon="flag-outline"
-                label="Report Video"
-                sublabel="Report this content"
-                color="#FBBF24"
-                onPress={handleOpenReportContent}
-              />
+              {!hideReportContent && (
+                <OptionRow
+                  icon="flag-outline"
+                  label="Report Video"
+                  sublabel="Report this content"
+                  color="#FBBF24"
+                  onPress={handleOpenReportContent}
+                />
+              )}
               <OptionRow
                 icon="person-remove-outline"
                 label="Report User"
                 sublabel={`Report ${creatorDisplayName}`}
                 color="#F97316"
                 onPress={handleOpenReportUser}
+              />
+
+              {/* Separator */}
+              <View className="mx-5 my-1 h-px bg-white/10" />
+
+              <OptionRow
+                icon={isBlockedProp ? "lock-open-outline" : "ban-outline"}
+                label={isBlockedProp ? `Unblock ${creatorDisplayName}` : `Block ${creatorDisplayName}`}
+                sublabel={isBlockedProp ? "Allow this user to appear in your feeds" : "Hide their content and restrict interactions"}
+                color="#EF4444"
+                onPress={handleOpenBlock}
               />
             </>
           )}
@@ -397,6 +451,16 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         type="user"
         userId={creatorIdentifier}
         userName={creatorDisplayName}
+      />
+
+      {/* Block/Unblock confirmation */}
+      <ConfirmBlockModal
+        visible={showBlockConfirm}
+        mode={isBlockedProp ? "unblock" : "block"}
+        targetLabel={creatorDisplayName}
+        onConfirm={handleConfirmBlock}
+        onCancel={() => setShowBlockConfirm(false)}
+        loading={blockLoading}
       />
     </>
   );

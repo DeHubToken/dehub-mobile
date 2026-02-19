@@ -1,5 +1,12 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
+  ActivityIndicator,
   Dimensions,
   Text,
   View,
@@ -28,6 +35,8 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useAuthState } from "../../context/AuthContext";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { theme } from "../../theme";
+import UserRepliesList, { type UserRepliesListRef } from "./UserRepliesList";
+import type { UserReplyItem } from "../../services/user.service";
 
 interface UserProfileBottomContentTabsProps {
   address: string;
@@ -44,6 +53,10 @@ interface UserProfileBottomContentTabsProps {
   onEditProfile?: () => void;
   /** In fullscreen, the profile header is rendered inside the FlatList for unified scroll. */
   profileHeader?: React.ReactNode;
+  /** Block state flags */
+  isBlocked?: boolean;
+  youBlocked?: boolean;
+  blockedYou?: boolean;
 }
 
 // Helper to determine if item is a video
@@ -51,14 +64,22 @@ const isVideoItem = (item: GetNFTsResult): boolean => {
   return !(item as any).postType || (item as any).postType === "video";
 };
 
-const STICKY_BAR_HEIGHT = 40;
+const STICKY_BAR_HEIGHT = 44;
 
-/** Horizontal padding for post cards — matches the bottom sheet's content inset (mx-4 = 16px). */
-const CONTENT_PX = 16;
+/** Horizontal padding for post cards — matches the profile header's px-6 (24px). */
+const CONTENT_PX = 24;
 
 /** Stable contentContainerStyle (same identity across renders to avoid FlatList churn). */
 const LIST_CONTENT_STYLE = { paddingBottom: 80 } as const;
 const LIST_CONTENT_STYLE_COLLAPSED = { paddingBottom: 24 } as const;
+
+type ContentTab = "posts" | "replies" | "reposts";
+
+const TAB_ITEMS: { key: ContentTab; label: string }[] = [
+  { key: "posts", label: "Posts" },
+  { key: "replies", label: "Replies" },
+  { key: "reposts", label: "Reposts" },
+];
 
 const UserProfileBottomContentTabs: React.FC<
   UserProfileBottomContentTabsProps
@@ -76,11 +97,18 @@ const UserProfileBottomContentTabs: React.FC<
   isOwnProfile = false,
   onEditProfile,
   profileHeader,
+  isBlocked = false,
+  youBlocked = false,
+  blockedYou = false,
 }) => {
   const navigation = useNavigation<any>();
   const { hideUserProfile } = useUserProfileSheet();
   const { isSignedIn } = useAuthState();
   const listRef = useRef<FlatList<any> | null>(null);
+  const repliesListRef = useRef<UserRepliesListRef>(null);
+
+  // Active content tab
+  const [activeTab, setActiveTab] = useState<ContentTab>("posts");
 
   // Track scroll offset for sticky bar + back-to-top
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -118,7 +146,7 @@ const UserProfileBottomContentTabs: React.FC<
       });
       return { result: res.result as unknown as GetNFTsResult[] };
     },
-    [address]
+    [address],
   );
 
   const scrollToTop = useCallback(() => {
@@ -140,14 +168,36 @@ const UserProfileBottomContentTabs: React.FC<
       if ((post as any).postType === "live") {
         const stream = (post as any).stream;
         const streamId = stream?._id || stream?.id || (post as any)._id;
-        navigation.navigate(ScreenNames.LiveViewer as any, { streamId, tokenId, nft: post });
+        navigation.navigate(ScreenNames.LiveViewer as any, {
+          streamId,
+          tokenId,
+          nft: post,
+        });
       } else if (isVideoItem(post)) {
         navigation.navigate(ScreenNames.VideoPlayer, { tokenId });
       } else {
         navigation.navigate(ScreenNames.FeedDetail as any, { tokenId });
       }
     },
-    [navigation, hideUserProfile, onClose]
+    [navigation, hideUserProfile, onClose],
+  );
+
+  // Navigate to a post and highlight a specific comment (from Replies tab)
+  const handleReplyItemPress = useCallback(
+    (item: UserReplyItem) => {
+      const tokenId = item.tokenId ?? item.post?.tokenId;
+      if (!tokenId) return;
+      const commentId = String(item.id);
+      hideUserProfile();
+      onClose();
+      const pt = item.post?.postType;
+      if (pt === "feed-images" || pt === "feed-simple") {
+        navigation.navigate(ScreenNames.FeedDetail as never, { tokenId, commentId } as never);
+      } else {
+        navigation.navigate(ScreenNames.VideoPlayer as never, { tokenId, commentId } as never);
+      }
+    },
+    [navigation, hideUserProfile, onClose],
   );
 
   const renderItem = useCallback(
@@ -171,13 +221,9 @@ const UserProfileBottomContentTabs: React.FC<
           />
         );
       }
-      return (
-        <View style={{ paddingHorizontal: CONTENT_PX }}>
-          {card}
-        </View>
-      );
+      return <View style={{ paddingHorizontal: CONTENT_PX }}>{card}</View>;
     },
-    [onClose, handlePostPress]
+    [onClose, handlePostPress],
   );
 
   // Measure profile header height to know when to show sticky bar
@@ -208,47 +254,105 @@ const UserProfileBottomContentTabs: React.FC<
       // Forward to parent's scroll handler (for bottom sheet pan coordination)
       onScroll(event);
     },
-    [onScroll, isFullScreen, stickyVisible, showBackToTop]
+    [onScroll, isFullScreen, stickyVisible, showBackToTop],
   );
 
-  // Posts pill bar component
-  const PostsPill = useMemo(
+  // Tab change handler — scroll back to top and reset sticky state
+  const handleTabChange = useCallback(
+    (tab: ContentTab) => {
+      if (tab === activeTab) return;
+      setStickyVisible(false);
+      setActiveTab(tab);
+      listRef.current?.scrollToOffset({ offset: 0, animated: false });
+    },
+    [activeTab],
+  );
+
+  // Twitter-style tab bar component
+  const TabBar = useMemo(
     () => (
       <View
-        className="flex-row items-center justify-start"
+        className="flex-row items-center"
         style={{
           height: STICKY_BAR_HEIGHT,
-          paddingTop: 8,
-          paddingBottom: 4,
           paddingHorizontal: CONTENT_PX,
+          gap: 8,
+          paddingTop: 6,
+          paddingBottom: 4,
         }}
       >
-        <View
-          style={{
-            paddingHorizontal: 16,
-            paddingVertical: 8,
-            borderRadius: 16,
-            backgroundColor: "#1D1F21",
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 12,
-              fontWeight: "600",
-              color: "#e5e5e5",
-            }}
-          >
-            Posts
-          </Text>
-        </View>
+        {TAB_ITEMS.map((tab) => {
+          const isActive = activeTab === tab.key;
+          return (
+            <Pressable
+              key={tab.key}
+              onPress={() => handleTabChange(tab.key)}
+              className={`px-4 py-2 rounded-full border ${
+                isActive
+                  ? "bg-white border-white"
+                  : "bg-transparent border-theme-neutrals-600"
+              }`}
+            >
+              <Text
+                className={`text-xs font-semibold ${
+                  isActive
+                    ? "text-theme-neutrals-900"
+                    : "text-theme-neutrals-400"
+                }`}
+              >
+                {tab.label}
+              </Text>
+            </Pressable>
+          );
+        })}
       </View>
     ),
-    []
+    [activeTab, handleTabChange],
   );
 
-  // Private account message component
+  // Empty state for Reposts tab
+  const RepostsEmptyState = useMemo(
+    () => (
+      <View className="flex-1 items-center justify-center px-8 py-16">
+        <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
+          <Ionicons name="repeat-outline" size={40} color="#666" />
+        </View>
+        <Text className="text-white text-lg font-bold text-center mb-2">
+          No Reposts Yet
+        </Text>
+        <Text className="text-gray-400 text-center text-sm leading-5">
+          When this user reposts content, it'll show up here.
+        </Text>
+      </View>
+    ),
+    [],
+  );
+
+  // Private/blocked account message component
   const PrivateAccountMessage = useMemo(() => {
     if (canViewContent) return null;
+
+    // Blocked state takes precedence over private
+    if (isBlocked) {
+      return (
+        <View className="flex-1 items-center justify-center px-6 py-12">
+          <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
+            <Ionicons name="ban-outline" size={40} color="#666" />
+          </View>
+          {!youBlocked && (
+            <Text className="text-white text-lg font-bold text-center mb-2">
+              Content Unavailable
+            </Text>
+          )}
+          <Text className="text-gray-400 text-center text-sm leading-5 mb-5">
+            {youBlocked
+              ? "You won't see their posts or be able to interact with them. Unblock to restore access."
+              : "This user has restricted interactions with your account."}
+          </Text>
+        </View>
+      );
+    }
+
     return (
       <View className="flex-1 items-center justify-center px-6 py-12">
         <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
@@ -275,9 +379,26 @@ const UserProfileBottomContentTabs: React.FC<
         )}
       </View>
     );
-  }, [canViewContent, isFollowRequestPending, onFollow]);
+  }, [
+    canViewContent,
+    isFollowRequestPending,
+    onFollow,
+    isBlocked,
+    youBlocked,
+    blockedYou,
+  ]);
 
-  // Fullscreen list header: profile header + optional Edit Profile + Posts pill inside FlatList
+  // Simple white activity indicator for loading state (preserves header visibility)
+  const postsLoadingComponent = useMemo(
+    () => (
+      <View className="flex-1 items-center justify-center py-16">
+        <ActivityIndicator size="large" color="#fff" />
+      </View>
+    ),
+    [],
+  );
+
+  // Fullscreen list header: profile header + optional Edit Profile + tab bar inside FlatList
   const fullScreenListHeader = useMemo(() => {
     if (!profileHeader) return undefined;
     return (
@@ -292,15 +413,24 @@ const UserProfileBottomContentTabs: React.FC<
                 className="flex-row items-center justify-center gap-2 border border-theme-neutrals-700 py-2 rounded-full"
               >
                 <Ionicons name="pencil-outline" size={15} color="#e5e5e5" />
-                <Text className="text-white text-sm font-semibold">Edit Profile</Text>
+                <Text className="text-white text-sm font-semibold">
+                  Edit Profile
+                </Text>
               </TouchableOpacity>
             </View>
           )}
         </View>
-        {PostsPill}
+        {TabBar}
       </View>
     );
-  }, [profileHeader, handleHeaderLayout, PostsPill, isOwnProfile, isFullScreen, onEditProfile]);
+  }, [
+    profileHeader,
+    handleHeaderLayout,
+    TabBar,
+    isOwnProfile,
+    isFullScreen,
+    onEditProfile,
+  ]);
 
   if (!address) return null;
 
@@ -315,25 +445,30 @@ const UserProfileBottomContentTabs: React.FC<
   }
 
   /*
-   * Single InfiniteFeed instance — always mounted so data survives
+   * Single InfiniteFeed instance for Posts — always mounted so data survives
    * collapsed ↔ fullscreen transitions (no skeleton flash).
    *
-   * Fullscreen: profileHeader + PostsPill flow inside the FlatList header
+   * Fullscreen: profileHeader + TabBar flow inside the FlatList header
    *             so the whole page scrolls as one (Twitter-like).
    * Collapsed:  no list header; posts shown in a compact fixed-height area.
+   *
+   * Replies & Reposts tabs show placeholder empty states.
    */
   return (
     <View
-      style={
-        isFullScreen
-          ? { flex: 1 }
-          : { height: listHeight, marginTop: 16 }
-      }
+      style={isFullScreen ? { flex: 1 } : { height: listHeight, marginTop: 16 }}
     >
-      {/* Collapsed: show posts pill above the constrained list */}
-      {!isFullScreen && PostsPill}
+      {/* Collapsed: show tab bar above the constrained list */}
+      {!isFullScreen && TabBar}
 
-      <View style={{ flex: 1, marginTop: isFullScreen ? 0 : 4 }}>
+      {/* Posts tab — always mounted to preserve data, hidden when inactive */}
+      <View
+        style={{
+          flex: activeTab === "posts" ? 1 : 0,
+          marginTop: isFullScreen ? 0 : (activeTab === "posts" ? 4 : 0),
+          display: activeTab === "posts" ? "flex" : "none",
+        }}
+      >
         <InfiniteFeed
           insideNavigatorScreen={false}
           fetchPage={fetchPage}
@@ -348,10 +483,77 @@ const UserProfileBottomContentTabs: React.FC<
           enableBackToTop={false}
           renderItem={renderItem}
           headerComponent={isFullScreen ? fullScreenListHeader : undefined}
+          loadingComponent={postsLoadingComponent}
         />
       </View>
 
-      {/* Sticky "Posts" bar — overlays at the top when header scrolls away */}
+      {/* Replies tab — real paginated list (always mounted, hidden when inactive) */}
+      <View
+        style={{
+          flex: activeTab === "replies" ? 1 : 0,
+          marginTop: isFullScreen ? 0 : (activeTab === "replies" ? 4 : 0),
+          display: activeTab === "replies" ? "flex" : "none",
+        }}
+      >
+        <UserRepliesList
+          ref={repliesListRef}
+          address={address}
+          contentPadding={CONTENT_PX}
+          scrollEnabled={scrollEnabled}
+          onScroll={handleScroll}
+          headerComponent={isFullScreen ? fullScreenListHeader : undefined}
+          contentContainerStyle={
+            isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED
+          }
+          onItemPress={handleReplyItemPress}
+        />
+      </View>
+
+      {/* Reposts tab — placeholder (always mounted, hidden when inactive) */}
+      <View
+        style={{
+          flex: activeTab === "reposts" ? 1 : 0,
+          marginTop: isFullScreen ? 0 : (activeTab === "reposts" ? 4 : 0),
+          display: activeTab === "reposts" ? "flex" : "none",
+        }}
+      >
+        {isFullScreen && profileHeader ? (
+          <FlatList
+            data={[]}
+            renderItem={null}
+            scrollEnabled={scrollEnabled}
+            onScroll={handleScroll}
+            scrollEventThrottle={16}
+            ListHeaderComponent={
+              <View>
+                <View onLayout={handleHeaderLayout}>
+                  {profileHeader}
+                  {isOwnProfile && isFullScreen && !!onEditProfile && (
+                    <View className="px-6 mt-2 mb-1">
+                      <TouchableOpacity
+                        onPress={onEditProfile}
+                        activeOpacity={0.8}
+                        className="flex-row items-center justify-center gap-2 border border-theme-neutrals-700 py-2 rounded-full"
+                      >
+                        <Ionicons name="pencil-outline" size={15} color="#e5e5e5" />
+                        <Text className="text-white text-sm font-semibold">
+                          Edit Profile
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  )}
+                </View>
+                {TabBar}
+                {RepostsEmptyState}
+              </View>
+            }
+          />
+        ) : (
+          RepostsEmptyState
+        )}
+      </View>
+
+      {/* Sticky tab bar — overlays at the top when header scrolls away */}
       {isFullScreen && stickyVisible && (
         <View
           className="absolute top-0 left-0 right-0 bg-theme-neutrals-900"
@@ -363,7 +565,7 @@ const UserProfileBottomContentTabs: React.FC<
             borderBottomColor: "rgba(255,255,255,0.08)",
           }}
         >
-          {PostsPill}
+          {TabBar}
         </View>
       )}
 
