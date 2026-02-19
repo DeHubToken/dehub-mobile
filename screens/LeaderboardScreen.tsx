@@ -135,13 +135,9 @@ const LeaderboardScreen = () => {
   const handlePressRow = useCallback(
     (username: string) => {
       if (!username) return;
-      if (authUser?.username && username === authUser.username) {
-        (navigation as any).navigate(ScreenNames.Profile);
-        return;
-      }
       showUserProfile(username);
     },
-    [authUser?.username, navigation, showUserProfile]
+    [showUserProfile]
   );
 
   // ─── FlatList helpers ───────────────────────────────────────────

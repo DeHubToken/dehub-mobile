@@ -5,7 +5,7 @@
  * creator info, and stats (likes, views). No action bar.
  * Navigates to LiveViewer or LiveProducer based on ownership.
  */
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -23,6 +23,7 @@ import {
 } from "../../libs";
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
+import PostOptionsMenu from "../common/PostOptionsMenu";
 import env from "../../config/env";
 
 // =============================================================================
@@ -42,6 +43,9 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
   const navigation = useNavigation<any>();
   const user = useUser();
   const { showUserProfile } = useUserProfileSheet();
+
+  // Options menu state
+  const [showOptionsMenu, setShowOptionsMenu] = useState(false);
   
   // Stream nested object (for live-specific data like status, streamKey, peakViewers)
   const stream = (item as any).stream;
@@ -126,17 +130,12 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
   const handleUserPress = useCallback(() => {
     const id = username || creatorAddress;
     if (!id) return;
-    
-    const selfUsernames = [user?.username, user?.displayName].filter(Boolean);
-    const selfAddresses = [user?.walletAddress, user?.address].filter(Boolean);
-    const isSelf = selfUsernames.includes(id) || selfAddresses.includes(id);
-    
-    if (isSelf) {
-      navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Profile });
-      return;
-    }
     showUserProfile(id);
-  }, [username, creatorAddress, user, navigation, showUserProfile]);
+  }, [username, creatorAddress, showUserProfile]);
+
+  const handleOpenMenu = useCallback(() => {
+    setShowOptionsMenu(true);
+  }, []);
   
   const handlePress = useCallback(() => {
     // Navigate to LiveProducer if creator, otherwise LiveViewer
@@ -168,6 +167,7 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
         username={username}
         badgeImage={badgeImg}
         onUserPress={handleUserPress}
+        onMenuPress={isCreator ? undefined : handleOpenMenu}
       />
       
       {/* Thumbnail with badges */}
@@ -271,6 +271,19 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
           )}
         </View>
       </View>
+
+      {/* Post Options Menu */}
+      <PostOptionsMenu
+        visible={showOptionsMenu}
+        onClose={() => setShowOptionsMenu(false)}
+        tokenId={tokenId}
+        isOwner={!!isCreator}
+        isHidden={false}
+        creatorDisplayName={displayName}
+        creatorIdentifier={creatorAddress}
+        isFollowing={false}
+        hideReportContent={true}
+      />
     </TouchableOpacity>
   );
 };

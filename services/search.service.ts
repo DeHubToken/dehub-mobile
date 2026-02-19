@@ -10,11 +10,18 @@ function historyKey(address?: string): string {
 }
 
 // =============================================================================
-// Types - aligned with new /api/search endpoint
+// Types — aligned with GET /api/search endpoint (Feb 2026)
 // =============================================================================
 
 export type SearchType = 'accounts' | 'content';
-export type SearchPostType = 'all' | 'video' | 'live' | 'feed-all' | 'feed' | 'feed-simple' | 'feed-images';
+export type SearchPostType =
+  | 'all'
+  | 'video'
+  | 'live'
+  | 'feed-all'
+  | 'feed'
+  | 'feed-simple'
+  | 'feed-images';
 
 export interface SearchParams {
   q: string;
@@ -24,8 +31,8 @@ export interface SearchParams {
   postType?: SearchPostType;
 }
 
+// ---- Account result ----
 export interface SearchAccountResult {
-  _id?: string;
   address: string;
   username?: string;
   displayName?: string;
@@ -34,20 +41,27 @@ export interface SearchAccountResult {
   isPrivate?: boolean;
   followers?: number;
   followings?: number;
+  badgeBalance?: number;
   createdAt?: string;
-  staked?: number;
+  /** Backend-provided: is the authenticated user following this account? */
+  isFollowing?: boolean;
+  /** Backend-provided: is there a pending follow request? */
+  isFollowRequestPending?: boolean;
 }
 
+// ---- Content result ----
 export interface SearchContentResult {
   tokenId: number;
   name?: string;
   description?: string;
   imageUrl?: string;
   videoUrl?: string;
+  videoDuration?: number;
   postType?: 'video' | 'live' | 'feed-simple' | 'feed-images';
   views?: number;
   totalVotes?: { for?: number; against?: number };
   createdAt?: string;
+  commentCount?: number;
   minterUser?: {
     address?: string;
     username?: string;
@@ -56,22 +70,26 @@ export interface SearchContentResult {
     followers?: number;
     followings?: number;
     badgeBalance?: number;
-    staked?: number;
+    isFollowing?: boolean;
+    isFollowRequestPending?: boolean;
   };
-  minterStaked?: number;
   stream?: {
     status?: string;
     playbackId?: string;
-    thumbnail?: string;
     peakViewers?: number;
     totalViews?: number;
+    likes?: number;
+    startedAt?: string;
+    endedAt?: string;
+    scheduledFor?: string;
   };
   isLiked?: boolean;
   isDisliked?: boolean;
   isSaved?: boolean;
   isFollowing?: boolean;
-  commentCount?: number;
-  // Additional fields for unified feed compatibility
+  isOwner?: boolean;
+  isUnlocked?: boolean;
+  // Unified feed compatibility extras
   minter?: string;
   minterUsername?: string;
   minterDisplayName?: string;
@@ -81,8 +99,10 @@ export interface SearchContentResult {
   category?: string[];
   likes?: number;
   dislikes?: number;
+  minterStaked?: number;
 }
 
+// ---- Pagination ----
 export interface SearchPagination {
   page: number;
   limit: number;
@@ -91,10 +111,37 @@ export interface SearchPagination {
   hasMore: boolean;
 }
 
-export interface SearchResponse<T> {
-  status: boolean;
-  result: T[];
+// ---- Bucket (items + pagination) ----
+export interface SearchBucket<T> {
+  items: T[];
   pagination: SearchPagination;
+}
+
+// ---- Top-level API response ----
+export interface UnifiedSearchResponse {
+  status: boolean;
+  accounts: SearchBucket<SearchAccountResult> | null;
+  content: SearchBucket<SearchContentResult> | null;
+}
+
+// =============================================================================
+// Helpers
+// =============================================================================
+
+const EMPTY_PAGINATION: SearchPagination = {
+  page: 1,
+  limit: 20,
+  totalCount: 0,
+  totalPages: 0,
+  hasMore: false,
+};
+
+function emptyResponse(): UnifiedSearchResponse {
+  return {
+    status: true,
+    accounts: { items: [], pagination: { ...EMPTY_PAGINATION } },
+    content: { items: [], pagination: { ...EMPTY_PAGINATION } },
+  };
 }
 
 // =============================================================================
@@ -102,79 +149,55 @@ export interface SearchResponse<T> {
 // =============================================================================
 
 /**
- * Unified search endpoint - searches accounts and/or content
+ * GET /api/search — Universal search.
+ * Returns `{ status, accounts, content }` where each is `{ items, pagination } | null`.
  */
-export async function search<T = SearchContentResult | SearchAccountResult>(
-  params: SearchParams
-): Promise<SearchResponse<T>> {
+export async function search(params: SearchParams): Promise<UnifiedSearchResponse> {
   const { q, page = 1, limit = 20, type, postType } = params;
-  
-  if (!q?.trim()) {
-    return {
-      status: true,
-      result: [],
-      pagination: { page: 1, limit: 20, totalCount: 0, totalPages: 0, hasMore: false }
-    };
-  }
 
-  const queryParams = new URLSearchParams();
-  queryParams.set('q', q.trim());
-  queryParams.set('page', String(page));
-  queryParams.set('limit', String(limit));
-  if (type) queryParams.set('type', type);
-  if (postType && postType !== 'all') queryParams.set('postType', postType);
+  if (!q?.trim()) return emptyResponse();
+
+  const qp = new URLSearchParams();
+  qp.set('q', q.trim());
+  qp.set('page', String(page));
+  qp.set('limit', String(limit));
+  if (type) qp.set('type', type);
+  if (postType && postType !== 'all') qp.set('postType', postType);
 
   try {
-    const res = await apiClient.get<any>(`/search?${queryParams.toString()}`);
-    const data = res as any;
-    
+    const data = await apiClient.get<any>(`/search?${qp.toString()}`);
+
     return {
       status: data?.status ?? true,
-      result: data?.result || [],
-      pagination: data?.pagination || {
-        page,
-        limit,
-        totalCount: data?.result?.length || 0,
-        totalPages: 1,
-        hasMore: false
-      }
+      accounts: data?.accounts ?? null,
+      content: data?.content ?? null,
     };
   } catch (e) {
     console.warn('[search.service] search error', e);
-    return {
-      status: false,
-      result: [],
-      pagination: { page, limit, totalCount: 0, totalPages: 0, hasMore: false }
-    };
+    return { status: false, accounts: null, content: null };
   }
 }
 
 /**
- * Search only accounts
+ * Search only accounts (paginated).
  */
 export async function searchAccounts(
   q: string,
-  options?: { page?: number; limit?: number }
-): Promise<SearchResponse<SearchAccountResult>> {
-  return search<SearchAccountResult>({
-    q,
-    type: 'accounts',
-    ...options
-  });
+  options?: { page?: number; limit?: number },
+): Promise<SearchBucket<SearchAccountResult>> {
+  const res = await search({ q, type: 'accounts', ...options });
+  return res.accounts ?? { items: [], pagination: { ...EMPTY_PAGINATION } };
 }
 
 /**
- * Search only content (videos, posts, livestreams)
+ * Search only content (paginated).
  */
 export async function searchContent(
   q: string,
-  options?: { page?: number; limit?: number; postType?: SearchPostType }
-): Promise<SearchResponse<SearchContentResult>> {
-  return search<SearchContentResult>({
-    q,
-    type: 'content',
-    ...options
-  });
+  options?: { page?: number; limit?: number; postType?: SearchPostType },
+): Promise<SearchBucket<SearchContentResult>> {
+  const res = await search({ q, type: 'content', ...options });
+  return res.content ?? { items: [], pagination: { ...EMPTY_PAGINATION } };
 }
 
 // =============================================================================
@@ -184,7 +207,9 @@ export async function searchContent(
 export async function fetchSuggestions(q: string): Promise<string[]> {
   if (!q?.trim()) return [];
   try {
-    const res = await apiClient.get<string[]>(`/search/suggestions?q=${encodeURIComponent(q.trim())}`);
+    const res = await apiClient.get<string[]>(
+      `/search/suggestions?q=${encodeURIComponent(q.trim())}`,
+    );
     return Array.isArray(res) ? res.slice(0, 5) : [];
   } catch (e) {
     console.warn('[search.service] fetchSuggestions error', e);
@@ -213,7 +238,7 @@ export async function addToHistory(term: string, address?: string): Promise<void
   if (!t) return;
   try {
     const current = await getHistory(address);
-    const next = [t, ...current.filter(x => x !== t)].slice(0, MAX_HISTORY);
+    const next = [t, ...current.filter((x) => x !== t)].slice(0, MAX_HISTORY);
     await AsyncStorage.setItem(historyKey(address), JSON.stringify(next));
   } catch (e) {
     console.warn('[search.service] addToHistory error', e);
@@ -230,79 +255,4 @@ export async function clearHistory(address?: string): Promise<void> {
 
 export function topHistorySubset(history: string[], limit = 6): string[] {
   return history.slice(0, limit);
-}
-
-// =============================================================================
-// Legacy exports for backwards compatibility
-// =============================================================================
-
-export interface StructuredSearchResult {
-  accounts: any[];
-  videos: any[];
-  livestreams: any[];
-}
-
-/**
- * @deprecated Use search() instead
- */
-export async function performSearch(
-  q: string,
-  opts?: { page?: number; unit?: number }
-): Promise<{ result: StructuredSearchResult }> {
-  // Call new unified endpoint
-  const contentRes = await searchContent(q, {
-    page: opts?.page ? opts.page + 1 : 1, // old API was 0-indexed
-    limit: opts?.unit || 20,
-  });
-
-  const accountsRes = await searchAccounts(q, {
-    page: opts?.page ? opts.page + 1 : 1,
-    limit: opts?.unit || 20,
-  });
-
-  // Separate content into videos and livestreams
-  const videos = contentRes.result.filter(
-    (item) => item.postType === 'video' || (!item.postType && !item.stream?.status)
-  );
-  const livestreams = contentRes.result.filter(
-    (item) => item.postType === 'live' || item.stream?.status
-  );
-
-  return {
-    result: {
-      accounts: accountsRes.result,
-      videos,
-      livestreams
-    }
-  };
-}
-
-/**
- * @deprecated Use search() with type parameter instead
- */
-export async function performSearchByType(
-  q: string,
-  type: 'accounts' | 'videos' | 'livestreams',
-  opts?: { page?: number; unit?: number }
-): Promise<StructuredSearchResult> {
-  if (type === 'accounts') {
-    const res = await searchAccounts(q, {
-      page: opts?.page ? opts.page + 1 : 1,
-      limit: opts?.unit || 20,
-    });
-    return { accounts: res.result, videos: [], livestreams: [] };
-  }
-
-  const postType = type === 'livestreams' ? 'live' : 'video';
-  const res = await searchContent(q, {
-    page: opts?.page ? opts.page + 1 : 1,
-    limit: opts?.unit || 20,
-    postType,
-  });
-
-  return {
-    accounts: [],
-    videos: type === 'videos' ? res.result : [],
-    livestreams: type === 'livestreams' ? res.result : []
-  };
 }

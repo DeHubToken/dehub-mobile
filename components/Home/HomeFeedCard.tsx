@@ -192,17 +192,8 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   const handleUserPress = useCallback(() => {
     const id = minterUser?.username || minterUser?.address || item.minterUsername || item.minter || item.owner;
     if (!id) return;
-    
-    const selfUsernames = [user?.username, user?.displayName].filter(Boolean);
-    const selfAddresses = [user?.walletAddress, user?.address].filter(Boolean);
-    const isSelf = selfUsernames.includes(id) || selfAddresses.includes(id);
-    
-    if (isSelf) {
-      navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Profile });
-      return;
-    }
     showUserProfile(id);
-  }, [minterUser, item, user, navigation, showUserProfile]);
+  }, [minterUser, item, showUserProfile]);
   
   const handleFeedPress = useCallback(() => {
     if (onPress) {

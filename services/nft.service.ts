@@ -302,7 +302,7 @@ export async function getCommentsForToken(
   }));
   const url = `${base}${q}`;
   try {
-    const res = await apiClient.get<any>(url, { isAuthRequired: false });
+    const res = await apiClient.get<any>(url, { isAuthRequired: true });
     if (res?.result) return res as GetCommentsResponse;
     // Fallback normalization
     if (Array.isArray(res)) {
@@ -365,6 +365,32 @@ export async function editComment(input: EditCommentInput): Promise<EditCommentR
     return res;
   } catch (e) {
     console.error('[NFTService] editComment error', e);
+    throw e;
+  }
+}
+
+// Delete a comment
+export interface DeleteCommentInput {
+  commentId: number | string;
+}
+
+export interface DeleteCommentResult {
+  result: boolean;
+  commentId: number;
+  deletedCount: number;
+}
+
+export async function deleteComment(input: DeleteCommentInput): Promise<DeleteCommentResult> {
+  const { commentId } = input;
+  if (commentId == null) throw new Error('commentId required');
+  try {
+    const res = await apiClient.delete<DeleteCommentResult>(
+      `/delete_comment?commentId=${encodeURIComponent(String(Number(commentId)))}`,
+      { isAuthRequired: true }
+    );
+    return res;
+  } catch (e) {
+    console.error('[NFTService] deleteComment error', e);
     throw e;
   }
 }

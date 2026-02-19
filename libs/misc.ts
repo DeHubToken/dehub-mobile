@@ -37,7 +37,7 @@ export function resolveThumbnail(obj: Record<string, any>): string | undefined {
 }
 
 // Generic image URL builder with optional resize query params
-const baseUrlWithoutSlash = env.CDN_BASE_URL.replace(/\/+$/, "");
+const baseUrlWithoutSlash = (env.CDN_BASE_URL ?? "").replace(/\/+$/, "");
 export function getImageUrl(
   url: string,
   width?: number,

@@ -44,6 +44,7 @@ import {
   forceFlushBatchViews,
   type TokenId,
 } from "../../services/view.service";
+import SuggestedAccountsSection from "./SuggestedAccountsSection";
 
 interface InfiniteVideoFeedProps {
   params?: Partial<UnifiedFeedParams>; // any search params except page which we control
@@ -303,23 +304,34 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
   }, []);
 
+  // Index after which to inject the suggested-accounts carousel (after the 5th post)
+  const SUGGEST_AFTER_INDEX = 4;
+
   const renderItem: ListRenderItem<FeedItem> = ({ item, index }) => {
     // Determine content type
     const isVideo = isVideoItem(item);
     const isLive = item.postType === "live";
-    
+
+    let card: React.ReactNode;
     if (isLive) {
-      // Render LiveStreamCard for live streams
-      return <LiveStreamCard item={item} onCategorySelect={onCategorySelect} />;
+      card = <LiveStreamCard item={item} onCategorySelect={onCategorySelect} />;
+    } else if (isVideo) {
+      card = <VideoCard nft={item as any} enablePreview onCategorySelect={onCategorySelect} />;
+    } else {
+      card = <HomeFeedCard item={item} onCategorySelect={onCategorySelect} />;
     }
-    
-    if (isVideo) {
-      // Render VideoCard for video content
-      return <VideoCard nft={item as any} enablePreview onCategorySelect={onCategorySelect} />;
+
+    // Inject suggested accounts section after the 3rd feed item
+    if (index === SUGGEST_AFTER_INDEX) {
+      return (
+        <>
+          {card}
+          <SuggestedAccountsSection />
+        </>
+      );
     }
-    
-    // Render HomeFeedCard for feed posts (images, text)
-    return <HomeFeedCard item={item} onCategorySelect={onCategorySelect} />;
+
+    return <>{card}</>;
   };
 
   const keyExtractor = useCallback((item: FeedItem) => item.__listKey, []);

@@ -39,6 +39,8 @@ export interface FeedCardHeaderProps {
   followLoading?: boolean;
   /** Callback when follow button is pressed */
   onFollowPress?: () => void;
+  /** Callback when 3-dot menu is pressed */
+  onMenuPress?: () => void;
 }
 
 // =============================================================================
@@ -58,6 +60,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
   isFollowRequestPending = false,
   followLoading = false,
   onFollowPress,
+  onMenuPress,
 }) => {
   return (
     <View className="flex-row justify-between items-start pb-2">
@@ -147,6 +150,18 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           )}
         </View>
       )} */}
+
+      {/* 3-dot menu button */}
+      {onMenuPress && (
+        <TouchableOpacity
+          onPress={onMenuPress}
+          activeOpacity={0.7}
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          className="ml-2 p-1"
+        >
+          <Ionicons name="ellipsis-vertical" size={18} color="#9CA3AF" />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

@@ -23,7 +23,8 @@ const ensureUrl = (raw: string): string => {
 
 const parseTextToSegments = (input: string): Segment[] => {
   if (!input) return [];
-  const urlRegex = /\b((?:https?:\/\/|www\.)[^\s]+|(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/[^\s]*)?)/gi;
+  // Only match URLs with explicit protocol (http/https) or www prefix to avoid matching file names
+  const urlRegex = /\b((?:https?:\/\/|www\.)[^\s]+)/gi;
   const matches = Array.from(input.matchAll(urlRegex));
   if (matches.length === 0) return [{ type: "text", value: input }];
 

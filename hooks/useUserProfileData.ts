@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { getAccount, followUser, unfollowUser } from "../services/user.service";
+import { blockUser, unblockUser } from "../services/block.service";
 import {
   getAvatarUrl,
   getCoverUrl,
@@ -59,6 +60,10 @@ export const useUserProfileData = (
   const [isFollowRequestPending, setIsFollowRequestPending] = useState<boolean>(false);
   const [followsYou, setFollowsYou] = useState<boolean>(false);
   const [followLoading, setFollowLoading] = useState<boolean>(false);
+  const [youBlocked, setYouBlocked] = useState<boolean>(false);
+  const [blockedYou, setBlockedYou] = useState<boolean>(false);
+  const [isBlocked, setIsBlocked] = useState<boolean>(false);
+  const [blockLoading, setBlockLoading] = useState<boolean>(false);
   
   const lastRequestedRef = useRef<string | null>(null);
   const isMountedRef = useRef(true);
@@ -98,6 +103,16 @@ export const useUserProfileData = (
           if (typeof (cached.data as any)?.isFollowRequestPending === 'boolean') {
             setIsFollowRequestPending((cached.data as any).isFollowRequestPending);
           }
+          // Block flags from cached response
+          if (typeof (cached.data as any)?.youBlocked === 'boolean') {
+            setYouBlocked((cached.data as any).youBlocked);
+          }
+          if (typeof (cached.data as any)?.blockedYou === 'boolean') {
+            setBlockedYou((cached.data as any).blockedYou);
+          }
+          if (typeof (cached.data as any)?.isBlocked === 'boolean') {
+            setIsBlocked((cached.data as any).isBlocked);
+          }
         }
       } else {
         if (!cached) {
@@ -131,6 +146,16 @@ export const useUserProfileData = (
           if (typeof payload?.isFollowRequestPending === 'boolean') {
             setIsFollowRequestPending(payload.isFollowRequestPending);
           }
+          // Block flags from API response
+          if (typeof payload?.youBlocked === 'boolean') {
+            setYouBlocked(payload.youBlocked);
+          }
+          if (typeof payload?.blockedYou === 'boolean') {
+            setBlockedYou(payload.blockedYou);
+          }
+          if (typeof payload?.isBlocked === 'boolean') {
+            setIsBlocked(payload.isBlocked);
+          }
         }
       } catch (e) {
         console.warn("[useUserProfileData] load error", e);
@@ -156,6 +181,10 @@ export const useUserProfileData = (
       setIsFollowRequestPending(false);
       setFollowsYou(false);
       setFollowLoading(false);
+      setYouBlocked(false);
+      setBlockedYou(false);
+      setIsBlocked(false);
+      setBlockLoading(false);
       lastRequestedRef.current = null;
     }
   }, [visible]);
@@ -446,6 +475,55 @@ export const useUserProfileData = (
     return authUser.address.toLowerCase() === data.address.toLowerCase();
   }, [authUser?.address, data?.address]);
 
+  const handleBlock = useCallback(() => {
+    if (blockLoading || !data?.address) return;
+
+    requireAuth(async () => {
+      const target = (data.address || "").toLowerCase();
+      if (!target) return;
+
+      setBlockLoading(true);
+      try {
+        await blockUser(target);
+        setYouBlocked(true);
+        setIsBlocked(true);
+
+        // Invalidate cache so next open re-fetches block flags
+        profileCache.delete(target);
+      } catch (e) {
+        console.error("[useUserProfileData] block error", e);
+        toastError("Failed to block user");
+      } finally {
+        setBlockLoading(false);
+      }
+    });
+  }, [requireAuth, blockLoading, data?.address]);
+
+  const handleUnblock = useCallback(() => {
+    if (blockLoading || !data?.address) return;
+
+    requireAuth(async () => {
+      const target = (data.address || "").toLowerCase();
+      if (!target) return;
+
+      setBlockLoading(true);
+      try {
+        await unblockUser(target);
+        setYouBlocked(false);
+        // isBlocked may still be true if they blocked us
+        setIsBlocked(blockedYou);
+
+        // Invalidate cache
+        profileCache.delete(target);
+      } catch (e) {
+        console.error("[useUserProfileData] unblock error", e);
+        toastError("Failed to unblock user");
+      } finally {
+        setBlockLoading(false);
+      }
+    });
+  }, [requireAuth, blockLoading, data?.address, blockedYou]);
+
   return {
     loading,
     data,
@@ -457,12 +535,18 @@ export const useUserProfileData = (
     isPrivate: data?.isPrivate ?? false,
     canViewContent: !data?.isPrivate || isFollowing || isOwnProfile,
     isOwnProfile,
+    youBlocked,
+    blockedYou,
+    isBlocked,
+    blockLoading,
     avatarUrl,
     coverUrl,
     defaultBanner,
     stats,
     handleFollow,
     handleUnfollow,
+    handleBlock,
+    handleUnblock,
     handleOpenImage,
     handleShare,
     handleMessage,

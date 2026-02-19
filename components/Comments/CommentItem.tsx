@@ -8,16 +8,15 @@
  * - Short timestamps (1s, 1m, 1h, 1d, 1w, 1mo, 1y)
  */
 import React, { memo, useCallback, useState, useRef, useMemo } from "react";
-import { View, Text, TouchableOpacity, Animated, Share } from "react-native";
+import { View, Text, TouchableOpacity, Animated } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Avatar from "../common/Avatar";
-import CommentActionSheet from "./CommentActionSheet";
 import { getAvatarUrl } from "../../libs";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useAuth } from "../../context/AuthContext";
 import { LikeCommentResult } from "../../services/nft.service";
 import type { Comment } from "../../services/nft.service";
-import { WEBSITE_LINK } from "../../config";
+import type { CommentLayout } from "./CommentContextMenu";
 
 // Format time in short form: 1s, 1m, 1h, 1d, 1w, 1mo, 1y
 function formatShortTime(date: Date | string | undefined): string {
@@ -49,6 +48,8 @@ interface CommentItemProps {
   onLike?: (commentId: number) => Promise<LikeCommentResult | void>;
   onUserPress?: (userId: string) => void;
   onEdit?: (comment: Comment) => void;
+  /** Called on long-press with the comment and its measured screen layout */
+  onLongPress?: (comment: Comment, layout: CommentLayout, extra: { liked: boolean; isOwnComment: boolean; isReply: boolean }) => void;
   tokenId?: number | string;
   contentType?: "video" | "feed";
   /** When true, highlights the comment with a blinking animation */
@@ -62,6 +63,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   onLike,
   onUserPress,
   onEdit,
+  onLongPress,
   tokenId,
   contentType = "video",
   highlighted = false,
@@ -72,26 +74,34 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const [likeCount, setLikeCount] = useState(comment.likeCount || 0);
   const [isLiking, setIsLiking] = useState(false);
   const [showHighlight, setShowHighlight] = useState(highlighted);
-  const [showActionSheet, setShowActionSheet] = useState(false);
+  const containerRef = useRef<View>(null);
   
   // Animation refs
   const likeScale = useRef(new Animated.Value(1)).current;
   const highlightOpacity = useRef(new Animated.Value(highlighted ? 1 : 0)).current;
 
-  // Highlight animation effect - blink 3 times then fade out
+  // Highlight animation: pulse gently twice, hold, then fade out
   React.useEffect(() => {
     if (highlighted) {
-      // Blink animation: fade in/out 3 times, then fade out completely
-      const blinkSequence = Animated.sequence([
-        Animated.timing(highlightOpacity, { toValue: 1, duration: 200, useNativeDriver: true }),
-        Animated.timing(highlightOpacity, { toValue: 0.3, duration: 200, useNativeDriver: true }),
-        Animated.timing(highlightOpacity, { toValue: 1, duration: 200, useNativeDriver: true }),
-        Animated.timing(highlightOpacity, { toValue: 0.3, duration: 200, useNativeDriver: true }),
-        Animated.timing(highlightOpacity, { toValue: 1, duration: 200, useNativeDriver: true }),
-        Animated.delay(500),
-        Animated.timing(highlightOpacity, { toValue: 0, duration: 500, useNativeDriver: true }),
+      setShowHighlight(true);
+      highlightOpacity.setValue(0);
+      const sequence = Animated.sequence([
+        // Fade in
+        Animated.timing(highlightOpacity, { toValue: 1, duration: 300, useNativeDriver: true }),
+        // Pulse: dim then bright twice
+        Animated.timing(highlightOpacity, { toValue: 0.5, duration: 350, useNativeDriver: true }),
+        Animated.timing(highlightOpacity, { toValue: 1, duration: 350, useNativeDriver: true }),
+        Animated.timing(highlightOpacity, { toValue: 0.5, duration: 350, useNativeDriver: true }),
+        Animated.timing(highlightOpacity, { toValue: 1, duration: 350, useNativeDriver: true }),
+        // Hold
+        Animated.delay(800),
+        // Fade out
+        Animated.timing(highlightOpacity, { toValue: 0, duration: 600, useNativeDriver: true }),
       ]);
-      blinkSequence.start(() => setShowHighlight(false));
+      sequence.start(() => setShowHighlight(false));
+    } else {
+      setShowHighlight(false);
+      highlightOpacity.setValue(0);
     }
   }, [highlighted, highlightOpacity]);
 
@@ -185,31 +195,17 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     onReply?.(comment);
   }, [comment, onReply]);
 
-  // Long-press handler - show Instagram-style action sheet
+  // Long-press handler - measure position and pass to parent
   const handleLongPress = useCallback(() => {
-    setShowActionSheet(true);
-  }, []);
-
-  // Trigger edit in parent via callback
-  const handleStartEdit = useCallback(() => {
-    onEdit?.(comment);
-  }, [comment, onEdit]);
-
-  // Share the content link with comment reference
-  const handleShare = useCallback(async () => {
-    try {
-      let shareUrl = WEBSITE_LINK;
-      if (tokenId) {
-        shareUrl = `${WEBSITE_LINK}/app/post/${tokenId}?c=${comment.id}`;
-      }
-      await Share.share({
-        message: `Check this out: ${shareUrl}`,
-        url: shareUrl,
+    if (!onLongPress) return;
+    containerRef.current?.measureInWindow((x, y, width, height) => {
+      onLongPress(comment, { x, y, width, height }, {
+        liked,
+        isOwnComment,
+        isReply,
       });
-    } catch (e) {
-      console.error("Share error:", e);
-    }
-  }, [tokenId, contentType, comment.id]);
+    });
+  }, [onLongPress, comment, liked, isOwnComment, isReply]);
 
   // If comment not found (for shared comment links)
   if (comment.notFound) {
@@ -225,14 +221,13 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   }
 
   return (
-    <>
-      <TouchableOpacity
-        onLongPress={handleLongPress}
-        activeOpacity={0.8}
-        delayLongPress={300}
-      >
-        <View className={`flex-row py-3 ${isReply ? "pl-10" : ""}`}>
-          {/* Highlight overlay for shared comments */}
+    <TouchableOpacity
+      onLongPress={handleLongPress}
+      activeOpacity={0.8}
+      delayLongPress={300}
+    >
+      <View ref={containerRef} className={`flex-row py-3 ${isReply ? "pl-10" : ""}`}>
+          {/* Highlight background for shared comments */}
           {showHighlight && (
             <Animated.View
               style={{
@@ -241,8 +236,8 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 left: 0,
                 right: 0,
                 bottom: 0,
-                backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                borderRadius: 8,
+                backgroundColor: 'rgba(59, 130, 246, 0.12)',
+                borderRadius: 10,
                 opacity: highlightOpacity,
               }}
               pointerEvents="none"
@@ -315,18 +310,8 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               </Text>
             )}
           </TouchableOpacity>
-        </View>
-      </TouchableOpacity>
-
-      {/* Instagram-style Action Sheet */}
-      <CommentActionSheet
-        visible={showActionSheet}
-        onClose={() => setShowActionSheet(false)}
-        onShare={handleShare}
-        onEdit={handleStartEdit}
-        isOwnComment={isOwnComment}
-      />
-    </>
+      </View>
+    </TouchableOpacity>
   );
 };
 

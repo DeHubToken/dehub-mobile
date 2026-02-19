@@ -552,3 +552,198 @@ export async function rejectAllFollowRequests(): Promise<{ status: boolean; mess
   const res = await apiClient.post<any>('/follow-requests/reject-all', {}, { isAuthRequired: true });
   return res?.data || res;
 }
+
+// ---------------- User Replies (Comments by user) ----------------
+
+/** Author info nested inside each comment from the user comments endpoint. */
+export interface UserReplyAuthor {
+  address: string;
+  username?: string;
+  displayName?: string;
+  avatarImageUrl?: string;
+}
+
+/** Lightweight post context attached to each comment. */
+export interface UserReplyPost {
+  tokenId: number;
+  name?: string;
+  imageUrl?: string;
+  postType?: string;
+  minter?: string;
+}
+
+/** The parent comment snippet (only present when isReply=true). */
+export interface UserReplyParentComment {
+  id: number;
+  content?: string;
+  address?: string;
+  author?: UserReplyAuthor;
+}
+
+/** A single comment/reply item returned by GET /users/{address}/comments. */
+export interface UserReplyItem {
+  id: number;
+  tokenId: number;
+  content: string;
+  imageUrl?: string;
+  address: string;
+  parentId: number | null;
+  isReply: boolean;
+  likeCount: number;
+  isLiked: boolean;
+  author: UserReplyAuthor;
+  parentComment?: UserReplyParentComment;
+  post: UserReplyPost;
+  createdAt: string;
+}
+
+export interface UserRepliesPagination {
+  page: number;
+  limit: number;
+  totalCount: number;
+  totalPages: number;
+  hasMore: boolean;
+}
+
+export interface GetUserRepliesParams {
+  address: string;
+  page?: number;
+  limit?: number;
+  type?: "all" | "comment" | "reply";
+}
+
+export interface GetUserRepliesResponse {
+  result: {
+    items: UserReplyItem[];
+    pagination: UserRepliesPagination;
+  };
+}
+
+/**
+ * Fetch comments/replies made by a user (the "Replies" tab).
+ * Endpoint: GET /users/{address}/comments?page=<page>&limit=<limit>&type=<type>
+ */
+export async function getUserReplies(params: GetUserRepliesParams): Promise<GetUserRepliesResponse> {
+  const { address, page = 1, limit = 20, type } = params;
+  const qs = new URLSearchParams({ page: String(page), limit: String(limit) });
+  if (type && type !== "all") qs.set("type", type);
+  const url = `/users/${encodeURIComponent(address)}/comments?${qs.toString()}`;
+  try {
+    const res = await apiClient.get<any>(url, { isAuthRequired: true });
+    const wrapper = res?.data ?? res;
+    // Normalise: API returns { status, result: { items, pagination } }
+    const items = wrapper?.result?.items ?? wrapper?.items ?? [];
+    const pagination = wrapper?.result?.pagination ?? wrapper?.pagination ?? {
+      page,
+      limit,
+      totalCount: items.length,
+      totalPages: 1,
+      hasMore: false,
+    };
+    return { result: { items, pagination } };
+  } catch (e) {
+    console.warn("[user.service] getUserReplies error", e);
+    throw e;
+  }
+}
+
+// ---------------- Suggested Accounts ----------------
+
+export interface SuggestedAccountMutualConnection {
+  address: string;
+  username?: string;
+  displayName?: string;
+  avatarImageUrl?: string;
+}
+
+export type SuggestedAccountReason =
+  | "follows_you"
+  | "followed_by_people_you_know"
+  | "engagement_overlap"
+  | "suggested";
+
+export interface SuggestedAccount {
+  address: string;
+  username?: string;
+  displayName?: string;
+  avatarImageUrl?: string;
+  aboutMe?: string;
+  followers: number;
+  followings: number;
+  uploads: number;
+  badgeBalance: number;
+  isPrivate: boolean;
+  createdAt: string;
+  followsYou: boolean;
+  mutualConnections?: SuggestedAccountMutualConnection[];
+  reason: SuggestedAccountReason;
+}
+
+export interface GetSuggestedAccountsResponse {
+  status: boolean;
+  result: {
+    items: SuggestedAccount[];
+  };
+}
+
+/**
+ * Fetch personalised suggested accounts to follow.
+ * Endpoint: GET /suggested-accounts
+ * Auth required — returns up to 10 items in random order.
+ */
+export async function getSuggestedAccounts(): Promise<SuggestedAccount[]> {
+  try {
+    const res = await apiClient.get<any>("/suggested-accounts", { isAuthRequired: true });
+    const wrapper = res?.data ?? res;
+    const items: SuggestedAccount[] = wrapper?.result?.items ?? wrapper?.items ?? [];
+    return items;
+  } catch (e) {
+    console.warn("[user.service] getSuggestedAccounts error", e);
+    return [];
+  }
+}
+
+// ---------------- User Reposts ----------------
+
+export interface RepostItem {
+  repostId: string;
+  repostedAt: string;
+  tokenId: number;
+  postType?: 'video' | 'feed-images' | 'feed-simple';
+  /** The original post data (same shape as feed items) */
+  originalPost?: any;
+}
+
+export interface GetUserRepostsParams {
+  address: string;
+  page?: number;
+  limit?: number;
+}
+
+export interface GetUserRepostsResponse {
+  result: RepostItem[];
+  pagination?: { page: number; limit: number; totalCount: number; hasMore: boolean };
+}
+
+/**
+ * Fetch posts reposted by a user.
+ * Endpoint: GET /user/{address}/reposts?page=<page>&limit=<limit>
+ * 
+ * TODO: Wire up when backend endpoint is available.
+ */
+export async function getUserReposts(params: GetUserRepostsParams): Promise<GetUserRepostsResponse> {
+  const { address, page = 1, limit = 20 } = params;
+  const query = new URLSearchParams({ page: String(page), limit: String(limit) }).toString();
+  const url = `/user/${encodeURIComponent(address)}/reposts?${query}`;
+  try {
+    const res = await apiClient.get<any>(url, { isAuthRequired: false });
+    const wrapper = res?.data ?? res;
+    return {
+      result: Array.isArray(wrapper?.result) ? wrapper.result : [],
+      pagination: wrapper?.pagination,
+    };
+  } catch (e) {
+    console.warn('[user.service] getUserReposts error', e);
+    throw e;
+  }
+}

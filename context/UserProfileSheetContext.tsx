@@ -22,19 +22,6 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   const navigation = useNavigation<any>();
 
   const showUserProfile = useCallback((id: string, opts?: { initialHeightPct?: number; source?: string }) => {
-    // If it's the current user, navigate to their profile tab instead of opening the sheet
-    const selfIds = [
-      user?.username,
-      user?.displayName,
-      user?.walletAddress,
-      user?.address,
-    ].filter(Boolean).map((v) => (v as string).toLowerCase());
-
-    if (id && selfIds.includes(id.toLowerCase())) {
-      navigation.navigate(ScreenNames.Root as any, { screen: ScreenNames.Profile });
-      return;
-    }
-
     if (clearTimerRef.current) {
       clearTimeout(clearTimerRef.current);
       clearTimerRef.current = null;
@@ -43,7 +30,7 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
     setIdentifier(id);
     setOptions(opts || null);
     setVisible(true);
-  }, [user, navigation]);
+  }, []);
   
   const hideUserProfile = useCallback(() => {
     setVisible(false);

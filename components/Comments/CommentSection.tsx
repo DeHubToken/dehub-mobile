@@ -18,6 +18,8 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import CommentItem from "./CommentItem";
+import CommentContextMenu from "./CommentContextMenu";
+import type { CommentLayout } from "./CommentContextMenu";
 import Avatar from "../common/Avatar";
 import { useAuth, useAuthActions } from "../../context/AuthContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -26,6 +28,7 @@ import {
   postComment,
   likeComment,
   editComment,
+  deleteComment,
   Comment,
 } from "../../services/nft.service";
 import { getAvatarUrl, toastError } from "../../libs";
@@ -63,12 +66,20 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const [flatComments, setFlatComments] = useState<FlatComment[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [highlightedId, setHighlightedId] = useState<number | null>(
+    highlightCommentId != null ? Number(highlightCommentId) : null
+  );
 
   // Input state
   const [inputText, setInputText] = useState("");
   const [replyingTo, setReplyingTo] = useState<Comment | null>(null);
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
   const [posting, setPosting] = useState(false);
+
+  // Context menu state (WhatsApp/IG-style long-press)
+  const [contextComment, setContextComment] = useState<Comment | null>(null);
+  const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
+  const [contextMeta, setContextMeta] = useState<{ liked: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
 
   const userAddress = user?.address || user?.walletAddress || undefined;
   const userAvatar = getAvatarUrl(user?.avatarImageUrl || "");
@@ -77,6 +88,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const inputLift = kbVisible ? kbHeight : 0;
 
   // Build flat list with replies inline after their parent
+  // If highlightCommentId is a reply, its parent is moved to the top with the
+  // highlighted reply as the first child.
   const buildFlatComments = useCallback((rawComments: Comment[]): FlatComment[] => {
     // Create a set of all reply IDs
     const replyIdSet = new Set<number>();
@@ -93,23 +106,62 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     // Get top-level comments (not in any replyIds)
     const topLevel = rawComments.filter((c) => !replyIdSet.has(Number(c.id)));
 
-    // Build flat list with replies immediately after their parent
-    const flat: FlatComment[] = [];
-    topLevel.forEach((c) => {
+    // Determine if highlighted comment is a reply
+    const hlId = highlightCommentId != null ? Number(highlightCommentId) : undefined;
+    const hlIsReply = hlId != null && replyIdSet.has(hlId);
+    let hlParentId: number | undefined;
+    if (hlIsReply) {
+      for (const c of rawComments) {
+        if (Array.isArray(c.replyIds) && c.replyIds.map(Number).includes(hlId!)) {
+          hlParentId = Number(c.id);
+          break;
+        }
+      }
+    }
+
+    // Helper: emit a parent with its replies (highlighted reply first if applicable)
+    const emitted = new Set<number>();
+    const emitParent = (c: Comment, flat: FlatComment[]) => {
+      const cId = Number(c.id);
+      if (emitted.has(cId)) return;
+      emitted.add(cId);
       flat.push({ ...c, isReply: false });
-      // Add replies in order
       if (Array.isArray(c.replyIds)) {
-        c.replyIds.forEach((rid) => {
-          const reply = byId.get(Number(rid));
+        const replyNums = c.replyIds.map(Number);
+        // Emit highlighted reply first
+        if (hlId != null && replyNums.includes(hlId)) {
+          const hReply = byId.get(hlId);
+          if (hReply && !emitted.has(hlId)) {
+            emitted.add(hlId);
+            flat.push({ ...hReply, isReply: true });
+          }
+        }
+        // Remaining replies in original order
+        for (const rid of c.replyIds) {
+          const rId = Number(rid);
+          if (emitted.has(rId)) continue;
+          const reply = byId.get(rId);
           if (reply) {
+            emitted.add(rId);
             flat.push({ ...reply, isReply: true });
           }
-        });
+        }
       }
-    });
+    };
+
+    const flat: FlatComment[] = [];
+
+    // If highlighted comment is a reply, emit its parent first
+    if (hlIsReply && hlParentId != null) {
+      const parent = byId.get(hlParentId);
+      if (parent) emitParent(parent, flat);
+    }
+
+    // Emit remaining top-level comments
+    topLevel.forEach((c) => emitParent(c, flat));
 
     return flat;
-  }, []);
+  }, [highlightCommentId]);
 
   // Load comments
   const loadComments = useCallback(async (isRefresh = false) => {
@@ -122,8 +174,18 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       });
 
       const { items } = res.result;
+      console.log("commentid", highlightCommentId,"Loaded comments:", items); // --- IGNORE ---
       const flat = buildFlatComments(items);
       setFlatComments(flat);
+
+      // Set highlight on initial load if commentId matches
+      if (!isRefresh && highlightCommentId != null) {
+        const hlId = Number(highlightCommentId);
+        if (flat.some((c) => Number(c.id) === hlId)) {
+          setHighlightedId(hlId);
+          setTimeout(() => setHighlightedId(null), 4000);
+        }
+      }
     } catch (e) {
       console.error("Failed to load comments:", e);
       if (!isRefresh) toastError("Failed to load comments");
@@ -283,8 +345,84 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     showUserProfile(userId);
   }, [showUserProfile]);
 
+  // Long-press → open context menu
+  const handleCommentLongPress = useCallback(
+    (comment: Comment, layout: CommentLayout, extra: { liked: boolean; isOwnComment: boolean; isReply: boolean }) => {
+      setContextComment(comment);
+      setContextLayout(layout);
+      setContextMeta(extra);
+    },
+    []
+  );
+
+  const closeContextMenu = useCallback(() => {
+    setContextComment(null);
+    setContextLayout(null);
+    setContextMeta(null);
+  }, []);
+
+  // Context menu action: reply
+  const handleContextReply = useCallback(() => {
+    if (contextComment) handleReply(contextComment);
+  }, [contextComment, handleReply]);
+
+  // Context menu action: edit
+  const handleContextEdit = useCallback(() => {
+    if (contextComment) handleStartEdit(contextComment);
+  }, [contextComment, handleStartEdit]);
+
+  // Context menu action: like
+  const handleContextLike = useCallback(async () => {
+    if (!contextComment) return;
+    try {
+      const result = await likeComment({ commentId: contextComment.id });
+      // Optimistic update in flat list
+      if (result && typeof result.liked === 'boolean') {
+        setFlatComments((prev) =>
+          prev.map((c) =>
+            c.id === contextComment.id
+              ? { ...c, isLiked: result.liked, likeCount: result.likes }
+              : c
+          )
+        );
+      }
+    } catch (e) {
+      console.error('Failed to like comment:', e);
+    }
+  }, [contextComment]);
+
+  // Context menu action: delete
+  const handleContextDelete = useCallback(async () => {
+    if (!contextComment) return;
+    const commentId = contextComment.id;
+    const wasReply = contextMeta?.isReply;
+    // Optimistic removal
+    setFlatComments((prev) => {
+      if (wasReply) {
+        return prev.filter((c) => c.id !== commentId);
+      }
+      // Top-level: remove comment and all its replies
+      const idx = prev.findIndex((c) => c.id === commentId);
+      if (idx === -1) return prev;
+      let endIdx = idx + 1;
+      while (endIdx < prev.length && prev[endIdx].isReply) endIdx++;
+      const next = [...prev];
+      next.splice(idx, endIdx - idx);
+      return next;
+    });
+    try {
+      await deleteComment({ commentId });
+    } catch (e) {
+      console.error('Failed to delete comment:', e);
+      toastError('Failed to delete comment');
+      // Revert by reloading
+      await loadComments(true);
+    }
+  }, [contextComment, contextMeta, loadComments]);
+
   // Render a single comment (either top-level or reply)
   const renderComment = useCallback(({ item }: { item: FlatComment }) => {
+    const isHighlighted = highlightedId != null && Number(item.id) === highlightedId;
     return (
       <View className={item.isReply ? "pl-6" : ""}>
         <CommentItem
@@ -294,12 +432,14 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           onLike={handleLikeComment}
           onUserPress={handleUserPress}
           onEdit={handleStartEdit}
+          onLongPress={handleCommentLongPress}
           tokenId={tokenId}
           contentType={contentType}
+          highlighted={isHighlighted}
         />
       </View>
     );
-  }, [handleReply, handleLikeComment, handleUserPress, handleStartEdit, tokenId, contentType]);
+  }, [handleReply, handleLikeComment, handleUserPress, handleStartEdit, handleCommentLongPress, tokenId, contentType, highlightedId]);
 
   const keyExtractor = useCallback((item: FlatComment) => `comment-${item.id}`, []);
 
@@ -405,6 +545,23 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           </TouchableOpacity>
         </View>
       </View>
+
+      {/* WhatsApp/IG-style context menu overlay */}
+      <CommentContextMenu
+        visible={contextComment !== null}
+        comment={contextComment}
+        layout={contextLayout}
+        isReply={contextMeta?.isReply}
+        isOwnComment={contextMeta?.isOwnComment ?? false}
+        liked={contextMeta?.liked}
+        canDelete={contextMeta?.isOwnComment}
+        onClose={closeContextMenu}
+        onReply={contextMeta?.isReply ? undefined : handleContextReply}
+        onEdit={contextMeta?.isOwnComment ? handleContextEdit : undefined}
+        onDelete={contextMeta?.isOwnComment ? handleContextDelete : undefined}
+        onLike={handleContextLike}
+        tokenId={tokenId}
+      />
     </View>
   );
 };

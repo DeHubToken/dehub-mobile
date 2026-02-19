@@ -196,6 +196,8 @@ const FeedScreen = () => {
   
   // Track current visible index for syncing between views
   const currentVisibleIndex = useRef(0);
+  const pendingScrollIndex = useRef<number | null>(null);
+  const feedLoadingRef = useRef(false);
 
   // Filter state
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
@@ -247,7 +249,8 @@ const FeedScreen = () => {
   // Fetch feed data (shared between both views)
   const fetchFeedData = useCallback(
     async (page: number, refresh = false) => {
-      if (feedLoading && !refresh) return;
+      if (feedLoadingRef.current && !refresh) return;
+      feedLoadingRef.current = true;
 
       if (refresh) {
         setFeedRefreshing(true);
@@ -275,11 +278,12 @@ const FeedScreen = () => {
       } catch (error) {
         console.error("[FeedScreen] Feed fetch error:", error);
       } finally {
+        feedLoadingRef.current = false;
         setFeedLoading(false);
         setFeedRefreshing(false);
       }
     },
-    [feedParams, feedLoading]
+    [feedParams]
   );
 
   // Load feed data on mount
@@ -318,17 +322,18 @@ const FeedScreen = () => {
     }
   }, [fetchFeedData, feedLoading, feedHasMore, feedPage]);
 
-  // Estimated height of each feed card for scroll offset calculation
-  const ESTIMATED_FEED_ITEM_HEIGHT = 450;
-
-  // getItemLayout for feed list
-  const getFeedItemLayout = useCallback(
-    (_: any, index: number) => ({
-      length: ESTIMATED_FEED_ITEM_HEIGHT,
-      offset: ESTIMATED_FEED_ITEM_HEIGHT * index,
-      index,
-    }),
-    []
+  // Handle scroll-to-index failure (target item not yet rendered)
+  const handleScrollToIndexFailed = useCallback(
+    (info: { index: number; highestMeasuredFrameIndex: number; averageItemLength: number }) => {
+      const offset = info.averageItemLength * info.index;
+      feedListRef.current?.scrollToOffset({ offset, animated: false });
+      setTimeout(() => {
+        if (info.index <= feedData.length - 1) {
+          feedListRef.current?.scrollToIndex({ index: info.index, animated: false });
+        }
+      }, 200);
+    },
+    [feedData.length]
   );
 
   // Track visible item in feed view
@@ -378,8 +383,21 @@ const FeedScreen = () => {
   // When clicking a grid item, switch to feed view and snap to that item
   const handleGridItemPress = useCallback((index: number) => {
     currentVisibleIndex.current = index;
+    pendingScrollIndex.current = index;
     setIsGridView(false);
   }, []);
+
+  // Scroll feed list to target index when switching from grid to feed
+  useEffect(() => {
+    if (!isGridView && pendingScrollIndex.current != null) {
+      const idx = pendingScrollIndex.current;
+      pendingScrollIndex.current = null;
+      const timer = setTimeout(() => {
+        feedListRef.current?.scrollToIndex({ index: idx, animated: false, viewPosition: 0 });
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isGridView]);
 
   // Toggle view mode and sync scroll position
   const toggleViewMode = useCallback(() => {
@@ -458,11 +476,11 @@ const FeedScreen = () => {
             renderItem={({ item }) => (
               <HomeFeedCard item={item as UnifiedFeedItem} />
             )}
-            getItemLayout={getFeedItemLayout}
-            initialScrollIndex={safeInitialIndex > 0 ? safeInitialIndex : undefined}
             onViewableItemsChanged={handleFeedViewableItemsChanged}
             viewabilityConfig={viewabilityConfig}
             contentContainerStyle={{ paddingBottom: 80 }}
+            onScrollToIndexFailed={handleScrollToIndexFailed}
+            initialNumToRender={15}
             refreshControl={
               <RefreshControl
                 refreshing={feedRefreshing}
