@@ -43,8 +43,8 @@ export const AuthService = {
         { isAuthRequired: false }
       );
       const augmentedUser = { ...response.user, authSignature: sigMeta } as any;
-      const needsUsername =
-        !augmentedUser.username || augmentedUser.username.trim().length === 0;
+      // Use isNewAccount from backend response to determine if username setup is needed
+      const needsUsername = !!(response as any)?.result?.isNewAccount;
       if (needsUsername) {
         // Store token immediately so username update calls are authenticated
         await setAuthToken(response.token);
