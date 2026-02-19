@@ -296,10 +296,11 @@ export async function getOrCreateAuthSignature(
 
   // If this appears to be a Web3Auth/AA flow (no injected.request), check deployment via AA provider
   const isWeb3Auth = !injected || typeof injected.request !== "function";
-  if (isWeb3Auth) {
-    // Ensure smart account is deployed BEFORE attempting to sign
-    await ensureSmartAccountDeployed(address, chainId);
-  }
+  // COMMENTED OUT: Backend now handles undeployed smart accounts
+  // if (isWeb3Auth) {
+  //   // Ensure smart account is deployed BEFORE attempting to sign
+  //   await ensureSmartAccountDeployed(address, chainId);
+  // }
 
   // Sign the message: injected personal_sign if present, else Web3Auth service helper
   let signature: string;
