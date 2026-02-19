@@ -8,15 +8,10 @@ import React, {
 import {
   View,
   Text,
-  ScrollView,
-  Keyboard,
   Platform,
   AppState,
   KeyboardAvoidingView,
 } from "react-native";
-import ActionsRow from "./ActionsRow";
-import CreatorRow from "./CreatorRow";
-import DescriptionBlock from "./DescriptionBlock";
 import VideoArea from "./VideoArea";
 import { useAuth } from "../../context/AuthContext";
 import { useStreamAccessInfo } from "../../libs/validators.util";
@@ -25,12 +20,10 @@ import {
   followUser,
   unfollowUser,
 } from "../../services/user.service";
-import { formatDistance } from "date-fns";
-import { formatCompactNumber } from "../../libs/numbers.util";
-import LiveChatPanel from "../LiveProducer/LiveChatPanel";
+import { LinearGradient } from "expo-linear-gradient";
 import ReactionOverlay from "../LiveProducer/ReactionOverlay";
-import ReactionBar from "../LiveProducer/ReactionBar";
 import TipAnimationsOverlay from "../LiveProducer/TipAnimationsOverlay";
+import GiftModal from "../Tip/GiftModal";
 import { useTipAnimations } from "../../hooks/useTipAnimations";
 import { useReactions } from "../../hooks/useReactions";
 import type { ReactionType } from "../LiveProducer/ReactionOverlay";
@@ -42,10 +35,17 @@ import {
 } from "../../services/enums/livestream.enum";
 import { toastError } from "../../libs";
 import { useStreamDetails } from "../../hooks/useStreamDetails";
-import { Eye } from "lucide-react-native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { createViewCountUpdater, seedViewerStats } from "../../libs/viewers.util";
+import { likeLiveStream } from "../../services/live.service";
+import { shareProfile } from "../../libs/misc";
+import { WEBSITE_LINK } from "../../config";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import LiveViewerHeader from "../LiveViewer/LiveViewerHeader";
+import LiveViewerChat from "../LiveViewer/LiveViewerChat";
+import LiveViewerReactionsBar from "../LiveViewer/LiveViewerReactionsBar";
+import LiveViewerStatusOverlay from "../LiveViewer/LiveViewerStatusOverlay";
 
 type LiveStreamPlayerProps = {
   // Minimal inputs; additional params may be forwarded from route
@@ -301,6 +301,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     status: StreamActivityType | "SYSTEM";
     address?: string;
     createdAt: number;
+    /** Full user reference from socket `user` / REST `account` field. */
+    user?: import("../LiveViewer/LiveViewerChat").UserReference;
     meta?: any;
     optimistic?: boolean;
   };
@@ -343,6 +345,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         status: Activity["status"];
         meta?: any;
         address?: string;
+        user?: Activity["user"];
       }
     ) => {
       const next: Activity = {
@@ -350,6 +353,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         status: a.status,
         address: a.address,
         createdAt: a.createdAt ?? Date.now(),
+        user: a.user,
         meta: a.meta ?? {},
         optimistic: a.optimistic === true,
       };
@@ -568,6 +572,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         createdAt: it?.createdAt
           ? new Date(it.createdAt).getTime()
           : Date.now(),
+        // REST activities carry `account` as the userReferenceProjection
+        user: it?.account || it?.user || undefined,
         meta: it?.meta || {},
       }))
       .sort(
@@ -664,6 +670,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       const content = meta?.content || m?.content || m?.meta?.content;
       const username = m?.user?.username || meta?.username;
       const addr = m?.user?.address || meta?.address;
+      // Prefer nested user object (userReferenceProjection), fallback to account
+      const userRef = m?.user || m?.account || payload?.user || payload?.account || undefined;
       if (!content) return;
       const key = `${(addr || username || "").toLowerCase()}::${(
         content || ""
@@ -693,7 +701,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                   )?.i ?? -1;
           if (idx >= 0) {
             const existing = copy[idx];
-            copy[idx] = { ...existing, optimistic: false } as Activity;
+            copy[idx] = { ...existing, optimistic: false, user: userRef || existing.user } as Activity;
             return copy;
           }
           return prev;
@@ -703,6 +711,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       addActivity({
         status: StreamActivityType.MESSAGE,
         address: addr,
+        user: userRef,
         meta: {
           username,
           content,
@@ -711,22 +720,26 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       });
     });
     bind(LivestreamEvents.JoinStream, (data: any) => {
+      const userRef = data?.user || data?.account || undefined;
       addActivity({
         status: StreamActivityType.JOINED,
-        address: data?.user?.address,
+        address: userRef?.address || data?.address,
+        user: userRef,
         meta: {
-          username: data?.user?.username,
-          avatarImageUrl: data?.user?.avatarImageUrl,
+          username: userRef?.username || data?.username,
+          avatarImageUrl: userRef?.avatarImageUrl,
         },
       });
     });
     bind(LivestreamEvents.LeaveStream, (data: any) => {
+      const userRef = data?.user || data?.account || undefined;
       addActivity({
         status: StreamActivityType.LEFT,
-        address: data?.user?.address,
+        address: userRef?.address || data?.address,
+        user: userRef,
         meta: {
-          username: data?.user?.username,
-          avatarImageUrl: data?.user?.avatarImageUrl,
+          username: userRef?.username || data?.username,
+          avatarImageUrl: userRef?.avatarImageUrl,
         },
       });
     });
@@ -762,11 +775,12 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     bind(LivestreamEvents.TipStreamer, (payload: any) => {
       const amt = Number(payload?.gift?.meta?.amount || 0);
       const username = payload?.gift?.meta?.username || payload?.gift?.meta?.displayName;
+      // Prefer nested user/account ref for rich profile data
+      const tipUserRef = payload?.gift?.user || payload?.gift?.account || payload?.user || undefined;
       const senderRaw =
+        tipUserRef?.address ||
         payload?.gift?.meta?.address ||
         payload?.gift?.address ||
-        payload?.gift?.user?.address ||
-        payload?.user?.address ||
         "";
       const sender = String(senderRaw || "").toLowerCase();
       const me = String((user?.walletAddress || user?.address || "")).toLowerCase();
@@ -800,6 +814,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
               ...existing,
               optimistic: false,
               createdAt: now,
+              user: tipUserRef || existing.user,
               meta: { ...(existing.meta || {}), username, amount: amt },
             } as Activity;
             return copy;
@@ -810,6 +825,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
               status: StreamActivityType.TIP,
               address: sender,
               createdAt: now,
+              user: tipUserRef,
               meta: { username, amount: amt },
             } as Activity)
             .slice(-400);
@@ -820,6 +836,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       addActivity({
         status: StreamActivityType.TIP,
         address: sender,
+        user: tipUserRef,
         meta: { username, amount: amt },
       });
       // Enqueue tip visual effect for other users' gifts
@@ -832,8 +849,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     });
     // Reaction events from other viewers or self-echo
     bind(LivestreamEvents.StreamReaction as any, (data: any) => {
-      const type = data?.type as ReactionType;
-      const rUsername = data?.user?.username;
+      const type = (data?.reactionType || data?.type) as ReactionType;
+      const rUsername = data?.user?.username || data?.user?.displayName;
       if (type) addReaction(type, rUsername);
     });
     // Settings updates from streamer (e.g. chat toggled)
@@ -1117,270 +1134,226 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
   // Derive user vote for ActionsRow from isLiked field in stream entity
   const actionsUserVote = useMemo(() => {
-    // Backend now returns isLiked boolean on the stream entity
     if (typeof (streamEntity as any)?.isLiked === 'boolean') {
       return (streamEntity as any).isLiked ? 'like' : null;
     }
-    // Fallback to likesRecord for older backend responses
     const addr = (user?.walletAddress || user?.address || "").toLowerCase();
     const rec = (streamEntity?.likesRecord || {}) as Record<string, boolean>;
     return addr && rec && !!rec[addr] ? "like" : null;
   }, [user?.walletAddress, user?.address, streamEntity?.likesRecord, (streamEntity as any)?.isLiked]);
 
+  // Like/unlike handler for the reactions bar
+  const [likePending, setLikePending] = useState(false);
+  const handleLiveLike = useCallback(() => {
+    if (!streamId || !isLiveEffective) return;
+    if (likePending) return;
+    const isUnliking = actionsUserVote === "like";
+    requireAuth?.(async () => {
+      try {
+        setLikePending(true);
+        setLiveLikes((c) => (isUnliking ? Math.max(0, c - 1) : c + 1));
+        const res: any = await likeLiveStream(streamId, {});
+        const serverLikes = res?.likes ?? res?.result?.likes;
+        const serverIsLiked = res?.isLiked ?? res?.result?.isLiked;
+        if (typeof serverLikes === "number") setLiveLikes(serverLikes);
+      } catch {
+        setLiveLikes((c) => (isUnliking ? c + 1 : Math.max(0, c - 1)));
+      } finally {
+        setLikePending(false);
+      }
+    });
+  }, [streamId, isLiveEffective, likePending, actionsUserVote, requireAuth]);
+
+  // Share handler
+  const handleShare = useCallback(async () => {
+    const url = streamId
+      ? `${WEBSITE_LINK}/app/post/${streamId}`
+      : tokenId
+        ? `${WEBSITE_LINK}/app/post/${tokenId}`
+        : null;
+    if (!url) return;
+    await shareProfile(url, `Check out this stream ${url}`);
+  }, [streamId, tokenId]);
+
+  // Gift modal state
+  const [giftOpen, setGiftOpen] = useState(false);
+  const handleGiftPress = useCallback(() => {
+    if (!isLiveEffective || !isSignedIn) return;
+    requireAuth?.(() => setGiftOpen(true));
+  }, [isLiveEffective, isSignedIn, requireAuth]);
+
+  // Chat send handler
+  const handleSendMessage = useCallback(
+    (content: string) => {
+      if (!content.trim() || !streamId || !isSignedIn) return;
+      const addr = (user?.walletAddress || user?.address || "").toLowerCase();
+      const username = (user as any)?.username || "You";
+      const key = `${(addr || username || "").toLowerCase()}::${content.trim()}`;
+      const idx = activities.length;
+      try {
+        rememberOptimistic(key, idx);
+      } catch {}
+      addActivity({
+        status: StreamActivityType.MESSAGE,
+        address: addr,
+        meta: { username, content },
+        createdAt: Date.now(),
+        optimistic: true,
+      });
+      socketEmitAuthed(LivestreamEvents.SendMessage, { streamId, content });
+    },
+    [streamId, isSignedIn, user, activities.length, rememberOptimistic, addActivity, socketEmitAuthed]
+  );
+
+  // Safe area insets for fullscreen layout
+  const insets = useSafeAreaInsets();
+
+  // Determine status overlay type
+  const overlayStatus = useMemo(() => {
+    if (streamLoading && !streamEntity) return "loading" as const;
+    if (isPausedEffective && isLiveEffective) return "paused" as const;
+    if (isEndedEffective) return "ended" as const;
+    if (isScheduledEffective) return "scheduled" as const;
+    if (isOfflineEffective) return "offline" as const;
+    return null;
+  }, [streamLoading, streamEntity, isPausedEffective, isLiveEffective, isEndedEffective, isScheduledEffective, isOfflineEffective]);
+
   return (
-    <View className="flex-1">
-      {/* Tip Animations Overlay (renders above everything) */}
-      <TipAnimationsOverlay items={tipEffects} />
-      {isEndedEffective ? (
-        <View className="px-4 py-10 items-center justify-center bg-black/50 border-b border-white/10">
-          <Text className="text-white font-semibold">
-            This stream has ended
-          </Text>
-          {endedAtDate ? (
-            <Text className="text-white/70 text-[12px] mt-1">
-              Ended{" "}
-              {formatDistance(new Date(endedAtDate), new Date(), {
-                addSuffix: true,
-              })}
-            </Text>
-          ) : null}
-        </View>
-      ) : isScheduledEffective ? (
-        <View className="px-4 py-10 items-center justify-center bg-black/50 border-b border-white/10">
-          <Text className="text-white font-semibold">
-            This stream is scheduled
-          </Text>
-          {scheduledForDate ? (
-            <Text className="text-white/70 text-[12px] mt-1">
-              Scheduled for{" "}
-              {formatDistance(new Date(scheduledForDate), new Date(), {
-                addSuffix: true,
-              })}
-            </Text>
-          ) : null}
-        </View>
-      ) : isOfflineEffective ? (
-        <View className="px-4 py-10 items-center justify-center bg-black/50 border-b border-white/10">
-          <Text className="text-white font-semibold">
-            This stream is offline
-          </Text>
-          {/* {createdAtDate ? (
-            <Text className="text-white/70 text-[12px] mt-1">
-              Last updated {formatDistance(new Date(createdAtDate), new Date(), { addSuffix: true })}
-            </Text>
-          ) : null} */}
-        </View>
-      ) : (
-        <VideoArea
-          isTranscoding={false}
-          isLockedOrPPV={!!isLockedOrPPV}
-          lockedFetchLoading={streamLoading && isLockedOrPPV}
-          effectiveVideoUrl={effectiveVideoUrl}
-          accessInfo={resolvedAccessInfo}
-          streamInfo={streamEntity?.streamInfo as any}
-          minter={(streamEntity?.address as any) || (minterProp as any)}
-          tokenId={(streamEntity?.tokenId as any) || (tokenId as any)}
-          onProgress={() => {
-            /* no view recording for live playback here */
-          }}
-          isLive={true}
-        />
-      )}
-      {/* Stream paused overlay with countdown */}
-      {streamPaused && isLiveEffective && (
-        <View className="absolute inset-0 z-30 items-center justify-center bg-black/70" pointerEvents="none">
-          <View className="bg-theme-neutrals-900/90 rounded-2xl px-6 py-5 items-center border border-white/10 mx-8">
-            <Text className="text-yellow-400 text-2xl mb-2">⏸</Text>
-            <Text className="text-white font-semibold text-sm">Stream Paused</Text>
-            <Text className="text-white/70 text-xs mt-1 text-center">Streamer may be reconnecting…</Text>
-            {graceCountdown > 0 && (
-              <View className="mt-3 items-center">
-                <Text className="text-white font-bold text-2xl">
-                  {Math.floor(graceCountdown / 60)}:{String(graceCountdown % 60).padStart(2, '0')}
-                </Text>
-                <Text className="text-white/50 text-[10px] mt-1">Stream will end if not resumed</Text>
-              </View>
-            )}
-          </View>
-        </View>
-      )}
-      {/* Compact meta row under player */}
-      <View className="px-4 py-2 bg-black/40 border-t border-white/10 flex-row items-center justify-between">
-        <View className="flex-row items-center">
-          <View
-            className="w-2 h-2 rounded-full mr-2"
-            style={{ backgroundColor: isPausedEffective ? "#eab308" : isLiveEffective ? "#ef4444" : "#6b7280" }}
-          />
-          <Text className="text-white font-semibold text-[11px] mr-3">
-            {isPausedEffective
-              ? "PAUSED"
-              : isLiveEffective
-              ? "LIVE"
-              : isEndedEffective
-              ? "ENDED"
-              : isScheduledEffective
-              ? "SCHEDULED"
-              : "OFFLINE"}
-          </Text>
-          {isEndedEffective ? (
-            endedDurationText ? (
-              <Text className="text-white/70 text-[11px]">
-                Duration {endedDurationText}
-              </Text>
-            ) : null
-          ) : !isOfflineEffective && createdAtDate ? (
-            <Text className="text-white/70 text-[11px]">
-              {formatDistance(new Date(createdAtDate), new Date(), {
-                addSuffix: true,
-              })}
-            </Text>
-          ) : null}
-        </View>
-        <View className="flex-row items-center">
-          <Eye color="#fff" size={14} />
-          <Text className="text-white/80 text-[11px] ml-1">
-            {Math.max(0, liveViewers)}
-          </Text>
-          <Text className="text-white/60 text-[11px] ml-3">
-            Peak: {Math.max(0, peakViewers)}
-          </Text>
-        </View>
-      </View>
-      {/* Body: top details fixed + chat fills to bottom (only chat scrolls) */}
-      <KeyboardAvoidingView
-        className="flex-1"
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 30}
-      >
-        <View className="px-4 pt-2">
-          <Text
-            className="text-theme-neutrals-100 font-semibold text-base"
-            numberOfLines={2}
-          >
-            {(resolvedTitle || "").slice(0, 60)}
-            {resolvedTitle && resolvedTitle.length > 60 ? "…" : ""}
-          </Text>
-          {/* <Text className="text-theme-neutrals-400 text-[11px] mt-1">
-            {resolvedViews.toLocaleString()} views • {formatCompactNumber(resolvedTotalTips)} tips • {formatDistance(new Date(createdAtDate), new Date(), { addSuffix: true })}
-            {formatCompactNumber(resolvedTotalTips)} tips 
-          </Text> */}
-          <ActionsRow
-            tokenId={(streamEntity?.tokenId as any) || (tokenId as any)}
+    <View className="flex-1 bg-black">
+      {/* Full-screen video player as background */}
+      <View className="absolute inset-0">
+        {(isLiveEffective || isEndedEffective) && effectiveVideoUrl ? (
+          <VideoArea
+            isTranscoding={false}
+            isLockedOrPPV={!!isLockedOrPPV}
+            lockedFetchLoading={streamLoading && isLockedOrPPV}
+            effectiveVideoUrl={effectiveVideoUrl}
+            accessInfo={resolvedAccessInfo}
+            streamInfo={streamEntity?.streamInfo as any}
             minter={(streamEntity?.address as any) || (minterProp as any)}
-            likes={liveLikes}
-            dislikes={0}
-            userVote={actionsUserVote}
-            chainId={undefined as any}
-            mintTxHash={undefined as any}
+            tokenId={(streamEntity?.tokenId as any) || (tokenId as any)}
+            onProgress={() => {}}
             isLive={true}
-            streamId={streamId as any}
-            liveActive={!!isLiveEffective}
-            recipientAddress={(streamEntity?.address as any) || ""}
-            stream={streamEntity}
-            onGiftSent={onGiftOptimistic}
+            fullscreen
           />
-          {/* Reaction bar for viewers */}
-          {isLiveEffective && (
-            <ReactionBar
-              onReact={handleSendReaction}
-              disabled={!isSignedIn}
+        ) : (
+          <View className="flex-1 bg-black" />
+        )}
+      </View>
+
+      {/* Overlay container on top of video */}
+      <View className="absolute inset-0" pointerEvents="box-none">
+        {/* Top gradient for readability */}
+        <LinearGradient
+          colors={["rgba(0,0,0,0.7)", "rgba(0,0,0,0)"]}
+          style={{ height: 120 + insets.top, position: "absolute", top: 0, left: 0, right: 0 }}
+          pointerEvents="none"
+        />
+
+        {/* Bottom gradient for readability */}
+        <LinearGradient
+          colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.85)"]}
+          style={{ height: 320, position: "absolute", bottom: 0, left: 0, right: 0 }}
+          pointerEvents="none"
+        />
+
+        {/* Main content layout */}
+        <KeyboardAvoidingView
+          className="flex-1"
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          keyboardVerticalOffset={0}
+        >
+          <View className="flex-1" pointerEvents="box-none" style={{ paddingTop: insets.top }}>
+            {/* Header: Creator info + LIVE badge + viewers + close */}
+            <LiveViewerHeader
+              creator={creator}
+              creatorLoading={creatorLoading}
+              isFollowing={isFollowing}
+              followLoading={followLoading}
+              onFollow={handleFollow}
+              onUnfollow={handleUnfollow}
+              viewerAddress={(user?.walletAddress || user?.address) as string}
+              isLive={isLiveEffective && !isPausedEffective}
+              isPaused={isPausedEffective}
+              isEnded={isEndedEffective}
+              viewerCount={liveViewers}
+              fallbackMinter={minterProp}
             />
-          )}
-          <CreatorRow
-            key={
-              creatorLoading
-                ? "creator-loading"
-                : `creator-${
-                    creator?.walletAddress || creator?.address || "none"
-                  }`
-            }
-            loading={creatorLoading}
-            creator={creator}
-            viewerAddress={(user?.walletAddress || user?.address) as string}
-            isFollowing={isFollowing}
-            followLoading={followLoading}
-            onFollow={handleFollow}
-            onUnfollow={handleUnfollow}
-            fallbackMinter={minterProp}
-          />
-          <DescriptionBlock
-            description={resolvedDescription}
-            showDesc={true}
-            onToggle={() => {
-              /* could add collapsible later */
-            }}
-          />
-        </View>
-        {/* Chat section */}
-        <View className="px-4 pb-4 flex-1">
-          <View className="mt-2 rounded-2xl border border-white/10 overflow-hidden flex-1">
-            <LiveChatPanel
-              streamId={(streamId as any) || ""}
-              live={true}
-              visible
-              onClose={() => {
-                /* no-op in stacked mode */
-              }}
-              chatEnabled={!!canChat && !!isLiveEffective && liveChatEnabled}
-              autoJoinRoom={false}
-              phase={
-                isScheduledEffective
-                  ? "scheduled"
-                  : isEndedEffective
-                  ? "ended"
-                  : "live"
-              }
-              socketEmit={(evt, payload, ack) => {
-                if (
-                  evt === LivestreamEvents.JoinStream &&
-                  ownerStatus !== "viewer"
-                )
-                  return;
-                // Remember optimistic message key right before sending to server
-                if (evt === LivestreamEvents.SendMessage && payload?.content) {
-                  const addr = (
-                    user?.walletAddress ||
-                    user?.address ||
-                    ""
-                  ).toLowerCase();
-                  const username = (user as any)?.username;
-                  const key = `${(
-                    addr ||
-                    username ||
-                    ""
-                  ).toLowerCase()}::${String(payload?.content).trim()}`;
-                  const idx = activities.length; // predicted index after push
-                  try {
-                    (rememberOptimistic as any)(key, idx);
-                  } catch {}
-                }
-                socketEmitAuthed(evt, payload, ack);
-              }}
-              activities={activities}
-              addActivity={addActivity}
-              mode="stack"
-            />
-            {(!isLiveEffective ||
-              !canChat ||
-              isEndedEffective ||
-              isScheduledEffective) && (
-              <View className="px-4 py-3 bg-black/40 border-t border-white/10">
-                <Text className="text-white/60 text-[11px]">
-                  {isScheduledEffective
-                    ? "Chat will open when the stream goes live."
-                    : isEndedEffective
-                    ? "Chat is read-only. Stream has ended."
-                    : !isLiveEffective
-                    ? "Chat is available when the stream is live."
-                    : "Sign in and unlock access to participate in chat."}
+
+            {/* Stream title - below header */}
+            {resolvedTitle ? (
+              <View className="px-4 mt-1" pointerEvents="none">
+                <Text
+                  className="text-white text-sm font-semibold"
+                  numberOfLines={1}
+                  style={{ textShadowColor: "rgba(0,0,0,0.8)", textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 3 }}
+                >
+                  {resolvedTitle}
                 </Text>
               </View>
-            )}
+            ) : null}
+
+            {/* Middle area - transparent, shows video */}
+            <View className="flex-1" pointerEvents="box-none" />
+
+            {/* Bottom section: chat + reactions + input */}
+            <View pointerEvents="box-none" style={{ paddingBottom: Math.max(insets.bottom, 8) }}>
+              {/* Chat overlay */}
+              <LiveViewerChat
+                activities={activities}
+                canSend={!!canChat && !!isLiveEffective}
+                isLive={isLiveEffective}
+                isEnded={isEndedEffective}
+                isScheduled={isScheduledEffective}
+                onSendMessage={handleSendMessage}
+                onGiftPress={handleGiftPress}
+                chatEnabled={liveChatEnabled}
+              />
+
+              {/* Reactions bar */}
+              <LiveViewerReactionsBar
+                onReact={handleSendReaction}
+                onLike={handleLiveLike}
+                onShare={handleShare}
+                disabled={!isSignedIn || !isLiveEffective}
+                likeCount={liveLikes}
+                isLiked={actionsUserVote === "like"}
+                likePending={likePending}
+                isLive={isLiveEffective}
+              />
+            </View>
           </View>
-        </View>
-      </KeyboardAvoidingView>
-      {/* Floating Reaction Bubbles — absolute so they float over all content */}
-      <ReactionOverlay reactions={reactions} onRemove={removeReaction} />
+        </KeyboardAvoidingView>
+
+        {/* Floating Reaction Bubbles - right side */}
+        <ReactionOverlay reactions={reactions} onRemove={removeReaction} />
+
+        {/* Tip Animations Overlay */}
+        <TipAnimationsOverlay items={tipEffects} />
+
+        {/* Status overlays: paused/ended/scheduled/offline/loading */}
+        <LiveViewerStatusOverlay
+          status={overlayStatus}
+          graceCountdown={graceCountdown}
+          scheduledForDate={scheduledForDate}
+          endedAtDate={endedAtDate}
+          startedAtDate={startedAtDate}
+        />
+      </View>
+
+      {/* Gift Modal */}
+      <GiftModal
+        open={giftOpen}
+        onOpenChange={setGiftOpen}
+        tokenId={((streamEntity?.tokenId as number) || (tokenId as number)) || 0}
+        toAddress={((streamEntity?.address as string) || (minterProp as string) || "") as string}
+        stream={streamEntity || { _id: streamId }}
+        onSent={({ amount, message }) => {
+          try {
+            onGiftOptimistic({ amount, message });
+          } catch {}
+        }}
+      />
     </View>
   );
 };

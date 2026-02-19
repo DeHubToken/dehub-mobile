@@ -8,10 +8,20 @@
  * - Short timestamps (1s, 1m, 1h, 1d, 1w, 1mo, 1y)
  */
 import React, { memo, useCallback, useState, useRef, useMemo } from "react";
-import { View, Text, TouchableOpacity, Animated } from "react-native";
+import { View, Text, TouchableOpacity, Animated, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Avatar from "../common/Avatar";
+import VoiceNotePlayer from "./VoiceNotePlayer";
 import { getAvatarUrl } from "../../libs";
+import { buildCdnPath } from "../../libs/misc";
+
+/** Resolve a media path: local file URIs pass through, relative paths go through CDN. */
+const resolveMediaUrl = (path: string): string => {
+  if (path.startsWith('file://') || path.startsWith('/') || path.startsWith('http://') || path.startsWith('https://')) {
+    return path;
+  }
+  return buildCdnPath(path) ?? path;
+};
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useAuth } from "../../context/AuthContext";
 import { LikeCommentResult } from "../../services/nft.service";
@@ -266,16 +276,51 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             </View>
 
             {/* Comment content with @mentions bolded */}
-            <Text className="text-sm text-theme-neutrals-100 mt-1">
-              {parsedContent.map((part, idx) => (
-                <Text
-                  key={idx}
-                  className={part.isMention ? "font-bold text-theme-neutrals-100" : "font-normal text-theme-neutrals-300"}
-                >
-                  {part.text}
-                </Text>
-              ))}
-            </Text>
+            {comment.content ? (
+              <Text className="text-sm text-theme-neutrals-100 mt-1">
+                {parsedContent.map((part, idx) => (
+                  <Text
+                    key={idx}
+                    className={part.isMention ? "font-bold text-theme-neutrals-100" : "font-normal text-theme-neutrals-300"}
+                  >
+                    {part.text}
+                  </Text>
+                ))}
+              </Text>
+            ) : null}
+
+            {/* Media content: image */}
+            {comment.imageUrl ? (
+              <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-800" style={{ maxWidth: 220 }}>
+                <Image
+                  source={{ uri: resolveMediaUrl(comment.imageUrl) }}
+                  style={{ width: 220, height: 165 }}
+                  resizeMode="cover"
+                />
+              </View>
+            ) : null}
+
+            {/* Media content: GIF */}
+            {comment.gifUrl ? (
+              <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-800" style={{ maxWidth: 220 }}>
+                <Image
+                  source={{ uri: comment.gifUrl }}
+                  style={{ width: 220, height: 165 }}
+                  resizeMode="cover"
+                />
+              </View>
+            ) : null}
+
+            {/* Media content: voice note */}
+            {comment.audioUrl ? (
+              <View className="mt-1.5 rounded-lg bg-theme-neutrals-800/60 px-2" style={{ maxWidth: 260 }}>
+                <VoiceNotePlayer
+                  audioUrl={resolveMediaUrl(comment.audioUrl)}
+                  duration={comment.audioDuration}
+                  compact
+                />
+              </View>
+            ) : null}
 
             {/* Actions row */}
             <View className="flex-row items-center mt-1.5 gap-4">

@@ -5,30 +5,30 @@ import {
   TouchableOpacity,
   Pressable,
   InteractionManager,
+  KeyboardAvoidingView,
+  Platform,
+  StatusBar,
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import NetInfo from "@react-native-community/netinfo";
+import { LinearGradient } from "expo-linear-gradient";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useLive } from "../hooks/use-live";
 import { useWebSocket } from "../context/WebSocketContext";
-import ProducerStatusBar from "../components/LiveProducer/ProducerStatusBar";
-import ProducerControlsBar from "../components/LiveProducer/ProducerControlsBar";
 import { useCameraPermissions } from "expo-camera";
-// NodeMediaCamera removed in WebRTC mode; keeping import commented for potential fallback.
-// import NodeMediaCamera from '../components/LiveProducer/NodeMediaCamera';
 import WebRTCPublisher from "../components/LiveProducer/WebRTCPublisher";
 import ExternalStreamingOverlay from "../components/LiveProducer/ExternalStreamingOverlay";
-import LiveChatPanel from "../components/LiveProducer/LiveChatPanel";
-import MetadataCard from "../components/LiveProducer/MetadataCard";
-import StreamDetailsTooltip from "../components/LiveProducer/StreamDetailsTooltip";
-import EphemeralMessages from "../components/LiveProducer/EphemeralMessages";
 import TipAnimationsOverlay from "../components/LiveProducer/TipAnimationsOverlay";
 import ReactionOverlay from "../components/LiveProducer/ReactionOverlay";
+import ProducerHeader from "../components/LiveProducer/ProducerHeader";
+import ProducerFloatingChat from "../components/LiveProducer/ProducerFloatingChat";
+import ProducerBottomBar from "../components/LiveProducer/ProducerBottomBar";
+import StreamDetailsTooltip from "../components/LiveProducer/StreamDetailsTooltip";
 import { useTipAnimations } from "../hooks/useTipAnimations";
 import { useReactions } from "../hooks/useReactions";
 import { useStreamDetails } from "../hooks/useStreamDetails";
-import { useEphemeralMessages } from "../hooks/useEphemeralMessages";
 import GlassModal from "../components/ui/GlassModal";
-import { LivestreamEvents, StreamActivityType, StreamStatus } from "../services/enums/livestream.enum";
+import { LivestreamEvents, StreamActivityType } from "../services/enums/livestream.enum";
 import { toastSuccess, toastError, toastInfo } from "../libs/toast";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { createViewCountUpdater, seedViewerStats } from "../libs/viewers.util";
@@ -46,7 +46,7 @@ type RouteParams = {
 const LiveProducerScreen: React.FC = () => {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
-  const { isSignedIn, needsUsername } = useAuth();
+  const { isSignedIn, needsUsername, user } = useAuth();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
   const { streamId, tokenId, ingestUrl, streamKey } = (route.params ||
@@ -59,8 +59,7 @@ const LiveProducerScreen: React.FC = () => {
   // console.log("LiveProducers", { connected });
   const [showEndConfirm, setShowEndConfirm] = useState(false);
 
-  const [chatVisible, setChatVisible] = useState(false);
-  // Legacy simulated messages removed; real chat handled inside LiveChatPanel
+  // Legacy simulated messages removed; real chat handled inside ProducerFloatingChat
   const [startedAt, setStartedAt] = useState<number | null>(null);
   // Unseen chat badge removed (panel itself can manage highlighting later)
   const [micMuted, setMicMuted] = useState(false);
@@ -91,7 +90,6 @@ const LiveProducerScreen: React.FC = () => {
     bindSocket((evt, handler) => socketOn(evt, handler));
   }, [bindSocket, socketOn]);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
-  const metaCardRef = useRef<View | null>(null);
   const [sourceRect, setSourceRect] = useState<{
     x: number;
     y: number;
@@ -101,7 +99,7 @@ const LiveProducerScreen: React.FC = () => {
   const inactivityTimerRef = useRef<NodeJS.Timeout | null>(null);
   const [uiHidden, setUiHidden] = useState(false);
   const uiTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const { ephemeral, addEphemeral, fadeAnim } = useEphemeralMessages();
+  const insets = useSafeAreaInsets();
   const {
     items: tipEffects,
     enqueueFromGift,
@@ -111,7 +109,6 @@ const LiveProducerScreen: React.FC = () => {
   // Stream paused/resumed state
   const [streamPaused, setStreamPaused] = useState(false);
   // Grace period countdown for PAUSED state
-  const [gracePeriodSeconds, setGracePeriodSeconds] = useState<number>(90);
   const [graceCountdown, setGraceCountdown] = useState<number>(0);
   const graceTimerRef = useRef<NodeJS.Timeout | null>(null);
   // Live settings state (mirrors stream entity settings, can be toggled while live)
@@ -158,7 +155,7 @@ const LiveProducerScreen: React.FC = () => {
     };
   }, [streamPaused, graceCountdown]);
 
-  // Centralized chat activity list for LiveChatPanel
+  // Centralized chat activity list for ProducerFloatingChat
   const [chatActivities, setChatActivities] = useState<
     Array<{
       status: any;
@@ -250,11 +247,13 @@ const LiveProducerScreen: React.FC = () => {
         status: mapStatus(it?.status),
         address: (it?.address as string | undefined) || (it?.user?.address as string | undefined),
         createdAt: it?.createdAt ? new Date(it.createdAt).getTime() : Date.now(),
+        // REST activities carry `account` as the userReferenceProjection
+        user: it?.account || it?.user || undefined,
         meta: it?.meta || it?.message?.meta || {
-          username: it?.user?.username,
+          username: it?.user?.username || it?.account?.username,
           content: it?.message?.content,
           amount: it?.gift?.meta?.amount,
-          avatarImageUrl: it?.user?.avatarImageUrl,
+          avatarImageUrl: it?.user?.avatarImageUrl || it?.account?.avatarImageUrl,
         },
       }))
       .sort((a: any, b: any) => (a.createdAt || 0) - (b.createdAt || 0));
@@ -302,13 +301,6 @@ const LiveProducerScreen: React.FC = () => {
     //   socketEmitAuthed(LivestreamEvents.JoinStream, { streamId });
     // }
   }, [connected, streamId, stage, socketEmitAuthed]);
-
-  // Throttle metadata for view count updates (500ms window)
-  const viewUpdateMetaRef = useRef<{
-    last: number;
-    latest: number;
-    timer: any;
-  }>({ last: 0, latest: 0, timer: null });
 
   // Socket event listeners: start, end, view count, like, tip
   useEffect(() => {
@@ -375,6 +367,8 @@ const LiveProducerScreen: React.FC = () => {
       if (!isNaN(amt) && amt > 0) setTotalTips((t) => t + amt);
       // Also reflect in chat activity
       const gift = payload?.gift;
+      // Prefer nested user/account ref for rich profile data
+      const tipUserRef = gift?.user || gift?.account || payload?.user || undefined;
       // Enqueue visual effect per tier
       enqueueFromGift({
         amount: gift?.meta?.amount,
@@ -384,9 +378,10 @@ const LiveProducerScreen: React.FC = () => {
       } as any);
       addChatActivity({
         status: StreamActivityType.TIP,
-        address: gift?.meta?.address,
+        address: tipUserRef?.address || gift?.meta?.address,
+        user: tipUserRef,
         meta: {
-          username: gift?.meta?.username || gift?.meta?.displayName,
+          username: tipUserRef?.displayName || tipUserRef?.username || gift?.meta?.username || gift?.meta?.displayName,
           amount: Number(gift?.meta?.amount) || 0,
         },
       });
@@ -398,6 +393,8 @@ const LiveProducerScreen: React.FC = () => {
       const content = meta?.content || m?.content || m?.meta?.content;
       const username = m?.user?.username || meta?.username;
       const addr = m?.user?.address || meta?.address;
+      // Prefer nested user object (userReferenceProjection), fallback to account
+      const userRef = m?.user || m?.account || payload?.user || payload?.account || undefined;
       if (!content) return;
       const key = `${(addr || username || '').toLowerCase()}::${String(content).trim()}`;
       // If we have a recent optimistic with the same key, confirm it instead of adding a duplicate
@@ -417,7 +414,7 @@ const LiveProducerScreen: React.FC = () => {
               )?.i ?? -1;
           if (idx >= 0) {
             const existing = copy[idx];
-            copy[idx] = { ...existing, optimistic: false } as any;
+            copy[idx] = { ...existing, optimistic: false, user: userRef || existing.user } as any;
             return copy;
           }
           return prev;
@@ -427,43 +424,42 @@ const LiveProducerScreen: React.FC = () => {
       addChatActivity({
         status: StreamActivityType.MESSAGE,
         address: addr,
+        user: userRef,
         meta: {
           username,
           content,
-          avatarImageUrl: m?.user?.avatarImageUrl || meta?.avatarImageUrl,
+          avatarImageUrl: userRef?.avatarImageUrl || meta?.avatarImageUrl,
         },
       });
-      addEphemeral({
-        id: String(Date.now()) + "-" + Math.random().toString(36).slice(2),
-        user: username || addr || "user",
-        message: content,
-        createdAt: Date.now(),
-      } as any);
     });
     make(LivestreamEvents.JoinStream, (data: any) => {
+      const userRef = data?.user || data?.account || undefined;
       addChatActivity({
         status: StreamActivityType.JOINED,
-        address: data?.user?.address,
+        address: userRef?.address || data?.address,
+        user: userRef,
         meta: {
-          username: data?.user?.username,
-          avatarImageUrl: data?.user?.avatarImageUrl,
+          username: userRef?.username || data?.username,
+          avatarImageUrl: userRef?.avatarImageUrl,
         },
       });
     });
     make(LivestreamEvents.LeaveStream, (data: any) => {
+      const userRef = data?.user || data?.account || undefined;
       addChatActivity({
         status: StreamActivityType.LEFT,
-        address: data?.user?.address,
+        address: userRef?.address || data?.address,
+        user: userRef,
         meta: {
-          username: data?.user?.username,
-          avatarImageUrl: data?.user?.avatarImageUrl,
+          username: userRef?.username || data?.username,
+          avatarImageUrl: userRef?.avatarImageUrl,
         },
       });
     });
     // Reaction events from viewers
     make(LivestreamEvents.StreamReaction, (data: any) => {
-      const type = data?.type as import('../components/LiveProducer/ReactionOverlay').ReactionType;
-      const username = data?.user?.username;
+      const type = (data?.reactionType || data?.type) as import('../components/LiveProducer/ReactionOverlay').ReactionType;
+      const username = data?.user?.displayName || data?.user?.username;
       if (type) addReaction(type, username);
     });
     // Settings update (echoed back when we PATCH, or from admin)
@@ -480,7 +476,6 @@ const LiveProducerScreen: React.FC = () => {
       console.log('[producer] stream paused', data);
       setStreamPaused(true);
       const grace = typeof data?.gracePeriodSeconds === 'number' ? data.gracePeriodSeconds : 90;
-      setGracePeriodSeconds(grace);
       setGraceCountdown(grace);
     });
     make(LivestreamEvents.StreamResumed, () => {
@@ -611,11 +606,63 @@ const LiveProducerScreen: React.FC = () => {
     }
   }, [streamId, streamEntity, stage, liveChatEnabled]);
 
+  // Send chat message from floating chat
+  const handleSendChatMessage = useCallback((content: string) => {
+    if (!content || stage !== "live") return;
+    const tempId = `msg-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    addChatActivity({
+      status: StreamActivityType.MESSAGE,
+      address: (user as any)?.address,
+      meta: { username: (user as any)?.username || "You", content, tempId },
+      createdAt: Date.now(),
+      optimistic: true,
+    });
+    socketEmitAuthed(LivestreamEvents.SendMessage, {
+      streamId: streamId || (streamEntity as any)?._id,
+      content,
+    });
+  }, [stage, user, addChatActivity, socketEmitAuthed, streamId, streamEntity]);
+
   const openEndConfirm = useCallback(() => {
     setShowEndConfirm(true);
   }, []);
 
   const closeEndConfirm = useCallback(() => setShowEndConfirm(false), []);
+
+  const handleConfirmEnd = useCallback(() => {
+    closeEndConfirm();
+    onEnd();
+  }, [closeEndConfirm, onEnd]);
+
+  // WebRTC publisher callbacks (stable refs to avoid anonymous fns in JSX)
+  const handlePublishStats = useCallback(
+    (s: { fps?: number; bitrateKbps?: number; dropped?: number }) => {
+      setPublishStats(s);
+    },
+    []
+  );
+
+  const handlePublisherConnected = useCallback(() => {
+    console.log("[LiveProducer] WebRTC connected");
+    setPublisherConnected(true);
+  }, [setPublisherConnected]);
+
+  const handlePublisherError = useCallback(
+    (err: any) => {
+      console.log("[LiveProducer] WebRTCPublisher error escalated:", err);
+      publisherFailed?.(typeof err === "string" ? err : err?.message || "Publisher error");
+      setPublisherConnected(false);
+      setCameraOff(true);
+      if (stage === "live" || stage === "starting") {
+        end().catch(() => {});
+      }
+    },
+    [publisherFailed, setPublisherConnected, stage, end]
+  );
+
+  const handleExitExternal = useCallback(() => {
+    setExternalMode(false);
+  }, []);
 
   useEffect(() => {
     if (!permission) return;
@@ -644,17 +691,10 @@ const LiveProducerScreen: React.FC = () => {
 
   const openDetails = useCallback(() => {
     if (!streamEntity) return;
-    if (metaCardRef.current && (metaCardRef.current as any).measureInWindow) {
-      (metaCardRef.current as any).measureInWindow(
-        (x: number, y: number, width: number, height: number) => {
-          setSourceRect({ x, y, width, height });
-          setShowDetailsModal(true);
-        }
-      );
-    } else {
-      setShowDetailsModal(true);
-    }
-  }, [streamEntity, streamId, streamKeyValue, streamKeyLoading]);
+    // Position the tooltip near the top of the screen (below header)
+    setSourceRect({ x: 16, y: insets.top + 80, width: 200, height: 30 });
+    setShowDetailsModal(true);
+  }, [streamEntity, insets.top]);
 
   const closeDetails = useCallback(() => {
     setShowDetailsModal(false);
@@ -692,21 +732,15 @@ const LiveProducerScreen: React.FC = () => {
 
   // positioning now handled inside tooltip component
 
-  // UI inactivity hide (except status bar & ephemeral)
+  // UI inactivity hide (controls auto-hide after 5s inactivity)
   const bumpUiTimer = useCallback(() => {
-    // Always reveal UI on interaction
     setUiHidden(false);
-    // Clear any existing timer
     if (uiTimerRef.current) clearTimeout(uiTimerRef.current);
-    // If chat panel is open, don't auto-hide controls
-    if (chatVisible) return;
-    // Otherwise, start inactivity timer
     uiTimerRef.current = setTimeout(() => {
       setUiHidden(true);
-      // close details modal if open
       setShowDetailsModal(false);
-    }, 4000);
-  }, [chatVisible]);
+    }, 5000);
+  }, []);
 
   useEffect(() => {
     bumpUiTimer();
@@ -714,16 +748,6 @@ const LiveProducerScreen: React.FC = () => {
       if (uiTimerRef.current) clearTimeout(uiTimerRef.current);
     };
   }, [bumpUiTimer]);
-
-  // Keep controls visible while chat is open; resume auto-hide when closed
-  useEffect(() => {
-    if (chatVisible) {
-      setUiHidden(false);
-      if (uiTimerRef.current) clearTimeout(uiTimerRef.current);
-    } else {
-      bumpUiTimer();
-    }
-  }, [chatVisible, bumpUiTimer]);
 
   // Debug: log stage transitions
   const prevStageRef = useRef(stage);
@@ -918,181 +942,276 @@ const LiveProducerScreen: React.FC = () => {
       className="flex-1"
       android_disableSound
     >
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="light-content"
+      />
       <View className="flex-1 bg-black">
-        {/* Tiered Tip Animations Overlay */}
-        <TipAnimationsOverlay items={tipEffects} />
-        {/* Floating Reaction Bubbles */}
-        <ReactionOverlay reactions={reactions} onRemove={removeReaction} />
-        {/* Publisher area or skeleton placeholder for instant open */}
-        {redirecting ? (
-          <View className="absolute inset-0 items-center justify-center">
-            <Text className="text-white/70 text-xs">Opening viewer…</Text>
-          </View>
-        ) : mountPublisher ? (
-          <WebRTCPublisher
-            streamKey={streamKey || streamKeyValue || ""}
-            active={(stage === "starting" || stage === "live") && !externalMode}
-            facing={cameraFacing}
-            micMuted={micMuted}
-            cameraOff={cameraOff}
-            onStats={(s) => setPublishStats(s)}
-            onConnected={() => {
-              console.log("[LiveProducer] WebRTC connected");
-              setPublisherConnected(true);
-            }}
-            onError={(err) => {
-              console.log(
-                "[LiveProducer] WebRTCPublisher error escalated:",
-                err
-              );
-              publisherFailed?.(err);
-              setPublisherConnected(false);
-              setCameraOff(true);
-              if (stage === "live" || stage === "starting") {
-                end().catch(() => {});
+        {/* Full-screen camera/publisher as background */}
+        <View className="absolute inset-0">
+          {redirecting ? (
+            <View className="flex-1 items-center justify-center">
+              <Text className="text-white/70 text-xs">Opening viewer...</Text>
+            </View>
+          ) : mountPublisher ? (
+            <WebRTCPublisher
+              streamKey={streamKey || streamKeyValue || ""}
+              active={
+                (stage === "starting" || stage === "live") && !externalMode
               }
-            }}
-            debug={true}
-          />
-        ) : (
-          <View className="absolute inset-0 px-6 py-8">
-            <View className="flex-1 rounded-2xl bg-white/5 border border-white/10 overflow-hidden" />
-            <View className="mt-3 h-8 w-40 rounded-full bg-white/10" />
-            <View className="mt-2 h-4 w-28 rounded-full bg-white/5" />
-          </View>
-        )}
+              facing={cameraFacing}
+              micMuted={micMuted}
+              cameraOff={cameraOff}
+              onStats={handlePublishStats}
+              onConnected={handlePublisherConnected}
+              onError={handlePublisherError}
+              debug={true}
+            />
+          ) : (
+            <View className="flex-1 bg-zinc-900" />
+          )}
+        </View>
 
-        {/* Overlay: External mode */}
-        {externalMode && (
-          <View className="absolute inset-0 bg-zinc-900 items-center justify-center">
+        {/* External streaming overlay */}
+        {externalMode ? (
+          <View className="absolute inset-0 bg-zinc-900 items-center justify-center z-10">
             <ExternalStreamingOverlay
               streamKeyValue={streamKeyValue}
               streamKeyLoading={streamKeyLoading}
-              onExitExternal={() => setExternalMode(false)}
+              onExitExternal={handleExitExternal}
               isLive={stage === "live"}
             />
           </View>
-        )}
+        ) : null}
 
-        {/* Overlay: Permission not granted */}
-        {!permission?.granted && (
-          <View className="absolute inset-0 bg-black/80 items-center justify-center">
-            {!uiHidden && (
-              <>
-                <Text className="text-zinc-400 mb-3">
-                  Camera permission required
-                </Text>
-                <TouchableOpacity
-                  onPress={requestPermission}
-                  className="px-4 py-2 rounded-full bg-white/10"
-                >
-                  <Text className="text-white text-xs">Grant Permission</Text>
-                </TouchableOpacity>
-              </>
-            )}
+        {/* Permission overlay */}
+        {!permission?.granted ? (
+          <View className="absolute inset-0 bg-black/80 items-center justify-center z-20">
+            <Text className="text-zinc-400 mb-3 text-sm">
+              Camera permission required
+            </Text>
+            <TouchableOpacity
+              onPress={requestPermission}
+              className="px-5 py-2.5 rounded-full bg-white/10"
+              activeOpacity={0.8}
+            >
+              <Text className="text-white text-xs font-medium">
+                Grant Permission
+              </Text>
+            </TouchableOpacity>
           </View>
-        )}
+        ) : null}
 
-        <ProducerStatusBar
-          stage={stage}
-          startTimestamp={startedAt}
-          bitrateKbps={publishStats.bitrateKbps || 0}
-          viewers={typeof liveViewers === "number" ? liveViewers : 0}
-          peakViewers={typeof peakViewers === "number" ? peakViewers : 0}
-          likes={
-            liveLikes || streamEntity?.likes || streamEntity?.likesCount || 0
-          }
-          micMuted={micMuted}
-          cameraOff={cameraOff}
-          // Starting substatus hinting
-          startingHint={
-            stage === "starting"
-              ? publisherConnected
-                ? "Waiting for Livepeer…"
-                : externalMode
-                ? "Waiting for external source…"
-                : "Setting up publisher…"
-              : undefined
-          }
-          onRequestClose={requestClose}
-          onRequestEndConfirmation={openEndConfirm}
-        />
-
-        {/* Stream paused overlay with countdown */}
-        {streamPaused && stage === "live" && (
-          <View className="absolute inset-0 z-30 items-center justify-center bg-black/70" pointerEvents="box-none">
-            <View className="bg-theme-neutrals-900/90 rounded-2xl px-6 py-5 items-center border border-white/10 mx-8">
-              <Text className="text-yellow-400 text-2xl mb-2">⏸</Text>
-              <Text className="text-white font-semibold text-sm">Connection Interrupted</Text>
-              <Text className="text-white/70 text-xs mt-1 text-center">Your stream is paused. Reconnecting…</Text>
-              {graceCountdown > 0 && (
-                <View className="mt-3 items-center">
-                  <Text className="text-white font-bold text-2xl">
-                    {Math.floor(graceCountdown / 60)}:{String(graceCountdown % 60).padStart(2, '0')}
-                  </Text>
-                  <Text className="text-white/50 text-[10px] mt-1">Stream will end if not reconnected</Text>
-                </View>
-              )}
-            </View>
-          </View>
-        )}
-
-        {/* Scheduled stream banner (when status is SCHEDULED and not yet live) */}
-        {isScheduled && stage !== "live" && stage !== "starting" && !uiHidden && (
-          <View className="absolute top-16 left-4 right-4 z-30" pointerEvents="none">
-            <View className="bg-indigo-600/80 rounded-xl px-4 py-2 items-center">
-              <Text className="text-white font-semibold text-xs">📅 Scheduled Stream</Text>
-              {scheduledForDate && (
-                <Text className="text-white/80 text-[10px] mt-0.5">
-                  Scheduled for {scheduledForDate.toLocaleDateString()} at {scheduledForDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </Text>
-              )}
-              <Text className="text-white/70 text-[10px] mt-0.5">Press Go Live when ready to start broadcasting</Text>
-            </View>
-          </View>
-        )}
-
-        {/* Side chat panel (overlay) */}
-        {chatVisible && !uiHidden && (
-          <LiveChatPanel
-            streamId={streamId || streamEntity?._id || ""}
-            live={stage === "live"}
-            visible
-            onClose={() => setChatVisible(false)}
-            chatEnabled={liveChatEnabled}
-            phase={stage === 'live' ? 'live' : isScheduled ? 'scheduled' : 'ended'}
-            autoJoinRoom={false}
-            socketEmit={(evt, payload, ack) =>
-              socketEmitAuthed(evt, payload, ack)
-            }
-            activities={chatActivities}
-            addActivity={addChatActivity}
-            // status bar is top-4 with rounded container (~56px), controls bar has p-4 pb-6 (~96px)
-            topOffset={24 + 40} // account for top-4 + status card height padding
-            bottomOffset={120 + 76} // account for controls padding and buttons
-            onEphemeral={(m) => {
-              // adapt to ChatMessage shape
-              addEphemeral({
-                id: m.id,
-                user: m.user,
-                message: m.message,
-                createdAt: m.createdAt,
-              } as any);
+        {/* Overlay container */}
+        <View className="absolute inset-0" pointerEvents="box-none">
+          {/* Top gradient */}
+          <LinearGradient
+            colors={["rgba(0,0,0,0.6)", "rgba(0,0,0,0)"]}
+            style={{
+              height: 100 + insets.top,
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
             }}
+            pointerEvents="none"
           />
-        )}
 
-        {/* Metadata overlay (bottom-left) */}
-        {(!uiHidden || externalMode) && (
-          <MetadataCard
-            ref={metaCardRef}
-            loading={streamLoading}
-            streamEntity={streamEntity}
-            streamId={streamId}
-            onPress={openDetails}
+          {/* Bottom gradient */}
+          <LinearGradient
+            colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.8)"]}
+            style={{
+              height: 340,
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+            }}
+            pointerEvents="none"
           />
-        )}
 
+          {/* Main layout */}
+          <KeyboardAvoidingView
+            className="flex-1"
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            keyboardVerticalOffset={0}
+          >
+            <View className="flex-1" pointerEvents="box-none">
+              {/* Header: LIVE status, timer, viewers, close */}
+              {!uiHidden ? (
+                <ProducerHeader
+                  stage={stage}
+                  startTimestamp={startedAt}
+                  viewers={
+                    typeof liveViewers === "number" ? liveViewers : 0
+                  }
+                  peakViewers={
+                    typeof peakViewers === "number" ? peakViewers : 0
+                  }
+                  likes={
+                    liveLikes ||
+                    streamEntity?.likes ||
+                    streamEntity?.likesCount ||
+                    0
+                  }
+                  bitrateKbps={publishStats.bitrateKbps || 0}
+                  micMuted={micMuted}
+                  cameraOff={cameraOff}
+                  startingHint={
+                    stage === "starting"
+                      ? publisherConnected
+                        ? "Waiting for Livepeer..."
+                        : externalMode
+                        ? "Waiting for external source..."
+                        : "Setting up publisher..."
+                      : undefined
+                  }
+                  onRequestClose={requestClose}
+                  onRequestEndConfirmation={openEndConfirm}
+                />
+              ) : null}
+
+              {/* Scheduled banner */}
+              {isScheduled &&
+              stage !== "live" &&
+              stage !== "starting" &&
+              !uiHidden ? (
+                <View
+                  className="mx-4 mt-1"
+                  pointerEvents="none"
+                >
+                  <View className="bg-indigo-600/70 rounded-xl px-4 py-2.5 items-center border border-indigo-400/20">
+                    <Text className="text-white font-semibold text-xs">
+                      {"📅 Scheduled Stream"}
+                    </Text>
+                    {scheduledForDate ? (
+                      <Text className="text-white/80 text-[10px] mt-0.5">
+                        {scheduledForDate.toLocaleDateString()} at{" "}
+                        {scheduledForDate.toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </Text>
+                    ) : null}
+                    <Text className="text-white/60 text-[10px] mt-0.5">
+                      Press Go Live when ready to start
+                    </Text>
+                  </View>
+                </View>
+              ) : null}
+
+              {/* Stream title overlay (tap to see stream details) */}
+              {!uiHidden && streamEntity?.title ? (
+                <TouchableOpacity
+                  className="px-4 mt-2"
+                  activeOpacity={0.7}
+                  onPress={openDetails}
+                >
+                  <Text
+                    className="text-white text-sm font-semibold"
+                    numberOfLines={1}
+                    style={{
+                      textShadowColor: "rgba(0,0,0,0.8)",
+                      textShadowOffset: { width: 0, height: 1 },
+                      textShadowRadius: 3,
+                    }}
+                  >
+                    {streamEntity.title}
+                  </Text>
+                  {streamEntity.description ? (
+                    <Text
+                      className="text-white/60 text-[11px] mt-0.5"
+                      numberOfLines={1}
+                    >
+                      {streamEntity.description}
+                    </Text>
+                  ) : null}
+                </TouchableOpacity>
+              ) : null}
+
+              {/* Middle spacer */}
+              <View className="flex-1" pointerEvents="box-none" />
+
+              {/* Bottom section: Chat + Controls */}
+              <View
+                pointerEvents="box-none"
+                style={{ paddingBottom: Math.max(insets.bottom, 8) }}
+              >
+                {/* Floating chat messages + input */}
+                <ProducerFloatingChat
+                  activities={chatActivities}
+                  isLive={stage === "live"}
+                  chatEnabled={liveChatEnabled}
+                  canSend={stage === "live" && liveChatEnabled}
+                  onSendMessage={handleSendChatMessage}
+                  onToggleChatEnabled={
+                    stage === "live" ? handleToggleLiveChat : undefined
+                  }
+                  settingsUpdating={settingsUpdating}
+                />
+
+                {/* Controls: flip, mic, camera, go live / end */}
+                {!uiHidden ? (
+                  <View className="mt-3">
+                    <ProducerBottomBar
+                      stage={stage}
+                      onStart={onStart}
+                      onEnd={onEnd}
+                      micMuted={micMuted}
+                      cameraOff={cameraOff}
+                      onToggleMic={toggleMic}
+                      onToggleCamera={toggleCamera}
+                      onFlipCamera={flipCamera}
+                      externalMode={externalMode}
+                      onToggleExternal={toggleExternal}
+                      startDisabled={
+                        !streamKeyValue || !streamEntity?.livepeerId
+                      }
+                    />
+                  </View>
+                ) : null}
+              </View>
+            </View>
+          </KeyboardAvoidingView>
+
+          {/* Floating Reaction Bubbles */}
+          <ReactionOverlay reactions={reactions} onRemove={removeReaction} />
+
+          {/* Tip Animations Overlay */}
+          <TipAnimationsOverlay items={tipEffects} />
+
+          {/* Stream paused overlay with countdown */}
+          {streamPaused && stage === "live" ? (
+            <View
+              className="absolute inset-0 z-30 items-center justify-center bg-black/70"
+              pointerEvents="box-none"
+            >
+              <View className="bg-black/80 rounded-2xl px-6 py-5 items-center border border-white/10 mx-8">
+                <Text className="text-yellow-400 text-2xl mb-2">{"⏸"}</Text>
+                <Text className="text-white font-semibold text-sm">
+                  Connection Interrupted
+                </Text>
+                <Text className="text-white/70 text-xs mt-1 text-center">
+                  {"Your stream is paused. Reconnecting..."}
+                </Text>
+                {graceCountdown > 0 ? (
+                  <View className="mt-3 items-center">
+                    <Text className="text-white font-bold text-2xl">
+                      {Math.floor(graceCountdown / 60)}:
+                      {String(graceCountdown % 60).padStart(2, "0")}
+                    </Text>
+                    <Text className="text-white/50 text-[10px] mt-1">
+                      Stream will end if not reconnected
+                    </Text>
+                  </View>
+                ) : null}
+              </View>
+            </View>
+          ) : null}
+        </View>
+
+        {/* Stream details tooltip */}
         <StreamDetailsTooltip
           visible={showDetailsModal && !uiHidden}
           sourceRect={sourceRect}
@@ -1104,53 +1223,7 @@ const LiveProducerScreen: React.FC = () => {
           onInteract={registerActivity}
         />
 
-        {!uiHidden && (
-          <ProducerControlsBar
-            stage={stage}
-            onStart={onStart}
-            onEnd={onEnd}
-            onToggleChat={() => {
-              const next = !chatVisible;
-              console.log(
-                "[LiveProducer] toggleChat ->",
-                next,
-                "stage:",
-                stage
-              );
-              if (next && stage !== "live") {
-                console.log(
-                  "[LiveProducer] Chat opened while not live; messages hidden."
-                );
-              }
-              setChatVisible(next);
-            }}
-            chatVisible={chatVisible}
-            hasUnseenChats={false}
-            micMuted={micMuted}
-            cameraOff={cameraOff}
-            onToggleMic={toggleMic}
-            onToggleCamera={toggleCamera}
-            onFlipCamera={flipCamera}
-            externalMode={externalMode}
-            onToggleExternal={toggleExternal}
-            startDisabled={!streamKeyValue || !streamEntity?.livepeerId}
-            chatEnabled={liveChatEnabled}
-            onToggleChatEnabled={handleToggleLiveChat}
-          />
-        )}
-
-        {stage === "live" && (
-          <EphemeralMessages
-            messages={ephemeral}
-            fadeAnim={fadeAnim}
-            onPress={() => {
-              setChatVisible(true);
-              // setHasUnseenChats(false);
-              bumpUiTimer();
-            }}
-          />
-        )}
-
+        {/* End stream confirmation */}
         <GlassModal
           visible={showEndConfirm}
           onClose={closeEndConfirm}
@@ -1175,10 +1248,7 @@ const LiveProducerScreen: React.FC = () => {
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => {
-                  closeEndConfirm();
-                  onEnd();
-                }}
+                onPress={handleConfirmEnd}
                 className="px-5 h-10 rounded-full items-center justify-center bg-red-600"
                 activeOpacity={0.9}
               >

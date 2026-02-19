@@ -15,6 +15,7 @@ import {
   Platform,
   Dimensions,
   Share,
+  Image,
 } from "react-native";
 import Animated, {
   FadeIn,
@@ -24,7 +25,9 @@ import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Avatar from "../common/Avatar";
+import VoiceNotePlayer from "./VoiceNotePlayer";
 import { getAvatarUrl } from "../../libs";
+import { buildCdnPath } from "../../libs/misc";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import type { Comment } from "../../services/nft.service";
 import { theme } from "../../theme";
@@ -60,6 +63,18 @@ interface CommentContextMenuProps {
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
 const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("window");
+
+/** Resolve a media path: local file URIs / full URLs pass through, relative paths go through CDN. */
+const resolveMediaUrl = (path: string): string => {
+  if (path.startsWith('file://') || path.startsWith('/') || path.startsWith('http://') || path.startsWith('https://')) {
+    return path;
+  }
+  return buildCdnPath(path) ?? path;
+};
+
+/** Returns true if the comment has any media attachment */
+const isMediaComment = (c: Comment | null): boolean =>
+  !!(c?.imageUrl || c?.gifUrl || c?.audioUrl);
 
 /** Short-form timestamp (duplicated lite version to keep module self-contained) */
 const formatShortTime = (date: Date | string | undefined): string => {
@@ -150,20 +165,57 @@ const FloatingComment: React.FC<{
           </Text>
           <Text className="text-xs text-theme-neutrals-500 ml-2">{timeAgo}</Text>
         </View>
-        <Text className="text-sm text-theme-neutrals-100 mt-1">
-          {parsedContent.map((part, idx) => (
-            <Text
-              key={idx}
-              className={
-                part.isMention
-                  ? "font-bold text-theme-neutrals-100"
-                  : "font-normal text-theme-neutrals-300"
-              }
-            >
-              {part.text}
-            </Text>
-          ))}
-        </Text>
+
+        {/* Text content */}
+        {comment.content ? (
+          <Text className="text-sm text-theme-neutrals-100 mt-1">
+            {parsedContent.map((part, idx) => (
+              <Text
+                key={idx}
+                className={
+                  part.isMention
+                    ? "font-bold text-theme-neutrals-100"
+                    : "font-normal text-theme-neutrals-300"
+                }
+              >
+                {part.text}
+              </Text>
+            ))}
+          </Text>
+        ) : null}
+
+        {/* Image */}
+        {comment.imageUrl ? (
+          <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-700" style={{ maxWidth: 180 }}>
+            <Image
+              source={{ uri: resolveMediaUrl(comment.imageUrl) }}
+              style={{ width: 180, height: 135 }}
+              resizeMode="cover"
+            />
+          </View>
+        ) : null}
+
+        {/* GIF */}
+        {comment.gifUrl ? (
+          <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-700" style={{ maxWidth: 180 }}>
+            <Image
+              source={{ uri: comment.gifUrl }}
+              style={{ width: 180, height: 135 }}
+              resizeMode="cover"
+            />
+          </View>
+        ) : null}
+
+        {/* Voice note */}
+        {comment.audioUrl ? (
+          <View className="mt-1.5 rounded-lg bg-theme-neutrals-700/60 px-2" style={{ maxWidth: 220 }}>
+            <VoiceNotePlayer
+              audioUrl={resolveMediaUrl(comment.audioUrl)}
+              duration={comment.audioDuration}
+              compact
+            />
+          </View>
+        ) : null}
       </View>
 
       {/* Like indicator */}
@@ -346,14 +398,16 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
               <ActionRow icon="chatbubble-outline" label="Reply" onPress={handleReply} />
             )}
 
-            {/* Copy */}
-            <ActionRow icon="copy-outline" label="Copy" onPress={handleCopy} />
+            {/* Copy — only for text comments */}
+            {comment.content ? (
+              <ActionRow icon="copy-outline" label="Copy" onPress={handleCopy} />
+            ) : null}
 
             {/* Share */}
             <ActionRow icon="share-outline" label="Share" onPress={handleShare} />
 
-            {/* Edit - own comments only */}
-            {isOwnComment && onEdit && (
+            {/* Edit - own text-only comments only (no media) */}
+            {isOwnComment && onEdit && !isMediaComment(comment) && (
               <ActionRow icon="pencil-outline" label="Edit" onPress={handleEdit} />
             )}
 

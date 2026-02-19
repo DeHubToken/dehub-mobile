@@ -71,6 +71,8 @@ export interface PostOptionsMenuProps {
   onBlockChange?: (blocked: boolean) => void;
   /** Hide the report content option (e.g., for livestreams) */
   hideReportContent?: boolean;
+  /** Hide the edit option (e.g., for livestreams) */
+  hideEdit?: boolean;
 }
 
 // =============================================================================
@@ -135,7 +137,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onEditSuccess,
   onDeleteSuccess,
   isBlocked: isBlockedProp = false,
-  onBlockChange,  hideReportContent = false,}) => {
+  onBlockChange,  hideReportContent = false,  hideEdit = false,}) => {
   const { user } = useAuth();
   const { requireAuth } = useAuthActions();
 
@@ -343,12 +345,14 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {/* Owner-only actions */}
           {isOwner && (
             <>
-              <OptionRow
-                icon="create-outline"
-                label="Edit Post"
-                sublabel="Change title, description, or categories"
-                onPress={handleOpenEdit}
-              />
+              {!hideEdit && (
+                <OptionRow
+                  icon="create-outline"
+                  label="Edit Post"
+                  sublabel="Change title, description, or categories"
+                  onPress={handleOpenEdit}
+                />
+              )}
               <OptionRow
                 icon={isHidden ? "eye-outline" : "eye-off-outline"}
                 label={isHidden ? "Show Post" : "Hide Post"}

@@ -46,6 +46,8 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
 
   // Options menu state
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
+  const [isHidden, setIsHidden] = useState<boolean>(!!((item as any).isHidden));
+  const [isDeleted, setIsDeleted] = useState(false);
   
   // Stream nested object (for live-specific data like status, streamKey, peakViewers)
   const stream = (item as any).stream;
@@ -136,6 +138,14 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
   const handleOpenMenu = useCallback(() => {
     setShowOptionsMenu(true);
   }, []);
+
+  const handleVisibilityChange = useCallback((hidden: boolean) => {
+    setIsHidden(hidden);
+  }, []);
+
+  const handleDeleteSuccess = useCallback(() => {
+    setIsDeleted(true);
+  }, []);
   
   const handlePress = useCallback(() => {
     // Navigate to LiveProducer if creator, otherwise LiveViewer
@@ -153,6 +163,9 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
   // ==========================================================================
   
   const hasThumb = thumbnail && typeof thumbnail === "string" && thumbnail.trim().length > 0;
+
+  // Don't render if deleted
+  if (isDeleted) return null;
   
   return (
     <TouchableOpacity
@@ -167,7 +180,7 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
         username={username}
         badgeImage={badgeImg}
         onUserPress={handleUserPress}
-        onMenuPress={isCreator ? undefined : handleOpenMenu}
+        onMenuPress={handleOpenMenu}
       />
       
       {/* Thumbnail with badges */}
@@ -186,6 +199,14 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
         
         {/* Status badge */}
         {status && <StatusBadge status={status} />}
+
+        {/* Hidden indicator */}
+        {isHidden && (
+          <View className="absolute top-2 right-2 flex-row items-center bg-black/60 rounded-full px-2 py-1 z-20">
+            <Ionicons name="eye-off" size={12} color="#9CA3AF" />
+            <Text className="text-gray-400 text-[10px] ml-1">Hidden</Text>
+          </View>
+        )}
         
         {/* W2E/Bounty ribbon - top left diagonal */}
         {isBounty && (
@@ -278,11 +299,14 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
         onClose={() => setShowOptionsMenu(false)}
         tokenId={tokenId}
         isOwner={!!isCreator}
-        isHidden={false}
+        isHidden={isHidden}
         creatorDisplayName={displayName}
         creatorIdentifier={creatorAddress}
         isFollowing={false}
         hideReportContent={true}
+        hideEdit
+        onVisibilityChange={handleVisibilityChange}
+        onDeleteSuccess={handleDeleteSuccess}
       />
     </TouchableOpacity>
   );

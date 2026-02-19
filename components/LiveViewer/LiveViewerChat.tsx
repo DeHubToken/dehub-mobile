@@ -1,0 +1,365 @@
+import React, { memo, useCallback, useMemo, useRef, useState } from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  TextInput,
+  TouchableOpacity,
+  Platform,
+} from "react-native";
+import { Send, Gift } from "lucide-react-native";
+import { StreamActivityType } from "../../services/enums/livestream.enum";
+import { useKeyboard } from "../../hooks/useKeyboard";
+import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import Avatar from "../common/Avatar";
+
+/** Shared shape for the `userReferenceProjection` returned by both socket events and REST activities. */
+export interface UserReference {
+  address?: string;
+  username?: string;
+  displayName?: string;
+  avatarImageUrl?: string;
+  followers?: number;
+  followings?: number;
+  sentTips?: number;
+  receivedTips?: number;
+  createdAt?: string;
+  isPrivate?: boolean;
+  hideFollowers?: boolean;
+  badgeBalance?: number;
+}
+
+export interface ChatActivity {
+  id?: string;
+  status: StreamActivityType | "SYSTEM";
+  address?: string;
+  createdAt?: number;
+  /** Full user reference from socket `user` / REST `account` field. */
+  user?: UserReference;
+  meta?: Record<string, any> & {
+    username?: string;
+    content?: string;
+    amount?: number;
+    avatarImageUrl?: string;
+    message?: string;
+  };
+  optimistic?: boolean;
+}
+
+interface LiveViewerChatProps {
+  activities: ChatActivity[];
+  canSend: boolean;
+  isLive: boolean;
+  isEnded: boolean;
+  isScheduled: boolean;
+  onSendMessage: (content: string) => void;
+  onGiftPress: () => void;
+  chatEnabled: boolean;
+}
+
+const USERNAME_PALETTE = [
+  "#f87171",
+  "#f59e0b",
+  "#10b981",
+  "#3b82f6",
+  "#8b5cf6",
+  "#ec4899",
+  "#22d3ee",
+  "#84cc16",
+  "#f97316",
+  "#a855f7",
+  "#06b6d4",
+  "#ef4444",
+  "#14b8a6",
+  "#0ea5e9",
+];
+
+const colorForUser = (key?: string): string => {
+  if (!key) return "#e5e7eb";
+  let hash = 0;
+  for (let i = 0; i < key.length; i++) {
+    hash = (hash * 31 + key.charCodeAt(i)) >>> 0;
+  }
+  return USERNAME_PALETTE[hash % USERNAME_PALETTE.length];
+};
+
+const shortAddr = (addr?: string) =>
+  addr ? `${addr.slice(0, 4)}…${addr.slice(-4)}` : "";
+
+/** Resolve the best display name from an activity's user ref or meta fallback. */
+const resolveDisplayName = (a: ChatActivity): string =>
+  a.user?.displayName || a.user?.username || a.meta?.username || shortAddr(a.user?.address || a.address) || "user";
+
+/** Resolve the best avatar URL from an activity. */
+const resolveAvatarUrl = (a: ChatActivity): string | undefined =>
+  a.user?.avatarImageUrl || a.meta?.avatarImageUrl;
+
+/** Resolve the best identifier to open a profile sheet (prefer username, fallback address). */
+const resolveProfileId = (a: ChatActivity): string | undefined =>
+  a.user?.username || a.user?.address || a.meta?.username || a.address;
+
+interface ChatBubbleProps {
+  a: ChatActivity;
+  onUserPress: (identifier: string) => void;
+}
+
+const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
+  const displayName = resolveDisplayName(a);
+  const avatarUrl = resolveAvatarUrl(a);
+  const profileId = resolveProfileId(a);
+
+  const handlePress = useCallback(() => {
+    if (profileId) onUserPress(profileId);
+  }, [profileId, onUserPress]);
+
+  switch (a.status) {
+    case StreamActivityType.MESSAGE:
+      return (
+        <View className="mb-1.5 bg-black/40 rounded-xl px-2.5 py-1.5 self-start max-w-[85%] flex-row items-start">
+          <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
+            <Avatar uri={avatarUrl} size={20} />
+          </TouchableOpacity>
+          <Text className="text-white text-[12px] leading-[17px] flex-1 flex-shrink">
+            <Text
+              className="font-bold"
+              style={{ color: colorForUser(displayName) }}
+              onPress={handlePress}
+            >
+              {displayName}{" "}
+            </Text>
+            <Text className={a.optimistic ? "opacity-60" : ""}>
+              {a.meta?.content}
+            </Text>
+          </Text>
+        </View>
+      );
+
+    case StreamActivityType.JOINED:
+      return (
+        <View className="mb-1 self-start flex-row items-center">
+          <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1">
+            <Avatar uri={avatarUrl} size={14} />
+          </TouchableOpacity>
+          <Text className="text-white/40 text-[11px]">
+            👋{" "}
+            <Text onPress={handlePress} className="font-medium">
+              {displayName}
+            </Text>{" "}
+            joined
+          </Text>
+        </View>
+      );
+
+    case StreamActivityType.LEFT:
+      return (
+        <View className="mb-1 self-start flex-row items-center">
+          <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1">
+            <Avatar uri={avatarUrl} size={14} />
+          </TouchableOpacity>
+          <Text className="text-white/40 text-[11px]">
+            <Text onPress={handlePress} className="font-medium">
+              {displayName}
+            </Text>{" "}
+            left
+          </Text>
+        </View>
+      );
+
+    case StreamActivityType.TIP: {
+      const amt = a.meta?.amount || 0;
+      return (
+        <View className="mb-1.5 bg-yellow-500/20 border border-yellow-400/30 rounded-xl px-2.5 py-2 self-start max-w-[85%] flex-row items-start">
+          <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
+            <Avatar uri={avatarUrl} size={20} />
+          </TouchableOpacity>
+          <View className="flex-1 flex-shrink">
+            <Text className="text-yellow-300 text-[12px] font-semibold">
+              🎁{" "}
+              <Text onPress={handlePress}>
+                {displayName}
+              </Text>{" "}
+              sent {amt.toLocaleString()} DHB
+            </Text>
+            {a.meta?.message ? (
+              <Text className="text-white/70 text-[11px] mt-0.5">
+                {a.meta.message}
+              </Text>
+            ) : null}
+          </View>
+        </View>
+      );
+    }
+
+    case StreamActivityType.START:
+      return (
+        <View className="mb-1 self-start">
+          <Text className="text-red-400 text-[11px] font-semibold">
+            🔴 Stream has started
+          </Text>
+        </View>
+      );
+
+    case StreamActivityType.END:
+      return (
+        <View className="mb-1 self-start">
+          <Text className="text-white/50 text-[11px]">
+            ⏹ Stream has ended
+          </Text>
+        </View>
+      );
+
+    default:
+      return null;
+  }
+});
+
+const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
+  activities,
+  canSend,
+  isLive,
+  isEnded,
+  isScheduled,
+  onSendMessage,
+  onGiftPress,
+  chatEnabled,
+}) => {
+  const [message, setMessage] = useState("");
+  const listRef = useRef<FlatList<ChatActivity> | null>(null);
+  const { height: keyboardHeight, isVisible: kbVisible } = useKeyboard();
+  const { showUserProfile } = useUserProfileSheet();
+
+  const handleUserPress = useCallback(
+    (identifier: string) => {
+      showUserProfile(identifier, { initialHeightPct: 0.4, source: "live-chat" } as any);
+    },
+    [showUserProfile]
+  );
+
+  // Only show messages & tips (filter out most join/leave noise for cleaner UI)
+  const filteredActivities = useMemo(() => {
+    return activities.filter(
+      (a) =>
+        a.status === StreamActivityType.MESSAGE ||
+        a.status === StreamActivityType.TIP ||
+        a.status === StreamActivityType.START ||
+        a.status === StreamActivityType.END
+    );
+  }, [activities]);
+
+  const reversed = useMemo(
+    () => filteredActivities.slice().reverse(),
+    [filteredActivities]
+  );
+
+  const handleSend = useCallback(() => {
+    const content = message.trim();
+    if (!content || !canSend || !chatEnabled) return;
+    onSendMessage(content);
+    setMessage("");
+  }, [message, canSend, chatEnabled, onSendMessage]);
+
+  const renderItem = useCallback(
+    ({ item }: { item: ChatActivity }) => <ChatBubble a={item} onUserPress={handleUserPress} />,
+    [handleUserPress]
+  );
+
+  const keyExtractor = useCallback((a: ChatActivity, idx: number) => {
+    const t = a.createdAt || 0;
+    const who = (a.address || a.meta?.username || "").toLowerCase();
+    const contentKey =
+      (a.meta?.content ? String(a.meta?.content).slice(0, 16) : "") ||
+      String(a.meta?.amount || "");
+    return `${t}:${a.status}:${who}:${contentKey}:${idx}`;
+  }, []);
+
+  const inputDisabled = !canSend || !chatEnabled || isEnded || isScheduled;
+
+  const placeholderText = isEnded
+    ? "Stream ended"
+    : isScheduled
+      ? "Chat will open when live"
+      : !isLive
+        ? "Waiting for stream..."
+        : !chatEnabled
+          ? "Chat is disabled"
+          : !canSend
+            ? "Sign in to chat"
+            : "Say something...";
+
+  // Keyboard offset for input when in fullscreen overlay mode
+  const inputBottomOffset = useMemo(() => {
+    if (!kbVisible) return 0;
+    // On iOS KeyboardAvoidingView handles it; on Android we need manual offset
+    return Platform.OS === "android" ? keyboardHeight : 0;
+  }, [kbVisible, keyboardHeight]);
+
+  return (
+    <View className="flex-1 justify-end" pointerEvents="box-none">
+      {/* Chat messages - floating, transparent */}
+      <View
+        className="flex-1 justify-end mb-1"
+        style={{ maxHeight: 280 }}
+        pointerEvents="box-none"
+      >
+        <FlatList
+          ref={listRef}
+          data={reversed}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+          className="px-3"
+          contentContainerStyle={{ paddingTop: 8, paddingBottom: 4 }}
+          initialNumToRender={15}
+          maxToRenderPerBatch={20}
+          windowSize={5}
+          removeClippedSubviews
+          inverted
+          showsVerticalScrollIndicator={false}
+          maintainVisibleContentPosition={{ minIndexForVisible: 0 }}
+        />
+      </View>
+
+      {/* Input bar */}
+      <View
+        className="flex-row items-center px-3 pb-2 pt-1"
+        style={{ marginBottom: inputBottomOffset }}
+      >
+        <View className="flex-1 flex-row items-center bg-black/50 rounded-full px-4 py-2 border border-white/15 mr-2">
+          <TextInput
+            value={message}
+            onChangeText={setMessage}
+            placeholder={placeholderText}
+            placeholderTextColor="#666"
+            className="flex-1 text-white text-[13px]"
+            editable={!inputDisabled}
+            maxLength={500}
+            multiline={false}
+            returnKeyType="send"
+            onSubmitEditing={handleSend}
+          />
+          {message.trim() && !inputDisabled ? (
+            <TouchableOpacity
+              onPress={handleSend}
+              activeOpacity={0.7}
+              className="ml-2"
+            >
+              <Send color="#3b82f6" size={18} />
+            </TouchableOpacity>
+          ) : null}
+        </View>
+
+        {/* Gift button */}
+        {isLive && (
+          <TouchableOpacity
+            onPress={onGiftPress}
+            activeOpacity={0.7}
+            className="w-10 h-10 rounded-full bg-black/50 border border-white/15 items-center justify-center"
+          >
+            <Gift color="#f59e0b" size={18} />
+          </TouchableOpacity>
+        )}
+      </View>
+    </View>
+  );
+};
+
+export default memo(LiveViewerChat);

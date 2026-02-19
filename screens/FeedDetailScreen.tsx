@@ -5,23 +5,30 @@
  * Supports shared comment highlighting via commentId param.
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
-import { getNFT, type Comment, likeComment, type LikeCommentResult, postComment, editComment, deleteComment } from "../services/nft.service";
+import { getNFT, type Comment, likeComment, type LikeCommentResult, postComment, editComment, deleteComment, postImageComment, postGifComment, postAudioComment } from "../services/nft.service";
 import { followUser, unfollowUser } from "../services/user.service";
 import HomeFeedCard from "../components/Home/HomeFeedCard";
 import { CommentItem } from "../components/Comments";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
 import type { CommentLayout } from "../components/Comments/CommentContextMenu";
-import CommentInput, { type CommentInputRef } from "../components/Feed/CommentInput";
+import CommentMediaPreview from "../components/Comments/CommentMediaPreview";
+import type { MediaAttachment } from "../components/Comments/CommentMediaPreview";
+import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../components/Comments/VoiceNoteRecorder";
+import type { VoiceNoteResult } from "../components/Comments/VoiceNoteRecorder";
+import GifPicker from "../components/DM/GifPicker";
+import Avatar from "../components/common/Avatar";
 import CommentsSkeleton from "../components/Feed/CommentsSkeleton";
 import { useAuth } from "../context/AuthContext";
 import useKeyboard from "../hooks/useKeyboard";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import { getAvatarUrl, toastError } from "../libs";
+import { openCroppedImagePicker, getFileName, guessMime } from "../libs/assets.util";
+import { theme } from "../theme";
 
 export default function FeedDetailScreen() {
   const route = useRoute<any>();
@@ -40,7 +47,14 @@ export default function FeedDetailScreen() {
   const [comments, setComments] = useState<Comment[]>([]);
   const [replyTo, setReplyTo] = useState<Comment | null>(null);
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
+  const [inputText, setInputText] = useState("");
+  const [posting, setPosting] = useState(false);
   const [highlightedCommentId, setHighlightedCommentId] = useState<number | null>(null);
+
+  // Media attachment state
+  const [mediaAttachment, setMediaAttachment] = useState<MediaAttachment | null>(null);
+  const [mediaPosting, setMediaPosting] = useState(false);
+  const [gifPickerVisible, setGifPickerVisible] = useState(false);
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [isFollowRequestPending, setIsFollowRequestPending] = useState<boolean>(false);
   const [followLoading, setFollowLoading] = useState<boolean>(false);
@@ -50,7 +64,7 @@ export default function FeedDetailScreen() {
   const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
   const [contextMeta, setContextMeta] = useState<{ liked: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
 
-  const inputRef = useRef<CommentInputRef>(null);
+  const inputRef = useRef<TextInput>(null);
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
   const { showUserProfile } = useUserProfileSheet();
 
@@ -60,9 +74,73 @@ export default function FeedDetailScreen() {
     [user?.avatarImageUrl, user?.avatarUrl]
   );
 
+  // User avatar for input
+  const userAvatar = getAvatarUrl(userAvatarUrl);
+
   // Focus the comment input
   const focusCommentInput = useCallback(() => {
     requestAnimationFrame(() => inputRef.current?.focus());
+  }, []);
+
+  // Voice recording callbacks
+  const handleVoiceRecordingComplete = useCallback((result: VoiceNoteResult) => {
+    setMediaAttachment({ type: "audio", uri: result.uri, durationMs: result.durationMs });
+    setInputText("");
+  }, []);
+
+  const handleVoiceRecordingCancel = useCallback(() => {}, []);
+
+  const recorder = useVoiceRecorder({
+    onRecordingComplete: handleVoiceRecordingComplete,
+    onCancel: handleVoiceRecordingCancel,
+  });
+
+  // --- Media action handlers ---
+
+  const handlePickImage = useCallback(async () => {
+    if (!requireAuth) return;
+    requireAuth(async () => {
+      try {
+        const uri = await openCroppedImagePicker({
+          width: 800,
+          height: 600,
+          forceJpg: true,
+          quality: 0.85,
+        });
+        if (uri) {
+          setMediaAttachment({ type: "image", uri });
+          setInputText("");
+          Keyboard.dismiss();
+        }
+      } catch (e: any) {
+        if (e?.code !== "E_PICKER_CANCELLED") {
+          console.error("[FeedDetailScreen] image picker error", e);
+          toastError("Failed to pick image");
+        }
+      }
+    });
+  }, [requireAuth]);
+
+  const handleOpenGifPicker = useCallback(() => {
+    if (!requireAuth) return;
+    requireAuth(() => {
+      setGifPickerVisible(true);
+    });
+  }, [requireAuth]);
+
+  const handleGifPicked = useCallback((url: string) => {
+    setGifPickerVisible(false);
+    setMediaAttachment({ type: "gif", url });
+    setInputText("");
+    Keyboard.dismiss();
+  }, []);
+
+  const handleCloseGifPicker = useCallback(() => {
+    setGifPickerVisible(false);
+  }, []);
+
+  const handleRemoveMedia = useCallback(() => {
+    setMediaAttachment(null);
   }, []);
 
   const inputLift = useMemo(() => {
@@ -220,6 +298,8 @@ export default function FeedDetailScreen() {
 
   const handleReplyPress = useCallback((cm: Comment) => {
     setReplyTo(cm);
+    setEditingComment(null);
+    setInputText("");
     requestAnimationFrame(() => inputRef.current?.focus());
   }, []);
 
@@ -258,7 +338,7 @@ export default function FeedDetailScreen() {
     if (!contextComment) return;
     setEditingComment(contextComment);
     setReplyTo(null);
-    inputRef.current?.setText(contextComment.content || "");
+    setInputText(contextComment.content || "");
     inputRef.current?.focus();
   }, [contextComment]);
 
@@ -397,84 +477,174 @@ export default function FeedDetailScreen() {
     [handleReplyPress, handleUserPress, handleLikeComment, handleCommentLongPress, tokenId, highlightedCommentId]
   );
 
-  const handleSend = useCallback((text: string) => {
-    if (!text || tokenId == null) return;
-    requireAuth?.(async () => {
-      // Handle edit mode
-      if (editingComment) {
-        const commentId = editingComment.id;
-        // Optimistic update
-        setComments((prev) =>
-          prev.map((c) => (c.id === commentId ? { ...c, content: text } : c))
-        );
-        setEditingComment(null);
-        try {
-          await editComment({ commentId, content: text });
-        } catch (e) {
-          console.error('[FeedDetailScreen] editComment error', e);
-          toastError('Failed to edit comment');
-          await fetchData();
-        }
-        return;
-      }
+  // Send media comment
+  const handleSendMedia = useCallback(async () => {
+    if (!mediaAttachment || mediaPosting || tokenId == null) return;
+    if (!requireAuth) return;
 
-      const tempId = Date.now();
-      const tempComment: Comment = {
+    await requireAuth(async () => {
+      setMediaPosting(true);
+      const now = new Date().toISOString();
+      const tempId = -Date.now();
+      const replyToId = replyTo?.id;
+      const tId = tokenId!;
+
+      const optimistic: Comment = {
         id: tempId,
-        content: text,
-        createdAt: new Date().toISOString(),
-        likeCount: 0,
-        isLiked: false,
-        parentId: replyTo?.id,
+        content: "",
+        createdAt: now,
         user: {
           username: user?.username || "you",
           displayName: user?.displayName || user?.username || "You",
           avatarImageUrl: user?.avatarImageUrl || user?.avatarUrl || "",
           address: user?.address || user?.walletAddress || "",
         },
+        likeCount: 0,
+        isLiked: false,
+        parentId: replyTo?.id,
+        imageUrl: mediaAttachment.type === "image" ? mediaAttachment.uri : undefined,
+        gifUrl: mediaAttachment.type === "gif" ? mediaAttachment.url : undefined,
+        audioUrl: mediaAttachment.type === "audio" ? mediaAttachment.uri : undefined,
+        audioDuration: mediaAttachment.type === "audio" ? Math.round(mediaAttachment.durationMs / 1000) : undefined,
       };
-      
-      // Optimistic insert: after parent if reply, else prepend
+
+      // Optimistic insert
       setComments((prev) => {
         if (replyTo?.id) {
           const idx = prev.findIndex((c) => c.id === replyTo.id);
           if (idx >= 0) {
             const next = [...prev];
-            next.splice(idx + 1, 0, tempComment);
+            next.splice(idx + 1, 0, optimistic);
             return next;
           }
         }
-        return [tempComment, ...prev];
+        return [optimistic, ...prev];
       });
-      
-      const replyTarget = replyTo;
-      if (replyTarget) setReplyTo(null);
-      
+
+      const savedMedia = mediaAttachment;
+      setMediaAttachment(null);
+      setReplyTo(null);
+
       try {
-        const res = await postComment({
-          streamTokenId: tokenId,
-          content: text,
-          commentId: replyTarget?.id,
-        });
-        const newId = res?.result?.id ?? (res as any)?.id ?? undefined;
-        
+        let newId: number | undefined;
+        if (savedMedia.type === "image") {
+          const fileName = getFileName(savedMedia.uri, "comment_image.jpg");
+          const mimeType = guessMime(savedMedia.uri, "image/jpeg");
+          const res = await postImageComment({ streamTokenId: tId, fileUri: savedMedia.uri, fileName, mimeType, commentId: replyToId });
+          newId = res?.commentId;
+        } else if (savedMedia.type === "gif") {
+          const res = await postGifComment({ streamTokenId: tId, gifUrl: savedMedia.url, commentId: replyToId });
+          newId = res?.commentId;
+        } else if (savedMedia.type === "audio") {
+          const fileName = getFileName(savedMedia.uri, "voice_note.m4a");
+          const mimeType = Platform.OS === "ios" ? "audio/m4a" : "audio/mp4";
+          const res = await postAudioComment({ streamTokenId: tId, fileUri: savedMedia.uri, fileName, mimeType, commentId: replyToId });
+          newId = res?.commentId;
+        }
         if (newId != null) {
-          setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, id: newId } : c)));
-          // Bump count for top-level only
-          if (!replyTarget) {
-            setItem((prev) => prev ? { 
-              ...prev, 
-              commentCount: Math.max(0, (prev.commentCount ?? 0) + 1) 
-            } : prev);
-          }
+          setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, id: newId! } : c)));
         }
       } catch (e) {
-        // Revert
+        console.error("[FeedDetailScreen] media post error", e);
         setComments((prev) => prev.filter((c) => c.id !== tempId));
-        console.error("[FeedDetailScreen] postComment error", e);
+        toastError("Failed to send media comment");
+      } finally {
+        setMediaPosting(false);
       }
     });
-  }, [requireAuth, tokenId, replyTo, editingComment, user, fetchData]);
+  }, [mediaAttachment, mediaPosting, requireAuth, tokenId, replyTo, user]);
+
+  // Cancel reply or edit
+  const cancelReplyOrEdit = useCallback(() => {
+    setReplyTo(null);
+    setEditingComment(null);
+    setInputText("");
+  }, []);
+
+  const handleSend = useCallback(() => {
+    const text = inputText.trim();
+    if (!text || posting || tokenId == null) return;
+    requireAuth?.(async () => {
+      setPosting(true);
+      try {
+        // Handle edit mode
+        if (editingComment) {
+          const commentId = editingComment.id;
+          setComments((prev) =>
+            prev.map((c) => (c.id === commentId ? { ...c, content: text } : c))
+          );
+          setEditingComment(null);
+          setInputText("");
+          Keyboard.dismiss();
+          try {
+            await editComment({ commentId, content: text });
+          } catch (e) {
+            console.error('[FeedDetailScreen] editComment error', e);
+            toastError('Failed to edit comment');
+            await fetchData();
+          }
+          return;
+        }
+
+        const tempId = Date.now();
+        const tempComment: Comment = {
+          id: tempId,
+          content: text,
+          createdAt: new Date().toISOString(),
+          likeCount: 0,
+          isLiked: false,
+          parentId: replyTo?.id,
+          user: {
+            username: user?.username || "you",
+            displayName: user?.displayName || user?.username || "You",
+            avatarImageUrl: user?.avatarImageUrl || user?.avatarUrl || "",
+            address: user?.address || user?.walletAddress || "",
+          },
+        };
+        
+        setComments((prev) => {
+          if (replyTo?.id) {
+            const idx = prev.findIndex((c) => c.id === replyTo.id);
+            if (idx >= 0) {
+              const next = [...prev];
+              next.splice(idx + 1, 0, tempComment);
+              return next;
+            }
+          }
+          return [tempComment, ...prev];
+        });
+        
+        const replyTarget = replyTo;
+        if (replyTarget) setReplyTo(null);
+        setInputText("");
+        Keyboard.dismiss();
+        
+        try {
+          const res = await postComment({
+            streamTokenId: tokenId,
+            content: text,
+            commentId: replyTarget?.id,
+          });
+          const newId = res?.result?.id ?? (res as any)?.id ?? undefined;
+          
+          if (newId != null) {
+            setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, id: newId } : c)));
+            if (!replyTarget) {
+              setItem((prev) => prev ? { 
+                ...prev, 
+                commentCount: Math.max(0, (prev.commentCount ?? 0) + 1) 
+              } : prev);
+            }
+          }
+        } catch (e) {
+          setComments((prev) => prev.filter((c) => c.id !== tempId));
+          console.error("[FeedDetailScreen] postComment error", e);
+        }
+      } finally {
+        setPosting(false);
+      }
+    });
+  }, [inputText, posting, requireAuth, tokenId, replyTo, editingComment, user, fetchData]);
 
   const renderHeader = useCallback(() => (
     <View>
@@ -551,21 +721,111 @@ export default function FeedDetailScreen() {
         keyboardShouldPersistTaps="handled"
       />
       <View
-        className="border-t border-theme-neutrals-800"
-        style={inputLift ? { marginBottom: inputLift } : undefined}
+        className="absolute left-0 right-0 bottom-0 border-t border-theme-neutrals-800 bg-theme-neutrals-900"
+        style={{ marginBottom: inputLift, paddingBottom: 8 }}
       >
-        <CommentInput
-          ref={inputRef}
-          onSend={handleSend}
-          placeholder={editingComment ? "Edit your comment..." : replyTo ? "Write a reply..." : "Add a comment..."}
-          autoFocus={false}
-          replyToLabel={replyTo?.user?.displayName || replyTo?.user?.username}
-          onCancelReply={() => setReplyTo(null)}
-          editingLabel={editingComment ? "Editing comment" : undefined}
-          onCancelEdit={() => { setEditingComment(null); inputRef.current?.clear(); }}
-          userAvatarUrl={userAvatarUrl}
-        />
+        {/* Replying / Editing indicator */}
+        {(replyTo || editingComment) && !recorder.isRecording && (
+          <View className="flex-row items-center px-4 py-2 bg-theme-neutrals-800/50">
+            <Text className="flex-1 text-xs text-theme-neutrals-400">
+              {editingComment ? (
+                "Editing comment"
+              ) : (
+                <>
+                  Replying to{" "}
+                  <Text className="font-semibold">
+                    {replyTo?.user?.displayName || replyTo?.user?.username || "user"}
+                  </Text>
+                </>
+              )}
+            </Text>
+            <TouchableOpacity onPress={cancelReplyOrEdit} activeOpacity={0.7}>
+              <Ionicons name="close" size={18} color={theme.colors.mutedForeground} />
+            </TouchableOpacity>
+          </View>
+        )}
+
+        {/* Voice recorder overlay */}
+        {recorder.isRecording ? (
+          <VoiceNoteRecordingOverlay recorder={recorder} />
+        ) : mediaAttachment ? (
+          <CommentMediaPreview
+            media={mediaAttachment}
+            onRemove={handleRemoveMedia}
+            onSend={handleSendMedia}
+            sending={mediaPosting}
+          />
+        ) : (
+          /* Standard input row */
+          <View className="flex-row items-center px-4 py-2">
+            <Avatar
+              uri={userAvatar && userAvatar !== "default-avatar" ? userAvatar : undefined}
+              size={32}
+            />
+            <TextInput
+              ref={inputRef}
+              value={inputText}
+              onChangeText={setInputText}
+              placeholder={editingComment ? "Edit your comment..." : replyTo ? "Write a reply..." : "Add a comment..."}
+              placeholderTextColor={theme.colors.mutedForeground}
+              className="flex-1 mx-3 text-sm text-theme-neutrals-100"
+              style={{ maxHeight: 80 }}
+              multiline
+              returnKeyType="send"
+              onSubmitEditing={handleSend}
+            />
+
+            {inputText.trim() || editingComment ? (
+              <TouchableOpacity
+                onPress={handleSend}
+                disabled={posting || !inputText.trim()}
+                activeOpacity={0.7}
+                className="p-2"
+              >
+                {posting ? (
+                  <ActivityIndicator size="small" color="#fff" />
+                ) : (
+                  <View
+                    className={`w-9 h-9 rounded-full items-center justify-center ${inputText.trim() ? "bg-white" : "bg-theme-neutrals-700"}`}
+                  >
+                    <Ionicons
+                      name="send"
+                      size={16}
+                      color={inputText.trim() ? "#000" : theme.colors.mutedForeground}
+                    />
+                  </View>
+                )}
+              </TouchableOpacity>
+            ) : (
+              <View className="flex-row items-center gap-1">
+                <TouchableOpacity onPress={handlePickImage} activeOpacity={0.7} className="p-2">
+                  <Ionicons name="image-outline" size={22} color={theme.colors.mutedForeground} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleOpenGifPicker} activeOpacity={0.7} className="p-2">
+                  <Text className="text-xs font-bold text-theme-neutrals-400 px-0.5">GIF</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    Keyboard.dismiss();
+                    recorder.startRecording();
+                  }}
+                  activeOpacity={0.7}
+                  className="p-2"
+                >
+                  <Ionicons name="mic-outline" size={22} color={theme.colors.mutedForeground} />
+                </TouchableOpacity>
+              </View>
+            )}
+          </View>
+        )}
       </View>
+
+      {/* GIF picker modal */}
+      <GifPicker
+        visible={gifPickerVisible}
+        onClose={handleCloseGifPicker}
+        onPick={handleGifPicked}
+      />
 
       {/* WhatsApp/IG-style context menu */}
       <CommentContextMenu
