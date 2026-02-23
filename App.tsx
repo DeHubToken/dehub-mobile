@@ -39,6 +39,7 @@ import { ErrorBoundary } from "./components/ErrorBoundary";
 import { useAppLifecycle } from "./hooks/useAppLifecycle";
 import { createLogger } from "./libs/logger";
 import { forceFlushBatchViews } from "./services/view.service";
+import PermissionModalProvider from "./components/ui/PermissionModal";
 
 const logger = createLogger("App");
 
@@ -127,6 +128,7 @@ export default function App() {
               style: toastTheme.containerStyle,
             }}
           />
+          <PermissionModalProvider />
         </SafeAreaProvider>
       </GestureHandlerRootView>
     </ErrorBoundary>

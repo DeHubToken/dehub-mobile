@@ -32,8 +32,6 @@ import {
 } from "../../libs/assets.util";
 import {
   runWithPermissions,
-  ensureMediaLibraryPermission,
-  waitAfterPermissionIfNeeded,
 } from "../../libs/permissions.util";
 import { AuthService } from "../../services/auth.service";
 import { toastError, toastSuccess } from "../../libs/toast";
@@ -152,25 +150,24 @@ const ProfileHeader = () => {
     await shareProfile(url, message);
   }, [username, address]);
 
-  const pickImage = useCallback(async () => {
-    const perm = await ensureMediaLibraryPermission();
-    if (!perm.granted) {
-      toastError("Permission to access photos is required.");
-      return null;
-    }
-    await waitAfterPermissionIfNeeded(perm.justGranted);
-    const mediaTypesCompat: any = (ImagePicker as any).MediaType
-      ? [(ImagePicker as any).MediaType.image]
-      : (ImagePicker as any).MediaTypeOptions?.Images ??
-        ImagePicker.MediaTypeOptions.Images;
-    const pick = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: mediaTypesCompat,
-      allowsEditing: false,
-      quality: 0.9,
-      exif: false,
+  const pickImage = useCallback(async (): Promise<string | null> => {
+    let result: string | null = null;
+    await runWithPermissions(["photos"], async () => {
+      const mediaTypesCompat: any = (ImagePicker as any).MediaType
+        ? [(ImagePicker as any).MediaType.image]
+        : (ImagePicker as any).MediaTypeOptions?.Images ??
+          ImagePicker.MediaTypeOptions.Images;
+      const pick = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: mediaTypesCompat,
+        allowsEditing: false,
+        quality: 0.9,
+        exif: false,
+      });
+      if (!pick.canceled && pick.assets?.length) {
+        result = pick.assets[0]?.uri || null;
+      }
     });
-    if (pick.canceled || !pick.assets?.length) return null;
-    return pick.assets[0]?.uri || null;
+    return result;
   }, []);
 
   const openViewer = useCallback(
@@ -230,7 +227,7 @@ const ProfileHeader = () => {
 
   const startChangeAvatar = useCallback(async () => {
     try {
-      await runWithPermissions([ensureMediaLibraryPermission], async () => {
+      await runWithPermissions(["photos"], async () => {
         const pickedUri = await openCroppedImagePicker({
           width: 800,
           height: 800,
@@ -249,7 +246,7 @@ const ProfileHeader = () => {
 
   const startChangeCover = useCallback(async () => {
     try {
-      await runWithPermissions([ensureMediaLibraryPermission], async () => {
+      await runWithPermissions(["photos"], async () => {
         const pickedUri = await openCroppedImagePicker({
           width: 1800,
           height: 600,

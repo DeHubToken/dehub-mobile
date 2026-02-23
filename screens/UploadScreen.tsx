@@ -33,8 +33,6 @@ import { useEvent } from "expo";
 import * as FileSystem from "expo-file-system/legacy";
 import * as VideoThumbnails from "expo-video-thumbnails";
 import {
-  ensureMediaLibraryPermission,
-  waitAfterPermissionIfNeeded,
   runWithPermissions,
 } from "../libs/permissions.util";
 import { openCroppedImagePicker } from "../libs/assets.util";
@@ -378,7 +376,7 @@ export default function UploadScreen() {
 
   const handlePickLiveThumbnail = useCallback(async () => {
     try {
-      await runWithPermissions([ensureMediaLibraryPermission], async () => {
+      await runWithPermissions(["photos"], async () => {
         const picked = await openCroppedImagePicker({
           width: 640,
           height: 360,
@@ -509,38 +507,36 @@ export default function UploadScreen() {
   const handlePickImage = useCallback(async () => {
     if (imageDisabled) return;
     try {
-      const perm = await ensureMediaLibraryPermission();
-      if (!perm.granted) return;
-      await waitAfterPermissionIfNeeded(perm.justGranted);
+      await runWithPermissions(["photos"], async () => {
+        const remaining = IMAGES_MAX - pickedImages.length;
+        const result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ["images"],
+          allowsMultipleSelection: true,
+          selectionLimit: remaining,
+          quality: 0.8,
+        });
 
-      const remaining = IMAGES_MAX - pickedImages.length;
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ["images"],
-        allowsMultipleSelection: true,
-        selectionLimit: remaining,
-        quality: 0.8,
+        if (!result.canceled && result.assets?.length) {
+          // Filter out oversized images
+          const validAssets: PickedAsset[] = [];
+          for (const asset of result.assets) {
+            try {
+              const info = await FileSystem.getInfoAsync(asset.uri);
+              const size = (info as any)?.size as number | undefined;
+              if (size && size > MAX_IMAGE_SIZE_BYTES) {
+                toastError(`Image exceeds 20 MB limit and was skipped.`);
+                continue;
+              }
+            } catch {}
+            validAssets.push(asset);
+          }
+          if (validAssets.length > 0) {
+            setPickedImages((prev) =>
+              [...prev, ...validAssets].slice(0, IMAGES_MAX),
+            );
+          }
+        }
       });
-
-      if (!result.canceled && result.assets?.length) {
-        // Filter out oversized images
-        const validAssets: PickedAsset[] = [];
-        for (const asset of result.assets) {
-          try {
-            const info = await FileSystem.getInfoAsync(asset.uri);
-            const size = (info as any)?.size as number | undefined;
-            if (size && size > MAX_IMAGE_SIZE_BYTES) {
-              toastError(`Image exceeds 20 MB limit and was skipped.`);
-              continue;
-            }
-          } catch {}
-          validAssets.push(asset);
-        }
-        if (validAssets.length > 0) {
-          setPickedImages((prev) =>
-            [...prev, ...validAssets].slice(0, IMAGES_MAX),
-          );
-        }
-      }
     } catch (err) {
       console.error("[UploadScreen] image pick error:", err);
     }
@@ -561,7 +557,7 @@ export default function UploadScreen() {
 
   const handlePickCoverImage = useCallback(async () => {
     try {
-      await runWithPermissions([ensureMediaLibraryPermission], async () => {
+      await runWithPermissions(["photos"], async () => {
         const picked = await openCroppedImagePicker({
           width: 640,
           height: 360,
@@ -585,30 +581,28 @@ export default function UploadScreen() {
   const handlePickVideo = useCallback(async () => {
     if (videoDisabled) return;
     try {
-      const perm = await ensureMediaLibraryPermission();
-      if (!perm.granted) return;
-      await waitAfterPermissionIfNeeded(perm.justGranted);
+      await runWithPermissions(["photos"], async () => {
+        const result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ["videos"],
+          allowsMultipleSelection: false,
+          quality: 0.8,
+        });
 
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ["videos"],
-        allowsMultipleSelection: false,
-        quality: 0.8,
+        if (!result.canceled && result.assets?.[0]) {
+          const asset = result.assets[0];
+          try {
+            const info = await FileSystem.getInfoAsync(asset.uri);
+            const size = (info as any)?.size as number | undefined;
+            if (size && size > MAX_VIDEO_SIZE_BYTES) {
+              toastError("Video exceeds 200 MB limit. Please choose a smaller file.");
+              return;
+            }
+          } catch {}
+          setPickedVideo(asset);
+          setCoverUri(null);
+          generateThumbnail(asset.uri);
+        }
       });
-
-      if (!result.canceled && result.assets?.[0]) {
-        const asset = result.assets[0];
-        try {
-          const info = await FileSystem.getInfoAsync(asset.uri);
-          const size = (info as any)?.size as number | undefined;
-          if (size && size > MAX_VIDEO_SIZE_BYTES) {
-            toastError("Video exceeds 200 MB limit. Please choose a smaller file.");
-            return;
-          }
-        } catch {}
-        setPickedVideo(asset);
-        setCoverUri(null);
-        generateThumbnail(asset.uri);
-      }
     } catch (err) {
       console.error("[UploadScreen] video pick error:", err);
     }
@@ -616,30 +610,28 @@ export default function UploadScreen() {
 
   const handleChangeVideo = useCallback(async () => {
     try {
-      const perm = await ensureMediaLibraryPermission();
-      if (!perm.granted) return;
-      await waitAfterPermissionIfNeeded(perm.justGranted);
+      await runWithPermissions(["photos"], async () => {
+        const result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ["videos"],
+          allowsMultipleSelection: false,
+          quality: 0.8,
+        });
 
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ["videos"],
-        allowsMultipleSelection: false,
-        quality: 0.8,
+        if (!result.canceled && result.assets?.[0]) {
+          const asset = result.assets[0];
+          try {
+            const info = await FileSystem.getInfoAsync(asset.uri);
+            const size = (info as any)?.size as number | undefined;
+            if (size && size > MAX_VIDEO_SIZE_BYTES) {
+              toastError("Video exceeds 200 MB limit. Please choose a smaller file.");
+              return;
+            }
+          } catch {}
+          setPickedVideo(asset);
+          setCoverUri(null);
+          generateThumbnail(asset.uri);
+        }
       });
-
-      if (!result.canceled && result.assets?.[0]) {
-        const asset = result.assets[0];
-        try {
-          const info = await FileSystem.getInfoAsync(asset.uri);
-          const size = (info as any)?.size as number | undefined;
-          if (size && size > MAX_VIDEO_SIZE_BYTES) {
-            toastError("Video exceeds 200 MB limit. Please choose a smaller file.");
-            return;
-          }
-        } catch {}
-        setPickedVideo(asset);
-        setCoverUri(null);
-        generateThumbnail(asset.uri);
-      }
     } catch (err) {
       console.error("[UploadScreen] video change error:", err);
     }

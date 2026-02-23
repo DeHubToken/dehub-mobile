@@ -7,7 +7,7 @@ import GifPicker from './GifPicker';
 import AttachPicker from './AttachPicker';
 import * as ImagePicker from 'expo-image-picker';
 import * as VideoThumbnails from 'expo-video-thumbnails';
-import { ensureMediaLibraryPermission, waitAfterPermissionIfNeeded } from '../../libs/permissions.util';
+import { runWithPermissions } from '../../libs/permissions.util';
 import { openCroppedImagePicker } from '../../libs/assets.util';
 
 export type MessageInputProps = {
@@ -208,13 +208,13 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend, onSendGif, disabled
   const handlePickPhoto = useCallback(async () => {
     try {
       setAttachVisible(false);
-      // Use in-app cropper (single image) with free crop
-      const uri = await openCroppedImagePicker({ free: true, quality: 0.9, forceJpg: true });
-      if (uri) {
-        // Clear any GIF selection to keep one-at-a-time
-        setSelectedGifUrl(null);
-        setSelectedMedia({ kind: 'image', uri });
-      }
+      await runWithPermissions(["photos"], async () => {
+        const uri = await openCroppedImagePicker({ free: true, quality: 0.9, forceJpg: true });
+        if (uri) {
+          setSelectedGifUrl(null);
+          setSelectedMedia({ kind: 'image', uri });
+        }
+      });
     } catch (e) {
       // ignore
     }
@@ -222,30 +222,28 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSend, onSendGif, disabled
 
   const handlePickVideo = useCallback(async () => {
     try {
-      const perm = await ensureMediaLibraryPermission();
-      if (!perm.granted) return;
-      await waitAfterPermissionIfNeeded(perm.justGranted);
-      const mediaTypes: any = (ImagePicker as any).MediaTypeOptions?.Videos ?? ImagePicker.MediaTypeOptions.Videos;
-      const res = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes,
-        allowsMultipleSelection: false,
-        quality: 0.8,
-        selectionLimit: 1,
+      await runWithPermissions(["photos"], async () => {
+        const mediaTypes: any = (ImagePicker as any).MediaTypeOptions?.Videos ?? ImagePicker.MediaTypeOptions.Videos;
+        const res = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes,
+          allowsMultipleSelection: false,
+          quality: 0.8,
+          selectionLimit: 1,
+        });
+        setAttachVisible(false);
+        if (!res.canceled && res.assets && res.assets.length > 0) {
+          const asset = res.assets[0];
+          const uri = asset.uri;
+          const duration = (asset as any)?.duration ?? undefined;
+          let thumb: string | undefined;
+          try {
+            const th = await VideoThumbnails.getThumbnailAsync(uri, { time: 500 });
+            thumb = th.uri;
+          } catch {}
+          setSelectedGifUrl(null);
+          setSelectedMedia({ kind: 'video', uri, thumb, duration });
+        }
       });
-      setAttachVisible(false);
-      if (!res.canceled && res.assets && res.assets.length > 0) {
-        const asset = res.assets[0];
-        const uri = asset.uri;
-        const duration = (asset as any)?.duration ?? undefined;
-        // Generate a quick thumbnail for preview (best-effort)
-        let thumb: string | undefined;
-        try {
-          const th = await VideoThumbnails.getThumbnailAsync(uri, { time: 500 });
-          thumb = th.uri;
-        } catch {}
-        setSelectedGifUrl(null);
-        setSelectedMedia({ kind: 'video', uri, thumb, duration });
-      }
     } catch (e) {
       // ignore
     }

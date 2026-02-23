@@ -294,15 +294,7 @@ export async function getOrCreateAuthSignature(
   // Prefer an injected EIP-1193 provider if available
   const injected = provider || getSigningProvider();
 
-  // If this appears to be a Web3Auth/AA flow (no injected.request), check deployment via AA provider
-  const isWeb3Auth = !injected || typeof injected.request !== "function";
-  // COMMENTED OUT: Backend now handles undeployed smart accounts
-  // if (isWeb3Auth) {
-  //   // Ensure smart account is deployed BEFORE attempting to sign
-  //   await ensureSmartAccountDeployed(address, chainId);
-  // }
-
-  // Sign the message: injected personal_sign if present, else Web3Auth service helper
+  // Sign the message via Web3Auth service (AA) or injected provider
   let signature: string;
   try {
     if (injected && typeof injected.request === "function") {
@@ -324,10 +316,11 @@ export async function getOrCreateAuthSignature(
     throw new Error(e?.message || "Signing message failed");
   }
 
-  // Validate signature by attempting recovery; if it throws, treat as invalid
-  try {
-    ethers.utils.verifyMessage(message, signature);
-  } catch {
+  // Basic sanity: ensure a signature string was returned.
+  // All real validation is done server-side via ERC-6492 / ERC-1271 / ecrecover
+  // — local ethers.verifyMessage is NOT used because AA wallets produce
+  // non-standard signatures that ethers v5 cannot parse.
+  if (!signature || typeof signature !== "string" || signature.length < 10) {
     throw new Error("Invalid signature produced");
   }
 

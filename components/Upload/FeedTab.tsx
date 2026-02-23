@@ -16,10 +16,7 @@ import UploadCategoriesSelector from "./UploadCategoriesSelector";
 import ConfirmUploadModal from "./ConfirmUploadModal";
 import { getCategoriesCached, minNft } from "../../services/nft.service";
 import { getFileName, guessMime } from "../../libs/assets.util";
-import {
-  ensureMediaLibraryPermission,
-  waitAfterPermissionIfNeeded,
-} from "../../libs/permissions.util";
+import { runWithPermissions } from "../../libs/permissions.util";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { useAuth } from "../../context/AuthContext";
 import {
@@ -128,27 +125,20 @@ export default function FeedTab() {
     return hasBasics && withinLimit;
   }, [title, description, categories.length, images.length, TITLE_MAX, DESCRIPTION_MAX]);
   const pickImages = useCallback(async () => {
-    const perm = await ensureMediaLibraryPermission();
-    if (!perm.granted) {
-      toastError("Permission to access photos is required.");
-      return;
-    }
-    await waitAfterPermissionIfNeeded(perm.justGranted);
-    const remaining = Math.max(0, 4 - images.length);
-    if (remaining <= 0) return;
-    const supportsMulti =
-      !!(ImagePicker as any).launchImageLibraryAsync &&
-      (ImagePicker as any).MediaTypeOptions?.Images != null;
-    const res = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsMultipleSelection: true,
-      selectionLimit: remaining,
-      quality: 1,
-    } as any);
-    if (!res.canceled && res.assets?.length) {
-      const picked = res.assets.slice(0, remaining);
-      setImages((prev) => [...prev, ...picked]);
-    }
+    await runWithPermissions(["photos"], async () => {
+      const remaining = Math.max(0, 4 - images.length);
+      if (remaining <= 0) return;
+      const res = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsMultipleSelection: true,
+        selectionLimit: remaining,
+        quality: 1,
+      } as any);
+      if (!res.canceled && res.assets?.length) {
+        const picked = res.assets.slice(0, remaining);
+        setImages((prev) => [...prev, ...picked]);
+      }
+    });
   }, [images.length]);
 
   const removeImageAt = useCallback((idx: number) => {
