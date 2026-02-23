@@ -9,7 +9,7 @@ import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
-import { runWithPermissions, ensureMediaLibraryPermission, waitAfterPermissionIfNeeded } from "../../libs/permissions.util";
+import { runWithPermissions } from "../../libs/permissions.util";
 import * as VideoThumbnails from "expo-video-thumbnails";
 import * as FileSystem from "expo-file-system/legacy";
 import { getCategoriesCached, minNft } from "../../services";
@@ -244,29 +244,25 @@ export default function VideosTab({ onClose }: Props) {
   }, []);
 
   const pickVideo = useCallback(async () => {
-    const perm = await ensureMediaLibraryPermission();
-    if (!perm.granted) {
-      toastError("Permission to access photos and videos is required.");
-      return;
-    }
-    await waitAfterPermissionIfNeeded(perm.justGranted);
-    const mediaTypesCompat: any = (ImagePicker as any).MediaType
-      ? [(ImagePicker as any).MediaType.video]
-      : (ImagePicker as any).MediaTypeOptions?.Videos ??
-        ImagePicker.MediaTypeOptions.Videos;
-    const res = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: mediaTypesCompat,
-      allowsMultipleSelection: false,
-      quality: 1,
+    await runWithPermissions(["photos"], async () => {
+      const mediaTypesCompat: any = (ImagePicker as any).MediaType
+        ? [(ImagePicker as any).MediaType.video]
+        : (ImagePicker as any).MediaTypeOptions?.Videos ??
+          ImagePicker.MediaTypeOptions.Videos;
+      const res = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: mediaTypesCompat,
+        allowsMultipleSelection: false,
+        quality: 1,
+      });
+      if (!res.canceled && res.assets && res.assets[0]) {
+        const asset = res.assets[0];
+        setPendingAsset(asset);
+        const d = Math.max(1, toSeconds(asset.duration) ?? 1);
+        setStartSec(0);
+        setEndSec(d);
+        setShowTrimModal(true);
+      }
     });
-    if (!res.canceled && res.assets && res.assets[0]) {
-      const asset = res.assets[0];
-      setPendingAsset(asset);
-      const d = Math.max(1, toSeconds(asset.duration) ?? 1);
-      setStartSec(0);
-      setEndSec(d);
-      setShowTrimModal(true);
-    }
   }, [toSeconds]);
 
   // Load the pending asset into the player while trimming
@@ -402,26 +398,22 @@ export default function VideosTab({ onClose }: Props) {
   }, [player]);
 
   const pickCoverImage = useCallback(async () => {
-    const perm = await ensureMediaLibraryPermission();
-    if (!perm.granted) {
-      toastError("Permission to access photos is required.");
-      return;
-    }
-    await waitAfterPermissionIfNeeded(perm.justGranted);
-    const imageTypesCompat: any = (ImagePicker as any).MediaType
-      ? [(ImagePicker as any).MediaType.image]
-      : (ImagePicker as any).MediaTypeOptions?.Images ??
-        ImagePicker.MediaTypeOptions.Images;
-    const res = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: imageTypesCompat,
-      allowsMultipleSelection: false,
-      allowsEditing: true,
-      aspect: [16, 9],
-      quality: 1,
+    await runWithPermissions(["photos"], async () => {
+      const imageTypesCompat: any = (ImagePicker as any).MediaType
+        ? [(ImagePicker as any).MediaType.image]
+        : (ImagePicker as any).MediaTypeOptions?.Images ??
+          ImagePicker.MediaTypeOptions.Images;
+      const res = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: imageTypesCompat,
+        allowsMultipleSelection: false,
+        allowsEditing: true,
+        aspect: [16, 9],
+        quality: 1,
+      });
+      if (!res.canceled && res.assets && res.assets[0]) {
+        setCoverUri(res.assets[0].uri);
+      }
     });
-    if (!res.canceled && res.assets && res.assets[0]) {
-      setCoverUri(res.assets[0].uri);
-    }
   }, []);
 
   // Fetch categories with cache

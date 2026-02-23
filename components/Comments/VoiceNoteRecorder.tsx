@@ -30,6 +30,7 @@ import Animated, {
   cancelAnimation,
 } from "react-native-reanimated";
 import { Audio, InterruptionModeIOS, InterruptionModeAndroid } from "expo-av";
+import { runWithPermissions } from "../../libs/permissions.util";
 
 /* ─── Constants ─────────────────────────────────────────────── */
 const MAX_DURATION_MS = 29_000; // 29 s — prevents server 30 s rejection
@@ -201,8 +202,12 @@ export const useVoiceRecorder = ({
         } catch {}
         recordingRef.current = null;
       }
-      const { granted } = await Audio.requestPermissionsAsync();
-      if (!granted) {
+      // Use centralized permission gate with branded rationale + settings redirect
+      let micGranted = false;
+      await runWithPermissions(["microphone"], async () => {
+        micGranted = true;
+      });
+      if (!micGranted) {
         console.warn("[VoiceRecorder] mic permission denied");
         setIsRecording(false);
         onCancel();

@@ -2,9 +2,14 @@ import * as ImagePicker from "expo-image-picker";
 import ImageCropPicker from "react-native-image-crop-picker";
 import * as ImageManipulator from "expo-image-manipulator";
 
+/**
+ * @deprecated Use `runWithPermissions(["photos"], action)` from permissions.util instead.
+ * Kept for backward compat — delegates to the centralized permission gate.
+ */
 export const requestMediaLibraryPermission = async (): Promise<boolean> => {
-  const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-  return status === "granted";
+  const { ensureMediaLibraryPermission } = require("./permissions.util");
+  const result = await ensureMediaLibraryPermission();
+  return result.granted;
 };
 
 export type CropOptions = {

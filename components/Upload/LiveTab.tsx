@@ -20,7 +20,7 @@ import {
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import { toastError } from "../../libs/toast";
 import * as ImagePicker from "expo-image-picker";
-import { runWithPermissions, ensureMediaLibraryPermission } from "../../libs/permissions.util";
+import { runWithPermissions } from "../../libs/permissions.util";
 import {
   getUserScheduledLives,
   ScheduledLiveItem,
@@ -296,7 +296,7 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
 
   const pickThumbnail = useCallback(async () => {
     try {
-      await runWithPermissions([ensureMediaLibraryPermission], async () => {
+      await runWithPermissions(["photos"], async () => {
         const res = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.Images,
           allowsEditing: true,

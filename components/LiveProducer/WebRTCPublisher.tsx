@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { View, Platform, Text } from "react-native";
 import { mediaDevices, RTCPeerConnection, RTCView } from "react-native-webrtc";
-import { ensureCameraPermission, ensureMicrophonePermission, waitAfterPermissionIfNeeded } from "../../libs/permissions.util";
+import { runWithPermissions, type PermissionKind } from "../../libs/permissions.util";
 
 // Types
 type Facing = "front" | "back";
@@ -29,16 +29,12 @@ export interface WebRTCPublisherProps {
 
 // Utility: request runtime permissions via centralized helper
 async function ensureCapturePermissions(): Promise<boolean> {
-  try {
-    const cam = await ensureCameraPermission();
-    if (!cam.granted) return false;
-    const mic = await ensureMicrophonePermission();
-    if (!mic.granted) return false;
-    await waitAfterPermissionIfNeeded(cam.justGranted || mic.justGranted);
-    return true;
-  } catch {
-    return false;
-  }
+  const kinds: PermissionKind[] = ["camera", "microphone"];
+  let granted = false;
+  await runWithPermissions(kinds, async () => {
+    granted = true;
+  });
+  return granted;
 }
 
 // Utility: compute RTCView stream URL from MediaStream

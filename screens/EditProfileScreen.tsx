@@ -19,7 +19,7 @@ import { getAvatarUrl, getCoverUrl } from "../libs/misc";
 import Avatar from "../components/common/Avatar";
 import { theme } from "../theme";
 import { openCroppedImagePicker, resizeAndCompress, createRNImageFile } from "../libs/assets.util";
-import { runWithPermissions, ensureMediaLibraryPermission } from "../libs/permissions.util";
+import { runWithPermissions } from "../libs/permissions.util";
 import { AuthService } from "../services/auth.service";
 import { toastError, toastSuccess } from "../libs/toast";
 import ScreenHeader from "../components/ScreenHeader";
@@ -139,7 +139,7 @@ const EditProfileScreen = () => {
   const handlePickAvatar = useCallback(async () => {
     try {
       setProcessingAvatar(true);
-      await runWithPermissions([ensureMediaLibraryPermission], async () => {
+      await runWithPermissions(["photos"], async () => {
         const picked = await openCroppedImagePicker({
           width: 800,
           height: 800,
@@ -169,7 +169,7 @@ const EditProfileScreen = () => {
   const handlePickCover = useCallback(async () => {
     try {
       setProcessingCover(true);
-      await runWithPermissions([ensureMediaLibraryPermission], async () => {
+      await runWithPermissions(["photos"], async () => {
         const picked = await openCroppedImagePicker({
           width: 1800,
           height: 600,
