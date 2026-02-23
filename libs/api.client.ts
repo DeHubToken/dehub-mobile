@@ -1,5 +1,10 @@
+import { Platform } from 'react-native';
+import Constants from 'expo-constants';
 import env from '../config/env';
 import { createAuthHeaders, getAuthToken } from './auth.utils';
+
+const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
+const PLATFORM = Platform.OS; // 'ios' | 'android'
 
 // Base API URL - replace with your actual API URL
 const API_BASE_URL = env.API_URL;
@@ -43,6 +48,9 @@ export const apiClient = {
     );
     const requestHeaders: Record<string, string> = {
       'Accept': 'application/json',
+      'X-Client-Type': 'mobile',
+      'X-Platform': PLATFORM,
+      'X-App-Version': APP_VERSION,
       ...headers,
     };
     if (!isFormData) {
