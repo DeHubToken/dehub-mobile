@@ -173,13 +173,13 @@ export default function FeedDetailScreen() {
       setIsFollowing(!!(payload as any).isFollowing);
       setIsFollowRequestPending(!!(payload as any).isFollowRequestPending);
       
-      // Extract comments from the response
+      // Extract comments — backend now populates a nested `user` object
+      // matching the Comment interface (user.username, user.displayName, etc.)
       const rawCommentsRaw: Comment[] = Array.isArray((payload as any)?.comments) ? (payload as any).comments : [];
       
-      // Deduplicate raw comments by id FIRST — the API may return the highlighted
-      // comment twice: once unpopulated (user is a plain ObjectId string) at position 0,
-      // then again populated (user is an object) in its normal position.
-      // Keep the version with a richer user object.
+      // Deduplicate by id — the API may return the highlighted comment twice:
+      // once unpopulated (user is a plain ObjectId string) at position 0, then
+      // again populated in its normal position. Keep the richer version.
       const seenRaw = new Map<string, Comment>();
       for (const c of rawCommentsRaw) {
         const key = String(c?.id);

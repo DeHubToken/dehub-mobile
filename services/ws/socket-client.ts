@@ -1,7 +1,12 @@
 import { io, Socket } from "socket.io-client";
+import { Platform } from "react-native";
+import Constants from "expo-constants";
 import { GenericHandler } from "./events";
 import { createLogger } from "../../libs/logger";
 import { LivestreamEvents } from "../enums/livestream.enum";
+
+const WS_APP_VERSION = Constants.expoConfig?.version ?? "1.0.0";
+const WS_PLATFORM = Platform.OS; // 'ios' | 'android'
 
 export interface WebSocketClientOptions {
   url: string;
@@ -69,6 +74,10 @@ export class WebSocketClient {
     const handshakeAuth: any = {};
     if (token) handshakeAuth.token = token;
     if (address) handshakeAuth.address = address;
+    // Platform identification — matches REST apiClient headers
+    handshakeAuth.clientType = "mobile";
+    handshakeAuth.platform = WS_PLATFORM;
+    handshakeAuth.appVersion = WS_APP_VERSION;
 
   const transports = ["polling", "websocket"] as const; // prefer websocket first on RN
     const path = "/socket.io"; // match NestJS gateway path exactly
@@ -95,6 +104,11 @@ export class WebSocketClient {
       auth: handshakeAuth,
       query: handshakeAuth,
       path,
+      extraHeaders: {
+        "X-Client-Type": "mobile",
+        "X-Platform": WS_PLATFORM,
+        "X-App-Version": WS_APP_VERSION,
+      },
     });
 
     // Optional: observe server-sent heartbeat event if any
