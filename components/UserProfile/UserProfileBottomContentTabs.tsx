@@ -132,7 +132,7 @@ const UserProfileBottomContentTabs: React.FC<
     return Math.min(560, Math.max(360, Math.round(winH * 0.55)));
   }, [isFullScreen]);
 
-  // Custom fetcher that uses the /feed endpoint instead of /search_nfts
+  // Custom fetcher that uses the /feed endpoint
   const fetchPage = useCallback(
     async (page: number, limit: number): Promise<GetNFTsResponse> => {
       const res = await getUnifiedFeed({

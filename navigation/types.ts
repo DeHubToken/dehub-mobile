@@ -88,8 +88,10 @@ export type AppStackParamList = {
     initialIndex?: number;
   };
   [ScreenNames.Chat]: {
-    recipientId: string;
-    recipientUsername?: string;
+    conversationId?: string;
+    targetAddress?: string;
+    targetUser?: Record<string, unknown>;
+    title?: string;
   };
   [ScreenNames.Search]: {
     query?: string;

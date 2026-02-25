@@ -1,4 +1,4 @@
-import { useDMContext } from '../context/DMContext';
+import { useDMContext } from '../context/DMContextNew';
 
 export function useDM() {
   // Thin wrapper so call sites remain unchanged

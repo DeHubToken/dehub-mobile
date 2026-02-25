@@ -9,12 +9,12 @@ import HomeScreen from "../screens/HomeScreen";
 import FeedScreen from "../screens/FeedScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import UploadScreen from "../screens/UploadScreen";
-import DirectMessagesScreen from "../screens/DirectMessagesScreen";
+import DirectMessagesScreen from "../screens/DirectMessagesScreenNew";
 import { ScreenNames } from "./ScreenNames";
 import type { BottomTabParamList, AppStackNavigationProp } from "./types";
 import { useNavigation } from "@react-navigation/native";
 import { useUser, useAuthState } from "../context/AuthContext";
-import { useUnreadConversationsCount } from "../store/dm.state";
+import { useUnreadConversationsCount } from "../store/dm.store";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 

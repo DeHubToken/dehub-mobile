@@ -16,7 +16,6 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { User } from "../../context/AuthContext";
-import { theme } from "../../theme";
 import { usersSearch } from "../../services/user.service";
 import { useDebounceCallback } from "../../hooks/useDebounceCallback";
 import Avatar from "../common/Avatar";
@@ -35,36 +34,34 @@ type ResultRowProps = {
 };
 const ResultRow: React.FC<ResultRowProps> = ({ item, onPress, inContacts }) => {
   const addr = (item.walletAddress || (item as any).address) as string;
-  const title =
-    (item as any).username ||
+  const display =
     (item as any).displayName ||
+    (item as any).username ||
     truncateAddress(addr);
+  const subtitle = (item as any).username
+    ? `@${(item as any).username}`
+    : truncateAddress(addr);
   const handlePress = useCallback(() => onPress(item), [onPress, item]);
   return (
     <TouchableOpacity
-      className="flex-row items-center p-2 rounded-lg bg-theme-neutrals-800 mb-2"
+      className="flex-row items-center py-2.5 px-1"
       onPress={handlePress}
-      activeOpacity={0.9}
+      activeOpacity={0.7}
     >
-      <Avatar uri={getAvatarUrl((item as any).avatarImageUrl)} size={32} />
-      <View className="ml-2 flex-1">
-        <Text className="text-white text-sm" numberOfLines={1}>
-          {title}
+      <Avatar uri={getAvatarUrl((item as any).avatarImageUrl)} size={44} />
+      <View className="ml-3 flex-1">
+        <Text className="text-white text-[15px] font-medium" numberOfLines={1}>
+          {display}
         </Text>
-        <Text className="text-theme-neutrals-400 text-[11px]" numberOfLines={1}>
-          {truncateAddress(addr)}
+        <Text className="text-theme-neutrals-400 text-[12px] mt-0.5" numberOfLines={1}>
+          {subtitle}
         </Text>
       </View>
-      <View className="flex-row items-center">
-        <Text className="text-theme-neutrals-300 text-[11px] mr-2">
-          {inContacts ? "Message" : "Start chat"}
-        </Text>
-        <Ionicons
-          name={inContacts ? "chatbubble" : "chatbubble-ellipses"}
-          size={16}
-          color="#9CA3AF"
-        />
-      </View>
+      {inContacts && (
+        <View className="bg-theme-neutrals-700/60 rounded-full px-2.5 py-1">
+          <Text className="text-theme-neutrals-300 text-[11px]">Message</Text>
+        </View>
+      )}
     </TouchableOpacity>
   );
 };
@@ -234,62 +231,62 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
       blurIntensity={40}
     >
       <View className="rounded-shadow-xl">
-        <View className="px-5 pt-5">
-          <View className="flex-row items-center">
-            <View className="w-9 h-9 rounded-xl bg-theme-brand-primary/15 items-center justify-center mr-2">
-              <Ionicons
-                name="chatbubble-ellipses-outline"
-                color={theme.colors.accent}
-                // className="text-theme-accent"
-                size={18}
-              />
-            </View>
-            <Text className="text-theme-neutrals-100 text-[17px] font-semibold">
-              Start a new DM
-            </Text>
-          </View>
-          <Text className="text-theme-neutrals-400 text-[12px] mt-2">
-            Search by username or paste a wallet address
+        {/* Instagram-style header */}
+        <View className="flex-row items-center justify-between px-4 pt-4 pb-3 border-b border-theme-neutrals-700/50">
+          <TouchableOpacity
+            onPress={close}
+            className="w-9 h-9 items-center justify-center"
+            accessibilityRole="button"
+            accessibilityLabel="Close"
+          >
+            <Ionicons name="close" size={24} color="#F9FBFF" />
+          </TouchableOpacity>
+          <Text className="text-white text-[17px] font-semibold">
+            New Message
           </Text>
+          <View className="w-9" />
         </View>
 
-        <View className="px-5 mt-4">
-          <View className="flex-row items-center bg-theme-neutrals-800 rounded-2xl pl-4 pr-2 h-13 border border-theme-neutrals-700">
-            <Ionicons name="search" size={18} color="#9CA3AF" />
-            <TextInput
-              ref={searchRef}
-              value={query}
-              onChangeText={onChangeSearch}
-              placeholder="Enter address or username to chat"
-              placeholderTextColor="#9CA3AF"
-              className="flex-1 text-theme-neutrals-100 px-3 text-[15px]"
-              returnKeyType="search"
-              onFocus={() => setShowResults((query || "").trim().length >= 2)}
-              autoFocus
-              onSubmitEditing={() => {
-                const trimmed = (query || "").trim();
-                if (trimmed.length >= 2) setShowResults(true);
-              }}
-            />
-            {query ? (
-              <TouchableOpacity
-                onPress={() => setQuery("")}
-                accessibilityRole="button"
-                accessibilityLabel="Clear search"
-                className="w-10 h-10 rounded-xl bg-theme-neutrals-700 items-center justify-center"
-              >
-                <Ionicons name="close" size={18} color="#B4B8BE" />
-              </TouchableOpacity>
-            ) : null}
-          </View>
+        {/* "To:" search field */}
+        <View className="flex-row items-center px-4 py-2.5 border-b border-theme-neutrals-700/30">
+          <Text className="text-theme-neutrals-400 text-[15px] font-medium mr-2">
+            To:
+          </Text>
+          <TextInput
+            ref={searchRef}
+            value={query}
+            onChangeText={onChangeSearch}
+            placeholder="Search..."
+            placeholderTextColor="#6B7280"
+            className="flex-1 text-white text-[15px]"
+            returnKeyType="search"
+            onFocus={() => setShowResults((query || "").trim().length >= 2)}
+            autoFocus
+            onSubmitEditing={() => {
+              const trimmed = (query || "").trim();
+              if (trimmed.length >= 2) setShowResults(true);
+            }}
+          />
+          {query ? (
+            <TouchableOpacity
+              onPress={() => setQuery("")}
+              accessibilityRole="button"
+              accessibilityLabel="Clear search"
+              className="w-7 h-7 rounded-full bg-theme-neutrals-700 items-center justify-center"
+            >
+              <Ionicons name="close" size={14} color="#B4B8BE" />
+            </TouchableOpacity>
+          ) : null}
+        </View>
 
+        <View className="px-4 max-h-[55vh]">
+          {/* Suggested contacts when no query */}
           {suggestions.length > 0 && (query || "").trim().length < 2 ? (
             <View className="mt-3">
-              <Text className="text-theme-neutrals-400 text-[12px] mb-2">
-                Quick picks
+              <Text className="text-white text-[14px] font-semibold mb-2.5">
+                Suggested
               </Text>
               <FlatList
-                horizontal
                 data={suggestions as any[]}
                 keyExtractor={(item: any) =>
                   String(item?.address || item?.walletAddress)
@@ -298,44 +295,53 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
                   const addr = String(
                     item?.walletAddress || item?.address || ""
                   );
-                  const title =
+                  const display =
                     (item as any)?.displayName ||
                     (item as any)?.username ||
                     truncateAddress(addr);
+                  const subtitle = (item as any)?.username
+                    ? `@${(item as any).username}`
+                    : truncateAddress(addr);
                   const onPress = () => startDMWith(item as User);
                   return (
                     <TouchableOpacity
-                      className="mr-2 px-3 py-2 rounded-2xl bg-theme-neutrals-800 border border-theme-neutrals-700 items-center"
+                      className="flex-row items-center py-2"
                       onPress={onPress}
+                      activeOpacity={0.7}
                       accessibilityRole="button"
                     >
-                      <View className="flex-row items-center">
-                        <Avatar
-                          uri={getAvatarUrl((item as any)?.avatarImageUrl)}
-                          size={22}
-                          className="mr-2"
-                        />
+                      <Avatar
+                        uri={getAvatarUrl((item as any)?.avatarImageUrl)}
+                        size={44}
+                      />
+                      <View className="ml-3 flex-1">
                         <Text
-                          className="text-theme-neutrals-200 text-[12px]"
+                          className="text-white text-[15px] font-medium"
                           numberOfLines={1}
                         >
-                          {title}
+                          {display}
+                        </Text>
+                        <Text
+                          className="text-theme-neutrals-400 text-[12px] mt-0.5"
+                          numberOfLines={1}
+                        >
+                          {subtitle}
                         </Text>
                       </View>
                     </TouchableOpacity>
                   );
                 }}
-                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
+                keyboardShouldPersistTaps="handled"
               />
             </View>
           ) : null}
-        </View>
 
-        <View className="px-5 mt-3 max-h-[55vh]">
+          {/* Search results */}
           {showResults ? (
-            <View>
+            <View className="mt-2">
               {loading ? (
-                <View className="py-6 items-center">
+                <View className="py-8 items-center">
                   <ActivityIndicator size="small" color="#9CA3AF" />
                 </View>
               ) : results.length > 0 ? (
@@ -363,45 +369,32 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
                   initialNumToRender={10}
                   maxToRenderPerBatch={10}
                   windowSize={5}
+                  showsVerticalScrollIndicator={false}
                 />
               ) : (
-                <View className="py-8 items-center">
-                  <Ionicons name="people-outline" size={48} color="#4B5563" />
-                  <Text className="text-theme-neutrals-300 mt-2">
-                    No users found
+                <View className="py-10 items-center">
+                  <Ionicons name="person-outline" size={40} color="#4B5563" />
+                  <Text className="text-theme-neutrals-300 text-[14px] mt-3">
+                    No accounts found
                   </Text>
-                  <Text className="text-theme-neutrals-500 text-[12px] mt-1">
-                    Try a different username or paste their address
+                  <Text className="text-theme-neutrals-500 text-[12px] mt-1 text-center px-4">
+                    Try searching with their username or wallet address
                   </Text>
                 </View>
               )}
             </View>
-          ) : (
-            <View className="py-4">
-              {/* <View className="flex-row items-center bg-theme-neutrals-800/60 border border-theme-neutrals-700 rounded-2xl p-3">
-                <Ionicons
-                  name="information-circle-outline"
-                  size={18}
-                  color="#9CA3AF"
-                  style={{ marginTop: 2 }}
-                />
-                <Text className="text-theme-neutrals-400 text-[12px] mx-2">
-                  Paste an address or type a username to start a chat
-                </Text>
-              </View> */}
+          ) : !suggestions.length ? (
+            <View className="py-10 items-center">
+              <Ionicons name="chatbubble-ellipses-outline" size={40} color="#4B5563" />
+              <Text className="text-theme-neutrals-400 text-[13px] mt-3 text-center px-4">
+                Search for a user by username or paste their wallet address to start chatting
+              </Text>
             </View>
-          )}
+          ) : null}
         </View>
 
-        {/* Footer */}
-        <View className="px-5 pb-5 pt-2 flex-row justify-end">
-          <TouchableOpacity
-            onPress={close}
-            className="px-4 h-11 rounded-full bg-theme-neutrals-700 items-center justify-center active:opacity-80"
-          >
-            <Text className="text-theme-neutrals-100">Close</Text>
-          </TouchableOpacity>
-        </View>
+        {/* Bottom padding */}
+        <View className="h-4" />
       </View>
     </GlassModal>
   );

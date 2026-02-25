@@ -27,7 +27,7 @@ import FollowListScreen from "../screens/FollowListScreen";
 import DraftsScreen from '../screens/DraftsScreen';
 import PostResolverScreen from '../screens/PostResolverScreen';
 import { LivepeerProvider } from "../config/livepeer.config";
-import ChatScreen from "../screens/ChatScreen";
+import ChatScreen from "../screens/ChatScreenNew";
 import { useAuthState } from "../context/AuthContext";
 
 // =============================================================================

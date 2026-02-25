@@ -20,10 +20,13 @@ const ImageViewerScreen = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   const {
-    images = [],
+    imageUrl,
+    images: rawImages,
     index: initialIndex = 0,
     isModal,
   } = (route?.params as any) || {};
+  const images: string[] =
+    rawImages?.length ? rawImages : imageUrl ? [imageUrl] : [];
   const [currentIndex, setCurrentIndex] = useState<number>(initialIndex);
   const translateY = useRef(new Animated.Value(0)).current;
   const isHandlingRef = useRef(false);

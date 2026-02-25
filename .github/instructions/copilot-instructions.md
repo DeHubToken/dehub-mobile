@@ -44,3 +44,6 @@ applyTo: "**/*.tsx"
 - Handle reconnections and error states gracefully.
 - Clean up sockets and listeners in component unmount.
 - Use context or event emitters to share socket data across components.
+
+## Miscellaneous
+- Don't write comments that just explains stuff like an AI would. Limit commenting to non-obvious logic, assumptions, and important notes for future maintainers.

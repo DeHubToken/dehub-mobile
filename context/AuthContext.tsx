@@ -93,7 +93,7 @@ export interface User {
   dmSettings?: {
     address: string;
     disables: ("NEW_DM" | "ALL" | "ACTIVE_ALL")[];
-    minTipDhb: number;
+    perMessageFee: number;
   };
   // Blocklist info (from getAccountInfo)
   blocklist?: {
