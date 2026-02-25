@@ -103,9 +103,12 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
           const isMine = (!!meId && senderId === meId) || (!!meAddr && senderAddr === meAddr);
           author = isMine ? 'me' : 'other';
         }
-        const normalized = { ...payload, author };
+        // Real-time messages we just sent haven't been read by the receiver yet.
+        // Server may return isRead:true (sender counts as 'reader') — override.
+        const isRead = author === 'me' ? false : payload.isRead;
+        const normalized = { ...payload, author, isRead };
         dmActions.upsertMessages(cId, [normalized]);
-        log.debug('SendMessage -> upserted', { conversation: cId, msgId: String(payload?._id || ''), author: normalized.author });
+        log.debug('SendMessage -> upserted', { conversation: cId, msgId: String(payload?._id || ''), author: normalized.author, mediaUrls: JSON.stringify(payload?.mediaUrls ?? []) });
       } catch (err) {
         log.error('SendMessage handler error', err);
       }

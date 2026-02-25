@@ -21,30 +21,27 @@ function objectToGetParams(obj?: Record<string, any>): string {
 }
 
 /**
- * Feed-specific fetcher. Mirrors web getFeedNFTs behavior:
- * - When search is present, forces unit=50 and includes postType=feed-all by default.
- * - Otherwise forwards provided params to /search_nfts.
+ * Feed-specific fetcher. Mirrors web getFeedNFTs behavior.
+ * Uses the /feed endpoint.
  */
 export async function getFeedNFTs(params?: SearchParams): Promise<GetNFTsResponse> {
   const hasSearch = !!(params?.search || params?.q);
 
   if (hasSearch) {
     const base = removeUndefined({
-      q: params?.search || params?.q,
       search: params?.search || params?.q,
-      unit: 50,
-      sort: params?.sort,
+      limit: 50,
+      sortBy: params?.sortMode || params?.sort,
       range: params?.range,
       category: params?.category,
       address: params?.address,
       postType: params?.postType || "feed-all",
-      sortMode: params?.sortMode,
       minter: params?.minter,
       owner: params?.owner,
-      page: params?.page,
+      page: (params?.page ?? 0) + 1, // /feed uses 1-indexed pages
     });
     const query = objectToGetParams(base);
-    const url = `/search_nfts${query}`;
+    const url = `/feed${query}`;
     const res = await apiClient.get<any>(url, { isAuthRequired: true });
     if (Array.isArray(res)) return { result: res } as GetNFTsResponse;
     if (res?.result && Array.isArray(res.result)) return res as GetNFTsResponse;
@@ -53,21 +50,19 @@ export async function getFeedNFTs(params?: SearchParams): Promise<GetNFTsRespons
   }
 
   const base = removeUndefined({
-    q: params?.search || params?.q,
     search: params?.search || params?.q,
-    sort: params?.sort,
-    unit: params?.unit ?? 20,
+    sortBy: params?.sortMode || params?.sort,
+    limit: params?.unit ?? 20,
     range: params?.range,
     category: params?.category,
     address: params?.address,
-    page: params?.page,
+    page: (params?.page ?? 0) + 1, // /feed uses 1-indexed pages
     postType: params?.postType || "feed-all",
-    sortMode: params?.sortMode,
     minter: params?.minter,
     owner: params?.owner,
   });
   const query = objectToGetParams(base);
-  const url = `/search_nfts${query}`;
+  const url = `/feed${query}`;
   const res = await apiClient.get<any>(url, { isAuthRequired: true });
   if (Array.isArray(res)) return { result: res } as GetNFTsResponse;
   if (res?.result && Array.isArray(res.result)) return res as GetNFTsResponse;

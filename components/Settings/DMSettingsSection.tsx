@@ -15,7 +15,7 @@ const DMSettingsSection: React.FC = () => {
   const initial = useMemo(() => {
     const disables = ((user as any)?.dmSettings?.disables ||
       []) as DmDisableStatus[];
-    const minTip = Number((user as any)?.dmSettings?.minTipDhb || 0);
+    const fee = Number((user as any)?.dmSettings?.perMessageFee || 0);
     let dmsEnabled = true;
     let allowNew = true;
     if (disables.includes(DmDisableStatus.ALL)) {
@@ -28,34 +28,34 @@ const DMSettingsSection: React.FC = () => {
       dmsEnabled = true;
       allowNew = true;
     }
-    return { dmsEnabled, allowNew, minTip };
+    return { dmsEnabled, allowNew, fee };
   }, [user]);
 
   const [dmsEnabled, setDmsEnabled] = useState<boolean>(initial.dmsEnabled);
   const [allowNew, setAllowNew] = useState<boolean>(initial.allowNew);
-  const [minTip, setMinTip] = useState<string>(String(initial.minTip));
+  const [fee, setFee] = useState<string>(String(initial.fee));
   const [dmSubmitting, setDmSubmitting] = useState<boolean>(false);
-  const [tipSubmitting, setTipSubmitting] = useState<boolean>(false);
-  const [tipSaved, setTipSaved] = useState<boolean>(false);
+  const [feeSubmitting, setFeeSubmitting] = useState<boolean>(false);
+  const [feeSaved, setFeeSaved] = useState<boolean>(false);
 
   const dmKey = useMemo(() => {
     const disables = JSON.stringify(
       ((user as any)?.dmSettings?.disables || []) as DmDisableStatus[]
     );
-    const tip = String((user as any)?.dmSettings?.minTipDhb ?? 0);
-    return `${disables}|${tip}`;
+    const f = String((user as any)?.dmSettings?.perMessageFee ?? 0);
+    return `${disables}|${f}`;
   }, [user]);
 
   // Keep in sync with user after server updates, but avoid clobbering in-flight UI
   useEffect(() => {
-    if (dmSubmitting || tipSubmitting) return;
+    if (dmSubmitting || feeSubmitting) return;
     setDmsEnabled(initial.dmsEnabled);
     setAllowNew(initial.allowNew);
-    setMinTip(String(initial.minTip));
+    setFee(String(initial.fee));
   }, [dmKey]);
 
   const optimisticPatch = useCallback(
-    (next: { dmsEnabled: boolean; allowNew: boolean; minTip: number }) => {
+    (next: { dmsEnabled: boolean; allowNew: boolean; fee: number }) => {
       const disables: DmDisableStatus[] = !next.dmsEnabled
         ? [DmDisableStatus.ALL]
         : !next.allowNew
@@ -68,7 +68,7 @@ const DMSettingsSection: React.FC = () => {
               ...(prev?.dmSettings || {}),
               address: prev?.walletAddress || prev?.address,
               disables,
-              minTipDhb: next.minTip,
+              perMessageFee: next.fee,
             },
           } as any)
       ).catch(() => {});
@@ -79,7 +79,7 @@ const DMSettingsSection: React.FC = () => {
   const submit = useCallback(
     async (opts?: {
       desired?: { action: DmAction; status: DmDisableStatus };
-      spinner?: "toggle" | "tip";
+      spinner?: "toggle" | "fee";
     }) => {
       const address = (
         ((user as any)?.walletAddress || (user as any)?.address || "") as string
@@ -88,9 +88,9 @@ const DMSettingsSection: React.FC = () => {
         toastInfo("You must be signed in");
         return;
       }
-      const parsedMin = Number(minTip);
-      if (!Number.isFinite(parsedMin) || parsedMin < 0) {
-        toastInfo("Minimum tip must be a non-negative number");
+      const parsedFee = Number(fee);
+      if (!Number.isFinite(parsedFee) || parsedFee < 0) {
+        toastInfo("Per-message fee must be a non-negative number");
         return;
       }
 
@@ -102,26 +102,26 @@ const DMSettingsSection: React.FC = () => {
           ? { action: DmAction.Disable, status: DmDisableStatus.NEW_DM }
           : { action: DmAction.Enable, status: DmDisableStatus.ACTIVE_ALL });
 
-      if (opts?.spinner === "tip") setTipSubmitting(true);
+      if (opts?.spinner === "fee") setFeeSubmitting(true);
       else setDmSubmitting(true);
       const prev = {
         disables: ((user as any)?.dmSettings?.disables ||
           []) as DmDisableStatus[],
-        min: Number((user as any)?.dmSettings?.minTipDhb || 0),
+        fee: Number((user as any)?.dmSettings?.perMessageFee || 0),
       };
 
-      optimisticPatch({ dmsEnabled, allowNew, minTip: parsedMin });
+      optimisticPatch({ dmsEnabled, allowNew, fee: parsedFee });
       try {
         await updateDmUserStatus(
           address,
           desired.status,
           desired.action,
-          parsedMin
+          parsedFee
         );
-        if (opts?.spinner === "tip") {
-          setTipSubmitting(false);
-          setTipSaved(true);
-          setTimeout(() => setTipSaved(false), 1000);
+        if (opts?.spinner === "fee") {
+          setFeeSubmitting(false);
+          setFeeSaved(true);
+          setTimeout(() => setFeeSaved(false), 1000);
         }
       } catch (e) {
         // revert
@@ -131,17 +131,17 @@ const DMSettingsSection: React.FC = () => {
               dmSettings: {
                 address,
                 disables: prev.disables,
-                minTipDhb: prev.min,
+                perMessageFee: prev.fee,
               },
             } as any)
         ).catch(() => {});
         toastError(e, "Failed to update DM preferences");
       } finally {
-        if (opts?.spinner === "tip") setTipSubmitting(false);
+        if (opts?.spinner === "fee") setFeeSubmitting(false);
         else setDmSubmitting(false);
       }
     },
-    [user, dmsEnabled, allowNew, minTip, optimisticPatch, patchUser]
+    [user, dmsEnabled, allowNew, fee, optimisticPatch, patchUser]
   );
 
   const onToggleDmsEnabled = useCallback(
@@ -211,13 +211,13 @@ const DMSettingsSection: React.FC = () => {
     [submit]
   );
 
-  const onChangeMinTip = useCallback((t: string) => {
+  const onChangeFee = useCallback((t: string) => {
     const cleaned = t.replace(/[^0-9.]/g, "");
-    setMinTip(cleaned);
+    setFee(cleaned);
   }, []);
 
-  const onBlurMinTip = useCallback(() => {
-    submit({ spinner: "tip" }).catch(() => {});
+  const onBlurFee = useCallback(() => {
+    submit({ spinner: "fee" }).catch(() => {});
   }, [submit]);
 
   return (
@@ -265,40 +265,27 @@ const DMSettingsSection: React.FC = () => {
         </View>
         <View className="h-px bg-theme-neutrals-700" />
         <View className="px-4 py-4">
-          <Text className="text-theme-neutrals-100 text-sm font-medium">Minimum tip (DHB)</Text>
+          <Text className="text-theme-neutrals-100 text-sm font-medium">Per-Message Fee (DHB)</Text>
           <Text className="text-theme-neutrals-500 text-xs mt-1">
-            Set to 0 to allow without a tip.
+            Charge users per message. Set to 0 for free DMs.
           </Text>
-          {/* Audit notice for tipped messages */}
-          <View className="bg-amber-500/10 border border-black/30 rounded-lg p-3 mt-1 flex-row items-start">
-            <Ionicons
-              name="information-circle-outline"
-              size={16}
-              color="#FBBF24"
-            />
-            <Text className="text-amber-300 text-xs ml-2 flex-1">
-              Tipped messages contracts are being audited. Minimum tip behavior
-              may not work yet. You can temporarily turn off new DMs or disable
-              DMs above.
-            </Text>
-          </View>
 
           <View className="flex-row items-center mt-2">
             <TextInput
-              value={minTip}
-              onChangeText={onChangeMinTip}
-              onBlur={onBlurMinTip}
+              value={fee}
+              onChangeText={onChangeFee}
+              onBlur={onBlurFee}
               keyboardType="numeric"
               placeholder="0"
-              placeholderTextColor="#9ca3af"
+              placeholderTextColor="#A6A9AC"
               className="flex-1 text-theme-neutrals-100 bg-theme-neutrals-900 border border-theme-neutrals-700 rounded-lg px-3 h-11"
-              editable={!dmSubmitting && !tipSubmitting}
+              editable={!dmSubmitting && !feeSubmitting}
             />
-            {tipSubmitting ? (
+            {feeSubmitting ? (
               <View className="ml-3 h-11 items-center justify-center">
-                <ActivityIndicator size="small" color="#9ca3af" />
+                <ActivityIndicator size="small" color="#A6A9AC" />
               </View>
-            ) : tipSaved ? (
+            ) : feeSaved ? (
               <View className="ml-3 h-11 items-center justify-center">
                 <Ionicons name="checkmark-circle" size={18} color="#34D399" />
               </View>

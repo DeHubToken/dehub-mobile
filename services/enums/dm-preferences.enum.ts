@@ -11,5 +11,5 @@ export enum DmAction {
 
 export type DmPreferences = {
   disables?: DmDisableStatus[];
-  minTipDhb?: number;
+  perMessageFee?: number;
 };

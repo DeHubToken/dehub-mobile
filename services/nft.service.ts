@@ -80,22 +80,20 @@ function objectToGetParams(obj?: Record<string, any>): string {
 // ---------------- Service ----------------
 export async function getNFTs(params?: SearchParams): Promise<GetNFTsResponse> {
   const baseParams: Record<string, any> = {
-    q: params?.search || params?.q,
     search: params?.search || params?.q,
-    sort: params?.sort,
-    unit: params?.unit ?? 40,
+    sortBy: params?.sortMode || params?.sort,
+    limit: params?.unit ?? 40,
     range: params?.range,
     category: params?.category,
     address: params?.address,
-    page: params?.page,
+    page: (params?.page ?? 0) + 1, // /feed uses 1-indexed pages
     postType: params?.postType,
-    sortMode: params?.sortMode,
     minter: params?.minter,
     owner: params?.owner,
   };
 
   const query = objectToGetParams(removeUndefined(baseParams));
-  const url = `/search_nfts${query}`;
+  const url = `/feed${query}`;
   try {
     const res = await apiClient.get<any>(url, { isAuthRequired: true });
     // Expected shape: { result: [] } but handle array fallback

@@ -1,30 +1,49 @@
 // DM (Direct Messages) socket events namespace enumeration
 // Values must match server-side event names exactly.
 export enum DMSocketEvent {
+  // Connection lifecycle
   Disconnect = "disconnect",
   Connection = "connection",
-  FetchMessage = "fetchMessage",
+  ReConnect = "reConnect",
   Ping = "ping",
   Pong = "pong",
-  CreateAndStart = "createAndStart",
-  SendMessage = "sendMessage",
-  // Server may emit upload progress/completion keyed by message/job id
-  JobMessageId = "jobMessageId",
   Error = "error",
-  ReConnect = "reConnect",
-  ReValidateMessage = "ReValidateMessage",
+
+  // Conversations
+  CreateAndStart = "createAndStart",
+
+  // Messages
+  SendMessage = "sendMessage",
+  EditMessage = "editMessage",
+  ForwardMessage = "forwardMessage",
   DeleteMessage = "deleteMessage",
+  FetchMessage = "fetchMessage",
+  ReValidateMessage = "ReValidateMessage",
+
+  // Media upload progress/completion keyed by message/job id
+  JobMessageId = "jobMessageId",
+
+  // Read & download receipts
+  markAsRead = "markAsRead",
+  readReceipt = "readReceipt",
+  markAsDownloaded = "markAsDownloaded",
+  downloadReceipt = "downloadReceipt",
+
+  // Payments
   TipUpdate = "tipUpdate",
+  DmFeePayment = "dmFeePayment",
+  TipSend = "tipSend",
+  FeeConfirmed = "feeConfirmed",
+
+  // Typing indicators
+  Typing = "typing",
+  StopTyping = "stopTyping",
+
   // Test utilities
   Test = "testDM",
-  // Read receipts
-  markAsRead = "markAsRead", // incoming: mark all messages (not sent by me) as read in a conversation
-  readReceipt = "readReceipt", // outgoing: notify clients that messages were marked as read
-  markAsDownloaded = "markAsDownloaded", // incoming: mark a single message as downloaded by non-sender
-  downloadReceipt = "downloadReceipt",
 }
 
 // Handy set of DM event strings for quick membership checks
 export const DMSocketEventSet: ReadonlySet<string> = new Set(
-  Object.values(DMSocketEvent)
+  Object.values(DMSocketEvent),
 );

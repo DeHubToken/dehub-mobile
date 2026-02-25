@@ -8,6 +8,8 @@ export interface ScreenHeaderProps {
   subtitle?: string;
   canGoBack?: boolean;
   rightContent?: React.ReactNode;
+  /** Extra content rendered between the back button and title (e.g. avatar). */
+  leftContent?: React.ReactNode;
   onBackPress?: () => void;
 }
 
@@ -16,6 +18,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   subtitle,
   canGoBack = true,
   rightContent,
+  leftContent,
   onBackPress,
 }) => {
   const navigation = useNavigation();
@@ -59,6 +62,9 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
             <Ionicons name="arrow-back" size={22} color="#E5E7EB" />
           </TouchableOpacity>
         )}
+        {leftContent ? (
+          <View className="mr-2">{leftContent}</View>
+        ) : null}
         <View className="flex-shrink">
           <Text
             numberOfLines={1}

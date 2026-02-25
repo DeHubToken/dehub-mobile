@@ -34,23 +34,23 @@ export interface UpdateDmUserStatusResult {
   data?: {
     address: string;
     disables?: DmDisableStatus[];
-    minTipDhb?: number;
+    perMessageFee?: number;
   };
 }
 
 /**
  * Update DM preferences for a user address.
- * Backend: POST /dm/user-status/:address with body { status, action, minTipDhb? }
+ * Backend: POST /dm/user-status/:address with body { status, action, perMessageFee? }
  */
 export async function updateDmUserStatus(
   address: string,
   status: DmDisableStatus,
   action: DmAction,
-  minTipDhb?: number
+  perMessageFee?: number
 ): Promise<UpdateDmUserStatusResult> {
   const addr = (address || '').toLowerCase();
   const url = `/dm/user-status/${addr}`;
   const payload: any = { status, action };
-  if (typeof minTipDhb !== 'undefined') payload.minTipDhb = minTipDhb;
+  if (typeof perMessageFee !== 'undefined') payload.perMessageFee = perMessageFee;
   return apiClient.post<UpdateDmUserStatusResult>(url, payload, { isAuthRequired: true });
 }
