@@ -387,7 +387,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           }
         }
         onEndReached={endReachedRef.current ? undefined : loadMore}
-        onEndReachedThreshold={0.4}
+        onEndReachedThreshold={0.8}
         onScroll={handleScroll}
         onScrollBeginDrag={handleScrollBeginDrag}
         scrollEventThrottle={16}
@@ -403,8 +403,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         }
         ListFooterComponent={
           loadingMore ? (
-            <View className="px-2 pt-2">
-              <VideoCardSkeleton count={2} />
+            <View className="items-center py-6">
+              <ActivityIndicator size="large" color="#fff" />
             </View>
           ) : endReachedRef.current && items.length > 0 ? (
             <View className="px-4 py-6 items-center">

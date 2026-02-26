@@ -112,8 +112,11 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
 
   if (status === "ended") {
     return (
-      <View className="absolute inset-0 items-center justify-center bg-black/80">
-        <View className="items-center px-8">
+      <View
+        className="absolute inset-0 items-center justify-center"
+        pointerEvents="none"
+      >
+        <View className="bg-black/70 rounded-3xl px-8 py-6 items-center border border-white/10 mx-10">
           <Text className="text-3xl mb-3">📺</Text>
           <Text className="text-white text-lg font-bold mb-1">
             Stream Ended
@@ -136,8 +139,11 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
 
   if (status === "scheduled") {
     return (
-      <View className="absolute inset-0 items-center justify-center bg-black/80">
-        <View className="items-center px-8">
+      <View
+        className="absolute inset-0 items-center justify-center"
+        pointerEvents="none"
+      >
+        <View className="bg-black/70 rounded-3xl px-8 py-6 items-center border border-white/10 mx-10">
           <Text className="text-3xl mb-3">📅</Text>
           <Text className="text-white text-lg font-bold mb-1">
             Upcoming Stream
@@ -157,8 +163,11 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
 
   if (status === "offline") {
     return (
-      <View className="absolute inset-0 items-center justify-center bg-black/80">
-        <View className="items-center px-8">
+      <View
+        className="absolute inset-0 items-center justify-center"
+        pointerEvents="none"
+      >
+        <View className="bg-black/70 rounded-3xl px-8 py-6 items-center border border-white/10 mx-10">
           <Text className="text-3xl mb-3">📡</Text>
           <Text className="text-white text-lg font-bold mb-1">
             Stream Offline

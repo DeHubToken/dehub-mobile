@@ -5,8 +5,6 @@ import {
   TouchableOpacity,
   Pressable,
   InteractionManager,
-  KeyboardAvoidingView,
-  Platform,
   StatusBar,
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -1032,11 +1030,7 @@ const LiveProducerScreen: React.FC = () => {
           />
 
           {/* Main layout */}
-          <KeyboardAvoidingView
-            className="flex-1"
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            keyboardVerticalOffset={0}
-          >
+          <View className="flex-1" pointerEvents="box-none">
             <View className="flex-1" pointerEvents="box-none">
               {/* Header: LIVE status, timer, viewers, close */}
               {!uiHidden ? (
@@ -1173,7 +1167,7 @@ const LiveProducerScreen: React.FC = () => {
                 ) : null}
               </View>
             </View>
-          </KeyboardAvoidingView>
+          </View>
 
           {/* Floating Reaction Bubbles */}
           <ReactionOverlay reactions={reactions} onRemove={removeReaction} />
