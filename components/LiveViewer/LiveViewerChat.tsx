@@ -5,7 +5,6 @@ import {
   FlatList,
   TextInput,
   TouchableOpacity,
-  Platform,
 } from "react-native";
 import { Send, Gift } from "lucide-react-native";
 import { StreamActivityType } from "../../services/enums/livestream.enum";
@@ -115,7 +114,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
   switch (a.status) {
     case StreamActivityType.MESSAGE:
       return (
-        <View className="mb-1.5 bg-black/40 rounded-xl px-2.5 py-1.5 self-start max-w-[85%] flex-row items-start">
+        <View className="mb-1.5 bg-theme-neutrals-800/80 rounded-xl px-2.5 py-1.5 self-start max-w-[85%] flex-row items-start">
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
             <Avatar uri={avatarUrl} size={20} />
           </TouchableOpacity>
@@ -286,11 +285,10 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
             ? "Sign in to chat"
             : "Say something...";
 
-  // Keyboard offset for input when in fullscreen overlay mode
+  // Manual keyboard lift (same pattern as FeedDetailScreen / ChatScreenNew)
   const inputBottomOffset = useMemo(() => {
     if (!kbVisible) return 0;
-    // On iOS KeyboardAvoidingView handles it; on Android we need manual offset
-    return Platform.OS === "android" ? keyboardHeight : 0;
+    return keyboardHeight;
   }, [kbVisible, keyboardHeight]);
 
   return (
@@ -323,7 +321,7 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
         className="flex-row items-center px-3 pb-2 pt-1"
         style={{ marginBottom: inputBottomOffset }}
       >
-        <View className="flex-1 flex-row items-center bg-black/50 rounded-full px-4 py-2 border border-white/15 mr-2">
+        <View className="flex-1 flex-row items-center bg-theme-neutrals-800/90 rounded-full px-4 py-2 border border-theme-neutrals-600/40 mr-2">
           <TextInput
             value={message}
             onChangeText={setMessage}
@@ -352,7 +350,7 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
           <TouchableOpacity
             onPress={onGiftPress}
             activeOpacity={0.7}
-            className="w-10 h-10 rounded-full bg-black/50 border border-white/15 items-center justify-center"
+            className="w-10 h-10 rounded-full bg-theme-neutrals-800/90 border border-theme-neutrals-600/40 items-center justify-center"
           >
             <Gift color="#f59e0b" size={18} />
           </TouchableOpacity>

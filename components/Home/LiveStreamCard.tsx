@@ -42,12 +42,14 @@ interface LiveStreamCardProps {
 const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCategorySelect }) => {
   const navigation = useNavigation<any>();
   const user = useUser();
-  const { showUserProfile } = useUserProfileSheet();
+  const { showUserProfile, hideUserProfile } = useUserProfileSheet();
 
   // Options menu state
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
   const [isHidden, setIsHidden] = useState<boolean>(!!((item as any).isHidden));
   const [isDeleted, setIsDeleted] = useState(false);
+  const [isFollowingCreator, setIsFollowingCreator] = useState<boolean>(!!item.isFollowing);
+  const [isFollowRequestPending, setIsFollowRequestPending] = useState(false);
   
   // Stream nested object (for live-specific data like status, streamKey, peakViewers)
   const stream = (item as any).stream;
@@ -139,6 +141,11 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
     setShowOptionsMenu(true);
   }, []);
 
+  const handleFollowChange = useCallback((following: boolean, pending?: boolean) => {
+    setIsFollowingCreator(following);
+    setIsFollowRequestPending(!!pending);
+  }, []);
+
   const handleVisibilityChange = useCallback((hidden: boolean) => {
     setIsHidden(hidden);
   }, []);
@@ -148,7 +155,7 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
   }, []);
   
   const handlePress = useCallback(() => {
-    // Navigate to LiveProducer if creator, otherwise LiveViewer
+    hideUserProfile();
     const target = isCreator ? ScreenNames.LiveProducer : ScreenNames.LiveViewer;
     navigation.navigate(target as never, {
       isLive: isCurrentlyLive,
@@ -156,7 +163,7 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
       accessInfo,
       streamId,
     } as never);
-  }, [navigation, isCreator, isCurrentlyLive, item, accessInfo, streamId]);
+  }, [navigation, isCreator, isCurrentlyLive, item, accessInfo, streamId, hideUserProfile]);
   
   // ==========================================================================
   // Render
@@ -302,9 +309,11 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
         isHidden={isHidden}
         creatorDisplayName={displayName}
         creatorIdentifier={creatorAddress}
-        isFollowing={false}
+        isFollowing={isFollowingCreator}
+        isFollowRequestPending={isFollowRequestPending}
         hideReportContent={true}
         hideEdit
+        onFollowChange={handleFollowChange}
         onVisibilityChange={handleVisibilityChange}
         onDeleteSuccess={handleDeleteSuccess}
       />

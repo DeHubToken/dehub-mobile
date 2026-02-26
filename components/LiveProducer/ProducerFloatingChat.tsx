@@ -10,6 +10,7 @@ import { ArrowUpCircle, MessageCircleOff } from "lucide-react-native";
 import { StreamActivityType } from "../../services/enums/livestream.enum";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Avatar from "../common/Avatar";
+import { useKeyboard } from "../../hooks/useKeyboard";
 import type { UserReference } from "../LiveViewer/LiveViewerChat";
 
 export interface ProducerChatActivity {
@@ -101,6 +102,8 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
   const [message, setMessage] = useState("");
   const listRef = useRef<FlatList<ProducerChatActivity> | null>(null);
   const { showUserProfile } = useUserProfileSheet();
+  const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
+  const inputLift = kbVisible ? kbHeight : 0;
 
   const handleUserPress = useCallback(
     (identifier: string) => {
@@ -155,7 +158,7 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
             activeOpacity={0.8}
             disabled={settingsUpdating}
             className={`flex-row items-center px-2.5 py-1 rounded-full ${
-              chatEnabled ? "bg-black/30" : "bg-red-600/40"
+              chatEnabled ? "bg-theme-neutrals-800/60" : "bg-red-600/40"
             }`}
           >
             <MessageCircleOff
@@ -187,7 +190,10 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
       </View>
 
       {/* Input bar */}
-      <View className="flex-row items-center mt-2 bg-black/40 rounded-full px-3 py-1.5 border border-white/10">
+      <View
+        className="flex-row items-center mt-2 bg-theme-neutrals-800/90 rounded-full px-3 py-1.5 border border-theme-neutrals-600/40"
+        style={{ marginBottom: inputLift }}
+      >
         <TextInput
           value={message}
           onChangeText={setMessage}
@@ -230,7 +236,7 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
     switch (item.status) {
       case StreamActivityType.MESSAGE: {
         return (
-          <View className="flex-row items-start mb-1.5 bg-black/30 rounded-xl px-2.5 py-1.5 self-start max-w-[85%]">
+          <View className="flex-row items-start mb-1.5 bg-theme-neutrals-800/80 rounded-xl px-2.5 py-1.5 self-start max-w-[85%]">
             <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
               <Avatar uri={avatarUrl} size={18} />
             </TouchableOpacity>

@@ -10,13 +10,11 @@ import {
   Text,
   Platform,
   AppState,
-  KeyboardAvoidingView,
 } from "react-native";
 import VideoArea from "./VideoArea";
 import { useAuth } from "../../context/AuthContext";
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import {
-  getAccount,
   followUser,
   unfollowUser,
 } from "../../services/user.service";
@@ -129,32 +127,21 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // Creator/channel state — seeded from streamEntity.account (no extra fetch needed)
   const [creatorLoading, setCreatorLoading] = useState<boolean>(true);
   const [creator, setCreator] = useState<any | null>(null);
-  const [isFollowing, setIsFollowing] = useState<boolean>(false);
+  // Seed from nft prop (passed from feed card) so follow state is correct immediately
+  const [isFollowing, setIsFollowing] = useState<boolean>(
+    !!((props as any).nft?.isFollowing)
+  );
   const [followLoading, setFollowLoading] = useState<boolean>(false);
   useEffect(() => {
     if (!streamEntity) return;
     const account = (streamEntity as any)?.account || null;
-    if (account) {
-      setCreator(account);
-    } else {
-      // Fallback: fetch separately only if account not embedded
-      let cancelled = false;
-      const minterAddr = (streamEntity.address || minterProp) as string | undefined;
-      if (!minterAddr) { setCreatorLoading(false); return; }
-      setCreatorLoading(true);
-      getAccount(minterAddr).then((res: any) => {
-        if (cancelled) return;
-        setCreator(res?.data?.result || res?.result || res || null);
-      }).catch(() => { if (!cancelled) setCreator(null); })
-        .finally(() => { if (!cancelled) setCreatorLoading(false); });
-      return () => { cancelled = true; };
-    }
-    // Seed isFollowing from streamEntity (backend returns isFollowing alongside isLiked)
-    if (typeof (streamEntity as any)?.isFollowing === 'boolean') {
+    if (account) setCreator(account);
+    // Only seed isFollowing from streamEntity when no nft prop was passed (e.g. deep link)
+    if (typeof (streamEntity as any)?.isFollowing === 'boolean' && !nftProp) {
       setIsFollowing((streamEntity as any).isFollowing);
     }
     setCreatorLoading(false);
-  }, [streamEntity, minterProp]);
+  }, [streamEntity, nftProp]);
 
   const handleFollow = useCallback(() => {
     if (!creator || isFollowing) return;
@@ -169,29 +156,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     requireAuth?.(async () => {
       setFollowLoading(true);
       setIsFollowing(true);
-      setCreator((prev: any) => {
-        if (!prev) return prev;
-        const followers = prev.followers || [];
-        if (
-          followers.map((f: string) => (f || "").toLowerCase()).includes(viewer)
-        )
-          return prev;
-        return { ...prev, followers: [...followers, viewer] };
-      });
       try {
         await followUser(viewer, target);
       } catch (e) {
         setIsFollowing(false);
-        setCreator((prev: any) => {
-          if (!prev) return prev;
-          const followers = prev.followers || [];
-          return {
-            ...prev,
-            followers: followers.filter(
-              (f: string) => (f || "").toLowerCase() !== viewer
-            ),
-          };
-        });
         toastError("Failed to follow user");
       } finally {
         setFollowLoading(false);
@@ -211,33 +179,17 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     if (!viewer || !target) return;
     requireAuth?.(async () => {
       setFollowLoading(true);
+      setIsFollowing(false);
       try {
         await unfollowUser(viewer, target);
-        setIsFollowing(false);
-        setCreator((prev: any) => {
-          if (!prev) return prev;
-          const followers = prev.followers || [];
-          return {
-            ...prev,
-            followers: followers.filter(
-              (f: string) => (f || "").toLowerCase() !== viewer
-            ),
-          };
-        });
       } catch (e) {
+        setIsFollowing(true);
         toastError("Failed to unfollow user");
       } finally {
         setFollowLoading(false);
       }
     });
-  }, [
-    creator,
-    isFollowing,
-    followLoading,
-    user?.walletAddress,
-    user?.address,
-    requireAuth,
-  ]);
+  }, [creator, isFollowing, followLoading, user?.walletAddress, user?.address, requireAuth]);
 
   // Derive display fields
   const resolvedTitle = (streamEntity?.title ||
@@ -1258,11 +1210,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         />
 
         {/* Main content layout */}
-        <KeyboardAvoidingView
-          className="flex-1"
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={0}
-        >
+        <View className="flex-1" pointerEvents="box-none">
           <View className="flex-1" pointerEvents="box-none" style={{ paddingTop: insets.top }}>
             {/* Header: Creator info + LIVE badge + viewers + close */}
             <LiveViewerHeader
@@ -1323,7 +1271,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
               />
             </View>
           </View>
-        </KeyboardAvoidingView>
+        </View>
 
         {/* Floating Reaction Bubbles - right side */}
         <ReactionOverlay reactions={reactions} onRemove={removeReaction} />

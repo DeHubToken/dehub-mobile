@@ -566,7 +566,20 @@ const FeedScreen = () => {
               />
             }
             onEndReached={handleEndReached}
-            onEndReachedThreshold={0.5}
+            onEndReachedThreshold={0.8}
+            ListFooterComponent={
+              feedLoading && feedData.length > 0 ? (
+                <View className="items-center py-6">
+                  <ActivityIndicator size="large" color="#fff" />
+                </View>
+              ) : !feedHasMore && feedData.length > 0 ? (
+                <View className="px-4 py-6 items-center">
+                  <Text className="text-theme-neutrals-400 text-xs">
+                    No more content
+                  </Text>
+                </View>
+              ) : null
+            }
             ListEmptyComponent={
               !feedLoading ? (
                 <View className="items-center py-10">
