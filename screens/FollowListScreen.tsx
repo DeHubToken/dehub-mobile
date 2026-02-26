@@ -24,6 +24,7 @@ import {
   acceptFollowRequest,
   rejectFollowRequest,
   FollowRequestItem,
+  removeFollower,
 } from "../services/user.service";
 import { getAvatarUrl } from "../libs/misc";
 import { truncate } from "../libs/strings.util";
@@ -32,6 +33,7 @@ import Avatar from "../components/common/Avatar";
 import ScreenHeader from "../components/ScreenHeader";
 import { ScreenNames } from "../navigation/ScreenNames";
 import AccentButtonGradient from "../components/ui/AccentButtonGradient";
+import GlassModal from "../components/ui/GlassModal";
 
 type RouteParams = {
   FollowList: {
@@ -65,9 +67,10 @@ const PAGE_LIMIT = 20;
 interface FollowUserRowProps {
   item: FollowListItem;
   onPress: (address: string) => void;
+  onRemove?: (address: string) => void;
 }
 
-const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(({ item, onPress }) => {
+const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(({ item, onPress, onRemove }) => {
   const user = item.user;
   const displayName = user.displayName || user.username || truncate(user.address, 12, "..");
   const avatarUrl = getAvatarUrl(user.avatarImageUrl);
@@ -76,6 +79,10 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(({ item, onPress 
   const handlePress = useCallback(() => {
     onPress(user.address);
   }, [onPress, user.address]);
+
+  const handleRemove = useCallback(() => {
+    onRemove?.(user.address);
+  }, [onRemove, user.address]);
 
   return (
     <TouchableOpacity
@@ -114,8 +121,18 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(({ item, onPress 
         )}
       </View>
 
-      {/* Chevron */}
-      <Ionicons name="chevron-forward" size={20} color="#555" />
+      {/* Remove button or chevron */}
+      {onRemove ? (
+        <TouchableOpacity
+          onPress={handleRemove}
+          activeOpacity={0.7}
+          className="bg-theme-neutrals-800 px-3.5 py-1.5 rounded-lg ml-2"
+        >
+          <Text className="text-gray-300 text-xs font-semibold">Remove</Text>
+        </TouchableOpacity>
+      ) : (
+        <Ionicons name="chevron-forward" size={20} color="#555" />
+      )}
     </TouchableOpacity>
   );
 });
@@ -266,6 +283,9 @@ const FollowListScreen: React.FC = () => {
   const [requestsHasMore, setRequestsHasMore] = useState(true);
   const [requestsLoadingMore, setRequestsLoadingMore] = useState(false);
   const [requestsCount, setRequestsCount] = useState(authUser?.pendingFollowRequests || 0);
+
+  // Remove follower modal state
+  const [removeTarget, setRemoveTarget] = useState<{ address: string; displayName: string } | null>(null);
 
   // Build tabs dynamically — only show "Requests" for own private profile
   const isPrivateAccount = authUser?.isPrivate === true;
@@ -440,6 +460,39 @@ const FollowListScreen: React.FC = () => {
     }
   }, []);
 
+  const handleRemoveFollower = useCallback((followerAddress: string) => {
+    const targetItem = data.find(
+      (d) => d.user.address.toLowerCase() === followerAddress.toLowerCase()
+    );
+    const displayName = targetItem?.user.displayName || targetItem?.user.username || "this user";
+    setRemoveTarget({ address: followerAddress, displayName });
+  }, [data]);
+
+  const handleConfirmRemoveFollower = useCallback(async () => {
+    if (!removeTarget) return;
+    const { address: followerAddress } = removeTarget;
+    const targetItem = data.find(
+      (d) => d.user.address.toLowerCase() === followerAddress.toLowerCase()
+    );
+
+    setRemoveTarget(null);
+
+    // Optimistic removal
+    setData((prev) => prev.filter(
+      (d) => d.user.address.toLowerCase() !== followerAddress.toLowerCase()
+    ));
+    setTotalCount((prev) => Math.max(0, prev - 1));
+    try {
+      await removeFollower(followerAddress);
+    } catch (e) {
+      console.error("[FollowListScreen] removeFollower error:", e);
+      if (targetItem) {
+        setData((prev) => [targetItem, ...prev]);
+        setTotalCount((prev) => prev + 1);
+      }
+    }
+  }, [removeTarget, data]);
+
   const handleRefresh = useCallback(() => {
     if (activeTab === "requests") {
       fetchRequests(1, true);
@@ -488,9 +541,13 @@ const FollowListScreen: React.FC = () => {
 
   const renderItem = useCallback(
     ({ item }: { item: FollowListItem }) => (
-      <FollowUserRow item={item} onPress={handleUserPress} />
+      <FollowUserRow
+        item={item}
+        onPress={handleUserPress}
+        onRemove={isOwner && activeTab === "followers" ? handleRemoveFollower : undefined}
+      />
     ),
-    [handleUserPress]
+    [handleUserPress, isOwner, activeTab, handleRemoveFollower]
   );
 
   const renderRequestItem = useCallback(
@@ -751,6 +808,43 @@ const FollowListScreen: React.FC = () => {
           )}
         </>
       )}
+
+      {/* Remove Follower confirmation modal */}
+      <GlassModal
+        visible={!!removeTarget}
+        onClose={() => setRemoveTarget(null)}
+        presentation="center"
+        maxHeight="40%"
+        blurIntensity={50}
+      >
+        <View className="px-5 py-6 items-center">
+          <View className="w-14 h-14 rounded-full bg-white/10 items-center justify-center mb-4">
+            <Ionicons name="person-remove-outline" size={28} color="#fff" />
+          </View>
+          <Text className="text-white text-lg font-semibold text-center mb-2">
+            Remove follower?
+          </Text>
+          <Text className="text-theme-neutrals-400 text-sm text-center mb-6 leading-5">
+            {removeTarget?.displayName || "This user"} won't be notified that they were removed from your followers.
+          </Text>
+          <View className="flex-row gap-3 w-full">
+            <TouchableOpacity
+              onPress={() => setRemoveTarget(null)}
+              className="flex-1 bg-theme-neutrals-800 py-3 rounded-xl items-center"
+              activeOpacity={0.7}
+            >
+              <Text className="text-white font-semibold">Cancel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={handleConfirmRemoveFollower}
+              className="flex-1 bg-red-500/90 py-3 rounded-xl items-center"
+              activeOpacity={0.7}
+            >
+              <Text className="text-white font-semibold">Remove</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </GlassModal>
     </View>
   );
 };

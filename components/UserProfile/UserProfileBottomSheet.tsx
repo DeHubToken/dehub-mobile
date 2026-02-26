@@ -72,6 +72,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     stats,
     handleFollow,
     handleUnfollow,
+    handleRemoveFollower,
     handleBlock,
     handleUnblock,
     youBlocked,
@@ -265,6 +266,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                 blockLoading={blockLoading}
                 onBlock={handleBlock}
                 onUnblock={handleUnblock}
+                onRemoveFollower={handleRemoveFollower}
                 onRegisterMenuTrigger={handleRegisterMenuTrigger}
               />
             </Animated.View>

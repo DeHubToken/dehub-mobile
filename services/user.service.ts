@@ -451,6 +451,27 @@ export async function unfollowUser(followerAddress: string, followingAddress: st
   };
 }
 
+// ---------------- Remove Follower ----------------
+
+export interface RemoveFollowerResponse {
+  status: boolean;
+  message: string;
+}
+
+/**
+ * Remove a user from your followers list (like Instagram's "Remove Follower").
+ * The removed user is not notified.
+ * Endpoint (POST, AuthGuard): /api/followers/remove
+ */
+export async function removeFollower(followerAddress: string): Promise<RemoveFollowerResponse> {
+  const res = await apiClient.post<any>("/followers/remove", { address: followerAddress }, { isAuthRequired: true });
+  const payload = res?.data?.result || res?.result || res;
+  return {
+    status: !!payload?.status,
+    message: payload?.message || "Follower removed",
+  };
+}
+
 // ---------------- Follow state check (lightweight) ----------------
 
 export interface IsFollowingResult {
