@@ -1,8 +1,13 @@
-# Push Notifications - Frontend Implementation Guide
+# Notifications - Frontend Implementation Guide
 
 ## Overview
 
-DeHub sends push notifications for various user activities. This document outlines all notification types, their payload structure, and recommended frontend handling.
+DeHub has a two-channel notification system:
+
+1. **In-App Notifications** — Stored in the database, queried via REST API, delivered in real-time via Socket.IO events. These are the notification bell / notifications screen.
+2. **Push Notifications** — Delivered via Expo Push Notifications to the device even when the app is in the background.
+
+Both channels use the same 22 notification types and 6 categories. This document covers everything the frontend needs to implement both channels.
 
 > **Last updated:** 19 Feb 2026 — audited against actual backend code.
 
@@ -18,6 +23,8 @@ enum NotificationType {
   COMMENT = 'comment',
   COMMENT_REPLY = 'comment_reply',
   COMMENT_LIKE = 'comment_like',
+  REPOST = 'repost',
+  QUOTE = 'quote',
 
   // Social
   FOLLOWING = 'following',
@@ -71,7 +78,297 @@ enum PushNotificationAction {
 }
 ```
 
-## Push Notification Payload Structure
+## In-App Notifications
+
+In-app notifications are stored in MongoDB and accessed via REST API. They provide persistent notification history and support aggregation, categories, and read/unread state.
+
+> **Note:** Direct messages (`new_message`) do **not** create in-app notifications. DMs are handled entirely through the DM UI and push notifications. The `messages` category exists in the enum but will not appear in the in-app notification feed.
+
+### Notification Object Schema
+
+Each in-app notification has this shape:
+
+```typescript
+interface InAppNotification {
+  _id: string;                      // MongoDB ObjectId
+  address: string;                  // Recipient wallet address
+  type: NotificationType;           // e.g. 'like', 'repost', 'quote'
+  category: NotificationCategory;   // e.g. 'engagement', 'social'
+  content: string;                  // Pre-rendered display text
+
+  // Actor info (who triggered it)
+  actorAddress?: string;
+  actorUsername?: string;
+  actorAvatar?: string;
+  actor?: UserReference;            // Populated user ref (preferred)
+
+  // Content reference
+  tokenId?: number;
+  tokenTitle?: string;
+  tokenThumbnail?: string;
+  postType?: 'video' | 'feed-images' | 'feed-simple';
+
+  // Comment reference
+  commentId?: number;
+  commentPreview?: string;
+  parentCommentId?: number;
+
+  // Aggregation
+  aggregationKey?: string;
+  aggregatedCount: number;          // Total count (1 = single)
+  latestActorNames: string[];       // Up to 3 most recent actor usernames
+  latestActorUsers?: UserReference[]; // Populated user refs (preferred)
+
+  // Monetization
+  amount?: number;
+  currency?: string;
+  planName?: string;
+  planId?: string;
+
+  // Extra
+  metadata?: Record<string, any>;   // deepLink, bountyType, moderationType, etc.
+
+  // Status
+  read: boolean;
+  readAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}
+```
+
+### Metadata by Type
+
+The `metadata` field carries type-specific data:
+
+| Type | Metadata Fields |
+|------|-----------------|
+| `repost` | `{ deepLink }` |
+| `quote` | `{ quoteTokenId, deepLink }` |
+| `follow_request` | `{ action: 'follow_request', followId }` — render accept/reject buttons |
+| `bounty_available` / `bounty_claimed` | `{ bountyType: 'viewer' \| 'commentor', deepLink }` |
+| `comment_like` | `{ aggregatedCount, deepLink }` |
+| `video_milestone` | `{ milestone, type: 'views' \| 'likes' }` |
+| `account_warning` | `{ moderationType }` — see Moderation Subtypes below |
+| All types | May include `{ deepLink }` for navigation |
+
+### Aggregation
+
+Certain notification types are **aggregated** — multiple events are merged into a single notification with an incrementing count instead of creating separate entries.
+
+**Aggregated types:** `like`, `comment`, `following`, `comment_like`, `repost`
+
+Example: If 6 users like the same video, the notification shows:
+- `content`: `"CryptoKing, NFTQueen and 4 others liked your video"`
+- `aggregatedCount`: `6`
+- `latestActorNames`: `["CryptoKing", "NFTQueen", "Web3Dev"]`
+
+Display pattern:
+```typescript
+function formatNotification(n: InAppNotification): string {
+  // content is pre-rendered by the backend — use it directly
+  return n.content;
+
+  // If you need custom formatting with actor names:
+  if (n.aggregatedCount <= 1) return `${n.actorUsername} liked your video`;
+  if (n.aggregatedCount === 2) return `${n.latestActorNames[0]} and ${n.latestActorNames[1]} liked your video`;
+  return `${n.latestActorNames[0]} and ${n.aggregatedCount - 1} others liked your video`;
+}
+```
+
+### REST API Endpoints
+
+#### `GET /notification` — Fetch notifications
+
+Query params:
+| Param | Type | Default | Description |
+|-------|------|---------|-------------|
+| `unreadOnly` | boolean | `true` | Set to `"false"` to get all notifications |
+| `category` | string | — | Filter: `engagement`, `social`, `monetization`, `content`, `messages`, `system` |
+| `page` | number | `1` | Page number (1-indexed) |
+| `limit` | number | `30` | Items per page (max 100) |
+
+Response:
+```json
+{
+  "result": [
+    {
+      "_id": "507f1f77bcf86cd799439011",
+      "address": "0x1234...",
+      "type": "repost",
+      "category": "engagement",
+      "content": "CryptoKing and 2 others reposted your video \"My NFT Drop\"",
+      "actorUsername": "CryptoKing",
+      "actorAvatar": "https://cdn.dehub.com/avatars/abc.jpg",
+      "tokenId": 12345,
+      "tokenTitle": "My NFT Drop",
+      "postType": "video",
+      "aggregatedCount": 3,
+      "latestActorNames": ["CryptoKing", "NFTQueen", "Web3Dev"],
+      "read": false,
+      "createdAt": "2026-01-21T15:30:00.000Z",
+      "updatedAt": "2026-01-21T16:45:00.000Z"
+    },
+    {
+      "_id": "507f1f77bcf86cd799439013",
+      "type": "quote",
+      "category": "engagement",
+      "content": "CryptoKing quoted your video \"My NFT Drop\"",
+      "actorUsername": "CryptoKing",
+      "tokenId": 12345,
+      "postType": "video",
+      "metadata": {
+        "quoteTokenId": 67890,
+        "deepLink": "/video/67890"
+      },
+      "aggregatedCount": 1,
+      "read": false,
+      "createdAt": "2026-01-21T14:30:00.000Z"
+    }
+  ]
+}
+```
+
+#### `GET /notification/unread-count` — Badge count
+
+Response:
+```json
+{
+  "total": 15,
+  "byCategory": {
+    "engagement": 8,
+    "social": 3,
+    "monetization": 2,
+    "content": 1,
+    "messages": 0,
+    "system": 1
+  }
+}
+```
+
+Use `total` for the notification bell badge. Use `byCategory` for category tab badges.
+
+#### `PATCH /notification/:notificationId` — Mark one as read
+
+Response: `{ "message": "Notification marked as read" }`
+
+#### `POST /notification/mark-all-read` — Mark all as read
+
+Optional query param `category` to only clear specific category.
+
+Response: `{ "message": "All notifications marked as read", "count": 12 }`
+
+### Socket.IO Real-Time Events
+
+The backend emits a Socket.IO event when a new notification is created:
+
+```typescript
+// Listen for new notifications
+socket.on('notification', (data: InAppNotification) => {
+  // Add to notification list
+  addNotificationToList(data);
+  // Increment badge count
+  incrementBadgeCount();
+  // Optionally show an in-app toast
+  showToast(data.content);
+});
+```
+
+### In-App Navigation by Type
+
+When a user taps a notification in the notifications list:
+
+```typescript
+function navigateFromNotification(n: InAppNotification) {
+  switch (n.type) {
+    case 'like':
+    case 'comment':
+    case 'comment_reply':
+    case 'comment_like':
+    case 'repost':
+    case 'video_milestone':
+    case 'ppv_purchase':
+    case 'bounty_claimed':
+      navigateTo('VideoScreen', { tokenId: n.tokenId, commentId: n.commentId });
+      break;
+
+    case 'quote':
+      navigateTo('VideoScreen', { tokenId: n.metadata?.quoteTokenId || n.tokenId });
+      break;
+
+    case 'following':
+    case 'follow_request':
+    case 'follow_request_accepted':
+      navigateTo('ProfileScreen', { address: n.actorAddress });
+      break;
+
+    case 'tip':
+    case 'bounty_available':
+      if (n.tokenId) navigateTo('VideoScreen', { tokenId: n.tokenId });
+      else navigateTo('WalletScreen');
+      break;
+
+    case 'subscription':
+      navigateTo('SubscribersScreen');
+      break;
+
+    case 'livestream_start':
+      navigateTo('LivestreamScreen', { tokenId: n.tokenId });
+      break;
+
+    // NOTE: new_message is push-only — no in-app notifications for DMs
+
+    case 'video_removal':
+    case 'account_warning':
+    case 'system':
+    default:
+      navigateTo('NotificationsScreen');
+  }
+}
+```
+
+### Follow Request Actions
+
+For `follow_request` notifications, render accept/reject buttons:
+
+```typescript
+function renderFollowRequestNotification(notification: InAppNotification) {
+  const { followId } = notification.metadata || {};
+
+  return (
+    <View>
+      <Text>{notification.content}</Text>
+      {notification.metadata?.action === 'follow_request' && (
+        <View>
+          <Button title="Accept" onPress={() => acceptFollowRequest(followId)} />
+          <Button title="Decline" onPress={() => rejectFollowRequest(followId)} />
+        </View>
+      )}
+    </View>
+  );
+}
+```
+
+### Moderation Subtypes
+
+For `account_warning` notifications, `metadata.moderationType` distinguishes the action:
+
+| moderationType | Meaning |
+|----------------|---------|
+| `account_banned` | Account suspended |
+| `account_unbanned` | Suspension lifted |
+| `posting_restricted` | Posting ability restricted |
+| `posting_restored` | Posting ability restored |
+| `commenting_restricted` | Commenting restricted |
+| `commenting_restored` | Commenting restored |
+| `account_warning` | General warning |
+
+---
+
+## Push Notifications
+
+Push notifications are delivered via Expo Push Notifications to the device. They use the same notification types as in-app but carry a simplified payload optimized for OS-level display.
+
+### Push Notification Payload Structure
 
 All push notifications follow this structure:
 
@@ -88,9 +385,9 @@ interface PushNotificationPayload {
 }
 ```
 
-## Notification Types and Handling
+### Push Notification Types and Handling
 
-### 1. Engagement Notifications
+#### 1. Engagement Notifications
 
 #### `like` — Someone liked your content
 
@@ -170,7 +467,47 @@ When aggregated: `"John and 5 others liked your comment \"Great vi...\""`.
 
 Preference: `engagement.likes`
 
-### 2. Social Notifications
+#### `repost` — Someone reposted your content (Aggregated)
+
+```json
+{
+  "title": "New Repost 🔁",
+  "body": "John reposted your video: \"My First Stream\"",
+  "data": {
+    "type": "repost",
+    "category": "engagement",
+    "tokenId": 123,
+    "aggregatedCount": 3,
+    "deepLink": "/video/123"
+  }
+}
+```
+
+When aggregated: `"John and 2 others reposted your video"`. `tokenId` is the original post that was reposted. Navigate to the original post.
+
+Preference: `engagement.likes`
+
+#### `quote` — Someone quoted your content
+
+```json
+{
+  "title": "New Quote Post ✍️",
+  "body": "John quoted your video: \"My First Stream\"",
+  "data": {
+    "type": "quote",
+    "category": "engagement",
+    "tokenId": 123,
+    "quoteTokenId": 789,
+    "deepLink": "/video/789"
+  }
+}
+```
+
+`tokenId` is the original post. `quoteTokenId` is the new quote post token. Navigate to the **quote post** (quoteTokenId), not the original.
+
+Preference: `engagement.likes`
+
+#### 2. Social Notifications
 
 #### `following` — Someone followed you (public account)
 
@@ -227,7 +564,7 @@ Preference: `social.newFollowers`
 
 **Not yet implemented.** The enum exists but no backend code sends this type. Reserved for a future release.
 
-### 3. Monetization Notifications
+#### 3. Monetization Notifications
 
 #### `tip` — Someone tipped you
 
@@ -321,7 +658,7 @@ Preference: `monetization.tips`
 
 Preference: `monetization.tips`
 
-### 4. Content Notifications
+#### 4. Content Notifications
 
 #### `livestream_start` — Someone you follow started streaming
 
@@ -360,7 +697,7 @@ Preference: `content.livestreamStart`
 
 Preference: `content.milestones`
 
-### 5. Message Notifications
+#### 5. Message Notifications
 
 #### `new_message` — New direct message
 
@@ -383,7 +720,7 @@ Preference: `content.milestones`
 
 Preference: Always allowed (DM settings are controlled separately).
 
-### 6. System Notifications
+#### 6. System Notifications
 
 #### `video_removal` — Your content was removed
 
@@ -458,6 +795,8 @@ Preference: `system.announcements` — bypassed for broadcasts (sent with `force
 | `comment` | Yes | `comment` | `engagement.comments` |
 | `comment_reply` | Yes | `comment_reply` | `engagement.commentReplies` |
 | `comment_like` | Yes | `comment_like` | `engagement.likes` |
+| `repost` | Yes (aggregated) | `repost` | `engagement.likes` |
+| `quote` | Yes | `quote` | `engagement.likes` |
 | `following` | Yes | `following` | `social.newFollowers` |
 | `follow_request` | Yes | `follow_request` | `social.newFollowers` |
 | `follow_request_accepted` | Yes | `follow_request_accepted` | `social.newFollowers` |
@@ -474,9 +813,9 @@ Preference: `system.announcements` — bypassed for broadcasts (sent with `force
 | `account_warning` | Yes (force) | `account_warning` | `system.accountAlerts` |
 | `system` | Yes (force) | `system` | `system.announcements` |
 
-## Frontend Implementation
+### Push Implementation
 
-### Deep Link Routing
+#### Deep Link Routing (Push Tap Handler)
 
 When a push notification is tapped, use the `deepLink` field to navigate:
 
@@ -484,10 +823,13 @@ When a push notification is tapped, use the `deepLink` field to navigate:
 import * as Notifications from 'expo-notifications';
 
 Notifications.addNotificationResponseReceivedListener(response => {
-  const { deepLink } = response.notification.request.content.data;
+  const data = response.notification.request.content.data;
 
-  if (deepLink) {
-    navigation.navigate(parseDeepLink(deepLink));
+  if (data.deepLink) {
+    navigation.navigate(parseDeepLink(data.deepLink));
+  } else {
+    // Fallback: use type-based routing (same switch as In-App Navigation above)
+    navigateFromNotificationType(data);
   }
 });
 
@@ -507,130 +849,25 @@ function parseDeepLink(deepLink: string) {
 }
 ```
 
-### Type-Based Routing
+#### User Preferences
 
-Use `data.type` to determine how to handle each notification:
-
-```typescript
-function handleNotification(data: PushNotificationData) {
-  switch (data.type) {
-    case 'like':
-    case 'comment':
-    case 'comment_reply':
-    case 'comment_like':
-    case 'video_milestone':
-    case 'ppv_purchase':
-    case 'bounty_claimed':
-      navigateTo('VideoScreen', { tokenId: data.tokenId, commentId: data.commentId });
-      break;
-
-    case 'following':
-    case 'follow_request':
-    case 'follow_request_accepted':
-      navigateTo('ProfileScreen', { address: data.actorAddress });
-      break;
-
-    case 'tip':
-    case 'bounty_available':
-      if (data.tokenId) navigateTo('VideoScreen', { tokenId: data.tokenId });
-      else navigateTo('WalletScreen');
-      break;
-
-    case 'subscription':
-      navigateTo('SubscribersScreen');
-      break;
-
-    case 'livestream_start':
-      navigateTo('LivestreamScreen', { tokenId: data.tokenId });
-      break;
-
-    case 'new_message':
-      navigateTo('ConversationScreen', { id: data.conversationId });
-      break;
-
-    case 'video_removal':
-    case 'account_warning':
-    case 'system':
-    default:
-      navigateTo('NotificationsScreen');
-  }
-}
-```
-
-### Category-Based Filtering
-
-Use `category` to allow users to filter notifications in the UI:
-
-```typescript
-const categories = [
-  { key: 'all', label: 'All' },
-  { key: 'engagement', label: 'Likes & Comments' },
-  { key: 'social', label: 'Followers' },
-  { key: 'monetization', label: 'Earnings' },
-  { key: 'content', label: 'Content Updates' },
-  { key: 'messages', label: 'Messages' },
-  { key: 'system', label: 'System' },
-];
-```
-
-### Aggregation Display
-
-For aggregated notifications like `comment_like`, use `aggregatedCount`:
-
-```typescript
-function formatAggregatedNotification(notification) {
-  const { aggregatedCount, actorUsername } = notification.data;
-
-  if (!aggregatedCount || aggregatedCount <= 1) {
-    return actorUsername + ' liked your comment';
-  }
-
-  return actorUsername + ' and ' + (aggregatedCount - 1) + ' others liked your comment';
-}
-```
-
-### Follow Request Actions
-
-For `follow_request` in-app notifications, render accept/reject buttons:
-
-```typescript
-function renderFollowRequestNotification(notification) {
-  const { followId } = notification.metadata;
-
-  return (
-    <View>
-      <Text>{notification.content}</Text>
-      <Button title="Accept" onPress={() => acceptFollowRequest(followId)} />
-      <Button title="Decline" onPress={() => rejectFollowRequest(followId)} />
-    </View>
-  );
-}
-```
-
-### Badge Count
-
-The push notification service respects in-app badge counts. Query unread count from:
-
-```
-GET /notifications/unread-count
-Response: { count: 15 }
-```
-
-### User Preferences
-
-Users can configure notification preferences at `/settings/notifications`. The backend respects these preferences before sending push notifications.
+Users can configure notification preferences at `/settings/notifications`. The backend respects these before sending push.
 
 Available preference groups:
 
-- **engagement** — `likes`, `comments`, `commentReplies`, `mentions`
-- **social** — `newFollowers` (covers follows, follow requests, request acceptances)
-- **monetization** — `tips` (covers tips and bounties), `subscriptions`, `ppvPurchases`
-- **content** — `milestones`, `livestreamStart`
-- **system** — `accountAlerts`, `announcements`
+| Group | Keys | Covers |
+|-------|------|--------|
+| **engagement** | `likes`, `comments`, `commentReplies`, `mentions` | like, comment, comment_reply, comment_like, repost, quote |
+| **social** | `newFollowers` | following, follow_request, follow_request_accepted |
+| **monetization** | `tips`, `subscriptions`, `ppvPurchases` | tip, bounty_available, bounty_claimed, subscription, ppv_purchase |
+| **content** | `milestones`, `livestreamStart` | video_milestone, livestream_start |
+| **system** | `accountAlerts`, `announcements` | video_removal, account_warning, system |
 
-System and moderation notifications (`video_removal`, `account_warning`, broadcast `system`) are sent with `force: true` and bypass user preferences.
+System and moderation notifications (`video_removal`, `account_warning`, broadcast `system`) bypass user preferences and are always delivered.
 
-## Testing Push Notifications
+Messages (`new_message`) are always allowed — DM notification settings are controlled separately.
+
+## Testing
 
 ### Expo Development
 

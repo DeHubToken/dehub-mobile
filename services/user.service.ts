@@ -79,6 +79,8 @@ export type NotificationType =
   | 'comment' 
   | 'comment_reply' 
   | 'comment_like'
+  | 'repost'
+  | 'quote'
   | 'following' 
   | 'mention'
   | 'tip' 
@@ -132,6 +134,7 @@ export interface NotificationItem {
     streamId?: string;
     planId?: string;
     followId?: string;
+    quoteTokenId?: number;
   };
 }
 
