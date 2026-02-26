@@ -64,6 +64,8 @@ export interface NotificationData {
   aggregatedCount?: number;
   // Moderation (in-app metadata)
   moderationType?: string;
+  // Quote post reference
+  quoteTokenId?: number;
 }
 
 /**
@@ -74,6 +76,7 @@ const CONTENT_NAVIGABLE_TYPES = new Set([
   NotificationType.COMMENT,
   NotificationType.COMMENT_REPLY,
   NotificationType.COMMENT_LIKE,
+  NotificationType.REPOST,
   NotificationType.TIP,
   NotificationType.PPV_PURCHASE,
   NotificationType.BOUNTY_AVAILABLE,
@@ -236,6 +239,29 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
             } else {
               navigation.navigate(ScreenNames.VideoPlayer, { tokenId, commentId });
             }
+          } else {
+            navigation.navigate(ScreenNames.Notifications);
+          }
+          break;
+
+        // =====================================================================
+        // Repost & Quote
+        // =====================================================================
+        case NotificationType.REPOST:
+          // Repost → navigate to the original post that was reposted
+          if (tokenId) {
+            navigation.navigate(ScreenNames.PostResolver, { tokenId });
+          } else {
+            navigation.navigate(ScreenNames.Notifications);
+          }
+          break;
+
+        case NotificationType.QUOTE:
+          // Quote → navigate to the new quote post (quoteTokenId), not the original
+          if (data.quoteTokenId) {
+            navigation.navigate(ScreenNames.PostResolver, { tokenId: data.quoteTokenId });
+          } else if (tokenId) {
+            navigation.navigate(ScreenNames.PostResolver, { tokenId });
           } else {
             navigation.navigate(ScreenNames.Notifications);
           }

@@ -115,6 +115,7 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
       type === NotificationType.COMMENT ||
       type === NotificationType.COMMENT_REPLY ||
       type === NotificationType.COMMENT_LIKE ||
+      type === NotificationType.REPOST ||
       type === NotificationType.TIP ||
       type === NotificationType.PPV_PURCHASE ||
       type === NotificationType.BOUNTY_AVAILABLE ||
@@ -122,6 +123,11 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
       type === NotificationType.VIDEO_MILESTONE ||
       type === NotificationType.MENTION) {
     return !!notification.tokenId;
+  }
+
+  // Quote - clickable if has quoteTokenId or tokenId
+  if (type === NotificationType.QUOTE) {
+    return !!(notification.metadata?.quoteTokenId || notification.tokenId);
   }
   
   // Livestream - need tokenId
@@ -260,6 +266,22 @@ const NotificationScreen = () => {
           } else {
             navigateToVideo(tokenId, commentId);
           }
+        }
+        break;
+
+      case 'repost':
+        // Repost → navigate to the original post
+        if (tokenId) {
+          navigation.navigate(ScreenNames.PostResolver, { tokenId });
+        }
+        break;
+
+      case 'quote':
+        // Quote → navigate to the new quote post, fall back to original
+        if (metadata?.quoteTokenId) {
+          navigation.navigate(ScreenNames.PostResolver, { tokenId: metadata.quoteTokenId });
+        } else if (tokenId) {
+          navigation.navigate(ScreenNames.PostResolver, { tokenId });
         }
         break;
 

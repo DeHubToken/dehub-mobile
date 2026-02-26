@@ -9,6 +9,8 @@ export enum NotificationType {
   COMMENT = 'comment',
   COMMENT_REPLY = 'comment_reply',
   COMMENT_LIKE = 'comment_like',
+  REPOST = 'repost',
+  QUOTE = 'quote',
   FOLLOWING = 'following',
   MENTION = 'mention',
   TIP = 'tip',
@@ -45,6 +47,8 @@ export const CONTENT_NAVIGABLE_TYPES = new Set([
   NotificationType.COMMENT,
   NotificationType.COMMENT_REPLY,
   NotificationType.COMMENT_LIKE,
+  NotificationType.REPOST,
+  NotificationType.QUOTE,
   NotificationType.TIP,
   NotificationType.PPV_PURCHASE,
   NotificationType.BOUNTY_AVAILABLE,
@@ -94,6 +98,10 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
       return { name: 'chatbubble', color: '#3b82f6' };
     case NotificationType.COMMENT_LIKE:
       return { name: 'heart', color: '#f472b6' };
+    case NotificationType.REPOST:
+      return { name: 'repeat', color: '#22c55e' };
+    case NotificationType.QUOTE:
+      return { name: 'chatbubble-ellipses', color: '#06b6d4' };
     case NotificationType.FOLLOWING:
       return { name: 'person-add', color: '#8b5cf6' };
     case NotificationType.FOLLOW_REQUEST:
