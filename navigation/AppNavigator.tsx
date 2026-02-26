@@ -24,6 +24,7 @@ import LiveProducerScreen from "../screens/LiveProducerScreen";
 import LiveViewerScreen from "../screens/LiveViewerScreen";
 import DpayScreen from "../screens/DpayScreen";
 import FollowListScreen from "../screens/FollowListScreen";
+import RepostQuoteListScreen from "../screens/RepostQuoteListScreen";
 import DraftsScreen from '../screens/DraftsScreen';
 import PostResolverScreen from '../screens/PostResolverScreen';
 import { LivepeerProvider } from "../config/livepeer.config";
@@ -161,6 +162,10 @@ export default function AppNavigator() {
         <Stack.Screen
           name={ScreenNames.FollowList}
           component={FollowListScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.RepostQuoteList}
+          component={RepostQuoteListScreen}
         />
       </Stack.Group>
 

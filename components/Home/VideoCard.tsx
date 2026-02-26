@@ -24,12 +24,15 @@ import {
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import { voteOnNFT } from "../../services/nft.service";
 import { savePost } from "../../services/feed.service";
+import { toggleRepost } from "../../services/repost.service";
 import { WEBSITE_LINK } from "../../config";
 import { getTransactionLink, openInApp } from "../../libs/links.utils";
 import { FeedCardHeader } from "./FeedCardHeader";
 import { FeedCaption } from "./FeedCaption";
 import { CommentBottomSheet } from "../Comments";
 import PostOptionsMenu from "../common/PostOptionsMenu";
+import RepostPopover from "../common/RepostPopover";
+import QuotedPostEmbed from "../common/QuotedPostEmbed";
 
 interface VideoCardProps {
   nft: any;
@@ -162,16 +165,21 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const [likeCount, setLikeCount] = useState<number>(likes);
   const [dislikeCount, setDislikeCount] = useState<number>(dislikes);
   const [showComments, setShowComments] = useState<boolean>(false);
+  const [reposted, setReposted] = useState<boolean>(!!nft.isReposted);
+  const [repostCount, setRepostCount] = useState<number>(((nft as any).reposts || 0) + ((nft as any).quotes || 0));
+  const [showRepostPopover, setShowRepostPopover] = useState<boolean>(false);
   
   // Animation refs
   const likeScale = useRef(new Animated.Value(1)).current;
   const dislikeScale = useRef(new Animated.Value(1)).current;
   const saveScale = useRef(new Animated.Value(1)).current;
   const shareScale = useRef(new Animated.Value(1)).current;
+  const repostScale = useRef(new Animated.Value(1)).current;
   const infoScale = useRef(new Animated.Value(1)).current;
   const commentScale = useRef(new Animated.Value(1)).current;
+  const repostAnchorRef = useRef<View>(null);
   
-  const { showUserProfile } = useUserProfileSheet();
+  const { showUserProfile, hideUserProfile } = useUserProfileSheet();
   const { user } = useAuth();
   const { requireAuth } = useAuthActions();
   const navigation = useNavigation<any>();
@@ -320,6 +328,47 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
     }
   }, [tokenId, commentScale, bounceAnimation]);
   
+  const handleRepostPress = useCallback(() => {
+    if (tokenId == null) return;
+    requireAuth?.(() => {
+      bounceAnimation(repostScale);
+      setShowRepostPopover(true);
+    });
+  }, [tokenId, repostScale, bounceAnimation, requireAuth]);
+
+  const handleUndoRepost = useCallback(() => {
+    if (tokenId == null) return;
+    const wasReposted = reposted;
+    const prevCount = repostCount;
+    setReposted(false);
+    setRepostCount((c) => Math.max(0, c - 1));
+    toggleRepost(Number(tokenId)).catch(() => {
+      setReposted(wasReposted);
+      setRepostCount(prevCount);
+      toastError("Failed to remove repost");
+    });
+  }, [tokenId, reposted, repostCount]);
+
+  const handleConfirmRepost = useCallback(() => {
+    if (tokenId == null) return;
+    const prevCount = repostCount;
+    setReposted(true);
+    setRepostCount((c) => c + 1);
+    toggleRepost(Number(tokenId)).catch(() => {
+      setReposted(false);
+      setRepostCount(prevCount);
+      toastError("Failed to repost");
+    });
+  }, [tokenId, repostCount]);
+
+  const handleQuotePress = useCallback(() => {
+    hideUserProfile();
+    navigation.navigate(ScreenNames.Upload, {
+      quotedTokenId: tokenId,
+      quotedPost: nft as any,
+    });
+  }, [navigation, tokenId, nft, hideUserProfile]);
+
   const handleInfoPress = useCallback(() => {
     bounceAnimation(infoScale);
     if (mintTxHash) {
@@ -466,6 +515,14 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
         showCategories={false}
       />
 
+      {/* Quoted Post Embed (for quote posts) */}
+      {(nft as any).isQuotePost && (
+        <QuotedPostEmbed
+          quotedPost={(nft as any).quotedPost}
+          quotedTokenId={(nft as any).quotedTokenId}
+        />
+      )}
+
       {/* Time and Views row */}
       <View className="flex-row items-center gap-2 pt-1">
         <Text className="text-xs text-theme-neutrals-400">
@@ -537,6 +594,33 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
             </Animated.View>
             <Text className="text-xs text-theme-neutrals-400">{comments}</Text>
           </TouchableOpacity>
+          {/* Repost */}
+          <View ref={repostAnchorRef} style={{ position: 'relative', zIndex: 50 }}>
+            <TouchableOpacity
+              onPress={handleRepostPress}
+              activeOpacity={0.7}
+              className="flex-row items-center gap-1"
+            >
+              <Animated.View style={{ transform: [{ scale: repostScale }] }}>
+                <Ionicons
+                  name="git-compare-outline"
+                  size={18}
+                  color={reposted ? "#22C55E" : "#9CA3AF"}
+                />
+              </Animated.View>
+              <Text className={`text-xs ${reposted ? "text-green-500" : "text-theme-neutrals-400"}`}>
+                {repostCount}
+              </Text>
+            </TouchableOpacity>
+            <RepostPopover
+              visible={showRepostPopover}
+              onClose={() => setShowRepostPopover(false)}
+              onRepost={reposted ? handleUndoRepost : handleConfirmRepost}
+              onQuote={handleQuotePress}
+              isReposted={reposted}
+              anchorRef={repostAnchorRef}
+            />
+          </View>
           {/* Share */}
           <TouchableOpacity
             onPress={handleSharePress}

@@ -50,7 +50,12 @@ export type AuthStackScreenProps<T extends keyof AuthStackParamList> = Composite
 
 export type AppStackParamList = {
   [ScreenNames.Root]: NavigatorScreenParams<BottomTabParamList> | undefined;
-  [ScreenNames.Upload]: { tab?: 'feed' | undefined; draft?: import('../hooks/useDrafts').Draft } | undefined;
+  [ScreenNames.Upload]: {
+    tab?: 'feed' | undefined;
+    draft?: import('../hooks/useDrafts').Draft;
+    quotedTokenId?: number | string;
+    quotedPost?: Record<string, unknown>;
+  } | undefined;
   [ScreenNames.VideoPlayer]: {
     videoId?: string;
     sourceUrl?: string;
@@ -111,6 +116,12 @@ export type AppStackParamList = {
     initialTab?: 'followers' | 'following';
     hideFollowers?: boolean;
     isOwnProfile?: boolean;
+  };
+  [ScreenNames.RepostQuoteList]: {
+    tokenId: number | string;
+    initialTab?: 'reposts' | 'quotes';
+    repostCount?: number;
+    quoteCount?: number;
   };
 };
 
