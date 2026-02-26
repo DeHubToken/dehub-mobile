@@ -36,6 +36,7 @@ import { useAuthState } from "../../context/AuthContext";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { theme } from "../../theme";
 import UserRepliesList, { type UserRepliesListRef } from "./UserRepliesList";
+import UserRepostsList, { type UserRepostsListRef } from "./UserRepostsList";
 import type { UserReplyItem } from "../../services/user.service";
 
 interface UserProfileBottomContentTabsProps {
@@ -106,6 +107,7 @@ const UserProfileBottomContentTabs: React.FC<
   const { isSignedIn } = useAuthState();
   const listRef = useRef<FlatList<any> | null>(null);
   const repliesListRef = useRef<UserRepliesListRef>(null);
+  const repostsListRef = useRef<UserRepostsListRef>(null);
 
   // Active content tab
   const [activeTab, setActiveTab] = useState<ContentTab>("posts");
@@ -509,7 +511,7 @@ const UserProfileBottomContentTabs: React.FC<
         />
       </View>
 
-      {/* Reposts tab — placeholder (always mounted, hidden when inactive) */}
+      {/* Reposts tab — paginated list (always mounted, hidden when inactive) */}
       <View
         style={{
           flex: activeTab === "reposts" ? 1 : 0,
@@ -517,40 +519,18 @@ const UserProfileBottomContentTabs: React.FC<
           display: activeTab === "reposts" ? "flex" : "none",
         }}
       >
-        {isFullScreen && profileHeader ? (
-          <FlatList
-            data={[]}
-            renderItem={null}
-            scrollEnabled={scrollEnabled}
-            onScroll={handleScroll}
-            scrollEventThrottle={16}
-            ListHeaderComponent={
-              <View>
-                <View onLayout={handleHeaderLayout}>
-                  {profileHeader}
-                  {isOwnProfile && isFullScreen && !!onEditProfile && (
-                    <View className="px-6 mt-2 mb-1">
-                      <TouchableOpacity
-                        onPress={onEditProfile}
-                        activeOpacity={0.8}
-                        className="flex-row items-center justify-center gap-2 border border-theme-neutrals-700 py-2 rounded-full"
-                      >
-                        <Ionicons name="pencil-outline" size={15} color="#e5e5e5" />
-                        <Text className="text-white text-sm font-semibold">
-                          Edit Profile
-                        </Text>
-                      </TouchableOpacity>
-                    </View>
-                  )}
-                </View>
-                {TabBar}
-                {RepostsEmptyState}
-              </View>
-            }
-          />
-        ) : (
-          RepostsEmptyState
-        )}
+        <UserRepostsList
+          ref={repostsListRef}
+          address={address}
+          contentPadding={CONTENT_PX}
+          scrollEnabled={scrollEnabled}
+          onScroll={handleScroll}
+          headerComponent={isFullScreen ? fullScreenListHeader : undefined}
+          contentContainerStyle={
+            isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED
+          }
+          onClose={onClose}
+        />
       </View>
 
       {/* Sticky tab bar — overlays at the top when header scrolls away */}

@@ -29,6 +29,8 @@ import CreatorRow from "./CreatorRow";
 import SuggestedVideos, { SuggestedVideosHandle } from "./SuggestedVideos";
 import { ScrollView } from "react-native-gesture-handler";
 import { CommentBottomSheet } from "../Comments";
+import { ScreenNames } from "../../navigation/ScreenNames";
+import { useNavigation } from "@react-navigation/native";
 
 interface NormalVideoPlayerProps {
   tokenId?: string | number;
@@ -61,6 +63,7 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
   commentId,
 }) => {
   const { user, isSignedIn, requireAuth } = useAuth();
+  const navigation = useNavigation<any>();
   const [showDesc, setShowDesc] = useState(false);
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
@@ -217,6 +220,10 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
     nftData?.category || nftData?.result?.category || [];
   const resolvedPpvBuyerCount: number =
     nftData?.ppvBuyerCount ?? nftData?.result?.ppvBuyerCount ?? 0;
+  const resolvedReposts: number =
+    (nftData as any)?.reposts ?? (nftData as any)?.result?.reposts ?? 0;
+  const resolvedQuotes: number =
+    (nftData as any)?.quotes ?? (nftData as any)?.result?.quotes ?? 0;
 
   const handleScroll = useCallback((e: any) => {
     const { layoutMeasurement, contentOffset, contentSize } = e?.nativeEvent || {};
@@ -457,6 +464,49 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
                 (nftData?.mintTxHash ?? nftData?.result?.mintTxHash) as any
               }
             />
+          )}
+          {/* Repost & Quote stats */}
+          {!nftLoading && (
+            <View className="flex-row items-center mt-3 gap-4">
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate(ScreenNames.RepostQuoteList as never, {
+                    tokenId,
+                    initialTab: "reposts",
+                    repostCount: resolvedReposts,
+                    quoteCount: resolvedQuotes,
+                  } as never)
+                }
+                activeOpacity={0.7}
+                className="flex-row items-center"
+              >
+                <Text className="text-white font-semibold text-sm">
+                  {formatCompactNumber(resolvedReposts)}
+                </Text>
+                <Text className="text-theme-neutrals-400 text-sm ml-1">
+                  {resolvedReposts === 1 ? "Repost" : "Reposts"}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate(ScreenNames.RepostQuoteList as never, {
+                    tokenId,
+                    initialTab: "quotes",
+                    repostCount: resolvedReposts,
+                    quoteCount: resolvedQuotes,
+                  } as never)
+                }
+                activeOpacity={0.7}
+                className="flex-row items-center"
+              >
+                <Text className="text-white font-semibold text-sm">
+                  {formatCompactNumber(resolvedQuotes)}
+                </Text>
+                <Text className="text-theme-neutrals-400 text-sm ml-1">
+                  {resolvedQuotes === 1 ? "Quote" : "Quotes"}
+                </Text>
+              </TouchableOpacity>
+            </View>
           )}
           {/* Bounty Claim Banner - shown when video has bounty configured */}
           {!nftLoading && tokenId != null && (

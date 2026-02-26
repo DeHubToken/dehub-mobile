@@ -38,12 +38,15 @@ import {
 } from "../../libs";
 import { voteOnNFT } from "../../services/nft.service";
 import { savePost } from "../../services/feed.service";
+import { toggleRepost } from "../../services/repost.service";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import { WEBSITE_LINK } from "../../config";
 import { getTransactionLink, openInApp } from "../../libs/links.utils";
 import { FeedCaption } from "./FeedCaption";
 import { CommentBottomSheet } from "../Comments";
 import PostOptionsMenu from "../common/PostOptionsMenu";
+import RepostPopover from "../common/RepostPopover";
+import QuotedPostEmbed from "../common/QuotedPostEmbed";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const IMAGE_WIDTH = SCREEN_WIDTH - 32; // Account for padding
@@ -98,7 +101,7 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   const navigation = useNavigation<any>();
   const user = useUser();
   const { requireAuth } = useAuthActions();
-  const { showUserProfile } = useUserProfileSheet();
+  const { showUserProfile, hideUserProfile } = useUserProfileSheet();
   
   // Owner & visibility
   const isOwnerPost = !!(item as any).isOwner;
@@ -123,6 +126,9 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   );
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [showComments, setShowComments] = useState<boolean>(false);
+  const [reposted, setReposted] = useState<boolean>(!!item.isReposted);
+  const [repostCount, setRepostCount] = useState<number>(((item as any).reposts || 0) + ((item as any).quotes || 0));
+  const [showRepostPopover, setShowRepostPopover] = useState<boolean>(false);
   
   // Reanimated shared value for scroll position
   const scrollX = useSharedValue(0);
@@ -133,7 +139,9 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   const saveScale = useRef(new Animated.Value(1)).current;
   const shareScale = useRef(new Animated.Value(1)).current;
   const commentScale = useRef(new Animated.Value(1)).current;
+  const repostScale = useRef(new Animated.Value(1)).current;
   const infoScale = useRef(new Animated.Value(1)).current;
+  const repostAnchorRef = useRef<View>(null);
   
   // Derived data
   const address = user?.address || user?.walletAddress || "";
@@ -349,6 +357,47 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
     }
   }, [tokenId, commentScale, bounceAnimation, onCommentPressProp]);
   
+  const handleRepostPress = useCallback(() => {
+    if (tokenId == null) return;
+    requireAuth?.(() => {
+      bounceAnimation(repostScale);
+      setShowRepostPopover(true);
+    });
+  }, [tokenId, repostScale, bounceAnimation, requireAuth]);
+
+  const handleUndoRepost = useCallback(() => {
+    if (tokenId == null) return;
+    const wasReposted = reposted;
+    const prevCount = repostCount;
+    setReposted(false);
+    setRepostCount((c) => Math.max(0, c - 1));
+    toggleRepost(Number(tokenId)).catch(() => {
+      setReposted(wasReposted);
+      setRepostCount(prevCount);
+      toastError("Failed to remove repost");
+    });
+  }, [tokenId, reposted, repostCount]);
+
+  const handleConfirmRepost = useCallback(() => {
+    if (tokenId == null) return;
+    const prevCount = repostCount;
+    setReposted(true);
+    setRepostCount((c) => c + 1);
+    toggleRepost(Number(tokenId)).catch(() => {
+      setReposted(false);
+      setRepostCount(prevCount);
+      toastError("Failed to repost");
+    });
+  }, [tokenId, repostCount]);
+
+  const handleQuotePress = useCallback(() => {
+    hideUserProfile();
+    navigation.navigate(ScreenNames.Upload, {
+      quotedTokenId: tokenId,
+      quotedPost: item as any,
+    });
+  }, [navigation, tokenId, item, hideUserProfile]);
+
   const handleInfoPress = useCallback(() => {
     bounceAnimation(infoScale);
     if (mintTxHash) {
@@ -520,6 +569,14 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
         showCategories={fullContent}
       />
 
+      {/* Quoted Post Embed (for quote posts) */}
+      {item.isQuotePost && (
+        <QuotedPostEmbed
+          quotedPost={item.quotedPost}
+          quotedTokenId={item.quotedTokenId}
+        />
+      )}
+
       {/* Time and Views row */}
       <View className="flex-row items-center gap-2 pt-1">
         <Text className="text-xs text-theme-neutrals-400">
@@ -594,6 +651,34 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
             </Animated.View>
             <Text className="text-xs text-theme-neutrals-400">{commentCount}</Text>
           </TouchableOpacity>
+          
+          {/* Repost */}
+          <View ref={repostAnchorRef} style={{ position: 'relative', zIndex: 50 }}>
+            <TouchableOpacity
+              onPress={handleRepostPress}
+              activeOpacity={0.7}
+              className="flex-row items-center gap-1"
+            >
+              <Animated.View style={{ transform: [{ scale: repostScale }] }}>
+                <Ionicons
+                  name="git-compare-outline"
+                  size={18}
+                  color={reposted ? "#22C55E" : "#9CA3AF"}
+                />
+              </Animated.View>
+              <Text className={`text-xs ${reposted ? "text-green-500" : "text-theme-neutrals-400"}`}>
+                {repostCount}
+              </Text>
+            </TouchableOpacity>
+            <RepostPopover
+              visible={showRepostPopover}
+              onClose={() => setShowRepostPopover(false)}
+              onRepost={reposted ? handleUndoRepost : handleConfirmRepost}
+              onQuote={handleQuotePress}
+              isReposted={reposted}
+              anchorRef={repostAnchorRef}
+            />
+          </View>
           
           {/* Share */}
           <TouchableOpacity

@@ -29,6 +29,8 @@ import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import { getAvatarUrl, toastError } from "../libs";
 import { openCroppedImagePicker, getFileName, guessMime } from "../libs/assets.util";
 import { theme } from "../theme";
+import { formatCompactNumber } from "../libs/numbers.util";
+import { ScreenNames } from "../navigation/ScreenNames";
 
 export default function FeedDetailScreen() {
   const route = useRoute<any>();
@@ -693,6 +695,49 @@ export default function FeedDetailScreen() {
           </Text>
         </View>
       ) : null}
+      {/* Repost & Quote stats row */}
+      {item && (
+        <View className="flex-row items-center px-8 pt-3 pb-1 gap-4">
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate(ScreenNames.RepostQuoteList as never, {
+                tokenId: item.tokenId ?? item.id,
+                initialTab: "reposts",
+                repostCount: item.reposts ?? 0,
+                quoteCount: item.quotes ?? 0,
+              } as never)
+            }
+            activeOpacity={0.7}
+            className="flex-row items-center"
+          >
+            <Text className="text-white font-semibold text-sm">
+              {formatCompactNumber(item.reposts ?? 0)}
+            </Text>
+            <Text className="text-theme-neutrals-400 text-sm ml-1">
+              {(item.reposts ?? 0) === 1 ? "Repost" : "Reposts"}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate(ScreenNames.RepostQuoteList as never, {
+                tokenId: item.tokenId ?? item.id,
+                initialTab: "quotes",
+                repostCount: item.reposts ?? 0,
+                quoteCount: item.quotes ?? 0,
+              } as never)
+            }
+            activeOpacity={0.7}
+            className="flex-row items-center"
+          >
+            <Text className="text-white font-semibold text-sm">
+              {formatCompactNumber(item.quotes ?? 0)}
+            </Text>
+            <Text className="text-theme-neutrals-400 text-sm ml-1">
+              {(item.quotes ?? 0) === 1 ? "Quote" : "Quotes"}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
       <View className="px-8 pt-2 pb-1">
         <Text className="text-theme-neutrals-400 text-xs font-medium">
           {comments.length > 0 ? `${comments.length} Comment${comments.length !== 1 ? "s" : ""}` : "Comments"}

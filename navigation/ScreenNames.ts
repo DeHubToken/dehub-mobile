@@ -32,6 +32,7 @@ export enum ScreenNames {
   EditProfile = 'EditProfile',
   Dpay = 'Dpay',
   FollowList = 'FollowList',
+  RepostQuoteList = 'RepostQuoteList',
   PrivacySettings = 'PrivacySettings',
   Drafts = 'Drafts',
   PostResolver = 'PostResolver',

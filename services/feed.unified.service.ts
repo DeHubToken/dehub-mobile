@@ -131,6 +131,14 @@ export interface UnifiedFeedItem {
   isOwner?: boolean;
   isUnlocked?: boolean;
   
+  // Repost & Quote fields
+  reposts?: number;
+  quotes?: number;
+  isReposted?: boolean;
+  isQuotePost?: boolean;
+  quotedTokenId?: number | null;
+  quotedPost?: any;
+  
   // Timestamps
   createdAt?: string;
   updatedAt?: string;

@@ -17,7 +17,7 @@ import {
   Pressable,
   BackHandler,
 } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute, CommonActions } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
@@ -35,9 +35,9 @@ import * as VideoThumbnails from "expo-video-thumbnails";
 import {
   runWithPermissions,
 } from "../libs/permissions.util";
-import { openCroppedImagePicker } from "../libs/assets.util";
+import { openCroppedImagePicker, getFileName, guessMime } from "../libs/assets.util";
 import { getCategoriesCached } from "../services/nft.service";
-import { toastError } from "../libs/toast";
+import { toastError, toastSuccess } from "../libs/toast";
 import { useAuth } from "../context/AuthContext";
 import { useKeyboard } from "../hooks/useKeyboard";
 import { getAvatarUrl } from "../libs/misc";
@@ -55,10 +55,21 @@ import { useUploadLive } from "../hooks/useUploadLive";
 import { useDrafts } from "../hooks/useDrafts";
 import type { Draft } from "../hooks/useDrafts";
 import GlassModal from "../components/ui/GlassModal";
-import type { UploadPayload } from "../hooks/useUploadPost";
+import type { UploadPayload, UploadStage } from "../hooks/useUploadPost";
 import type { LiveUploadPayload } from "../hooks/useUploadLive";
 import type { AppStackParamList } from "../navigation/types";
 import { ScreenNames } from "../navigation/ScreenNames";
+import QuotedPostEmbed from "../components/common/QuotedPostEmbed";
+import { createQuotePost } from "../services/repost.service";
+import {
+  useWeb3Provider,
+  useStreamCollectionContract,
+} from "../hooks/use-web3";
+import { mintNftOnChain } from "../services/mint.service";
+import { parseTxError } from "../libs/web3.util";
+import {
+  defaultChainId as DEFAULT_CHAIN_ID,
+} from "../config/constants";
 
 // ── constants ──────────────────────────────────────────
 const TITLE_MAX = 140;
@@ -76,8 +87,12 @@ export default function UploadScreen() {
   const nav = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, typeof ScreenNames.Upload>>();
   const incomingDraft = route.params?.draft as Draft | undefined;
+  const incomingQuotedTokenId = route.params?.quotedTokenId;
+  const incomingQuotedPost = route.params?.quotedPost as Record<string, any> | undefined;
   const { user: authUser } = useAuth() as any;
   const insets = useSafeAreaInsets();
+  const { chainId } = useWeb3Provider();
+  const streamCollectionContract = useStreamCollectionContract();
   const titleRef = useRef<TextInput>(null);
   const descriptionRef = useRef<TextInput>(null);
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
@@ -115,6 +130,11 @@ export default function UploadScreen() {
   const [thumbnailUri, setThumbnailUri] = useState<string | null>(null);
   const [coverUri, setCoverUri] = useState<string | null>(null);
   const [coverHidden, setCoverHidden] = useState(false);
+
+  // ── quote mode state ──────────────────────────────────
+  const [isQuoteMode, setIsQuoteMode] = useState(!!incomingQuotedTokenId);
+  const [quotedTokenId, setQuotedTokenId] = useState<number | string | undefined>(incomingQuotedTokenId);
+  const [quotedPost, setQuotedPost] = useState<Record<string, any> | undefined>(incomingQuotedPost);
 
   // ── livestream mode state ──────────────────────────────
   const [isLiveMode, setIsLiveMode] = useState(false);
@@ -166,8 +186,8 @@ export default function UploadScreen() {
   }, [pickedVideo, pickedImages.length]);
 
   const hasMedia = mediaMode !== "none";
-  const hasContent = bodyText.trim().length > 0 || hasMedia;
-  const canPost = !isLiveMode && (bodyText.trim().length > 0 || hasMedia);
+  const hasContent = bodyText.trim().length > 0 || hasMedia || isQuoteMode;
+  const canPost = !isLiveMode && (bodyText.trim().length > 0 || hasMedia || isQuoteMode);
   const canGoLive = isLiveMode && bodyText.trim().length > 0 && !!(liveThumbnailUri || coverUri);
 
   // Show description/category area when user has typed or picked media
@@ -316,8 +336,12 @@ export default function UploadScreen() {
     isUploading: isLiveUploading,
   } = useUploadLive();
 
-  const activeIsUploading = isLiveMode ? isLiveUploading : isUploading;
-  const activeUploadStage = isLiveMode ? liveUploadStage : uploadStage;
+  // ── quote upload state (must be before activeIs* derivations) ──
+  const [quoteUploadStage, setQuoteUploadStage] = useState<UploadStage>("idle");
+  const [isQuoteUploading, setIsQuoteUploading] = useState(false);
+
+  const activeIsUploading = isQuoteMode ? isQuoteUploading : isLiveMode ? isLiveUploading : isUploading;
+  const activeUploadStage = isQuoteMode ? quoteUploadStage : isLiveMode ? liveUploadStage : uploadStage;
 
   // Intercept Android back button (placed after useUploadPost for isUploading)
   useEffect(() => {
@@ -436,6 +460,20 @@ export default function UploadScreen() {
       return;
     }
     if (!canPost) return;
+
+    // Quote mode: simpler validation, skip monetization checks
+    if (isQuoteMode) {
+      if (bodyText.trim().length === 0 && !pickedVideo && pickedImages.length === 0) {
+        toastError("Write something or add media to quote this post.");
+        return;
+      }
+      setConfirmText(
+        "This quote post is on-chain and cannot be edited or deleted once posted. Please make sure everything is correct before proceeding."
+      );
+      setShowConfirm(true);
+      return;
+    }
+
     const payload = getPayload();
 
     // Validate form
@@ -456,14 +494,119 @@ export default function UploadScreen() {
     const text = buildConfirmText(payload);
     setConfirmText(text);
     setShowConfirm(true);
-  }, [canPost, activeIsUploading, isLiveMode, getPayload, validate, preUploadCheck, buildConfirmText, handleGoLive]);
+  }, [canPost, activeIsUploading, isLiveMode, isQuoteMode, bodyText, pickedVideo, pickedImages, getPayload, validate, preUploadCheck, buildConfirmText, handleGoLive]);
 
   const handleConfirmUpload = useCallback(async () => {
     const payload = getPayload();
     await upload(payload);
-    // If upload succeeds, the hook navigates away.
-    // If it fails, the modal stays open and user can retry or cancel.
   }, [getPayload, upload]);
+
+  // ── quote mode handlers ────────────────────────────────
+  const handleRemoveQuoteEmbed = useCallback(() => {
+    setIsQuoteMode(false);
+    setQuotedTokenId(undefined);
+    setQuotedPost(undefined);
+  }, []);
+
+  const handleConfirmQuoteUpload = useCallback(async () => {
+    if (!quotedTokenId) return;
+    try {
+      setIsQuoteUploading(true);
+      setQuoteUploadStage("uploading");
+
+      const fd = new FormData();
+      fd.append("quotedTokenId", String(quotedTokenId));
+      fd.append("chainId", String(chainId ?? DEFAULT_CHAIN_ID));
+      fd.append("category", JSON.stringify(categories));
+      fd.append("streamInfo", JSON.stringify({}));
+      fd.append("plans", JSON.stringify([]));
+
+      if (pickedVideo) {
+        fd.append("postType", "video");
+        fd.append("name", bodyText.trim());
+        fd.append("description", description.trim());
+        const vName = getFileName(pickedVideo.uri, "video.mp4");
+        const vType = guessMime(pickedVideo.uri, "video/mp4");
+        // @ts-ignore RN FormData file shape
+        fd.append("files", { uri: pickedVideo.uri, name: vName, type: vType } as any);
+        const thumb = coverUri || thumbnailUri;
+        if (thumb) {
+          const tName = getFileName(thumb, "thumbnail.jpg");
+          const tType = guessMime(thumb, "image/jpeg");
+          // @ts-ignore RN FormData file shape
+          fd.append("files", { uri: thumb, name: tName, type: tType } as any);
+        }
+      } else if (pickedImages.length > 0) {
+        fd.append("postType", "feed-images");
+        fd.append("name", "");
+        fd.append("description", bodyText.trim());
+        pickedImages.forEach((img) => {
+          if (!img?.uri) return;
+          const name = getFileName(img.uri, "image.jpg");
+          const type = guessMime(img.uri, "image/jpeg");
+          // @ts-ignore RN FormData file shape
+          fd.append("feed-images", { uri: img.uri, name, type } as any);
+        });
+      } else {
+        fd.append("postType", "feed-simple");
+        fd.append("name", "");
+        fd.append("description", bodyText.trim());
+      }
+
+      const res = await createQuotePost(fd);
+      setQuoteUploadStage("processing");
+
+      const createdTokenId = res.createdTokenId;
+      const timestamp = res.timestamp;
+      const v = res.v;
+      const r = res.r;
+      const s = res.s;
+
+      if (createdTokenId == null || timestamp == null || v == null || !r || !s) {
+        throw new Error("Mint signature payload missing");
+      }
+
+      if (!streamCollectionContract) throw new Error("Wallet not ready to mint");
+
+      setQuoteUploadStage("awaiting-wallet");
+      const tx = await mintNftOnChain(
+        streamCollectionContract,
+        Number(createdTokenId),
+        timestamp,
+        v,
+        r,
+        s,
+      );
+      setQuoteUploadStage("minting");
+      await tx?.wait?.(1);
+
+      setQuoteUploadStage("done");
+      toastSuccess("Quote post sent!", {
+        description: "Your quote post is being processed. It may take a moment to appear in your feed.",
+      });
+
+      setIsQuoteUploading(false);
+      setQuoteUploadStage("idle");
+      nav.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: ScreenNames.Root, params: { screen: ScreenNames.Home } }],
+        }),
+      );
+    } catch (e: any) {
+      console.error("[UploadScreen] quote upload error:", e);
+      const inMintPhase = ["awaiting-wallet", "minting"].includes(quoteUploadStage);
+      const msg = inMintPhase ? parseTxError(e, "send") : (e?.message || "Quote post failed");
+      toastError(msg);
+    } finally {
+      setIsQuoteUploading(false);
+      setQuoteUploadStage("idle");
+    }
+  }, [
+    quotedTokenId, chainId, categories, pickedVideo, bodyText, description,
+    coverUri, thumbnailUri, pickedImages, streamCollectionContract,
+    quoteUploadStage, nav,
+  ]);
 
   // ── draft handlers ─────────────────────────────────────
   const buildDraftData = useCallback(() => ({
@@ -738,7 +881,7 @@ export default function UploadScreen() {
                 <ActivityIndicator size="small" color="#fff" />
               ) : (
                 <Text className="text-white font-bold text-sm">
-                  {isLiveMode ? "Go Live" : "Post"}
+                  {isLiveMode ? "Go Live" : isQuoteMode ? "Quote" : "Post"}
                 </Text>
               )}
             </TouchableOpacity>
@@ -777,7 +920,7 @@ export default function UploadScreen() {
               ref={titleRef}
               value={bodyText}
               onChangeText={handleBodyChange}
-              placeholder="What's happening?"
+              placeholder={isQuoteMode ? "Add a comment…" : "What's happening?"}
               placeholderTextColor="#6F7174"
               maxLength={TITLE_MAX}
               multiline
@@ -988,6 +1131,23 @@ export default function UploadScreen() {
               </TouchableOpacity>
             )}
 
+            {/* ── Quoted post embed (quote mode) ────────── */}
+            {isQuoteMode && quotedPost && (
+              <View className="mt-3 relative">
+                <QuotedPostEmbed
+                  quotedPost={quotedPost}
+                  quotedTokenId={quotedTokenId}
+                />
+                <TouchableOpacity
+                  onPress={handleRemoveQuoteEmbed}
+                  className="absolute top-1 right-1 w-7 h-7 rounded-full bg-black/70 items-center justify-center z-10"
+                  hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                >
+                  <Ionicons name="close" size={16} color="#fff" />
+                </TouchableOpacity>
+              </View>
+            )}
+
             {/* ── Description & Category section ─────────── */}
             {showExtras && (
               <View className="mt-4">
@@ -1103,8 +1263,8 @@ export default function UploadScreen() {
         </Pressable>
       </ScrollView>
 
-      {/* ── Monetization slide-up panel (animated, post mode only) ── */}
-      {!isLiveMode && (
+      {/* ── Monetization slide-up panel (hidden in quote and live mode) ── */}
+      {!isLiveMode && !isQuoteMode && (
         <Animated.View style={monetizationAnimStyle}>
           <MonetizationPanel
             state={monetization}
@@ -1170,19 +1330,21 @@ export default function UploadScreen() {
           </>
         )}
 
-        {/* Radio button: toggles live mode */}
-        <TouchableOpacity
-          onPress={handleToggleLiveMode}
-          activeOpacity={0.7}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          className={isLiveMode ? "" : "mr-4"}
-        >
-          <Ionicons
-            name="radio-outline"
-            size={24}
-            color={isLiveMode ? "#EF4444" : "#fff"}
-          />
-        </TouchableOpacity>
+        {/* Radio button: toggles live mode (hidden in quote mode) */}
+        {!isQuoteMode && (
+          <TouchableOpacity
+            onPress={handleToggleLiveMode}
+            activeOpacity={0.7}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            className={isLiveMode ? "" : "mr-4"}
+          >
+            <Ionicons
+              name="radio-outline"
+              size={24}
+              color={isLiveMode ? "#EF4444" : "#fff"}
+            />
+          </TouchableOpacity>
+        )}
 
         {/* Spacer to push right-side controls */}
         <View className="flex-1" />
@@ -1202,8 +1364,8 @@ export default function UploadScreen() {
           </TouchableOpacity>
         )}
 
-        {/* Post mode: monetization controls */}
-        {!isLiveMode && mediaMode === "video" && (
+        {/* Post mode: monetization controls (hidden in quote mode) */}
+        {!isLiveMode && !isQuoteMode && mediaMode === "video" && (
           <View className="flex-row items-center">
             {/* Show enabled monetization icons when panel is closed */}
             {!showMonetization && monetization.ppvEnabled && (
@@ -1257,11 +1419,11 @@ export default function UploadScreen() {
         onClose={() => {
           if (!activeIsUploading) setShowConfirm(false);
         }}
-        onConfirm={isLiveMode ? handleConfirmGoLive : handleConfirmUpload}
+        onConfirm={isQuoteMode ? handleConfirmQuoteUpload : isLiveMode ? handleConfirmGoLive : handleConfirmUpload}
         confirmText={confirmText}
         stage={activeUploadStage}
-        variant={!isLiveMode && monetization.bountyEnabled ? "bounty" : "default"}
-        title={isLiveMode ? "Confirm Livestream" : "Confirm Upload"}
+        variant={!isLiveMode && !isQuoteMode && monetization.bountyEnabled ? "bounty" : "default"}
+        title={isQuoteMode ? "Confirm Quote Post" : isLiveMode ? "Confirm Livestream" : "Confirm Upload"}
       />
 
       {/* ── Save Draft Modal ───────────────────────── */}
