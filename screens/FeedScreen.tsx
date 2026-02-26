@@ -10,7 +10,10 @@ import {
   Image,
   Dimensions,
   RefreshControl,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
 } from "react-native";
+import Animated from "react-native-reanimated";
 import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -30,6 +33,7 @@ import { getUnifiedFeed } from "../services/feed.unified.service";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import type { FeedRange, FeedSortBy } from "../services/feed.unified.service";
 import { getImageUrl, getImageUrlApiSimple } from "../libs";
+import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 
 const fallbackCategories = ["All"];
 
@@ -180,6 +184,14 @@ const FeedScreen = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
 
+  // Collapsible header
+  const {
+    headerAnimatedStyle,
+    onHeaderLayout,
+    handleScroll: headerHandleScroll,
+    showHeader,
+  } = useCollapsibleHeader();
+
   // View mode state - default to grid view
   const [isGridView, setIsGridView] = useState(true);
 
@@ -297,8 +309,9 @@ const FeedScreen = () => {
   }, [feedParams]);
 
   const handleRefresh = useCallback(() => {
+    showHeader();
     fetchFeedData(0, true);
-  }, [fetchFeedData]);
+  }, [fetchFeedData, showHeader]);
 
   // Handle tab press to scroll to top and refresh
   useEffect(() => {
@@ -403,7 +416,8 @@ const FeedScreen = () => {
   const toggleViewMode = useCallback(() => {
     setIsGridView((prev) => !prev);
     setFilterPanelVisible(false);
-  }, []);
+    showHeader();
+  }, [showHeader]);
 
   const handleFiltersChange = useCallback((newFilters: FeedFilters) => {
     // Always keep postType as feed-images and ignore contentAccess
@@ -421,6 +435,31 @@ const FeedScreen = () => {
     }
   }, [filterPanelVisible]);
 
+  // Feed view scroll handler — drives collapsible header + syncs index
+  const handleFeedScroll = useCallback(
+    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      headerHandleScroll(e);
+    },
+    [headerHandleScroll],
+  );
+
+  // Grid view scroll handler — drives collapsible header + syncs index
+  const handleGridScroll = useCallback(
+    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      headerHandleScroll(e);
+      const offsetY = e.nativeEvent.contentOffset.y;
+      const rowHeight = SMALL_SIZE + GRID_GAP;
+      const estimatedRow = Math.floor(offsetY / rowHeight);
+      const patternIdx = Math.floor(estimatedRow / 3);
+      const rowInPattern = estimatedRow % 3;
+      let itemIndex = patternIdx * 9;
+      if (rowInPattern === 1) itemIndex += 3;
+      else if (rowInPattern >= 2) itemIndex += 6;
+      currentVisibleIndex.current = Math.min(itemIndex, feedData.length - 1);
+    },
+    [headerHandleScroll, feedData.length],
+  );
+
   // Handle category selection
   const handleCategoryPress = useCallback((cat: string) => {
     if (cat === selectedCategory) return;
@@ -434,35 +473,39 @@ const FeedScreen = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <HomeHeader />
+      {/* Collapsible header — slides up on scroll-down, reappears on scroll-up */}
+      <View style={styles.headerClip}>
+        <Animated.View style={headerAnimatedStyle} onLayout={onHeaderLayout}>
+          <HomeHeader />
 
-      {/* Category bar and filters - only show in feed view */}
-      {!isGridView && (
-        <>
-          <View style={styles.filterSection}>
-            {categoriesLoading ? (
-              <CategorySelectorSkeleton />
-            ) : (
-              <CategorySelector
-                categories={categories}
-                selectedCategory={selectedCategory}
-                onCategoryPress={handleCategoryPress}
-                onFilterPress={handleFilterPress}
-                isFilterOpen={filterPanelVisible}
+          {/* Category bar and filters - only show in feed view */}
+          {!isGridView && (
+            <>
+              <View style={styles.filterSection}>
+                {categoriesLoading ? (
+                  <CategorySelectorSkeleton />
+                ) : (
+                  <CategorySelector
+                    categories={categories}
+                    selectedCategory={selectedCategory}
+                    onCategoryPress={handleCategoryPress}
+                    onFilterPress={handleFilterPress}
+                    isFilterOpen={filterPanelVisible}
+                  />
+                )}
+              </View>
+
+              <FeedFilterPanel
+                visible={filterPanelVisible}
+                filters={filters}
+                onFiltersChange={handleFiltersChange}
+                hidePostType
+                hideContentAccess
               />
-            )}
-          </View>
-
-          {/* Sliding filter panel - no postType or contentAccess */}
-          <FeedFilterPanel
-            visible={filterPanelVisible}
-            filters={filters}
-            onFiltersChange={handleFiltersChange}
-            hidePostType
-            hideContentAccess
-          />
-        </>
-      )}
+            </>
+          )}
+        </Animated.View>
+      </View>
 
       {/* Feed View */}
       {!isGridView && (
@@ -481,6 +524,9 @@ const FeedScreen = () => {
             contentContainerStyle={{ paddingBottom: 80 }}
             onScrollToIndexFailed={handleScrollToIndexFailed}
             initialNumToRender={15}
+            onScroll={handleFeedScroll}
+            onScrollBeginDrag={handleScrollBegin}
+            scrollEventThrottle={16}
             refreshControl={
               <RefreshControl
                 refreshing={feedRefreshing}
@@ -519,21 +565,8 @@ const FeedScreen = () => {
               tintColor="#FFFFFF"
             />
           }
-          onScroll={(e) => {
-            // Track scroll position for syncing
-            const offsetY = e.nativeEvent.contentOffset.y;
-            // Estimate which item is visible based on row heights
-            const rowHeight = SMALL_SIZE + GRID_GAP;
-            const estimatedRow = Math.floor(offsetY / rowHeight);
-            // Each pattern of 3 rows contains 9 items
-            const patternIndex = Math.floor(estimatedRow / 3);
-            const rowInPattern = estimatedRow % 3;
-            let itemIndex = patternIndex * 9;
-            if (rowInPattern === 1) itemIndex += 3;
-            else if (rowInPattern >= 2) itemIndex += 6;
-            currentVisibleIndex.current = Math.min(itemIndex, feedData.length - 1);
-          }}
-          scrollEventThrottle={100}
+          onScroll={handleGridScroll}
+          scrollEventThrottle={16}
           onMomentumScrollEnd={handleEndReached}
         >
           {/* Render grid in pattern groups */}
@@ -701,6 +734,9 @@ const FeedScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  headerClip: {
+    overflow: 'hidden',
+  },
   filterSection: {
     paddingHorizontal: theme.spacing.md,
     paddingVertical: theme.spacing.xs,
@@ -739,9 +775,6 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255, 255, 255, 0.2)",
   },
   // Grid styles
-  gridContainer: {
-    paddingBottom: 80,
-  },
   gridItem: {
     backgroundColor: "#262626",
   },
@@ -772,6 +805,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginBottom: GRID_GAP,
     gap: GRID_GAP,
+  },
+  gridContainer: {
+    paddingBottom: 80,
   },
 });
 

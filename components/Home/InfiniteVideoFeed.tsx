@@ -90,7 +90,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const endReachedRef = useRef(false);
   const listRef = useRef<FlatList<FeedItem>>(null);
   const prevYRef = useRef(0);
-  const lastDirectionRef = useRef<"up" | "down" | null>(null);
+
   const navigation = useNavigation<any>();
   const isFocused = useIsFocused();
   const { isSignedIn } = useAuth();
@@ -290,10 +290,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       const threshold = 8;
       if (Math.abs(delta) > threshold) {
         const direction: "up" | "down" = delta > 0 ? "down" : "up";
-        if (direction !== lastDirectionRef.current) {
-          lastDirectionRef.current = direction;
-          onScrollDirectionChange && onScrollDirectionChange(direction, y);
-        }
+        onScrollDirectionChange && onScrollDirectionChange(direction, y);
         prevYRef.current = y;
       }
     },

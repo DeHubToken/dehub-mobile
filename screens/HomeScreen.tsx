@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
+import Animated from "react-native-reanimated";
 import { theme } from "../theme";
 import InfiniteVideoFeed from "../components/Home/InfiniteVideoFeed";
 import HomeHeader from "../components/HomeHeader";
@@ -12,6 +13,7 @@ import FeedFilterPanel, {
   PostTypeOption 
 } from "../components/Home/FeedFilterPanel";
 import { getCategoriesCached } from "../services/nft.service";
+import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import type { FeedRange, FeedSortBy, FeedPostType } from "../services/feed.unified.service";
 
 const fallbackCategories = ["All"];
@@ -36,6 +38,14 @@ export default function HomeScreen() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [categories, setCategories] = useState<string[]>(fallbackCategories);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
+
+  // Collapsible header
+  const {
+    headerAnimatedStyle,
+    onHeaderLayout,
+    handleScrollDirection,
+    showHeader,
+  } = useCollapsibleHeader();
   
   // Shuffle seed management
   const [shuffleSeed, setShuffleSeed] = useState<string>(generateShuffleSeed);
@@ -117,18 +127,36 @@ export default function HomeScreen() {
     }
   }, [filterPanelVisible]);
 
+  // Scroll direction handler — drives collapsible header
+  const onScrollDirection = useCallback(
+    (direction: 'up' | 'down', offsetY: number) => {
+      handleScrollDirection(direction, offsetY);
+      if (direction === 'down' && filterPanelVisible) {
+        setFilterPanelVisible(false);
+      }
+    },
+    [handleScrollDirection, filterPanelVisible],
+  );
+
   // Handle category selection from hashtag in feed cards
   const handleCategorySelect = useCallback((category: string) => {
     setSelectedCategory(category);
     setFilterPanelVisible(false);
   }, []);
 
+  // Pull-to-refresh also restores the header
+  const handleRefresh = useCallback(() => {
+    showHeader();
+    refreshShuffleSeed();
+  }, [showHeader, refreshShuffleSeed]);
+
   const content = (
     <InfiniteVideoFeed
       params={feedParams}
       pageSize={10}
-      onRefresh={refreshShuffleSeed}
+      onRefresh={handleRefresh}
       onScrollBegin={handleScrollBegin}
+      onScrollDirectionChange={onScrollDirection}
       onCategorySelect={handleCategorySelect}
       onRetry={async () => {
         // Re-fetch categories on retry to restore the header chips when initial load failed
@@ -190,28 +218,32 @@ export default function HomeScreen() {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <HomeHeader />
+      {/* Collapsible header — slides up on scroll-down, reappears on scroll-up */}
+      <View style={styles.headerClip}>
+        <Animated.View style={headerAnimatedStyle} onLayout={onHeaderLayout}>
+          <HomeHeader />
 
-      <View style={styles.filterSection}>
-        {categoriesLoading ? (
-          <CategorySelectorSkeleton />
-        ) : (
-          <CategorySelector
-            categories={categories}
-            selectedCategory={selectedCategory}
-            onCategoryPress={handleCategoryPress}
-            onFilterPress={handleFilterPress}
-            isFilterOpen={filterPanelVisible}
+          <View style={styles.filterSection}>
+            {categoriesLoading ? (
+              <CategorySelectorSkeleton />
+            ) : (
+              <CategorySelector
+                categories={categories}
+                selectedCategory={selectedCategory}
+                onCategoryPress={handleCategoryPress}
+                onFilterPress={handleFilterPress}
+                isFilterOpen={filterPanelVisible}
+              />
+            )}
+          </View>
+
+          <FeedFilterPanel
+            visible={filterPanelVisible}
+            filters={filters}
+            onFiltersChange={handleFiltersChange}
           />
-        )}
+        </Animated.View>
       </View>
-
-      {/* Sliding filter panel */}
-      <FeedFilterPanel
-        visible={filterPanelVisible}
-        filters={filters}
-        onFiltersChange={handleFiltersChange}
-      />
 
       {content}
     </View>
@@ -219,7 +251,9 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  // Filter Section Styles
+  headerClip: {
+    overflow: 'hidden',
+  },
   filterSection: {
     paddingHorizontal: theme.spacing.md,
     paddingVertical: theme.spacing.xs,
