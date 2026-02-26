@@ -10,8 +10,10 @@ import {
   Image,
   Dimensions,
   RefreshControl,
+  ActivityIndicator,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  BackHandler,
 } from "react-native";
 import Animated from "react-native-reanimated";
 import { BlurView } from "expo-blur";
@@ -19,7 +21,7 @@ import { Ionicons } from "@expo/vector-icons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
-import HomeHeader from "../components/HomeHeader";
+import ScreenHeader from "../components/ScreenHeader";
 import { theme } from "../theme";
 import CategorySelector from "../components/Home/CategorySelector";
 import CategorySelectorSkeleton from "../components/Home/CategorySelectorSkeleton";
@@ -188,6 +190,7 @@ const FeedScreen = () => {
   const {
     headerAnimatedStyle,
     onHeaderLayout,
+    scrollHandler,
     handleScroll: headerHandleScroll,
     showHeader,
   } = useCollapsibleHeader();
@@ -210,6 +213,26 @@ const FeedScreen = () => {
   const currentVisibleIndex = useRef(0);
   const pendingScrollIndex = useRef<number | null>(null);
   const feedLoadingRef = useRef(false);
+
+  // Grid → feed transition overlay (ref for instant render, state for commit)
+  const [transitionPending, setTransitionPending] = useState(false);
+
+  // Switch from feed view back to grid
+  const switchToGrid = useCallback(() => {
+    setIsGridView(true);
+    setFilterPanelVisible(false);
+    showHeader();
+  }, [showHeader]);
+
+  // Intercept hardware back button in feed view → return to grid
+  useEffect(() => {
+    if (isGridView) return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      switchToGrid();
+      return true;
+    });
+    return () => sub.remove();
+  }, [isGridView, switchToGrid]);
 
   // Filter state
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
@@ -393,11 +416,15 @@ const FeedScreen = () => {
     return offset;
   }, [safeInitialIndex]);
 
-  // When clicking a grid item, switch to feed view and snap to that item
+  // When clicking a grid item, show overlay immediately then switch to feed view
   const handleGridItemPress = useCallback((index: number) => {
     currentVisibleIndex.current = index;
     pendingScrollIndex.current = index;
-    setIsGridView(false);
+    // Show overlay instantly, defer the heavy view-switch to next frame
+    setTransitionPending(true);
+    requestAnimationFrame(() => {
+      setIsGridView(false);
+    });
   }, []);
 
   // Scroll feed list to target index when switching from grid to feed
@@ -405,10 +432,18 @@ const FeedScreen = () => {
     if (!isGridView && pendingScrollIndex.current != null) {
       const idx = pendingScrollIndex.current;
       pendingScrollIndex.current = null;
-      const timer = setTimeout(() => {
+      // Wait for FlatList to mount and render initial items
+      const scrollTimer = setTimeout(() => {
         feedListRef.current?.scrollToIndex({ index: idx, animated: false, viewPosition: 0 });
-      }, 50);
-      return () => clearTimeout(timer);
+      }, 80);
+      // Dismiss overlay after scroll settles
+      const dismissTimer = setTimeout(() => {
+        setTransitionPending(false);
+      }, 220);
+      return () => {
+        clearTimeout(scrollTimer);
+        clearTimeout(dismissTimer);
+      };
     }
   }, [isGridView]);
 
@@ -434,14 +469,6 @@ const FeedScreen = () => {
       setFilterPanelVisible(false);
     }
   }, [filterPanelVisible]);
-
-  // Feed view scroll handler — drives collapsible header + syncs index
-  const handleFeedScroll = useCallback(
-    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-      headerHandleScroll(e);
-    },
-    [headerHandleScroll],
-  );
 
   // Grid view scroll handler — drives collapsible header + syncs index
   const handleGridScroll = useCallback(
@@ -476,7 +503,11 @@ const FeedScreen = () => {
       {/* Collapsible header — slides up on scroll-down, reappears on scroll-up */}
       <View style={styles.headerClip}>
         <Animated.View style={headerAnimatedStyle} onLayout={onHeaderLayout}>
-          <HomeHeader />
+          <ScreenHeader
+            title="Explore"
+            canGoBack={!isGridView}
+            onBackPress={!isGridView ? switchToGrid : undefined}
+          />
 
           {/* Category bar and filters - only show in feed view */}
           {!isGridView && (
@@ -510,21 +541,21 @@ const FeedScreen = () => {
       {/* Feed View */}
       {!isGridView && (
         <View className="flex-1 px-4">
-          <FlatList
+          <Animated.FlatList
             ref={feedListRef}
             data={feedData}
-            keyExtractor={(item, index) =>
+            keyExtractor={(item: UnifiedFeedItem, index: number) =>
               `feed-${index}-${item.tokenId || item.id}`
             }
-            renderItem={({ item }) => (
-              <HomeFeedCard item={item as UnifiedFeedItem} />
+            renderItem={({ item }: { item: UnifiedFeedItem }) => (
+              <HomeFeedCard item={item} />
             )}
             onViewableItemsChanged={handleFeedViewableItemsChanged}
             viewabilityConfig={viewabilityConfig}
             contentContainerStyle={{ paddingBottom: 80 }}
             onScrollToIndexFailed={handleScrollToIndexFailed}
             initialNumToRender={15}
-            onScroll={handleFeedScroll}
+            onScroll={scrollHandler}
             onScrollBeginDrag={handleScrollBegin}
             scrollEventThrottle={16}
             refreshControl={
@@ -709,8 +740,15 @@ const FeedScreen = () => {
         </ScrollView>
       )}
 
+      {/* Transition overlay — hides layout churn when switching grid → feed */}
+      {transitionPending && (
+        <View style={styles.transitionOverlay}>
+          <ActivityIndicator size="large" color="#fff" />
+        </View>
+      )}
+
       {/* Floating Grid Button - only show in feed view */}
-      {!isGridView && (
+      {!isGridView && !transitionPending && (
         <View style={[styles.floatingButtonContainer, { bottom: insets.bottom  }]}>
           <TouchableOpacity
             activeOpacity={0.8}
@@ -736,6 +774,13 @@ const FeedScreen = () => {
 const styles = StyleSheet.create({
   headerClip: {
     overflow: 'hidden',
+  },
+  transitionOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: '#000',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 200,
   },
   filterSection: {
     paddingHorizontal: theme.spacing.md,
