@@ -46,6 +46,7 @@ interface UserProfileSheetContentProps {
   blockLoading?: boolean;
   onBlock?: () => void;
   onUnblock?: () => void;
+  onRemoveFollower?: () => void;
   /** Callback to register menu trigger handler */
   onRegisterMenuTrigger?: (trigger: () => void) => void;
 }
@@ -83,11 +84,13 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   blockLoading = false,
   onBlock,
   onUnblock,
+  onRemoveFollower,
   onRegisterMenuTrigger,
 }) => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showBlockConfirm, setShowBlockConfirm] = useState(false);
   const [showReportUser, setShowReportUser] = useState(false);
+  const [showRemoveFollowerConfirm, setShowRemoveFollowerConfirm] = useState(false);
 
   const handleOpenMenu = useCallback(() => {
     setShowProfileMenu(true);
@@ -109,6 +112,16 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     setShowProfileMenu(false);
     setTimeout(() => setShowReportUser(true), 200);
   }, []);
+
+  const handleRemoveFollowerPress = useCallback(() => {
+    setShowProfileMenu(false);
+    setTimeout(() => setShowRemoveFollowerConfirm(true), 200);
+  }, []);
+
+  const handleConfirmRemoveFollower = useCallback(() => {
+    onRemoveFollower?.();
+    setShowRemoveFollowerConfirm(false);
+  }, [onRemoveFollower]);
 
   const handleConfirmBlock = useCallback(() => {
     if (youBlocked) {
@@ -268,6 +281,31 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         blurIntensity={50}
       >
         <View className="pb-4 pt-2">
+          {/* Remove Follower — only when this user follows you */}
+          {followsYou && (
+            <>
+              <TouchableOpacity
+                onPress={handleRemoveFollowerPress}
+                activeOpacity={0.7}
+                className="flex-row items-center px-5 py-3.5"
+              >
+                <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+                  <Ionicons name="person-remove-outline" size={18} color="#fff" />
+                </View>
+                <View className="flex-1">
+                  <Text className="text-white text-[15px] font-medium">
+                    Remove follower
+                  </Text>
+                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                    Remove {profileData?.displayName || "this user"} from your followers
+                  </Text>
+                </View>
+              </TouchableOpacity>
+
+              <View className="mx-5 my-1 h-px bg-white/10" />
+            </>
+          )}
+
           <TouchableOpacity
             onPress={handleBlockPress}
             activeOpacity={0.7}
@@ -313,6 +351,43 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               </Text>
             </View>
           </TouchableOpacity>
+        </View>
+      </GlassModal>
+
+      {/* Remove Follower confirmation */}
+      <GlassModal
+        visible={showRemoveFollowerConfirm}
+        onClose={() => setShowRemoveFollowerConfirm(false)}
+        presentation="center"
+        maxHeight="40%"
+        blurIntensity={50}
+      >
+        <View className="px-5 py-6 items-center">
+          <View className="w-14 h-14 rounded-full bg-white/10 items-center justify-center mb-4">
+            <Ionicons name="person-remove-outline" size={28} color="#fff" />
+          </View>
+          <Text className="text-white text-lg font-semibold text-center mb-2">
+            Remove follower?
+          </Text>
+          <Text className="text-theme-neutrals-400 text-sm text-center mb-6 leading-5">
+            {profileData?.displayName || "This user"} won't be notified that they were removed from your followers.
+          </Text>
+          <View className="flex-row gap-3 w-full">
+            <TouchableOpacity
+              onPress={() => setShowRemoveFollowerConfirm(false)}
+              className="flex-1 bg-theme-neutrals-800 py-3 rounded-xl items-center"
+              activeOpacity={0.7}
+            >
+              <Text className="text-white font-semibold">Cancel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={handleConfirmRemoveFollower}
+              className="flex-1 bg-red-500/90 py-3 rounded-xl items-center"
+              activeOpacity={0.7}
+            >
+              <Text className="text-white font-semibold">Remove</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </GlassModal>
 

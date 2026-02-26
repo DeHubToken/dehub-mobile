@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { getAccount, followUser, unfollowUser } from "../services/user.service";
+import { getAccount, followUser, unfollowUser, removeFollower } from "../services/user.service";
 import { blockUser, unblockUser } from "../services/block.service";
 import {
   getAvatarUrl,
@@ -387,6 +387,36 @@ export const useUserProfileData = (
     patchUser,
   ]);
 
+  const handleRemoveFollower = useCallback(() => {
+    if (!profileData || !followsYou) return;
+
+    requireAuth(async () => {
+      const target = (data?.address || profileData.address).toLowerCase();
+      if (!target) return;
+
+      // Optimistic update
+      setFollowsYou(false);
+      setData((prev) => {
+        if (!prev) return prev;
+        const currentCount = typeof prev.followers === 'number' ? prev.followers : 0;
+        return { ...prev, followers: Math.max(0, currentCount - 1) };
+      });
+
+      try {
+        await removeFollower(target);
+      } catch (e) {
+        console.error("[useUserProfileData] removeFollower error", e);
+        toastError("Failed to remove follower");
+        // Revert
+        setFollowsYou(true);
+        setData((prev) => {
+          if (!prev) return prev;
+          return { ...prev, followers: (prev.followers ?? 0) + 1 };
+        });
+      }
+    });
+  }, [requireAuth, profileData, data, followsYou]);
+
   const handleOpenImage = useCallback(
     (type: "avatar" | "cover") => {
       const imgUrl = type === "avatar" ? avatarUrl : coverUrl;
@@ -545,6 +575,7 @@ export const useUserProfileData = (
     stats,
     handleFollow,
     handleUnfollow,
+    handleRemoveFollower,
     handleBlock,
     handleUnblock,
     handleOpenImage,
