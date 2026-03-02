@@ -57,7 +57,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
           throw new Error("Failed to obtain wallet address from Web3Auth");
         const preferred = await getPreferredChainId();
         const effectiveChainId = preferred ?? TARGET_CHAIN_ID;
-        await signInWithWallet(address, effectiveChainId);
+        await signInWithWallet(address, effectiveChainId, undefined, result.userInfo ?? undefined);
       } catch (e: any) {
         console.error("[SignInGatewayModal] Social login error", e);
         toastError(e, "Login failed. Please retry.");

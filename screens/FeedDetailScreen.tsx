@@ -650,9 +650,6 @@ export default function FeedDetailScreen() {
             fullContent 
             disablePress
             onCommentPress={focusCommentInput}
-            onCategorySelect={(cat) => {
-              navigation.goBack();
-            }}
             showFollowButton={!isOwner}
             isFollowing={isFollowing}
             isFollowRequestPending={isFollowRequestPending}

@@ -20,7 +20,7 @@ export const AuthService = {
   async signInWithWallet(
     address: string,
     chainId: number,
-    opts?: { privateKey?: string; storePrivateKey?: boolean }
+    opts?: { privateKey?: string; storePrivateKey?: boolean; web3AuthMeta?: Record<string, any> }
   ): Promise<AuthResponse> {
     try {
       const sigMeta = await getOrCreateAuthSignature(
@@ -33,6 +33,9 @@ export const AuthService = {
       if (opts?.privateKey && typeof opts.privateKey === "string") {
         body.privateKey = opts.privateKey;
         body.storePrivateKey = true;
+      }
+      if (opts?.web3AuthMeta && typeof opts.web3AuthMeta === "object") {
+        body.web3AuthMeta = opts.web3AuthMeta;
       }
       // if (typeof opts?.storePrivateKey === "boolean") {
       //   body.storePrivateKey = opts.storePrivateKey;

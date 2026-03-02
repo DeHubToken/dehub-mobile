@@ -187,7 +187,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           chainId: effectiveChainId 
         });
         
-        await signInWithWallet(address, effectiveChainId);
+        await signInWithWallet(address, effectiveChainId, undefined, result.userInfo ?? undefined);
         // Navigation will be handled by the useEffect watching auth state
         
       } catch (e: any) {

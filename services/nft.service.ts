@@ -105,13 +105,48 @@ export async function getNFTs(params?: SearchParams): Promise<GetNFTsResponse> {
   }
 }
 
+export interface SuggestedVideosParams {
+  page?: number;
+  limit?: number;
+}
+
+export interface SuggestedVideosResponse {
+  status: boolean;
+  result: GetNFTsResult[];
+  pagination: {
+    page: number;
+    limit: number;
+    totalCount: number;
+    totalPages: number;
+    hasMore: boolean;
+  };
+}
+
+export async function getSuggestedVideos(
+  tokenId: number | string,
+  params?: SuggestedVideosParams,
+): Promise<SuggestedVideosResponse> {
+  if (tokenId == null) throw new Error('tokenId required');
+  const query = objectToGetParams(
+    removeUndefined({
+      page: params?.page ?? 1,
+      limit: params?.limit ?? 20,
+    }),
+  );
+  const url = `/suggested/${tokenId}${query}`;
+  try {
+    const res = await apiClient.get<SuggestedVideosResponse>(url, { isAuthRequired: true });
+    if (res?.result && Array.isArray(res.result)) return res;
+    if (Array.isArray(res)) return { status: true, result: res, pagination: { page: 1, limit: 20, totalCount: 0, totalPages: 1, hasMore: false } };
+    return { status: true, result: [], pagination: { page: 1, limit: 20, totalCount: 0, totalPages: 1, hasMore: false } };
+  } catch (e) {
+    console.error('[NFTService] getSuggestedVideos error', e);
+    throw e;
+  }
+}
+
 export interface SingleNFTResponse { result: GetNFTsResult; [k: string]: any }
 
-/**
- * Fetch a single NFT (video) by tokenId.
- * Auth token is sent automatically for viewer context (isLiked, isFollowing, etc.).
- * Endpoint shape expected: /nft_info/{tokenId}?commentId={commentId}
- */
 export async function getNFT(
   tokenId: number | string, 
   options?: { commentId?: number | string }
