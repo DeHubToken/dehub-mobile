@@ -1,16 +1,3 @@
-/**
- * Push Notifications Provider
- * 
- * This component sets up push notification listeners and should be rendered
- * inside NavigationContainer (so it has access to navigation context).
- * 
- * It handles:
- * - Requesting permissions and registering tokens
- * - Listening for incoming notifications (foreground + background)
- * - Handling notification taps with deep linking
- * - Cold-start notification handling via getLastNotificationResponseAsync
- * - Badge management
- */
 import React, { useEffect, useRef, useCallback } from 'react';
 import * as Notifications from 'expo-notifications';
 import { AppState, AppStateStatus } from 'react-native';
@@ -27,10 +14,6 @@ import { createLogger } from '../../libs/logger';
 import { NotificationType, NotificationCategory } from '../enums/notification.enums';
 
 const logger = createLogger('PushProvider');
-
-// =============================================================================
-// Types - aligned with backend push notification payload
-// =============================================================================
 
 export interface NotificationData {
   type: NotificationType;
@@ -129,10 +112,6 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   // Track the last processed notification identifier to avoid double-handling
   const lastProcessedIdRef = useRef<string | null>(null);
 
-  // ==========================================================================
-  // Navigation Handler
-  // ==========================================================================
-
   const handleNotificationNavigation = useCallback((data: NotificationData, responseId?: string) => {
     // Guard: Don't navigate if no valid notification type
     if (!data?.type) {
@@ -168,9 +147,6 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       }
 
       switch (type) {
-        // =====================================================================
-        // Social - Follow interactions
-        // =====================================================================
         case NotificationType.FOLLOWING:
           // New follower → open FollowList on followers tab
           if (userAddress) {
@@ -202,9 +178,6 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           }
           break;
 
-        // =====================================================================
-        // Content Engagement - Navigate to content
-        // =====================================================================
         case NotificationType.LIKE:
           if (tokenId) {
             if (postType === 'feed-images' || postType === 'feed-simple') {
@@ -244,9 +217,6 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           }
           break;
 
-        // =====================================================================
-        // Repost & Quote
-        // =====================================================================
         case NotificationType.REPOST:
           // Repost → navigate to the original post that was reposted
           if (tokenId) {
@@ -267,9 +237,6 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           }
           break;
 
-        // =====================================================================
-        // Monetization
-        // =====================================================================
         case NotificationType.TIP:
           // Tip → open the tipper's profile
           if (actorAddress || actorUsername) {
@@ -302,9 +269,6 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           navigation.navigate(ScreenNames.Notifications);
           break;
 
-        // =====================================================================
-        // Content - Milestones and Livestreams
-        // =====================================================================
         case NotificationType.VIDEO_MILESTONE:
           if (tokenId) {
             navigation.navigate(ScreenNames.VideoPlayer, { tokenId });
@@ -323,9 +287,6 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           }
           break;
 
-        // =====================================================================
-        // Messages
-        // =====================================================================
         case NotificationType.NEW_MESSAGE:
           if (conversationId) {
             navigation.navigate(ScreenNames.Chat, { conversationId });
@@ -334,9 +295,6 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           }
           break;
 
-        // =====================================================================
-        // Default - Open notifications screen
-        // =====================================================================
         default:
           navigation.navigate(ScreenNames.Notifications);
           break;
@@ -351,10 +309,6 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       }
     }
   }, [navigation, isFullySignedIn, userAddress]);
-
-  // ==========================================================================
-  // Registration
-  // ==========================================================================
 
   const registerPushToken = useCallback(async () => {
     // Guard: Already registered or registration in progress
@@ -390,10 +344,6 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
     }
   }, [isFullySignedIn, userAddress]);
 
-  // ==========================================================================
-  // Setup Listeners
-  // ==========================================================================
-
   useEffect(() => {
     // Register when user signs in - add delay to ensure auth is fully propagated
     if (isFullySignedIn && userAddress && !hasRegisteredRef.current) {
@@ -422,9 +372,6 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
     }
   }, [isFullySignedIn, userAddress, registerPushToken, handleNotificationNavigation]);
 
-  // ==========================================================================
-  // Cold-Start Notification Handling
-  // ==========================================================================
   // When the app is launched from a killed state by tapping a notification,
   // addNotificationResponseReceivedListener may fire before this component
   // mounts or the event can be lost entirely. We use
@@ -527,10 +474,6 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       }
     };
   }, [handleNotificationNavigation, isFullySignedIn, userAddress]);
-
-  // ==========================================================================
-  // Badge Management - Clear on foreground
-  // ==========================================================================
 
   useEffect(() => {
     const handleAppStateChange = (nextState: AppStateStatus) => {

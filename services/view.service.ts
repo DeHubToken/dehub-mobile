@@ -1,10 +1,6 @@
 import { apiClient } from "../libs";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// ============================================================================
-// Constants
-// ============================================================================
-
 // Video view threshold: 10% of duration OR 3 seconds, whichever comes first
 const VIDEO_MIN_WATCH_MS = 3000; // 3 seconds
 const VIDEO_MIN_WATCH_PERCENT = 0.10; // 10%
@@ -43,10 +39,6 @@ function viewCooldownKey(): string {
     : VIEW_COOLDOWN_PREFIX;
 }
 
-// ============================================================================
-// In-memory state
-// ============================================================================
-
 // In-memory guard to avoid duplicate submissions per session
 const recordedViews = new Set<string>();
 
@@ -57,10 +49,6 @@ let batchFlushTimer: ReturnType<typeof setTimeout> | null = null;
 // View cooldown cache (loaded from AsyncStorage)
 let viewCooldowns: Record<string, number> = {};
 let cooldownsLoaded = false;
-
-// ============================================================================
-// Types
-// ============================================================================
 
 export type TokenId = number | string;
 
@@ -84,10 +72,6 @@ export interface BatchViewResponse {
   newUniqueViews: number;
   rateLimited: number;
 }
-
-// ============================================================================
-// Cooldown Management (24-hour per-token rate limiting)
-// ============================================================================
 
 async function loadCooldowns(): Promise<void> {
   if (cooldownsLoaded) return;
@@ -131,10 +115,6 @@ function setCooldown(tokenId: TokenId): void {
   // Debounced save (don't await)
   saveCooldowns();
 }
-
-// ============================================================================
-// Video View Recording (10% or 3s threshold)
-// ============================================================================
 
 /**
  * Compute the minimum watch time threshold for counting a video view.
@@ -220,10 +200,6 @@ export function createViewRecorder(base: Pick<RecordViewOptions, "tokenId" | "is
     hasRecorded() { return done; },
   };
 }
-
-// ============================================================================
-// Post/Feed Batch View Recording
-// ============================================================================
 
 /**
  * Queue a post view for batch submission.
@@ -322,10 +298,6 @@ export function forceFlushBatchViews(): void {
   }
 }
 
-// ============================================================================
-// Post Visibility Tracking Helper
-// ============================================================================
-
 /**
  * Creates a visibility tracker for a single post/feed item.
  * Call `onVisibilityChange` when the item's visibility changes.
@@ -386,10 +358,6 @@ export function createPostViewTracker(tokenId: TokenId, isSignedIn: boolean) {
     cleanup,
   };
 }
-
-// ============================================================================
-// Legacy exports (backwards compatibility)
-// ============================================================================
 
 /** @deprecated Use computeVideoViewThresholdMs instead */
 export const computeViewThresholdMs = computeVideoViewThresholdMs;

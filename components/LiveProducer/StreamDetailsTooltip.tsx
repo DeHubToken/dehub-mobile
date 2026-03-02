@@ -75,7 +75,7 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
                 <X size={14} color="#ffffff" />
               </TouchableOpacity>
               <Text className="text-white font-semibold text-sm" numberOfLines={2}>
-                {streamEntity.title || 'Untitled Stream'}
+                {streamEntity.title || ''}
               </Text>
               {streamEntity.description ? (
                 <Text className="text-white/70 text-[11px] mt-1.5" style={{ lineHeight: 17 }}>

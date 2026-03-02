@@ -22,7 +22,6 @@ import { buildCdnPath } from "../../libs/misc";
 import type { UserReplyItem } from "../../services/user.service";
 import { likeComment, type LikeCommentResult } from "../../services/nft.service";
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
 
 /** Resolve a media path: local file URIs pass through, relative paths go through CDN. */
 const resolveMediaUrl = (path: string): string => {
@@ -70,7 +69,6 @@ const parseMentions = (
   return parts.length > 0 ? parts : [{ text, isMention: false }];
 };
 
-// ─── Types ──────────────────────────────────────────────────────────────────
 
 interface UserReplyCardProps {
   item: UserReplyItem;
@@ -80,7 +78,6 @@ interface UserReplyCardProps {
   onLongPress?: (item: UserReplyItem) => void;
 }
 
-// ─── Component ──────────────────────────────────────────────────────────────
 
 const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
   item,
@@ -101,7 +98,6 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
   const postThumbnail = item.post?.imageUrl ? getImageUrl(item.post.imageUrl) : undefined;
   const postName = item.post?.name;
 
-  // ── Handlers ────────────────────────────────────────────────────────────
 
   const handlePress = useCallback(() => {
     onPress(item);
@@ -141,7 +137,6 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
     }
   }, [liked, likeCount, isLiking, item.id, likeScale]);
 
-  // ── Render ──────────────────────────────────────────────────────────────
 
   return (
     <TouchableOpacity
@@ -151,7 +146,6 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
       delayLongPress={350}
     >
       <View className="py-3">
-        {/* ── "Replying to …" context (only for replies) ── */}
         {item.isReply && item.parentComment && (
           <View className="flex-row items-center mb-1.5 ml-11">
             <Ionicons name="return-down-forward-outline" size={12} color="#6F7174" />

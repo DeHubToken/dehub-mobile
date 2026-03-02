@@ -16,7 +16,6 @@ import Animated, {
 } from "react-native-reanimated";
 import CustomSwitch from "../ui/CustomSwitch";
 
-// ── Types ────────────────────────────────────────────────
 
 export type PpvData = {
   price: string;
@@ -52,7 +51,6 @@ type MonetizationPanelProps = {
 const DHB_ADDRESS = "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c";
 const DHB_SHORT = `${DHB_ADDRESS.slice(0, 8)}…${DHB_ADDRESS.slice(-4)}`;
 
-// ── Animated sub-section wrapper ─────────────────────────
 
 const SECTION_HEIGHT_PPV = 160;
 const SECTION_HEIGHT_BOUNTY = 215;
@@ -86,7 +84,6 @@ const ExpandableSection: React.FC<ExpandableSectionProps> = ({
   return <Animated.View style={animStyle}>{children}</Animated.View>;
 };
 
-// ── Main component ───────────────────────────────────────
 
 const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
   state,
@@ -118,7 +115,6 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
     }
   }, [autoExpandSection, onAutoExpandHandled, state]);
 
-  // ── PPV ────────────────────────────────────────────────
 
   const handlePpvToggle = useCallback(
     (val: boolean) => {
@@ -143,7 +139,6 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
     setExpandedSection(null);
   }, [state, onChange]);
 
-  // ── Bounty ─────────────────────────────────────────────
 
   const handleBountyToggle = useCallback(
     (val: boolean) => {
@@ -168,7 +163,6 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
     setExpandedSection(null);
   }, [state, onChange]);
 
-  // ── Token Gated ────────────────────────────────────────
 
   const handleTokenGateToggle = useCallback(
     (val: boolean) => {
@@ -198,11 +192,9 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
     setExpandedSection(null);
   }, [state, onChange]);
 
-  // ── Render ─────────────────────────────────────────────
 
   return (
     <View className="border-t border-theme-neutrals-700 mx-4 pt-2 pb-1">
-      {/* ── PPV row ─────────────────────────────────── */}
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">
           <Ionicons name="card-outline" size={20} color="#fff" />
@@ -250,7 +242,6 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
         </View>
       </ExpandableSection>
 
-      {/* ── Bounty row ──────────────────────────────── */}
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">
           <FontAwesome6 name="gift" size={18} color="#fff" />
@@ -329,7 +320,6 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
         </View>
       </ExpandableSection>
 
-      {/* ── Token Gated row ─────────────────────────── */}
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">
           <FontAwesome6 name="shield-halved" size={18} color="#fff" />

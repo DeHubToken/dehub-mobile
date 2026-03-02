@@ -1,9 +1,3 @@
-/**
- * ConversationContextMenu — floating context menu for long-pressing a conversation row.
- *
- * Shows the conversation preview (avatar + name + last message) at top,
- * then action rows: Block, Exclude from Tip, Delete conversation, etc.
- */
 import React, { memo, useCallback, useMemo } from "react";
 import {
   View,
@@ -25,7 +19,6 @@ import type { DmConversation, DmMessage, DmUser } from "../../services/dm/dm.typ
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
-// ─── Types ──────────────────────────────────────────────────────────────────
 
 interface ConversationContextMenuProps {
   visible: boolean;
@@ -43,7 +36,6 @@ interface ConversationContextMenuProps {
   isCreator?: boolean;
 }
 
-// ─── Action Row ─────────────────────────────────────────────────────────────
 
 interface ActionRowProps {
   icon: keyof typeof Ionicons.glyphMap;
@@ -80,7 +72,6 @@ const ActionRow: React.FC<ActionRowProps> = ({
   </TouchableOpacity>
 );
 
-// ─── Component ──────────────────────────────────────────────────────────────
 
 const ConversationContextMenuComponent: React.FC<ConversationContextMenuProps> = ({
   visible,

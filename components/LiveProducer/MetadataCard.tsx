@@ -33,7 +33,7 @@ const MetadataCard = forwardRef<View, MetadataCardProps>(({ loading, streamEntit
                 ? truncate(streamEntity.title, 40)
                 : streamId
                 ? `Stream ${streamId.slice(0, 6)}…`
-                : 'Untitled Stream'}
+                : ''}
             </Text>
             {streamEntity?.description ? (
               <Text className="text-white/60 text-[11px] mt-0.5" numberOfLines={2}>

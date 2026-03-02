@@ -1,10 +1,3 @@
-/**
- * CommentSection - Instagram-style comment section
- * 
- * Displays comments with replies, like functionality, and input for new comments.
- * Supports pagination and reply functionality (can't reply to replies).
- * Replies are rendered inline with indentation like the Feed version.
- */
 import React, { memo, useCallback, useEffect, useState, useRef } from "react";
 import {
   View,
@@ -269,7 +262,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     setInputText("");
   }, []);
 
-  // --- Media action handlers ---
 
   // Pick image → open cropper → set preview
   const handlePickImage = useCallback(async () => {

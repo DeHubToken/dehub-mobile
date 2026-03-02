@@ -1,15 +1,3 @@
-/**
- * DM Send Queue — background send service that survives navigation.
- *
- * Two independent lanes prevent slow uploads from blocking instant messages:
- *   - Fast lane: text & gif (WS emit, <100ms)
- *   - Slow lane: media & tip (REST upload / on-chain tx, seconds–minutes)
- *
- * Usage:
- *   1. Call `dmSendQueue.init(ws)` once from WebSocket/Auth provider.
- *   2. Call `dmSendQueue.sendText(...)`, `.sendGif(...)`, `.sendMedia(...)`
- *      from UI — returns immediately after queueing.
- */
 import { dmActions } from "../../store/dm.store";
 import { DMSocketEvent } from "../enums/dm-socket-events.enum";
 import { uploadDmMedia, tipNotify } from "./dm.api";
@@ -30,14 +18,12 @@ import * as FileSystem from "expo-file-system/legacy";
 
 const log = createLogger("DmSendQueue");
 
-// ─── Timeouts ───────────────────────────────────────────────────────────────
 
 const UPLOAD_TIMEOUT_IMAGE = 60_000; // 60s
 const UPLOAD_TIMEOUT_VIDEO = 120_000; // 120s
 const FEE_PAYMENT_TIMEOUT = 30_000; // 30s
 const MAX_UPLOAD_RETRIES = 2;
 
-// ─── WS interface ───────────────────────────────────────────────────────────
 
 /** Minimal WebSocket interface — matches WebSocketContextValue */
 interface WsRef {
@@ -46,15 +32,12 @@ interface WsRef {
   off: (event: string, handler: (data: any) => void) => void;
 }
 
-// ─── Fee payer interface ────────────────────────────────────────────────────
 
 type FeePayer = (feeAmount: number) => Promise<string>;
 
-// ─── Conversation resolver ──────────────────────────────────────────────────
 
 type ConversationResolver = () => Promise<ID>;
 
-// ─── Send job types ─────────────────────────────────────────────────────────
 
 interface BaseSendJob {
   tempId: string;
@@ -95,7 +78,6 @@ type FastJob = TextSendJob | GifSendJob;
 type SlowJob = MediaSendJob | TipSendJob;
 type SendJob = FastJob | SlowJob;
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
 
 /** Race a promise against a timeout. */
 function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
@@ -125,7 +107,6 @@ async function withRetry<T>(fn: () => Promise<T>, retries: number, label: string
   throw lastErr;
 }
 
-// ─── Queue singleton ────────────────────────────────────────────────────────
 
 class DmSendQueue {
   private ws: WsRef | null = null;
@@ -154,7 +135,6 @@ class DmSendQueue {
     this.conversationResolver = fn;
   }
 
-  // ── Public send methods ───────────────────────────────────────────────
 
   sendText(params: {
     conversationId: ID;
@@ -332,7 +312,6 @@ class DmSendQueue {
     return tempId;
   }
 
-  // ── Lane dispatch ─────────────────────────────────────────────────────
 
   private enqueueFast(job: FastJob): void {
     this.fastQueue.push(job);
@@ -344,7 +323,6 @@ class DmSendQueue {
     this.processSlow();
   }
 
-  // ── Fast lane (text / gif) — serial but instant ───────────────────────
 
   private async processFast(): Promise<void> {
     if (this.fastProcessing || this.fastQueue.length === 0) return;
@@ -363,7 +341,6 @@ class DmSendQueue {
     this.fastProcessing = false;
   }
 
-  // ── Slow lane (media / tip) — serial with retry + timeout ─────────────
 
   private async processSlow(): Promise<void> {
     if (this.slowProcessing || this.slowQueue.length === 0) return;
@@ -382,7 +359,6 @@ class DmSendQueue {
     this.slowProcessing = false;
   }
 
-  // ── Fast job execution ────────────────────────────────────────────────
 
   private async executeFastJob(job: FastJob): Promise<void> {
     if (!this.ws) throw new Error("WebSocket not initialised");
@@ -403,7 +379,6 @@ class DmSendQueue {
     dmActions.removeOptimistic(convId, job.tempId);
   }
 
-  // ── Slow job execution ────────────────────────────────────────────────
 
   private async executeSlowJob(job: SlowJob): Promise<void> {
     if (!this.ws) throw new Error("WebSocket not initialised");
@@ -424,7 +399,6 @@ class DmSendQueue {
     dmActions.removeOptimistic(convId, job.tempId);
   }
 
-  // ── Shared helpers ────────────────────────────────────────────────────
 
   private async resolveConversation(job: SendJob): Promise<ID> {
     let convId = job.conversationId;
@@ -470,7 +444,6 @@ class DmSendQueue {
     return { txHash, tipTxHash };
   }
 
-  // ── Emitters ──────────────────────────────────────────────────────────
 
   private emitText(job: TextSendJob, convId: ID, txHash?: string, tipTxHash?: string): void {
     const payload: Record<string, unknown> = {
@@ -501,7 +474,6 @@ class DmSendQueue {
     log.debug("emitGif sent:", convId);
   }
 
-  // ── Tip execution ────────────────────────────────────────────────────
 
   private async executeTip(job: TipSendJob, convId: ID): Promise<void> {
     if (!this.feePayer) throw new Error("Wallet not connected");
@@ -525,7 +497,6 @@ class DmSendQueue {
     log.debug("tipNotify sent:", convId, txHash);
   }
 
-  // ── Media upload with retry + timeout ─────────────────────────────────
 
   private async uploadMedia(job: MediaSendJob, convId: ID, txHash?: string, tipTxHash?: string): Promise<void> {
     // Size check for videos only (images are pre-compressed by the picker)
@@ -578,7 +549,6 @@ class DmSendQueue {
     log.debug("uploadMedia complete:", convId, serverMsg?._id);
   }
 
-  // ── Helpers ───────────────────────────────────────────────────────────
 
   private makeTempId(): string {
     this.counter += 1;

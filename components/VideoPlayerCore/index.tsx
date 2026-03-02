@@ -491,7 +491,6 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     [liveMode, startSeeking, stopSeeking, handleSeekGesture]
   );
 
-  // ─── Fullscreen uses reactive screen dimensions ────────────────
   // useWindowDimensions automatically updates when orientation changes,
   // unlike Dimensions.get('window') which is a one-time snapshot.
   const { width: screenW, height: screenH } = useWindowDimensions();

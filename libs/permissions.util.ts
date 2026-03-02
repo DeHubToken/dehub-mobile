@@ -19,7 +19,6 @@ export const waitAfterPermissionIfNeeded = async (justGranted: boolean, ms: numb
   if (justGranted) await delay(ms);
 };
 
-// ─── Branded modals (Instagram / TikTok style via GlassModal) ────────────────
 
 type PermissionCopyEntry = {
   rationale: PermissionModalConfig;
@@ -70,7 +69,6 @@ const PERMISSION_COPY: Record<PermissionKind, PermissionCopyEntry> = {
   },
 };
 
-// ─── Low-level ensure functions (unchanged API) ──────────────────────────────
 
 export const ensureMediaLibraryPermission = async (): Promise<PermissionEnsureResult> => {
   const current = await ImagePicker.getMediaLibraryPermissionsAsync();
@@ -120,7 +118,6 @@ export const openAppSettings = async () => {
   } catch {}
 };
 
-// ─── Map permission kind → ensure function ───────────────────────────────────
 
 const ENSURE_FN_MAP: Record<PermissionKind, () => Promise<PermissionEnsureResult>> = {
   photos: ensureMediaLibraryPermission,
@@ -128,7 +125,6 @@ const ENSURE_FN_MAP: Record<PermissionKind, () => Promise<PermissionEnsureResult
   microphone: ensureMicrophonePermission,
 };
 
-// ─── Check-only (no prompt) for pre-flight ───────────────────────────────────
 
 const checkPermissionStatus = async (
   kind: PermissionKind,
@@ -149,20 +145,7 @@ const checkPermissionStatus = async (
   }
 };
 
-// ─── Primary API: gated permission request ───────────────────────────────────
 
-/**
- * Production-grade permission gate (Instagram / WhatsApp style).
- *
- * Flow per permission:
- *  1. If already granted → proceed silently.
- *  2. If not yet prompted (canAskAgain) → show branded rationale alert, then system prompt.
- *  3. If permanently denied (!canAskAgain) → show "Go to Settings" alert.
- *
- * @param kinds   Array of permission kinds needed (e.g. ["photos"], ["camera", "microphone"])
- * @param action  The async action to run once ALL permissions are granted
- * @returns       `true` if the action ran, `false` if the user declined
- */
 export const runWithPermissions = async (
   kinds: PermissionKind[] | Array<() => Promise<PermissionEnsureResult>>,
   action: () => Promise<void> | void,
@@ -183,7 +166,6 @@ export const runWithPermissions = async (
     const copy = PERMISSION_COPY[kind];
     const ensureFn = ENSURE_FN_MAP[kind];
 
-    // Step 1: Check current status without prompting
     const status = await checkPermissionStatus(kind);
 
     if (status.granted) {
@@ -197,14 +179,12 @@ export const runWithPermissions = async (
       return false;
     }
 
-    // Step 2: Show branded pre-rationale modal (GlassModal)
     const userAccepted = await PermissionModal.showRationale(copy.rationale);
 
     if (!userAccepted) {
       return false; // User tapped "Not Now"
     }
 
-    // Step 3: Trigger the actual system permission prompt
     const result = await ensureFn();
 
     if (!result.granted) {

@@ -1,16 +1,3 @@
-/**
- * ChatInputBar — Polished Instagram / Telegram-style message input bar.
- *
- * Features:
- * - Always-visible action buttons: image, video, GIF
- * - Caption support for media / GIF (text + media sent together)
- * - Voluntary tip attachment (💎 button → opens TipAmountSheet)
- * - Per-message fee integrated into send button ("Send · X DHB")
- * - Free-access badge when exempted from fee
- * - Reply-to / edit-mode indicator strips
- * - Typing indicator emission
- * - Character limit enforcement (5 000)
- */
 import React, {
   memo,
   useCallback,
@@ -39,7 +26,6 @@ import GifPicker from "./GifPicker";
 import type { DmMessage, DmFee } from "../../services/dm/dm.types";
 import { DM_TEXT_MAX_LENGTH } from "../../services/dm/dm.types";
 
-// ─── Types ──────────────────────────────────────────────────────────────────
 
 export type ChatMediaAttachment = {
   type: "image" | "video" | "gif";
@@ -74,7 +60,6 @@ interface ChatInputBarProps {
   dhbBalance?: number | null;
 }
 
-// ─── Component ──────────────────────────────────────────────────────────────
 
 const TYPING_IDLE_MS = 5000;
 
@@ -113,7 +98,6 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     }
   }, [editingMessage]);
 
-  // ── Typing notification ─────────────────────────────────────────────────
 
   const emitTyping = useCallback(
     (isTyping: boolean) => {
@@ -144,7 +128,6 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     [emitTyping],
   );
 
-  // ── Send ────────────────────────────────────────────────────────────────
 
   const handleSend = useCallback(() => {
     if (sending) return;
@@ -176,7 +159,6 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     emitTyping(false);
   }, [text, media, gifUrl, sending, onSendText, onSendMedia, onSendGif, emitTyping, tipAmount]);
 
-  // ── Media pickers ───────────────────────────────────────────────────────
 
   const handlePickImage = useCallback(async () => {
     await runWithPermissions(["photos"], async () => {
@@ -255,7 +237,6 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     setText("");
   }, [onCancelEdit]);
 
-  // ── Derived state ───────────────────────────────────────────────────────
 
   const hasContent = text.trim().length > 0 || !!media || !!gifUrl;
   // Show send button when there's content OR a tip is attached (tip-only send)
@@ -280,7 +261,6 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const insufficientBalance =
     showCostOnSend && dhbBalance != null && dhbBalance < totalCost;
 
-  // ── Disabled state ────────────────────────────────────────────────────
 
   if (disabled) {
     return (

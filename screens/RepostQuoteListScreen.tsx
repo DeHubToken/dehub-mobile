@@ -1,9 +1,3 @@
-/**
- * RepostQuoteListScreen - Shows users who reposted and quote posts for a given post.
- *
- * Two tabs: "Reposts" (list of users) and "Quotes" (list of quote posts).
- * Follows the same tab / pagination pattern as FollowListScreen.
- */
 import React, { useState, useCallback, useMemo, useEffect } from "react";
 import {
   View,
@@ -30,7 +24,6 @@ import HomeFeedCard from "../components/Home/HomeFeedCard";
 import VideoCard from "../components/Home/VideoCard";
 import { ScreenNames } from "../navigation/ScreenNames";
 
-// ─── Types ──────────────────────────────────────────────────────────────────
 
 type RouteParams = {
   RepostQuoteList: {
@@ -50,7 +43,6 @@ const TAB_OPTIONS: { key: TabKey; label: string }[] = [
 
 const PAGE_LIMIT = 20;
 
-// ─── Repost User Row ────────────────────────────────────────────────────────
 
 interface RepostUserRowProps {
   item: RepostUser;
@@ -96,7 +88,6 @@ const RepostUserRow: React.FC<RepostUserRowProps> = React.memo(
   }
 );
 
-// ─── Main Screen ────────────────────────────────────────────────────────────
 
 const RepostQuoteListScreen: React.FC = () => {
   const navigation = useNavigation<any>();
@@ -112,7 +103,6 @@ const RepostQuoteListScreen: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<TabKey>(initialTab);
 
-  // ── Reposts tab state ─────────────────────────────────────
   const [repostUsers, setRepostUsers] = useState<RepostUser[]>([]);
   const [repostLoading, setRepostLoading] = useState(true);
   const [repostRefreshing, setRepostRefreshing] = useState(false);
@@ -121,7 +111,6 @@ const RepostQuoteListScreen: React.FC = () => {
   const [repostHasMore, setRepostHasMore] = useState(true);
   const [repostTotal, setRepostTotal] = useState(initialRepostCount);
 
-  // ── Quotes tab state ──────────────────────────────────────
   const [quotePosts, setQuotePosts] = useState<any[]>([]);
   const [quoteLoading, setQuoteLoading] = useState(true);
   const [quoteRefreshing, setQuoteRefreshing] = useState(false);
@@ -130,7 +119,6 @@ const RepostQuoteListScreen: React.FC = () => {
   const [quoteHasMore, setQuoteHasMore] = useState(true);
   const [quoteTotal, setQuoteTotal] = useState(initialQuoteCount);
 
-  // ── Fetch reposts ─────────────────────────────────────────
   const fetchReposts = useCallback(
     async (pageNum: number, isRefresh = false) => {
       if (pageNum === 1) {
@@ -159,7 +147,6 @@ const RepostQuoteListScreen: React.FC = () => {
     [tokenId]
   );
 
-  // ── Fetch quotes ──────────────────────────────────────────
   const fetchQuotes = useCallback(
     async (pageNum: number, isRefresh = false) => {
       if (pageNum === 1) {
@@ -201,7 +188,6 @@ const RepostQuoteListScreen: React.FC = () => {
     }
   }, [activeTab, fetchReposts, fetchQuotes]);
 
-  // ── Handlers ──────────────────────────────────────────────
   const handleRefresh = useCallback(() => {
     if (activeTab === "reposts") {
       fetchReposts(1, true);
@@ -237,7 +223,6 @@ const RepostQuoteListScreen: React.FC = () => {
     setActiveTab(tab);
   }, []);
 
-  // ── Render items ──────────────────────────────────────────
   const renderRepostItem = useCallback(
     ({ item }: { item: RepostUser }) => (
       <RepostUserRow item={item} onPress={handleUserPress} />
@@ -278,7 +263,6 @@ const RepostQuoteListScreen: React.FC = () => {
     []
   );
 
-  // ── Footer/Empty ──────────────────────────────────────────
   const repostFooter = useMemo(() => {
     if (repostLoadingMore) {
       return (

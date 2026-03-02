@@ -4,7 +4,7 @@ import GlassModal from '../ui/GlassModal';
 import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from '../../context/AuthContext';
 import { toastError, toastWarning } from '../../libs/toast';
-import { updateDmUserStatus } from '../../services/dm/dm.service';
+import { updateDmUserStatus } from '../../services/dm/dm.api';
 import { DmDisableStatus, DmAction } from '../../services/enums/dm-preferences.enum';
 
 export type DMSettingsModalProps = {

@@ -61,9 +61,6 @@ const SORT_OPTIONS: { key: SortOption; label: string; icon: string }[] = [
 
 const PAGE_LIMIT = 20;
 
-// ============================================================================
-// Follow User Row Component - Instagram style
-// ============================================================================
 interface FollowUserRowProps {
   item: FollowListItem;
   onPress: (address: string) => void;
@@ -137,9 +134,6 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(({ item, onPress,
   );
 });
 
-// ============================================================================
-// Follow Request Row Component
-// ============================================================================
 interface FollowRequestRowProps {
   item: FollowRequestItem;
   onAccept: (item: FollowRequestItem) => void;
@@ -219,9 +213,6 @@ const FollowRequestRow: React.FC<FollowRequestRowProps> = React.memo(
   }
 );
 
-// ============================================================================
-// Hidden Message Component
-// ============================================================================
 const HiddenFollowersMessage: React.FC<{ username?: string }> = ({ username }) => (
   <View className="flex-1 items-center justify-center px-8">
     <View className="bg-theme-neutrals-800/50 rounded-full p-6 mb-6">
@@ -235,10 +226,6 @@ const HiddenFollowersMessage: React.FC<{ username?: string }> = ({ username }) =
     </Text>
   </View>
 );
-
-// ============================================================================
-// Main Screen Component
-// ============================================================================
 
 const FollowListScreen: React.FC = () => {
   const navigation = useNavigation();

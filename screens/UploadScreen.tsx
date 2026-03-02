@@ -1,10 +1,3 @@
-/**
- * UploadScreen (v2)
- *
- * Twitter/X-style compose screen.
- * The previous implementation is preserved at `screens/_UploadScreenLegacy.tsx`
- * so we can extract functionality from it as needed.
- */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
@@ -71,7 +64,6 @@ import {
   defaultChainId as DEFAULT_CHAIN_ID,
 } from "../config/constants";
 
-// ── constants ──────────────────────────────────────────
 const TITLE_MAX = 140;
 const DESCRIPTION_MAX = 500;
 const IMAGES_MAX = 4;
@@ -103,7 +95,6 @@ export default function UploadScreen() {
     [authUser?.avatarImageUrl],
   );
 
-  // ── state ──────────────────────────────────────────────
   const [bodyText, setBodyText] = useState("");
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState<string[]>([]);
@@ -131,24 +122,20 @@ export default function UploadScreen() {
   const [coverUri, setCoverUri] = useState<string | null>(null);
   const [coverHidden, setCoverHidden] = useState(false);
 
-  // ── quote mode state ──────────────────────────────────
   const [isQuoteMode, setIsQuoteMode] = useState(!!incomingQuotedTokenId);
   const [quotedTokenId, setQuotedTokenId] = useState<number | string | undefined>(incomingQuotedTokenId);
   const [quotedPost, setQuotedPost] = useState<Record<string, any> | undefined>(incomingQuotedPost);
 
-  // ── livestream mode state ──────────────────────────────
   const [isLiveMode, setIsLiveMode] = useState(false);
   const [liveSettings, setLiveSettings] = useState<LiveSettingsState>(INITIAL_LIVE_SETTINGS);
   const [showLiveSettings, setShowLiveSettings] = useState(false);
   const [liveThumbnailUri, setLiveThumbnailUri] = useState<string | null>(null);
 
-  // ── draft modal states ─────────────────────────────────
   const [showSaveDraftModal, setShowSaveDraftModal] = useState(false);
   const [showDiscardModal, setShowDiscardModal] = useState(false);
   /** Track the draft id if we're editing one (so we can delete on save/post) */
   const restoredDraftIdRef = useRef<string | null>(null);
 
-  // ── reanimated: monetization slide ─────────────────────
   const monetizationProgress = useSharedValue(0);
 
   useEffect(() => {
@@ -163,7 +150,6 @@ export default function UploadScreen() {
     overflow: "hidden" as const,
   }));
 
-  // ── reanimated: live settings slide ────────────────────
   const liveSettingsProgress = useSharedValue(0);
 
   useEffect(() => {
@@ -178,7 +164,6 @@ export default function UploadScreen() {
     overflow: "hidden" as const,
   }));
 
-  // ── derived ────────────────────────────────────────────
   const mediaMode: MediaMode = useMemo(() => {
     if (pickedVideo) return "video";
     if (pickedImages.length > 0) return "images";
@@ -200,7 +185,6 @@ export default function UploadScreen() {
   // video button disabled when: any media is selected
   const videoDisabled = hasMedia;
 
-  // ── video player ───────────────────────────────────────
   const player = useVideoPlayer(pickedVideo?.uri ?? null, (p) => {
     p.loop = true;
     p.muted = true;
@@ -216,7 +200,6 @@ export default function UploadScreen() {
     }
   }, [isMuted, pickedVideo, player]);
 
-  // ── categories ─────────────────────────────────────────
   useEffect(() => {
     let mounted = true;
     (async () => {
@@ -230,7 +213,6 @@ export default function UploadScreen() {
     return () => { mounted = false; };
   }, []);
 
-  // ── restore from draft ─────────────────────────────────
   useEffect(() => {
     if (!incomingDraft) return;
     restoredDraftIdRef.current = incomingDraft.id;
@@ -286,7 +268,6 @@ export default function UploadScreen() {
     );
   }, []);
 
-  // ── derived: form has content ──────────────────────────
   const formHasContent = useMemo(
     () =>
       bodyText.trim().length > 0 ||
@@ -299,7 +280,6 @@ export default function UploadScreen() {
     [bodyText, description, categories, pickedImages, pickedVideo, liveThumbnailUri, isLiveMode],
   );
 
-  // ── handlers ───────────────────────────────────────────
   /** Close handler – placed before useUploadPost; isUploading guard is in the X button's disabled prop */
   const handleClose = useCallback(() => {
     if (formHasContent) {
@@ -317,7 +297,6 @@ export default function UploadScreen() {
     if (text.length <= DESCRIPTION_MAX) setDescription(text);
   }, []);
 
-  // ── upload hook ──────────────────────────────────────
   const {
     validate,
     preUploadCheck,
@@ -327,7 +306,6 @@ export default function UploadScreen() {
     isUploading,
   } = useUploadPost();
 
-  // ── live upload hook ─────────────────────────────────
   const {
     validate: validateLive,
     buildConfirmText: buildLiveConfirmText,
@@ -336,7 +314,6 @@ export default function UploadScreen() {
     isUploading: isLiveUploading,
   } = useUploadLive();
 
-  // ── quote upload state (must be before activeIs* derivations) ──
   const [quoteUploadStage, setQuoteUploadStage] = useState<UploadStage>("idle");
   const [isQuoteUploading, setIsQuoteUploading] = useState(false);
 
@@ -376,7 +353,6 @@ export default function UploadScreen() {
     };
   }, [bodyText, description, categories, pickedImages, pickedVideo, thumbnailUri, coverUri, monetization]);
 
-  // ── livestream handlers ────────────────────────────────
   const handleToggleLiveMode = useCallback(() => {
     setIsLiveMode((prev) => {
       const next = !prev;
@@ -501,7 +477,6 @@ export default function UploadScreen() {
     await upload(payload);
   }, [getPayload, upload]);
 
-  // ── quote mode handlers ────────────────────────────────
   const handleRemoveQuoteEmbed = useCallback(() => {
     setIsQuoteMode(false);
     setQuotedTokenId(undefined);
@@ -608,7 +583,6 @@ export default function UploadScreen() {
     quoteUploadStage, nav,
   ]);
 
-  // ── draft handlers ─────────────────────────────────────
   const buildDraftData = useCallback(() => ({
     bodyText,
     description,
@@ -843,13 +817,10 @@ export default function UploadScreen() {
     [],
   );
 
-  // ── bottom padding ─────────────────────────────────────
   const bottomPad = kbVisible ? kbHeight : insets.bottom;
 
-  // ── render ─────────────────────────────────────────────
   return (
     <View className="flex-1 bg-black">{/* don't add top inset */}
-      {/* ── Top bar ─────────────────────────────────── */}
       <View className="flex-row items-center justify-between px-4 h-14">
         <TouchableOpacity
           onPress={handleClose}
@@ -889,7 +860,6 @@ export default function UploadScreen() {
         </View>
       </View>
 
-      {/* ── Scrollable compose ────────────────────────── */}
       <ScrollView
         className="flex-1"
         keyboardShouldPersistTaps="handled"
@@ -942,7 +912,6 @@ export default function UploadScreen() {
               {bodyText.length}/{TITLE_MAX}
             </Text>
 
-            {/* ── Live mode indicator ─────────────────── */}
             {isLiveMode && (
               <View className="mt-2 flex-row items-center">
                 <View className="w-2.5 h-2.5 rounded-full bg-red-500 mr-2" />
@@ -952,7 +921,6 @@ export default function UploadScreen() {
               </View>
             )}
 
-            {/* ── Live thumbnail picker ───────────────── */}
             {isLiveMode && (
               <View className="mt-3">
                 {liveThumbnailUri ? (
@@ -995,7 +963,6 @@ export default function UploadScreen() {
               </View>
             )}
 
-            {/* ── Image previews ──────────────────────── */}
             {!isLiveMode && mediaMode === "images" && (
               <View className="mt-3 flex-row flex-wrap -m-1">
                 {pickedImages.map((img, idx) => (
@@ -1035,7 +1002,6 @@ export default function UploadScreen() {
               </View>
             )}
 
-            {/* ── Video preview ───────────────────────── */}
             {!isLiveMode && mediaMode === "video" && pickedVideo && (
               <View className="mt-3 rounded-xl overflow-hidden border border-theme-neutrals-700 relative">
                 <VideoView
@@ -1131,7 +1097,6 @@ export default function UploadScreen() {
               </TouchableOpacity>
             )}
 
-            {/* ── Quoted post embed (quote mode) ────────── */}
             {isQuoteMode && quotedPost && (
               <View className="mt-3 relative">
                 <QuotedPostEmbed
@@ -1148,7 +1113,6 @@ export default function UploadScreen() {
               </View>
             )}
 
-            {/* ── Description & Category section ─────────── */}
             {showExtras && (
               <View className="mt-4">
                 {/* Description: shown for video posts and live mode */}
@@ -1263,7 +1227,6 @@ export default function UploadScreen() {
         </Pressable>
       </ScrollView>
 
-      {/* ── Monetization slide-up panel (hidden in quote and live mode) ── */}
       {!isLiveMode && !isQuoteMode && (
         <Animated.View style={monetizationAnimStyle}>
           <MonetizationPanel
@@ -1275,7 +1238,6 @@ export default function UploadScreen() {
         </Animated.View>
       )}
 
-      {/* ── Live Settings slide-up panel (animated, live mode only) ── */}
       {isLiveMode && (
         <Animated.View style={liveSettingsAnimStyle}>
           <LiveSettingsPanel
@@ -1285,10 +1247,8 @@ export default function UploadScreen() {
         </Animated.View>
       )}
 
-      {/* ── Divider ─────────────────────────────────── */}
       <View className="h-px bg-theme-neutrals-700 mx-4" />
 
-      {/* ── Bottom toolbar (stays above keyboard) ──── */}
       <View
         className="flex-row items-center px-4 h-12"
         style={{ marginBottom: bottomPad > 0 ? bottomPad : 0 }}
@@ -1413,7 +1373,6 @@ export default function UploadScreen() {
         )}
       </View>
 
-      {/* ── Confirm Upload Modal ────────────────────── */}
       <ConfirmUploadModal
         visible={showConfirm}
         onClose={() => {
@@ -1426,7 +1385,6 @@ export default function UploadScreen() {
         title={isQuoteMode ? "Confirm Quote Post" : isLiveMode ? "Confirm Livestream" : "Confirm Upload"}
       />
 
-      {/* ── Save Draft Modal ───────────────────────── */}
       <GlassModal
         visible={showSaveDraftModal}
         onClose={() => setShowSaveDraftModal(false)}
@@ -1463,7 +1421,6 @@ export default function UploadScreen() {
         </View>
       </GlassModal>
 
-      {/* ── Discard Warning Modal ──────────────────── */}
       <GlassModal
         visible={showDiscardModal}
         onClose={() => setShowDiscardModal(false)}

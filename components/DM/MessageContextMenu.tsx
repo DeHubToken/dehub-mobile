@@ -1,12 +1,3 @@
-/**
- * MessageContextMenu — WhatsApp / Instagram-style floating message context menu.
- *
- * Long-press a message → blur backdrop → floating message bubble at its
- * original position → action card appears below/above.
- *
- * Shows sender avatar + name + full formatted date for screenshot-worthy display.
- * Aligned to original message position (left for others, right for own).
- */
 import React, { memo, useCallback, useMemo } from "react";
 import {
   View,
@@ -30,7 +21,6 @@ import { formatChatTimeSmart } from "../../libs/date.util";
 import type { DmMessage, DmUser } from "../../services/dm/dm.types";
 import { getSenderUser } from "../../services/dm/dm.types";
 
-// ─── Types ──────────────────────────────────────────────────────────────────
 
 export interface MessageLayout {
   x: number;
@@ -56,7 +46,6 @@ interface MessageContextMenuProps {
   onCopy?: () => void;
 }
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
 
 const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -72,7 +61,6 @@ const resolveMediaUrl = (path: string): string => {
   return buildCdnPath(path) ?? path;
 };
 
-// ─── Action Row ─────────────────────────────────────────────────────────────
 
 interface ActionRowProps {
   icon: keyof typeof Ionicons.glyphMap;
@@ -109,7 +97,6 @@ const ActionRow: React.FC<ActionRowProps> = ({
   </TouchableOpacity>
 );
 
-// ─── Floating Message Preview ───────────────────────────────────────────────
 
 const FLOAT_MAX_IMAGE_W = Math.round(SCREEN_WIDTH * 0.75 - 24);
 
@@ -130,7 +117,6 @@ const FloatingMessage: React.FC<{
   const name = senderInfo?.displayName || senderInfo?.username || "You";
   const usernameTag = senderInfo?.username;
 
-  // Payment / tip detection (mirrors MessageBubbleNew)
   const isPaidMsg = !!(message.paymentTxHash || message.paymentStatus || message.tipAmount);
   const paymentAmount = message.tipAmount ?? null;
   const paymentSymbol = message.tipSymbol ?? "DHB";
@@ -157,7 +143,6 @@ const FloatingMessage: React.FC<{
     return resolveMediaUrl(url);
   }, [message]);
 
-  // Standalone tip → centred pill (same as MessageBubbleNew)
   if (isStandaloneTip) {
     const amountLabel = message.tipAmount
       ? `${Number(message.tipAmount).toLocaleString()} ${message.tipSymbol || "DHB"}`
@@ -386,7 +371,6 @@ const FloatingMessage: React.FC<{
   );
 };
 
-// ─── Main Component ─────────────────────────────────────────────────────────
 
 const ACTIONS_CARD_HEIGHT = 280;
 const PADDING = 16;
@@ -413,7 +397,6 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
     return peerUser || { displayName: "User" };
   }, [isMine, myUser, peerUser]);
 
-  // ── Handlers ──────────────────────────────────────────────────────────────
 
   const handleReply = useCallback(() => {
     onClose();
@@ -442,7 +425,6 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
     setTimeout(() => onDelete?.(), 100);
   }, [onClose, onDelete]);
 
-  // ── Position calculation ──────────────────────────────────────────────────
 
   const { messageTop, actionsTop, actionsBelow } = useMemo(() => {
     if (!layout)

@@ -9,10 +9,6 @@ function historyKey(address?: string): string {
   return HISTORY_KEY_PREFIX;
 }
 
-// =============================================================================
-// Types — aligned with GET /api/search endpoint (Feb 2026)
-// =============================================================================
-
 export type SearchType = 'accounts' | 'content';
 export type SearchPostType =
   | 'all'
@@ -31,7 +27,6 @@ export interface SearchParams {
   postType?: SearchPostType;
 }
 
-// ---- Account result ----
 export interface SearchAccountResult {
   address: string;
   username?: string;
@@ -49,7 +44,6 @@ export interface SearchAccountResult {
   isFollowRequestPending?: boolean;
 }
 
-// ---- Content result ----
 export interface SearchContentResult {
   tokenId: number;
   name?: string;
@@ -102,7 +96,6 @@ export interface SearchContentResult {
   minterStaked?: number;
 }
 
-// ---- Pagination ----
 export interface SearchPagination {
   page: number;
   limit: number;
@@ -124,10 +117,6 @@ export interface UnifiedSearchResponse {
   content: SearchBucket<SearchContentResult> | null;
 }
 
-// =============================================================================
-// Helpers
-// =============================================================================
-
 const EMPTY_PAGINATION: SearchPagination = {
   page: 1,
   limit: 20,
@@ -143,10 +132,6 @@ function emptyResponse(): UnifiedSearchResponse {
     content: { items: [], pagination: { ...EMPTY_PAGINATION } },
   };
 }
-
-// =============================================================================
-// Search API
-// =============================================================================
 
 /**
  * GET /api/search — Universal search.
@@ -200,10 +185,6 @@ export async function searchContent(
   return res.content ?? { items: [], pagination: { ...EMPTY_PAGINATION } };
 }
 
-// =============================================================================
-// Suggestions API
-// =============================================================================
-
 export async function fetchSuggestions(q: string): Promise<string[]> {
   if (!q?.trim()) return [];
   try {
@@ -216,10 +197,6 @@ export async function fetchSuggestions(q: string): Promise<string[]> {
     return [];
   }
 }
-
-// =============================================================================
-// Search History (local storage)
-// =============================================================================
 
 export async function getHistory(address?: string): Promise<string[]> {
   try {

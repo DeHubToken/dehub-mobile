@@ -28,12 +28,8 @@ import RepostQuoteListScreen from "../screens/RepostQuoteListScreen";
 import DraftsScreen from '../screens/DraftsScreen';
 import PostResolverScreen from '../screens/PostResolverScreen';
 import { LivepeerProvider } from "../config/livepeer.config";
-import ChatScreen from "../screens/ChatScreenNew";
+import ChatScreen from "../screens/ChatScreen";
 import { useAuthState } from "../context/AuthContext";
-
-// =============================================================================
-// Constants
-// =============================================================================
 
 /** Standardized gesture response distances */
 const GESTURE_DISTANCE = {
@@ -44,10 +40,6 @@ const GESTURE_DISTANCE = {
   /** For small interactive modals */
   SMALL_MODAL: 80,
 } as const;
-
-// =============================================================================
-// Shared Card Style Interpolators
-// =============================================================================
 
 /** Slide up from bottom animation for modals */
 const slideFromBottom: StackCardStyleInterpolator = ({ current, layouts }) => ({
@@ -87,10 +79,6 @@ const slideFromBottomWithOverlay: StackCardStyleInterpolator = ({ current, layou
   },
 });
 
-// =============================================================================
-// Provider-Wrapped Screens
-// =============================================================================
-
 /** LiveProducer screen wrapped with LivepeerProvider */
 const LiveProducerWithProvider: React.FC<any> = (props) => (
   <LivepeerProvider>
@@ -104,10 +92,6 @@ const LiveViewerWithProvider: React.FC<any> = (props) => (
     <LiveViewerScreen {...props} />
   </LivepeerProvider>
 );
-
-// =============================================================================
-// Navigator
-// =============================================================================
 
 const Stack = createStackNavigator<AppStackParamList>();
 

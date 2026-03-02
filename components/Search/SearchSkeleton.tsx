@@ -4,10 +4,6 @@ import { View, Dimensions } from "react-native";
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const IMAGE_WIDTH = SCREEN_WIDTH - 32;
 
-// =============================================================================
-// Account Card Skeleton - matches SearchAccountCard
-// =============================================================================
-
 const AccountCardSkeleton: React.FC = () => (
   <View className="flex-row items-center px-4 py-3 border-b border-theme-neutrals-800">
     {/* Avatar */}
@@ -22,10 +18,6 @@ const AccountCardSkeleton: React.FC = () => (
     <View className="w-20 h-8 bg-theme-neutrals-800 rounded-full" />
   </View>
 );
-
-// =============================================================================
-// Feed Card Skeleton - matches HomeFeedCard in search results
-// =============================================================================
 
 const FeedCardSkeleton: React.FC = () => (
   <View className="px-4 my-4">
@@ -55,10 +47,6 @@ const FeedCardSkeleton: React.FC = () => (
     </View>
   </View>
 );
-
-// =============================================================================
-// Search Skeleton - shows tabs and mixed content
-// =============================================================================
 
 const SearchSkeleton: React.FC = () => {
   return (

@@ -8,7 +8,6 @@ import { useKeyboard } from '../../hooks/useKeyboard';
 import { useWebSocket } from '../../context/WebSocketContext';
 import AccentButtonGradient from '../ui/AccentButtonGradient';
 
-// Activity shape (loosely mirrors web implementation)
 export interface ChatActivity {
   status: StreamActivityType | 'SYSTEM';
   address?: string;

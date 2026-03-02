@@ -1,9 +1,3 @@
-/**
- * FeedDetailScreen - Full feed post detail with comments
- * 
- * Shows a full-length feed card (no truncation) with a comments section below.
- * Supports shared comment highlighting via commentId param.
- */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, FlatList, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -97,7 +91,6 @@ export default function FeedDetailScreen() {
     onCancel: handleVoiceRecordingCancel,
   });
 
-  // --- Media action handlers ---
 
   const handlePickImage = useCallback(async () => {
     if (!requireAuth) return;
@@ -315,7 +308,6 @@ export default function FeedDetailScreen() {
     }
   }, [address]);
 
-  // ── Context menu handlers ────────────────────────────────────────────────
 
   const handleCommentLongPress = useCallback(
     (comment: Comment, layout: CommentLayout, extra: { liked: boolean; isOwnComment: boolean; isReply: boolean }) => {

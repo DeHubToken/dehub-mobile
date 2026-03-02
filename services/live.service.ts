@@ -56,7 +56,6 @@ export async function createLiveSession(payload: CreateLiveRequest) {
 }
 
 // --- New unified /live creation (post signature + on-chain mint) ---
-// Mirrors web go-live FormData structure: JSON stringify complex fields.
 export interface CreateLiveStreamInput {
   title: string; // name/title
   description: string;
@@ -143,7 +142,7 @@ export async function getScheduledLives(): Promise<ScheduledLiveItem[]> {
       .filter((i) => i && i.scheduleAt && i.scheduleAt > Date.now())
       .map((i) => ({
         streamId: i.streamId || i.id || i.tokenId || String(i.streamId || i.id || i.tokenId),
-        name: i.name || i.title || "Untitled",
+        name: i.name || i.title || "",
         scheduleAt: Number(i.scheduleAt) || null,
         thumbnailUrl: i.thumbnailUrl || i.imageUrl || null,
       }));
@@ -163,7 +162,7 @@ export async function getUserScheduledLives(address: string): Promise<ScheduledL
       // .filter((i) => i && i.scheduledFor && new Date(i.scheduledFor).getTime() > Date.now())
       .map((i) => ({
         streamId: i._id || i.streamId || i.id || String(i._id || i.streamId || i.id),
-        name: i.title || i.name || 'Untitled',
+        name: i.title || i.name || '',
         scheduleAt: i.scheduledFor ? new Date(i.scheduledFor).getTime() : null,
         thumbnailUrl: i.thumbnail || i.thumbnailUrl || null,
       }));
@@ -173,7 +172,6 @@ export async function getUserScheduledLives(address: string): Promise<ScheduledL
   }
 }
 
-// --- New Live Stream helpers (backend unified /live endpoints) ---
 
 export interface LiveStreamEntity {
   _id?: string;

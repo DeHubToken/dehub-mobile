@@ -1,21 +1,9 @@
-/**
- * PermissionModal — Branded permission rationale & settings-redirect modal.
- *
- * Uses GlassModal for consistent app styling (Instagram / TikTok pattern).
- * Exposes a **static imperative API** so non-React utility code
- * (e.g. permissions.util.ts) can trigger it without hooks or context.
- *
- * Usage:
- *   1. Mount <PermissionModalProvider /> once near the app root.
- *   2. From anywhere: `PermissionModal.showRationale(config)` / `.showSettings(config)`
- */
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "./GlassModal";
 import AccentButtonGradient from "./AccentButtonGradient";
 
-// ─── Types ───────────────────────────────────────────────────────────────────
 
 type PermissionIconName = "images-outline" | "camera-outline" | "mic-outline";
 
@@ -28,7 +16,6 @@ export type PermissionModalConfig = {
 /** Resolve callback from the show* promise */
 type Resolver<T> = (value: T) => void;
 
-// ─── Static bridge (utility → provider) ──────────────────────────────────────
 
 type ShowRationaleFn = (config: PermissionModalConfig) => Promise<boolean>;
 type ShowSettingsFn = (config: PermissionModalConfig) => Promise<void>;
@@ -59,7 +46,6 @@ export const PermissionModal = {
   },
 };
 
-// ─── Provider component (mount once at app root) ─────────────────────────────
 
 type ModalState =
   | { mode: "hidden" }
@@ -90,7 +76,6 @@ const PermissionModalProvider: React.FC = memo(() => {
     };
   }, []);
 
-  // ── Handlers ─────────────────────────────────────────────────
 
   const dismiss = useCallback(() => {
     if (state.mode === "rationale") state.resolve(false);
@@ -111,7 +96,6 @@ const PermissionModalProvider: React.FC = memo(() => {
     if (mountedRef.current) setState({ mode: "hidden" });
   }, [state]);
 
-  // ── Render ───────────────────────────────────────────────────
 
   if (state.mode === "hidden") return null;
 

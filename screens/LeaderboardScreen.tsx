@@ -25,7 +25,6 @@ import { ScreenNames } from "../navigation/ScreenNames";
 // Approximate fixed row height for getItemLayout optimization
 const ROW_HEIGHT = 64;
 
-// ─── Stable list header to prevent ScrollView remount ────────────
 interface ListHeaderContentProps {
   sortCategory: SortCategory;
   onCategoryChange: (cat: SortCategory) => void;
@@ -57,7 +56,6 @@ const LeaderboardScreen = () => {
   const hasLoadedOnce = useRef(false);
   const pendingCategoryRef = useRef<SortCategory>("holdings");
 
-  // ─── Data fetching ──────────────────────────────────────────────
   const loadData = useCallback(
     async (sort: SortCategory, isRefresh = false) => {
       // Only show skeleton on very first load
@@ -98,7 +96,6 @@ const LeaderboardScreen = () => {
     loadData("holdings");
   }, [loadData]);
 
-  // ─── Category change → re-fetch from backend ────────────────────
   const handleCategoryChange = useCallback(
     (cat: SortCategory) => {
       if (cat === pendingCategoryRef.current) return;
@@ -111,13 +108,11 @@ const LeaderboardScreen = () => {
     [loadData]
   );
 
-  // ─── Pull-to-refresh ────────────────────────────────────────────
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     loadData(sortCategory, true);
   }, [loadData, sortCategory]);
 
-  // ─── Local search filter ────────────────────────────────────────
   const filteredData = useMemo(() => {
     if (!searchQuery.trim()) return data;
     const q = searchQuery.toLowerCase();
@@ -131,7 +126,6 @@ const LeaderboardScreen = () => {
       .map((row, idx) => ({ ...row, rank: idx + 1 }));
   }, [data, searchQuery]);
 
-  // ─── Row press → navigate to profile ────────────────────────────
   const handlePressRow = useCallback(
     (username: string) => {
       if (!username) return;
@@ -140,7 +134,6 @@ const LeaderboardScreen = () => {
     [showUserProfile]
   );
 
-  // ─── FlatList helpers ───────────────────────────────────────────
   const keyExtractor = useCallback(
     (item: LBRow) => `${item.account}-${item.rank}`,
     []
@@ -166,7 +159,6 @@ const LeaderboardScreen = () => {
     []
   );
 
-  // ─── List header (stable callback to avoid ScrollView remount) ─
   const renderListHeader = useCallback(
     () => (
       <ListHeaderContent

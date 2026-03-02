@@ -20,10 +20,6 @@ import { reportContent, reportUser } from "../../services/nft.service";
 import { toastError } from "../../libs";
 import { useKeyboard } from "../../hooks/useKeyboard";
 
-// =============================================================================
-// Reason definitions
-// =============================================================================
-
 interface ReportReason {
   id: string;
   label: string;
@@ -55,10 +51,6 @@ const USER_REASONS: ReportReason[] = [
   { id: "other", label: "Other", icon: "ellipsis-horizontal-outline" },
 ];
 
-// =============================================================================
-// Types
-// =============================================================================
-
 export type ReportType = "content" | "user";
 
 interface ReportModalProps {
@@ -72,10 +64,6 @@ interface ReportModalProps {
   /** Display name for the user being reported */
   userName?: string;
 }
-
-// =============================================================================
-// Component
-// =============================================================================
 
 const ReportModalComponent: React.FC<ReportModalProps> = ({
   visible,
@@ -170,9 +158,6 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
     }
   }, [type, tokenId, userId, selectedReason, additionalInfo]);
 
-  // ---------------------------------------------------------------------------
-  // Success state
-  // ---------------------------------------------------------------------------
   if (submitted) {
     return (
       <GlassModal
@@ -204,9 +189,6 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
     );
   }
 
-  // ---------------------------------------------------------------------------
-  // Report form
-  // ---------------------------------------------------------------------------
   return (
     <GlassModal
       visible={visible}

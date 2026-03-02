@@ -1,9 +1,3 @@
-/**
- * Navigation Type Definitions
- * 
- * This file contains all TypeScript type definitions for the navigation system.
- * Using proper types ensures compile-time safety when navigating between screens.
- */
 
 import type { StackScreenProps, StackNavigationProp } from '@react-navigation/stack';
 import type {
@@ -12,10 +6,6 @@ import type {
 } from '@react-navigation/bottom-tabs';
 import type { CompositeScreenProps, CompositeNavigationProp, NavigatorScreenParams } from '@react-navigation/native';
 import { ScreenNames } from './ScreenNames';
-
-// =============================================================================
-// Root Navigator Types
-// =============================================================================
 
 export type RootStackParamList = {
   [ScreenNames.App]: NavigatorScreenParams<AppStackParamList> | undefined;
@@ -28,10 +18,6 @@ export type RootStackScreenProps<T extends keyof RootStackParamList> = StackScre
   T
 >;
 
-// =============================================================================
-// Auth Navigator Types
-// =============================================================================
-
 export type AuthStackParamList = {
   [ScreenNames.Onboarding]: undefined;
   [ScreenNames.SignIn]: undefined;
@@ -43,10 +29,6 @@ export type AuthStackScreenProps<T extends keyof AuthStackParamList> = Composite
   StackScreenProps<AuthStackParamList, T>,
   RootStackScreenProps<keyof RootStackParamList>
 >;
-
-// =============================================================================
-// App Navigator Types (Main Stack)
-// =============================================================================
 
 export type AppStackParamList = {
   [ScreenNames.Root]: NavigatorScreenParams<BottomTabParamList> | undefined;
@@ -135,10 +117,6 @@ export type AppStackNavigationProp<T extends keyof AppStackParamList> = Composit
   StackNavigationProp<RootStackParamList>
 >;
 
-// =============================================================================
-// Bottom Tab Navigator Types
-// =============================================================================
-
 export type BottomTabParamList = {
   [ScreenNames.Home]: undefined;
   [ScreenNames.Feed]: undefined;
@@ -152,10 +130,6 @@ export type BottomTabScreenProps<T extends keyof BottomTabParamList> = Composite
   AppStackScreenProps<keyof AppStackParamList>
 >;
 
-// =============================================================================
-// Convenience Types for Components
-// =============================================================================
-
 /**
  * Generic navigation prop that can be used in components that don't need
  * specific screen params. Prefer using screen-specific props when possible.
@@ -167,10 +141,6 @@ export type AppNavigationProp = AppStackNavigationProp<keyof AppStackParamList>;
  * Usage: const navigation = useNavigation<UseNavigationType>();
  */
 export type UseNavigationType = AppStackNavigationProp<keyof AppStackParamList>;
-
-// =============================================================================
-// Declaration Merge for useNavigation type inference
-// =============================================================================
 
 declare global {
   namespace ReactNavigation {

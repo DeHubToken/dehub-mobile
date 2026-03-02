@@ -9,7 +9,6 @@ import { useCallback, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
 
-// ── Types ──────────────────────────────────────────────────
 
 export interface Draft {
   id: string;
@@ -24,7 +23,6 @@ export interface Draft {
   createdAt: number; // epoch ms
 }
 
-// ── Constants ──────────────────────────────────────────────
 
 const STORAGE_PREFIX = "@dhb_drafts";
 
@@ -33,7 +31,6 @@ function draftsKey(address?: string): string {
   return STORAGE_PREFIX;
 }
 
-// ── Helpers ────────────────────────────────────────────────
 
 const generateId = (): string =>
   `draft_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
@@ -57,7 +54,6 @@ const writeDrafts = async (drafts: Draft[], address?: string): Promise<void> => 
   }
 };
 
-// ── Hook ───────────────────────────────────────────────────
 
 export function useDrafts(address?: string) {
   const [drafts, setDrafts] = useState<Draft[]>([]);

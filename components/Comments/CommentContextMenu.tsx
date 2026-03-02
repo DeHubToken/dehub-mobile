@@ -33,7 +33,6 @@ import type { Comment } from "../../services/nft.service";
 import { theme } from "../../theme";
 import { WEBSITE_LINK } from "../../config";
 
-// ─── Types ──────────────────────────────────────────────────────────────────
 
 export interface CommentLayout {
   x: number;
@@ -60,7 +59,6 @@ interface CommentContextMenuProps {
   canDelete?: boolean;
 }
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
 
 const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -93,7 +91,6 @@ const formatShortTime = (date: Date | string | undefined): string => {
   return `${Math.max(1, s)}s`;
 };
 
-// ─── Action list item ───────────────────────────────────────────────────────
 
 interface ActionRowProps {
   icon: keyof typeof Ionicons.glyphMap;
@@ -123,7 +120,6 @@ const ActionRow: React.FC<ActionRowProps> = ({ icon, label, onPress, destructive
   </TouchableOpacity>
 );
 
-// ─── Floating comment preview ───────────────────────────────────────────────
 
 const FloatingComment: React.FC<{
   comment: Comment;
@@ -235,7 +231,6 @@ const FloatingComment: React.FC<{
   );
 };
 
-// ─── Main component ─────────────────────────────────────────────────────────
 
 const ACTIONS_CARD_HEIGHT_ESTIMATE = 240; // rough max
 const COMMENT_PADDING = 16;
@@ -258,7 +253,6 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
 }) => {
   const insets = useSafeAreaInsets();
 
-  // ── Action handlers ──────────────────────────────────────────────────────
 
   const handleReply = useCallback(() => {
     onClose();
@@ -302,7 +296,6 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
     setTimeout(() => onDelete?.(), 100);
   }, [onClose, onDelete]);
 
-  // ── Position calculation ─────────────────────────────────────────────────
 
   const { commentTop, actionsTop } = useMemo(() => {
     if (!layout) return { commentTop: SCREEN_HEIGHT * 0.3, actionsTop: SCREEN_HEIGHT * 0.5 };

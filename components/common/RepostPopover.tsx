@@ -13,7 +13,6 @@ import {
 import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
 
-// ── Singleton: only one popover open at a time ──────────────────────────────
 let _activeClose: (() => void) | null = null;
 
 function registerActive(close: () => void) {
@@ -25,7 +24,6 @@ function unregisterActive(close: () => void) {
   if (_activeClose === close) _activeClose = null;
 }
 
-// ── Component ───────────────────────────────────────────────────────────────
 
 interface RepostPopoverProps {
   visible: boolean;

@@ -1,8 +1,3 @@
-/**
- * ForwardPickerModal — pick a conversation to forward a message to.
- *
- * Shows existing conversations as a scrollable list inside a GlassModal.
- */
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, TextInput } from "react-native";
 import { Ionicons } from "@expo/vector-icons";

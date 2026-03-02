@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   FlatList,
   RefreshControl,
@@ -9,6 +9,7 @@ import {
   Platform,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import Animated, { FadeIn } from "react-native-reanimated";
 import ScreenHeader from "../components/ScreenHeader";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -16,65 +17,90 @@ import NewDMModal from "../components/DM/NewDMModal";
 import DMSearchBox from "../components/DM/DMSearchBox";
 import DMSettingsModal from "../components/DM/DMSettingsModal";
 import DMSettingsMenu from "../components/DM/DMSettingsMenu";
-import DMConversationItem from "../components/DM/DMConversationItem";
-import { User, useAuth } from "../context/AuthContext";
-import { truncateAddress } from "../libs/strings.util";
-import { toastInfo } from "../libs/toast";
-import { useDM } from "../hooks/useDM";
-import { useGateToHome } from "../hooks/useGateToHome";
-import { DmContact } from "../store/dm.state";
+import ConversationItem from "../components/DM/ConversationItem";
+import ConversationContextMenu from "../components/DM/ConversationContextMenu";
 import AccentButtonGradient from "../components/ui/AccentButtonGradient";
+import { useAuth, type User } from "../context/AuthContext";
+import { useUserProfileSheet } from "../context/UserProfileSheetContext";
+import { truncateAddress } from "../libs/strings.util";
+import { toastInfo, toastSuccess, toastError } from "../libs/toast";
+import { blockUser } from "../services/block.service";
+import { deleteConversation, getDmUserStatus, addFreeAccess, removeFreeAccess, type DmUserStatus } from "../services/dm/dm.api";
+import { useGateToHome } from "../hooks/useGateToHome";
+import type {
+  DmConversation,
+  DmUser,
+} from "../services/dm/dm.types";
+import { getOtherParticipant } from "../services/dm/dm.types";
+import { useDmContacts, dmActions } from "../store/dm.store";
+import { useDMContext } from "../context/DMContext";
 
 const DirectMessagesScreen: React.FC = () => {
   const navigation = useNavigation<any>();
   const { user, isSignedIn, needsUsername } = useAuth();
-
-  // Gate: redirect to Home if not signed in or missing username
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
-  const { conversations, contactsLoading, refreshContacts } = useDM();
-  const [query, setQuery] = useState<string>("");
-  const [menuVisible, setMenuVisible] = useState<boolean>(false);
-  const [dnd, setDnd] = useState<boolean>(false);
-  const [newDmVisible, setNewDmVisible] = useState<boolean>(false);
-  const [dmSettingsVisible, setDmSettingsVisible] = useState<boolean>(false);
 
-  // No input ref needed with DMSearchBox
+  const { contactsLoading, refreshContacts } = useDMContext();
+  const conversations = useDmContacts();
+  const { showUserProfile } = useUserProfileSheet();
 
-  // Using only local demo conversations for now (disconnected from services/store)
+  const myUserId = (user as any)?.id as string | undefined;
+  const myAddress = (
+    (user as any)?.walletAddress || (user as any)?.address || ""
+  ).toLowerCase();
 
+  const [query, setQuery] = useState("");
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [dnd, setDnd] = useState(false);
+  const [newDmVisible, setNewDmVisible] = useState(false);
+  const [dmSettingsVisible, setDmSettingsVisible] = useState(false);
+
+  // Own DM status (for creator features like free access toggle)
+  const [myDmStatus, setMyDmStatus] = useState<DmUserStatus | null>(null);
+
+  // Conversation context menu state
+  const [ctxConv, setCtxConv] = useState<DmConversation | null>(null);
+  const [ctxUser, setCtxUser] = useState<DmUser | undefined>(undefined);
+
+  // Fetch own DM status
+  useEffect(() => {
+    if (!myAddress) return;
+    getDmUserStatus(myAddress)
+      .then((s) => { if (s) setMyDmStatus(s); })
+      .catch(() => {});
+  }, [myAddress]);
+
+  // Filtered & sorted conversations
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     const list = q
-      ? conversations.filter((c: DmContact) => {
-          const other = c.participants?.[0]?.participant || {};
+      ? conversations.filter((c) => {
+          const other = getOtherParticipant(c, myUserId, myAddress);
           const title = (
-            other.displayName ||
-            other.username ||
-            other.address ||
+            other?.displayName ||
+            other?.username ||
+            other?.address ||
             ""
           ).toLowerCase();
           const preview =
-            c.messages && c.messages.length > 0
-              ? c.messages[0].content || ""
-              : "";
-          return title.includes(q) || preview.toLowerCase().includes(q);
+            c.messages?.[0]?.content?.toLowerCase() || "";
+          return title.includes(q) || preview.includes(q);
         })
       : conversations;
     return [...list].sort(
-      (a: DmContact, b: DmContact) =>
+      (a, b) =>
         +new Date(b.updatedAt || b.lastMessageAt || 0) -
-        +new Date(a.updatedAt || a.lastMessageAt || 0)
+        +new Date(a.updatedAt || a.lastMessageAt || 0),
     );
-  }, [conversations, query]);
-  const hasConversations = useMemo(
-    () => (conversations?.length || 0) > 0,
-    [conversations]
-  );
+  }, [conversations, query, myUserId, myAddress]);
+
+  const hasConversations = (conversations?.length || 0) > 0;
+
 
   const openMenu = useCallback(() => setMenuVisible(true), []);
   const closeMenu = useCallback(() => setMenuVisible(false), []);
-  const toggleDnd = useCallback(() => setDnd((prev) => !prev), []);
+  const toggleDnd = useCallback(() => setDnd((p) => !p), []);
   const openNewDM = useCallback(() => {
     closeMenu();
     setNewDmVisible(true);
@@ -83,56 +109,120 @@ const DirectMessagesScreen: React.FC = () => {
     closeMenu();
     setDmSettingsVisible(true);
   }, [closeMenu]);
-  const closeNewDM = useCallback(() => setNewDmVisible(false), []);
-  const closeDmSettings = useCallback(() => setDmSettingsVisible(false), []);
+
+
+  const handleConvLongPress = useCallback(
+    (conv: DmConversation, otherUser: DmUser | undefined) => {
+      setCtxConv(conv);
+      setCtxUser(otherUser);
+    },
+    [],
+  );
+
+  const handleAvatarPress = useCallback(
+    (otherUser: DmUser | undefined) => {
+      const id = otherUser?.username || otherUser?.address;
+      if (id) showUserProfile(id, { source: "dm-list" });
+    },
+    [showUserProfile],
+  );
+
+  const closeCtx = useCallback(() => {
+    setCtxConv(null);
+    setCtxUser(undefined);
+  }, []);
+
+  const handleCtxOpenChat = useCallback(() => {
+    if (!ctxConv) return;
+    const title =
+      ctxUser?.displayName ||
+      ctxUser?.username ||
+      truncateAddress(ctxUser?.address || "");
+    navigation.navigate(ScreenNames.Chat as any, {
+      conversationId: ctxConv._id,
+      title,
+    });
+  }, [ctxConv, ctxUser, navigation]);
+
+  const handleCtxBlock = useCallback(async () => {
+    const addr = ctxUser?.address;
+    if (!addr) return;
+    try {
+      await blockUser(addr, "Blocked from DM list");
+      toastSuccess(`Blocked ${ctxUser?.displayName || ctxUser?.username || "user"}`);
+    } catch (e) {
+      toastError(e, "Failed to block");
+    }
+  }, [ctxUser]);
+
+  const handleCtxDelete = useCallback(async () => {
+    if (!ctxConv) return;
+    try {
+      await deleteConversation(ctxConv._id, myAddress);
+      dmActions.removeConversation(ctxConv._id);
+      toastSuccess("Conversation deleted");
+    } catch (e) {
+      toastError(e, "Failed to delete conversation");
+    }
+  }, [ctxConv, myAddress]);
+
+  const handleCtxToggleFreeAccess = useCallback(async () => {
+    const addr = (ctxUser?.address || "").toLowerCase();
+    if (!addr) return;
+    const currentlyFree = !!(myDmStatus?.freeAccessUsers?.some(
+      (a: string) => a.toLowerCase() === addr,
+    ));
+    try {
+      if (currentlyFree) {
+        await removeFreeAccess(addr);
+        setMyDmStatus((prev) =>
+          prev ? { ...prev, freeAccessUsers: (prev.freeAccessUsers || []).filter((a) => a.toLowerCase() !== addr) } : prev,
+        );
+        toastSuccess(`Removed free access for ${ctxUser?.displayName || ctxUser?.username || "user"}`);
+      } else {
+        await addFreeAccess(addr);
+        setMyDmStatus((prev) =>
+          prev ? { ...prev, freeAccessUsers: [...(prev.freeAccessUsers || []), addr] } : prev,
+        );
+        toastSuccess(`Granted free access to ${ctxUser?.displayName || ctxUser?.username || "user"}`);
+      }
+    } catch (e) {
+      toastError(e, "Failed to update free access");
+    }
+  }, [ctxUser, myDmStatus]);
 
   const handleOpenConversation = useCallback(
-    (c: DmContact) => {
-      const other = c.participants?.[0]?.participant || {};
+    (conv: DmConversation, otherUser: DmUser | undefined) => {
       const title =
-        other.displayName ||
-        other.username ||
-        truncateAddress(other.address || "");
+        otherUser?.displayName ||
+        otherUser?.username ||
+        truncateAddress(otherUser?.address || "");
       navigation.navigate(ScreenNames.Chat as any, {
-        conversationId: c._id,
+        conversationId: conv._id,
         title,
       });
     },
-    [navigation]
-  );
-
-  const handleChangeQuery = useCallback((text: string) => setQuery(text), []);
-  const clearQuery = useCallback(() => setQuery(""), []);
-
-  const keyExtractor = useCallback((item: DmContact) => String(item._id), []);
-  const renderItem = useCallback(
-    ({ item }: { item: DmContact }) => (
-      <DMConversationItem item={item as any} onPress={handleOpenConversation} />
-    ),
-    [handleOpenConversation]
+    [navigation],
   );
 
   const startDMWith = useCallback(
     (u: User) => {
-      const addr = (u.walletAddress || (u as any).address || "").toLowerCase();
-      const selfAddr = (
-        (user as any)?.walletAddress ||
-        (user as any)?.address ||
-        ""
+      const addr = (
+        (u as any).walletAddress || (u as any).address || ""
       ).toLowerCase();
+      const selfAddr = myAddress;
       if (addr && addr === selfAddr) {
-        toastInfo("You can’t message yourself");
+        toastInfo("You can't message yourself");
         return;
       }
       const title =
         (u as any).displayName || (u as any).username || truncateAddress(addr);
-      // Check if user already exists in contacts
-      const existing = (conversations as any[]).find(
-        (c: any) =>
-          Array.isArray(c?.participants) &&
-          c.participants.some(
-            (p: any) => (p?.participant?.address || "").toLowerCase() === addr
-          )
+      // Check existing conversation
+      const existing = conversations.find((c: DmConversation) =>
+        c.participants?.some(
+          (p) =>
+            (p.participant?.address || "").toLowerCase() === addr,
+        ),
       );
       if (existing) {
         navigation.navigate(ScreenNames.Chat as any, {
@@ -140,7 +230,6 @@ const DirectMessagesScreen: React.FC = () => {
           title,
         });
       } else {
-        // Open chat screen in target-by-address mode (no existing conversation)
         navigation.navigate(ScreenNames.Chat as any, {
           targetAddress: addr,
           title,
@@ -149,8 +238,9 @@ const DirectMessagesScreen: React.FC = () => {
       }
       setNewDmVisible(false);
     },
-    [navigation, conversations, user]
+    [navigation, conversations, myAddress],
   );
+
 
   const RightHeader = useMemo(
     () => (
@@ -160,41 +250,73 @@ const DirectMessagesScreen: React.FC = () => {
         accessibilityRole="button"
         accessibilityLabel="Open settings menu"
       >
-        <Ionicons name="settings-outline" size={22} color="#E5E7EB" />
+        <Ionicons name="settings-outline" size={22} color="#F9FBFF" />
       </TouchableOpacity>
     ),
-    [openMenu]
+    [openMenu],
+  );
+
+  const renderItem = useCallback(
+    ({ item }: { item: DmConversation }) => (
+      <ConversationItem
+        conversation={item}
+        myUserId={myUserId}
+        myAddress={myAddress}
+        onPress={handleOpenConversation}
+        onLongPress={handleConvLongPress}
+        onAvatarPress={handleAvatarPress}
+      />
+    ),
+    [myUserId, myAddress, handleOpenConversation, handleConvLongPress, handleAvatarPress],
+  );
+
+  const keyExtractor = useCallback(
+    (item: DmConversation) => item._id,
+    [],
   );
 
   const listEmpty = useMemo(() => {
     if (!hasConversations) {
       return (
         <View className="items-center mt-16 px-6">
-          <Text className="text-theme-neutrals-400 mb-3">
-            No conversations yet
-          </Text>
-          <AccentButtonGradient>
-            <TouchableOpacity
-              onPress={openNewDM}
-              activeOpacity={0.8}
-              className=" flex-row items-center px-4 py-2 rounded-full bg-transparent"
-            >
-              <Ionicons name="chatbubbles" size={18} color="white" />
-              <Text className="ml-2 text-theme-neutrals-100 font-medium">
-                Start a new conversation
-              </Text>
-            </TouchableOpacity>
-          </AccentButtonGradient>
+          <Animated.View entering={FadeIn.duration(400)}>
+            <Ionicons
+              name="chatbubbles-outline"
+              size={48}
+              color="#8B8D90"
+              style={{ alignSelf: "center", marginBottom: 12 }}
+            />
+            <Text className="text-theme-neutrals-400 text-center mb-4">
+              No conversations yet
+            </Text>
+            <AccentButtonGradient>
+              <TouchableOpacity
+                onPress={openNewDM}
+                activeOpacity={0.8}
+                className="flex-row items-center px-5 py-2.5 rounded-full bg-transparent"
+              >
+                <Ionicons name="chatbubbles" size={18} color="white" />
+                <Text className="ml-2 text-white font-medium">
+                  Start a conversation
+                </Text>
+              </TouchableOpacity>
+            </AccentButtonGradient>
+          </Animated.View>
         </View>
       );
     }
-    // Has conversations but none match search
     return (
       <View className="items-center mt-10">
         <Text className="text-theme-neutrals-400">No conversations found</Text>
       </View>
     );
-  }, [hasConversations, filtered?.length, openNewDM]);
+  }, [hasConversations, openNewDM]);
+
+  const itemSeparator = useCallback(
+    () => <View className="h-[1px] bg-theme-neutrals-800/50 mx-4" />,
+    [],
+  );
+
 
   return (
     <KeyboardAvoidingView
@@ -210,19 +332,19 @@ const DirectMessagesScreen: React.FC = () => {
           canGoBack={false}
         />
 
-        <View className="px-4 mt-3 mb-1">
-          {hasConversations ? (
+        {hasConversations && (
+          <View className="px-4 mt-3 mb-1">
             <DMSearchBox
               value={query}
-              onChangeText={handleChangeQuery}
-              onClear={clearQuery}
+              onChangeText={setQuery}
+              onClear={() => setQuery("")}
               placeholder="Search"
             />
-          ) : null}
-        </View>
+          </View>
+        )}
 
         <FlatList
-          data={filtered as any}
+          data={filtered}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           contentContainerStyle={{ paddingBottom: 24 }}
@@ -231,13 +353,11 @@ const DirectMessagesScreen: React.FC = () => {
             <RefreshControl
               refreshing={!!contactsLoading}
               onRefresh={refreshContacts}
-              tintColor="#9CA3AF"
+              tintColor="#A6A9AC"
             />
           }
           ListEmptyComponent={listEmpty}
-          ItemSeparatorComponent={() => (
-            <View className="h-[1px] bg-theme-neutrals-800/70 mx-4" />
-          )}
+          ItemSeparatorComponent={itemSeparator}
         />
 
         <DMSettingsMenu
@@ -258,6 +378,23 @@ const DirectMessagesScreen: React.FC = () => {
         <DMSettingsModal
           open={dmSettingsVisible}
           onOpenChange={setDmSettingsVisible}
+        />
+
+        <ConversationContextMenu
+          visible={!!ctxConv}
+          conversation={ctxConv}
+          otherUser={ctxUser}
+          onClose={closeCtx}
+          onOpenChat={handleCtxOpenChat}
+          onBlock={handleCtxBlock}
+          onDelete={handleCtxDelete}
+          onToggleFreeAccess={handleCtxToggleFreeAccess}
+          peerHasFreeAccess={
+            !!(myDmStatus?.freeAccessUsers?.some(
+              (a: string) => a.toLowerCase() === (ctxUser?.address || "").toLowerCase(),
+            ))
+          }
+          isCreator={!!(myDmStatus?.perMessageFee && myDmStatus.perMessageFee > 0)}
         />
       </View>
     </KeyboardAvoidingView>

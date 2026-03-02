@@ -1,14 +1,3 @@
-/**
- * useUploadPost
- *
- * Encapsulates validation, FormData building, and the upload→mint flow
- * for the new compose screen (UploadScreen v2).
- *
- * Handles three media modes:
- *   • video   – title + video + thumbnail required; description, categories, monetisation optional
- *   • images  – at least one image required; everything else optional
- *   • text    – title required; everything else optional
- */
 import { useCallback, useMemo, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { useNavigation, CommonActions } from "@react-navigation/native";
@@ -33,7 +22,6 @@ import {
 import { supportedNetworks } from "../config/web3.constants";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
 
-// ── Types ──────────────────────────────────────────────────
 
 export type UploadStage =
   | "idle"
@@ -62,7 +50,6 @@ export type UploadPayload = {
   monetization: MonetizationState;
 };
 
-// ── Helpers ────────────────────────────────────────────────
 
 const parsePositiveNumber = (v: string): number | undefined => {
   if (!v) return undefined;
@@ -80,7 +67,6 @@ const getActiveNetworkLabel = (chainId: number | null | undefined): string => {
   return (net?.label || (net as any)?.name || "").toString();
 };
 
-// ── Hook ───────────────────────────────────────────────────
 
 export function useUploadPost() {
   const nav = useNavigation<any>();
@@ -102,14 +88,12 @@ export function useUploadPost() {
   const activeChainId = useMemo(() => chainId || DEFAULT_CHAIN_ID, [chainId]);
   const activeNetworkLabel = useMemo(() => getActiveNetworkLabel(chainId), [chainId]);
 
-  // ── Derive media mode ────────────────────────────────
   const getMediaMode = useCallback((p: UploadPayload): MediaMode => {
     if (p.pickedVideo) return "video";
     if (p.pickedImages.length > 0) return "images";
     return "none";
   }, []);
 
-  // ── Validation ───────────────────────────────────────
   const validate = useCallback((p: UploadPayload): ValidationResult => {
     const mode = p.pickedVideo ? "video" : p.pickedImages.length > 0 ? "images" : "text";
 
@@ -155,7 +139,6 @@ export function useUploadPost() {
     return { valid: true };
   }, []);
 
-  // ── Build streamInfo from monetization state ─────────
   const buildStreamInfo = useCallback(
     (m: MonetizationState): Record<string, any> => {
       const info: Record<string, any> = {};
@@ -191,7 +174,6 @@ export function useUploadPost() {
     [activeNetworkLabel, activeChainId],
   );
 
-  // ── Build confirmation text ──────────────────────────
   const buildConfirmText = useCallback(
     (p: UploadPayload): string => {
       const mode = p.pickedVideo ? "video" : p.pickedImages.length > 0 ? "images" : "text";
@@ -229,7 +211,6 @@ export function useUploadPost() {
     [],
   );
 
-  // ── Build FormData ───────────────────────────────────
   const buildFormData = useCallback(
     (p: UploadPayload): FormData => {
       const mode = p.pickedVideo ? "video" : p.pickedImages.length > 0 ? "images" : "text";
@@ -287,7 +268,6 @@ export function useUploadPost() {
     [user?.walletAddress, user?.address, chainId, buildStreamInfo],
   );
 
-  // ── Pre-upload checks (gas, balance) ─────────────────
   const preUploadCheck = useCallback(
     (p: UploadPayload): ValidationResult => {
       // Imported accounts need ETH for gas
@@ -318,7 +298,6 @@ export function useUploadPost() {
     [authMethod, ethBalance, buildStreamInfo, user, tokenBalances],
   );
 
-  // ── Upload + mint ────────────────────────────────────
   const upload = useCallback(
     async (p: UploadPayload) => {
       const mode = p.pickedVideo ? "video" : p.pickedImages.length > 0 ? "images" : "text";

@@ -171,7 +171,7 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
             streamId: String(
               i?._id || i?.id || i?.streamId || i?.tokenId || ""
             ),
-            name: i?.name || i?.title || "Untitled",
+            name: i?.name || i?.title || "",
             // Use createdAt as the date reference for due streams so UI can show date/relative
             scheduleAt: i?.createdAt ? new Date(i.createdAt).getTime() : null,
             thumbnailUrl:

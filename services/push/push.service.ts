@@ -1,9 +1,3 @@
-/**
- * Push Notification Service
- * 
- * Handles Expo push notifications setup, token management, and device registration.
- * Uses FCM under the hood for Android, APNs for iOS - all abstracted by Expo.
- */
 import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
 import Constants from 'expo-constants';
@@ -12,10 +6,6 @@ import { apiClient } from '../../libs/api.client';
 import { createLogger } from '../../libs/logger';
 
 const logger = createLogger('PushService');
-
-// =============================================================================
-// Types
-// =============================================================================
 
 export type NotificationPreferenceKey =
   | 'likes'
@@ -88,10 +78,6 @@ export interface NotificationData {
   [key: string]: unknown;
 }
 
-// =============================================================================
-// Configuration
-// =============================================================================
-
 // Configure default behavior when notification is received in foreground
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -102,10 +88,6 @@ Notifications.setNotificationHandler({
     shouldShowList: true,
   }),
 });
-
-// =============================================================================
-// Permission & Token Management
-// =============================================================================
 
 // Singleton state for token registration
 let cachedExpoPushToken: string | null = null;
@@ -284,10 +266,6 @@ async function setupAndroidChannels(): Promise<void> {
   }
 }
 
-// =============================================================================
-// Backend Token Registration
-// =============================================================================
-
 // Track the last token registered with backend to avoid duplicates
 let lastBackendRegisteredToken: string | null = null;
 let backendRegistrationInProgress = false;
@@ -385,10 +363,6 @@ export async function unregisterCurrentDeviceToken(): Promise<boolean> {
   }
 }
 
-// =============================================================================
-// Notification Preferences
-// =============================================================================
-
 /**
  * Get default notification preferences structure.
  */
@@ -457,10 +431,6 @@ export async function updateNotificationPreferences(
   }
 }
 
-// =============================================================================
-// Badge Management
-// =============================================================================
-
 /**
  * Get current app badge count.
  */
@@ -491,10 +461,6 @@ export async function setBadgeCount(count: number): Promise<boolean> {
 export async function clearBadge(): Promise<boolean> {
   return setBadgeCount(0);
 }
-
-// =============================================================================
-// Notification Actions
-// =============================================================================
 
 /**
  * Dismiss all delivered notifications.
@@ -531,10 +497,6 @@ export async function getPresentedNotifications(): Promise<Notifications.Notific
   }
 }
 
-// =============================================================================
-// Local Notifications (for testing or offline features)
-// =============================================================================
-
 /**
  * Schedule a local notification immediately (useful for testing).
  */
@@ -559,10 +521,6 @@ export async function sendLocalNotification(
     return null;
   }
 }
-
-// =============================================================================
-// Permission Check Utilities
-// =============================================================================
 
 /**
  * Check if push notifications are currently enabled.

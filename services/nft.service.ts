@@ -1,7 +1,6 @@
 import { apiClient } from "../libs";
 import { streamInfoKeys } from "../config/constants";
 
-// ---------------- Types ----------------
 export interface SearchParams {
   search?: string;
   q?: string; // alias
@@ -58,7 +57,6 @@ export interface GetNFTsResult {
 
 export interface GetNFTsResponse { result: GetNFTsResult[]; [k: string]: any }
 
-// ---------------- Internal Helpers ----------------
 function removeUndefined<T extends Record<string, any>>(obj: T): Partial<T> {
   const out: Partial<T> = {};
   (Object.entries(obj) as [keyof T, any][]).forEach(([k, v]) => {
@@ -77,7 +75,6 @@ function objectToGetParams(obj?: Record<string, any>): string {
   return `?${query}`;
 }
 
-// ---------------- Service ----------------
 export async function getNFTs(params?: SearchParams): Promise<GetNFTsResponse> {
   const baseParams: Record<string, any> = {
     search: params?.search || params?.q,
@@ -108,7 +105,6 @@ export async function getNFTs(params?: SearchParams): Promise<GetNFTsResponse> {
   }
 }
 
-// ---------------- Single NFT ----------------
 export interface SingleNFTResponse { result: GetNFTsResult; [k: string]: any }
 
 /**
@@ -142,7 +138,6 @@ export async function getNFTsPage(page: number, params?: Omit<SearchParams, 'pag
   return getNFTs({ ...(params || {}), page });
 }
 
-// ---------------- Categories ----------------
 let __categoriesCache: { at: number; data: string[] } | null = null;
 const DEFAULT_CATEGORIES_TTL = 10 * 60 * 1000; // 10 minutes
 
@@ -173,7 +168,6 @@ export async function getCategoriesCached(options?: { ttlMs?: number; forceRefre
   return data;
 }
 
-// ---------------- Record View ----------------
 /**
  * Record a view for a tokenId.
  * Requires the user to be signed in; apiClient will attach auth headers.
@@ -187,7 +181,6 @@ export async function recordView(tokenId: number | string): Promise<void> {
   }
 }
 
-// ---------------- Votes ----------------
 export interface VoteOnNFTInput {
   streamTokenId: number | string;
   vote: boolean; // true = like, false = dislike
@@ -197,9 +190,12 @@ export interface VoteOnNFTInput {
 export async function voteOnNFT(input: VoteOnNFTInput): Promise<{ error?: string } | undefined> {
   const { streamTokenId, vote } = input || {} as VoteOnNFTInput;
   if (streamTokenId == null) return undefined;
-  const strUrl = `/request_vote?streamTokenId=${encodeURIComponent(String(streamTokenId))}&vote=${vote ? 'true' : 'false'}`;
   try {
-    const res = await apiClient.get<{ error?: string }>(strUrl, { isAuthRequired: true });
+    const res = await apiClient.post<{ error?: string }>(
+      '/request_vote',
+      { streamTokenId: Number(streamTokenId), vote },
+      { isAuthRequired: true }
+    );
     return res;
   } catch (e) {
     console.error('[NFTService] voteOnNFT error', e);
@@ -207,7 +203,6 @@ export async function voteOnNFT(input: VoteOnNFTInput): Promise<{ error?: string
   }
 }
 
-// ---------------- Comments ----------------
 export interface PostCommentInput {
   streamTokenId: number | string;
   content: string;
@@ -226,11 +221,17 @@ export async function postComment(input: PostCommentInput): Promise<PostCommentR
   if (streamTokenId == null) throw new Error('streamTokenId required');
   if (!content || !String(content).trim()) throw new Error('content required');
 
-  const url = `/request_comment?streamTokenId=${encodeURIComponent(String(streamTokenId))}`
-    + `&content=${encodeURIComponent(String(content))}`
-    + (commentId != null ? `&commentId=${encodeURIComponent(String(commentId))}` : '');
   try {
-    const res = await apiClient.get<PostCommentResponse>(url, { isAuthRequired: true });
+    const body: Record<string, any> = {
+      streamTokenId: Number(streamTokenId),
+      content: String(content),
+    };
+    if (commentId != null) body.commentId = Number(commentId);
+    const res = await apiClient.post<PostCommentResponse>(
+      '/request_comment',
+      body,
+      { isAuthRequired: true }
+    );
     return res;
   } catch (e) {
     console.error('[NFTService] postComment error', e);
@@ -524,7 +525,6 @@ export async function postAudioComment(input: PostAudioCommentInput): Promise<Po
   }
 }
 
-// ---------------- Bounty Claim ----------------
 export interface BountySignature {
   v: number;
   r: string;
@@ -561,7 +561,6 @@ export async function getClaimBountySignature(tokenId: number | string): Promise
   }
 }
 
-// ---------------- Mint (Upload) ----------------
 export interface MintNftResponse {
   r: string;
   s: string;
@@ -594,7 +593,6 @@ export async function minNft(data: FormData): Promise<MintNftResponse> {
   }
 }
 
-// ---------------- Edit Post ----------------
 export interface EditPostInput {
   name?: string;
   description?: string;
@@ -621,7 +619,6 @@ export async function editPost(tokenId: number | string, input: EditPostInput): 
   }
 }
 
-// ---------------- Toggle Visibility ----------------
 export interface ToggleVisibilityResponse {
   result: boolean;
   data?: Record<string, any>;
@@ -642,7 +639,6 @@ export async function togglePostVisibility(tokenId: number | string, isHidden: b
   }
 }
 
-// ---------------- Delete Post (Soft Delete) ----------------
 export interface DeletePostResponse {
   result: boolean;
   message?: string;
@@ -663,7 +659,6 @@ export async function deletePost(tokenId: number | string): Promise<DeletePostRe
   }
 }
 
-// ---------------- Report Content ----------------
 export interface ReportContentInput {
   tokenId: number | string;
   reason: string;
@@ -694,7 +689,6 @@ export async function reportContent(input: ReportContentInput): Promise<ReportRe
   }
 }
 
-// ---------------- Report User ----------------
 export interface ReportUserInput {
   userId: string;
   reason: string;
@@ -720,7 +714,6 @@ export async function reportUser(input: ReportUserInput): Promise<ReportResponse
   }
 }
 
-// ---------------- Report Status ----------------
 export interface ReportStatusResponse {
   hasReported: boolean;
   reportId?: string;

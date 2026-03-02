@@ -24,7 +24,7 @@ import * as ExpoSplashScreen from "expo-splash-screen";
 import { theme } from "./theme";
 import { AuthProvider, useAuthState } from "./context/AuthContext";
 import { WebSocketProvider } from "./context/WebSocketContext";
-import { DMProvider } from "./context/DMContextNew";
+import { DMProvider } from "./context/DMContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
 import RootNavigator from "./navigation/RootNavigator";
 import { MessagingProvider } from "./context/MessagingContext";

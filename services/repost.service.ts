@@ -1,6 +1,5 @@
 import { apiClient } from "../libs";
 
-// ─── Types ──────────────────────────────────────────────────────────────────
 
 export interface ToggleRepostResponse {
   status: boolean;
@@ -25,7 +24,6 @@ export interface GetUserRepostsResponse {
   };
 }
 
-// ─── API Functions ──────────────────────────────────────────────────────────
 
 /**
  * Toggle repost on a post. If already reposted, removes the repost.
@@ -69,7 +67,6 @@ export async function getUserReposts(params: GetUserRepostsParams): Promise<GetU
   }
 }
 
-// ─── Repost / Quote list for a specific post ────────────────────────────────
 
 export interface RepostUserRaw {
   address: string;

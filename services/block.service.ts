@@ -1,9 +1,5 @@
 import { apiClient } from '../libs/api.client';
 
-// =============================================================================
-// Types
-// =============================================================================
-
 /** Item returned in the paginated block list */
 export interface BlockListItem {
   blockId: string;
@@ -51,10 +47,6 @@ export interface UnblockUserResponse {
   message: string;
   address: string;
 }
-
-// =============================================================================
-// API Functions
-// =============================================================================
 
 /**
  * Block a user by wallet address. Idempotent.

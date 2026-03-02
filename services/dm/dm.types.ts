@@ -1,15 +1,7 @@
-/**
- * DM type definitions — single source of truth
- *
- * Matches the backend models described in docs/dm-system.md.
- * Every component / service / store should import from here.
- */
 
-// ─── Primitives ─────────────────────────────────────────────────────────────
 
 export type ID = string;
 
-// ─── User ───────────────────────────────────────────────────────────────────
 
 /** Populated user reference returned by the backend inside messages & participants. */
 export interface DmUser {
@@ -20,7 +12,6 @@ export interface DmUser {
   avatarImageUrl?: string;
 }
 
-// ─── Conversation (DM) ─────────────────────────────────────────────────────
 
 export interface DmParticipant {
   participant: DmUser;
@@ -48,7 +39,6 @@ export interface DmConversation {
   deletedForUsers?: { userId: ID; deletedAt: string }[];
 }
 
-// ─── Reply Preview ──────────────────────────────────────────────────────────
 
 /** Populated reply-to preview returned by the backend (via $lookup). */
 export interface ReplyPreview {
@@ -66,7 +56,6 @@ export interface ReplyPreview {
   };
 }
 
-// ─── Message ────────────────────────────────────────────────────────────────
 
 export type DmMsgType = "msg" | "media" | "gif" | "voice" | "tip";
 
@@ -125,7 +114,6 @@ export interface DmMessage {
   tipSymbol?: string | null;
 }
 
-// ─── DM Fee ─────────────────────────────────────────────────────────────────
 
 /** Returned inside `createAndStart` response data. */
 export interface DmFee {
@@ -143,7 +131,6 @@ export interface FeeConfirmedPayload {
   status: "confirmed";
 }
 
-// ─── Peer Policy (access control cache) ─────────────────────────────────────
 
 export interface DmPeerPolicy {
   address: string;
@@ -154,7 +141,6 @@ export interface DmPeerPolicy {
   updatedAt: string; // ISO
 }
 
-// ─── Socket Payloads ────────────────────────────────────────────────────────
 
 /** Client → Server: sendMessage */
 export interface SendMessagePayload {
@@ -235,7 +221,6 @@ export interface CreateAndStartResponse {
   data: DmConversation & { dmFee?: DmFee };
 }
 
-// ─── Upload ─────────────────────────────────────────────────────────────────
 
 export interface UploadDmMediaParams {
   conversationId: ID;
@@ -249,7 +234,6 @@ export interface UploadDmMediaParams {
   replyTo?: ID; // Message._id being replied to
 }
 
-// ─── File Limits ────────────────────────────────────────────────────────────
 
 export const DM_IMAGE_MAX_SIZE = 10 * 1024 * 1024; // 10 MB
 export const DM_VIDEO_MAX_SIZE = 50 * 1024 * 1024; // 50 MB
@@ -257,7 +241,6 @@ export const DM_VOICE_MAX_SIZE = 2 * 1024 * 1024; // 2 MB
 export const DM_VOICE_MAX_DURATION = 60; // seconds
 export const DM_TEXT_MAX_LENGTH = 5000; // characters
 
-// ─── UI Helpers ─────────────────────────────────────────────────────────────
 
 /** Optimistic message for instant display before server confirms. */
 export interface OptimisticMessage extends DmMessage {

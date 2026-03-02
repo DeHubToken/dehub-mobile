@@ -1,11 +1,3 @@
-/**
- * DM Valtio Store — reactive state for conversations & messages.
- *
- * Replaces the previous dm.state.ts with:
- * - Strong typing via dm.types.ts (no `as any` casts)
- * - No local media mapping (CDN-only approach)
- * - Per-account persistence via AsyncStorage
- */
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { proxy, subscribe, useSnapshot } from "valtio";
 import type {
@@ -21,7 +13,6 @@ import type {
   DownloadReceiptResponse,
 } from "../services/dm/dm.types";
 
-// ─── State shape ────────────────────────────────────────────────────────────
 
 export interface DmEntities {
   contactsById: Record<ID, DmConversation>;
@@ -38,14 +29,8 @@ export const dmState = proxy<DmEntities>({
   optimisticByConversation: {},
 });
 
-/**
- * Cache for fee confirmations that arrive before the server message is upserted.
- * Key: messageId, Value: { conversationId, amount }.
- * Kept outside valtio to avoid triggering persistence — ephemeral per session.
- */
 const confirmedFeeCache = new Map<string, { conversationId: ID; amount?: number }>();
 
-// ─── Persistence ────────────────────────────────────────────────────────────
 
 const DM_CACHE_PREFIX = "dm-cache-v2";
 let ACTIVE_STORAGE_KEY: string | null = null;
@@ -121,7 +106,6 @@ export const clearDmStorage = async (key?: string | null): Promise<void> => {
   }
 };
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
 
 const sortAscByCreated = (a?: string, b?: string): number =>
   +new Date(a || 0) - +new Date(b || 0);
@@ -131,7 +115,6 @@ const getSenderIdStr = (m: DmMessage): string => {
   return String(m.sender || "");
 };
 
-// ─── Actions ────────────────────────────────────────────────────────────────
 
 export const dmActions = {
   /** Merge conversations from the contacts API. */
@@ -395,7 +378,6 @@ export const dmActions = {
     };
   },
 
-  // ── Optimistic message management ────────────────────────────────────
 
   /** Add an optimistic message (newest-first order). */
   addOptimistic(conversationId: ID, msg: OptimisticMessage): void {
@@ -443,7 +425,6 @@ export const dmActions = {
   },
 };
 
-// ─── Selectors ──────────────────────────────────────────────────────────────
 
 export const useDmContacts = (): DmConversation[] => {
   const snap = useSnapshot(dmState);
