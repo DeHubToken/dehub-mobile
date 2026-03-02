@@ -1,15 +1,3 @@
-/**
- * App Lifecycle Management Hook
- * 
- * Handles app state transitions (foreground/background/inactive) properly.
- * Big company apps handle these transitions gracefully to prevent crashes.
- * 
- * Features:
- * - Tracks app state changes
- * - Provides callbacks for state transitions
- * - Handles "cold start" vs "warm resume" detection
- * - Manages cleanup on background
- */
 
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { AppState, AppStateStatus } from 'react-native';

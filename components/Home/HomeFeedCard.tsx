@@ -1,9 +1,3 @@
-/**
- * HomeFeedCard - Feed post card for the home screen
- * 
- * Renders image and text posts in a style consistent with VideoCard.
- * This component is optimized for the unified feed on the home screen.
- */
 import React, { memo, useCallback, useRef, useState } from "react";
 import {
   View,
@@ -55,10 +49,6 @@ const ReanimatedScrollView = Reanimated.createAnimatedComponent(
   require("react-native").ScrollView
 );
 
-// =============================================================================
-// Types
-// =============================================================================
-
 interface HomeFeedCardProps {
   item: UnifiedFeedItem;
   onPress?: () => void;
@@ -80,10 +70,6 @@ interface HomeFeedCardProps {
   /** Callback when follow button is pressed */
   onFollowPress?: () => void;
 }
-
-// =============================================================================
-// Component
-// =============================================================================
 
 const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({ 
   item, 
@@ -193,10 +179,6 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   const hasImages = galleryImages.length > 0;
   const hasMultipleImages = galleryImages.length > 1;
   
-  // ==========================================================================
-  // Handlers
-  // ==========================================================================
-  
   const handleUserPress = useCallback(() => {
     const id = minterUser?.username || minterUser?.address || item.minterUsername || item.minter || item.owner;
     if (!id) return;
@@ -210,6 +192,14 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
       navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
     }
   }, [tokenId, onPress, navigation]);
+
+  const handleImagePress = useCallback((index: number = 0) => {
+    if (!hasImages) return;
+    navigation.navigate(ScreenNames.ImageViewer, {
+      images: galleryImages,
+      initialIndex: index,
+    });
+  }, [navigation, galleryImages, hasImages]);
   
   // Bounce animation helper
   const bounceAnimation = useCallback((scale: Animated.Value) => {
@@ -442,17 +432,13 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
     },
   });
   
-  // ==========================================================================
-  // Render
-  // ==========================================================================
-  
   const renderImages = () => {
     if (!hasImages) return null;
     
     if (!hasMultipleImages) {
       // Single image
       return (
-        <TouchableOpacity activeOpacity={0.95} onPress={handleFeedPress} className="mt-2">
+        <TouchableOpacity activeOpacity={0.95} onPress={() => handleImagePress(0)} className="mt-2">
           <Image
             source={{ uri: galleryImages[0] }}
             className="w-full rounded-xl"
@@ -480,7 +466,7 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
             <TouchableOpacity
               key={index}
               activeOpacity={0.95}
-              onPress={handleFeedPress}
+              onPress={() => handleImagePress(index)}
               style={{ width: IMAGE_WIDTH }}
             >
               <Image

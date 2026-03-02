@@ -20,10 +20,6 @@ import { editPost, getCategoriesCached } from "../../services/nft.service";
 import { toastSuccess, toastError } from "../../libs";
 import { useKeyboard } from "../../hooks/useKeyboard";
 
-// =============================================================================
-// Types
-// =============================================================================
-
 interface EditPostModalProps {
   visible: boolean;
   onClose: () => void;
@@ -37,10 +33,6 @@ interface EditPostModalProps {
     category?: string[];
   }) => void;
 }
-
-// =============================================================================
-// Component
-// =============================================================================
 
 const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   visible,

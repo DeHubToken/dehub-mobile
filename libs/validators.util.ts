@@ -105,9 +105,6 @@ export const maxStacked = (balanceData: any): number => {
 const toArray = <T>(v: T | T[] | undefined): T[] =>
   Array.isArray(v) ? v : v === undefined ? [] : [v];
 
-// ---------------------------------------------------------------------------
-// Core access computation — server-first, locally augmented
-// ---------------------------------------------------------------------------
 const computeStreamAccessInfo = (
   nftMetadata: NFTMetadataLike | null | undefined,
   userInfo: UserInfoLite | null,
@@ -260,7 +257,6 @@ export default {
   maxStacked,
 };
 
-// ---------------- Upload/Mint Validation ----------------
 export const lockAmountMin = 0.001;
 export const bountyAmountMin = 0.001;
 
@@ -370,7 +366,6 @@ export const isValidDataForMinting = (
   return { isError: false };
 };
 
-// ---------------- Upload helpers ----------------
 export const filteredStreamInfo = (info: Record<string, any> | null | undefined) => {
   const src = { ...(info || {}) } as Record<string, any>;
   const clean = (obj: Record<string, any>) => {

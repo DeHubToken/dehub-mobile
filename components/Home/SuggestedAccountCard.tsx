@@ -22,7 +22,6 @@ import Avatar from "../common/Avatar";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import type { FollowState } from "../Search/SearchAccountChip";
 
-// ─── Props ──────────────────────────────────────────────────────────────────
 
 interface SuggestedAccountCardProps {
   account: SuggestedAccount;
@@ -31,7 +30,6 @@ interface SuggestedAccountCardProps {
   onDismiss?: (address: string) => void;
 }
 
-// ─── Component ──────────────────────────────────────────────────────────────
 
 const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
   account,
@@ -61,7 +59,6 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
   const followers = account.followers ?? 0;
   const badgeImage = getBadgeUrl(account.badgeBalance ?? 0, "dark");
 
-  // ── Reason line ───────────────────────────────────────────────────────
 
   const reasonLine = useMemo(() => {
     if (account.reason === "follows_you" || account.followsYou) {
@@ -80,7 +77,6 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
     return null;
   }, [account.reason, account.followsYou, account.mutualConnections]);
 
-  // ── Handlers ──────────────────────────────────────────────────────────
 
   const handlePress = useCallback(() => {
     const identifier = account.username || account.address;
@@ -129,7 +125,6 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
     }
   }, [myAddress, account.address, isOwnAccount, isFollowing, isPending, onFollowChange]);
 
-  // ── Follow button ─────────────────────────────────────────────────────
 
   const renderFollowButton = () => {
     if (isOwnAccount) return null;
@@ -186,7 +181,6 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
     );
   };
 
-  // ── Render ────────────────────────────────────────────────────────────
 
   return (
     <TouchableOpacity

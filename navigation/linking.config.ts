@@ -23,10 +23,6 @@ import { emitProfileDeepLink } from '../libs/deeplink.events';
 
 const logger = createLogger('DeepLink');
 
-// =============================================================================
-// Configuration
-// =============================================================================
-
 /** 
  * Domains that should open in the app via Universal Links / App Links 
  * Add more domains as needed (e.g., 'dehub.io', 'app.dehub.io')
@@ -58,10 +54,6 @@ export const getDeepLinkPrefix = (): string[] => {
   return prefixes;
 };
 
-// =============================================================================
-// Path Definitions
-// =============================================================================
-
 /**
  * Deep link path patterns
  * Centralized for easy maintenance and documentation
@@ -83,10 +75,6 @@ export const DeepLinkPaths = {
   MESSAGES: 'app/messages',
 } as const;
 
-// =============================================================================
-// Linking Configuration
-// =============================================================================
-
 /**
  * Main linking configuration for React Navigation
  * Maps URL paths to screens with param parsing
@@ -99,16 +87,11 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     initialRouteName: ScreenNames.App,
     
     screens: {
-      // =======================================================================
-      // App Stack (Main authenticated/unauthenticated screens)
-      // =======================================================================
       [ScreenNames.App]: {
         // Nested screens within AppNavigator
         screens: {
-          // -------------------------------------------------------------------
           // Post resolver (detects video vs feed and redirects)
           // URL: dehub.io/app/post/:tokenId  (also handles ?c=commentId)
-          // -------------------------------------------------------------------
           [ScreenNames.PostResolver]: {
             path: DeepLinkPaths.POST,
             parse: {
@@ -116,11 +99,9 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
             },
           },
 
-          // -------------------------------------------------------------------
           // Legacy: Video Player  (stream/:videoId)
           // Kept for backward compatibility with old shared links
           // Legacy /feeds/:postId is handled via getStateFromPath redirect
-          // -------------------------------------------------------------------
           [ScreenNames.VideoPlayer]: {
             path: DeepLinkPaths.LEGACY_STREAM,
             parse: {
@@ -128,19 +109,10 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
             },
           },
 
-          // -------------------------------------------------------------------
-          // Notifications — dehub.io/app/notifications
-          // -------------------------------------------------------------------
           [ScreenNames.Notifications]: DeepLinkPaths.NOTIFICATIONS,
 
-          // -------------------------------------------------------------------
-          // Leaderboard — dehub.io/app/leaderboard
-          // -------------------------------------------------------------------
           [ScreenNames.Leaderboard]: DeepLinkPaths.LEADERBOARD,
 
-          // -------------------------------------------------------------------
-          // Messages (DM list) — dehub.io/app/messages
-          // -------------------------------------------------------------------
           [ScreenNames.Root]: {
             screens: {
               [ScreenNames.DM]: DeepLinkPaths.MESSAGES,
@@ -149,9 +121,6 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
         },
       },
       
-      // =======================================================================
-      // Auth Stack (Onboarding, Sign In, etc.)
-      // =======================================================================
       [ScreenNames.Auth]: {
         screens: {
           [ScreenNames.SignIn]: 'signin',
@@ -160,10 +129,6 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       },
     },
   },
-  
-  // ===========================================================================
-  // Custom URL Handling
-  // ===========================================================================
   
   /**
    * Custom state resolution for complex deep link scenarios
@@ -179,18 +144,12 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     const queryString = parts[1] || '';
     const segments = pathOnly.split('/').filter(Boolean);
 
-    // ---------------------------------------------------------------
-    // Legacy redirect:  /feeds/:postId  →  /app/post/:postId
-    // ---------------------------------------------------------------
     if (segments[0] === 'feeds' && segments[1]) {
       const newPath = `/app/post/${segments[1]}${queryString ? `?${queryString}` : ''}`;
       logger.info('Legacy feed redirect', { from: path, to: newPath });
       return getStateFromPath(newPath, options);
     }
 
-    // ---------------------------------------------------------------
-    // Profile route:  /:username  (single segment, NOT a reserved prefix)
-    // ---------------------------------------------------------------
     const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome'];
     if (
       segments.length === 1 &&
@@ -265,10 +224,6 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     return url;
   },
 };
-
-// =============================================================================
-// Helper Functions
-// =============================================================================
 
 /**
  * Base URL for share links (dehub.io)

@@ -38,10 +38,6 @@ import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import type { FollowState } from "../components/Search/SearchAccountChip";
 import { useAuth } from "../context/AuthContext";
 
-// =============================================================================
-// Types
-// =============================================================================
-
 type TabKey = "all" | "accounts" | "videos" | "live" | "feeds";
 
 interface Tab {
@@ -59,10 +55,6 @@ const TABS: Tab[] = [
 ];
 
 const PAGE_SIZE = 20;
-
-// =============================================================================
-// Helpers
-// =============================================================================
 
 /** Map a SearchContentResult → UnifiedFeedItem for card components */
 const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
@@ -98,10 +90,6 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
   category: item.category,
 });
 
-// =============================================================================
-// Component
-// =============================================================================
-
 const SearchScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
   const { user: authUser } = useAuth() as { user: { address?: string } | null };
@@ -131,16 +119,10 @@ const SearchScreen: React.FC = () => {
   const inputRef = useRef<TextInput>(null);
   const lastQuery = useRef("");
 
-  // ---------------------------------------------------------------------------
-  // Load history on mount
-  // ---------------------------------------------------------------------------
   useEffect(() => {
     getHistory(userAddress).then(setSearchHistory);
   }, [userAddress]);
 
-  // ---------------------------------------------------------------------------
-  // Suggestions debounce
-  // ---------------------------------------------------------------------------
   useEffect(() => {
     let cancelled = false;
     const q = searchQuery.trim();
@@ -161,9 +143,6 @@ const SearchScreen: React.FC = () => {
     };
   }, [searchQuery, hasSearched]);
 
-  // ---------------------------------------------------------------------------
-  // Execute search
-  // ---------------------------------------------------------------------------
   const executeSearch = useCallback(
     async (query: string, tab: TabKey = activeTab, page: number = 1, append: boolean = false) => {
       const q = query.trim();
@@ -196,7 +175,6 @@ const SearchScreen: React.FC = () => {
           postType,
         });
 
-        // --- Accounts ---
         if (res.accounts) {
           if (append) {
             setAccounts((prev) => [...prev, ...res.accounts!.items]);
@@ -209,7 +187,6 @@ const SearchScreen: React.FC = () => {
           setAccountsPagination(null);
         }
 
-        // --- Content ---
         if (res.content) {
           if (append) {
             setContent((prev) => [...prev, ...res.content!.items]);
@@ -242,9 +219,6 @@ const SearchScreen: React.FC = () => {
     [activeTab, userAddress],
   );
 
-  // ---------------------------------------------------------------------------
-  // Handlers
-  // ---------------------------------------------------------------------------
   const handleSearch = useCallback(() => {
     if (!searchQuery.trim()) return;
     executeSearch(searchQuery, activeTab, 1);
@@ -316,9 +290,6 @@ const SearchScreen: React.FC = () => {
     );
   }, []);
 
-  // ---------------------------------------------------------------------------
-  // Render helpers
-  // ---------------------------------------------------------------------------
   const renderContentItem = useCallback(
     ({ item }: { item: SearchContentResult }) => {
       const feedItem = toFeedItem(item);
@@ -368,9 +339,6 @@ const SearchScreen: React.FC = () => {
     [],
   );
 
-  // ---------------------------------------------------------------------------
-  // Horizontal accounts carousel (Twitter-style, "all" tab only)
-  // ---------------------------------------------------------------------------
   const AccountsCarousel = useMemo(() => {
     if (activeTab !== "all" || accounts.length === 0) return null;
 
@@ -406,9 +374,6 @@ const SearchScreen: React.FC = () => {
     );
   }, [activeTab, accounts, handleFollowChange, handleTabChange]);
 
-  // ---------------------------------------------------------------------------
-  // List footer
-  // ---------------------------------------------------------------------------
   const ListFooter = useMemo(() => {
     if (loadingMore) {
       return (
@@ -434,9 +399,6 @@ const SearchScreen: React.FC = () => {
     return null;
   }, [loadingMore, activeTab, accountsPagination, contentPagination, accounts.length, content.length]);
 
-  // ---------------------------------------------------------------------------
-  // Main content
-  // ---------------------------------------------------------------------------
   const renderContent = () => {
     // Loading
     if (loading) {
@@ -447,7 +409,6 @@ const SearchScreen: React.FC = () => {
       );
     }
 
-    // ---- Results ----
     if (hasSearched) {
       // "accounts" tab → vertical list of account cards
       if (activeTab === "accounts") {
@@ -606,9 +567,6 @@ const SearchScreen: React.FC = () => {
     );
   };
 
-  // ===========================================================================
-  // Render
-  // ===========================================================================
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title="Search" />

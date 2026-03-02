@@ -135,7 +135,6 @@ async function deriveSignerOrProvider(eip1193: any, withSigner: boolean) {
 
     if (!eip1193) throw new Error("Missing EIP-1193 provider instance");
 
-    // Step 1: Create ethers Web3Provider
     const ethProvider = new ethers.providers.Web3Provider(
       eip1193 as any,
       "any"

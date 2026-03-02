@@ -35,10 +35,6 @@ import {
   NON_CLICKABLE_TYPES,
 } from "../services/enums/notification.enums";
 
-// =============================================================================
-// Category Filter Tabs
-// =============================================================================
-
 const CATEGORY_TABS: { key: NotificationCategory | 'all'; label: string }[] = [
   { key: 'all', label: 'All' },
   { key: 'engagement', label: 'Engagement' },
@@ -83,10 +79,6 @@ const CategoryTabs: React.FC<CategoryTabsProps> = ({ selected, onSelect, disable
     />
   </View>
 );
-
-// =============================================================================
-// Helper Functions
-// =============================================================================
 
 /**
  * Check if notification is clickable based on type and available data
@@ -146,10 +138,6 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
   return !!(notification.tokenId || notification.actorAddress || notification.actorUsername);
 };
 
-// =============================================================================
-// Main Screen
-// =============================================================================
-
 const NotificationScreen = () => {
   const { patchUser } = useAuthActions();
   const user = useUser();
@@ -179,10 +167,6 @@ const NotificationScreen = () => {
       UIManager.setLayoutAnimationEnabledExperimental(true);
     }
   }, []);
-
-  // ==========================================================================
-  // Navigation Handlers
-  // ==========================================================================
 
   const navigateToVideo = useCallback((tokenId: number, commentId?: string) => {
     // Navigate immediately - let VideoPlayer handle loading
@@ -351,10 +335,6 @@ const NotificationScreen = () => {
     user?.notificationCount
   ]);
 
-  // ==========================================================================
-  // Data Fetching
-  // ==========================================================================
-
   const pageRef = useRef(1);
   const selectedCategoryRef = useRef<NotificationCategory | 'all'>('all');
   
@@ -474,10 +454,6 @@ const NotificationScreen = () => {
     });
   }, [patchUser]);
 
-  // ==========================================================================
-  // Follow Request Handlers
-  // ==========================================================================
-
   const handleAcceptFollowRequest = useCallback(async (notification: NotificationItem) => {
     const followId = notification.metadata?.followId;
     if (!followId) {
@@ -522,10 +498,6 @@ const NotificationScreen = () => {
       });
     }
   }, []);
-
-  // ==========================================================================
-  // Render Items
-  // ==========================================================================
 
   const renderItem = useCallback(
     ({ item }: { item: NotificationItem }) => {

@@ -1,9 +1,3 @@
-/**
- * CommentBottomSheet - Modal bottom sheet for comments
- * 
- * Wraps CommentSection in a bottom sheet modal that slides up from the bottom.
- * The sheet stays fixed while the input inside CommentSection handles keyboard.
- */
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { View, Modal, Pressable, Dimensions } from "react-native";
 import Animated, {

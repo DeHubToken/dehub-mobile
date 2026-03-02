@@ -1,17 +1,3 @@
-/**
- * Push Notifications Hook
- * 
- * Handles the complete push notification lifecycle:
- * - Permission requests and token registration
- * - Notification listeners (foreground & response)
- * - Token refresh handling
- * - Cleanup on logout
- * 
- * NOTE: Navigation from notification taps is handled globally by PushNotificationsProvider.
- * This hook is for registration/status only.
- * 
- * Usage: Call usePushNotifications() in components that need push notification status.
- */
 import { useEffect, useRef, useCallback, useState } from 'react';
 import * as Notifications from 'expo-notifications';
 import { AppState, AppStateStatus } from 'react-native';
@@ -26,10 +12,6 @@ import {
 import { createLogger } from '../libs/logger';
 
 const logger = createLogger('usePushNotifications');
-
-// =============================================================================
-// Types
-// =============================================================================
 
 interface UsePushNotificationsOptions {
   /** Whether to auto-register on mount (default: true) */
@@ -53,10 +35,6 @@ interface UsePushNotificationsReturn {
   lastNotification: Notifications.Notification | null;
 }
 
-// =============================================================================
-// Hook Implementation
-// =============================================================================
-
 export function usePushNotifications(
   options: UsePushNotificationsOptions = {}
 ): UsePushNotificationsReturn {
@@ -78,10 +56,6 @@ export function usePushNotifications(
   const tokenRefreshListener = useRef<Notifications.Subscription | null>(null);
   const appStateRef = useRef<AppStateStatus>(AppState.currentState);
   const hasRegisteredRef = useRef(false);
-
-  // ==========================================================================
-  // Registration
-  // ==========================================================================
 
   const register = useCallback(async (): Promise<string | null> => {
     if (isRegistering) {
@@ -119,10 +93,6 @@ export function usePushNotifications(
       setIsRegistering(false);
     }
   }, [isRegistering, pushToken, isFullySignedIn, userAddress]);
-
-  // ==========================================================================
-  // Notification Listeners Setup
-  // ==========================================================================
 
   useEffect(() => {
     // Auto-register on mount if enabled and fully signed in
@@ -197,10 +167,6 @@ export function usePushNotifications(
     };
   }, [onNotificationReceived, onNotificationResponse, isSignedIn, user?.walletAddress]);
 
-  // ==========================================================================
-  // App State Handling - Clear badge when app comes to foreground
-  // ==========================================================================
-
   useEffect(() => {
     const handleAppStateChange = (nextState: AppStateStatus) => {
       if (appStateRef.current.match(/inactive|background/) && nextState === 'active') {
@@ -213,10 +179,6 @@ export function usePushNotifications(
     const subscription = AppState.addEventListener('change', handleAppStateChange);
     return () => subscription.remove();
   }, []);
-
-  // ==========================================================================
-  // Re-register token when user signs in
-  // ==========================================================================
 
   useEffect(() => {
     if (isFullySignedIn && pushToken && userAddress && isValidExpoPushToken(pushToken)) {

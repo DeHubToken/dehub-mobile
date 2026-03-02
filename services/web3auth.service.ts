@@ -4,7 +4,6 @@
 
 import { ensureWeb3AuthReady, WEB3AUTH_CHAIN_ID } from "../config/web3auth.config";
 
-// ---------------- Types -----------------------------------------------------
 export type Hex = `0x${string}`;
 
 export interface TxParams {
@@ -29,7 +28,6 @@ export interface TypedDataV4Payload {
 
 export interface TxReceiptLike { status?: string | number; blockHash?: string; transactionHash?: string; }
 
-// ---------------- Internal Helpers -----------------------------------------
 let _ethers: any | null = null;
 async function loadEthers() {
   if (_ethers) return _ethers;
@@ -68,7 +66,6 @@ async function withWeb3AuthProvider<T>(fn: (p: any) => Promise<T>): Promise<T> {
   }
 }
 
-// ---------------- Service Class --------------------------------------------
 export class Web3AuthService {
   // Bundler / Gas price helpers -------------------------------------------
   private async getBundlerUrl(): Promise<string | null> {

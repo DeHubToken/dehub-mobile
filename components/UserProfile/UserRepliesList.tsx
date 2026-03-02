@@ -1,10 +1,3 @@
-/**
- * UserRepliesList – Paginated list of a user's comments & replies.
- *
- * Fetches from GET /users/{address}/comments and renders each item via
- * `UserReplyCard`. Supports pull-to-refresh, infinite scroll paging,
- * and an optional FlatList header (profile header in fullscreen mode).
- */
 import React, {
   forwardRef,
   useCallback,
@@ -32,7 +25,6 @@ import {
 } from "../../services/user.service";
 import UserReplyCard from "./UserReplyCard";
 
-// ─── Types ──────────────────────────────────────────────────────────────────
 
 interface UserRepliesListProps {
   address: string;
@@ -55,7 +47,6 @@ export interface UserRepliesListRef {
 
 const PAGE_SIZE = 20;
 
-// ─── Component ──────────────────────────────────────────────────────────────
 
 const UserRepliesListInner: React.ForwardRefRenderFunction<
   UserRepliesListRef,
@@ -87,7 +78,6 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
     scrollToOffset: (params) => listRef.current?.scrollToOffset(params),
   }));
 
-  // ── Data fetching ─────────────────────────────────────────────────────
 
   const fetchPage = useCallback(
     async (page: number, replace: boolean) => {
@@ -147,7 +137,6 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
     }
   }, [loadingMore, loading, fetchPage]);
 
-  // ── Renderers ─────────────────────────────────────────────────────────
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<UserReplyItem>) => (
@@ -167,7 +156,6 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
     [],
   );
 
-  // ── States ────────────────────────────────────────────────────────────
 
   // Initial loading
   if (loading && items.length === 0) {
@@ -221,7 +209,6 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
     );
   }
 
-  // ── Main list ─────────────────────────────────────────────────────────
 
   return (
     <FlatList

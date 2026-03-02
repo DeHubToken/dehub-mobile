@@ -1,10 +1,3 @@
-/**
- * LiveStreamCard - Card component for live streams in the feed
- * 
- * Displays live stream thumbnail with badges (W2E, PPV, Lock),
- * creator info, and stats (likes, views). No action bar.
- * Navigates to LiveViewer or LiveProducer based on ownership.
- */
 import React, { memo, useCallback, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -26,18 +19,10 @@ import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import env from "../../config/env";
 
-// =============================================================================
-// Types
-// =============================================================================
-
 interface LiveStreamCardProps {
   item: UnifiedFeedItem;
   onCategorySelect?: (category: string) => void;
 }
-
-// =============================================================================
-// Component
-// =============================================================================
 
 const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCategorySelect }) => {
   const navigation = useNavigation<any>();
@@ -127,10 +112,6 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
     user?.username === username
   );
   
-  // ==========================================================================
-  // Handlers
-  // ==========================================================================
-  
   const handleUserPress = useCallback(() => {
     const id = username || creatorAddress;
     if (!id) return;
@@ -164,10 +145,6 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
       streamId,
     } as never);
   }, [navigation, isCreator, isCurrentlyLive, item, accessInfo, streamId, hideUserProfile]);
-  
-  // ==========================================================================
-  // Render
-  // ==========================================================================
   
   const hasThumb = thumbnail && typeof thumbnail === "string" && thumbnail.trim().length > 0;
 

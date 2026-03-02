@@ -83,11 +83,12 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
       : require("../../assets/default-avatar.png");
   const stakeForBadge = (nft as any).minterUser?.badgeBalance || (nft as any).minterStaked || 0;
   const badgeImage = getBadgeUrl(stakeForBadge, "dark");
-  const title =
+  const rawTitle =
     (nft as any).name ||
     (nft as any).title ||
     (nft as any).stream?.title ||
     "";
+  const title = rawTitle.toLowerCase() === "untitled" ? "" : rawTitle;
   const description = (nft as any).description || (nft as any).stream?.description || "";
   const categories: string[] = (nft as any).category || [];
   const creator =

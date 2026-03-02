@@ -1,9 +1,3 @@
-/**
- * ConversationItem — single row in the DM conversations list.
- *
- * Shows avatar, name, message preview with media/voice icons,
- * time, unread badge, and online indicator.
- */
 import React, { memo, useCallback, useMemo } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";

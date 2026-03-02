@@ -58,10 +58,6 @@ function isSignatureValid(
   return true;
 }
 
-// =============================================================================
-// Smart Account Deployment
-// =============================================================================
-
 const DEPLOYMENT_MAX_RETRIES = 3;
 const DEPLOYMENT_RETRY_DELAY_MS = 2000;
 const DEPLOYMENT_VERIFICATION_RETRIES = 5;
@@ -269,10 +265,6 @@ export async function ensureSmartAccountDeployed(
   });
   throw new Error(`Could not deploy smart account: ${msg}`);
 }
-
-// =============================================================================
-// Auth Signature
-// =============================================================================
 
 // Retrieve signature info; if missing/expired prompts new personal sign via Web3Auth
 export async function getOrCreateAuthSignature(

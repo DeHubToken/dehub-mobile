@@ -14,10 +14,6 @@ export interface ApiResponse<T> {
 interface AccountInfoResponse { result: User }
 interface UsersSearchResponse { result: User[] }
 
-// =============================================================================
-// Follow List Types
-// =============================================================================
-
 /** User info returned in follow list */
 export interface FollowListUser {
   address: string;
@@ -65,10 +61,6 @@ export interface GetFollowListParams {
   sortBy?: 'createdAt' | 'username' | 'displayName';
   sortOrder?: 'asc' | 'desc';
 }
-
-// =============================================================================
-// Notification Types
-// =============================================================================
 
 /** Post type for notification content */
 export type NotificationPostType = 'video' | 'feed-images' | 'feed-simple';
@@ -265,7 +257,6 @@ export async function refreshAccount(currentUser: User | null) {
   }
 }
 
-// ---------------- User Content (Videos & Live) ----------------
 
 function resolveAddress(userOrAddress: User | string): string | undefined {
   if (typeof userOrAddress === 'string') return userOrAddress;
@@ -310,7 +301,6 @@ export async function getUserLiveVideos(userOrAddress: User | string, params?: U
   return getNFTs(searchParams);
 }
 
-// ---------------- Liked Posts ----------------
 
 export interface PostsParams { page?: number; unit?: number; }
 
@@ -340,7 +330,6 @@ export async function getLikedNFTs(address: string, params?: PostsParams): Promi
   return getLikedPosts(params);
 }
 
-// ---------------- My Posts ----------------
 
 /**
  * Fetch posts created by the authenticated user.
@@ -363,7 +352,6 @@ export async function getMyPosts(params?: PostsParams): Promise<GetNFTsResponse>
   }
 }
 
-// ---------------- Saved Posts ----------------
 
 /**
  * Fetch posts saved by the authenticated user.
@@ -386,7 +374,6 @@ export async function getSavedPosts(params?: PostsParams): Promise<GetNFTsRespon
   }
 }
 
-// ---------------- Follow List ----------------
 
 /**
  * Get paginated follow list (followers or following) for a user.
@@ -406,7 +393,6 @@ export async function getFollowList(params: GetFollowListParams): Promise<Follow
   return apiClient.get<FollowListResponse>(url, { isAuthRequired: true });
 }
 
-// ---------------- Follow / Unfollow ----------------
 
 /**
  * Response from the follow endpoint.
@@ -451,7 +437,6 @@ export async function unfollowUser(followerAddress: string, followingAddress: st
   };
 }
 
-// ---------------- Remove Follower ----------------
 
 export interface RemoveFollowerResponse {
   status: boolean;
@@ -472,7 +457,6 @@ export async function removeFollower(followerAddress: string): Promise<RemoveFol
   };
 }
 
-// ---------------- Follow state check (lightweight) ----------------
 
 export interface IsFollowingResult {
   isFollowing: boolean;
@@ -499,7 +483,6 @@ export async function isFollowing(targetAddress: string): Promise<IsFollowingRes
   }
 }
 
-// ---------------- Follow Requests ----------------
 
 /** A single follow request item from the /follow-requests endpoint */
 export interface FollowRequestItem {
@@ -577,7 +560,6 @@ export async function rejectAllFollowRequests(): Promise<{ status: boolean; mess
   return res?.data || res;
 }
 
-// ---------------- User Replies (Comments by user) ----------------
 
 /** Author info nested inside each comment from the user comments endpoint. */
 export interface UserReplyAuthor {
@@ -675,7 +657,6 @@ export async function getUserReplies(params: GetUserRepliesParams): Promise<GetU
   }
 }
 
-// ---------------- Suggested Accounts ----------------
 
 export interface SuggestedAccountMutualConnection {
   address: string;
@@ -731,7 +712,6 @@ export async function getSuggestedAccounts(): Promise<SuggestedAccount[]> {
   }
 }
 
-// ---------------- User Reposts ----------------
 
 export interface RepostItem {
   repostId: string;

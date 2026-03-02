@@ -185,7 +185,6 @@ export function isTokenExpired(token: string): boolean {
   }
 }
 
-// ---------------- Web3 Provider Persistence (lightweight metadata) ----------------
 // We avoid serializing full provider objects (non-serializable, circular). Instead store
 // minimal connection metadata (e.g., chainId, timestamp) to decide whether a fresh init is needed.
 
@@ -214,7 +213,6 @@ export async function clearStoredProviderMeta(): Promise<void> {
   try { await SecureStore.deleteItemAsync(WEB3_PROVIDER_KEY); } catch {}
 }
 
-// ---------------- Auth Method Persistence ----------------
 export type AuthMethod = 'local' | 'web3auth';
 
 export async function setAuthMethod(method: AuthMethod, address?: string | null): Promise<void> {
@@ -244,7 +242,6 @@ export async function clearAuthMethod(): Promise<void> {
   try { await SecureStore.deleteItemAsync(AUTH_METHOD_ADDR_KEY); } catch {}
 }
 
-// ---------------- Preferred Chain Persistence ----------------
 export async function setPreferredChainId(id: number): Promise<void> {
   try { await SecureStore.setItemAsync(PREFERRED_CHAIN_ID_KEY, String(id)); } catch {}
 }
@@ -258,7 +255,6 @@ export async function getPreferredChainId(): Promise<number | null> {
   } catch { return null; }
 }
 
-// ---------------- Pending Chain Switch Flag ----------------
 export async function setPendingChainSwitch(chainId: number): Promise<void> {
   try { await SecureStore.setItemAsync(PENDING_CHAIN_SWITCH_KEY, String(chainId)); } catch {}
 }
@@ -276,7 +272,6 @@ export async function clearPendingChainSwitch(): Promise<void> {
   try { await SecureStore.deleteItemAsync(PENDING_CHAIN_SWITCH_KEY); } catch {}
 }
 
-// ---------------- Auth Signature Helpers ----------------
 /**
  * Clears the cached auth signature from the stored user object.
  * This forces getOrCreateAuthSignature to generate a fresh signature.

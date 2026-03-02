@@ -112,7 +112,7 @@ const ScheduledLivesModal: React.FC<Props> = ({
                       className="text-white text-sm font-bold"
                       numberOfLines={2}
                     >
-                      {s.name || "Untitled"}
+                      {s.name || ""}
                     </Text>
                     {dateStr ? (
                       <Text
@@ -183,7 +183,7 @@ const ScheduledLivesModal: React.FC<Props> = ({
                           className="text-white text-sm font-bold"
                           numberOfLines={2}
                         >
-                          {s.name || "Untitled"}
+                          {s.name || ""}
                         </Text>
                         <View className="flex justify-center items-start mt-1">
                           <View className="px-1.5 py-0.5 rounded bg-red-600/70 mr-2">

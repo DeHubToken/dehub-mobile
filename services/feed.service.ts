@@ -20,10 +20,6 @@ function objectToGetParams(obj?: Record<string, any>): string {
   return `?${query}`;
 }
 
-/**
- * Feed-specific fetcher. Mirrors web getFeedNFTs behavior.
- * Uses the /feed endpoint.
- */
 export async function getFeedNFTs(params?: SearchParams): Promise<GetNFTsResponse> {
   const hasSearch = !!(params?.search || params?.q);
 

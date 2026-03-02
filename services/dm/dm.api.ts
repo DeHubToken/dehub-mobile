@@ -1,9 +1,3 @@
-/**
- * DM API Service — all REST endpoints for the DM system.
- *
- * Covers: contacts, messages, upload, fee verification, tipping,
- * free-access management, user preferences, and search.
- */
 import { apiClient } from "../../libs/api.client";
 import { getFileName, guessMime } from "../../libs/assets.util";
 import { DmAction, DmDisableStatus } from "../enums/dm-preferences.enum";
@@ -14,7 +8,6 @@ import type {
   UploadDmMediaParams,
 } from "./dm.types";
 
-// ─── Contacts & Conversations ───────────────────────────────────────────────
 
 export async function getContactsByAddress(
   address: string,
@@ -27,7 +20,6 @@ export async function getConversation(id: string): Promise<DmConversation> {
   return apiClient.get<DmConversation>(`/dm/${id}`);
 }
 
-// ─── Messages ───────────────────────────────────────────────────────────────
 
 export interface GetMessagesParams {
   address: string;
@@ -54,7 +46,6 @@ export async function getMessages(
   );
 }
 
-// ─── Media Upload ───────────────────────────────────────────────────────────
 
 export async function uploadDmMedia(
   params: UploadDmMediaParams,
@@ -87,7 +78,6 @@ export async function uploadDmMedia(
   });
 }
 
-// ─── Fee & Tip Verification ─────────────────────────────────────────────────
 
 export interface VerifyDmFeeResult {
   verified: boolean;
@@ -125,7 +115,6 @@ export async function tipNotify(params: {
   });
 }
 
-// ─── Free Access Management ─────────────────────────────────────────────────
 
 export async function addFreeAccess(address: string): Promise<void> {
   await apiClient.post("/dm/free-access", { address }, { isAuthRequired: true });
@@ -146,7 +135,6 @@ export async function getFreeAccessList(
   });
 }
 
-// ─── User Status / Preferences ──────────────────────────────────────────────
 
 export interface DmUserStatus {
   address: string;
@@ -178,7 +166,6 @@ export async function updateDmUserStatus(
   });
 }
 
-// ─── Search Users ───────────────────────────────────────────────────────────
 
 export async function searchDmUsers(query: string): Promise<DmConversation[]> {
   return apiClient.get<DmConversation[]>(
@@ -187,7 +174,6 @@ export async function searchDmUsers(query: string): Promise<DmConversation[]> {
   );
 }
 
-// ─── Delete ─────────────────────────────────────────────────────────────────
 
 /** Permanently delete a conversation (hard-delete own msgs, remove from contacts). */
 export async function deleteConversation(

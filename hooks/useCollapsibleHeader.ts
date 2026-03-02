@@ -44,7 +44,6 @@ export const useCollapsibleHeader = () => {
     }
   }, [headerHeightSV]);
 
-  // ── JS-callable show / hide (pull-to-refresh, view toggle, etc.) ──────
   const showHeader = useCallback(() => {
     isHidden.value = false;
     translateY.value = withTiming(0, TIMING_CONFIG);
@@ -59,7 +58,6 @@ export const useCollapsibleHeader = () => {
     negativeMargin.value = withTiming(-h, TIMING_CONFIG);
   }, [translateY, negativeMargin, isHidden]);
 
-  // ── UI-thread scroll handler (Animated.FlatList / Animated.ScrollView) ─
   const scrollHandler = useAnimatedScrollHandler((event) => {
     'worklet';
     const y = event.contentOffset.y;
@@ -89,7 +87,6 @@ export const useCollapsibleHeader = () => {
     }
   });
 
-  // ── JS scroll handler (regular ScrollView / FlatList) ─────────────────
   const handleScroll = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       const y = e.nativeEvent.contentOffset.y;
@@ -109,7 +106,6 @@ export const useCollapsibleHeader = () => {
     [showHeader, hideHeader],
   );
 
-  // ── JS callback for InfiniteVideoFeed's onScrollDirectionChange ───────
   const handleScrollDirection = useCallback(
     (direction: 'up' | 'down', offsetY: number) => {
       if (heightRef.current <= 0) return;

@@ -50,10 +50,6 @@ const GRID_GAP = 2;
 const SMALL_SIZE = (SCREEN_WIDTH - GRID_GAP * 2) / 3;
 const BIG_SIZE = SMALL_SIZE * 2 + GRID_GAP;
 
-// =============================================================================
-// Grid Skeleton Component
-// =============================================================================
-
 const GridSkeleton: React.FC = () => {
   // Render 2 full patterns (18 items) for skeleton
   return (
@@ -132,10 +128,6 @@ const defaultFilters: FeedFilters = {
   postType: "feed-images", // Fixed to feed-images
   contentAccess: [],
 };
-
-// =============================================================================
-// Grid Item Component
-// =============================================================================
 
 interface GridItemProps {
   item: UnifiedFeedItem;

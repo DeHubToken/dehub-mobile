@@ -1,18 +1,10 @@
-/**
- * QuotedPostEmbed - Twitter-like embedded quoted post within feed cards.
- *
- * Shows a compact preview of the quoted (original) post. Handles:
- * - Available posts: thumbnail, creator info, text excerpt
- * - Unavailable/deleted posts: graceful fallback message
- * - Tap → navigate to the quoted post detail
- */
 import React, { memo, useCallback, useMemo } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { getAvatarUrl, getImageUrl } from "../../libs/misc";
+import { getAvatarUrl, getImageUrl, getImageUrlApiSimple } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 import Avatar from "./Avatar";
 
@@ -38,7 +30,6 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
       navigation.navigate(ScreenNames.PostResolver, { tokenId: String(targetTokenId) });
     }, [navigation, quotedPost, quotedTokenId, hideUserProfile]);
 
-    // ── Unavailable state ───────────────────────────────────
     if (!isAvailable) {
       return (
         <View className="mt-3 rounded-xl border border-theme-neutrals-800 bg-theme-neutrals-800/30 p-3">
@@ -52,7 +43,6 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
       );
     }
 
-    // ── Extract data ────────────────────────────────────────
     const minterUser = quotedPost.minterUser;
     const displayName =
       minterUser?.displayName ||
@@ -70,9 +60,15 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
 
     // Thumbnail for image/video posts
     const thumbnailUrl = useMemo(() => {
+      // feed-images: imageUrls are relative API paths, need getImageUrlApiSimple
+      if (quotedPost.postType === "feed-images") {
+        const urls = Array.isArray(quotedPost.imageUrls) ? quotedPost.imageUrls : [];
+        if (urls.length > 0) return getImageUrlApiSimple(urls[0]);
+      }
       if (quotedPost.postType === "video") {
         return getImageUrl(quotedPost.thumbnailUrl || quotedPost.imageUrl || "");
       }
+      // Fallback for any other type
       const imageUrls = Array.isArray(quotedPost.imageUrls)
         ? quotedPost.imageUrls
         : [];

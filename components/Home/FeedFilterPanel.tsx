@@ -14,10 +14,6 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 
-// =============================================================================
-// Types
-// =============================================================================
-
 export type SortOption = "random" | "createdAt" | "views" | "likes" | "comments";
 export type DateRangeOption = "" | "day" | "week" | "month" | "year";
 export type PostTypeOption = "all" | "video" | "feed-images" | "feed-simple" | "live";
@@ -39,10 +35,6 @@ interface FeedFilterPanelProps {
   /** Hide the Content Access filter section */
   hideContentAccess?: boolean;
 }
-
-// =============================================================================
-// Options Configuration
-// =============================================================================
 
 const sortOptions: { id: SortOption; label: string }[] = [
   { id: "random", label: "Random" },
@@ -77,10 +69,6 @@ const contentAccessOptions: { id: ContentAccessOption; label: string }[] = [
 // Estimated max height for the panel content
 const MAX_HEIGHT = 280;
 
-// =============================================================================
-// Pill Component
-// =============================================================================
-
 interface FilterPillProps {
   label: string;
   selected: boolean;
@@ -109,10 +97,6 @@ const FilterPill: React.FC<FilterPillProps> = memo(({ label, selected, onPress }
   );
 });
 
-// =============================================================================
-// Section Component
-// =============================================================================
-
 interface FilterSectionProps {
   title: string;
   children: React.ReactNode;
@@ -130,10 +114,6 @@ const FilterSection: React.FC<FilterSectionProps> = memo(({ title, children }) =
     </View>
   );
 });
-
-// =============================================================================
-// Main Component
-// =============================================================================
 
 const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   visible,

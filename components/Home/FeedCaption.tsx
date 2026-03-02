@@ -9,7 +9,6 @@ import { View, Text, TouchableOpacity, NativeSyntheticEvent, TextLayoutEventData
 import { openInApp } from "../../libs/links.utils";
 import { hasValidTLD } from "../../libs/tlds";
 
-// ── Link parsing helpers ────────────────────────────────────
 type Segment =
   | { type: "text"; value: string }
   | { type: "link"; value: string; url: string };
@@ -59,7 +58,6 @@ const parseTextToSegments = (input: string): Segment[] => {
   return segments;
 };
 
-// ── Component ───────────────────────────────────────────────
 interface FeedCaptionProps {
   title?: string;
   description?: string;

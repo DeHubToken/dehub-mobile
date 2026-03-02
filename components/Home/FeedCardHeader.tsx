@@ -10,10 +10,6 @@ import { Ionicons } from "@expo/vector-icons";
 import Avatar from "../common/Avatar";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 
-// =============================================================================
-// Types
-// =============================================================================
-
 export interface FeedCardHeaderProps {
   /** Avatar URL (or undefined for default) */
   avatarUrl?: string;
@@ -42,10 +38,6 @@ export interface FeedCardHeaderProps {
   /** Callback when 3-dot menu is pressed */
   onMenuPress?: () => void;
 }
-
-// =============================================================================
-// Component
-// =============================================================================
 
 const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
   avatarUrl,

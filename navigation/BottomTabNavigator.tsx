@@ -9,7 +9,7 @@ import HomeScreen from "../screens/HomeScreen";
 import FeedScreen from "../screens/FeedScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import UploadScreen from "../screens/UploadScreen";
-import DirectMessagesScreen from "../screens/DirectMessagesScreenNew";
+import DirectMessagesScreen from "../screens/DirectMessagesScreen";
 import { ScreenNames } from "./ScreenNames";
 import type { BottomTabParamList, AppStackNavigationProp } from "./types";
 import { useNavigation } from "@react-navigation/native";

@@ -10,10 +10,6 @@ import Avatar from "../common/Avatar";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import type { SearchAccountResult } from "../../services/search.service";
 
-// =============================================================================
-// Types
-// =============================================================================
-
 interface SearchAccountChipProps {
   account: SearchAccountResult;
   /** Callback when follow state changes so parent can update its data */
@@ -24,10 +20,6 @@ export interface FollowState {
   isFollowing: boolean;
   isFollowRequestPending: boolean;
 }
-
-// =============================================================================
-// Component — compact card for the horizontal accounts carousel
-// =============================================================================
 
 const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange }) => {
   const { showUserProfile } = useUserProfileSheet();
@@ -86,7 +78,6 @@ const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange
     }
   }, [myAddress, account.address, isOwnAccount, isFollowing, isPending, onFollowChange]);
 
-  // ----- Follow button content -----
   const renderFollowButton = () => {
     if (isOwnAccount) return null;
 

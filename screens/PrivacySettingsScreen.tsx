@@ -29,10 +29,6 @@ import { acceptAllFollowRequests, rejectAllFollowRequests } from '../services/us
 
 const logger = createLogger('PrivacySettings');
 
-// =============================================================================
-// Components
-// =============================================================================
-
 interface SettingRowProps {
   label: string;
   description?: string;
@@ -80,10 +76,6 @@ const SettingRow: React.FC<SettingRowProps> = ({
     />
   </View>
 );
-
-// =============================================================================
-// Main Screen
-// =============================================================================
 
 const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
   const user = useUser();

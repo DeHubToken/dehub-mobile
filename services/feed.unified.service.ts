@@ -1,14 +1,4 @@
-/**
- * Unified Feed Service
- * 
- * Handles the unified /feed endpoint that returns mixed content types
- * (videos, image posts, text posts) in a single request.
- */
 import { apiClient } from "../libs";
-
-// =============================================================================
-// Types
-// =============================================================================
 
 export type FeedPostType = "video" | "feed-images" | "feed-simple" | "live" | "all";
 export type FeedSortBy = "likes" | "views" | "createdAt" | "tips" | "comments" | "random";
@@ -161,10 +151,6 @@ export interface UnifiedFeedResponse {
   pagination: FeedPagination;
 }
 
-// =============================================================================
-// Helpers
-// =============================================================================
-
 function removeUndefined<T extends Record<string, any>>(obj: T): Partial<T> {
   const out: Partial<T> = {};
   (Object.entries(obj) as [keyof T, any][]).forEach(([k, v]) => {
@@ -184,10 +170,6 @@ function objectToQueryString(obj?: Record<string, any>): string {
     .join("&");
   return `?${query}`;
 }
-
-// =============================================================================
-// API Functions
-// =============================================================================
 
 /**
  * Fetch unified feed with mixed content types

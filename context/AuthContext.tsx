@@ -37,10 +37,8 @@ import {
   clearAuthSignature,
 } from "../libs/auth.utils";
 import { resetWeb3AuthInstance } from "../config/web3auth.config";
-  // --- Chain switching (centralized) --------------------------------------
-  import { SUPPORTED_NETWORKS, supportedNetworks } from "../config/web3.constants";
-  import { setLocalAuthChainId } from "../services/auth/localProviderAdapter";
-// DM data bootstrap is handled in DM hooks to keep AuthContext modular
+import { SUPPORTED_NETWORKS, supportedNetworks } from "../config/web3.constants";
+import { setLocalAuthChainId } from "../services/auth/localProviderAdapter";
 
 // Define the shape of the user object
 export interface User {
@@ -146,10 +144,6 @@ interface AuthContextType {
   isSwitchingChain?: boolean;
   // Add more auth methods as needed
 }
-
-// === SPLIT CONTEXTS FOR PERFORMANCE ===
-// These separate contexts prevent re-render cascades across the app
-// Components only subscribe to the specific data they need
 
 // User data context (updates rarely - only on profile changes)
 interface UserContextType {
@@ -306,7 +300,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
 
-  // --- Helpers: chainId parsing and provider adoption ------------------------
   // Auto ensure freshness shortly after provider becomes ready while signed in
   useEffect(() => {
     if (isSignedIn && providerStatus === "ready" && provider) {
@@ -442,9 +435,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, [isSignedIn, pendingAction, needsUsername]);
 
-  // Note: DM contacts/messages bootstrap is intentionally not done here to avoid
-  // cross-domain coupling. See hooks/useDM for the canonical bootstrap flow.
-
   const requireAuth = useCallback((action: () => void) => {
     log.debug("requireAuth:called", { isSignedIn, needsUsername });
     if (isSignedIn && !needsUsername) action();
@@ -465,8 +455,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return await patchUserRaw(current as any, update as any);
   }, [patchUserRaw]);
 
-  // === SPLIT CONTEXT VALUES (each memoized independently for performance) ===
-  
   // User context - only updates when user object changes
   const userContextValue = useMemo<UserContextType>(() => ({
     user,
@@ -613,14 +601,6 @@ export const useAuth = (): AuthContextType => {
   return context;
 };
 
-// === OPTIMIZED SELECTOR HOOKS ===
-// These hooks only subscribe to specific parts of the auth state,
-// preventing unnecessary re-renders when unrelated state changes.
-
-/**
- * Hook to access only user data. Components using this will only re-render
- * when the user object changes, not when loading states or provider changes.
- */
 export const useUser = (): User | null => {
   const context = useContext(UserContext);
   if (context === undefined) {
@@ -629,10 +609,6 @@ export const useUser = (): User | null => {
   return context.user;
 };
 
-/**
- * Hook to access auth state (loading, signed in status, etc).
- * Use this when you only need to check auth state without user details.
- */
 export const useAuthState = (): AuthStateContextType => {
   const context = useContext(AuthStateContext);
   if (context === undefined) {
@@ -641,10 +617,6 @@ export const useAuthState = (): AuthStateContextType => {
   return context;
 };
 
-/**
- * Hook to access web3 provider state.
- * Use this for wallet/chain related operations.
- */
 export const useProvider = (): ProviderContextType => {
   const context = useContext(ProviderContext);
   if (context === undefined) {
@@ -653,10 +625,6 @@ export const useProvider = (): ProviderContextType => {
   return context;
 };
 
-/**
- * Hook to access auth actions (signOut, signIn, etc).
- * These are stable function references that rarely change.
- */
 export const useAuthActions = (): AuthActionsContextType => {
   const context = useContext(AuthActionsContext);
   if (context === undefined) {

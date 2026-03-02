@@ -1,10 +1,3 @@
-/**
- * UserRepostsList – Paginated list of a user's reposts.
- *
- * Fetches from GET /reposts?address={address} and renders each repost
- * using VideoCard / HomeFeedCard based on postType. Supports pull-to-refresh,
- * infinite scroll, and an optional FlatList header (profile header in fullscreen).
- */
 import React, {
   forwardRef,
   useCallback,
@@ -33,7 +26,6 @@ import VideoCard from "../Home/VideoCard";
 import HomeFeedCard from "../Home/HomeFeedCard";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 
-// ─── Types ──────────────────────────────────────────────────────────────────
 
 interface UserRepostsListProps {
   address: string;
@@ -55,7 +47,6 @@ const isVideoItem = (item: any): boolean => {
   return !item.postType || item.postType === "video";
 };
 
-// ─── Component ──────────────────────────────────────────────────────────────
 
 const UserRepostsListInner: React.ForwardRefRenderFunction<
   UserRepostsListRef,
@@ -85,7 +76,6 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
     scrollToOffset: (params) => listRef.current?.scrollToOffset(params),
   }));
 
-  // ── Data fetching ─────────────────────────────────────────────────────
 
   const fetchPage = useCallback(
     async (page: number, replace: boolean) => {
@@ -147,7 +137,6 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
     }
   }, [loadingMore, loading, fetchPage]);
 
-  // ── Renderers ─────────────────────────────────────────────────────────
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<any>) => {
@@ -186,7 +175,6 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
     [],
   );
 
-  // ── States ────────────────────────────────────────────────────────────
 
   if (loading && items.length === 0) {
     return (
@@ -237,7 +225,6 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
     );
   }
 
-  // ── Main list ─────────────────────────────────────────────────────────
 
   return (
     <FlatList

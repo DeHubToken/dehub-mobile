@@ -1,7 +1,3 @@
-// PrivyAuthAdapter: implements AuthAdapter for Privy SDK.
-// NOTE: This is a minimal integration scaffold. You must add '@privy-io/react-auth'
-// (or appropriate RN SDK) to package.json and configure PrivyProvider at app root
-// for full functionality. This adapter focuses on the AuthAdapter contract only.
 
 import { AuthAdapter } from './authAdapter';
 

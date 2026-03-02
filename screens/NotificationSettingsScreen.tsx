@@ -37,10 +37,6 @@ import { theme } from '../theme';
 
 const logger = createLogger('NotificationSettings');
 
-// =============================================================================
-// Notification Type Configuration
-// =============================================================================
-
 interface NotificationTypeConfig {
   key: NotificationPreferenceKey;
   label: string;
@@ -160,10 +156,6 @@ const CATEGORIES = [
   { key: 'content', label: 'Content', icon: 'videocam-outline' },
 ] as const;
 
-// =============================================================================
-// Components
-// =============================================================================
-
 interface SettingRowProps {
   label: string;
   description?: string;
@@ -277,10 +269,6 @@ const TypeRow: React.FC<TypeRowProps> = ({
     </View>
   );
 };
-
-// =============================================================================
-// Main Screen
-// =============================================================================
 
 const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
   const user = useUser();

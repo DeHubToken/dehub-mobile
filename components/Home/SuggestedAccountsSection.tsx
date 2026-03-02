@@ -14,7 +14,6 @@ import { useAuth } from "../../context/AuthContext";
 import SuggestedAccountCard from "./SuggestedAccountCard";
 import type { FollowState } from "../Search/SearchAccountChip";
 
-// ─── Component ──────────────────────────────────────────────────────────────
 
 const SuggestedAccountsSection: React.FC = () => {
   const { user } = useAuth() as { user: { address?: string } | null };
@@ -40,7 +39,6 @@ const SuggestedAccountsSection: React.FC = () => {
     };
   }, [user?.address]);
 
-  // ── Handlers ──────────────────────────────────────────────────────────
 
   const handleDismissCard = useCallback((address: string) => {
     setAccounts((prev) => prev.filter((a) => a.address !== address));
@@ -57,7 +55,6 @@ const SuggestedAccountsSection: React.FC = () => {
     [],
   );
 
-  // ── Render nothing until data is available (no skeleton/loading) ──
 
   const visibleAccounts = useMemo(
     () => accounts.filter((a) => a.address),

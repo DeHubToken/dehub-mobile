@@ -30,10 +30,6 @@ import { blockUser, unblockUser } from "../../services/block.service";
 import { useAuth, useAuthActions } from "../../context/AuthContext";
 import { toastSuccess, toastError } from "../../libs";
 
-// =============================================================================
-// Types
-// =============================================================================
-
 export interface PostOptionsMenuProps {
   visible: boolean;
   onClose: () => void;
@@ -75,10 +71,6 @@ export interface PostOptionsMenuProps {
   hideEdit?: boolean;
 }
 
-// =============================================================================
-// Menu Option Row
-// =============================================================================
-
 interface OptionRowProps {
   icon: keyof typeof Ionicons.glyphMap;
   label: string;
@@ -115,10 +107,6 @@ const OptionRow: React.FC<OptionRowProps> = memo(
   )
 );
 
-// =============================================================================
-// Component
-// =============================================================================
-
 const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   visible,
   onClose,
@@ -154,7 +142,6 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [blockLoading, setBlockLoading] = useState(false);
 
-  // --- Follow / Unfollow ---
   const handleFollowToggle = useCallback(() => {
     requireAuth?.(async () => {
       const viewer = (user?.walletAddress || user?.address || "").toLowerCase();
@@ -200,7 +187,6 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     onClose,
   ]);
 
-  // --- Visibility Toggle ---
   const handleVisibilityToggle = useCallback(async () => {
     if (tokenId == null) return;
     setVisibilityLoading(true);
@@ -217,7 +203,6 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     }
   }, [tokenId, isHidden, onVisibilityChange, onClose]);
 
-  // --- Delete ---
   const handleDeleteConfirm = useCallback(async () => {
     if (tokenId == null) return;
     setDeleteLoading(true);
@@ -235,7 +220,6 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     }
   }, [tokenId, onDeleteSuccess, onClose]);
 
-  // --- Edit ---
   const handleOpenEdit = useCallback(() => {
     onClose();
     // Small delay so the menu modal closes before edit opens
@@ -250,7 +234,6 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     [onEditSuccess]
   );
 
-  // --- Report Content ---
   const handleOpenReportContent = useCallback(() => {
     requireAuth?.(() => {
       onClose();
@@ -258,7 +241,6 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     });
   }, [onClose, requireAuth]);
 
-  // --- Report User ---
   const handleOpenReportUser = useCallback(() => {
     requireAuth?.(() => {
       onClose();
@@ -266,7 +248,6 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     });
   }, [onClose, requireAuth]);
 
-  // --- Block / Unblock ---
   const handleOpenBlock = useCallback(() => {
     requireAuth?.(() => {
       onClose();
@@ -296,7 +277,6 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     }
   }, [creatorIdentifier, creatorDisplayName, isBlockedProp, onBlockChange]);
 
-  // --- Delete prompt ---
   const handleOpenDelete = useCallback(() => {
     onClose();
     setTimeout(() => setShowDeleteConfirm(true), 200);

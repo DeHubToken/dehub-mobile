@@ -27,7 +27,6 @@ import { toastError, toastSuccess } from "../libs/toast";
 import { defaultChainId as DEFAULT_CHAIN_ID } from "../config/constants";
 import type { LiveSettingsState } from "../components/Upload/LiveSettingsPanel";
 
-// ── Types ──────────────────────────────────────────────
 
 export type LiveUploadStage =
   | "idle"
@@ -52,7 +51,6 @@ export type LiveUploadPayload = {
   settings: LiveSettingsState;
 };
 
-// ── Hook ───────────────────────────────────────────────
 
 export function useUploadLive() {
   const nav = useNavigation<any>();
@@ -65,7 +63,6 @@ export function useUploadLive() {
 
   const activeChainId = useMemo(() => chainId || DEFAULT_CHAIN_ID, [chainId]);
 
-  // ── Validation ───────────────────────────────────────
   const validate = useCallback((p: LiveUploadPayload): LiveValidationResult => {
     const title = p.title.trim();
     if (title.length < 1) {
@@ -91,7 +88,6 @@ export function useUploadLive() {
     return { valid: true };
   }, []);
 
-  // ── Build confirmation text ──────────────────────────
   const buildConfirmText = useCallback(
     (p: LiveUploadPayload): string => {
       const lines: string[] = [];
@@ -116,7 +112,6 @@ export function useUploadLive() {
     [],
   );
 
-  // ── Build FormData ───────────────────────────────────
   const buildFormData = useCallback(
     (p: LiveUploadPayload): FormData => {
       const addr = (user?.walletAddress || user?.address || "").toLowerCase();
@@ -162,14 +157,12 @@ export function useUploadLive() {
     [user?.walletAddress, user?.address, activeChainId],
   );
 
-  // ── Upload + mint + create ───────────────────────────
   const upload = useCallback(
     async (p: LiveUploadPayload) => {
       try {
         setIsUploading(true);
         setUploadStage("uploading");
 
-        // Step 1: POST /user_mint → get mint signature
         const fd = buildFormData(p);
         const res = await minNft(fd as any);
 
@@ -190,7 +183,6 @@ export function useUploadLive() {
           throw new Error("Mint signature payload missing");
         }
 
-        // Step 2: On-chain mint via collection contract
         if (!streamCollectionContract) {
           throw new Error("Wallet not ready to mint");
         }
@@ -207,7 +199,6 @@ export function useUploadLive() {
         setUploadStage("minting");
         await tx?.wait?.(1);
 
-        // Step 3: Extract stream entity from user_mint response
         // The combined endpoint returns the stream object alongside the mint signature
         setUploadStage("finalizing");
         const stream = result?.stream;
@@ -226,7 +217,6 @@ export function useUploadLive() {
         setIsUploading(false);
         setUploadStage("idle");
 
-        // Step 4: Navigate to producer screen
         nav.dispatch(
           CommonActions.reset({
             index: 1,

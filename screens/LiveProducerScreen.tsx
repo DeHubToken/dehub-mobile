@@ -109,7 +109,6 @@ const LiveProducerScreen: React.FC = () => {
   // Grace period countdown for PAUSED state
   const [graceCountdown, setGraceCountdown] = useState<number>(0);
   const graceTimerRef = useRef<NodeJS.Timeout | null>(null);
-  // Live settings state (mirrors stream entity settings, can be toggled while live)
   const [liveChatEnabled, setLiveChatEnabled] = useState(true);
   // Scheduled stream info
   const isScheduled = (streamEntity as any)?.status?.toUpperCase?.() === 'SCHEDULED' ||
@@ -197,8 +196,6 @@ const LiveProducerScreen: React.FC = () => {
   }, [rememberOptimistic]);
 
 
-
-  // Seed initial chat activities from streamEntity so panel mode mirrors stack behavior
   const seededInitialActivitiesRef = useRef<string | null>(null);
   useEffect(() => {
     if (!streamEntity) return;

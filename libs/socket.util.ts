@@ -26,4 +26,3 @@ export async function emitWithAuth(
 /**
  * React hook: returns a wrapper that emits with auth using the context's emit.
  */
-// Note: preferred usage is emitAuthed from WebSocketContext; this util remains for non-React contexts.

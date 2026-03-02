@@ -1071,7 +1071,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       setOwnerStatus("viewer");
       return;
     }
-    // Backend now returns isOwner on the stream entity (same pattern as isLiked/isFollowing)
     const isOwner = (streamEntity as any)?.isOwner === true;
     if (isOwner) {
       setOwnerStatus("owner");

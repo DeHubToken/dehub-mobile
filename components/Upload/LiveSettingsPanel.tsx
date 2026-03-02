@@ -18,7 +18,6 @@ import DateTimePicker, {
 } from "@react-native-community/datetimepicker";
 import CustomSwitch from "../ui/CustomSwitch";
 
-// ── Types ────────────────────────────────────────────────
 
 export type LiveSettingsState = {
   enableChat: boolean;
@@ -39,7 +38,6 @@ type LiveSettingsPanelProps = {
   onChange: (next: LiveSettingsState) => void;
 };
 
-// ── Animated sub-section wrapper ─────────────────────────
 
 const SECTION_HEIGHT_SCHEDULE = 220;
 const SECTION_HEIGHT_TIP = 130;
@@ -72,7 +70,6 @@ const ExpandableSection: React.FC<ExpandableSectionProps> = ({
   return <Animated.View style={animStyle}>{children}</Animated.View>;
 };
 
-// ── Main component ───────────────────────────────────────
 
 const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
   state,
@@ -89,7 +86,6 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
   // Draft tip value (not committed until confirm)
   const [tipDraft, setTipDraft] = useState(state.minTip);
 
-  // ── Chat toggle ────────────────────────────────────────
 
   const handleChatToggle = useCallback(
     (val: boolean) => {
@@ -98,7 +94,6 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
     [state, onChange],
   );
 
-  // ── Schedule ───────────────────────────────────────────
 
   const handleScheduleToggle = useCallback(
     (val: boolean) => {
@@ -164,7 +159,6 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
     setExpandedSection(null);
   }, []);
 
-  // ── Min Tip ────────────────────────────────────────────
 
   const handleMinTipRowPress = useCallback(() => {
     setTipDraft(state.minTip);
@@ -185,11 +179,9 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
     setExpandedSection(null);
   }, []);
 
-  // ── Render ─────────────────────────────────────────────
 
   return (
     <View className="border-t border-theme-neutrals-700 mx-4 pt-2 pb-1">
-      {/* ── Chat row ─────────────────────────────────── */}
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">
           <Ionicons name="chatbubble-outline" size={20} color="#fff" />
@@ -201,7 +193,6 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
         />
       </View>
 
-      {/* ── Schedule row ────────────────────────────── */}
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">
           <Ionicons name="calendar-outline" size={20} color="#fff" />
@@ -282,7 +273,6 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
         </View>
       </ExpandableSection>
 
-      {/* ── Min Tip row ─────────────────────────────── */}
       <TouchableOpacity
         onPress={handleMinTipRowPress}
         activeOpacity={0.7}

@@ -15,10 +15,6 @@ import { writeContractAA } from "../../libs/aa.write";
 import GlassModal from "../ui/GlassModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 
-// =============================================================================
-// Types
-// =============================================================================
-
 interface StreamInfo {
   addBountyAmount?: number;
   addBountyFirstXViewers?: number;
@@ -42,10 +38,6 @@ interface ClaimState {
   error?: string;
 }
 
-// =============================================================================
-// Constants
-// =============================================================================
-
 const BOUNTY_TYPE_VIEWER = 0;
 const BOUNTY_TYPE_COMMENTOR = 1;
 
@@ -59,10 +51,6 @@ const CHAIN_NAMES: Record<number, string> = {
   56: "BNB Chain",
   43114: "Avalanche",
 };
-
-// =============================================================================
-// Component
-// =============================================================================
 
 const BountyClaimBanner: React.FC<BountyClaimBannerProps> = ({
   tokenId,

@@ -1,9 +1,3 @@
-/**
- * DraftsScreen
- *
- * Lists saved post drafts. Tap to restore into the compose screen,
- * swipe-left / trash icon to delete.
- */
 import React, { useCallback, useMemo } from "react";
 import {
   View,
@@ -22,7 +16,6 @@ import { useDrafts } from "../hooks/useDrafts";
 import type { Draft } from "../hooks/useDrafts";
 import { ScreenNames } from "../navigation/ScreenNames";
 
-// ── Helpers ────────────────────────────────────────────────
 
 const formatRelativeDate = (epoch: number): string => {
   const diff = Date.now() - epoch;
@@ -42,7 +35,6 @@ const getMediaLabel = (d: Draft): string => {
   return "Text";
 };
 
-// ── Components ─────────────────────────────────────────────
 
 interface DraftItemProps {
   draft: Draft;
@@ -55,7 +47,7 @@ const DraftItem: React.FC<DraftItemProps> = React.memo(
     const handlePress = useCallback(() => onPress(draft), [draft, onPress]);
     const handleDelete = useCallback(() => onDelete(draft.id), [draft.id, onDelete]);
 
-    const preview = draft.bodyText.trim() || "Untitled";
+    const preview = draft.bodyText.trim() || "";
     const mediaLabel = getMediaLabel(draft);
     const time = formatRelativeDate(draft.createdAt);
 
@@ -107,7 +99,6 @@ const DraftItem: React.FC<DraftItemProps> = React.memo(
   },
 );
 
-// ── Screen ─────────────────────────────────────────────────
 
 const DraftsScreen: React.FC = () => {
   const { isSignedIn, needsUsername, user: authUser } = useAuth() as any;

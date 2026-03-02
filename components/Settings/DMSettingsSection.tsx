@@ -5,7 +5,7 @@ import {
   DmAction,
   DmDisableStatus,
 } from "../../services/enums/dm-preferences.enum";
-import { updateDmUserStatus } from "../../services/dm/dm.service";
+import { updateDmUserStatus } from "../../services/dm/dm.api";
 import { toastError, toastInfo } from "../../libs";
 import { Ionicons } from "@expo/vector-icons";
 

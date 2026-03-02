@@ -17,10 +17,6 @@ import GlassModal from "../ui/GlassModal";
 import { reportContent } from "../../services/nft.service";
 import { toastSuccess, toastError } from "../../libs";
 
-// =============================================================================
-// Constants
-// =============================================================================
-
 const REPORT_REASONS = [
   { id: "spam", label: "Spam or misleading", icon: "alert-circle-outline" as const },
   { id: "harassment", label: "Harassment or bullying", icon: "hand-left-outline" as const },
@@ -32,19 +28,11 @@ const REPORT_REASONS = [
   { id: "other", label: "Other", icon: "ellipsis-horizontal-outline" as const },
 ] as const;
 
-// =============================================================================
-// Types
-// =============================================================================
-
 interface ReportPostModalProps {
   visible: boolean;
   onClose: () => void;
   tokenId: number | string | undefined;
 }
-
-// =============================================================================
-// Component
-// =============================================================================
 
 const ReportPostModalComponent: React.FC<ReportPostModalProps> = ({
   visible,
@@ -86,7 +74,6 @@ const ReportPostModalComponent: React.FC<ReportPostModalProps> = ({
     }
   }, [tokenId, selectedReason, details]);
 
-  // --- Success state ---
   if (submitted) {
     return (
       <GlassModal
@@ -119,7 +106,6 @@ const ReportPostModalComponent: React.FC<ReportPostModalProps> = ({
     );
   }
 
-  // --- Report form ---
   return (
     <GlassModal
       visible={visible}

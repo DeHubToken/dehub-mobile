@@ -285,7 +285,6 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
             ? "Sign in to chat"
             : "Say something...";
 
-  // Manual keyboard lift (same pattern as FeedDetailScreen / ChatScreenNew)
   const inputBottomOffset = useMemo(() => {
     if (!kbVisible) return 0;
     return keyboardHeight;

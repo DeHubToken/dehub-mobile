@@ -1,14 +1,3 @@
-/**
- * PaymentBadge — inline badge for paid DM messages.
- *
- * Shows "Sent with X DHB" for both per-message fee messages and tipped messages.
- * Displays payment status (pending → confirmed) with appropriate styling.
- *
- * Used inside MessageBubbleNew for any message that has a payment attached
- * (per-message fee via txHash, or voluntary tip via tipTxHash).
- * NOT used for standalone tip messages (msgType === 'tip') — those render
- * as centred system-style pills.
- */
 import React, { memo } from "react";
 import { View, Text, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
