@@ -3,14 +3,13 @@ import React, {
   useCallback,
   useEffect,
   useImperativeHandle,
-  useMemo,
   useRef,
   useState,
 } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import VideoPlayerSkeleton from "./VideoPlayerSkeleton";
 import CompactVideoCard from "../Home/CompactVideoCard";
-import { GetNFTsResult, getNFTs } from "../../services";
+import { GetNFTsResult, getSuggestedVideos } from "../../services";
 
 export interface SuggestedVideosHandle {
   loadMore: () => void;
@@ -19,8 +18,7 @@ export interface SuggestedVideosHandle {
 interface SuggestedVideosProps {
   excludeTokenId?: string | number;
   title?: string;
-  sortMode?: string;
-  unit?: number;
+  limit?: number;
   enablePreview?: boolean;
 }
 
@@ -31,8 +29,7 @@ const SuggestedVideos = forwardRef<SuggestedVideosHandle, SuggestedVideosProps>(
     {
       excludeTokenId,
       title = "Suggested",
-      sortMode = "trends",
-      unit = 10,
+      limit = 20,
       enablePreview = true,
     },
     ref
@@ -40,110 +37,82 @@ const SuggestedVideos = forwardRef<SuggestedVideosHandle, SuggestedVideosProps>(
     const [initialLoading, setInitialLoading] = useState(true);
     const [loadingMore, setLoadingMore] = useState(false);
     const [items, setItems] = useState<SuggestedItem[]>([]);
-    const currentPageRef = useRef(0);
-    const endReachedRef = useRef(false);
+    const [hasMore, setHasMore] = useState(true);
+    const currentPageRef = useRef(1);
     const requestKeyRef = useRef(0);
-    const inFlightPagesRef = useRef<Set<number>>(new Set());
-    const loadedPagesRef = useRef<Set<number>>(new Set());
+    const inFlightRef = useRef(false);
 
     const makeKey = useCallback(
       (it: GetNFTsResult, p: number, idx: number) => {
-        const base =
-          (it as any).tokenId ||
-          (it as any).id ||
-          (it as any).nftId ||
-          (it as any).streamKey ||
-          (it as any).stream?.id ||
-          (it as any).stream?.streamKey ||
-          `auto`;
-        const created =
-          (it as any).createdAt ||
-          (it as any).stream?.createdAt ||
-          (it as any).created_at ||
-          `nocreated`;
-        return `${base}-${created}-p${p}-i${idx}`;
+        const base = (it as any).tokenId || (it as any).id || `auto`;
+        return `${base}-p${p}-i${idx}`;
       },
       []
     );
 
+    const tokenId = excludeTokenId;
+
     const loadFirstPage = useCallback(async () => {
+      if (tokenId == null) {
+        setInitialLoading(false);
+        return;
+      }
       const requestKey = ++requestKeyRef.current;
-      endReachedRef.current = false;
-      currentPageRef.current = 0;
-      inFlightPagesRef.current = new Set();
-      loadedPagesRef.current = new Set();
+      currentPageRef.current = 1;
       setItems([]);
+      setHasMore(true);
       setInitialLoading(true);
       try {
-        const targetPage = 0;
-        inFlightPagesRef.current.add(targetPage);
-        const res = await getNFTs({ sortMode, unit, page: targetPage });
+        const res = await getSuggestedVideos(tokenId, { page: 1, limit });
         if (requestKey !== requestKeyRef.current) return;
         const list = Array.isArray(res?.result) ? res.result : [];
         const mapped: SuggestedItem[] = list.map((it, idx) => ({
           ...it,
-          __listKey: makeKey(it, targetPage, idx),
+          __listKey: makeKey(it, 1, idx),
         }));
         setItems(mapped);
-        loadedPagesRef.current.add(targetPage);
-        if (mapped.length < unit) endReachedRef.current = true;
+        setHasMore(res?.pagination?.hasMore ?? list.length >= limit);
       } catch (e) {
         if (requestKey !== requestKeyRef.current) return;
         setItems([]);
-        console.warn("[SuggestedVideos] getNFTs failed", e);
+        console.warn("[SuggestedVideos] fetch failed", e);
       } finally {
-        inFlightPagesRef.current.delete(0);
         if (requestKey === requestKeyRef.current) setInitialLoading(false);
       }
-    }, [makeKey, sortMode, unit]);
+    }, [makeKey, tokenId, limit]);
 
     const loadMore = useCallback(async () => {
-      if (initialLoading || loadingMore) return;
-      if (endReachedRef.current) return;
+      if (initialLoading || loadingMore || !hasMore || inFlightRef.current) return;
+      if (tokenId == null) return;
+
       const requestKey = requestKeyRef.current;
       const nextPage = currentPageRef.current + 1;
-      if (loadedPagesRef.current.has(nextPage)) return;
-      if (inFlightPagesRef.current.has(nextPage)) return;
-
-      inFlightPagesRef.current.add(nextPage);
+      inFlightRef.current = true;
       setLoadingMore(true);
       try {
-        const res = await getNFTs({ sortMode, unit, page: nextPage });
+        const res = await getSuggestedVideos(tokenId, { page: nextPage, limit });
         if (requestKey !== requestKeyRef.current) return;
         const list = Array.isArray(res?.result) ? res.result : [];
         const mapped: SuggestedItem[] = list.map((it, idx) => ({
           ...it,
           __listKey: makeKey(it, nextPage, idx),
         }));
-        loadedPagesRef.current.add(nextPage);
         currentPageRef.current = nextPage;
         setItems((prev) => [...prev, ...mapped]);
-        if (mapped.length < unit) endReachedRef.current = true;
-      } catch (e) {
-        // Keep existing items; allow future retries via scroll
+        setHasMore(res?.pagination?.hasMore ?? list.length >= limit);
+      } catch {
+        // Keep existing items; allow future retries
       } finally {
-        inFlightPagesRef.current.delete(nextPage);
+        inFlightRef.current = false;
         if (requestKey === requestKeyRef.current) setLoadingMore(false);
       }
-    }, [initialLoading, loadingMore, makeKey, sortMode, unit]);
+    }, [initialLoading, loadingMore, hasMore, makeKey, tokenId, limit]);
 
-    useImperativeHandle(
-      ref,
-      () => ({
-        loadMore,
-      }),
-      [loadMore]
-    );
+    useImperativeHandle(ref, () => ({ loadMore }), [loadMore]);
 
     useEffect(() => {
       loadFirstPage();
     }, [loadFirstPage]);
-
-    const filtered = useMemo(() => {
-      if (excludeTokenId == null) return items;
-      const ex = String(excludeTokenId);
-      return items.filter((it) => String(it.tokenId ?? it.id ?? "") !== ex);
-    }, [items, excludeTokenId]);
 
     if (initialLoading) {
       return (
@@ -152,14 +121,14 @@ const SuggestedVideos = forwardRef<SuggestedVideosHandle, SuggestedVideosProps>(
         </View>
       );
     }
-    if (!initialLoading && filtered.length === 0) return null;
+    if (!initialLoading && items.length === 0) return null;
 
     return (
       <View className="mt-6">
         <Text className="text-theme-neutrals-100 font-semibold mb-3 text-sm px-4">
           {title}
         </Text>
-        {filtered.map((item) => (
+        {items.map((item) => (
           <CompactVideoCard
             key={item.__listKey}
             nft={item as any}

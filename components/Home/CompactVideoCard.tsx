@@ -56,20 +56,34 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
     "";
   const creator =
     (nft as any).minterDisplayName ||
+    (nft as any).minterUsername ||
     (nft as any).mintername ||
     (nft as any).minter ||
     (nft as any).owner ||
     (nft as any).account?.displayName ||
     (nft as any).account?.username ||
     (nft as any).account?.address ||
-    "Unknown";
+    (nft as any).minterUser?.displayName ||
+    (nft as any).minterUser?.username ||
+    "";
   const username =
-    (nft as any).account?.username || (nft as any).mintername || undefined;
+    (nft as any).minterUsername ||
+    (nft as any).account?.username ||
+    (nft as any).mintername ||
+    (nft as any).minterUser?.username ||
+    undefined;
   const address =
     (nft as any).account?.address ||
     (nft as any).minter ||
     (nft as any).owner ||
+    (nft as any).minterUser?.address ||
     undefined;
+  const rawAvatar =
+    (nft as any).minterAvatarUrl ||
+    (nft as any).minterUser?.avatarImageUrl ||
+    (nft as any).account?.avatarImageUrl ||
+    "";
+  const avatarUrl = rawAvatar ? getAvatarUrl(rawAvatar) : undefined;
   const likes =
     (nft as any).totalVotes?.for ||
     (nft as any).stream?.likes ||
@@ -81,6 +95,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
     (nft as any).totalViews ||
     (nft as any).stream?.totalViews ||
     0;
+  const commentCount = (nft as any).commentCount ?? 0;
   const createdAt =
     nft.createdAt || (nft as any).stream?.createdAt || new Date().toISOString();
   const isPayPerView = streamInfo?.isPayPerView;
@@ -172,36 +187,44 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
           >
             {title}
           </Text>
-          {showCreator && creator && (badgeIcon || badgeImage) && (
+          {showCreator && creator && (
             <View className="flex-row items-center mt-1">
-              {creator && (
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  onPress={handlePressCreator}
-                >
-                  <Text
-                    className="text-theme-neutrals-300 text-[10px] flex-shrink"
-                    numberOfLines={1}
-                  >
-                    {creator}
-                  </Text>
+              {avatarUrl ? (
+                <TouchableOpacity activeOpacity={0.7} onPress={handlePressAvatar}>
+                  <Image
+                    source={{ uri: avatarUrl }}
+                    className="w-4 h-4 rounded-full mr-1"
+                  />
                 </TouchableOpacity>
-              )}
+              ) : null}
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={handlePressCreator}
               >
-                {badgeImage ? (
-                  <Image source={badgeImage} className="w-3 h-3 ml-1" />
-                ) : badgeIcon ? (
-                  <Ionicons
-                    name={badgeIcon as any}
-                    size={10}
-                    color="gold"
-                    style={{ marginLeft: 4 }}
-                  />
-                ) : null}
+                <Text
+                  className="text-theme-neutrals-300 text-[10px] flex-shrink"
+                  numberOfLines={1}
+                >
+                  {creator}
+                </Text>
               </TouchableOpacity>
+              {(badgeImage || badgeIcon) && (
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={handlePressCreator}
+                >
+                  {badgeImage ? (
+                    <Image source={badgeImage} className="w-3 h-3 ml-1" />
+                  ) : badgeIcon ? (
+                    <Ionicons
+                      name={badgeIcon as any}
+                      size={10}
+                      color="gold"
+                      style={{ marginLeft: 4 }}
+                    />
+                  ) : null}
+                </TouchableOpacity>
+              )}
             </View>
           )}
 
@@ -218,13 +241,6 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
             <Text className="text-theme-neutrals-300 text-xs">
               {relativeTime}
             </Text>
-            <View className="flex-1" />
-            {/* <View className="flex-row items-center">
-              <Ionicons name="heart" size={12} color="#D1D5DB" />
-              <Text className="text-theme-neutrals-300 text-xs ml-1">
-                {likes}
-              </Text>
-            </View> */}
           </View>
           {(isLive || isPayPerView || isLocked || isBounty) && (
             <View className="flex-row flex-wrap items-center mt-1 gap-1">
@@ -258,13 +274,21 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
               )}
             </View>
           )}
-          <View className="flex-row items-center gap-2 my-2">
+          <View className="flex-row items-center gap-2 mt-1.5">
             <View className="flex-row items-center bg-theme-neutrals-700 rounded-full px-2 py-0.5">
               <Ionicons name="heart" size={8} color="#D1D5DB" />
               <Text className="ml-1 text-[9px] text-theme-neutrals-200">
                 {likes}
               </Text>
             </View>
+            {commentCount > 0 && (
+              <View className="flex-row items-center bg-theme-neutrals-700 rounded-full px-2 py-0.5">
+                <Ionicons name="chatbubble-outline" size={8} color="#D1D5DB" />
+                <Text className="ml-1 text-[9px] text-theme-neutrals-200">
+                  {commentCount}
+                </Text>
+              </View>
+            )}
           </View>
         </View>
       </TouchableOpacity>

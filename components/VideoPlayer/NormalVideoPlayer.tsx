@@ -216,8 +216,6 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
     totalTips) as number;
   const resolvedCreatedAt =
     nftData?.createdAt || nftData?.result?.createdAt || createdAtDate;
-  const resolvedCategories: string[] =
-    nftData?.category || nftData?.result?.category || [];
   const resolvedPpvBuyerCount: number =
     nftData?.ppvBuyerCount ?? nftData?.result?.ppvBuyerCount ?? 0;
   const resolvedReposts: number =
@@ -519,7 +517,6 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
           {/* Description */}
           <DescriptionBlock
             description={resolvedDescription}
-            categories={resolvedCategories}
             showDesc={showDesc}
             onToggle={() => setShowDesc((d) => !d)}
           />

@@ -122,7 +122,7 @@ interface AuthContextType {
   isFirstTimeUser: boolean;
   signOut: () => Promise<void>;
   skipAuth: () => Promise<void>;
-  signInWithWallet: (walletAddress: string, chainId: number, overridePrivateKey?: string) => Promise<void>;
+  signInWithWallet: (walletAddress: string, chainId: number, overridePrivateKey?: string, web3AuthMeta?: Record<string, any>) => Promise<void>;
   needsUsername: boolean;
   provisionalUser: any | null;
   provisionalToken: string | null; // deprecated (token stored early)
@@ -175,7 +175,7 @@ interface ProviderContextType {
 interface AuthActionsContextType {
   signOut: () => Promise<void>;
   skipAuth: () => Promise<void>;
-  signInWithWallet: (walletAddress: string, chainId: number, overridePrivateKey?: string) => Promise<void>;
+  signInWithWallet: (walletAddress: string, chainId: number, overridePrivateKey?: string, web3AuthMeta?: Record<string, any>) => Promise<void>;
   completeUsername: (finalUser: User) => void;
   refreshUser: () => Promise<void>;
   requireAuth: (action: () => void) => void;

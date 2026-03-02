@@ -4,16 +4,14 @@ import { TouchableOpacity, Text, NativeSyntheticEvent, TextLayoutEventData, View
 export interface DescriptionBlockProps {
   title?: string;
   description?: string;
-  categories?: string[];
   showDesc: boolean;
   onToggle: () => void;
 }
 
-const DescriptionBlock: React.FC<DescriptionBlockProps> = ({ title = 'Description', description, categories, showDesc, onToggle }) => {
+const DescriptionBlock: React.FC<DescriptionBlockProps> = ({ title = 'Description', description, showDesc, onToggle }) => {
   const [totalLines, setTotalLines] = useState<number | null>(null);
   const canExpand = (totalLines ?? 0) > 3;
 
-  // Measure the full line count once using a hidden copy without numberOfLines
   const handleMeasureFullText = useCallback((e: NativeSyntheticEvent<TextLayoutEventData>) => {
     if (totalLines == null) {
       setTotalLines(e.nativeEvent.lines?.length || 0);
@@ -21,7 +19,6 @@ const DescriptionBlock: React.FC<DescriptionBlockProps> = ({ title = 'Descriptio
   }, [totalLines]);
 
   const showToggle = canExpand;
-  const hasCategories = categories && categories.length > 0;
 
   return (
     <View className="mt-4">
@@ -44,19 +41,6 @@ const DescriptionBlock: React.FC<DescriptionBlockProps> = ({ title = 'Descriptio
           >
             {description || 'No description provided.'}
           </Text>
-        )}
-        {/* Category hashtags */}
-        {hasCategories && (
-          <View className="flex-row flex-wrap mt-2">
-            {categories!.map((cat, idx) => (
-              <Text
-                key={`cat-${idx}-${cat}`}
-                className="text-xs text-theme-accent mr-2"
-              >
-                #{cat.toLowerCase().replace(/\s+/g, '')}
-              </Text>
-            ))}
-          </View>
         )}
         {showToggle && (
           <TouchableOpacity onPress={onToggle} activeOpacity={0.7} className="mt-2 self-start">

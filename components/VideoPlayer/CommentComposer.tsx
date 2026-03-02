@@ -103,6 +103,7 @@ const CommentComposer: React.FC<CommentComposerProps> = ({
           placeholder={placeholder}
           placeholderTextColor="#777"
           className="flex-1 text-theme-neutrals-100 text-sm"
+          maxLength={500}
           autoFocus={autoFocus}
           showSoftInputOnFocus
           focusable

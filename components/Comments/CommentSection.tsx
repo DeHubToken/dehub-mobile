@@ -714,6 +714,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
               placeholderTextColor={theme.colors.mutedForeground}
               className="flex-1 mx-3 text-sm text-theme-neutrals-100"
               style={{ maxHeight: 80 }}
+              maxLength={500}
               multiline
               returnKeyType="send"
               onSubmitEditing={handlePost}

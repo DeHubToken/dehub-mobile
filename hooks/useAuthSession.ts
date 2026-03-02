@@ -251,7 +251,7 @@ export function useAuthSession({
   );
 
   const signInWithWallet = useCallback(
-    async (walletAddress: string, chainId: number, overridePrivateKey?: string) => {
+    async (walletAddress: string, chainId: number, overridePrivateKey?: string, web3AuthMeta?: Record<string, any>) => {
       const mask = (addr?: string) =>
         addr ? `${addr.slice(0, 6)}...${addr.slice(-4)}` : undefined;
       log.info("signInWithWallet:start", {
@@ -259,6 +259,7 @@ export function useAuthSession({
         chainId,
         preferred: await getPreferredChainId(),
         hasOverridePk: !!overridePrivateKey,
+        hasWeb3AuthMeta: !!web3AuthMeta,
       });
       setIsLoading(true);
       try {
@@ -296,9 +297,11 @@ export function useAuthSession({
             walletAddress,
             chainId,
             hasOverride && overridePrivateKey
-              ? { privateKey: overridePrivateKey }
+              ? { privateKey: overridePrivateKey, web3AuthMeta }
               : privateKey
-              ? { privateKey }
+              ? { privateKey, web3AuthMeta }
+              : web3AuthMeta
+              ? { web3AuthMeta }
               : undefined
           );
           walletUser = (res as any).user;
