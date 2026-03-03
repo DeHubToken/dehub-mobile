@@ -70,9 +70,10 @@ export type AppStackParamList = {
     commentId?: string;
   };
   [ScreenNames.ImageViewer]: {
-    imageUrl: string;
-    images?: string[];
+    imageUrl?: string;
+    images?: (string | { uri: string })[];
     initialIndex?: number;
+    index?: number;
   };
   [ScreenNames.Chat]: {
     conversationId?: string;

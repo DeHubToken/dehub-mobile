@@ -52,7 +52,8 @@ interface InfiniteVideoFeedProps {
   contentContainerStyle?: any;
   headerComponent?: React.ReactNode;
   onEndReachedAll?: () => void; // callback when no more pages
-  onScrollDirectionChange?: (direction: "up" | "down", offsetY: number) => void; // notify parent
+  onScrollOffset?: (offsetY: number, deltaY: number) => void; // direct-drive header
+  onScrollEnd?: () => void; // snap header on scroll end
   onClearFilters?: () => void; // allow empty state clear
   onRetry?: () => void; // fired when user taps Retry on error state
   onRefresh?: () => void; // fired when user does pull-to-refresh
@@ -69,7 +70,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   contentContainerStyle,
   headerComponent,
   onEndReachedAll,
-  onScrollDirectionChange,
+  onScrollOffset,
+  onScrollEnd,
   onClearFilters,
   onRetry,
   onRefresh: onRefreshProp,
@@ -287,15 +289,19 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
       const prevY = prevYRef.current;
       const delta = y - prevY;
-      const threshold = 8;
-      if (Math.abs(delta) > threshold) {
-        const direction: "up" | "down" = delta > 0 ? "down" : "up";
-        onScrollDirectionChange && onScrollDirectionChange(direction, y);
-        prevYRef.current = y;
-      }
+      prevYRef.current = y;
+      onScrollOffset?.(y, delta);
     },
-    [showBackToTop, onScrollDirectionChange]
+    [showBackToTop, onScrollOffset]
   );
+
+  const handleScrollEndDrag = useCallback(() => {
+    onScrollEnd?.();
+  }, [onScrollEnd]);
+
+  const handleMomentumScrollEnd = useCallback(() => {
+    onScrollEnd?.();
+  }, [onScrollEnd]);
 
   const scrollToTop = useCallback(() => {
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
@@ -390,6 +396,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         onEndReachedThreshold={0.8}
         onScroll={handleScroll}
         onScrollBeginDrag={handleScrollBeginDrag}
+        onScrollEndDrag={handleScrollEndDrag}
+        onMomentumScrollEnd={handleMomentumScrollEnd}
         scrollEventThrottle={16}
         // View tracking for feed posts (not videos)
         viewabilityConfig={viewabilityConfig}

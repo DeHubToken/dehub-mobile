@@ -184,6 +184,7 @@ const FeedScreen = () => {
     onHeaderLayout,
     scrollHandler,
     handleScroll: headerHandleScroll,
+    handleScrollEnd,
     showHeader,
   } = useCollapsibleHeader();
 
@@ -602,8 +603,12 @@ const FeedScreen = () => {
             />
           }
           onScroll={handleGridScroll}
+          onScrollEndDrag={handleScrollEnd}
           scrollEventThrottle={16}
-          onMomentumScrollEnd={handleEndReached}
+          onMomentumScrollEnd={(e) => {
+            handleScrollEnd();
+            handleEndReached();
+          }}
         >
           {/* Render grid in pattern groups */}
           {(() => {

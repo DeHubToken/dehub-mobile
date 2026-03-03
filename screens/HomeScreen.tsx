@@ -43,7 +43,8 @@ export default function HomeScreen() {
   const {
     headerAnimatedStyle,
     onHeaderLayout,
-    handleScrollDirection,
+    handleScrollOffset,
+    handleScrollEnd,
     showHeader,
   } = useCollapsibleHeader();
   
@@ -127,15 +128,15 @@ export default function HomeScreen() {
     }
   }, [filterPanelVisible]);
 
-  // Scroll direction handler — drives collapsible header
-  const onScrollDirection = useCallback(
-    (direction: 'up' | 'down', offsetY: number) => {
-      handleScrollDirection(direction, offsetY);
-      if (direction === 'down' && filterPanelVisible) {
+  // Scroll offset handler — drives collapsible header
+  const onScrollOffset = useCallback(
+    (offsetY: number, deltaY: number) => {
+      handleScrollOffset(offsetY, deltaY);
+      if (deltaY > 0 && filterPanelVisible) {
         setFilterPanelVisible(false);
       }
     },
-    [handleScrollDirection, filterPanelVisible],
+    [handleScrollOffset, filterPanelVisible],
   );
 
   // Handle category selection from hashtag in feed cards
@@ -156,7 +157,8 @@ export default function HomeScreen() {
       pageSize={10}
       onRefresh={handleRefresh}
       onScrollBegin={handleScrollBegin}
-      onScrollDirectionChange={onScrollDirection}
+      onScrollOffset={onScrollOffset}
+      onScrollEnd={handleScrollEnd}
       onCategorySelect={handleCategorySelect}
       onRetry={async () => {
         // Re-fetch categories on retry to restore the header chips when initial load failed
