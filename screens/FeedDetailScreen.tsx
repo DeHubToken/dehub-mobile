@@ -15,9 +15,11 @@ import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../components/Comme
 import type { VoiceNoteResult } from "../components/Comments/VoiceNoteRecorder";
 import GifPicker from "../components/DM/GifPicker";
 import Avatar from "../components/common/Avatar";
+import MentionSuggestions from "../components/common/MentionSuggestions";
 import CommentsSkeleton from "../components/Feed/CommentsSkeleton";
 import { useAuth } from "../context/AuthContext";
 import useKeyboard from "../hooks/useKeyboard";
+import { useMentions } from "../hooks/useMentions";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import { getAvatarUrl, toastError } from "../libs";
@@ -44,6 +46,7 @@ export default function FeedDetailScreen() {
   const [replyTo, setReplyTo] = useState<Comment | null>(null);
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
   const [inputText, setInputText] = useState("");
+  const mentions = useMentions(inputText, setInputText);
   const [posting, setPosting] = useState(false);
   const [highlightedCommentId, setHighlightedCommentId] = useState<number | null>(null);
 
@@ -553,7 +556,8 @@ export default function FeedDetailScreen() {
     setReplyTo(null);
     setEditingComment(null);
     setInputText("");
-  }, []);
+    mentions.reset();
+  }, [mentions]);
 
   const handleSend = useCallback(() => {
     const text = inputText.trim();
@@ -569,6 +573,7 @@ export default function FeedDetailScreen() {
           );
           setEditingComment(null);
           setInputText("");
+          mentions.reset();
           Keyboard.dismiss();
           try {
             await editComment({ commentId, content: text });
@@ -611,6 +616,7 @@ export default function FeedDetailScreen() {
         const replyTarget = replyTo;
         if (replyTarget) setReplyTo(null);
         setInputText("");
+        mentions.reset();
         Keyboard.dismiss();
         
         try {
@@ -779,6 +785,14 @@ export default function FeedDetailScreen() {
           </View>
         )}
 
+        {/* Mention suggestions */}
+        <MentionSuggestions
+          visible={mentions.showSuggestions}
+          suggestions={mentions.suggestions}
+          onSelect={mentions.selectMention}
+          loading={mentions.loading}
+        />
+
         {/* Voice recorder overlay */}
         {recorder.isRecording ? (
           <VoiceNoteRecordingOverlay recorder={recorder} />
@@ -799,7 +813,8 @@ export default function FeedDetailScreen() {
             <TextInput
               ref={inputRef}
               value={inputText}
-              onChangeText={setInputText}
+              onChangeText={mentions.handleChangeText}
+              onSelectionChange={mentions.handleSelectionChange}
               placeholder={editingComment ? "Edit your comment..." : replyTo ? "Write a reply..." : "Add a comment..."}
               placeholderTextColor={theme.colors.mutedForeground}
               className="flex-1 mx-3 text-sm text-theme-neutrals-100"

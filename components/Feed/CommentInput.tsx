@@ -2,7 +2,9 @@ import React, { useMemo, useState, useCallback, forwardRef, useImperativeHandle,
 import { View, TextInput, TouchableOpacity, Keyboard, Text, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Avatar from "../common/Avatar";
+import MentionSuggestions from "../common/MentionSuggestions";
 import { getAvatarUrl } from "../../libs";
+import { useMentions } from "../../hooks/useMentions";
 import { theme } from "../../theme";
 
 type Props = {
@@ -39,6 +41,7 @@ const CommentInput = forwardRef<CommentInputRef, Props>(({
   isSending = false,
 }, ref) => {
   const [text, setText] = useState("");
+  const mentions = useMentions(text, setText);
   const canSend = text.trim().length > 0 && !isSending;
   const inputRef = useRef<TextInput>(null);
   const avatarUri = getAvatarUrl(userAvatarUrl || "");
@@ -63,8 +66,9 @@ const CommentInput = forwardRef<CommentInputRef, Props>(({
     if (!msg || isSending) return;
     onSend(msg);
     setText("");
+    mentions.reset();
     Keyboard.dismiss();
-  }, [text, onSend, isSending]);
+  }, [text, onSend, isSending, mentions]);
 
   return (
     <View className="px-4 py-2 bg-theme-neutrals-900">
@@ -100,6 +104,14 @@ const CommentInput = forwardRef<CommentInputRef, Props>(({
         </View>
       )}
       
+      {/* Mention suggestions */}
+      <MentionSuggestions
+        visible={mentions.showSuggestions}
+        suggestions={mentions.suggestions}
+        onSelect={mentions.selectMention}
+        loading={mentions.loading}
+      />
+
       {/* Input row with avatar */}
       <View className="flex-row items-center">
         <Avatar
@@ -112,7 +124,8 @@ const CommentInput = forwardRef<CommentInputRef, Props>(({
           placeholder={placeholder || "Add a comment..."}
           placeholderTextColor={theme.colors.mutedForeground}
           value={text}
-          onChangeText={setText}
+          onChangeText={mentions.handleChangeText}
+          onSelectionChange={mentions.handleSelectionChange}
           multiline
           style={{ maxHeight: 80 }}
           returnKeyType="send"
