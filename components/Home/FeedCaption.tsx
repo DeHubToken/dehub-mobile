@@ -173,7 +173,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
       )}
 
       {/* Category hashtags */}
-      {hasCategories && (
+      {/* {hasCategories && (
         <View className="flex-row flex-wrap mt-1">
           {categories!.map((cat, idx) => (
             <TouchableOpacity
@@ -183,12 +183,12 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
               className="mr-2"
             >
               <Text className="text-sm text-theme-neutrals-300">
-                #{cat.toLowerCase().replace(/\s+/g, '')}
+                #{cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase().replace(/\s+/g, '')}
               </Text>
             </TouchableOpacity>
           ))}
         </View>
-      )}
+      )} */}
     </View>
   );
 };

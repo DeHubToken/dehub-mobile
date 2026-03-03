@@ -22,6 +22,8 @@ export type UploadCategoriesSelectorProps = {
   placeholder?: string;
 };
 
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
 const UploadCategoriesSelector: React.FC<UploadCategoriesSelectorProps> = ({
   categories,
   allCategories,
@@ -70,7 +72,7 @@ const UploadCategoriesSelector: React.FC<UploadCategoriesSelectorProps> = ({
               key={c}
               className="flex-row items-center px-2 py-1 rounded-lg bg-zinc-900 border border-zinc-800"
             >
-              <Text className="text-white text-xs">{c}</Text>
+              <Text className="text-white text-xs">{cap(c)}</Text>
               <TouchableOpacity
                 disabled={categories.length <= min}
                 onPress={() => onRemove(c)}
@@ -122,7 +124,7 @@ const UploadCategoriesSelector: React.FC<UploadCategoriesSelectorProps> = ({
               >
                 {filtered.length === 0 ? (
                   <TouchableOpacity onPress={() => onAdd(categoryQuery)} className="px-3 py-3">
-                    <Text className="text-white">Create "{categoryQuery.trim() || "…"}"</Text>
+                    <Text className="text-white">Create "{cap(categoryQuery.trim() || "…")}"</Text>
                   </TouchableOpacity>
                 ) : (
                   filtered.map((opt) => (
@@ -131,7 +133,7 @@ const UploadCategoriesSelector: React.FC<UploadCategoriesSelectorProps> = ({
                       onPress={() => onAdd(opt)}
                       className="px-3 py-3 border-b border-zinc-800 last:border-b-0"
                     >
-                      <Text className="text-white">{opt}</Text>
+                      <Text className="text-white">{cap(opt)}</Text>
                     </TouchableOpacity>
                   ))
                 )}

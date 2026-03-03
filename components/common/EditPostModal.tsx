@@ -15,7 +15,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "../ui/GlassModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
-import UploadCategoriesSelector from "../Upload/UploadCategoriesSelector";
+import CategoryDrawer from "../Upload/CategoryDrawer";
 import { editPost, getCategoriesCached } from "../../services/nft.service";
 import { toastSuccess, toastError } from "../../libs";
 import { useKeyboard } from "../../hooks/useKeyboard";
@@ -48,7 +48,6 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const [selectedCategories, setSelectedCategories] =
     useState<string[]>(initialCategories);
   const [allCategories, setAllCategories] = useState<string[]>([]);
-  const [categoryQuery, setCategoryQuery] = useState("");
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [saving, setSaving] = useState(false);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
@@ -93,8 +92,6 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         if (prev.length >= 5) return prev;
         return [...prev, normalized];
       });
-      setCategoryQuery("");
-      setCategoryOpen(false);
     },
     []
   );
@@ -250,20 +247,50 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         {categoriesLoading ? (
           <ActivityIndicator size="small" color="#9CA3AF" className="my-2" />
         ) : (
-          <UploadCategoriesSelector
+          <>
+          <View className="mt-2">
+            {selectedCategories.length > 0 && (
+              <View className="flex-row flex-wrap gap-2 mb-2">
+                {selectedCategories.map((c) => (
+                  <View
+                    key={c}
+                    className="flex-row items-center px-2.5 py-1 rounded-full bg-theme-accent/15 border border-theme-accent/30"
+                  >
+                    <Text className="text-theme-accent text-xs font-medium">
+                      {c.charAt(0).toUpperCase() + c.slice(1)}
+                    </Text>
+                    <TouchableOpacity onPress={() => removeCategory(c)} className="ml-1">
+                      <Ionicons name="close" size={12} color="#256DFA" />
+                    </TouchableOpacity>
+                  </View>
+                ))}
+              </View>
+            )}
+            {selectedCategories.length < 5 && (
+              <TouchableOpacity
+                onPress={() => setCategoryOpen(true)}
+                activeOpacity={0.7}
+                className="flex-row items-center"
+              >
+                <Ionicons name="pricetag-outline" size={18} color="#6F7174" />
+                <Text className="text-theme-neutrals-400 text-sm ml-1.5">
+                  Add categories
+                </Text>
+              </TouchableOpacity>
+            )}
+          </View>
+
+          <CategoryDrawer
+            visible={categoryOpen}
+            onClose={() => setCategoryOpen(false)}
             categories={selectedCategories}
             allCategories={allCategories}
-            categoryQuery={categoryQuery}
-            setCategoryQuery={setCategoryQuery}
-            open={categoryOpen}
-            setOpen={setCategoryOpen}
             min={0}
             max={5}
             onAdd={addCategory}
             onRemove={removeCategory}
-            hideHeader={false}
-            placeholder="Search or add a category"
           />
+          </>
         )}
 
         {/* Actions */}

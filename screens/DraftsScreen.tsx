@@ -79,7 +79,7 @@ const DraftItem: React.FC<DraftItemProps> = React.memo(
               <>
                 <Text className="text-theme-neutrals-600 text-xs mx-1.5">·</Text>
                 <Text className="text-theme-neutrals-400 text-xs" numberOfLines={1}>
-                  {draft.categories.slice(0, 2).join(", ")}
+                  {draft.categories.slice(0, 2).map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(", ")}
                 </Text>
               </>
             )}

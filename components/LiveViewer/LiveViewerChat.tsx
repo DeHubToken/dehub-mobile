@@ -114,11 +114,11 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
   switch (a.status) {
     case StreamActivityType.MESSAGE:
       return (
-        <View className="mb-1.5 bg-theme-neutrals-800/80 rounded-xl px-2.5 py-1.5 self-start max-w-[85%] flex-row items-start">
+        <View className="mb-1.5 bg-black/60 rounded-xl px-2.5 py-1.5 self-start max-w-[85%] flex-row items-start">
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
             <Avatar uri={avatarUrl} size={20} />
           </TouchableOpacity>
-          <Text className="text-white text-[12px] leading-[17px] flex-1 flex-shrink">
+          <Text style={{ color: '#FFFFFF' }} className="text-[12px] leading-[17px] flex-1 flex-shrink">
             <Text
               className="font-bold"
               style={{ color: colorForUser(displayName) }}
@@ -126,7 +126,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
             >
               {displayName}{" "}
             </Text>
-            <Text className={a.optimistic ? "opacity-60" : ""}>
+            <Text style={a.optimistic ? { opacity: 0.6, color: '#FFFFFF' } : { color: '#FFFFFF' }}>
               {a.meta?.content}
             </Text>
           </Text>
@@ -172,7 +172,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
             <Avatar uri={avatarUrl} size={20} />
           </TouchableOpacity>
           <View className="flex-1 flex-shrink">
-            <Text className="text-yellow-300 text-[12px] font-semibold">
+            <Text style={{ color: '#fde047' }} className="text-[12px] font-semibold">
               🎁{" "}
               <Text onPress={handlePress}>
                 {displayName}
@@ -180,7 +180,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
               sent {amt.toLocaleString()} DHB
             </Text>
             {a.meta?.message ? (
-              <Text className="text-white/70 text-[11px] mt-0.5">
+              <Text style={{ color: 'rgba(255,255,255,0.7)' }} className="text-[11px] mt-0.5">
                 {a.meta.message}
               </Text>
             ) : null}
@@ -271,7 +271,7 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
     return `${t}:${a.status}:${who}:${contentKey}:${idx}`;
   }, []);
 
-  const inputDisabled = !canSend || !chatEnabled || isEnded || isScheduled;
+  const inputDisabled = !canSend || !chatEnabled || isScheduled;
 
   const placeholderText = isEnded
     ? "Stream ended"
@@ -291,11 +291,10 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
   }, [kbVisible, keyboardHeight]);
 
   return (
-    <View className="flex-1 justify-end" pointerEvents="box-none">
+    <View pointerEvents="box-none">
       {/* Chat messages - floating, transparent */}
       <View
-        className="flex-1 justify-end mb-1"
-        style={{ maxHeight: 280 }}
+        style={{ height: 260 }}
         pointerEvents="box-none"
       >
         <FlatList
@@ -311,7 +310,6 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
           removeClippedSubviews
           inverted
           showsVerticalScrollIndicator={false}
-          maintainVisibleContentPosition={{ minIndexForVisible: 0 }}
         />
       </View>
 
@@ -320,13 +318,14 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
         className="flex-row items-center px-3 pb-2 pt-1"
         style={{ marginBottom: inputBottomOffset }}
       >
-        <View className="flex-1 flex-row items-center bg-theme-neutrals-800/90 rounded-full px-4 py-2 border border-theme-neutrals-600/40 mr-2">
+        <View className="flex-1 flex-row items-center bg-black/60 rounded-full px-4 border border-white/20 mr-2" style={{ height: 40 }}>
           <TextInput
             value={message}
             onChangeText={setMessage}
             placeholder={placeholderText}
-            placeholderTextColor="#666"
-            className="flex-1 text-white text-[13px]"
+            placeholderTextColor="#999999"
+            className="flex-1 text-[14px]"
+            style={{ color: '#FFFFFF', paddingVertical: 0 }}
             editable={!inputDisabled}
             maxLength={500}
             multiline={false}
