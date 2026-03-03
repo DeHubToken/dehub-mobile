@@ -1,6 +1,6 @@
 import { apiClient } from "../libs";
 
-export type FeedPostType = "video" | "feed-images" | "feed-simple" | "live" | "all";
+export type FeedPostType = "video" | "feed-images" | "feed-simple" | "feed-audio" | "live" | "all";
 export type FeedSortBy = "likes" | "views" | "createdAt" | "tips" | "comments" | "random";
 export type FeedSortOrder = "asc" | "desc";
 export type FeedRange = "day" | "week" | "month" | "year";
@@ -87,7 +87,7 @@ export interface UnifiedFeedItem {
   videoUrl?: string;
   
   // Type & Status
-  postType: "video" | "feed-images" | "feed-simple" | "live";
+  postType: "video" | "feed-images" | "feed-simple" | "feed-audio" | "live";
   status?: string;
   category?: string[];
   
@@ -97,6 +97,11 @@ export interface UnifiedFeedItem {
   dislikes?: number;
   commentCount?: number;
   videoDuration?: number;
+  
+  // Audio-specific
+  audioUrl?: string;
+  audioDuration?: number;
+  listens?: number;
   
   // Creator info
   minter?: string;
@@ -278,10 +283,17 @@ export function isTextPostItem(item: UnifiedFeedItem): boolean {
 }
 
 /**
- * Helper to check if an item is a feed post (image or text)
+ * Helper to check if an item is an audio post
+ */
+export function isAudioPostItem(item: UnifiedFeedItem): boolean {
+  return item.postType === "feed-audio";
+}
+
+/**
+ * Helper to check if an item is a feed post (image, text or audio)
  */
 export function isFeedPostItem(item: UnifiedFeedItem): boolean {
-  return item.postType === "feed-images" || item.postType === "feed-simple";
+  return item.postType === "feed-images" || item.postType === "feed-simple" || item.postType === "feed-audio";
 }
 
 export default {
@@ -290,5 +302,6 @@ export default {
   isLiveItem,
   isImagePostItem,
   isTextPostItem,
+  isAudioPostItem,
   isFeedPostItem,
 };

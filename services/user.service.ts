@@ -717,7 +717,7 @@ export interface RepostItem {
   repostId: string;
   repostedAt: string;
   tokenId: number;
-  postType?: 'video' | 'feed-images' | 'feed-simple';
+  postType?: 'video' | 'feed-images' | 'feed-simple' | 'feed-audio';
   /** The original post data (same shape as feed items) */
   originalPost?: any;
 }
