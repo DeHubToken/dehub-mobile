@@ -7,7 +7,8 @@ import {
   clearActivePreview,
   stopActivePreview,
   ensurePreviewNavigationGuards,
-} from "../../libs/previewRegistry"; // uses your existing registry
+} from "../../libs/previewRegistry";
+import { revokeAudioFocus } from "../../libs/audioFocus";
 
 interface VideoPreviewProps {
   previewUrl: string;
@@ -233,6 +234,9 @@ export default function VideoPreview({
     try {
       stopActivePreview();
     } catch {}
+
+    // Stop any playing audio (global one-at-a-time policy)
+    revokeAudioFocus();
 
     // Register our stopper so future starts will stop us
     if (stopperRef.current) {

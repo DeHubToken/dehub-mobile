@@ -27,6 +27,7 @@ import {
   getBadgeUrl,
   getImageUrl,
   getImageUrlApiSimple,
+  getAudioUrl,
   shareProfile,
   toastError,
 } from "../../libs";
@@ -37,6 +38,7 @@ import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import { WEBSITE_LINK } from "../../config";
 import { getTransactionLink, openInApp } from "../../libs/links.utils";
 import { FeedCaption } from "./FeedCaption";
+import AudioPostPlayer from "./AudioPostPlayer";
 import { CommentBottomSheet } from "../Comments";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import RepostPopover from "../common/RepostPopover";
@@ -69,6 +71,8 @@ interface HomeFeedCardProps {
   followLoading?: boolean;
   /** Callback when follow button is pressed */
   onFollowPress?: () => void;
+  /** Whether this card is currently visible in the viewport (used for audio preloading/pausing) */
+  isVisible?: boolean;
 }
 
 const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({ 
@@ -83,6 +87,7 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   isFollowRequestPending = false,
   followLoading = false,
   onFollowPress,
+  isVisible = true,
 }) => {
   const navigation = useNavigation<any>();
   const user = useUser();
@@ -178,6 +183,7 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   
   const hasImages = galleryImages.length > 0;
   const hasMultipleImages = galleryImages.length > 1;
+  const isAudioPost = item.postType === "feed-audio" && !!item.audioUrl;
   
   const handleUserPress = useCallback(() => {
     const id = minterUser?.username || minterUser?.address || item.minterUsername || item.minter || item.owner;
@@ -544,6 +550,17 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
       
       {/* Images */}
       {renderImages()}
+
+      {/* Audio player */}
+      {isAudioPost && tokenId != null && (
+        <AudioPostPlayer
+          audioUrl={getAudioUrl(item.audioUrl!)}
+          duration={item.audioDuration || 0}
+          tokenId={tokenId}
+          listens={item.listens}
+          isVisible={isVisible}
+        />
+      )}
       
       {/* Title, Description & Categories */}
       <FeedCaption
@@ -586,8 +603,10 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
         </Text>
         <Text className="text-xs text-theme-neutrals-500">·</Text>
         <View className="flex-row items-center gap-1">
-          <Ionicons name="eye-outline" size={14} color="#9CA3AF" />
-          <Text className="text-xs text-theme-neutrals-400">{views}</Text>
+          <Ionicons name={isAudioPost ? "headset-outline" : "eye-outline"} size={14} color="#9CA3AF" />
+          <Text className="text-xs text-theme-neutrals-400">
+            {isAudioPost ? (item.listens || 0) : views}
+          </Text>
         </View>
       </View>
 
@@ -736,7 +755,8 @@ const HomeFeedCard = memo(HomeFeedCardComponent, (prev, next) => {
     prev.item.tokenId === next.item.tokenId &&
     prev.item.isLiked === next.item.isLiked &&
     prev.item.isSaved === next.item.isSaved &&
-    prev.item.likes === next.item.likes
+    prev.item.likes === next.item.likes &&
+    prev.isVisible === next.isVisible
   );
 });
 

@@ -41,6 +41,7 @@ import {
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import { revokeAudioFocus } from '../../libs/audioFocus';
 import { createLogger } from '../../libs/logger';
 
 const logger = createLogger('VideoPlayerCore');
@@ -179,6 +180,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
         if (!isMountedRef.current) return;
         setIsPlaying(playing);
         onPlayStateChange?.(playing);
+        if (playing) revokeAudioFocus();
       }),
 
       player.addListener('statusChange', ({ status, error }) => {

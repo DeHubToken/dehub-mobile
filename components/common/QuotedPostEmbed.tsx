@@ -4,9 +4,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { getAvatarUrl, getImageUrl, getImageUrlApiSimple } from "../../libs/misc";
+import { getAvatarUrl, getImageUrl, getImageUrlApiSimple, getAudioUrl } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 import Avatar from "./Avatar";
+import AudioPostPlayer from "../Home/AudioPostPlayer";
 
 interface QuotedPostEmbedProps {
   /** Full quoted post object from the API (may be null/undefined if unavailable) */
@@ -60,6 +61,8 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
 
     // Thumbnail for image/video posts
     const thumbnailUrl = useMemo(() => {
+      // Audio posts don't use a thumbnail — they render the AudioPostPlayer
+      if (quotedPost.postType === "feed-audio") return "";
       // feed-images: imageUrls are relative API paths, need getImageUrlApiSimple
       if (quotedPost.postType === "feed-images") {
         const urls = Array.isArray(quotedPost.imageUrls) ? quotedPost.imageUrls : [];
@@ -78,6 +81,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
       return getImageUrl(quotedPost.imageUrl || quotedPost.thumbnailUrl || "");
     }, [quotedPost]);
 
+    const isAudioPost = quotedPost.postType === "feed-audio" && !!quotedPost.audioUrl;
     const hasThumbnail = !!thumbnailUrl;
 
     return (
@@ -86,8 +90,18 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
         activeOpacity={0.7}
         className="mt-3 rounded-xl border border-theme-neutrals-800 bg-theme-neutrals-800/20 overflow-hidden"
       >
+        {/* Audio player for audio posts */}
+        {isAudioPost && (
+          <AudioPostPlayer
+            audioUrl={getAudioUrl(quotedPost.audioUrl)}
+            duration={quotedPost.audioDuration || 0}
+            tokenId={quotedPost.tokenId || quotedPost.id || quotedTokenId || 0}
+            listens={quotedPost.listens}
+          />
+        )}
+
         {/* Thumbnail */}
-        {hasThumbnail && (
+        {!isAudioPost && hasThumbnail && (
           <View className="w-full h-32 bg-theme-neutrals-800">
             <Image
               source={{ uri: thumbnailUrl }}

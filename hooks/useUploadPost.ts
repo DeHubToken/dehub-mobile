@@ -32,12 +32,19 @@ export type UploadStage =
   | "finalizing"
   | "done";
 
-type MediaMode = "none" | "images" | "video";
+type MediaMode = "none" | "images" | "video" | "audio";
 
 export type ValidationResult = {
   valid: boolean;
   error?: string;
 };
+
+export interface PickedAudio {
+  uri: string;
+  name: string;
+  mimeType: string;
+  durationMs?: number;
+}
 
 export type UploadPayload = {
   bodyText: string;
@@ -45,6 +52,7 @@ export type UploadPayload = {
   categories: string[];
   pickedImages: ImagePicker.ImagePickerAsset[];
   pickedVideo: ImagePicker.ImagePickerAsset | null;
+  pickedAudio: PickedAudio | null;
   thumbnailUri: string | null;
   coverUri: string | null;
   monetization: MonetizationState;
@@ -90,12 +98,13 @@ export function useUploadPost() {
 
   const getMediaMode = useCallback((p: UploadPayload): MediaMode => {
     if (p.pickedVideo) return "video";
+    if (p.pickedAudio) return "audio";
     if (p.pickedImages.length > 0) return "images";
     return "none";
   }, []);
 
   const validate = useCallback((p: UploadPayload): ValidationResult => {
-    const mode = p.pickedVideo ? "video" : p.pickedImages.length > 0 ? "images" : "text";
+    const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
 
     // Video mode: title + video + thumbnail required
     if (mode === "video") {
@@ -103,6 +112,14 @@ export function useUploadPost() {
       if (title.length < 1) return { valid: false, error: "Title is required for video posts." };
       if (!p.pickedVideo) return { valid: false, error: "A video is required." };
       if (!p.coverUri && !p.thumbnailUri) return { valid: false, error: "A thumbnail is required for video posts." };
+    }
+
+    // Audio mode: audio file required
+    if (mode === "audio") {
+      if (!p.pickedAudio) return { valid: false, error: "An audio file is required." };
+      if (p.pickedAudio.durationMs && p.pickedAudio.durationMs > 60_000) {
+        return { valid: false, error: "Audio posts must be 60 seconds or less." };
+      }
     }
 
     // Image mode: at least one image required
@@ -213,7 +230,7 @@ export function useUploadPost() {
 
   const buildFormData = useCallback(
     (p: UploadPayload): FormData => {
-      const mode = p.pickedVideo ? "video" : p.pickedImages.length > 0 ? "images" : "text";
+      const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
       const addr = (user?.walletAddress || user?.address || "").toLowerCase();
       const fd = new FormData();
 
@@ -245,6 +262,17 @@ export function useUploadPost() {
         // StreamInfo for monetization
         const streamInfo = buildStreamInfo(p.monetization);
         fd.append("streamInfo", JSON.stringify(filteredStreamInfo(streamInfo)));
+      } else if (mode === "audio") {
+        fd.append("postType", "feed-audio");
+        if (p.pickedAudio) {
+          // @ts-ignore React Native FormData file shape
+          fd.append("feed-audio", {
+            uri: p.pickedAudio.uri,
+            name: p.pickedAudio.name || "audio.m4a",
+            type: p.pickedAudio.mimeType || "audio/x-m4a",
+          } as any);
+        }
+        fd.append("streamInfo", JSON.stringify({}));
       } else if (mode === "images") {
         fd.append("postType", "feed-images");
         p.pickedImages.forEach((img) => {
@@ -300,7 +328,7 @@ export function useUploadPost() {
 
   const upload = useCallback(
     async (p: UploadPayload) => {
-      const mode = p.pickedVideo ? "video" : p.pickedImages.length > 0 ? "images" : "text";
+      const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
       try {
         setIsUploading(true);
         setUploadStage("uploading");

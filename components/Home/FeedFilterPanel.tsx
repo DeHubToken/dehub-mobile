@@ -16,7 +16,7 @@ import Animated, {
 
 export type SortOption = "random" | "createdAt" | "views" | "likes" | "comments";
 export type DateRangeOption = "" | "day" | "week" | "month" | "year";
-export type PostTypeOption = "all" | "video" | "feed-images" | "feed-simple" | "live";
+export type PostTypeOption = "all" | "video" | "feed-images" | "feed-audio" | "feed-simple" | "live";
 export type ContentAccessOption = "ppv" | "bounty" | "locked";
 
 export interface FeedFilters {
@@ -56,6 +56,7 @@ const postTypeOptions: { id: PostTypeOption; label: string }[] = [
   { id: "all", label: "All" },
   { id: "video", label: "Videos" },
   { id: "feed-images", label: "Images" },
+  { id: "feed-audio", label: "Audio" },
   { id: "feed-simple", label: "Text" },
   { id: "live", label: "Live" },
 ];

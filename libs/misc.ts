@@ -75,6 +75,14 @@ export function getImageUrlApiSimple(url: string): string {
   return `${base}/${path}`;
 }
 
+/** Resolve a relative audio path (e.g. "feed-audio/123-audio.audio") to a full CDN URL */
+export function getAudioUrl(url: string): string {
+  if (!url) return "";
+  if (url.startsWith("http://") || url.startsWith("https://")) return url;
+  const path = url.replace(/^\/+/, "");
+  return `${baseUrlWithoutSlash}/${path}`;
+}
+
 // Badge utilities ---------------------------------------------------------
 interface BadgeDef {
   name: string;
@@ -213,6 +221,7 @@ export const Misc = {
   buildCdnPath,
   resolveThumbnail,
   getImageUrl,
+  getAudioUrl,
   getVideoUrl,
   getBadgeUrl,
   getBadgeName,

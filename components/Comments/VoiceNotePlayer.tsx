@@ -13,6 +13,9 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
 } from "react-native-reanimated";
+import { useIsFocused } from "@react-navigation/native";
+import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
+import { stopActivePreview } from "../../libs/previewRegistry";
 
 const BAR_COUNT = 28;
 const BAR_WIDTH = 3;
@@ -60,6 +63,14 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
   const [positionMs, setPositionMs] = useState(0);
   const [durationMs, setDurationMs] = useState((durationProp ?? 0) * 1000);
   const progress = useSharedValue(0);
+  const isFocused = useIsFocused();
+
+  // Stable stop callback for global audio focus
+  const focusStopRef = useRef(() => {
+    soundRef.current?.pauseAsync().catch(() => {});
+    setIsPlaying(false);
+    releaseAudioFocus(focusStopRef.current);
+  });
 
   const waveform = useMemo(() => generateWaveform(audioUrl), [audioUrl]);
 
@@ -74,6 +85,7 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
         setIsPlaying(false);
         progress.value = withTiming(0, { duration: 300 });
         setPositionMs(0);
+        releaseAudioFocus(focusStopRef.current);
       }
     },
     [durationMs, progress]
@@ -108,9 +120,20 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
     };
   }, [audioUrl, onPlaybackStatus]);
 
+  // Pause when screen loses focus
+  useEffect(() => {
+    if (!isFocused && isPlaying && soundRef.current) {
+      soundRef.current.pauseAsync().catch(() => {});
+      setIsPlaying(false);
+      releaseAudioFocus(focusStopRef.current);
+    }
+  }, [isFocused, isPlaying]);
+
   // Cleanup on unmount
   useEffect(() => {
+    const stopFn = focusStopRef.current;
     return () => {
+      releaseAudioFocus(stopFn);
       soundRef.current?.unloadAsync().catch(() => {});
     };
   }, []);
@@ -118,6 +141,8 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
   const loadAndPlay = useCallback(async () => {
     try {
       setIsLoading(true);
+      requestAudioFocus(focusStopRef.current);
+      stopActivePreview();
       await Audio.setAudioModeAsync({ allowsRecordingIOS: false, playsInSilentModeIOS: true });
       if (soundRef.current) {
         await soundRef.current.unloadAsync();
@@ -132,6 +157,7 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
       setIsPlaying(true);
     } catch (e) {
       console.error("[VoiceNotePlayer] load error", e);
+      releaseAudioFocus(focusStopRef.current);
     } finally {
       setIsLoading(false);
     }
@@ -149,6 +175,8 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
       return;
     }
     if (status.didJustFinish || (status.positionMillis >= (status.durationMillis ?? 1))) {
+      requestAudioFocus(focusStopRef.current);
+      stopActivePreview();
       await soundRef.current.setPositionAsync(0);
       await soundRef.current.playAsync();
       setIsPlaying(true);
@@ -157,7 +185,10 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
     if (isPlaying) {
       await soundRef.current.pauseAsync();
       setIsPlaying(false);
+      releaseAudioFocus(focusStopRef.current);
     } else {
+      requestAudioFocus(focusStopRef.current);
+      stopActivePreview();
       await soundRef.current.playAsync();
       setIsPlaying(true);
     }

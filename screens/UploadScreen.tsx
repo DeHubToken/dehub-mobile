@@ -10,9 +10,10 @@ import {
   Pressable,
   BackHandler,
 } from "react-native";
-import { useNavigation, useRoute, CommonActions } from "@react-navigation/native";
+import { useNavigation, useRoute, CommonActions, useFocusEffect } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, {
@@ -21,6 +22,8 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import * as ImagePicker from "expo-image-picker";
+import * as DocumentPicker from "expo-document-picker";
+import { Audio, InterruptionModeIOS, InterruptionModeAndroid } from "expo-av";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { useEvent } from "expo";
 import * as FileSystem from "expo-file-system/legacy";
@@ -31,6 +34,7 @@ import {
 import { openCroppedImagePicker, getFileName, guessMime } from "../libs/assets.util";
 import { getCategoriesCached } from "../services/nft.service";
 import { toastError, toastSuccess } from "../libs/toast";
+import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
 import { useAuth } from "../context/AuthContext";
 import { useKeyboard } from "../hooks/useKeyboard";
 import { useMentions } from "../hooks/useMentions";
@@ -50,7 +54,7 @@ import { useUploadLive } from "../hooks/useUploadLive";
 import { useDrafts } from "../hooks/useDrafts";
 import type { Draft } from "../hooks/useDrafts";
 import GlassModal from "../components/ui/GlassModal";
-import type { UploadPayload, UploadStage } from "../hooks/useUploadPost";
+import type { UploadPayload, UploadStage, PickedAudio } from "../hooks/useUploadPost";
 import type { LiveUploadPayload } from "../hooks/useUploadLive";
 import type { AppStackParamList } from "../navigation/types";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -71,11 +75,14 @@ const DESCRIPTION_MAX = 500;
 const IMAGES_MAX = 4;
 const MAX_IMAGE_SIZE_BYTES = 20 * 1024 * 1024; // 20 MB per image
 const MAX_VIDEO_SIZE_BYTES = 200 * 1024 * 1024; // 200 MB
+const MAX_AUDIO_SIZE_BYTES = 10 * 1024 * 1024; // 10 MB
+const MAX_AUDIO_DURATION_MS = 60_000; // 60 seconds
+const AUDIO_MIME_TYPES = ["audio/mpeg", "audio/wav", "audio/aac", "audio/ogg", "audio/x-m4a", "audio/mp4", "audio/webm"];
 const CATEGORIES_MIN = 0;
 const CATEGORIES_MAX = 5;
 
 type PickedAsset = ImagePicker.ImagePickerAsset;
-type MediaMode = "none" | "images" | "video";
+type MediaMode = "none" | "images" | "video" | "audio";
 
 export default function UploadScreen() {
   const nav = useNavigation<any>();
@@ -106,6 +113,23 @@ export default function UploadScreen() {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [pickedImages, setPickedImages] = useState<PickedAsset[]>([]);
   const [pickedVideo, setPickedVideo] = useState<PickedAsset | null>(null);
+  const [pickedAudio, setPickedAudio] = useState<PickedAudio | null>(null);
+  const [isAudioRecording, setIsAudioRecording] = useState(false);
+  const [audioRecordingElapsed, setAudioRecordingElapsed] = useState(0);
+  const audioRecordingRef = useRef<Audio.Recording | null>(null);
+  const audioTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const audioStartTimeRef = useRef(0);
+  const [audioMeterBars, setAudioMeterBars] = useState<number[]>([]);
+  const audioMeterBarsRef = useRef<number[]>([]);
+  const [showAudioMenu, setShowAudioMenu] = useState(false);
+  const audioPreviewRef = useRef<Audio.Sound | null>(null);
+  const [isAudioPreviewPlaying, setIsAudioPreviewPlaying] = useState(false);
+
+  // Stable callback for global audio focus — pauses audio preview when another source plays
+  const handleStopAudioPreviewFocus = useCallback(() => {
+    audioPreviewRef.current?.pauseAsync().catch(() => {});
+    setIsAudioPreviewPlaying(false);
+  }, []);
   const [isMuted, setIsMuted] = useState(true);
   const [showDescription, setShowDescription] = useState(false);
   const [showMonetization, setShowMonetization] = useState(false);
@@ -168,9 +192,10 @@ export default function UploadScreen() {
 
   const mediaMode: MediaMode = useMemo(() => {
     if (pickedVideo) return "video";
+    if (pickedAudio) return "audio";
     if (pickedImages.length > 0) return "images";
     return "none";
-  }, [pickedVideo, pickedImages.length]);
+  }, [pickedVideo, pickedAudio, pickedImages.length]);
 
   const hasMedia = mediaMode !== "none";
   const hasContent = bodyText.trim().length > 0 || hasMedia || isQuoteMode;
@@ -182,12 +207,14 @@ export default function UploadScreen() {
   const showExtras = isLiveMode || hasContent || showDescription
     || description.length > 0 || categories.length > 0;
 
-  // image button disabled when: video selected OR 4 images already
-  const imageDisabled = mediaMode === "video" || pickedImages.length >= IMAGES_MAX;
-  // video button disabled when: any media is selected
-  const videoDisabled = hasMedia;
-  // live button disabled when media is already selected
-  const liveDisabled = hasMedia;
+  // image button disabled when: video/audio selected OR 4 images already OR recording
+  const imageDisabled = mediaMode === "video" || mediaMode === "audio" || pickedImages.length >= IMAGES_MAX || isAudioRecording;
+  // video button disabled when: any media is selected OR recording
+  const videoDisabled = hasMedia || isAudioRecording;
+  // audio button disabled when: any media is selected (but not during recording — that's the audio button's own mode)
+  const audioDisabled = hasMedia;
+  // live button disabled when media is already selected OR recording
+  const liveDisabled = hasMedia || isAudioRecording;
 
   const player = useVideoPlayer(pickedVideo?.uri ?? null, (p) => {
     p.loop = true;
@@ -276,9 +303,10 @@ export default function UploadScreen() {
       categories.length > 0 ||
       pickedImages.length > 0 ||
       !!pickedVideo ||
+      !!pickedAudio ||
       !!liveThumbnailUri ||
       isLiveMode,
-    [bodyText, description, categories, pickedImages, pickedVideo, liveThumbnailUri, isLiveMode],
+    [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, liveThumbnailUri, isLiveMode],
   );
 
   /** Close handler – placed before useUploadPost; isUploading guard is in the X button's disabled prop */
@@ -348,11 +376,12 @@ export default function UploadScreen() {
       categories,
       pickedImages,
       pickedVideo,
+      pickedAudio,
       thumbnailUri,
       coverUri,
       monetization,
     };
-  }, [bodyText, description, categories, pickedImages, pickedVideo, thumbnailUri, coverUri, monetization]);
+  }, [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization]);
 
   const handleToggleLiveMode = useCallback(() => {
     setIsLiveMode((prev) => {
@@ -361,6 +390,7 @@ export default function UploadScreen() {
         // Entering live mode: clear media, hide monetization
         setPickedVideo(null);
         setPickedImages([]);
+        setPickedAudio(null);
         setShowMonetization(false);
         setThumbnailUri(null);
         setCoverUri(null);
@@ -523,6 +553,14 @@ export default function UploadScreen() {
           // @ts-ignore RN FormData file shape
           fd.append("feed-images", { uri: img.uri, name, type } as any);
         });
+      } else if (pickedAudio) {
+        fd.append("postType", "feed-audio");
+        fd.append("name", "");
+        fd.append("description", bodyText.trim());
+        const aName = pickedAudio.name || "audio.m4a";
+        const aType = pickedAudio.mimeType || "audio/x-m4a";
+        // @ts-ignore RN FormData file shape
+        fd.append("feed-audio", { uri: pickedAudio.uri, name: aName, type: aType } as any);
       } else {
         fd.append("postType", "feed-simple");
         fd.append("name", "");
@@ -767,6 +805,244 @@ export default function UploadScreen() {
     setCoverUri(null);
     setCoverHidden(false);
   }, []);
+
+  /* ── Audio handlers ─────────────────────────────────────────── */
+  const handleRemoveAudio = useCallback(async () => {
+    // Stop preview if playing
+    if (audioPreviewRef.current) {
+      try { await audioPreviewRef.current.unloadAsync(); } catch {}
+      audioPreviewRef.current = null;
+      setIsAudioPreviewPlaying(false);
+    }
+    setPickedAudio(null);
+  }, []);
+
+  const fmtRecordTime = useCallback((ms: number): string => {
+    const s = Math.floor(ms / 1000);
+    return `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, "0")}`;
+  }, []);
+
+  const handleStartAudioRecording = useCallback(async () => {
+    setShowAudioMenu(false);
+    try {
+      let micGranted = false;
+      await runWithPermissions(["microphone"], async () => {
+        micGranted = true;
+      });
+      if (!micGranted) {
+        toastError("Microphone permission is required to record audio.");
+        return;
+      }
+
+      await Audio.setAudioModeAsync({
+        allowsRecordingIOS: true,
+        playsInSilentModeIOS: true,
+        interruptionModeIOS: InterruptionModeIOS.DoNotMix,
+        interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
+      });
+
+      const recording = new Audio.Recording();
+      await recording.prepareToRecordAsync({
+        ...Audio.RecordingOptionsPresets.HIGH_QUALITY,
+        isMeteringEnabled: true,
+      });
+      await recording.startAsync();
+      audioRecordingRef.current = recording;
+      setIsAudioRecording(true);
+      setAudioRecordingElapsed(0);
+      setAudioMeterBars([]);
+      audioMeterBarsRef.current = [];
+      audioStartTimeRef.current = Date.now();
+
+      audioTimerRef.current = setInterval(async () => {
+        const elapsed = Date.now() - audioStartTimeRef.current;
+        setAudioRecordingElapsed(elapsed);
+        if (elapsed >= MAX_AUDIO_DURATION_MS) {
+          handleStopAudioRecording();
+          return;
+        }
+        // Metering for waveform
+        try {
+          const rec = audioRecordingRef.current;
+          let level = 0.08 + Math.random() * 0.12;
+          if (rec) {
+            const st = await rec.getStatusAsync();
+            const dB = (st as any).metering;
+            if (dB != null && dB > -160) {
+              level = Math.max(0.05, Math.min(1, (dB + 40) / 40));
+            }
+          }
+          const bars = audioMeterBarsRef.current;
+          bars.push(level);
+          if (bars.length > 35) bars.shift();
+          audioMeterBarsRef.current = bars;
+          setAudioMeterBars([...bars]);
+        } catch {}
+      }, 150);
+    } catch (e) {
+      console.error("[UploadScreen] audio recording start error:", e);
+      toastError("Failed to start recording.");
+    }
+  }, []);
+
+  const handleStopAudioRecording = useCallback(async () => {
+    if (audioTimerRef.current) {
+      clearInterval(audioTimerRef.current);
+      audioTimerRef.current = null;
+    }
+    try {
+      const rec = audioRecordingRef.current;
+      if (!rec) return;
+      const status = await rec.getStatusAsync();
+      if (status.isRecording) await rec.stopAndUnloadAsync();
+      const uri = rec.getURI();
+      const durationMs = status.durationMillis || audioRecordingElapsed;
+      audioRecordingRef.current = null;
+      setIsAudioRecording(false);
+      setAudioRecordingElapsed(0);
+      setAudioMeterBars([]);
+      await Audio.setAudioModeAsync({ allowsRecordingIOS: false });
+
+      if (uri && durationMs > 500) {
+        setPickedAudio({
+          uri,
+          name: "voice-recording.m4a",
+          mimeType: "audio/x-m4a",
+          durationMs,
+        });
+      }
+    } catch (e) {
+      console.error("[UploadScreen] audio recording stop error:", e);
+      setIsAudioRecording(false);
+    }
+  }, [audioRecordingElapsed]);
+
+  const handleCancelAudioRecording = useCallback(async () => {
+    if (audioTimerRef.current) {
+      clearInterval(audioTimerRef.current);
+      audioTimerRef.current = null;
+    }
+    try {
+      const rec = audioRecordingRef.current;
+      if (rec) {
+        const s = await rec.getStatusAsync();
+        if (s.isRecording) await rec.stopAndUnloadAsync();
+      }
+    } catch {}
+    audioRecordingRef.current = null;
+    setIsAudioRecording(false);
+    setAudioRecordingElapsed(0);
+    setAudioMeterBars([]);
+    Audio.setAudioModeAsync({ allowsRecordingIOS: false }).catch(() => {});
+  }, []);
+
+  const handlePickAudioFile = useCallback(async () => {
+    setShowAudioMenu(false);
+    try {
+      const result = await DocumentPicker.getDocumentAsync({
+        type: AUDIO_MIME_TYPES,
+        copyToCacheDirectory: true,
+      });
+
+      if (result.canceled || !result.assets?.[0]) return;
+      const asset = result.assets[0];
+
+      // Check file size
+      if (asset.size && asset.size > MAX_AUDIO_SIZE_BYTES) {
+        toastError("Audio file exceeds 10 MB limit.");
+        return;
+      }
+
+      setPickedAudio({
+        uri: asset.uri,
+        name: asset.name || "audio-upload",
+        mimeType: asset.mimeType || "audio/mpeg",
+      });
+    } catch (e) {
+      console.error("[UploadScreen] audio pick error:", e);
+    }
+  }, []);
+
+  const handleToggleAudioPreview = useCallback(async () => {
+    try {
+      if (isAudioPreviewPlaying && audioPreviewRef.current) {
+        await audioPreviewRef.current.pauseAsync();
+        setIsAudioPreviewPlaying(false);
+        releaseAudioFocus(handleStopAudioPreviewFocus);
+        return;
+      }
+
+      requestAudioFocus(handleStopAudioPreviewFocus);
+
+      if (audioPreviewRef.current) {
+        const status = await audioPreviewRef.current.getStatusAsync();
+        if (status.isLoaded) {
+          if (status.didJustFinish || status.positionMillis >= (status.durationMillis || 0)) {
+            await audioPreviewRef.current.setPositionAsync(0);
+          }
+          await audioPreviewRef.current.playAsync();
+          setIsAudioPreviewPlaying(true);
+          return;
+        }
+      }
+
+      if (!pickedAudio) return;
+      await Audio.setAudioModeAsync({
+        allowsRecordingIOS: false,
+        playsInSilentModeIOS: true,
+        interruptionModeIOS: InterruptionModeIOS.DuckOthers,
+        interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
+      });
+      const { sound } = await Audio.Sound.createAsync(
+        { uri: pickedAudio.uri },
+        { shouldPlay: true },
+      );
+      audioPreviewRef.current = sound;
+      setIsAudioPreviewPlaying(true);
+      sound.setOnPlaybackStatusUpdate((s) => {
+        if (!s.isLoaded) return;
+        if (s.didJustFinish) {
+          setIsAudioPreviewPlaying(false);
+          releaseAudioFocus(handleStopAudioPreviewFocus);
+        }
+      });
+    } catch (e) {
+      console.error("[UploadScreen] audio preview error:", e);
+      releaseAudioFocus(handleStopAudioPreviewFocus);
+    }
+  }, [isAudioPreviewPlaying, pickedAudio]);
+
+  // Cleanup audio recording + preview on unmount
+  useEffect(() => {
+    return () => {
+      if (audioTimerRef.current) clearInterval(audioTimerRef.current);
+      const rec = audioRecordingRef.current;
+      if (rec) {
+        rec.stopAndUnloadAsync().catch(() => {});
+        audioRecordingRef.current = null;
+      }
+      const preview = audioPreviewRef.current;
+      if (preview) {
+        preview.unloadAsync().catch(() => {});
+        audioPreviewRef.current = null;
+      }
+    };
+  }, []);
+
+  // Stop audio preview + recording when navigating away from screen
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        if (isAudioPreviewPlaying && audioPreviewRef.current) {
+          audioPreviewRef.current.pauseAsync().catch(() => {});
+          setIsAudioPreviewPlaying(false);
+        }
+        if (isAudioRecording && audioRecordingRef.current) {
+          handleCancelAudioRecording();
+        }
+      };
+    }, [isAudioPreviewPlaying, isAudioRecording, handleCancelAudioRecording])
+  );
 
   const handleTogglePlay = useCallback(() => {
     if (isPlaying) {
@@ -1099,6 +1375,110 @@ export default function UploadScreen() {
               </TouchableOpacity>
             )}
 
+            {/* Audio recording overlay */}
+            {isAudioRecording && (
+              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4">
+                <View className="flex-row items-center">
+                  <View className="w-2.5 h-2.5 rounded-full bg-red-500 mr-2" />
+                  <Text
+                    className="text-white text-sm font-medium mr-3"
+                    style={{ fontVariant: ["tabular-nums"] }}
+                  >
+                    {fmtRecordTime(audioRecordingElapsed)}
+                  </Text>
+                  <Text className="text-theme-neutrals-500 text-[10px] mr-1">
+                    Max 60s
+                  </Text>
+
+                  {/* Cancel */}
+                  <TouchableOpacity
+                    onPress={handleCancelAudioRecording}
+                    activeOpacity={0.7}
+                    className="w-9 h-9 rounded-full bg-theme-neutrals-700 items-center justify-center mr-2 ml-auto"
+                  >
+                    <Ionicons name="trash-outline" size={18} color="#f87171" />
+                  </TouchableOpacity>
+
+                  {/* Stop & save */}
+                  <TouchableOpacity
+                    onPress={handleStopAudioRecording}
+                    activeOpacity={0.7}
+                    className="w-9 h-9 rounded-full bg-white items-center justify-center"
+                  >
+                    <Ionicons name="checkmark" size={20} color="#000" />
+                  </TouchableOpacity>
+                </View>
+
+                {/* Waveform bars */}
+                <View className="flex-row items-end mt-3" style={{ height: 24 }}>
+                  {(() => {
+                    const BARS = 35;
+                    const display = audioMeterBars.length >= BARS
+                      ? audioMeterBars.slice(-BARS)
+                      : [...Array(BARS - audioMeterBars.length).fill(0.05), ...audioMeterBars];
+                    return display.map((level: number, i: number) => (
+                      <View
+                        key={i}
+                        style={{
+                          width: 2.5,
+                          height: Math.max(3, level * 22),
+                          borderRadius: 1.25,
+                          marginRight: i < BARS - 1 ? 1.5 : 0,
+                          backgroundColor: "rgba(239,68,68,0.8)",
+                        }}
+                      />
+                    ));
+                  })()}
+                </View>
+
+                {/* Progress bar */}
+                <View className="h-1 bg-theme-neutrals-700 rounded-full mt-3 overflow-hidden">
+                  <View
+                    className="h-full rounded-full bg-red-500"
+                    style={{ width: `${Math.min(100, (audioRecordingElapsed / MAX_AUDIO_DURATION_MS) * 100)}%` }}
+                  />
+                </View>
+              </View>
+            )}
+
+            {/* Audio preview */}
+            {!isLiveMode && mediaMode === "audio" && pickedAudio && !isAudioRecording && (
+              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4">
+                <View className="flex-row items-center">
+                  {/* Play / Pause */}
+                  <TouchableOpacity
+                    onPress={handleToggleAudioPreview}
+                    activeOpacity={0.7}
+                    className="w-10 h-10 rounded-full bg-theme-neutrals-700 items-center justify-center mr-3"
+                  >
+                    <Ionicons
+                      name={isAudioPreviewPlaying ? "pause" : "play"}
+                      size={20}
+                      color="#fff"
+                      style={isAudioPreviewPlaying ? undefined : { marginLeft: 2 }}
+                    />
+                  </TouchableOpacity>
+                  <View className="flex-1">
+                    <Text className="text-white text-sm font-medium" numberOfLines={1}>
+                      {pickedAudio.name}
+                    </Text>
+                    {pickedAudio.durationMs != null && (
+                      <Text className="text-theme-neutrals-400 text-xs mt-0.5">
+                        {fmtRecordTime(pickedAudio.durationMs)}
+                      </Text>
+                    )}
+                  </View>
+                  <TouchableOpacity
+                    onPress={handleRemoveAudio}
+                    className="w-8 h-8 rounded-full bg-black/60 items-center justify-center"
+                    hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                  >
+                    <Ionicons name="close" size={16} color="#fff" />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            )}
+
             {isQuoteMode && quotedPost && (
               <View className="mt-3 relative">
                 <QuotedPostEmbed
@@ -1260,15 +1640,68 @@ export default function UploadScreen() {
               <Ionicons name="videocam-outline" size={24} color="#fff" />
             </TouchableOpacity>
 
-            <TouchableOpacity
-              disabled
-              activeOpacity={0.7}
-              className="mr-4"
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              style={{ opacity: 0.3 }}
-            >
-              <Ionicons name="film-outline" size={24} color="#fff" />
-            </TouchableOpacity>
+            {/* Audio (music) button with popover menu */}
+            <View className="mr-4" style={{ position: "relative", zIndex: 100 }}>
+              <TouchableOpacity
+                onPress={() => setShowAudioMenu((prev) => !prev)}
+                disabled={audioDisabled}
+                activeOpacity={0.7}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                style={{ opacity: audioDisabled ? 0.3 : 1 }}
+              >
+                <FontAwesome5 name="itunes-note" size={22} color="#fff" />
+              </TouchableOpacity>
+
+              {showAudioMenu && (
+                <>
+                  {/* Backdrop to dismiss */}
+                  <Pressable
+                    onPress={() => setShowAudioMenu(false)}
+                    style={{
+                      position: "absolute",
+                      top: -1000,
+                      left: -1000,
+                      right: -1000,
+                      bottom: -1000,
+                      zIndex: 98,
+                    }}
+                  />
+                  <View
+                    className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl"
+                    style={{
+                      position: "absolute",
+                      bottom: 44,
+                      left: -8,
+                      zIndex: 99,
+                      minWidth: 160,
+                      shadowColor: "#000",
+                      shadowOffset: { width: 0, height: 4 },
+                      shadowOpacity: 0.4,
+                      shadowRadius: 8,
+                      elevation: 8,
+                    }}
+                  >
+                    <TouchableOpacity
+                      onPress={handleStartAudioRecording}
+                      activeOpacity={0.7}
+                      className="flex-row items-center px-4 py-3"
+                    >
+                      <Ionicons name="mic-outline" size={20} color="#fff" />
+                      <Text className="text-white text-sm ml-3">Record Voice</Text>
+                    </TouchableOpacity>
+                    <View className="h-px bg-theme-neutrals-700 mx-3" />
+                    <TouchableOpacity
+                      onPress={handlePickAudioFile}
+                      activeOpacity={0.7}
+                      className="flex-row items-center px-4 py-3"
+                    >
+                      <Ionicons name="cloud-upload-outline" size={20} color="#fff" />
+                      <Text className="text-white text-sm ml-3">Upload Audio</Text>
+                    </TouchableOpacity>
+                  </View>
+                </>
+              )}
+            </View>
           </>
         )}
 

@@ -89,6 +89,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [visibleItemKeys, setVisibleItemKeys] = useState<Set<string>>(new Set());
   const endReachedRef = useRef(false);
   const listRef = useRef<FlatList<FeedItem>>(null);
   const prevYRef = useRef(0);
@@ -131,6 +132,18 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     viewableItems: ViewToken[]; 
     changed: ViewToken[]; 
   }) => {
+    // Track visible items for audio preloading/pausing (works for all users)
+    setVisibleItemKeys(prev => {
+      const next = new Set(prev);
+      for (const entry of changed) {
+        const key = (entry.item as FeedItem | undefined)?.__listKey;
+        if (!key) continue;
+        if (entry.isViewable) next.add(key);
+        else next.delete(key);
+      }
+      return next;
+    });
+
     if (!isSignedIn) return;
     
     for (const entry of changed) {
@@ -321,7 +334,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     } else if (isVideo) {
       card = <VideoCard nft={item as any} enablePreview onCategorySelect={onCategorySelect} />;
     } else {
-      card = <HomeFeedCard item={item} onCategorySelect={onCategorySelect} />;
+      card = <HomeFeedCard item={item} onCategorySelect={onCategorySelect} isVisible={visibleItemKeys.has(item.__listKey)} />;
     }
 
     // Inject suggested accounts section after the 3rd feed item
@@ -394,6 +407,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         }
         onEndReached={endReachedRef.current ? undefined : loadMore}
         onEndReachedThreshold={0.8}
+        extraData={visibleItemKeys}
         onScroll={handleScroll}
         onScrollBeginDrag={handleScrollBeginDrag}
         onScrollEndDrag={handleScrollEndDrag}
