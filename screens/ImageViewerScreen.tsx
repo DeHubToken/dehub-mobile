@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import {
   View,
   Image,
@@ -36,6 +36,179 @@ const normalizeImageUri = (item: any): string => {
   return "";
 };
 
+/** Zoomable image — double-tap to zoom, pinch-to-zoom, pan when zoomed. */
+const ZoomableImage = memo(
+  ({ uri, onZoomChange }: { uri: string; onZoomChange?: (zoomed: boolean) => void }) => {
+    const scale = useSharedValue(1);
+    const savedScale = useSharedValue(1);
+    const offsetX = useSharedValue(0);
+    const offsetY = useSharedValue(0);
+    const savedOffsetX = useSharedValue(0);
+    const savedOffsetY = useSharedValue(0);
+    const pinchFocalX = useSharedValue(0);
+    const pinchFocalY = useSharedValue(0);
+
+    // ── Double-tap: toggle 1x ↔ 2.5x ──
+    const doubleTap = Gesture.Tap()
+      .numberOfTaps(2)
+      .maxDuration(250)
+      .onEnd((e) => {
+        if (scale.value > 1.05) {
+          // Reset
+          scale.value = withTiming(1, { duration: 300 });
+          offsetX.value = withTiming(0, { duration: 300 });
+          offsetY.value = withTiming(0, { duration: 300 });
+          savedScale.value = 1;
+          savedOffsetX.value = 0;
+          savedOffsetY.value = 0;
+          if (onZoomChange) runOnJS(onZoomChange)(false);
+        } else {
+          const target = 2.5;
+          const fx = e.x - SCREEN_W / 2;
+          const fy = e.y - SCREEN_H / 2;
+          const tx = -fx * (target - 1);
+          const ty = -fy * (target - 1);
+          const maxX = (SCREEN_W * target - SCREEN_W) / 2;
+          const maxY = (SCREEN_H * target - SCREEN_H) / 2;
+          const cx = Math.max(-maxX, Math.min(maxX, tx));
+          const cy = Math.max(-maxY, Math.min(maxY, ty));
+          scale.value = withTiming(target, { duration: 300 });
+          offsetX.value = withTiming(cx, { duration: 300 });
+          offsetY.value = withTiming(cy, { duration: 300 });
+          savedScale.value = target;
+          savedOffsetX.value = cx;
+          savedOffsetY.value = cy;
+          if (onZoomChange) runOnJS(onZoomChange)(true);
+        }
+      });
+
+    // ── Pinch: zoom 1–4x with focal point ──
+    const pinch = Gesture.Pinch()
+      .onStart((e) => {
+        savedScale.value = scale.value;
+        savedOffsetX.value = offsetX.value;
+        savedOffsetY.value = offsetY.value;
+        pinchFocalX.value = e.focalX - SCREEN_W / 2;
+        pinchFocalY.value = e.focalY - SCREEN_H / 2;
+      })
+      .onUpdate((e) => {
+        const newScale = Math.max(1, Math.min(4, savedScale.value * e.scale));
+        const ratio = newScale / savedScale.value;
+        offsetX.value =
+          pinchFocalX.value + (savedOffsetX.value - pinchFocalX.value) * ratio;
+        offsetY.value =
+          pinchFocalY.value + (savedOffsetY.value - pinchFocalY.value) * ratio;
+        scale.value = newScale;
+      })
+      .onEnd(() => {
+        if (scale.value <= 1.05) {
+          scale.value = withTiming(1, { duration: 200 });
+          offsetX.value = withTiming(0, { duration: 200 });
+          offsetY.value = withTiming(0, { duration: 200 });
+          savedScale.value = 1;
+          savedOffsetX.value = 0;
+          savedOffsetY.value = 0;
+          if (onZoomChange) runOnJS(onZoomChange)(false);
+        } else {
+          savedScale.value = scale.value;
+          savedOffsetX.value = offsetX.value;
+          savedOffsetY.value = offsetY.value;
+          // Clamp offsets
+          const maxX = Math.max(
+            0,
+            (SCREEN_W * scale.value - SCREEN_W) / 2,
+          );
+          const maxY = Math.max(
+            0,
+            (SCREEN_H * scale.value - SCREEN_H) / 2,
+          );
+          offsetX.value = withSpring(
+            Math.max(-maxX, Math.min(maxX, offsetX.value)),
+            { damping: 20, stiffness: 200 },
+          );
+          offsetY.value = withSpring(
+            Math.max(-maxY, Math.min(maxY, offsetY.value)),
+            { damping: 20, stiffness: 200 },
+          );
+          if (onZoomChange) runOnJS(onZoomChange)(true);
+        }
+      });
+
+    // ── Pan: move image when zoomed (manualActivation fails when at 1x) ──
+    const pan = Gesture.Pan()
+      .minPointers(1)
+      .maxPointers(2)
+      .manualActivation(true)
+      .onTouchesMove((_e, stateManager) => {
+        if (scale.value > 1.05) {
+          stateManager.activate();
+        } else {
+          stateManager.fail();
+        }
+      })
+      .onStart(() => {
+        savedOffsetX.value = offsetX.value;
+        savedOffsetY.value = offsetY.value;
+      })
+      .onUpdate((e) => {
+        offsetX.value = savedOffsetX.value + e.translationX;
+        offsetY.value = savedOffsetY.value + e.translationY;
+      })
+      .onEnd(() => {
+        const maxX = Math.max(
+          0,
+          (SCREEN_W * scale.value - SCREEN_W) / 2,
+        );
+        const maxY = Math.max(
+          0,
+          (SCREEN_H * scale.value - SCREEN_H) / 2,
+        );
+        offsetX.value = withSpring(
+          Math.max(-maxX, Math.min(maxX, offsetX.value)),
+          { damping: 20, stiffness: 200 },
+        );
+        offsetY.value = withSpring(
+          Math.max(-maxY, Math.min(maxY, offsetY.value)),
+          { damping: 20, stiffness: 200 },
+        );
+      });
+
+    const composed = Gesture.Simultaneous(pinch, doubleTap, pan);
+
+    const animStyle = useAnimatedStyle(() => ({
+      transform: [
+        { translateX: offsetX.value },
+        { translateY: offsetY.value },
+        { scale: scale.value },
+      ],
+    }));
+
+    return (
+      <View style={{ width: SCREEN_W, height: SCREEN_H, overflow: "hidden" }}>
+        <GestureDetector gesture={composed}>
+          <Animated.View
+            style={[
+              {
+                width: SCREEN_W,
+                height: SCREEN_H,
+                justifyContent: "center",
+                alignItems: "center",
+              },
+              animStyle,
+            ]}
+          >
+            <Image
+              source={{ uri }}
+              style={{ width: SCREEN_W, height: SCREEN_H }}
+              resizeMode="contain"
+            />
+          </Animated.View>
+        </GestureDetector>
+      </View>
+    );
+  },
+);
+
 const ImageViewerScreen = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
@@ -66,6 +239,7 @@ const ImageViewerScreen = () => {
   const translateY = useSharedValue(0);
   const opacity = useSharedValue(1);
   const isDismissing = useRef(false);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   const closeViewer = useCallback(() => {
     if (navigation.canGoBack()) navigation.goBack();
@@ -82,6 +256,7 @@ const ImageViewerScreen = () => {
   const panGesture = Gesture.Pan()
     .activeOffsetY(15)
     .failOffsetX([-10, 10])
+    .enabled(!isZoomed)
     .onUpdate((e) => {
       if (isDismissing.current) return;
       const dy = Math.max(0, e.translationY);
@@ -126,6 +301,7 @@ const ImageViewerScreen = () => {
       const clamped = Math.max(0, Math.min(idx, images.length - 1));
       indexRef.current = clamped;
       setCurrentIndex(clamped);
+      setIsZoomed(false);
     },
     [images.length],
   );
@@ -150,20 +326,15 @@ const ImageViewerScreen = () => {
     }
   }, [currentIndex, images.length]);
 
+  const handleZoomChange = useCallback((zoomed: boolean) => {
+    setIsZoomed(zoomed);
+  }, []);
+
   const renderItem = useCallback(
     ({ item }: { item: string }) => (
-      <View
-        style={{ width: SCREEN_W, height: SCREEN_H }}
-        className="items-center justify-center"
-      >
-        <Image
-          source={{ uri: item }}
-          style={{ width: SCREEN_W, height: SCREEN_H }}
-          resizeMode="contain"
-        />
-      </View>
+      <ZoomableImage uri={item} onZoomChange={handleZoomChange} />
     ),
-    [],
+    [handleZoomChange],
   );
 
   const keyExtractor = useCallback((_: string, i: number) => `img-${i}`, []);
@@ -212,6 +383,7 @@ const ImageViewerScreen = () => {
             keyExtractor={keyExtractor}
             horizontal
             pagingEnabled
+            scrollEnabled={!isZoomed}
             showsHorizontalScrollIndicator={false}
             initialScrollIndex={safeStartIndex}
             getItemLayout={getItemLayout}
