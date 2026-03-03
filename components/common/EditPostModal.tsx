@@ -15,10 +15,12 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "../ui/GlassModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
+import MentionSuggestions from "../common/MentionSuggestions";
 import CategoryDrawer from "../Upload/CategoryDrawer";
 import { editPost, getCategoriesCached } from "../../services/nft.service";
 import { toastSuccess, toastError } from "../../libs";
 import { useKeyboard } from "../../hooks/useKeyboard";
+import { useMentions } from "../../hooks/useMentions";
 
 interface EditPostModalProps {
   visible: boolean;
@@ -45,6 +47,8 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
 }) => {
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
+  const titleMentions = useMentions(title, setTitle);
+  const descMentions = useMentions(description, setDescription);
   const [selectedCategories, setSelectedCategories] =
     useState<string[]>(initialCategories);
   const [allCategories, setAllCategories] = useState<string[]>([]);
@@ -208,11 +212,18 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             </Text>
             <TextInput
               value={title}
-              onChangeText={(t) => setTitle(t.slice(0, 140))}
+              onChangeText={(t) => titleMentions.handleChangeText(t.slice(0, 140))}
+              onSelectionChange={titleMentions.handleSelectionChange}
               maxLength={140}
               placeholder="Post title"
               placeholderTextColor="#6B7280"
               className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm mb-1"
+            />
+            <MentionSuggestions
+              visible={titleMentions.showSuggestions}
+              suggestions={titleMentions.suggestions}
+              onSelect={titleMentions.selectMention}
+              loading={titleMentions.loading}
             />
             <Text className="text-theme-neutrals-500 text-[10px] text-right mb-3">
               {title.length}/140
@@ -228,7 +239,8 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             </Text>
             <TextInput
               value={description}
-              onChangeText={(t) => setDescription(t.slice(0, 500))}
+              onChangeText={(t) => descMentions.handleChangeText(t.slice(0, 500))}
+              onSelectionChange={descMentions.handleSelectionChange}
               maxLength={500}
               placeholder="Post description"
               placeholderTextColor="#6B7280"
@@ -236,6 +248,12 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               numberOfLines={4}
               textAlignVertical="top"
               className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm min-h-[80px] mb-1"
+            />
+            <MentionSuggestions
+              visible={descMentions.showSuggestions}
+              suggestions={descMentions.suggestions}
+              onSelect={descMentions.selectMention}
+              loading={descMentions.loading}
             />
             <Text className="text-theme-neutrals-500 text-[10px] text-right mb-3">
               {description.length}/500
