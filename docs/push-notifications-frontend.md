@@ -30,7 +30,7 @@ enum NotificationType {
   FOLLOWING = 'following',
   FOLLOW_REQUEST = 'follow_request',
   FOLLOW_REQUEST_ACCEPTED = 'follow_request_accepted',
-  MENTION = 'mention',           // Defined — NOT YET IMPLEMENTED
+  MENTION = 'mention',           // @mention in posts or comments
 
   // Monetization
   TIP = 'tip',
@@ -106,7 +106,7 @@ interface InAppNotification {
   tokenId?: number;
   tokenTitle?: string;
   tokenThumbnail?: string;
-  postType?: 'video' | 'feed-images' | 'feed-simple';
+  postType?: 'video' | 'feed-images' | 'feed-simple' | 'feed-audio';
 
   // Comment reference
   commentId?: number;
@@ -562,7 +562,41 @@ Preference: `social.newFollowers`
 
 #### `mention` — Someone mentioned you
 
-**Not yet implemented.** The enum exists but no backend code sends this type. Reserved for a future release.
+Triggered when a user is @mentioned in a post description or comment. Deduplication ensures:
+- You won't receive a mention notification if you're the post/comment author (self-mention)
+- If you already received a `comment_reply` notification for the same comment, you won't get a duplicate mention notification
+- Post owners already receiving a `comment` notification are skipped for mention on that comment
+
+```json
+{
+  "title": "You were mentioned",
+  "body": "john mentioned you in a post",
+  "data": {
+    "type": "mention",
+    "category": "social",
+    "tokenId": 456,
+    "deepLink": "/video/456"
+  }
+}
+```
+
+When the mention is in a comment, the body says "john mentioned you in a comment" and includes a `commentId`:
+
+```json
+{
+  "title": "You were mentioned",
+  "body": "john mentioned you in a comment: \"Great collab @jane!\"",
+  "data": {
+    "type": "mention",
+    "category": "social",
+    "tokenId": 456,
+    "commentId": 789,
+    "deepLink": "/video/456?comment=789"
+  }
+}
+```
+
+Preference: `engagement.mentions`
 
 #### 3. Monetization Notifications
 

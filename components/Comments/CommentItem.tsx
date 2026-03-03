@@ -129,26 +129,27 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   // Parse content to bold @usernames
   const parsedContent = useMemo(() => {
     const content = comment.content || "";
-    const parts: { text: string; isMention: boolean }[] = [];
-    const regex = /@(\w+)/g;
+    const parts: { text: string; isMention: boolean; username?: string }[] = [];
+    const regex = /@([\w.]+)/g;
     let lastIndex = 0;
     let match;
 
     while ((match = regex.exec(content)) !== null) {
-      // Text before the match
       if (match.index > lastIndex) {
         parts.push({ text: content.slice(lastIndex, match.index), isMention: false });
       }
-      // The @username
-      parts.push({ text: match[0], isMention: true });
+      parts.push({ text: match[0], isMention: true, username: match[1] });
       lastIndex = regex.lastIndex;
     }
-    // Remaining text
     if (lastIndex < content.length) {
       parts.push({ text: content.slice(lastIndex), isMention: false });
     }
     return parts.length > 0 ? parts : [{ text: content, isMention: false }];
   }, [comment.content]);
+
+  const handleMentionPress = useCallback((username: string) => {
+    showUserProfile(username);
+  }, [showUserProfile]);
 
   const handleUserPress = useCallback(() => {
     if (userId) {
@@ -275,17 +276,28 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               <Text className="text-xs text-theme-neutrals-500 ml-2">{timeAgo}</Text>
             </View>
 
-            {/* Comment content with @mentions bolded */}
+            {/* Comment content with @mentions bolded + clickable */}
             {comment.content ? (
               <Text className="text-sm text-theme-neutrals-100 mt-1">
-                {parsedContent.map((part, idx) => (
-                  <Text
-                    key={idx}
-                    className={part.isMention ? "font-bold text-theme-neutrals-100" : "font-normal text-theme-neutrals-300"}
-                  >
-                    {part.text}
-                  </Text>
-                ))}
+                {parsedContent.map((part, idx) =>
+                  part.isMention ? (
+                    <Text
+                      key={idx}
+                      className="font-bold text-blue-400"
+                      onPress={() => handleMentionPress(part.username!)}
+                      suppressHighlighting
+                    >
+                      {part.text}
+                    </Text>
+                  ) : (
+                    <Text
+                      key={idx}
+                      className="font-normal text-theme-neutrals-300"
+                    >
+                      {part.text}
+                    </Text>
+                  )
+                )}
               </Text>
             ) : null}
 

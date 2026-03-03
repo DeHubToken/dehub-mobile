@@ -33,8 +33,10 @@ import { getCategoriesCached } from "../services/nft.service";
 import { toastError, toastSuccess } from "../libs/toast";
 import { useAuth } from "../context/AuthContext";
 import { useKeyboard } from "../hooks/useKeyboard";
+import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
 import Avatar from "../components/common/Avatar";
+import MentionSuggestions from "../components/common/MentionSuggestions";
 import AccentButtonGradient from "../components/ui/AccentButtonGradient";
 import CategoryDrawer from "../components/Upload/CategoryDrawer";
 import MonetizationPanel from "../components/Upload/MonetizationPanel";
@@ -96,7 +98,9 @@ export default function UploadScreen() {
   );
 
   const [bodyText, setBodyText] = useState("");
+  const bodyMentions = useMentions(bodyText, setBodyText);
   const [description, setDescription] = useState("");
+  const descMentions = useMentions(description, setDescription);
   const [categories, setCategories] = useState<string[]>([]);
   const [allCategories, setAllCategories] = useState<string[]>([]);
   const [categoryOpen, setCategoryOpen] = useState(false);
@@ -287,12 +291,12 @@ export default function UploadScreen() {
   }, [nav, formHasContent]);
 
   const handleBodyChange = useCallback((text: string) => {
-    if (text.length <= TITLE_MAX) setBodyText(text);
-  }, []);
+    if (text.length <= TITLE_MAX) bodyMentions.handleChangeText(text);
+  }, [bodyMentions]);
 
   const handleDescriptionChange = useCallback((text: string) => {
-    if (text.length <= DESCRIPTION_MAX) setDescription(text);
-  }, []);
+    if (text.length <= DESCRIPTION_MAX) descMentions.handleChangeText(text);
+  }, [descMentions]);
 
   const {
     validate,
@@ -878,6 +882,7 @@ export default function UploadScreen() {
               ref={titleRef}
               value={bodyText}
               onChangeText={handleBodyChange}
+              onSelectionChange={bodyMentions.handleSelectionChange}
               placeholder={isQuoteMode ? "Add a comment…" : "What's happening?"}
               placeholderTextColor="#6F7174"
               maxLength={TITLE_MAX}
@@ -889,6 +894,15 @@ export default function UploadScreen() {
               autoFocus
               scrollEnabled={false}
             />
+
+            {/* Body mention suggestions */}
+            <MentionSuggestions
+              visible={bodyMentions.showSuggestions}
+              suggestions={bodyMentions.suggestions}
+              onSelect={bodyMentions.selectMention}
+              loading={bodyMentions.loading}
+            />
+
             {/* Character counter */}
             <Text
               className={`text-xs mt-1 self-end ${
@@ -1122,6 +1136,7 @@ export default function UploadScreen() {
                         ref={descriptionRef}
                         value={description}
                         onChangeText={handleDescriptionChange}
+                        onSelectionChange={descMentions.handleSelectionChange}
                         placeholder="Add a description…"
                         placeholderTextColor="#6F7174"
                         multiline
@@ -1141,6 +1156,12 @@ export default function UploadScreen() {
                       >
                         {description.length}/{DESCRIPTION_MAX}
                       </Text>
+                      <MentionSuggestions
+                        visible={descMentions.showSuggestions}
+                        suggestions={descMentions.suggestions}
+                        onSelect={descMentions.selectMention}
+                        loading={descMentions.loading}
+                      />
                     </View>
                   )
                 )}

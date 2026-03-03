@@ -20,6 +20,7 @@ import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "./VoiceNoteRecorder
 import type { VoiceNoteResult } from "./VoiceNoteRecorder";
 import GifPicker from "../DM/GifPicker";
 import Avatar from "../common/Avatar";
+import MentionSuggestions from "../common/MentionSuggestions";
 import { useAuth, useAuthActions } from "../../context/AuthContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import {
@@ -37,6 +38,7 @@ import { getAvatarUrl, toastError } from "../../libs";
 import { openCroppedImagePicker, getFileName, guessMime } from "../../libs/assets.util";
 import { theme } from "../../theme";
 import useKeyboard from "../../hooks/useKeyboard";
+import { useMentions } from "../../hooks/useMentions";
 
 // Extended comment type for flat list with reply info
 interface FlatComment extends Comment {
@@ -75,6 +77,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
   // Input state
   const [inputText, setInputText] = useState("");
+  const mentions = useMentions(inputText, setInputText);
   const [replyingTo, setReplyingTo] = useState<Comment | null>(null);
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
   const [posting, setPosting] = useState(false);
@@ -260,7 +263,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     setReplyingTo(null);
     setEditingComment(null);
     setInputText("");
-  }, []);
+    mentions.reset();
+  }, [mentions]);
 
 
   // Pick image → open cropper → set preview
@@ -438,6 +442,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           );
           setEditingComment(null);
           setInputText("");
+          mentions.reset();
           Keyboard.dismiss();
 
           // Save edit to server
@@ -484,6 +489,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           const replyToId = replyingTo?.id;
           setReplyingTo(null);
           setInputText("");
+          mentions.reset();
           Keyboard.dismiss();
 
           // Post to server
@@ -688,6 +694,14 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           </View>
         )}
 
+        {/* Mention suggestions above the input */}
+        <MentionSuggestions
+          visible={mentions.showSuggestions}
+          suggestions={mentions.suggestions}
+          onSelect={mentions.selectMention}
+          loading={mentions.loading}
+        />
+
         {/* Voice recorder overlay — replaces entire input when recording */}
         {recorder.isRecording ? (
           <VoiceNoteRecordingOverlay recorder={recorder} />
@@ -709,7 +723,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             <TextInput
               ref={inputRef}
               value={inputText}
-              onChangeText={setInputText}
+              onChangeText={mentions.handleChangeText}
+              onSelectionChange={mentions.handleSelectionChange}
               placeholder={editingComment ? "Edit your comment..." : replyingTo ? "Write a reply..." : "Add a comment..."}
               placeholderTextColor={theme.colors.mutedForeground}
               className="flex-1 mx-3 text-sm text-theme-neutrals-100"
