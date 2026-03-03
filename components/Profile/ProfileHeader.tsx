@@ -174,9 +174,8 @@ const ProfileHeader = () => {
     (uri?: string) => {
       if (!uri) return;
       (navigation as any).navigate(ScreenNames.ImageViewer, {
-        images: [{ uri }],
-        index: 0,
-        isModal: true,
+        images: [uri],
+        initialIndex: 0,
       });
     },
     [navigation]

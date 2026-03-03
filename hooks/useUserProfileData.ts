@@ -423,9 +423,8 @@ export const useUserProfileData = (
       if (!imgUrl || imgUrl.startsWith("default")) return;
       requestAnimationFrame(() => {
         (navigation as any).navigate(ScreenNames.ImageViewer, {
-          images: [{ uri: imgUrl }],
-          index: 0,
-          isModal: true,
+          images: [imgUrl],
+          initialIndex: 0,
         });
       });
     },
