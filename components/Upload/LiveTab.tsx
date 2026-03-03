@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, ScrollView, Image, Platform } from "react
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import UploadHeader from "./UploadHeader";
 import BasicInfoForm from "./BasicInfoForm";
-import UploadCategoriesSelector from "./UploadCategoriesSelector";
+import CategoryDrawer from "./CategoryDrawer";
 import MoreOptionsSection from "./MoreOptionsSection";
 import GlassModal from "../ui/GlassModal"; // still used elsewhere (clipboard etc.)
 import { useAuth } from "../../context/AuthContext";
@@ -55,7 +55,6 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState<string[]>([]);
   const [allCategories, setAllCategories] = useState<string[]>([]);
-  const [categoryQuery, setCategoryQuery] = useState("");
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
 
@@ -267,8 +266,6 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
       if (categories.find((c) => c.toLowerCase() === n.toLowerCase())) return;
       if (categories.length >= CATEGORIES_MAX) return;
       setCategories((prev) => [...prev, n]);
-      setCategoryQuery("");
-      setCategoryOpen(false);
     },
     [categories]
   );
@@ -559,17 +556,48 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
           onChangeDescription={setDescription}
         />
 
-        <UploadCategoriesSelector
+        <View className="mt-4">
+          {categories.length > 0 && (
+            <View className="flex-row flex-wrap gap-2 mb-2">
+              {categories.map((c) => (
+                <View
+                  key={c}
+                  className="flex-row items-center px-2.5 py-1 rounded-full bg-theme-accent/15 border border-theme-accent/30"
+                >
+                  <Text className="text-theme-accent text-xs font-medium">
+                    {c.charAt(0).toUpperCase() + c.slice(1)}
+                  </Text>
+                  <TouchableOpacity onPress={() => removeCategory(c)} className="ml-1">
+                    <Ionicons name="close" size={12} color="#256DFA" />
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </View>
+          )}
+          {categories.length < CATEGORIES_MAX && (
+            <TouchableOpacity
+              onPress={() => setCategoryOpen(true)}
+              activeOpacity={0.7}
+              className="flex-row items-center"
+            >
+              <Ionicons name="pricetag-outline" size={18} color="#6F7174" />
+              <Text className="text-theme-neutrals-400 text-sm ml-1.5">
+                Add categories
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+
+        <CategoryDrawer
+          visible={categoryOpen}
+          onClose={() => setCategoryOpen(false)}
           categories={categories}
           allCategories={allCategories}
-          categoryQuery={categoryQuery}
-          setCategoryQuery={setCategoryQuery}
-          open={categoryOpen}
-          setOpen={setCategoryOpen}
           min={CATEGORIES_MIN}
           max={CATEGORIES_MAX}
           onAdd={addCategory}
           onRemove={removeCategory}
+          type="live"
         />
 
         {/* Thumbnail Picker */}

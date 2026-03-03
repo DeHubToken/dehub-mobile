@@ -44,6 +44,8 @@ import LiveViewerHeader from "../LiveViewer/LiveViewerHeader";
 import LiveViewerChat from "../LiveViewer/LiveViewerChat";
 import LiveViewerReactionsBar from "../LiveViewer/LiveViewerReactionsBar";
 import LiveViewerStatusOverlay from "../LiveViewer/LiveViewerStatusOverlay";
+import LiveEventBanner from "../LiveViewer/LiveEventBanner";
+import type { EventBannerData } from "../LiveViewer/LiveEventBanner";
 
 type LiveStreamPlayerProps = {
   // Minimal inputs; additional params may be forwarded from route
@@ -269,6 +271,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // Dynamic chat enabled (settings can change mid-stream)
   const [liveChatEnabled, setLiveChatEnabled] = useState(true);
 
+  // TikTok-style join / gift banners (single-line, replaced on each new event)
+  const [joinEvent, setJoinEvent] = useState<EventBannerData | null>(null);
+  const [giftEvent, setGiftEvent] = useState<(EventBannerData & { amount: number; message?: string }) | null>(null);
+
   // Sync from initial entity
   useEffect(() => {
     const chatSetting = (streamEntity as any)?.settings?.chat?.enabled ??
@@ -480,6 +486,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
   // Rejoin on reconnect is defined later after effective status is computed
 
+  // console.log({activities})
   // Seed initial activities from stream entity (render first)
   const seededInitialActivitiesRef = useRef<string | null>(null);
   useEffect(() => {
@@ -673,6 +680,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     });
     bind(LivestreamEvents.JoinStream, (data: any) => {
       const userRef = data?.user || data?.account || undefined;
+      const joinName = userRef?.displayName || userRef?.username || data?.username || '';
+      const joinAvatar = userRef?.avatarImageUrl;
+      setJoinEvent({ id: `${Date.now()}-${joinName}`, displayName: joinName, avatarUrl: joinAvatar });
       addActivity({
         status: StreamActivityType.JOINED,
         address: userRef?.address || data?.address,
@@ -791,6 +801,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         user: tipUserRef,
         meta: { username, amount: amt },
       });
+      // Update gift banner
+      setGiftEvent({ id: `${Date.now()}-${sender}`, displayName: username || sender, avatarUrl: tipUserRef?.avatarImageUrl, amount: amt, message: payload?.gift?.meta?.message });
       // Enqueue tip visual effect for other users' gifts
       enqueueFromGift({
         amount: amt,
@@ -801,8 +813,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     });
     // Reaction events from other viewers or self-echo
     bind(LivestreamEvents.StreamReaction as any, (data: any) => {
-      const type = (data?.reactionType || data?.type) as ReactionType;
-      const rUsername = data?.user?.username || data?.user?.displayName;
+      // Backend sends { reactionType, user: <userRef> }
+      const type = data?.reactionType as ReactionType;
+      const rUsername = data?.user?.displayName || data?.user?.username;
       if (type) addReaction(type, rUsername);
     });
     // Settings updates from streamer (e.g. chat toggled)
@@ -1053,9 +1066,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // Send a reaction via socket
   const handleSendReaction = useCallback((type: ReactionType) => {
     if (!streamId || !isLiveEffective || !isSignedIn) return;
-    // Optimistic local bubble
     addReaction(type, (user as any)?.username);
-    socketEmitAuthed(LivestreamEvents.StreamReaction as any, { streamId, type });
+    socketEmitAuthed(LivestreamEvents.StreamReaction as any, { streamId, reactionType: type });
   }, [streamId, isLiveEffective, isSignedIn, addReaction, socketEmitAuthed, user]);
 
   // First-load redirect: if not ended and current user is owner, go to LiveProducer
@@ -1245,10 +1257,13 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
             {/* Bottom section: chat + reactions + input */}
             <View pointerEvents="box-none" style={{ paddingBottom: Math.max(insets.bottom, 8) }}>
+              {/* TikTok-style join/gift banners */}
+              <LiveEventBanner joinEvent={joinEvent} giftEvent={giftEvent} />
+
               {/* Chat overlay */}
               <LiveViewerChat
                 activities={activities}
-                canSend={!!canChat && !!isLiveEffective}
+                canSend={!!canChat}
                 isLive={isLiveEffective}
                 isEnded={isEndedEffective}
                 isScheduled={isScheduledEffective}

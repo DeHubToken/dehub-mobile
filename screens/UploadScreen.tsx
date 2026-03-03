@@ -36,7 +36,7 @@ import { useKeyboard } from "../hooks/useKeyboard";
 import { getAvatarUrl } from "../libs/misc";
 import Avatar from "../components/common/Avatar";
 import AccentButtonGradient from "../components/ui/AccentButtonGradient";
-import UploadCategoriesSelector from "../components/Upload/UploadCategoriesSelector";
+import CategoryDrawer from "../components/Upload/CategoryDrawer";
 import MonetizationPanel from "../components/Upload/MonetizationPanel";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
 import LiveSettingsPanel from "../components/Upload/LiveSettingsPanel";
@@ -99,13 +99,11 @@ export default function UploadScreen() {
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState<string[]>([]);
   const [allCategories, setAllCategories] = useState<string[]>([]);
-  const [categoryQuery, setCategoryQuery] = useState("");
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [pickedImages, setPickedImages] = useState<PickedAsset[]>([]);
   const [pickedVideo, setPickedVideo] = useState<PickedAsset | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [showDescription, setShowDescription] = useState(false);
-  const [showCategory, setShowCategory] = useState(false);
   const [showMonetization, setShowMonetization] = useState(false);
   const [monetization, setMonetization] = useState<MonetizationState>({
     ppvEnabled: false,
@@ -177,13 +175,15 @@ export default function UploadScreen() {
 
   // Show description/category area when user has typed or picked media
   // Once opened, they stay even if title is cleared (to preserve filled data)
-  const showExtras = isLiveMode || hasContent || showDescription || showCategory
+  const showExtras = isLiveMode || hasContent || showDescription
     || description.length > 0 || categories.length > 0;
 
   // image button disabled when: video selected OR 4 images already
   const imageDisabled = mediaMode === "video" || pickedImages.length >= IMAGES_MAX;
   // video button disabled when: any media is selected
   const videoDisabled = hasMedia;
+  // live button disabled when media is already selected
+  const liveDisabled = hasMedia;
 
   const player = useVideoPlayer(pickedVideo?.uri ?? null, (p) => {
     p.loop = true;
@@ -220,7 +220,6 @@ export default function UploadScreen() {
     setDescription(incomingDraft.description);
     setCategories(incomingDraft.categories);
     if (incomingDraft.description.length > 0) setShowDescription(true);
-    if (incomingDraft.categories.length > 0) setShowCategory(true);
     if (incomingDraft.thumbnailUri) setThumbnailUri(incomingDraft.thumbnailUri);
     if (incomingDraft.coverUri) setCoverUri(incomingDraft.coverUri);
     setMonetization(incomingDraft.monetization);
@@ -256,8 +255,6 @@ export default function UploadScreen() {
       if (categories.find((c) => c.toLowerCase() === n.toLowerCase())) return;
       if (categories.length >= CATEGORIES_MAX) return;
       setCategories((prev) => [...prev, n]);
-      setCategoryQuery("");
-      setCategoryOpen(false);
     },
     [categories],
   );
@@ -784,17 +781,9 @@ export default function UploadScreen() {
     setTimeout(() => descriptionRef.current?.focus(), 100);
   }, []);
 
-  const handleToggleCategory = useCallback(() => {
+  const openCategoryDrawer = useCallback(() => {
     setCategoryOpen(true);
-    setShowCategory(true);
   }, []);
-
-  const dismissCategory = useCallback(() => {
-    if (categoryOpen) {
-      setCategoryOpen(false);
-      setShowCategory(false);
-    }
-  }, [categoryOpen]);
 
   const toggleMonetization = useCallback(() => {
     setShowMonetization((prev) => !prev);
@@ -866,9 +855,8 @@ export default function UploadScreen() {
         keyboardDismissMode="interactive"
         contentContainerStyle={{ flexGrow: 1, paddingBottom: 16 }}
         showsVerticalScrollIndicator={false}
-        onScrollBeginDrag={dismissCategory}
       >
-        <Pressable onPress={dismissCategory} className="flex-1">
+        <Pressable className="flex-1">
         <View className="flex-row px-4 pt-2">
           {/* Avatar column */}
           <View className="pt-1 mr-3">
@@ -1167,7 +1155,7 @@ export default function UploadScreen() {
                           key={c}
                           className="flex-row items-center px-2 py-1 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700"
                         >
-                          <Text className="text-white text-xs">{c}</Text>
+                          <Text className="text-white text-xs">{c.charAt(0).toUpperCase() + c.slice(1)}</Text>
                           <TouchableOpacity
                             onPress={() => removeCategory(c)}
                             className="ml-1"
@@ -1179,46 +1167,19 @@ export default function UploadScreen() {
                     </View>
                   )}
 
-                  {/* Show picker when open, otherwise show "Add categories" text */}
-                  {showCategory && categoryOpen ? (
-                    <UploadCategoriesSelector
-                      categories={categories}
-                      allCategories={allCategories}
-                      categoryQuery={categoryQuery}
-                      setCategoryQuery={setCategoryQuery}
-                      open={categoryOpen}
-                      setOpen={(v) => {
-                        setCategoryOpen(v);
-                        if (!v) setShowCategory(false);
-                      }}
-                      min={CATEGORIES_MIN}
-                      max={CATEGORIES_MAX}
-                      onAdd={(name) => {
-                        addCategory(name);
-                        // auto-close picker after adding
-                        setCategoryOpen(false);
-                        setShowCategory(false);
-                      }}
-                      onRemove={removeCategory}
-                      type="feed"
-                      hidePills
-                      hideHeader
-                      placeholder="Add category"
-                    />
-                  ) : (
-                    categories.length < CATEGORIES_MAX && (
-                      <TouchableOpacity
-                        onPress={handleToggleCategory}
-                        activeOpacity={0.7}
-                        className="flex-row items-center"
-                      >
-                        <Ionicons name="pricetag-outline" size={18} color="#6F7174" />
-                        <Text className="text-theme-neutrals-400 text-sm ml-1.5">
-                          Add categories
-                        </Text>
-                      </TouchableOpacity>
-                    )
+                  {categories.length < CATEGORIES_MAX && (
+                    <TouchableOpacity
+                      onPress={openCategoryDrawer}
+                      activeOpacity={0.7}
+                      className="flex-row items-center"
+                    >
+                      <Ionicons name="pricetag-outline" size={18} color="#6F7174" />
+                      <Text className="text-theme-neutrals-400 text-sm ml-1.5">
+                        Add categories
+                      </Text>
+                    </TouchableOpacity>
                   )}
+
                 </View>
               </View>
             )}
@@ -1294,9 +1255,11 @@ export default function UploadScreen() {
         {!isQuoteMode && (
           <TouchableOpacity
             onPress={handleToggleLiveMode}
+            disabled={liveDisabled && !isLiveMode}
             activeOpacity={0.7}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             className={isLiveMode ? "" : "mr-4"}
+            style={{ opacity: liveDisabled && !isLiveMode ? 0.3 : 1 }}
           >
             <Ionicons
               name="radio-outline"
@@ -1372,6 +1335,18 @@ export default function UploadScreen() {
           </View>
         )}
       </View>
+
+      <CategoryDrawer
+        visible={categoryOpen}
+        onClose={() => setCategoryOpen(false)}
+        categories={categories}
+        allCategories={allCategories}
+        min={CATEGORIES_MIN}
+        max={CATEGORIES_MAX}
+        onAdd={addCategory}
+        onRemove={removeCategory}
+        type="feed"
+      />
 
       <ConfirmUploadModal
         visible={showConfirm}

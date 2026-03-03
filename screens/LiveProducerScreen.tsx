@@ -18,6 +18,8 @@ import WebRTCPublisher from "../components/LiveProducer/WebRTCPublisher";
 import ExternalStreamingOverlay from "../components/LiveProducer/ExternalStreamingOverlay";
 import TipAnimationsOverlay from "../components/LiveProducer/TipAnimationsOverlay";
 import ReactionOverlay from "../components/LiveProducer/ReactionOverlay";
+import LiveEventBanner from "../components/LiveViewer/LiveEventBanner";
+import type { EventBannerData } from "../components/LiveViewer/LiveEventBanner";
 import ProducerHeader from "../components/LiveProducer/ProducerHeader";
 import ProducerFloatingChat from "../components/LiveProducer/ProducerFloatingChat";
 import ProducerBottomBar from "../components/LiveProducer/ProducerBottomBar";
@@ -177,6 +179,10 @@ const LiveProducerScreen: React.FC = () => {
     recentOptimisticRef.current = recentOptimisticRef.current.filter((it) => now - it.ts < 15000);
     return recentOptimisticRef.current.some((it) => it.key === key);
   }, []);
+
+  // TikTok-style join / gift banners
+  const [joinEvent, setJoinEvent] = useState<EventBannerData | null>(null);
+  const [giftEvent, setGiftEvent] = useState<(EventBannerData & { amount: number; message?: string }) | null>(null);
 
   const addChatActivity = useCallback((a: any) => {
     // If this is an optimistic local message, remember it for echo dedupe
@@ -364,19 +370,22 @@ const LiveProducerScreen: React.FC = () => {
       const gift = payload?.gift;
       // Prefer nested user/account ref for rich profile data
       const tipUserRef = gift?.user || gift?.account || payload?.user || undefined;
+      const tipUsername = tipUserRef?.displayName || tipUserRef?.username || gift?.meta?.username || gift?.meta?.displayName;
       // Enqueue visual effect per tier
       enqueueFromGift({
         amount: gift?.meta?.amount,
         message: gift?.meta?.message,
-        username: gift?.meta?.username || gift?.meta?.displayName,
+        username: tipUsername,
         selectedTier: gift?.meta?.selectedTier,
       } as any);
+      // Update gift banner
+      setGiftEvent({ id: `${Date.now()}-${tipUserRef?.address || tipUsername}`, displayName: tipUsername || '', avatarUrl: tipUserRef?.avatarImageUrl, amount: amt, message: gift?.meta?.message });
       addChatActivity({
         status: StreamActivityType.TIP,
         address: tipUserRef?.address || gift?.meta?.address,
         user: tipUserRef,
         meta: {
-          username: tipUserRef?.displayName || tipUserRef?.username || gift?.meta?.username || gift?.meta?.displayName,
+          username: tipUsername,
           amount: Number(gift?.meta?.amount) || 0,
         },
       });
@@ -429,6 +438,9 @@ const LiveProducerScreen: React.FC = () => {
     });
     make(LivestreamEvents.JoinStream, (data: any) => {
       const userRef = data?.user || data?.account || undefined;
+      const joinName = userRef?.displayName || userRef?.username || data?.username || '';
+      const joinAvatar = userRef?.avatarImageUrl;
+      setJoinEvent({ id: `${Date.now()}-${joinName}`, displayName: joinName, avatarUrl: joinAvatar });
       addChatActivity({
         status: StreamActivityType.JOINED,
         address: userRef?.address || data?.address,
@@ -453,7 +465,8 @@ const LiveProducerScreen: React.FC = () => {
     });
     // Reaction events from viewers
     make(LivestreamEvents.StreamReaction, (data: any) => {
-      const type = (data?.reactionType || data?.type) as import('../components/LiveProducer/ReactionOverlay').ReactionType;
+      // Backend sends { reactionType, user: <userRef> }
+      const type = data?.reactionType as import('../components/LiveProducer/ReactionOverlay').ReactionType;
       const username = data?.user?.displayName || data?.user?.username;
       if (type) addReaction(type, username);
     });
@@ -1129,6 +1142,9 @@ const LiveProducerScreen: React.FC = () => {
                 pointerEvents="box-none"
                 style={{ paddingBottom: Math.max(insets.bottom, 8) }}
               >
+                {/* TikTok-style join/gift banners */}
+                <LiveEventBanner joinEvent={joinEvent} giftEvent={giftEvent} />
+
                 {/* Floating chat messages + input */}
                 <ProducerFloatingChat
                   activities={chatActivities}

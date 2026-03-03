@@ -70,7 +70,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
                 className={`text-sm font-medium text-theme-neutrals-400`}
                 style={{ includeFontPadding: false, lineHeight: 18 }}
               >
-                {category}
+                {category.charAt(0).toUpperCase() + category.slice(1)}
               </Text>
             </TouchableOpacity>
           );
