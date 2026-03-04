@@ -188,11 +188,6 @@ export const useVoiceRecorder = ({
 
   /* ── start ─────────────────────────────────────────────────── */
   const startRecording = useCallback(async () => {
-    // Show the recording overlay instantly — don't wait for async setup
-    setIsRecording(true);
-    setElapsedMs(0);
-    setMeterBars([]);
-
     try {
       if (recordingRef.current) {
         try {
@@ -202,17 +197,18 @@ export const useVoiceRecorder = ({
         } catch {}
         recordingRef.current = null;
       }
-      // Use centralized permission gate with branded rationale + settings redirect
+
+      // Gate on permission BEFORE showing recording UI or starting the timer
       let micGranted = false;
       await runWithPermissions(["microphone"], async () => {
         micGranted = true;
       });
       if (!micGranted) {
         console.warn("[VoiceRecorder] mic permission denied");
-        setIsRecording(false);
         onCancel();
         return;
       }
+
       await Audio.setAudioModeAsync({
         allowsRecordingIOS: true,
         playsInSilentModeIOS: true,
@@ -226,6 +222,11 @@ export const useVoiceRecorder = ({
       });
       await recording.startAsync();
       recordingRef.current = recording;
+
+      // Only show recording UI + start timer AFTER recording is actually running
+      setIsRecording(true);
+      setElapsedMs(0);
+      setMeterBars([]);
     } catch (e) {
       console.error("[VoiceRecorder] start error", e);
       setIsRecording(false);

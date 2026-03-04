@@ -92,12 +92,15 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
       >
         {/* Audio player for audio posts */}
         {isAudioPost && (
-          <AudioPostPlayer
-            audioUrl={getAudioUrl(quotedPost.audioUrl)}
-            duration={quotedPost.audioDuration || 0}
-            tokenId={quotedPost.tokenId || quotedPost.id || quotedTokenId || 0}
-            listens={quotedPost.listens}
-          />
+          <View className="px-3 pt-3">
+            <AudioPostPlayer
+              audioUrl={getAudioUrl(quotedPost.audioUrl)}
+              duration={quotedPost.audioDuration || 0}
+              tokenId={quotedPost.tokenId || quotedPost.id || quotedTokenId || 0}
+              listens={quotedPost.listens}
+              compact
+            />
+          </View>
         )}
 
         {/* Thumbnail */}
