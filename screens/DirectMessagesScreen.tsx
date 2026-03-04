@@ -242,18 +242,32 @@ const DirectMessagesScreen: React.FC = () => {
   );
 
 
+  const handleOpenLiveChat = useCallback(() => {
+    navigation.navigate(ScreenNames.LiveChat as any);
+  }, [navigation]);
+
   const RightHeader = useMemo(
     () => (
-      <TouchableOpacity
-        className="w-10 h-10 items-center justify-center active:opacity-70"
-        onPress={openMenu}
-        accessibilityRole="button"
-        accessibilityLabel="Open settings menu"
-      >
-        <Ionicons name="settings-outline" size={22} color="#F9FBFF" />
-      </TouchableOpacity>
+      <View className="flex-row items-center">
+        <TouchableOpacity
+          className="w-10 h-10 items-center justify-center active:opacity-70"
+          onPress={handleOpenLiveChat}
+          accessibilityRole="button"
+          accessibilityLabel="Open global chat"
+        >
+          <Ionicons name="chatbubbles-outline" size={21} color="#F9FBFF" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          className="w-10 h-10 items-center justify-center active:opacity-70"
+          onPress={openMenu}
+          accessibilityRole="button"
+          accessibilityLabel="Open settings menu"
+        >
+          <Ionicons name="settings-outline" size={22} color="#F9FBFF" />
+        </TouchableOpacity>
+      </View>
     ),
-    [openMenu],
+    [openMenu, handleOpenLiveChat],
   );
 
   const renderItem = useCallback(

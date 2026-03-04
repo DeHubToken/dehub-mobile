@@ -36,6 +36,7 @@ export enum ScreenNames {
   PrivacySettings = 'PrivacySettings',
   Drafts = 'Drafts',
   PostResolver = 'PostResolver',
+  LiveChat = 'LiveChat',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',
