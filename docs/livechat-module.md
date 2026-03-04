@@ -1,4 +1,4 @@
-# LiveChat Module — Global Chat System
+# LiveChat Module — Global Chat System V1.13.0
 
 ## Overview
 
