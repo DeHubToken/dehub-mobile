@@ -1,0 +1,460 @@
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+  TouchableOpacity,
+  Alert,
+  ListRenderItemInfo,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import ScreenHeader from "../components/ScreenHeader";
+import LiveChatMessage from "../components/LiveChat/LiveChatMessage";
+import LiveChatInput from "../components/LiveChat/LiveChatInput";
+import { useKeyboard } from "../hooks/useKeyboard";
+import GifPicker from "../components/DM/GifPicker";
+import { useLiveChat } from "../hooks/useLiveChat";
+import { useAuth } from "../context/AuthContext";
+import { useUserProfileSheet } from "../context/UserProfileSheetContext";
+import type { LiveChatMessageData, LiveChatUser, SendMessagePayload } from "../services/livechat.service";
+
+/** Returns a readable date label for message grouping */
+const getDateLabel = (iso: string): string => {
+  const d = new Date(iso);
+  const now = new Date();
+  const isToday = d.toDateString() === now.toDateString();
+  const yesterday = new Date(now);
+  yesterday.setDate(yesterday.getDate() - 1);
+  const isYesterday = d.toDateString() === yesterday.toDateString();
+  if (isToday) return "Today";
+  if (isYesterday) return "Yesterday";
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+};
+
+/** Insert date separators between messages from different days */
+type ListItem =
+  | { type: "message"; data: LiveChatMessageData }
+  | { type: "date"; label: string; key: string };
+
+const buildListItems = (messages: LiveChatMessageData[]): ListItem[] => {
+  const items: ListItem[] = [];
+  let lastDate = "";
+  for (const msg of messages) {
+    const dateLabel = getDateLabel(msg.createdAt);
+    if (dateLabel !== lastDate) {
+      items.push({ type: "date", label: dateLabel, key: `date-${dateLabel}` });
+      lastDate = dateLabel;
+    }
+    items.push({ type: "message", data: msg });
+  }
+  return items;
+};
+
+const LiveChatScreen: React.FC = () => {
+  const { user } = useAuth();
+  const { showUserProfile } = useUserProfileSheet();
+  const insets = useSafeAreaInsets();
+  const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
+
+  const inputLift = kbVisible ? kbHeight : 0;
+  const listBottomPadding = 88 + inputLift + (insets.bottom || 0);
+
+  const {
+    connected,
+    joining,
+    messages,
+    room,
+    isBanned,
+    isModerator,
+    canSend,
+    typingUsers,
+    onlineCount,
+    loadingMore,
+    hasMore,
+    sendMessage,
+    deleteMessage,
+    addReaction,
+    removeReaction,
+    setTyping,
+    loadMoreMessages,
+    reconnect,
+  } = useLiveChat();
+
+  const [replyingTo, setReplyingTo] = useState<LiveChatMessageData | null>(null);
+  const [showReactionPicker, setShowReactionPicker] = useState<string | null>(null);
+  const [showGifPicker, setShowGifPicker] = useState(false);
+  const flatListRef = useRef<FlatList>(null);
+  const isAtBottomRef = useRef(true);
+  const prevMessageCountRef = useRef(0);
+  const messagesRef = useRef<LiveChatMessageData[]>([]);
+  messagesRef.current = messages;
+  const contentHeightRef = useRef(0);
+  const layoutHeightRef = useRef(0);
+
+  const myAddress = useMemo(
+    () => (user?.walletAddress || user?.address || "").toLowerCase(),
+    [user]
+  );
+
+  const listItems = useMemo(() => buildListItems(messages), [messages]);
+
+  const scrollToBottom = useCallback((animated = true) => {
+    const maxOffset = contentHeightRef.current - layoutHeightRef.current;
+    if (maxOffset > 0) {
+      flatListRef.current?.scrollToOffset({ offset: maxOffset, animated });
+    }
+  }, []);
+
+  // Auto-scroll to bottom when new messages arrive (only if user is at bottom)
+  useEffect(() => {
+    if (messages.length > prevMessageCountRef.current && isAtBottomRef.current) {
+      setTimeout(() => scrollToBottom(true), 150);
+    }
+    prevMessageCountRef.current = messages.length;
+  }, [messages.length, scrollToBottom]);
+
+  const handleContentSizeChange = useCallback((_w: number, h: number) => {
+    contentHeightRef.current = h;
+    if (isAtBottomRef.current) {
+      setTimeout(() => scrollToBottom(false), 30);
+    }
+  }, [scrollToBottom]);
+
+  const handleLayout = useCallback((e: { nativeEvent: { layout: { height: number } } }) => {
+    layoutHeightRef.current = e.nativeEvent.layout.height;
+  }, []);
+
+  const handleScroll = useCallback(
+    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
+      const distanceFromBottom = contentSize.height - layoutMeasurement.height - contentOffset.y;
+      isAtBottomRef.current = distanceFromBottom < 120;
+
+      // Load more when scrolled near top
+      if (contentOffset.y < 100 && hasMore && !loadingMore) {
+        loadMoreMessages();
+      }
+    },
+    [hasMore, loadingMore, loadMoreMessages]
+  );
+
+  const handleSend = useCallback(
+    (content: string, replyTo?: string) => {
+      const payload: SendMessagePayload = { content };
+      if (replyTo) payload.replyTo = replyTo;
+      sendMessage(payload);
+      isAtBottomRef.current = true;
+      setTimeout(() => scrollToBottom(true), 300);
+    },
+    [sendMessage, scrollToBottom]
+  );
+
+  const handleGifPicked = useCallback(
+    (url: string) => {
+      setShowGifPicker(false);
+      const payload: SendMessagePayload = {
+        messageType: "gif",
+        gif: {
+          provider: "tenor",
+          gifId: url,
+          url,
+          previewUrl: url,
+          width: 240,
+          height: 180,
+        },
+      };
+      if (replyingTo?._id) payload.replyTo = replyingTo._id;
+      sendMessage(payload);
+      setReplyingTo(null);
+      setTimeout(() => flatListRef.current?.scrollToEnd({ animated: true }), 100);
+    },
+    [sendMessage, replyingTo]
+  );
+
+  const handleReply = useCallback((msg: LiveChatMessageData) => {
+    setReplyingTo(msg);
+  }, []);
+
+  const handleCancelReply = useCallback(() => {
+    setReplyingTo(null);
+  }, []);
+
+  const handleReact = useCallback(
+    (msg: LiveChatMessageData) => {
+      setShowReactionPicker((prev) => (prev === msg._id ? null : msg._id));
+    },
+    []
+  );
+
+  const handleSelectReaction = useCallback(
+    (messageId: string, emoji: string) => {
+      const msg = messagesRef.current.find((m) => m._id === messageId);
+      const alreadyReacted = msg?.reactions?.[emoji]?.includes(myAddress);
+      if (alreadyReacted) {
+        removeReaction(messageId, emoji);
+      } else {
+        addReaction(messageId, emoji);
+      }
+      setShowReactionPicker(null);
+    },
+    [myAddress, addReaction, removeReaction]
+  );
+
+  const handleDelete = useCallback(
+    (msg: LiveChatMessageData) => {
+      Alert.alert("Delete Message", "Are you sure you want to delete this message?", [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: () => deleteMessage(msg._id),
+        },
+      ]);
+    },
+    [deleteMessage]
+  );
+
+  const handleAvatarPress = useCallback(
+    (chatUser: LiveChatUser) => {
+      if (chatUser.address) {
+        showUserProfile(chatUser.address);
+      }
+    },
+    [showUserProfile]
+  );
+
+  const handleLongPress = useCallback(
+    (msg: LiveChatMessageData) => {
+      setShowReactionPicker((prev) => (prev === msg._id ? null : msg._id));
+    },
+    []
+  );
+
+  const renderItem = useCallback(
+    ({ item }: ListRenderItemInfo<ListItem>) => {
+      if (item.type === "date") {
+        return (
+          <View className="items-center py-3">
+            <View className="bg-white/5 rounded-full px-3 py-1">
+              <Text className="text-white/30 text-[11px] font-medium">{item.label}</Text>
+            </View>
+          </View>
+        );
+      }
+
+      const msg = item.data;
+      return (
+        <LiveChatMessage
+          message={msg}
+          myAddress={myAddress}
+          isModerator={isModerator}
+          showReactionPicker={showReactionPicker === msg._id}
+          onReply={handleReply}
+          onReact={handleReact}
+          onSelectReaction={handleSelectReaction}
+          onDelete={handleDelete}
+          onAvatarPress={handleAvatarPress}
+          onLongPress={handleLongPress}
+        />
+      );
+    },
+    [
+      myAddress,
+      isModerator,
+      handleReply,
+      handleReact,
+      handleSelectReaction,
+      handleDelete,
+      handleAvatarPress,
+      handleLongPress,
+      showReactionPicker,
+    ]
+  );
+
+  const keyExtractor = useCallback(
+    (item: ListItem) => (item.type === "date" ? item.key : item.data._id),
+    []
+  );
+
+  // Typing indicator text
+  const typingText = useMemo(() => {
+    if (typingUsers.length === 0) return null;
+    if (typingUsers.length === 1) {
+      return `${typingUsers[0].displayName || typingUsers[0].username || "Someone"} is typing...`;
+    }
+    if (typingUsers.length <= 3) {
+      const names = typingUsers.map((u) => u.displayName || u.username || "Someone");
+      return `${names.join(", ")} are typing...`;
+    }
+    return `${typingUsers.length} people are typing...`;
+  }, [typingUsers]);
+
+  // Header right content — online count
+  const RightHeader = useMemo(
+    () => (
+      <View className="flex-row items-center gap-1.5">
+        <View className="w-2 h-2 rounded-full bg-green-500" />
+        <Text className="text-white/50 text-xs">{onlineCount}</Text>
+      </View>
+    ),
+    [onlineCount]
+  );
+
+  // Header subtitle
+  const subtitle = useMemo(() => {
+    if (!connected && !joining) return "Disconnected";
+    if (joining) return "Connecting...";
+    return `${onlineCount} online`;
+  }, [connected, joining, onlineCount]);
+
+  const ListHeader = useMemo(
+    () =>
+      loadingMore ? (
+        <View className="py-3 items-center">
+          <ActivityIndicator size="small" color="rgba(255,255,255,0.3)" />
+        </View>
+      ) : null,
+    [loadingMore]
+  );
+
+  const ListEmpty = useMemo(
+    () => (
+      <View className="flex-1 items-center justify-center py-20">
+        {joining ? (
+          <>
+            <ActivityIndicator size="large" color="rgba(255,255,255,0.3)" />
+            <Text className="text-white/30 text-sm mt-4">Joining chat...</Text>
+          </>
+        ) : !connected ? (
+          <>
+            <Ionicons name="cloud-offline-outline" size={48} color="rgba(255,255,255,0.15)" />
+            <Text className="text-white/30 text-sm mt-3">Not connected</Text>
+            <TouchableOpacity
+              onPress={reconnect}
+              className="mt-3 px-4 py-2 bg-blue-500/20 rounded-full"
+            >
+              <Text className="text-blue-400 text-sm font-medium">Reconnect</Text>
+            </TouchableOpacity>
+          </>
+        ) : (
+          <>
+            <Ionicons name="chatbubbles-outline" size={48} color="rgba(255,255,255,0.1)" />
+            <Text className="text-white/30 text-sm mt-3">No messages yet</Text>
+            <Text className="text-white/20 text-xs mt-1">Be the first to say something!</Text>
+          </>
+        )}
+      </View>
+    ),
+    [joining, connected, reconnect]
+  );
+
+  return (
+    <View className="flex-1 bg-black">
+      <ScreenHeader
+        title="Global Chat"
+        subtitle={subtitle}
+        rightContent={RightHeader}
+      />
+
+      {/* Pinned messages banner */}
+      {room?.pinnedMessages && room.pinnedMessages.length > 0 && (
+        <View className="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2">
+          <View className="flex-row items-center gap-1.5">
+            <Ionicons name="pin" size={12} color="#F59E0B" />
+            <Text className="text-amber-400 text-xs font-medium">Pinned</Text>
+          </View>
+          <Text className="text-white/60 text-xs mt-0.5" numberOfLines={2}>
+            {room.pinnedMessages[0].content}
+          </Text>
+        </View>
+      )}
+
+      {/* Banned banner */}
+      {isBanned && (
+        <View className="bg-red-500/10 border-b border-red-500/20 px-4 py-2.5">
+          <View className="flex-row items-center gap-2">
+            <Ionicons name="ban-outline" size={16} color="#EF4444" />
+            <Text className="text-red-400 text-sm">You are banned from this chat</Text>
+          </View>
+        </View>
+      )}
+
+      <View className="flex-1">
+        {/* Messages list */}
+        <FlatList
+          ref={flatListRef}
+          data={listItems}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+          contentContainerStyle={
+            listItems.length === 0
+              ? { flex: 1 }
+              : { paddingVertical: 8, paddingBottom: listBottomPadding }
+          }
+          ListHeaderComponent={ListHeader}
+          ListEmptyComponent={ListEmpty}
+          onScroll={handleScroll}
+          onContentSizeChange={handleContentSizeChange}
+          onLayout={handleLayout}
+          scrollEventThrottle={100}
+          inverted={false}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+          keyboardDismissMode="interactive"
+        />
+
+        {/* Scroll-to-bottom FAB */}
+        {!isAtBottomRef.current && messages.length > 10 && (
+          <TouchableOpacity
+            onPress={() => scrollToBottom()}
+            className="absolute right-4"
+            style={{ bottom: inputLift + 100 }}
+            activeOpacity={0.7}
+          >
+            <View className="bg-white/10 rounded-full w-10 h-10 items-center justify-center">
+              <Ionicons name="chevron-down" size={22} color="rgba(255,255,255,0.6)" />
+            </View>
+          </TouchableOpacity>
+        )}
+
+        {/* Input bar — absolutely positioned, lifts with keyboard */}
+        <View
+          className="absolute left-0 right-0 bottom-0 bg-theme-neutrals-900"
+          style={{ marginBottom: inputLift, paddingBottom: insets.bottom || 0 }}
+        >
+          {/* Typing indicator */}
+          {typingText && (
+            <View className="px-4 py-1.5 border-b border-white/5">
+              <Text className="text-white/30 text-xs italic">{typingText}</Text>
+            </View>
+          )}
+
+          <LiveChatInput
+            onSend={handleSend}
+            replyingTo={replyingTo}
+            onCancelReply={handleCancelReply}
+            isBanned={isBanned}
+            canSend={canSend && connected}
+            onTyping={setTyping}
+            slowMode={room?.slowMode}
+            slowModeSeconds={room?.slowModeSeconds}
+            onGifPress={() => setShowGifPicker(true)}
+          />
+        </View>
+      </View>
+
+      {/* GIF Picker Modal */}
+      <GifPicker
+        visible={showGifPicker}
+        onClose={() => setShowGifPicker(false)}
+        onPick={handleGifPicked}
+      />
+    </View>
+  );
+};
+
+export default LiveChatScreen;

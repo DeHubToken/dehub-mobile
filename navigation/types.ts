@@ -106,6 +106,7 @@ export type AppStackParamList = {
     repostCount?: number;
     quoteCount?: number;
   };
+  [ScreenNames.LiveChat]: undefined;
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> = CompositeScreenProps<
