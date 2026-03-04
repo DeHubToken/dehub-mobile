@@ -470,7 +470,7 @@ export default function UploadScreen() {
 
     // Quote mode: simpler validation, skip monetization checks
     if (isQuoteMode) {
-      if (bodyText.trim().length === 0 && !pickedVideo && pickedImages.length === 0) {
+      if (bodyText.trim().length === 0 && !pickedVideo && !pickedAudio && pickedImages.length === 0) {
         toastError("Write something or add media to quote this post.");
         return;
       }
@@ -501,7 +501,7 @@ export default function UploadScreen() {
     const text = buildConfirmText(payload);
     setConfirmText(text);
     setShowConfirm(true);
-  }, [canPost, activeIsUploading, isLiveMode, isQuoteMode, bodyText, pickedVideo, pickedImages, getPayload, validate, preUploadCheck, buildConfirmText, handleGoLive]);
+  }, [canPost, activeIsUploading, isLiveMode, isQuoteMode, bodyText, pickedVideo, pickedAudio, pickedImages, getPayload, validate, preUploadCheck, buildConfirmText, handleGoLive]);
 
   const handleConfirmUpload = useCallback(async () => {
     const payload = getPayload();

@@ -26,6 +26,13 @@ const BAR_GAP = 2;
 const MAX_BAR_HEIGHT = 48;
 const MIN_BAR_HEIGHT = 4;
 
+/* Compact variant (for quoted posts) */
+const COMPACT_BAR_COUNT = 24;
+const COMPACT_BAR_WIDTH = 2;
+const COMPACT_BAR_GAP = 1.5;
+const COMPACT_MAX_BAR_HEIGHT = 20;
+const COMPACT_MIN_BAR_HEIGHT = 3;
+
 const fmtDuration = (seconds: number): string => {
   const m = Math.floor(seconds / 60);
   const s = Math.floor(seconds % 60);
@@ -37,15 +44,19 @@ interface AnimatedBarProps {
   index: number;
   progress: number;
   isPlaying: boolean;
+  compact?: boolean;
 }
 
-const AnimatedBar: React.FC<AnimatedBarProps> = memo(({ index, isPlaying }) => {
-  const height = useSharedValue(MIN_BAR_HEIGHT);
+const AnimatedBar: React.FC<AnimatedBarProps> = memo(({ index, isPlaying, compact }) => {
+  const maxH = compact ? COMPACT_MAX_BAR_HEIGHT : MAX_BAR_HEIGHT;
+  const minH = compact ? COMPACT_MIN_BAR_HEIGHT : MIN_BAR_HEIGHT;
+  const w = compact ? COMPACT_BAR_WIDTH : BAR_WIDTH;
+  const gap = compact ? COMPACT_BAR_GAP : BAR_GAP;
+  const height = useSharedValue(minH);
 
   useEffect(() => {
     if (isPlaying) {
-      // Each bar gets a unique base height and animation speed for organic feel
-      const baseHeight = MIN_BAR_HEIGHT + ((index * 7 + 3) % (MAX_BAR_HEIGHT - MIN_BAR_HEIGHT));
+      const baseHeight = minH + ((index * 7 + 3) % (maxH - minH));
       const speed = 300 + (index * 47) % 400;
       const delay = (index * 31) % 200;
 
@@ -55,11 +66,11 @@ const AnimatedBar: React.FC<AnimatedBarProps> = memo(({ index, isPlaying }) => {
           withSequence(
             withTiming(baseHeight, { duration: speed, easing: Easing.inOut(Easing.sin) }),
             withTiming(
-              MIN_BAR_HEIGHT + Math.random() * (MAX_BAR_HEIGHT * 0.4),
+              minH + Math.random() * (maxH * 0.4),
               { duration: speed * 0.8, easing: Easing.inOut(Easing.sin) }
             ),
             withTiming(
-              baseHeight * 0.6 + Math.random() * (MAX_BAR_HEIGHT * 0.3),
+              baseHeight * 0.6 + Math.random() * (maxH * 0.3),
               { duration: speed * 1.2, easing: Easing.inOut(Easing.sin) }
             ),
           ),
@@ -69,9 +80,9 @@ const AnimatedBar: React.FC<AnimatedBarProps> = memo(({ index, isPlaying }) => {
       );
     } else {
       cancelAnimation(height);
-      height.value = withTiming(MIN_BAR_HEIGHT + ((index * 5) % 12), { duration: 300 });
+      height.value = withTiming(minH + ((index * 5) % (compact ? 6 : 12)), { duration: 300 });
     }
-  }, [isPlaying, index, height]);
+  }, [isPlaying, index, height, minH, maxH, compact]);
 
   const barStyle = useAnimatedStyle(() => ({
     height: height.value,
@@ -82,9 +93,9 @@ const AnimatedBar: React.FC<AnimatedBarProps> = memo(({ index, isPlaying }) => {
       style={[
         barStyle,
         {
-          width: BAR_WIDTH,
-          borderRadius: BAR_WIDTH / 2,
-          marginRight: BAR_GAP,
+          width: w,
+          borderRadius: w / 2,
+          marginRight: gap,
           backgroundColor: "rgba(255, 255, 255, 0.6)",
         },
       ]}
@@ -96,16 +107,17 @@ const AnimatedBar: React.FC<AnimatedBarProps> = memo(({ index, isPlaying }) => {
 interface WaveformVisualizerProps {
   isPlaying: boolean;
   progress: number;
+  compact?: boolean;
 }
 
 const WaveformVisualizer: React.FC<WaveformVisualizerProps> = memo(
-  ({ isPlaying, progress }) => (
+  ({ isPlaying, progress, compact }) => (
     <View
       className="flex-row items-end justify-center"
-      style={{ height: MAX_BAR_HEIGHT + 4 }}
+      style={{ height: (compact ? COMPACT_MAX_BAR_HEIGHT : MAX_BAR_HEIGHT) + 4 }}
     >
-      {Array.from({ length: BAR_COUNT }, (_, i) => (
-        <AnimatedBar key={i} index={i} progress={progress} isPlaying={isPlaying} />
+      {Array.from({ length: compact ? COMPACT_BAR_COUNT : BAR_COUNT }, (_, i) => (
+        <AnimatedBar key={i} index={i} progress={progress} isPlaying={isPlaying} compact={compact} />
       ))}
     </View>
   ),
@@ -135,6 +147,8 @@ export interface AudioPostPlayerProps {
   listens?: number;
   /** When false, pauses playback and avoids preloading */
   isVisible?: boolean;
+  /** Renders a smaller inline variant for quoted/embedded posts */
+  compact?: boolean;
 }
 
 const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
@@ -143,6 +157,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   tokenId,
   listens: initialListens = 0,
   isVisible = true,
+  compact = false,
 }) => {
   const soundRef = useRef<Audio.Sound | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -362,6 +377,53 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       releaseAudioFocus(focusStopRef.current);
     }
   }, [isPlaying, audioUrl, tokenId, startPositionTracking, stopPositionTracking]);
+
+  if (compact) {
+    return (
+      <View className="rounded-xl overflow-hidden">
+        <LinearGradient
+          colors={["#1a1a2e", "#16213e", "#0f3460"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          className="px-3 py-2.5"
+        >
+          <View className="flex-row items-center gap-2.5">
+            {/* Play / Pause */}
+            <TouchableOpacity
+              onPress={handlePlayPause}
+              activeOpacity={0.7}
+              className="w-8 h-8 rounded-full bg-white/20 items-center justify-center"
+            >
+              {isLoading ? (
+                <Ionicons name="hourglass-outline" size={14} color="#fff" />
+              ) : (
+                <Ionicons
+                  name={isPlaying ? "pause" : "play"}
+                  size={16}
+                  color="#fff"
+                  style={isPlaying ? undefined : { marginLeft: 1 }}
+                />
+              )}
+            </TouchableOpacity>
+
+            {/* Compact waveform */}
+            <View className="flex-1">
+              <WaveformVisualizer isPlaying={isPlaying} progress={progress} compact />
+              <ProgressBar progress={progress} />
+            </View>
+
+            {/* Duration */}
+            <Text
+              className="text-white/50 text-[10px]"
+              style={{ fontVariant: ["tabular-nums"] }}
+            >
+              {fmtDuration(isPlaying ? currentTime : totalDuration)}
+            </Text>
+          </View>
+        </LinearGradient>
+      </View>
+    );
+  }
 
   return (
     <View className="mt-3 rounded-2xl overflow-hidden">
