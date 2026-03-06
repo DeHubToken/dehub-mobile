@@ -300,11 +300,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
 
-  // Auto ensure freshness shortly after provider becomes ready while signed in
+  // Auto ensure freshness when provider becomes ready while signed in
   useEffect(() => {
     if (isSignedIn && providerStatus === "ready" && provider) {
-      const t = setTimeout(() => { ensureFreshProvider().catch(() => {}); }, 800);
-      return () => clearTimeout(t);
+      ensureFreshProvider().catch(() => {});
     }
   }, [isSignedIn, providerStatus, provider, ensureFreshProvider]);
 
@@ -346,6 +345,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     providerReset: resetProviderState,
     isMountedRef,
     setAuthMethodState,
+    didBootRefetchRef,
   });
   // Update session-expired handler ref
   useEffect(() => { sessionExpiredHandlerRef.current = handleSessionExpired; }, [handleSessionExpired]);
