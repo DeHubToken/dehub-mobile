@@ -233,7 +233,7 @@ const NotificationScreen = () => {
 
       case 'like':
         if (tokenId) {
-          if (postType === 'feed-images' || postType === 'feed-simple') {
+          if (postType === 'feed-images' || postType === 'feed-simple' || postType === 'feed-audio') {
             navigateToFeed(tokenId);
           } else {
             navigateToVideo(tokenId);
@@ -245,7 +245,7 @@ const NotificationScreen = () => {
       case 'comment_reply':
       case 'comment_like':
         if (tokenId) {
-          if (postType === 'feed-images' || postType === 'feed-simple') {
+          if (postType === 'feed-images' || postType === 'feed-simple' || postType === 'feed-audio') {
             navigateToFeed(tokenId, commentId);
           } else {
             navigateToVideo(tokenId, commentId);
@@ -274,7 +274,7 @@ const NotificationScreen = () => {
       case 'bounty_available':
       case 'bounty_claimed':
         if (tokenId) {
-          if (postType === 'feed-images' || postType === 'feed-simple') {
+          if (postType === 'feed-images' || postType === 'feed-simple' || postType === 'feed-audio') {
             navigateToFeed(tokenId);
           } else {
             navigateToVideo(tokenId);
@@ -283,7 +283,13 @@ const NotificationScreen = () => {
         break;
 
       case 'video_milestone':
-        if (tokenId) navigateToVideo(tokenId);
+        if (tokenId) {
+          if (postType === 'feed-images' || postType === 'feed-simple' || postType === 'feed-audio') {
+            navigateToFeed(tokenId);
+          } else {
+            navigateToVideo(tokenId);
+          }
+        }
         break;
 
       case 'livestream_start':
@@ -305,7 +311,7 @@ const NotificationScreen = () => {
 
       case 'mention':
         if (tokenId) {
-          if (postType === 'feed-images' || postType === 'feed-simple') {
+          if (postType === 'feed-images' || postType === 'feed-simple' || postType === 'feed-audio') {
             navigateToFeed(tokenId, commentId);
           } else {
             navigateToVideo(tokenId, commentId);
@@ -316,7 +322,7 @@ const NotificationScreen = () => {
       default:
         // Fallback: try to navigate to content if tokenId exists
         if (tokenId) {
-          if (postType === 'feed-images' || postType === 'feed-simple') {
+          if (postType === 'feed-images' || postType === 'feed-simple' || postType === 'feed-audio') {
             navigateToFeed(tokenId);
           } else {
             navigateToVideo(tokenId);
