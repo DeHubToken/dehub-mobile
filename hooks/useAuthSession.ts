@@ -44,6 +44,7 @@ type SessionDeps = {
   providerReset: () => void;
   isMountedRef: { current: boolean };
   setAuthMethodState: (v: "local" | "web3auth" | null) => void;
+  didBootRefetchRef: { current: boolean };
 };
 
 export function useAuthSession({
@@ -67,6 +68,7 @@ export function useAuthSession({
   providerReset,
   isMountedRef,
   setAuthMethodState,
+  didBootRefetchRef,
 }: SessionDeps) {
   const persistLocalAccountIfPossible = useCallback(async (enriched: User) => {
     try {
@@ -103,54 +105,51 @@ export function useAuthSession({
       });
       const shouldRefetch = !!opts?.refetch;
       let enriched = base;
-      try {
-        const tFetchStart = Date.now();
-        const sinceLastEnrich = tFetchStart - lastEnrichTsRef.current;
-        const throttled = !opts?.force && sinceLastEnrich < ENRICH_THROTTLE_MS;
-        if (shouldRefetch && !throttled) {
-          const key = base.username || base.walletAddress || base.address;
-          if (key) {
-            lastEnrichTsRef.current = tFetchStart;
-            // Auth token is sent automatically — backend uses it for owner-only fields
-            const res: any = await getAccount(key);
-            const core = res?.data?.result || res?.result || null;
-            if (core) enriched = { ...base, ...core } as User;
-            log.debug("enrich:getAccount:done", {
-              key,
-              merged: !!core,
-              ms: Date.now() - tFetchStart,
-              sinceStart: Date.now() - t0,
-            });
-          }
-        } else if (shouldRefetch && throttled) {
-          log.debug("enrich:getAccount:throttled", {
-            sinceLastMs: sinceLastEnrich,
-            throttleMs: ENRICH_THROTTLE_MS,
+      const tFetchStart = Date.now();
+      const sinceLastEnrich = tFetchStart - lastEnrichTsRef.current;
+      const throttled = !opts?.force && sinceLastEnrich < ENRICH_THROTTLE_MS;
+      const addr = base.walletAddress || base.address;
+      const key = base.username || base.walletAddress || base.address;
+
+      if (shouldRefetch && !throttled && key && addr) {
+        lastEnrichTsRef.current = tFetchStart;
+        // Fire getAccount and getNotifications in parallel
+        const [accountResult, notifResult] = await Promise.allSettled([
+          getAccount(key),
+          getNotifications({ limit: 20 }),
+        ]);
+
+        if (accountResult.status === "fulfilled") {
+          const res: any = accountResult.value;
+          const core = res?.data?.result || res?.result || null;
+          if (core) enriched = { ...base, ...core } as User;
+          log.debug("enrich:getAccount:done", {
+            key,
+            merged: !!core,
+            ms: Date.now() - tFetchStart,
           });
+        } else {
+          log.warn("enrich:getAccount:error", { error: accountResult.reason, ms: Date.now() - t0 });
         }
-      } catch (e) {
-        log.warn("enrich:getAccount:error", { error: e, ms: Date.now() - t0 });
-      }
-      try {
-        const tNotifStart = Date.now();
-        const addr = enriched.walletAddress || enriched.address;
-        if (addr) {
-          const nRes: any = await getNotifications({ limit: 20 });
+
+        if (notifResult.status === "fulfilled") {
+          const nRes: any = notifResult.value;
           const notificationRes = nRes?.data?.result || nRes?.result || nRes;
           if (notificationRes) {
             const unread = (notificationRes as any[]).length;
             enriched = { ...enriched, notificationCount: unread };
             log.debug("enrich:notifications:done", {
               unread,
-              ms: Date.now() - tNotifStart,
-              sinceStart: Date.now() - t0,
+              ms: Date.now() - tFetchStart,
             });
           }
+        } else {
+          log.warn("enrich:notifications:error", { error: notifResult.reason, ms: Date.now() - t0 });
         }
-      } catch (e) {
-        log.warn("enrich:notifications:error", {
-          error: e,
-          sinceStart: Date.now() - t0,
+      } else if (shouldRefetch && throttled) {
+        log.debug("enrich:getAccount:throttled", {
+          sinceLastMs: sinceLastEnrich,
+          throttleMs: ENRICH_THROTTLE_MS,
         });
       }
       // Balances fetching is no longer handled inside enrich; done elsewhere
@@ -268,15 +267,17 @@ export function useAuthSession({
         const hasOverride = !!preOverride;
         log.debug("signInWithWallet:hasOverride", { hasOverride, preOverride });
         // Persist the chosen auth method up-front; clear if the login fails
+        const methodNow = hasOverride ? "local" : "web3auth";
         try {
-          const methodNow = hasOverride ? "local" : "web3auth";
           await setAuthMethod(methodNow, walletAddress);
           try {
             setAuthMethodState(methodNow);
           } catch {}
         } catch {}
+        // Only fetch private key for local wallets; web3auth never exposes one.
+        // Local override wallets already provide key via overridePrivateKey param.
         let privateKey: string | undefined;
-        if (!hasOverride) {
+        if (hasOverride && !overridePrivateKey) {
           try {
             const adapter = createAuthAdapter();
             log.debug("getPrivateKey:begin");
@@ -338,6 +339,8 @@ export function useAuthSession({
           const enriched = await enrichAndStoreUser(walletUser, {
             refetch: true,
           });
+          // Prevent the consolidated boot effect from duplicating this enrich
+          didBootRefetchRef.current = true;
           await persistLocalAccountIfPossible(enriched);
           try {
             setBalancesLoading(true);
