@@ -138,7 +138,7 @@ const FeedDescription: React.FC<FeedDescriptionProps> = ({
         return (
           <Text
             key={`${prefix}-m-${idx}`}
-            className="text-blue-400 font-bold"
+            className="font-bold"
             onPress={() => handleMentionPress(seg.username)}
             suppressHighlighting
           >
