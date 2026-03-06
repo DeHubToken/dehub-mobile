@@ -8,10 +8,12 @@ import React, { memo, useState, useCallback, useMemo } from "react";
 import { View, Text, TouchableOpacity, NativeSyntheticEvent, TextLayoutEventData } from "react-native";
 import { openInApp } from "../../libs/links.utils";
 import { hasValidTLD } from "../../libs/tlds";
+import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 
 type Segment =
   | { type: "text"; value: string }
-  | { type: "link"; value: string; url: string };
+  | { type: "link"; value: string; url: string }
+  | { type: "mention"; value: string; username: string };
 
 const ensureUrl = (raw: string): string => {
   const trimmed = (raw || "").trim();
@@ -22,35 +24,42 @@ const ensureUrl = (raw: string): string => {
 
 const parseTextToSegments = (input: string): Segment[] => {
   if (!input) return [];
-  // Only match URLs with explicit protocol (http/https) or www prefix to avoid matching file names
-  const urlRegex = /\b((?:https?:\/\/|www\.)[^\s]+)/gi;
-  const matches = Array.from(input.matchAll(urlRegex));
+  // Match @mentions or URLs
+  const combinedRegex = /(@[\w.]+)|\b((?:https?:\/\/|www\.)[^\s]+)/gi;
+  const matches = Array.from(input.matchAll(combinedRegex));
   if (matches.length === 0) return [{ type: "text", value: input }];
 
   const segments: Segment[] = [];
   let cursor = 0;
 
   for (const m of matches) {
-    let value = m[0];
     const index = m.index ?? 0;
     if (index > cursor) {
       segments.push({ type: "text", value: input.slice(cursor, index) });
     }
-    // Strip trailing punctuation from link
-    let trailing = "";
-    while (value.length > 0 && /[\]\)\}.,!?;:]+$/.test(value)) {
-      trailing = value.slice(-1) + trailing;
-      value = value.slice(0, -1);
-    }
-    const url = ensureUrl(value);
-    // Only treat as link if the domain has a valid IANA TLD
-    if (url && hasValidTLD(value)) {
-      segments.push({ type: "link", value, url });
+
+    if (m[1]) {
+      // @mention match
+      const username = m[1].slice(1);
+      segments.push({ type: "mention", value: m[1], username });
+      cursor = index + m[0].length;
     } else {
-      segments.push({ type: "text", value });
+      // URL match
+      let value = m[0];
+      let trailing = "";
+      while (value.length > 0 && /[\]\)\}.,!?;:]+$/.test(value)) {
+        trailing = value.slice(-1) + trailing;
+        value = value.slice(0, -1);
+      }
+      const url = ensureUrl(value);
+      if (url && hasValidTLD(value)) {
+        segments.push({ type: "link", value, url });
+      } else {
+        segments.push({ type: "text", value });
+      }
+      if (trailing) segments.push({ type: "text", value: trailing });
+      cursor = index + m[0].length;
     }
-    if (trailing) segments.push({ type: "text", value: trailing });
-    cursor = index + m[0].length;
   }
   if (cursor < input.length) {
     segments.push({ type: "text", value: input.slice(cursor) });
@@ -81,6 +90,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
 }) => {
   const [expanded, setExpanded] = useState(fullContent);
   const [showSeeMore, setShowSeeMore] = useState(false);
+  const { showUserProfile } = useUserProfileSheet();
 
   const handleTextLayout = useCallback((e: NativeSyntheticEvent<TextLayoutEventData>) => {
     if (fullContent) return;
@@ -105,6 +115,10 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
     openInApp(url);
   }, []);
 
+  const handleMentionPress = useCallback((username: string) => {
+    showUserProfile(username);
+  }, [showUserProfile]);
+
   // Parse links in title & description
   const titleSegments = useMemo(() => parseTextToSegments(title || ""), [title]);
   const descSegments = useMemo(() => parseTextToSegments(description || ""), [description]);
@@ -124,9 +138,21 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
             </Text>
           );
         }
+        if (seg.type === "mention") {
+          return (
+            <Text
+              key={`${keyPrefix}-m-${idx}`}
+              className="font-bold"
+              onPress={() => handleMentionPress(seg.username)}
+              suppressHighlighting
+            >
+              {seg.value}
+            </Text>
+          );
+        }
         return <Text key={`${keyPrefix}-${idx}`}>{seg.value}</Text>;
       }),
-    [handleOpenLink],
+    [handleOpenLink, handleMentionPress],
   );
 
   // Build the caption text
