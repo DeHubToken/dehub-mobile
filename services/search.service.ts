@@ -17,7 +17,8 @@ export type SearchPostType =
   | 'feed-all'
   | 'feed'
   | 'feed-simple'
-  | 'feed-images';
+  | 'feed-images'
+  | 'feed-audio';
 
 export interface SearchParams {
   q: string;
@@ -51,7 +52,10 @@ export interface SearchContentResult {
   imageUrl?: string;
   videoUrl?: string;
   videoDuration?: number;
-  postType?: 'video' | 'live' | 'feed-simple' | 'feed-images';
+  postType?: 'video' | 'live' | 'feed-simple' | 'feed-images' | 'feed-audio';
+  audioUrl?: string;
+  audioDuration?: number;
+  listens?: number;
   views?: number;
   totalVotes?: { for?: number; against?: number };
   createdAt?: string;

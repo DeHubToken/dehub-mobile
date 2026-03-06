@@ -68,6 +68,9 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
   videoDuration: item.videoDuration,
   thumbnailUrl: item.thumbnailUrl || item.imageUrl,
   imageUrls: item.imageUrls,
+  audioUrl: item.audioUrl,
+  audioDuration: item.audioDuration,
+  listens: item.listens,
   postType: (item.postType as UnifiedFeedItem["postType"]) ?? "video",
   views: item.views ?? 0,
   likes: item.totalVotes?.for ?? item.likes ?? 0,
@@ -303,7 +306,7 @@ const SearchScreen: React.FC = () => {
         );
       }
 
-      if (postType === "feed-simple" || postType === "feed-images") {
+      if (postType === "feed-simple" || postType === "feed-images" || postType === "feed-audio") {
         return (
           <View className="px-4">
             <HomeFeedCard item={feedItem} />
