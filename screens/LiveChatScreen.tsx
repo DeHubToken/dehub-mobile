@@ -5,7 +5,6 @@ import {
   FlatList,
   ActivityIndicator,
   TouchableOpacity,
-  Alert,
   ListRenderItemInfo,
   NativeSyntheticEvent,
   NativeScrollEvent,
@@ -13,13 +12,22 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ScreenHeader from "../components/ScreenHeader";
+import ConfirmModal from "../components/common/ConfirmModal";
 import LiveChatMessage from "../components/LiveChat/LiveChatMessage";
 import LiveChatInput from "../components/LiveChat/LiveChatInput";
+import LiveChatContextMenu from "../components/LiveChat/LiveChatContextMenu";
+import type { MessageLayout } from "../components/LiveChat/LiveChatContextMenu";
+import PinnedMessagesBar from "../components/LiveChat/PinnedMessagesBar";
 import { useKeyboard } from "../hooks/useKeyboard";
 import GifPicker from "../components/DM/GifPicker";
 import { useLiveChat } from "../hooks/useLiveChat";
 import { useAuth } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
+import {
+  banUser as banUserApi,
+  pinMessage as pinMessageApi,
+  unpinMessage as unpinMessageApi,
+} from "../services/livechat.service";
 import type { LiveChatMessageData, LiveChatUser, SendMessagePayload } from "../services/livechat.service";
 
 /** Returns a readable date label for message grouping */
@@ -76,6 +84,7 @@ const LiveChatScreen: React.FC = () => {
     loadingMore,
     hasMore,
     sendMessage,
+    editMessage,
     deleteMessage,
     addReaction,
     removeReaction,
@@ -87,6 +96,19 @@ const LiveChatScreen: React.FC = () => {
   const [replyingTo, setReplyingTo] = useState<LiveChatMessageData | null>(null);
   const [showReactionPicker, setShowReactionPicker] = useState<string | null>(null);
   const [showGifPicker, setShowGifPicker] = useState(false);
+  const [contextMenuVisible, setContextMenuVisible] = useState(false);
+  const [contextMenuMessage, setContextMenuMessage] = useState<LiveChatMessageData | null>(null);
+  const [contextMenuLayout, setContextMenuLayout] = useState<MessageLayout | null>(null);
+  const [editingMessage, setEditingMessage] = useState<LiveChatMessageData | null>(null);
+  const [highlightedId, setHighlightedId] = useState<string | null>(null);
+  const [confirmModal, setConfirmModal] = useState<{
+    visible: boolean;
+    title: string;
+    description?: string;
+    confirmText: string;
+    confirmKind: "primary" | "danger" | "neutral";
+    onConfirm: () => void;
+  }>({ visible: false, title: "", confirmText: "Confirm", confirmKind: "primary", onConfirm: () => {} });
   const flatListRef = useRef<FlatList>(null);
   const isAtBottomRef = useRef(true);
   const prevMessageCountRef = useRef(0);
@@ -144,13 +166,18 @@ const LiveChatScreen: React.FC = () => {
 
   const handleSend = useCallback(
     (content: string, replyTo?: string) => {
+      if (editingMessage) {
+        editMessage(editingMessage._id, content);
+        setEditingMessage(null);
+        return;
+      }
       const payload: SendMessagePayload = { content };
       if (replyTo) payload.replyTo = replyTo;
       sendMessage(payload);
       isAtBottomRef.current = true;
       setTimeout(() => scrollToBottom(true), 300);
     },
-    [sendMessage, scrollToBottom]
+    [sendMessage, scrollToBottom, editingMessage, editMessage]
   );
 
   const handleGifPicked = useCallback(
@@ -183,13 +210,6 @@ const LiveChatScreen: React.FC = () => {
     setReplyingTo(null);
   }, []);
 
-  const handleReact = useCallback(
-    (msg: LiveChatMessageData) => {
-      setShowReactionPicker((prev) => (prev === msg._id ? null : msg._id));
-    },
-    []
-  );
-
   const handleSelectReaction = useCallback(
     (messageId: string, emoji: string) => {
       const msg = messagesRef.current.find((m) => m._id === messageId);
@@ -204,18 +224,44 @@ const LiveChatScreen: React.FC = () => {
     [myAddress, addReaction, removeReaction]
   );
 
+  const showConfirm = useCallback(
+    (opts: {
+      title: string;
+      description?: string;
+      confirmText: string;
+      confirmKind?: "primary" | "danger" | "neutral";
+      onConfirm: () => void;
+    }) => {
+      setConfirmModal({
+        visible: true,
+        title: opts.title,
+        description: opts.description,
+        confirmText: opts.confirmText,
+        confirmKind: opts.confirmKind || "primary",
+        onConfirm: opts.onConfirm,
+      });
+    },
+    []
+  );
+
+  const dismissConfirm = useCallback(() => {
+    setConfirmModal((prev) => ({ ...prev, visible: false }));
+  }, []);
+
   const handleDelete = useCallback(
     (msg: LiveChatMessageData) => {
-      Alert.alert("Delete Message", "Are you sure you want to delete this message?", [
-        { text: "Cancel", style: "cancel" },
-        {
-          text: "Delete",
-          style: "destructive",
-          onPress: () => deleteMessage(msg._id),
+      showConfirm({
+        title: "Delete Message",
+        description: "Are you sure you want to delete this message?",
+        confirmText: "Delete",
+        confirmKind: "danger",
+        onConfirm: () => {
+          deleteMessage(msg._id);
+          dismissConfirm();
         },
-      ]);
+      });
     },
-    [deleteMessage]
+    [deleteMessage, showConfirm, dismissConfirm]
   );
 
   const handleAvatarPress = useCallback(
@@ -228,10 +274,153 @@ const LiveChatScreen: React.FC = () => {
   );
 
   const handleLongPress = useCallback(
-    (msg: LiveChatMessageData) => {
-      setShowReactionPicker((prev) => (prev === msg._id ? null : msg._id));
+    (msg: LiveChatMessageData, layout: MessageLayout) => {
+      if (msg.isDeleted) return;
+      setContextMenuMessage(msg);
+      setContextMenuLayout(layout);
+      setContextMenuVisible(true);
     },
     []
+  );
+
+  const handleContextMenuClose = useCallback(() => {
+    setContextMenuVisible(false);
+    setContextMenuMessage(null);
+    setContextMenuLayout(null);
+  }, []);
+
+  const handleContextReply = useCallback((msg: LiveChatMessageData) => {
+    setReplyingTo(msg);
+  }, []);
+
+  const handleContextReact = useCallback(
+    (messageId: string, emoji: string) => {
+      const msg = messagesRef.current.find((m) => m._id === messageId);
+      const alreadyReacted = msg?.reactions?.[emoji]?.includes(myAddress);
+      if (alreadyReacted) {
+        removeReaction(messageId, emoji);
+      } else {
+        addReaction(messageId, emoji);
+      }
+    },
+    [myAddress, addReaction, removeReaction]
+  );
+
+  const handleContextEdit = useCallback((msg: LiveChatMessageData) => {
+    setEditingMessage(msg);
+  }, []);
+
+  const handleContextDelete = useCallback(
+    (msg: LiveChatMessageData) => {
+      showConfirm({
+        title: "Delete Message",
+        description: "Are you sure you want to delete this message?",
+        confirmText: "Delete",
+        confirmKind: "danger",
+        onConfirm: () => {
+          deleteMessage(msg._id);
+          dismissConfirm();
+        },
+      });
+    },
+    [deleteMessage, showConfirm, dismissConfirm]
+  );
+
+  const handleContextPin = useCallback(
+    async (msg: LiveChatMessageData) => {
+      try {
+        if (msg.isPinned) {
+          await unpinMessageApi(msg._id);
+        } else {
+          await pinMessageApi(msg._id);
+        }
+      } catch (e) {
+        showConfirm({
+          title: "Error",
+          description: msg.isPinned ? "Failed to unpin message" : "Failed to pin message",
+          confirmText: "OK",
+          onConfirm: dismissConfirm,
+        });
+      }
+    },
+    [showConfirm, dismissConfirm]
+  );
+
+  const handleUnpinFromBar = useCallback(
+    async (msg: LiveChatMessageData) => {
+      try {
+        await unpinMessageApi(msg._id);
+      } catch {
+        showConfirm({
+          title: "Error",
+          description: "Failed to unpin message",
+          confirmText: "OK",
+          onConfirm: dismissConfirm,
+        });
+      }
+    },
+    [showConfirm, dismissConfirm]
+  );
+
+  const handleContextBan = useCallback(
+    (msg: LiveChatMessageData) => {
+      const name =
+        msg.sender?.displayName ||
+        msg.sender?.username ||
+        msg.senderAddress?.slice(0, 8) ||
+        "this user";
+      showConfirm({
+        title: "Ban User",
+        description: `Are you sure you want to ban ${name}?`,
+        confirmText: "Ban",
+        confirmKind: "danger",
+        onConfirm: async () => {
+          dismissConfirm();
+          try {
+            await banUserApi(msg.senderAddress);
+          } catch (e) {
+            showConfirm({
+              title: "Error",
+              description: "Failed to ban user",
+              confirmText: "OK",
+              onConfirm: dismissConfirm,
+            });
+          }
+        },
+      });
+    },
+    [showConfirm, dismissConfirm]
+  );
+
+  const highlightAndScroll = useCallback(
+    (messageId: string) => {
+      const idx = listItems.findIndex(
+        (item) => item.type === "message" && item.data._id === messageId,
+      );
+      if (idx >= 0) {
+        setHighlightedId(null); // Reset first so re-tapping same msg works
+        flatListRef.current?.scrollToIndex({ index: idx, animated: true, viewPosition: 0.3 });
+        setTimeout(() => {
+          setHighlightedId(messageId);
+          setTimeout(() => setHighlightedId(null), 4000);
+        }, 300);
+      }
+    },
+    [listItems],
+  );
+
+  const handlePinnedPress = useCallback(
+    (msg: LiveChatMessageData) => {
+      highlightAndScroll(msg._id);
+    },
+    [highlightAndScroll],
+  );
+
+  const handleReplyPress = useCallback(
+    (messageId: string) => {
+      highlightAndScroll(messageId);
+    },
+    [highlightAndScroll],
   );
 
   const renderItem = useCallback(
@@ -252,26 +441,22 @@ const LiveChatScreen: React.FC = () => {
           message={msg}
           myAddress={myAddress}
           isModerator={isModerator}
-          showReactionPicker={showReactionPicker === msg._id}
-          onReply={handleReply}
-          onReact={handleReact}
           onSelectReaction={handleSelectReaction}
-          onDelete={handleDelete}
           onAvatarPress={handleAvatarPress}
           onLongPress={handleLongPress}
+          onReplyPress={handleReplyPress}
+          highlighted={highlightedId === msg._id}
         />
       );
     },
     [
       myAddress,
       isModerator,
-      handleReply,
-      handleReact,
       handleSelectReaction,
-      handleDelete,
       handleAvatarPress,
       handleLongPress,
-      showReactionPicker,
+      handleReplyPress,
+      highlightedId,
     ]
   );
 
@@ -360,17 +545,14 @@ const LiveChatScreen: React.FC = () => {
         rightContent={RightHeader}
       />
 
-      {/* Pinned messages banner */}
+      {/* Pinned messages — Telegram-style bar */}
       {room?.pinnedMessages && room.pinnedMessages.length > 0 && (
-        <View className="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2">
-          <View className="flex-row items-center gap-1.5">
-            <Ionicons name="pin" size={12} color="#F59E0B" />
-            <Text className="text-amber-400 text-xs font-medium">Pinned</Text>
-          </View>
-          <Text className="text-white/60 text-xs mt-0.5" numberOfLines={2}>
-            {room.pinnedMessages[0].content}
-          </Text>
-        </View>
+        <PinnedMessagesBar
+          pinnedMessages={room.pinnedMessages}
+          onPinnedPress={handlePinnedPress}
+          isModerator={isModerator}
+          onUnpin={handleUnpinFromBar}
+        />
       )}
 
       {/* Banned banner */}
@@ -437,6 +619,8 @@ const LiveChatScreen: React.FC = () => {
             onSend={handleSend}
             replyingTo={replyingTo}
             onCancelReply={handleCancelReply}
+            editingMessage={editingMessage}
+            onCancelEdit={() => setEditingMessage(null)}
             isBanned={isBanned}
             canSend={canSend && connected}
             onTyping={setTyping}
@@ -452,6 +636,35 @@ const LiveChatScreen: React.FC = () => {
         visible={showGifPicker}
         onClose={() => setShowGifPicker(false)}
         onPick={handleGifPicked}
+      />
+
+      {/* Context Menu */}
+      <LiveChatContextMenu
+        visible={contextMenuVisible}
+        message={contextMenuMessage}
+        layout={contextMenuLayout}
+        isMe={
+          contextMenuMessage?.senderAddress?.toLowerCase() === myAddress
+        }
+        isModerator={isModerator}
+        onClose={handleContextMenuClose}
+        onReply={handleContextReply}
+        onReact={handleContextReact}
+        onEdit={handleContextEdit}
+        onDelete={handleContextDelete}
+        onPin={handleContextPin}
+        onBan={handleContextBan}
+      />
+
+      {/* Confirmation Modal */}
+      <ConfirmModal
+        visible={confirmModal.visible}
+        title={confirmModal.title}
+        description={confirmModal.description}
+        confirmText={confirmModal.confirmText}
+        confirmKind={confirmModal.confirmKind}
+        onConfirm={confirmModal.onConfirm}
+        onCancel={dismissConfirm}
       />
     </View>
   );
