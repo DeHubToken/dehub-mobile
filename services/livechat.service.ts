@@ -157,6 +157,10 @@ export async function getLiveChatOnlineCount(): Promise<{ count: number }> {
 
 /* ─── Mod Actions ───────────────────────────────────────────── */
 
+export async function getLiveChatUserProfile(address: string): Promise<LiveChatUser> {
+  return apiClient.get<LiveChatUser>(`/livechat/user/${address}`);
+}
+
 export async function banUser(address: string): Promise<void> {
   return apiClient.post("/livechat/mod/ban", { address });
 }

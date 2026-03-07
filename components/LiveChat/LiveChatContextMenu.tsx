@@ -37,7 +37,6 @@ interface LiveChatContextMenuProps {
   onEdit?: (msg: LiveChatMessageData) => void;
   onDelete?: (msg: LiveChatMessageData) => void;
   onPin?: (msg: LiveChatMessageData) => void;
-  onBan?: (msg: LiveChatMessageData) => void;
 }
 
 const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("window");
@@ -197,7 +196,6 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
   onEdit,
   onDelete,
   onPin,
-  onBan,
 }) => {
   const insets = useSafeAreaInsets();
 
@@ -230,12 +228,6 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
     setTimeout(() => onPin?.(message), 100);
   }, [onClose, onPin, message]);
 
-  const handleBan = useCallback(() => {
-    if (!message) return;
-    onClose();
-    setTimeout(() => onBan?.(message), 100);
-  }, [onClose, onBan, message]);
-
   const handleReaction = useCallback(
     (emoji: string) => {
       if (!message) return;
@@ -254,7 +246,6 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
     if (isMe && message.messageType !== "system") count++; // Edit
     if (isMe || isModerator) count++; // Delete
     if (isModerator) count++; // Pin/Unpin
-    if (isModerator && !isMe) count++; // Ban
     return count;
   }, [message, isMe, isModerator, onReply]);
 
@@ -417,10 +408,6 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
 
               {canDelete && onDelete && (
                 <ActionRow icon="trash-outline" label="Delete" onPress={handleDelete} destructive />
-              )}
-
-              {isModerator && !isMe && onBan && (
-                <ActionRow icon="ban-outline" label="Ban User" onPress={handleBan} destructive />
               )}
             </View>
           </View>

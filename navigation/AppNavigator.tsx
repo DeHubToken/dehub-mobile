@@ -30,6 +30,7 @@ import PostResolverScreen from '../screens/PostResolverScreen';
 import { LivepeerProvider } from "../config/livepeer.config";
 import ChatScreen from "../screens/ChatScreen";
 import LiveChatScreen from "../screens/LiveChatScreen";
+import LiveChatInfoScreen from "../screens/LiveChatInfoScreen";
 import { useAuthState } from "../context/AuthContext";
 
 /** Standardized gesture response distances */
@@ -240,6 +241,10 @@ export default function AppNavigator() {
             <Stack.Screen
               name={ScreenNames.LiveChat}
               component={LiveChatScreen}
+            />
+            <Stack.Screen
+              name={ScreenNames.LiveChatInfo}
+              component={LiveChatInfoScreen}
             />
             <Stack.Screen
               name={ScreenNames.AccountSettings}

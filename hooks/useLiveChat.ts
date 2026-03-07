@@ -75,6 +75,7 @@ export interface UseLiveChatReturn {
   setTyping: (isTyping: boolean) => void;
   loadMoreMessages: () => Promise<void>;
   reconnect: () => void;
+  updateBannedList: (address: string, banned: boolean) => void;
 }
 
 export const useLiveChat = (): UseLiveChatReturn => {
@@ -391,6 +392,20 @@ export const useLiveChat = (): UseLiveChatReturn => {
     }
   }, []);
 
+  const updateBannedList = useCallback((address: string, banned: boolean) => {
+    if (!address) return;
+    setRoom((prev) => {
+      if (!prev) return prev;
+      const addr = address.toLowerCase();
+      const current = (prev.bannedUsers || []).filter(Boolean);
+      if (banned) {
+        if (current.some((a) => a?.toLowerCase() === addr)) return prev;
+        return { ...prev, bannedUsers: [...current, address] };
+      }
+      return { ...prev, bannedUsers: current.filter((a) => a?.toLowerCase() !== addr) };
+    });
+  }, []);
+
   return {
     connected,
     joining,
@@ -412,5 +427,6 @@ export const useLiveChat = (): UseLiveChatReturn => {
     setTyping,
     loadMoreMessages,
     reconnect,
+    updateBannedList,
   };
 };
