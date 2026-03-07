@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import ConfirmModal from "../components/common/ConfirmModal";
 import LiveChatMessage from "../components/LiveChat/LiveChatMessage";
@@ -24,11 +25,11 @@ import { useLiveChat } from "../hooks/useLiveChat";
 import { useAuth } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import {
-  banUser as banUserApi,
   pinMessage as pinMessageApi,
   unpinMessage as unpinMessageApi,
 } from "../services/livechat.service";
 import type { LiveChatMessageData, LiveChatUser, SendMessagePayload } from "../services/livechat.service";
+import { ScreenNames } from "../navigation/ScreenNames";
 
 /** Returns a readable date label for message grouping */
 const getDateLabel = (iso: string): string => {
@@ -65,6 +66,7 @@ const buildListItems = (messages: LiveChatMessageData[]): ListItem[] => {
 const LiveChatScreen: React.FC = () => {
   const { user } = useAuth();
   const { showUserProfile } = useUserProfileSheet();
+  const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
 
@@ -362,36 +364,6 @@ const LiveChatScreen: React.FC = () => {
     [showConfirm, dismissConfirm]
   );
 
-  const handleContextBan = useCallback(
-    (msg: LiveChatMessageData) => {
-      const name =
-        msg.sender?.displayName ||
-        msg.sender?.username ||
-        msg.senderAddress?.slice(0, 8) ||
-        "this user";
-      showConfirm({
-        title: "Ban User",
-        description: `Are you sure you want to ban ${name}?`,
-        confirmText: "Ban",
-        confirmKind: "danger",
-        onConfirm: async () => {
-          dismissConfirm();
-          try {
-            await banUserApi(msg.senderAddress);
-          } catch (e) {
-            showConfirm({
-              title: "Error",
-              description: "Failed to ban user",
-              confirmText: "OK",
-              onConfirm: dismissConfirm,
-            });
-          }
-        },
-      });
-    },
-    [showConfirm, dismissConfirm]
-  );
-
   const highlightAndScroll = useCallback(
     (messageId: string) => {
       const idx = listItems.findIndex(
@@ -478,15 +450,41 @@ const LiveChatScreen: React.FC = () => {
     return `${typingUsers.length} people are typing...`;
   }, [typingUsers]);
 
-  // Header right content — online count
+  const participants = useMemo(() => {
+    const seen = new Set<string>();
+    const result: LiveChatUser[] = [];
+    for (const msg of messages) {
+      const addr = msg.senderAddress?.toLowerCase();
+      if (!addr || seen.has(addr) || !msg.sender) continue;
+      seen.add(addr);
+      result.push(msg.sender);
+    }
+    return result;
+  }, [messages]);
+
+  const handleInfoPress = useCallback(() => {
+    navigation.navigate(ScreenNames.LiveChatInfo as any, {
+      room,
+      isModerator,
+      onlineCount,
+      participants,
+    });
+  }, [navigation, room, isModerator, onlineCount, participants]);
+
+  // Header right content — online count + info icon
   const RightHeader = useMemo(
     () => (
-      <View className="flex-row items-center gap-1.5">
-        <View className="w-2 h-2 rounded-full bg-green-500" />
-        <Text className="text-white/50 text-xs">{onlineCount}</Text>
+      <View className="flex-row items-center gap-3">
+        <View className="flex-row items-center gap-1.5">
+          <View className="w-2 h-2 rounded-full bg-green-500" />
+          <Text className="text-white/50 text-xs">{onlineCount}</Text>
+        </View>
+        <TouchableOpacity onPress={handleInfoPress} activeOpacity={0.6} hitSlop={8}>
+          <Ionicons name="information-circle-outline" size={22} color="rgba(255,255,255,0.5)" />
+        </TouchableOpacity>
       </View>
     ),
-    [onlineCount]
+    [onlineCount, handleInfoPress]
   );
 
   // Header subtitle
@@ -653,7 +651,6 @@ const LiveChatScreen: React.FC = () => {
         onEdit={handleContextEdit}
         onDelete={handleContextDelete}
         onPin={handleContextPin}
-        onBan={handleContextBan}
       />
 
       {/* Confirmation Modal */}
