@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -15,6 +15,8 @@ interface LiveChatInputProps {
   onSend: (content: string, replyTo?: string) => void;
   replyingTo: LiveChatMessageData | null;
   onCancelReply: () => void;
+  editingMessage: LiveChatMessageData | null;
+  onCancelEdit: () => void;
   isBanned: boolean;
   canSend: boolean;
   onTyping: (isTyping: boolean) => void;
@@ -27,6 +29,8 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
   onSend,
   replyingTo,
   onCancelReply,
+  editingMessage,
+  onCancelEdit,
   isBanned,
   canSend,
   onTyping,
@@ -39,6 +43,14 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
   const inputRef = useRef<TextInput>(null);
   const cooldownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // Pre-fill text when editing a message
+  useEffect(() => {
+    if (editingMessage) {
+      setText(editingMessage.content || "");
+      setTimeout(() => inputRef.current?.focus(), 100);
+    }
+  }, [editingMessage]);
+
   const remaining = MAX_LENGTH - text.length;
   const showCounter = remaining <= WARN_THRESHOLD;
   const isOverLimit = remaining < 0;
@@ -50,14 +62,15 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
     onSend(trimmed, replyingTo?._id);
     setText("");
     onCancelReply();
+    if (editingMessage) onCancelEdit();
 
-    if (slowMode) {
+    if (slowMode && !editingMessage) {
       setCooldown(true);
       cooldownTimerRef.current = setTimeout(() => {
         setCooldown(false);
       }, (slowModeSeconds || 5) * 1000);
     }
-  }, [text, isBanned, canSend, cooldown, isOverLimit, onSend, replyingTo, onCancelReply, slowMode, slowModeSeconds]);
+  }, [text, isBanned, canSend, cooldown, isOverLimit, onSend, replyingTo, onCancelReply, slowMode, slowModeSeconds, editingMessage, onCancelEdit]);
 
   const handleChangeText = useCallback(
     (val: string) => {
@@ -78,8 +91,29 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
   return (
     <View className="border-t border-white/5">
+      {/* Edit preview bar */}
+      {editingMessage && (
+        <View className="flex-row items-center px-4 py-2 bg-white/5 border-l-2 border-amber-500 mx-3 mt-2 rounded-lg">
+          <View className="flex-1 mr-2">
+            <Text className="text-amber-400 text-[11px] font-medium">Editing message</Text>
+            <Text className="text-white/40 text-xs" numberOfLines={1}>
+              {editingMessage.content}
+            </Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => {
+              onCancelEdit();
+              setText("");
+            }}
+            hitSlop={8}
+          >
+            <Ionicons name="close" size={18} color="#A6A9AC" />
+          </TouchableOpacity>
+        </View>
+      )}
+
       {/* Reply preview bar */}
-      {replyingTo && (
+      {replyingTo && !editingMessage && (
         <View className="flex-row items-center px-4 py-2 bg-white/5 border-l-2 border-blue-500 mx-3 mt-2 rounded-lg">
           <View className="flex-1 mr-2">
             <Text className="text-blue-400 text-[11px] font-medium">

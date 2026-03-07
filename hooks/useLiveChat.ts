@@ -229,6 +229,18 @@ export const useLiveChat = (): UseLiveChatReturn => {
         setMessages((prev) =>
           prev.map((m) => (m._id === msg._id ? msg : m))
         );
+        // Keep room.pinnedMessages in sync
+        setRoom((prev) => {
+          if (!prev) return prev;
+          const existing = prev.pinnedMessages || [];
+          const already = existing.some((p) => (p._id || (p as any).id) === msg._id);
+          return {
+            ...prev,
+            pinnedMessages: already
+              ? existing.map((p) => ((p._id || (p as any).id) === msg._id ? msg : p))
+              : [...existing, msg],
+          };
+        });
       });
 
       socket.on(EVENTS.MESSAGE_UNPINNED, ({ messageId }: { messageId: string }) => {
@@ -237,6 +249,15 @@ export const useLiveChat = (): UseLiveChatReturn => {
             m._id === messageId ? { ...m, isPinned: false, pinnedBy: undefined, pinnedAt: undefined } : m
           )
         );
+        setRoom((prev) => {
+          if (!prev) return prev;
+          return {
+            ...prev,
+            pinnedMessages: (prev.pinnedMessages || []).filter(
+              (p) => (p._id || (p as any).id) !== messageId
+            ),
+          };
+        });
       });
 
       socket.on(EVENTS.USER_BANNED, ({ message }: { message: string }) => {
