@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState, useRef } from "react";
+import React, { useCallback, useEffect, useMemo, useState, useRef, memo } from "react";
 import {
   View,
   Text,
@@ -6,16 +6,14 @@ import {
   TouchableOpacity,
   Platform,
   FlatList,
-  ScrollView,
-  Image,
   Dimensions,
   RefreshControl,
   ActivityIndicator,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
   BackHandler,
+  ListRenderItemInfo,
 } from "react-native";
 import Animated from "react-native-reanimated";
+import { Image } from "expo-image";
 import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -36,99 +34,29 @@ import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import type { FeedRange, FeedSortBy } from "../services/feed.unified.service";
 import { getImageUrl, getImageUrlApiSimple } from "../libs";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
+import { ScreenNames } from "../navigation/ScreenNames";
 
 const fallbackCategories = ["All"];
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const GRID_GAP = 2;
 
-// Grid layout constants
-// Pattern repeats every 9 items:
-// Row 1: 1 big (2x2) + 2 small stacked = 3 items
-// Row 2: 2 small stacked + 1 big (2x2) = 3 items  
-// Row 3: 3 equal = 3 items
+// Grid layout constants — pattern repeats every 3 rows / 9 items:
+// Row 0: 1 big (2×2) + 2 small stacked = 3 items  (height = BIG_SIZE)
+// Row 1: 2 small stacked + 1 big (2×2) = 3 items  (height = BIG_SIZE)
+// Row 2: 3 equal = 3 items                         (height = SMALL_SIZE)
 const SMALL_SIZE = (SCREEN_WIDTH - GRID_GAP * 2) / 3;
 const BIG_SIZE = SMALL_SIZE * 2 + GRID_GAP;
 
-const GridSkeleton: React.FC = () => {
-  // Render 2 full patterns (18 items) for skeleton
-  return (
-    <View style={{ opacity: 0.6 }}>
-      {/* Pattern 1 */}
-      {/* Row 1: Big + 2 small */}
-      <View style={skeletonStyles.patternRow}>
-        <View style={[skeletonStyles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
-        <View style={skeletonStyles.stackedColumn}>
-          <View style={[skeletonStyles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-          <View style={[skeletonStyles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-        </View>
-      </View>
-      {/* Row 2: 2 small + Big */}
-      <View style={skeletonStyles.patternRow}>
-        <View style={skeletonStyles.stackedColumn}>
-          <View style={[skeletonStyles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-          <View style={[skeletonStyles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-        </View>
-        <View style={[skeletonStyles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
-      </View>
-      {/* Row 3: 3 equal */}
-      <View style={skeletonStyles.equalRow}>
-        <View style={[skeletonStyles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-        <View style={[skeletonStyles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-        <View style={[skeletonStyles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-      </View>
+// Heights for each row in the 3-row pattern (including gap below)
+const ROW_HEIGHTS = [
+  BIG_SIZE + GRID_GAP,   // row 0 — big + 2 small
+  BIG_SIZE + GRID_GAP,   // row 1 — 2 small + big
+  SMALL_SIZE + GRID_GAP, // row 2 — 3 equal
+];
+const PATTERN_HEIGHT = ROW_HEIGHTS[0] + ROW_HEIGHTS[1] + ROW_HEIGHTS[2];
 
-      {/* Pattern 2 */}
-      <View style={skeletonStyles.patternRow}>
-        <View style={[skeletonStyles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
-        <View style={skeletonStyles.stackedColumn}>
-          <View style={[skeletonStyles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-          <View style={[skeletonStyles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-        </View>
-      </View>
-      <View style={skeletonStyles.patternRow}>
-        <View style={skeletonStyles.stackedColumn}>
-          <View style={[skeletonStyles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-          <View style={[skeletonStyles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-        </View>
-        <View style={[skeletonStyles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
-      </View>
-      <View style={skeletonStyles.equalRow}>
-        <View style={[skeletonStyles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-        <View style={[skeletonStyles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-        <View style={[skeletonStyles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-      </View>
-    </View>
-  );
-};
-
-const skeletonStyles = StyleSheet.create({
-  patternRow: {
-    flexDirection: "row",
-    marginBottom: GRID_GAP,
-    gap: GRID_GAP,
-  },
-  stackedColumn: {
-    gap: GRID_GAP,
-  },
-  equalRow: {
-    flexDirection: "row",
-    marginBottom: GRID_GAP,
-    gap: GRID_GAP,
-  },
-  skeletonItem: {
-    backgroundColor: "#262626",
-  },
-});
-
-// Default filter state for FeedScreen - Latest sort, feed-images only
-const defaultFilters: FeedFilters = {
-  sortBy: "createdAt",
-  dateRange: "",
-  postType: "feed-images", // Fixed to feed-images
-  contentAccess: [],
-};
-
+// ─── GridItem ───────────────────────────────────────────────
 interface GridItemProps {
   item: UnifiedFeedItem;
   index: number;
@@ -136,49 +64,182 @@ interface GridItemProps {
   onPress: (index: number) => void;
 }
 
-const GridItem: React.FC<GridItemProps> = ({ item, index, size, onPress }) => {
-  // Get images using the same logic as HomeFeedCard
-  const imageUri = React.useMemo(() => {
+const GridItem = memo<GridItemProps>(({ item, index, size, onPress }) => {
+  const imageUri = useMemo(() => {
     const urls: string[] = Array.isArray(item.imageUrls) ? item.imageUrls : [];
-    if (urls.length > 0) {
-      return getImageUrlApiSimple(urls[0]);
-    }
+    if (urls.length > 0) return getImageUrlApiSimple(urls[0]);
     const single = getImageUrl(item.imageUrl || item.thumbnailUrl || "");
     return single || null;
-  }, [item]);
+  }, [item.imageUrls, item.imageUrl, item.thumbnailUrl]);
 
-  const hasMultipleImages = (item.imageUrls?.length ?? 0) > 1;
+  const hasMultiple = (item.imageUrls?.length ?? 0) > 1;
+  const handlePress = useCallback(() => onPress(index), [onPress, index]);
 
-  if (!imageUri) return null;
+  if (!imageUri) return <View style={{ width: size, height: size, backgroundColor: "#262626" }} />;
 
   return (
     <TouchableOpacity
-      activeOpacity={0.8}
-      onPress={() => onPress(index)}
-      style={[styles.gridItem, { width: size, height: size }]}
+      activeOpacity={0.85}
+      onPress={handlePress}
+      style={{ width: size, height: size, backgroundColor: "#262626" }}
     >
       <Image
-        source={{ uri: imageUri }}
-        style={styles.gridImage}
-        resizeMode="cover"
+        source={imageUri}
+        style={StyleSheet.absoluteFill}
+        contentFit="cover"
+        recyclingKey={`grid-${item.tokenId || item.id}`}
+        transition={150}
       />
-      {/* Multiple images indicator - no background */}
-      {hasMultipleImages && (
+      {hasMultiple && (
         <View style={styles.multipleImagesIcon}>
           <Ionicons name="copy" size={16} color="#FFFFFF" style={styles.iconShadow} />
         </View>
       )}
     </TouchableOpacity>
   );
+}, (prev, next) =>
+  prev.item.tokenId === next.item.tokenId &&
+  prev.size === next.size &&
+  prev.index === next.index
+);
+
+// ─── Grid row types (virtualized via FlatList) ──────────────
+// Each row in the grid FlatList renders 3 items from feedData.
+interface GridRowData {
+  key: string;
+  rowType: 0 | 1 | 2; // 0 = big-left, 1 = big-right, 2 = three-equal
+  startIndex: number;  // index into feedData
+}
+
+const buildGridRows = (count: number): GridRowData[] => {
+  const rows: GridRowData[] = [];
+  let index = 0;
+  let rowNum = 0;
+  while (index < count) {
+    const rowType = (rowNum % 3) as 0 | 1 | 2;
+    rows.push({ key: `gr-${rowNum}`, rowType, startIndex: index });
+    index += 3;
+    rowNum++;
+  }
+  return rows;
 };
 
+interface GridRowProps {
+  row: GridRowData;
+  data: UnifiedFeedItem[];
+  onItemPress: (index: number) => void;
+}
+
+const GridRow = memo<GridRowProps>(({ row, data, onItemPress }) => {
+  const { rowType, startIndex } = row;
+  const a = data[startIndex];
+  const b = data[startIndex + 1];
+  const c = data[startIndex + 2];
+
+  if (rowType === 0) {
+    // Big left + 2 small stacked right
+    return (
+      <View style={styles.patternRow}>
+        {a && <GridItem item={a} index={startIndex} size={BIG_SIZE} onPress={onItemPress} />}
+        <View style={styles.stackedColumn}>
+          {b && <GridItem item={b} index={startIndex + 1} size={SMALL_SIZE} onPress={onItemPress} />}
+          {c && <GridItem item={c} index={startIndex + 2} size={SMALL_SIZE} onPress={onItemPress} />}
+        </View>
+      </View>
+    );
+  }
+  if (rowType === 1) {
+    // 2 small stacked left + big right
+    return (
+      <View style={styles.patternRow}>
+        <View style={styles.stackedColumn}>
+          {a && <GridItem item={a} index={startIndex} size={SMALL_SIZE} onPress={onItemPress} />}
+          {b && <GridItem item={b} index={startIndex + 1} size={SMALL_SIZE} onPress={onItemPress} />}
+        </View>
+        {c && <GridItem item={c} index={startIndex + 2} size={BIG_SIZE} onPress={onItemPress} />}
+      </View>
+    );
+  }
+  // rowType === 2: 3 equal
+  return (
+    <View style={styles.equalRow}>
+      {a && <GridItem item={a} index={startIndex} size={SMALL_SIZE} onPress={onItemPress} />}
+      {b && <GridItem item={b} index={startIndex + 1} size={SMALL_SIZE} onPress={onItemPress} />}
+      {c && <GridItem item={c} index={startIndex + 2} size={SMALL_SIZE} onPress={onItemPress} />}
+    </View>
+  );
+});
+
+// ─── Skeleton ───────────────────────────────────────────────
+const GridSkeleton: React.FC = () => (
+  <View style={{ opacity: 0.6 }}>
+    {[0, 1].map((p) => (
+      <React.Fragment key={p}>
+        <View style={styles.patternRow}>
+          <View style={[styles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
+          <View style={styles.stackedColumn}>
+            <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+            <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+          </View>
+        </View>
+        <View style={styles.patternRow}>
+          <View style={styles.stackedColumn}>
+            <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+            <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+          </View>
+          <View style={[styles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
+        </View>
+        <View style={styles.equalRow}>
+          <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+          <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+          <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+        </View>
+      </React.Fragment>
+    ))}
+  </View>
+);
+
+// ─── Default filter state ───────────────────────────────────
+const defaultFilters: FeedFilters = {
+  sortBy: "createdAt",
+  dateRange: "",
+  postType: "feed-images",
+  contentAccess: [],
+};
+
+// ─── Deterministic row-height for getItemLayout ─────────────
+const getGridItemLayout = (_data: any, index: number) => {
+  // Each row in the pattern has a known height
+  const patternGroup = Math.floor(index / 3);
+  const rowInPattern = index % 3;
+  const offset =
+    patternGroup * PATTERN_HEIGHT +
+    (rowInPattern >= 1 ? ROW_HEIGHTS[0] : 0) +
+    (rowInPattern >= 2 ? ROW_HEIGHTS[1] : 0);
+  return { length: ROW_HEIGHTS[rowInPattern], offset, index };
+};
+
+// Convert a feed-item index to the grid-row index that contains it
+const itemIndexToRowIndex = (idx: number) => Math.floor(idx / 3);
+
+// Convert a grid-row index to the y-offset
+const rowIndexToOffset = (rowIdx: number) => {
+  const patternGroup = Math.floor(rowIdx / 3);
+  const rowInPattern = rowIdx % 3;
+  let offset = patternGroup * PATTERN_HEIGHT;
+  for (let r = 0; r < rowInPattern; r++) offset += ROW_HEIGHTS[r];
+  return offset;
+};
+
+// ═════════════════════════════════════════════════════════════
+// FeedScreen
+// ═════════════════════════════════════════════════════════════
 const FeedScreen = () => {
   const { isSignedIn } = useAuthState();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
   const isFocused = useIsFocused();
 
-  // Collapsible header
   const {
     headerAnimatedStyle,
     onHeaderLayout,
@@ -188,117 +249,101 @@ const FeedScreen = () => {
     showHeader,
   } = useCollapsibleHeader();
 
-  // View mode state - default to grid view
+  // ── View mode ──────────────────────────────────────────────
   const [isGridView, setIsGridView] = useState(true);
 
-  // Shared feed data state
+  // ── Feed data ──────────────────────────────────────────────
   const [feedData, setFeedData] = useState<UnifiedFeedItem[]>([]);
   const [feedLoading, setFeedLoading] = useState(false);
   const [feedRefreshing, setFeedRefreshing] = useState(false);
   const [feedPage, setFeedPage] = useState(0);
   const [feedHasMore, setFeedHasMore] = useState(true);
-  
-  // FlatList ref for scroll position
-  const feedListRef = useRef<FlatList<any>>(null);
-  const gridListRef = useRef<ScrollView>(null);
-  
-  // Track current visible index for syncing between views
-  const currentVisibleIndex = useRef(0);
-  const pendingScrollIndex = useRef<number | null>(null);
   const feedLoadingRef = useRef(false);
 
-  // Grid → feed transition overlay (ref for instant render, state for commit)
-  const [transitionPending, setTransitionPending] = useState(false);
+  // ── Refs ───────────────────────────────────────────────────
+  const feedListRef = useRef<FlatList<any>>(null);
+  const gridListRef = useRef<FlatList<any>>(null);
+  const currentVisibleIndex = useRef(0);
+  const pendingScrollIndex = useRef<number | null>(null);
 
-  // Switch from feed view back to grid
+  // ── Grid → feed transition overlay ─────────────────────────
+  const [transitionPending, setTransitionPending] = useState(false);
+  const transitionPendingRef = useRef(false);
+  const scrollTargetIndex = useRef<number | null>(null);
+
   const switchToGrid = useCallback(() => {
     setIsGridView(true);
+    setTransitionPending(false);
+    transitionPendingRef.current = false;
     setFilterPanelVisible(false);
     showHeader();
   }, [showHeader]);
 
-  // Intercept hardware back button in feed view → return to grid
   useEffect(() => {
     if (isGridView) return;
-    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+    const sub = BackHandler.addEventListener("hardwareBackPress", () => {
       switchToGrid();
       return true;
     });
     return () => sub.remove();
   }, [isGridView, switchToGrid]);
 
-  // Filter state
+  // ── Filters & categories ───────────────────────────────────
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
   const [filters, setFilters] = useState<FeedFilters>(defaultFilters);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [categories, setCategories] = useState<string[]>(fallbackCategories);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
 
-  // Load categories on mount
   useEffect(() => {
     let mounted = true;
-    const load = async () => {
+    (async () => {
       setCategoriesLoading(true);
       const list = await getCategoriesCached();
-      if (mounted && list && list.length) {
-        const cleaned = [
-          "All",
-          ...list.filter((c) => c && c.toLowerCase() !== "all"),
-        ];
+      if (mounted && list?.length) {
+        const cleaned = ["All", ...list.filter((c) => c && c.toLowerCase() !== "all")];
         setCategories(cleaned);
         if (!cleaned.includes(selectedCategory)) setSelectedCategory("All");
       }
       setCategoriesLoading(false);
-    };
-    load();
-    return () => {
-      mounted = false;
-    };
+    })();
+    return () => { mounted = false; };
   }, []);
 
-  // Convert filter panel state to API params
   const feedParams = useMemo(() => {
     const params: Record<string, any> = {
       category: selectedCategory !== "All" ? selectedCategory : undefined,
       sortBy: filters.sortBy as FeedSortBy,
       sortOrder: "desc" as const,
-      postType: "feed-images", // Always feed-images for FeedScreen
+      postType: "feed-images",
       status: "minted" as const,
     };
-
-    // Date range
-    if (filters.dateRange) {
-      params.range = filters.dateRange as FeedRange;
-    }
-
+    if (filters.dateRange) params.range = filters.dateRange as FeedRange;
     return params;
   }, [selectedCategory, filters]);
 
-  // Fetch feed data (shared between both views)
+  // ── Data fetching (single effect, no double-fetch) ─────────
   const fetchFeedData = useCallback(
     async (page: number, refresh = false) => {
       if (feedLoadingRef.current && !refresh) return;
       feedLoadingRef.current = true;
 
-      if (refresh) {
-        setFeedRefreshing(true);
-      } else {
-        setFeedLoading(true);
-      }
+      if (refresh) setFeedRefreshing(true);
+      else setFeedLoading(true);
 
       try {
-        const response = await getUnifiedFeed({
-          ...feedParams,
-          page,
-          limit: 30,
-        });
-
+        const response = await getUnifiedFeed({ ...feedParams, page, limit: 30 });
         const newItems = response.result || [];
 
         if (refresh || page === 0) {
           setFeedData(newItems);
         } else {
-          setFeedData((prev) => [...prev, ...newItems]);
+          // Deduplicate on append
+          setFeedData((prev) => {
+            const existingIds = new Set(prev.map((i) => i.tokenId ?? i.id));
+            const unique = newItems.filter((i) => !existingIds.has(i.tokenId ?? i.id));
+            return [...prev, ...unique];
+          });
         }
 
         setFeedHasMore(response.pagination?.hasMore ?? newItems.length >= 30);
@@ -311,144 +356,153 @@ const FeedScreen = () => {
         setFeedRefreshing(false);
       }
     },
-    [feedParams]
+    [feedParams],
   );
 
-  // Load feed data on mount
+  // Single fetch trigger — reacts to feedParams changes (including mount)
+  const feedParamsRef = useRef(feedParams);
   useEffect(() => {
-    fetchFeedData(0);
-  }, []);
-
-  // Reset feed data when filters change
-  useEffect(() => {
-    fetchFeedData(0, true);
-  }, [feedParams]);
+    const isParamChange =
+      JSON.stringify(feedParams) !== JSON.stringify(feedParamsRef.current);
+    feedParamsRef.current = feedParams;
+    fetchFeedData(0, isParamChange);
+  }, [feedParams]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleRefresh = useCallback(() => {
     showHeader();
     fetchFeedData(0, true);
   }, [fetchFeedData, showHeader]);
 
-  // Handle tab press to scroll to top and refresh
   useEffect(() => {
-    const unsubscribe = navigation.addListener("tabPress" as any, () => {
+    const unsub = navigation.addListener("tabPress" as any, () => {
       if (!isFocused) return;
-      // Refresh data
       handleRefresh();
-      // Scroll to top for whichever view is active
       if (isGridView) {
-        gridListRef.current?.scrollTo({ y: 0, animated: true });
+        gridListRef.current?.scrollToOffset({ offset: 0, animated: true });
       } else {
         feedListRef.current?.scrollToOffset({ offset: 0, animated: true });
       }
     });
-    return unsubscribe;
+    return unsub;
   }, [navigation, isFocused, isGridView, handleRefresh]);
 
   const handleEndReached = useCallback(() => {
-    if (!feedLoading && feedHasMore) {
+    if (!feedLoadingRef.current && feedHasMore) {
       fetchFeedData(feedPage + 1);
     }
-  }, [fetchFeedData, feedLoading, feedHasMore, feedPage]);
+  }, [fetchFeedData, feedHasMore, feedPage]);
 
-  // Handle scroll-to-index failure (target item not yet rendered)
+  // Prefetch grid images so they're cached before scrolling into view
+  useEffect(() => {
+    if (feedData.length === 0) return;
+    const urls: string[] = [];
+    for (const item of feedData) {
+      const imgs = Array.isArray(item.imageUrls) ? item.imageUrls : [];
+      if (imgs.length > 0) {
+        const u = getImageUrlApiSimple(imgs[0]);
+        if (u) urls.push(u);
+      } else {
+        const u = getImageUrl(item.imageUrl || item.thumbnailUrl || "");
+        if (u) urls.push(u);
+      }
+    }
+    if (urls.length > 0) Image.prefetch(urls);
+  }, [feedData]);
+
+  // ── Feed-view callbacks ────────────────────────────────────
   const handleScrollToIndexFailed = useCallback(
     (info: { index: number; highestMeasuredFrameIndex: number; averageItemLength: number }) => {
       const offset = info.averageItemLength * info.index;
       feedListRef.current?.scrollToOffset({ offset, animated: false });
-      setTimeout(() => {
-        if (info.index <= feedData.length - 1) {
-          feedListRef.current?.scrollToIndex({ index: info.index, animated: false });
-        }
-      }, 200);
+      requestAnimationFrame(() => {
+        feedListRef.current?.scrollToIndex({ index: info.index, animated: false, viewPosition: 0 });
+      });
     },
-    [feedData.length]
+    [],
   );
 
-  // Track visible item in feed view
   const handleFeedViewableItemsChanged = useCallback(
     ({ viewableItems }: { viewableItems: Array<{ index: number | null }> }) => {
       if (viewableItems.length > 0 && viewableItems[0].index != null) {
         currentVisibleIndex.current = viewableItems[0].index;
       }
+      // Dismiss transition overlay once the scroll target is visible
+      if (transitionPendingRef.current && scrollTargetIndex.current != null) {
+        const targetVisible = viewableItems.some(
+          (v) => v.index === scrollTargetIndex.current,
+        );
+        if (targetVisible) {
+          transitionPendingRef.current = false;
+          scrollTargetIndex.current = null;
+          setTransitionPending(false);
+        }
+      }
     },
-    []
+    [],
   );
 
   const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 50 }).current;
 
-  // Compute safe initial scroll index (bounded by data length)
-  const safeInitialIndex = useMemo(() => {
-    if (feedData.length === 0) return 0;
-    return Math.min(currentVisibleIndex.current, feedData.length - 1);
-  }, [feedData.length, isGridView]); // Recalc when switching views
+  // ── Grid rows (memoised) ───────────────────────────────────
+  const gridRows = useMemo(() => buildGridRows(feedData.length), [feedData.length]);
 
-  // Compute grid scroll offset from item index
-  // Pattern: rows 0,1 are "big+small" rows (height = BIG_SIZE), row 2 is equal row (height = SMALL_SIZE)
-  const gridInitialOffset = useMemo(() => {
-    const index = safeInitialIndex;
-    // Each pattern of 3 rows contains 9 items
-    const patternGroup = Math.floor(index / 9);
-    const indexInPattern = index % 9;
-    
-    // Height of one full pattern (3 visual rows): 2 big rows + 1 small row
-    const patternHeight = BIG_SIZE * 2 + SMALL_SIZE + GRID_GAP * 3;
-    
-    let offset = patternGroup * patternHeight;
-    
-    // Add offset based on position within pattern
-    if (indexInPattern >= 6) {
-      // In the 3-equal row (items 6,7,8)
-      offset += BIG_SIZE * 2 + GRID_GAP * 2;
-    } else if (indexInPattern >= 3) {
-      // In the second big row (items 3,4,5)
-      offset += BIG_SIZE + GRID_GAP;
-    }
-    // Items 0,1,2 are in first row, no additional offset
-    
-    return offset;
-  }, [safeInitialIndex]);
-
-  // When clicking a grid item, show overlay immediately then switch to feed view
+  // ── Grid ↔ Feed sync ──────────────────────────────────────
   const handleGridItemPress = useCallback((index: number) => {
-    currentVisibleIndex.current = index;
-    pendingScrollIndex.current = index;
-    // Show overlay instantly, defer the heavy view-switch to next frame
-    setTransitionPending(true);
-    requestAnimationFrame(() => {
-      setIsGridView(false);
-    });
-  }, []);
+    const item = feedData[index];
+    if (!item) return;
+    const id = item.tokenId ?? item.id;
+    if (id != null) {
+      navigation.navigate(ScreenNames.FeedDetail as any, { postId: String(id) });
+    }
+  }, [feedData, navigation]);
 
-  // Scroll feed list to target index when switching from grid to feed
+  // Scroll feed list after grid→feed switch — overlay stays until target is viewable
   useEffect(() => {
     if (!isGridView && pendingScrollIndex.current != null) {
       const idx = pendingScrollIndex.current;
       pendingScrollIndex.current = null;
-      // Wait for FlatList to mount and render initial items
       const scrollTimer = setTimeout(() => {
         feedListRef.current?.scrollToIndex({ index: idx, animated: false, viewPosition: 0 });
-      }, 80);
-      // Dismiss overlay after scroll settles
-      const dismissTimer = setTimeout(() => {
-        setTransitionPending(false);
-      }, 220);
-      return () => {
-        clearTimeout(scrollTimer);
-        clearTimeout(dismissTimer);
-      };
+      }, 50);
+      // Safety: dismiss overlay after 2s if viewable-check never fires
+      const safetyTimer = setTimeout(() => {
+        if (transitionPendingRef.current) {
+          transitionPendingRef.current = false;
+          setTransitionPending(false);
+        }
+      }, 2000);
+      return () => { clearTimeout(scrollTimer); clearTimeout(safetyTimer); };
     }
   }, [isGridView]);
 
-  // Toggle view mode and sync scroll position
   const toggleViewMode = useCallback(() => {
+    if (!isGridView) {
+      // Switching back to grid — scroll grid to the currently-visible feed item
+      const rowIdx = itemIndexToRowIndex(currentVisibleIndex.current);
+      requestAnimationFrame(() => {
+        gridListRef.current?.scrollToIndex({ index: rowIdx, animated: false, viewPosition: 0 });
+      });
+    }
     setIsGridView((prev) => !prev);
     setFilterPanelVisible(false);
     showHeader();
-  }, [showHeader]);
+  }, [showHeader, isGridView]);
 
+  // ── Grid-row viewable tracking (for sync back to feed) ─────
+  const handleGridViewableItemsChanged = useCallback(
+    ({ viewableItems }: { viewableItems: Array<{ item: GridRowData; index: number | null }> }) => {
+      if (viewableItems.length > 0) {
+        const first = viewableItems[0].item as GridRowData;
+        currentVisibleIndex.current = first.startIndex;
+      }
+    },
+    [],
+  );
+
+  const gridViewabilityConfig = useRef({ itemVisiblePercentThreshold: 30 }).current;
+
+  // ── Filter handlers ────────────────────────────────────────
   const handleFiltersChange = useCallback((newFilters: FeedFilters) => {
-    // Always keep postType as feed-images and ignore contentAccess
     setFilters({ ...newFilters, postType: "feed-images", contentAccess: [] });
   }, []);
 
@@ -456,44 +510,58 @@ const FeedScreen = () => {
     setFilterPanelVisible((prev) => !prev);
   }, []);
 
-  // Close filter panel when scrolling starts
   const handleScrollBegin = useCallback(() => {
-    if (filterPanelVisible) {
-      setFilterPanelVisible(false);
-    }
+    if (filterPanelVisible) setFilterPanelVisible(false);
   }, [filterPanelVisible]);
 
-  // Grid view scroll handler — drives collapsible header + syncs index
-  const handleGridScroll = useCallback(
-    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-      headerHandleScroll(e);
-      const offsetY = e.nativeEvent.contentOffset.y;
-      const rowHeight = SMALL_SIZE + GRID_GAP;
-      const estimatedRow = Math.floor(offsetY / rowHeight);
-      const patternIdx = Math.floor(estimatedRow / 3);
-      const rowInPattern = estimatedRow % 3;
-      let itemIndex = patternIdx * 9;
-      if (rowInPattern === 1) itemIndex += 3;
-      else if (rowInPattern >= 2) itemIndex += 6;
-      currentVisibleIndex.current = Math.min(itemIndex, feedData.length - 1);
+  const handleCategoryPress = useCallback(
+    (cat: string) => {
+      if (cat === selectedCategory) return;
+      setSelectedCategory(cat);
+      if (cat === "All") setFilters(defaultFilters);
     },
-    [headerHandleScroll, feedData.length],
+    [selectedCategory],
   );
 
-  // Handle category selection
-  const handleCategoryPress = useCallback((cat: string) => {
-    if (cat === selectedCategory) return;
-    setSelectedCategory(cat);
+  // ── Grid row renderer ─────────────────────────────────────
+  const renderGridRow = useCallback(
+    ({ item }: ListRenderItemInfo<GridRowData>) => (
+      <GridRow row={item} data={feedData} onItemPress={handleGridItemPress} />
+    ),
+    [feedData, handleGridItemPress],
+  );
 
-    // Reset filters to default when "All" is selected
-    if (cat === "All") {
-      setFilters(defaultFilters);
+  const gridKeyExtractor = useCallback((item: GridRowData) => item.key, []);
+
+  // ── Feed item renderer ────────────────────────────────────
+  const feedKeyExtractor = useCallback(
+    (item: UnifiedFeedItem) => `feed-${item.tokenId ?? item.id}`,
+    [],
+  );
+
+  const renderFeedItem = useCallback(
+    ({ item }: ListRenderItemInfo<UnifiedFeedItem>) => <HomeFeedCard item={item} />,
+    [],
+  );
+
+  // ── Grid footer ───────────────────────────────────────────
+  const GridFooter = useMemo(() => {
+    if (feedLoading && feedData.length > 0) {
+      return (
+        <View className="items-center py-6">
+          <ActivityIndicator size="small" color="rgba(255,255,255,0.4)" />
+        </View>
+      );
     }
-  }, [selectedCategory]);
+    return null;
+  }, [feedLoading, feedData.length]);
 
+  // ══════════════════════════════════════════════════════════
+  // Render
+  // ══════════════════════════════════════════════════════════
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      {/* Collapsible header — slides up on scroll-down, reappears on scroll-up */}
+      {/* Collapsible header */}
       <View style={styles.headerClip}>
         <Animated.View style={headerAnimatedStyle} onLayout={onHeaderLayout}>
           <ScreenHeader
@@ -502,7 +570,6 @@ const FeedScreen = () => {
             onBackPress={!isGridView ? switchToGrid : undefined}
           />
 
-          {/* Category bar and filters - only show in feed view */}
           {!isGridView && (
             <>
               <View style={styles.filterSection}>
@@ -518,7 +585,6 @@ const FeedScreen = () => {
                   />
                 )}
               </View>
-
               <FeedFilterPanel
                 visible={filterPanelVisible}
                 filters={filters}
@@ -531,32 +597,26 @@ const FeedScreen = () => {
         </Animated.View>
       </View>
 
-      {/* Feed View */}
+      {/* ── Feed View ─────────────────────────────────────── */}
       {!isGridView && (
         <View className="flex-1 px-4">
           <Animated.FlatList
             ref={feedListRef}
             data={feedData}
-            keyExtractor={(item: UnifiedFeedItem, index: number) =>
-              `feed-${index}-${item.tokenId || item.id}`
-            }
-            renderItem={({ item }: { item: UnifiedFeedItem }) => (
-              <HomeFeedCard item={item} />
-            )}
+            keyExtractor={feedKeyExtractor}
+            renderItem={renderFeedItem}
             onViewableItemsChanged={handleFeedViewableItemsChanged}
             viewabilityConfig={viewabilityConfig}
             contentContainerStyle={{ paddingBottom: 80 }}
             onScrollToIndexFailed={handleScrollToIndexFailed}
-            initialNumToRender={15}
+            initialNumToRender={8}
+            maxToRenderPerBatch={8}
+            windowSize={11}
             onScroll={scrollHandler}
             onScrollBeginDrag={handleScrollBegin}
             scrollEventThrottle={16}
             refreshControl={
-              <RefreshControl
-                refreshing={feedRefreshing}
-                onRefresh={handleRefresh}
-                tintColor="#FFFFFF"
-              />
+              <RefreshControl refreshing={feedRefreshing} onRefresh={handleRefresh} tintColor="#FFFFFF" />
             }
             onEndReached={handleEndReached}
             onEndReachedThreshold={0.8}
@@ -567,21 +627,15 @@ const FeedScreen = () => {
                 </View>
               ) : !feedHasMore && feedData.length > 0 ? (
                 <View className="px-4 py-6 items-center">
-                  <Text className="text-theme-neutrals-400 text-xs">
-                    No more content
-                  </Text>
+                  <Text className="text-theme-neutrals-400 text-xs">No more content</Text>
                 </View>
               ) : null
             }
             ListEmptyComponent={
               !feedLoading ? (
                 <View className="items-center py-10">
-                  <Text className="text-theme-neutrals-400 text-sm mb-1">
-                    No posts yet.
-                  </Text>
-                  <Text className="text-theme-neutrals-500 text-xs mb-2">
-                    Pull to refresh or try again later.
-                  </Text>
+                  <Text className="text-theme-neutrals-400 text-sm mb-1">No posts yet.</Text>
+                  <Text className="text-theme-neutrals-500 text-xs mb-2">Pull to refresh or try again later.</Text>
                 </View>
               ) : null
             }
@@ -589,182 +643,53 @@ const FeedScreen = () => {
         </View>
       )}
 
-      {/* Grid View - Custom Pattern Layout */}
+      {/* ── Grid View (virtualized FlatList) ──────────────── */}
       {isGridView && (
-        <ScrollView
+        <FlatList
           ref={gridListRef}
-          contentContainerStyle={styles.gridContainer}
-          contentOffset={{ x: 0, y: gridInitialOffset }}
+          data={gridRows}
+          keyExtractor={gridKeyExtractor}
+          renderItem={renderGridRow}
+          getItemLayout={getGridItemLayout}
+          onViewableItemsChanged={handleGridViewableItemsChanged}
+          viewabilityConfig={gridViewabilityConfig}
+          initialNumToRender={8}
+          maxToRenderPerBatch={6}
+          windowSize={9}
+          contentContainerStyle={{ paddingBottom: 80 }}
           refreshControl={
-            <RefreshControl
-              refreshing={feedRefreshing}
-              onRefresh={handleRefresh}
-              tintColor="#FFFFFF"
-            />
+            <RefreshControl refreshing={feedRefreshing} onRefresh={handleRefresh} tintColor="#FFFFFF" />
           }
-          onScroll={handleGridScroll}
+          onScroll={headerHandleScroll}
           onScrollEndDrag={handleScrollEnd}
           scrollEventThrottle={16}
-          onMomentumScrollEnd={(e) => {
-            handleScrollEnd();
-            handleEndReached();
-          }}
-        >
-          {/* Render grid in pattern groups */}
-          {(() => {
-            const rows: React.ReactNode[] = [];
-            let i = 0;
-            let patternIndex = 0;
-
-            while (i < feedData.length) {
-              const patternType = patternIndex % 3;
-
-              if (patternType === 0 && i < feedData.length) {
-                // Row type 1: Big left + 2 small stacked right
-                const bigItem = feedData[i];
-                const small1 = feedData[i + 1];
-                const small2 = feedData[i + 2];
-
-                rows.push(
-                  <View key={`row-${patternIndex}`} style={styles.patternRow}>
-                    {bigItem && (
-                      <GridItem
-                        item={bigItem}
-                        index={i}
-                        size={BIG_SIZE}
-                        onPress={handleGridItemPress}
-                      />
-                    )}
-                    <View style={styles.stackedColumn}>
-                      {small1 && (
-                        <GridItem
-                          item={small1}
-                          index={i + 1}
-                          size={SMALL_SIZE}
-                          onPress={handleGridItemPress}
-                        />
-                      )}
-                      {small2 && (
-                        <GridItem
-                          item={small2}
-                          index={i + 2}
-                          size={SMALL_SIZE}
-                          onPress={handleGridItemPress}
-                        />
-                      )}
-                    </View>
-                  </View>
-                );
-                i += 3;
-              } else if (patternType === 1 && i < feedData.length) {
-                // Row type 2: 2 small stacked left + Big right
-                const small1 = feedData[i];
-                const small2 = feedData[i + 1];
-                const bigItem = feedData[i + 2];
-
-                rows.push(
-                  <View key={`row-${patternIndex}`} style={styles.patternRow}>
-                    <View style={styles.stackedColumn}>
-                      {small1 && (
-                        <GridItem
-                          item={small1}
-                          index={i}
-                          size={SMALL_SIZE}
-                          onPress={handleGridItemPress}
-                        />
-                      )}
-                      {small2 && (
-                        <GridItem
-                          item={small2}
-                          index={i + 1}
-                          size={SMALL_SIZE}
-                          onPress={handleGridItemPress}
-                        />
-                      )}
-                    </View>
-                    {bigItem && (
-                      <GridItem
-                        item={bigItem}
-                        index={i + 2}
-                        size={BIG_SIZE}
-                        onPress={handleGridItemPress}
-                      />
-                    )}
-                  </View>
-                );
-                i += 3;
-              } else if (patternType === 2 && i < feedData.length) {
-                // Row type 3: 3 equal boxes
-                const item1 = feedData[i];
-                const item2 = feedData[i + 1];
-                const item3 = feedData[i + 2];
-
-                rows.push(
-                  <View key={`row-${patternIndex}`} style={styles.equalRow}>
-                    {item1 && (
-                      <GridItem
-                        item={item1}
-                        index={i}
-                        size={SMALL_SIZE}
-                        onPress={handleGridItemPress}
-                      />
-                    )}
-                    {item2 && (
-                      <GridItem
-                        item={item2}
-                        index={i + 1}
-                        size={SMALL_SIZE}
-                        onPress={handleGridItemPress}
-                      />
-                    )}
-                    {item3 && (
-                      <GridItem
-                        item={item3}
-                        index={i + 2}
-                        size={SMALL_SIZE}
-                        onPress={handleGridItemPress}
-                      />
-                    )}
-                  </View>
-                );
-                i += 3;
-              }
-
-              patternIndex++;
-            }
-
-            return rows;
-          })()}
-
-          {/* Skeleton loader when loading initial data */}
-          {feedLoading && feedData.length === 0 && <GridSkeleton />}
-
-          {/* Empty state */}
-          {feedData.length === 0 && !feedLoading && (
-            <View className="items-center py-10">
-              <Text className="text-theme-neutrals-400 text-sm mb-1">
-                No posts yet.
-              </Text>
-            </View>
-          )}
-        </ScrollView>
+          onEndReached={handleEndReached}
+          onEndReachedThreshold={1.5}
+          showsVerticalScrollIndicator={false}
+          ListFooterComponent={GridFooter}
+          ListEmptyComponent={
+            feedLoading ? (
+              <GridSkeleton />
+            ) : (
+              <View className="items-center py-10">
+                <Text className="text-theme-neutrals-400 text-sm mb-1">No posts yet.</Text>
+              </View>
+            )
+          }
+        />
       )}
 
-      {/* Transition overlay — hides layout churn when switching grid → feed */}
+      {/* Transition overlay */}
       {transitionPending && (
         <View style={styles.transitionOverlay}>
           <ActivityIndicator size="large" color="#fff" />
         </View>
       )}
 
-      {/* Floating Grid Button - only show in feed view */}
+      {/* Floating grid button — feed view only */}
       {!isGridView && !transitionPending && (
-        <View style={[styles.floatingButtonContainer, { bottom: insets.bottom  }]}>
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={toggleViewMode}
-            style={styles.floatingButton}
-          >
+        <View style={[styles.floatingButtonContainer, { bottom: insets.bottom }]}>
+          <TouchableOpacity activeOpacity={0.8} onPress={toggleViewMode} style={styles.floatingButton}>
             <BlurView
               intensity={80}
               tint="dark"
@@ -783,13 +708,13 @@ const FeedScreen = () => {
 
 const styles = StyleSheet.create({
   headerClip: {
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   transitionOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#000',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#000",
+    justifyContent: "center",
+    alignItems: "center",
     zIndex: 200,
   },
   filterSection: {
@@ -808,7 +733,6 @@ const styles = StyleSheet.create({
     height: 45,
     borderRadius: 28,
     overflow: "hidden",
-    // Add shadow for depth
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
@@ -829,14 +753,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.2)",
   },
-  // Grid styles
-  gridItem: {
-    backgroundColor: "#262626",
-  },
-  gridImage: {
-    width: "100%",
-    height: "100%",
-  },
   multipleImagesIcon: {
     position: "absolute",
     top: 8,
@@ -847,7 +763,6 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 3,
   },
-  // Pattern layout styles
   patternRow: {
     flexDirection: "row",
     marginBottom: GRID_GAP,
@@ -861,8 +776,8 @@ const styles = StyleSheet.create({
     marginBottom: GRID_GAP,
     gap: GRID_GAP,
   },
-  gridContainer: {
-    paddingBottom: 80,
+  skeletonItem: {
+    backgroundColor: "#262626",
   },
 });
 
