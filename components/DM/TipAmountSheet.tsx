@@ -17,6 +17,7 @@ import {
 } from "react-native";
 import Animated, { FadeIn, SlideInDown } from "react-native-reanimated";
 import { Ionicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface TipAmountSheetProps {
   visible: boolean;
@@ -46,6 +47,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
   minAmount = 1,
   dhbBalance,
 }) => {
+  const insets = useSafeAreaInsets();
   const [inputValue, setInputValue] = useState(
     currentAmount > 0 ? String(currentAmount) : "",
   );
@@ -110,7 +112,8 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
           <Pressable onPress={() => {}}>
             <Animated.View
               entering={SlideInDown.duration(280).damping(28).stiffness(220)}
-              className="bg-theme-neutrals-900 rounded-t-3xl px-5 pt-5 pb-8"
+              className="bg-theme-neutrals-900 rounded-t-3xl px-5 pt-5"
+              style={{ paddingBottom: Math.max(insets.bottom, 20) }}
             >
               {/* Handle */}
               <View className="items-center mb-4">

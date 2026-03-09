@@ -536,8 +536,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
             if (hrs < 24) return `${hrs}h`;
             const days = Math.floor(hrs / 24);
             if (days < 7) return `${days}d`;
-            const weeks = Math.floor(days / 7);
-            if (weeks < 4) return `${weeks}w`;
+            if (days < 30) return `${Math.floor(days / 7)}w`;
             const months = Math.floor(days / 30);
             if (months < 12) return `${months}mo`;
             const years = Math.floor(days / 365);
