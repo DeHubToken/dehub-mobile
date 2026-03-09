@@ -1,82 +1,88 @@
-import React from "react";
+import React, { useCallback, memo } from "react";
 import { View, TouchableOpacity, Text } from "react-native";
 import SmartImage from "./common/SmartImage";
-import * as Application from "expo-application";
-import { Ionicons } from "@expo/vector-icons";
-// import AntDesign from '@expo/vector-icons/AntDesign';
+import Avatar from "./common/Avatar";
+import Icon from "./ui/Icon";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useUser, useAuthState } from "../context/AuthContext";
+import { getAvatarUrl } from "../libs/misc";
 import { theme } from "../theme";
 
-const HomeHeader = () => {
+interface HomeHeaderProps {
+  onLogoPress?: () => void;
+  onMenuPress?: () => void;
+}
+
+const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => {
   const navigation = useNavigation<any>();
   const { isSignedIn } = useAuthState();
   const user = useUser();
-  // Show blue dot when there are unread notifications
+
   const hasUnread = (user?.notificationCount || 0) > 0;
+  const avatarUrl = getAvatarUrl(user?.avatarImageUrl);
+  const hasAvatar = !!user?.avatarImageUrl;
+  const initial = (user?.displayName || user?.username || "U").charAt(0).toUpperCase();
+
+  const handleNotificationPress = useCallback(() => {
+    navigation.navigate(ScreenNames.Notifications);
+  }, [navigation]);
+
+  const handleSignInPress = useCallback(() => {
+    navigation.navigate(ScreenNames.SignIn);
+  }, [navigation]);
 
   return (
-    <View className="flex-row justify-between items-center p-4">
-      <View className="flex-row items-center">
-        <TouchableOpacity
-          activeOpacity={1}
-          // onPress={() => {
-          //   const ver = Application.nativeApplicationVersion || "0.0.0";
-          //   const build = Application.nativeBuildVersion
-          //     ? ` (${Application.nativeBuildVersion})`
-          //     : "";
-          //   toastInfo(`DHB v${ver}${build}`);
-          // }}
-        >
-          <SmartImage
-            source={require("../assets/banner.png")}
-            style={{ width: 128, height: 44, marginHorizontal: 8 }}
-            contentFit="contain"
-            cachePolicy="memory-disk"
-            transition={150}
-          />
-        </TouchableOpacity>
-      </View>
-      <View className="flex-row items-center">
-        <TouchableOpacity
-          className="p-1"
-          onPress={() => navigation.navigate(ScreenNames.Leaderboard)}
-        >
-          <Ionicons name="trophy" size={24} color="#A6A9AC" />
-        </TouchableOpacity>
+    <View className="flex-row items-center justify-between px-4 py-3">
+      <TouchableOpacity
+        onPress={onMenuPress}
+        activeOpacity={0.7}
+        className="w-9 h-9 items-center justify-center"
+      >
         {isSignedIn ? (
-          <TouchableOpacity
-            className="p-1 ml-4"
-            onPress={() => navigation.navigate(ScreenNames.Notifications)}
-          >
-            <View>
-              <Ionicons name="notifications" size={24} color="#A6A9AC" />
-              {hasUnread && (
-                <View className="absolute -top-0.5 -right-1">
-                  <Ionicons name="ellipse" size={10} color={theme.colors.accent} />
-                </View>
-              )}
+          hasAvatar ? (
+            <Avatar uri={avatarUrl} size={32} />
+          ) : (
+            <View className="w-8 h-8 rounded-full bg-theme-accent items-center justify-center">
+              <Text className="text-white text-sm font-bold">{initial}</Text>
             </View>
-          </TouchableOpacity>
-        ) : null}
-        <TouchableOpacity
-          className="p-1 ml-4"
-          onPress={() => navigation.navigate(ScreenNames.Search)}
-        >
-          <Ionicons name="search" size={24} color="#A6A9AC" />
-        </TouchableOpacity>
-        {!isSignedIn && (
-          <TouchableOpacity
-            className="p-1 ml-4"
-            onPress={() => navigation.navigate(ScreenNames.SignIn)}
-          >
-            <Ionicons name="person-circle" size={24} color="#A6A9AC" />
-          </TouchableOpacity>
+          )
+        ) : (
+          <Icon name="Menu" size={24} color="#E5E7EB" />
         )}
-      </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={onLogoPress} activeOpacity={0.7}>
+        <SmartImage
+          source={require("../assets/web-icons/dehub-logo-compact.png")}
+          style={{ width: 32, height: 32 }}
+          contentFit="contain"
+          cachePolicy="memory-disk"
+          transition={150}
+        />
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={isSignedIn ? handleNotificationPress : handleSignInPress}
+        activeOpacity={0.7}
+        className="w-9 h-9 items-center justify-center"
+      >
+        {isSignedIn ? (
+          <View>
+            <Icon name="Bell" size={24} color="#E5E7EB" />
+            {hasUnread && (
+              <View
+                className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full"
+                style={{ backgroundColor: theme.colors.accent }}
+              />
+            )}
+          </View>
+        ) : (
+          <Icon name="LogIn" size={24} color="#E5E7EB" />
+        )}
+      </TouchableOpacity>
     </View>
   );
 };
 
-export default HomeHeader;
+export default memo(HomeHeader);
