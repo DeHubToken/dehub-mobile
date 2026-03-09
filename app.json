@@ -3,7 +3,7 @@
     "scheme": "dehub",
     "name": "DeHub",
     "slug": "dehub",
-    "version": "1.13.1",
+    "version": "1.13.9",
     "orientation": "portrait",
     "icon": "./assets/AppIcons/playstore.png",
     "notification": {
