@@ -2,30 +2,23 @@ import React, { useState, useMemo, useCallback, useRef, useEffect } from "react"
 import { View, StyleSheet } from "react-native";
 import Animated from "react-native-reanimated";
 import { theme } from "../theme";
-import InfiniteVideoFeed from "../components/Home/InfiniteVideoFeed";
+import InfiniteVideoFeed, { type InfiniteVideoFeedHandle } from "../components/Home/InfiniteVideoFeed";
 import HomeHeader from "../components/HomeHeader";
 import CategorySelector from "../components/Home/CategorySelector";
+import { useDrawer } from "../context/DrawerContext";
 import CategorySelectorSkeleton from "../components/Home/CategorySelectorSkeleton";
-import FeedFilterPanel, { 
-  FeedFilters, 
-  SortOption, 
-  DateRangeOption, 
-  PostTypeOption 
-} from "../components/Home/FeedFilterPanel";
+import FeedFilterPanel, { FeedFilters } from "../components/Home/FeedFilterPanel";
 import { getCategoriesCached } from "../services/nft.service";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import type { FeedRange, FeedSortBy, FeedPostType } from "../services/feed.unified.service";
 
-const fallbackCategories = ["All"];
-
-// Shuffle seed expiry time (30 minutes in ms)
+const FALLBACK_CATEGORIES = ["All"];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
+const SEED_CHECK_INTERVAL_MS = 60_000;
 
-// Generate a shuffle seed from timestamp
 const generateShuffleSeed = () => String(Date.now());
 
-// Default filter state - latest (createdAt) sort by default
-const defaultFilters: FeedFilters = {
+const DEFAULT_FILTERS: FeedFilters = {
   sortBy: "createdAt",
   dateRange: "",
   postType: "all",
@@ -34,12 +27,13 @@ const defaultFilters: FeedFilters = {
 
 export default function HomeScreen() {
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
-  const [filters, setFilters] = useState<FeedFilters>(defaultFilters);
+  const [filters, setFilters] = useState<FeedFilters>(DEFAULT_FILTERS);
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [categories, setCategories] = useState<string[]>(fallbackCategories);
+  const [categories, setCategories] = useState<string[]>(FALLBACK_CATEGORIES);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
+  const { openDrawer } = useDrawer();
+  const feedRef = useRef<InfiniteVideoFeedHandle | null>(null);
 
-  // Collapsible header
   const {
     headerAnimatedStyle,
     onHeaderLayout,
@@ -47,12 +41,10 @@ export default function HomeScreen() {
     handleScrollEnd,
     showHeader,
   } = useCollapsibleHeader();
-  
-  // Shuffle seed management
+
   const [shuffleSeed, setShuffleSeed] = useState<string>(generateShuffleSeed);
   const shuffleSeedTimestamp = useRef<number>(Date.now());
 
-  // Check and refresh shuffle seed if expired
   useEffect(() => {
     const checkSeedExpiry = () => {
       const now = Date.now();
@@ -61,21 +53,16 @@ export default function HomeScreen() {
         shuffleSeedTimestamp.current = now;
       }
     };
-
-    // Check on mount and set up interval
     checkSeedExpiry();
-    const interval = setInterval(checkSeedExpiry, 60000); // Check every minute
-
+    const interval = setInterval(checkSeedExpiry, SEED_CHECK_INTERVAL_MS);
     return () => clearInterval(interval);
   }, []);
 
-  // Function to manually refresh the shuffle seed (called on pull-to-refresh)
   const refreshShuffleSeed = useCallback(() => {
     setShuffleSeed(generateShuffleSeed());
     shuffleSeedTimestamp.current = Date.now();
   }, []);
 
-  // Convert filter panel state to API params
   const feedParams = useMemo(() => {
     const params: Record<string, any> = {
       category: selectedCategory !== "All" ? selectedCategory : undefined,
@@ -84,34 +71,17 @@ export default function HomeScreen() {
       status: "minted" as const,
     };
 
-    // Add shuffle seed for random sort
-    if (filters.sortBy === "random") {
-      params.shuffleSeed = shuffleSeed;
-    }
-
-    // Date range
-    if (filters.dateRange) {
-      params.range = filters.dateRange as FeedRange;
-    }
-
-    // Post type
-    if (filters.postType !== "all") {
-      params.postType = filters.postType as FeedPostType;
-    }
-
-    // Content access filters (multiple can be selected)
-    if (filters.contentAccess.includes("ppv")) {
-      params.isPPV = true;
-    }
-    if (filters.contentAccess.includes("bounty")) {
-      params.hasBounty = true;
-    }
-    if (filters.contentAccess.includes("locked")) {
-      params.isLocked = true;
-    }
+    if (filters.sortBy === "random") params.shuffleSeed = shuffleSeed;
+    if (filters.dateRange) params.range = filters.dateRange as FeedRange;
+    if (filters.postType !== "all") params.postType = filters.postType as FeedPostType;
+    if (filters.contentAccess.includes("ppv")) params.isPPV = true;
+    if (filters.contentAccess.includes("bounty")) params.hasBounty = true;
+    if (filters.contentAccess.includes("locked")) params.isLocked = true;
 
     return params;
   }, [selectedCategory, filters, shuffleSeed]);
+
+  const closeFilterPanel = useCallback(() => setFilterPanelVisible(false), []);
 
   const handleFiltersChange = useCallback((newFilters: FeedFilters) => {
     setFilters(newFilters);
@@ -121,109 +91,79 @@ export default function HomeScreen() {
     setFilterPanelVisible((prev) => !prev);
   }, []);
 
-  // Close filter panel when scrolling starts
   const handleScrollBegin = useCallback(() => {
-    if (filterPanelVisible) {
-      setFilterPanelVisible(false);
-    }
-  }, [filterPanelVisible]);
+    setFilterPanelVisible(false);
+  }, []);
 
-  // Scroll offset handler — drives collapsible header
   const onScrollOffset = useCallback(
     (offsetY: number, deltaY: number) => {
       handleScrollOffset(offsetY, deltaY);
-      if (deltaY > 0 && filterPanelVisible) {
-        setFilterPanelVisible(false);
-      }
+      if (deltaY > 0) closeFilterPanel();
     },
-    [handleScrollOffset, filterPanelVisible],
+    [handleScrollOffset, closeFilterPanel],
   );
 
-  // Handle category selection from hashtag in feed cards
   const handleCategorySelect = useCallback((category: string) => {
     setSelectedCategory(category);
     setFilterPanelVisible(false);
   }, []);
 
-  // Pull-to-refresh also restores the header
   const handleRefresh = useCallback(() => {
     showHeader();
     refreshShuffleSeed();
   }, [showHeader, refreshShuffleSeed]);
 
-  const content = (
-    <InfiniteVideoFeed
-      params={feedParams}
-      pageSize={10}
-      onRefresh={handleRefresh}
-      onScrollBegin={handleScrollBegin}
-      onScrollOffset={onScrollOffset}
-      onScrollEnd={handleScrollEnd}
-      onCategorySelect={handleCategorySelect}
-      onRetry={async () => {
-        // Re-fetch categories on retry to restore the header chips when initial load failed
-        setCategoriesLoading(true);
-        try {
-          const list = await getCategoriesCached({ forceRefresh: true });
-          if (list && list.length) {
-            const cleaned = [
-              "All",
-              ...list.filter((c) => c && c.toLowerCase() !== "all"),
-            ];
-            setCategories(cleaned);
-            if (!cleaned.includes(selectedCategory)) setSelectedCategory("All");
-          }
-        } finally {
-          setCategoriesLoading(false);
-        }
-      }}
-      onClearFilters={() => {
-        setSelectedCategory("All");
-        setFilters(defaultFilters);
-        refreshShuffleSeed();
-      }}
-    />
-  );
+  const handleLogoPress = useCallback(() => {
+    showHeader();
+    feedRef.current?.scrollToTopAndRefresh();
+  }, [showHeader]);
 
-  React.useEffect(() => {
-    let mounted = true;
-    const load = async () => {
-      setCategoriesLoading(true);
-      const list = await getCategoriesCached();
-      if (mounted && list && list.length) {
-        // Ensure 'All' is first and unique
-        const cleaned = [
-          "All",
-          ...list.filter((c) => c && c.toLowerCase() !== "all"),
-        ];
+  const handleRetry = useCallback(async () => {
+    setCategoriesLoading(true);
+    try {
+      const list = await getCategoriesCached({ forceRefresh: true });
+      if (list?.length) {
+        const cleaned = ["All", ...list.filter((c) => c && c.toLowerCase() !== "all")];
         setCategories(cleaned);
         if (!cleaned.includes(selectedCategory)) setSelectedCategory("All");
       }
+    } finally {
       setCategoriesLoading(false);
-    };
-    load();
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  // Custom handler for category press
-  const handleCategoryPress = useCallback((cat: string) => {
-    if (cat === selectedCategory) return;
-    setSelectedCategory(cat);
-    
-    // Reset filters to default when "All" is selected
-    if (cat === "All") {
-      setFilters(defaultFilters);
     }
   }, [selectedCategory]);
 
+  const handleClearFilters = useCallback(() => {
+    setSelectedCategory("All");
+    setFilters(DEFAULT_FILTERS);
+    refreshShuffleSeed();
+  }, [refreshShuffleSeed]);
+
+  const handleCategoryPress = useCallback((cat: string) => {
+    if (cat === selectedCategory) return;
+    setSelectedCategory(cat);
+    if (cat === "All") setFilters(DEFAULT_FILTERS);
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      setCategoriesLoading(true);
+      const list = await getCategoriesCached();
+      if (mounted && list?.length) {
+        const cleaned = ["All", ...list.filter((c) => c && c.toLowerCase() !== "all")];
+        setCategories(cleaned);
+        if (!cleaned.includes(selectedCategory)) setSelectedCategory("All");
+      }
+      if (mounted) setCategoriesLoading(false);
+    })();
+    return () => { mounted = false; };
+  }, []);
+
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      {/* Collapsible header — slides up on scroll-down, reappears on scroll-up */}
       <View style={styles.headerClip}>
         <Animated.View style={headerAnimatedStyle} onLayout={onHeaderLayout}>
-          <HomeHeader />
+          <HomeHeader onLogoPress={handleLogoPress} onMenuPress={openDrawer} />
 
           <View style={styles.filterSection}>
             {categoriesLoading ? (
@@ -247,14 +187,25 @@ export default function HomeScreen() {
         </Animated.View>
       </View>
 
-      {content}
+      <InfiniteVideoFeed
+        feedRef={feedRef}
+        params={feedParams}
+        pageSize={10}
+        onRefresh={handleRefresh}
+        onScrollBegin={handleScrollBegin}
+        onScrollOffset={onScrollOffset}
+        onScrollEnd={handleScrollEnd}
+        onCategorySelect={handleCategorySelect}
+        onRetry={handleRetry}
+        onClearFilters={handleClearFilters}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   headerClip: {
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   filterSection: {
     paddingHorizontal: theme.spacing.md,

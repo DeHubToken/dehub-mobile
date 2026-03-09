@@ -46,19 +46,24 @@ import {
 } from "../../services/view.service";
 import SuggestedAccountsSection from "./SuggestedAccountsSection";
 
+export interface InfiniteVideoFeedHandle {
+  scrollToTopAndRefresh: () => void;
+}
+
 interface InfiniteVideoFeedProps {
-  params?: Partial<UnifiedFeedParams>; // any search params except page which we control
-  pageSize?: number; // unit (default 10)
+  params?: Partial<UnifiedFeedParams>;
+  pageSize?: number;
   contentContainerStyle?: any;
   headerComponent?: React.ReactNode;
-  onEndReachedAll?: () => void; // callback when no more pages
-  onScrollOffset?: (offsetY: number, deltaY: number) => void; // direct-drive header
-  onScrollEnd?: () => void; // snap header on scroll end
-  onClearFilters?: () => void; // allow empty state clear
-  onRetry?: () => void; // fired when user taps Retry on error state
-  onRefresh?: () => void; // fired when user does pull-to-refresh
-  onScrollBegin?: () => void; // fired when scroll starts
-  onCategorySelect?: (category: string) => void; // fired when category hashtag is clicked
+  onEndReachedAll?: () => void;
+  onScrollOffset?: (offsetY: number, deltaY: number) => void;
+  onScrollEnd?: () => void;
+  onClearFilters?: () => void;
+  onRetry?: () => void;
+  onRefresh?: () => void;
+  onScrollBegin?: () => void;
+  onCategorySelect?: (category: string) => void;
+  feedRef?: React.MutableRefObject<InfiniteVideoFeedHandle | null>;
 }
 
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
@@ -77,6 +82,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   onRefresh: onRefreshProp,
   onScrollBegin,
   onCategorySelect,
+  feedRef,
 }) => {
   interface FeedItem extends UnifiedFeedItem {
     __listKey: string;
@@ -319,6 +325,16 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const scrollToTop = useCallback(() => {
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
   }, []);
+
+  useEffect(() => {
+    if (!feedRef) return;
+    feedRef.current = {
+      scrollToTopAndRefresh: () => {
+        onRefresh();
+        listRef.current?.scrollToOffset({ offset: 0, animated: true });
+      },
+    };
+  }, [feedRef, onRefresh]);
 
   // Index after which to inject the suggested-accounts carousel (after the 5th post)
   const SUGGEST_AFTER_INDEX = 4;

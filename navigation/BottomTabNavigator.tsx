@@ -1,10 +1,10 @@
-import React, { useMemo, useState, useCallback } from "react";
+import React, { useMemo, useState, useCallback, memo } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text, View, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../theme";
 import GradientIcon from "../components/ui/GradientIcon";
-import FeedIcon from "../components/ui/FeedIcon";
+import AppDrawer from "../components/Home/AppDrawer";
 import HomeScreen from "../screens/HomeScreen";
 import FeedScreen from "../screens/FeedScreen";
 import ProfileScreen from "../screens/ProfileScreen";
@@ -14,6 +14,7 @@ import { ScreenNames } from "./ScreenNames";
 import type { BottomTabParamList, AppStackNavigationProp } from "./types";
 import { useNavigation } from "@react-navigation/native";
 import { useUser, useAuthState } from "../context/AuthContext";
+import { DrawerProvider, useDrawer } from "../context/DrawerContext";
 import { useUnreadConversationsCount } from "../store/dm.store";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
@@ -59,29 +60,8 @@ function BottomTabNavigator() {
           )}
         </View>
       );
-      
-      /* OLD FeedIcon implementation - kept for reference
-      return (
-        <View
-          style={[
-            styles.iconWrapper,
-            { width: containerSize, height: containerSize },
-          ]}
-          pointerEvents="none"
-        >
-          {focused ? (
-            <View style={[styles.focusBg, { borderRadius: radius }]}>
-              <FeedIcon size={size} focused={true} />
-            </View>
-          ) : (
-            <FeedIcon size={size} color="#9CA3AF" focused={false} />
-          )}
-        </View>
-      );
-      */
     }
     
-    // Use filled for focused and outline for unfocused to match visuals
     if (routeName === ScreenNames.Home) {
       iconNameFilled = "home";
       iconNameOutline = "home"; // unchanged
@@ -139,8 +119,11 @@ function BottomTabNavigator() {
     );
   }, [accent, isAuthed, unreadConvs]);
 
+  const { drawerOpen, closeDrawer } = useDrawer();
+
   return (
-    <Tab.Navigator
+    <View style={styles.root}>
+      <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
         sceneContainerStyle: { backgroundColor: "#000" },
@@ -187,16 +170,23 @@ function BottomTabNavigator() {
         <Tab.Screen name={ScreenNames.DM} component={DirectMessagesScreen} />
       )}
       <Tab.Screen name={ScreenNames.Profile} component={ProfileScreen} />
-    </Tab.Navigator>
+      </Tab.Navigator>
+      <AppDrawer visible={drawerOpen} onClose={closeDrawer} />
+    </View>
+  );
+}
+
+function BottomTabNavigatorWithDrawer() {
+  return (
+    <DrawerProvider>
+      <BottomTabNavigator />
+    </DrawerProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  root: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: theme.colors.background, // Dark background for screens
   },
   iconWrapper: {
     position: "relative",
@@ -227,4 +217,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BottomTabNavigator;
+export default BottomTabNavigatorWithDrawer;
