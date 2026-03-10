@@ -1,18 +1,16 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import Animated from "react-native-reanimated";
-import { theme } from "../theme";
 import InfiniteVideoFeed, { type InfiniteVideoFeedHandle } from "../components/Home/InfiniteVideoFeed";
 import HomeHeader from "../components/HomeHeader";
-import CategorySelector from "../components/Home/CategorySelector";
+import FeedNavBar from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
-import CategorySelectorSkeleton from "../components/Home/CategorySelectorSkeleton";
 import FeedFilterPanel, { FeedFilters } from "../components/Home/FeedFilterPanel";
 import { getCategoriesCached } from "../services/nft.service";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import type { FeedRange, FeedSortBy, FeedPostType } from "../services/feed.unified.service";
 
-const FALLBACK_CATEGORIES = ["All"];
+const FALLBACK_CATEGORIES: string[] = [];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
 const SEED_CHECK_INTERVAL_MS = 60_000;
 
@@ -28,7 +26,7 @@ const DEFAULT_FILTERS: FeedFilters = {
 export default function HomeScreen() {
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
   const [filters, setFilters] = useState<FeedFilters>(DEFAULT_FILTERS);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const [categories, setCategories] = useState<string[]>(FALLBACK_CATEGORIES);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
   const { openDrawer } = useDrawer();
@@ -65,7 +63,7 @@ export default function HomeScreen() {
 
   const feedParams = useMemo(() => {
     const params: Record<string, any> = {
-      category: selectedCategory !== "All" ? selectedCategory : undefined,
+      category: selectedCategory,
       sortBy: filters.sortBy as FeedSortBy,
       sortOrder: "desc" as const,
       status: "minted" as const,
@@ -104,7 +102,7 @@ export default function HomeScreen() {
   );
 
   const handleCategorySelect = useCallback((category: string) => {
-    setSelectedCategory(category);
+    setSelectedCategory(category === "All" ? undefined : category);
     setFilterPanelVisible(false);
   }, []);
 
@@ -123,9 +121,9 @@ export default function HomeScreen() {
     try {
       const list = await getCategoriesCached({ forceRefresh: true });
       if (list?.length) {
-        const cleaned = ["All", ...list.filter((c) => c && c.toLowerCase() !== "all")];
+        const cleaned = list.filter((c) => c && c.toLowerCase() !== "all");
         setCategories(cleaned);
-        if (!cleaned.includes(selectedCategory)) setSelectedCategory("All");
+        if (selectedCategory && !cleaned.includes(selectedCategory)) setSelectedCategory(undefined);
       }
     } finally {
       setCategoriesLoading(false);
@@ -133,16 +131,29 @@ export default function HomeScreen() {
   }, [selectedCategory]);
 
   const handleClearFilters = useCallback(() => {
-    setSelectedCategory("All");
+    setSelectedCategory(undefined);
     setFilters(DEFAULT_FILTERS);
     refreshShuffleSeed();
   }, [refreshShuffleSeed]);
 
   const handleCategoryPress = useCallback((cat: string) => {
-    if (cat === selectedCategory) return;
-    setSelectedCategory(cat);
-    if (cat === "All") setFilters(DEFAULT_FILTERS);
+    const value = cat === "All" ? undefined : cat;
+    if (value === selectedCategory) return;
+    setSelectedCategory(value);
+    if (!value) setFilters(DEFAULT_FILTERS);
   }, [selectedCategory]);
+
+  const handlePostTypeChange = useCallback((postType: FeedFilters["postType"]) => {
+    setFilters((prev) => ({ ...prev, postType }));
+    setFilterPanelVisible(false);
+  }, []);
+
+  const handleResetFilters = useCallback(() => {
+    setSelectedCategory(undefined);
+    setFilters(DEFAULT_FILTERS);
+    refreshShuffleSeed();
+    setFilterPanelVisible(false);
+  }, [refreshShuffleSeed]);
 
   useEffect(() => {
     let mounted = true;
@@ -150,9 +161,9 @@ export default function HomeScreen() {
       setCategoriesLoading(true);
       const list = await getCategoriesCached();
       if (mounted && list?.length) {
-        const cleaned = ["All", ...list.filter((c) => c && c.toLowerCase() !== "all")];
+        const cleaned = list.filter((c) => c && c.toLowerCase() !== "all");
         setCategories(cleaned);
-        if (!cleaned.includes(selectedCategory)) setSelectedCategory("All");
+        if (selectedCategory && !cleaned.includes(selectedCategory)) setSelectedCategory(undefined);
       }
       if (mounted) setCategoriesLoading(false);
     })();
@@ -165,24 +176,21 @@ export default function HomeScreen() {
         <Animated.View style={headerAnimatedStyle} onLayout={onHeaderLayout}>
           <HomeHeader onLogoPress={handleLogoPress} onMenuPress={openDrawer} />
 
-          <View style={styles.filterSection}>
-            {categoriesLoading ? (
-              <CategorySelectorSkeleton />
-            ) : (
-              <CategorySelector
-                categories={categories}
-                selectedCategory={selectedCategory}
-                onCategoryPress={handleCategoryPress}
-                onFilterPress={handleFilterPress}
-                isFilterOpen={filterPanelVisible}
-              />
-            )}
-          </View>
+          <FeedNavBar
+            activePostType={filters.postType}
+            isFilterOpen={filterPanelVisible}
+            onPostTypeChange={handlePostTypeChange}
+            onFilterPress={handleFilterPress}
+          />
 
           <FeedFilterPanel
             visible={filterPanelVisible}
             filters={filters}
             onFiltersChange={handleFiltersChange}
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategoryPress={handleCategoryPress}
+            onResetFilters={handleResetFilters}
           />
         </Animated.View>
       </View>
@@ -206,9 +214,5 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   headerClip: {
     overflow: "hidden",
-  },
-  filterSection: {
-    paddingHorizontal: theme.spacing.md,
-    paddingVertical: theme.spacing.xs,
   },
 });
