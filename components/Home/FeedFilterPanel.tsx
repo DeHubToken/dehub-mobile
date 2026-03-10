@@ -1,18 +1,21 @@
-/**
- * FeedFilterPanel - Inline filter panel for the home feed
- * 
- * Slides down when the filter icon is pressed in the category selector.
- * Contains Sort, Upload Date, Post Type, and Content Access filters.
- * Uses Reanimated for smooth animations.
- */
-import React, { memo, useCallback, useEffect, useMemo } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  ScrollView,
+  StyleSheet,
+} from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
   Easing,
 } from "react-native-reanimated";
+import { LinearGradient } from "expo-linear-gradient";
+import Icon from "../ui/Icon";
+import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
 
 export type SortOption = "random" | "createdAt" | "views" | "likes" | "comments";
 export type DateRangeOption = "" | "day" | "week" | "month" | "year";
@@ -30,13 +33,13 @@ interface FeedFilterPanelProps {
   visible: boolean;
   filters: FeedFilters;
   onFiltersChange: (filters: FeedFilters) => void;
-  /** Hide the Post Type filter section */
-  hidePostType?: boolean;
-  /** Hide the Content Access filter section */
-  hideContentAccess?: boolean;
+  categories?: string[];
+  selectedCategory?: string;
+  onCategoryPress?: (category: string) => void;
+  onResetFilters?: () => void;
 }
 
-const sortOptions: { id: SortOption; label: string }[] = [
+const SORT_OPTIONS: { id: SortOption; label: string }[] = [
   { id: "random", label: "Random" },
   { id: "createdAt", label: "Latest" },
   { id: "views", label: "Most Viewed" },
@@ -44,15 +47,15 @@ const sortOptions: { id: SortOption; label: string }[] = [
   { id: "comments", label: "Most Comments" },
 ];
 
-const dateRangeOptions: { id: DateRangeOption; label: string }[] = [
-  { id: "", label: "All time" },
-  { id: "day", label: "Today" },
-  { id: "week", label: "This week" },
-  { id: "month", label: "This month" },
-  { id: "year", label: "This year" },
+const DATE_RANGE_OPTIONS: { id: DateRangeOption; label: string }[] = [
+  { id: "", label: "All" },
+  { id: "day", label: "1d" },
+  { id: "week", label: "1w" },
+  { id: "month", label: "1m" },
+  { id: "year", label: "1y" },
 ];
 
-const postTypeOptions: { id: PostTypeOption; label: string }[] = [
+const POST_TYPE_OPTIONS: { id: PostTypeOption; label: string }[] = [
   { id: "all", label: "All" },
   { id: "video", label: "Videos" },
   { id: "feed-images", label: "Images" },
@@ -61,88 +64,147 @@ const postTypeOptions: { id: PostTypeOption; label: string }[] = [
   { id: "live", label: "Live" },
 ];
 
-const contentAccessOptions: { id: ContentAccessOption; label: string }[] = [
+const CONTENT_ACCESS_OPTIONS: { id: ContentAccessOption; label: string }[] = [
   { id: "ppv", label: "PPV" },
   { id: "bounty", label: "Bounty" },
-  { id: "locked", label: "Locked" },
+  { id: "locked", label: "Gated" },
 ];
 
-// Estimated max height for the panel content
-const MAX_HEIGHT = 280;
+const MAX_HEIGHT = 440;
+const PILL_BORDER_RADIUS = 8;
+const FADE_COLORS: [string, string] = ["transparent", "#000000"];
 
-interface FilterPillProps {
+interface GlassPillProps {
   label: string;
   selected: boolean;
   onPress: () => void;
 }
 
-const FilterPill: React.FC<FilterPillProps> = memo(({ label, selected, onPress }) => {
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      activeOpacity={0.7}
-      className={`px-3 py-1.5 rounded-full mr-2 mb-2 ${
-        selected
-          ? "bg-theme-neutrals-100"
-          : "bg-theme-neutrals-800"
-      }`}
+const GlassPill: React.FC<GlassPillProps> = memo(({ label, selected, onPress }) => (
+  <TouchableOpacity
+    onPress={onPress}
+    activeOpacity={0.7}
+    style={[
+      pillStyles.base,
+      selected ? [pillStyles.active, GLASS_SHADOW] : pillStyles.inactive,
+    ]}
+  >
+    {selected && <GlassIndicator borderRadius={PILL_BORDER_RADIUS} />}
+    <Text
+      style={[
+        pillStyles.text,
+        selected ? pillStyles.textActive : pillStyles.textInactive,
+      ]}
     >
-      <Text
-        className={`text-xs font-medium ${
-          selected ? "text-theme-neutrals-900" : "text-theme-neutrals-300"
-        }`}
-      >
-        {label}
-      </Text>
-    </TouchableOpacity>
-  );
+      {label}
+    </Text>
+  </TouchableOpacity>
+));
+
+const pillStyles = StyleSheet.create({
+  base: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: PILL_BORDER_RADIUS,
+    marginRight: 6,
+    overflow: "hidden",
+  },
+  active: {
+    backgroundColor: "#18181B",
+  },
+  inactive: {
+    backgroundColor: "#27272a",
+  },
+  text: {
+    fontSize: 12,
+    fontWeight: "500",
+  },
+  textActive: {
+    color: "#ffffff",
+  },
+  textInactive: {
+    color: "#d4d4d8",
+  },
 });
 
-interface FilterSectionProps {
+interface GlassFilterRowProps {
   title: string;
   children: React.ReactNode;
 }
 
-const FilterSection: React.FC<FilterSectionProps> = memo(({ title, children }) => {
-  return (
-    <View className="mb-3">
-      <Text className="text-[10px] text-theme-neutrals-500 uppercase tracking-wider mb-2">
-        {title}
-      </Text>
-      <View className="flex-row flex-wrap">
+const GlassFilterRow: React.FC<GlassFilterRowProps> = memo(({ title, children }) => (
+  <View style={sectionStyles.section}>
+    <Text style={sectionStyles.label}>{title}</Text>
+    <View>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={sectionStyles.rowContent}
+      >
         {children}
-      </View>
+      </ScrollView>
+      <LinearGradient
+        colors={FADE_COLORS}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        style={sectionStyles.fade}
+        pointerEvents="none"
+      />
     </View>
-  );
+  </View>
+));
+
+const sectionStyles = StyleSheet.create({
+  section: {
+    marginBottom: 16,
+    gap: 8,
+  },
+  label: {
+    fontSize: 11,
+    color: "#71717a",
+    textTransform: "uppercase",
+    letterSpacing: 1.5,
+    fontWeight: "600",
+  },
+  rowContent: {
+    paddingLeft: 4,
+    paddingRight: 24,
+    paddingVertical: 4,
+  },
+  fade: {
+    position: "absolute",
+    right: 0,
+    top: 0,
+    bottom: 0,
+    width: 24,
+  },
 });
 
 const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   visible,
   filters,
   onFiltersChange,
-  hidePostType = false,
-  hideContentAccess = false,
+  categories = [],
+  selectedCategory,
+  onCategoryPress,
+  onResetFilters,
 }) => {
-  // Calculate dynamic height based on visible sections
-  // Base height (Sort + Upload Date) ~180px to account for wrapping, each additional section ~70px
-  const dynamicMaxHeight = useMemo(() => {
-    let height = 180; // Sort + Upload Date sections (with wrapping)
-    if (!hidePostType) height += 70;
-    if (!hideContentAccess) height += 60;
-    return height;
-  }, [hidePostType, hideContentAccess]);
+  const [categorySearch, setCategorySearch] = useState("");
 
-  // Shared value for visibility animation
+  const filteredCategories = useMemo(() => {
+    if (!categorySearch.trim()) return categories;
+    const query = categorySearch.toLowerCase();
+    return categories.filter((c) => c.toLowerCase().includes(query));
+  }, [categories, categorySearch]);
+
   const isVisible = useSharedValue(visible ? 1 : 0);
 
-  // Sync shared value with prop
   useEffect(() => {
     isVisible.value = visible ? 1 : 0;
   }, [visible, isVisible]);
 
-  // Animated styles using Reanimated
   const animatedStyle = useAnimatedStyle(() => {
-    const targetHeight = isVisible.value ? dynamicMaxHeight : 0;
+    const targetHeight = isVisible.value ? MAX_HEIGHT : 0;
     const targetOpacity = isVisible.value ? 1 : 0;
     return {
       height: withTiming(targetHeight, {
@@ -176,67 +238,177 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
     onFiltersChange({ ...filters, contentAccess: newAccess });
   }, [filters, onFiltersChange]);
 
+  const handleSelectCategory = useCallback((cat: string) => {
+    onCategoryPress?.(cat);
+    setCategorySearch("");
+  }, [onCategoryPress]);
+
   return (
     <Animated.View
-      style={[animatedStyle, { overflow: "hidden" }]}
-      className="bg-theme-neutrals-900 px-4"
+      style={[animatedStyle, panelStyles.outerWrap]}
     >
-      <View className="pt-2 pb-4">
-        {/* Sort */}
-        <FilterSection title="Sort">
-          {sortOptions.map((option) => (
-            <FilterPill
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={panelStyles.content}
+      >
+        <GlassFilterRow title="SORT">
+          {SORT_OPTIONS.map((option) => (
+            <GlassPill
               key={option.id}
               label={option.label}
               selected={filters.sortBy === option.id}
               onPress={() => handleSortChange(option.id)}
             />
           ))}
-        </FilterSection>
+        </GlassFilterRow>
 
-        {/* Upload Date */}
-        <FilterSection title="Upload Date">
-          {dateRangeOptions.map((option) => (
-            <FilterPill
+        {categories.length > 0 && (
+          <View style={sectionStyles.section}>
+            <Text style={sectionStyles.label}>CATEGORY</Text>
+            <TextInput
+              value={categorySearch}
+              onChangeText={setCategorySearch}
+              placeholder="Search categories..."
+              placeholderTextColor="#71717a"
+              style={panelStyles.searchInput}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+            <View>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={sectionStyles.rowContent}
+              >
+                <GlassPill
+                  label="All"
+                  selected={!selectedCategory}
+                  onPress={() => handleSelectCategory("All")}
+                />
+                {filteredCategories.map((cat) => (
+                  <GlassPill
+                    key={cat}
+                    label={cat.charAt(0).toUpperCase() + cat.slice(1)}
+                    selected={selectedCategory === cat}
+                    onPress={() => handleSelectCategory(cat)}
+                  />
+                ))}
+                {filteredCategories.length === 0 && categorySearch.trim() && (
+                  <Text style={panelStyles.noMatches}>No matches</Text>
+                )}
+              </ScrollView>
+              <LinearGradient
+                colors={FADE_COLORS}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={sectionStyles.fade}
+                pointerEvents="none"
+              />
+            </View>
+          </View>
+        )}
+
+        <GlassFilterRow title="UPLOAD DATE">
+          {DATE_RANGE_OPTIONS.map((option) => (
+            <GlassPill
               key={option.id || "all"}
               label={option.label}
               selected={filters.dateRange === option.id}
               onPress={() => handleDateRangeChange(option.id)}
             />
           ))}
-        </FilterSection>
+        </GlassFilterRow>
 
-        {/* Post Type */}
-        {!hidePostType && (
-          <FilterSection title="Post Type">
-            {postTypeOptions.map((option) => (
-              <FilterPill
-                key={option.id}
-                label={option.label}
-                selected={filters.postType === option.id}
-                onPress={() => handlePostTypeChange(option.id)}
-              />
-            ))}
-          </FilterSection>
-        )}
+        <GlassFilterRow title="POST TYPE">
+          {POST_TYPE_OPTIONS.map((option) => (
+            <GlassPill
+              key={option.id}
+              label={option.label}
+              selected={filters.postType === option.id}
+              onPress={() => handlePostTypeChange(option.id)}
+            />
+          ))}
+        </GlassFilterRow>
 
-        {/* Content Access */}
-        {!hideContentAccess && (
-          <FilterSection title="Content Access">
-            {contentAccessOptions.map((option) => (
-              <FilterPill
-                key={option.id}
-                label={option.label}
-                selected={filters.contentAccess.includes(option.id)}
-                onPress={() => handleContentAccessToggle(option.id)}
-              />
-            ))}
-          </FilterSection>
+        <View style={[sectionStyles.section, { marginBottom: 0 }]}>
+          <Text style={sectionStyles.label}>CONTENT ACCESS</Text>
+          <View>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={sectionStyles.rowContent}
+            >
+              {CONTENT_ACCESS_OPTIONS.map((option) => (
+                <GlassPill
+                  key={option.id}
+                  label={option.label}
+                  selected={filters.contentAccess.includes(option.id)}
+                  onPress={() => handleContentAccessToggle(option.id)}
+                />
+              ))}
+            </ScrollView>
+            <LinearGradient
+              colors={FADE_COLORS}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={sectionStyles.fade}
+              pointerEvents="none"
+            />
+          </View>
+        </View>
+
+        {onResetFilters && (
+          <TouchableOpacity
+            onPress={onResetFilters}
+            activeOpacity={0.6}
+            style={panelStyles.resetButton}
+          >
+            <Icon name="RefreshCw" size={14} color="#71717a" />
+          </TouchableOpacity>
         )}
-      </View>
+      </ScrollView>
     </Animated.View>
   );
 };
+
+const panelStyles = StyleSheet.create({
+  outerWrap: {
+    overflow: "hidden",
+    backgroundColor: "#09090b",
+    borderWidth: 1,
+    borderColor: "#27272a",
+    borderRadius: 12,
+    marginHorizontal: 8,
+  },
+  content: {
+    paddingHorizontal: 12,
+    paddingTop: 12,
+    paddingBottom: 4,
+  },
+  searchInput: {
+    backgroundColor: "#27272a",
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#3f3f46",
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    fontSize: 12,
+    color: "#e4e4e7",
+    marginBottom: 4,
+  },
+  noMatches: {
+    fontSize: 12,
+    color: "#71717a",
+    paddingVertical: 6,
+  },
+  resetButton: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    padding: 6,
+    borderRadius: 8,
+  },
+});
 
 export const FeedFilterPanel = memo(FeedFilterPanelComponent);
 export default FeedFilterPanel;
