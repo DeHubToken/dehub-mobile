@@ -130,10 +130,10 @@ export type AppStackNavigationProp<T extends keyof AppStackParamList> = Composit
 
 export type BottomTabParamList = {
   [ScreenNames.Home]: undefined;
-  [ScreenNames.Feed]: undefined;
-  [ScreenNames.UploadTab]: undefined;
   [ScreenNames.DM]: undefined;
-  [ScreenNames.Profile]: undefined;
+  [ScreenNames.UploadTab]: undefined;
+  [ScreenNames.AIChat]: undefined;
+  [ScreenNames.Explore]: undefined;
 };
 
 export type BottomTabScreenProps<T extends keyof BottomTabParamList> = CompositeScreenProps<

@@ -39,6 +39,8 @@ export enum ScreenNames {
   LiveChat = 'LiveChat',
   LiveChatInfo = 'LiveChatInfo',
   FullscreenVideo = 'FullscreenVideo',
+  AIChat = 'AIChat',
+  Explore = 'Explore',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',
