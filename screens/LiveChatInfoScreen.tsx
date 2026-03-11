@@ -70,7 +70,7 @@ const UserRow: React.FC<{
       activeOpacity={onPress ? 0.6 : 1}
       className="flex-row items-center px-4 py-3 gap-3"
     >
-      <Avatar uri={avatarUrl} size={36} />
+      <Avatar uri={avatarUrl} size={36} name={displayName} />
       <View className="flex-1">
         <View className="flex-row items-center gap-1.5">
           <Text className="text-white text-sm font-medium" numberOfLines={1}>

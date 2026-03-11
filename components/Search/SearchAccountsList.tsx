@@ -98,7 +98,7 @@ const SearchAccountsList: FC<SearchAccountsListProps> = ({
             onPress={() => handlePress(item.username || item.address)}
             className="px-4 py-3 border-b border-theme-neutrals-800 flex-row"
           >
-            <Avatar uri={displayAvatar} size={40} />
+            <Avatar uri={displayAvatar} size={40} name={username} />
             <View className="flex-1 ml-3">
               <View className="flex-row items-center justify-between">
                 <Text className="text-white font-medium" numberOfLines={1}>

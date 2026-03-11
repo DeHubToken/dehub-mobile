@@ -502,6 +502,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                   : undefined
               }
               size={28}
+              name={senderUser?.displayName || senderUser?.username}
             />
           )}
           {!isMine && !showAvatar && <View style={{ width: 28 }} />}

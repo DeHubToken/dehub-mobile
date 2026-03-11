@@ -173,6 +173,7 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
           <Avatar
             uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
             size={32}
+            name={displayName}
           />
 
           {/* Main content area */}

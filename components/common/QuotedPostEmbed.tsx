@@ -123,7 +123,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
         <View className="p-3">
           {/* Creator row */}
           <View className="flex-row items-center gap-2 mb-1.5">
-            <Avatar uri={avatarUrl} size={18} />
+            <Avatar uri={avatarUrl} size={18} name={displayName} />
             <Text className="text-white font-semibold text-xs" numberOfLines={1}>
               {displayName}
             </Text>

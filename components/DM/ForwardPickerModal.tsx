@@ -62,6 +62,7 @@ const ForwardPickerModalComponent: React.FC<ForwardPickerModalProps> = ({
               avatar && avatar !== "default-avatar" ? avatar : undefined
             }
             size={40}
+            name={name}
           />
           <Text className="flex-1 text-[15px] text-white font-medium" numberOfLines={1}>
             {name}

@@ -181,6 +181,7 @@ const ConversationContextMenuComponent: React.FC<ConversationContextMenuProps> =
               <Avatar
                 uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
                 size={48}
+                name={displayName}
               />
               <View className="flex-1 ml-3">
                 <Text className="text-white text-[16px] font-semibold" numberOfLines={1}>

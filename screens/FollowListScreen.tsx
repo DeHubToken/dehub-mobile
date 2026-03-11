@@ -96,7 +96,7 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(({ item, onPress,
           style={{ borderRadius: 30, padding: 2 }}
         >
           <View className="bg-black rounded-full p-[2px]">
-            <Avatar uri={avatarUrl} size={52} />
+            <Avatar uri={avatarUrl} size={52} name={displayName} />
           </View>
         </LinearGradient>
       </View>
@@ -170,7 +170,7 @@ const FollowRequestRow: React.FC<FollowRequestRowProps> = React.memo(
               style={{ borderRadius: 30, padding: 2 }}
             >
               <View className="bg-black rounded-full p-[2px]">
-                <Avatar uri={avatarUrl} size={52} />
+                <Avatar uri={avatarUrl} size={52} name={displayName} />
               </View>
             </LinearGradient>
           </View>

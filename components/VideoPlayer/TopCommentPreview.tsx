@@ -52,6 +52,7 @@ const TopCommentPreview: React.FC<TopCommentPreviewProps> = ({
               : (avatarSource as any)?.uri
           }
           size={25}
+          name={comment.user}
         />
         <View className="flex-1 ml-3">
           <Text

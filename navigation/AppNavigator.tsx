@@ -12,6 +12,7 @@ import PrivacySettingsScreen from "../screens/PrivacySettingsScreen";
 import FeedScreen from "../screens/FeedScreen";
 import FeedDetailScreen from "../screens/FeedDetailScreen";
 import ImageViewerScreen from "../screens/ImageViewerScreen";
+import FullscreenVideoScreen from "../screens/FullscreenVideoScreen";
 import SearchScreen from "../screens/SearchScreen";
 import AccountSettingsScreen from "../screens/AccountSettingsScreen";
 import YourVideosScreen from "../screens/YourVideosScreen";
@@ -144,6 +145,10 @@ export default function AppNavigator() {
         <Stack.Screen
           name={ScreenNames.ImageViewer}
           component={ImageViewerScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.FullscreenVideo}
+          component={FullscreenVideoScreen}
         />
         <Stack.Screen
           name={ScreenNames.FollowList}

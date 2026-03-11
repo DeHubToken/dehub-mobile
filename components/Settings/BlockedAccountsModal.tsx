@@ -96,6 +96,7 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
           uri={avatar && avatar !== 'default-avatar' ? avatar : undefined}
           size={36}
           className="mr-3"
+          name={label}
         />
         <View className="flex-1 min-w-0 mr-3">
           <Text className="text-white text-sm font-medium" numberOfLines={1}>{label}</Text>

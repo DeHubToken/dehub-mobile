@@ -91,7 +91,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
     <View className="max-w-[85%] bg-theme-neutrals-900 rounded-2xl p-3 shadow-lg">
       {/* Sender header */}
       <View className="flex-row items-center gap-2 mb-1.5">
-        <Avatar uri={avatarUrl} size={28} />
+        <Avatar uri={avatarUrl} size={28} name={displayName} />
         <Text className="text-white font-bold text-[13px] flex-shrink" numberOfLines={1}>
           {displayName}
         </Text>

@@ -138,7 +138,7 @@ const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange
       className="w-[130px] items-center rounded-2xl py-3 px-2 mr-2.5"
       style={{ borderWidth: 1, borderColor: "#2A2A2A" }}
     >
-      <Avatar uri={displayAvatar} size={64} />
+      <Avatar uri={displayAvatar} size={64} name={displayName} />
       {/* Name + badge */}
       <View className="flex-row items-center mt-2 px-1" style={{ maxWidth: 110 }}>
         <Text

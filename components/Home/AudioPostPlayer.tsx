@@ -149,6 +149,8 @@ export interface AudioPostPlayerProps {
   isVisible?: boolean;
   /** Renders a smaller inline variant for quoted/embedded posts */
   compact?: boolean;
+  /** Only record listens when user is signed in */
+  isSignedIn?: boolean;
 }
 
 const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
@@ -158,6 +160,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   listens: initialListens = 0,
   isVisible = true,
   compact = false,
+  isSignedIn = false,
 }) => {
   const soundRef = useRef<Audio.Sound | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -323,7 +326,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           setIsPlaying(true);
           startPositionTracking();
 
-          if (!listenRecordedRef.current) {
+          if (!listenRecordedRef.current && isSignedIn) {
             listenRecordedRef.current = true;
             recordListen(String(tokenId))
               .then((res) => { if (res.listens) setListenCount(res.listens); })
@@ -365,7 +368,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       setIsLoading(false);
       startPositionTracking();
 
-      if (!listenRecordedRef.current) {
+      if (!listenRecordedRef.current && isSignedIn) {
         listenRecordedRef.current = true;
         recordListen(String(tokenId))
           .then((res) => { if (res.listens) setListenCount(res.listens); })
@@ -376,7 +379,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       setIsLoading(false);
       releaseAudioFocus(focusStopRef.current);
     }
-  }, [isPlaying, audioUrl, tokenId, startPositionTracking, stopPositionTracking]);
+  }, [isPlaying, audioUrl, tokenId, isSignedIn, startPositionTracking, stopPositionTracking]);
 
   if (compact) {
     return (

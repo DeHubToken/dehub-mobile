@@ -11,7 +11,7 @@ import {
   UIManager,
 } from "react-native";
 import { BlurView } from "expo-blur";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "../ui/Icon";
 
 let _activeClose: (() => void) | null = null;
 
@@ -121,7 +121,7 @@ const RepostPopover: React.FC<RepostPopoverProps> = ({
                     activeOpacity={0.7}
                     className="flex-row items-center gap-2.5 px-4 py-3"
                   >
-                    <Ionicons name={isReposted ? "close-circle-outline" : "git-compare-outline"} size={16} color={isReposted ? "#EF4444" : "#fff"} />
+                    <Icon name={isReposted ? "X" : "Repeat2"} size={16} color={isReposted ? "#EF4444" : "#fff"} />
                     <Text className={`text-xs font-medium ${isReposted ? "text-red-400" : "text-white"}`}>
                       {isReposted ? "Undo Repost" : "Repost"}
                     </Text>
@@ -134,7 +134,7 @@ const RepostPopover: React.FC<RepostPopoverProps> = ({
                     activeOpacity={0.7}
                     className="flex-row items-center gap-2.5 px-4 py-3"
                   >
-                    <Ionicons name="create-outline" size={16} color="#fff" />
+                    <Icon name="Quote" size={16} color="#fff" />
                     <Text className="text-white text-xs font-medium">Quote</Text>
                   </TouchableOpacity>
                 </View>

@@ -383,6 +383,7 @@ const EditProfileScreen = () => {
                   size={96}
                   borderWidth={4}
                   borderColor="#0a0a0a"
+                  name={displayName}
                 />
                 <View className="absolute bottom-1 right-1 bg-black/60 rounded-full p-1">
                   {processingAvatar ? (

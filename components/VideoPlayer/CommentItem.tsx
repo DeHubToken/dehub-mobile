@@ -52,7 +52,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isReply = false, onR
       <View className="w-full flex-row items-start justify-start">
         <View style={{ width: replyIndent }} />
         <View className="flex-1 flex-row items-start justify-start gap-3 rounded-xl bg-theme-neutrals-800 p-3">
-          <Avatar uri={typeof avatarSource === 'number' ? undefined : (avatarSource as any)?.uri} size={32} onPress={handleOpenProfile} />
+          <Avatar uri={typeof avatarSource === 'number' ? undefined : (avatarSource as any)?.uri} size={32} onPress={handleOpenProfile} name={username} />
           <View className="flex-1">
             <View className="flex-row items-center">
               <Text onPress={handleOpenProfile} className="text-theme-neutrals-200 text-[12px] font-medium" numberOfLines={1}>
@@ -69,7 +69,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isReply = false, onR
 
   return (
     <View className="flex w-full flex-row items-start justify-start gap-3 p-1">
-  <Avatar uri={typeof avatarSource === 'number' ? undefined : (avatarSource as any)?.uri} size={32} onPress={handleOpenProfile} />
+  <Avatar uri={typeof avatarSource === 'number' ? undefined : (avatarSource as any)?.uri} size={32} onPress={handleOpenProfile} name={username} />
       <View className="flex-1">
         <View className="flex-row items-center">
           <Text onPress={handleOpenProfile} className="text-theme-neutrals-200 text-[12px] font-semibold" numberOfLines={1}>

@@ -158,6 +158,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
           onPress={handleOpenProfile}
           borderWidth={2}
           borderColor={isLive ? "#ef4444" : "#333"}
+          name={displayName}
         />
         <View className="ml-2 mr-2 flex-shrink">
           <View className="flex-row items-center">

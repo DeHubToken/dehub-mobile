@@ -19,6 +19,7 @@ export interface IconProps {
   size?: number;
   color?: string;
   strokeWidth?: number;
+  fill?: string;
   gradient?: string[];
   tooltip?: string;
   glass?: boolean;
@@ -36,6 +37,7 @@ const Icon: React.FC<IconProps> = ({
   size = 24,
   color = colors.foreground,
   strokeWidth = 2,
+  fill,
   gradient,
   tooltip,
   glass = false,
@@ -67,7 +69,7 @@ const Icon: React.FC<IconProps> = ({
       />
     </MaskedView>
   ) : (
-    <LucideIcon size={size} color={color} strokeWidth={strokeWidth} />
+    <LucideIcon size={size} color={color} strokeWidth={strokeWidth} fill={fill || "none"} />
   );
 
   const isInteractive = !!(tooltip || onPress || onLongPress);

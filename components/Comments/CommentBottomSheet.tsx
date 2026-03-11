@@ -1,18 +1,30 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
-import { View, Modal, Pressable, Dimensions } from "react-native";
+import { View, Modal, Pressable, Dimensions, StyleSheet, Platform } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-  withSpring,
   runOnJS,
   Easing,
 } from "react-native-reanimated";
 import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-gesture-handler";
+import { BlurView } from "expo-blur";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Icon from "../ui/Icon";
 import CommentSection from "./CommentSection";
+import RepostTab from "./RepostTab";
+import QuoteTab from "./QuoteTab";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
-const SHEET_HEIGHT = SCREEN_HEIGHT * 0.75;
+const SHEET_FRACTION = 0.82;
+
+type SheetTab = "comments" | "quotes" | "reposts";
+
+const TAB_CONFIG: { key: SheetTab; icon: React.ComponentProps<typeof Icon>["name"]; label: string }[] = [
+  { key: "comments", icon: "MessageSquare", label: "Comments" },
+  { key: "quotes", icon: "Quote", label: "Quotes" },
+  { key: "reposts", icon: "Repeat2", label: "Reposts" },
+];
 
 interface CommentBottomSheetProps {
   visible: boolean;
@@ -29,44 +41,43 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   highlightCommentId,
   contentType = "video",
 }) => {
+  const insets = useSafeAreaInsets();
+  const SHEET_HEIGHT = SCREEN_HEIGHT * SHEET_FRACTION;
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
-  // Track if sheet is fully closed with React state (avoids reading .value during render)
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+  const [activeTab, setActiveTab] = useState<SheetTab>("comments");
 
   useEffect(() => {
     if (visible) {
       setIsFullyClosed(false);
-      // Use gentler spring with higher damping to prevent over-bouncing
-      translateY.value = withSpring(0, {
-        damping: 50,
-        stiffness: 400,
-        mass: 1,
-        overshootClamping: true,
+      setActiveTab("comments");
+      translateY.value = withTiming(0, {
+        duration: 300,
+        easing: Easing.out(Easing.cubic),
       });
-      backdropOpacity.value = withTiming(1, { duration: 200 });
+      backdropOpacity.value = withTiming(1, { duration: 250 });
     } else {
       translateY.value = withTiming(SHEET_HEIGHT, {
-        duration: 250,
-        easing: Easing.out(Easing.ease),
+        duration: 220,
+        easing: Easing.in(Easing.cubic),
       }, () => {
         runOnJS(setIsFullyClosed)(true);
       });
-      backdropOpacity.value = withTiming(0, { duration: 200 });
+      backdropOpacity.value = withTiming(0, { duration: 180 });
     }
-  }, [visible, translateY, backdropOpacity]);
+  }, [visible, translateY, backdropOpacity, SHEET_HEIGHT]);
 
   const closeSheet = useCallback(() => {
     translateY.value = withTiming(SHEET_HEIGHT, {
-      duration: 250,
-      easing: Easing.out(Easing.ease),
+      duration: 220,
+      easing: Easing.in(Easing.cubic),
     }, () => {
       runOnJS(onClose)();
     });
-    backdropOpacity.value = withTiming(0, { duration: 200 });
-  }, [translateY, backdropOpacity, onClose]);
+    backdropOpacity.value = withTiming(0, { duration: 180 });
+  }, [translateY, backdropOpacity, onClose, SHEET_HEIGHT]);
 
-  // Gesture handler for swipe down to close
   const gesture = Gesture.Pan()
     .onUpdate((e) => {
       if (e.translationY > 0) {
@@ -77,9 +88,9 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
       if (e.translationY > 100 || e.velocityY > 500) {
         runOnJS(closeSheet)();
       } else {
-        translateY.value = withSpring(0, {
-          damping: 25,
-          stiffness: 300,
+        translateY.value = withTiming(0, {
+          duration: 200,
+          easing: Easing.out(Easing.cubic),
         });
       }
     });
@@ -92,10 +103,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
     opacity: backdropOpacity.value,
   }));
 
-  // Use React state instead of reading .value during render
-  if (!visible && isFullyClosed) {
-    return null;
-  }
+  if (!visible && isFullyClosed) return null;
 
   return (
     <Modal
@@ -106,59 +114,112 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
       onRequestClose={closeSheet}
     >
       <GestureHandlerRootView style={{ flex: 1 }}>
-        {/* Backdrop */}
         <Animated.View
-          style={[
-            {
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-            },
-            backdropStyle,
-          ]}
+          style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.5)" }, backdropStyle]}
         >
           <Pressable style={{ flex: 1 }} onPress={closeSheet} />
         </Animated.View>
 
-        {/* Sheet */}
         <Animated.View
           style={[
-            {
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: SHEET_HEIGHT,
-              backgroundColor: "#121212",
-              borderTopLeftRadius: 16,
-              borderTopRightRadius: 16,
-              overflow: "hidden",
-            },
+            glassStyles.sheet,
+            { height: SHEET_HEIGHT, paddingBottom: insets.bottom },
             sheetStyle,
           ]}
         >
-          {/* Handle - only this area responds to swipe-to-close */}
+          <BlurView
+            intensity={80}
+            tint="dark"
+            style={StyleSheet.absoluteFill}
+            {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
+          />
+          <View style={[StyleSheet.absoluteFill, glassStyles.overlay]} />
+
           <GestureDetector gesture={gesture}>
-            <Animated.View className="items-center py-2">
-              <View className="w-10 h-1 rounded-full bg-theme-neutrals-600" />
+            <Animated.View className="items-center py-2.5">
+              <View style={{ width: 36, height: 4, borderRadius: 2, backgroundColor: "rgba(255,255,255,0.2)" }} />
             </Animated.View>
           </GestureDetector>
 
-          {/* Content */}
-          <CommentSection
-            tokenId={tokenId}
-            onClose={closeSheet}
-            highlightCommentId={highlightCommentId}
-            contentType={contentType}
-          />
+          <View style={glassStyles.tabBar}>
+            {TAB_CONFIG.map((tab) => {
+              const isActive = activeTab === tab.key;
+              return (
+                <Pressable
+                  key={tab.key}
+                  onPress={() => setActiveTab(tab.key)}
+                  style={[glassStyles.tab, isActive && glassStyles.tabActive]}
+                >
+                  <Icon
+                    name={tab.icon}
+                    size={18}
+                    color={isActive ? "#F9FBFF" : "#6F7174"}
+                    strokeWidth={isActive ? 2.2 : 1.8}
+                  />
+                </Pressable>
+              );
+            })}
+
+
+          </View>
+
+          {activeTab === "comments" && (
+            <CommentSection
+              tokenId={tokenId}
+              onClose={closeSheet}
+              highlightCommentId={highlightCommentId}
+              contentType={contentType}
+            />
+          )}
+
+          {activeTab === "quotes" && (
+            <QuoteTab tokenId={tokenId} />
+          )}
+
+          {activeTab === "reposts" && (
+            <RepostTab tokenId={tokenId} />
+          )}
         </Animated.View>
       </GestureHandlerRootView>
     </Modal>
   );
 };
+
+const glassStyles = StyleSheet.create({
+  sheet: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    overflow: "hidden",
+  },
+  overlay: {
+    backgroundColor: "rgba(20,20,20,0.55)",
+    borderTopWidth: 1,
+    borderColor: "rgba(255,255,255,0.08)",
+  },
+  tabBar: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 12,
+    paddingBottom: 8,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: "rgba(255,255,255,0.08)",
+  },
+  tab: {
+    width: 40,
+    height: 36,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 4,
+  },
+  tabActive: {
+    backgroundColor: "rgba(255,255,255,0.08)",
+  },
+});
 
 export const CommentBottomSheet = memo(CommentBottomSheetComponent);
 export default CommentBottomSheet;

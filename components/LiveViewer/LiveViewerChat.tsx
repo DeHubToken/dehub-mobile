@@ -116,7 +116,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
       return (
         <View className="mb-1.5 bg-black/60 rounded-xl px-2.5 py-1.5 self-start max-w-[85%] flex-row items-start">
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
-            <Avatar uri={avatarUrl} size={20} />
+            <Avatar uri={avatarUrl} size={20} name={displayName} />
           </TouchableOpacity>
           <Text style={{ color: '#FFFFFF' }} className="text-[12px] leading-[17px] flex-1 flex-shrink">
             <Text
@@ -137,7 +137,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
       return (
         <View className="mb-1 self-start flex-row items-center">
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1">
-            <Avatar uri={avatarUrl} size={14} />
+            <Avatar uri={avatarUrl} size={14} name={displayName} />
           </TouchableOpacity>
           <Text className="text-white/40 text-[11px]">
             👋{" "}
@@ -153,7 +153,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
       return (
         <View className="mb-1 self-start flex-row items-center">
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1">
-            <Avatar uri={avatarUrl} size={14} />
+            <Avatar uri={avatarUrl} size={14} name={displayName} />
           </TouchableOpacity>
           <Text className="text-white/40 text-[11px]">
             <Text onPress={handlePress} className="font-medium">
@@ -169,7 +169,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
       return (
         <View className="mb-1.5 bg-yellow-500/20 border border-yellow-400/30 rounded-xl px-2.5 py-2 self-start max-w-[85%] flex-row items-start">
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
-            <Avatar uri={avatarUrl} size={20} />
+            <Avatar uri={avatarUrl} size={20} name={displayName} />
           </TouchableOpacity>
           <View className="flex-1 flex-shrink">
             <Text style={{ color: '#fde047' }} className="text-[12px] font-semibold">

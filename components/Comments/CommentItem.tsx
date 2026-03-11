@@ -1,21 +1,18 @@
-/**
- * CommentItem - Individual comment component (Instagram-style)
- * 
- * Displays a comment with user avatar, username, content, time, like button,
- * and reply button. Also handles rendering replies.
- * - @usernames are bolded
- * - Long-press shows IG-style action sheet for share/edit
- * - Short timestamps (1s, 1m, 1h, 1d, 1w, 1mo, 1y)
- */
 import React, { memo, useCallback, useState, useRef, useMemo } from "react";
-import { View, Text, TouchableOpacity, Animated, Image } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, Text, Pressable, Image, Share } from "react-native";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSequence,
+  withTiming,
+  withSpring,
+} from "react-native-reanimated";
+import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import VoiceNotePlayer from "./VoiceNotePlayer";
 import { getAvatarUrl } from "../../libs";
 import { buildCdnPath } from "../../libs/misc";
 
-/** Resolve a media path: local file URIs pass through, relative paths go through CDN. */
 const resolveMediaUrl = (path: string): string => {
   if (path.startsWith('file://') || path.startsWith('/') || path.startsWith('http://') || path.startsWith('https://')) {
     return path;
@@ -27,8 +24,11 @@ import { useAuth } from "../../context/AuthContext";
 import { LikeCommentResult } from "../../services/nft.service";
 import type { Comment } from "../../services/nft.service";
 import type { CommentLayout } from "./CommentContextMenu";
+import { WEBSITE_LINK } from "../../config";
 
-// Format time in short form: 1s, 1m, 1h, 1d, 1w, 1mo, 1y
+const ICON_MUTED = "#6F7174";
+const ICON_ACTIVE = "#F9FBFF";
+
 function formatShortTime(date: Date | string | undefined): string {
   if (!date) return "";
   const now = new Date();
@@ -58,11 +58,9 @@ interface CommentItemProps {
   onLike?: (commentId: number) => Promise<LikeCommentResult | void>;
   onUserPress?: (userId: string) => void;
   onEdit?: (comment: Comment) => void;
-  /** Called on long-press with the comment and its measured screen layout */
   onLongPress?: (comment: Comment, layout: CommentLayout, extra: { liked: boolean; isOwnComment: boolean; isReply: boolean }) => void;
   tokenId?: number | string;
   contentType?: "video" | "feed";
-  /** When true, highlights the comment with a blinking animation */
   highlighted?: boolean;
 }
 
@@ -83,50 +81,45 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const [liked, setLiked] = useState(!!comment.isLiked);
   const [likeCount, setLikeCount] = useState(comment.likeCount || 0);
   const [isLiking, setIsLiking] = useState(false);
-  const [showHighlight, setShowHighlight] = useState(highlighted);
   const containerRef = useRef<View>(null);
-  
-  // Animation refs
-  const likeScale = useRef(new Animated.Value(1)).current;
-  const highlightOpacity = useRef(new Animated.Value(highlighted ? 1 : 0)).current;
 
-  // Highlight animation: pulse gently twice, hold, then fade out
+  const likeScale = useSharedValue(1);
+  const highlightOpacity = useSharedValue(highlighted ? 1 : 0);
+
+  const likeAnimStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: likeScale.value }],
+  }));
+
+  const highlightAnimStyle = useAnimatedStyle(() => ({
+    opacity: highlightOpacity.value,
+  }));
+
   React.useEffect(() => {
     if (highlighted) {
-      setShowHighlight(true);
-      highlightOpacity.setValue(0);
-      const sequence = Animated.sequence([
-        // Fade in
-        Animated.timing(highlightOpacity, { toValue: 1, duration: 300, useNativeDriver: true }),
-        // Pulse: dim then bright twice
-        Animated.timing(highlightOpacity, { toValue: 0.5, duration: 350, useNativeDriver: true }),
-        Animated.timing(highlightOpacity, { toValue: 1, duration: 350, useNativeDriver: true }),
-        Animated.timing(highlightOpacity, { toValue: 0.5, duration: 350, useNativeDriver: true }),
-        Animated.timing(highlightOpacity, { toValue: 1, duration: 350, useNativeDriver: true }),
-        // Hold
-        Animated.delay(800),
-        // Fade out
-        Animated.timing(highlightOpacity, { toValue: 0, duration: 600, useNativeDriver: true }),
-      ]);
-      sequence.start(() => setShowHighlight(false));
+      highlightOpacity.value = withSequence(
+        withTiming(1, { duration: 300 }),
+        withTiming(0.5, { duration: 350 }),
+        withTiming(1, { duration: 350 }),
+        withTiming(0.5, { duration: 350 }),
+        withTiming(1, { duration: 350 }),
+        withTiming(1, { duration: 800 }),
+        withTiming(0, { duration: 600 }),
+      );
     } else {
-      setShowHighlight(false);
-      highlightOpacity.setValue(0);
+      highlightOpacity.value = withTiming(0, { duration: 200 });
     }
   }, [highlighted, highlightOpacity]);
 
-  // Use nested user object
   const user = comment.user;
   const displayName = user?.displayName || user?.username || "Unknown";
   const avatarUrl = getAvatarUrl(user?.avatarImageUrl || "");
   const userId = user?.username || user?.address || comment.address || "";
-  const isOwnComment = currentUser?.address === user?.address || 
+  const isOwnComment = currentUser?.address === user?.address ||
                        currentUser?.walletAddress === user?.address ||
                        currentUser?.username === user?.username;
 
   const timeAgo = formatShortTime(comment.createdAt);
 
-  // Parse content to bold @usernames
   const parsedContent = useMemo(() => {
     const content = comment.content || "";
     const parts: { text: string; isMention: boolean; username?: string }[] = [];
@@ -163,38 +156,25 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
 
   const handleLikePress = useCallback(async () => {
     if (isLiking) return;
-    
-    // Optimistic update
+
     const wasLiked = liked;
     const oldCount = likeCount;
     setLiked(!wasLiked);
     setLikeCount((c) => wasLiked ? Math.max(0, c - 1) : c + 1);
-    
-    // Bounce animation
-    Animated.sequence([
-      Animated.timing(likeScale, {
-        toValue: 1.3,
-        duration: 100,
-        useNativeDriver: true,
-      }),
-      Animated.spring(likeScale, {
-        toValue: 1,
-        useNativeDriver: true,
-        friction: 4,
-        tension: 150,
-      }),
-    ]).start();
+
+    likeScale.value = withSequence(
+      withTiming(1.3, { duration: 100 }),
+      withSpring(1, { damping: 12, stiffness: 300 }),
+    );
 
     setIsLiking(true);
     try {
       const result = await onLike?.(comment.id);
-      // Sync with server response if available
       if (result && typeof result.liked === "boolean") {
         setLiked(result.liked);
         setLikeCount(result.likes);
       }
     } catch {
-      // Revert on error
       setLiked(wasLiked);
       setLikeCount(oldCount);
     } finally {
@@ -206,7 +186,6 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     onReply?.(comment);
   }, [comment, onReply]);
 
-  // Long-press handler - measure position and pass to parent
   const handleLongPress = useCallback(() => {
     if (!onLongPress) return;
     containerRef.current?.measureInWindow((x, y, width, height) => {
@@ -218,157 +197,159 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     });
   }, [onLongPress, comment, liked, isOwnComment, isReply]);
 
-  // If comment not found (for shared comment links)
+  const handleSharePress = useCallback(async () => {
+    try {
+      const shareUrl = tokenId
+        ? `${WEBSITE_LINK}/app/post/${tokenId}?c=${comment.id}`
+        : WEBSITE_LINK;
+      await Share.share({ message: `Check this out: ${shareUrl}`, url: shareUrl });
+    } catch (e) {
+      console.error("Share error:", e);
+    }
+  }, [tokenId, comment.id]);
+
   if (comment.notFound) {
     return (
-      <View className={`flex-row py-3 ${isReply ? "pl-12" : ""}`}>
-        <View className="flex-1">
-          <Text className="text-theme-neutrals-500 text-sm italic">
-            Comment not found
-          </Text>
-        </View>
+      <View style={{ paddingVertical: 12, paddingLeft: isReply ? 48 : 0 }}>
+        <Text style={{ color: "#6F7174", fontSize: 13, fontStyle: "italic" }}>
+          Comment not found
+        </Text>
       </View>
     );
   }
 
   return (
-    <TouchableOpacity
+    <Pressable
       onLongPress={handleLongPress}
-      activeOpacity={0.8}
       delayLongPress={300}
     >
-      <View ref={containerRef} className={`flex-row py-3 ${isReply ? "pl-10" : ""}`}>
-          {/* Highlight background for shared comments */}
-          {showHighlight && (
-            <Animated.View
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: 'rgba(59, 130, 246, 0.12)',
-                borderRadius: 10,
-                opacity: highlightOpacity,
-              }}
-              pointerEvents="none"
-            />
-          )}
-          
-          {/* Avatar */}
-          <TouchableOpacity onPress={handleUserPress} activeOpacity={0.7}>
-            <Avatar
-              uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
-              size={isReply ? 28 : 32}
-            />
-          </TouchableOpacity>
+      <View ref={containerRef} style={{ flexDirection: "row", paddingVertical: 10, paddingLeft: isReply ? 40 : 0 }}>
+        <Animated.View
+          style={[
+            {
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: "rgba(59,130,246,0.12)",
+              borderRadius: 10,
+            },
+            highlightAnimStyle,
+          ]}
+          pointerEvents="none"
+        />
 
-          {/* Content */}
-          <View className="flex-1 ml-3">
-            {/* Username and timestamp */}
-            <View className="flex-row items-center">
-              <Text
-                className="text-sm font-semibold text-theme-neutrals-100"
-                onPress={handleUserPress}
-              >
-                {displayName}
-              </Text>
-              <Text className="text-xs text-theme-neutrals-500 ml-2">{timeAgo}</Text>
-            </View>
+        <Pressable onPress={handleUserPress}>
+          <Avatar
+            uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
+            size={isReply ? 28 : 32}
+            rounded={false}
+            name={displayName}
+          />
+        </Pressable>
 
-            {/* Comment content with @mentions bolded + clickable */}
-            {comment.content ? (
-              <Text className="text-sm text-theme-neutrals-100 mt-1">
-                {parsedContent.map((part, idx) =>
-                  part.isMention ? (
-                    <Text
-                      key={idx}
-                      className="font-bold text-blue-400"
-                      onPress={() => handleMentionPress(part.username!)}
-                      suppressHighlighting
-                    >
-                      {part.text}
-                    </Text>
-                  ) : (
-                    <Text
-                      key={idx}
-                      className="font-normal text-theme-neutrals-300"
-                    >
-                      {part.text}
-                    </Text>
-                  )
-                )}
-              </Text>
-            ) : null}
-
-            {/* Media content: image */}
-            {comment.imageUrl ? (
-              <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-800" style={{ maxWidth: 220 }}>
-                <Image
-                  source={{ uri: resolveMediaUrl(comment.imageUrl) }}
-                  style={{ width: 220, height: 165 }}
-                  resizeMode="cover"
-                />
-              </View>
-            ) : null}
-
-            {/* Media content: GIF */}
-            {comment.gifUrl ? (
-              <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-800" style={{ maxWidth: 220 }}>
-                <Image
-                  source={{ uri: comment.gifUrl }}
-                  style={{ width: 220, height: 165 }}
-                  resizeMode="cover"
-                />
-              </View>
-            ) : null}
-
-            {/* Media content: voice note */}
-            {comment.audioUrl ? (
-              <View className="mt-1.5 rounded-lg bg-theme-neutrals-800/60 px-2" style={{ maxWidth: 260 }}>
-                <VoiceNotePlayer
-                  audioUrl={resolveMediaUrl(comment.audioUrl)}
-                  duration={comment.audioDuration}
-                  compact
-                />
-              </View>
-            ) : null}
-
-            {/* Actions row */}
-            <View className="flex-row items-center mt-1.5 gap-4">
-              {/* Reply button - only for top-level comments */}
-              {!isReply && onReply && (
-                <TouchableOpacity onPress={handleReplyPress} activeOpacity={0.7}>
-                  <Text className="text-xs text-theme-neutrals-500 font-semibold">
-                    Reply
-                  </Text>
-                </TouchableOpacity>
-              )}
-            </View>
+        <View style={{ flex: 1, marginLeft: 10 }}>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+            <Text
+              style={{ fontSize: 13, fontWeight: "600", color: ICON_ACTIVE }}
+              onPress={handleUserPress}
+              numberOfLines={1}
+            >
+              {displayName}
+            </Text>
+            <Text style={{ fontSize: 11, color: "#8B8D90" }}>{timeAgo}</Text>
           </View>
 
-          {/* Like button with count */}
-          <TouchableOpacity
-            onPress={handleLikePress}
-            activeOpacity={0.7}
-            className="px-2 py-1 items-center justify-center"
-            disabled={isLiking}
-          >
-            <Animated.View style={{ transform: [{ scale: likeScale }] }}>
-              <Ionicons
-                name={liked ? "heart" : "heart-outline"}
-                size={isReply ? 14 : 16}
-                color={liked ? "#FF3B5C" : "#9CA3AF"}
+          {comment.content ? (
+            <Text style={{ fontSize: 13, color: "#C2C4C7", marginTop: 3, lineHeight: 18 }}>
+              {parsedContent.map((part, idx) =>
+                part.isMention ? (
+                  <Text
+                    key={idx}
+                    style={{ fontWeight: "700", color: "#60A5FA" }}
+                    onPress={() => handleMentionPress(part.username!)}
+                    suppressHighlighting
+                  >
+                    {part.text}
+                  </Text>
+                ) : (
+                  <Text key={idx}>{part.text}</Text>
+                )
+              )}
+            </Text>
+          ) : null}
+
+          {comment.imageUrl ? (
+            <View style={{ marginTop: 6, borderRadius: 10, overflow: "hidden", maxWidth: 220, backgroundColor: "rgba(255,255,255,0.04)" }}>
+              <Image
+                source={{ uri: resolveMediaUrl(comment.imageUrl) }}
+                style={{ width: 220, height: 165 }}
+                resizeMode="cover"
               />
-            </Animated.View>
-            {likeCount > 0 && (
-              <Text className="text-[10px] text-theme-neutrals-500 mt-0.5">
-                {likeCount}
-              </Text>
+            </View>
+          ) : null}
+
+          {comment.gifUrl ? (
+            <View style={{ marginTop: 6, borderRadius: 10, overflow: "hidden", maxWidth: 220, backgroundColor: "rgba(255,255,255,0.04)" }}>
+              <Image
+                source={{ uri: comment.gifUrl }}
+                style={{ width: 220, height: 165 }}
+                resizeMode="cover"
+              />
+            </View>
+          ) : null}
+
+          {comment.audioUrl ? (
+            <View style={{ marginTop: 6, borderRadius: 10, maxWidth: 260, backgroundColor: "rgba(255,255,255,0.04)", paddingHorizontal: 8 }}>
+              <VoiceNotePlayer
+                audioUrl={resolveMediaUrl(comment.audioUrl)}
+                duration={comment.audioDuration}
+                compact
+              />
+            </View>
+          ) : null}
+
+          <View style={{ flexDirection: "row", alignItems: "center", marginTop: 6, gap: 12 }}>
+            <Pressable
+              onPress={handleLikePress}
+              disabled={isLiking}
+              hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+              style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
+            >
+              <Animated.View style={likeAnimStyle}>
+                <Icon
+                  name="ThumbsUp"
+                  size={14}
+                  color={liked ? ICON_ACTIVE : ICON_MUTED}
+                  fill={liked ? ICON_ACTIVE : undefined}
+                  strokeWidth={1.8}
+                />
+              </Animated.View>
+              {likeCount > 0 && (
+                <Text style={{ fontSize: 11, color: "#8B8D90" }}>{likeCount}</Text>
+              )}
+            </Pressable>
+
+            {!isReply && onReply && (
+              <Pressable
+                onPress={handleReplyPress}
+                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+              >
+                <Icon name="MessageSquare" size={14} color={ICON_MUTED} strokeWidth={1.8} />
+              </Pressable>
             )}
-          </TouchableOpacity>
+
+            <Pressable
+              onPress={handleSharePress}
+              hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+            >
+              <Icon name="Share2" size={14} color={ICON_MUTED} strokeWidth={1.8} />
+            </Pressable>
+          </View>
+        </View>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

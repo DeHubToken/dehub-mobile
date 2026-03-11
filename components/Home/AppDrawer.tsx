@@ -227,11 +227,9 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                   activeOpacity={0.7}
                 >
                   {hasAvatar ? (
-                    <Avatar uri={avatarUrl} size={48} />
+                    <Avatar uri={avatarUrl} size={48} name={displayName || handle} />
                   ) : (
-                    <View className="w-12 h-12 rounded-full bg-theme-accent items-center justify-center">
-                      <Text className="text-white text-lg font-bold">{initial}</Text>
-                    </View>
+                    <Avatar uri={undefined} size={48} name={displayName || handle} />
                   )}
                   <Text className="text-white text-base font-semibold mt-3">{displayName}</Text>
                   {handle ? (

@@ -1148,6 +1148,7 @@ export default function UploadScreen() {
               }
               size={40}
               rounded
+              name={authUser?.displayName}
             />
           </View>
 

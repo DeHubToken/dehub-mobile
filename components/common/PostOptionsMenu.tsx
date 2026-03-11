@@ -13,6 +13,7 @@ import {
   Text,
   TouchableOpacity,
   ActivityIndicator,
+  Share,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "../ui/GlassModal";
@@ -29,6 +30,7 @@ import { followUser, unfollowUser } from "../../services/user.service";
 import { blockUser, unblockUser } from "../../services/block.service";
 import { useAuth, useAuthActions } from "../../context/AuthContext";
 import { toastSuccess, toastError } from "../../libs";
+import { WEBSITE_LINK } from "../../config";
 
 export interface PostOptionsMenuProps {
   visible: boolean;
@@ -282,6 +284,18 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     setTimeout(() => setShowDeleteConfirm(true), 200);
   }, [onClose]);
 
+  const handleShare = useCallback(async () => {
+    if (tokenId == null) return;
+    const url = `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
+    try {
+      await Share.share({
+        message: `Check out this post ${url}`,
+        url,
+      });
+    } catch {}
+    onClose();
+  }, [tokenId, onClose]);
+
   // Determine follow label
   const followLabel = isFollowRequestPending
     ? "Cancel Request"
@@ -312,6 +326,14 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
 
         {/* Options list */}
         <View className="pb-6">
+          {/* Share */}
+          <OptionRow
+            icon="share-outline"
+            label="Share"
+            sublabel="Share this post"
+            onPress={handleShare}
+          />
+
           {/* Follow / Unfollow — only for non-owners */}
           {!isOwner && (
             <OptionRow

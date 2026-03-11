@@ -149,6 +149,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
                 : undefined
             }
             size={52}
+            name={displayName}
           />
         </TouchableOpacity>
 

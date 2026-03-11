@@ -334,6 +334,7 @@ const ProfileHeader = () => {
                   avatarUrl === "default-avatar" ? undefined : avatarUrl
                 )
               }
+              name={displayName}
             />
             <View className="ml-3 flex-1">
               <View className="flex-row items-center gap-2">

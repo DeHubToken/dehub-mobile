@@ -35,6 +35,7 @@ const MentionSuggestions: React.FC<MentionSuggestionsProps> = ({
           <Avatar
             uri={avatar && avatar !== "default-avatar" ? avatar : undefined}
             size={28}
+            name={item.displayName || item.username}
           />
           <View className="ml-2.5 flex-1">
             <Text

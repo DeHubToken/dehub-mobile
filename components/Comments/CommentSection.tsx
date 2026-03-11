@@ -3,14 +3,13 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity,
+  Pressable,
   FlatList,
   ActivityIndicator,
   Keyboard,
   Platform,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Icon from "../ui/Icon";
 import CommentItem from "./CommentItem";
 import CommentContextMenu from "./CommentContextMenu";
 import type { CommentLayout } from "./CommentContextMenu";
@@ -36,7 +35,6 @@ import {
 } from "../../services/nft.service";
 import { getAvatarUrl, toastError } from "../../libs";
 import { openCroppedImagePicker, getFileName, guessMime } from "../../libs/assets.util";
-import { theme } from "../../theme";
 import useKeyboard from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
 
@@ -60,7 +58,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   highlightCommentId,
   contentType = "video",
 }) => {
-  const insets = useSafeAreaInsets();
   const { user } = useAuth();
   const { requireAuth } = useAuthActions();
   const { showUserProfile } = useUserProfileSheet();
@@ -296,9 +293,15 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const handleOpenGifPicker = useCallback(() => {
     if (!requireAuth) return;
     requireAuth(() => {
+      Keyboard.dismiss();
       setGifPickerVisible(true);
     });
   }, [requireAuth]);
+
+  const handleStartRecording = useCallback(() => {
+    Keyboard.dismiss();
+    recorder.startRecording();
+  }, [recorder]);
 
   // GIF selected from picker
   const handleGifPicked = useCallback((url: string) => {
@@ -629,25 +632,15 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const keyExtractor = useCallback((item: FlatComment) => `comment-${item.id}`, []);
 
   // Calculate bottom padding for list to account for input
-  const listBottomPadding = 88 + inputLift + (insets.bottom || 0);
+  const listBottomPadding = 88 + inputLift;
 
   return (
-    <View className="flex-1 bg-theme-neutrals-900">
-      {/* Header */}
-      <View className="flex-row items-center justify-between px-4 py-3 border-b border-theme-neutrals-800">
-        <View className="w-10" />
-        <Text className="text-base font-semibold text-theme-neutrals-100">
-          Comments
-        </Text>
-        <TouchableOpacity onPress={onClose} activeOpacity={0.7} className="w-10 items-end">
-          <Ionicons name="close" size={24} color={theme.colors.foreground} />
-        </TouchableOpacity>
-      </View>
+    <View style={{ flex: 1 }}>
 
       {/* Comments list */}
       {loading ? (
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color={theme.colors.accent} />
+          <ActivityIndicator size="large" color="#3B82F6" />
         </View>
       ) : (
         <FlatList
@@ -659,9 +652,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           refreshing={refreshing}
           onRefresh={handleRefresh}
           ListEmptyComponent={
-            <View className="flex-1 items-center justify-center py-12">
-              <Text className="text-theme-neutrals-500 text-sm">
-                No comments yet. Be the first!
+            <View className="flex-1 items-center justify-center py-16">
+              <Text style={{ color: "#8B8D90", fontSize: 14 }}>
+                No replies yet. Be the first!
               </Text>
             </View>
           }
@@ -670,27 +663,27 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
       {/* Input section - lifts with keyboard */}
       <View
-        className="absolute left-0 right-0 bottom-0 border-t border-theme-neutrals-800 bg-theme-neutrals-900"
-        style={{ marginBottom: inputLift, paddingBottom: insets.bottom || 8 }}
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          borderTopWidth: 1,
+          borderTopColor: "rgba(255,255,255,0.06)",
+          backgroundColor: "rgba(30,30,30,0.8)",
+          marginBottom: inputLift,
+          paddingBottom: 8,
+        }}
       >
-        {/* Replying to / Editing indicator */}
         {(replyingTo || editingComment) && !recorder.isRecording && (
-          <View className="flex-row items-center px-4 py-2 bg-theme-neutrals-800/50">
-            <Text className="flex-1 text-xs text-theme-neutrals-400">
-              {editingComment ? (
-                "Editing comment"
-              ) : (
-                <>
-                  Replying to{" "}
-                  <Text className="font-semibold">
-                    {replyingTo?.user?.displayName || replyingTo?.user?.username || "user"}
-                  </Text>
-                </>
-              )}
+          <View className="flex-row items-center px-4 py-2" style={{ backgroundColor: "rgba(255,255,255,0.04)" }}>
+            <Icon name="CornerDownLeft" size={14} color="#6F7174" />
+            <Text style={{ flex: 1, fontSize: 12, color: "#A6A9AC", marginLeft: 6 }}>
+              {editingComment ? "Editing comment" : `Replying to @${replyingTo?.user?.displayName || replyingTo?.user?.username || "user"}`}
             </Text>
-            <TouchableOpacity onPress={cancelReplyOrEdit} activeOpacity={0.7}>
-              <Ionicons name="close" size={18} color={theme.colors.mutedForeground} />
-            </TouchableOpacity>
+            <Pressable onPress={cancelReplyOrEdit} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+              <Icon name="X" size={16} color="#6F7174" />
+            </Pressable>
           </View>
         )}
 
@@ -702,11 +695,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           loading={mentions.loading}
         />
 
-        {/* Voice recorder overlay — replaces entire input when recording */}
         {recorder.isRecording ? (
           <VoiceNoteRecordingOverlay recorder={recorder} />
         ) : mediaAttachment ? (
-          /* Media preview — shows selected image/GIF/audio before sending */
           <CommentMediaPreview
             media={mediaAttachment}
             onRemove={handleRemoveMedia}
@@ -714,81 +705,74 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             sending={mediaPosting}
           />
         ) : (
-          /* Standard input row */
-          <View className="flex-row items-center px-4 py-2">
-            <Avatar
-              uri={userAvatar && userAvatar !== "default-avatar" ? userAvatar : undefined}
-              size={32}
-            />
-            <TextInput
-              ref={inputRef}
-              value={inputText}
-              onChangeText={mentions.handleChangeText}
-              onSelectionChange={mentions.handleSelectionChange}
-              placeholder={editingComment ? "Edit your comment..." : replyingTo ? "Write a reply..." : "Add a comment..."}
-              placeholderTextColor={theme.colors.mutedForeground}
-              className="flex-1 mx-3 text-sm text-theme-neutrals-100"
-              style={{ maxHeight: 80 }}
-              maxLength={500}
-              multiline
-              returnKeyType="send"
-              onSubmitEditing={handlePost}
-            />
+          <View className="flex-row items-end px-3 py-2" style={{ gap: 8 }}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                alignItems: "flex-end",
+                backgroundColor: "rgba(255,255,255,0.06)",
+                borderRadius: 12,
+                borderWidth: 1,
+                borderColor: "rgba(255,255,255,0.08)",
+                paddingHorizontal: 12,
+                paddingVertical: 8,
+                minHeight: 44,
+              }}
+            >
+              <TextInput
+                ref={inputRef}
+                value={inputText}
+                onChangeText={mentions.handleChangeText}
+                onSelectionChange={mentions.handleSelectionChange}
+                placeholder={editingComment ? "Edit your comment..." : replyingTo ? "Write a reply..." : "Add a reply..."}
+                placeholderTextColor="#6F7174"
+                style={{ flex: 1, color: "#F9FBFF", fontSize: 14, maxHeight: 80, paddingVertical: 0 }}
+                maxLength={500}
+                multiline
+              />
+            </View>
 
             {inputText.trim() || editingComment ? (
-              /* Send button when text is typed or editing */
-              <TouchableOpacity
+              <Pressable
                 onPress={handlePost}
                 disabled={posting || !inputText.trim()}
-                activeOpacity={0.7}
-                className="p-2"
+                style={{
+                  backgroundColor: inputText.trim() ? "#F9FBFF" : "rgba(255,255,255,0.1)",
+                  borderRadius: 10,
+                  paddingHorizontal: 16,
+                  paddingVertical: 10,
+                }}
               >
                 {posting ? (
-                  <ActivityIndicator size="small" color="#fff" />
+                  <ActivityIndicator size="small" color="#000" />
                 ) : (
-                  <View
-                    className={`w-9 h-9 rounded-full items-center justify-center ${inputText.trim() ? "bg-white" : "bg-theme-neutrals-700"}`}
-                  >
-                    <Ionicons
-                      name="send"
-                      size={16}
-                      color={inputText.trim() ? "#000" : theme.colors.mutedForeground}
-                    />
-                  </View>
+                  <Text style={{ color: inputText.trim() ? "#010305" : "#6F7174", fontSize: 14, fontWeight: "600" }}>Post</Text>
                 )}
-              </TouchableOpacity>
+              </Pressable>
             ) : (
-              /* Media buttons: image, GIF, mic */
-              <View className="flex-row items-center gap-1">
-                {/* Image picker */}
-                <TouchableOpacity
+              <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+                <Pressable
                   onPress={handlePickImage}
-                  activeOpacity={0.7}
-                  className="p-2"
+                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  style={{ padding: 8, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 10 }}
                 >
-                  <Ionicons name="image-outline" size={22} color={theme.colors.mutedForeground} />
-                </TouchableOpacity>
-
-                {/* GIF picker */}
-                <TouchableOpacity
+                  <Icon name="ImagePlus" size={20} color="#8B8D90" />
+                </Pressable>
+                <Pressable
                   onPress={handleOpenGifPicker}
-                  activeOpacity={0.7}
-                  className="p-2"
+                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  style={{ padding: 8, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 10 }}
                 >
-                  <Text className="text-xs font-bold text-theme-neutrals-400 px-0.5">GIF</Text>
-                </TouchableOpacity>
-
-                {/* Mic — tap to start recording */}
-                <TouchableOpacity
-                  onPress={() => {
-                    Keyboard.dismiss();
-                    recorder.startRecording();
-                  }}
-                  activeOpacity={0.7}
-                  className="p-2"
+                  <Text style={{ color: "#8B8D90", fontSize: 12, fontWeight: "700" }}>GIF</Text>
+                </Pressable>
+                <Pressable
+                  onPress={handleStartRecording}
+                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  style={{ padding: 8, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 10 }}
                 >
-                  <Ionicons name="mic-outline" size={22} color={theme.colors.mutedForeground} />
-                </TouchableOpacity>
+                  <Icon name="Mic" size={20} color="#8B8D90" />
+                </Pressable>
               </View>
             )}
           </View>

@@ -38,6 +38,7 @@ export enum ScreenNames {
   PostResolver = 'PostResolver',
   LiveChat = 'LiveChat',
   LiveChatInfo = 'LiveChatInfo',
+  FullscreenVideo = 'FullscreenVideo',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',
