@@ -26,6 +26,7 @@ import QuotedPostEmbed from "../common/QuotedPostEmbed";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import PPVSheet from "../PPV/PPVSheet";
 import BountyInfoSheet from "./BountyInfoSheet";
+import AskAISheet from "./AskAISheet";
 import Icon from "../ui/Icon";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUser, useAuthActions, useAuthState } from "../../context/AuthContext";
@@ -51,6 +52,7 @@ import { WEBSITE_LINK } from "../../config";
 import { getTransactionLink, openInApp } from "../../libs/links.utils";
 import env from "../../config/env";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
+import type { AIPostContext } from "../../services/ai.service";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const IMAGE_WIDTH = SCREEN_WIDTH - 32;
@@ -242,6 +244,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [showTipModal, setShowTipModal] = useState(false);
   const [showPPVModal, setShowPPVModal] = useState(false);
   const [showBountyModal, setShowBountyModal] = useState(false);
+  const [showAISheet, setShowAISheet] = useState(false);
   const [ppvUnlocked, setPpvUnlocked] = useState(false);
   // Local unlock overrides server PPV state after successful payment
   const isActuallyLockedPPV = isServerLockedPPV && !ppvUnlocked;
@@ -497,8 +500,47 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   });
 
   const handleAiPress = useCallback(() => {
-    // TODO: wire up AI summary/ask-AI feature
-  }, []);
+    requireAuth?.(() => {
+      setShowAISheet(true);
+    });
+  }, [requireAuth]);
+
+  const aiPostContext = useMemo<AIPostContext>(() => ({
+    type: isVideo ? "video" : isLive ? "live" : isAudioPost ? "post" : "image",
+    author: displayName,
+    authorUsername: username || undefined,
+    caption: description || undefined,
+    title: title || undefined,
+    thumbnail: thumbnail || undefined,
+    imageUrl: galleryImages[0] || thumbnail || undefined,
+    categories: item.category?.length ? item.category : undefined,
+    views: views || undefined,
+    likes: likeCount || undefined,
+    dislikes: dislikeCount || undefined,
+    comments: commentCount || undefined,
+    tips: totalTips || undefined,
+    reposts: repostCount || undefined,
+    duration: duration || undefined,
+    createdAt: createdAt || undefined,
+    isPayPerView: isPayPerView || undefined,
+    ppvAmount: isPayPerView ? payPerViewAmount : undefined,
+    ppvCurrency: isPayPerView ? payPerViewTokenSymbol : undefined,
+    isLockContent: isLocked || undefined,
+    lockAmount: isLocked ? lockContentAmount : undefined,
+    lockCurrency: isLocked ? lockContentTokenSymbol : undefined,
+    isBounty: isBounty || undefined,
+    bountyAmount: isBounty ? bountyAmount : undefined,
+    bountyCurrency: isBounty ? bountyTokenSymbol : undefined,
+    isLive: isCurrentlyLive || undefined,
+    imageCount: hasMultipleImages ? galleryImages.length : undefined,
+  }), [
+    isVideo, isLive, isAudioPost, displayName, username, description, title,
+    thumbnail, galleryImages, item.category, views, likeCount, dislikeCount,
+    commentCount, totalTips, repostCount, duration, createdAt, isPayPerView,
+    payPerViewAmount, payPerViewTokenSymbol, isLocked, lockContentAmount,
+    lockContentTokenSymbol, isBounty, bountyAmount, bountyTokenSymbol,
+    isCurrentlyLive, hasMultipleImages,
+  ]);
 
   if (isDeleted) return null;
 
@@ -831,6 +873,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           bountyTokenSymbol={bountyTokenSymbol}
           firstXViewers={streamInfo?.addBountyFirstXViewers || 0}
           firstXComments={streamInfo?.addBountyFirstXComments || 0}
+        />
+      )}
+
+      {tokenId != null && (
+        <AskAISheet
+          visible={showAISheet}
+          onClose={() => setShowAISheet(false)}
+          postId={tokenId}
+          postContext={aiPostContext}
         />
       )}
 

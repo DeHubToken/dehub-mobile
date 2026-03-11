@@ -74,6 +74,7 @@ export type AppStackParamList = {
     images?: (string | { uri: string })[];
     initialIndex?: number;
     index?: number;
+    allowDownload?: boolean;
   };
   [ScreenNames.Chat]: {
     conversationId?: string;

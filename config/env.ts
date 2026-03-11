@@ -14,7 +14,8 @@ import {
   TENOR_API_KEY,
   PIMLICO_API_KEY,
   STRIPE_PUBLISHABLE_KEY,
-  LEGACY_APP_ORIGIN
+  LEGACY_APP_ORIGIN,
+  SUPABASE_EDGE_BASE_URL
 } from "@env";
 import { createLogger } from "../libs/logger";
 
@@ -38,7 +39,8 @@ const env = {
   TENOR_API_KEY: TENOR_API_KEY,
   PIMLICO_API_KEY: PIMLICO_API_KEY,
   STRIPE_PUBLISHABLE_KEY: STRIPE_PUBLISHABLE_KEY,
-  LEGACY_APP_ORIGIN: LEGACY_APP_ORIGIN
+  LEGACY_APP_ORIGIN: LEGACY_APP_ORIGIN,
+  SUPABASE_EDGE_BASE_URL: SUPABASE_EDGE_BASE_URL || 'https://aigxuutjaqsywioxjefr.supabase.co/functions/v1'
 };
 
 const log = createLogger('env');
