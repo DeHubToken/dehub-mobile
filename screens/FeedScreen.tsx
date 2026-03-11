@@ -26,7 +26,7 @@ import CategorySelectorSkeleton from "../components/Home/CategorySelectorSkeleto
 import FeedFilterPanel, {
   FeedFilters,
 } from "../components/Home/FeedFilterPanel";
-import HomeFeedCard from "../components/Home/HomeFeedCard";
+import FeedCard from "../components/Home/FeedCard";
 import { useAuthState } from "../context/AuthContext";
 import { getCategoriesCached } from "../services/nft.service";
 import { getUnifiedFeed } from "../services/feed.unified.service";
@@ -540,7 +540,7 @@ const FeedScreen = () => {
   );
 
   const renderFeedItem = useCallback(
-    ({ item }: ListRenderItemInfo<UnifiedFeedItem>) => <HomeFeedCard item={item} />,
+    ({ item }: ListRenderItemInfo<UnifiedFeedItem>) => <FeedCard item={item} />,
     [],
   );
 

@@ -2,6 +2,7 @@ import React, { useState, useMemo, useCallback, useRef, useEffect } from "react"
 import { View, StyleSheet } from "react-native";
 import Animated from "react-native-reanimated";
 import InfiniteVideoFeed, { type InfiniteVideoFeedHandle } from "../components/Home/InfiniteVideoFeed";
+import HomeImageGrid, { type HomeImageGridHandle } from "../components/Home/HomeImageGrid";
 import HomeHeader from "../components/HomeHeader";
 import FeedNavBar from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
@@ -31,6 +32,9 @@ export default function HomeScreen() {
   const [categoriesLoading, setCategoriesLoading] = useState(false);
   const { openDrawer } = useDrawer();
   const feedRef = useRef<InfiniteVideoFeedHandle | null>(null);
+  const imageGridRef = useRef<HomeImageGridHandle | null>(null);
+
+  const isImageTab = filters.postType === "feed-images";
 
   const {
     headerAnimatedStyle,
@@ -113,8 +117,12 @@ export default function HomeScreen() {
 
   const handleLogoPress = useCallback(() => {
     showHeader();
-    feedRef.current?.scrollToTopAndRefresh();
-  }, [showHeader]);
+    if (isImageTab) {
+      imageGridRef.current?.scrollToTopAndRefresh();
+    } else {
+      feedRef.current?.scrollToTopAndRefresh();
+    }
+  }, [showHeader, isImageTab]);
 
   const handleRetry = useCallback(async () => {
     setCategoriesLoading(true);
@@ -195,18 +203,30 @@ export default function HomeScreen() {
         </Animated.View>
       </View>
 
-      <InfiniteVideoFeed
-        feedRef={feedRef}
-        params={feedParams}
-        pageSize={10}
-        onRefresh={handleRefresh}
-        onScrollBegin={handleScrollBegin}
-        onScrollOffset={onScrollOffset}
-        onScrollEnd={handleScrollEnd}
-        onCategorySelect={handleCategorySelect}
-        onRetry={handleRetry}
-        onClearFilters={handleClearFilters}
-      />
+      {isImageTab ? (
+        <HomeImageGrid
+          gridRef={imageGridRef}
+          params={feedParams}
+          pageSize={20}
+          onRefresh={handleRefresh}
+          onScrollBegin={handleScrollBegin}
+          onScrollOffset={onScrollOffset}
+          onScrollEnd={handleScrollEnd}
+        />
+      ) : (
+        <InfiniteVideoFeed
+          feedRef={feedRef}
+          params={feedParams}
+          pageSize={10}
+          onRefresh={handleRefresh}
+          onScrollBegin={handleScrollBegin}
+          onScrollOffset={onScrollOffset}
+          onScrollEnd={handleScrollEnd}
+          onCategorySelect={handleCategorySelect}
+          onRetry={handleRetry}
+          onClearFilters={handleClearFilters}
+        />
+      )}
     </View>
   );
 }

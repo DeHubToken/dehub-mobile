@@ -4,8 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import { getNFT, type Comment, likeComment, type LikeCommentResult, postComment, editComment, deleteComment, postImageComment, postGifComment, postAudioComment } from "../services/nft.service";
-import { followUser, unfollowUser } from "../services/user.service";
-import HomeFeedCard from "../components/Home/HomeFeedCard";
+import FeedCard from "../components/Home/FeedCard";
 import { CommentItem } from "../components/Comments";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
 import type { CommentLayout } from "../components/Comments/CommentContextMenu";
@@ -54,9 +53,6 @@ export default function FeedDetailScreen() {
   const [mediaAttachment, setMediaAttachment] = useState<MediaAttachment | null>(null);
   const [mediaPosting, setMediaPosting] = useState(false);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
-  const [isFollowing, setIsFollowing] = useState<boolean>(false);
-  const [isFollowRequestPending, setIsFollowRequestPending] = useState<boolean>(false);
-  const [followLoading, setFollowLoading] = useState<boolean>(false);
 
   // Context menu state
   const [contextComment, setContextComment] = useState<Comment | null>(null);
@@ -166,10 +162,6 @@ export default function FeedDetailScreen() {
       
       // Set the feed item
       setItem(payload as UnifiedFeedItem);
-      
-      // Set isFollowing from response
-      setIsFollowing(!!(payload as any).isFollowing);
-      setIsFollowRequestPending(!!(payload as any).isFollowRequestPending);
       
       // Extract comments — backend now populates a nested `user` object
       // matching the Comment interface (user.username, user.displayName, etc.)
@@ -387,69 +379,6 @@ export default function FeedDetailScreen() {
     }
   }, [contextComment, contextMeta, fetchData]);
 
-  // Get creator address from item
-  const creatorAddress = useMemo(() => {
-    if (!item) return "";
-    const minterUser = item.minterUser;
-    return minterUser?.address || item.minter || item.owner || "";
-  }, [item]);
-
-  // Check if current user is the owner (don't show follow button for own posts)
-  const isOwner = useMemo(() => {
-    if (!address || !creatorAddress) return false;
-    return address.toLowerCase() === creatorAddress.toLowerCase();
-  }, [address, creatorAddress]);
-
-  // Handle follow/unfollow
-  const handleFollowPress = useCallback(() => {
-    if (!address || !creatorAddress || isOwner) return;
-    
-    // If pending, cancel the request
-    if (isFollowRequestPending) {
-      requireAuth?.(async () => {
-        setFollowLoading(true);
-        setIsFollowRequestPending(false);
-        try {
-          await unfollowUser(address.toLowerCase(), creatorAddress.toLowerCase());
-        } catch (e) {
-          setIsFollowRequestPending(true);
-          toastError("Failed to cancel request");
-          console.error("[FeedDetailScreen] cancel request error", e);
-        } finally {
-          setFollowLoading(false);
-        }
-      });
-      return;
-    }
-
-    requireAuth?.(async () => {
-      // Optimistic update
-      const wasFollowing = isFollowing;
-      setIsFollowing(!wasFollowing);
-      setFollowLoading(true);
-      
-      try {
-        if (wasFollowing) {
-          await unfollowUser(address.toLowerCase(), creatorAddress.toLowerCase());
-        } else {
-          const res = await followUser(address.toLowerCase(), creatorAddress.toLowerCase());
-          // If private account → pending request
-          if (res.status === 'pending') {
-            setIsFollowing(false);
-            setIsFollowRequestPending(true);
-          }
-        }
-      } catch (e) {
-        // Revert on error
-        setIsFollowing(wasFollowing);
-        toastError(wasFollowing ? "Failed to unfollow" : "Failed to follow");
-        console.error("[FeedDetailScreen] follow error", e);
-      } finally {
-        setFollowLoading(false);
-      }
-    });
-  }, [address, creatorAddress, isOwner, isFollowing, isFollowRequestPending, requireAuth]);
-
   const renderCommentItem = useCallback(
     ({ item: c }: { item: Comment }) => {
       const isReply = !!c.parentId;
@@ -650,21 +579,16 @@ export default function FeedDetailScreen() {
     <View>
       <ScreenHeader title="Post" />
       {item ? (
-        <View className="px-8">
-          <HomeFeedCard 
+        <View className="px-4">
+          <FeedCard 
             item={item} 
             fullContent 
             disablePress
             onCommentPress={focusCommentInput}
-            showFollowButton={!isOwner}
-            isFollowing={isFollowing}
-            isFollowRequestPending={isFollowRequestPending}
-            followLoading={followLoading}
-            onFollowPress={handleFollowPress}
           />
         </View>
       ) : loading ? (
-        <View className="px-8 pt-4">
+        <View className="px-4 pt-4">
           {/* Minimal inline skeleton — just header + content placeholder */}
           <View className="flex-row items-center">
             <View className="w-9 h-9 rounded-full bg-theme-neutrals-800" />
@@ -692,7 +616,7 @@ export default function FeedDetailScreen() {
       ) : null}
       {/* Repost & Quote stats row */}
       {item && (
-        <View className="flex-row items-center px-8 pt-3 pb-1 gap-4">
+        <View className="flex-row items-center px-4 pt-3 pb-1 gap-4">
           <TouchableOpacity
             onPress={() =>
               navigation.navigate(ScreenNames.RepostQuoteList as never, {
@@ -733,13 +657,13 @@ export default function FeedDetailScreen() {
           </TouchableOpacity>
         </View>
       )}
-      <View className="px-8 pt-2 pb-1">
+      <View className="px-4 pt-2 pb-1">
         <Text className="text-theme-neutrals-400 text-xs font-medium">
           {comments.length > 0 ? `${comments.length} Comment${comments.length !== 1 ? "s" : ""}` : "Comments"}
         </Text>
       </View>
     </View>
-  ), [item, loading, privateError, navigation, comments.length, focusCommentInput, isOwner, isFollowing, isFollowRequestPending, followLoading, handleFollowPress]);
+  ), [item, loading, privateError, navigation, comments.length, focusCommentInput]);
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
@@ -748,7 +672,7 @@ export default function FeedDetailScreen() {
         keyExtractor={(c) => String(c.id)}
         ListHeaderComponent={renderHeader}
         ListEmptyComponent={!loading ? (
-          <View className="px-8 py-6">
+          <View className="px-4 py-6">
             <Text className="text-theme-neutrals-400 text-sm">No comments yet, add yours.</Text>
           </View>
         ) : (

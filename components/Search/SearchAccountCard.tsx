@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import Icon from "../ui/Icon";
 import { useAuth } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
@@ -91,7 +91,7 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
           onPress={handleFollowToggle}
           className="bg-theme-neutrals-700 rounded-full px-3 h-8 flex-row items-center justify-center"
         >
-          <Ionicons name="time-outline" size={13} color="#9CA3AF" />
+          <Icon name="Clock" size={13} color="#9CA3AF" />
           <Text className="text-theme-neutrals-400 text-[11px] font-semibold ml-1">
             Requested
           </Text>
@@ -139,9 +139,9 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
             {displayName}
           </Text>
         </View>
-        <Text className="text-theme-neutrals-400 text-xs mt-0.5" numberOfLines={1}>
+        {/* <Text className="text-theme-neutrals-400 text-xs mt-0.5" numberOfLines={1}>
           @{username}
-        </Text>
+        </Text> */}
         {aboutMe ? (
           <Text className="text-theme-neutrals-500 text-xs mt-1" numberOfLines={2}>
             {aboutMe}

@@ -27,13 +27,11 @@ import {
   UnifiedSearchResponse,
 } from "../services/search.service";
 import ScreenHeader from "../components/ScreenHeader";
-import VideoCard from "../components/Home/VideoCard";
-import HomeFeedCard from "../components/Home/HomeFeedCard";
-import LiveStreamCard from "../components/Home/LiveStreamCard";
+import FeedCard from "../components/Home/FeedCard";
 import SearchAccountCard from "../components/Search/SearchAccountCard";
 import SearchAccountChip from "../components/Search/SearchAccountChip";
 import AccentButtonGradient from "../components/ui/AccentButtonGradient";
-import CompactVideoCardSkeleton from "../components/Home/CompactVideoCardSkeleton";
+import FeedCardSkeleton from "../components/Feed/FeedCardSkeleton";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import type { FollowState } from "../components/Search/SearchAccountChip";
 import { useAuth } from "../context/AuthContext";
@@ -296,27 +294,9 @@ const SearchScreen: React.FC = () => {
   const renderContentItem = useCallback(
     ({ item }: { item: SearchContentResult }) => {
       const feedItem = toFeedItem(item);
-      const postType = item.postType;
-
-      if (postType === "live" || item.stream?.status) {
-        return (
-          <View className="px-4">
-            <LiveStreamCard item={feedItem} />
-          </View>
-        );
-      }
-
-      if (postType === "feed-simple" || postType === "feed-images" || postType === "feed-audio") {
-        return (
-          <View className="px-4">
-            <HomeFeedCard item={feedItem} />
-          </View>
-        );
-      }
-
       return (
         <View className="px-4">
-          <VideoCard nft={feedItem as any} enablePreview />
+          <FeedCard item={feedItem} />
         </View>
       );
     },
@@ -381,9 +361,7 @@ const SearchScreen: React.FC = () => {
     if (loadingMore) {
       return (
         <View className="py-4">
-          {[0, 1, 2].map((i) => (
-            <CompactVideoCardSkeleton key={i} />
-          ))}
+          <FeedCardSkeleton count={3} />
         </View>
       );
     }

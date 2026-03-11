@@ -8,8 +8,8 @@
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, type ListRenderItem } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { getSuggestedAccounts, type SuggestedAccount } from "../../services/user.service";
+import Icon from "../ui/Icon";
 import { useAuth } from "../../context/AuthContext";
 import SuggestedAccountCard from "./SuggestedAccountCard";
 import type { FollowState } from "../Search/SearchAccountChip";
@@ -76,16 +76,16 @@ const SuggestedAccountsSection: React.FC = () => {
   return (
     <View className="mb-3">
       {/* Header row */}
-      <View className="flex-row items-center justify-between px-0 mb-2.5">
+      <View className="flex-row items-center justify-between px-2 mb-2.5">
         <Text className="text-white text-sm font-semibold">
-          Suggested for you
+          Follow Suggestions
         </Text>
         <TouchableOpacity
           onPress={handleDismissAll}
           activeOpacity={0.7}
           hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
         >
-          <Ionicons name="close" size={18} color="#6F7174" />
+          <Icon name="X" size={18} color="#6F7174" />
         </TouchableOpacity>
       </View>
 
@@ -96,7 +96,7 @@ const SuggestedAccountsSection: React.FC = () => {
         keyExtractor={keyExtractor}
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 0 }}
+        contentContainerStyle={{ paddingHorizontal: 8 }}
       />
     </View>
   );

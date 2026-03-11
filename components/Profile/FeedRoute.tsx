@@ -1,12 +1,9 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { View, FlatList } from 'react-native';
 import InfiniteFeed from '../Feed/InfiniteFeed';
-import HomeFeedCard from '../Home/HomeFeedCard';
-import type { GetNFTsResult, SearchParams } from '../../services/nft.service';
+import FeedCard from '../Home/FeedCard';
+import type { SearchParams } from '../../services/nft.service';
 import type { UnifiedFeedItem } from '../../services/feed.unified.service';
-import { useNavigation } from '@react-navigation/native';
-import { ScreenNames } from '../../navigation/ScreenNames';
-import { useUserProfileSheet } from '../../context/UserProfileSheetContext';
 import { useAuthState } from '../../context/AuthContext';
 
 interface FeedRouteProps {
@@ -18,15 +15,7 @@ interface FeedRouteProps {
 }
 
 const FeedRoute: React.FC<FeedRouteProps> = ({ address, scrollEnabled, onScroll, listRef, noPadding }) => {
-  const navigation = useNavigation<any>();
-  const { hideUserProfile } = useUserProfileSheet();
   const { isSignedIn } = useAuthState();
-
-  const handleFeedPress = useCallback((post: GetNFTsResult) => {
-    const tokenId = (post as any).tokenId ?? (post as any).id;
-    hideUserProfile();
-    navigation.navigate(ScreenNames.FeedDetail as any, { tokenId });
-  }, [navigation, hideUserProfile]);
 
   const feedParams = useMemo<Partial<SearchParams>>(() => ({
     minter: address,
@@ -49,10 +38,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({ address, scrollEnabled, onScroll,
         listRef={listRef}
         enableBackToTop={false}
         renderItem={({ item }) => (
-          <HomeFeedCard
-            item={item as UnifiedFeedItem}
-            onPress={() => handleFeedPress(item)}
-          />
+          <FeedCard item={item as UnifiedFeedItem} />
         )}
       />
     </View>

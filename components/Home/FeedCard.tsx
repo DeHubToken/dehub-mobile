@@ -97,6 +97,8 @@ interface FeedCardProps {
   onCommentPress?: () => void;
   isVisible?: boolean;
   enablePreview?: boolean;
+  /** Fires before any card-press navigation (e.g. to close a bottom sheet). */
+  onBeforeNavigate?: () => void;
 }
 
 const FeedCardComponent: React.FC<FeedCardProps> = ({
@@ -107,6 +109,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   onCommentPress: onCommentPressProp,
   isVisible = true,
   enablePreview = true,
+  onBeforeNavigate,
 }) => {
   const navigation = useNavigation<any>();
   const user = useUser();
@@ -270,6 +273,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const handleCardPress = useCallback(() => {
     if (disablePress) return;
+    onBeforeNavigate?.();
     hideUserProfile();
     if (isLive) {
       const target = isOwnerPost ? ScreenNames.LiveProducer : ScreenNames.LiveViewer;
@@ -280,19 +284,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         accessInfo,
         streamId,
       } as never);
-    } else if (isVideo) {
-      navigation.navigate(ScreenNames.VideoPlayer as never, {
-        isLive: false,
-        nft: item,
-        accessInfo,
-        streamId: stream?._id || stream?.id || (item as any)?._id,
-      } as never);
     } else if (tokenId != null) {
       navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
     }
   }, [
-    disablePress, isLive, isVideo, isOwnerPost, item, tokenId,
-    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile,
+    disablePress, isLive, isOwnerPost, item, tokenId,
+    accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate,
   ]);
 
   const handleImagePress = useCallback((index: number = 0) => {
@@ -915,7 +912,8 @@ const FeedCard = memo(FeedCardComponent, (prev, next) => {
     prev.item.isLiked === next.item.isLiked &&
     prev.item.isSaved === next.item.isSaved &&
     prev.item.likes === next.item.likes &&
-    prev.isVisible === next.isVisible
+    prev.isVisible === next.isVisible &&
+    prev.onBeforeNavigate === next.onBeforeNavigate
   );
 });
 

@@ -7,8 +7,7 @@ import {
   RefreshControl,
 } from "react-native";
 import { getQuotePosts } from "../../services/repost.service";
-import HomeFeedCard from "../Home/HomeFeedCard";
-import VideoCard from "../Home/VideoCard";
+import FeedCard from "../Home/FeedCard";
 
 const PAGE_LIMIT = 20;
 
@@ -67,16 +66,9 @@ const QuoteTabComponent: React.FC<QuoteTabProps> = ({ tokenId }) => {
 
   const renderItem = useCallback(
     ({ item }: { item: any }) => {
-      if (item.postType === "video") {
-        return (
-          <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>
-            <VideoCard nft={item} />
-          </View>
-        );
-      }
       return (
         <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>
-          <HomeFeedCard item={item} />
+          <FeedCard item={item} />
         </View>
       );
     },

@@ -20,8 +20,7 @@ import { truncate } from "../libs/strings.util";
 import { formatCompactNumber } from "../libs/numbers.util";
 import Avatar from "../components/common/Avatar";
 import ScreenHeader from "../components/ScreenHeader";
-import HomeFeedCard from "../components/Home/HomeFeedCard";
-import VideoCard from "../components/Home/VideoCard";
+import FeedCard from "../components/Home/FeedCard";
 import { ScreenNames } from "../navigation/ScreenNames";
 
 
@@ -232,16 +231,9 @@ const RepostQuoteListScreen: React.FC = () => {
 
   const renderQuoteItem = useCallback(
     ({ item }: { item: any }) => {
-      if (item.postType === "video") {
-        return (
-          <View className="px-4 mb-3">
-            <VideoCard nft={item} />
-          </View>
-        );
-      }
       return (
         <View className="px-4 mb-3">
-          <HomeFeedCard item={item} />
+          <FeedCard item={item} />
         </View>
       );
     },
