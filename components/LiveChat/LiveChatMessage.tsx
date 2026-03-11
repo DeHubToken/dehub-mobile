@@ -124,7 +124,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
 
       {/* Avatar */}
       <TouchableOpacity onPress={handleAvatar} activeOpacity={0.7}>
-        <Avatar uri={avatarUrl} size={36} />
+        <Avatar uri={avatarUrl} size={36} name={displayName} />
       </TouchableOpacity>
 
       {/* Content */}

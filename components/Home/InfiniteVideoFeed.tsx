@@ -18,12 +18,10 @@ import {
   NativeScrollEvent,
   ViewToken,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import EmptyFeedState from "./EmptyFeedState";
-import VideoCard from "./VideoCard";
+import FeedCard from "./FeedCard";
 import VideoCardSkeleton from "./VideoCardSkeleton";
-import HomeFeedCard from "./HomeFeedCard";
-import LiveStreamCard from "./LiveStreamCard";
+import Icon from "../ui/Icon";
 import { useAuth } from "../../context/AuthContext";
 import {
   getUnifiedFeed,
@@ -340,18 +338,14 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const SUGGEST_AFTER_INDEX = 4;
 
   const renderItem: ListRenderItem<FeedItem> = ({ item, index }) => {
-    // Determine content type
-    const isVideo = isVideoItem(item);
-    const isLive = item.postType === "live";
-
-    let card: React.ReactNode;
-    if (isLive) {
-      card = <LiveStreamCard item={item} onCategorySelect={onCategorySelect} />;
-    } else if (isVideo) {
-      card = <VideoCard nft={item as any} enablePreview onCategorySelect={onCategorySelect} />;
-    } else {
-      card = <HomeFeedCard item={item} onCategorySelect={onCategorySelect} isVisible={visibleItemKeys.has(item.__listKey)} />;
-    }
+    const card = (
+      <FeedCard
+        item={item}
+        onCategorySelect={onCategorySelect}
+        isVisible={visibleItemKeys.has(item.__listKey)}
+        enablePreview
+      />
+    );
 
     // Inject suggested accounts section after the 3rd feed item
     if (index === SUGGEST_AFTER_INDEX) {
@@ -416,8 +410,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         updateCellsBatchingPeriod={80}
         contentContainerStyle={
           contentContainerStyle || {
-            paddingHorizontal: 16,
-            paddingTop: 8,
+            paddingHorizontal: 8,
+            paddingTop: 4,
             paddingBottom: 80,
           }
         }
@@ -469,8 +463,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           accessibilityLabel="Back to top"
           className="absolute bottom-6 right-5 bg-theme-neutrals-800/80 rounded-full p-3 active:opacity-80"
         >
-          <Ionicons
-            name="chevron-up"
+          <Icon
+            name="ChevronUp"
             size={22}
             color={theme.colors.accentForeground || "#fff"}
           />

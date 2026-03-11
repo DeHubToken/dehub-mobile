@@ -163,7 +163,7 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
         onPress={handleOpenProfile}
         className="flex-row items-center flex-1"
       >
-        <Avatar uri={avatarUrl} size={40} onPress={handleOpenProfile} />
+        <Avatar uri={avatarUrl} size={40} onPress={handleOpenProfile} name={displayName} />
         <View className="flex-1 mx-2">
           <View className="flex-row items-center">
             <Text

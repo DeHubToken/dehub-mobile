@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import Icon from "../ui/Icon";
 import { formatDistance } from "date-fns";
 import { FeedCardHeader } from "./FeedCardHeader";
 import StatusBadge from "./StatusBadge";
@@ -165,6 +165,7 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
         badgeImage={badgeImg}
         onUserPress={handleUserPress}
         onMenuPress={handleOpenMenu}
+        isHidden={isHidden}
       />
       
       {/* Thumbnail with badges */}
@@ -177,7 +178,7 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
           />
         ) : (
           <View className="absolute inset-0 w-full h-full bg-theme-neutrals-800 items-center justify-center">
-            <Ionicons name="videocam-off" size={40} color="#666" />
+            <Icon name="VideoOff" size={40} color="#6F7174" />
           </View>
         )}
         
@@ -187,8 +188,8 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
         {/* Hidden indicator */}
         {isHidden && (
           <View className="absolute top-2 right-2 flex-row items-center bg-black/60 rounded-full px-2 py-1 z-20">
-            <Ionicons name="eye-off" size={12} color="#9CA3AF" />
-            <Text className="text-gray-400 text-[10px] ml-1">Hidden</Text>
+            <Icon name="EyeOff" size={12} color="#6F7174" />
+            <Text style={{ color: '#8B8D90', fontSize: 10, marginLeft: 4 }}>Hidden</Text>
           </View>
         )}
         
@@ -262,17 +263,17 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
       {/* Stats row - likes, current viewers, and peak */}
       <View className="flex-row items-center justify-between mt-2">
         <View className="flex-row items-center gap-1">
-          <Ionicons name="heart" size={16} color="#ef4444" />
-          <Text className="text-white text-sm">{formatCompactNumber(likes)}</Text>
+          <Icon name="Heart" size={16} color="#ef4444" />
+          <Text style={{ color: '#F9FBFF', fontSize: 13 }}>{formatCompactNumber(likes)}</Text>
         </View>
 
         <View className="flex-row items-center gap-3">
           <View className="flex-row items-center gap-1">
-            <Ionicons name="eye-outline" size={16} color="#9CA3AF" />
-            <Text className="text-gray-400 text-sm">{formatCompactNumber(currentViewers)}</Text>
+            <Icon name="Eye" size={16} color="#6F7174" />
+            <Text style={{ color: '#8B8D90', fontSize: 13 }}>{formatCompactNumber(currentViewers)}</Text>
           </View>
           {peakViews > 0 && (
-            <Text className="text-gray-500 text-xs">Peak: {formatCompactNumber(peakViews)}</Text>
+            <Text style={{ color: '#8B8D90', fontSize: 11 }}>Peak: {formatCompactNumber(peakViews)}</Text>
           )}
         </View>
       </View>

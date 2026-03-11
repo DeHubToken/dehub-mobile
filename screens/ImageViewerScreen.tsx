@@ -4,6 +4,7 @@ import {
   Image,
   Text,
   TouchableOpacity,
+  Pressable,
   Dimensions,
   FlatList,
   NativeScrollEvent,
@@ -11,10 +12,12 @@ import {
   StatusBar,
   Platform,
   BackHandler,
+  StyleSheet,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
+import { BlurView } from "expo-blur";
+import Icon from "../components/ui/Icon";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -234,7 +237,6 @@ const ImageViewerScreen = () => {
   const indexRef = useRef(safeStartIndex);
 
   const mainListRef = useRef<FlatList<any>>(null);
-  const thumbListRef = useRef<FlatList<any>>(null);
 
   const translateY = useSharedValue(0);
   const opacity = useSharedValue(1);
@@ -318,11 +320,7 @@ const ImageViewerScreen = () => {
 
   useEffect(() => {
     if (images.length > 1) {
-      thumbListRef.current?.scrollToIndex({
-        index: Math.max(0, Math.min(currentIndex, images.length - 1)),
-        animated: true,
-        viewPosition: 0.5,
-      });
+      // no-op — dot indicators don't need scrolling
     }
   }, [currentIndex, images.length]);
 
@@ -339,40 +337,13 @@ const ImageViewerScreen = () => {
 
   const keyExtractor = useCallback((_: string, i: number) => `img-${i}`, []);
 
-  const renderThumb = useCallback(
-    ({ item, index }: { item: string; index: number }) => {
-      const isActive = index === currentIndex;
-      return (
-        <TouchableOpacity
-          onPress={() => scrollToImage(index)}
-          activeOpacity={0.8}
-          style={{
-            marginRight: 8,
-            borderRadius: 8,
-            borderWidth: isActive ? 2 : 0,
-            borderColor: isActive ? "#fff" : "transparent",
-          }}
-        >
-          <Image
-            source={{ uri: item }}
-            style={{ width: 56, height: 56, borderRadius: 6 }}
-            resizeMode="cover"
-          />
-        </TouchableOpacity>
-      );
-    },
-    [currentIndex, scrollToImage],
-  );
-
-  const thumbKeyExtractor = useCallback((_: string, i: number) => `thumb-${i}`, []);
-
-  const showStrip = images.length > 1;
+  const showDots = images.length > 1;
 
   return (
-    <View className="flex-1 bg-black">
+    <View style={styles.root}>
       <StatusBar barStyle="light-content" backgroundColor="#000" />
       <Animated.View
-        style={[{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, backgroundColor: "#000" }, animatedBg]}
+        style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }, animatedBg]}
       />
 
       <GestureDetector gesture={panGesture}>
@@ -397,47 +368,146 @@ const ImageViewerScreen = () => {
         </Animated.View>
       </GestureDetector>
 
+      {/* ── Top bar ─────────────────────────────────────────────────── */}
       <View
-        className="absolute z-50 flex-row items-center justify-between"
-        style={{ top: insets.top + 8, left: 12, right: 12 }}
+        style={[styles.topBar, { top: insets.top + 8 }]}
+        pointerEvents="box-none"
       >
-        <TouchableOpacity
-          onPress={closeViewer}
-          activeOpacity={0.7}
-          className="bg-black/50 p-2 rounded-full"
-          hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-        >
-          <Ionicons name="close" size={24} color="#fff" />
-        </TouchableOpacity>
+        {/* Spacer left (for centering counter) */}
+        <View style={styles.topBarSide} />
+
+        {/* Counter pill — center */}
         {images.length > 1 && (
-          <View className="bg-black/50 px-3 py-1 rounded-full">
-            <Text className="text-white text-xs font-semibold">
+          <View style={styles.counterPill}>
+            <BlurView
+              intensity={Platform.OS === "ios" ? 60 : 40}
+              tint="dark"
+              style={StyleSheet.absoluteFill}
+              {...(Platform.OS === "android"
+                ? { experimentalBlurMethod: "dimezisBlurView" }
+                : {})}
+            />
+            <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
+            <Text style={styles.counterText}>
               {currentIndex + 1} / {images.length}
             </Text>
           </View>
         )}
+
+        {/* Close button — right */}
+        <View style={styles.topBarSide}>
+          <TouchableOpacity
+            onPress={closeViewer}
+            activeOpacity={0.7}
+            style={styles.glassButton}
+            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+          >
+            <BlurView
+              intensity={Platform.OS === "ios" ? 60 : 40}
+              tint="dark"
+              style={StyleSheet.absoluteFill}
+              {...(Platform.OS === "android"
+                ? { experimentalBlurMethod: "dimezisBlurView" }
+                : {})}
+            />
+            <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
+            <Icon name="X" size={20} color="#fff" />
+          </TouchableOpacity>
+        </View>
       </View>
 
-      {showStrip && (
+      {/* ── Dot indicators ──────────────────────────────────────────── */}
+      {showDots && (
         <View
-          className="absolute left-0 right-0"
-          style={{ bottom: insets.bottom + 12 }}
+          style={[styles.dotsRow, { bottom: insets.bottom + 20 }]}
+          pointerEvents="box-none"
         >
-          <FlatList
-            ref={thumbListRef}
-            data={images}
-            keyExtractor={thumbKeyExtractor}
-            renderItem={renderThumb}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingHorizontal: 16 }}
-            extraData={currentIndex}
-            getItemLayout={(_, i) => ({ length: 64, offset: 64 * i, index: i })}
-          />
+          {images.map((_, idx) => (
+            <Pressable
+              key={idx}
+              onPress={() => scrollToImage(idx)}
+              hitSlop={8}
+            >
+              <View
+                style={[
+                  styles.dot,
+                  idx === currentIndex ? styles.dotActive : styles.dotInactive,
+                ]}
+              />
+            </Pressable>
+          ))}
         </View>
       )}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: "#000",
+  },
+  topBar: {
+    position: "absolute",
+    left: 16,
+    right: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    zIndex: 50,
+  },
+  topBarSide: {
+    width: 44,
+    alignItems: "flex-end",
+  },
+  counterPill: {
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    borderRadius: 12,
+    overflow: "hidden",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.2)",
+  },
+  counterText: {
+    color: "#fff",
+    fontSize: 13,
+    fontWeight: "600",
+  },
+  glassButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    overflow: "hidden",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.2)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  glassOverlay: {
+    backgroundColor: "rgba(0,0,0,0.45)",
+  },
+  dotsRow: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 8,
+    zIndex: 50,
+  },
+  dot: {
+    height: 8,
+    borderRadius: 4,
+  },
+  dotActive: {
+    width: 12,
+    backgroundColor: "#fff",
+  },
+  dotInactive: {
+    width: 8,
+    backgroundColor: "rgba(255,255,255,0.5)",
+  },
+});
 
 export default ImageViewerScreen;

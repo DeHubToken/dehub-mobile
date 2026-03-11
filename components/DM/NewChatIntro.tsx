@@ -71,7 +71,7 @@ const NewChatIntroComponent: React.FC<NewChatIntroProps> = ({
       className="flex-1 items-center justify-center px-6 pb-4"
     >
       <View className="items-center mb-4">
-        <Avatar uri={peer.avatarImageUrl} size={72} />
+        <Avatar uri={peer.avatarImageUrl} size={72} name={name} />
         <Text className="text-white text-[18px] font-semibold mt-3">
           {name}
         </Text>

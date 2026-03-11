@@ -539,7 +539,7 @@ const NotificationScreen = () => {
             style={{ position: 'relative' }}
           >
             {hasAvatar ? (
-              <Avatar uri={avatarUrl || undefined} size={44} />
+              <Avatar uri={avatarUrl || undefined} size={44} name={item.actorUsername} />
             ) : (
               <View 
                 style={{

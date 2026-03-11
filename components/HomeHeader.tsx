@@ -21,8 +21,6 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
 
   const hasUnread = (user?.notificationCount || 0) > 0;
   const avatarUrl = getAvatarUrl(user?.avatarImageUrl);
-  const hasAvatar = !!user?.avatarImageUrl;
-  const initial = (user?.displayName || user?.username || "U").charAt(0).toUpperCase();
 
   const handleNotificationPress = useCallback(() => {
     navigation.navigate(ScreenNames.Notifications);
@@ -40,13 +38,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
         className="w-9 h-9 items-center justify-center"
       >
         {isSignedIn ? (
-          hasAvatar ? (
-            <Avatar uri={avatarUrl} size={32} />
-          ) : (
-            <View className="w-8 h-8 rounded-full bg-theme-accent items-center justify-center">
-              <Text className="text-white text-sm font-bold">{initial}</Text>
-            </View>
-          )
+          <Avatar uri={avatarUrl} size={32} name={user?.displayName || user?.username} />
         ) : (
           <Icon name="Menu" size={24} color="#E5E7EB" />
         )}

@@ -54,7 +54,7 @@ const BannerRow: React.FC<{
 
   return (
     <Animated.View style={animStyle} className={`flex-row items-center self-start ${bgClass} rounded-full px-2.5 py-1 mb-1`}>
-      <Avatar uri={event.avatarUrl} size={16} />
+      <Avatar uri={event.avatarUrl} size={16} name={event.displayName} />
       <Text style={{ color: textColor }} className="text-[11px] ml-1.5 font-medium" numberOfLines={1}>
         {event.displayName}
       </Text>
@@ -92,7 +92,7 @@ const GiftBannerRow: React.FC<{
 
   return (
     <Animated.View style={animStyle} className="flex-row items-center self-start bg-yellow-500/20 border border-yellow-400/20 rounded-full px-2.5 py-1 mb-1">
-      <Avatar uri={event.avatarUrl} size={16} />
+      <Avatar uri={event.avatarUrl} size={16} name={event.displayName} />
       <Text style={{ color: '#fde047' }} className="text-[11px] ml-1.5 font-semibold" numberOfLines={1}>
         {event.displayName}
       </Text>

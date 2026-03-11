@@ -199,7 +199,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
         <Ionicons name="close" size={12} color="#9CA3AF" />
       </TouchableOpacity>
 
-      <Avatar uri={displayAvatar} size={64} />
+      <Avatar uri={displayAvatar} size={64} name={displayName} />
 
       {/* Name + badge */}
       <View className="flex-row items-center mt-2 px-1" style={{ maxWidth: 120 }}>

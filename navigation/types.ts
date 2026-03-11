@@ -107,6 +107,14 @@ export type AppStackParamList = {
     quoteCount?: number;
   };
   [ScreenNames.LiveChat]: undefined;
+  [ScreenNames.FullscreenVideo]: {
+    videoUrl: string;
+    startTime?: number;
+    isMuted?: boolean;
+    thumbnail?: string;
+    tokenId?: string | number;
+    isSignedIn?: boolean;
+  };
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> = CompositeScreenProps<

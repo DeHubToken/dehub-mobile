@@ -132,7 +132,7 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
       onPress={handlePress}
       className="py-3 flex-row items-center border-b border-theme-neutrals-800"
     >
-      <Avatar uri={displayAvatar} size={48} />
+      <Avatar uri={displayAvatar} size={48} name={displayName} />
       <View className="flex-1 ml-3 mr-2">
         <View className="flex-row items-center">
           <Text className="text-white font-semibold text-sm" numberOfLines={1}>

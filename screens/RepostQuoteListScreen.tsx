@@ -66,7 +66,7 @@ const RepostUserRow: React.FC<RepostUserRowProps> = React.memo(
         className="flex-row items-center px-4 py-3"
         activeOpacity={0.6}
       >
-        <Avatar uri={avatarUrl} size={48} />
+        <Avatar uri={avatarUrl} size={48} name={displayName} />
         <View className="flex-1 ml-3">
           <Text className="text-white font-semibold text-[15px]" numberOfLines={1}>
             {displayName}

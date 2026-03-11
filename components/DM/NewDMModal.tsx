@@ -48,7 +48,7 @@ const ResultRow: React.FC<ResultRowProps> = ({ item, onPress, inContacts }) => {
       onPress={handlePress}
       activeOpacity={0.7}
     >
-      <Avatar uri={getAvatarUrl((item as any).avatarImageUrl)} size={44} />
+      <Avatar uri={getAvatarUrl((item as any).avatarImageUrl)} size={44} name={display} />
       <View className="ml-3 flex-1">
         <Text className="text-white text-[15px] font-medium" numberOfLines={1}>
           {display}
@@ -313,6 +313,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
                       <Avatar
                         uri={getAvatarUrl((item as any)?.avatarImageUrl)}
                         size={44}
+                        name={display}
                       />
                       <View className="ml-3 flex-1">
                         <Text

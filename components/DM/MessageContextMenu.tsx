@@ -174,6 +174,7 @@ const FloatingMessage: React.FC<{
         <Avatar
           uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
           size={24}
+          name={name}
         />
         <View className={`flex-shrink-1 ${isMine ? "items-end" : "items-start"}`}>
           <Text className="text-white text-[13px] font-semibold" numberOfLines={1}>

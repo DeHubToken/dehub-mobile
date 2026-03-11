@@ -528,24 +528,10 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
             username={username}
             badgeImage={badgeImg}
             onUserPress={handleUserPress}
-            showFollowButton={showFollowButton}
-            isFollowing={isFollowing}
-            isFollowRequestPending={isFollowRequestPending}
-            followLoading={followLoading}
-            onFollowPress={onFollowPress}
+            onMenuPress={handleOpenOptions}
+            isHidden={isHidden}
           />
         </View>
-        <TouchableOpacity
-          onPress={handleOpenOptions}
-          activeOpacity={0.7}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          className="flex-row items-center ml-1 mt-1"
-        >
-          {isHidden && (
-            <Ionicons name="eye-off" size={14} color="#9CA3AF" style={{ marginRight: 4 }} />
-          )}
-          <Ionicons name="ellipsis-vertical" size={18} color="#9CA3AF" />
-        </TouchableOpacity>
       </View>
       
       {/* Images */}

@@ -238,7 +238,7 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
         return (
           <View className="flex-row items-start mb-1.5 bg-theme-neutrals-800/80 rounded-xl px-2.5 py-1.5 self-start max-w-[85%]">
             <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
-              <Avatar uri={avatarUrl} size={18} />
+              <Avatar uri={avatarUrl} size={18} name={displayName} />
             </TouchableOpacity>
             <Text
               className="text-[11px] font-bold mr-1.5"
@@ -266,7 +266,7 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
         return (
           <View className="flex-row items-center mb-1.5 bg-yellow-600/20 rounded-xl px-2.5 py-1.5 self-start max-w-[85%] border border-yellow-500/20">
             <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5">
-              <Avatar uri={avatarUrl} size={18} />
+              <Avatar uri={avatarUrl} size={18} name={displayName} />
             </TouchableOpacity>
             <Text className="text-[11px] mr-1">💰</Text>
             <Text className="text-yellow-300 text-[11px] font-semibold" onPress={handlePress}>

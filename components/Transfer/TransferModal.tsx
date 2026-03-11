@@ -252,7 +252,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
           }}
           activeOpacity={0.85}
         >
-          <Avatar uri={getAvatarUrl(item.avatarImageUrl)} size={32} />
+          <Avatar uri={getAvatarUrl(item.avatarImageUrl)} size={32} name={item.username || item.displayName} />
           <View className="ml-2 flex-1">
             <Text className="text-white text-sm" numberOfLines={1}>
               {item.username || item.displayName || truncateAddress(addr)}
@@ -405,6 +405,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
                   <Avatar
                     uri={getAvatarUrl(recipient.avatarImageUrl)}
                     size={32}
+                    name={selectedLabel}
                   />
                   <View className="ml-2 flex-1">
                     <Text className="text-white text-sm" numberOfLines={1}>

@@ -22,7 +22,8 @@ import Animated, {
   FadeOut,
 } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "../ui/Icon";
+import type { IconName } from "../ui/Icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Avatar from "../common/Avatar";
 import VoiceNotePlayer from "./VoiceNotePlayer";
@@ -93,7 +94,7 @@ const formatShortTime = (date: Date | string | undefined): string => {
 
 
 interface ActionRowProps {
-  icon: keyof typeof Ionicons.glyphMap;
+  icon: IconName;
   label: string;
   onPress: () => void;
   destructive?: boolean;
@@ -106,7 +107,7 @@ const ActionRow: React.FC<ActionRowProps> = ({ icon, label, onPress, destructive
     className="flex-row items-center px-4 py-3"
   >
     <View className="w-8 items-center">
-      <Ionicons
+      <Icon
         name={icon}
         size={20}
         color={destructive ? "#EF4444" : "#E5E7EB"}
@@ -153,6 +154,7 @@ const FloatingComment: React.FC<{
       <Avatar
         uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
         size={isReply ? 28 : 32}
+        name={displayName}
       />
       <View className="flex-1 ml-3">
         <View className="flex-row items-center">
@@ -216,13 +218,15 @@ const FloatingComment: React.FC<{
 
       {/* Like indicator */}
       <View className="px-2 items-center justify-center">
-        <Ionicons
-          name={liked ? "heart" : "heart-outline"}
+        <Icon
+          name="ThumbsUp"
           size={isReply ? 14 : 16}
-          color={liked ? "#FF3B5C" : "#9CA3AF"}
+          color={liked ? "#F9FBFF" : "#6F7174"}
+          fill={liked ? "#F9FBFF" : undefined}
+          strokeWidth={1.8}
         />
         {(comment.likeCount ?? 0) > 0 && (
-          <Text className="text-[10px] text-theme-neutrals-500 mt-0.5">
+          <Text style={{ fontSize: 10, color: "#8B8D90", marginTop: 2 }}>
             {comment.likeCount}
           </Text>
         )}
@@ -386,27 +390,22 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
       >
         <Pressable>
           <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden py-1">
-            {/* Reply - only for top-level comments */}
             {!isReply && onReply && (
-              <ActionRow icon="chatbubble-outline" label="Reply" onPress={handleReply} />
+              <ActionRow icon="MessageSquare" label="Reply" onPress={handleReply} />
             )}
 
-            {/* Copy — only for text comments */}
             {comment.content ? (
-              <ActionRow icon="copy-outline" label="Copy" onPress={handleCopy} />
+              <ActionRow icon="Copy" label="Copy" onPress={handleCopy} />
             ) : null}
 
-            {/* Share */}
-            <ActionRow icon="share-outline" label="Share" onPress={handleShare} />
+            <ActionRow icon="Share2" label="Share" onPress={handleShare} />
 
-            {/* Edit - own text-only comments only (no media) */}
             {isOwnComment && onEdit && !isMediaComment(comment) && (
-              <ActionRow icon="pencil-outline" label="Edit" onPress={handleEdit} />
+              <ActionRow icon="Pencil" label="Edit" onPress={handleEdit} />
             )}
 
-            {/* Delete */}
             {canDelete && onDelete && (
-              <ActionRow icon="trash-outline" label="Delete" onPress={handleDelete} destructive />
+              <ActionRow icon="Trash2" label="Delete" onPress={handleDelete} destructive />
             )}
           </View>
         </Pressable>
