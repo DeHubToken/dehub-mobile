@@ -45,7 +45,7 @@ const Avatar: React.FC<AvatarProps> = ({
 }) => {
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
-  const radius = rounded ? size / 2 : 8;
+  const radius = rounded ? size / 2 : Math.round(size * 0.16);
   const isRemote = !!uri && uri !== "default-avatar";
   const showImage = isRemote && !errored;
 

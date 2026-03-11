@@ -8,8 +8,8 @@
  */
 import React, { FC, useCallback, useState, useMemo } from "react";
 import { View, Text, Image, TouchableOpacity, ActivityIndicator } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import Icon from "../ui/Icon";
 import { useAuth } from "../../context/AuthContext";
 import { getAvatarUrl, getBadgeUrl } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
@@ -19,7 +19,6 @@ import {
   type SuggestedAccount,
 } from "../../services/user.service";
 import Avatar from "../common/Avatar";
-import AccentButtonGradient from "../ui/AccentButtonGradient";
 import type { FollowState } from "../Search/SearchAccountChip";
 
 
@@ -131,7 +130,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
 
     if (followLoading) {
       return (
-        <View className="mt-2 h-7 items-center justify-center">
+        <View className="mt-2.5 w-full h-8 items-center justify-center">
           <ActivityIndicator size="small" color="#fff" />
         </View>
       );
@@ -142,10 +141,10 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
         <TouchableOpacity
           activeOpacity={0.85}
           onPress={handleFollowToggle}
-          className="mt-2 bg-theme-neutrals-700 rounded-full px-3 h-7 items-center justify-center flex-row"
+          className="mt-2.5 w-full bg-theme-neutrals-700 rounded-lg h-8 items-center justify-center flex-row"
         >
-          <Ionicons name="time-outline" size={12} color="#9CA3AF" />
-          <Text className="text-theme-neutrals-400 text-[10px] font-semibold ml-1">
+          <Icon name="Clock" size={12} color="#9CA3AF" />
+          <Text className="text-theme-neutrals-400 text-xs font-medium ml-1">
             Requested
           </Text>
         </TouchableOpacity>
@@ -157,9 +156,10 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
         <TouchableOpacity
           activeOpacity={0.85}
           onPress={handleFollowToggle}
-          className="mt-2 bg-theme-neutrals-700 rounded-full px-3 h-7 items-center justify-center"
+          className="mt-2.5 w-full rounded-lg h-8 items-center justify-center"
+          style={{ backgroundColor: 'rgba(255,255,255,0.1)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}
         >
-          <Text className="text-theme-neutrals-300 text-[10px] font-semibold">
+          <Text className="text-theme-neutrals-300 text-xs font-medium">
             Following
           </Text>
         </TouchableOpacity>
@@ -167,17 +167,16 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
     }
 
     return (
-      <AccentButtonGradient style={{ marginTop: 8, borderRadius: 14 }}>
-        <TouchableOpacity
-          activeOpacity={0.85}
-          onPress={handleFollowToggle}
-          className="px-3 h-7 items-center justify-center"
-        >
-          <Text className="text-white text-[10px] font-bold">
-            {account.followsYou ? "Follow Back" : "Follow"}
-          </Text>
-        </TouchableOpacity>
-      </AccentButtonGradient>
+      <TouchableOpacity
+        activeOpacity={0.85}
+        onPress={handleFollowToggle}
+        className="mt-2.5 w-full rounded-lg h-8 items-center justify-center"
+        style={{ backgroundColor: 'rgba(255,255,255,0.1)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}
+      >
+        <Text className="text-white text-xs font-medium">
+          {account.followsYou ? "Follow Back" : "Follow"}
+        </Text>
+      </TouchableOpacity>
     );
   };
 
@@ -186,23 +185,23 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={handlePress}
-      className="w-[140px] items-center rounded-2xl py-3 px-2 mr-2.5"
-      style={{ borderWidth: 1, borderColor: "#2A2A2A" }}
+      className="w-[150px] items-center rounded-xl py-3.5 px-3 mr-2.5"
+      style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
     >
       {/* Dismiss (X) button */}
       <TouchableOpacity
         onPress={handleDismiss}
         activeOpacity={0.6}
-        className="absolute top-1.5 right-1.5 w-5 h-5 items-center justify-center rounded-full bg-theme-neutrals-700/60"
+        className="absolute top-2 right-2 w-5 h-5 items-center justify-center rounded-full bg-theme-neutrals-700/60"
         hitSlop={{ top: 6, right: 6, bottom: 6, left: 6 }}
       >
-        <Ionicons name="close" size={12} color="#9CA3AF" />
+        <Icon name="X" size={12} color="#9CA3AF" />
       </TouchableOpacity>
 
-      <Avatar uri={displayAvatar} size={64} name={displayName} />
+      <Avatar uri={displayAvatar} size={72} rounded={false} name={displayName} />
 
       {/* Name + badge */}
-      <View className="flex-row items-center mt-2 px-1" style={{ maxWidth: 120 }}>
+      <View className="flex-row items-center mt-2 px-0.5" style={{ maxWidth: 130 }}>
         <Text
           className="text-white text-xs font-semibold text-center flex-shrink"
           numberOfLines={1}
@@ -217,12 +216,12 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
           />
         ) : null}
       </View>
-      {/* <Text
+      <Text
         className="text-theme-neutrals-400 text-[10px] text-center"
         numberOfLines={1}
       >
         @{username}
-      </Text> */}
+      </Text>
       <Text className="text-theme-neutrals-500 text-[10px] mt-0.5">
         {formatCompactNumber(followers)} followers
       </Text>

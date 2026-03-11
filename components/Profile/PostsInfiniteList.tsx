@@ -13,18 +13,11 @@ import {
   View,
   Text,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import HomeFeedCard from "../Home/HomeFeedCard";
-import VideoCard from "../Home/VideoCard";
-import LiveStreamCard from "../Home/LiveStreamCard";
-import VideoCardSkeleton from "../Home/VideoCardSkeleton";
+import FeedCard from "../Home/FeedCard";
+import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
 import { getMyPosts, getLikedPosts, getSavedPosts } from "../../services/user.service";
 import { GetNFTsResponse, GetNFTsResult } from "../../services/nft.service";
-
-// Helper to determine if item is a video
-const isVideoItem = (item: any): boolean => {
-  return !item.postType || item.postType === "video";
-};
+import Icon from "../ui/Icon";
 
 type PostVariant = "myPosts" | "liked" | "saved";
 
@@ -112,27 +105,8 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<PostItem>) => {
-      // Render LiveStreamCard for livestream content
-      if ((item as any).postType === "live") {
-        return (
-          <LiveStreamCard
-            item={item as any}
-            onCategorySelect={() => {}}
-          />
-        );
-      }
-      // Render VideoCard for video content, HomeFeedCard for feed posts
-      if (isVideoItem(item)) {
-        return (
-          <VideoCard
-            nft={item as any}
-            enablePreview
-            onCategorySelect={() => {}}
-          />
-        );
-      }
       return (
-        <HomeFeedCard
+        <FeedCard
           item={item as any}
           onCategorySelect={() => {}}
         />
@@ -166,14 +140,14 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
     if (loading) {
       return (
         <View>
-          <VideoCardSkeleton count={4} />
+          <FeedCardSkeleton count={4} />
         </View>
       );
     }
     return (
       <View className="py-16 items-center px-6">
-        <Ionicons
-          name={variant === "saved" ? "bookmark-outline" : variant === "liked" ? "heart-outline" : "grid-outline"}
+        <Icon
+          name={variant === "saved" ? "Bookmark" : variant === "liked" ? "Heart" : "LayoutGrid"}
           size={48}
           color="#6b7280"
         />

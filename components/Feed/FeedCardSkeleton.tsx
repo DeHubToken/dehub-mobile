@@ -2,75 +2,78 @@ import React from 'react';
 import { View, Dimensions } from 'react-native';
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
-const IMAGE_WIDTH = SCREEN_WIDTH - 32;
+const CONTENT_WIDTH = SCREEN_WIDTH - 32 - 24;
 
 interface FeedCardSkeletonProps { count?: number }
 
-/**
- * FeedCardSkeleton - matches HomeFeedCard layout for feed view
- */
 const FeedCardSkeleton: React.FC<FeedCardSkeletonProps> = ({ count = 3 }) => {
   return (
     <View className="px-4">
       {Array.from({ length: count }).map((_, idx) => (
-        <View key={idx} className="my-4">
-          {/* Header - matches FeedCardHeader */}
-          <View className="flex-row items-center">
-            {/* Avatar */}
-            <View className="w-10 h-10 rounded-full bg-theme-neutrals-800" />
-            <View className="ml-3 flex-1">
-              {/* Display name */}
-              <View className="w-28 h-4 bg-theme-neutrals-800 rounded" />
-              {/* Username */}
-              <View className="w-20 h-3 bg-theme-neutrals-800 rounded mt-1.5" />
+        <View
+          key={idx}
+          className="my-1 p-3 rounded-2xl"
+          style={{ borderWidth: 1, borderColor: "#1D1F21" }}
+        >
+          {/* Header */}
+          <View className="flex-row items-center pb-2">
+            <View className="w-8 h-8 rounded-lg bg-[#1D1F21]" />
+            <View className="ml-2 flex-1">
+              <View className="w-24 h-3.5 bg-[#1D1F21] rounded" />
+              <View className="w-16 h-2.5 bg-[#1D1F21] rounded mt-1" />
             </View>
-            {/* Badge */}
-            <View className="w-6 h-6 rounded-full bg-theme-neutrals-800" />
+            <View className="flex-row gap-1">
+              <View className="w-4 h-4 bg-[#1D1F21] rounded" />
+              <View className="w-4 h-4 bg-[#1D1F21] rounded" />
+            </View>
           </View>
-          
-          {/* Image - square aspect ratio like carousel */}
-          <View 
-            className="mt-2 bg-theme-neutrals-800 rounded-xl"
-            style={{ width: IMAGE_WIDTH, height: IMAGE_WIDTH }}
+
+          {/* Content area */}
+          <View
+            className="mt-1 bg-[#1D1F21] rounded-xl"
+            style={{ width: CONTENT_WIDTH, height: CONTENT_WIDTH * 0.75 }}
           />
-          
+
           {/* Caption */}
-          <View className="mt-3">
-            <View className="w-4/5 h-4 bg-theme-neutrals-800 rounded" />
-            <View className="w-3/5 h-3.5 bg-theme-neutrals-800 rounded mt-2" />
+          <View className="mt-2.5">
+            <View className="w-3/4 h-3.5 bg-[#1D1F21] rounded" />
+            <View className="w-1/2 h-3 bg-[#1D1F21] rounded mt-1.5" />
           </View>
-          
-          {/* Time and views */}
-          <View className="flex-row items-center gap-2 mt-2">
-            <View className="w-6 h-3 bg-theme-neutrals-800 rounded" />
-            <View className="w-1 h-1 rounded-full bg-theme-neutrals-800" />
-            <View className="w-10 h-3 bg-theme-neutrals-800 rounded" />
+
+          {/* Timestamp + views */}
+          <View className="flex-row items-center gap-2 mt-1.5">
+            <View className="w-5 h-2.5 bg-[#1D1F21] rounded" />
+            <View className="w-1 h-1 rounded-full bg-[#1D1F21]" />
+            <View className="w-8 h-2.5 bg-[#1D1F21] rounded" />
           </View>
 
           {/* Action bar */}
-          <View className="flex-row items-center justify-between mt-3">
+          <View className="flex-row items-center justify-between pt-2">
             <View className="flex-row items-center gap-4">
-              {/* Like */}
               <View className="flex-row items-center gap-1">
-                <View className="w-5 h-5 bg-theme-neutrals-800 rounded" />
-                <View className="w-6 h-3 bg-theme-neutrals-800 rounded" />
+                <View className="w-[18px] h-[18px] bg-[#1D1F21] rounded" />
+                <View className="w-5 h-2.5 bg-[#1D1F21] rounded" />
               </View>
-              {/* Dislike */}
               <View className="flex-row items-center gap-1">
-                <View className="w-5 h-5 bg-theme-neutrals-800 rounded" />
-                <View className="w-6 h-3 bg-theme-neutrals-800 rounded" />
+                <View className="w-[18px] h-[18px] bg-[#1D1F21] rounded" />
+                <View className="w-5 h-2.5 bg-[#1D1F21] rounded" />
               </View>
-              {/* Comment */}
               <View className="flex-row items-center gap-1">
-                <View className="w-5 h-5 bg-theme-neutrals-800 rounded" />
-                <View className="w-6 h-3 bg-theme-neutrals-800 rounded" />
+                <View className="w-[18px] h-[18px] bg-[#1D1F21] rounded" />
+                <View className="w-5 h-2.5 bg-[#1D1F21] rounded" />
               </View>
-              {/* Share */}
-              <View className="w-5 h-5 bg-theme-neutrals-800 rounded" />
+              <View className="flex-row items-center gap-1">
+                <View className="w-[18px] h-[18px] bg-[#1D1F21] rounded" />
+                <View className="w-5 h-2.5 bg-[#1D1F21] rounded" />
+              </View>
+              <View className="flex-row items-center gap-1">
+                <View className="w-[18px] h-[18px] bg-[#1D1F21] rounded" />
+                <View className="w-5 h-2.5 bg-[#1D1F21] rounded" />
+              </View>
             </View>
             <View className="flex-row items-center gap-4">
-              <View className="w-5 h-5 bg-theme-neutrals-800 rounded" />
-              <View className="w-5 h-5 bg-theme-neutrals-800 rounded" />
+              <View className="w-[18px] h-[18px] bg-[#1D1F21] rounded" />
+              <View className="w-[18px] h-[18px] bg-[#1D1F21] rounded" />
             </View>
           </View>
         </View>

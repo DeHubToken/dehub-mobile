@@ -16,14 +16,13 @@ import {
   type NativeSyntheticEvent,
   type NativeScrollEvent,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import FeedCard from "../Home/FeedCard";
+import Icon from "../ui/Icon";
 import { theme } from "../../theme";
 import {
   getUserReposts,
   type GetUserRepostsResponse,
 } from "../../services/repost.service";
-import VideoCard from "../Home/VideoCard";
-import HomeFeedCard from "../Home/HomeFeedCard";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 
 
@@ -42,10 +41,6 @@ export interface UserRepostsListRef {
 }
 
 const PAGE_SIZE = 20;
-
-const isVideoItem = (item: any): boolean => {
-  return !item.postType || item.postType === "video";
-};
 
 
 const UserRepostsListInner: React.ForwardRefRenderFunction<
@@ -142,27 +137,17 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
     ({ item }: ListRenderItemInfo<any>) => {
       const repostHeader = item.isRepost ? (
         <View className="flex-row items-center gap-1.5 mb-1">
-          <Ionicons name="repeat-outline" size={14} color="#9CA3AF" />
+          <Icon name="Repeat2" size={14} color="#9CA3AF" />
           <Text className="text-xs text-theme-neutrals-400">
             Reposted
           </Text>
         </View>
       ) : null;
 
-      const card = isVideoItem(item) ? (
-        <VideoCard
-          nft={item}
-          enablePreview={false}
-          onBeforeNavigate={onClose}
-        />
-      ) : (
-        <HomeFeedCard item={item as UnifiedFeedItem} />
-      );
-
       return (
         <View style={{ paddingHorizontal: contentPadding }}>
           {repostHeader}
-          {card}
+          <FeedCard item={item as UnifiedFeedItem} onBeforeNavigate={onClose} />
         </View>
       );
     },
@@ -212,7 +197,7 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
         {!!headerComponent && <View>{headerComponent}</View>}
         <View className="flex-1 items-center justify-center px-8 py-16">
           <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
-            <Ionicons name="repeat-outline" size={40} color="#666" />
+            <Icon name="Repeat2" size={40} color="#666" />
           </View>
           <Text className="text-white text-lg font-bold text-center mb-2">
             No Reposts Yet

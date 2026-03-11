@@ -1,7 +1,8 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import Icon from "../ui/Icon";
+import type { IconName } from "../ui/Icon";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useAuth } from "../../context/AuthContext";
 import { ChainId } from "../../config/constants";
@@ -9,7 +10,7 @@ import { toastInfo } from "../../libs";
 
 type AppItem = {
   label: string;
-  icon: keyof typeof Ionicons.glyphMap | string;
+  icon: IconName;
   active: boolean;
 };
 
@@ -20,22 +21,22 @@ const ProfileApps: React.FC = () => {
   const apps: AppItem[] = [
     {
       label: "Fiat Gateway",
-      icon: "card-outline",
+      icon: "CreditCard",
       active: true,
     },
     {
       label: "Play to Earn",
-      icon: "game-controller-outline",
+      icon: "Gamepad2",
       active: false,
     },
     {
       label: "Global Chat",
-      icon: "chatbubble-ellipses-outline",
-      active: false,
+      icon: "MessagesSquare",
+      active: true,
     },
     {
       label: "More Coming Soon",
-      icon: "apps-outline",
+      icon: "LayoutGrid",
       active: false,
     },
   ];
@@ -44,7 +45,11 @@ const ProfileApps: React.FC = () => {
     (item: AppItem) => {
       if (!item.active) return;
 
-      // Global guard: all top app buttons require Base network
+      if (item.label === "Global Chat") {
+        navigation.navigate(ScreenNames.LiveChat);
+        return;
+      }
+
       if (chainId !== ChainId.BASE_MAINNET) {
         toastInfo("Dpay is only available on Base.");
         return;
@@ -80,8 +85,8 @@ const ProfileApps: React.FC = () => {
                 app.active ? "bg-gray-700" : "bg-gray-800"
               }`}
             >
-              <Ionicons
-                name={app.icon as any}
+              <Icon
+                name={app.icon}
                 size={26}
                 color={app.active ? "#fff" : "#888"}
               />

@@ -19,9 +19,7 @@ import {
   type LayoutChangeEvent,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import HomeFeedCard from "../Home/HomeFeedCard";
-import VideoCard from "../Home/VideoCard";
-import LiveStreamCard from "../Home/LiveStreamCard";
+import FeedCard from "../Home/FeedCard";
 import InfiniteFeed from "../Feed/InfiniteFeed";
 import type { GetNFTsResult } from "../../services/nft.service";
 import type { GetNFTsResponse } from "../../services/feed.service";
@@ -59,11 +57,6 @@ interface UserProfileBottomContentTabsProps {
   youBlocked?: boolean;
   blockedYou?: boolean;
 }
-
-// Helper to determine if item is a video
-const isVideoItem = (item: GetNFTsResult): boolean => {
-  return !(item as any).postType || (item as any).postType === "video";
-};
 
 const STICKY_BAR_HEIGHT = 44;
 
@@ -162,28 +155,6 @@ const UserProfileBottomContentTabs: React.FC<
     };
   }, [registerScrollToTop, scrollToTop]);
 
-  const handlePostPress = useCallback(
-    (post: GetNFTsResult) => {
-      const tokenId = (post as any).tokenId ?? (post as any).id;
-      hideUserProfile();
-      onClose();
-      if ((post as any).postType === "live") {
-        const stream = (post as any).stream;
-        const streamId = stream?._id || stream?.id || (post as any)._id;
-        navigation.navigate(ScreenNames.LiveViewer as any, {
-          streamId,
-          tokenId,
-          nft: post,
-        });
-      } else if (isVideoItem(post)) {
-        navigation.navigate(ScreenNames.VideoPlayer, { tokenId });
-      } else {
-        navigation.navigate(ScreenNames.FeedDetail as any, { tokenId });
-      }
-    },
-    [navigation, hideUserProfile, onClose],
-  );
-
   // Navigate to a post and highlight a specific comment (from Replies tab)
   const handleReplyItemPress = useCallback(
     (item: UserReplyItem) => {
@@ -192,40 +163,20 @@ const UserProfileBottomContentTabs: React.FC<
       const commentId = String(item.id);
       hideUserProfile();
       onClose();
-      const pt = item.post?.postType;
-      if (pt === "feed-images" || pt === "feed-simple") {
-        navigation.navigate(ScreenNames.FeedDetail as never, { tokenId, commentId } as never);
-      } else {
-        navigation.navigate(ScreenNames.VideoPlayer as never, { tokenId, commentId } as never);
-      }
+      navigation.navigate(ScreenNames.FeedDetail as never, { tokenId, commentId } as never);
     },
     [navigation, hideUserProfile, onClose],
   );
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<GetNFTsResult>) => {
-      let card: React.ReactElement;
-      if ((item as any).postType === "live") {
-        card = <LiveStreamCard item={item as unknown as UnifiedFeedItem} />;
-      } else if (isVideoItem(item)) {
-        card = (
-          <VideoCard
-            nft={item}
-            enablePreview={false}
-            onBeforeNavigate={onClose}
-          />
-        );
-      } else {
-        card = (
-          <HomeFeedCard
-            item={item as UnifiedFeedItem}
-            onPress={() => handlePostPress(item)}
-          />
-        );
-      }
-      return <View style={{ paddingHorizontal: CONTENT_PX }}>{card}</View>;
+      return (
+        <View style={{ paddingHorizontal: CONTENT_PX }}>
+          <FeedCard item={item as unknown as UnifiedFeedItem} onBeforeNavigate={onClose} />
+        </View>
+      );
     },
-    [onClose, handlePostPress],
+    [onClose],
   );
 
   // Measure profile header height to know when to show sticky bar

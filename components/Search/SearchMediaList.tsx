@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { FlatList, View, Text } from "react-native";
-import VideoCard from "../Home/VideoCard";
-import CompactVideoCardSkeleton from "../Home/CompactVideoCardSkeleton";
+import FeedCard from "../Home/FeedCard";
+import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
 
 export interface MediaItem {
   tokenId?: string | number;
@@ -75,11 +75,7 @@ const SearchMediaList: FC<SearchMediaListProps> = ({
       ListFooterComponent={
         <View className="mt-2 pb-4">
           {loadingMore && (
-            <View>
-              {Array.from({ length: 3 }).map((_, i) => (
-                <CompactVideoCardSkeleton key={`vid-sk-${i}`} />
-              ))}
-            </View>
+            <FeedCardSkeleton count={3} />
           )}
           {!loadingMore && !hasMore && data.length > 0 && (
             <View className="mt-2">
@@ -92,7 +88,7 @@ const SearchMediaList: FC<SearchMediaListProps> = ({
       }
       renderItem={({ item }) => (
         <View style={{paddingHorizontal: 16}}>
-          <VideoCard nft={item as any} enablePreview />
+          <FeedCard item={item as any} />
         </View>
       )}
     />
