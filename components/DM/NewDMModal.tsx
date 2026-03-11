@@ -144,7 +144,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
         address: other?.address,
         avatarImageUrl: other?.avatarImageUrl,
       } as any);
-      if (out.length >= 8) break;
+      if (out.length >= 5) break;
     }
     return out;
   }, [open, query, conversations]);

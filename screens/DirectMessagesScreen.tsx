@@ -7,19 +7,18 @@ import {
   View,
   KeyboardAvoidingView,
   Platform,
+  TextInput,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import Animated, { FadeIn } from "react-native-reanimated";
-import ScreenHeader from "../components/ScreenHeader";
+import { Image } from "expo-image";
+import Icon from "../components/ui/Icon";
+import GlassIndicator, { GLASS_SHADOW } from "../components/ui/GlassIndicator";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import NewDMModal from "../components/DM/NewDMModal";
-import DMSearchBox from "../components/DM/DMSearchBox";
 import DMSettingsModal from "../components/DM/DMSettingsModal";
 import DMSettingsMenu from "../components/DM/DMSettingsMenu";
 import ConversationItem from "../components/DM/ConversationItem";
 import ConversationContextMenu from "../components/DM/ConversationContextMenu";
-import AccentButtonGradient from "../components/ui/AccentButtonGradient";
 import { useAuth, type User } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { truncateAddress } from "../libs/strings.util";
@@ -246,29 +245,9 @@ const DirectMessagesScreen: React.FC = () => {
     navigation.navigate(ScreenNames.LiveChat as any);
   }, [navigation]);
 
-  const RightHeader = useMemo(
-    () => (
-      <View className="flex-row items-center">
-        <TouchableOpacity
-          className="w-10 h-10 items-center justify-center active:opacity-70"
-          onPress={handleOpenLiveChat}
-          accessibilityRole="button"
-          accessibilityLabel="Open global chat"
-        >
-          <Ionicons name="chatbubbles-outline" size={21} color="#F9FBFF" />
-        </TouchableOpacity>
-        <TouchableOpacity
-          className="w-10 h-10 items-center justify-center active:opacity-70"
-          onPress={openMenu}
-          accessibilityRole="button"
-          accessibilityLabel="Open settings menu"
-        >
-          <Ionicons name="settings-outline" size={22} color="#F9FBFF" />
-        </TouchableOpacity>
-      </View>
-    ),
-    [openMenu, handleOpenLiveChat],
-  );
+  const openSettings = useCallback(() => {
+    openMenu();
+  }, [openMenu]);
 
   const renderItem = useCallback(
     ({ item }: { item: DmConversation }) => (
@@ -289,42 +268,45 @@ const DirectMessagesScreen: React.FC = () => {
     [],
   );
 
-  const listEmpty = useMemo(() => {
-    if (!hasConversations) {
-      return (
-        <View className="items-center mt-16 px-6">
-          <Animated.View entering={FadeIn.duration(400)}>
-            <Ionicons
-              name="chatbubbles-outline"
-              size={48}
-              color="#8B8D90"
-              style={{ alignSelf: "center", marginBottom: 12 }}
-            />
-            <Text className="text-theme-neutrals-400 text-center mb-4">
-              No conversations yet
-            </Text>
-            <AccentButtonGradient>
-              <TouchableOpacity
-                onPress={openNewDM}
-                activeOpacity={0.8}
-                className="flex-row items-center px-5 py-2.5 rounded-full bg-transparent"
-              >
-                <Ionicons name="chatbubbles" size={18} color="white" />
-                <Text className="ml-2 text-white font-medium">
-                  Start a conversation
-                </Text>
-              </TouchableOpacity>
-            </AccentButtonGradient>
-          </Animated.View>
+  const publicChatItem = useMemo(
+    () => (
+      <>
+      <TouchableOpacity
+        onPress={handleOpenLiveChat}
+        activeOpacity={0.7}
+        className="flex-row items-center px-4 py-3 gap-3"
+      >
+        {/* Logo styled like Avatar size={52} rounded={false} */}
+        <View
+          style={{ width: 52, height: 52, borderRadius: Math.round(52 * 0.16) }}
+          className="bg-black items-center justify-center overflow-hidden"
+        >
+          <Image
+            source={require("../assets/web-icons/dehub-logo-compact.png")}
+            style={{ width: 30, height: 30 }}
+            contentFit="contain"
+          />
         </View>
-      );
-    }
-    return (
-      <View className="items-center mt-10">
-        <Text className="text-theme-neutrals-400">No conversations found</Text>
-      </View>
-    );
-  }, [hasConversations, openNewDM]);
+
+        {/* Name + preview (matches ConversationItem layout) */}
+        <View className="flex-1 justify-center">
+          <View className="flex-row items-center gap-1.5">
+            <Text className="text-theme-neutrals-100 text-[15px] font-semibold" numberOfLines={1}>
+              Public Chat
+            </Text>
+          </View>
+          <View className="flex-row items-center gap-1 mt-0.5">
+            <Text className="text-theme-neutrals-400 text-[13px] flex-1" numberOfLines={1}>
+              Join the community conversation
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+      <View className="h-[1px] bg-theme-neutrals-800/50 mx-4" />
+      </>
+    ),
+    [handleOpenLiveChat],
+  );
 
   const itemSeparator = useCallback(
     () => <View className="h-[1px] bg-theme-neutrals-800/50 mx-4" />,
@@ -339,30 +321,60 @@ const DirectMessagesScreen: React.FC = () => {
       style={{ flex: 1 }}
     >
       <View className="flex-1 bg-theme-neutrals-900">
-        <ScreenHeader
-          title="Messages"
-          subtitle={dnd ? "Do Not Disturb is ON" : undefined}
-          rightContent={RightHeader}
-          canGoBack={false}
-        />
+        {/* Header */}
+        <View className="flex-row items-center justify-between px-4 h-16">
+          <View className="flex-row items-center gap-3">
+            <Image
+              source={require("../assets/web-icons/messages-3d-icon.png")}
+              style={{ width: 36, height: 36 }}
+              contentFit="contain"
+            />
+            <Text className="text-white text-xl font-bold">Messages</Text>
+          </View>
+          <TouchableOpacity
+            onPress={openSettings}
+            className="w-10 h-10 items-center justify-center active:opacity-70"
+            accessibilityRole="button"
+            accessibilityLabel="Settings"
+          >
+            <Icon name="Settings" size={22} color="#A1A1AA" />
+          </TouchableOpacity>
+        </View>
 
-        {hasConversations && (
-          <View className="px-4 mt-3 mb-1">
-            <DMSearchBox
+        {/* Search bar with + button */}
+        <View className="px-4 mb-2">
+          <View className="flex-row items-center bg-[#1F2124] rounded-xl h-11">
+            <View className="pl-3 pr-2">
+              <Icon name="Search" size={16} color="#71717A" />
+            </View>
+            <TextInput
               value={query}
               onChangeText={setQuery}
-              onClear={() => setQuery("")}
-              placeholder="Search"
+              placeholder="Search conversations..."
+              placeholderTextColor="#71717A"
+              className="flex-1 text-white text-sm py-0"
+              returnKeyType="search"
             />
+            <TouchableOpacity
+              onPress={openNewDM}
+              className="w-7 h-7 rounded-xl items-center justify-center mr-1.5"
+              style={GLASS_SHADOW}
+              accessibilityRole="button"
+              accessibilityLabel="New DM"
+            >
+              <GlassIndicator borderRadius={10} />
+              <Icon name="Plus" size={16} color="#FFFFFF" />
+            </TouchableOpacity>
           </View>
-        )}
+        </View>
 
         <FlatList
           data={filtered}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
-          contentContainerStyle={{ paddingBottom: 24 }}
+          contentContainerStyle={{ paddingBottom: 80 }}
           className="flex-1"
+          ListHeaderComponent={publicChatItem}
           refreshControl={
             <RefreshControl
               refreshing={!!contactsLoading}
@@ -370,7 +382,13 @@ const DirectMessagesScreen: React.FC = () => {
               tintColor="#A6A9AC"
             />
           }
-          ListEmptyComponent={listEmpty}
+          ListEmptyComponent={
+            hasConversations ? (
+              <View className="items-center mt-10">
+                <Text className="text-theme-neutrals-400">No conversations found</Text>
+              </View>
+            ) : null
+          }
           ItemSeparatorComponent={itemSeparator}
         />
 

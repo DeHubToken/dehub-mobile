@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
 import { formatRelativeFromNow } from "../../libs/date.util";
 import type { DmConversation, DmMessage, DmUser } from "../../services/dm/dm.types";
 import { getOtherParticipant } from "../../services/dm/dm.types";
@@ -34,7 +34,9 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
   const unreadCount = useUnreadCount(conversation._id, myUserId);
 
   const displayName = other?.displayName || other?.username || "Unknown";
+  const username = other?.username;
   const avatarUrl = getAvatarUrl(other?.avatarImageUrl);
+  const badgeImg = getBadgeUrl(resolveBadgeBalance(other as any), "dark");
 
   // Last message preview
   const { previewText, previewIcon } = useMemo(() => {
@@ -149,6 +151,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
                 : undefined
             }
             size={52}
+            rounded={false}
             name={displayName}
           />
         </TouchableOpacity>
@@ -164,10 +167,18 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
             >
               {displayName}
             </Text>
+            {badgeImg && (
+              <Image source={badgeImg} style={{ width: 14, height: 14 }} resizeMode="contain" />
+            )}
+            {username && (
+              <Text className="text-zinc-500 text-[12px]" numberOfLines={1}>
+                @{username}
+              </Text>
+            )}
           </View>
           <View className="flex-row items-center gap-1 mt-0.5">
             {previewIcon && (
-              <Ionicons name={previewIcon} size={13} color={unreadCount > 0 ? "#FFFFFF" : "#A6A9AC"} />
+              <Icon name={previewIcon === "mic" ? "Mic" : previewIcon === "diamond" ? "Diamond" : previewIcon === "gift" ? "Gift" : previewIcon === "videocam" ? "Video" : previewIcon === "image" ? "Image" : previewIcon === "arrow-redo" ? "Forward" : "MessageSquare"} size={13} color={unreadCount > 0 ? "#FFFFFF" : "#A6A9AC"} />
             )}
             <Text
               className={`text-[13px] flex-1 ${

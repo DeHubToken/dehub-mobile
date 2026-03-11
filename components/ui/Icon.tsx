@@ -1,5 +1,15 @@
-import React, { useCallback, useRef } from "react";
-import { View, Pressable, Text, StyleSheet } from "react-native";
+import React, { useCallback, useRef, useState } from "react";
+import {
+  View,
+  Pressable,
+  Text,
+  StyleSheet,
+  Platform,
+  Modal,
+  Dimensions,
+  findNodeHandle,
+} from "react-native";
+import { BlurView } from "expo-blur";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "expo-linear-gradient";
 import { icons } from "lucide-react-native";
@@ -8,6 +18,7 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
   withDelay,
+  runOnJS,
 } from "react-native-reanimated";
 import { colors } from "../../theme/colors";
 import GlassIndicator, { GLASS_SHADOW } from "./GlassIndicator";
@@ -47,7 +58,10 @@ const Icon: React.FC<IconProps> = ({
   onLongPress,
 }) => {
   const LucideIcon = icons[name];
-  const tooltipOpacity = useSharedValue(0);
+  const iconRef = useRef<View>(null);
+  const [tooltipVisible, setTooltipVisible] = useState(false);
+  const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number; w: number } | null>(null);
+  const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   if (!LucideIcon) {
     if (__DEV__) console.warn(`[Icon] "${name}" not found in lucide-react-native`);
@@ -74,62 +88,113 @@ const Icon: React.FC<IconProps> = ({
 
   const isInteractive = !!(tooltip || onPress || onLongPress);
 
+  const showTooltip = useCallback(() => {
+    if (!tooltip || !iconRef.current) return;
+    iconRef.current.measureInWindow((x, y, w, _h) => {
+      setTooltipPos({ x, y, w });
+      setTooltipVisible(true);
+      if (hideTimer.current) clearTimeout(hideTimer.current);
+      hideTimer.current = setTimeout(() => {
+        setTooltipVisible(false);
+        setTooltipPos(null);
+      }, TOOLTIP_SHOW_DURATION);
+    });
+  }, [tooltip]);
+
   const handleLongPress = useCallback(() => {
     if (onLongPress) {
       onLongPress();
       return;
     }
-    if (tooltip) {
-      tooltipOpacity.value = withTiming(1, { duration: 150 });
-      tooltipOpacity.value = withDelay(
-        TOOLTIP_SHOW_DURATION,
-        withTiming(0, { duration: 200 }),
-      );
-    }
-  }, [onLongPress, tooltip, tooltipOpacity]);
+    showTooltip();
+  }, [onLongPress, showTooltip]);
 
-  const tooltipAnimatedStyle = useAnimatedStyle(() => ({
-    opacity: tooltipOpacity.value,
-  }));
-
-  const tooltipElement = tooltip ? (
-    <Animated.View
-      style={[styles.tooltipContainer, tooltipAnimatedStyle]}
-      pointerEvents="none"
+  const tooltipModal = tooltipVisible && tooltipPos ? (
+    <Modal
+      visible
+      transparent
+      animationType="fade"
+      statusBarTranslucent
+      onRequestClose={() => {
+        setTooltipVisible(false);
+        setTooltipPos(null);
+      }}
     >
-      <View style={styles.tooltipBubble}>
-        <Text style={styles.tooltipText}>{tooltip}</Text>
-      </View>
-      <View style={styles.tooltipArrow} />
-    </Animated.View>
+      <Pressable
+        style={StyleSheet.absoluteFill}
+        onPress={() => {
+          setTooltipVisible(false);
+          setTooltipPos(null);
+        }}
+      >
+        <View
+          onLayout={(e) => {
+            const bubbleW = e.nativeEvent.layout.width;
+            const screenW = Dimensions.get("window").width;
+            const idealLeft = tooltipPos.x + tooltipPos.w / 2 - bubbleW / 2;
+            const clampedLeft = Math.max(8, Math.min(idealLeft, screenW - bubbleW - 8));
+            if (Math.abs(clampedLeft - idealLeft) > 1) {
+              e.currentTarget?.setNativeProps?.({ style: { left: clampedLeft } });
+            }
+          }}
+          style={{
+            position: "absolute",
+            top: tooltipPos.y - 40,
+            left: Math.max(8, tooltipPos.x + tooltipPos.w / 2 - 50),
+            alignItems: "center",
+            zIndex: 9999,
+          }}
+          pointerEvents="none"
+        >
+          <View style={styles.tooltipBubble}>
+            <BlurView
+              intensity={Platform.OS === "ios" ? 60 : 40}
+              tint="dark"
+              style={StyleSheet.absoluteFill}
+              {...(Platform.OS === "android"
+                ? { experimentalBlurMethod: "dimezisBlurView" }
+                : {})}
+            />
+            <View style={styles.tooltipGlassOverlay}>
+              <Text style={styles.tooltipText}>{tooltip}</Text>
+            </View>
+          </View>
+          <View style={styles.tooltipArrow} />
+        </View>
+      </Pressable>
+    </Modal>
   ) : null;
 
   if (glass) {
     const containerSize = size + glassPadding * 2;
     if (isInteractive) {
       return (
-        <Pressable
-          onPress={onPress}
-          onLongPress={(tooltip || onLongPress) ? handleLongPress : undefined}
-          delayLongPress={LONG_PRESS_DELAY}
-          style={[
-            styles.glassContainer,
-            {
-              width: containerSize,
-              height: containerSize,
-              borderRadius: glassBorderRadius,
-            },
-            GLASS_SHADOW,
-          ]}
-        >
-          <GlassIndicator borderRadius={glassBorderRadius} />
-          {iconElement}
-          {tooltipElement}
-        </Pressable>
+        <>
+          <Pressable
+            ref={iconRef}
+            onPress={onPress}
+            onLongPress={(tooltip || onLongPress) ? handleLongPress : undefined}
+            delayLongPress={LONG_PRESS_DELAY}
+            style={[
+              styles.glassContainer,
+              {
+                width: containerSize,
+                height: containerSize,
+                borderRadius: glassBorderRadius,
+              },
+              GLASS_SHADOW,
+            ]}
+          >
+            <GlassIndicator borderRadius={glassBorderRadius} />
+            {iconElement}
+          </Pressable>
+          {tooltipModal}
+        </>
       );
     }
     return (
       <View
+        ref={iconRef}
         style={[
           styles.glassContainer,
           {
@@ -142,21 +207,23 @@ const Icon: React.FC<IconProps> = ({
       >
         <GlassIndicator borderRadius={glassBorderRadius} />
         {iconElement}
-        {tooltipElement}
       </View>
     );
   }
 
   if (isInteractive) {
     return (
-      <Pressable
-        onPress={onPress}
-        onLongPress={(tooltip || onLongPress) ? handleLongPress : undefined}
-        delayLongPress={LONG_PRESS_DELAY}
-      >
-        {iconElement}
-        {tooltipElement}
-      </Pressable>
+      <>
+        <Pressable
+          ref={iconRef}
+          onPress={onPress}
+          onLongPress={(tooltip || onLongPress) ? handleLongPress : undefined}
+          delayLongPress={LONG_PRESS_DELAY}
+        >
+          {iconElement}
+        </Pressable>
+        {tooltipModal}
+      </>
     );
   }
 
@@ -167,30 +234,23 @@ const styles = StyleSheet.create({
   glassContainer: {
     alignItems: "center",
     justifyContent: "center",
-    position: "relative",
-    overflow: "visible",
-  },
-  tooltipContainer: {
-    position: "absolute",
-    bottom: "110%",
-    left: "50%",
-    transform: [{ translateX: "-50%" }],
-    alignItems: "center",
-    zIndex: 9999,
   },
   tooltipBubble: {
-    backgroundColor: "#1F2937",
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 6,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "rgba(255,255,255,0.12)",
+    borderRadius: 10,
+    overflow: "hidden",
+    borderWidth: 0.5,
+    borderColor: "rgba(255,255,255,0.15)",
+  },
+  tooltipGlassOverlay: {
+    backgroundColor: "rgba(30, 30, 30, 0.45)",
   },
   tooltipText: {
     color: "#F3F4F6",
     fontSize: 11,
-    fontWeight: "500",
+    fontWeight: "600",
     textAlign: "center",
+    paddingHorizontal: 12,
+    paddingVertical: 6,
   },
   tooltipArrow: {
     width: 0,
@@ -200,7 +260,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 5,
     borderLeftColor: "transparent",
     borderRightColor: "transparent",
-    borderTopColor: "#1F2937",
+    borderTopColor: "rgba(50, 50, 55, 0.7)",
   },
 });
 
