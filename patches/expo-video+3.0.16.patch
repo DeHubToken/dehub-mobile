@@ -1,0 +1,17 @@
+diff --git a/node_modules/expo-video/android/src/main/java/expo/modules/video/VideoView.kt b/node_modules/expo-video/android/src/main/java/expo/modules/video/VideoView.kt
+index 1234567..abcdefg 100644
+--- a/node_modules/expo-video/android/src/main/java/expo/modules/video/VideoView.kt
++++ b/node_modules/expo-video/android/src/main/java/expo/modules/video/VideoView.kt
+@@ -276,7 +276,11 @@ class VideoView(
+     playerView.useController = useNativeControls
+     rootView.removeView(playerView)
+     for (i in 0 until rootView.childCount) {
+-      rootView.getChildAt(i).visibility = rootViewChildrenOriginalVisibility[i]
++      if (i < rootViewChildrenOriginalVisibility.size) {
++        rootView.getChildAt(i).visibility = rootViewChildrenOriginalVisibility[i]
++      } else {
++        rootView.getChildAt(i).visibility = View.VISIBLE
++      }
+     }
+     rootViewChildrenOriginalVisibility.clear()
+     this.addView(playerView)

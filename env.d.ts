@@ -15,4 +15,5 @@ declare module '@env' {
     export const PIMLICO_API_KEY: string;
     export const STRIPE_PUBLISHABLE_KEY: string;
     export const LEGACY_APP_ORIGIN: string;
+    export const SUPABASE_EDGE_BASE_URL: string;
 }

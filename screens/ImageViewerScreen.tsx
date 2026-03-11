@@ -13,11 +13,16 @@ import {
   Platform,
   BackHandler,
   StyleSheet,
+  ActivityIndicator,
+  ToastAndroid,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
+import * as FileSystem from "expo-file-system/legacy";
+import * as MediaLibrary from "expo-media-library";
 import Icon from "../components/ui/Icon";
+import { toastError } from "../libs";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -223,6 +228,7 @@ const ImageViewerScreen = () => {
     index: paramIndex,
     initialIndex: paramInitialIndex,
     isModal,
+    allowDownload,
   } = (route?.params as any) || {};
 
   const startIndex = paramInitialIndex ?? paramIndex ?? 0;
@@ -242,6 +248,47 @@ const ImageViewerScreen = () => {
   const opacity = useSharedValue(1);
   const isDismissing = useRef(false);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleDownload = useCallback(async () => {
+    const uri = images[indexRef.current];
+    if (!uri || isSaving) return;
+
+    try {
+      setIsSaving(true);
+      const { status } = await MediaLibrary.requestPermissionsAsync();
+      if (status !== "granted") {
+        toastError("Allow photo library access to save images");
+        return;
+      }
+
+      const urlPath = uri.split("?")[0];
+      const ext = urlPath.match(/\.(png|jpe?g|gif|webp)/i)?.[1] || "jpg";
+      const localPath = `${FileSystem.cacheDirectory ?? FileSystem.documentDirectory}dehub_download_${Date.now()}.${ext}`;
+
+      if (uri.startsWith("data:")) {
+        const base64 = uri.split(",")[1];
+        if (!base64) throw new Error("Invalid data URI");
+        await FileSystem.writeAsStringAsync(localPath, base64, {
+          encoding: FileSystem.EncodingType.Base64,
+        });
+        await MediaLibrary.saveToLibraryAsync(localPath);
+      } else {
+        const { uri: fileUri } = await FileSystem.downloadAsync(uri, localPath);
+        await MediaLibrary.saveToLibraryAsync(fileUri);
+      }
+
+      const isVideo = /\.(mp4|mov|webm|avi)/i.test(urlPath);
+      if (Platform.OS === "android") {
+        ToastAndroid.show(isVideo ? "Video saved" : "Image downloaded", ToastAndroid.SHORT);
+      }
+    } catch (err) {
+      console.error("[ImageViewer] download failed:", err);
+      toastError("Failed to save image");
+    } finally {
+      setIsSaving(false);
+    }
+  }, [images, isSaving]);
 
   const closeViewer = useCallback(() => {
     if (navigation.canGoBack()) navigation.goBack();
@@ -394,8 +441,32 @@ const ImageViewerScreen = () => {
           </View>
         )}
 
-        {/* Close button — right */}
-        <View style={styles.topBarSide}>
+        {/* Action buttons — right */}
+        <View style={styles.topBarActions}>
+          {allowDownload && (
+            <TouchableOpacity
+              onPress={handleDownload}
+              activeOpacity={0.7}
+              style={styles.glassButton}
+              disabled={isSaving}
+              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+            >
+              <BlurView
+                intensity={Platform.OS === "ios" ? 60 : 40}
+                tint="dark"
+                style={StyleSheet.absoluteFill}
+                {...(Platform.OS === "android"
+                  ? { experimentalBlurMethod: "dimezisBlurView" }
+                  : {})}
+              />
+              <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
+              {isSaving ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                <Icon name="Download" size={20} color="#fff" />
+              )}
+            </TouchableOpacity>
+          )}
           <TouchableOpacity
             onPress={closeViewer}
             activeOpacity={0.7}
@@ -459,6 +530,11 @@ const styles = StyleSheet.create({
   topBarSide: {
     width: 44,
     alignItems: "flex-end",
+  },
+  topBarActions: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
   },
   counterPill: {
     paddingHorizontal: 14,
