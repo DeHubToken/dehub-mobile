@@ -1,80 +1,34 @@
-import React from 'react';
-import { View, Dimensions } from 'react-native';
+import React from "react";
+import { View } from "react-native";
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
-const CONTENT_WIDTH = SCREEN_WIDTH - 32 - 24;
-
-interface FeedCardSkeletonProps { count?: number }
+interface FeedCardSkeletonProps {
+  count?: number;
+}
 
 const FeedCardSkeleton: React.FC<FeedCardSkeletonProps> = ({ count = 3 }) => {
   return (
-    <View className="px-4">
+    <View>
       {Array.from({ length: count }).map((_, idx) => (
-        <View
-          key={idx}
-          className="my-1 p-3 rounded-2xl"
-          style={{ borderWidth: 1, borderColor: "#1D1F21" }}
-        >
-          {/* Header */}
-          <View className="flex-row items-center pb-2">
-            <View className="w-8 h-8 rounded-lg bg-[#1D1F21]" />
-            <View className="ml-2 flex-1">
-              <View className="w-24 h-3.5 bg-[#1D1F21] rounded" />
-              <View className="w-16 h-2.5 bg-[#1D1F21] rounded mt-1" />
-            </View>
-            <View className="flex-row gap-1">
-              <View className="w-4 h-4 bg-[#1D1F21] rounded" />
-              <View className="w-4 h-4 bg-[#1D1F21] rounded" />
+        <View key={idx} className="mb-3 p-3 rounded-2xl bg-theme-neutrals-900/40">
+          {/* Header: avatar + name */}
+          <View className="flex-row items-center mb-2">
+            <View className="w-9 h-9 rounded-lg bg-theme-neutrals-800" />
+            <View className="ml-2.5">
+              <View className="w-24 h-3.5 bg-theme-neutrals-800 rounded" />
             </View>
           </View>
 
           {/* Content area */}
-          <View
-            className="mt-1 bg-[#1D1F21] rounded-xl"
-            style={{ width: CONTENT_WIDTH, height: CONTENT_WIDTH * 0.75 }}
-          />
+          <View className="w-full rounded-xl bg-theme-neutrals-800" style={{ aspectRatio: 4 / 3 }} />
 
-          {/* Caption */}
-          <View className="mt-2.5">
-            <View className="w-3/4 h-3.5 bg-[#1D1F21] rounded" />
-            <View className="w-1/2 h-3 bg-[#1D1F21] rounded mt-1.5" />
-          </View>
+          {/* Caption line */}
+          <View className="w-3/5 h-3 bg-theme-neutrals-800 rounded mt-2.5" />
 
-          {/* Timestamp + views */}
-          <View className="flex-row items-center gap-2 mt-1.5">
-            <View className="w-5 h-2.5 bg-[#1D1F21] rounded" />
-            <View className="w-1 h-1 rounded-full bg-[#1D1F21]" />
-            <View className="w-8 h-2.5 bg-[#1D1F21] rounded" />
-          </View>
-
-          {/* Action bar */}
-          <View className="flex-row items-center justify-between pt-2">
-            <View className="flex-row items-center gap-4">
-              <View className="flex-row items-center gap-1">
-                <View className="w-[18px] h-[18px] bg-[#1D1F21] rounded" />
-                <View className="w-5 h-2.5 bg-[#1D1F21] rounded" />
-              </View>
-              <View className="flex-row items-center gap-1">
-                <View className="w-[18px] h-[18px] bg-[#1D1F21] rounded" />
-                <View className="w-5 h-2.5 bg-[#1D1F21] rounded" />
-              </View>
-              <View className="flex-row items-center gap-1">
-                <View className="w-[18px] h-[18px] bg-[#1D1F21] rounded" />
-                <View className="w-5 h-2.5 bg-[#1D1F21] rounded" />
-              </View>
-              <View className="flex-row items-center gap-1">
-                <View className="w-[18px] h-[18px] bg-[#1D1F21] rounded" />
-                <View className="w-5 h-2.5 bg-[#1D1F21] rounded" />
-              </View>
-              <View className="flex-row items-center gap-1">
-                <View className="w-[18px] h-[18px] bg-[#1D1F21] rounded" />
-                <View className="w-5 h-2.5 bg-[#1D1F21] rounded" />
-              </View>
-            </View>
-            <View className="flex-row items-center gap-4">
-              <View className="w-[18px] h-[18px] bg-[#1D1F21] rounded" />
-              <View className="w-[18px] h-[18px] bg-[#1D1F21] rounded" />
-            </View>
+          {/* Action bar – just 3 circles */}
+          <View className="flex-row items-center gap-5 mt-3">
+            <View className="w-5 h-5 rounded-full bg-theme-neutrals-800" />
+            <View className="w-5 h-5 rounded-full bg-theme-neutrals-800" />
+            <View className="w-5 h-5 rounded-full bg-theme-neutrals-800" />
           </View>
         </View>
       ))}

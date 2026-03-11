@@ -20,7 +20,7 @@ import {
 } from "react-native";
 import EmptyFeedState from "./EmptyFeedState";
 import FeedCard from "./FeedCard";
-import VideoCardSkeleton from "./VideoCardSkeleton";
+import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
 import Icon from "../ui/Icon";
 import { useAuth } from "../../context/AuthContext";
 import {
@@ -375,7 +375,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   if (initialLoading && items.length === 0) {
     return (
       <View className="flex-1 px-2 pt-2">
-        <VideoCardSkeleton count={4} />
+        <FeedCardSkeleton count={4} />
       </View>
     );
   }
