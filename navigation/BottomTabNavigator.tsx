@@ -7,7 +7,7 @@ import HomeScreen from "../screens/HomeScreen";
 import DirectMessagesScreen from "../screens/DirectMessagesScreen";
 import UploadScreen from "../screens/UploadScreen";
 import AIChatScreen from "../screens/AIChatScreen";
-import ExploreScreen from "../screens/ExploreScreen";
+import SearchScreen from "../screens/SearchScreen";
 import { ScreenNames } from "./ScreenNames";
 import type { BottomTabParamList, AppStackNavigationProp } from "./types";
 import { useNavigation } from "@react-navigation/native";
@@ -68,7 +68,7 @@ function BottomTabNavigator() {
           }}
         />
         <Tab.Screen name={ScreenNames.AIChat} component={AIChatScreen} />
-        <Tab.Screen name={ScreenNames.Explore} component={ExploreScreen} />
+        <Tab.Screen name={ScreenNames.Explore} component={SearchScreen} />
       </Tab.Navigator>
       <AppDrawer visible={drawerOpen} onClose={closeDrawer} />
     </View>

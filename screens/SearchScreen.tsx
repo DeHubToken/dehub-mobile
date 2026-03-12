@@ -12,8 +12,15 @@ import {
   ActivityIndicator,
   RefreshControl,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+  Easing,
+} from "react-native-reanimated";
+import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Icon from "../components/ui/Icon";
 import {
   search,
   fetchSuggestions,
@@ -26,33 +33,56 @@ import {
   SearchPagination,
   UnifiedSearchResponse,
 } from "../services/search.service";
+import {
+  getUnifiedFeed,
+  type UnifiedFeedItem,
+  type UnifiedFeedResponse,
+  type FeedPostType,
+} from "../services/feed.unified.service";
 import ScreenHeader from "../components/ScreenHeader";
 import FeedCard from "../components/Home/FeedCard";
 import SearchAccountCard from "../components/Search/SearchAccountCard";
 import SearchAccountChip from "../components/Search/SearchAccountChip";
-import AccentButtonGradient from "../components/ui/AccentButtonGradient";
 import FeedCardSkeleton from "../components/Feed/FeedCardSkeleton";
-import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import type { FollowState } from "../components/Search/SearchAccountChip";
 import { useAuth } from "../context/AuthContext";
 
-type TabKey = "all" | "accounts" | "videos" | "live" | "feeds";
+type TabKey = "all" | "accounts" | "posts" | "images" | "videos" | "voice" | "live";
 
 interface Tab {
   key: TabKey;
   label: string;
+  icon: React.ComponentProps<typeof Icon>["name"];
   postType?: SearchPostType;
+  searchType?: "accounts" | "content";
 }
 
 const TABS: Tab[] = [
-  { key: "all", label: "All" },
-  { key: "accounts", label: "Accounts" },
-  { key: "videos", label: "Videos", postType: "video" },
-  { key: "live", label: "Live", postType: "live" },
-  { key: "feeds", label: "Posts", postType: "feed-all" },
+  { key: "all", label: "All", icon: "Search" },
+  { key: "accounts", label: "Accounts", icon: "Users", searchType: "accounts" },
+  { key: "posts", label: "Posts", icon: "FileText", postType: "feed-simple" },
+  { key: "images", label: "Images", icon: "Image", postType: "feed-images" },
+  { key: "videos", label: "Videos", icon: "Play", postType: "video" },
+  { key: "voice", label: "Voice", icon: "Mic", postType: "feed-audio" },
+  { key: "live", label: "Live", icon: "Radio", postType: "live" },
 ];
 
+const PILL_H = 34;
 const PAGE_SIZE = 20;
+
+/** Tabs shown on the default explore screen (no accounts) */
+const EXPLORE_TABS = TABS.filter((t) => t.key !== "accounts");
+
+/** Label for the trending section per tab */
+const TRENDING_LABEL: Record<TabKey, string> = {
+  all: "Trending This Week",
+  accounts: "",
+  posts: "Trending Posts",
+  images: "Trending Images",
+  videos: "Trending Videos",
+  voice: "Trending Voice Posts",
+  live: "Trending Live",
+};
 
 /** Map a SearchContentResult → UnifiedFeedItem for card components */
 const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
@@ -115,6 +145,16 @@ const SearchScreen: React.FC = () => {
   // Suggestions & history
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
+  const [inputFocused, setInputFocused] = useState(false);
+
+  // Trending
+  const [trendingVideos, setTrendingVideos] = useState<UnifiedFeedItem[]>([]);
+  const [trendingLoading, setTrendingLoading] = useState(true);
+
+  // Glass pill indicator
+  const pillX = useSharedValue(0);
+  const pillW = useSharedValue(0);
+  const tabLayouts = useRef<Record<string, { x: number; width: number }>>({});
 
   // Refs
   const inputRef = useRef<TextInput>(null);
@@ -123,6 +163,34 @@ const SearchScreen: React.FC = () => {
   useEffect(() => {
     getHistory(userAddress).then(setSearchHistory);
   }, [userAddress]);
+
+  // Fetch trending content based on active tab
+  useEffect(() => {
+    if (hasSearched) return; // don't refetch while viewing search results
+    let cancelled = false;
+    setTrendingLoading(true);
+    const tabConfig = TABS.find((t) => t.key === activeTab);
+    const feedPostType: FeedPostType =
+      activeTab === "all" ? "all" : (tabConfig?.postType as FeedPostType) ?? "all";
+    (async () => {
+      try {
+        const res: UnifiedFeedResponse = await getUnifiedFeed({
+          postType: feedPostType,
+          sortBy: "views",
+          sortOrder: "desc",
+          range: "week",
+          limit: 10,
+          page: 1,
+        });
+        if (!cancelled) setTrendingVideos(res.result || []);
+      } catch {
+        // silently fail
+      } finally {
+        if (!cancelled) setTrendingLoading(false);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [activeTab, hasSearched]);
 
   useEffect(() => {
     let cancelled = false;
@@ -228,6 +296,8 @@ const SearchScreen: React.FC = () => {
   const handleSuggestionClick = useCallback(
     (term: string) => {
       setSearchQuery(term);
+      setInputFocused(false);
+      inputRef.current?.blur();
       executeSearch(term, activeTab, 1);
     },
     [activeTab, executeSearch],
@@ -237,12 +307,37 @@ const SearchScreen: React.FC = () => {
     (tab: TabKey) => {
       if (tab === activeTab) return;
       setActiveTab(tab);
+      // Animate glass pill
+      const layout = tabLayouts.current[tab];
+      if (layout) {
+        pillX.value = withTiming(layout.x, { duration: 220, easing: Easing.out(Easing.cubic) });
+        pillW.value = withTiming(layout.width, { duration: 220, easing: Easing.out(Easing.cubic) });
+      }
       if (hasSearched && searchQuery.trim()) {
         executeSearch(searchQuery, tab, 1);
       }
     },
     [activeTab, hasSearched, searchQuery, executeSearch],
   );
+
+  const handleTabLayout = useCallback(
+    (key: TabKey, x: number, width: number) => {
+      tabLayouts.current[key] = { x, width };
+      if (key === activeTab) {
+        pillX.value = x;
+        pillW.value = width;
+      }
+    },
+    [activeTab],
+  );
+
+  const pillStyle = useAnimatedStyle(() => ({
+    position: "absolute" as const,
+    left: pillX.value,
+    width: pillW.value,
+    height: PILL_H,
+    borderRadius: PILL_H / 2,
+  }));
 
   const handleLoadMore = useCallback(() => {
     if (loadingMore) return;
@@ -380,6 +475,20 @@ const SearchScreen: React.FC = () => {
     return null;
   }, [loadingMore, activeTab, accountsPagination, contentPagination, accounts.length, content.length]);
 
+  const renderTrendingItem = useCallback(
+    ({ item }: { item: UnifiedFeedItem }) => (
+      <View className="px-4">
+        <FeedCard item={item} />
+      </View>
+    ),
+    [],
+  );
+
+  const trendingKeyExtractor = useCallback(
+    (item: UnifiedFeedItem, index: number) => `trending-${item.tokenId ?? item.id}-${index}`,
+    [],
+  );
+
   const renderContent = () => {
     // Loading
     if (loading) {
@@ -396,7 +505,7 @@ const SearchScreen: React.FC = () => {
         if (accounts.length === 0) {
           return (
             <View className="flex-1 items-center justify-center px-6">
-              <Ionicons name="people-outline" size={48} color="#6B7280" />
+              <Icon name="Users" size={48} color="#6B7280" />
               <Text className="text-theme-neutrals-300 font-semibold text-base mt-4">
                 No accounts found
               </Text>
@@ -419,7 +528,7 @@ const SearchScreen: React.FC = () => {
               <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#fff" />
             }
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingHorizontal: 0, paddingTop: 8, paddingBottom: insets.bottom + 20 }}
+            contentContainerStyle={{ paddingHorizontal: 0, paddingTop: 8, paddingBottom: insets.bottom + 80 }}
           />
         );
       }
@@ -430,7 +539,7 @@ const SearchScreen: React.FC = () => {
       if (isEmpty) {
         return (
           <View className="flex-1 items-center justify-center px-6">
-            <Ionicons name="search-outline" size={48} color="#6B7280" />
+            <Icon name="Search" size={48} color="#6B7280" />
             <Text className="text-theme-neutrals-300 font-semibold text-base mt-4">
               No results found
             </Text>
@@ -463,13 +572,47 @@ const SearchScreen: React.FC = () => {
             <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#fff" />
           }
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal: 0, paddingTop: 8, paddingBottom: insets.bottom + 20 }}
+          contentContainerStyle={{ paddingHorizontal: 0, paddingTop: 8, paddingBottom: insets.bottom + 80 }}
         />
       );
     }
 
-    // ---- Pre-search: suggestions or history ----
-    const isTyping = !!searchQuery.trim();
+    // ---- Pre-search: typing overlay ----
+    const q = searchQuery.trim();
+    const isTyping = q.length > 0;
+    const SUGGEST_THRESHOLD = 2;
+
+    // Focused + short query → recent searches
+    if (inputFocused && q.length < SUGGEST_THRESHOLD && searchHistory.length > 0) {
+      return (
+        <View className="px-4 pt-3">
+          <Text className="text-theme-neutrals-400 text-xs font-semibold mb-2 px-1">
+            Recent Searches
+          </Text>
+          <View className="rounded-2xl overflow-hidden bg-theme-neutrals-800">
+            {topHistorySubset(searchHistory, 5).map((item, index) => (
+              <TouchableOpacity
+                key={`history-${index}`}
+                className="px-4 py-3 flex-row items-center"
+                onPress={() => handleSuggestionClick(item)}
+                activeOpacity={0.8}
+                style={{
+                  borderBottomWidth: index === topHistorySubset(searchHistory, 5).length - 1 ? 0 : StyleSheet.hairlineWidth,
+                  borderBottomColor: "#333",
+                }}
+              >
+                <Icon name="Clock" size={18} color="#9CA3AF" />
+                <Text className="text-theme-neutrals-100 flex-1 ml-3" numberOfLines={1}>
+                  {item}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+      );
+    }
+
+    // Focused + >=threshold → suggestions
     if (isTyping && suggestions.length > 0) {
       return (
         <View className="px-4 pt-3">
@@ -485,7 +628,7 @@ const SearchScreen: React.FC = () => {
                   borderBottomColor: "#333",
                 }}
               >
-                <Ionicons name="search-outline" size={18} color="#9CA3AF" />
+                <Icon name="Search" size={18} color="#9CA3AF" />
                 <Text className="text-theme-neutrals-100 flex-1 ml-3" numberOfLines={1}>
                   {item}
                 </Text>
@@ -493,12 +636,7 @@ const SearchScreen: React.FC = () => {
                   className="w-8 h-8 rounded-full bg-theme-neutrals-700 items-center justify-center"
                   onPress={() => handleReplaceSearchBox(item)}
                 >
-                  <Ionicons
-                    name="arrow-up"
-                    size={16}
-                    color="#E5E7EB"
-                    style={{ transform: [{ rotate: "-45deg" }] }}
-                  />
+                  <Icon name="ArrowUpLeft" size={16} color="#E5E7EB" />
                 </TouchableOpacity>
               </TouchableOpacity>
             ))}
@@ -507,50 +645,41 @@ const SearchScreen: React.FC = () => {
       );
     }
 
-    // Not typing → show history
-    const historySubset = topHistorySubset(searchHistory, 8);
-    if (historySubset.length === 0) {
-      return (
-        <View className="flex-1 items-center justify-center px-6">
-          <Ionicons name="search-outline" size={48} color="#6B7280" />
-          <Text className="text-theme-neutrals-400 text-sm text-center mt-4">
-            Search for creators, videos, or posts
-          </Text>
-        </View>
-      );
-    }
-
+    // Not typing / not focused → show trending
     return (
-      <View className="px-4 pt-3">
-        <Text className="text-theme-neutrals-400 text-xs font-semibold mb-2 px-1">
-          Recent Searches
-        </Text>
-        <View className="rounded-2xl overflow-hidden bg-theme-neutrals-800">
-          {historySubset.map((item, index) => (
-            <TouchableOpacity
-              key={`history-${index}`}
-              className="px-4 py-3 flex-row items-center"
-              onPress={() => handleSuggestionClick(item)}
-              activeOpacity={0.8}
-              style={{
-                borderBottomWidth: index === historySubset.length - 1 ? 0 : StyleSheet.hairlineWidth,
-                borderBottomColor: "#333",
-              }}
-            >
-              <Ionicons name="time-outline" size={18} color="#9CA3AF" />
-              <Text className="text-theme-neutrals-100 flex-1 ml-3" numberOfLines={1}>
-                {item}
+      <ScrollView className="flex-1" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 80 }}>
+        {trendingLoading ? (
+          <View className="px-2 pt-2">
+            <FeedCardSkeleton count={3} />
+          </View>
+        ) : trendingVideos.length > 0 ? (
+          <View>
+            <View className="px-4 pt-3 pb-2">
+              <Text className="text-white text-base font-bold">
+                {TRENDING_LABEL[activeTab] || "Trending This Week"}
               </Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-      </View>
+            </View>
+            {trendingVideos.map((item, index) => (
+              <View key={`trending-${item.tokenId ?? item.id}-${index}`} className="px-4">
+                <FeedCard item={item} />
+              </View>
+            ))}
+          </View>
+        ) : (
+          <View className="flex-1 items-center justify-center px-6 pt-20">
+            <Icon name="TrendingUp" size={48} color="#6B7280" />
+            <Text className="text-theme-neutrals-400 text-sm text-center mt-4">
+              No trending content this week
+            </Text>
+          </View>
+        )}
+      </ScrollView>
     );
   };
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title="Search" />
+      <ScreenHeader title="Explore" canGoBack={false} />
 
       <KeyboardAvoidingView
         style={{ flex: 1 }}
@@ -560,7 +689,7 @@ const SearchScreen: React.FC = () => {
         {/* Search Input */}
         <View className="px-4 pb-2">
           <View className="flex-row items-center bg-theme-neutrals-800 rounded-full px-3 py-2">
-            <Ionicons name="search" size={18} color="#9CA3AF" />
+            <Icon name="Search" size={18} color="#9CA3AF" />
             <TextInput
               ref={inputRef}
               className="flex-1 text-white px-2 py-1"
@@ -569,7 +698,8 @@ const SearchScreen: React.FC = () => {
               value={searchQuery}
               onChangeText={setSearchQuery}
               onSubmitEditing={handleSearch}
-              autoFocus
+              onFocus={() => setInputFocused(true)}
+              onBlur={() => setInputFocused(false)}
               returnKeyType="search"
               autoCapitalize="none"
               autoCorrect={false}
@@ -579,7 +709,7 @@ const SearchScreen: React.FC = () => {
                 onPress={clearSearch}
                 className="w-6 h-6 rounded-full bg-theme-neutrals-700 items-center justify-center mr-2"
               >
-                <Ionicons name="close" size={14} color="#E5E7EB" />
+                <Icon name="X" size={14} color="#E5E7EB" />
               </TouchableOpacity>
             )}
             <TouchableOpacity
@@ -590,41 +720,60 @@ const SearchScreen: React.FC = () => {
               {loading ? (
                 <ActivityIndicator size="small" color="#E5E7EB" />
               ) : (
-                <Ionicons name="arrow-forward" size={18} color="#E5E7EB" />
+                <Icon name="ArrowRight" size={18} color="#E5E7EB" />
               )}
             </TouchableOpacity>
           </View>
         </View>
 
-        {/* Tabs — only after a search */}
-        {hasSearched && (
-          <View className="flex-row px-4 py-2">
-            {TABS.map((tab) => {
+        {/* Filter Tabs — always visible */}
+        <View className="px-4 py-2">
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ position: "relative" }}
+          >
+            {/* Glass pill indicator */}
+            <Animated.View style={[styles.glassPill, pillStyle]}>
+              <BlurView
+                intensity={40}
+                tint="dark"
+                style={[StyleSheet.absoluteFill, { borderRadius: PILL_H / 2 }]}
+              />
+              <View style={[StyleSheet.absoluteFill, styles.glassPillOverlay]} />
+            </Animated.View>
+
+            {(hasSearched ? TABS : EXPLORE_TABS).map((tab) => {
               const isActive = activeTab === tab.key;
-
-              if (isActive) {
-                return (
-                  <AccentButtonGradient key={tab.key} style={{ marginRight: 8, borderRadius: 20 }}>
-                    <TouchableOpacity className="px-4 py-2" activeOpacity={0.85}>
-                      <Text className="text-white text-xs font-semibold">{tab.label}</Text>
-                    </TouchableOpacity>
-                  </AccentButtonGradient>
-                );
-              }
-
               return (
                 <TouchableOpacity
                   key={tab.key}
                   onPress={() => handleTabChange(tab.key)}
-                  className="px-4 py-2 rounded-full bg-theme-neutrals-800 mr-2"
-                  activeOpacity={0.85}
+                  onLayout={(e) => {
+                    const { x, width } = e.nativeEvent.layout;
+                    handleTabLayout(tab.key, x, width);
+                  }}
+                  style={styles.tabBtn}
+                  activeOpacity={0.8}
                 >
-                  <Text className="text-white/80 text-xs font-semibold">{tab.label}</Text>
+                  <Icon
+                    name={tab.icon}
+                    size={14}
+                    color={isActive ? "#F9FBFF" : "#6F7174"}
+                  />
+                  <Text
+                    style={[
+                      styles.tabLabel,
+                      isActive && styles.tabLabelActive,
+                    ]}
+                  >
+                    {tab.label}
+                  </Text>
                 </TouchableOpacity>
               );
             })}
-          </View>
-        )}
+          </ScrollView>
+        </View>
 
         {/* Content */}
         {renderContent()}
@@ -632,5 +781,33 @@ const SearchScreen: React.FC = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  glassPill: {
+    overflow: "hidden",
+  },
+  glassPillOverlay: {
+    backgroundColor: "rgba(255,255,255,0.1)",
+    borderRadius: PILL_H / 2,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.12)",
+  },
+  tabBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    height: PILL_H,
+    paddingHorizontal: 14,
+    gap: 5,
+  },
+  tabLabel: {
+    fontSize: 12,
+    fontWeight: "600",
+    color: "#6F7174",
+  },
+  tabLabelActive: {
+    color: "#F9FBFF",
+  },
+});
 
 export default SearchScreen;
