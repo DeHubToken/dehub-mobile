@@ -176,8 +176,10 @@ export const dmActions = {
       ) {
         merged.mediaUrls = prev.mediaUrls;
       }
-      // Preserve local isRead:true — server may not persist read status
-      if (prev?.isRead && !m.isRead) {
+      // Preserve local isRead:true only for received messages (author !== "me").
+      // For sent messages (author === "me"), the server is the source of truth
+      // on whether the peer has read them — never override server value.
+      if (prev?.isRead && !m.isRead && m.author !== "me") {
         merged.isRead = true;
       }
       map.set(m._id, merged);
@@ -295,10 +297,16 @@ export const dmActions = {
   applyReadReceipt(receipt: ReadReceiptResponse): void {
     const list = dmState.messagesByConversation[receipt.dmId];
     if (!list) return;
-    // Mark our sent messages as read
     let changed = false;
     const updated = list.map((m) => {
       if (m.author === "me" && !m.isRead) {
+        console.log("[TICK_DEBUG] applyReadReceipt: marking isRead=true", {
+          msgId: m._id,
+          content: m.content?.slice(0, 30),
+          author: m.author,
+          dmId: receipt.dmId,
+          readBy: receipt.readBy,
+        });
         changed = true;
         return { ...m, isRead: true };
       }

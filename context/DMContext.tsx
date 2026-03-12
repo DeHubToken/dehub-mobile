@@ -55,7 +55,7 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     () => ((user as any)?.walletAddress || (user as any)?.address || "").toLowerCase(),
     [user],
   );
-  const userId = (user as any)?.id as string | undefined;
+  const userId = ((user as any)?._id || (user as any)?.id) as string | undefined;
 
   const [contactsLoading, setContactsLoading] = useState(false);
   const [contactsError, setContactsError] = useState<string | null>(null);
@@ -168,11 +168,15 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     unsubs.push(
       ws.on(DMSocketEvent.readReceipt, (payload: ReadReceiptResponse) => {
         try {
-          // Ignore self-receipts: when WE emit markAsRead the server broadcasts
-          // readReceipt to ALL participants including us. readBy === our userId
-          // means *we* read *their* msgs, NOT that they read ours.
           const meId = userIdRef.current;
+          log.info("[TICK_DEBUG] DMContext readReceipt", {
+            dmId: payload.dmId,
+            readBy: payload.readBy,
+            meId,
+            isSelf: meId ? String(payload.readBy) === String(meId) : "no-meId",
+          });
           if (meId && String(payload.readBy) === String(meId)) return;
+          log.info("[TICK_DEBUG] DMContext applying applyReadReceipt (peer read our msgs)");
           dmActions.applyReadReceipt(payload);
         } catch (err) {
           log.error("readReceipt handler", err);

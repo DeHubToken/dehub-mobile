@@ -11,9 +11,10 @@ import {
 } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
-import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Avatar from "../common/Avatar";
+import Icon from "../ui/Icon";
+import GlassIndicator from "../ui/GlassIndicator";
 import PaymentBadge from "./PaymentBadge";
 import { getAvatarUrl, buildCdnPath } from "../../libs/misc";
 import { copyToClipboard } from "../../libs/clipboard.utils";
@@ -63,7 +64,7 @@ const resolveMediaUrl = (path: string): string => {
 
 
 interface ActionRowProps {
-  icon: keyof typeof Ionicons.glyphMap;
+  icon: import("../ui/Icon").IconName;
   label: string;
   onPress: () => void;
   destructive?: boolean;
@@ -81,7 +82,7 @@ const ActionRow: React.FC<ActionRowProps> = ({
     className="flex-row items-center px-4 py-3"
   >
     <View className="w-8 items-center">
-      <Ionicons
+      <Icon
         name={icon}
         size={20}
         color={destructive ? "#EF4444" : "#F9FBFF"}
@@ -160,7 +161,7 @@ const FloatingMessage: React.FC<{
   }
 
   const bubbleBg = isMine
-    ? "bg-blue-600/90 rounded-2xl rounded-br-sm"
+    ? "rounded-2xl rounded-br-sm"
     : "bg-theme-neutrals-800 rounded-2xl rounded-bl-sm";
 
   return (
@@ -189,11 +190,14 @@ const FloatingMessage: React.FC<{
       </View>
 
       {/* Message bubble */}
-      <View className={`${bubbleBg} overflow-hidden`}>
-        {/* Forwarded tag */}
+      <View
+        className={`${bubbleBg} overflow-hidden`}
+        style={isMine ? { backgroundColor: "rgba(20,20,20,0.65)" } : undefined}
+      >
+        {isMine && <GlassIndicator borderRadius={16} />}
         {message.isForwarded && (
           <View className="flex-row items-center gap-1 px-3 pt-1.5">
-            <Ionicons name="arrow-redo" size={10} color={isMine ? "rgba(255,255,255,0.5)" : "#A6A9AC"} />
+            <Icon name="Forward" size={10} color={isMine ? "rgba(255,255,255,0.5)" : "#A6A9AC"} />
             <Text className={`text-[10px] italic ${isMine ? "text-white/50" : "text-theme-neutrals-400"}`}>
               Forwarded
             </Text>
@@ -247,10 +251,10 @@ const FloatingMessage: React.FC<{
           <View className="flex-row items-center px-3 py-2.5 gap-2.5 min-w-[160px]">
             <View
               className={`w-8 h-8 rounded-full items-center justify-center ${
-                isMine ? "bg-white/20" : "bg-accent/20"
+                isMine ? "bg-white/15" : "bg-accent/20"
               }`}
             >
-              <Ionicons name="mic" size={16} color={isMine ? "#fff" : "#3B82F6"} />
+              <Icon name="Mic" size={16} color={isMine ? "#fff" : "#3B82F6"} />
             </View>
             <View className="flex-1 h-1 rounded-full bg-white/20" />
             <Text
@@ -319,8 +323,8 @@ const FloatingMessage: React.FC<{
                 <Text className="text-[10px] text-white/50">· edited</Text>
               )}
               {isMine && (
-                <Ionicons
-                  name={message.isRead ? "checkmark-done" : "checkmark"}
+                <Icon
+                  name={message.isRead ? "CheckCheck" : "Check"}
                   size={12}
                   color={message.isRead ? "#3B82F6" : "rgba(255,255,255,0.6)"}
                 />
@@ -350,8 +354,8 @@ const FloatingMessage: React.FC<{
               </Text>
             )}
             {isMine && (
-              <Ionicons
-                name={message.isRead ? "checkmark-done" : "checkmark"}
+              <Icon
+                name={message.isRead ? "CheckCheck" : "Check"}
                 size={12}
                 color={message.isRead ? "#3B82F6" : "rgba(255,255,255,0.4)"}
               />
@@ -540,46 +544,41 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
       >
         <Pressable>
           <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden py-1">
-            {/* Reply */}
             {onReply && (
               <ActionRow
-                icon="chatbubble-outline"
+                icon="MessageCircle"
                 label="Reply"
                 onPress={handleReply}
               />
             )}
 
-            {/* Copy */}
             {hasContent && (
               <ActionRow
-                icon="copy-outline"
+                icon="Copy"
                 label="Copy"
                 onPress={handleCopy}
               />
             )}
 
-            {/* Forward */}
             {onForward && (
               <ActionRow
-                icon="arrow-redo-outline"
+                icon="Forward"
                 label="Forward"
                 onPress={handleForward}
               />
             )}
 
-            {/* Edit — own text messages only */}
             {canEdit && onEdit && (
               <ActionRow
-                icon="pencil-outline"
+                icon="Pencil"
                 label="Edit"
                 onPress={handleEdit}
               />
             )}
 
-            {/* Delete — own messages only */}
             {isMine && onDelete && (
               <ActionRow
-                icon="trash-outline"
+                icon="Trash2"
                 label="Delete"
                 onPress={handleDelete}
                 destructive

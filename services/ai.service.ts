@@ -243,3 +243,42 @@ export function isImageRequest(text: string): boolean {
 export function isVideoRequest(text: string): boolean {
   return IMAGE_VERBS.test(text) && VIDEO_NOUNS.test(text);
 }
+
+export async function getDHBPrice(): Promise<number> {
+  const url = `${EDGE_BASE}/get-dhb-price`;
+  log.debug('getDHBPrice: fetching from', url);
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({}),
+    });
+    log.debug('getDHBPrice: response status', res.status);
+    const text = await res.text();
+    log.debug('getDHBPrice: raw response', text.substring(0, 500));
+
+    if (!res.ok) {
+      log.error('getDHBPrice: HTTP error', res.status, text);
+      throw new Error(`getDHBPrice failed (${res.status}): ${text}`);
+    }
+
+    const data = JSON.parse(text);
+    const price =
+      data?.prices?.DHB ??
+      data?.price ??
+      data?.data?.price ??
+      data?.usdPrice ??
+      0;
+    log.debug('getDHBPrice: parsed price', price);
+
+    if (typeof price !== 'number' || price <= 0) {
+      log.error('getDHBPrice: invalid price value', data);
+      throw new Error('Invalid DHB price returned');
+    }
+
+    return price;
+  } catch (err) {
+    log.error('getDHBPrice: exception', err);
+    throw err;
+  }
+}

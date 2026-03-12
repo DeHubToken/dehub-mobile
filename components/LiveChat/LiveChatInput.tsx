@@ -4,8 +4,10 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
-import { Ionicons, AntDesign } from "@expo/vector-icons";
+import Icon from "../ui/Icon";
+import { sendAIChat } from "../../services/ai.service";
 import type { LiveChatMessageData } from "../../services/livechat.service";
 
 const MAX_LENGTH = 500;
@@ -40,10 +42,10 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 }) => {
   const [text, setText] = useState("");
   const [cooldown, setCooldown] = useState(false);
+  const [enhancing, setEnhancing] = useState(false);
   const inputRef = useRef<TextInput>(null);
   const cooldownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Pre-fill text when editing a message
   useEffect(() => {
     if (editingMessage) {
       setText(editingMessage.content || "");
@@ -72,12 +74,33 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
     }
   }, [text, isBanned, canSend, cooldown, isOverLimit, onSend, replyingTo, onCancelReply, slowMode, slowModeSeconds, editingMessage, onCancelEdit]);
 
+  const handleEnhance = useCallback(async () => {
+    const trimmed = text.trim();
+    if (!trimmed || enhancing) return;
+    setEnhancing(true);
+    try {
+      const res = await sendAIChat({
+        messages: [
+          {
+            role: "user" as const,
+            content: `Enhance this message to be more engaging, clear, and well-written while keeping the same meaning and tone. Return ONLY the enhanced message text, nothing else.\n\nMessage: ${trimmed}`,
+          },
+        ],
+      });
+      if (res?.response) setText(res.response.trim());
+    } catch (e) {
+      console.error("[LiveChatInput] enhance error", e);
+    } finally {
+      setEnhancing(false);
+    }
+  }, [text, enhancing]);
+
   const handleChangeText = useCallback(
     (val: string) => {
       setText(val);
       if (val.length > 0) onTyping(true);
     },
-    [onTyping]
+    [onTyping],
   );
 
   const disabled = isBanned || !canSend;
@@ -91,7 +114,6 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
   return (
     <View className="border-t border-white/5">
-      {/* Edit preview bar */}
       {editingMessage && (
         <View className="flex-row items-center px-4 py-2 bg-white/5 border-l-2 border-amber-500 mx-3 mt-2 rounded-lg">
           <View className="flex-1 mr-2">
@@ -101,18 +123,14 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             </Text>
           </View>
           <TouchableOpacity
-            onPress={() => {
-              onCancelEdit();
-              setText("");
-            }}
+            onPress={() => { onCancelEdit(); setText(""); }}
             hitSlop={8}
           >
-            <Ionicons name="close" size={18} color="#A6A9AC" />
+            <Icon name="X" size={18} color="#A6A9AC" />
           </TouchableOpacity>
         </View>
       )}
 
-      {/* Reply preview bar */}
       {replyingTo && !editingMessage && (
         <View className="flex-row items-center px-4 py-2 bg-white/5 border-l-2 border-blue-500 mx-3 mt-2 rounded-lg">
           <View className="flex-1 mr-2">
@@ -124,14 +142,12 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             </Text>
           </View>
           <TouchableOpacity onPress={onCancelReply} hitSlop={8}>
-            <Ionicons name="close" size={18} color="#A6A9AC" />
+            <Icon name="X" size={18} color="#A6A9AC" />
           </TouchableOpacity>
         </View>
       )}
 
-      {/* Input row */}
       <View className="flex-row items-end px-2 py-1.5 gap-0.5">
-        {/* GIF button — only when not typing */}
         {!hasContent && onGifPress && !disabled && (
           <TouchableOpacity
             onPress={onGifPress}
@@ -139,11 +155,10 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             hitSlop={4}
             activeOpacity={0.6}
           >
-            <AntDesign name="gif" size={24} color="#A6A9AC" />
+            <Text style={{ fontSize: 13, fontWeight: '800', color: '#A6A9AC' }}>GIF</Text>
           </TouchableOpacity>
         )}
 
-        {/* Text input */}
         <View className="flex-1 bg-theme-neutrals-800 rounded-xl px-3 py-1.5 max-h-[100px]">
           <TextInput
             ref={inputRef}
@@ -153,13 +168,12 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             placeholderTextColor="#666"
             multiline
             maxLength={MAX_LENGTH}
-            editable={!disabled}
+            editable={!disabled && !enhancing}
             className="text-white text-[14px] leading-5 p-2 m-0"
             style={{ maxHeight: 80 }}
           />
         </View>
 
-        {/* Character counter */}
         {showCounter && (
           <Text
             className={`text-[11px] font-medium px-1 self-center ${
@@ -170,15 +184,32 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
           </Text>
         )}
 
-        {/* Send button — always visible */}
+        <TouchableOpacity
+          onPress={handleEnhance}
+          className="p-2"
+          hitSlop={4}
+          activeOpacity={0.6}
+          disabled={!text.trim() || enhancing}
+        >
+          {enhancing ? (
+            <ActivityIndicator size={18} color="#A78BFA" />
+          ) : (
+            <Icon
+              name="Sparkles"
+              size={22}
+              color={text.trim() ? "#A78BFA" : "#3A3A3C"}
+            />
+          )}
+        </TouchableOpacity>
+
         <TouchableOpacity
           onPress={handleSend}
-          disabled={disabled || !text.trim() || cooldown || isOverLimit}
+          disabled={disabled || !text.trim() || cooldown || isOverLimit || enhancing}
           className="p-2"
         >
-          <Ionicons
-            name="send"
-            size={24}
+          <Icon
+            name="Send"
+            size={22}
             color={text.trim() && !disabled && !cooldown && !isOverLimit ? "#3B82F6" : "#333"}
           />
         </TouchableOpacity>

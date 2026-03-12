@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import Icon from "../ui/Icon";
 import ConfirmModal from "../common/ConfirmModal";
 import type { LiveChatMessageData } from "../../services/livechat.service";
 
@@ -96,7 +96,7 @@ const PinnedMessagesBar: React.FC<PinnedMessagesBarProps> = ({
       {/* Content */}
       <View className="flex-1 mr-2">
         <View className="flex-row items-center gap-1.5">
-          <MaterialCommunityIcons name="pin" size={13} color="#3B82F6" style={{ transform: [{ rotate: '45deg' }] }} />
+          <Icon name="Pin" size={13} color="#3B82F6" />
           <Text className="text-blue-400 text-[11px] font-semibold">
             {count > 1 ? `Pinned Message #${safeIndex + 1}` : "Pinned Message"}
           </Text>
@@ -124,7 +124,7 @@ const PinnedMessagesBar: React.FC<PinnedMessagesBarProps> = ({
           activeOpacity={0.6}
           className="p-1"
         >
-          <Ionicons name="close" size={16} color="rgba(255,255,255,0.35)" />
+          <Icon name="X" size={16} color="rgba(255,255,255,0.35)" />
         </TouchableOpacity>
       )}
     </TouchableOpacity>

@@ -17,7 +17,8 @@ import {
   ActivityIndicator,
 } from "react-native";
 import Animated, { FadeIn, FadeOut, SlideInDown } from "react-native-reanimated";
-import { Ionicons, AntDesign } from "@expo/vector-icons";
+import Icon from "../ui/Icon";
+import { sendAIChat } from "../../services/ai.service";
 import * as ImagePicker from "expo-image-picker";
 import * as VideoThumbnails from "expo-video-thumbnails";
 import { openCroppedImagePicker } from "../../libs/assets.util";
@@ -87,6 +88,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const [media, setMedia] = useState<ChatMediaAttachment | null>(null);
   const [gifUrl, setGifUrl] = useState<string | null>(null);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
+  const [enhancing, setEnhancing] = useState(false);
   const typingRef = useRef(false);
   const typingTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -238,6 +240,27 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   }, [onCancelEdit]);
 
 
+  const handleEnhance = useCallback(async () => {
+    const trimmed = text.trim();
+    if (!trimmed || enhancing) return;
+    setEnhancing(true);
+    try {
+      const res = await sendAIChat({
+        messages: [
+          {
+            role: 'user',
+            content: `Enhance this message to be more engaging, clear, and well-written while keeping the same meaning and tone. Return ONLY the enhanced message text, nothing else.\n\nMessage: ${trimmed}`,
+          },
+        ],
+      });
+      if (res.response) setText(res.response);
+    } catch (e) {
+      console.error('[ChatInputBar] enhance error', e);
+    } finally {
+      setEnhancing(false);
+    }
+  }, [text, enhancing]);
+
   const hasContent = text.trim().length > 0 || !!media || !!gifUrl;
   // Show send button when there's content OR a tip is attached (tip-only send)
   const showSendButton = hasContent || tipAmount > 0;
@@ -294,7 +317,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               </Text>
             </View>
             <TouchableOpacity onPress={handleCancelReply} hitSlop={8}>
-              <Ionicons name="close" size={18} color="#A6A9AC" />
+              <Icon name="X" size={18} color="#A6A9AC" />
             </TouchableOpacity>
           </Animated.View>
         )}
@@ -306,7 +329,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             exiting={FadeOut.duration(100)}
             className="flex-row items-center px-4 py-2 bg-theme-neutrals-800/50 border-l-2 border-theme-yellow-500 mx-3 mt-2 rounded-lg"
           >
-            <Ionicons name="pencil" size={14} color="#EAB308" />
+            <Icon name="Pencil" size={14} color="#EAB308" />
             <View className="flex-1 ml-2">
               <Text className="text-[11px] text-theme-yellow-500 font-medium">
                 Editing message
@@ -319,7 +342,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               </Text>
             </View>
             <TouchableOpacity onPress={handleCancelEdit} hitSlop={8}>
-              <Ionicons name="close" size={18} color="#A6A9AC" />
+              <Icon name="X" size={18} color="#A6A9AC" />
             </TouchableOpacity>
           </Animated.View>
         )}
@@ -331,7 +354,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             exiting={FadeOut.duration(100)}
             className="flex-row items-center mx-3 mt-2 px-3 py-1.5 bg-amber-500/10 rounded-lg self-start"
           >
-            <Ionicons name="diamond" size={12} color="#F59E0B" />
+            <Icon name="Gem" size={12} color="#F59E0B" />
             <Text className="text-[11px] text-amber-400 font-medium ml-1">
               Tip: {tipAmount} DHB
             </Text>
@@ -340,7 +363,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               hitSlop={8}
               className="ml-2"
             >
-              <Ionicons name="close-circle" size={14} color="#A6A9AC" />
+              <Icon name="CircleX" size={14} color="#A6A9AC" />
             </TouchableOpacity>
           </Animated.View>
         )}
@@ -353,8 +376,8 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               tipBelowFee || insufficientBalance ? "bg-red-500/10" : "bg-white/5"
             }`}
           >
-            <Ionicons
-              name={tipBelowFee ? "alert-circle" : "wallet-outline"}
+            <Icon
+              name={tipBelowFee ? "CircleAlert" : "Wallet"}
               size={11}
               color={tipBelowFee || insufficientBalance ? "#EF4444" : "#A6A9AC"}
             />
@@ -387,7 +410,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               />
               {media?.type === "video" && (
                 <View className="absolute inset-0 items-center justify-center">
-                  <Ionicons name="play-circle" size={28} color="#fff" />
+                  <Icon name="CirclePlay" size={28} color="#fff" />
                 </View>
               )}
               {gifUrl && (
@@ -397,77 +420,120 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               )}
               <TouchableOpacity
                 onPress={handleRemoveMedia}
-                className="absolute -top-1.5 -right-1.5 bg-theme-neutrals-700 rounded-full w-5 h-5 items-center justify-center"
+                className="absolute -top-1.5 -right-1.5 bg-red-500 rounded-full w-5 h-5 items-center justify-center"
                 hitSlop={8}
               >
-                <Ionicons name="close" size={12} color="#fff" />
+                <Icon name="X" size={12} color="#fff" />
               </TouchableOpacity>
             </View>
           </Animated.View>
         )}
 
-        {/* Input row */}
-        <View className="flex-row items-end px-2 py-2 gap-0.5">
-          {/* Action buttons — hidden when typing */}
-          {!hasContent && (
-            <>
-              {/* Image button */}
-              <TouchableOpacity
-                onPress={handlePickImage}
-                className="p-2"
-                hitSlop={4}
-                activeOpacity={0.6}
-              >
-                <Ionicons name="image-outline" size={22} color="#A6A9AC" />
-              </TouchableOpacity>
+        {/* Text input — full width */}
+        <View className="px-3 pt-2 pb-1">
+          <TextInput
+            ref={inputRef}
+            value={text}
+            onChangeText={handleTextChange}
+            placeholder={placeholder}
+            placeholderTextColor="#666"
+            multiline
+            maxLength={DM_TEXT_MAX_LENGTH}
+            className="text-white text-[15px] leading-5 p-0 m-0"
+            style={{ maxHeight: 100 }}
+          />
+        </View>
 
-              {/* Video button */}
-              <TouchableOpacity
-                onPress={handlePickVideo}
-                className="p-2"
-                hitSlop={4}
-                activeOpacity={0.6}
-              >
-                <Ionicons name="videocam-outline" size={22} color="#A6A9AC" />
-              </TouchableOpacity>
-
-              {/* GIF button */}
-              <TouchableOpacity
-                onPress={() => setGifPickerVisible(true)}
-                className="p-2"
-                hitSlop={4}
-                activeOpacity={0.6}
-              >
-                <AntDesign name="gif" size={24} color="#A6A9AC" />
-              </TouchableOpacity>
-
-            </>
+        {/* Toolbar row */}
+        <View className="flex-row items-center justify-around px-4 py-2">
+          {/* Gem (tip / diamond) */}
+          {canAddTip && onTipPress ? (
+            <TouchableOpacity
+              onPress={onTipPress}
+              className="p-2"
+              hitSlop={4}
+              activeOpacity={0.6}
+              disabled={enhancing}
+            >
+              <Icon name="Gem" size={22} color={enhancing ? '#3A3A3C' : '#A6A9AC'} />
+            </TouchableOpacity>
+          ) : (
+            <View className="p-2">
+              <Icon name="Gem" size={22} color="#3A3A3C" />
+            </View>
           )}
 
-          {/* Text input */}
-          <View className="flex-1 bg-theme-neutrals-800 rounded-2xl px-3 py-2 min-h-[36px] max-h-[120px]">
-            <TextInput
-              ref={inputRef}
-              value={text}
-              onChangeText={handleTextChange}
-              placeholder={placeholder}
-              placeholderTextColor="#666"
-              multiline
-              maxLength={DM_TEXT_MAX_LENGTH}
-              className="text-white text-[15px] leading-5 p-0 m-0"
-              style={{ maxHeight: 100 }}
-            />
-          </View>
+          {/* GIF picker */}
+          <TouchableOpacity
+            onPress={() => setGifPickerVisible(true)}
+            className="p-2"
+            hitSlop={4}
+            activeOpacity={0.6}
+            disabled={enhancing}
+          >
+            <Text style={{ fontSize: 13, fontWeight: '800', color: enhancing ? '#3A3A3C' : '#A6A9AC' }}>GIF</Text>
+          </TouchableOpacity>
 
-          {/* Send / Mic / Send with cost */}
+          {/* Image picker */}
+          <TouchableOpacity
+            onPress={handlePickImage}
+            className="p-2"
+            hitSlop={4}
+            activeOpacity={0.6}
+            disabled={enhancing}
+          >
+            <Icon name="Image" size={22} color={enhancing ? '#3A3A3C' : '#A6A9AC'} />
+          </TouchableOpacity>
+
+          {/* Video picker */}
+          <TouchableOpacity
+            onPress={handlePickVideo}
+            className="p-2"
+            hitSlop={4}
+            activeOpacity={0.6}
+            disabled={enhancing}
+          >
+            <Icon name="Video" size={22} color={enhancing ? '#3A3A3C' : '#A6A9AC'} />
+          </TouchableOpacity>
+
+          {/* Mic */}
+          <TouchableOpacity
+            onPress={onStartVoice}
+            className="p-2"
+            hitSlop={4}
+            activeOpacity={0.6}
+            disabled={enhancing}
+          >
+            <Icon name="Mic" size={22} color={enhancing ? '#3A3A3C' : '#A6A9AC'} />
+          </TouchableOpacity>
+
+          {/* Sparkles — AI enhance */}
+          <TouchableOpacity
+            onPress={handleEnhance}
+            className="p-2"
+            hitSlop={4}
+            activeOpacity={0.6}
+            disabled={!text.trim() || enhancing}
+          >
+            {enhancing ? (
+              <ActivityIndicator size={18} color="#A78BFA" />
+            ) : (
+              <Icon
+                name="Sparkles"
+                size={22}
+                color={text.trim() ? '#A78BFA' : '#3A3A3C'}
+              />
+            )}
+          </TouchableOpacity>
+
+          {/* Send */}
           {showSendButton ? (
             showCostOnSend ? (
-              // Send button with cost label (per-message fee or tip attached)
               <TouchableOpacity
                 onPress={handleSend}
-                disabled={sending || insufficientBalance || tipBelowFee}
+                disabled={sending || enhancing || insufficientBalance || tipBelowFee}
                 activeOpacity={0.7}
-                className={`flex-row items-center rounded-full px-3 py-2 ml-0.5 ${
+                className={`flex-row items-center rounded-full px-3 py-1.5 ${
                   insufficientBalance || tipBelowFee ? "bg-theme-neutrals-700" : "bg-blue-600"
                 }`}
               >
@@ -475,7 +541,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                   <ActivityIndicator size="small" color="#fff" />
                 ) : (
                   <>
-                    <Ionicons name="send" size={14} color={insufficientBalance || tipBelowFee ? "#666" : "#fff"} />
+                    <Icon name="Send" size={14} color={insufficientBalance || tipBelowFee ? "#666" : "#fff"} />
                     <Text className={`text-[11px] font-semibold ml-1 ${insufficientBalance || tipBelowFee ? "text-theme-neutrals-500" : "text-white"}`}>
                       {totalCost} DHB
                     </Text>
@@ -483,33 +549,26 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                 )}
               </TouchableOpacity>
             ) : (
-              // Normal send icon
               <TouchableOpacity
                 onPress={handleSend}
-                disabled={sending}
+                disabled={sending || enhancing}
                 className="p-2"
               >
                 {sending ? (
                   <ActivityIndicator size="small" color="#3B82F6" />
                 ) : (
-                  <Ionicons name="send" size={22} color="#3B82F6" />
+                  <Icon name="Send" size={22} color="#3B82F6" />
                 )}
               </TouchableOpacity>
             )
           ) : (
-            // Tip button (no content)
-            <View className="flex-row items-center">
-              {canAddTip && onTipPress && (
-                <TouchableOpacity
-                  onPress={onTipPress}
-                  className="p-2"
-                  hitSlop={4}
-                  activeOpacity={0.6}
-                >
-                  <Ionicons name="diamond-outline" size={20} color="#A6A9AC" />
-                </TouchableOpacity>
-              )}
-            </View>
+            <TouchableOpacity
+              className="p-2"
+              activeOpacity={0.6}
+              disabled
+            >
+              <Icon name="Send" size={22} color="#3A3A3C" />
+            </TouchableOpacity>
           )}
         </View>
       </View>

@@ -1,6 +1,13 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, Image, TouchableOpacity, Pressable, Animated } from "react-native";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
+import { View, Text, Image, TouchableOpacity, Pressable } from "react-native";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  withSequence,
+  withDelay,
+} from "react-native-reanimated";
+import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
@@ -48,28 +55,27 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
 
   const containerRef = useRef<View>(null);
 
-  // Highlight animation (pulse then fade, same as comment highlights)
-  const [showHighlight, setShowHighlight] = useState(highlighted);
-  const highlightOpacity = useRef(new Animated.Value(0)).current;
+  // Highlight animation using reanimated
+  const highlightOpacity = useSharedValue(0);
 
   useEffect(() => {
     if (highlighted) {
-      setShowHighlight(true);
-      highlightOpacity.setValue(0);
-      Animated.sequence([
-        Animated.timing(highlightOpacity, { toValue: 1, duration: 300, useNativeDriver: true }),
-        Animated.timing(highlightOpacity, { toValue: 0.4, duration: 350, useNativeDriver: true }),
-        Animated.timing(highlightOpacity, { toValue: 1, duration: 350, useNativeDriver: true }),
-        Animated.timing(highlightOpacity, { toValue: 0.4, duration: 350, useNativeDriver: true }),
-        Animated.timing(highlightOpacity, { toValue: 1, duration: 350, useNativeDriver: true }),
-        Animated.delay(600),
-        Animated.timing(highlightOpacity, { toValue: 0, duration: 500, useNativeDriver: true }),
-      ]).start(() => setShowHighlight(false));
+      highlightOpacity.value = withSequence(
+        withTiming(1, { duration: 300 }),
+        withTiming(0.4, { duration: 350 }),
+        withTiming(1, { duration: 350 }),
+        withTiming(0.4, { duration: 350 }),
+        withTiming(1, { duration: 350 }),
+        withDelay(600, withTiming(0, { duration: 500 })),
+      );
     } else {
-      setShowHighlight(false);
-      highlightOpacity.setValue(0);
+      highlightOpacity.value = 0;
     }
   }, [highlighted, highlightOpacity]);
+
+  const highlightStyle = useAnimatedStyle(() => ({
+    opacity: highlightOpacity.value,
+  }));
 
   const handleAvatar = useCallback(
     () => sender && onAvatarPress?.(sender),
@@ -106,9 +112,9 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
       style={{ opacity: message.isDeleted ? 0.4 : 1 }}
     >
       {/* Highlight overlay */}
-      {showHighlight && (
-        <Animated.View
-          style={{
+      <Animated.View
+        style={[
+          {
             position: "absolute",
             top: 0,
             left: 0,
@@ -116,11 +122,11 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
             bottom: 0,
             backgroundColor: "rgba(59, 130, 246, 0.12)",
             borderRadius: 10,
-            opacity: highlightOpacity,
-          }}
-          pointerEvents="none"
-        />
-      )}
+          },
+          highlightStyle,
+        ]}
+        pointerEvents="none"
+      />
 
       {/* Avatar */}
       <TouchableOpacity onPress={handleAvatar} activeOpacity={0.7}>
@@ -129,17 +135,23 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
 
       {/* Content */}
       <View className="flex-1 ml-2.5">
-        {/* Name + badge + time */}
-        <View className="flex-row items-center gap-1.5 mb-0.5">
+        {/* Name row: name + badges + pinned tag + time */}
+        <View className="flex-row items-center gap-1.5 mb-0.5 flex-wrap">
           <Text
             className={`font-bold text-[14px] ${isMe ? "text-blue-400" : "text-white"}`}
             numberOfLines={1}
           >
             {displayName}
           </Text>
+          {message.isPinned && (
+            <View className="flex-row items-center bg-amber-500/15 rounded px-1.5 py-0.5 gap-0.5">
+              <Icon name="Pin" size={9} color="#F59E0B" />
+              <Text className="text-amber-400 text-[9px] font-bold">Pinned</Text>
+            </View>
+          )}
           {isMod && (
-            <View className="bg-amber-500/20 rounded px-1 py-0.5">
-              <Text className="text-amber-400 text-[9px] font-bold">MOD</Text>
+            <View className="bg-emerald-500/15 rounded px-1.5 py-0.5">
+              <Text className="text-emerald-400 text-[9px] font-bold">MOD</Text>
             </View>
           )}
           {!!badgeImg && (
@@ -182,7 +194,6 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
               <Text className="text-white/70 text-[13px] leading-5">{message.content}</Text>
             )}
 
-            {/* GIF */}
             {message.gif && (
               <View className="mt-1 rounded-xl overflow-hidden" style={{ maxWidth: 240 }}>
                 <Image
@@ -196,7 +207,6 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
               </View>
             )}
 
-            {/* Media images */}
             {message.media && message.media.length > 0 && (
               <View className="mt-1 flex-row flex-wrap gap-1">
                 {message.media.map((m, i) => (
@@ -211,14 +221,6 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
               </View>
             )}
           </>
-        )}
-
-        {/* Pinned indicator */}
-        {message.isPinned && (
-          <View className="flex-row items-center gap-1 mt-1">
-            <MaterialCommunityIcons name="pin" size={11} color="rgba(255,255,255,0.3)" style={{ transform: [{ rotate: '45deg' }] }} />
-            <Text className="text-white/30 text-[10px]">Pinned</Text>
-          </View>
         )}
 
         {/* Reactions */}

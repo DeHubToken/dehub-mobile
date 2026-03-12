@@ -12,16 +12,20 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
+  withTiming,
+  withSequence,
+  withDelay,
   runOnJS,
   interpolate,
   Extrapolation,
 } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { ResizeMode, Video } from "expo-av";
 import * as VideoThumbnails from "expo-video-thumbnails";
 import Avatar from "../common/Avatar";
+import Icon from "../ui/Icon";
+import GlassIndicator from "../ui/GlassIndicator";
+import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
 import PaymentBadge from "./PaymentBadge";
 import { getAvatarUrl, buildCdnPath } from "../../libs/misc";
 import type { DmMessage, DmMsgType, DmMediaUrl, ReplyPreview } from "../../services/dm/dm.types";
@@ -82,22 +86,23 @@ const AutoImage: React.FC<AutoImageProps> = memo(({ uri, isGif, onPress, onLongP
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // Resolve natural dimensions once
-  const resolved = useRef(false);
-  useMemo(() => {
-    if (resolved.current) return;
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setError(false);
     Image.getSize(
       uri,
       (w, h) => {
-        resolved.current = true;
+        if (cancelled) return;
         if (w && h) setAspect(w / h);
         setLoading(false);
       },
       () => {
-        resolved.current = true;
+        if (cancelled) return;
         setLoading(false);
       },
     );
+    return () => { cancelled = true; };
   }, [uri]);
 
   // Calculate display dimensions
@@ -122,7 +127,7 @@ const AutoImage: React.FC<AutoImageProps> = memo(({ uri, isGif, onPress, onLongP
           className="bg-theme-neutrals-700 items-center justify-center"
           style={{ width: displayW, height: displayH }}
         >
-          <Ionicons name="image-outline" size={32} color="#555" />
+          <Icon name="Image" size={32} color="#555" />
           <Text className="text-theme-neutrals-500 text-[11px] mt-1">
             Failed to load
           </Text>
@@ -204,7 +209,7 @@ const VideoThumb: React.FC<VideoThumbProps> = memo(({ uri, width, height, onPres
           />
         ) : failed ? (
           <View className="flex-1 items-center justify-center">
-            <Ionicons name="videocam-outline" size={32} color="#555" />
+            <Icon name="Video" size={32} color="#555" />
           </View>
         ) : (
           <View className="flex-1 items-center justify-center">
@@ -213,7 +218,7 @@ const VideoThumb: React.FC<VideoThumbProps> = memo(({ uri, width, height, onPres
         )}
         <View className="absolute inset-0 items-center justify-center">
           <View className="bg-black/50 rounded-full p-2">
-            <Ionicons name="play" size={24} color="#fff" />
+            <Icon name="Play" size={24} color="#fff" />
           </View>
         </View>
       </View>
@@ -237,6 +242,10 @@ interface MessageBubbleProps {
   localMediaUri?: string;
   /** Called when the user swipes to reply. */
   onSwipeToReply?: (message: DmMessage) => void;
+  /** Called when the reply preview is tapped — scrolls to the original message. */
+  onReplyPress?: (messageId: string) => void;
+  /** Whether this bubble is highlighted (flash animation after scroll). */
+  highlighted?: boolean;
 }
 
 
@@ -249,11 +258,35 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
   onVideoPress,
   localMediaUri,
   onSwipeToReply,
+  onReplyPress,
+  highlighted = false,
 }) => {
   const navigation = useNavigation<any>();
   const containerRef = useRef<View>(null);
 
   const isTipMsg = (message.msgType as DmMsgType) === "tip";
+
+  // Highlight animation for scroll-to-reply
+  const highlightOpacity = useSharedValue(0);
+
+  useEffect(() => {
+    if (highlighted) {
+      highlightOpacity.value = withSequence(
+        withTiming(1, { duration: 300 }),
+        withTiming(0.4, { duration: 350 }),
+        withTiming(1, { duration: 350 }),
+        withTiming(0.4, { duration: 350 }),
+        withTiming(1, { duration: 350 }),
+        withDelay(600, withTiming(0, { duration: 500 })),
+      );
+    } else {
+      highlightOpacity.value = 0;
+    }
+  }, [highlighted, highlightOpacity]);
+
+  const highlightStyle = useAnimatedStyle(() => ({
+    opacity: highlightOpacity.value,
+  }));
 
   if (isTipMsg) {
     const amountLabel = message.tipAmount
@@ -383,14 +416,20 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
   }, [message, isMine, onLongPress]);
 
   const handleImageTap = useCallback(
-    (url: string) => {
+    (url: string, index: number = 0) => {
       if (onImagePress) {
         onImagePress(url);
         return;
       }
-      navigation.navigate("ImageViewer", { imageUrl: url });
+      const imageUrls = mediaItems
+        .filter((m) => m.kind !== "video")
+        .map((m) => m.url);
+      navigation.navigate("ImageViewer", {
+        images: imageUrls.length > 0 ? imageUrls : [url],
+        initialIndex: index,
+      });
     },
-    [navigation, onImagePress],
+    [navigation, onImagePress, mediaItems],
   );
 
   const handleVideoTap = useCallback(
@@ -438,8 +477,8 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         </Text>
       )}
       {isMine && (
-        <Ionicons
-          name={message.isRead ? "checkmark-done" : "checkmark"}
+        <Icon
+          name={message.isRead ? "CheckCheck" : "Check"}
           size={12}
           color={message.isRead ? "#3B82F6" : "rgba(255,255,255,0.4)"}
         />
@@ -449,7 +488,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
 
 
   const bubbleBg = isMine
-    ? "bg-blue-600 rounded-2xl rounded-br-sm"
+    ? "rounded-2xl rounded-br-sm"
     : "bg-theme-neutrals-800 rounded-2xl rounded-bl-sm";
 
   const isMediaOnly = mediaItems.length > 0 && !hasText && !isVoice;
@@ -477,7 +516,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         ]}
       >
         <View className="w-8 h-8 rounded-full bg-theme-neutrals-800 items-center justify-center">
-          <Ionicons name="arrow-undo" size={18} color="#3B82F6" />
+          <Icon name="Undo2" size={18} color="#3B82F6" />
         </View>
       </Animated.View>
 
@@ -493,6 +532,22 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
             isMine ? "justify-end" : "justify-start"
           }`}
         >
+          {/* Highlight overlay for scroll-to-reply */}
+          <Animated.View
+            style={[
+              {
+                position: "absolute",
+                top: -2,
+                left: 0,
+                right: 0,
+                bottom: -2,
+                backgroundColor: "rgba(59, 130, 246, 0.12)",
+                borderRadius: 16,
+              },
+              highlightStyle,
+            ]}
+            pointerEvents="none"
+          />
           {/* Avatar (other user, first in a group) */}
           {!isMine && showAvatar && (
             <Avatar
@@ -508,11 +563,15 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
           {!isMine && !showAvatar && <View style={{ width: 28 }} />}
 
           {/* Bubble */}
-          <View className={`max-w-[75%] ${activeBubbleBg} overflow-hidden`}>
+          <View
+            className={`max-w-[75%] ${activeBubbleBg} overflow-hidden`}
+            style={isMine ? { backgroundColor: "rgba(20,20,20,0.65)" } : undefined}
+          >
+            {isMine && <GlassIndicator borderRadius={16} />}
             {/* Forwarded tag */}
             {message.isForwarded && (
               <View className="flex-row items-center gap-1 px-3 pt-1.5">
-                <Ionicons name="arrow-redo" size={10} color={isMine ? "rgba(255,255,255,0.5)" : "#A6A9AC"} />
+                <Icon name="Forward" size={10} color={isMine ? "rgba(255,255,255,0.5)" : "#A6A9AC"} />
                 <Text className={`text-[10px] italic ${isMine ? "text-white/50" : "text-theme-neutrals-400"}`}>
                   Forwarded
                 </Text>
@@ -523,6 +582,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
             {message.replyTo && (
               <TouchableOpacity
                 activeOpacity={0.7}
+                onPress={() => message.replyTo?._id && onReplyPress?.(message.replyTo._id)}
                 className={`mx-2 mt-2 rounded-lg overflow-hidden border-l-2 ${
                   isMine ? "bg-white/10 border-white/30" : "bg-theme-neutrals-700 border-accent"
                 }`}
@@ -540,8 +600,8 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                   </Text>
                   {message.replyTo.msgType === "voice" ? (
                     <View className="flex-row items-center gap-1">
-                      <Ionicons
-                        name="mic"
+                      <Icon
+                        name="Mic"
                         size={12}
                         color={isMine ? "rgba(255,255,255,0.5)" : "#A6A9AC"}
                       />
@@ -616,7 +676,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                       key={idx}
                       uri={item.url}
                       isGif={item.kind === "gif"}
-                      onPress={() => handleImageTap(item.url)}
+                      onPress={() => handleImageTap(item.url, idx)}
                       onLongPress={handleLongPress}
                     />
                   ),
@@ -632,7 +692,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                 )}
                 {isUploadFailed && (
                   <View className="absolute inset-0 items-center justify-center bg-black/50">
-                    <Ionicons name="alert-circle" size={28} color="#EF4444" />
+                    <Icon name="AlertCircle" size={28} color="#EF4444" />
                     <Text className="text-[11px] text-red-400 mt-1 font-medium">
                       Failed to send
                     </Text>
@@ -642,46 +702,42 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
             )}
 
             {/* Voice note */}
-            {isVoice && (
-              <View className="flex-row items-center px-3 py-2.5 gap-2.5 min-w-[160px]">
-                <View
-                  className={`w-8 h-8 rounded-full items-center justify-center ${
-                    isMine ? "bg-white/20" : "bg-accent/20"
-                  }`}
-                >
-                  <Ionicons
-                    name="mic"
-                    size={16}
-                    color={isMine ? "#fff" : "#3B82F6"}
+            {isVoice && (() => {
+              const raw = message.mediaUrls?.[0];
+              const voiceUrl = raw
+                ? resolveUrl(typeof raw === "string" ? raw : raw.url)
+                : undefined;
+              return voiceUrl ? (
+                <View className="px-2 min-w-[200px]">
+                  <VoiceNotePlayer
+                    audioUrl={voiceUrl}
+                    duration={message.voiceDuration ?? undefined}
+                    compact
                   />
                 </View>
-                {/* Waveform placeholder */}
-                <View className="flex-1 flex-row items-center gap-[2px] h-6">
-                  {Array.from({ length: 20 }).map((_, i) => (
-                    <View
-                      key={i}
-                      className={`flex-1 rounded-full ${
-                        isMine ? "bg-white/30" : "bg-theme-neutrals-600"
-                      }`}
-                      style={{
-                        height: 4 + Math.sin(i * 0.7) * 10 + Math.random() * 4,
-                      }}
-                    />
-                  ))}
+              ) : (
+                <View className="flex-row items-center px-3 py-2.5 gap-2.5 min-w-[160px]">
+                  <View
+                    className={`w-8 h-8 rounded-full items-center justify-center ${
+                      isMine ? "bg-white/15" : "bg-accent/20"
+                    }`}
+                  >
+                    <Icon name="Mic" size={16} color={isMine ? "#fff" : "#3B82F6"} />
+                  </View>
+                  <Text
+                    className={`text-[11px] ${
+                      isMine ? "text-white/70" : "text-theme-neutrals-500"
+                    }`}
+                  >
+                    {message.voiceDuration
+                      ? `${Math.floor(message.voiceDuration / 60)}:${String(
+                          Math.round(message.voiceDuration % 60),
+                        ).padStart(2, "0")}`
+                      : "0:00"}
+                  </Text>
                 </View>
-                <Text
-                  className={`text-[11px] ${
-                    isMine ? "text-white/70" : "text-theme-neutrals-500"
-                  }`}
-                >
-                  {message.voiceDuration
-                    ? `${Math.floor(message.voiceDuration / 60)}:${String(
-                        Math.round(message.voiceDuration % 60),
-                      ).padStart(2, "0")}`
-                    : "0:00"}
-                </Text>
-              </View>
-            )}
+              );
+            })()}
 
             {/* Text */}
             {hasText && (
@@ -730,8 +786,8 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                     <Text className="text-[10px] text-white/50">· edited</Text>
                   )}
                   {isMine && (
-                    <Ionicons
-                      name={message.isRead ? "checkmark-done" : "checkmark"}
+                    <Icon
+                      name={message.isRead ? "CheckCheck" : "Check"}
                       size={12}
                       color={message.isRead ? "#3B82F6" : "rgba(255,255,255,0.6)"}
                     />
