@@ -83,7 +83,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
       };
     }
     if (last.msgType === "gif") {
-      return { previewText: `${prefix}GIF`, previewIcon: "gift" as const };
+      return { previewText: `${prefix}GIF`, previewIcon: "gif" as const };
     }
     if (last.msgType === "media") {
       const hasVideo = last.mediaUrls?.some(
@@ -177,8 +177,10 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
             )}
           </View>
           <View className="flex-row items-center gap-1 mt-0.5">
-            {previewIcon && (
-              <Icon name={previewIcon === "mic" ? "Mic" : previewIcon === "diamond" ? "Diamond" : previewIcon === "gift" ? "Gift" : previewIcon === "videocam" ? "Video" : previewIcon === "image" ? "Image" : previewIcon === "arrow-redo" ? "Forward" : "MessageSquare"} size={13} color={unreadCount > 0 ? "#FFFFFF" : "#A6A9AC"} />
+            {previewIcon === "gif" ? (
+              <Text style={{ fontSize: 10, fontWeight: '800', color: unreadCount > 0 ? '#FFFFFF' : '#A6A9AC' }}>GIF</Text>
+            ) : previewIcon && (
+              <Icon name={previewIcon === "mic" ? "Mic" : previewIcon === "diamond" ? "Gem" : previewIcon === "videocam" ? "Video" : previewIcon === "image" ? "Image" : previewIcon === "arrow-redo" ? "Forward" : "MessageSquare"} size={13} color={unreadCount > 0 ? "#FFFFFF" : "#A6A9AC"} />
             )}
             <Text
               className={`text-[13px] flex-1 ${

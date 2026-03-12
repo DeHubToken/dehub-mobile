@@ -67,6 +67,8 @@ interface MediaSendJob extends BaseSendJob {
   mediaType: "image" | "video";
   mimeType: string;
   caption?: string;
+  msgType?: DmMsgType;
+  voiceDuration?: number;
 }
 
 interface TipSendJob extends BaseSendJob {
@@ -233,12 +235,15 @@ class DmSendQueue {
     replyTo?: DmMessage | null;
     dmFee?: DmFee | null;
     tipAmount?: number;
+    msgType?: DmMsgType;
+    voiceDuration?: number;
   }): string {
     const tempId = this.makeTempId();
     const {
       conversationId, userId, uri, thumbnailUri, mediaType,
       caption, replyTo, dmFee, address, tipAmount,
     } = params;
+    const effectiveMsgType = params.msgType || "media";
 
     const mime = params.mimeType || guessMime(uri, mediaType === "video" ? "video/mp4" : "image/jpeg");
 
@@ -249,13 +254,14 @@ class DmSendQueue {
       conversationId,
       userId,
       content: caption || "",
-      msgType: "media",
+      msgType: effectiveMsgType,
       replyTo,
       mediaUrls: [{ url: uri, type: mediaType, mimeType: mime }],
-      localMediaUri: mediaType === "video" ? (thumbnailUri || uri) : uri,
+      localMediaUri: effectiveMsgType === "voice" ? undefined : (mediaType === "video" ? (thumbnailUri || uri) : uri),
       uploadStatus: "pending",
       tipAmount: paymentAmount,
       paymentStatus: paymentAmount ? "pending" : undefined,
+      voiceDuration: params.voiceDuration,
     });
     dmActions.addOptimistic(conversationId, optimistic);
 
@@ -273,6 +279,8 @@ class DmSendQueue {
       replyTo,
       dmFee,
       tipAmount,
+      msgType: effectiveMsgType,
+      voiceDuration: params.voiceDuration,
     });
 
     return tempId;
@@ -514,9 +522,11 @@ class DmSendQueue {
       }
     }
 
+    const isVoice = job.msgType === "voice";
+    const ext = isVoice ? "m4a" : job.mediaType === "video" ? "mp4" : "jpg";
     const file = {
       uri: job.uri,
-      name: `${Date.now()}.${job.mediaType === "video" ? "mp4" : "jpg"}`,
+      name: `${Date.now()}.${ext}`,
       type: job.mimeType,
     };
 
@@ -529,7 +539,8 @@ class DmSendQueue {
             conversationId: convId,
             senderId: job.address,
             files: [file],
-            msgType: "media",
+            msgType: job.msgType || "media",
+            voiceDuration: job.voiceDuration,
             content: job.caption || undefined,
             replyTo: job.replyTo?._id,
             txHash,
@@ -567,6 +578,7 @@ class DmSendQueue {
     uploadStatus?: "pending" | "complete" | "failed";
     tipAmount?: number;
     paymentStatus?: "pending" | "confirmed" | null;
+    voiceDuration?: number;
   }): OptimisticMessage {
     const replyPreview: ReplyPreview | undefined = params.replyTo
       ? {
@@ -597,6 +609,7 @@ class DmSendQueue {
       uploadStatus: params.uploadStatus,
       tipAmount: params.tipAmount ?? null,
       paymentStatus: params.paymentStatus ?? null,
+      voiceDuration: params.voiceDuration,
       createdAt: new Date().toISOString(),
     };
   }

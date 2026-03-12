@@ -1,6 +1,7 @@
 import React from 'react';
-import { Modal, TouchableOpacity, View, Text, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Modal, Pressable, TouchableOpacity, View, Text, ScrollView } from 'react-native';
+import Icon from '../ui/Icon';
+import type { icons } from 'lucide-react-native';
 
 export type ChatMenuProps = {
   visible: boolean;
@@ -19,7 +20,7 @@ export type ChatMenuProps = {
 };
 
 type MenuRowProps = {
-  icon: keyof typeof Ionicons.glyphMap;
+  icon: keyof typeof icons;
   label: string;
   onPress: () => void;
   color?: string;
@@ -32,7 +33,7 @@ const MenuRow: React.FC<MenuRowProps> = ({ icon, label, onPress, color, iconColo
     onPress={onPress}
     accessibilityRole="button"
   >
-    <Ionicons name={icon} size={18} color={iconColor || "#F9FBFF"} />
+    <Icon name={icon} size={18} color={iconColor || "#F9FBFF"} />
     <Text className={`ml-2 text-sm ${color || "text-theme-neutrals-100"}`}>{label}</Text>
   </TouchableOpacity>
 );
@@ -53,18 +54,21 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
   if (!visible) return null;
   return (
     <Modal visible transparent animationType="fade" onRequestClose={onClose}>
-      <TouchableOpacity
-        activeOpacity={1}
+      <Pressable
         onPress={onClose}
-        className="flex-1 bg-black/40"
+        style={{ flex: 1 }}
+        className="bg-black/40"
       >
-        <View className="absolute right-3 top-16 w-52 rounded-xl bg-theme-neutrals-800 shadow-lg overflow-hidden">
+        <Pressable
+          onPress={(e) => e.stopPropagation()}
+          className="absolute right-3 top-16 w-52 rounded-xl bg-theme-neutrals-800 shadow-lg overflow-hidden"
+        >
           <ScrollView bounces={false}>
             {/* Search in Chat */}
             {onSearchChat && (
               <>
                 <MenuRow
-                  icon="search-outline"
+                  icon="Search"
                   label="Search in chat"
                   onPress={() => { onClose(); onSearchChat(); }}
                 />
@@ -76,7 +80,7 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
             {onClearChat && (
               <>
                 <MenuRow
-                  icon="trash-outline"
+                  icon="Trash2"
                   label="Clear messages"
                   onPress={() => { onClose(); onClearChat(); }}
                 />
@@ -88,7 +92,7 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
             {isCreator && onToggleFreeAccess && (
               <>
                 <MenuRow
-                  icon={peerHasFreeAccess ? "remove-circle-outline" : "shield-checkmark-outline"}
+                  icon={peerHasFreeAccess ? "CircleMinus" : "ShieldCheck"}
                   label={peerHasFreeAccess ? "Remove free access" : "Grant free access"}
                   onPress={() => { onClose(); onToggleFreeAccess(); }}
                   iconColor={peerHasFreeAccess ? "#FCA5A5" : "#22C55E"}
@@ -101,7 +105,7 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
             {isCreator && onManageDmFee && (
               <>
                 <MenuRow
-                  icon="cash-outline"
+                  icon="Coins"
                   label="DM fee settings"
                   onPress={() => { onClose(); onManageDmFee(); }}
                 />
@@ -111,15 +115,15 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
 
             {/* Block / Unblock */}
             <MenuRow
-              icon={isBlocked ? "remove-circle-outline" : "ban-outline"}
+              icon={isBlocked ? "CircleMinus" : "Ban"}
               label={isBlocked ? "Unblock user" : "Block user"}
               onPress={isBlocked ? (onUnblockUser || onClose) : onBlockUser}
               color={isBlocked ? "text-theme-blue-300" : "text-red-300"}
               iconColor={isBlocked ? "#93C5FD" : "#FCA5A5"}
             />
           </ScrollView>
-        </View>
-      </TouchableOpacity>
+        </Pressable>
+      </Pressable>
     </Modal>
   );
 };

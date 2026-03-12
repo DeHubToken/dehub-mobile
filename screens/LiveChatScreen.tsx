@@ -9,7 +9,7 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "../components/ui/Icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
@@ -480,7 +480,7 @@ const LiveChatScreen: React.FC = () => {
           <Text className="text-white/50 text-xs">{onlineCount}</Text>
         </View>
         <TouchableOpacity onPress={handleInfoPress} activeOpacity={0.6} hitSlop={8}>
-          <Ionicons name="information-circle-outline" size={22} color="rgba(255,255,255,0.5)" />
+          <Icon name="Info" size={22} color="rgba(255,255,255,0.5)" />
         </TouchableOpacity>
       </View>
     ),
@@ -514,7 +514,7 @@ const LiveChatScreen: React.FC = () => {
           </>
         ) : !connected ? (
           <>
-            <Ionicons name="cloud-offline-outline" size={48} color="rgba(255,255,255,0.15)" />
+            <Icon name="WifiOff" size={48} color="rgba(255,255,255,0.15)" />
             <Text className="text-white/30 text-sm mt-3">Not connected</Text>
             <TouchableOpacity
               onPress={reconnect}
@@ -525,7 +525,7 @@ const LiveChatScreen: React.FC = () => {
           </>
         ) : (
           <>
-            <Ionicons name="chatbubbles-outline" size={48} color="rgba(255,255,255,0.1)" />
+            <Icon name="MessageCircle" size={48} color="rgba(255,255,255,0.1)" />
             <Text className="text-white/30 text-sm mt-3">No messages yet</Text>
             <Text className="text-white/20 text-xs mt-1">Be the first to say something!</Text>
           </>
@@ -557,7 +557,7 @@ const LiveChatScreen: React.FC = () => {
       {isBanned && (
         <View className="bg-red-500/10 border-b border-red-500/20 px-4 py-2.5">
           <View className="flex-row items-center gap-2">
-            <Ionicons name="ban-outline" size={16} color="#EF4444" />
+            <Icon name="Ban" size={16} color="#EF4444" />
             <Text className="text-red-400 text-sm">You are banned from this chat</Text>
           </View>
         </View>
@@ -596,7 +596,7 @@ const LiveChatScreen: React.FC = () => {
             activeOpacity={0.7}
           >
             <View className="bg-white/10 rounded-full w-10 h-10 items-center justify-center">
-              <Ionicons name="chevron-down" size={22} color="rgba(255,255,255,0.6)" />
+              <Icon name="ChevronDown" size={22} color="rgba(255,255,255,0.6)" />
             </View>
           </TouchableOpacity>
         )}

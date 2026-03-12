@@ -1,29 +1,34 @@
 /**
- * VoiceNotePlayer — WhatsApp-style voice note waveform player.
+ * VoiceNotePlayer — Telegram-style voice note waveform player.
  *
- * Shows a play/pause button, animated waveform bars, elapsed / total time,
- * and a progress scrubber. Uses expo-av for playback.
+ * Features: animated waveform bars, seekable waveform (tap/drag),
+ * smooth progress overlay, play/pause with auto-focus management.
  */
 import React, { memo, useCallback, useEffect, useRef, useState, useMemo } from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, Text, TouchableOpacity, ActivityIndicator, LayoutChangeEvent } from "react-native";
 import { Audio, AVPlaybackStatus } from "expo-av";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
+  withSpring,
+  runOnJS,
+  Easing,
 } from "react-native-reanimated";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { useIsFocused } from "@react-navigation/native";
+import Icon from "../ui/Icon";
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
 import { stopActivePreview } from "../../libs/previewRegistry";
 
-const BAR_COUNT = 28;
-const BAR_WIDTH = 3;
+const BAR_COUNT = 32;
+const BAR_WIDTH = 2.5;
 const BAR_GAP = 1.5;
-const MAX_BAR_HEIGHT = 22;
+const MAX_BAR_HEIGHT = 24;
 const MIN_BAR_HEIGHT = 3;
+const PLAYED_COLOR = "#FFFFFF";
+const UNPLAYED_COLOR = "rgba(255,255,255,0.25)";
 
-/** Generate deterministic pseudo-random waveform heights from a seed (URL hash). */
 const generateWaveform = (seed: string): number[] => {
   let h = 0;
   for (let i = 0; i < seed.length; i++) h = ((h << 5) - h + seed.charCodeAt(i)) | 0;
@@ -36,19 +41,45 @@ const generateWaveform = (seed: string): number[] => {
   return bars;
 };
 
-/** Format seconds → m:ss */
 const fmtTime = (s: number): string => {
   const m = Math.floor(s / 60);
   const sec = Math.floor(s % 60);
   return `${m}:${sec.toString().padStart(2, "0")}`;
 };
 
+interface WaveformBarProps {
+  height: number;
+  index: number;
+  progress: Animated.SharedValue<number>;
+  isSeeking: Animated.SharedValue<boolean>;
+}
+
+const WaveformBar: React.FC<WaveformBarProps> = memo(({ height, index, progress, isSeeking }) => {
+  const threshold = (index + 0.5) / BAR_COUNT;
+
+  const animStyle = useAnimatedStyle(() => {
+    const p = progress.value;
+    const played = p >= threshold;
+    const nearHead = Math.abs(p - threshold) < (2 / BAR_COUNT);
+
+    const scale = nearHead && !isSeeking.value ? 1.15 : 1;
+
+    return {
+      width: BAR_WIDTH,
+      height,
+      borderRadius: BAR_WIDTH / 2,
+      marginRight: index < BAR_COUNT - 1 ? BAR_GAP : 0,
+      backgroundColor: played ? PLAYED_COLOR : UNPLAYED_COLOR,
+      transform: [{ scaleY: withSpring(scale, { damping: 12, stiffness: 180 }) }],
+    };
+  }, [height, index]);
+
+  return <Animated.View style={animStyle} />;
+});
+
 interface VoiceNotePlayerProps {
-  /** Fully-resolved audio URL (CDN) */
   audioUrl: string;
-  /** Duration in seconds (from API). Fallback: detected on load. */
   duration?: number;
-  /** Compact mode for inline comment display */
   compact?: boolean;
 }
 
@@ -63,9 +94,11 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
   const [positionMs, setPositionMs] = useState(0);
   const [durationMs, setDurationMs] = useState((durationProp ?? 0) * 1000);
   const progress = useSharedValue(0);
+  const isSeeking = useSharedValue(false);
+  const seekingRef = useRef(false);
+  const waveformWidth = useRef(0);
   const isFocused = useIsFocused();
 
-  // Stable stop callback for global audio focus
   const focusStopRef = useRef(() => {
     soundRef.current?.pauseAsync().catch(() => {});
     setIsPlaying(false);
@@ -77,10 +110,14 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
   const onPlaybackStatus = useCallback(
     (status: AVPlaybackStatus) => {
       if (!status.isLoaded) return;
+      if (seekingRef.current) return;
       setPositionMs(status.positionMillis);
       if (status.durationMillis) setDurationMs(status.durationMillis);
       const dur = status.durationMillis || durationMs || 1;
-      progress.value = withTiming(status.positionMillis / dur, { duration: 250 });
+      progress.value = withTiming(status.positionMillis / dur, {
+        duration: 200,
+        easing: Easing.linear,
+      });
       if (status.didJustFinish) {
         setIsPlaying(false);
         progress.value = withTiming(0, { duration: 300 });
@@ -88,10 +125,9 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
         releaseAudioFocus(focusStopRef.current);
       }
     },
-    [durationMs, progress]
+    [durationMs, progress],
   );
 
-  // Preload audio on mount so playback is instant
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -100,7 +136,7 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
         const { sound } = await Audio.Sound.createAsync(
           { uri: audioUrl },
           { shouldPlay: false },
-          onPlaybackStatus
+          onPlaybackStatus,
         );
         if (cancelled) {
           sound.unloadAsync().catch(() => {});
@@ -111,16 +147,13 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
         if (status.isLoaded && status.durationMillis) {
           setDurationMs(status.durationMillis);
         }
-      } catch (e) {
-        // Preload failed — will load on play tap instead
+      } catch {
+        // Preload failed — will load on play tap
       }
     })();
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [audioUrl, onPlaybackStatus]);
 
-  // Pause when screen loses focus
   useEffect(() => {
     if (!isFocused && isPlaying && soundRef.current) {
       soundRef.current.pauseAsync().catch(() => {});
@@ -129,7 +162,6 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
     }
   }, [isFocused, isPlaying]);
 
-  // Cleanup on unmount
   useEffect(() => {
     const stopFn = focusStopRef.current;
     return () => {
@@ -151,7 +183,7 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
       const { sound } = await Audio.Sound.createAsync(
         { uri: audioUrl },
         { shouldPlay: true },
-        onPlaybackStatus
+        onPlaybackStatus,
       );
       soundRef.current = sound;
       setIsPlaying(true);
@@ -194,51 +226,128 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
     }
   }, [isPlaying, isLoading, loadAndPlay]);
 
+  const seekTo = useCallback(async (ratio: number) => {
+    const clamped = Math.max(0, Math.min(1, ratio));
+    const dur = durationMs || 1;
+    const posMs = Math.round(clamped * dur);
+    setPositionMs(posMs);
+    progress.value = clamped;
+    if (soundRef.current) {
+      try {
+        await soundRef.current.setPositionAsync(posMs);
+      } catch { /* ignore seek errors */ }
+    }
+  }, [durationMs, progress]);
+
+  const onSeekStart = useCallback(() => {
+    seekingRef.current = true;
+    isSeeking.value = true;
+  }, [isSeeking]);
+
+  const onSeekEnd = useCallback((ratio: number) => {
+    seekingRef.current = false;
+    isSeeking.value = false;
+    seekTo(ratio);
+  }, [seekTo, isSeeking]);
+
+  const seekGesture = useMemo(
+    () =>
+      Gesture.Pan()
+        .activateAfterLongPress(0)
+        .minDistance(0)
+        .onStart((e) => {
+          runOnJS(onSeekStart)();
+          const ratio = waveformWidth.current > 0 ? e.x / waveformWidth.current : 0;
+          progress.value = Math.max(0, Math.min(1, ratio));
+        })
+        .onUpdate((e) => {
+          const ratio = waveformWidth.current > 0 ? e.x / waveformWidth.current : 0;
+          progress.value = Math.max(0, Math.min(1, ratio));
+        })
+        .onEnd((e) => {
+          const ratio = waveformWidth.current > 0 ? e.x / waveformWidth.current : 0;
+          runOnJS(onSeekEnd)(Math.max(0, Math.min(1, ratio)));
+        }),
+    [onSeekStart, onSeekEnd, progress],
+  );
+
+  const tapGesture = useMemo(
+    () =>
+      Gesture.Tap().onEnd((e) => {
+        const ratio = waveformWidth.current > 0 ? e.x / waveformWidth.current : 0;
+        runOnJS(seekTo)(Math.max(0, Math.min(1, ratio)));
+      }),
+    [seekTo],
+  );
+
+  const composedGesture = useMemo(
+    () => Gesture.Race(seekGesture, tapGesture),
+    [seekGesture, tapGesture],
+  );
+
+  const onWaveformLayout = useCallback((e: LayoutChangeEvent) => {
+    waveformWidth.current = e.nativeEvent.layout.width;
+  }, []);
+
+  const playButtonScale = useSharedValue(1);
+  const playBtnStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: playButtonScale.value }],
+  }));
+
+  const handlePlayPress = useCallback(() => {
+    playButtonScale.value = withSpring(0.85, { damping: 10 });
+    setTimeout(() => {
+      playButtonScale.value = withSpring(1, { damping: 10 });
+    }, 100);
+    handleToggle();
+  }, [handleToggle, playButtonScale]);
+
   const durationSec = durationMs / 1000;
   const positionSec = positionMs / 1000;
-  const timeLabel = isPlaying || positionMs > 0 ? fmtTime(positionSec) : fmtTime(durationProp ?? durationSec);
-
-  // Determine how many bars are "played"
-  const playedBars = durationMs > 0 ? Math.round((positionMs / durationMs) * BAR_COUNT) : 0;
+  const timeLabel = isPlaying || positionMs > 0
+    ? fmtTime(positionSec)
+    : fmtTime(durationProp ?? durationSec);
 
   return (
-    <View className={`flex-row items-center ${compact ? "py-1" : "py-1.5"}`}>
-      {/* Play/pause button */}
-      <TouchableOpacity
-        onPress={handleToggle}
-        activeOpacity={0.7}
-        className="w-8 h-8 rounded-full bg-white items-center justify-center mr-2"
-      >
-        {isLoading ? (
-          <ActivityIndicator size="small" color="#000" />
-        ) : (
-          <Ionicons name={isPlaying ? "pause" : "play"} size={16} color="#000" />
-        )}
-      </TouchableOpacity>
+    <View className={`flex-row items-center ${compact ? "py-1.5" : "py-2"}`}>
+      <Animated.View style={playBtnStyle}>
+        <TouchableOpacity
+          onPress={handlePlayPress}
+          activeOpacity={0.7}
+          className="w-9 h-9 rounded-full bg-white items-center justify-center mr-2.5"
+        >
+          {isLoading ? (
+            <ActivityIndicator size="small" color="#000" />
+          ) : (
+            <Icon
+              name={isPlaying ? "Pause" : "Play"}
+              size={16}
+              color="#000"
+              fill={isPlaying ? undefined : "#000"}
+            />
+          )}
+        </TouchableOpacity>
+      </Animated.View>
 
-      {/* Waveform bars */}
-      <View
-        className="flex-row items-center flex-1"
-        style={{ height: MAX_BAR_HEIGHT + 2 }}
-      >
-        {waveform.map((barHeight, i) => (
-          <View
-            key={i}
-            style={[
-              {
-                width: BAR_WIDTH,
-                height: barHeight,
-                borderRadius: BAR_WIDTH / 2,
-                marginRight: i < BAR_COUNT - 1 ? BAR_GAP : 0,
-                backgroundColor: i < playedBars ? "#fff" : "rgba(255,255,255,0.25)",
-              },
-            ]}
-          />
-        ))}
-      </View>
+      <GestureDetector gesture={composedGesture}>
+        <View
+          className="flex-row items-center flex-1"
+          style={{ height: MAX_BAR_HEIGHT + 4 }}
+          onLayout={onWaveformLayout}
+        >
+          {waveform.map((barHeight, i) => (
+            <WaveformBar
+              key={i}
+              height={barHeight}
+              index={i}
+              progress={progress}
+              isSeeking={isSeeking}
+            />
+          ))}
+        </View>
+      </GestureDetector>
 
-      {/* Time label */}
-      <Text className="text-[10px] text-theme-neutrals-400 ml-2 w-8 text-right">
+      <Text className="text-[10px] text-theme-neutrals-400 ml-2.5 min-w-[28px] text-right">
         {timeLabel}
       </Text>
     </View>

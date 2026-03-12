@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../ui/Icon';
 
 export type ChatHeaderMenuButtonProps = {
   onPress: () => void;
@@ -14,7 +14,7 @@ const ChatHeaderMenuButton: React.FC<ChatHeaderMenuButtonProps> = ({ onPress }) 
       accessibilityRole="button"
       accessibilityLabel="Open chat menu"
     >
-      <Ionicons name="ellipsis-vertical" size={20} color="#E5E7EB" />
+      <Icon name="EllipsisVertical" size={20} color="#E5E7EB" />
     </TouchableOpacity>
   );
 };

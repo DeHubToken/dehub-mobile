@@ -1,10 +1,4 @@
-/**
- * TipAmountSheet — Modal bottom sheet for selecting a voluntary tip amount
- * to attach to a DM message.
- *
- * Quick-select presets + custom text input.
- */
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -12,31 +6,50 @@ import {
   TouchableOpacity,
   Modal,
   Pressable,
-  KeyboardAvoidingView,
+  StyleSheet,
   Platform,
+  Image,
+  KeyboardAvoidingView,
 } from "react-native";
-import Animated, { FadeIn, SlideInDown } from "react-native-reanimated";
-import { Ionicons } from "@expo/vector-icons";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+  runOnJS,
+  Easing,
+} from "react-native-reanimated";
+import {
+  Gesture,
+  GestureDetector,
+  GestureHandlerRootView,
+} from "react-native-gesture-handler";
+import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Icon from "../ui/Icon";
+import { formatCompactNumber } from "../../libs";
+
+const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
 
 interface TipAmountSheetProps {
   visible: boolean;
   onClose: () => void;
   onConfirm: (amount: number) => void;
-  /** Current tip amount (if already set) — pre-fills the input. */
   currentAmount?: number;
-  /** Minimum tip allowed (default: 1). */
   minAmount?: number;
-  /** Current DHB balance of the user (for display & validation). */
   dhbBalance?: number | null;
 }
 
-const PRESETS = [1000, 10000, 100000, 250000, 500000, 1000000];
+const PRESETS = [500, 1_000, 5_000, 10_000, 25_000, 50_000, 100_000, 1_000_000] as const;
+
+const GOLD_LIGHT = "#D4A843";
+const GOLD_GLOW = "rgba(212,168,67,0.15)";
+const GOLD_BORDER = "rgba(212,168,67,0.5)";
+
+const SHEET_HEIGHT = 420;
 
 const formatPreset = (n: number): string => {
-  if (n >= 1000000) return `${n / 1000000}M`;
-  if (n >= 1000) return `${n / 1000}K`;
-  return String(n);
+  if (n >= 1_000_000) return `${(n / 1_000_000).toLocaleString()}`;
+  return n.toLocaleString();
 };
 
 const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
@@ -52,24 +65,75 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
     currentAmount > 0 ? String(currentAmount) : "",
   );
   const [selectedPreset, setSelectedPreset] = useState<number | null>(
-    currentAmount > 0 && PRESETS.includes(currentAmount) ? currentAmount : null,
+    currentAmount > 0 && (PRESETS as readonly number[]).includes(currentAmount) ? currentAmount : null,
   );
 
-  const handlePreset = useCallback(
-    (amount: number) => {
-      setSelectedPreset(amount);
-      setInputValue(String(amount));
-    },
-    [],
-  );
+  const translateY = useSharedValue(SHEET_HEIGHT);
+  const backdropOpacity = useSharedValue(0);
+  const [isFullyClosed, setIsFullyClosed] = useState(!visible);
+
+  useEffect(() => {
+    if (visible) {
+      setIsFullyClosed(false);
+      setInputValue(currentAmount > 0 ? String(currentAmount) : "");
+      setSelectedPreset(
+        currentAmount > 0 && (PRESETS as readonly number[]).includes(currentAmount) ? currentAmount : null,
+      );
+      translateY.value = withTiming(0, {
+        duration: 300,
+        easing: Easing.out(Easing.cubic),
+      });
+      backdropOpacity.value = withTiming(1, { duration: 250 });
+    } else {
+      translateY.value = withTiming(
+        SHEET_HEIGHT,
+        { duration: 220, easing: Easing.in(Easing.cubic) },
+        () => runOnJS(setIsFullyClosed)(true),
+      );
+      backdropOpacity.value = withTiming(0, { duration: 180 });
+    }
+  }, [visible]);
+
+  const closeSheet = useCallback(() => {
+    translateY.value = withTiming(
+      SHEET_HEIGHT,
+      { duration: 220, easing: Easing.in(Easing.cubic) },
+      () => runOnJS(onClose)(),
+    );
+    backdropOpacity.value = withTiming(0, { duration: 180 });
+  }, [onClose]);
+
+  const panGesture = Gesture.Pan()
+    .onUpdate((e) => {
+      if (e.translationY > 0) translateY.value = e.translationY;
+    })
+    .onEnd((e) => {
+      if (e.translationY > 80 || e.velocityY > 500) {
+        runOnJS(closeSheet)();
+      } else {
+        translateY.value = withTiming(0, {
+          duration: 200,
+          easing: Easing.out(Easing.cubic),
+        });
+      }
+    });
+
+  const sheetStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: translateY.value }],
+  }));
+
+  const backdropStyle = useAnimatedStyle(() => ({
+    opacity: backdropOpacity.value,
+  }));
+
+  const handlePreset = useCallback((amount: number) => {
+    setSelectedPreset(amount);
+    setInputValue(String(amount));
+  }, []);
 
   const handleInputChange = useCallback((val: string) => {
-    // Allow only numbers and single decimal
-    const cleaned = val.replace(/[^0-9.]/g, "");
-    // Prevent multiple decimals
-    const parts = cleaned.split(".");
-    const formatted = parts.length > 2 ? parts[0] + "." + parts.slice(1).join("") : cleaned;
-    setInputValue(formatted);
+    const cleaned = val.replace(/[^0-9]/g, "");
+    setInputValue(cleaned);
     setSelectedPreset(null);
   }, []);
 
@@ -77,174 +141,333 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
     const amount = parseFloat(inputValue);
     if (isNaN(amount) || amount < minAmount) return;
     onConfirm(amount);
-    onClose();
-  }, [inputValue, minAmount, onConfirm, onClose]);
+    closeSheet();
+  }, [inputValue, minAmount, onConfirm, closeSheet]);
 
   const handleRemoveTip = useCallback(() => {
     onConfirm(0);
-    onClose();
-  }, [onConfirm, onClose]);
+    closeSheet();
+  }, [onConfirm, closeSheet]);
 
   const numericValue = parseFloat(inputValue);
   const isValid = !isNaN(numericValue) && numericValue >= minAmount;
-  const exceedsBalance =
-    isValid && dhbBalance != null && numericValue > dhbBalance;
+  const exceedsBalance = isValid && dhbBalance != null && numericValue > dhbBalance;
   const canConfirm = isValid && !exceedsBalance;
 
-  if (!visible) return null;
+  if (!visible && isFullyClosed) return null;
 
   return (
     <Modal
       visible={visible}
       transparent
       animationType="none"
-      onRequestClose={onClose}
       statusBarTranslucent
+      onRequestClose={closeSheet}
     >
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={{ flex: 1 }}
-      >
-        <Pressable
-          onPress={onClose}
-          className="flex-1 bg-black/60 justify-end"
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={{ flex: 1 }}
         >
-          <Pressable onPress={() => {}}>
-            <Animated.View
-              entering={SlideInDown.duration(280).damping(28).stiffness(220)}
-              className="bg-theme-neutrals-900 rounded-t-3xl px-5 pt-5"
-              style={{ paddingBottom: Math.max(insets.bottom, 20) }}
-            >
-              {/* Handle */}
-              <View className="items-center mb-4">
-                <View className="w-10 h-1 bg-theme-neutrals-700 rounded-full" />
-              </View>
+          <Animated.View
+            style={[
+              StyleSheet.absoluteFill,
+              { backgroundColor: "rgba(0,0,0,0.5)" },
+              backdropStyle,
+            ]}
+          >
+            <Pressable style={{ flex: 1 }} onPress={closeSheet} />
+          </Animated.View>
 
-              {/* Header */}
-              <View className="flex-row items-center mb-5">
-                <Ionicons name="diamond" size={20} color="#3B82F6" />
-                <Text className="text-white text-[17px] font-semibold ml-2">
-                  Add a Tip
-                </Text>
-              </View>
+          <Animated.View
+            style={[
+              styles.sheet,
+              { paddingBottom: insets.bottom },
+              sheetStyle,
+            ]}
+          >
+            <BlurView
+              intensity={80}
+              tint="dark"
+              style={StyleSheet.absoluteFill}
+              {...(Platform.OS === "android"
+                ? { experimentalBlurMethod: "dimezisBlurView" }
+                : {})}
+            />
+            <View style={[StyleSheet.absoluteFill, styles.overlay]} />
 
-              <Text className="text-theme-neutrals-400 text-[13px] mb-4">
-                Attach DHB tokens as a tip to your message. The recipient will
-                see the tip amount on the message.
-                {minAmount > 1 && (
-                  <Text className="text-amber-400">
-                    {`\nMinimum ${Number(minAmount).toLocaleString()} DHB (covers message fee).`}
-                  </Text>
-                )}
+            <GestureDetector gesture={panGesture}>
+              <Animated.View style={styles.handleWrap}>
+                <View style={styles.handle} />
+              </Animated.View>
+            </GestureDetector>
+
+            <View style={styles.content}>
+              <View style={styles.headerRow}>
+                <Icon name="Gem" size={18} color={GOLD_LIGHT} />
+                <Text style={styles.headerTitle}>Add a Tip</Text>
+              </View>
+              <Text style={styles.recipientText}>
+                Attach DHB tokens as a tip to your message
+                {minAmount > 1 ? `. Min ${Number(minAmount).toLocaleString()} DHB.` : ""}
               </Text>
 
-              {/* Quick-select presets */}
-              <View className="flex-row flex-wrap gap-2 mb-4">
+              <Text style={styles.sectionLabel}>Quick amounts</Text>
+              <View style={styles.presetsGrid}>
                 {PRESETS.map((amount) => {
                   const isSelected = selectedPreset === amount;
                   return (
                     <TouchableOpacity
                       key={amount}
-                      onPress={() => handlePreset(amount)}
                       activeOpacity={0.7}
-                      className={`px-4 py-2 rounded-full border ${
-                        isSelected
-                          ? "bg-blue-600/20 border-blue-500"
-                          : "bg-theme-neutrals-800 border-theme-neutrals-700"
-                      }`}
+                      onPress={() => handlePreset(amount)}
+                      style={[
+                        styles.presetChip,
+                        isSelected && styles.presetChipActive,
+                      ]}
                     >
                       <Text
-                        className={`text-[13px] font-medium ${
-                          isSelected ? "text-blue-400" : "text-theme-neutrals-300"
-                        }`}
+                        style={[
+                          styles.presetText,
+                          isSelected && styles.presetTextActive,
+                        ]}
                       >
-                        {formatPreset(amount)} DHB
+                        {formatPreset(amount)}
                       </Text>
+                      <Image
+                        source={DEHUB_COIN}
+                        style={styles.coinIcon}
+                        resizeMode="contain"
+                      />
                     </TouchableOpacity>
                   );
                 })}
               </View>
 
-              {/* Custom amount input */}
-              <View className="flex-row items-center bg-theme-neutrals-800 rounded-xl px-4 py-3 mb-3">
-                <Ionicons name="diamond-outline" size={18} color="#A6A9AC" />
+              <Text style={styles.sectionLabel}>Or enter amount</Text>
+              <View style={styles.inputRow}>
+                <Image
+                  source={DEHUB_COIN}
+                  style={styles.inputCoinIcon}
+                  resizeMode="contain"
+                />
                 <TextInput
                   value={inputValue}
                   onChangeText={handleInputChange}
-                  placeholder="Custom amount"
-                  placeholderTextColor="#666"
-                  keyboardType="decimal-pad"
-                  className="flex-1 text-white text-[15px] ml-2 p-0"
+                  placeholder="Enter amount"
+                  placeholderTextColor="#6F7174"
+                  keyboardType="number-pad"
+                  style={styles.textInput}
                 />
-                <Text className="text-theme-neutrals-400 text-[13px]">DHB</Text>
               </View>
 
-              {/* Balance indicator */}
-              {dhbBalance != null && (
-                <View
-                  className={`flex-row items-center mb-4 px-3 py-1.5 rounded-lg self-start ${
-                    exceedsBalance ? "bg-red-500/10" : "bg-white/5"
-                  }`}
-                >
-                  <Ionicons
-                    name="wallet-outline"
-                    size={12}
-                    color={exceedsBalance ? "#EF4444" : "#A6A9AC"}
-                  />
-                  <Text
-                    className={`text-[11px] font-medium ml-1 ${
-                      exceedsBalance
-                        ? "text-red-400"
-                        : "text-theme-neutrals-400"
-                    }`}
-                  >
-                    {exceedsBalance
-                      ? `Insufficient balance · ${Number(dhbBalance).toLocaleString()} DHB`
-                      : `Balance: ${Number(dhbBalance).toLocaleString()} DHB`}
-                  </Text>
-                </View>
-              )}
+              <View style={styles.metaRow}>
+                <Text style={styles.balanceText}>
+                  Balance: {dhbBalance != null ? formatCompactNumber(Number(dhbBalance)) : "—"} DHB
+                </Text>
+                {exceedsBalance && (
+                  <Text style={styles.errorSmall}>Insufficient</Text>
+                )}
+              </View>
 
-              {/* Buttons */}
-              <View className="flex-row gap-3">
+              <View style={styles.buttonRow}>
                 {currentAmount > 0 && (
                   <TouchableOpacity
                     onPress={handleRemoveTip}
+                    style={styles.removeBtn}
                     activeOpacity={0.7}
-                    className="flex-1 items-center py-3 bg-theme-neutrals-800 rounded-xl"
                   >
-                    <Text className="text-theme-neutrals-400 text-[14px] font-medium">
-                      Remove Tip
-                    </Text>
+                    <Text style={styles.removeBtnText}>Remove Tip</Text>
                   </TouchableOpacity>
                 )}
                 <TouchableOpacity
                   onPress={handleConfirm}
                   disabled={!canConfirm}
                   activeOpacity={0.7}
-                  className={`flex-1 items-center py-3 rounded-xl ${
-                    canConfirm ? "bg-blue-600" : "bg-theme-neutrals-700"
-                  }`}
+                  style={[
+                    styles.confirmBtn,
+                    !canConfirm && styles.confirmBtnDisabled,
+                  ]}
                 >
                   <Text
-                    className={`text-[14px] font-semibold ${
-                      canConfirm ? "text-white" : "text-theme-neutrals-500"
-                    }`}
+                    style={[
+                      styles.confirmBtnText,
+                      !canConfirm && styles.confirmBtnTextDisabled,
+                    ]}
                   >
                     {exceedsBalance
                       ? "Insufficient DHB"
                       : isValid
-                      ? `Attach ${numericValue} DHB Tip`
-                      : "Enter amount"}
+                        ? `Attach ${numericValue.toLocaleString()} DHB`
+                        : "Enter amount"}
                   </Text>
                 </TouchableOpacity>
               </View>
-            </Animated.View>
-          </Pressable>
-        </Pressable>
-      </KeyboardAvoidingView>
+            </View>
+          </Animated.View>
+        </KeyboardAvoidingView>
+      </GestureHandlerRootView>
     </Modal>
   );
 };
+
+const styles = StyleSheet.create({
+  sheet: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    overflow: "hidden",
+  },
+  overlay: {
+    backgroundColor: "rgba(20,20,20,0.55)",
+    borderTopWidth: 1,
+    borderColor: "rgba(255,255,255,0.08)",
+  },
+  handleWrap: {
+    alignItems: "center",
+    paddingVertical: 10,
+  },
+  handle: {
+    width: 36,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: "rgba(255,255,255,0.2)",
+  },
+  content: {
+    paddingHorizontal: 20,
+    paddingBottom: 12,
+  },
+  headerRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    marginBottom: 4,
+  },
+  headerTitle: {
+    color: "#F9FBFF",
+    fontSize: 17,
+    fontWeight: "700",
+  },
+  recipientText: {
+    color: "#A6A9AC",
+    fontSize: 13,
+    textAlign: "center",
+    marginBottom: 16,
+  },
+  sectionLabel: {
+    color: "#8B8D90",
+    fontSize: 12,
+    marginBottom: 8,
+  },
+  presetsGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
+    marginBottom: 16,
+  },
+  presetChip: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
+    backgroundColor: "rgba(255,255,255,0.05)",
+  },
+  presetChipActive: {
+    borderColor: GOLD_BORDER,
+    backgroundColor: GOLD_GLOW,
+  },
+  presetText: {
+    color: "#F9FBFF",
+    fontSize: 14,
+    fontWeight: "600",
+  },
+  presetTextActive: {
+    color: GOLD_LIGHT,
+  },
+  coinIcon: {
+    width: 16,
+    height: 16,
+  },
+  inputRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "rgba(255,255,255,0.06)",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
+    paddingHorizontal: 14,
+    height: 48,
+    marginBottom: 8,
+  },
+  inputCoinIcon: {
+    width: 20,
+    height: 20,
+    marginRight: 10,
+  },
+  textInput: {
+    flex: 1,
+    color: "#F9FBFF",
+    fontSize: 15,
+    padding: 0,
+  },
+  metaRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 4,
+  },
+  balanceText: {
+    color: "#6F7174",
+    fontSize: 11,
+  },
+  errorSmall: {
+    color: "#EF4444",
+    fontSize: 11,
+  },
+  buttonRow: {
+    flexDirection: "row",
+    gap: 12,
+    marginTop: 16,
+  },
+  removeBtn: {
+    flex: 0.7,
+    height: 46,
+    borderRadius: 12,
+    backgroundColor: "rgba(255,255,255,0.08)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  removeBtnText: {
+    color: "#F9FBFF",
+    fontSize: 14,
+    fontWeight: "600",
+  },
+  confirmBtn: {
+    flex: 1,
+    height: 46,
+    borderRadius: 12,
+    backgroundColor: GOLD_LIGHT,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  confirmBtnDisabled: {
+    backgroundColor: "rgba(255,255,255,0.08)",
+  },
+  confirmBtnText: {
+    color: "#1A1A1A",
+    fontSize: 14,
+    fontWeight: "700",
+  },
+  confirmBtnTextDisabled: {
+    color: "#6F7174",
+  },
+});
 
 export default memo(TipAmountSheetComponent);

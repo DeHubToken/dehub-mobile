@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import Icon, { type IconName } from "../ui/Icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Avatar from "../common/Avatar";
 import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
@@ -45,7 +45,7 @@ const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
 /* ─── ActionRow ────────────────────────────────────────────── */
 
 interface ActionRowProps {
-  icon: keyof typeof Ionicons.glyphMap;
+  icon: IconName;
   label: string;
   onPress: () => void;
   destructive?: boolean;
@@ -58,7 +58,7 @@ const ActionRow: React.FC<ActionRowProps> = ({ icon, label, onPress, destructive
     className="flex-row items-center px-4 py-3"
   >
     <View className="w-8 items-center">
-      <Ionicons name={icon} size={20} color={destructive ? "#EF4444" : "#F9FBFF"} />
+      <Icon name={icon} size={20} color={destructive ? "#EF4444" : "#F9FBFF"} />
     </View>
     <Text
       className={`ml-3 text-[15px] ${destructive ? "text-red-400" : "text-theme-neutrals-100"}`}
@@ -170,7 +170,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
       {/* Pinned indicator */}
       {message.isPinned && (
         <View className="flex-row items-center gap-1 mt-1">
-          <MaterialCommunityIcons name="pin" size={11} color="rgba(255,255,255,0.3)" style={{ transform: [{ rotate: '45deg' }] }} />
+          <Icon name="Pin" size={11} color="rgba(255,255,255,0.3)" />
           <Text className="text-white/30 text-[10px]">Pinned</Text>
         </View>
       )}
@@ -375,15 +375,15 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
             {/* Action rows */}
             <View className="py-1">
               {onReply && (
-                <ActionRow icon="arrow-undo-outline" label="Reply" onPress={handleReply} />
+                <ActionRow icon="Reply" label="Reply" onPress={handleReply} />
               )}
 
               {hasContent && (
-                <ActionRow icon="copy-outline" label="Copy" onPress={handleCopy} />
+                <ActionRow icon="Copy" label="Copy" onPress={handleCopy} />
               )}
 
               {canEdit && onEdit && (
-                <ActionRow icon="pencil-outline" label="Edit" onPress={handleEdit} />
+                <ActionRow icon="Pencil" label="Edit" onPress={handleEdit} />
               )}
 
               {isModerator && onPin && (
@@ -393,11 +393,10 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
                   className="flex-row items-center px-4 py-3"
                 >
                   <View className="w-8 items-center">
-                    <MaterialCommunityIcons
-                      name={message.isPinned ? "pin-off" : "pin"}
+                    <Icon
+                      name={message.isPinned ? "PinOff" : "Pin"}
                       size={20}
                       color="#F9FBFF"
-                      style={{ transform: [{ rotate: '45deg' }] }}
                     />
                   </View>
                   <Text className="ml-3 text-[15px] text-theme-neutrals-100">
@@ -407,7 +406,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
               )}
 
               {canDelete && onDelete && (
-                <ActionRow icon="trash-outline" label="Delete" onPress={handleDelete} destructive />
+                <ActionRow icon="Trash2" label="Delete" onPress={handleDelete} destructive />
               )}
             </View>
           </View>

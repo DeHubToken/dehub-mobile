@@ -17,8 +17,8 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
-import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import Icon from "../components/ui/Icon";
 
 import ScreenHeader from "../components/ScreenHeader";
 import MessageBubble from "../components/DM/MessageBubble";
@@ -33,6 +33,8 @@ import DmFeeBanner from "../components/DM/DmFeeBanner";
 import NewChatIntro from "../components/DM/NewChatIntro";
 import TipAmountSheet from "../components/DM/TipAmountSheet";
 import FullScreenVideoPlayer from "../components/common/FullScreenVideoPlayer";
+import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../components/Comments/VoiceNoteRecorder";
+import type { VoiceNoteResult } from "../components/Comments/VoiceNoteRecorder";
 import Avatar from "../components/common/Avatar";
 import ChatHeaderMenuButton from "../components/Chat/ChatHeaderMenuButton";
 import ChatMenu from "../components/Chat/ChatMenu";
@@ -135,7 +137,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const controllerContract = useStreamControllerContract();
 
   const inputLift = kbVisible ? kbHeight : 0;
-  const listBottomPadding = 88 + inputLift + (insets.bottom || 0);
+  const [inputBarHeight, setInputBarHeight] = useState(100);
+  const listBottomPadding = inputBarHeight + inputLift + (insets.bottom || 0);
 
   const convId = route?.params?.conversationId as ID | undefined;
   const targetAddress = route?.params?.targetAddress;
@@ -201,6 +204,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const listRef = useRef<FlatList<DmMessage> | null>(null);
   const isAtBottomRef = useRef(true);
   const [showJumpBtn, setShowJumpBtn] = useState(false);
+  const [highlightedId, setHighlightedId] = useState<string | null>(null);
 
 
   const currentConvId = convId || createdConvIdRef.current;
@@ -304,6 +308,27 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     isAtBottomRef.current = atBottom;
     setShowJumpBtn(!atBottom);
   }, []);
+
+  const highlightAndScroll = useCallback(
+    (messageId: string) => {
+      const idx = messageList.findIndex((m) => m._id === messageId);
+      if (idx < 0) return;
+      setHighlightedId(null);
+      listRef.current?.scrollToIndex({ index: idx, animated: true, viewPosition: 0.3 });
+      setTimeout(() => {
+        setHighlightedId(messageId);
+        setTimeout(() => setHighlightedId(null), 4000);
+      }, 300);
+    },
+    [messageList],
+  );
+
+  const handleReplyPress = useCallback(
+    (messageId: string) => {
+      highlightAndScroll(messageId);
+    },
+    [highlightAndScroll],
+  );
 
   const onContentSizeChange = useCallback(() => {
     if (isAtBottomRef.current) scrollToBottom();
@@ -462,13 +487,17 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     getMessages(currentConvId, { address, limit: PAGE_SIZE })
       .then((resp) => {
         const msgs = resp?.messages || [];
-        // Initial messages loaded
         if (msgs.length) {
           const normalized = msgs.map((m: any) => normalizeAuthor(m));
+          const mineFromServer = normalized.filter((m: any) => m.author === "me");
+          log.info("[TICK_DEBUG] initial fetch — my messages isRead states:", mineFromServer.map((m: any) => ({
+            msgId: m._id,
+            content: m.content?.slice(0, 30),
+            isRead: m.isRead,
+          })));
           dmActions.upsertMessages(currentConvId, normalized);
         }
         if (msgs.length < PAGE_SIZE) setHasMore(false);
-        // Mark as read AFTER messages load so store isn't empty
         if (userId) dmActions.markAllRead(currentConvId, userId);
       })
       .catch((e) => log.error("fetch initial messages", e));
@@ -508,6 +537,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
   useEffect(() => {
     if (!currentConvId || !userId) return;
+    log.info("[MARK_AS_READ] emitting markAsRead", { dmId: currentConvId, userId, lastMsgId });
     ws.emitAuthed(DMSocketEvent.markAsRead, { dmId: currentConvId });
     dmActions.markAllRead(currentConvId, userId);
   }, [currentConvId, userId, ws, lastMsgId]);
@@ -555,7 +585,15 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     // Read receipt — ignore self-receipts (our own markAsRead echoed back)
     unsubs.push(
       ws.on(DMSocketEvent.readReceipt, (payload: ReadReceiptResponse) => {
+        log.info("[READ_RECEIPT] received", {
+          dmId: payload.dmId,
+          readBy: payload.readBy,
+          currentUserId: userId,
+          isSelf: String(payload.readBy) === String(userId),
+          matchesConvId: payload.dmId === currentConvId,
+        });
         if (payload.dmId === currentConvId && String(payload.readBy) !== String(userId)) {
+          log.info("[READ_RECEIPT] applying — peer read our messages");
           dmActions.applyReadReceipt(payload);
         }
       }),
@@ -897,9 +935,37 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     [user, address, dmDisabled, dmReason, dmFee, currentConvId, userId, scrollToBottom, replyTo, tipAmount],
   );
 
+  const handleVoiceComplete = useCallback(
+    (result: VoiceNoteResult) => {
+      if (!user || dmDisabled || !result.uri) return;
+      dmSendQueue.sendMedia({
+        conversationId: currentConvId || "temp",
+        userId: userId || "me",
+        address,
+        uri: result.uri,
+        mediaType: "image",
+        mimeType: result.mimeType,
+        msgType: "voice",
+        voiceDuration: Math.round(result.durationMs / 1000),
+        replyTo,
+        dmFee,
+      });
+      scrollToBottom();
+      setReplyTo(null);
+    },
+    [user, dmDisabled, currentConvId, userId, address, replyTo, dmFee, scrollToBottom],
+  );
+
+  const handleVoiceCancel = useCallback(() => {}, []);
+
+  const voiceRecorder = useVoiceRecorder({
+    onRecordingComplete: handleVoiceComplete,
+    onCancel: handleVoiceCancel,
+  });
+
   const onStartVoice = useCallback(() => {
-    log.debug("voice record start requested");
-  }, []);
+    voiceRecorder.startRecording();
+  }, [voiceRecorder]);
 
 
   const onLongPressMessage = useCallback(
@@ -1133,14 +1199,18 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           if (id) showUserProfile(id, { source: "chat-header" });
         }}
       >
-        <Avatar uri={peerAvatarUri} size={32} name={peer.displayName || peer.username} />
+        <Avatar uri={peerAvatarUri} size={32} rounded={false} name={peer.displayName || peer.username} />
       </TouchableOpacity>
     ),
     [peerAvatarUri, peer.username, peer.address, showUserProfile, peer.displayName],
   );
 
   const RightHeader = useMemo(
-    () => <ChatHeaderMenuButton onPress={openMenu} />,
+    () => (
+      <View className="flex-row items-center">
+        <ChatHeaderMenuButton onPress={openMenu} />
+      </View>
+    ),
     [openMenu],
   );
 
@@ -1163,11 +1233,13 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             onVideoPress={setVideoUri}
             localMediaUri={(item as OptimisticMessage)?._localMediaUri}
             onSwipeToReply={handleSwipeToReply}
+            onReplyPress={handleReplyPress}
+            highlighted={highlightedId === item._id}
           />
         </View>
       );
     },
-    [isMine, onLongPressMessage, handleSwipeToReply],
+    [isMine, onLongPressMessage, handleSwipeToReply, handleReplyPress, highlightedId],
   );
 
   const keyExtractor = useCallback((item: DmMessage) => item._id, []);
@@ -1219,7 +1291,6 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           isBlocked={iBlockedThem}
           onBlockUser={onBlockUser}
           onUnblockUser={onUnblockUser}
-          onSearchChat={onSearchChat}
           onClearChat={currentConvId ? onClearChat : undefined}
           onToggleFreeAccess={myDmStatus?.perMessageFee && myDmStatus.perMessageFee > 0 ? onToggleFreeAccess : undefined}
           peerHasFreeAccess={
@@ -1276,7 +1347,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 activeOpacity={0.8}
                 className="bg-theme-neutrals-700/90 rounded-full px-3 py-2 flex-row items-center"
               >
-                <Ionicons name="chevron-down" size={16} color="#E5E7EB" />
+                <Icon name="ChevronDown" size={16} color="#E5E7EB" />
                 <Text className="text-theme-neutrals-100 text-xs ml-1">New</Text>
               </TouchableOpacity>
             </Animated.View>
@@ -1286,8 +1357,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           <View
             className="absolute left-0 right-0 bottom-0 bg-theme-neutrals-900"
             style={{ marginBottom: inputLift, paddingBottom: insets.bottom || 0 }}
+            onLayout={(e) => setInputBarHeight(e.nativeEvent.layout.height)}
           >
-            {dmDisabled ? (
+            {voiceRecorder.isRecording ? (
+              <VoiceNoteRecordingOverlay recorder={voiceRecorder} />
+            ) : dmDisabled ? (
               <View className="px-4 py-3 bg-theme-neutrals-800 border-t border-theme-neutrals-700/50">
                 <Text className="text-theme-neutrals-400 text-xs">
                   {dmReason || "This account is not accepting messages right now."}
