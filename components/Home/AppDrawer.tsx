@@ -28,6 +28,8 @@ import { useUser, useAuthState } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { WEBSITE_LINK } from "../../config/links";
 import { getAvatarUrl } from "../../libs/misc";
+import { toastInfo } from "../../libs";
+import { openInApp } from "../../libs/links.utils";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const DRAWER_WIDTH = SCREEN_WIDTH * 0.82;
@@ -44,42 +46,54 @@ interface DrawerItem {
   screen?: string;
   params?: Record<string, any>;
   url?: string;
+  disabled?: boolean;
+  disabledMessage?: string;
 }
 
-const PRIMARY_ITEMS: Omit<DrawerItem, "params">[] = [
+const AUTH_ITEMS: Omit<DrawerItem, "params">[] = [
   { icon: "User", label: "Profile", screen: ScreenNames.Profile },
-  { icon: "LayoutGrid", label: "Your Posts", screen: ScreenNames.YourVideos },
-  { icon: "Heart", label: "Liked Posts", screen: ScreenNames.LikedVideos },
-  { icon: "Bookmark", label: "Bookmarks", screen: ScreenNames.SavedPosts },
+  { icon: "Library", label: "My Library", screen: ScreenNames.MyLibrary },
   { icon: "FileText", label: "Drafts", screen: ScreenNames.Drafts },
+  { icon: "Banknote", label: "Dpay", screen: ScreenNames.Dpay },
+  // { icon: "Wallet", label: "Wallet", disabled: true, disabledMessage: "Wallet coming soon" },
+  // { icon: "Terminal", label: "Command", disabled: true, disabledMessage: "Command coming soon" },
+  { icon: "Settings", label: "Settings", screen: ScreenNames.AccountSettings },
+];
+
+const PUBLIC_ITEMS: Omit<DrawerItem, "params">[] = [
   { icon: "Trophy", label: "Leaderboard", screen: ScreenNames.Leaderboard },
-  { icon: "Settings", label: "Settings", screen: ScreenNames.Settings },
-  { icon: "Wallet", label: "Wallet", screen: ScreenNames.Dpay },
 ];
 
 const SECONDARY_ITEMS: DrawerItem[] = [
-  { icon: "BookOpen", label: "Docs", url: "https://docs.dhb.gg" },
-  { icon: "FileText", label: "Blog", url: `${WEBSITE_LINK}/blog` },
-  { icon: "Lightbulb", label: "Requests", url: `${WEBSITE_LINK}/requests` },
+  { icon: "BookOpen", label: "Docs", url: `${WEBSITE_LINK}/docs` },
+  { icon: "FileText", label: "Blog", url: `${WEBSITE_LINK}/docs/blog` },
+  { icon: "Lightbulb", label: "Requests", url: `${WEBSITE_LINK}/features` },
   { icon: "ShieldCheck", label: "Governance", url: `${WEBSITE_LINK}/governance` },
-  { icon: "Building2", label: "Careers", url: `${WEBSITE_LINK}/careers` },
-  { icon: "BookOpenText", label: "Glossary", url: `${WEBSITE_LINK}/glossary` },
+  { icon: "Building2", label: "Careers", url: `${WEBSITE_LINK}/app/jobs` },
+  { icon: "BookOpenText", label: "Glossary", url: `${WEBSITE_LINK}/app/glossary` },
 ];
 
 interface MenuItemProps {
   icon: IconName;
   label: string;
   onPress: () => void;
+  disabled?: boolean;
 }
 
-const MenuItem = memo<MenuItemProps>(({ icon, label, onPress }) => (
+const MenuItem = memo<MenuItemProps>(({ icon, label, onPress, disabled }) => (
   <TouchableOpacity
     className="flex-row items-center py-3.5 px-5"
-    activeOpacity={0.6}
+    activeOpacity={disabled ? 1 : 0.6}
     onPress={onPress}
+    style={disabled ? { opacity: 0.45 } : undefined}
   >
-    <Icon name={icon} size={22} color="#E5E7EB" strokeWidth={1.8} />
-    <Text className="text-white text-[15px] font-medium ml-4">{label}</Text>
+    <Icon name={icon} size={22} color={disabled ? "#6b7280" : "#E5E7EB"} strokeWidth={1.8} />
+    <Text className={`text-[15px] font-medium ml-4 ${disabled ? "text-neutral-500" : "text-white"}`}>{label}</Text>
+    {disabled && (
+      <View className="ml-auto bg-white/10 rounded-full px-2 py-0.5">
+        <Text className="text-[10px] text-neutral-400 font-medium">Soon</Text>
+      </View>
+    )}
   </TouchableOpacity>
 ));
 
@@ -170,9 +184,13 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
 
   const handleItemPress = useCallback(
     (item: DrawerItem) => {
+      if (item.disabled) {
+        toastInfo(item.disabledMessage ?? "Coming soon");
+        return;
+      }
       if (item.url) {
         onClose();
-        Linking.openURL(item.url);
+        openInApp(item.url);
       } else if (item.screen) {
         navigate(item.screen, item.params);
       }
@@ -282,8 +300,25 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
               </View>
             )}
 
+            {isSignedIn && (
+              <>
+                <View className="py-2">
+                  {AUTH_ITEMS.map((item) => (
+                    <MenuItem
+                      key={item.label}
+                      icon={item.icon}
+                      label={item.label}
+                      disabled={item.disabled}
+                      onPress={() => handleItemPress(item)}
+                    />
+                  ))}
+                </View>
+                <View className="h-px bg-white/10 mx-5" />
+              </>
+            )}
+
             <View className="py-2">
-              {PRIMARY_ITEMS.map((item) => (
+              {PUBLIC_ITEMS.map((item) => (
                 <MenuItem
                   key={item.label}
                   icon={item.icon}

@@ -403,9 +403,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         ListHeaderComponent={headerComponent as any}
-        initialNumToRender={4}
-        maxToRenderPerBatch={4}
-        windowSize={7}
+        initialNumToRender={3}
+        maxToRenderPerBatch={3}
+        windowSize={5}
         removeClippedSubviews
         updateCellsBatchingPeriod={80}
         contentContainerStyle={

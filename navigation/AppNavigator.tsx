@@ -19,6 +19,7 @@ import YourVideosScreen from "../screens/YourVideosScreen";
 import LikedVideosScreen from "../screens/LikedVideosScreen";
 import SavedPostsScreen from "../screens/SavedPostsScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 import SignInScreen from "../screens/auth/SignInScreen";
 import UploadScreen from "../screens/UploadScreen";
 import LiveProducerScreen from "../screens/LiveProducerScreen";
@@ -27,6 +28,7 @@ import DpayScreen from "../screens/DpayScreen";
 import FollowListScreen from "../screens/FollowListScreen";
 import RepostQuoteListScreen from "../screens/RepostQuoteListScreen";
 import DraftsScreen from '../screens/DraftsScreen';
+import MyLibraryScreen from '../screens/MyLibraryScreen';
 import PostResolverScreen from '../screens/PostResolverScreen';
 import { LivepeerProvider } from "../config/livepeer.config";
 import ChatScreen from "../screens/ChatScreen";
@@ -266,6 +268,14 @@ export default function AppNavigator() {
             <Stack.Screen
               name={ScreenNames.SavedPosts}
               component={SavedPostsScreen}
+            />
+            <Stack.Screen
+              name={ScreenNames.MyLibrary}
+              component={MyLibraryScreen}
+            />
+            <Stack.Screen
+              name={ScreenNames.Profile}
+              component={ProfileScreen}
             />
             <Stack.Screen
               name={ScreenNames.EditProfile}

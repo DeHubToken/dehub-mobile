@@ -15,11 +15,11 @@ import {
 } from "react-native";
 import FeedCard from "../Home/FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
-import { getMyPosts, getLikedPosts, getSavedPosts } from "../../services/user.service";
+import { getMyPosts, getLikedPosts, getSavedPosts, getUnlockedPosts } from "../../services/user.service";
 import { GetNFTsResponse, GetNFTsResult } from "../../services/nft.service";
 import Icon from "../ui/Icon";
 
-type PostVariant = "myPosts" | "liked" | "saved";
+type PostVariant = "myPosts" | "liked" | "saved" | "unlocked";
 
 interface PostsInfiniteListProps {
   variant: PostVariant;
@@ -50,6 +50,8 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
           return getLikedPosts(opts);
         case "saved":
           return getSavedPosts(opts);
+        case "unlocked":
+          return getUnlockedPosts(opts);
         case "myPosts":
         default:
           return getMyPosts(opts);
@@ -130,6 +132,8 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
         return "No liked posts yet.";
       case "saved":
         return "No saved posts yet.";
+      case "unlocked":
+        return "No unlocked posts yet.";
       case "myPosts":
       default:
         return "No posts yet.";
@@ -147,7 +151,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
     return (
       <View className="py-16 items-center px-6">
         <Icon
-          name={variant === "saved" ? "Bookmark" : variant === "liked" ? "Heart" : "LayoutGrid"}
+          name={variant === "saved" ? "Bookmark" : variant === "liked" ? "Heart" : variant === "unlocked" ? "LockOpen" : "LayoutGrid"}
           size={48}
           color="#6b7280"
         />

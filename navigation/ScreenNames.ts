@@ -35,6 +35,7 @@ export enum ScreenNames {
   RepostQuoteList = 'RepostQuoteList',
   PrivacySettings = 'PrivacySettings',
   Drafts = 'Drafts',
+  MyLibrary = 'MyLibrary',
   PostResolver = 'PostResolver',
   LiveChat = 'LiveChat',
   LiveChatInfo = 'LiveChatInfo',

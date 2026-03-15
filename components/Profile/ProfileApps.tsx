@@ -25,14 +25,14 @@ const ProfileApps: React.FC = () => {
       active: true,
     },
     {
-      label: "Play to Earn",
-      icon: "Gamepad2",
-      active: false,
-    },
-    {
       label: "Global Chat",
       icon: "MessagesSquare",
       active: true,
+    },
+    {
+      label: "Play to Earn",
+      icon: "Gamepad2",
+      active: false,
     },
     {
       label: "More Coming Soon",

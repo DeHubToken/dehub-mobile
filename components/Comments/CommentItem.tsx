@@ -8,6 +8,8 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import Icon from "../ui/Icon";
+import TranslateButton from "../ui/TranslateButton";
+import { useTranslation } from "../../hooks/useTranslation";
 import Avatar from "../common/Avatar";
 import VoiceNotePlayer from "./VoiceNotePlayer";
 import { getAvatarUrl } from "../../libs";
@@ -119,6 +121,12 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                        currentUser?.username === user?.username;
 
   const timeAgo = formatShortTime(comment.createdAt);
+
+  const translationTexts = useMemo(() => ({ content: comment.content || '' }), [comment.content]);
+  const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate } =
+    useTranslation(translationTexts, (comment as any).detectedLanguage);
+
+  const displayContent = isTranslated ? (translatedTexts.content || comment.content) : comment.content;
 
   const parsedContent = useMemo(() => {
     const content = comment.content || "";
@@ -263,22 +271,34 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
 
           {comment.content ? (
             <Text style={{ fontSize: 13, color: "#C2C4C7", marginTop: 3, lineHeight: 18 }}>
-              {parsedContent.map((part, idx) =>
-                part.isMention ? (
-                  <Text
-                    key={idx}
-                    style={{ fontWeight: "700", color: "#60A5FA" }}
-                    onPress={() => handleMentionPress(part.username!)}
-                    suppressHighlighting
-                  >
-                    {part.text}
-                  </Text>
-                ) : (
-                  <Text key={idx}>{part.text}</Text>
-                )
-              )}
+              {isTranslated
+                ? displayContent
+                : parsedContent.map((part, idx) =>
+                    part.isMention ? (
+                      <Text
+                        key={idx}
+                        style={{ fontWeight: "700", color: "#60A5FA" }}
+                        onPress={() => handleMentionPress(part.username!)}
+                        suppressHighlighting
+                      >
+                        {part.text}
+                      </Text>
+                    ) : (
+                      <Text key={idx}>{part.text}</Text>
+                    )
+                  )}
             </Text>
           ) : null}
+
+          {showTranslate && (
+            <TranslateButton
+              isTranslated={isTranslated}
+              isLoading={translating}
+              detectedLanguage={(comment as any).detectedLanguage}
+              onTranslate={handleTranslate}
+              onShowOriginal={handleShowOriginal}
+            />
+          )}
 
           {comment.imageUrl ? (
             <View style={{ marginTop: 6, borderRadius: 10, overflow: "hidden", maxWidth: 220, backgroundColor: "rgba(255,255,255,0.04)" }}>

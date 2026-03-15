@@ -3,15 +3,13 @@ import { View, Text, TouchableOpacity, RefreshControl, ScrollView } from "react-
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileStats from "../components/Profile/ProfileStats";
 import ProfileAssets from "../components/Profile/ProfileAssets";
-// Removed inline ProfileTabs usage; menu now navigates to a dedicated screen.
-import ProfileMenu from "../components/Profile/ProfileMenu";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { theme } from "../theme";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import ProfileApps from "../components/Profile/ProfileApps";
-import { Ionicons } from "@expo/vector-icons";
 import ProfileSignInPrompt from "../components/Profile/ProfileSignInPrompt";
+import ScreenHeader from "../components/ScreenHeader";
 
 
 const REFRESH_INTERVAL_MS = 60_000; // 1 min periodic refresh
@@ -63,6 +61,7 @@ const ProfileScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
+      <ScreenHeader title="Profile" />
       <ScrollView
         contentContainerStyle={{ paddingBottom: 0, flexGrow: 0 }}
         refreshControl={
@@ -76,7 +75,6 @@ const ProfileScreen: React.FC = () => {
         <ProfileHeader />
         <ProfileAssets />
         <ProfileApps />
-        <ProfileMenu />
       </ScrollView>
     </View>
   );

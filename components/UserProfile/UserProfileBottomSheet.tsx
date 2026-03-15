@@ -84,6 +84,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     handleMessage,
   } = useUserProfileData(visible, usernameOrAddress);
 
+
   const handleEditProfile = useCallback(() => {
     onClose();
     (navigation as any).navigate(ScreenNames.EditProfile);
