@@ -9,7 +9,9 @@ import {
   Platform,
   UIManager,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Animated, { useSharedValue, useAnimatedStyle, withSpring } from "react-native-reanimated";
+import { LinearGradient } from "expo-linear-gradient";
+import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { 
   getNotifications, 
@@ -35,50 +37,158 @@ import {
   NON_CLICKABLE_TYPES,
 } from "../services/enums/notification.enums";
 
-const CATEGORY_TABS: { key: NotificationCategory | 'all'; label: string }[] = [
-  { key: 'all', label: 'All' },
-  { key: 'engagement', label: 'Engagement' },
-  { key: 'social', label: 'Social' },
-  { key: 'monetization', label: 'Money' },
-  { key: 'content', label: 'Content' },
-  { key: 'system', label: 'System' },
+type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'subscriptions' | 'tips' | 'livestreams';
+
+const TYPE_TABS: { key: NotificationTypeFilter; icon: string; label: string }[] = [
+  { key: 'all', icon: 'Bell', label: 'All' },
+  { key: 'likes', icon: 'ThumbsUp', label: 'Likes' },
+  { key: 'follows', icon: 'UserPlus', label: 'Follows' },
+  { key: 'comments', icon: 'MessageSquareText', label: 'Comments' },
+  { key: 'reposts', icon: 'Repeat2', label: 'Reposts' },
+  { key: 'subscriptions', icon: 'Users', label: 'Subs' },
+  { key: 'tips', icon: 'Gem', label: 'Tips' },
+  { key: 'livestreams', icon: 'Zap', label: 'Live' },
 ];
 
-interface CategoryTabsProps {
-  selected: NotificationCategory | 'all';
-  onSelect: (category: NotificationCategory | 'all') => void;
+const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
+  all: [],
+  likes: [NotificationType.LIKE, NotificationType.COMMENT_LIKE],
+  follows: [NotificationType.FOLLOWING, NotificationType.FOLLOW_REQUEST, NotificationType.FOLLOW_REQUEST_ACCEPTED],
+  comments: [NotificationType.COMMENT, NotificationType.COMMENT_REPLY, NotificationType.MENTION],
+  reposts: [NotificationType.REPOST, NotificationType.QUOTE],
+  subscriptions: [NotificationType.SUBSCRIPTION, NotificationType.PPV_PURCHASE],
+  tips: [NotificationType.TIP, NotificationType.BOUNTY_AVAILABLE, NotificationType.BOUNTY_CLAIMED],
+  livestreams: [NotificationType.LIVESTREAM_START],
+};
+
+const SPRING_CONFIG = { stiffness: 400, damping: 30 };
+const TAB_HEIGHT = 36;
+
+interface TypeTabsProps {
+  selected: NotificationTypeFilter;
+  onSelect: (filter: NotificationTypeFilter) => void;
   disabled?: boolean;
+  counts: Record<NotificationTypeFilter, number>;
 }
 
-const CategoryTabs: React.FC<CategoryTabsProps> = ({ selected, onSelect, disabled }) => (
-  <View className="flex-row px-4 py-2 border-b border-theme-neutrals-800">
-    <FlatList
-      horizontal
-      data={CATEGORY_TABS}
-      showsHorizontalScrollIndicator={false}
-      keyExtractor={(item) => item.key}
-      renderItem={({ item }) => (
-        <TouchableOpacity
-          onPress={() => onSelect(item.key)}
-          disabled={disabled}
-          activeOpacity={0.7}
-          className={`px-4 py-2 mr-2 rounded-full ${
-            selected === item.key ? 'bg-theme-primary-500' : 'bg-theme-neutrals-800'
-          }`}
-          style={disabled && selected !== item.key ? { opacity: 0.5 } : undefined}
+const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, disabled, counts }) => {
+  const tabWidths = useRef<Record<string, number>>({});
+  const tabPositions = useRef<Record<string, number>>({});
+  const indicatorX = useSharedValue(0);
+  const indicatorW = useSharedValue(0);
+
+  const indicatorStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: indicatorX.value }],
+    width: indicatorW.value,
+  }));
+
+  const handleLayout = useCallback((key: string, x: number, width: number) => {
+    tabWidths.current[key] = width;
+    tabPositions.current[key] = x;
+    if (key === selected) {
+      indicatorX.value = withSpring(x, SPRING_CONFIG);
+      indicatorW.value = withSpring(width, SPRING_CONFIG);
+    }
+  }, [selected, indicatorX, indicatorW]);
+
+  useEffect(() => {
+    const x = tabPositions.current[selected];
+    const w = tabWidths.current[selected];
+    if (x !== undefined && w !== undefined) {
+      indicatorX.value = withSpring(x, SPRING_CONFIG);
+      indicatorW.value = withSpring(w, SPRING_CONFIG);
+    }
+  }, [selected, indicatorX, indicatorW]);
+
+  return (
+    <View className="border-b border-zinc-800/50" style={{ paddingHorizontal: 12, paddingVertical: 8 }}>
+      <View style={{ flexDirection: 'row', gap: 8, position: 'relative' }}>
+        <Animated.View
+          style={[
+            indicatorStyle,
+            { position: 'absolute', top: 0, height: TAB_HEIGHT, borderRadius: 12, overflow: 'hidden' },
+          ]}
         >
-          <Text
-            className={`text-xs font-medium ${
-              selected === item.key ? 'text-white' : 'text-theme-neutrals-400'
-            }`}
-          >
-            {item.label}
-          </Text>
-        </TouchableOpacity>
-      )}
-    />
-  </View>
-);
+          <LinearGradient
+            colors={['rgba(255,255,255,0.20)', 'rgba(255,255,255,0.10)', 'rgba(255,255,255,0.05)']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{
+              flex: 1,
+              borderRadius: 12,
+              borderWidth: 1,
+              borderColor: 'rgba(255,255,255,0.30)',
+            }}
+          />
+          <View
+            style={{
+              position: 'absolute',
+              top: 1,
+              left: '10%',
+              right: '10%',
+              height: 1,
+              backgroundColor: 'rgba(255,255,255,0.4)',
+              borderRadius: 1,
+            }}
+          />
+        </Animated.View>
+
+        {TYPE_TABS.map((tab) => {
+          const isActive = selected === tab.key;
+          const count = counts[tab.key];
+          return (
+            <TouchableOpacity
+              key={tab.key}
+              onPress={() => onSelect(tab.key)}
+              disabled={disabled}
+              activeOpacity={0.7}
+              onLayout={(e) => {
+                const { x, width } = e.nativeEvent.layout;
+                handleLayout(tab.key, x, width);
+              }}
+              style={[
+                {
+                  height: TAB_HEIGHT,
+                  paddingHorizontal: 10,
+                  borderRadius: 12,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 4,
+                },
+                !isActive && { backgroundColor: '#27272a' },
+                disabled && !isActive ? { opacity: 0.5 } : undefined,
+              ]}
+            >
+              <Icon
+                name={tab.icon as any}
+                size={14}
+                color={isActive ? '#fff' : '#a1a1aa'}
+              />
+              {count > 0 && (
+                <View
+                  style={{
+                    backgroundColor: isActive ? 'rgba(255,255,255,0.20)' : '#ef4444',
+                    borderRadius: 8,
+                    minWidth: 16,
+                    height: 16,
+                    paddingHorizontal: 4,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Text style={{ color: '#fff', fontSize: 10, fontWeight: '700' }}>
+                    {count > 99 ? '99+' : count}
+                  </Text>
+                </View>
+              )}
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    </View>
+  );
+});
 
 /**
  * Check if notification is clickable based on type and available data
@@ -150,7 +260,7 @@ const NotificationScreen = () => {
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState<NotificationCategory | 'all'>('all');
+  const [selectedFilter, setSelectedFilter] = useState<NotificationTypeFilter>('all');
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -167,11 +277,6 @@ const NotificationScreen = () => {
       UIManager.setLayoutAnimationEnabledExperimental(true);
     }
   }, []);
-
-  const navigateToVideo = useCallback((tokenId: number, commentId?: string) => {
-    // Navigate immediately - let VideoPlayer handle loading
-    navigation.navigate(ScreenNames.VideoPlayer, { tokenId, commentId });
-  }, [navigation]);
 
   const navigateToFeed = useCallback((tokenId: number, commentId?: string) => {
     navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
@@ -232,40 +337,24 @@ const NotificationScreen = () => {
         break;
 
       case 'like':
-        if (tokenId) {
-          if (postType === 'feed-images' || postType === 'feed-simple' || postType === 'feed-audio') {
-            navigateToFeed(tokenId);
-          } else {
-            navigateToVideo(tokenId);
-          }
-        }
+        if (tokenId) navigateToFeed(tokenId);
         break;
 
       case 'comment':
       case 'comment_reply':
       case 'comment_like':
-        if (tokenId) {
-          if (postType === 'feed-images' || postType === 'feed-simple' || postType === 'feed-audio') {
-            navigateToFeed(tokenId, commentId);
-          } else {
-            navigateToVideo(tokenId, commentId);
-          }
-        }
+        if (tokenId) navigateToFeed(tokenId, commentId);
         break;
 
       case 'repost':
-        // Repost → navigate to the original post
-        if (tokenId) {
-          navigation.navigate(ScreenNames.PostResolver, { tokenId });
-        }
+        if (tokenId) navigateToFeed(tokenId);
         break;
 
       case 'quote':
-        // Quote → navigate to the new quote post, fall back to original
         if (metadata?.quoteTokenId) {
-          navigation.navigate(ScreenNames.PostResolver, { tokenId: metadata.quoteTokenId });
+          navigateToFeed(metadata.quoteTokenId);
         } else if (tokenId) {
-          navigation.navigate(ScreenNames.PostResolver, { tokenId });
+          navigateToFeed(tokenId);
         }
         break;
 
@@ -273,23 +362,11 @@ const NotificationScreen = () => {
       case 'ppv_purchase':
       case 'bounty_available':
       case 'bounty_claimed':
-        if (tokenId) {
-          if (postType === 'feed-images' || postType === 'feed-simple' || postType === 'feed-audio') {
-            navigateToFeed(tokenId);
-          } else {
-            navigateToVideo(tokenId);
-          }
-        }
+        if (tokenId) navigateToFeed(tokenId);
         break;
 
       case 'video_milestone':
-        if (tokenId) {
-          if (postType === 'feed-images' || postType === 'feed-simple' || postType === 'feed-audio') {
-            navigateToFeed(tokenId);
-          } else {
-            navigateToVideo(tokenId);
-          }
-        }
+        if (tokenId) navigateToFeed(tokenId);
         break;
 
       case 'livestream_start':
@@ -310,28 +387,14 @@ const NotificationScreen = () => {
         break;
 
       case 'mention':
-        if (tokenId) {
-          if (postType === 'feed-images' || postType === 'feed-simple' || postType === 'feed-audio') {
-            navigateToFeed(tokenId, commentId);
-          } else {
-            navigateToVideo(tokenId, commentId);
-          }
-        }
+        if (tokenId) navigateToFeed(tokenId, commentId);
         break;
 
       default:
-        // Fallback: try to navigate to content if tokenId exists
-        if (tokenId) {
-          if (postType === 'feed-images' || postType === 'feed-simple' || postType === 'feed-audio') {
-            navigateToFeed(tokenId);
-          } else {
-            navigateToVideo(tokenId);
-          }
-        }
+        if (tokenId) navigateToFeed(tokenId);
         break;
     }
   }, [
-    navigateToVideo, 
     navigateToFeed, 
     openUserProfile, 
     navigateToLivestream, 
@@ -342,25 +405,46 @@ const NotificationScreen = () => {
   ]);
 
   const pageRef = useRef(1);
-  const selectedCategoryRef = useRef<NotificationCategory | 'all'>('all');
+  const selectedFilterRef = useRef<NotificationTypeFilter>('all');
   
   useEffect(() => {
     pageRef.current = page;
   }, [page]);
   
   useEffect(() => {
-    selectedCategoryRef.current = selectedCategory;
-  }, [selectedCategory]);
+    selectedFilterRef.current = selectedFilter;
+  }, [selectedFilter]);
+
+  const filteredNotifications = useMemo(() => {
+    if (selectedFilter === 'all') return notifications;
+    const allowedTypes = FILTER_TYPE_MAP[selectedFilter];
+    return notifications.filter((n) => allowedTypes.includes(n.type as NotificationType));
+  }, [notifications, selectedFilter]);
+
+  const tabCounts = useMemo(() => {
+    const counts: Record<NotificationTypeFilter, number> = {
+      all: 0, likes: 0, follows: 0, comments: 0,
+      reposts: 0, subscriptions: 0, tips: 0, livestreams: 0,
+    };
+    const unread = notifications.filter((n) => !n.read);
+    counts.all = unread.length;
+    for (const n of unread) {
+      for (const [key, types] of Object.entries(FILTER_TYPE_MAP)) {
+        if (key !== 'all' && types.includes(n.type as NotificationType)) {
+          counts[key as NotificationTypeFilter]++;
+        }
+      }
+    }
+    return counts;
+  }, [notifications]);
 
   const fetchNotifications = useCallback(
     async (isRefresh = false) => {
       try {
         const targetPage = isRefresh ? 1 : pageRef.current;
-        const category = selectedCategoryRef.current;
         
         const res: any = await getNotifications({
           unreadOnly: false,
-          category: category === 'all' ? undefined : category,
           page: targetPage,
           limit: 30,
         });
@@ -409,20 +493,16 @@ const NotificationScreen = () => {
     }, [])
   );
 
-  const isFirstCategoryRender = useRef(true);
+  const isFirstFilterRender = useRef(true);
   useEffect(() => {
-    if (isFirstCategoryRender.current) {
-      isFirstCategoryRender.current = false;
+    if (isFirstFilterRender.current) {
+      isFirstFilterRender.current = false;
       return;
     }
-    // Clear data and show loading when changing category
-    setNotifications([]);
-    setPage(1);
+    // Client-side filtering - no need to refetch, just show loading briefly
     setIsChangingCategory(true);
-    fetchNotificationsRef.current(true).finally(() => {
-      setIsChangingCategory(false);
-    });
-  }, [selectedCategory]);
+    requestAnimationFrame(() => setIsChangingCategory(false));
+  }, [selectedFilter]);
 
   useEffect(() => {
     if (page > 1) {
@@ -442,20 +522,16 @@ const NotificationScreen = () => {
     setPage((p) => p + 1);
   }, [loadingMore, hasMore, isChangingCategory]);
 
-  const handleCategoryChange = useCallback((category: NotificationCategory | 'all') => {
-    if (category === selectedCategory || isChangingCategory) return;
-    setSelectedCategory(category);
-  }, [selectedCategory, isChangingCategory]);
+  const handleFilterChange = useCallback((filter: NotificationTypeFilter) => {
+    if (filter === selectedFilter || isChangingCategory) return;
+    setSelectedFilter(filter);
+  }, [selectedFilter, isChangingCategory]);
 
   const handleMarkAllRead = useCallback(async () => {
-    // Optimistic update immediately
     setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
     patchUser?.({ notificationCount: 0 });
     
-    // Fire and forget
-    markAllNotificationsAsRead(
-      selectedCategoryRef.current === 'all' ? undefined : selectedCategoryRef.current
-    ).catch((e) => {
+    markAllNotificationsAsRead().catch((e) => {
       console.warn('[NotificationScreen] markAllRead error', e);
     });
   }, [patchUser]);
@@ -551,7 +627,7 @@ const NotificationScreen = () => {
                   backgroundColor: `${icon.color}20`,
                 }}
               >
-                <Ionicons name={icon.name as any} size={22} color={icon.color} />
+                <Icon name={icon.name as any} size={22} color={icon.color} />
               </View>
             )}
             {/* Type badge overlay for avatar */}
@@ -571,7 +647,7 @@ const NotificationScreen = () => {
                   backgroundColor: icon.color,
                 }}
               >
-                <Ionicons name={icon.name as any} size={10} color="white" />
+                <Icon name={icon.name as any} size={10} color="white" />
               </View>
             )}
           </TouchableOpacity>
@@ -673,7 +749,7 @@ const NotificationScreen = () => {
               {item.postType === 'video' && (
                 <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center', justifyContent: 'center' }}>
                   <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: 12, padding: 4 }}>
-                    <Ionicons name="play" size={12} color="white" />
+                    <Icon name="Play" size={12} color="white" />
                   </View>
                 </View>
               )}
@@ -683,7 +759,7 @@ const NotificationScreen = () => {
           {/* Clickable indicator */}
           {clickable && (
             <View style={{ position: 'absolute', top: 16, right: 16 }}>
-              <Ionicons name="chevron-forward" size={16} color="#6b7280" />
+              <Icon name="ChevronRight" size={16} color="#6b7280" />
             </View>
           )}
         </TouchableOpacity>
@@ -760,10 +836,11 @@ const NotificationScreen = () => {
       />
       
       {/* Category Filter Tabs */}
-      <CategoryTabs 
-        selected={selectedCategory} 
-        onSelect={handleCategoryChange} 
+      <TypeTabs 
+        selected={selectedFilter} 
+        onSelect={handleFilterChange} 
         disabled={isChangingCategory}
+        counts={tabCounts}
       />
       
       {showLoading ? (
@@ -774,7 +851,7 @@ const NotificationScreen = () => {
         />
       ) : (
         <FlatList
-          data={notifications}
+          data={filteredNotifications}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           refreshControl={
@@ -790,15 +867,15 @@ const NotificationScreen = () => {
           ListEmptyComponent={
             <View className="flex-1 items-center justify-center py-20">
               <View className="w-16 h-16 rounded-full bg-theme-neutrals-800 items-center justify-center mb-4">
-                <Ionicons name="notifications-off-outline" size={32} color="#6b7280" />
+                <Icon name="BellOff" size={32} color="#6b7280" />
               </View>
               <Text className="text-theme-neutrals-400 text-base font-medium mb-1">
                 No notifications
               </Text>
               <Text className="text-theme-neutrals-500 text-sm text-center px-8">
-                {selectedCategory === 'all' 
+                {selectedFilter === 'all' 
                   ? "You're all caught up! Check back later for updates."
-                  : `No ${selectedCategory} notifications yet.`}
+                  : `No ${TYPE_TABS.find(t => t.key === selectedFilter)?.label?.toLowerCase() || selectedFilter} notifications yet.`}
               </Text>
             </View>
           }

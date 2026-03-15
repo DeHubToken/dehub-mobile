@@ -9,8 +9,6 @@
 import React, { useEffect, useCallback } from "react";
 import { View, ActivityIndicator } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import { getNFT } from "../services/nft.service";
-import { isVideoItem } from "../services/feed.unified.service";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { createLogger } from "../libs/logger";
 
@@ -32,34 +30,11 @@ const PostResolverScreen: React.FC = () => {
       return;
     }
 
-    try {
-      const res = await getNFT(tokenId);
-      const payload: any = res?.result || res || {};
-
-      if (isVideoItem(payload)) {
-        // Video → replace with VideoPlayer
-        logger.info("Resolved as video", { tokenId });
-        navigation.replace(ScreenNames.VideoPlayer, {
-          tokenId,
-          nft: payload,
-          commentId,
-        });
-      } else {
-        // Feed post → replace with FeedDetail
-        logger.info("Resolved as feed", { tokenId });
-        navigation.replace(ScreenNames.FeedDetail, {
-          tokenId,
-          commentId,
-        });
-      }
-    } catch (err) {
-      logger.error("Failed to resolve post type — falling back to FeedDetail", { tokenId, err });
-      // Fallback: try FeedDetail (it handles its own error states)
-      navigation.replace(ScreenNames.FeedDetail, {
-        tokenId,
-        commentId,
-      });
-    }
+    logger.info("Resolving to FeedDetail", { tokenId });
+    navigation.replace(ScreenNames.FeedDetail, {
+      tokenId,
+      commentId,
+    });
   }, [tokenId, commentId, navigation]);
 
   useEffect(() => {

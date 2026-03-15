@@ -82,7 +82,7 @@ export const NON_CLICKABLE_TYPES = new Set([
 ]);
 
 /**
- * Get notification icon configuration
+ * Get notification icon configuration (lucide-react-native icon names)
  */
 export const getNotificationIconConfig = (type: NotificationType | string): { 
   name: string; 
@@ -90,48 +90,48 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
 } => {
   switch (type) {
     case NotificationType.LIKE:
-      return { name: 'heart', color: '#ef4444' };
+      return { name: 'Heart', color: '#ef4444' };
     case NotificationType.DISLIKE:
-      return { name: 'heart-dislike', color: '#6b7280' };
+      return { name: 'HeartOff', color: '#6b7280' };
     case NotificationType.COMMENT:
     case NotificationType.COMMENT_REPLY:
-      return { name: 'chatbubble', color: '#3b82f6' };
+      return { name: 'MessageSquareText', color: '#3b82f6' };
     case NotificationType.COMMENT_LIKE:
-      return { name: 'heart', color: '#f472b6' };
+      return { name: 'Heart', color: '#f472b6' };
     case NotificationType.REPOST:
-      return { name: 'repeat', color: '#22c55e' };
+      return { name: 'Repeat2', color: '#22c55e' };
     case NotificationType.QUOTE:
-      return { name: 'chatbubble-ellipses', color: '#06b6d4' };
+      return { name: 'Quote', color: '#06b6d4' };
     case NotificationType.FOLLOWING:
-      return { name: 'person-add', color: '#8b5cf6' };
+      return { name: 'UserPlus', color: '#8b5cf6' };
     case NotificationType.FOLLOW_REQUEST:
-      return { name: 'person-add', color: '#f59e0b' };
+      return { name: 'UserPlus', color: '#f59e0b' };
     case NotificationType.FOLLOW_REQUEST_ACCEPTED:
-      return { name: 'checkmark-circle', color: '#22c55e' };
+      return { name: 'UserCheck', color: '#22c55e' };
     case NotificationType.MENTION:
-      return { name: 'at', color: '#8b5cf6' };
+      return { name: 'AtSign', color: '#8b5cf6' };
     case NotificationType.TIP:
-      return { name: 'cash', color: '#22c55e' };
+      return { name: 'Gem', color: '#22c55e' };
     case NotificationType.SUBSCRIPTION:
-      return { name: 'checkmark-circle', color: '#f59e0b' };
+      return { name: 'CheckCircle', color: '#f59e0b' };
     case NotificationType.PPV_PURCHASE:
-      return { name: 'lock-open', color: '#06b6d4' };
+      return { name: 'LockOpen', color: '#06b6d4' };
     case NotificationType.BOUNTY_AVAILABLE:
     case NotificationType.BOUNTY_CLAIMED:
-      return { name: 'gift', color: '#f59e0b' };
+      return { name: 'Gift', color: '#f59e0b' };
     case NotificationType.VIDEO_MILESTONE:
-      return { name: 'trophy', color: '#fbbf24' };
+      return { name: 'Trophy', color: '#fbbf24' };
     case NotificationType.LIVESTREAM_START:
-      return { name: 'radio', color: '#ef4444' };
+      return { name: 'Radio', color: '#ef4444' };
     case NotificationType.NEW_MESSAGE:
-      return { name: 'mail', color: '#3b82f6' };
+      return { name: 'Mail', color: '#3b82f6' };
     case NotificationType.VIDEO_REMOVAL:
-      return { name: 'alert-circle', color: '#f97316' };
+      return { name: 'AlertCircle', color: '#f97316' };
     case NotificationType.ACCOUNT_WARNING:
-      return { name: 'warning', color: '#f97316' };
+      return { name: 'AlertTriangle', color: '#f97316' };
     case NotificationType.SYSTEM:
-      return { name: 'information-circle', color: '#6b7280' };
+      return { name: 'Info', color: '#6b7280' };
     default:
-      return { name: 'notifications', color: '#9ca3af' };
+      return { name: 'Bell', color: '#9ca3af' };
   }
 };
