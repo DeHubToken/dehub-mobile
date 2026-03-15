@@ -55,13 +55,16 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
       </TouchableOpacity>
 
       {isSignedIn ? (
-        <View className="w-9 h-9 items-center justify-center">
-          <Icon
-            name="Bell"
-            size={24}
-            color="#E5E7EB"
-            tooltip="Notifications"
-            onPress={handleNotificationPress}
+        <TouchableOpacity
+          onPress={handleNotificationPress}
+          activeOpacity={0.7}
+          className="w-9 h-9 items-center justify-center"
+        >
+          <SmartImage
+            source={require("../assets/web-icons/notifications-icon.png")}
+            style={{ width: 24, height: 24 }}
+            contentFit="contain"
+            cachePolicy="memory-disk"
           />
           {hasUnread && (
             <View
@@ -70,7 +73,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
               pointerEvents="none"
             />
           )}
-        </View>
+        </TouchableOpacity>
       ) : (
         <View className="w-9 h-9 items-center justify-center">
           <Icon

@@ -180,11 +180,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
 
         case NotificationType.LIKE:
           if (tokenId) {
-            if (postType === 'feed-images' || postType === 'feed-simple') {
-              navigation.navigate(ScreenNames.FeedDetail, { tokenId });
-            } else {
-              navigation.navigate(ScreenNames.VideoPlayer, { tokenId });
-            }
+            navigation.navigate(ScreenNames.FeedDetail, { tokenId });
           } else {
             navigation.navigate(ScreenNames.Notifications);
           }
@@ -193,13 +189,8 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
         case NotificationType.COMMENT:
         case NotificationType.COMMENT_REPLY:
         case NotificationType.COMMENT_LIKE:
-          // Navigate to content with commentId
           if (tokenId) {
-            if (postType === 'feed-images' || postType === 'feed-simple') {
-              navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
-            } else {
-              navigation.navigate(ScreenNames.VideoPlayer, { tokenId, commentId });
-            }
+            navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
           } else {
             navigation.navigate(ScreenNames.Notifications);
           }
@@ -207,31 +198,25 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
 
         case NotificationType.MENTION:
           if (tokenId) {
-            if (postType === 'feed-images' || postType === 'feed-simple') {
-              navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
-            } else {
-              navigation.navigate(ScreenNames.VideoPlayer, { tokenId, commentId });
-            }
+            navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
           } else {
             navigation.navigate(ScreenNames.Notifications);
           }
           break;
 
         case NotificationType.REPOST:
-          // Repost → navigate to the original post that was reposted
           if (tokenId) {
-            navigation.navigate(ScreenNames.PostResolver, { tokenId });
+            navigation.navigate(ScreenNames.FeedDetail, { tokenId });
           } else {
             navigation.navigate(ScreenNames.Notifications);
           }
           break;
 
         case NotificationType.QUOTE:
-          // Quote → navigate to the new quote post (quoteTokenId), not the original
           if (data.quoteTokenId) {
-            navigation.navigate(ScreenNames.PostResolver, { tokenId: data.quoteTokenId });
+            navigation.navigate(ScreenNames.FeedDetail, { tokenId: data.quoteTokenId });
           } else if (tokenId) {
-            navigation.navigate(ScreenNames.PostResolver, { tokenId });
+            navigation.navigate(ScreenNames.FeedDetail, { tokenId });
           } else {
             navigation.navigate(ScreenNames.Notifications);
           }
@@ -252,13 +237,8 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
         case NotificationType.BOUNTY_AVAILABLE:
         case NotificationType.BOUNTY_CLAIMED:
         case NotificationType.PPV_PURCHASE:
-          // Bounty / PPV → open content if tokenId exists, otherwise notifications
           if (tokenId) {
-            if (postType === 'feed-images' || postType === 'feed-simple') {
-              navigation.navigate(ScreenNames.FeedDetail, { tokenId });
-            } else {
-              navigation.navigate(ScreenNames.VideoPlayer, { tokenId });
-            }
+            navigation.navigate(ScreenNames.FeedDetail, { tokenId });
           } else {
             navigation.navigate(ScreenNames.Notifications);
           }
@@ -271,7 +251,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
 
         case NotificationType.VIDEO_MILESTONE:
           if (tokenId) {
-            navigation.navigate(ScreenNames.VideoPlayer, { tokenId });
+            navigation.navigate(ScreenNames.FeedDetail, { tokenId });
           } else {
             navigation.navigate(ScreenNames.Notifications);
           }
