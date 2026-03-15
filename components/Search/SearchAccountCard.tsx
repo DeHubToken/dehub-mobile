@@ -1,13 +1,12 @@
 import React, { FC, useCallback, useState } from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import Icon from "../ui/Icon";
 import { useAuth } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { followUser, unfollowUser } from "../../services/user.service";
 import Avatar from "../common/Avatar";
-import AccentButtonGradient from "../ui/AccentButtonGradient";
+import GlassFollowButton from "../ui/GlassFollowButton";
 import type { SearchAccountResult } from "../../services/search.service";
 import type { FollowState } from "./SearchAccountChip";
 
@@ -72,57 +71,16 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
   const followers = account.followers ?? 0;
   const aboutMe = account.aboutMe || "";
 
-  // Follow button
   const renderFollowButton = () => {
     if (isOwnAccount) return null;
-
-    if (followLoading) {
-      return (
-        <View className="w-[88px] h-8 items-center justify-center">
-          <ActivityIndicator size="small" color="#fff" />
-        </View>
-      );
-    }
-
-    if (isPending) {
-      return (
-        <TouchableOpacity
-          activeOpacity={0.85}
-          onPress={handleFollowToggle}
-          className="bg-theme-neutrals-700 rounded-full px-3 h-8 flex-row items-center justify-center"
-        >
-          <Icon name="Clock" size={13} color="#9CA3AF" />
-          <Text className="text-theme-neutrals-400 text-[11px] font-semibold ml-1">
-            Requested
-          </Text>
-        </TouchableOpacity>
-      );
-    }
-
-    if (isFollowing) {
-      return (
-        <TouchableOpacity
-          activeOpacity={0.85}
-          onPress={handleFollowToggle}
-          className="bg-theme-neutrals-700 rounded-full px-4 h-8 items-center justify-center"
-        >
-          <Text className="text-theme-neutrals-300 text-[11px] font-semibold">
-            Following
-          </Text>
-        </TouchableOpacity>
-      );
-    }
-
     return (
-      <AccentButtonGradient style={{ borderRadius: 16 }}>
-        <TouchableOpacity
-          activeOpacity={0.85}
-          onPress={handleFollowToggle}
-          className="px-4 h-8 items-center justify-center"
-        >
-          <Text className="text-white text-[11px] font-bold">Follow</Text>
-        </TouchableOpacity>
-      </AccentButtonGradient>
+      <GlassFollowButton
+        isFollowing={isFollowing}
+        isPending={isPending}
+        isLoading={followLoading}
+        onPress={handleFollowToggle}
+        className="px-4"
+      />
     );
   };
 
@@ -132,7 +90,7 @@ const SearchAccountCard: FC<SearchAccountCardProps> = ({ account, onFollowChange
       onPress={handlePress}
       className="py-3 flex-row items-center border-b border-theme-neutrals-800"
     >
-      <Avatar uri={displayAvatar} size={48} name={displayName} />
+      <Avatar uri={displayAvatar} size={48} rounded={false} name={displayName} />
       <View className="flex-1 ml-3 mr-2">
         <View className="flex-row items-center">
           <Text className="text-white font-semibold text-sm" numberOfLines={1}>

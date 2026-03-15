@@ -22,6 +22,7 @@ const NAV_ITEMS: NavItem[] = [
 interface FeedNavBarProps {
   activePostType: PostTypeOption;
   isFilterOpen: boolean;
+  hasActiveFilters: boolean;
   onPostTypeChange: (postType: PostTypeOption) => void;
   onFilterPress: () => void;
 }
@@ -59,6 +60,7 @@ const NavButton = memo<{
 const FeedNavBar: React.FC<FeedNavBarProps> = ({
   activePostType,
   isFilterOpen,
+  hasActiveFilters,
   onPostTypeChange,
   onFilterPress,
 }) => {
@@ -87,23 +89,26 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
             onPress={onFilterPress}
             style={styles.navButton}
           >
-            {({ pressed }) => (
-              <>
-                {isFilterOpen && (
-                  <View style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}>
-                    <GlassIndicator borderRadius={12} />
+            {({ pressed }) => {
+              const filterActive = isFilterOpen || hasActiveFilters;
+              return (
+                <>
+                  {filterActive && (
+                    <View style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}>
+                      <GlassIndicator borderRadius={12} />
+                    </View>
+                  )}
+                  <View style={{ opacity: pressed ? 0.6 : 1 }}>
+                    <Icon
+                      name={isFilterOpen ? "X" : "Settings2"}
+                      size={16}
+                      color={filterActive ? "#FFFFFF" : "#71717A"}
+                      strokeWidth={filterActive ? 2 : 1.8}
+                    />
                   </View>
-                )}
-                <View style={{ opacity: pressed ? 0.6 : 1 }}>
-                  <Icon
-                    name={isFilterOpen ? "X" : "Settings2"}
-                    size={16}
-                    color={isFilterOpen ? "#FFFFFF" : "#71717A"}
-                    strokeWidth={isFilterOpen ? 2 : 1.8}
-                  />
-                </View>
-              </>
-            )}
+                </>
+              );
+            }}
           </Pressable>
         </View>
       </View>

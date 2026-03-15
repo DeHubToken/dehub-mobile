@@ -28,6 +28,8 @@ import PPVSheet from "../PPV/PPVSheet";
 import BountyInfoSheet from "./BountyInfoSheet";
 import AskAISheet from "./AskAISheet";
 import Icon from "../ui/Icon";
+import TranslateButton from "../ui/TranslateButton";
+import { useTranslation } from "../../hooks/useTranslation";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUser, useAuthActions, useAuthState } from "../../context/AuthContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -259,6 +261,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [localTitle, setLocalTitle] = useState(title);
   const [localDescription, setLocalDescription] = useState(description);
   const [localCategories, setLocalCategories] = useState<string[]>(item.category || []);
+
+  const translationTexts = useMemo(() => ({
+    title: localTitle || '',
+    description: localDescription || '',
+  }), [localTitle, localDescription]);
+  const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate } =
+    useTranslation(translationTexts, item.detectedLanguage);
   const [isDeleted, setIsDeleted] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
@@ -750,8 +759,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       {renderContent()}
 
       <FeedCaption
-        title={localTitle || undefined}
-        description={localDescription || undefined}
+        title={(isTranslated ? translatedTexts.title : localTitle) || undefined}
+        description={(isTranslated ? translatedTexts.description : localDescription) || undefined}
         categories={localCategories}
         onCategoryPress={onCategorySelect}
         fullContent={fullContent}
@@ -790,6 +799,19 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <Text style={{ fontSize: 11, color: "#6F7174" }}>
               Peak: {formatCompactNumber(liveViewCount)}
             </Text>
+          </>
+        )}
+        {showTranslate && (
+          <>
+            <Text style={{ fontSize: 11, color: "#6F7174" }}>·</Text>
+            <TranslateButton
+              isTranslated={isTranslated}
+              isLoading={translating}
+              detectedLanguage={item.detectedLanguage}
+              onTranslate={handleTranslate}
+              onShowOriginal={handleShowOriginal}
+              inline
+            />
           </>
         )}
       </View>

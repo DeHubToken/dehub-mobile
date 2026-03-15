@@ -15,10 +15,9 @@ import {
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
-  withTiming,
-  Easing,
+  withSpring,
 } from "react-native-reanimated";
-import { BlurView } from "expo-blur";
+import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/ui/Icon";
 import {
@@ -67,7 +66,9 @@ const TABS: Tab[] = [
   { key: "live", label: "Live", icon: "Radio", postType: "live" },
 ];
 
-const PILL_H = 34;
+const TAB_H = 36;
+const TAB_RADIUS = 12;
+const SPRING_CONFIG = { stiffness: 400, damping: 30 };
 const PAGE_SIZE = 20;
 
 /** Tabs shown on the default explore screen (no accounts) */
@@ -310,8 +311,8 @@ const SearchScreen: React.FC = () => {
       // Animate glass pill
       const layout = tabLayouts.current[tab];
       if (layout) {
-        pillX.value = withTiming(layout.x, { duration: 220, easing: Easing.out(Easing.cubic) });
-        pillW.value = withTiming(layout.width, { duration: 220, easing: Easing.out(Easing.cubic) });
+        pillX.value = withSpring(layout.x, SPRING_CONFIG);
+        pillW.value = withSpring(layout.width, SPRING_CONFIG);
       }
       if (hasSearched && searchQuery.trim()) {
         executeSearch(searchQuery, tab, 1);
@@ -335,8 +336,7 @@ const SearchScreen: React.FC = () => {
     position: "absolute" as const,
     left: pillX.value,
     width: pillW.value,
-    height: PILL_H,
-    borderRadius: PILL_H / 2,
+    height: TAB_H,
   }));
 
   const handleLoadMore = useCallback(() => {
@@ -731,16 +731,16 @@ const SearchScreen: React.FC = () => {
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ position: "relative" }}
+            contentContainerStyle={{ position: "relative", gap: 8 }}
           >
-            {/* Glass pill indicator */}
-            <Animated.View style={[styles.glassPill, pillStyle]}>
-              <BlurView
-                intensity={40}
-                tint="dark"
-                style={[StyleSheet.absoluteFill, { borderRadius: PILL_H / 2 }]}
+            <Animated.View style={[styles.indicator, pillStyle]}>
+              <LinearGradient
+                colors={["rgba(255,255,255,0.20)", "rgba(255,255,255,0.10)", "rgba(255,255,255,0.05)"]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={[StyleSheet.absoluteFill, { borderRadius: TAB_RADIUS }]}
               />
-              <View style={[StyleSheet.absoluteFill, styles.glassPillOverlay]} />
+              <View style={styles.indicatorHighlight} />
             </Animated.View>
 
             {(hasSearched ? TABS : EXPLORE_TABS).map((tab) => {
@@ -753,13 +753,13 @@ const SearchScreen: React.FC = () => {
                     const { x, width } = e.nativeEvent.layout;
                     handleTabLayout(tab.key, x, width);
                   }}
-                  style={styles.tabBtn}
+                  style={[styles.tabBtn, !isActive && styles.tabBtnInactive]}
                   activeOpacity={0.8}
                 >
                   <Icon
                     name={tab.icon}
                     size={14}
-                    color={isActive ? "#F9FBFF" : "#6F7174"}
+                    color={isActive ? "#F9FBFF" : "#A1A1AA"}
                   />
                   <Text
                     style={[
@@ -783,27 +783,38 @@ const SearchScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  glassPill: {
+  indicator: {
     overflow: "hidden",
-  },
-  glassPillOverlay: {
-    backgroundColor: "rgba(255,255,255,0.1)",
-    borderRadius: PILL_H / 2,
+    borderRadius: TAB_RADIUS,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.12)",
+    borderColor: "rgba(255,255,255,0.30)",
+  },
+  indicatorHighlight: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 1,
+    backgroundColor: "rgba(255,255,255,0.4)",
+    borderTopLeftRadius: TAB_RADIUS,
+    borderTopRightRadius: TAB_RADIUS,
   },
   tabBtn: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    height: PILL_H,
-    paddingHorizontal: 14,
-    gap: 5,
+    height: TAB_H,
+    paddingHorizontal: 16,
+    borderRadius: TAB_RADIUS,
+    gap: 6,
+  },
+  tabBtnInactive: {
+    backgroundColor: "#27272a",
   },
   tabLabel: {
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: "600",
-    color: "#6F7174",
+    color: "#A1A1AA",
   },
   tabLabelActive: {
     color: "#F9FBFF",

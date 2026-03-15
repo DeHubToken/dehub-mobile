@@ -375,6 +375,24 @@ export async function getSavedPosts(params?: PostsParams): Promise<GetNFTsRespon
 }
 
 
+export async function getUnlockedPosts(params?: PostsParams): Promise<GetNFTsResponse> {
+  const page1 = (params?.page ?? 0) + 1;
+  const limit = params?.unit ?? 20;
+  const query = new URLSearchParams({ page: String(page1), limit: String(limit) }).toString();
+  const url = `/unlockedPosts?${query}`;
+  try {
+    const res = await apiClient.get<any>(url, { isAuthRequired: true });
+    const wrapper = (res?.data?.result ?? res?.result ?? res) as any;
+    const items = Array.isArray(wrapper) ? wrapper : Array.isArray(wrapper?.items) ? wrapper.items : [];
+    const pagination = res?.data?.pagination ?? res?.pagination;
+    return { result: items, totalCount: pagination?.totalCount, page: pagination?.page, hasMore: pagination?.hasMore } as GetNFTsResponse;
+  } catch (e) {
+    console.warn('[user.service] getUnlockedPosts error', e);
+    throw e;
+  }
+}
+
+
 /**
  * Get paginated follow list (followers or following) for a user.
  * Endpoint (GET): /follow_list/{address}

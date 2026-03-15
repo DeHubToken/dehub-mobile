@@ -7,7 +7,7 @@
  *   • No extra line for engagement_overlap / suggested fallback
  */
 import React, { FC, useCallback, useState, useMemo } from "react";
-import { View, Text, Image, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Icon from "../ui/Icon";
 import { useAuth } from "../../context/AuthContext";
@@ -19,6 +19,7 @@ import {
   type SuggestedAccount,
 } from "../../services/user.service";
 import Avatar from "../common/Avatar";
+import GlassFollowButton from "../ui/GlassFollowButton";
 import type { FollowState } from "../Search/SearchAccountChip";
 
 
@@ -127,56 +128,15 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
 
   const renderFollowButton = () => {
     if (isOwnAccount) return null;
-
-    if (followLoading) {
-      return (
-        <View className="mt-2.5 w-full h-8 items-center justify-center">
-          <ActivityIndicator size="small" color="#fff" />
-        </View>
-      );
-    }
-
-    if (isPending) {
-      return (
-        <TouchableOpacity
-          activeOpacity={0.85}
-          onPress={handleFollowToggle}
-          className="mt-2.5 w-full bg-theme-neutrals-700 rounded-lg h-8 items-center justify-center flex-row"
-        >
-          <Icon name="Clock" size={12} color="#9CA3AF" />
-          <Text className="text-theme-neutrals-400 text-xs font-medium ml-1">
-            Requested
-          </Text>
-        </TouchableOpacity>
-      );
-    }
-
-    if (isFollowing) {
-      return (
-        <TouchableOpacity
-          activeOpacity={0.85}
-          onPress={handleFollowToggle}
-          className="mt-2.5 w-full rounded-lg h-8 items-center justify-center"
-          style={{ backgroundColor: 'rgba(255,255,255,0.1)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}
-        >
-          <Text className="text-theme-neutrals-300 text-xs font-medium">
-            Following
-          </Text>
-        </TouchableOpacity>
-      );
-    }
-
     return (
-      <TouchableOpacity
-        activeOpacity={0.85}
+      <GlassFollowButton
+        isFollowing={isFollowing}
+        isPending={isPending}
+        isLoading={followLoading}
+        followsYou={account.followsYou}
         onPress={handleFollowToggle}
-        className="mt-2.5 w-full rounded-lg h-8 items-center justify-center"
-        style={{ backgroundColor: 'rgba(255,255,255,0.1)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.2)' }}
-      >
-        <Text className="text-white text-xs font-medium">
-          {account.followsYou ? "Follow Back" : "Follow"}
-        </Text>
-      </TouchableOpacity>
+        className="mt-2.5 w-full"
+      />
     );
   };
 

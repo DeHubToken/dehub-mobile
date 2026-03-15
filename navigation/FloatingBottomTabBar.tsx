@@ -148,7 +148,6 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
           intensity={80}
           tint="dark"
           style={styles.blur}
-          {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
         >
           <View style={styles.glassOverlay} />
           <View style={styles.specularHighlight} />

@@ -83,6 +83,15 @@ export default function HomeScreen() {
     return params;
   }, [selectedCategory, filters, shuffleSeed]);
 
+  const hasActiveFilters = useMemo(() => {
+    return (
+      filters.sortBy !== DEFAULT_FILTERS.sortBy ||
+      filters.dateRange !== DEFAULT_FILTERS.dateRange ||
+      filters.contentAccess.length > 0 ||
+      !!selectedCategory
+    );
+  }, [filters, selectedCategory]);
+
   const closeFilterPanel = useCallback(() => setFilterPanelVisible(false), []);
 
   const handleFiltersChange = useCallback((newFilters: FeedFilters) => {
@@ -187,6 +196,7 @@ export default function HomeScreen() {
           <FeedNavBar
             activePostType={filters.postType}
             isFilterOpen={filterPanelVisible}
+            hasActiveFilters={hasActiveFilters}
             onPostTypeChange={handlePostTypeChange}
             onFilterPress={handleFilterPress}
           />

@@ -8,6 +8,8 @@ import Animated, {
   withDelay,
 } from "react-native-reanimated";
 import Icon from "../ui/Icon";
+import TranslateButton from "../ui/TranslateButton";
+import { useTranslation } from "../../hooks/useTranslation";
 import Avatar from "../common/Avatar";
 import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
@@ -86,6 +88,10 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
       onLongPress?.(message, { x, y, width, height });
     });
   }, [onLongPress, message]);
+
+  const translationTexts = useMemo(() => ({ content: message.content || '' }), [message.content]);
+  const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate } =
+    useTranslation(translationTexts, (message as any).detectedLanguage);
 
   // System messages
   if (isSystem) {
@@ -191,7 +197,19 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
         ) : (
           <>
             {!!message.content && (
-              <Text className="text-white/70 text-[13px] leading-5">{message.content}</Text>
+              <Text className="text-white/70 text-[13px] leading-5">
+                {isTranslated ? (translatedTexts.content || message.content) : message.content}
+              </Text>
+            )}
+
+            {showTranslate && !!message.content && (
+              <TranslateButton
+                isTranslated={isTranslated}
+                isLoading={translating}
+                detectedLanguage={(message as any).detectedLanguage}
+                onTranslate={handleTranslate}
+                onShowOriginal={handleShowOriginal}
+              />
             )}
 
             {message.gif && (

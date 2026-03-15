@@ -17,8 +17,15 @@ import {
   type NativeScrollEvent,
   Pressable,
   type LayoutChangeEvent,
+  StyleSheet,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from "react-native-reanimated";
+import { LinearGradient } from "expo-linear-gradient";
+import Icon from "../ui/Icon";
 import FeedCard from "../Home/FeedCard";
 import InfiniteFeed from "../Feed/InfiniteFeed";
 import type { GetNFTsResult } from "../../services/nft.service";
@@ -59,6 +66,9 @@ interface UserProfileBottomContentTabsProps {
 }
 
 const STICKY_BAR_HEIGHT = 44;
+const TAB_H = 36;
+const TAB_RADIUS = 12;
+const SPRING_CONFIG = { stiffness: 400, damping: 30 };
 
 /** Horizontal padding for post cards — matches the profile header's px-6 (24px). */
 const CONTENT_PX = 24;
@@ -210,16 +220,45 @@ const UserProfileBottomContentTabs: React.FC<
     [onScroll, isFullScreen, stickyVisible, showBackToTop],
   );
 
+  // Glass pill indicator for tabs
+  const pillX = useSharedValue(0);
+  const pillW = useSharedValue(0);
+  const tabLayoutsRef = useRef<Record<string, { x: number; width: number }>>({});
+
+  const handleTabLayout = useCallback(
+    (key: ContentTab, x: number, width: number) => {
+      tabLayoutsRef.current[key] = { x, width };
+      if (key === activeTab) {
+        pillX.value = x;
+        pillW.value = width;
+      }
+    },
+    [activeTab],
+  );
+
   // Tab change handler — scroll back to top and reset sticky state
   const handleTabChange = useCallback(
     (tab: ContentTab) => {
       if (tab === activeTab) return;
       setStickyVisible(false);
       setActiveTab(tab);
+      // Animate pill
+      const layout = tabLayoutsRef.current[tab];
+      if (layout) {
+        pillX.value = withSpring(layout.x, SPRING_CONFIG);
+        pillW.value = withSpring(layout.width, SPRING_CONFIG);
+      }
       listRef.current?.scrollToOffset({ offset: 0, animated: false });
     },
     [activeTab],
   );
+
+  const pillStyle = useAnimatedStyle(() => ({
+    position: "absolute" as const,
+    left: pillX.value,
+    width: pillW.value,
+    height: TAB_H,
+  }));
 
   // Twitter-style tab bar component
   const TabBar = useMemo(
@@ -234,24 +273,33 @@ const UserProfileBottomContentTabs: React.FC<
           paddingBottom: 4,
         }}
       >
+        <Animated.View style={[tabPillStyles.indicator, pillStyle]}>
+          <LinearGradient
+            colors={["rgba(255,255,255,0.20)", "rgba(255,255,255,0.10)", "rgba(255,255,255,0.05)"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={[StyleSheet.absoluteFill, { borderRadius: TAB_RADIUS }]}
+          />
+          <View style={tabPillStyles.indicatorHighlight} />
+        </Animated.View>
+
         {TAB_ITEMS.map((tab) => {
           const isActive = activeTab === tab.key;
           return (
             <Pressable
               key={tab.key}
               onPress={() => handleTabChange(tab.key)}
-              className={`px-4 py-2 rounded-full border ${
-                isActive
-                  ? "bg-white border-white"
-                  : "bg-transparent border-theme-neutrals-600"
-              }`}
+              onLayout={(e) => {
+                const { x, width } = e.nativeEvent.layout;
+                handleTabLayout(tab.key, x, width);
+              }}
+              style={[tabPillStyles.tabBtn, !isActive && tabPillStyles.tabBtnInactive]}
             >
               <Text
-                className={`text-xs font-semibold ${
-                  isActive
-                    ? "text-theme-neutrals-900"
-                    : "text-theme-neutrals-400"
-                }`}
+                style={[
+                  tabPillStyles.tabLabel,
+                  isActive && tabPillStyles.tabLabelActive,
+                ]}
               >
                 {tab.label}
               </Text>
@@ -260,7 +308,7 @@ const UserProfileBottomContentTabs: React.FC<
         })}
       </View>
     ),
-    [activeTab, handleTabChange],
+    [activeTab, handleTabChange, handleTabLayout, pillStyle],
   );
 
   // Empty state for Reposts tab
@@ -268,7 +316,7 @@ const UserProfileBottomContentTabs: React.FC<
     () => (
       <View className="flex-1 items-center justify-center px-8 py-16">
         <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
-          <Ionicons name="repeat-outline" size={40} color="#666" />
+          <Icon name="Repeat2" size={40} color="#666" />
         </View>
         <Text className="text-white text-lg font-bold text-center mb-2">
           No Reposts Yet
@@ -290,7 +338,7 @@ const UserProfileBottomContentTabs: React.FC<
       return (
         <View className="flex-1 items-center justify-center px-6 py-12">
           <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
-            <Ionicons name="ban-outline" size={40} color="#666" />
+            <Icon name="Ban" size={40} color="#666" />
           </View>
           {!youBlocked && (
             <Text className="text-white text-lg font-bold text-center mb-2">
@@ -309,7 +357,7 @@ const UserProfileBottomContentTabs: React.FC<
     return (
       <View className="flex-1 items-center justify-center px-6 py-12">
         <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
-          <Ionicons name="lock-closed" size={40} color="#666" />
+          <Icon name="Lock" size={40} color="#666" />
         </View>
         <Text className="text-white text-lg font-bold text-center mb-2">
           This Account is Private
@@ -365,7 +413,7 @@ const UserProfileBottomContentTabs: React.FC<
                 activeOpacity={0.8}
                 className="flex-row items-center justify-center gap-2 border border-theme-neutrals-700 py-2 rounded-full"
               >
-                <Ionicons name="pencil-outline" size={15} color="#e5e5e5" />
+                <Icon name="Pencil" size={15} color="#e5e5e5" />
                 <Text className="text-white text-sm font-semibold">
                   Edit Profile
                 </Text>
@@ -516,8 +564,8 @@ const UserProfileBottomContentTabs: React.FC<
             shadowRadius: 4,
           }}
         >
-          <Ionicons
-            name="chevron-up"
+          <Icon
+            name="ChevronUp"
             size={22}
             color={theme.colors.accentForeground || "#fff"}
           />
@@ -528,3 +576,41 @@ const UserProfileBottomContentTabs: React.FC<
 };
 
 export default UserProfileBottomContentTabs;
+
+const tabPillStyles = StyleSheet.create({
+  indicator: {
+    overflow: "hidden",
+    borderRadius: TAB_RADIUS,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.30)",
+  },
+  indicatorHighlight: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 1,
+    backgroundColor: "rgba(255,255,255,0.4)",
+    borderTopLeftRadius: TAB_RADIUS,
+    borderTopRightRadius: TAB_RADIUS,
+  },
+  tabBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    height: TAB_H,
+    paddingHorizontal: 16,
+    borderRadius: TAB_RADIUS,
+  },
+  tabBtnInactive: {
+    backgroundColor: "#27272a",
+  },
+  tabLabel: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: "#A1A1AA",
+  },
+  tabLabelActive: {
+    color: "#F9FBFF",
+  },
+});

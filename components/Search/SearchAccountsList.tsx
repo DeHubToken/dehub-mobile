@@ -1,10 +1,8 @@
 import React, { FC, useCallback } from "react";
-import { FlatList, View, Text, TouchableOpacity } from "react-native";
+import { FlatList, View, Text } from "react-native";
 import AccountSkeleton from "./AccountSkeleton";
-import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { getAvatarUrl } from "../../libs";
-import { formatCompactNumber } from "../../libs/numbers.util";
-import Avatar from "../common/Avatar";
+import SearchAccountCard from "./SearchAccountCard";
+import type { SearchAccountResult } from "../../services/search.service";
 
 export interface AccountItem {
   _id?: string;
@@ -36,15 +34,6 @@ const SearchAccountsList: FC<SearchAccountsListProps> = ({
   onLoadMore,
   hasMore = false,
 }) => {
-  const { showUserProfile } = useUserProfileSheet();
-
-  const handlePress = useCallback(
-    (identifier?: string) => {
-      if (!identifier) return;
-      showUserProfile(identifier);
-    },
-    [showUserProfile]
-  );
 
   if (data.length === 0 && !loadingMore) {
     return (
@@ -83,54 +72,21 @@ const SearchAccountsList: FC<SearchAccountsListProps> = ({
         </View>
       }
       renderItem={({ item }) => {
-        const username =
-          item.username || item.address?.slice(0, 6) || "unknown";
-        const avatarSrc = getAvatarUrl(
-          item.avatarImageUrl || item.avatarUrl || ""
-        );
-  const displayAvatar = avatarSrc && avatarSrc !== "default-avatar" ? avatarSrc : undefined;
-        const sent = item.sentTips ?? item.tipsSentTotal ?? 0;
-        const received = item.receivedTips ?? item.tipsReceivedTotal ?? 0;
-        const about = item.aboutMe || "";
+        const account: SearchAccountResult = {
+          address: item.address || "",
+          username: item.username,
+          displayName: item.displayName || item.username,
+          avatarImageUrl: item.avatarImageUrl || item.avatarUrl,
+          aboutMe: item.aboutMe || item.about,
+          followers: item.followers,
+          badgeBalance: item.badgeBalance,
+          isFollowing: item.isFollowing,
+          isFollowRequestPending: item.isFollowRequestPending,
+        };
         return (
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() => handlePress(item.username || item.address)}
-            className="px-4 py-3 border-b border-theme-neutrals-800 flex-row"
-          >
-            <Avatar uri={displayAvatar} size={40} name={username} />
-            <View className="flex-1 ml-3">
-              <View className="flex-row items-center justify-between">
-                <Text className="text-white font-medium" numberOfLines={1}>
-                  @{username}
-                </Text>
-                {/* <Text
-                  className="text-theme-neutrals-500 text-[10px] ml-2"
-                  numberOfLines={1}
-                >
-                  Sent {formatCompactNumber(sent)} • Received {formatCompactNumber(received)}
-                </Text> */}
-              </View>
-              {about ? (
-                <Text
-                  className="text-theme-neutrals-400 text-[11px] mt-1"
-                  numberOfLines={2}
-                >
-                  {about}
-                </Text>
-              ) : (
-                <Text
-                  className="text-theme-neutrals-600 text-[10px] mt-1"
-                  numberOfLines={1}
-                >
-                  No bio
-                </Text>
-              )}
-              <Text className="text-theme-neutrals-600 text-[10px] mt-1">
-                Tip activity: Sent {formatCompactNumber(sent)} / Received {formatCompactNumber(received)}
-              </Text>
-            </View>
-          </TouchableOpacity>
+          <View className="px-4">
+            <SearchAccountCard account={account} />
+          </View>
         );
       }}
     />

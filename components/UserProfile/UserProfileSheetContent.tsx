@@ -198,6 +198,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               followLoading={followLoading}
               disableActions={profileData.disableActions}
               address={profileData.address}
+              recipientName={profileData.displayName}
               onFollow={onFollow}
               onOpenUnfollow={onOpenUnfollow}
             />
