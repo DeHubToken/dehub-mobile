@@ -129,17 +129,17 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
     typeof thumbnail === "string" && thumbnail.trim().length > 0;
   const accessInfo = useStreamAccessInfo(nft);
   const handlePressVideo = useCallback(() => {
-    if (tokenId == null) return; // require valid tokenId
-    const target = isLive ? ScreenNames.LiveViewer : ScreenNames.VideoPlayer;
-    navigation.navigate(
-      target as never,
-      {
+    if (tokenId == null) return;
+    if (isLive) {
+      navigation.navigate(ScreenNames.LiveViewer, {
         isLive,
         nft,
         accessInfo,
-        streamId: (nft as any)?.stream?._id || (nft as any)?.stream?.id || nft?._id, // for livestreams
-      } as never
-    );
+        streamId: (nft as any)?.stream?._id || (nft as any)?.stream?.id || nft?._id,
+      });
+    } else {
+      navigation.navigate(ScreenNames.FeedDetail, { tokenId });
+    }
   }, [navigation, tokenId, isLive, nft, accessInfo]);
   return (
     <View className="m-1 px-4 py-1">
