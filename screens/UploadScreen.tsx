@@ -12,9 +12,7 @@ import {
 } from "react-native";
 import { useNavigation, useRoute, CommonActions, useFocusEffect } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import Icon from "../components/ui/Icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, {
   useSharedValue,
@@ -41,7 +39,6 @@ import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
 import Avatar from "../components/common/Avatar";
 import MentionSuggestions from "../components/common/MentionSuggestions";
-import AccentButtonGradient from "../components/ui/AccentButtonGradient";
 import CategoryDrawer from "../components/Upload/CategoryDrawer";
 import MonetizationPanel from "../components/Upload/MonetizationPanel";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
@@ -69,6 +66,7 @@ import { parseTxError } from "../libs/web3.util";
 import {
   defaultChainId as DEFAULT_CHAIN_ID,
 } from "../config/constants";
+import { sendAIChat } from "../services/ai.service";
 
 const TITLE_MAX = 140;
 const DESCRIPTION_MAX = 500;
@@ -159,6 +157,8 @@ export default function UploadScreen() {
 
   const [showSaveDraftModal, setShowSaveDraftModal] = useState(false);
   const [showDiscardModal, setShowDiscardModal] = useState(false);
+  const [isEnhancing, setIsEnhancing] = useState(false);
+  const [isEnhancingDesc, setIsEnhancingDesc] = useState(false);
   /** Track the draft id if we're editing one (so we can delete on save/post) */
   const restoredDraftIdRef = useRef<string | null>(null);
 
@@ -317,6 +317,56 @@ export default function UploadScreen() {
       nav.goBack();
     }
   }, [nav, formHasContent]);
+
+  const handleEnhanceText = useCallback(async () => {
+    const text = bodyText.trim();
+    if (!text || isEnhancing) return;
+    setIsEnhancing(true);
+    try {
+      const res = await sendAIChat({
+        messages: [
+          {
+            role: "user",
+            content: `Enhance this social media post text. Make it more engaging, add relevant emojis, and keep it concise. Only return the enhanced text, nothing else:\n\n${text}`,
+          },
+        ],
+        isAuthenticated: !!authUser,
+      });
+      if (res.response) {
+        const enhanced = res.response.trim().slice(0, TITLE_MAX);
+        setBodyText(enhanced);
+      }
+    } catch (e: any) {
+      toastError(e?.message || "Failed to enhance text");
+    } finally {
+      setIsEnhancing(false);
+    }
+  }, [bodyText, isEnhancing, authUser]);
+
+  const handleEnhanceDescription = useCallback(async () => {
+    const text = description.trim();
+    if (!text || isEnhancingDesc) return;
+    setIsEnhancingDesc(true);
+    try {
+      const res = await sendAIChat({
+        messages: [
+          {
+            role: "user",
+            content: `Enhance this social media post description. Make it more detailed and engaging, add relevant emojis, and keep it natural. Only return the enhanced text, nothing else:\n\n${text}`,
+          },
+        ],
+        isAuthenticated: !!authUser,
+      });
+      if (res.response) {
+        const enhanced = res.response.trim().slice(0, DESCRIPTION_MAX);
+        setDescription(enhanced);
+      }
+    } catch (e: any) {
+      toastError(e?.message || "Failed to enhance description");
+    } finally {
+      setIsEnhancingDesc(false);
+    }
+  }, [description, isEnhancingDesc, authUser]);
 
   const handleBodyChange = useCallback((text: string) => {
     if (text.length <= TITLE_MAX) bodyMentions.handleChangeText(text);
@@ -1095,7 +1145,7 @@ export default function UploadScreen() {
           onPress={handleClose}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
         >
-          <Ionicons name="close" size={26} color="#fff" />
+          <Icon name="X" size={26} color="#fff" />
         </TouchableOpacity>
 
         <View className="flex-row items-center">
@@ -1103,29 +1153,32 @@ export default function UploadScreen() {
             <TouchableOpacity
               onPress={handleDraftButton}
               activeOpacity={0.7}
-              className="mr-3"
+              className="mr-3 w-9 h-9 rounded-full bg-white/10 items-center justify-center border border-white/20"
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             >
-              <Text className="text-theme-accent font-semibold text-sm">Draft</Text>
+              <Icon name="Save" size={16} color="#fff" />
             </TouchableOpacity>
           )}
 
-          <AccentButtonGradient style={{ opacity: (isLiveMode ? canGoLive : canPost) ? 1 : 0.5 }}>
-            <TouchableOpacity
-              onPress={handlePost}
-              disabled={isLiveMode ? (!canGoLive || activeIsUploading) : (!canPost || activeIsUploading)}
-              activeOpacity={0.8}
-              className="px-5 py-2"
-            >
-              {activeIsUploading ? (
-                <ActivityIndicator size="small" color="#fff" />
-              ) : (
-                <Text className="text-white font-bold text-sm">
-                  {isLiveMode ? "Go Live" : isQuoteMode ? "Quote" : "Post"}
-                </Text>
-              )}
-            </TouchableOpacity>
-          </AccentButtonGradient>
+          <TouchableOpacity
+            onPress={handlePost}
+            disabled={isLiveMode ? (!canGoLive || activeIsUploading) : (!canPost || activeIsUploading)}
+            activeOpacity={0.8}
+            className="h-10 px-5 rounded-full items-center justify-center"
+            style={{
+              backgroundColor: (isLiveMode ? canGoLive : canPost) ? '#fff' : 'rgba(255,255,255,0.1)',
+            }}
+          >
+            {activeIsUploading ? (
+              <ActivityIndicator size="small" color={(isLiveMode ? canGoLive : canPost) ? '#000' : '#6F7174'} />
+            ) : (
+              <Icon
+                name={isLiveMode ? "Radio" : "Send"}
+                size={18}
+                color={(isLiveMode ? canGoLive : canPost) ? '#000' : '#6F7174'}
+              />
+            )}
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -1180,16 +1233,31 @@ export default function UploadScreen() {
               loading={bodyMentions.loading}
             />
 
-            {/* Character counter */}
-            <Text
-              className={`text-xs mt-1 self-end ${
-                bodyText.length >= TITLE_MAX
-                  ? "text-theme-red-500"
-                  : "text-theme-neutrals-500"
-              }`}
-            >
-              {bodyText.length}/{TITLE_MAX}
-            </Text>
+            {/* Character counter + AI enhance */}
+            <View className="flex-row items-center justify-between mt-1">
+              <TouchableOpacity
+                onPress={handleEnhanceText}
+                disabled={!bodyText.trim() || isEnhancing}
+                activeOpacity={0.7}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                style={{ opacity: !bodyText.trim() || isEnhancing ? 0.3 : 1 }}
+              >
+                {isEnhancing ? (
+                  <ActivityIndicator size="small" color="#fff" />
+                ) : (
+                  <Icon name="Sparkles" size={16} color="#fff" />
+                )}
+              </TouchableOpacity>
+              <Text
+                className={`text-xs ${
+                  bodyText.length >= TITLE_MAX
+                    ? "text-theme-red-500"
+                    : "text-theme-neutrals-500"
+                }`}
+              >
+                {bodyText.length}/{TITLE_MAX}
+              </Text>
+            </View>
 
             {isLiveMode && (
               <View className="mt-2 flex-row items-center">
@@ -1217,14 +1285,14 @@ export default function UploadScreen() {
                         activeOpacity={0.7}
                         className="mr-2 w-8 h-8 rounded-full bg-black/60 items-center justify-center border border-white/10"
                       >
-                        <Ionicons name="pencil" size={14} color="#fff" />
+                        <Icon name="Pencil" size={14} color="#fff" />
                       </TouchableOpacity>
                       <TouchableOpacity
                         onPress={() => setLiveThumbnailUri(null)}
                         activeOpacity={0.7}
                         className="w-8 h-8 rounded-full bg-black/60 items-center justify-center border border-white/10"
                       >
-                        <Ionicons name="trash" size={14} color="#fff" />
+                        <Icon name="Trash2" size={14} color="#fff" />
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -1233,7 +1301,7 @@ export default function UploadScreen() {
                     onPress={handlePickLiveThumbnail}
                     className="h-32 rounded-xl border border-dashed border-theme-neutrals-700 bg-theme-neutrals-800 items-center justify-center"
                   >
-                    <Ionicons name="image" size={28} color="#9CA3AF" />
+                    <Icon name="Image" size={28} color="#9CA3AF" />
                     <Text className="text-gray-400 text-xs mt-2">
                       Add Thumbnail <Text className="text-red-500">*</Text>
                     </Text>
@@ -1260,7 +1328,7 @@ export default function UploadScreen() {
                         className="absolute top-2 right-2 w-7 h-7 rounded-full items-center justify-center bg-black/70"
                         hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                       >
-                        <Ionicons name="close" size={16} color="#fff" />
+                        <Icon name="X" size={16} color="#fff" />
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -1271,7 +1339,7 @@ export default function UploadScreen() {
                       onPress={handlePickImage}
                       className="h-40 rounded-xl border border-dashed border-theme-neutrals-700 bg-theme-neutrals-800 items-center justify-center"
                     >
-                      <Ionicons name="add" size={28} color="#6F7174" />
+                      <Icon name="Plus" size={28} color="#6F7174" />
                       <Text className="text-theme-neutrals-500 text-xs mt-1">
                         Add more
                       </Text>
@@ -1295,8 +1363,8 @@ export default function UploadScreen() {
                     onPress={handleTogglePlay}
                     className="w-12 h-12 rounded-full bg-black/50 items-center justify-center"
                   >
-                    <Ionicons
-                      name={isPlaying ? "pause" : "play"}
+                    <Icon
+                      name={isPlaying ? "Pause" : "Play"}
                       size={24}
                       color="#fff"
                     />
@@ -1308,8 +1376,8 @@ export default function UploadScreen() {
                   className="absolute bottom-2 left-2 w-8 h-8 rounded-full bg-black/60 items-center justify-center"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                 >
-                  <Ionicons
-                    name={isMuted ? "volume-mute" : "volume-high"}
+                  <Icon
+                    name={isMuted ? "VolumeX" : "Volume2"}
                     size={16}
                     color="#fff"
                   />
@@ -1320,7 +1388,7 @@ export default function UploadScreen() {
                   className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/70 items-center justify-center"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                 >
-                  <Ionicons name="close" size={18} color="#fff" />
+                  <Icon name="X" size={18} color="#fff" />
                 </TouchableOpacity>
                 {/* Change video (pencil) */}
                 <TouchableOpacity
@@ -1328,7 +1396,7 @@ export default function UploadScreen() {
                   className="absolute top-2 right-12 w-8 h-8 rounded-full bg-black/70 items-center justify-center"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                 >
-                  <Ionicons name="pencil" size={16} color="#fff" />
+                  <Icon name="Pencil" size={16} color="#fff" />
                 </TouchableOpacity>
                 {/* Thumbnail overlay – bottom-right */}
                 {(thumbnailUri || coverUri) && !coverHidden && (
@@ -1346,7 +1414,7 @@ export default function UploadScreen() {
                       />
                       {/* Pencil overlay */}
                       <View className="absolute inset-0 bg-black/40 items-center justify-center">
-                        <Ionicons name="pencil" size={20} color="#fff" />
+                        <Icon name="Pencil" size={20} color="#fff" />
                       </View>
                     </TouchableOpacity>
                     {/* Eye-off to hide thumbnail */}
@@ -1355,7 +1423,7 @@ export default function UploadScreen() {
                       className="absolute -top-2 right-1 w-5 h-5 rounded-full bg-black/70 items-center justify-center"
                       hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                     >
-                      <Ionicons name="eye-off" size={11} color="#fff" />
+                      <Icon name="EyeOff" size={11} color="#fff" />
                     </TouchableOpacity>
                   </View>
                 )}
@@ -1369,7 +1437,7 @@ export default function UploadScreen() {
                 activeOpacity={0.7}
                 className="mt-2 flex-row items-center self-end"
               >
-                <Ionicons name="eye" size={14} color="#6F7174" />
+                <Icon name="Eye" size={14} color="#6F7174" />
                 <Text className="text-theme-neutrals-400 text-xs ml-1">
                   Show cover
                 </Text>
@@ -1397,7 +1465,7 @@ export default function UploadScreen() {
                     activeOpacity={0.7}
                     className="w-9 h-9 rounded-full bg-theme-neutrals-700 items-center justify-center mr-2 ml-auto"
                   >
-                    <Ionicons name="trash-outline" size={18} color="#f87171" />
+                    <Icon name="Trash2" size={18} color="#f87171" />
                   </TouchableOpacity>
 
                   {/* Stop & save */}
@@ -1406,7 +1474,7 @@ export default function UploadScreen() {
                     activeOpacity={0.7}
                     className="w-9 h-9 rounded-full bg-white items-center justify-center"
                   >
-                    <Ionicons name="checkmark" size={20} color="#000" />
+                    <Icon name="Check" size={20} color="#000" />
                   </TouchableOpacity>
                 </View>
 
@@ -1452,11 +1520,10 @@ export default function UploadScreen() {
                     activeOpacity={0.7}
                     className="w-10 h-10 rounded-full bg-theme-neutrals-700 items-center justify-center mr-3"
                   >
-                    <Ionicons
-                      name={isAudioPreviewPlaying ? "pause" : "play"}
+                    <Icon
+                      name={isAudioPreviewPlaying ? "Pause" : "Play"}
                       size={20}
                       color="#fff"
-                      style={isAudioPreviewPlaying ? undefined : { marginLeft: 2 }}
                     />
                   </TouchableOpacity>
                   <View className="flex-1">
@@ -1474,7 +1541,7 @@ export default function UploadScreen() {
                     className="w-8 h-8 rounded-full bg-black/60 items-center justify-center"
                     hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                   >
-                    <Ionicons name="close" size={16} color="#fff" />
+                    <Icon name="X" size={16} color="#fff" />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -1491,7 +1558,7 @@ export default function UploadScreen() {
                   className="absolute top-1 right-1 w-7 h-7 rounded-full bg-black/70 items-center justify-center z-10"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                 >
-                  <Ionicons name="close" size={16} color="#fff" />
+                  <Icon name="X" size={16} color="#fff" />
                 </TouchableOpacity>
               </View>
             )}
@@ -1506,7 +1573,7 @@ export default function UploadScreen() {
                       activeOpacity={0.7}
                       className="flex-row items-center"
                     >
-                      <Ionicons name="document-text-outline" size={18} color="#6F7174" />
+                      <Icon name="FileText" size={18} color="#6F7174" />
                       <Text className="text-theme-neutrals-400 text-sm ml-1.5">
                         Add description
                       </Text>
@@ -1528,15 +1595,30 @@ export default function UploadScreen() {
                         style={{ textAlignVertical: "top" }}
                         scrollEnabled={false}
                       />
-                      <Text
-                        className={`text-xs mt-1 self-end ${
-                          description.length >= DESCRIPTION_MAX
-                            ? "text-theme-red-500"
-                            : "text-theme-neutrals-500"
-                        }`}
-                      >
-                        {description.length}/{DESCRIPTION_MAX}
-                      </Text>
+                      <View className="flex-row items-center justify-between mt-1">
+                        <TouchableOpacity
+                          onPress={handleEnhanceDescription}
+                          disabled={!description.trim() || isEnhancingDesc}
+                          activeOpacity={0.7}
+                          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                          style={{ opacity: !description.trim() || isEnhancingDesc ? 0.3 : 1 }}
+                        >
+                          {isEnhancingDesc ? (
+                            <ActivityIndicator size="small" color="#fff" />
+                          ) : (
+                            <Icon name="Sparkles" size={16} color="#fff" />
+                          )}
+                        </TouchableOpacity>
+                        <Text
+                          className={`text-xs ${
+                            description.length >= DESCRIPTION_MAX
+                              ? "text-theme-red-500"
+                              : "text-theme-neutrals-500"
+                          }`}
+                        >
+                          {description.length}/{DESCRIPTION_MAX}
+                        </Text>
+                      </View>
                       <MentionSuggestions
                         visible={descMentions.showSuggestions}
                         suggestions={descMentions.suggestions}
@@ -1562,7 +1644,7 @@ export default function UploadScreen() {
                             onPress={() => removeCategory(c)}
                             className="ml-1"
                           >
-                            <Ionicons name="close-circle" size={14} color="#6F7174" />
+                            <Icon name="CircleX" size={14} color="#6F7174" />
                           </TouchableOpacity>
                         </View>
                       ))}
@@ -1575,7 +1657,7 @@ export default function UploadScreen() {
                       activeOpacity={0.7}
                       className="flex-row items-center"
                     >
-                      <Ionicons name="pricetag-outline" size={18} color="#6F7174" />
+                      <Icon name="Tag" size={18} color="#6F7174" />
                       <Text className="text-theme-neutrals-400 text-sm ml-1.5">
                         Add categories
                       </Text>
@@ -1627,7 +1709,7 @@ export default function UploadScreen() {
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               style={{ opacity: imageDisabled ? 0.3 : 1 }}
             >
-              <Ionicons name="image-outline" size={24} color="#fff" />
+              <Icon name="Image" size={24} color="#fff" />
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -1638,7 +1720,7 @@ export default function UploadScreen() {
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               style={{ opacity: videoDisabled ? 0.3 : 1 }}
             >
-              <Ionicons name="videocam-outline" size={24} color="#fff" />
+              <Icon name="Video" size={24} color="#fff" />
             </TouchableOpacity>
 
             {/* Audio (music) button with popover menu */}
@@ -1650,7 +1732,7 @@ export default function UploadScreen() {
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                 style={{ opacity: audioDisabled ? 0.3 : 1 }}
               >
-                <FontAwesome5 name="itunes-note" size={22} color="#fff" />
+                <Icon name="Music" size={22} color="#fff" />
               </TouchableOpacity>
 
               {showAudioMenu && (
@@ -1687,7 +1769,7 @@ export default function UploadScreen() {
                       activeOpacity={0.7}
                       className="flex-row items-center px-4 py-3"
                     >
-                      <Ionicons name="mic-outline" size={20} color="#fff" />
+                      <Icon name="Mic" size={20} color="#fff" />
                       <Text className="text-white text-sm ml-3">Record Voice</Text>
                     </TouchableOpacity>
                     <View className="h-px bg-theme-neutrals-700 mx-3" />
@@ -1696,7 +1778,7 @@ export default function UploadScreen() {
                       activeOpacity={0.7}
                       className="flex-row items-center px-4 py-3"
                     >
-                      <Ionicons name="cloud-upload-outline" size={20} color="#fff" />
+                      <Icon name="CloudUpload" size={20} color="#fff" />
                       <Text className="text-white text-sm ml-3">Upload Audio</Text>
                     </TouchableOpacity>
                   </View>
@@ -1716,8 +1798,8 @@ export default function UploadScreen() {
             className={isLiveMode ? "" : "mr-4"}
             style={{ opacity: liveDisabled && !isLiveMode ? 0.3 : 1 }}
           >
-            <Ionicons
-              name="radio-outline"
+            <Icon
+              name="Radio"
               size={24}
               color={isLiveMode ? "#EF4444" : "#fff"}
             />
@@ -1734,10 +1816,10 @@ export default function UploadScreen() {
             activeOpacity={0.7}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           >
-            <Ionicons
-              name="settings-outline"
+            <Icon
+              name="Settings"
               size={22}
-              color={showLiveSettings ? "#256DFA" : "#fff"}
+              color={showLiveSettings ? "#fff" : "#6F7174"}
             />
           </TouchableOpacity>
         )}
@@ -1753,7 +1835,7 @@ export default function UploadScreen() {
                 className="mr-3"
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               >
-                <Ionicons name="card-outline" size={18} color="#256DFA" />
+                <Icon name="CreditCard" size={18} color="#fff" />
               </TouchableOpacity>
             )}
             {!showMonetization && monetization.bountyEnabled && (
@@ -1763,7 +1845,7 @@ export default function UploadScreen() {
                 className="mr-3"
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               >
-                <FontAwesome6 name="gift" size={16} color="#256DFA" />
+                <Icon name="Gift" size={16} color="#fff" />
               </TouchableOpacity>
             )}
             {!showMonetization && monetization.tokenGatedEnabled && (
@@ -1773,7 +1855,7 @@ export default function UploadScreen() {
                 className="mr-3"
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               >
-                <FontAwesome6 name="shield-halved" size={16} color="#256DFA" />
+                <Icon name="ShieldCheck" size={16} color="#fff" />
               </TouchableOpacity>
             )}
             <TouchableOpacity
@@ -1781,10 +1863,10 @@ export default function UploadScreen() {
               activeOpacity={0.7}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             >
-              <FontAwesome6
-                name="sack-dollar"
+              <Icon
+                name="DollarSign"
                 size={20}
-                color={showMonetization ? "#256DFA" : "#fff"}
+                color="#fff"
               />
             </TouchableOpacity>
           </View>
@@ -1837,16 +1919,13 @@ export default function UploadScreen() {
             >
               <Text className="text-white text-center font-medium">Cancel</Text>
             </TouchableOpacity>
-            <AccentButtonGradient style={{ flex: 1, borderRadius: 9999 }}>
-              <TouchableOpacity
-                onPress={handleConfirmSaveDraft}
-                activeOpacity={0.7}
-                className="px-4 py-3"
-                style={{ backgroundColor: 'transparent' }}
-              >
-                <Text className="text-white text-center font-semibold">Save</Text>
-              </TouchableOpacity>
-            </AccentButtonGradient>
+            <TouchableOpacity
+              onPress={handleConfirmSaveDraft}
+              activeOpacity={0.7}
+              className="flex-1 px-4 py-3 rounded-full bg-white"
+            >
+              <Text className="text-black text-center font-semibold">Save</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </GlassModal>
@@ -1867,16 +1946,13 @@ export default function UploadScreen() {
             Your post will be lost. Would you like to save it as a draft instead?
           </Text>
           <View className="gap-3">
-            <AccentButtonGradient style={{ width: '100%', borderRadius: 9999 }}>
-              <TouchableOpacity
-                onPress={handleDiscardSaveDraft}
-                activeOpacity={0.7}
-                className="px-4 py-3"
-                style={{ backgroundColor: 'transparent' }}
-              >
-                <Text className="text-white text-center font-semibold">Save to Drafts</Text>
-              </TouchableOpacity>
-            </AccentButtonGradient>
+            <TouchableOpacity
+              onPress={handleDiscardSaveDraft}
+              activeOpacity={0.7}
+              className="px-4 py-3 rounded-full bg-white"
+            >
+              <Text className="text-black text-center font-semibold">Save to Drafts</Text>
+            </TouchableOpacity>
             <TouchableOpacity
               onPress={handleDiscard}
               activeOpacity={0.7}

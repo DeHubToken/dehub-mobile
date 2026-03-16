@@ -122,9 +122,10 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
 
   const handlePress = useCallback(
     (routeName: string) => {
+      const route = state.routes.find((r) => r.name === routeName);
       const event = navigation.emit({
         type: "tabPress",
-        target: routeName,
+        target: route?.key ?? routeName,
         canPreventDefault: true,
       });
 

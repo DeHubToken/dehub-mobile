@@ -5,8 +5,6 @@ import {
   FlatList,
   Image,
   ActivityIndicator,
-  KeyboardAvoidingView,
-  Platform,
   StyleSheet,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -390,10 +388,8 @@ export default function AIChatScreen() {
   );
 
   return (
-    <KeyboardAvoidingView
+    <View
       style={s.root}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? TAB_BAR_HEIGHT : 0}
     >
       <AssistantHeader
         onNewChat={handleNewChat}
@@ -435,7 +431,7 @@ export default function AIChatScreen() {
         />
       )}
 
-      <View style={{ marginBottom: kbVisible ? 0 : TAB_BAR_HEIGHT }}>
+      <View style={{ marginBottom: kbVisible ? kbHeight : TAB_BAR_HEIGHT }}>
         <AssistantInputBar
           value={input}
           onChangeText={setInput}
@@ -468,7 +464,7 @@ export default function AIChatScreen() {
         onClose={() => setVideoPaywallVisible(false)}
         onConfirm={handleVideoPaywallConfirm}
       />
-    </KeyboardAvoidingView>
+    </View>
   );
 }
 

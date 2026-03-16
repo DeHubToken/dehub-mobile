@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, StyleSheet } from "react-native";
 import AppDrawer from "../components/Home/AppDrawer";
@@ -20,7 +20,6 @@ function BottomTabNavigator() {
   const navigation = useNavigation<AppStackNavigationProp<typeof ScreenNames.Root>>();
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
-  const [currentTab, setCurrentTab] = useState<string>(ScreenNames.Home);
 
   const { drawerOpen, closeDrawer } = useDrawer();
 
@@ -38,17 +37,6 @@ function BottomTabNavigator() {
           sceneContainerStyle: { backgroundColor: "#000" },
           tabBarShowLabel: false,
         }}
-        screenListeners={{
-          state: (e) => {
-            const navState = e.data.state;
-            if (navState && navState.index !== undefined && navState.routes) {
-              const activeRoute = navState.routes[navState.index];
-              if (activeRoute?.name) {
-                setCurrentTab(activeRoute.name);
-              }
-            }
-          },
-        }}
       >
         <Tab.Screen name={ScreenNames.Home} component={HomeScreen} />
         <Tab.Screen name={ScreenNames.DM} component={DirectMessagesScreen} />
@@ -62,8 +50,7 @@ function BottomTabNavigator() {
                 navigation.navigate(ScreenNames.SignIn);
                 return;
               }
-              const uploadTab = currentTab === ScreenNames.Home ? undefined : undefined;
-              navigation.navigate(ScreenNames.Upload, { tab: uploadTab });
+              navigation.navigate(ScreenNames.Upload);
             },
           }}
         />
