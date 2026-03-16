@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
-import AccentButtonGradient from "../ui/AccentButtonGradient";
+import GlassIndicator from "../ui/GlassIndicator";
 import GlassModal from "../ui/GlassModal";
 
 export type UploadStage =
@@ -73,13 +73,14 @@ const ConfirmUploadModal: React.FC<Props> = ({
           >
             <Text className="text-white">Cancel</Text>
           </TouchableOpacity>
-          <AccentButtonGradient style={{ borderRadius: 8 }}>
-            <TouchableOpacity
+          <TouchableOpacity
               disabled={busy}
               onPress={onConfirm}
-              className="px-3 py-2 rounded-lg"
-              style={{ backgroundColor: 'transparent' }}
+              className={`px-3 py-2 rounded-xl overflow-hidden ${
+                busy ? "opacity-50" : ""
+              }`}
             >
+              <GlassIndicator borderRadius={12} />
               {busy ? (
                 <View className="flex-row items-center">
                   <ActivityIndicator color="#FFFFFF" size="small" />
@@ -93,7 +94,6 @@ const ConfirmUploadModal: React.FC<Props> = ({
                 </Text>
               )}
             </TouchableOpacity>
-          </AccentButtonGradient>
         </View>
       </View>
     </GlassModal>

@@ -7,13 +7,13 @@
  */
 import React, { useCallback, useEffect, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
 } from "react-native-reanimated";
+import Icon from "../ui/Icon";
+import GlassIndicator from "../ui/GlassIndicator";
 import CustomSwitch from "../ui/CustomSwitch";
 
 
@@ -197,7 +197,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
     <View className="border-t border-theme-neutrals-700 mx-4 pt-2 pb-1">
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">
-          <Ionicons name="card-outline" size={20} color="#fff" />
+          <Icon name="CreditCard" size={20} color="#fff" />
           <Text className="text-white text-sm ml-3">PPV</Text>
         </View>
         <CustomSwitch
@@ -233,9 +233,10 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
             </TouchableOpacity>
             <TouchableOpacity
               onPress={confirmPpv}
-              className="flex-row items-center px-4 py-2 rounded-lg bg-theme-blue-500"
+              className="flex-row items-center px-4 py-2 rounded-xl overflow-hidden"
             >
-              <Ionicons name="checkmark" size={16} color="#fff" />
+              <GlassIndicator borderRadius={12} />
+              <Icon name="Check" size={16} color="#fff" />
               <Text className="text-white text-sm ml-1">Confirm</Text>
             </TouchableOpacity>
           </View>
@@ -244,7 +245,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
 
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">
-          <FontAwesome6 name="gift" size={18} color="#fff" />
+          <Icon name="Gift" size={18} color="#fff" />
           <Text className="text-white text-sm ml-3">Bounty</Text>
         </View>
         <CustomSwitch
@@ -311,9 +312,10 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
             </TouchableOpacity>
             <TouchableOpacity
               onPress={confirmBounty}
-              className="flex-row items-center px-4 py-2 rounded-lg bg-theme-blue-500"
+              className="flex-row items-center px-4 py-2 rounded-xl overflow-hidden"
             >
-              <Ionicons name="checkmark" size={16} color="#fff" />
+              <GlassIndicator borderRadius={12} />
+              <Icon name="Check" size={16} color="#fff" />
               <Text className="text-white text-sm ml-1">Confirm</Text>
             </TouchableOpacity>
           </View>
@@ -322,7 +324,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
 
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">
-          <FontAwesome6 name="shield-halved" size={18} color="#fff" />
+          <Icon name="ShieldCheck" size={18} color="#fff" />
           <Text className="text-white text-sm ml-3">Token Gated</Text>
         </View>
         <CustomSwitch
@@ -358,9 +360,10 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
             </TouchableOpacity>
             <TouchableOpacity
               onPress={confirmTokenGate}
-              className="flex-row items-center px-4 py-2 rounded-lg bg-theme-blue-500"
+              className="flex-row items-center px-4 py-2 rounded-xl overflow-hidden"
             >
-              <Ionicons name="checkmark" size={16} color="#fff" />
+              <GlassIndicator borderRadius={12} />
+              <Icon name="Check" size={16} color="#fff" />
               <Text className="text-white text-sm ml-1">Confirm</Text>
             </TouchableOpacity>
           </View>

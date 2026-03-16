@@ -198,22 +198,6 @@ export default function AppNavigator() {
       </Stack.Group>
 
       {/* ===================================================================== */}
-      {/* Upload Modal - Platform-specific behavior */}
-      {/* ===================================================================== */}
-      <Stack.Screen
-        name={ScreenNames.Upload}
-        component={UploadScreen}
-        options={{
-          presentation: Platform.OS === 'android' ? 'modal' : 'transparentModal',
-          cardStyle: { backgroundColor: Platform.OS === 'android' ? '#000' : 'transparent' },
-          cardStyleInterpolator: slideFromBottomWithOverlay,
-          gestureDirection: 'vertical',
-          gestureEnabled: true,
-          gestureResponseDistance: GESTURE_DISTANCE.SMALL_MODAL,
-        }}
-      />
-
-      {/* ===================================================================== */}
       {/* Auth-Gated Screens */}
       {/* Using navigationKey to reset state when auth changes */}
       {/* ===================================================================== */}
@@ -276,6 +260,16 @@ export default function AppNavigator() {
             <Stack.Screen
               name={ScreenNames.Profile}
               component={ProfileScreen}
+            />
+            <Stack.Screen
+              name={ScreenNames.Upload}
+              component={UploadScreen}
+              options={{
+                cardStyleInterpolator: slideFromBottom,
+                gestureDirection: 'vertical',
+                gestureEnabled: true,
+                gestureResponseDistance: GESTURE_DISTANCE.PARTIAL_MODAL,
+              }}
             />
             <Stack.Screen
               name={ScreenNames.EditProfile}
