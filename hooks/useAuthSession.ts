@@ -10,8 +10,10 @@ import {
   setAuthMethod,
   clearAuthMethod,
   getPreferredChainId,
+  getRefreshToken,
 } from "../libs/auth.utils";
 import { AuthService } from "../services";
+import { apiClient } from "../libs/api.client";
 import { clearSigningProvider } from "../libs/provider.registry";
 import { clearPersistedNavigationState } from "./useNavigationPersistence";
 import { unregisterPushTokens } from "../services/push/push.service";
@@ -205,6 +207,15 @@ export function useAuthSession({
         await unregisterPushTokens();
       } catch (e) {
         log.warn('signOut:unregisterPushTokens:error', e as any);
+      }
+      // Revoke the refresh token on the backend (best-effort)
+      try {
+        const refreshToken = await getRefreshToken();
+        if (refreshToken) {
+          await apiClient.post('/auth/logout', { refreshToken });
+        }
+      } catch (e) {
+        log.warn('signOut:revokeRefreshToken:error', e as any);
       }
       await clearAuthData();
       setUser(null);
