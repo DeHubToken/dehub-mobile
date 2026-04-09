@@ -34,8 +34,9 @@ function BottomTabNavigator() {
         tabBar={renderTabBar}
         screenOptions={{
           headerShown: false,
-          sceneContainerStyle: { backgroundColor: "#000" },
           tabBarShowLabel: false,
+          freezeOnBlur: true,
+          lazy: true,
         }}
       >
         <Tab.Screen name={ScreenNames.Home} component={HomeScreen} />

@@ -149,10 +149,17 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    // Don't retry the refresh endpoint itself
-    if (error.response?.status !== 401 || originalRequest.url === '/auth/refresh') {
+    // Only attempt refresh on "Access token expired" — not on other 401s
+    const isExpired =
+      error.response?.status === 401 &&
+      error.response?.data?.message === 'Access token expired';
+
+    // Don't retry the refresh endpoint itself, and don't retry twice
+    if (!isExpired || originalRequest._retry || originalRequest.url === '/auth/refresh') {
       return Promise.reject(error);
     }
+
+    originalRequest._retry = true;
 
     // If already refreshing, queue this request
     if (isRefreshing) {
