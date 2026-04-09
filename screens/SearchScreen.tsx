@@ -15,7 +15,8 @@ import {
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
+  withTiming,
+  Easing,
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -68,7 +69,7 @@ const TABS: Tab[] = [
 
 const TAB_H = 36;
 const TAB_RADIUS = 12;
-const SPRING_CONFIG = { stiffness: 400, damping: 30 };
+const SLIDE_TIMING = { duration: 150, easing: Easing.out(Easing.cubic) };
 const PAGE_SIZE = 20;
 
 /** Tabs shown on the default explore screen (no accounts) */
@@ -311,8 +312,8 @@ const SearchScreen: React.FC = () => {
       // Animate glass pill
       const layout = tabLayouts.current[tab];
       if (layout) {
-        pillX.value = withSpring(layout.x, SPRING_CONFIG);
-        pillW.value = withSpring(layout.width, SPRING_CONFIG);
+        pillX.value = withTiming(layout.x, SLIDE_TIMING);
+        pillW.value = withTiming(layout.width, SLIDE_TIMING);
       }
       if (hasSearched && searchQuery.trim()) {
         executeSearch(searchQuery, tab, 1);

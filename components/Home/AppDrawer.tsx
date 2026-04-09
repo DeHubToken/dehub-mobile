@@ -6,8 +6,6 @@ import {
   ScrollView,
   StyleSheet,
   Dimensions,
-  Platform,
-  Linking,
   BackHandler,
 } from "react-native";
 import { BlurView } from "expo-blur";
@@ -55,14 +53,11 @@ const AUTH_ITEMS: Omit<DrawerItem, "params">[] = [
   { icon: "Library", label: "My Library", screen: ScreenNames.MyLibrary },
   { icon: "FileText", label: "Drafts", screen: ScreenNames.Drafts },
   { icon: "Banknote", label: "Dpay", screen: ScreenNames.Dpay },
-  // { icon: "Wallet", label: "Wallet", disabled: true, disabledMessage: "Wallet coming soon" },
-  // { icon: "Terminal", label: "Command", disabled: true, disabledMessage: "Command coming soon" },
+  { icon: "Trophy", label: "Leaderboard", screen: ScreenNames.Leaderboard },
   { icon: "Settings", label: "Settings", screen: ScreenNames.AccountSettings },
 ];
 
-const PUBLIC_ITEMS: Omit<DrawerItem, "params">[] = [
-  { icon: "Trophy", label: "Leaderboard", screen: ScreenNames.Leaderboard },
-];
+const PUBLIC_ITEMS: Omit<DrawerItem, "params">[] = [];
 
 const SECONDARY_ITEMS: DrawerItem[] = [
   { icon: "BookOpen", label: "Docs", url: `${WEBSITE_LINK}/docs` },
@@ -222,10 +217,10 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
           style={[styles.drawer, drawerStyle, { width: DRAWER_WIDTH }]}
         >
           <BlurView
-            intensity={80}
+            intensity={120}
             tint="dark"
             style={StyleSheet.absoluteFill}
-            {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
+            experimentalBlurMethod="dimezisBlurView"
           />
           <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
 
@@ -239,7 +234,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
             }}
           >
             {isSignedIn && user ? (
-              <View className="px-5 pb-4 mb-2 border-b border-white/10">
+              <View className="px-5 pb-4 mb-2">
                 <TouchableOpacity
                   onPress={() => navigate(ScreenNames.Profile)}
                   activeOpacity={0.7}
@@ -283,7 +278,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                 </View>
               </View>
             ) : (
-              <View className="px-5 pb-4 mb-2 border-b border-white/10">
+              <View className="px-5 pb-4 mb-2">
                 <TouchableOpacity
                   className="flex-row items-center"
                   onPress={() => navigate(ScreenNames.SignIn)}
@@ -313,7 +308,6 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                     />
                   ))}
                 </View>
-                <View className="h-px bg-white/10 mx-5" />
               </>
             )}
 
@@ -327,8 +321,6 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                 />
               ))}
             </View>
-
-            <View className="h-px bg-white/10 mx-5" />
 
             <View className="py-2">
               {SECONDARY_ITEMS.map((item) => (
@@ -354,13 +346,9 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     overflow: "hidden",
-    borderRightWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
   },
   glassOverlay: {
-    backgroundColor: "rgba(20,20,20,0.45)",
-    borderRightWidth: 1,
-    borderColor: "rgba(255,255,255,0.12)",
+    backgroundColor: "rgba(10, 10, 12, 0.35)",
   },
 });
 

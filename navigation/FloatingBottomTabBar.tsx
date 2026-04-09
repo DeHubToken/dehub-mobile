@@ -146,8 +146,9 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
       <View style={styles.gradientOverlay} pointerEvents="none" />
       <View style={styles.navContainer}>
         <BlurView
-          intensity={80}
+          intensity={120}
           tint="dark"
+          experimentalBlurMethod="dimezisBlurView"
           style={styles.blur}
         >
           <View style={styles.glassOverlay} />
@@ -213,7 +214,7 @@ const styles = StyleSheet.create({
   },
   glassOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(24, 24, 27, 0.3)",
+    backgroundColor: "rgba(10, 10, 12, 0.30)",
     borderRadius: 18,
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.12)",

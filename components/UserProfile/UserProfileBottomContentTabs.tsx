@@ -22,7 +22,8 @@ import {
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
+  withTiming,
+  Easing,
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
@@ -68,7 +69,7 @@ interface UserProfileBottomContentTabsProps {
 const STICKY_BAR_HEIGHT = 44;
 const TAB_H = 36;
 const TAB_RADIUS = 12;
-const SPRING_CONFIG = { stiffness: 400, damping: 30 };
+const SLIDE_TIMING = { duration: 150, easing: Easing.out(Easing.cubic) };
 
 /** Horizontal padding for post cards — matches the profile header's px-6 (24px). */
 const CONTENT_PX = 24;
@@ -245,8 +246,8 @@ const UserProfileBottomContentTabs: React.FC<
       // Animate pill
       const layout = tabLayoutsRef.current[tab];
       if (layout) {
-        pillX.value = withSpring(layout.x, SPRING_CONFIG);
-        pillW.value = withSpring(layout.width, SPRING_CONFIG);
+        pillX.value = withTiming(layout.x, SLIDE_TIMING);
+        pillW.value = withTiming(layout.width, SLIDE_TIMING);
       }
       listRef.current?.scrollToOffset({ offset: 0, animated: false });
     },

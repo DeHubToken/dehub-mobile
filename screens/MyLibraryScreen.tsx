@@ -1,9 +1,10 @@
 import React, { useCallback, useRef, useState } from "react";
-import { View, Pressable, Text, StyleSheet } from "react-native";
+import { View, Pressable, Text, StyleSheet, ScrollView } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
-  withSpring,
+  withTiming,
+  Easing,
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import ScreenHeader from "../components/ScreenHeader";
@@ -30,7 +31,7 @@ const TABS: TabDef[] = [
 
 const TAB_H = 36;
 const TAB_RADIUS = 12;
-const SPRING_CONFIG = { stiffness: 400, damping: 30 };
+const SLIDE_TIMING = { duration: 150, easing: Easing.out(Easing.cubic) };
 
 const MyLibraryScreen: React.FC = () => {
   const { isSignedIn, needsUsername } = useAuth();
@@ -47,8 +48,8 @@ const MyLibraryScreen: React.FC = () => {
     (key: string, x: number, width: number) => {
       tabLayoutsRef.current[key] = { x, w: width };
       if (key === activeTab) {
-        indicatorX.value = withSpring(x, SPRING_CONFIG);
-        indicatorW.value = withSpring(width, SPRING_CONFIG);
+        indicatorX.value = x;
+        indicatorW.value = width;
       }
     },
     [activeTab, indicatorX, indicatorW],
@@ -59,8 +60,8 @@ const MyLibraryScreen: React.FC = () => {
       setActiveTab(key);
       const layout = tabLayoutsRef.current[key];
       if (layout) {
-        indicatorX.value = withSpring(layout.x, SPRING_CONFIG);
-        indicatorW.value = withSpring(layout.w, SPRING_CONFIG);
+        indicatorX.value = withTiming(layout.x, SLIDE_TIMING);
+        indicatorW.value = withTiming(layout.w, SLIDE_TIMING);
       }
     },
     [indicatorX, indicatorW],
@@ -82,7 +83,12 @@ const MyLibraryScreen: React.FC = () => {
         className="px-4"
         style={{ paddingTop: 6, paddingBottom: 10 }}
       >
-        <View style={styles.tabRow}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          bounces={false}
+          contentContainerStyle={styles.tabRow}
+        >
           <Animated.View style={[styles.indicator, indicatorStyle]}>
             <LinearGradient
               colors={["rgba(255,255,255,0.20)", "rgba(255,255,255,0.10)", "rgba(255,255,255,0.05)"]}
@@ -121,7 +127,7 @@ const MyLibraryScreen: React.FC = () => {
               </Pressable>
             );
           })}
-        </View>
+        </ScrollView>
       </View>
 
       <PostsInfiniteList
