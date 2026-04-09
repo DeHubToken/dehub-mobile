@@ -10,6 +10,8 @@ export const AUTH_METHOD_KEY = 'auth_method';
 export const AUTH_METHOD_ADDR_KEY = 'auth_method_address';
 export const PREFERRED_CHAIN_ID_KEY = 'preferred_chain_id';
 export const PENDING_CHAIN_SWITCH_KEY = 'pending_chain_switch';
+export const REFRESH_TOKEN_KEY = 'auth_refresh_token';
+export const TOKEN_EXPIRES_AT_KEY = 'auth_token_expires_at';
 
 /**
  * Gets the authentication token from SecureStore
@@ -30,6 +32,49 @@ export async function setAuthToken(token: string): Promise<void> {
  */
 export async function removeAuthToken(): Promise<void> {
   return SecureStore.deleteItemAsync(AUTH_TOKEN_KEY);
+}
+
+/**
+ * Gets the refresh token from SecureStore
+ */
+export async function getRefreshToken(): Promise<string | null> {
+  return SecureStore.getItemAsync(REFRESH_TOKEN_KEY);
+}
+
+/**
+ * Sets the refresh token in SecureStore
+ */
+export async function setRefreshToken(token: string): Promise<void> {
+  return SecureStore.setItemAsync(REFRESH_TOKEN_KEY, token);
+}
+
+/**
+ * Removes the refresh token from SecureStore
+ */
+export async function removeRefreshToken(): Promise<void> {
+  return SecureStore.deleteItemAsync(REFRESH_TOKEN_KEY);
+}
+
+/**
+ * Gets the token expiration timestamp (epoch ms) from SecureStore
+ */
+export async function getTokenExpiresAt(): Promise<number | null> {
+  const value = await SecureStore.getItemAsync(TOKEN_EXPIRES_AT_KEY);
+  return value ? Number(value) : null;
+}
+
+/**
+ * Sets the token expiration timestamp (epoch ms) in SecureStore
+ */
+export async function setTokenExpiresAt(expiresAt: number): Promise<void> {
+  return SecureStore.setItemAsync(TOKEN_EXPIRES_AT_KEY, String(expiresAt));
+}
+
+/**
+ * Removes the token expiration timestamp from SecureStore
+ */
+export async function removeTokenExpiresAt(): Promise<void> {
+  return SecureStore.deleteItemAsync(TOKEN_EXPIRES_AT_KEY);
 }
 
 /**
@@ -138,6 +183,8 @@ export async function __DEV_resetOnboardingFlags(): Promise<void> {
  */
 export async function clearAuthData(): Promise<void> {
   await removeAuthToken();
+  await removeRefreshToken();
+  await removeTokenExpiresAt();
   await removeAuthUser();
   await SecureStore.deleteItemAsync(WEB3_PROVIDER_KEY);
   try { await SecureStore.deleteItemAsync(AUTH_METHOD_KEY); } catch {}

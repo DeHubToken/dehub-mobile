@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { isTokenExpired, clearAuthData } from "../libs/auth.utils";
+import { tokenRefreshManager } from "../libs/token-refresh";
 
 type BootDeps<User> = {
   getAuthUser: <T>() => Promise<T | null>;
@@ -36,14 +37,24 @@ export function useAuthBoot<User>({
         if (userData && token) {
           // Validate token expiration before restoring session
           if (isTokenExpired(token)) {
-            log.warn?.("boot:token-expired", "Stored token is expired, clearing auth data");
-            // Clear expired auth data to force re-authentication
-            try {
-              await clearAuthData();
-            } catch (clearErr) {
-              log.warn("boot:clearAuthData:failed", clearErr);
+            log.warn?.("boot:token-expired", "Stored token is expired, attempting refresh");
+            // Try to refresh the token before giving up
+            const newToken = await tokenRefreshManager.attemptRefresh();
+            if (newToken) {
+              log.info?.("boot:token-refreshed", "Token refreshed successfully");
+              setUser(userData);
+              setIsSignedIn(true);
+              ensureProvider().catch((e) => {
+                log.warn("boot:ensureProvider:failed", e);
+              });
+            } else {
+              log.warn?.("boot:refresh-failed", "Token refresh failed, clearing auth data");
+              try {
+                await clearAuthData();
+              } catch (clearErr) {
+                log.warn("boot:clearAuthData:failed", clearErr);
+              }
             }
-            // Don't set user as signed in - they'll need to re-authenticate
           } else {
             // Token is valid, restore session
             setUser(userData);

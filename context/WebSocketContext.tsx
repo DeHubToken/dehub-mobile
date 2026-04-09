@@ -4,6 +4,7 @@ import { WebSocketClient } from '../services/ws/socket-client';
 import env from '../config/env';
 import { AppState } from 'react-native';
 import { getAuthToken as readStoredAuthToken } from '../libs/auth.utils';
+import { tokenRefreshManager } from '../libs/token-refresh';
 import { createLogger } from '../libs/logger';
 import { DMSocketEvent, DMSocketEventSet } from '../services/enums/dm-socket-events.enum';
 
@@ -54,6 +55,15 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       }
     });
     return () => { sub.remove(); };
+  }, [refreshTokenFromStore]);
+  // Subscribe to token refresh events for immediate WebSocket auth update
+  useEffect(() => {
+    const unsubscribe = tokenRefreshManager.onTokenRefreshed(async () => {
+      await refreshTokenFromStore();
+      clientRef.current?.updateAuth();
+      dmClientRef.current?.updateAuth();
+    });
+    return unsubscribe;
   }, [refreshTokenFromStore]);
   // Stable getters (no deps) that read from ref; the socket will call these at reconnect/build time
   const getAuthToken = useCallback(() => tokenRef.current, []);
