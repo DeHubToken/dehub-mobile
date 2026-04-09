@@ -1,5 +1,5 @@
 import { apiClient } from "../libs";
-import { setAuthToken, setAuthUser, clearAuthData } from "../libs/auth.utils";
+import { setAuthToken, setAuthUser, clearAuthData, setRefreshToken, setTokenExpiresAt, getRefreshToken } from "../libs/auth.utils";
 import {
   getOrCreateAuthSignature,
   buildAuthRequestPayload,
@@ -10,6 +10,8 @@ import { User } from "../context/AuthContext";
 interface AuthResponse {
   user: User;
   token: string;
+  refreshToken: string;
+  expiresIn: number;
   needsUsername?: boolean;
 }
 
@@ -48,16 +50,22 @@ export const AuthService = {
       const augmentedUser = { ...response.user, authSignature: sigMeta } as any;
       // Use isNewAccount from backend response to determine if username setup is needed
       const needsUsername = !!(response as any)?.result?.isNewAccount;
+      const storeTokens = async () => {
+        await setAuthToken(response.token);
+        if (response.refreshToken) await setRefreshToken(response.refreshToken);
+        if (response.expiresIn) await setTokenExpiresAt(Date.now() + response.expiresIn * 1000);
+      };
       if (needsUsername) {
         // Store token immediately so username update calls are authenticated
-        await setAuthToken(response.token);
-        return { user: augmentedUser, token: response.token, needsUsername };
+        await storeTokens();
+        return { user: augmentedUser, token: response.token, refreshToken: response.refreshToken, expiresIn: response.expiresIn, needsUsername };
       }
-      await setAuthToken(response.token);
-      // await setAuthUser(augmentedUser);
+      await storeTokens();
       return {
         user: augmentedUser,
         token: response.token,
+        refreshToken: response.refreshToken,
+        expiresIn: response.expiresIn,
         needsUsername: false,
       };
     } catch (error) {
@@ -130,8 +138,13 @@ export const AuthService = {
    */
   async signOut(): Promise<void> {
     try {
-      // Call the signout endpoint if your API has one
-      // await apiClient.post('/auth/signout', {});
+      // Revoke the refresh token on the backend (best-effort)
+      const refreshToken = await getRefreshToken();
+      if (refreshToken) {
+        try {
+          await apiClient.post('/auth/logout', { refreshToken });
+        } catch {}
+      }
 
       // Clear local auth data
       await clearAuthData();
@@ -141,6 +154,18 @@ export const AuthService = {
       await clearAuthData();
       throw error;
     }
+  },
+
+  /**
+   * Log out from all devices — revokes all refresh tokens for the user
+   */
+  async logoutAllDevices(): Promise<void> {
+    try {
+      await apiClient.post('/auth/logout-all', {});
+    } catch (error) {
+      console.error("Logout all devices error:", error);
+    }
+    await clearAuthData();
   },
 
   /**

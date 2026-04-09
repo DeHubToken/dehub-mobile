@@ -2,6 +2,7 @@ import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 import env from '../config/env';
 import { createAuthHeaders, getAuthToken } from './auth.utils';
+import { tokenRefreshManager } from './token-refresh';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
 const PLATFORM = Platform.OS; // 'ios' | 'android'
@@ -59,6 +60,8 @@ export const apiClient = {
     
     // Add auth headers if required
     if (isAuthRequired) {
+      // Proactively refresh token if it's about to expire
+      await tokenRefreshManager.ensureFreshToken();
       const authHeaders = await createAuthHeaders();
       Object.assign(requestHeaders, authHeaders);
     }
@@ -115,7 +118,38 @@ export const apiClient = {
       }
 
       if (!response.ok) {
-        if (status === 401) {
+        if (status === 401 && isAuthRequired && !endpoint.includes('/auth/refresh')) {
+          // Attempt to refresh the token and retry the request
+          const newToken = await tokenRefreshManager.attemptRefresh();
+          if (newToken) {
+            requestHeaders['Authorization'] = `Bearer ${newToken}`;
+            const retryOptions: RequestInit = {
+              method,
+              headers: requestHeaders,
+            };
+            if (body) {
+              retryOptions.body = isFormData ? body : JSON.stringify(body);
+            }
+            const retryResponse = await fetch(url, retryOptions);
+            if (retryResponse.ok) {
+              const retryContentType = retryResponse.headers.get('content-type') || '';
+              if (retryResponse.status === 204 || retryResponse.status === 205) {
+                // @ts-expect-error allow void when caller expects something
+                return undefined;
+              }
+              if (retryContentType.includes('application/json')) {
+                return await retryResponse.json() as T;
+              }
+              const retryText = await retryResponse.text();
+              const trimmedRetry = retryText.trim();
+              if (trimmedRetry.startsWith('{') || trimmedRetry.startsWith('[')) {
+                try { return JSON.parse(trimmedRetry) as T; } catch { return { raw: trimmedRetry } as any; }
+              }
+              return { raw: trimmedRetry } as any;
+            }
+            // Retry also failed — fall through to throw
+          }
+          // Refresh failed or retry failed — throw original 401
           throw new Error('Authentication required');
         }
 
