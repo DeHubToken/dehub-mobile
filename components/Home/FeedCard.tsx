@@ -102,6 +102,8 @@ interface FeedCardProps {
   enablePreview?: boolean;
   /** Fires before any card-press navigation (e.g. to close a bottom sheet). */
   onBeforeNavigate?: () => void;
+  /** Show a "Reposted" label inside the card above the user header row. */
+  showRepostLabel?: boolean;
 }
 
 const FeedCardComponent: React.FC<FeedCardProps> = ({
@@ -113,6 +115,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   isVisible = true,
   enablePreview = true,
   onBeforeNavigate,
+  showRepostLabel = false,
 }) => {
   const navigation = useNavigation<any>();
   const user = useUser();
@@ -742,6 +745,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       disabled={disablePress}
       style={{ borderWidth: 1, borderColor: '#1D1F21', borderRadius: 16, padding: 12, marginVertical: 4 }}
     >
+      {showRepostLabel && (
+        <View className="flex-row items-center gap-1.5 mb-2">
+          <Icon name="Repeat2" size={14} color="#9CA3AF" />
+          <Text className="text-xs text-theme-neutrals-400">Reposted</Text>
+        </View>
+      )}
       <View className="flex-row items-start">
         <View className="flex-1">
           <FeedCardHeader

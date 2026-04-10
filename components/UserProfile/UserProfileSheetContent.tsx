@@ -3,13 +3,15 @@ import { View, Text, TouchableOpacity, type NativeSyntheticEvent, type NativeScr
 import { Ionicons } from "@expo/vector-icons";
 import UserProfileSkeleton from "./UserProfileSkeleton";
 import UserProfileHeader from "./UserProfileHeader";
-import UserProfileStatsRow from "./UserProfileStatsRow";
-import UserProfileActions from "./UserProfileActions";
-import UserProfileAboutSection from "./UserProfileAboutSection";
 import UserProfileBottomContentTabs from "./UserProfileBottomContentTabs";
 import GlassModal from "../ui/GlassModal";
+import GlassTipSheet from "../Tip/GlassTipSheet";
 import ConfirmBlockModal from "../common/ConfirmBlockModal";
 import ReportModal from "../common/ReportModal";
+import Icon from "../ui/Icon";
+import { copyToClipboard } from "../../libs";
+import { shareProfile } from "../../libs/misc";
+import { WEBSITE_LINK } from "../../config/links";
 
 const FallbackAvatar = require("../../assets/default-avatar.png");
 
@@ -91,6 +93,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   const [showBlockConfirm, setShowBlockConfirm] = useState(false);
   const [showReportUser, setShowReportUser] = useState(false);
   const [showRemoveFollowerConfirm, setShowRemoveFollowerConfirm] = useState(false);
+  const [showTip, setShowTip] = useState(false);
 
   const handleOpenMenu = useCallback(() => {
     setShowProfileMenu(true);
@@ -131,6 +134,36 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     }
     setShowBlockConfirm(false);
   }, [youBlocked, onBlock, onUnblock]);
+
+  const handleMenuMessage = useCallback(() => {
+    setShowProfileMenu(false);
+    setTimeout(() => onMessage(), 200);
+  }, [onMessage]);
+
+  const handleMenuTip = useCallback(() => {
+    setShowProfileMenu(false);
+    setTimeout(() => setShowTip(true), 200);
+  }, []);
+
+  const handleMenuShare = useCallback(() => {
+    setShowProfileMenu(false);
+    const url = `${WEBSITE_LINK}/${profileData?.username || profileData?.address}`;
+    const message = `Check out ${profileData?.displayName || "this user"} on DeHub ${url}`;
+    shareProfile(url, message);
+  }, [profileData]);
+
+  const handleMenuCopyUrl = useCallback(() => {
+    const url = `${WEBSITE_LINK}/${profileData?.username || profileData?.address}`;
+    copyToClipboard(url);
+    setShowProfileMenu(false);
+  }, [profileData]);
+
+  const handleMenuCopyAddress = useCallback(() => {
+    if (profileData?.address) {
+      copyToClipboard(profileData.address);
+    }
+    setShowProfileMenu(false);
+  }, [profileData]);
   const ProfileHeader = useMemo(() => {
     if (!profileData) return null;
     
@@ -149,18 +182,26 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           joinedDate={profileData.joinedDate}
           followsYou={followsYou}
           isPrivate={isPrivate}
-          canViewContent={canViewContent}
+          bio={data?.aboutMe}
+          isFollowing={isFollowing}
+          isFollowRequestPending={isFollowRequestPending}
+          followLoading={followLoading}
+          disableActions={profileData.disableActions}
+          isOwnProfile={isOwnProfile}
+          isBlocked={isBlocked}
+          onFollow={onFollow}
+          onOpenUnfollow={onOpenUnfollow}
           onOpenImage={onOpenImage}
           onShare={onShare}
           onMessage={isOwnProfile ? undefined : onMessage}
+          onEditProfile={onEditProfile}
+          stats={stats}
+          onStatPress={onStatPress}
           FallbackAvatar={FallbackAvatar}
           FallbackBanner={defaultBanner}
           socials={data}
         />
-        <View className="px-6 mt-2">
-          <UserProfileStatsRow stats={stats} onStatPress={onStatPress} />
-
-          {/* Block status banners */}
+        <View className="px-5 mt-2">
           {!isOwnProfile && youBlocked && (
             <View className="mt-3 bg-red-900/30 border border-red-800/50 rounded-xl px-4 py-3 flex-row items-center">
               <Ionicons name="ban-outline" size={18} color="#EF4444" />
@@ -189,20 +230,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               </View>
             </View>
           )}
-
-          {!isOwnProfile && !isBlocked && (
-            <UserProfileActions
-              isFollowing={isFollowing}
-              isFollowRequestPending={isFollowRequestPending}
-              followLoading={followLoading}
-              disableActions={profileData.disableActions}
-              address={profileData.address}
-              recipientName={profileData.displayName}
-              onFollow={onFollow}
-              onOpenUnfollow={onOpenUnfollow}
-            />
-          )}
-          {data?.aboutMe && !isBlocked && <UserProfileAboutSection content={data.aboutMe} />}
         </View>
       </View>
     );
@@ -276,11 +303,106 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
       <GlassModal
         visible={showProfileMenu}
         onClose={() => setShowProfileMenu(false)}
-        presentation="center"
-        maxHeight="50%"
+        presentation="bottom"
+        maxHeight="80%"
         blurIntensity={50}
       >
-        <View className="pb-4 pt-2">
+        <View className="pb-4 pt-2" style={{ backgroundColor: "rgba(10,10,12,0.85)" }}>
+          {/* Message */}
+          <TouchableOpacity
+            onPress={handleMenuMessage}
+            activeOpacity={0.7}
+            className="flex-row items-center px-5 py-3.5"
+          >
+            <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+              <Icon name="MessageSquare" size={18} color="#fff" />
+            </View>
+            <View className="flex-1">
+              <Text className="text-white text-[15px] font-medium">Message</Text>
+              <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                Send a direct message
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          <View className="mx-5 my-1 h-px bg-white/10" />
+
+          {/* Send Tip */}
+          <TouchableOpacity
+            onPress={handleMenuTip}
+            activeOpacity={0.7}
+            className="flex-row items-center px-5 py-3.5"
+          >
+            <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+              <Icon name="HandCoins" size={18} color="#fff" />
+            </View>
+            <View className="flex-1">
+              <Text className="text-white text-[15px] font-medium">Send Tip</Text>
+              <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                Send a tip to {profileData?.displayName || "this user"}
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          <View className="mx-5 my-1 h-px bg-white/10" />
+
+          {/* Share Profile */}
+          <TouchableOpacity
+            onPress={handleMenuShare}
+            activeOpacity={0.7}
+            className="flex-row items-center px-5 py-3.5"
+          >
+            <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+              <Icon name="Share2" size={18} color="#fff" />
+            </View>
+            <View className="flex-1">
+              <Text className="text-white text-[15px] font-medium">Share Profile</Text>
+              <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                Share this profile with others
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          <View className="mx-5 my-1 h-px bg-white/10" />
+
+          {/* Copy Profile URL */}
+          <TouchableOpacity
+            onPress={handleMenuCopyUrl}
+            activeOpacity={0.7}
+            className="flex-row items-center px-5 py-3.5"
+          >
+            <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+              <Icon name="Link" size={18} color="#fff" />
+            </View>
+            <View className="flex-1">
+              <Text className="text-white text-[15px] font-medium">Copy Profile URL</Text>
+              <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                Copy link to clipboard
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          <View className="mx-5 my-1 h-px bg-white/10" />
+
+          {/* Copy Address */}
+          <TouchableOpacity
+            onPress={handleMenuCopyAddress}
+            activeOpacity={0.7}
+            className="flex-row items-center px-5 py-3.5"
+          >
+            <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
+              <Icon name="Copy" size={18} color="#fff" />
+            </View>
+            <View className="flex-1">
+              <Text className="text-white text-[15px] font-medium">Copy Address</Text>
+              <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                Copy wallet address to clipboard
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          <View className="mx-5 my-1 h-px bg-white/10" />
+
           {/* Remove Follower — only when this user follows you */}
           {followsYou && (
             <>
@@ -306,6 +428,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
             </>
           )}
 
+          {/* Block */}
           <TouchableOpacity
             onPress={handleBlockPress}
             activeOpacity={0.7}
@@ -334,6 +457,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
 
           <View className="mx-5 my-1 h-px bg-white/10" />
 
+          {/* Report */}
           <TouchableOpacity
             onPress={handleReportPress}
             activeOpacity={0.7}
@@ -408,6 +532,15 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         type="user"
         userId={profileData?.address}
         userName={profileData?.displayName}
+      />
+
+      {/* Tip modal */}
+      <GlassTipSheet
+        visible={showTip}
+        onClose={() => setShowTip(false)}
+        toAddress={profileData?.address || ""}
+        recipientName={profileData?.displayName}
+        tipContext="user"
       />
     </View>
   );
