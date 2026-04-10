@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   Dimensions,
+  Platform,
   BackHandler,
 } from "react-native";
 import { BlurView } from "expo-blur";
@@ -216,12 +217,15 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         <Animated.View
           style={[styles.drawer, drawerStyle, { width: DRAWER_WIDTH }]}
         >
-          <BlurView
-            intensity={120}
-            tint="dark"
-            style={StyleSheet.absoluteFill}
-            experimentalBlurMethod="dimezisBlurView"
-          />
+          {Platform.OS === "ios" ? (
+            <BlurView
+              intensity={100}
+              tint="dark"
+              style={StyleSheet.absoluteFill}
+            />
+          ) : (
+            <View style={[StyleSheet.absoluteFill, styles.androidFrost]} />
+          )}
           <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
 
           <ScrollView
@@ -347,8 +351,11 @@ const styles = StyleSheet.create({
     bottom: 0,
     overflow: "hidden",
   },
+  androidFrost: {
+    backgroundColor: "rgba(10, 10, 12, 0.88)",
+  },
   glassOverlay: {
-    backgroundColor: "rgba(10, 10, 12, 0.35)",
+    backgroundColor: "rgba(10, 10, 12, 0.15)",
   },
 });
 

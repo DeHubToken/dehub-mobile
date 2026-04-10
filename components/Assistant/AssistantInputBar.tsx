@@ -51,7 +51,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
       <View style={s.inputRow}>
         <TextInput
           style={s.input}
-          placeholder="Describe edits..."
+          placeholder="Ask me anything..."
           placeholderTextColor="#6F7174"
           value={value}
           onChangeText={onChangeText}

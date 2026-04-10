@@ -169,7 +169,12 @@ async function edgeFetch<T>(
   body: Record<string, unknown>,
 ): Promise<T> {
   const url = `${EDGE_BASE}/${functionName}`;
-  log.debug(`POST ${functionName}`, Object.keys(body));
+  const payloadSize = JSON.stringify(body).length;
+  const msgCount = Array.isArray(body.messages) ? body.messages.length : 0;
+  const hasPostCtx = !!body.postContext;
+  log.debug(`POST ${functionName} | msgs=${msgCount} postCtx=${hasPostCtx} payload=${payloadSize}B`);
+
+  const t0 = Date.now();
 
   const res = await fetch(url, {
     method: 'POST',
@@ -177,11 +182,15 @@ async function edgeFetch<T>(
     body: JSON.stringify(body),
   });
 
+  const tNetwork = Date.now() - t0;
   const data = await res.json();
+  const tTotal = Date.now() - t0;
+
+  log.debug(`${functionName} | status=${res.status} network=${tNetwork}ms total=${tTotal}ms`);
 
   if (!res.ok) {
     const err = data as AIErrorResponse;
-    log.error(`${functionName} failed (${res.status}):`, err.error);
+    log.error(`${functionName} failed (${res.status}) after ${tTotal}ms:`, err.error);
     throw new AIServiceError(
       err.error || `AI request failed (${res.status})`,
       res.status,
