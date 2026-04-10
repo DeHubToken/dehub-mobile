@@ -369,7 +369,14 @@ export const useLiveChat = (): UseLiveChatReturn => {
       const oldest = messagesRef.current[0];
       const res = await getLiveChatMessages({ before: oldest._id, limit: 50 });
       if (res.messages.length > 0) {
-        setMessages((prev) => [...res.messages.map(normalizeMsg).reverse(), ...prev]);
+        setMessages((prev) => {
+          const existingIds = new Set(prev.map((m) => m._id));
+          const older = res.messages
+            .map(normalizeMsg)
+            .reverse()
+            .filter((m) => !existingIds.has(m._id));
+          return [...older, ...prev];
+        });
       }
       setHasMore(res.hasMore);
     } catch (e) {
