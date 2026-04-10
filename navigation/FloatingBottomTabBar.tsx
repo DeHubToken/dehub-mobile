@@ -18,6 +18,7 @@ import type { IconName } from "../components/ui/Icon";
 import { ScreenNames } from "./ScreenNames";
 import { WEBSITE_LINK } from "../config/links";
 import { openInApp } from "../libs/links.utils";
+import { useTabBarHide } from "../context/TabBarHideContext";
 
 const { width: SCREEN_W } = Dimensions.get("window");
 const NAV_WIDTH = Math.min(SCREEN_W * 0.72, 340);
@@ -212,9 +213,28 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   );
 
   const bottomPadding = Math.max(insets.bottom, 8);
+  const TAB_BAR_SLIDE = 110; // distance to push off-screen (matches web's 110%)
+
+  // Mirror header hide: slide tab bar down when header hides
+  const headerTranslateY = useTabBarHide();
+  const hideStyle = useAnimatedStyle(() => {
+    if (!headerTranslateY) return {};
+    // headerTranslateY smoothly animates from 0 (visible) to some negative value (hidden)
+    // Map any negative movement to 0→1 progress over a small range (first 30px of hide)
+    const progress = interpolate(
+      headerTranslateY.value,
+      [0, -30],
+      [0, 1],
+      "clamp",
+    );
+    return {
+      transform: [{ translateY: progress * TAB_BAR_SLIDE }],
+      opacity: interpolate(progress, [0, 0.6], [1, 0], "clamp"),
+    };
+  });
 
   return (
-    <View style={[styles.outerWrap, { paddingBottom: bottomPadding }]} pointerEvents="box-none">
+    <Reanimated.View style={[styles.outerWrap, { paddingBottom: bottomPadding }, hideStyle]} pointerEvents="box-none">
       <View style={styles.gradientOverlay} pointerEvents="none" />
       <View style={styles.navContainer}>
         {Platform.OS === "ios" ? (
@@ -258,7 +278,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
           ))}
         </ScrollView>
       </View>
-    </View>
+    </Reanimated.View>
   );
 };
 

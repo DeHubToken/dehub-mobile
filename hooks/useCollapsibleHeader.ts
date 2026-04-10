@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import {
   useSharedValue,
   useAnimatedStyle,
@@ -9,37 +9,32 @@ import {
 } from 'react-native-reanimated';
 import type { LayoutChangeEvent, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 
-const SNAP_TIMING = { duration: 200, easing: Easing.out(Easing.cubic) };
+const ANIM_CONFIG = { duration: 280, easing: Easing.out(Easing.cubic) };
 
-// Must scroll 10+ px in a new direction before the system recognises a
-// direction change.  Finger jitter (±3 px) never reaches this, so the
-// anchor stays put and the header stays rock-solid.
-const DIR_CHANGE_THRESHOLD = 10;
-
-// Ignore teleport-like jumps (programmatic scrollToOffset, FlatList recycle, etc.)
+const TOP_THRESHOLD = 60;
+const SCROLL_DEAD_ZONE = 18;
 const JUMP_GUARD = 300;
+const COOLDOWN_MS = 250;
 
 export const useCollapsibleHeader = () => {
   const translateY = useSharedValue(0);
-  const negativeMargin = useSharedValue(0);
   const headerHeightSV = useSharedValue(0);
+  const visibleSV = useSharedValue(1);
 
-  // ── Worklet-side anchor state ──
   const wPrevY = useSharedValue(0);
-  const wAnchorY = useSharedValue(0);
-  const wHeaderAtAnchor = useSharedValue(0);
-  const wDir = useSharedValue(0); // -1 up, 0 none, 1 down
+  const wAccum = useSharedValue(0);
+  const wLastToggle = useSharedValue(0);
 
-  // ── JS-side anchor state ──
   const jsPrevY = useRef(0);
-  const jsAnchorY = useRef(0);
-  const jsHeaderAtAnchor = useRef(0);
-  const jsDir = useRef(0);
+  const jsAccum = useRef(0);
+  const jsVisible = useRef(true);
+  const jsLastToggle = useRef(0);
   const heightRef = useRef(0);
+
+  const [headerHeight, setHeaderHeight] = useState(0);
 
   const headerAnimatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
-    marginBottom: negativeMargin.value,
   }));
 
   const onHeaderLayout = useCallback((e: LayoutChangeEvent) => {
@@ -47,10 +42,17 @@ export const useCollapsibleHeader = () => {
     if (h > 0) {
       heightRef.current = h;
       headerHeightSV.value = h;
+      setHeaderHeight(h);
     }
   }, [headerHeightSV]);
 
-  // ── Core worklet drive ──
+  const animateTo = (target: number) => {
+    'worklet';
+    cancelAnimation(translateY);
+    translateY.value = withTiming(target, ANIM_CONFIG);
+    visibleSV.value = target === 0 ? 1 : 0;
+  };
+
   const driveWorklet = (scrollY: number) => {
     'worklet';
     const h = headerHeightSV.value;
@@ -60,54 +62,31 @@ export const useCollapsibleHeader = () => {
     wPrevY.value = scrollY;
     if (Math.abs(delta) > JUMP_GUARD) return;
 
-    // At top of content: always fully visible
-    if (scrollY <= 0) {
-      wAnchorY.value = 0;
-      wHeaderAtAnchor.value = 0;
-      wDir.value = 0;
-      cancelAnimation(translateY);
-      cancelAnimation(negativeMargin);
-      translateY.value = 0;
-      negativeMargin.value = 0;
+    if (scrollY <= TOP_THRESHOLD) {
+      if (visibleSV.value !== 1) {
+        animateTo(0);
+        wLastToggle.value = Date.now();
+      }
+      wAccum.value = 0;
       return;
     }
 
-    const newDir = delta > 0 ? 1 : delta < 0 ? -1 : 0;
-    if (newDir === 0) return;
-
-    // Direction change? Only accept if distance from anchor exceeds threshold.
-    if (newDir !== wDir.value) {
-      const distFromAnchor = Math.abs(scrollY - wAnchorY.value);
-      if (distFromAnchor >= DIR_CHANGE_THRESHOLD || wDir.value === 0) {
-        cancelAnimation(translateY);
-        cancelAnimation(negativeMargin);
-        wHeaderAtAnchor.value = translateY.value;
-        wAnchorY.value = scrollY;
-        wDir.value = newDir;
-      }
+    if ((delta > 0 && wAccum.value < 0) || (delta < 0 && wAccum.value > 0)) {
+      wAccum.value = 0;
     }
+    wAccum.value += delta;
 
-    // Header translateY = headerAtAnchor − (scrollY − anchorY), clamped.
-    const displacement = scrollY - wAnchorY.value;
-    const raw = wHeaderAtAnchor.value - displacement;
-    const clamped = Math.max(-h, Math.min(raw, 0));
+    const now = Date.now();
+    if (now - wLastToggle.value < COOLDOWN_MS) return;
 
-    translateY.value = clamped;
-    negativeMargin.value = clamped;
-  };
-
-  const snapWorklet = () => {
-    'worklet';
-    const h = headerHeightSV.value;
-    if (h <= 0) return;
-    const cur = translateY.value;
-    if (cur > -h && cur < 0) {
-      const target = cur < -h / 2 ? -h : 0;
-      translateY.value = withTiming(target, SNAP_TIMING);
-      negativeMargin.value = withTiming(target, SNAP_TIMING);
-      wHeaderAtAnchor.value = target;
-      wAnchorY.value = wPrevY.value;
-      wDir.value = 0;
+    if (wAccum.value > SCROLL_DEAD_ZONE && visibleSV.value === 1) {
+      animateTo(-h);
+      wAccum.value = 0;
+      wLastToggle.value = now;
+    } else if (wAccum.value < -SCROLL_DEAD_ZONE && visibleSV.value === 0) {
+      animateTo(0);
+      wAccum.value = 0;
+      wLastToggle.value = now;
     }
   };
 
@@ -116,17 +95,8 @@ export const useCollapsibleHeader = () => {
       'worklet';
       driveWorklet(event.contentOffset.y);
     },
-    onEndDrag: () => {
-      'worklet';
-      snapWorklet();
-    },
-    onMomentumEnd: () => {
-      'worklet';
-      snapWorklet();
-    },
   });
 
-  // ── Core JS drive ──
   const driveJS = useCallback(
     (scrollY: number) => {
       const h = heightRef.current;
@@ -136,42 +106,39 @@ export const useCollapsibleHeader = () => {
       jsPrevY.current = scrollY;
       if (Math.abs(delta) > JUMP_GUARD) return;
 
-      if (scrollY <= 0) {
-        jsAnchorY.current = 0;
-        jsHeaderAtAnchor.current = 0;
-        jsDir.current = 0;
-        cancelAnimation(translateY);
-        cancelAnimation(negativeMargin);
-        translateY.value = 0;
-        negativeMargin.value = 0;
+      if (scrollY <= TOP_THRESHOLD) {
+        if (!jsVisible.current) {
+          jsVisible.current = true;
+          jsLastToggle.current = Date.now();
+          animateTo(0);
+        }
+        jsAccum.current = 0;
         return;
       }
 
-      const newDir = delta > 0 ? 1 : delta < 0 ? -1 : 0;
-      if (newDir === 0) return;
-
-      if (newDir !== jsDir.current) {
-        const distFromAnchor = Math.abs(scrollY - jsAnchorY.current);
-        if (distFromAnchor >= DIR_CHANGE_THRESHOLD || jsDir.current === 0) {
-          cancelAnimation(translateY);
-          cancelAnimation(negativeMargin);
-          jsHeaderAtAnchor.current = translateY.value;
-          jsAnchorY.current = scrollY;
-          jsDir.current = newDir;
-        }
+      if ((delta > 0 && jsAccum.current < 0) || (delta < 0 && jsAccum.current > 0)) {
+        jsAccum.current = 0;
       }
+      jsAccum.current += delta;
 
-      const displacement = scrollY - jsAnchorY.current;
-      const raw = jsHeaderAtAnchor.current - displacement;
-      const clamped = Math.max(-h, Math.min(raw, 0));
+      const now = Date.now();
+      if (now - jsLastToggle.current < COOLDOWN_MS) return;
 
-      translateY.value = clamped;
-      negativeMargin.value = clamped;
+      if (jsAccum.current > SCROLL_DEAD_ZONE && jsVisible.current) {
+        jsVisible.current = false;
+        jsLastToggle.current = now;
+        jsAccum.current = 0;
+        animateTo(-h);
+      } else if (jsAccum.current < -SCROLL_DEAD_ZONE && !jsVisible.current) {
+        jsVisible.current = true;
+        jsLastToggle.current = now;
+        jsAccum.current = 0;
+        animateTo(0);
+      }
     },
-    [translateY, negativeMargin],
+    [translateY],
   );
 
-  // Called from InfiniteVideoFeed with (offsetY, deltaY).  We only use offsetY.
   const handleScrollOffset = useCallback(
     (offsetY: number, _deltaY: number) => {
       driveJS(offsetY);
@@ -179,7 +146,6 @@ export const useCollapsibleHeader = () => {
     [driveJS],
   );
 
-  // Called from ScrollView / non-Animated FlatList onScroll
   const handleScroll = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       driveJS(e.nativeEvent.contentOffset.y);
@@ -187,33 +153,20 @@ export const useCollapsibleHeader = () => {
     [driveJS],
   );
 
-  // Snap to nearest fully-shown or fully-hidden state
-  const handleScrollEnd = useCallback(() => {
-    const h = heightRef.current;
-    if (h <= 0) return;
-    const cur = translateY.value;
-    if (cur > -h && cur < 0) {
-      const target = cur < -h / 2 ? -h : 0;
-      translateY.value = withTiming(target, SNAP_TIMING);
-      negativeMargin.value = withTiming(target, SNAP_TIMING);
-      jsHeaderAtAnchor.current = target;
-      jsAnchorY.current = jsPrevY.current;
-      jsDir.current = 0;
-    }
-  }, [translateY, negativeMargin]);
+  const handleScrollEnd = useCallback(() => {}, []);
 
-  // Programmatically reveal header (pull-to-refresh, tab press, etc.)
   const showHeader = useCallback(() => {
+    jsVisible.current = true;
+    jsAccum.current = 0;
+    jsLastToggle.current = Date.now();
     cancelAnimation(translateY);
-    cancelAnimation(negativeMargin);
-    jsDir.current = 0;
-    jsAnchorY.current = jsPrevY.current;
-    jsHeaderAtAnchor.current = 0;
-    translateY.value = withTiming(0, SNAP_TIMING);
-    negativeMargin.value = withTiming(0, SNAP_TIMING);
-  }, [translateY, negativeMargin]);
+    translateY.value = withTiming(0, ANIM_CONFIG);
+    visibleSV.value = 1;
+  }, [translateY, visibleSV]);
 
   return {
+    translateY,
+    headerHeight,
     headerAnimatedStyle,
     scrollHandler,
     handleScroll,
