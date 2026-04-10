@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef } from "react";
-import { View, Pressable, StyleSheet, Platform } from "react-native";
+import { View, Pressable, ScrollView, StyleSheet, Platform, Dimensions } from "react-native";
 import Reanimated, {
   useSharedValue,
   useAnimatedStyle,
@@ -16,8 +16,13 @@ import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import Icon from "../components/ui/Icon";
 import type { IconName } from "../components/ui/Icon";
 import { ScreenNames } from "./ScreenNames";
+import { WEBSITE_LINK } from "../config/links";
+import { openInApp } from "../libs/links.utils";
 
-const ANIM_STORAGE_KEY = "bottomNavCarouselSeen";
+const { width: SCREEN_W } = Dimensions.get("window");
+const NAV_WIDTH = Math.min(SCREEN_W * 0.72, 340);
+const CENTER_W = 52;
+const TAB_W = (NAV_WIDTH - CENTER_W) / 4;
 
 interface TabDef {
   name: string;
@@ -31,6 +36,25 @@ const TABS: TabDef[] = [
   { name: ScreenNames.UploadTab, icon: "Plus", isCenter: true },
   { name: ScreenNames.AIChat, icon: "Sparkles" },
   { name: ScreenNames.Explore, icon: "Search" },
+];
+
+interface ScrollNavItem {
+  icon: IconName;
+  screen?: string;
+  url?: string;
+}
+
+const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
+  { icon: "User", screen: ScreenNames.Profile },
+  { icon: "Bell", screen: ScreenNames.Notifications },
+  { icon: "Trophy", screen: ScreenNames.Leaderboard },
+  { icon: "Bookmark", screen: ScreenNames.MyLibrary },
+  { icon: "Banknote", screen: ScreenNames.Dpay },
+  { icon: "Settings", screen: ScreenNames.AccountSettings },
+  { icon: "BookOpen", url: `${WEBSITE_LINK}/docs` },
+  { icon: "Lightbulb", url: `${WEBSITE_LINK}/features` },
+  { icon: "ShieldCheck", url: `${WEBSITE_LINK}/governance` },
+  { icon: "Briefcase", url: `${WEBSITE_LINK}/app/jobs` },
 ];
 
 const AnimatedPressable = Reanimated.createAnimatedComponent(Pressable);
@@ -105,10 +129,40 @@ const NavButton = memo<{
   );
 });
 
+const ScrollNavButton = memo<{ icon: IconName; onPress: () => void }>(
+  ({ icon, onPress }) => {
+    const scale = useSharedValue(1);
+
+    const handlePressIn = useCallback(() => {
+      scale.value = withSpring(0.88, { damping: 15, stiffness: 300 });
+    }, [scale]);
+
+    const handlePressOut = useCallback(() => {
+      scale.value = withSpring(1, { damping: 15, stiffness: 300 });
+    }, [scale]);
+
+    const animatedStyle = useAnimatedStyle(() => ({
+      transform: [{ scale: scale.value }],
+    }));
+
+    return (
+      <AnimatedPressable
+        onPress={onPress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        style={[styles.scrollNavItem, animatedStyle]}
+      >
+        <Icon name={icon} size={22} color="#FFFFFF" strokeWidth={1.6} />
+      </AnimatedPressable>
+    );
+  },
+);
+
 const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
   const insets = useSafeAreaInsets();
   const animProgress = useSharedValue(1);
   const hasAnimated = useRef(false);
+  const scrollRef = useRef<ScrollView>(null);
 
   useEffect(() => {
     if (hasAnimated.current) return;
@@ -118,6 +172,13 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
       100,
       withTiming(1, { duration: 1200, easing: Easing.out(Easing.cubic) }),
     );
+    const hintTimer = setTimeout(() => {
+      scrollRef.current?.scrollTo({ x: 60, animated: true });
+      setTimeout(() => {
+        scrollRef.current?.scrollTo({ x: 0, animated: true });
+      }, 600);
+    }, 2000);
+    return () => clearTimeout(hintTimer);
   }, [animProgress]);
 
   const handlePress = useCallback(
@@ -139,37 +200,63 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
     [navigation, state],
   );
 
+  const handleScrollItemPress = useCallback(
+    (item: ScrollNavItem) => {
+      if (item.url) {
+        openInApp(item.url);
+      } else if (item.screen) {
+        navigation.navigate(item.screen as never);
+      }
+    },
+    [navigation],
+  );
+
   const bottomPadding = Math.max(insets.bottom, 8);
 
   return (
     <View style={[styles.outerWrap, { paddingBottom: bottomPadding }]} pointerEvents="box-none">
       <View style={styles.gradientOverlay} pointerEvents="none" />
       <View style={styles.navContainer}>
-        <BlurView
-          intensity={120}
-          tint="dark"
-          experimentalBlurMethod="dimezisBlurView"
-          style={styles.blur}
+        {Platform.OS === "ios" ? (
+          <BlurView
+            intensity={120}
+            tint="dark"
+            style={StyleSheet.absoluteFill}
+          />
+        ) : (
+          <View style={styles.androidBlurFallback} />
+        )}
+        <View style={styles.glassOverlay} />
+        <View style={styles.specularHighlight} />
+        <ScrollView
+          ref={scrollRef}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          bounces={false}
+          contentContainerStyle={styles.navRow}
         >
-          <View style={styles.glassOverlay} />
-          <View style={styles.specularHighlight} />
-          <View style={styles.navRow}>
-            {TABS.map((tab, index) => {
-              const isActive = state.routes[state.index]?.name === tab.name;
-              return (
-                <NavButton
-                  key={tab.name}
-                  icon={tab.icon}
-                  isActive={isActive}
-                  isCenter={tab.isCenter}
-                  onPress={() => handlePress(tab.name)}
-                  index={index}
-                  animProgress={animProgress}
-                />
-              );
-            })}
-          </View>
-        </BlurView>
+          {TABS.map((tab, index) => {
+            const isActive = state.routes[state.index]?.name === tab.name;
+            return (
+              <NavButton
+                key={tab.name}
+                icon={tab.icon}
+                isActive={isActive}
+                isCenter={tab.isCenter}
+                onPress={() => handlePress(tab.name)}
+                index={index}
+                animProgress={animProgress}
+              />
+            );
+          })}
+          {SCROLL_NAV_ITEMS.map((item) => (
+            <ScrollNavButton
+              key={item.screen ?? item.url}
+              icon={item.icon}
+              onPress={() => handleScrollItemPress(item)}
+            />
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
@@ -208,9 +295,10 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  blur: {
+  androidBlurFallback: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(10, 10, 12, 0.85)",
     borderRadius: 18,
-    overflow: "hidden",
   },
   glassOverlay: {
     ...StyleSheet.absoluteFillObject,
@@ -235,7 +323,7 @@ const styles = StyleSheet.create({
     height: 52,
   },
   tabButton: {
-    flex: 1,
+    width: TAB_W,
     alignItems: "center",
     justifyContent: "center",
     height: 52,
@@ -271,6 +359,12 @@ const styles = StyleSheet.create({
       },
       android: {},
     }),
+  },
+  scrollNavItem: {
+    width: TAB_W,
+    alignItems: "center" as const,
+    justifyContent: "center" as const,
+    height: 52,
   },
 });
 
