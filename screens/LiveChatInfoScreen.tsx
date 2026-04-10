@@ -296,7 +296,7 @@ const LiveChatInfoScreen: React.FC = () => {
           <View className="w-16 h-16 bg-blue-500/20 rounded-full items-center justify-center mb-3">
             <Ionicons name="chatbubbles" size={28} color="#3B82F6" />
           </View>
-          <Text className="text-white text-lg font-bold">{room?.name || "Global Chat"}</Text>
+          <Text className="text-white text-lg font-bold">{room?.name || "Public Chat"}</Text>
           {room?.description ? (
             <Text className="text-white/40 text-sm text-center mt-1">{room.description}</Text>
           ) : null}

@@ -456,20 +456,6 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           ) : null
         }
       />
-      {showBackToTop && (
-        <Pressable
-          onPress={scrollToTop}
-          accessibilityRole="button"
-          accessibilityLabel="Back to top"
-          className="absolute bottom-6 right-5 bg-theme-neutrals-800/80 rounded-full p-3 active:opacity-80"
-        >
-          <Icon
-            name="ChevronUp"
-            size={22}
-            color={theme.colors.accentForeground || "#fff"}
-          />
-        </Pressable>
-      )}
     </View>
   );
 };

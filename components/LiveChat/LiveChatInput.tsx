@@ -151,11 +151,12 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         {!hasContent && onGifPress && !disabled && (
           <TouchableOpacity
             onPress={onGifPress}
-            className="p-2"
+            className="p-2 items-center justify-center"
             hitSlop={4}
             activeOpacity={0.6}
+            style={{ width: 38, height: 38 }}
           >
-            <Text style={{ fontSize: 13, fontWeight: '800', color: '#A6A9AC' }}>GIF</Text>
+            <Text style={{ fontSize: 12, fontWeight: '900', color: '#A6A9AC', letterSpacing: 0.5 }}>GIF</Text>
           </TouchableOpacity>
         )}
 

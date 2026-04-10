@@ -25,7 +25,7 @@ const ProfileApps: React.FC = () => {
       active: true,
     },
     {
-      label: "Global Chat",
+      label: "Public Chat",
       icon: "MessagesSquare",
       active: true,
     },
@@ -45,7 +45,7 @@ const ProfileApps: React.FC = () => {
     (item: AppItem) => {
       if (!item.active) return;
 
-      if (item.label === "Global Chat") {
+      if (item.label === "Public Chat") {
         navigation.navigate(ScreenNames.LiveChat);
         return;
       }

@@ -55,7 +55,8 @@ const buildListItems = (messages: LiveChatMessageData[]): ListItem[] => {
   for (const msg of messages) {
     const dateLabel = getDateLabel(msg.createdAt);
     if (dateLabel !== lastDate) {
-      items.push({ type: "date", label: dateLabel, key: `date-${dateLabel}` });
+      const d = new Date(msg.createdAt);
+      items.push({ type: "date", label: dateLabel, key: `date-${d.toDateString()}` });
       lastDate = dateLabel;
     }
     items.push({ type: "message", data: msg });
@@ -118,6 +119,10 @@ const LiveChatScreen: React.FC = () => {
   messagesRef.current = messages;
   const contentHeightRef = useRef(0);
   const layoutHeightRef = useRef(0);
+  const scrollOffsetRef = useRef(0);
+  const hasInitialScrolledRef = useRef(false);
+  const initialRevealTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const [initialScrollDone, setInitialScrollDone] = useState(false);
 
   const myAddress = useMemo(
     () => (user?.walletAddress || user?.address || "").toLowerCase(),
@@ -135,15 +140,44 @@ const LiveChatScreen: React.FC = () => {
 
   // Auto-scroll to bottom when new messages arrive (only if user is at bottom)
   useEffect(() => {
-    if (messages.length > prevMessageCountRef.current && isAtBottomRef.current) {
+    const prevCount = prevMessageCountRef.current;
+    const newCount = messages.length;
+    prevMessageCountRef.current = newCount;
+    if (prevCount === 0) return;
+    if (newCount > prevCount && isAtBottomRef.current) {
       setTimeout(() => scrollToBottom(true), 150);
     }
-    prevMessageCountRef.current = messages.length;
   }, [messages.length, scrollToBottom]);
 
   const handleContentSizeChange = useCallback((_w: number, h: number) => {
+    const prevH = contentHeightRef.current;
     contentHeightRef.current = h;
-    if (isAtBottomRef.current) {
+
+    // ── Phase 1: initial setup (list hidden via opacity 0) ──
+    if (!hasInitialScrolledRef.current) {
+      if (messagesRef.current.length === 0 || layoutHeightRef.current === 0 || h <= layoutHeightRef.current) return;
+
+      flatListRef.current?.scrollToOffset({ offset: h - layoutHeightRef.current, animated: false });
+
+      clearTimeout(initialRevealTimer.current);
+      initialRevealTimer.current = setTimeout(() => {
+        hasInitialScrolledRef.current = true;
+        const finalOffset = contentHeightRef.current - layoutHeightRef.current;
+        flatListRef.current?.scrollToOffset({ offset: finalOffset, animated: false });
+        scrollOffsetRef.current = finalOffset;
+        setInitialScrollDone(true);
+      }, 250);
+      return;
+    }
+
+    // ── Phase 2: normal operation ──
+    const delta = h - prevH;
+    if (!isAtBottomRef.current && delta !== 0 && prevH > layoutHeightRef.current) {
+      // Content changed while user is scrolled up — adjust offset to maintain visual position
+      const adjusted = Math.max(0, scrollOffsetRef.current + delta);
+      flatListRef.current?.scrollToOffset({ offset: adjusted, animated: false });
+      scrollOffsetRef.current = adjusted;
+    } else if (isAtBottomRef.current) {
       setTimeout(() => scrollToBottom(false), 30);
     }
   }, [scrollToBottom]);
@@ -155,11 +189,12 @@ const LiveChatScreen: React.FC = () => {
   const handleScroll = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
+      scrollOffsetRef.current = contentOffset.y;
       const distanceFromBottom = contentSize.height - layoutMeasurement.height - contentOffset.y;
       isAtBottomRef.current = distanceFromBottom < 120;
 
-      // Load more when scrolled near top
-      if (contentOffset.y < 100 && hasMore && !loadingMore) {
+      // Load more when scrolled near top (not during initial setup)
+      if (hasInitialScrolledRef.current && contentOffset.y < 100 && hasMore && !loadingMore) {
         loadMoreMessages();
       }
     },
@@ -491,8 +526,8 @@ const LiveChatScreen: React.FC = () => {
   const subtitle = useMemo(() => {
     if (!connected && !joining) return "Disconnected";
     if (joining) return "Connecting...";
-    return `${onlineCount} online`;
-  }, [connected, joining, onlineCount]);
+    return "All things DeHub...";
+  }, [connected, joining]);
 
   const ListHeader = useMemo(
     () =>
@@ -538,7 +573,7 @@ const LiveChatScreen: React.FC = () => {
   return (
     <View className="flex-1 bg-black">
       <ScreenHeader
-        title="Global Chat"
+        title="Public Chat"
         subtitle={subtitle}
         rightContent={RightHeader}
       />
@@ -570,6 +605,7 @@ const LiveChatScreen: React.FC = () => {
           data={listItems}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
+          style={{ opacity: initialScrollDone || listItems.length === 0 ? 1 : 0 }}
           contentContainerStyle={
             listItems.length === 0
               ? { flex: 1 }
@@ -582,6 +618,8 @@ const LiveChatScreen: React.FC = () => {
           onLayout={handleLayout}
           scrollEventThrottle={100}
           inverted={false}
+          initialNumToRender={30}
+          maxToRenderPerBatch={20}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
           keyboardDismissMode="interactive"
