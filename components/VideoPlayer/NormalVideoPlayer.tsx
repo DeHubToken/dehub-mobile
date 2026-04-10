@@ -19,7 +19,8 @@ import { getVideoUrl, getAvatarUrl } from "../../libs/misc";
 import { useAuth } from "../../context/AuthContext";
 import TopCommentPreview from "./TopCommentPreview";
 import { useStreamAccessInfo } from "../../libs/validators.util";
-import { getNFT, recordView } from "../../services";
+import { getNFT } from "../../services";
+import { recordViewIfEligible } from "../../services/view.service";
 import {
   followUser,
   unfollowUser,
@@ -175,33 +176,15 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
     return null;
   }, [isTranscoding, resolvedAccessInfo, videoUrl, tokenId]);
 
-  // --- View recording: 10% or 3s threshold (matches web), signed-in only, once per view ---
-  const hasRecordedRef = useRef(false);
-  const pendingRecordRef = useRef(false);
+  // --- View recording: uses view.service with in-memory + 24h persistent dedup ---
   const suggestedRef = useRef<SuggestedVideosHandle>(null);
   const onProgressRecord = async (positionMs: number, durationMs: number) => {
-    if (hasRecordedRef.current || pendingRecordRef.current) return;
-    if (!isSignedIn) return;
-    // Threshold: 10% of duration OR 3 seconds, whichever comes first
-    const THREE_SECONDS = 3000;
-    const TEN_PERCENT = 0.10;
-    const threshold = durationMs && durationMs > 0 
-      ? Math.min(durationMs * TEN_PERCENT, THREE_SECONDS) 
-      : THREE_SECONDS;
-    if (positionMs + 200 < threshold) return; // small epsilon
-    pendingRecordRef.current = true;
-    try {
-      await recordView(tokenId as any);
-      hasRecordedRef.current = true;
-    } catch (e) {
-      // allow retry later if it failed
-      console.warn(
-        "[NormalVideoPlayer] recordView failed, will retry on next eligible progress",
-        e
-      );
-    } finally {
-      pendingRecordRef.current = false;
-    }
+    await recordViewIfEligible({
+      tokenId,
+      positionMs,
+      durationMs,
+      isSignedIn,
+    });
   };
 
   const resolvedTitle =
