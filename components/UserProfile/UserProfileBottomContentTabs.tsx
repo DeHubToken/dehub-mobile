@@ -25,8 +25,7 @@ import Animated, {
   withTiming,
   Easing,
 } from "react-native-reanimated";
-import { LinearGradient } from "expo-linear-gradient";
-import Icon from "../ui/Icon";
+import Icon, { type IconName } from "../ui/Icon";
 import FeedCard from "../Home/FeedCard";
 import InfiniteFeed from "../Feed/InfiniteFeed";
 import type { GetNFTsResult } from "../../services/nft.service";
@@ -66,13 +65,11 @@ interface UserProfileBottomContentTabsProps {
   blockedYou?: boolean;
 }
 
-const STICKY_BAR_HEIGHT = 44;
-const TAB_H = 36;
-const TAB_RADIUS = 12;
-const SLIDE_TIMING = { duration: 150, easing: Easing.out(Easing.cubic) };
+const STICKY_BAR_HEIGHT = 48;
+const SLIDE_TIMING = { duration: 200, easing: Easing.out(Easing.cubic) };
 
-/** Horizontal padding for post cards — matches the profile header's px-6 (24px). */
-const CONTENT_PX = 24;
+/** Horizontal padding for post cards — matches the profile header's px-5 (20px). */
+const CONTENT_PX = 20;
 
 /** Stable contentContainerStyle (same identity across renders to avoid FlatList churn). */
 const LIST_CONTENT_STYLE = { paddingBottom: 80 } as const;
@@ -80,10 +77,10 @@ const LIST_CONTENT_STYLE_COLLAPSED = { paddingBottom: 24 } as const;
 
 type ContentTab = "posts" | "replies" | "reposts";
 
-const TAB_ITEMS: { key: ContentTab; label: string }[] = [
-  { key: "posts", label: "Posts" },
-  { key: "replies", label: "Replies" },
-  { key: "reposts", label: "Reposts" },
+const TAB_ITEMS: { key: ContentTab; label: string; icon: IconName }[] = [
+  { key: "posts", label: "Posts", icon: "Grid3x3" },
+  { key: "replies", label: "Replies", icon: "MessageSquare" },
+  { key: "reposts", label: "Reposts", icon: "Repeat2" },
 ];
 
 const UserProfileBottomContentTabs: React.FC<
@@ -119,13 +116,17 @@ const UserProfileBottomContentTabs: React.FC<
   // Track scroll offset for sticky bar + back-to-top
   const [showBackToTop, setShowBackToTop] = useState(false);
 
+  // Use ref for sticky to avoid stale closure in scroll handler
+  const stickyVisibleRef = useRef(false);
+  const [stickyVisible, setStickyVisible] = useState(false);
+
   // Height of the profile header (measured dynamically)
   const headerHeightRef = useRef(0);
-  const [stickyVisible, setStickyVisible] = useState(false);
 
   // Reset sticky state when switching between fullscreen and collapsed
   useEffect(() => {
     if (!isFullScreen) {
+      stickyVisibleRef.current = false;
       setStickyVisible(false);
       setShowBackToTop(false);
     }
@@ -201,11 +202,12 @@ const UserProfileBottomContentTabs: React.FC<
       const y = event.nativeEvent.contentOffset.y;
 
       if (isFullScreen) {
-        // Sticky "Posts" bar: show when header has scrolled out of view
+        // Sticky tab bar: show when header + tab bar have scrolled out of view
         const threshold = headerHeightRef.current;
         if (threshold > 0) {
           const shouldStick = y >= threshold;
-          if (shouldStick !== stickyVisible) {
+          if (shouldStick !== stickyVisibleRef.current) {
+            stickyVisibleRef.current = shouldStick;
             setStickyVisible(shouldStick);
           }
         }
@@ -218,10 +220,10 @@ const UserProfileBottomContentTabs: React.FC<
       // Forward to parent's scroll handler (for bottom sheet pan coordination)
       onScroll(event);
     },
-    [onScroll, isFullScreen, stickyVisible, showBackToTop],
+    [onScroll, isFullScreen, showBackToTop],
   );
 
-  // Glass pill indicator for tabs
+  // Underline indicator for tabs
   const pillX = useSharedValue(0);
   const pillW = useSharedValue(0);
   const tabLayoutsRef = useRef<Record<string, { x: number; width: number }>>({});
@@ -241,9 +243,10 @@ const UserProfileBottomContentTabs: React.FC<
   const handleTabChange = useCallback(
     (tab: ContentTab) => {
       if (tab === activeTab) return;
+      stickyVisibleRef.current = false;
       setStickyVisible(false);
       setActiveTab(tab);
-      // Animate pill
+      // Animate indicator
       const layout = tabLayoutsRef.current[tab];
       if (layout) {
         pillX.value = withTiming(layout.x, SLIDE_TIMING);
@@ -254,36 +257,27 @@ const UserProfileBottomContentTabs: React.FC<
     [activeTab],
   );
 
-  const pillStyle = useAnimatedStyle(() => ({
+  const indicatorStyle = useAnimatedStyle(() => ({
     position: "absolute" as const,
+    bottom: 0,
     left: pillX.value,
     width: pillW.value,
-    height: TAB_H,
+    height: 2,
+    backgroundColor: "#fff",
+    borderRadius: 1,
   }));
 
-  // Twitter-style tab bar component
+  // Clean underline tab bar
   const TabBar = useMemo(
     () => (
       <View
-        className="flex-row items-center"
         style={{
           height: STICKY_BAR_HEIGHT,
-          paddingHorizontal: CONTENT_PX,
-          gap: 8,
-          paddingTop: 6,
-          paddingBottom: 4,
+          flexDirection: "row",
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          borderBottomColor: "rgba(255,255,255,0.08)",
         }}
       >
-        <Animated.View style={[tabPillStyles.indicator, pillStyle]}>
-          <LinearGradient
-            colors={["rgba(255,255,255,0.20)", "rgba(255,255,255,0.10)", "rgba(255,255,255,0.05)"]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={[StyleSheet.absoluteFill, { borderRadius: TAB_RADIUS }]}
-          />
-          <View style={tabPillStyles.indicatorHighlight} />
-        </Animated.View>
-
         {TAB_ITEMS.map((tab) => {
           const isActive = activeTab === tab.key;
           return (
@@ -294,22 +288,24 @@ const UserProfileBottomContentTabs: React.FC<
                 const { x, width } = e.nativeEvent.layout;
                 handleTabLayout(tab.key, x, width);
               }}
-              style={[tabPillStyles.tabBtn, !isActive && tabPillStyles.tabBtnInactive]}
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
-              <Text
-                style={[
-                  tabPillStyles.tabLabel,
-                  isActive && tabPillStyles.tabLabelActive,
-                ]}
-              >
-                {tab.label}
-              </Text>
+              <Icon
+                name={tab.icon}
+                size={20}
+                color={isActive ? "#fff" : "#52525b"}
+              />
             </Pressable>
           );
         })}
+        <Animated.View style={indicatorStyle} />
       </View>
     ),
-    [activeTab, handleTabChange, handleTabLayout, pillStyle],
+    [activeTab, handleTabChange, handleTabLayout, indicatorStyle],
   );
 
   // Empty state for Reposts tab
@@ -404,24 +400,22 @@ const UserProfileBottomContentTabs: React.FC<
   const fullScreenListHeader = useMemo(() => {
     if (!profileHeader) return undefined;
     return (
-      <View>
-        <View onLayout={handleHeaderLayout}>
-          {profileHeader}
-          {isOwnProfile && isFullScreen && !!onEditProfile && (
-            <View className="px-6 mt-2 mb-1">
-              <TouchableOpacity
-                onPress={onEditProfile}
-                activeOpacity={0.8}
-                className="flex-row items-center justify-center gap-2 border border-theme-neutrals-700 py-2 rounded-full"
-              >
-                <Icon name="Pencil" size={15} color="#e5e5e5" />
-                <Text className="text-white text-sm font-semibold">
-                  Edit Profile
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        </View>
+      <View onLayout={handleHeaderLayout}>
+        {profileHeader}
+        {isOwnProfile && isFullScreen && !!onEditProfile && (
+          <View className="px-5 mt-2 mb-1">
+            <TouchableOpacity
+              onPress={onEditProfile}
+              activeOpacity={0.8}
+              className="flex-row items-center justify-center gap-2 border border-theme-neutrals-700 py-2 rounded-full"
+            >
+              <Icon name="Pencil" size={15} color="#e5e5e5" />
+              <Text className="text-white text-sm font-semibold">
+                Edit Profile
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
         {TabBar}
       </View>
     );
@@ -536,13 +530,15 @@ const UserProfileBottomContentTabs: React.FC<
       {/* Sticky tab bar — overlays at the top when header scrolls away */}
       {isFullScreen && stickyVisible && (
         <View
-          className="absolute top-0 left-0 right-0 bg-theme-neutrals-900"
           style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
             height: STICKY_BAR_HEIGHT,
             zIndex: 10,
             elevation: 10,
-            borderBottomWidth: 0.5,
-            borderBottomColor: "rgba(255,255,255,0.08)",
+            backgroundColor: "#010305",
           }}
         >
           {TabBar}
@@ -577,41 +573,3 @@ const UserProfileBottomContentTabs: React.FC<
 };
 
 export default UserProfileBottomContentTabs;
-
-const tabPillStyles = StyleSheet.create({
-  indicator: {
-    overflow: "hidden",
-    borderRadius: TAB_RADIUS,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.30)",
-  },
-  indicatorHighlight: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 1,
-    backgroundColor: "rgba(255,255,255,0.4)",
-    borderTopLeftRadius: TAB_RADIUS,
-    borderTopRightRadius: TAB_RADIUS,
-  },
-  tabBtn: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    height: TAB_H,
-    paddingHorizontal: 16,
-    borderRadius: TAB_RADIUS,
-  },
-  tabBtnInactive: {
-    backgroundColor: "#27272a",
-  },
-  tabLabel: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: "#A1A1AA",
-  },
-  tabLabelActive: {
-    color: "#F9FBFF",
-  },
-});

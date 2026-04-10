@@ -73,7 +73,7 @@ const DESCRIPTION_MAX = 500;
 const IMAGES_MAX = 4;
 const MAX_IMAGE_SIZE_BYTES = 20 * 1024 * 1024; // 20 MB per image
 const MAX_VIDEO_SIZE_BYTES = 200 * 1024 * 1024; // 200 MB
-const MAX_AUDIO_SIZE_BYTES = 10 * 1024 * 1024; // 10 MB
+const MAX_AUDIO_SIZE_BYTES = 20 * 1024 * 1024; // 20 MB
 const MAX_AUDIO_DURATION_MS = 60_000; // 60 seconds
 const AUDIO_MIME_TYPES = ["audio/mpeg", "audio/wav", "audio/aac", "audio/ogg", "audio/x-m4a", "audio/mp4", "audio/webm"];
 const CATEGORIES_MIN = 0;
@@ -999,7 +999,7 @@ export default function UploadScreen() {
 
       // Check file size
       if (asset.size && asset.size > MAX_AUDIO_SIZE_BYTES) {
-        toastError("Audio file exceeds 10 MB limit.");
+        toastError("Audio file exceeds 20 MB limit.");
         return;
       }
 

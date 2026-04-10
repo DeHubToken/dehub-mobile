@@ -56,6 +56,31 @@ export function getImageUrl(
   }
 }
 
+/**
+ * Extract file extension from an API path.
+ * Preserves original extension including .octet-stream, .gif, .jpeg, etc.
+ */
+export function getExtension(path: string): string {
+  const match = path.match(/\.([a-zA-Z0-9-]+)$/);
+  if (!match) return 'jpg';
+  return match[1].toLowerCase();
+}
+
+/**
+ * Build canonical image URL: cdn/images/{tokenId}.{ext}
+ * API returns paths like "images/2008.jpg" or "nfts/images/61.jpeg"
+ * We normalize to: CDN_BASE_URL/images/{tokenId}.{ext}
+ */
+export function buildImageUrl(
+  tokenId: number | string,
+  apiImagePath: string | undefined | null,
+): string {
+  if (!apiImagePath) return '';
+  if (apiImagePath.startsWith('http')) return apiImagePath;
+  const ext = getExtension(apiImagePath);
+  return `${baseUrlWithoutSlash}/images/${tokenId}.${ext}`;
+}
+
 // API image URL builders (for signed feed images) ---------------------------
 export function getImageUrlApi(
   tokenId: string | number,
@@ -226,6 +251,8 @@ export const Misc = {
   getBadgeName,
   resolveBadgeBalance,
   getDefaultBanner,
+  getExtension,
+  buildImageUrl,
   getImageUrlApi,
   getImageUrlApiSimple,
   shareProfile,

@@ -135,19 +135,9 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
 
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<any>) => {
-      const repostHeader = item.isRepost ? (
-        <View className="flex-row items-center gap-1.5 mb-1">
-          <Icon name="Repeat2" size={14} color="#9CA3AF" />
-          <Text className="text-xs text-theme-neutrals-400">
-            Reposted
-          </Text>
-        </View>
-      ) : null;
-
       return (
         <View style={{ paddingHorizontal: contentPadding }}>
-          {repostHeader}
-          <FeedCard item={item as UnifiedFeedItem} onBeforeNavigate={onClose} />
+          <FeedCard item={item as UnifiedFeedItem} onBeforeNavigate={onClose} showRepostLabel={!!item.isRepost} />
         </View>
       );
     },

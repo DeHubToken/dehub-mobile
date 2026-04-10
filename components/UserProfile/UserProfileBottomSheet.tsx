@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View, Dimensions, Modal, Pressable, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import Animated, {
   Extrapolate,
   interpolate,
@@ -10,6 +9,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../ScreenHeader";
+import Icon from "../ui/Icon";
 import UserProfileSheetContent from "./UserProfileSheetContent";
 import UnfollowSheet from "./UnfollowSheet";
 import { useUserProfileData } from "../../hooks/useUserProfileData";
@@ -199,6 +199,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                 >
                   <ScreenHeader
                     title={profileData?.displayName || "Profile"}
+                    subtitle={profileData?.username ? `@${profileData.username}` : undefined}
                     canGoBack={true}
                     onBackPress={handleBackToProfile}
                     rightContent={
@@ -209,7 +210,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                           className="w-10 h-10 items-center justify-center"
                         >
-                          <Ionicons name="ellipsis-vertical" size={20} color="#e5e5e5" />
+                          <Icon name="EllipsisVertical" size={20} color="#e5e5e5" />
                         </TouchableOpacity>
                       ) : undefined
                     }
