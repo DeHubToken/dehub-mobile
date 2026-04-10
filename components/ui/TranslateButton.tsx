@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
-import { TouchableOpacity, Text, ActivityIndicator, View } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import Icon from './Icon';
-import { SUPPORTED_LANGUAGES } from '../../services/translation.service';
 
 interface TranslateButtonProps {
   isTranslated: boolean;
@@ -13,21 +12,23 @@ interface TranslateButtonProps {
   inline?: boolean;
 }
 
+const ROW_STYLE = { flexDirection: 'row' as const, alignItems: 'center' as const, gap: 4 };
+const STANDALONE_STYLE = { ...ROW_STYLE, paddingVertical: 6 };
+
 const TranslateButtonComponent: React.FC<TranslateButtonProps> = ({
   isTranslated,
   isLoading,
-  detectedLanguage,
   onTranslate,
   onShowOriginal,
   inline = false,
 }) => {
-  const langName = detectedLanguage ? SUPPORTED_LANGUAGES[detectedLanguage] : null;
+  const style = inline ? ROW_STYLE : STANDALONE_STYLE;
 
   if (isLoading) {
     return (
-      <View style={inline ? { flexDirection: 'row', alignItems: 'center', gap: 4 } : { flexDirection: 'row', alignItems: 'center', paddingVertical: 6 }}>
-        <ActivityIndicator size="small" color="#60A5FA" style={{ transform: [{ scale: 0.7 }] }} />
-        <Text style={{ fontSize: 12, color: '#60A5FA' }}>Translating…</Text>
+      <View style={style}>
+        <Icon name="Loader" size={12} color="#6F7174" />
+        <Text style={{ fontSize: 11, color: '#8B8D90' }}>Translating…</Text>
       </View>
     );
   }
@@ -38,10 +39,10 @@ const TranslateButtonComponent: React.FC<TranslateButtonProps> = ({
         onPress={onShowOriginal}
         activeOpacity={0.7}
         hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-        style={inline ? { flexDirection: 'row', alignItems: 'center', gap: 3 } : { flexDirection: 'row', alignItems: 'center', paddingVertical: 6 }}
+        style={style}
       >
-        <Icon name="Undo2" size={12} color="#60A5FA" />
-        <Text style={{ fontSize: 12, color: '#60A5FA' }}>See original</Text>
+        <Icon name="RotateCcw" size={12} color="#6F7174" />
+        <Text style={{ fontSize: 11, color: '#8B8D90' }}>Show original</Text>
       </TouchableOpacity>
     );
   }
@@ -51,12 +52,9 @@ const TranslateButtonComponent: React.FC<TranslateButtonProps> = ({
       onPress={onTranslate}
       activeOpacity={0.7}
       hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-      style={inline ? { flexDirection: 'row', alignItems: 'center', gap: 3 } : { flexDirection: 'row', alignItems: 'center', paddingVertical: 6 }}
+      style={inline ? ROW_STYLE : { paddingVertical: 6 }}
     >
-      <Icon name="Globe" size={12} color="#60A5FA" />
-      <Text style={{ fontSize: 12, color: '#60A5FA' }}>
-        {langName ? `Translate from ${langName}` : 'Translate'}
-      </Text>
+      <Icon name="Languages" size={16} color="#6F7174" />
     </TouchableOpacity>
   );
 };
