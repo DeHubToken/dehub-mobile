@@ -13,6 +13,7 @@ import type { BottomTabParamList, AppStackNavigationProp } from "./types";
 import { useNavigation } from "@react-navigation/native";
 import { useAuthState } from "../context/AuthContext";
 import { DrawerProvider, useDrawer } from "../context/DrawerContext";
+import { TabBarHideProvider } from "../context/TabBarHideContext";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -65,9 +66,11 @@ function BottomTabNavigator() {
 
 function BottomTabNavigatorWithDrawer() {
   return (
-    <DrawerProvider>
-      <BottomTabNavigator />
-    </DrawerProvider>
+    <TabBarHideProvider>
+      <DrawerProvider>
+        <BottomTabNavigator />
+      </DrawerProvider>
+    </TabBarHideProvider>
   );
 }
 

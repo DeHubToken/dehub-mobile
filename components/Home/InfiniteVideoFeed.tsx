@@ -53,6 +53,7 @@ interface InfiniteVideoFeedProps {
   pageSize?: number;
   contentContainerStyle?: any;
   headerComponent?: React.ReactNode;
+  headerInset?: number;
   onEndReachedAll?: () => void;
   onScrollOffset?: (offsetY: number, deltaY: number) => void;
   onScrollEnd?: () => void;
@@ -72,6 +73,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   pageSize = 10,
   contentContainerStyle,
   headerComponent,
+  headerInset = 0,
   onEndReachedAll,
   onScrollOffset,
   onScrollEnd,
@@ -92,7 +94,6 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const [loadingMore, setLoadingMore] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [showBackToTop, setShowBackToTop] = useState(false);
   const [visibleItemKeys, setVisibleItemKeys] = useState<Set<string>>(new Set());
   const endReachedRef = useRef(false);
   const listRef = useRef<FlatList<FeedItem>>(null);
@@ -301,15 +302,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const handleScroll = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       const y = e.nativeEvent.contentOffset.y;
-      if (y > 400 && !showBackToTop) setShowBackToTop(true);
-      else if (y <= 400 && showBackToTop) setShowBackToTop(false);
-
       const prevY = prevYRef.current;
       const delta = y - prevY;
       prevYRef.current = y;
       onScrollOffset?.(y, delta);
     },
-    [showBackToTop, onScrollOffset]
+    [onScrollOffset]
   );
 
   const handleScrollEndDrag = useCallback(() => {
@@ -319,10 +317,6 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const handleMomentumScrollEnd = useCallback(() => {
     onScrollEnd?.();
   }, [onScrollEnd]);
-
-  const scrollToTop = useCallback(() => {
-    listRef.current?.scrollToOffset({ offset: 0, animated: true });
-  }, []);
 
   useEffect(() => {
     if (!feedRef) return;
@@ -411,7 +405,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         contentContainerStyle={
           contentContainerStyle || {
             paddingHorizontal: 8,
-            paddingTop: 4,
+            paddingTop: headerInset + 4,
             paddingBottom: 80,
           }
         }

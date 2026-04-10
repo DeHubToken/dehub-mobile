@@ -1,11 +1,13 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import Animated from "react-native-reanimated";
+import { useAnimatedReaction } from "react-native-reanimated";
 import InfiniteVideoFeed, { type InfiniteVideoFeedHandle } from "../components/Home/InfiniteVideoFeed";
 import HomeImageGrid, { type HomeImageGridHandle } from "../components/Home/HomeImageGrid";
 import HomeHeader from "../components/HomeHeader";
 import FeedNavBar from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
+import { useTabBarHide } from "../context/TabBarHideContext";
 import FeedFilterPanel, { FeedFilters } from "../components/Home/FeedFilterPanel";
 import { getCategoriesCached } from "../services/nft.service";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
@@ -37,12 +39,23 @@ export default function HomeScreen() {
   const isImageTab = filters.postType === "feed-images";
 
   const {
+    translateY: headerTranslateY,
+    headerHeight,
     headerAnimatedStyle,
     onHeaderLayout,
     handleScrollOffset,
     handleScrollEnd,
     showHeader,
   } = useCollapsibleHeader();
+
+  // Sync header translateY to the bottom tab bar context
+  const tabBarHide = useTabBarHide();
+  useAnimatedReaction(
+    () => headerTranslateY.value,
+    (val) => {
+      if (tabBarHide) tabBarHide.value = val;
+    },
+  );
 
   const [shuffleSeed, setShuffleSeed] = useState<string>(generateShuffleSeed);
   const shuffleSeedTimestamp = useRef<number>(Date.now());
@@ -189,8 +202,7 @@ export default function HomeScreen() {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <View style={styles.headerClip}>
-        <Animated.View style={headerAnimatedStyle} onLayout={onHeaderLayout}>
+      <Animated.View style={[styles.headerClip, headerAnimatedStyle]} onLayout={onHeaderLayout}>
           <HomeHeader onLogoPress={handleLogoPress} onMenuPress={openDrawer} />
 
           <FeedNavBar
@@ -210,14 +222,14 @@ export default function HomeScreen() {
             onCategoryPress={handleCategoryPress}
             onResetFilters={handleResetFilters}
           />
-        </Animated.View>
-      </View>
+      </Animated.View>
 
       {isImageTab ? (
         <HomeImageGrid
           gridRef={imageGridRef}
           params={feedParams}
           pageSize={20}
+          headerInset={headerHeight}
           onRefresh={handleRefresh}
           onScrollBegin={handleScrollBegin}
           onScrollOffset={onScrollOffset}
@@ -228,6 +240,7 @@ export default function HomeScreen() {
           feedRef={feedRef}
           params={feedParams}
           pageSize={10}
+          headerInset={headerHeight}
           onRefresh={handleRefresh}
           onScrollBegin={handleScrollBegin}
           onScrollOffset={onScrollOffset}
@@ -243,6 +256,12 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   headerClip: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
     overflow: "hidden",
+    backgroundColor: "#010305",
   },
 });

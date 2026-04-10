@@ -28,6 +28,7 @@ interface HomeImageGridProps {
   params?: Partial<UnifiedFeedParams>;
   pageSize?: number;
   gridRef?: React.MutableRefObject<HomeImageGridHandle | null>;
+  headerInset?: number;
   onScrollOffset?: (offsetY: number, deltaY: number) => void;
   onScrollEnd?: () => void;
   onScrollBegin?: () => void;
@@ -198,6 +199,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   params,
   pageSize = 20,
   gridRef,
+  headerInset = 0,
   onScrollOffset,
   onScrollEnd,
   onScrollBegin,
@@ -349,6 +351,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         keyExtractor={keyExtractor}
         renderItem={renderGridRow}
         getItemLayout={getGridItemLayout}
+        contentContainerStyle={{ paddingTop: headerInset }}
         style={{ borderRadius: 12, overflow: 'hidden' }}
         showsVerticalScrollIndicator={false}
         initialNumToRender={6}
