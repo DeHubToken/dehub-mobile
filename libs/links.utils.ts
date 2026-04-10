@@ -85,7 +85,7 @@ export function getTransactionLink(chainId: number, txHash: string) {
   return `${chainData.explorerUrl}`;
 }
 
-export type SocialPlatform = "facebook" | "instagram" | "twitter" | "x" | "discord";
+export type SocialPlatform = "facebook" | "instagram" | "twitter" | "x" | "discord" | "tiktok" | "youtube" | "telegram";
 
 const trimInput = (v: string) => (v || "").trim();
 const stripAtAndSlash = (v: string) => trimInput(v).replace(/^@+/, "").replace(/^\/+/, "").replace(/\/+$/, "");
@@ -126,7 +126,6 @@ const validators = {
     if (!v) return { valid: true, normalized: "" };
     let normalized = v;
     if (!hasProtocol(v)) {
-      // For Discord, require full URLs — best effort if it's an invite code
       const code = stripAtAndSlash(v);
       normalized = `https://discord.gg/${code}`;
     }
@@ -134,6 +133,34 @@ const validators = {
     return re.test(normalized)
       ? { valid: true, normalized }
       : { valid: false, normalized: v, reason: "Enter a valid discord.gg invite or discord.com/users link" };
+  },
+  tiktok(urlOrHandle: string) {
+    const v = trimInput(urlOrHandle);
+    if (!v) return { valid: true, normalized: "" };
+    let handle = stripAtAndSlash(v);
+    const normalized = hasProtocol(v) ? v : `https://tiktok.com/@${handle}`;
+    const re = /^https?:\/\/(www\.)?tiktok\.com\/@[A-Za-z0-9_.]{1,24}(?:\/?|$)/i;
+    return re.test(normalized)
+      ? { valid: true, normalized }
+      : { valid: false, normalized: v, reason: "Enter a valid TikTok username or profile URL" };
+  },
+  youtube(urlOrHandle: string) {
+    const v = trimInput(urlOrHandle);
+    if (!v) return { valid: true, normalized: "" };
+    const normalized = hasProtocol(v) ? v : asUrl("https://youtube.com", v);
+    const re = /^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\/(channel\/|c\/|@)?[A-Za-z0-9_-]{1,}(?:\/?|$)/i;
+    return re.test(normalized)
+      ? { valid: true, normalized }
+      : { valid: false, normalized: v, reason: "Enter a valid YouTube channel URL or handle" };
+  },
+  telegram(urlOrHandle: string) {
+    const v = trimInput(urlOrHandle);
+    if (!v) return { valid: true, normalized: "" };
+    const normalized = hasProtocol(v) ? v : asUrl("https://t.me", v);
+    const re = /^https?:\/\/(www\.)?(t\.me|telegram\.me)\/[A-Za-z0-9_]{3,32}(?:\/?|$)/i;
+    return re.test(normalized)
+      ? { valid: true, normalized }
+      : { valid: false, normalized: v, reason: "Enter a valid Telegram username or t.me link" };
   },
 } as const;
 
@@ -148,6 +175,12 @@ export const validateSocial = (platform: SocialPlatform, value: string) => {
       return validators.twitter(value);
     case "discord":
       return validators.discord(value);
+    case "tiktok":
+      return validators.tiktok(value);
+    case "youtube":
+      return validators.youtube(value);
+    case "telegram":
+      return validators.telegram(value);
     default:
       return { valid: true, normalized: trimInput(value) };
   }

@@ -99,7 +99,7 @@ async function deriveSignerOrProvider(eip1193: any, withSigner: boolean) {
         const signer = ethProvider.getSigner();
         try {
           const addr = await signer.getAddress();
-          console.log(`${logPrefix} web3auth signer ready`, { address: addr });
+          // console.log(`${logPrefix} web3auth signer ready`, { address: addr });
         } catch (e) {
           console.warn(`${logPrefix} web3auth signer getAddress failed`, e);
         }

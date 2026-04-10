@@ -10,14 +10,13 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
-  
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { SvgXml } from "react-native-svg";
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../context/AuthContext";
 import { getAvatarUrl, getCoverUrl } from "../libs/misc";
 import Avatar from "../components/common/Avatar";
-import { theme } from "../theme";
+import Icon from "../components/ui/Icon";
 import { openCroppedImagePicker, resizeAndCompress, createRNImageFile } from "../libs/assets.util";
 import { runWithPermissions } from "../libs/permissions.util";
 import { AuthService } from "../services/auth.service";
@@ -25,6 +24,26 @@ import { toastError, toastSuccess } from "../libs/toast";
 import ScreenHeader from "../components/ScreenHeader";
 import { useDebounceCallback } from "../hooks/useDebounceCallback";
 import { validateSocial } from "../libs/links.utils";
+import {
+  TWITTER_SVG_XML,
+  INSTAGRAM_SVG_XML,
+  TIKTOK_SVG_XML,
+  YOUTUBE_SVG_XML,
+  DISCORD_SVG_XML,
+  TELEGRAM_SVG_XML,
+} from "../config/socialIcons";
+
+const BIO_MAX = 160;
+
+type SocialField = {
+  key: string;
+  label: string;
+  platform: "x" | "instagram" | "tiktok" | "youtube" | "discord" | "telegram";
+  svg: string;
+  placeholder: string;
+  value: string;
+  setter: (v: string) => void;
+};
 
 const EditProfileScreen = () => {
   const navigation = useNavigation<any>();
@@ -32,25 +51,15 @@ const EditProfileScreen = () => {
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 
-  const [displayName, setDisplayName] = useState<string>(
-    user?.displayName || ""
-  );
+  const [displayName, setDisplayName] = useState<string>(user?.displayName || "");
   const [username, setUsername] = useState<string>(user?.username || "");
-  const [email, setEmail] = useState<string>(user?.email || "");
   const [aboutMe, setAboutMe] = useState<string>(user?.aboutMe || "");
-  const BIO_MAX = 160;
-  const [facebookLink, setFacebookLink] = useState<string>(
-    user?.facebookLink || ""
-  );
-  const [instagramLink, setInstagramLink] = useState<string>(
-    user?.instagramLink || ""
-  );
-  const [twitterLink, setTwitterLink] = useState<string>(
-    user?.twitterLink || ""
-  );
-  const [discordLink, setDiscordLink] = useState<string>(
-    user?.discordLink || ""
-  );
+  const [twitterLink, setTwitterLink] = useState<string>(user?.twitterLink || "");
+  const [instagramLink, setInstagramLink] = useState<string>(user?.instagramLink || "");
+  const [tiktokLink, setTiktokLink] = useState<string>(user?.tiktokLink || "");
+  const [youtubeLink, setYoutubeLink] = useState<string>(user?.youtubeLink || "");
+  const [discordLink, setDiscordLink] = useState<string>(user?.discordLink || "");
+  const [telegramLink, setTelegramLink] = useState<string>(user?.telegramLink || "");
 
   const [localAvatar, setLocalAvatar] = useState<string | null>(null);
   const [localCover, setLocalCover] = useState<string | null>(null);
@@ -58,32 +67,23 @@ const EditProfileScreen = () => {
   const [processingAvatar, setProcessingAvatar] = useState(false);
   const [processingCover, setProcessingCover] = useState(false);
   const [checkingUsername, setCheckingUsername] = useState(false);
-  const [usernameAvailable, setUsernameAvailable] = useState<boolean | null>(
-    null
-  );
-  const [socialErrors, setSocialErrors] = useState<{
-    [k: string]: string | undefined;
-  }>({});
+  const [usernameAvailable, setUsernameAvailable] = useState<boolean | null>(null);
+  const [socialErrors, setSocialErrors] = useState<Record<string, string | undefined>>({});
 
-  const avatarUrl = useMemo(
-    () => getAvatarUrl(user?.avatarImageUrl),
-    [user?.avatarImageUrl]
-  );
-  const coverUrl = useMemo(
-    () => getCoverUrl(user?.coverImageUrl),
-    [user?.coverImageUrl]
-  );
+  const avatarUrl = useMemo(() => getAvatarUrl(user?.avatarImageUrl), [user?.avatarImageUrl]);
+  const coverUrl = useMemo(() => getCoverUrl(user?.coverImageUrl), [user?.coverImageUrl]);
 
   const initial = useMemo(
     () => ({
       displayName: user?.displayName || "",
       username: user?.username || "",
-      email: user?.email || "",
       aboutMe: user?.aboutMe || "",
-      facebookLink: user?.facebookLink || "",
-      instagramLink: user?.instagramLink || "",
       twitterLink: user?.twitterLink || "",
+      instagramLink: user?.instagramLink || "",
+      tiktokLink: user?.tiktokLink || "",
+      youtubeLink: user?.youtubeLink || "",
       discordLink: user?.discordLink || "",
+      telegramLink: user?.telegramLink || "",
     }),
     [user]
   );
@@ -92,27 +92,20 @@ const EditProfileScreen = () => {
     return (
       displayName.trim() !== initial.displayName.trim() ||
       username.trim() !== initial.username.trim() ||
-      email.trim() !== initial.email.trim() ||
       aboutMe.trim() !== initial.aboutMe.trim() ||
-      facebookLink.trim() !== initial.facebookLink.trim() ||
-      instagramLink.trim() !== initial.instagramLink.trim() ||
       twitterLink.trim() !== initial.twitterLink.trim() ||
+      instagramLink.trim() !== initial.instagramLink.trim() ||
+      tiktokLink.trim() !== initial.tiktokLink.trim() ||
+      youtubeLink.trim() !== initial.youtubeLink.trim() ||
       discordLink.trim() !== initial.discordLink.trim() ||
+      telegramLink.trim() !== initial.telegramLink.trim() ||
       !!localAvatar ||
       !!localCover
     );
   }, [
-    displayName,
-    username,
-    email,
-    aboutMe,
-    facebookLink,
-    instagramLink,
-    twitterLink,
-    discordLink,
-    localAvatar,
-    localCover,
-    initial,
+    displayName, username, aboutMe,
+    twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink,
+    localAvatar, localCover, initial,
   ]);
 
   const runUsernameCheck = useDebounceCallback(async (name: string) => {
@@ -125,7 +118,7 @@ const EditProfileScreen = () => {
     try {
       const res = await AuthService.checkUsernameAvailability(name.trim());
       setUsernameAvailable(res.available);
-    } catch (e) {
+    } catch {
       setUsernameAvailable(null);
     } finally {
       setCheckingUsername(false);
@@ -156,7 +149,6 @@ const EditProfileScreen = () => {
           format: "jpeg",
         });
         setLocalAvatar(manip);
-        // Do not upload now; will upload on Save
       });
     } catch (e) {
       toastError(e, "Avatar update failed");
@@ -186,7 +178,6 @@ const EditProfileScreen = () => {
           format: "jpeg",
         });
         setLocalCover(manip);
-        // Do not upload now; will upload on Save
       });
     } catch (e) {
       toastError(e, "Cover update failed");
@@ -197,20 +188,22 @@ const EditProfileScreen = () => {
   }, []);
 
   const onSave = useCallback(async () => {
-    // Snapshot current user to allow revert on failure
     const prevUserSnapshot = user;
     try {
       setSaving(true);
-      // Normalize socials first
-      const fb = validateSocial("facebook", facebookLink);
-      const ig = validateSocial("instagram", instagramLink);
       const tw = validateSocial("x", twitterLink);
+      const ig = validateSocial("instagram", instagramLink);
+      const tk = validateSocial("tiktok", tiktokLink);
+      const yt = validateSocial("youtube", youtubeLink);
       const dc = validateSocial("discord", discordLink);
-      const errs: { [k: string]: string | undefined } = {
-        facebookLink: fb.valid ? undefined : fb.reason,
-        instagramLink: ig.valid ? undefined : ig.reason,
+      const tg = validateSocial("telegram", telegramLink);
+      const errs: Record<string, string | undefined> = {
         twitterLink: tw.valid ? undefined : tw.reason,
+        instagramLink: ig.valid ? undefined : ig.reason,
+        tiktokLink: tk.valid ? undefined : tk.reason,
+        youtubeLink: yt.valid ? undefined : yt.reason,
         discordLink: dc.valid ? undefined : dc.reason,
+        telegramLink: tg.valid ? undefined : tg.reason,
       };
       setSocialErrors(errs);
       if (Object.values(errs).some(Boolean)) {
@@ -220,45 +213,42 @@ const EditProfileScreen = () => {
       const payload: Record<string, any> = {
         displayName: displayName?.trim(),
         username: username?.trim(),
-        email: email?.trim(),
         aboutMe: aboutMe?.trim(),
-        facebookLink: fb.normalized,
-        instagramLink: ig.normalized,
         twitterLink: tw.normalized,
+        instagramLink: ig.normalized,
+        tiktokLink: tk.normalized,
+        youtubeLink: yt.normalized,
         discordLink: dc.normalized,
+        telegramLink: tg.normalized,
       };
-      // Do an optimistic patch before sending network request (excluding images)
       await patchUser?.({
         displayName: payload.displayName,
         username: payload.username,
-        email: payload.email,
         aboutMe: payload.aboutMe,
-        facebookLink: payload.facebookLink,
-        instagramLink: payload.instagramLink,
         twitterLink: payload.twitterLink,
+        instagramLink: payload.instagramLink,
+        tiktokLink: payload.tiktokLink,
+        youtubeLink: payload.youtubeLink,
         discordLink: payload.discordLink,
-        // Also bump avatar/cover like ProfileHeader to trigger subscribers
+        telegramLink: payload.telegramLink,
         ...(localAvatar ? { avatarImageUrl: localAvatar } : {}),
         ...(localCover ? { coverImageUrl: localCover } : {}),
       });
       if (localAvatar) {
         const avatarFile = createRNImageFile(localAvatar, "avatar");
-        // Match ProfileHeader: include both keys to satisfy backend
         payload.avatar = avatarFile;
         payload.avatarImg = avatarFile;
       }
       if (localCover) {
         const coverFile = createRNImageFile(localCover, "cover");
-        // Match ProfileHeader: include both keys to satisfy backend
         payload.cover = coverFile;
         payload.coverImg = coverFile;
       }
-      const res = await AuthService.updateProfile(payload);
+      await AuthService.updateProfile(payload);
       await refreshUser?.();
       toastSuccess("Profile updated");
       navigation.goBack();
     } catch (e) {
-      // Revert optimistic patch if request failed
       if (prevUserSnapshot && typeof patchUser === "function") {
         try {
           await patchUser(prevUserSnapshot as any);
@@ -269,25 +259,28 @@ const EditProfileScreen = () => {
       setSaving(false);
     }
   }, [
-    displayName,
-    username,
-    email,
-    aboutMe,
-    facebookLink,
-    instagramLink,
-    twitterLink,
-    discordLink,
-    localAvatar,
-    localCover,
-    user,
-    patchUser,
-    refreshUser,
-    navigation,
+    displayName, username, aboutMe,
+    twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink,
+    localAvatar, localCover, user, patchUser, refreshUser, navigation,
   ]);
 
-  const onDiscard = useCallback(() => {
-    navigation.goBack();
-  }, [navigation]);
+  const socialFields: SocialField[] = useMemo(
+    () => [
+      { key: "twitterLink", label: "X (Twitter)", platform: "x", svg: TWITTER_SVG_XML, placeholder: "Username", value: twitterLink, setter: setTwitterLink },
+      { key: "instagramLink", label: "Instagram", platform: "instagram", svg: INSTAGRAM_SVG_XML, placeholder: "Username", value: instagramLink, setter: setInstagramLink },
+      { key: "tiktokLink", label: "TikTok", platform: "tiktok", svg: TIKTOK_SVG_XML, placeholder: "Username", value: tiktokLink, setter: setTiktokLink },
+      { key: "youtubeLink", label: "YouTube", platform: "youtube", svg: YOUTUBE_SVG_XML, placeholder: "Channel URL or handle", value: youtubeLink, setter: setYoutubeLink },
+      { key: "discordLink", label: "Discord", platform: "discord", svg: DISCORD_SVG_XML, placeholder: "Invite link", value: discordLink, setter: setDiscordLink },
+      { key: "telegramLink", label: "Telegram", platform: "telegram", svg: TELEGRAM_SVG_XML, placeholder: "Username", value: telegramLink, setter: setTelegramLink },
+    ],
+    [twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink]
+  );
+
+  const saveDisabled =
+    saving ||
+    !isDirty ||
+    checkingUsername ||
+    (username.trim() !== initial.username.trim() && usernameAvailable === false);
 
   return (
     <View className="flex-1 bg-black">
@@ -296,27 +289,13 @@ const EditProfileScreen = () => {
         rightContent={
           <TouchableOpacity
             onPress={onSave}
-            className={` flex px-4 py-2 rounded-full ${
-              saving ||
-              !isDirty ||
-              checkingUsername ||
-              (username.trim() !== initial.username.trim() &&
-                usernameAvailable === false)
-                ? "bg-theme-neutrals-800"
-                : "bg-blue-600 active:opacity-90"
-            }`}
+            className={`px-4 py-2 rounded-full ${saveDisabled ? "bg-theme-neutrals-800" : "bg-blue-600 active:opacity-90"}`}
             activeOpacity={0.8}
-            disabled={
-              saving ||
-              !isDirty ||
-              checkingUsername ||
-              (username.trim() !== initial.username.trim() &&
-                usernameAvailable === false)
-            }
+            disabled={saveDisabled}
           >
             <View className="flex-row items-center gap-1">
-              {saving && <ActivityIndicator color="#fff" />}
-              <Text className="text-white font-medium">
+              {saving && <ActivityIndicator size="small" color="#fff" />}
+              <Text className="text-white font-medium text-sm">
                 {saving ? "Saving..." : "Save"}
               </Text>
             </View>
@@ -329,223 +308,163 @@ const EditProfileScreen = () => {
         style={{ flex: 1 }}
       >
         <ScrollView
-          contentContainerStyle={{ padding: 16, paddingBottom: 32 }}
+          contentContainerStyle={{ paddingBottom: 40 }}
           keyboardShouldPersistTaps="handled"
           keyboardDismissMode="on-drag"
         >
-          {/* Cover */}
-          <View className="w-full h-32 bg-theme-neutrals-900 rounded-lg mb-4 overflow-hidden items-center justify-center">
-            {localCover ? (
-              <Image
-                source={{ uri: localCover }}
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                }}
-              />
-            ) : coverUrl !== "default-banner" ? (
-              <Image
-                source={{ uri: coverUrl }}
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                }}
-              />
-            ) : null}
+          <View className="px-4">
             <TouchableOpacity
               onPress={handlePickCover}
-              className="bg-black/50 rounded-full p-3"
+              activeOpacity={0.85}
+              className="w-full rounded-2xl overflow-hidden bg-theme-neutrals-900 mt-2"
+              style={{ aspectRatio: 3 }}
             >
-              {processingCover ? (
-                <ActivityIndicator color="#fff" />
-              ) : (
-                <Ionicons name="camera" size={20} color="#fff" />
+              {(localCover || (coverUrl && coverUrl !== "default-banner")) && (
+                <Image
+                  source={{ uri: localCover || coverUrl }}
+                  style={{ position: "absolute", width: "100%", height: "100%" }}
+                  resizeMode="cover"
+                />
               )}
+              <View className="flex-1 items-center justify-center bg-black/30">
+                {processingCover ? (
+                  <ActivityIndicator color="#fff" />
+                ) : (
+                  <View className="bg-black/50 rounded-full p-3">
+                    <Icon name="Camera" size={20} color="#fff" />
+                  </View>
+                )}
+              </View>
             </TouchableOpacity>
           </View>
 
-          {/* Avatar */}
-          <View className="items-center mb-6">
+          <View className="items-center -mt-11 mb-4">
             <TouchableOpacity onPress={handlePickAvatar} activeOpacity={0.85}>
-              <View className="relative">
+              <View>
                 <Avatar
-                  uri={
-                    localAvatar
-                      ? localAvatar
-                      : avatarUrl === "default-avatar"
-                      ? undefined
-                      : avatarUrl
-                  }
-                  size={96}
+                  uri={localAvatar ? localAvatar : avatarUrl === "default-avatar" ? undefined : avatarUrl}
+                  size={88}
                   borderWidth={4}
-                  borderColor="#0a0a0a"
+                  borderColor="#010305"
                   name={displayName}
                 />
-                <View className="absolute bottom-1 right-1 bg-black/60 rounded-full p-1">
+                <View className="absolute bottom-0 right-0 bg-blue-600 rounded-full p-1.5 border-2 border-[#010305]">
                   {processingAvatar ? (
-                    <ActivityIndicator color="#fff" />
+                    <ActivityIndicator size={14} color="#fff" />
                   ) : (
-                    <Ionicons name="camera" size={16} color="#fff" />
+                    <Icon name="Camera" size={14} color="#fff" />
                   )}
                 </View>
               </View>
             </TouchableOpacity>
           </View>
 
-          {/* Text fields */}
-          <View className="gap-4">
-            {[
-              {
-                label: "Username",
-                value: username,
-                setter: setUsername,
-                placeholder: "@username",
-              },
-              {
-                label: "Display Name",
-                value: displayName,
-                setter: setDisplayName,
-                placeholder: "Your name",
-              },
-              {
-                label: "Email",
-                value: email,
-                setter: setEmail,
-                placeholder: "you@example.com",
-              },
-            ].map((f) => (
-              <View key={f.label}>
-                <Text className="text-gray-400 text-xs mb-1">{f.label}</Text>
-                <TextInput
-                  className="bg-theme-neutrals-900 text-white text-base px-4 py-3 rounded-xl border border-theme-neutrals-700 focus:border-blue-500"
-                  placeholderTextColor="#6b7280"
-                  placeholder={f.placeholder}
-                  value={f.value}
-                  onChangeText={f.setter as any}
-                  autoCapitalize="none"
-                />
-                {f.label === "Username" && (
-                  <View className="mt-1 min-h-[16px]">
-                    {checkingUsername && (
-                      <Text className="text-[10px] text-neutral-400">
-                        Checking availability…
-                      </Text>
-                    )}
-                    {!checkingUsername &&
-                      username.trim().length > 0 &&
-                      username.trim() !== initial.username.trim() &&
-                      usernameAvailable === true && (
-                        <Text className="text-[10px] text-green-400">
-                          Username is available
-                        </Text>
-                      )}
-                    {!checkingUsername &&
-                      username.trim().length > 0 &&
-                      username.trim() !== initial.username.trim() &&
-                      usernameAvailable === false && (
-                        <Text className="text-[10px] text-red-400">
-                          Username taken
-                        </Text>
-                      )}
-                    {!checkingUsername && username.trim().length === 0 && (
-                      <Text className="text-[10px] text-neutral-500">
-                        3-30 chars: letters, numbers, underscore.
-                      </Text>
-                    )}
-                  </View>
-                )}
-              </View>
-            ))}
+          <View className="px-4 gap-5">
+            <View>
+              <Text className="text-neutral-400 text-xs font-medium mb-1.5">Display Name</Text>
+              <TextInput
+                className="bg-theme-neutrals-900 text-white text-base px-4 py-3 rounded-xl border border-theme-neutrals-700"
+                placeholderTextColor="#6b7280"
+                placeholder="Your display name"
+                value={displayName}
+                onChangeText={setDisplayName}
+                autoCapitalize="words"
+              />
+            </View>
 
             <View>
-              <Text className="text-gray-400 text-xs mb-1">Bio</Text>
+              <Text className="text-neutral-400 text-xs font-medium mb-1.5">Username</Text>
               <TextInput
-                className="bg-theme-neutrals-900 text-white text-base px-4 py-3 rounded-xl border border-theme-neutrals-700 focus:border-blue-500 h-36"
+                className="bg-theme-neutrals-900 text-white text-base px-4 py-3 rounded-xl border border-theme-neutrals-700"
+                placeholderTextColor="#6b7280"
+                placeholder="@username"
+                value={username}
+                onChangeText={setUsername}
+                autoCapitalize="none"
+              />
+              <View className="mt-1 min-h-[16px]">
+                {checkingUsername && (
+                  <Text className="text-[10px] text-neutral-400">Checking availability…</Text>
+                )}
+                {!checkingUsername &&
+                  username.trim().length > 0 &&
+                  username.trim() !== initial.username.trim() &&
+                  usernameAvailable === true && (
+                    <Text className="text-[10px] text-green-400">Username is available</Text>
+                  )}
+                {!checkingUsername &&
+                  username.trim().length > 0 &&
+                  username.trim() !== initial.username.trim() &&
+                  usernameAvailable === false && (
+                    <Text className="text-[10px] text-red-400">Username taken</Text>
+                  )}
+                {!checkingUsername && username.trim().length === 0 && (
+                  <Text className="text-[10px] text-neutral-500">3–30 chars: letters, numbers, underscore.</Text>
+                )}
+              </View>
+            </View>
+
+            <View>
+              <Text className="text-neutral-400 text-xs font-medium mb-1.5">Bio</Text>
+              <TextInput
+                className="bg-theme-neutrals-900 text-white text-base px-4 py-3 rounded-xl border border-theme-neutrals-700 h-28"
                 placeholderTextColor="#6b7280"
                 placeholder="Tell people about you"
                 value={aboutMe}
                 onChangeText={(val) => setAboutMe(val.slice(0, BIO_MAX))}
                 multiline
-                numberOfLines={6}
+                numberOfLines={4}
                 style={{ textAlignVertical: "top" }}
               />
               <View className="flex-row justify-end mt-1">
-                <Text className={`text-[10px] ${aboutMe.length >= BIO_MAX ? 'text-red-400' : 'text-neutral-400'}`}>
+                <Text className={`text-[10px] ${aboutMe.length >= BIO_MAX ? "text-red-400" : "text-neutral-400"}`}>
                   {aboutMe.length}/{BIO_MAX}
                 </Text>
               </View>
             </View>
 
-            {[
-              {
-                label: "Facebook",
-                value: facebookLink,
-                setter: setFacebookLink,
-                placeholder: "https://facebook.com/you",
-              },
-              {
-                label: "Instagram",
-                value: instagramLink,
-                setter: setInstagramLink,
-                placeholder: "https://instagram.com/you",
-              },
-              {
-                label: "X (Twitter)",
-                value: twitterLink,
-                setter: setTwitterLink,
-                placeholder: "https://x.com/you",
-              },
-              {
-                label: "Discord",
-                value: discordLink,
-                setter: setDiscordLink,
-                placeholder: "https://discord.gg/you",
-              },
-            ].map((f) => {
-              const key =
-                f.label === "Facebook"
-                  ? "facebookLink"
-                  : f.label === "Instagram"
-                  ? "instagramLink"
-                  : f.label.startsWith("X")
-                  ? "twitterLink"
-                  : "discordLink";
-              const hasError = !!socialErrors[key];
-              return (
-                <View key={f.label}>
-                  <Text className="text-gray-400 text-xs mb-1">{f.label}</Text>
-                  <TextInput
-                    className={`bg-theme-neutrals-900 text-white text-base px-4 py-3 rounded-xl border ${
-                      hasError ? "border-red-500" : "border-theme-neutrals-700"
-                    } focus:border-blue-500`}
-                    placeholderTextColor="#6b7280"
-                    placeholder={f.placeholder}
-                    value={f.value}
-                    onChangeText={(val) => {
-                      (f.setter as any)(val);
-                      // live clear error when user types
-                      setSocialErrors((prev) => ({
-                        ...prev,
-                        [key]: undefined,
-                      }));
-                    }}
-                    autoCapitalize="none"
-                  />
-                  {hasError && (
-                    <Text className="text-[10px] text-red-400 mt-1">
-                      {socialErrors[key]}
-                    </Text>
-                  )}
-                </View>
-              );
-            })}
+            <View className="mt-2">
+              <Text className="text-neutral-400 text-xs font-medium mb-3">Social Links</Text>
+              <View className="gap-3">
+                {socialFields.map((field) => {
+                  const hasError = !!socialErrors[field.key];
+                  return (
+                    <View key={field.key}>
+                      <View
+                        className={`flex-row items-center bg-theme-neutrals-900 rounded-xl border ${
+                          hasError ? "border-red-500" : "border-theme-neutrals-700"
+                        } overflow-hidden`}
+                      >
+                        <View className="pl-3.5 pr-2.5 py-3">
+                          <SvgXml
+                            xml={field.svg.replace(/currentColor/g, hasError ? "#ef4444" : "#9ca3af")}
+                            width={18}
+                            height={18}
+                          />
+                        </View>
+                        <TextInput
+                          className="flex-1 text-white text-base py-3 pr-4"
+                          placeholderTextColor="#6b7280"
+                          placeholder={field.placeholder}
+                          value={field.value}
+                          onChangeText={(val) => {
+                            field.setter(val);
+                            setSocialErrors((prev) => ({ ...prev, [field.key]: undefined }));
+                          }}
+                          autoCapitalize="none"
+                        />
+                      </View>
+                      {hasError && (
+                        <Text className="text-[10px] text-red-400 mt-1 ml-1">
+                          {socialErrors[field.key]}
+                        </Text>
+                      )}
+                    </View>
+                  );
+                })}
+              </View>
+            </View>
           </View>
-
-          {/* Bottom action bar removed; Save now lives in header */}
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
