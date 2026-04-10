@@ -11,6 +11,7 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import {
   getAvatarUrl,
   getBadgeUrl,
+  resolveBadgeBalance,
   resolveThumbnail,
   formatCompactNumber,
 } from "../../libs";
@@ -91,7 +92,7 @@ const LiveStreamCardComponent: React.FC<LiveStreamCardProps> = ({ item, onCatego
     "Unknown";
   const username = minterUser?.username || item.minterUsername || item.minter || "";
   const avatar = getAvatarUrl(minterUser?.avatarImageUrl || item.minterAvatarUrl || "");
-  const badgeImg = getBadgeUrl((item.minterUser as any)?.badgeBalance || item.minterStaked || 0, "dark");
+  const badgeImg = getBadgeUrl(resolveBadgeBalance(item.minterUser || item));
   
   // Stats - item.likes/views for general, stream.peakViewers = current, stream.totalViews = all-time peak
   const likes = stream?.likes || item.likes || 0;

@@ -8,6 +8,7 @@ import type { GetNFTsResult } from "../../services/nft.service";
 import {
   getAvatarUrl,
   getBadgeUrl,
+  resolveBadgeBalance,
   getImageUrl,
   getImageUrlApiSimple,
   shareProfile,
@@ -381,7 +382,7 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
       ? formatDistance(new Date(createdAt), new Date(), { addSuffix: true })
       : "";
     const avatar = getAvatarUrl((item as any).minterAvatarUrl || "");
-    const badgeImg = getBadgeUrl((item as any).minterUser?.badgeBalance || (item as any).minterStaked || 0, "dark");
+    const badgeImg = getBadgeUrl(resolveBadgeBalance((item as any).minterUser || item));
     const titleText = (item as any).name || (item as any).title || "";
     const descriptionText = (item as any).description || "";
 

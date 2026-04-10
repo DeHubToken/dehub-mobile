@@ -3,12 +3,11 @@ import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { View, Text, TouchableOpacity, Image, ActivityIndicator } from "react-native";
 import Avatar from "../common/Avatar";
 import { Ionicons } from "@expo/vector-icons";
-import { getAvatarUrl, getBadgeName, getBadgeUrl } from "../../libs/misc";
+import { getAvatarUrl, getBadgeName, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
 import { truncateAddress } from "../../libs/strings.util";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useAuthActions } from "../../context/AuthContext";
-import { maxStacked } from "../../libs/validators.util";
 
 export type Creator = {
   username?: string;
@@ -102,15 +101,10 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
   );
   const stakedDHB = useMemo(() => {
     if (!creator) return 0;
-    // Prefer badgeBalance from backend
-    if (typeof (creator as any)?.badgeBalance === 'number' && (creator as any).badgeBalance > 0)
-      return (creator as any).badgeBalance;
-    const fromBalances = maxStacked((creator as any)?.balanceData);
-    const direct = (creator as any)?.stakedDHB || 0;
-    return fromBalances > 0 ? fromBalances : direct || 0;
+    return resolveBadgeBalance(creator as any);
   }, [creator]);
-  const badgeName = getBadgeName(stakedDHB as any);
-  const badgeImage = getBadgeUrl(stakedDHB as any);
+  const badgeName = getBadgeName(stakedDHB);
+  const badgeImage = getBadgeUrl(stakedDHB);
 
   const profileId = useMemo(
     () =>

@@ -11,6 +11,7 @@ import {
   resolveThumbnail,
   getImageUrl,
   getBadgeUrl,
+  resolveBadgeBalance,
   getVideoUrl,
 } from "../../libs";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -22,14 +23,12 @@ import { useStreamAccessInfo } from "../../libs/validators.util";
 interface CompactVideoCardProps {
   nft: any;
   enablePreview?: boolean;
-  badgeIcon?: string;
   showCreator?: boolean;
 }
 
 const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   nft,
   enablePreview,
-  badgeIcon,
   showCreator = true,
 }) => {
   const streamInfo = nft.streamInfo || (nft as any).stream?.streamInfo;
@@ -107,7 +106,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const isBounty = !!streamInfo?.isAddBounty;
   const bountyAmount = streamInfo?.addBountyAmount;
   const bountyTokenSymbol = streamInfo?.addBountyTokenSymbol;
-  const badgeImage = getBadgeUrl((nft as any).minterUser?.badgeBalance || (nft as any).minterStaked || 0, "dark");
+  const badgeImage = getBadgeUrl(resolveBadgeBalance((nft as any).minterUser || nft));
   const { showUserProfile } = useUserProfileSheet();
   const user = useUser();
   const navigation = useNavigation<any>();
@@ -208,21 +207,12 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
                   {creator}
                 </Text>
               </TouchableOpacity>
-              {(badgeImage || badgeIcon) && (
+              {badgeImage && (
                 <TouchableOpacity
                   activeOpacity={0.7}
                   onPress={handlePressCreator}
                 >
-                  {badgeImage ? (
-                    <Image source={badgeImage} className="w-3 h-3 ml-1" />
-                  ) : badgeIcon ? (
-                    <Ionicons
-                      name={badgeIcon as any}
-                      size={10}
-                      color="gold"
-                      style={{ marginLeft: 4 }}
-                    />
-                  ) : null}
+                  <Image source={badgeImage} className="w-3 h-3 ml-1" />
                 </TouchableOpacity>
               )}
             </View>
@@ -298,8 +288,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
 
 const areEqual = (prev: CompactVideoCardProps, next: CompactVideoCardProps) =>
   prev.nft === next.nft &&
-  prev.enablePreview === next.enablePreview &&
-  prev.badgeIcon === next.badgeIcon;
+  prev.enablePreview === next.enablePreview;
 
 const CompactVideoCard = memo(CompactVideoCardComponent, areEqual);
 

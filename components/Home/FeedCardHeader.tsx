@@ -10,7 +10,6 @@ export interface FeedCardHeaderProps {
   displayName: string;
   username?: string;
   badgeImage?: any;
-  badgeIcon?: string;
   onUserPress?: () => void;
   avatarSize?: number;
   onMenuPress?: () => void;
