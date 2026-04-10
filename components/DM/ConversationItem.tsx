@@ -36,7 +36,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
   const displayName = other?.displayName || other?.username || "Unknown";
   const username = other?.username;
   const avatarUrl = getAvatarUrl(other?.avatarImageUrl);
-  const badgeImg = getBadgeUrl(resolveBadgeBalance(other as any), "dark");
+  const badgeImg = getBadgeUrl(resolveBadgeBalance(other as any));
 
   // Last message preview
   const { previewText, previewIcon } = useMemo(() => {

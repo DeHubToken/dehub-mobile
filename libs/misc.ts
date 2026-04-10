@@ -170,7 +170,6 @@ export function getDefaultBanner(identifier: string = ""): number {
 
 export function getBadgeUrl(
   stakingAmount: number | string,
-  theme: "light" | "dark" = "light"
 ): number | undefined {
   const badge = getBadgeName(stakingAmount);
   return badge ? BADGE_IMAGES[badge] : undefined;

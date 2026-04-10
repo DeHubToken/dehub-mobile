@@ -11,7 +11,6 @@ export interface UserProfileHeaderProps {
   displayName: string;
   badge?: string | null;
   badgeImage?: number | undefined;
-  badgeIcon?: string;
   address?: string;
   shortAddr?: string;
   username?: string | null;
@@ -34,7 +33,6 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   displayName,
   badge,
   badgeImage,
-  badgeIcon = "trophy-outline",
   address,
   shortAddr,
   username,
@@ -92,13 +90,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
               <Text className="text-white text-2xl font-bold" numberOfLines={1}>
                 {displayName}
               </Text>
-              {badge && (
+              {badge && badgeImage && (
                 <View className="w-5 h-5 rounded-full bg-theme-neutrals-800 items-center justify-center">
-                  {badgeImage ? (
-                    <Image source={badgeImage} className="w-3 h-3" />
-                  ) : (
-                    <Ionicons name="star" size={12} color="#fff" />
-                  )}
+                  <Image source={badgeImage} className="w-3 h-3" />
                 </View>
               )}
             </View>

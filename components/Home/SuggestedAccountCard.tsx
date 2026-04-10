@@ -57,7 +57,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
   const displayAvatar =
     avatarSrc && avatarSrc !== "default-avatar" ? avatarSrc : undefined;
   const followers = account.followers ?? 0;
-  const badgeImage = getBadgeUrl(account.badgeBalance ?? 0, "dark");
+  const badgeImage = getBadgeUrl(account.badgeBalance ?? 0);
 
 
   const reasonLine = useMemo(() => {

@@ -142,7 +142,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           displayName={profileData.displayName}
           badge={profileData.badge}
           badgeImage={profileData.badgeImage}
-          badgeIcon="trophy-outline"
           address={profileData.address}
           shortAddr={profileData.shortAddr}
           username={profileData.username}

@@ -15,6 +15,7 @@ import {
   resolveThumbnail,
   getImageUrl,
   getBadgeUrl,
+  resolveBadgeBalance,
   getVideoUrl,
   getDefaultBanner,
   formatCompactNumber,
@@ -37,7 +38,6 @@ import QuotedPostEmbed from "../common/QuotedPostEmbed";
 interface VideoCardProps {
   nft: any;
   enablePreview?: boolean;
-  badgeIcon?: string;
   onBeforeNavigate?: () => void;
   onCategorySelect?: (category: string) => void;
 }
@@ -45,7 +45,6 @@ interface VideoCardProps {
 const VideoCardComponent: React.FC<VideoCardProps> = ({
   nft,
   enablePreview,
-  badgeIcon,
   onBeforeNavigate,
   onCategorySelect,
 }) => {
@@ -81,8 +80,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
     avatarUrl && avatarUrl !== "default-avatar"
       ? avatarUrl
       : require("../../assets/default-avatar.png");
-  const stakeForBadge = (nft as any).minterUser?.badgeBalance || (nft as any).minterStaked || 0;
-  const badgeImage = getBadgeUrl(stakeForBadge, "dark");
+  const badgeImage = getBadgeUrl(resolveBadgeBalance((nft as any).minterUser || nft));
   const rawTitle =
     (nft as any).name ||
     (nft as any).title ||
@@ -676,7 +674,6 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
 const areEqual = (prev: VideoCardProps, next: VideoCardProps) =>
   prev.nft === next.nft &&
   prev.enablePreview === next.enablePreview &&
-  prev.badgeIcon === next.badgeIcon &&
   prev.onBeforeNavigate === next.onBeforeNavigate;
 
 const VideoCard = React.memo(VideoCardComponent, areEqual);

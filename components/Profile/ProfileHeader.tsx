@@ -17,6 +17,7 @@ import {
   getBadgeName,
   getBadgeUrl,
   getDefaultBanner,
+  resolveBadgeBalance,
 } from "../../libs/misc";
 import { openExternalLink } from "../../libs/links.utils";
 import env from "../../config/env";
@@ -55,10 +56,9 @@ const ProfileHeader = () => {
   const avatarUrl = getAvatarUrl(user?.avatarImageUrl);
 
   const coverUrl = getCoverUrl(user?.coverImageUrl);
-  const badgeVal = (user as any)?.badgeBalance || user?.stakedDHB || 0;
-  const badge = getBadgeName(badgeVal as number);
-  const badgeImage = getBadgeUrl(badgeVal as number);
-  const badgeIcon = "trophy-outline";
+  const badgeVal = resolveBadgeBalance(user as any);
+  const badge = getBadgeName(badgeVal);
+  const badgeImage = getBadgeUrl(badgeVal);
   
   // Deterministic default banner based on user ID/address
   const defaultBanner = useMemo(() => 

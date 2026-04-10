@@ -12,6 +12,7 @@ import TranslateButton from "../ui/TranslateButton";
 import { useTranslation } from "../../hooks/useTranslation";
 import Avatar from "../common/Avatar";
 import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
+import { openInApp } from "../../libs/links.utils";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
 import type { MessageLayout } from "./LiveChatContextMenu";
 
@@ -35,6 +36,33 @@ interface LiveChatMessageProps {
 }
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
+
+const URL_RE = /(?:https?:\/\/|www\.)[^\s<>)"']+/gi;
+
+const renderLinkedText = (text: string) => {
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  const re = new RegExp(URL_RE.source, "gi");
+  while ((match = re.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    const url = match[0];
+    parts.push(
+      <Text
+        key={match.index}
+        style={{ color: "#60A5FA" }}
+        onPress={() => openInApp(url)}
+      >
+        {url}
+      </Text>
+    );
+    lastIndex = re.lastIndex;
+  }
+  if (lastIndex < text.length) parts.push(text.slice(lastIndex));
+  return parts;
+};
 
 const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
   message,
@@ -198,7 +226,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
           <>
             {!!message.content && (
               <Text className="text-white/70 text-[13px] leading-5">
-                {isTranslated ? (translatedTexts.content || message.content) : message.content}
+                {renderLinkedText(isTranslated ? (translatedTexts.content || message.content) : message.content)}
               </Text>
             )}
 

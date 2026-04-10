@@ -36,6 +36,7 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import {
   getAvatarUrl,
   getBadgeUrl,
+  resolveBadgeBalance,
   getImageUrl,
   getImageUrlApiSimple,
   getAudioUrl,
@@ -140,7 +141,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const username = minterUser?.username || item.minterUsername || item.minter || "";
   const minterAddress = minterUser?.address || item.minter || item.owner || "";
   const avatar = getAvatarUrl(minterUser?.avatarImageUrl || item.minterAvatarUrl || "");
-  const badgeImg = getBadgeUrl((minterUser as any)?.badgeBalance || item.minterStaked || 0, "dark");
+  const badgeImg = getBadgeUrl(resolveBadgeBalance(minterUser || item));
 
   const createdAt = item.createdAt || stream?.createdAt;
   const title = (() => {
