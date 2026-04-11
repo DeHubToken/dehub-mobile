@@ -57,7 +57,6 @@ const GlassModal: React.FC<GlassModalProps> = ({
       hardwareAccelerated
     >
       <View style={[styles.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
-        {/* Backdrop */}
         {/* Default: non-blurred dim backdrop; no full-screen blur */}
         {backdropScope === "full" ? (
           <TouchableOpacity
@@ -87,7 +86,6 @@ const GlassModal: React.FC<GlassModalProps> = ({
           </TouchableOpacity>
         )}
 
-        {/* Foreground panel */}
         <View
           style={[
             styles.foregroundWrapper,
@@ -106,7 +104,6 @@ const GlassModal: React.FC<GlassModalProps> = ({
                 },
               ]}
             >
-              {/* Panel-only blur background */}
               <BlurView
                 intensity={blurIntensity}
                 tint={blurTint}

@@ -72,7 +72,6 @@ const DpayLoader: React.FC<DpayLoaderProps> = ({ progress }) => {
 
   return (
     <View style={styles.container} className="flex-1 bg-theme-neutrals-900 items-center justify-center">
-      {/* Top progress bar */}
       <View style={styles.progressTrack} className="absolute top-0 left-0 right-0 h-[3px] bg-theme-neutrals-800 overflow-hidden">
         <Animated.View
           style={[styles.progressFill, { width: barWidth }]}

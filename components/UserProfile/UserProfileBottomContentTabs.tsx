@@ -454,10 +454,8 @@ const UserProfileBottomContentTabs: React.FC<
     <View
       style={isFullScreen ? { flex: 1 } : { height: listHeight, marginTop: 16 }}
     >
-      {/* Collapsed: show tab bar above the constrained list */}
       {!isFullScreen && TabBar}
 
-      {/* Posts tab — always mounted to preserve data, hidden when inactive */}
       <View
         style={{
           flex: activeTab === "posts" ? 1 : 0,
@@ -483,7 +481,6 @@ const UserProfileBottomContentTabs: React.FC<
         />
       </View>
 
-      {/* Replies tab — real paginated list (always mounted, hidden when inactive) */}
       <View
         style={{
           flex: activeTab === "replies" ? 1 : 0,
@@ -505,7 +502,6 @@ const UserProfileBottomContentTabs: React.FC<
         />
       </View>
 
-      {/* Reposts tab — paginated list (always mounted, hidden when inactive) */}
       <View
         style={{
           flex: activeTab === "reposts" ? 1 : 0,
@@ -527,7 +523,6 @@ const UserProfileBottomContentTabs: React.FC<
         />
       </View>
 
-      {/* Sticky tab bar — overlays at the top when header scrolls away */}
       {isFullScreen && stickyVisible && (
         <View
           style={{
@@ -545,7 +540,6 @@ const UserProfileBottomContentTabs: React.FC<
         </View>
       )}
 
-      {/* Back to top FAB */}
       {isFullScreen && showBackToTop && (
         <Pressable
           onPress={scrollToTop}

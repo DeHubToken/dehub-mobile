@@ -37,16 +37,6 @@ const slideFromRight: StackCardStyleInterpolator = ({ current, next, layouts }) 
 
 const Stack = createStackNavigator<AuthStackParamList>();
 
-/**
- * AuthNavigator - Handles the authentication flow
- * 
- * Flow states:
- * 1. First time user: Onboarding → SignIn → (optional) SetProfile → App
- * 2. Returning user needs sign-in: SignIn → (optional) SetProfile → App
- * 3. User needs username: SetProfile → App
- * 
- * Initial route is determined once on mount to prevent navigation flickering.
- */
 export default function AuthNavigator() {
   const { needsUsername, provisionalUser, isFirstTimeUser } = useAuthState();
   const hasInitializedRef = useRef(false);

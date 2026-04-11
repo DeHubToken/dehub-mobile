@@ -71,7 +71,6 @@ const ProducerStatusBar: React.FC<Props> = ({
       className="absolute top-4 left-4 right-4 z-20 bg-black/50 rounded-2xl border border-white/10"
       style={{ paddingHorizontal: 10, paddingVertical: 8 }}
     >
-      {/* Row 1: Back button · status · duration · hint */}
       <View className="flex-row items-center">
         <TouchableOpacity
           onPress={handlePressClose}
@@ -93,14 +92,12 @@ const ProducerStatusBar: React.FC<Props> = ({
           <View className="flex-1" />
         )}
 
-        {/* Camera / mic icons always on the right of row 1 */}
         <View className="flex-row items-center gap-2 ml-2">
           {cameraOff ? <VideoOff color="#f87171" size={13} /> : <Video color="#a3e635" size={13} />}
           {micMuted ? <MicOff color="#f87171" size={13} /> : <Mic color="#a3e635" size={13} />}
         </View>
       </View>
 
-      {/* Row 2 (live only): viewers · peak · likes · bitrate */}
       {isLive && (
         <View className="flex-row items-center mt-1.5 ml-9 gap-3">
           <View className="flex-row items-center gap-1">

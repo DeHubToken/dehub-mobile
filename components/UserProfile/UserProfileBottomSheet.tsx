@@ -182,7 +182,6 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
               className="bg-theme-neutrals-900 overflow-hidden"
               style={[animatedStyle, sheetChromeStyle]}
             >
-              {/* Header */}
               <View className="w-full" style={{ position: "relative" }}>
                 <Animated.View style={headerSpacerStyle} />
                 <Animated.View
@@ -234,7 +233,6 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                 )}
               </View>
 
-              {/* Content */}
               <UserProfileSheetContent
                 loading={loading}
                 data={data}
@@ -275,7 +273,6 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           </GestureDetector>
         </View>
       </GestureHandlerRootView>
-      {/* Unfollow / Cancel Request Sheet */}
       <UnfollowSheet
         visible={showUnfollowSheet && (isFollowing || isFollowRequestPending)}
         username={profileData?.username || usernameOrAddress || ""}

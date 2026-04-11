@@ -375,11 +375,5 @@ export const prewarmWeb3Auth = async () => {
   }
 };
 
-// ---------------------------------------------------------------------------
-// Extended Helpers for Web3 / EVM interactions via Web3Auth provider
-// ---------------------------------------------------------------------------
-// (All extended helper implementations have been moved to services/web3auth.service.ts)
-// (Extended helpers removed to services/web3auth.service.ts)
-// Chain-switch helpers (addWeb3AuthChain, switchWeb3AuthChain, reconfigureWeb3AuthChain)
-// were removed in favour of Option A: persist preferred chain → restart the app.
-// Web3Auth re-initializes on the preferred chain during cold boot automatically.
+// Extended helpers moved to services/web3auth.service.ts.
+// Chain-switch helpers removed: preferred chain persisted → app restarts on it.

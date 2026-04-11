@@ -32,12 +32,6 @@ interface SetProfileScreenProps {
   navigation: any;
 }
 
-/**
- * SetProfileScreen - Handles username and display name setup
- * 
- * This screen is shown when a user has authenticated but doesn't have a username.
- * The user cannot navigate away without completing profile or signing out.
- */
 const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
   const { provisionalUser, needsUsername } = useAuthState();
   const { completeUsername, signOut } = useAuthActions();

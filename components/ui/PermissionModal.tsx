@@ -112,22 +112,18 @@ const PermissionModalProvider: React.FC = memo(() => {
       dismissible
     >
       <View className="items-center px-6 pt-8 pb-6">
-        {/* Icon */}
         <View className="w-16 h-16 rounded-full bg-white/10 items-center justify-center mb-5">
           <Ionicons name={config.icon} size={30} color="#3B82F6" />
         </View>
 
-        {/* Title */}
         <Text className="text-white text-lg font-bold text-center mb-2">
           {config.title}
         </Text>
 
-        {/* Message */}
         <Text className="text-neutral-400 text-sm text-center leading-5 mb-7">
           {config.message}
         </Text>
 
-        {/* Primary CTA */}
         <AccentButtonGradient style={{ width: "100%", marginBottom: 10 }}>
           <TouchableOpacity
             className="py-3.5 items-center"
@@ -140,7 +136,6 @@ const PermissionModalProvider: React.FC = memo(() => {
           </TouchableOpacity>
         </AccentButtonGradient>
 
-        {/* Secondary dismiss */}
         <TouchableOpacity
           className="py-3 items-center w-full"
           activeOpacity={0.7}

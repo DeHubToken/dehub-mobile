@@ -74,9 +74,6 @@ export interface VoiceRecorderHandle {
   cancelRecording: () => Promise<void>;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   useVoiceRecorder — all recording state & logic
-   ═══════════════════════════════════════════════════════════════ */
 export const useVoiceRecorder = ({
   onRecordingComplete,
   onCancel,
@@ -270,10 +267,6 @@ const RecordingWaveform: React.FC<{ bars: number[] }> = memo(({ bars }) => {
   );
 });
 
-/* ═══════════════════════════════════════════════════════════════
-   VoiceNoteRecordingOverlay
-   ─ Simple: timer + waveform + trash (cancel) + ✓ (stop & send)
-   ═══════════════════════════════════════════════════════════════ */
 interface VoiceNoteRecordingOverlayProps {
   recorder: VoiceRecorderHandle;
 }
@@ -325,7 +318,6 @@ const OverlayComponent: React.FC<VoiceNoteRecordingOverlayProps> = ({
       style={containerStyle}
       className="flex-row items-center px-4 py-3 bg-theme-neutrals-800"
     >
-      {/* Pulsing red dot */}
       <Animated.View
         style={pulseStyle}
         className="w-2.5 h-2.5 rounded-full bg-red-500 mr-2"
@@ -339,7 +331,6 @@ const OverlayComponent: React.FC<VoiceNoteRecordingOverlayProps> = ({
 
       <RecordingWaveform bars={meterBars} />
 
-      {/* Trash — cancel recording */}
       <TouchableOpacity
         onPress={cancelRecording}
         activeOpacity={0.7}
@@ -348,7 +339,6 @@ const OverlayComponent: React.FC<VoiceNoteRecordingOverlayProps> = ({
         <Ionicons name="trash-outline" size={20} color="#f87171" />
       </TouchableOpacity>
 
-      {/* Checkmark — stop & send */}
       <TouchableOpacity
         onPress={stopRecording}
         activeOpacity={0.7}

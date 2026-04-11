@@ -311,7 +311,6 @@ const TransferModal: React.FC<TransferModalProps> = ({
             <Text className="text-[11px] text-white/60">
               Balance: {balance} DHB
             </Text>
-            {/* <Text className="text-[11px] text-white/30">Transfer</Text> */}
           </View>
           {insufficient && (
             <Text className="text-xs text-red-400 mt-1">

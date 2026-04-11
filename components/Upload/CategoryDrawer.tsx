@@ -128,7 +128,6 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
         keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
       >
         <View style={{ flex: 1 }}>
-          {/* Header */}
           <View className="flex-row items-center justify-between px-4 pt-4 pb-2">
             <Text className="text-white text-lg font-bold">Categories</Text>
             <View className="flex-row items-center">
@@ -145,7 +144,6 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
             </View>
           </View>
 
-          {/* Selected pills */}
           {categories.length > 0 && (
             <View className="flex-row flex-wrap gap-2 px-4 pb-2">
               {categories.map((c) => (
@@ -172,7 +170,6 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
             </View>
           )}
 
-          {/* Search input */}
           <View className="mx-4 mb-2 flex-row items-center bg-white/5 border border-white/10 rounded-xl px-3" style={{ height: 44 }}>
             <Ionicons name="search" size={16} color="#6F7174" />
             <TextInput
@@ -196,7 +193,6 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
             )}
           </View>
 
-          {/* Create custom category */}
           {showCreate && (
             <TouchableOpacity
               onPress={() => handleAdd(query.trim())}
@@ -210,7 +206,6 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
             </TouchableOpacity>
           )}
 
-          {/* Category list */}
           <FlatList
             data={filtered}
             renderItem={renderItem}

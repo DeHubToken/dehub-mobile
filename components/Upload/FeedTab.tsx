@@ -328,7 +328,6 @@ export default function FeedTab() {
           type="feed"
         />
 
-        {/* Images picker */}
         <View className="mt-4">
           <Text className="text-gray-400 mb-1">Images (optional, up to 4)</Text>
           {images.length === 0 ? (
@@ -392,7 +391,6 @@ export default function FeedTab() {
         </View>
       </ScrollView>
 
-      {/* Footer CTA */}
       <View className="px-4 pt-2 pb-6 mb-6">
         <AccentButtonGradient>
           <TouchableOpacity

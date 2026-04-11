@@ -129,7 +129,6 @@ const computeStreamAccessInfo = (
   let ppvToken: SupportedToken | null = null;
   const info = nftMetadata.streamInfo;
 
-  // ----- 1. Owner bypass — owners always see their own content -----
   if (nftMetadata.isOwner === true) {
     return {
       streamStatus,
@@ -139,7 +138,6 @@ const computeStreamAccessInfo = (
     };
   }
 
-  // ----- 2. Lock-content check (threshold-based, cross-chain) -----
   if (info?.isLockContent) {
     streamStatus.isFree = false;
 
@@ -174,7 +172,6 @@ const computeStreamAccessInfo = (
       ) || null;
   }
 
-  // ----- 3. PPV check — trust the server's isUnlocked flag -----
   if (info?.isPayPerView) {
     streamStatus.isFree = false;
 
@@ -194,7 +191,6 @@ const computeStreamAccessInfo = (
       ) || null;
   }
 
-  // ----- 4. Derive playable URL -----
   const isPlayable =
     !streamStatus.isLockedWithLockContent && !streamStatus.isLockedWithPPV;
   const playableVideoUrl = isPlayable ? nftMetadata.videoUrl || null : null;

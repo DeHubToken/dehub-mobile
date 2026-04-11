@@ -64,7 +64,6 @@ const MoreOptionsSection: React.FC<MoreOptionsSectionProps> = (props) => {
       </TouchableOpacity>
       {props.showAdvanced && (
         <View className="px-4 pb-4">
-          {/* Lock Content */}
           <View className="mt-2 rounded-lg border border-zinc-800 bg-zinc-950 p-3 relative">
             <View className="flex-row items-center justify-between">
               <View className="flex-row items-center">
@@ -100,7 +99,6 @@ const MoreOptionsSection: React.FC<MoreOptionsSectionProps> = (props) => {
             )}
           </View>
 
-          {/* Pay Per View */}
           <View className="mt-3 rounded-lg border border-zinc-800 bg-zinc-950 p-3 relative">
             <View className="flex-row items-center justify-between">
               <View className="flex-row items-center">
@@ -136,7 +134,6 @@ const MoreOptionsSection: React.FC<MoreOptionsSectionProps> = (props) => {
             )}
           </View>
 
-          {/* Bounty */}
           <View className="mt-3 rounded-lg border border-zinc-800 bg-zinc-950 p-3 relative">
             <View className="flex-row items-center justify-between">
               <View className="flex-row items-center">

@@ -108,13 +108,11 @@ export interface SearchPagination {
   hasMore: boolean;
 }
 
-// ---- Bucket (items + pagination) ----
 export interface SearchBucket<T> {
   items: T[];
   pagination: SearchPagination;
 }
 
-// ---- Top-level API response ----
 export interface UnifiedSearchResponse {
   status: boolean;
   accounts: SearchBucket<SearchAccountResult> | null;

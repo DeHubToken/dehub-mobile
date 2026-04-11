@@ -164,7 +164,6 @@ const FloatingComment: React.FC<{
           <Text className="text-xs text-theme-neutrals-500 ml-2">{timeAgo}</Text>
         </View>
 
-        {/* Text content */}
         {comment.content ? (
           <Text className="text-sm text-theme-neutrals-100 mt-1">
             {parsedContent.map((part, idx) => (
@@ -182,7 +181,6 @@ const FloatingComment: React.FC<{
           </Text>
         ) : null}
 
-        {/* Image */}
         {comment.imageUrl ? (
           <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-700" style={{ maxWidth: 180 }}>
             <Image
@@ -193,7 +191,6 @@ const FloatingComment: React.FC<{
           </View>
         ) : null}
 
-        {/* GIF */}
         {comment.gifUrl ? (
           <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-700" style={{ maxWidth: 180 }}>
             <Image
@@ -204,7 +201,6 @@ const FloatingComment: React.FC<{
           </View>
         ) : null}
 
-        {/* Voice note */}
         {comment.audioUrl ? (
           <View className="mt-1.5 rounded-lg bg-theme-neutrals-700/60 px-2" style={{ maxWidth: 220 }}>
             <VoiceNotePlayer
@@ -216,7 +212,6 @@ const FloatingComment: React.FC<{
         ) : null}
       </View>
 
-      {/* Like indicator */}
       <View className="px-2 items-center justify-center">
         <Icon
           name="ThumbsUp"
@@ -328,7 +323,6 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
 
   return (
     <Modal transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>
-      {/* Blurred / dimmed backdrop */}
       <Pressable style={{ flex: 1 }} onPress={onClose}>
         <Animated.View
           entering={FadeIn.duration(200)}
@@ -357,7 +351,6 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
         </Animated.View>
       </Pressable>
 
-      {/* Floating comment card */}
       <Animated.View
         entering={FadeIn.duration(200)}
         exiting={FadeOut.duration(120)}
@@ -376,7 +369,6 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
         </Pressable>
       </Animated.View>
 
-      {/* Actions card */}
       <Animated.View
         entering={FadeIn.duration(180).delay(60)}
         exiting={FadeOut.duration(120)}

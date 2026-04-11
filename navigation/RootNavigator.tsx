@@ -10,15 +10,6 @@ import { createLogger } from "../libs/logger";
 const log = createLogger("RootNavigator");
 const Stack = createStackNavigator<RootStackParamList>();
 
-/**
- * RootNavigator - Single source of truth for app navigation structure
- * 
- * Navigation Strategy (YouTube/Instagram pattern):
- * - Always renders both App and Auth stacks in the same order
- * - Auth state determines the INITIAL route, not the stack structure
- * - Once mounted, navigation between stacks is handled imperatively
- * - This prevents full re-mounts when auth state changes
- */
 export default function RootNavigator() {
   const { isFirstTimeUser, needsUsername, isSignedIn } = useAuthState();
   const hasInitializedRef = useRef(false);

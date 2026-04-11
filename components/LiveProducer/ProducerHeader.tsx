@@ -130,9 +130,7 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
       style={{ paddingTop: Math.max(insets.top + 4, 12) }}
       pointerEvents="box-none"
     >
-      {/* Row 1: Close · Status pill · Viewer count */}
       <View className="flex-row items-center" pointerEvents="box-none">
-        {/* Close / minimize */}
         <TouchableOpacity
           onPress={handlePressClose}
           activeOpacity={0.8}
@@ -141,7 +139,6 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
           <ChevronDown color="#fff" size={18} />
         </TouchableOpacity>
 
-        {/* Status pill */}
         {statusLabel ? (
           <View className="flex-row items-center ml-3 bg-black/50 rounded-full px-3 py-1.5">
             <Animated.View
@@ -167,7 +164,6 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
           </View>
         ) : null}
 
-        {/* Starting hint */}
         {isStarting && startingHint ? (
           <Text
             className="text-white/50 text-[10px] ml-2 flex-1"
@@ -179,7 +175,6 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
           <View className="flex-1" />
         )}
 
-        {/* Camera / mic status + viewer count on right */}
         <View className="flex-row items-center gap-2">
           {cameraOff ? (
             <VideoOff color="#f87171" size={14} />
@@ -202,7 +197,6 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
         </View>
       </View>
 
-      {/* Row 2 (live only): Peak · Likes · Bitrate */}
       {isLive ? (
         <View className="flex-row items-center mt-1 ml-12 gap-3">
           {peakViewers > 0 ? (

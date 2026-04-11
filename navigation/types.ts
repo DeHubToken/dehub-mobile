@@ -141,16 +141,8 @@ export type BottomTabScreenProps<T extends keyof BottomTabParamList> = Composite
   AppStackScreenProps<keyof AppStackParamList>
 >;
 
-/**
- * Generic navigation prop that can be used in components that don't need
- * specific screen params. Prefer using screen-specific props when possible.
- */
 export type AppNavigationProp = AppStackNavigationProp<keyof AppStackParamList>;
 
-/**
- * Type helper for useNavigation hook
- * Usage: const navigation = useNavigation<UseNavigationType>();
- */
 export type UseNavigationType = AppStackNavigationProp<keyof AppStackParamList>;
 
 declare global {

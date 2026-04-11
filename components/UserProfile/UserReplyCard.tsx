@@ -1,15 +1,3 @@
-/**
- * UserReplyCard – Renders a single comment/reply from the "Replies" tab.
- *
- * Matches the web frontend CommentCard layout:
- * 1. Parent post preview (thumbnail + creator + title)
- * 2. "Commented on" / "Replied to" label
- * 3. Author header (avatar + name + handle)
- * 4. Comment text with @mentions
- * 5. Media (image / GIF / voice note)
- * 6. Timestamp
- * 7. Action bar (like, replies, share)
- */
 import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import {
   View,
@@ -177,7 +165,6 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
         marginVertical: 4,
       }}
     >
-      {/* Parent post preview */}
       {post && (
         <View
           style={{
@@ -242,7 +229,6 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
         </View>
       )}
 
-      {/* "Replying to" / "Commented on" label */}
       {item.tokenId ? (
         <View className="flex-row items-center gap-1.5 mt-2 mb-1 px-3" style={{ paddingLeft: 52 }}>
           <Icon name="CornerDownRight" size={12} color="#6F7174" />
@@ -252,9 +238,7 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
         </View>
       ) : null}
 
-      {/* Main content */}
       <View style={{ padding: 12, paddingTop: 4 }}>
-        {/* Author header */}
         <View className="flex-row items-center">
           <Avatar
             uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
@@ -275,7 +259,6 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
           </View>
         </View>
 
-        {/* Comment text */}
         {item.content ? (
           <Text className="text-sm text-white/90 mt-2.5 leading-5" numberOfLines={4}>
             {parsedContent.map((part, idx) => (
@@ -289,7 +272,6 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
           </Text>
         ) : null}
 
-        {/* Media: image */}
         {item.imageUrl ? (
           <View className="mt-2 rounded-lg overflow-hidden" style={{ maxWidth: 240 }}>
             <Image
@@ -300,7 +282,6 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
           </View>
         ) : null}
 
-        {/* Media: GIF */}
         {item.gifUrl ? (
           <View className="mt-2 rounded-lg overflow-hidden" style={{ maxWidth: 240 }}>
             <Image
@@ -311,7 +292,6 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
           </View>
         ) : null}
 
-        {/* Media: voice note */}
         {item.audioUrl ? (
           <View className="mt-2 rounded-lg bg-theme-neutrals-800/60 px-2" style={{ maxWidth: 240 }}>
             <VoiceNotePlayer
@@ -322,10 +302,8 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
           </View>
         ) : null}
 
-        {/* Timestamp */}
         <Text className="text-xs text-zinc-500 mt-2.5">{timeAgo}</Text>
 
-        {/* Action bar */}
         <View className="flex-row items-center mt-2 -ml-1.5">
           <TouchableOpacity
             onPress={handleLike}

@@ -578,7 +578,6 @@ const SearchScreen: React.FC = () => {
       );
     }
 
-    // ---- Pre-search: typing overlay ----
     const q = searchQuery.trim();
     const isTyping = q.length > 0;
     const SUGGEST_THRESHOLD = 2;
@@ -687,7 +686,6 @@ const SearchScreen: React.FC = () => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
       >
-        {/* Search Input */}
         <View className="px-4 pb-2">
           <View className="flex-row items-center bg-theme-neutrals-800 rounded-full px-3 py-2">
             <Icon name="Search" size={18} color="#9CA3AF" />
@@ -727,7 +725,6 @@ const SearchScreen: React.FC = () => {
           </View>
         </View>
 
-        {/* Filter Tabs — always visible */}
         <View className="px-4 py-2">
           <ScrollView
             horizontal
@@ -776,7 +773,6 @@ const SearchScreen: React.FC = () => {
           </ScrollView>
         </View>
 
-        {/* Content */}
         {renderContent()}
       </KeyboardAvoidingView>
     </View>

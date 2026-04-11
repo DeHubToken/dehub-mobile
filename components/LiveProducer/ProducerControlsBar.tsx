@@ -72,7 +72,6 @@ const ProducerControlsBar: React.FC<Props> = ({
           <Gift color="white" size={22} />
         </TouchableOpacity> */}
         <View className="flex-1" />
-        {/* External stream toggle (hidden once starting/live/ending/ended) */}
         {!hideExternalToggle && (
           <TouchableOpacity
             onPress={onToggleExternal}
@@ -129,7 +128,6 @@ const ProducerControlsBar: React.FC<Props> = ({
         >
           {cameraOff ? <VideoOff color="white" size={20} /> : <Video color="white" size={20} />}
         </TouchableOpacity>
-        {/* Chat enabled/disabled toggle (owner control while live) */}
         {isLive && onToggleChatEnabled && (
           <TouchableOpacity
             onPress={onToggleChatEnabled}

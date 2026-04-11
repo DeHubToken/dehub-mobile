@@ -150,7 +150,6 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
 
   return (
     <View className="px-3" pointerEvents="box-none">
-      {/* Chat toggle button when live (owner can enable/disable) */}
       {isLive && onToggleChatEnabled ? (
         <View className="flex-row items-center mb-2" pointerEvents="box-none">
           <TouchableOpacity
@@ -172,7 +171,6 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
         </View>
       ) : null}
 
-      {/* Floating messages */}
       <View style={{ maxHeight: 200 }} pointerEvents="none">
         <FlatList
           ref={listRef}
@@ -189,7 +187,6 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
         />
       </View>
 
-      {/* Input bar */}
       <View
         className="flex-row items-center mt-2 bg-theme-neutrals-800/90 rounded-full px-3 py-1.5 border border-theme-neutrals-600/40"
         style={{ marginBottom: inputLift }}

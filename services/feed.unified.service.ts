@@ -253,45 +253,27 @@ export async function getUnifiedFeed(
   }
 }
 
-/**
- * Helper to check if an item is a video
- * Items without postType are treated as videos (legacy format)
- */
+// Items without postType are treated as videos (legacy format)
 export function isVideoItem(item: UnifiedFeedItem): boolean {
   return !item.postType || item.postType === "video";
 }
 
-/**
- * Helper to check if an item is a live stream
- */
 export function isLiveItem(item: UnifiedFeedItem): boolean {
   return item.postType === "live";
 }
 
-/**
- * Helper to check if an item is an image post
- */
 export function isImagePostItem(item: UnifiedFeedItem): boolean {
   return item.postType === "feed-images";
 }
 
-/**
- * Helper to check if an item is a text post
- */
 export function isTextPostItem(item: UnifiedFeedItem): boolean {
   return item.postType === "feed-simple";
 }
 
-/**
- * Helper to check if an item is an audio post
- */
 export function isAudioPostItem(item: UnifiedFeedItem): boolean {
   return item.postType === "feed-audio";
 }
 
-/**
- * Helper to check if an item is a feed post (image, text or audio)
- */
 export function isFeedPostItem(item: UnifiedFeedItem): boolean {
   return item.postType === "feed-images" || item.postType === "feed-simple" || item.postType === "feed-audio";
 }
