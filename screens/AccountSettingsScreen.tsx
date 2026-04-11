@@ -1,14 +1,13 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   ScrollView,
-  Linking,
-  Platform,
   ActivityIndicator,
   Image,
 } from "react-native";
+import Constants from "expo-constants";
 import { useAuth } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -19,27 +18,85 @@ import FullScreenLoader from "../components/FullScreenLoader";
 import ReportBugModal from "../components/Settings/ReportBugModal";
 import ExportPrivateKeyModal from "../components/Settings/ExportPrivateKeyModal";
 import ReviewModal from "../components/ReviewModal";
-import { Ionicons } from "@expo/vector-icons";
+import Icon, { type IconName } from "../components/ui/Icon";
 import { openInApp } from "../libs/links.utils";
 import {
   TERMS_OF_SERVICE_LINK,
   PRIVACY_POLICY_LINK,
   DELETE_DATA_OR_ACCOUNT_LINK,
-  SUPPORT_MAIL,
-  DEV_MAIL,
 } from "../config/links";
 import DMSettingsSection from "../components/Settings/DMSettingsSection";
 import { ChainId } from "../config/constants";
 import ChainSwitchModal from "../components/Settings/ChainSwitchModal";
 import BlockedAccountsModal from "../components/Settings/BlockedAccountsModal";
 
+const APP_VERSION = Constants.expoConfig?.version ?? "1.0.0";
+
 const CHAIN_ICONS: Record<number, any> = {
   [ChainId.BASE_MAINNET]: require("../assets/chains/base-icon.png"),
   [ChainId.BSC_MAINNET]: require("../assets/chains/bnb-icon.png"),
 };
 
-// Lightweight Account Settings screen focused on account-level actions.
-// Extend later with preferences, linked wallets, notifications, privacy, etc.
+type SettingsRowProps = {
+  icon: IconName;
+  iconColor?: string;
+  iconBg?: string;
+  label: string;
+  subtitle?: string;
+  onPress?: () => void;
+  disabled?: boolean;
+  rightElement?: React.ReactNode;
+  destructive?: boolean;
+};
+
+const SettingsRow: React.FC<SettingsRowProps> = ({
+  icon,
+  iconColor = "#9ca3af",
+  iconBg = "bg-theme-neutrals-700/50",
+  label,
+  subtitle,
+  onPress,
+  disabled,
+  rightElement,
+  destructive,
+}) => (
+  <TouchableOpacity
+    onPress={onPress}
+    disabled={disabled || !onPress}
+    activeOpacity={0.7}
+    className={`px-4 py-3.5 flex-row items-center ${disabled ? "opacity-50" : ""}`}
+  >
+    <View className={`w-9 h-9 rounded-xl ${iconBg} items-center justify-center mr-3`}>
+      <Icon name={icon} size={18} color={destructive ? "#ef4444" : iconColor} />
+    </View>
+    <View className="flex-1 mr-2">
+      <Text className={`text-sm font-medium ${destructive ? "text-red-400" : "text-white"}`}>
+        {label}
+      </Text>
+      {subtitle ? (
+        <Text className="text-theme-neutrals-500 text-xs mt-0.5">{subtitle}</Text>
+      ) : null}
+    </View>
+    {rightElement || (
+      onPress ? <Icon name="ChevronRight" size={18} color={destructive ? "#ef4444" : "#6b7280"} /> : null
+    )}
+  </TouchableOpacity>
+);
+
+const Divider = () => <View className="h-px bg-theme-neutrals-700 ml-16" />;
+
+const SectionLabel: React.FC<{ label: string }> = ({ label }) => (
+  <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
+    {label}
+  </Text>
+);
+
+const SectionCard: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
+    {children}
+  </View>
+);
+
 const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   const {
     signOut,
@@ -50,13 +107,12 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
     isSignedIn,
     needsUsername,
   } = useAuth();
-  const [signingOut, setSigningOut] = useState<boolean>(false);
-  const [bugModalVisible, setBugModalVisible] = useState<boolean>(false);
-  const [exportPkVisible, setExportPkVisible] = useState<boolean>(false);
-  const [chainModalVisible, setChainModalVisible] = useState<boolean>(false);
-  const [blockedModalVisible, setBlockedModalVisible] =
-    useState<boolean>(false);
-  const [reviewModalVisible, setReviewModalVisible] = useState<boolean>(false);
+  const [signingOut, setSigningOut] = useState(false);
+  const [bugModalVisible, setBugModalVisible] = useState(false);
+  const [exportPkVisible, setExportPkVisible] = useState(false);
+  const [chainModalVisible, setChainModalVisible] = useState(false);
+  const [blockedModalVisible, setBlockedModalVisible] = useState(false);
+  const [reviewModalVisible, setReviewModalVisible] = useState(false);
   const isImported = authMethod === "local";
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
@@ -65,31 +121,9 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
     if (signingOut) return;
     setSigningOut(true);
     try {
-      await logoutWeb3Auth(); // end remote Web3Auth session
-      await signOut(); // clear local auth + tokens
+      await logoutWeb3Auth();
+      await signOut();
       toastSuccess("Logout successful");
-      // Reset the root navigator to App -> Root (tabs) -> Home specifically
-      // navigation?.getParent?.()?.reset({
-      //   index: 0,
-      //   routes: [
-      //     {
-      //       name: ScreenNames.App as never,
-      //       // Nested state to land on BottomTabNavigator Root -> Home tab
-      //       state: {
-      //         index: 0,
-      //         routes: [
-      //           {
-      //             name: ScreenNames.Root as never,
-      //             state: {
-      //               index: 0,
-      //               routes: [{ name: ScreenNames.Home as never }],
-      //             },
-      //           } as never,
-      //         ],
-      //       },
-      //     } as never,
-      //   ],
-      // });
     } catch (e) {
       console.error("[AccountSettings] signOut error", e);
       toastError(e, "Sign out failed.");
@@ -98,9 +132,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
     }
   }, [signingOut, signOut]);
 
-  const handleReportBug = useCallback(() => {
-    setBugModalVisible(true);
-  }, []);
+  const blockedCount = (user?.blocklist?.blocked?.length || 0) as number;
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
@@ -108,301 +140,193 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
       <ScreenHeader title="Settings" canGoBack />
       <ScrollView
         className="flex-1"
-        contentContainerStyle={{ padding: 20, paddingBottom: 32 }}
+        contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 40 }}
       >
-        {/* Account */}
-        <View className="mb-8">
-          <Text className="text-theme-neutrals-400 text-xs uppercase mb-2 tracking-widest font-semibold">
-            Account
-          </Text>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
-            <View className="px-4 py-3 border-b border-theme-neutrals-700">
-              <Text className="text-theme-accent-foreground text-sm font-semibold">
-                Logged in as
-              </Text>
-              <Text className="text-theme-neutrals-400 text-sm mt-1">
-                {(user?.username || user?.email || "Anonymous") +
-                  (isImported ? " (imported)" : "")}
-              </Text>
+        <View className="mb-6">
+          <SectionLabel label="Account" />
+          <SectionCard>
+            <View className="px-4 py-3.5 flex-row items-center">
+              <View className="w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center mr-3">
+                <Icon name="User" size={18} color="#9ca3af" />
+              </View>
+              <View className="flex-1">
+                <Text className="text-white text-sm font-medium">
+                  {user?.displayName || user?.username || "Anonymous"}
+                </Text>
+                <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                  @{user?.username || "—"}{isImported ? " · Imported" : ""}
+                </Text>
+              </View>
             </View>
-            {/* Active Chain (opens modal) */}
+            <Divider />
             <TouchableOpacity
               onPress={() => setChainModalVisible(true)}
-              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
+              activeOpacity={0.7}
+              className="px-4 py-3.5 flex-row items-center"
             >
-              <View className="flex-row items-center flex-1 pr-2">
-                {chainId && CHAIN_ICONS[chainId] && (
-                  <Image
-                    source={CHAIN_ICONS[chainId]}
-                    className="w-6 h-6 rounded-full mr-3"
-                  />
-                )}
-                <View>
-                  <Text className="text-theme-neutrals-100 text-sm font-medium">
-                    Switch Active Chain
-                  </Text>
-                  <Text className="text-theme-neutrals-500 text-xs mt-1">
-                    {chainId === ChainId.BASE_MAINNET
-                      ? "Base"
-                      : chainId === ChainId.BSC_MAINNET
-                        ? "BNB"
-                        : `Chain ID ${chainId ?? "N/A"}`}
-                  </Text>
-                </View>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
-            </TouchableOpacity>
-            <View className="h-px bg-theme-neutrals-700" />
-            {/* Gas Sponsorship status */}
-            <View className="px-4 py-4 flex-row items-center justify-between">
-              <View className="flex-1 pr-2">
-                <Text className="text-theme-neutrals-100 text-sm font-medium">
-                  Gas Sponsorship
-                </Text>
-                {isImported ? (
-                  <Text className="text-theme-neutrals-500 text-xs mt-1">
-                    Gas sponsorship is unavailable for imported accounts
-                  </Text>
+              <View className="w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center mr-3">
+                {chainId && CHAIN_ICONS[chainId] ? (
+                  <Image source={CHAIN_ICONS[chainId]} className="w-5 h-5 rounded-full" />
                 ) : (
-                  <Text className="text-theme-neutrals-500 text-xs mt-1">
-                    Transaction fees covered by the app
-                  </Text>
+                  <Icon name="Link" size={18} color="#9ca3af" />
                 )}
               </View>
-              {isImported ? (
-                <View className="bg-theme-neutrals-700/30 px-2 py-1 rounded-full">
-                  <Text className="text-theme-neutrals-400 text-[10px] font-semibold">
-                    Disabled
-                  </Text>
-                </View>
-              ) : (
-                <View className="bg-emerald-500/20 px-2 py-1 rounded-full">
-                  <Text className="text-emerald-400 text-[10px] font-semibold">
-                    Enabled
-                  </Text>
-                </View>
-              )}
-            </View>
-            <View className="h-px bg-theme-neutrals-700" />
-            <TouchableOpacity
-              onPress={() => setExportPkVisible(true)}
-              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
-            >
-              <View>
-                <Text className="text-white text-sm">Export Private Key</Text>
-                <Text className="text-gray-500 text-xs mt-1">
-                  Reveal your wallet’s private key (advanced)
+              <View className="flex-1 mr-2">
+                <Text className="text-white text-sm font-medium">Active Chain</Text>
+                <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                  {chainId === ChainId.BASE_MAINNET ? "Base" : chainId === ChainId.BSC_MAINNET ? "BNB" : `Chain ${chainId ?? "N/A"}`}
                 </Text>
               </View>
-              <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
+              <Icon name="ChevronRight" size={18} color="#6b7280" />
             </TouchableOpacity>
-            <View className="h-px bg-theme-neutrals-700" />
+            <Divider />
+            <SettingsRow
+              icon="Fuel"
+              label="Gas Sponsorship"
+              subtitle={isImported ? "Unavailable for imported accounts" : "Fees covered by the app"}
+              rightElement={
+                <View className={`px-2.5 py-1 rounded-full ${isImported ? "bg-theme-neutrals-700/40" : "bg-emerald-500/20"}`}>
+                  <Text className={`text-[10px] font-semibold ${isImported ? "text-theme-neutrals-400" : "text-emerald-400"}`}>
+                    {isImported ? "Off" : "Active"}
+                  </Text>
+                </View>
+              }
+            />
+            <Divider />
+            <SettingsRow
+              icon="KeyRound"
+              label="Export Private Key"
+              subtitle="Reveal your wallet's private key"
+              onPress={() => setExportPkVisible(true)}
+            />
+          </SectionCard>
+        </View>
+
+        <View className="mb-6">
+          <DMSettingsSection />
+        </View>
+
+        <View className="mb-6">
+          <SectionLabel label="Preferences" />
+          <SectionCard>
+            <SettingsRow
+              icon="Bell"
+              label="Notifications"
+              subtitle="Push, in-app, quiet hours"
+              onPress={() => navigation.navigate(ScreenNames.NotificationSettings)}
+            />
+            <Divider />
+            <SettingsRow
+              icon="Globe"
+              label="Language"
+              subtitle="English"
+              disabled
+              rightElement={
+                <View className="flex-row items-center">
+                  <Text className="text-theme-neutrals-500 text-xs mr-1.5">EN</Text>
+                  <Icon name="ChevronRight" size={18} color="#6b7280" />
+                </View>
+              }
+            />
+            <Divider />
+            <SettingsRow
+              icon="WifiOff"
+              iconColor="#6b7280"
+              label="Data Saver"
+              subtitle="Reduce image & video usage"
+              disabled
+              rightElement={
+                <View className="bg-theme-neutrals-700/40 px-2.5 py-1 rounded-full">
+                  <Text className="text-theme-neutrals-500 text-[10px] font-semibold">Soon</Text>
+                </View>
+              }
+            />
+          </SectionCard>
+        </View>
+
+        <View className="mb-6">
+          <SectionLabel label="Privacy & Security" />
+          <SectionCard>
+            <SettingsRow
+              icon="ShieldCheck"
+              label="Account Privacy"
+              subtitle="Private account, hide followers"
+              onPress={() => navigation.navigate(ScreenNames.PrivacySettings)}
+            />
+            <Divider />
+            <SettingsRow
+              icon="Ban"
+              label="Blocked Accounts"
+              subtitle={blockedCount > 0 ? `${blockedCount} blocked` : "None blocked"}
+              onPress={() => setBlockedModalVisible(true)}
+            />
+            <Divider />
+            <SettingsRow
+              icon="Trash2"
+              label="Delete Account / Data"
+              subtitle="Request account or data deletion"
+              onPress={() => openInApp(DELETE_DATA_OR_ACCOUNT_LINK)}
+            />
+          </SectionCard>
+        </View>
+
+        <View className="mb-6">
+          <SectionLabel label="Support" />
+          <SectionCard>
+            <SettingsRow
+              icon="Star"
+              label="Rate & Review"
+              subtitle="Share your feedback"
+              onPress={() => setReviewModalVisible(true)}
+            />
+            <Divider />
+            <SettingsRow
+              icon="Bug"
+              label="Report a Bug"
+              onPress={() => setBugModalVisible(true)}
+            />
+            <Divider />
+            <SettingsRow
+              icon="FileText"
+              iconColor="#9ca3af"
+              label="Terms of Service"
+              onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
+            />
+            <Divider />
+            <SettingsRow
+              icon="Shield"
+              iconColor="#9ca3af"
+              label="Privacy Policy"
+              onPress={() => openInApp(PRIVACY_POLICY_LINK)}
+            />
+          </SectionCard>
+        </View>
+
+        <View className="mb-6">
+          <SectionCard>
             <TouchableOpacity
               onPress={handleSignOut}
               disabled={signingOut}
-              className={`px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700 ${
-                signingOut ? "opacity-50" : ""
-              }`}
+              activeOpacity={0.7}
+              className={`px-4 py-3.5 flex-row items-center justify-center ${signingOut ? "opacity-50" : ""}`}
             >
-              <View className="flex-row items-center">
-                {signingOut && (
-                  <ActivityIndicator size="small" color="#f87171" />
-                )}
-                <Text className="text-destructive font-semibold text-sm ml-2">
-                  {signingOut ? "Logging out..." : "Log Out"}
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color="#ef4444" />
+              {signingOut ? (
+                <ActivityIndicator size="small" color="#ef4444" />
+              ) : (
+                <>
+                  <Icon name="LogOut" size={18} color="#ef4444" />
+                  <Text className="text-red-400 font-semibold text-sm ml-2">
+                    Log Out
+                  </Text>
+                </>
+              )}
             </TouchableOpacity>
-          </View>
-        </View>
-        {/* Direct Messages */}
-        <DMSettingsSection />
-
-        {/* Preferences */}
-        <View className="mb-8">
-          <Text className="text-theme-neutrals-400 text-xs uppercase mb-2 tracking-widest font-semibold">
-            Preferences
-          </Text>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
-            {/* <TouchableOpacity
-              disabled
-              className="px-4 py-4 flex-row items-center justify-between opacity-60"
-            >
-              <View>
-                <Text className="text-theme-neutrals-100 text-sm">
-                  Appearance
-                </Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-1">
-                  Theme, dark mode
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color="#6b7280" />
-            </TouchableOpacity> */}
-            {/* <View className="h-px bg-theme-neutrals-700" /> */}
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate(ScreenNames.NotificationSettings)
-              }
-              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
-            >
-              <View>
-                <Text className="text-theme-neutrals-100 text-sm font-medium">
-                  Notifications
-                </Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-1">
-                  Push, in-app, quiet hours
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
-            </TouchableOpacity>
-            <View className="h-px bg-theme-neutrals-700" />
-            <TouchableOpacity
-              disabled
-              className="px-4 py-4 flex-row items-center justify-between opacity-60"
-            >
-              <View>
-                <Text className="text-theme-neutrals-100 text-sm">
-                  Data Saver
-                </Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-1">
-                  Reduce image/video usage
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color="#6b7280" />
-            </TouchableOpacity>
-          </View>
+          </SectionCard>
         </View>
 
-        {/* Privacy & Security */}
-        <View className="mb-8">
-          <Text className="text-theme-neutrals-400 text-xs uppercase mb-2 tracking-widest font-semibold">
-            Privacy & Security
-          </Text>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
-            <TouchableOpacity
-              onPress={() => setBlockedModalVisible(true)}
-              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
-            >
-              <View>
-                <Text className="text-theme-neutrals-100 text-sm font-medium">
-                  Blocked Accounts
-                </Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-1">
-                  {((user?.blocklist?.blocked?.length || 0) as number) > 0
-                    ? `${user?.blocklist?.blocked?.length} blocked`
-                    : "You haven't blocked anyone"}
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
-            </TouchableOpacity>
-            <View className="h-px bg-theme-neutrals-700" />
-            <TouchableOpacity
-              onPress={() => navigation.navigate(ScreenNames.PrivacySettings)}
-              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
-            >
-              <View>
-                <Text className="text-theme-neutrals-100 text-sm font-medium">
-                  Account Privacy
-                </Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-1">
-                  Private account, hide followers
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
-            </TouchableOpacity>
-            <View className="h-px bg-theme-neutrals-700" />
-            {/* <TouchableOpacity
-              disabled
-              className="px-4 py-4 flex-row items-center justify-between opacity-60"
-            >
-              <View>
-                <Text className="text-theme-neutrals-100 text-sm">
-                  Two-factor Authentication
-                </Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-1">
-                  Add extra security
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color="#6b7280" />
-            </TouchableOpacity> */}
-            {/* <View className="h-px bg-theme-neutrals-700" /> */}
-            <TouchableOpacity
-              onPress={() => openInApp(DELETE_DATA_OR_ACCOUNT_LINK)}
-              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
-            >
-              <View>
-                <Text className="text-theme-neutrals-100 text-sm font-medium">
-                  Delete Account / Data
-                </Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-1">
-                  Learn how to request deletion
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* Support & Legals */}
-        <View className="mb-8">
-          <Text className="text-theme-neutrals-400 text-xs uppercase mb-2 tracking-widest font-semibold">
-            Support & Legals
-          </Text>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
-            <TouchableOpacity
-              onPress={() => setReviewModalVisible(true)}
-              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
-            >
-              <View>
-                <Text className="text-theme-neutrals-100 text-sm font-medium">
-                  Rate & Review
-                </Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-1">
-                  Share your feedback with us
-                </Text>
-              </View>
-              <Ionicons name="star-outline" size={18} color="#9ca3af" />
-            </TouchableOpacity>
-            <View className="h-px bg-theme-neutrals-700" />
-            <TouchableOpacity
-              onPress={handleReportBug}
-              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
-            >
-              <Text className="text-theme-neutrals-100 text-sm font-medium">
-                Report a Bug
-              </Text>
-              <Ionicons name="open-outline" size={18} color="#9ca3af" />
-            </TouchableOpacity>
-            <View className="h-px bg-theme-neutrals-700" />
-            <TouchableOpacity
-              onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
-              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
-            >
-              <Text className="text-theme-neutrals-100 text-sm font-medium">
-                Terms of Service
-              </Text>
-              <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
-            </TouchableOpacity>
-            <View className="h-px bg-theme-neutrals-700" />
-            <TouchableOpacity
-              onPress={() => openInApp(PRIVACY_POLICY_LINK)}
-              className="px-4 py-4 flex-row items-center justify-between active:bg-theme-neutrals-700"
-            >
-              <Text className="text-theme-neutrals-100 text-sm font-medium">
-                Privacy Policy
-              </Text>
-              <Ionicons name="chevron-forward" size={18} color="#9ca3af" />
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* About */}
-        <View className="mt-4">
-          <Text className="text-center text-theme-neutrals-600 text-xs">
-            v1.0.0 • More preferences coming soon
-          </Text>
-        </View>
+        <Text className="text-center text-theme-neutrals-600 text-xs mb-2">
+          DeHub v{APP_VERSION}
+        </Text>
       </ScrollView>
       <ReportBugModal
         visible={bugModalVisible}
