@@ -121,7 +121,7 @@ export class WebSocketClient {
     const forward = (evt: string) => {
       this.socket?.on(evt, (payload: any) => {
         // Unconditional console for mobile diagnostics
-        try { console.log('[ws] event <-', evt, payload); } catch {}
+        if (this.opts.debug) try { console.log('[ws] event <-', evt, payload); } catch {}
         this.log("<-", evt, payload);
         this.emitInternal(evt, payload);
       });

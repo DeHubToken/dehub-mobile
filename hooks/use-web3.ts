@@ -3,7 +3,7 @@ import { getWeb3AuthProvider } from "../services/web3auth.service";
 import STREAM_CONTROLLER_ABI from "../config/abis/stream-controller.json";
 import STREAMNFT_ABI from "../config/abis/erc1155.json";
 import ERC20_ABI from "../config/abis/erc20.json";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useProvider } from "../context/AuthContext";
 import {
   STREAM_CONTROLLER_CONTRACT_ADDRESSES,
   STREAM_COLLECTION_CONTRACT_ADDRESSES,
@@ -24,7 +24,8 @@ export interface Web3State {
 }
 
 export function useWeb3Provider(): Web3State {
-  const { provider, user, chainId } = useAuth();
+  const user = useUser();
+  const { provider, chainId } = useProvider();
   return { provider, account: user?.walletAddress || user?.address, chainId };
 }
 

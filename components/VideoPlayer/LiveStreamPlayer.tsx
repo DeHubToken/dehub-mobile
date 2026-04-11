@@ -12,7 +12,7 @@ import {
   AppState,
 } from "react-native";
 import VideoArea from "./VideoArea";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import {
   followUser,
@@ -76,7 +76,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     minter: minterProp,
     createdAt: createdAtProp,
   } = props;
-  const { user, requireAuth, isSignedIn } = useAuth();
+  const user = useUser();
+  const { isSignedIn } = useAuthState();
+  const { requireAuth } = useAuthActions();
   const {
     on: socketOn,
     emitAuthed: socketEmitAuthed,

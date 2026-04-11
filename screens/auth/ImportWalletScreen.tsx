@@ -13,7 +13,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import * as Clipboard from "expo-clipboard";
-import { useAuth } from "../../context/AuthContext";
+import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { deriveAddressFromPrivateKey } from "../../config/web3auth.config";
 import {
   upsertLocalAccount,
@@ -48,7 +48,8 @@ interface ImportWalletScreenProps {
 const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
   navigation,
 }) => {
-  const { signInWithWallet, isLoading: authLoading, needsUsername } = useAuth();
+  const { isLoading: authLoading, needsUsername } = useAuthState();
+  const { signInWithWallet } = useAuthActions();
 
   const [privateKey, setPrivateKey] = useState("");
   const [showPk, setShowPk] = useState(false);

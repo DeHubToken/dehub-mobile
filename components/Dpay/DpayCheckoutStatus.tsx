@@ -11,7 +11,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { miniAddress } from "../../libs/strings.util";
 import { getDpayTnx } from "../../services";
-import { useAuth } from "../../context/AuthContext";
+import { useAuthActions } from "../../context/AuthContext";
 import { ethersService } from "../../services/ethers.service";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useNavigation } from "@react-navigation/native";
@@ -32,7 +32,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
   onClose,
 }) => {
   const navigation = useNavigation<any>();
-  const { patchUser } = useAuth();
+  const { patchUser } = useAuthActions();
   const [sid, setSid] = React.useState<string | null>(initialSid ?? null);
   const [statusStripe, setStatusStripe] = React.useState<string>("pending");
   const [tokenSendStatus, setTokenSendStatus] = React.useState<string | null>(

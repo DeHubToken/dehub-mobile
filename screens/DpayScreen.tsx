@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import {
   View,
@@ -19,7 +19,7 @@ import { getSupply, getSuccessTotal, getDpayPrice } from "../services";
 import { ChainId } from "../config/constants";
 
 const DpayScreen: React.FC = () => {
-  const { isSignedIn, needsUsername } = useAuth();
+  const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
   const [dataReady, setDataReady] = React.useState<boolean>(false);

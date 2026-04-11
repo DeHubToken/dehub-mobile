@@ -22,7 +22,7 @@ import PinnedMessagesBar from "../components/LiveChat/PinnedMessagesBar";
 import { useKeyboard } from "../hooks/useKeyboard";
 import GifPicker from "../components/DM/GifPicker";
 import { useLiveChat } from "../hooks/useLiveChat";
-import { useAuth } from "../context/AuthContext";
+import { useUser } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import {
   pinMessage as pinMessageApi,
@@ -65,7 +65,7 @@ const buildListItems = (messages: LiveChatMessageData[]): ListItem[] => {
 };
 
 const LiveChatScreen: React.FC = () => {
-  const { user } = useAuth();
+  const user = useUser();
   const { showUserProfile } = useUserProfileSheet();
   const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();

@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useAuth } from "./AuthContext";
+import { useUser, useAuthState } from "./AuthContext";
 import { useWebSocket } from "./WebSocketContext";
 import { DMSocketEvent } from "../services/enums/dm-socket-events.enum";
 import {
@@ -48,7 +48,8 @@ const DMContext = createContext<DMContextValue | null>(null);
 
 export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const log = useMemo(() => createLogger("DMProvider"), []);
-  const { isSignedIn, user } = useAuth();
+  const { isSignedIn } = useAuthState();
+  const user = useUser();
   const ws = useWebSocket();
 
   const address = useMemo(

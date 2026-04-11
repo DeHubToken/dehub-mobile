@@ -16,7 +16,7 @@ import {
 } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import { Ionicons } from "@expo/vector-icons";
-import { useAuth, User } from "../../context/AuthContext";
+import { useUser, useAuthActions, useProvider, User } from "../../context/AuthContext";
 import { supportedTokens } from "../../config/constants";
 import { useDebounceCallback } from "../../hooks/useDebounceCallback";
 import { usersSearch } from "../../services/user.service";
@@ -39,7 +39,9 @@ const TransferModal: React.FC<TransferModalProps> = ({
   open,
   onOpenChange,
 }) => {
-  const { user, requireAuth, patchUser, provider } = useAuth();
+  const user = useUser();
+  const { requireAuth, patchUser } = useAuthActions();
+  const { provider } = useProvider();
   const { chainId, account } = useWeb3Provider();
   const [amount, setAmount] = useState<string>("");
   const [query, setQuery] = useState<string>("");

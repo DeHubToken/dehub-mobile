@@ -13,7 +13,7 @@ import {
 import { truncateAddress } from "../libs/strings.util";
 import { formatJoinedDate } from "../libs/date.util";
 import { toastError, toastInfo } from "../libs";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useAuthActions } from "../context/AuthContext";
 import { useDM } from "./useDM";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -68,7 +68,8 @@ export const useUserProfileData = (
   const lastRequestedRef = useRef<string | null>(null);
   const isMountedRef = useRef(true);
   
-  const { requireAuth, user: authUser, patchUser } = useAuth() as any;
+  const authUser = useUser();
+  const { requireAuth, patchUser } = useAuthActions();
   const { conversations } = useDM();
   const navigation = useNavigation<any>();
 

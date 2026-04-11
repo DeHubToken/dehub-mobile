@@ -45,7 +45,7 @@ import SearchAccountCard from "../components/Search/SearchAccountCard";
 import SearchAccountChip from "../components/Search/SearchAccountChip";
 import FeedCardSkeleton from "../components/Feed/FeedCardSkeleton";
 import type { FollowState } from "../components/Search/SearchAccountChip";
-import { useAuth } from "../context/AuthContext";
+import { useUser } from "../context/AuthContext";
 
 type TabKey = "all" | "accounts" | "posts" | "images" | "videos" | "voice" | "live";
 
@@ -125,7 +125,7 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
 
 const SearchScreen: React.FC = () => {
   const insets = useSafeAreaInsets();
-  const { user: authUser } = useAuth() as { user: { address?: string } | null };
+  const authUser = useUser() as { address?: string } | null;
   const userAddress = authUser?.address;
 
   // Search state

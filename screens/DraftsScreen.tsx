@@ -10,7 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ScreenHeader from "../components/ScreenHeader";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { useDrafts } from "../hooks/useDrafts";
 import type { Draft } from "../hooks/useDrafts";
@@ -101,7 +101,8 @@ const DraftItem: React.FC<DraftItemProps> = React.memo(
 
 
 const DraftsScreen: React.FC = () => {
-  const { isSignedIn, needsUsername, user: authUser } = useAuth() as any;
+  const authUser = useUser();
+  const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 

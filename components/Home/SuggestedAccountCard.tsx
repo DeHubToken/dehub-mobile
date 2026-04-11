@@ -10,7 +10,7 @@ import React, { FC, useCallback, useState, useMemo } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Icon from "../ui/Icon";
-import { useAuth } from "../../context/AuthContext";
+import { useUser } from "../../context/AuthContext";
 import { getAvatarUrl, getBadgeUrl } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import {
@@ -37,7 +37,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
   onDismiss,
 }) => {
   const { showUserProfile } = useUserProfileSheet();
-  const { user: authUser } = useAuth() as { user: { address?: string } | null };
+  const authUser = useUser() as { address?: string } | null;
   const myAddress = authUser?.address;
 
   const isOwnAccount = !!(

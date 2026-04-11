@@ -19,7 +19,7 @@ import DMSettingsModal from "../components/DM/DMSettingsModal";
 import DMSettingsMenu from "../components/DM/DMSettingsMenu";
 import ConversationItem from "../components/DM/ConversationItem";
 import ConversationContextMenu from "../components/DM/ConversationContextMenu";
-import { useAuth, type User } from "../context/AuthContext";
+import { useUser, useAuthState, type User } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { truncateAddress } from "../libs/strings.util";
 import { toastInfo, toastSuccess, toastError } from "../libs/toast";
@@ -36,7 +36,8 @@ import { useDMContext } from "../context/DMContext";
 
 const DirectMessagesScreen: React.FC = () => {
   const navigation = useNavigation<any>();
-  const { user, isSignedIn, needsUsername } = useAuth();
+  const user = useUser();
+  const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 

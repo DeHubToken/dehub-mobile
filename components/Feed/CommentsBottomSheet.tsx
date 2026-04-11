@@ -15,7 +15,7 @@ import { Ionicons } from "@expo/vector-icons";
 import CommentItem, { Comment } from "./CommentItem";
 import CommentInput, { CommentInputRef } from "./CommentInput";
 import CommentsSkeleton from "./CommentsSkeleton";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthActions } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs";
 import { getCommentsForToken, postComment } from "../../services/nft.service";
 import { formatDistance } from "date-fns";
@@ -41,7 +41,8 @@ const CommentsBottomSheet: React.FC<Props> = ({
   onTopLevelCommentDelta,
   commentCount
 }) => {
-  const { user, requireAuth } = useAuth();
+  const user = useUser();
+  const { requireAuth } = useAuthActions();
   const insets = useSafeAreaInsets();
 
   // Draggable height state (65% - 95%)

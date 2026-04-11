@@ -7,7 +7,7 @@
 // - After on-the-spot PPV payment, caller re-fetches and the hook auto-recomputes
 
 import { useMemo } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useProvider } from "../context/AuthContext";
 import {
   supportedTokens,
   supportedTokensForLockContent,
@@ -202,7 +202,8 @@ const computeStreamAccessInfo = (
 export const useStreamAccessInfo = (
   nftMetadata: NFTMetadataLike | null | undefined
 ): StreamAccessResult => {
-  const { user, chainId } = useAuth();
+  const user = useUser();
+  const { chainId } = useProvider();
   return useMemo(() => {
     // Prefer server-provided balanceData (per-chain wallet + staked).
     // Fall back to local tokenBalances if server data is missing.

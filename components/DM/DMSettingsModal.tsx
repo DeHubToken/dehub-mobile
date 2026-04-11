@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Text, TouchableOpacity, View, Switch, TextInput, ActivityIndicator } from 'react-native';
 import GlassModal from '../ui/GlassModal';
 import { Ionicons } from '@expo/vector-icons';
-import { useAuth } from '../../context/AuthContext';
+import { useUser, useAuthActions } from '../../context/AuthContext';
 import { toastError, toastWarning } from '../../libs/toast';
 import { updateDmUserStatus } from '../../services/dm/dm.api';
 import { DmDisableStatus, DmAction } from '../../services/enums/dm-preferences.enum';
@@ -25,7 +25,8 @@ const Row: React.FC<{ title: string; subtitle?: string; right?: React.ReactNode 
 );
 
 const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange }) => {
-  const { user, patchUser } = useAuth();
+  const user = useUser();
+  const { patchUser } = useAuthActions();
   const initial = useMemo(() => {
     const disables = ((user as any)?.dmSettings?.disables || []) as DmDisableStatus[];
     const fee = Number((user as any)?.dmSettings?.perMessageFee || 0);

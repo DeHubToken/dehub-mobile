@@ -13,7 +13,7 @@ import {
   TextInput,
 } from "react-native";
 import GlassModal from "../ui/GlassModal";
-import { useAuth } from "../../context/AuthContext";
+import { useAuthActions, useProvider } from "../../context/AuthContext";
 import { copyToClipboard, toastError, toastInfo, apiClient } from "../../libs";
 import { deriveAddressFromPrivateKey } from "../../config/web3auth.config";
 import { Ionicons } from "@expo/vector-icons";
@@ -31,7 +31,8 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
   visible,
   onClose,
 }) => {
-  const { ensureProvider, providerStatus, provider, authMethod } = useAuth();
+  const { ensureProvider } = useAuthActions();
+  const { providerStatus, provider, authMethod } = useProvider();
   const isLocal = useMemo(() => authMethod === 'local', [authMethod]);
   const [step, setStep] = useState<Step>("warn");
   const [confirmText, setConfirmText] = useState<string>("");

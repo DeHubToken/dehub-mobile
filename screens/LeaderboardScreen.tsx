@@ -18,7 +18,7 @@ import LeaderboardRowItem, {
 import LeaderboardSkeleton from "../components/Leaderboard/LeaderboardSkeleton";
 import { getLeaderboard } from "../services/leaderboard.service";
 import { getAvatarUrl } from "../libs/misc";
-import { useAuth } from "../context/AuthContext";
+import { useUser } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 
@@ -43,7 +43,7 @@ const ListHeaderContent = React.memo<ListHeaderContentProps>(
 
 const LeaderboardScreen = () => {
   const navigation = useNavigation();
-  const { user: authUser } = useAuth();
+  const authUser = useUser();
   const { showUserProfile } = useUserProfileSheet();
 
   const [data, setData] = useState<LBRow[]>([]);

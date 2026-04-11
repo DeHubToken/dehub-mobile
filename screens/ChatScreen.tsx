@@ -40,7 +40,7 @@ import ChatHeaderMenuButton from "../components/Chat/ChatHeaderMenuButton";
 import ChatMenu from "../components/Chat/ChatMenu";
 import ConfirmBlockModal from "../components/common/ConfirmBlockModal";
 
-import { useAuth } from "../context/AuthContext";
+import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import type { User } from "../context/AuthContext";
 import { useWebSocket } from "../context/WebSocketContext";
 import { useGateToHome } from "../hooks/useGateToHome";
@@ -113,7 +113,9 @@ const log = createLogger("ChatScreen");
 
 const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const navigation = useNavigation<any>();
-  const { isSignedIn, needsUsername, user, patchUser } = useAuth();
+  const user = useUser();
+  const { isSignedIn, needsUsername } = useAuthState();
+  const { patchUser } = useAuthActions();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 

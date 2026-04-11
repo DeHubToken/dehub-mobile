@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity, Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useAuth } from "../../context/AuthContext";
+import { useUser } from "../../context/AuthContext";
 import { miniAddress } from "../../libs/strings.util";
 import PrimaryButton from "../ui/PrimaryButton";
 import Dropdown from "../ui/Dropdown";
@@ -37,7 +37,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
   supplyData,
   onRequestPrice,
 }) => {
-  const { user } = useAuth() as any;
+  const user = useUser() as any;
   const address: string | undefined = (user?.walletAddress || user?.address) as
     | string
     | undefined;

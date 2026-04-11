@@ -27,7 +27,7 @@ import VideosTabSkeleton from "../components/Upload/Skeletons/VideosTabSkeleton"
 import FeedTabSkeleton from "../components/Upload/Skeletons/FeedTabSkeleton";
 import ScreenHeader from "../components/ScreenHeader";
 import TabButton from "../components/Upload/TabButton";
-import { useAuth } from "../context/AuthContext";
+import { useProvider } from "../context/AuthContext";
 import { ChainId } from "../config/constants";
 import ChainSwitchModal from "../components/Settings/ChainSwitchModal";
 import { Image } from "react-native";
@@ -42,7 +42,7 @@ type TabKey = (typeof tabs)[number];
 export default function UploadScreen() {
   const nav = useNavigation<any>();
   const route = useRoute<any>();
-  const { chainId, isSwitchingChain } = useAuth();
+  const { chainId, isSwitchingChain } = useProvider();
 
   const normalizeTabParam = useCallback((raw?: unknown): TabKey => {
     const v = String(raw || "").toLowerCase();

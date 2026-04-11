@@ -221,6 +221,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // Keep user in ref for async flows
   const userRef = useRef<User | null>(null);
   useEffect(() => { userRef.current = user; }, [user]);
+  // Refs for stable callback access (avoid re-creating requireAuth/switchChain on state changes)
+  const isSignedInRef = useRef(isSignedIn);
+  useEffect(() => { isSignedInRef.current = isSignedIn; }, [isSignedIn]);
+  const needsUsernameRef = useRef(needsUsername);
+  useEffect(() => { needsUsernameRef.current = needsUsername; }, [needsUsername]);
+  const chainIdRef = useRef<number | undefined>(undefined);
+  const providerStatusRef = useRef<ProviderStatus>('idle' as ProviderStatus);
   // Bridge session-expired from session hook into provider lifecycle
   const sessionExpiredHandlerRef = useRef<(trigger: string) => Promise<void>>(async () => {});
 
@@ -245,6 +252,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     getActiveAddress: () => userRef.current?.walletAddress || userRef.current?.address,
     onSessionExpired: async (trigger) => sessionExpiredHandlerRef.current(trigger),
   });
+  useEffect(() => { chainIdRef.current = chainId; }, [chainId]);
+  useEffect(() => { providerStatusRef.current = providerStatus; }, [providerStatus]);
 
   // Balances (lazy-load ethers) and safe user updates
   const { fetchAndStoreBalances } = useBalances({
@@ -353,11 +362,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // — all without restarting the app.
   const switchChain = useCallback(async (targetChainId: number) => {
     if (!targetChainId) return;
-    if (chainId === targetChainId && providerStatus === 'ready') return;
+    if (chainIdRef.current === targetChainId && providerStatusRef.current === 'ready') return;
     setIsSwitchingChain(true);
     try {
       const address = userRef.current?.walletAddress || userRef.current?.address;
-      log.info('switchChain:start', { targetChainId, currentChainId: chainId, address: address ? `${address.slice(0,6)}...${address.slice(-4)}` : undefined });
+      log.info('switchChain:start', { targetChainId, currentChainId: chainIdRef.current, address: address ? `${address.slice(0,6)}...${address.slice(-4)}` : undefined });
 
       // 1. Persist preference (cold boots will also use this chain)
       await setPreferredChainId(targetChainId);
@@ -392,7 +401,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     } finally {
       setIsSwitchingChain(false);
     }
-  }, [chainId, providerStatus, log, forceReinitProvider, signInWithWallet]);
+  }, [log, forceReinitProvider, signInWithWallet]);
 
   // One consolidated effect, split logically via guards:
   // - Once post-boot, refresh profile details (skip balances)
@@ -434,13 +443,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, [isSignedIn, pendingAction, needsUsername]);
 
   const requireAuth = useCallback((action: () => void) => {
-    log.debug("requireAuth:called", { isSignedIn, needsUsername });
-    if (isSignedIn && !needsUsername) action();
+    log.debug("requireAuth:called", { isSignedIn: isSignedInRef.current, needsUsername: needsUsernameRef.current });
+    if (isSignedInRef.current && !needsUsernameRef.current) action();
     else {
       setPendingAction(() => action);
       setShowSignInModal(true);
     }
-  }, [isSignedIn, needsUsername, log]);
+  }, [log]);
 
   // Skip auth method - allows users to use the app without signing in
   const skipAuthLocal = useCallback(async () => {

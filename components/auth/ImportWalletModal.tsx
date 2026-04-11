@@ -20,7 +20,7 @@ import { ChainId } from "../../config/constants";
 import { SUPPORTED_NETWORKS } from "../../config/web3.constants";
 import { createLocalEip1193Provider } from "../../services/localwallet.provider";
 import { setSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
-import { useAuth } from "../../context/AuthContext";
+import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { toastError, toastInfo } from "../../libs";
 import { getPreferredChainId } from "../../libs/auth.utils";
 
@@ -34,11 +34,8 @@ const LIST_MAX_HEIGHT = Math.round(Dimensions.get("window").height * 0.45);
 
 const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
   ({ visible, onClose }) => {
-    const {
-      signInWithWallet,
-      isLoading: authLoading,
-      needsUsername,
-    } = useAuth();
+    const { isLoading: authLoading, needsUsername } = useAuthState();
+    const { signInWithWallet } = useAuthActions();
     const [privateKey, setPrivateKey] = useState<string>("");
     const [showPk, setShowPk] = useState<boolean>(false);
     const [isImporting, setIsImporting] = useState<boolean>(false);

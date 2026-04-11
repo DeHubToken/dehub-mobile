@@ -16,7 +16,7 @@ import ActionsRow from "./ActionsRow";
 import DescriptionBlock from "./DescriptionBlock";
 import BountyClaimBanner from "./BountyClaimBanner";
 import { getVideoUrl, getAvatarUrl } from "../../libs/misc";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import TopCommentPreview from "./TopCommentPreview";
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import { getNFT } from "../../services";
@@ -63,7 +63,9 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
   isTranscoding,
   commentId,
 }) => {
-  const { user, isSignedIn, requireAuth } = useAuth();
+  const user = useUser();
+  const { isSignedIn } = useAuthState();
+  const { requireAuth } = useAuthActions();
   const navigation = useNavigation<any>();
   const [showDesc, setShowDesc] = useState(false);
   const [likes, setLikes] = useState(0);

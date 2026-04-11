@@ -33,7 +33,7 @@ import { toastSuccess, toastError, toastInfo } from "../libs/toast";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { createViewCountUpdater, seedViewerStats } from "../libs/viewers.util";
 import { updateStreamSettings } from "../services/live.service";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 
 type RouteParams = {
@@ -46,7 +46,8 @@ type RouteParams = {
 const LiveProducerScreen: React.FC = () => {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
-  const { isSignedIn, needsUsername, user } = useAuth();
+  const user = useUser();
+  const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
   const { streamId, tokenId, ingestUrl, streamKey } = (route.params ||

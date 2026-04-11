@@ -22,7 +22,7 @@ import EmptyFeedState from "./EmptyFeedState";
 import FeedCard from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
 import Icon from "../ui/Icon";
-import { useAuth } from "../../context/AuthContext";
+import { useAuthState } from "../../context/AuthContext";
 import {
   getUnifiedFeed,
   UnifiedFeedItem,
@@ -101,7 +101,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   const navigation = useNavigation<any>();
   const isFocused = useIsFocused();
-  const { isSignedIn } = useAuth();
+  const { isSignedIn } = useAuthState();
 
   // View tracking: map of tokenId -> tracker (for feed posts only, not videos)
   const viewTrackersRef = useRef<Map<string, ReturnType<typeof createPostViewTracker>>>(new Map());

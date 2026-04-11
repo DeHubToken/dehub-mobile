@@ -10,13 +10,13 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { View, Text, FlatList, TouchableOpacity, type ListRenderItem } from "react-native";
 import { getSuggestedAccounts, type SuggestedAccount } from "../../services/user.service";
 import Icon from "../ui/Icon";
-import { useAuth } from "../../context/AuthContext";
+import { useUser } from "../../context/AuthContext";
 import SuggestedAccountCard from "./SuggestedAccountCard";
 import type { FollowState } from "../Search/SearchAccountChip";
 
 
 const SuggestedAccountsSection: React.FC = () => {
-  const { user } = useAuth() as { user: { address?: string } | null };
+  const user = useUser() as { address?: string } | null;
   const [accounts, setAccounts] = useState<SuggestedAccount[]>([]);
   const [dismissed, setDismissed] = useState(false);
   const fetchedRef = useRef(false);

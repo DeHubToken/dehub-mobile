@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import GlassModal from '../ui/GlassModal';
-import { useAuth } from '../../context/AuthContext';
+import { useProvider } from '../../context/AuthContext';
 import { ChainId } from '../../config/constants';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -16,7 +16,7 @@ export type ChainSwitchModalProps = {
 };
 
 const ChainSwitchModal: React.FC<ChainSwitchModalProps> = ({ visible, onClose }) => {
-  const { chainId } = useAuth();
+  const { chainId } = useProvider();
   const current = useMemo(() => chainId, [chainId]);
 
   const isBase = current === ChainId.BASE_MAINNET;

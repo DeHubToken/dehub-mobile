@@ -9,7 +9,7 @@ import Animated, {
 import { LinearGradient } from "expo-linear-gradient";
 import ScreenHeader from "../components/ScreenHeader";
 import PostsInfiniteList from "../components/Profile/PostsInfiniteList";
-import { useAuth } from "../context/AuthContext";
+import { useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import type { IconName } from "../components/ui/Icon";
 import Icon from "../components/ui/Icon";
@@ -34,7 +34,7 @@ const TAB_RADIUS = 12;
 const SLIDE_TIMING = { duration: 150, easing: Easing.out(Easing.cubic) };
 
 const MyLibraryScreen: React.FC = () => {
-  const { isSignedIn, needsUsername } = useAuth();
+  const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 

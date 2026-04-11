@@ -20,7 +20,7 @@ import type { VoiceNoteResult } from "./VoiceNoteRecorder";
 import GifPicker from "../DM/GifPicker";
 import Avatar from "../common/Avatar";
 import MentionSuggestions from "../common/MentionSuggestions";
-import { useAuth, useAuthActions } from "../../context/AuthContext";
+import { useUser, useAuthActions } from "../../context/AuthContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import {
   getCommentsForToken,
@@ -58,7 +58,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   highlightCommentId,
   contentType = "video",
 }) => {
-  const { user } = useAuth();
+  const user = useUser();
   const { requireAuth } = useAuthActions();
   const { showUserProfile } = useUserProfileSheet();
   const inputRef = useRef<TextInput>(null);

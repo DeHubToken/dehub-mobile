@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo, useRef, useCallback, useState } from 'react';
-import { useAuth } from './AuthContext';
+import { useUser } from './AuthContext';
 import { WebSocketClient } from '../services/ws/socket-client';
 import env from '../config/env';
 import { AppState } from 'react-native';
@@ -22,7 +22,7 @@ const WebSocketContext = createContext<WebSocketContextValue | null>(null);
 
 export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const log = useMemo(() => createLogger('WebSocketContext'), []);
-  const { user } = useAuth();
+  const user = useUser();
   // Keep latest user in a ref so getters always read current values
   const userRef = useRef<any>(user);
   useEffect(() => { userRef.current = user; }, [user]);

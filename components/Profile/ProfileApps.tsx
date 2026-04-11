@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "../ui/Icon";
 import type { IconName } from "../ui/Icon";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import { useAuth } from "../../context/AuthContext";
+import { useProvider } from "../../context/AuthContext";
 import { ChainId } from "../../config/constants";
 import { toastInfo } from "../../libs";
 
@@ -16,7 +16,7 @@ type AppItem = {
 
 const ProfileApps: React.FC = () => {
   const navigation = useNavigation<any>();
-  const { chainId } = useAuth() as any;
+  const { chainId } = useProvider();
 
   const apps: AppItem[] = [
     {

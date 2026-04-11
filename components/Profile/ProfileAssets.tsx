@@ -7,7 +7,7 @@ import usdcIcon from "../../assets/tokens/USDC.png";
 import usdtIcon from "../../assets/tokens/USDT.png";
 import ethIcon from "../../assets/chains/base-icon.png";
 import bnbIcon from "../../assets/chains/bnb-icon.png";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthState, useProvider } from "../../context/AuthContext";
 import { ChainId } from "../../config/constants";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -28,7 +28,9 @@ const BalanceSkeleton: React.FC = () => (
 );
 
 const ProfileAssets = () => {
-  const { user, balancesLoading, chainId } = useAuth();
+  const user = useUser();
+  const { balancesLoading } = useAuthState();
+  const { chainId } = useProvider();
   const navigation = useNavigation<any>();
   const [showDHBOptions, setShowDHBOptions] = useState(false);
   const [showInfo, setShowInfo] = useState(false);

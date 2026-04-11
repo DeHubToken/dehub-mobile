@@ -9,7 +9,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { getClaimBountySignature, type BountySignature } from "../../services/nft.service";
 import { useStreamControllerContract } from "../../hooks/use-web3";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthState, useAuthActions, useProvider } from "../../context/AuthContext";
 import { toastError, toastSuccess } from "../../libs";
 import { writeContractAA } from "../../libs/aa.write";
 import GlassModal from "../ui/GlassModal";
@@ -58,7 +58,10 @@ const BountyClaimBanner: React.FC<BountyClaimBannerProps> = ({
   minter,
   onBountyClaimed,
 }) => {
-  const { user, isSignedIn, requireAuth, chainId: currentChainId } = useAuth();
+  const user = useUser();
+  const { isSignedIn } = useAuthState();
+  const { requireAuth } = useAuthActions();
+  const { chainId: currentChainId } = useProvider();
   const streamController = useStreamControllerContract();
 
   // State

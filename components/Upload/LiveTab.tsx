@@ -6,7 +6,7 @@ import BasicInfoForm from "./BasicInfoForm";
 import CategoryDrawer from "./CategoryDrawer";
 import MoreOptionsSection from "./MoreOptionsSection";
 import GlassModal from "../ui/GlassModal"; // still used elsewhere (clipboard etc.)
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import {
   filteredStreamInfo,
   isValidDataForMinting,
@@ -49,7 +49,9 @@ const CATEGORIES_MIN = 1;
 const CATEGORIES_MAX = 5;
 
 const LiveTab = ({ onClose }: { onClose: () => void }) => {
-  const { isSignedIn, requireAuth, user } = useAuth();
+  const user = useUser();
+  const { isSignedIn } = useAuthState();
+  const { requireAuth } = useAuthActions();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");

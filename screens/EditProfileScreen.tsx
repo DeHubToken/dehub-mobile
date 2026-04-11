@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { SvgXml } from "react-native-svg";
 import { useNavigation } from "@react-navigation/native";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { getAvatarUrl, getCoverUrl } from "../libs/misc";
 import Avatar from "../components/common/Avatar";
 import Icon from "../components/ui/Icon";
@@ -47,7 +47,9 @@ type SocialField = {
 
 const EditProfileScreen = () => {
   const navigation = useNavigation<any>();
-  const { user, refreshUser, patchUser, isSignedIn, needsUsername } = useAuth() as any;
+  const user = useUser();
+  const { isSignedIn, needsUsername } = useAuthState();
+  const { refreshUser, patchUser } = useAuthActions();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 

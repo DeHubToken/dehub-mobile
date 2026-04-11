@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, TextInput, FlatList, Animated, Platform }
 import { toastError } from '../../libs/toast';
 import { X, ArrowUpCircle } from 'lucide-react-native';
 import { LivestreamEvents, StreamActivityType } from '../../services/enums/livestream.enum';
-import { useAuth } from '../../context/AuthContext';
+import { useUser } from '../../context/AuthContext';
 import { useKeyboard } from '../../hooks/useKeyboard';
 import { useWebSocket } from '../../context/WebSocketContext';
 import AccentButtonGradient from '../ui/AccentButtonGradient';
@@ -65,7 +65,7 @@ const LiveChatPanel: React.FC<Props> = ({
   bottomOffset,
   autoJoinRoom = true,
 }) => {
-  const { user } = useAuth();
+  const user = useUser();
   const { connected } = useWebSocket();
   const [message, setMessage] = useState('');
   const listRef = useRef<FlatList<ChatActivity> | null>(null);

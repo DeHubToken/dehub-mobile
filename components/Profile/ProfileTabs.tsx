@@ -7,12 +7,12 @@ import VideosRoute from "./VideosRoute";
 import FeedRoute from "./FeedRoute";
 import ActivityRoute from "./ActivityRoute";
 import LivestreamsRoute from "./LivestreamsRoute";
-import { useAuth } from "../../context/AuthContext";
+import { useUser } from "../../context/AuthContext";
 
 const initialLayout = { width: Dimensions.get("window").width };
 
 const ProfileTabs: React.FC = () => {
-  const { user } = useAuth() as any;
+  const user = useUser() as any;
   const address = useMemo(() => user?.walletAddress || user?.address || undefined, [user]);
 
   const [index, setIndex] = useState(0);

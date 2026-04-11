@@ -16,7 +16,7 @@ import GlassModal from "../ui/GlassModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { Ionicons } from "@expo/vector-icons";
 import AnimatedCheck from "../common/AnimatedCheck";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthActions } from "../../context/AuthContext";
 import {
   useWeb3Provider,
   useERC20Contract,
@@ -54,7 +54,8 @@ const PPVModal: React.FC<PPVModalProps> = ({
   triggerText = "Unlock",
   onSuccess,
 }) => {
-  const { user, requireAuth, patchUser } = useAuth();
+  const user = useUser();
+  const { requireAuth, patchUser } = useAuthActions();
   const { provider, account, chainId } = useWeb3Provider();
   const [phase, setPhase] = useState<
     "idle" | "approving" | "sending" | "sent" | "error"

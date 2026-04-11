@@ -13,7 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
-import { useAuth } from "../context/AuthContext";
+import { useUser } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { 
   getFollowList, 
@@ -231,7 +231,7 @@ const FollowListScreen: React.FC = () => {
   const navigation = useNavigation();
   const route = useRoute<RouteProp<RouteParams, "FollowList">>();
   const insets = useSafeAreaInsets();
-  const { user: authUser } = useAuth();
+  const authUser = useUser();
   const { showUserProfile } = useUserProfileSheet();
 
   const { 
