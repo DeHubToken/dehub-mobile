@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import StatusBadge from "./StatusBadge";
 import { formatDistance } from "date-fns";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { useAuth, useAuthActions } from "../../context/AuthContext";
+import { useUser, useAuthActions } from "../../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { secondsToHMMSS } from "../../libs/date.util";
@@ -179,7 +179,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const repostAnchorRef = useRef<View>(null);
   
   const { showUserProfile, hideUserProfile } = useUserProfileSheet();
-  const { user } = useAuth();
+  const user = useUser();
   const { requireAuth } = useAuthActions();
   const navigation = useNavigation<any>();
   const userAddress = user?.address || user?.walletAddress || "";

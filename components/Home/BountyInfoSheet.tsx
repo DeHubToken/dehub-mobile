@@ -31,7 +31,7 @@ import Icon from "../ui/Icon";
 import { formatCompactNumber, toastError, toastSuccess } from "../../libs";
 import { getClaimBountySignature, type BountySignature } from "../../services/nft.service";
 import { useStreamControllerContract } from "../../hooks/use-web3";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { writeContractAA } from "../../libs/aa.write";
 
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -76,7 +76,9 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
   onBountyClaimed,
 }) => {
   const insets = useSafeAreaInsets();
-  const { user, isSignedIn, requireAuth } = useAuth();
+  const user = useUser();
+  const { isSignedIn } = useAuthState();
+  const { requireAuth } = useAuthActions();
   const streamController = useStreamControllerContract();
 
   const translateY = useSharedValue(SHEET_MAX_HEIGHT);

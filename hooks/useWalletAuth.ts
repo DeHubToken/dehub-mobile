@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { toastError, toastInfo } from '../libs';
 import { useAppKit, useAppKitAccount } from "@reown/appkit-ethers5-react-native";
-import { useAuth } from "../context/AuthContext";
+import { useAuthActions } from "../context/AuthContext";
 import { ChainId, isDevMode } from "../config/constants";
 import { getPreferredChainId as getStoredPreferredChainId } from "../libs/auth.utils";
 
@@ -30,7 +30,7 @@ export const useWalletAuth = (_navigation: any) => {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const { open } = useAppKit();
   const { address: accountAddress, chainId: currentChainId, isConnected } = useAppKitAccount();
-  const { signInWithWallet } = useAuth();
+  const { signInWithWallet } = useAuthActions();
 
   // Keep local state in sync with AppKit account
   useEffect(() => {

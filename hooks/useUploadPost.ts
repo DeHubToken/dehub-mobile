@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { useNavigation, CommonActions } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useProvider } from "../context/AuthContext";
 import {
   useWeb3Provider,
   useStreamControllerContract,
@@ -78,7 +78,9 @@ const getActiveNetworkLabel = (chainId: number | null | undefined): string => {
 
 export function useUploadPost() {
   const nav = useNavigation<any>();
-  const { user, tokenBalances, authMethod } = useAuth() as any;
+  const user = useUser() as any;
+  const { authMethod } = useProvider();
+  const tokenBalances = user?.tokenBalances;
   const { chainId } = useWeb3Provider();
   const streamController = useStreamControllerContract();
   const streamCollectionContract = useStreamCollectionContract();

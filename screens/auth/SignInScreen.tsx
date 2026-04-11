@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { toastError } from "../../libs";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useAuth, useAuthState, useAuthActions } from "../../context/AuthContext";
+import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import {
   loginWithSocial,
@@ -45,9 +45,8 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const [isLocalLoading, setIsLocalLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
   
-  const { isFirstTimeUser, provisionalUser } = useAuthState();
+  const { isFirstTimeUser, provisionalUser, isLoading: authLoading, needsUsername, isSignedIn } = useAuthState();
   const { skipAuth, signInWithWallet } = useAuthActions();
-  const { isLoading: authLoading, needsUsername, isSignedIn } = useAuth();
   
   // Track if we've already handled navigation for this sign-in attempt
   const hasNavigatedRef = useRef(false);

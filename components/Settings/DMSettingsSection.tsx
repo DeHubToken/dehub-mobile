@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View, Text, TextInput, ActivityIndicator } from "react-native";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthActions } from "../../context/AuthContext";
 import Icon from "../ui/Icon";
 import CustomSwitch from "../ui/CustomSwitch";
 import {
@@ -11,7 +11,8 @@ import { updateDmUserStatus } from "../../services/dm/dm.api";
 import { toastError, toastInfo } from "../../libs";
 
 const DMSettingsSection: React.FC = () => {
-  const { user, patchUser } = useAuth();
+  const user = useUser();
+  const { patchUser } = useAuthActions();
 
   const initial = useMemo(() => {
     const disables = ((user as any)?.dmSettings?.disables || []) as DmDisableStatus[];

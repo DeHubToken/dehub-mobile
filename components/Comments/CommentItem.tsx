@@ -22,7 +22,7 @@ const resolveMediaUrl = (path: string): string => {
   return buildCdnPath(path) ?? path;
 };
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { useAuth } from "../../context/AuthContext";
+import { useUser } from "../../context/AuthContext";
 import { LikeCommentResult } from "../../services/nft.service";
 import type { Comment } from "../../services/nft.service";
 import type { CommentLayout } from "./CommentContextMenu";
@@ -79,7 +79,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   highlighted = false,
 }) => {
   const { showUserProfile } = useUserProfileSheet();
-  const { user: currentUser } = useAuth();
+  const currentUser = useUser();
   const [liked, setLiked] = useState(!!comment.isLiked);
   const [likeCount, setLikeCount] = useState(comment.likeCount || 0);
   const [isLiking, setIsLiking] = useState(false);

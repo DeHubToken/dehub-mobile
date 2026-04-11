@@ -28,7 +28,7 @@ import {
 } from "../../services/nft.service";
 import { followUser, unfollowUser } from "../../services/user.service";
 import { blockUser, unblockUser } from "../../services/block.service";
-import { useAuth, useAuthActions } from "../../context/AuthContext";
+import { useUser, useAuthActions } from "../../context/AuthContext";
 import { toastSuccess, toastError } from "../../libs";
 import { WEBSITE_LINK } from "../../config";
 
@@ -128,7 +128,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onDeleteSuccess,
   isBlocked: isBlockedProp = false,
   onBlockChange,  hideReportContent = false,  hideEdit = false,}) => {
-  const { user } = useAuth();
+  const user = useUser();
   const { requireAuth } = useAuthActions();
 
   // Sub-modal states

@@ -47,7 +47,7 @@ import {
   getTotalBountyAmount,
 } from "../../libs/validators.util";
 import { streamInfoKeys } from "../../config/constants";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthState, useAuthActions, useProvider } from "../../context/AuthContext";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { parseTxError } from "../../libs/web3.util";
 import { useNavigation } from "@react-navigation/native";
@@ -130,8 +130,11 @@ export default function VideosTab({ onClose }: Props) {
   void screenWidth;
   void insets;
 
-  const { user, tokenBalances, isSignedIn, requireAuth, authMethod } =
-    (useAuth() as any) || {};
+  const user = useUser() as any;
+  const { isSignedIn } = useAuthState();
+  const { requireAuth } = useAuthActions();
+  const { authMethod } = useProvider();
+  const tokenBalances = user?.tokenBalances;
   const { chainId } = useWeb3Provider();
   const streamController = useStreamControllerContract();
   const streamCollectionContract = useStreamCollectionContract();

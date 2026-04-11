@@ -4,7 +4,7 @@ import { AppState, AppStateStatus } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
 import env from "../config/env";
 import { getAuthToken } from "../libs/auth.utils";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useAuthState } from "../context/AuthContext";
 import { createLogger } from "../libs/logger";
 import { toastError } from "../libs/toast";
 import type {
@@ -17,6 +17,8 @@ import type {
 import { getLiveChatMessages, getLiveChatOnlineCount } from "../services/livechat.service";
 
 const log = createLogger("LiveChat");
+
+const MAX_CHAT_MESSAGES = 200;
 
 /** Ensure every message has _id (server may return `id` instead) */
 const normalizeMsg = (m: any): LiveChatMessageData => ({
@@ -79,7 +81,8 @@ export interface UseLiveChatReturn {
 }
 
 export const useLiveChat = (): UseLiveChatReturn => {
-  const { user, isSignedIn } = useAuth();
+  const user = useUser();
+  const { isSignedIn } = useAuthState();
   const isFocused = useIsFocused();
 
   const [connected, setConnected] = useState(false);
@@ -176,7 +179,10 @@ export const useLiveChat = (): UseLiveChatReturn => {
       });
 
       socket.on(EVENTS.NEW_MESSAGE, (msg: LiveChatMessageData) => {
-        setMessages((prev) => [...prev, normalizeMsg(msg)]);
+        setMessages((prev) => {
+          const next = [...prev, normalizeMsg(msg)];
+          return next.length > MAX_CHAT_MESSAGES ? next.slice(-MAX_CHAT_MESSAGES) : next;
+        });
       });
 
       socket.on(EVENTS.MESSAGE_EDITED, (raw: LiveChatMessageData) => {

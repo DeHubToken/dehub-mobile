@@ -13,7 +13,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { useNavigation, CommonActions } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useProvider } from "../context/AuthContext";
 import {
   useWeb3Provider,
   useStreamCollectionContract,
@@ -54,7 +54,8 @@ export type LiveUploadPayload = {
 
 export function useUploadLive() {
   const nav = useNavigation<any>();
-  const { user, authMethod } = useAuth() as any;
+  const user = useUser() as any;
+  const { authMethod } = useProvider();
   const { chainId } = useWeb3Provider();
   const streamCollectionContract = useStreamCollectionContract();
 

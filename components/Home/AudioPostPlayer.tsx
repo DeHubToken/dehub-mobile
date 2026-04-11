@@ -423,7 +423,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           }
         }
       } catch {}
-    }, 100);
+    }, 250);
   }, [duration]);
 
   const stopPositionTracking = useCallback(() => {

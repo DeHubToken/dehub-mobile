@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 import Constants from "expo-constants";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useAuthState, useAuthActions, useProvider } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { toastSuccess, toastError } from "../libs";
@@ -98,15 +98,10 @@ const SectionCard: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 );
 
 const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
-  const {
-    signOut,
-    user,
-    patchUser,
-    chainId,
-    authMethod,
-    isSignedIn,
-    needsUsername,
-  } = useAuth();
+  const user = useUser();
+  const { isSignedIn, needsUsername } = useAuthState();
+  const { signOut, patchUser } = useAuthActions();
+  const { chainId, authMethod } = useProvider();
   const [signingOut, setSigningOut] = useState(false);
   const [bugModalVisible, setBugModalVisible] = useState(false);
   const [exportPkVisible, setExportPkVisible] = useState(false);

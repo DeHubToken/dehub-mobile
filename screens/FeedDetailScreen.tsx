@@ -16,7 +16,7 @@ import GifPicker from "../components/DM/GifPicker";
 import Avatar from "../components/common/Avatar";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import CommentsSkeleton from "../components/Feed/CommentsSkeleton";
-import { useAuth } from "../context/AuthContext";
+import { useUser, useAuthActions } from "../context/AuthContext";
 import useKeyboard from "../hooks/useKeyboard";
 import { useMentions } from "../hooks/useMentions";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
@@ -35,7 +35,8 @@ export default function FeedDetailScreen() {
   const tokenId: number | string | undefined = route?.params?.tokenId ?? route?.params?.id ?? route?.params?.postId;
   const commentIdParam: number | string | undefined = route?.params?.commentId ?? route?.params?.c;
   
-  const { user, requireAuth } = useAuth();
+  const user = useUser();
+  const { requireAuth } = useAuthActions();
   const address = useMemo(() => user?.walletAddress || user?.address || undefined, [user?.walletAddress, user?.address]);
 
   const [loading, setLoading] = useState(true);

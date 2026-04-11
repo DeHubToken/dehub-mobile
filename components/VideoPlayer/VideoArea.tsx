@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import VideoPlayerCore from "../VideoPlayerCore";
 import { toastInfo } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthState, useAuthActions, useProvider } from "../../context/AuthContext";
 import PPVModal from "../PPV/PPVModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { useNavigation } from "@react-navigation/native";
@@ -43,7 +43,10 @@ const VideoArea: React.FC<VideoAreaProps> = ({
 }) => {
   const normalizedUrl: string | null =
     effectiveVideoUrl === undefined ? null : effectiveVideoUrl;
-  const { user, isSignedIn, requireAuth, chainId } = useAuth() as any;
+  const user = useUser();
+  const { isSignedIn } = useAuthState();
+  const { requireAuth } = useAuthActions();
+  const { chainId } = useProvider();
   const navigation = useNavigation<any>();
   const userDhbBalance: number =
     (user?.tokenBalances?.DHB as number) || (user?.stakedDHB as number) || 0;

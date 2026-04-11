@@ -10,7 +10,7 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { copyToClipboard } from "../../libs";
 import profileImage from "../../assets/default-avatar.png"; // fallback
 import { theme } from "../../theme";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthActions } from "../../context/AuthContext";
 import {
   getAvatarUrl,
   getCoverUrl,
@@ -41,7 +41,8 @@ import { WEBSITE_LINK } from "../../config";
 
 const ProfileHeader = () => {
   const navigation = useNavigation<any>();
-  const { user, refreshUser, patchUser } = useAuth() as any;
+  const user = useUser() as any;
+  const { refreshUser, patchUser } = useAuthActions();
   const [expanded, setExpanded] = useState(false);
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
   const [localAvatarUri, setLocalAvatarUri] = useState<string | null>(null);

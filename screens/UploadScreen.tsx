@@ -33,7 +33,7 @@ import { openCroppedImagePicker, getFileName, guessMime } from "../libs/assets.u
 import { getCategoriesCached } from "../services/nft.service";
 import { toastError, toastSuccess } from "../libs/toast";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
-import { useAuth } from "../context/AuthContext";
+import { useUser } from "../context/AuthContext";
 import { useKeyboard } from "../hooks/useKeyboard";
 import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
@@ -88,7 +88,7 @@ export default function UploadScreen() {
   const incomingDraft = route.params?.draft as Draft | undefined;
   const incomingQuotedTokenId = route.params?.quotedTokenId;
   const incomingQuotedPost = route.params?.quotedPost as Record<string, any> | undefined;
-  const { user: authUser } = useAuth() as any;
+  const authUser = useUser();
   const insets = useSafeAreaInsets();
   const { chainId } = useWeb3Provider();
   const streamCollectionContract = useStreamCollectionContract();

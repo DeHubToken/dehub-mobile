@@ -18,7 +18,7 @@ import { getCategoriesCached, minNft } from "../../services/nft.service";
 import { getFileName, guessMime } from "../../libs/assets.util";
 import { runWithPermissions } from "../../libs/permissions.util";
 import { toastError, toastSuccess } from "../../libs/toast";
-import { useAuth } from "../../context/AuthContext";
+import { useUser, useAuthState, useProvider } from "../../context/AuthContext";
 import {
   useWeb3Provider,
   useStreamCollectionContract,
@@ -37,7 +37,10 @@ export default function FeedTab() {
   const CATEGORIES_MAX = 5;
 
   const navigation = useNavigation();
-  const { user, tokenBalances, isSignedIn, authMethod } = (useAuth() as any) || {};
+  const user = useUser() as any;
+  const { isSignedIn } = useAuthState();
+  const { authMethod } = useProvider();
+  const tokenBalances = user?.tokenBalances;
   const { chainId } = useWeb3Provider();
   const streamCollectionContract = useStreamCollectionContract();
 

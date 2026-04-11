@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { useAuth } from "../../context/AuthContext";
+import { useUser } from "../../context/AuthContext";
 import { getAvatarUrl, getBadgeUrl } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { followUser, unfollowUser } from "../../services/user.service";
@@ -21,7 +21,7 @@ export interface FollowState {
 
 const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange }) => {
   const { showUserProfile } = useUserProfileSheet();
-  const { user: authUser } = useAuth() as { user: { address?: string } | null };
+  const authUser = useUser() as { address?: string } | null;
   const myAddress = authUser?.address;
 
   const isOwnAccount = !!(myAddress && account.address && myAddress.toLowerCase() === account.address.toLowerCase());

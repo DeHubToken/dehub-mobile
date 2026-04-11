@@ -11,7 +11,7 @@ import Icon from '../components/ui/Icon';
 import CustomSwitch from '../components/ui/CustomSwitch';
 import GlassModal from '../components/ui/GlassModal';
 import AccentButtonGradient from '../components/ui/AccentButtonGradient';
-import { useUser, useAuthState, useAuth } from '../context/AuthContext';
+import { useUser, useAuthState, useAuthActions } from '../context/AuthContext';
 import { useGateToHome } from '../hooks/useGateToHome';
 import { toastSuccess, toastError } from '../libs';
 import { createLogger } from '../libs/logger';
@@ -22,7 +22,7 @@ const logger = createLogger('PrivacySettings');
 
 const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
   const user = useUser();
-  const { patchUser } = useAuth();
+  const { patchUser } = useAuthActions();
   const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);

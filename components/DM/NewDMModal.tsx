@@ -23,7 +23,7 @@ import { getAvatarUrl } from "../../libs/misc";
 import { truncateAddress } from "../../libs/strings.util";
 import GlassModal from "../ui/GlassModal";
 import { useDM } from "../../hooks/useDM";
-import { useAuth } from "../../context/AuthContext";
+import { useUser } from "../../context/AuthContext";
 import { toastInfo } from "../../libs/toast";
 
 // Row component to avoid inline functions and improve list performance
@@ -77,7 +77,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
   onOpenChange,
   onSelect,
 }) => {
-  const { user } = useAuth();
+  const user = useUser();
   const selfAddr = ((user as any)?.walletAddress || (user as any)?.address || "").toLowerCase();
   // Reset all local state
   const searchRef = useRef<TextInput | null>(null);
