@@ -113,7 +113,7 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
     case NotificationType.TIP:
       return { name: 'Gem', color: '#22c55e' };
     case NotificationType.SUBSCRIPTION:
-      return { name: 'CheckCircle', color: '#f59e0b' };
+      return { name: 'CircleCheck', color: '#f59e0b' };
     case NotificationType.PPV_PURCHASE:
       return { name: 'LockOpen', color: '#06b6d4' };
     case NotificationType.BOUNTY_AVAILABLE:
