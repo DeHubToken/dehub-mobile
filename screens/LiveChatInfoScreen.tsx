@@ -291,7 +291,6 @@ const LiveChatInfoScreen: React.FC = () => {
           <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#FFFFFF" />
         }
       >
-        {/* Room Header */}
         <View className="items-center pt-6 pb-4 px-4">
           <View className="w-16 h-16 bg-blue-500/20 rounded-full items-center justify-center mb-3">
             <Ionicons name="chatbubbles" size={28} color="#3B82F6" />
@@ -302,7 +301,6 @@ const LiveChatInfoScreen: React.FC = () => {
           ) : null}
         </View>
 
-        {/* Room Stats */}
         <View className="mx-4 bg-white/5 rounded-2xl overflow-hidden mb-2">
           <InfoRow
             icon="people-outline"
@@ -333,7 +331,6 @@ const LiveChatInfoScreen: React.FC = () => {
           )}
         </View>
 
-        {/* Pinned Messages */}
         {room?.pinnedMessages && room.pinnedMessages.length > 0 && (
           <>
             <SectionHeader
@@ -389,7 +386,6 @@ const LiveChatInfoScreen: React.FC = () => {
         </View>
         */}
 
-        {/* Moderators */}
         <SectionHeader
           icon="shield-checkmark-outline"
           title="Moderators"
@@ -415,7 +411,6 @@ const LiveChatInfoScreen: React.FC = () => {
           )}
         </View>
 
-        {/* Banned Users — visible to mods only */}
         {passedIsMod && (
           <>
             <SectionHeader
@@ -457,7 +452,6 @@ const LiveChatInfoScreen: React.FC = () => {
           </>
         )}
 
-        {/* Bottom spacing */}
         <View className="h-10" />
       </ScrollView>
 

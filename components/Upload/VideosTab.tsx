@@ -814,7 +814,6 @@ export default function VideosTab({ onClose }: Props) {
             onChangeDescription={setDescription}
           />
 
-          {/* Categories */}
           <View className="mt-4">
             {categories.length > 0 && (
               <View className="flex-row flex-wrap gap-2 mb-2">
@@ -859,7 +858,6 @@ export default function VideosTab({ onClose }: Props) {
             type="video"
           />
 
-          {/* Assets */}
           <UploadAssetsSection
             media={media as any}
             thumbUri={thumbUri}
@@ -871,7 +869,6 @@ export default function VideosTab({ onClose }: Props) {
             toSeconds={toSeconds}
           />
 
-          {/* More Options */}
           <MoreOptionsSection
             showAdvanced={showAdvanced}
             setShowAdvanced={setShowAdvanced}
@@ -910,7 +907,6 @@ export default function VideosTab({ onClose }: Props) {
         </View>
       </ScrollView>
 
-      {/* Trim Modal */}
       <TrimModal
         visible={showTrimModal}
         onClose={() => {
@@ -989,7 +985,6 @@ export default function VideosTab({ onClose }: Props) {
         }}
       />
 
-      {/* Footer CTA */}
       <View className="px-4 pt-2 pb-6 mb-6">
         <AccentButtonGradient>
           <TouchableOpacity

@@ -108,7 +108,6 @@ const InteractionOptionsSection: React.FC<InteractionOptionsProps> = ({
       </TouchableOpacity>
       {open && (
         <View className="px-4 pb-4">
-          {/* Enable Chat */}
           <View className="flex-row items-center justify-between py-2">
             <Text className="text-white">Enable Chat</Text>
             <TouchableOpacity
@@ -118,7 +117,6 @@ const InteractionOptionsSection: React.FC<InteractionOptionsProps> = ({
               <View className="w-4 h-4 rounded-full bg-white" />
             </TouchableOpacity>
           </View>
-          {/* Schedule Toggle */}
           <View className="pt-2">
             <View className="flex-row items-center justify-between mb-2">
               <Text className="text-white">Schedule</Text>
@@ -150,7 +148,6 @@ const InteractionOptionsSection: React.FC<InteractionOptionsProps> = ({
               </View>
             )}
           </View>
-          {/* Min Tip Row */}
           <View className="pt-1 flex-row items-center justify-between">
             <Text className="text-white mr-4">Min. Tip</Text>
             <TextInput

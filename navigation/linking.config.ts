@@ -1,19 +1,3 @@
-/**
- * Deep Linking Configuration
- * 
- * Centralized configuration for all deep links and universal links.
- * Follows the pattern used by YouTube, Twitter, and Instagram.
- * 
- * Supported URL formats:
- * - Custom scheme: dehub://app/post/123
- * - Universal links: https://dehub.io/app/post/123
- * - Profile links: https://dehub.io/username
- * 
- * To add a new deep link:
- * 1. Add the path pattern to the appropriate screen in LINKING_CONFIG.screens
- * 2. Define any param parsing in the path (e.g., :tokenId for path params)
- * 3. Use parse/stringify for custom param transformations
- */
 import * as Linking from 'expo-linking';
 import { LinkingOptions, getStateFromPath } from '@react-navigation/native';
 import { ScreenNames } from './ScreenNames';
@@ -32,14 +16,8 @@ export const UNIVERSAL_LINK_DOMAINS = [
   'legacy.dehub.io', // backward compat
 ] as const;
 
-/**
- * Custom URL scheme for direct app links
- */
 export const APP_SCHEME = 'dehub';
 
-/**
- * Get the base URL for deep linking
- */
 export const getDeepLinkPrefix = (): string[] => {
   const prefixes = [
     // Custom scheme
@@ -225,9 +203,6 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
   },
 };
 
-/**
- * Base URL for share links (dehub.io)
- */
 const SHARE_BASE = `https://${UNIVERSAL_LINK_DOMAINS[0]}`;
 
 /**
@@ -251,9 +226,6 @@ export const createDeepLink = (
   return `${SHARE_BASE}/${path}`;
 };
 
-/**
- * Generate share links for content
- */
 export const ShareLinks = {
   /** Feed post or video — dehub.io/app/post/:tokenId */
   post: (tokenId: string | number) => `${SHARE_BASE}/app/post/${encodeURIComponent(String(tokenId))}`,

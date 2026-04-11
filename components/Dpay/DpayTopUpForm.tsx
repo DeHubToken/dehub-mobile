@@ -373,7 +373,6 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
         Buy $DHB using card and get free gas to use instantly
       </Text>
 
-      {/* Currency + Price row */}
       <View className="mb-3">
         <Text className="text-gray-400 text-[11px] mb-1">Select Currency</Text>
         <Dropdown
@@ -469,7 +468,6 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
         </TouchableOpacity>
       </AccentButtonGradient>
 
-      {/* Confirm Modal */}
       <GlassModal
         visible={confirmOpen}
         onClose={onCloseConfirm}

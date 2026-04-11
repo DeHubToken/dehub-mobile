@@ -64,7 +64,6 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
           className="absolute right-3 top-16 w-52 rounded-xl bg-theme-neutrals-800 shadow-lg overflow-hidden"
         >
           <ScrollView bounces={false}>
-            {/* Search in Chat */}
             {onSearchChat && (
               <>
                 <MenuRow
@@ -76,7 +75,6 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
               </>
             )}
 
-            {/* Clear Messages */}
             {onClearChat && (
               <>
                 <MenuRow
@@ -88,7 +86,6 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
               </>
             )}
 
-            {/* Free Access Toggle (creator only — exclude/include peer from fee) */}
             {isCreator && onToggleFreeAccess && (
               <>
                 <MenuRow
@@ -101,7 +98,6 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
               </>
             )}
 
-            {/* DM Fee Management (for creators) */}
             {isCreator && onManageDmFee && (
               <>
                 <MenuRow
@@ -113,7 +109,6 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
               </>
             )}
 
-            {/* Block / Unblock */}
             <MenuRow
               icon={isBlocked ? "CircleMinus" : "Ban"}
               label={isBlocked ? "Unblock user" : "Block user"}

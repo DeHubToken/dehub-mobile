@@ -608,7 +608,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     }
   }, [contextComment, contextMeta, loadComments]);
 
-  // Render a single comment (either top-level or reply)
   const renderComment = useCallback(({ item }: { item: FlatComment }) => {
     const isHighlighted = highlightedId != null && Number(item.id) === highlightedId;
     return (
@@ -637,7 +636,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   return (
     <View style={{ flex: 1 }}>
 
-      {/* Comments list */}
       {loading ? (
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color="#3B82F6" />
@@ -661,7 +659,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         />
       )}
 
-      {/* Input section - lifts with keyboard */}
       <View
         style={{
           position: "absolute",
@@ -687,7 +684,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           </View>
         )}
 
-        {/* Mention suggestions above the input */}
         <MentionSuggestions
           visible={mentions.showSuggestions}
           suggestions={mentions.suggestions}
@@ -779,14 +775,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         )}
       </View>
 
-      {/* GIF picker modal */}
       <GifPicker
         visible={gifPickerVisible}
         onClose={handleCloseGifPicker}
         onPick={handleGifPicked}
       />
 
-      {/* WhatsApp/IG-style context menu overlay */}
       <CommentContextMenu
         visible={contextComment !== null}
         comment={contextComment}

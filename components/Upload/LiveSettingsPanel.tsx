@@ -215,14 +215,12 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
             Must be at least 30 minutes from now
           </Text>
 
-          {/* Date display + pick buttons */}
           <View className="flex-row items-center mb-3">
             <View className="flex-1 h-11 px-3 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700 justify-center">
               <Text className="text-white text-sm">{formattedDate}</Text>
             </View>
           </View>
 
-          {/* Pick date / time buttons */}
           <View className="flex-row gap-3 mb-2">
             <TouchableOpacity
               onPress={() => setShowDatePicker(true)}

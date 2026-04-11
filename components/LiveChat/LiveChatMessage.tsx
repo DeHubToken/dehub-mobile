@@ -145,7 +145,6 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
       className="flex-row px-3 py-1.5"
       style={{ opacity: message.isDeleted ? 0.4 : 1 }}
     >
-      {/* Highlight overlay */}
       <Animated.View
         style={[
           {
@@ -162,14 +161,11 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
         pointerEvents="none"
       />
 
-      {/* Avatar */}
       <TouchableOpacity onPress={handleAvatar} activeOpacity={0.7}>
         <Avatar uri={avatarUrl} size={36} name={displayName} />
       </TouchableOpacity>
 
-      {/* Content */}
       <View className="flex-1 ml-2.5">
-        {/* Name row: name + badges + pinned tag + time */}
         <View className="flex-row items-center gap-1.5 mb-0.5 flex-wrap">
           <Text
             className={`font-bold text-[14px] ${isMe ? "text-blue-400" : "text-white"}`}
@@ -196,7 +192,6 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
           </Text>
         </View>
 
-        {/* Reply preview */}
         {(message.replyToContent || message.replyTo?.content) && (
           <TouchableOpacity
             activeOpacity={0.6}
@@ -219,7 +214,6 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
           </TouchableOpacity>
         )}
 
-        {/* Message content */}
         {message.isDeleted ? (
           <Text className="text-white/30 text-sm italic">Message deleted</Text>
         ) : (
@@ -269,7 +263,6 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
           </>
         )}
 
-        {/* Reactions */}
         {reactionEntries.length > 0 && (
           <View className="flex-row flex-wrap gap-1 mt-1">
             {reactionEntries.map(([emoji, addrs]) => (

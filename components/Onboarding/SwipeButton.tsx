@@ -188,9 +188,7 @@ const SwipeButton = forwardRef<SwipeButtonRef, SwipeButtonProps>(
 
     return (
       <View style={styles.container}>
-        {/* Background pill */}
         <View style={styles.pill}>
-          {/* Arrow button */}
           <Animated.View style={[styles.arrowButton, arrowButtonStyle]}>
             {/* Dark background (visible when idle) */}
             <Animated.View style={[styles.innerBg, innerBgStyle]} />

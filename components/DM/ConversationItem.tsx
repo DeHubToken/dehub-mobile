@@ -138,7 +138,6 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
         activeOpacity={0.7}
         className="flex-row items-center px-4 py-3 gap-3"
       >
-        {/* Avatar */}
         <TouchableOpacity
           onPress={handleAvatarPress}
           activeOpacity={0.8}
@@ -156,7 +155,6 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
           />
         </TouchableOpacity>
 
-        {/* Name + preview */}
         <View className="flex-1 justify-center">
           <View className="flex-row items-center gap-1.5">
             <Text
@@ -195,7 +193,6 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
           </View>
         </View>
 
-        {/* Time + unread badge */}
         <View className="items-end gap-1">
           <Text
             className={`text-[11px] ${

@@ -40,7 +40,6 @@ import { resetWeb3AuthInstance } from "../config/web3auth.config";
 import { SUPPORTED_NETWORKS, supportedNetworks } from "../config/web3.constants";
 import { setLocalAuthChainId } from "../services/auth/localProviderAdapter";
 
-// Define the shape of the user object
 export interface User {
   id: string;
   email: string;
@@ -109,7 +108,6 @@ export interface User {
   };
 }
 
-// Define the shape of the auth context
 interface AuthContextType {
   user: User | null;
   // Ongoing operation loading (sign-in, sign-out, profile actions)
@@ -563,7 +561,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
               {isSwitchingChain && (
                 <FullScreenLoader message="Switching network…" />
               )}
-              {/* SignIn modal for protected actions - shown when user needs to sign in */}
               {showSignInModal && !isSignedIn && !needsUsername && (
                 <SignInGatewayModal
                   visible={showSignInModal}
@@ -573,7 +570,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                   }}
                 />
               )}
-              {/* Username modal - shown when user signed in via modal but needs username */}
               {showSignInModal && needsUsername && provisionalUser && (
                 <UsernameRequiredModal
                   visible={true}

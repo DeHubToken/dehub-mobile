@@ -35,12 +35,10 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
   if (media.type === "audio") {
     return (
       <View className="flex-row items-center px-4 py-2 bg-theme-neutrals-800/80">
-        {/* Remove */}
         <TouchableOpacity onPress={handleRemove} activeOpacity={0.7} className="mr-2">
           <Ionicons name="trash-outline" size={20} color="#f87171" />
         </TouchableOpacity>
 
-        {/* Waveform preview */}
         <View className="flex-1">
           <VoiceNotePlayer
             audioUrl={media.uri}
@@ -49,7 +47,6 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           />
         </View>
 
-        {/* Send — white/black */}
         <TouchableOpacity
           onPress={handleSend}
           activeOpacity={0.7}
@@ -67,7 +64,6 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
 
   return (
     <View className="px-4 py-2 bg-theme-neutrals-800/80 flex-row items-center">
-      {/* Thumbnail with overlay close button */}
       <View className="w-16 h-16 rounded-lg overflow-hidden bg-theme-neutrals-700 relative mr-3">
         <Image
           source={{ uri }}
@@ -87,7 +83,6 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
 
       <View className="flex-1" />
 
-      {/* Send — white/black */}
       <TouchableOpacity
         onPress={handleSend}
         activeOpacity={0.7}

@@ -299,7 +299,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
       />
       {!isFullScreen && <View style={{ height: 40 }} />}
 
-      {/* Profile 3-dot menu */}
       <GlassModal
         visible={showProfileMenu}
         onClose={() => setShowProfileMenu(false)}
@@ -308,7 +307,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         blurIntensity={50}
       >
         <View className="pb-4 pt-2" style={{ backgroundColor: "rgba(10,10,12,0.85)" }}>
-          {/* Message */}
           <TouchableOpacity
             onPress={handleMenuMessage}
             activeOpacity={0.7}
@@ -327,7 +325,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
 
           <View className="mx-5 my-1 h-px bg-white/10" />
 
-          {/* Send Tip */}
           <TouchableOpacity
             onPress={handleMenuTip}
             activeOpacity={0.7}
@@ -346,7 +343,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
 
           <View className="mx-5 my-1 h-px bg-white/10" />
 
-          {/* Share Profile */}
           <TouchableOpacity
             onPress={handleMenuShare}
             activeOpacity={0.7}
@@ -365,7 +361,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
 
           <View className="mx-5 my-1 h-px bg-white/10" />
 
-          {/* Copy Profile URL */}
           <TouchableOpacity
             onPress={handleMenuCopyUrl}
             activeOpacity={0.7}
@@ -384,7 +379,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
 
           <View className="mx-5 my-1 h-px bg-white/10" />
 
-          {/* Copy Address */}
           <TouchableOpacity
             onPress={handleMenuCopyAddress}
             activeOpacity={0.7}
@@ -403,7 +397,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
 
           <View className="mx-5 my-1 h-px bg-white/10" />
 
-          {/* Remove Follower — only when this user follows you */}
           {followsYou && (
             <>
               <TouchableOpacity
@@ -428,7 +421,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
             </>
           )}
 
-          {/* Block */}
           <TouchableOpacity
             onPress={handleBlockPress}
             activeOpacity={0.7}
@@ -457,7 +449,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
 
           <View className="mx-5 my-1 h-px bg-white/10" />
 
-          {/* Report */}
           <TouchableOpacity
             onPress={handleReportPress}
             activeOpacity={0.7}
@@ -478,7 +469,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         </View>
       </GlassModal>
 
-      {/* Remove Follower confirmation */}
       <GlassModal
         visible={showRemoveFollowerConfirm}
         onClose={() => setShowRemoveFollowerConfirm(false)}
@@ -515,7 +505,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         </View>
       </GlassModal>
 
-      {/* Block/Unblock confirmation */}
       <ConfirmBlockModal
         visible={showBlockConfirm}
         mode={youBlocked ? "unblock" : "block"}
@@ -525,7 +514,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         loading={blockLoading}
       />
 
-      {/* Report user modal */}
       <ReportModal
         visible={showReportUser}
         onClose={() => setShowReportUser(false)}
@@ -534,7 +522,6 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         userName={profileData?.displayName}
       />
 
-      {/* Tip modal */}
       <GlassTipSheet
         visible={showTip}
         onClose={() => setShowTip(false)}

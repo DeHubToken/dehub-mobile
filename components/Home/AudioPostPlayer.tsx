@@ -345,9 +345,6 @@ const HuePicker: React.FC<HuePickerProps> = memo(({ hue, onHueChange }) => (
   </View>
 ));
 
-/* ═══════════════════════════════════════════════════════════════
-   AudioPostPlayer — audio playback with visual animation
-   ═══════════════════════════════════════════════════════════════ */
 export interface AudioPostPlayerProps {
   audioUrl: string;
   duration?: number;
@@ -669,7 +666,6 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         end={{ x: 1, y: 1 }}
         className="p-4"
       >
-        {/* Ambient glow */}
         <Animated.View
           style={glowStyle}
           className="absolute inset-0 items-center justify-center"
@@ -685,10 +681,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           />
         </Animated.View>
 
-        {/* Visualizer */}
         {renderVisualizer()}
 
-        {/* Progress bar (all styles) */}
         <View className="h-[3px] bg-white/10 rounded-full overflow-hidden mt-3">
           <View
             className="h-full rounded-full"
@@ -702,7 +696,6 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           />
         </View>
 
-        {/* Controls row */}
         <View className="flex-row items-center justify-between mt-3">
           <Text
             className="text-white/50 text-xs"
@@ -732,7 +725,6 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           </Text>
         </View>
 
-        {/* Style picker */}
         <View className="flex-row items-center justify-between mt-3">
           <StylePicker style={vizStyle} onStyleChange={handleStyleChange} />
 
@@ -744,7 +736,6 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           </View>
         </View>
 
-        {/* Hue picker */}
         <View className="mt-2.5">
           <HuePicker hue={hue} onHueChange={handleHueChange} />
         </View>

@@ -1191,7 +1191,6 @@ export default function UploadScreen() {
       >
         <Pressable className="flex-1">
         <View className="flex-row px-4 pt-2">
-          {/* Avatar column */}
           <View className="pt-1 mr-3">
             <Avatar
               uri={
@@ -1205,9 +1204,7 @@ export default function UploadScreen() {
             />
           </View>
 
-          {/* Main content column */}
           <View className="flex-1">
-            {/* Title input */}
             <TextInput
               ref={titleRef}
               value={bodyText}
@@ -1225,7 +1222,6 @@ export default function UploadScreen() {
               scrollEnabled={false}
             />
 
-            {/* Body mention suggestions */}
             <MentionSuggestions
               visible={bodyMentions.showSuggestions}
               suggestions={bodyMentions.suggestions}
@@ -1233,7 +1229,6 @@ export default function UploadScreen() {
               loading={bodyMentions.loading}
             />
 
-            {/* Character counter + AI enhance */}
             <View className="flex-row items-center justify-between mt-1">
               <TouchableOpacity
                 onPress={handleEnhanceText}
@@ -1357,7 +1352,6 @@ export default function UploadScreen() {
                   contentFit="contain"
                   nativeControls={false}
                 />
-                {/* Overlay controls */}
                 <View className="absolute inset-0 items-center justify-center">
                   <TouchableOpacity
                     onPress={handleTogglePlay}
@@ -1370,7 +1364,6 @@ export default function UploadScreen() {
                     />
                   </TouchableOpacity>
                 </View>
-                {/* Mute toggle */}
                 <TouchableOpacity
                   onPress={handleToggleMute}
                   className="absolute bottom-2 left-2 w-8 h-8 rounded-full bg-black/60 items-center justify-center"
@@ -1382,7 +1375,6 @@ export default function UploadScreen() {
                     color="#fff"
                   />
                 </TouchableOpacity>
-                {/* Remove video */}
                 <TouchableOpacity
                   onPress={handleRemoveVideo}
                   className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/70 items-center justify-center"
@@ -1390,7 +1382,6 @@ export default function UploadScreen() {
                 >
                   <Icon name="X" size={18} color="#fff" />
                 </TouchableOpacity>
-                {/* Change video (pencil) */}
                 <TouchableOpacity
                   onPress={handleChangeVideo}
                   className="absolute top-2 right-12 w-8 h-8 rounded-full bg-black/70 items-center justify-center"
@@ -1398,7 +1389,6 @@ export default function UploadScreen() {
                 >
                   <Icon name="Pencil" size={16} color="#fff" />
                 </TouchableOpacity>
-                {/* Thumbnail overlay – bottom-right */}
                 {(thumbnailUri || coverUri) && !coverHidden && (
                   <View className="absolute bottom-2 right-2">
                     <TouchableOpacity
@@ -1412,12 +1402,10 @@ export default function UploadScreen() {
                         style={{ width: 80, height: 45 }}
                         resizeMode="cover"
                       />
-                      {/* Pencil overlay */}
                       <View className="absolute inset-0 bg-black/40 items-center justify-center">
                         <Icon name="Pencil" size={20} color="#fff" />
                       </View>
                     </TouchableOpacity>
-                    {/* Eye-off to hide thumbnail */}
                     <TouchableOpacity
                       onPress={toggleCoverHidden}
                       className="absolute -top-2 right-1 w-5 h-5 rounded-full bg-black/70 items-center justify-center"
@@ -1430,7 +1418,6 @@ export default function UploadScreen() {
               </View>
             )}
 
-            {/* Show cover toggle – visible only when cover is hidden */}
             {!isLiveMode && mediaMode === "video" && coverHidden && (thumbnailUri || coverUri) && (
               <TouchableOpacity
                 onPress={toggleCoverHidden}
@@ -1444,7 +1431,6 @@ export default function UploadScreen() {
               </TouchableOpacity>
             )}
 
-            {/* Audio recording overlay */}
             {isAudioRecording && (
               <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4">
                 <View className="flex-row items-center">
@@ -1459,7 +1445,6 @@ export default function UploadScreen() {
                     Max 60s
                   </Text>
 
-                  {/* Cancel */}
                   <TouchableOpacity
                     onPress={handleCancelAudioRecording}
                     activeOpacity={0.7}
@@ -1468,7 +1453,6 @@ export default function UploadScreen() {
                     <Icon name="Trash2" size={18} color="#f87171" />
                   </TouchableOpacity>
 
-                  {/* Stop & save */}
                   <TouchableOpacity
                     onPress={handleStopAudioRecording}
                     activeOpacity={0.7}
@@ -1478,7 +1462,6 @@ export default function UploadScreen() {
                   </TouchableOpacity>
                 </View>
 
-                {/* Waveform bars */}
                 <View className="flex-row items-end mt-3" style={{ height: 24 }}>
                   {(() => {
                     const BARS = 35;
@@ -1500,7 +1483,6 @@ export default function UploadScreen() {
                   })()}
                 </View>
 
-                {/* Progress bar */}
                 <View className="h-1 bg-theme-neutrals-700 rounded-full mt-3 overflow-hidden">
                   <View
                     className="h-full rounded-full bg-red-500"
@@ -1510,11 +1492,9 @@ export default function UploadScreen() {
               </View>
             )}
 
-            {/* Audio preview */}
             {!isLiveMode && mediaMode === "audio" && pickedAudio && !isAudioRecording && (
               <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4">
                 <View className="flex-row items-center">
-                  {/* Play / Pause */}
                   <TouchableOpacity
                     onPress={handleToggleAudioPreview}
                     activeOpacity={0.7}
@@ -1565,7 +1545,6 @@ export default function UploadScreen() {
 
             {showExtras && (
               <View className="mt-4">
-                {/* Description: shown for video posts and live mode */}
                 {(mediaMode === "video" || isLiveMode) && (
                   !showDescription ? (
                     <TouchableOpacity
@@ -1629,9 +1608,7 @@ export default function UploadScreen() {
                   )
                 )}
 
-                {/* Category: selected pills + toggle text or expanded picker */}
                 <View className="mt-4">
-                  {/* Always show selected category pills */}
                   {categories.length > 0 && (
                     <View className="flex-row flex-wrap gap-2 mb-2">
                       {categories.map((c) => (
@@ -1698,7 +1675,6 @@ export default function UploadScreen() {
         className="flex-row items-center px-4 h-12"
         style={{ marginBottom: bottomPad > 0 ? bottomPad : 0 }}
       >
-        {/* Media buttons: hidden in live mode */}
         {!isLiveMode && (
           <>
             <TouchableOpacity
@@ -1723,7 +1699,6 @@ export default function UploadScreen() {
               <Icon name="Video" size={24} color="#fff" />
             </TouchableOpacity>
 
-            {/* Audio (music) button with popover menu */}
             <View className="mr-4" style={{ position: "relative", zIndex: 100 }}>
               <TouchableOpacity
                 onPress={() => setShowAudioMenu((prev) => !prev)}
@@ -1737,7 +1712,6 @@ export default function UploadScreen() {
 
               {showAudioMenu && (
                 <>
-                  {/* Backdrop to dismiss */}
                   <Pressable
                     onPress={() => setShowAudioMenu(false)}
                     style={{
@@ -1788,7 +1762,6 @@ export default function UploadScreen() {
           </>
         )}
 
-        {/* Radio button: toggles live mode (hidden in quote mode) */}
         {!isQuoteMode && (
           <TouchableOpacity
             onPress={handleToggleLiveMode}
@@ -1806,10 +1779,8 @@ export default function UploadScreen() {
           </TouchableOpacity>
         )}
 
-        {/* Spacer to push right-side controls */}
         <View className="flex-1" />
 
-        {/* Live mode: gear icon for settings */}
         {isLiveMode && (
           <TouchableOpacity
             onPress={toggleLiveSettings}
@@ -1824,10 +1795,8 @@ export default function UploadScreen() {
           </TouchableOpacity>
         )}
 
-        {/* Post mode: monetization controls (hidden in quote mode) */}
         {!isLiveMode && !isQuoteMode && mediaMode === "video" && (
           <View className="flex-row items-center">
-            {/* Show enabled monetization icons when panel is closed */}
             {!showMonetization && monetization.ppvEnabled && (
               <TouchableOpacity
                 onPress={() => openMonetizationSection("ppv")}

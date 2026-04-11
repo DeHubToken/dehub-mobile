@@ -1,16 +1,3 @@
-/**
- * Error Boundary Component
- * 
- * Catches JavaScript errors in child component tree and displays
- * a fallback UI instead of crashing the whole app.
- * 
- * Big company apps always have error boundaries to:
- * - Prevent full app crashes
- * - Log errors for debugging
- * - Show user-friendly error messages
- * - Allow recovery without app restart
- */
-
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 import {
   View,
@@ -117,9 +104,6 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 }
 
-/**
- * Higher-order component to wrap any component with error boundary
- */
 export function withErrorBoundary<P extends object>(
   WrappedComponent: React.ComponentType<P>,
   errorBoundaryProps?: Omit<Props, 'children'>

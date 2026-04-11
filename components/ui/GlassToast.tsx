@@ -50,7 +50,6 @@ const GlassToast: React.FC<GlassToastProps> = ({
       className="w-[92%] self-center overflow-hidden rounded-2xl my-2"
       style={{ borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
     >
-      {/* Glass background */}
       <BlurView
         intensity={20}
         tint="dark"

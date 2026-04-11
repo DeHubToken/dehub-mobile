@@ -70,23 +70,19 @@ const CommentActionSheetComponent: React.FC<CommentActionSheetProps> = ({
       statusBarTranslucent
       onRequestClose={onClose}
     >
-      {/* Backdrop */}
       <Pressable
         className="flex-1 justify-end bg-black/50"
         onPress={onClose}
       >
-        {/* Sheet container - prevent touch propagation */}
         <Pressable onPress={() => {}}>
           <View
             className="bg-theme-neutrals-900 rounded-t-2xl overflow-hidden"
             style={{ paddingBottom: Math.max(insets.bottom, 16) }}
           >
-            {/* Handle */}
             <View className="items-center py-3">
               <View className="w-10 h-1 rounded-full bg-theme-neutrals-600" />
             </View>
 
-            {/* Options */}
             <View className="border-t border-theme-neutrals-800">
               <ActionItem
                 icon="share-outline"
@@ -103,7 +99,6 @@ const CommentActionSheetComponent: React.FC<CommentActionSheetProps> = ({
               )}
             </View>
 
-            {/* Cancel button - separated */}
             <View className="border-t border-theme-neutrals-800 mt-2">
               <TouchableOpacity
                 onPress={onClose}

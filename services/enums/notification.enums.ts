@@ -1,8 +1,3 @@
-/**
- * Notification Type Enums
- * Aligned with backend notification.enums.ts
- */
-
 export enum NotificationType {
   LIKE = 'like',
   DISLIKE = 'dislike',
@@ -39,9 +34,6 @@ export enum NotificationCategory {
 
 export type PostType = 'video' | 'feed-images' | 'feed-simple' | 'live';
 
-/**
- * Notification types that support navigation to content
- */
 export const CONTENT_NAVIGABLE_TYPES = new Set([
   NotificationType.LIKE,
   NotificationType.COMMENT,
@@ -56,34 +48,22 @@ export const CONTENT_NAVIGABLE_TYPES = new Set([
   NotificationType.VIDEO_MILESTONE,
 ]);
 
-/**
- * Notification types that open user profile
- */
 export const PROFILE_NAVIGABLE_TYPES = new Set([
   NotificationType.FOLLOWING,
   NotificationType.SUBSCRIPTION,
   NotificationType.FOLLOW_REQUEST_ACCEPTED,
 ]);
 
-/**
- * Notification types that may have external links
- */
 export const LINK_TYPES = new Set([
   NotificationType.SYSTEM,
   NotificationType.ACCOUNT_WARNING,
   NotificationType.VIDEO_REMOVAL,
 ]);
 
-/**
- * Notification types that are not clickable (just informational)
- */
 export const NON_CLICKABLE_TYPES = new Set([
   NotificationType.DISLIKE,
 ]);
 
-/**
- * Get notification icon configuration (lucide-react-native icon names)
- */
 export const getNotificationIconConfig = (type: NotificationType | string): { 
   name: string; 
   color: string;

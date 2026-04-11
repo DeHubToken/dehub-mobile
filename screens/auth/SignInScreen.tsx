@@ -41,14 +41,6 @@ interface SignInScreenProps {
   navigation: any;
 }
 
-/**
- * SignInScreen - Handles user authentication
- * 
- * Navigation flow:
- * 1. User signs in successfully without needing username → Navigate to App
- * 2. User signs in but needs username → Navigate to SetProfile
- * 3. User skips auth → Navigate to App
- */
 const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const [isLocalLoading, setIsLocalLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");

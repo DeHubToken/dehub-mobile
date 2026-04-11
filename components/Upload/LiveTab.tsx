@@ -600,7 +600,6 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
           type="live"
         />
 
-        {/* Thumbnail Picker */}
         <View className="mb-5">
           <Text className="text-gray-400 mb-1">
             Thumbnail <Text className="text-red-500">*</Text>

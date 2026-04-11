@@ -578,7 +578,6 @@ const LiveChatScreen: React.FC = () => {
         rightContent={RightHeader}
       />
 
-      {/* Pinned messages — Telegram-style bar */}
       {room?.pinnedMessages && room.pinnedMessages.length > 0 && (
         <PinnedMessagesBar
           pinnedMessages={room.pinnedMessages}
@@ -588,7 +587,6 @@ const LiveChatScreen: React.FC = () => {
         />
       )}
 
-      {/* Banned banner */}
       {isBanned && (
         <View className="bg-red-500/10 border-b border-red-500/20 px-4 py-2.5">
           <View className="flex-row items-center gap-2">
@@ -599,7 +597,6 @@ const LiveChatScreen: React.FC = () => {
       )}
 
       <View className="flex-1">
-        {/* Messages list */}
         <FlatList
           ref={flatListRef}
           data={listItems}
@@ -625,7 +622,6 @@ const LiveChatScreen: React.FC = () => {
           keyboardDismissMode="interactive"
         />
 
-        {/* Scroll-to-bottom FAB */}
         {!isAtBottomRef.current && messages.length > 10 && (
           <TouchableOpacity
             onPress={() => scrollToBottom()}
@@ -639,12 +635,10 @@ const LiveChatScreen: React.FC = () => {
           </TouchableOpacity>
         )}
 
-        {/* Input bar — absolutely positioned, lifts with keyboard */}
         <View
           className="absolute left-0 right-0 bottom-0 bg-theme-neutrals-900"
           style={{ marginBottom: inputLift, paddingBottom: insets.bottom || 0 }}
         >
-          {/* Typing indicator */}
           {typingText && (
             <View className="px-4 py-1.5 border-b border-white/5">
               <Text className="text-white/30 text-xs italic">{typingText}</Text>
@@ -667,14 +661,12 @@ const LiveChatScreen: React.FC = () => {
         </View>
       </View>
 
-      {/* GIF Picker Modal */}
       <GifPicker
         visible={showGifPicker}
         onClose={() => setShowGifPicker(false)}
         onPick={handleGifPicked}
       />
 
-      {/* Context Menu */}
       <LiveChatContextMenu
         visible={contextMenuVisible}
         message={contextMenuMessage}
@@ -691,7 +683,6 @@ const LiveChatScreen: React.FC = () => {
         onPin={handleContextPin}
       />
 
-      {/* Confirmation Modal */}
       <ConfirmModal
         visible={confirmModal.visible}
         title={confirmModal.title}

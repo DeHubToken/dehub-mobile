@@ -112,17 +112,11 @@ export default function AppNavigator() {
         cardStyle: { backgroundColor: '#000' },
       }}
     >
-      {/* ===================================================================== */}
-      {/* Root Tab Navigator */}
-      {/* ===================================================================== */}
       <Stack.Screen
         name={ScreenNames.Root}
         component={BottomTabNavigator}
       />
 
-      {/* ===================================================================== */}
-      {/* Public Screens - Always Available */}
-      {/* ===================================================================== */}
       <Stack.Group>
         <Stack.Screen
           name={ScreenNames.Leaderboard}
@@ -162,9 +156,6 @@ export default function AppNavigator() {
         />
       </Stack.Group>
 
-      {/* ===================================================================== */}
-      {/* Modal Screens - Slide Up Animation */}
-      {/* ===================================================================== */}
       <Stack.Group
         screenOptions={{
           presentation: 'modal',
@@ -197,10 +188,7 @@ export default function AppNavigator() {
         />
       </Stack.Group>
 
-      {/* ===================================================================== */}
-      {/* Auth-Gated Screens */}
-      {/* Using navigationKey to reset state when auth changes */}
-      {/* ===================================================================== */}
+      {/* navigationKey resets state when auth changes */}
       <Stack.Group
         navigationKey={isAuthed ? 'authed' : 'guest'}
         screenOptions={{

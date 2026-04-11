@@ -75,4 +75,5 @@ applyTo: "**/*.tsx"
 - Don't write comments that just explains stuff like an AI would. Limit commenting to non-obvious logic, assumptions, and important notes for future maintainers.
 - **Never** add decorative comment banners or section separators (e.g. `/* ----- Types ----- */`, `/* ======= */`, `// ---- animation ----`).
 - **Never** add JSX comments that just restate what the element is (e.g. `{/* Animated drawer panel */}`, `{/* Divider */}`).
+- **Never** add JSDoc/multiline comment blocks that just describe what a component, screen, hook, or function does (e.g. `/** UserReplyCard – Renders a single comment/reply... */`, `/** SignInScreen - Handles user authentication */`). The name should be self-explanatory. Only use JSDoc when documenting non-obvious behavior, caveats, or complex parameters.
 - Comments should explain *why*, not *what*. If the code is self-explanatory, don't comment it.

@@ -231,9 +231,6 @@ const rowIndexToOffset = (rowIdx: number) => {
   return offset;
 };
 
-// ═════════════════════════════════════════════════════════════
-// FeedScreen
-// ═════════════════════════════════════════════════════════════
 const FeedScreen = () => {
   const { isSignedIn } = useAuthState();
   const insets = useSafeAreaInsets();
@@ -556,12 +553,8 @@ const FeedScreen = () => {
     return null;
   }, [feedLoading, feedData.length]);
 
-  // ══════════════════════════════════════════════════════════
-  // Render
-  // ══════════════════════════════════════════════════════════
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      {/* Collapsible header */}
       <View style={styles.headerClip}>
         <Animated.View style={headerAnimatedStyle} onLayout={onHeaderLayout}>
           <ScreenHeader
@@ -597,7 +590,6 @@ const FeedScreen = () => {
         </Animated.View>
       </View>
 
-      {/* ── Feed View ─────────────────────────────────────── */}
       {!isGridView && (
         <View className="flex-1 px-4">
           <Animated.FlatList
@@ -643,7 +635,6 @@ const FeedScreen = () => {
         </View>
       )}
 
-      {/* ── Grid View (virtualized FlatList) ──────────────── */}
       {isGridView && (
         <FlatList
           ref={gridListRef}
@@ -679,14 +670,12 @@ const FeedScreen = () => {
         />
       )}
 
-      {/* Transition overlay */}
       {transitionPending && (
         <View style={styles.transitionOverlay}>
           <ActivityIndicator size="large" color="#fff" />
         </View>
       )}
 
-      {/* Floating grid button — feed view only */}
       {!isGridView && !transitionPending && (
         <View style={[styles.floatingButtonContainer, { bottom: insets.bottom }]}>
           <TouchableOpacity activeOpacity={0.8} onPress={toggleViewMode} style={styles.floatingButton}>
