@@ -50,6 +50,8 @@ interface FeedVideoPlayerProps {
   onPPVPress?: () => void;
   onLockPress?: () => void;
   onBountyPress?: () => void;
+  /** Hide play button, controls, progress bar, and duration badge (used for shorts). */
+  hideControls?: boolean;
 }
 
 const AUTOPLAY_DELAY = 1200;
@@ -83,6 +85,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   onPPVPress,
   onLockPress,
   onBountyPress,
+  hideControls = false,
 }) => {
   const navigation = useNavigation<any>();
   const [isPlaying, setIsPlaying] = useState(false);
@@ -91,6 +94,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const [videoDuration, setVideoDuration] = useState(0);
   const [hasStartedAutoplay, setHasStartedAutoplay] = useState(false);
   const [isBuffering, setIsBuffering] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
   const [isInPiP, setIsInPiP] = useState(false);
   const isInPiPRef = useRef(false);
 
@@ -150,7 +154,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       subs.push(
         player.addListener("statusChange", ({ status }) => {
           setIsBuffering(status === "loading");
-          if (status === "readyToPlay" && player.duration > 0) setVideoDuration(player.duration);
+          if (status === "readyToPlay") {
+            setVideoReady(true);
+            if (player.duration > 0) setVideoDuration(player.duration);
+          }
         })
       );
     } catch {}
@@ -176,6 +183,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; }
       if (isPlayingRef.current) stopPlayback();
       setHasStartedAutoplay(false);
+      setVideoReady(false);
       return;
     }
     if (hasStartedAutoplay) return;
@@ -339,7 +347,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           startsPictureInPictureAutomatically={isPlaying && !isMuted}
           onPictureInPictureStart={handlePiPStart}
           onPictureInPictureStop={handlePiPStop}
-          style={[styles.thumbnail, { opacity: isPlaying || hasStartedAutoplay ? 1 : 0 }]}
+          style={[styles.thumbnail, { opacity: hideControls
+            ? (hasStartedAutoplay && videoReady ? 1 : 0)
+            : (isPlaying || hasStartedAutoplay ? 1 : 0)
+          }]}
         />
       )}
 
@@ -362,7 +373,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         </TouchableOpacity>
       )}
 
-      {!isContentGated && !isPlaying && (
+      {!hideControls && !isContentGated && !isPlaying && (
         <Pressable onPress={handleVideoPress} style={styles.playOverlay}>
           <View style={styles.glassPlayButton}>
             <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
@@ -374,7 +385,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         </Pressable>
       )}
 
-      {isPlaying && (
+      {!hideControls && isPlaying && (
         <Pressable onPress={handleVideoPress} style={StyleSheet.absoluteFill}>
           <View style={styles.controlsContainer}>
             <View style={styles.topControls}>
@@ -429,13 +440,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         </View>
       )}
 
-      {!isContentGated && duration && !isPlaying && (
+      {!hideControls && !isContentGated && duration && !isPlaying && (
         <View style={styles.durationBadge}>
           <Text style={styles.durationText}>{duration}</Text>
         </View>
       )}
 
-      {isContentGated && duration && (
+      {!hideControls && isContentGated && duration && (
         <View style={styles.durationBadge}>
           <Text style={styles.durationText}>{duration}</Text>
         </View>

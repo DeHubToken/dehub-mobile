@@ -41,6 +41,7 @@ import {
   getImageUrlApiSimple,
   getAudioUrl,
   getVideoUrl,
+  getShortsThumbnailUrl,
   resolveThumbnail,
   formatCompactNumber,
   shareProfile,
@@ -62,10 +63,11 @@ const IMAGE_WIDTH = SCREEN_WIDTH - 32;
 
 const ReanimatedScrollView = Reanimated.createAnimatedComponent(RNScrollView);
 
-type PostContentType = "image" | "video" | "audio" | "live";
+type PostContentType = "image" | "video" | "audio" | "live" | "short";
 
 function resolveContentType(item: UnifiedFeedItem): PostContentType {
   if (item.postType === "live") return "live";
+  if (item.postType === "short") return "short";
   if (item.postType === "feed-audio" && !!item.audioUrl) return "audio";
   const hasVideo = !!(
     (item as any).videoDuration ||
@@ -157,7 +159,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const totalTips = (item as any).totalTips || (item as any).tips || 0;
   const isAudioPost = contentType === "audio";
   const isLive = contentType === "live";
-  const isVideo = contentType === "video";
+  const isVideo = contentType === "video" || contentType === "short";
+  const isShort = contentType === "short";
 
   const userAddress = user?.address || user?.walletAddress || "";
   const isOwnerPost = !!(item as any).isOwner || (
@@ -190,6 +193,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       return resolveThumbnail(item as any);
     }
     if (isVideo) {
+      if (isShort) {
+        return getShortsThumbnailUrl(tokenId) || "";
+      }
       const rawThumb =
         (item as any).thumbnail ||
         stream?.thumbnail ||
@@ -297,11 +303,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         accessInfo,
         streamId,
       } as never);
+    } else if (isShort && tokenId != null) {
+      navigation.navigate(ScreenNames.ShortsViewer, {
+        initialIndex: 0,
+        initialItems: [item],
+      });
     } else if (tokenId != null) {
       navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
     }
   }, [
-    disablePress, isLive, isOwnerPost, item, tokenId,
+    disablePress, isLive, isShort, isOwnerPost, item, tokenId,
     accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate,
   ]);
 
@@ -713,6 +724,39 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     switch (contentType) {
       case "live":
         return renderLiveThumbnail();
+      case "short":
+        return (
+          <View className="relative">
+            <FeedVideoPlayer
+              thumbnail={thumbnail}
+              videoUrl={isActuallyGated ? undefined : (getVideoUrl(tokenId) || undefined)}
+              duration={duration}
+              tokenId={tokenId}
+              isContentGated={isActuallyGated}
+              isPPVLocked={isActuallyLockedPPV}
+              isHoldingsLocked={isActuallyLockedHoldings}
+              isBountyLocked={false}
+              isComboLocked={isActuallyComboLocked}
+              isBounty={isBounty}
+              ppvAmount={payPerViewAmount}
+              ppvCurrency={payPerViewTokenSymbol}
+              lockAmount={lockContentAmount}
+              lockCurrency={lockContentTokenSymbol}
+              bountyAmount={bountyAmount}
+              bountyCurrency={bountyTokenSymbol}
+              isVisible={isVisible}
+              isSignedIn={isSignedIn}
+              onPress={handleCardPress}
+              onPPVPress={handlePPVPress}
+              onLockPress={handleCardPress}
+              onBountyPress={handleBountyBadgePress}
+              hideControls
+            />
+            <View className="absolute top-3 left-3 bg-black/60 rounded p-1.5 z-20">
+              <Icon name="Film" size={14} color="#fff" />
+            </View>
+          </View>
+        );
       case "video":
         return renderVideoThumbnail();
       case "audio":

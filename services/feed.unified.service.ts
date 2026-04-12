@@ -85,9 +85,10 @@ export interface UnifiedFeedItem {
   imageUrls?: string[]; // For multi-image posts
   thumbnailUrl?: string;
   videoUrl?: string;
+  previewUrl?: string;
   
   // Type & Status
-  postType: "video" | "feed-images" | "feed-simple" | "feed-audio" | "live";
+  postType: "video" | "feed-images" | "feed-simple" | "feed-audio" | "live" | "short";
   status?: string;
   category?: string[];
   
@@ -278,12 +279,84 @@ export function isFeedPostItem(item: UnifiedFeedItem): boolean {
   return item.postType === "feed-images" || item.postType === "feed-simple" || item.postType === "feed-audio";
 }
 
+export function isShortItem(item: UnifiedFeedItem): boolean {
+  return item.postType === "short";
+}
+
+/* ── Shorts-specific feed (GET /nft/feed/shorts) ── */
+
+export interface ShortsFeedParams {
+  page?: number;
+  limit?: number;
+  sortBy?: "random" | "createdAt" | "likes" | "views";
+  shuffleSeed?: string;
+  category?: string;
+  minter?: string;
+  followingOnly?: boolean;
+}
+
+export interface ShortsFeedResponse {
+  status: boolean;
+  result: UnifiedFeedItem[];
+  pagination: FeedPagination;
+  shuffleSeed?: string;
+}
+
+export async function getShortsFeed(
+  params?: ShortsFeedParams,
+): Promise<ShortsFeedResponse> {
+  const queryParams = removeUndefined({
+    page: params?.page ?? 1,
+    limit: params?.limit ?? 20,
+    sortBy: params?.sortBy,
+    shuffleSeed: params?.shuffleSeed,
+    category: params?.category,
+    minter: params?.minter,
+    followingOnly: params?.followingOnly,
+  });
+
+  const query = objectToQueryString(queryParams);
+  const url = `/feed/shorts${query}`;
+
+  try {
+    const res = await apiClient.get<ShortsFeedResponse>(url, {
+      isAuthRequired: true,
+    });
+
+    if (res && typeof res === "object" && "result" in res) {
+      return {
+        status: res.status ?? true,
+        result: res.result || [],
+        pagination: res.pagination || {
+          page: params?.page ?? 1,
+          limit: params?.limit ?? 20,
+          totalCount: res.result?.length || 0,
+          totalPages: 1,
+          hasMore: false,
+        },
+        shuffleSeed: (res as any).shuffleSeed,
+      };
+    }
+
+    return {
+      status: false,
+      result: [],
+      pagination: { page: 1, limit: 20, totalCount: 0, totalPages: 0, hasMore: false },
+    };
+  } catch (error: any) {
+    console.error("[ShortsFeed] Error fetching shorts:", error?.message || error);
+    throw error;
+  }
+}
+
 export default {
   getUnifiedFeed,
+  getShortsFeed,
   isVideoItem,
   isLiveItem,
   isImagePostItem,
   isTextPostItem,
   isAudioPostItem,
   isFeedPostItem,
+  isShortItem,
 };
