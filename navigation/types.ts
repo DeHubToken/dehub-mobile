@@ -92,6 +92,7 @@ export type AppStackParamList = {
   [ScreenNames.EditProfile]: undefined;
   [ScreenNames.Dpay]: undefined;
   [ScreenNames.PrivacySettings]: undefined;
+  [ScreenNames.UploadQueue]: undefined;
   [ScreenNames.Drafts]: undefined;
   [ScreenNames.SignIn]: undefined; // Modal sign-in from app
   [ScreenNames.FollowList]: {

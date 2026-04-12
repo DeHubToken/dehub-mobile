@@ -42,6 +42,7 @@ export enum ScreenNames {
   FullscreenVideo = 'FullscreenVideo',
   AIChat = 'AIChat',
   Explore = 'Explore',
+  UploadQueue = 'UploadQueue',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',

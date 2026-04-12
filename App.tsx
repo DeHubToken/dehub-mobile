@@ -2,6 +2,7 @@ import {
   NavigationContainer,
   DarkTheme as RNDarkTheme,
   NavigationState,
+  createNavigationContainerRef,
 } from "@react-navigation/native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Toaster } from "sonner-native";
@@ -11,7 +12,7 @@ import "./global.css";
 import SplashScreen from "./screens/SplashScreen";
 import NoInternetScreen from "./screens/NoInternetScreen";
 import { useNetworkStatus } from "./hooks/useNetworkStatus";
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import {
   BackHandler,
   KeyboardAvoidingView,
@@ -22,7 +23,7 @@ import {
 import * as WebBrowser from "expo-web-browser";
 import * as ExpoSplashScreen from "expo-splash-screen";
 import { theme } from "./theme";
-import { AuthProvider, useAuthState } from "./context/AuthContext";
+import { AuthProvider, useAuthState, useUser } from "./context/AuthContext";
 import { WebSocketProvider } from "./context/WebSocketContext";
 import { DMProvider } from "./context/DMContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
@@ -40,8 +41,13 @@ import { useAppLifecycle } from "./hooks/useAppLifecycle";
 import { createLogger } from "./libs/logger";
 import { forceFlushBatchViews } from "./services/view.service";
 import PermissionModalProvider from "./components/ui/PermissionModal";
+import { useUploadProcessor } from "./services/upload.processor";
+import UploadProgressPill from "./components/Upload/UploadProgressPill";
+import { setUploadCacheKey, hydrateUploadStore, clearUploadStore } from "./store/upload.store";
 
 const logger = createLogger("App");
+
+export const navigationRef = createNavigationContainerRef();
 
 // Keep the native splash screen visible until we explicitly hide it
 // This prevents white flash between native splash and React app
@@ -137,10 +143,21 @@ export default function App() {
 
 const BootGate: React.FC = () => {
   const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
+  const user = useUser();
   // Only run update checks in production builds
   const { updateInfo, showModal, closeModal } = useAppUpdate();
   const isAuthenticated = isSignedIn && !needsUsername;
-  const navigationRef = useRef<any>(null);
+
+  useUploadProcessor();
+
+  useEffect(() => {
+    if (isAuthenticated && user?.walletAddress) {
+      setUploadCacheKey(user.walletAddress);
+      hydrateUploadStore();
+    } else {
+      clearUploadStore();
+    }
+  }, [isAuthenticated, user?.walletAddress]);
 
   // Navigation persistence with error handling
   const { isReady, initialState, onStateChange } =
@@ -208,6 +225,7 @@ const BootGate: React.FC = () => {
           </NavigationContainer>
         </ErrorBoundary>
       </SafeAreaView>
+      <UploadProgressPill />
       {!__DEV__ && (
         <UpdateAppModal
           visible={showModal}

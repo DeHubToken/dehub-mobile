@@ -21,6 +21,14 @@ import {
 } from "../config/constants";
 import { supportedNetworks } from "../config/web3.constants";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
+import {
+  uploadActions,
+  type UploadJob,
+  type SerializedUploadPayload,
+  type SerializedMedia,
+  type BountyConfig,
+  MAX_QUEUE_SIZE,
+} from "../store/upload.store";
 
 
 export type UploadStage =
@@ -453,6 +461,149 @@ export function useUploadPost() {
     ],
   );
 
+  const enqueueJob = useCallback(
+    (p: UploadPayload): boolean => {
+      const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
+      const postType = mode === "video" ? "video" : mode === "audio" ? "feed-audio" : mode === "images" ? "feed-images" : "feed-simple";
+
+      const video: SerializedMedia | null = p.pickedVideo
+        ? { uri: p.pickedVideo.uri, name: getFileName(p.pickedVideo.uri, "video.mp4"), mimeType: guessMime(p.pickedVideo.uri, "video/mp4") }
+        : null;
+
+      const audio: SerializedMedia | null = p.pickedAudio
+        ? { uri: p.pickedAudio.uri, name: p.pickedAudio.name || "audio.m4a", mimeType: p.pickedAudio.mimeType || "audio/x-m4a", durationMs: p.pickedAudio.durationMs }
+        : null;
+
+      const images: SerializedMedia[] = p.pickedImages.map((img) => ({
+        uri: img.uri,
+        name: getFileName(img.uri, "image.jpg"),
+        mimeType: guessMime(img.uri, "image/jpeg"),
+      }));
+
+      const streamInfo = mode === "video" ? buildStreamInfo(p.monetization) : {};
+      const thumb = p.coverUri || p.thumbnailUri || null;
+
+      const serialized: SerializedUploadPayload = {
+        bodyText: p.bodyText,
+        description: p.description,
+        categories: p.categories,
+        postType,
+        images,
+        video,
+        audio,
+        thumbnailUri: thumb,
+        streamInfoJson: JSON.stringify(mode === "video" ? filteredStreamInfo(streamInfo) : {}),
+      };
+
+      const isBounty = mode === "video" && p.monetization.bountyEnabled;
+      let bountyConfig: BountyConfig | undefined;
+      if (isBounty) {
+        bountyConfig = {
+          tokenSymbol: streamInfo[streamInfoKeys.addBountyTokenSymbol] || "DHB",
+          rewardPerPerson: p.monetization.bountyData.rewardPerPerson,
+          viewers: p.monetization.bountyData.viewers,
+          commenters: p.monetization.bountyData.commenters,
+        };
+      }
+
+      const addr = (user?.walletAddress || user?.address || "").toLowerCase();
+
+      const job: UploadJob = {
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        status: "queued",
+        progress: 0,
+        retryCount: 0,
+        createdAt: Date.now(),
+        title: p.bodyText.trim() || p.description.trim() || "New post",
+        thumbnailUri: thumb ?? undefined,
+        payload: serialized,
+        chainId: activeChainId,
+        walletAddress: addr,
+        isBounty,
+        bountyConfig,
+        isQuote: false,
+      };
+
+      const queued = uploadActions.enqueue(job);
+      if (!queued) {
+        toastError(`Queue full (max ${MAX_QUEUE_SIZE}). Wait for current uploads to finish.`);
+        return false;
+      }
+
+      return true;
+    },
+    [buildStreamInfo, user?.walletAddress, user?.address, activeChainId],
+  );
+
+  const enqueueQuoteJob = useCallback(
+    (p: {
+      bodyText: string;
+      description: string;
+      categories: string[];
+      pickedVideo: ImagePicker.ImagePickerAsset | null;
+      pickedImages: ImagePicker.ImagePickerAsset[];
+      pickedAudio: PickedAudio | null;
+      coverUri: string | null;
+      thumbnailUri: string | null;
+      quotedTokenId: number;
+    }): boolean => {
+      const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
+      const postType = mode === "video" ? "video" : mode === "audio" ? "feed-audio" : mode === "images" ? "feed-images" : "feed-simple";
+
+      const video: SerializedMedia | null = p.pickedVideo
+        ? { uri: p.pickedVideo.uri, name: getFileName(p.pickedVideo.uri, "video.mp4"), mimeType: guessMime(p.pickedVideo.uri, "video/mp4") }
+        : null;
+
+      const audio: SerializedMedia | null = p.pickedAudio
+        ? { uri: p.pickedAudio.uri, name: p.pickedAudio.name || "audio.m4a", mimeType: p.pickedAudio.mimeType || "audio/x-m4a" }
+        : null;
+
+      const images: SerializedMedia[] = p.pickedImages.map((img) => ({
+        uri: img.uri,
+        name: getFileName(img.uri, "image.jpg"),
+        mimeType: guessMime(img.uri, "image/jpeg"),
+      }));
+
+      const thumb = p.coverUri || p.thumbnailUri || null;
+      const addr = (user?.walletAddress || user?.address || "").toLowerCase();
+
+      const job: UploadJob = {
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        status: "queued",
+        progress: 0,
+        retryCount: 0,
+        createdAt: Date.now(),
+        title: p.bodyText.trim() || p.description.trim() || "Quote post",
+        thumbnailUri: thumb ?? undefined,
+        payload: {
+          bodyText: mode === "video" ? p.bodyText : "",
+          description: mode === "video" ? p.description : p.bodyText,
+          categories: p.categories,
+          postType,
+          images,
+          video,
+          audio,
+          thumbnailUri: thumb,
+          streamInfoJson: "{}",
+        },
+        chainId: activeChainId,
+        walletAddress: addr,
+        isBounty: false,
+        isQuote: true,
+        quotedTokenId: p.quotedTokenId,
+      };
+
+      const queued = uploadActions.enqueue(job);
+      if (!queued) {
+        toastError(`Queue full (max ${MAX_QUEUE_SIZE}). Wait for current uploads to finish.`);
+        return false;
+      }
+
+      return true;
+    },
+    [user?.walletAddress, user?.address, activeChainId],
+  );
+
   return {
     validate,
     preUploadCheck,
@@ -460,5 +611,7 @@ export function useUploadPost() {
     upload,
     uploadStage,
     isUploading,
+    enqueueJob,
+    enqueueQuoteJob,
   };
 }
