@@ -63,7 +63,7 @@ export interface GetFollowListParams {
 }
 
 /** Post type for notification content */
-export type NotificationPostType = 'video' | 'feed-images' | 'feed-simple' | 'feed-audio';
+export type NotificationPostType = 'video' | 'short' | 'feed-images' | 'feed-simple' | 'feed-audio';
 
 /** Notification type categories */
 export type NotificationType = 
