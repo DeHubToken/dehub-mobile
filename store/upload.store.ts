@@ -21,13 +21,15 @@ export interface SerializedMedia {
   name: string;
   mimeType: string;
   durationMs?: number;
+  width?: number;
+  height?: number;
 }
 
 export interface SerializedUploadPayload {
   bodyText: string;
   description: string;
   categories: string[];
-  postType: "video" | "feed-audio" | "feed-images" | "feed-simple";
+  postType: "video" | "feed-audio" | "feed-images" | "feed-simple" | "short";
   images: SerializedMedia[];
   video: SerializedMedia | null;
   audio: SerializedMedia | null;

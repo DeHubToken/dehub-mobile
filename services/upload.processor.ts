@@ -42,7 +42,7 @@ function rebuildFormData(job: UploadJob): FormData {
   fd.append("category", JSON.stringify(payload.categories));
   fd.append("postType", payload.postType);
 
-  if (payload.postType === "video") {
+  if (payload.postType === "video" || payload.postType === "short") {
     if (payload.video) {
       // @ts-ignore RN FormData file shape
       fd.append("files", {
@@ -59,7 +59,7 @@ function rebuildFormData(job: UploadJob): FormData {
         type: "image/jpeg",
       } as any);
     }
-    fd.append("streamInfo", payload.streamInfoJson);
+    fd.append("streamInfo", payload.postType === "short" ? "{}" : payload.streamInfoJson);
   } else if (payload.postType === "feed-audio") {
     if (payload.audio) {
       // @ts-ignore RN FormData file shape

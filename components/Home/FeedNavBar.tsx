@@ -14,7 +14,7 @@ const NAV_ITEMS: NavItem[] = [
   { icon: "House", postType: "all", tooltip: "Home" },
   { icon: "Video", postType: "video", tooltip: "Videos" },
   { icon: "Image", postType: "feed-images", tooltip: "Images" },
-  { icon: "Film", postType: "feed-simple", tooltip: "Shorts" },
+  { icon: "Film", postType: "short", tooltip: "Shorts" },
   { icon: "Mic", postType: "feed-audio", tooltip: "Music" },
   { icon: "Radio", postType: "live", tooltip: "Live" },
 ];

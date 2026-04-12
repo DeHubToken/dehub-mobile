@@ -1,6 +1,6 @@
 import { apiClient } from "../libs";
 
-export type FeedPostType = "video" | "feed-images" | "feed-simple" | "feed-audio" | "live" | "all";
+export type FeedPostType = "video" | "feed-images" | "feed-simple" | "feed-audio" | "live" | "short" | "all";
 export type FeedSortBy = "likes" | "views" | "createdAt" | "tips" | "comments" | "random";
 export type FeedSortOrder = "asc" | "desc";
 export type FeedRange = "day" | "week" | "month" | "year";

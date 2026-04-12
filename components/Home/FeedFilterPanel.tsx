@@ -19,7 +19,7 @@ import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
 
 export type SortOption = "random" | "createdAt" | "views" | "likes" | "comments";
 export type DateRangeOption = "" | "day" | "week" | "month" | "year";
-export type PostTypeOption = "all" | "video" | "feed-images" | "feed-audio" | "feed-simple" | "live";
+export type PostTypeOption = "all" | "video" | "feed-images" | "feed-audio" | "feed-simple" | "short" | "live";
 export type ContentAccessOption = "ppv" | "bounty" | "locked";
 
 export interface FeedFilters {
