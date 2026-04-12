@@ -42,6 +42,7 @@ import MentionSuggestions from "../components/common/MentionSuggestions";
 import CategoryDrawer from "../components/Upload/CategoryDrawer";
 import MonetizationPanel from "../components/Upload/MonetizationPanel";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
+import CustomSwitch from "../components/ui/CustomSwitch";
 import LiveSettingsPanel from "../components/Upload/LiveSettingsPanel";
 import type { LiveSettingsState } from "../components/Upload/LiveSettingsPanel";
 import { INITIAL_LIVE_SETTINGS } from "../components/Upload/LiveSettingsPanel";
@@ -68,9 +69,16 @@ const MAX_AUDIO_DURATION_MS = 60_000; // 60 seconds
 const AUDIO_MIME_TYPES = ["audio/mpeg", "audio/wav", "audio/aac", "audio/ogg", "audio/x-m4a", "audio/mp4", "audio/webm"];
 const CATEGORIES_MIN = 0;
 const CATEGORIES_MAX = 5;
+const MAX_SHORT_DURATION_MS = 90_000; // 90 seconds
 
 type PickedAsset = ImagePicker.ImagePickerAsset;
 type MediaMode = "none" | "images" | "video" | "audio";
+
+const isPortraitVideo = (asset: PickedAsset): boolean =>
+  (asset.height ?? 0) > (asset.width ?? 0);
+
+const isShortCandidateFn = (asset: PickedAsset): boolean =>
+  isPortraitVideo(asset) && (asset.duration ?? Infinity) <= MAX_SHORT_DURATION_MS;
 
 export default function UploadScreen() {
   const nav = useNavigation<any>();
@@ -184,6 +192,22 @@ export default function UploadScreen() {
     if (pickedImages.length > 0) return "images";
     return "none";
   }, [pickedVideo, pickedAudio, pickedImages.length]);
+
+  const isShortCandidate = useMemo(
+    () => !!pickedVideo && isShortCandidateFn(pickedVideo),
+    [pickedVideo],
+  );
+
+  const [postAsShort, setPostAsShort] = useState(false);
+
+  // Auto-set toggle when video changes
+  useEffect(() => {
+    setPostAsShort(!!pickedVideo && isShortCandidateFn(pickedVideo));
+  }, [pickedVideo]);
+
+  useEffect(() => {
+    if (postAsShort) setShowMonetization(false);
+  }, [postAsShort]);
 
   const hasMedia = mediaMode !== "none";
   const hasContent = bodyText.trim().length > 0 || hasMedia || isQuoteMode;
@@ -419,8 +443,9 @@ export default function UploadScreen() {
       thumbnailUri,
       coverUri,
       monetization,
+      postAsShort,
     };
-  }, [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization]);
+  }, [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, postAsShort]);
 
   const handleToggleLiveMode = useCallback(() => {
     setIsLiveMode((prev) => {
@@ -1289,6 +1314,12 @@ export default function UploadScreen() {
                     color="#fff"
                   />
                 </TouchableOpacity>
+                {postAsShort && (
+                  <View className="absolute top-2 left-2 bg-white/20 rounded px-2.5 py-0.5 flex-row items-center">
+                    <Icon name="Film" size={12} color="#fff" />
+                    <Text className="text-white text-xs font-semibold ml-1">Short</Text>
+                  </View>
+                )}
                 <TouchableOpacity
                   onPress={handleRemoveVideo}
                   className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/70 items-center justify-center"
@@ -1343,6 +1374,33 @@ export default function UploadScreen() {
                   Show cover
                 </Text>
               </TouchableOpacity>
+            )}
+
+            {isShortCandidate && (
+              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 px-4 py-3">
+                <View className="flex-row items-center justify-between">
+                  <View className="flex-row items-center flex-1 mr-3">
+                    <Icon name="Film" size={16} color="#fff" />
+                    <Text className="text-white text-sm font-medium ml-2">
+                      Post as Short
+                    </Text>
+                  </View>
+                  <CustomSwitch
+                    value={postAsShort}
+                    onValueChange={setPostAsShort}
+                  />
+                </View>
+                {postAsShort && (
+                  <Text className="text-theme-neutrals-500 text-xs mt-1.5">
+                    Thumbnail is optional — one will be auto-generated.
+                  </Text>
+                )}
+                {!postAsShort && (
+                  <Text className="text-theme-neutrals-500 text-xs mt-1.5">
+                    Will be posted as a normal video.
+                  </Text>
+                )}
+              </View>
             )}
 
             {isAudioRecording && (
@@ -1459,7 +1517,7 @@ export default function UploadScreen() {
 
             {showExtras && (
               <View className="mt-4">
-                {(mediaMode === "video" || isLiveMode) && (
+                {((mediaMode === "video" && !postAsShort) || isLiveMode) && (
                   !showDescription ? (
                     <TouchableOpacity
                       onPress={handleShowDescription}
@@ -1563,7 +1621,7 @@ export default function UploadScreen() {
         </Pressable>
       </ScrollView>
 
-      {!isLiveMode && !isQuoteMode && (
+      {!isLiveMode && !isQuoteMode && !postAsShort && (
         <Animated.View style={monetizationAnimStyle}>
           <MonetizationPanel
             state={monetization}
@@ -1709,7 +1767,7 @@ export default function UploadScreen() {
           </TouchableOpacity>
         )}
 
-        {!isLiveMode && !isQuoteMode && mediaMode === "video" && (
+        {!isLiveMode && !isQuoteMode && mediaMode === "video" && !postAsShort && (
           <View className="flex-row items-center">
             {!showMonetization && monetization.ppvEnabled && (
               <TouchableOpacity

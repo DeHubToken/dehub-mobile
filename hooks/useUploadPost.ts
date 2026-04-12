@@ -42,6 +42,11 @@ export type UploadStage =
 
 type MediaMode = "none" | "images" | "video" | "audio";
 
+const MAX_SHORT_DURATION_MS = 90_000;
+
+export const isShortVideo = (asset: ImagePicker.ImagePickerAsset): boolean =>
+  (asset.height ?? 0) > (asset.width ?? 0) && (asset.duration ?? Infinity) <= MAX_SHORT_DURATION_MS;
+
 export type ValidationResult = {
   valid: boolean;
   error?: string;
@@ -64,6 +69,7 @@ export type UploadPayload = {
   thumbnailUri: string | null;
   coverUri: string | null;
   monetization: MonetizationState;
+  postAsShort: boolean;
 };
 
 
@@ -115,6 +121,16 @@ export function useUploadPost() {
 
   const validate = useCallback((p: UploadPayload): ValidationResult => {
     const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
+
+    if (mode === "video" && p.postAsShort) {
+      const title = p.bodyText.trim();
+      if (title.length < 1) return { valid: false, error: "Title is required for shorts." };
+      if (!p.pickedVideo) return { valid: false, error: "A video is required." };
+      if ((p.pickedVideo.duration ?? 0) > MAX_SHORT_DURATION_MS) {
+        return { valid: false, error: "Shorts must be 90 seconds or less." };
+      }
+      return { valid: true };
+    }
 
     // Video mode: title + video + thumbnail required
     if (mode === "video") {
@@ -250,7 +266,7 @@ export function useUploadPost() {
       fd.append("category", JSON.stringify(p.categories));
 
       if (mode === "video") {
-        fd.append("postType", "video");
+        fd.append("postType", p.postAsShort ? "short" : "video");
 
         // Video file
         if (p.pickedVideo?.uri) {
@@ -269,9 +285,8 @@ export function useUploadPost() {
           fd.append("files", { uri: thumb, name: tName, type: tType } as any);
         }
 
-        // StreamInfo for monetization
-        const streamInfo = buildStreamInfo(p.monetization);
-        fd.append("streamInfo", JSON.stringify(filteredStreamInfo(streamInfo)));
+        const streamInfo = p.postAsShort ? {} : buildStreamInfo(p.monetization);
+        fd.append("streamInfo", JSON.stringify(p.postAsShort ? {} : filteredStreamInfo(streamInfo)));
       } else if (mode === "audio") {
         fd.append("postType", "feed-audio");
         if (p.pickedAudio) {
@@ -464,10 +479,18 @@ export function useUploadPost() {
   const enqueueJob = useCallback(
     (p: UploadPayload): boolean => {
       const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
-      const postType = mode === "video" ? "video" : mode === "audio" ? "feed-audio" : mode === "images" ? "feed-images" : "feed-simple";
+      const isShort = mode === "video" && p.postAsShort;
+      const postType = isShort ? "short" : mode === "video" ? "video" : mode === "audio" ? "feed-audio" : mode === "images" ? "feed-images" : "feed-simple";
 
       const video: SerializedMedia | null = p.pickedVideo
-        ? { uri: p.pickedVideo.uri, name: getFileName(p.pickedVideo.uri, "video.mp4"), mimeType: guessMime(p.pickedVideo.uri, "video/mp4") }
+        ? {
+            uri: p.pickedVideo.uri,
+            name: getFileName(p.pickedVideo.uri, "video.mp4"),
+            mimeType: guessMime(p.pickedVideo.uri, "video/mp4"),
+            durationMs: p.pickedVideo.duration ?? undefined,
+            width: p.pickedVideo.width ?? undefined,
+            height: p.pickedVideo.height ?? undefined,
+          }
         : null;
 
       const audio: SerializedMedia | null = p.pickedAudio
@@ -480,7 +503,7 @@ export function useUploadPost() {
         mimeType: guessMime(img.uri, "image/jpeg"),
       }));
 
-      const streamInfo = mode === "video" ? buildStreamInfo(p.monetization) : {};
+      const streamInfo = (mode === "video" && !isShort) ? buildStreamInfo(p.monetization) : {};
       const thumb = p.coverUri || p.thumbnailUri || null;
 
       const serialized: SerializedUploadPayload = {
@@ -492,10 +515,10 @@ export function useUploadPost() {
         video,
         audio,
         thumbnailUri: thumb,
-        streamInfoJson: JSON.stringify(mode === "video" ? filteredStreamInfo(streamInfo) : {}),
+        streamInfoJson: JSON.stringify((mode === "video" && !isShort) ? filteredStreamInfo(streamInfo) : {}),
       };
 
-      const isBounty = mode === "video" && p.monetization.bountyEnabled;
+      const isBounty = mode === "video" && !isShort && p.monetization.bountyEnabled;
       let bountyConfig: BountyConfig | undefined;
       if (isBounty) {
         bountyConfig = {
