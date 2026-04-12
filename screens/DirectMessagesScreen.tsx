@@ -25,7 +25,7 @@ import { truncateAddress } from "../libs/strings.util";
 import { toastInfo, toastSuccess, toastError } from "../libs/toast";
 import { blockUser } from "../services/block.service";
 import { deleteConversation, getDmUserStatus, addFreeAccess, removeFreeAccess, type DmUserStatus } from "../services/dm/dm.api";
-import { useGateToHome } from "../hooks/useGateToHome";
+import SignInGate from "../components/auth/SignInGate";
 import type {
   DmConversation,
   DmUser,
@@ -34,12 +34,10 @@ import { getOtherParticipant } from "../services/dm/dm.types";
 import { useDmContacts, dmActions } from "../store/dm.store";
 import { useDMContext } from "../context/DMContext";
 
-const DirectMessagesScreen: React.FC = () => {
+const DirectMessagesInner: React.FC = () => {
   const navigation = useNavigation<any>();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
-  const allow = isSignedIn && !needsUsername;
-  useGateToHome(allow);
 
   const { contactsLoading, refreshContacts } = useDMContext();
   const conversations = useDmContacts();
@@ -433,5 +431,11 @@ const DirectMessagesScreen: React.FC = () => {
     </KeyboardAvoidingView>
   );
 };
+
+const DirectMessagesScreen: React.FC = () => (
+  <SignInGate>
+    <DirectMessagesInner />
+  </SignInGate>
+);
 
 export default DirectMessagesScreen;

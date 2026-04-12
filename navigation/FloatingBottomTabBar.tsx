@@ -19,6 +19,7 @@ import { ScreenNames } from "./ScreenNames";
 import { WEBSITE_LINK } from "../config/links";
 import { openInApp } from "../libs/links.utils";
 import { useTabBarHide } from "../context/TabBarHideContext";
+import { useAuthState } from "../context/AuthContext";
 
 const { width: SCREEN_W } = Dimensions.get("window");
 const NAV_WIDTH = Math.min(SCREEN_W * 0.72, 340);
@@ -57,6 +58,14 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "ShieldCheck", url: `${WEBSITE_LINK}/governance` },
   { icon: "Briefcase", url: `${WEBSITE_LINK}/app/jobs` },
 ];
+
+const AUTHED_ONLY_SCREENS = new Set([
+  ScreenNames.Profile,
+  ScreenNames.Notifications,
+  ScreenNames.MyLibrary,
+  ScreenNames.Dpay,
+  ScreenNames.AccountSettings,
+]);
 
 const AnimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
@@ -161,6 +170,8 @@ const ScrollNavButton = memo<{ icon: IconName; onPress: () => void }>(
 
 const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
   const insets = useSafeAreaInsets();
+  const { isSignedIn, needsUsername } = useAuthState();
+  const isAuthed = isSignedIn && !needsUsername;
   const animProgress = useSharedValue(1);
   const hasAnimated = useRef(false);
   const scrollRef = useRef<ScrollView>(null);
@@ -269,7 +280,9 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
               />
             );
           })}
-          {SCROLL_NAV_ITEMS.map((item) => (
+          {SCROLL_NAV_ITEMS
+            .filter((item) => isAuthed || !item.screen || !AUTHED_ONLY_SCREENS.has(item.screen as any))
+            .map((item) => (
             <ScrollNavButton
               key={item.screen ?? item.url}
               icon={item.icon}

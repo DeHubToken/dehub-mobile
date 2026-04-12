@@ -370,6 +370,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
             refreshing={refreshing}
             onRefresh={onRefresh}
             tintColor={theme.colors.accentForeground}
+            progressViewOffset={headerInset}
           />
         }
         ListFooterComponent={

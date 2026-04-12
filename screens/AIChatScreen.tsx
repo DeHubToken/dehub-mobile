@@ -37,6 +37,7 @@ import { getDeviceLanguage } from '../services/translation.service';
 import { toastError } from '../libs';
 import { ScreenNames } from '../navigation/ScreenNames';
 import { createLogger } from '../libs/logger';
+import SignInGate from '../components/auth/SignInGate';
 
 const log = createLogger('AIChatScreen');
 const AI_AVATAR = require('../assets/web-icons/ai-assistant-avatar.png');
@@ -49,7 +50,7 @@ const MAX_RETRIES = 2;
 const RETRY_DELAYS = [1000, 2000];
 const TAB_BAR_HEIGHT = 80;
 
-export default function AIChatScreen() {
+function AIChatScreenInner() {
   const navigation = useNavigation<any>();
   const user = useUser();
   const { isSignedIn } = useAuthState();
@@ -521,3 +522,11 @@ const s = StyleSheet.create({
     fontSize: 13,
   },
 });
+
+export default function AIChatScreen() {
+  return (
+    <SignInGate>
+      <AIChatScreenInner />
+    </SignInGate>
+  );
+}
