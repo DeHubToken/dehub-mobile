@@ -44,6 +44,7 @@ export enum ScreenNames {
   Explore = 'Explore',
   UploadQueue = 'UploadQueue',
   ActiveSessions = 'ActiveSessions',
+  ShortsViewer = 'ShortsViewer',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',

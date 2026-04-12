@@ -118,6 +118,11 @@ export type AppStackParamList = {
     tokenId?: string | number;
     isSignedIn?: boolean;
   };
+  [ScreenNames.ShortsViewer]: {
+    initialIndex?: number;
+    initialItems?: import('../services/feed.unified.service').UnifiedFeedItem[];
+    feedParams?: Record<string, any>;
+  };
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> = CompositeScreenProps<

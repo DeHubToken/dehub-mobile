@@ -4,6 +4,7 @@ import Animated from "react-native-reanimated";
 import { useAnimatedReaction } from "react-native-reanimated";
 import InfiniteVideoFeed, { type InfiniteVideoFeedHandle } from "../components/Home/InfiniteVideoFeed";
 import HomeImageGrid, { type HomeImageGridHandle } from "../components/Home/HomeImageGrid";
+import ShortsGrid, { type ShortsGridHandle } from "../components/Home/ShortsGrid";
 import HomeHeader from "../components/HomeHeader";
 import FeedNavBar from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
@@ -35,8 +36,10 @@ export default function HomeScreen() {
   const { openDrawer } = useDrawer();
   const feedRef = useRef<InfiniteVideoFeedHandle | null>(null);
   const imageGridRef = useRef<HomeImageGridHandle | null>(null);
+  const shortsGridRef = useRef<ShortsGridHandle | null>(null);
 
   const isImageTab = filters.postType === "feed-images";
+  const isShortsTab = filters.postType === "short";
 
   const {
     translateY: headerTranslateY,
@@ -141,10 +144,12 @@ export default function HomeScreen() {
     showHeader();
     if (isImageTab) {
       imageGridRef.current?.scrollToTopAndRefresh();
+    } else if (isShortsTab) {
+      shortsGridRef.current?.scrollToTopAndRefresh();
     } else {
       feedRef.current?.scrollToTopAndRefresh();
     }
-  }, [showHeader, isImageTab]);
+  }, [showHeader, isImageTab, isShortsTab]);
 
   const handleRetry = useCallback(async () => {
     setCategoriesLoading(true);
@@ -227,6 +232,17 @@ export default function HomeScreen() {
       {isImageTab ? (
         <HomeImageGrid
           gridRef={imageGridRef}
+          params={feedParams}
+          pageSize={20}
+          headerInset={headerHeight}
+          onRefresh={handleRefresh}
+          onScrollBegin={handleScrollBegin}
+          onScrollOffset={onScrollOffset}
+          onScrollEnd={handleScrollEnd}
+        />
+      ) : isShortsTab ? (
+        <ShortsGrid
+          gridRef={shortsGridRef}
           params={feedParams}
           pageSize={20}
           headerInset={headerHeight}

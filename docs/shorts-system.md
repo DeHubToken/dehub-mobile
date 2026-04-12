@@ -120,6 +120,102 @@ When a short is uploaded, the backend automatically generates these assets durin
 
 ---
 
+## Fetching Shorts Feed
+
+### Endpoint
+
+`GET /feed/shorts`
+
+**Authentication**: Optional. When a JWT is provided, response includes `isLiked`, `isSaved`, `isFollowing`, etc.
+
+### Query Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `page` | number | `1` | Page number |
+| `limit` | number | `20` | Items per page (max 50) |
+| `sortBy` | string | `random` | Sort mode: `random`, `createdAt`, `likes`, `views` |
+| `shuffleSeed` | string | — | Seed from first response for stable pagination across pages |
+| `category` | string | — | Filter by category |
+| `minter` | string | — | Filter by creator wallet address |
+| `followingOnly` | boolean | — | Only show shorts from followed accounts (requires JWT) |
+
+### Example Request
+
+```typescript
+// First page — no seed needed
+const res = await api.get('/feed/shorts?limit=20');
+const { result, pagination, shuffleSeed } = res.data;
+
+// Subsequent pages — pass the seed for consistent ordering
+const page2 = await api.get(`/feed/shorts?page=2&limit=20&shuffleSeed=${shuffleSeed}`);
+```
+
+### Response (200)
+
+```json
+{
+  "status": true,
+  "result": [
+    {
+      "tokenId": 456,
+      "name": "Quick Tutorial",
+      "description": "Check this out!",
+      "postType": "short",
+      "imageUrl": "shorts/456.jpg",
+      "videoUrl": "videos/456.mp4",
+      "previewUrl": "previews/456.mp4",
+      "videoDuration": 28.5,
+      "views": 120,
+      "likes": 15,
+      "totalVotes": { "for": 15, "against": 2 },
+      "minter": "0x...",
+      "minterUsername": "creator1",
+      "minterDisplayName": "Creator One",
+      "minterAvatarUrl": "avatars/creator1.jpg",
+      "isLiked": false,
+      "isSaved": false,
+      "isFollowing": true,
+      "createdAt": "2026-04-10T12:00:00.000Z"
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 20,
+    "totalCount": 85,
+    "totalPages": 5,
+    "hasMore": true
+  },
+  "shuffleSeed": "k7x9m2a1713500000"
+}
+```
+
+### How Random Sort Works
+
+1. On the first request (no `shuffleSeed`), the backend fetches a pool of up to **200** shorts, applies creator diversity (max 1 per creator), shuffles with a seeded random, and caches the shuffled order in Redis for **30 minutes**.
+2. A `shuffleSeed` is returned in the response — pass it on subsequent page requests for stable pagination.
+3. When `hasMore` becomes `false`, the user has reached the end of the pool. To get fresh content, omit `shuffleSeed` to generate a new shuffle.
+
+### Chronological Sort
+
+```typescript
+// Latest shorts first
+const res = await api.get('/feed/shorts?sortBy=createdAt&limit=20');
+```
+
+When using `sortBy=createdAt`, `likes`, or `views`, standard page-based pagination applies (no `shuffleSeed` needed). `hasMore` and `totalPages` work the same as the regular feed.
+
+### Following-Only Feed
+
+```typescript
+// Requires JWT auth header
+const res = await api.get('/feed/shorts?followingOnly=true', {
+  headers: { Authorization: `Bearer ${token}` },
+});
+```
+
+---
+
 ## Token Document Fields (GET endpoints)
 
 When fetching shorts via any GET endpoint, these fields are relevant:
