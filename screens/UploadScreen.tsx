@@ -56,16 +56,6 @@ import type { LiveUploadPayload } from "../hooks/useUploadLive";
 import type { AppStackParamList } from "../navigation/types";
 import { ScreenNames } from "../navigation/ScreenNames";
 import QuotedPostEmbed from "../components/common/QuotedPostEmbed";
-import { createQuotePost } from "../services/repost.service";
-import {
-  useWeb3Provider,
-  useStreamCollectionContract,
-} from "../hooks/use-web3";
-import { mintNftOnChain } from "../services/mint.service";
-import { parseTxError } from "../libs/web3.util";
-import {
-  defaultChainId as DEFAULT_CHAIN_ID,
-} from "../config/constants";
 import { sendAIChat } from "../services/ai.service";
 
 const TITLE_MAX = 140;
@@ -90,8 +80,6 @@ export default function UploadScreen() {
   const incomingQuotedPost = route.params?.quotedPost as Record<string, any> | undefined;
   const authUser = useUser();
   const insets = useSafeAreaInsets();
-  const { chainId } = useWeb3Provider();
-  const streamCollectionContract = useStreamCollectionContract();
   const titleRef = useRef<TextInput>(null);
   const descriptionRef = useRef<TextInput>(null);
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
@@ -383,6 +371,8 @@ export default function UploadScreen() {
     upload,
     uploadStage,
     isUploading,
+    enqueueJob,
+    enqueueQuoteJob,
   } = useUploadPost();
 
   const {
@@ -393,11 +383,10 @@ export default function UploadScreen() {
     isUploading: isLiveUploading,
   } = useUploadLive();
 
-  const [quoteUploadStage, setQuoteUploadStage] = useState<UploadStage>("idle");
-  const [isQuoteUploading, setIsQuoteUploading] = useState(false);
-
-  const activeIsUploading = isQuoteMode ? isQuoteUploading : isLiveMode ? isLiveUploading : isUploading;
-  const activeUploadStage = isQuoteMode ? quoteUploadStage : isLiveMode ? liveUploadStage : uploadStage;
+  // Regular and quote uploads are now background-queued (not blocking).
+  // Only live mode blocks the screen.
+  const activeIsUploading = isLiveMode ? isLiveUploading : false;
+  const activeUploadStage = isLiveMode ? liveUploadStage : "idle" as UploadStage;
 
   // Intercept Android back button (placed after useUploadPost for isUploading)
   useEffect(() => {
@@ -553,10 +542,22 @@ export default function UploadScreen() {
     setShowConfirm(true);
   }, [canPost, activeIsUploading, isLiveMode, isQuoteMode, bodyText, pickedVideo, pickedAudio, pickedImages, getPayload, validate, preUploadCheck, buildConfirmText, handleGoLive]);
 
-  const handleConfirmUpload = useCallback(async () => {
+  const navigateHome = useCallback(() => {
+    nav.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: ScreenNames.Root, params: { screen: ScreenNames.Home } }],
+      }),
+    );
+  }, [nav]);
+
+  const handleConfirmUpload = useCallback(() => {
     const payload = getPayload();
-    await upload(payload);
-  }, [getPayload, upload]);
+    const ok = enqueueJob(payload);
+    if (!ok) return;
+    setShowConfirm(false);
+    setTimeout(navigateHome, 120);
+  }, [getPayload, enqueueJob, navigateHome]);
 
   const handleRemoveQuoteEmbed = useCallback(() => {
     setIsQuoteMode(false);
@@ -564,112 +565,25 @@ export default function UploadScreen() {
     setQuotedPost(undefined);
   }, []);
 
-  const handleConfirmQuoteUpload = useCallback(async () => {
+  const handleConfirmQuoteUpload = useCallback(() => {
     if (!quotedTokenId) return;
-    try {
-      setIsQuoteUploading(true);
-      setQuoteUploadStage("uploading");
-
-      const fd = new FormData();
-      fd.append("quotedTokenId", String(quotedTokenId));
-      fd.append("chainId", String(chainId ?? DEFAULT_CHAIN_ID));
-      fd.append("category", JSON.stringify(categories));
-      fd.append("streamInfo", JSON.stringify({}));
-      fd.append("plans", JSON.stringify([]));
-
-      if (pickedVideo) {
-        fd.append("postType", "video");
-        fd.append("name", bodyText.trim());
-        fd.append("description", description.trim());
-        const vName = getFileName(pickedVideo.uri, "video.mp4");
-        const vType = guessMime(pickedVideo.uri, "video/mp4");
-        // @ts-ignore RN FormData file shape
-        fd.append("files", { uri: pickedVideo.uri, name: vName, type: vType } as any);
-        const thumb = coverUri || thumbnailUri;
-        if (thumb) {
-          const tName = getFileName(thumb, "thumbnail.jpg");
-          const tType = guessMime(thumb, "image/jpeg");
-          // @ts-ignore RN FormData file shape
-          fd.append("files", { uri: thumb, name: tName, type: tType } as any);
-        }
-      } else if (pickedImages.length > 0) {
-        fd.append("postType", "feed-images");
-        fd.append("name", "");
-        fd.append("description", bodyText.trim());
-        pickedImages.forEach((img) => {
-          if (!img?.uri) return;
-          const name = getFileName(img.uri, "image.jpg");
-          const type = guessMime(img.uri, "image/jpeg");
-          // @ts-ignore RN FormData file shape
-          fd.append("feed-images", { uri: img.uri, name, type } as any);
-        });
-      } else if (pickedAudio) {
-        fd.append("postType", "feed-audio");
-        fd.append("name", "");
-        fd.append("description", bodyText.trim());
-        const aName = pickedAudio.name || "audio.m4a";
-        const aType = pickedAudio.mimeType || "audio/x-m4a";
-        // @ts-ignore RN FormData file shape
-        fd.append("feed-audio", { uri: pickedAudio.uri, name: aName, type: aType } as any);
-      } else {
-        fd.append("postType", "feed-simple");
-        fd.append("name", "");
-        fd.append("description", bodyText.trim());
-      }
-
-      const res = await createQuotePost(fd);
-      setQuoteUploadStage("processing");
-
-      const createdTokenId = res.createdTokenId;
-      const timestamp = res.timestamp;
-      const v = res.v;
-      const r = res.r;
-      const s = res.s;
-
-      if (createdTokenId == null || timestamp == null || v == null || !r || !s) {
-        throw new Error("Mint signature payload missing");
-      }
-
-      if (!streamCollectionContract) throw new Error("Wallet not ready to mint");
-
-      setQuoteUploadStage("awaiting-wallet");
-      const tx = await mintNftOnChain(
-        streamCollectionContract,
-        Number(createdTokenId),
-        timestamp,
-        v,
-        r,
-        s,
-      );
-      setQuoteUploadStage("minting");
-      await tx?.wait?.(1);
-
-      setQuoteUploadStage("done");
-      toastSuccess("Quote post sent!", {
-        description: "Your quote post is being processed. It may take a moment to appear in your feed.",
-      });
-
-      setIsQuoteUploading(false);
-      setQuoteUploadStage("idle");
-      nav.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{ name: ScreenNames.Root, params: { screen: ScreenNames.Home } }],
-        }),
-      );
-    } catch (e: any) {
-      console.error("[UploadScreen] quote upload error:", e);
-      const inMintPhase = ["awaiting-wallet", "minting"].includes(quoteUploadStage);
-      const msg = inMintPhase ? parseTxError(e, "send") : (e?.message || "Quote post failed");
-      toastError(msg);
-    } finally {
-      setIsQuoteUploading(false);
-      setQuoteUploadStage("idle");
-    }
+    const ok = enqueueQuoteJob({
+      bodyText: bodyText.trim(),
+      description: description.trim(),
+      categories,
+      pickedVideo,
+      pickedImages,
+      pickedAudio,
+      coverUri,
+      thumbnailUri,
+      quotedTokenId: Number(quotedTokenId),
+    });
+    if (!ok) return;
+    setShowConfirm(false);
+    setTimeout(navigateHome, 120);
   }, [
-    quotedTokenId, chainId, categories, pickedVideo, bodyText, description,
-    coverUri, thumbnailUri, pickedImages, streamCollectionContract,
-    quoteUploadStage, nav,
+    quotedTokenId, categories, pickedVideo, bodyText, description,
+    coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome,
   ]);
 
   const buildDraftData = useCallback(() => ({
