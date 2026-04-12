@@ -278,7 +278,14 @@ const NotificationScreen = () => {
     }
   }, []);
 
-  const navigateToFeed = useCallback((tokenId: number, commentId?: string) => {
+  const navigateToFeed = useCallback((tokenId: number, commentId?: string, postType?: string) => {
+    if (postType === 'video' || postType === 'short') {
+      navigation.navigate(ScreenNames.ShortsViewer, {
+        initialIndex: 0,
+        initialItems: [{ tokenId, postType: 'short' } as any],
+      });
+      return;
+    }
     navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
   }, [navigation]);
 
@@ -337,24 +344,24 @@ const NotificationScreen = () => {
         break;
 
       case 'like':
-        if (tokenId) navigateToFeed(tokenId);
+        if (tokenId) navigateToFeed(tokenId, undefined, postType);
         break;
 
       case 'comment':
       case 'comment_reply':
       case 'comment_like':
-        if (tokenId) navigateToFeed(tokenId, commentId);
+        if (tokenId) navigateToFeed(tokenId, commentId, postType);
         break;
 
       case 'repost':
-        if (tokenId) navigateToFeed(tokenId);
+        if (tokenId) navigateToFeed(tokenId, undefined, postType);
         break;
 
       case 'quote':
         if (metadata?.quoteTokenId) {
-          navigateToFeed(metadata.quoteTokenId);
+          navigateToFeed(metadata.quoteTokenId, undefined, postType);
         } else if (tokenId) {
-          navigateToFeed(tokenId);
+          navigateToFeed(tokenId, undefined, postType);
         }
         break;
 
@@ -362,11 +369,11 @@ const NotificationScreen = () => {
       case 'ppv_purchase':
       case 'bounty_available':
       case 'bounty_claimed':
-        if (tokenId) navigateToFeed(tokenId);
+        if (tokenId) navigateToFeed(tokenId, undefined, postType);
         break;
 
       case 'video_milestone':
-        if (tokenId) navigateToFeed(tokenId);
+        if (tokenId) navigateToFeed(tokenId, undefined, postType);
         break;
 
       case 'livestream_start':
@@ -387,11 +394,11 @@ const NotificationScreen = () => {
         break;
 
       case 'mention':
-        if (tokenId) navigateToFeed(tokenId, commentId);
+        if (tokenId) navigateToFeed(tokenId, commentId, postType);
         break;
 
       default:
-        if (tokenId) navigateToFeed(tokenId);
+        if (tokenId) navigateToFeed(tokenId, undefined, postType);
         break;
     }
   }, [
