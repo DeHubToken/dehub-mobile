@@ -43,6 +43,7 @@ export enum ScreenNames {
   AIChat = 'AIChat',
   Explore = 'Explore',
   UploadQueue = 'UploadQueue',
+  ActiveSessions = 'ActiveSessions',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',

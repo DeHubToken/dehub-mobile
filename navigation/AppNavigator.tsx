@@ -33,7 +33,7 @@ import PostResolverScreen from '../screens/PostResolverScreen';
 import { LivepeerProvider } from "../config/livepeer.config";
 import ChatScreen from "../screens/ChatScreen";
 import LiveChatScreen from "../screens/LiveChatScreen";
-import LiveChatInfoScreen from "../screens/LiveChatInfoScreen";import UploadQueueScreen from '../screens/UploadQueueScreen';import { useAuthState } from "../context/AuthContext";
+import LiveChatInfoScreen from "../screens/LiveChatInfoScreen";import UploadQueueScreen from '../screens/UploadQueueScreen';import ActiveSessionsScreen from '../screens/ActiveSessionsScreen';import { useAuthState } from "../context/AuthContext";
 
 /** Standardized gesture response distances */
 const GESTURE_DISTANCE = {
@@ -227,6 +227,10 @@ export default function AppNavigator() {
             <Stack.Screen
               name={ScreenNames.AccountSettings}
               component={AccountSettingsScreen}
+            />
+            <Stack.Screen
+              name={ScreenNames.ActiveSessions}
+              component={ActiveSessionsScreen}
             />
             <Stack.Screen
               name={ScreenNames.YourVideos}

@@ -250,6 +250,13 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
             />
             <Divider />
             <SettingsRow
+              icon="Smartphone"
+              label="Active Sessions"
+              subtitle="Manage logged-in devices"
+              onPress={() => navigation.navigate(ScreenNames.ActiveSessions)}
+            />
+            <Divider />
+            <SettingsRow
               icon="Ban"
               label="Blocked Accounts"
               subtitle={blockedCount > 0 ? `${blockedCount} blocked` : "None blocked"}

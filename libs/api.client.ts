@@ -3,6 +3,7 @@ import Constants from 'expo-constants';
 import env from '../config/env';
 import { createAuthHeaders, getAuthToken } from './auth.utils';
 import { tokenRefreshManager } from './token-refresh';
+import { getDeviceHeaders } from './device';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
 const PLATFORM = Platform.OS; // 'ios' | 'android'
@@ -52,6 +53,7 @@ export const apiClient = {
       'X-Client-Type': 'mobile',
       'X-Platform': PLATFORM,
       'X-App-Version': APP_VERSION,
+      ...(await getDeviceHeaders()),
       ...headers,
     };
     if (!isFormData) {
