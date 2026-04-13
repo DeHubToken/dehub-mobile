@@ -1,0 +1,409 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for libs/assets.util.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">libs</a> assets.util.ts</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/57</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/41</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/7</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/42</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as ImagePicker from "expo-image-picker";
+<span class="cstat-no" title="statement not covered" >import ImageCropPicker from "react-native-image-crop-picker";</span>
+<span class="cstat-no" title="statement not covered" >import * as ImageManipulator from "expo-image-manipulator";</span>
+&nbsp;
+/**
+ * @deprecated Use `runWithPermissions(["photos"], action)` from permissions.util instead.
+ * Kept for backward compat — delegates to the centralized permission gate.
+ */
+export const <span class="cstat-no" title="statement not covered" >requestMediaLibraryPermission = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync </span>(): Promise&lt;boolean&gt; =&gt; {</span>
+  const { ensureMediaLibraryPermission } = <span class="cstat-no" title="statement not covered" >require("./permissions.util");</span>
+  const result = <span class="cstat-no" title="statement not covered" >await ensureMediaLibraryPermission();</span>
+<span class="cstat-no" title="statement not covered" >  return result.granted;</span>
+};
+&nbsp;
+export type CropOptions = {
+  width?: number; // omit for free crop
+  height?: number; // omit for free crop
+  forceJpg?: boolean;
+  quality?: number; // 0..1
+  circle?: boolean;
+  free?: boolean; // enable free-style crop (no aspect lock)
+};
+&nbsp;
+export const <span class="cstat-no" title="statement not covered" >openCroppedImagePicker = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync </span>(opts: CropOptions): Promise&lt;string | null&gt; =&gt; {</span>
+  const { width, height, forceJpg = <span class="branch-0 cbranch-no" title="branch not covered" >true,</span> quality = <span class="branch-0 cbranch-no" title="branch not covered" >0.9,</span> circle = <span class="branch-0 cbranch-no" title="branch not covered" >false,</span> free = <span class="branch-0 cbranch-no" title="branch not covered" >false </span>} = <span class="cstat-no" title="statement not covered" >opts;</span>
+  const pickerOpts: any = <span class="cstat-no" title="statement not covered" >{</span>
+    cropping: true,
+    cropperCircleOverlay: circle,
+    mediaType: "photo",
+    compressImageQuality: quality,
+    forceJpg,
+  };
+  // If free crop, do not enforce width/height and enable freestyle if supported
+<span class="cstat-no" title="statement not covered" >  if (!free) {</span>
+<span class="cstat-no" title="statement not covered" >    if (width) <span class="cstat-no" title="statement not covered" >pickerOpts.width = width;</span></span>
+<span class="cstat-no" title="statement not covered" >    if (height) <span class="cstat-no" title="statement not covered" >pickerOpts.height = height;</span></span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    pickerOpts.freeStyleCropEnabled = true;</span>
+  }
+  const img = <span class="cstat-no" title="statement not covered" >await ImageCropPicker.openPicker(pickerOpts);</span>
+  const pickedUri = (<span class="cstat-no" title="statement not covered" >img as any)?.path || (img as any)?.sourceURL;</span>
+<span class="cstat-no" title="statement not covered" >  return pickedUri ?? null;</span>
+};
+&nbsp;
+export type ResizeOptions = {
+  width: number;
+  height: number;
+  compress?: number; // 0..1
+  format?: "jpeg" | "png" | "webp";
+};
+&nbsp;
+const saveFormat = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(f</span>mt: ResizeOptions["format"]) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  switch (fmt) {</span>
+    case "png":
+<span class="cstat-no" title="statement not covered" >      return ImageManipulator.SaveFormat.PNG;</span>
+    case "webp":
+<span class="cstat-no" title="statement not covered" >      return ImageManipulator.SaveFormat.WEBP;</span>
+    case "jpeg":
+    default:
+<span class="cstat-no" title="statement not covered" >      return ImageManipulator.SaveFormat.JPEG;</span>
+  }
+};
+&nbsp;
+export const <span class="cstat-no" title="statement not covered" >resizeAndCompress = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync </span>(</span>
+  uri: string,
+  { width, height, compress = <span class="branch-0 cbranch-no" title="branch not covered" >0.85,</span> format = <span class="branch-0 cbranch-no" title="branch not covered" >"jpeg" </span>}: ResizeOptions
+): Promise&lt;string&gt; =&gt; {
+  const manip = <span class="cstat-no" title="statement not covered" >await ImageManipulator.manipulateAsync(</span>
+    uri,
+    [{ resize: { width, height } }],
+    { compress, format: saveFormat(format) }
+  );
+<span class="cstat-no" title="statement not covered" >  return manip.uri;</span>
+};
+&nbsp;
+export type RNFile = { uri: string; name: string; type: string };
+&nbsp;
+export const <span class="cstat-no" title="statement not covered" >createRNImageFile = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span></span></span>
+  uri: string,
+  namePrefix: string,
+  mime: string = <span class="branch-0 cbranch-no" title="branch not covered" >"image/jpeg"</span>
+): RNFile =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  uri,
+  name: `${namePrefix}_${Date.now()}.jpg`,
+  type: mime,
+});
+&nbsp;
+export const <span class="cstat-no" title="statement not covered" >getFileName = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>u</span>ri: string, fallback: string): string =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    const p = <span class="cstat-no" title="statement not covered" >uri.split('?')[0];</span>
+    const name = <span class="cstat-no" title="statement not covered" >p.substring(p.lastIndexOf('/') + 1) || fallback;</span>
+<span class="cstat-no" title="statement not covered" >    return name;</span>
+  } catch {
+<span class="cstat-no" title="statement not covered" >    return fallback;</span>
+  }
+};
+&nbsp;
+export const <span class="cstat-no" title="statement not covered" >guessMime = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span>u</span>ri: string, fallback: string): string =&gt; {</span>
+  const lower = <span class="cstat-no" title="statement not covered" >(uri || '').toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >  if (lower.endsWith('.mp4')) <span class="cstat-no" title="statement not covered" >return 'video/mp4';</span></span>
+<span class="cstat-no" title="statement not covered" >  if (lower.endsWith('.mov')) <span class="cstat-no" title="statement not covered" >return 'video/quicktime';</span></span>
+<span class="cstat-no" title="statement not covered" >  if (lower.endsWith('.m4v')) <span class="cstat-no" title="statement not covered" >return 'video/x-m4v';</span></span>
+<span class="cstat-no" title="statement not covered" >  if (lower.endsWith('.webm')) <span class="cstat-no" title="statement not covered" >return 'video/webm';</span></span>
+<span class="cstat-no" title="statement not covered" >  if (lower.endsWith('.jpg') || lower.endsWith('.jpeg')) <span class="cstat-no" title="statement not covered" >return 'image/jpeg';</span></span>
+<span class="cstat-no" title="statement not covered" >  if (lower.endsWith('.png')) <span class="cstat-no" title="statement not covered" >return 'image/png';</span></span>
+<span class="cstat-no" title="statement not covered" >  if (lower.endsWith('.webp')) <span class="cstat-no" title="statement not covered" >return 'image/webp';</span></span>
+<span class="cstat-no" title="statement not covered" >  return fallback;</span>
+};
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-04-13T02:22:54.060Z
+            </div>
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
+    </body>
+</html>
+    
