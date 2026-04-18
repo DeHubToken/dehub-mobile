@@ -53,3 +53,7 @@ ios/*.xcodeproj/xcuserdata/
 
 # Service keys
 dhb-service-key.json
+
+# Jest coverage output
+coverage/
+jest-junit.xml
