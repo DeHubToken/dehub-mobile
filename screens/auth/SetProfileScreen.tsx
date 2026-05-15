@@ -271,7 +271,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
               accessibilityLabel="Continue to set profile"
             >
               <AccentButtonGradient
-                borderRadius={9999}
+                borderRadius={14}
                 style={{ 
                   paddingVertical: 16,
                   alignItems: "center",

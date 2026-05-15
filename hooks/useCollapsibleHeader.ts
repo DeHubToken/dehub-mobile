@@ -9,7 +9,7 @@ import {
 } from 'react-native-reanimated';
 import type { LayoutChangeEvent, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 
-const ANIM_CONFIG = { duration: 280, easing: Easing.out(Easing.cubic) };
+const ANIM_CONFIG = { duration: 380, easing: Easing.bezier(0.25, 1, 0.5, 1) };
 
 const TOP_THRESHOLD = 60;
 const SCROLL_DEAD_ZONE = 18;

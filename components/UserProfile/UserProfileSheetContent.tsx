@@ -11,6 +11,7 @@ import ReportModal from "../common/ReportModal";
 import Icon from "../ui/Icon";
 import { copyToClipboard } from "../../libs";
 import { shareProfile } from "../../libs/misc";
+import { useMutualFollowers } from "../../hooks/useMutualFollowers";
 import { WEBSITE_LINK } from "../../config/links";
 
 const FallbackAvatar = require("../../assets/default-avatar.png");
@@ -94,6 +95,11 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   const [showReportUser, setShowReportUser] = useState(false);
   const [showRemoveFollowerConfirm, setShowRemoveFollowerConfirm] = useState(false);
   const [showTip, setShowTip] = useState(false);
+
+  const { mutuals } = useMutualFollowers({
+    profileAddress: profileData?.address,
+    enabled: !isOwnProfile && !!profileData?.address,
+  });
 
   const handleOpenMenu = useCallback(() => {
     setShowProfileMenu(true);
@@ -200,6 +206,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           FallbackAvatar={FallbackAvatar}
           FallbackBanner={defaultBanner}
           socials={data}
+          mutuals={mutuals}
         />
         <View className="px-5 mt-2">
           {!isOwnProfile && youBlocked && (
@@ -258,6 +265,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     onUnblock,
     isPrivate,
     canViewContent,
+    mutuals,
   ]);
 
   if (loading || !data) {

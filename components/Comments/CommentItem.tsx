@@ -23,7 +23,7 @@ const resolveMediaUrl = (path: string): string => {
 };
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useUser } from "../../context/AuthContext";
-import { LikeCommentResult } from "../../services/nft.service";
+import { LikeCommentResult, DislikeCommentResult } from "../../services/nft.service";
 import type { Comment } from "../../services/nft.service";
 import type { CommentLayout } from "./CommentContextMenu";
 import { WEBSITE_LINK } from "../../config";
@@ -58,9 +58,10 @@ interface CommentItemProps {
   isReply?: boolean;
   onReply?: (comment: Comment) => void;
   onLike?: (commentId: number) => Promise<LikeCommentResult | void>;
+  onDislike?: (commentId: number) => Promise<DislikeCommentResult | void>;
   onUserPress?: (userId: string) => void;
   onEdit?: (comment: Comment) => void;
-  onLongPress?: (comment: Comment, layout: CommentLayout, extra: { liked: boolean; isOwnComment: boolean; isReply: boolean }) => void;
+  onLongPress?: (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean }) => void;
   tokenId?: number | string;
   contentType?: "video" | "feed";
   highlighted?: boolean;
@@ -71,6 +72,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   isReply = false,
   onReply,
   onLike,
+  onDislike,
   onUserPress,
   onEdit,
   onLongPress,
@@ -83,13 +85,21 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const [liked, setLiked] = useState(!!comment.isLiked);
   const [likeCount, setLikeCount] = useState(comment.likeCount || 0);
   const [isLiking, setIsLiking] = useState(false);
+  const [disliked, setDisliked] = useState(!!comment.isDisliked);
+  const [dislikeCount, setDislikeCount] = useState(comment.dislikeCount || 0);
+  const [isDisliking, setIsDisliking] = useState(false);
   const containerRef = useRef<View>(null);
 
   const likeScale = useSharedValue(1);
+  const dislikeScale = useSharedValue(1);
   const highlightOpacity = useSharedValue(highlighted ? 1 : 0);
 
   const likeAnimStyle = useAnimatedStyle(() => ({
     transform: [{ scale: likeScale.value }],
+  }));
+
+  const dislikeAnimStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: dislikeScale.value }],
   }));
 
   const highlightAnimStyle = useAnimatedStyle(() => ({
@@ -190,6 +200,34 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     }
   }, [liked, likeCount, isLiking, comment.id, onLike, likeScale]);
 
+  const handleDislikePress = useCallback(async () => {
+    if (isDisliking) return;
+
+    const wasDisliked = disliked;
+    const oldCount = dislikeCount;
+    setDisliked(!wasDisliked);
+    setDislikeCount((c) => wasDisliked ? Math.max(0, c - 1) : c + 1);
+
+    dislikeScale.value = withSequence(
+      withTiming(1.3, { duration: 100 }),
+      withSpring(1, { damping: 12, stiffness: 300 }),
+    );
+
+    setIsDisliking(true);
+    try {
+      const result = await onDislike?.(comment.id);
+      if (result && typeof result.disliked === "boolean") {
+        setDisliked(result.disliked);
+        setDislikeCount(result.dislikes);
+      }
+    } catch {
+      setDisliked(wasDisliked);
+      setDislikeCount(oldCount);
+    } finally {
+      setIsDisliking(false);
+    }
+  }, [disliked, dislikeCount, isDisliking, comment.id, onDislike, dislikeScale]);
+
   const handleReplyPress = useCallback(() => {
     onReply?.(comment);
   }, [comment, onReply]);
@@ -199,6 +237,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     containerRef.current?.measureInWindow((x, y, width, height) => {
       onLongPress(comment, { x, y, width, height }, {
         liked,
+        disliked,
         isOwnComment,
         isReply,
       });
@@ -228,6 +267,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
 
   return (
     <Pressable
+      onPress={() => {}}
       onLongPress={handleLongPress}
       delayLongPress={300}
     >
@@ -351,7 +391,27 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               )}
             </Pressable>
 
-            {!isReply && onReply && (
+            <Pressable
+              onPress={handleDislikePress}
+              disabled={isDisliking}
+              hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+              style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
+            >
+              <Animated.View style={dislikeAnimStyle}>
+                <Icon
+                  name="ThumbsDown"
+                  size={14}
+                  color={disliked ? ICON_ACTIVE : ICON_MUTED}
+                  fill={disliked ? ICON_ACTIVE : undefined}
+                  strokeWidth={1.8}
+                />
+              </Animated.View>
+              {dislikeCount > 0 && (
+                <Text style={{ fontSize: 11, color: "#8B8D90" }}>{dislikeCount}</Text>
+              )}
+            </Pressable>
+
+            {onReply && (
               <Pressable
                 onPress={handleReplyPress}
                 hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}

@@ -26,6 +26,7 @@ import {
 } from "../../libs/feedVideoFocus";
 import { createViewRecorder } from "../../services/view.service";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { getCachedMuted, setMutedState } from "../../libs/videoMutedState";
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
@@ -89,7 +90,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 }) => {
   const navigation = useNavigation<any>();
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(() => getCachedMuted());
   const [currentTime, setCurrentTime] = useState(0);
   const [videoDuration, setVideoDuration] = useState(0);
   const [hasStartedAutoplay, setHasStartedAutoplay] = useState(false);
@@ -114,13 +115,34 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   const player = useVideoPlayer(canPlay ? videoUrl : null, (p) => {
     p.loop = true;
-    p.muted = true;
+    p.muted = getCachedMuted();
     p.timeUpdateEventInterval = 0.5;
   });
 
   useEffect(() => {
     playerRef.current = player;
   }, [player]);
+
+  const [showControls, setShowControls] = useState(false);
+  const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearHideTimer = useCallback(() => {
+    if (hideControlsTimerRef.current) {
+      clearTimeout(hideControlsTimerRef.current);
+      hideControlsTimerRef.current = null;
+    }
+  }, []);
+
+  const startHideTimer = useCallback(() => {
+    clearHideTimer();
+    hideControlsTimerRef.current = setTimeout(() => {
+      setShowControls(false);
+    }, 1500);
+  }, [clearHideTimer]);
+
+  useEffect(() => {
+    return () => { clearHideTimer(); };
+  }, [clearHideTimer]);
 
   const stopPlayback = useCallback(() => {
     try { playerRef.current?.pause(); } catch {}
@@ -184,19 +206,23 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       if (isPlayingRef.current) stopPlayback();
       setHasStartedAutoplay(false);
       setVideoReady(false);
+      setShowControls(false);
+      clearHideTimer();
       return;
     }
     if (hasStartedAutoplay) return;
     autoplayTimerRef.current = setTimeout(() => {
       if (!isPlayingRef.current && playerRef.current && canPlay) {
-        playerRef.current.muted = true;
-        setIsMuted(true);
+        const m = getCachedMuted();
+        playerRef.current.muted = m;
+        setIsMuted(m);
         startPlayback();
         setHasStartedAutoplay(true);
+        setShowControls(false); // Controls hidden on autoplay
       }
     }, AUTOPLAY_DELAY);
     return () => { if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; } };
-  }, [canPlay, isVisible, hasStartedAutoplay, stopPlayback, startPlayback]);
+  }, [canPlay, isVisible, hasStartedAutoplay, stopPlayback, startPlayback, clearHideTimer]);
 
   useEffect(() => {
     const h = (state: AppStateStatus) => {
@@ -214,18 +240,55 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   const handleVideoPress = useCallback(() => {
     if (!canPlay) { onPress(); return; }
-    if (isPlayingRef.current) stopPlayback();
-    else startPlayback();
-  }, [canPlay, onPress, stopPlayback, startPlayback]);
+    
+    // Toggle play state and manage controls visibility
+    if (isPlayingRef.current) {
+      stopPlayback();
+      setShowControls(true);
+      clearHideTimer(); // Stay visible while paused
+    } else {
+      startPlayback();
+      setShowControls(true);
+      startHideTimer(); // Auto-hide after 1.5s when playing
+    }
+  }, [canPlay, onPress, stopPlayback, startPlayback, clearHideTimer, startHideTimer]);
 
   const handleToggleMute = useCallback(() => {
     if (!playerRef.current) return;
     const newMuted = !isMuted;
     playerRef.current.muted = newMuted;
     setIsMuted(newMuted);
+    setMutedState(newMuted);
     if (!newMuted) requestAudioFocus(stopPlayback);
     else releaseAudioFocus(stopPlayback);
-  }, [isMuted, stopPlayback]);
+    
+    if (isPlayingRef.current) {
+      startHideTimer(); // Reset hide timer when interacting
+    }
+  }, [isMuted, stopPlayback, startHideTimer]);
+
+  const [isLooping, setIsLooping] = useState(true);
+  const [playbackRate, setPlaybackRate] = useState(1);
+
+  const handleToggleLoop = useCallback(() => {
+    if (!playerRef.current) return;
+    const nextLoop = !isLooping;
+    playerRef.current.loop = nextLoop;
+    setIsLooping(nextLoop);
+    if (isPlayingRef.current) startHideTimer();
+  }, [isLooping, startHideTimer]);
+
+  const handleToggleSpeed = useCallback(() => {
+    if (!playerRef.current) return;
+    const currentSpeed = playerRef.current.playbackRate;
+    let nextSpeed = 1.0;
+    if (currentSpeed === 1.0) nextSpeed = 1.5;
+    else if (currentSpeed === 1.5) nextSpeed = 2.0;
+    else nextSpeed = 1.0;
+    playerRef.current.playbackRate = nextSpeed;
+    setPlaybackRate(nextSpeed);
+    if (isPlayingRef.current) startHideTimer();
+  }, [startHideTimer]);
 
   const handleFullscreen = useCallback(() => {
     const time = currentTime;
@@ -256,7 +319,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         setIsMuted(false);
         requestAudioFocus(stopPlayback);
       }
-      await videoViewRef.current.startPictureInPicture();
+      if ((videoViewRef.current as any).startPictureInPicture) {
+        await (videoViewRef.current as any).startPictureInPicture();
+      }
     } catch (err) {
       console.warn("[FeedVideoPlayer] PiP failed:", err);
       toastError("Picture-in-Picture is not supported on this device");
@@ -385,22 +450,35 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         </Pressable>
       )}
 
-      {!hideControls && isPlaying && (
+      {!hideControls && (isPlaying || showControls) && (
         <Pressable onPress={handleVideoPress} style={StyleSheet.absoluteFill}>
-          <View style={styles.controlsContainer}>
+          {showControls && (
+            <View style={styles.controlsContainer}>
             <View style={styles.topControls}>
+              <Pressable onPress={handleToggleSpeed} style={styles.glassButton}>
+                <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
+                <View style={styles.glassOverlay} />
+                <Text style={{ color: "#fff", fontSize: 11, fontWeight: "bold" }}>{playbackRate}x</Text>
+              </Pressable>
+              
+              <Pressable onPress={handleToggleLoop} style={styles.glassButton}>
+                <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
+                <View style={styles.glassOverlay} />
+                <Icon name={isLooping ? "Repeat" : "ArrowRight"} size={14} color={isLooping ? "#fff" : "#9CA3AF"} />
+              </Pressable>
+
+              <Pressable onPress={handlePiP} style={styles.glassButton}>
+                <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
+                <View style={styles.glassOverlay} />
+                <Icon name="PictureInPicture2" size={14} color="#fff" />
+              </Pressable>
+
               <Pressable onPress={handleToggleMute} style={styles.glassButton}>
                 <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
                 <View style={styles.glassOverlay} />
                 <Icon name={isMuted ? "VolumeX" : "Volume2"} size={16} color="#fff" />
               </Pressable>
-              {/* PiP disabled until expo-video Android crash is resolved
-              <Pressable onPress={handlePiP} style={styles.glassButton}>
-                <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
-                <View style={styles.glassOverlay} />
-                <Icon name="PictureInPicture2" size={16} color="#fff" />
-              </Pressable>
-              */}
+              
               <Pressable onPress={handleFullscreen} style={styles.glassButton}>
                 <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
                 <View style={styles.glassOverlay} />
@@ -429,6 +507,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               </View>
             </View>
           </View>
+          )}
         </Pressable>
       )}
 

@@ -26,6 +26,7 @@ import {
   getCommentsForToken,
   postComment,
   likeComment,
+  dislikeComment,
   editComment,
   deleteComment,
   postImageComment,
@@ -41,6 +42,10 @@ import { useMentions } from "../../hooks/useMentions";
 // Extended comment type for flat list with reply info
 interface FlatComment extends Comment {
   isReply?: boolean;
+  /** Nesting depth: 0 = top-level, 1 = direct reply, 2 = reply-to-reply, etc. */
+  depth: number;
+  /** ID of the root top-level comment this reply belongs to (set for all replies) */
+  rootParentId?: number;
 }
 
 interface CommentSectionProps {
@@ -82,7 +87,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // Context menu state (WhatsApp/IG-style long-press)
   const [contextComment, setContextComment] = useState<Comment | null>(null);
   const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
-  const [contextMeta, setContextMeta] = useState<{ liked: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
+  const [contextMeta, setContextMeta] = useState<{ liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
 
   // Media attachment state
   const [mediaAttachment, setMediaAttachment] = useState<MediaAttachment | null>(null);
@@ -113,78 +118,67 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // Keyboard lift for input
   const inputLift = kbVisible ? kbHeight : 0;
 
-  // Build flat list with replies inline after their parent
-  // If highlightCommentId is a reply, its parent is moved to the top with the
-  // highlighted reply as the first child.
+  // Build flat list with replies inline after their parent using recursive depth tracking.
+  // If highlightCommentId is a reply, its root ancestor chain is emitted first.
   const buildFlatComments = useCallback((rawComments: Comment[]): FlatComment[] => {
-    // Create a set of all reply IDs
-    const replyIdSet = new Set<number>();
-    rawComments.forEach((c) => {
-      if (Array.isArray(c.replyIds)) {
-        c.replyIds.forEach((id) => replyIdSet.add(Number(id)));
-      }
-    });
-
-    // Map by ID for quick lookup
     const byId = new Map<number, Comment>();
     rawComments.forEach((c) => byId.set(Number(c.id), c));
 
-    // Get top-level comments (not in any replyIds)
-    const topLevel = rawComments.filter((c) => !replyIdSet.has(Number(c.id)));
-
-    // Determine if highlighted comment is a reply
-    const hlId = highlightCommentId != null ? Number(highlightCommentId) : undefined;
-    const hlIsReply = hlId != null && replyIdSet.has(hlId);
-    let hlParentId: number | undefined;
-    if (hlIsReply) {
-      for (const c of rawComments) {
-        if (Array.isArray(c.replyIds) && c.replyIds.map(Number).includes(hlId!)) {
-          hlParentId = Number(c.id);
-          break;
-        }
+    // Build child map and parent map from replyIds
+    const childrenOf = new Map<number, number[]>();
+    const parentOf = new Map<number, number>();
+    rawComments.forEach((c) => {
+      if (Array.isArray(c.replyIds) && c.replyIds.length > 0) {
+        const childNums = c.replyIds.map(Number);
+        childrenOf.set(Number(c.id), childNums);
+        childNums.forEach((cid) => parentOf.set(cid, Number(c.id)));
       }
-    }
+    });
 
-    // Helper: emit a parent with its replies (highlighted reply first if applicable)
+    // Find roots: comments not in any replyIds array
+    const allReplyIds = new Set<number>();
+    childrenOf.forEach((ids) => ids.forEach((id) => allReplyIds.add(id)));
+
+    const flat: FlatComment[] = [];
     const emitted = new Set<number>();
-    const emitParent = (c: Comment, flat: FlatComment[]) => {
-      const cId = Number(c.id);
+
+    const emitRecursive = (comment: Comment, depth: number, rootParentId: number) => {
+      const cId = Number(comment.id);
       if (emitted.has(cId)) return;
       emitted.add(cId);
-      flat.push({ ...c, isReply: false });
-      if (Array.isArray(c.replyIds)) {
-        const replyNums = c.replyIds.map(Number);
-        // Emit highlighted reply first
-        if (hlId != null && replyNums.includes(hlId)) {
-          const hReply = byId.get(hlId);
-          if (hReply && !emitted.has(hlId)) {
-            emitted.add(hlId);
-            flat.push({ ...hReply, isReply: true });
-          }
-        }
-        // Remaining replies in original order
-        for (const rid of c.replyIds) {
-          const rId = Number(rid);
-          if (emitted.has(rId)) continue;
-          const reply = byId.get(rId);
-          if (reply) {
-            emitted.add(rId);
-            flat.push({ ...reply, isReply: true });
-          }
-        }
+      flat.push({ ...comment, isReply: depth > 0, depth, rootParentId });
+
+      const childIds = childrenOf.get(cId);
+      if (childIds) {
+        childIds.forEach((childId) => {
+          const child = byId.get(childId);
+          if (child) emitRecursive(child, depth + 1, rootParentId);
+        });
       }
     };
 
-    const flat: FlatComment[] = [];
-
-    // If highlighted comment is a reply, emit its parent first
-    if (hlIsReply && hlParentId != null) {
-      const parent = byId.get(hlParentId);
-      if (parent) emitParent(parent, flat);
+    // If highlighted comment is a reply, emit its root ancestor first
+    const hlId = highlightCommentId != null ? Number(highlightCommentId) : undefined;
+    let highlightedRootId: number | undefined;
+    if (hlId != null && parentOf.has(hlId)) {
+      let current: number = hlId;
+      while (parentOf.has(current)) {
+        current = parentOf.get(current)!;
+      }
+      highlightedRootId = current;
     }
 
-    // Emit remaining top-level comments
-    topLevel.forEach((c) => emitParent(c, flat));
+    if (highlightedRootId != null) {
+      const rootComment = byId.get(highlightedRootId);
+      if (rootComment) emitRecursive(rootComment, 0, highlightedRootId);
+    }
+
+    // Emit remaining roots in original order
+    rawComments.forEach((c) => {
+      if (!allReplyIds.has(Number(c.id))) {
+        emitRecursive(c, 0, Number(c.id));
+      }
+    });
 
     return flat;
   }, [highlightCommentId]);
@@ -233,9 +227,18 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // Like a comment - returns the result for optimistic sync
   const handleLikeComment = useCallback(async (commentId: number) => {
     if (!requireAuth) return;
-    
+
     return await requireAuth(async () => {
       return await likeComment({ commentId });
+    });
+  }, [requireAuth]);
+
+  // Dislike a comment - returns the result for optimistic sync
+  const handleDislikeComment = useCallback(async (commentId: number) => {
+    if (!requireAuth) return;
+
+    return await requireAuth(async () => {
+      return await dislikeComment({ commentId });
     });
   }, [requireAuth]);
 
@@ -247,11 +250,13 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     inputRef.current?.focus();
   }, []);
 
-  // Reply to a comment (only top-level)
+  // Reply to any comment (top-level or nested reply)
   const handleReply = useCallback((comment: Comment) => {
     setReplyingTo(comment);
     setEditingComment(null);
-    setInputText("");
+    // Prefill @mention of the author being replied to
+    const mentionName = comment.user?.username || comment.user?.displayName || "user";
+    setInputText(`@${mentionName} `);
     inputRef.current?.focus();
   }, []);
 
@@ -331,7 +336,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       setMediaPosting(true);
       const now = new Date().toISOString();
       const tempId = -Date.now();
-      const replyToId = replyingTo?.id;
+      const replyToId = replyingTo ? Number(replyingTo.id) : undefined;
+      const parentDepth = replyingTo ? ((replyingTo as FlatComment).depth ?? ((replyingTo as FlatComment).isReply ? 1 : 0)) : 0;
+      const rootParentId = replyingTo
+        ? ((replyingTo as FlatComment).rootParentId ?? Number(replyingTo.id))
+        : undefined;
+      const newDepth = replyingTo ? parentDepth + 1 : 0;
 
       // Build optimistic comment
       const optimistic: FlatComment = {
@@ -347,7 +357,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         likeCount: 0,
         isLiked: false,
         replyIds: [],
-        isReply: !!replyingTo,
+        isReply: newDepth > 0,
+        depth: newDepth,
+        rootParentId,
         // Optimistic media fields
         imageUrl: mediaAttachment.type === "image" ? mediaAttachment.uri : undefined,
         gifUrl: mediaAttachment.type === "gif" ? mediaAttachment.url : undefined,
@@ -355,13 +367,17 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         audioDuration: mediaAttachment.type === "audio" ? Math.round(mediaAttachment.durationMs / 1000) : undefined,
       };
 
-      // Insert optimistically
+      // Insert optimistically at the correct depth
       if (replyingTo) {
+        const parentId = Number(replyingTo.id);
         setFlatComments((prev) => {
-          const parentIndex = prev.findIndex((c) => c.id === replyingTo.id);
+          const parentIndex = prev.findIndex((c) => Number(c.id) === parentId);
           if (parentIndex === -1) return [...prev, optimistic];
+          // Insert after all existing descendants of parent
           let insertIndex = parentIndex + 1;
-          while (insertIndex < prev.length && prev[insertIndex].isReply) insertIndex++;
+          while (insertIndex < prev.length && prev[insertIndex].depth > parentDepth) {
+            insertIndex++;
+          }
           const newList = [...prev];
           newList.splice(insertIndex, 0, optimistic);
           return newList;
@@ -452,6 +468,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           await editComment({ commentId: editingComment.id, content: text });
         } else {
           // Optimistic update for new comment/reply
+          const parentDepth = replyingTo ? ((replyingTo as FlatComment).depth ?? ((replyingTo as FlatComment).isReply ? 1 : 0)) : 0;
+          const rootParentId = replyingTo
+            ? ((replyingTo as FlatComment).rootParentId ?? Number(replyingTo.id))
+            : undefined;
+          const newDepth = replyingTo ? parentDepth + 1 : 0;
+
           const optimisticComment: FlatComment = {
             id: tempId,
             content: text,
@@ -465,21 +487,22 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             likeCount: 0,
             isLiked: false,
             replyIds: [],
-            isReply: !!replyingTo,
+            isReply: newDepth > 0,
+            depth: newDepth,
+            rootParentId,
           };
 
           if (replyingTo) {
-            // Insert reply after parent and its existing replies
+            const parentId = Number(replyingTo.id);
             setFlatComments((prev) => {
-              const parentIndex = prev.findIndex((c) => c.id === replyingTo.id);
+              const parentIndex = prev.findIndex((c) => Number(c.id) === parentId);
               if (parentIndex === -1) return [...prev, optimisticComment];
-              
-              // Find where to insert (after parent and all its existing replies)
+
+              // Insert after all existing descendants of parent
               let insertIndex = parentIndex + 1;
-              while (insertIndex < prev.length && prev[insertIndex].isReply) {
+              while (insertIndex < prev.length && prev[insertIndex].depth > parentDepth) {
                 insertIndex++;
               }
-              
               const newList = [...prev];
               newList.splice(insertIndex, 0, optimisticComment);
               return newList;
@@ -489,7 +512,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             setFlatComments((prev) => [optimisticComment, ...prev]);
           }
 
-          const replyToId = replyingTo?.id;
+          const replyToId = replyingTo ? Number(replyingTo.id) : undefined;
           setReplyingTo(null);
           setInputText("");
           mentions.reset();
@@ -535,7 +558,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
   // Long-press → open context menu
   const handleCommentLongPress = useCallback(
-    (comment: Comment, layout: CommentLayout, extra: { liked: boolean; isOwnComment: boolean; isReply: boolean }) => {
+    (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean }) => {
       setContextComment(comment);
       setContextLayout(layout);
       setContextMeta(extra);
@@ -579,21 +602,36 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     }
   }, [contextComment]);
 
+  // Context menu action: dislike
+  const handleContextDislike = useCallback(async () => {
+    if (!contextComment) return;
+    try {
+      const result = await dislikeComment({ commentId: contextComment.id });
+      if (result && typeof result.disliked === 'boolean') {
+        setFlatComments((prev) =>
+          prev.map((c) =>
+            c.id === contextComment.id
+              ? { ...c, isDisliked: result.disliked, dislikeCount: result.dislikes }
+              : c
+          )
+        );
+      }
+    } catch (e) {
+      console.error('Failed to dislike comment:', e);
+    }
+  }, [contextComment]);
+
   // Context menu action: delete
   const handleContextDelete = useCallback(async () => {
     if (!contextComment) return;
     const commentId = contextComment.id;
-    const wasReply = contextMeta?.isReply;
-    // Optimistic removal
+    // Optimistic removal: remove the comment and all its descendants (depth > comment's depth)
     setFlatComments((prev) => {
-      if (wasReply) {
-        return prev.filter((c) => c.id !== commentId);
-      }
-      // Top-level: remove comment and all its replies
       const idx = prev.findIndex((c) => c.id === commentId);
       if (idx === -1) return prev;
+      const deleteDepth = prev[idx].depth;
       let endIdx = idx + 1;
-      while (endIdx < prev.length && prev[endIdx].isReply) endIdx++;
+      while (endIdx < prev.length && prev[endIdx].depth > deleteDepth) endIdx++;
       const next = [...prev];
       next.splice(idx, endIdx - idx);
       return next;
@@ -610,13 +648,15 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
   const renderComment = useCallback(({ item }: { item: FlatComment }) => {
     const isHighlighted = highlightedId != null && Number(item.id) === highlightedId;
+    const indent = item.depth > 0 ? item.depth * 20 : 0;
     return (
-      <View className={item.isReply ? "pl-6" : ""}>
+      <View style={indent > 0 ? { paddingLeft: indent } : undefined}>
         <CommentItem
           comment={item}
           isReply={item.isReply}
-          onReply={item.isReply ? undefined : handleReply}
+          onReply={handleReply}
           onLike={handleLikeComment}
+          onDislike={handleDislikeComment}
           onUserPress={handleUserPress}
           onEdit={handleStartEdit}
           onLongPress={handleCommentLongPress}
@@ -626,7 +666,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         />
       </View>
     );
-  }, [handleReply, handleLikeComment, handleUserPress, handleStartEdit, handleCommentLongPress, tokenId, contentType, highlightedId]);
+  }, [handleReply, handleLikeComment, handleDislikeComment, handleUserPress, handleStartEdit, handleCommentLongPress, tokenId, contentType, highlightedId]);
 
   const keyExtractor = useCallback((item: FlatComment) => `comment-${item.id}`, []);
 
@@ -790,10 +830,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         liked={contextMeta?.liked}
         canDelete={contextMeta?.isOwnComment}
         onClose={closeContextMenu}
-        onReply={contextMeta?.isReply ? undefined : handleContextReply}
+        onReply={handleContextReply}
         onEdit={contextMeta?.isOwnComment ? handleContextEdit : undefined}
         onDelete={contextMeta?.isOwnComment ? handleContextDelete : undefined}
         onLike={handleContextLike}
+        onDislike={handleContextDislike}
         tokenId={tokenId}
       />
     </View>

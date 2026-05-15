@@ -466,7 +466,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
           <TouchableOpacity
             disabled={sending}
             onPress={close}
-            className={`px-5 h-11 rounded-full bg-theme-neutrals-700 items-center justify-center ${
+            className={`px-5 h-11 rounded-xl bg-theme-neutrals-700 items-center justify-center ${
               sending ? "opacity-60" : ""
             }`}
           >

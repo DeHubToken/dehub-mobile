@@ -345,7 +345,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
               accessibilityLabel="Import Wallet"
             >
               <AccentButtonGradient
-                borderRadius={9999}
+                borderRadius={14}
                 style={{
                   paddingVertical: 16,
                   alignItems: "center",

@@ -8,6 +8,7 @@ import { theme } from "../theme";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import ProfileApps from "../components/Profile/ProfileApps";
+import ProfileTabs from "../components/Profile/ProfileTabs";
 import ProfileSignInPrompt from "../components/Profile/ProfileSignInPrompt";
 import ScreenHeader from "../components/ScreenHeader";
 
@@ -63,7 +64,7 @@ const ProfileScreen: React.FC = () => {
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title="Profile" />
       <ScrollView
-        contentContainerStyle={{ paddingBottom: 0, flexGrow: 0 }}
+        contentContainerStyle={{ paddingBottom: 102, flexGrow: 1 }}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
@@ -75,6 +76,9 @@ const ProfileScreen: React.FC = () => {
         <ProfileHeader />
         <ProfileAssets />
         <ProfileApps />
+        <View style={{ flex: 1, minHeight: 500 }}>
+          <ProfileTabs />
+        </View>
       </ScrollView>
     </View>
   );

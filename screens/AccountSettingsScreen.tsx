@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -29,6 +30,8 @@ import DMSettingsSection from "../components/Settings/DMSettingsSection";
 import { ChainId } from "../config/constants";
 import ChainSwitchModal from "../components/Settings/ChainSwitchModal";
 import BlockedAccountsModal from "../components/Settings/BlockedAccountsModal";
+import LanguageSelectModal from "../components/Settings/LanguageSelectModal";
+import i18nInstance, { SUPPORTED_LANGUAGES } from "../i18n";
 
 const APP_VERSION = Constants.expoConfig?.version ?? "1.0.0";
 
@@ -108,6 +111,9 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   const [chainModalVisible, setChainModalVisible] = useState(false);
   const [blockedModalVisible, setBlockedModalVisible] = useState(false);
   const [reviewModalVisible, setReviewModalVisible] = useState(false);
+  const [languageModalVisible, setLanguageModalVisible] = useState(false);
+  const [currentLang, setCurrentLang] = useState(i18nInstance.language);
+  const { t } = useTranslation();
   const isImported = authMethod === "local";
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
@@ -132,7 +138,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       {signingOut && <FullScreenLoader message="Signing out…" />}
-      <ScreenHeader title="Settings" canGoBack />
+      <ScreenHeader title={t("settings.title")} canGoBack />
       <ScrollView
         className="flex-1"
         contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 40 }}
@@ -214,11 +220,16 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
             <SettingsRow
               icon="Globe"
               label="Language"
-              subtitle="English"
-              disabled
+              subtitle={SUPPORTED_LANGUAGES.find((l) => l.code === currentLang)?.name || "English"}
+              onPress={() => {
+                setCurrentLang(i18nInstance.language);
+                setLanguageModalVisible(true);
+              }}
               rightElement={
                 <View className="flex-row items-center">
-                  <Text className="text-theme-neutrals-500 text-xs mr-1.5">EN</Text>
+                  <Text className="text-theme-neutrals-500 text-xs mr-1.5">
+                    {currentLang.toUpperCase()}
+                  </Text>
                   <Icon name="ChevronRight" size={18} color="#6b7280" />
                 </View>
               }
@@ -318,7 +329,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                 <>
                   <Icon name="LogOut" size={18} color="#ef4444" />
                   <Text className="text-red-400 font-semibold text-sm ml-2">
-                    Log Out
+                    {t("settings.logOut")}
                   </Text>
                 </>
               )}
@@ -351,6 +362,13 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
         visible={reviewModalVisible}
         onClose={() => setReviewModalVisible(false)}
         userAddress={user?.walletAddress || user?.address}
+      />
+      <LanguageSelectModal
+        visible={languageModalVisible}
+        onClose={() => {
+          setLanguageModalVisible(false);
+          setCurrentLang(i18nInstance.language);
+        }}
       />
     </View>
   );
