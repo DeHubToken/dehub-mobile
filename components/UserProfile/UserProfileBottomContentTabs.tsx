@@ -42,7 +42,10 @@ import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { theme } from "../../theme";
 import UserRepliesList, { type UserRepliesListRef } from "./UserRepliesList";
 import UserRepostsList, { type UserRepostsListRef } from "./UserRepostsList";
+import ProfileImageGrid from "../Profile/ProfileImageGrid";
+import PlanCard from "../Subscription/PlanCard";
 import type { UserReplyItem } from "../../services/user.service";
+import { getPlans, type SubscriptionPlan } from "../../services/subscription.service";
 
 interface UserProfileBottomContentTabsProps {
   address: string;
@@ -75,12 +78,14 @@ const CONTENT_PX = 20;
 const LIST_CONTENT_STYLE = { paddingBottom: 80 } as const;
 const LIST_CONTENT_STYLE_COLLAPSED = { paddingBottom: 24 } as const;
 
-type ContentTab = "posts" | "replies" | "reposts";
+type ContentTab = "posts" | "replies" | "reposts" | "images" | "subscribers";
 
 const TAB_ITEMS: { key: ContentTab; label: string; icon: IconName }[] = [
   { key: "posts", label: "Posts", icon: "Grid3x3" },
   { key: "replies", label: "Replies", icon: "MessageSquare" },
   { key: "reposts", label: "Reposts", icon: "Repeat2" },
+  { key: "images", label: "Images", icon: "Image" },
+  { key: "subscribers", label: "Subscribers", icon: "Star" },
 ];
 
 const UserProfileBottomContentTabs: React.FC<
@@ -122,6 +127,58 @@ const UserProfileBottomContentTabs: React.FC<
 
   // Height of the profile header (measured dynamically)
   const headerHeightRef = useRef(0);
+
+  // Images tab state
+  const [images, setImages] = useState<UnifiedFeedItem[]>([]);
+  const [imagesLoading, setImagesLoading] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Subscribers tab state
+  const [plans, setPlans] = useState<SubscriptionPlan[]>([]);
+  const [plansLoading, setPlansLoading] = useState(false);
+  const [plansLoaded, setPlansLoaded] = useState(false);
+
+  // Fetch images when images tab is first visited
+  useEffect(() => {
+    if (!imagesLoaded && activeTab === "images") {
+      setImagesLoading(true);
+      (async () => {
+        try {
+          const res = await getUnifiedFeed({
+            minter: address,
+            postType: "feed-images",
+            sortBy: "createdAt",
+            sortOrder: "desc",
+            status: "minted",
+            page: 1,
+            limit: 30,
+          });
+          setImages(res.result || []);
+        } catch {}
+        finally {
+          setImagesLoading(false);
+          setImagesLoaded(true);
+        }
+      })();
+    }
+  }, [activeTab, imagesLoaded, address]);
+
+  // Fetch plans when subscribers tab is first visited
+  useEffect(() => {
+    if (!plansLoaded && activeTab === "subscribers") {
+      setPlansLoading(true);
+      (async () => {
+        try {
+          const result = await getPlans(address);
+          setPlans(result);
+        } catch {}
+        finally {
+          setPlansLoading(false);
+          setPlansLoaded(true);
+        }
+      })();
+    }
+  }, [activeTab, plansLoaded, address]);
 
   // Reset sticky state when switching between fullscreen and collapsed
   useEffect(() => {
@@ -450,78 +507,125 @@ const UserProfileBottomContentTabs: React.FC<
    *
    * Replies & Reposts tabs show placeholder empty states.
    */
+  // Render content for the active tab — only one list/grid mounts at a time.
+  // Previously all 5 tabs used `display: none` which kept every FlatList in the
+  // view tree, wasting CPU (Yoga layout, reconciliation, effects) and GPU memory.
+  const renderTabContent = () => {
+    const mt = isFullScreen ? 0 : 4;
+    switch (activeTab) {
+      case "posts":
+        return (
+          <View style={{ flex: 1, marginTop: mt }}>
+            <InfiniteFeed
+              insideNavigatorScreen={false}
+              fetchPage={fetchPage}
+              pageSize={20}
+              isSignedIn={isSignedIn}
+              contentContainerStyle={
+                isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED
+              }
+              scrollEnabled={scrollEnabled}
+              onScroll={handleScroll}
+              listRef={listRef}
+              enableBackToTop={false}
+              renderItem={renderItem}
+              headerComponent={isFullScreen ? fullScreenListHeader : undefined}
+              loadingComponent={postsLoadingComponent}
+            />
+          </View>
+        );
+      case "replies":
+        return (
+          <View style={{ flex: 1, marginTop: mt }}>
+            <UserRepliesList
+              ref={repliesListRef}
+              address={address}
+              contentPadding={CONTENT_PX}
+              scrollEnabled={scrollEnabled}
+              onScroll={handleScroll}
+              headerComponent={isFullScreen ? fullScreenListHeader : undefined}
+              contentContainerStyle={
+                isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED
+              }
+              onItemPress={handleReplyItemPress}
+            />
+          </View>
+        );
+      case "reposts":
+        return (
+          <View style={{ flex: 1, marginTop: mt }}>
+            <UserRepostsList
+              ref={repostsListRef}
+              address={address}
+              contentPadding={CONTENT_PX}
+              scrollEnabled={scrollEnabled}
+              onScroll={handleScroll}
+              headerComponent={isFullScreen ? fullScreenListHeader : undefined}
+              contentContainerStyle={
+                isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED
+              }
+              onClose={onClose}
+            />
+          </View>
+        );
+      case "images":
+        return (
+          <View style={{ flex: 1, marginTop: mt }}>
+            {isFullScreen && fullScreenListHeader}
+            {imagesLoading ? (
+              <View style={{ alignItems: "center", paddingVertical: 40 }}>
+                <ActivityIndicator color="#fff" />
+              </View>
+            ) : images.length === 0 ? (
+              <View style={{ alignItems: "center", paddingVertical: 60 }}>
+                <Text style={{ color: "#71717a", fontSize: 14 }}>No images yet</Text>
+              </View>
+            ) : (
+              <ProfileImageGrid images={images} scrollEnabled={scrollEnabled} />
+            )}
+          </View>
+        );
+      case "subscribers":
+        return (
+          <View style={{ flex: 1, marginTop: mt }}>
+            {isFullScreen && fullScreenListHeader}
+            {plansLoading ? (
+              <View style={{ alignItems: "center", paddingVertical: 40 }}>
+                <ActivityIndicator color="#fff" />
+              </View>
+            ) : plans.length === 0 ? (
+              <View style={{ alignItems: "center", paddingVertical: 60, paddingHorizontal: 24 }}>
+                <Icon name="Star" size={40} color="#52525b" />
+                <Text style={{ color: "#a1a1aa", fontSize: 15, fontWeight: "600", marginTop: 12 }}>
+                  No subscription plans
+                </Text>
+                <Text style={{ color: "#71717a", fontSize: 13, marginTop: 4 }}>
+                  This creator hasn't set up any plans yet
+                </Text>
+              </View>
+            ) : (
+              <FlatList
+                data={plans}
+                keyExtractor={(item) => String(item._id || item.id || Math.random())}
+                renderItem={({ item }) => <View style={{ paddingHorizontal: CONTENT_PX, marginBottom: 8 }}><PlanCard plan={item} /></View>}
+                scrollEnabled={scrollEnabled}
+                onScroll={handleScroll}
+                contentContainerStyle={isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED}
+              />
+            )}
+          </View>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <View
       style={isFullScreen ? { flex: 1 } : { height: listHeight, marginTop: 16 }}
     >
       {!isFullScreen && TabBar}
-
-      <View
-        style={{
-          flex: activeTab === "posts" ? 1 : 0,
-          marginTop: isFullScreen ? 0 : (activeTab === "posts" ? 4 : 0),
-          display: activeTab === "posts" ? "flex" : "none",
-        }}
-      >
-        <InfiniteFeed
-          insideNavigatorScreen={false}
-          fetchPage={fetchPage}
-          pageSize={20}
-          isSignedIn={isSignedIn}
-          contentContainerStyle={
-            isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED
-          }
-          scrollEnabled={scrollEnabled}
-          onScroll={handleScroll}
-          listRef={listRef}
-          enableBackToTop={false}
-          renderItem={renderItem}
-          headerComponent={isFullScreen ? fullScreenListHeader : undefined}
-          loadingComponent={postsLoadingComponent}
-        />
-      </View>
-
-      <View
-        style={{
-          flex: activeTab === "replies" ? 1 : 0,
-          marginTop: isFullScreen ? 0 : (activeTab === "replies" ? 4 : 0),
-          display: activeTab === "replies" ? "flex" : "none",
-        }}
-      >
-        <UserRepliesList
-          ref={repliesListRef}
-          address={address}
-          contentPadding={CONTENT_PX}
-          scrollEnabled={scrollEnabled}
-          onScroll={handleScroll}
-          headerComponent={isFullScreen ? fullScreenListHeader : undefined}
-          contentContainerStyle={
-            isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED
-          }
-          onItemPress={handleReplyItemPress}
-        />
-      </View>
-
-      <View
-        style={{
-          flex: activeTab === "reposts" ? 1 : 0,
-          marginTop: isFullScreen ? 0 : (activeTab === "reposts" ? 4 : 0),
-          display: activeTab === "reposts" ? "flex" : "none",
-        }}
-      >
-        <UserRepostsList
-          ref={repostsListRef}
-          address={address}
-          contentPadding={CONTENT_PX}
-          scrollEnabled={scrollEnabled}
-          onScroll={handleScroll}
-          headerComponent={isFullScreen ? fullScreenListHeader : undefined}
-          contentContainerStyle={
-            isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED
-          }
-          onClose={onClose}
-        />
-      </View>
+      {renderTabContent()}
 
       {isFullScreen && stickyVisible && (
         <View

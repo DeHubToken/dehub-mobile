@@ -1,7 +1,8 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
-import Animated from "react-native-reanimated";
+import Animated, { runOnJS } from "react-native-reanimated";
 import { useAnimatedReaction } from "react-native-reanimated";
+import { Gesture, GestureDetector, Directions } from "react-native-gesture-handler";
 import InfiniteVideoFeed, { type InfiniteVideoFeedHandle } from "../components/Home/InfiniteVideoFeed";
 import HomeImageGrid, { type HomeImageGridHandle } from "../components/Home/HomeImageGrid";
 import ShortsGrid, { type ShortsGridHandle } from "../components/Home/ShortsGrid";
@@ -190,6 +191,35 @@ export default function HomeScreen() {
     setFilterPanelVisible(false);
   }, [refreshShuffleSeed]);
 
+  const tabOrder: FeedFilters["postType"][] = ["all", "video", "feed-images", "short", "feed-audio", "live"];
+
+  const handleSwipeLeft = useCallback(() => {
+    const currentIndex = tabOrder.indexOf(filters.postType);
+    if (currentIndex >= 0 && currentIndex < tabOrder.length - 1) {
+      handlePostTypeChange(tabOrder[currentIndex + 1]);
+    }
+  }, [filters.postType, handlePostTypeChange]);
+
+  const handleSwipeRight = useCallback(() => {
+    const currentIndex = tabOrder.indexOf(filters.postType);
+    if (currentIndex > 0) {
+      handlePostTypeChange(tabOrder[currentIndex - 1]);
+    }
+  }, [filters.postType, handlePostTypeChange]);
+
+  const swipeGesture = useMemo(() => {
+    return Gesture.Simultaneous(
+      Gesture.Fling()
+        .direction(Directions.LEFT)
+        .runOnJS(true)
+        .onEnd(handleSwipeLeft),
+      Gesture.Fling()
+        .direction(Directions.RIGHT)
+        .runOnJS(true)
+        .onEnd(handleSwipeRight)
+    );
+  }, [handleSwipeLeft, handleSwipeRight]);
+
   useEffect(() => {
     let mounted = true;
     (async () => {
@@ -206,8 +236,9 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <View className="flex-1 bg-theme-neutrals-900">
-      <Animated.View style={[styles.headerClip, headerAnimatedStyle]} onLayout={onHeaderLayout}>
+    <GestureDetector gesture={swipeGesture}>
+      <View className="flex-1 bg-theme-neutrals-900">
+        <Animated.View style={[styles.headerClip, headerAnimatedStyle]} onLayout={onHeaderLayout}>
           <HomeHeader onLogoPress={handleLogoPress} onMenuPress={openDrawer} />
 
           <FeedNavBar
@@ -229,44 +260,58 @@ export default function HomeScreen() {
           />
       </Animated.View>
 
-      {isImageTab ? (
-        <HomeImageGrid
-          gridRef={imageGridRef}
-          params={feedParams}
-          pageSize={20}
-          headerInset={headerHeight}
-          onRefresh={handleRefresh}
-          onScrollBegin={handleScrollBegin}
-          onScrollOffset={onScrollOffset}
-          onScrollEnd={handleScrollEnd}
-        />
-      ) : isShortsTab ? (
-        <ShortsGrid
-          gridRef={shortsGridRef}
-          params={feedParams}
-          pageSize={20}
-          headerInset={headerHeight}
-          onRefresh={handleRefresh}
-          onScrollBegin={handleScrollBegin}
-          onScrollOffset={onScrollOffset}
-          onScrollEnd={handleScrollEnd}
-        />
-      ) : (
-        <InfiniteVideoFeed
-          feedRef={feedRef}
-          params={feedParams}
-          pageSize={10}
-          headerInset={headerHeight}
-          onRefresh={handleRefresh}
-          onScrollBegin={handleScrollBegin}
-          onScrollOffset={onScrollOffset}
-          onScrollEnd={handleScrollEnd}
-          onCategorySelect={handleCategorySelect}
-          onRetry={handleRetry}
-          onClearFilters={handleClearFilters}
-        />
+      {isImageTab && (
+        <View style={StyleSheet.absoluteFill}>
+          <HomeImageGrid
+            gridRef={imageGridRef}
+            params={feedParams}
+            pageSize={20}
+            headerInset={headerHeight}
+            headerTranslateY={headerTranslateY}
+            onRefresh={handleRefresh}
+            onScrollBegin={handleScrollBegin}
+            onScrollOffset={onScrollOffset}
+            onScrollEnd={handleScrollEnd}
+          />
+        </View>
+      )}
+
+      {isShortsTab && (
+        <View style={StyleSheet.absoluteFill}>
+          <ShortsGrid
+            gridRef={shortsGridRef}
+            params={feedParams}
+            pageSize={20}
+            headerInset={headerHeight}
+            headerTranslateY={headerTranslateY}
+            onRefresh={handleRefresh}
+            onScrollBegin={handleScrollBegin}
+            onScrollOffset={onScrollOffset}
+            onScrollEnd={handleScrollEnd}
+          />
+        </View>
+      )}
+
+      {!isImageTab && !isShortsTab && (
+        <View style={StyleSheet.absoluteFill}>
+          <InfiniteVideoFeed
+            feedRef={feedRef}
+            params={feedParams}
+            pageSize={10}
+            headerInset={headerHeight}
+            headerTranslateY={headerTranslateY}
+            onRefresh={handleRefresh}
+            onScrollBegin={handleScrollBegin}
+            onScrollOffset={onScrollOffset}
+            onScrollEnd={handleScrollEnd}
+            onCategorySelect={handleCategorySelect}
+            onRetry={handleRetry}
+            onClearFilters={handleClearFilters}
+          />
+        </View>
       )}
     </View>
+    </GestureDetector>
   );
 }
 

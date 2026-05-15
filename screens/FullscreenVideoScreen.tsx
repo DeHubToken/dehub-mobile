@@ -34,6 +34,7 @@ import {
   releaseFeedVideoFocus,
 } from "../libs/feedVideoFocus";
 import { createViewRecorder } from "../services/view.service";
+import { getCachedMuted, setMutedState } from "../libs/videoMutedState";
 
 const DISMISS_THRESHOLD = 150;
 const CONTROLS_TIMEOUT = 4000;
@@ -59,7 +60,7 @@ const FullscreenVideoScreen = () => {
   } = (route?.params as any) || {};
 
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(initialMuted);
+  const [isMuted, setIsMuted] = useState(() => getCachedMuted());
   const [currentTime, setCurrentTime] = useState(startTime);
   const [videoDuration, setVideoDuration] = useState(0);
   const [showControls, setShowControls] = useState(true);
@@ -84,7 +85,7 @@ const FullscreenVideoScreen = () => {
 
   const player = useVideoPlayer(videoUrl || null, (p) => {
     p.loop = true;
-    p.muted = initialMuted;
+    p.muted = getCachedMuted();
     p.timeUpdateEventInterval = 0.5;
     if (startTime > 0) p.currentTime = startTime;
   });
@@ -183,6 +184,7 @@ const FullscreenVideoScreen = () => {
     const newMuted = !isMuted;
     player.muted = newMuted;
     setIsMuted(newMuted);
+    setMutedState(newMuted);
     if (!newMuted) requestAudioFocus(() => { try { player.pause(); } catch {} });
     else releaseAudioFocus(() => { try { player.pause(); } catch {} });
     resetControlsTimer();

@@ -12,7 +12,7 @@ const AccentButtonGradient: React.FC<{
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
   borderRadius?: number;
-}> = ({ children, style, borderRadius = 999 }) => (
+}> = ({ children, style, borderRadius = 14 }) => (
   <LinearGradient
     colors={ACCENT_GRADIENT_COLORS}
     start={{ x: 0, y: 0.2 }}

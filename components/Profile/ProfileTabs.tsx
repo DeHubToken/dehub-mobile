@@ -1,12 +1,11 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useCallback } from "react";
 import { View, Text, Dimensions } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 import { theme } from "../../theme";
 
-import VideosRoute from "./VideosRoute";
 import FeedRoute from "./FeedRoute";
-import ActivityRoute from "./ActivityRoute";
-import LivestreamsRoute from "./LivestreamsRoute";
+import ImagesRoute from "./ImagesRoute";
+import SubscribersRoute from "./SubscribersRoute";
 import { useUser } from "../../context/AuthContext";
 
 const initialLayout = { width: Dimensions.get("window").width };
@@ -16,37 +15,39 @@ const ProfileTabs: React.FC = () => {
   const address = useMemo(() => user?.walletAddress || user?.address || undefined, [user]);
 
   const [index, setIndex] = useState(0);
+  const [visitedTabs, setVisitedTabs] = useState<Set<string>>(new Set(["home"]));
   const [routes] = useState([
-    { key: "videos", title: "Videos" },
-    { key: "livestreams", title: "Livestreams" },
-    { key: "feed", title: "Feed" },
-    { key: "activity", title: "Activity" },
+    { key: "home", title: "Home" },
+    { key: "posts", title: "Posts" },
+    { key: "images", title: "Images" },
+    { key: "subscribers", title: "Subscribers" },
   ]);
 
-  const renderScene = ({ route }) => {
-    switch (route.key) {
-      case "videos":
-        return (
-          <View style={{ flex: 1 }}>
-            <VideosRoute address={address} />
-          </View>
-        );
-      case "livestreams":
-        return (
-          <View style={{ flex: 1 }}>
-            <LivestreamsRoute address={address} />
-          </View>
-        );
-      case "feed":
+  const renderScene = ({ route }: { route: { key: string } }) => {
+    // "posts" shares the same FeedRoute as "home" — they show identical content.
+    // Normalize to "home" so only one instance ever mounts, avoiding duplicate data
+    // fetching and two FlatLists in the view tree when both tabs are visited.
+    const normalizedKey = route.key === "posts" ? "home" : route.key;
+    const isCurrent = routes[index]?.key === route.key;
+    if (!isCurrent && !visitedTabs.has(normalizedKey)) return <View style={{ flex: 1 }} />;
+
+    switch (normalizedKey) {
+      case "home":
         return (
           <View style={{ flex: 1 }}>
             <FeedRoute address={address} />
           </View>
         );
-      case "activity":
+      case "images":
         return (
           <View style={{ flex: 1 }}>
-            <ActivityRoute />
+            <ImagesRoute address={address} />
+          </View>
+        );
+      case "subscribers":
+        return (
+          <View style={{ flex: 1 }}>
+            <SubscribersRoute address={address} isOwnProfile />
           </View>
         );
       default:
@@ -54,7 +55,20 @@ const ProfileTabs: React.FC = () => {
     }
   };
 
-  const renderTabBar = (props) => (
+  const handleIndexChange = useCallback((newIndex: number) => {
+    setIndex(newIndex);
+    setVisitedTabs((prev) => {
+      const key = routes[newIndex]?.key;
+      if (key && !prev.has(key)) {
+        const next = new Set(prev);
+        next.add(key);
+        return next;
+      }
+      return prev;
+    });
+  }, [routes]);
+
+  const renderTabBar = (props: any) => (
     <TabBar
       {...props}
       indicatorStyle={{
@@ -89,7 +103,7 @@ const ProfileTabs: React.FC = () => {
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
-        onIndexChange={setIndex}
+        onIndexChange={handleIndexChange}
         initialLayout={initialLayout}
         renderTabBar={renderTabBar}
         // style={{ height: 600 }}

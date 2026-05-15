@@ -3,6 +3,7 @@ import { View, Pressable, ScrollView, StyleSheet, Platform, Dimensions } from "r
 import Reanimated, {
   useSharedValue,
   useAnimatedStyle,
+  useAnimatedReaction,
   withTiming,
   withSpring,
   withDelay,
@@ -88,7 +89,7 @@ const NavButton = memo<{
   }, [scale]);
 
   const animatedStyle = useAnimatedStyle(() => {
-    const staggerDelay = index * 0.12;
+    const staggerDelay = index * 0.07;
     const itemProgress = interpolate(
       animProgress.value,
       [staggerDelay, staggerDelay + 0.6],
@@ -97,10 +98,10 @@ const NavButton = memo<{
     );
     return {
       transform: [
-        { scale: scale.value * interpolate(itemProgress, [0, 1], [0.3, 1], "clamp") },
-        { translateY: interpolate(itemProgress, [0, 0.6, 1], [20, -4, 0], "clamp") },
+        { scale: scale.value * interpolate(itemProgress, [0, 1], [0.5, 1], "clamp") },
+        { translateY: interpolate(itemProgress, [0, 1], [10, 0], "clamp") },
       ],
-      opacity: interpolate(itemProgress, [0, 0.4, 1], [0, 0.8, 1], "clamp"),
+      opacity: interpolate(itemProgress, [0, 0.35, 1], [0, 0.85, 1], "clamp"),
     };
   });
 
@@ -173,25 +174,33 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
   const animProgress = useSharedValue(1);
+  const containerAnim = useSharedValue(0);
   const hasAnimated = useRef(false);
   const scrollRef = useRef<ScrollView>(null);
+
+  const entranceStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: interpolate(containerAnim.value, [0, 1], [50, 0], "clamp") }],
+    opacity: interpolate(containerAnim.value, [0, 0.3, 1], [0, 0.7, 1], "clamp"),
+  }));
 
   useEffect(() => {
     if (hasAnimated.current) return;
     hasAnimated.current = true;
     animProgress.value = 0;
+    containerAnim.value = 0;
+    containerAnim.value = withDelay(30, withSpring(1, { damping: 18, stiffness: 80, mass: 0.8 }));
     animProgress.value = withDelay(
       100,
-      withTiming(1, { duration: 1200, easing: Easing.out(Easing.cubic) }),
+      withTiming(1, { duration: 700, easing: Easing.bezier(0.22, 1, 0.36, 1) }),
     );
     const hintTimer = setTimeout(() => {
       scrollRef.current?.scrollTo({ x: 60, animated: true });
       setTimeout(() => {
         scrollRef.current?.scrollTo({ x: 0, animated: true });
       }, 600);
-    }, 2000);
+    }, 1500);
     return () => clearTimeout(hintTimer);
-  }, [animProgress]);
+  }, [animProgress, containerAnim]);
 
   const handlePress = useCallback(
     (routeName: string) => {
@@ -223,31 +232,37 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
     [navigation],
   );
 
-  const bottomPadding = Math.max(insets.bottom, 8);
+  const bottomPadding = Math.max(Platform.OS === "android" ? 6 : 2, insets.bottom - 22);
   const TAB_BAR_SLIDE = 110; // distance to push off-screen (matches web's 110%)
 
-  // Mirror header hide: slide tab bar down when header hides
+  // Mirror header hide: slide tab bar down when header hides.
+  // Uses its own shared value with independent timing so the tab bar
+  // animates smoothly instead of snapping frame-by-frame with the header.
   const headerTranslateY = useTabBarHide();
-  const hideStyle = useAnimatedStyle(() => {
-    if (!headerTranslateY) return {};
-    // headerTranslateY smoothly animates from 0 (visible) to some negative value (hidden)
-    // Map any negative movement to 0→1 progress over a small range (first 30px of hide)
-    const progress = interpolate(
-      headerTranslateY.value,
-      [0, -30],
-      [0, 1],
-      "clamp",
-    );
-    return {
-      transform: [{ translateY: progress * TAB_BAR_SLIDE }],
-      opacity: interpolate(progress, [0, 0.6], [1, 0], "clamp"),
-    };
-  });
+  const tabSlide = useSharedValue(0);
+
+  useAnimatedReaction(
+    () => headerTranslateY?.value ?? 0,
+    (val) => {
+      // Hide when header has scrolled past ~30% of a typical header
+      const target = val < -55 ? 1 : 0;
+      tabSlide.value = withTiming(target, {
+        duration: 350,
+        easing: Easing.bezier(0.25, 1, 0.5, 1),
+      });
+    },
+    [headerTranslateY],
+  );
+
+  const hideStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: tabSlide.value * TAB_BAR_SLIDE }],
+    opacity: interpolate(tabSlide.value, [0, 0.5], [1, 0], "clamp"),
+  }));
 
   return (
     <Reanimated.View style={[styles.outerWrap, { paddingBottom: bottomPadding }, hideStyle]} pointerEvents="box-none">
       <View style={styles.gradientOverlay} pointerEvents="none" />
-      <View style={styles.navContainer}>
+      <Reanimated.View style={[styles.navContainer, entranceStyle]}>
         {Platform.OS === "ios" ? (
           <BlurView
             intensity={120}
@@ -290,7 +305,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             />
           ))}
         </ScrollView>
-      </View>
+      </Reanimated.View>
     </Reanimated.View>
   );
 };
@@ -298,7 +313,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
 const styles = StyleSheet.create({
   outerWrap: {
     position: "absolute",
-    bottom: 0,
+    bottom: -12,
     left: 0,
     right: 0,
     alignItems: "center",

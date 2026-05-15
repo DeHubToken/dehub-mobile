@@ -10,6 +10,7 @@ import {
   NativeScrollEvent,
   ViewToken,
 } from "react-native";
+import Animated, { useAnimatedStyle, type SharedValue } from "react-native-reanimated";
 import { useNavigation, useScrollToTop } from "@react-navigation/native";
 import ShortsGridCard, { CARD_HEIGHT, GRID_GAP } from "./ShortsGridCard";
 import Icon from "../ui/Icon";
@@ -27,6 +28,7 @@ interface ShortsGridProps {
   pageSize?: number;
   gridRef?: React.MutableRefObject<ShortsGridHandle | null>;
   headerInset?: number;
+  headerTranslateY?: SharedValue<number>;
   onScrollOffset?: (offsetY: number, deltaY: number) => void;
   onScrollEnd?: () => void;
   onScrollBegin?: () => void;
@@ -40,6 +42,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   pageSize = 20,
   gridRef,
   headerInset = 0,
+  headerTranslateY,
   onScrollOffset,
   onScrollEnd,
   onScrollBegin,
@@ -55,6 +58,11 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   const shuffleSeedRef = useRef<string | undefined>(undefined);
   const listRef = useRef<FlatList>(null);
   const prevYRef = useRef(0);
+
+  // Dynamic top spacer that shrinks/grows with header visibility
+  const topSpacerStyle = useAnimatedStyle(() => ({
+    height: Math.max(0, headerInset + (headerTranslateY?.value ?? 0)),
+  }));
   const navigation = useNavigation<any>();
   const [visibleIndices, setVisibleIndices] = useState<Set<number>>(new Set());
 
@@ -202,7 +210,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     return (
       <View className="flex-1 items-center justify-center px-4">
         <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
-        <Pressable onPress={resetAndLoad} className="px-5 py-2 rounded-full bg-theme-neutrals-700">
+        <Pressable onPress={resetAndLoad} className="px-5 py-2 rounded-xl bg-theme-neutrals-700">
           <Text className="text-theme-neutrals-50 font-medium">Retry</Text>
         </Pressable>
       </View>
@@ -218,7 +226,8 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
         renderItem={renderItem}
         numColumns={2}
         columnWrapperStyle={{ gap: GRID_GAP }}
-        contentContainerStyle={{ paddingTop: headerInset, gap: GRID_GAP }}
+        ListHeaderComponent={<Animated.View style={topSpacerStyle} />}
+        contentContainerStyle={{ paddingTop: 0, gap: GRID_GAP }}
         showsVerticalScrollIndicator={false}
         initialNumToRender={8}
         maxToRenderPerBatch={8}

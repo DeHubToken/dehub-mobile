@@ -282,9 +282,9 @@ const StatusFilterBottomSheet: React.FC<StatusFilterBottomSheetProps> = ({
 
           {/* Apply Button */}
           <View className="pt-5 pb-2">
-            <AccentButtonGradient borderRadius={9999}>
+            <AccentButtonGradient borderRadius={14}>
               <TouchableOpacity
-                className="py-4 rounded-full items-center flex-row justify-center"
+                className="py-4 rounded-xl items-center flex-row justify-center"
                 onPress={handleApply}
                 activeOpacity={0.85}
                 accessibilityRole="button"

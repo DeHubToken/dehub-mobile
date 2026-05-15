@@ -10,7 +10,10 @@ import {
   Dimensions,
   Pressable,
   InteractionManager,
+  Platform,
+  StyleSheet,
 } from "react-native";
+import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
 import CommentItem, { Comment } from "./CommentItem";
 import CommentInput, { CommentInputRef } from "./CommentInput";
@@ -324,11 +327,18 @@ const CommentsBottomSheet: React.FC<Props> = ({
         <Pressable onPress={onClose} className="absolute inset-0" />
 
         <Animated.View
-          // height = heightPct * screen height
           style={heightStyle}
-          className="bg-theme-neutrals-900 rounded-t-2xl overflow-hidden border border-theme-neutrals-800"
+          className="rounded-t-2xl overflow-hidden"
         >
-          <View className="flex-1" style={insets.bottom ? { paddingBottom: insets.bottom } : undefined}>
+          <BlurView
+            intensity={90}
+            tint="dark"
+            style={StyleSheet.absoluteFill}
+            {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
+          />
+          <View style={[StyleSheet.absoluteFill, glassOverlayStyles.bg]} />
+          <View style={[StyleSheet.absoluteFill, glassOverlayStyles.frost]} />
+          <View style={{ flex: 1, ...(insets.bottom ? { paddingBottom: insets.bottom } : {}) }}>
             {/* Header */}
             <View
               className="flex-row items-center justify-between px-4 py-3 border-b border-theme-neutrals-800"
@@ -390,5 +400,16 @@ const CommentsBottomSheet: React.FC<Props> = ({
     </Modal>
   );
 };
+
+const glassOverlayStyles = StyleSheet.create({
+  bg: {
+    backgroundColor: "rgba(12,12,14,0.72)",
+    borderTopWidth: 1,
+    borderColor: "rgba(255,255,255,0.14)",
+  },
+  frost: {
+    backgroundColor: "rgba(255,255,255,0.06)",
+  },
+});
 
 export default CommentsBottomSheet;

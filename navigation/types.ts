@@ -123,6 +123,11 @@ export type AppStackParamList = {
     initialItems?: import('../services/feed.unified.service').UnifiedFeedItem[];
     feedParams?: Record<string, any>;
   };
+  [ScreenNames.ImageFeed]: {
+    initialIndex?: number;
+    initialItems?: import('../services/feed.unified.service').UnifiedFeedItem[];
+    feedParams?: Record<string, any>;
+  };
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> = CompositeScreenProps<

@@ -176,7 +176,7 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
         {!!headerComponent && <View>{headerComponent}</View>}
         <View className="flex-1 items-center justify-center px-6">
           <Text className="text-theme-neutrals-400 text-sm mb-3">{error}</Text>
-          <View className="px-5 py-2 rounded-full bg-theme-neutrals-700">
+          <View className="px-5 py-2 rounded-xl bg-theme-neutrals-700">
             <Text
               onPress={handleRefresh}
               className="text-theme-neutrals-50 font-medium text-sm"

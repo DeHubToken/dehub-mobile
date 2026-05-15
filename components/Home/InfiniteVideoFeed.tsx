@@ -18,6 +18,7 @@ import {
   NativeScrollEvent,
   ViewToken,
 } from "react-native";
+import Animated, { useAnimatedStyle, type SharedValue } from "react-native-reanimated";
 import EmptyFeedState from "./EmptyFeedState";
 import FeedCard from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
@@ -54,6 +55,7 @@ interface InfiniteVideoFeedProps {
   contentContainerStyle?: any;
   headerComponent?: React.ReactNode;
   headerInset?: number;
+  headerTranslateY?: SharedValue<number>;
   onEndReachedAll?: () => void;
   onScrollOffset?: (offsetY: number, deltaY: number) => void;
   onScrollEnd?: () => void;
@@ -74,6 +76,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   contentContainerStyle,
   headerComponent,
   headerInset = 0,
+  headerTranslateY,
   onEndReachedAll,
   onScrollOffset,
   onScrollEnd,
@@ -98,6 +101,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const endReachedRef = useRef(false);
   const listRef = useRef<FlatList<FeedItem>>(null);
   const prevYRef = useRef(0);
+
+  // Dynamic top spacer that shrinks/grows with header visibility
+  const topSpacerStyle = useAnimatedStyle(() => ({
+    height: Math.max(0, headerInset + (headerTranslateY?.value ?? 0)),
+  }));
 
   const navigation = useNavigation<any>();
   const isFocused = useIsFocused();
@@ -139,14 +147,18 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   }) => {
     // Track visible items for audio preloading/pausing (works for all users)
     setVisibleItemKeys(prev => {
+      let changed_membership = false;
       const next = new Set(prev);
       for (const entry of changed) {
         const key = (entry.item as FeedItem | undefined)?.__listKey;
         if (!key) continue;
-        if (entry.isViewable) next.add(key);
-        else next.delete(key);
+        if (entry.isViewable) {
+          if (!prev.has(key)) { next.add(key); changed_membership = true; }
+        } else {
+          if (prev.has(key)) { next.delete(key); changed_membership = true; }
+        }
       }
-      return next;
+      return changed_membership ? next : prev;
     });
 
     if (!isSignedIn) return;
@@ -331,28 +343,31 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // Index after which to inject the suggested-accounts carousel (after the 5th post)
   const SUGGEST_AFTER_INDEX = 4;
 
-  const renderItem: ListRenderItem<FeedItem> = ({ item, index }) => {
-    const card = (
-      <FeedCard
-        item={item}
-        onCategorySelect={onCategorySelect}
-        isVisible={visibleItemKeys.has(item.__listKey)}
-        enablePreview
-      />
-    );
-
-    // Inject suggested accounts section after the 3rd feed item
-    if (index === SUGGEST_AFTER_INDEX) {
-      return (
-        <>
-          {card}
-          <SuggestedAccountsSection />
-        </>
+  const renderItem = useCallback<ListRenderItem<FeedItem>>(
+    ({ item, index }) => {
+      const card = (
+        <FeedCard
+          item={item}
+          onCategorySelect={onCategorySelect}
+          isVisible={visibleItemKeys.has(item.__listKey)}
+          enablePreview
+        />
       );
-    }
 
-    return <>{card}</>;
-  };
+      // Inject suggested accounts section after the 3rd feed item
+      if (index === SUGGEST_AFTER_INDEX) {
+        return (
+          <>
+            {card}
+            <SuggestedAccountsSection />
+          </>
+        );
+      }
+
+      return <>{card}</>;
+    },
+    [visibleItemKeys, onCategorySelect],
+  );
 
   const keyExtractor = useCallback((item: FeedItem) => item.__listKey, []);
 
@@ -381,7 +396,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         <Pressable
           accessibilityRole="button"
           onPress={handleRetry}
-          className="px-5 py-2 rounded-full bg-theme-neutrals-700 active:opacity-80"
+          className="px-5 py-2 rounded-xl bg-theme-neutrals-700 active:opacity-80"
         >
           <Text className="text-theme-neutrals-50 font-medium">Retry</Text>
         </Pressable>
@@ -396,7 +411,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         data={items}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
-        ListHeaderComponent={headerComponent as any}
+        ListHeaderComponent={
+          <Animated.View>
+            <Animated.View style={topSpacerStyle} />
+            {headerComponent as any}
+          </Animated.View>
+        }
         initialNumToRender={3}
         maxToRenderPerBatch={3}
         windowSize={5}
@@ -405,7 +425,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         contentContainerStyle={
           contentContainerStyle || {
             paddingHorizontal: 8,
-            paddingTop: headerInset + 4,
+            paddingTop: 4,
             paddingBottom: 80,
           }
         }

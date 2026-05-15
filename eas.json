@@ -11,6 +11,11 @@
     "preview": {
       "distribution": "internal"
     },
+    "store-testing": {
+      "android": {
+        "buildType": "app-bundle"
+      }
+    },
     "production": {
       "autoIncrement": true
     }

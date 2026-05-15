@@ -568,6 +568,119 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // --- Content renderers ---
   const renderImageContent = () => {
     if (!hasImages) return null;
+
+    // Combo-locked image (PPV + holdings): dual icon overlay (matches web ImageCard behaviour)
+    if (isActuallyComboLocked) {
+      return (
+        <Pressable
+          onPress={handlePPVPress}
+          className="mt-2 rounded-xl overflow-hidden"
+          style={{ height: IMAGE_WIDTH * 0.75 }}
+        >
+          <Image
+            source={{ uri: galleryImages[0] }}
+            style={{ width: "100%", height: "100%" }}
+            resizeMode="cover"
+            blurRadius={20}
+          />
+          <View className="absolute inset-0 bg-black/30 items-center justify-center">
+            <View className="absolute top-3 left-3 flex-row gap-2">
+              <View className="flex-row items-center gap-1 bg-black/60 rounded-full px-2.5 py-1">
+                <Icon name="Ticket" size={12} color="#fff" />
+                <Text className="text-white text-xs font-medium">
+                  {formatCompactNumber(payPerViewAmount)} {payPerViewTokenSymbol}
+                </Text>
+              </View>
+              <View className="flex-row items-center gap-1 bg-black/60 rounded-full px-2.5 py-1">
+                <Icon name="Lock" size={12} color="#fff" />
+                <Text className="text-white text-xs font-medium">
+                  {formatCompactNumber(lockContentAmount)} {lockContentTokenSymbol}
+                </Text>
+              </View>
+            </View>
+            <View className="flex-row gap-3 mb-3">
+              <View className="w-14 h-14 rounded-2xl bg-black/40 border border-white/10 items-center justify-center">
+                <Icon name="Ticket" size={24} color="#fff" />
+              </View>
+              <View className="w-14 h-14 rounded-2xl bg-black/40 border border-white/10 items-center justify-center">
+                <Icon name="Lock" size={24} color="#fff" />
+              </View>
+            </View>
+            <Text className="text-white font-semibold text-sm mb-1">Pay-Per-View Content</Text>
+            <Text className="text-white/70 text-xs">
+              Unlock for {formatCompactNumber(payPerViewAmount)} {payPerViewTokenSymbol} + hold {formatCompactNumber(lockContentAmount)} {lockContentTokenSymbol}
+            </Text>
+          </View>
+        </Pressable>
+      );
+    }
+
+    // PPV-only locked image: blurred preview with unlock overlay (matches web ImageCard behaviour)
+    if (isActuallyLockedPPV) {
+      return (
+        <Pressable
+          onPress={handlePPVPress}
+          className="mt-2 rounded-xl overflow-hidden"
+          style={{ height: IMAGE_WIDTH * 0.75 }}
+        >
+          <Image
+            source={{ uri: galleryImages[0] }}
+            style={{ width: "100%", height: "100%" }}
+            resizeMode="cover"
+            blurRadius={20}
+          />
+          <View className="absolute inset-0 bg-black/30 items-center justify-center">
+            <View className="absolute top-3 left-3 flex-row items-center gap-1 bg-black/60 rounded-full px-2.5 py-1">
+              <Icon name="Ticket" size={12} color="#fff" />
+              <Text className="text-white text-xs font-medium">
+                {formatCompactNumber(payPerViewAmount)} {payPerViewTokenSymbol}
+              </Text>
+            </View>
+            <View className="w-16 h-16 rounded-2xl bg-black/40 border border-white/10 items-center justify-center mb-3">
+              <Icon name="Ticket" size={28} color="#fff" />
+            </View>
+            <Text className="text-white font-semibold text-sm mb-1">Pay-Per-View Content</Text>
+            <Text className="text-white/70 text-xs">
+              Unlock for {formatCompactNumber(payPerViewAmount)} {payPerViewTokenSymbol}
+            </Text>
+          </View>
+        </Pressable>
+      );
+    }
+
+    // Holdings-only locked image: blurred preview with lock overlay
+    if (isActuallyLockedHoldings) {
+      return (
+        <Pressable
+          onPress={handleCardPress}
+          className="mt-2 rounded-xl overflow-hidden"
+          style={{ height: IMAGE_WIDTH * 0.75 }}
+        >
+          <Image
+            source={{ uri: galleryImages[0] }}
+            style={{ width: "100%", height: "100%" }}
+            resizeMode="cover"
+            blurRadius={20}
+          />
+          <View className="absolute inset-0 bg-black/30 items-center justify-center">
+            <View className="absolute top-3 left-3 flex-row items-center gap-1 bg-black/60 rounded-full px-2.5 py-1">
+              <Icon name="Lock" size={12} color="#fff" />
+              <Text className="text-white text-xs font-medium">
+                {formatCompactNumber(lockContentAmount)} {lockContentTokenSymbol}
+              </Text>
+            </View>
+            <View className="w-16 h-16 rounded-2xl bg-black/40 border border-white/10 items-center justify-center mb-3">
+              <Icon name="Lock" size={28} color="#fff" />
+            </View>
+            <Text className="text-white font-semibold text-sm mb-1">Holdings Required</Text>
+            <Text className="text-white/70 text-xs">
+              Must be holding {formatCompactNumber(lockContentAmount)} {lockContentTokenSymbol}
+            </Text>
+          </View>
+        </Pressable>
+      );
+    }
+
     if (!hasMultipleImages) {
       return (
         <Pressable onPress={() => handleImagePress(0)} className="mt-2">
@@ -924,7 +1037,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       ) : null}
 
-      {isVideo && isPayPerView && tokenId != null && minterAddress ? (
+      {isPayPerView && tokenId != null && minterAddress ? (
         <PPVSheet
           visible={showPPVModal}
           onClose={() => setShowPPVModal(false)}
@@ -932,6 +1045,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           toAddress={minterAddress}
           amount={payPerViewAmount}
           tokenSymbol={payPerViewTokenSymbol}
+          contentType={isVideo ? "video" : "image"}
           onSuccess={handlePPVSuccess}
         />
       ) : null}
@@ -982,15 +1096,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   );
 };
 
-const FeedCard = memo(FeedCardComponent, (prev, next) => {
-  return (
-    prev.item.tokenId === next.item.tokenId &&
-    prev.item.isLiked === next.item.isLiked &&
-    prev.item.isSaved === next.item.isSaved &&
-    prev.item.likes === next.item.likes &&
-    prev.isVisible === next.isVisible &&
-    prev.onBeforeNavigate === next.onBeforeNavigate
-  );
-});
+const FeedCard = memo(FeedCardComponent);
 
 export default FeedCard;

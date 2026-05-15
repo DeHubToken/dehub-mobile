@@ -27,17 +27,17 @@ export default function SplashScreen() {
 
   useEffect(() => {
     if (riveFile) {
-      // Small delay to ensure Rive has initialized
+      // Give Rive more time to render its first frame before crossfading,
+      // preventing the flash between the static logo and the animated icon.
       const timer = setTimeout(() => {
-        // Fade out static logo, Rive will be visible underneath
         Animated.timing(fadeAnim, {
           toValue: 0,
-          duration: 300,
+          duration: 500,
           useNativeDriver: true,
         }).start(() => {
           setRiveReady(true);
         });
-      }, 100);
+      }, 700);
       
       return () => clearTimeout(timer);
     }
@@ -58,11 +58,13 @@ export default function SplashScreen() {
         )}
       </View>
       
-      {/* Static logo layer (in front) - shows immediately, fades out when Rive ready */}
+      {/* Static logo layer (in front) - shows immediately, fades out when Rive ready.
+          Uses the compact icon to match the Rive animation's opening frame and
+          eliminate the flash between wide banner and icon that occurred before. */}
       {!riveReady && (
         <Animated.View style={[styles.staticLogoContainer, { opacity: fadeAnim }]}>
           <Image
-            source={require("../assets/banner.png")}
+            source={require("../assets/web-icons/dehub-logo-center.png")}
             style={styles.staticLogo}
             resizeMode="contain"
           />
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   staticLogo: {
-    width: 280,
-    height: 60,
+    width: 120,
+    height: 120,
   },
 });

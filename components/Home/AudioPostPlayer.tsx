@@ -1,5 +1,7 @@
 import React, { memo, useCallback, useEffect, useRef, useState, useMemo } from "react";
-import { View, Text, TouchableOpacity, Pressable, LayoutChangeEvent } from "react-native";
+import { View, Text, TouchableOpacity, Pressable, LayoutChangeEvent, PanResponder } from "react-native";
+import Slider from "@react-native-community/slider";
+import { getCachedHue, setHueState } from "../../libs/audioHueState";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -72,16 +74,65 @@ const generateBars = (seed: string, count: number): number[] => {
 };
 
 /* ─── Static waveform (plain Views, no worklets) ────────────── */
+/* ─── WaveformBars — memo'd bar row, never re-renders on seek ── */
+interface WaveformBarsProps {
+  bars: number[];
+  wHeight: number;
+  bw: number;
+  bg: number;
+  count: number;
+  color: string;
+}
+
+const WaveformBars: React.FC<WaveformBarsProps> = memo(
+  ({ bars, wHeight, bw, bg, count, color }) => (
+    <View style={{ flexDirection: "row", alignItems: "center", height: wHeight }}>
+      {bars.map((h, i) => (
+        <View
+          key={i}
+          style={{
+            width: bw,
+            height: Math.max(2, h * wHeight * 0.85),
+            borderRadius: bw / 2,
+            marginRight: i < count - 1 ? bg : 0,
+            backgroundColor: color,
+          }}
+        />
+      ))}
+    </View>
+  ),
+);
+
+/* ─── ProgressBar — Smooth animated progress bar ──────────────── */
+const ProgressBar: React.FC<{ progress: number; hue: number }> = memo(({ progress, hue }) => {
+  const animatedProgress = useSharedValue(progress * 100);
+
+  useEffect(() => {
+    animatedProgress.value = withTiming(Math.min(100, progress * 100), {
+      duration: 50,
+      easing: Easing.linear,
+    });
+  }, [progress]);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    width: `${animatedProgress.value}%`,
+    backgroundColor: hue === 0 ? "rgba(255,255,255,0.6)" : `hsla(${hue}, 80%, 65%, 0.8)`,
+  }));
+
+  return <Animated.View className="h-full rounded-full" style={animatedStyle} />;
+});
+
 interface StaticWaveformProps {
   seed: string;
   progress: number;
   compact?: boolean;
   hue: number;
   onSeek?: (position: number) => void;
+  onSeekPreview?: (position: number) => void;
 }
 
 const StaticWaveform: React.FC<StaticWaveformProps> = memo(
-  ({ seed, progress, compact, hue, onSeek }) => {
+  ({ seed, progress, compact, hue, onSeek, onSeekPreview }) => {
     const count = compact ? COMPACT_BAR_COUNT : BAR_COUNT;
     const bw = compact ? COMPACT_BAR_WIDTH : BAR_WIDTH;
     const bg = compact ? COMPACT_BAR_GAP : BAR_GAP;
@@ -92,49 +143,83 @@ const StaticWaveform: React.FC<StaticWaveformProps> = memo(
     const unplayedColor = "rgba(255,255,255,0.15)";
 
     const layoutW = useRef(1);
+    const isDraggingRef = useRef(false);
+    const displayClipPct = useSharedValue(progress * 100);
+
+    // Only sync with progress prop when not dragging
+    useEffect(() => {
+      if (!isDraggingRef.current) {
+        displayClipPct.value = withTiming(Math.min(100, progress * 100), {
+          duration: 100,
+          easing: Easing.linear,
+        });
+      }
+    }, [progress]);
+
+    const playedLayerStyle = useAnimatedStyle(() => ({
+      position: "absolute",
+      left: 0, top: 0, bottom: 0,
+      width: `${displayClipPct.value}%`,
+      overflow: "hidden",
+    }));
 
     const handleLayout = useCallback((e: LayoutChangeEvent) => {
       layoutW.current = e.nativeEvent.layout.width;
     }, []);
 
-    const handlePress = useCallback(
-      (e: { nativeEvent: { locationX: number } }) => {
-        if (!onSeek) return;
-        const pos = Math.max(0, Math.min(1, e.nativeEvent.locationX / layoutW.current));
-        onSeek(pos);
-      },
-      [onSeek],
+    const clampPos = useCallback(
+      (x: number) => Math.max(0, Math.min(1, x / layoutW.current)),
+      [],
+    );
+
+    const panResponder = useMemo(
+      () =>
+        PanResponder.create({
+          onStartShouldSetPanResponder: () => !!onSeek,
+          onMoveShouldSetPanResponder: () => !!onSeek,
+          onPanResponderGrant: (e) => {
+            isDraggingRef.current = true;
+            const pos = clampPos(e.nativeEvent.locationX);
+            displayClipPct.value = pos * 100;
+            onSeekPreview?.(pos); // signals parent to pause interval
+          },
+          onPanResponderMove: (e) => {
+            const pos = clampPos(e.nativeEvent.locationX);
+            displayClipPct.value = pos * 100; // direct UI-thread update, zero React re-renders
+            onSeekPreview?.(pos);
+          },
+          onPanResponderRelease: (e) => {
+            const pos = clampPos(e.nativeEvent.locationX);
+            displayClipPct.value = pos * 100;
+            onSeek?.(pos);
+            setTimeout(() => { isDraggingRef.current = false; }, 700);
+          },
+          onPanResponderTerminate: () => {
+            isDraggingRef.current = false;
+          },
+        }),
+      [onSeek, onSeekPreview, clampPos, displayClipPct],
     );
 
     return (
-      <Pressable
+      <View
         onLayout={handleLayout}
-        onPress={handlePress}
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          height: wHeight,
-          justifyContent: "center",
-        }}
+        {...(onSeek ? panResponder.panHandlers : {})}
+        style={{ height: wHeight }}
       >
-        {bars.map((h, i) => {
-          const barH = Math.max(2, h * wHeight * 0.85);
-          const threshold = (i + 0.5) / count;
-          const played = progress >= threshold;
-          return (
-            <View
-              key={i}
-              style={{
-                width: bw,
-                height: barH,
-                borderRadius: bw / 2,
-                marginRight: i < count - 1 ? bg : 0,
-                backgroundColor: played ? playedColor : unplayedColor,
-              }}
-            />
-          );
-        })}
-      </Pressable>
+        {/* Unplayed layer — static, never re-renders during seek */}
+        <WaveformBars
+          bars={bars} wHeight={wHeight} bw={bw} bg={bg}
+          count={count} color={unplayedColor}
+        />
+        {/* Played layer — only clip width changes, bars never re-render */}
+        <Animated.View style={playedLayerStyle}>
+          <WaveformBars
+            bars={bars} wHeight={wHeight} bw={bw} bg={bg}
+            count={count} color={playedColor}
+          />
+        </Animated.View>
+      </View>
     );
   },
 );
@@ -314,36 +399,52 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
   </View>
 ));
 
-/* ─── Color Hue Picker ──────────────────────────────────────── */
-const HUE_PRESETS = [0, 30, 60, 120, 180, 210, 260, 300, 340];
-
-interface HuePickerProps {
+/* ─── Color Hue Slider ──────────────────────────────────────── */
+interface HueSliderProps {
   hue: number;
   onHueChange: (h: number) => void;
 }
 
-const HuePicker: React.FC<HuePickerProps> = memo(({ hue, onHueChange }) => (
-  <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
-    {HUE_PRESETS.map((h) => {
-      const isActive = hue === h;
-      const bg = h === 0 ? "rgba(255,255,255,0.85)" : `hsl(${h}, 80%, 65%)`;
-      return (
-        <Pressable
-          key={h}
-          onPress={() => onHueChange(h)}
-          style={{
-            width: isActive ? 18 : 14,
-            height: isActive ? 18 : 14,
-            borderRadius: 9,
-            backgroundColor: bg,
-            borderWidth: isActive ? 2 : 0,
-            borderColor: "rgba(255,255,255,0.6)",
-          }}
-        />
-      );
-    })}
-  </View>
-));
+const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange }) => {
+  // Local state so drag is silky — parent only gets notified on release
+  const [localHue, setLocalHue] = useState(hue);
+
+  // Sync if parent hue changes externally (e.g. initial load)
+  useEffect(() => { setLocalHue(hue); }, [hue]);
+
+  const previewColor = localHue === 0
+    ? "rgba(255,255,255,0.9)"
+    : `hsl(${localHue}, 80%, 65%)`;
+
+  return (
+    <View style={{ height: 32, justifyContent: "center" }}>
+      <LinearGradient
+        colors={["#ff0000","#ffff00","#00ff00","#00ffff","#0000ff","#ff00ff","#ff0000"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        style={{
+          position: "absolute",
+          left: 10,
+          right: 10,
+          height: 12,
+          borderRadius: 6,
+        }}
+      />
+      <Slider
+        style={{ width: "100%" }}
+        minimumValue={0}
+        maximumValue={360}
+        step={1}
+        value={localHue}
+        onValueChange={setLocalHue}
+        onSlidingComplete={onHueChange}
+        minimumTrackTintColor="transparent"
+        maximumTrackTintColor="transparent"
+        thumbTintColor={previewColor}
+      />
+    </View>
+  );
+});
 
 export interface AudioPostPlayerProps {
   audioUrl: string;
@@ -371,10 +472,12 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const [currentTime, setCurrentTime] = useState(0);
   const [totalDuration, setTotalDuration] = useState(duration);
   const [listenCount, setListenCount] = useState(initialListens);
-  const [hue, setHue] = useState(0);
+  const [hue, setHue] = useState(() => getCachedHue());
   const [vizStyle, setVizStyle] = useState<VisualizerStyle>("static");
   const listenRecordedRef = useRef(false);
   const positionIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const isSeekingRef = useRef(false);
+  const lastSeekTimeRef = useRef(0);
   const isFocused = useIsFocused();
   const preloadedRef = useRef(false);
 
@@ -385,30 +488,12 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     releaseAudioFocus(focusStopRef.current);
   });
 
-  // Glow animation
-  const glowOpacity = useSharedValue(0.3);
-
-  useEffect(() => {
-    if (isPlaying) {
-      glowOpacity.value = withRepeat(
-        withSequence(
-          withTiming(0.7, { duration: 1200, easing: Easing.inOut(Easing.sin) }),
-          withTiming(0.3, { duration: 1200, easing: Easing.inOut(Easing.sin) }),
-        ),
-        -1,
-        true,
-      );
-    } else {
-      cancelAnimation(glowOpacity);
-      glowOpacity.value = withTiming(0.3, { duration: 300 });
-    }
-  }, [isPlaying, glowOpacity]);
-
-  const glowStyle = useAnimatedStyle(() => ({ opacity: glowOpacity.value }));
 
   const startPositionTracking = useCallback(() => {
     if (positionIntervalRef.current) return;
     positionIntervalRef.current = setInterval(async () => {
+      // Suppress stale position reads during seek or right after
+      if (isSeekingRef.current || Date.now() - lastSeekTimeRef.current < 600) return;
       try {
         const sound = soundRef.current;
         if (!sound) return;
@@ -423,7 +508,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           }
         }
       } catch {}
-    }, 250);
+    }, 100);
   }, [duration]);
 
   const stopPositionTracking = useCallback(() => {
@@ -448,7 +533,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         });
         const { sound } = await Audio.Sound.createAsync(
           { uri: audioUrl },
-          { shouldPlay: false, progressUpdateIntervalMillis: 250 },
+          { shouldPlay: false, progressUpdateIntervalMillis: 100 },
         );
         if (cancelled) {
           sound.unloadAsync().catch(() => {});
@@ -545,7 +630,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
 
       const { sound } = await Audio.Sound.createAsync(
         { uri: audioUrl },
-        { shouldPlay: true, progressUpdateIntervalMillis: 250 },
+        { shouldPlay: true, progressUpdateIntervalMillis: 100 },
       );
       soundRef.current = sound;
       preloadedRef.current = true;
@@ -577,24 +662,42 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     }
   }, [isPlaying, audioUrl, tokenId, isSignedIn, startPositionTracking, stopPositionTracking]);
 
+  const handleSeekPreview = useCallback((_position: number) => {
+    // Only block the polling interval — waveform clip updates on the UI thread directly
+    isSeekingRef.current = true;
+  }, []);
+
   const handleSeek = useCallback(
     async (position: number) => {
+      isSeekingRef.current = true;
+      lastSeekTimeRef.current = Date.now();
+      setProgress(position);
+      setCurrentTime(position * totalDuration);
       const sound = soundRef.current;
-      if (!sound) return;
+      if (!sound) {
+        isSeekingRef.current = false;
+        return;
+      }
       try {
         const status = await sound.getStatusAsync();
         if (status.isLoaded && status.durationMillis) {
           const seekMs = position * status.durationMillis;
           await sound.setPositionAsync(seekMs);
-          setProgress(position);
           setCurrentTime(seekMs / 1000);
         }
       } catch {}
+      // Release seeking flag slightly after command resolves
+      setTimeout(() => {
+        isSeekingRef.current = false;
+      }, 100);
     },
-    [],
+    [totalDuration],
   );
 
-  const handleHueChange = useCallback((h: number) => setHue(h), []);
+  const handleHueChange = useCallback((h: number) => {
+    setHue(h);
+    setHueState(h);
+  }, []);
   const handleStyleChange = useCallback((s: VisualizerStyle) => setVizStyle(s), []);
 
   const seed = String(tokenId);
@@ -602,12 +705,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   if (compact) {
     return (
       <View className="rounded-xl overflow-hidden">
-        <LinearGradient
-          colors={["#0a0a0c", "#111318", "#0f1520"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
-          className="px-3 py-2.5"
-        >
+        <View className="px-3 py-2.5" style={{ backgroundColor: "rgba(0,0,0,0.6)" }}>
           <View className="flex-row items-center gap-2.5">
             <TouchableOpacity
               onPress={handlePlayPause}
@@ -632,7 +730,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
               {fmtDuration(isPlaying ? currentTime : totalDuration)}
             </Text>
           </View>
-        </LinearGradient>
+        </View>
       </View>
     );
   }
@@ -645,6 +743,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           progress={progress}
           hue={hue}
           onSeek={handleSeek}
+          onSeekPreview={handleSeekPreview}
         />
       );
     }
@@ -660,40 +759,11 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
 
   return (
     <View className="mt-3 rounded-2xl overflow-hidden">
-      <LinearGradient
-        colors={["#0a0a0c", "#111318", "#0f1520"]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        className="p-4"
-      >
-        <Animated.View
-          style={glowStyle}
-          className="absolute inset-0 items-center justify-center"
-        >
-          <View
-            className="w-40 h-40 rounded-full"
-            style={{
-              backgroundColor:
-                hue === 0
-                  ? "rgba(255,255,255,0.06)"
-                  : `hsla(${hue}, 70%, 50%, 0.12)`,
-            }}
-          />
-        </Animated.View>
-
+      <View className="p-4" style={{ backgroundColor: "rgba(0,0,0,0.65)" }}>
         {renderVisualizer()}
 
         <View className="h-[3px] bg-white/10 rounded-full overflow-hidden mt-3">
-          <View
-            className="h-full rounded-full"
-            style={{
-              width: `${Math.min(100, progress * 100)}%`,
-              backgroundColor:
-                hue === 0
-                  ? "rgba(255,255,255,0.6)"
-                  : `hsla(${hue}, 80%, 65%, 0.8)`,
-            }}
-          />
+          <ProgressBar progress={progress} hue={hue} />
         </View>
 
         <View className="flex-row items-center justify-between mt-3">
@@ -737,9 +807,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         </View>
 
         <View className="mt-2.5">
-          <HuePicker hue={hue} onHueChange={handleHueChange} />
+          <HueSlider hue={hue} onHueChange={handleHueChange} />
         </View>
-      </LinearGradient>
+      </View>
     </View>
   );
 };

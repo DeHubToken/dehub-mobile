@@ -56,6 +56,7 @@ export interface PPVSheetProps {
   toAddress: string;
   amount: number | string;
   tokenSymbol: string;
+  contentType?: "video" | "image";
   onSuccess?: () => void;
 }
 
@@ -66,6 +67,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
   toAddress,
   amount,
   tokenSymbol,
+  contentType = "video",
   onSuccess,
 }) => {
   const insets = useSafeAreaInsets();
@@ -344,7 +346,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
                 Unlocked!
               </Animated.Text>
               <Animated.Text entering={FadeInDown.delay(300).duration(350)} style={styles.successSub}>
-                You can now watch this video
+                {contentType === "image" ? "You can now view this image" : "You can now watch this video"}
               </Animated.Text>
 
               <TouchableOpacity

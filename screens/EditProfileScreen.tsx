@@ -291,7 +291,7 @@ const EditProfileScreen = () => {
         rightContent={
           <TouchableOpacity
             onPress={onSave}
-            className={`px-4 py-2 rounded-full ${saveDisabled ? "bg-theme-neutrals-800" : "bg-blue-600 active:opacity-90"}`}
+            className={`px-4 py-2 rounded-xl ${saveDisabled ? "bg-theme-neutrals-800" : "bg-blue-600 active:opacity-90"}`}
             activeOpacity={0.8}
             disabled={saveDisabled}
           >

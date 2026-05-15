@@ -11,6 +11,7 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
 } from "react-native";
+import Animated, { useAnimatedStyle, type SharedValue } from "react-native-reanimated";
 import { Image } from "expo-image";
 import { useNavigation, useScrollToTop } from "@react-navigation/native";
 import Icon from "../ui/Icon";
@@ -29,6 +30,7 @@ interface HomeImageGridProps {
   pageSize?: number;
   gridRef?: React.MutableRefObject<HomeImageGridHandle | null>;
   headerInset?: number;
+  headerTranslateY?: SharedValue<number>;
   onScrollOffset?: (offsetY: number, deltaY: number) => void;
   onScrollEnd?: () => void;
   onScrollBegin?: () => void;
@@ -200,6 +202,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   pageSize = 20,
   gridRef,
   headerInset = 0,
+  headerTranslateY,
   onScrollOffset,
   onScrollEnd,
   onScrollBegin,
@@ -214,6 +217,12 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   const endReachedRef = useRef(false);
   const listRef = useRef<FlatList>(null);
   const prevYRef = useRef(0);
+
+  // Dynamic top spacer that shrinks/grows with header visibility
+  const topSpacerStyle = useAnimatedStyle(() => ({
+    height: Math.max(0, headerInset + (headerTranslateY?.value ?? 0)),
+  }));
+
   const navigation = useNavigation<any>();
 
   useScrollToTop(listRef);
@@ -303,13 +312,12 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   );
 
   const handleGridItemPress = useCallback((index: number) => {
-    const item = items[index];
-    if (!item) return;
-    const id = item.tokenId ?? item.id;
-    if (id != null) {
-      navigation.navigate(ScreenNames.FeedDetail as any, { postId: String(id) });
-    }
-  }, [items, navigation]);
+    navigation.navigate(ScreenNames.ImageFeed as any, {
+      initialIndex: index,
+      initialItems: items,
+      feedParams: mergedParams,
+    });
+  }, [items, navigation, mergedParams]);
 
   const gridRows = useMemo(() => buildGridRows(items.length), [items.length]);
 
@@ -336,7 +344,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     return (
       <View className="flex-1 items-center justify-center px-4">
         <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
-        <TouchableOpacity onPress={resetAndLoad} className="px-5 py-2 rounded-full bg-theme-neutrals-700">
+        <TouchableOpacity onPress={resetAndLoad} className="px-5 py-2 rounded-xl bg-theme-neutrals-700">
           <Text className="text-theme-neutrals-50 font-medium">Retry</Text>
         </TouchableOpacity>
       </View>
@@ -351,7 +359,8 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         keyExtractor={keyExtractor}
         renderItem={renderGridRow}
         getItemLayout={getGridItemLayout}
-        contentContainerStyle={{ paddingTop: headerInset }}
+        ListHeaderComponent={<Animated.View style={topSpacerStyle} />}
+        contentContainerStyle={{ paddingTop: 0 }}
         style={{ borderRadius: 12, overflow: 'hidden' }}
         showsVerticalScrollIndicator={false}
         initialNumToRender={6}
