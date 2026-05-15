@@ -60,15 +60,10 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
           activeOpacity={0.7}
           className="w-9 h-9 items-center justify-center"
         >
-          <SmartImage
-            source={require("../assets/web-icons/notifications-icon.png")}
-            style={{ width: 24, height: 24 }}
-            contentFit="contain"
-            cachePolicy="memory-disk"
-          />
+          <Icon name="Bell" size={24} color="#E5E7EB" />
           {hasUnread && (
             <View
-              className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full"
+              className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full"
               style={{ backgroundColor: theme.colors.accent }}
               pointerEvents="none"
             />

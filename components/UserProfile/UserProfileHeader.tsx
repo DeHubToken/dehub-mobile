@@ -8,6 +8,8 @@ import Icon from "../ui/Icon";
 import { copyToClipboard } from "../../libs";
 import { getSocialLink, openExternalLink } from "../../libs/links.utils";
 import FakeGlass from "../ui/FakeGlass";
+import MutualFollowers from "./MutualFollowers";
+import type { FollowListItem } from "../../services/user.service";
 
 const SOCIAL_SVGS: Record<string, string> = {
   twitter: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg>`,
@@ -70,6 +72,7 @@ export interface UserProfileHeaderProps {
   FallbackAvatar: any;
   FallbackBanner: any;
   socials?: Partial<Record<string, string>>;
+  mutuals?: FollowListItem[];
 }
 
 const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
@@ -103,6 +106,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   FallbackAvatar,
   FallbackBanner,
   socials,
+  mutuals,
 }) => {
   const handleCopyUsername = useCallback(() => {
     if (username) copyToClipboard(username);
@@ -318,6 +322,8 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             </View>
           )}
         </View>
+
+        <MutualFollowers mutuals={mutuals || []} />
 
         {!hasUsername && (
           <View className="mt-3 bg-theme-neutrals-800/60 rounded-lg p-3">

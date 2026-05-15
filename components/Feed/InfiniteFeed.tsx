@@ -280,7 +280,7 @@ const InfiniteFeedBase: React.FC<
     return (
       <View className="flex-1 items-center justify-center px-4">
         <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
-        <View className="px-5 py-2 rounded-full bg-theme-neutrals-700">
+        <View className="px-5 py-2 rounded-xl bg-theme-neutrals-700">
           <Text onPress={resetAndLoad} className="text-theme-neutrals-50 font-medium">Retry</Text>
         </View>
       </View>

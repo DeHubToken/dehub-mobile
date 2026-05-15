@@ -1,5 +1,11 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useState, useRef, useMemo } from "react";
 import { View, Pressable, StyleSheet } from "react-native";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import Reanimated, {
+  useSharedValue,
+  useAnimatedStyle,
+  runOnJS,
+} from "react-native-reanimated";
 import Icon, { type IconName } from "../ui/Icon";
 import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
 import type { PostTypeOption } from "./FeedFilterPanel";
@@ -30,13 +36,9 @@ interface FeedNavBarProps {
 const NavButton = memo<{
   icon: IconName;
   active: boolean;
-  tooltip: string;
   onPress: () => void;
-}>(({ icon, active, tooltip, onPress }) => (
-  <Pressable
-    onPress={onPress}
-    style={styles.navButton}
-  >
+}>(({ icon, active, onPress }) => (
+  <Pressable onPress={onPress} style={styles.navButton}>
     {({ pressed }) => (
       <>
         {active && (
@@ -65,54 +67,120 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   onFilterPress,
 }) => {
   const handleNavPress = useCallback(
-    (postType: PostTypeOption) => {
-      onPostTypeChange(postType);
-    },
+    (postType: PostTypeOption) => onPostTypeChange(postType),
     [onPostTypeChange],
   );
 
-  return (
-    <View style={styles.outerWrap}>
-      <View style={styles.container}>
-        <View style={styles.navRow}>
-          {NAV_ITEMS.map((item) => (
-            <NavButton
-              key={item.postType}
-              icon={item.icon}
-              active={activePostType === item.postType}
-              tooltip={item.tooltip}
-              onPress={() => handleNavPress(item.postType)}
-            />
-          ))}
+  const [containerWidth, setContainerWidth] = useState(0);
+  const buttonCount = NAV_ITEMS.length + 1; // +1 for filter button
+  const buttonWidth = containerWidth > 0 ? containerWidth / buttonCount : 60;
 
-          <Pressable
-            onPress={onFilterPress}
-            style={styles.navButton}
-          >
-            {({ pressed }) => {
-              const filterActive = isFilterOpen || hasActiveFilters;
-              return (
-                <>
-                  {filterActive && (
-                    <View style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}>
-                      <GlassIndicator borderRadius={12} />
+  // Refs that stay current without triggering re-renders
+  const activePostTypeRef = useRef(activePostType);
+  activePostTypeRef.current = activePostType;
+
+  // UI-thread values for the drag indicator
+  const isDragging = useSharedValue(false);
+  const dragTranslateX = useSharedValue(0);
+
+  // Snapshot at gesture start
+  const startIndexRef = useRef(0);
+
+  const panGesture = useMemo(
+    () =>
+      Gesture.Pan()
+        .activateAfterLongPress(80)
+        .minDistance(5)
+        .onStart(() => {
+          const idx = NAV_ITEMS.findIndex(
+            (item) => item.postType === activePostTypeRef.current,
+          );
+          startIndexRef.current = Math.max(0, idx);
+          isDragging.value = true;
+        })
+        .onChange((e) => {
+          if (buttonWidth <= 0) return;
+          const rawIdx = startIndexRef.current + e.translationX / buttonWidth;
+          const clampedIdx = Math.max(0, Math.min(NAV_ITEMS.length - 1, rawIdx));
+          dragTranslateX.value = clampedIdx * buttonWidth;
+        })
+        .onEnd((e) => {
+          isDragging.value = false;
+          if (buttonWidth <= 0) return;
+          const rawIdx = startIndexRef.current + e.translationX / buttonWidth;
+          const clampedIdx = Math.round(
+            Math.max(0, Math.min(NAV_ITEMS.length - 1, rawIdx)),
+          );
+          const newPostType = NAV_ITEMS[clampedIdx]?.postType;
+          if (newPostType && newPostType !== activePostTypeRef.current) {
+            runOnJS(onPostTypeChange)(newPostType);
+          }
+        }),
+    [buttonWidth, onPostTypeChange, isDragging, dragTranslateX],
+  );
+
+  // Animated glass indicator that slides on the UI thread during drag
+  const dragIndicatorStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: dragTranslateX.value }],
+    width: buttonWidth,
+    opacity: isDragging.value ? 1 : 0,
+    position: "absolute" as const,
+  }));
+
+  return (
+    <GestureDetector gesture={panGesture}>
+      <View style={styles.outerWrap}>
+        <View
+          style={styles.container}
+          onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
+        >
+          {/* Floating drag indicator — UI-thread only, zero JS lag */}
+          <Reanimated.View style={[styles.dragIndicator, dragIndicatorStyle]}>
+            <View style={StyleSheet.absoluteFill}>
+              <View style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}>
+                <GlassIndicator borderRadius={12} />
+              </View>
+            </View>
+          </Reanimated.View>
+
+          <View style={styles.navRow}>
+            {NAV_ITEMS.map((item) => (
+              <NavButton
+                key={item.postType}
+                icon={item.icon}
+                active={!isDragging.value && activePostType === item.postType}
+                onPress={() => handleNavPress(item.postType)}
+              />
+            ))}
+
+            <Pressable onPress={onFilterPress} style={styles.navButton}>
+              {({ pressed }) => {
+                const filterActive = isFilterOpen || hasActiveFilters;
+                return (
+                  <>
+                    {filterActive && (
+                      <View
+                        style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}
+                      >
+                        <GlassIndicator borderRadius={12} />
+                      </View>
+                    )}
+                    <View style={{ opacity: pressed ? 0.6 : 1 }}>
+                      <Icon
+                        name={isFilterOpen ? "X" : "Settings2"}
+                        size={16}
+                        color={filterActive ? "#FFFFFF" : "#71717A"}
+                        strokeWidth={filterActive ? 2 : 1.8}
+                      />
                     </View>
-                  )}
-                  <View style={{ opacity: pressed ? 0.6 : 1 }}>
-                    <Icon
-                      name={isFilterOpen ? "X" : "Settings2"}
-                      size={16}
-                      color={filterActive ? "#FFFFFF" : "#71717A"}
-                      strokeWidth={filterActive ? 2 : 1.8}
-                    />
-                  </View>
-                </>
-              );
-            }}
-          </Pressable>
+                  </>
+                );
+              }}
+            </Pressable>
+          </View>
         </View>
       </View>
-    </View>
+    </GestureDetector>
   );
 };
 
@@ -126,6 +194,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#18181B",
     borderRadius: 12,
     overflow: "hidden",
+  },
+  dragIndicator: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    height: "100%",
+    borderRadius: 12,
   },
   navRow: {
     flexDirection: "row",

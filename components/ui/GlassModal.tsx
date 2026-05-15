@@ -110,7 +110,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
                 style={StyleSheet.absoluteFill}
                 {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
               />
-              <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.25)" }} />
+              <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(12,12,14,0.68)" }} />
               {children}
             </View>
           ) : (
@@ -134,9 +134,9 @@ const styles = StyleSheet.create({
   panel: {
     width: "100%",
     overflow: "hidden",
-    backgroundColor: "rgba(20,20,20,0.45)",
+    backgroundColor: "rgba(12,12,14,0.68)",
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.12)",
+    borderColor: "rgba(255,255,255,0.14)",
   },
 });
 

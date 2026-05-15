@@ -16,7 +16,8 @@
     "test:coverage": "jest --coverage",
     "test:ci": "jest --ci --coverage --reporters=default --reporters=jest-junit",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint . --ext .ts,.tsx --max-warnings 0"
+    "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
+    "i18n:generate": "node scripts/generate-translations.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.2",
@@ -77,6 +78,7 @@
     "expo-image-picker": "~17.0.8",
     "expo-linear-gradient": "~15.0.7",
     "expo-linking": "~8.0.8",
+    "expo-localization": "^55.0.14",
     "expo-media-library": "~18.2.0",
     "expo-notifications": "^0.32.16",
     "expo-screen-orientation": "~9.0.7",
@@ -87,11 +89,13 @@
     "expo-video": "~3.0.11",
     "expo-video-thumbnails": "~10.0.7",
     "expo-web-browser": "~15.0.8",
+    "i18next": "^26.1.0",
     "lucide-react-native": "0.526.0",
     "nativewind": "4.2.1",
     "process": "^0.11.10",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-i18next": "^17.0.7",
     "react-native": "0.81.4",
     "react-native-dotenv": "^3.4.11",
     "react-native-element-dropdown": "^2.12.4",

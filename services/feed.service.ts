@@ -38,7 +38,7 @@ export async function getFeedNFTs(params?: SearchParams): Promise<GetNFTsRespons
     });
     const query = objectToGetParams(base);
     const url = `/feed${query}`;
-    const res = await apiClient.get<any>(url, { isAuthRequired: true });
+    const res = await apiClient.get<any>(url, { isAuthRequired: false });
     if (Array.isArray(res)) return { result: res } as GetNFTsResponse;
     if (res?.result && Array.isArray(res.result)) return res as GetNFTsResponse;
     if (Array.isArray(res?.data)) return { result: res.data } as GetNFTsResponse;
@@ -59,7 +59,7 @@ export async function getFeedNFTs(params?: SearchParams): Promise<GetNFTsRespons
   });
   const query = objectToGetParams(base);
   const url = `/feed${query}`;
-  const res = await apiClient.get<any>(url, { isAuthRequired: true });
+  const res = await apiClient.get<any>(url, { isAuthRequired: false });
   if (Array.isArray(res)) return { result: res } as GetNFTsResponse;
   if (res?.result && Array.isArray(res.result)) return res as GetNFTsResponse;
   if (Array.isArray(res?.data)) return { result: res.data } as GetNFTsResponse;

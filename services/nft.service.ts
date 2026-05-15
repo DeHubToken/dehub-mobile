@@ -309,6 +309,8 @@ export interface Comment {
   replyIds?: number[];
   likeCount: number;
   isLiked?: boolean;
+  dislikeCount?: number;
+  isDisliked?: boolean;
   notFound?: boolean;
   user?: CommentUser;
 }
@@ -375,6 +377,33 @@ export async function likeComment(input: LikeCommentInput): Promise<LikeCommentR
     return res;
   } catch (e) {
     console.error('[NFTService] likeComment error', e);
+    throw e;
+  }
+}
+
+// Dislike/undislike a comment (toggleable)
+export interface DislikeCommentInput {
+  commentId: number | string;
+}
+
+export interface DislikeCommentResult {
+  result: boolean;
+  disliked: boolean;
+  dislikes: number;
+}
+
+export async function dislikeComment(input: DislikeCommentInput): Promise<DislikeCommentResult> {
+  const { commentId } = input;
+  if (commentId == null) throw new Error('commentId required');
+  try {
+    const res = await apiClient.post<DislikeCommentResult>(
+      '/dislike_comment',
+      { commentId: Number(commentId) },
+      { isAuthRequired: true }
+    );
+    return res;
+  } catch (e) {
+    console.error('[NFTService] dislikeComment error', e);
     throw e;
   }
 }
@@ -784,6 +813,57 @@ export async function getUserReportStatus(userId: string): Promise<ReportStatusR
     return res;
   } catch (e) {
     console.error('[NFTService] getUserReportStatus error', e);
+    throw e;
+  }
+}
+
+// Who liked a post
+export interface LikerUser {
+  address: string;
+  username?: string;
+  displayName?: string;
+  avatarImageUrl?: string;
+  followers?: number;
+  likedAt?: string;
+}
+
+export interface GetPostLikersInput {
+  tokenId: number | string;
+  page?: number;
+  limit?: number;
+}
+
+export interface GetPostLikersResult {
+  result: LikerUser[];
+  pagination: {
+    page: number;
+    limit: number;
+    totalCount: number;
+    hasMore: boolean;
+  };
+}
+
+export async function getPostLikers(input: GetPostLikersInput): Promise<GetPostLikersResult> {
+  const { tokenId, page = 1, limit = 20 } = input;
+  if (tokenId == null) throw new Error('tokenId required');
+  try {
+    const q = new URLSearchParams();
+    q.set('tokenId', String(tokenId));
+    q.set('page', String(page));
+    q.set('limit', String(limit));
+    const res = await apiClient.get<GetPostLikersResult>(
+      `/likes?${q.toString()}`,
+      { isAuthRequired: false }
+    );
+    if (Array.isArray(res)) {
+      return {
+        result: res as unknown as LikerUser[],
+        pagination: { page, limit, totalCount: res.length, hasMore: false },
+      };
+    }
+    return res ?? { result: [], pagination: { page, limit, totalCount: 0, hasMore: false } };
+  } catch (e) {
+    console.error('[NFTService] getPostLikers error', e);
     throw e;
   }
 }

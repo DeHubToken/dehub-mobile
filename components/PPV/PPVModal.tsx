@@ -336,7 +336,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
                   )}
                 </View>
                 <View className="flex-row items-center justify-center gap-3">
-                  <AccentButtonGradient style={{ borderRadius: 9999, opacity: isBusy || insufficient || isSelf ? 0.6 : 1 }}>
+                  <AccentButtonGradient style={{ borderRadius: 14, opacity: isBusy || insufficient || isSelf ? 0.6 : 1 }}>
                     <TouchableOpacity
                       disabled={isBusy || insufficient || isSelf}
                       onPress={handleUnlock}
@@ -369,7 +369,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
                   <TouchableOpacity
                     disabled={isBusy}
                     onPress={close}
-                    className={`px-5 h-11 rounded-full bg-theme-neutrals-700 items-center justify-center ${
+                    className={`px-5 h-11 rounded-xl bg-theme-neutrals-700 items-center justify-center ${
                       isBusy ? "opacity-60" : ""
                     }`}
                   >
@@ -389,7 +389,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
                   Unlocked successfully
                 </Text>
                 <View className="flex-row gap-3">
-                  <AccentButtonGradient style={{ borderRadius: 9999 }}>
+                  <AccentButtonGradient style={{ borderRadius: 14 }}>
                     <TouchableOpacity
                       onPress={() => {
                         try {

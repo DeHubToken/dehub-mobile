@@ -8,6 +8,7 @@ import "react-native-gesture-handler";
 import "react-native-worklets";
 
 import "./globals";
+import "./i18n";
 
 // import "./config/reown.config";
 

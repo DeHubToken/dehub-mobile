@@ -55,6 +55,8 @@ interface CommentContextMenuProps {
   onDelete?: () => void;
   onLike?: () => void;
   liked?: boolean;
+  onDislike?: () => void;
+  disliked?: boolean;
   tokenId?: number | string;
   /** Whether current user can delete (own comment or video owner) */
   canDelete?: boolean;
@@ -247,6 +249,8 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
   onDelete,
   onLike,
   liked,
+  onDislike,
+  disliked,
   tokenId,
   canDelete,
 }) => {
@@ -289,6 +293,11 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
     // Fire after modal dismisses so the async call isn't interrupted
     setTimeout(() => onLike?.(), 100);
   }, [onLike, onClose]);
+
+  const handleDislike = useCallback(() => {
+    onClose();
+    setTimeout(() => onDislike?.(), 100);
+  }, [onDislike, onClose]);
 
   const handleDelete = useCallback(() => {
     onClose();
@@ -382,7 +391,7 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
       >
         <Pressable>
           <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden py-1">
-            {!isReply && onReply && (
+            {onReply && (
               <ActionRow icon="MessageSquare" label="Reply" onPress={handleReply} />
             )}
 
@@ -391,6 +400,22 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
             ) : null}
 
             <ActionRow icon="Share2" label="Share" onPress={handleShare} />
+
+            {onLike && (
+              <ActionRow
+                icon="ThumbsUp"
+                label={liked ? "Unlike" : "Like"}
+                onPress={handleLike}
+              />
+            )}
+
+            {onDislike && (
+              <ActionRow
+                icon="ThumbsDown"
+                label={disliked ? "Remove Dislike" : "Dislike"}
+                onPress={handleDislike}
+              />
+            )}
 
             {isOwnComment && onEdit && !isMediaComment(comment) && (
               <ActionRow icon="Pencil" label="Edit" onPress={handleEdit} />

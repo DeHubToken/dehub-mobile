@@ -7,6 +7,8 @@ import {
   ActivityIndicator,
 } from "react-native";
 import Icon from "../ui/Icon";
+import MentionSuggestions from "../common/MentionSuggestions";
+import { useMentions } from "../../hooks/useMentions";
 import { sendAIChat } from "../../services/ai.service";
 import type { LiveChatMessageData } from "../../services/livechat.service";
 
@@ -41,6 +43,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
   onGifPress,
 }) => {
   const [text, setText] = useState("");
+  const mentions = useMentions(text, setText);
   const [cooldown, setCooldown] = useState(false);
   const [enhancing, setEnhancing] = useState(false);
   const inputRef = useRef<TextInput>(null);
@@ -63,6 +66,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
     onSend(trimmed, replyingTo?._id);
     setText("");
+    mentions.reset();
     onCancelReply();
     if (editingMessage) onCancelEdit();
 
@@ -97,10 +101,10 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
   const handleChangeText = useCallback(
     (val: string) => {
-      setText(val);
+      mentions.handleChangeText(val);
       if (val.length > 0) onTyping(true);
     },
-    [onTyping],
+    [mentions, onTyping],
   );
 
   const disabled = isBanned || !canSend;
@@ -147,6 +151,13 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         </View>
       )}
 
+      <MentionSuggestions
+        visible={mentions.showSuggestions}
+        suggestions={mentions.suggestions}
+        onSelect={mentions.selectMention}
+        loading={mentions.loading}
+      />
+
       <View className="flex-row items-end px-2 py-1.5 gap-0.5">
         {!hasContent && onGifPress && !disabled && (
           <TouchableOpacity
@@ -165,6 +176,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             ref={inputRef}
             value={text}
             onChangeText={handleChangeText}
+            onSelectionChange={mentions.handleSelectionChange}
             placeholder={placeholder}
             placeholderTextColor="#666"
             multiline

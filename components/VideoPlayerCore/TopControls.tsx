@@ -1,14 +1,19 @@
 import React, { memo, useCallback } from 'react';
 import { View, TouchableOpacity, Text, AccessibilityInfo } from 'react-native';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 interface TopControlsProps {
   onClose: () => void;
   onMute: () => void;
   onFullscreen: () => void;
   onRotateToPortrait?: () => void;
+  onPiP?: () => void;
+  onToggleLoop?: () => void;
+  onToggleSpeed?: () => void;
   isMuted: boolean;
   fullscreen: boolean;
+  isLooping?: boolean;
+  playbackRate?: number;
   title?: string;
   showTitle?: boolean;
 }
@@ -18,8 +23,13 @@ const TopControls: React.FC<TopControlsProps> = ({
   onMute,
   onFullscreen,
   onRotateToPortrait,
+  onPiP,
+  onToggleLoop,
+  onToggleSpeed,
   isMuted,
   fullscreen,
+  isLooping = true,
+  playbackRate = 1,
   title,
   showTitle = false,
 }) => {
@@ -47,7 +57,7 @@ const TopControls: React.FC<TopControlsProps> = ({
       <View className="flex-row items-center flex-1">
         <TouchableOpacity
           onPress={handleClose}
-          className="bg-black/60 rounded-full p-2.5"
+          className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
           activeOpacity={0.7}
           accessibilityLabel="Close video"
           accessibilityRole="button"
@@ -70,9 +80,39 @@ const TopControls: React.FC<TopControlsProps> = ({
 
       {/* Right side - Controls */}
       <View className="flex-row items-center gap-2">
+        {onToggleSpeed && (
+          <TouchableOpacity
+            onPress={onToggleSpeed}
+            className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
+            activeOpacity={0.7}
+          >
+            <Text className="text-white text-xs font-bold">{playbackRate}x</Text>
+          </TouchableOpacity>
+        )}
+
+        {onToggleLoop && (
+          <TouchableOpacity
+            onPress={onToggleLoop}
+            className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
+            activeOpacity={0.7}
+          >
+            <MaterialIcons name={isLooping ? 'loop' : 'trending-flat'} size={20} color={isLooping ? "#fff" : "#9CA3AF"} />
+          </TouchableOpacity>
+        )}
+
+        {onPiP && (
+          <TouchableOpacity
+            onPress={onPiP}
+            className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
+            activeOpacity={0.7}
+          >
+            <MaterialIcons name="picture-in-picture-alt" size={18} color="#fff" />
+          </TouchableOpacity>
+        )}
+
         <TouchableOpacity
           onPress={handleMute}
-          className="bg-black/60 rounded-full p-2.5"
+          className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
           activeOpacity={0.7}
           accessibilityLabel={isMuted ? 'Unmute' : 'Mute'}
           accessibilityRole="button"
@@ -89,7 +129,7 @@ const TopControls: React.FC<TopControlsProps> = ({
         {onRotateToPortrait && (
           <TouchableOpacity
             onPress={onRotateToPortrait}
-            className="bg-black/60 rounded-full p-2.5"
+            className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
             activeOpacity={0.7}
             accessibilityLabel="Rotate orientation"
             accessibilityRole="button"
@@ -101,7 +141,7 @@ const TopControls: React.FC<TopControlsProps> = ({
 
         <TouchableOpacity
           onPress={handleFullscreen}
-          className="bg-black/60 rounded-full p-2.5"
+          className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
           activeOpacity={0.7}
           accessibilityLabel={fullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
           accessibilityRole="button"
