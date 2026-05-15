@@ -162,6 +162,9 @@ export const apiClient = {
         throw new Error(message + htmlHint);
       }
 
+      if (response.ok) {
+        console.log(`[apiClient] Success (${url}):`, JSON.stringify(data).slice(0, 200));
+      }
       return data as T;
     } catch (error) {
       console.error(`API Error (${url}):`, error);

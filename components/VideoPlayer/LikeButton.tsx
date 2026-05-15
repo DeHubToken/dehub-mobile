@@ -61,7 +61,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ vote, tokenId, votes = 0, class
 
   const containerCls = useMemo(
     () =>
-      `flex-row items-center px-3 py-1.5 rounded-full mr-2 bg-theme-neutrals-800 ${
+      `flex-row items-center px-3 py-1.5 rounded-xl mr-2 bg-theme-neutrals-800 ${
         pending ? "opacity-70" : ""
       } ${className || ""}`,
     [pending, className]

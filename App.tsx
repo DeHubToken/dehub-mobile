@@ -32,11 +32,15 @@ import { MessagingProvider } from "./context/MessagingContext";
 import { PushNotificationsProvider } from "./services/push";
 import { linkingConfig } from "./navigation/linking.config";
 import { prewarmWeb3Auth } from "./config/web3auth.config";
+import { loadMutedState } from "./libs/videoMutedState";
+import { loadHueState } from "./libs/audioHueState";
 import { Platform } from "react-native";
 import UpdateAppModal from "./components/UpdateAppModal";
 import { useAppUpdate } from "./hooks/useAppUpdate";
 import { useNavigationPersistence } from "./hooks/useNavigationPersistence";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n";
 import { useAppLifecycle } from "./hooks/useAppLifecycle";
 import { createLogger } from "./libs/logger";
 import { forceFlushBatchViews } from "./services/view.service";
@@ -82,6 +86,10 @@ export default function App() {
   React.useEffect(() => {
     // Kick off background Web3Auth prewarm to avoid first SignIn lag
     prewarmWeb3Auth();
+    // Pre-warm persistent media settings so video/audio players have correct
+    // initial values synchronously (no race condition with AsyncStorage)
+    loadMutedState().catch(() => {});
+    loadHueState().catch(() => {});
   }, []);
 
   // Hide native splash once network status is determined
@@ -109,37 +117,43 @@ export default function App() {
 
   if (!hasInternet) {
     return (
-      <SafeAreaProvider className="flex-1 select-none bg-theme-background">
-        <NoInternetScreen onRetry={checkConnection} />
-      </SafeAreaProvider>
+      <I18nextProvider i18n={i18n}>
+        <SafeAreaProvider className="flex-1 select-none bg-theme-background">
+          <NoInternetScreen onRetry={checkConnection} />
+        </SafeAreaProvider>
+      </I18nextProvider>
     );
   }
 
   return (
-    <ErrorBoundary showDetails={__DEV__}>
-      <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#000" }}>
-        <SafeAreaProvider className="flex-1 select-none bg-theme-background">
-          <AuthProvider>
-            <WebSocketProvider>
-              <DMProvider>
-                <BootGate />
-              </DMProvider>
-            </WebSocketProvider>
-          </AuthProvider>
-          <Toaster
-            position="top-center"
-            offset={56}
-            richColors
-            toastOptions={{
-              style: toastTheme.containerStyle,
-            }}
-          />
-          <PermissionModalProvider />
-        </SafeAreaProvider>
-      </GestureHandlerRootView>
-    </ErrorBoundary>
+    <I18nextProvider i18n={i18n}>
+      <ErrorBoundary showDetails={__DEV__}>
+        <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#000" }}>
+          <SafeAreaProvider className="flex-1 select-none bg-theme-background">
+            <AuthProvider>
+              <WebSocketProvider>
+                <DMProvider>
+                  <BootGate />
+                </DMProvider>
+              </WebSocketProvider>
+            </AuthProvider>
+            <Toaster
+              position="top-center"
+              offset={56}
+              richColors
+              toastOptions={{
+                style: toastTheme.containerStyle,
+              }}
+            />
+            <PermissionModalProvider />
+          </SafeAreaProvider>
+        </GestureHandlerRootView>
+      </ErrorBoundary>
+    </I18nextProvider>
   );
 }
+
+const MIN_SPLASH_MS = 2500;
 
 const BootGate: React.FC = () => {
   const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
@@ -147,6 +161,13 @@ const BootGate: React.FC = () => {
   // Only run update checks in production builds
   const { updateInfo, showModal, closeModal } = useAppUpdate();
   const isAuthenticated = isSignedIn && !needsUsername;
+
+  const [minSplashDone, setMinSplashDone] = React.useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setMinSplashDone(true), MIN_SPLASH_MS);
+    return () => clearTimeout(t);
+  }, []);
 
   useUploadProcessor();
 
@@ -175,9 +196,9 @@ const BootGate: React.FC = () => {
     [onStateChange]
   );
 
-  // Show splash while loading auth state or navigation state
+  // Show splash while loading auth state, navigation state, or minimum splash time
   // Wrapped in black View to prevent any white flash
-  if (isBootLoading || !isReady) {
+  if (isBootLoading || !isReady || !minSplashDone) {
     return (
       <View style={{ flex: 1, backgroundColor: '#000000' }}>
         <SplashScreen />

@@ -49,10 +49,24 @@ type ListItem =
   | { type: "message"; data: LiveChatMessageData }
   | { type: "date"; label: string; key: string };
 
-const buildListItems = (messages: LiveChatMessageData[]): ListItem[] => {
+const buildListItems = (
+  messages: LiveChatMessageData[],
+  pinnedMessages?: LiveChatMessageData[],
+): ListItem[] => {
+  // Merge any pinned messages not already in the main messages array so they
+  // can be scrolled to even if they're older than the loaded message window.
+  const messageIds = new Set(messages.map((m) => m._id));
+  const extraPinned = (pinnedMessages || []).filter((m) => !messageIds.has(m._id));
+  const allMessages =
+    extraPinned.length > 0
+      ? [...messages, ...extraPinned].sort(
+          (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+        )
+      : messages;
+
   const items: ListItem[] = [];
   let lastDate = "";
-  for (const msg of messages) {
+  for (const msg of allMessages) {
     const dateLabel = getDateLabel(msg.createdAt);
     if (dateLabel !== lastDate) {
       const d = new Date(msg.createdAt);
@@ -129,7 +143,10 @@ const LiveChatScreen: React.FC = () => {
     [user]
   );
 
-  const listItems = useMemo(() => buildListItems(messages), [messages]);
+  const listItems = useMemo(
+    () => buildListItems(messages, room?.pinnedMessages),
+    [messages, room?.pinnedMessages],
+  );
 
   const scrollToBottom = useCallback((animated = true) => {
     const maxOffset = contentHeightRef.current - layoutHeightRef.current;
@@ -404,14 +421,19 @@ const LiveChatScreen: React.FC = () => {
       const idx = listItems.findIndex(
         (item) => item.type === "message" && item.data._id === messageId,
       );
-      if (idx >= 0) {
-        setHighlightedId(null); // Reset first so re-tapping same msg works
+      if (idx < 0) return;
+
+      setHighlightedId(null);
+      // Jump to an estimated offset first so scrollToIndex has the item rendered
+      const estimatedOffset = Math.max(0, idx * 80 - layoutHeightRef.current * 0.3);
+      flatListRef.current?.scrollToOffset({ offset: estimatedOffset, animated: false });
+      setTimeout(() => {
         flatListRef.current?.scrollToIndex({ index: idx, animated: true, viewPosition: 0.3 });
-        setTimeout(() => {
-          setHighlightedId(messageId);
-          setTimeout(() => setHighlightedId(null), 4000);
-        }, 300);
-      }
+      }, 100);
+      setTimeout(() => {
+        setHighlightedId(messageId);
+        setTimeout(() => setHighlightedId(null), 4000);
+      }, 350);
     },
     [listItems],
   );
@@ -620,6 +642,20 @@ const LiveChatScreen: React.FC = () => {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
           keyboardDismissMode="interactive"
+          onScrollToIndexFailed={(info) => {
+            // Item not yet rendered — scroll to approximate offset then retry
+            flatListRef.current?.scrollToOffset({
+              offset: info.averageItemLength * info.index,
+              animated: true,
+            });
+            setTimeout(() => {
+              flatListRef.current?.scrollToIndex({
+                index: info.index,
+                animated: true,
+                viewPosition: 0.3,
+              });
+            }, 300);
+          }}
         />
 
         {!isAtBottomRef.current && messages.length > 10 && (

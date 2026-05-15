@@ -14,16 +14,18 @@ import Icon from "../ui/Icon";
 import CommentSection from "./CommentSection";
 import RepostTab from "./RepostTab";
 import QuoteTab from "./QuoteTab";
+import LikersTab from "./LikersTab";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const SHEET_FRACTION = 0.82;
 
-type SheetTab = "comments" | "quotes" | "reposts";
+type SheetTab = "comments" | "quotes" | "reposts" | "likes";
 
 const TAB_CONFIG: { key: SheetTab; icon: React.ComponentProps<typeof Icon>["name"]; label: string }[] = [
   { key: "comments", icon: "MessageSquare", label: "Comments" },
   { key: "quotes", icon: "Quote", label: "Quotes" },
   { key: "reposts", icon: "Repeat2", label: "Reposts" },
+  { key: "likes", icon: "ThumbsUp", label: "Likes" },
 ];
 
 interface CommentBottomSheetProps {
@@ -128,12 +130,13 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
           ]}
         >
           <BlurView
-            intensity={80}
+            intensity={95}
             tint="dark"
             style={StyleSheet.absoluteFill}
             {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
           />
           <View style={[StyleSheet.absoluteFill, glassStyles.overlay]} />
+          <View style={[StyleSheet.absoluteFill, glassStyles.frost]} />
 
           <GestureDetector gesture={gesture}>
             <Animated.View className="items-center py-2.5">
@@ -179,6 +182,10 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
           {activeTab === "reposts" && (
             <RepostTab tokenId={tokenId} />
           )}
+
+          {activeTab === "likes" && (
+            <LikersTab tokenId={tokenId} />
+          )}
         </Animated.View>
       </GestureHandlerRootView>
     </Modal>
@@ -196,9 +203,12 @@ const glassStyles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "rgba(20,20,20,0.55)",
+    backgroundColor: "rgba(12,12,14,0.72)",
     borderTopWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+    borderColor: "rgba(255,255,255,0.14)",
+  },
+  frost: {
+    backgroundColor: "rgba(255,255,255,0.06)",
   },
   tabBar: {
     flexDirection: "row",

@@ -202,7 +202,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
 
   return (
     <View
-      style={StyleSheet.absoluteFill}
+      style={[StyleSheet.absoluteFill, { zIndex: 999 }]}
       pointerEvents={visible ? "auto" : "none"}
     >
       <Animated.View style={[StyleSheet.absoluteFill, backdropStyle]}>
@@ -350,6 +350,8 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     overflow: "hidden",
+    zIndex: 999,
+    elevation: 10,
   },
   androidFrost: {
     backgroundColor: "rgba(10, 10, 12, 0.88)",

@@ -346,11 +346,11 @@ const TipModal: React.FC<TipModalProps> = ({
                   )}
                 </View>
                 <View className="flex-row items-center justify-center gap-3">
-                  <AccentButtonGradient style={{ borderRadius: 999 }}>
+                  <AccentButtonGradient style={{ borderRadius: 14 }}>
                     <TouchableOpacity
                       disabled={disableTip && phase === "idle"}
                       onPress={handleTip}
-                      className={`flex-row items-center gap-2 px-5 h-11 rounded-full ${
+                      className={`flex-row items-center gap-2 px-5 h-11 rounded-xl ${
                         disableTip && phase === "idle" ? "opacity-60" : ""
                       }`}
                       style={{ backgroundColor: 'transparent' }}
@@ -377,7 +377,7 @@ const TipModal: React.FC<TipModalProps> = ({
                   <TouchableOpacity
                     disabled={isBusy}
                     onPress={close}
-                    className={`px-5 h-11 rounded-full bg-theme-neutrals-700 items-center justify-center ${
+                    className={`px-5 h-11 rounded-xl bg-theme-neutrals-700 items-center justify-center ${
                       isBusy ? "opacity-60" : ""
                     }`}
                   >
@@ -402,13 +402,13 @@ const TipModal: React.FC<TipModalProps> = ({
                       setPhase("idle");
                       setAmount(lastAmount ? String(lastAmount) : "");
                     }}
-                    className="px-5 h-11 rounded-full bg-theme-accent items-center justify-center"
+                    className="px-5 h-11 rounded-xl bg-theme-accent items-center justify-center"
                   >
                     <Text className="text-white font-semibold">Resend</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={close}
-                    className="px-5 h-11 rounded-full bg-theme-neutrals-700 items-center justify-center"
+                    className="px-5 h-11 rounded-xl bg-theme-neutrals-700 items-center justify-center"
                   >
                     <Text className="text-white font-semibold">Close</Text>
                   </TouchableOpacity>
@@ -429,7 +429,7 @@ export const TipTriggerButton: React.FC<{
 }> = ({ onPress, className, text = "Tip" }) => (
   <TouchableOpacity
     onPress={onPress}
-    className={`flex-row items-center gap-2 bg-theme-accent px-3 h-9 rounded-full ${
+    className={`flex-row items-center gap-2 bg-theme-accent px-3 h-9 rounded-xl ${
       className || ""
     }`}
   >

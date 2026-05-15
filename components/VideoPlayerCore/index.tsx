@@ -43,6 +43,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { revokeAudioFocus } from '../../libs/audioFocus';
 import { createLogger } from '../../libs/logger';
+import { getCachedMuted, setMutedState } from '../../libs/videoMutedState';
 
 const logger = createLogger('VideoPlayerCore');
 
@@ -87,8 +88,8 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   // State
   const [isReady, setIsReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(autoplay);
-  const [isMuted, setIsMuted] = useState(initialMuted);
-  const [showControls, setShowControls] = useState(true);
+  const [isMuted, setIsMuted] = useState(() => getCachedMuted());
+  const [showControls, setShowControls] = useState(!autoplay);
   const [duration, setDuration] = useState(0);
   const [position, setPosition] = useState(0);
   const [bufferedPosition, setBufferedPosition] = useState(0);
@@ -97,6 +98,8 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   const [progressBarWidth, setProgressBarWidth] = useState(0);
   const [isSeeking, setIsSeeking] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [isLooping, setIsLooping] = useState(loop);
+  const [playbackRate, setPlaybackRate] = useState(1);
 
   // Seek feedback animation
   const [seekFeedback, setSeekFeedback] = useState<{
@@ -166,7 +169,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   // Create VideoPlayer instance
   const player: VideoPlayer = useVideoPlayer(sourceUrl ?? null, (p) => {
     p.loop = loop;
-    p.muted = initialMuted;
+    p.muted = getCachedMuted();
     p.timeUpdateEventInterval = PLAYER_CONSTANTS.TIME_UPDATE_INTERVAL;
     if (autoplay && sourceUrl) {
       p.play();
@@ -246,15 +249,44 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   const togglePlay = useCallback(() => {
     if (player.playing) {
       player.pause();
+      clearHideTimer();
     } else {
       player.play();
+      scheduleHide();
     }
+  }, [player, clearHideTimer, scheduleHide]);
+
+  const toggleLoop = useCallback(() => {
+    const nextLoop = !isLooping;
+    player.loop = nextLoop;
+    setIsLooping(nextLoop);
+  }, [isLooping, player]);
+
+  const toggleSpeed = useCallback(() => {
+    const currentSpeed = player.playbackRate;
+    let nextSpeed = 1.0;
+    if (currentSpeed === 1.0) nextSpeed = 1.5;
+    else if (currentSpeed === 1.5) nextSpeed = 2.0;
+    else nextSpeed = 1.0;
+    player.playbackRate = nextSpeed;
+    setPlaybackRate(nextSpeed);
   }, [player]);
+
+  const handlePiP = useCallback(() => {
+    try {
+      if (viewRef.current && (viewRef.current as any).startPictureInPicture) {
+        (viewRef.current as any).startPictureInPicture();
+      }
+    } catch (error) {
+      logger.warn('[VideoPlayerCore] PiP error:', error);
+    }
+  }, []);
 
   const toggleMute = useCallback(() => {
     const nextMuted = !isMuted;
     player.muted = nextMuted;
     setIsMuted(nextMuted);
+    setMutedState(nextMuted);
   }, [isMuted, player]);
 
   // Landscape state tracks whether the video is rotated sideways
@@ -402,7 +434,9 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   // Initialize audio mode and controls visibility
   useEffect(() => {
     isMountedRef.current = true;
-    showAndScheduleHide();
+    if (!autoplay) {
+      showAndScheduleHide();
+    }
 
     // Configure audio to play even if device is on silent (iOS)
     const setupAudio = async () => {
@@ -525,6 +559,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
           style={styles.video}
           contentFit="contain"
           nativeControls={false}
+          allowsPictureInPicture={true}
         />
       )}
 
@@ -592,8 +627,13 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
             onMute={toggleMute}
             onFullscreen={toggleFullscreen}
             onRotateToPortrait={handleRotateToPortrait}
+            onPiP={handlePiP}
+            onToggleLoop={toggleLoop}
+            onToggleSpeed={toggleSpeed}
             isMuted={isMuted}
             fullscreen={fullscreen}
+            isLooping={isLooping}
+            playbackRate={playbackRate}
             title={title}
             showTitle={fullscreen}
           />

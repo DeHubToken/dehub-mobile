@@ -37,7 +37,7 @@ export const getProgressRatio = (position: number, duration: number): number => 
  * Constants for video player behavior
  */
 export const PLAYER_CONSTANTS = {
-  HIDE_CONTROLS_DELAY: 3500,
+  HIDE_CONTROLS_DELAY: 1500,
   SEEK_FORWARD_SECONDS: 10,
   SEEK_BACKWARD_SECONDS: 10,
   DOUBLE_TAP_DELAY: 300,

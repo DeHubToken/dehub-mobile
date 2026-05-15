@@ -17,7 +17,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
 import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
 
-export type SortOption = "random" | "createdAt" | "views" | "likes" | "comments";
+export type SortOption = "random" | "createdAt" | "views" | "likes" | "comments" | "tips";
 export type DateRangeOption = "" | "day" | "week" | "month" | "year";
 export type PostTypeOption = "all" | "video" | "feed-images" | "feed-audio" | "feed-simple" | "short" | "live";
 export type ContentAccessOption = "ppv" | "bounty" | "locked";
@@ -45,6 +45,7 @@ const SORT_OPTIONS: { id: SortOption; label: string }[] = [
   { id: "views", label: "Most Viewed" },
   { id: "likes", label: "Most Liked" },
   { id: "comments", label: "Most Comments" },
+  { id: "tips", label: "Most Tips" },
 ];
 
 const DATE_RANGE_OPTIONS: { id: DateRangeOption; label: string }[] = [

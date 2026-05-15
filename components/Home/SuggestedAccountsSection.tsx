@@ -18,8 +18,10 @@ import type { FollowState } from "../Search/SearchAccountChip";
 const SuggestedAccountsSection: React.FC = () => {
   const user = useUser() as { address?: string } | null;
   const [accounts, setAccounts] = useState<SuggestedAccount[]>([]);
+  const [followedAddresses, setFollowedAddresses] = useState<Set<string>>(new Set());
   const [dismissed, setDismissed] = useState(false);
   const fetchedRef = useRef(false);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   // Fetch once on mount (only when authenticated)
   useEffect(() => {
@@ -39,6 +41,30 @@ const SuggestedAccountsSection: React.FC = () => {
     };
   }, [user?.address]);
 
+  // Load more when all visible accounts have been followed
+  useEffect(() => {
+    const visible = accounts.filter((a) => a.address);
+    if (visible.length > 0 && visible.every((a) => followedAddresses.has(a.address)) && !loadingMore) {
+      let mounted = true;
+      (async () => {
+        setLoadingMore(true);
+        const newItems = await getSuggestedAccounts();
+        if (mounted) {
+          // Replace with new batch and reset followed set
+          if (newItems.length > 0) {
+            setAccounts(newItems);
+            setFollowedAddresses(new Set());
+          } else {
+            setDismissed(true);
+          }
+          setLoadingMore(false);
+        }
+      })();
+      return () => {
+        mounted = false;
+      };
+    }
+  }, [accounts, followedAddresses, loadingMore]);
 
   const handleDismissCard = useCallback((address: string) => {
     setAccounts((prev) => prev.filter((a) => a.address !== address));
@@ -49,12 +75,19 @@ const SuggestedAccountsSection: React.FC = () => {
   }, []);
 
   const handleFollowChange = useCallback(
-    (_address: string, _newState: FollowState) => {
-      // Could remove card after follow, but keeping it is fine — user can dismiss.
+    (address: string, newState: FollowState) => {
+      setFollowedAddresses((prev) => {
+        const next = new Set(prev);
+        if (newState === "following" || newState === "pending") {
+          next.add(address);
+        } else {
+          next.delete(address);
+        }
+        return next;
+      });
     },
     [],
   );
-
 
   const visibleAccounts = useMemo(
     () => accounts.filter((a) => a.address),

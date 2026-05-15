@@ -110,7 +110,7 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
   return (
     <View className="flex-row mt-3 items-center">
       {isLive && streamId ? (
-        <TouchableOpacity onPress={handleLiveLike} disabled={likePending || liveActive === false} className={`flex-row items-center px-3 py-1.5 rounded-full mr-2 ${(likePending || liveActive === false) ? 'opacity-70' : ''} bg-theme-neutrals-800`}>
+        <TouchableOpacity onPress={handleLiveLike} disabled={likePending || liveActive === false} className={`flex-row items-center px-3 py-1.5 rounded-xl mr-2 ${(likePending || liveActive === false) ? 'opacity-70' : ''} bg-theme-neutrals-800`}>
           <Ionicons name={userVote === 'like' ? 'thumbs-up' : 'thumbs-up-outline'} size={14} color="#fff" />
           <Text className="text-theme-neutrals-100 text-xs ml-1">{likeCount.toLocaleString()}</Text>
         </TouchableOpacity>
@@ -159,10 +159,10 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
           tokenId={(tokenId as number) || 0}
           toAddress={minter as string}
           trigger={
-            <AccentButtonGradient style={{ borderRadius: 999, marginRight: 8 }}>
+            <AccentButtonGradient style={{ borderRadius: 14, marginRight: 8 }}>
               <TouchableOpacity
                 onPress={() => requireAuth(() => setTipOpen(true))}
-                className="flex-row items-center px-3 py-1.5 rounded-full"
+                className="flex-row items-center px-3 py-1.5 rounded-xl"
                 style={{ backgroundColor: 'transparent' }}
               >
                 <Ionicons name="cash-outline" size={14} color="#000" />
@@ -177,7 +177,7 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
       <View className="flex-1" />
       {!isLive && (
         <TouchableOpacity
-          className="px-3 py-1.5 rounded-full bg-theme-neutrals-800 mr-2"
+          className="px-3 py-1.5 rounded-xl bg-theme-neutrals-800 mr-2"
           onPress={() => {
             const url = getTransactionLink(chainId as any, mintTxHash as any);
             if (url) openInApp(url);
@@ -186,7 +186,7 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
           <Ionicons name="information-circle-outline" size={16} color="#fff" />
         </TouchableOpacity>
       )}
-      <TouchableOpacity className="px-3 py-1.5 rounded-full bg-theme-neutrals-800" onPress={handleShare}>
+      <TouchableOpacity className="px-3 py-1.5 rounded-xl bg-theme-neutrals-800" onPress={handleShare}>
         <Ionicons name="share-social-outline" size={16} color="#fff" />
       </TouchableOpacity>
     </View>
