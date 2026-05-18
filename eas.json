@@ -17,8 +17,7 @@
       }
     },
     "production": {
-      "autoIncrement": true,
-      "npmInstallCommand": "npm install"
+      "autoIncrement": true
     }
   },
   "submit": {
