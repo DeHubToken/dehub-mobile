@@ -17,15 +17,15 @@
       }
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "npmInstallCommand": "npm install"
     }
   },
   "submit": {
     "production": {
       "ios": {
         "companyName": "DeLabs LTD"
-      },
-      "npmInstallCommand": "npm install"
+      }
     }
   }
 }
