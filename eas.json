@@ -24,7 +24,8 @@
     "production": {
       "ios": {
         "companyName": "DeLabs LTD"
-      }
+      },
+      "npmInstallCommand": "npm install"
     }
   }
 }
