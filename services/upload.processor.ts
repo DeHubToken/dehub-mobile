@@ -12,8 +12,10 @@ import { mintNftOnChain, mintWithBounty } from "../services/mint.service";
 import { supportedTokens } from "../config/constants";
 import { toastError, toastSuccess } from "../libs/toast";
 import { parseTxError } from "../libs/web3.util";
+import { feedEvents } from "../libs/eventBus";
 import type { MintNftResponse } from "../services/nft.service";
 import type { CreateQuotePostResponse } from "../services/repost.service";
+import { createPoll } from "../services/polls.service";
 
 // Abort tracking per-job
 const abortFlags: Record<string, { current: boolean }> = {};
@@ -182,8 +184,24 @@ async function processJob(job: UploadJob): Promise<void> {
   }
 
   await tx?.wait?.(1);
+
+  if (job.payload.pollData) {
+    try {
+      await createPoll({
+        tokenId: mintParams.createdTokenId,
+        question: job.payload.pollData.question,
+        options: job.payload.pollData.options,
+        expiresAt: job.payload.pollData.expiresAt,
+        isMultipleChoice: job.payload.pollData.isMultipleChoice,
+      });
+    } catch (e) {
+      console.warn("[upload.processor] poll creation failed:", e);
+    }
+  }
+
   uploadActions.updateProgress(job.id, 1);
   uploadActions.updateStage(job.id, "done");
+  setTimeout(() => feedEvents.requestRefresh(), 3000);
   toastSuccess("Post sent!", {
     description: "Your post is being processed. It may take a moment to appear in your feed.",
   });

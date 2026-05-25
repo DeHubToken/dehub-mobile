@@ -197,3 +197,26 @@ export async function bulkDeleteMessages(
     { isAuthRequired: true },
   );
 }
+
+export async function pinDmMessage(
+  dmId: string,
+  messageId: string,
+  address: string,
+): Promise<void> {
+  await apiClient.post(
+    `/dm/${dmId}/pin`,
+    { messageId, address },
+    { isAuthRequired: true },
+  );
+}
+
+export async function unpinDmMessage(
+  dmId: string,
+  messageId: string,
+  address: string,
+): Promise<void> {
+  await apiClient.delete(`/dm/${dmId}/pin`, {
+    data: { messageId, address },
+    isAuthRequired: true,
+  } as any);
+}

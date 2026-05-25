@@ -1,5 +1,6 @@
 import React, { useMemo, useCallback } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import GlassModal from '../ui/GlassModal';
 import { useProvider } from '../../context/AuthContext';
 import { ChainId } from '../../config/constants';
@@ -17,6 +18,7 @@ export type ChainSwitchModalProps = {
 
 const ChainSwitchModal: React.FC<ChainSwitchModalProps> = ({ visible, onClose }) => {
   const { chainId } = useProvider();
+  const { t } = useTranslation();
   const current = useMemo(() => chainId, [chainId]);
 
   const isBase = current === ChainId.BASE_MAINNET;
@@ -29,13 +31,13 @@ const ChainSwitchModal: React.FC<ChainSwitchModalProps> = ({ visible, onClose })
   return (
     <GlassModal visible={visible} onClose={handleClose} presentation="center" maxHeight="70%" blurIntensity={30}>
       <View className="p-4">
-        <Text className="text-white font-semibold text-lg">Active Chain</Text>
-        <Text className="text-theme-neutrals-400 text-xs mt-1">Choose the network to use for uploads, balances and transactions.</Text>
+        <Text className="text-white font-semibold text-lg">{t("settings.activeChain")}</Text>
+        <Text className="text-theme-neutrals-400 text-xs mt-1">{t("settings.activeChainDesc")}</Text>
 
         <View className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-3 mt-4 flex-row items-start">
           <Ionicons name="construct-outline" size={16} color="#FBBF24" />
           <Text className="text-yellow-300 text-[12px] ml-2 flex-1">
-            Chain switching is temporarily unavailable while we finalize multi-chain support. Stay tuned!
+            {t("settings.chainSwitchUnavailable")}
           </Text>
         </View>
 
@@ -49,12 +51,12 @@ const ChainSwitchModal: React.FC<ChainSwitchModalProps> = ({ visible, onClose })
               </View>
             </View>
             {isBase ? (
-              <View className="bg-blue-600/20 px-2 py-1 rounded-full">
-                <Text className="text-blue-400 text-[10px] font-semibold">Active</Text>
+              <View className="bg-white/10 px-2 py-1 rounded-full">
+                <Text className="text-theme-neutrals-200 text-[10px] font-semibold">{t("settings.chainActive")}</Text>
               </View>
             ) : (
               <View className="bg-gray-700/40 px-2 py-1 rounded-full">
-                <Text className="text-gray-400 text-[10px]">Coming soon</Text>
+                <Text className="text-gray-400 text-[10px]">{t("settings.comingSoon")}</Text>
               </View>
             )}
           </TouchableOpacity>
@@ -67,12 +69,12 @@ const ChainSwitchModal: React.FC<ChainSwitchModalProps> = ({ visible, onClose })
               </View>
             </View>
             {isBNB ? (
-              <View className="bg-blue-600/20 px-2 py-1 rounded-full">
-                <Text className="text-blue-400 text-[10px] font-semibold">Active</Text>
+              <View className="bg-white/10 px-2 py-1 rounded-full">
+                <Text className="text-theme-neutrals-200 text-[10px] font-semibold">{t("settings.chainActive")}</Text>
               </View>
             ) : (
               <View className="bg-gray-700/50 px-2 py-1 rounded-full">
-                <Text className="text-gray-400 text-[10px]">Coming soon</Text>
+                <Text className="text-gray-400 text-[10px]">{t("settings.comingSoon")}</Text>
               </View>
             )}
           </TouchableOpacity>
@@ -80,7 +82,7 @@ const ChainSwitchModal: React.FC<ChainSwitchModalProps> = ({ visible, onClose })
 
         <View className="mt-4 flex-row justify-end">
           <TouchableOpacity onPress={handleClose} className="px-4 h-11 rounded-xl items-center justify-center bg-theme-neutrals-700 active:opacity-80">
-            <Text className="text-theme-neutrals-100">Close</Text>
+            <Text className="text-theme-neutrals-100">{t("common.close")}</Text>
           </TouchableOpacity>
         </View>
       </View>

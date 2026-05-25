@@ -121,12 +121,14 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
 
       {/* Video preview layer — fades in once ready */}
       {player && previewUrl && (
-        <VideoView
-          player={player}
-          style={[StyleSheet.absoluteFill, { opacity: showVideo ? 1 : 0 }]}
-          contentFit="cover"
-          nativeControls={false}
-        />
+        <View style={StyleSheet.absoluteFill} pointerEvents="none">
+          <VideoView
+            player={player}
+            style={[StyleSheet.absoluteFill, { opacity: showVideo ? 1 : 0 }]}
+            contentFit="cover"
+            nativeControls={false}
+          />
+        </View>
       )}
 
       {/* Bottom gradient + info overlay */}

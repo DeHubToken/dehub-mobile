@@ -46,6 +46,8 @@ export enum ScreenNames {
   ActiveSessions = 'ActiveSessions',
   ShortsViewer = 'ShortsViewer',
   ImageFeed = 'ImageFeed',
+  Call = 'Call',
+  Stages = 'Stages',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   View,
   Text,
@@ -35,28 +36,6 @@ type NotificationTypeConfig = {
   category: 'engagement' | 'social' | 'monetization' | 'content';
 };
 
-const NOTIFICATION_TYPES: NotificationTypeConfig[] = [
-  { key: 'likes', label: 'Likes', description: 'When someone likes your content', icon: 'Heart', iconColor: '#9ca3af', category: 'engagement' },
-  { key: 'comments', label: 'Comments', description: 'When someone comments on your content', icon: 'MessageCircle', iconColor: '#9ca3af', category: 'engagement' },
-  { key: 'commentReplies', label: 'Replies', description: 'When someone replies to your comment', icon: 'MessageSquare', iconColor: '#9ca3af', category: 'engagement' },
-  { key: 'mentions', label: 'Mentions', description: 'When someone mentions you', icon: 'AtSign', iconColor: '#9ca3af', category: 'engagement' },
-  { key: 'newFollowers', label: 'New Followers', description: 'When someone follows you', icon: 'UserPlus', iconColor: '#9ca3af', category: 'social' },
-  { key: 'livestreamStart', label: 'Live Streams', description: 'When someone you follow goes live', icon: 'Radio', iconColor: '#9ca3af', category: 'social' },
-  { key: 'tips', label: 'Tips', description: 'When you receive a tip', icon: 'Banknote', iconColor: '#9ca3af', category: 'monetization' },
-  { key: 'subscriptions', label: 'Subscriptions', description: 'When someone subscribes to you', icon: 'CircleCheck', iconColor: '#9ca3af', category: 'monetization' },
-  { key: 'ppvPurchases', label: 'Purchases', description: 'When someone buys your PPV content', icon: 'LockOpen', iconColor: '#9ca3af', category: 'monetization' },
-  { key: 'milestones', label: 'Milestones', description: 'When your content hits milestones', icon: 'Trophy', iconColor: '#9ca3af', category: 'content' },
-  { key: 'accountAlerts', label: 'Account Alerts', description: 'Important security & account updates', icon: 'ShieldCheck', iconColor: '#9ca3af', category: 'content' },
-  { key: 'announcements', label: 'Announcements', description: 'Platform news & feature updates', icon: 'Megaphone', iconColor: '#9ca3af', category: 'content' },
-];
-
-const CATEGORIES: { key: string; label: string; icon: IconName }[] = [
-  { key: 'engagement', label: 'Engagement', icon: 'Heart' },
-  { key: 'social', label: 'Social', icon: 'Users' },
-  { key: 'monetization', label: 'Earnings', icon: 'Wallet' },
-  { key: 'content', label: 'Content', icon: 'Video' },
-];
-
 type TypeRowProps = {
   config: NotificationTypeConfig;
   inAppValue: boolean;
@@ -70,6 +49,7 @@ type TypeRowProps = {
 const TypeRow: React.FC<TypeRowProps> = ({
   config, inAppValue, pushValue, onInAppToggle, onPushToggle, inAppDisabled, pushDisabled,
 }) => {
+  const { t } = useTranslation();
   const allDisabled = inAppDisabled && pushDisabled;
   return (
     <View className={`px-4 py-3 ${allDisabled ? 'opacity-40' : ''}`}>
@@ -84,7 +64,7 @@ const TypeRow: React.FC<TypeRowProps> = ({
       </View>
       <View className="flex-row justify-end items-center ml-11 gap-5">
         <View className={`flex-row items-center ${inAppDisabled ? 'opacity-40' : ''}`}>
-          <Text className={`text-xs mr-2.5 ${inAppDisabled ? 'text-theme-neutrals-600' : 'text-theme-neutrals-400'}`}>In-App</Text>
+          <Text className={`text-xs mr-2.5 ${inAppDisabled ? 'text-theme-neutrals-600' : 'text-theme-neutrals-400'}`}>{t('settings.notifInApp')}</Text>
           <CustomSwitch
             value={inAppDisabled ? false : inAppValue}
             onValueChange={onInAppToggle}
@@ -92,7 +72,7 @@ const TypeRow: React.FC<TypeRowProps> = ({
           />
         </View>
         <View className={`flex-row items-center ${pushDisabled ? 'opacity-40' : ''}`}>
-          <Text className={`text-xs mr-2.5 ${pushDisabled ? 'text-theme-neutrals-600' : 'text-theme-neutrals-400'}`}>Push</Text>
+          <Text className={`text-xs mr-2.5 ${pushDisabled ? 'text-theme-neutrals-600' : 'text-theme-neutrals-400'}`}>{t('settings.notifPush')}</Text>
           <CustomSwitch
             value={pushDisabled ? false : pushValue}
             onValueChange={onPushToggle}
@@ -109,6 +89,29 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
   const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
+  const { t } = useTranslation();
+
+  const NOTIFICATION_TYPES: NotificationTypeConfig[] = useMemo(() => [
+    { key: 'likes', label: t('settings.likes'), description: t('settings.notifLikesDesc'), icon: 'Heart', iconColor: '#9ca3af', category: 'engagement' },
+    { key: 'comments', label: t('settings.comments'), description: t('settings.notifCommentsDesc'), icon: 'MessageCircle', iconColor: '#9ca3af', category: 'engagement' },
+    { key: 'commentReplies', label: t('settings.notifReplies'), description: t('settings.notifRepliesDesc'), icon: 'MessageSquare', iconColor: '#9ca3af', category: 'engagement' },
+    { key: 'mentions', label: t('settings.notifMentions'), description: t('settings.notifMentionsDesc'), icon: 'AtSign', iconColor: '#9ca3af', category: 'engagement' },
+    { key: 'newFollowers', label: t('settings.newFollowers'), description: t('settings.notifNewFollowersDesc'), icon: 'UserPlus', iconColor: '#9ca3af', category: 'social' },
+    { key: 'livestreamStart', label: t('settings.notifLiveStreams'), description: t('settings.notifLiveStreamsDesc'), icon: 'Radio', iconColor: '#9ca3af', category: 'social' },
+    { key: 'tips', label: t('settings.notifTips'), description: t('settings.notifTipsDesc'), icon: 'Banknote', iconColor: '#9ca3af', category: 'monetization' },
+    { key: 'subscriptions', label: t('settings.notifSubscriptions'), description: t('settings.notifSubscriptionsDesc'), icon: 'CircleCheck', iconColor: '#9ca3af', category: 'monetization' },
+    { key: 'ppvPurchases', label: t('settings.notifPurchases'), description: t('settings.notifPurchasesDesc'), icon: 'LockOpen', iconColor: '#9ca3af', category: 'monetization' },
+    { key: 'milestones', label: t('settings.notifMilestones'), description: t('settings.notifMilestonesDesc'), icon: 'Trophy', iconColor: '#9ca3af', category: 'content' },
+    { key: 'accountAlerts', label: t('settings.notifAccountAlerts'), description: t('settings.notifAccountAlertsDesc'), icon: 'ShieldCheck', iconColor: '#9ca3af', category: 'content' },
+    { key: 'announcements', label: t('settings.notifAnnouncements'), description: t('settings.notifAnnouncementsDesc'), icon: 'Megaphone', iconColor: '#9ca3af', category: 'content' },
+  ], [t]);
+
+  const CATEGORIES: { key: string; label: string; icon: IconName }[] = useMemo(() => [
+    { key: 'engagement', label: t('settings.categoryEngagement'), icon: 'Heart' },
+    { key: 'social', label: t('settings.categorySocial'), icon: 'Users' },
+    { key: 'monetization', label: t('settings.categoryEarnings'), icon: 'Wallet' },
+    { key: 'content', label: t('settings.categoryContent'), icon: 'Video' },
+  ], [t]);
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -185,12 +188,12 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
       grouped[type.category].push(type);
     });
     return grouped;
-  }, []);
+  }, [NOTIFICATION_TYPES]);
 
   if (loading) {
     return (
       <View className="flex-1 bg-theme-neutrals-900">
-        <ScreenHeader title="Notifications" canGoBack />
+        <ScreenHeader title={t('settings.notifications')} canGoBack />
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color={theme.colors.accent} />
         </View>
@@ -201,7 +204,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader
-        title="Notifications"
+        title={t('settings.notifications')}
         canGoBack
         rightContent={saving ? <ActivityIndicator size="small" color="#8b5cf6" /> : undefined}
       />
@@ -215,15 +218,15 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
               <Icon name="BellOff" size={20} color="#f59e0b" />
             </View>
             <View className="flex-1">
-              <Text className="text-amber-400 text-sm font-semibold">Push Notifications Disabled</Text>
-              <Text className="text-amber-500/80 text-xs mt-0.5">Tap to enable in system settings</Text>
+              <Text className="text-amber-400 text-sm font-semibold">{t('settings.pushNotificationsDisabled')}</Text>
+              <Text className="text-amber-500/80 text-xs mt-0.5">{t('settings.tapEnableSystemSettings')}</Text>
             </View>
             <Icon name="ChevronRight" size={18} color="#f59e0b" />
           </TouchableOpacity>
         )}
 
         <View className="mt-4 mx-4">
-          <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">Master Controls</Text>
+          <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">{t('settings.masterControls')}</Text>
           <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
             <View className="px-4 py-3.5 flex-row items-center justify-between">
               <View className="flex-row items-center flex-1 pr-3">
@@ -231,8 +234,8 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
                   <Icon name="Bell" size={18} color="#9ca3af" />
                 </View>
                 <View className="flex-1">
-                  <Text className="text-white text-sm font-medium">In-App Notifications</Text>
-                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">Show notifications inside the app</Text>
+                  <Text className="text-white text-sm font-medium">{t('settings.inAppNotificationsLabel')}</Text>
+                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.inAppNotificationsDesc')}</Text>
                 </View>
               </View>
               <CustomSwitch value={prefs.inAppEnabled} onValueChange={(v) => updatePrefs({ inAppEnabled: v })} />
@@ -244,8 +247,8 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
                   <Icon name="Smartphone" size={18} color="#9ca3af" />
                 </View>
                 <View className="flex-1">
-                  <Text className="text-white text-sm font-medium">Push Notifications</Text>
-                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">Send notifications to your device</Text>
+                  <Text className="text-white text-sm font-medium">{t('settings.pushNotifications')}</Text>
+                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.pushNotificationsDeviceDesc')}</Text>
                 </View>
               </View>
               <CustomSwitch
@@ -283,7 +286,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
         ))}
 
         <View className="mt-6 mx-4">
-          <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">Quiet Hours</Text>
+          <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">{t('settings.quietHours')}</Text>
           <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
             <View className="px-4 py-3.5 flex-row items-center justify-between">
               <View className="flex-row items-center flex-1 pr-3">
@@ -291,8 +294,8 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
                   <Icon name="Moon" size={18} color="#9ca3af" />
                 </View>
                 <View className="flex-1">
-                  <Text className="text-white text-sm font-medium">Enable Quiet Hours</Text>
-                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">Pause push notifications during set hours</Text>
+                  <Text className="text-white text-sm font-medium">{t('settings.enableQuietHours')}</Text>
+                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.quietHoursPauseDesc')}</Text>
                 </View>
               </View>
               <CustomSwitch
@@ -307,7 +310,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
                 <View className="px-4 py-3">
                   <View className="flex-row items-center justify-between">
                     <View className="flex-1">
-                      <Text className="text-theme-neutrals-400 text-xs mb-1">From</Text>
+                      <Text className="text-theme-neutrals-400 text-xs mb-1">{t('settings.quietHoursFrom')}</Text>
                       <TouchableOpacity className="bg-theme-neutrals-700 px-4 py-2.5 rounded-xl">
                         <Text className="text-white text-sm">{prefs.quietHours.start}:00</Text>
                       </TouchableOpacity>
@@ -316,14 +319,14 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
                       <Icon name="ArrowRight" size={16} color="#6b7280" />
                     </View>
                     <View className="flex-1">
-                      <Text className="text-theme-neutrals-400 text-xs mb-1">To</Text>
+                      <Text className="text-theme-neutrals-400 text-xs mb-1">{t('settings.quietHoursTo')}</Text>
                       <TouchableOpacity className="bg-theme-neutrals-700 px-4 py-2.5 rounded-xl">
                         <Text className="text-white text-sm">{prefs.quietHours.end}:00</Text>
                       </TouchableOpacity>
                     </View>
                   </View>
                   <Text className="text-theme-neutrals-500 text-xs mt-2">
-                    Push notifications will be silenced during these hours.
+                    {t('settings.quietHoursSilencedNote')}
                   </Text>
                 </View>
               </>
@@ -334,7 +337,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
         <View className="mt-6 mx-4 p-4 bg-theme-neutrals-800/50 rounded-xl flex-row items-start">
           <Icon name="Info" size={16} color="#6b7280" />
           <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1">
-            In-app notifications appear inside the app. Push notifications are sent to your device even when the app is closed.
+            {t('settings.notifInfoNote')}
           </Text>
         </View>
       </ScrollView>

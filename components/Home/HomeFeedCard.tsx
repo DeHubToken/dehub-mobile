@@ -1,9 +1,10 @@
-import React, { memo, useCallback, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
   Image,
   TouchableOpacity,
+  ActivityIndicator,
   Animated,
   Dimensions,
   NativeSyntheticEvent,
@@ -44,6 +45,10 @@ import { CommentBottomSheet } from "../Comments";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import RepostPopover from "../common/RepostPopover";
 import QuotedPostEmbed from "../common/QuotedPostEmbed";
+import PollCard from "../DM/PollCard";
+import { isPostDeleted } from "../../libs/deleted-posts-store";
+import { translateText, getDeviceLanguage } from "../../services/translation.service";
+import i18n from "../../i18n";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const IMAGE_WIDTH = SCREEN_WIDTH - 32; // Account for padding
@@ -106,6 +111,17 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   const [localCategories, setLocalCategories] = useState<string[]>(item.category || []);
   const [isDeleted, setIsDeleted] = useState<boolean>(false);
 
+  // Derived early so hooks below can reference it
+  const tokenId = item.tokenId ?? item.id;
+
+  // Hide posts that were deleted in a previous session
+  useEffect(() => {
+    if (tokenId == null) return;
+    isPostDeleted(tokenId).then(deleted => {
+      if (deleted) setIsDeleted(true);
+    });
+  }, [tokenId]);
+
   // State
   const [liked, setLiked] = useState<boolean>(!!item.isLiked);
   const [disliked, setDisliked] = useState<boolean>(!!item.isDisliked);
@@ -121,7 +137,13 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   const [reposted, setReposted] = useState<boolean>(!!item.isReposted);
   const [repostCount, setRepostCount] = useState<number>(((item as any).reposts || 0) + ((item as any).quotes || 0));
   const [showRepostPopover, setShowRepostPopover] = useState<boolean>(false);
-  
+
+  // Translation state
+  const [isTranslating, setIsTranslating] = useState(false);
+  const [isTranslated, setIsTranslated] = useState(false);
+  const [translatedTitle, setTranslatedTitle] = useState<string | null>(null);
+  const [translatedDescription, setTranslatedDescription] = useState<string | null>(null);
+
   // Reanimated shared value for scroll position
   const scrollX = useSharedValue(0);
   
@@ -137,7 +159,6 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   
   // Derived data
   const address = user?.address || user?.walletAddress || "";
-  const tokenId = item.tokenId ?? item.id;
   const mintTxHash = (item as any).mintTxHash || (item as any).transactionHash || (item as any).txHash;
   const chainId = (item as any).chainId || 8453; // Default to Base
   
@@ -425,6 +446,42 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
   const handleDeleteSuccess = useCallback(() => {
     setIsDeleted(true);
   }, []);
+
+  const handleTranslate = useCallback(async () => {
+    if (isTranslated) {
+      setIsTranslated(false);
+      return;
+    }
+    const textToTranslate = [localTitle, localDescription].filter(Boolean).join('\n\n');
+    if (!textToTranslate.trim()) {
+      toastError('No text to translate');
+      return;
+    }
+
+    const targetLang = i18n.language || getDeviceLanguage();
+    setIsTranslating(true);
+    try {
+      const result = await translateText(textToTranslate, targetLang);
+      const parts = result.translatedText.split('\n\n');
+      const hasTitle = !!localTitle?.trim();
+      const hasDesc = !!localDescription?.trim();
+      if (hasTitle && hasDesc) {
+        setTranslatedTitle(parts[0] || null);
+        setTranslatedDescription(parts.slice(1).join('\n\n') || null);
+      } else if (hasTitle) {
+        setTranslatedTitle(result.translatedText);
+        setTranslatedDescription(null);
+      } else {
+        setTranslatedTitle(null);
+        setTranslatedDescription(result.translatedText);
+      }
+      setIsTranslated(true);
+    } catch (e) {
+      toastError('Translation failed');
+    } finally {
+      setIsTranslating(false);
+    }
+  }, [isTranslated, localTitle, localDescription]);
   
   // Reanimated scroll handler - runs on UI thread
   const updateIndex = useCallback((index: number) => {
@@ -551,13 +608,32 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
       
       {/* Title, Description & Categories */}
       <FeedCaption
-        title={localTitle || undefined}
-        description={localDescription || undefined}
+        title={isTranslated && translatedTitle != null ? translatedTitle : (localTitle || undefined)}
+        description={isTranslated && translatedDescription != null ? translatedDescription : (localDescription || undefined)}
         categories={localCategories}
         onCategoryPress={onCategorySelect}
         fullContent={fullContent}
         showCategories={fullContent}
       />
+
+      {/* Translate toggle */}
+      {(isTranslating || isTranslated) && (localTitle || localDescription) && (
+        <TouchableOpacity
+          onPress={handleTranslate}
+          activeOpacity={0.7}
+          className="flex-row items-center gap-1 mt-1"
+          disabled={isTranslating}
+        >
+          {isTranslating ? (
+            <ActivityIndicator size={12} color="#6B7280" />
+          ) : (
+            <Ionicons name="globe-outline" size={12} color="#6B7280" />
+          )}
+          <Text className="text-xs text-theme-neutrals-500">
+            {isTranslating ? 'Translating...' : isTranslated ? 'Show original' : ''}
+          </Text>
+        </TouchableOpacity>
+      )}
 
       {/* Quoted Post Embed (for quote posts) */}
       {item.isQuotePost && (
@@ -565,6 +641,10 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
           quotedPost={item.quotedPost}
           quotedTokenId={item.quotedTokenId}
         />
+      )}
+
+      {tokenId != null && (
+        <PollCard tokenId={Number(tokenId)} pollOwnerAddress={minterAddress} />
       )}
 
       {/* Time and Views row */}
@@ -731,6 +811,7 @@ const HomeFeedCardComponent: React.FC<HomeFeedCardProps> = ({
         onVisibilityChange={handleVisibilityChange}
         onEditSuccess={handleEditSuccess}
         onDeleteSuccess={handleDeleteSuccess}
+        onTranslatePress={handleTranslate}
       />
     </TouchableOpacity>
   );

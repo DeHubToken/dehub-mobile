@@ -59,6 +59,8 @@ interface ChatInputBarProps {
   onClearTip?: () => void;
   /** Current DHB balance of the user (for display & validation). */
   dhbBalance?: number | null;
+  /** Trigger poll creation sheet. */
+  onPollPress?: () => void;
 }
 
 
@@ -82,6 +84,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   onTipPress,
   onClearTip,
   dhbBalance,
+  onPollPress,
 }) => {
   const inputRef = useRef<TextInput>(null);
   const [text, setText] = useState("");
@@ -506,6 +509,19 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           >
             <Icon name="Mic" size={22} color={enhancing ? '#3A3A3C' : '#A6A9AC'} />
           </TouchableOpacity>
+
+          {/* Poll */}
+          {onPollPress && (
+            <TouchableOpacity
+              onPress={onPollPress}
+              className="p-2"
+              hitSlop={4}
+              activeOpacity={0.6}
+              disabled={enhancing}
+            >
+              <Icon name="BarChart3" size={22} color={enhancing ? "#3A3A3C" : "#A6A9AC"} />
+            </TouchableOpacity>
+          )}
 
           {/* Sparkles — AI enhance */}
           <TouchableOpacity

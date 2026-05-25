@@ -22,6 +22,7 @@ import FeedVideoPlayer from "./FeedVideoPlayer";
 import StatusBadge from "./StatusBadge";
 import { CommentBottomSheet } from "../Comments";
 import PostOptionsMenu from "../common/PostOptionsMenu";
+import ImageTranslationSheet from "../common/ImageTranslationSheet";
 import QuotedPostEmbed from "../common/QuotedPostEmbed";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import PPVSheet from "../PPV/PPVSheet";
@@ -29,10 +30,15 @@ import BountyInfoSheet from "./BountyInfoSheet";
 import AskAISheet from "./AskAISheet";
 import Icon from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
+import SoundtrackBadge from "../Post/SoundtrackBadge";
+import { useSyncedAudio } from "../../hooks/useSyncedAudio";
+import { parseSoundtrack } from "../../libs/parseSoundtrack";
 import { useTranslation } from "../../hooks/useTranslation";
+import { useImageTranslation } from "../../hooks/useImageTranslation";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUser, useAuthActions, useAuthState } from "../../context/AuthContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import PollCard from "../DM/PollCard";
 import {
   getAvatarUrl,
   getBadgeUrl,
@@ -154,6 +160,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     return raw.toLowerCase() === "untitled" ? "" : raw;
   })();
   const description = item.description || stream?.description || "";
+  const soundtrack = useMemo(() => parseSoundtrack(description), [description]);
+  const hasSoundtrack = !!soundtrack;
   const commentCount = item.commentCount || (item as any).comments || stream?.commentCount || 0;
   const views = item.views || (item as any).peakViewers || (item as any).totalViews || stream?.totalViews || 0;
   const totalTips = (item as any).totalTips || (item as any).tips || 0;
@@ -278,6 +286,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }), [localTitle, localDescription]);
   const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate } =
     useTranslation(translationTexts, item.detectedLanguage);
+  const { isLoading: imgTranslating, error: imgTranslateError, result: imgTranslateResult, translateImage, clearResult: clearImgResult } =
+    useImageTranslation();
+  const [showImgTranslationSheet, setShowImgTranslationSheet] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
@@ -323,6 +334,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       initialIndex: index,
     });
   }, [navigation, galleryImages, hasImages]);
+
+  const handleTranslateImage = useCallback(() => {
+    const imageUrl = galleryImages[0];
+    if (!imageUrl) return;
+    setShowImgTranslationSheet(true);
+    translateImage(imageUrl);
+  }, [galleryImages, translateImage]);
 
   const handleLikePress = useCallback(() => {
     if (tokenId == null) return;
@@ -925,6 +943,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
       {renderContent()}
 
+      {hasSoundtrack && (
+        <View className="mt-2">
+          <SoundtrackBadge
+            title={soundtrack.title}
+            creator={soundtrack.creator}
+            url={soundtrack.url}
+          />
+        </View>
+      )}
+
       <FeedCaption
         title={(isTranslated ? translatedTexts.title : localTitle) || undefined}
         description={(isTranslated ? translatedTexts.description : localDescription) || undefined}
@@ -939,6 +967,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           quotedPost={(item as any).quotedPost}
           quotedTokenId={(item as any).quotedTokenId}
         />
+      )}
+
+      {tokenId != null && (
+        <PollCard tokenId={Number(tokenId)} pollOwnerAddress={minterAddress} />
       )}
 
       <View className="flex-row items-center gap-2 pt-1.5">
@@ -1091,6 +1123,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         onVisibilityChange={handleVisibilityChange}
         onEditSuccess={handleEditSuccess}
         onDeleteSuccess={handleDeleteSuccess}
+        onTranslatePress={handleTranslate}
+        onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
+      />
+
+      <ImageTranslationSheet
+        visible={showImgTranslationSheet}
+        onClose={() => { setShowImgTranslationSheet(false); clearImgResult(); }}
+        isLoading={imgTranslating}
+        error={imgTranslateError}
+        result={imgTranslateResult}
       />
     </Pressable>
   );

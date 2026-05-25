@@ -124,7 +124,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
     try {
       await logoutWeb3Auth();
       await signOut();
-      toastSuccess("Logout successful");
+      toastSuccess(t('settings.loggedOut'));
     } catch (e) {
       console.error("[AccountSettings] signOut error", e);
       toastError(e, "Sign out failed.");
@@ -137,14 +137,14 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      {signingOut && <FullScreenLoader message="Signing out…" />}
+      {signingOut && <FullScreenLoader message={t('settings.signingOut')} />}
       <ScreenHeader title={t("settings.title")} canGoBack />
       <ScrollView
         className="flex-1"
         contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 40 }}
       >
         <View className="mb-6">
-          <SectionLabel label="Account" />
+          <SectionLabel label={t("settings.account")} />
           <SectionCard>
             <View className="px-4 py-3.5 flex-row items-center">
               <View className="w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center mr-3">
@@ -173,7 +173,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                 )}
               </View>
               <View className="flex-1 mr-2">
-                <Text className="text-white text-sm font-medium">Active Chain</Text>
+                <Text className="text-white text-sm font-medium">{t("settings.activeChain")}</Text>
                 <Text className="text-theme-neutrals-500 text-xs mt-0.5">
                   {chainId === ChainId.BASE_MAINNET ? "Base" : chainId === ChainId.BSC_MAINNET ? "BNB" : `Chain ${chainId ?? "N/A"}`}
                 </Text>
@@ -183,12 +183,12 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
             <Divider />
             <SettingsRow
               icon="Fuel"
-              label="Gas Sponsorship"
-              subtitle={isImported ? "Unavailable for imported accounts" : "Fees covered by the app"}
+              label={t("settings.gasSponsorship")}
+              subtitle={isImported ? t("settings.gasImportedDesc") : t("settings.gasSponsoredDesc")}
               rightElement={
                 <View className={`px-2.5 py-1 rounded-full ${isImported ? "bg-theme-neutrals-700/40" : "bg-emerald-500/20"}`}>
                   <Text className={`text-[10px] font-semibold ${isImported ? "text-theme-neutrals-400" : "text-emerald-400"}`}>
-                    {isImported ? "Off" : "Active"}
+                    {isImported ? t("settings.gasOff") : t("settings.gasActive")}
                   </Text>
                 </View>
               }
@@ -196,8 +196,8 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
             <Divider />
             <SettingsRow
               icon="KeyRound"
-              label="Export Private Key"
-              subtitle="Reveal your wallet's private key"
+              label={t("settings.exportPrivateKey")}
+              subtitle={t("settings.exportPrivateKeyDesc")}
               onPress={() => setExportPkVisible(true)}
             />
           </SectionCard>
@@ -208,18 +208,18 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
         </View>
 
         <View className="mb-6">
-          <SectionLabel label="Preferences" />
+          <SectionLabel label={t("settings.preferences")} />
           <SectionCard>
             <SettingsRow
               icon="Bell"
-              label="Notifications"
-              subtitle="Push, in-app, quiet hours"
+              label={t("settings.notifications")}
+              subtitle={t("settings.notificationDesc")}
               onPress={() => navigation.navigate(ScreenNames.NotificationSettings)}
             />
             <Divider />
             <SettingsRow
               icon="Globe"
-              label="Language"
+              label={t("settings.language")}
               subtitle={SUPPORTED_LANGUAGES.find((l) => l.code === currentLang)?.name || "English"}
               onPress={() => {
                 setCurrentLang(i18nInstance.language);
@@ -238,12 +238,12 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
             <SettingsRow
               icon="WifiOff"
               iconColor="#6b7280"
-              label="Data Saver"
-              subtitle="Reduce image & video usage"
+              label={t("settings.dataSaver")}
+              subtitle={t("settings.dataSaverDesc")}
               disabled
               rightElement={
                 <View className="bg-theme-neutrals-700/40 px-2.5 py-1 rounded-full">
-                  <Text className="text-theme-neutrals-500 text-[10px] font-semibold">Soon</Text>
+                  <Text className="text-theme-neutrals-500 text-[10px] font-semibold">{t("settings.comingSoon")}</Text>
                 </View>
               }
             />
@@ -251,65 +251,65 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
         </View>
 
         <View className="mb-6">
-          <SectionLabel label="Privacy & Security" />
+          <SectionLabel label={t("settings.privacySecurity")} />
           <SectionCard>
             <SettingsRow
               icon="ShieldCheck"
-              label="Account Privacy"
-              subtitle="Private account, hide followers"
+              label={t("settings.accountPrivacy")}
+              subtitle={t("settings.accountPrivacyDesc")}
               onPress={() => navigation.navigate(ScreenNames.PrivacySettings)}
             />
             <Divider />
             <SettingsRow
               icon="Smartphone"
-              label="Active Sessions"
-              subtitle="Manage logged-in devices"
+              label={t("settings.activeSessions")}
+              subtitle={t("settings.activeSessionsDesc")}
               onPress={() => navigation.navigate(ScreenNames.ActiveSessions)}
             />
             <Divider />
             <SettingsRow
               icon="Ban"
-              label="Blocked Accounts"
-              subtitle={blockedCount > 0 ? `${blockedCount} blocked` : "None blocked"}
+              label={t("settings.blockedAccounts")}
+              subtitle={blockedCount > 0 ? `${blockedCount} blocked` : t('settings.noneBlocked')}
               onPress={() => setBlockedModalVisible(true)}
             />
             <Divider />
             <SettingsRow
               icon="Trash2"
-              label="Delete Account / Data"
-              subtitle="Request account or data deletion"
+              label={t("settings.deleteAccountData")}
+              subtitle={t("settings.deleteAccountDataDesc")}
               onPress={() => openInApp(DELETE_DATA_OR_ACCOUNT_LINK)}
             />
           </SectionCard>
         </View>
 
         <View className="mb-6">
-          <SectionLabel label="Support" />
+          <SectionLabel label={t("settings.support")} />
           <SectionCard>
             <SettingsRow
               icon="Star"
-              label="Rate & Review"
-              subtitle="Share your feedback"
+              label={t("settings.rateReview")}
+              subtitle={t("settings.rateReviewDesc")}
               onPress={() => setReviewModalVisible(true)}
             />
             <Divider />
             <SettingsRow
               icon="Bug"
-              label="Report a Bug"
+              label={t("settings.reportBug")}
               onPress={() => setBugModalVisible(true)}
             />
             <Divider />
             <SettingsRow
               icon="FileText"
               iconColor="#9ca3af"
-              label="Terms of Service"
+              label={t("settings.termsOfService")}
               onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
             />
             <Divider />
             <SettingsRow
               icon="Shield"
               iconColor="#9ca3af"
-              label="Privacy Policy"
+              label={t("settings.privacyPolicy")}
               onPress={() => openInApp(PRIVACY_POLICY_LINK)}
             />
           </SectionCard>

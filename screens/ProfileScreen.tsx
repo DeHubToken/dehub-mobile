@@ -1,12 +1,9 @@
 import React, { useEffect } from "react";
-import { View, Text, TouchableOpacity, RefreshControl, ScrollView } from "react-native";
+import { View } from "react-native";
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileStats from "../components/Profile/ProfileStats";
 import ProfileAssets from "../components/Profile/ProfileAssets";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
-import { theme } from "../theme";
-import { useNavigation } from "@react-navigation/native";
-import { ScreenNames } from "../navigation/ScreenNames";
 import ProfileApps from "../components/Profile/ProfileApps";
 import ProfileTabs from "../components/Profile/ProfileTabs";
 import ProfileSignInPrompt from "../components/Profile/ProfileSignInPrompt";
@@ -20,8 +17,6 @@ const ProfileScreen: React.FC = () => {
   const user = useUser();
 
   const { refreshUser } = useAuthActions();
-  const navigation = useNavigation<any>();
-  const [refreshing, setRefreshing] = React.useState(false);
 
   // Periodic background refresh of account info
   useEffect(() => {
@@ -46,16 +41,6 @@ const ProfileScreen: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSignedIn]);
 
-  const onManualRefresh = React.useCallback(async () => {
-    if (!user) return;
-    setRefreshing(true);
-    try {
-      await refreshUser();
-    } finally {
-      setRefreshing(false);
-    }
-  }, [user]);
-
   if (!isSignedIn) {
     return <ProfileSignInPrompt />;
   }
@@ -63,23 +48,12 @@ const ProfileScreen: React.FC = () => {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title="Profile" />
-      <ScrollView
-        contentContainerStyle={{ paddingBottom: 102, flexGrow: 1 }}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onManualRefresh}
-            tintColor={theme.colors.accent}
-          />
-        }
-      >
+      <View style={{ flex: 1 }}>
         <ProfileHeader />
         <ProfileAssets />
         <ProfileApps />
-        <View style={{ flex: 1, minHeight: 500 }}>
-          <ProfileTabs />
-        </View>
-      </ScrollView>
+        <ProfileTabs />
+      </View>
     </View>
   );
 };

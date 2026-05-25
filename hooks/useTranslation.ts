@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef, useMemo } from 'react';
 import { translateText, getDeviceLanguage } from '../services/translation.service';
+import { toastLoading, toastSuccess, toastError, dismissToast } from '../libs';
 
 interface UseTranslationResult {
   isTranslated: boolean;
@@ -48,6 +49,7 @@ export function useTranslation(
     debounceRef.current = true;
     setIsLoading(true);
 
+    const toastId = toastLoading("Translating...");
     try {
       const entries = Object.entries(texts).filter(([, v]) => v && v.trim().length > 0);
       const results = await Promise.all(
@@ -58,8 +60,11 @@ export function useTranslation(
       );
       setTranslatedTexts(Object.fromEntries(results));
       setIsTranslated(true);
+      dismissToast(toastId);
+      toastSuccess("Post translated");
     } catch {
-      // fail silently — the button just stays
+      dismissToast(toastId);
+      toastError("Translation failed. Please try again.");
     } finally {
       setIsLoading(false);
       debounceRef.current = false;

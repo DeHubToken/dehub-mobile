@@ -124,16 +124,30 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
     };
   }, [isActive, player]);
 
-  const togglePlayPause = useCallback(() => {
+  const isPlayingRef = useRef(isPlaying);
+  isPlayingRef.current = isPlaying;
+
+  const togglePlayPauseRef = useRef(() => {
     if (!player || longPressActiveRef.current) return;
-    if (isPlaying) {
+    if (isPlayingRef.current) {
       player.pause();
       setIsPlaying(false);
     } else {
       player.play();
       setIsPlaying(true);
     }
-  }, [player, isPlaying]);
+  });
+  // keep ref current so timeout closures always call latest
+  togglePlayPauseRef.current = () => {
+    if (!player || longPressActiveRef.current) return;
+    if (isPlayingRef.current) {
+      player.pause();
+      setIsPlaying(false);
+    } else {
+      player.play();
+      setIsPlaying(true);
+    }
+  };
 
   const toggleMute = useCallback(() => {
     if (!player) return;
@@ -300,11 +314,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
       // Wait to see if a second tap comes
       setTimeout(() => {
         if (lastTapRef.current === now) {
-          togglePlayPause();
+          togglePlayPauseRef.current();
         }
       }, 300);
     }
-  }, [liked, handleLike, togglePlayPause, showLikeAnimation]);
+  }, [liked, handleLike, showLikeAnimation]);
 
   // Long press — detect center vs right side
   const handleLongPressIn = useCallback((e: GestureResponderEvent) => {
@@ -364,11 +378,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
             style={StyleSheet.absoluteFill}
             contentFit="cover"
             nativeControls={false}
+            pointerEvents="none"
           />
         ) : thumbnail ? (
-          <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="cover" />
+          <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="cover" pointerEvents="none" />
         ) : (
-          <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} />
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} pointerEvents="none" />
         )}
       </Pressable>
 

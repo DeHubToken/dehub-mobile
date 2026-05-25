@@ -379,6 +379,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             insertIndex++;
           }
           const newList = [...prev];
+          // Update parent replyIds so reply count increments immediately
+          newList[parentIndex] = {
+            ...newList[parentIndex],
+            replyIds: [...(newList[parentIndex].replyIds ?? []), tempId],
+          };
           newList.splice(insertIndex, 0, optimistic);
           return newList;
         });
@@ -424,10 +429,19 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           newId = res?.commentId;
         }
 
-        // Reconcile temp ID
+        // Reconcile temp ID with real ID
         if (newId != null) {
           setFlatComments((prev) =>
-            prev.map((c) => (c.id === tempId ? { ...c, id: newId! } : c))
+            prev.map((c) => {
+              if (c.id === tempId) return { ...c, id: newId! };
+              if (c.replyIds?.includes(tempId)) {
+                return {
+                  ...c,
+                  replyIds: c.replyIds.map((rid) => (rid === tempId ? newId! : rid)),
+                };
+              }
+              return c;
+            })
           );
         }
       } catch (e) {
@@ -504,6 +518,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 insertIndex++;
               }
               const newList = [...prev];
+              // Update parent replyIds so reply count increments immediately
+              newList[parentIndex] = {
+                ...newList[parentIndex],
+                replyIds: [...(newList[parentIndex].replyIds ?? []), tempId],
+              };
               newList.splice(insertIndex, 0, optimisticComment);
               return newList;
             });
@@ -529,7 +548,17 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           const newId = res?.result?.id ?? res?.id;
           if (newId != null) {
             setFlatComments((prev) =>
-              prev.map((c) => (c.id === tempId ? { ...c, id: newId } : c))
+              prev.map((c) => {
+                if (c.id === tempId) return { ...c, id: newId };
+                // Replace tempId in parent's replyIds with real ID
+                if (c.replyIds?.includes(tempId)) {
+                  return {
+                    ...c,
+                    replyIds: c.replyIds.map((rid) => (rid === tempId ? newId : rid)),
+                  };
+                }
+                return c;
+              })
             );
           }
         }

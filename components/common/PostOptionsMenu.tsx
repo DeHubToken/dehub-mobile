@@ -15,12 +15,14 @@ import {
   ActivityIndicator,
   Share,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "../ui/GlassModal";
 import ConfirmModal from "./ConfirmModal";
 import ConfirmBlockModal from "./ConfirmBlockModal";
 import EditPostModal from "./EditPostModal";
 import ReportModal from "./ReportModal";
+import CreatePollSheet from "../DM/CreatePollSheet";
 import {
   editPost,
   togglePostVisibility,
@@ -31,6 +33,7 @@ import { blockUser, unblockUser } from "../../services/block.service";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { toastSuccess, toastError } from "../../libs";
 import { WEBSITE_LINK } from "../../config";
+import { markPostDeleted } from "../../libs/deleted-posts-store";
 
 export interface PostOptionsMenuProps {
   visible: boolean;
@@ -63,6 +66,10 @@ export interface PostOptionsMenuProps {
   onEditSuccess?: (data: { name?: string; description?: string; category?: string[] }) => void;
   /** Called after delete success */
   onDeleteSuccess?: () => void;
+  /** Called when user taps Translate Post */
+  onTranslatePress?: () => void;
+  /** Called when user taps Translate Image (image posts only) */
+  onTranslateImagePress?: () => void;
   /** Whether the viewer has blocked the creator */
   isBlocked?: boolean;
   /** Called after block/unblock to update parent state */
@@ -126,10 +133,13 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onVisibilityChange,
   onEditSuccess,
   onDeleteSuccess,
+  onTranslatePress,
+  onTranslateImagePress,
   isBlocked: isBlockedProp = false,
   onBlockChange,  hideReportContent = false,  hideEdit = false,}) => {
   const user = useUser();
   const { requireAuth } = useAuthActions();
+  const { t } = useTranslation();
 
   // Sub-modal states
   const [showEdit, setShowEdit] = useState(false);
@@ -137,6 +147,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   const [showReportContent, setShowReportContent] = useState(false);
   const [showReportUser, setShowReportUser] = useState(false);
   const [showBlockConfirm, setShowBlockConfirm] = useState(false);
+  const [showPoll, setShowPoll] = useState(false);
 
   // Loading states
   const [followLoading, setFollowLoading] = useState(false);
@@ -157,22 +168,22 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           onFollowChange?.(false, false);
           toastSuccess(
             isFollowRequestPending
-              ? "Follow request cancelled"
-              : `Unfollowed ${creatorDisplayName}`
+              ? t("postOptions.followRequestCancelled")
+              : t("postOptions.unfollowedUser", { name: creatorDisplayName })
           );
         } else {
           const res = await followUser(viewer, target);
           if (res.status === "pending") {
             onFollowChange?.(false, true);
-            toastSuccess("Follow request sent");
+            toastSuccess(t("postOptions.followRequestSent"));
           } else {
             onFollowChange?.(true, false);
-            toastSuccess(`Following ${creatorDisplayName}`);
+            toastSuccess(t("postOptions.nowFollowing", { name: creatorDisplayName }));
           }
         }
       } catch (e) {
         console.error("[PostOptionsMenu] follow toggle error", e);
-        toastError("Failed to update follow status");
+        toastError(t("postOptions.followUpdateFailed"));
       } finally {
         setFollowLoading(false);
         onClose();
@@ -195,10 +206,10 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     try {
       await togglePostVisibility(tokenId, !isHidden);
       onVisibilityChange?.(!isHidden);
-      toastSuccess(isHidden ? "Post is now visible" : "Post hidden from feeds");
+      toastSuccess(isHidden ? t("postOptions.postNowVisible") : t("postOptions.postHiddenFromFeeds"));
     } catch (e) {
       console.error("[PostOptionsMenu] visibility toggle error", e);
-      toastError("Failed to update visibility");
+      toastError(t("postOptions.postVisibilityFailed"));
     } finally {
       setVisibilityLoading(false);
       onClose();
@@ -210,13 +221,14 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     setDeleteLoading(true);
     try {
       await deletePost(tokenId);
-      toastSuccess("Post deleted");
+      await markPostDeleted(tokenId);
+      toastSuccess(t("postOptions.postDeleted"));
       setShowDeleteConfirm(false);
       onDeleteSuccess?.();
       onClose();
     } catch (e) {
       console.error("[PostOptionsMenu] delete error", e);
-      toastError("Failed to delete post");
+      toastError(t("postOptions.postDeleteFailed"));
     } finally {
       setDeleteLoading(false);
     }
@@ -264,15 +276,15 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
       if (isBlockedProp) {
         await unblockUser(creatorIdentifier);
         onBlockChange?.(false);
-        toastSuccess(`Unblocked ${creatorDisplayName}`);
+        toastSuccess(t("postOptions.unblockedUser", { name: creatorDisplayName }));
       } else {
         await blockUser(creatorIdentifier);
         onBlockChange?.(true);
-        toastSuccess(`Blocked ${creatorDisplayName}`);
+        toastSuccess(t("postOptions.blockedUser", { name: creatorDisplayName }));
       }
     } catch (e) {
       console.error("[PostOptionsMenu] block toggle error", e);
-      toastError(isBlockedProp ? "Failed to unblock user" : "Failed to block user");
+      toastError(isBlockedProp ? t("postOptions.unblockFailed") : t("postOptions.blockFailed"));
     } finally {
       setBlockLoading(false);
       setShowBlockConfirm(false);
@@ -282,6 +294,11 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   const handleOpenDelete = useCallback(() => {
     onClose();
     setTimeout(() => setShowDeleteConfirm(true), 200);
+  }, [onClose]);
+
+  const handleOpenPoll = useCallback(() => {
+    onClose();
+    setTimeout(() => setShowPoll(true), 200);
   }, [onClose]);
 
   const handleShare = useCallback(async () => {
@@ -296,12 +313,11 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     onClose();
   }, [tokenId, onClose]);
 
-  // Determine follow label
   const followLabel = isFollowRequestPending
-    ? "Cancel Request"
+    ? t("postOptions.cancelRequest")
     : isFollowing
-    ? `Unfollow ${creatorDisplayName}`
-    : `Follow ${creatorDisplayName}`;
+    ? t("postOptions.unfollow", { name: creatorDisplayName })
+    : t("postOptions.follow", { name: creatorDisplayName });
 
   const followIcon: keyof typeof Ionicons.glyphMap = isFollowRequestPending
     ? "close-circle-outline"
@@ -329,10 +345,30 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {/* Share */}
           <OptionRow
             icon="share-outline"
-            label="Share"
-            sublabel="Share this post"
+            label={t("postOptions.share")}
+            sublabel={t("postOptions.shareDesc")}
             onPress={handleShare}
           />
+
+          {/* Translate text */}
+          {!!onTranslatePress && (
+            <OptionRow
+              icon="globe-outline"
+              label={t("postOptions.translatePost")}
+              sublabel={t("postOptions.translateDesc")}
+              onPress={() => { onTranslatePress(); onClose(); }}
+            />
+          )}
+
+          {/* Translate image (image posts only) */}
+          {!!onTranslateImagePress && (
+            <OptionRow
+              icon="image-outline"
+              label={t("postOptions.translateImage")}
+              sublabel={t("postOptions.translateImageDesc")}
+              onPress={() => { onClose(); setTimeout(() => onTranslateImagePress(), 300); }}
+            />
+          )}
 
           {/* Follow / Unfollow — only for non-owners */}
           {!isOwner && (
@@ -350,18 +386,26 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               {!hideEdit && (
                 <OptionRow
                   icon="create-outline"
-                  label="Edit Post"
-                  sublabel="Change title, description, or categories"
+                  label={t("postOptions.editPost")}
+                  sublabel={t("postOptions.editPostDesc")}
                   onPress={handleOpenEdit}
+                />
+              )}
+              {!hideEdit && (
+                <OptionRow
+                  icon="bar-chart-outline"
+                  label={t("postOptions.createPoll")}
+                  sublabel={t("postOptions.createPollDesc")}
+                  onPress={handleOpenPoll}
                 />
               )}
               <OptionRow
                 icon={isHidden ? "eye-outline" : "eye-off-outline"}
-                label={isHidden ? "Show Post" : "Hide Post"}
+                label={isHidden ? t("postOptions.showPost") : t("postOptions.hidePost")}
                 sublabel={
                   isHidden
-                    ? "Make this post visible in feeds again"
-                    : "Hide this post from public feeds"
+                    ? t("postOptions.showPostDesc")
+                    : t("postOptions.hidePostDesc")
                 }
                 loading={visibilityLoading}
                 onPress={handleVisibilityToggle}
@@ -378,16 +422,16 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               {!hideReportContent && (
                 <OptionRow
                   icon="flag-outline"
-                  label="Report Video"
-                  sublabel="Report this content"
+                  label={t("postOptions.reportVideo")}
+                  sublabel={t("postOptions.reportVideoDesc")}
                   color="#FBBF24"
                   onPress={handleOpenReportContent}
                 />
               )}
               <OptionRow
                 icon="person-remove-outline"
-                label="Report User"
-                sublabel={`Report ${creatorDisplayName}`}
+                label={t("postOptions.reportUser")}
+                sublabel={t("postOptions.reportUserDesc", { name: creatorDisplayName })}
                 color="#F97316"
                 onPress={handleOpenReportUser}
               />
@@ -397,8 +441,8 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
 
               <OptionRow
                 icon={isBlockedProp ? "lock-open-outline" : "ban-outline"}
-                label={isBlockedProp ? `Unblock ${creatorDisplayName}` : `Block ${creatorDisplayName}`}
-                sublabel={isBlockedProp ? "Allow this user to appear in your feeds" : "Hide their content and restrict interactions"}
+                label={isBlockedProp ? t("postOptions.unblockUser", { name: creatorDisplayName }) : t("postOptions.blockUser", { name: creatorDisplayName })}
+                sublabel={isBlockedProp ? t("postOptions.unblockDesc") : t("postOptions.blockDesc")}
                 color="#EF4444"
                 onPress={handleOpenBlock}
               />
@@ -409,8 +453,8 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {isOwner && (
             <OptionRow
               icon="trash-outline"
-              label="Delete Post"
-              sublabel="Permanently remove from feeds"
+              label={t("postOptions.deletePost")}
+              sublabel={t("postOptions.deletePostDesc")}
               color="#EF4444"
               onPress={handleOpenDelete}
             />
@@ -421,10 +465,10 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
       {/* Delete confirmation */}
       <ConfirmModal
         visible={showDeleteConfirm}
-        title="Delete this post?"
-        description="This action cannot be undone. The post will be permanently removed from all feeds."
-        confirmText="Delete"
-        cancelText="Cancel"
+        title={t("postOptions.deleteConfirmTitle")}
+        description={t("postOptions.deleteConfirmDesc")}
+        confirmText={t("common.delete")}
+        cancelText={t("common.cancel")}
         confirmKind="danger"
         loading={deleteLoading}
         onConfirm={handleDeleteConfirm}
@@ -467,6 +511,14 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         onConfirm={handleConfirmBlock}
         onCancel={() => setShowBlockConfirm(false)}
         loading={blockLoading}
+      />
+
+      {/* Create poll sheet */}
+      <CreatePollSheet
+        visible={showPoll}
+        onClose={() => setShowPoll(false)}
+        tokenId={tokenId != null ? Number(tokenId) : 0}
+        onCreated={() => setShowPoll(false)}
       />
     </>
   );

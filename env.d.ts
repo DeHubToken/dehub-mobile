@@ -16,4 +16,7 @@ declare module '@env' {
     export const STRIPE_PUBLISHABLE_KEY: string;
     export const LEGACY_APP_ORIGIN: string;
     export const SUPABASE_EDGE_BASE_URL: string;
+    export const SUPABASE_URL: string;
+    export const SUPABASE_PUBLISHABLE_KEY: string;
+    export const AGORA_APP_ID: string;
 }
