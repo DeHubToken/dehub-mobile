@@ -21,6 +21,7 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
 
 import ScreenHeader from "../components/ScreenHeader";
+import CallButton from "../components/Call/CallButton";
 import MessageBubble from "../components/DM/MessageBubble";
 import ChatInputBar, {
   type ChatMediaAttachment,
@@ -32,6 +33,8 @@ import ForwardPickerModal from "../components/DM/ForwardPickerModal";
 import DmFeeBanner from "../components/DM/DmFeeBanner";
 import NewChatIntro from "../components/DM/NewChatIntro";
 import TipAmountSheet from "../components/DM/TipAmountSheet";
+import PollCard from "../components/DM/PollCard";
+import CreatePollSheet from "../components/DM/CreatePollSheet";
 import FullScreenVideoPlayer from "../components/common/FullScreenVideoPlayer";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../components/Comments/VoiceNoteRecorder";
 import type { VoiceNoteResult } from "../components/Comments/VoiceNoteRecorder";
@@ -39,6 +42,7 @@ import Avatar from "../components/common/Avatar";
 import ChatHeaderMenuButton from "../components/Chat/ChatHeaderMenuButton";
 import ChatMenu from "../components/Chat/ChatMenu";
 import ConfirmBlockModal from "../components/common/ConfirmBlockModal";
+import PinnedMessageBanner from "../components/DM/PinnedMessageBanner";
 
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import type { User } from "../context/AuthContext";
@@ -93,6 +97,7 @@ import { getAvatarUrl } from "../libs/misc";
 import { toastError, toastInfo, toastSuccess, toastWarning } from "../libs/toast";
 import { useKeyboard } from "../hooks/useKeyboard";
 import { createLogger } from "../libs/logger";
+import { useDmPin } from "../hooks/useDmPin";
 
 
 export type ChatScreenProps = {
@@ -138,9 +143,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const tokenContract = useERC20Contract(tokenAddress);
   const controllerContract = useStreamControllerContract();
 
-  const inputLift = kbVisible ? kbHeight : 0;
-  const [inputBarHeight, setInputBarHeight] = useState(100);
-  const listBottomPadding = inputBarHeight + inputLift + (insets.bottom || 0);
+  // adjustResize (AndroidManifest) already shrinks the window on Android,
+  // so no manual lift is needed there — only iOS needs it.
+  const inputLift = Platform.OS === "ios" && kbVisible ? kbHeight : 0;
+  const [inputBarHeight, setInputBarHeight] = useState(60);
+  const listBottomPadding = inputBarHeight + inputLift;
 
   const convId = route?.params?.conversationId as ID | undefined;
   const targetAddress = route?.params?.targetAddress;
@@ -192,6 +199,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const [tipAmount, setTipAmount] = useState(0);
   const [tipSheetVisible, setTipSheetVisible] = useState(false);
 
+  // Poll
+  const [pollSheetVisible, setPollSheetVisible] = useState(false);
+
   // Sending state — true while any job in the queue targets this conversation
   // (We keep this simple: the queue processes serially, so any active job = sending)
   const sending = false; // Queue handles async; no component-level sending state needed
@@ -210,6 +220,26 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
 
   const currentConvId = convId || createdConvIdRef.current;
+
+  const currentConversation = useMemo(
+    () => conversations.find((c) => c._id === currentConvId) ?? null,
+    [conversations, currentConvId],
+  );
+
+  // Message pinning
+  const { pinnedMessageId, pinMessage, unpinMessage } = useDmPin(
+    currentConvId || undefined,
+    address || undefined,
+    currentConversation,
+  );
+
+  const handlePinMessage = useCallback(() => {
+    if (contextMessage) pinMessage(contextMessage._id);
+  }, [contextMessage, pinMessage]);
+
+  const handleUnpinMessage = useCallback(() => {
+    unpinMessage();
+  }, [unpinMessage]);
 
   // DHB balance for display & validation in fee / tip UI
   const dhbBalance = useMemo(
@@ -278,6 +308,12 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     return [...(stillPending as DmMessage[]), ...base];
   }, [storeMessages, optimisticMsgs]);
 
+  // Depends on messageList — must be declared after it
+  const pinnedMessage = useMemo(
+    () => (pinnedMessageId ? messageList.find((m) => m._id === pinnedMessageId) ?? null : null),
+    [pinnedMessageId, messageList],
+  );
+
   const isMine = useCallback(
     (msg: DmMessage): boolean => {
       if (msg.author === "me") return true;
@@ -324,6 +360,13 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     },
     [messageList],
   );
+
+  // Depends on highlightAndScroll — must be declared after it
+  const scrollToPinnedMessage = useCallback(() => {
+    if (pinnedMessage) {
+      highlightAndScroll(pinnedMessage._id);
+    }
+  }, [pinnedMessage, highlightAndScroll]);
 
   const handleReplyPress = useCallback(
     (messageId: string) => {
@@ -1210,10 +1253,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const RightHeader = useMemo(
     () => (
       <View className="flex-row items-center">
+        {peer.address ? <CallButton recipientAddress={peer.address} /> : null}
         <ChatHeaderMenuButton onPress={openMenu} />
       </View>
     ),
-    [openMenu],
+    [openMenu, peer.address],
   );
 
   const handleSwipeToReply = useCallback(
@@ -1226,6 +1270,21 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const renderMessage = useCallback(
     ({ item }: { item: DmMessage }) => {
       const mine = isMine(item);
+      // Poll messages use a dedicated card
+      if (item.msgType === "poll" && item.poll?.tokenId) {
+        return (
+          <View className="px-3 py-0.5">
+            <PollCard
+              tokenId={item.poll.tokenId}
+              pollOwnerAddress={
+                typeof item.sender === "object"
+                  ? item.sender?.address ?? ""
+                  : ""
+              }
+            />
+          </View>
+        );
+      }
       return (
         <View className="px-3 py-0.5">
           <MessageBubble
@@ -1273,6 +1332,14 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   // The tip is dispatched alongside the message (or standalone if no content).
   const handleTipPress = useCallback(() => setTipSheetVisible(true), []);
   const handleClearTip = useCallback(() => setTipAmount(0), []);
+
+  const handlePollCreated = useCallback(
+    (_tokenId: number) => {
+      setPollSheetVisible(false);
+      scrollToBottom();
+    },
+    [scrollToBottom],
+  );
   const handleTipConfirm = useCallback((amount: number) => {
     setTipAmount(amount);
     setTipSheetVisible(false);
@@ -1305,6 +1372,15 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
         {/* Per-message fee banner — always visible when fee info exists */}
         <DmFeeBanner dmFee={dmFee} peerDisplayName={peer.displayName} />
+
+        {/* Pinned message banner */}
+        {pinnedMessage && (
+          <PinnedMessageBanner
+            pinnedMessage={pinnedMessage}
+            onPress={scrollToPinnedMessage}
+            onUnpin={handleUnpinMessage}
+          />
+        )}
 
         <View className="flex-1">
           {/* New chat intro — shown before first message */}
@@ -1358,7 +1434,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           {/* Input or disabled banner — absolutely positioned, lifts with keyboard */}
           <View
             className="absolute left-0 right-0 bottom-0 bg-theme-neutrals-900"
-            style={{ marginBottom: inputLift, paddingBottom: insets.bottom || 0 }}
+            style={{ marginBottom: inputLift, paddingBottom: Platform.OS === 'ios' ? (kbVisible ? 0 : insets.bottom) : 0 }}
             onLayout={(e) => setInputBarHeight(e.nativeEvent.layout.height)}
           >
             {voiceRecorder.isRecording ? (
@@ -1400,6 +1476,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 onTipPress={handleTipPress}
                 onClearTip={handleClearTip}
                 dhbBalance={dhbBalance}
+                onPollPress={() => setPollSheetVisible(true)}
               />
             )}
           </View>
@@ -1426,6 +1503,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           onEdit={handleEdit}
           onForward={handleForward}
           onDelete={handleDelete}
+          onPin={handlePinMessage}
+          onUnpin={handleUnpinMessage}
+          isPinned={contextMessage ? pinnedMessageId === contextMessage._id : false}
         />
 
         {/* Forward picker */}
@@ -1466,6 +1546,13 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           currentAmount={tipAmount}
           dhbBalance={dhbBalance}
           minAmount={dmFee?.required && !dmFee?.hasFreeAccess ? (dmFee?.fee ?? 1) : 1}
+        />
+
+        {/* Create poll sheet */}
+        <CreatePollSheet
+          visible={pollSheetVisible}
+          onClose={() => setPollSheetVisible(false)}
+          onCreated={handlePollCreated}
         />
     </View>
   );

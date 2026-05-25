@@ -21,11 +21,13 @@ import {
 } from "../config/constants";
 import { supportedNetworks } from "../config/web3.constants";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
+import type { AttachedSound } from "./usePostSound";
 import {
   uploadActions,
   type UploadJob,
   type SerializedUploadPayload,
   type SerializedMedia,
+  type SerializedPollData,
   type BountyConfig,
   MAX_QUEUE_SIZE,
 } from "../store/upload.store";
@@ -70,6 +72,9 @@ export type UploadPayload = {
   coverUri: string | null;
   monetization: MonetizationState;
   postAsShort: boolean;
+  attachedSound?: AttachedSound;
+  pollData?: SerializedPollData;
+  scheduledAt?: Date;
 };
 
 
@@ -153,9 +158,15 @@ export function useUploadPost() {
       if (p.pickedImages.length < 1) return { valid: false, error: "At least one image is required." };
     }
 
-    // Text mode: description required (the title input maps to description for non-video posts)
+    // Text mode: description or a valid poll is required
     if (mode === "text") {
-      if (p.description.trim().length < 1) return { valid: false, error: "Write something to post." };
+      const hasPoll = !!(
+        p.pollData?.question?.trim() &&
+        (p.pollData.options.filter(o => o.trim()).length ?? 0) >= 2
+      );
+      if (p.description.trim().length < 1 && !hasPoll) {
+        return { valid: false, error: "Write something or add a poll to post." };
+      }
     }
 
     // Monetization validation (only for video)
@@ -315,6 +326,7 @@ export function useUploadPost() {
 
       fd.append("plans", JSON.stringify([]));
       if (addr) fd.append("address", addr);
+      if (p.scheduledAt) fd.append("scheduledAt", p.scheduledAt.toISOString());
 
       return fd;
     },
@@ -516,6 +528,8 @@ export function useUploadPost() {
         audio,
         thumbnailUri: thumb,
         streamInfoJson: JSON.stringify((mode === "video" && !isShort) ? filteredStreamInfo(streamInfo) : {}),
+        pollData: p.pollData,
+        scheduledAt: p.scheduledAt?.toISOString(),
       };
 
       const isBounty = mode === "video" && !isShort && p.monetization.bountyEnabled;

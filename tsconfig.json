@@ -9,6 +9,8 @@
     "target": "esnext"
   },
   "exclude": [
-    "components/messages/**"
+    "components/messages/**",
+    "dehub-stream-backend",
+    "cosmic-echo-hero"
   ]
 }

@@ -158,7 +158,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
         <View className="flex-1 justify-center">
           <View className="flex-row items-center gap-1.5">
             <Text
-              className={`text-[15px] font-semibold ${
+              className={`text-[15px] font-semibold flex-1 ${
                 unreadCount > 0 ? "text-white" : "text-theme-neutrals-100"
               }`}
               numberOfLines={1}
@@ -172,6 +172,13 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
               <Text className="text-zinc-500 text-[12px]" numberOfLines={1}>
                 @{username}
               </Text>
+            )}
+            {unreadCount > 0 && (
+              <View className="bg-blue-600 rounded-full min-w-[18px] h-[18px] items-center justify-center px-1">
+                <Text className="text-[10px] text-white font-bold">
+                  {unreadCount > 99 ? "99+" : unreadCount}
+                </Text>
+              </View>
             )}
           </View>
           <View className="flex-row items-center gap-1 mt-0.5">
@@ -190,24 +197,14 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
             >
               {previewText}
             </Text>
+            <Text
+              className={`text-[11px] ${
+                unreadCount > 0 ? "text-accent" : "text-theme-neutrals-500"
+              }`}
+            >
+              {timeStr}
+            </Text>
           </View>
-        </View>
-
-        <View className="items-end gap-1">
-          <Text
-            className={`text-[11px] ${
-              unreadCount > 0 ? "text-accent" : "text-theme-neutrals-500"
-            }`}
-          >
-            {timeStr}
-          </Text>
-          {unreadCount > 0 && (
-            <View className="bg-blue-600 rounded-full min-w-[18px] h-[18px] items-center justify-center px-1">
-              <Text className="text-[10px] text-white font-bold">
-                {unreadCount > 99 ? "99+" : unreadCount}
-              </Text>
-            </View>
-          )}
         </View>
       </TouchableOpacity>
     </Animated.View>

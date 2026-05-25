@@ -239,7 +239,10 @@ export default function HomeScreen() {
     <GestureDetector gesture={swipeGesture}>
       <View className="flex-1 bg-theme-neutrals-900">
         <Animated.View style={[styles.headerClip, headerAnimatedStyle]} onLayout={onHeaderLayout}>
-          <HomeHeader onLogoPress={handleLogoPress} onMenuPress={openDrawer} />
+          <HomeHeader
+            onLogoPress={handleLogoPress}
+            onMenuPress={openDrawer}
+          />
 
           <FeedNavBar
             activePostType={filters.postType}

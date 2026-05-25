@@ -49,12 +49,17 @@ import { INITIAL_LIVE_SETTINGS } from "../components/Upload/LiveSettingsPanel";
 import ConfirmUploadModal from "../components/Upload/ConfirmUploadModal";
 import { useUploadPost } from "../hooks/useUploadPost";
 import { useUploadLive } from "../hooks/useUploadLive";
+import { usePostSound } from "../hooks/usePostSound";
+import { buildSoundtrackTag } from "../libs/parseSoundtrack";
+import SoundPickerSheet from "../components/Post/SoundPickerSheet";
+import ScheduleSheet from "../components/Upload/ScheduleSheet";
 import { useDrafts } from "../hooks/useDrafts";
 import type { Draft } from "../hooks/useDrafts";
 import GlassModal from "../components/ui/GlassModal";
 import type { UploadPayload, UploadStage, PickedAudio } from "../hooks/useUploadPost";
 import type { LiveUploadPayload } from "../hooks/useUploadLive";
 import type { AppStackParamList } from "../navigation/types";
+import { useStages } from "../context/StageContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 import QuotedPostEmbed from "../components/common/QuotedPostEmbed";
 import { sendAIChat } from "../services/ai.service";
@@ -147,9 +152,16 @@ export default function UploadScreen() {
   const [quotedPost, setQuotedPost] = useState<Record<string, any> | undefined>(incomingQuotedPost);
 
   const [isLiveMode, setIsLiveMode] = useState(false);
+  const [showLiveOptions, setShowLiveOptions] = useState(false);
   const [liveSettings, setLiveSettings] = useState<LiveSettingsState>(INITIAL_LIVE_SETTINGS);
   const [showLiveSettings, setShowLiveSettings] = useState(false);
   const [liveThumbnailUri, setLiveThumbnailUri] = useState<string | null>(null);
+
+  const [pollEnabled, setPollEnabled] = useState(false);
+  const [pollQuestion, setPollQuestion] = useState("");
+  const [pollOptions, setPollOptions] = useState(["", ""]);
+  const [pollDurationHours, setPollDurationHours] = useState(24);
+  const [pollIsMultiple, setPollIsMultiple] = useState(false);
 
   const [showSaveDraftModal, setShowSaveDraftModal] = useState(false);
   const [showDiscardModal, setShowDiscardModal] = useState(false);
@@ -210,8 +222,9 @@ export default function UploadScreen() {
   }, [postAsShort]);
 
   const hasMedia = mediaMode !== "none";
-  const hasContent = bodyText.trim().length > 0 || hasMedia || isQuoteMode;
-  const canPost = !isLiveMode && (bodyText.trim().length > 0 || hasMedia || isQuoteMode);
+  const pollIsValid = pollEnabled && pollQuestion.trim().length > 0 && pollOptions.filter(o => o.trim()).length >= 2;
+  const hasContent = bodyText.trim().length > 0 || hasMedia || isQuoteMode || pollIsValid;
+  const canPost = !isLiveMode && (bodyText.trim().length > 0 || hasMedia || isQuoteMode || pollIsValid);
   const canGoLive = isLiveMode && bodyText.trim().length > 0 && !!(liveThumbnailUri || coverUri);
 
   // Show description/category area when user has typed or picked media
@@ -317,8 +330,9 @@ export default function UploadScreen() {
       !!pickedVideo ||
       !!pickedAudio ||
       !!liveThumbnailUri ||
-      isLiveMode,
-    [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, liveThumbnailUri, isLiveMode],
+      isLiveMode ||
+      pollEnabled,
+    [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, liveThumbnailUri, isLiveMode, pollEnabled],
   );
 
   /** Close handler – placed before useUploadPost; isUploading guard is in the X button's disabled prop */
@@ -407,6 +421,15 @@ export default function UploadScreen() {
     isUploading: isLiveUploading,
   } = useUploadLive();
 
+  const { attachedSound, selectSound, clearSound } = usePostSound();
+  const { openModal: openStages } = useStages();
+  const [showSoundPicker, setShowSoundPicker] = useState(false);
+  const [scheduledDate, setScheduledDate] = useState<Date | null>(null);
+  const [showScheduleSheet, setShowScheduleSheet] = useState(false);
+
+  const soundtrackEnabled =
+    !isLiveMode && !isQuoteMode && !postAsShort && (mediaMode === "video" || mediaMode === "images");
+
   // Regular and quote uploads are now background-queued (not blocking).
   // Only live mode blocks the screen.
   const activeIsUploading = isLiveMode ? isLiveUploading : false;
@@ -433,9 +456,12 @@ export default function UploadScreen() {
     // Send empty bodyText (name) so only description is populated.
     // Videos keep separate title (name) + description.
     const isVideo = !!pickedVideo;
+    const soundTag = attachedSound ? buildSoundtrackTag(attachedSound) : "";
+    const desc = isVideo ? description : bodyText;
+    const descWithSound = soundTag ? `${soundTag}\n${desc}`.trim() : desc;
     return {
       bodyText: isVideo ? bodyText : "",
-      description: isVideo ? description : bodyText,
+      description: descWithSound,
       categories,
       pickedImages,
       pickedVideo,
@@ -444,8 +470,26 @@ export default function UploadScreen() {
       coverUri,
       monetization,
       postAsShort,
+      attachedSound: attachedSound || undefined,
+      pollData: pollIsValid ? {
+        question: pollQuestion.trim(),
+        options: pollOptions.filter(o => o.trim()).map(o => o.trim()),
+        expiresAt: new Date(Date.now() + pollDurationHours * 3600 * 1000).toISOString(),
+        isMultipleChoice: pollIsMultiple,
+      } : undefined,
+      scheduledAt: scheduledDate ?? undefined,
     };
-  }, [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, postAsShort]);
+  }, [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, postAsShort, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate]);
+
+  const handleTogglePoll = useCallback(() => {
+    if (pollEnabled) {
+      setPollQuestion("");
+      setPollOptions(["", ""]);
+      setPollDurationHours(24);
+      setPollIsMultiple(false);
+    }
+    setPollEnabled((prev) => !prev);
+  }, [pollEnabled]);
 
   const handleToggleLiveMode = useCallback(() => {
     setIsLiveMode((prev) => {
@@ -459,6 +503,7 @@ export default function UploadScreen() {
         setThumbnailUri(null);
         setCoverUri(null);
         setCoverHidden(false);
+        clearSound();
       } else {
         // Leaving live mode: clear live-specific state
         setShowLiveSettings(false);
@@ -783,8 +828,12 @@ export default function UploadScreen() {
   }, [generateThumbnail]);
 
   const handleRemoveImage = useCallback((index: number) => {
-    setPickedImages((prev) => prev.filter((_, i) => i !== index));
-  }, []);
+    setPickedImages((prev) => {
+      const next = prev.filter((_, i) => i !== index);
+      if (next.length === 0) clearSound();
+      return next;
+    });
+  }, [clearSound]);
 
   const handleRemoveVideo = useCallback(() => {
     setPickedVideo(null);
@@ -793,7 +842,8 @@ export default function UploadScreen() {
     setThumbnailUri(null);
     setCoverUri(null);
     setCoverHidden(false);
-  }, []);
+    clearSound();
+  }, [clearSound]);
 
   /* ── Audio handlers ─────────────────────────────────────────── */
   const handleRemoveAudio = useCallback(async () => {
@@ -1121,6 +1171,36 @@ export default function UploadScreen() {
         </View>
       </View>
 
+      {scheduledDate && (
+        <View
+          className="mx-4 mb-2 flex-row items-center px-3 py-2 rounded-xl"
+          style={{ backgroundColor: "rgba(99,102,241,0.15)", borderWidth: 1, borderColor: "rgba(99,102,241,0.3)" }}
+        >
+          <TouchableOpacity
+            onPress={() => setShowScheduleSheet(true)}
+            activeOpacity={0.7}
+            className="flex-row items-center flex-1"
+          >
+            <Icon name="Clock" size={14} color="#818CF8" />
+            <Text className="text-indigo-400 text-xs font-medium ml-2">
+              Scheduled for{" "}
+              {scheduledDate.toLocaleString(undefined, {
+                month: "short",
+                day: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+              })}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setScheduledDate(null)}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <Icon name="X" size={14} color="#818CF8" />
+          </TouchableOpacity>
+        </View>
+      )}
+
       <ScrollView
         className="flex-1"
         keyboardShouldPersistTaps="handled"
@@ -1244,6 +1324,21 @@ export default function UploadScreen() {
               </View>
             )}
 
+            {!isLiveMode && mediaMode === "images" && attachedSound && (
+              <View className="mt-3 bg-white/5 rounded-lg px-3 py-2 flex-row items-center">
+                <Icon name="Music" size={14} color="#7C3AED" />
+                <Text className="text-white text-xs ml-1.5 flex-1" numberOfLines={1}>
+                  {attachedSound.title} — {attachedSound.creator}
+                </Text>
+                <TouchableOpacity
+                  onPress={clearSound}
+                  hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                >
+                  <Icon name="X" size={12} color="#9CA3AF" />
+                </TouchableOpacity>
+              </View>
+            )}
+
             {!isLiveMode && mediaMode === "images" && (
               <View className="mt-3 flex-row flex-wrap -m-1">
                 {pickedImages.map((img, idx) => (
@@ -1291,6 +1386,21 @@ export default function UploadScreen() {
                   contentFit="contain"
                   nativeControls={false}
                 />
+                {attachedSound && (
+                  <View className="absolute top-2 left-2 bg-black/70 rounded-lg px-3 py-1.5 flex-row items-center z-20">
+                    <Icon name="Music" size={14} color="#7C3AED" />
+                    <Text className="text-white text-xs ml-1.5" numberOfLines={1} style={{ maxWidth: 160 }}>
+                      {attachedSound.title}
+                    </Text>
+                    <TouchableOpacity
+                      onPress={clearSound}
+                      className="ml-2"
+                      hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                    >
+                      <Icon name="X" size={12} color="#9CA3AF" />
+                    </TouchableOpacity>
+                  </View>
+                )}
                 <View className="absolute inset-0 items-center justify-center">
                   <TouchableOpacity
                     onPress={handleTogglePlay}
@@ -1515,6 +1625,94 @@ export default function UploadScreen() {
               </View>
             )}
 
+            {pollEnabled && (
+              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4">
+                <View className="flex-row items-center justify-between mb-3">
+                  <Text className="text-white font-semibold text-sm">Poll</Text>
+                  <TouchableOpacity onPress={handleTogglePoll} hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}>
+                    <Icon name="X" size={16} color="#6F7174" />
+                  </TouchableOpacity>
+                </View>
+
+                <TextInput
+                  value={pollQuestion}
+                  onChangeText={setPollQuestion}
+                  placeholder="Ask a question..."
+                  placeholderTextColor="#6F7174"
+                  maxLength={200}
+                  className="bg-black/30 rounded-xl px-3 py-2.5 text-white text-sm mb-3"
+                />
+
+                {pollOptions.map((opt, idx) => (
+                  <View key={idx} className="flex-row items-center mb-2">
+                    <View className="flex-1 flex-row items-center bg-black/30 rounded-xl px-3 py-2.5">
+                      <Text className="text-theme-neutrals-500 text-xs w-4">{idx + 1}</Text>
+                      <TextInput
+                        value={opt}
+                        onChangeText={(t) => {
+                          const next = [...pollOptions];
+                          next[idx] = t;
+                          setPollOptions(next);
+                        }}
+                        placeholder={`Option ${idx + 1}`}
+                        placeholderTextColor="#6F7174"
+                        maxLength={60}
+                        className="flex-1 text-white text-sm ml-2"
+                      />
+                    </View>
+                    {pollOptions.length > 2 && (
+                      <TouchableOpacity
+                        onPress={() => setPollOptions((prev) => prev.filter((_, i) => i !== idx))}
+                        className="ml-2"
+                        hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                      >
+                        <Icon name="X" size={14} color="#6F7174" />
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                ))}
+
+                {pollOptions.length < 4 && (
+                  <TouchableOpacity
+                    onPress={() => setPollOptions((prev) => [...prev, ""])}
+                    className="flex-row items-center px-3 py-2.5 rounded-xl border border-dashed border-theme-neutrals-600 mb-3"
+                  >
+                    <Icon name="Plus" size={14} color="#6F7174" />
+                    <Text className="text-theme-neutrals-500 text-sm ml-2">Add option</Text>
+                  </TouchableOpacity>
+                )}
+
+                <TouchableOpacity
+                  onPress={() => setPollIsMultiple((p) => !p)}
+                  className="flex-row items-center mb-3"
+                >
+                  <View
+                    className={`w-5 h-5 rounded items-center justify-center border ${
+                      pollIsMultiple ? "bg-blue-500 border-blue-500" : "border-theme-neutrals-500"
+                    }`}
+                  >
+                    {pollIsMultiple && <Icon name="Check" size={12} color="#fff" />}
+                  </View>
+                  <Text className="text-theme-neutrals-300 text-sm ml-2">Allow multiple answers</Text>
+                </TouchableOpacity>
+
+                <Text className="text-theme-neutrals-500 text-xs mb-1.5">Duration</Text>
+                <View className="flex-row gap-2">
+                  {[{ label: "1 day", hours: 24 }, { label: "3 days", hours: 72 }, { label: "7 days", hours: 168 }].map((d) => (
+                    <TouchableOpacity
+                      key={d.hours}
+                      onPress={() => setPollDurationHours(d.hours)}
+                      className={`px-3 py-1.5 rounded-lg ${pollDurationHours === d.hours ? "bg-white" : "bg-white/[0.06]"}`}
+                    >
+                      <Text className={`text-xs font-medium ${pollDurationHours === d.hours ? "text-black" : "text-theme-neutrals-400"}`}>
+                        {d.label}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              </View>
+            )}
+
             {showExtras && (
               <View className="mt-4">
                 {((mediaMode === "video" && !postAsShort) || isLiveMode) && (
@@ -1731,12 +1929,56 @@ export default function UploadScreen() {
                 </>
               )}
             </View>
+
+            {/* Soundtrack picker button — visible for video/image posts */}
+            {soundtrackEnabled && (
+              <TouchableOpacity
+                onPress={() => setShowSoundPicker(true)}
+                activeOpacity={0.7}
+                className="mr-4"
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              >
+                <Icon
+                  name={attachedSound ? "Music" : "Music"}
+                  size={22}
+                  color={attachedSound ? "#7C3AED" : "#9CA3AF"}
+                />
+              </TouchableOpacity>
+            )}
           </>
+        )}
+
+        {!isLiveMode && !isQuoteMode && (
+          <TouchableOpacity
+            onPress={handleTogglePoll}
+            activeOpacity={0.7}
+            className="mr-4"
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <Icon name="ChartBarBig" size={22} color={pollEnabled ? "#3B82F6" : "#fff"} />
+          </TouchableOpacity>
+        )}
+
+        {!isLiveMode && !isQuoteMode && (
+          <TouchableOpacity
+            onPress={() => setShowScheduleSheet(true)}
+            activeOpacity={0.7}
+            className="mr-4"
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <Icon name="Clock" size={22} color={scheduledDate ? "#818CF8" : "#fff"} />
+          </TouchableOpacity>
         )}
 
         {!isQuoteMode && (
           <TouchableOpacity
-            onPress={handleToggleLiveMode}
+            onPress={() => {
+              if (isLiveMode) {
+                handleToggleLiveMode();
+              } else if (!liveDisabled) {
+                setShowLiveOptions(true);
+              }
+            }}
             disabled={liveDisabled && !isLiveMode}
             activeOpacity={0.7}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
@@ -1870,6 +2112,74 @@ export default function UploadScreen() {
           </View>
         </View>
       </GlassModal>
+
+      <SoundPickerSheet
+        visible={showSoundPicker}
+        onClose={() => setShowSoundPicker(false)}
+        onSelect={(sound) => {
+          selectSound(sound);
+          setShowSoundPicker(false);
+        }}
+        currentSound={attachedSound}
+      />
+
+      {/* Live options sheet — Go Live or Start Stage */}
+      <GlassModal
+        visible={showLiveOptions}
+        onClose={() => setShowLiveOptions(false)}
+        presentation="bottom"
+        maxHeight="35%"
+        blurIntensity={40}
+      >
+        <View className="p-5">
+          <Text className="text-white text-base font-semibold text-center mb-4">
+            Live Features
+          </Text>
+
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => {
+              setShowLiveOptions(false);
+              handleToggleLiveMode();
+            }}
+            className="flex-row items-center gap-3 py-4 px-4 rounded-xl mb-3"
+            style={{ backgroundColor: "rgba(239,68,68,0.15)", borderWidth: 1, borderColor: "rgba(239,68,68,0.3)" }}
+          >
+            <Icon name="Radio" size={22} color="#EF4444" />
+            <View className="flex-1">
+              <Text className="text-white font-semibold text-sm">Go Live</Text>
+              <Text className="text-theme-neutrals-400 text-xs mt-0.5">Start a livestream</Text>
+            </View>
+            <Icon name="ChevronRight" size={18} color="#6F7174" />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => {
+              setShowLiveOptions(false);
+              openStages("browse");
+            }}
+            className="flex-row items-center gap-3 py-4 px-4 rounded-xl"
+            style={{ backgroundColor: "rgba(139,92,246,0.15)", borderWidth: 1, borderColor: "rgba(139,92,246,0.3)" }}
+          >
+            <Icon name="Mic" size={22} color="#8B5CF6" />
+            <View className="flex-1">
+              <Text className="text-white font-semibold text-sm">Stages</Text>
+              <Text className="text-theme-neutrals-400 text-xs mt-0.5">Join or start an audio stage</Text>
+            </View>
+            <Icon name="ChevronRight" size={18} color="#6F7174" />
+          </TouchableOpacity>
+        </View>
+      </GlassModal>
+
+      <ScheduleSheet
+        visible={showScheduleSheet}
+        onClose={() => setShowScheduleSheet(false)}
+        scheduledDate={scheduledDate}
+        onSchedule={(date) => {
+          setScheduledDate(date);
+        }}
+      />
 
       <GlassModal
         visible={showDiscardModal}

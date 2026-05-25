@@ -54,32 +54,34 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
         />
       </TouchableOpacity>
 
-      {isSignedIn ? (
-        <TouchableOpacity
-          onPress={handleNotificationPress}
-          activeOpacity={0.7}
-          className="w-9 h-9 items-center justify-center"
-        >
-          <Icon name="Bell" size={24} color="#E5E7EB" />
-          {hasUnread && (
-            <View
-              className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full"
-              style={{ backgroundColor: theme.colors.accent }}
-              pointerEvents="none"
+      <View className="flex-row items-center gap-1">
+        {isSignedIn ? (
+          <TouchableOpacity
+            onPress={handleNotificationPress}
+            activeOpacity={0.7}
+            className="w-9 h-9 items-center justify-center"
+          >
+            <Icon name="Bell" size={24} color="#E5E7EB" />
+            {hasUnread && (
+              <View
+                className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full"
+                style={{ backgroundColor: theme.colors.accent }}
+                pointerEvents="none"
+              />
+            )}
+          </TouchableOpacity>
+        ) : (
+          <View className="w-9 h-9 items-center justify-center">
+            <Icon
+              name="LogIn"
+              size={24}
+              color="#E5E7EB"
+              tooltip="Sign In"
+              onPress={handleSignInPress}
             />
-          )}
-        </TouchableOpacity>
-      ) : (
-        <View className="w-9 h-9 items-center justify-center">
-          <Icon
-            name="LogIn"
-            size={24}
-            color="#E5E7EB"
-            tooltip="Sign In"
-            onPress={handleSignInPress}
-          />
-        </View>
-      )}
+          </View>
+        )}
+      </View>
     </View>
   );
 };

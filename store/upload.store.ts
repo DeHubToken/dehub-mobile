@@ -25,6 +25,13 @@ export interface SerializedMedia {
   height?: number;
 }
 
+export interface SerializedPollData {
+  question: string;
+  options: string[];
+  expiresAt: string;
+  isMultipleChoice: boolean;
+}
+
 export interface SerializedUploadPayload {
   bodyText: string;
   description: string;
@@ -35,6 +42,8 @@ export interface SerializedUploadPayload {
   audio: SerializedMedia | null;
   thumbnailUri: string | null;
   streamInfoJson: string;
+  pollData?: SerializedPollData;
+  scheduledAt?: string;
 }
 
 export interface MintParams {

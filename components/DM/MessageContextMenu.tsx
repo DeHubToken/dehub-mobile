@@ -45,6 +45,9 @@ interface MessageContextMenuProps {
   onForward?: () => void;
   onDelete?: () => void;
   onCopy?: () => void;
+  onPin?: () => void;
+  onUnpin?: () => void;
+  isPinned?: boolean;
 }
 
 
@@ -393,6 +396,9 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
   onForward,
   onDelete,
   onCopy,
+  onPin,
+  onUnpin,
+  isPinned,
 }) => {
   const insets = useSafeAreaInsets();
 
@@ -429,6 +435,16 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
     onClose();
     setTimeout(() => onDelete?.(), 100);
   }, [onClose, onDelete]);
+
+  const handlePin = useCallback(() => {
+    onClose();
+    setTimeout(() => onPin?.(), 150);
+  }, [onClose, onPin]);
+
+  const handleUnpin = useCallback(() => {
+    onClose();
+    setTimeout(() => onUnpin?.(), 150);
+  }, [onClose, onUnpin]);
 
 
   const { messageTop, actionsTop, actionsBelow } = useMemo(() => {
@@ -573,6 +589,21 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
                 icon="Pencil"
                 label="Edit"
                 onPress={handleEdit}
+              />
+            )}
+
+            {onPin && !isPinned && (
+              <ActionRow
+                icon="Pin"
+                label="Pin"
+                onPress={handlePin}
+              />
+            )}
+            {onUnpin && isPinned && (
+              <ActionRow
+                icon="Pin"
+                label="Unpin"
+                onPress={handleUnpin}
               />
             )}
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   View,
   Text,
@@ -26,6 +27,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
   const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
+  const { t } = useTranslation();
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -69,7 +71,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
 
     try {
       await AuthService.updateProfile({ [key]: value });
-      toastSuccess('Privacy setting updated');
+      toastSuccess(t('settings.privacySettingUpdated'));
     } catch (error) {
       logger.error(`Failed to update ${key}`, error);
       toastError(error, 'Failed to update setting');
@@ -133,7 +135,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
   if (loading) {
     return (
       <View className="flex-1 bg-theme-neutrals-900">
-        <ScreenHeader title="Account Privacy" canGoBack />
+        <ScreenHeader title={t('settings.accountPrivacy')} canGoBack />
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color="#8b5cf6" />
         </View>
@@ -144,14 +146,14 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader
-        title="Account Privacy"
+        title={t('settings.accountPrivacy')}
         canGoBack
         rightContent={saving ? <ActivityIndicator size="small" color="#8b5cf6" /> : undefined}
       />
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 32 }}>
         <View className="mt-4 mx-4">
           <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
-            Account Visibility
+            {t('settings.accountVisibility')}
           </Text>
           <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
             <View className="px-4 py-3.5 flex-row items-center justify-between">
@@ -161,10 +163,10 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
                 </View>
                 <View className="flex-1">
                   <Text className={`text-sm font-medium ${saving ? 'text-theme-neutrals-500' : 'text-white'}`}>
-                    Private Account
+                    {t('settings.privateAccount')}
                   </Text>
                   <Text className={`text-xs mt-0.5 ${saving ? 'text-theme-neutrals-600' : 'text-theme-neutrals-500'}`}>
-                    Only followers can see your content
+                    {t('settings.privateAccountOnlyFollowers')}
                   </Text>
                 </View>
               </View>
@@ -172,13 +174,13 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
             </View>
           </View>
           <Text className="text-theme-neutrals-500 text-xs mt-2 mx-1">
-            When enabled, only people who follow you can see your posts, videos, and profile content. Follow requests will need to be approved.
+            {t('settings.privateAccountNote')}
           </Text>
         </View>
 
         <View className="mt-6 mx-4">
           <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
-            Follower Visibility
+            {t('settings.followerVisibilitySection')}
           </Text>
           <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
             <View className="px-4 py-3.5 flex-row items-center justify-between">
@@ -188,10 +190,10 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
                 </View>
                 <View className="flex-1">
                   <Text className={`text-sm font-medium ${saving ? 'text-theme-neutrals-500' : 'text-white'}`}>
-                    Hide Followers & Following
+                    {t('settings.hideFollowersFollowing')}
                   </Text>
                   <Text className={`text-xs mt-0.5 ${saving ? 'text-theme-neutrals-600' : 'text-theme-neutrals-500'}`}>
-                    Others can't see who you follow
+                    {t('settings.hideFollowersDesc')}
                   </Text>
                 </View>
               </View>
@@ -199,14 +201,14 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
             </View>
           </View>
           <Text className="text-theme-neutrals-500 text-xs mt-2 mx-1">
-            When enabled, your follower and following lists will be hidden from other users. Only you can see them.
+            {t('settings.followerVisibilityNote')}
           </Text>
         </View>
 
         <View className="mt-6 mx-4 p-4 bg-theme-neutrals-800/50 rounded-xl flex-row items-start">
           <Icon name="Info" size={16} color="#6b7280" />
           <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1">
-            These settings help you control who can see your activity and connections on the platform.
+            {t('settings.privacyHelpNote')}
           </Text>
         </View>
       </ScrollView>
@@ -227,15 +229,15 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
           </View>
 
           <Text className="text-white font-bold text-lg text-center mb-2">
-            Switch to Public Account?
+            {t('settings.switchToPublicTitle')}
           </Text>
           <Text className="text-gray-300 text-sm text-center leading-5 mb-1">
-            You have{' '}
-            <Text className="text-white font-bold">{pendingCount}</Text>
-            {' '}pending follow {pendingCount === 1 ? 'request' : 'requests'}.
+            {pendingCount === 1
+              ? t('settings.pendingFollowRequestSingular', { count: pendingCount })
+              : t('settings.pendingFollowRequestPlural', { count: pendingCount })}
           </Text>
           <Text className="text-gray-400 text-sm text-center leading-5 mb-5">
-            Switching to a public account requires handling these requests first.
+            {t('settings.switchToPublicDesc')}
           </Text>
 
           <View className="gap-3">
@@ -251,7 +253,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
                   <ActivityIndicator color="#fff" size="small" />
                 ) : (
                   <Text className="text-white font-semibold text-sm">
-                    Accept All & Go Public
+                    {t('settings.acceptAllGoPublic')}
                   </Text>
                 )}
               </TouchableOpacity>
@@ -267,7 +269,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
                 <ActivityIndicator color="#ef4444" size="small" />
               ) : (
                 <Text className="text-red-400 font-semibold text-sm">
-                  Decline All & Go Public
+                  {t('settings.declineAllGoPublic')}
                 </Text>
               )}
             </TouchableOpacity>
@@ -278,7 +280,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
               className="py-3 rounded-xl items-center"
               activeOpacity={0.7}
             >
-              <Text className="text-gray-400 font-medium text-sm">Cancel</Text>
+              <Text className="text-gray-400 font-medium text-sm">{t('common.cancel')}</Text>
             </TouchableOpacity>
           </View>
         </View>

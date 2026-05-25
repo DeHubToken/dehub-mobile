@@ -415,8 +415,14 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               <Pressable
                 onPress={handleReplyPress}
                 hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
                 <Icon name="MessageSquare" size={14} color={ICON_MUTED} strokeWidth={1.8} />
+                {(comment.replyIds?.length ?? 0) > 0 && (
+                  <Text style={{ fontSize: 11, color: "#8B8D90" }}>
+                    {comment.replyIds!.length}
+                  </Text>
+                )}
               </Pressable>
             )}
 

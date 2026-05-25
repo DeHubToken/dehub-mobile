@@ -43,6 +43,7 @@ import {
   forceFlushBatchViews,
   type TokenId,
 } from "../../services/view.service";
+import { feedEvents } from "../../libs/eventBus";
 import SuggestedAccountsSection from "./SuggestedAccountsSection";
 
 export interface InfiniteVideoFeedHandle {
@@ -305,6 +306,13 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     });
     return unsubscribe;
   }, [navigation, isFocused, onRefresh]);
+
+  // Listen for feed refresh requests (e.g., after a new post is uploaded)
+  useEffect(() => {
+    return feedEvents.onRefreshRequested(() => {
+      onRefresh();
+    });
+  }, [onRefresh]);
 
   const handleRetry = useCallback(() => {
     try { onRetry && onRetry(); } catch {}

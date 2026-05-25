@@ -20,7 +20,7 @@ export function getCoverUrl(url: string | undefined | null): string {
 
 export function buildCdnPath(path?: string | null): string | undefined {
   if (!path) return undefined;
-  return `${env.CDN_BASE_URL}/${path}`;
+  return `${env.CDN_BASE_URL}/${path.replace(/^\/+/, '')}`;
 }
 
 // Build standard video URL from tokenId (supports number | string). Returns undefined if invalid.

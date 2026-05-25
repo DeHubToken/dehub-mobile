@@ -8,6 +8,7 @@
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, type ListRenderItem } from "react-native";
+import { useTranslation } from "react-i18next";
 import { getSuggestedAccounts, type SuggestedAccount } from "../../services/user.service";
 import Icon from "../ui/Icon";
 import { useUser } from "../../context/AuthContext";
@@ -17,6 +18,7 @@ import type { FollowState } from "../Search/SearchAccountChip";
 
 const SuggestedAccountsSection: React.FC = () => {
   const user = useUser() as { address?: string } | null;
+  const { t } = useTranslation();
   const [accounts, setAccounts] = useState<SuggestedAccount[]>([]);
   const [followedAddresses, setFollowedAddresses] = useState<Set<string>>(new Set());
   const [dismissed, setDismissed] = useState(false);
@@ -111,7 +113,7 @@ const SuggestedAccountsSection: React.FC = () => {
       {/* Header row */}
       <View className="flex-row items-center justify-between px-2 mb-2.5">
         <Text className="text-white text-sm font-semibold">
-          Follow Suggestions
+          {t("profile.followSuggestions")}
         </Text>
         <TouchableOpacity
           onPress={handleDismissAll}
@@ -129,6 +131,7 @@ const SuggestedAccountsSection: React.FC = () => {
         keyExtractor={keyExtractor}
         horizontal
         showsHorizontalScrollIndicator={false}
+        nestedScrollEnabled
         contentContainerStyle={{ paddingHorizontal: 8 }}
       />
     </View>

@@ -228,7 +228,7 @@ export async function voteOnNFT(input: VoteOnNFTInput): Promise<{ error?: string
   try {
     const res = await apiClient.post<{ error?: string }>(
       '/request_vote',
-      { streamTokenId: Number(streamTokenId), vote },
+      { streamTokenId: Number(streamTokenId), vote: String(vote) },
       { isAuthRequired: true }
     );
     return res;

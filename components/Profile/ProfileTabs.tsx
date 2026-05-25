@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useCallback } from "react";
 import { View, Text, Dimensions } from "react-native";
+import { useTranslation } from "react-i18next";
 import { TabView, TabBar } from "react-native-tab-view";
 import { theme } from "../../theme";
 
@@ -12,26 +13,22 @@ const initialLayout = { width: Dimensions.get("window").width };
 
 const ProfileTabs: React.FC = () => {
   const user = useUser() as any;
+  const { t } = useTranslation();
   const address = useMemo(() => user?.walletAddress || user?.address || undefined, [user]);
 
   const [index, setIndex] = useState(0);
   const [visitedTabs, setVisitedTabs] = useState<Set<string>>(new Set(["home"]));
-  const [routes] = useState([
-    { key: "home", title: "Home" },
-    { key: "posts", title: "Posts" },
-    { key: "images", title: "Images" },
-    { key: "subscribers", title: "Subscribers" },
-  ]);
+  const routes = useMemo(() => [
+    { key: "home", title: t("profile.tabHome") },
+    { key: "images", title: t("profile.tabImages") },
+    { key: "subscribers", title: t("profile.tabSubscribers") },
+  ], [t]);
 
   const renderScene = ({ route }: { route: { key: string } }) => {
-    // "posts" shares the same FeedRoute as "home" — they show identical content.
-    // Normalize to "home" so only one instance ever mounts, avoiding duplicate data
-    // fetching and two FlatLists in the view tree when both tabs are visited.
-    const normalizedKey = route.key === "posts" ? "home" : route.key;
     const isCurrent = routes[index]?.key === route.key;
-    if (!isCurrent && !visitedTabs.has(normalizedKey)) return <View style={{ flex: 1 }} />;
+    if (!isCurrent && !visitedTabs.has(route.key)) return <View style={{ flex: 1 }} />;
 
-    switch (normalizedKey) {
+    switch (route.key) {
       case "home":
         return (
           <View style={{ flex: 1 }}>
@@ -106,7 +103,7 @@ const ProfileTabs: React.FC = () => {
         onIndexChange={handleIndexChange}
         initialLayout={initialLayout}
         renderTabBar={renderTabBar}
-        // style={{ height: 600 }}
+        style={{ flex: 1 }}
       />
     </View>
   );

@@ -48,6 +48,12 @@ import PermissionModalProvider from "./components/ui/PermissionModal";
 import { useUploadProcessor } from "./services/upload.processor";
 import UploadProgressPill from "./components/Upload/UploadProgressPill";
 import { setUploadCacheKey, hydrateUploadStore, clearUploadStore } from "./store/upload.store";
+import { CallProvider } from "./context/CallContext";
+import CallModalsHost from "./components/Call/CallModalsHost";
+import CallMiniPlayer from "./components/Call/CallMiniPlayer";
+import { StageProvider } from "./context/StageContext";
+import StagesModalsHost from "./components/Stages/StagesModalsHost";
+import StageMiniPlayer from "./components/Stages/StageMiniPlayer";
 
 const logger = createLogger("App");
 
@@ -88,8 +94,8 @@ export default function App() {
     prewarmWeb3Auth();
     // Pre-warm persistent media settings so video/audio players have correct
     // initial values synchronously (no race condition with AsyncStorage)
-    loadMutedState().catch(() => {});
-    loadHueState().catch(() => {});
+    loadMutedState().catch(() => { });
+    loadHueState().catch(() => { });
   }, []);
 
   // Hide native splash once network status is determined
@@ -98,7 +104,7 @@ export default function App() {
     if (hasInternet !== null && isConnected !== null) {
       // Small delay to ensure our SplashScreen is rendered
       const timer = setTimeout(() => {
-        ExpoSplashScreen.hideAsync().catch(() => {});
+        ExpoSplashScreen.hideAsync().catch(() => { });
         setAppReady(true);
       }, 50);
       return () => clearTimeout(timer);
@@ -239,7 +245,15 @@ const BootGate: React.FC = () => {
             <PushNotificationsProvider>
               <UserProfileSheetProvider>
                 <MessagingProvider>
-                  <RootNavigator />
+                  <CallProvider>
+                    <StageProvider>
+                      <RootNavigator />
+                      <CallModalsHost />
+                      <CallMiniPlayer />
+                      <StagesModalsHost />
+                      <StageMiniPlayer />
+                    </StageProvider>
+                  </CallProvider>
                 </MessagingProvider>
               </UserProfileSheetProvider>
             </PushNotificationsProvider>

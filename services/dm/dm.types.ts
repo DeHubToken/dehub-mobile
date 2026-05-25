@@ -37,6 +37,7 @@ export interface DmConversation {
   messages?: DmMessage[]; // last N messages from pipeline
   unreadCount?: number;
   deletedForUsers?: { userId: ID; deletedAt: string }[];
+  pinnedMessages?: string[]; // server-persisted pinned message IDs
 }
 
 
@@ -57,7 +58,43 @@ export interface ReplyPreview {
 }
 
 
-export type DmMsgType = "msg" | "media" | "gif" | "voice" | "tip";
+export type DmMsgType = "msg" | "media" | "gif" | "voice" | "tip" | "poll";
+
+// ─── Poll types ────────────────────────────────────────────────────────
+
+export interface PollOption {
+  index: number;
+  text: string;
+  voteCount: number;
+}
+
+export interface PollUserVote {
+  optionIndexes: number[];
+}
+
+export interface DmPoll {
+  _id: string;
+  tokenId: number;
+  question: string;
+  options: PollOption[];
+  totalVotes: number;
+  isActive: boolean;
+  isExpired?: boolean;
+  expiresAt?: string;
+  isMultipleChoice?: boolean;
+  userVote?: PollUserVote;
+  address: string;
+  createdAt: string;
+}
+
+/** Poll data carried on a DmMessage when msgType === 'poll' */
+export interface PollAttachment {
+  tokenId: number;
+  question: string;
+  options: { index: number; text: string }[];
+  isMultipleChoice?: boolean;
+  expiresAt?: string;
+}
 
 export interface DmMediaUrl {
   url: string;
@@ -112,6 +149,9 @@ export interface DmMessage {
   // Tip message metadata (only populated when msgType === 'tip')
   tipAmount?: number | null;
   tipSymbol?: string | null;
+
+  // Poll metadata (only populated when msgType === 'poll')
+  poll?: PollAttachment | null;
 }
 
 

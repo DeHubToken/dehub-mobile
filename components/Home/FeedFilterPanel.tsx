@@ -7,6 +7,7 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -39,37 +40,6 @@ interface FeedFilterPanelProps {
   onResetFilters?: () => void;
 }
 
-const SORT_OPTIONS: { id: SortOption; label: string }[] = [
-  { id: "random", label: "Random" },
-  { id: "createdAt", label: "Latest" },
-  { id: "views", label: "Most Viewed" },
-  { id: "likes", label: "Most Liked" },
-  { id: "comments", label: "Most Comments" },
-  { id: "tips", label: "Most Tips" },
-];
-
-const DATE_RANGE_OPTIONS: { id: DateRangeOption; label: string }[] = [
-  { id: "", label: "All" },
-  { id: "day", label: "1d" },
-  { id: "week", label: "1w" },
-  { id: "month", label: "1m" },
-  { id: "year", label: "1y" },
-];
-
-const POST_TYPE_OPTIONS: { id: PostTypeOption; label: string }[] = [
-  { id: "all", label: "All" },
-  { id: "video", label: "Videos" },
-  { id: "feed-images", label: "Images" },
-  { id: "feed-audio", label: "Audio" },
-  { id: "feed-simple", label: "Text" },
-  { id: "live", label: "Live" },
-];
-
-const CONTENT_ACCESS_OPTIONS: { id: ContentAccessOption; label: string }[] = [
-  { id: "ppv", label: "PPV" },
-  { id: "bounty", label: "Bounty" },
-  { id: "locked", label: "Gated" },
-];
 
 const MAX_HEIGHT = 440;
 const PILL_BORDER_RADIUS = 8;
@@ -190,7 +160,40 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   onCategoryPress,
   onResetFilters,
 }) => {
+  const { t } = useTranslation();
   const [categorySearch, setCategorySearch] = useState("");
+
+  const SORT_OPTIONS = useMemo(() => [
+    { id: "random" as SortOption, label: t("filters.random") },
+    { id: "createdAt" as SortOption, label: t("filters.latest") },
+    { id: "views" as SortOption, label: t("filters.mostViewed") },
+    { id: "likes" as SortOption, label: t("filters.mostLiked") },
+    { id: "comments" as SortOption, label: t("filters.mostComments") },
+    { id: "tips" as SortOption, label: t("filters.mostTips") },
+  ], [t]);
+
+  const DATE_RANGE_OPTIONS = useMemo(() => [
+    { id: "" as DateRangeOption, label: t("filters.all") },
+    { id: "day" as DateRangeOption, label: "1d" },
+    { id: "week" as DateRangeOption, label: "1w" },
+    { id: "month" as DateRangeOption, label: "1m" },
+    { id: "year" as DateRangeOption, label: "1y" },
+  ], [t]);
+
+  const POST_TYPE_OPTIONS = useMemo(() => [
+    { id: "all" as PostTypeOption, label: t("filters.all") },
+    { id: "video" as PostTypeOption, label: t("filters.videos") },
+    { id: "feed-images" as PostTypeOption, label: t("filters.images") },
+    { id: "feed-audio" as PostTypeOption, label: t("filters.audio") },
+    { id: "feed-simple" as PostTypeOption, label: t("filters.text") },
+    { id: "live" as PostTypeOption, label: t("filters.live") },
+  ], [t]);
+
+  const CONTENT_ACCESS_OPTIONS = useMemo(() => [
+    { id: "ppv" as ContentAccessOption, label: t("filters.ppv") },
+    { id: "bounty" as ContentAccessOption, label: t("filters.bounty") },
+    { id: "locked" as ContentAccessOption, label: t("filters.locked") },
+  ], [t]);
 
   const filteredCategories = useMemo(() => {
     if (!categorySearch.trim()) return categories;
@@ -252,7 +255,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
         showsVerticalScrollIndicator={false}
         contentContainerStyle={panelStyles.content}
       >
-        <GlassFilterRow title="SORT">
+        <GlassFilterRow title={t("filters.sort").toUpperCase()}>
           {SORT_OPTIONS.map((option) => (
             <GlassPill
               key={option.id}
@@ -265,11 +268,11 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
 
         {categories.length > 0 && (
           <View style={sectionStyles.section}>
-            <Text style={sectionStyles.label}>CATEGORY</Text>
+            <Text style={sectionStyles.label}>{t("filters.category").toUpperCase()}</Text>
             <TextInput
               value={categorySearch}
               onChangeText={setCategorySearch}
-              placeholder="Search categories..."
+              placeholder={t("filters.searchCategories")}
               placeholderTextColor="#71717a"
               style={panelStyles.searchInput}
               autoCapitalize="none"
@@ -282,7 +285,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
                 contentContainerStyle={sectionStyles.rowContent}
               >
                 <GlassPill
-                  label="All"
+                  label={t("filters.all")}
                   selected={!selectedCategory}
                   onPress={() => handleSelectCategory("All")}
                 />
@@ -295,7 +298,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
                   />
                 ))}
                 {filteredCategories.length === 0 && categorySearch.trim() && (
-                  <Text style={panelStyles.noMatches}>No matches</Text>
+                  <Text style={panelStyles.noMatches}>{t("filters.noMatches")}</Text>
                 )}
               </ScrollView>
               <LinearGradient
@@ -309,7 +312,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
           </View>
         )}
 
-        <GlassFilterRow title="UPLOAD DATE">
+        <GlassFilterRow title={t("filters.uploadDate").toUpperCase()}>
           {DATE_RANGE_OPTIONS.map((option) => (
             <GlassPill
               key={option.id || "all"}
@@ -320,7 +323,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
           ))}
         </GlassFilterRow>
 
-        <GlassFilterRow title="POST TYPE">
+        <GlassFilterRow title={t("filters.postType").toUpperCase()}>
           {POST_TYPE_OPTIONS.map((option) => (
             <GlassPill
               key={option.id}
@@ -332,7 +335,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
         </GlassFilterRow>
 
         <View style={[sectionStyles.section, { marginBottom: 0 }]}>
-          <Text style={sectionStyles.label}>CONTENT ACCESS</Text>
+          <Text style={sectionStyles.label}>{t("filters.contentAccess").toUpperCase()}</Text>
           <View>
             <ScrollView
               horizontal

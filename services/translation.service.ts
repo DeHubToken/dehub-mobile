@@ -1,10 +1,8 @@
 import { NativeModules, Platform } from 'react-native';
-import env from '../config/env';
 import { createLogger } from '../libs/logger';
+import { supabase } from './supabase';
 
 const log = createLogger('translation.service');
-
-const EDGE_BASE = env.SUPABASE_EDGE_BASE_URL;
 
 export interface TranslateRequest {
   text: string;
@@ -91,23 +89,22 @@ export async function translateText(
     return { translatedText: cached.translatedText, sourceLang: cached.sourceLang };
   }
 
-  const url = `${EDGE_BASE}/translate-text`;
   log.debug('Translating text', { targetLang, sourceLang, length: text.length });
 
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ text, targetLang, sourceLang } satisfies TranslateRequest),
+  const { data, error } = await supabase.functions.invoke('translate-text', {
+    body: { text, targetLang, sourceLang } satisfies TranslateRequest,
   });
 
-  if (!res.ok) {
-    const errData = await res.json().catch(() => ({ error: 'Translation failed' }));
-    log.error(`translate-text failed (${res.status}):`, errData.error);
-    throw new TranslationServiceError(errData.error || 'Translation failed', res.status);
+  if (error) {
+    log.error('translate-text failed:', error);
+    throw new TranslationServiceError(error.message || 'Translation failed', 500);
   }
 
-  const data: TranslateResponse = await res.json();
-  const detectedLang = data.detectedLanguage?.language ?? null;
+  if (!data?.translatedText) {
+    throw new TranslationServiceError('Translation unavailable', 500);
+  }
+
+  const detectedLang = (data as TranslateResponse).detectedLanguage?.language ?? null;
 
   setCache(text, targetLang, {
     translatedText: data.translatedText,
@@ -115,6 +112,38 @@ export async function translateText(
   });
 
   return { translatedText: data.translatedText, sourceLang: detectedLang };
+}
+
+export interface ImageTranslateResponse {
+  extractedText: string;
+  translatedText: string;
+  sourceLang: string;
+  hasText: boolean;
+}
+
+export async function translateImage(
+  imageUrl: string,
+  targetLang: string,
+): Promise<ImageTranslateResponse> {
+  const { data, error } = await supabase.functions.invoke('translate-image', {
+    body: { imageUrl, targetLang },
+  });
+
+  if (error) {
+    log.error('translate-image failed:', error);
+    throw new TranslationServiceError(error.message || 'Image translation failed', 500);
+  }
+
+  if (data?.error) {
+    throw new TranslationServiceError(data.error, 500);
+  }
+
+  return {
+    extractedText: data.extractedText || '',
+    translatedText: data.translatedText || '',
+    sourceLang: data.sourceLang || '',
+    hasText: data.hasText ?? false,
+  };
 }
 
 export class TranslationServiceError extends Error {

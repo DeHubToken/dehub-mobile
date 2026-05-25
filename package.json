@@ -92,11 +92,13 @@
     "i18next": "^26.1.0",
     "lucide-react-native": "0.526.0",
     "nativewind": "4.2.1",
+    "ox": "^0.8.9",
     "process": "^0.11.10",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-i18next": "^17.0.7",
     "react-native": "0.81.5",
+    "react-native-agora": "^4.5.4",
     "react-native-dotenv": "^3.4.11",
     "react-native-element-dropdown": "^2.12.4",
     "react-native-emoji-selector": "^0.2.0",
@@ -144,7 +146,8 @@
     "valtio": "1.11.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-native-web": "^0.21.0"
+    "react-native-web": "^0.21.0",
+    "permissionless": "0.2.57"
   },
   "resolutions": {
     "valtio": "1.11.2",

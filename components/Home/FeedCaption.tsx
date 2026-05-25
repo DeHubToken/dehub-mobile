@@ -9,6 +9,7 @@ import { View, Text, TouchableOpacity, NativeSyntheticEvent, TextLayoutEventData
 import { openInApp } from "../../libs/links.utils";
 import { hasValidTLD } from "../../libs/tlds";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import { stripSoundtrackTag } from "../../libs/parseSoundtrack";
 
 type Segment =
   | { type: "text"; value: string }
@@ -119,9 +120,12 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
     showUserProfile(username);
   }, [showUserProfile]);
 
+  // Strip soundtrack tag from description before display
+  const cleanDescription = useMemo(() => stripSoundtrackTag(description), [description]);
+
   // Parse links in title & description
   const titleSegments = useMemo(() => parseTextToSegments(title || ""), [title]);
-  const descSegments = useMemo(() => parseTextToSegments(description || ""), [description]);
+  const descSegments = useMemo(() => parseTextToSegments(cleanDescription), [cleanDescription]);
 
   const renderSegments = useCallback(
     (segments: Segment[], keyPrefix: string) =>
@@ -157,7 +161,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
 
   // Build the caption text
   const hasTitle = !!title?.trim();
-  const hasDescription = !!description?.trim();
+  const hasDescription = !!cleanDescription?.trim();
   const hasCategories = showCategories && categories && categories.length > 0;
 
   if (!hasTitle && !hasDescription && !hasCategories) {

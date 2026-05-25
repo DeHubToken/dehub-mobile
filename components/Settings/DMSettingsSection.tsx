@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View, Text, TextInput, ActivityIndicator } from "react-native";
+import { useTranslation } from "react-i18next";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import Icon from "../ui/Icon";
 import CustomSwitch from "../ui/CustomSwitch";
@@ -13,6 +14,7 @@ import { toastError, toastInfo } from "../../libs";
 const DMSettingsSection: React.FC = () => {
   const user = useUser();
   const { patchUser } = useAuthActions();
+  const { t } = useTranslation();
 
   const initial = useMemo(() => {
     const disables = ((user as any)?.dmSettings?.disables || []) as DmDisableStatus[];
@@ -204,7 +206,7 @@ const DMSettingsSection: React.FC = () => {
   return (
     <>
       <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
-        Direct Messages
+        {t("settings.dmSectionTitle")}
       </Text>
       <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
         <View className="px-4 py-3.5 flex-row items-center justify-between">
@@ -213,9 +215,9 @@ const DMSettingsSection: React.FC = () => {
               <Icon name="MessageSquare" size={18} color="#9ca3af" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-sm font-medium">Enable DMs</Text>
+              <Text className="text-white text-sm font-medium">{t("settings.dmEnableLabel")}</Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                Turn off to block all messages
+                {t("settings.dmEnableDesc")}
               </Text>
             </View>
           </View>
@@ -232,11 +234,11 @@ const DMSettingsSection: React.FC = () => {
               <Icon name="UserPlus" size={18} color="#9ca3af" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-sm font-medium">Allow New DMs</Text>
+              <Text className="text-white text-sm font-medium">{t("settings.dmAllowNewLabel")}</Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
                 {dmsEnabled
-                  ? "If off, only existing chats can message you"
-                  : "Turn on DMs first"}
+                  ? t("settings.dmAllowNewDesc")
+                  : t("settings.dmAllowNewDisabled")}
               </Text>
             </View>
           </View>
@@ -253,9 +255,9 @@ const DMSettingsSection: React.FC = () => {
               <Icon name="Coins" size={18} color="#9ca3af" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-sm font-medium">Per-Message Fee (DHB)</Text>
+              <Text className="text-white text-sm font-medium">{t("settings.dmPerMessageFeeLabel")}</Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                Charge users per message. Set 0 for free.
+                {t("settings.dmPerMessageFeeDesc")}
               </Text>
             </View>
           </View>
@@ -283,7 +285,7 @@ const DMSettingsSection: React.FC = () => {
           {!dmsEnabled && (
             <View className="bg-red-500/10 border border-red-500/30 rounded-xl p-2.5 mt-3 ml-12">
               <Text className="text-red-300 text-[11px]">
-                All DMs are disabled. New DMs are blocked by default.
+                {t("settings.dmAllDisabledNote")}
               </Text>
             </View>
           )}
