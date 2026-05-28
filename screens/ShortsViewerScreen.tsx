@@ -584,6 +584,7 @@ const ShortsViewerScreen = () => {
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const [page, setPage] = useState(isFromFeed ? 0 : 1);
   const endReachedRef = useRef(false);
+  const fetchingRef = useRef(false);
   const shuffleSeedRef = useRef<string | undefined>(feedParams.shuffleSeed);
   const [containerHeight, setContainerHeight] = useState(SCREEN_HEIGHT);
   const [noMoreShorts, setNoMoreShorts] = useState(false);
@@ -594,13 +595,14 @@ const ShortsViewerScreen = () => {
   }, []);
 
   const loadMore = useCallback(async () => {
-    if (endReachedRef.current) return;
+    if (endReachedRef.current || fetchingRef.current) return;
+    fetchingRef.current = true;
     try {
       const nextPage = page + 1;
       const params = {
         page: nextPage,
         limit: 20,
-        sortBy: feedParams.sortBy || "random" as const,
+        sortBy: feedParams.sortBy || "createdAt" as const,
         shuffleSeed: shuffleSeedRef.current,
         category: feedParams.category,
         minter: feedParams.minter,
@@ -627,6 +629,8 @@ const ShortsViewerScreen = () => {
       setPage(nextPage);
     } catch (_err) {
       // silent
+    } finally {
+      fetchingRef.current = false;
     }
   }, [page, feedParams]);
 
@@ -720,7 +724,7 @@ const ShortsViewerScreen = () => {
         onViewableItemsChanged={onViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}
         onEndReached={loadMore}
-        onEndReachedThreshold={2}
+        onEndReachedThreshold={0.5}
         onMomentumScrollEnd={handleScrollEnd}
         ListFooterComponent={renderFooter}
         removeClippedSubviews

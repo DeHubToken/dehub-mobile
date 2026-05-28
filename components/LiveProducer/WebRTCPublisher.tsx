@@ -259,18 +259,19 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           startingRef.current = false;
           return;
         }
+        if (!streamKey) {
+          dbe('start(): aborted, streamKey is empty');
+          startingRef.current = false;
+          onErrorRef.current?.(new Error("Stream key missing — cannot publish"));
+          return;
+        }
         dbg('resolving WHIP endpoint', { gen: myGen });
         const redirectUrl = await resolveWhipEndpoint(streamKey);
   dbg('WHIP endpoint resolved', { gen: myGen, redirectUrl });
   if (myGen !== pcGenerationRef.current) { dbg('start(): stale before PC create', { gen: myGen, currentGen: pcGenerationRef.current }); return; }
-        const host = new URL(redirectUrl).host;
         const iceServers = [
-          { urls: `stun:${host}` },
-          {
-            urls: `turn:${host}`,
-            username: "livepeer",
-            credential: "livepeer",
-          },
+          { urls: "stun:stun.l.google.com:19302" },
+          { urls: "stun:stun1.l.google.com:19302" },
         ];
         dbg('creating RTCPeerConnection', { gen: myGen, iceServers });
         const pc: any = new RTCPeerConnection({ iceServers });

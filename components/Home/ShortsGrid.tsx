@@ -70,7 +70,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
 
   const mergedParams = useMemo(() => ({
     ...(params || {}),
-    sortBy: params?.sortBy || "random" as const,
+    sortBy: params?.sortBy || "createdAt" as const,
   }), [params]);
 
   const loadFirstPage = useCallback(async () => {
