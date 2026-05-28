@@ -62,7 +62,7 @@ type LiveStreamPlayerProps = {
 };
 
 const buildHlsFromPlayback = (playbackId?: string | null) =>
-  playbackId ? `https://livepeercdn.com/hls/${playbackId}/index.m3u8` : null;
+  playbackId ? `https://livepeercdn.studio/hls/${playbackId}/index.m3u8` : null;
 
 const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const {

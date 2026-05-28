@@ -451,6 +451,8 @@ const LiveTab = ({ onClose }: { onClose: () => void }) => {
       navigation.navigate(ScreenNames.LiveProducer as any, {
         streamId: backendRes?._id,
         tokenId: createdTokenId,
+        streamKey: backendRes?.streamKey,
+        ingestUrl: backendRes?.ingestUrl,
       });
     } catch (e: any) {
       console.error("Minting error:", e);
