@@ -21,6 +21,11 @@
     }
   },
   "submit": {
+    "store-testing": {
+      "android": {
+        "track": "internal"
+      }
+    },
     "production": {
       "ios": {
         "companyName": "DeLabs LTD"

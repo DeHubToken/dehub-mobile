@@ -33,7 +33,11 @@ import { openCroppedImagePicker, getFileName, guessMime } from "../libs/assets.u
 import { getCategoriesCached } from "../services/nft.service";
 import { toastError, toastSuccess } from "../libs/toast";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
-import { useUser } from "../context/AuthContext";
+import { useUser, useAuthActions, useProvider } from "../context/AuthContext";
+import { useWeb3Provider } from "../hooks/use-web3";
+import ChainSelector from "../components/common/ChainSelector";
+import { isSolanaChain } from "../config/solana.constants";
+import { getSolanaAddress } from "../services/solana.service";
 import { useKeyboard } from "../hooks/useKeyboard";
 import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
@@ -92,6 +96,33 @@ export default function UploadScreen() {
   const incomingQuotedTokenId = route.params?.quotedTokenId;
   const incomingQuotedPost = route.params?.quotedPost as Record<string, any> | undefined;
   const authUser = useUser();
+  const { switchChain } = useAuthActions();
+  const { isSwitchingChain } = useProvider();
+  const { chainId: activeChainId } = useWeb3Provider();
+  // Post mint chain — EVM follows the active wallet chain; Solana (#41) is a local
+  // override (no wallet switch) that signs via the Web3Auth ed25519 key.
+  const [postChainId, setPostChainId] = useState<number | undefined>(undefined);
+  const [solanaAddress, setSolanaAddress] = useState<string | null>(null);
+  const effectivePostChainId = postChainId ?? activeChainId;
+  const handleMintChainChange = useCallback(
+    async (targetChainId: number) => {
+      if (isSolanaChain(targetChainId)) {
+        const addr = await getSolanaAddress();
+        if (!addr) {
+          toastError("Solana posting needs a social login. Sign in with a social account to continue.");
+          return;
+        }
+        setSolanaAddress(addr);
+        setPostChainId(targetChainId);
+        return;
+      }
+      // EVM chain — switch the active wallet chain.
+      setSolanaAddress(null);
+      setPostChainId(targetChainId);
+      if (targetChainId !== activeChainId) switchChain(targetChainId).catch(() => {});
+    },
+    [activeChainId, switchChain]
+  );
   const insets = useSafeAreaInsets();
   const titleRef = useRef<TextInput>(null);
   const descriptionRef = useRef<TextInput>(null);
@@ -478,8 +509,10 @@ export default function UploadScreen() {
         isMultipleChoice: pollIsMultiple,
       } : undefined,
       scheduledAt: scheduledDate ?? undefined,
+      postChainId: effectivePostChainId,
+      solanaAddress: solanaAddress ?? undefined,
     };
-  }, [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, postAsShort, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate]);
+  }, [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, postAsShort, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -1130,12 +1163,23 @@ export default function UploadScreen() {
   return (
     <View className="flex-1 bg-black">{/* don't add top inset */}
       <View className="flex-row items-center justify-between px-4 h-14">
-        <TouchableOpacity
-          onPress={handleClose}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-        >
-          <Icon name="X" size={26} color="#fff" />
-        </TouchableOpacity>
+        <View className="flex-row items-center gap-3">
+          <TouchableOpacity
+            onPress={handleClose}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <Icon name="X" size={26} color="#fff" />
+          </TouchableOpacity>
+
+          <ChainSelector
+            selectedChainId={effectivePostChainId}
+            onChange={handleMintChainChange}
+            variant="compact"
+            disabled={activeIsUploading || isSwitchingChain}
+            title="Mint on network"
+            includeSolana
+          />
+        </View>
 
         <View className="flex-row items-center">
           {formHasContent && !activeIsUploading && (
@@ -1826,6 +1870,7 @@ export default function UploadScreen() {
             onChange={handleMonetizationChange}
             autoExpandSection={autoExpandSection}
             onAutoExpandHandled={handleAutoExpandHandled}
+            postChainId={effectivePostChainId}
           />
         </Animated.View>
       )}

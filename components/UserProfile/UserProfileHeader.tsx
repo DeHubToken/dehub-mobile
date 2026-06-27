@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState, useRef } from "react";
 import { View, Text, Image, ImageBackground, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
 import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
@@ -7,6 +7,8 @@ import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
 import { copyToClipboard } from "../../libs";
 import { getSocialLink, openExternalLink } from "../../libs/links.utils";
+import { translateText, getDeviceLanguage } from "../../services/translation.service";
+import { TranslateButton } from "../ui/TranslateButton";
 import FakeGlass from "../ui/FakeGlass";
 import MutualFollowers from "./MutualFollowers";
 import type { FollowListItem } from "../../services/user.service";
@@ -108,6 +110,23 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   socials,
   mutuals,
 }) => {
+  const [translatedBio, setTranslatedBio] = useState<string | null>(null);
+  const [isTranslatingBio, setIsTranslatingBio] = useState(false);
+  const targetLang = useRef(getDeviceLanguage());
+
+  const handleTranslateBio = useCallback(async () => {
+    if (!bio) return;
+    setIsTranslatingBio(true);
+    try {
+      const { translatedText } = await translateText(bio, targetLang.current);
+      setTranslatedBio(translatedText);
+    } catch {
+      // silently ignore
+    } finally {
+      setIsTranslatingBio(false);
+    }
+  }, [bio]);
+
   const handleCopyUsername = useCallback(() => {
     if (username) copyToClipboard(username);
   }, [username]);
@@ -288,7 +307,15 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           </View>
 
           {!!bio && (
-            <Text className="text-white/90 text-sm mt-3">{bio}</Text>
+            <View className="mt-3">
+              <Text className="text-white/90 text-sm">{translatedBio ?? bio}</Text>
+              <TranslateButton
+                isTranslated={!!translatedBio}
+                isLoading={isTranslatingBio}
+                onTranslate={handleTranslateBio}
+                onShowOriginal={() => setTranslatedBio(null)}
+              />
+            </View>
           )}
 
           {!!joinedDate && (

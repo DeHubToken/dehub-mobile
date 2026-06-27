@@ -18,7 +18,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
 import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
 
-export type SortOption = "random" | "createdAt" | "views" | "likes" | "comments" | "tips";
+export type SortOption = "score" | "random" | "createdAt" | "views" | "likes" | "comments" | "tips";
 export type DateRangeOption = "" | "day" | "week" | "month" | "year";
 export type PostTypeOption = "all" | "video" | "feed-images" | "feed-audio" | "feed-simple" | "short" | "live";
 export type ContentAccessOption = "ppv" | "bounty" | "locked";
@@ -164,6 +164,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   const [categorySearch, setCategorySearch] = useState("");
 
   const SORT_OPTIONS = useMemo(() => [
+    { id: "score" as SortOption, label: t("filters.forYou", "For You") },
     { id: "random" as SortOption, label: t("filters.random") },
     { id: "createdAt" as SortOption, label: t("filters.latest") },
     { id: "views" as SortOption, label: t("filters.mostViewed") },

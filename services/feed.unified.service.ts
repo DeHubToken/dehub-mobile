@@ -1,7 +1,7 @@
 import { apiClient } from "../libs";
 
 export type FeedPostType = "video" | "feed-images" | "feed-simple" | "feed-audio" | "live" | "short" | "all";
-export type FeedSortBy = "likes" | "views" | "createdAt" | "tips" | "comments" | "random";
+export type FeedSortBy = "score" | "likes" | "views" | "createdAt" | "tips" | "comments" | "random";
 export type FeedSortOrder = "asc" | "desc";
 export type FeedRange = "day" | "week" | "month" | "year";
 export type FeedStatus = "minted" | "signed" | "all";
@@ -289,6 +289,7 @@ export interface ShortsFeedParams {
   page?: number;
   limit?: number;
   sortBy?: "random" | "createdAt" | "likes" | "views";
+  sortOrder?: "asc" | "desc";
   shuffleSeed?: string;
   category?: string;
   minter?: string;
@@ -309,6 +310,7 @@ export async function getShortsFeed(
     page: params?.page ?? 1,
     limit: params?.limit ?? 20,
     sortBy: params?.sortBy,
+    sortOrder: params?.sortOrder,
     shuffleSeed: params?.shuffleSeed,
     category: params?.category,
     minter: params?.minter,

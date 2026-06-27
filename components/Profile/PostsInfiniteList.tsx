@@ -15,16 +15,18 @@ import {
 } from "react-native";
 import FeedCard from "../Home/FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
-import { getMyPosts, getLikedPosts, getSavedPosts, getUnlockedPosts } from "../../services/user.service";
+import { getMyPosts, getLikedPosts, getSavedPosts, getUnlockedPosts, getWatchHistory } from "../../services/user.service";
+import { getFolderItems } from "../../services/bookmark.service";
 import { GetNFTsResponse, GetNFTsResult } from "../../services/nft.service";
 import Icon from "../ui/Icon";
 
-type PostVariant = "myPosts" | "liked" | "saved" | "unlocked";
+type PostVariant = "myPosts" | "liked" | "saved" | "unlocked" | "watched" | "folder";
 
 interface PostsInfiniteListProps {
   variant: PostVariant;
   pageSize?: number;
   bottomPadding?: number;
+  folderId?: string | number;
 }
 
 interface PostItem extends GetNFTsResult {}
@@ -35,6 +37,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
   variant,
   pageSize = DEFAULT_PAGE_SIZE,
   bottomPadding = 0,
+  folderId,
 }) => {
   const [items, setItems] = useState<PostItem[]>([]);
   const [page, setPage] = useState(0);
@@ -52,12 +55,17 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
           return getSavedPosts(opts);
         case "unlocked":
           return getUnlockedPosts(opts);
+        case "watched":
+          return getWatchHistory(opts);
+        case "folder":
+          if (folderId == null) throw new Error("Folder ID required");
+          return getFolderItems(folderId, { page: opts.page + 1, limit: opts.unit });
         case "myPosts":
         default:
           return getMyPosts(opts);
       }
     },
-    [variant]
+    [variant, folderId]
   );
 
   const loadPage = useCallback(
@@ -134,6 +142,10 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
         return "No saved posts yet.";
       case "unlocked":
         return "No unlocked posts yet.";
+      case "watched":
+        return "No watch history yet.";
+      case "folder":
+        return "No posts in this folder yet.";
       case "myPosts":
       default:
         return "No posts yet.";
@@ -151,7 +163,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
     return (
       <View className="py-16 items-center px-6">
         <Icon
-          name={variant === "saved" ? "Bookmark" : variant === "liked" ? "Heart" : variant === "unlocked" ? "LockOpen" : "LayoutGrid"}
+          name={variant === "saved" || variant === "folder" ? "Bookmark" : variant === "liked" ? "Heart" : variant === "unlocked" ? "LockOpen" : variant === "watched" ? "History" : "LayoutGrid"}
           size={48}
           color="#6b7280"
         />

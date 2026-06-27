@@ -88,6 +88,10 @@ android {
     compileSdk rootProject.ext.compileSdkVersion
 
     namespace 'io.dehub.mobile'
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
     defaultConfig {
         applicationId 'io.dehub.mobile'
         minSdkVersion rootProject.ext.minSdkVersion

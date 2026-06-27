@@ -393,6 +393,27 @@ export async function getUnlockedPosts(params?: PostsParams): Promise<GetNFTsRes
 }
 
 
+export async function getWatchHistory(params?: PostsParams): Promise<GetNFTsResponse> {
+  const page1 = (params?.page ?? 0) + 1;
+  const limit = params?.unit ?? 20;
+  const query = new URLSearchParams({ page: String(page1), limit: String(limit) }).toString();
+  const url = `/my_watched_nfts?${query}`;
+  try {
+    const res = await apiClient.get<any>(url, { isAuthRequired: true });
+    const wrapper = (res?.data?.result ?? res?.result ?? res) as any;
+    const items = Array.isArray(wrapper) ? wrapper : Array.isArray(wrapper?.items) ? wrapper.items : [];
+    const pagination = res?.data?.pagination ?? res?.pagination;
+    return { result: items, totalCount: pagination?.totalCount, page: pagination?.page, hasMore: pagination?.hasMore } as GetNFTsResponse;
+  } catch (e) {
+    console.warn('[user.service] getWatchHistory error', e);
+    throw e;
+  }
+}
+
+export async function clearWatchHistory(): Promise<{ result: boolean; deleted: number }> {
+  return apiClient.delete('/my_watched_nfts', { isAuthRequired: true });
+}
+
 /**
  * Get paginated follow list (followers or following) for a user.
  * Endpoint (GET): /follow_list/{address}

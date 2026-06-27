@@ -16,6 +16,24 @@ export const UNIVERSAL_LINK_DOMAINS = [
   'legacy.dehub.io', // backward compat
 ] as const;
 
+/**
+ * Extract username from a username.dehub.io subdomain URL.
+ * Returns the subdomain username, or null if not a recognized subdomain.
+ */
+function extractSubdomainUsername(url: string): string | null {
+  try {
+    const { hostname } = new URL(url);
+    const parts = hostname.split('.');
+    // Must be exactly *.dehub.io and not www
+    if (parts.length === 3 && parts[1] === 'dehub' && parts[2] === 'io' && parts[0] !== 'www') {
+      return parts[0];
+    }
+  } catch {
+    // not a valid URL — ignore
+  }
+  return null;
+}
+
 export const APP_SCHEME = 'dehub';
 
 export const getDeepLinkPrefix = (): string[] => {
@@ -177,28 +195,37 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
    * This handles links opened while the app is running
    */
   subscribe: (listener) => {
-    // Handle links when app is already open
     const subscription = Linking.addEventListener('url', ({ url }) => {
       logger.info('Received deep link while app open', { url });
+      // Rewrite username.dehub.io → dehub.io/:username so getStateFromPath handles it
+      const subdomain = extractSubdomainUsername(url);
+      if (subdomain) {
+        const rewritten = `https://dehub.io/${subdomain}`;
+        logger.info('Subdomain deep link rewritten', { from: url, to: rewritten });
+        listener(rewritten);
+        return;
+      }
       listener(url);
     });
-    
-    return () => {
-      subscription.remove();
-    };
+    return () => { subscription.remove(); };
   },
-  
+
   /**
    * Get the initial URL that launched the app
    */
   getInitialURL: async () => {
-    // Check if the app was opened via a deep link
     const url = await Linking.getInitialURL();
-    
-    if (url) {
-      logger.info('App launched with deep link', { url });
+    if (!url) return url;
+
+    logger.info('App launched with deep link', { url });
+
+    // Rewrite username.dehub.io → dehub.io/:username
+    const subdomain = extractSubdomainUsername(url);
+    if (subdomain) {
+      const rewritten = `https://dehub.io/${subdomain}`;
+      logger.info('Subdomain launch rewritten', { from: url, to: rewritten });
+      return rewritten;
     }
-    
     return url;
   },
 };

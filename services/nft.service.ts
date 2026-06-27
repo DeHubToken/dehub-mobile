@@ -354,6 +354,48 @@ export async function getCommentsForToken(
   }
 }
 
+export interface GetCommentRepliesParams {
+  skip?: number;
+  limit?: number;
+  address?: string; // viewer address for isLiked field
+}
+
+export interface GetCommentRepliesResponse {
+  result: {
+    items: Comment[];
+    totalCount: number;
+    skip: number;
+    limit: number;
+    hasMore: boolean;
+  };
+}
+
+export async function getCommentReplies(
+  commentId: number | string,
+  params?: GetCommentRepliesParams
+): Promise<GetCommentRepliesResponse> {
+  if (commentId == null) throw new Error('commentId required');
+  const base = `/comment/${encodeURIComponent(String(commentId))}/replies`;
+  const q = objectToGetParams(removeUndefined({
+    skip: params?.skip,
+    limit: params?.limit,
+    address: params?.address,
+  }));
+  const url = `${base}${q}`;
+  try {
+    const res = await apiClient.get<any>(url, { isAuthRequired: true });
+    if (res?.result) return res as GetCommentRepliesResponse;
+    // Fallback normalization
+    if (Array.isArray(res)) {
+      return { result: { items: res, totalCount: res.length, skip: 0, limit: res.length, hasMore: false } };
+    }
+    return { result: { items: [], totalCount: 0, skip: 0, limit: params?.limit ?? 20, hasMore: false } };
+  } catch (e) {
+    console.error('[NFTService] getCommentReplies error', e);
+    throw e;
+  }
+}
+
 // Like/unlike a comment (toggleable)
 export interface LikeCommentInput {
   commentId: number | string;
@@ -390,6 +432,14 @@ export interface DislikeCommentResult {
   result: boolean;
   disliked: boolean;
   dislikes: number;
+}
+
+export async function recordCommentViews(commentIds: number[]): Promise<{ result: boolean; updated: number }> {
+  return apiClient.post('/comment_views', { commentIds });
+}
+
+export async function getPpvSalesCount(tokenId: number | string): Promise<{ result: boolean; tokenId: number; salesCount: number }> {
+  return apiClient.get(`/ppv-sales-count`, { params: { tokenId: Number(tokenId) } });
 }
 
 export async function dislikeComment(input: DislikeCommentInput): Promise<DislikeCommentResult> {
@@ -841,6 +891,23 @@ export interface GetPostLikersResult {
     totalCount: number;
     hasMore: boolean;
   };
+}
+
+export interface AnalyticsResponse {
+  totals: {
+    likes: number;
+    followers: number;
+    following: number;
+    uploads: number;
+    receivedTips: number;
+    sentTips: number;
+  };
+  likesOverTime: { date: string; count: number }[];
+  followersOverTime: { date: string; count: number }[];
+}
+
+export async function getMyAnalytics(range: '7d' | '30d' | '90d' = '30d'): Promise<AnalyticsResponse> {
+  return apiClient.get('/my-analytics', { params: { range } });
 }
 
 export async function getPostLikers(input: GetPostLikersInput): Promise<GetPostLikersResult> {

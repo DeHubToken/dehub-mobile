@@ -15,10 +15,14 @@ import Animated, {
 import Icon from "../ui/Icon";
 import GlassIndicator from "../ui/GlassIndicator";
 import CustomSwitch from "../ui/CustomSwitch";
+import { isSolanaChain, SOLANA_SPL_TOKENS } from "../../config/solana.constants";
+import { supportedTokens, ChainId } from "../../config/constants";
 
 
 export type PpvData = {
   price: string;
+  /** Payment token symbol — DHB on EVM, or an SPL token on Solana (#41). */
+  tokenSymbol?: string;
 };
 
 export type BountyData = {
@@ -29,6 +33,10 @@ export type BountyData = {
 
 export type TokenGateData = {
   minAmount: string;
+  /** Gate token symbol — DHB on EVM, or an SPL token on Solana (#41). */
+  tokenSymbol?: string;
+  /** Gate token contract address (EVM, #43) — any token on Base / BNB / ETH. */
+  contractAddress?: string;
 };
 
 export type MonetizationState = {
@@ -46,10 +54,45 @@ type MonetizationPanelProps = {
   /** Which section to auto-expand when panel opens (tapped icon in bottom bar) */
   autoExpandSection?: "ppv" | "bounty" | "tokenGated" | null;
   onAutoExpandHandled: () => void;
+  /** Active post mint chain — enables SPL token selection on Solana (#41). */
+  postChainId?: number;
 };
 
-const DHB_ADDRESS = "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c";
-const DHB_SHORT = `${DHB_ADDRESS.slice(0, 8)}…${DHB_ADDRESS.slice(-4)}`;
+/** Inline SPL token chip selector (Solana monetization). */
+const SplTokenSelector: React.FC<{
+  value?: string;
+  onSelect: (symbol: string) => void;
+}> = ({ value, onSelect }) => (
+  <View className="flex-row gap-2 mb-3">
+    {SOLANA_SPL_TOKENS.map((t) => {
+      const active = (value || "SOL") === t.symbol;
+      return (
+        <TouchableOpacity
+          key={t.symbol}
+          onPress={() => onSelect(t.symbol)}
+          className={`px-3 py-1.5 rounded-lg border ${
+            active
+              ? "bg-white/15 border-white/30"
+              : "bg-theme-neutrals-900 border-theme-neutrals-700"
+          }`}
+        >
+          <Text className={active ? "text-white text-xs font-semibold" : "text-theme-neutrals-400 text-xs"}>
+            {t.symbol}
+          </Text>
+        </TouchableOpacity>
+      );
+    })}
+  </View>
+);
+
+const EVM_CHAIN_LABELS: Record<number, string> = {
+  [ChainId.BASE_MAINNET]: "Base",
+  [ChainId.BSC_MAINNET]: "BNB",
+  [ChainId.MAINNET]: "Ethereum",
+};
+
+/** Validate an EVM ERC-20 contract address (#43 custom token gating). */
+const isValidEvmAddress = (addr: string): boolean => /^0x[0-9a-fA-F]{40}$/.test(addr.trim());
 
 
 const SECTION_HEIGHT_PPV = 160;
@@ -90,7 +133,21 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
   onChange,
   autoExpandSection,
   onAutoExpandHandled,
+  postChainId,
 }) => {
+  const isSolana = isSolanaChain(postChainId);
+  const evmGateChainId = postChainId && !isSolana ? postChainId : ChainId.BASE_MAINNET;
+  const evmLockTokens = React.useMemo(
+    () => supportedTokens.filter((t) => t.chainId === evmGateChainId),
+    [evmGateChainId],
+  );
+  const evmChainLabel = EVM_CHAIN_LABELS[evmGateChainId] || "Base";
+  const ppvCurrency = isSolana ? (state.ppvData.tokenSymbol || "SOL") : "DHB";
+  const gateCurrency = isSolana
+    ? (state.tokenGateData.tokenSymbol || "SOL")
+    : (state.tokenGateData.tokenSymbol || "DHB");
+  // Custom (off-list) token-gating on EVM chains (#43)
+  const [gateUseCustom, setGateUseCustom] = useState(false);
   const [expandedSection, setExpandedSection] = useState<
     "ppv" | "bounty" | "tokenGated" | null
   >(null);
@@ -109,11 +166,17 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
       // Load current data into draft
       if (autoExpandSection === "ppv") setPpvDraft(state.ppvData);
       if (autoExpandSection === "bounty") setBountyDraft(state.bountyData);
-      if (autoExpandSection === "tokenGated")
+      if (autoExpandSection === "tokenGated") {
         setTokenGateDraft(state.tokenGateData);
+        const addr = state.tokenGateData.contractAddress;
+        setGateUseCustom(
+          !!addr && !evmLockTokens.some((t) => t.address.toLowerCase() === addr.toLowerCase()),
+        );
+        setGateError(null);
+      }
       onAutoExpandHandled();
     }
-  }, [autoExpandSection, onAutoExpandHandled, state]);
+  }, [autoExpandSection, onAutoExpandHandled, state, evmLockTokens]);
 
 
   const handlePpvToggle = useCallback(
@@ -164,27 +227,52 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
   }, [state, onChange]);
 
 
+  const [gateError, setGateError] = useState<string | null>(null);
+
   const handleTokenGateToggle = useCallback(
     (val: boolean) => {
       if (val) {
         setTokenGateDraft(state.tokenGateData);
+        setGateError(null);
+        // Re-open in custom mode if the saved gate token isn't one of the listed tokens.
+        const addr = state.tokenGateData.contractAddress;
+        setGateUseCustom(
+          !!addr && !evmLockTokens.some((t) => t.address.toLowerCase() === addr.toLowerCase()),
+        );
         setExpandedSection("tokenGated");
       } else {
         onChange({ ...state, tokenGatedEnabled: false });
         if (expandedSection === "tokenGated") setExpandedSection(null);
       }
     },
-    [state, onChange, expandedSection],
+    [state, onChange, expandedSection, evmLockTokens],
   );
 
   const confirmTokenGate = useCallback(() => {
+    let next = { ...tokenGateDraft };
+    if (!isSolana) {
+      if (gateUseCustom) {
+        const addr = (next.contractAddress || "").trim();
+        if (!isValidEvmAddress(addr)) {
+          setGateError("Enter a valid token contract address");
+          return;
+        }
+        next = { ...next, contractAddress: addr, tokenSymbol: (next.tokenSymbol || "TOKEN").trim() || "TOKEN" };
+      } else {
+        // Resolve the listed token (default DHB) to its on-chain address (#43)
+        const sym = next.tokenSymbol || "DHB";
+        const picked = evmLockTokens.find((t) => t.symbol === sym) || evmLockTokens.find((t) => t.symbol === "DHB");
+        next = { ...next, tokenSymbol: picked?.symbol || "DHB", contractAddress: picked?.address };
+      }
+    }
+    setGateError(null);
     onChange({
       ...state,
       tokenGatedEnabled: true,
-      tokenGateData: tokenGateDraft,
+      tokenGateData: next,
     });
     setExpandedSection(null);
-  }, [state, onChange, tokenGateDraft]);
+  }, [state, onChange, tokenGateDraft, isSolana, gateUseCustom, evmLockTokens]);
 
   const cancelTokenGate = useCallback(() => {
     if (!state.tokenGatedEnabled)
@@ -207,25 +295,33 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
       </View>
       <ExpandableSection
         expanded={expandedSection === "ppv"}
-        maxHeight={SECTION_HEIGHT_PPV}
+        maxHeight={SECTION_HEIGHT_PPV + (isSolana ? 48 : 0)}
       >
         <View className="pb-3">
           <Text className="text-white font-semibold text-sm mb-3">
             Set PPV Price
           </Text>
+          {isSolana && (
+            <SplTokenSelector
+              value={ppvDraft.tokenSymbol}
+              onSelect={(symbol) => setPpvDraft((d) => ({ ...d, tokenSymbol: symbol }))}
+            />
+          )}
           <Text className="text-theme-neutrals-400 text-xs mb-1.5">
-            Price (DHB)
+            Price ({ppvCurrency})
           </Text>
           <TextInput
             value={ppvDraft.price}
-            onChangeText={(t) => setPpvDraft({ price: t })}
+            onChangeText={(t) => setPpvDraft((d) => ({ ...d, price: t }))}
             placeholder="10"
             placeholderTextColor="#6F7174"
             keyboardType="decimal-pad"
             className="h-11 px-3 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700 text-white text-sm"
           />
           <Text className="text-theme-neutrals-500 text-xs mt-1.5">
-            Payments are in DHB on Base chain
+            {isSolana
+              ? `Payments are in ${ppvCurrency} on Solana`
+              : "Payments are in DHB on Base chain"}
           </Text>
           <View className="flex-row justify-end mt-3 gap-3">
             <TouchableOpacity onPress={cancelPpv} className="px-4 py-2">
@@ -334,26 +430,105 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
       </View>
       <ExpandableSection
         expanded={expandedSection === "tokenGated"}
-        maxHeight={SECTION_HEIGHT_TOKEN}
+        maxHeight={
+          SECTION_HEIGHT_TOKEN + (isSolana ? 48 : 56) + (!isSolana && gateUseCustom ? 104 : 0)
+        }
       >
         <View className="pb-3">
           <Text className="text-white font-semibold text-sm mb-2">
             Token Gate Settings
           </Text>
-          <Text className="text-theme-neutrals-400 text-xs mb-3">
-            Requires DHB tokens on Base chain ({DHB_SHORT})
-          </Text>
+          {isSolana ? (
+            <>
+              <Text className="text-theme-neutrals-400 text-xs mb-3">
+                Requires an SPL token on Solana to view
+              </Text>
+              <SplTokenSelector
+                value={tokenGateDraft.tokenSymbol}
+                onSelect={(symbol) => setTokenGateDraft((d) => ({ ...d, tokenSymbol: symbol }))}
+              />
+            </>
+          ) : (
+            <>
+              <Text className="text-theme-neutrals-400 text-xs mb-2">
+                Viewers must hold this token on {evmChainLabel}
+              </Text>
+              {/* Token picker — listed tokens for the chain + custom (#43) */}
+              <View className="flex-row flex-wrap gap-2 mb-3">
+                {evmLockTokens.map((t) => {
+                  const active = !gateUseCustom && (tokenGateDraft.tokenSymbol || "DHB") === t.symbol;
+                  return (
+                    <TouchableOpacity
+                      key={t.address}
+                      onPress={() => {
+                        setGateUseCustom(false);
+                        setGateError(null);
+                        setTokenGateDraft((d) => ({ ...d, tokenSymbol: t.symbol, contractAddress: t.address }));
+                      }}
+                      className={`px-3 py-1.5 rounded-lg border ${
+                        active ? "bg-white/15 border-white/30" : "bg-theme-neutrals-900 border-theme-neutrals-700"
+                      }`}
+                    >
+                      <Text className={active ? "text-white text-xs font-semibold" : "text-theme-neutrals-400 text-xs"}>
+                        {t.symbol}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
+                <TouchableOpacity
+                  onPress={() => {
+                    setGateUseCustom(true);
+                    setGateError(null);
+                    setTokenGateDraft((d) => ({ ...d, tokenSymbol: "", contractAddress: "" }));
+                  }}
+                  className={`px-3 py-1.5 rounded-lg border ${
+                    gateUseCustom ? "bg-white/15 border-white/30" : "bg-theme-neutrals-900 border-theme-neutrals-700"
+                  }`}
+                >
+                  <Text className={gateUseCustom ? "text-white text-xs font-semibold" : "text-theme-neutrals-400 text-xs"}>
+                    Custom
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              {gateUseCustom && (
+                <>
+                  <TextInput
+                    value={tokenGateDraft.contractAddress}
+                    onChangeText={(t) => {
+                      setGateError(null);
+                      setTokenGateDraft((d) => ({ ...d, contractAddress: t }));
+                    }}
+                    placeholder="Contract address (0x…)"
+                    placeholderTextColor="#6F7174"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    className="h-11 px-3 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700 text-white text-xs mb-2"
+                  />
+                  <TextInput
+                    value={tokenGateDraft.tokenSymbol}
+                    onChangeText={(t) => setTokenGateDraft((d) => ({ ...d, tokenSymbol: t.toUpperCase() }))}
+                    placeholder="Symbol (e.g. PEPE)"
+                    placeholderTextColor="#6F7174"
+                    autoCapitalize="characters"
+                    autoCorrect={false}
+                    className="h-11 px-3 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700 text-white text-sm mb-2"
+                  />
+                </>
+              )}
+            </>
+          )}
           <Text className="text-theme-neutrals-400 text-xs mb-1.5">
-            Minimum DHB Required
+            Minimum {gateCurrency} Required
           </Text>
           <TextInput
             value={tokenGateDraft.minAmount}
-            onChangeText={(t) => setTokenGateDraft({ minAmount: t })}
+            onChangeText={(t) => setTokenGateDraft((d) => ({ ...d, minAmount: t }))}
             placeholder="10"
             placeholderTextColor="#6F7174"
             keyboardType="decimal-pad"
             className="h-11 px-3 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700 text-white text-sm"
           />
+          {gateError && <Text className="text-red-400 text-xs mt-1.5">{gateError}</Text>}
           <View className="flex-row justify-end mt-3 gap-3">
             <TouchableOpacity onPress={cancelTokenGate} className="px-4 py-2">
               <Text className="text-theme-neutrals-400 text-sm">Cancel</Text>

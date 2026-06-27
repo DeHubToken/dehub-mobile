@@ -17,9 +17,10 @@ import {
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import GlassModal from "../ui/GlassModal";
 import { Ionicons } from "@expo/vector-icons";
-import { useUser, useAuthActions } from "../../context/AuthContext";
+import { useUser, useAuthActions, useProvider } from "../../context/AuthContext";
 import { limitTip, supportedTokens } from "../../config/constants";
 import AnimatedCheck from "../common/AnimatedCheck";
+import ChainSelector from "../common/ChainSelector";
 import {
   useWeb3Provider,
   useERC20Contract,
@@ -53,8 +54,19 @@ const TipModal: React.FC<TipModalProps> = ({
   triggerText = "Tip",
 }) => {
   const user = useUser();
-  const { requireAuth, patchUser } = useAuthActions();
+  const { requireAuth, patchUser, switchChain } = useAuthActions();
   const { provider, account, chainId } = useWeb3Provider();
+  const { isSwitchingChain } = useProvider();
+
+  const handleChainChange = useCallback(
+    (targetChainId: number) => {
+      if (targetChainId === chainId) return;
+      setTipError(null);
+      setPhase("idle");
+      switchChain(targetChainId).catch(() => {});
+    },
+    [chainId, switchChain]
+  );
   const [amount, setAmount] = useState<string>("");
   const [phase, setPhase] = useState<
     "idle" | "approving" | "sending" | "sent" | "error"
@@ -79,7 +91,7 @@ const TipModal: React.FC<TipModalProps> = ({
     user.walletAddress?.toLowerCase() === toAddress?.toLowerCase();
   const isBusy = phase === "approving" || phase === "sending";
   const disableTip =
-    isBusy || numericAmount <= 0 || insufficient || overLimit || isSelf;
+    isBusy || isSwitchingChain || numericAmount <= 0 || insufficient || overLimit || isSelf;
 
   // Select DHB token metadata for current chain
   const tokenMeta = useMemo(() => {
@@ -292,6 +304,18 @@ const TipModal: React.FC<TipModalProps> = ({
                 Recipient: {toAddress.slice(0, 6)}...{toAddress.slice(-4)}
               </Text>
             </View>
+            {phase !== "sent" && (
+              <View className="flex-row items-center justify-between">
+                <Text className="text-white/60 text-xs">Network</Text>
+                <ChainSelector
+                  selectedChainId={chainId}
+                  onChange={handleChainChange}
+                  variant="compact"
+                  disabled={isBusy || isSwitchingChain}
+                  title="Choose tip network"
+                />
+              </View>
+            )}
             {phase !== "sent" ? (
               <>
                 <View>
@@ -355,7 +379,7 @@ const TipModal: React.FC<TipModalProps> = ({
                       }`}
                       style={{ backgroundColor: 'transparent' }}
                     >
-                      {isBusy ? (
+                      {isBusy || isSwitchingChain ? (
                         <ActivityIndicator color="#fff" />
                       ) : phase === "error" ? (
                         <Ionicons
@@ -367,10 +391,15 @@ const TipModal: React.FC<TipModalProps> = ({
                         <Ionicons name="cash-outline" size={18} color="#fff" />
                       )}
                       <Text className="text-white font-semibold">
-                        {phase === "approving" && "Approving..."}
-                        {phase === "sending" && "Sending..."}
-                        {phase === "idle" && "Tip"}
-                        {phase === "error" && "Retry"}
+                        {isSwitchingChain
+                          ? "Switching..."
+                          : phase === "approving"
+                          ? "Approving..."
+                          : phase === "sending"
+                          ? "Sending..."
+                          : phase === "error"
+                          ? "Retry"
+                          : "Tip"}
                       </Text>
                     </TouchableOpacity>
                   </AccentButtonGradient>

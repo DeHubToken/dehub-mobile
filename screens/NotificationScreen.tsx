@@ -37,7 +37,7 @@ import {
   NON_CLICKABLE_TYPES,
 } from "../services/enums/notification.enums";
 
-type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'subscriptions' | 'tips' | 'livestreams';
+type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'subscriptions' | 'tips' | 'payments' | 'livestreams';
 
 const TYPE_TABS: { key: NotificationTypeFilter; icon: string; label: string }[] = [
   { key: 'all', icon: 'Bell', label: 'All' },
@@ -47,6 +47,7 @@ const TYPE_TABS: { key: NotificationTypeFilter; icon: string; label: string }[] 
   { key: 'reposts', icon: 'Repeat2', label: 'Reposts' },
   { key: 'subscriptions', icon: 'Users', label: 'Subs' },
   { key: 'tips', icon: 'Gem', label: 'Tips' },
+  { key: 'payments', icon: 'CreditCard', label: 'Payments' },
   { key: 'livestreams', icon: 'Zap', label: 'Live' },
 ];
 
@@ -58,6 +59,7 @@ const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
   reposts: [NotificationType.REPOST, NotificationType.QUOTE],
   subscriptions: [NotificationType.SUBSCRIPTION, NotificationType.PPV_PURCHASE],
   tips: [NotificationType.TIP, NotificationType.BOUNTY_AVAILABLE, NotificationType.BOUNTY_CLAIMED],
+  payments: [NotificationType.FIAT_PAYMENT_COMPLETED],
   livestreams: [NotificationType.LIVESTREAM_START],
 };
 
@@ -385,6 +387,10 @@ const NotificationScreen = () => {
           const match = metadata.deepLink.match(/\/dm\/(.+)/);
           if (match?.[1]) navigateToDM(match[1]);
         }
+        break;
+
+      case NotificationType.FIAT_PAYMENT_COMPLETED:
+        navigation.navigate(ScreenNames.Dpay as never);
         break;
 
       case 'video_removal':

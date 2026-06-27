@@ -42,10 +42,15 @@ export async function writeContractAA(
   if (!contract.address) throw new Error("Contract address missing on instance");
   const context = options?.context || "send";
 
+  // Pass value into preflight calls so payable functions (e.g. native-ETH swaps)
+  // simulate/estimate correctly instead of reverting on the static call.
+  const preflightOverrides =
+    options?.value != null ? [{ value: options.value }] : [];
+
   // 1) Static call to surface revert reasons early
   try {
     if (contract?.callStatic && contract.callStatic[functionName]) {
-      await contract.callStatic[functionName](...args);
+      await contract.callStatic[functionName](...args, ...preflightOverrides);
     }
   } catch (staticErr: any) {
     const friendly = parseTxError(staticErr, context);
@@ -56,7 +61,7 @@ export async function writeContractAA(
   let gasLimitBN: ethers.BigNumber | undefined = undefined;
   try {
     if (contract?.estimateGas && contract.estimateGas[functionName]) {
-      const est = await contract.estimateGas[functionName](...args);
+      const est = await contract.estimateGas[functionName](...args, ...preflightOverrides);
       gasLimitBN = applyGasMargin(est);
     }
   } catch (egErr) {

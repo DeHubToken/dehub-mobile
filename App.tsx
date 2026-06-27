@@ -12,7 +12,7 @@ import "./global.css";
 import SplashScreen from "./screens/SplashScreen";
 import NoInternetScreen from "./screens/NoInternetScreen";
 import { useNetworkStatus } from "./hooks/useNetworkStatus";
-import React, { useEffect, useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   BackHandler,
   KeyboardAvoidingView,

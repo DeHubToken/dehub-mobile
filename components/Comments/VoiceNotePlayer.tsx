@@ -14,6 +14,7 @@ import Animated, {
   withSpring,
   runOnJS,
   Easing,
+  SharedValue,
 } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { useIsFocused } from "@react-navigation/native";
@@ -50,8 +51,8 @@ const fmtTime = (s: number): string => {
 interface WaveformBarProps {
   height: number;
   index: number;
-  progress: Animated.SharedValue<number>;
-  isSeeking: Animated.SharedValue<boolean>;
+  progress: SharedValue<number>;
+  isSeeking: SharedValue<boolean>;
 }
 
 const WaveformBar: React.FC<WaveformBarProps> = memo(({ height, index, progress, isSeeking }) => {

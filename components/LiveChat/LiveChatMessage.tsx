@@ -15,6 +15,7 @@ import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc"
 import { openInApp } from "../../libs/links.utils";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
 import type { MessageLayout } from "./LiveChatContextMenu";
+import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
 
 const formatTime = (iso: string): string => {
   const d = new Date(iso);
@@ -247,7 +248,15 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
               </View>
             )}
 
-            {message.media && message.media.length > 0 && (
+            {(message.messageType === "audio" || message.messageType === "voice") && (
+              <VoiceNotePlayer
+                audioUrl={message.audioUrl || message.media?.[0]?.url || ""}
+                duration={message.audioDuration}
+                compact
+              />
+            )}
+
+            {message.media && message.media.length > 0 && message.messageType !== "audio" && message.messageType !== "voice" && (
               <View className="mt-1 flex-row flex-wrap gap-1">
                 {message.media.map((m, i) => (
                   <View key={i} className="rounded-xl overflow-hidden">

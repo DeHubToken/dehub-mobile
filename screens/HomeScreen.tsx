@@ -12,6 +12,7 @@ import { useDrawer } from "../context/DrawerContext";
 import { useTabBarHide } from "../context/TabBarHideContext";
 import FeedFilterPanel, { FeedFilters } from "../components/Home/FeedFilterPanel";
 import { getCategoriesCached } from "../services/nft.service";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import type { FeedRange, FeedSortBy, FeedPostType } from "../services/feed.unified.service";
 
@@ -22,7 +23,7 @@ const SEED_CHECK_INTERVAL_MS = 60_000;
 const generateShuffleSeed = () => String(Date.now());
 
 const DEFAULT_FILTERS: FeedFilters = {
-  sortBy: "createdAt",
+  sortBy: "score",
   dateRange: "",
   postType: "all",
   contentAccess: [],
@@ -32,6 +33,13 @@ export default function HomeScreen() {
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
   const [filters, setFilters] = useState<FeedFilters>(DEFAULT_FILTERS);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
+
+  // Load persisted category on mount
+  useEffect(() => {
+    AsyncStorage.getItem("dehub:defaultCategory").then((val) => {
+      if (val) setSelectedCategory(val);
+    }).catch(() => {});
+  }, []);
   const [categories, setCategories] = useState<string[]>(FALLBACK_CATEGORIES);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
   const { openDrawer } = useDrawer();
@@ -132,7 +140,9 @@ export default function HomeScreen() {
   );
 
   const handleCategorySelect = useCallback((category: string) => {
-    setSelectedCategory(category === "All" ? undefined : category);
+    const value = category === "All" ? undefined : category;
+    setSelectedCategory(value);
+    AsyncStorage.setItem("dehub:defaultCategory", value ?? "").catch(() => {});
     setFilterPanelVisible(false);
   }, []);
 
@@ -176,6 +186,7 @@ export default function HomeScreen() {
     const value = cat === "All" ? undefined : cat;
     if (value === selectedCategory) return;
     setSelectedCategory(value);
+    AsyncStorage.setItem("dehub:defaultCategory", value ?? "").catch(() => {});
     if (!value) setFilters(DEFAULT_FILTERS);
   }, [selectedCategory]);
 

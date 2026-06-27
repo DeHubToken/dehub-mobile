@@ -1,0 +1,55 @@
+# EAS Build — files NOT needed in the uploaded project archive.
+# NOTE: when this file exists, EAS ignores .gitignore and uses ONLY this list,
+# so heavy folders (node_modules, .git, build outputs) MUST be listed here.
+# Do NOT add `.env` — it must be uploaded so react-native-dotenv (@env) can
+# inline WEB3AUTH_CLIENT_ID etc. at build time.
+
+# Dependencies & VCS (EAS runs install on the server)
+node_modules/
+.git/
+
+# Expo / Metro caches
+.expo/
+.expo-shared/
+dist/
+web-build/
+
+# Android build outputs (keep android/ source; drop generated/cache dirs)
+android/.gradle/
+android/build/
+android/app/build/
+android/app/.cxx/
+android/.cxx/
+android/.kotlin/
+
+# iOS build outputs (keep ios/ source; drop Pods + build)
+ios/build/
+ios/Pods/
+ios/DerivedData/
+
+# Web app (not needed for mobile build)
+cosmic-echo-hero/
+cosmic-echo-hero-main/
+
+# Backend
+dehub-stream-backend/
+
+# JVM crash logs
+hs_err_pid*.log
+replay_pid*.log
+
+# Misc docs / planning files
+ROADMAP.md
+profile-settings-comparison.md
+env.download
+
+# Test artifacts
+__tests__/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Memory / Claude files
+memory/
+.claude/

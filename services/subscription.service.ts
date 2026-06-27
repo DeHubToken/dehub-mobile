@@ -45,7 +45,7 @@ export interface Subscription {
 export async function getPlans(creatorAddress?: string): Promise<SubscriptionPlan[]> {
   const queryParams = creatorAddress ? `?creator=${encodeURIComponent(creatorAddress)}` : "";
   const res = await apiClient.get<{ result: SubscriptionPlan[] } | SubscriptionPlan[]>(
-    `/api/plans${queryParams}`,
+    `/plans${queryParams}`,
   );
   if (res && typeof res === "object" && "result" in res) {
     return (res as { result: SubscriptionPlan[] }).result || [];
@@ -55,7 +55,7 @@ export async function getPlans(creatorAddress?: string): Promise<SubscriptionPla
 
 export async function getMySubscriptions(): Promise<Subscription[]> {
   const res = await apiClient.get<{ result: Subscription[] } | Subscription[]>(
-    "/api/subscription/me",
+    "/subscription/me",
   );
   if (res && typeof res === "object" && "result" in res) {
     return (res as { result: Subscription[] }).result || [];
@@ -72,7 +72,7 @@ export async function createPlan(planData: {
   chains: { chainId: number; token: string; price: number }[];
 }): Promise<SubscriptionPlan> {
   const res = await apiClient.post<{ result: SubscriptionPlan } | SubscriptionPlan>(
-    "/api/plans",
+    "/plans",
     planData,
   );
   if (res && typeof res === "object" && "result" in res) {
@@ -94,7 +94,7 @@ export async function updatePlan(
   }>,
 ): Promise<SubscriptionPlan> {
   const res = await apiClient.post<{ result: SubscriptionPlan } | SubscriptionPlan>(
-    `/api/plans/${planId}`,
+    `/plans/${planId}`,
     planData,
   );
   if (res && typeof res === "object" && "result" in res) {
@@ -105,7 +105,7 @@ export async function updatePlan(
 
 export async function buyPlan(planId: string): Promise<{ subscription: Subscription; transactionHash?: string }> {
   const res = await apiClient.post<{ result: { subscription: Subscription; transactionHash?: string } } | { subscription: Subscription; transactionHash?: string }>(
-    "/api/plan/buy",
+    "/plan/buy",
     { planId },
   );
   if (res && typeof res === "object" && "result" in res) {

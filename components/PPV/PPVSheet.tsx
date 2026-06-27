@@ -8,6 +8,7 @@ import React, {
 import {
   View,
   Text,
+  TextInput,
   TouchableOpacity,
   Modal,
   Pressable,
@@ -40,14 +41,34 @@ import {
   useWeb3Provider,
   useERC20Contract,
   useStreamControllerContract,
+  useSwapRouterContract,
+  usePaymentRouterContract,
 } from "../../hooks/use-web3";
 import * as ethersImport from "ethers";
 import { applyGasMargin, parseTxError } from "../../libs/web3.util";
 import { writeContractAA } from "../../libs/aa.write";
+import {
+  confirmPPVPurchase,
+  getPaymentConfig,
+  getPaymentRouterAddress,
+} from "../../services/payment.service";
+import {
+  isPaymentRouterAvailable,
+  unlockPPVAndTipViaRouter,
+} from "../../services/payment-router.service";
+import {
+  isAutoSwapSupported,
+  getSwapQuote,
+  applySlippage,
+  getNativeBalanceBase,
+  swapETHForDHB,
+} from "../../services/swap.service";
+import { sendSolanaPayment } from "../../services/solana-payment.service";
+import { isSolanaChain } from "../../config/solana.constants";
 import { formatCompactNumber } from "../../libs";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
-const SHEET_MAX_HEIGHT = SCREEN_HEIGHT * 0.42;
+const SHEET_MAX_HEIGHT = SCREEN_HEIGHT * 0.52;
 
 export interface PPVSheetProps {
   visible: boolean;
@@ -57,6 +78,8 @@ export interface PPVSheetProps {
   amount: number | string;
   tokenSymbol: string;
   contentType?: "video" | "image";
+  /** Post's PPV payment chain — when Solana (101/103), pay in SOL/SPL (#41). */
+  paymentChainId?: number;
   onSuccess?: () => void;
 }
 
@@ -68,6 +91,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
   amount,
   tokenSymbol,
   contentType = "video",
+  paymentChainId,
   onSuccess,
 }) => {
   const insets = useSafeAreaInsets();
@@ -80,17 +104,27 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
 
   const [phase, setPhase] = useState<
-    "idle" | "approving" | "sending" | "sent" | "error"
+    "idle" | "swapping" | "approving" | "sending" | "sent" | "error"
   >("idle");
   const [ppvError, setPpvError] = useState<string | null>(null);
 
+  // Atomic swap + PPV + tip in one tx via DeHubPaymentRouter (#45)
+  const [routerAddress, setRouterAddress] = useState<string | undefined>(undefined);
+  const [showTip, setShowTip] = useState(false);
+  const [tipInput, setTipInput] = useState("");
+  const tipAmount = Number(tipInput) || 0;
+
+  const isSolanaPpv = isSolanaChain(paymentChainId);
   const numericAmount = Number(amount) || 0;
   const userTokenBal = (user?.tokenBalances?.[tokenSymbol] ?? 0) as number;
-  const insufficient = numericAmount > userTokenBal;
+  // Solana balance is enforced on-chain by the transfer itself.
+  const insufficient = !isSolanaPpv && numericAmount > userTokenBal;
+  // ETH → DHB auto-swap available only for DHB PPV on Base (#44)
+  const canAutoSwap = tokenSymbol === "DHB" && isAutoSwapSupported(chainId);
   const isSelf =
     !!user?.walletAddress &&
     user.walletAddress?.toLowerCase() === toAddress?.toLowerCase();
-  const isBusy = phase === "approving" || phase === "sending";
+  const isBusy = phase === "swapping" || phase === "approving" || phase === "sending";
 
   const tokenMeta = useMemo(() => {
     if (!chainId) return undefined;
@@ -106,12 +140,33 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
     : undefined;
   const tokenContract = useERC20Contract(tokenAddress);
   const controllerContract = useStreamControllerContract();
+  const swapRouterContract = useSwapRouterContract();
+
+  // Router-based atomic tip is DHB-on-Base only, and only when deployed (#45)
+  const routerAvailable = tokenSymbol === "DHB" && isPaymentRouterAvailable(chainId, routerAddress);
+  const paymentRouterContract = usePaymentRouterContract(
+    routerAvailable ? routerAddress : undefined,
+  );
+
+  // Fetch the payment-router config for the active chain when the sheet opens.
+  useEffect(() => {
+    if (!visible || !chainId) return;
+    let cancelled = false;
+    getPaymentConfig().then((cfg) => {
+      if (!cancelled) setRouterAddress(getPaymentRouterAddress(cfg, chainId));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [visible, chainId]);
 
   useEffect(() => {
     if (visible) {
       setIsFullyClosed(false);
       setPhase("idle");
       setPpvError(null);
+      setShowTip(false);
+      setTipInput("");
       translateY.value = withTiming(0, {
         duration: 300,
         easing: Easing.out(Easing.cubic),
@@ -164,6 +219,24 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
     requireAuth(async () => {
       if (isBusy || phase !== "idle") return;
       setPpvError(null);
+
+      // Solana PPV (#41): pay the creator in SOL/SPL via the backend-built tx.
+      if (isSolanaPpv) {
+        setPhase("sending");
+        try {
+          await sendSolanaPayment({ tokenId, kind: "ppv", chainId: paymentChainId });
+          setPhase("sent");
+          const idStr = String(tokenId);
+          await patchUser((prev) => ({
+            unlocked: Array.from(new Set([...(prev.unlocked || []), idStr])),
+          } as any));
+        } catch (e) {
+          setPhase("error");
+          setPpvError(e instanceof Error ? e.message : "Solana payment failed");
+        }
+        return;
+      }
+
       if (
         !provider || !account || !chainId ||
         !tokenContract || !controllerContract ||
@@ -177,6 +250,86 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
       try {
         const ethers = (ethersImport as any).ethers || ethersImport;
         const amountBN = ethers.utils.parseUnits(String(numericAmount), tokenDecimals);
+
+        // Atomic ETH→DHB swap + PPV + tip in one tx via the payment router (#45).
+        // Used when a tip is added and the router is deployed for this chain.
+        if (tipAmount > 0 && routerAvailable) {
+          if (!paymentRouterContract) {
+            setPpvError("Preparing payment router… try again in a moment");
+            return;
+          }
+          setPhase("sending");
+          try {
+            const tipBN = ethers.utils.parseUnits(String(tipAmount), tokenDecimals);
+            const tx = await unlockPPVAndTipViaRouter({
+              routerContract: paymentRouterContract,
+              tokenId,
+              ppvAmountWei: amountBN,
+              tipAmountWei: tipBN,
+              creator: toAddress,
+            });
+            setPhase("sent");
+            const idStr = String(tokenId);
+            if (tx?.hash) {
+              confirmPPVPurchase({ tokenId, txHash: tx.hash, chainId }).catch((err) => {
+                console.warn("[PPV] Backend confirm fallback to webhook:", err);
+              });
+            }
+            await patchUser((prev) => ({
+              unlocked: Array.from(new Set([...(prev.unlocked || []), idStr])),
+            } as any));
+          } catch (e) {
+            setPhase("error");
+            setPpvError(parseTxError(e, "send"));
+          }
+          return;
+        }
+
+        // Auto-swap ETH → DHB on Base when the on-chain DHB balance falls short (#44)
+        let dhbBalance = await tokenContract.balanceOf(account);
+        if (ethers.BigNumber.from(dhbBalance).lt(amountBN)) {
+          if (!canAutoSwap || !swapRouterContract) {
+            setPhase("error");
+            setPpvError(`Insufficient ${tokenSymbol} balance`);
+            return;
+          }
+          const shortfall = ethers.BigNumber.from(amountBN).sub(dhbBalance);
+          setPhase("swapping");
+          try {
+            const quote = await getSwapQuote(shortfall);
+            if (!quote) {
+              setPhase("error");
+              setPpvError("No swap route for DHB. Add DHB manually.");
+              return;
+            }
+            const maxETH = applySlippage(quote.amountIn);
+            const ethBal = await getNativeBalanceBase(account);
+            if (ethBal.lt(maxETH)) {
+              setPhase("error");
+              setPpvError(
+                `Need ~${Number(ethers.utils.formatEther(maxETH)).toFixed(5)} ETH to swap but balance is too low`,
+              );
+              return;
+            }
+            await swapETHForDHB({
+              routerContract: swapRouterContract,
+              amountOutDHB: shortfall,
+              maxETH,
+              recipient: account,
+              feeTier: quote.feeTier,
+            });
+            dhbBalance = await tokenContract.balanceOf(account);
+            if (ethers.BigNumber.from(dhbBalance).lt(amountBN)) {
+              setPhase("error");
+              setPpvError("Swap done but DHB still short. Try again.");
+              return;
+            }
+          } catch (e) {
+            setPhase("error");
+            setPpvError(parseTxError(e, "swap"));
+            return;
+          }
+        }
 
         setPhase("approving");
         const curr = await tokenContract.allowance(account, controllerAddress);
@@ -194,13 +347,18 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
 
         setPhase("sending");
         try {
-          await writeContractAA(
+          const tx = await writeContractAA(
             controllerContract, "sendFundsForPPV",
             [tokenId, amountBN, toAddress, tokenAddress],
             { context: "send" },
           );
           setPhase("sent");
           const idStr = String(tokenId);
+          if (tx?.hash) {
+            confirmPPVPurchase({ tokenId, txHash: tx.hash, chainId }).catch((err) => {
+              console.warn("[PPV] Backend confirm fallback to webhook:", err);
+            });
+          }
           await patchUser((prev) => ({
             unlocked: Array.from(new Set([...(prev.unlocked || []), idStr])),
             tokenBalances: {
@@ -219,9 +377,12 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
     });
   }, [
     requireAuth, isBusy, phase, provider, account, chainId,
-    tokenContract, controllerContract, tokenMeta, tokenAddress,
+    tokenContract, controllerContract, swapRouterContract, canAutoSwap,
+    tokenMeta, tokenAddress,
     controllerAddress, isSelf, numericAmount, tokenDecimals,
     tokenId, toAddress, patchUser, tokenSymbol,
+    tipAmount, routerAvailable, paymentRouterContract,
+    isSolanaPpv, paymentChainId,
   ]);
 
   const handleSuccessContinue = useCallback(() => {
@@ -284,14 +445,62 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
                 </Text>
               </View>
 
-              {insufficient && (
+              {/* Optional tip — swap + unlock + tip in one tx via router (#45) */}
+              {routerAvailable && !isSelf && (
+                <View style={styles.tipWrap}>
+                  <TouchableOpacity
+                    style={styles.tipToggle}
+                    onPress={() => {
+                      if (isBusy) return;
+                      setShowTip((v) => !v);
+                      if (showTip) setTipInput("");
+                    }}
+                    activeOpacity={0.7}
+                  >
+                    <Icon name="Gift" size={15} color="#A6A9AC" />
+                    <Text style={styles.tipToggleText}>Add a tip for the creator</Text>
+                    <Icon
+                      name={showTip ? "ChevronUp" : "ChevronDown"}
+                      size={16}
+                      color="#A6A9AC"
+                    />
+                  </TouchableOpacity>
+                  {showTip && (
+                    <View style={styles.tipInputRow}>
+                      <TextInput
+                        value={tipInput}
+                        onChangeText={setTipInput}
+                        placeholder="0"
+                        placeholderTextColor="#6F7174"
+                        keyboardType="decimal-pad"
+                        editable={!isBusy}
+                        style={styles.tipInput}
+                      />
+                      <Text style={styles.tipSuffix}>DHB</Text>
+                    </View>
+                  )}
+                </View>
+              )}
+
+              {insufficient && !canAutoSwap && (
                 <Text style={styles.errorText}>Insufficient {tokenSymbol} balance</Text>
+              )}
+              {insufficient && canAutoSwap && phase === "idle" && (
+                <Text style={styles.hintText}>
+                  Low on {tokenSymbol}? We'll swap ETH → DHB to cover it.
+                </Text>
               )}
               {isSelf && (
                 <Text style={styles.errorText}>You can't pay yourself</Text>
               )}
               {ppvError && <Text style={styles.errorText}>{ppvError}</Text>}
 
+              {phase === "swapping" && (
+                <View style={styles.statusRow}>
+                  <ActivityIndicator size="small" color="#A6A9AC" />
+                  <Text style={styles.statusText}>Swapping ETH → DHB…</Text>
+                </View>
+              )}
               {phase === "approving" && (
                 <View style={styles.statusRow}>
                   <ActivityIndicator size="small" color="#A6A9AC" />
@@ -317,10 +526,10 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
 
                 <TouchableOpacity
                   onPress={handleUnlock}
-                  disabled={isBusy || insufficient || isSelf}
+                  disabled={isBusy || isSelf || (insufficient && !canAutoSwap)}
                   style={[
                     styles.payBtn,
-                    (isBusy || insufficient || isSelf) && { opacity: 0.5 },
+                    (isBusy || isSelf || (insufficient && !canAutoSwap)) && { opacity: 0.5 },
                   ]}
                   activeOpacity={0.7}
                 >
@@ -328,7 +537,11 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
                     <ActivityIndicator size="small" color="#fff" />
                   ) : (
                     <Text style={styles.payBtnText}>
-                      {phase === "error" ? "Retry" : `Pay ${formatCompactNumber(numericAmount)} ${tokenSymbol}`}
+                      {phase === "error"
+                        ? "Retry"
+                        : tipAmount > 0
+                        ? `Pay & Tip ${formatCompactNumber(numericAmount + tipAmount)} ${tokenSymbol}`
+                        : `Pay ${formatCompactNumber(numericAmount)} ${tokenSymbol}`}
                     </Text>
                   )}
                 </TouchableOpacity>
@@ -426,8 +639,49 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "700",
   },
+  tipWrap: {
+    marginBottom: 12,
+  },
+  tipToggle: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    paddingVertical: 4,
+  },
+  tipToggleText: {
+    flex: 1,
+    color: "#A6A9AC",
+    fontSize: 13,
+    fontWeight: "500",
+  },
+  tipInputRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "rgba(255,255,255,0.06)",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
+    paddingHorizontal: 14,
+    marginTop: 8,
+  },
+  tipInput: {
+    flex: 1,
+    height: 44,
+    color: "#F9FBFF",
+    fontSize: 15,
+  },
+  tipSuffix: {
+    color: "#A6A9AC",
+    fontSize: 13,
+    fontWeight: "600",
+  },
   errorText: {
     color: "#EF4444",
+    fontSize: 12,
+    marginBottom: 8,
+  },
+  hintText: {
+    color: "#A6A9AC",
     fontSize: 12,
     marginBottom: 8,
   },

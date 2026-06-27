@@ -18,6 +18,7 @@ import AccountSettingsScreen from "../screens/AccountSettingsScreen";
 import YourVideosScreen from "../screens/YourVideosScreen";
 import LikedVideosScreen from "../screens/LikedVideosScreen";
 import SavedPostsScreen from "../screens/SavedPostsScreen";
+import EarningsScreen from "../screens/EarningsScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import SignInScreen from "../screens/auth/SignInScreen";
@@ -253,6 +254,10 @@ export default function AppNavigator() {
             <Stack.Screen
               name={ScreenNames.SavedPosts}
               component={SavedPostsScreen}
+            />
+            <Stack.Screen
+              name={ScreenNames.Earnings}
+              component={EarningsScreen}
             />
             <Stack.Screen
               name={ScreenNames.MyLibrary}

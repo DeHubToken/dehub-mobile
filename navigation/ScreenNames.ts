@@ -48,6 +48,7 @@ export enum ScreenNames {
   ImageFeed = 'ImageFeed',
   Call = 'Call',
   Stages = 'Stages',
+  Earnings = 'Earnings',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',

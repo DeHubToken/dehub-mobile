@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View, Text, TextInput, ActivityIndicator } from "react-native";
 import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import Icon from "../ui/Icon";
 import CustomSwitch from "../ui/CustomSwitch";
@@ -10,6 +11,8 @@ import {
 } from "../../services/enums/dm-preferences.enum";
 import { updateDmUserStatus } from "../../services/dm/dm.api";
 import { toastError, toastInfo } from "../../libs";
+
+const DND_KEY = "dehub_dm_dnd";
 
 const DMSettingsSection: React.FC = () => {
   const user = useUser();
@@ -40,6 +43,16 @@ const DMSettingsSection: React.FC = () => {
   const [dmSubmitting, setDmSubmitting] = useState<boolean>(false);
   const [feeSubmitting, setFeeSubmitting] = useState<boolean>(false);
   const [feeSaved, setFeeSaved] = useState<boolean>(false);
+  const [doNotDisturb, setDoNotDisturb] = useState<boolean>(false);
+
+  useEffect(() => {
+    AsyncStorage.getItem(DND_KEY).then(v => { if (v === "true") setDoNotDisturb(true); }).catch(() => {});
+  }, []);
+
+  const onToggleDnd = useCallback((val: boolean) => {
+    setDoNotDisturb(val);
+    AsyncStorage.setItem(DND_KEY, String(val)).catch(() => {});
+  }, []);
 
   const dmKey = useMemo(() => {
     const disables = JSON.stringify(
@@ -289,6 +302,21 @@ const DMSettingsSection: React.FC = () => {
               </Text>
             </View>
           )}
+        </View>
+        <View className="h-px bg-theme-neutrals-700 ml-16" />
+        <View className="px-4 py-3.5 flex-row items-center justify-between">
+          <View className="flex-row items-center flex-1 pr-3">
+            <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+              <Icon name="BellOff" size={18} color="#9ca3af" />
+            </View>
+            <View className="flex-1">
+              <Text className="text-white text-sm font-medium">Do Not Disturb</Text>
+              <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                Mute all message notifications
+              </Text>
+            </View>
+          </View>
+          <CustomSwitch value={doNotDisturb} onValueChange={onToggleDnd} />
         </View>
       </View>
     </>

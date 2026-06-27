@@ -8,6 +8,7 @@ import React, {
 import {
   View,
   Text,
+  TextInput,
   TouchableOpacity,
   ActivityIndicator,
   Animated,
@@ -21,11 +22,31 @@ import {
   useWeb3Provider,
   useERC20Contract,
   useStreamControllerContract,
+  useSwapRouterContract,
+  usePaymentRouterContract,
 } from "../../hooks/use-web3";
 import * as ethersImport from "ethers";
 import { supportedTokens } from "../../config/constants";
 import { applyGasMargin, parseTxError } from "../../libs/web3.util";
 import { writeContractAA } from "../../libs/aa.write";
+import {
+  confirmPPVPurchase,
+  getPaymentConfig,
+  getPaymentRouterAddress,
+} from "../../services/payment.service";
+import {
+  isPaymentRouterAvailable,
+  unlockPPVAndTipViaRouter,
+} from "../../services/payment-router.service";
+import {
+  isAutoSwapSupported,
+  getSwapQuote,
+  applySlippage,
+  getNativeBalanceBase,
+  swapETHForDHB,
+} from "../../services/swap.service";
+import { sendSolanaPayment } from "../../services/solana-payment.service";
+import { isSolanaChain } from "../../config/solana.constants";
 
 export interface PPVModalProps {
   open?: boolean;
@@ -38,6 +59,8 @@ export interface PPVModalProps {
   trigger?: React.ReactNode;
   triggerClassName?: string;
   triggerText?: string;
+  /** Post's PPV payment chain — when Solana (101/103), pay in SOL/SPL (#41). */
+  paymentChainId?: number;
   onSuccess?: () => void;
 }
 
@@ -52,16 +75,23 @@ const PPVModal: React.FC<PPVModalProps> = ({
   trigger,
   triggerClassName,
   triggerText = "Unlock",
+  paymentChainId,
   onSuccess,
 }) => {
   const user = useUser();
   const { requireAuth, patchUser } = useAuthActions();
   const { provider, account, chainId } = useWeb3Provider();
   const [phase, setPhase] = useState<
-    "idle" | "approving" | "sending" | "sent" | "error"
+    "idle" | "swapping" | "approving" | "sending" | "sent" | "error"
   >("idle");
   const [ppvError, setPpvError] = useState<string | null>(null);
   const successScale = useRef(new Animated.Value(0.6)).current;
+
+  // Atomic swap + PPV + tip in one tx via DeHubPaymentRouter (#45)
+  const [routerAddress, setRouterAddress] = useState<string | undefined>(undefined);
+  const [showTip, setShowTip] = useState(false);
+  const [tipInput, setTipInput] = useState("");
+  const tipAmount = Number(tipInput) || 0;
 
   const isControlled =
     typeof open === "boolean" && typeof onOpenChange === "function";
@@ -71,13 +101,16 @@ const PPVModal: React.FC<PPVModalProps> = ({
     ? (onOpenChange as (o: boolean) => void)
     : setInternalOpen;
 
+  const isSolanaPpv = isSolanaChain(paymentChainId);
   const numericAmount = Number(amount) || 0;
   const userTokenBal = (user?.tokenBalances?.[tokenSymbol] ?? 0) as number;
-  const insufficient = numericAmount > userTokenBal;
+  // Solana balance is enforced on-chain by the transfer itself.
+  const insufficient = !isSolanaPpv && numericAmount > userTokenBal;
   const isSelf =
     !!user?.walletAddress &&
     user.walletAddress?.toLowerCase() === toAddress?.toLowerCase();
-  const isBusy = phase === "approving" || phase === "sending";
+  const isBusy = phase === "swapping" || phase === "approving" || phase === "sending";
+  const canAutoSwap = tokenSymbol === "DHB" && isAutoSwapSupported(chainId);
 
   const tokenMeta = useMemo(() => {
     if (!chainId) return undefined;
@@ -90,6 +123,25 @@ const PPVModal: React.FC<PPVModalProps> = ({
 
   const tokenContract = useERC20Contract(tokenAddress);
   const controllerContract = useStreamControllerContract();
+  const swapRouterContract = useSwapRouterContract();
+
+  // Router-based atomic tip is DHB-on-Base only, and only when deployed (#45)
+  const routerAvailable = tokenSymbol === "DHB" && isPaymentRouterAvailable(chainId, routerAddress);
+  const paymentRouterContract = usePaymentRouterContract(
+    routerAvailable ? routerAddress : undefined,
+  );
+
+  // Fetch payment-router config for the active chain when the modal opens.
+  useEffect(() => {
+    if (!actualOpen || !chainId) return;
+    let cancelled = false;
+    getPaymentConfig().then((cfg) => {
+      if (!cancelled) setRouterAddress(getPaymentRouterAddress(cfg, chainId));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [actualOpen, chainId]);
 
   // Fetch native ETH for gas awareness
   const [ethBalance, setEthBalance] = useState<string>("");
@@ -134,6 +186,8 @@ const PPVModal: React.FC<PPVModalProps> = ({
     if (!actualOpen) {
       setPhase("idle");
       setPpvError(null);
+      setShowTip(false);
+      setTipInput("");
     }
   }, [actualOpen]);
 
@@ -153,6 +207,24 @@ const PPVModal: React.FC<PPVModalProps> = ({
     requireAuth(async () => {
       if (isBusy || phase !== "idle") return;
       setPpvError(null);
+
+      // Solana PPV (#41): pay the creator in SOL/SPL via the backend-built tx.
+      if (isSolanaPpv) {
+        setPhase("sending");
+        try {
+          await sendSolanaPayment({ tokenId, kind: "ppv", chainId: paymentChainId });
+          setPhase("sent");
+          const idStr = String(tokenId);
+          await patchUser((prev) => ({
+            unlocked: Array.from(new Set([...(prev.unlocked || []), idStr])),
+          } as any));
+        } catch (e) {
+          setPhase("error");
+          setPpvError(e instanceof Error ? e.message : "Solana payment failed");
+        }
+        return;
+      }
+
       if (
         !provider ||
         !account ||
@@ -175,6 +247,89 @@ const PPVModal: React.FC<PPVModalProps> = ({
           String(numericAmount),
           tokenDecimals
         );
+
+        // Atomic ETH→DHB swap + PPV + tip in one tx via the payment router (#45).
+        if (tipAmount > 0 && routerAvailable) {
+          if (!paymentRouterContract) {
+            setPpvError("Preparing payment router… try again in a moment");
+            return;
+          }
+          setPhase("sending");
+          try {
+            const tipBN = ethers.utils.parseUnits(String(tipAmount), tokenDecimals);
+            const tx = await unlockPPVAndTipViaRouter({
+              routerContract: paymentRouterContract,
+              tokenId,
+              ppvAmountWei: amountBN,
+              tipAmountWei: tipBN,
+              creator: toAddress,
+            });
+            setPhase("sent");
+            const idStr = String(tokenId);
+            if (tx?.hash) {
+              confirmPPVPurchase({ tokenId, txHash: tx.hash, chainId }).catch((err) => {
+                console.warn("[PPV] Backend confirm fallback to webhook:", err);
+              });
+            }
+            await patchUser(
+              (prev) =>
+                ({
+                  unlocked: Array.from(new Set([...(prev.unlocked || []), idStr])),
+                } as any)
+            );
+          } catch (e) {
+            setPhase("error");
+            setPpvError(parseTxError(e, "send"));
+          }
+          return;
+        }
+
+        // Auto-swap ETH → DHB on Base when on-chain DHB falls short (#44)
+        let dhbBalance = await tokenContract.balanceOf(account);
+        if (ethers.BigNumber.from(dhbBalance).lt(amountBN)) {
+          if (!canAutoSwap || !swapRouterContract) {
+            setPhase("error");
+            setPpvError(`Insufficient ${tokenSymbol} balance`);
+            return;
+          }
+          const shortfall = ethers.BigNumber.from(amountBN).sub(dhbBalance);
+          setPhase("swapping");
+          try {
+            const quote = await getSwapQuote(shortfall);
+            if (!quote) {
+              setPhase("error");
+              setPpvError("No swap route for DHB. Add DHB manually.");
+              return;
+            }
+            const maxETH = applySlippage(quote.amountIn);
+            const ethBal = await getNativeBalanceBase(account);
+            if (ethBal.lt(maxETH)) {
+              setPhase("error");
+              setPpvError(
+                `Need ~${Number(ethers.utils.formatEther(maxETH)).toFixed(5)} ETH to swap but balance is too low`
+              );
+              return;
+            }
+            await swapETHForDHB({
+              routerContract: swapRouterContract,
+              amountOutDHB: shortfall,
+              maxETH,
+              recipient: account,
+              feeTier: quote.feeTier,
+            });
+            dhbBalance = await tokenContract.balanceOf(account);
+            if (ethers.BigNumber.from(dhbBalance).lt(amountBN)) {
+              setPhase("error");
+              setPpvError("Swap done but DHB still short. Try again.");
+              return;
+            }
+          } catch (e) {
+            setPhase("error");
+            setPpvError(parseTxError(e, "swap"));
+            return;
+          }
+        }
+
         setPhase("approving");
         // Check allowance and approve if needed
         const controllerAddress = (
@@ -199,15 +354,23 @@ const PPVModal: React.FC<PPVModalProps> = ({
         }
         setPhase("sending");
         try {
-          await writeContractAA(
+          const tx = await writeContractAA(
             controllerContract,
             "sendFundsForPPV",
             [tokenId, amountBN, toAddress, tokenAddress],
             { context: "send" }
           );
           setPhase("sent");
-          // Mark token unlocked locally
           const idStr = String(tokenId);
+          if (tx?.hash) {
+            confirmPPVPurchase({
+              tokenId,
+              txHash: tx.hash,
+              chainId,
+            }).catch((err) => {
+              console.warn("[PPV] Backend confirm fallback to webhook:", err);
+            });
+          }
           await patchUser(
             (prev) =>
               ({
@@ -243,6 +406,8 @@ const PPVModal: React.FC<PPVModalProps> = ({
     chainId,
     tokenContract,
     controllerContract,
+    swapRouterContract,
+    canAutoSwap,
     tokenMeta,
     tokenAddress,
     isSelf,
@@ -251,6 +416,12 @@ const PPVModal: React.FC<PPVModalProps> = ({
     tokenId,
     toAddress,
     patchUser,
+    tokenSymbol,
+    tipAmount,
+    routerAvailable,
+    paymentRouterContract,
+    isSolanaPpv,
+    paymentChainId,
   ]);
 
   const renderTrigger = () => {
@@ -319,9 +490,59 @@ const PPVModal: React.FC<PPVModalProps> = ({
                       Token Balance
                     </Text>
                   </View>
-                  {insufficient && (
+
+                  {/* Optional tip — swap + unlock + tip in one tx via router (#45) */}
+                  {routerAvailable && !isSelf && (
+                    <View className="mt-3">
+                      <TouchableOpacity
+                        onPress={() => {
+                          if (isBusy) return;
+                          setShowTip((v) => !v);
+                          if (showTip) setTipInput("");
+                        }}
+                        className="flex-row items-center gap-2 py-1"
+                        activeOpacity={0.7}
+                      >
+                        <Ionicons name="gift-outline" size={15} color="#A6A9AC" />
+                        <Text className="flex-1 text-white/70 text-sm">
+                          Add a tip for the creator
+                        </Text>
+                        <Ionicons
+                          name={showTip ? "chevron-up" : "chevron-down"}
+                          size={16}
+                          color="#A6A9AC"
+                        />
+                      </TouchableOpacity>
+                      {showTip && (
+                        <View className="flex-row items-center mt-2 px-4 rounded-xl bg-white/5 border border-white/10">
+                          <TextInput
+                            value={tipInput}
+                            onChangeText={setTipInput}
+                            placeholder="0"
+                            placeholderTextColor="#6F7174"
+                            keyboardType="decimal-pad"
+                            editable={!isBusy}
+                            className="flex-1 h-11 text-white text-base"
+                          />
+                          <Text className="text-white/60 text-sm font-semibold">DHB</Text>
+                        </View>
+                      )}
+                    </View>
+                  )}
+
+                  {insufficient && !canAutoSwap && (
                     <Text className="text-xs text-red-400 mt-2">
                       Insufficient {tokenSymbol} balance
+                    </Text>
+                  )}
+                  {insufficient && canAutoSwap && phase === "idle" && (
+                    <Text className="text-xs text-white/60 mt-2">
+                      Low on {tokenSymbol}? We'll swap ETH → DHB to cover it.
+                    </Text>
+                  )}
+                  {phase === "swapping" && (
+                    <Text className="text-xs text-white/60 mt-2">
+                      Swapping ETH → DHB…
                     </Text>
                   )}
                   {isSelf && (
@@ -336,9 +557,9 @@ const PPVModal: React.FC<PPVModalProps> = ({
                   )}
                 </View>
                 <View className="flex-row items-center justify-center gap-3">
-                  <AccentButtonGradient style={{ borderRadius: 14, opacity: isBusy || insufficient || isSelf ? 0.6 : 1 }}>
+                  <AccentButtonGradient style={{ borderRadius: 14, opacity: isBusy || isSelf || (insufficient && !canAutoSwap) ? 0.6 : 1 }}>
                     <TouchableOpacity
-                      disabled={isBusy || insufficient || isSelf}
+                      disabled={isBusy || isSelf || (insufficient && !canAutoSwap)}
                       onPress={handleUnlock}
                       className="flex-row items-center gap-2 px-5 h-11"
                       activeOpacity={0.85}
@@ -359,9 +580,10 @@ const PPVModal: React.FC<PPVModalProps> = ({
                         />
                       )}
                       <Text className="text-white font-semibold">
+                        {phase === "swapping" && "Swapping..."}
                         {phase === "approving" && "Approving..."}
                         {phase === "sending" && "Processing..."}
-                        {phase === "idle" && "Confirm"}
+                        {phase === "idle" && (tipAmount > 0 ? "Pay & Tip" : "Confirm")}
                         {phase === "error" && "Retry"}
                       </Text>
                     </TouchableOpacity>

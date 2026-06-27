@@ -66,6 +66,8 @@ export interface PostOptionsMenuProps {
   onEditSuccess?: (data: { name?: string; description?: string; category?: string[] }) => void;
   /** Called after delete success */
   onDeleteSuccess?: () => void;
+  /** Called when user taps Send to DM */
+  onSendToDm?: () => void;
   /** Called when user taps Translate Post */
   onTranslatePress?: () => void;
   /** Called when user taps Translate Image (image posts only) */
@@ -133,6 +135,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onVisibilityChange,
   onEditSuccess,
   onDeleteSuccess,
+  onSendToDm,
   onTranslatePress,
   onTranslateImagePress,
   isBlocked: isBlockedProp = false,
@@ -349,6 +352,16 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
             sublabel={t("postOptions.shareDesc")}
             onPress={handleShare}
           />
+
+          {/* Send to DM */}
+          {!!onSendToDm && (
+            <OptionRow
+              icon="send-outline"
+              label="Send to DM"
+              sublabel="Share this post in a conversation"
+              onPress={() => { onClose(); setTimeout(() => onSendToDm(), 300); }}
+            />
+          )}
 
           {/* Translate text */}
           {!!onTranslatePress && (

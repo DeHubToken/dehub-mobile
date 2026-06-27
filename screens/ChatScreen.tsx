@@ -98,7 +98,17 @@ import { toastError, toastInfo, toastSuccess, toastWarning } from "../libs/toast
 import { useKeyboard } from "../hooks/useKeyboard";
 import { createLogger } from "../libs/logger";
 import { useDmPin } from "../hooks/useDmPin";
+import { useCall } from "../context/CallContext";
 
+/** Safely extract a plain string ID from either a raw string or a populated Mongoose document. */
+function resolveConvId(...vals: unknown[]): string {
+  for (const v of vals) {
+    if (!v) continue;
+    if (typeof v === 'string') return v;
+    if (typeof v === 'object' && (v as any)._id) return String((v as any)._id);
+  }
+  return '';
+}
 
 export type ChatScreenProps = {
   route: {
@@ -107,6 +117,8 @@ export type ChatScreenProps = {
       targetAddress?: string;
       targetUser?: Partial<User>;
       title?: string;
+      /** Pre-filled text for the message input (e.g. shared post URL) */
+      sharedText?: string;
     };
   };
 };
@@ -157,6 +169,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     [user],
   );
   const userId = ((user as any)?._id || (user as any)?.id) as string | undefined;
+  const { setCallMessageHandler } = useCall();
 
   const storeMessages = useDmMessages(convId || "");
   const conversations = useDmContacts();
@@ -594,7 +607,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     // Typing indicator
     unsubs.push(
       ws.on(DMSocketEvent.Typing, (p: any) => {
-        const cId = String(p?.dmId || p?.conversation || "");
+        const cId = resolveConvId(p?.dmId, p?.conversation);
         if (cId !== currentConvId) return;
         const fromId = String(p?.userId || p?.sender || "");
         if (fromId === userId) return;
@@ -603,7 +616,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     );
     unsubs.push(
       ws.on(DMSocketEvent.StopTyping, (p: any) => {
-        const cId = String(p?.dmId || p?.conversation || "");
+        const cId = resolveConvId(p?.dmId, p?.conversation);
         if (cId !== currentConvId) return;
         setRemoteTyping(false);
       }),
@@ -852,6 +865,20 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     return () => { dmSendQueue.setConversationResolver(null); };
   }, [ensureConversation]);
 
+  // Register call message handler so call events appear as bubbles in this chat
+  useEffect(() => {
+    setCallMessageHandler((content) => {
+      dmSendQueue.sendText({
+        conversationId: currentConvId || "temp",
+        userId: userId || "me",
+        address,
+        content,
+      });
+    });
+    return () => setCallMessageHandler(null);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setCallMessageHandler, currentConvId, userId, address]);
+
 
   /** Dispatch a standalone tip (msgType: 'tip') — only used when user sends
    *  a tip with NO content attached (no text, no gif, no media). */
@@ -1085,7 +1112,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     const convId = currentConvId;
     if (!convId) return;
     const onServerMsg = (payload: any) => {
-      const cId = String(payload?.conversation || "");
+      const cId = resolveConvId(payload?.conversation, payload?.dmId);
       if (cId !== convId) return;
       // The queue already removes optimistic on success.
       // This is a safety net for edge cases (e.g. queue finished
@@ -1104,7 +1131,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     };
     const onJob = (payload: any) => {
       const raw = payload?.message || payload;
-      const cId = String(raw?.conversation || payload?.dmId || "");
+      const cId = resolveConvId(raw?.conversation, payload?.dmId);
       if (cId !== convId) return;
       const list = (dmState as any).optimisticByConversation?.[convId] as OptimisticMessage[] | undefined;
       if (!list?.length) return;
@@ -1477,6 +1504,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 onClearTip={handleClearTip}
                 dhbBalance={dhbBalance}
                 onPollPress={() => setPollSheetVisible(true)}
+                initialText={route?.params?.sharedText}
               />
             )}
           </View>

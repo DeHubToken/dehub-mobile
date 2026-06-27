@@ -8,7 +8,7 @@ node_modules/
 dist/
 web-build/
 expo-env.d.ts
-
+cosmic-echo-hero-main/
 # Native
 *.orig.*
 *.jks
@@ -38,6 +38,7 @@ yarn-error.*
 
 # Android build outputs (keep android/ folder, ignore build artifacts)
 android/app/build/
+android/app/.cxx/
 android/build/
 android/.gradle/
 android/local.properties

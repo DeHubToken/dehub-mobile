@@ -49,6 +49,7 @@ export interface UseCallReturn {
   toggleMute: () => void;
   toggleCamera: () => void;
   switchCamera: () => void;
+  setCallMessageHandler: (handler: ((content: string) => void) | null) => void;
 }
 
 let engineInstance: IRtcEngine | null = null;
@@ -80,6 +81,10 @@ export function useCall(): UseCallReturn {
 
   const callTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const callTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const callMessageHandlerRef = useRef<((content: string) => void) | null>(null);
+  const setCallMessageHandler = useCallback((handler: ((content: string) => void) | null) => {
+    callMessageHandlerRef.current = handler;
+  }, []);
   const realtimeChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
   const watchChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
 
@@ -354,6 +359,9 @@ export function useCall(): UseCallReturn {
       setCurrentCall(session);
       currentCallRef.current = session;
 
+      // Notify DM chat that a call was initiated
+      callMessageHandlerRef.current?.(callType === "video" ? "📹 Video call" : "📞 Voice call");
+
       // Join Agora immediately (like web) — don't wait for recipient to accept.
       // When recipient accepts they join too and onUserJoined fires.
       await joinChannel(session, callType);
@@ -363,6 +371,7 @@ export function useCall(): UseCallReturn {
         const call = currentCallRef.current;
         if (call && call.status === "ringing") {
           supabase.from("call_sessions").update({ status: "ended" }).eq("id", call.id).then(() => {}, () => {});
+          callMessageHandlerRef.current?.(call.call_type === "video" ? "📵 Missed video call" : "📵 Missed voice call");
           setCurrentCall(null);
           setIsConnecting(false);
           await cleanupEngine();
@@ -416,12 +425,19 @@ export function useCall(): UseCallReturn {
       supabase.removeChannel(watchChannelRef.current);
       watchChannelRef.current = null;
     }
+    // Notify DM chat if call was connected (has duration)
+    if (call?.status === "connected") {
+      const typeLabel = call.call_type === "video" ? "Video" : "Voice";
+      const durLabel = callTimerRef.current ? callDuration : null;
+      const msg = durLabel ? `📞 ${typeLabel} call ended · ${durLabel}` : `📞 ${typeLabel} call ended`;
+      callMessageHandlerRef.current?.(msg);
+    }
     // Supabase update + engine cleanup in background
     if (call && call.id !== "pending") {
       supabase.from("call_sessions").update({ status: "ended" }).eq("id", call.id).then(() => {}, () => {});
     }
     await cleanupEngine();
-  }, [cleanupEngine]);
+  }, [cleanupEngine, callDuration]);
 
   const acceptCall = useCallback(async () => {
     const call = currentCallRef.current;
@@ -503,5 +519,6 @@ export function useCall(): UseCallReturn {
     toggleMute,
     toggleCamera,
     switchCamera,
+    setCallMessageHandler,
   };
 }

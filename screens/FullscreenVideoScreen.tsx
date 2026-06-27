@@ -12,6 +12,7 @@ import {
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { VideoView, useVideoPlayer } from "expo-video";
+import { setAudioModeAsync } from "expo-audio";
 import { BlurView } from "expo-blur";
 import * as ScreenOrientation from "expo-screen-orientation";
 import Animated, {
@@ -80,6 +81,47 @@ const FullscreenVideoScreen = () => {
   const translateY = useSharedValue(0);
   const opacity = useSharedValue(1);
   const isDismissing = useRef(false);
+  const isInPiPRef = useRef(false);
+
+  // Prevent screen close during Picture-in-Picture
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("beforeRemove", (e: any) => {
+      if (isInPiPRef.current) {
+        e.preventDefault();
+        return;
+      }
+    });
+    return unsubscribe;
+  }, [navigation]);
+
+  // Set up audio mode for background play/PiP
+  useEffect(() => {
+    const setupAudio = async () => {
+      try {
+        await setAudioModeAsync({
+          playsInSilentMode: true,
+          allowsRecording: false,
+          shouldPlayInBackground: true,
+          interruptionMode: 'doNotMix',
+          interruptionModeAndroid: 'duckOthers',
+        });
+      } catch (error) {
+        console.warn('[FullscreenVideoScreen] setAudioModeAsync failed:', error);
+      }
+    };
+    setupAudio();
+
+    return () => {
+      // Restore standard audio mode (background play disabled) on unmount
+      setAudioModeAsync({
+        playsInSilentMode: true,
+        allowsRecording: false,
+        shouldPlayInBackground: false,
+        interruptionMode: 'doNotMix',
+        interruptionModeAndroid: 'duckOthers',
+      }).catch(() => {});
+    };
+  }, []);
 
   const { width: screenW, height: screenH } = Dimensions.get("window");
 
@@ -261,6 +303,13 @@ const FullscreenVideoScreen = () => {
                 player={player}
                 contentFit="contain"
                 nativeControls={false}
+                allowsPictureInPicture={true}
+                onPictureInPictureStart={() => {
+                  isInPiPRef.current = true;
+                }}
+                onPictureInPictureStop={() => {
+                  isInPiPRef.current = false;
+                }}
                 style={{ width: "100%", height: "100%" }}
               />
             )}

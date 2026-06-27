@@ -14,7 +14,8 @@ import { stripSoundtrackTag } from "../../libs/parseSoundtrack";
 type Segment =
   | { type: "text"; value: string }
   | { type: "link"; value: string; url: string }
-  | { type: "mention"; value: string; username: string };
+  | { type: "mention"; value: string; username: string }
+  | { type: "cashtag"; value: string; symbol: string };
 
 const ensureUrl = (raw: string): string => {
   const trimmed = (raw || "").trim();
@@ -25,8 +26,8 @@ const ensureUrl = (raw: string): string => {
 
 const parseTextToSegments = (input: string): Segment[] => {
   if (!input) return [];
-  // Match @mentions or URLs
-  const combinedRegex = /(@[\w.]+)|\b((?:https?:\/\/|www\.)[^\s]+)/gi;
+  // Group 1: @mention, Group 2: URL, Group 3: $cashtag
+  const combinedRegex = /(@[\w.]+)|\b((?:https?:\/\/|www\.)[^\s]+)|(\$[a-zA-Z]{1,20})/g;
   const matches = Array.from(input.matchAll(combinedRegex));
   if (matches.length === 0) return [{ type: "text", value: input }];
 
@@ -40,12 +41,15 @@ const parseTextToSegments = (input: string): Segment[] => {
     }
 
     if (m[1]) {
-      // @mention match
-      const username = m[1].slice(1);
-      segments.push({ type: "mention", value: m[1], username });
+      // @mention
+      segments.push({ type: "mention", value: m[1], username: m[1].slice(1) });
+      cursor = index + m[0].length;
+    } else if (m[3]) {
+      // $cashtag
+      segments.push({ type: "cashtag", value: m[3], symbol: m[3].slice(1).toUpperCase() });
       cursor = index + m[0].length;
     } else {
-      // URL match
+      // URL
       let value = m[0];
       let trailing = "";
       while (value.length > 0 && /[\]\)\}.,!?;:]+$/.test(value)) {
@@ -73,6 +77,7 @@ interface FeedCaptionProps {
   description?: string;
   categories?: string[];
   onCategoryPress?: (category: string) => void;
+  onCashtagPress?: (symbol: string) => void;
   maxLines?: number;
   /** When true, shows full content without truncation */
   fullContent?: boolean;
@@ -85,6 +90,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   description,
   categories,
   onCategoryPress,
+  onCashtagPress,
   maxLines = 2,
   fullContent = false,
   showCategories = true,
@@ -120,6 +126,10 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
     showUserProfile(username);
   }, [showUserProfile]);
 
+  const handleCashtagPress = useCallback((symbol: string) => {
+    onCashtagPress?.(symbol);
+  }, [onCashtagPress]);
+
   // Strip soundtrack tag from description before display
   const cleanDescription = useMemo(() => stripSoundtrackTag(description), [description]);
 
@@ -154,9 +164,21 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
             </Text>
           );
         }
+        if (seg.type === "cashtag") {
+          return (
+            <Text
+              key={`${keyPrefix}-c-${idx}`}
+              style={{ color: "#FACC15", fontWeight: "700" }}
+              onPress={() => handleCashtagPress(seg.symbol)}
+              suppressHighlighting
+            >
+              {seg.value}
+            </Text>
+          );
+        }
         return <Text key={`${keyPrefix}-${idx}`}>{seg.value}</Text>;
       }),
-    [handleOpenLink, handleMentionPress],
+    [handleOpenLink, handleMentionPress, handleCashtagPress],
   );
 
   // Build the caption text

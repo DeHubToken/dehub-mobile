@@ -8,6 +8,9 @@ import {
   STREAM_CONTROLLER_CONTRACT_ADDRESSES,
   STREAM_COLLECTION_CONTRACT_ADDRESSES,
 } from "../config/web3.constants";
+import { ChainId } from "../config/constants";
+import { SWAP_ROUTER_ABI, UNISWAP_SWAP_ROUTER } from "../services/swap.service";
+import { PAYMENT_ROUTER_ABI } from "../services/payment-router.service";
 import { ethers } from "ethers";
 import { getAuthMethod } from "../libs/auth.utils";
 import { writeContractAA } from "../libs/aa.write";
@@ -349,6 +352,57 @@ export function useStreamCollectionContract() {
       stale = true;
     };
   }, [provider, chainId]);
+  return contract;
+}
+
+// Uniswap V3 SwapRouter (Base) — used for ETH→DHB auto-swap on PPV unlock (#44)
+export function useSwapRouterContract() {
+  const { provider, chainId } = useWeb3Provider();
+  const [contract, setContract] = useState<any>();
+  useEffect(() => {
+    if (!provider || chainId !== ChainId.BASE_MAINNET) {
+      setContract(undefined);
+      return;
+    }
+    let stale = false;
+    (async () => {
+      try {
+        const c = await buildContract(provider, SWAP_ROUTER_ABI, UNISWAP_SWAP_ROUTER, true);
+        if (!stale) setContract(c);
+      } catch (e) {
+        console.warn("[useSwapRouterContract]", e);
+      }
+    })();
+    return () => {
+      stale = true;
+    };
+  }, [provider, chainId]);
+  return contract;
+}
+
+// DeHubPaymentRouter — atomic ETH→DHB swap + PPV + tip in one tx (#45).
+// Address is dynamic (from GET /config/payments) and only deployed on Base.
+export function usePaymentRouterContract(routerAddress?: string) {
+  const { provider, chainId } = useWeb3Provider();
+  const [contract, setContract] = useState<any>();
+  useEffect(() => {
+    if (!provider || !routerAddress || chainId !== ChainId.BASE_MAINNET) {
+      setContract(undefined);
+      return;
+    }
+    let stale = false;
+    (async () => {
+      try {
+        const c = await buildContract(provider, PAYMENT_ROUTER_ABI, routerAddress, true);
+        if (!stale) setContract(c);
+      } catch (e) {
+        console.warn("[usePaymentRouterContract]", e);
+      }
+    })();
+    return () => {
+      stale = true;
+    };
+  }, [provider, chainId, routerAddress]);
   return contract;
 }
 

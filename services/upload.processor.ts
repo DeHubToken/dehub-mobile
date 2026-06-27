@@ -9,6 +9,7 @@ import {
 import { xhrUploadFormData } from "../libs/xhr-upload";
 import { getContractsForMint } from "../libs/contract.factory";
 import { mintNftOnChain, mintWithBounty } from "../services/mint.service";
+import { broadcastSolanaMint } from "../services/solana.service";
 import { supportedTokens } from "../config/constants";
 import { toastError, toastSuccess } from "../libs/toast";
 import { parseTxError } from "../libs/web3.util";
@@ -89,6 +90,12 @@ function rebuildFormData(job: UploadJob): FormData {
   fd.append("plans", JSON.stringify([]));
   if (walletAddress) fd.append("address", walletAddress.toLowerCase());
 
+  // Solana posts (#41): backend reads `minter` (base58, case-sensitive) to build
+  // the partially-signed mint transaction.
+  if (job.isSolana && job.solanaAddress) {
+    fd.append("minter", job.solanaAddress);
+  }
+
   if (job.isQuote && job.quotedTokenId != null) {
     fd.append("quotedTokenId", String(job.quotedTokenId));
   }
@@ -125,17 +132,36 @@ async function processJob(job: UploadJob): Promise<void> {
     }
 
     const createdTokenId = Number(result?.createdTokenId);
-    const timestamp = result?.timestamp;
-    const v = result?.v;
-    const r = result?.r;
-    const s = result?.s;
 
-    if (createdTokenId == null || timestamp == null || v == null || !r || !s) {
-      throw new Error("Mint signature payload missing from server response");
+    // Solana mint: backend returns a partially-signed tx + mint address instead of v/r/s.
+    const isSolanaMint = !!(result?.isSolana && result?.transaction && result?.mintAddress);
+    if (job.isSolana || isSolanaMint) {
+      if (!isSolanaMint || !createdTokenId) {
+        throw new Error(
+          result?.isSolana
+            ? "Solana mint data incomplete from server. Please try again."
+            : "Solana minting is not enabled on the server. Try an EVM chain.",
+        );
+      }
+      mintParams = {
+        createdTokenId,
+        solanaTransaction: result.transaction,
+        solanaMintAddress: result.mintAddress,
+      } as MintParams;
+      uploadActions.updateStage(job.id, "processing", mintParams);
+    } else {
+      const timestamp = result?.timestamp;
+      const v = result?.v;
+      const r = result?.r;
+      const s = result?.s;
+
+      if (createdTokenId == null || timestamp == null || v == null || !r || !s) {
+        throw new Error("Mint signature payload missing from server response");
+      }
+
+      mintParams = { createdTokenId, timestamp, v, r, s };
+      uploadActions.updateStage(job.id, "processing", mintParams);
     }
-
-    mintParams = { createdTokenId, timestamp, v, r, s };
-    uploadActions.updateStage(job.id, "processing", mintParams);
   }
 
   // Final abort check before minting — once we call the contract there's no undo
@@ -147,43 +173,57 @@ async function processJob(job: UploadJob): Promise<void> {
   uploadActions.updateProgress(job.id, 0.85);
   uploadActions.updateStage(job.id, "minting");
 
-  const { collectionContract, controllerContract } =
-    await getContractsForMint(job.chainId);
-
-  uploadActions.updateProgress(job.id, 0.9);
-
-  let tx: any;
-
-  if (job.isBounty && job.bountyConfig) {
-    const bountyToken = supportedTokens.find(
-      (t) => t.symbol === job.bountyConfig!.tokenSymbol && t.chainId === job.chainId,
-    );
-    if (!bountyToken) throw new Error("Unsupported bounty token for this chain");
-
-    tx = await mintWithBounty(
-      controllerContract,
-      mintParams.createdTokenId,
-      mintParams.timestamp,
-      mintParams.v,
-      mintParams.r,
-      mintParams.s,
-      bountyToken as any,
-      Number(job.bountyConfig.rewardPerPerson),
-      Number(job.bountyConfig.viewers),
-      Number(job.bountyConfig.commenters),
-    );
+  // Solana mint (#41): sign the partial tx as fee payer + broadcast — no EVM contracts.
+  if (job.isSolana && mintParams.solanaTransaction && mintParams.solanaMintAddress) {
+    uploadActions.updateProgress(job.id, 0.9);
+    const sol = await broadcastSolanaMint({
+      transactionBase64: mintParams.solanaTransaction,
+      mintAddress: mintParams.solanaMintAddress,
+      tokenId: mintParams.createdTokenId,
+      chainId: job.chainId,
+    });
+    if (sol.confirmWarning) {
+      toastError(sol.confirmWarning);
+    }
   } else {
-    tx = await mintNftOnChain(
-      collectionContract,
-      mintParams.createdTokenId,
-      mintParams.timestamp,
-      mintParams.v,
-      mintParams.r,
-      mintParams.s,
-    );
-  }
+    const { collectionContract, controllerContract } =
+      await getContractsForMint(job.chainId);
 
-  await tx?.wait?.(1);
+    uploadActions.updateProgress(job.id, 0.9);
+
+    let tx: any;
+
+    if (job.isBounty && job.bountyConfig) {
+      const bountyToken = supportedTokens.find(
+        (t) => t.symbol === job.bountyConfig!.tokenSymbol && t.chainId === job.chainId,
+      );
+      if (!bountyToken) throw new Error("Unsupported bounty token for this chain");
+
+      tx = await mintWithBounty(
+        controllerContract,
+        mintParams.createdTokenId,
+        mintParams.timestamp!,
+        mintParams.v!,
+        mintParams.r!,
+        mintParams.s!,
+        bountyToken as any,
+        Number(job.bountyConfig.rewardPerPerson),
+        Number(job.bountyConfig.viewers),
+        Number(job.bountyConfig.commenters),
+      );
+    } else {
+      tx = await mintNftOnChain(
+        collectionContract,
+        mintParams.createdTokenId,
+        mintParams.timestamp!,
+        mintParams.v!,
+        mintParams.r!,
+        mintParams.s!,
+      );
+    }
+
+    await tx?.wait?.(1);
+  }
 
   if (job.payload.pollData) {
     try {
