@@ -16,6 +16,7 @@ interface ApiOptions {
   body?: any;
   headers?: Record<string, string>;
   isAuthRequired?: boolean;
+  params?: Record<string, any>;
 }
 
 /**
@@ -34,10 +35,18 @@ export const apiClient = {
       body,
       headers = {},
       isAuthRequired = true,
+      params,
     } = options;
 
-    // Construct full URL
-    const url = `${API_BASE_URL}${endpoint}`;
+    // Construct full URL, appending query params if provided
+    let url = `${API_BASE_URL}${endpoint}`;
+    if (params) {
+      const qs = Object.entries(params)
+        .filter(([, v]) => v !== undefined && v !== null)
+        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+        .join('&');
+      if (qs) url += (url.includes('?') ? '&' : '?') + qs;
+    }
     
     // Prepare headers
     // Robust RN FormData detection: works across polyfills/realms

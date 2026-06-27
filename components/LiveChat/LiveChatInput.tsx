@@ -5,18 +5,24 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
+  Platform,
+  Keyboard,
 } from "react-native";
 import Icon from "../ui/Icon";
 import MentionSuggestions from "../common/MentionSuggestions";
 import { useMentions } from "../../hooks/useMentions";
 import { sendAIChat } from "../../services/ai.service";
 import type { LiveChatMessageData } from "../../services/livechat.service";
+import { uploadLiveChatVoice } from "../../services/livechat.service";
+import { toastError } from "../../libs/toast";
+import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../Comments/VoiceNoteRecorder";
+import type { VoiceNoteResult } from "../Comments/VoiceNoteRecorder";
 
 const MAX_LENGTH = 500;
 const WARN_THRESHOLD = 50;
 
 interface LiveChatInputProps {
-  onSend: (content: string, replyTo?: string) => void;
+  onSend: (content: string, replyTo?: string, audioUrl?: string, audioDuration?: number) => void;
   replyingTo: LiveChatMessageData | null;
   onCancelReply: () => void;
   editingMessage: LiveChatMessageData | null;
@@ -46,8 +52,46 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
   const mentions = useMentions(text, setText);
   const [cooldown, setCooldown] = useState(false);
   const [enhancing, setEnhancing] = useState(false);
+  const [uploadingVoice, setUploadingVoice] = useState(false);
   const inputRef = useRef<TextInput>(null);
   const cooldownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleVoiceRecordingComplete = useCallback(
+    async (result: VoiceNoteResult) => {
+      try {
+        setUploadingVoice(true);
+        const fileName = result.uri.split("/").pop() || "voice_note.m4a";
+        const mimeType = result.mimeType || (Platform.OS === "ios" ? "audio/m4a" : "audio/mp4");
+
+        const uploadRes = await uploadLiveChatVoice(result.uri, mimeType, fileName);
+        if (uploadRes?.url) {
+          onSend(
+            "",
+            replyingTo?._id,
+            uploadRes.url,
+            uploadRes.duration || Math.round(result.durationMs / 1000)
+          );
+          onCancelReply();
+        }
+      } catch (e) {
+        console.error("[LiveChatInput] failed to upload voice", e);
+        toastError("Failed to upload voice message");
+      } finally {
+        setUploadingVoice(false);
+      }
+    },
+    [onSend, replyingTo, onCancelReply]
+  );
+
+  const recorder = useVoiceRecorder({
+    onRecordingComplete: handleVoiceRecordingComplete,
+    onCancel: () => {},
+  });
+
+  const handleStartRecording = useCallback(() => {
+    Keyboard.dismiss();
+    recorder.startRecording();
+  }, [recorder]);
 
   useEffect(() => {
     if (editingMessage) {
@@ -118,7 +162,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
   return (
     <View className="border-t border-white/5">
-      {editingMessage && (
+      {editingMessage && !recorder.isRecording && !uploadingVoice && (
         <View className="flex-row items-center px-4 py-2 bg-white/5 border-l-2 border-amber-500 mx-3 mt-2 rounded-lg">
           <View className="flex-1 mr-2">
             <Text className="text-amber-400 text-[11px] font-medium">Editing message</Text>
@@ -135,7 +179,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         </View>
       )}
 
-      {replyingTo && !editingMessage && (
+      {replyingTo && !editingMessage && !recorder.isRecording && !uploadingVoice && (
         <View className="flex-row items-center px-4 py-2 bg-white/5 border-l-2 border-blue-500 mx-3 mt-2 rounded-lg">
           <View className="flex-1 mr-2">
             <Text className="text-blue-400 text-[11px] font-medium">
@@ -158,75 +202,98 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         loading={mentions.loading}
       />
 
-      <View className="flex-row items-end px-2 py-1.5 gap-0.5">
-        {!hasContent && onGifPress && !disabled && (
+      {uploadingVoice ? (
+        <View className="flex-row items-center justify-center py-4 bg-theme-neutrals-800 rounded-xl mx-2 my-1.5">
+          <ActivityIndicator size="small" color="#3B82F6" />
+          <Text className="text-white/70 text-sm ml-2">Uploading voice message...</Text>
+        </View>
+      ) : recorder.isRecording ? (
+        <VoiceNoteRecordingOverlay recorder={recorder} />
+      ) : (
+        <View className="flex-row items-end px-2 py-1.5 gap-0.5">
+          {!hasContent && onGifPress && !disabled && (
+            <TouchableOpacity
+              onPress={onGifPress}
+              className="p-2 items-center justify-center"
+              hitSlop={4}
+              activeOpacity={0.6}
+              style={{ width: 38, height: 38 }}
+            >
+              <Text style={{ fontSize: 12, fontWeight: '900', color: '#A6A9AC', letterSpacing: 0.5 }}>GIF</Text>
+            </TouchableOpacity>
+          )}
+
+          <View className="flex-1 bg-theme-neutrals-800 rounded-xl px-3 py-1.5 max-h-[100px]">
+            <TextInput
+              ref={inputRef}
+              value={text}
+              onChangeText={handleChangeText}
+              onSelectionChange={mentions.handleSelectionChange}
+              placeholder={placeholder}
+              placeholderTextColor="#666"
+              multiline
+              maxLength={MAX_LENGTH}
+              editable={!disabled && !enhancing}
+              className="text-white text-[14px] leading-5 p-2 m-0"
+              style={{ maxHeight: 80 }}
+            />
+          </View>
+
+          {showCounter && (
+            <Text
+              className={`text-[11px] font-medium px-1 self-center ${
+                isOverLimit ? "text-red-400" : remaining <= 20 ? "text-amber-400" : "text-white/30"
+              }`}
+            >
+              {remaining}
+            </Text>
+          )}
+
           <TouchableOpacity
-            onPress={onGifPress}
-            className="p-2 items-center justify-center"
+            onPress={handleEnhance}
+            className="p-2"
             hitSlop={4}
             activeOpacity={0.6}
-            style={{ width: 38, height: 38 }}
+            disabled={!text.trim() || enhancing}
           >
-            <Text style={{ fontSize: 12, fontWeight: '900', color: '#A6A9AC', letterSpacing: 0.5 }}>GIF</Text>
+            {enhancing ? (
+              <ActivityIndicator size={18} color="#A78BFA" />
+            ) : (
+              <Icon
+                name="Sparkles"
+                size={22}
+                color={text.trim() ? "#A78BFA" : "#3A3A3C"}
+              />
+            )}
           </TouchableOpacity>
-        )}
 
-        <View className="flex-1 bg-theme-neutrals-800 rounded-xl px-3 py-1.5 max-h-[100px]">
-          <TextInput
-            ref={inputRef}
-            value={text}
-            onChangeText={handleChangeText}
-            onSelectionChange={mentions.handleSelectionChange}
-            placeholder={placeholder}
-            placeholderTextColor="#666"
-            multiline
-            maxLength={MAX_LENGTH}
-            editable={!disabled && !enhancing}
-            className="text-white text-[14px] leading-5 p-2 m-0"
-            style={{ maxHeight: 80 }}
-          />
-        </View>
-
-        {showCounter && (
-          <Text
-            className={`text-[11px] font-medium px-1 self-center ${
-              isOverLimit ? "text-red-400" : remaining <= 20 ? "text-amber-400" : "text-white/30"
-            }`}
-          >
-            {remaining}
-          </Text>
-        )}
-
-        <TouchableOpacity
-          onPress={handleEnhance}
-          className="p-2"
-          hitSlop={4}
-          activeOpacity={0.6}
-          disabled={!text.trim() || enhancing}
-        >
-          {enhancing ? (
-            <ActivityIndicator size={18} color="#A78BFA" />
+          {text.trim() || editingMessage ? (
+            <TouchableOpacity
+              onPress={handleSend}
+              disabled={disabled || !text.trim() || cooldown || isOverLimit || enhancing}
+              className="p-2"
+            >
+              <Icon
+                name="Send"
+                size={22}
+                color={text.trim() && !disabled && !cooldown && !isOverLimit ? "#3B82F6" : "#333"}
+              />
+            </TouchableOpacity>
           ) : (
-            <Icon
-              name="Sparkles"
-              size={22}
-              color={text.trim() ? "#A78BFA" : "#3A3A3C"}
-            />
+            <TouchableOpacity
+              onPress={handleStartRecording}
+              disabled={disabled}
+              className="p-2"
+            >
+              <Icon
+                name="Mic"
+                size={22}
+                color={!disabled ? "#A6A9AC" : "#333"}
+              />
+            </TouchableOpacity>
           )}
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={handleSend}
-          disabled={disabled || !text.trim() || cooldown || isOverLimit || enhancing}
-          className="p-2"
-        >
-          <Icon
-            name="Send"
-            size={22}
-            color={text.trim() && !disabled && !cooldown && !isOverLimit ? "#3B82F6" : "#333"}
-          />
-        </TouchableOpacity>
-      </View>
+        </View>
+      )}
     </View>
   );
 };

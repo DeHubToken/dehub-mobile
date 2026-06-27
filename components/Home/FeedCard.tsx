@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useRef, useState, useMemo } from "react";
+import React, { memo, useCallback, useRef, useState, useMemo, useEffect } from "react";
 import {
   View,
   Text,
@@ -28,6 +28,9 @@ import GlassTipSheet from "../Tip/GlassTipSheet";
 import PPVSheet from "../PPV/PPVSheet";
 import BountyInfoSheet from "./BountyInfoSheet";
 import AskAISheet from "./AskAISheet";
+import AddToFolderSheet from "./AddToFolderSheet";
+import ShareToDmSheet from "../DM/ShareToDmSheet";
+import CashtagSheet from "./CashtagSheet";
 import Icon from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
 import SoundtrackBadge from "../Post/SoundtrackBadge";
@@ -50,12 +53,12 @@ import {
   getShortsThumbnailUrl,
   resolveThumbnail,
   formatCompactNumber,
-  shareProfile,
   toastError,
 } from "../../libs";
+import { sharePostAsImage } from "../../libs/shareImage";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { useStreamAccessInfo } from "../../libs/validators.util";
-import { voteOnNFT } from "../../services/nft.service";
+import { voteOnNFT, getPpvSalesCount } from "../../services/nft.service";
 import { savePost } from "../../services/feed.service";
 import { toggleRepost } from "../../services/repost.service";
 import { WEBSITE_LINK } from "../../config";
@@ -222,6 +225,17 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isPayPerView = streamInfo?.isPayPerView;
   const payPerViewAmount = streamInfo?.payPerViewAmount || 0;
   const payPerViewTokenSymbol = streamInfo?.payPerViewTokenSymbol || "DHB";
+  // PPV payment chain — Solana posts pay in SOL/SPL (#41)
+  const payPerViewChainId = Array.isArray(streamInfo?.payPerViewChainIds)
+    ? streamInfo?.payPerViewChainIds[0]
+    : streamInfo?.payPerViewChainIds;
+
+  // PPV sales count — fetch once for owner's own PPV posts
+  const [ppvSalesCount, setPpvSalesCount] = useState<number | null>(null);
+  useEffect(() => {
+    if (!isOwnerPost || !isPayPerView || !tokenId) return;
+    getPpvSalesCount(tokenId).then(r => setPpvSalesCount(r.salesCount)).catch(() => {});
+  }, [isOwnerPost, isPayPerView, tokenId]);
   const isLocked = streamInfo?.isLockContent;
   const lockContentAmount = streamInfo?.lockAmount || streamInfo?.lockContentAmount || 0;
   const lockContentTokenSymbol = streamInfo?.lockContentTokenSymbol || "DHB";
@@ -268,6 +282,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [showPPVModal, setShowPPVModal] = useState(false);
   const [showBountyModal, setShowBountyModal] = useState(false);
   const [showAISheet, setShowAISheet] = useState(false);
+  const [showAddToFolder, setShowAddToFolder] = useState(false);
+  const [showShareToDm, setShowShareToDm] = useState(false);
+  const [activeCashtag, setActiveCashtag] = useState<string | null>(null);
   const [ppvUnlocked, setPpvUnlocked] = useState(false);
   // Local unlock overrides server PPV state after successful payment
   const isActuallyLockedPPV = isServerLockedPPV && !ppvUnlocked;
@@ -405,12 +422,19 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const handleSavePress = useCallback(() => {
     requireAuth?.(() => {
       const wasSaved = saved;
-      setSaved((s) => !s);
+      const willBeSaved = !wasSaved;
+      setSaved(willBeSaved);
       if (tokenId != null) {
-        savePost(Number(tokenId), userAddress).catch(() => {
-          setSaved(wasSaved);
-          toastError("Failed to save");
-        });
+        savePost(Number(tokenId), userAddress)
+          .then(() => {
+            if (willBeSaved) {
+              setShowAddToFolder(true);
+            }
+          })
+          .catch(() => {
+            setSaved(wasSaved);
+            toastError("Failed to save");
+          });
       }
     });
   }, [tokenId, userAddress, saved, requireAuth]);
@@ -418,11 +442,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const handleSharePress = useCallback(() => {
     if (tokenId == null) return;
     const url = `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
-    const message = `Check out this post ${url}`;
-    try {
-      shareProfile(url, message);
-    } catch {}
-  }, [tokenId]);
+    sharePostAsImage(Number(tokenId), url, localTitle || undefined).catch(() => {});
+  }, [tokenId, localTitle]);
 
   const handleTipPress = useCallback(() => {
     if (!minterAddress) return;
@@ -829,6 +850,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         >
           <Text className="text-white text-[10px] font-bold text-center">
             PPV: {payPerViewAmount} {payPerViewTokenSymbol}
+            {isOwnerPost && ppvSalesCount != null ? `  ·  ${ppvSalesCount} sold` : ""}
           </Text>
         </View>
       )}
@@ -958,6 +980,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         description={(isTranslated ? translatedTexts.description : localDescription) || undefined}
         categories={localCategories}
         onCategoryPress={onCategorySelect}
+        onCashtagPress={(sym) => setActiveCashtag(sym)}
         fullContent={fullContent}
         showCategories={fullContent}
       />
@@ -1066,6 +1089,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           tokenId={Number(tokenId) || 0}
           recipientName={displayName}
           tipContext="content"
+          paymentChainId={chainId}
         />
       ) : null}
 
@@ -1078,6 +1102,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           amount={payPerViewAmount}
           tokenSymbol={payPerViewTokenSymbol}
           contentType={isVideo ? "video" : "image"}
+          paymentChainId={payPerViewChainId}
           onSuccess={handlePPVSuccess}
         />
       ) : null}
@@ -1104,6 +1129,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
+      {tokenId != null && (
+        <AddToFolderSheet
+          visible={showAddToFolder}
+          onClose={() => setShowAddToFolder(false)}
+          tokenId={tokenId}
+        />
+      )}
+
       <PostOptionsMenu
         visible={showOptionsMenu}
         onClose={() => setShowOptionsMenu(false)}
@@ -1123,8 +1156,24 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         onVisibilityChange={handleVisibilityChange}
         onEditSuccess={handleEditSuccess}
         onDeleteSuccess={handleDeleteSuccess}
+        onSendToDm={isSignedIn ? () => setShowShareToDm(true) : undefined}
         onTranslatePress={handleTranslate}
         onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
+      />
+
+      {tokenId != null && (
+        <ShareToDmSheet
+          visible={showShareToDm}
+          onClose={() => setShowShareToDm(false)}
+          tokenId={tokenId}
+          postTitle={localTitle || undefined}
+        />
+      )}
+
+      <CashtagSheet
+        visible={!!activeCashtag}
+        symbol={activeCashtag || ""}
+        onClose={() => setActiveCashtag(null)}
       />
 
       <ImageTranslationSheet

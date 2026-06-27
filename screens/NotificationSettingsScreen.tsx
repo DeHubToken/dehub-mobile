@@ -9,6 +9,7 @@ import {
   Linking,
   Platform,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import ScreenHeader from '../components/ScreenHeader';
 import Icon, { type IconName } from '../components/ui/Icon';
 import CustomSwitch from '../components/ui/CustomSwitch';
@@ -117,6 +118,16 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
   const [saving, setSaving] = useState(false);
   const [pushPermissionGranted, setPushPermissionGranted] = useState(false);
   const [prefs, setPrefs] = useState<NotificationPreferences>(getDefaultNotificationPreferences());
+  const [buyBotAlerts, setBuyBotAlerts] = useState(true);
+
+  useEffect(() => {
+    AsyncStorage.getItem('dehub_buybot_hidden').then(v => { if (v === 'true') setBuyBotAlerts(false); }).catch(() => {});
+  }, []);
+
+  const onToggleBuyBot = useCallback((val: boolean) => {
+    setBuyBotAlerts(val);
+    AsyncStorage.setItem('dehub_buybot_hidden', String(!val)).catch(() => {});
+  }, []);
 
   useEffect(() => {
     const loadPrefs = async () => {
@@ -284,6 +295,27 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
             </View>
           </View>
         ))}
+
+        <View className="mt-6 mx-4">
+          <View className="flex-row items-center mb-2 ml-1">
+            <Icon name="MessageSquare" size={13} color="#9ca3af" />
+            <Text className="text-theme-neutrals-500 text-[11px] uppercase ml-1.5 tracking-widest font-semibold">Chat</Text>
+          </View>
+          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
+            <View className="px-4 py-3.5 flex-row items-center justify-between">
+              <View className="flex-row items-center flex-1 pr-3">
+                <View className="mr-3 w-8 h-8 rounded-lg bg-theme-neutrals-700/50 items-center justify-center">
+                  <Icon name="Bot" size={16} color="#9ca3af" />
+                </View>
+                <View className="flex-1">
+                  <Text className="text-white text-sm font-medium">Buy Bot Alerts</Text>
+                  <Text className="text-theme-neutrals-500 text-[11px]">Show buy bot transaction alerts in chat</Text>
+                </View>
+              </View>
+              <CustomSwitch value={buyBotAlerts} onValueChange={onToggleBuyBot} />
+            </View>
+          </View>
+        </View>
 
         <View className="mt-6 mx-4">
           <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">{t('settings.quietHours')}</Text>

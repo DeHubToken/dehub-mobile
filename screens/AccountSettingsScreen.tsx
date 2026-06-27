@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
   View,
@@ -7,6 +7,7 @@ import {
   ScrollView,
   ActivityIndicator,
   Image,
+  FlatList,
 } from "react-native";
 import Constants from "expo-constants";
 import { useUser, useAuthState, useAuthActions, useProvider } from "../context/AuthContext";
@@ -27,6 +28,9 @@ import {
   DELETE_DATA_OR_ACCOUNT_LINK,
 } from "../config/links";
 import DMSettingsSection from "../components/Settings/DMSettingsSection";
+import GlassModal from "../components/ui/GlassModal";
+import { getFreeAccessList, removeFreeAccess } from "../services/dm/dm.api";
+import { truncateAddress } from "../libs/strings.util";
 import { ChainId } from "../config/constants";
 import ChainSwitchModal from "../components/Settings/ChainSwitchModal";
 import BlockedAccountsModal from "../components/Settings/BlockedAccountsModal";
@@ -113,6 +117,10 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   const [reviewModalVisible, setReviewModalVisible] = useState(false);
   const [languageModalVisible, setLanguageModalVisible] = useState(false);
   const [currentLang, setCurrentLang] = useState(i18nInstance.language);
+  const [freeDmModalVisible, setFreeDmModalVisible] = useState(false);
+  const [freeAccessList, setFreeAccessList] = useState<string[]>([]);
+  const [freeAccessLoading, setFreeAccessLoading] = useState(false);
+  const [revokingAddress, setRevokingAddress] = useState<string | null>(null);
   const { t } = useTranslation();
   const isImported = authMethod === "local";
   const allow = isSignedIn && !needsUsername;
@@ -134,6 +142,38 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   }, [signingOut, signOut]);
 
   const blockedCount = (user?.blocklist?.blocked?.length || 0) as number;
+
+  const loadFreeAccessList = useCallback(async () => {
+    const address = (user as any)?.address || (user as any)?.walletAddress;
+    if (!address) return;
+    setFreeAccessLoading(true);
+    try {
+      const list = await getFreeAccessList(address);
+      setFreeAccessList(Array.isArray(list) ? list : []);
+    } catch {
+      setFreeAccessList([]);
+    } finally {
+      setFreeAccessLoading(false);
+    }
+  }, [user]);
+
+  const handleOpenFreeAccessList = useCallback(() => {
+    setFreeDmModalVisible(true);
+    loadFreeAccessList();
+  }, [loadFreeAccessList]);
+
+  const handleRevokeAccess = useCallback(async (address: string) => {
+    setRevokingAddress(address);
+    try {
+      await removeFreeAccess(address);
+      setFreeAccessList(prev => prev.filter(a => a !== address));
+      toastSuccess('Free access revoked');
+    } catch (e) {
+      toastError(e, 'Failed to revoke');
+    } finally {
+      setRevokingAddress(null);
+    }
+  }, []);
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
@@ -205,6 +245,16 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
 
         <View className="mb-6">
           <DMSettingsSection />
+          <View className="mt-2">
+            <SectionCard>
+              <SettingsRow
+                icon="Gift"
+                label="Free DM Access List"
+                subtitle="Users who can message you for free"
+                onPress={handleOpenFreeAccessList}
+              />
+            </SectionCard>
+          </View>
         </View>
 
         <View className="mb-6">
@@ -370,6 +420,64 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
           setCurrentLang(i18nInstance.language);
         }}
       />
+
+      <GlassModal
+        visible={freeDmModalVisible}
+        onClose={() => setFreeDmModalVisible(false)}
+        presentation="bottom"
+        maxHeight="70%"
+        blurIntensity={30}
+      >
+        <View className="flex-1">
+          <View className="px-5 pt-4 pb-3 flex-row items-center justify-between border-b border-white/10">
+            <Text className="text-white font-bold text-base">Free DM Access List</Text>
+            {freeAccessLoading && <ActivityIndicator size="small" color="#8b5cf6" />}
+          </View>
+          <Text className="text-theme-neutrals-500 text-xs px-5 pt-3 pb-1">
+            Users who can message you for free, bypassing your message fee.
+          </Text>
+          {!freeAccessLoading && freeAccessList.length === 0 ? (
+            <View className="flex-1 items-center justify-center py-12">
+              <Icon name="Gift" size={36} color="#4b5563" />
+              <Text className="text-theme-neutrals-500 text-sm mt-3">No users have free access.</Text>
+              <Text className="text-theme-neutrals-600 text-xs mt-1 text-center px-8">
+                Grant access from a DM conversation.
+              </Text>
+            </View>
+          ) : (
+            <FlatList
+              data={freeAccessList}
+              keyExtractor={item => item}
+              contentContainerStyle={{ padding: 16, gap: 8 }}
+              renderItem={({ item: address }) => {
+                const busy = revokingAddress === address;
+                return (
+                  <View className="flex-row items-center bg-theme-neutrals-800/60 rounded-xl px-3 py-3 gap-3">
+                    <View className="w-9 h-9 rounded-full bg-theme-neutrals-700 items-center justify-center">
+                      <Icon name="User" size={16} color="#9ca3af" />
+                    </View>
+                    <Text className="flex-1 text-white text-sm font-mono">
+                      {truncateAddress(address, 8, 6)}
+                    </Text>
+                    <TouchableOpacity
+                      onPress={() => handleRevokeAccess(address)}
+                      disabled={busy}
+                      className="bg-red-500/20 border border-red-500/30 px-3 py-1.5 rounded-lg"
+                      activeOpacity={0.7}
+                    >
+                      {busy ? (
+                        <ActivityIndicator size="small" color="#ef4444" />
+                      ) : (
+                        <Text className="text-red-400 text-xs font-semibold">Revoke</Text>
+                      )}
+                    </TouchableOpacity>
+                  </View>
+                );
+              }}
+            />
+          )}
+        </View>
+      </GlassModal>
     </View>
   );
 };

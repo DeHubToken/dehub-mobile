@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
 import { View } from "react-native";
 import ProfileHeader from "../components/Profile/ProfileHeader";
-import ProfileStats from "../components/Profile/ProfileStats";
-import ProfileAssets from "../components/Profile/ProfileAssets";
-import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
-import ProfileApps from "../components/Profile/ProfileApps";
 import ProfileTabs from "../components/Profile/ProfileTabs";
+import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import ProfileSignInPrompt from "../components/Profile/ProfileSignInPrompt";
 import ScreenHeader from "../components/ScreenHeader";
 
@@ -50,8 +47,6 @@ const ProfileScreen: React.FC = () => {
       <ScreenHeader title="Profile" />
       <View style={{ flex: 1 }}>
         <ProfileHeader />
-        <ProfileAssets />
-        <ProfileApps />
         <ProfileTabs />
       </View>
     </View>

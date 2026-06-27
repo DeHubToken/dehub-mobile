@@ -11,6 +11,7 @@ import {
 import { minNft } from "../services/nft.service";
 import { mintNftOnChain, mintWithBounty } from "../services/mint.service";
 import { getFileName, guessMime } from "../libs/assets.util";
+import { extractHashtagCategories } from "../libs/strings.util";
 import { filteredStreamInfo, isValidDataForMinting, getTotalBountyAmount } from "../libs/validators.util";
 import { parseTxError } from "../libs/web3.util";
 import { toastError, toastSuccess } from "../libs/toast";
@@ -20,6 +21,7 @@ import {
   streamInfoKeys,
 } from "../config/constants";
 import { supportedNetworks } from "../config/web3.constants";
+import { isSolanaChain, findSolanaToken } from "../config/solana.constants";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
 import type { AttachedSound } from "./usePostSound";
 import {
@@ -75,6 +77,10 @@ export type UploadPayload = {
   attachedSound?: AttachedSound;
   pollData?: SerializedPollData;
   scheduledAt?: Date;
+  /** Post mint chain override (e.g. Solana 101). Defaults to active EVM chain. */
+  postChainId?: number;
+  /** Solana minter address (base58) — required when postChainId is a Solana chain. */
+  solanaAddress?: string;
 };
 
 
@@ -186,7 +192,12 @@ export function useUploadPost() {
       }
       if (m.tokenGatedEnabled) {
         const min = parsePositiveNumber(m.tokenGateData.minAmount);
-        if (!min) return { valid: false, error: "Token Gated: minimum DHB amount must be a valid positive number." };
+        if (!min) return { valid: false, error: "Token Gated: minimum token amount must be a valid positive number." };
+        // Custom EVM token contract must be a valid address (#43)
+        const addr = m.tokenGateData.contractAddress?.trim();
+        if (addr && !isSolanaChain(p.postChainId) && !/^0x[0-9a-fA-F]{40}$/.test(addr)) {
+          return { valid: false, error: "Token Gated: enter a valid token contract address." };
+        }
       }
     }
 
@@ -194,33 +205,60 @@ export function useUploadPost() {
   }, []);
 
   const buildStreamInfo = useCallback(
-    (m: MonetizationState): Record<string, any> => {
+    (m: MonetizationState, postChainId?: number): Record<string, any> => {
       const info: Record<string, any> = {};
+      const solana = isSolanaChain(postChainId);
+      const evmChainId = (() => {
+        const net = supportedNetworks.find((n: any) => (n.label || n.name) === activeNetworkLabel);
+        return net?.chainId ?? activeChainId;
+      })();
 
       if (m.ppvEnabled) {
         info[streamInfoKeys.isPayPerView] = true;
         info[streamInfoKeys.payPerViewAmount] = parsePositiveNumber(m.ppvData.price);
-        info[streamInfoKeys.payPerViewTokenSymbol] = "DHB";
-        const net = supportedNetworks.find((n: any) => (n.label || n.name) === activeNetworkLabel);
-        info[streamInfoKeys.payPerViewChainIds] = net?.chainId ?? activeChainId;
+        if (solana) {
+          const sym = m.ppvData.tokenSymbol || "SOL";
+          const tok = findSolanaToken(sym);
+          info[streamInfoKeys.payPerViewTokenSymbol] = sym;
+          info[streamInfoKeys.payPerViewContractAddress] = tok?.address;
+          info[streamInfoKeys.payPerViewChainIds] = postChainId;
+        } else {
+          info[streamInfoKeys.payPerViewTokenSymbol] = "DHB";
+          info[streamInfoKeys.payPerViewChainIds] = evmChainId;
+        }
       }
 
-      if (m.bountyEnabled) {
+      // Bounty is EVM-only (not supported on Solana posts).
+      if (m.bountyEnabled && !solana) {
         info[streamInfoKeys.isAddBounty] = true;
         info[streamInfoKeys.addBountyAmount] = parsePositiveNumber(m.bountyData.rewardPerPerson);
         info[streamInfoKeys.addBountyFirstXViewers] = parsePositiveNumber(m.bountyData.viewers);
         info[streamInfoKeys.addBountyFirstXComments] = parsePositiveNumber(m.bountyData.commenters);
         info[streamInfoKeys.addBountyTokenSymbol] = "DHB";
-        const net = supportedNetworks.find((n: any) => (n.label || n.name) === activeNetworkLabel);
-        info[streamInfoKeys.addBountyChainId] = net?.chainId ?? activeChainId;
+        info[streamInfoKeys.addBountyChainId] = evmChainId;
       }
 
       if (m.tokenGatedEnabled) {
         info[streamInfoKeys.isLockContent] = true;
         info[streamInfoKeys.lockContentAmount] = parsePositiveNumber(m.tokenGateData.minAmount);
-        info[streamInfoKeys.lockContentTokenSymbol] = "DHB";
-        const net = supportedNetworks.find((n: any) => (n.label || n.name) === activeNetworkLabel);
-        info[streamInfoKeys.lockContentChainIds] = net?.chainId ?? activeChainId;
+        if (solana) {
+          const sym = m.tokenGateData.tokenSymbol || "SOL";
+          const tok = findSolanaToken(sym);
+          info[streamInfoKeys.lockContentTokenSymbol] = sym;
+          info[streamInfoKeys.lockContentContractAddress] = tok?.address;
+          info[streamInfoKeys.lockContentChainIds] = [postChainId];
+        } else {
+          // Token-gate any token on Base / BNB / ETH (#43). Falls back to DHB.
+          const lockChainId =
+            postChainId && !isSolanaChain(postChainId) ? postChainId : evmChainId;
+          const sym = m.tokenGateData.tokenSymbol || "DHB";
+          const contractAddress =
+            m.tokenGateData.contractAddress ||
+            supportedTokens.find((t) => t.chainId === lockChainId && t.symbol === sym)?.address;
+          info[streamInfoKeys.lockContentTokenSymbol] = sym;
+          if (contractAddress) info[streamInfoKeys.lockContentContractAddress] = contractAddress;
+          info[streamInfoKeys.lockContentChainIds] = [lockChainId];
+        }
       }
 
       return info;
@@ -256,7 +294,8 @@ export function useUploadPost() {
         }
 
         if (p.monetization.tokenGatedEnabled) {
-          lines.push(`• Token Gated: Minimum ${p.monetization.tokenGateData.minAmount} DHB required to view`);
+          const gateSym = p.monetization.tokenGateData.tokenSymbol || "DHB";
+          lines.push(`• Token Gated: Minimum ${p.monetization.tokenGateData.minAmount} ${gateSym} required to view`);
         }
       }
 
@@ -515,13 +554,19 @@ export function useUploadPost() {
         mimeType: guessMime(img.uri, "image/jpeg"),
       }));
 
-      const streamInfo = (mode === "video" && !isShort) ? buildStreamInfo(p.monetization) : {};
+      const streamInfo = (mode === "video" && !isShort) ? buildStreamInfo(p.monetization, p.postChainId) : {};
       const thumb = p.coverUri || p.thumbnailUri || null;
 
+      const { cleanTitle, cleanDescription, categories: mergedCategories } = extractHashtagCategories(
+        p.bodyText,
+        p.description,
+        p.categories,
+      );
+
       const serialized: SerializedUploadPayload = {
-        bodyText: p.bodyText,
-        description: p.description,
-        categories: p.categories,
+        bodyText: cleanTitle,
+        description: cleanDescription,
+        categories: mergedCategories,
         postType,
         images,
         video,
@@ -545,6 +590,10 @@ export function useUploadPost() {
 
       const addr = (user?.walletAddress || user?.address || "").toLowerCase();
 
+      // Solana post (#41): mints on Solana via the user's base58 wallet as `minter`.
+      // The EVM `address` (auth/owner identity) is kept in walletAddress.
+      const isSolanaPost = isSolanaChain(p.postChainId) && !!p.solanaAddress;
+
       const job: UploadJob = {
         id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         status: "queued",
@@ -554,11 +603,13 @@ export function useUploadPost() {
         title: p.bodyText.trim() || p.description.trim() || "New post",
         thumbnailUri: thumb ?? undefined,
         payload: serialized,
-        chainId: activeChainId,
+        chainId: isSolanaPost ? (p.postChainId as number) : activeChainId,
         walletAddress: addr,
-        isBounty,
-        bountyConfig,
+        isBounty: isSolanaPost ? false : isBounty,
+        bountyConfig: isSolanaPost ? undefined : bountyConfig,
         isQuote: false,
+        isSolana: isSolanaPost,
+        solanaAddress: isSolanaPost ? (p.solanaAddress as string) : undefined,
       };
 
       const queued = uploadActions.enqueue(job);
@@ -604,18 +655,21 @@ export function useUploadPost() {
       const thumb = p.coverUri || p.thumbnailUri || null;
       const addr = (user?.walletAddress || user?.address || "").toLowerCase();
 
+      const { cleanTitle: quoteTitle, cleanDescription: quoteDesc, categories: quoteCategories } =
+        extractHashtagCategories(p.bodyText, p.description, p.categories);
+
       const job: UploadJob = {
         id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         status: "queued",
         progress: 0,
         retryCount: 0,
         createdAt: Date.now(),
-        title: p.bodyText.trim() || p.description.trim() || "Quote post",
+        title: quoteTitle.trim() || quoteDesc.trim() || "Quote post",
         thumbnailUri: thumb ?? undefined,
         payload: {
-          bodyText: mode === "video" ? p.bodyText : "",
-          description: mode === "video" ? p.description : p.bodyText,
-          categories: p.categories,
+          bodyText: mode === "video" ? quoteTitle : "",
+          description: mode === "video" ? quoteDesc : quoteTitle,
+          categories: quoteCategories,
           postType,
           images,
           video,

@@ -2,7 +2,7 @@
   "expo": {
     "scheme": "dehub",
     "name": "DeHub",
-    "slug": "dehub",
+    "slug": "dehubmobile",
     "version": "1.14.0",
     "orientation": "portrait",
     "icon": "./assets/AppIcons/playstore.png",
@@ -28,7 +28,8 @@
       "icon": "./assets/AppIcons/appstore.png",
       "associatedDomains": [
         "applinks:dehub.io",
-        "applinks:legacy.dehub.io"
+        "applinks:legacy.dehub.io",
+        "applinks:*.dehub.io"
       ],
       "infoPlist": {
         "LSApplicationQueriesSchemes": [
@@ -40,7 +41,8 @@
         ],
         "NSCameraUsageDescription": "This app requires access to your camera.",
         "NSMicrophoneUsageDescription": "This app requires access to your microphone."
-      }
+      },
+      "bitcode": false
     },
     "android": {
       "icon": "./assets/AppIcons/playstore.png",
@@ -55,7 +57,15 @@
       "softwareKeyboardLayoutMode": "resize",
       "permissions": [
         "CAMERA",
-        "RECORD_AUDIO"
+        "RECORD_AUDIO",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.CAMERA",
+        "android.permission.INTERNET",
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.WAKE_LOCK",
+        "android.permission.BLUETOOTH"
       ],
       "googleServicesFile": "./google-services.json",
       "intentFilters": [
@@ -116,13 +126,24 @@
       "@config-plugins/react-native-webrtc",
       "@react-native-community/datetimepicker",
       "expo-localization",
-      "expo-web-browser"
+      "expo-web-browser",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "androidGradlePlugin": "8.8.0",
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "enableSeparateBuildPerCPUArchitecture": true
+          }
+        }
+      ]
     ],
     "extra": {
       "eas": {
-        "projectId": "061f3290-d881-487e-a85a-1f150376003d"
+        "projectId": "303cea37-1ee3-49f8-9479-3ff9358f16ef"
       }
     },
-    "owner": "an0nym0usang3l"
+    "owner": "dehub"
   }
 }

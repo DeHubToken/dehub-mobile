@@ -10,6 +10,7 @@ import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { ChainId, supportedChainIds } from "../../config/constants";
+import { isSolanaChain } from "../../config/solana.constants";
 
 export interface VideoAreaProps {
   isTranscoding: boolean;
@@ -77,11 +78,13 @@ const VideoArea: React.FC<VideoAreaProps> = ({
     : ppvChainIdsRaw != null
     ? [Number(ppvChainIdsRaw)]
     : [];
-  const hasSupportedPPVChain = ppvChainIds.length === 0
+  // Solana PPV (#41) pays in SOL/SPL — no EVM chain switch needed.
+  const isSolanaPpv = isSolanaChain(ppvChainIds[0]);
+  const hasSupportedPPVChain = ppvChainIds.length === 0 || isSolanaPpv
     ? true
     : ppvChainIds.some((id) => supportedChainIds.includes(Number(id)));
   const isWrongChainForPPV = Boolean(
-    isLockedOrPPV && ppvChainIds.length > 0 && chainId != null && !ppvChainIds.includes(Number(chainId))
+    !isSolanaPpv && isLockedOrPPV && ppvChainIds.length > 0 && chainId != null && !ppvChainIds.includes(Number(chainId))
   );
 
   const requiredChainLabel = useMemo(() => {
@@ -294,6 +297,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
             toAddress={minterAddress as string}
             amount={ppvAmount as any}
             tokenSymbol={ppvSymbol as string}
+            paymentChainId={ppvChainIds[0]}
             trigger={
               <AccentButtonGradient style={{ marginTop: 16 }}>
                 <TouchableOpacity

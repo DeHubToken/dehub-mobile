@@ -24,6 +24,7 @@ import { useUser, useAuthActions } from "../../context/AuthContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import {
   getCommentsForToken,
+  getCommentReplies,
   postComment,
   likeComment,
   dislikeComment,
@@ -32,6 +33,7 @@ import {
   postImageComment,
   postGifComment,
   postAudioComment,
+  recordCommentViews,
   Comment,
 } from "../../services/nft.service";
 import { getAvatarUrl, toastError } from "../../libs";
@@ -71,6 +73,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
   // State - flat list of comments with replies inline
   const [flatComments, setFlatComments] = useState<FlatComment[]>([]);
+  const [expandedCommentIds, setExpandedCommentIds] = useState<Set<number>>(new Set());
+  const [loadingRepliesMap, setLoadingRepliesMap] = useState<Record<number, boolean>>({});
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [highlightedId, setHighlightedId] = useState<number | null>(
@@ -223,6 +227,80 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     await loadComments(true);
     setRefreshing(false);
   }, [loadComments]);
+
+  const handleToggleReplies = useCallback(async (commentId: number) => {
+    const isExpanded = expandedCommentIds.has(commentId);
+    
+    if (isExpanded) {
+      // Collapse replies: remove all descendants of this comment
+      setExpandedCommentIds((prev) => {
+        const next = new Set(prev);
+        next.delete(commentId);
+        return next;
+      });
+
+      setFlatComments((prev) => {
+        const parentIdx = prev.findIndex((c) => Number(c.id) === commentId);
+        if (parentIdx === -1) return prev;
+        const parentDepth = prev[parentIdx].depth;
+        
+        // Find how many items to remove
+        let removeCount = 0;
+        for (let i = parentIdx + 1; i < prev.length; i++) {
+          if (prev[i].depth > parentDepth) {
+            removeCount++;
+          } else {
+            break;
+          }
+        }
+        
+        if (removeCount === 0) return prev;
+        const nextList = [...prev];
+        nextList.splice(parentIdx + 1, removeCount);
+        return nextList;
+      });
+    } else {
+      // Expand replies: fetch from server
+      setLoadingRepliesMap((prev) => ({ ...prev, [commentId]: true }));
+      try {
+        const parentIdx = flatComments.findIndex((c) => Number(c.id) === commentId);
+        if (parentIdx === -1) return;
+        const parentComment = flatComments[parentIdx];
+        const parentDepth = parentComment.depth ?? 0;
+        const rootParentId = parentComment.rootParentId ?? Number(parentComment.id);
+
+        const res = await getCommentReplies(commentId, { limit: 100 });
+        const replies = res.result?.items || [];
+        
+        const flatReplies: FlatComment[] = replies.map((r) => ({
+          ...r,
+          isReply: true,
+          depth: parentDepth + 1,
+          rootParentId,
+        }));
+
+        setExpandedCommentIds((prev) => {
+          const next = new Set(prev);
+          next.add(commentId);
+          return next;
+        });
+
+        setFlatComments((prev) => {
+          const idx = prev.findIndex((c) => Number(c.id) === commentId);
+          if (idx === -1) return prev;
+          
+          const nextList = [...prev];
+          nextList.splice(idx + 1, 0, ...flatReplies);
+          return nextList;
+        });
+      } catch (err) {
+        console.warn("[CommentSection] Failed to load replies:", err);
+        toastError("Failed to load replies");
+      } finally {
+        setLoadingRepliesMap((prev) => ({ ...prev, [commentId]: false }));
+      }
+    }
+  }, [expandedCommentIds, flatComments]);
 
   // Like a comment - returns the result for optimistic sync
   const handleLikeComment = useCallback(async (commentId: number) => {
@@ -678,6 +756,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const renderComment = useCallback(({ item }: { item: FlatComment }) => {
     const isHighlighted = highlightedId != null && Number(item.id) === highlightedId;
     const indent = item.depth > 0 ? item.depth * 20 : 0;
+    const itemNumId = Number(item.id);
     return (
       <View style={indent > 0 ? { paddingLeft: indent } : undefined}>
         <CommentItem
@@ -692,12 +771,55 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           tokenId={tokenId}
           contentType={contentType}
           highlighted={isHighlighted}
+          repliesExpanded={expandedCommentIds.has(itemNumId)}
+          onToggleReplies={() => handleToggleReplies(itemNumId)}
+          loadingReplies={!!loadingRepliesMap[itemNumId]}
         />
       </View>
     );
-  }, [handleReply, handleLikeComment, handleDislikeComment, handleUserPress, handleStartEdit, handleCommentLongPress, tokenId, contentType, highlightedId]);
+  }, [
+    handleReply,
+    handleLikeComment,
+    handleDislikeComment,
+    handleUserPress,
+    handleStartEdit,
+    handleCommentLongPress,
+    tokenId,
+    contentType,
+    highlightedId,
+    expandedCommentIds,
+    handleToggleReplies,
+    loadingRepliesMap,
+  ]);
 
   const keyExtractor = useCallback((item: FlatComment) => `comment-${item.id}`, []);
+
+  // Comment view tracking — batch fire POST /api/comment_views when comments scroll into view
+  const viewBatchRef = useRef<Set<number>>(new Set());
+  const viewFlushTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const flushCommentViews = useCallback(() => {
+    if (!viewBatchRef.current.size) return;
+    const ids = Array.from(viewBatchRef.current);
+    viewBatchRef.current.clear();
+    recordCommentViews(ids).catch(() => {});
+  }, []);
+
+  const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 50, minimumViewTime: 500 }).current;
+
+  const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: any[] }) => {
+    for (const v of viewableItems) {
+      const id = (v.item as FlatComment)?.id;
+      if (id != null) viewBatchRef.current.add(Number(id));
+    }
+    if (viewFlushTimer.current) clearTimeout(viewFlushTimer.current);
+    viewFlushTimer.current = setTimeout(flushCommentViews, 2000);
+  }).current;
+
+  useEffect(() => () => {
+    if (viewFlushTimer.current) clearTimeout(viewFlushTimer.current);
+    flushCommentViews();
+  }, [flushCommentViews]);
 
   // Calculate bottom padding for list to account for input
   const listBottomPadding = 88 + inputLift;
@@ -718,10 +840,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           keyboardShouldPersistTaps="handled"
           refreshing={refreshing}
           onRefresh={handleRefresh}
+          viewabilityConfig={viewabilityConfig}
+          onViewableItemsChanged={onViewableItemsChanged}
           ListEmptyComponent={
             <View className="flex-1 items-center justify-center py-16">
               <Text style={{ color: "#8B8D90", fontSize: 14 }}>
-                No replies yet. Be the first!
+                No comments yet. Be the first!
               </Text>
             </View>
           }

@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 import { View, FlatList } from 'react-native';
 import InfiniteFeed from '../Feed/InfiniteFeed';
 import FeedCard from '../Home/FeedCard';
+import ProfileAssets from './ProfileAssets';
+import ProfileApps from './ProfileApps';
 import type { SearchParams } from '../../services/nft.service';
 import type { UnifiedFeedItem } from '../../services/feed.unified.service';
 import { useAuthState } from '../../context/AuthContext';
@@ -12,9 +14,17 @@ interface FeedRouteProps {
   onScroll?: any;
   listRef?: React.RefObject<FlatList<any> | null>;
   noPadding?: boolean;
+  showProfileExtras?: boolean;
 }
 
-const FeedRoute: React.FC<FeedRouteProps> = ({ address, scrollEnabled, onScroll, listRef, noPadding }) => {
+const ProfileExtrasHeader: React.FC = () => (
+  <View>
+    <ProfileAssets />
+    <ProfileApps />
+  </View>
+);
+
+const FeedRoute: React.FC<FeedRouteProps> = ({ address, scrollEnabled, onScroll, listRef, noPadding, showProfileExtras }) => {
   const { isSignedIn } = useAuthState();
 
   const feedParams = useMemo<Partial<SearchParams>>(() => ({
@@ -37,6 +47,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({ address, scrollEnabled, onScroll,
         onScroll={onScroll}
         listRef={listRef}
         enableBackToTop={false}
+        headerComponent={showProfileExtras ? <ProfileExtrasHeader /> : undefined}
         renderItem={({ item }) => (
           <FeedCard item={item as UnifiedFeedItem} />
         )}

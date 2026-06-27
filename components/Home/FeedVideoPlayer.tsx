@@ -13,7 +13,6 @@ import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
 import { BlurView } from "expo-blur";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../ui/Icon";
-import { toastError } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import {
   requestAudioFocus,
@@ -96,9 +95,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const [hasStartedAutoplay, setHasStartedAutoplay] = useState(false);
   const [isBuffering, setIsBuffering] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
-  const [isInPiP, setIsInPiP] = useState(false);
-  const isInPiPRef = useRef(false);
-
   const isPlayingRef = useRef(false);
   const autoplayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const playerRef = useRef<VideoPlayer | null>(null);
@@ -201,7 +197,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   useEffect(() => {
     if (!canPlay || !isVisible) {
-      if (isInPiPRef.current) return;
       if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; }
       if (isPlayingRef.current) stopPlayback();
       setHasStartedAutoplay(false);
@@ -226,7 +221,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   useEffect(() => {
     const h = (state: AppStateStatus) => {
-      if (state !== "active" && isPlayingRef.current && !isInPiPRef.current) {
+      if (state !== "active" && isPlayingRef.current) {
         stopPlayback();
       }
     };
@@ -300,33 +295,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     } as never);
   }, [currentTime, isMuted, videoUrl, thumbnail, stopPlayback, navigation]);
 
-  const handlePiPStart = useCallback(() => {
-    isInPiPRef.current = true;
-    setIsInPiP(true);
-  }, []);
-
-  const handlePiPStop = useCallback(() => {
-    isInPiPRef.current = false;
-    setIsInPiP(false);
-  }, []);
-
-  const handlePiP = useCallback(async () => {
-    try {
-      if (!playerRef.current || !videoViewRef.current) return;
-      if (!isPlayingRef.current) startPlayback();
-      if (playerRef.current.muted) {
-        playerRef.current.muted = false;
-        setIsMuted(false);
-        requestAudioFocus(stopPlayback);
-      }
-      if ((videoViewRef.current as any).startPictureInPicture) {
-        await (videoViewRef.current as any).startPictureInPicture();
-      }
-    } catch (err) {
-      console.warn("[FeedVideoPlayer] PiP failed:", err);
-      toastError("Picture-in-Picture is not supported on this device");
-    }
-  }, [startPlayback, stopPlayback]);
 
   const handleSeek = useCallback(
     (locationX: number) => {
@@ -408,10 +376,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           player={player}
           contentFit="cover"
           nativeControls={false}
-          allowsPictureInPicture
-          startsPictureInPictureAutomatically={isPlaying && !isMuted}
-          onPictureInPictureStart={handlePiPStart}
-          onPictureInPictureStop={handlePiPStop}
           style={[styles.thumbnail, { opacity: hideControls
             ? (hasStartedAutoplay && videoReady ? 1 : 0)
             : (isPlaying || hasStartedAutoplay ? 1 : 0)
@@ -465,12 +429,6 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                 <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
                 <View style={styles.glassOverlay} />
                 <Icon name={isLooping ? "Repeat" : "ArrowRight"} size={14} color={isLooping ? "#fff" : "#9CA3AF"} />
-              </Pressable>
-
-              <Pressable onPress={handlePiP} style={styles.glassButton}>
-                <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
-                <View style={styles.glassOverlay} />
-                <Icon name="PictureInPicture2" size={14} color="#fff" />
               </Pressable>
 
               <Pressable onPress={handleToggleMute} style={styles.glassButton}>

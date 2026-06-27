@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useState, useRef, useMemo } from "react";
-import { View, Text, Pressable, Image, Share } from "react-native";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { View, Text, Pressable, Image, Share, ActivityIndicator } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -65,6 +65,9 @@ interface CommentItemProps {
   tokenId?: number | string;
   contentType?: "video" | "feed";
   highlighted?: boolean;
+  repliesExpanded?: boolean;
+  onToggleReplies?: () => void;
+  loadingReplies?: boolean;
 }
 
 const CommentItemComponent: React.FC<CommentItemProps> = ({
@@ -79,6 +82,9 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   tokenId,
   contentType = "video",
   highlighted = false,
+  repliesExpanded = false,
+  onToggleReplies,
+  loadingReplies = false,
 }) => {
   const { showUserProfile } = useUserProfileSheet();
   const currentUser = useUser();
@@ -271,7 +277,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
       onLongPress={handleLongPress}
       delayLongPress={300}
     >
-      <View ref={containerRef} style={{ flexDirection: "row", paddingVertical: 10, paddingLeft: isReply ? 40 : 0 }}>
+      <View ref={containerRef} style={{ flexDirection: "row", paddingVertical: 10 }}>
         <Animated.View
           style={[
             {
@@ -433,6 +439,29 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               <Icon name="Share2" size={14} color={ICON_MUTED} strokeWidth={1.8} />
             </Pressable>
           </View>
+
+          {comment.replyIds && comment.replyIds.length > 0 && onToggleReplies && (
+            <Pressable
+              onPress={onToggleReplies}
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                marginTop: 8,
+              }}
+            >
+              <View style={{ width: 16, height: 1, backgroundColor: "#6F7174", marginRight: 6 }} />
+              {loadingReplies ? (
+                <ActivityIndicator size="small" color="#6F7174" style={{ marginRight: 6 }} />
+              ) : null}
+              <Text style={{ fontSize: 12, fontWeight: "600", color: "#6F7174" }}>
+                {repliesExpanded
+                  ? "Hide replies"
+                  : `View ${comment.replyIds.length} ${
+                      comment.replyIds.length === 1 ? "reply" : "replies"
+                    }`}
+              </Text>
+            </Pressable>
+          )}
         </View>
       </View>
     </Pressable>

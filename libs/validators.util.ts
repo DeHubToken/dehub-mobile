@@ -175,8 +175,14 @@ const computeStreamAccessInfo = (
   if (info?.isPayPerView) {
     streamStatus.isFree = false;
 
-    // Server says unlocked → user paid or was granted access
-    if (nftMetadata.isUnlocked === true) {
+    // Check local payment state: patchUser writes tokenId into user.unlocked after purchase
+    const tokenId = nftMetadata.tokenId != null ? String(nftMetadata.tokenId) : null;
+    const locallyUnlocked =
+      tokenId != null &&
+      Array.isArray(userInfo?.unlocked) &&
+      userInfo.unlocked.some((id: any) => String(id) === tokenId);
+
+    if (nftMetadata.isUnlocked === true || locallyUnlocked) {
       streamStatus.isLockedWithPPV = false;
     } else {
       streamStatus.isLockedWithPPV = true;

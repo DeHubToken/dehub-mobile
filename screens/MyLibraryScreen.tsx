@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
-import { View, Pressable, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Pressable, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -13,8 +13,9 @@ import { useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import type { IconName } from "../components/ui/Icon";
 import Icon from "../components/ui/Icon";
+import { clearWatchHistory } from "../services/user.service";
 
-type LibraryTab = "myPosts" | "liked" | "saved" | "unlocked";
+type LibraryTab = "myPosts" | "liked" | "saved" | "unlocked" | "watched";
 
 interface TabDef {
   key: LibraryTab;
@@ -27,6 +28,7 @@ const TABS: TabDef[] = [
   { key: "liked", label: "Liked", icon: "Heart" },
   { key: "saved", label: "Bookmarks", icon: "Bookmark" },
   { key: "unlocked", label: "Unlocked", icon: "LockOpen" },
+  { key: "watched", label: "History", icon: "History" },
 ];
 
 const TAB_H = 36;
@@ -39,6 +41,29 @@ const MyLibraryScreen: React.FC = () => {
   useGateToHome(allow);
 
   const [activeTab, setActiveTab] = useState<LibraryTab>("myPosts");
+  const [historyKey, setHistoryKey] = useState(0);
+
+  const handleClearHistory = useCallback(() => {
+    Alert.alert(
+      "Clear Watch History",
+      "This will remove all watched posts from your history.",
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "Clear",
+          style: "destructive",
+          onPress: async () => {
+            try {
+              await clearWatchHistory();
+              setHistoryKey((k) => k + 1);
+            } catch {
+              Alert.alert("Error", "Failed to clear history. Please try again.");
+            }
+          },
+        },
+      ],
+    );
+  }, []);
 
   const indicatorX = useSharedValue(0);
   const indicatorW = useSharedValue(0);
@@ -77,7 +102,16 @@ const MyLibraryScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title="My Library" />
+      <ScreenHeader
+        title="My Library"
+        rightContent={
+          activeTab === "watched" ? (
+            <Pressable onPress={handleClearHistory} hitSlop={8} style={{ padding: 4 }}>
+              <Icon name="Trash2" size={20} color="#ef4444" />
+            </Pressable>
+          ) : undefined
+        }
+      />
 
       <View
         className="px-4"
@@ -131,7 +165,7 @@ const MyLibraryScreen: React.FC = () => {
       </View>
 
       <PostsInfiniteList
-        key={activeTab}
+        key={activeTab === "watched" ? `watched-${historyKey}` : activeTab}
         variant={activeTab}
         bottomPadding={80}
       />

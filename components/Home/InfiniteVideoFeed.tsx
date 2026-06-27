@@ -99,6 +99,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [visibleItemKeys, setVisibleItemKeys] = useState<Set<string>>(new Set());
+  const [activeVideoKey, setActiveVideoKey] = useState<string | null>(null);
   const endReachedRef = useRef(false);
   const listRef = useRef<FlatList<FeedItem>>(null);
   const prevYRef = useRef(0);
@@ -142,9 +143,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   }).current;
 
   // Handle viewable items change for view tracking (feed posts only)
-  const onViewableItemsChanged = useRef(({ changed }: { 
-    viewableItems: ViewToken[]; 
-    changed: ViewToken[]; 
+  const onViewableItemsChanged = useRef(({ viewableItems, changed }: {
+    viewableItems: ViewToken[];
+    changed: ViewToken[];
   }) => {
     // Track visible items for audio preloading/pausing (works for all users)
     setVisibleItemKeys(prev => {
@@ -161,6 +162,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       }
       return changed_membership ? next : prev;
     });
+
+    // Only the topmost visible item should autoplay — pick lowest index viewable item
+    const topItem = viewableItems
+      .filter(v => v.isViewable && (v.item as FeedItem | undefined)?.__listKey)
+      .sort((a, b) => (a.index ?? 0) - (b.index ?? 0))[0];
+    setActiveVideoKey(topItem ? (topItem.item as FeedItem).__listKey : null);
 
     if (!isSignedIn) return;
     
@@ -357,7 +364,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         <FeedCard
           item={item}
           onCategorySelect={onCategorySelect}
-          isVisible={visibleItemKeys.has(item.__listKey)}
+          isVisible={isVideoItem(item) ? item.__listKey === activeVideoKey : visibleItemKeys.has(item.__listKey)}
           enablePreview
         />
       );
@@ -439,7 +446,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         }
         onEndReached={endReachedRef.current ? undefined : loadMore}
         onEndReachedThreshold={0.8}
-        extraData={visibleItemKeys}
+        extraData={[visibleItemKeys, activeVideoKey]}
         onScroll={handleScroll}
         onScrollBeginDrag={handleScrollBeginDrag}
         onScrollEndDrag={handleScrollEndDrag}

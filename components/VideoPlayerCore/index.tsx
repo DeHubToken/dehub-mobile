@@ -84,6 +84,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     side: null,
   });
   const isMountedRef = useRef(true);
+  const isInPiPRef = useRef(false);
 
   // State
   const [isReady, setIsReady] = useState(false);
@@ -100,6 +101,8 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   const [hasError, setHasError] = useState(false);
   const [isLooping, setIsLooping] = useState(loop);
   const [playbackRate, setPlaybackRate] = useState(1);
+  const [isInPiP, setIsInPiP] = useState(false);
+  const [isLandscape, setIsLandscape] = useState(false);
 
   // Seek feedback animation
   const [seekFeedback, setSeekFeedback] = useState<{
@@ -233,9 +236,14 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   }, [player, onPlayStateChange, onReady, onProgress, isReady, duration, onError]);
 
   // Handle navigation events to stop playback when leaving screen
+  // Guard with isInPiPRef — returning from PiP also triggers beforeRemove
+  // which would close the screen and crash the app
   useEffect(() => {
-    const unsubscribe = navigation.addListener('beforeRemove', () => {
-      // Stop playback immediately when navigating away
+    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+      if (isInPiPRef.current) {
+        e.preventDefault();
+        return;
+      }
       try {
         player.pause();
         player.muted = true;
@@ -272,15 +280,35 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     setPlaybackRate(nextSpeed);
   }, [player]);
 
-  const handlePiP = useCallback(() => {
+  const handlePiPStart = useCallback(() => {
+    isInPiPRef.current = true;
+    setIsInPiP(true);
+  }, []);
+
+  const handlePiPStop = useCallback(() => {
+    isInPiPRef.current = false;
+    setIsInPiP(false);
+  }, []);
+
+  const handlePiP = useCallback(async () => {
     try {
-      if (viewRef.current && (viewRef.current as any).startPictureInPicture) {
-        (viewRef.current as any).startPictureInPicture();
+      if (!viewRef.current || !(viewRef.current as any).startPictureInPicture) return;
+      // Exit fullscreen/landscape before entering PiP — orientation lock conflicts with PiP
+      if (isLandscape) {
+        setIsLandscape(false);
+        await ScreenOrientation.lockAsync(
+          ScreenOrientation.OrientationLock.PORTRAIT_UP
+        ).catch(() => {});
       }
+      if (fullscreen) {
+        setFullscreen(false);
+        StatusBar.setHidden(false);
+      }
+      await (viewRef.current as any).startPictureInPicture();
     } catch (error) {
       logger.warn('[VideoPlayerCore] PiP error:', error);
     }
-  }, []);
+  }, [fullscreen, isLandscape]);
 
   const toggleMute = useCallback(() => {
     const nextMuted = !isMuted;
@@ -290,7 +318,6 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   }, [isMuted, player]);
 
   // Landscape state tracks whether the video is rotated sideways
-  const [isLandscape, setIsLandscape] = useState(false);
 
   // Fullscreen: toggle portrait fullscreen (immersive, no status bar)
   const toggleFullscreen = useCallback(async () => {
@@ -438,23 +465,6 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
       showAndScheduleHide();
     }
 
-    // Configure audio to play even if device is on silent (iOS)
-    const setupAudio = async () => {
-      try {
-        await setAudioModeAsync({
-          playsInSilentMode: true,
-          allowsRecording: false,
-          shouldPlayInBackground: false,
-          interruptionMode: 'doNotMix',
-          interruptionModeAndroid: 'duckOthers',
-        });
-      } catch (error) {
-        logger.warn('[VideoPlayerCore] setAudioModeAsync failed:', error);
-      }
-    };
-
-    setupAudio();
-
     return () => {
       isMountedRef.current = false;
       clearHideTimer();
@@ -473,6 +483,26 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
       StatusBar.setHidden(false);
     };
   }, [showAndScheduleHide, clearHideTimer, player]);
+
+  // Configure audio to play even if device is on silent (iOS)
+  // Sync shouldPlayInBackground with fullscreen state
+  useEffect(() => {
+    const setupAudio = async () => {
+      try {
+        await setAudioModeAsync({
+          playsInSilentMode: true,
+          allowsRecording: false,
+          shouldPlayInBackground: fullscreen,
+          interruptionMode: 'doNotMix',
+          interruptionModeAndroid: 'duckOthers',
+        });
+      } catch (error) {
+        logger.warn('[VideoPlayerCore] setAudioModeAsync failed:', error);
+      }
+    };
+
+    setupAudio();
+  }, [fullscreen]);
 
   // Progress bar press handler
   const handleProgressBarPress = useCallback(
@@ -559,7 +589,9 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
           style={styles.video}
           contentFit="contain"
           nativeControls={false}
-          allowsPictureInPicture={true}
+          allowsPictureInPicture={fullscreen}
+          onPictureInPictureStart={handlePiPStart}
+          onPictureInPictureStop={handlePiPStop}
         />
       )}
 

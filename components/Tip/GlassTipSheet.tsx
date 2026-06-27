@@ -58,6 +58,8 @@ import {
 import * as ethersImport from "ethers";
 import { applyGasMargin, parseTxError } from "../../libs/web3.util";
 import { writeContractAA } from "../../libs/aa.write";
+import { sendSolanaPayment } from "../../services/solana-payment.service";
+import { isSolanaChain } from "../../config/solana.constants";
 import { formatCompactNumber } from "../../libs";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
@@ -91,6 +93,8 @@ export interface GlassTipSheetProps {
   recipientName?: string;
   /** "content" = tipping a post, "user" = tipping a person (DM etc.) */
   tipContext?: "content" | "user";
+  /** Post's chain — when Solana (101/103), tip in SOL via the backend-built tx (#41). */
+  paymentChainId?: number;
   onSuccess?: (amount: number) => void;
 }
 
@@ -102,6 +106,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   tokenId = 0,
   recipientName,
   tipContext = "content",
+  paymentChainId,
   onSuccess,
 }) => {
   const insets = useSafeAreaInsets();
@@ -174,10 +179,13 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   const [tipError, setTipError] = useState<string | null>(null);
   const [lastAmount, setLastAmount] = useState<number | null>(null);
 
+  const isSolanaTip = isSolanaChain(paymentChainId);
+  const tipCurrency = isSolanaTip ? "SOL" : "DHB";
   const numericAmount = Number(amount) || 0;
   const balance = (user?.tokenBalances?.DHB ?? 0) as number;
-  const overLimit = numericAmount > limitTip;
-  const insufficient = numericAmount > balance;
+  const overLimit = !isSolanaTip && numericAmount > limitTip;
+  // Solana balance is enforced on-chain by the transfer itself.
+  const insufficient = !isSolanaTip && numericAmount > balance;
   const isSelf =
     !!user?.walletAddress &&
     user.walletAddress?.toLowerCase() === toAddress?.toLowerCase();
@@ -215,16 +223,41 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   }, []);
 
   const handleInputChange = useCallback((val: string) => {
-    const cleaned = val.replace(/[^0-9]/g, "");
+    // Allow decimals for SOL tips; integer-only for DHB.
+    const cleaned = isSolanaTip
+      ? val.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, "$1")
+      : val.replace(/[^0-9]/g, "");
     setAmount(cleaned);
     setSelectedPreset(null);
-  }, []);
+  }, [isSolanaTip]);
 
   // ── Send tip (on-chain) ──────────────────────────────────────────────────
   const handleSend = useCallback(() => {
     requireAuth(async () => {
       if (disableSend || (phase !== "idle" && phase !== "error")) return;
       setTipError(null);
+
+      // Solana tip (#41): transfer SOL to the creator via the backend-built tx.
+      if (isSolanaTip) {
+        setPhase("sending");
+        try {
+          await sendSolanaPayment({
+            tokenId,
+            kind: "tip",
+            amount: numericAmount,
+            chainId: paymentChainId,
+          });
+          setPhase("sent");
+          setLastAmount(numericAmount);
+          onSuccess?.(numericAmount);
+          setAmount("");
+          setSelectedPreset(null);
+        } catch (e) {
+          setPhase("error");
+          setTipError(e instanceof Error ? e.message : "Solana tip failed");
+        }
+        return;
+      }
 
       if (
         !provider ||
@@ -332,6 +365,8 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     toAddress,
     onSuccess,
     patchUser,
+    isSolanaTip,
+    paymentChainId,
   ]);
 
   // ── Render nothing when fully closed ─────────────────────────────────────
@@ -404,8 +439,11 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                 </View>
                 <Text style={styles.recipientText}>{subheader}</Text>
 
-                {/* Quick amounts */}
+                {/* Quick amounts — DHB only (SOL tips use the custom field) */}
+                {!isSolanaTip && (
                 <Text style={styles.sectionLabel}>Quick amounts</Text>
+                )}
+                {!isSolanaTip && (
                 <View style={styles.presetsGrid}>
                   {QUICK_AMOUNTS.map((preset) => {
                     const isSelected = selectedPreset === preset;
@@ -436,21 +474,26 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                     );
                   })}
                 </View>
+                )}
 
                 {/* Custom input */}
-                <Text style={styles.sectionLabel}>Or enter amount</Text>
+                <Text style={styles.sectionLabel}>
+                  {isSolanaTip ? `Amount (${tipCurrency})` : "Or enter amount"}
+                </Text>
                 <View style={styles.inputRow}>
-                  <Image
-                    source={DEHUB_COIN}
-                    style={styles.inputCoinIcon}
-                    resizeMode="contain"
-                  />
+                  {!isSolanaTip && (
+                    <Image
+                      source={DEHUB_COIN}
+                      style={styles.inputCoinIcon}
+                      resizeMode="contain"
+                    />
+                  )}
                   <TextInput
                     value={amount}
                     onChangeText={handleInputChange}
-                    placeholder="Enter amount"
+                    placeholder={isSolanaTip ? "0.0" : "Enter amount"}
                     placeholderTextColor="#6F7174"
-                    keyboardType="number-pad"
+                    keyboardType={isSolanaTip ? "decimal-pad" : "number-pad"}
                     style={styles.textInput}
                   />
                 </View>
@@ -458,7 +501,9 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                 {/* Balance / validation */}
                 <View style={styles.metaRow}>
                   <Text style={styles.balanceText}>
-                    Balance: {formatCompactNumber(balance)} DHB
+                    {isSolanaTip
+                      ? "Paid in SOL on Solana"
+                      : `Balance: ${formatCompactNumber(balance)} DHB`}
                   </Text>
                   {overLimit && (
                     <Text style={styles.errorSmall}>
@@ -545,7 +590,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                   entering={FadeInDown.delay(300).duration(350)}
                   style={styles.successAmount}
                 >
-                  {lastAmount?.toLocaleString()} DHB
+                  {lastAmount?.toLocaleString()} {tipCurrency}
                 </Animated.Text>
                 <Animated.Text
                   entering={FadeIn.delay(400).duration(300)}

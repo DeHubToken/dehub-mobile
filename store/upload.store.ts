@@ -48,10 +48,14 @@ export interface SerializedUploadPayload {
 
 export interface MintParams {
   createdTokenId: number;
-  timestamp: number;
-  v: number;
-  r: string;
-  s: string;
+  // EVM signature components (absent for Solana mints)
+  timestamp?: number;
+  v?: number;
+  r?: string;
+  s?: string;
+  // Solana mint (#41): partially-signed base64 tx + mint address
+  solanaTransaction?: string;
+  solanaMintAddress?: string;
 }
 
 export const MAX_RETRIES = 3;
@@ -74,6 +78,10 @@ export interface UploadJob {
   bountyConfig?: BountyConfig;
   isQuote: boolean;
   quotedTokenId?: number;
+  /** Solana post (#41): mints via partial tx + Phantom-less ed25519 signing. */
+  isSolana?: boolean;
+  /** Solana minter address (base58) — case-sensitive, not lowercased. */
+  solanaAddress?: string;
 }
 
 interface UploadStoreState {

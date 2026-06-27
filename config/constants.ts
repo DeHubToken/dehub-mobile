@@ -1,5 +1,6 @@
 import env from "./env";
-import BaseIcon from "../assets/chains/ethereum-icon.png";
+import BaseIcon from "../assets/chains/base-icon.png";
+import EthIcon from "../assets/chains/ethereum-icon.png";
 import BnbIcon from "../assets/chains/bnb-icon.png";
 import BnbTestnet from "../assets/chains/bnb-icon.png";
 import GorliTestnet from "../assets/chains/gorli-icon.png";
@@ -26,6 +27,7 @@ export enum ChainId {
 }
 
 export const chainIcons: Record<number, any> = {
+  [ChainId.MAINNET]: EthIcon,
   [ChainId.BASE_MAINNET]: BaseIcon,
   [ChainId.BSC_MAINNET]: BnbIcon,
   [ChainId.BSC_TESTNET]: BnbTestnet,
@@ -185,6 +187,40 @@ const productionTokens = [
     decimals: 6,
     isSubscriptionSupported: true,
   },
+  // Ethereum Mainnet
+  {
+    value: "dhb",
+    label: "DHB",
+    symbol: "DHB",
+    customAbbreviation: "dhb",
+    chainId: 1,
+    address: "0x99BB69Ee1BbFC7706C3ebb79b21C5B698fe58EC0",
+    iconUrl: "/icons/tokens/DHB.png",
+    decimals: 18,
+    isSubscriptionSupported: true,
+  },
+  {
+    value: "usdc",
+    label: "USDC",
+    symbol: "USDC",
+    customAbbreviation: "usdc",
+    chainId: 1,
+    address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    iconUrl: "/icons/tokens/USDC.png",
+    decimals: 6,
+    isSubscriptionSupported: true,
+  },
+  {
+    value: "usdt",
+    label: "USDT",
+    symbol: "USDT",
+    customAbbreviation: "usdt",
+    chainId: 1,
+    address: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    iconUrl: "/icons/tokens/USDT.png",
+    decimals: 6,
+    isSubscriptionSupported: true,
+  },
   // BSC
   {
     value: "dhb",
@@ -280,12 +316,13 @@ export const supportedTokensForPPV = supportedTokensForLockContent;
 export const supportedTokensForAddBounty = supportedTokensForLockContent;
 
 export const supportedChainIdsForMinting = [
-  ChainId.BSC_MAINNET,
   ChainId.BASE_MAINNET,
+  ChainId.BSC_MAINNET,
+  ChainId.MAINNET,
 ];
 export const supportedChainIds = isDevMode
   ? [ChainId.BSC_TESTNET, ChainId.GORLI]
-  : [ChainId.BSC_MAINNET, ChainId.BASE_MAINNET];
+  : [ChainId.BASE_MAINNET, ChainId.BSC_MAINNET, ChainId.MAINNET];
 export const defaultChainId = isDevMode ? ChainId.GORLI : ChainId.BASE_MAINNET;
 export const defaultTokenSymbol = "DHB";
 export const defaultWatchTimeForPPV = 2 * 60 * 60; // second unit

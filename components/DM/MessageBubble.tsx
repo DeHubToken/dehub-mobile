@@ -288,6 +288,24 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
     opacity: highlightOpacity.value,
   }));
 
+  const isCallMsg = message.msgType === "msg" && /^[📞📹📵]/.test(message.content || "");
+
+  if (isCallMsg) {
+    return (
+      <View className="items-center py-2 px-4">
+        <View className="flex-row items-center bg-theme-neutrals-800/60 rounded-full px-3 py-1.5 gap-1.5">
+          <Text className="text-[13px]">📞</Text>
+          <Text className="text-theme-neutrals-300 text-[12px] font-medium">
+            {message.content}
+          </Text>
+        </View>
+        <Text className="text-theme-neutrals-600 text-[10px] mt-1">
+          {formatTime(message.createdAt)}
+        </Text>
+      </View>
+    );
+  }
+
   if (isTipMsg) {
     const amountLabel = message.tipAmount
       ? `${Number(message.tipAmount).toLocaleString()} ${message.tipSymbol || "DHB"}`
@@ -560,7 +578,6 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
               name={senderUser?.displayName || senderUser?.username}
             />
           )}
-          {!isMine && !showAvatar && <View style={{ width: 28 }} />}
 
           {/* Bubble */}
           <View

@@ -7,6 +7,9 @@ import { theme } from "../../theme";
 import FeedRoute from "./FeedRoute";
 import ImagesRoute from "./ImagesRoute";
 import SubscribersRoute from "./SubscribersRoute";
+import PinnedRoute from "./PinnedRoute";
+import AnalyticsRoute from "./AnalyticsRoute";
+import FractionsRoute from "./FractionsRoute";
 import { useUser } from "../../context/AuthContext";
 
 const initialLayout = { width: Dimensions.get("window").width };
@@ -21,7 +24,10 @@ const ProfileTabs: React.FC = () => {
   const routes = useMemo(() => [
     { key: "home", title: t("profile.tabHome") },
     { key: "images", title: t("profile.tabImages") },
+    { key: "pinned", title: t("profile.tabPinned", "Pinned") },
     { key: "subscribers", title: t("profile.tabSubscribers") },
+    { key: "fractions", title: "Fractions" },
+    { key: "analytics", title: t("profile.tabAnalytics", "Analytics") },
   ], [t]);
 
   const renderScene = ({ route }: { route: { key: string } }) => {
@@ -32,7 +38,7 @@ const ProfileTabs: React.FC = () => {
       case "home":
         return (
           <View style={{ flex: 1 }}>
-            <FeedRoute address={address} />
+            <FeedRoute address={address} showProfileExtras />
           </View>
         );
       case "images":
@@ -41,10 +47,28 @@ const ProfileTabs: React.FC = () => {
             <ImagesRoute address={address} />
           </View>
         );
+      case "pinned":
+        return (
+          <View style={{ flex: 1 }}>
+            <PinnedRoute address={address} />
+          </View>
+        );
       case "subscribers":
         return (
           <View style={{ flex: 1 }}>
             <SubscribersRoute address={address} isOwnProfile />
+          </View>
+        );
+      case "fractions":
+        return (
+          <View style={{ flex: 1 }}>
+            <FractionsRoute address={address} isOwnProfile />
+          </View>
+        );
+      case "analytics":
+        return (
+          <View style={{ flex: 1 }}>
+            <AnalyticsRoute />
           </View>
         );
       default:

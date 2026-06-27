@@ -61,6 +61,8 @@ interface ChatInputBarProps {
   dhbBalance?: number | null;
   /** Trigger poll creation sheet. */
   onPollPress?: () => void;
+  /** Pre-fill the text input on mount (e.g. shared post URL). */
+  initialText?: string;
 }
 
 
@@ -85,6 +87,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   onClearTip,
   dhbBalance,
   onPollPress,
+  initialText,
 }) => {
   const inputRef = useRef<TextInput>(null);
   const [text, setText] = useState("");
@@ -94,6 +97,16 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const [enhancing, setEnhancing] = useState(false);
   const typingRef = useRef(false);
   const typingTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Pre-fill with shared text on mount
+  useEffect(() => {
+    if (initialText) {
+      setText(initialText);
+      requestAnimationFrame(() => inputRef.current?.focus());
+    }
+    // Only run once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Pre-fill when editing
   useEffect(() => {

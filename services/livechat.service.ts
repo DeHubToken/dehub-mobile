@@ -34,8 +34,10 @@ export interface LiveChatMessageData {
   sender?: LiveChatUser;
   senderAddress: string;
   content: string;
-  messageType: "text" | "media" | "gif" | "system";
+  messageType: "text" | "media" | "gif" | "system" | "audio" | "voice";
   systemType?: "announcement" | "milestone";
+  audioUrl?: string;
+  audioDuration?: number;
   media?: {
     url: string;
     type: "image" | "gif";
@@ -105,7 +107,9 @@ export interface LiveChatRoomJoinedPayload {
 
 export interface SendMessagePayload {
   content?: string;
-  messageType?: "text" | "media" | "gif";
+  messageType?: "text" | "media" | "gif" | "audio" | "voice";
+  audioUrl?: string;
+  audioDuration?: number;
   media?: {
     url: string;
     type: "image" | "gif";
@@ -179,4 +183,22 @@ export async function unpinMessage(messageId: string): Promise<void> {
 
 export async function deleteMessage(messageId: string): Promise<void> {
   return apiClient.delete(`/livechat/mod/message/${messageId}`);
+}
+
+export async function uploadLiveChatVoice(
+  fileUri: string,
+  mimeType: string,
+  fileName: string
+): Promise<{ url: string; duration: number }> {
+  const formData = new FormData();
+  formData.append("audio", {
+    uri: fileUri,
+    name: fileName,
+    type: mimeType,
+  } as any);
+
+  return apiClient.post<{ url: string; duration: number }>(
+    "/livechat/upload-voice",
+    formData
+  );
 }

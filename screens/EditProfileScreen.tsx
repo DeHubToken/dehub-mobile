@@ -31,6 +31,7 @@ import {
   YOUTUBE_SVG_XML,
   DISCORD_SVG_XML,
   TELEGRAM_SVG_XML,
+  FACEBOOK_SVG_XML,
 } from "../config/socialIcons";
 
 const BIO_MAX = 160;
@@ -38,7 +39,7 @@ const BIO_MAX = 160;
 type SocialField = {
   key: string;
   label: string;
-  platform: "x" | "instagram" | "tiktok" | "youtube" | "discord" | "telegram";
+  platform: "x" | "instagram" | "tiktok" | "youtube" | "discord" | "telegram" | "facebook";
   svg: string;
   placeholder: string;
   value: string;
@@ -62,6 +63,7 @@ const EditProfileScreen = () => {
   const [youtubeLink, setYoutubeLink] = useState<string>(user?.youtubeLink || "");
   const [discordLink, setDiscordLink] = useState<string>(user?.discordLink || "");
   const [telegramLink, setTelegramLink] = useState<string>(user?.telegramLink || "");
+  const [facebookLink, setFacebookLink] = useState<string>(user?.facebookLink || "");
 
   const [localAvatar, setLocalAvatar] = useState<string | null>(null);
   const [localCover, setLocalCover] = useState<string | null>(null);
@@ -86,6 +88,7 @@ const EditProfileScreen = () => {
       youtubeLink: user?.youtubeLink || "",
       discordLink: user?.discordLink || "",
       telegramLink: user?.telegramLink || "",
+      facebookLink: user?.facebookLink || "",
     }),
     [user]
   );
@@ -101,12 +104,13 @@ const EditProfileScreen = () => {
       youtubeLink.trim() !== initial.youtubeLink.trim() ||
       discordLink.trim() !== initial.discordLink.trim() ||
       telegramLink.trim() !== initial.telegramLink.trim() ||
+      facebookLink.trim() !== initial.facebookLink.trim() ||
       !!localAvatar ||
       !!localCover
     );
   }, [
     displayName, username, aboutMe,
-    twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink,
+    twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink,
     localAvatar, localCover, initial,
   ]);
 
@@ -199,6 +203,7 @@ const EditProfileScreen = () => {
       const yt = validateSocial("youtube", youtubeLink);
       const dc = validateSocial("discord", discordLink);
       const tg = validateSocial("telegram", telegramLink);
+      const fb = validateSocial("facebook", facebookLink);
       const errs: Record<string, string | undefined> = {
         twitterLink: tw.valid ? undefined : tw.reason,
         instagramLink: ig.valid ? undefined : ig.reason,
@@ -206,6 +211,7 @@ const EditProfileScreen = () => {
         youtubeLink: yt.valid ? undefined : yt.reason,
         discordLink: dc.valid ? undefined : dc.reason,
         telegramLink: tg.valid ? undefined : tg.reason,
+        facebookLink: fb.valid ? undefined : fb.reason,
       };
       setSocialErrors(errs);
       if (Object.values(errs).some(Boolean)) {
@@ -222,6 +228,7 @@ const EditProfileScreen = () => {
         youtubeLink: yt.normalized,
         discordLink: dc.normalized,
         telegramLink: tg.normalized,
+        facebookLink: fb.normalized,
       };
       await patchUser?.({
         displayName: payload.displayName,
@@ -233,6 +240,7 @@ const EditProfileScreen = () => {
         youtubeLink: payload.youtubeLink,
         discordLink: payload.discordLink,
         telegramLink: payload.telegramLink,
+        facebookLink: payload.facebookLink,
         ...(localAvatar ? { avatarImageUrl: localAvatar } : {}),
         ...(localCover ? { coverImageUrl: localCover } : {}),
       });
@@ -246,6 +254,7 @@ const EditProfileScreen = () => {
         payload.cover = coverFile;
         payload.coverImg = coverFile;
       }
+      payload.facebookLink = fb.normalized;
       await AuthService.updateProfile(payload);
       await refreshUser?.();
       toastSuccess("Profile updated");
@@ -262,7 +271,7 @@ const EditProfileScreen = () => {
     }
   }, [
     displayName, username, aboutMe,
-    twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink,
+    twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink,
     localAvatar, localCover, user, patchUser, refreshUser, navigation,
   ]);
 
@@ -274,8 +283,9 @@ const EditProfileScreen = () => {
       { key: "youtubeLink", label: "YouTube", platform: "youtube", svg: YOUTUBE_SVG_XML, placeholder: "Channel URL or handle", value: youtubeLink, setter: setYoutubeLink },
       { key: "discordLink", label: "Discord", platform: "discord", svg: DISCORD_SVG_XML, placeholder: "Invite link", value: discordLink, setter: setDiscordLink },
       { key: "telegramLink", label: "Telegram", platform: "telegram", svg: TELEGRAM_SVG_XML, placeholder: "Username", value: telegramLink, setter: setTelegramLink },
+      { key: "facebookLink", label: "Facebook", platform: "facebook", svg: FACEBOOK_SVG_XML, placeholder: "Profile URL or username", value: facebookLink, setter: setFacebookLink },
     ],
-    [twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink]
+    [twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink]
   );
 
   const saveDisabled =

@@ -31,6 +31,15 @@ import type {
 } from "../services/dm/dm.types";
 import { createLogger } from "../libs/logger";
 
+/** Safely extract a plain string ID from either a raw string or a populated Mongoose document. */
+function resolveConvId(...vals: unknown[]): string {
+  for (const v of vals) {
+    if (!v) continue;
+    if (typeof v === 'string') return v;
+    if (typeof v === 'object' && (v as any)._id) return String((v as any)._id);
+  }
+  return '';
+}
 
 export type LoadMessagesOptions = { q?: string; skip?: number; limit?: number };
 
@@ -108,7 +117,7 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     unsubs.push(
       ws.on(DMSocketEvent.SendMessage, (payload: any) => {
         try {
-          const cId = String(payload?.conversation || "");
+          const cId = resolveConvId(payload?.conversation, payload?.dmId);
           if (!cId) return;
           const author = inferAuthor(payload);
           // Real-time new messages we sent haven't been read by the receiver yet.
@@ -157,7 +166,7 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
     unsubs.push(
       ws.on(DMSocketEvent.ForwardMessage, (payload: any) => {
         try {
-          const cId = String(payload?.conversation || payload?.targetDmId || "");
+          const cId = resolveConvId(payload?.conversation, payload?.targetDmId, payload?.dmId);
           if (cId) dmActions.upsertMessages(cId, [{ ...payload, author: inferAuthor(payload) }]);
           log.debug("ForwardMessage", { cId });
         } catch (err) {
@@ -199,7 +208,7 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
       ws.on(DMSocketEvent.JobMessageId, (payload: any) => {
         try {
           const raw = payload?.message || payload;
-          const cId = String(raw?.conversation || payload?.dmId || "");
+          const cId = resolveConvId(raw?.conversation, payload?.dmId);
           const msgId = String(raw?._id || "");
           if (!cId || !msgId) return;
           dmActions.upsertMessages(cId, [{ ...raw, author: inferAuthor(raw) }]);

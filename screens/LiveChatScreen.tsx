@@ -219,7 +219,7 @@ const LiveChatScreen: React.FC = () => {
   );
 
   const handleSend = useCallback(
-    (content: string, replyTo?: string) => {
+    (content: string, replyTo?: string, audioUrl?: string, audioDuration?: number) => {
       if (editingMessage) {
         editMessage(editingMessage._id, content);
         setEditingMessage(null);
@@ -227,6 +227,11 @@ const LiveChatScreen: React.FC = () => {
       }
       const payload: SendMessagePayload = { content };
       if (replyTo) payload.replyTo = replyTo;
+      if (audioUrl) {
+        payload.messageType = "audio";
+        payload.audioUrl = audioUrl;
+        payload.audioDuration = audioDuration;
+      }
       sendMessage(payload);
       isAtBottomRef.current = true;
       setTimeout(() => scrollToBottom(true), 300);

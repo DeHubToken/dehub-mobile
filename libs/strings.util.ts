@@ -49,5 +49,37 @@ export function formatBytes(bytes: number): string {
 }
 
 
-export const StringsUtil = { truncateAddress, isBlank, truncate, toTitleCase, miniAddress, formatBytes };
+const HASHTAG_RE = /#([A-Za-z][A-Za-z0-9_]{0,49})/g;
+
+/**
+ * Mirrors the web app's hashtag handling: extracts #tags from title + description,
+ * strips them from the display text, title-cases them, and merges into categories.
+ * Hashtags are saved server-side as categories and never shown in feeds.
+ */
+export function extractHashtagCategories(
+  title: string,
+  description: string,
+  baseCategories: string[],
+): { cleanTitle: string; cleanDescription: string; categories: string[] } {
+  const toTitleCaseTag = (tag: string) =>
+    tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase();
+
+  const titleTags = Array.from(title.matchAll(HASHTAG_RE)).map((m) => toTitleCaseTag(m[1]));
+  const descTags = Array.from(description.matchAll(HASHTAG_RE)).map((m) => toTitleCaseTag(m[1]));
+
+  const cleanTitle =
+    title.replace(HASHTAG_RE, '').replace(/[^\S\n]{2,}/g, ' ').replace(/\n{3,}/g, '\n\n').trim() ||
+    title;
+  const cleanDescription = description
+    .replace(HASHTAG_RE, '')
+    .replace(/[^\S\n]{2,}/g, ' ')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+
+  const categories = [...new Set([...baseCategories, ...titleTags, ...descTags])];
+
+  return { cleanTitle, cleanDescription, categories };
+}
+
+export const StringsUtil = { truncateAddress, isBlank, truncate, toTitleCase, miniAddress, formatBytes, extractHashtagCategories };
 export default StringsUtil;

@@ -83,6 +83,20 @@ const testNetworks = [
 
 const mainNetworks = [
   {
+    id: ChainId.MAINNET,
+    chainId: ChainId.MAINNET,
+    ticker: "ETH",
+    currency: "ETH",
+    name: "Ethereum",
+    shortName: "Ethereum",
+    rpcUrl: NETWORK_URLS[ChainId.MAINNET],
+    explorerUrl: "https://etherscan.io/",
+    value: "Ethereum",
+    label: "Ethereum",
+    customAbbreviation: "eth",
+    iconUrl: "",
+  },
+  {
     id: ChainId.BSC_MAINNET,
     chainId: ChainId.BSC_MAINNET,
     ticker: "BNB",
@@ -130,6 +144,17 @@ const TEST_NETWORKS = {
 };
 
 const MAIN_NETWORKS = {
+  [ChainId.MAINNET]: {
+    chainId: "0x1",
+    chainName: "Ethereum",
+    nativeCurrency: {
+      name: "Ether",
+      symbol: "ETH",
+      decimals: 18,
+    },
+    rpcUrls: [NETWORK_URLS[ChainId.MAINNET]],
+    blockExplorerUrls: ["https://etherscan.io"],
+  },
   [ChainId.FANTOM_MAINNET]: {
     chainId: "0xfa",
     chainName: "Fantom",

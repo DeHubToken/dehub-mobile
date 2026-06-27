@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, useRef } from "react";
 import { View, Text, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import SmartImage from "../common/SmartImage";
 import { Linking } from "react-native";
@@ -38,12 +38,17 @@ import { AuthService } from "../../services/auth.service";
 import { toastError, toastSuccess } from "../../libs/toast";
 import ProfileStats from "./ProfileStats";
 import { WEBSITE_LINK } from "../../config";
+import { translateText, getDeviceLanguage } from "../../services/translation.service";
+import { TranslateButton } from "../ui/TranslateButton";
 
 const ProfileHeader = () => {
   const navigation = useNavigation<any>();
   const user = useUser() as any;
   const { refreshUser, patchUser } = useAuthActions();
   const [expanded, setExpanded] = useState(false);
+  const [translatedBio, setTranslatedBio] = useState<string | null>(null);
+  const [isTranslatingBio, setIsTranslatingBio] = useState(false);
+  const targetLang = useRef(getDeviceLanguage());
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
   const [localAvatarUri, setLocalAvatarUri] = useState<string | null>(null);
   const [uploadingCover, setUploadingCover] = useState(false);
@@ -142,6 +147,19 @@ const ProfileHeader = () => {
     socials.length
   );
   const showAboutToggle = (aboutTotalLines ?? 0) > 3 || hasExtrasForAbout;
+
+  const handleTranslateBio = useCallback(async () => {
+    if (!aboutText) return;
+    setIsTranslatingBio(true);
+    try {
+      const { translatedText } = await translateText(aboutText, targetLang.current);
+      setTranslatedBio(translatedText);
+    } catch {
+      // silently ignore
+    } finally {
+      setIsTranslatingBio(false);
+    }
+  }, [aboutText]);
 
   // openExternalLink reused from misc
   const handleShare = useCallback(async () => {
@@ -409,13 +427,21 @@ const ProfileHeader = () => {
                 About
               </Text>
               {!!aboutText && (
-                <Text
-                  className="text-white text-sm"
-                  numberOfLines={aboutOpen ? undefined : 3}
-                  ellipsizeMode="tail"
-                >
-                  {aboutText}
-                </Text>
+                <>
+                  <Text
+                    className="text-white text-sm"
+                    numberOfLines={aboutOpen ? undefined : 3}
+                    ellipsizeMode="tail"
+                  >
+                    {translatedBio ?? aboutText}
+                  </Text>
+                  <TranslateButton
+                    isTranslated={!!translatedBio}
+                    isLoading={isTranslatingBio}
+                    onTranslate={handleTranslateBio}
+                    onShowOriginal={() => setTranslatedBio(null)}
+                  />
+                </>
               )}
               {aboutTotalLines == null && !!aboutText && (
                 <Text

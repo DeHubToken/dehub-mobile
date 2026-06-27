@@ -331,6 +331,22 @@ export const getPrivateKey = async (): Promise<string | null> => {
   }
 };
 
+/**
+ * Ed25519 private key from the active Web3Auth session — used to derive the
+ * user's Solana keypair for Solana minting (#41). Returns null for non-Web3Auth
+ * sessions (e.g. imported EVM wallets) or when no session is active.
+ */
+export const getEd25519PrivateKey = async (): Promise<string | null> => {
+  try {
+    const instance = web3auth || (await ensureWeb3AuthReady());
+    const key: string | undefined = instance?.getFinalEd25519PrivKey?.();
+    return key && key.length > 0 ? key : null;
+  } catch (e) {
+    log.warn("getEd25519PrivateKey:error", e as any);
+    return null;
+  }
+};
+
 export const logoutWeb3Auth = async () => {
   if (!isInitialized || !web3auth) return;
   try {

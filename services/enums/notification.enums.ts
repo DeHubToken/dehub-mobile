@@ -21,6 +21,7 @@ export enum NotificationType {
   SYSTEM = 'system',
   FOLLOW_REQUEST = 'follow_request',
   FOLLOW_REQUEST_ACCEPTED = 'follow_request_accepted',
+  FIAT_PAYMENT_COMPLETED = 'fiat_payment_completed',
 }
 
 export enum NotificationCategory {
@@ -111,6 +112,8 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
       return { name: 'AlertTriangle', color: '#f97316' };
     case NotificationType.SYSTEM:
       return { name: 'Info', color: '#6b7280' };
+    case NotificationType.FIAT_PAYMENT_COMPLETED:
+      return { name: 'CreditCard', color: '#22c55e' };
     default:
       return { name: 'Bell', color: '#9ca3af' };
   }
