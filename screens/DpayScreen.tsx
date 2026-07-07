@@ -18,6 +18,7 @@ import DpayAbout from "../components/Dpay/DpayAbout";
 import DpayHeader from "../components/Dpay/DpayHeader";
 import StakingTab from "../components/Wallet/StakingTab";
 import BridgeTab from "../components/Wallet/BridgeTab";
+import ProfileAssets from "../components/Profile/ProfileAssets";
 import { getSupply, getSuccessTotal, getDpayPrice } from "../services";
 import { ChainId } from "../config/constants";
 
@@ -161,6 +162,9 @@ const DpayScreen: React.FC = () => {
           title="Wallet"
           subtitle="Manage your DHB tokens"
         />
+
+        {/* Assets / token balances — moved here from the profile to match web. */}
+        <ProfileAssets />
 
         {/* Tab switcher */}
         <View className="flex-row px-5 gap-2 mb-5">

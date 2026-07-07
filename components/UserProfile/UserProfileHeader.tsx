@@ -4,6 +4,7 @@ import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
 import { SvgXml } from "react-native-svg";
 import Avatar from "../common/Avatar";
+import StoryAvatarRing from "../Story/StoryAvatarRing";
 import Icon from "../ui/Icon";
 import { copyToClipboard } from "../../libs";
 import { getSocialLink, openExternalLink } from "../../libs/links.utils";
@@ -75,6 +76,9 @@ export interface UserProfileHeaderProps {
   FallbackBanner: any;
   socials?: Partial<Record<string, string>>;
   mutuals?: FollowListItem[];
+  hasStories?: boolean;
+  hasUnwatchedStories?: boolean;
+  onStoryPress?: () => void;
 }
 
 const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
@@ -109,6 +113,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   FallbackBanner,
   socials,
   mutuals,
+  hasStories = false,
+  hasUnwatchedStories = false,
+  onStoryPress,
 }) => {
   const [translatedBio, setTranslatedBio] = useState<string | null>(null);
   const [isTranslatingBio, setIsTranslatingBio] = useState(false);
@@ -255,13 +262,15 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 
       <View className="px-5">
         <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
-          <Avatar
+          <StoryAvatarRing
             uri={avatarUrl || undefined}
-            size={88}
-            rounded={false}
-            onPress={() => onOpenImage("avatar")}
             name={displayName}
-            style={{ borderWidth: 3, borderColor: "#010305" }}
+            size={88}
+            hasStories={hasStories}
+            unwatched={hasUnwatchedStories}
+            onPressStory={onStoryPress}
+            onPressAvatar={() => onOpenImage("avatar")}
+            rounded={false}
           />
           {!isBlocked && (
             <View className="flex-row items-center gap-2 mb-1">

@@ -612,9 +612,17 @@ export interface UserReplyAuthor {
 export interface UserReplyPost {
   tokenId: number;
   name?: string;
+  title?: string;
+  description?: string;
   imageUrl?: string;
+  imageUrls?: string[];
+  thumbnailUrl?: string;
+  thumbnail_url?: string;
+  videoUrl?: string;
   postType?: string;
   minter?: string;
+  minterUsername?: string;
+  minterDisplayName?: string;
 }
 
 /** The parent comment snippet (only present when isReply=true). */

@@ -1,5 +1,10 @@
 import { useCallback, useRef, useState } from "react";
-import { Dimensions, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
+import {
+  Dimensions,
+  type LayoutChangeEvent,
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
+} from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -35,7 +40,12 @@ export const useBottomSheetGestures = (
   const [scrollEnabled, setScrollEnabled] = useState(false);
 
   const COLLAPSED_HEIGHT = initialHeight;
-  
+
+  // Actual height of the modal container, measured via onLayout.
+  // Dimensions.get("window").height can be shorter than the real screen on
+  // Android (status bar), which left a gap above the sheet in fullscreen.
+  const fullHeight = useSharedValue(FULL_HEIGHT);
+
   const height = useSharedValue(initialHeight);
   const scrollToTopHandlerRef = useRef<(() => void) | null>(null);
   const scrollY = useSharedValue(0);
@@ -45,11 +55,27 @@ export const useBottomSheetGestures = (
   const lastFullScreen = useSharedValue(false);
 
   const fullScreenProgress = useDerivedValue(() => {
-    const denom = FULL_HEIGHT - COLLAPSED_HEIGHT;
+    const denom = fullHeight.value - COLLAPSED_HEIGHT;
     if (denom <= 0) return 1;
     const raw = (height.value - COLLAPSED_HEIGHT) / denom;
     return Math.max(0, Math.min(1, raw));
   });
+
+  // Keep fullHeight in sync with the real container size; if the sheet is
+  // already (near) fullscreen when the measurement changes, re-pin it so no
+  // gap is left at the top.
+  const onContainerLayout = useCallback(
+    (event: LayoutChangeEvent) => {
+      const measured = event.nativeEvent.layout.height;
+      if (measured <= 0 || measured === fullHeight.value) return;
+      const wasFullScreen = height.value >= fullHeight.value - 24;
+      fullHeight.value = measured;
+      if (wasFullScreen) {
+        height.value = measured;
+      }
+    },
+    [fullHeight, height],
+  );
 
   // Sync SharedValue to React state for FlatList
   useAnimatedReaction(
@@ -63,7 +89,7 @@ export const useBottomSheetGestures = (
   useAnimatedReaction(
     () => height.value,
     (h) => {
-      const shouldEnableScroll = h >= FULL_HEIGHT - 24;
+      const shouldEnableScroll = h >= fullHeight.value - 24;
       const shouldDisableScroll = h <= COLLAPSED_HEIGHT + 8;
 
       if (shouldEnableScroll) {
@@ -85,7 +111,7 @@ export const useBottomSheetGestures = (
   const expandToFullScreen = () => {
     'worklet';
     isScrollEnabled.value = true;
-    height.value = withSpring(FULL_HEIGHT, SNAP_SPRING);
+    height.value = withSpring(fullHeight.value, SNAP_SPRING);
   };
 
   const collapseToInitial = () => {
@@ -145,7 +171,7 @@ export const useBottomSheetGestures = (
       const proposed = startHeight.value - event.translationY;
       const clamped = Math.max(
         COLLAPSED_HEIGHT,
-        Math.min(FULL_HEIGHT, proposed)
+        Math.min(fullHeight.value, proposed)
       );
       height.value = clamped;
     })
@@ -178,7 +204,7 @@ export const useBottomSheetGestures = (
         (velocity < -500 && !isScrollEnabled.value)
       ) {
         runOnJS(setIsFullScreen)(true);
-        height.value = withSpring(FULL_HEIGHT, {
+        height.value = withSpring(fullHeight.value, {
           ...SNAP_SPRING,
           velocity: -velocity,
         });
@@ -198,12 +224,12 @@ export const useBottomSheetGestures = (
         }
       } else {
         // Snap to nearest
-        const distToFull = Math.abs(FULL_HEIGHT - finalHeight);
+        const distToFull = Math.abs(fullHeight.value - finalHeight);
         const distToCollapsed = Math.abs(COLLAPSED_HEIGHT - finalHeight);
 
         if (distToFull < distToCollapsed) {
           runOnJS(setIsFullScreen)(true);
-          height.value = withSpring(FULL_HEIGHT, {
+          height.value = withSpring(fullHeight.value, {
             ...SNAP_SPRING,
             velocity: -velocity,
           });
@@ -238,8 +264,8 @@ export const useBottomSheetGestures = (
   const expandToFullScreenJS = useCallback(() => {
     setIsFullScreen(true);
     isScrollEnabled.value = true;
-    height.value = withSpring(FULL_HEIGHT, SNAP_SPRING);
-  }, [height, isScrollEnabled]);
+    height.value = withSpring(fullHeight.value, SNAP_SPRING);
+  }, [height, isScrollEnabled, fullHeight]);
 
   const collapseToInitialJS = useCallback(() => {
     setIsFullScreen(false);
@@ -267,6 +293,7 @@ export const useBottomSheetGestures = (
     isFullScreen,
     fullScreenProgress,
     scrollEnabled,
+    onContainerLayout,
     registerScrollToTop,
     composedGesture,
     GestureDetector,

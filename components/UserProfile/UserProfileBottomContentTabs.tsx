@@ -18,6 +18,7 @@ import {
   Pressable,
   type LayoutChangeEvent,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 import Animated, {
   useAnimatedStyle,
@@ -40,11 +41,16 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useAuthState } from "../../context/AuthContext";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { theme } from "../../theme";
-import UserRepliesList, { type UserRepliesListRef } from "./UserRepliesList";
 import UserRepostsList, { type UserRepostsListRef } from "./UserRepostsList";
 import ProfileImageGrid from "../Profile/ProfileImageGrid";
 import PlanCard from "../Subscription/PlanCard";
-import type { UserReplyItem } from "../../services/user.service";
+import VideosRoute from "../Profile/VideosRoute";
+import LivestreamsRoute from "../Profile/LivestreamsRoute";
+import FractionsRoute from "../Profile/FractionsRoute";
+import PinnedRoute from "../Profile/PinnedRoute";
+import ProfileFeedTypeRoute from "../Profile/ProfileFeedTypeRoute";
+import PostsRoute from "../Profile/PostsRoute";
+import RepliesRoute from "../Profile/RepliesRoute";
 import { getPlans, type SubscriptionPlan } from "../../services/subscription.service";
 
 interface UserProfileBottomContentTabsProps {
@@ -71,22 +77,41 @@ interface UserProfileBottomContentTabsProps {
 const STICKY_BAR_HEIGHT = 48;
 const SLIDE_TIMING = { duration: 200, easing: Easing.out(Easing.cubic) };
 
-/** Horizontal padding for post cards — matches the profile header's px-5 (20px). */
-const CONTENT_PX = 20;
+/** Horizontal padding for post cards. Kept tight so content isn't crowded by
+ *  large left/right gaps inside the profile sheet. */
+const CONTENT_PX = 12;
 
 /** Stable contentContainerStyle (same identity across renders to avoid FlatList churn). */
 const LIST_CONTENT_STYLE = { paddingBottom: 80 } as const;
 const LIST_CONTENT_STYLE_COLLAPSED = { paddingBottom: 24 } as const;
 
-type ContentTab = "posts" | "replies" | "reposts" | "images" | "subscribers";
+type ContentTab =
+  | "posts"
+  | "replies"
+  | "reposts"
+  | "images"
+  | "videos"
+  | "songs"
+  | "live"
+  | "fractions"
+  | "subscribers"
+  | "pinned";
 
 const TAB_ITEMS: { key: ContentTab; label: string; icon: IconName }[] = [
   { key: "posts", label: "Posts", icon: "Grid3x3" },
   { key: "replies", label: "Replies", icon: "MessageSquare" },
   { key: "reposts", label: "Reposts", icon: "Repeat2" },
   { key: "images", label: "Images", icon: "Image" },
-  { key: "subscribers", label: "Subscribers", icon: "Star" },
+  { key: "videos", label: "Videos", icon: "Film" },
+  { key: "songs", label: "Audio", icon: "Music" },
+  { key: "live", label: "Live", icon: "Radio" },
+  { key: "fractions", label: "Fractions", icon: "ChartPie" },
+  { key: "subscribers", label: "Subs", icon: "Star" },
+  { key: "pinned", label: "Pinned", icon: "Bookmark" },
 ];
+
+/** Fixed per-tab width so the (now scrollable) tab bar stays consistent. */
+const TAB_WIDTH = 68;
 
 const UserProfileBottomContentTabs: React.FC<
   UserProfileBottomContentTabsProps
@@ -112,7 +137,6 @@ const UserProfileBottomContentTabs: React.FC<
   const { hideUserProfile } = useUserProfileSheet();
   const { isSignedIn } = useAuthState();
   const listRef = useRef<FlatList<any> | null>(null);
-  const repliesListRef = useRef<UserRepliesListRef>(null);
   const repostsListRef = useRef<UserRepostsListRef>(null);
 
   // Active content tab
@@ -224,17 +248,24 @@ const UserProfileBottomContentTabs: React.FC<
     };
   }, [registerScrollToTop, scrollToTop]);
 
-  // Navigate to a post and highlight a specific comment (from Replies tab)
-  const handleReplyItemPress = useCallback(
-    (item: UserReplyItem) => {
-      const tokenId = item.tokenId ?? item.post?.tokenId;
-      if (!tokenId) return;
-      const commentId = String(item.id);
+  // Open the full-screen image feed for the tapped image. Dismiss the sheet
+  // first, otherwise the viewer renders behind it.
+  const handleImagePress = useCallback(
+    (index: number) => {
       hideUserProfile();
       onClose();
-      navigation.navigate(ScreenNames.FeedDetail as never, { tokenId, commentId } as never);
+      navigation.navigate(ScreenNames.ImageFeed as never, {
+        initialIndex: index,
+        initialItems: images,
+        feedParams: {
+          minter: address,
+          postType: "feed-images",
+          sortBy: "createdAt",
+          sortOrder: "desc",
+        },
+      } as never);
     },
-    [navigation, hideUserProfile, onClose],
+    [images, address, navigation, hideUserProfile, onClose],
   );
 
   const renderItem = useCallback(
@@ -324,42 +355,49 @@ const UserProfileBottomContentTabs: React.FC<
     borderRadius: 1,
   }));
 
-  // Clean underline tab bar
+  // Clean underline tab bar — horizontally scrollable so all content tabs fit.
   const TabBar = useMemo(
     () => (
       <View
         style={{
           height: STICKY_BAR_HEIGHT,
-          flexDirection: "row",
           borderBottomWidth: StyleSheet.hairlineWidth,
           borderBottomColor: "rgba(255,255,255,0.08)",
         }}
       >
-        {TAB_ITEMS.map((tab) => {
-          const isActive = activeTab === tab.key;
-          return (
-            <Pressable
-              key={tab.key}
-              onPress={() => handleTabChange(tab.key)}
-              onLayout={(e) => {
-                const { x, width } = e.nativeEvent.layout;
-                handleTabLayout(tab.key, x, width);
-              }}
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Icon
-                name={tab.icon}
-                size={20}
-                color={isActive ? "#fff" : "#52525b"}
-              />
-            </Pressable>
-          );
-        })}
-        <Animated.View style={indicatorStyle} />
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ minWidth: "100%" }}
+        >
+          {TAB_ITEMS.map((tab) => {
+            const isActive = activeTab === tab.key;
+            const color = isActive ? "#fff" : "#52525b";
+            return (
+              <Pressable
+                key={tab.key}
+                onPress={() => handleTabChange(tab.key)}
+                onLayout={(e) => {
+                  const { x, width } = e.nativeEvent.layout;
+                  handleTabLayout(tab.key, x, width);
+                }}
+                style={{
+                  width: TAB_WIDTH,
+                  height: STICKY_BAR_HEIGHT,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 2,
+                }}
+              >
+                <Icon name={tab.icon} size={18} color={color} />
+                <Text style={{ color, fontSize: 10, fontWeight: isActive ? "700" : "500" }}>
+                  {tab.label}
+                </Text>
+              </Pressable>
+            );
+          })}
+          <Animated.View style={indicatorStyle} />
+        </ScrollView>
       </View>
     ),
     [activeTab, handleTabChange, handleTabLayout, indicatorStyle],
@@ -516,38 +554,23 @@ const UserProfileBottomContentTabs: React.FC<
       case "posts":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            <InfiniteFeed
-              insideNavigatorScreen={false}
-              fetchPage={fetchPage}
-              pageSize={20}
-              isSignedIn={isSignedIn}
-              contentContainerStyle={
-                isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED
-              }
-              scrollEnabled={scrollEnabled}
+            <PostsRoute
+              address={address}
               onScroll={handleScroll}
-              listRef={listRef}
-              enableBackToTop={false}
-              renderItem={renderItem}
-              headerComponent={isFullScreen ? fullScreenListHeader : undefined}
-              loadingComponent={postsLoadingComponent}
+              scrollEnabled={scrollEnabled}
+              listHeader={isFullScreen ? fullScreenListHeader : undefined}
             />
           </View>
         );
       case "replies":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            <UserRepliesList
-              ref={repliesListRef}
+            <RepliesRoute
               address={address}
-              contentPadding={CONTENT_PX}
-              scrollEnabled={scrollEnabled}
               onScroll={handleScroll}
-              headerComponent={isFullScreen ? fullScreenListHeader : undefined}
-              contentContainerStyle={
-                isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED
-              }
-              onItemPress={handleReplyItemPress}
+              scrollEnabled={scrollEnabled}
+              listHeader={isFullScreen ? fullScreenListHeader : undefined}
+              onClose={onClose}
             />
           </View>
         );
@@ -581,7 +604,7 @@ const UserProfileBottomContentTabs: React.FC<
                 <Text style={{ color: "#71717a", fontSize: 14 }}>No images yet</Text>
               </View>
             ) : (
-              <ProfileImageGrid images={images} scrollEnabled={scrollEnabled} />
+              <ProfileImageGrid images={images} scrollEnabled={scrollEnabled} onImagePress={handleImagePress} />
             )}
           </View>
         );
@@ -613,6 +636,41 @@ const UserProfileBottomContentTabs: React.FC<
                 contentContainerStyle={isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED}
               />
             )}
+          </View>
+        );
+      case "videos":
+        return (
+          <View style={{ flex: 1, marginTop: mt }}>
+            {isFullScreen && fullScreenListHeader}
+            <VideosRoute address={address} />
+          </View>
+        );
+      case "songs":
+        return (
+          <View style={{ flex: 1, marginTop: mt }}>
+            {isFullScreen && fullScreenListHeader}
+            <ProfileFeedTypeRoute address={address} postType="feed-audio" />
+          </View>
+        );
+      case "live":
+        return (
+          <View style={{ flex: 1, marginTop: mt }}>
+            {isFullScreen && fullScreenListHeader}
+            <LivestreamsRoute address={address} />
+          </View>
+        );
+      case "fractions":
+        return (
+          <View style={{ flex: 1, marginTop: mt }}>
+            {isFullScreen && fullScreenListHeader}
+            <FractionsRoute address={address} isOwnProfile={isOwnProfile} />
+          </View>
+        );
+      case "pinned":
+        return (
+          <View style={{ flex: 1, marginTop: mt }}>
+            {isFullScreen && fullScreenListHeader}
+            <PinnedRoute address={address} />
           </View>
         );
       default:

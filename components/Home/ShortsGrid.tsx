@@ -18,6 +18,7 @@ import { getShortsFeed } from "../../services/feed.unified.service";
 import type { UnifiedFeedItem, ShortsFeedParams } from "../../services/feed.unified.service";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { theme } from "../../theme";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 export interface ShortsGridHandle {
   scrollToTopAndRefresh: () => void;
@@ -48,14 +49,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   onScrollBegin,
   onRefresh: onRefreshProp,
 }) => {
-  const [items, setItems] = useState<UnifiedFeedItem[]>([]);
-  const [page, setPage] = useState(0);
-  const [initialLoading, setInitialLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const endReachedRef = useRef(false);
-  const shuffleSeedRef = useRef<string | undefined>(undefined);
   const listRef = useRef<FlatList>(null);
   const prevYRef = useRef(0);
 
@@ -74,73 +68,64 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     sortOrder: params?.sortOrder || "desc" as const,
   }), [params]);
 
-  const loadFirstPage = useCallback(async () => {
-    setError(null);
-    endReachedRef.current = false;
-    shuffleSeedRef.current = undefined;
-    setPage(1);
-    const res = await getShortsFeed({ ...mergedParams, limit: pageSize, page: 1 });
-    if (res.shuffleSeed) shuffleSeedRef.current = res.shuffleSeed;
-    setItems(res.result || []);
-    if (!res.result || res.result.length < pageSize || !res.pagination?.hasMore) {
-      endReachedRef.current = true;
-    }
-  }, [mergedParams, pageSize]);
+  // Cached + revalidated by react-query. The backend issues a shuffleSeed on
+  // the first page; it rides along in the pageParam so later pages stay
+  // consistent with the shuffle order.
+  interface ShortsPageParam {
+    page: number;
+    shuffleSeed?: string;
+  }
 
-  const resetAndLoad = useCallback(async () => {
-    setItems([]);
-    setInitialLoading(true);
-    try {
-      await loadFirstPage();
-    } catch (e: any) {
-      setError(e?.message || "Failed to load");
-    } finally {
-      setInitialLoading(false);
-    }
-  }, [loadFirstPage]);
-
-  useEffect(() => {
-    resetAndLoad();
-  }, [resetAndLoad]);
-
-  const loadMore = useCallback(async () => {
-    if (initialLoading || loadingMore || refreshing || endReachedRef.current) return;
-    setLoadingMore(true);
-    try {
-      const nextPage = page + 1;
-      const res = await getShortsFeed({
+  const {
+    data,
+    error: queryError,
+    isLoading: initialLoading,
+    isFetchingNextPage: loadingMore,
+    hasNextPage,
+    fetchNextPage,
+    refetch,
+  } = useInfiniteQuery({
+    queryKey: ["home-shorts", mergedParams, pageSize],
+    queryFn: ({ pageParam }: { pageParam: ShortsPageParam }) =>
+      getShortsFeed({
         ...mergedParams,
         limit: pageSize,
-        page: nextPage,
-        shuffleSeed: shuffleSeedRef.current,
-      });
-      const newItems = res.result || [];
-      if (res.shuffleSeed && !shuffleSeedRef.current) {
-        shuffleSeedRef.current = res.shuffleSeed;
-      }
-      setItems((prev) => [...prev, ...newItems]);
-      setPage(nextPage);
-      if (newItems.length < pageSize || !res.pagination?.hasMore) {
-        endReachedRef.current = true;
-      }
-    } catch {
-      // keep existing items
-    } finally {
-      setLoadingMore(false);
-    }
-  }, [initialLoading, loadingMore, refreshing, page, mergedParams, pageSize]);
+        page: pageParam.page,
+        shuffleSeed: pageParam.shuffleSeed,
+      }),
+    initialPageParam: { page: 1 } as ShortsPageParam,
+    getNextPageParam: (lastPage, allPages, lastPageParam): ShortsPageParam | undefined => {
+      const results = lastPage.result || [];
+      if (results.length < pageSize || !lastPage.pagination?.hasMore) return undefined;
+      return {
+        page: lastPageParam.page + 1,
+        shuffleSeed: allPages[0]?.shuffleSeed ?? lastPageParam.shuffleSeed,
+      };
+    },
+  });
+
+  const items = useMemo<UnifiedFeedItem[]>(
+    () => (data?.pages ?? []).flatMap((res) => res.result || []),
+    [data],
+  );
+  const shuffleSeed = data?.pages?.[0]?.shuffleSeed;
+  const endReached = hasNextPage === false;
+  const error = queryError ? (queryError as Error).message || "Failed to load" : null;
+
+  const loadMore = useCallback(() => {
+    if (initialLoading || loadingMore || refreshing || !hasNextPage) return;
+    fetchNextPage().catch(() => {});
+  }, [initialLoading, loadingMore, refreshing, hasNextPage, fetchNextPage]);
 
   const onRefresh = useCallback(async () => {
     onRefreshProp?.();
     setRefreshing(true);
     try {
-      await loadFirstPage();
-    } catch (e: any) {
-      setError(e?.message || "Failed to load");
+      await refetch();
     } finally {
       setRefreshing(false);
     }
-  }, [loadFirstPage, onRefreshProp]);
+  }, [refetch, onRefreshProp]);
 
   useEffect(() => {
     if (!gridRef) return;
@@ -166,9 +151,9 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     navigation.navigate(ScreenNames.ShortsViewer, {
       initialIndex: index,
       initialItems: items,
-      feedParams: { ...mergedParams, shuffleSeed: shuffleSeedRef.current },
+      feedParams: { ...mergedParams, shuffleSeed },
     });
-  }, [items, mergedParams, navigation]);
+  }, [items, mergedParams, navigation, shuffleSeed]);
 
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {
     const indices = new Set(
@@ -211,7 +196,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     return (
       <View className="flex-1 items-center justify-center px-4">
         <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
-        <Pressable onPress={resetAndLoad} className="px-5 py-2 rounded-xl bg-theme-neutrals-700">
+        <Pressable onPress={() => refetch()} className="px-5 py-2 rounded-xl bg-theme-neutrals-700">
           <Text className="text-theme-neutrals-50 font-medium">Retry</Text>
         </Pressable>
       </View>
@@ -256,7 +241,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
             <View className="items-center py-6">
               <ActivityIndicator size="large" color="#fff" />
             </View>
-          ) : endReachedRef.current && items.length > 0 ? (
+          ) : endReached && items.length > 0 ? (
             <View className="py-6 items-center">
               <Text className="text-theme-neutrals-400 text-xs">No more shorts</Text>
             </View>

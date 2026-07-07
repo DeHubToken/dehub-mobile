@@ -12,6 +12,8 @@ import {
   RefreshControl,
   View,
   Text,
+  type NativeSyntheticEvent,
+  type NativeScrollEvent,
 } from "react-native";
 import CompactVideoCard from "./CompactVideoCard";
 import CompactVideoCardSkeleton from "./CompactVideoCardSkeleton";
@@ -31,6 +33,7 @@ interface CompactVideoInfiniteListProps {
   variant?: "videos" | "live" | "liked";
   ListHeaderComponent?: React.ReactElement | null;
   showCreator?: boolean; // forward to CompactVideoCard
+  onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
 }
 
 interface VideoItem extends GetNFTsResult {}
@@ -46,6 +49,7 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
   variant = "videos",
   ListHeaderComponent = null,
   showCreator = true,
+  onScroll,
 }) => {
   const [items, setItems] = useState<VideoItem[]>([]);
   const [page, setPage] = useState(0);
@@ -148,6 +152,8 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
       renderItem={renderItem}
       onEndReached={onEndReached}
       onEndReachedThreshold={0.5}
+      onScroll={onScroll}
+      scrollEventThrottle={16}
       ListFooterComponent={ListFooter}
       initialNumToRender={10}
       windowSize={11}

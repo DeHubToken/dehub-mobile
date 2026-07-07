@@ -8,6 +8,13 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Toaster } from "sonner-native";
 import { toastTheme } from "./theme/toastTheme";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import {
+  queryClient,
+  queryCachePersister,
+  PERSIST_MAX_AGE,
+  PERSIST_BUSTER,
+} from "./config/queryClient";
 import "./global.css";
 import SplashScreen from "./screens/SplashScreen";
 import NoInternetScreen from "./screens/NoInternetScreen";
@@ -27,6 +34,7 @@ import { AuthProvider, useAuthState, useUser } from "./context/AuthContext";
 import { WebSocketProvider } from "./context/WebSocketContext";
 import { DMProvider } from "./context/DMContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
+import { StoryViewerProvider } from "./context/StoryViewerContext";
 import RootNavigator from "./navigation/RootNavigator";
 import { MessagingProvider } from "./context/MessagingContext";
 import { PushNotificationsProvider } from "./services/push";
@@ -134,12 +142,22 @@ export default function App() {
   return (
     <I18nextProvider i18n={i18n}>
       <ErrorBoundary showDetails={__DEV__}>
+        <PersistQueryClientProvider
+          client={queryClient}
+          persistOptions={{
+            persister: queryCachePersister,
+            maxAge: PERSIST_MAX_AGE,
+            buster: PERSIST_BUSTER,
+          }}
+        >
         <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#000" }}>
           <SafeAreaProvider className="flex-1 select-none bg-theme-background">
             <AuthProvider>
               <WebSocketProvider>
                 <DMProvider>
-                  <BootGate />
+                  <StoryViewerProvider>
+                    <BootGate />
+                  </StoryViewerProvider>
                 </DMProvider>
               </WebSocketProvider>
             </AuthProvider>
@@ -154,6 +172,7 @@ export default function App() {
             <PermissionModalProvider />
           </SafeAreaProvider>
         </GestureHandlerRootView>
+        </PersistQueryClientProvider>
       </ErrorBoundary>
     </I18nextProvider>
   );

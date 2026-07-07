@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useState, useRef, useMemo } from "react";
-import { View, Pressable, StyleSheet } from "react-native";
+import { View, Pressable, StyleSheet, Platform } from "react-native";
+import { BlurView } from "expo-blur";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Reanimated, {
   useSharedValue,
@@ -134,6 +135,17 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
           style={styles.container}
           onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
         >
+          {/* Android's experimental blur (dimezisBlurView) crashes with
+              IndexOutOfBoundsException when list views mutate during its
+              pre-draw snapshot — real blur is iOS-only, Android gets a
+              translucent glass-tinted fallback. */}
+          {Platform.OS === "ios" ? (
+            <BlurView intensity={80} tint="dark" style={StyleSheet.absoluteFill} />
+          ) : (
+            <View style={styles.androidBlurFallback} />
+          )}
+          <View style={styles.glassOverlay} pointerEvents="none" />
+
           {/* Floating drag indicator — UI-thread only, zero JS lag */}
           <Reanimated.View style={[styles.dragIndicator, dragIndicatorStyle]}>
             <View style={StyleSheet.absoluteFill}>
@@ -191,9 +203,22 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   container: {
-    backgroundColor: "#18181B",
     borderRadius: 12,
     overflow: "hidden",
+  },
+  androidBlurFallback: {
+    ...StyleSheet.absoluteFillObject,
+    // Translucent enough that content scrolling underneath faintly shows
+    // through, reading as glass even without a real blur.
+    backgroundColor: "rgba(16, 16, 20, 0.65)",
+    borderRadius: 12,
+  },
+  glassOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(10, 10, 12, 0.30)",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.12)",
   },
   dragIndicator: {
     position: "absolute",

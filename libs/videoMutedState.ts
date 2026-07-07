@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { storage, migrateFromAsyncStorage } from './storage';
 
 const MUTED_KEY = 'video-muted';
 let _muted = false;
@@ -11,14 +11,15 @@ export function getCachedMuted(): boolean {
 export function setMutedState(muted: boolean): void {
   _muted = muted;
   _loaded = true;
-  AsyncStorage.setItem(MUTED_KEY, String(muted)).catch(() => {});
+  try { storage.set(MUTED_KEY, String(muted)); } catch {}
 }
 
 export async function loadMutedState(): Promise<void> {
   if (_loaded) return;
   try {
-    const val = await AsyncStorage.getItem(MUTED_KEY);
-    if (val !== null) _muted = val === 'true';
+    await migrateFromAsyncStorage();
+    const val = storage.getString(MUTED_KEY);
+    if (val !== undefined) _muted = val === 'true';
   } catch {}
   _loaded = true;
 }

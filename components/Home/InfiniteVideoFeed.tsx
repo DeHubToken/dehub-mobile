@@ -45,6 +45,7 @@ import {
 } from "../../services/view.service";
 import { feedEvents } from "../../libs/eventBus";
 import SuggestedAccountsSection from "./SuggestedAccountsSection";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 export interface InfiniteVideoFeedHandle {
   scrollToTopAndRefresh: () => void;
@@ -91,16 +92,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   interface FeedItem extends UnifiedFeedItem {
     __listKey: string;
   }
-  const [items, setItems] = useState<FeedItem[]>([]);
-  const [page, setPage] = useState(0);
-  // Start as true so we don't briefly render the empty state before resetAndLoad sets loading
-  const [initialLoading, setInitialLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [visibleItemKeys, setVisibleItemKeys] = useState<Set<string>>(new Set());
   const [activeVideoKey, setActiveVideoKey] = useState<string | null>(null);
-  const endReachedRef = useRef(false);
   const listRef = useRef<FlatList<FeedItem>>(null);
   const prevYRef = useRef(0);
 
@@ -190,67 +184,34 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   useScrollToTop(listRef);
 
-  const loadFirstPage = useCallback(async () => {
-    setError(null);
-    endReachedRef.current = false;
-    setPage(1);
-    const res = await getUnifiedFeed({ ...(params || {}), limit: pageSize, page: 1 });
-    const mapped: FeedItem[] = (res.result || []).map((it, idx) => {
-      // Always include page + index to guarantee uniqueness even if backend returns duplicate ids
-      const base =
-        (it as any).tokenId ||
-        (it as any).id ||
-        (it as any).nftId ||
-        (it as any).streamKey ||
-        (it as any).stream?.id ||
-        (it as any).stream?.streamKey ||
-        `auto`; // fallback
-      const created =
-        (it as any).createdAt ||
-        (it as any).stream?.createdAt ||
-        (it as any).created_at ||
-        `nocreated`;
-      return {
-        ...it,
-        __listKey: `${base}-${created}-p1-i${idx}`,
-      };
-    });
-    setItems(mapped);
-    if (!res.result || res.result.length < pageSize || !res.pagination?.hasMore) {
-      endReachedRef.current = true;
-      onEndReachedAll && onEndReachedAll();
-    }
-  }, [params, pageSize, onEndReachedAll]);
+  // Cached + revalidated by react-query: switching tabs re-renders instantly
+  // from cache (no skeleton flash) and refetches in the background when stale,
+  // matching the web app's seamless tab switching.
+  const {
+    data,
+    error: queryError,
+    isLoading: initialLoading,
+    isFetchingNextPage: loadingMore,
+    hasNextPage,
+    fetchNextPage,
+    refetch,
+  } = useInfiniteQuery({
+    queryKey: ["home-feed", params ?? {}, pageSize],
+    queryFn: ({ pageParam }) =>
+      getUnifiedFeed({ ...(params || {}), limit: pageSize, page: pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, _allPages, lastPageParam) => {
+      const results = lastPage.result || [];
+      if (results.length < pageSize || !lastPage.pagination?.hasMore) return undefined;
+      return lastPageParam + 1;
+    },
+  });
 
-  const resetAndLoad = useCallback(async () => {
-    // Show skeleton immediately for initial load / param changes.
-    setItems([]);
-    setInitialLoading(true);
-    try {
-      await loadFirstPage();
-    } catch (e: any) {
-      setError(e?.message || "Failed to load");
-    } finally {
-      setInitialLoading(false);
-    }
-  }, [loadFirstPage]);
-
-  useEffect(() => {
-    resetAndLoad();
-  }, [resetAndLoad]);
-
-  const loadMore = useCallback(async () => {
-    if (initialLoading || loadingMore || refreshing) return;
-    if (endReachedRef.current) return; // hard stop
-    setLoadingMore(true);
-    try {
-      const nextPage = page + 1;
-      const res = await getUnifiedFeed({
-        ...(params || {}),
-        limit: pageSize,
-        page: nextPage,
-      });
-      const newItems = (res.result || []).map((it, idx) => {
+  const items = useMemo<FeedItem[]>(() => {
+    const pages = data?.pages ?? [];
+    return pages.flatMap((res, pageIdx) =>
+      (res.result || []).map((it, idx) => {
+        // Always include page + index to guarantee uniqueness even if backend returns duplicate ids
         const base =
           (it as any).tokenId ||
           (it as any).id ||
@@ -258,7 +219,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           (it as any).streamKey ||
           (it as any).stream?.id ||
           (it as any).stream?.streamKey ||
-          `auto`;
+          `auto`; // fallback
         const created =
           (it as any).createdAt ||
           (it as any).stream?.createdAt ||
@@ -266,29 +227,23 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           `nocreated`;
         return {
           ...it,
-          __listKey: `${base}-${created}-p${nextPage}-i${idx}`,
+          __listKey: `${base}-${created}-p${pageIdx + 1}-i${idx}`,
         };
-      });
-      setItems((prev) => [...prev, ...newItems]);
-      setPage(nextPage);
-      if (newItems.length < pageSize || !res.pagination?.hasMore) {
-        endReachedRef.current = true;
-        onEndReachedAll && onEndReachedAll();
-      }
-    } catch (e) {
-      // keep previous items; optionally set a load-more error state
-    } finally {
-      setLoadingMore(false);
-    }
-  }, [
-    initialLoading,
-    loadingMore,
-    refreshing,
-    page,
-    params,
-    pageSize,
-    onEndReachedAll,
-  ]);
+      }),
+    );
+  }, [data]);
+
+  const endReached = hasNextPage === false;
+  const error = queryError ? (queryError as Error).message || "Failed to load" : null;
+
+  useEffect(() => {
+    if (endReached) onEndReachedAll?.();
+  }, [endReached, onEndReachedAll]);
+
+  const loadMore = useCallback(() => {
+    if (initialLoading || loadingMore || refreshing || !hasNextPage) return;
+    fetchNextPage().catch(() => {});
+  }, [initialLoading, loadingMore, refreshing, hasNextPage, fetchNextPage]);
 
   const onRefresh = useCallback(async () => {
     // Call external refresh callback (e.g., to refresh shuffle seed)
@@ -296,13 +251,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     // Keep existing items so the RefreshControl spinner is visible (no skeleton snap).
     setRefreshing(true);
     try {
-      await loadFirstPage();
-    } catch (e: any) {
-      setError(e?.message || "Failed to load");
+      await refetch();
     } finally {
       setRefreshing(false);
     }
-  }, [loadFirstPage, onRefreshProp]);
+  }, [refetch, onRefreshProp]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("tabPress", () => {
@@ -323,8 +276,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   const handleRetry = useCallback(() => {
     try { onRetry && onRetry(); } catch {}
-    resetAndLoad();
-  }, [onRetry, resetAndLoad]);
+    refetch();
+  }, [onRetry, refetch]);
 
   const handleScroll = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -444,7 +397,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
             paddingBottom: 80,
           }
         }
-        onEndReached={endReachedRef.current ? undefined : loadMore}
+        onEndReached={endReached ? undefined : loadMore}
         onEndReachedThreshold={0.8}
         extraData={[visibleItemKeys, activeVideoKey]}
         onScroll={handleScroll}
@@ -468,7 +421,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
             <View className="items-center py-6">
               <ActivityIndicator size="large" color="#fff" />
             </View>
-          ) : endReachedRef.current && items.length > 0 ? (
+          ) : endReached && items.length > 0 ? (
             <View className="px-4 py-6 items-center">
               <Text className="text-theme-neutrals-400 text-xs">
                 No more content

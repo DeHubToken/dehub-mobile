@@ -1,0 +1,224 @@
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  View,
+  FlatList,
+  ActivityIndicator,
+  Text,
+  RefreshControl,
+  type NativeSyntheticEvent,
+  type NativeScrollEvent,
+} from "react-native";
+import FeedCard from "../Home/FeedCard";
+import {
+  getUnifiedFeed,
+  type UnifiedFeedItem,
+} from "../../services/feed.unified.service";
+import { getUserReposts } from "../../services/repost.service";
+import { theme } from "../../theme";
+
+const PAGE_SIZE = 20;
+const MAX_REPOST_PAGES = 10;
+
+type PostRow = {
+  key: string;
+  createdAt: string;
+  item: UnifiedFeedItem;
+  isRepost: boolean;
+};
+
+interface PostsRouteProps {
+  address?: string;
+  onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  listHeader?: React.ReactNode;
+  scrollEnabled?: boolean;
+}
+
+/**
+ * Profile "Posts" tab — all of the user's own content (text, images, videos,
+ * audio) merged with their reposts, matching the web profile's main feed.
+ * Comments/replies live in the Replies tab.
+ */
+const PostsRoute: React.FC<PostsRouteProps> = ({
+  address,
+  onScroll,
+  listHeader,
+  scrollEnabled = true,
+}) => {
+  const [posts, setPosts] = useState<UnifiedFeedItem[]>([]);
+  const [reposts, setReposts] = useState<UnifiedFeedItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const postPageRef = useRef(0);
+  const postEndRef = useRef(false);
+
+  const loadReposts = useCallback(async (addr: string) => {
+    let page = 1;
+    let all: UnifiedFeedItem[] = [];
+    let hasMore = true;
+    while (hasMore && page <= MAX_REPOST_PAGES) {
+      const res = await getUserReposts({ address: addr, page, limit: 50 });
+      const batch = (res.result || []).map((item: any) => ({
+        ...item,
+        isRepost: true,
+        postType: item.postType || "feed-simple",
+      })) as UnifiedFeedItem[];
+      all = [...all, ...batch];
+      hasMore = res.pagination?.hasMore ?? batch.length >= 50;
+      page += 1;
+    }
+    return all;
+  }, []);
+
+  const loadPostsPage = useCallback(async (addr: string, page: number, append: boolean) => {
+    // No postType filter — the web profile's main feed shows ALL of the
+    // user's content (text, images, videos, audio) merged with reposts, so a
+    // profile with only media posts must not read as empty here.
+    const res = await getUnifiedFeed({
+      minter: addr,
+      sortBy: "createdAt",
+      sortOrder: "desc",
+      status: "minted",
+      page: page + 1,
+      limit: PAGE_SIZE,
+    });
+    const batch = res.result || [];
+    setPosts((prev) => (append ? [...prev, ...batch] : batch));
+    postPageRef.current = page;
+    postEndRef.current = batch.length < PAGE_SIZE;
+  }, []);
+
+  const loadAll = useCallback(
+    async (isRefresh = false) => {
+      if (!address) {
+        setPosts([]);
+        setReposts([]);
+        setLoading(false);
+        return;
+      }
+      if (!isRefresh) setLoading(true);
+      postEndRef.current = false;
+      postPageRef.current = 0;
+      try {
+        const [repostRows] = await Promise.all([
+          loadReposts(address),
+          loadPostsPage(address, 0, false),
+        ]);
+        setReposts(repostRows);
+      } catch {
+        if (!isRefresh) {
+          setPosts([]);
+          setReposts([]);
+        }
+      } finally {
+        setLoading(false);
+        setRefreshing(false);
+      }
+    },
+    [address, loadPostsPage, loadReposts],
+  );
+
+  useEffect(() => {
+    loadAll();
+  }, [loadAll]);
+
+  const loadMorePosts = useCallback(async () => {
+    if (!address || loadingMore || postEndRef.current || loading) return;
+    setLoadingMore(true);
+    try {
+      await loadPostsPage(address, postPageRef.current + 1, true);
+    } finally {
+      setLoadingMore(false);
+    }
+  }, [address, loadingMore, loading, loadPostsPage]);
+
+  const merged = useMemo<PostRow[]>(() => {
+    const ownIds = new Set(
+      posts.map((p) => String(p.tokenId ?? p.id ?? "")).filter(Boolean),
+    );
+    const rows: PostRow[] = [
+      ...posts.map((post) => ({
+        key: `own-${post.tokenId ?? post.id}`,
+        createdAt: post.createdAt || "",
+        item: post,
+        isRepost: false,
+      })),
+      ...reposts
+        .filter((r) => {
+          const id = String(r.tokenId ?? r.id ?? "");
+          return id && !ownIds.has(id);
+        })
+        .map((item) => ({
+          key: `repost-${item.tokenId ?? item.id}-${(item as any).repostedAt ?? item.createdAt}`,
+          createdAt: (item as any).repostedAt || item.createdAt || "",
+          item,
+          isRepost: true,
+        })),
+    ];
+    rows.sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    );
+    return rows;
+  }, [posts, reposts]);
+
+  if (loading) {
+    return (
+      <View className="flex-1 items-center justify-center">
+        <ActivityIndicator color={theme.colors.accent} />
+      </View>
+    );
+  }
+
+  if (merged.length === 0) {
+    return (
+      <View className="flex-1 items-center justify-center px-8">
+        <Text className="text-theme-neutrals-400 text-sm text-center">
+          No posts yet
+        </Text>
+      </View>
+    );
+  }
+
+  // The header must be passed as an element (not an inline component) so it
+  // reconciles instead of remounting on every render — remounts re-measure the
+  // header and leave a blank gap when scrolling back up.
+  const headerElement = listHeader ? <>{listHeader}</> : undefined;
+
+  return (
+    <View className="flex-1 px-3">
+      <FlatList
+        data={merged}
+        keyExtractor={(item) => item.key}
+        ListHeaderComponent={headerElement}
+        scrollEnabled={scrollEnabled}
+        renderItem={({ item }) => (
+          <FeedCard item={item.item} showRepostLabel={item.isRepost} />
+        )}
+        contentContainerStyle={{ paddingBottom: 80, paddingTop: 8 }}
+        onScroll={onScroll}
+        scrollEventThrottle={16}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={() => {
+              setRefreshing(true);
+              loadAll(true);
+            }}
+            tintColor={theme.colors.accent}
+          />
+        }
+        onEndReached={loadMorePosts}
+        onEndReachedThreshold={0.4}
+        ListFooterComponent={
+          loadingMore ? (
+            <View className="py-4 items-center">
+              <ActivityIndicator color={theme.colors.accent} />
+            </View>
+          ) : null
+        }
+      />
+    </View>
+  );
+};
+
+export default PostsRoute;

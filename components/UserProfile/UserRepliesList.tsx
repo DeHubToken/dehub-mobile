@@ -23,6 +23,11 @@ import {
   type UserReplyItem,
   type UserRepliesPagination,
 } from "../../services/user.service";
+import { getNFT } from "../../services/nft.service";
+import {
+  needsReplyPostEnrichment,
+  nftToReplyPost,
+} from "../../libs/replyPostDisplay";
 import UserReplyCard from "./UserReplyCard";
 
 
@@ -46,6 +51,50 @@ export interface UserRepliesListRef {
 }
 
 const PAGE_SIZE = 20;
+
+async function enrichReplyItems(items: UserReplyItem[]): Promise<UserReplyItem[]> {
+  const tokenIds = new Set<number>();
+  for (const item of items) {
+    const tokenId = item.post?.tokenId ?? item.tokenId;
+    if (!tokenId) continue;
+    if (needsReplyPostEnrichment(item.post, tokenId)) {
+      tokenIds.add(tokenId);
+    }
+  }
+  if (tokenIds.size === 0) return items;
+
+  const postByTokenId = new Map<number, UserReplyItem["post"]>();
+  await Promise.all(
+    [...tokenIds].map(async (tokenId) => {
+      try {
+        const res = await getNFT(tokenId);
+        postByTokenId.set(tokenId, nftToReplyPost(res.result ?? {}, tokenId));
+      } catch {
+        // keep lightweight post context from comments API
+      }
+    }),
+  );
+
+  if (postByTokenId.size === 0) return items;
+
+  return items.map((item) => {
+    const tokenId = item.post?.tokenId ?? item.tokenId;
+    const enriched = tokenId ? postByTokenId.get(tokenId) : undefined;
+    if (!enriched) return item;
+    // full NFT data wins, but don't let undefined fields wipe out comments-API values
+    const definedEnriched = Object.fromEntries(
+      Object.entries(enriched).filter(([, v]) => v !== undefined),
+    );
+    return {
+      ...item,
+      post: {
+        ...item.post,
+        ...definedEnriched,
+        tokenId,
+      },
+    };
+  });
+}
 
 
 const UserRepliesListInner: React.ForwardRefRenderFunction<
@@ -82,12 +131,13 @@ const UserRepliesListInner: React.ForwardRefRenderFunction<
   const fetchPage = useCallback(
     async (page: number, replace: boolean) => {
       const res = await getUserReplies({ address, page, limit: PAGE_SIZE });
+      const enrichedItems = await enrichReplyItems(res.result.items);
       paginationRef.current = res.result.pagination;
       pageRef.current = page;
       if (replace) {
-        setItems(res.result.items);
+        setItems(enrichedItems);
       } else {
-        setItems((prev) => [...prev, ...res.result.items]);
+        setItems((prev) => [...prev, ...enrichedItems]);
       }
     },
     [address],

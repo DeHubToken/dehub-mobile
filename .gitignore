@@ -58,3 +58,4 @@ dhb-service-key.json
 # Jest coverage output
 coverage/
 jest-junit.xml
+hs_err_pid*.log

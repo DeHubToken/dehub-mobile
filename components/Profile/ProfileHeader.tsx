@@ -1,6 +1,10 @@
-import React, { useState, useMemo, useCallback, useRef } from "react";
-import { View, Text, Image, TouchableOpacity, ActivityIndicator } from "react-native";
+import React, { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { View, Text, Image, TouchableOpacity, ActivityIndicator, Pressable } from "react-native";
 import SmartImage from "../common/SmartImage";
+import StoryAvatarRing from "../Story/StoryAvatarRing";
+import { useWatchedStories } from "../../hooks/useWatchedStories";
+import { useStoryViewer } from "../../context/StoryViewerContext";
+import { getStoriesForWallet, type Story } from "../../services/stories.service";
 import { Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import LiquidGlass from "../ui/LiquidGlass";
@@ -25,6 +29,7 @@ import { truncate, truncateAddress } from "../../libs/strings.util";
 import { formatJoinedDate } from "../../libs/date.util";
 import { shareProfile } from "../../libs/misc";
 import Avatar from "../common/Avatar";
+// InviteFriendsCard moved to the profile feed (All tab) so the header stays compact.
 import * as ImagePicker from "expo-image-picker";
 import {
   openCroppedImagePicker,
@@ -55,9 +60,27 @@ const ProfileHeader = () => {
   const [localCoverUri, setLocalCoverUri] = useState<string | null>(null);
   // No internal editor overlay anymore; we launch native crop UI via crop-picker
 
+  // Stories — gradient ring + play badge when active stories exist (web flow)
   const displayName = user?.displayName || "Unknown";
   const username = user?.username || user?.address || "";
-  const address = user?.address || user?.walletAddress || "";
+  const address = user?.walletAddress || user?.address || "";
+  const { isWatched, markWatched } = useWatchedStories();
+  const { openStories } = useStoryViewer();
+  const [myStories, setMyStories] = useState<Story[]>([]);
+  const hasStories = myStories.length > 0;
+  const hasUnwatchedStories = myStories.some((s) => !isWatched(s.id));
+
+  const refreshMyStories = useCallback(() => {
+    if (!address) {
+      setMyStories([]);
+      return;
+    }
+    getStoriesForWallet(address).then(setMyStories).catch(() => setMyStories([]));
+  }, [address]);
+
+  useEffect(() => {
+    refreshMyStories();
+  }, [refreshMyStories]);
   const shortAddr = truncateAddress(address, 5, 5);
   const avatarUrl = getAvatarUrl(user?.avatarImageUrl);
 
@@ -65,6 +88,16 @@ const ProfileHeader = () => {
   const badgeVal = resolveBadgeBalance(user as any);
   const badge = getBadgeName(badgeVal);
   const badgeImage = getBadgeUrl(badgeVal);
+
+  const openMyStories = useCallback(() => {
+    if (!myStories.length) return;
+    myStories.forEach((s) => markWatched(s.id));
+    openStories(myStories, {
+      viewerWalletAddress: address,
+      onStoryShown: (story) => markWatched(story.id),
+      onStoriesChanged: refreshMyStories,
+    });
+  }, [myStories, markWatched, openStories, address, refreshMyStories]);
   
   // Deterministic default banner based on user ID/address
   const defaultBanner = useMemo(() => 
@@ -283,8 +316,8 @@ const ProfileHeader = () => {
 
   return (
     <>
-      <View className="w-full px-2">
-        <View className="w-full m-2 rounded-2xl overflow-hidden" style={{ height: 120 }}>
+      <View className="w-full px-3">
+        <View className="w-full rounded-2xl overflow-hidden" style={{ height: 120 }}>
           <SmartImage
             source={
               localCoverUri
@@ -345,15 +378,16 @@ const ProfileHeader = () => {
         </View>
         <View className="px-3 mt-3">
           <View className="flex-row items-center pr-2">
-            <Avatar
+            <StoryAvatarRing
               uri={avatarUrl === "default-avatar" ? undefined : avatarUrl}
-              size={44}
-              onPress={() =>
-                openViewer(
-                  avatarUrl === "default-avatar" ? undefined : avatarUrl
-                )
-              }
               name={displayName}
+              size={48}
+              hasStories={hasStories}
+              unwatched={hasUnwatchedStories}
+              onPressStory={openMyStories}
+              onPressAvatar={() =>
+                openViewer(avatarUrl === "default-avatar" ? undefined : avatarUrl)
+              }
             />
             <View className="ml-3 flex-1">
               <View className="flex-row items-center gap-2">
@@ -421,7 +455,7 @@ const ProfileHeader = () => {
         </View>
         <ProfileStats />
         {(aboutText || hasExtrasForAbout) && (
-          <View className="px-2 mt-1">
+          <View className="px-3 mt-1">
             <View className="bg-theme-neutrals-800 rounded-2xl p-4 overflow-hidden">
               <Text className="text-theme-neutrals-400 text-[10px] uppercase tracking-wide mb-2">
                 About
@@ -542,6 +576,7 @@ const ProfileHeader = () => {
           </View>
         )}
       </View>
+
     </>
   );
 };

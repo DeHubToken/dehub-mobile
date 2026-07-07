@@ -23,9 +23,13 @@ import { useTabBarHide } from "../context/TabBarHideContext";
 import { useAuthState } from "../context/AuthContext";
 
 const { width: SCREEN_W } = Dimensions.get("window");
-const NAV_WIDTH = Math.min(SCREEN_W * 0.72, 340);
+// Container is 72% of the screen minus outerWrap's 16px horizontal padding —
+// compute tab widths from the same base so the last tab (Search) isn't pushed
+// past the visible edge.
+const NAV_WIDTH = Math.min((SCREEN_W - 16) * 0.72, 340);
 const CENTER_W = 52;
-const TAB_W = (NAV_WIDTH - CENTER_W) / 4;
+const NAV_EDGE_PAD = 4; // matches web's pl-1/pr-1
+const TAB_W = (NAV_WIDTH - CENTER_W - NAV_EDGE_PAD * 2) / 4;
 
 interface TabDef {
   name: string;
@@ -263,6 +267,10 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
     <Reanimated.View style={[styles.outerWrap, { paddingBottom: bottomPadding }, hideStyle]} pointerEvents="box-none">
       <View style={styles.gradientOverlay} pointerEvents="none" />
       <Reanimated.View style={[styles.navContainer, entranceStyle]}>
+        {/* Android's experimental blur (dimezisBlurView) crashes with
+            IndexOutOfBoundsException when list views mutate during its
+            pre-draw snapshot — real blur is iOS-only, Android gets a
+            translucent glass-tinted fallback. */}
         {Platform.OS === "ios" ? (
           <BlurView
             intensity={120}
@@ -345,7 +353,9 @@ const styles = StyleSheet.create({
   },
   androidBlurFallback: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(10, 10, 12, 0.85)",
+    // Translucent enough that content scrolling underneath faintly shows
+    // through, reading as glass even without a real blur.
+    backgroundColor: "rgba(16, 16, 20, 0.65)",
     borderRadius: 18,
   },
   glassOverlay: {
@@ -369,6 +379,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     height: 52,
+    paddingHorizontal: NAV_EDGE_PAD,
   },
   tabButton: {
     width: TAB_W,

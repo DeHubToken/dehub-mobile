@@ -1,16 +1,17 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { View, FlatList, ActivityIndicator, Text } from "react-native";
+import { View, FlatList, ActivityIndicator, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import { apiClient } from "../../libs";
 import FeedCard from "../Home/FeedCard";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 
 interface PinnedRouteProps {
   address?: string;
+  onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
 }
 
 const PAGE_SIZE = 20;
 
-const PinnedRoute: React.FC<PinnedRouteProps> = ({ address }) => {
+const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll }) => {
   const [items, setItems] = useState<UnifiedFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -88,6 +89,8 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address }) => {
       keyExtractor={(item, idx) => `${item.tokenId ?? idx}`}
       renderItem={({ item }) => <FeedCard item={item} />}
       contentContainerStyle={{ paddingHorizontal: 8, paddingTop: 8, paddingBottom: 80 }}
+      onScroll={onScroll}
+      scrollEventThrottle={16}
       onEndReached={endRef.current ? undefined : handleLoadMore}
       onEndReachedThreshold={0.6}
       ListFooterComponent={

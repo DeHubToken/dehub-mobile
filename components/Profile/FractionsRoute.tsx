@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "../ui/Icon";
 import { supabase } from "../../services/supabase";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 
 interface FractionHolding {
   token_id: string;
@@ -77,6 +78,7 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
   isOwnProfile,
 }) => {
   const navigation = useNavigation<any>();
+  const { hideUserProfile } = useUserProfileSheet();
   const [holdings, setHoldings] = useState<FractionHolding[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -110,11 +112,12 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
   const renderItem = useCallback(
     ({ item }: { item: FractionHolding }) => (
       <TouchableOpacity
-        onPress={() =>
+        onPress={() => {
+          hideUserProfile();
           navigation.navigate(ScreenNames.FeedDetail as never, {
             postId: item.token_id,
-          } as never)
-        }
+          } as never);
+        }}
         style={styles.card}
         activeOpacity={0.75}
       >
@@ -132,7 +135,7 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
         </Text>
       </TouchableOpacity>
     ),
-    [navigation],
+    [navigation, hideUserProfile],
   );
 
   if (loading) {

@@ -11,9 +11,12 @@ import FeedNavBar from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
 import { useTabBarHide } from "../context/TabBarHideContext";
 import FeedFilterPanel, { FeedFilters } from "../components/Home/FeedFilterPanel";
+import StoriesBar from "../components/Story/StoriesBar";
 import { getCategoriesCached } from "../services/nft.service";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { storage } from "../libs/storage";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
+import { useQueryClient } from "@tanstack/react-query";
+import { getUnifiedFeed, getShortsFeed } from "../services/feed.unified.service";
 import type { FeedRange, FeedSortBy, FeedPostType } from "../services/feed.unified.service";
 
 const FALLBACK_CATEGORIES: string[] = [];
@@ -23,7 +26,8 @@ const SEED_CHECK_INTERVAL_MS = 60_000;
 const generateShuffleSeed = () => String(Date.now());
 
 const DEFAULT_FILTERS: FeedFilters = {
-  sortBy: "score",
+  // Default home sort is chronological latest; "For You" (score) remains a filter option.
+  sortBy: "createdAt",
   dateRange: "",
   postType: "all",
   contentAccess: [],
@@ -34,11 +38,12 @@ export default function HomeScreen() {
   const [filters, setFilters] = useState<FeedFilters>(DEFAULT_FILTERS);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
 
-  // Load persisted category on mount
+  // Load persisted category on mount (MMKV is sync — no async race)
   useEffect(() => {
-    AsyncStorage.getItem("dehub:defaultCategory").then((val) => {
+    try {
+      const val = storage.getString("dehub:defaultCategory");
       if (val) setSelectedCategory(val);
-    }).catch(() => {});
+    } catch {}
   }, []);
   const [categories, setCategories] = useState<string[]>(FALLBACK_CATEGORIES);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
@@ -108,6 +113,52 @@ export default function HomeScreen() {
     return params;
   }, [selectedCategory, filters, shuffleSeed]);
 
+  // Prefetch the other main tabs' first pages shortly after launch so the
+  // first switch to video/images/shorts renders instantly from cache, like
+  // the web app. Keys must mirror the ones used by InfiniteVideoFeed,
+  // HomeImageGrid and ShortsGrid exactly (including their pageSize props).
+  const queryClient = useQueryClient();
+  const feedParamsRef = useRef(feedParams);
+  feedParamsRef.current = feedParams;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const base = feedParamsRef.current;
+
+      const videoParams = { ...base, postType: "video" as const };
+      queryClient.prefetchInfiniteQuery({
+        queryKey: ["home-feed", videoParams, 10],
+        queryFn: ({ pageParam }) =>
+          getUnifiedFeed({ ...videoParams, limit: 10, page: pageParam as number }),
+        initialPageParam: 1,
+      });
+
+      const imageParams = { ...base, postType: "feed-images" as const };
+      queryClient.prefetchInfiniteQuery({
+        queryKey: ["home-images", imageParams, 20],
+        queryFn: ({ pageParam }) =>
+          getUnifiedFeed({ ...imageParams, limit: 20, page: pageParam as number }),
+        initialPageParam: 1,
+      });
+
+      const shortsParams = { ...base, postType: "short" as const };
+      queryClient.prefetchInfiniteQuery({
+        queryKey: ["home-shorts", shortsParams, 20],
+        queryFn: ({ pageParam }) => {
+          const p = pageParam as { page: number; shuffleSeed?: string };
+          return getShortsFeed({
+            ...shortsParams,
+            limit: 20,
+            page: p.page,
+            shuffleSeed: p.shuffleSeed,
+          });
+        },
+        initialPageParam: { page: 1 },
+      });
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, [queryClient]);
+
   const hasActiveFilters = useMemo(() => {
     return (
       filters.sortBy !== DEFAULT_FILTERS.sortBy ||
@@ -142,7 +193,7 @@ export default function HomeScreen() {
   const handleCategorySelect = useCallback((category: string) => {
     const value = category === "All" ? undefined : category;
     setSelectedCategory(value);
-    AsyncStorage.setItem("dehub:defaultCategory", value ?? "").catch(() => {});
+    try { storage.set("dehub:defaultCategory", value ?? ""); } catch {}
     setFilterPanelVisible(false);
   }, []);
 
@@ -186,7 +237,7 @@ export default function HomeScreen() {
     const value = cat === "All" ? undefined : cat;
     if (value === selectedCategory) return;
     setSelectedCategory(value);
-    AsyncStorage.setItem("dehub:defaultCategory", value ?? "").catch(() => {});
+    try { storage.set("dehub:defaultCategory", value ?? ""); } catch {}
     if (!value) setFilters(DEFAULT_FILTERS);
   }, [selectedCategory]);
 
@@ -262,6 +313,8 @@ export default function HomeScreen() {
             onPostTypeChange={handlePostTypeChange}
             onFilterPress={handleFilterPress}
           />
+
+          {filters.postType === "all" ? <StoriesBar /> : null}
 
           <FeedFilterPanel
             visible={filterPanelVisible}

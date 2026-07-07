@@ -49,6 +49,8 @@ export enum ScreenNames {
   Call = 'Call',
   Stages = 'Stages',
   Earnings = 'Earnings',
+  Communities = 'Communities',
+  CommunityDetail = 'CommunityDetail',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',

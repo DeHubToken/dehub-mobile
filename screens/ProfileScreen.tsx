@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { View } from "react-native";
-import ProfileHeader from "../components/Profile/ProfileHeader";
 import ProfileTabs from "../components/Profile/ProfileTabs";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import ProfileSignInPrompt from "../components/Profile/ProfileSignInPrompt";
@@ -45,8 +44,7 @@ const ProfileScreen: React.FC = () => {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title="Profile" />
-      <View style={{ flex: 1 }}>
-        <ProfileHeader />
+      <View className="flex-1">
         <ProfileTabs />
       </View>
     </View>
