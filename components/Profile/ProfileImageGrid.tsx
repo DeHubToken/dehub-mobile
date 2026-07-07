@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions } from "react-native";
+import { View, TouchableOpacity, FlatList, StyleSheet, Dimensions, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import { Image } from "expo-image";
 import Icon from "../ui/Icon";
 import { getImageUrlApiSimple } from "../../libs";
@@ -26,6 +26,7 @@ interface ProfileImageGridProps {
   images: ImagePost[];
   onImagePress?: (index: number) => void;
   scrollEnabled?: boolean;
+  onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
 }
 
 interface GridRowData {
@@ -110,7 +111,7 @@ const GridRow = memo<{ row: GridRowData; data: ImagePost[]; onPress: (index: num
   },
 );
 
-const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePress, scrollEnabled = true }) => {
+const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePress, scrollEnabled = true, onScroll }) => {
   const rows = useMemo(() => buildRows(images.length), [images.length]);
 
   const renderRow = useCallback(
@@ -159,6 +160,8 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePres
       windowSize={5}
       removeClippedSubviews
       scrollEnabled={scrollEnabled}
+      onScroll={onScroll}
+      scrollEventThrottle={16}
     />
   );
 };

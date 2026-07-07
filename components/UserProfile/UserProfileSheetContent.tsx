@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, type NativeSyntheticEvent, type NativeScr
 import { Ionicons } from "@expo/vector-icons";
 import UserProfileSkeleton from "./UserProfileSkeleton";
 import UserProfileHeader from "./UserProfileHeader";
+import PinnedCommunities from "../Communities/PinnedCommunities";
 import UserProfileBottomContentTabs from "./UserProfileBottomContentTabs";
 import GlassModal from "../ui/GlassModal";
 import GlassTipSheet from "../Tip/GlassTipSheet";
@@ -13,6 +14,10 @@ import { copyToClipboard } from "../../libs";
 import { shareProfile } from "../../libs/misc";
 import { useMutualFollowers } from "../../hooks/useMutualFollowers";
 import { WEBSITE_LINK } from "../../config/links";
+import { getStoriesForWallet, type Story } from "../../services/stories.service";
+import { useWatchedStories } from "../../hooks/useWatchedStories";
+import { useStoryViewer } from "../../context/StoryViewerContext";
+import { useAuthState, useUser } from "../../context/AuthContext";
 
 const FallbackAvatar = require("../../assets/default-avatar.png");
 
@@ -95,6 +100,56 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   const [showReportUser, setShowReportUser] = useState(false);
   const [showRemoveFollowerConfirm, setShowRemoveFollowerConfirm] = useState(false);
   const [showTip, setShowTip] = useState(false);
+  const [profileStories, setProfileStories] = useState<Story[]>([]);
+  const { markWatched, isWatched } = useWatchedStories();
+  const { openStories } = useStoryViewer();
+
+  const profileAddress =
+    profileData?.walletAddress || profileData?.address || data?.address || data?.walletAddress || "";
+
+  const { isSignedIn } = useAuthState();
+  const viewerUser = useUser() as any;
+  const viewerWallet = viewerUser?.walletAddress || viewerUser?.address || "";
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!profileAddress) {
+      setProfileStories([]);
+      return;
+    }
+    getStoriesForWallet(profileAddress).then((stories) => {
+      if (!cancelled) setProfileStories(stories);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [profileAddress]);
+
+  const hasProfileStories = profileStories.length > 0;
+  const hasUnwatchedProfileStories = profileStories.some((s) => !isWatched(s.id));
+
+  const refreshProfileStories = useCallback(() => {
+    if (!profileAddress) return;
+    getStoriesForWallet(profileAddress).then(setProfileStories);
+  }, [profileAddress]);
+
+  const handleStoryPress = useCallback(() => {
+    if (!hasProfileStories) return;
+    profileStories.forEach((s) => markWatched(s.id));
+    openStories(profileStories, {
+      viewerWalletAddress: isSignedIn ? viewerWallet : undefined,
+      onStoryShown: (story) => markWatched(story.id),
+      onStoriesChanged: refreshProfileStories,
+    });
+  }, [
+    hasProfileStories,
+    profileStories,
+    markWatched,
+    openStories,
+    isSignedIn,
+    viewerWallet,
+    refreshProfileStories,
+  ]);
 
   const { mutuals } = useMutualFollowers({
     profileAddress: profileData?.address,
@@ -207,7 +262,18 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           FallbackBanner={defaultBanner}
           socials={data}
           mutuals={mutuals}
+          hasStories={hasProfileStories}
+          hasUnwatchedStories={hasUnwatchedProfileStories}
+          onStoryPress={handleStoryPress}
         />
+        {!!profileData.address && (
+          <View className="px-3 mt-1">
+            <PinnedCommunities
+              walletAddress={profileData.address}
+              isOwnProfile={!!isOwnProfile}
+            />
+          </View>
+        )}
         <View className="px-5 mt-2">
           {!isOwnProfile && youBlocked && (
             <View className="mt-3 bg-red-900/30 border border-red-800/50 rounded-xl px-4 py-3 flex-row items-center">
@@ -266,6 +332,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     isPrivate,
     canViewContent,
     mutuals,
+    hasProfileStories,
+    hasUnwatchedProfileStories,
+    handleStoryPress,
   ]);
 
   if (loading || !data) {

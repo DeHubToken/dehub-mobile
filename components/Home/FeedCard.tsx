@@ -346,11 +346,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const handleImagePress = useCallback((index: number = 0) => {
     if (!hasImages) return;
+    // Dismiss the profile sheet first, otherwise the viewer opens behind it.
+    onBeforeNavigate?.();
+    hideUserProfile();
     navigation.navigate(ScreenNames.ImageViewer, {
       images: galleryImages,
       initialIndex: index,
     });
-  }, [navigation, galleryImages, hasImages]);
+  }, [navigation, galleryImages, hasImages, hideUserProfile, onBeforeNavigate]);
 
   const handleTranslateImage = useCallback(() => {
     const imageUrl = galleryImages[0];

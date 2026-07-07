@@ -109,7 +109,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   const canPlay = !isContentGated && !!videoUrl;
 
-  const player = useVideoPlayer(canPlay ? videoUrl : null, (p) => {
+  // Only attach the media source while the card is visible. Off-screen cards
+  // keep an empty player, so their ExoPlayer buffers are released — with
+  // FlatList's render window this is the difference between 1 and 10+ live
+  // players and was causing OutOfMemoryError on Android.
+  const player = useVideoPlayer(canPlay && isVisible ? videoUrl : null, (p) => {
     p.loop = true;
     p.muted = getCachedMuted();
     p.timeUpdateEventInterval = 0.5;

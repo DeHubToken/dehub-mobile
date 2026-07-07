@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { View, ActivityIndicator, Text } from "react-native";
+import { View, ActivityIndicator, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import ProfileImageGrid from "./ProfileImageGrid";
 import { getUnifiedFeed, type UnifiedFeedItem } from "../../services/feed.unified.service";
 import { useNavigation } from "@react-navigation/native";
@@ -7,9 +7,10 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 
 interface ImagesRouteProps {
   address?: string;
+  onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
 }
 
-const ImagesRoute: React.FC<ImagesRouteProps> = ({ address }) => {
+const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll }) => {
   const [images, setImages] = useState<UnifiedFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -99,7 +100,7 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({ address }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <ProfileImageGrid images={images} onImagePress={handleImagePress} />
+      <ProfileImageGrid images={images} onImagePress={handleImagePress} onScroll={onScroll} />
       {loadingMore && (
         <View style={{ alignItems: "center", paddingVertical: 16 }}>
           <ActivityIndicator color="#fff" />

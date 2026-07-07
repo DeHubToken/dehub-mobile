@@ -107,7 +107,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const bountyAmount = streamInfo?.addBountyAmount;
   const bountyTokenSymbol = streamInfo?.addBountyTokenSymbol;
   const badgeImage = getBadgeUrl(resolveBadgeBalance((nft as any).minterUser || nft));
-  const { showUserProfile } = useUserProfileSheet();
+  const { showUserProfile, hideUserProfile } = useUserProfileSheet();
   const user = useUser();
   const navigation = useNavigation<any>();
   const handlePressCreator = useCallback(() => {
@@ -129,6 +129,9 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const accessInfo = useStreamAccessInfo(nft);
   const handlePressVideo = useCallback(() => {
     if (tokenId == null) return;
+    // Dismiss the profile sheet first (no-op when closed), otherwise the
+    // player opens behind it when launched from a profile tab.
+    hideUserProfile();
     if (isLive) {
       navigation.navigate(ScreenNames.LiveViewer, {
         isLive,
@@ -139,7 +142,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
     } else {
       navigation.navigate(ScreenNames.FeedDetail, { tokenId });
     }
-  }, [navigation, tokenId, isLive, nft, accessInfo]);
+  }, [navigation, tokenId, isLive, nft, accessInfo, hideUserProfile]);
   return (
     <View className="m-1 px-4 py-1">
       <TouchableOpacity
@@ -192,7 +195,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
                 <TouchableOpacity activeOpacity={0.7} onPress={handlePressAvatar}>
                   <Image
                     source={{ uri: avatarUrl }}
-                    className="w-4 h-4 rounded-full mr-1"
+                    className="w-4 h-4 rounded mr-1"
                   />
                 </TouchableOpacity>
               ) : null}

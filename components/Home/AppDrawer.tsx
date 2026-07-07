@@ -51,6 +51,7 @@ interface DrawerItem {
 
 const AUTH_ITEMS: Omit<DrawerItem, "params">[] = [
   { icon: "User", label: "Profile", screen: ScreenNames.Profile },
+  { icon: "Users", label: "Communities", screen: ScreenNames.Communities },
   { icon: "Library", label: "My Library", screen: ScreenNames.MyLibrary },
   { icon: "FileText", label: "Drafts", screen: ScreenNames.Drafts },
   { icon: "Banknote", label: "Dpay", screen: ScreenNames.Dpay },

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import {
   View,
@@ -263,42 +263,56 @@ const InfiniteFeedBase: React.FC<
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
   }, []);
 
-  if (initialLoading && items.length === 0) {
-    return (
-      <View className="flex-1">
-        {!!headerComponent && <View>{headerComponent}</View>}
-        {loadingComponent ?? (
-          <View className="flex-1 px-2 pt-2">
+  const isLoadingEmpty = initialLoading && items.length === 0;
+  const isEmpty = !initialLoading && !error && items.length === 0;
+
+  // One FlatList for every state so onViewableItemsChanged never flips between
+  // defined/undefined on the same instance (RN invariant violation).
+  const composedListHeader = useMemo(() => {
+    const sections: React.ReactNode[] = [];
+    if (headerComponent) {
+      sections.push(<View key="feed-header">{headerComponent}</View>);
+    }
+    if (isLoadingEmpty) {
+      sections.push(
+        loadingComponent ?? (
+          <View key="feed-loading" className="px-2 pt-2">
             <FeedCardSkeleton count={4} />
           </View>
-        )}
-      </View>
-    );
-  }
-
-  if (error && items.length === 0) {
-    return (
-      <View className="flex-1 items-center justify-center px-4">
-        <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
-        <View className="px-5 py-2 rounded-xl bg-theme-neutrals-700">
-          <Text onPress={resetAndLoad} className="text-theme-neutrals-50 font-medium">Retry</Text>
-        </View>
-      </View>
-    );
-  }
-
-  if (!initialLoading && !error && items.length === 0) {
-    return (
-      <View className="flex-1">
-        {!!headerComponent && <View>{headerComponent}</View>}
-        <View className="flex-1 items-center justify-center px-6">
+        ),
+      );
+    } else if (error && items.length === 0) {
+      sections.push(
+        <View key="feed-error" className="items-center justify-center px-4 py-10">
+          <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
+          <View className="px-5 py-2 rounded-xl bg-theme-neutrals-700">
+            <Text onPress={resetAndLoad} className="text-theme-neutrals-50 font-medium">
+              Retry
+            </Text>
+          </View>
+        </View>,
+      );
+    } else if (isEmpty) {
+      sections.push(
+        <View key="feed-empty" className="items-center justify-center px-6 py-10">
           {emptyComponent ?? (
             <Text className="text-theme-neutrals-400 text-sm">No posts yet.</Text>
           )}
-        </View>
-      </View>
-    );
-  }
+        </View>,
+      );
+    }
+    if (sections.length === 0) return undefined;
+    return <>{sections}</>;
+  }, [
+    headerComponent,
+    isLoadingEmpty,
+    isEmpty,
+    error,
+    items.length,
+    loadingComponent,
+    emptyComponent,
+    resetAndLoad,
+  ]);
 
   return (
     <View className="flex-1">
@@ -307,7 +321,7 @@ const InfiniteFeedBase: React.FC<
         data={items}
         keyExtractor={keyExtractor || _keyExtractor}
         renderItem={renderFeedItem}
-        ListHeaderComponent={headerComponent as any}
+        ListHeaderComponent={composedListHeader}
         initialNumToRender={4}
         maxToRenderPerBatch={4}
         windowSize={7}
@@ -316,12 +330,12 @@ const InfiniteFeedBase: React.FC<
         contentContainerStyle={
           contentContainerStyle || { paddingBottom: 80 }
         }
-        scrollEnabled={scrollEnabled}
+        scrollEnabled={scrollEnabled ?? true}
         onScroll={onScroll ?? (enableBackToTop ? handleScroll : undefined)}
         scrollEventThrottle={16}
+        nestedScrollEnabled
         onEndReached={endReachedRef.current ? undefined : loadMore}
         onEndReachedThreshold={0.4}
-        // View tracking: track which items are visible for recording views
         viewabilityConfig={viewabilityConfig}
         onViewableItemsChanged={onViewableItemsChanged}
         refreshControl={

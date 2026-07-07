@@ -3,6 +3,7 @@ import { View, Dimensions, Modal, Pressable, TouchableOpacity } from "react-nati
 import Animated, {
   Extrapolate,
   interpolate,
+  interpolateColor,
   useAnimatedStyle,
 } from "react-native-reanimated";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -95,6 +96,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     isFullScreen,
     fullScreenProgress,
     scrollEnabled,
+    onContainerLayout,
     registerScrollToTop,
     composedGesture,
     GestureDetector,
@@ -160,6 +162,16 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     return { opacity };
   });
 
+  // Backdrop turns fully black as the sheet expands so any sliver of the
+  // screen behind (e.g. status bar area) never shows through in fullscreen.
+  const backdropStyle = useAnimatedStyle(() => ({
+    backgroundColor: interpolateColor(
+      fullScreenProgress.value,
+      [0, 1],
+      ["rgba(0, 0, 0, 0.5)", "rgba(0, 0, 0, 1)"],
+    ),
+  }));
+
   return (
     <Modal
       visible={visible}
@@ -167,14 +179,18 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
       animationType="none"
       onRequestClose={onClose}
       presentationStyle="overFullScreen"
+      statusBarTranslucent
     >
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            justifyContent: "flex-end",
-          }}
+        <Animated.View
+          onLayout={onContainerLayout}
+          style={[
+            {
+              flex: 1,
+              justifyContent: "flex-end",
+            },
+            backdropStyle,
+          ]}
         >
           <Pressable style={{ flex: 1 }} onPress={onClose} />
           <GestureDetector gesture={composedGesture}>
@@ -271,7 +287,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
               />
             </Animated.View>
           </GestureDetector>
-        </View>
+        </Animated.View>
       </GestureHandlerRootView>
       <UnfollowSheet
         visible={showUnfollowSheet && (isFollowing || isFollowRequestPending)}

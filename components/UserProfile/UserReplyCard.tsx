@@ -10,11 +10,16 @@ import {
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
-import { getAvatarUrl, buildImageUrl } from "../../libs";
+import { getAvatarUrl } from "../../libs";
 import { buildCdnPath } from "../../libs/misc";
 import { WEBSITE_LINK } from "../../config/links";
 import type { UserReplyItem } from "../../services/user.service";
 import { likeComment, type LikeCommentResult } from "../../services/nft.service";
+import {
+  resolveReplyPostCreator,
+  resolveReplyPostThumbnail,
+  resolveReplyPostTitle,
+} from "../../libs/replyPostDisplay";
 
 
 /** Resolve a media path: local file URIs pass through, relative paths go through CDN. */
@@ -97,16 +102,15 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
   const handle = author?.username;
   const avatarUrl = getAvatarUrl(author?.avatarImageUrl);
 
-  // Post context — work naturally with what the API gives us
+  // Post context — title, description, thumbnail (web-style quoted post)
   const post = item.post;
-  // Only build a thumbnail when the API actually provides imageUrl (video posts)
-  const postThumbnail = post?.imageUrl
-    ? buildImageUrl(post.tokenId ?? item.tokenId, post.imageUrl)
-    : undefined;
-  const postName = (post?.name || "").trim() || undefined; // empty/whitespace → undefined
+  const postThumbnail = resolveReplyPostThumbnail(post, item.tokenId);
+  const postTitle = resolveReplyPostTitle(post);
+  const postCreator = resolveReplyPostCreator(post);
   const postType = post?.postType ?? "feed-simple";
   const postTypeIcon = POST_TYPE_ICON[postType] ?? "FileText";
   const replyCount = (item as any).replyIds?.length ?? 0;
+  const showPostContext = !!(post || item.tokenId);
 
   const handlePress = useCallback(() => onPress(item), [item, onPress]);
   const handleLongPress = useCallback(() => onLongPress?.(item), [item, onLongPress]);
@@ -165,7 +169,7 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
         marginVertical: 4,
       }}
     >
-      {post && (
+      {showPostContext && (
         <View
           style={{
             marginHorizontal: 12,
@@ -199,7 +203,7 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
                   </View>
                 )}
               </View>
-            ) : (
+            ) : postTitle ? null : (
               <View
                 style={{
                   width: 40,
@@ -218,12 +222,26 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
               </View>
             )}
             <View className="flex-1 justify-center" style={{ minWidth: 0 }}>
-              <Text className="text-sm text-zinc-300 leading-snug" numberOfLines={2}>
-                {postName || `Post #${item.tokenId}`}
-              </Text>
-              <Text className="text-xs text-zinc-500 mt-0.5" numberOfLines={1}>
-                {postType === "video" ? "Video" : postType === "feed-images" ? "Image post" : postType === "feed-audio" ? "Audio post" : "Post"}
-              </Text>
+              {postCreator ? (
+                <Text className="text-xs text-zinc-500 mb-0.5" numberOfLines={1}>
+                  @{postCreator}
+                </Text>
+              ) : null}
+              {postTitle ? (
+                <Text className="text-sm text-zinc-300 leading-snug" numberOfLines={3}>
+                  {postTitle}
+                </Text>
+              ) : !postThumbnail ? (
+                <Text className="text-sm text-zinc-500 italic" numberOfLines={1}>
+                  {postType === "video"
+                    ? "Video post"
+                    : postType === "feed-images"
+                      ? "Image post"
+                      : postType === "feed-audio"
+                        ? "Audio post"
+                        : "Post"}
+                </Text>
+              ) : null}
             </View>
           </View>
         </View>

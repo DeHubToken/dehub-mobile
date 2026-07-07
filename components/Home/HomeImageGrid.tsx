@@ -20,6 +20,7 @@ import type { UnifiedFeedItem, UnifiedFeedParams } from "../../services/feed.uni
 import { getImageUrl, getImageUrlApiSimple } from "../../libs";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { theme } from "../../theme";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 export interface HomeImageGridHandle {
   scrollToTopAndRefresh: () => void;
@@ -208,13 +209,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   onScrollBegin,
   onRefresh: onRefreshProp,
 }) => {
-  const [items, setItems] = useState<UnifiedFeedItem[]>([]);
-  const [page, setPage] = useState(0);
-  const [initialLoading, setInitialLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const endReachedRef = useRef(false);
   const listRef = useRef<FlatList>(null);
   const prevYRef = useRef(0);
 
@@ -232,63 +227,49 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     postType: "feed-images" as const,
   }), [params]);
 
-  const loadFirstPage = useCallback(async () => {
-    setError(null);
-    endReachedRef.current = false;
-    setPage(1);
-    const res = await getUnifiedFeed({ ...mergedParams, limit: pageSize, page: 1 });
-    setItems(res.result || []);
-    if (!res.result || res.result.length < pageSize || !res.pagination?.hasMore) {
-      endReachedRef.current = true;
-    }
-  }, [mergedParams, pageSize]);
+  // Cached + revalidated by react-query: switching tabs re-renders instantly
+  // from cache (no skeleton flash) and refetches in the background when stale.
+  const {
+    data,
+    error: queryError,
+    isLoading: initialLoading,
+    isFetchingNextPage: loadingMore,
+    hasNextPage,
+    fetchNextPage,
+    refetch,
+  } = useInfiniteQuery({
+    queryKey: ["home-images", mergedParams, pageSize],
+    queryFn: ({ pageParam }) =>
+      getUnifiedFeed({ ...mergedParams, limit: pageSize, page: pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, _allPages, lastPageParam) => {
+      const results = lastPage.result || [];
+      if (results.length < pageSize || !lastPage.pagination?.hasMore) return undefined;
+      return lastPageParam + 1;
+    },
+  });
 
-  const resetAndLoad = useCallback(async () => {
-    setItems([]);
-    setInitialLoading(true);
-    try {
-      await loadFirstPage();
-    } catch (e: any) {
-      setError(e?.message || "Failed to load");
-    } finally {
-      setInitialLoading(false);
-    }
-  }, [loadFirstPage]);
+  const items = useMemo<UnifiedFeedItem[]>(
+    () => (data?.pages ?? []).flatMap((res) => res.result || []),
+    [data],
+  );
+  const endReached = hasNextPage === false;
+  const error = queryError ? (queryError as Error).message || "Failed to load" : null;
 
-  useEffect(() => {
-    resetAndLoad();
-  }, [resetAndLoad]);
-
-  const loadMore = useCallback(async () => {
-    if (initialLoading || loadingMore || refreshing || endReachedRef.current) return;
-    setLoadingMore(true);
-    try {
-      const nextPage = page + 1;
-      const res = await getUnifiedFeed({ ...mergedParams, limit: pageSize, page: nextPage });
-      const newItems = res.result || [];
-      setItems((prev) => [...prev, ...newItems]);
-      setPage(nextPage);
-      if (newItems.length < pageSize || !res.pagination?.hasMore) {
-        endReachedRef.current = true;
-      }
-    } catch {
-      // keep existing items
-    } finally {
-      setLoadingMore(false);
-    }
-  }, [initialLoading, loadingMore, refreshing, page, mergedParams, pageSize]);
+  const loadMore = useCallback(() => {
+    if (initialLoading || loadingMore || refreshing || !hasNextPage) return;
+    fetchNextPage().catch(() => {});
+  }, [initialLoading, loadingMore, refreshing, hasNextPage, fetchNextPage]);
 
   const onRefresh = useCallback(async () => {
     onRefreshProp?.();
     setRefreshing(true);
     try {
-      await loadFirstPage();
-    } catch (e: any) {
-      setError(e?.message || "Failed to load");
+      await refetch();
     } finally {
       setRefreshing(false);
     }
-  }, [loadFirstPage, onRefreshProp]);
+  }, [refetch, onRefreshProp]);
 
   useEffect(() => {
     if (!gridRef) return;
@@ -344,7 +325,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     return (
       <View className="flex-1 items-center justify-center px-4">
         <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
-        <TouchableOpacity onPress={resetAndLoad} className="px-5 py-2 rounded-xl bg-theme-neutrals-700">
+        <TouchableOpacity onPress={() => refetch()} className="px-5 py-2 rounded-xl bg-theme-neutrals-700">
           <Text className="text-theme-neutrals-50 font-medium">Retry</Text>
         </TouchableOpacity>
       </View>
@@ -387,7 +368,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
             <View className="items-center py-6">
               <ActivityIndicator size="large" color="#fff" />
             </View>
-          ) : endReachedRef.current && items.length > 0 ? (
+          ) : endReached && items.length > 0 ? (
             <View className="py-6 items-center">
               <Text className="text-theme-neutrals-400 text-xs">No more images</Text>
             </View>

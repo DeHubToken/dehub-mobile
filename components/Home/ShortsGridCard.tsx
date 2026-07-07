@@ -3,7 +3,7 @@ import { View, Text, Pressable, Dimensions, StyleSheet } from "react-native";
 import { Image } from "expo-image";
 import { VideoView, useVideoPlayer } from "expo-video";
 import Icon from "../ui/Icon";
-import { getShortsThumbnailUrl, getPreviewUrl, getAvatarUrl, formatCompactNumber } from "../../libs";
+import { getShortsThumbnailUrl, getVideoUrl, getAvatarUrl, formatCompactNumber, buildCdnPath } from "../../libs";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
@@ -11,7 +11,7 @@ const GRID_GAP = 4;
 const GRID_PADDING = 16;
 const CARD_WIDTH = (SCREEN_WIDTH - GRID_PADDING - GRID_GAP) / 2;
 const CARD_HEIGHT = CARD_WIDTH * (16 / 9);
-const AUTOPLAY_DELAY = 800;
+const AUTOPLAY_DELAY = 250;
 
 interface ShortsGridCardProps {
   item: UnifiedFeedItem;
@@ -23,16 +23,30 @@ interface ShortsGridCardProps {
 const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, isVisible = false, onPress }) => {
   const tokenId = item.tokenId ?? item.id;
 
+  // Resolve a raw API path (e.g. "shorts/123.jpg") or full URL to a CDN URL.
+  const resolveCdn = (raw?: string | null): string | undefined =>
+    raw ? (raw.startsWith("http") ? raw : buildCdnPath(raw)) : undefined;
+
+  // Prefer the poster/thumbnail returned by the API, fall back to the derived path.
   const thumbnailUri = useMemo(() => {
-    return getShortsThumbnailUrl(tokenId) || "";
-  }, [tokenId]);
+    return resolveCdn(item.imageUrl || item.thumbnailUrl) || getShortsThumbnailUrl(tokenId) || "";
+  }, [item.imageUrl, item.thumbnailUrl, tokenId]);
 
   const avatarUri = useMemo(
     () => getAvatarUrl(item.minterUser?.avatarImageUrl || item.minterAvatarUrl),
     [item.minterUser?.avatarImageUrl, item.minterAvatarUrl],
   );
 
-  const previewUrl = useMemo(() => getPreviewUrl(tokenId), [tokenId]);
+  // Autoplay the full video like web (ShortsFeed → AutoplayVideo uses videos/{id}.mp4).
+  // Only use item.previewUrl if the API actually returns one; the derived
+  // previews/{id}.mp4 path does NOT exist on the CDN, so never fall back to it.
+  const previewUrl = useMemo(
+    () =>
+      resolveCdn(item.previewUrl) ||
+      resolveCdn(item.videoUrl) ||
+      getVideoUrl(tokenId),
+    [item.previewUrl, item.videoUrl, tokenId],
+  );
 
   const username = item.minterUser?.username || item.minterUsername || "";
   const views = item.views || 0;
@@ -43,7 +57,10 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
   const autoplayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isPlayingRef = useRef(false);
 
-  const player = useVideoPlayer(previewUrl || null, (p) => {
+  // Only attach the media source while the cell is visible — the 2-column
+  // grid keeps 20+ cells mounted, and a live ExoPlayer per cell was causing
+  // OutOfMemoryError on Android.
+  const player = useVideoPlayer(isVisible && previewUrl ? previewUrl : null, (p) => {
     p.loop = true;
     p.muted = true;
   });

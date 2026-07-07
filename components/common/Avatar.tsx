@@ -31,10 +31,12 @@ function getInitial(name?: string): string {
   return trimmed.charAt(0).toUpperCase();
 }
 
+// Web renders avatars as rounded squares everywhere (rounded-md/lg), so the
+// squared shape is the default; pass rounded to get a circle.
 const Avatar: React.FC<AvatarProps> = ({
   uri,
   size = 40,
-  rounded = true,
+  rounded = false,
   onPress,
   style,
   fallback,

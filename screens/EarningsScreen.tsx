@@ -12,6 +12,7 @@ import Svg, { Path, G, Circle } from "react-native-svg";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ScreenHeader from "../components/ScreenHeader";
 import Icon from "../components/ui/Icon";
+import InviteFriendsCard from "../components/common/InviteFriendsCard";
 import { supabase } from "../services/supabase";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
@@ -232,6 +233,9 @@ const EarningsScreen: React.FC = () => {
           contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 80 }}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#fff" />}
         >
+          {/* Invite & earn */}
+          <InviteFriendsCard address={address} shareName={user?.username} />
+
           {/* Time filter */}
           <View style={styles.filterRow}>
             {TIME_FILTERS.map((f) => (

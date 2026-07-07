@@ -128,6 +128,8 @@ export type AppStackParamList = {
     initialItems?: import('../services/feed.unified.service').UnifiedFeedItem[];
     feedParams?: Record<string, any>;
   };
+  [ScreenNames.Communities]: undefined;
+  [ScreenNames.CommunityDetail]: { slug: string };
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> = CompositeScreenProps<

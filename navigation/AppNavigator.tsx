@@ -36,6 +36,8 @@ import ChatScreen from "../screens/ChatScreen";
 import LiveChatScreen from "../screens/LiveChatScreen";
 import LiveChatInfoScreen from "../screens/LiveChatInfoScreen";import UploadQueueScreen from '../screens/UploadQueueScreen';import ActiveSessionsScreen from '../screens/ActiveSessionsScreen';import ShortsViewerScreen from '../screens/ShortsViewerScreen';
 import ImageFeedScreen from '../screens/ImageFeedScreen';
+import CommunitiesScreen from '../screens/CommunitiesScreen';
+import CommunityDetailScreen from '../screens/CommunityDetailScreen';
 import { useAuthState } from "../context/AuthContext";
 
 /** Standardized gesture response distances */
@@ -123,6 +125,14 @@ export default function AppNavigator() {
         <Stack.Screen
           name={ScreenNames.Leaderboard}
           component={LeaderboardScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.Communities}
+          component={CommunitiesScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.CommunityDetail}
+          component={CommunityDetailScreen}
         />
         <Stack.Screen
           name={ScreenNames.Feed}

@@ -184,10 +184,10 @@ interface AuthActionsContextType {
 }
 
 // Create split contexts
-const UserContext = createContext<UserContextType | undefined>(undefined);
-const AuthStateContext = createContext<AuthStateContextType | undefined>(undefined);
-const ProviderContext = createContext<ProviderContextType | undefined>(undefined);
-const AuthActionsContext = createContext<AuthActionsContextType | undefined>(undefined);
+export const UserContext = createContext<UserContextType | undefined>(undefined);
+export const AuthStateContext = createContext<AuthStateContextType | undefined>(undefined);
+export const ProviderContext = createContext<ProviderContextType | undefined>(undefined);
+export const AuthActionsContext = createContext<AuthActionsContextType | undefined>(undefined);
 
 // Legacy combined context (for backward compatibility)
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
