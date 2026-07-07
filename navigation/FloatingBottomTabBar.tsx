@@ -273,7 +273,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             translucent glass-tinted fallback. */}
         {Platform.OS === "ios" ? (
           <BlurView
-            intensity={120}
+            intensity={80}
             tint="dark"
             style={StyleSheet.absoluteFill}
           />
@@ -339,6 +339,8 @@ const styles = StyleSheet.create({
     maxWidth: 340,
     borderRadius: 18,
     overflow: "hidden",
+    // No Android elevation: on a translucent container it renders as a harsh
+    // dark slab that kills the glass look (see GlassIndicator's GLASS_SHADOW).
     ...Platform.select({
       ios: {
         shadowColor: "#000",
@@ -346,9 +348,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.4,
         shadowRadius: 16,
       },
-      android: {
-        elevation: 16,
-      },
+      android: {},
     }),
   },
   androidBlurFallback: {
