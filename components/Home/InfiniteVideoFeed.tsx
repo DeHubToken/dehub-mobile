@@ -317,7 +317,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         <FeedCard
           item={item}
           onCategorySelect={onCategorySelect}
-          isVisible={isVideoItem(item) ? item.__listKey === activeVideoKey : visibleItemKeys.has(item.__listKey)}
+          isVisible={isFocused && (isVideoItem(item) ? item.__listKey === activeVideoKey : visibleItemKeys.has(item.__listKey))}
           enablePreview
         />
       );
@@ -334,7 +334,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
       return <>{card}</>;
     },
-    [visibleItemKeys, onCategorySelect],
+    [visibleItemKeys, activeVideoKey, isFocused, onCategorySelect],
   );
 
   const keyExtractor = useCallback((item: FeedItem) => item.__listKey, []);
