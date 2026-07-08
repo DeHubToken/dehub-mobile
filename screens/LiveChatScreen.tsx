@@ -8,6 +8,7 @@ import {
   ListRenderItemInfo,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  Platform,
 } from "react-native";
 import Icon from "../components/ui/Icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -678,7 +679,7 @@ const LiveChatScreen: React.FC = () => {
 
         <View
           className="absolute left-0 right-0 bottom-0 bg-theme-neutrals-900"
-          style={{ marginBottom: inputLift, paddingBottom: insets.bottom || 0 }}
+          style={{ marginBottom: inputLift, paddingBottom: Platform.OS === 'ios' ? (kbVisible ? 0 : insets.bottom) : 0 }}
         >
           {typingText && (
             <View className="px-4 py-1.5 border-b border-white/5">

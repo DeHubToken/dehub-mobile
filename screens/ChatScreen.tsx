@@ -155,9 +155,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const tokenContract = useERC20Contract(tokenAddress);
   const controllerContract = useStreamControllerContract();
 
-  // adjustResize (AndroidManifest) already shrinks the window on Android,
-  // so no manual lift is needed there — only iOS needs it.
-  const inputLift = Platform.OS === "ios" && kbVisible ? kbHeight : 0;
+  // With edge-to-edge enabled (Expo 54 / targetSdk 35) Android ignores
+  // adjustResize — the window no longer shrinks when the keyboard opens —
+  // so lift manually on both platforms (same as AIChatScreen/CommentsBottomSheet).
+  const inputLift = kbVisible ? kbHeight : 0;
   const [inputBarHeight, setInputBarHeight] = useState(60);
   const listBottomPadding = inputBarHeight + inputLift;
 

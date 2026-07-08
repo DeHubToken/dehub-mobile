@@ -156,7 +156,14 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     if (!playerRef.current || !canPlay) return;
     try { stopActivePreview(); } catch {}
     requestFeedVideoFocus(stopPlayback);
-    playerRef.current.play();
+    // The player is a native shared object that expo-video releases when the
+    // card scrolls off-screen. A deferred call (autoplay timer) can land after
+    // release and throw "Cannot use shared object that was already released".
+    try {
+      playerRef.current.play();
+    } catch {
+      return;
+    }
     isPlayingRef.current = true;
     setIsPlaying(true);
   }, [canPlay, stopPlayback]);
@@ -211,13 +218,19 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     }
     if (hasStartedAutoplay) return;
     autoplayTimerRef.current = setTimeout(() => {
-      if (!isPlayingRef.current && playerRef.current && canPlay) {
+      const p = playerRef.current;
+      if (isPlayingRef.current || !p || !canPlay) return;
+      // Card may have scrolled off in the 1200ms since scheduling, releasing
+      // the native player. Guard every access — a released shared object throws.
+      try {
         const m = getCachedMuted();
-        playerRef.current.muted = m;
+        p.muted = m;
         setIsMuted(m);
         startPlayback();
         setHasStartedAutoplay(true);
         setShowControls(false); // Controls hidden on autoplay
+      } catch {
+        // Player was already released — nothing to autoplay.
       }
     }, AUTOPLAY_DELAY);
     return () => { if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; } };

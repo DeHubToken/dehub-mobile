@@ -12,8 +12,13 @@ import {
 } from './push.service';
 import { createLogger } from '../../libs/logger';
 import { NotificationType, NotificationCategory } from '../enums/notification.enums';
+import { storage } from '../../libs/storage';
 
 const logger = createLogger('PushProvider');
+
+// Persisted so a cold start can tell a fresh notification tap apart from the
+// stale response Android replays on every launch via getLastNotificationResponseAsync.
+const LAST_HANDLED_RESPONSE_KEY = 'push.lastHandledResponseId';
 
 export interface NotificationData {
   type: NotificationType;
@@ -126,6 +131,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
     }
     if (responseId) {
       lastProcessedIdRef.current = responseId;
+      storage.set(LAST_HANDLED_RESPONSE_KEY, responseId);
     }
 
     // Guard: If user isn't fully signed in, store for later
@@ -369,21 +375,16 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
         const data = lastResponse.notification.request.content.data as unknown as NotificationData;
         if (!data?.type) return;
 
-        // Only process if it was received recently (within 15 seconds)
-        // This prevents re-processing old notifications on subsequent mounts
-        const receivedAt = lastResponse.notification.date;
-        const now = Date.now();
-        const timeSinceNotification = now - receivedAt;
-
-        if (timeSinceNotification > 15_000) {
-          logger.debug('Ignoring stale cold-start notification', {
-            type: data.type,
-            age: timeSinceNotification,
-          });
+        // notification.date is the DELIVERY time, not the tap time — an age
+        // check here silently drops taps on any notification older than the
+        // window (the common case for messages). Dedup by response id instead:
+        // skip only if this exact response was already handled, this session
+        // or a previous one.
+        const responseId = lastResponse.notification.request.identifier;
+        if (storage.getString(LAST_HANDLED_RESPONSE_KEY) === responseId) {
+          logger.debug('Cold-start notification already handled', { responseId });
           return;
         }
-
-        const responseId = lastResponse.notification.request.identifier;
         logger.info('Processing cold-start notification', { type: data.type, responseId });
         handleNotificationNavigation(data, responseId);
       } catch (error) {
