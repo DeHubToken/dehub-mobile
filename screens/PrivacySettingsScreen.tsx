@@ -41,7 +41,7 @@ interface FollowRequest {
   requesterAvatarImageUrl?: string;
 }
 
-const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
+const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const user = useUser();
   const { patchUser } = useAuthActions();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -248,7 +248,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
   if (loading) {
     return (
       <View className="flex-1 bg-theme-neutrals-900">
-        <ScreenHeader title={t('settings.accountPrivacy')} canGoBack />
+        {!embedded && <ScreenHeader title={t('settings.accountPrivacy')} canGoBack />}
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color="#8b5cf6" />
         </View>
@@ -258,11 +258,13 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation }) => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader
-        title={t('settings.accountPrivacy')}
-        canGoBack
-        rightContent={saving ? <ActivityIndicator size="small" color="#8b5cf6" /> : undefined}
-      />
+      {!embedded && (
+        <ScreenHeader
+          title={t('settings.accountPrivacy')}
+          canGoBack
+          rightContent={saving ? <ActivityIndicator size="small" color="#8b5cf6" /> : undefined}
+        />
+      )}
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 32 }}>
 
         {/* Account Visibility */}

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { View, ActivityIndicator, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import { View, ScrollView, ActivityIndicator, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import ProfileImageGrid from "./ProfileImageGrid";
 import { getUnifiedFeed, type UnifiedFeedItem } from "../../services/feed.unified.service";
 import { useNavigation } from "@react-navigation/native";
@@ -8,9 +8,10 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 interface ImagesRouteProps {
   address?: string;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  listHeader?: React.ReactElement | null;
 }
 
-const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll }) => {
+const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll, listHeader }) => {
   const [images, setImages] = useState<UnifiedFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -75,32 +76,41 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll }) => {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
-        <ActivityIndicator color="#fff" />
-      </View>
+      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+        {listHeader}
+        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
+          <ActivityIndicator color="#fff" />
+        </View>
+      </ScrollView>
     );
   }
 
   if (error) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
-        <Text style={{ color: "#a1a1aa", marginBottom: 8 }}>{error}</Text>
-      </View>
+      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+        {listHeader}
+        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
+          <Text style={{ color: "#a1a1aa", marginBottom: 8 }}>{error}</Text>
+        </View>
+      </ScrollView>
     );
   }
 
   if (images.length === 0) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 60 }}>
-        <Text style={{ color: "#71717a", fontSize: 14 }}>No images yet</Text>
-        <Text style={{ color: "#52525b", fontSize: 12, marginTop: 4 }}>Image posts will appear here</Text>
-      </View>
+      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+        {listHeader}
+        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 60 }}>
+          <Text style={{ color: "#71717a", fontSize: 14 }}>No images yet</Text>
+          <Text style={{ color: "#52525b", fontSize: 12, marginTop: 4 }}>Image posts will appear here</Text>
+        </View>
+      </ScrollView>
     );
   }
 
   return (
     <View style={{ flex: 1 }}>
-      <ProfileImageGrid images={images} onImagePress={handleImagePress} onScroll={onScroll} />
+      <ProfileImageGrid images={images} onImagePress={handleImagePress} onScroll={onScroll} ListHeaderComponent={listHeader} />
       {loadingMore && (
         <View style={{ alignItems: "center", paddingVertical: 16 }}>
           <ActivityIndicator color="#fff" />

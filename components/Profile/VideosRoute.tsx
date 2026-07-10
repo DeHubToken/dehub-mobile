@@ -9,11 +9,12 @@ interface VideosRouteProps {
   address?: string;
   showCreator?: boolean;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  listHeader?: React.ReactElement | null;
 }
 
-const VideosRoute: React.FC<VideosRouteProps> = ({ address, showCreator = true, onScroll }) => {
+const VideosRoute: React.FC<VideosRouteProps> = ({ address, showCreator = true, onScroll, listHeader }) => {
   return (
-    <CompactVideoInfiniteList address={address || FALLBACK_ADDRESS} bottomPadding={80} showCreator={showCreator} onScroll={onScroll} />
+    <CompactVideoInfiniteList address={address || FALLBACK_ADDRESS} bottomPadding={80} showCreator={showCreator} onScroll={onScroll} ListHeaderComponent={listHeader} />
   );
 };
 

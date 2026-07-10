@@ -1,74 +1,54 @@
-import React, { useMemo } from 'react';
-import { View, FlatList } from 'react-native';
+import React, { useCallback } from 'react';
+import { View } from 'react-native';
 import InfiniteFeed from '../Feed/InfiniteFeed';
 import FeedCard from '../Home/FeedCard';
-import ProfileApps from './ProfileApps';
-import ProfileHeader from './ProfileHeader';
-// import InviteFriendsCard from '../common/InviteFriendsCard';
-import PinnedCommunities from '../Communities/PinnedCommunities';
-import type { SearchParams } from '../../services/nft.service';
-import type { UnifiedFeedItem } from '../../services/feed.unified.service';
-import { useAuthState, useUser } from '../../context/AuthContext';
+import { getUnifiedFeed, type UnifiedFeedItem } from '../../services/feed.unified.service';
+import type { GetNFTsResponse, GetNFTsResult } from '../../services/nft.service';
+import { useAuthState } from '../../context/AuthContext';
 
 interface FeedRouteProps {
   address?: string;
-  scrollEnabled?: boolean;
-  onScroll?: any;
-  listRef?: React.RefObject<FlatList<any> | null>;
-  noPadding?: boolean;
-  showProfileExtras?: boolean;
+  /** Profile header rendered as the scrollable list header (banner, info, tabs). */
+  listHeader?: React.ReactNode;
 }
 
-const ProfileExtrasHeader: React.FC = () => {
-  const user = useUser() as any;
-  const address = user?.address || user?.walletAddress;
-  return (
-    <View className="w-full">
-      <ProfileHeader />
-      <View className="px-3">
-        <PinnedCommunities
-          walletAddress={address || ""}
-          isOwnProfile
-        />
-      </View>
-      {/* Invite friends card — hidden for now
-      <View className="px-3 mt-2 mb-1">
-        <InviteFriendsCard address={address} shareName={user?.username} />
-      </View>
-      */}
-      <ProfileApps />
-    </View>
-  );
-};
-
-const FeedRoute: React.FC<FeedRouteProps> = ({ address, scrollEnabled, onScroll, listRef, noPadding, showProfileExtras }) => {
+/**
+ * Profile "All" tab — every piece of the user's own content (text, images,
+ * videos, audio), matching the web profile's home feed. Uses the unified feed
+ * with no postType filter (the `feed-all` postType returns nothing for a
+ * minter-scoped query).
+ */
+const FeedRoute: React.FC<FeedRouteProps> = ({ address, listHeader }) => {
   const { isSignedIn } = useAuthState();
 
-  const feedParams = useMemo<Partial<SearchParams>>(() => ({
-    minter: address,
-    owner: address,
-    address,
-    postType: 'feed-all',
-    sortMode: 'new',
-  }), [address]);
-
-  const horizontalPad = noPadding || showProfileExtras;
+  const fetchPage = useCallback(
+    async (page: number, limit: number): Promise<GetNFTsResponse> => {
+      if (!address) return { result: [] };
+      const res = await getUnifiedFeed({
+        minter: address,
+        sortBy: 'createdAt',
+        sortOrder: 'desc',
+        status: 'minted',
+        page: page + 1, // /feed uses 1-indexed pages
+        limit,
+      });
+      return { result: res.result as unknown as GetNFTsResult[] };
+    },
+    [address],
+  );
 
   return (
-    <View className={`flex-1 ${horizontalPad ? '' : 'px-4'}`}>
+    <View className="flex-1">
       <InfiniteFeed
         insideNavigatorScreen={false}
-        params={feedParams}
+        fetchPage={fetchPage}
         pageSize={20}
         isSignedIn={isSignedIn}
-        contentContainerStyle={{ paddingBottom: 80, paddingTop: horizontalPad ? 0 : 8 }}
-        scrollEnabled={scrollEnabled ?? true}
-        onScroll={onScroll}
-        listRef={listRef}
+        contentContainerStyle={{ paddingBottom: 80, paddingTop: 0 }}
         enableBackToTop={false}
-        headerComponent={showProfileExtras ? <ProfileExtrasHeader /> : undefined}
+        headerComponent={listHeader}
         renderItem={({ item }) => (
-          <View className={horizontalPad ? 'px-3' : undefined}>
+          <View className="px-3">
             <FeedCard item={item as UnifiedFeedItem} />
           </View>
         )}

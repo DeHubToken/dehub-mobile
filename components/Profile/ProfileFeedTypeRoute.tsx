@@ -15,13 +15,14 @@ interface ProfileFeedTypeRouteProps {
   /** Which single post type to show (e.g. "feed-simple" for Posts, "feed-audio" for Audio). */
   postType: FeedPostType;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  listHeader?: React.ReactNode;
 }
 
 /**
  * A profile content tab that lists a single feed post type (Posts, Audio, …)
  * using the unified feed endpoint. Mirrors FeedRoute but scoped to one type.
  */
-const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({ address, postType, onScroll }) => {
+const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({ address, postType, onScroll, listHeader }) => {
   const { isSignedIn } = useAuthState();
 
   const fetchPage = useCallback(
@@ -42,16 +43,21 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({ address, po
   );
 
   return (
-    <View className="flex-1 px-4">
+    <View className={`flex-1 ${listHeader ? '' : 'px-4'}`}>
       <InfiniteFeed
         insideNavigatorScreen={false}
         fetchPage={fetchPage}
         pageSize={20}
         isSignedIn={isSignedIn}
-        contentContainerStyle={{ paddingBottom: 80, paddingTop: 8 }}
+        contentContainerStyle={{ paddingBottom: 80, paddingTop: listHeader ? 0 : 8 }}
         enableBackToTop={false}
         onScroll={onScroll}
-        renderItem={({ item }) => <FeedCard item={item as UnifiedFeedItem} />}
+        headerComponent={listHeader}
+        renderItem={({ item }) => (
+          <View className={listHeader ? 'px-4' : undefined}>
+            <FeedCard item={item as UnifiedFeedItem} />
+          </View>
+        )}
       />
     </View>
   );

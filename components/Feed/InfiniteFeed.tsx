@@ -97,6 +97,7 @@ const InfiniteFeedBase: React.FC<
   const [error, setError] = useState<string | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const endReachedRef = useRef(false);
+  const loadMoreCooldownRef = useRef(0);
   const prevYRef = useRef(0);
 
   // View tracking: map of tokenId -> tracker
@@ -163,6 +164,7 @@ const InfiniteFeedBase: React.FC<
   const loadFirstPage = useCallback(async () => {
     setError(null);
     endReachedRef.current = false;
+    loadMoreCooldownRef.current = 0;
     setPage(0);
     const res = fetchPage
       ? await fetchPage(0, pageSize)
@@ -194,6 +196,10 @@ const InfiniteFeedBase: React.FC<
   const loadMore = useCallback(async () => {
     if (initialLoading || loadingMore || refreshing) return;
     if (endReachedRef.current) return;
+    // After a failed page fetch (e.g. 429 throttling) the page counter isn't
+    // advanced, so an unguarded onEndReached would re-request the same page in a
+    // tight loop and amplify the rate-limit. Skip retries during a cooldown.
+    if (Date.now() < loadMoreCooldownRef.current) return;
     setLoadingMore(true);
     try {
       const nextPage = page + 1;
@@ -203,12 +209,15 @@ const InfiniteFeedBase: React.FC<
       const newItems = mapWithKey(res.result || [], nextPage);
       setItems(prev => [...prev, ...newItems]);
       setPage(nextPage);
+      loadMoreCooldownRef.current = 0;
       if (newItems.length < pageSize) {
         endReachedRef.current = true;
         onEndReachedAll && onEndReachedAll();
       }
     } catch {
-      // keep previous items
+      // keep previous items; back off before allowing another attempt so a
+      // throttled endpoint isn't hammered on every scroll frame.
+      loadMoreCooldownRef.current = Date.now() + 5000;
     } finally {
       setLoadingMore(false);
     }

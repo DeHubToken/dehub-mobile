@@ -1,17 +1,18 @@
-import React, { useMemo, useState, useCallback } from "react";
-import { View, Text, Dimensions } from "react-native";
+import React, { useMemo, useState } from "react";
+import { View, Text, ScrollView, Pressable, StyleSheet, Platform } from "react-native";
 import { useTranslation } from "react-i18next";
-import { TabView, TabBar } from "react-native-tab-view";
-import { Ionicons } from "@expo/vector-icons";
-import { theme } from "../../theme";
+import { BlurView } from "expo-blur";
 
+import ProfileHeader from "./ProfileHeader";
+import Icon, { type IconName } from "../ui/Icon";
+import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
+import PinnedCommunities from "../Communities/PinnedCommunities";
 import FeedRoute from "./FeedRoute";
 import ImagesRoute from "./ImagesRoute";
 import VideosRoute from "./VideosRoute";
 import LivestreamsRoute from "./LivestreamsRoute";
 import ProfileFeedTypeRoute from "./ProfileFeedTypeRoute";
 import PostsRoute from "./PostsRoute";
-import RepliesRoute from "./RepliesRoute";
 import SubscribersRoute from "./SubscribersRoute";
 import PinnedRoute from "./PinnedRoute";
 import AnalyticsRoute from "./AnalyticsRoute";
@@ -20,9 +21,7 @@ import { useUser } from "../../context/AuthContext";
 import { useProfileContentCounts } from "./useProfileContentCounts";
 import { formatCompactNumber } from "../../libs/numbers.util";
 
-const initialLayout = { width: Dimensions.get("window").width };
-
-type ProfileRoute = { key: string; title: string; icon: keyof typeof Ionicons.glyphMap };
+type ProfileRoute = { key: string; title: string; icon: IconName };
 
 const ProfileTabs: React.FC = () => {
   const user = useUser() as any;
@@ -31,162 +30,140 @@ const ProfileTabs: React.FC = () => {
 
   const counts = useProfileContentCounts(address);
 
-  const [index, setIndex] = useState(0);
-  const [visitedTabs, setVisitedTabs] = useState<Set<string>>(new Set(["home"]));
+  const [activeKey, setActiveKey] = useState("home");
 
   // Mirrors the web profile tab set/order: All, Posts, Images, Videos, Subs,
   // Audio, Live, Fractions, Pinned (Analytics kept as a mobile-only extra).
+  // Same lucide icons as the web profile nav.
   const routes = useMemo<ProfileRoute[]>(() => [
-    { key: "home", title: t("profile.tabHome", "All"), icon: "home-outline" },
-    { key: "posts", title: t("profile.tabPosts", "Posts"), icon: "chatbubble-ellipses-outline" },
-    { key: "replies", title: t("profile.tabReplies", "Replies"), icon: "return-down-forward-outline" },
-    { key: "images", title: t("profile.tabImages", "Images"), icon: "image-outline" },
-    { key: "videos", title: t("profile.tabVideos", "Videos"), icon: "film-outline" },
-    { key: "subscribers", title: t("profile.tabSubscribers", "Subs"), icon: "star-outline" },
-    { key: "songs", title: t("profile.tabAudio", "Audio"), icon: "musical-notes-outline" },
-    { key: "live", title: t("profile.tabLive", "Live"), icon: "radio-outline" },
-    { key: "fractions", title: "Fractions", icon: "pie-chart-outline" },
-    { key: "pinned", title: t("profile.tabPinned", "Pinned"), icon: "bookmark-outline" },
-    { key: "analytics", title: t("profile.tabAnalytics", "Analytics"), icon: "stats-chart-outline" },
+    { key: "home", title: t("profile.tabHome", "All"), icon: "House" },
+    { key: "posts", title: t("profile.tabPosts", "Posts"), icon: "MessageSquare" },
+    { key: "images", title: t("profile.tabImages", "Images"), icon: "Image" },
+    { key: "videos", title: t("profile.tabVideos", "Videos"), icon: "Film" },
+    { key: "subscribers", title: t("profile.tabSubscribers", "Subs"), icon: "Star" },
+    { key: "songs", title: t("profile.tabAudio", "Audio"), icon: "Play" },
+    { key: "live", title: t("profile.tabLive", "Live"), icon: "Radio" },
+    { key: "fractions", title: "Fractions", icon: "ChartPie" },
+    { key: "pinned", title: t("profile.tabPinned", "Pinned"), icon: "Pin" },
+    { key: "analytics", title: t("profile.tabAnalytics", "Analytics"), icon: "TrendingUp" },
   ], [t]);
 
-  const renderScene = ({ route }: { route: { key: string } }) => {
-    const isCurrent = routes[index]?.key === route.key;
-    if (!isCurrent && !visitedTabs.has(route.key)) return <View style={{ flex: 1 }} />;
+  // The whole profile (banner, info, pinned communities, tab bar) is passed as
+  // the active list's header so it scrolls together with the content — the
+  // tab bar sits below the header (web layout) and tapping a tab swaps the
+  // content below, just like the home feed.
+  const listHeader = (
+    <View>
+      <ProfileHeader />
+      <View className="px-3">
+        <PinnedCommunities walletAddress={address || ""} isOwnProfile />
+      </View>
 
-    switch (route.key) {
+      {/* Glass nav bar — same treatment as the home feed's FeedNavBar */}
+      <View style={navStyles.outerWrap}>
+        <View style={navStyles.container}>
+          {Platform.OS === "ios" ? (
+            <BlurView intensity={80} tint="dark" style={StyleSheet.absoluteFill} />
+          ) : (
+            <View style={navStyles.androidBlurFallback} />
+          )}
+          <View style={navStyles.glassOverlay} pointerEvents="none" />
+
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {routes.map((route) => {
+              const focused = route.key === activeKey;
+              const count = (counts as Record<string, number | undefined>)[route.key];
+              return (
+                <Pressable
+                  key={route.key}
+                  onPress={() => setActiveKey(route.key)}
+                  style={navStyles.navButton}
+                >
+                  {focused && (
+                    <View style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}>
+                      <GlassIndicator borderRadius={12} />
+                    </View>
+                  )}
+                  <Icon name={route.icon} size={18} color={focused ? "#FFFFFF" : "#71717A"} strokeWidth={2} />
+                  <Text
+                    style={{ color: focused ? "#FFFFFF" : "#71717A", fontSize: 10, marginTop: 1, fontWeight: "500" }}
+                    numberOfLines={1}
+                  >
+                    {typeof count === "number" ? formatCompactNumber(count) : ""}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </ScrollView>
+        </View>
+      </View>
+    </View>
+  );
+
+  const renderScene = (key: string) => {
+    switch (key) {
       case "home":
-        return (
-          <View style={{ flex: 1 }}>
-            <FeedRoute address={address} showProfileExtras />
-          </View>
-        );
+        return <FeedRoute address={address} listHeader={listHeader} />;
       case "posts":
-        return (
-          <View style={{ flex: 1 }}>
-            <PostsRoute address={address} />
-          </View>
-        );
-      case "replies":
-        return (
-          <View style={{ flex: 1 }}>
-            <RepliesRoute address={address} />
-          </View>
-        );
+        return <PostsRoute address={address} listHeader={listHeader} />;
       case "images":
-        return (
-          <View style={{ flex: 1 }}>
-            <ImagesRoute address={address} />
-          </View>
-        );
+        return <ImagesRoute address={address} listHeader={listHeader} />;
       case "videos":
-        return (
-          <View style={{ flex: 1 }}>
-            <VideosRoute address={address} />
-          </View>
-        );
+        return <VideosRoute address={address} listHeader={listHeader} />;
       case "subscribers":
-        return (
-          <View style={{ flex: 1 }}>
-            <SubscribersRoute address={address} isOwnProfile />
-          </View>
-        );
+        return <SubscribersRoute address={address} isOwnProfile listHeader={listHeader} />;
       case "songs":
-        return (
-          <View style={{ flex: 1 }}>
-            <ProfileFeedTypeRoute address={address} postType="feed-audio" />
-          </View>
-        );
+        return <ProfileFeedTypeRoute address={address} postType="feed-audio" listHeader={listHeader} />;
       case "live":
-        return (
-          <View style={{ flex: 1 }}>
-            <LivestreamsRoute address={address} />
-          </View>
-        );
+        return <LivestreamsRoute address={address} listHeader={listHeader} />;
       case "fractions":
-        return (
-          <View style={{ flex: 1 }}>
-            <FractionsRoute address={address} isOwnProfile />
-          </View>
-        );
+        return <FractionsRoute address={address} isOwnProfile listHeader={listHeader} />;
       case "pinned":
-        return (
-          <View style={{ flex: 1 }}>
-            <PinnedRoute address={address} />
-          </View>
-        );
+        return <PinnedRoute address={address} listHeader={listHeader} />;
       case "analytics":
-        return (
-          <View style={{ flex: 1 }}>
-            <AnalyticsRoute />
-          </View>
-        );
+        return <AnalyticsRoute listHeader={listHeader} />;
       default:
         return null;
     }
   };
 
-  const handleIndexChange = useCallback((newIndex: number) => {
-    setIndex(newIndex);
-    setVisitedTabs((prev) => {
-      const key = routes[newIndex]?.key;
-      if (key && !prev.has(key)) {
-        const next = new Set(prev);
-        next.add(key);
-        return next;
-      }
-      return prev;
-    });
-  }, [routes]);
-
-  const renderTabBar = (props: any) => (
-    <TabBar
-      {...props}
-      indicatorStyle={{
-        backgroundColor: theme.colors.accent,
-        height: 2,
-      }}
-      style={{
-        backgroundColor: "transparent",
-      }}
-      tabStyle={{
-        width: "auto",
-        minWidth: 64,
-      }}
-      scrollEnabled={true}
-      renderLabel={({ route, focused }: { route: ProfileRoute; focused: boolean }) => {
-        const color = focused ? theme.colors.accent : "#fff";
-        const count = (counts as Record<string, number | undefined>)[route.key];
-        return (
-          <View className="items-center justify-center">
-            <Ionicons name={route.icon} size={18} color={color} />
-            <Text
-              className={`text-[10px] mt-1 ${focused ? "font-semibold" : "font-medium"}`}
-              style={{ color }}
-              numberOfLines={1}
-            >
-              {typeof count === "number" ? `${route.title} ${formatCompactNumber(count)}` : route.title}
-            </Text>
-          </View>
-        );
-      }}
-      pressColor={theme.colors.accent + "20"}
-      activeColor={theme.colors.accent}
-      inactiveColor="white"
-    />
-  );
-
   return (
-    <View className="flex-1 bg-black border-b border-gray-700">
-      <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={handleIndexChange}
-        initialLayout={initialLayout}
-        renderTabBar={renderTabBar}
-        style={{ flex: 1 }}
-      />
+    <View className="flex-1 bg-black">
+      {renderScene(activeKey)}
     </View>
   );
 };
+
+const navStyles = StyleSheet.create({
+  outerWrap: {
+    paddingHorizontal: 8,
+    paddingTop: 8,
+    paddingBottom: 8,
+  },
+  container: {
+    borderRadius: 12,
+    overflow: "hidden",
+  },
+  androidBlurFallback: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(16, 16, 20, 0.65)",
+    borderRadius: 12,
+  },
+  glassOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(10, 10, 12, 0.30)",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.12)",
+  },
+  navButton: {
+    minWidth: 56,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 8,
+    paddingHorizontal: 8,
+    borderRadius: 12,
+  },
+});
+
 export default ProfileTabs;

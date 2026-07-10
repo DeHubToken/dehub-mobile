@@ -77,7 +77,11 @@ function MiniChart({ likesData, followersData, labels }: MiniChartProps) {
   );
 }
 
-const AnalyticsRoute: React.FC = () => {
+interface AnalyticsRouteProps {
+  listHeader?: React.ReactElement | null;
+}
+
+const AnalyticsRoute: React.FC<AnalyticsRouteProps> = ({ listHeader }) => {
   const [range, setRange] = useState<Range>("30d");
   const [data, setData] = useState<AnalyticsResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -114,7 +118,9 @@ const AnalyticsRoute: React.FC = () => {
   const navigation = useNavigation<any>();
 
   return (
-    <ScrollView className="flex-1 bg-theme-neutrals-900" contentContainerStyle={{ padding: 16, gap: 16 }}>
+    <ScrollView className="flex-1 bg-theme-neutrals-900" contentContainerStyle={{ paddingBottom: 16, gap: 16 }}>
+      {listHeader}
+      <View style={{ paddingHorizontal: 16, gap: 16 }}>
       {/* Earnings link */}
       <TouchableOpacity
         onPress={() => navigation.navigate(ScreenNames.Earnings as never)}
@@ -191,6 +197,7 @@ const AnalyticsRoute: React.FC = () => {
           ))}
         </View>
       )}
+      </View>
     </ScrollView>
   );
 };

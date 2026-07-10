@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { View, FlatList, ActivityIndicator, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import { View, ScrollView, FlatList, ActivityIndicator, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import { apiClient } from "../../libs";
 import FeedCard from "../Home/FeedCard";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
@@ -7,11 +7,12 @@ import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 interface PinnedRouteProps {
   address?: string;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  listHeader?: React.ReactElement | null;
 }
 
 const PAGE_SIZE = 20;
 
-const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll }) => {
+const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll, listHeader }) => {
   const [items, setItems] = useState<UnifiedFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -60,26 +61,35 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll }) => {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
-        <ActivityIndicator color="#fff" />
-      </View>
+      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+        {listHeader}
+        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
+          <ActivityIndicator color="#fff" />
+        </View>
+      </ScrollView>
     );
   }
 
   if (error) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
-        <Text style={{ color: "#a1a1aa" }}>{error}</Text>
-      </View>
+      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+        {listHeader}
+        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
+          <Text style={{ color: "#a1a1aa" }}>{error}</Text>
+        </View>
+      </ScrollView>
     );
   }
 
   if (items.length === 0) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 60 }}>
-        <Text style={{ color: "#71717a", fontSize: 14 }}>No pinned posts yet</Text>
-        <Text style={{ color: "#52525b", fontSize: 12, marginTop: 4 }}>Pinned posts will appear here</Text>
-      </View>
+      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+        {listHeader}
+        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 60 }}>
+          <Text style={{ color: "#71717a", fontSize: 14 }}>No pinned posts yet</Text>
+          <Text style={{ color: "#52525b", fontSize: 12, marginTop: 4 }}>Pinned posts will appear here</Text>
+        </View>
+      </ScrollView>
     );
   }
 
@@ -88,6 +98,7 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll }) => {
       data={items}
       keyExtractor={(item, idx) => `${item.tokenId ?? idx}`}
       renderItem={({ item }) => <FeedCard item={item} />}
+      ListHeaderComponent={listHeader}
       contentContainerStyle={{ paddingHorizontal: 8, paddingTop: 8, paddingBottom: 80 }}
       onScroll={onScroll}
       scrollEventThrottle={16}

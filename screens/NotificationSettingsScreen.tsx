@@ -85,7 +85,7 @@ const TypeRow: React.FC<TypeRowProps> = ({
   );
 };
 
-const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
+const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
@@ -204,7 +204,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
   if (loading) {
     return (
       <View className="flex-1 bg-theme-neutrals-900">
-        <ScreenHeader title={t('settings.notifications')} canGoBack />
+        {!embedded && <ScreenHeader title={t('settings.notifications')} canGoBack />}
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color={theme.colors.accent} />
         </View>
@@ -214,11 +214,13 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation }) => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader
-        title={t('settings.notifications')}
-        canGoBack
-        rightContent={saving ? <ActivityIndicator size="small" color="#8b5cf6" /> : undefined}
-      />
+      {!embedded && (
+        <ScreenHeader
+          title={t('settings.notifications')}
+          canGoBack
+          rightContent={saving ? <ActivityIndicator size="small" color="#8b5cf6" /> : undefined}
+        />
+      )}
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 32 }}>
         {!pushPermissionGranted && (
           <TouchableOpacity
