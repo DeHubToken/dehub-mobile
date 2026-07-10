@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
+  ScrollView,
   FlatList,
   ActivityIndicator,
   Text,
@@ -163,19 +164,25 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
 
   if (loading) {
     return (
-      <View className="flex-1 items-center justify-center">
-        <ActivityIndicator color={theme.colors.accent} />
-      </View>
+      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+        {listHeader}
+        <View className="items-center justify-center py-10">
+          <ActivityIndicator color={theme.colors.accent} />
+        </View>
+      </ScrollView>
     );
   }
 
   if (merged.length === 0) {
     return (
-      <View className="flex-1 items-center justify-center px-8">
-        <Text className="text-theme-neutrals-400 text-sm text-center">
-          No posts yet
-        </Text>
-      </View>
+      <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
+        {listHeader}
+        <View className="items-center justify-center px-8 py-16">
+          <Text className="text-theme-neutrals-400 text-sm text-center">
+            No posts yet
+          </Text>
+        </View>
+      </ScrollView>
     );
   }
 

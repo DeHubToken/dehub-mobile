@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { View, Text, FlatList, ActivityIndicator, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, FlatList, ActivityIndicator, TouchableOpacity } from "react-native";
 import PlanCard from "../Subscription/PlanCard";
 import PlanFormSheet from "../Subscription/PlanFormSheet";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
@@ -9,9 +9,10 @@ import { getPlans, type SubscriptionPlan } from "../../services/subscription.ser
 interface SubscribersRouteProps {
   address?: string;
   isOwnProfile?: boolean;
+  listHeader?: React.ReactElement | null;
 }
 
-const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfile }) => {
+const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfile, listHeader }) => {
   const [plans, setPlans] = useState<SubscriptionPlan[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -71,17 +72,23 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
 
   if (loading) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
-        <ActivityIndicator color="#fff" />
-      </View>
+      <ScrollView>
+        {listHeader}
+        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
+          <ActivityIndicator color="#fff" />
+        </View>
+      </ScrollView>
     );
   }
 
   if (error) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
-        <Text style={{ color: "#a1a1aa", marginBottom: 8 }}>{error}</Text>
-      </View>
+      <ScrollView>
+        {listHeader}
+        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
+          <Text style={{ color: "#a1a1aa", marginBottom: 8 }}>{error}</Text>
+        </View>
+      </ScrollView>
     );
   }
 
@@ -128,16 +135,19 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
           )
         }
         ListHeaderComponent={
-          isOwnProfile && plans.length > 0 ? (
-            <TouchableOpacity
-              onPress={handleCreatePress}
-              activeOpacity={0.7}
-              className="flex-row items-center justify-center gap-2 bg-blue-600/20 border border-blue-600/40 rounded-xl py-3 mb-3"
-            >
-              <Icon name="Plus" size={16} color="#60a5fa" />
-              <Text className="text-blue-400 font-semibold text-sm">Add New Plan</Text>
-            </TouchableOpacity>
-          ) : null
+          <>
+            {listHeader}
+            {isOwnProfile && plans.length > 0 ? (
+              <TouchableOpacity
+                onPress={handleCreatePress}
+                activeOpacity={0.7}
+                className="flex-row items-center justify-center gap-2 bg-blue-600/20 border border-blue-600/40 rounded-xl py-3 mb-3"
+              >
+                <Icon name="Plus" size={16} color="#60a5fa" />
+                <Text className="text-blue-400 font-semibold text-sm">Add New Plan</Text>
+              </TouchableOpacity>
+            ) : null}
+          </>
         }
       />
 

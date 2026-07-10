@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import {
   View,
   Text,
+  ScrollView,
   FlatList,
   TouchableOpacity,
   ActivityIndicator,
@@ -23,6 +24,7 @@ interface FractionHolding {
 interface FractionsRouteProps {
   address?: string;
   isOwnProfile?: boolean;
+  listHeader?: React.ReactElement | null;
 }
 
 async function fetchHoldings(address: string): Promise<FractionHolding[]> {
@@ -76,6 +78,7 @@ async function fetchHoldings(address: string): Promise<FractionHolding[]> {
 const FractionsRoute: React.FC<FractionsRouteProps> = ({
   address,
   isOwnProfile,
+  listHeader,
 }) => {
   const navigation = useNavigation<any>();
   const { hideUserProfile } = useUserProfileSheet();
@@ -140,35 +143,44 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
 
   if (loading) {
     return (
-      <View style={styles.center}>
-        <ActivityIndicator size="large" color="#FACC15" />
-      </View>
+      <ScrollView>
+        {listHeader}
+        <View style={styles.center}>
+          <ActivityIndicator size="large" color="#FACC15" />
+        </View>
+      </ScrollView>
     );
   }
 
   if (error) {
     return (
-      <View style={styles.center}>
-        <Icon name="AlertCircle" size={40} color="#4B5563" />
-        <Text style={styles.errorText}>{error}</Text>
-        <TouchableOpacity onPress={() => load()} style={styles.retryBtn}>
-          <Text style={styles.retryText}>Retry</Text>
-        </TouchableOpacity>
-      </View>
+      <ScrollView>
+        {listHeader}
+        <View style={styles.center}>
+          <Icon name="AlertCircle" size={40} color="#4B5563" />
+          <Text style={styles.errorText}>{error}</Text>
+          <TouchableOpacity onPress={() => load()} style={styles.retryBtn}>
+            <Text style={styles.retryText}>Retry</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     );
   }
 
   if (!address || holdings.length === 0) {
     return (
-      <View style={styles.center}>
-        <Icon name="PieChart" size={48} color="#4B5563" />
-        <Text style={styles.emptyTitle}>No fractions held</Text>
-        <Text style={styles.emptySubtitle}>
-          {isOwnProfile
-            ? "Buy fractions of posts to support creators"
-            : "This user holds no post fractions yet"}
-        </Text>
-      </View>
+      <ScrollView>
+        {listHeader}
+        <View style={styles.center}>
+          <Icon name="PieChart" size={48} color="#4B5563" />
+          <Text style={styles.emptyTitle}>No fractions held</Text>
+          <Text style={styles.emptySubtitle}>
+            {isOwnProfile
+              ? "Buy fractions of posts to support creators"
+              : "This user holds no post fractions yet"}
+          </Text>
+        </View>
+      </ScrollView>
     );
   }
 
@@ -181,9 +193,12 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
       columnWrapperStyle={styles.row}
       contentContainerStyle={styles.grid}
       ListHeaderComponent={
-        <Text style={styles.count}>
-          {holdings.length} post{holdings.length !== 1 ? "s" : ""} held
-        </Text>
+        <>
+          {listHeader}
+          <Text style={styles.count}>
+            {holdings.length} post{holdings.length !== 1 ? "s" : ""} held
+          </Text>
+        </>
       }
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#fff" />

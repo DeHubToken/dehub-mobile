@@ -8,12 +8,14 @@ interface LivestreamsRouteProps {
   address?: string;
   showCreator?: boolean;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  listHeader?: React.ReactElement | null;
 }
 
 const LivestreamsRoute: React.FC<LivestreamsRouteProps> = ({
   address,
   showCreator = true,
   onScroll,
+  listHeader,
 }) => (
   <CompactVideoInfiniteList
     address={address || FALLBACK_ADDRESS}
@@ -22,6 +24,7 @@ const LivestreamsRoute: React.FC<LivestreamsRouteProps> = ({
     bottomPadding={80}
     showCreator={showCreator}
     onScroll={onScroll}
+    ListHeaderComponent={listHeader}
   />
 );
 

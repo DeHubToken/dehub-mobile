@@ -27,6 +27,7 @@ interface ProfileImageGridProps {
   onImagePress?: (index: number) => void;
   scrollEnabled?: boolean;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  ListHeaderComponent?: React.ReactElement | null;
 }
 
 interface GridRowData {
@@ -111,7 +112,7 @@ const GridRow = memo<{ row: GridRowData; data: ImagePost[]; onPress: (index: num
   },
 );
 
-const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePress, scrollEnabled = true, onScroll }) => {
+const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePress, scrollEnabled = true, onScroll, ListHeaderComponent }) => {
   const rows = useMemo(() => buildRows(images.length), [images.length]);
 
   const renderRow = useCallback(
@@ -135,15 +136,28 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePres
     [],
   );
 
-  if (images.length === 0) return null;
+  if (images.length === 0) return ListHeaderComponent ?? null;
 
   if (images.length < 4) {
     return (
-      <View style={{ flexDirection: "row", flexWrap: "wrap", gap: GRID_GAP, paddingHorizontal: GRID_PADDING / 2 }}>
-        {images.map((post, idx) => (
-          <ImageTile key={post.id} post={post} size={SMALL} onPress={() => onImagePress?.(idx)} />
-        ))}
-      </View>
+      <FlatList
+        data={[]}
+        keyExtractor={() => "x"}
+        renderItem={null as any}
+        ListHeaderComponent={
+          <>
+            {ListHeaderComponent}
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: GRID_GAP, paddingHorizontal: GRID_PADDING / 2 }}>
+              {images.map((post, idx) => (
+                <ImageTile key={post.id} post={post} size={SMALL} onPress={() => onImagePress?.(idx)} />
+              ))}
+            </View>
+          </>
+        }
+        scrollEnabled={scrollEnabled}
+        onScroll={onScroll}
+        scrollEventThrottle={16}
+      />
     );
   }
 
@@ -152,7 +166,9 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePres
       data={rows}
       keyExtractor={keyExtractor}
       renderItem={renderRow}
-      getItemLayout={getItemLayout}
+      // getItemLayout assumes a fixed row pattern with no header; skip it when a
+      // (variable-height) header is present so scroll offsets stay correct.
+      getItemLayout={ListHeaderComponent ? undefined : getItemLayout}
       contentContainerStyle={{ paddingHorizontal: GRID_PADDING / 2 }}
       showsVerticalScrollIndicator={false}
       initialNumToRender={6}
@@ -161,6 +177,7 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePres
       removeClippedSubviews
       scrollEnabled={scrollEnabled}
       onScroll={onScroll}
+      ListHeaderComponent={ListHeaderComponent}
       scrollEventThrottle={16}
     />
   );
