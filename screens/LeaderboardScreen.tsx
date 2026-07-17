@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   FlatList,
@@ -42,6 +43,7 @@ const ListHeaderContent = React.memo<ListHeaderContentProps>(
 );
 
 const LeaderboardScreen = () => {
+  const { t } = useTranslation();
   const navigation = useNavigation();
   const authUser = useUser();
   const { showUserProfile } = useUserProfileSheet();
@@ -173,7 +175,7 @@ const LeaderboardScreen = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title="Leaderboard" />
+      <ScreenHeader title={t("nav.leaderboard")} />
       {loading && !refreshing ? (
         <View>
           {renderListHeader()}

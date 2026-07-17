@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState, useRef, memo } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -232,6 +233,7 @@ const rowIndexToOffset = (rowIdx: number) => {
 };
 
 const FeedScreen = () => {
+  const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
@@ -558,7 +560,7 @@ const FeedScreen = () => {
       <View style={styles.headerClip}>
         <Animated.View style={headerAnimatedStyle} onLayout={onHeaderLayout}>
           <ScreenHeader
-            title="Explore"
+            title={t("nav.explore")}
             canGoBack={!isGridView}
             onBackPress={!isGridView ? switchToGrid : undefined}
           />
@@ -679,15 +681,22 @@ const FeedScreen = () => {
       {!isGridView && !transitionPending && (
         <View style={[styles.floatingButtonContainer, { bottom: insets.bottom }]}>
           <TouchableOpacity activeOpacity={0.8} onPress={toggleViewMode} style={styles.floatingButton}>
-            <BlurView
-              intensity={80}
-              tint="dark"
-              style={styles.blurContainer}
-              {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
-            >
-              <View style={styles.glassOverlay} />
-              <MaterialIcons name="grid-on" size={18} color="#FFFFFF" />
-            </BlurView>
+            {/* Android's experimental blur (dimezisBlurView) redraws the whole
+                root view every frame and crashes with IndexOutOfBoundsException
+                when the feed list mutates during its pre-draw snapshot — real
+                blur is iOS-only, Android gets a translucent glass fallback
+                (same constraint as FeedNavBar). */}
+            {Platform.OS === "ios" ? (
+              <BlurView intensity={80} tint="dark" style={styles.blurContainer}>
+                <View style={styles.glassOverlay} />
+                <MaterialIcons name="grid-on" size={18} color="#FFFFFF" />
+              </BlurView>
+            ) : (
+              <View style={[styles.blurContainer, styles.androidBlurFallback]}>
+                <View style={styles.glassOverlay} />
+                <MaterialIcons name="grid-on" size={18} color="#FFFFFF" />
+              </View>
+            )}
           </TouchableOpacity>
         </View>
       )}
@@ -734,6 +743,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 28,
     overflow: "hidden",
+  },
+  androidBlurFallback: {
+    backgroundColor: "rgba(16, 16, 20, 0.65)",
   },
   glassOverlay: {
     ...StyleSheet.absoluteFillObject,

@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useGateToHome } from "../hooks/useGateToHome";
 import {
   View,
@@ -47,6 +48,7 @@ type SocialField = {
 };
 
 const EditProfileScreen = () => {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -297,7 +299,7 @@ const EditProfileScreen = () => {
   return (
     <View className="flex-1 bg-black">
       <ScreenHeader
-        title="Edit Profile"
+        title={t("screens.editProfile")}
         rightContent={
           <TouchableOpacity
             onPress={onSave}

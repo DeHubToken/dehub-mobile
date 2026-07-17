@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -251,6 +252,7 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
 };
 
 const NotificationScreen = () => {
+  const { t } = useTranslation();
   const { patchUser } = useAuthActions();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -833,7 +835,7 @@ const NotificationScreen = () => {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader 
-        title="Notifications"
+        title={t("notifications.title")}
         rightContent={
           <TouchableOpacity
             onPress={handleMarkAllRead}

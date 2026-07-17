@@ -100,12 +100,12 @@ const DMSettingsSection: React.FC = () => {
         ((user as any)?.walletAddress || (user as any)?.address || "") as string
       ).toLowerCase();
       if (!address) {
-        toastInfo("You must be signed in");
+        toastInfo(t("settings.mustBeSignedIn"));
         return;
       }
       const parsedFee = Number(fee);
       if (!Number.isFinite(parsedFee) || parsedFee < 0) {
-        toastInfo("Per-message fee must be a non-negative number");
+        toastInfo(t("settings.feeNonNegative"));
         return;
       }
 
@@ -143,13 +143,13 @@ const DMSettingsSection: React.FC = () => {
               },
             } as any)
         ).catch(() => {});
-        toastError(e, "Failed to update DM preferences");
+        toastError(e, t("settings.failedUpdateDmPrefs"));
       } finally {
         if (opts?.spinner === "fee") setFeeSubmitting(false);
         else setDmSubmitting(false);
       }
     },
-    [user, dmsEnabled, allowNew, fee, optimisticPatch, patchUser]
+    [user, dmsEnabled, allowNew, fee, optimisticPatch, patchUser, t]
   );
 
   const onToggleDmsEnabled = useCallback(
@@ -310,9 +310,9 @@ const DMSettingsSection: React.FC = () => {
               <Icon name="BellOff" size={18} color="#9ca3af" />
             </View>
             <View className="flex-1">
-              <Text className="text-white text-sm font-medium">Do Not Disturb</Text>
+              <Text className="text-white text-sm font-medium">{t('settings.doNotDisturb')}</Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                Mute all message notifications
+                {t('settings.doNotDisturbDesc')}
               </Text>
             </View>
           </View>

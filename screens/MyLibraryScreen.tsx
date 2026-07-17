@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { View, Pressable, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import Animated, {
   useSharedValue,
@@ -36,6 +37,7 @@ const TAB_RADIUS = 12;
 const SLIDE_TIMING = { duration: 150, easing: Easing.out(Easing.cubic) };
 
 const MyLibraryScreen: React.FC = () => {
+  const { t } = useTranslation();
   const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
@@ -103,7 +105,7 @@ const MyLibraryScreen: React.FC = () => {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader
-        title="My Library"
+        title={t("screens.myLibrary")}
         rightContent={
           activeTab === "watched" ? (
             <Pressable onPress={handleClearHistory} hitSlop={8} style={{ padding: 4 }}>

@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -142,6 +143,7 @@ const SessionCard = React.memo<{
 });
 
 export default function ActiveSessionsScreen() {
+  const { t } = useTranslation();
   const { isSignedIn, needsUsername } = useAuthState();
   useGateToHome(isSignedIn && !needsUsername);
 
@@ -271,7 +273,7 @@ export default function ActiveSessionsScreen() {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title="Active Sessions" canGoBack />
+      <ScreenHeader title={t("settings.activeSessions")} canGoBack />
       {loading ? (
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color="#fff" />

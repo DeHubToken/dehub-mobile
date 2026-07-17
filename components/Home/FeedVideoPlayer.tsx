@@ -95,6 +95,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const [hasStartedAutoplay, setHasStartedAutoplay] = useState(false);
   const [isBuffering, setIsBuffering] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  // Android can hand the VideoView a surface still holding a frame from a
+  // neighbouring card's video. Keep the view transparent (thumbnail shows
+  // through) until THIS source has drawn its own first frame.
+  const [firstFrameRendered, setFirstFrameRendered] = useState(false);
   const isPlayingRef = useRef(false);
   const autoplayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const playerRef = useRef<VideoPlayer | null>(null);
@@ -121,6 +125,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   useEffect(() => {
     playerRef.current = player;
+    // New player instance = new source; the previous first frame no longer counts.
+    setFirstFrameRendered(false);
   }, [player]);
 
   const [showControls, setShowControls] = useState(false);
@@ -212,6 +218,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       if (isPlayingRef.current) stopPlayback();
       setHasStartedAutoplay(false);
       setVideoReady(false);
+      setFirstFrameRendered(false);
       setShowControls(false);
       clearHideTimer();
       return;
@@ -398,10 +405,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           // while scrolling and recycling. A TextureView renders inside the
           // normal view hierarchy, so it respects z-order and clipping.
           surfaceType="textureView"
-          style={[styles.thumbnail, { opacity: hideControls
-            ? (hasStartedAutoplay && videoReady ? 1 : 0)
-            : (isPlaying || hasStartedAutoplay ? 1 : 0)
-          }]}
+          onFirstFrameRender={() => setFirstFrameRendered(true)}
+          style={[styles.thumbnail, { opacity: firstFrameRendered && (hideControls
+            ? (hasStartedAutoplay && videoReady)
+            : (isPlaying || hasStartedAutoplay)
+          ) ? 1 : 0 }]}
         />
       )}
 

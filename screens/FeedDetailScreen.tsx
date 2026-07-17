@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { View, Text, FlatList, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -28,6 +29,7 @@ import { formatCompactNumber } from "../libs/numbers.util";
 import { ScreenNames } from "../navigation/ScreenNames";
 
 export default function FeedDetailScreen() {
+  const { t } = useTranslation();
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   
@@ -578,7 +580,7 @@ export default function FeedDetailScreen() {
 
   const renderHeader = useCallback(() => (
     <View>
-      <ScreenHeader title="Post" />
+      <ScreenHeader title={t("screens.post")} />
       {item ? (
         <View className="px-4">
           <FeedCard 

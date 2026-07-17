@@ -301,7 +301,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
         <View className="mt-6 mx-4">
           <View className="flex-row items-center mb-2 ml-1">
             <Icon name="MessageSquare" size={13} color="#9ca3af" />
-            <Text className="text-theme-neutrals-500 text-[11px] uppercase ml-1.5 tracking-widest font-semibold">Chat</Text>
+            <Text className="text-theme-neutrals-500 text-[11px] uppercase ml-1.5 tracking-widest font-semibold">{t('settings.chatSection')}</Text>
           </View>
           <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
             <View className="px-4 py-3.5 flex-row items-center justify-between">
@@ -310,8 +310,8 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                   <Icon name="Bot" size={16} color="#9ca3af" />
                 </View>
                 <View className="flex-1">
-                  <Text className="text-white text-sm font-medium">Buy Bot Alerts</Text>
-                  <Text className="text-theme-neutrals-500 text-[11px]">Show buy bot transaction alerts in chat</Text>
+                  <Text className="text-white text-sm font-medium">{t('settings.buyBotAlerts')}</Text>
+                  <Text className="text-theme-neutrals-500 text-[11px]">{t('settings.buyBotAlertsDesc')}</Text>
                 </View>
               </View>
               <CustomSwitch value={buyBotAlerts} onValueChange={onToggleBuyBot} />

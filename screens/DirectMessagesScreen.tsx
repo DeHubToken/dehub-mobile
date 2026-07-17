@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   FlatList,
   RefreshControl,
@@ -35,6 +36,7 @@ import { useDmContacts, dmActions } from "../store/dm.store";
 import { useDMContext } from "../context/DMContext";
 
 const DirectMessagesInner: React.FC = () => {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -328,7 +330,7 @@ const DirectMessagesInner: React.FC = () => {
               style={{ width: 36, height: 36 }}
               contentFit="contain"
             />
-            <Text className="text-white text-xl font-bold">Messages</Text>
+            <Text className="text-white text-xl font-bold">{t("messages.title")}</Text>
           </View>
           <TouchableOpacity
             onPress={openSettings}

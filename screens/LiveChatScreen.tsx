@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -80,6 +81,7 @@ const buildListItems = (
 };
 
 const LiveChatScreen: React.FC = () => {
+  const { t } = useTranslation();
   const user = useUser();
   const { showUserProfile } = useUserProfileSheet();
   const navigation = useNavigation<any>();
@@ -601,7 +603,7 @@ const LiveChatScreen: React.FC = () => {
   return (
     <View className="flex-1 bg-black">
       <ScreenHeader
-        title="Public Chat"
+        title={t("publicChat.title")}
         subtitle={subtitle}
         rightContent={RightHeader}
       />

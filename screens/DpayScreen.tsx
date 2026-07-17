@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import {
@@ -31,6 +32,7 @@ const TABS: { key: WalletTab; label: string; icon: string }[] = [
 ];
 
 const DpayScreen: React.FC = () => {
+  const { t } = useTranslation();
   const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
@@ -159,8 +161,8 @@ const DpayScreen: React.FC = () => {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
       >
         <DpayHeader
-          title="Wallet"
-          subtitle="Manage your DHB tokens"
+          title={t("wallet.title")}
+          subtitle={t("screens.walletSubtitle")}
         />
 
         {/* Assets / token balances — moved here from the profile to match web. */}

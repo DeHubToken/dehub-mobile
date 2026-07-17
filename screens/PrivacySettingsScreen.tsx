@@ -111,7 +111,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       toastSuccess(t('settings.privacySettingUpdated'));
     } catch (error) {
       logger.error('Failed to update setting', error);
-      toastError(error, 'Failed to update setting');
+      toastError(error, t('settings.failedUpdateSetting'));
       optimisticPatch(initial);
       setHideFollowers(initial.hideFollowers);
       setIsPrivate(initial.isPrivate);
@@ -170,7 +170,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       setIsPrivate(false);
       await saveSetting({ isPrivate: false });
     } catch (error) {
-      toastError(error, 'Failed to accept requests');
+      toastError(error, t('settings.failedAcceptRequests'));
     } finally {
       setPublicModalBusy(false);
     }
@@ -185,7 +185,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       setIsPrivate(false);
       await saveSetting({ isPrivate: false });
     } catch (error) {
-      toastError(error, 'Failed to reject requests');
+      toastError(error, t('settings.failedRejectRequests'));
     } finally {
       setPublicModalBusy(false);
     }
@@ -197,7 +197,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       const res = await getFollowRequests(1, 50);
       setRequests(res.items as any[]);
     } catch (e) {
-      toastError(e, 'Failed to load requests');
+      toastError(e, t('settings.failedLoadRequests'));
     } finally {
       setRequestsLoading(false);
     }
@@ -215,7 +215,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       setRequests(prev => prev.filter(r => r.requestId !== reqId));
       patchUser((prev: any) => ({ pendingFollowRequests: Math.max(0, (prev?.pendingFollowRequests || 1) - 1) }));
     } catch (e) {
-      toastError(e, 'Failed to accept');
+      toastError(e, t('settings.failedAccept'));
     } finally {
       setProcessingId(null);
     }
@@ -228,21 +228,21 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       setRequests(prev => prev.filter(r => r.requestId !== reqId));
       patchUser((prev: any) => ({ pendingFollowRequests: Math.max(0, (prev?.pendingFollowRequests || 1) - 1) }));
     } catch (e) {
-      toastError(e, 'Failed to decline');
+      toastError(e, t('settings.failedDecline'));
     } finally {
       setProcessingId(null);
     }
   }, [patchUser]);
 
   const followerVisLabel: Record<FollowerVisibility, string> = {
-    'public': 'Public',
-    'counts-only': 'Numbers only',
-    'hidden': 'Hidden',
+    'public': t('settings.publicOption'),
+    'counts-only': t('settings.numbersOnly'),
+    'hidden': t('settings.hiddenOption'),
   };
 
   const postVisLabel: Record<PostVisibility, string> = {
-    'public': 'Public',
-    'private': 'Private',
+    'public': t('settings.public'),
+    'private': t('settings.private'),
   };
 
   if (loading) {
@@ -302,9 +302,11 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                     <Icon name="UserPlus" size={18} color="#9ca3af" />
                   </View>
                   <View className="flex-1 mr-2">
-                    <Text className="text-white text-sm font-medium">Follow Requests</Text>
+                    <Text className="text-white text-sm font-medium">{t('settings.followRequests')}</Text>
                     <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                      {pendingCount} pending {pendingCount === 1 ? 'request' : 'requests'}
+                      {pendingCount === 1
+                        ? t('settings.pendingRequestCountSingular', { count: pendingCount })
+                        : t('settings.pendingRequestCountPlural', { count: pendingCount })}
                     </Text>
                   </View>
                   <Icon name="ChevronRight" size={18} color="#6b7280" />
@@ -320,7 +322,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
         {/* Post Visibility */}
         <View className="mt-6 mx-4">
           <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
-            Post Visibility
+            {t('settings.postVisibility')}
           </Text>
           <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
             <TouchableOpacity
@@ -333,9 +335,9 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                 <Icon name="Eye" size={18} color="#9ca3af" />
               </View>
               <View className="flex-1 mr-2">
-                <Text className="text-white text-sm font-medium">Default Post Visibility</Text>
+                <Text className="text-white text-sm font-medium">{t('settings.defaultPostVisibility')}</Text>
                 <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                  New posts will be {postVisLabel[defaultPostVisibility].toLowerCase()} by default
+                  {t('settings.newPostsDefaultDesc', { visibility: postVisLabel[defaultPostVisibility].toLowerCase() })}
                 </Text>
               </View>
               <View className="flex-row items-center">
@@ -364,9 +366,9 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
               <View className="flex-1 mr-2">
                 <Text className="text-white text-sm font-medium">{t('settings.hideFollowersFollowing')}</Text>
                 <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                  {followerVisibility === 'public' && 'Anyone can see your followers and following'}
-                  {followerVisibility === 'counts-only' && 'Only counts shown, list is hidden'}
-                  {followerVisibility === 'hidden' && 'Followers and counts are hidden'}
+                  {followerVisibility === 'public' && t('settings.followerVisPublicDesc')}
+                  {followerVisibility === 'counts-only' && t('settings.followerVisCountsDesc')}
+                  {followerVisibility === 'hidden' && t('settings.followerVisHiddenDesc')}
                 </Text>
               </View>
               <View className="flex-row items-center">
@@ -468,13 +470,13 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       >
         <View className="flex-1">
           <View className="px-5 pt-4 pb-3 flex-row items-center justify-between border-b border-white/10">
-            <Text className="text-white font-bold text-base">Follow Requests</Text>
+            <Text className="text-white font-bold text-base">{t('settings.followRequests')}</Text>
             {requestsLoading && <ActivityIndicator size="small" color="#8b5cf6" />}
           </View>
           {requests.length === 0 && !requestsLoading ? (
             <View className="flex-1 items-center justify-center py-12">
               <Icon name="UserPlus" size={36} color="#4b5563" />
-              <Text className="text-theme-neutrals-500 text-sm mt-3">No pending requests</Text>
+              <Text className="text-theme-neutrals-500 text-sm mt-3">{t('settings.noPendingRequests')}</Text>
             </View>
           ) : (
             <FlatList
@@ -495,7 +497,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                     />
                     <View className="flex-1">
                       <Text className="text-white text-sm font-medium" numberOfLines={1}>
-                        {item.requesterDisplayName || item.requesterUsername || 'Unknown'}
+                        {item.requesterDisplayName || item.requesterUsername || t('settings.unknown')}
                       </Text>
                       {item.requesterUsername && (
                         <Text className="text-theme-neutrals-500 text-xs">@{item.requesterUsername}</Text>
@@ -510,14 +512,14 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                           className="bg-blue-600 px-3 py-1.5 rounded-lg"
                           activeOpacity={0.7}
                         >
-                          <Text className="text-white text-xs font-semibold">Accept</Text>
+                          <Text className="text-white text-xs font-semibold">{t('settings.accept')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                           onPress={() => handleRejectOne(item.requestId)}
                           className="bg-theme-neutrals-700 px-3 py-1.5 rounded-lg"
                           activeOpacity={0.7}
                         >
-                          <Text className="text-theme-neutrals-300 text-xs font-semibold">Decline</Text>
+                          <Text className="text-theme-neutrals-300 text-xs font-semibold">{t('settings.decline')}</Text>
                         </TouchableOpacity>
                       </View>
                     )}
@@ -539,12 +541,12 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       >
         <View className="pb-4 pt-2">
           <Text className="text-theme-neutrals-400 text-xs text-center py-3 font-semibold uppercase tracking-widest">
-            Follower Visibility
+            {t('settings.followerVisibilitySection')}
           </Text>
           {([
-            { value: 'public', label: 'Public', desc: 'Anyone can see your followers and following list' },
-            { value: 'counts-only', label: 'Numbers only', desc: 'Show counts, but hide the actual list' },
-            { value: 'hidden', label: 'Hidden', desc: 'Hide followers, following, and counts entirely' },
+            { value: 'public', label: t('settings.publicOption'), desc: t('settings.followerVisPublicOptionDesc') },
+            { value: 'counts-only', label: t('settings.numbersOnly'), desc: t('settings.followerVisCountsOptionDesc') },
+            { value: 'hidden', label: t('settings.hiddenOption'), desc: t('settings.followerVisHiddenOptionDesc') },
           ] as { value: FollowerVisibility; label: string; desc: string }[]).map(opt => (
             <TouchableOpacity
               key={opt.value}
@@ -574,11 +576,11 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       >
         <View className="pb-4 pt-2">
           <Text className="text-theme-neutrals-400 text-xs text-center py-3 font-semibold uppercase tracking-widest">
-            Default Post Visibility
+            {t('settings.defaultPostVisibility')}
           </Text>
           {([
-            { value: 'public', label: 'Public', desc: 'New posts are visible to everyone' },
-            { value: 'private', label: 'Private', desc: 'New posts are only visible to your followers' },
+            { value: 'public', label: t('settings.public'), desc: t('settings.publicPostsDesc') },
+            { value: 'private', label: t('settings.private'), desc: t('settings.privatePostsDesc') },
           ] as { value: PostVisibility; label: string; desc: string }[]).map(opt => (
             <TouchableOpacity
               key={opt.value}

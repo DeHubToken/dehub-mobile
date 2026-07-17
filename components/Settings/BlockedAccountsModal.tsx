@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator, FlatList, type ListRenderItemInfo } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 import GlassModal from '../ui/GlassModal';
 import Avatar from '../common/Avatar';
@@ -17,6 +18,7 @@ export type BlockedAccountsModalProps = {
 const ITEMS_PER_PAGE = 20;
 
 const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, onClose }) => {
+  const { t } = useTranslation();
   const [items, setItems] = useState<BlockListItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -42,12 +44,12 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
       setPage(pageNum);
     } catch (e) {
       console.error('[BlockedAccountsModal] fetch error', e);
-      toastError('Failed to load blocked accounts');
+      toastError(t('settings.failedLoadBlocked'));
     } finally {
       setLoading(false);
       setLoadingMore(false);
     }
-  }, []);
+  }, [t]);
 
   // Fetch on open
   useEffect(() => {
@@ -76,15 +78,15 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
       await unblockUser(unblockTarget.address);
       // Remove from local list
       setItems(prev => prev.filter(i => i.address !== unblockTarget.address));
-      toastSuccess(`Unblocked ${unblockTarget.displayName || unblockTarget.username || truncateAddress(unblockTarget.address, 4, 4)}`);
+      toastSuccess(t('settings.unblockedUser', { name: unblockTarget.displayName || unblockTarget.username || truncateAddress(unblockTarget.address, 4, 4) }));
     } catch (e) {
       console.error('[BlockedAccountsModal] unblock error', e);
-      toastError('Failed to unblock user');
+      toastError(t('settings.failedUnblock'));
     } finally {
       setUnblockLoading(false);
       setUnblockTarget(null);
     }
-  }, [unblockTarget]);
+  }, [unblockTarget, t]);
 
   const renderItem = useCallback(({ item }: ListRenderItemInfo<BlockListItem>) => {
     const avatar = getAvatarUrl(item.avatarImageUrl || '');
@@ -109,11 +111,11 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
           activeOpacity={0.8}
           className="bg-theme-neutrals-800 border border-theme-neutrals-700 px-3 py-1.5 rounded-full"
         >
-          <Text className="text-red-400 text-xs font-semibold">Unblock</Text>
+          <Text className="text-red-400 text-xs font-semibold">{t('settings.unblock')}</Text>
         </TouchableOpacity>
       </View>
     );
-  }, [handleUnblockPress]);
+  }, [handleUnblockPress, t]);
 
   const keyExtractor = useCallback((item: BlockListItem) => item.blockId || item.address, []);
 
@@ -121,9 +123,9 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
     <>
       <GlassModal visible={visible} onClose={onClose} presentation="center" maxHeight="75%" blurIntensity={30}>
         <View className="p-4">
-          <Text className="text-white font-semibold text-lg">Blocked Accounts</Text>
+          <Text className="text-white font-semibold text-lg">{t('settings.blockedAccounts')}</Text>
           <Text className="text-theme-neutrals-400 text-xs mt-1">
-            Users you have blocked won't appear in your feeds or be able to message you.
+            {t('settings.blockedAccountsModalDesc')}
           </Text>
 
           <View className="mt-4 bg-theme-neutrals-900 rounded-xl border border-theme-neutrals-800 overflow-hidden" style={{ maxHeight: 400 }}>
@@ -134,7 +136,7 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
             ) : items.length === 0 ? (
               <View className="px-4 py-8 items-center justify-center">
                 <Ionicons name="checkmark-circle-outline" size={32} color="#4B5563" />
-                <Text className="text-theme-neutrals-400 text-sm mt-2">You haven't blocked anyone.</Text>
+                <Text className="text-theme-neutrals-400 text-sm mt-2">{t('settings.noBlockedUsers')}</Text>
               </View>
             ) : (
               <FlatList
@@ -156,7 +158,7 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
 
           <View className="mt-4 flex-row justify-end">
             <TouchableOpacity onPress={onClose} className="px-4 h-11 rounded-xl bg-theme-neutrals-700 items-center justify-center active:opacity-80">
-              <Text className="text-theme-neutrals-100">Close</Text>
+              <Text className="text-theme-neutrals-100">{t('common.close')}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -165,7 +167,7 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
       <ConfirmBlockModal
         visible={!!unblockTarget}
         mode="unblock"
-        targetLabel={unblockTarget?.displayName || unblockTarget?.username || 'user'}
+        targetLabel={unblockTarget?.displayName || unblockTarget?.username || (unblockTarget ? truncateAddress(unblockTarget.address, 4, 4) : '')}
         onConfirm={handleConfirmUnblock}
         onCancel={() => setUnblockTarget(null)}
         loading={unblockLoading}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   TextInput,
@@ -124,6 +125,7 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
 });
 
 const SearchScreen: React.FC = () => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const authUser = useUser() as { address?: string } | null;
   const userAddress = authUser?.address;
@@ -679,7 +681,7 @@ const SearchScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title="Explore" canGoBack={false} />
+      <ScreenHeader title={t("nav.explore")} canGoBack={false} />
 
       <KeyboardAvoidingView
         style={{ flex: 1 }}
