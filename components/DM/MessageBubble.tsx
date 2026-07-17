@@ -31,6 +31,11 @@ import { getAvatarUrl, buildCdnPath } from "../../libs/misc";
 import type { DmMessage, DmMsgType, DmMediaUrl, ReplyPreview } from "../../services/dm/dm.types";
 import { getSenderUser } from "../../services/dm/dm.types";
 import type { MessageLayout } from "./MessageContextMenu";
+import { ScreenNames } from "../../navigation/ScreenNames";
+import SharedPostPreview from "./SharedPostPreview";
+
+/** Extract a shared post's tokenId from a dehub post URL (…/post/<id>). */
+const POST_URL_RE = /\/post\/([^\s/?#]+)/i;
 
 
 const resolveUrl = (path: string): string => {
@@ -427,6 +432,27 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
   }, [message.mediaUrls, message.content, isGif, isMedia, msgType, message._id, localMediaUri]);
 
 
+  // A shared post arrives as text containing a …/post/<tokenId> link (optionally
+  // with a title on the line above it). Detect it so we can render a tappable
+  // card that opens the post instead of showing a dead URL.
+  const sharedPost = useMemo(() => {
+    if (isVoice || isGif || mediaItems.length > 0) return null;
+    const content = message.content ?? "";
+    const match = content.match(POST_URL_RE);
+    if (!match) return null;
+    const tokenId = match[1];
+    // Everything except the URL itself is treated as the post's title/caption.
+    const title = content.replace(match[0], "").replace(/https?:\/\/\S+/gi, "").trim();
+    return { tokenId, title };
+  }, [message.content, isVoice, isGif, mediaItems.length]);
+
+  const handleOpenSharedPost = useCallback(() => {
+    if (!sharedPost) return;
+    navigation.navigate(ScreenNames.FeedDetail as never, {
+      tokenId: sharedPost.tokenId,
+    } as never);
+  }, [navigation, sharedPost]);
+
   const handleLongPress = useCallback(() => {
     containerRef.current?.measureInWindow((x, y, width, height) => {
       onLongPress?.(message, { x, y, width, height }, isMine);
@@ -756,17 +782,27 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
               );
             })()}
 
-            {/* Text */}
-            {hasText && (
-              <Text
-                className={`px-3 ${
-                  mediaItems.length > 0 ? "pt-1.5 pb-0.5" : "pt-2.5 pb-0.5"
-                } text-[15px] leading-5 ${
-                  isMine ? "text-white" : "text-theme-neutrals-100"
-                }`}
-              >
-                {message.content}
-              </Text>
+            {/* Shared post — rich preview card that opens the post on tap */}
+            {sharedPost ? (
+              <SharedPostPreview
+                tokenId={sharedPost.tokenId}
+                isMine={isMine}
+                fallbackTitle={sharedPost.title || undefined}
+                onPress={handleOpenSharedPost}
+                onLongPress={handleLongPress}
+              />
+            ) : (
+              hasText && (
+                <Text
+                  className={`px-3 ${
+                    mediaItems.length > 0 ? "pt-1.5 pb-0.5" : "pt-2.5 pb-0.5"
+                  } text-[15px] leading-5 ${
+                    isMine ? "text-white" : "text-theme-neutrals-100"
+                  }`}
+                >
+                  {message.content}
+                </Text>
+              )
             )}
 
             {/* Payment badge — "Sent with X DHB" for paid / tipped messages */}

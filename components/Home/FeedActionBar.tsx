@@ -1,6 +1,5 @@
-import React, { memo, useCallback, useRef } from "react";
-import { View, Pressable } from "react-native";
-import { Text } from "react-native";
+import React, { memo, useCallback } from "react";
+import { View, Pressable, Text } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -9,7 +8,6 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import Icon from "../ui/Icon";
-import RepostPopover from "../common/RepostPopover";
 import { formatCompactNumber } from "../../libs/numbers.util";
 
 const ICON_MUTED = "#6F7174";
@@ -29,15 +27,11 @@ interface FeedActionBarProps {
   onLike: () => void;
   onDislike: () => void;
   onComment: () => void;
-  onRepost: () => void;
+  /** Opens the Share sheet (repost / quote / copy-link / send-in-DM / share-as-image). */
+  onShare: () => void;
   onTip: () => void;
   onSave: () => void;
   onInfo: () => void;
-  showRepostPopover: boolean;
-  onCloseRepostPopover: () => void;
-  onConfirmRepost: () => void;
-  onUndoRepost: () => void;
-  onQuote: () => void;
 }
 
 const BOUNCE_CONFIG = { damping: 12, stiffness: 300 };
@@ -51,10 +45,11 @@ const AnimatedActionButton: React.FC<{
   activeFill?: string;
   activeStrokeWidth?: number;
   inactiveColor?: string;
+  iconSize?: number;
   count?: number;
   countColor?: string;
   formatCount?: boolean;
-}> = ({ onPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, count, countColor, formatCount }) => {
+}> = ({ onPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 18, count, countColor, formatCount }) => {
   const scale = useSharedValue(1);
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -82,7 +77,7 @@ const AnimatedActionButton: React.FC<{
       style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
     >
       <Animated.View style={animatedStyle}>
-        <Icon name={resolvedIcon} size={18} color={resolvedColor} strokeWidth={resolvedStrokeWidth} fill={resolvedFill} />
+        <Icon name={resolvedIcon} size={iconSize} color={resolvedColor} strokeWidth={resolvedStrokeWidth} fill={resolvedFill} />
       </Animated.View>
       {count !== undefined && (
         <Text style={{ fontSize: 11, color: countColor || COUNT_COLOR }}>
@@ -106,85 +101,69 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   onLike,
   onDislike,
   onComment,
-  onRepost,
+  onShare,
   onTip,
   onSave,
   onInfo,
-  showRepostPopover,
-  onCloseRepostPopover,
-  onConfirmRepost,
-  onUndoRepost,
-  onQuote,
 }) => {
-  const repostAnchorRef = useRef<View>(null);
-
+  // Single row, every button a direct child spread edge-to-edge (matches the
+  // web ActionBar). Order left → right: tip · dislike · share · comment · like
+  // · bookmark · info.
   return (
     <View className="flex-row items-center justify-between pt-2">
-      <View className="flex-row items-center gap-4">
-        <AnimatedActionButton
-          onPress={onLike}
-          iconName="ThumbsUp"
-          active={liked}
-          activeFill={ICON_ACTIVE}
-          count={likeCount}
-          formatCount
-        />
-        <AnimatedActionButton
-          onPress={onDislike}
-          iconName="ThumbsDown"
-          active={disliked}
-          activeFill={ICON_ACTIVE}
-          count={dislikeCount}
-          formatCount
-        />
-        <AnimatedActionButton
-          onPress={onComment}
-          iconName="MessageSquare"
-          count={commentCount}
-          formatCount
-        />
-        <View ref={repostAnchorRef} style={{ position: "relative", zIndex: 50 }}>
-          <AnimatedActionButton
-            onPress={onRepost}
-            iconName="Repeat2"
-            active={reposted}
-            activeColor={ICON_ACTIVE}
-            activeStrokeWidth={2.8}
-            count={repostCount}
-            countColor={reposted ? ICON_ACTIVE : COUNT_COLOR}
-            formatCount
-          />
-          <RepostPopover
-            visible={showRepostPopover}
-            onClose={onCloseRepostPopover}
-            onRepost={reposted ? onUndoRepost : onConfirmRepost}
-            onQuote={onQuote}
-            isReposted={reposted}
-            anchorRef={repostAnchorRef}
-          />
-        </View>
-        <AnimatedActionButton
-          onPress={onTip}
-          iconName="Gem"
-          count={tipCount}
-          formatCount
-        />
-      </View>
-      <View className="flex-row items-center gap-4">
-        <AnimatedActionButton
-          onPress={onSave}
-          iconName="Bookmark"
-          active={saved}
-          activeColor="#FACC15"
-          activeFill="#FACC15"
-          inactiveColor={ICON_MUTED}
-        />
-        <AnimatedActionButton
-          onPress={onInfo}
-          iconName="Info"
-          inactiveColor={ICON_MUTED}
-        />
-      </View>
+      <AnimatedActionButton
+        onPress={onTip}
+        iconName="Gem"
+        count={tipCount}
+        formatCount
+      />
+      <AnimatedActionButton
+        onPress={onDislike}
+        iconName="ThumbsDown"
+        active={disliked}
+        activeFill={ICON_ACTIVE}
+        count={dislikeCount}
+        formatCount
+      />
+      {/* Share — carries the repost count; bolder + larger once reposted. */}
+      <AnimatedActionButton
+        onPress={onShare}
+        iconName="Share2"
+        active={reposted}
+        activeColor={ICON_ACTIVE}
+        activeStrokeWidth={2.6}
+        iconSize={reposted ? 20 : 18}
+        count={repostCount}
+        countColor={reposted ? ICON_ACTIVE : COUNT_COLOR}
+        formatCount
+      />
+      <AnimatedActionButton
+        onPress={onComment}
+        iconName="MessageSquare"
+        count={commentCount}
+        formatCount
+      />
+      <AnimatedActionButton
+        onPress={onLike}
+        iconName="ThumbsUp"
+        active={liked}
+        activeFill={ICON_ACTIVE}
+        count={likeCount}
+        formatCount
+      />
+      <AnimatedActionButton
+        onPress={onSave}
+        iconName="Bookmark"
+        active={saved}
+        activeColor="#FACC15"
+        activeFill="#FACC15"
+        inactiveColor={ICON_MUTED}
+      />
+      <AnimatedActionButton
+        onPress={onInfo}
+        iconName="Info"
+        inactiveColor={ICON_MUTED}
+      />
     </View>
   );
 };

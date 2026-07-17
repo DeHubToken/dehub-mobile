@@ -293,6 +293,26 @@ export const dmActions = {
     }
   },
 
+  /**
+   * Bump a conversation's unread counter for a newly received message.
+   * Must be called BEFORE the message is inserted via upsertMessages — the
+   * guard skips messages already present so duplicate socket deliveries and
+   * history loads never double-count. The open chat is self-correcting:
+   * ChatScreen re-runs markAllRead on every new message while focused.
+   */
+  incrementUnread(conversationId: ID, messageId?: ID): void {
+    const contact = dmState.contactsById[conversationId];
+    if (!contact) return;
+    if (messageId) {
+      const list = dmState.messagesByConversation[conversationId] || [];
+      if (list.some((m) => m._id === messageId)) return;
+    }
+    dmState.contactsById[conversationId] = {
+      ...contact,
+      unreadCount: (contact.unreadCount || 0) + 1,
+    };
+  },
+
   /** Apply a read receipt (other user read our messages). */
   applyReadReceipt(receipt: ReadReceiptResponse): void {
     const list = dmState.messagesByConversation[receipt.dmId];
@@ -520,6 +540,34 @@ export const useUnreadConversationsCount = (currentUserId?: ID): number => {
         total++;
         break;
       }
+    }
+  }
+  return total;
+};
+
+/**
+ * Total number of unread messages across all conversations (sum), mirroring
+ * the web app's `useTotalUnreadCount`. Prefers the server-provided
+ * `unreadCount` on each contact and falls back to counting local messages.
+ */
+export const useTotalUnreadMessagesCount = (currentUserId?: ID): number => {
+  const snap = useSnapshot(dmState);
+  let total = 0;
+  for (const convId of Object.keys(snap.contactsById)) {
+    const contact = snap.contactsById[convId] as DmConversation | undefined;
+    if (contact?.unreadCount !== undefined) {
+      total += contact.unreadCount;
+      continue;
+    }
+    const list =
+      (snap.messagesByConversation[convId] as DmMessage[] | undefined) ||
+      contact?.messages ||
+      [];
+    for (const m of list) {
+      const isMine =
+        (m as DmMessage).author === "me" ||
+        (currentUserId && getSenderIdStr(m as DmMessage) === currentUserId);
+      if (!isMine && !(m as DmMessage).isRead) total++;
     }
   }
   return total;

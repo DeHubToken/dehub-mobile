@@ -10,11 +10,20 @@ interface VideosRouteProps {
   showCreator?: boolean;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
   listHeader?: React.ReactElement | null;
+  onBeforeNavigate?: () => void;
 }
 
-const VideosRoute: React.FC<VideosRouteProps> = ({ address, showCreator = true, onScroll, listHeader }) => {
+const VideosRoute: React.FC<VideosRouteProps> = ({ address, showCreator = true, onScroll, listHeader, onBeforeNavigate }) => {
   return (
-    <CompactVideoInfiniteList address={address || FALLBACK_ADDRESS} bottomPadding={80} showCreator={showCreator} onScroll={onScroll} ListHeaderComponent={listHeader} />
+    <CompactVideoInfiniteList
+      address={address || FALLBACK_ADDRESS}
+      bottomPadding={80}
+      showCreator={showCreator}
+      enablePreview={false}
+      onScroll={onScroll}
+      ListHeaderComponent={listHeader}
+      onBeforeNavigate={onBeforeNavigate}
+    />
   );
 };
 

@@ -8,6 +8,7 @@
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, type ListRenderItem } from "react-native";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { useTranslation } from "react-i18next";
 import { getSuggestedAccounts, type SuggestedAccount } from "../../services/user.service";
 import Icon from "../ui/Icon";
@@ -16,7 +17,16 @@ import SuggestedAccountCard from "./SuggestedAccountCard";
 import type { FollowState } from "../Search/SearchAccountChip";
 
 
-const SuggestedAccountsSection: React.FC = () => {
+interface SuggestedAccountsSectionProps {
+  /**
+   * Ref to the parent's horizontal fling gesture (feed tab-switch on HomeScreen).
+   * When provided, the carousel's own scroll claims horizontal pans so swiping
+   * the suggestions doesn't change the whole feed page.
+   */
+  panRef?: React.MutableRefObject<any>;
+}
+
+const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ panRef }) => {
   const user = useUser() as { address?: string } | null;
   const { t } = useTranslation();
   const [accounts, setAccounts] = useState<SuggestedAccount[]>([]);
@@ -96,6 +106,12 @@ const SuggestedAccountsSection: React.FC = () => {
     [accounts],
   );
 
+  // Native gesture bound to this horizontal list. The parent fling references
+  // panRef via requireExternalGestureToFail, so while this scroll is active the
+  // feed page won't swipe underneath us. Must stay above the early return below
+  // so the hook order is stable across renders.
+  const listGesture = useMemo(() => Gesture.Native().withRef(panRef!), [panRef]);
+
   if (dismissed || visibleAccounts.length === 0) return null;
 
   const renderItem: ListRenderItem<SuggestedAccount> = ({ item }) => (
@@ -107,6 +123,18 @@ const SuggestedAccountsSection: React.FC = () => {
   );
 
   const keyExtractor = (item: SuggestedAccount) => item.address;
+
+  const list = (
+    <FlatList
+      data={visibleAccounts}
+      renderItem={renderItem}
+      keyExtractor={keyExtractor}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      nestedScrollEnabled
+      contentContainerStyle={{ paddingHorizontal: 8 }}
+    />
+  );
 
   return (
     <View className="mb-3">
@@ -125,15 +153,7 @@ const SuggestedAccountsSection: React.FC = () => {
       </View>
 
       {/* Horizontal scroll */}
-      <FlatList
-        data={visibleAccounts}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        nestedScrollEnabled
-        contentContainerStyle={{ paddingHorizontal: 8 }}
-      />
+      {panRef ? <GestureDetector gesture={listGesture}>{list}</GestureDetector> : list}
     </View>
   );
 };

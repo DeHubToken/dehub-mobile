@@ -2,7 +2,7 @@ import React, { useMemo, useCallback } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useUser } from '../../context/AuthContext';
-import { formatCompactNumber } from '../../libs/numbers.util';
+import { formatCompactNumber, resolveCount } from '../../libs/numbers.util';
 import { ScreenNames } from '../../navigation/ScreenNames';
 
 interface StatItem { label: string; value: number; key: string }
@@ -13,8 +13,10 @@ const ProfileStats: React.FC = () => {
 
   const stats = useMemo<StatItem[]>(() => {
     if (!user) return [];
-    const followers = user.followers ?? 0;
-    const following = user.followings ?? 0;
+    // followers/followings come back as arrays of addresses from account_info
+    // (or a plain number from other endpoints) — resolveCount handles both.
+    const followers = resolveCount(user.followers, (user as any).follower_count);
+    const following = resolveCount(user.followings, (user as any).following_count);
     // likes can be an array of IDs or a number count from different API responses
     const likes = typeof user.likes === 'number' ? user.likes : (user.likes?.length || 0);
     const receivedTips = user.receivedTips || 0;

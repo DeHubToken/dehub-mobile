@@ -18,6 +18,7 @@ import { useDM } from "./useDM";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { maxStacked } from "../libs/validators.util";
+import { resolveCount } from "../libs/numbers.util";
 import { WEBSITE_LINK } from "../config";
 
 interface RemoteUser {
@@ -243,12 +244,13 @@ export const useUserProfileData = (
       {
         key: "followers",
         label: "Followers",
-        value: data.followers ?? 0,
+        // account_info returns followers/followings as arrays of addresses
+        value: resolveCount(data.followers, (data as any).follower_count),
       },
       {
         key: "following",
         label: "Following",
-        value: data.followings ?? 0,
+        value: resolveCount(data.followings, (data as any).following_count),
       },
       {
         key: "tipsReceived",
@@ -286,13 +288,13 @@ export const useUserProfileData = (
         // Optimistic update: increment follower count
         setData((prev) => {
           if (!prev) return prev;
-          const currentCount = typeof prev.followers === 'number' ? prev.followers : 0;
+          const currentCount = resolveCount(prev.followers, (prev as any).follower_count);
           return { ...prev, followers: currentCount + 1 };
         });
 
         // Update auth user's following count
         patchUser?.((u: any) => {
-          const currentCount = typeof u.followings === 'number' ? u.followings : 0;
+          const currentCount = resolveCount(u.followings, u.following_count);
           return { followings: currentCount + 1 };
         });
       }
@@ -313,11 +315,11 @@ export const useUserProfileData = (
           // Rollback: decrement follower count
           setData((prev) => {
             if (!prev) return prev;
-            const currentCount = typeof prev.followers === 'number' ? prev.followers : 0;
+            const currentCount = resolveCount(prev.followers, (prev as any).follower_count);
             return { ...prev, followers: Math.max(0, currentCount - 1) };
           });
           patchUser?.((u: any) => {
-            const currentCount = typeof u.followings === 'number' ? u.followings : 0;
+            const currentCount = resolveCount(u.followings, u.following_count);
             return { followings: Math.max(0, currentCount - 1) };
           });
         }
@@ -361,13 +363,13 @@ export const useUserProfileData = (
           // Optimistic update: decrement follower count
           setData((prev) => {
             if (!prev) return prev;
-            const currentCount = typeof prev.followers === 'number' ? prev.followers : 0;
+            const currentCount = resolveCount(prev.followers, (prev as any).follower_count);
             return { ...prev, followers: Math.max(0, currentCount - 1) };
           });
 
           // Update auth user's following count
           patchUser?.((u: any) => {
-            const currentCount = typeof u.followings === 'number' ? u.followings : 0;
+            const currentCount = resolveCount(u.followings, u.following_count);
             return { followings: Math.max(0, currentCount - 1) };
           });
         }
@@ -399,7 +401,7 @@ export const useUserProfileData = (
       setFollowsYou(false);
       setData((prev) => {
         if (!prev) return prev;
-        const currentCount = typeof prev.followers === 'number' ? prev.followers : 0;
+        const currentCount = resolveCount(prev.followers, (prev as any).follower_count);
         return { ...prev, followers: Math.max(0, currentCount - 1) };
       });
 
@@ -412,7 +414,7 @@ export const useUserProfileData = (
         setFollowsYou(true);
         setData((prev) => {
           if (!prev) return prev;
-          return { ...prev, followers: (prev.followers ?? 0) + 1 };
+          return { ...prev, followers: resolveCount(prev.followers, (prev as any).follower_count) + 1 };
         });
       }
     });

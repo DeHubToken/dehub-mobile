@@ -24,12 +24,14 @@ interface CompactVideoCardProps {
   nft: any;
   enablePreview?: boolean;
   showCreator?: boolean;
+  onBeforeNavigate?: () => void;
 }
 
 const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   nft,
   enablePreview,
   showCreator = true,
+  onBeforeNavigate,
 }) => {
   const streamInfo = nft.streamInfo || (nft as any).stream?.streamInfo;
   const tokenId = nft.tokenId || (nft as any).stream?.tokenId;
@@ -129,20 +131,33 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const accessInfo = useStreamAccessInfo(nft);
   const handlePressVideo = useCallback(() => {
     if (tokenId == null) return;
-    // Dismiss the profile sheet first (no-op when closed), otherwise the
-    // player opens behind it when launched from a profile tab.
+    onBeforeNavigate?.();
     hideUserProfile();
-    if (isLive) {
-      navigation.navigate(ScreenNames.LiveViewer, {
-        isLive,
-        nft,
-        accessInfo,
-        streamId: (nft as any)?.stream?._id || (nft as any)?.stream?.id || nft?._id,
-      });
-    } else {
-      navigation.navigate(ScreenNames.FeedDetail, { tokenId });
-    }
-  }, [navigation, tokenId, isLive, nft, accessInfo, hideUserProfile]);
+    // This card can be rendered inside the profile sheet, which is a React
+    // Native <Modal> (a native Dialog). VideoPlayer/LiveViewer are modal-group
+    // screens (slide-up transition). Dismissing the Dialog (hideUserProfile)
+    // and starting that transition in the same tick races the native Dialog
+    // teardown and crashes on Android. Defer the navigation one frame so the
+    // Dialog is gone before the transition begins. (Card screens like
+    // FeedDetail aren't affected, which is why this only surfaced after
+    // switching the target to the modal-group player.)
+    requestAnimationFrame(() => {
+      if (isLive) {
+        navigation.navigate(ScreenNames.LiveViewer, {
+          isLive,
+          nft,
+          accessInfo,
+          streamId: (nft as any)?.stream?._id || (nft as any)?.stream?.id || nft?._id,
+        });
+      } else {
+        navigation.navigate(ScreenNames.VideoPlayer, {
+          tokenId,
+          nft,
+          accessInfo,
+        });
+      }
+    });
+  }, [navigation, tokenId, isLive, nft, accessInfo, hideUserProfile, onBeforeNavigate]);
   return (
     <View className="m-1 px-4 py-1">
       <TouchableOpacity
