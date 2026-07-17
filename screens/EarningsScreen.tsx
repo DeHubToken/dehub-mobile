@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -144,6 +145,7 @@ function PieChart({ tips, ppv }: { tips: number; ppv: number }) {
 
 // ─── Main Screen ─────────────────────────────────────────────────────────────
 const EarningsScreen: React.FC = () => {
+  const { t } = useTranslation();
   const { isSignedIn, needsUsername } = useAuthState();
   useGateToHome(isSignedIn && !needsUsername);
   const user = useUser() as any;
@@ -222,7 +224,7 @@ const EarningsScreen: React.FC = () => {
 
   return (
     <View style={{ flex: 1, backgroundColor: "#09090B" }}>
-      <ScreenHeader title="Earnings" canGoBack />
+      <ScreenHeader title={t("settings.categoryEarnings")} canGoBack />
 
       {loading ? (
         <View style={styles.center}>

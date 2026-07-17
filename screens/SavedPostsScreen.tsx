@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -28,6 +29,7 @@ import {
 type ActiveTab = "all" | "folders";
 
 const SavedPostsScreen: React.FC = () => {
+  const { t } = useTranslation();
   const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
@@ -333,7 +335,7 @@ const SavedPostsScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title="Saved Posts" canGoBack />
+      <ScreenHeader title={t("screens.savedPosts")} canGoBack />
 
       {/* Tabs */}
       <View style={styles.tabsContainer}>

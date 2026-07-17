@@ -73,8 +73,10 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
         <View className="w-full rounded-xl p-6 bg-transparent">
           <Text className="text-white text-xl font-semibold mb-4">Set your profile</Text>
           <Text className="text-neutral-400 text-sm mb-4">Choose a username and display name to continue. You can change them later.</Text>
+          {/* Uncontrolled: passing `value` back causes char duplication on Android
+              when re-renders (BlurView) lag behind fast typing */}
           <TextInput
-            value={username}
+            defaultValue={username}
             onChangeText={handleChange}
             autoCapitalize="none"
             autoCorrect={false}
@@ -113,7 +115,7 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
           </View>
           <View className="mt-4" />
           <TextInput
-            value={displayName}
+            defaultValue={displayName}
             onChangeText={handleDisplayNameChange}
             autoCapitalize="words"
             autoCorrect={false}

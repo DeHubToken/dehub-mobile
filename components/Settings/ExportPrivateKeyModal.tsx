@@ -12,6 +12,7 @@ import {
   ActivityIndicator,
   TextInput,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import { useAuthActions, useProvider } from "../../context/AuthContext";
 import { copyToClipboard, toastError, toastInfo, apiClient } from "../../libs";
@@ -31,6 +32,7 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
   visible,
   onClose,
 }) => {
+  const { t } = useTranslation();
   const { ensureProvider } = useAuthActions();
   const { providerStatus, provider, authMethod } = useProvider();
   const isLocal = useMemo(() => authMethod === 'local', [authMethod]);
@@ -85,24 +87,24 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
         .catch(() => {});
     } catch (e: any) {
       console.error("[ExportPrivateKey] fetch error", e);
-      setError(e?.message || "Failed to export private key");
-      toastError(e?.message || "Failed to export private key");
+      setError(e?.message || t("settings.exportPkFailed"));
+      toastError(e?.message || t("settings.exportPkFailed"));
     } finally {
       setIsFetching(false);
     }
-  }, [ensureProvider, providerStatus, provider, isLocal]);
+  }, [ensureProvider, providerStatus, provider, isLocal, t]);
 
   const handleProceed = useCallback(() => {
     if (!isLocal) {
-      toastInfo("Private keys are not available for this smart account");
+      toastInfo(t("settings.exportPkNotAvailable"));
       return;
     }
     if (!canContinue) {
-      toastInfo(`Type "${REQUIRED_PHRASE}" to proceed`);
+      toastInfo(t("settings.exportPkTypeToProceed", { phrase: REQUIRED_PHRASE }));
       return;
     }
     void fetchPrivateKey();
-  }, [canContinue, fetchPrivateKey, isLocal]);
+  }, [canContinue, fetchPrivateKey, isLocal, t]);
 
   const toggleMasked = useCallback(() => {
     setMasked((m) => !m);
@@ -150,29 +152,29 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
         {step === "warn" && (
           <>
             <Text className="text-white font-bold text-lg mb-2">
-              Export Private Key
+              {t("settings.exportPrivateKey")}
             </Text>
             {isLocal ? (
               <>
                 <Text className="text-red-400 text-sm mb-2">
-                  Highly sensitive — handle with extreme care.
+                  {t("settings.exportPkWarning")}
                 </Text>
                 <View className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 mb-3">
                   <Text className="text-gray-300 text-sm">
-                    - Anyone with your private key can move your funds.
+                    - {t("settings.exportPkBullet1")}
                   </Text>
                   <Text className="text-gray-300 text-sm mt-1">
-                    - Never share it. We will never ask for it.
+                    - {t("settings.exportPkBullet2")}
                   </Text>
                   <Text className="text-gray-300 text-sm mt-1">
-                    - Store securely in a password manager or offline.
+                    - {t("settings.exportPkBullet3")}
                   </Text>
                   <Text className="text-gray-300 text-sm mt-1">
-                    - We cannot recover lost funds or compromised keys.
+                    - {t("settings.exportPkBullet4")}
                   </Text>
                 </View>
                 <Text className="text-gray-400 text-xs mb-1">
-                  Type "{REQUIRED_PHRASE}" to continue
+                  {t("settings.exportPkTypeToContinue", { phrase: REQUIRED_PHRASE })}
                 </Text>
                 <TextInput
                   value={confirmText}
@@ -189,7 +191,7 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
                     onPress={handleClose}
                     className="px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700 mr-2"
                   >
-                    <Text className="text-white">Cancel</Text>
+                    <Text className="text-white">{t("common.cancel")}</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     disabled={!canContinue || isFetching}
@@ -202,11 +204,11 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
                       <View className="flex-row items-center">
                         <ActivityIndicator color="#FFFFFF" size="small" />
                         <Text className="text-white font-semibold ml-2">
-                          Preparing…
+                          {t("settings.preparing")}
                         </Text>
                       </View>
                     ) : (
-                      <Text className="text-white font-semibold">I Understand</Text>
+                      <Text className="text-white font-semibold">{t("settings.iUnderstand")}</Text>
                     )}
                   </TouchableOpacity>
                 </View>
@@ -215,10 +217,10 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
               <>
                 <View className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 mb-3">
                   <Text className="text-gray-300 text-sm">
-                    This account uses a smart account (Web3Auth). Private keys cannot be exported.
+                    {t("settings.exportPkSmartAccount1")}
                   </Text>
                   <Text className="text-gray-300 text-sm mt-1">
-                    To export a private key, switch to an imported/local wallet.
+                    {t("settings.exportPkSmartAccount2")}
                   </Text>
                 </View>
                 {error ? (
@@ -229,7 +231,7 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
                     onPress={handleClose}
                     className="px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700"
                   >
-                    <Text className="text-white">Close</Text>
+                    <Text className="text-white">{t("common.close")}</Text>
                   </TouchableOpacity>
                 </View>
               </>
@@ -240,11 +242,11 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
         {step === "reveal" && (
           <>
             <Text className="text-white font-bold text-lg mb-2">
-              Your Private Key
+              {t("settings.yourPrivateKey")}
             </Text>
             {address ? (
               <Text className="text-gray-400 text-xs mb-2">
-                Address: {address}
+                {t("settings.addressLabel")}: {address}
               </Text>
             ) : null}
             <View className="flex-row items-center bg-black/50 rounded-md p-3 border border-zinc-800 mb-3">
@@ -275,7 +277,7 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
                 onPress={handleClose}
                 className="px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700"
               >
-                <Text className="text-white">Done</Text>
+                <Text className="text-white">{t("common.done")}</Text>
               </TouchableOpacity>
             </View>
           </>

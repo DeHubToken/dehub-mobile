@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -101,6 +102,7 @@ const DraftItem: React.FC<DraftItemProps> = React.memo(
 
 
 const DraftsScreen: React.FC = () => {
+  const { t } = useTranslation();
   const authUser = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
@@ -158,7 +160,7 @@ const DraftsScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title="Drafts" />
+      <ScreenHeader title={t("screens.drafts")} />
       {loading ? (
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color="#fff" />

@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -115,6 +116,7 @@ const InfoRow: React.FC<{
 /* ─── Main Screen ───────────────────────────────────────────── */
 
 const LiveChatInfoScreen: React.FC = () => {
+  const { t } = useTranslation();
   const route = useRoute<any>();
   const navigation = useNavigation();
   const { showUserProfile } = useUserProfileSheet();
@@ -273,7 +275,7 @@ const LiveChatInfoScreen: React.FC = () => {
   if (loading) {
     return (
       <View className="flex-1 bg-black">
-        <ScreenHeader title="Chat Info" />
+        <ScreenHeader title={t("screens.chatInfo")} />
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color="rgba(255,255,255,0.3)" />
         </View>
@@ -283,7 +285,7 @@ const LiveChatInfoScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-black">
-      <ScreenHeader title="Chat Info" />
+      <ScreenHeader title={t("screens.chatInfo")} />
 
       <ScrollView
         className="flex-1"
@@ -335,7 +337,7 @@ const LiveChatInfoScreen: React.FC = () => {
           <>
             <SectionHeader
               icon="pin-outline"
-              title="Pinned Messages"
+              title={t("screens.pinnedMessages")}
               count={room.pinnedMessages.length}
             />
             <View className="mx-4 bg-white/5 rounded-2xl overflow-hidden">
@@ -367,7 +369,7 @@ const LiveChatInfoScreen: React.FC = () => {
         {/* TODO: Participants section — revisit later
         <SectionHeader
           icon="people-outline"
-          title="Participants"
+          title={t("screens.participants")}
           count={passedParticipants.length}
         />
         <View className="mx-4 bg-white/5 rounded-2xl overflow-hidden">
@@ -388,7 +390,7 @@ const LiveChatInfoScreen: React.FC = () => {
 
         <SectionHeader
           icon="shield-checkmark-outline"
-          title="Moderators"
+          title={t("screens.moderators")}
           count={room?.moderators?.length || 0}
           iconColor="#F59E0B"
         />
@@ -415,7 +417,7 @@ const LiveChatInfoScreen: React.FC = () => {
           <>
             <SectionHeader
               icon="ban-outline"
-              title="Banned Users"
+              title={t("screens.bannedUsers")}
               count={room?.bannedUsers?.length || 0}
               iconColor="#EF4444"
             />

@@ -5,6 +5,8 @@ import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Reanimated, {
   useSharedValue,
   useAnimatedStyle,
+  withTiming,
+  Easing,
   runOnJS,
 } from "react-native-reanimated";
 import Icon, { type IconName } from "../ui/Icon";
@@ -34,6 +36,10 @@ interface FeedNavBarProps {
   onFilterPress: () => void;
 }
 
+// Web-parity slide: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)
+const SLIDE_DURATION = 400;
+const SLIDE_EASING = Easing.bezier(0.16, 1, 0.3, 1);
+
 const NavButton = memo<{
   icon: IconName;
   active: boolean;
@@ -41,21 +47,14 @@ const NavButton = memo<{
 }>(({ icon, active, onPress }) => (
   <Pressable onPress={onPress} style={styles.navButton}>
     {({ pressed }) => (
-      <>
-        {active && (
-          <View style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}>
-            <GlassIndicator borderRadius={12} />
-          </View>
-        )}
-        <View style={{ opacity: pressed ? 0.6 : 1 }}>
-          <Icon
-            name={icon}
-            size={16}
-            color={active ? "#FFFFFF" : "#71717A"}
-            strokeWidth={active ? 2 : 1.8}
-          />
-        </View>
-      </>
+      <View style={{ opacity: pressed ? 0.6 : 1 }}>
+        <Icon
+          name={icon}
+          size={16}
+          color={active ? "#FFFFFF" : "#71717A"}
+          strokeWidth={active ? 2 : 1.8}
+        />
+      </View>
     )}
   </Pressable>
 ));
@@ -77,13 +76,20 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
     setLocalActive(activePostType);
   }, [activePostType]);
 
-  const handleNavPress = useCallback(
+  const commitPostType = useCallback(
     (postType: PostTypeOption) => {
-      if (postType === activePostTypeRef.current) return;
       setLocalActive(postType); // urgent → highlight moves instantly
       startTransition(() => onPostTypeChange(postType)); // deferred heavy swap
     },
     [onPostTypeChange],
+  );
+
+  const handleNavPress = useCallback(
+    (postType: PostTypeOption) => {
+      if (postType === activePostTypeRef.current) return;
+      commitPostType(postType);
+    },
+    [commitPostType],
   );
 
   const [containerWidth, setContainerWidth] = useState(0);
@@ -94,9 +100,32 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   const activePostTypeRef = useRef(activePostType);
   activePostTypeRef.current = activePostType;
 
-  // UI-thread values for the drag indicator
-  const isDragging = useSharedValue(false);
-  const dragTranslateX = useSharedValue(0);
+  // Single glass indicator that slides between tabs (web parity: the web nav
+  // has ONE data-glass-indicator div that translates with a 0.4s bezier).
+  // Taps animate it via withTiming; drags write to it directly on the UI thread.
+  const indicatorX = useSharedValue(0);
+  const hasPositionedRef = useRef(false);
+
+  const activeIndex = Math.max(
+    0,
+    NAV_ITEMS.findIndex((i) => i.postType === localActive),
+  );
+
+  useEffect(() => {
+    if (containerWidth <= 0) return;
+    const x = activeIndex * buttonWidth;
+    if (!hasPositionedRef.current) {
+      // First layout: render in place with no animation (matches web's
+      // "renders instantly at correct position on page load").
+      hasPositionedRef.current = true;
+      indicatorX.value = x;
+    } else {
+      indicatorX.value = withTiming(x, {
+        duration: SLIDE_DURATION,
+        easing: SLIDE_EASING,
+      });
+    }
+  }, [activeIndex, buttonWidth, containerWidth, indicatorX]);
 
   // Snapshot at gesture start
   const startIndexRef = useRef(0);
@@ -117,35 +146,36 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
             (item) => item.postType === activePostTypeRef.current,
           );
           startIndexRef.current = Math.max(0, idx);
-          isDragging.value = true;
         })
         .onChange((e) => {
           if (buttonWidth <= 0) return;
           const rawIdx = startIndexRef.current + e.translationX / buttonWidth;
           const clampedIdx = Math.max(0, Math.min(NAV_ITEMS.length - 1, rawIdx));
-          dragTranslateX.value = clampedIdx * buttonWidth;
+          // Direct write follows the finger and cancels any running slide.
+          indicatorX.value = clampedIdx * buttonWidth;
         })
         .onEnd((e) => {
-          isDragging.value = false;
           if (buttonWidth <= 0) return;
           const rawIdx = startIndexRef.current + e.translationX / buttonWidth;
           const clampedIdx = Math.round(
             Math.max(0, Math.min(NAV_ITEMS.length - 1, rawIdx)),
           );
+          indicatorX.value = withTiming(clampedIdx * buttonWidth, {
+            duration: SLIDE_DURATION,
+            easing: SLIDE_EASING,
+          });
           const newPostType = NAV_ITEMS[clampedIdx]?.postType;
           if (newPostType && newPostType !== activePostTypeRef.current) {
-            runOnJS(onPostTypeChange)(newPostType);
+            runOnJS(commitPostType)(newPostType);
           }
         }),
-    [buttonWidth, onPostTypeChange, isDragging, dragTranslateX],
+    [buttonWidth, commitPostType, indicatorX],
   );
 
-  // Animated glass indicator that slides on the UI thread during drag
-  const dragIndicatorStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: dragTranslateX.value }],
+  // Sliding glass indicator — always visible, UI-thread driven
+  const indicatorStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: indicatorX.value }],
     width: buttonWidth,
-    opacity: isDragging.value ? 1 : 0,
-    position: "absolute" as const,
   }));
 
   return (
@@ -166,12 +196,11 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
           )}
           <View style={styles.glassOverlay} pointerEvents="none" />
 
-          {/* Floating drag indicator — UI-thread only, zero JS lag */}
-          <Reanimated.View style={[styles.dragIndicator, dragIndicatorStyle]}>
-            <View style={StyleSheet.absoluteFill}>
-              <View style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}>
-                <GlassIndicator borderRadius={12} />
-              </View>
+          {/* Sliding glass indicator — one indicator that translates between
+              tabs (web parity), driven on the UI thread for taps and drags */}
+          <Reanimated.View style={[styles.glassIndicator, indicatorStyle]}>
+            <View style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}>
+              <GlassIndicator borderRadius={12} blurIntensity={30} />
             </View>
           </Reanimated.View>
 
@@ -180,7 +209,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
               <NavButton
                 key={item.postType}
                 icon={item.icon}
-                active={!isDragging.value && localActive === item.postType}
+                active={localActive === item.postType}
                 onPress={() => handleNavPress(item.postType)}
               />
             ))}
@@ -194,7 +223,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
                       <View
                         style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}
                       >
-                        <GlassIndicator borderRadius={12} />
+                        <GlassIndicator borderRadius={12} blurIntensity={30} />
                       </View>
                     )}
                     <View style={{ opacity: pressed ? 0.6 : 1 }}>
@@ -240,7 +269,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.12)",
   },
-  dragIndicator: {
+  glassIndicator: {
     position: "absolute",
     top: 0,
     left: 0,

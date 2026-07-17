@@ -29,6 +29,7 @@ import { WEBSITE_LINK } from "../../config/links";
 import { getAvatarUrl } from "../../libs/misc";
 import { toastInfo } from "../../libs";
 import { openInApp } from "../../libs/links.utils";
+import { useTranslation } from "react-i18next";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const DRAWER_WIDTH = SCREEN_WIDTH * 0.82;
@@ -41,7 +42,8 @@ const POSITION_THRESHOLD = DRAWER_WIDTH * 0.4;
 
 interface DrawerItem {
   icon: IconName;
-  label: string;
+  /** i18n key for the label (resolved with t() at render). */
+  labelKey: string;
   screen?: string;
   params?: Record<string, any>;
   url?: string;
@@ -56,48 +58,51 @@ interface DrawerItem {
 // same order, labels and icons. Items with a native screen navigate in-app;
 // the rest open the corresponding page on the website.
 const NAV_ITEMS: DrawerItem[] = [
-  { icon: "User", label: "Profile", screen: ScreenNames.Profile, requiresAuth: true },
-  { icon: "Search", label: "Explore", screen: ScreenNames.Explore, tab: true },
+  { icon: "User", labelKey: "nav.profile", screen: ScreenNames.Profile, requiresAuth: true },
+  { icon: "Search", labelKey: "nav.explore", screen: ScreenNames.Explore, tab: true },
   // Prompt has no native screen yet — commented out rather than dumping users
   // to the website. Restore (or build a native screen) when ready.
-  // { icon: "Wand", label: "Prompt", url: `${WEBSITE_LINK}/prompt` },
-  { icon: "Bell", label: "Notifications", screen: ScreenNames.Notifications, requiresAuth: true },
-  { icon: "MessageSquare", label: "Messages", screen: ScreenNames.DM, requiresAuth: true, tab: true },
-  { icon: "Users", label: "Communities", screen: ScreenNames.Communities },
-  { icon: "Sparkles", label: "Assistant", screen: ScreenNames.AIChat, tab: true },
-  { icon: "Trophy", label: "Leaderboard", screen: ScreenNames.Leaderboard },
-  { icon: "Bookmark", label: "Bookmarks", screen: ScreenNames.MyLibrary, requiresAuth: true },
-  { icon: "Settings", label: "Settings", screen: ScreenNames.AccountSettings, requiresAuth: true },
+  // { icon: "Wand", labelKey: "nav.prompt", url: `${WEBSITE_LINK}/prompt` },
+  { icon: "Bell", labelKey: "nav.notifications", screen: ScreenNames.Notifications, requiresAuth: true },
+  { icon: "MessageSquare", labelKey: "nav.messages", screen: ScreenNames.DM, requiresAuth: true, tab: true },
+  { icon: "Users", labelKey: "nav.communities", screen: ScreenNames.Communities },
+  { icon: "Sparkles", labelKey: "nav.assistant", screen: ScreenNames.AIChat, tab: true },
+  { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
+  { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary, requiresAuth: true },
+  { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings, requiresAuth: true },
   // Command Centre has no native screen yet — commented out (was opening the website).
-  // { icon: "LayoutDashboard", label: "Command", url: `${WEBSITE_LINK}/app/command-centre` },
-  { icon: "Wallet", label: "Wallet", screen: ScreenNames.Dpay, requiresAuth: true },
-  { icon: "CalendarDays", label: "Events", screen: ScreenNames.Events },
-  { icon: "Lightbulb", label: "Feature Requests", url: `${WEBSITE_LINK}/features` },
+  // { icon: "LayoutDashboard", labelKey: "nav.command", url: `${WEBSITE_LINK}/app/command-centre` },
+  { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay, requiresAuth: true },
+  { icon: "CalendarDays", labelKey: "nav.events", screen: ScreenNames.Events },
+  { icon: "Lightbulb", labelKey: "nav.featureRequests", url: `${WEBSITE_LINK}/features` },
   // Staking is web3-heavy (contracts) — commented out for now.
-  // { icon: "Vault", label: "Staking", url: `${WEBSITE_LINK}/app/stake` },
-  { icon: "ShieldCheck", label: "Governance", screen: ScreenNames.Governance },
-  { icon: "Briefcase", label: "Work", url: `${WEBSITE_LINK}/work` },
-  { icon: "Briefcase", label: "Careers", screen: ScreenNames.Careers },
-  { icon: "Store", label: "Stores", url: `${WEBSITE_LINK}/app/stores` },
-  { icon: "Scroll", label: "Glossary", screen: ScreenNames.Glossary },
-  { icon: "Map", label: "Guide", screen: ScreenNames.Guide },
-  { icon: "BookOpen", label: "Docs", url: `${WEBSITE_LINK}/docs` },
-  { icon: "FileText", label: "Blog", url: `${WEBSITE_LINK}/docs/blog` },
-  { icon: "House", label: "Home", screen: ScreenNames.Home, tab: true },
+  // { icon: "Vault", labelKey: "nav.staking", url: `${WEBSITE_LINK}/app/stake` },
+  { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
+  { icon: "Briefcase", labelKey: "screens.work", url: `${WEBSITE_LINK}/work` },
+  { icon: "Briefcase", labelKey: "nav.careers", screen: ScreenNames.Careers },
+  { icon: "Store", labelKey: "screens.stores", url: `${WEBSITE_LINK}/app/stores` },
+  { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
+  { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
+  { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },
+  { icon: "FileText", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
+  { icon: "House", labelKey: "nav.home", screen: ScreenNames.Home, tab: true },
 ];
 
 interface MenuItemProps {
   icon: IconName;
   label: string;
+  labelKey: string;
+  soonLabel: string;
   onPress: () => void;
   disabled?: boolean;
   active?: boolean;
 }
 
-// Labels that carry a small "Test" badge on the web sidebar.
-const TEST_BADGE_LABELS = new Set(["Prompt", "Work", "Stores"]);
+// Items that carry a small "Test" badge on the web sidebar (matched by key
+// since labels are now translated).
+const TEST_BADGE_KEYS = new Set(["nav.prompt", "screens.work", "screens.stores"]);
 
-const MenuItem = memo<MenuItemProps>(({ icon, label, onPress, disabled, active }) => (
+const MenuItem = memo<MenuItemProps>(({ icon, label, labelKey, soonLabel, onPress, disabled, active }) => (
   <TouchableOpacity
     className="flex-row items-center gap-3.5 px-3 py-3 mx-2 rounded-2xl"
     activeOpacity={disabled ? 1 : 0.6}
@@ -108,7 +113,7 @@ const MenuItem = memo<MenuItemProps>(({ icon, label, onPress, disabled, active }
         brighter when the item is the active route (web's active icon container). */}
     <View style={[styles.iconChip, active && styles.iconChipActive]}>
       <Icon name={icon} size={22} color={disabled ? "#6b7280" : "#FFFFFF"} strokeWidth={active ? 2 : 1.8} />
-      {TEST_BADGE_LABELS.has(label) && (
+      {TEST_BADGE_KEYS.has(labelKey) && (
         <View style={styles.testBadge}>
           <Text style={styles.testBadgeText}>Test</Text>
         </View>
@@ -123,7 +128,7 @@ const MenuItem = memo<MenuItemProps>(({ icon, label, onPress, disabled, active }
     </Text>
     {disabled && (
       <View className="bg-white/10 rounded-full px-2 py-0.5">
-        <Text className="text-[10px] text-neutral-400 font-medium">Soon</Text>
+        <Text className="text-[10px] text-neutral-400 font-medium">{soonLabel}</Text>
       </View>
     )}
   </TouchableOpacity>
@@ -154,6 +159,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const navigation = useNavigation<any>();
   const { isSignedIn } = useAuthState();
   const user = useUser();
+  const { t } = useTranslation();
 
   // Current route name, so the matching drawer item highlights like the web
   // sidebar. Tab screens live nested under Root — descend into it to find them.
@@ -240,7 +246,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const handleItemPress = useCallback(
     (item: DrawerItem) => {
       if (item.disabled) {
-        toastInfo(item.disabledMessage ?? "Coming soon");
+        toastInfo(item.disabledMessage ?? t("screens.comingSoon"));
         return;
       }
       if (item.url) {
@@ -250,7 +256,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         navigate(item.screen, item.params, item.tab);
       }
     },
-    [navigate, onClose],
+    [navigate, onClose, t],
   );
 
   const displayName = user?.displayName || user?.username || "Anonymous";
@@ -276,25 +282,30 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         <Animated.View
           style={[styles.drawer, drawerStyle, { width: DRAWER_WIDTH }]}
         >
+          {/* Web sidebar parity: bg-black/60 + backdrop-blur(24px) +
+              border-white/10. The blur samples what's behind the drawer;
+              glassOverlay supplies the black/60 wash on top. */}
           {Platform.OS === "ios" ? (
             <BlurView
-              intensity={100}
+              intensity={70}
               tint="dark"
               style={StyleSheet.absoluteFill}
             />
           ) : (
-            // Real backdrop blur on Android (liquid glass, matches web's
-            // backdrop-blur). dimezisBlurView actually samples what's behind
-            // the drawer; a translucent tint on top keeps white text legible.
-            <>
+            // Real backdrop blur on Android via dimezisBlurView (intensity ~95
+            // ≈ web's 24px radius). Only mount it while the drawer is open:
+            // the drawer stays mounted off-screen, and dimezis re-snapshots
+            // the whole root every frame, crashing with
+            // IndexOutOfBoundsException when the feed list mutates during its
+            // pre-draw pass.
+            visible && (
               <BlurView
-                intensity={65}
+                intensity={95}
                 tint="dark"
                 experimentalBlurMethod="dimezisBlurView"
                 style={StyleSheet.absoluteFill}
               />
-              <View style={[StyleSheet.absoluteFill, styles.androidTint]} />
-            </>
+            )
           )}
           <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
 
@@ -327,7 +338,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                 <View className="flex-row mt-3 gap-4">
                   <FollowStat
                     count={user.followings ?? 0}
-                    label="Following"
+                    label={t("profile.following")}
                     onPress={() =>
                       navigate(ScreenNames.FollowList, {
                         address: user.walletAddress || user.address,
@@ -339,7 +350,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                   />
                   <FollowStat
                     count={user.followers ?? 0}
-                    label="Followers"
+                    label={t("profile.followers")}
                     onPress={() =>
                       navigate(ScreenNames.FollowList, {
                         address: user.walletAddress || user.address,
@@ -362,8 +373,8 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                     <Icon name="User" size={24} color="#9CA3AF" />
                   </View>
                   <View className="ml-3">
-                    <Text className="text-white text-base font-semibold">Sign in</Text>
-                    <Text className="text-neutral-400 text-sm">Tap to get started</Text>
+                    <Text className="text-white text-base font-semibold">{t("screens.signIn")}</Text>
+                    <Text className="text-neutral-400 text-sm">{t("screens.tapToGetStarted")}</Text>
                   </View>
                 </TouchableOpacity>
               </View>
@@ -372,9 +383,11 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
             <View className="py-2">
               {NAV_ITEMS.filter((item) => isSignedIn || !item.requiresAuth).map((item) => (
                 <MenuItem
-                  key={item.label}
+                  key={item.labelKey}
                   icon={item.icon}
-                  label={item.label}
+                  label={t(item.labelKey)}
+                  labelKey={item.labelKey}
+                  soonLabel={t("screens.soon")}
                   disabled={item.disabled}
                   active={!!item.screen && item.screen === activeRouteName}
                   onPress={() => handleItemPress(item)}
@@ -397,14 +410,15 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     zIndex: 999,
     elevation: 10,
+    // Web: border border-white/10 — hairline on the exposed edge.
+    borderRightWidth: 1,
+    borderRightColor: "rgba(255, 255, 255, 0.10)",
   },
-  // Tint layered over the real Android blur — dark enough for legible white
-  // text, translucent enough that the liquid-glass blur reads through.
-  androidTint: {
-    backgroundColor: "rgba(10, 10, 12, 0.35)",
-  },
+  // Web: bg-black/60 over the backdrop blur. The dark BlurView tint already
+  // darkens a little, so slightly under 0.60 lands at the same visual weight;
+  // it also keeps the drawer legible on Android while closed (blur unmounted).
   glassOverlay: {
-    backgroundColor: "rgba(10, 10, 12, 0.15)",
+    backgroundColor: "rgba(0, 0, 0, 0.55)",
   },
   // Transparent border on every row keeps height stable when the active border appears.
   itemBase: {

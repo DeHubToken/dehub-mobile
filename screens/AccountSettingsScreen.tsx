@@ -141,7 +141,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
       toastSuccess(t('settings.loggedOut'));
     } catch (e) {
       console.error("[AccountSettings] signOut error", e);
-      toastError(e, "Sign out failed.");
+      toastError(e, t("settings.signOutFailed"));
     } finally {
       setSigningOut(false);
     }
@@ -173,13 +173,13 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
     try {
       await removeFreeAccess(address);
       setFreeAccessList(prev => prev.filter(a => a !== address));
-      toastSuccess('Free access revoked');
+      toastSuccess(t('screens.freeAccessRevoked'));
     } catch (e) {
-      toastError(e, 'Failed to revoke');
+      toastError(e, t('screens.failedToRevoke'));
     } finally {
       setRevokingAddress(null);
     }
-  }, []);
+  }, [t]);
 
   const TABS: { key: TabKey; icon: IconName; label: string }[] = [
     { key: "account", icon: "User", label: t("settings.account") },
@@ -369,8 +369,8 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
         <SectionCard>
           <SettingsRow
             icon="Gift"
-            label="Free DM Access List"
-            subtitle="Users who can message you for free"
+            label={t("screens.freeDmAccessList")}
+            subtitle={t("screens.freeDmAccessSubtitle")}
             onPress={handleOpenFreeAccessList}
           />
         </SectionCard>
@@ -500,18 +500,18 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
       >
         <View className="flex-1">
           <View className="px-5 pt-4 pb-3 flex-row items-center justify-between border-b border-white/10">
-            <Text className="text-white font-bold text-base">Free DM Access List</Text>
+            <Text className="text-white font-bold text-base">{t("screens.freeDmAccessList")}</Text>
             {freeAccessLoading && <ActivityIndicator size="small" color="#8b5cf6" />}
           </View>
           <Text className="text-theme-neutrals-500 text-xs px-5 pt-3 pb-1">
-            Users who can message you for free, bypassing your message fee.
+            {t("screens.freeDmAccessModalDesc")}
           </Text>
           {!freeAccessLoading && freeAccessList.length === 0 ? (
             <View className="flex-1 items-center justify-center py-12">
               <Icon name="Gift" size={36} color="#4b5563" />
-              <Text className="text-theme-neutrals-500 text-sm mt-3">No users have free access.</Text>
+              <Text className="text-theme-neutrals-500 text-sm mt-3">{t("screens.noFreeAccessUsers")}</Text>
               <Text className="text-theme-neutrals-600 text-xs mt-1 text-center px-8">
-                Grant access from a DM conversation.
+                {t("screens.freeDmGrantHint")}
               </Text>
             </View>
           ) : (
@@ -538,7 +538,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                       {busy ? (
                         <ActivityIndicator size="small" color="#ef4444" />
                       ) : (
-                        <Text className="text-red-400 text-xs font-semibold">Revoke</Text>
+                        <Text className="text-red-400 text-xs font-semibold">{t("screens.revoke")}</Text>
                       )}
                     </TouchableOpacity>
                   </View>

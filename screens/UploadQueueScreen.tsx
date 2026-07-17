@@ -1,4 +1,5 @@
 import React, { memo, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -156,6 +157,7 @@ const EmptyState = memo(() => (
 ));
 
 const UploadQueueScreen: React.FC<any> = () => {
+  const { t } = useTranslation();
   const snap = useSnapshot(uploadState);
   const jobs = [...snap.jobs].reverse() as UploadJob[];
 
@@ -175,7 +177,7 @@ const UploadQueueScreen: React.FC<any> = () => {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader
-        title="Uploads"
+        title={t("screens.uploads")}
         canGoBack
         rightContent={
           hasCompleted ? (

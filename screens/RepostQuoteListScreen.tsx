@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import {
   View,
   Text,
@@ -89,6 +90,7 @@ const RepostUserRow: React.FC<RepostUserRowProps> = React.memo(
 
 
 const RepostQuoteListScreen: React.FC = () => {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<RouteParams, "RepostQuoteList">>();
   const { showUserProfile } = useUserProfileSheet();
@@ -324,7 +326,7 @@ const RepostQuoteListScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-black">
-      <ScreenHeader title="Reposts & Quotes" />
+      <ScreenHeader title={t("screens.repostsQuotes")} />
 
       {/* Tabs */}
       <View className="flex-row border-b border-theme-neutrals-800">

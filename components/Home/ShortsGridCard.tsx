@@ -57,6 +57,9 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
 
   const [hasStarted, setHasStarted] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  // Android can hand the VideoView a surface still holding a frame from another
+  // cell's video; stay transparent until THIS source draws its first frame.
+  const [firstFrameRendered, setFirstFrameRendered] = useState(false);
   // The thumbnail is the always-visible base layer; if it can't load (or there's
   // no poster at all) the cell is just a grey box, so treat the card as broken
   // and let the grid remove it rather than showing a dead short.
@@ -81,6 +84,8 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
   });
 
   useEffect(() => {
+    // New player instance = new source; the previous first frame no longer counts.
+    setFirstFrameRendered(false);
     if (!player) return;
     const subs: Array<{ remove: () => void }> = [];
     try {
@@ -106,6 +111,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
       if (isPlayingRef.current) { try { player.pause(); } catch {} isPlayingRef.current = false; }
       setHasStarted(false);
       setIsReady(false);
+      setFirstFrameRendered(false);
       return;
     }
 
@@ -137,7 +143,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
 
   const handlePress = useCallback(() => onPress(index), [onPress, index]);
 
-  const showVideo = hasStarted && isReady;
+  const showVideo = hasStarted && isReady && firstFrameRendered;
 
   // Broken/missing media — render nothing; the grid drops it via onUnavailable.
   if (thumbFailed) return null;
@@ -162,6 +168,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
             style={[StyleSheet.absoluteFill, { opacity: showVideo ? 1 : 0 }]}
             contentFit="cover"
             nativeControls={false}
+            onFirstFrameRender={() => setFirstFrameRendered(true)}
             // TextureView instead of Android's default SurfaceView so the video
             // renders in the view hierarchy and can't punch through / overlap
             // other grid cells while scrolling.
