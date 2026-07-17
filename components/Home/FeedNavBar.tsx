@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState, useRef, useMemo } from "react";
+import React, { memo, useCallback, useState, useRef, useMemo, useEffect, startTransition } from "react";
 import { View, Pressable, StyleSheet, Platform } from "react-native";
 import { BlurView } from "expo-blur";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -67,8 +67,22 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   onPostTypeChange,
   onFilterPress,
 }) => {
+  // Optimistic highlight: the active indicator is driven by local state so a
+  // tap moves it in the very next (cheap) frame, instead of waiting for the
+  // parent to mount/unmount its heavy feed list. The parent switch is deferred
+  // as a low-priority transition so it never blocks that highlight paint.
+  const [localActive, setLocalActive] = useState<PostTypeOption>(activePostType);
+  useEffect(() => {
+    // Keep in sync when the tab changes from outside (swipe gesture, filters).
+    setLocalActive(activePostType);
+  }, [activePostType]);
+
   const handleNavPress = useCallback(
-    (postType: PostTypeOption) => onPostTypeChange(postType),
+    (postType: PostTypeOption) => {
+      if (postType === activePostTypeRef.current) return;
+      setLocalActive(postType); // urgent → highlight moves instantly
+      startTransition(() => onPostTypeChange(postType)); // deferred heavy swap
+    },
     [onPostTypeChange],
   );
 
@@ -90,8 +104,14 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   const panGesture = useMemo(
     () =>
       Gesture.Pan()
-        .activateAfterLongPress(80)
+        // No activateAfterLongPress: it activates on a stationary finger once
+        // the delay elapses, which swallowed any tap held longer than it — the
+        // pan stole the touch, cancelled the child Pressable, then ended with
+        // translationX ~0 and resolved back to the current tab, so the tap did
+        // nothing. Distance alone gates the drag, leaving taps to Pressable.
         .minDistance(5)
+        .activeOffsetX([-5, 5])
+        .failOffsetY([-10, 10])
         .onStart(() => {
           const idx = NAV_ITEMS.findIndex(
             (item) => item.postType === activePostTypeRef.current,
@@ -160,7 +180,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
               <NavButton
                 key={item.postType}
                 icon={item.icon}
-                active={!isDragging.value && activePostType === item.postType}
+                active={!isDragging.value && localActive === item.postType}
                 onPress={() => handleNavPress(item.postType)}
               />
             ))}

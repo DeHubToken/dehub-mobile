@@ -80,11 +80,13 @@ const pillStyles = StyleSheet.create({
     marginRight: 6,
     overflow: "hidden",
   },
+  // Web paints no background on either state: the active pill's glass comes
+  // entirely from GlassIndicator, and an inactive one is bare text.
   active: {
-    backgroundColor: "#18181B",
+    backgroundColor: "transparent",
   },
   inactive: {
-    backgroundColor: "#27272a",
+    backgroundColor: "transparent",
   },
   text: {
     fontSize: 12,
@@ -94,7 +96,7 @@ const pillStyles = StyleSheet.create({
     color: "#ffffff",
   },
   textInactive: {
-    color: "#d4d4d8",
+    color: "#a1a1aa", // zinc-400
   },
 });
 

@@ -18,10 +18,13 @@ interface ShortsGridCardProps {
   index: number;
   isVisible?: boolean;
   onPress: (index: number) => void;
+  /** Called when the card has no loadable media (broken/missing upload) so the grid can drop it. */
+  onUnavailable?: (key: string) => void;
 }
 
-const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, isVisible = false, onPress }) => {
+const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, isVisible = false, onPress, onUnavailable }) => {
   const tokenId = item.tokenId ?? item.id;
+  const mediaKey = String(tokenId);
 
   // Resolve a raw API path (e.g. "shorts/123.jpg") or full URL to a CDN URL.
   const resolveCdn = (raw?: string | null): string | undefined =>
@@ -54,6 +57,18 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
 
   const [hasStarted, setHasStarted] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  // The thumbnail is the always-visible base layer; if it can't load (or there's
+  // no poster at all) the cell is just a grey box, so treat the card as broken
+  // and let the grid remove it rather than showing a dead short.
+  const [thumbFailed, setThumbFailed] = useState(false);
+
+  useEffect(() => {
+    if (!thumbnailUri) setThumbFailed(true);
+  }, [thumbnailUri]);
+
+  useEffect(() => {
+    if (thumbFailed) onUnavailable?.(mediaKey);
+  }, [thumbFailed, mediaKey, onUnavailable]);
   const autoplayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isPlayingRef = useRef(false);
 
@@ -97,11 +112,16 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
     if (hasStarted) return;
 
     autoplayTimerRef.current = setTimeout(() => {
+      // The cell may have been recycled/removed since this was scheduled, which
+      // releases the native player — guard so a released VideoPlayer access
+      // ("shared object already released") can't crash the JS thread.
       if (!isPlayingRef.current && player) {
-        player.muted = true;
-        player.play();
-        isPlayingRef.current = true;
-        setHasStarted(true);
+        try {
+          player.muted = true;
+          player.play();
+          isPlayingRef.current = true;
+          setHasStarted(true);
+        } catch {}
       }
     }, AUTOPLAY_DELAY);
 
@@ -119,22 +139,20 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
 
   const showVideo = hasStarted && isReady;
 
+  // Broken/missing media — render nothing; the grid drops it via onUnavailable.
+  if (thumbFailed) return null;
+
   return (
     <Pressable onPress={handlePress} style={styles.card}>
       {/* Thumbnail base layer — always rendered */}
-      {thumbnailUri ? (
-        <Image
-          source={thumbnailUri}
-          style={StyleSheet.absoluteFill}
-          contentFit="cover"
-          recyclingKey={`short-grid-${tokenId}`}
-          transition={150}
-        />
-      ) : (
-        <View style={[StyleSheet.absoluteFill, styles.placeholder]}>
-          <Icon name="Play" size={32} color="#555" />
-        </View>
-      )}
+      <Image
+        source={thumbnailUri}
+        style={StyleSheet.absoluteFill}
+        contentFit="cover"
+        recyclingKey={`short-grid-${tokenId}`}
+        transition={150}
+        onError={() => setThumbFailed(true)}
+      />
 
       {/* Video preview layer — fades in once ready */}
       {player && previewUrl && (
@@ -144,6 +162,10 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
             style={[StyleSheet.absoluteFill, { opacity: showVideo ? 1 : 0 }]}
             contentFit="cover"
             nativeControls={false}
+            // TextureView instead of Android's default SurfaceView so the video
+            // renders in the view hierarchy and can't punch through / overlap
+            // other grid cells while scrolling.
+            surfaceType="textureView"
           />
         </View>
       )}
@@ -192,11 +214,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: "hidden",
     backgroundColor: "#1A1A1A",
-  },
-  placeholder: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#262626",
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,

@@ -559,6 +559,7 @@ const UserProfileBottomContentTabs: React.FC<
               onScroll={handleScroll}
               scrollEnabled={scrollEnabled}
               listHeader={isFullScreen ? fullScreenListHeader : undefined}
+              onBeforeNavigate={onClose}
             />
           </View>
         );
@@ -642,7 +643,7 @@ const UserProfileBottomContentTabs: React.FC<
         return (
           <View style={{ flex: 1, marginTop: mt }}>
             {isFullScreen && fullScreenListHeader}
-            <VideosRoute address={address} />
+            <VideosRoute address={address} onBeforeNavigate={onClose} />
           </View>
         );
       case "songs":

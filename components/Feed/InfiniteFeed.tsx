@@ -23,6 +23,14 @@ import {
   forceFlushBatchViews,
   type TokenId,
 } from "../../services/view.service";
+import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
+
+export type InfiniteFeedRenderItemInfo = {
+  item: GetNFTsResult;
+  index: number;
+  separators: any;
+  isVisible?: boolean;
+};
 
 export interface InfiniteFeedProps {
   params?: Partial<SearchParams>;
@@ -30,7 +38,7 @@ export interface InfiniteFeedProps {
   contentContainerStyle?: any;
   headerComponent?: React.ReactNode;
   onEndReachedAll?: () => void;
-  renderItem: ListRenderItem<GetNFTsResult>;
+  renderItem: (info: InfiniteFeedRenderItemInfo) => React.ReactElement | null;
   keyExtractor?: (item: GetNFTsResult, index: number) => string;
   emptyComponent?: React.ReactNode;
   /** Optional custom page fetcher override. If provided, it will be used instead of getFeedNFTs. */
@@ -52,6 +60,8 @@ export interface InfiniteFeedProps {
   isSignedIn?: boolean;
   /** Optional custom loading component to replace the default skeleton. When provided, the headerComponent is preserved above this loading indicator. */
   loadingComponent?: React.ReactNode;
+  /** When true, only visible rows get isVisible=true (prevents many simultaneous video players). */
+  trackFeedCardVisibility?: boolean;
 }
 
 interface FeedItem extends GetNFTsResult {
@@ -88,7 +98,14 @@ const InfiniteFeedBase: React.FC<
   navigationForTabPress = null,
   isSignedIn = false,
   loadingComponent,
+  trackFeedCardVisibility = false,
 }) => {
+  const {
+    viewabilityConfig: feedCardViewabilityConfig,
+    onViewableItemsChanged: onFeedCardViewableItemsChanged,
+    isItemVisible,
+    visibilityExtraData,
+  } = useFeedCardVisibility();
   const [items, setItems] = useState<FeedItem[]>([]);
   const [page, setPage] = useState(0);
   const [initialLoading, setInitialLoading] = useState(true);
@@ -130,27 +147,43 @@ const InfiniteFeedBase: React.FC<
   }).current;
 
   // Handle viewable items change for view tracking
-  const onViewableItemsChanged = useRef(({ changed }: { 
-    viewableItems: ViewToken[]; 
-    changed: ViewToken[]; 
-  }) => {
-    if (!isSignedIn) return;
-    
-    for (const entry of changed) {
-      const item = entry.item as FeedItem | undefined;
-      const tokenId = item?.tokenId || (item as any)?.id;
-      if (!tokenId) continue;
-      
-      const tracker = getViewTracker(tokenId);
-      // When FlatList says item is viewable (50%+ visible), report 0.6 visibility
-      // When not viewable, report 0
-      tracker.onVisibilityChange(entry.isViewable ? 0.6 : 0);
-    }
-  }).current;
+  const onViewableItemsChanged = useRef(
+    ({ changed }: { viewableItems: ViewToken[]; changed: ViewToken[] }) => {
+      if (!isSignedIn) return;
+
+      for (const entry of changed) {
+        const item = entry.item as FeedItem | undefined;
+        const tokenId = item?.tokenId || (item as any)?.id;
+        if (!tokenId) continue;
+
+        const tracker = getViewTracker(tokenId);
+        tracker.onVisibilityChange(entry.isViewable ? 0.6 : 0);
+      }
+    },
+  ).current;
+
+  const handleViewableItemsChanged = useRef(
+    (payload: { viewableItems: ViewToken[]; changed: ViewToken[] }) => {
+      if (trackFeedCardVisibility) {
+        onFeedCardViewableItemsChanged(payload);
+      }
+      onViewableItemsChanged(payload);
+    },
+  ).current;
 
   const renderFeedItem = useCallback<ListRenderItem<FeedItem>>(
-    (info) => renderItem(info as unknown as { item: GetNFTsResult; index: number; separators: any }),
-    [renderItem]
+    (info) => {
+      const payload: InfiniteFeedRenderItemInfo = {
+        item: info.item,
+        index: info.index,
+        separators: info.separators,
+      };
+      if (trackFeedCardVisibility) {
+        payload.isVisible = isItemVisible(info.item.__listKey, info.item);
+      }
+      return renderItem(payload as any);
+    },
+    [renderItem, trackFeedCardVisibility, isItemVisible],
   );
 
   const mapWithKey = useCallback((arr: GetNFTsResult[], pageNum: number) => {
@@ -345,8 +378,9 @@ const InfiniteFeedBase: React.FC<
         nestedScrollEnabled
         onEndReached={endReachedRef.current ? undefined : loadMore}
         onEndReachedThreshold={0.4}
-        viewabilityConfig={viewabilityConfig}
-        onViewableItemsChanged={onViewableItemsChanged}
+        viewabilityConfig={feedCardViewabilityConfig}
+        onViewableItemsChanged={handleViewableItemsChanged}
+        extraData={trackFeedCardVisibility ? visibilityExtraData : undefined}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}

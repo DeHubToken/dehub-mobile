@@ -16,6 +16,25 @@ export function toNumberSafe(v: unknown, fallback = 0): number {
   return Number.isFinite(num) ? num : fallback;
 }
 
+/**
+ * Resolve a follower/following (or similar) count from an API field that may be
+ * returned either as a plain number OR as an array of ids/addresses.
+ * The DeHub `account_info` endpoint returns `followers`/`followings` as arrays
+ * of wallet addresses, so counting `.length` is required. An optional explicit
+ * count field (e.g. `follower_count`) takes precedence when present.
+ */
+export function resolveCount(
+  value: unknown,
+  explicitCount?: number | null | undefined
+): number {
+  if (typeof explicitCount === 'number' && Number.isFinite(explicitCount)) {
+    return explicitCount;
+  }
+  if (typeof value === 'number') return Number.isFinite(value) ? value : 0;
+  if (Array.isArray(value)) return value.length;
+  return 0;
+}
+
 export function percent(part: number, whole: number, precision = 2): number {
   if (!whole) return 0;
   const p = (part / whole) * 100;
@@ -69,6 +88,6 @@ export function formatNumber(value: number | undefined | null, maxDecimals: numb
   });
 }
 
-export const NumbersUtil = { pad, clamp, toNumberSafe, percent, formatCompactNumber, formatNumber };
+export const NumbersUtil = { pad, clamp, toNumberSafe, resolveCount, percent, formatCompactNumber, formatNumber };
 
 export default NumbersUtil;

@@ -23,7 +23,7 @@ import {
 import { openExternalLink } from "../../libs/links.utils";
 import { truncateAddress } from "../../libs/strings.util";
 import { formatJoinedDate } from "../../libs/date.util";
-import { formatCompactNumber } from "../../libs/numbers.util";
+import { formatCompactNumber, resolveCount } from "../../libs/numbers.util";
 import { shareProfile } from "../../libs/misc";
 import * as ImagePicker from "expo-image-picker";
 import {
@@ -79,8 +79,10 @@ const ProfileHeader = () => {
   const badge = getBadgeName(badgeVal);
   const badgeImage = getBadgeUrl(badgeVal);
 
-  const followersCount = user?.followers ?? 0;
-  const followingCount = user?.followings ?? 0;
+  // account_info returns followers/followings as arrays of addresses (or a
+  // plain number elsewhere) — resolveCount normalises both to a count.
+  const followersCount = resolveCount(user?.followers, (user as any)?.follower_count);
+  const followingCount = resolveCount(user?.followings, (user as any)?.following_count);
 
   const openMyStories = useCallback(() => {
     if (!myStories.length) return;

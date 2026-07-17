@@ -67,6 +67,8 @@ interface InfiniteVideoFeedProps {
   onScrollBegin?: () => void;
   onCategorySelect?: (category: string) => void;
   feedRef?: React.MutableRefObject<InfiniteVideoFeedHandle | null>;
+  /** Ref to the HomeScreen fling gesture so the suggestions carousel can claim horizontal pans. */
+  suggestedPanRef?: React.MutableRefObject<any>;
 }
 
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
@@ -88,6 +90,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   onScrollBegin,
   onCategorySelect,
   feedRef,
+  suggestedPanRef,
 }) => {
   interface FeedItem extends UnifiedFeedItem {
     __listKey: string;
@@ -327,7 +330,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         return (
           <>
             {card}
-            <SuggestedAccountsSection />
+            <SuggestedAccountsSection panRef={suggestedPanRef} />
           </>
         );
       }

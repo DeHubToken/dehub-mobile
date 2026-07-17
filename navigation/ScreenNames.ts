@@ -51,6 +51,12 @@ export enum ScreenNames {
   Earnings = 'Earnings',
   Communities = 'Communities',
   CommunityDetail = 'CommunityDetail',
+  Glossary = 'Glossary',
+  Guide = 'Guide',
+  Events = 'Events',
+  Careers = 'Careers',
+  Affiliate = 'Affiliate',
+  Governance = 'Governance',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',

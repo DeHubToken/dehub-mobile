@@ -123,6 +123,13 @@ export const DMProvider: React.FC<{ children: React.ReactNode }> = ({ children }
           // Real-time new messages we sent haven't been read by the receiver yet.
           // Server may return isRead:true (sender read their own msg) — override.
           const isRead = author === "me" ? false : payload.isRead;
+          // Bump the conversation's unread counter for freshly received
+          // messages so the DM tab badge updates live. Must run before the
+          // upsert (its guard skips messages already in the store). The open
+          // chat resets itself via ChatScreen's markAllRead.
+          if (author === "other" && !isRead) {
+            dmActions.incrementUnread(cId, String(payload?._id || payload?.id || ""));
+          }
           dmActions.upsertMessages(cId, [{ ...payload, author, isRead }]);
         } catch (err) {
           log.error("SendMessage handler", err);

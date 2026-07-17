@@ -38,6 +38,11 @@ import LiveChatInfoScreen from "../screens/LiveChatInfoScreen";import UploadQueu
 import ImageFeedScreen from '../screens/ImageFeedScreen';
 import CommunitiesScreen from '../screens/CommunitiesScreen';
 import CommunityDetailScreen from '../screens/CommunityDetailScreen';
+import GlossaryScreen from '../screens/GlossaryScreen';
+import GuideScreen from '../screens/GuideScreen';
+import EventsScreen from '../screens/EventsScreen';
+import CareersScreen from '../screens/CareersScreen';
+import GovernanceScreen from '../screens/GovernanceScreen';
 import { useAuthState } from "../context/AuthContext";
 
 /** Standardized gesture response distances */
@@ -129,6 +134,26 @@ export default function AppNavigator() {
         <Stack.Screen
           name={ScreenNames.Communities}
           component={CommunitiesScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.Glossary}
+          component={GlossaryScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.Guide}
+          component={GuideScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.Events}
+          component={EventsScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.Careers}
+          component={CareersScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.Governance}
+          component={GovernanceScreen}
         />
         <Stack.Screen
           name={ScreenNames.CommunityDetail}

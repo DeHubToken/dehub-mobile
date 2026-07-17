@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useNavigationState } from "@react-navigation/native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   useSharedValue,
@@ -45,29 +45,45 @@ interface DrawerItem {
   screen?: string;
   params?: Record<string, any>;
   url?: string;
+  requiresAuth?: boolean;
+  /** Screen lives inside the bottom-tab navigator (Root), so it needs nested navigation. */
+  tab?: boolean;
   disabled?: boolean;
   disabledMessage?: string;
 }
 
-const AUTH_ITEMS: Omit<DrawerItem, "params">[] = [
-  { icon: "User", label: "Profile", screen: ScreenNames.Profile },
+// Mirrors the web sidebar (NAV_ITEMS in cosmic-echo-hero's app.constants) —
+// same order, labels and icons. Items with a native screen navigate in-app;
+// the rest open the corresponding page on the website.
+const NAV_ITEMS: DrawerItem[] = [
+  { icon: "User", label: "Profile", screen: ScreenNames.Profile, requiresAuth: true },
+  { icon: "Search", label: "Explore", screen: ScreenNames.Explore, tab: true },
+  // Prompt has no native screen yet — commented out rather than dumping users
+  // to the website. Restore (or build a native screen) when ready.
+  // { icon: "Wand", label: "Prompt", url: `${WEBSITE_LINK}/prompt` },
+  { icon: "Bell", label: "Notifications", screen: ScreenNames.Notifications, requiresAuth: true },
+  { icon: "MessageSquare", label: "Messages", screen: ScreenNames.DM, requiresAuth: true, tab: true },
   { icon: "Users", label: "Communities", screen: ScreenNames.Communities },
-  { icon: "Library", label: "My Library", screen: ScreenNames.MyLibrary },
-  { icon: "FileText", label: "Drafts", screen: ScreenNames.Drafts },
-  { icon: "Banknote", label: "Dpay", screen: ScreenNames.Dpay },
+  { icon: "Sparkles", label: "Assistant", screen: ScreenNames.AIChat, tab: true },
   { icon: "Trophy", label: "Leaderboard", screen: ScreenNames.Leaderboard },
-  { icon: "Settings", label: "Settings", screen: ScreenNames.AccountSettings },
-];
-
-const PUBLIC_ITEMS: Omit<DrawerItem, "params">[] = [];
-
-const SECONDARY_ITEMS: DrawerItem[] = [
+  { icon: "Bookmark", label: "Bookmarks", screen: ScreenNames.MyLibrary, requiresAuth: true },
+  { icon: "Settings", label: "Settings", screen: ScreenNames.AccountSettings, requiresAuth: true },
+  // Command Centre has no native screen yet — commented out (was opening the website).
+  // { icon: "LayoutDashboard", label: "Command", url: `${WEBSITE_LINK}/app/command-centre` },
+  { icon: "Wallet", label: "Wallet", screen: ScreenNames.Dpay, requiresAuth: true },
+  { icon: "CalendarDays", label: "Events", screen: ScreenNames.Events },
+  { icon: "Lightbulb", label: "Feature Requests", url: `${WEBSITE_LINK}/features` },
+  // Staking is web3-heavy (contracts) — commented out for now.
+  // { icon: "Vault", label: "Staking", url: `${WEBSITE_LINK}/app/stake` },
+  { icon: "ShieldCheck", label: "Governance", screen: ScreenNames.Governance },
+  { icon: "Briefcase", label: "Work", url: `${WEBSITE_LINK}/work` },
+  { icon: "Briefcase", label: "Careers", screen: ScreenNames.Careers },
+  { icon: "Store", label: "Stores", url: `${WEBSITE_LINK}/app/stores` },
+  { icon: "Scroll", label: "Glossary", screen: ScreenNames.Glossary },
+  { icon: "Map", label: "Guide", screen: ScreenNames.Guide },
   { icon: "BookOpen", label: "Docs", url: `${WEBSITE_LINK}/docs` },
   { icon: "FileText", label: "Blog", url: `${WEBSITE_LINK}/docs/blog` },
-  { icon: "Lightbulb", label: "Requests", url: `${WEBSITE_LINK}/features` },
-  { icon: "ShieldCheck", label: "Governance", url: `${WEBSITE_LINK}/governance` },
-  { icon: "Building2", label: "Careers", url: `${WEBSITE_LINK}/app/jobs` },
-  { icon: "BookOpenText", label: "Glossary", url: `${WEBSITE_LINK}/app/glossary` },
+  { icon: "House", label: "Home", screen: ScreenNames.Home, tab: true },
 ];
 
 interface MenuItemProps {
@@ -75,19 +91,38 @@ interface MenuItemProps {
   label: string;
   onPress: () => void;
   disabled?: boolean;
+  active?: boolean;
 }
 
-const MenuItem = memo<MenuItemProps>(({ icon, label, onPress, disabled }) => (
+// Labels that carry a small "Test" badge on the web sidebar.
+const TEST_BADGE_LABELS = new Set(["Prompt", "Work", "Stores"]);
+
+const MenuItem = memo<MenuItemProps>(({ icon, label, onPress, disabled, active }) => (
   <TouchableOpacity
-    className="flex-row items-center py-3.5 px-5"
+    className="flex-row items-center gap-3.5 px-3 py-3 mx-2 rounded-2xl"
     activeOpacity={disabled ? 1 : 0.6}
     onPress={onPress}
-    style={disabled ? { opacity: 0.45 } : undefined}
+    style={[styles.itemBase, active && styles.itemActive, disabled ? { opacity: 0.45 } : null]}
   >
-    <Icon name={icon} size={22} color={disabled ? "#6b7280" : "#E5E7EB"} strokeWidth={1.8} />
-    <Text className={`text-[15px] font-medium ml-4 ${disabled ? "text-neutral-500" : "text-white"}`}>{label}</Text>
+    {/* Icon chip — matches web's translucent rounded-square with hairline border,
+        brighter when the item is the active route (web's active icon container). */}
+    <View style={[styles.iconChip, active && styles.iconChipActive]}>
+      <Icon name={icon} size={22} color={disabled ? "#6b7280" : "#FFFFFF"} strokeWidth={active ? 2 : 1.8} />
+      {TEST_BADGE_LABELS.has(label) && (
+        <View style={styles.testBadge}>
+          <Text style={styles.testBadgeText}>Test</Text>
+        </View>
+      )}
+    </View>
+    <Text
+      className={`text-[15px] ${disabled ? "text-neutral-500" : "text-white"}`}
+      style={[styles.itemLabel, active && styles.itemLabelActive]}
+      numberOfLines={1}
+    >
+      {label}
+    </Text>
     {disabled && (
-      <View className="ml-auto bg-white/10 rounded-full px-2 py-0.5">
+      <View className="bg-white/10 rounded-full px-2 py-0.5">
         <Text className="text-[10px] text-neutral-400 font-medium">Soon</Text>
       </View>
     )}
@@ -119,6 +154,21 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const navigation = useNavigation<any>();
   const { isSignedIn } = useAuthState();
   const user = useUser();
+
+  // Current route name, so the matching drawer item highlights like the web
+  // sidebar. Tab screens live nested under Root — descend into it to find them.
+  const activeRouteName = useNavigationState((state: any) => {
+    if (!state) return undefined;
+    const top = state.routes?.[state.index];
+    if (top?.name === ScreenNames.Root) {
+      const nested = top.state;
+      if (nested && typeof nested.index === "number") {
+        return nested.routes?.[nested.index]?.name;
+      }
+      return ScreenNames.Home;
+    }
+    return top?.name;
+  });
 
   const progress = useSharedValue(0);
   const dragging = useSharedValue(false);
@@ -172,9 +222,17 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   }));
 
   const navigate = useCallback(
-    (screen: string, params?: Record<string, any>) => {
+    (screen: string, params?: Record<string, any>, tab?: boolean) => {
       onClose();
-      setTimeout(() => navigation.navigate(screen, params), 260);
+      setTimeout(() => {
+        // Tab screens live inside the bottom-tab navigator (Root); navigating to
+        // them directly from the root stack fails, so target the nested screen.
+        if (tab) {
+          navigation.navigate(ScreenNames.Root, { screen, params });
+        } else {
+          navigation.navigate(screen, params);
+        }
+      }, 260);
     },
     [navigation, onClose],
   );
@@ -189,7 +247,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         onClose();
         openInApp(item.url);
       } else if (item.screen) {
-        navigate(item.screen, item.params);
+        navigate(item.screen, item.params, item.tab);
       }
     },
     [navigate, onClose],
@@ -225,7 +283,18 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
               style={StyleSheet.absoluteFill}
             />
           ) : (
-            <View style={[StyleSheet.absoluteFill, styles.androidFrost]} />
+            // Real backdrop blur on Android (liquid glass, matches web's
+            // backdrop-blur). dimezisBlurView actually samples what's behind
+            // the drawer; a translucent tint on top keeps white text legible.
+            <>
+              <BlurView
+                intensity={65}
+                tint="dark"
+                experimentalBlurMethod="dimezisBlurView"
+                style={StyleSheet.absoluteFill}
+              />
+              <View style={[StyleSheet.absoluteFill, styles.androidTint]} />
+            </>
           )}
           <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
 
@@ -300,39 +369,14 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
               </View>
             )}
 
-            {isSignedIn && (
-              <>
-                <View className="py-2">
-                  {AUTH_ITEMS.map((item) => (
-                    <MenuItem
-                      key={item.label}
-                      icon={item.icon}
-                      label={item.label}
-                      disabled={item.disabled}
-                      onPress={() => handleItemPress(item)}
-                    />
-                  ))}
-                </View>
-              </>
-            )}
-
             <View className="py-2">
-              {PUBLIC_ITEMS.map((item) => (
+              {NAV_ITEMS.filter((item) => isSignedIn || !item.requiresAuth).map((item) => (
                 <MenuItem
                   key={item.label}
                   icon={item.icon}
                   label={item.label}
-                  onPress={() => handleItemPress(item)}
-                />
-              ))}
-            </View>
-
-            <View className="py-2">
-              {SECONDARY_ITEMS.map((item) => (
-                <MenuItem
-                  key={item.label}
-                  icon={item.icon}
-                  label={item.label}
+                  disabled={item.disabled}
+                  active={!!item.screen && item.screen === activeRouteName}
                   onPress={() => handleItemPress(item)}
                 />
               ))}
@@ -354,11 +398,62 @@ const styles = StyleSheet.create({
     zIndex: 999,
     elevation: 10,
   },
-  androidFrost: {
-    backgroundColor: "rgba(10, 10, 12, 0.88)",
+  // Tint layered over the real Android blur — dark enough for legible white
+  // text, translucent enough that the liquid-glass blur reads through.
+  androidTint: {
+    backgroundColor: "rgba(10, 10, 12, 0.35)",
   },
   glassOverlay: {
     backgroundColor: "rgba(10, 10, 12, 0.15)",
+  },
+  // Transparent border on every row keeps height stable when the active border appears.
+  itemBase: {
+    borderWidth: 1,
+    borderColor: "transparent",
+  },
+  // Active row — web's liquid-glass indicator pill (gradient white + hairline border).
+  itemActive: {
+    backgroundColor: "rgba(255, 255, 255, 0.10)",
+    borderColor: "rgba(255, 255, 255, 0.22)",
+  },
+  iconChip: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.06)",
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.08)",
+  },
+  iconChipActive: {
+    backgroundColor: "rgba(255, 255, 255, 0.14)",
+    borderColor: "rgba(255, 255, 255, 0.16)",
+  },
+  itemLabel: {
+    flex: 1,
+    fontWeight: "500",
+  },
+  itemLabelActive: {
+    fontWeight: "700",
+  },
+  testBadge: {
+    position: "absolute",
+    top: -5,
+    alignSelf: "center",
+    paddingHorizontal: 3,
+    height: 12,
+    borderRadius: 3,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
+  },
+  testBadgeText: {
+    color: "#000000",
+    fontSize: 7,
+    fontWeight: "700",
+    letterSpacing: 0.3,
+    textTransform: "uppercase",
   },
 });
 

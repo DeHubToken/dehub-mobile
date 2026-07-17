@@ -387,12 +387,17 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         </View>
       )}
 
-      {canPlay && player && (
+      {canPlay && isVisible && player && (
         <VideoView
           ref={videoViewRef}
           player={player}
           contentFit="cover"
           nativeControls={false}
+          // Android defaults to a SurfaceView, which renders in its own window
+          // layer and can punch through / appear on top of other feed cards
+          // while scrolling and recycling. A TextureView renders inside the
+          // normal view hierarchy, so it respects z-order and clipping.
+          surfaceType="textureView"
           style={[styles.thumbnail, { opacity: hideControls
             ? (hasStartedAutoplay && videoReady ? 1 : 0)
             : (isPlaying || hasStartedAutoplay ? 1 : 0)

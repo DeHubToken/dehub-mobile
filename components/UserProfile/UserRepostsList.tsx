@@ -24,6 +24,7 @@ import {
   type GetUserRepostsResponse,
 } from "../../services/repost.service";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
+import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 
 
 interface UserRepostsListProps {
@@ -66,6 +67,18 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
   const [error, setError] = useState<string | null>(null);
   const hasMoreRef = useRef(true);
   const pageRef = useRef(1);
+  const keyExtractor = useCallback(
+    (item: any, index: number) =>
+      `repost-${item.tokenId ?? item.id ?? index}-${item.repostedAt ?? item.createdAt}`,
+    [],
+  );
+
+  const {
+    viewabilityConfig,
+    onViewableItemsChanged,
+    isItemVisible,
+    visibilityExtraData,
+  } = useFeedCardVisibility(keyExtractor);
 
   useImperativeHandle(ref, () => ({
     scrollToOffset: (params) => listRef.current?.scrollToOffset(params),
@@ -134,22 +147,21 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
 
 
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<any>) => {
+    ({ item, index }: ListRenderItemInfo<any>) => {
+      const rowKey = keyExtractor(item, index);
       return (
         <View style={{ paddingHorizontal: contentPadding }}>
-          <FeedCard item={item as UnifiedFeedItem} onBeforeNavigate={onClose} showRepostLabel={!!item.isRepost} />
+          <FeedCard
+            item={item as UnifiedFeedItem}
+            onBeforeNavigate={onClose}
+            showRepostLabel={!!item.isRepost}
+            isVisible={isItemVisible(rowKey, item)}
+          />
         </View>
       );
     },
-    [contentPadding, onClose],
+    [contentPadding, onClose, keyExtractor, isItemVisible],
   );
-
-  const keyExtractor = useCallback(
-    (item: any, index: number) =>
-      `repost-${item.tokenId ?? item.id ?? index}-${item.repostedAt ?? item.createdAt}`,
-    [],
-  );
-
 
   if (loading && items.length === 0) {
     return (
@@ -214,6 +226,9 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
       contentContainerStyle={contentContainerStyle}
       onEndReached={handleEndReached}
       onEndReachedThreshold={0.4}
+      viewabilityConfig={viewabilityConfig}
+      onViewableItemsChanged={onViewableItemsChanged}
+      extraData={visibilityExtraData}
       initialNumToRender={10}
       maxToRenderPerBatch={8}
       windowSize={7}

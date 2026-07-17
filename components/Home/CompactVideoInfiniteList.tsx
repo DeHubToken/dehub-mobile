@@ -34,6 +34,7 @@ interface CompactVideoInfiniteListProps {
   ListHeaderComponent?: React.ReactElement | null;
   showCreator?: boolean; // forward to CompactVideoCard
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  onBeforeNavigate?: () => void;
 }
 
 interface VideoItem extends GetNFTsResult {}
@@ -50,6 +51,7 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
   ListHeaderComponent = null,
   showCreator = true,
   onScroll,
+  onBeforeNavigate,
 }) => {
   const [items, setItems] = useState<VideoItem[]>([]);
   const [page, setPage] = useState(0);
@@ -129,10 +131,11 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
           nft={item as any}
           enablePreview={resolvedEnablePreview}
           showCreator={showCreator}
+          onBeforeNavigate={onBeforeNavigate}
         />
       );
     },
-    [resolvedEnablePreview, showCreator]
+    [resolvedEnablePreview, showCreator, onBeforeNavigate]
   );
 
   const ListFooter = useMemo(() => {

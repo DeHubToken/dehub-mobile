@@ -30,6 +30,7 @@ import BountyInfoSheet from "./BountyInfoSheet";
 import AskAISheet from "./AskAISheet";
 import AddToFolderSheet from "./AddToFolderSheet";
 import ShareToDmSheet from "../DM/ShareToDmSheet";
+import ShareSheet from "./ShareSheet";
 import CashtagSheet from "./CashtagSheet";
 import Icon from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
@@ -54,7 +55,9 @@ import {
   resolveThumbnail,
   formatCompactNumber,
   toastError,
+  toastSuccess,
 } from "../../libs";
+import { copyToClipboard } from "../../libs/clipboard.utils";
 import { sharePostAsImage } from "../../libs/shareImage";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { useStreamAccessInfo } from "../../libs/validators.util";
@@ -275,7 +278,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [repostCount, setRepostCount] = useState(
     ((item as any).reposts || 0) + ((item as any).quotes || 0),
   );
-  const [showRepostPopover, setShowRepostPopover] = useState(false);
+  const [showShareSheet, setShowShareSheet] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
   const [showTipModal, setShowTipModal] = useState(false);
@@ -479,12 +482,18 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     }
   }, [tokenId, onCommentPressProp]);
 
-  const handleRepostPress = useCallback(() => {
+  // Open the Share sheet. Ungated so logged-out users can still copy the link /
+  // share as image; repost & quote gate themselves via requireAuth.
+  const handleOpenShare = useCallback(() => {
     if (tokenId == null) return;
-    requireAuth?.(() => {
-      setShowRepostPopover(true);
-    });
-  }, [tokenId, requireAuth]);
+    setShowShareSheet(true);
+  }, [tokenId]);
+
+  const handleCopyLink = useCallback(() => {
+    if (tokenId == null) return;
+    copyToClipboard(`${WEBSITE_LINK || ""}/app/post/${tokenId}`);
+    toastSuccess("Post link copied to clipboard");
+  }, [tokenId]);
 
   const handleUndoRepost = useCallback(() => {
     if (tokenId == null) return;
@@ -501,23 +510,27 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const handleConfirmRepost = useCallback(() => {
     if (tokenId == null) return;
-    const prevCount = repostCount;
-    setReposted(true);
-    setRepostCount((c) => c + 1);
-    toggleRepost(Number(tokenId)).catch(() => {
-      setReposted(false);
-      setRepostCount(prevCount);
-      toastError("Failed to repost");
+    requireAuth?.(() => {
+      const prevCount = repostCount;
+      setReposted(true);
+      setRepostCount((c) => c + 1);
+      toggleRepost(Number(tokenId)).catch(() => {
+        setReposted(false);
+        setRepostCount(prevCount);
+        toastError("Failed to repost");
+      });
     });
-  }, [tokenId, repostCount]);
+  }, [tokenId, repostCount, requireAuth]);
 
   const handleQuotePress = useCallback(() => {
-    hideUserProfile();
-    navigation.navigate(ScreenNames.Upload, {
-      quotedTokenId: tokenId,
-      quotedPost: item as any,
+    requireAuth?.(() => {
+      hideUserProfile();
+      navigation.navigate(ScreenNames.Upload, {
+        quotedTokenId: tokenId,
+        quotedPost: item as any,
+      });
     });
-  }, [navigation, tokenId, item, hideUserProfile]);
+  }, [navigation, tokenId, item, hideUserProfile, requireAuth]);
 
   const handleInfoPress = useCallback(() => {
     if (mintTxHash) {
@@ -880,39 +893,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     switch (contentType) {
       case "live":
         return renderLiveThumbnail();
+      // Shorts render identically to normal videos in the feed — same player
+      // with full controls, no special "short" badge — to match the web app.
       case "short":
-        return (
-          <View className="relative">
-            <FeedVideoPlayer
-              thumbnail={thumbnail}
-              videoUrl={isActuallyGated ? undefined : (getVideoUrl(tokenId) || undefined)}
-              duration={duration}
-              tokenId={tokenId}
-              isContentGated={isActuallyGated}
-              isPPVLocked={isActuallyLockedPPV}
-              isHoldingsLocked={isActuallyLockedHoldings}
-              isBountyLocked={false}
-              isComboLocked={isActuallyComboLocked}
-              isBounty={isBounty}
-              ppvAmount={payPerViewAmount}
-              ppvCurrency={payPerViewTokenSymbol}
-              lockAmount={lockContentAmount}
-              lockCurrency={lockContentTokenSymbol}
-              bountyAmount={bountyAmount}
-              bountyCurrency={bountyTokenSymbol}
-              isVisible={isVisible}
-              isSignedIn={isSignedIn}
-              onPress={handleCardPress}
-              onPPVPress={handlePPVPress}
-              onLockPress={handleCardPress}
-              onBountyPress={handleBountyBadgePress}
-              hideControls
-            />
-            <View className="absolute top-3 left-3 bg-black/60 rounded p-1.5 z-20">
-              <Icon name="Film" size={14} color="#fff" />
-            </View>
-          </View>
-        );
       case "video":
         return renderVideoThumbnail();
       case "audio":
@@ -1055,15 +1038,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onLike={handleLikePress}
           onDislike={handleDislikePress}
           onComment={handleCommentPress}
-          onRepost={handleRepostPress}
+          onShare={handleOpenShare}
           onTip={handleTipPress}
           onSave={handleSavePress}
           onInfo={handleInfoPress}
-          showRepostPopover={showRepostPopover}
-          onCloseRepostPopover={() => setShowRepostPopover(false)}
-          onConfirmRepost={handleConfirmRepost}
-          onUndoRepost={handleUndoRepost}
-          onQuote={handleQuotePress}
         />
       )}
 
@@ -1170,6 +1148,20 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onClose={() => setShowShareToDm(false)}
           tokenId={tokenId}
           postTitle={localTitle || undefined}
+        />
+      )}
+
+      {tokenId != null && (
+        <ShareSheet
+          visible={showShareSheet}
+          onClose={() => setShowShareSheet(false)}
+          isReposted={reposted}
+          onRepost={handleConfirmRepost}
+          onUndoRepost={handleUndoRepost}
+          onQuote={handleQuotePress}
+          onCopyLink={handleCopyLink}
+          onSendToDm={isSignedIn ? () => setShowShareToDm(true) : undefined}
+          onShareAsImage={handleSharePress}
         />
       )}
 

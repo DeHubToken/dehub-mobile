@@ -100,17 +100,22 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
       if (!isRefresh) setLoading(true);
       postEndRef.current = false;
       postPageRef.current = 0;
+      // Load posts and reposts independently — a failure in one must not wipe
+      // the other. Previously a rejected reposts call rejected the shared
+      // Promise.all and the catch cleared the already-loaded posts to [], so the
+      // profile read as empty until a refresh (which doesn't clear on error).
+      const postsPromise = loadPostsPage(address, 0, false).catch((e) => {
+        console.warn("[PostsRoute] posts load failed", e);
+        if (!isRefresh) setPosts([]);
+      });
+      const repostsPromise = loadReposts(address)
+        .then((rows) => setReposts(rows))
+        .catch((e) => {
+          console.warn("[PostsRoute] reposts load failed", e);
+          if (!isRefresh) setReposts([]);
+        });
       try {
-        const [repostRows] = await Promise.all([
-          loadReposts(address),
-          loadPostsPage(address, 0, false),
-        ]);
-        setReposts(repostRows);
-      } catch {
-        if (!isRefresh) {
-          setPosts([]);
-          setReposts([]);
-        }
+        await Promise.all([postsPromise, repostsPromise]);
       } finally {
         setLoading(false);
         setRefreshing(false);

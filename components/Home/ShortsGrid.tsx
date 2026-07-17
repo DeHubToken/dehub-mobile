@@ -108,6 +108,24 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     () => (data?.pages ?? []).flatMap((res) => res.result || []),
     [data],
   );
+
+  // Cards whose media can't load report themselves here so we drop them from the
+  // grid — a broken/missing upload shouldn't render as a dead grey cell.
+  const [unavailableKeys, setUnavailableKeys] = useState<Set<string>>(new Set());
+  const markUnavailable = useCallback((key: string) => {
+    setUnavailableKeys((prev) => {
+      if (prev.has(key)) return prev;
+      const next = new Set(prev);
+      next.add(key);
+      return next;
+    });
+  }, []);
+
+  const displayItems = useMemo(
+    () => items.filter((it) => !unavailableKeys.has(String(it.tokenId ?? it.id))),
+    [items, unavailableKeys],
+  );
+
   const shuffleSeed = data?.pages?.[0]?.shuffleSeed;
   const endReached = hasNextPage === false;
   const error = queryError ? (queryError as Error).message || "Failed to load" : null;
@@ -120,6 +138,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   const onRefresh = useCallback(async () => {
     onRefreshProp?.();
     setRefreshing(true);
+    setUnavailableKeys(new Set());
     try {
       await refetch();
     } finally {
@@ -150,10 +169,10 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   const handleItemPress = useCallback((index: number) => {
     navigation.navigate(ScreenNames.ShortsViewer, {
       initialIndex: index,
-      initialItems: items,
+      initialItems: displayItems,
       feedParams: { ...mergedParams, shuffleSeed },
     });
-  }, [items, mergedParams, navigation, shuffleSeed]);
+  }, [displayItems, mergedParams, navigation, shuffleSeed]);
 
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {
     const indices = new Set(
@@ -168,9 +187,15 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
 
   const renderItem = useCallback(
     ({ item, index }: { item: UnifiedFeedItem; index: number }) => (
-      <ShortsGridCard item={item} index={index} isVisible={visibleIndices.has(index)} onPress={handleItemPress} />
+      <ShortsGridCard
+        item={item}
+        index={index}
+        isVisible={visibleIndices.has(index)}
+        onPress={handleItemPress}
+        onUnavailable={markUnavailable}
+      />
     ),
-    [handleItemPress, visibleIndices],
+    [handleItemPress, visibleIndices, markUnavailable],
   );
 
   const keyExtractor = useCallback(
@@ -207,7 +232,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     <View className="flex-1 px-2">
       <FlatList
         ref={listRef}
-        data={items}
+        data={displayItems}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         numColumns={2}

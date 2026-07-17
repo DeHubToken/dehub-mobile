@@ -130,6 +130,12 @@ export type AppStackParamList = {
   };
   [ScreenNames.Communities]: undefined;
   [ScreenNames.CommunityDetail]: { slug: string };
+  [ScreenNames.Glossary]: undefined;
+  [ScreenNames.Guide]: undefined;
+  [ScreenNames.Events]: undefined;
+  [ScreenNames.Careers]: undefined;
+  [ScreenNames.Affiliate]: undefined;
+  [ScreenNames.Governance]: undefined;
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> = CompositeScreenProps<

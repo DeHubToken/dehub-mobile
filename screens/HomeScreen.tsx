@@ -51,6 +51,9 @@ export default function HomeScreen() {
   const feedRef = useRef<InfiniteVideoFeedHandle | null>(null);
   const imageGridRef = useRef<HomeImageGridHandle | null>(null);
   const shortsGridRef = useRef<ShortsGridHandle | null>(null);
+  // Native gesture of the suggested-accounts carousel. The tab-switch fling waits
+  // for it to fail, so swiping the carousel scrolls it instead of changing feed.
+  const suggestedPanRef = useRef<any>(null);
 
   const isImageTab = filters.postType === "feed-images";
   const isShortsTab = filters.postType === "short";
@@ -274,10 +277,12 @@ export default function HomeScreen() {
       Gesture.Fling()
         .direction(Directions.LEFT)
         .runOnJS(true)
+        .requireExternalGestureToFail(suggestedPanRef)
         .onEnd(handleSwipeLeft),
       Gesture.Fling()
         .direction(Directions.RIGHT)
         .runOnJS(true)
+        .requireExternalGestureToFail(suggestedPanRef)
         .onEnd(handleSwipeRight)
     );
   }, [handleSwipeLeft, handleSwipeRight]);
@@ -363,6 +368,7 @@ export default function HomeScreen() {
         <View style={StyleSheet.absoluteFill}>
           <InfiniteVideoFeed
             feedRef={feedRef}
+            suggestedPanRef={suggestedPanRef}
             params={feedParams}
             pageSize={10}
             headerInset={headerHeight}
