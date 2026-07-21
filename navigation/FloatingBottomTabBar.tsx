@@ -15,6 +15,7 @@ import { BlurView } from "expo-blur";
 // The nav pill needs an untinted blur to match web's backdrop-filter, which
 // expo-blur can't produce; see the BlurView usage in the pill below.
 import { BlurView as GlassBlurView } from "@react-native-community/blur";
+import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import Icon from "../components/ui/Icon";
@@ -312,7 +313,13 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             so the effective spread is blurRadius * downsampleFactor — 10 x 4
             lands on web's 40px exactly. iOS has no overlayColor and UIKit's
             materials are fixed-radius, so it can only approximate: the
-            thinnest material is the least-tinted blur available. */}
+            thinnest material is the least-tinted blur available.
+            Android gets no real blur at all: the community BlurView is the
+            Dimezis library underneath, whose PreDrawBlurController re-snapshots
+            the root view every frame and throws IndexOutOfBoundsException when
+            a list mutates children mid-draw (same crash FeedNavBar and
+            AppDrawer already work around) — a permanently-mounted blur over an
+            infinite feed makes that a matter of time. Translucent tint only. */}
         {Platform.OS === "ios" ? (
           <GlassBlurView
             blurType="ultraThinMaterialLight"
@@ -321,13 +328,25 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             style={StyleSheet.absoluteFill}
           />
         ) : (
-          <GlassBlurView
-            blurType="light"
-            blurRadius={10}
-            downsampleFactor={4}
-            overlayColor="transparent"
-            style={StyleSheet.absoluteFill}
-          />
+          // Glass without blur: tint + a diagonal white sheen + inset
+          // hairlines (GlassIndicator's recipe) to fake refraction depth.
+          <>
+            <View style={styles.androidBlurFallback} />
+            {/* Web's glass has no white wash — its sheen comes from the blur
+                itself — so keep this whisper-faint over the dark zinc tint. */}
+            <LinearGradient
+              colors={[
+                "rgba(255,255,255,0.10)",
+                "rgba(255,255,255,0.03)",
+                "rgba(255,255,255,0.01)",
+              ]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={StyleSheet.absoluteFill}
+              pointerEvents="none"
+            />
+            <View style={styles.androidInsetBottom} pointerEvents="none" />
+          </>
         )}
         <View style={styles.glassOverlay} />
         <View style={styles.specularHighlight} />
@@ -402,6 +421,23 @@ const styles = StyleSheet.create({
       },
       android: {},
     }),
+  },
+  androidBlurFallback: {
+    ...StyleSheet.absoluteFillObject,
+    // Stands in for the missing backdrop blur. Web's pill is zinc-900/10 over
+    // blur(40) of the mostly dark app, which reads as dark smoky glass — so
+    // the base tint is zinc-900 itself, translucent enough that content
+    // ghosts through the way a blur would.
+    backgroundColor: "rgba(24, 24, 27, 0.45)",
+    borderRadius: 16,
+  },
+  androidInsetBottom: {
+    position: "absolute",
+    bottom: 1,
+    left: 1,
+    right: 1,
+    height: 1,
+    backgroundColor: "rgba(255,255,255,0.10)",
   },
   glassOverlay: {
     ...StyleSheet.absoluteFillObject,
