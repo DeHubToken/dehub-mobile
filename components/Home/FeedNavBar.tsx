@@ -127,8 +127,25 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
     }
   }, [activeIndex, buttonWidth, containerWidth, indicatorX]);
 
-  // Snapshot at gesture start
-  const startIndexRef = useRef(0);
+  // The gesture callbacks are UI-thread worklets: they capture a frozen copy
+  // of any React ref at creation time, so later `.current` writes never reach
+  // them. Everything the pan reads on the UI thread must be a shared value.
+  const startIndexSV = useSharedValue(0);
+  const activeIndexSV = useSharedValue(activeIndex);
+  useEffect(() => {
+    activeIndexSV.value = activeIndex;
+  }, [activeIndex, activeIndexSV]);
+
+  // Resolved on the JS thread where the live ref is readable.
+  const commitIndex = useCallback(
+    (idx: number) => {
+      const postType = NAV_ITEMS[idx]?.postType;
+      if (postType && postType !== activePostTypeRef.current) {
+        commitPostType(postType);
+      }
+    },
+    [commitPostType],
+  );
 
   const panGesture = useMemo(
     () =>
@@ -142,21 +159,18 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
         .activeOffsetX([-5, 5])
         .failOffsetY([-10, 10])
         .onStart(() => {
-          const idx = NAV_ITEMS.findIndex(
-            (item) => item.postType === activePostTypeRef.current,
-          );
-          startIndexRef.current = Math.max(0, idx);
+          startIndexSV.value = activeIndexSV.value;
         })
         .onChange((e) => {
           if (buttonWidth <= 0) return;
-          const rawIdx = startIndexRef.current + e.translationX / buttonWidth;
+          const rawIdx = startIndexSV.value + e.translationX / buttonWidth;
           const clampedIdx = Math.max(0, Math.min(NAV_ITEMS.length - 1, rawIdx));
           // Direct write follows the finger and cancels any running slide.
           indicatorX.value = clampedIdx * buttonWidth;
         })
         .onEnd((e) => {
           if (buttonWidth <= 0) return;
-          const rawIdx = startIndexRef.current + e.translationX / buttonWidth;
+          const rawIdx = startIndexSV.value + e.translationX / buttonWidth;
           const clampedIdx = Math.round(
             Math.max(0, Math.min(NAV_ITEMS.length - 1, rawIdx)),
           );
@@ -164,12 +178,9 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
             duration: SLIDE_DURATION,
             easing: SLIDE_EASING,
           });
-          const newPostType = NAV_ITEMS[clampedIdx]?.postType;
-          if (newPostType && newPostType !== activePostTypeRef.current) {
-            runOnJS(commitPostType)(newPostType);
-          }
+          runOnJS(commitIndex)(clampedIdx);
         }),
-    [buttonWidth, commitPostType, indicatorX],
+    [buttonWidth, commitIndex, indicatorX, startIndexSV, activeIndexSV],
   );
 
   // Sliding glass indicator — always visible, UI-thread driven

@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   Switch,
   StyleSheet,
+  KeyboardAvoidingView,
 } from "react-native";
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
@@ -108,6 +109,9 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
 
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
+      {/* Edge-to-edge Android never resizes the window for the keyboard, so
+          the sheet must lift itself or its inputs get covered. */}
+      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
       <Pressable style={styles.overlay} onPress={onClose}>
         <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
           <View style={styles.header}>
@@ -168,6 +172,7 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
           </TouchableOpacity>
         </Pressable>
       </Pressable>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };

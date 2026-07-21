@@ -414,11 +414,10 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     borderRightColor: "rgba(255, 255, 255, 0.10)",
   },
-  // Web: bg-black/60 over the backdrop blur. The dark BlurView tint already
-  // darkens a little, so slightly under 0.60 lands at the same visual weight;
-  // it also keeps the drawer legible on Android while closed (blur unmounted).
+  // Web: bg-black/60 over the backdrop blur, but lighter here so the blur
+  // reads through more — the dark BlurView tint already darkens on top.
   glassOverlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.55)",
+    backgroundColor: "rgba(0, 0, 0, 0.0)",
   },
   // Transparent border on every row keeps height stable when the active border appears.
   itemBase: {

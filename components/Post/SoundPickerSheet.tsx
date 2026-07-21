@@ -12,6 +12,7 @@ import {
   PanResponder,
   Animated,
   TextInput,
+  KeyboardAvoidingView,
 } from "react-native";
 import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
@@ -288,6 +289,9 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
+      {/* Edge-to-edge Android doesn't resize for the keyboard; the padding
+          lifts the absolute-bottom sheet so the search stays visible. */}
+      <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
       <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={onClose}>
         <BlurView intensity={15} tint="dark" style={StyleSheet.absoluteFill} />
       </TouchableOpacity>
@@ -350,6 +354,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
           }
         />
       </Animated.View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };

@@ -404,6 +404,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   onPress={handleOpenEdit}
                 />
               )}
+              {/* Create Poll disabled — polls can't be added to a post after creation (matches web)
               {!hideEdit && (
                 <OptionRow
                   icon="bar-chart-outline"
@@ -411,7 +412,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   sublabel={t("postOptions.createPollDesc")}
                   onPress={handleOpenPoll}
                 />
-              )}
+              )} */}
               <OptionRow
                 icon={isHidden ? "eye-outline" : "eye-off-outline"}
                 label={isHidden ? t("postOptions.showPost") : t("postOptions.hidePost")}

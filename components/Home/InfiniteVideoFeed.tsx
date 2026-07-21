@@ -54,11 +54,15 @@ export interface InfiniteVideoFeedHandle {
 interface InfiniteVideoFeedProps {
   params?: Partial<UnifiedFeedParams>;
   pageSize?: number;
+  /** False when this list is a hidden (kept-mounted) tab — pauses videos and tab-press refresh. */
+  active?: boolean;
   contentContainerStyle?: any;
   headerComponent?: React.ReactNode;
   headerInset?: number;
   headerTranslateY?: SharedValue<number>;
   onEndReachedAll?: () => void;
+  /** Reanimated worklet scroll handler — when provided, scroll events stay on the UI thread. */
+  scrollHandler?: any;
   onScrollOffset?: (offsetY: number, deltaY: number) => void;
   onScrollEnd?: () => void;
   onClearFilters?: () => void;
@@ -74,14 +78,19 @@ interface InfiniteVideoFeedProps {
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
 const DEFAULT_AVATAR = require("../../assets/default-avatar.png");
 
+// Animated wrapper so a worklet onScroll runs on the UI thread; cast keeps FlatList generics.
+const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
+
 export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   params,
   pageSize = 10,
+  active = true,
   contentContainerStyle,
   headerComponent,
   headerInset = 0,
   headerTranslateY,
   onEndReachedAll,
+  scrollHandler,
   onScrollOffset,
   onScrollEnd,
   onClearFilters,
@@ -136,7 +145,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // Viewability config: item is "viewable" when 50% visible
   const viewabilityConfig = useRef({
     itemVisiblePercentThreshold: 50,
-    minimumViewTime: 0, // We handle timing ourselves in the tracker
+    // Debounce viewability during flings so we don't setState (and re-render the
+    // list) on every frame; the view tracker still measures dwell time itself.
+    minimumViewTime: 150,
   }).current;
 
   // Handle viewable items change for view tracking (feed posts only)
@@ -262,13 +273,13 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("tabPress", () => {
-      if (!isFocused) return;
+      if (!isFocused || !active) return;
       // Tap active tab: start refresh immediately; spinner will be visible once we're near the top.
       onRefresh();
       listRef.current?.scrollToOffset({ offset: 0, animated: true });
     });
     return unsubscribe;
-  }, [navigation, isFocused, onRefresh]);
+  }, [navigation, isFocused, active, onRefresh]);
 
   // Listen for feed refresh requests (e.g., after a new post is uploaded)
   useEffect(() => {
@@ -320,7 +331,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         <FeedCard
           item={item}
           onCategorySelect={onCategorySelect}
-          isVisible={isFocused && (isVideoItem(item) ? item.__listKey === activeVideoKey : visibleItemKeys.has(item.__listKey))}
+          isVisible={active && isFocused && (isVideoItem(item) ? item.__listKey === activeVideoKey : visibleItemKeys.has(item.__listKey))}
           enablePreview
         />
       );
@@ -337,7 +348,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
       return <>{card}</>;
     },
-    [visibleItemKeys, activeVideoKey, isFocused, onCategorySelect],
+    [visibleItemKeys, activeVideoKey, isFocused, active, onCategorySelect],
   );
 
   const keyExtractor = useCallback((item: FeedItem) => item.__listKey, []);
@@ -377,7 +388,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   return (
     <View className="flex-1" onTouchStart={handleTouchStart}>
-      <FlatList
+      <AnimatedFlatList
         ref={listRef}
         data={items}
         keyExtractor={keyExtractor}
@@ -403,7 +414,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         onEndReached={endReached ? undefined : loadMore}
         onEndReachedThreshold={0.8}
         extraData={[visibleItemKeys, activeVideoKey]}
-        onScroll={handleScroll}
+        onScroll={scrollHandler ?? handleScroll}
         onScrollBeginDrag={handleScrollBeginDrag}
         onScrollEndDrag={handleScrollEndDrag}
         onMomentumScrollEnd={handleMomentumScrollEnd}
