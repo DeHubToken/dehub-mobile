@@ -32,11 +32,16 @@ interface HomeImageGridProps {
   gridRef?: React.MutableRefObject<HomeImageGridHandle | null>;
   headerInset?: number;
   headerTranslateY?: SharedValue<number>;
+  /** Reanimated worklet scroll handler — when provided, scroll events stay on the UI thread. */
+  scrollHandler?: any;
   onScrollOffset?: (offsetY: number, deltaY: number) => void;
   onScrollEnd?: () => void;
   onScrollBegin?: () => void;
   onRefresh?: () => void;
 }
+
+// Animated wrapper so a worklet onScroll runs on the UI thread; cast keeps FlatList generics.
+const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const GRID_GAP = 2;
@@ -204,6 +209,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   gridRef,
   headerInset = 0,
   headerTranslateY,
+  scrollHandler,
   onScrollOffset,
   onScrollEnd,
   onScrollBegin,
@@ -334,7 +340,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
 
   return (
     <View className="flex-1 px-2">
-      <FlatList
+      <AnimatedFlatList
         ref={listRef}
         data={gridRows}
         keyExtractor={keyExtractor}
@@ -350,7 +356,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         removeClippedSubviews
         onEndReached={loadMore}
         onEndReachedThreshold={0.8}
-        onScroll={handleScroll}
+        onScroll={scrollHandler ?? handleScroll}
         onScrollBeginDrag={onScrollBegin}
         onScrollEndDrag={onScrollEnd}
         onMomentumScrollEnd={onScrollEnd}

@@ -1,9 +1,10 @@
 import React, { memo, useEffect, useState } from "react";
-import { View, Text, Image, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, Text, Image, TouchableOpacity, ActivityIndicator, Dimensions } from "react-native";
 import Icon from "../ui/Icon";
 import { getNFT } from "../../services/nft.service";
-import { getImageUrl, getAvatarUrl } from "../../libs/misc";
+import { getAvatarUrl } from "../../libs/misc";
 import { truncateAddress } from "../../libs/strings.util";
+import { nftToReplyPost, resolveReplyPostThumbnail } from "../../libs/replyPostDisplay";
 
 /**
  * Rich preview card for a DeHub post link shared in a DM — mirrors the web
@@ -23,10 +24,18 @@ interface PostMeta {
 // or for repeated shares of the same link in a conversation.
 const metaCache = new Map<string, PostMeta | null>();
 
+// The bubble caps at 75% of the row (MessageBubble's MAX_IMAGE_WIDTH uses the
+// same base). Keep the card + its mx-2 margins (16) inside that cap, or the
+// bubble's overflow-hidden clips the card's right edge on narrow screens.
+const CARD_WIDTH = Math.min(240, Math.round(Dimensions.get("window").width * 0.75) - 40);
+
 const resolveMeta = (raw: any, tokenId: string): PostMeta => {
   const r = raw?.result || raw || {};
-  const rawThumb = r.thumbnail || r.thumbnailUrl || r.imageUrl || "";
-  const thumbnail = rawThumb ? getImageUrl(rawThumb, 640, 360) : null;
+  // Per-postType URL rules (imageUrls array for feed-images, thumbnail_url for
+  // video/shorts, …) — same resolution the web's QuotedPostEmbed uses, so the
+  // card shows the post image for every post type, not just video thumbnails.
+  const tid = Number(tokenId) || 0;
+  const thumbnail = resolveReplyPostThumbnail(nftToReplyPost(r, tid), tid) ?? null;
   const creator =
     r.minterUser?.displayName ||
     r.minterUser?.username ||
@@ -34,8 +43,15 @@ const resolveMeta = (raw: any, tokenId: string): PostMeta => {
     r.minterUsername ||
     (r.minter ? truncateAddress(r.minter, 4, 4) : "");
   const rawAvatar = r.minterUser?.avatarImageUrl || r.minterAvatarUrl || "";
+  // Feed posts often have a blank-ish name (" ") — trim before falling back,
+  // and use the description like the web card does before the generic label.
+  const title =
+    (r.name || "").trim() ||
+    (r.title || "").trim() ||
+    (r.description || "").trim().slice(0, 120) ||
+    `Post #${tokenId}`;
   return {
-    title: r.name || r.title || `Post #${tokenId}`,
+    title,
     thumbnail,
     creator,
     creatorAvatar: rawAvatar ? getAvatarUrl(rawAvatar) : null,
@@ -95,13 +111,17 @@ const SharedPostPreviewComponent: React.FC<SharedPostPreviewProps> = ({
   const title = meta?.title || fallbackTitle;
 
   return (
+    // Spacing lives on this wrapper as padding (not card margins) — the bubble
+    // auto-sizes to its children, and padding is always counted in that width,
+    // so the card gets equal breathing room on all four sides.
+    <View className="px-2 pt-2 pb-0.5">
     <TouchableOpacity
       activeOpacity={0.85}
       onPress={onPress}
       onLongPress={onLongPress}
       delayLongPress={350}
-      className={`mx-2 mt-2 mb-0.5 rounded-xl overflow-hidden border ${border}`}
-      style={{ width: 240 }}
+      className={`rounded-xl overflow-hidden border ${border}`}
+      style={{ width: CARD_WIDTH }}
     >
       {loading ? (
         <View className="h-32 items-center justify-center bg-black/20">
@@ -140,6 +160,7 @@ const SharedPostPreviewComponent: React.FC<SharedPostPreviewProps> = ({
         )}
       </View>
     </TouchableOpacity>
+    </View>
   );
 };
 

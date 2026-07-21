@@ -7,6 +7,7 @@ import {
   StyleSheet,
   UIManager,
   Animated,
+  KeyboardAvoidingView,
 } from "react-native";
 import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
@@ -86,7 +87,11 @@ const GlassModal: React.FC<GlassModalProps> = ({
           </TouchableOpacity>
         )}
 
-        <View
+        {/* Keyboard handling lives here so every GlassModal sheet gets it:
+            Android is edge-to-edge (SDK 54), where the window no longer
+            resizes for the keyboard, so inputs in bottom sheets were covered. */}
+        <KeyboardAvoidingView
+          behavior="padding"
           style={[
             styles.foregroundWrapper,
             {
@@ -116,7 +121,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
           ) : (
             children
           )}
-        </View>
+        </KeyboardAvoidingView>
       </View>
     </Modal>
   );

@@ -27,23 +27,32 @@ export interface ShortsGridHandle {
 interface ShortsGridProps {
   params?: Partial<ShortsFeedParams>;
   pageSize?: number;
+  /** False when this grid is a hidden (kept-mounted) tab — pauses preview videos. */
+  active?: boolean;
   gridRef?: React.MutableRefObject<ShortsGridHandle | null>;
   headerInset?: number;
   headerTranslateY?: SharedValue<number>;
+  /** Reanimated worklet scroll handler — when provided, scroll events stay on the UI thread. */
+  scrollHandler?: any;
   onScrollOffset?: (offsetY: number, deltaY: number) => void;
   onScrollEnd?: () => void;
   onScrollBegin?: () => void;
   onRefresh?: () => void;
 }
 
+// Animated wrapper so a worklet onScroll runs on the UI thread; cast keeps FlatList generics.
+const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
+
 const ROW_HEIGHT = CARD_HEIGHT + GRID_GAP;
 
 const ShortsGrid: React.FC<ShortsGridProps> = ({
   params,
   pageSize = 20,
+  active = true,
   gridRef,
   headerInset = 0,
   headerTranslateY,
+  scrollHandler,
   onScrollOffset,
   onScrollEnd,
   onScrollBegin,
@@ -180,22 +189,30 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
         .filter((v) => v.isViewable && v.index != null)
         .map((v) => v.index as number),
     );
-    setVisibleIndices(indices);
+    // Bail when membership is unchanged so scroll frames don't trigger re-renders
+    setVisibleIndices((prev) => {
+      if (prev.size === indices.size) {
+        let same = true;
+        for (const i of indices) if (!prev.has(i)) { same = false; break; }
+        if (same) return prev;
+      }
+      return indices;
+    });
   }).current;
 
-  const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 30 }).current;
+  const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 30, minimumViewTime: 150 }).current;
 
   const renderItem = useCallback(
     ({ item, index }: { item: UnifiedFeedItem; index: number }) => (
       <ShortsGridCard
         item={item}
         index={index}
-        isVisible={visibleIndices.has(index)}
+        isVisible={active && visibleIndices.has(index)}
         onPress={handleItemPress}
         onUnavailable={markUnavailable}
       />
     ),
-    [handleItemPress, visibleIndices, markUnavailable],
+    [handleItemPress, visibleIndices, markUnavailable, active],
   );
 
   const keyExtractor = useCallback(
@@ -230,7 +247,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
 
   return (
     <View className="flex-1 px-2">
-      <FlatList
+      <AnimatedFlatList
         ref={listRef}
         data={displayItems}
         keyExtractor={keyExtractor}
@@ -248,7 +265,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
         onEndReachedThreshold={0.8}
         onViewableItemsChanged={onViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}
-        onScroll={handleScroll}
+        onScroll={scrollHandler ?? handleScroll}
         onScrollBeginDrag={onScrollBegin}
         onScrollEndDrag={onScrollEnd}
         onMomentumScrollEnd={onScrollEnd}

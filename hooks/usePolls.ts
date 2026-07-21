@@ -10,8 +10,43 @@ import {
 import type { DmPoll } from "../services/dm/dm.types";
 import { toastError, toastSuccess } from "../libs/toast";
 
+// Feed cards mount/unmount constantly while scrolling; without a cache every
+// remount refires GET /poll/<id> (even for non-poll posts), tripping the API
+// rate limiter. Cache results — including "not a poll" (null) — for 5 minutes
+// and dedupe concurrent requests for the same tokenId.
+const POLL_CACHE_TTL = 5 * 60 * 1000;
+const pollCache = new Map<number, { data: DmPoll | null; ts: number }>();
+const pollInflight = new Map<number, Promise<DmPoll | null>>();
+
+function fetchPollCached(tokenId: number, force = false): Promise<DmPoll | null> {
+  if (!force) {
+    const cached = pollCache.get(tokenId);
+    if (cached && Date.now() - cached.ts < POLL_CACHE_TTL) {
+      return Promise.resolve(cached.data);
+    }
+    const existing = pollInflight.get(tokenId);
+    if (existing) return existing;
+  }
+  const promise = getPoll(tokenId)
+    .then((res) => (res?.status ? (res.result as DmPoll | null) : null))
+    .catch(() => null)
+    .then((data) => {
+      pollCache.set(tokenId, { data, ts: Date.now() });
+      pollInflight.delete(tokenId);
+      return data;
+    });
+  pollInflight.set(tokenId, promise);
+  return promise;
+}
+
+export function invalidatePoll(tokenId: number) {
+  pollCache.delete(tokenId);
+}
+
 export function usePoll(tokenId: number | null) {
-  const [poll, setPoll] = useState<DmPoll | null>(null);
+  const [poll, setPoll] = useState<DmPoll | null>(() =>
+    tokenId != null ? pollCache.get(tokenId)?.data ?? null : null,
+  );
   const [loading, setLoading] = useState(false);
   const mountedRef = useRef(true);
 
@@ -25,23 +60,24 @@ export function usePoll(tokenId: number | null) {
       setPoll(null);
       return;
     }
+    const cached = pollCache.get(tokenId);
+    if (cached && Date.now() - cached.ts < POLL_CACHE_TTL) {
+      setPoll(cached.data);
+      return;
+    }
     setLoading(true);
-    getPoll(tokenId)
-      .then((res) => {
-        if (mountedRef.current && res?.status) setPoll(res.result);
-      })
-      .catch(() => {})
-      .finally(() => {
-        if (mountedRef.current) setLoading(false);
-      });
+    fetchPollCached(tokenId).then((data) => {
+      if (mountedRef.current) {
+        setPoll(data);
+        setLoading(false);
+      }
+    });
   }, [tokenId]);
 
   const refetch = useCallback(async () => {
     if (tokenId == null) return;
-    try {
-      const res = await getPoll(tokenId);
-      if (mountedRef.current && res?.status) setPoll(res.result);
-    } catch {}
+    const data = await fetchPollCached(tokenId, true);
+    if (mountedRef.current) setPoll(data);
   }, [tokenId]);
 
   return { poll, loading, refetch };
@@ -75,6 +111,7 @@ export function useVoteOnPoll() {
       setLoading(true);
       try {
         const res = await voteOnPoll(tokenId, optionIndexes);
+        invalidatePoll(tokenId);
         toastSuccess("Vote recorded");
         return res.result;
       } catch (e: any) {
@@ -97,6 +134,7 @@ export function useRemovePollVote() {
     setLoading(true);
     try {
       await removePollVote(tokenId);
+      invalidatePoll(tokenId);
       toastSuccess("Vote removed");
     } catch (e: any) {
       toastError(e?.message || "Failed to remove vote");
@@ -116,6 +154,7 @@ export function useClosePoll() {
     setLoading(true);
     try {
       await closePoll(tokenId);
+      invalidatePoll(tokenId);
       toastSuccess("Poll closed");
     } catch (e: any) {
       toastError(e?.message || "Failed to close poll");

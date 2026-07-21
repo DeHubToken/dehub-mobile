@@ -16,6 +16,7 @@ import {
   StyleSheet,
   Platform,
   ActivityIndicator,
+  KeyboardAvoidingView,
 } from "react-native";
 import Animated, {
   useAnimatedStyle,
@@ -408,6 +409,9 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
       onRequestClose={isBusy ? undefined : closeSheet}
     >
       <GestureHandlerRootView style={{ flex: 1 }}>
+        {/* Edge-to-edge Android doesn't resize for the keyboard; the padding
+            lifts the absolute-bottom sheet so its input stays visible. */}
+        <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
         <Animated.View
           style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.5)" }, backdropStyle]}
         >
@@ -572,6 +576,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
             </View>
           )}
         </Animated.View>
+        </KeyboardAvoidingView>
       </GestureHandlerRootView>
     </Modal>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import React, { useState, useMemo, useCallback, useRef, useEffect, startTransition } from "react";
 import { View, StyleSheet } from "react-native";
 import Animated, { runOnJS } from "react-native-reanimated";
 import { useAnimatedReaction } from "react-native-reanimated";
@@ -33,6 +33,12 @@ const DEFAULT_FILTERS: FeedFilters = {
   contentAccess: [],
 };
 
+// The four tabs served by InfiniteVideoFeed. Each gets its own kept-mounted
+// list (same pattern as images/shorts) so switching is an opacity flip, not a
+// full FlatList data swap — the swap was the visible tab-switch jank.
+const FEED_LIST_TYPES = ["all", "video", "feed-audio", "live"] as const;
+type FeedListType = (typeof FEED_LIST_TYPES)[number];
+
 export default function HomeScreen() {
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
   const [filters, setFilters] = useState<FeedFilters>(DEFAULT_FILTERS);
@@ -48,7 +54,14 @@ export default function HomeScreen() {
   const [categories, setCategories] = useState<string[]>(FALLBACK_CATEGORIES);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
   const { openDrawer } = useDrawer();
-  const feedRef = useRef<InfiniteVideoFeedHandle | null>(null);
+  // One handle per feed-list tab; stable ref objects so InfiniteVideoFeed's
+  // feedRef effect never re-fires from a new ref identity.
+  const feedRefs = useRef<Record<FeedListType, { current: InfiniteVideoFeedHandle | null }>>({
+    all: { current: null },
+    video: { current: null },
+    "feed-audio": { current: null },
+    live: { current: null },
+  });
   const imageGridRef = useRef<HomeImageGridHandle | null>(null);
   const shortsGridRef = useRef<ShortsGridHandle | null>(null);
   // Native gesture of the suggested-accounts carousel. The tab-switch fling waits
@@ -57,13 +70,43 @@ export default function HomeScreen() {
 
   const isImageTab = filters.postType === "feed-images";
   const isShortsTab = filters.postType === "short";
+  const isFeedTab = !isImageTab && !isShortsTab;
+
+  // Keep all three lists mounted once created and just hide the inactive ones —
+  // switching tabs is then a pure style flip (no unmount/mount), which is what
+  // makes it feel instant. Hidden tabs are warmed up shortly after launch so
+  // even the FIRST switch pays no mount cost.
+  const [tabsWarm, setTabsWarm] = useState(false);
+  const [imagesMounted, setImagesMounted] = useState(false);
+  const [shortsMounted, setShortsMounted] = useState(false);
+  // Feed lists mount on first visit; warmup mounts the rest (like images/shorts).
+  const [mountedFeedTypes, setMountedFeedTypes] = useState<ReadonlySet<FeedListType>>(
+    () => new Set<FeedListType>(["all"]),
+  );
+  useEffect(() => {
+    if (isImageTab) setImagesMounted(true);
+    if (isShortsTab) setShortsMounted(true);
+    const pt = filters.postType as FeedListType;
+    if (FEED_LIST_TYPES.includes(pt)) {
+      setMountedFeedTypes((prev) =>
+        prev.has(pt) ? prev : new Set(prev).add(pt),
+      );
+    }
+  }, [isImageTab, isShortsTab, filters.postType]);
+  useEffect(() => {
+    if (tabsWarm) {
+      setImagesMounted(true);
+      setShortsMounted(true);
+      setMountedFeedTypes(new Set(FEED_LIST_TYPES));
+    }
+  }, [tabsWarm]);
 
   const {
     translateY: headerTranslateY,
     headerHeight,
     headerAnimatedStyle,
     onHeaderLayout,
-    handleScrollOffset,
+    scrollHandler,
     handleScrollEnd,
     showHeader,
   } = useCollapsibleHeader();
@@ -116,6 +159,19 @@ export default function HomeScreen() {
     return params;
   }, [selectedCategory, filters, shuffleSeed]);
 
+  // Each feed list has a hard-wired postType, so strip the active tab's
+  // postType out of the shared params and re-add it per list. Query keys stay
+  // identical to the prefetch keys below.
+  const feedListParamsByType = useMemo(() => {
+    const { postType: _pt, ...base } = feedParams;
+    return {
+      all: base,
+      video: { ...base, postType: "video" as const },
+      "feed-audio": { ...base, postType: "feed-audio" as const },
+      live: { ...base, postType: "live" as const },
+    } satisfies Record<FeedListType, Record<string, any>>;
+  }, [feedParams]);
+
   // Prefetch the other main tabs' first pages shortly after launch so the
   // first switch to video/images/shorts renders instantly from cache, like
   // the web app. Keys must mirror the ones used by InfiniteVideoFeed,
@@ -126,15 +182,20 @@ export default function HomeScreen() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      const base = feedParamsRef.current;
+      // Strip any active-tab postType so prefetch keys match the per-list keys.
+      const { postType: _pt, ...base } = feedParamsRef.current;
 
-      const videoParams = { ...base, postType: "video" as const };
-      queryClient.prefetchInfiniteQuery({
-        queryKey: ["home-feed", videoParams, 10],
-        queryFn: ({ pageParam }) =>
-          getUnifiedFeed({ ...videoParams, limit: 10, page: pageParam as number }),
-        initialPageParam: 1,
-      });
+      // Prefetch every postType the feed list serves so the first switch to
+      // any tab renders from cache instead of a skeleton.
+      for (const postType of ["video", "feed-audio", "live"] as const) {
+        const p = { ...base, postType };
+        queryClient.prefetchInfiniteQuery({
+          queryKey: ["home-feed", p, 10],
+          queryFn: ({ pageParam }) =>
+            getUnifiedFeed({ ...p, limit: 10, page: pageParam as number }),
+          initialPageParam: 1,
+        });
+      }
 
       const imageParams = { ...base, postType: "feed-images" as const };
       queryClient.prefetchInfiniteQuery({
@@ -158,6 +219,10 @@ export default function HomeScreen() {
         },
         initialPageParam: { page: 1 },
       });
+
+      // Mount the hidden tabs once their data prefetch is underway, so the
+      // first switch renders an already-built list.
+      setTabsWarm(true);
     }, 2500);
     return () => clearTimeout(timer);
   }, [queryClient]);
@@ -171,8 +236,6 @@ export default function HomeScreen() {
     );
   }, [filters, selectedCategory]);
 
-  const closeFilterPanel = useCallback(() => setFilterPanelVisible(false), []);
-
   const handleFiltersChange = useCallback((newFilters: FeedFilters) => {
     setFilters(newFilters);
   }, []);
@@ -185,13 +248,6 @@ export default function HomeScreen() {
     setFilterPanelVisible(false);
   }, []);
 
-  const onScrollOffset = useCallback(
-    (offsetY: number, deltaY: number) => {
-      handleScrollOffset(offsetY, deltaY);
-      if (deltaY > 0) closeFilterPanel();
-    },
-    [handleScrollOffset, closeFilterPanel],
-  );
 
   const handleCategorySelect = useCallback((category: string) => {
     const value = category === "All" ? undefined : category;
@@ -212,9 +268,9 @@ export default function HomeScreen() {
     } else if (isShortsTab) {
       shortsGridRef.current?.scrollToTopAndRefresh();
     } else {
-      feedRef.current?.scrollToTopAndRefresh();
+      feedRefs.current[filters.postType as FeedListType]?.current?.scrollToTopAndRefresh();
     }
-  }, [showHeader, isImageTab, isShortsTab]);
+  }, [showHeader, isImageTab, isShortsTab, filters.postType]);
 
   const handleRetry = useCallback(async () => {
     setCategoriesLoading(true);
@@ -245,8 +301,11 @@ export default function HomeScreen() {
   }, [selectedCategory]);
 
   const handlePostTypeChange = useCallback((postType: FeedFilters["postType"]) => {
-    setFilters((prev) => ({ ...prev, postType }));
     setFilterPanelVisible(false);
+    // Non-urgent: keeps the tab press/swipe responsive while the heavy list swap renders
+    startTransition(() => {
+      setFilters((prev) => ({ ...prev, postType }));
+    });
   }, []);
 
   const handleResetFilters = useCallback(() => {
@@ -332,8 +391,11 @@ export default function HomeScreen() {
           />
       </Animated.View>
 
-      {isImageTab && (
-        <View style={StyleSheet.absoluteFill}>
+      {(imagesMounted || isImageTab) && (
+        <View
+          style={[StyleSheet.absoluteFill, !isImageTab && styles.hiddenTab]}
+          pointerEvents={isImageTab ? "auto" : "none"}
+        >
           <HomeImageGrid
             gridRef={imageGridRef}
             params={feedParams}
@@ -342,53 +404,72 @@ export default function HomeScreen() {
             headerTranslateY={headerTranslateY}
             onRefresh={handleRefresh}
             onScrollBegin={handleScrollBegin}
-            onScrollOffset={onScrollOffset}
+            scrollHandler={scrollHandler}
             onScrollEnd={handleScrollEnd}
           />
         </View>
       )}
 
-      {isShortsTab && (
-        <View style={StyleSheet.absoluteFill}>
+      {(shortsMounted || isShortsTab) && (
+        <View
+          style={[StyleSheet.absoluteFill, !isShortsTab && styles.hiddenTab]}
+          pointerEvents={isShortsTab ? "auto" : "none"}
+        >
           <ShortsGrid
             gridRef={shortsGridRef}
+            active={isShortsTab}
             params={feedParams}
             pageSize={20}
             headerInset={headerHeight}
             headerTranslateY={headerTranslateY}
             onRefresh={handleRefresh}
             onScrollBegin={handleScrollBegin}
-            onScrollOffset={onScrollOffset}
+            scrollHandler={scrollHandler}
             onScrollEnd={handleScrollEnd}
           />
         </View>
       )}
 
-      {!isImageTab && !isShortsTab && (
-        <View style={StyleSheet.absoluteFill}>
-          <InfiniteVideoFeed
-            feedRef={feedRef}
-            suggestedPanRef={suggestedPanRef}
-            params={feedParams}
-            pageSize={10}
-            headerInset={headerHeight}
-            headerTranslateY={headerTranslateY}
-            onRefresh={handleRefresh}
-            onScrollBegin={handleScrollBegin}
-            onScrollOffset={onScrollOffset}
-            onScrollEnd={handleScrollEnd}
-            onCategorySelect={handleCategorySelect}
-            onRetry={handleRetry}
-            onClearFilters={handleClearFilters}
-          />
-        </View>
-      )}
+      {FEED_LIST_TYPES.map((type) => {
+        const isActiveFeed = isFeedTab && filters.postType === type;
+        if (!mountedFeedTypes.has(type) && !isActiveFeed) return null;
+        return (
+          <View
+            key={type}
+            style={[StyleSheet.absoluteFill, !isActiveFeed && styles.hiddenTab]}
+            pointerEvents={isActiveFeed ? "auto" : "none"}
+          >
+            <InfiniteVideoFeed
+              feedRef={feedRefs.current[type]}
+              // Only the visible list's carousel should claim the tab-switch
+              // fling; hidden lists registering the shared ref would break it.
+              suggestedPanRef={isActiveFeed ? suggestedPanRef : undefined}
+              active={isActiveFeed}
+              params={feedListParamsByType[type]}
+              pageSize={10}
+              headerInset={headerHeight}
+              headerTranslateY={headerTranslateY}
+              onRefresh={handleRefresh}
+              onScrollBegin={handleScrollBegin}
+              scrollHandler={scrollHandler}
+              onScrollEnd={handleScrollEnd}
+              onCategorySelect={handleCategorySelect}
+              onRetry={handleRetry}
+              onClearFilters={handleClearFilters}
+            />
+          </View>
+        );
+      })}
     </View>
     </GestureDetector>
   );
 }
 
 const styles = StyleSheet.create({
+  // Inactive tabs stay mounted but invisible; opacity 0 layers are skipped by
+  // the compositor, so hidden lists cost no GPU time while keeping their
+  // scroll position and virtualized cells alive for instant switches.
+  hiddenTab: { opacity: 0 },
   headerClip: {
     position: "absolute",
     top: 0,

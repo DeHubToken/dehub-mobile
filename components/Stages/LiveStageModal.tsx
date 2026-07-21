@@ -12,6 +12,7 @@ import {
   StatusBar,
   TextInput,
   ActivityIndicator,
+  KeyboardAvoidingView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
@@ -274,6 +275,9 @@ const LiveStageModal: React.FC = () => {
     >
       <StatusBar barStyle="light-content" backgroundColor="#0a0a0f" />
       <SafeAreaView style={{ flex: 1, backgroundColor: "#0a0a0f" }}>
+        {/* Edge-to-edge Android doesn't resize for the keyboard — without this
+            the TTS input at the bottom gets covered while typing. */}
+        <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
         {/* Floating reactions overlay */}
         <View style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, zIndex: 50 }} pointerEvents="none">
           {floatingReactions.map(r => (
@@ -672,6 +676,7 @@ const LiveStageModal: React.FC = () => {
             </Text>
           </TouchableOpacity>
         </View>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     </Modal>
   );

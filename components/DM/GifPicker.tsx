@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, FlatList, Image, Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, Image, KeyboardAvoidingView, Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import env from '../../config/env';
 
@@ -115,7 +115,8 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
 
   return (
     <Modal visible={visible} animationType="slide" onRequestClose={onClose} transparent>
-      <View className="flex-1 justify-end">
+      {/* Edge-to-edge Android doesn't resize for the keyboard — lift the sheet. */}
+      <KeyboardAvoidingView behavior="padding" className="flex-1 justify-end">
         <TouchableOpacity activeOpacity={1} onPress={onClose} className="flex-1 bg-black/40" />
         <View className="bg-theme-neutrals-900 rounded-t-2xl p-3 h-[70%]">
           <View className="flex-row items-center mb-2">
@@ -152,7 +153,7 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
             />
           )}
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };
