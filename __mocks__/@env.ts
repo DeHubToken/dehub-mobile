@@ -1,0 +1,17 @@
+export const API_URL = 'https://api.test.dehub.io/api';
+export const CDN_BASE_URL = 'https://cdn.test.dehub.io';
+export const APP_ENV = 'test';
+export const REOWN_PROJECT_ID = 'test-project-id';
+export const INFURA_KEY = 'test-infura-key';
+export const ALCHEMY_API_KEY = 'test-alchemy-key';
+export const WEB3AUTH_CLIENT_ID = 'test-web3auth-client-id';
+export const APP_ORIGIN = 'https://test.dehub.io';
+export const WEBSOCKET_URL = 'wss://ws.test.dehub.io';
+export const LIVEPEER_API_KEY = 'test-livepeer-key';
+export const DEBUG = 'false';
+export const AUTH_PROVIDER = 'web3auth';
+export const TENOR_API_KEY = 'test-tenor-key';
+export const PIMLICO_API_KEY = 'test-pimlico-key';
+export const STRIPE_PUBLISHABLE_KEY = 'test-stripe-key';
+export const LEGACY_APP_ORIGIN = 'https://legacy.test.dehub.io';
+export const SUPABASE_EDGE_BASE_URL = 'https://edge.test.supabase.co';

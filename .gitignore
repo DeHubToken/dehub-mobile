@@ -1,0 +1,61 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+cosmic-echo-hero-main/
+# Native
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# local env files
+.env*.local
+.env
+
+# typescript
+*.tsbuildinfo
+
+# Android build outputs (keep android/ folder, ignore build artifacts)
+android/app/build/
+android/app/.cxx/
+android/build/
+android/.gradle/
+android/local.properties
+*.apk
+*.aab
+
+# iOS build outputs (keep ios/ folder, ignore build artifacts)
+ios/build/
+ios/Pods/
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcodeproj/xcuserdata/
+*.ipa
+
+# Service keys
+dhb-service-key.json
+
+# Jest coverage output
+coverage/
+jest-junit.xml
+hs_err_pid*.log

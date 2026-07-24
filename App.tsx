@@ -1,0 +1,295 @@
+import {
+  NavigationContainer,
+  DarkTheme as RNDarkTheme,
+  NavigationState,
+  createNavigationContainerRef,
+} from "@react-navigation/native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { Toaster } from "sonner-native";
+import { toastTheme } from "./theme/toastTheme";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import {
+  queryClient,
+  queryCachePersister,
+  PERSIST_MAX_AGE,
+  PERSIST_BUSTER,
+} from "./config/queryClient";
+import "./global.css";
+import SplashScreen from "./screens/SplashScreen";
+import NoInternetScreen from "./screens/NoInternetScreen";
+import { useNetworkStatus } from "./hooks/useNetworkStatus";
+import React, { useCallback, useEffect, useState } from "react";
+import {
+  BackHandler,
+  KeyboardAvoidingView,
+  LogBox,
+  StatusBar,
+  View,
+} from "react-native";
+import * as WebBrowser from "expo-web-browser";
+import * as ExpoSplashScreen from "expo-splash-screen";
+import { theme } from "./theme";
+import { AuthProvider, useAuthState, useUser } from "./context/AuthContext";
+import { WebSocketProvider } from "./context/WebSocketContext";
+import { DMProvider } from "./context/DMContext";
+import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
+import { StoryViewerProvider } from "./context/StoryViewerContext";
+import RootNavigator from "./navigation/RootNavigator";
+import { MessagingProvider } from "./context/MessagingContext";
+import { PushNotificationsProvider } from "./services/push";
+import { linkingConfig } from "./navigation/linking.config";
+import { prewarmWeb3Auth } from "./config/web3auth.config";
+import { loadMutedState } from "./libs/videoMutedState";
+import { loadHueState } from "./libs/audioHueState";
+import { Platform } from "react-native";
+import UpdateAppModal from "./components/UpdateAppModal";
+import { useAppUpdate } from "./hooks/useAppUpdate";
+import { useNavigationPersistence } from "./hooks/useNavigationPersistence";
+import { ErrorBoundary } from "./components/ErrorBoundary";
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n";
+import { useAppLifecycle } from "./hooks/useAppLifecycle";
+import { createLogger } from "./libs/logger";
+import { forceFlushBatchViews } from "./services/view.service";
+import PermissionModalProvider from "./components/ui/PermissionModal";
+import { useUploadProcessor } from "./services/upload.processor";
+import UploadProgressPill from "./components/Upload/UploadProgressPill";
+import { setUploadCacheKey, hydrateUploadStore, clearUploadStore } from "./store/upload.store";
+import { CallProvider } from "./context/CallContext";
+import CallModalsHost from "./components/Call/CallModalsHost";
+import CallMiniPlayer from "./components/Call/CallMiniPlayer";
+import { StageProvider } from "./context/StageContext";
+import StagesModalsHost from "./components/Stages/StagesModalsHost";
+import StageMiniPlayer from "./components/Stages/StageMiniPlayer";
+
+const logger = createLogger("App");
+
+export const navigationRef = createNavigationContainerRef();
+
+// Keep the native splash screen visible until we explicitly hide it
+// This prevents white flash between native splash and React app
+ExpoSplashScreen.preventAutoHideAsync().catch(() => {
+  // Ignore errors - splash screen might already be hidden
+});
+
+export default function App() {
+  // Complete any pending browser auth sessions (Web3Auth, OAuth)
+  WebBrowser.maybeCompleteAuthSession();
+
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [appReady, setAppReady] = React.useState(false);
+  const { hasInternet, isConnected, checkConnection } = useNetworkStatus();
+
+  // App lifecycle management
+  const { appState, wasLikelyKilled, backgroundDuration } = useAppLifecycle({
+    onForeground: useCallback(() => {
+      logger.info("App came to foreground", { backgroundDuration });
+      // Re-prewarm Web3Auth on resume – if the session went stale while
+      // backgrounded the old instance was already discarded so this creates
+      // a fresh one silently.
+      prewarmWeb3Auth();
+    }, []),
+    onBackground: useCallback(() => {
+      logger.info("App went to background");
+      // Flush any pending feed view batches when app goes to background
+      forceFlushBatchViews();
+    }, []),
+  });
+
+  React.useEffect(() => {
+    // Kick off background Web3Auth prewarm to avoid first SignIn lag
+    prewarmWeb3Auth();
+    // Pre-warm persistent media settings so video/audio players have correct
+    // initial values synchronously (no race condition with AsyncStorage)
+    loadMutedState().catch(() => { });
+    loadHueState().catch(() => { });
+  }, []);
+
+  // Hide native splash once network status is determined
+  // This ensures our SplashScreen component is mounted and ready
+  React.useEffect(() => {
+    if (hasInternet !== null && isConnected !== null) {
+      // Small delay to ensure our SplashScreen is rendered
+      const timer = setTimeout(() => {
+        ExpoSplashScreen.hideAsync().catch(() => { });
+        setAppReady(true);
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [hasInternet, isConnected]);
+
+  // Show our SplashScreen while checking network/loading
+  // The native splash stays visible until appReady
+  if (isLoading || hasInternet === null || isConnected === null) {
+    return (
+      <View style={{ flex: 1, backgroundColor: '#000000' }}>
+        <SplashScreen />
+      </View>
+    );
+  }
+
+  if (!hasInternet) {
+    return (
+      <I18nextProvider i18n={i18n}>
+        <SafeAreaProvider className="flex-1 select-none bg-theme-background">
+          <NoInternetScreen onRetry={checkConnection} />
+        </SafeAreaProvider>
+      </I18nextProvider>
+    );
+  }
+
+  return (
+    <I18nextProvider i18n={i18n}>
+      <ErrorBoundary showDetails={__DEV__}>
+        <PersistQueryClientProvider
+          client={queryClient}
+          persistOptions={{
+            persister: queryCachePersister,
+            maxAge: PERSIST_MAX_AGE,
+            buster: PERSIST_BUSTER,
+          }}
+        >
+        <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#000" }}>
+          <SafeAreaProvider className="flex-1 select-none bg-theme-background">
+            <AuthProvider>
+              <WebSocketProvider>
+                <DMProvider>
+                  <StoryViewerProvider>
+                    <BootGate />
+                  </StoryViewerProvider>
+                </DMProvider>
+              </WebSocketProvider>
+            </AuthProvider>
+            <Toaster
+              position="top-center"
+              offset={56}
+              richColors
+              toastOptions={{
+                style: toastTheme.containerStyle,
+              }}
+            />
+            <PermissionModalProvider />
+          </SafeAreaProvider>
+        </GestureHandlerRootView>
+        </PersistQueryClientProvider>
+      </ErrorBoundary>
+    </I18nextProvider>
+  );
+}
+
+const MIN_SPLASH_MS = 2500;
+
+const BootGate: React.FC = () => {
+  const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
+  const user = useUser();
+  // Only run update checks in production builds
+  const { updateInfo, showModal, closeModal } = useAppUpdate();
+  const isAuthenticated = isSignedIn && !needsUsername;
+
+  const [minSplashDone, setMinSplashDone] = React.useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setMinSplashDone(true), MIN_SPLASH_MS);
+    return () => clearTimeout(t);
+  }, []);
+
+  useUploadProcessor();
+
+  useEffect(() => {
+    if (isAuthenticated && user?.walletAddress) {
+      setUploadCacheKey(user.walletAddress);
+      hydrateUploadStore();
+    } else {
+      clearUploadStore();
+    }
+  }, [isAuthenticated, user?.walletAddress]);
+
+  // Navigation persistence with error handling
+  const { isReady, initialState, onStateChange } =
+    useNavigationPersistence(isAuthenticated);
+
+  // Handle navigation state change with error protection
+  const handleStateChange = useCallback(
+    (state: NavigationState | undefined) => {
+      try {
+        onStateChange(state);
+      } catch (error) {
+        logger.error("Navigation state change error", error);
+      }
+    },
+    [onStateChange]
+  );
+
+  // Show splash while loading auth state, navigation state, or minimum splash time
+  // Wrapped in black View to prevent any white flash
+  if (isBootLoading || !isReady || !minSplashDone) {
+    return (
+      <View style={{ flex: 1, backgroundColor: '#000000' }}>
+        <SplashScreen />
+      </View>
+    );
+  }
+
+  return (
+    <>
+      <SafeAreaView className="flex-1 bg-theme-background">
+        <StatusBar barStyle="light-content" backgroundColor="#000" />
+        <ErrorBoundary
+          showDetails={__DEV__}
+          onError={(error) => {
+            logger.error("Navigation error boundary caught", error);
+          }}
+        >
+          <NavigationContainer
+            ref={navigationRef}
+            linking={linkingConfig}
+            initialState={initialState}
+            onStateChange={handleStateChange}
+            theme={{
+              ...RNDarkTheme,
+              colors: {
+                ...RNDarkTheme.colors,
+                background: "#000000",
+                card: "#000000",
+                border: "#000000",
+                text: "#ffffff",
+                primary: theme.colors.accent,
+              },
+            }}
+            onReady={() => {
+              logger.info("Navigation container ready");
+            }}
+          >
+            <PushNotificationsProvider>
+              <UserProfileSheetProvider>
+                <MessagingProvider>
+                  <CallProvider>
+                    <StageProvider>
+                      <RootNavigator />
+                      <CallModalsHost />
+                      <CallMiniPlayer />
+                      <StagesModalsHost />
+                      <StageMiniPlayer />
+                    </StageProvider>
+                  </CallProvider>
+                </MessagingProvider>
+              </UserProfileSheetProvider>
+            </PushNotificationsProvider>
+          </NavigationContainer>
+        </ErrorBoundary>
+      </SafeAreaView>
+      <UploadProgressPill />
+      {!__DEV__ && (
+        <UpdateAppModal
+          visible={showModal}
+          onClose={closeModal}
+          isRequired={updateInfo.isRequired}
+          version={updateInfo.latestVersion}
+          releaseNotes={updateInfo.releaseNotes}
+          downloadUrl={updateInfo.downloadUrl}
+        />
+      )}
+    </>
+  );
+};

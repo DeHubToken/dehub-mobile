@@ -1,0 +1,14 @@
+import env from "./env"
+
+export const BUY_FROM_DEX_LINK="https://app.camelot.exchange/?outputCurrency=0x9caae40dcf950afea443119e51e821d6fe2437ca"
+export const TERMS_OF_SERVICE_LINK="https://docs.dhb.gg/docs/terms-of-service"
+export const PRIVACY_POLICY_LINK="https://docs.dhb.gg/docs/privacy"
+export const DELETE_DATA_OR_ACCOUNT_LINK="https://dehub.io/delete-account"
+export const SUPPORT_MAIL="dev@dehub.io"
+export const DEV_MAIL="alhaji4megahit@gmail.com"
+export const LIVEPEER_RMTP_URL="rtmp://rtmp.livepeer.com/live"
+export const WEBSITE_LINK="https://dehub.io"
+export const DPAY_TX_LINK="https://dehub.io/dpay/tnx"
+export const LEGACY_WEBSITE_LINK= env.LEGACY_APP_ORIGIN
+export const GOOGLE_PLAY_LINK="https://play.google.com/store/apps/details?id=io.dehub.mobile"
+export const APP_STORE_LINK=""

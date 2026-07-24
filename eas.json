@@ -1,0 +1,41 @@
+{
+  "cli": {
+    "version": ">= 16.19.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "store-testing": {
+      "android": {
+        "buildType": "app-bundle"
+      }
+    },
+    "production": {
+      "autoIncrement": true
+    },
+    "production-apk": {
+      "extends": "production",
+      "android": {
+        "buildType": "apk"
+      }
+    }
+  },
+  "submit": {
+    "store-testing": {
+      "android": {
+        "track": "internal"
+      }
+    },
+    "production": {
+      "ios": {
+        "companyName": "DeLabs LTD"
+      }
+    }
+  }
+}

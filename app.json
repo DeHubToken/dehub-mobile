@@ -1,0 +1,149 @@
+{
+  "expo": {
+    "scheme": "dehub",
+    "name": "DeHub",
+    "slug": "dehub",
+    "version": "1.14.0",
+    "orientation": "portrait",
+    "icon": "./assets/AppIcons/playstore.png",
+    "notification": {
+      "icon": "./assets/AppIcons/notification_badge.png",
+      "color": "#8b5cf6"
+    },
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/AppIcons/playstore.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "updates": {
+      "enabled": true,
+      "fallbackToCacheTimeout": 0
+    },
+    "ios": {
+      "supportsTablet": true,
+      "jsEngine": "hermes",
+      "bundleIdentifier": "io.dehub.mobile",
+      "icon": "./assets/AppIcons/appstore.png",
+      "associatedDomains": [
+        "applinks:dehub.io",
+        "applinks:legacy.dehub.io",
+        "applinks:*.dehub.io"
+      ],
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": [
+          "metamask",
+          "trust",
+          "safe",
+          "rainbow",
+          "uniswap"
+        ],
+        "NSCameraUsageDescription": "This app requires access to your camera.",
+        "NSMicrophoneUsageDescription": "This app requires access to your microphone."
+      },
+      "bitcode": false
+    },
+    "android": {
+      "icon": "./assets/AppIcons/playstore.png",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/AppIcons/playstore.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "io.dehub.mobile",
+      "versionCode": 43,
+      "compileSdkVersion": 35,
+      "targetSdkVersion": 35,
+      "softwareKeyboardLayoutMode": "resize",
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.CAMERA",
+        "android.permission.INTERNET",
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.WAKE_LOCK",
+        "android.permission.BLUETOOTH"
+      ],
+      "googleServicesFile": "./google-services.json",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/app"
+            },
+            {
+              "scheme": "https",
+              "host": "legacy.dehub.io",
+              "pathPrefix": "/stream"
+            },
+            {
+              "scheme": "https",
+              "host": "legacy.dehub.io",
+              "pathPrefix": "/feeds"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
+    },
+    "web": {
+      "favicon": "./assets/AppIcons/web/favicon.png",
+      "bundler": "metro"
+    },
+    "description": "The decentralised entertainment hub, watch, shop & play on-chain today.",
+    "jsEngine": "hermes",
+    "plugins": [
+      "expo-splash-screen",
+      "expo-secure-store",
+      "./libs/reown.queries.js",
+      [
+        "expo-notifications",
+        {
+          "color": "#8b5cf6",
+          "defaultChannel": "default"
+        }
+      ],
+      [
+        "expo-video",
+        {
+          "supportsBackgroundPlayback": true,
+          "supportsPictureInPicture": true
+        }
+      ],
+      "expo-audio",
+      "expo-font",
+      "expo-asset",
+      "@config-plugins/react-native-webrtc",
+      "@react-native-community/datetimepicker",
+      "expo-localization",
+      "expo-web-browser",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "androidGradlePlugin": "8.8.0",
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "enableSeparateBuildPerCPUArchitecture": true
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "061f3290-d881-487e-a85a-1f150376003d"
+      }
+    },
+    "owner": "an0nym0usang3l"
+  }
+}
