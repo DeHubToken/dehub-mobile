@@ -43,6 +43,14 @@ import GuideScreen from '../screens/GuideScreen';
 import EventsScreen from '../screens/EventsScreen';
 import CareersScreen from '../screens/CareersScreen';
 import GovernanceScreen from '../screens/GovernanceScreen';
+import AffiliateScreen from '../screens/AffiliateScreen';
+import FeatureRequestsScreen from '../screens/FeatureRequestsScreen';
+import StoresScreen from '../screens/StoresScreen';
+import StoreDetailScreen from '../screens/StoreDetailScreen';
+import ListingDetailScreen from '../screens/ListingDetailScreen';
+import WorkScreen from '../screens/WorkScreen';
+import WorkJobDetailScreen from '../screens/WorkJobDetailScreen';
+import WorkPostScreen from '../screens/WorkPostScreen';
 import { useAuthState } from "../context/AuthContext";
 
 /** Standardized gesture response distances */
@@ -154,6 +162,38 @@ export default function AppNavigator() {
         <Stack.Screen
           name={ScreenNames.Governance}
           component={GovernanceScreen}
+        />
+        {/* Public: browsing is open, voting/submitting prompts sign-in. */}
+        <Stack.Screen
+          name={ScreenNames.FeatureRequests}
+          component={FeatureRequestsScreen}
+        />
+        {/* Marketplace is browsable signed-out; buying prompts sign-in. */}
+        <Stack.Screen
+          name={ScreenNames.Stores}
+          component={StoresScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.StoreDetail}
+          component={StoreDetailScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.ListingDetail}
+          component={ListingDetailScreen}
+        />
+        {/* Bounties: browsing is open, posting/applying prompts sign-in
+            (same as web, which lets you fill the form then gates on submit). */}
+        <Stack.Screen
+          name={ScreenNames.Work}
+          component={WorkScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.WorkJobDetail}
+          component={WorkJobDetailScreen}
+        />
+        <Stack.Screen
+          name={ScreenNames.WorkPost}
+          component={WorkPostScreen}
         />
         <Stack.Screen
           name={ScreenNames.CommunityDetail}
@@ -293,6 +333,10 @@ export default function AppNavigator() {
             <Stack.Screen
               name={ScreenNames.Earnings}
               component={EarningsScreen}
+            />
+            <Stack.Screen
+              name={ScreenNames.Affiliate}
+              component={AffiliateScreen}
             />
             <Stack.Screen
               name={ScreenNames.MyLibrary}

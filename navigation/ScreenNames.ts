@@ -1,13 +1,11 @@
 export enum ScreenNames {
   App = 'App',
   Auth = 'Auth',
-  Test = 'Test',
   Root = 'Root',
   Home = 'Home',
   NoInternet = 'NoInternet',
   Splash = 'Splash',
   Profile = 'Profile',
-  Settings = 'Settings',
   Notifications = 'Notifications',
   NotificationSettings = 'NotificationSettings',
   Search = 'Search',
@@ -16,10 +14,10 @@ export enum ScreenNames {
   FeedDetail = 'FeedDetail',
   Upload = 'Upload',
   UploadTab = 'UploadTab',
-  VideoTrim = 'VideoTrim',
-  VideoUpload = 'VideoUpload',
+  // NOTE: the DM list is mounted as `DM` (BottomTabNavigator). A second
+  // `DirectMessages` entry used to exist here and silently broke push
+  // notification routing — do not reintroduce an alias for a mounted screen.
   DM = 'DM',
-  DirectMessages = 'DirectMessages',
   VideoPlayer = 'VideoPlayer',
   ImageViewer = 'ImageViewer',
   Chat = 'Chat',
@@ -46,8 +44,9 @@ export enum ScreenNames {
   ActiveSessions = 'ActiveSessions',
   ShortsViewer = 'ShortsViewer',
   ImageFeed = 'ImageFeed',
-  Call = 'Call',
-  Stages = 'Stages',
+  // Calls and Stages are presented as app-wide modals (CallModalsHost /
+  // StagesModalsHost in App.tsx), not routes — they deliberately have no
+  // ScreenNames entry. Navigating to an unregistered name throws at runtime.
   Earnings = 'Earnings',
   Communities = 'Communities',
   CommunityDetail = 'CommunityDetail',
@@ -56,6 +55,14 @@ export enum ScreenNames {
   Events = 'Events',
   Careers = 'Careers',
   Affiliate = 'Affiliate',
+  // Comments expand inline in the card (as on web) — there is no detail route.
+  FeatureRequests = 'FeatureRequests',
+  Stores = 'Stores',
+  StoreDetail = 'StoreDetail',
+  ListingDetail = 'ListingDetail',
+  Work = 'Work',
+  WorkJobDetail = 'WorkJobDetail',
+  WorkPost = 'WorkPost',
   Governance = 'Governance',
   // Auth screens
   Onboarding = 'Onboarding',

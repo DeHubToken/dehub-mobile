@@ -10,7 +10,6 @@ import { ScreenNames } from './ScreenNames';
 export type RootStackParamList = {
   [ScreenNames.App]: NavigatorScreenParams<AppStackParamList> | undefined;
   [ScreenNames.Auth]: NavigatorScreenParams<AuthStackParamList> | undefined;
-  [ScreenNames.Test]: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> = StackScreenProps<
@@ -91,7 +90,8 @@ export type AppStackParamList = {
   [ScreenNames.LikedVideos]: undefined;
   [ScreenNames.SavedPosts]: undefined;
   [ScreenNames.EditProfile]: undefined;
-  [ScreenNames.Dpay]: undefined;
+  /** `initialTab` lets the drawer's Staking entry deep-link straight to the stake tab. */
+  [ScreenNames.Dpay]: { initialTab?: "buy" | "stake" | "bridge" } | undefined;
   [ScreenNames.PrivacySettings]: undefined;
   [ScreenNames.UploadQueue]: undefined;
   [ScreenNames.Drafts]: undefined;
@@ -110,6 +110,16 @@ export type AppStackParamList = {
     quoteCount?: number;
   };
   [ScreenNames.LiveChat]: undefined;
+  [ScreenNames.LiveChatInfo]: {
+    room?: import('../services/livechat.service').LiveChatRoom;
+    isModerator?: boolean;
+    onlineCount?: number;
+    participants?: import('../services/livechat.service').LiveChatUser[];
+  } | undefined;
+  /** No params = the signed-in user's own profile (drawer); push taps pass a target. */
+  [ScreenNames.Profile]: { address?: string; username?: string } | undefined;
+  [ScreenNames.Earnings]: undefined;
+  [ScreenNames.MyLibrary]: undefined;
   [ScreenNames.FullscreenVideo]: {
     videoUrl: string;
     startTime?: number;
@@ -135,6 +145,21 @@ export type AppStackParamList = {
   [ScreenNames.Events]: undefined;
   [ScreenNames.Careers]: undefined;
   [ScreenNames.Affiliate]: undefined;
+  [ScreenNames.FeatureRequests]: undefined;
+  [ScreenNames.Stores]: undefined;
+  [ScreenNames.StoreDetail]: { storeId: string };
+  /** `listing` seeds the detail screen from the browse grid so it paints instantly. */
+  [ScreenNames.ListingDetail]: {
+    listingId: string;
+    listing?: import('../hooks/useStores').StoreListing;
+  };
+  [ScreenNames.Work]: undefined;
+  /** `job` seeds the detail screen from the browse list so it paints instantly. */
+  [ScreenNames.WorkJobDetail]: {
+    jobId: string;
+    job?: import('../hooks/useWork').WorkJob;
+  };
+  [ScreenNames.WorkPost]: undefined;
   [ScreenNames.Governance]: undefined;
 };
 

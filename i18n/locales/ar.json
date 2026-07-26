@@ -26,7 +26,9 @@
     "guide": "دليل",
     "events": "فعاليات",
     "staking": "Staking",
-    "communities": "Communities"
+    "communities": "Communities",
+    "stages": "Stages",
+    "affiliate": "Affiliate"
   },
   "feed": {
     "home": "الرئيسية",
@@ -1742,5 +1744,39 @@
     "signIn": "تسجيل الدخول",
     "tapToGetStarted": "انقر للبدء",
     "soon": "قريبًا"
+  },
+  "affiliate": {
+    "subtitle": "Earn from everyone you invite — forever",
+    "headline": "Earn {{l1}}% from everyone you invite — and {{l2}}% from everyone they invite.",
+    "intro": "Every time someone uses any DeHub revenue-generating feature, you earn residually and perpetually.",
+    "loadFailed": "Could not load affiliate stats",
+    "direct": "Direct",
+    "secondary": "Secondary",
+    "totalEarned": "Total earned",
+    "commission": "Commission",
+    "residual": "residual · perpetual",
+    "yourLink": "Your invite link",
+    "yourLinkSub": "Share anywhere. You earn {{l1}}% of every dollar your invites ever spend on DeHub, plus {{l2}}% from everyone they invite.",
+    "linkCopied": "Invite link copied",
+    "refresh": "Refresh",
+    "share": "Share",
+    "noCode": "Could not generate a code. Pull down to refresh.",
+    "yourAffiliates": "Your affiliates",
+    "yourAffiliatesSub": "The accounts you've referred to DeHub.",
+    "emptyDirect": "No affiliates yet",
+    "emptySecondary": "No secondary affiliates yet",
+    "emptyDirectBody": "Share your invite link — everyone who joins through it shows up here.",
+    "emptySecondaryBody": "When your affiliates invite their own friends, they'll appear here.",
+    "showMore": "Show more",
+    "howItWorks": "How it works",
+    "step1Title": "Share your link",
+    "step1Body": "Drop your invite link into Discord, X, YouTube, your stream — anywhere.",
+    "step2Title": "They join DeHub",
+    "step2Body": "Anyone who lands via your link is permanently attributed to you (first-touch wins, 90-day cookie).",
+    "step3Title": "Earn {{l1}}% direct",
+    "step3Body": "You receive {{l1}}% of every dollar of revenue your invites ever generate on DeHub.",
+    "step4Title": "Earn {{l2}}% secondary",
+    "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
+    "wallet": "Affiliate wallet"
   }
 }
