@@ -16,7 +16,7 @@ import {
 } from "react-native";
 import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
-import { Audio, type AVPlaybackSource } from "expo-av";
+import { useAudioPlayer } from "expo-audio";
 import { getUnifiedFeed, type UnifiedFeedItem } from "../../services/feed.unified.service";
 import { getAvatarUrl } from "../../libs";
 import type { AttachedSound } from "../../hooks/usePostSound";
@@ -56,7 +56,9 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
   const [playingId, setPlayingId] = useState<string | null>(null);
-  const soundRef = useRef<Audio.Sound | null>(null);
+  // Single preview player; each track is attached with replace() rather than
+  // creating and unloading a Sound per tap.
+  const previewPlayer = useAudioPlayer(null);
 
   const [heightPct, setHeightPct] = useState(MIN_PCT);
   const heightAnim = useRef(new Animated.Value(MIN_PCT)).current;
@@ -166,55 +168,61 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
     }
   }, [loading, hasMore, page, debouncedSearch]);
 
+  // expo-audio has no stop(); pause + rewind is the equivalent.
+  const stopPreview = useCallback(() => {
+    try {
+      previewPlayer.pause();
+      void previewPlayer.seekTo(0).catch(() => {});
+    } catch {}
+  }, [previewPlayer]);
+
   // Preview playback
   const togglePreview = useCallback(
     async (item: UnifiedFeedItem) => {
       const id = String(item.tokenId ?? "");
       if (playingId === id) {
-        await soundRef.current?.stopAsync();
+        stopPreview();
         setPlayingId(null);
         return;
       }
-      // Stop previous
-      if (soundRef.current) {
-        await soundRef.current.stopAsync().catch(() => {});
-        await soundRef.current.unloadAsync().catch(() => {});
-      }
+      // Stop whatever was previewing; replace() swaps the source in place.
+      stopPreview();
       const audioUrl = resolveAudioUrl(item.audioUrl, item.tokenId);
       try {
-        const { sound } = await Audio.Sound.createAsync(
-          { uri: audioUrl } as AVPlaybackSource,
-          { shouldPlay: true },
-        );
-        soundRef.current = sound;
+        previewPlayer.replace({ uri: audioUrl });
+        previewPlayer.play();
         setPlayingId(id);
-        sound.setOnPlaybackStatusUpdate((status) => {
-          if (status.isLoaded && status.didJustFinish) {
-            setPlayingId(null);
-          }
-        });
       } catch (e) {
         console.error("[SoundPicker] Preview error:", e);
         setPlayingId(null);
       }
     },
-    [playingId],
+    [playingId, previewPlayer, stopPreview],
   );
 
-  // Cleanup sound on close
+  // Clear the "playing" pill when a preview reaches its end.
   useEffect(() => {
-    if (!visible && soundRef.current) {
-      soundRef.current.unloadAsync().catch(() => {});
-      soundRef.current = null;
+    const sub = previewPlayer.addListener("playbackStatusUpdate", (status) => {
+      if (status.isLoaded && status.didJustFinish) {
+        setPlayingId(null);
+      }
+    });
+    return () => sub.remove();
+  }, [previewPlayer]);
+
+  // Stop preview on close. The player is released by useAudioPlayer.
+  useEffect(() => {
+    if (!visible) {
+      stopPreview();
       setPlayingId(null);
     }
-  }, [visible]);
+  }, [visible, stopPreview]);
 
   const handleSelect = useCallback(
     (item: UnifiedFeedItem) => {
       const tokenId = String(item.tokenId ?? "");
       const audioUrl = resolveAudioUrl(item.audioUrl, tokenId);
-      soundRef.current?.stopAsync().catch(() => {});
+      stopPreview();
       onSelect({
         url: audioUrl,
         title: resolveTrackTitle(item),
@@ -224,7 +232,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
         duration: item.audioDuration,
       });
     },
-    [onSelect],
+    [onSelect, stopPreview],
   );
 
   const renderItem = useCallback(
