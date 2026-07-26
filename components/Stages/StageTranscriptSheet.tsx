@@ -10,7 +10,8 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import { Audio, AVPlaybackStatus } from "expo-av";
+import { useAudioPlayer } from "expo-audio";
+import { configureForPlayback } from "../../libs/audioSession";
 import Slider from "@react-native-community/slider";
 import { supabase } from "../../services/supabase";
 import { useAuth } from "../../context/AuthContext";
@@ -104,9 +105,14 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   const { user } = useAuth();
   const walletAddress = user?.walletAddress || user?.address || "";
 
-  // Sound playback state
-  const soundRef = useRef<Audio.Sound | null>(null);
+  // Sound playback state. One long-lived player; the recording is attached on
+  // demand with replace(). loadedRef stands in for the old
+  // `soundRef.current !== null` check, since the player object always exists.
+  const player = useAudioPlayer(null);
+  const loadedRef = useRef(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  // MILLISECONDS by convention here (the slider and formatTimestamp(x / 1000)
+  // depend on it). expo-audio reports seconds, converted at the boundaries.
   const [positionMs, setPositionMs] = useState(0);
   const [durationMs, setDurationMs] = useState(0);
   const [isAudioLoading, setIsAudioLoading] = useState(false);
@@ -217,89 +223,83 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
     }
   }, [stageId, fetchTranscript]);
 
-  // Sound setup & control
-  const onPlaybackStatusUpdate = useCallback((status: AVPlaybackStatus) => {
-    if (!status.isLoaded) return;
-    setIsPlaying(status.isPlaying);
-    setPositionMs(status.positionMillis);
-    if (status.durationMillis) {
-      setDurationMs(status.durationMillis);
-    }
-    if (status.didJustFinish) {
-      setIsPlaying(false);
-      setPositionMs(0);
-      soundRef.current?.setPositionAsync(0).catch(() => {});
-    }
-  }, []);
+  // Sound setup & control. Status now arrives on the player's event stream
+  // rather than a per-Sound callback, so it lives in an effect.
+  useEffect(() => {
+    const sub = player.addListener("playbackStatusUpdate", (status) => {
+      if (!status.isLoaded) return;
+      setIsPlaying(status.playing);
+      // seconds -> milliseconds
+      setPositionMs(status.currentTime * 1000);
+      if (status.duration) {
+        setDurationMs(status.duration * 1000);
+      }
+      if (status.didJustFinish) {
+        setIsPlaying(false);
+        setPositionMs(0);
+        player.seekTo(0).catch(() => {});
+      }
+    });
+    return () => sub.remove();
+  }, [player]);
 
   const loadAudio = useCallback(async () => {
     if (!space?.recording_url) return;
     setIsAudioLoading(true);
     try {
-      await Audio.setAudioModeAsync({
-        allowsRecordingIOS: false,
-        playsInSilentModeIOS: true,
-      });
-
-      if (soundRef.current) {
-        await soundRef.current.unloadAsync();
-        soundRef.current = null;
-      }
-
-      const { sound } = await Audio.Sound.createAsync(
-        { uri: space.recording_url },
-        { shouldPlay: false },
-        onPlaybackStatusUpdate
-      );
-      soundRef.current = sound;
+      await configureForPlayback();
+      // replace() swaps the source on the existing player; there is no
+      // separate unload step. shouldPlay:false is the default — we simply do
+      // not call play() here.
+      player.replace({ uri: space.recording_url });
+      loadedRef.current = true;
     } catch (e) {
       console.warn("Failed to load transcript audio", e);
     } finally {
       setIsAudioLoading(false);
     }
-  }, [space?.recording_url, onPlaybackStatusUpdate]);
+  }, [space?.recording_url, player]);
 
   const togglePlay = useCallback(async () => {
-    if (!soundRef.current) {
+    if (!loadedRef.current) {
       await loadAudio();
     }
-    if (!soundRef.current) return;
+    if (!loadedRef.current) return;
 
     try {
-      const status = await soundRef.current.getStatusAsync();
-      if (status.isLoaded) {
-        if (status.isPlaying) {
-          await soundRef.current.pauseAsync();
-        } else {
-          await soundRef.current.playAsync();
-        }
-      }
+      // playing is a plain property, and play()/pause() are synchronous.
+      if (player.playing) player.pause();
+      else player.play();
     } catch (e) {
       console.warn("Play/pause error", e);
     }
-  }, [loadAudio]);
+  }, [loadAudio, player]);
 
   const seekTo = useCallback(async (seconds: number) => {
-    if (!soundRef.current) {
+    if (!loadedRef.current) {
       await loadAudio();
     }
-    if (soundRef.current) {
+    if (loadedRef.current) {
       try {
-        await soundRef.current.setPositionAsync(Math.round(seconds * 1000));
-        await soundRef.current.playAsync();
+        // Already seconds — expo-audio's seekTo takes seconds, so the old
+        // `* 1000` conversion drops away entirely.
+        await player.seekTo(seconds);
+        player.play();
       } catch (e) {
         console.warn("Seek error", e);
       }
     }
-  }, [loadAudio]);
+  }, [loadAudio, player]);
 
   // Clean up audio on close or unmount
   useEffect(() => {
     if (!visible) {
-      if (soundRef.current) {
-        soundRef.current.unloadAsync().catch(() => {});
-        soundRef.current = null;
-      }
+      // The player itself is released by useAudioPlayer on unmount; on close
+      // we just stop it and mark the source detached so the next open reloads.
+      try {
+        player.pause();
+      } catch {}
+      loadedRef.current = false;
       setIsPlaying(false);
       setPositionMs(0);
       setDurationMs(0);
@@ -592,8 +592,9 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                   maximumValue={durationMs || 1}
                   value={positionMs}
                   onSlidingComplete={async (val) => {
-                    if (soundRef.current) {
-                      await soundRef.current.setPositionAsync(Math.round(val));
+                    // Slider value is milliseconds; seekTo takes seconds.
+                    if (loadedRef.current) {
+                      await player.seekTo(val / 1000);
                     }
                   }}
                   minimumTrackTintColor="#A855F7"

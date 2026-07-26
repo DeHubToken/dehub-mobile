@@ -6,7 +6,8 @@
  */
 import React, { memo, useCallback, useEffect, useRef, useState, useMemo } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, LayoutChangeEvent } from "react-native";
-import { Audio, AVPlaybackStatus } from "expo-av";
+import { useAudioPlayer } from "expo-audio";
+import { configureForPlayback } from "../../libs/audioSession";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -89,9 +90,15 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
   duration: durationProp,
   compact = false,
 }) => {
-  const soundRef = useRef<Audio.Sound | null>(null);
+  // The URL is known at mount, so the source is attached directly — the hook
+  // handles loading and releases the player on unmount. This replaces the old
+  // manual preload effect.
+  const player = useAudioPlayer(audioUrl ? { uri: audioUrl } : null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  // MILLISECONDS by convention (durationProp arrives in seconds and is scaled
+  // below; the waveform progress ratio divides by it). expo-audio reports
+  // seconds, converted at each boundary.
   const [positionMs, setPositionMs] = useState(0);
   const [durationMs, setDurationMs] = useState((durationProp ?? 0) * 1000);
   const progress = useSharedValue(0);
@@ -100,22 +107,33 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
   const waveformWidth = useRef(0);
   const isFocused = useIsFocused();
 
+  // Holds a stable identity for the audio-focus registry. The player is read
+  // from a ref so this callback never has to be recreated.
+  const playerRef = useRef(player);
+  playerRef.current = player;
+
   const focusStopRef = useRef(() => {
-    soundRef.current?.pauseAsync().catch(() => {});
+    try {
+      playerRef.current?.pause();
+    } catch {}
     setIsPlaying(false);
     releaseAudioFocus(focusStopRef.current);
   });
 
   const waveform = useMemo(() => generateWaveform(audioUrl), [audioUrl]);
 
-  const onPlaybackStatus = useCallback(
-    (status: AVPlaybackStatus) => {
+  // Status arrives on the player's event stream. All positions are converted
+  // from expo-audio's SECONDS into this component's millisecond convention.
+  useEffect(() => {
+    const sub = player.addListener("playbackStatusUpdate", (status) => {
       if (!status.isLoaded) return;
       if (seekingRef.current) return;
-      setPositionMs(status.positionMillis);
-      if (status.durationMillis) setDurationMs(status.durationMillis);
-      const dur = status.durationMillis || durationMs || 1;
-      progress.value = withTiming(status.positionMillis / dur, {
+      const posMs = status.currentTime * 1000;
+      const statusDurMs = status.duration ? status.duration * 1000 : 0;
+      setPositionMs(posMs);
+      if (statusDurMs) setDurationMs(statusDurMs);
+      const dur = statusDurMs || durationMs || 1;
+      progress.value = withTiming(posMs / dur, {
         duration: 200,
         easing: Easing.linear,
       });
@@ -125,49 +143,26 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
         setPositionMs(0);
         releaseAudioFocus(focusStopRef.current);
       }
-    },
-    [durationMs, progress],
-  );
+    });
+    return () => sub.remove();
+  }, [player, durationMs, progress]);
 
   useEffect(() => {
-    let cancelled = false;
-    (async () => {
+    if (!isFocused && isPlaying) {
       try {
-        await Audio.setAudioModeAsync({ allowsRecordingIOS: false, playsInSilentModeIOS: true });
-        const { sound } = await Audio.Sound.createAsync(
-          { uri: audioUrl },
-          { shouldPlay: false },
-          onPlaybackStatus,
-        );
-        if (cancelled) {
-          sound.unloadAsync().catch(() => {});
-          return;
-        }
-        soundRef.current = sound;
-        const status = await sound.getStatusAsync();
-        if (status.isLoaded && status.durationMillis) {
-          setDurationMs(status.durationMillis);
-        }
-      } catch {
-        // Preload failed — will load on play tap
-      }
-    })();
-    return () => { cancelled = true; };
-  }, [audioUrl, onPlaybackStatus]);
-
-  useEffect(() => {
-    if (!isFocused && isPlaying && soundRef.current) {
-      soundRef.current.pauseAsync().catch(() => {});
+        player.pause();
+      } catch {}
       setIsPlaying(false);
       releaseAudioFocus(focusStopRef.current);
     }
-  }, [isFocused, isPlaying]);
+  }, [isFocused, isPlaying, player]);
 
   useEffect(() => {
     const stopFn = focusStopRef.current;
+    // useAudioPlayer releases the native player itself; only the focus
+    // registration needs unwinding here.
     return () => {
       releaseAudioFocus(stopFn);
-      soundRef.current?.unloadAsync().catch(() => {});
     };
   }, []);
 
@@ -176,17 +171,10 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
       setIsLoading(true);
       requestAudioFocus(focusStopRef.current);
       stopActivePreview();
-      await Audio.setAudioModeAsync({ allowsRecordingIOS: false, playsInSilentModeIOS: true });
-      if (soundRef.current) {
-        await soundRef.current.unloadAsync();
-        soundRef.current = null;
-      }
-      const { sound } = await Audio.Sound.createAsync(
-        { uri: audioUrl },
-        { shouldPlay: true },
-        onPlaybackStatus,
-      );
-      soundRef.current = sound;
+      await configureForPlayback();
+      // The source is already attached by useAudioPlayer, so this only needs
+      // to (re)start playback rather than tear down and rebuild a Sound.
+      player.play();
       setIsPlaying(true);
     } catch (e) {
       console.error("[VoiceNotePlayer] load error", e);
@@ -194,38 +182,35 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
     } finally {
       setIsLoading(false);
     }
-  }, [audioUrl, onPlaybackStatus]);
+  }, [player]);
 
   const handleToggle = useCallback(async () => {
     if (isLoading) return;
-    if (!soundRef.current) {
+    if (!player.isLoaded) {
       await loadAndPlay();
       return;
     }
-    const status = await soundRef.current.getStatusAsync();
-    if (!status.isLoaded) {
-      await loadAndPlay();
-      return;
-    }
-    if (status.didJustFinish || (status.positionMillis >= (status.durationMillis ?? 1))) {
+    // At (or past) the end — restart from zero. currentTime/duration are in
+    // SECONDS here, so the comparison stays in seconds rather than millis.
+    if (player.duration > 0 && player.currentTime >= player.duration) {
       requestAudioFocus(focusStopRef.current);
       stopActivePreview();
-      await soundRef.current.setPositionAsync(0);
-      await soundRef.current.playAsync();
+      await player.seekTo(0);
+      player.play();
       setIsPlaying(true);
       return;
     }
     if (isPlaying) {
-      await soundRef.current.pauseAsync();
+      player.pause();
       setIsPlaying(false);
       releaseAudioFocus(focusStopRef.current);
     } else {
       requestAudioFocus(focusStopRef.current);
       stopActivePreview();
-      await soundRef.current.playAsync();
+      player.play();
       setIsPlaying(true);
     }
-  }, [isPlaying, isLoading, loadAndPlay]);
+  }, [isPlaying, isLoading, loadAndPlay, player]);
 
   const seekTo = useCallback(async (ratio: number) => {
     const clamped = Math.max(0, Math.min(1, ratio));
@@ -233,12 +218,11 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
     const posMs = Math.round(clamped * dur);
     setPositionMs(posMs);
     progress.value = clamped;
-    if (soundRef.current) {
-      try {
-        await soundRef.current.setPositionAsync(posMs);
-      } catch { /* ignore seek errors */ }
-    }
-  }, [durationMs, progress]);
+    try {
+      // posMs is milliseconds; seekTo takes seconds.
+      await player.seekTo(posMs / 1000);
+    } catch { /* ignore seek errors */ }
+  }, [durationMs, progress, player]);
 
   const onSeekStart = useCallback(() => {
     seekingRef.current = true;
