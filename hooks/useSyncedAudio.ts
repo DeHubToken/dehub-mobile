@@ -1,5 +1,5 @@
-import { useEffect, useRef, useCallback } from "react";
-import { Audio, type AVPlaybackSource } from "expo-av";
+import { useEffect, useCallback } from "react";
+import { useAudioPlayer } from "expo-audio";
 import type { VideoPlayer } from "expo-video";
 
 interface UseSyncedAudioOptions {
@@ -13,83 +13,56 @@ export function useSyncedAudio({
   isPlaying,
   player,
 }: UseSyncedAudioOptions) {
-  const soundRef = useRef<Audio.Sound | null>(null);
+  // Migrated from expo-av (removed in SDK 55). useAudioPlayer loads the source
+  // and releases the native player on unmount, so the manual load/unload
+  // effect this hook used to carry is gone.
+  const audio = useAudioPlayer(soundtrackUrl ? { uri: soundtrackUrl } : null);
   const hasSoundtrack = !!soundtrackUrl;
 
-  // Load/unload sound
+  const stopSoundtrack = useCallback(() => {
+    try {
+      // expo-audio has no stop(); pause + rewind is the equivalent.
+      audio.pause();
+      void audio.seekTo(0).catch(() => {});
+    } catch {}
+  }, [audio]);
+
+  // Sync play/pause with the video
   useEffect(() => {
-    if (!soundtrackUrl) return;
-    let cancelled = false;
+    if (!hasSoundtrack) return;
+    try {
+      if (isPlaying) audio.play();
+      else audio.pause();
+    } catch {}
+  }, [isPlaying, hasSoundtrack, audio]);
 
-    (async () => {
-      try {
-        const { sound } = await Audio.Sound.createAsync(
-          { uri: soundtrackUrl } as AVPlaybackSource,
-          { shouldPlay: false, isLooping: false },
-        );
-        if (cancelled) {
-          await sound.unloadAsync();
-          return;
-        }
-        soundRef.current = sound;
-      } catch (e) {
-        console.error("[useSyncedAudio] Failed to load soundtrack:", e);
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-      if (soundRef.current) {
-        soundRef.current.unloadAsync().catch(() => {});
-        soundRef.current = null;
-      }
-    };
-  }, [soundtrackUrl]);
-
-  // Sync play/pause
+  // Drift correction against the video clock
   useEffect(() => {
-    const sound = soundRef.current;
-    if (!sound || !hasSoundtrack) return;
-
-    if (isPlaying) {
-      sound.playAsync().catch(() => {});
-    } else {
-      sound.pauseAsync().catch(() => {});
-    }
-  }, [isPlaying, hasSoundtrack]);
-
-  // Sync seek on video seek
-  useEffect(() => {
-    const sound = soundRef.current;
-    if (!sound || !player || !hasSoundtrack) return;
+    if (!player || !hasSoundtrack) return;
 
     const sub = player.addListener("timeUpdate", (evt: { currentTime: number }) => {
-      if (!soundRef.current || !player) return;
-      // Drift correction: if audio drifts > 0.3s, snap it back
-      soundRef.current.getStatusAsync().then((status) => {
-        if (!status.isLoaded) return;
-        const drift = Math.abs(evt.currentTime - (status.positionMillis / 1000));
-        if (drift > 0.3) {
-          soundRef.current?.setPositionAsync(evt.currentTime * 1000).catch(() => {});
-        }
-      }).catch(() => {});
+      if (!audio.isLoaded) return;
+      // Both clocks are in SECONDS now. Under expo-av this had to divide
+      // positionMillis by 1000 and multiply the seek back up by 1000; with
+      // expo-audio currentTime is already seconds on both sides, so the two
+      // conversions cancel out and are simply gone.
+      const drift = Math.abs(evt.currentTime - audio.currentTime);
+      if (drift > 0.3) {
+        void audio.seekTo(evt.currentTime).catch(() => {});
+      }
     });
 
     return () => sub.remove();
-  }, [player, hasSoundtrack]);
+  }, [player, hasSoundtrack, audio]);
 
   // Handle video end
   useEffect(() => {
     if (!player || !hasSoundtrack) return;
     const sub = player.addListener("playToEnd", () => {
-      soundRef.current?.stopAsync().catch(() => {});
+      stopSoundtrack();
     });
     return () => sub.remove();
-  }, [player, hasSoundtrack]);
-
-  const stopSoundtrack = useCallback(() => {
-    soundRef.current?.stopAsync().catch(() => {});
-  }, []);
+  }, [player, hasSoundtrack, stopSoundtrack]);
 
   return { hasSoundtrack, stopSoundtrack };
 }
