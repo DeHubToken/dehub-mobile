@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, ActivityIndicator, ScrollView, Platform } from "react-native";
 import { TouchableOpacity } from "react-native";
-import { Audio } from "expo-av";
+import { useAudioPlayer } from "expo-audio";
+import { configureForPlayback } from "../../libs/audioSession";
 import Slider from "@react-native-community/slider";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
@@ -53,21 +54,25 @@ const StagesBrowseModal: React.FC = () => {
   const [selectedPastSpace, setSelectedPastSpace] = useState<AudioSpace | null>(null);
 
   // List audio playback states
-  const listSoundRef = useRef<Audio.Sound | null>(null);
+  // One long-lived player, source attached on demand via replace(). The hook
+  // releases it on unmount, so there is no manual unload.
+  const player = useAudioPlayer(null);
   const [playingSpaceId, setPlayingSpaceId] = useState<string | null>(null);
   const [isListAudioPlaying, setIsListAudioPlaying] = useState(false);
+  // NOTE: this component works in MILLISECONDS throughout — the slider's
+  // maximumValue/value and formatTimestamp(x / 1000) all assume it. expo-audio
+  // reports SECONDS, so the conversion happens at the two boundaries below
+  // (the status listener and seekListSound) and nothing else changes.
   const [positionMs, setPositionMs] = useState(0);
   const [durationMs, setDurationMs] = useState(0);
   const [isAudioLoading, setIsAudioLoading] = useState(false);
 
   const unloadListSound = async () => {
-    if (listSoundRef.current) {
-      try {
-        await listSoundRef.current.unloadAsync();
-      } catch (e) {
-        console.warn("Error unloading list sound", e);
-      }
-      listSoundRef.current = null;
+    try {
+      player.pause();
+      await player.seekTo(0);
+    } catch (e) {
+      console.warn("Error stopping list sound", e);
     }
     setPlayingSpaceId(null);
     setIsListAudioPlaying(false);
@@ -78,17 +83,13 @@ const StagesBrowseModal: React.FC = () => {
   const togglePlayPastSpace = async (space: AudioSpace) => {
     if (!space.recording_url) return;
 
-    // Toggle play/pause if this is already the playing space
-    if (playingSpaceId === space.id && listSoundRef.current) {
+    // Toggle play/pause if this is already the playing space. isLoaded and
+    // playing are plain properties in expo-audio, and play()/pause() are
+    // synchronous.
+    if (playingSpaceId === space.id && player.isLoaded) {
       try {
-        const status = await listSoundRef.current.getStatusAsync();
-        if (status.isLoaded) {
-          if (status.isPlaying) {
-            await listSoundRef.current.pauseAsync();
-          } else {
-            await listSoundRef.current.playAsync();
-          }
-        }
+        if (player.playing) player.pause();
+        else player.play();
       } catch (e) {
         console.warn("Toggle play/pause failed", e);
       }
@@ -101,27 +102,11 @@ const StagesBrowseModal: React.FC = () => {
     setPlayingSpaceId(space.id);
 
     try {
-      await Audio.setAudioModeAsync({
-        allowsRecordingIOS: false,
-        playsInSilentModeIOS: true,
-      });
-
-      const { sound } = await Audio.Sound.createAsync(
-        { uri: space.recording_url },
-        { shouldPlay: true },
-        (status) => {
-          if (!status.isLoaded) return;
-          setIsListAudioPlaying(status.isPlaying);
-          setPositionMs(status.positionMillis);
-          if (status.durationMillis) {
-            setDurationMs(status.durationMillis);
-          }
-          if (status.didJustFinish) {
-            unloadListSound();
-          }
-        }
-      );
-      listSoundRef.current = sound;
+      await configureForPlayback();
+      // Status updates are delivered by the listener effect below rather than
+      // a per-Sound callback.
+      player.replace({ uri: space.recording_url });
+      player.play();
     } catch (e) {
       console.warn("Error loading audio in list", e);
       setPlayingSpaceId(null);
@@ -130,15 +115,32 @@ const StagesBrowseModal: React.FC = () => {
     }
   };
 
+  // The slider hands us MILLISECONDS; expo-audio's seekTo takes SECONDS.
   const seekListSound = async (val: number) => {
-    if (listSoundRef.current) {
-      try {
-        await listSoundRef.current.setPositionAsync(Math.round(val));
-      } catch (e) {
-        console.warn("Seek error", e);
-      }
+    try {
+      await player.seekTo(val / 1000);
+    } catch (e) {
+      console.warn("Seek error", e);
     }
   };
+
+  // Drives the scrubber. expo-audio reports currentTime/duration in SECONDS,
+  // so both are converted to milliseconds to match this component's state.
+  useEffect(() => {
+    const sub = player.addListener("playbackStatusUpdate", (status) => {
+      if (!status.isLoaded) return;
+      setIsListAudioPlaying(status.playing);
+      setPositionMs(status.currentTime * 1000);
+      if (status.duration) {
+        setDurationMs(status.duration * 1000);
+      }
+      if (status.didJustFinish) {
+        unloadListSound();
+      }
+    });
+    return () => sub.remove();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [player]);
 
   useEffect(() => {
     if (isModalOpen && initialModalView === "browse") {
@@ -160,14 +162,15 @@ const StagesBrowseModal: React.FC = () => {
     }
   }, [selectedPastSpace]);
 
-  // Clean up list audio on unmount
+  // Stop playback on unmount. The native player itself is released by
+  // useAudioPlayer, so there is nothing to unload here.
   useEffect(() => {
     return () => {
-      if (listSoundRef.current) {
-        listSoundRef.current.unloadAsync().catch(() => {});
-      }
+      try {
+        player.pause();
+      } catch {}
     };
-  }, []);
+  }, [player]);
 
   if (!isModalOpen || initialModalView !== "browse") return null;
 
