@@ -28,14 +28,14 @@ const DpayHeader: React.FC<DpayHeaderProps> = ({ title, subtitle, right }) => {
             className={`text-white font-semibold font-sans ${
               hasRight ? "text-2xl" : "text-3xl"
             } tracking-tight`}
-            style={{ fontFamily: 'Inter', fontWeight: '600', includeFontPadding: false, lineHeight: hasRight ? 32 : 38 }}
+            style={{ fontWeight: '600', includeFontPadding: false, lineHeight: hasRight ? 32 : 38 }}
           >
             {title}
           </Text> */}
         {subtitle ? (
           <Text
             className={`text-gray-400 ${hasRight ? "text-sm" : "text-base text-center"} font-sans`}
-            style={{ fontFamily: 'Inter', fontWeight: '400', includeFontPadding: false, lineHeight: hasRight ? 20 : 24 }}
+            style={{ fontWeight: '400', includeFontPadding: false, lineHeight: hasRight ? 20 : 24 }}
           >
             {subtitle}
           </Text>

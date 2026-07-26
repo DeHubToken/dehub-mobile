@@ -1,11 +1,21 @@
 import React from "react";
-import { Image as RNImage, ImageProps as RNImageProps, ImageStyle, StyleProp } from "react-native";
+import { Image, type ImageProps, type ImageContentFit } from "expo-image";
+import type { ImageStyle, StyleProp } from "react-native";
 
 type SmartImageProps = {
-  source: RNImageProps["source"];
-  contentFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
+  source: ImageProps["source"];
+  contentFit?: ImageContentFit;
+  /**
+   * Defaults to "memory-disk". expo-image's own default is "disk", which
+   * re-reads and re-decodes the file from disk on every scroll-back; for the
+   * recycling lists this component feeds that is pure jank.
+   */
   cachePolicy?: "none" | "disk" | "memory" | "memory-disk";
   transition?: number;
+  /** Pass the item id in recycling lists so a reused view can't show the previous image. */
+  recyclingKey?: string | null;
+  priority?: "low" | "normal" | "high";
+  placeholder?: ImageProps["placeholder"];
   style?: StyleProp<ImageStyle>;
   className?: string;
   onLoadStart?: () => void;
@@ -15,45 +25,27 @@ type SmartImageProps = {
 export const SmartImage: React.FC<SmartImageProps> = ({
   source,
   contentFit = "cover",
-  cachePolicy,
+  cachePolicy = "memory-disk",
   transition,
+  recyclingKey,
+  priority,
+  placeholder,
   style,
   className,
   onLoadStart,
   onLoadEnd,
 }) => {
-  let ExpoImageComp: any = null;
-  try {
-    // Dynamically require expo-image if installed
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    ExpoImageComp = require("expo-image").Image;
-  } catch {
-    ExpoImageComp = null;
-  }
-
-  if (ExpoImageComp) {
-    return (
-      <ExpoImageComp
-        source={source as any}
-        contentFit={contentFit}
-        cachePolicy={cachePolicy}
-        transition={transition}
-        style={style}
-        className={className as any}
-        onLoadStart={onLoadStart}
-        onLoadEnd={onLoadEnd}
-      />
-    );
-  }
-
-  // Fallback to RN Image
-  const resizeMode = contentFit === "contain" ? "contain" : contentFit === "fill" ? "stretch" : "cover";
   return (
-    <RNImage
+    <Image
       source={source}
-      resizeMode={resizeMode as any}
-      style={style as any}
-      className={className}
+      contentFit={contentFit}
+      cachePolicy={cachePolicy}
+      transition={transition}
+      recyclingKey={recyclingKey}
+      priority={priority}
+      placeholder={placeholder}
+      style={style}
+      className={className as any}
       onLoadStart={onLoadStart}
       onLoadEnd={onLoadEnd}
     />

@@ -88,6 +88,7 @@ const GridItem = memo<GridItemProps>(({ item, index, size, onPress }) => {
         style={StyleSheet.absoluteFill}
         contentFit="cover"
         recyclingKey={`home-grid-${item.tokenId || item.id}`}
+        cachePolicy="memory-disk"
         transition={150}
       />
       {hasMultiple && (

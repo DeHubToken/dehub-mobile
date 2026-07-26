@@ -59,6 +59,13 @@ import {
 } from "../../libs";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import { sharePostAsImage } from "../../libs/shareImage";
+import {
+  applyEngagement,
+  revertEngagement,
+  engagementKeyOf,
+  isFailedResponse,
+  useEngagement,
+} from "../../libs/engagementCache";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import { voteOnNFT, getPpvSalesCount } from "../../services/nft.service";
@@ -265,19 +272,22 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isActuallyLockedHoldings = !!streamStatus?.isLockedWithLockContent;
 
   // --- Interactive state ---
-  const [liked, setLiked] = useState(!!item.isLiked);
-  const [disliked, setDisliked] = useState(!!item.isDisliked);
-  const [saved, setSaved] = useState(!!item.isSaved);
-  const [likeCount, setLikeCount] = useState(
-    (item as any).totalVotes?.for || item.likes || 0,
-  );
-  const [dislikeCount, setDislikeCount] = useState(
-    (item as any).totalVotes?.against || item.dislikes || 0,
-  );
-  const [reposted, setReposted] = useState(!!item.isReposted);
-  const [repostCount, setRepostCount] = useState(
-    ((item as any).reposts || 0) + ((item as any).quotes || 0),
-  );
+  const engagementKey = engagementKeyOf(item);
+  // Read straight from the shared overlay instead of local useState. This is
+  // what makes a like survive the row being recycled or the screen being left
+  // and re-entered, and what keeps the six feed lists HomeScreen mounts over
+  // the same posts in agreement without a refetch. Writes go through
+  // applyEngagement in the handlers below, which re-renders every mounted card
+  // for that post. See libs/engagementCache.ts.
+  const {
+    isLiked: liked,
+    isDisliked: disliked,
+    isSaved: saved,
+    isReposted: reposted,
+    likeCount,
+    dislikeCount,
+    repostCount,
+  } = useEngagement(item);
   const [showShareSheet, setShowShareSheet] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
@@ -370,80 +380,122 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     requireAuth?.(() => {
       const wasLiked = liked;
       const wasDisliked = disliked;
-      if (wasLiked) {
-        setLiked(false);
-        setLikeCount((c) => Math.max(0, c - 1));
-      } else {
-        setLiked(true);
-        setLikeCount((c) => c + 1);
-        if (wasDisliked) {
-          setDisliked(false);
-          setDislikeCount((c) => Math.max(0, c - 1));
-        }
-      }
+      const wasLikeCount = likeCount;
+      const wasDislikeCount = dislikeCount;
+
+      const nextLiked = !wasLiked;
+      const nextLikeCount = wasLiked
+        ? Math.max(0, wasLikeCount - 1)
+        : wasLikeCount + 1;
+      const nextDisliked = nextLiked ? false : wasDisliked;
+      const nextDislikeCount =
+        nextLiked && wasDisliked ? Math.max(0, wasDislikeCount - 1) : wasDislikeCount;
+
+      // Publish to the shared overlay; the sync effect above pushes it into
+      // this card and every other mounted card for the same post.
+      applyEngagement(engagementKey, {
+        isLiked: nextLiked,
+        isDisliked: nextDisliked,
+        likeCount: nextLikeCount,
+        dislikeCount: nextDislikeCount,
+      });
+
+      const rollback = () => {
+        // Restore only the fields this handler owns, so a concurrent save or
+        // repost that succeeded is not undone.
+        revertEngagement(engagementKey, {
+          isLiked: wasLiked,
+          isDisliked: wasDisliked,
+          likeCount: wasLikeCount,
+          dislikeCount: wasDislikeCount,
+        });
+        toastError("Failed to update vote");
+      };
+
       voteOnNFT({
         streamTokenId: tokenId,
         vote: true,
         account: userAddress,
-      }).catch(() => {
-        setLiked(wasLiked);
-        setDisliked(wasDisliked);
-        setLikeCount((c) => wasLiked ? c + 1 : Math.max(0, c - 1));
-        if (wasDisliked) setDislikeCount((c) => c + 1);
-        toastError("Failed to update vote");
-      });
+      })
+        // A 200 carrying `{ error }` resolves rather than throwing
+        // (libs/api.client.ts only throws on !response.ok), so `.catch` alone
+        // would record a failed vote as successful and then share it.
+        .then((res) => {
+          if (isFailedResponse(res)) rollback();
+        })
+        .catch(rollback);
     });
-  }, [tokenId, liked, disliked, userAddress, requireAuth]);
+  }, [tokenId, liked, disliked, likeCount, dislikeCount, engagementKey, userAddress, requireAuth]);
 
   const handleDislikePress = useCallback(() => {
     if (tokenId == null) return;
     requireAuth?.(() => {
       const wasLiked = liked;
       const wasDisliked = disliked;
-      if (wasDisliked) {
-        setDisliked(false);
-        setDislikeCount((c) => Math.max(0, c - 1));
-      } else {
-        setDisliked(true);
-        setDislikeCount((c) => c + 1);
-        if (wasLiked) {
-          setLiked(false);
-          setLikeCount((c) => Math.max(0, c - 1));
-        }
-      }
+      const wasLikeCount = likeCount;
+      const wasDislikeCount = dislikeCount;
+
+      const nextDisliked = !wasDisliked;
+      const nextDislikeCount = wasDisliked
+        ? Math.max(0, wasDislikeCount - 1)
+        : wasDislikeCount + 1;
+      const nextLiked = nextDisliked ? false : wasLiked;
+      const nextLikeCount =
+        nextDisliked && wasLiked ? Math.max(0, wasLikeCount - 1) : wasLikeCount;
+
+      applyEngagement(engagementKey, {
+        isLiked: nextLiked,
+        isDisliked: nextDisliked,
+        likeCount: nextLikeCount,
+        dislikeCount: nextDislikeCount,
+      });
+
+      const rollback = () => {
+        revertEngagement(engagementKey, {
+          isLiked: wasLiked,
+          isDisliked: wasDisliked,
+          likeCount: wasLikeCount,
+          dislikeCount: wasDislikeCount,
+        });
+        toastError("Failed to update vote");
+      };
+
       voteOnNFT({
         streamTokenId: tokenId,
         vote: false,
         account: userAddress,
-      }).catch(() => {
-        setLiked(wasLiked);
-        setDisliked(wasDisliked);
-        setDislikeCount((c) => wasDisliked ? c + 1 : Math.max(0, c - 1));
-        if (wasLiked) setLikeCount((c) => c + 1);
-        toastError("Failed to update vote");
-      });
+      })
+        .then((res) => {
+          if (isFailedResponse(res)) rollback();
+        })
+        .catch(rollback);
     });
-  }, [tokenId, liked, disliked, userAddress, requireAuth]);
+  }, [tokenId, liked, disliked, likeCount, dislikeCount, engagementKey, userAddress, requireAuth]);
 
   const handleSavePress = useCallback(() => {
     requireAuth?.(() => {
       const wasSaved = saved;
       const willBeSaved = !wasSaved;
-      setSaved(willBeSaved);
+      applyEngagement(engagementKey, { isSaved: willBeSaved });
       if (tokenId != null) {
+        const rollback = () => {
+          revertEngagement(engagementKey, { isSaved: wasSaved });
+          toastError("Failed to save");
+        };
         savePost(Number(tokenId), userAddress)
-          .then(() => {
+          .then((res) => {
+            if (isFailedResponse(res)) {
+              rollback();
+              return;
+            }
             if (willBeSaved) {
               setShowAddToFolder(true);
             }
           })
-          .catch(() => {
-            setSaved(wasSaved);
-            toastError("Failed to save");
-          });
+          .catch(rollback);
       }
     });
-  }, [tokenId, userAddress, saved, requireAuth]);
+  }, [tokenId, userAddress, saved, engagementKey, requireAuth]);
 
   const handleSharePress = useCallback(() => {
     if (tokenId == null) return;
@@ -499,28 +551,66 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (tokenId == null) return;
     const wasReposted = reposted;
     const prevCount = repostCount;
-    setReposted(false);
-    setRepostCount((c) => Math.max(0, c - 1));
-    toggleRepost(Number(tokenId)).catch(() => {
-      setReposted(wasReposted);
-      setRepostCount(prevCount);
-      toastError("Failed to remove repost");
+    applyEngagement(engagementKey, {
+      isReposted: false,
+      repostCount: Math.max(0, prevCount - 1),
     });
-  }, [tokenId, reposted, repostCount]);
+    const rollback = () => {
+      revertEngagement(engagementKey, {
+        isReposted: wasReposted,
+        repostCount: prevCount,
+      });
+      toastError("Failed to remove repost");
+    };
+    toggleRepost(Number(tokenId))
+      .then((res) => {
+        if (isFailedResponse(res)) {
+          rollback();
+          return;
+        }
+        // Reconcile against the server's own flag. Its `repostCount` is NOT
+        // used: this card displays reposts + quotes and it is unconfirmed
+        // whether the server's figure includes quotes, so adopting it could
+        // shift the number by the quote count.
+        if (typeof res?.reposted === "boolean" && res.reposted !== false) {
+          applyEngagement(engagementKey, { isReposted: true, repostCount: prevCount });
+        }
+      })
+      .catch(rollback);
+  }, [tokenId, reposted, repostCount, engagementKey]);
 
   const handleConfirmRepost = useCallback(() => {
     if (tokenId == null) return;
     requireAuth?.(() => {
+      const wasReposted = reposted;
       const prevCount = repostCount;
-      setReposted(true);
-      setRepostCount((c) => c + 1);
-      toggleRepost(Number(tokenId)).catch(() => {
-        setReposted(false);
-        setRepostCount(prevCount);
-        toastError("Failed to repost");
+      applyEngagement(engagementKey, {
+        isReposted: true,
+        repostCount: prevCount + 1,
       });
+      const rollback = () => {
+        revertEngagement(engagementKey, {
+          isReposted: wasReposted,
+          repostCount: prevCount,
+        });
+        toastError("Failed to repost");
+      };
+      toggleRepost(Number(tokenId))
+        .then((res) => {
+          if (isFailedResponse(res)) {
+            rollback();
+            return;
+          }
+          // Server flag wins. If it reports not-reposted the toggle did not
+          // apply, so fall back to the pre-tap count (see note in
+          // handleUndoRepost about not adopting res.repostCount).
+          if (typeof res?.reposted === "boolean" && res.reposted === false) {
+            applyEngagement(engagementKey, { isReposted: false, repostCount: prevCount });
+          }
+        })
+        .catch(rollback);
     });
-  }, [tokenId, repostCount, requireAuth]);
+  }, [tokenId, reposted, repostCount, engagementKey, requireAuth]);
 
   const handleQuotePress = useCallback(() => {
     requireAuth?.(() => {
@@ -926,7 +1016,20 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     <Pressable
       onPress={disablePress ? undefined : handleCardPress}
       disabled={disablePress}
-      style={{ borderWidth: 1, borderColor: '#1D1F21', borderRadius: 16, padding: 12, marginVertical: 4 }}
+      // Matches the web feed tile (dehubweb HomeFeed.tsx:1066 + index.css:1264):
+      // translucent white fill and hairline rather than an opaque grey outline,
+      // 6pt vertical margin = 12pt inter-card gap (web `space-y-3`, was 8pt),
+      // and 24pt bottom padding (web overrides the uniform p-3 to pb-6).
+      style={{
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.12)',
+        backgroundColor: 'rgba(255,255,255,0.03)',
+        borderRadius: 16,
+        paddingTop: 12,
+        paddingHorizontal: 12,
+        paddingBottom: 24,
+        marginVertical: 6,
+      }}
     >
       {showRepostLabel && (
         <View className="flex-row items-center gap-1.5 mb-2">
@@ -1054,7 +1157,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         </View>
       )}
 
-      {tokenId != null && (
+      {showComments && tokenId != null && (
         <CommentBottomSheet
           visible={showComments}
           onClose={() => setShowComments(false)}
@@ -1062,7 +1165,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
-      {minterAddress ? (
+      {showTipModal && minterAddress ? (
         <GlassTipSheet
           visible={showTipModal}
           onClose={() => setShowTipModal(false)}
@@ -1074,7 +1177,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       ) : null}
 
-      {isPayPerView && tokenId != null && minterAddress ? (
+      {showPPVModal && isPayPerView && tokenId != null && minterAddress ? (
         <PPVSheet
           visible={showPPVModal}
           onClose={() => setShowPPVModal(false)}
@@ -1088,7 +1191,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       ) : null}
 
-      {isBounty && tokenId != null && (
+      {showBountyModal && isBounty && tokenId != null && (
         <BountyInfoSheet
           visible={showBountyModal}
           onClose={() => setShowBountyModal(false)}
@@ -1101,7 +1204,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
-      {tokenId != null && (
+      {showAISheet && tokenId != null && (
         <AskAISheet
           visible={showAISheet}
           onClose={() => setShowAISheet(false)}
@@ -1110,7 +1213,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
-      {tokenId != null && (
+      {showAddToFolder && tokenId != null && (
         <AddToFolderSheet
           visible={showAddToFolder}
           onClose={() => setShowAddToFolder(false)}
@@ -1118,31 +1221,33 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
-      <PostOptionsMenu
-        visible={showOptionsMenu}
-        onClose={() => setShowOptionsMenu(false)}
-        tokenId={tokenId}
-        isOwner={!!isOwnerPost}
-        isHidden={isHidden}
-        creatorDisplayName={displayName}
-        creatorIdentifier={minterAddress || username || ""}
-        isFollowing={isFollowingCreator}
-        isFollowRequestPending={isFollowReqPending}
-        currentTitle={localTitle}
-        currentDescription={localDescription}
-        currentCategories={localCategories}
-        hideReportContent={isLive}
-        hideEdit={isLive}
-        onFollowChange={handleFollowChange}
-        onVisibilityChange={handleVisibilityChange}
-        onEditSuccess={handleEditSuccess}
-        onDeleteSuccess={handleDeleteSuccess}
-        onSendToDm={isSignedIn ? () => setShowShareToDm(true) : undefined}
-        onTranslatePress={handleTranslate}
-        onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
-      />
+      {showOptionsMenu && (
+        <PostOptionsMenu
+          visible={showOptionsMenu}
+          onClose={() => setShowOptionsMenu(false)}
+          tokenId={tokenId}
+          isOwner={!!isOwnerPost}
+          isHidden={isHidden}
+          creatorDisplayName={displayName}
+          creatorIdentifier={minterAddress || username || ""}
+          isFollowing={isFollowingCreator}
+          isFollowRequestPending={isFollowReqPending}
+          currentTitle={localTitle}
+          currentDescription={localDescription}
+          currentCategories={localCategories}
+          hideReportContent={isLive}
+          hideEdit={isLive}
+          onFollowChange={handleFollowChange}
+          onVisibilityChange={handleVisibilityChange}
+          onEditSuccess={handleEditSuccess}
+          onDeleteSuccess={handleDeleteSuccess}
+          onSendToDm={isSignedIn ? () => setShowShareToDm(true) : undefined}
+          onTranslatePress={handleTranslate}
+          onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
+        />
+      )}
 
-      {tokenId != null && (
+      {showShareToDm && tokenId != null && (
         <ShareToDmSheet
           visible={showShareToDm}
           onClose={() => setShowShareToDm(false)}
@@ -1151,7 +1256,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
-      {tokenId != null && (
+      {showShareSheet && tokenId != null && (
         <ShareSheet
           visible={showShareSheet}
           onClose={() => setShowShareSheet(false)}
@@ -1165,19 +1270,23 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
-      <CashtagSheet
-        visible={!!activeCashtag}
-        symbol={activeCashtag || ""}
-        onClose={() => setActiveCashtag(null)}
-      />
+      {!!activeCashtag && (
+        <CashtagSheet
+          visible={!!activeCashtag}
+          symbol={activeCashtag || ""}
+          onClose={() => setActiveCashtag(null)}
+        />
+      )}
 
-      <ImageTranslationSheet
-        visible={showImgTranslationSheet}
-        onClose={() => { setShowImgTranslationSheet(false); clearImgResult(); }}
-        isLoading={imgTranslating}
-        error={imgTranslateError}
-        result={imgTranslateResult}
-      />
+      {showImgTranslationSheet && (
+        <ImageTranslationSheet
+          visible={showImgTranslationSheet}
+          onClose={() => { setShowImgTranslationSheet(false); clearImgResult(); }}
+          isLoading={imgTranslating}
+          error={imgTranslateError}
+          result={imgTranslateResult}
+        />
+      )}
     </Pressable>
   );
 };

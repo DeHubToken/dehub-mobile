@@ -61,7 +61,14 @@ const ImageTile = memo<{ post: ImagePost; size: number; onPress: () => void }>(
         onPress={onPress}
         style={{ width: size, height: size, backgroundColor: "#262626" }}
       >
-        <Image source={uri} style={StyleSheet.absoluteFill} contentFit="cover" transition={150} />
+        <Image
+          source={uri}
+          style={StyleSheet.absoluteFill}
+          contentFit="cover"
+          recyclingKey={uri}
+          cachePolicy="memory-disk"
+          transition={150}
+        />
         {(post.imageUrls?.length ?? 0) > 1 && (
           <View style={s.multiIcon}>
             <Icon name="Copy" size={14} color="#fff" />

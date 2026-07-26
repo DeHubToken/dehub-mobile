@@ -300,26 +300,47 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
 
   return (
     <Reanimated.View style={[styles.outerWrap, { paddingBottom: bottomPadding }, hideStyle]} pointerEvents="box-none">
-      <View style={styles.gradientOverlay} pointerEvents="none" />
+      {/* Scrim under the floating pill. This was a bare View with no
+          backgroundColor, so it rendered nothing at all. It matters most on
+          Android, where the pill has no real blur: without it, sharp bright
+          feed content scrolls right up to the pill's edge and breaks the
+          illusion. It also seats the pill in the scene — the job Android
+          elevation would normally do, which is deliberately refused here
+          because elevation renders as a harsh dark slab on a translucent
+          container (see navContainer below). */}
+      <LinearGradient
+        colors={["rgba(9,9,11,0)", "rgba(9,9,11,0.35)", "rgba(9,9,11,0.6)"]}
+        style={styles.gradientOverlay}
+        pointerEvents="none"
+      />
       <Reanimated.View style={[styles.navContainer, entranceStyle]}>
         {/* Web is `backdrop-blur-2xl` (blur(40px) in our Tailwind config, not
             the stock 24px) with every bit of its colour coming from
             glassOverlay's zinc-900/10 — a strong blur under a near-transparent
             wash. expo-blur can't express that, as its `intensity` drives blur
             radius and tint alpha together, so the pill turns white before it
-            turns glassy. Hence this library: Android takes overlayColor
-            "transparent" for a genuinely untinted blur, exactly like CSS.
-            Its radius caps at 25, but the blur runs on a downscaled snapshot,
-            so the effective spread is blurRadius * downsampleFactor — 10 x 4
-            lands on web's 40px exactly. iOS has no overlayColor and UIKit's
-            materials are fixed-radius, so it can only approximate: the
-            thinnest material is the least-tinted blur available.
+            turns glassy. Hence this library on iOS, where UIKit's materials are
+            fixed-radius so the thinnest material is the least-tinted blur
+            available.
+
             Android gets no real blur at all: the community BlurView is the
             Dimezis library underneath, whose PreDrawBlurController re-snapshots
             the root view every frame and throws IndexOutOfBoundsException when
             a list mutates children mid-draw (same crash FeedNavBar and
             AppDrawer already work around) — a permanently-mounted blur over an
-            infinite feed makes that a matter of time. Translucent tint only. */}
+            infinite feed makes that a matter of time. Translucent tint only.
+
+            Upstream status (checked 2026-07-26): this is Dimezis/BlurView #191,
+            closed for inactivity in 2023 with no code fix. It IS fixed in
+            Dimezis 3.x — 3.0.0 replaced the per-frame root snapshot with a
+            BlurTarget RenderNode on API 31+, and 3.1.0 guarded the pre-31
+            software path — but neither library here ships it: expo-blur 15.0.7
+            pins BlurView 2.0.6, @react-native-community/blur 4.4.1 pins 2.0.4.
+            Forcing 3.x through Gradle does not work, since its API is not
+            source-compatible with expo-blur 15's native code. The real fix
+            arrives with Expo SDK 55 / expo-blur 55.0.0, which moves to BlurView
+            3.1.0 and adds a blurTarget API for scoping the blur source to a
+            stable subtree instead of the decorView. Until then this stands. */}
         {Platform.OS === "ios" ? (
           <GlassBlurView
             blurType="ultraThinMaterialLight"
@@ -333,15 +354,19 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
           <>
             <View style={styles.androidBlurFallback} />
             {/* Web's glass has no white wash — its sheen comes from the blur
-                itself — so keep this whisper-faint over the dark zinc tint. */}
+                itself — so keep this whisper-faint over the dark zinc tint.
+                Graded top-to-bottom, not diagonally: a diagonal sheen reads as
+                glossy plastic, whereas real blur output is vertically graded by
+                the luminance behind it, and it darkens slightly at the bottom
+                where the scrim sits. */}
             <LinearGradient
               colors={[
-                "rgba(255,255,255,0.10)",
-                "rgba(255,255,255,0.03)",
-                "rgba(255,255,255,0.01)",
+                "rgba(255,255,255,0.07)",
+                "rgba(255,255,255,0.015)",
+                "rgba(0,0,0,0.05)",
               ]}
               start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
+              end={{ x: 0, y: 1 }}
               style={StyleSheet.absoluteFill}
               pointerEvents="none"
             />
@@ -401,7 +426,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 60,
+    // Taller than the 52pt pill so the fade starts well above it and reads as
+    // depth rather than as a band.
+    height: 96,
   },
   navContainer: {
     width: "72%",

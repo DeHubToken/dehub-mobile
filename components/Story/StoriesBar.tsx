@@ -147,7 +147,13 @@ const StoriesBar: React.FC<StoriesBarProps> = ({ refreshKey = 0 }) => {
             >
               <ShimmerBorder active={unwatched} size={BUBBLE} borderRadius={12}>
                 {thumb ? (
-                  <Image source={{ uri: thumb }} style={styles.thumb} contentFit="cover" />
+                  <Image
+                    source={{ uri: thumb }}
+                    style={styles.thumb}
+                    contentFit="cover"
+                    recyclingKey={thumb}
+                    cachePolicy="memory-disk"
+                  />
                 ) : (
                   <Avatar uri={avatar} size={BUBBLE - 4} name={label} rounded={false} />
                 )}

@@ -33,6 +33,9 @@ yarn-error.*
 .env*.local
 .env
 
+# machine-specific helper scripts (toolchain paths differ per machine)
+*.local.ps1
+
 # typescript
 *.tsbuildinfo
 
