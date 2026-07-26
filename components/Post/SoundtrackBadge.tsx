@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { TouchableOpacity, View, Text, StyleSheet, Animated, Easing } from "react-native";
-import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from "expo-av";
+import { useAudioPlayer } from "expo-audio";
 import { Ionicons } from "@expo/vector-icons";
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
+import { configureForDuckedPlayback } from "../../libs/audioSession";
 
 interface Props {
   title: string;
@@ -13,7 +14,12 @@ interface Props {
 const SoundtrackBadge: React.FC<Props> = ({ title, creator, url }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const soundRef = useRef<Audio.Sound | null>(null);
+  // Source is null on purpose: this badge renders on every feed row that has a
+  // soundtrack, and useAudioPlayer re-creates the native player whenever the
+  // source changes. Starting empty means no media is allocated for the many
+  // badges that are mounted but never tapped; the track is attached in
+  // togglePlay via player.replace(). The hook releases the player on unmount.
+  const player = useAudioPlayer(null);
   const spinAnim = useRef(new Animated.Value(0)).current;
   const spinLoop = useRef<Animated.CompositeAnimation | null>(null);
 
@@ -39,73 +45,84 @@ const SoundtrackBadge: React.FC<Props> = ({ title, creator, url }) => {
     else stopSpin();
   }, [isPlaying, startSpin, stopSpin]);
 
+  // Loop is set once. expo-audio has no per-play `isLooping` option — it is a
+  // property on the player.
+  useEffect(() => {
+    player.loop = true;
+  }, [player]);
+
   const stopPlayback = useCallback(async () => {
     try {
-      await soundRef.current?.stopAsync();
-      await soundRef.current?.unloadAsync();
+      // No stop() in expo-audio — pause and rewind is the equivalent.
+      player.pause();
+      await player.seekTo(0);
     } catch {}
-    soundRef.current = null;
     setIsPlaying(false);
     releaseAudioFocus(stopPlayback);
-  }, []);
+  }, [player]);
+
+  // Hoisted out of togglePlay: expo-av attached this per Sound instance, but
+  // expo-audio has one long-lived player, so the subscription belongs in an
+  // effect with a matching teardown. Declared after stopPlayback so the
+  // reference below is not in its temporal dead zone.
+  useEffect(() => {
+    const sub = player.addListener("playbackStatusUpdate", (s) => {
+      // Guarded on !loop deliberately. The old code set isLooping AND handled
+      // didJustFinish, which contradict each other: if the event fires at each
+      // loop boundary, the badge would flip to a play icon and drop audio focus
+      // while the track keeps looping — so the next player would not stop this
+      // one and two tracks would play at once.
+      if (!player.loop && s.isLoaded && s.didJustFinish) {
+        setIsPlaying(false);
+        releaseAudioFocus(stopPlayback);
+      }
+    });
+    return () => sub.remove();
+  }, [player, stopPlayback]);
 
   const togglePlay = useCallback(async () => {
     if (isLoading) return;
 
-    // Already playing — pause
-    if (isPlaying && soundRef.current) {
-      await soundRef.current.pauseAsync().catch(() => {});
+    // Already playing — pause. play()/pause() are synchronous in expo-audio,
+    // so there is nothing to await or catch.
+    if (isPlaying) {
+      player.pause();
       setIsPlaying(false);
       releaseAudioFocus(stopPlayback);
       return;
     }
 
-    // Resume from pause
-    if (!isPlaying && soundRef.current) {
-      const status = await soundRef.current.getStatusAsync().catch(() => null);
-      if (status?.isLoaded) {
-        requestAudioFocus(stopPlayback);
-        await soundRef.current.playAsync().catch(() => {});
-        setIsPlaying(true);
-        return;
-      }
+    // Resume from pause. isLoaded is a plain property here, not an async
+    // getStatusAsync() call.
+    if (!isPlaying && player.isLoaded) {
+      requestAudioFocus(stopPlayback);
+      player.play();
+      setIsPlaying(true);
+      return;
     }
 
     // Fresh load
     setIsLoading(true);
     try {
-      await Audio.setAudioModeAsync({
-        allowsRecordingIOS: false,
-        playsInSilentModeIOS: true,
-        interruptionModeIOS: InterruptionModeIOS.DuckOthers,
-        interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
-      });
+      await configureForDuckedPlayback();
       requestAudioFocus(stopPlayback);
-      const { sound } = await Audio.Sound.createAsync(
-        { uri: url },
-        { shouldPlay: true, isLooping: true }
-      );
-      soundRef.current = sound;
+      // replace() attaches the source to the existing player; loop was set in
+      // the effect above, and play() stands in for the old shouldPlay option.
+      player.replace({ uri: url });
+      player.play();
       setIsPlaying(true);
-      sound.setOnPlaybackStatusUpdate((s) => {
-        if (s.isLoaded && s.didJustFinish) {
-          setIsPlaying(false);
-          releaseAudioFocus(stopPlayback);
-        }
-      });
     } catch (e) {
       console.warn("[SoundtrackBadge] Playback error:", e);
       releaseAudioFocus(stopPlayback);
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading, isPlaying, url, stopPlayback]);
+  }, [isLoading, isPlaying, url, stopPlayback, player]);
 
-  // Unload on unmount
+  // useAudioPlayer releases the native player on unmount, so only the audio
+  // focus registration needs cleaning up here.
   useEffect(() => {
     return () => {
-      soundRef.current?.unloadAsync().catch(() => {});
-      soundRef.current = null;
       releaseAudioFocus(stopPlayback);
     };
   }, [stopPlayback]);
