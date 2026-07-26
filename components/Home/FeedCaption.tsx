@@ -192,10 +192,12 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
 
   return (
     <View className="mt-2">
-      {/* Title */}
+      {/* Title — web uses text-base/semibold (dehubweb PostCard.tsx:404). This
+          was text-sm/medium, part of a systematic ~10% type shrink that made
+          the native feed read denser and quieter than the web's. */}
       {hasTitle && (
         <Text
-          className="text-sm font-medium text-theme-neutrals-100"
+          className="text-base font-semibold text-theme-neutrals-100"
           numberOfLines={fullContent ? undefined : 2}
           ellipsizeMode="tail"
         >

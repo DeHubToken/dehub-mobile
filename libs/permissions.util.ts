@@ -1,6 +1,12 @@
 import * as ImagePicker from "expo-image-picker";
 import { Camera } from "expo-camera";
-import { Audio } from "expo-av";
+// expo-av is removed in Expo SDK 55; expo-audio is the replacement. Both
+// permission calls return the same PermissionResponse shape, so this is a
+// straight swap.
+import {
+  getRecordingPermissionsAsync,
+  requestRecordingPermissionsAsync,
+} from "expo-audio";
 import { Platform } from "react-native";
 import * as Linking from "expo-linking";
 import { PermissionModal, type PermissionModalConfig } from "../components/ui/PermissionModal";
@@ -99,11 +105,11 @@ export const ensureCameraPermission = async (): Promise<PermissionEnsureResult> 
 };
 
 export const ensureMicrophonePermission = async (): Promise<PermissionEnsureResult> => {
-  const current = await Audio.getPermissionsAsync();
+  const current = await getRecordingPermissionsAsync();
   if (current?.granted) {
     return { granted: true, justGranted: false, canAskAgain: !!current.canAskAgain, status: current.status as string };
   }
-  const req = await Audio.requestPermissionsAsync();
+  const req = await requestRecordingPermissionsAsync();
   return {
     granted: !!req.granted,
     justGranted: !!req.granted,
@@ -139,7 +145,7 @@ const checkPermissionStatus = async (
       return { granted: !!s?.granted, canAskAgain: s?.canAskAgain ?? true };
     }
     case "microphone": {
-      const s = await Audio.getPermissionsAsync();
+      const s = await getRecordingPermissionsAsync();
       return { granted: !!s?.granted, canAskAgain: s?.canAskAgain ?? true };
     }
   }

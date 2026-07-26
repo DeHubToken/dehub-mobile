@@ -156,6 +156,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
         style={StyleSheet.absoluteFill}
         contentFit="cover"
         recyclingKey={`short-grid-${tokenId}`}
+        cachePolicy="memory-disk"
         transition={150}
         onError={() => setThumbFailed(true)}
       />

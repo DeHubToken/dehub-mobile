@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   FlatList,
   ListRenderItemInfo,
+  Pressable,
   RefreshControl,
   View,
   Text,
@@ -44,6 +45,10 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  // A failed first page used to be swallowed by a console.warn, leaving items
+  // empty — so a network error rendered "No posts yet", telling the user their
+  // library was empty when the request had actually failed.
+  const [error, setError] = useState(false);
   const loadingRef = useRef(false);
 
   const fetcher = useCallback(
@@ -81,8 +86,12 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
         setHasMore(responseHasMore ?? newItems.length === pageSize);
         setItems((prev) => (replace ? newItems : [...prev, ...newItems]));
         setPage(targetPage);
+        setError(false);
       } catch (e) {
         console.warn("[PostsInfiniteList] loadPage error", e);
+        // Only surface the error UI when there is nothing to show. A failed
+        // page 2 keeps the already-rendered posts on screen.
+        if (targetPage === 0) setError(true);
       } finally {
         loadingRef.current = false;
         setLoading(false);
@@ -160,6 +169,26 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
         </View>
       );
     }
+    // Failed load: offer a retry instead of claiming the list is empty.
+    // Mirrors the pattern already used in components/Home/InfiniteVideoFeed.tsx.
+    if (error) {
+      return (
+        <View className="py-16 items-center px-6">
+          <Icon name="WifiOff" size={48} color="#6b7280" />
+          <Text className="text-theme-neutrals-400 text-base mt-4 text-center">
+            Couldn&apos;t load posts.
+          </Text>
+          <Pressable
+            onPress={() => loadPage(0, true)}
+            hitSlop={8}
+            className="mt-4 rounded-xl px-4 justify-center items-center"
+            style={{ height: 40, borderWidth: 1, borderColor: "rgba(255,255,255,0.30)" }}
+          >
+            <Text className="text-white text-sm font-medium">Retry</Text>
+          </Pressable>
+        </View>
+      );
+    }
     return (
       <View className="py-16 items-center px-6">
         <Icon
@@ -172,7 +201,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
         </Text>
       </View>
     );
-  }, [loading, variant, emptyMessage]);
+  }, [loading, error, variant, emptyMessage, loadPage]);
 
   return (
     <FlatList

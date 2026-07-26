@@ -49,7 +49,7 @@ const AnimatedActionButton: React.FC<{
   count?: number;
   countColor?: string;
   formatCount?: boolean;
-}> = ({ onPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 18, count, countColor, formatCount }) => {
+}> = ({ onPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount }) => {
   const scale = useSharedValue(1);
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -73,14 +73,18 @@ const AnimatedActionButton: React.FC<{
   return (
     <Pressable
       onPress={handlePress}
-      hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+      // Vertical slop takes the 18pt icon to a 44pt tap height (HIG minimum)
+      // without changing layout. Horizontal stays at 6: the row is
+      // justify-between with ~16pt gaps, so wider horizontal slop would make
+      // neighbouring buttons' tap areas overlap and steal each other's taps.
+      hitSlop={{ top: 13, bottom: 13, left: 6, right: 6 }}
       style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
     >
       <Animated.View style={animatedStyle}>
         <Icon name={resolvedIcon} size={iconSize} color={resolvedColor} strokeWidth={resolvedStrokeWidth} fill={resolvedFill} />
       </Animated.View>
       {count !== undefined && (
-        <Text style={{ fontSize: 11, color: countColor || COUNT_COLOR }}>
+        <Text style={{ fontSize: 12, color: countColor || COUNT_COLOR }}>
           {formatCount ? formatCompactNumber(count) : count}
         </Text>
       )}

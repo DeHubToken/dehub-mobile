@@ -11,6 +11,19 @@ interface LiquidGlassProps {
   style?: ViewStyle;
   /** Use solid semi-transparent background instead of blur (useful for overlays on images) */
   noBlur?: boolean;
+  /**
+   * Opt in to REAL backdrop blur on Android (expo-blur's dimezisBlurView).
+   *
+   * Off by default, and only safe on surfaces that are conditionally mounted
+   * and unmounted — modals, sheets, the drawer while open. Dimezis re-snapshots
+   * the whole root view every frame and throws IndexOutOfBoundsException when a
+   * list mutates children mid-draw (Dimezis/BlurView issue #191), so a blur left
+   * mounted while a feed scrolls underneath crashes eventually. This is the same
+   * rule FeedNavBar, FloatingBottomTabBar, GlassIndicator and GlassToast already
+   * follow; it was previously applied unconditionally here, which left a
+   * permanent Dimezis blur on AccountSettingsScreen.
+   */
+  androidBlur?: boolean;
 }
 
 /**
@@ -24,6 +37,7 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
   className = "",
   style,
   noBlur = false,
+  androidBlur = false,
 }) => {
   if (noBlur) {
     // Use backdrop-filter style blur simulation with semi-transparent layers
@@ -55,7 +69,9 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
         intensity={intensity}
         tint={tint}
         style={StyleSheet.absoluteFill}
-        {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
+        {...(Platform.OS === "android" && androidBlur
+          ? { experimentalBlurMethod: "dimezisBlurView" as const }
+          : {})}
       />
       <View
         style={[

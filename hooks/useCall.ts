@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import { Platform, PermissionsAndroid } from "react-native";
+import { Platform, PermissionsAndroid, AppState } from "react-native";
 import createAgoraRtcEngine, {
   RtcSurfaceView,
   type IRtcEngine,
@@ -297,6 +297,12 @@ export function useCall(): UseCallReturn {
 
     const poll = async () => {
       if (isCallActiveRef.current || isIncomingRef.current || isConnectingRef.current) return;
+      // CallProvider wraps the whole navigator, so this interval lives for the
+      // entire app session. Without this guard it keeps hitting Supabase every
+      // 15s while backgrounded. Realtime (subscribeIncomingCalls) plus push are
+      // the backgrounded path; this is only the foreground fallback. Mirrors
+      // hooks/useProviderLifecycle.ts:407.
+      if (AppState.currentState !== "active") return;
       const { data } = await supabase
         .from("call_sessions")
         .select("*")
@@ -320,7 +326,15 @@ export function useCall(): UseCallReturn {
 
     void poll();
     const interval = setInterval(poll, 15_000);
-    return () => clearInterval(interval);
+    // Poll immediately on foreground so a call that started while the app was
+    // backgrounded is picked up at once rather than up to 15s later.
+    const sub = AppState.addEventListener("change", (s) => {
+      if (s === "active") void poll();
+    });
+    return () => {
+      clearInterval(interval);
+      sub.remove();
+    };
   }, [userAddress]);
 
   // ── Actions ────────────────────────────────────────────────────────────────

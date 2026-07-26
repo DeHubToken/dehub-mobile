@@ -243,6 +243,7 @@ const ImageFeedItem = React.memo<ImageFeedItemProps>(({ item, isActive, itemHeig
           style={{ width: SCREEN_WIDTH, height: itemHeight }}
           contentFit="cover"
           recyclingKey={uri}
+          cachePolicy="memory-disk"
           transition={100}
         />
       </Pressable>

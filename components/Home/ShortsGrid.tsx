@@ -71,10 +71,17 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
 
   useScrollToTop(listRef);
 
+  // postType is forced rather than inherited from the active tab so this key is
+  // identical whether the user sits on "All" or on Shorts. Without it the grid
+  // mounts (via tab warm-up) under a postType-less key while HomeScreen
+  // prefetches under `postType: "short"` (screens/HomeScreen.tsx:208), so boot
+  // fires the same request twice and the warm-up is wasted. Mirrors the
+  // existing correct pattern in HomeImageGrid.tsx:231.
   const mergedParams = useMemo(() => ({
     ...(params || {}),
     sortBy: params?.sortBy || "createdAt" as const,
     sortOrder: params?.sortOrder || "desc" as const,
+    postType: "short" as const,
   }), [params]);
 
   // Cached + revalidated by react-query. The backend issues a shuffleSeed on

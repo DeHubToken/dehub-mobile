@@ -1,4 +1,5 @@
 import * as SecureStore from 'expo-secure-store';
+import { clearAllEngagement } from './engagementCache';
 
 // Storage keys
 export const AUTH_USER_KEY = 'auth_user';
@@ -182,6 +183,9 @@ export async function __DEV_resetOnboardingFlags(): Promise<void> {
  * Clears all authentication data from SecureStore
  */
 export async function clearAuthData(): Promise<void> {
+  // Drop this account's optimistic like/save/repost overlay, otherwise it would
+  // keep beating the next account's server state for the full TTL.
+  try { clearAllEngagement(); } catch {}
   await removeAuthToken();
   await removeRefreshToken();
   await removeTokenExpiresAt();

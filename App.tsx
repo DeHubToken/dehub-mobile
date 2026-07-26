@@ -29,6 +29,14 @@ import {
 } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import * as ExpoSplashScreen from "expo-splash-screen";
+import {
+  useFonts,
+  Exo_400Regular,
+  Exo_500Medium,
+  Exo_600SemiBold,
+  Exo_700Bold,
+} from "@expo-google-fonts/exo";
+import { applyGlobalFont } from "./libs/globalFont";
 import { theme } from "./theme";
 import { AuthProvider, useAuthState, useUser } from "./context/AuthContext";
 import { WebSocketProvider } from "./context/WebSocketContext";
@@ -81,6 +89,23 @@ export default function App() {
   const [appReady, setAppReady] = React.useState(false);
   const { hasInternet, isConnected, checkConnection } = useNetworkStatus();
 
+  // Exo is the web app's global typeface (dehubweb/src/index.css:46). Nothing
+  // loaded it here before, so every screen rendered in the platform default.
+  // These are bundled TTFs, not a network fetch, so the wait is negligible —
+  // and `fontError` is treated as "done" so a font failure degrades to the
+  // system font instead of holding the splash forever.
+  const [fontsLoaded, fontError] = useFonts({
+    Exo_400Regular,
+    Exo_500Medium,
+    Exo_600SemiBold,
+    Exo_700Bold,
+  });
+  const fontsSettled = fontsLoaded || !!fontError;
+
+  React.useEffect(() => {
+    if (fontsLoaded) applyGlobalFont();
+  }, [fontsLoaded]);
+
   // App lifecycle management
   const { appState, wasLikelyKilled, backgroundDuration } = useAppLifecycle({
     onForeground: useCallback(() => {
@@ -121,7 +146,7 @@ export default function App() {
 
   // Show our SplashScreen while checking network/loading
   // The native splash stays visible until appReady
-  if (isLoading || hasInternet === null || isConnected === null) {
+  if (isLoading || !fontsSettled || hasInternet === null || isConnected === null) {
     return (
       <View style={{ flex: 1, backgroundColor: '#000000' }}>
         <SplashScreen />
@@ -178,21 +203,12 @@ export default function App() {
   );
 }
 
-const MIN_SPLASH_MS = 2500;
-
 const BootGate: React.FC = () => {
   const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
   const user = useUser();
   // Only run update checks in production builds
   const { updateInfo, showModal, closeModal } = useAppUpdate();
   const isAuthenticated = isSignedIn && !needsUsername;
-
-  const [minSplashDone, setMinSplashDone] = React.useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setMinSplashDone(true), MIN_SPLASH_MS);
-    return () => clearTimeout(t);
-  }, []);
 
   useUploadProcessor();
 
@@ -221,9 +237,11 @@ const BootGate: React.FC = () => {
     [onStateChange]
   );
 
-  // Show splash while loading auth state, navigation state, or minimum splash time
-  // Wrapped in black View to prevent any white flash
-  if (isBootLoading || !isReady || !minSplashDone) {
+  // Show the splash only while boot is genuinely in progress — auth state
+  // resolving or navigation state restoring. No artificial minimum floor: go
+  // straight from the splash to the feed the moment the app is actually ready.
+  // Wrapped in a black View to prevent any white flash.
+  if (isBootLoading || !isReady) {
     return (
       <View style={{ flex: 1, backgroundColor: '#000000' }}>
         <SplashScreen />
