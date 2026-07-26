@@ -277,7 +277,13 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           if (conversationId) {
             navigation.navigate(ScreenNames.Chat, { conversationId });
           } else {
-            navigation.navigate(ScreenNames.DirectMessages);
+            // The DM list is mounted as ScreenNames.DM
+            // (navigation/BottomTabNavigator.tsx). A duplicate
+            // `DirectMessages` enum entry used to be used here; it was never
+            // registered on a navigator, so navigating to it threw and fell
+            // through to the catch below, dumping the user on Notifications
+            // instead of their DMs. That alias has since been removed.
+            navigation.navigate(ScreenNames.DM);
           }
           break;
 

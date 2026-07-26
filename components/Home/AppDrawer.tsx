@@ -24,6 +24,7 @@ import Animated, {
 import Avatar from "../common/Avatar";
 import Icon, { type IconName } from "../ui/Icon";
 import { useUser, useAuthState } from "../../context/AuthContext";
+import { useStages } from "../../context/StageContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { WEBSITE_LINK } from "../../config/links";
 import { getAvatarUrl } from "../../libs/misc";
@@ -50,6 +51,12 @@ interface DrawerItem {
   requiresAuth?: boolean;
   /** Screen lives inside the bottom-tab navigator (Root), so it needs nested navigation. */
   tab?: boolean;
+  /**
+   * Feature that is presented as a global modal rather than a route. Handled in
+   * handleItemPress — NAV_ITEMS is module-level so it cannot hold hook-derived
+   * callbacks directly.
+   */
+  action?: "stages";
   disabled?: boolean;
   disabledMessage?: string;
 }
@@ -72,15 +79,22 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings, requiresAuth: true },
   // Command Centre has no native screen yet — commented out (was opening the website).
   // { icon: "LayoutDashboard", labelKey: "nav.command", url: `${WEBSITE_LINK}/app/command-centre` },
-  { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay, requiresAuth: true },
+  // Passes initialTab explicitly so returning here from the Staking entry
+  // (same screen, different tab) resets to Buy instead of keeping Stake.
+  { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay, params: { initialTab: "buy" }, requiresAuth: true },
   { icon: "CalendarDays", labelKey: "nav.events", screen: ScreenNames.Events },
-  { icon: "Lightbulb", labelKey: "nav.featureRequests", url: `${WEBSITE_LINK}/features` },
-  // Staking is web3-heavy (contracts) — commented out for now.
-  // { icon: "Vault", labelKey: "nav.staking", url: `${WEBSITE_LINK}/app/stake` },
+  // Stages is modal-based on native (StagesModalsHost is mounted app-wide in
+  // App.tsx), so it opens the browse modal instead of navigating to a route.
+  { icon: "Mic", labelKey: "nav.stages", action: "stages" },
+  { icon: "Lightbulb", labelKey: "nav.featureRequests", screen: ScreenNames.FeatureRequests },
+  // Staking lives as a tab inside the wallet (Dpay) screen rather than its own
+  // route, so it deep-links there. Web has it as a separate sidebar entry.
+  { icon: "Vault", labelKey: "nav.staking", screen: ScreenNames.Dpay, params: { initialTab: "stake" }, requiresAuth: true },
   { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
-  { icon: "Briefcase", labelKey: "screens.work", url: `${WEBSITE_LINK}/work` },
+  { icon: "Briefcase", labelKey: "screens.work", screen: ScreenNames.Work },
+  { icon: "Users", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate, requiresAuth: true },
   { icon: "Briefcase", labelKey: "nav.careers", screen: ScreenNames.Careers },
-  { icon: "Store", labelKey: "screens.stores", url: `${WEBSITE_LINK}/app/stores` },
+  { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
   { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },
@@ -160,6 +174,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const { isSignedIn } = useAuthState();
   const user = useUser();
   const { t } = useTranslation();
+  const { openModal: openStages } = useStages();
 
   // Current route name, so the matching drawer item highlights like the web
   // sidebar. Tab screens live nested under Root — descend into it to find them.
@@ -249,14 +264,19 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         toastInfo(item.disabledMessage ?? t("screens.comingSoon"));
         return;
       }
-      if (item.url) {
+      if (item.action === "stages") {
+        onClose();
+        // Match navigate()'s delay so the drawer finishes closing before the
+        // stage modal slides up — otherwise the two animations fight.
+        setTimeout(() => openStages("browse"), 260);
+      } else if (item.url) {
         onClose();
         openInApp(item.url);
       } else if (item.screen) {
         navigate(item.screen, item.params, item.tab);
       }
     },
-    [navigate, onClose, t],
+    [navigate, onClose, t, openStages],
   );
 
   const displayName = user?.displayName || user?.username || "Anonymous";

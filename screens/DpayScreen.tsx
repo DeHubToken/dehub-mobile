@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { useRoute, type RouteProp } from "@react-navigation/native";
 import { useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import {
@@ -22,6 +23,8 @@ import BridgeTab from "../components/Wallet/BridgeTab";
 import ProfileAssets from "../components/Profile/ProfileAssets";
 import { getSupply, getSuccessTotal, getDpayPrice } from "../services";
 import { ChainId } from "../config/constants";
+import { ScreenNames } from "../navigation/ScreenNames";
+import type { AppStackParamList } from "../navigation/types";
 
 type WalletTab = "buy" | "stake" | "bridge";
 
@@ -37,7 +40,22 @@ const DpayScreen: React.FC = () => {
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 
-  const [activeTab, setActiveTab] = useState<WalletTab>("buy");
+  // Drawer entries (Wallet / Staking) deep-link to a specific tab; default to Buy.
+  const route = useRoute<RouteProp<AppStackParamList, ScreenNames.Dpay>>();
+  const [activeTab, setActiveTab] = useState<WalletTab>(
+    route.params?.initialTab ?? "buy",
+  );
+
+  // Re-select the tab when the drawer navigates to Dpay while it is already
+  // mounted — React Navigation reuses the screen, so the initial state above
+  // would otherwise be stale. Keyed on the params object rather than the tab
+  // string: navigate() hands back a fresh object every call, so this still
+  // fires when the user has since switched tabs by hand and taps the same
+  // drawer entry again.
+  const routeParams = route.params;
+  useEffect(() => {
+    if (routeParams?.initialTab) setActiveTab(routeParams.initialTab);
+  }, [routeParams]);
   const [dataReady, setDataReady] = React.useState<boolean>(false);
   const [progress, setProgress] = React.useState<number>(0);
   const [transfersTotal, setTransfersTotal] = React.useState<number | null>(null);
