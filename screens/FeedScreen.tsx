@@ -28,6 +28,7 @@ import FeedFilterPanel, {
   FeedFilters,
 } from "../components/Home/FeedFilterPanel";
 import FeedCard from "../components/Home/FeedCard";
+import { useFeedCardVisibility } from "../hooks/useFeedCardVisibility";
 import { useAuthState } from "../context/AuthContext";
 import { getCategoriesCached } from "../services/nft.service";
 import { getUnifiedFeed } from "../services/feed.unified.service";
@@ -539,9 +540,29 @@ const FeedScreen = () => {
     [],
   );
 
+  const {
+    onViewableItemsChanged: onFeedCardViewableItemsChanged,
+    isItemVisible,
+    visibilityExtraData,
+  } = useFeedCardVisibility(feedKeyExtractor as (item: unknown, index: number) => string);
+
+  // Composed rather than swapped in: this screen already tracks viewable items
+  // for its scroll-to-index handoff, and a FlatList may only have one handler.
+  const handleFeedViewability = useCallback(
+    (payload: any) => {
+      onFeedCardViewableItemsChanged(payload);
+      handleFeedViewableItemsChanged(payload);
+    },
+    [onFeedCardViewableItemsChanged, handleFeedViewableItemsChanged],
+  );
+
   const renderFeedItem = useCallback(
-    ({ item }: ListRenderItemInfo<UnifiedFeedItem>) => <FeedCard item={item} />,
-    [],
+    ({ item, index }: ListRenderItemInfo<UnifiedFeedItem>) => (
+      // Without isVisible, FeedCard defaults it to true and every windowed row
+      // — twenty-plus at the old windowSize — attaches a native video player.
+      <FeedCard item={item} isVisible={isItemVisible(feedKeyExtractor(item), item)} />
+    ),
+    [isItemVisible, feedKeyExtractor],
   );
 
   // ── Grid footer ───────────────────────────────────────────
@@ -600,13 +621,15 @@ const FeedScreen = () => {
             data={feedData}
             keyExtractor={feedKeyExtractor}
             renderItem={renderFeedItem}
-            onViewableItemsChanged={handleFeedViewableItemsChanged}
+            onViewableItemsChanged={handleFeedViewability}
             viewabilityConfig={viewabilityConfig}
+            extraData={visibilityExtraData}
             contentContainerStyle={{ paddingBottom: 80 }}
             onScrollToIndexFailed={handleScrollToIndexFailed}
-            initialNumToRender={8}
-            maxToRenderPerBatch={8}
-            windowSize={11}
+            initialNumToRender={4}
+            maxToRenderPerBatch={4}
+            windowSize={7}
+            removeClippedSubviews
             onScroll={scrollHandler}
             onScrollBeginDrag={handleScrollBegin}
             scrollEventThrottle={16}

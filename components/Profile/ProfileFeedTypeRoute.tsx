@@ -54,9 +54,11 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({ address, po
         enableBackToTop={false}
         onScroll={onScroll}
         headerComponent={listHeader}
-        renderItem={({ item }) => (
+        // isVisible must be forwarded or FeedCard falls back to its own
+        // `true` default and every windowed row attaches a video player.
+        renderItem={({ item, isVisible }) => (
           <View className={listHeader ? 'px-4' : undefined}>
-            <FeedCard item={item as UnifiedFeedItem} />
+            <FeedCard item={item as UnifiedFeedItem} isVisible={isVisible} />
           </View>
         )}
       />
