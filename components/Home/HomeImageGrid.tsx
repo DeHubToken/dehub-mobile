@@ -19,6 +19,7 @@ import { getUnifiedFeed } from "../../services/feed.unified.service";
 import type { UnifiedFeedItem, UnifiedFeedParams } from "../../services/feed.unified.service";
 import { getImageUrl, getImageUrlApiSimple } from "../../libs";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { theme } from "../../theme";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
@@ -320,7 +321,10 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
 
   if (initialLoading) {
     return (
-      <View className="flex-1 px-2 pt-1">
+      <View className="flex-1 px-2">
+        {/* Same spacer the list carries in its ListHeaderComponent — without it
+            the placeholder renders behind the collapsible header. */}
+        <Animated.View style={topSpacerStyle} />
         <View className="rounded-xl overflow-hidden">
           <GridSkeleton />
         </View>
@@ -348,7 +352,9 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         renderItem={renderGridRow}
         getItemLayout={getGridItemLayout}
         ListHeaderComponent={<Animated.View style={topSpacerStyle} />}
-        contentContainerStyle={{ paddingTop: 0 }}
+        // Reserve room for the floating nav pill; without it the last grid row
+        // is stuck underneath it.
+        contentContainerStyle={{ paddingTop: 0, paddingBottom: TAB_BAR_CONTENT_INSET }}
         style={{ borderRadius: 12, overflow: 'hidden' }}
         showsVerticalScrollIndicator={false}
         initialNumToRender={6}
