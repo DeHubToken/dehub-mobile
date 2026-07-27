@@ -19,8 +19,9 @@ import { getUnifiedFeed } from "../../services/feed.unified.service";
 import type { UnifiedFeedItem, UnifiedFeedParams } from "../../services/feed.unified.service";
 import { getImageUrl, getImageUrlApiSimple } from "../../libs";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { theme } from "../../theme";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 
 export interface HomeImageGridHandle {
   scrollToTopAndRefresh: () => void;
@@ -234,6 +235,12 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     postType: "feed-images" as const,
   }), [params]);
 
+  const queryClient = useQueryClient();
+  const queryKey = useMemo(
+    () => ["home-images", mergedParams, pageSize],
+    [mergedParams, pageSize],
+  );
+
   // Cached + revalidated by react-query: switching tabs re-renders instantly
   // from cache (no skeleton flash) and refetches in the background when stale.
   const {
@@ -245,7 +252,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     fetchNextPage,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["home-images", mergedParams, pageSize],
+    queryKey,
     queryFn: ({ pageParam }) =>
       getUnifiedFeed({ ...mergedParams, limit: pageSize, page: pageParam }),
     initialPageParam: 1,
@@ -272,11 +279,19 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     onRefreshProp?.();
     setRefreshing(true);
     try {
+      // Drop everything past the first page before refetching. React Query
+      // refetches every loaded page of an infinite query, so without this a
+      // pull-to-refresh deep into the feed fires one request per loaded page.
+      queryClient.setQueryData(queryKey, (old: any) =>
+        old?.pages?.length > 1
+          ? { ...old, pages: old.pages.slice(0, 1), pageParams: old.pageParams.slice(0, 1) }
+          : old,
+      );
       await refetch();
     } finally {
       setRefreshing(false);
     }
-  }, [refetch, onRefreshProp]);
+  }, [refetch, onRefreshProp, queryClient, queryKey]);
 
   useEffect(() => {
     if (!gridRef) return;
@@ -320,7 +335,10 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
 
   if (initialLoading) {
     return (
-      <View className="flex-1 px-2 pt-1">
+      <View className="flex-1 px-2">
+        {/* Same spacer the list carries in its ListHeaderComponent — without it
+            the placeholder renders behind the collapsible header. */}
+        <Animated.View style={topSpacerStyle} />
         <View className="rounded-xl overflow-hidden">
           <GridSkeleton />
         </View>
@@ -348,7 +366,9 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         renderItem={renderGridRow}
         getItemLayout={getGridItemLayout}
         ListHeaderComponent={<Animated.View style={topSpacerStyle} />}
-        contentContainerStyle={{ paddingTop: 0 }}
+        // Reserve room for the floating nav pill; without it the last grid row
+        // is stuck underneath it.
+        contentContainerStyle={{ paddingTop: 0, paddingBottom: TAB_BAR_CONTENT_INSET }}
         style={{ borderRadius: 12, overflow: 'hidden' }}
         showsVerticalScrollIndicator={false}
         initialNumToRender={6}

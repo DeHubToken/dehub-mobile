@@ -16,6 +16,8 @@ import {
 } from "../../services/feed.unified.service";
 import { getUserReposts } from "../../services/repost.service";
 import { theme } from "../../theme";
+import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
+import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 
 const PAGE_SIZE = 20;
 const MAX_REPOST_PAGES = 10;
@@ -167,6 +169,27 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
     return rows;
   }, [posts, reposts]);
 
+  // Without this every windowed row rendered with FeedCard's `isVisible`
+  // default of true, so a profile with videos attached a native player per row.
+  const rowKeyExtractor = useCallback((row: { key: string }) => row.key, []);
+  const {
+    viewabilityConfig,
+    onViewableItemsChanged,
+    isItemVisible,
+    visibilityExtraData,
+  } = useFeedCardVisibility();
+
+  const renderRow = useCallback(
+    ({ item }: { item: (typeof merged)[number] }) => (
+      <FeedCard
+        item={item.item}
+        showRepostLabel={item.isRepost}
+        isVisible={isItemVisible(item.key, item.item)}
+      />
+    ),
+    [isItemVisible],
+  );
+
   if (loading) {
     return (
       <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
@@ -200,15 +223,20 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
     <View className="flex-1 px-3">
       <FlatList
         data={merged}
-        keyExtractor={(item) => item.key}
+        keyExtractor={rowKeyExtractor}
         ListHeaderComponent={headerElement}
         scrollEnabled={scrollEnabled}
-        renderItem={({ item }) => (
-          <FeedCard item={item.item} showRepostLabel={item.isRepost} />
-        )}
-        contentContainerStyle={{ paddingBottom: 80, paddingTop: 8 }}
+        renderItem={renderRow}
+        contentContainerStyle={{ paddingBottom: TAB_BAR_CONTENT_INSET, paddingTop: 8 }}
+        windowSize={7}
+        maxToRenderPerBatch={4}
+        initialNumToRender={4}
+        removeClippedSubviews
         onScroll={onScroll}
         scrollEventThrottle={16}
+        viewabilityConfig={viewabilityConfig}
+        onViewableItemsChanged={onViewableItemsChanged}
+        extraData={visibilityExtraData}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}

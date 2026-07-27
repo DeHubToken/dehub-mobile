@@ -15,6 +15,7 @@ import {
   Text,
 } from "react-native";
 import FeedCard from "../Home/FeedCard";
+import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
 import { getMyPosts, getLikedPosts, getSavedPosts, getUnlockedPosts, getWatchHistory } from "../../services/user.service";
 import { getFolderItems } from "../../services/bookmark.service";
@@ -122,16 +123,26 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
     return `${item.id || (item as any).tokenId || "post"}-${created}-${index}`;
   }, []);
 
+  const {
+    viewabilityConfig,
+    onViewableItemsChanged,
+    isItemVisible,
+    visibilityExtraData,
+  } = useFeedCardVisibility(keyExtractor as (item: unknown, index: number) => string);
+
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<PostItem>) => {
+    ({ item, index }: ListRenderItemInfo<PostItem>) => {
       return (
         <FeedCard
           item={item as any}
+          // Without this FeedCard falls back to isVisible=true and every one
+          // of the eleven windowed rows attaches its own native player.
+          isVisible={isItemVisible(keyExtractor(item, index), item)}
           onCategorySelect={() => {}}
         />
       );
     },
-    []
+    [isItemVisible, keyExtractor]
   );
 
   const ListFooter = useMemo(() => {
@@ -212,9 +223,14 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
       onEndReached={onEndReached}
       onEndReachedThreshold={0.5}
       ListFooterComponent={ListFooter}
-      initialNumToRender={10}
-      windowSize={11}
+      initialNumToRender={6}
+      maxToRenderPerBatch={4}
+      // Was 11 — twenty-plus feed cards resident at once on a profile list.
+      windowSize={7}
       removeClippedSubviews
+      viewabilityConfig={viewabilityConfig}
+      onViewableItemsChanged={onViewableItemsChanged}
+      extraData={visibilityExtraData}
       refreshControl={
         <RefreshControl
           refreshing={refreshing}

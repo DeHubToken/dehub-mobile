@@ -8,12 +8,30 @@ const logger = createLogger('AppLifecycle');
 export type AppLifecycleState = 'active' | 'background' | 'inactive' | 'unknown';
 
 export interface AppLifecycleCallbacks {
-  /** Called when app comes to foreground from background */
-  onForeground?: () => void;
+  /**
+   * Called when app comes to foreground from background.
+   *
+   * The time spent in background is passed in rather than read from the hook's
+   * `backgroundDuration` state: that state is set with `setState` immediately
+   * before this fires, so a callback closing over it sees the *previous*
+   * foreground's value, not this one.
+   */
+  onForeground?: (backgroundDurationMs: number) => void;
   /** Called when app goes to background */
   onBackground?: () => void;
   /** Called when app becomes inactive (e.g., notification center pulled down) */
   onInactive?: () => void;
+  /**
+   * Re-render the caller whenever lifecycle state changes, so the returned
+   * `appState` / `backgroundDuration` / `wasLikelyKilled` stay live.
+   *
+   * Off by default. These transitions fire constantly — every notification
+   * shade pull, control centre swipe and system dialog produces an
+   * active→inactive→active round trip — and the only consumer today is the
+   * root App component, which reads none of them. Leaving the state updates
+   * on meant re-rendering the entire provider tree for each of those.
+   */
+  trackState?: boolean;
 }
 
 export interface UseAppLifecycleResult {
@@ -60,11 +78,13 @@ export function useAppLifecycle(callbacks?: AppLifecycleCallbacks): UseAppLifecy
       
       logger.debug('App state change', { from: prevState, to: nextState });
 
+      const trackState = callbacksRef.current?.trackState ?? false;
+
       // Transitioning TO background
       if (nextState === 'background' && prevState !== 'background') {
         backgroundTimestampRef.current = Date.now();
         hasBeenBackgroundedRef.current = true;
-        setIsColdStart(false);
+        if (trackState) setIsColdStart(false);
         
         try {
           callbacksRef.current?.onBackground?.();
@@ -89,28 +109,28 @@ export function useAppLifecycle(callbacks?: AppLifecycleCallbacks): UseAppLifecy
         
         if (bgTimestamp) {
           duration = Date.now() - bgTimestamp;
-          setBackgroundDuration(duration);
-          
+
           // Check if app was likely killed
-          if (duration > LIKELY_KILLED_THRESHOLD_MS) {
-            logger.info('App was likely killed by OS', { duration });
-            setWasLikelyKilled(true);
-          } else {
-            setWasLikelyKilled(false);
+          const likelyKilled = duration > LIKELY_KILLED_THRESHOLD_MS;
+          if (likelyKilled) logger.info('App was likely killed by OS', { duration });
+
+          if (trackState) {
+            setBackgroundDuration(duration);
+            setWasLikelyKilled(likelyKilled);
           }
         }
         
         backgroundTimestampRef.current = null;
         
         try {
-          callbacksRef.current?.onForeground?.();
+          callbacksRef.current?.onForeground?.(duration);
         } catch (error) {
           logger.error('onForeground callback error', error);
         }
       }
 
       previousStateRef.current = nextState;
-      setAppState(nextState as AppLifecycleState);
+      if (trackState) setAppState(nextState as AppLifecycleState);
     };
 
     const subscription = AppState.addEventListener('change', handleAppStateChange);

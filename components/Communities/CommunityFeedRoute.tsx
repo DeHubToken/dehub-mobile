@@ -50,6 +50,13 @@ const CommunityFeedRoute: React.FC<Props> = ({
     [communitySlug, memberAddresses],
   );
 
+  // Stable digest of the roster for the feed's cache key. Sorted so an
+  // insertion-order change alone doesn't invalidate the cache.
+  const memberKey = useMemo(
+    () => Array.from(memberAddresses).sort().join(","),
+    [memberAddresses],
+  );
+
   const emptyComponent = useMemo(
     () => (
       <View className="items-center py-10 px-6">
@@ -75,6 +82,10 @@ const CommunityFeedRoute: React.FC<Props> = ({
     <View className="flex-1 px-3">
       <InfiniteFeed
         insideNavigatorScreen={false}
+        // memberAddresses is applied as a client-side filter inside fetchPage,
+        // so it belongs in the key too — otherwise a membership change would
+        // keep serving pages filtered against the old roster.
+        cacheKey={["community-feed", communitySlug, memberKey]}
         fetchPage={fetchPage}
         pageSize={20}
         isSignedIn={isSignedIn}
@@ -82,7 +93,11 @@ const CommunityFeedRoute: React.FC<Props> = ({
         enableBackToTop={false}
         headerComponent={listHeader}
         emptyComponent={emptyComponent}
-        renderItem={({ item }) => <FeedCard item={item as UnifiedFeedItem} />}
+        // isVisible must be forwarded or FeedCard falls back to its own
+        // `true` default and every windowed row attaches a video player.
+        renderItem={({ item, isVisible }) => (
+          <FeedCard item={item as UnifiedFeedItem} isVisible={isVisible} />
+        )}
       />
     </View>
   );

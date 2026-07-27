@@ -13,12 +13,14 @@ import {
 import Animated, { useAnimatedStyle, type SharedValue } from "react-native-reanimated";
 import { useNavigation, useScrollToTop } from "@react-navigation/native";
 import ShortsGridCard, { CARD_HEIGHT, GRID_GAP } from "./ShortsGridCard";
+import ShortsGridSkeleton from "./ShortsGridSkeleton";
 import Icon from "../ui/Icon";
 import { getShortsFeed } from "../../services/feed.unified.service";
 import type { UnifiedFeedItem, ShortsFeedParams } from "../../services/feed.unified.service";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { theme } from "../../theme";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 
 export interface ShortsGridHandle {
   scrollToTopAndRefresh: () => void;
@@ -92,6 +94,12 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     shuffleSeed?: string;
   }
 
+  const queryClient = useQueryClient();
+  const queryKey = useMemo(
+    () => ["home-shorts", mergedParams, pageSize],
+    [mergedParams, pageSize],
+  );
+
   const {
     data,
     error: queryError,
@@ -101,7 +109,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     fetchNextPage,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["home-shorts", mergedParams, pageSize],
+    queryKey,
     queryFn: ({ pageParam }: { pageParam: ShortsPageParam }) =>
       getShortsFeed({
         ...mergedParams,
@@ -156,11 +164,19 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     setRefreshing(true);
     setUnavailableKeys(new Set());
     try {
+      // Drop everything past the first page before refetching. React Query
+      // refetches every loaded page of an infinite query, so without this a
+      // pull-to-refresh deep into the feed fires one request per loaded page.
+      queryClient.setQueryData(queryKey, (old: any) =>
+        old?.pages?.length > 1
+          ? { ...old, pages: old.pages.slice(0, 1), pageParams: old.pageParams.slice(0, 1) }
+          : old,
+      );
       await refetch();
     } finally {
       setRefreshing(false);
     }
-  }, [refetch, onRefreshProp]);
+  }, [refetch, onRefreshProp, queryClient, queryKey]);
 
   useEffect(() => {
     if (!gridRef) return;
@@ -235,8 +251,11 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
 
   if (initialLoading) {
     return (
-      <View className="flex-1 items-center justify-center">
-        <ActivityIndicator size="large" color="#fff" />
+      <View className="flex-1 px-2">
+        {/* Same spacer the list carries in its ListHeaderComponent — without it
+            the placeholder renders behind the collapsible header. */}
+        <Animated.View style={topSpacerStyle} />
+        <ShortsGridSkeleton />
       </View>
     );
   }
@@ -262,7 +281,15 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
         numColumns={2}
         columnWrapperStyle={{ gap: GRID_GAP }}
         ListHeaderComponent={<Animated.View style={topSpacerStyle} />}
-        contentContainerStyle={{ paddingTop: 0, gap: GRID_GAP }}
+        // paddingBottom was missing entirely, so the last row of shorts sat
+        // permanently under the floating nav pill — unreadable and untappable,
+        // and it left bright video hard against the pill's edge, which is what
+        // made the glass there look like it had lost its blur.
+        contentContainerStyle={{
+          paddingTop: 0,
+          paddingBottom: TAB_BAR_CONTENT_INSET,
+          gap: GRID_GAP,
+        }}
         showsVerticalScrollIndicator={false}
         initialNumToRender={8}
         maxToRenderPerBatch={8}
@@ -309,4 +336,5 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   );
 };
 
-export default ShortsGrid;
+// Kept mounted as one of Home's six pager pages — see InfiniteVideoFeed's note.
+export default memo(ShortsGrid);

@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState, useRef, useMemo, useEffect, startTransition } from "react";
+import React, { memo, useCallback, useState, useRef, useMemo } from "react";
 import { View, Pressable, StyleSheet, Platform } from "react-native";
 import { BlurView } from "expo-blur";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -6,8 +6,10 @@ import Reanimated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
+  cancelAnimation,
   Easing,
   runOnJS,
+  type SharedValue,
 } from "react-native-reanimated";
 import Icon, { type IconName } from "../ui/Icon";
 import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
@@ -29,16 +31,27 @@ const NAV_ITEMS: NavItem[] = [
 ];
 
 interface FeedNavBarProps {
-  activePostType: PostTypeOption;
+  /** Settled tab index — drives the icon highlight. */
+  activeIndex: number;
+  /**
+   * Live pager position in page units, shared with HomeScreen. The glass
+   * indicator reads it directly on the UI thread, so it tracks a swipe frame
+   * for frame with the feed underneath instead of animating on its own clock.
+   */
+  progress: SharedValue<number>;
   isFilterOpen: boolean;
   hasActiveFilters: boolean;
   onPostTypeChange: (postType: PostTypeOption) => void;
   onFilterPress: () => void;
 }
 
-// Web-parity slide: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)
-const SLIDE_DURATION = 400;
-const SLIDE_EASING = Easing.bezier(0.16, 1, 0.3, 1);
+// Web-parity slide: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1). Only used for
+// a drag that lands back where it started; taps and swipes are animated by
+// HomeScreen so the pill and the page move as one.
+const SNAP_BACK = { duration: 260, easing: Easing.bezier(0.22, 1, 0.36, 1) } as const;
+const EDGE_RESISTANCE = 0.28;
+const VELOCITY_PROJECTION = 0.12;
+const LAST_INDEX = NAV_ITEMS.length - 1;
 
 const NavButton = memo<{
   icon: IconName;
@@ -60,93 +73,37 @@ const NavButton = memo<{
 ));
 
 const FeedNavBar: React.FC<FeedNavBarProps> = ({
-  activePostType,
+  activeIndex,
+  progress,
   isFilterOpen,
   hasActiveFilters,
   onPostTypeChange,
   onFilterPress,
 }) => {
-  // Optimistic highlight: the active indicator is driven by local state so a
-  // tap moves it in the very next (cheap) frame, instead of waiting for the
-  // parent to mount/unmount its heavy feed list. The parent switch is deferred
-  // as a low-priority transition so it never blocks that highlight paint.
-  const [localActive, setLocalActive] = useState<PostTypeOption>(activePostType);
-  useEffect(() => {
-    // Keep in sync when the tab changes from outside (swipe gesture, filters).
-    setLocalActive(activePostType);
-  }, [activePostType]);
-
-  const commitPostType = useCallback(
-    (postType: PostTypeOption) => {
-      setLocalActive(postType); // urgent → highlight moves instantly
-      startTransition(() => onPostTypeChange(postType)); // deferred heavy swap
-    },
-    [onPostTypeChange],
-  );
-
-  const handleNavPress = useCallback(
-    (postType: PostTypeOption) => {
-      if (postType === activePostTypeRef.current) return;
-      commitPostType(postType);
-    },
-    [commitPostType],
-  );
-
   const [containerWidth, setContainerWidth] = useState(0);
   const buttonCount = NAV_ITEMS.length + 1; // +1 for filter button
   const buttonWidth = containerWidth > 0 ? containerWidth / buttonCount : 60;
 
-  // Refs that stay current without triggering re-renders
-  const activePostTypeRef = useRef(activePostType);
-  activePostTypeRef.current = activePostType;
+  // Read on the UI thread by the drag worklet, which cannot see React refs.
+  const dragStart = useSharedValue(0);
 
-  // Single glass indicator that slides between tabs (web parity: the web nav
-  // has ONE data-glass-indicator div that translates with a 0.4s bezier).
-  // Taps animate it via withTiming; drags write to it directly on the UI thread.
-  const indicatorX = useSharedValue(0);
-  const hasPositionedRef = useRef(false);
-
-  const activeIndex = Math.max(
-    0,
-    NAV_ITEMS.findIndex((i) => i.postType === localActive),
+  const handleNavPress = useCallback(
+    (postType: PostTypeOption) => {
+      onPostTypeChange(postType);
+    },
+    [onPostTypeChange],
   );
 
-  useEffect(() => {
-    if (containerWidth <= 0) return;
-    const x = activeIndex * buttonWidth;
-    if (!hasPositionedRef.current) {
-      // First layout: render in place with no animation (matches web's
-      // "renders instantly at correct position on page load").
-      hasPositionedRef.current = true;
-      indicatorX.value = x;
-    } else {
-      indicatorX.value = withTiming(x, {
-        duration: SLIDE_DURATION,
-        easing: SLIDE_EASING,
-      });
-    }
-  }, [activeIndex, buttonWidth, containerWidth, indicatorX]);
-
-  // The gesture callbacks are UI-thread worklets: they capture a frozen copy
-  // of any React ref at creation time, so later `.current` writes never reach
-  // them. Everything the pan reads on the UI thread must be a shared value.
-  const startIndexSV = useSharedValue(0);
-  const activeIndexSV = useSharedValue(activeIndex);
-  useEffect(() => {
-    activeIndexSV.value = activeIndex;
-  }, [activeIndex, activeIndexSV]);
-
-  // Resolved on the JS thread where the live ref is readable.
   const commitIndex = useCallback(
     (idx: number) => {
       const postType = NAV_ITEMS[idx]?.postType;
-      if (postType && postType !== activePostTypeRef.current) {
-        commitPostType(postType);
-      }
+      if (postType) onPostTypeChange(postType);
     },
-    [commitPostType],
+    [onPostTypeChange],
   );
 
+  // Dragging across the nav bar scrubs the pager itself, same maths as the
+  // pager's own pan — the indicator is just a view of `progress`.
   const panGesture = useMemo(
     () =>
       Gesture.Pan()
@@ -159,33 +116,40 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
         .activeOffsetX([-5, 5])
         .failOffsetY([-10, 10])
         .onStart(() => {
-          startIndexSV.value = activeIndexSV.value;
+          cancelAnimation(progress);
+          dragStart.value = progress.value;
         })
-        .onChange((e) => {
+        .onUpdate((e) => {
           if (buttonWidth <= 0) return;
-          const rawIdx = startIndexSV.value + e.translationX / buttonWidth;
-          const clampedIdx = Math.max(0, Math.min(NAV_ITEMS.length - 1, rawIdx));
-          // Direct write follows the finger and cancels any running slide.
-          indicatorX.value = clampedIdx * buttonWidth;
+          // A nav-bar drag is scaled by button width, not page width: the
+          // finger stays on the pill it is dragging.
+          const raw = dragStart.value + e.translationX / buttonWidth;
+          if (raw < 0) progress.value = raw * EDGE_RESISTANCE;
+          else if (raw > LAST_INDEX)
+            progress.value = LAST_INDEX + (raw - LAST_INDEX) * EDGE_RESISTANCE;
+          else progress.value = raw;
         })
         .onEnd((e) => {
           if (buttonWidth <= 0) return;
-          const rawIdx = startIndexSV.value + e.translationX / buttonWidth;
-          const clampedIdx = Math.round(
-            Math.max(0, Math.min(NAV_ITEMS.length - 1, rawIdx)),
-          );
-          indicatorX.value = withTiming(clampedIdx * buttonWidth, {
-            duration: SLIDE_DURATION,
-            easing: SLIDE_EASING,
-          });
-          runOnJS(commitIndex)(clampedIdx);
+          const from = Math.round(dragStart.value);
+          const projected =
+            progress.value + (e.velocityX / buttonWidth) * VELOCITY_PROJECTION;
+          let target = Math.round(projected);
+          if (target < 0) target = 0;
+          if (target > LAST_INDEX) target = LAST_INDEX;
+          if (target === from) {
+            progress.value = withTiming(target, SNAP_BACK);
+          } else {
+            // HomeScreen animates from here — it owns the page translate.
+            runOnJS(commitIndex)(target);
+          }
         }),
-    [buttonWidth, commitIndex, indicatorX, startIndexSV, activeIndexSV],
+    [buttonWidth, commitIndex, progress, dragStart],
   );
 
   // Sliding glass indicator — always visible, UI-thread driven
   const indicatorStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: indicatorX.value }],
+    transform: [{ translateX: progress.value * buttonWidth }],
     width: buttonWidth,
   }));
 
@@ -216,11 +180,11 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
           </Reanimated.View>
 
           <View style={styles.navRow}>
-            {NAV_ITEMS.map((item) => (
+            {NAV_ITEMS.map((item, index) => (
               <NavButton
                 key={item.postType}
                 icon={item.icon}
-                active={localActive === item.postType}
+                active={index === activeIndex}
                 onPress={() => handleNavPress(item.postType)}
               />
             ))}

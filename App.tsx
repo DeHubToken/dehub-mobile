@@ -73,6 +73,14 @@ import StageMiniPlayer from "./components/Stages/StageMiniPlayer";
 
 const logger = createLogger("App");
 
+/**
+ * Only rebuild the Web3Auth instance on resume if the app was away long enough
+ * for its session to plausibly have gone stale. A quick app-switch does not
+ * need it, and the rebuild is expensive enough to show up as a stutter on the
+ * frame the app comes back.
+ */
+const WEB3AUTH_REPREWARM_AFTER_MS = 5 * 60 * 1000;
+
 export const navigationRef = createNavigationContainerRef();
 
 // Keep the native splash screen visible until we explicitly hide it
@@ -82,9 +90,6 @@ ExpoSplashScreen.preventAutoHideAsync().catch(() => {
 });
 
 export default function App() {
-  // Complete any pending browser auth sessions (Web3Auth, OAuth)
-  WebBrowser.maybeCompleteAuthSession();
-
   const [isLoading, setIsLoading] = React.useState(false);
   const [appReady, setAppReady] = React.useState(false);
   const { hasInternet, isConnected, checkConnection } = useNetworkStatus();
@@ -106,14 +111,31 @@ export default function App() {
     if (fontsLoaded) applyGlobalFont();
   }, [fontsLoaded]);
 
+  // Complete any pending browser auth sessions (Web3Auth, OAuth). In an effect,
+  // not the render body: it was running on every re-render of the root
+  // component, on the critical path of each one.
+  React.useEffect(() => {
+    WebBrowser.maybeCompleteAuthSession();
+  }, []);
+
   // App lifecycle management
-  const { appState, wasLikelyKilled, backgroundDuration } = useAppLifecycle({
-    onForeground: useCallback(() => {
-      logger.info("App came to foreground", { backgroundDuration });
+  // No destructuring and no `trackState`: nothing here reads the lifecycle
+  // state, and opting into it would re-render the root of the app on every
+  // active↔inactive transition.
+  useAppLifecycle({
+    onForeground: useCallback((backgroundMs: number) => {
+      logger.info("App came to foreground", { backgroundMs });
       // Re-prewarm Web3Auth on resume – if the session went stale while
       // backgrounded the old instance was already discarded so this creates
       // a fresh one silently.
-      prewarmWeb3Auth();
+      //
+      // Only after a long background, though: this fired on every single
+      // foreground, including an app-switch of a few seconds, and rebuilding
+      // the Web3Auth instance is expensive enough to be felt as a stutter on
+      // the frame the app comes back.
+      if (backgroundMs >= WEB3AUTH_REPREWARM_AFTER_MS) {
+        prewarmWeb3Auth();
+      }
     }, []),
     onBackground: useCallback(() => {
       logger.info("App went to background");

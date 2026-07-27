@@ -8,7 +8,8 @@
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, type ListRenderItem } from "react-native";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { GestureDetector } from "react-native-gesture-handler";
+import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useTranslation } from "react-i18next";
 import { getSuggestedAccounts, type SuggestedAccount } from "../../services/user.service";
 import Icon from "../ui/Icon";
@@ -17,16 +18,7 @@ import SuggestedAccountCard from "./SuggestedAccountCard";
 import type { FollowState } from "../Search/SearchAccountChip";
 
 
-interface SuggestedAccountsSectionProps {
-  /**
-   * Ref to the parent's horizontal fling gesture (feed tab-switch on HomeScreen).
-   * When provided, the carousel's own scroll claims horizontal pans so swiping
-   * the suggestions doesn't change the whole feed page.
-   */
-  panRef?: React.MutableRefObject<any>;
-}
-
-const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ panRef }) => {
+const SuggestedAccountsSection: React.FC = () => {
   const user = useUser() as { address?: string } | null;
   const { t } = useTranslation();
   const [accounts, setAccounts] = useState<SuggestedAccount[]>([]);
@@ -106,11 +98,10 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ pan
     [accounts],
   );
 
-  // Native gesture bound to this horizontal list. The parent fling references
-  // panRef via requireExternalGestureToFail, so while this scroll is active the
-  // feed page won't swipe underneath us. Must stay above the early return below
-  // so the hook order is stable across renders.
-  const listGesture = useMemo(() => Gesture.Native().withRef(panRef!), [panRef]);
+  // While this carousel is scrolling it blocks Home's page-turn gesture, so a
+  // sideways drag here scrolls the carousel instead of switching feed tabs.
+  // Must stay above the early return below so hook order is stable.
+  const scrollGuard = useHorizontalScrollGuard();
 
   if (dismissed || visibleAccounts.length === 0) return null;
 
@@ -153,7 +144,7 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ pan
       </View>
 
       {/* Horizontal scroll */}
-      {panRef ? <GestureDetector gesture={listGesture}>{list}</GestureDetector> : list}
+      {scrollGuard ? <GestureDetector gesture={scrollGuard}>{list}</GestureDetector> : list}
     </View>
   );
 };
