@@ -1,5 +1,14 @@
 import React, { memo, useCallback, useEffect, useRef } from "react";
-import { View, Text, Pressable, ScrollView, StyleSheet, Platform, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Platform,
+  Dimensions,
+  InteractionManager,
+} from "react-native";
 import Reanimated, {
   useSharedValue,
   useAnimatedStyle,
@@ -26,6 +35,10 @@ import { openInApp } from "../libs/links.utils";
 import { useTabBarHide } from "../context/TabBarHideContext";
 import { useAuthState, useUser } from "../context/AuthContext";
 import { useTotalUnreadMessagesCount } from "../store/dm.store";
+import { storage } from "../libs/storage";
+import { TAB_BAR_PILL_HEIGHT, TAB_BAR_SCRIM_HEIGHT } from "./tabBarLayout";
+
+const SCROLL_HINT_SEEN_KEY = "dehub:navScrollHintSeen";
 
 const { width: SCREEN_W } = Dimensions.get("window");
 // Container is 72% of the screen minus outerWrap's 16px horizontal padding —
@@ -214,32 +227,61 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   const dmUnread = useTotalUnreadMessagesCount(myUserId);
   const animProgress = useSharedValue(1);
   const containerAnim = useSharedValue(0);
+  const entranceFade = useSharedValue(0);
   const hasAnimated = useRef(false);
   const scrollRef = useRef<ScrollView>(null);
 
-  const entranceStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: interpolate(containerAnim.value, [0, 1], [50, 0], "clamp") }],
-    opacity: interpolate(containerAnim.value, [0, 0.3, 1], [0, 0.7, 1], "clamp"),
-  }));
+  // UIKit refuses to render a visual-effect view correctly when it or any
+  // superview has an alpha below 1 — Apple documents this explicitly. The
+  // entrance fade therefore rides its own withTiming value, which lands exactly
+  // on 1, rather than the spring below: a spring settles asymptotically, so it
+  // parked this container at ~0.9995 forever and quietly degraded the pill's
+  // blur for the rest of the session.
+  const entranceStyle = useAnimatedStyle(() => {
+    const o = entranceFade.value;
+    return {
+      transform: [{ translateY: interpolate(containerAnim.value, [0, 1], [50, 0], "clamp") }],
+      opacity: o > 0.999 ? 1 : o,
+    };
+  });
 
   useEffect(() => {
     if (hasAnimated.current) return;
     hasAnimated.current = true;
     animProgress.value = 0;
     containerAnim.value = 0;
+    entranceFade.value = 0;
     containerAnim.value = withDelay(30, withSpring(1, { damping: 18, stiffness: 80, mass: 0.8 }));
+    entranceFade.value = withDelay(30, withTiming(1, { duration: 320 }));
     animProgress.value = withDelay(
       100,
       withTiming(1, { duration: 700, easing: Easing.bezier(0.22, 1, 0.36, 1) }),
     );
-    const hintTimer = setTimeout(() => {
+  }, [animProgress, containerAnim, entranceFade]);
+
+  // Nudge the nav pill sideways once, ever, to show it scrolls. It used to fire
+  // on a 1500ms timer every single launch — a JS-driven ScrollView animation
+  // landing squarely in the user's first interaction with the app.
+  useEffect(() => {
+    if (storage.getBoolean(SCROLL_HINT_SEEN_KEY)) return;
+    let cancelled = false;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (cancelled) return;
+      storage.set(SCROLL_HINT_SEEN_KEY, true);
       scrollRef.current?.scrollTo({ x: 60, animated: true });
-      setTimeout(() => {
-        scrollRef.current?.scrollTo({ x: 0, animated: true });
-      }, 600);
-    }, 1500);
-    return () => clearTimeout(hintTimer);
-  }, [animProgress, containerAnim]);
+      timers.push(
+        setTimeout(() => {
+          if (!cancelled) scrollRef.current?.scrollTo({ x: 0, animated: true });
+        }, 600),
+      );
+    });
+    return () => {
+      cancelled = true;
+      task.cancel();
+      timers.forEach(clearTimeout);
+    };
+  }, []);
 
   const handlePress = useCallback(
     (routeName: string) => {
@@ -293,10 +335,16 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
     [headerTranslateY],
   );
 
-  const hideStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: tabSlide.value * TAB_BAR_SLIDE }],
-    opacity: interpolate(tabSlide.value, [0, 0.5], [1, 0], "clamp"),
-  }));
+  const hideStyle = useAnimatedStyle(() => {
+    // Snapped to exactly 1 at rest for the same reason as entranceStyle: this
+    // view is a superview of the pill's UIVisualEffectView, and any alpha below
+    // 1 anywhere above it kills the blur.
+    const o = interpolate(tabSlide.value, [0, 0.5], [1, 0], "clamp");
+    return {
+      transform: [{ translateY: tabSlide.value * TAB_BAR_SLIDE }],
+      opacity: o > 0.999 ? 1 : o,
+    };
+  });
 
   return (
     <Reanimated.View style={[styles.outerWrap, { paddingBottom: bottomPadding }, hideStyle]} pointerEvents="box-none">
@@ -342,8 +390,15 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             3.1.0 and adds a blurTarget API for scoping the blur source to a
             stable subtree instead of the decorView. Until then this stands. */}
         {Platform.OS === "ios" ? (
+          // Dark material, not light. `ultraThinMaterialLight` takes essentially
+          // all of its colour from whatever is behind it, which is fine over the
+          // mostly-dark feed but falls apart on the Shorts tab: a full-bleed
+          // grid of bright, moving video turns the pill into a pale smear with
+          // no glass reading left in it. `ultraThinMaterialDark` is the same
+          // thinnest-available blur radius, but it tints toward the app's own
+          // dark chrome, so the pill holds one identity over any backdrop.
           <GlassBlurView
-            blurType="ultraThinMaterialLight"
+            blurType="ultraThinMaterialDark"
             blurAmount={40}
             reducedTransparencyFallbackColor="#1c1c20"
             style={StyleSheet.absoluteFill}
@@ -426,9 +481,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    // Taller than the 52pt pill so the fade starts well above it and reads as
+    // Taller than the pill so the fade starts well above it and reads as
     // depth rather than as a band.
-    height: 96,
+    height: TAB_BAR_SCRIM_HEIGHT,
   },
   navContainer: {
     width: "72%",
@@ -488,18 +543,18 @@ const styles = StyleSheet.create({
   navRow: {
     flexDirection: "row",
     alignItems: "center",
-    height: 52,
+    height: TAB_BAR_PILL_HEIGHT,
     paddingHorizontal: NAV_EDGE_PAD,
   },
   tabButton: {
     width: TAB_W,
     alignItems: "center",
     justifyContent: "center",
-    height: 52,
+    height: TAB_BAR_PILL_HEIGHT,
   },
   centerButton: {
-    width: 52,
-    height: 52,
+    width: TAB_BAR_PILL_HEIGHT,
+    height: TAB_BAR_PILL_HEIGHT,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -540,7 +595,7 @@ const styles = StyleSheet.create({
     width: TAB_W,
     alignItems: "center" as const,
     justifyContent: "center" as const,
-    height: 52,
+    height: TAB_BAR_PILL_HEIGHT,
   },
   badge: {
     position: "absolute",

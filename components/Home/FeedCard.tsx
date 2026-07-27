@@ -13,6 +13,8 @@ import Reanimated, {
   runOnJS,
 } from "react-native-reanimated";
 import { ScrollView as RNScrollView } from "react-native";
+import { GestureDetector } from "react-native-gesture-handler";
+import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useNavigation } from "@react-navigation/native";
 import { FeedCardHeader } from "./FeedCardHeader";
 import FeedActionBar from "./FeedActionBar";
@@ -665,6 +667,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     },
   });
 
+  // Non-null only when this card sits inside a horizontal pager (Home). Lets the
+  // multi-image gallery below keep its own swipes — see renderImageContent.
+  const scrollGuard = useHorizontalScrollGuard();
+
   const handleAiPress = useCallback(() => {
     requireAuth?.(() => {
       setShowAISheet(true);
@@ -838,29 +844,37 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         </Pressable>
       );
     }
+    const gallery = (
+      <ReanimatedScrollView
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+        decelerationRate="fast"
+        snapToInterval={IMAGE_WIDTH}
+        snapToAlignment="start"
+      >
+        {galleryImages.map((uri, index) => (
+          <Pressable key={index} onPress={() => handleImagePress(index)} style={{ width: IMAGE_WIDTH }}>
+            <Image
+              source={{ uri }}
+              className="rounded-xl"
+              style={{ width: IMAGE_WIDTH, height: IMAGE_WIDTH }}
+              resizeMode="cover"
+            />
+          </Pressable>
+        ))}
+      </ReanimatedScrollView>
+    );
+
     return (
       <View className="mt-2">
-        <ReanimatedScrollView
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          onScroll={scrollHandler}
-          scrollEventThrottle={16}
-          decelerationRate="fast"
-          snapToInterval={IMAGE_WIDTH}
-          snapToAlignment="start"
-        >
-          {galleryImages.map((uri, index) => (
-            <Pressable key={index} onPress={() => handleImagePress(index)} style={{ width: IMAGE_WIDTH }}>
-              <Image
-                source={{ uri }}
-                className="rounded-xl"
-                style={{ width: IMAGE_WIDTH, height: IMAGE_WIDTH }}
-                resizeMode="cover"
-              />
-            </Pressable>
-          ))}
-        </ReanimatedScrollView>
+        {/* Inside Home's swipe pager, paging through this gallery has to win
+            over the page turn — without the guard the pager's pan clears its
+            threshold first and cancels the gallery scroll mid-drag. Elsewhere
+            (profile, search) the hook returns null and this renders bare. */}
+        {scrollGuard ? <GestureDetector gesture={scrollGuard}>{gallery}</GestureDetector> : gallery}
         <View className="absolute top-3 right-3 bg-black/60 rounded-full px-2.5 py-1">
           <Text className="text-white text-xs font-medium">
             {activeImageIndex + 1}/{galleryImages.length}

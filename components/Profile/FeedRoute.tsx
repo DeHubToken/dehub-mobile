@@ -41,15 +41,18 @@ const FeedRoute: React.FC<FeedRouteProps> = ({ address, listHeader }) => {
     <View className="flex-1">
       <InfiniteFeed
         insideNavigatorScreen={false}
+        cacheKey={["profile-feed-all", address ?? ""]}
         fetchPage={fetchPage}
         pageSize={20}
         isSignedIn={isSignedIn}
         contentContainerStyle={{ paddingBottom: 80, paddingTop: 0 }}
         enableBackToTop={false}
         headerComponent={listHeader}
-        renderItem={({ item }) => (
+        // isVisible must be forwarded or FeedCard falls back to its own
+        // `true` default and every windowed row attaches a video player.
+        renderItem={({ item, isVisible }) => (
           <View className="px-3">
-            <FeedCard item={item as UnifiedFeedItem} />
+            <FeedCard item={item as UnifiedFeedItem} isVisible={isVisible} />
           </View>
         )}
       />

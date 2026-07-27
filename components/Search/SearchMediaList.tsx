@@ -1,7 +1,11 @@
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import { FlatList, View, Text } from "react-native";
 import FeedCard from "../Home/FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
+// Was referenced below but never imported, so any search whose video or
+// livestream results came back empty threw a ReferenceError from render.
+import CompactVideoCardSkeleton from "../Home/CompactVideoCardSkeleton";
+import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 
 export interface MediaItem {
   tokenId?: string | number;
@@ -48,6 +52,32 @@ const SearchMediaList: FC<SearchMediaListProps> = ({
   onLoadMore,
   hasMore = false,
 }) => {
+  const keyExtractor = useCallback((item: MediaItem, idx: number) => {
+    const created =
+      item.createdAt || item.stream?.createdAt || item.created_at || "nocreated";
+    const base =
+      item.tokenId || item.id || item.streamKey || item.stream?.id || idx;
+    return `${base}-${created}-${idx}`;
+  }, []);
+
+  const {
+    viewabilityConfig,
+    onViewableItemsChanged,
+    isItemVisible,
+    visibilityExtraData,
+  } = useFeedCardVisibility(keyExtractor as (item: unknown, index: number) => string);
+
+  const renderItem = useCallback(
+    ({ item, index }: { item: MediaItem; index: number }) => (
+      <View style={{ paddingHorizontal: 16 }}>
+        {/* Without isVisible, FeedCard defaults it to true and every windowed
+            result attaches a native video player. */}
+        <FeedCard item={item as any} isVisible={isItemVisible(keyExtractor(item, index), item)} />
+      </View>
+    ),
+    [isItemVisible, keyExtractor],
+  );
+
   if (data.length === 0 && !loadingMore) {
     return (
       <View className="mt-2">
@@ -60,16 +90,14 @@ const SearchMediaList: FC<SearchMediaListProps> = ({
   return (
     <FlatList
       data={data}
-      keyExtractor={(item, idx) => {
-        const created =
-          item.createdAt ||
-          item.stream?.createdAt ||
-          item.created_at ||
-          "nocreated";
-        const base =
-          item.tokenId || item.id || item.streamKey || item.stream?.id || idx;
-        return `${base}-${created}-${idx}`;
-      }}
+      keyExtractor={keyExtractor}
+      initialNumToRender={4}
+      maxToRenderPerBatch={4}
+      windowSize={7}
+      removeClippedSubviews
+      viewabilityConfig={viewabilityConfig}
+      onViewableItemsChanged={onViewableItemsChanged}
+      extraData={visibilityExtraData}
       onEndReachedThreshold={0.6}
       onEndReached={onLoadMore}
       ListFooterComponent={
@@ -86,11 +114,7 @@ const SearchMediaList: FC<SearchMediaListProps> = ({
           )}
         </View>
       }
-      renderItem={({ item }) => (
-        <View style={{paddingHorizontal: 16}}>
-          <FeedCard item={item as any} />
-        </View>
-      )}
+      renderItem={renderItem}
     />
   );
 };

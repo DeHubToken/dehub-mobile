@@ -1,56 +1,8 @@
 import React from "react";
 import { createStackNavigator, StackCardStyleInterpolator } from "@react-navigation/stack";
-import { Platform } from "react-native";
 import { ScreenNames } from "./ScreenNames";
 import type { AppStackParamList } from "./types";
 import BottomTabNavigator from "./BottomTabNavigator";
-import VideoPlayerScreen from "../screens/VideoPlayerScreen";
-import LeaderboardScreen from "../screens/LeaderboardScreen";
-import NotificationScreen from "../screens/NotificationScreen";
-import NotificationSettingsScreen from "../screens/NotificationSettingsScreen";
-import PrivacySettingsScreen from "../screens/PrivacySettingsScreen";
-import FeedScreen from "../screens/FeedScreen";
-import FeedDetailScreen from "../screens/FeedDetailScreen";
-import ImageViewerScreen from "../screens/ImageViewerScreen";
-import FullscreenVideoScreen from "../screens/FullscreenVideoScreen";
-import SearchScreen from "../screens/SearchScreen";
-import AccountSettingsScreen from "../screens/AccountSettingsScreen";
-import YourVideosScreen from "../screens/YourVideosScreen";
-import LikedVideosScreen from "../screens/LikedVideosScreen";
-import SavedPostsScreen from "../screens/SavedPostsScreen";
-import EarningsScreen from "../screens/EarningsScreen";
-import EditProfileScreen from "../screens/EditProfileScreen";
-import ProfileScreen from "../screens/ProfileScreen";
-import SignInScreen from "../screens/auth/SignInScreen";
-import UploadScreen from "../screens/UploadScreen";
-import LiveProducerScreen from "../screens/LiveProducerScreen";
-import LiveViewerScreen from "../screens/LiveViewerScreen";
-import DpayScreen from "../screens/DpayScreen";
-import FollowListScreen from "../screens/FollowListScreen";
-import RepostQuoteListScreen from "../screens/RepostQuoteListScreen";
-import DraftsScreen from '../screens/DraftsScreen';
-import MyLibraryScreen from '../screens/MyLibraryScreen';
-import PostResolverScreen from '../screens/PostResolverScreen';
-import { LivepeerProvider } from "../config/livepeer.config";
-import ChatScreen from "../screens/ChatScreen";
-import LiveChatScreen from "../screens/LiveChatScreen";
-import LiveChatInfoScreen from "../screens/LiveChatInfoScreen";import UploadQueueScreen from '../screens/UploadQueueScreen';import ActiveSessionsScreen from '../screens/ActiveSessionsScreen';import ShortsViewerScreen from '../screens/ShortsViewerScreen';
-import ImageFeedScreen from '../screens/ImageFeedScreen';
-import CommunitiesScreen from '../screens/CommunitiesScreen';
-import CommunityDetailScreen from '../screens/CommunityDetailScreen';
-import GlossaryScreen from '../screens/GlossaryScreen';
-import GuideScreen from '../screens/GuideScreen';
-import EventsScreen from '../screens/EventsScreen';
-import CareersScreen from '../screens/CareersScreen';
-import GovernanceScreen from '../screens/GovernanceScreen';
-import AffiliateScreen from '../screens/AffiliateScreen';
-import FeatureRequestsScreen from '../screens/FeatureRequestsScreen';
-import StoresScreen from '../screens/StoresScreen';
-import StoreDetailScreen from '../screens/StoreDetailScreen';
-import ListingDetailScreen from '../screens/ListingDetailScreen';
-import WorkScreen from '../screens/WorkScreen';
-import WorkJobDetailScreen from '../screens/WorkJobDetailScreen';
-import WorkPostScreen from '../screens/WorkPostScreen';
 import { useAuthState } from "../context/AuthContext";
 
 /** Standardized gesture response distances */
@@ -101,19 +53,46 @@ const slideFromBottomWithOverlay: StackCardStyleInterpolator = ({ current, layou
   },
 });
 
-/** LiveProducer screen wrapped with LivepeerProvider */
-const LiveProducerWithProvider: React.FC<any> = (props) => (
-  <LivepeerProvider>
-    <LiveProducerScreen {...props} />
-  </LivepeerProvider>
-);
+/**
+ * Screens are attached with `getComponent` rather than `component` so Hermes
+ * only evaluates a screen module the first time it is actually navigated to.
+ * Metro's `inlineRequires` defers the `require` to first *use*, but the use site
+ * used to be `getComponent={() => require("../screens/UploadScreen").default}` inside this component's JSX — which
+ * renders on boot — so every screen and its whole import graph (Agora, WebRTC,
+ * Livepeer, ethers, Stripe) was evaluated before the first frame.
+ *
+ * Note that React Navigation calls `getComponent()` on every render of the
+ * scene, not once: it must return a stable identity or the screen remounts each
+ * time. Bare `require(...).default` is stable via Metro's module cache; the two
+ * provider-wrapped screens below need the component built once and cached.
+ */
+let liveProducerScreen: React.ComponentType<any> | undefined;
+const getLiveProducerScreen = () => {
+  if (!liveProducerScreen) {
+    const { LivepeerProvider } = require("../config/livepeer.config");
+    const LiveProducerScreen = require("../screens/LiveProducerScreen").default;
+    liveProducerScreen = (props: any) => (
+      <LivepeerProvider>
+        <LiveProducerScreen {...props} />
+      </LivepeerProvider>
+    );
+  }
+  return liveProducerScreen;
+};
 
-/** LiveViewer screen wrapped with LivepeerProvider */
-const LiveViewerWithProvider: React.FC<any> = (props) => (
-  <LivepeerProvider>
-    <LiveViewerScreen {...props} />
-  </LivepeerProvider>
-);
+let liveViewerScreen: React.ComponentType<any> | undefined;
+const getLiveViewerScreen = () => {
+  if (!liveViewerScreen) {
+    const { LivepeerProvider } = require("../config/livepeer.config");
+    const LiveViewerScreen = require("../screens/LiveViewerScreen").default;
+    liveViewerScreen = (props: any) => (
+      <LivepeerProvider>
+        <LiveViewerScreen {...props} />
+      </LivepeerProvider>
+    );
+  }
+  return liveViewerScreen;
+};
 
 const Stack = createStackNavigator<AppStackParamList>();
 
@@ -137,107 +116,107 @@ export default function AppNavigator() {
       <Stack.Group>
         <Stack.Screen
           name={ScreenNames.Leaderboard}
-          component={LeaderboardScreen}
+          getComponent={() => require("../screens/LeaderboardScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.Communities}
-          component={CommunitiesScreen}
+          getComponent={() => require("../screens/CommunitiesScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.Glossary}
-          component={GlossaryScreen}
+          getComponent={() => require("../screens/GlossaryScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.Guide}
-          component={GuideScreen}
+          getComponent={() => require("../screens/GuideScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.Events}
-          component={EventsScreen}
+          getComponent={() => require("../screens/EventsScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.Careers}
-          component={CareersScreen}
+          getComponent={() => require("../screens/CareersScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.Governance}
-          component={GovernanceScreen}
+          getComponent={() => require("../screens/GovernanceScreen").default}
         />
         {/* Public: browsing is open, voting/submitting prompts sign-in. */}
         <Stack.Screen
           name={ScreenNames.FeatureRequests}
-          component={FeatureRequestsScreen}
+          getComponent={() => require("../screens/FeatureRequestsScreen").default}
         />
         {/* Marketplace is browsable signed-out; buying prompts sign-in. */}
         <Stack.Screen
           name={ScreenNames.Stores}
-          component={StoresScreen}
+          getComponent={() => require("../screens/StoresScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.StoreDetail}
-          component={StoreDetailScreen}
+          getComponent={() => require("../screens/StoreDetailScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.ListingDetail}
-          component={ListingDetailScreen}
+          getComponent={() => require("../screens/ListingDetailScreen").default}
         />
         {/* Bounties: browsing is open, posting/applying prompts sign-in
             (same as web, which lets you fill the form then gates on submit). */}
         <Stack.Screen
           name={ScreenNames.Work}
-          component={WorkScreen}
+          getComponent={() => require("../screens/WorkScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.WorkJobDetail}
-          component={WorkJobDetailScreen}
+          getComponent={() => require("../screens/WorkJobDetailScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.WorkPost}
-          component={WorkPostScreen}
+          getComponent={() => require("../screens/WorkPostScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.CommunityDetail}
-          component={CommunityDetailScreen}
+          getComponent={() => require("../screens/CommunityDetailScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.Feed}
-          component={FeedScreen}
+          getComponent={() => require("../screens/FeedScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.PostResolver}
-          component={PostResolverScreen}
+          getComponent={() => require("../screens/PostResolverScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.FeedDetail}
-          component={FeedDetailScreen}
+          getComponent={() => require("../screens/FeedDetailScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.Search}
-          component={SearchScreen}
+          getComponent={() => require("../screens/SearchScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.ImageViewer}
-          component={ImageViewerScreen}
+          getComponent={() => require("../screens/ImageViewerScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.FullscreenVideo}
-          component={FullscreenVideoScreen}
+          getComponent={() => require("../screens/FullscreenVideoScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.ShortsViewer}
-          component={ShortsViewerScreen}
+          getComponent={() => require("../screens/ShortsViewerScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.ImageFeed}
-          component={ImageFeedScreen}
+          getComponent={() => require("../screens/ImageFeedScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.FollowList}
-          component={FollowListScreen}
+          getComponent={() => require("../screens/FollowListScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.RepostQuoteList}
-          component={RepostQuoteListScreen}
+          getComponent={() => require("../screens/RepostQuoteListScreen").default}
         />
       </Stack.Group>
 
@@ -251,21 +230,21 @@ export default function AppNavigator() {
       >
         <Stack.Screen
           name={ScreenNames.VideoPlayer}
-          component={VideoPlayerScreen}
+          getComponent={() => require("../screens/VideoPlayerScreen").default}
           options={{
             gestureResponseDistance: GESTURE_DISTANCE.FULL_MODAL,
           }}
         />
         <Stack.Screen
           name={ScreenNames.LiveViewer}
-          component={LiveViewerWithProvider}
+          getComponent={getLiveViewerScreen}
           options={{
             gestureResponseDistance: GESTURE_DISTANCE.FULL_MODAL,
           }}
         />
         <Stack.Screen
           name={ScreenNames.SignIn}
-          component={SignInScreen}
+          getComponent={() => require("../screens/auth/SignInScreen").default}
           options={{
             cardStyleInterpolator: slideFromBottomWithOverlay,
             gestureResponseDistance: GESTURE_DISTANCE.PARTIAL_MODAL,
@@ -284,71 +263,71 @@ export default function AppNavigator() {
           <>
             <Stack.Screen
               name={ScreenNames.Dpay}
-              component={DpayScreen}
+              getComponent={() => require("../screens/DpayScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.Notifications}
-              component={NotificationScreen}
+              getComponent={() => require("../screens/NotificationScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.NotificationSettings}
-              component={NotificationSettingsScreen}
+              getComponent={() => require("../screens/NotificationSettingsScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.PrivacySettings}
-              component={PrivacySettingsScreen}
+              getComponent={() => require("../screens/PrivacySettingsScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.Chat}
-              component={ChatScreen as any}
+              getComponent={() => require("../screens/ChatScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.LiveChat}
-              component={LiveChatScreen}
+              getComponent={() => require("../screens/LiveChatScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.LiveChatInfo}
-              component={LiveChatInfoScreen}
+              getComponent={() => require("../screens/LiveChatInfoScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.AccountSettings}
-              component={AccountSettingsScreen}
+              getComponent={() => require("../screens/AccountSettingsScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.ActiveSessions}
-              component={ActiveSessionsScreen}
+              getComponent={() => require("../screens/ActiveSessionsScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.YourVideos}
-              component={YourVideosScreen}
+              getComponent={() => require("../screens/YourVideosScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.LikedVideos}
-              component={LikedVideosScreen}
+              getComponent={() => require("../screens/LikedVideosScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.SavedPosts}
-              component={SavedPostsScreen}
+              getComponent={() => require("../screens/SavedPostsScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.Earnings}
-              component={EarningsScreen}
+              getComponent={() => require("../screens/EarningsScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.Affiliate}
-              component={AffiliateScreen}
+              getComponent={() => require("../screens/AffiliateScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.MyLibrary}
-              component={MyLibraryScreen}
+              getComponent={() => require("../screens/MyLibraryScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.Profile}
-              component={ProfileScreen}
+              getComponent={() => require("../screens/ProfileScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.Upload}
-              component={UploadScreen}
+              getComponent={() => require("../screens/UploadScreen").default}
               options={{
                 cardStyleInterpolator: slideFromBottom,
                 gestureDirection: 'vertical',
@@ -358,19 +337,19 @@ export default function AppNavigator() {
             />
             <Stack.Screen
               name={ScreenNames.EditProfile}
-              component={EditProfileScreen}
+              getComponent={() => require("../screens/EditProfileScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.Drafts}
-              component={DraftsScreen}
+              getComponent={() => require("../screens/DraftsScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.UploadQueue}
-              component={UploadQueueScreen}
+              getComponent={() => require("../screens/UploadQueueScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.LiveProducer}
-              component={LiveProducerWithProvider}
+              getComponent={getLiveProducerScreen}
               options={{
                 presentation: 'modal',
                 cardStyleInterpolator: slideFromBottom,

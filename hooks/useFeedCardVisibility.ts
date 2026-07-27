@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import type { ViewToken } from "react-native";
 import { isVideoItem } from "../services/feed.unified.service";
 
@@ -78,11 +78,19 @@ export function useFeedCardVisibility(keyExtractor?: KeyExtractor) {
     [visibleItemKeys, activeVideoKey],
   );
 
+  // Memoised: as a bare array literal this changed identity on every render of
+  // the consumer, so passing it as FlatList `extraData` re-rendered every
+  // mounted cell whether or not visibility had actually moved.
+  const visibilityExtraData = useMemo(
+    () => ({ visibleItemKeys, activeVideoKey }),
+    [visibleItemKeys, activeVideoKey],
+  );
+
   return {
     viewabilityConfig,
     onViewableItemsChanged,
     isItemVisible,
-    visibilityExtraData: [visibleItemKeys, activeVideoKey] as const,
+    visibilityExtraData,
   };
 }
 

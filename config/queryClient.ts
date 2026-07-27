@@ -30,14 +30,19 @@ export const queryClient = new QueryClient({
   },
 });
 
-// Infinite home-feed query roots (see InfiniteVideoFeed / HomeImageGrid /
-// ShortsGrid). Each accumulates every scrolled page under the 24h gcTime, so
-// persisting them whole means JSON.stringify(<entire cache>) runs on the JS
-// thread on each throttle tick while the user scrolls — the periodic
-// scroll-stutter signature. We keep only the first page before writing:
-// enough to paint the feed instantly on cold start, but a small, fixed-size
-// payload to serialise.
-const INFINITE_FEED_KEYS = new Set(["home-feed", "home-images", "home-shorts"]);
+// Infinite feed query roots (see InfiniteVideoFeed / HomeImageGrid /
+// ShortsGrid, and Feed/InfiniteFeed for profile and community feeds). Each
+// accumulates every scrolled page under the 24h gcTime, so persisting them
+// whole means JSON.stringify(<entire cache>) runs on the JS thread on each
+// throttle tick while the user scrolls — the periodic scroll-stutter
+// signature. We keep only the first page before writing: enough to paint the
+// feed instantly on cold start, but a small, fixed-size payload to serialise.
+const INFINITE_FEED_KEYS = new Set([
+  "home-feed",
+  "home-images",
+  "home-shorts",
+  "infinite-feed",
+]);
 
 type InfiniteData = { pages?: unknown[]; pageParams?: unknown[] };
 

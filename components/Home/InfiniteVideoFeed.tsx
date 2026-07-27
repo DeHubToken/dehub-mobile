@@ -1,4 +1,5 @@
 import React, {
+  memo,
   useCallback,
   useEffect,
   useRef,
@@ -44,8 +45,9 @@ import {
   type TokenId,
 } from "../../services/view.service";
 import { feedEvents } from "../../libs/eventBus";
+import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import SuggestedAccountsSection from "./SuggestedAccountsSection";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 
 export interface InfiniteVideoFeedHandle {
   scrollToTopAndRefresh: () => void;
@@ -71,8 +73,6 @@ interface InfiniteVideoFeedProps {
   onScrollBegin?: () => void;
   onCategorySelect?: (category: string) => void;
   feedRef?: React.MutableRefObject<InfiniteVideoFeedHandle | null>;
-  /** Ref to the HomeScreen fling gesture so the suggestions carousel can claim horizontal pans. */
-  suggestedPanRef?: React.MutableRefObject<any>;
 }
 
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
@@ -99,7 +99,6 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   onScrollBegin,
   onCategorySelect,
   feedRef,
-  suggestedPanRef,
 }) => {
   interface FeedItem extends UnifiedFeedItem {
     __listKey: string;
@@ -201,6 +200,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // Cached + revalidated by react-query: switching tabs re-renders instantly
   // from cache (no skeleton flash) and refetches in the background when stale,
   // matching the web app's seamless tab switching.
+  const queryClient = useQueryClient();
+  const queryKey = useMemo(() => ["home-feed", params ?? {}, pageSize], [params, pageSize]);
+
   const {
     data,
     error: queryError,
@@ -210,7 +212,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     fetchNextPage,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["home-feed", params ?? {}, pageSize],
+    queryKey,
     queryFn: ({ pageParam }) =>
       getUnifiedFeed({ ...(params || {}), limit: pageSize, page: pageParam }),
     initialPageParam: 1,
@@ -265,11 +267,19 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     // Keep existing items so the RefreshControl spinner is visible (no skeleton snap).
     setRefreshing(true);
     try {
+      // Drop everything past the first page before refetching. React Query
+      // refetches every loaded page of an infinite query, so without this a
+      // pull-to-refresh deep into the feed fires one request per loaded page.
+      queryClient.setQueryData(queryKey, (old: any) =>
+        old?.pages?.length > 1
+          ? { ...old, pages: old.pages.slice(0, 1), pageParams: old.pageParams.slice(0, 1) }
+          : old,
+      );
       await refetch();
     } finally {
       setRefreshing(false);
     }
-  }, [refetch, onRefreshProp]);
+  }, [refetch, onRefreshProp, queryClient, queryKey]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("tabPress", () => {
@@ -341,7 +351,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         return (
           <>
             {card}
-            <SuggestedAccountsSection panRef={suggestedPanRef} />
+            <SuggestedAccountsSection />
           </>
         );
       }
@@ -352,6 +362,13 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   );
 
   const keyExtractor = useCallback((item: FeedItem) => item.__listKey, []);
+
+  // A fresh array literal here re-rendered every mounted cell on every list
+  // render; this only changes identity when the visibility state actually does.
+  const extraData = useMemo(
+    () => ({ visibleItemKeys, activeVideoKey }),
+    [visibleItemKeys, activeVideoKey],
+  );
 
   // Handle scroll begin to close filter panel
   const handleScrollBeginDrag = useCallback(() => {
@@ -365,7 +382,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   if (initialLoading && items.length === 0) {
     return (
-      <View className="flex-1 px-2 pt-2">
+      <View className="flex-1 px-2">
+        {/* Pushed below the collapsible header. The early return drops the
+            list's ListHeaderComponent, which is where the header spacer lives —
+            without this the skeleton starts at y=0 and its first cards render
+            behind the header, so the wait looks broken as well as slow. */}
+        <Animated.View style={topSpacerStyle} />
         <FeedCardSkeleton count={4} />
       </View>
     );
@@ -408,12 +430,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
           contentContainerStyle || {
             paddingHorizontal: 8,
             paddingTop: 4,
-            paddingBottom: 80,
+            paddingBottom: TAB_BAR_CONTENT_INSET,
           }
         }
         onEndReached={endReached ? undefined : loadMore}
         onEndReachedThreshold={0.8}
-        extraData={[visibleItemKeys, activeVideoKey]}
+        extraData={extraData}
         onScroll={scrollHandler ?? handleScroll}
         onScrollBeginDrag={handleScrollBeginDrag}
         onScrollEndDrag={handleScrollEndDrag}
@@ -457,4 +479,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   );
 };
 
-export default InfiniteVideoFeed;
+// Home keeps all six tab pages mounted, so without this every tab switch
+// re-rendered five off-screen feeds along with the one the user asked for.
+// HomeScreen holds every prop stable across a switch except `active`.
+export default memo(InfiniteVideoFeed);
