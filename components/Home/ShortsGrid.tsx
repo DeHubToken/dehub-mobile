@@ -20,7 +20,7 @@ import type { UnifiedFeedItem, ShortsFeedParams } from "../../services/feed.unif
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { theme } from "../../theme";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 
 export interface ShortsGridHandle {
   scrollToTopAndRefresh: () => void;
@@ -94,6 +94,12 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     shuffleSeed?: string;
   }
 
+  const queryClient = useQueryClient();
+  const queryKey = useMemo(
+    () => ["home-shorts", mergedParams, pageSize],
+    [mergedParams, pageSize],
+  );
+
   const {
     data,
     error: queryError,
@@ -103,7 +109,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     fetchNextPage,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["home-shorts", mergedParams, pageSize],
+    queryKey,
     queryFn: ({ pageParam }: { pageParam: ShortsPageParam }) =>
       getShortsFeed({
         ...mergedParams,
@@ -158,11 +164,19 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
     setRefreshing(true);
     setUnavailableKeys(new Set());
     try {
+      // Drop everything past the first page before refetching. React Query
+      // refetches every loaded page of an infinite query, so without this a
+      // pull-to-refresh deep into the feed fires one request per loaded page.
+      queryClient.setQueryData(queryKey, (old: any) =>
+        old?.pages?.length > 1
+          ? { ...old, pages: old.pages.slice(0, 1), pageParams: old.pageParams.slice(0, 1) }
+          : old,
+      );
       await refetch();
     } finally {
       setRefreshing(false);
     }
-  }, [refetch, onRefreshProp]);
+  }, [refetch, onRefreshProp, queryClient, queryKey]);
 
   useEffect(() => {
     if (!gridRef) return;

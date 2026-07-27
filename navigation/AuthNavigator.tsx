@@ -2,10 +2,6 @@ import React, { useRef } from 'react';
 import { createStackNavigator, StackCardStyleInterpolator } from "@react-navigation/stack";
 import { ScreenNames } from "./ScreenNames";
 import type { AuthStackParamList } from "./types";
-import SignInScreen from "../screens/auth/SignInScreen";
-import OnboardingScreen from "../screens/auth/OnboardingScreen";
-import SetProfileScreen from "../screens/auth/SetProfileScreen";
-import ImportWalletScreen from "../screens/auth/ImportWalletScreen";
 import { useAuthState } from "../context/AuthContext";
 import { createLogger } from "../libs/logger";
 
@@ -71,11 +67,11 @@ export default function AuthNavigator() {
     >
       <Stack.Screen
         name={ScreenNames.Onboarding}
-        component={OnboardingScreen}
+        getComponent={() => require("../screens/auth/OnboardingScreen").default}
       />
       <Stack.Screen
         name={ScreenNames.SignIn}
-        component={SignInScreen}
+        getComponent={() => require("../screens/auth/SignInScreen").default}
         options={{
           gestureEnabled: true,
           gestureDirection: 'horizontal',
@@ -83,7 +79,7 @@ export default function AuthNavigator() {
       />
       <Stack.Screen
         name={ScreenNames.SetProfile}
-        component={SetProfileScreen}
+        getComponent={() => require("../screens/auth/SetProfileScreen").default}
         options={{
           // Never allow gesture back from SetProfile - must complete or sign out
           gestureEnabled: false,
@@ -91,7 +87,7 @@ export default function AuthNavigator() {
       />
       <Stack.Screen
         name={ScreenNames.ImportWallet}
-        component={ImportWalletScreen}
+        getComponent={() => require("../screens/auth/ImportWalletScreen").default}
         options={{
           gestureEnabled: true,
           gestureDirection: 'horizontal',

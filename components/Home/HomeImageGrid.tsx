@@ -21,7 +21,7 @@ import { getImageUrl, getImageUrlApiSimple } from "../../libs";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { theme } from "../../theme";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 
 export interface HomeImageGridHandle {
   scrollToTopAndRefresh: () => void;
@@ -235,6 +235,12 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     postType: "feed-images" as const,
   }), [params]);
 
+  const queryClient = useQueryClient();
+  const queryKey = useMemo(
+    () => ["home-images", mergedParams, pageSize],
+    [mergedParams, pageSize],
+  );
+
   // Cached + revalidated by react-query: switching tabs re-renders instantly
   // from cache (no skeleton flash) and refetches in the background when stale.
   const {
@@ -246,7 +252,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     fetchNextPage,
     refetch,
   } = useInfiniteQuery({
-    queryKey: ["home-images", mergedParams, pageSize],
+    queryKey,
     queryFn: ({ pageParam }) =>
       getUnifiedFeed({ ...mergedParams, limit: pageSize, page: pageParam }),
     initialPageParam: 1,
@@ -273,11 +279,19 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     onRefreshProp?.();
     setRefreshing(true);
     try {
+      // Drop everything past the first page before refetching. React Query
+      // refetches every loaded page of an infinite query, so without this a
+      // pull-to-refresh deep into the feed fires one request per loaded page.
+      queryClient.setQueryData(queryKey, (old: any) =>
+        old?.pages?.length > 1
+          ? { ...old, pages: old.pages.slice(0, 1), pageParams: old.pageParams.slice(0, 1) }
+          : old,
+      );
       await refetch();
     } finally {
       setRefreshing(false);
     }
-  }, [refetch, onRefreshProp]);
+  }, [refetch, onRefreshProp, queryClient, queryKey]);
 
   useEffect(() => {
     if (!gridRef) return;

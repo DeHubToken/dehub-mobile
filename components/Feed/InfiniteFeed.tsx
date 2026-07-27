@@ -7,10 +7,8 @@ import {
   ListRenderItem,
   Text,
   Pressable,
-  ActivityIndicator,
   NativeSyntheticEvent,
   NativeScrollEvent,
-  Platform,
   ViewToken,
 } from "react-native";
 import Animated from "react-native-reanimated";
@@ -24,6 +22,7 @@ import {
   type TokenId,
 } from "../../services/view.service";
 import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 
 export type InfiniteFeedRenderItemInfo = {
   item: GetNFTsResult;
@@ -33,6 +32,14 @@ export type InfiniteFeedRenderItemInfo = {
 };
 
 export interface InfiniteFeedProps {
+  /**
+   * React Query cache identity for this feed. Required, and it must capture
+   * everything `fetchPage` closes over: every caller supplies its own
+   * `fetchPage`, so a shared or missing key would silently serve one profile's
+   * posts to another. Give it stable, serialisable values
+   * (e.g. `["profile-feed", address, postType]`).
+   */
+  cacheKey: readonly unknown[];
   params?: Partial<SearchParams>;
   pageSize?: number;
   contentContainerStyle?: any;
@@ -60,7 +67,13 @@ export interface InfiniteFeedProps {
   isSignedIn?: boolean;
   /** Optional custom loading component to replace the default skeleton. When provided, the headerComponent is preserved above this loading indicator. */
   loadingComponent?: React.ReactNode;
-  /** When true, only visible rows get isVisible=true (prevents many simultaneous video players). */
+  /**
+   * When true, only visible rows get isVisible=true (prevents many simultaneous
+   * video players). Defaults to true: it used to default to false and no caller
+   * ever passed it, so `isVisible` was never supplied and FeedCard fell back to
+   * its own `true` default — every windowed row on every profile and community
+   * feed attached a native player.
+   */
   trackFeedCardVisibility?: boolean;
 }
 
@@ -81,6 +94,7 @@ const InfiniteFeedBase: React.FC<
     isSignedIn?: boolean;
   }
 > = ({
+  cacheKey,
   params,
   pageSize = 20,
   contentContainerStyle,
@@ -98,7 +112,7 @@ const InfiniteFeedBase: React.FC<
   navigationForTabPress = null,
   isSignedIn = false,
   loadingComponent,
-  trackFeedCardVisibility = false,
+  trackFeedCardVisibility = true,
 }) => {
   const {
     viewabilityConfig: feedCardViewabilityConfig,
@@ -106,14 +120,8 @@ const InfiniteFeedBase: React.FC<
     isItemVisible,
     visibilityExtraData,
   } = useFeedCardVisibility();
-  const [items, setItems] = useState<FeedItem[]>([]);
-  const [page, setPage] = useState(0);
-  const [initialLoading, setInitialLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const endReachedRef = useRef(false);
   const loadMoreCooldownRef = useRef(0);
   const prevYRef = useRef(0);
 
@@ -186,87 +194,99 @@ const InfiniteFeedBase: React.FC<
     [renderItem, trackFeedCardVisibility, isItemVisible],
   );
 
-  const mapWithKey = useCallback((arr: GetNFTsResult[], pageNum: number) => {
-    return (arr || []).map((it, idx) => {
-      const base = (it as any).tokenId || (it as any).id || (it as any).nftId || `auto`;
-      const created = (it as any).createdAt || (it as any).created_at || `nocreated`;
-      return { ...(it as any), __listKey: `${base}-${created}-p${pageNum}-i${idx}` } as FeedItem;
-    });
-  }, []);
+  // fetchPage and params are read through refs rather than closed over by the
+  // query function, so a caller re-creating either does not invalidate the
+  // cache. What identifies this feed is cacheKey, and nothing else.
+  const fetchPageRef = useRef(fetchPage);
+  fetchPageRef.current = fetchPage;
+  const paramsRef = useRef(params);
+  paramsRef.current = params;
 
-  const loadFirstPage = useCallback(async () => {
-    setError(null);
-    endReachedRef.current = false;
-    loadMoreCooldownRef.current = 0;
-    setPage(0);
-    const res = fetchPage
-      ? await fetchPage(0, pageSize)
-      : await getFeedNFTs({ ...(params || {}), unit: pageSize, page: 0, postType: (params as any)?.postType || "feed-all" });
-    const mapped = mapWithKey(res.result || [], 0);
-    setItems(mapped);
-    if (!res.result || (res.result as any[]).length < pageSize) {
-      endReachedRef.current = true;
-      onEndReachedAll && onEndReachedAll();
-    }
-  }, [params, pageSize, onEndReachedAll, mapWithKey, fetchPage]);
+  const queryClient = useQueryClient();
+  const queryKey = useMemo(() => ["infinite-feed", ...cacheKey, pageSize], [cacheKey, pageSize]);
 
-  const resetAndLoad = useCallback(async () => {
-    setItems([]);
-    setInitialLoading(true);
-    try {
-      await loadFirstPage();
-    } catch (e: any) {
-      setError(e?.message || "Failed to load feed");
-    } finally {
-      setInitialLoading(false);
-    }
-  }, [loadFirstPage]);
+  // Was a local useState list with manual page counting, so every mount
+  // refetched from zero behind a skeleton — which is why profile and community
+  // feeds felt slower than Home even though they render the same cards.
+  const {
+    data,
+    error: queryError,
+    isLoading,
+    isFetchingNextPage: loadingMore,
+    hasNextPage,
+    fetchNextPage,
+    refetch,
+  } = useInfiniteQuery({
+    queryKey,
+    queryFn: ({ pageParam }) => {
+      const page = pageParam as number;
+      const fetcher = fetchPageRef.current;
+      if (fetcher) return fetcher(page, pageSize);
+      const p = paramsRef.current || {};
+      return getFeedNFTs({
+        ...p,
+        unit: pageSize,
+        page,
+        postType: (p as any)?.postType || "feed-all",
+      });
+    },
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, _allPages, lastPageParam) =>
+      (lastPage.result?.length ?? 0) < pageSize ? undefined : (lastPageParam as number) + 1,
+  });
+
+  const items = useMemo<FeedItem[]>(() => {
+    const pages = data?.pages ?? [];
+    return pages.flatMap((res, pageNum) =>
+      (res.result || []).map((it, idx) => {
+        const base = (it as any).tokenId || (it as any).id || (it as any).nftId || `auto`;
+        const created = (it as any).createdAt || (it as any).created_at || `nocreated`;
+        return { ...(it as any), __listKey: `${base}-${created}-p${pageNum}-i${idx}` } as FeedItem;
+      }),
+    );
+  }, [data]);
+
+  const endReached = hasNextPage === false;
+  const initialLoading = isLoading;
+  const error = queryError ? (queryError as Error).message || "Failed to load feed" : null;
 
   useEffect(() => {
-    resetAndLoad();
-  }, [resetAndLoad]);
+    if (endReached) onEndReachedAll?.();
+  }, [endReached, onEndReachedAll]);
 
-  const loadMore = useCallback(async () => {
-    if (initialLoading || loadingMore || refreshing) return;
-    if (endReachedRef.current) return;
-    // After a failed page fetch (e.g. 429 throttling) the page counter isn't
-    // advanced, so an unguarded onEndReached would re-request the same page in a
-    // tight loop and amplify the rate-limit. Skip retries during a cooldown.
+  const loadMore = useCallback(() => {
+    if (isLoading || loadingMore || refreshing || !hasNextPage) return;
+    // After a failed page fetch (e.g. 429 throttling) an unguarded
+    // onEndReached would re-request the same page on every scroll frame and
+    // amplify the rate limit. Back off before allowing another attempt.
     if (Date.now() < loadMoreCooldownRef.current) return;
-    setLoadingMore(true);
-    try {
-      const nextPage = page + 1;
-      const res = fetchPage
-        ? await fetchPage(nextPage, pageSize)
-        : await getFeedNFTs({ ...(params || {}), unit: pageSize, page: nextPage, postType: (params as any)?.postType || "feed-all" });
-      const newItems = mapWithKey(res.result || [], nextPage);
-      setItems(prev => [...prev, ...newItems]);
-      setPage(nextPage);
-      loadMoreCooldownRef.current = 0;
-      if (newItems.length < pageSize) {
-        endReachedRef.current = true;
-        onEndReachedAll && onEndReachedAll();
-      }
-    } catch {
-      // keep previous items; back off before allowing another attempt so a
-      // throttled endpoint isn't hammered on every scroll frame.
+    fetchNextPage().catch(() => {
       loadMoreCooldownRef.current = Date.now() + 5000;
-    } finally {
-      setLoadingMore(false);
-    }
-  }, [initialLoading, loadingMore, refreshing, page, params, pageSize, onEndReachedAll, mapWithKey, fetchPage]);
+    });
+  }, [isLoading, loadingMore, refreshing, hasNextPage, fetchNextPage]);
 
   const onRefresh = useCallback(async () => {
     // Keep existing items so the RefreshControl spinner is visible (no skeleton snap).
     setRefreshing(true);
+    loadMoreCooldownRef.current = 0;
     try {
-      await loadFirstPage();
-    } catch (e: any) {
-      setError(e?.message || "Failed to load feed");
+      // Drop everything past the first page before refetching. React Query
+      // refetches every loaded page of an infinite query, so without this a
+      // pull-to-refresh twenty pages deep fires twenty sequential requests.
+      queryClient.setQueryData(queryKey, (old: any) =>
+        old?.pages?.length > 1
+          ? { ...old, pages: old.pages.slice(0, 1), pageParams: old.pageParams.slice(0, 1) }
+          : old,
+      );
+      await refetch();
     } finally {
       setRefreshing(false);
     }
-  }, [loadFirstPage]);
+  }, [queryClient, queryKey, refetch]);
+
+  const retry = useCallback(() => {
+    refetch();
+  }, [refetch]);
 
   useEffect(() => {
     if (!navigationForTabPress) return;
@@ -328,7 +348,7 @@ const InfiniteFeedBase: React.FC<
         <View key="feed-error" className="items-center justify-center px-4 py-10">
           <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
           <View className="px-5 py-2 rounded-xl bg-theme-neutrals-700">
-            <Text onPress={resetAndLoad} className="text-theme-neutrals-50 font-medium">
+            <Text onPress={retry} className="text-theme-neutrals-50 font-medium">
               Retry
             </Text>
           </View>
@@ -353,7 +373,7 @@ const InfiniteFeedBase: React.FC<
     items.length,
     loadingComponent,
     emptyComponent,
-    resetAndLoad,
+    retry,
   ]);
 
   return (
@@ -367,7 +387,11 @@ const InfiniteFeedBase: React.FC<
         initialNumToRender={4}
         maxToRenderPerBatch={4}
         windowSize={7}
-        removeClippedSubviews={Platform.OS === "android" ? false : true}
+        // Was disabled on Android — the platform that actually OOMs here —
+        // because visibility tracking was dead and every row held a player.
+        // With trackFeedCardVisibility on by default that pressure is gone, and
+        // this now matches the Home feeds, which clip on both platforms.
+        removeClippedSubviews
         updateCellsBatchingPeriod={80}
         contentContainerStyle={
           contentContainerStyle || { paddingBottom: 80 }
@@ -376,7 +400,7 @@ const InfiniteFeedBase: React.FC<
         onScroll={onScroll ?? (enableBackToTop ? handleScroll : undefined)}
         scrollEventThrottle={16}
         nestedScrollEnabled
-        onEndReached={endReachedRef.current ? undefined : loadMore}
+        onEndReached={endReached ? undefined : loadMore}
         onEndReachedThreshold={0.4}
         viewabilityConfig={feedCardViewabilityConfig}
         onViewableItemsChanged={handleViewableItemsChanged}
@@ -393,7 +417,7 @@ const InfiniteFeedBase: React.FC<
             <View className="px-2 pt-2">
               <FeedCardSkeleton count={2} />
             </View>
-          ) : endReachedRef.current && items.length > 0 ? (
+          ) : endReached && items.length > 0 ? (
             <View className="px-4 py-6 items-center">
               <Text className="text-theme-neutrals-400 text-xs">No more posts</Text>
             </View>

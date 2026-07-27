@@ -54,7 +54,11 @@ interface FeedVideoPlayerProps {
   hideControls?: boolean;
 }
 
-const AUTOPLAY_DELAY = 1200;
+// Grace period before a scrolled-to video starts, so a fast flick past a row
+// doesn't spin up a player it is about to discard. Was 1200ms — well past the
+// point where a settled card reads as broken rather than loading. The shorts
+// grid has always used 250ms for the same job.
+const AUTOPLAY_DELAY = 400;
 
 const formatTime = (seconds: number) => {
   const mins = Math.floor(seconds / 60);
