@@ -93,7 +93,11 @@ const CommunityFeedRoute: React.FC<Props> = ({
         enableBackToTop={false}
         headerComponent={listHeader}
         emptyComponent={emptyComponent}
-        renderItem={({ item }) => <FeedCard item={item as UnifiedFeedItem} />}
+        // isVisible must be forwarded or FeedCard falls back to its own
+        // `true` default and every windowed row attaches a video player.
+        renderItem={({ item, isVisible }) => (
+          <FeedCard item={item as UnifiedFeedItem} isVisible={isVisible} />
+        )}
       />
     </View>
   );
