@@ -4,10 +4,6 @@ import { View, StyleSheet } from "react-native";
 import AppDrawer from "../components/Home/AppDrawer";
 import FloatingBottomTabBar from "./FloatingBottomTabBar";
 import HomeScreen from "../screens/HomeScreen";
-import DirectMessagesScreen from "../screens/DirectMessagesScreen";
-import UploadScreen from "../screens/UploadScreen";
-import AIChatScreen from "../screens/AIChatScreen";
-import SearchScreen from "../screens/SearchScreen";
 import { ScreenNames } from "./ScreenNames";
 import type { BottomTabParamList, AppStackNavigationProp } from "./types";
 import { useNavigation } from "@react-navigation/native";
@@ -40,11 +36,24 @@ function BottomTabNavigator() {
           lazy: true,
         }}
       >
+        {/* Home is the initial route, so it is imported statically — deferring
+            it would only add a hop. Every other tab is attached with
+            getComponent so its module (and its import graph) is evaluated on
+            first navigation rather than at boot. `lazy: true` above only delays
+            *rendering*; the modules were still parsed either way.
+
+            The Upload tab never actually renders — its tabPress listener
+            preventDefaults and pushes the modal Upload route instead — so
+            without this the largest screen in the app was parsed on boot to
+            display nothing. */}
         <Tab.Screen name={ScreenNames.Home} component={HomeScreen} />
-        <Tab.Screen name={ScreenNames.DM} component={DirectMessagesScreen} />
+        <Tab.Screen
+          name={ScreenNames.DM}
+          getComponent={() => require("../screens/DirectMessagesScreen").default}
+        />
         <Tab.Screen
           name={ScreenNames.UploadTab}
-          component={UploadScreen}
+          getComponent={() => require("../screens/UploadScreen").default}
           listeners={{
             tabPress: (e) => {
               e.preventDefault();
@@ -56,8 +65,14 @@ function BottomTabNavigator() {
             },
           }}
         />
-        <Tab.Screen name={ScreenNames.AIChat} component={AIChatScreen} />
-        <Tab.Screen name={ScreenNames.Explore} component={SearchScreen} />
+        <Tab.Screen
+          name={ScreenNames.AIChat}
+          getComponent={() => require("../screens/AIChatScreen").default}
+        />
+        <Tab.Screen
+          name={ScreenNames.Explore}
+          getComponent={() => require("../screens/SearchScreen").default}
+        />
       </Tab.Navigator>
       <AppDrawer visible={drawerOpen} onClose={closeDrawer} />
     </View>

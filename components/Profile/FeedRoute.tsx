@@ -41,6 +41,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({ address, listHeader }) => {
     <View className="flex-1">
       <InfiniteFeed
         insideNavigatorScreen={false}
+        cacheKey={["profile-feed-all", address ?? ""]}
         fetchPage={fetchPage}
         pageSize={20}
         isSignedIn={isSignedIn}

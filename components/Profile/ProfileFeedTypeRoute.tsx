@@ -46,6 +46,7 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({ address, po
     <View className={`flex-1 ${listHeader ? '' : 'px-4'}`}>
       <InfiniteFeed
         insideNavigatorScreen={false}
+        cacheKey={["profile-feed-type", address ?? "", postType]}
         fetchPage={fetchPage}
         pageSize={20}
         isSignedIn={isSignedIn}
