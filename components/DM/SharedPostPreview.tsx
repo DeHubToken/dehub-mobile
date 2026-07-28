@@ -29,6 +29,10 @@ const metaCache = new Map<string, PostMeta | null>();
 // bubble's overflow-hidden clips the card's right edge on narrow screens.
 const CARD_WIDTH = Math.min(240, Math.round(Dimensions.get("window").width * 0.75) - 40);
 
+/** True when the fetch came back without anything worth showing on the card. */
+const isSparse = (meta: PostMeta, tokenId: string): boolean =>
+  !meta.thumbnail && meta.title === `Post #${tokenId}`;
+
 const resolveMeta = (raw: any, tokenId: string): PostMeta => {
   const r = raw?.result || raw || {};
   // Per-postType URL rules (imageUrls array for feed-images, thumbnail_url for
@@ -88,17 +92,27 @@ const SharedPostPreviewComponent: React.FC<SharedPostPreviewProps> = ({
     let cancelled = false;
     setLoading(true);
     (async () => {
-      try {
-        const res = await getNFT(tokenId);
-        const resolved = resolveMeta(res, tokenId);
-        metaCache.set(tokenId, resolved);
-        if (!cancelled) setMeta(resolved);
-      } catch {
-        metaCache.set(tokenId, null);
-        if (!cancelled) setMeta(null);
-      } finally {
-        if (!cancelled) setLoading(false);
+      // Opening a conversation mounts every visible preview at once, so these
+      // fetches go out in a burst; a single one losing out (timeout, throttle,
+      // a response that came back without the post body) used to leave that
+      // message on the bare "Post #<id>" chip permanently. Give it one more
+      // try, and only cache a card that actually has something on it.
+      let resolved: PostMeta | null = null;
+      for (let attempt = 0; attempt < 2 && !cancelled; attempt++) {
+        try {
+          resolved = resolveMeta(await getNFT(tokenId), tokenId);
+          if (!isSparse(resolved, tokenId)) break;
+        } catch {
+          resolved = null;
+        }
+        if (attempt === 0 && !cancelled) {
+          await new Promise((r) => setTimeout(r, 600));
+        }
       }
+      if (cancelled) return;
+      if (resolved && !isSparse(resolved, tokenId)) metaCache.set(tokenId, resolved);
+      setMeta(resolved);
+      setLoading(false);
     })();
     return () => {
       cancelled = true;

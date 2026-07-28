@@ -1,5 +1,6 @@
 import { NativeModules, Platform } from 'react-native';
 import { createLogger } from '../libs/logger';
+import i18n from '../i18n';
 import { supabase } from './supabase';
 
 const log = createLogger('translation.service');
@@ -72,6 +73,26 @@ export function getDeviceLanguage(): string {
     // ignore
   }
   return 'en';
+}
+
+/**
+ * The language translations should target: what the user picked in Settings
+ * (persisted as `user-preferred-language` and applied to i18n), falling back to
+ * the device locale only when no choice has been made.
+ *
+ * Never read the device locale on its own for this — a user running an
+ * English phone with DeHub set to Turkish would get English "translations",
+ * and posts already in English would be judged same-language and lose their
+ * translate button entirely. Call this at use time, not at module scope: the
+ * language can change mid-session from the Settings picker.
+ */
+export function getUserLanguage(): string {
+  const chosen = i18n?.language;
+  if (chosen) {
+    const normalized = chosen.split(/[-_]/)[0].toLowerCase();
+    if (normalized) return normalized;
+  }
+  return getDeviceLanguage();
 }
 
 export async function translateText(

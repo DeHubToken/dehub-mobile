@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef, useMemo } from 'react';
-import { translateText, getDeviceLanguage } from '../services/translation.service';
+import { useTranslation as useI18n } from 'react-i18next';
+import { translateText, getUserLanguage } from '../services/translation.service';
 import { toastLoading, toastSuccess, toastError, dismissToast } from '../libs';
 
 interface UseTranslationResult {
@@ -11,7 +12,6 @@ interface UseTranslationResult {
   shouldShow: boolean;
 }
 
-const deviceLang = getDeviceLanguage();
 const MIN_TRANSLATABLE_LENGTH = 20;
 
 const EMOJI_REGEX = /[\p{Emoji_Presentation}\p{Extended_Pictographic}\u200d\ufe0f]/gu;
@@ -33,6 +33,12 @@ export function useTranslation(
   const [isLoading, setIsLoading] = useState(false);
   const debounceRef = useRef(false);
 
+  // Subscribing to i18n re-runs this hook when the user switches language in
+  // Settings, so the translate button appears/disappears for the new language
+  // without an app restart.
+  const { i18n } = useI18n();
+  const targetLang = useMemo(() => getUserLanguage(), [i18n.language]);
+
   const hasEnoughText = useMemo(() => {
     const combined = Object.values(texts).join(' ');
     return stripEmojis(combined).length >= MIN_TRANSLATABLE_LENGTH;
@@ -41,7 +47,7 @@ export function useTranslation(
   const shouldShow =
     !!detectedLanguage &&
     detectedLanguage !== 'und' &&
-    detectedLanguage !== deviceLang &&
+    detectedLanguage !== targetLang &&
     hasEnoughText;
 
   const handleTranslate = useCallback(async () => {
@@ -54,7 +60,7 @@ export function useTranslation(
       const entries = Object.entries(texts).filter(([, v]) => v && v.trim().length > 0);
       const results = await Promise.all(
         entries.map(async ([key, text]) => {
-          const { translatedText } = await translateText(text, deviceLang, detectedLanguage || 'auto');
+          const { translatedText } = await translateText(text, targetLang, detectedLanguage || 'auto');
           return [key, translatedText] as const;
         }),
       );
@@ -69,7 +75,7 @@ export function useTranslation(
       setIsLoading(false);
       debounceRef.current = false;
     }
-  }, [texts, detectedLanguage, isTranslated]);
+  }, [texts, detectedLanguage, isTranslated, targetLang]);
 
   const handleShowOriginal = useCallback(() => {
     setIsTranslated(false);
