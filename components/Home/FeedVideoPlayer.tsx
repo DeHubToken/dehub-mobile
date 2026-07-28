@@ -26,6 +26,7 @@ import {
 import { createViewRecorder } from "../../services/view.service";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { getCachedMuted, setMutedState } from "../../libs/videoMutedState";
+import { useDataSaver } from "../../hooks/useDataSaver";
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
@@ -105,6 +106,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const [firstFrameRendered, setFirstFrameRendered] = useState(false);
   const isPlayingRef = useRef(false);
   const autoplayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { liteMode } = useDataSaver();
   const playerRef = useRef<VideoPlayer | null>(null);
   const videoViewRef = useRef<VideoView>(null);
   const progressTrackWidthRef = useRef(0);
@@ -228,6 +230,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       return;
     }
     if (hasStartedAutoplay) return;
+    // Data Saver: skip autoplay entirely, same as web's VideoCard lite-mode
+    // guard. The card stays tappable — this only suppresses *auto* playback.
+    if (liteMode) return;
     autoplayTimerRef.current = setTimeout(() => {
       const p = playerRef.current;
       if (isPlayingRef.current || !p || !canPlay) return;
@@ -245,7 +250,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       }
     }, AUTOPLAY_DELAY);
     return () => { if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; } };
-  }, [canPlay, isVisible, hasStartedAutoplay, stopPlayback, startPlayback, clearHideTimer]);
+  }, [canPlay, isVisible, hasStartedAutoplay, liteMode, stopPlayback, startPlayback, clearHideTimer]);
 
   useEffect(() => {
     const h = (state: AppStateStatus) => {
