@@ -736,7 +736,7 @@ export default function FeedDetailScreen() {
             <Avatar
               uri={userAvatar && userAvatar !== "default-avatar" ? userAvatar : undefined}
               size={32}
-              name={user?.displayName}
+              name={user?.displayName || user?.username}
             />
             <TextInput
               ref={inputRef}
