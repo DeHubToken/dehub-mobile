@@ -130,7 +130,9 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
       async (address: string) => {
         try {
           setIsImporting(true);
-          const pk = await getPrivateKeyForAddress(address);
+          const pk = await getPrivateKeyForAddress(address, {
+            purpose: "Unlock this DeHub wallet to use it",
+          });
           if (!pk) {
             toastError(
               "No private key is stored for this account. Please re-import this wallet to link its key."
