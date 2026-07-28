@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Avatar from "../common/Avatar";
 import MentionSuggestions from "../common/MentionSuggestions";
 import { getAvatarUrl } from "../../libs";
+import { useUser } from "../../context/AuthContext";
 import { useMentions } from "../../hooks/useMentions";
 import { theme } from "../../theme";
 
@@ -16,7 +17,7 @@ type Props = {
   /** Label shown when editing (e.g. "Editing comment") */
   editingLabel?: string;
   onCancelEdit?: () => void;
-  /** User's avatar URL */
+  /** User's avatar URL. Optional — falls back to the signed-in user's own. */
   userAvatarUrl?: string;
   /** Show loading state on send button */
   isSending?: boolean;
@@ -44,7 +45,16 @@ const CommentInput = forwardRef<CommentInputRef, Props>(({
   const mentions = useMentions(text, setText);
   const canSend = text.trim().length > 0 && !isSending;
   const inputRef = useRef<TextInput>(null);
-  const avatarUri = getAvatarUrl(userAvatarUrl || "");
+  // Resolve the composer avatar here rather than trusting every call site to
+  // pass it — no caller ever did, so the composer always showed the "?"
+  // placeholder. The prop still wins when a screen has a better source.
+  const user = useUser();
+  const avatarUri = getAvatarUrl(
+    userAvatarUrl || user?.avatarImageUrl || user?.avatarUrl || "",
+  );
+  // Without a name the placeholder is a bare "?"; the user's own initial is a
+  // far better stand-in while the image loads or when they have no picture.
+  const avatarName = user?.displayName || user?.username || undefined;
 
   useImperativeHandle(ref, () => ({
     focus: () => inputRef.current?.focus?.(),
@@ -117,6 +127,7 @@ const CommentInput = forwardRef<CommentInputRef, Props>(({
         <Avatar
           uri={avatarUri && avatarUri !== "default-avatar" ? avatarUri : undefined}
           size={32}
+          name={avatarName}
         />
         <TextInput
           ref={inputRef}

@@ -392,6 +392,7 @@ const CommentsBottomSheet: React.FC<Props> = ({
                 autoFocus={composerAutoFocus}
                 replyToLabel={replyToLabel}
                 onCancelReply={() => setReplyTo(null)}
+                userAvatarUrl={user?.avatarImageUrl || user?.avatarUrl}
               />
             </View>
           </View>
