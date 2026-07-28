@@ -2,10 +2,8 @@ import { useState, useCallback } from 'react';
 import {
   translateImage as translateImageFn,
   type ImageTranslateResponse,
-  getDeviceLanguage,
+  getUserLanguage,
 } from '../services/translation.service';
-
-const deviceLang = getDeviceLanguage();
 
 const cache = new Map<string, ImageTranslateResponse>();
 
@@ -19,7 +17,12 @@ export function useImageTranslation() {
   const [result, setResult] = useState<ImageTranslateResponse | null>(null);
 
   const translateImage = useCallback(async (imageUrl: string) => {
-    const key = cacheKey(imageUrl, deviceLang);
+    // Resolved per call, not once at import: the language is settled from
+    // storage after boot and can change from the Settings picker. Reading it
+    // at module scope pinned every OCR translation to the startup default
+    // ("en"), which is why the sheet kept returning the untranslated original.
+    const lang = getUserLanguage();
+    const key = cacheKey(imageUrl, lang);
     const cached = cache.get(key);
     if (cached) {
       setResult(cached);
@@ -31,7 +34,7 @@ export function useImageTranslation() {
     setError(null);
 
     try {
-      const res = await translateImageFn(imageUrl, deviceLang);
+      const res = await translateImageFn(imageUrl, lang);
       cache.set(key, res);
       setResult(res);
       return res;
