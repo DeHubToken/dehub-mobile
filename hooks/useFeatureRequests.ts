@@ -97,6 +97,25 @@ const PAGE_SIZE = 15;
 /** Shipped items are pulled out into their own section, as on web. */
 const SHIPPED_STATUSES = ["completed", "shipped"];
 
+/**
+ * Statuses the Requests list must not show: shipped ones have their own tab, and
+ * declined ones are resolved too — without this a declined request sits in the
+ * list forever. Matches web's use-feature-requests.ts.
+ */
+const RESOLVED_STATUSES = '("completed","shipped","declined")';
+
+/**
+ * PostgREST parses `or=(...)` as a filter tree whose clauses are comma-separated,
+ * so a comma typed into the search box splits the clause and the request 400s
+ * (verified live: searching `DM, video` unquoted returns HTTP 400). Wrap the
+ * pattern in double quotes so it arrives as one literal value.
+ *
+ * Mirrors web's src/lib/postgrest-filter.ts.
+ */
+function escapeFilterValue(value: string): string {
+  return `"${value.replace(/["\\]/g, "\\$&")}"`;
+}
+
 function useWallet(): string | null {
   const user = useUser() as any;
   return (user?.walletAddress || user?.address || null) as string | null;
@@ -116,7 +135,8 @@ export function useFeatureRequests(
 
       const term = search.trim();
       if (term) {
-        query = query.or(`title.ilike.%${term}%,description.ilike.%${term}%`);
+        const pattern = escapeFilterValue(`%${term}%`);
+        query = query.or(`title.ilike.${pattern},description.ilike.${pattern}`);
       }
 
       if (sort === "most_voted") {
@@ -127,8 +147,9 @@ export function useFeatureRequests(
         query = query.order("created_at", { ascending: false });
       }
 
-      // Shipped items live in their own section
-      query = query.not("status", "in", '("completed","shipped")');
+      // Shipped items live in their own section; declined ones are resolved and
+      // don't belong in the list at all.
+      query = query.not("status", "in", RESOLVED_STATUSES);
       query = query.range(pageParam, pageParam + PAGE_SIZE - 1);
 
       const { data, error } = await query;
