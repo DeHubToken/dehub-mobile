@@ -97,6 +97,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
     { key: 'comments', label: t('settings.comments'), description: t('settings.notifCommentsDesc'), icon: 'MessageCircle', iconColor: '#9ca3af', category: 'engagement' },
     { key: 'commentReplies', label: t('settings.notifReplies'), description: t('settings.notifRepliesDesc'), icon: 'MessageSquare', iconColor: '#9ca3af', category: 'engagement' },
     { key: 'mentions', label: t('settings.notifMentions'), description: t('settings.notifMentionsDesc'), icon: 'AtSign', iconColor: '#9ca3af', category: 'engagement' },
+    { key: 'directMessages', label: t('settings.directMessages'), description: t('settings.directMessagesDesc'), icon: 'Mail', iconColor: '#9ca3af', category: 'social' },
     { key: 'newFollowers', label: t('settings.newFollowers'), description: t('settings.notifNewFollowersDesc'), icon: 'UserPlus', iconColor: '#9ca3af', category: 'social' },
     { key: 'livestreamStart', label: t('settings.notifLiveStreams'), description: t('settings.notifLiveStreamsDesc'), icon: 'Radio', iconColor: '#9ca3af', category: 'social' },
     { key: 'tips', label: t('settings.notifTips'), description: t('settings.notifTipsDesc'), icon: 'Banknote', iconColor: '#9ca3af', category: 'monetization' },
