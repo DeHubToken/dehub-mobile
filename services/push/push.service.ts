@@ -12,6 +12,9 @@ export type NotificationPreferenceKey =
   | 'comments'
   | 'commentReplies'
   | 'mentions'
+  // Key name matches web's `PushPreferences.directMessages`
+  // (dehubweb src/lib/api/dehub/push.ts) so the two clients agree on the name.
+  | 'directMessages'
   | 'newFollowers'
   | 'tips'
   | 'subscriptions'
@@ -372,6 +375,7 @@ export function getDefaultNotificationPreferences(): NotificationPreferences {
     comments: true,
     commentReplies: true,
     mentions: true,
+    directMessages: true,
     newFollowers: true,
     tips: true,
     subscriptions: true,
