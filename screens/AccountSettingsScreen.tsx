@@ -29,6 +29,8 @@ import {
   DELETE_DATA_OR_ACCOUNT_LINK,
 } from "../config/links";
 import DMSettingsSection from "../components/Settings/DMSettingsSection";
+import CustomSwitch from "../components/ui/CustomSwitch";
+import { useDataSaver, setDataSaverPref } from "../hooks/useDataSaver";
 import GlassModal from "../components/ui/GlassModal";
 import { getFreeAccessList, removeFreeAccess } from "../services/dm/dm.api";
 import { truncateAddress } from "../libs/strings.util";
@@ -111,6 +113,7 @@ type TabKey = "account" | "notifications" | "privacy" | "messages" | "support";
 
 const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   const user = useUser();
+  const { pref: dataSaverPref } = useDataSaver();
   const { isSignedIn, needsUsername } = useAuthState();
   const { signOut } = useAuthActions();
   const { chainId, authMethod } = useProvider();
@@ -314,14 +317,14 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
           <Divider />
           <SettingsRow
             icon="WifiOff"
-            iconColor="#6b7280"
+            iconColor="#9ca3af"
             label={t("settings.dataSaver")}
             subtitle={t("settings.dataSaverDesc")}
-            disabled
             rightElement={
-              <View className="bg-theme-neutrals-700/40 px-2.5 py-1 rounded-full">
-                <Text className="text-theme-neutrals-500 text-[10px] font-semibold">{t("settings.comingSoon")}</Text>
-              </View>
+              <CustomSwitch
+                value={dataSaverPref === "on"}
+                onValueChange={(v) => setDataSaverPref(v ? "on" : "auto")}
+              />
             }
           />
         </SectionCard>
