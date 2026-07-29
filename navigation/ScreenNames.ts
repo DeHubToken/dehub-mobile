@@ -60,6 +60,7 @@ export enum ScreenNames {
   Stores = 'Stores',
   StoreDetail = 'StoreDetail',
   ListingDetail = 'ListingDetail',
+  CommandCentre = 'CommandCentre',
   Work = 'Work',
   WorkJobDetail = 'WorkJobDetail',
   WorkPost = 'WorkPost',
