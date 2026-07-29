@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import LeaderboardCategoryPills, {
   SortCategory,
+  PillKey,
 } from "../components/Leaderboard/LeaderboardCategoryPills";
 import LeaderboardSearchBar from "../components/Leaderboard/LeaderboardSearchBar";
 import LeaderboardRowItem, {
@@ -28,7 +29,7 @@ const ROW_HEIGHT = 64;
 
 interface ListHeaderContentProps {
   sortCategory: SortCategory;
-  onCategoryChange: (cat: SortCategory) => void;
+  onCategoryChange: (cat: PillKey) => void;
   searchQuery: string;
   onSearchChange: (text: string) => void;
 }
@@ -44,7 +45,7 @@ const ListHeaderContent = React.memo<ListHeaderContentProps>(
 
 const LeaderboardScreen = () => {
   const { t } = useTranslation();
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const authUser = useUser();
   const { showUserProfile } = useUserProfileSheet();
 
@@ -99,7 +100,13 @@ const LeaderboardScreen = () => {
   }, [loadData]);
 
   const handleCategoryChange = useCallback(
-    (cat: SortCategory) => {
+    (cat: PillKey) => {
+      // "Assets" is a jump to the Top 100 market table, not a leaderboard
+      // sort — same behaviour as web's LeaderboardPage.
+      if (cat === "assets") {
+        navigation.navigate(ScreenNames.Top100);
+        return;
+      }
       if (cat === pendingCategoryRef.current) return;
       pendingCategoryRef.current = cat;
       setSelectedPill(cat); // instant visual feedback on pills
@@ -107,7 +114,7 @@ const LeaderboardScreen = () => {
       setSwitching(true);
       loadData(cat);
     },
-    [loadData]
+    [loadData, navigation]
   );
 
   const onRefresh = useCallback(() => {
