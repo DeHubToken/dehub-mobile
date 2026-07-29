@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 
 type ImageDef = { url: string; alt?: string };
 
@@ -22,13 +22,24 @@ const LazyImg = ({ url }: { url: string }) => {
 type Props = { images: ImageDef[]; onPress?: (index: number) => void };
 
 const FeedImageGallery = ({ images, onPress }: Props) => {
-  const arr = Array.isArray(images) ? images.slice(0, 4) : [];
+  const all = Array.isArray(images) ? images : [];
+  const arr = all.slice(0, 4);
   const count = arr.length;
+  // Anything past the 4th tile has no cell in the mosaic. onPress hands the
+  // viewer the *full* list, so the extra images are reachable — but with no
+  // marker on the grid there's nothing telling you they exist.
+  const hiddenCount = all.length - count;
   if (!count) return null;
 
   const wrap = (child: React.ReactNode, index: number) => (
     <TouchableOpacity key={index} activeOpacity={0.9} onPress={() => onPress?.(index)}>
       {child}
+      {/* Overlay rides the last tile only, and only when images are hidden. */}
+      {index === count - 1 && hiddenCount > 0 && (
+        <View className="absolute inset-0 items-center justify-center bg-black/55 rounded-xl">
+          <Text className="text-white text-xl font-bold">+{hiddenCount}</Text>
+        </View>
+      )}
     </TouchableOpacity>
   );
 
