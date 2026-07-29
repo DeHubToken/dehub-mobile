@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Pressable,
+  type LayoutChangeEvent,
 } from "react-native";
 import Reanimated, {
   useSharedValue,
@@ -80,7 +81,11 @@ import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import type { AIPostContext } from "../../services/ai.service";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
-const IMAGE_WIDTH = SCREEN_WIDTH - 32;
+// Pre-measurement fallback only. The gallery measures its own box on layout
+// (handleGalleryLayout) because the true content width is the screen minus the
+// feed list's padding (8/side) *and* the card's own (12/side) — a hardcoded
+// guess drifted 8px per page here before, which desynced paging from the dots.
+const IMAGE_WIDTH = SCREEN_WIDTH - 40;
 
 const ReanimatedScrollView = Reanimated.createAnimatedComponent(RNScrollView);
 
@@ -656,14 +661,33 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   // Image carousel scroll handler
   const updateIndex = useCallback((index: number) => {
-    setActiveImageIndex(index);
+    // onScroll fires per frame; only cross the worklet→JS bridge when the page
+    // actually changes, instead of ~60 setState calls a second while dragging.
+    setActiveImageIndex((prev) => (prev === index ? prev : index));
   }, []);
+
+  // Measured width of the gallery's own box. Both the item width and the index
+  // maths read this, so paging and the dots can never disagree — which is what
+  // broke when the item width was a hardcoded guess wider than the viewport.
+  const [itemWidth, setItemWidth] = useState(IMAGE_WIDTH);
+  const itemWidthSV = useSharedValue(IMAGE_WIDTH);
+
+  const handleGalleryLayout = useCallback(
+    (e: LayoutChangeEvent) => {
+      const w = e.nativeEvent.layout.width;
+      if (w > 0 && w !== itemWidthSV.value) {
+        itemWidthSV.value = w;
+        setItemWidth(w);
+      }
+    },
+    [itemWidthSV],
+  );
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: (event) => {
       scrollX.value = event.contentOffset.x;
-      const index = Math.round(event.contentOffset.x / IMAGE_WIDTH);
-      runOnJS(updateIndex)(index);
+      const width = itemWidthSV.value || IMAGE_WIDTH;
+      runOnJS(updateIndex)(Math.round(event.contentOffset.x / width));
     },
   });
 
@@ -847,20 +871,26 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     const gallery = (
       <ReanimatedScrollView
         horizontal
-        pagingEnabled
+        // Deliberately NOT pagingEnabled: that snaps to multiples of the scroll
+        // view's own width, while the items are sized to `itemWidth`. When the
+        // two disagree every page compounds the error. snapToInterval pages off
+        // the item width itself, so they cannot drift apart.
         showsHorizontalScrollIndicator={false}
+        onLayout={handleGalleryLayout}
         onScroll={scrollHandler}
         scrollEventThrottle={16}
         decelerationRate="fast"
-        snapToInterval={IMAGE_WIDTH}
+        snapToInterval={itemWidth}
+        // A hard fling should advance one image, not skip several.
+        disableIntervalMomentum
         snapToAlignment="start"
       >
         {galleryImages.map((uri, index) => (
-          <Pressable key={index} onPress={() => handleImagePress(index)} style={{ width: IMAGE_WIDTH }}>
+          <Pressable key={index} onPress={() => handleImagePress(index)} style={{ width: itemWidth }}>
             <Image
               source={{ uri }}
               className="rounded-xl"
-              style={{ width: IMAGE_WIDTH, height: IMAGE_WIDTH }}
+              style={{ width: itemWidth, height: itemWidth }}
               resizeMode="cover"
             />
           </Pressable>
