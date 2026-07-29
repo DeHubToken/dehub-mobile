@@ -153,6 +153,7 @@ export type AppStackParamList = {
     listingId: string;
     listing?: import('../hooks/useStores').StoreListing;
   };
+  [ScreenNames.CommandCentre]: undefined;
   [ScreenNames.Work]: undefined;
   /** `job` seeds the detail screen from the browse list so it paints instantly. */
   [ScreenNames.WorkJobDetail]: {
