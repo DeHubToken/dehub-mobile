@@ -61,6 +61,7 @@ export enum ScreenNames {
   StoreDetail = 'StoreDetail',
   ListingDetail = 'ListingDetail',
   CommandCentre = 'CommandCentre',
+  Top100 = 'Top100',
   Work = 'Work',
   WorkJobDetail = 'WorkJobDetail',
   WorkPost = 'WorkPost',
