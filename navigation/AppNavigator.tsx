@@ -163,6 +163,10 @@ export default function AppNavigator() {
         {/* Bounties: browsing is open, posting/applying prompts sign-in
             (same as web, which lets you fill the form then gates on submit). */}
         <Stack.Screen
+          name={ScreenNames.Top100}
+          getComponent={() => require("../screens/Top100Screen").default}
+        />
+        <Stack.Screen
           name={ScreenNames.Work}
           getComponent={() => require("../screens/WorkScreen").default}
         />

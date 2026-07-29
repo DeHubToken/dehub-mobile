@@ -4,8 +4,15 @@ import { Ionicons } from "@expo/vector-icons";
 
 export type SortCategory = "holdings" | "sentTips" | "receivedTips" | "followers" | "likes";
 
+/**
+ * "assets" is not a leaderboard sort — it's a jump to the Top 100 market table,
+ * exactly as on web (LeaderboardPage routes to /app/top-100 on this key). Kept
+ * out of SortCategory so it can never reach the leaderboard API as a sort.
+ */
+export type PillKey = SortCategory | "assets";
+
 interface CategoryDef {
-  key: SortCategory;
+  key: PillKey;
   label: string;
   icon: keyof typeof Ionicons.glyphMap;
 }
@@ -16,17 +23,19 @@ const CATEGORIES: CategoryDef[] = [
   { key: "receivedTips", label: "Earned", icon: "card-outline" },
   { key: "followers", label: "Followers", icon: "people-outline" },
   { key: "likes", label: "Likes", icon: "heart-outline" },
+  { key: "assets", label: "Assets", icon: "stats-chart-outline" },
 ];
 
 interface Props {
   active: SortCategory;
-  onSelect: (cat: SortCategory) => void;
+  onSelect: (cat: PillKey) => void;
 }
 
 const LeaderboardCategoryPills: React.FC<Props> = ({ active, onSelect }) => {
   const scrollRef = useRef<ScrollView>(null);
 
-  // Reorder so the active category is always first
+  // Reorder so the active category is always first. "assets" never becomes
+  // active (it navigates away), so it stays where it is in the list.
   const ordered = useMemo(() => {
     const idx = CATEGORIES.findIndex((c) => c.key === active);
     if (idx <= 0) return CATEGORIES;
@@ -39,7 +48,7 @@ const LeaderboardCategoryPills: React.FC<Props> = ({ active, onSelect }) => {
   }, [active]);
 
   const handlePress = useCallback(
-    (key: SortCategory) => () => {
+    (key: PillKey) => () => {
       onSelect(key);
     },
     [onSelect]
