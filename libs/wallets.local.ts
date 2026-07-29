@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SecureStore from "expo-secure-store";
-import { requireDeviceOwner } from "./biometric-gate";
+import { requireDeviceOwner, type VerificationOutcome } from "./biometric-gate";
 import { createLogger } from "./logger";
 
 const log = createLogger("wallets.local");
@@ -34,13 +34,18 @@ const KEY_ACCESSIBILITY = {
 const UNLOCK_GRACE_MS = 5 * 60 * 1000;
 let lastVerifiedAt = 0;
 
-async function verifyOwner(purpose: string, forcePrompt: boolean): Promise<void> {
+async function verifyOwner(purpose: string, forcePrompt: boolean): Promise<VerificationOutcome> {
   if (!forcePrompt && Date.now() - lastVerifiedAt < UNLOCK_GRACE_MS) {
     log.debug("verifyOwner:grace-window");
-    return;
+    return "verified";
   }
-  await requireDeviceOwner(purpose);
-  lastVerifiedAt = Date.now();
+  const outcome = await requireDeviceOwner(purpose);
+  // Only a real verification opens the grace window. Recording a timestamp for
+  // an unenforceable release would be recording proof that never happened —
+  // and would then suppress the prompt on a device that later GAINS a screen
+  // lock partway through a session.
+  if (outcome === "verified") lastVerifiedAt = Date.now();
+  return outcome;
 }
 
 /** Drop the grace window — call on sign-out or when the app backgrounds. */
@@ -177,15 +182,31 @@ export interface KeyAccessOptions {
    * minutes ago is not consent to display a secret.
    */
   forcePrompt?: boolean;
+  /**
+   * Called when the key was released WITHOUT the device owner being verified,
+   * because the device has no biometrics and no passcode to check against.
+   *
+   * Pass this wherever there is a user to talk to, and use it to nudge them to
+   * set a screen lock — that is the only thing that actually protects the key on
+   * such a device. Callers with no UI (e.g. building the signer at startup) can
+   * omit it; the condition is logged either way.
+   */
+  onUnverified?: () => void;
 }
 
 /**
- * Release the private key for `address` after verifying the device owner.
+ * Release the private key for `address`, after verifying the device owner where
+ * the device is capable of it.
  *
- * Throws BiometricUnavailableError / BiometricRejectedError when verification
- * does not happen — it never falls back to returning the key unverified, and it
+ * Throws BiometricRejectedError when the owner declined the prompt, and
+ * BiometricUnavailableError when a capable device could not present one. It
  * never converts a failed check into `null`, because a caller treating "no key"
  * and "not allowed" the same way is how a gate gets bypassed by accident.
+ *
+ * On a device with NO biometrics and NO passcode there is nothing to verify
+ * against, and the key is released with `options.onUnverified` invoked instead
+ * of throwing — see requireDeviceOwner for why blocking there would cost access
+ * without buying protection.
  */
 export async function getPrivateKeyForAddress(
   address: string,
@@ -201,7 +222,16 @@ export async function getPrivateKeyForAddress(
     return null;
   }
 
-  await verifyOwner(options.purpose, options.forcePrompt === true);
+  const outcome = await verifyOwner(options.purpose, options.forcePrompt === true);
+  if (outcome === "unenforceable") {
+    log.warn("secure:get:released-unverified — device has no screen lock", { address: addr });
+    try {
+      options.onUnverified?.();
+    } catch (e) {
+      // A failing nudge must never block the key release it is advising about.
+      log.warn("secure:get:onUnverified:threw", e);
+    }
+  }
 
   try {
     log.debug("secure:get:start", { address: addr });

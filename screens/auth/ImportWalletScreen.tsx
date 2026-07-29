@@ -23,7 +23,7 @@ import {
   LocalAccount,
 } from "../../libs/wallets.local";
 import { miniAddress } from "../../libs/strings.util";
-import { toastError, toastInfo } from "../../libs";
+import { toastError, toastInfo, toastWarning } from "../../libs";
 import { openInApp } from "../../libs/links.utils";
 import { WEBSITE_LINK } from "../../config";
 import { ChainId } from "../../config/constants";
@@ -163,6 +163,10 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
         setIsImporting(true);
         const pk = await getPrivateKeyForAddress(address, {
           purpose: "Unlock this DeHub wallet to use it",
+          onUnverified: () =>
+            toastWarning(
+              "This phone has no screen lock, so anyone holding it can use your wallet. Set a passcode or biometrics in your device settings.",
+            ),
         });
         if (!pk) {
           toastError(

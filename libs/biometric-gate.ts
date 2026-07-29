@@ -69,22 +69,47 @@ export async function getBiometricCapability(): Promise<BiometricCapability> {
 }
 
 /**
+ * Whether a key release was actually gated on proof of device ownership.
+ *
+ * `unenforceable` means the device has no biometrics AND no passcode, so there
+ * is nothing to check against — see requireDeviceOwner for why that permits the
+ * release rather than blocking it.
+ */
+export type VerificationOutcome = "verified" | "unenforceable";
+
+/**
  * Require the device owner to prove presence before a secret is released.
  *
- * Resolves only on a successful verification. Throws BiometricUnavailableError
- * if the device cannot verify at all, or BiometricRejectedError if the user
- * cancelled or failed. Never resolves falsily — a caller that forgets to check
- * a boolean would otherwise leak the key, so failure is always a throw.
+ * Returns "verified" when the owner proved presence. Throws
+ * BiometricRejectedError when the prompt appeared and was cancelled or failed,
+ * and BiometricUnavailableError when the platform claimed it could verify but
+ * then could not present the prompt. Both remain hard failures: a caller must
+ * never receive a key because a check was dodged or mysteriously did not run.
+ *
+ * Returns "unenforceable" — without throwing — in exactly one case: the device
+ * has no biometrics enrolled and no passcode set, so no check is possible.
+ *
+ * WHY THAT CASE IS PERMITTED. Blocking it would mean someone with no screen lock
+ * cannot tip, post or transact at all, having been able to a version earlier.
+ * And it would buy nothing: with no screen lock, "the device is unlocked" is
+ * always true, so the key those users hold was already readable to anyone
+ * holding the phone before this gate existed. Refusing here costs real access to
+ * prevent no exposure that is not already present. The honest response is to get
+ * them to set a screen lock, which is what the `onUnverified` hook on
+ * getPrivateKeyForAddress is for — not to lock them out of their own funds.
+ *
+ * Note this is NOT the same as a device that can verify but whose user declines:
+ * that throws, because a check was possible and was refused.
  *
  * @param purpose Shown in the system prompt. Say what the key is for, e.g.
  *                "Unlock your DeHub wallet" — a vague prompt trains people to
  *                approve reflexively.
  */
-export async function requireDeviceOwner(purpose: string): Promise<void> {
+export async function requireDeviceOwner(purpose: string): Promise<VerificationOutcome> {
   const capability = await getBiometricCapability();
   if (!capability.usable) {
-    log.warn("authenticate:unavailable", capability);
-    throw new BiometricUnavailableError();
+    log.warn("authenticate:unenforceable — device has no lock to check against", capability);
+    return "unenforceable";
   }
 
   let result: LocalAuthentication.LocalAuthenticationResult;
@@ -108,4 +133,5 @@ export async function requireDeviceOwner(purpose: string): Promise<void> {
     throw new BiometricRejectedError();
   }
   log.info("authenticate:ok");
+  return "verified";
 }
