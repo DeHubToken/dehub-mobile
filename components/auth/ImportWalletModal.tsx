@@ -21,7 +21,7 @@ import { SUPPORTED_NETWORKS } from "../../config/web3.constants";
 import { createLocalEip1193Provider } from "../../services/localwallet.provider";
 import { setSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
-import { toastError, toastInfo } from "../../libs";
+import { toastError, toastInfo, toastWarning } from "../../libs";
 import { getPreferredChainId } from "../../libs/auth.utils";
 
 export interface ImportWalletModalProps {
@@ -132,6 +132,10 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           setIsImporting(true);
           const pk = await getPrivateKeyForAddress(address, {
             purpose: "Unlock this DeHub wallet to use it",
+            onUnverified: () =>
+              toastWarning(
+                "This phone has no screen lock, so anyone holding it can use your wallet. Set a passcode or biometrics in your device settings.",
+              ),
           });
           if (!pk) {
             toastError(
