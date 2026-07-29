@@ -67,9 +67,7 @@ interface DrawerItem {
 const NAV_ITEMS: DrawerItem[] = [
   { icon: "User", labelKey: "nav.profile", screen: ScreenNames.Profile, requiresAuth: true },
   { icon: "Search", labelKey: "nav.explore", screen: ScreenNames.Explore, tab: true },
-  // Prompt has no native screen yet — commented out rather than dumping users
-  // to the website. Restore (or build a native screen) when ready.
-  // { icon: "Wand", labelKey: "nav.prompt", url: `${WEBSITE_LINK}/prompt` },
+  { icon: "Wand", labelKey: "nav.prompt", screen: ScreenNames.Prompt },
   { icon: "Bell", labelKey: "nav.notifications", screen: ScreenNames.Notifications, requiresAuth: true },
   { icon: "MessageSquare", labelKey: "nav.messages", screen: ScreenNames.DM, requiresAuth: true, tab: true },
   { icon: "Users", labelKey: "nav.communities", screen: ScreenNames.Communities },
@@ -94,6 +92,8 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Users", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate, requiresAuth: true },
   { icon: "Briefcase", labelKey: "nav.careers", screen: ScreenNames.Careers },
   { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores },
+  { icon: "Megaphone", labelKey: "nav.ads", screen: ScreenNames.Ads, requiresAuth: true },
+  { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
   { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },
