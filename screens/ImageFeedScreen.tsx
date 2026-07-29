@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -19,6 +19,7 @@ import { Image } from "expo-image";
 import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/ui/Icon";
+import FeedCard from "../components/Home/FeedCard";
 import { CommentBottomSheet } from "../components/Comments";
 import { useAuthActions, useAuthState, useUser } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
@@ -507,21 +508,27 @@ const ImageFeedScreen = () => {
 
   const listRef = useRef<FlatList>(null);
 
+  // Opening the feed *at* the tapped post, the way web's ImagesFeed does it:
+  // rather than scrolling to an index — unreliable once rows are variable
+  // height, since getItemLayout can no longer be supplied — the tapped post is
+  // rotated to the front and the rest follow. Anything before it is still
+  // reachable by going back to the grid, same as web.
+  const orderedItems = useMemo(() => {
+    if (!items.length) return items;
+    const start = Math.max(0, Math.min(initialIndex, items.length - 1));
+    return start === 0 ? items : [...items.slice(start), ...items.slice(0, start)];
+  }, [items, initialIndex]);
+
   const renderItem = useCallback(
     ({ item, index }: { item: UnifiedFeedItem; index: number }) => (
-      <ImageFeedItem item={item} isActive={index === activeIndex} itemHeight={containerHeight} />
+      <FeedCard item={item} isVisible={index === activeIndex} enablePreview />
     ),
-    [activeIndex, containerHeight],
+    [activeIndex],
   );
 
   const keyExtractor = useCallback(
     (item: UnifiedFeedItem, index: number) => String(item.tokenId ?? item.id ?? index),
     [],
-  );
-
-  const getItemLayout = useCallback(
-    (_: any, index: number) => ({ length: containerHeight, offset: containerHeight * index, index }),
-    [containerHeight],
   );
 
   const renderFooter = useCallback(() => {
@@ -540,24 +547,31 @@ const ImageFeedScreen = () => {
     <View style={styles.container} onLayout={handleContainerLayout}>
       <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
 
+      {/* Deliberately NOT pagingEnabled, and rows are no longer forced to the
+          container height: tapping a tile should open a continuous Instagram-
+          style scroll of full post cards, not a TikTok-style one-image-per-
+          swipe pager. Mirrors web's ImagesFeed, which renders the same ImageCard
+          list it uses everywhere else once you click out of the collage. */}
       <FlatList
         ref={listRef}
-        data={items}
+        data={orderedItems}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
-        pagingEnabled
         showsVerticalScrollIndicator={false}
-        initialScrollIndex={initialIndex > 0 ? initialIndex : undefined}
+        contentContainerStyle={{
+          paddingTop: insets.top + 56,
+          paddingBottom: insets.bottom + 24,
+          paddingHorizontal: 8,
+        }}
         onViewableItemsChanged={onViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}
         onEndReached={loadMore}
         onEndReachedThreshold={2}
         ListFooterComponent={renderFooter}
         removeClippedSubviews
-        windowSize={3}
-        maxToRenderPerBatch={2}
-        initialNumToRender={2}
-        getItemLayout={containerHeight > 0 ? getItemLayout : undefined}
+        windowSize={5}
+        maxToRenderPerBatch={3}
+        initialNumToRender={3}
       />
 
       {/* Fixed header */}
