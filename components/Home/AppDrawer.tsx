@@ -77,8 +77,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
   { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary, requiresAuth: true },
   { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings, requiresAuth: true },
-  // Command Centre has no native screen yet — commented out (was opening the website).
-  // { icon: "LayoutDashboard", labelKey: "nav.command", url: `${WEBSITE_LINK}/app/command-centre` },
+  { icon: "LayoutDashboard", labelKey: "nav.command", screen: ScreenNames.CommandCentre, requiresAuth: true },
   // Passes initialTab explicitly so returning here from the Staking entry
   // (same screen, different tab) resets to Buy instead of keeping Stake.
   { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay, params: { initialTab: "buy" }, requiresAuth: true },

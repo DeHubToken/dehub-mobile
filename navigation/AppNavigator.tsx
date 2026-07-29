@@ -266,6 +266,10 @@ export default function AppNavigator() {
               getComponent={() => require("../screens/DpayScreen").default}
             />
             <Stack.Screen
+              name={ScreenNames.CommandCentre}
+              getComponent={() => require("../screens/CommandCentreScreen").default}
+            />
+            <Stack.Screen
               name={ScreenNames.Notifications}
               getComponent={() => require("../screens/NotificationScreen").default}
             />
