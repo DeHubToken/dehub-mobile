@@ -167,6 +167,14 @@ export default function AppNavigator() {
           getComponent={() => require("../screens/Top100Screen").default}
         />
         <Stack.Screen
+          name={ScreenNames.Prompt}
+          getComponent={() => require("../screens/PromptScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.TV}
+          getComponent={() => require("../screens/TVScreen").default}
+        />
+        <Stack.Screen
           name={ScreenNames.Work}
           getComponent={() => require("../screens/WorkScreen").default}
         />
@@ -272,6 +280,10 @@ export default function AppNavigator() {
             <Stack.Screen
               name={ScreenNames.CommandCentre}
               getComponent={() => require("../screens/CommandCentreScreen").default}
+            />
+            <Stack.Screen
+              name={ScreenNames.Ads}
+              getComponent={() => require("../screens/AdsScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.Notifications}
