@@ -155,6 +155,9 @@ export type AppStackParamList = {
   };
   [ScreenNames.CommandCentre]: undefined;
   [ScreenNames.Top100]: undefined;
+  [ScreenNames.Ads]: undefined;
+  [ScreenNames.Prompt]: undefined;
+  [ScreenNames.TV]: undefined;
   [ScreenNames.Work]: undefined;
   /** `job` seeds the detail screen from the browse list so it paints instantly. */
   [ScreenNames.WorkJobDetail]: {
@@ -179,7 +182,8 @@ export type BottomTabParamList = {
   [ScreenNames.Home]: undefined;
   [ScreenNames.DM]: undefined;
   [ScreenNames.UploadTab]: undefined;
-  [ScreenNames.AIChat]: undefined;
+  /** `initialPrompt` seeds the composer — used by the Prompt entry screen. */
+  [ScreenNames.AIChat]: { initialPrompt?: string } | undefined;
   [ScreenNames.Explore]: undefined;
 };
 

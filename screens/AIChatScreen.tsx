@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
   StyleSheet,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import * as FileSystem from 'expo-file-system/legacy';
 import AssistantHeader from '../components/Assistant/AssistantHeader';
 import AssistantBubble from '../components/Assistant/AssistantBubble';
@@ -71,6 +71,16 @@ function AIChatScreenInner() {
   } = useAIConversation(userId);
 
   const [input, setInput] = useState('');
+
+  // The Prompt entry screen hands its text over as a route param. Seed the
+  // composer with it rather than auto-sending, so the user still gets a look
+  // at what will be asked — same as web, which lands on /app?prompt=…
+  const route = useRoute<any>();
+  const initialPrompt: string | undefined = route.params?.initialPrompt;
+  React.useEffect(() => {
+    if (initialPrompt) setInput(initialPrompt);
+  }, [initialPrompt]);
+
   const [isLoading, setIsLoading] = useState(false);
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
   const [historyVisible, setHistoryVisible] = useState(false);
