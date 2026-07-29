@@ -28,7 +28,10 @@
     "staking": "Staking",
     "communities": "Communities",
     "stages": "Stages",
-    "affiliate": "Affiliate"
+    "affiliate": "Affiliate",
+    "ads": "Ads",
+    "prompt": "Prompt",
+    "tv": "Live TV"
   },
   "feed": {
     "home": "Qallariy",
@@ -1805,5 +1808,15 @@
     "step4Title": "Earn {{l2}}% secondary",
     "step4Body": "When your invites invite their friends, you also earn {{l2}}% of their revenue. Recurring, lifetime.",
     "wallet": "Affiliate wallet"
+  },
+  "prompt": {
+    "title": "What do you want to make?",
+    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
+    "placeholder": "Ask anything…",
+    "suggestion1": "Summarise what's trending on DeHub today",
+    "suggestion2": "Draft a post about my latest upload",
+    "suggestion3": "Explain DHB staking in simple terms",
+    "suggestion4": "Find creators I should follow",
+    "suggestion5": "Write a bounty brief for a clipping campaign"
   }
 }
