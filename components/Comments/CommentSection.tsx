@@ -133,20 +133,28 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     const byId = new Map<number, Comment>();
     rawComments.forEach((c) => byId.set(Number(c.id), c));
 
-    // Build child map and parent map from replyIds
+    // Build child/parent maps. replyIds carries the server's sibling ordering so
+    // it's read first; parentId then catches any reply its parent didn't list.
+    // Both are ignored when the other end isn't in this page — an orphan is
+    // emitted as a root below rather than vanishing from the thread.
     const childrenOf = new Map<number, number[]>();
     const parentOf = new Map<number, number>();
+    const link = (childId: number, parentId: number) => {
+      if (childId === parentId || parentOf.has(childId) || !byId.has(parentId)) return;
+      parentOf.set(childId, parentId);
+      const kids = childrenOf.get(parentId);
+      if (kids) kids.push(childId);
+      else childrenOf.set(parentId, [childId]);
+    };
     rawComments.forEach((c) => {
-      if (Array.isArray(c.replyIds) && c.replyIds.length > 0) {
-        const childNums = c.replyIds.map(Number);
-        childrenOf.set(Number(c.id), childNums);
-        childNums.forEach((cid) => parentOf.set(cid, Number(c.id)));
-      }
+      if (!Array.isArray(c.replyIds)) return;
+      c.replyIds.forEach((rid) => {
+        if (byId.has(Number(rid))) link(Number(rid), Number(c.id));
+      });
     });
-
-    // Find roots: comments not in any replyIds array
-    const allReplyIds = new Set<number>();
-    childrenOf.forEach((ids) => ids.forEach((id) => allReplyIds.add(id)));
+    rawComments.forEach((c) => {
+      if (c.parentId != null) link(Number(c.id), Number(c.parentId));
+    });
 
     const flat: FlatComment[] = [];
     const emitted = new Set<number>();
@@ -171,8 +179,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     let highlightedRootId: number | undefined;
     if (hlId != null && parentOf.has(hlId)) {
       let current: number = hlId;
+      const walked = new Set<number>([current]);
       while (parentOf.has(current)) {
-        current = parentOf.get(current)!;
+        const next = parentOf.get(current)!;
+        if (walked.has(next)) break; // malformed cycle
+        walked.add(next);
+        current = next;
       }
       highlightedRootId = current;
     }
@@ -184,10 +196,15 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
     // Emit remaining roots in original order
     rawComments.forEach((c) => {
-      if (!allReplyIds.has(Number(c.id))) {
+      if (!parentOf.has(Number(c.id))) {
         emitRecursive(c, 0, Number(c.id));
       }
     });
+
+    // Safety net: bad data forming a parent cycle would leave no member looking
+    // like a root and drop the whole ring. Surface anything the walk never
+    // reached as top-level rather than losing it.
+    rawComments.forEach((c) => emitRecursive(c, 0, Number(c.id)));
 
     return flat;
   }, [highlightCommentId]);
@@ -276,13 +293,19 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
         const res = await getCommentReplies(commentId, { limit: 100 });
         const replies = res.result?.items || [];
-        
-        const flatReplies: FlatComment[] = replies.map((r) => ({
-          ...r,
-          isReply: true,
-          depth: parentDepth + 1,
-          rootParentId,
-        }));
+
+        // The first page already inlines whatever replies came down with it, so
+        // only splice in the ones that aren't on screen yet — otherwise expanding
+        // shows every visible reply twice.
+        const onScreen = new Set(flatComments.map((c) => Number(c.id)));
+        const flatReplies: FlatComment[] = replies
+          .filter((r) => !onScreen.has(Number(r.id)))
+          .map((r) => ({
+            ...r,
+            isReply: true,
+            depth: parentDepth + 1,
+            rootParentId,
+          }));
 
         setExpandedCommentIds((prev) => {
           const next = new Set(prev);
