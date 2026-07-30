@@ -23,7 +23,9 @@ import StoriesBar from "../components/Story/StoriesBar";
 import { getCategoriesCached } from "../services/nft.service";
 import { storage } from "../libs/storage";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
-import { useQueryClient } from "@tanstack/react-query";
+import { useIsFetching, useQueryClient } from "@tanstack/react-query";
+import FeedFilterLoader from "../components/Home/FeedFilterLoader";
+import { useFeedFilterTransition } from "../hooks/useFeedFilterTransition";
 import { getUnifiedFeed, getShortsFeed } from "../services/feed.unified.service";
 import type { FeedRange, FeedSortBy, FeedPostType } from "../services/feed.unified.service";
 
@@ -301,6 +303,23 @@ export default function HomeScreen() {
     transform: [{ translateX: -progress.value * pageWidth }],
   }));
 
+  // ── Filter loader ────────────────────────────────────────────────────────
+  // A filter change re-keys every mounted page at once (four feed lists plus
+  // the image and shorts grids), so "is the feed still working" is a property
+  // of the whole screen, not of one list. Counting in-flight queries across the
+  // three feed families is the only place that view exists.
+  const feedQueriesInFlight = useIsFetching({
+    predicate: (query) => {
+      const family = query.queryKey?.[0];
+      return (
+        family === "home-feed" ||
+        family === "home-images" ||
+        family === "home-shorts"
+      );
+    },
+  });
+  const filterTransition = useFeedFilterTransition(feedQueriesInFlight > 0);
+
   // ── Warm-up ──────────────────────────────────────────────────────────────
   const queryClient = useQueryClient();
   const feedParamsRef = useRef(feedParams);
@@ -405,8 +424,17 @@ export default function HomeScreen() {
   }, [filters, selectedCategory]);
 
   const handleFiltersChange = useCallback((newFilters: FeedFilters) => {
+    // Only the chips that re-run the query arm the loader. postType is a pager
+    // page turn — its destination list carries its own skeleton, and covering
+    // the pager mid-slide would hide the very animation that answers the tap.
+    const changesQuery =
+      newFilters.sortBy !== filters.sortBy ||
+      newFilters.dateRange !== filters.dateRange ||
+      newFilters.contentAccess.length !== filters.contentAccess.length ||
+      newFilters.contentAccess.some((a) => !filters.contentAccess.includes(a));
+    if (changesQuery) filterTransition.begin();
     setFilters(newFilters);
-  }, []);
+  }, [filters, filterTransition]);
 
   const handleFilterPress = useCallback(() => {
     setFilterPanelVisible((prev) => !prev);
@@ -418,10 +446,11 @@ export default function HomeScreen() {
 
   const handleCategorySelect = useCallback((category: string) => {
     const value = category === "All" ? undefined : category;
+    filterTransition.begin();
     setSelectedCategory(value);
     try { storage.set("dehub:defaultCategory", value ?? ""); } catch {}
     setFilterPanelVisible(false);
-  }, []);
+  }, [filterTransition]);
 
   const handleRefresh = useCallback(() => {
     showHeader();
@@ -454,25 +483,28 @@ export default function HomeScreen() {
   }, [selectedCategory]);
 
   const handleClearFilters = useCallback(() => {
+    filterTransition.begin();
     setSelectedCategory(undefined);
     setFilters(DEFAULT_FILTERS);
     refreshShuffleSeed();
-  }, [refreshShuffleSeed]);
+  }, [refreshShuffleSeed, filterTransition]);
 
   const handleCategoryPress = useCallback((cat: string) => {
     const value = cat === "All" ? undefined : cat;
     if (value === selectedCategory) return;
+    filterTransition.begin();
     setSelectedCategory(value);
     try { storage.set("dehub:defaultCategory", value ?? ""); } catch {}
     if (!value) setFilters(DEFAULT_FILTERS);
-  }, [selectedCategory]);
+  }, [selectedCategory, filterTransition]);
 
   const handleResetFilters = useCallback(() => {
+    filterTransition.begin();
     setSelectedCategory(undefined);
     setFilters(DEFAULT_FILTERS);
     refreshShuffleSeed();
     setFilterPanelVisible(false);
-  }, [refreshShuffleSeed]);
+  }, [refreshShuffleSeed, filterTransition]);
 
   useEffect(() => {
     let mounted = true;
@@ -595,6 +627,10 @@ export default function HomeScreen() {
               ))}
             </Animated.View>
           </PagerGestureProvider>
+
+          {/* Covers the pager, never the header: the filter panel and nav bar
+              stay live so the user can keep adjusting while this is up. */}
+          {filterTransition.active && <FeedFilterLoader topInset={headerHeight} />}
         </View>
       </GestureDetector>
     </View>
