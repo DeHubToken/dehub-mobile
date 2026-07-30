@@ -12,7 +12,10 @@ interface UseTranslationResult {
   shouldShow: boolean;
 }
 
-const MIN_TRANSLATABLE_LENGTH = 20;
+// Matches web (MIN_TEXT_LENGTH_FOR_TRANSLATION), so the same post offers the
+// same button on both platforms. Emoji are stripped before this is measured,
+// so an emoji-only post still counts as empty and gets no button.
+const MIN_TRANSLATABLE_LENGTH = 1;
 
 const EMOJI_REGEX = /[\p{Emoji_Presentation}\p{Extended_Pictographic}\u200d\ufe0f]/gu;
 function stripEmojis(text: string): string {
