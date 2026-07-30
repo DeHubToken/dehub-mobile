@@ -55,6 +55,10 @@ interface CommentSectionProps {
   onClose?: () => void;
   highlightCommentId?: number | string;
   contentType?: "video" | "feed";
+  /** Creator turned replies off. Replaces the composer with a notice and leaves
+   *  the list alone — disabling hides no history, the server simply refuses new
+   *  comments (requestCommentFunc), so this is presentation not enforcement. */
+  commentsDisabled?: boolean;
 }
 
 const PAGE_SIZE = 50;
@@ -64,6 +68,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   onClose,
   highlightCommentId,
   contentType = "video",
+  commentsDisabled = false,
 }) => {
   const user = useUser();
   const { requireAuth } = useAuthActions();
@@ -884,7 +889,14 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           loading={mentions.loading}
         />
 
-        {recorder.isRecording ? (
+        {commentsDisabled ? (
+          <View className="flex-row items-center justify-center px-4 py-4" style={{ gap: 8 }}>
+            <Icon name="MessageSquare" size={16} color="#6F7174" />
+            <Text className="text-theme-neutrals-400 text-sm">
+              Comments are turned off for this post
+            </Text>
+          </View>
+        ) : recorder.isRecording ? (
           <VoiceNoteRecordingOverlay recorder={recorder} />
         ) : mediaAttachment ? (
           <CommentMediaPreview

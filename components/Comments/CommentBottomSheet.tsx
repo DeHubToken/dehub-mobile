@@ -34,6 +34,8 @@ interface CommentBottomSheetProps {
   tokenId: number | string;
   highlightCommentId?: number | string;
   contentType?: "video" | "feed";
+  /** Creator turned replies off — swaps the composer for a notice. */
+  commentsDisabled?: boolean;
 }
 
 const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
@@ -42,6 +44,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   tokenId,
   highlightCommentId,
   contentType = "video",
+  commentsDisabled = false,
 }) => {
   const insets = useSafeAreaInsets();
   const SHEET_HEIGHT = SCREEN_HEIGHT * SHEET_FRACTION;
@@ -172,6 +175,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
               onClose={closeSheet}
               highlightCommentId={highlightCommentId}
               contentType={contentType}
+              commentsDisabled={commentsDisabled}
             />
           )}
 

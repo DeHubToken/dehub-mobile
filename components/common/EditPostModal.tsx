@@ -29,10 +29,12 @@ interface EditPostModalProps {
   initialTitle?: string;
   initialDescription?: string;
   initialCategories?: string[];
+  initialCommentsDisabled?: boolean;
   onSuccess?: (data: {
     name?: string;
     description?: string;
     category?: string[];
+    commentsDisabled?: boolean;
   }) => void;
 }
 
@@ -43,8 +45,10 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   initialTitle = "",
   initialDescription = "",
   initialCategories = [],
+  initialCommentsDisabled = false,
   onSuccess,
 }) => {
+  const [commentsDisabled, setCommentsDisabled] = useState(initialCommentsDisabled);
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
   const titleMentions = useMentions(title, setTitle);
@@ -63,8 +67,9 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       setTitle(initialTitle);
       setDescription(initialDescription);
       setSelectedCategories(initialCategories);
+      setCommentsDisabled(initialCommentsDisabled);
     }
-  }, [visible, initialTitle, initialDescription, initialCategories]);
+  }, [visible, initialTitle, initialDescription, initialCategories, initialCommentsDisabled]);
 
   // Load categories when modal opens
   useEffect(() => {
@@ -129,6 +134,9 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       ) {
         payload.category = selectedCategories;
       }
+      if (commentsDisabled !== initialCommentsDisabled) {
+        payload.commentsDisabled = commentsDisabled;
+      }
 
       if (Object.keys(payload).length === 0) {
         onClose();
@@ -141,6 +149,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         name: payload.name,
         description: payload.description,
         category: payload.category,
+        commentsDisabled: payload.commentsDisabled,
       });
       onClose();
     } catch (e: any) {
@@ -297,6 +306,38 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               </TouchableOpacity>
             )}
           </View>
+
+          {/* Comments toggle. Mirrors web's EditPostModal so the same post
+              reads the same on both clients. */}
+          <TouchableOpacity
+            onPress={() => setCommentsDisabled((v) => !v)}
+            activeOpacity={0.7}
+            accessibilityRole="switch"
+            accessibilityState={{ checked: !commentsDisabled }}
+            className="flex-row items-center justify-between mt-4 p-3 rounded-xl bg-white/[0.03] border border-white/10"
+          >
+            <View className="flex-1 mr-3">
+              <Text className="text-white text-sm font-semibold">
+                {commentsDisabled ? "Comments are off" : "Allow comments"}
+              </Text>
+              <Text className="text-theme-neutrals-400 text-xs mt-0.5">
+                {commentsDisabled
+                  ? "Replies already posted stay visible — turning this back on restores them."
+                  : "Anyone who can see this post can reply to it."}
+              </Text>
+            </View>
+            <View
+              className={`w-11 h-6 rounded-full justify-center ${
+                commentsDisabled ? "bg-neutral-700" : "bg-emerald-500"
+              }`}
+            >
+              <View
+                className={`w-5 h-5 rounded-full bg-white ${
+                  commentsDisabled ? "ml-0.5" : "ml-[22px]"
+                }`}
+              />
+            </View>
+          </TouchableOpacity>
 
           <CategoryDrawer
             visible={categoryOpen}
