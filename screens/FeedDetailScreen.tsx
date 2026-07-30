@@ -28,6 +28,16 @@ import { theme } from "../theme";
 import { formatCompactNumber } from "../libs/numbers.util";
 import { ScreenNames } from "../navigation/ScreenNames";
 
+/** A comment plus how deep it sits in the thread (0 = top-level, 1 = direct reply, …). */
+type ThreadedComment = Comment & { depth: number };
+
+// Threading is unbounded — the server accepts a reply to a reply at any depth.
+// Only the extra visual indent past the first tier is capped, so a long chain
+// doesn't walk off the right edge on a phone. CommentItem already insets any
+// reply by 48px, so depth 1 keeps the exact look it had before.
+const MAX_EXTRA_INDENT_LEVELS = 4;
+const INDENT_PX = 16;
+
 export default function FeedDetailScreen() {
   const { t } = useTranslation();
   const route = useRoute<any>();
@@ -44,8 +54,8 @@ export default function FeedDetailScreen() {
   const [loading, setLoading] = useState(true);
   const [privateError, setPrivateError] = useState(false);
   const [item, setItem] = useState<UnifiedFeedItem | null>(null);
-  const [comments, setComments] = useState<Comment[]>([]);
-  const [replyTo, setReplyTo] = useState<Comment | null>(null);
+  const [comments, setComments] = useState<ThreadedComment[]>([]);
+  const [replyTo, setReplyTo] = useState<ThreadedComment | null>(null);
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
   const [inputText, setInputText] = useState("");
   const mentions = useMentions(inputText, setInputText);
@@ -190,74 +200,82 @@ export default function FeedDetailScreen() {
       }
       const rawComments = Array.from(seenRaw.values());
       
-      // Build reply mapping - find which comments are replies
-      const replyIdSet = new Set<number>();
-      rawComments.forEach((c) => {
-        if (Array.isArray(c?.replyIds)) {
-          c.replyIds.forEach((id) => replyIdSet.add(Number(id)));
-        }
-      });
-      
-      // Separate top-level and replies, flatten with replies under their parents
+      // Flatten into one depth-tagged list. Nesting is unbounded: a reply can
+      // carry its own replies, so descendants are emitted recursively instead of
+      // as a single tier under each root.
       const byId = new Map<number, Comment>();
       rawComments.forEach((c) => byId.set(Number(c?.id), c));
-      const topLevel = rawComments.filter((c) => !replyIdSet.has(Number(c?.id)));
-      
-      // Determine if highlighted comment is a reply so we can expand its parent
+
+      // replyIds carries the server's sibling ordering, so read it first;
+      // parentId then catches any reply whose parent didn't list it.
+      const childrenOf = new Map<number, number[]>();
+      const parentOf = new Map<number, number>();
+      const link = (childId: number, parentId: number) => {
+        if (childId === parentId || parentOf.has(childId) || !byId.has(parentId)) return;
+        parentOf.set(childId, parentId);
+        const kids = childrenOf.get(parentId);
+        if (kids) kids.push(childId);
+        else childrenOf.set(parentId, [childId]);
+      };
+      rawComments.forEach((c) => {
+        if (!Array.isArray(c?.replyIds)) return;
+        c.replyIds.forEach((rid) => {
+          if (byId.has(Number(rid))) link(Number(rid), Number(c.id));
+        });
+      });
+      rawComments.forEach((c) => {
+        if (c?.parentId != null) link(Number(c.id), Number(c.parentId));
+      });
+
       const highlightId = commentIdParam ? Number(commentIdParam) : undefined;
-      const highlightIsReply = highlightId != null && replyIdSet.has(highlightId);
-      // Find parent of highlighted reply
-      let highlightParentId: number | undefined;
-      if (highlightIsReply) {
-        for (const c of rawComments) {
-          if (Array.isArray(c?.replyIds) && c.replyIds.map(Number).includes(highlightId!)) {
-            highlightParentId = Number(c.id);
-            break;
-          }
-        }
-      }
-      
-      // Helper: emit a parent with its replies (highlighted reply first if applicable)
+
       const emitted = new Set<number>();
-      const emitParentWithReplies = (c: Comment, flat: Comment[]) => {
+      const flat: ThreadedComment[] = [];
+      const emit = (c: Comment, depth: number) => {
         const cId = Number(c?.id);
         if (emitted.has(cId)) return;
         emitted.add(cId);
-        flat.push(c);
-        if (Array.isArray(c?.replyIds)) {
-          // If this parent owns the highlighted reply, emit that reply first
-          const replyNums = c.replyIds.map(Number);
-          if (highlightId != null && replyNums.includes(highlightId)) {
-            const hReply = byId.get(highlightId);
-            if (hReply && !emitted.has(highlightId)) {
-              emitted.add(highlightId);
-              flat.push({ ...hReply, parentId: c.id });
-            }
-          }
-          // Then remaining replies in original order
-          for (const rid of c.replyIds) {
-            const rId = Number(rid);
-            if (emitted.has(rId)) continue;
-            const reply = byId.get(rId);
-            if (reply) {
-              emitted.add(rId);
-              flat.push({ ...reply, parentId: c.id });
-            }
-          }
-        }
+        flat.push({ ...c, depth, parentId: parentOf.get(cId) ?? c?.parentId });
+        const kids = childrenOf.get(cId);
+        if (!kids) return;
+        // Lead with the highlighted branch so a notification tap lands on it.
+        const ordered =
+          highlightId != null && kids.includes(highlightId)
+            ? [highlightId, ...kids.filter((k) => k !== highlightId)]
+            : kids;
+        ordered.forEach((kid) => {
+          const child = byId.get(kid);
+          if (child) emit(child, depth + 1);
+        });
       };
-      
-      const flat: Comment[] = [];
-      
-      // If highlighted comment is a reply, emit its parent + replies first
-      if (highlightIsReply && highlightParentId != null) {
-        const parent = byId.get(highlightParentId);
-        if (parent) emitParentWithReplies(parent, flat);
+
+      // If the highlighted comment is nested, walk up to its root and emit that
+      // whole thread first, however deep the target sits.
+      if (highlightId != null && parentOf.has(highlightId)) {
+        let rootId = highlightId;
+        const walked = new Set<number>([rootId]);
+        while (parentOf.has(rootId)) {
+          const next = parentOf.get(rootId)!;
+          if (walked.has(next)) break; // malformed cycle
+          walked.add(next);
+          rootId = next;
+        }
+        const root = byId.get(rootId);
+        if (root) emit(root, 0);
       }
-      
-      // Emit remaining top-level comments
-      topLevel.forEach((c) => emitParentWithReplies(c, flat));
-      
+
+      // Then every remaining root, in the order the API returned them. A reply
+      // whose parent fell outside this page counts as a root rather than being
+      // dropped — otherwise it would disappear from the thread entirely.
+      rawComments.forEach((c) => {
+        if (!parentOf.has(Number(c?.id))) emit(c, 0);
+      });
+
+      // Safety net: bad data forming a parent cycle would leave no member
+      // looking like a root and drop the whole ring. Surface anything the walk
+      // never reached as top-level rather than losing it.
+      rawComments.forEach((c) => emit(c, 0));
+
       setComments(flat);
       
       // Highlight the target comment (top-level or reply)
@@ -290,11 +308,37 @@ export default function FeedDetailScreen() {
   );
 
   const handleReplyPress = useCallback((cm: Comment) => {
-    setReplyTo(cm);
+    // Any comment is a valid target, replies included — depth rides along so the
+    // optimistic row lands at the right tier.
+    setReplyTo(cm as ThreadedComment);
     setEditingComment(null);
     setInputText("");
     requestAnimationFrame(() => inputRef.current?.focus());
   }, []);
+
+  /**
+   * Place a freshly posted comment in the flat list. A reply goes directly under
+   * its parent but *after* that parent's existing descendants, which is where the
+   * server will put it once the thread refetches.
+   */
+  const insertThreaded = useCallback(
+    (
+      prev: ThreadedComment[],
+      optimistic: Comment,
+      parent: ThreadedComment | null,
+    ): ThreadedComment[] => {
+      if (!parent) return [{ ...optimistic, depth: 0 }, ...prev];
+      const parentIdx = prev.findIndex((c) => c.id === parent.id);
+      if (parentIdx === -1) return [...prev, { ...optimistic, depth: (parent.depth ?? 0) + 1 }];
+      const parentDepth = prev[parentIdx].depth;
+      let insertIdx = parentIdx + 1;
+      while (insertIdx < prev.length && prev[insertIdx].depth > parentDepth) insertIdx++;
+      const next = [...prev];
+      next.splice(insertIdx, 0, { ...optimistic, depth: parentDepth + 1 });
+      return next;
+    },
+    [],
+  );
 
   const handleLikeComment = useCallback(async (commentId: number): Promise<LikeCommentResult | void> => {
     if (!address) return;
@@ -355,17 +399,15 @@ export default function FeedDetailScreen() {
   const handleContextDelete = useCallback(async () => {
     if (!contextComment) return;
     const commentId = contextComment.id;
-    const wasReply = contextMeta?.isReply;
-    // Optimistic removal
+    // Optimistic removal. The server deletes a comment's whole subtree, so drop
+    // every following row that sits deeper than this one — its descendants,
+    // at any depth.
     setComments((prev) => {
-      if (wasReply) {
-        return prev.filter((c) => c.id !== commentId);
-      }
-      // Top-level: remove comment and all its replies (consecutive replies after it)
       const idx = prev.findIndex((c) => c.id === commentId);
       if (idx === -1) return prev;
+      const depth = prev[idx].depth;
       let endIdx = idx + 1;
-      while (endIdx < prev.length && prev[endIdx].parentId != null) endIdx++;
+      while (endIdx < prev.length && prev[endIdx].depth > depth) endIdx++;
       const next = [...prev];
       next.splice(idx, endIdx - idx);
       return next;
@@ -380,15 +422,22 @@ export default function FeedDetailScreen() {
       // Revert by reloading
       await fetchData();
     }
-  }, [contextComment, contextMeta, fetchData]);
+  }, [contextComment, fetchData]);
 
   const renderCommentItem = useCallback(
-    ({ item: c }: { item: Comment }) => {
-      const isReply = !!c.parentId;
+    ({ item: c }: { item: ThreadedComment }) => {
+      const isReply = c.depth > 0;
       const isHighlighted = highlightedCommentId != null && String(c.id) === String(highlightedCommentId);
-      
+      // Depth 1 keeps CommentItem's own 48px reply inset; deeper tiers stack a
+      // capped extra step so the chain stays readable without overflowing.
+      const extraIndent =
+        c.depth > 1 ? Math.min(c.depth - 1, MAX_EXTRA_INDENT_LEVELS) * INDENT_PX : 0;
+
       return (
-        <View className={`px-8${isReply ? " mx-4" : ""}`}>
+        <View
+          className={`px-8${isReply ? " mx-4" : ""}`}
+          style={extraIndent > 0 ? { marginLeft: extraIndent } : undefined}
+        >
           <CommentItem
             comment={c}
             isReply={isReply}
@@ -438,17 +487,8 @@ export default function FeedDetailScreen() {
       };
 
       // Optimistic insert
-      setComments((prev) => {
-        if (replyTo?.id) {
-          const idx = prev.findIndex((c) => c.id === replyTo.id);
-          if (idx >= 0) {
-            const next = [...prev];
-            next.splice(idx + 1, 0, optimistic);
-            return next;
-          }
-        }
-        return [optimistic, ...prev];
-      });
+      const replyTarget = replyTo;
+      setComments((prev) => insertThreaded(prev, optimistic, replyTarget));
 
       const savedMedia = mediaAttachment;
       setMediaAttachment(null);
@@ -481,7 +521,7 @@ export default function FeedDetailScreen() {
         setMediaPosting(false);
       }
     });
-  }, [mediaAttachment, mediaPosting, requireAuth, tokenId, replyTo, user]);
+  }, [mediaAttachment, mediaPosting, requireAuth, tokenId, replyTo, user, insertThreaded]);
 
   // Cancel reply or edit
   const cancelReplyOrEdit = useCallback(() => {
@@ -533,19 +573,9 @@ export default function FeedDetailScreen() {
           },
         };
         
-        setComments((prev) => {
-          if (replyTo?.id) {
-            const idx = prev.findIndex((c) => c.id === replyTo.id);
-            if (idx >= 0) {
-              const next = [...prev];
-              next.splice(idx + 1, 0, tempComment);
-              return next;
-            }
-          }
-          return [tempComment, ...prev];
-        });
-        
         const replyTarget = replyTo;
+        setComments((prev) => insertThreaded(prev, tempComment, replyTarget));
+
         if (replyTarget) setReplyTo(null);
         setInputText("");
         mentions.reset();
@@ -561,12 +591,12 @@ export default function FeedDetailScreen() {
           
           if (newId != null) {
             setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, id: newId } : c)));
-            if (!replyTarget) {
-              setItem((prev) => prev ? { 
-                ...prev, 
-                commentCount: Math.max(0, (prev.commentCount ?? 0) + 1) 
-              } : prev);
-            }
+            // The server bumps the post's comment count for replies too, so
+            // count every post here — deleting already decrements either way.
+            setItem((prev) => prev ? {
+              ...prev,
+              commentCount: Math.max(0, (prev.commentCount ?? 0) + 1)
+            } : prev);
           }
         } catch (e) {
           setComments((prev) => prev.filter((c) => c.id !== tempId));
@@ -576,7 +606,7 @@ export default function FeedDetailScreen() {
         setPosting(false);
       }
     });
-  }, [inputText, posting, requireAuth, tokenId, replyTo, editingComment, user, fetchData]);
+  }, [inputText, posting, requireAuth, tokenId, replyTo, editingComment, user, fetchData, insertThreaded]);
 
   const renderHeader = useCallback(() => (
     <View>
