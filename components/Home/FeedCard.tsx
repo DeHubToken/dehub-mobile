@@ -315,6 +315,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [isFollowReqPending, setIsFollowReqPending] = useState(!!((item as any).isFollowRequestPending));
   const [localTitle, setLocalTitle] = useState(title);
   const [localDescription, setLocalDescription] = useState(description);
+  const [localCommentsDisabled, setLocalCommentsDisabled] = useState<boolean>(!!(item as any).commentsDisabled);
   const [localCategories, setLocalCategories] = useState<string[]>(item.category || []);
 
   const translationTexts = useMemo(() => ({
@@ -649,10 +650,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     setIsHidden(hidden);
   }, []);
 
-  const handleEditSuccess = useCallback((data: { name?: string; description?: string; category?: string[] }) => {
+  const handleEditSuccess = useCallback((data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean }) => {
     if (data.name !== undefined) setLocalTitle(data.name);
     if (data.description !== undefined) setLocalDescription(data.description);
     if (data.category !== undefined) setLocalCategories(data.category);
+    // Without this the composer stays live until the feed refetches, so the
+    // creator would still see an input on a post they just closed.
+    if (data.commentsDisabled !== undefined) setLocalCommentsDisabled(data.commentsDisabled);
   }, []);
 
   const handleDeleteSuccess = useCallback(() => {
@@ -1226,6 +1230,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           visible={showComments}
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
+          commentsDisabled={localCommentsDisabled}
         />
       )}
 
@@ -1299,6 +1304,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentTitle={localTitle}
           currentDescription={localDescription}
           currentCategories={localCategories}
+          currentCommentsDisabled={localCommentsDisabled}
           hideReportContent={isLive}
           hideEdit={isLive}
           onFollowChange={handleFollowChange}
