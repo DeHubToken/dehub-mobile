@@ -5,6 +5,7 @@ import { VideoView, useVideoPlayer } from "expo-video";
 import Icon from "../ui/Icon";
 import { getShortsThumbnailUrl, getVideoUrl, getAvatarUrl, formatCompactNumber, buildCdnPath } from "../../libs";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
+import { useMergedViewCount } from "../../hooks/useAnonViewCount";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 const GRID_GAP = 4;
@@ -52,7 +53,8 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
   );
 
   const username = item.minterUser?.username || item.minterUsername || "";
-  const views = item.views || 0;
+  // Includes views from signed-out viewers, which are recorded separately
+  const views = useMergedViewCount(tokenId, item.views || 0);
   const likes = (item as any).totalVotes?.for || item.likes || 0;
 
   const [hasStarted, setHasStarted] = useState(false);

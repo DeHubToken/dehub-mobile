@@ -34,6 +34,7 @@ import { CommentBottomSheet } from "../Comments";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import RepostPopover from "../common/RepostPopover";
 import QuotedPostEmbed from "../common/QuotedPostEmbed";
+import { useMergedViewCount } from "../../hooks/useAnonViewCount";
 
 interface VideoCardProps {
   nft: any;
@@ -126,12 +127,15 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
     (nft as any).stream?.commentCount ||
     (nft as any).comments ||
     0;
-  const views =
+  // Includes views from signed-out viewers, which are recorded separately
+  const views = useMergedViewCount(
+    tokenId,
     nft.views ||
-    (nft as any).peakViewers ||
-    nft.totalViews ||
-    (nft as any).stream?.totalViews ||
-    0;
+      (nft as any).peakViewers ||
+      nft.totalViews ||
+      (nft as any).stream?.totalViews ||
+      0,
+  );
   const createdAt =
     nft.createdAt || (nft as any).stream?.createdAt || new Date().toISOString();
   const isPayPerView = streamInfo?.isPayPerView;

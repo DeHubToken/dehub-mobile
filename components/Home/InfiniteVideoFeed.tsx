@@ -176,8 +176,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       .sort((a, b) => (a.index ?? 0) - (b.index ?? 0))[0];
     setActiveVideoKey(topItem ? (topItem.item as FeedItem).__listKey : null);
 
-    if (!isSignedIn) return;
-    
+    // No auth gate: signed-out viewers count too, and the view service routes
+    // their views to the anonymous view backend.
     for (const entry of changed) {
       const item = entry.item as FeedItem | undefined;
       if (!item) continue;
