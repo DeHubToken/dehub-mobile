@@ -58,6 +58,8 @@ export interface PostOptionsMenuProps {
   currentDescription?: string;
   /** Current categories (for edit) */
   currentCategories?: string[];
+  /** Current state of the creator's comments toggle for this post. */
+  currentCommentsDisabled?: boolean;
   /** Called after a successful follow/unfollow to update parent state */
   onFollowChange?: (following: boolean, pending?: boolean) => void;
   /** Called after visibility toggle to update parent state */
@@ -131,6 +133,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   currentTitle,
   currentDescription,
   currentCategories,
+  currentCommentsDisabled,
   onFollowChange,
   onVisibilityChange,
   onEditSuccess,
@@ -497,6 +500,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         initialTitle={currentTitle}
         initialDescription={currentDescription}
         initialCategories={currentCategories}
+        initialCommentsDisabled={currentCommentsDisabled}
         onSuccess={handleEditDone}
       />
 
