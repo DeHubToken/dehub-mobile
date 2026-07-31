@@ -158,7 +158,7 @@ export const runWithPermissions = async (
 ): Promise<boolean> => {
   // Resolve kinds: support both new string-based API and legacy function-based API
   const resolvedKinds: PermissionKind[] = kinds.map((k) => {
-    if (typeof k === "string") return k;
+    if (typeof k === "string") return k as PermissionKind;
     // Legacy: map function reference → kind
     if (k === ensureMediaLibraryPermission) return "photos";
     if (k === ensureCameraPermission) return "camera";

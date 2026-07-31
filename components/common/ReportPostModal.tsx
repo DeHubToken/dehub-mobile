@@ -63,7 +63,7 @@ const ReportPostModalComponent: React.FC<ReportPostModalProps> = ({
       await reportContent({
         tokenId,
         reason: selectedReason,
-        details: details.trim() || undefined,
+        additionalInfo: details.trim() || undefined,
       });
       setSubmitted(true);
     } catch (e: any) {

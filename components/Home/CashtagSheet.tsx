@@ -214,7 +214,7 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
             </View>
           ) : error ? (
             <View style={styles.center}>
-              <Icon name="AlertCircle" size={40} color="#4B5563" />
+              <Icon name="CircleAlert" size={40} color="#4B5563" />
               <Text style={styles.errorText}>{error}</Text>
               <TouchableOpacity onPress={load} style={styles.retryBtn}>
                 <Text style={styles.retryText}>Retry</Text>

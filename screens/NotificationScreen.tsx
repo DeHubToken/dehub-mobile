@@ -439,7 +439,7 @@ const NotificationScreen = () => {
   const tabCounts = useMemo(() => {
     const counts: Record<NotificationTypeFilter, number> = {
       all: 0, likes: 0, follows: 0, comments: 0,
-      reposts: 0, subscriptions: 0, tips: 0, livestreams: 0,
+      reposts: 0, subscriptions: 0, tips: 0, payments: 0, livestreams: 0,
     };
     const unread = notifications.filter((n) => !n.read);
     counts.all = unread.length;

@@ -38,6 +38,10 @@ interface FeedFilterPanelProps {
   selectedCategory?: string;
   onCategoryPress?: (category: string) => void;
   onResetFilters?: () => void;
+  /** Hide the "Post Type" filter section, for contexts where it's already fixed/redundant. */
+  hidePostType?: boolean;
+  /** Hide the "Content Access" filter section, for contexts where it's already fixed/redundant. */
+  hideContentAccess?: boolean;
 }
 
 
@@ -161,6 +165,8 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   selectedCategory,
   onCategoryPress,
   onResetFilters,
+  hidePostType,
+  hideContentAccess,
 }) => {
   const { t } = useTranslation();
   const [categorySearch, setCategorySearch] = useState("");
@@ -326,43 +332,47 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
           ))}
         </GlassFilterRow>
 
-        <GlassFilterRow title={t("filters.postType").toUpperCase()}>
-          {POST_TYPE_OPTIONS.map((option) => (
-            <GlassPill
-              key={option.id}
-              label={option.label}
-              selected={filters.postType === option.id}
-              onPress={() => handlePostTypeChange(option.id)}
-            />
-          ))}
-        </GlassFilterRow>
+        {!hidePostType && (
+          <GlassFilterRow title={t("filters.postType").toUpperCase()}>
+            {POST_TYPE_OPTIONS.map((option) => (
+              <GlassPill
+                key={option.id}
+                label={option.label}
+                selected={filters.postType === option.id}
+                onPress={() => handlePostTypeChange(option.id)}
+              />
+            ))}
+          </GlassFilterRow>
+        )}
 
-        <View style={[sectionStyles.section, { marginBottom: 0 }]}>
-          <Text style={sectionStyles.label}>{t("filters.contentAccess").toUpperCase()}</Text>
-          <View>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={sectionStyles.rowContent}
-            >
-              {CONTENT_ACCESS_OPTIONS.map((option) => (
-                <GlassPill
-                  key={option.id}
-                  label={option.label}
-                  selected={filters.contentAccess.includes(option.id)}
-                  onPress={() => handleContentAccessToggle(option.id)}
-                />
-              ))}
-            </ScrollView>
-            <LinearGradient
-              colors={FADE_COLORS}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-              style={sectionStyles.fade}
-              pointerEvents="none"
-            />
+        {!hideContentAccess && (
+          <View style={[sectionStyles.section, { marginBottom: 0 }]}>
+            <Text style={sectionStyles.label}>{t("filters.contentAccess").toUpperCase()}</Text>
+            <View>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={sectionStyles.rowContent}
+              >
+                {CONTENT_ACCESS_OPTIONS.map((option) => (
+                  <GlassPill
+                    key={option.id}
+                    label={option.label}
+                    selected={filters.contentAccess.includes(option.id)}
+                    onPress={() => handleContentAccessToggle(option.id)}
+                  />
+                ))}
+              </ScrollView>
+              <LinearGradient
+                colors={FADE_COLORS}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={sectionStyles.fade}
+                pointerEvents="none"
+              />
+            </View>
           </View>
-        </View>
+        )}
 
         {onResetFilters && (
           <TouchableOpacity

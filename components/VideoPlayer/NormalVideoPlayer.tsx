@@ -181,6 +181,7 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
   // --- View recording: uses view.service with in-memory + 24h persistent dedup ---
   const suggestedRef = useRef<SuggestedVideosHandle>(null);
   const onProgressRecord = async (positionMs: number, durationMs: number) => {
+    if (tokenId === undefined) return;
     await recordViewIfEligible({
       tokenId,
       positionMs,
