@@ -32,6 +32,7 @@ import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { getAvatarUrl } from "../libs";
 import { openInApp } from "../libs/links.utils";
 import Avatar from "../components/common/Avatar";
+import { reactionMeta } from "../libs/reactions";
 import {
   NotificationType,
   getNotificationIconConfig,
@@ -599,6 +600,15 @@ const NotificationScreen = () => {
   const renderItem = useCallback(
     ({ item }: { item: NotificationItem }) => {
       const icon = getNotificationIconConfig(item.type);
+      // Every positive reaction arrives as a `like`; show which one it was.
+      // Absent on legacy rows and on aggregated rows whose actors disagreed —
+      // the thumbs-up icon is right for both. The message text needs no special
+      // casing: it comes from the server's pre-rendered `content`, which
+      // already uses the reaction's verb ("Ada loved your post").
+      const reactionGlyph =
+        item.type === 'like' && item.reaction && item.reaction !== 'like'
+          ? reactionMeta(item.reaction).emoji
+          : null;
       const avatarUrl = getAvatarUrl(item.actorAvatar);
       const hasAvatar = !!item.actorAvatar && 
         item.type !== NotificationType.VIDEO_MILESTONE && 
@@ -642,7 +652,11 @@ const NotificationScreen = () => {
                   backgroundColor: `${icon.color}20`,
                 }}
               >
-                <Icon name={icon.name as any} size={22} color={icon.color} />
+                {reactionGlyph ? (
+                  <Text style={{ fontSize: 20, lineHeight: 26 }}>{reactionGlyph}</Text>
+                ) : (
+                  <Icon name={icon.name as any} size={22} color={icon.color} />
+                )}
               </View>
             )}
             {/* Type badge overlay for avatar */}
@@ -662,7 +676,11 @@ const NotificationScreen = () => {
                   backgroundColor: icon.color,
                 }}
               >
-                <Icon name={icon.name as any} size={10} color="white" />
+                {reactionGlyph ? (
+                  <Text style={{ fontSize: 10, lineHeight: 13 }}>{reactionGlyph}</Text>
+                ) : (
+                  <Icon name={icon.name as any} size={10} color="white" />
+                )}
               </View>
             )}
           </TouchableOpacity>
