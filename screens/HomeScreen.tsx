@@ -318,7 +318,14 @@ export default function HomeScreen() {
       );
     },
   });
-  const filterTransition = useFeedFilterTransition(feedQueriesInFlight > 0);
+  // Destructured, never held as an object: useIsFetching re-renders this screen
+  // on every fetch transition, and `begin` is the only stable half. The six
+  // pager pages are memo()'d precisely so they do not re-render with the shell,
+  // so any handler passed down to them must depend on `begin` alone — depending
+  // on the whole object gave every one of them a fresh identity per render and
+  // re-rendered all six video lists on every tick.
+  const { active: filterLoaderActive, begin: beginFilterTransition } =
+    useFeedFilterTransition(feedQueriesInFlight > 0);
 
   // ── Warm-up ──────────────────────────────────────────────────────────────
   const queryClient = useQueryClient();
@@ -432,9 +439,9 @@ export default function HomeScreen() {
       newFilters.dateRange !== filters.dateRange ||
       newFilters.contentAccess.length !== filters.contentAccess.length ||
       newFilters.contentAccess.some((a) => !filters.contentAccess.includes(a));
-    if (changesQuery) filterTransition.begin();
+    if (changesQuery) beginFilterTransition();
     setFilters(newFilters);
-  }, [filters, filterTransition]);
+  }, [filters, beginFilterTransition]);
 
   const handleFilterPress = useCallback(() => {
     setFilterPanelVisible((prev) => !prev);
@@ -446,11 +453,11 @@ export default function HomeScreen() {
 
   const handleCategorySelect = useCallback((category: string) => {
     const value = category === "All" ? undefined : category;
-    filterTransition.begin();
+    beginFilterTransition();
     setSelectedCategory(value);
     try { storage.set("dehub:defaultCategory", value ?? ""); } catch {}
     setFilterPanelVisible(false);
-  }, [filterTransition]);
+  }, [beginFilterTransition]);
 
   const handleRefresh = useCallback(() => {
     showHeader();
@@ -483,28 +490,28 @@ export default function HomeScreen() {
   }, [selectedCategory]);
 
   const handleClearFilters = useCallback(() => {
-    filterTransition.begin();
+    beginFilterTransition();
     setSelectedCategory(undefined);
     setFilters(DEFAULT_FILTERS);
     refreshShuffleSeed();
-  }, [refreshShuffleSeed, filterTransition]);
+  }, [refreshShuffleSeed, beginFilterTransition]);
 
   const handleCategoryPress = useCallback((cat: string) => {
     const value = cat === "All" ? undefined : cat;
     if (value === selectedCategory) return;
-    filterTransition.begin();
+    beginFilterTransition();
     setSelectedCategory(value);
     try { storage.set("dehub:defaultCategory", value ?? ""); } catch {}
     if (!value) setFilters(DEFAULT_FILTERS);
-  }, [selectedCategory, filterTransition]);
+  }, [selectedCategory, beginFilterTransition]);
 
   const handleResetFilters = useCallback(() => {
-    filterTransition.begin();
+    beginFilterTransition();
     setSelectedCategory(undefined);
     setFilters(DEFAULT_FILTERS);
     refreshShuffleSeed();
     setFilterPanelVisible(false);
-  }, [refreshShuffleSeed, filterTransition]);
+  }, [refreshShuffleSeed, beginFilterTransition]);
 
   useEffect(() => {
     let mounted = true;
@@ -630,7 +637,7 @@ export default function HomeScreen() {
 
           {/* Covers the pager, never the header: the filter panel and nav bar
               stay live so the user can keep adjusting while this is up. */}
-          {filterTransition.active && <FeedFilterLoader topInset={headerHeight} />}
+          {filterLoaderActive && <FeedFilterLoader topInset={headerHeight} />}
         </View>
       </GestureDetector>
     </View>
