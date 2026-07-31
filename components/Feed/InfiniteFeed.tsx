@@ -157,8 +157,8 @@ const InfiniteFeedBase: React.FC<
   // Handle viewable items change for view tracking
   const onViewableItemsChanged = useRef(
     ({ changed }: { viewableItems: ViewToken[]; changed: ViewToken[] }) => {
-      if (!isSignedIn) return;
-
+      // No auth gate: signed-out viewers count too, and the view service routes
+      // their views to the anonymous view backend.
       for (const entry of changed) {
         const item = entry.item as FeedItem | undefined;
         const tokenId = item?.tokenId || (item as any)?.id;

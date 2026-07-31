@@ -42,6 +42,7 @@ import { useSyncedAudio } from "../../hooks/useSyncedAudio";
 import { parseSoundtrack } from "../../libs/parseSoundtrack";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useImageTranslation } from "../../hooks/useImageTranslation";
+import { useMergedViewCount } from "../../hooks/useAnonViewCount";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUser, useAuthActions, useAuthState } from "../../context/AuthContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -188,7 +189,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const soundtrack = useMemo(() => parseSoundtrack(description), [description]);
   const hasSoundtrack = !!soundtrack;
   const commentCount = item.commentCount || (item as any).comments || stream?.commentCount || 0;
-  const views = item.views || (item as any).peakViewers || (item as any).totalViews || stream?.totalViews || 0;
+  // Includes views from signed-out viewers, which are recorded separately
+  const views = useMergedViewCount(tokenId, item.views || (item as any).peakViewers || (item as any).totalViews || stream?.totalViews || 0);
   const totalTips = (item as any).totalTips || (item as any).tips || 0;
   const isAudioPost = contentType === "audio";
   const isLive = contentType === "live";

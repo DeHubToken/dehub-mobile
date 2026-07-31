@@ -55,6 +55,7 @@ import { ShareLinks } from "../navigation/linking.config";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
 import { requestFeedVideoFocus, releaseFeedVideoFocus } from "../libs/feedVideoFocus";
 import GlassTipSheet from "../components/Tip/GlassTipSheet";
+import { useMergedViewCount } from "../hooks/useAnonViewCount";
 
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
@@ -297,7 +298,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
   }, [tokenId]);
 
   const commentCount = item.commentCount || 0;
-  const views = item.views || 0;
+  // Includes views from signed-out viewers, which are recorded separately
+  const views = useMergedViewCount(tokenId, item.views);
 
   // Trigger the floating like animation
   const showLikeAnimation = useCallback((x: number, y: number) => {
