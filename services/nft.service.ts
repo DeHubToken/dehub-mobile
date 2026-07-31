@@ -226,6 +226,10 @@ export async function voteOnNFT(input: VoteOnNFTInput): Promise<{ error?: string
   const { streamTokenId, vote } = input || {} as VoteOnNFTInput;
   if (streamTokenId == null) return undefined;
   try {
+    // Backend does `if (!vote) return 400` before parsing, so a real boolean
+    // `false` gets rejected as "missing" -- vote must arrive as a non-empty
+    // string. Backend then does vote.toString() === 'true' to decide like vs
+    // dislike, so the stringified boolean round-trips correctly either way.
     const res = await apiClient.post<{ error?: string }>(
       '/request_vote',
       { streamTokenId: Number(streamTokenId), vote: String(vote) },
