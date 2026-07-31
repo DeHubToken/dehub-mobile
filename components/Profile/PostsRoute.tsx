@@ -34,6 +34,8 @@ interface PostsRouteProps {
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
   listHeader?: React.ReactNode;
   scrollEnabled?: boolean;
+  /** Called right before a card navigates away (e.g. to close an enclosing sheet). */
+  onBeforeNavigate?: () => void;
 }
 
 /**
@@ -46,6 +48,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   onScroll,
   listHeader,
   scrollEnabled = true,
+  onBeforeNavigate,
 }) => {
   const [posts, setPosts] = useState<UnifiedFeedItem[]>([]);
   const [reposts, setReposts] = useState<UnifiedFeedItem[]>([]);
@@ -185,9 +188,10 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
         item={item.item}
         showRepostLabel={item.isRepost}
         isVisible={isItemVisible(item.key, item.item)}
+        onBeforeNavigate={onBeforeNavigate}
       />
     ),
-    [isItemVisible],
+    [isItemVisible, onBeforeNavigate],
   );
 
   if (loading) {

@@ -1,5 +1,5 @@
 import { apiClient } from "../libs/api.client";
-import type { DmPoll } from "./dm.types";
+import type { DmPoll } from "./dm/dm.types";
 
 export interface CreatePollParams {
   tokenId: number;
