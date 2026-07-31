@@ -196,12 +196,12 @@ describe('services/nft.service', () => {
   });
 
   describe('voteOnNFT', () => {
-    it('sends vote to /request_vote', async () => {
+    it('sends vote to /request_vote as a string, since the backend treats a boolean false body value as missing', async () => {
       mockPost.mockResolvedValueOnce({});
       await voteOnNFT({ streamTokenId: 42, vote: true });
       expect(mockPost).toHaveBeenCalledWith(
         '/request_vote',
-        { streamTokenId: 42, vote: true },
+        { streamTokenId: 42, vote: 'true' },
         { isAuthRequired: true },
       );
     });

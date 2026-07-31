@@ -125,7 +125,7 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
         activeOpacity={0.75}
       >
         <View style={styles.iconBox}>
-          <Icon name="PieChart" size={22} color="#FACC15" />
+          <Icon name="ChartPie" size={22} color="#FACC15" />
         </View>
         <Text style={styles.tokenId} numberOfLines={1}>
           Post #{item.token_id}
@@ -157,7 +157,7 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
       <ScrollView>
         {listHeader}
         <View style={styles.center}>
-          <Icon name="AlertCircle" size={40} color="#4B5563" />
+          <Icon name="CircleAlert" size={40} color="#4B5563" />
           <Text style={styles.errorText}>{error}</Text>
           <TouchableOpacity onPress={() => load()} style={styles.retryBtn}>
             <Text style={styles.retryText}>Retry</Text>
@@ -172,7 +172,7 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
       <ScrollView>
         {listHeader}
         <View style={styles.center}>
-          <Icon name="PieChart" size={48} color="#4B5563" />
+          <Icon name="ChartPie" size={48} color="#4B5563" />
           <Text style={styles.emptyTitle}>No fractions held</Text>
           <Text style={styles.emptySubtitle}>
             {isOwnProfile

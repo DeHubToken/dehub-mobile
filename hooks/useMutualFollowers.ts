@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { getFollowList, type FollowListItem } from "../services/user.service";
-import { useAuthState } from "../context/AuthContext";
+import { useAuthState, useUser } from "../context/AuthContext";
 
 interface UseMutualFollowersOptions {
   profileAddress: string | undefined;
@@ -8,7 +8,8 @@ interface UseMutualFollowersOptions {
 }
 
 export function useMutualFollowers({ profileAddress, enabled = true }: UseMutualFollowersOptions) {
-  const { isSignedIn, user } = useAuthState();
+  const { isSignedIn } = useAuthState();
+  const user = useUser();
   const walletAddress = (user as any)?.walletAddress || (user as any)?.address;
   const [mutuals, setMutuals] = useState<FollowListItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,10 +43,10 @@ export function useMutualFollowers({ profileAddress, enabled = true }: UseMutual
         if (fetchId !== fetchIdRef.current) return;
 
         const myFollowingSet = new Set(
-          (myFollowing.items || []).map((item) => item.user.address.toLowerCase()),
+          (myFollowing.result?.items || []).map((item) => item.user.address.toLowerCase()),
         );
 
-        const mutualList = (theirFollowers.items || []).filter((item) =>
+        const mutualList = (theirFollowers.result?.items || []).filter((item) =>
           myFollowingSet.has(item.user.address.toLowerCase()),
         );
 

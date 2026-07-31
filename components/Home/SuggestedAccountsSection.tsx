@@ -82,7 +82,7 @@ const SuggestedAccountsSection: React.FC = () => {
     (address: string, newState: FollowState) => {
       setFollowedAddresses((prev) => {
         const next = new Set(prev);
-        if (newState === "following" || newState === "pending") {
+        if (newState.isFollowing || newState.isFollowRequestPending) {
           next.add(address);
         } else {
           next.delete(address);

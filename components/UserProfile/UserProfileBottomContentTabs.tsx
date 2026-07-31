@@ -156,6 +156,13 @@ const UserProfileBottomContentTabs: React.FC<
   const [images, setImages] = useState<UnifiedFeedItem[]>([]);
   const [imagesLoading, setImagesLoading] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  // ProfileImageGrid requires a defined id per item (used as the React key);
+  // UnifiedFeedItem's id is optional, so fall back to tokenId — always present
+  // for real posts — rather than widening ProfileImageGrid's contract.
+  const gridImages = useMemo(
+    () => images.map((img) => ({ ...img, id: img.id ?? img.tokenId ?? "" })),
+    [images],
+  );
 
   // Subscribers tab state
   const [plans, setPlans] = useState<SubscriptionPlan[]>([]);
@@ -605,7 +612,7 @@ const UserProfileBottomContentTabs: React.FC<
                 <Text style={{ color: "#71717a", fontSize: 14 }}>No images yet</Text>
               </View>
             ) : (
-              <ProfileImageGrid images={images} scrollEnabled={scrollEnabled} onImagePress={handleImagePress} />
+              <ProfileImageGrid images={gridImages} scrollEnabled={scrollEnabled} onImagePress={handleImagePress} />
             )}
           </View>
         );

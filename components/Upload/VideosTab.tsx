@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";

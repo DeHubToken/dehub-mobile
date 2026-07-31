@@ -170,7 +170,7 @@ const SavedPostsScreen: React.FC = () => {
               }}
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
-              <Icon name="MoreVertical" size={20} color="#8B8D90" />
+              <Icon name="MoveVertical" size={20} color="#8B8D90" />
             </TouchableOpacity>
           </View>
           <Text style={styles.folderName} numberOfLines={1}>
@@ -208,7 +208,7 @@ const SavedPostsScreen: React.FC = () => {
                 setShowMenuModal(true);
               }}
             >
-              <Icon name="MoreVertical" size={22} color="#E5E7EB" />
+              <Icon name="MoveVertical" size={22} color="#E5E7EB" />
             </TouchableOpacity>
           }
         />
@@ -243,7 +243,7 @@ const SavedPostsScreen: React.FC = () => {
                 }}
                 style={styles.menuItem}
               >
-                <Icon name="Edit" size={18} color="#F9FBFF" />
+                <Icon name="SquarePen" size={18} color="#F9FBFF" />
                 <Text style={styles.menuItemText}>Edit Collection Details</Text>
               </TouchableOpacity>
 
@@ -425,7 +425,7 @@ const SavedPostsScreen: React.FC = () => {
               }}
               style={styles.menuItem}
             >
-              <Icon name="Edit" size={18} color="#F9FBFF" />
+              <Icon name="SquarePen" size={18} color="#F9FBFF" />
               <Text style={styles.menuItemText}>Edit Collection Details</Text>
             </TouchableOpacity>
 
