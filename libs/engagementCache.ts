@@ -1,4 +1,10 @@
 import { useCallback, useSyncExternalStore } from "react";
+import {
+  resolveMyReaction,
+  resolveReactionCounts,
+  type PostReaction,
+  type ReactionCounts,
+} from "./reactions";
 
 /**
  * Cross-component overlay for optimistic engagement (like / dislike / save /
@@ -45,6 +51,14 @@ export interface EngagementFields {
   dislikeCount: number;
   /** reposts + quotes, matching how FeedCard displays it. */
   repostCount: number;
+  /**
+   * Which of the nine reactions the viewer holds, or null for none.
+   * `isLiked`/`isDisliked` remain its POLARITY, so a post the viewer loved
+   * still reads as liked to anything that only knows about likes.
+   */
+  myReaction: PostReaction | null;
+  /** Per-reaction totals — the most-used one leads on the card. */
+  reactionCounts: ReactionCounts;
 }
 
 export type EngagementPatch = Partial<EngagementFields>;
@@ -148,6 +162,8 @@ function fromItem(item: any): EngagementFields {
     likeCount: item?.totalVotes?.for || item?.likes || 0,
     dislikeCount: item?.totalVotes?.against || item?.dislikes || 0,
     repostCount: (item?.reposts || 0) + (item?.quotes || 0),
+    myReaction: resolveMyReaction(item),
+    reactionCounts: resolveReactionCounts(item),
   };
 }
 
@@ -161,9 +177,15 @@ function resolve(item: any, entry: Entry | undefined): EngagementFields {
   // this the overlay would keep winning for the full TTL even after a
   // pull-to-refresh delivered authoritative counts, so a refreshed post would
   // visibly stop tracking other users' votes.
+  //
+  // myReaction has to be part of this check, not just the polarity flags:
+  // swapping like → love leaves isLiked true on BOTH sides, so without it the
+  // overlay would read as "confirmed" the instant it was written and the card
+  // would snap straight back to 👍.
   const confirmed =
     (p.isLiked === undefined || p.isLiked === base.isLiked) &&
     (p.isDisliked === undefined || p.isDisliked === base.isDisliked) &&
+    (p.myReaction === undefined || p.myReaction === base.myReaction) &&
     (p.isSaved === undefined || p.isSaved === base.isSaved) &&
     (p.isReposted === undefined || p.isReposted === base.isReposted);
   if (confirmed) return base;

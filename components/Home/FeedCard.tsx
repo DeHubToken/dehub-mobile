@@ -71,7 +71,12 @@ import {
 } from "../../libs/engagementCache";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { useStreamAccessInfo } from "../../libs/validators.util";
-import { voteOnNFT, getPpvSalesCount } from "../../services/nft.service";
+import { voteOnNFT, reactToNFT, getPpvSalesCount } from "../../services/nft.service";
+import {
+  applyReactionDelta,
+  isPositiveReaction,
+  type PostReaction,
+} from "../../libs/reactions";
 import { savePost } from "../../services/feed.service";
 import { toggleRepost } from "../../services/repost.service";
 import { WEBSITE_LINK } from "../../config";
@@ -294,6 +299,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     likeCount,
     dislikeCount,
     repostCount,
+    myReaction,
+    reactionCounts,
   } = useEngagement(item);
   const [showShareSheet, setShowShareSheet] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -383,29 +390,52 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     translateImage(imageUrl);
   }, [galleryImages, translateImage]);
 
-  const handleLikePress = useCallback(() => {
+  /**
+   * Cast, switch or toggle off a reaction.
+   *
+   * Sending the reaction the viewer already holds is what REMOVES it — the
+   * server reads a repeat the same way, so the optimistic overlay and the
+   * eventual refetch agree without the client modelling a separate "unreact".
+   *
+   * likeCount/dislikeCount track POLARITY, not the individual reaction, so
+   * swapping like → love leaves both counts alone and only moves
+   * reactionCounts. Getting that wrong would make a post's like count jump
+   * every time somebody changed their mind.
+   */
+  const handleReaction = useCallback((reaction: PostReaction) => {
     if (tokenId == null) return;
     requireAuth?.(() => {
       const wasLiked = liked;
       const wasDisliked = disliked;
       const wasLikeCount = likeCount;
       const wasDislikeCount = dislikeCount;
+      const wasReaction = myReaction;
+      const wasCounts = reactionCounts;
 
-      const nextLiked = !wasLiked;
-      const nextLikeCount = wasLiked
-        ? Math.max(0, wasLikeCount - 1)
-        : wasLikeCount + 1;
-      const nextDisliked = nextLiked ? false : wasDisliked;
-      const nextDislikeCount =
-        nextLiked && wasDisliked ? Math.max(0, wasDislikeCount - 1) : wasDislikeCount;
+      const isRemoving = wasReaction === reaction;
+      const next: PostReaction | null = isRemoving ? null : reaction;
+
+      const wasPositive = wasReaction ? isPositiveReaction(wasReaction) : false;
+      const wasNegative = wasReaction ? !wasPositive : false;
+      const nextPositive = next ? isPositiveReaction(next) : false;
+      const nextNegative = next ? !nextPositive : false;
+
+      let nextLikeCount = wasLikeCount;
+      let nextDislikeCount = wasDislikeCount;
+      if (wasPositive && !nextPositive) nextLikeCount = Math.max(0, nextLikeCount - 1);
+      if (!wasPositive && nextPositive) nextLikeCount += 1;
+      if (wasNegative && !nextNegative) nextDislikeCount = Math.max(0, nextDislikeCount - 1);
+      if (!wasNegative && nextNegative) nextDislikeCount += 1;
 
       // Publish to the shared overlay; the sync effect above pushes it into
       // this card and every other mounted card for the same post.
       applyEngagement(engagementKey, {
-        isLiked: nextLiked,
-        isDisliked: nextDisliked,
+        isLiked: nextPositive,
+        isDisliked: nextNegative,
+        myReaction: next,
         likeCount: nextLikeCount,
         dislikeCount: nextDislikeCount,
+        reactionCounts: applyReactionDelta(wasCounts, wasReaction, next),
       });
 
       const rollback = () => {
@@ -414,17 +444,22 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         revertEngagement(engagementKey, {
           isLiked: wasLiked,
           isDisliked: wasDisliked,
+          myReaction: wasReaction,
           likeCount: wasLikeCount,
           dislikeCount: wasDislikeCount,
+          reactionCounts: wasCounts,
         });
-        toastError("Failed to update vote");
+        toastError("Failed to update reaction");
       };
 
-      voteOnNFT({
-        streamTokenId: tokenId,
-        vote: true,
-        account: userAddress,
-      })
+      // Plain like/dislike keeps using the long-lived vote endpoint; anything
+      // else needs the reaction one. Same row either way on the server.
+      const request =
+        reaction === "like" || reaction === "dislike"
+          ? voteOnNFT({ streamTokenId: tokenId, vote: reaction === "like", account: userAddress })
+          : reactToNFT({ streamTokenId: tokenId, reaction });
+
+      request
         // A 200 carrying `{ error }` resolves rather than throwing
         // (libs/api.client.ts only throws on !response.ok), so `.catch` alone
         // would record a failed vote as successful and then share it.
@@ -433,52 +468,21 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         })
         .catch(rollback);
     });
-  }, [tokenId, liked, disliked, likeCount, dislikeCount, engagementKey, userAddress, requireAuth]);
+  }, [tokenId, liked, disliked, likeCount, dislikeCount, myReaction, reactionCounts, engagementKey, userAddress, requireAuth]);
 
-  const handleDislikePress = useCallback(() => {
-    if (tokenId == null) return;
-    requireAuth?.(() => {
-      const wasLiked = liked;
-      const wasDisliked = disliked;
-      const wasLikeCount = likeCount;
-      const wasDislikeCount = dislikeCount;
+  /**
+   * Tapping a thumb re-sends whatever reaction of that polarity the viewer
+   * already holds, which the server reads as "toggle it off" — so tapping the
+   * thumb clears a 🔥 the same way it clears a 👍, instead of silently
+   * downgrading it to a plain like.
+   */
+  const togglePolarity = useCallback((positive: boolean) => {
+    const holdsSamePolarity = myReaction !== null && isPositiveReaction(myReaction) === positive;
+    handleReaction(holdsSamePolarity ? myReaction! : (positive ? "like" : "dislike"));
+  }, [handleReaction, myReaction]);
 
-      const nextDisliked = !wasDisliked;
-      const nextDislikeCount = wasDisliked
-        ? Math.max(0, wasDislikeCount - 1)
-        : wasDislikeCount + 1;
-      const nextLiked = nextDisliked ? false : wasLiked;
-      const nextLikeCount =
-        nextDisliked && wasLiked ? Math.max(0, wasLikeCount - 1) : wasLikeCount;
-
-      applyEngagement(engagementKey, {
-        isLiked: nextLiked,
-        isDisliked: nextDisliked,
-        likeCount: nextLikeCount,
-        dislikeCount: nextDislikeCount,
-      });
-
-      const rollback = () => {
-        revertEngagement(engagementKey, {
-          isLiked: wasLiked,
-          isDisliked: wasDisliked,
-          likeCount: wasLikeCount,
-          dislikeCount: wasDislikeCount,
-        });
-        toastError("Failed to update vote");
-      };
-
-      voteOnNFT({
-        streamTokenId: tokenId,
-        vote: false,
-        account: userAddress,
-      })
-        .then((res) => {
-          if (isFailedResponse(res)) rollback();
-        })
-        .catch(rollback);
-    });
-  }, [tokenId, liked, disliked, likeCount, dislikeCount, engagementKey, userAddress, requireAuth]);
+  const handleLikePress = useCallback(() => togglePolarity(true), [togglePolarity]);
+  const handleDislikePress = useCallback(() => togglePolarity(false), [togglePolarity]);
 
   const handleSavePress = useCallback(() => {
     requireAuth?.(() => {
@@ -1208,6 +1212,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           tipCount={totalTips}
           onLike={handleLikePress}
           onDislike={handleDislikePress}
+          onReact={handleReaction}
+          myReaction={myReaction}
+          reactionCounts={reactionCounts}
           onComment={handleCommentPress}
           onShare={handleOpenShare}
           onTip={handleTipPress}

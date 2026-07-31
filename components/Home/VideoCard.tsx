@@ -23,7 +23,18 @@ import {
   toastError,
 } from "../../libs";
 import { useStreamAccessInfo } from "../../libs/validators.util";
-import { voteOnNFT } from "../../services/nft.service";
+import { voteOnNFT, reactToNFT } from "../../services/nft.service";
+import ReactionPicker from "./ReactionPicker";
+import {
+  applyReactionDelta,
+  isPositiveReaction,
+  reactionMeta,
+  resolveMyReaction,
+  resolveReactionCounts,
+  resolveTopReaction,
+  type PostReaction,
+  type ReactionCounts,
+} from "../../libs/reactions";
 import { savePost } from "../../services/feed.service";
 import { toggleRepost } from "../../services/repost.service";
 import { WEBSITE_LINK } from "../../config";
@@ -163,6 +174,9 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const [saved, setSaved] = useState<boolean>(!!nft.isSaved);
   const [likeCount, setLikeCount] = useState<number>(likes);
   const [dislikeCount, setDislikeCount] = useState<number>(dislikes);
+  const [myReaction, setMyReaction] = useState<PostReaction | null>(() => resolveMyReaction(nft));
+  const [reactionCounts, setReactionCounts] = useState<ReactionCounts>(() => resolveReactionCounts(nft));
+  const [pickerOpen, setPickerOpen] = useState<boolean>(false);
   const [showComments, setShowComments] = useState<boolean>(false);
   const [reposted, setReposted] = useState<boolean>(!!nft.isReposted);
   const [repostCount, setRepostCount] = useState<number>(((nft as any).reposts || 0) + ((nft as any).quotes || 0));
@@ -225,75 +239,74 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
     ]).start();
   }, []);
   
-  const handleLikePress = useCallback(() => {
+  /**
+   * Cast, switch or toggle off a reaction.
+   *
+   * Counts track POLARITY, so swapping like → love moves neither — only
+   * `reactionCounts`. See components/Home/FeedCard.tsx for the same reasoning.
+   */
+  const handleReaction = useCallback((reaction: PostReaction) => {
     if (tokenId == null) return;
     requireAuth?.(() => {
       const wasLiked = liked;
       const wasDisliked = disliked;
-      
-      bounceAnimation(likeScale);
-      
-      if (wasLiked) {
-        setLiked(false);
-        setLikeCount((c) => Math.max(0, c - 1));
-      } else {
-        setLiked(true);
-        setLikeCount((c) => c + 1);
-        if (wasDisliked) {
-          setDisliked(false);
-          setDislikeCount((c) => Math.max(0, c - 1));
-        }
-      }
-      
-      voteOnNFT({
-        streamTokenId: tokenId,
-        vote: true,
-        account: userAddress,
-      }).catch(() => {
+      const wasReaction = myReaction;
+      const wasCounts = reactionCounts;
+
+      const isRemoving = wasReaction === reaction;
+      const next: PostReaction | null = isRemoving ? null : reaction;
+
+      const wasPositive = wasReaction ? isPositiveReaction(wasReaction) : false;
+      const wasNegative = wasReaction ? !wasPositive : false;
+      const nextPositive = next ? isPositiveReaction(next) : false;
+      const nextNegative = next ? !nextPositive : false;
+
+      bounceAnimation(nextNegative ? dislikeScale : likeScale);
+
+      let likeDelta = 0;
+      let dislikeDelta = 0;
+      if (wasPositive && !nextPositive) likeDelta = -1;
+      if (!wasPositive && nextPositive) likeDelta = 1;
+      if (wasNegative && !nextNegative) dislikeDelta = -1;
+      if (!wasNegative && nextNegative) dislikeDelta = 1;
+
+      setLiked(nextPositive);
+      setDisliked(nextNegative);
+      setMyReaction(next);
+      setReactionCounts(applyReactionDelta(wasCounts, wasReaction, next));
+      if (likeDelta) setLikeCount((c) => Math.max(0, c + likeDelta));
+      if (dislikeDelta) setDislikeCount((c) => Math.max(0, c + dislikeDelta));
+
+      const request =
+        reaction === "like" || reaction === "dislike"
+          ? voteOnNFT({ streamTokenId: tokenId, vote: reaction === "like", account: userAddress })
+          : reactToNFT({ streamTokenId: tokenId, reaction });
+
+      request.catch(() => {
         // Revert optimistic update
         setLiked(wasLiked);
         setDisliked(wasDisliked);
-        setLikeCount((c) => wasLiked ? c + 1 : Math.max(0, c - 1));
-        if (wasDisliked) setDislikeCount((c) => c + 1);
-        toastError("Failed to update vote");
+        setMyReaction(wasReaction);
+        setReactionCounts(wasCounts);
+        if (likeDelta) setLikeCount((c) => Math.max(0, c - likeDelta));
+        if (dislikeDelta) setDislikeCount((c) => Math.max(0, c - dislikeDelta));
+        toastError("Failed to update reaction");
       });
     });
-  }, [tokenId, liked, disliked, userAddress, likeScale, bounceAnimation, requireAuth]);
+  }, [tokenId, liked, disliked, myReaction, reactionCounts, userAddress, likeScale, dislikeScale, bounceAnimation, requireAuth]);
+
+  /** Tapping a thumb re-sends the held reaction of that polarity, which toggles it off. */
+  const togglePolarity = useCallback((positive: boolean) => {
+    const holdsSamePolarity = myReaction !== null && isPositiveReaction(myReaction) === positive;
+    handleReaction(holdsSamePolarity ? myReaction! : (positive ? "like" : "dislike"));
+  }, [handleReaction, myReaction]);
+
+  const handleLikePress = useCallback(() => togglePolarity(true), [togglePolarity]);
   
-  const handleDislikePress = useCallback(() => {
-    if (tokenId == null) return;
-    requireAuth?.(() => {
-      const wasLiked = liked;
-      const wasDisliked = disliked;
-      
-      bounceAnimation(dislikeScale);
-      
-      if (wasDisliked) {
-        setDisliked(false);
-        setDislikeCount((c) => Math.max(0, c - 1));
-      } else {
-        setDisliked(true);
-        setDislikeCount((c) => c + 1);
-        if (wasLiked) {
-          setLiked(false);
-          setLikeCount((c) => Math.max(0, c - 1));
-        }
-      }
-      
-      voteOnNFT({
-        streamTokenId: tokenId,
-        vote: false,
-        account: userAddress,
-      }).catch(() => {
-        // Revert optimistic update
-        setLiked(wasLiked);
-        setDisliked(wasDisliked);
-        setDislikeCount((c) => wasDisliked ? c + 1 : Math.max(0, c - 1));
-        if (wasLiked) setLikeCount((c) => c + 1);
-        toastError("Failed to update vote");
-      });
-    });
-  }, [tokenId, liked, disliked, userAddress, dislikeScale, bounceAnimation, requireAuth]);
+  const handleDislikePress = useCallback(() => togglePolarity(false), [togglePolarity]);
+
+  /** Viewer's own reaction wins over the post's most-used one. */
+  const leadReaction = myReaction ?? resolveTopReaction(reactionCounts);
   
   const handleSavePress = useCallback(() => {
     requireAuth?.(() => {
@@ -541,21 +554,42 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
       {/* Action bar */}
       <View className="flex-row items-center justify-between pt-2">
         <View className="flex-row items-center gap-4">
-          {/* Like */}
-          <TouchableOpacity
-            onPress={handleLikePress}
-            activeOpacity={0.7}
-            className="flex-row items-center gap-1"
-          >
-            <Animated.View style={{ transform: [{ scale: likeScale }] }}>
-              <Ionicons
-                name={liked ? "thumbs-up" : "thumbs-up-outline"}
-                size={18}
-                color={liked ? "#FFFFFF" : "#9CA3AF"}
-              />
-            </Animated.View>
-            <Text className="text-xs text-theme-neutrals-400">{likeCount}</Text>
-          </TouchableOpacity>
+          {/* Reactions — tap to like/unlike, hold to pick one of the nine. */}
+          <View style={{ position: "relative" }}>
+            <ReactionPicker
+              open={pickerOpen}
+              current={myReaction}
+              onSelect={(reaction) => { setPickerOpen(false); handleReaction(reaction); }}
+              align="left"
+            />
+            <TouchableOpacity
+              onPress={() => { if (pickerOpen) { setPickerOpen(false); return; } handleLikePress(); }}
+              onLongPress={() => setPickerOpen(true)}
+              delayLongPress={400}
+              accessibilityLabel={
+                myReaction
+                  ? `${reactionMeta(myReaction).label} — hold to change your reaction`
+                  : "Like — hold to react"
+              }
+              activeOpacity={0.7}
+              className="flex-row items-center gap-1"
+            >
+              <Animated.View style={{ transform: [{ scale: likeScale }] }}>
+                {leadReaction && leadReaction !== "like" ? (
+                  <Text style={{ fontSize: 16, lineHeight: 22, width: 18, textAlign: "center" }}>
+                    {reactionMeta(leadReaction).emoji}
+                  </Text>
+                ) : (
+                  <Ionicons
+                    name={liked ? "thumbs-up" : "thumbs-up-outline"}
+                    size={18}
+                    color={liked ? "#FFFFFF" : "#9CA3AF"}
+                  />
+                )}
+              </Animated.View>
+              <Text className="text-xs text-theme-neutrals-400">{likeCount}</Text>
+            </TouchableOpacity>
+          </View>
           {/* Dislike */}
           <TouchableOpacity
             onPress={handleDislikePress}
