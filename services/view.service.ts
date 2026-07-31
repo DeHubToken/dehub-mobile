@@ -1,5 +1,6 @@
 import { apiClient } from "../libs";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { recordAnonViews } from "./anonView.service";
 
 // Video view threshold: 10% of duration OR 3 seconds, whichever comes first
 const VIDEO_MIN_WATCH_MS = 3000; // 3 seconds
@@ -42,9 +43,18 @@ function viewCooldownKey(): string {
 // In-memory guard to avoid duplicate submissions per session
 const recordedViews = new Set<string>();
 
-// Pending batch of token IDs to submit
+// Pending batch of token IDs to submit, split by which backend they belong to.
+// A signed-in viewer's views go to the DeHub API, a signed-out viewer's to the
+// anon-views edge function, and auth state can change between a view being
+// queued and the batch flushing — so the destination is decided at queue time,
+// not at flush time.
 let pendingBatchTokenIds: Set<string> = new Set();
+let pendingAnonBatchTokenIds: Set<string> = new Set();
 let batchFlushTimer: ReturnType<typeof setTimeout> | null = null;
+
+function totalPendingViews(): number {
+  return pendingBatchTokenIds.size + pendingAnonBatchTokenIds.size;
+}
 
 // View cooldown cache (loaded from AsyncStorage)
 let viewCooldowns: Record<string, number> = {};
@@ -140,17 +150,17 @@ function keyFor(tokenId: TokenId): string {
 /**
  * Record a video view via GET /record-view/{tokenId} when eligibility is met.
  * - Only submits once per tokenId per app session (in-memory guard).
- * - Requires signed-in state (auth token will be attached by apiClient).
  * - Threshold: 10% of duration OR 3 seconds, whichever is first.
+ * - Signed-out viewers count too: their views go to the `anon-views` edge
+ *   function, since the DeHub API rejects unauthenticated view calls.
  *
  * Returns true if a view was submitted this call, false otherwise.
  */
 export async function recordViewIfEligible(opts: RecordViewOptions): Promise<boolean> {
   const { tokenId, positionMs, durationMs } = opts;
-  if (!hasAuth(opts)) return false;
-  
+
   await loadCooldowns();
-  
+
   const id = keyFor(tokenId);
   if (recordedViews.has(id)) return false;
   if (isOnCooldown(tokenId)) return false;
@@ -160,8 +170,15 @@ export async function recordViewIfEligible(opts: RecordViewOptions): Promise<boo
   const epsilon = 200;
   if (positionMs + epsilon < threshold) return false;
 
+  const signedIn = hasAuth(opts);
+
   try {
-    await apiClient.get(`/record-view/${encodeURIComponent(id)}`, { isAuthRequired: true });
+    if (signedIn) {
+      await apiClient.get(`/record-view/${encodeURIComponent(id)}`, { isAuthRequired: true });
+    } else {
+      const result = await recordAnonViews([id]);
+      if (!result?.success) return false;
+    }
     recordedViews.add(id);
     setCooldown(tokenId);
     return true;
@@ -204,29 +221,32 @@ export function createViewRecorder(base: Pick<RecordViewOptions, "tokenId" | "is
 /**
  * Queue a post view for batch submission.
  * Called when a post has been 50%+ visible for 2+ seconds.
+ * Signed-out viewers are queued too, and go to the anonymous view backend.
  */
 export async function queuePostView(tokenId: TokenId, isSignedIn: boolean): Promise<void> {
-  if (!isSignedIn) return;
-  
   await loadCooldowns();
-  
+
   const id = keyFor(tokenId);
-  
+
   // Skip if already recorded this session or on cooldown
   if (recordedViews.has(id)) return;
   if (isOnCooldown(tokenId)) return;
-  
-  // Add to pending batch
-  pendingBatchTokenIds.add(id);
+
+  // Add to the pending batch for whichever backend this viewer belongs to
+  if (isSignedIn) {
+    pendingBatchTokenIds.add(id);
+  } else {
+    pendingAnonBatchTokenIds.add(id);
+  }
   recordedViews.add(id); // Mark as recorded to prevent duplicates
-  
+
   // Schedule flush if not already scheduled
   if (!batchFlushTimer) {
     batchFlushTimer = setTimeout(() => flushBatchViews(), BATCH_FLUSH_INTERVAL_MS);
   }
-  
+
   // Flush immediately if batch is large enough
-  if (pendingBatchTokenIds.size >= BATCH_FLUSH_ON_COUNT) {
+  if (totalPendingViews() >= BATCH_FLUSH_ON_COUNT) {
     flushBatchViews();
   }
 }
@@ -242,23 +262,39 @@ export async function flushBatchViews(): Promise<BatchViewResponse | null> {
     batchFlushTimer = null;
   }
   
-  // Get and clear pending batch
+  // Get and clear pending batches
   const tokenIds = Array.from(pendingBatchTokenIds);
+  const anonTokenIds = Array.from(pendingAnonBatchTokenIds);
   pendingBatchTokenIds.clear();
-  
-  if (tokenIds.length === 0) return null;
-  
-  // Split into chunks of BATCH_MAX_SIZE if needed
-  const chunks: string[][] = [];
-  for (let i = 0; i < tokenIds.length; i += BATCH_MAX_SIZE) {
-    chunks.push(tokenIds.slice(i, i + BATCH_MAX_SIZE));
-  }
-  
+  pendingAnonBatchTokenIds.clear();
+
+  if (tokenIds.length === 0 && anonTokenIds.length === 0) return null;
+
+  const chunk_ = (ids: string[]): string[][] => {
+    const out: string[][] = [];
+    for (let i = 0; i < ids.length; i += BATCH_MAX_SIZE) {
+      out.push(ids.slice(i, i + BATCH_MAX_SIZE));
+    }
+    return out;
+  };
+
   let totalProcessed = 0;
   let totalNewViews = 0;
   let totalRateLimited = 0;
-  
-  for (const chunk of chunks) {
+
+  // Signed-out views → anon-views edge function
+  for (const chunk of chunk_(anonTokenIds)) {
+    const result = await recordAnonViews(chunk);
+    if (result?.success) {
+      totalProcessed += result.submitted || 0;
+      totalNewViews += result.recorded || 0;
+      totalRateLimited += (result.submitted || 0) - (result.recorded || 0);
+      chunk.forEach(id => setCooldown(id));
+    }
+  }
+
+  // Signed-in views → DeHub API
+  for (const chunk of chunk_(tokenIds)) {
     try {
       const response = await apiClient.post<BatchViewResponse>(
         "/view/batch",
@@ -293,7 +329,7 @@ export async function flushBatchViews(): Promise<BatchViewResponse | null> {
  * Force flush batch views (e.g., when app goes to background or unmounts).
  */
 export function forceFlushBatchViews(): void {
-  if (pendingBatchTokenIds.size > 0) {
+  if (totalPendingViews() > 0) {
     flushBatchViews().catch(console.error);
   }
 }
