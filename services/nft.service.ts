@@ -1,5 +1,6 @@
 import { apiClient } from "../libs";
 import { streamInfoKeys } from "../config/constants";
+import type { PostReaction } from "../libs/reactions";
 
 export interface SearchParams {
   search?: string;
@@ -235,6 +236,70 @@ export async function voteOnNFT(input: VoteOnNFTInput): Promise<{ error?: string
   } catch (e) {
     console.error('[NFTService] voteOnNFT error', e);
     throw e;
+  }
+}
+
+export interface ReactToNFTInput {
+  streamTokenId: number | string;
+  reaction: PostReaction;
+}
+
+export interface ReactToNFTResponse {
+  result?: boolean;
+  action?: 'added' | 'removed' | 'changed';
+  /** Polarity now in force: true = positive, false = negative, null = none. */
+  currentVote?: boolean | null;
+  reaction?: PostReaction;
+  /** Reaction now in force — null when the request toggled it off. */
+  currentReaction?: PostReaction | null;
+  previousReaction?: PostReaction | null;
+  error?: string;
+}
+
+/**
+ * Cast one of the nine reactions on a post.
+ *
+ * The server toggles: sending the reaction the user already holds removes it,
+ * and sending a different one swaps it (moving `totalVotes` only when the
+ * polarity actually changed). `voteOnNFT` remains for plain like/dislike —
+ * both write the same row.
+ */
+export async function reactToNFT(input: ReactToNFTInput): Promise<ReactToNFTResponse | undefined> {
+  const { streamTokenId, reaction } = input || {} as ReactToNFTInput;
+  if (streamTokenId == null || !reaction) return undefined;
+  try {
+    return await apiClient.post<ReactToNFTResponse>(
+      '/request_reaction',
+      { streamTokenId: Number(streamTokenId), reaction },
+      { isAuthRequired: true }
+    );
+  } catch (e) {
+    console.error('[NFTService] reactToNFT error', e);
+    throw e;
+  }
+}
+
+export interface PostReactionsResponse {
+  result?: boolean;
+  tokenId?: number;
+  counts?: Record<PostReaction, number>;
+  /** Every reaction, both polarities. */
+  total?: number;
+  topReaction?: PostReaction | null;
+  myReaction?: PostReaction | null;
+  error?: string;
+}
+
+/** Per-reaction breakdown for a post. */
+export async function getPostReactions(tokenId: number | string): Promise<PostReactionsResponse | undefined> {
+  if (tokenId == null) return undefined;
+  try {
+    return await apiClient.get<PostReactionsResponse>(
+      `/post-reactions?tokenId=${encodeURIComponent(String(tokenId))}`
+    );
+  } catch (e) {
+    console.warn('[NFTService] getPostReactions error', e);
+    return undefined;
   }
 }
 
