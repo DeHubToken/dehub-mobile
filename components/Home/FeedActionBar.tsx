@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useState } from "react";
 import { View, Pressable, Text } from "react-native";
 import Animated, {
   useSharedValue,
@@ -9,6 +9,13 @@ import Animated, {
 } from "react-native-reanimated";
 import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
+import ReactionPicker from "./ReactionPicker";
+import {
+  reactionMeta,
+  resolveTopReaction,
+  type PostReaction,
+  type ReactionCounts,
+} from "../../libs/reactions";
 
 const ICON_MUTED = "#6F7174";
 const ICON_ACTIVE = "#F9FBFF";
@@ -32,12 +39,22 @@ interface FeedActionBarProps {
   onTip: () => void;
   onSave: () => void;
   onInfo: () => void;
+  /** Which of the nine reactions the viewer holds. `liked`/`disliked` are its polarity. */
+  myReaction?: PostReaction | null;
+  /** Per-reaction totals — the most-used one leads on the card. */
+  reactionCounts?: ReactionCounts | null;
+  /**
+   * Cast a specific reaction. Omit to keep the plain like/dislike pair with no
+   * hold-to-react tray (surfaces whose "posts" aren't posts, e.g. governance).
+   */
+  onReact?: (reaction: PostReaction) => void;
 }
 
 const BOUNCE_CONFIG = { damping: 12, stiffness: 300 };
 
 const AnimatedActionButton: React.FC<{
   onPress: () => void;
+  onLongPress?: () => void;
   iconName: React.ComponentProps<typeof Icon>["name"];
   iconNameActive?: React.ComponentProps<typeof Icon>["name"];
   active?: boolean;
@@ -49,7 +66,10 @@ const AnimatedActionButton: React.FC<{
   count?: number;
   countColor?: string;
   formatCount?: boolean;
-}> = ({ onPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount }) => {
+  /** Renders in place of the icon — used to show a reaction emoji. */
+  glyph?: string;
+  accessibilityLabel?: string;
+}> = ({ onPress, onLongPress, iconName, iconNameActive, active, activeColor, activeFill, activeStrokeWidth, inactiveColor, iconSize = 20, count, countColor, formatCount, glyph, accessibilityLabel }) => {
   const scale = useSharedValue(1);
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -73,6 +93,10 @@ const AnimatedActionButton: React.FC<{
   return (
     <Pressable
       onPress={handlePress}
+      onLongPress={onLongPress}
+      // Matches the web tray's 400ms hold so the gesture feels the same on both.
+      delayLongPress={400}
+      accessibilityLabel={accessibilityLabel}
       // Vertical slop takes the 18pt icon to a 44pt tap height (HIG minimum)
       // without changing layout. Horizontal stays at 6: the row is
       // justify-between with ~16pt gaps, so wider horizontal slop would make
@@ -81,7 +105,13 @@ const AnimatedActionButton: React.FC<{
       style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
     >
       <Animated.View style={animatedStyle}>
-        <Icon name={resolvedIcon} size={iconSize} color={resolvedColor} strokeWidth={resolvedStrokeWidth} fill={resolvedFill} />
+        {glyph ? (
+          <Text style={{ fontSize: iconSize - 2, lineHeight: iconSize + 4, width: iconSize, textAlign: "center" }}>
+            {glyph}
+          </Text>
+        ) : (
+          <Icon name={resolvedIcon} size={iconSize} color={resolvedColor} strokeWidth={resolvedStrokeWidth} fill={resolvedFill} />
+        )}
       </Animated.View>
       {count !== undefined && (
         <Text style={{ fontSize: 12, color: countColor || COUNT_COLOR }}>
@@ -109,7 +139,25 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   onTip,
   onSave,
   onInfo,
+  myReaction = null,
+  reactionCounts = null,
+  onReact,
 }) => {
+  const [pickerOpen, setPickerOpen] = useState(false);
+
+  // The tray needs a handler to route to; without one this stays a plain
+  // like/dislike bar (governance and other non-post surfaces).
+  const reactionsEnabled = !!onReact;
+
+  const handleSelect = useCallback((reaction: PostReaction) => {
+    setPickerOpen(false);
+    onReact?.(reaction);
+  }, [onReact]);
+
+  /** Viewer's own reaction wins over the post's most-used one. */
+  const leadReaction = myReaction ?? resolveTopReaction(reactionCounts);
+  const leadGlyph = leadReaction && leadReaction !== "like" ? reactionMeta(leadReaction).emoji : undefined;
+
   // Single row, every button a direct child spread edge-to-edge (matches the
   // web ActionBar). Order left → right: tip · dislike · share · comment · like
   // · bookmark · info.
@@ -147,14 +195,35 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         count={commentCount}
         formatCount
       />
-      <AnimatedActionButton
-        onPress={onLike}
-        iconName="ThumbsUp"
-        active={liked}
-        activeFill={ICON_ACTIVE}
-        count={likeCount}
-        formatCount
-      />
+      {/* Reactions — tap to like/unlike, hold to pick one of the nine. The
+          wrapper is the tray's positioning context, and stays a single flex
+          item so the row's edge-to-edge spacing is unchanged. */}
+      <View style={{ position: "relative" }}>
+        <ReactionPicker
+          open={pickerOpen && reactionsEnabled}
+          current={myReaction}
+          onSelect={handleSelect}
+          align="right"
+        />
+        <AnimatedActionButton
+          onPress={() => {
+            if (pickerOpen) { setPickerOpen(false); return; }
+            onLike();
+          }}
+          onLongPress={reactionsEnabled ? () => setPickerOpen(true) : undefined}
+          iconName="ThumbsUp"
+          glyph={leadGlyph}
+          active={liked}
+          activeFill={ICON_ACTIVE}
+          count={likeCount}
+          formatCount
+          accessibilityLabel={
+            myReaction
+              ? `${reactionMeta(myReaction).label} — hold to change your reaction`
+              : "Like — hold to react"
+          }
+        />
+      </View>
       <AnimatedActionButton
         onPress={onSave}
         iconName="Bookmark"

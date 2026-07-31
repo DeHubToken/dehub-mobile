@@ -1,6 +1,7 @@
 import { apiClient } from '../libs/api.client';
 import { User } from '../context/AuthContext';
 import { getNFTs, GetNFTsResponse, SearchParams } from './nft.service';
+import type { PostReaction } from '../libs/reactions';
 
 // Generic API response wrapper type (adjust if project has a central type)
 export interface ApiResponse<T> {
@@ -115,6 +116,12 @@ export interface NotificationItem {
   // Aggregation
   aggregatedCount?: number;
   latestActorNames?: string[];
+  /**
+   * Which reaction produced a `like` notification. Absent when the actors in an
+   * aggregated row disagree (render it as a generic thumbs-up), and on rows
+   * written before multi-reaction shipped.
+   */
+  reaction?: PostReaction;
   // Monetization fields
   amount?: number;
   currency?: string;
