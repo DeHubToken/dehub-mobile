@@ -508,17 +508,18 @@ const FeedScreen = () => {
   // This screen fetches by hand rather than through react-query, so `feedLoading`
   // is already the honest busy signal — the loader below just needs it held on
   // screen from the tap rather than from the moment the request starts.
-  const filterTransition = useFeedFilterTransition(feedLoading);
+  const { active: filterLoaderActive, begin: beginFilterTransition } =
+    useFeedFilterTransition(feedLoading);
 
   const handleFiltersChange = useCallback((newFilters: FeedFilters) => {
     if (
       newFilters.sortBy !== filters.sortBy ||
       newFilters.dateRange !== filters.dateRange
     ) {
-      filterTransition.begin();
+      beginFilterTransition();
     }
     setFilters({ ...newFilters, postType: "feed-images", contentAccess: [] });
-  }, [filters, filterTransition]);
+  }, [filters, beginFilterTransition]);
 
   const handleFilterPress = useCallback(() => {
     setFilterPanelVisible((prev) => !prev);
@@ -531,11 +532,11 @@ const FeedScreen = () => {
   const handleCategoryPress = useCallback(
     (cat: string) => {
       if (cat === selectedCategory) return;
-      filterTransition.begin();
+      beginFilterTransition();
       setSelectedCategory(cat);
       if (cat === "All") setFilters(defaultFilters);
     },
-    [selectedCategory, filterTransition],
+    [selectedCategory, beginFilterTransition],
   );
 
   // ── Grid row renderer ─────────────────────────────────────
@@ -675,7 +676,7 @@ const FeedScreen = () => {
 
           {/* Covers the list only. The header above it carries the category row
               and filter panel, which stay live while this is up. */}
-          {filterTransition.active && <FeedFilterLoader />}
+          {filterLoaderActive && <FeedFilterLoader />}
         </View>
       )}
 
