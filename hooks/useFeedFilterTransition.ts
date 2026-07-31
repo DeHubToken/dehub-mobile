@@ -24,7 +24,7 @@
  *    handling is a far better failure mode.
  */
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 /** Minimum time on screen, so a cached switch doesn't strobe. */
 const MIN_VISIBLE_MS = 420;
@@ -36,7 +36,11 @@ const MAX_VISIBLE_MS = 8000;
 export interface FeedFilterTransition {
   /** True while the loader should cover the feed pager. */
   active: boolean;
-  /** Call synchronously from a filter chip handler, before any state update. */
+  /**
+   * Call synchronously from a filter chip handler, before any state update.
+   * Stable for the life of the component — callers pass THIS, never the whole
+   * object, into their `useCallback` deps. See the note on the return value.
+   */
   begin: () => void;
 }
 
@@ -81,7 +85,12 @@ export function useFeedFilterTransition(busy: boolean): FeedFilterTransition {
     return () => clearTimeout(id);
   }, [active]);
 
-  return { active, begin };
+  // Memoised so the identity only moves when `active` flips, never on an
+  // unrelated re-render of the host screen. Home re-renders on every fetch
+  // transition (useIsFetching), and its six pager pages are memo()'d — handing
+  // them a fresh object each render re-rendered all six video lists per tick.
+  // Consumers should still destructure `begin` for their dep arrays.
+  return useMemo(() => ({ active, begin }), [active, begin]);
 }
 
 export default useFeedFilterTransition;
