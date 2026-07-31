@@ -532,7 +532,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               activeOpacity={0.6}
               disabled={enhancing}
             >
-              <Icon name="BarChart3" size={22} color={enhancing ? "#3A3A3C" : "#A6A9AC"} />
+              <Icon name="ChartColumn" size={22} color={enhancing ? "#3A3A3C" : "#A6A9AC"} />
             </TouchableOpacity>
           )}
 

@@ -163,6 +163,7 @@ const LiveProducerScreen: React.FC = () => {
       createdAt?: number;
       meta?: any;
       optimistic?: boolean;
+      user?: any;
     }>
   >([]);
 
