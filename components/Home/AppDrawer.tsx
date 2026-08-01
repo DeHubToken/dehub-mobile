@@ -45,6 +45,7 @@ interface DrawerItem {
   icon: IconName;
   /** i18n key for the label (resolved with t() at render). */
   labelKey: string;
+  testLabel: string;
   screen?: string;
   params?: Record<string, any>;
   url?: string;
@@ -115,8 +116,10 @@ interface MenuItemProps {
 // since labels are now translated).
 const TEST_BADGE_KEYS = new Set(["nav.prompt", "screens.work", "screens.stores"]);
 
-const MenuItem = memo<MenuItemProps>(({ icon, label, labelKey, soonLabel, onPress, disabled, active }) => (
+const MenuItem = memo<MenuItemProps>(({ icon, label, labelKey, testLabel, soonLabel, onPress, disabled, active }) => (
   <TouchableOpacity
+    accessibilityRole="button"
+    accessibilityLabel={label}
     className="flex-row items-center gap-3.5 px-3 py-3 mx-2 rounded-2xl"
     activeOpacity={disabled ? 1 : 0.6}
     onPress={onPress}
@@ -128,7 +131,7 @@ const MenuItem = memo<MenuItemProps>(({ icon, label, labelKey, soonLabel, onPres
       <Icon name={icon} size={22} color={disabled ? "#6b7280" : "#FFFFFF"} strokeWidth={active ? 2 : 1.8} />
       {TEST_BADGE_KEYS.has(labelKey) && (
         <View style={styles.testBadge}>
-          <Text style={styles.testBadgeText}>Test</Text>
+          <Text style={styles.testBadgeText}>{testLabel}</Text>
         </View>
       )}
     </View>
@@ -278,7 +281,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
     [navigate, onClose, t, openStages],
   );
 
-  const displayName = user?.displayName || user?.username || "Anonymous";
+  const displayName = user?.displayName || user?.username || t("common.anonymous");
   const handle = user?.username ? `@${user.username}` : "";
   const avatarUrl = getAvatarUrl(user?.avatarImageUrl);
   const hasAvatar = !!user?.avatarImageUrl;
@@ -406,6 +409,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                   icon={item.icon}
                   label={t(item.labelKey)}
                   labelKey={item.labelKey}
+                  testLabel={t("common.test")}
                   soonLabel={t("screens.soon")}
                   disabled={item.disabled}
                   active={!!item.screen && item.screen === activeRouteName}
