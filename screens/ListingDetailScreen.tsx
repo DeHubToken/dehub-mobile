@@ -72,8 +72,8 @@ const Stars: React.FC<{ value: number; size?: number; onPick?: (n: number) => vo
         <Icon
           name="Star"
           size={size}
-          color={n <= Math.round(value) ? "#FBBF24" : "#3F3F46"}
-          fill={n <= Math.round(value) ? "#FBBF24" : "transparent"}
+          color={n <= Math.round(value) ? "#D4D4D8" : "#3F3F46"}
+          fill={n <= Math.round(value) ? "#D4D4D8" : "transparent"}
         />
       </Pressable>
     ))}

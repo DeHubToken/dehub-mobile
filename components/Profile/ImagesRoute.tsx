@@ -4,6 +4,7 @@ import ProfileImageGrid from "./ProfileImageGrid";
 import { getUnifiedFeed, type UnifiedFeedItem } from "../../services/feed.unified.service";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import ProfileEmptyState from "./ProfileEmptyState";
 
 interface ImagesRouteProps {
   address?: string;
@@ -108,10 +109,11 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll, listHeader
     return (
       <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
-        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 60 }}>
-          <Text style={{ color: "#71717a", fontSize: 14 }}>No images yet</Text>
-          <Text style={{ color: "#52525b", fontSize: 12, marginTop: 4 }}>Image posts will appear here</Text>
-        </View>
+        <ProfileEmptyState
+          kind="images"
+          title="No images yet"
+          subtitle="Image posts will appear here"
+        />
       </ScrollView>
     );
   }

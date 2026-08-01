@@ -88,7 +88,7 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
   const isMod = sender?.isModerator;
 
   return (
-    <View className="max-w-[85%] bg-theme-neutrals-900 rounded-2xl p-3 shadow-lg">
+    <View className="max-w-[85%] bg-theme-neutrals-900 rounded-xl p-3 shadow-lg">
       {/* Sender header */}
       <View className="flex-row items-center gap-2 mb-1.5">
         <Avatar uri={avatarUrl} size={28} name={displayName} />
@@ -351,7 +351,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
         }}
       >
         <Pressable>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden">
+          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden">
             {/* Reaction emoji row */}
             <View className="flex-row items-center justify-around px-3 py-2.5 border-b border-white/5">
               {REACTION_EMOJIS.map((emoji) => {

@@ -7,10 +7,10 @@ import { View } from "react-native";
 const CompactVideoCardSkeletonComponent: React.FC = () => {
   return (
     <View className="m-1 px-4 py-1">
-      <View className="bg-theme-neutrals-900 rounded-2xl overflow-hidden flex-row items-start p-2 border border-theme-neutrals-700">
+      <View className="bg-theme-neutrals-900 rounded-xl overflow-hidden flex-row items-start p-2 border border-theme-neutrals-700">
         {/* Thumbnail - 16:9 aspect ratio */}
         <View 
-          className="rounded-2xl bg-theme-neutrals-800"
+          className="rounded-xl bg-theme-neutrals-800"
           style={{ width: 150, aspectRatio: 16 / 9 }}
         />
         

@@ -290,7 +290,7 @@ const BountyClaimBanner: React.FC<BountyClaimBannerProps> = ({
     <>
       {/* Bounty Banner - matches DescriptionBlock style */}
       <View className="mt-4">
-        <View className="bg-theme-neutrals-800 rounded-2xl p-4 overflow-hidden">
+        <View className="bg-theme-neutrals-800 rounded-xl p-4 overflow-hidden">
           {/* Header */}
           <View className="flex-row items-center mb-3">
             <Text className="text-theme-neutrals-400 text-[10px] uppercase tracking-wide">
@@ -301,7 +301,7 @@ const BountyClaimBanner: React.FC<BountyClaimBannerProps> = ({
           {/* Wrong chain warning */}
           {!isOnCorrectChain && bountyChainId && (
             <View className="flex-row items-center bg-amber-500/10 rounded-lg px-3 py-2 mb-3">
-              <Ionicons name="warning-outline" size={14} color="#f59e0b" />
+              <Ionicons name="warning-outline" size={14} color="#D4D4D8" />
               <Text className="text-amber-400 text-[10px] ml-2">
                 Switch to {requiredChainName} to claim bounty
               </Text>
@@ -530,7 +530,7 @@ const BountyClaimBanner: React.FC<BountyClaimBannerProps> = ({
             You've successfully claimed your {lastClaimedAmount?.type === 'viewer' ? 'viewer' : 'commenter'} bounty reward.
           </Text>
 
-          <View className="bg-green-500/20 px-6 py-3 rounded-2xl mb-6">
+          <View className="bg-green-500/20 px-6 py-3 rounded-xl mb-6">
             <Text className="text-green-400 text-2xl font-bold">
               +{formatCompactNumber(lastClaimedAmount?.amount || 0)} DHB
             </Text>

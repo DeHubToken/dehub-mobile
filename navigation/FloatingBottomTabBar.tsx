@@ -72,14 +72,14 @@ interface ScrollNavItem {
   url?: string;
 }
 
-// Mirror the web nav pill (cosmic-echo-hero MobileBottomNav SCROLL_NAV_ITEMS):
-// same icons and order, mapped to native screens where they exist and to the
-// website for web-only pages. Web-only items with no mobile equivalent
-// (Prompt, Stages, Command Centre, Staking) are omitted.
+// Mirror the web nav pill: same icons and order, mapped to native screens
+// where they exist and to the website for web-only pages.
 const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "User", labelKey: "nav.profile", screen: ScreenNames.Profile },
   { icon: "Bell", labelKey: "nav.notifications", screen: ScreenNames.Notifications },
+  { icon: "Wand", labelKey: "nav.prompt", screen: ScreenNames.Prompt },
   { icon: "CalendarDays", labelKey: "nav.events", screen: ScreenNames.Events },
+  { icon: "LayoutDashboard", labelKey: "nav.commandCentre", screen: ScreenNames.CommandCentre },
   { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay },
   { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
@@ -99,6 +99,7 @@ const AUTHED_ONLY_SCREENS = new Set([
   ScreenNames.Notifications,
   ScreenNames.MyLibrary,
   ScreenNames.Dpay,
+  ScreenNames.CommandCentre,
   ScreenNames.AccountSettings,
 ]);
 
@@ -501,7 +502,7 @@ const styles = StyleSheet.create({
   navContainer: {
     width: "72%",
     maxWidth: 340,
-    borderRadius: 16, // web's rounded-2xl
+    borderRadius: 12, // web's rounded-xl
     overflow: "hidden",
     // No Android elevation: on a translucent container it renders as a harsh
     // dark slab that kills the glass look (see GlassIndicator's GLASS_SHADOW).
@@ -524,7 +525,7 @@ const styles = StyleSheet.create({
     // the base tint is zinc-900 itself, translucent enough that content
     // ghosts through the way a blur would.
     backgroundColor: "rgba(24, 24, 27, 0.45)",
-    borderRadius: 16,
+    borderRadius: 12,
   },
   androidInsetBottom: {
     position: "absolute",
@@ -539,7 +540,7 @@ const styles = StyleSheet.create({
     // Exactly web's bg-zinc-900/10 (zinc-900 is #18181b) + border-white/10.
     // The backdrop blur carries the glass; this is only a faint wash on top.
     backgroundColor: "rgba(24, 24, 27, 0.10)",
-    borderRadius: 16,
+    borderRadius: 12,
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.10)",
   },

@@ -792,7 +792,7 @@ const styles = StyleSheet.create({
   retryText: { color: "#FAFAFA", fontSize: 13, fontWeight: "600" },
 
   card: {
-    borderRadius: 16,
+    borderRadius: 12,
     backgroundColor: "rgba(255,255,255,0.04)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",
@@ -906,7 +906,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.06)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.10)",
-    borderRadius: 16,
+    borderRadius: 12,
     paddingHorizontal: 12,
     paddingTop: 8,
     paddingBottom: 8,
@@ -922,7 +922,7 @@ const styles = StyleSheet.create({
   sendBtnDisabled: { opacity: 0.35 },
   signInBar: {
     marginTop: 10,
-    borderRadius: 16,
+    borderRadius: 12,
     backgroundColor: "rgba(255,255,255,0.06)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.10)",

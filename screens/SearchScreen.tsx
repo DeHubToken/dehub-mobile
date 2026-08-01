@@ -591,7 +591,7 @@ const SearchScreen: React.FC = () => {
           <Text className="text-theme-neutrals-400 text-xs font-semibold mb-2 px-1">
             Recent Searches
           </Text>
-          <View className="rounded-2xl overflow-hidden bg-theme-neutrals-800">
+          <View className="rounded-xl overflow-hidden bg-theme-neutrals-800">
             {topHistorySubset(searchHistory, 5).map((item, index) => (
               <TouchableOpacity
                 key={`history-${index}`}
@@ -618,7 +618,7 @@ const SearchScreen: React.FC = () => {
     if (isTyping && suggestions.length > 0) {
       return (
         <View className="px-4 pt-3">
-          <View className="rounded-2xl overflow-hidden bg-theme-neutrals-800">
+          <View className="rounded-xl overflow-hidden bg-theme-neutrals-800">
             {suggestions.map((item, index) => (
               <TouchableOpacity
                 key={`sugg-${index}`}

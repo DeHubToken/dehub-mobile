@@ -32,7 +32,7 @@ const PinnedMessageBanner: React.FC<PinnedMessageBannerProps> = ({
         activeOpacity={0.8}
         className="flex-row items-center px-3 py-2 bg-blue-500/10 border-b border-blue-500/20"
       >
-        <Icon name="Pin" size={14} color="#60A5FA" />
+        <Icon name="Pin" size={14} color="#D4D4D8" />
         <View className="flex-1 ml-2 min-w-0">
           <Text className="text-blue-400 text-[9px] font-semibold uppercase tracking-wider">
             Pinned Message

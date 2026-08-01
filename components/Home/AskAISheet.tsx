@@ -703,7 +703,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   bubbleContent: {
-    borderRadius: 16,
+    borderRadius: 12,
     paddingHorizontal: 14,
     paddingVertical: 10,
     maxWidth: "100%",
@@ -748,7 +748,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
     backgroundColor: "rgba(255,255,255,0.08)",
-    borderRadius: 16,
+    borderRadius: 12,
     paddingHorizontal: 14,
     paddingVertical: 10,
   },

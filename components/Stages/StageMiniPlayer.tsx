@@ -15,7 +15,7 @@ const StageMiniPlayer: React.FC = () => {
     <TouchableOpacity activeOpacity={0.9} onPress={() => openModal("live")} style={styles.container}>
       <View style={styles.info}>
         <View style={styles.iconWrap}>
-          <Icon name="Radio" size={14} color="#A855F7" />
+          <Icon name="Radio" size={14} color="#D4D4D8" />
         </View>
         <View>
           <Text style={styles.title} numberOfLines={1}>{currentSpace.title}</Text>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   iconWrap: {
     width: 32,
     height: 32,
-    borderRadius: 16,
+    borderRadius: 12,
     backgroundColor: "rgba(168,85,247,0.15)",
     alignItems: "center",
     justifyContent: "center",

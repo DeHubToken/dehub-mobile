@@ -168,7 +168,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
           return (
             <Text
               key={`${keyPrefix}-c-${idx}`}
-              style={{ color: "#FACC15", fontWeight: "700" }}
+              style={{ color: "#D4D4D8", fontWeight: "700" }}
               onPress={() => handleCashtagPress(seg.symbol)}
               suppressHighlighting
             >

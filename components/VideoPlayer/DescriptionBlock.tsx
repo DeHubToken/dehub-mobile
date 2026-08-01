@@ -22,7 +22,7 @@ const DescriptionBlock: React.FC<DescriptionBlockProps> = ({ title = 'Descriptio
 
   return (
     <View className="mt-4">
-      <View className="bg-theme-neutrals-800 rounded-2xl p-4 overflow-hidden">
+      <View className="bg-theme-neutrals-800 rounded-xl p-4 overflow-hidden">
         <Text className="text-theme-neutrals-400 text-[10px] uppercase tracking-wide mb-2">
           {title}
         </Text>

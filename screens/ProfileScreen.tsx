@@ -1,16 +1,19 @@
 import React, { useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import ProfileTabs from "../components/Profile/ProfileTabs";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import ProfileSignInPrompt from "../components/Profile/ProfileSignInPrompt";
-import ScreenHeader from "../components/ScreenHeader";
+import HomeHeader from "../components/HomeHeader";
+import { useDrawer } from "../context/DrawerContext";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenNames } from "../navigation/ScreenNames";
 
 
 const REFRESH_INTERVAL_MS = 60_000; // 1 min periodic refresh
 
 const ProfileScreen: React.FC = () => {
-  const { t } = useTranslation();
+  const navigation = useNavigation<any>();
+  const { openDrawer } = useDrawer();
   const { isSignedIn } = useAuthState();
   const user = useUser();
 
@@ -40,12 +43,23 @@ const ProfileScreen: React.FC = () => {
   }, [isSignedIn]);
 
   if (!isSignedIn) {
-    return <ProfileSignInPrompt />;
+    return (
+      <View className="flex-1 bg-theme-neutrals-900">
+        <HomeHeader
+          onLogoPress={() => navigation.navigate(ScreenNames.Home)}
+          onMenuPress={openDrawer}
+        />
+        <ProfileSignInPrompt />
+      </View>
+    );
   }
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title={t("nav.profile")} />
+      <HomeHeader
+        onLogoPress={() => navigation.navigate(ScreenNames.Home)}
+        onMenuPress={openDrawer}
+      />
       <View className="flex-1">
         <ProfileTabs />
       </View>

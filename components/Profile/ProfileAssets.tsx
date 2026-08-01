@@ -104,7 +104,7 @@ const ProfileAssets = () => {
   };
 
   return (
-    <View className="mx-4 my-3 bg-theme-neutrals-800 rounded-2xl p-4 relative">
+    <View className="mx-4 my-3 bg-theme-neutrals-800 rounded-xl p-4 relative">
       <View className="flex-row items-center justify-between mb-2">
         <Text className="text-base text-white font-semibold">Assets</Text>
         <InfoTooltip
@@ -173,7 +173,7 @@ const ProfileAssets = () => {
               {dhbActions.map((action) => (
                 <TouchableOpacity
                   key={action.label}
-                  className={`py-2 px-3 rounded-2xl flex-1 mx-1 rounded ${
+                  className={`py-2 px-3 rounded-xl flex-1 mx-1 ${
                     action.disabled ? "bg-gray-800" : "bg-gray-700"
                   }`}
                   onPress={

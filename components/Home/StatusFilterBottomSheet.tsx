@@ -233,7 +233,7 @@ const StatusFilterBottomSheet: React.FC<StatusFilterBottomSheetProps> = ({
           <View className="flex-row gap-3">
             {/* Left - Content Type */}
             <View className="flex-1">
-              <View className="rounded-2xl border border-theme-neutrals-800 bg-black/15 overflow-hidden">
+              <View className="rounded-xl border border-theme-neutrals-800 bg-black/15 overflow-hidden">
                 <View className="flex-row items-center gap-2 px-4 pt-4 pb-3 border-b border-white/5">
                   <Ionicons
                     name="grid-outline"
@@ -257,7 +257,7 @@ const StatusFilterBottomSheet: React.FC<StatusFilterBottomSheetProps> = ({
 
             {/* Right - Time Range */}
             <View className="w-36 shrink-0">
-              <View className="rounded-2xl border border-theme-neutrals-800 bg-black/15 overflow-hidden">
+              <View className="rounded-xl border border-theme-neutrals-800 bg-black/15 overflow-hidden">
                 <View className="flex-row items-center gap-2 px-4 pt-4 pb-3 border-b border-white/5">
                   <Ionicons
                     name="time-outline"

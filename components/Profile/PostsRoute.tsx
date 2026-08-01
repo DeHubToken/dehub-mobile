@@ -4,45 +4,51 @@ import {
   ScrollView,
   FlatList,
   ActivityIndicator,
-  Text,
   RefreshControl,
   type NativeSyntheticEvent,
   type NativeScrollEvent,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import FeedCard from "../Home/FeedCard";
+import UserReplyCard from "../UserProfile/UserReplyCard";
 import {
   getUnifiedFeed,
   type UnifiedFeedItem,
 } from "../../services/feed.unified.service";
-import { getUserReposts } from "../../services/repost.service";
+import { getUserReplies, type UserReplyItem } from "../../services/user.service";
 import { theme } from "../../theme";
 import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
+import { ScreenNames } from "../../navigation/ScreenNames";
+import ProfileEmptyState from "./ProfileEmptyState";
 
 const PAGE_SIZE = 20;
-const MAX_REPOST_PAGES = 10;
+const MAX_REPLY_PAGES = 10;
 
-type PostRow = {
-  key: string;
-  createdAt: string;
-  item: UnifiedFeedItem;
-  isRepost: boolean;
-};
+type ProfilePostRow =
+  | {
+      kind: "post";
+      key: string;
+      createdAt: string;
+      item: UnifiedFeedItem;
+    }
+  | {
+      kind: "reply";
+      key: string;
+      createdAt: string;
+      item: UserReplyItem;
+    };
 
 interface PostsRouteProps {
   address?: string;
-  onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  onScroll?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   listHeader?: React.ReactNode;
   scrollEnabled?: boolean;
   /** Called right before a card navigates away (e.g. to close an enclosing sheet). */
   onBeforeNavigate?: () => void;
 }
 
-/**
- * Profile "Posts" tab — all of the user's own content (text, images, videos,
- * audio) merged with their reposts, matching the web profile's main feed.
- * Comments/replies live in the Replies tab.
- */
+/** Web-parity Posts tab: text posts merged with comments and replies. */
 const PostsRoute: React.FC<PostsRouteProps> = ({
   address,
   onScroll,
@@ -50,83 +56,82 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   scrollEnabled = true,
   onBeforeNavigate,
 }) => {
+  const navigation = useNavigation<any>();
   const [posts, setPosts] = useState<UnifiedFeedItem[]>([]);
-  const [reposts, setReposts] = useState<UnifiedFeedItem[]>([]);
+  const [replies, setReplies] = useState<UserReplyItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const postPageRef = useRef(0);
   const postEndRef = useRef(false);
 
-  const loadReposts = useCallback(async (addr: string) => {
+  const loadReplies = useCallback(async (profileAddress: string) => {
     let page = 1;
-    let all: UnifiedFeedItem[] = [];
+    let all: UserReplyItem[] = [];
     let hasMore = true;
-    while (hasMore && page <= MAX_REPOST_PAGES) {
-      const res = await getUserReposts({ address: addr, page, limit: 50 });
-      const batch = (res.result || []).map((item: any) => ({
-        ...item,
-        isRepost: true,
-        postType: item.postType || "feed-simple",
-      })) as UnifiedFeedItem[];
+    while (hasMore && page <= MAX_REPLY_PAGES) {
+      const response = await getUserReplies({
+        address: profileAddress,
+        page,
+        limit: 50,
+      });
+      const batch = response.result.items || [];
       all = [...all, ...batch];
-      hasMore = res.pagination?.hasMore ?? batch.length >= 50;
+      hasMore = response.result.pagination?.hasMore ?? batch.length >= 50;
       page += 1;
     }
     return all;
   }, []);
 
-  const loadPostsPage = useCallback(async (addr: string, page: number, append: boolean) => {
-    // No postType filter — the web profile's main feed shows ALL of the
-    // user's content (text, images, videos, audio) merged with reposts, so a
-    // profile with only media posts must not read as empty here.
-    const res = await getUnifiedFeed({
-      minter: addr,
-      sortBy: "createdAt",
-      sortOrder: "desc",
-      status: "minted",
-      page: page + 1,
-      limit: PAGE_SIZE,
-    });
-    const batch = res.result || [];
-    setPosts((prev) => (append ? [...prev, ...batch] : batch));
-    postPageRef.current = page;
-    postEndRef.current = batch.length < PAGE_SIZE;
-  }, []);
+  const loadPostsPage = useCallback(
+    async (profileAddress: string, page: number, append: boolean) => {
+      const response = await getUnifiedFeed({
+        minter: profileAddress,
+        postType: "feed-simple",
+        sortBy: "createdAt",
+        sortOrder: "desc",
+        status: "minted",
+        page: page + 1,
+        limit: PAGE_SIZE,
+      });
+      const batch = response.result || [];
+      setPosts((previous) => (append ? [...previous, ...batch] : batch));
+      postPageRef.current = page;
+      postEndRef.current = batch.length < PAGE_SIZE;
+    },
+    [],
+  );
 
   const loadAll = useCallback(
     async (isRefresh = false) => {
       if (!address) {
         setPosts([]);
-        setReposts([]);
+        setReplies([]);
         setLoading(false);
         return;
       }
       if (!isRefresh) setLoading(true);
       postEndRef.current = false;
       postPageRef.current = 0;
-      // Load posts and reposts independently — a failure in one must not wipe
-      // the other. Previously a rejected reposts call rejected the shared
-      // Promise.all and the catch cleared the already-loaded posts to [], so the
-      // profile read as empty until a refresh (which doesn't clear on error).
-      const postsPromise = loadPostsPage(address, 0, false).catch((e) => {
-        console.warn("[PostsRoute] posts load failed", e);
+
+      const postsPromise = loadPostsPage(address, 0, false).catch((error) => {
+        console.warn("[PostsRoute] posts load failed", error);
         if (!isRefresh) setPosts([]);
       });
-      const repostsPromise = loadReposts(address)
-        .then((rows) => setReposts(rows))
-        .catch((e) => {
-          console.warn("[PostsRoute] reposts load failed", e);
-          if (!isRefresh) setReposts([]);
+      const repliesPromise = loadReplies(address)
+        .then(setReplies)
+        .catch((error) => {
+          console.warn("[PostsRoute] comments load failed", error);
+          if (!isRefresh) setReplies([]);
         });
       try {
-        await Promise.all([postsPromise, repostsPromise]);
+        await Promise.all([postsPromise, repliesPromise]);
       } finally {
         setLoading(false);
         setRefreshing(false);
       }
     },
-    [address, loadPostsPage, loadReposts],
+    [address, loadPostsPage, loadReplies],
   );
 
   useEffect(() => {
@@ -143,38 +148,29 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
     }
   }, [address, loadingMore, loading, loadPostsPage]);
 
-  const merged = useMemo<PostRow[]>(() => {
-    const ownIds = new Set(
-      posts.map((p) => String(p.tokenId ?? p.id ?? "")).filter(Boolean),
-    );
-    const rows: PostRow[] = [
+  const merged = useMemo<ProfilePostRow[]>(() => {
+    const rows: ProfilePostRow[] = [
       ...posts.map((post) => ({
-        key: `own-${post.tokenId ?? post.id}`,
+        kind: "post" as const,
+        key: `post-${post.tokenId ?? post.id}`,
         createdAt: post.createdAt || "",
         item: post,
-        isRepost: false,
       })),
-      ...reposts
-        .filter((r) => {
-          const id = String(r.tokenId ?? r.id ?? "");
-          return id && !ownIds.has(id);
-        })
-        .map((item) => ({
-          key: `repost-${item.tokenId ?? item.id}-${(item as any).repostedAt ?? item.createdAt}`,
-          createdAt: (item as any).repostedAt || item.createdAt || "",
-          item,
-          isRepost: true,
-        })),
+      ...replies.map((reply) => ({
+        kind: "reply" as const,
+        key: `reply-${reply.id}-${reply.createdAt}`,
+        createdAt: reply.createdAt || "",
+        item: reply,
+      })),
     ];
     rows.sort(
-      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      (first, second) =>
+        new Date(second.createdAt).getTime() - new Date(first.createdAt).getTime(),
     );
     return rows;
-  }, [posts, reposts]);
+  }, [posts, replies]);
 
-  // Without this every windowed row rendered with FeedCard's `isVisible`
-  // default of true, so a profile with videos attached a native player per row.
-  const rowKeyExtractor = useCallback((row: { key: string }) => row.key, []);
+  const rowKeyExtractor = useCallback((row: ProfilePostRow) => row.key, []);
   const {
     viewabilityConfig,
     onViewableItemsChanged,
@@ -183,15 +179,32 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   } = useFeedCardVisibility();
 
   const renderRow = useCallback(
-    ({ item }: { item: (typeof merged)[number] }) => (
-      <FeedCard
-        item={item.item}
-        showRepostLabel={item.isRepost}
-        isVisible={isItemVisible(item.key, item.item)}
-        onBeforeNavigate={onBeforeNavigate}
-      />
-    ),
-    [isItemVisible, onBeforeNavigate],
+    ({ item }: { item: ProfilePostRow }) => {
+      if (item.kind === "reply") {
+        return (
+          <UserReplyCard
+            item={item.item}
+            onPress={(reply) => {
+              const tokenId = reply.tokenId ?? reply.post?.tokenId;
+              if (!tokenId) return;
+              onBeforeNavigate?.();
+              navigation.navigate(ScreenNames.FeedDetail, {
+                tokenId: String(tokenId),
+                commentId: String(reply.id),
+              });
+            }}
+          />
+        );
+      }
+      return (
+        <FeedCard
+          item={item.item}
+          isVisible={isItemVisible(item.key, item.item)}
+          onBeforeNavigate={onBeforeNavigate}
+        />
+      );
+    },
+    [isItemVisible, navigation, onBeforeNavigate],
   );
 
   if (loading) {
@@ -209,18 +222,15 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
     return (
       <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
-        <View className="items-center justify-center px-8 py-16">
-          <Text className="text-theme-neutrals-400 text-sm text-center">
-            No posts yet
-          </Text>
-        </View>
+        <ProfileEmptyState
+          kind="posts"
+          title="No posts, comments, or replies yet"
+          subtitle="They will appear here"
+        />
       </ScrollView>
     );
   }
 
-  // The header must be passed as an element (not an inline component) so it
-  // reconciles instead of remounting on every render — remounts re-measure the
-  // header and leave a blank gap when scrolling back up.
   const headerElement = listHeader ? <>{listHeader}</> : undefined;
 
   return (
@@ -231,7 +241,10 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
         ListHeaderComponent={headerElement}
         scrollEnabled={scrollEnabled}
         renderItem={renderRow}
-        contentContainerStyle={{ paddingBottom: TAB_BAR_CONTENT_INSET, paddingTop: 8 }}
+        contentContainerStyle={{
+          paddingBottom: TAB_BAR_CONTENT_INSET,
+          paddingTop: 8,
+        }}
         windowSize={7}
         maxToRenderPerBatch={4}
         initialNumToRender={4}

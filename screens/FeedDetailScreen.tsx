@@ -44,7 +44,13 @@ export default function FeedDetailScreen() {
   const navigation = useNavigation<any>();
   
   // Get params - tokenId and optional commentId for highlighting
-  const tokenId: number | string | undefined = route?.params?.tokenId ?? route?.params?.id ?? route?.params?.postId;
+  const tokenId: number | string | undefined =
+    route?.params?.tokenId ??
+    route?.params?.id ??
+    route?.params?.postId ??
+    route?.params?.videoId ??
+    route?.params?.nft?.tokenId ??
+    route?.params?.nft?.id;
   const commentIdParam: number | string | undefined = route?.params?.commentId ?? route?.params?.c;
   
   const user = useUser();

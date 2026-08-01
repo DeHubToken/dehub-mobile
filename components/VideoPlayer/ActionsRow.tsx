@@ -166,7 +166,7 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
                 style={{ backgroundColor: 'transparent' }}
               >
                 <Ionicons name="cash-outline" size={14} color="#000" />
-                <Text className="text-theme-neutrals-900 text-xs ml-1 font-semibold">
+                <Text className="text-white text-xs ml-1 font-semibold">
                   Tip
                 </Text>
               </TouchableOpacity>

@@ -11,7 +11,6 @@ import {
   ListRenderItemInfo,
   RefreshControl,
   View,
-  Text,
   type NativeSyntheticEvent,
   type NativeScrollEvent,
 } from "react-native";
@@ -19,10 +18,7 @@ import CompactVideoCard from "./CompactVideoCard";
 import CompactVideoCardSkeleton from "./CompactVideoCardSkeleton";
 import { getUserVideos, getUserLiveVideos, getLikedNFTs } from "../../services/user.service";
 import { GetNFTsResult } from "../../services/nft.service";
-import { resolveThumbnail } from "../../libs"; // keep minimal import if needed
-
-const DEFAULT_BANNER = require("../../assets/default-banner.png");
-const DEFAULT_AVATAR = require("../../assets/default-avatar.png");
+import ProfileEmptyState from "../Profile/ProfileEmptyState";
 
 interface CompactVideoInfiniteListProps {
   address: string; // user address to fetch videos for
@@ -175,11 +171,15 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
       }}
       ListEmptyComponent={
         !loading ? (
-          <View className="py-10 items-center">
-            <Text className="text-theme-neutrals-300 text-sm">
-              No videos found.
-            </Text>
-          </View>
+          <ProfileEmptyState
+            kind={variant === "live" ? "live" : "videos"}
+            title={variant === "live" ? "No live streams yet" : "No videos yet"}
+            subtitle={
+              variant === "live"
+                ? "Live content will appear here"
+                : "Video posts will appear here"
+            }
+          />
         ) : (
           <View>
             {Array.from({ length: 6 }).map((_, i) => (

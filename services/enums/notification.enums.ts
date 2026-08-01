@@ -76,40 +76,40 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
       return { name: 'HeartOff', color: '#6b7280' };
     case NotificationType.COMMENT:
     case NotificationType.COMMENT_REPLY:
-      return { name: 'MessageSquareText', color: '#3b82f6' };
+      return { name: 'MessageSquareText', color: '#F4F4F5' };
     case NotificationType.COMMENT_LIKE:
       return { name: 'Heart', color: '#f472b6' };
     case NotificationType.REPOST:
       return { name: 'Repeat2', color: '#22c55e' };
     case NotificationType.QUOTE:
-      return { name: 'Quote', color: '#06b6d4' };
+      return { name: 'Quote', color: '#D4D4D8' };
     case NotificationType.FOLLOWING:
-      return { name: 'UserPlus', color: '#8b5cf6' };
+      return { name: 'UserPlus', color: '#D4D4D8' };
     case NotificationType.FOLLOW_REQUEST:
-      return { name: 'UserPlus', color: '#f59e0b' };
+      return { name: 'UserPlus', color: '#D4D4D8' };
     case NotificationType.FOLLOW_REQUEST_ACCEPTED:
       return { name: 'UserCheck', color: '#22c55e' };
     case NotificationType.MENTION:
-      return { name: 'AtSign', color: '#8b5cf6' };
+      return { name: 'AtSign', color: '#D4D4D8' };
     case NotificationType.TIP:
       return { name: 'Gem', color: '#22c55e' };
     case NotificationType.SUBSCRIPTION:
-      return { name: 'CircleCheck', color: '#f59e0b' };
+      return { name: 'CircleCheck', color: '#D4D4D8' };
     case NotificationType.PPV_PURCHASE:
-      return { name: 'LockOpen', color: '#06b6d4' };
+      return { name: 'LockOpen', color: '#D4D4D8' };
     case NotificationType.BOUNTY_AVAILABLE:
     case NotificationType.BOUNTY_CLAIMED:
-      return { name: 'Gift', color: '#f59e0b' };
+      return { name: 'Gift', color: '#D4D4D8' };
     case NotificationType.VIDEO_MILESTONE:
-      return { name: 'Trophy', color: '#fbbf24' };
+      return { name: 'Trophy', color: '#D4D4D8' };
     case NotificationType.LIVESTREAM_START:
       return { name: 'Radio', color: '#ef4444' };
     case NotificationType.NEW_MESSAGE:
-      return { name: 'Mail', color: '#3b82f6' };
+      return { name: 'Mail', color: '#F4F4F5' };
     case NotificationType.VIDEO_REMOVAL:
-      return { name: 'AlertCircle', color: '#f97316' };
+      return { name: 'AlertCircle', color: '#D4D4D8' };
     case NotificationType.ACCOUNT_WARNING:
-      return { name: 'AlertTriangle', color: '#f97316' };
+      return { name: 'AlertTriangle', color: '#D4D4D8' };
     case NotificationType.SYSTEM:
       return { name: 'Info', color: '#6b7280' };
     case NotificationType.FIAT_PAYMENT_COMPLETED:

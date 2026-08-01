@@ -251,7 +251,7 @@ const ProfileHeader = () => {
           )
         }
       >
-        <View className="mx-4 rounded-2xl overflow-hidden" style={{ height: 140 }}>
+        <View className="mx-4 rounded-xl overflow-hidden" style={{ height: 140 }}>
           <SmartImage
             source={
               localCoverUri

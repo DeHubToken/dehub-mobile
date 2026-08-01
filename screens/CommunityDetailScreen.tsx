@@ -342,7 +342,7 @@ const styles = StyleSheet.create({
   avatarBox: {
     width: 72,
     height: 72,
-    borderRadius: 16,
+    borderRadius: 12,
     backgroundColor: "#111316",
     borderWidth: 3,
     borderColor: "#010305",

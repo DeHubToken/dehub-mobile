@@ -127,7 +127,7 @@ const ReportPostModalComponent: React.FC<ReportPostModalProps> = ({
         <View className="flex-row items-center justify-between mb-4 pt-2">
           <View className="flex-row items-center">
             <View className="w-9 h-9 rounded-xl bg-yellow-500/15 items-center justify-center mr-2">
-              <Ionicons name="flag-outline" size={18} color="#FBBF24" />
+              <Ionicons name="flag-outline" size={18} color="#D4D4D8" />
             </View>
             <View>
               <Text className="text-white text-lg font-bold">Report Content</Text>
@@ -164,7 +164,7 @@ const ReportPostModalComponent: React.FC<ReportPostModalProps> = ({
                 <Ionicons
                   name={reason.icon}
                   size={18}
-                  color={isSelected ? "#FBBF24" : "#9CA3AF"}
+                  color={isSelected ? "#D4D4D8" : "#9CA3AF"}
                 />
                 <Text
                   className={`ml-3 text-sm font-medium ${
@@ -175,7 +175,7 @@ const ReportPostModalComponent: React.FC<ReportPostModalProps> = ({
                 </Text>
                 {isSelected && (
                   <View className="ml-auto">
-                    <Ionicons name="checkmark-circle" size={18} color="#FBBF24" />
+                    <Ionicons name="checkmark-circle" size={18} color="#D4D4D8" />
                   </View>
                 )}
               </TouchableOpacity>

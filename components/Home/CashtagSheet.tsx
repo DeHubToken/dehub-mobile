@@ -209,7 +209,7 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
 
           {loading ? (
             <View style={styles.center}>
-              <ActivityIndicator size="large" color="#FACC15" />
+              <ActivityIndicator size="large" color="#D4D4D8" />
               <Text style={styles.loadingText}>Fetching price data…</Text>
             </View>
           ) : error ? (
@@ -260,7 +260,7 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
                 style={styles.dexLink}
                 activeOpacity={0.8}
               >
-                <Icon name="ExternalLink" size={14} color="#FACC15" />
+                <Icon name="ExternalLink" size={14} color="#D4D4D8" />
                 <Text style={styles.dexLinkText}>View on DexScreener</Text>
               </TouchableOpacity>
             </View>
@@ -304,8 +304,8 @@ const styles = StyleSheet.create({
   center: { flex: 1, alignItems: "center", justifyContent: "center", gap: 12 },
   loadingText: { color: "#8B8D90", fontSize: 13, marginTop: 8 },
   errorText: { color: "#8B8D90", fontSize: 14, textAlign: "center", paddingHorizontal: 32 },
-  retryBtn: { marginTop: 4, backgroundColor: "rgba(250,204,21,0.12)", borderRadius: 10, paddingHorizontal: 20, paddingVertical: 10 },
-  retryText: { color: "#FACC15", fontSize: 14, fontWeight: "600" },
+  retryBtn: { marginTop: 4, backgroundColor: "rgba(255,255,255,0.12)", borderRadius: 10, paddingHorizontal: 20, paddingVertical: 10 },
+  retryText: { color: "#D4D4D8", fontSize: 14, fontWeight: "600" },
   content: { flex: 1, paddingHorizontal: 20, paddingTop: 16 },
   priceRow: { flexDirection: "row", alignItems: "center", gap: 10 },
   price: { color: "#F9FBFF", fontSize: 28, fontWeight: "700" },
@@ -337,11 +337,11 @@ const styles = StyleSheet.create({
     gap: 6,
     paddingVertical: 12,
     borderWidth: 1,
-    borderColor: "rgba(250,204,21,0.2)",
+    borderColor: "rgba(255,255,255,0.2)",
     borderRadius: 12,
-    backgroundColor: "rgba(250,204,21,0.06)",
+    backgroundColor: "rgba(255,255,255,0.06)",
   },
-  dexLinkText: { color: "#FACC15", fontSize: 13, fontWeight: "600" },
+  dexLinkText: { color: "#D4D4D8", fontSize: 13, fontWeight: "600" },
 });
 
 export const CashtagSheet = memo(CashtagSheetComponent);

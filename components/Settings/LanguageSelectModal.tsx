@@ -108,7 +108,7 @@ const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
-          <View className="bg-theme-neutrals-800 rounded-2xl border border-theme-neutrals-700 overflow-hidden">
+          <View className="bg-theme-neutrals-800 rounded-xl border border-theme-neutrals-700 overflow-hidden">
             {filtered.map((lang, idx) => {
               const isActive = lang.code === currentLang;
               const isLast = idx === filtered.length - 1;

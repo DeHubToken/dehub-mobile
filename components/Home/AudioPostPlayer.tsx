@@ -758,7 +758,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   };
 
   return (
-    <View className="mt-3 rounded-2xl overflow-hidden">
+    <View className="mt-3 rounded-xl overflow-hidden">
       <View className="p-4" style={{ backgroundColor: "rgba(0,0,0,0.65)" }}>
         {renderVisualizer()}
 

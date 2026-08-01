@@ -396,7 +396,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
                     <TouchableOpacity
                       onPress={onPress}
                       activeOpacity={0.9}
-                      className={`mb-2 w-[48%] p-2 rounded-2xl border ${
+                      className={`mb-2 w-[48%] p-2 rounded-xl border ${
                         selected
                           ? "bg-theme-accent/20 border-theme-accent"
                           : "bg-white/5 border-white/10"

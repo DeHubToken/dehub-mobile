@@ -254,7 +254,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
             <Ionicons
               name={isPlaying ? "pause" : "play"}
               size={16}
-              color={isSelected ? "#7C3AED" : "#fff"}
+              color={isSelected ? "#A1A1AA" : "#fff"}
             />
           </TouchableOpacity>
           <Image
@@ -346,7 +346,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
           contentContainerStyle={styles.list}
           ListEmptyComponent={
             loading ? (
-              <ActivityIndicator style={{ marginTop: 40 }} color="#7C3AED" />
+              <ActivityIndicator style={{ marginTop: 40 }} color="#A1A1AA" />
             ) : (
               <Text style={styles.emptyText}>
                 {debouncedSearch ? "No sounds found" : "No audio posts yet"}
@@ -357,7 +357,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
           onEndReachedThreshold={0.5}
           ListFooterComponent={
             loading && results.length > 0 ? (
-              <ActivityIndicator style={{ padding: 16 }} color="#7C3AED" />
+              <ActivityIndicator style={{ padding: 16 }} color="#A1A1AA" />
             ) : null
           }
         />
@@ -436,7 +436,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: "rgba(255,255,255,0.08)",
   },
-  selectBtnActive: { backgroundColor: "#7C3AED" },
+  selectBtnActive: { backgroundColor: "#A1A1AA" },
   selectBtnText: { fontSize: 13, fontWeight: "500", color: "#fff" },
   selectBtnTextActive: { color: "#fff" },
   emptyText: { textAlign: "center", color: "#6F7174", marginTop: 40, fontSize: 14 },

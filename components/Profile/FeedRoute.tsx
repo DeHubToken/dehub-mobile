@@ -1,15 +1,19 @@
 import React, { useCallback } from 'react';
-import { View } from 'react-native';
+import { View, type NativeSyntheticEvent, type NativeScrollEvent } from 'react-native';
 import InfiniteFeed from '../Feed/InfiniteFeed';
 import FeedCard from '../Home/FeedCard';
 import { getUnifiedFeed, type UnifiedFeedItem } from '../../services/feed.unified.service';
 import type { GetNFTsResponse, GetNFTsResult } from '../../services/nft.service';
 import { useAuthState } from '../../context/AuthContext';
+import ProfileEmptyState from './ProfileEmptyState';
 
 interface FeedRouteProps {
   address?: string;
   /** Profile header rendered as the scrollable list header (banner, info, tabs). */
   listHeader?: React.ReactNode;
+  onBeforeNavigate?: () => void;
+  onScroll?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  scrollEnabled?: boolean;
 }
 
 /**
@@ -18,7 +22,13 @@ interface FeedRouteProps {
  * with no postType filter (the `feed-all` postType returns nothing for a
  * minter-scoped query).
  */
-const FeedRoute: React.FC<FeedRouteProps> = ({ address, listHeader }) => {
+const FeedRoute: React.FC<FeedRouteProps> = ({
+  address,
+  listHeader,
+  onBeforeNavigate,
+  onScroll,
+  scrollEnabled = true,
+}) => {
   const { isSignedIn } = useAuthState();
 
   const fetchPage = useCallback(
@@ -48,11 +58,24 @@ const FeedRoute: React.FC<FeedRouteProps> = ({ address, listHeader }) => {
         contentContainerStyle={{ paddingBottom: 80, paddingTop: 0 }}
         enableBackToTop={false}
         headerComponent={listHeader}
+        onScroll={onScroll}
+        scrollEnabled={scrollEnabled}
+        emptyComponent={(
+          <ProfileEmptyState
+            kind="home"
+            title="No posts yet"
+            subtitle="Content will appear here when posted"
+          />
+        )}
         // isVisible must be forwarded or FeedCard falls back to its own
         // `true` default and every windowed row attaches a video player.
         renderItem={({ item, isVisible }) => (
           <View className="px-3">
-            <FeedCard item={item as UnifiedFeedItem} isVisible={isVisible} />
+            <FeedCard
+              item={item as UnifiedFeedItem}
+              isVisible={isVisible}
+              onBeforeNavigate={onBeforeNavigate}
+            />
           </View>
         )}
       />

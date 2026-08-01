@@ -9,6 +9,7 @@ interface LivestreamsRouteProps {
   showCreator?: boolean;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
   listHeader?: React.ReactElement | null;
+  onBeforeNavigate?: () => void;
 }
 
 const LivestreamsRoute: React.FC<LivestreamsRouteProps> = ({
@@ -16,6 +17,7 @@ const LivestreamsRoute: React.FC<LivestreamsRouteProps> = ({
   showCreator = true,
   onScroll,
   listHeader,
+  onBeforeNavigate,
 }) => (
   <CompactVideoInfiniteList
     address={address || FALLBACK_ADDRESS}
@@ -25,6 +27,7 @@ const LivestreamsRoute: React.FC<LivestreamsRouteProps> = ({
     showCreator={showCreator}
     onScroll={onScroll}
     ListHeaderComponent={listHeader}
+    onBeforeNavigate={onBeforeNavigate}
   />
 );
 
