@@ -170,7 +170,7 @@ const CommunitiesScreen: React.FC = () => {
             }`}
           >
             <Text className={`text-xs font-medium ${sortMode === mode ? "text-white" : "text-zinc-500"}`}>
-              {mode === "top" ? "Top" : mode === "new" ? "New" : "Hot"}
+              {t(`communities.sort.${mode}`)}
             </Text>
           </TouchableOpacity>
         ))}

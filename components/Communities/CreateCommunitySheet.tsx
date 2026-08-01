@@ -98,9 +98,9 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
       onCreated(community);
     } catch (e: any) {
       if (e?.message?.includes("duplicate")) {
-        toastError("That slug is already taken");
+        toastError(t("communities.slugTaken"));
       } else {
-        toastError("Failed to create community");
+        toastError(t("communities.createFailed"));
       }
     } finally {
       setSubmitting(false);

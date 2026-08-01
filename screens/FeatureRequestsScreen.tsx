@@ -39,6 +39,7 @@ import { formatCompactNumber } from "../libs";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { useTranslation, type TFunction } from "react-i18next";
 import {
   useFeatureRequests,
   useShippedFeatures,
@@ -60,26 +61,45 @@ import {
 const COMMENT_MAX = 1000;
 const shortAddr = (a: string) => `${a.slice(0, 6)}…${a.slice(-4)}`;
 
-const SORTS: { key: FeatureSort; label: string }[] = [
-  { key: "most_voted", label: "Most voted" },
-  { key: "newest", label: "Newest" },
+const SORTS: { key: FeatureSort; labelKey: string }[] = [
+  { key: "most_voted", labelKey: "features.mostVoted" },
+  { key: "newest", labelKey: "features.newest" },
 ];
+
+const CATEGORY_I18N: Record<FeatureCategory, string> = {
+  ui_ux: "features.uiUx",
+  performance: "features.performance",
+  new_feature: "features.newFeature",
+  bug_fix: "features.bugFix",
+  integration: "features.integration",
+  other: "features.other",
+};
+
+const STATUS_I18N: Record<string, string> = {
+  open: "features.statusOpen",
+  under_review: "features.statusUnderReview",
+  planned: "features.statusPlanned",
+  in_progress: "features.statusInProgress",
+  completed: "features.statusCompleted",
+  shipped: "features.shipped",
+  declined: "features.statusDeclined",
+};
 
 const CATEGORY_KEYS = Object.keys(CATEGORY_LABELS) as FeatureCategory[];
 
 const TITLE_MAX = 100;
 const DESC_MAX = 1000;
 
-function timeAgo(iso: string): string {
+function timeAgo(iso: string, t: TFunction): string {
   const s = Math.floor((Date.now() - new Date(iso).getTime()) / 1000);
-  if (s < 60) return "just now";
+  if (s < 60) return t("features.justNow");
   const m = Math.floor(s / 60);
-  if (m < 60) return `${m}m ago`;
+  if (m < 60) return t("features.minutesAgo", { count: m });
   const h = Math.floor(m / 60);
-  if (h < 24) return `${h}h ago`;
+  if (h < 24) return t("features.hoursAgo", { count: h });
   const d = Math.floor(h / 24);
-  if (d < 30) return `${d}d ago`;
-  return `${Math.floor(d / 30)}mo ago`;
+  if (d < 30) return t("features.daysAgo", { count: d });
+  return t("features.monthsAgo", { count: Math.floor(d / 30) });
 }
 
 // ── Card ────────────────────────────────────────────────────────────────────
@@ -92,6 +112,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
   featureId,
   isAuthed,
 }) => {
+  const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const user = useUser() as any;
   const { showUserProfile } = useUserProfileSheet();
@@ -117,16 +138,16 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
 
   const confirmDelete = useCallback(
     (commentId: string) => {
-      Alert.alert("Delete comment?", "This can't be undone.", [
-        { text: "Cancel", style: "cancel" },
+      Alert.alert(t("features.deleteCommentTitle"), t("features.deleteCommentDescription"), [
+        { text: t("common.cancel"), style: "cancel" },
         {
-          text: "Delete",
+          text: t("common.delete"),
           style: "destructive",
           onPress: () => deleteComment.mutate({ commentId, featureRequestId: featureId }),
         },
       ]);
     },
-    [deleteComment, featureId],
+    [deleteComment, featureId, t],
   );
 
   return (
@@ -134,7 +155,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
       {isLoading ? (
         <ActivityIndicator color="#FFFFFF" style={{ marginVertical: 14 }} />
       ) : comments.length === 0 ? (
-        <Text style={styles.noComments}>No comments yet</Text>
+        <Text style={styles.noComments}>{t("features.noComments")}</Text>
       ) : (
         comments.map((c) => {
           const name = c.username || shortAddr(c.wallet_address);
@@ -149,7 +170,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
                   <Text style={styles.commentAuthor} numberOfLines={1}>
                     @{name}
                   </Text>
-                  <Text style={styles.commentTime}>{timeAgo(c.created_at)}</Text>
+                  <Text style={styles.commentTime}>{timeAgo(c.created_at, t)}</Text>
                   {isMine && (
                     <Pressable
                       onPress={() => confirmDelete(c.id)}
@@ -172,7 +193,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
           <TextInput
             value={draft}
             onChangeText={(v) => setDraft(v.slice(0, COMMENT_MAX))}
-            placeholder="Add a comment"
+            placeholder={t("features.addComment")}
             placeholderTextColor="#52525B"
             style={styles.composerInput}
             multiline
@@ -197,7 +218,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
           onPress={() => navigation.navigate(ScreenNames.SignIn)}
           style={styles.signInBar}
         >
-          <Text style={styles.signInText}>Sign in to comment</Text>
+          <Text style={styles.signInText}>{t("features.signInToComment")}</Text>
         </Pressable>
       )}
     </View>
@@ -211,6 +232,7 @@ const FeatureCard: React.FC<{
   votable: boolean;
   isAuthed: boolean;
 }> = ({ feature, myVote, onVote, votable, isAuthed }) => {
+  const { t } = useTranslation();
   const author =
     feature.author_username ||
     `${feature.author_wallet_address.slice(0, 6)}…${feature.author_wallet_address.slice(-4)}`;
@@ -248,12 +270,12 @@ const FeatureCard: React.FC<{
             <View style={[styles.badge, { borderColor: `${statusColor}55` }]}>
               <View style={[styles.dot, { backgroundColor: statusColor }]} />
               <Text style={[styles.badgeText, { color: statusColor }]}>
-                {STATUS_LABELS[feature.status] ?? feature.status}
+                {STATUS_I18N[feature.status] ? t(STATUS_I18N[feature.status]) : (STATUS_LABELS[feature.status] ?? feature.status)}
               </Text>
             </View>
             <View style={styles.badge}>
               <Text style={styles.badgeText}>
-                {CATEGORY_LABELS[feature.category] ?? feature.category}
+                {CATEGORY_I18N[feature.category] ? t(CATEGORY_I18N[feature.category]) : (CATEGORY_LABELS[feature.category] ?? feature.category)}
               </Text>
             </View>
           </View>
@@ -278,7 +300,7 @@ const FeatureCard: React.FC<{
             <Text style={styles.authorName} numberOfLines={1}>
               @{author}
             </Text>
-            <Text style={styles.time}>{timeAgo(feature.created_at)}</Text>
+            <Text style={styles.time}>{timeAgo(feature.created_at, t)}</Text>
             <Pressable
               onPress={() => setShowComments((s) => !s)}
               hitSlop={8}
@@ -315,6 +337,7 @@ const SubmitSheet: React.FC<{
   }) => void;
   submitting: boolean;
 }> = ({ visible, onClose, onSubmit, submitting }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -357,18 +380,18 @@ const SubmitSheet: React.FC<{
         >
           <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
             <View style={styles.sheetHeader}>
-              <Text style={styles.sheetTitle}>New feature request</Text>
+              <Text style={styles.sheetTitle}>{t("features.submitDrawerTitle")}</Text>
               <Pressable onPress={handleClose} hitSlop={10}>
                 <Icon name="X" size={20} color="#A1A1AA" />
               </Pressable>
             </View>
 
             <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-              <Text style={styles.fieldLabel}>Title</Text>
+              <Text style={styles.fieldLabel}>{t("features.titleLabel")}</Text>
               <TextInput
                 value={title}
                 onChangeText={(v) => setTitle(v.slice(0, TITLE_MAX))}
-                placeholder="Short, clear summary"
+                placeholder={t("features.titlePlaceholder")}
                 placeholderTextColor="#52525B"
                 style={styles.input}
               />
@@ -376,11 +399,11 @@ const SubmitSheet: React.FC<{
                 {title.length}/{TITLE_MAX}
               </Text>
 
-              <Text style={styles.fieldLabel}>Description</Text>
+              <Text style={styles.fieldLabel}>{t("features.descriptionLabel")}</Text>
               <TextInput
                 value={description}
                 onChangeText={(v) => setDescription(v.slice(0, DESC_MAX))}
-                placeholder="What should it do, and why does it matter?"
+                placeholder={t("features.descriptionPlaceholder")}
                 placeholderTextColor="#52525B"
                 multiline
                 style={[styles.input, styles.textarea]}
@@ -389,7 +412,7 @@ const SubmitSheet: React.FC<{
                 {description.length}/{DESC_MAX}
               </Text>
 
-              <Text style={styles.fieldLabel}>Category</Text>
+              <Text style={styles.fieldLabel}>{t("features.categoryLabel")}</Text>
               <View style={styles.catWrap}>
                 {CATEGORY_KEYS.map((key) => {
                   const active = category === key;
@@ -400,14 +423,14 @@ const SubmitSheet: React.FC<{
                       style={[styles.chip, active && styles.chipActive]}
                     >
                       <Text style={[styles.chipText, active && styles.chipTextActive]}>
-                        {CATEGORY_LABELS[key]}
+                        {t(CATEGORY_I18N[key])}
                       </Text>
                     </Pressable>
                   );
                 })}
               </View>
 
-              <Text style={styles.fieldLabel}>Attachment (optional)</Text>
+              <Text style={styles.fieldLabel}>{t("features.attachmentOptional")}</Text>
               {mediaUri ? (
                 <View style={styles.mediaPreview}>
                   <Image source={{ uri: mediaUri }} style={StyleSheet.absoluteFill} contentFit="cover" />
@@ -422,7 +445,7 @@ const SubmitSheet: React.FC<{
               ) : (
                 <Pressable style={styles.mediaAdd} onPress={pickMedia}>
                   <Icon name="ImagePlus" size={18} color="#A1A1AA" />
-                  <Text style={styles.mediaAddText}>Add a screenshot</Text>
+                  <Text style={styles.mediaAddText}>{t("features.addScreenshot")}</Text>
                 </Pressable>
               )}
             </ScrollView>
@@ -439,7 +462,7 @@ const SubmitSheet: React.FC<{
               {submitting ? (
                 <ActivityIndicator color="#000000" />
               ) : (
-                <Text style={styles.submitBtnText}>Submit request</Text>
+                <Text style={styles.submitBtnText}>{t("features.submitRequest")}</Text>
               )}
             </Pressable>
           </View>
@@ -452,6 +475,7 @@ const SubmitSheet: React.FC<{
 // ── Screen ──────────────────────────────────────────────────────────────────
 
 export default function FeatureRequestsScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -531,11 +555,11 @@ export default function FeatureRequestsScreen() {
           <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
         </Pressable>
         <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Feature Requests</Text>
+          <Text style={styles.title}>{t("features.title")}</Text>
           <Text style={styles.subtitle}>
             {typeof totalCount === "number"
-              ? `${formatCompactNumber(totalCount)} submitted · shape what gets built`
-              : "Shape what gets built next"}
+              ? t("features.submittedSubtitle", { count: formatCompactNumber(totalCount) })
+              : t("features.shapeNext")}
           </Text>
         </View>
         <Pressable
@@ -556,7 +580,7 @@ export default function FeatureRequestsScreen() {
             style={[styles.segmentBtn, view === v && styles.segmentBtnActive]}
           >
             <Text style={[styles.segmentText, view === v && styles.segmentTextActive]}>
-              {v === "open" ? "Open" : "Shipped"}
+              {v === "open" ? t("features.statusOpen") : t("features.shipped")}
             </Text>
           </Pressable>
         ))}
@@ -569,7 +593,7 @@ export default function FeatureRequestsScreen() {
             <TextInput
               value={search}
               onChangeText={setSearch}
-              placeholder="Search requests"
+              placeholder={t("features.searchPlaceholder")}
               placeholderTextColor="#52525B"
               style={styles.searchInput}
               returnKeyType="search"
@@ -593,7 +617,7 @@ export default function FeatureRequestsScreen() {
                 style={[styles.chip, sort === s.key && styles.chipActive]}
               >
                 <Text style={[styles.chipText, sort === s.key && styles.chipTextActive]}>
-                  {s.label}
+                  {t(s.labelKey)}
                 </Text>
               </Pressable>
             ))}
@@ -603,7 +627,7 @@ export default function FeatureRequestsScreen() {
               style={[styles.chip, category === "all" && styles.chipActive]}
             >
               <Text style={[styles.chipText, category === "all" && styles.chipTextActive]}>
-                All
+                {t("features.all")}
               </Text>
             </Pressable>
             {CATEGORY_KEYS.map((key) => (
@@ -613,7 +637,7 @@ export default function FeatureRequestsScreen() {
                 style={[styles.chip, category === key && styles.chipActive]}
               >
                 <Text style={[styles.chipText, category === key && styles.chipTextActive]}>
-                  {CATEGORY_LABELS[key]}
+                  {t(CATEGORY_I18N[key])}
                 </Text>
               </Pressable>
             ))}
@@ -627,9 +651,9 @@ export default function FeatureRequestsScreen() {
         </View>
       ) : isError && view === "open" ? (
         <View style={styles.center}>
-          <Text style={styles.emptyText}>Couldn't load feature requests</Text>
+          <Text style={styles.emptyText}>{t("features.loadFailed")}</Text>
           <Pressable onPress={() => refetch()} style={styles.retryBtn}>
-            <Text style={styles.retryText}>Retry</Text>
+            <Text style={styles.retryText}>{t("common.retry")}</Text>
           </Pressable>
         </View>
       ) : (
@@ -665,10 +689,10 @@ export default function FeatureRequestsScreen() {
               <Icon name="Lightbulb" size={44} color="#3F3F46" />
               <Text style={styles.emptyText}>
                 {view === "shipped"
-                  ? "Nothing shipped yet"
+                  ? t("features.noShippedYet")
                   : debouncedSearch
-                    ? "No requests match your search"
-                    : "No requests yet — be the first"}
+                    ? t("features.noSearchResults")
+                    : t("features.noRequestsYet")}
               </Text>
             </View>
           }

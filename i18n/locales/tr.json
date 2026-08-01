@@ -25,13 +25,13 @@
     "signMessage": "Mesajı imzala",
     "guide": "Rehber",
     "events": "Etkinlikler",
-    "staking": "Staking",
-    "communities": "Communities",
-    "stages": "Stages",
-    "affiliate": "Affiliate",
-    "ads": "Ads",
-    "prompt": "Prompt",
-    "tv": "Live TV"
+    "staking": "Stake Et",
+    "communities": "Topluluklar",
+    "stages": "Sahneler",
+    "affiliate": "Satış Ortaklığı",
+    "ads": "Reklamlar",
+    "prompt": "Yapay Zekâ",
+    "tv": "Canlı TV"
   },
   "feed": {
     "home": "Ana Sayfa",
@@ -409,6 +409,9 @@
     "showOriginal": "Orijinali göster",
     "translating": "Çevriliyor...",
     "close": "Kapat",
+    "retry": "Tekrar Dene",
+    "test": "Test",
+    "anonymous": "Anonim",
     "done": "Tamam",
     "block": "Engelle",
     "unblock": "Engeli Kaldır",
@@ -1070,7 +1073,21 @@
     "statusPlanned": "Planlandı",
     "statusInProgress": "Devam Ediyor",
     "statusCompleted": "Tamamlandı",
-    "statusDeclined": "Reddedildi"
+    "statusDeclined": "Reddedildi",
+    "justNow": "az önce",
+    "minutesAgo": "{{count}} dk. önce",
+    "hoursAgo": "{{count}} sa. önce",
+    "daysAgo": "{{count}} gün önce",
+    "monthsAgo": "{{count}} ay önce",
+    "deleteCommentTitle": "Yorum silinsin mi?",
+    "deleteCommentDescription": "Bu işlem geri alınamaz.",
+    "signInToComment": "Yorum yapmak için giriş yap",
+    "attachmentOptional": "Ek (isteğe bağlı)",
+    "addScreenshot": "Ekran görüntüsü ekle",
+    "loadFailed": "Özellik istekleri yüklenemedi",
+    "submittedSubtitle": "{{count}} gönderildi · geliştirilecekleri şekillendir",
+    "shapeNext": "Sırada neyin geliştirileceğini şekillendir",
+    "noSearchResults": "Aramanızla eşleşen istek yok"
   },
   "profile": {
     "back": "Geri",
@@ -1115,7 +1132,87 @@
     "returnHome": "Ana Sayfaya Dön"
   },
   "tv": {
-    "title": "TV"
+    "title": "TV",
+    "subtitle": "Dünyanın dört bir yanından ücretsiz kanallar",
+    "channelCount": "Dünya genelinde {{count}} ücretsiz kanal",
+    "searchPlaceholder": "Kanal ara",
+    "live": "CANLI",
+    "notBroadcasting": "Bu kanal şu anda yayın yapmıyor",
+    "reportedAutomatically": "Sorun otomatik olarak bildirildi.",
+    "loadFailed": "Kanallar yüklenemedi",
+    "noSearchResults": "Aramanızla eşleşen kanal yok",
+    "noChannels": "Kullanılabilir kanal yok"
+  },
+  "top100": {
+    "title": "İlk 100",
+    "subtitle": "Piyasa değerine göre kripto, hisse ve emtialar",
+    "searchPlaceholder": "Varlık ara",
+    "noSearchResults": "Aramanızla eşleşen sonuç yok",
+    "loadFailed": "Piyasa verileri yüklenemedi"
+  },
+  "ads": {
+    "subtitle": "DeHub kullanıcılarına rozet seviyesine göre ulaşın",
+    "tabs": {
+      "overview": "Genel Bakış",
+      "campaigns": "Kampanyalar",
+      "billing": "Faturalandırma"
+    },
+    "notEnoughData": "Henüz yeterli veri yok",
+    "newCampaign": "Yeni kampanya",
+    "campaignName": "Kampanya adı",
+    "campaignNamePlaceholder": "Bahar lansmanı",
+    "objective": "Hedef",
+    "objectives": {
+      "awareness": "Farkındalık",
+      "traffic": "Trafik",
+      "engagement": "Etkileşim"
+    },
+    "dailyBudget": "Günlük bütçe (USD)",
+    "totalBudget": "Toplam bütçe (USD)",
+    "landingUrl": "Hedef bağlantı (isteğe bağlı)",
+    "targetTiers": "Hedef rozet seviyeleri (boşsa herkes)",
+    "blendedCpm": "Karma CPM",
+    "estimatedImpressions": "{{amount}} karşılığında ≈ {{count}} gösterim",
+    "submitForReview": "İncelemeye gönder",
+    "walletNotReady": "Cüzdan hazır değil — birazdan tekrar deneyin.",
+    "priceUnavailable": "DHB fiyatı alınamıyor — birazdan tekrar deneyin.",
+    "insufficientBalance": "Bu yükleme için DHB bakiyesi yetersiz.",
+    "transferReverted": "Zincir üzerindeki transfer geri alındı — bakiye eklenmedi.",
+    "noTransactionHash": "İşlem kimliği alınamadı — doğrulanacak işlem yok.",
+    "transactionCancelled": "İşlem iptal edildi.",
+    "topUpFailed": "Bakiye yüklenemedi",
+    "spentOf": "{{total}} tutarının {{spent}} kadarı harcandı",
+    "pause": "Duraklat",
+    "resume": "Devam Et",
+    "advertiseTitle": "DeHub'da reklam verin",
+    "advertiseDescription": "İzleyicinin rozet seviyesine göre fiyatlanan doğrulanmış gösterimler için ödeme yapın. İlk kampanyanızı oluşturmak üzere reklamveren hesabı açın.",
+    "openAccount": "Reklamveren hesabı aç",
+    "availableCredit": "Kullanılabilir bakiye",
+    "accountTotals": "{{spent}} harcandı · {{deposited}} yatırıldı",
+    "performance": "Performans",
+    "impressions": "Gösterimler",
+    "clicks": "Tıklamalar",
+    "spend": "Harcama",
+    "ecpm": "eCPM",
+    "campaigns": "Kampanyalar",
+    "noCampaigns": "Henüz kampanya yok",
+    "createCampaign": "Kampanya oluştur",
+    "statuses": {
+      "active": "Aktif",
+      "paused": "Duraklatıldı",
+      "pending_review": "İnceleniyor",
+      "draft": "Taslak",
+      "rejected": "Reddedildi",
+      "completed": "Tamamlandı",
+      "archived": "Arşivlendi"
+    },
+    "perDay": "{{amount}}/gün",
+    "addCredit": "Bakiye ekle",
+    "payDhb": "{{amount}} DHB öde",
+    "loadingPrice": "Fiyat yükleniyor…",
+    "topUpExplanation": "DHB zincir üzerinden DeHub reklam hazinesine aktarılır; bağımsız zincir doğrulamasından sonra bakiyenize eklenir.",
+    "paymentHistory": "Ödeme geçmişi",
+    "noPayments": "Henüz ödeme yok"
   },
   "buyCoins": {
     "title": "Coin Satın Al",
@@ -1711,7 +1808,35 @@
     "reject": "Reddet",
     "pinToProfile": "Toplulukları profile sabitle",
     "joinFirst": "Sabitlemek için önce topluluklara katılın",
-    "pinCommunity": "Topluluğu sabitle"
+    "pinCommunity": "Topluluğu sabitle",
+    "myCommunities": "Topluluklarım",
+    "discover": "Keşfet",
+    "memberCount": "{{count}} üye",
+    "joinRequestSent": "Katılma isteği gönderildi!",
+    "actionFailed": "İşlem başarısız oldu",
+    "pinUpdateFailed": "Sabitleme güncellenemedi",
+    "shareMessage": "{{name}} topluluğuna DeHub'da katıl",
+    "noMembers": "Henüz üye yok",
+    "slugTaken": "Bu topluluk bağlantısı zaten kullanılıyor",
+    "createFailed": "Topluluk oluşturulamadı",
+    "sort": {
+      "top": "En İyi",
+      "new": "Yeni",
+      "hot": "Popüler"
+    },
+    "roles": {
+      "owner": "Sahip",
+      "moderator": "Moderatör",
+      "member": "Üye"
+    },
+    "time": {
+      "today": "bugün",
+      "yesterday": "dün",
+      "days": "{{count}} gün",
+      "weeks": "{{count}} hf.",
+      "months": "{{count}} ay",
+      "years": "{{count}} yıl"
+    }
   },
   "screens": {
     "drafts": "Taslaklar",
@@ -1779,13 +1904,13 @@
     "wallet": "Affiliate wallet"
   },
   "prompt": {
-    "title": "What do you want to make?",
-    "subtitle": "Ask the DeHub assistant anything — or start from an idea below.",
-    "placeholder": "Ask anything…",
-    "suggestion1": "Summarise what's trending on DeHub today",
-    "suggestion2": "Draft a post about my latest upload",
-    "suggestion3": "Explain DHB staking in simple terms",
-    "suggestion4": "Find creators I should follow",
-    "suggestion5": "Write a bounty brief for a clipping campaign"
+    "title": "Ne oluşturmak istiyorsun?",
+    "subtitle": "DeHub asistanına istediğini sor veya aşağıdaki fikirlerden biriyle başla.",
+    "placeholder": "Bir şey sor…",
+    "suggestion1": "Bugün DeHub'da öne çıkanları özetle",
+    "suggestion2": "Son yüklemem hakkında bir gönderi taslağı hazırla",
+    "suggestion3": "DHB staking'i basitçe açıkla",
+    "suggestion4": "Takip etmem gereken içerik üreticilerini bul",
+    "suggestion5": "Bir klip kampanyası için ödül ilanı hazırla"
   }
 }

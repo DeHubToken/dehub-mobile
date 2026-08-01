@@ -26,6 +26,7 @@ import { toastError, toastSuccess } from "../libs";
 import { openInApp } from "../libs/links.utils";
 import { WEBSITE_LINK, SUPPORT_MAIL } from "../config/links";
 import { Linking } from "react-native";
+import { useTranslation } from "react-i18next";
 
 if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -134,11 +135,22 @@ const Field = ({
 );
 
 export default function CareersScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const [formOpen, setFormOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState<BDMForm>(EMPTY_FORM);
+  const bdmResponsibilities = BDM_RESP.map((item, index) => ({
+    ...item,
+    text: t(`careers.bdmResp${index + 1}`),
+  }));
+  const bdmRequirements = BDM_REQ.map((_, index) => t(`careers.bdmReq${index + 1}`));
+  const ambassadorResponsibilities = AMB_RESP.map((item, index) => ({
+    ...item,
+    text: t(`careers.ambassadorResp${index + 1}`),
+  }));
+  const ambassadorRequirements = AMB_REQ.map((_, index) => t(`careers.ambassadorReq${index + 1}`));
 
   const set = useCallback((key: keyof BDMForm) => (t: string) => setForm((p) => ({ ...p, [key]: t })), []);
 
@@ -149,7 +161,7 @@ export default function CareersScreen() {
 
   const submit = useCallback(async () => {
     if (!form.name.trim() || !form.email.trim()) {
-      toastError("Name and email are required");
+      toastError(t("careers.nameEmailRequired"));
       return;
     }
     setSubmitting(true);
@@ -167,15 +179,15 @@ export default function CareersScreen() {
         why_hire_you: form.why_hire_you.trim() || null,
       });
       if (error) throw error;
-      toastSuccess("Application submitted successfully! We'll be in touch.");
+      toastSuccess(t("careers.applicationSuccess"));
       setForm(EMPTY_FORM);
       setFormOpen(false);
     } catch {
-      toastError("Failed to submit. Please try again.");
+      toastError(t("careers.applicationFailed"));
     } finally {
       setSubmitting(false);
     }
-  }, [form]);
+  }, [form, t]);
 
   return (
     <View style={[styles.root, { paddingTop: insets.top }]}>
@@ -184,8 +196,8 @@ export default function CareersScreen() {
           <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
         </Pressable>
         <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Careers at DeHub</Text>
-          <Text style={styles.subtitle}>Join the team building the future of decentralised social media</Text>
+          <Text style={styles.title}>{t("careers.title")}</Text>
+          <Text style={styles.subtitle}>{t("careers.subtitle")}</Text>
         </View>
       </View>
 
@@ -194,78 +206,66 @@ export default function CareersScreen() {
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
       >
-        <Text style={styles.intro}>
-          We're looking for passionate individuals who want to be part of the next wave of social media — one that puts
-          creators and communities first. All roles are fully remote with flexible hours.
-        </Text>
+        <Text style={styles.intro}>{t("careers.intro")}</Text>
 
         {/* ── BDM Role ── */}
         <View style={styles.roleCard}>
           <View style={styles.roleHead}>
             <View style={{ flex: 1 }}>
-              <Text style={styles.roleTitle}>Business Development Managers</Text>
-              <Text style={styles.roleCategory}>Partnerships & Growth</Text>
+              <Text style={styles.roleTitle}>{t("careers.bdmTitle")}</Text>
+              <Text style={styles.roleCategory}>{t("careers.bdmCategory")}</Text>
             </View>
             <View style={styles.openBadge}>
-              <Text style={styles.openBadgeText}>Open</Text>
+              <Text style={styles.openBadgeText}>{t("careers.open")}</Text>
             </View>
           </View>
 
           <View style={styles.tagsRow}>
-            <Tag icon="DollarSign" label="Negotiable Salary + OTE Commission" />
-            <Tag icon="Clock" label="Flexible Hours" />
-            <Tag icon="MapPin" label="Fully Remote" />
+            <Tag icon="DollarSign" label={t("careers.negotiableSalaryOTE")} />
+            <Tag icon="Clock" label={t("careers.flexibleHoursTag")} />
+            <Tag icon="MapPin" label={t("careers.fullyRemoteTag")} />
           </View>
 
-          <SectionBlock title="About the Role">
-            <Text style={styles.paragraph}>
-              As one of our Business Development Managers at DeHub, you will be part of the driving force behind our
-              partnership strategy. Your mission is to identify, engage, and close deals with companies across both Web2
-              and Web3 — from gaming studios and content platforms to blockchain projects and DeFi protocols. This is an
-              OTE (On-Target Earnings) commission-based position: the harder you hustle, the more you earn. The role is
-              simple, bring on companies, projects, communities or any large profile accounts on to DeHub, and get paid.
-            </Text>
+          <SectionBlock title={t("careers.aboutTheRole")}>
+            <Text style={styles.paragraph}>{t("careers.bdmAbout")}</Text>
           </SectionBlock>
 
-          <SectionBlock title="Key Responsibilities">
-            <View style={{ gap: 10 }}>{BDM_RESP.map((r, i) => <Bullet key={i} {...r} />)}</View>
+          <SectionBlock title={t("careers.keyResponsibilities")}>
+            <View style={{ gap: 10 }}>{bdmResponsibilities.map((r, i) => <Bullet key={i} {...r} />)}</View>
           </SectionBlock>
 
-          <SectionBlock title="What We're Looking For">
-            <View style={{ gap: 10 }}>{BDM_REQ.map((t, i) => <Bullet key={i} icon="CircleCheckBig" text={t} />)}</View>
+          <SectionBlock title={t("careers.whatWereLooking")}>
+            <View style={{ gap: 10 }}>{bdmRequirements.map((text, i) => <Bullet key={i} icon="CircleCheckBig" text={text} />)}</View>
           </SectionBlock>
 
-          <SectionBlock title="Compensation">
-            <Text style={styles.paragraph}>
-              This role offers a negotiable base salary plus an uncapped OTE commission structure tied directly to the
-              partnerships you bring in. Top performers have unlimited earning potential.
-            </Text>
+          <SectionBlock title={t("careers.compensation")}>
+            <Text style={styles.paragraph}>{t("careers.bdmComp")}</Text>
           </SectionBlock>
 
           <Pressable style={styles.applyBtn} onPress={toggleForm}>
             <Icon name={formOpen ? "ChevronUp" : "Briefcase"} size={16} color="#FFFFFF" />
-            <Text style={styles.applyText}>{formOpen ? "Close Application" : "Apply as BDM"}</Text>
+            <Text style={styles.applyText}>{formOpen ? t("careers.closeApplication") : t("careers.applyBDM")}</Text>
           </Pressable>
 
           {formOpen && (
             <View style={styles.form}>
-              <Text style={styles.formTitle}>Your Application</Text>
-              <Field label="Full Name" required value={form.name} onChangeText={set("name")} placeholder="Jane Smith" />
-              <Field label="Email" required value={form.email} onChangeText={set("email")} placeholder="you@example.com" keyboardType="email-address" />
-              <Field label="Telegram" value={form.telegram} onChangeText={set("telegram")} placeholder="@username" />
-              <Field label="X (Twitter)" value={form.twitter} onChangeText={set("twitter")} placeholder="@username" />
-              <Field label="Instagram" value={form.instagram} onChangeText={set("instagram")} placeholder="@username" />
-              <Field label="LinkedIn" value={form.linkedin} onChangeText={set("linkedin")} placeholder="linkedin.com/in/you" />
-              <Field label="Other Socials" value={form.other_socials} onChangeText={set("other_socials")} placeholder="TikTok, YouTube, Discord, etc." />
-              <Field label="Past Experience" value={form.past_experience} onChangeText={set("past_experience")} placeholder="Tell us about your relevant BD, partnerships, or sales experience..." multiline />
-              <Field label="Why should we hire you?" value={form.why_hire_you} onChangeText={set("why_hire_you")} placeholder="What makes you the right person for this role?" multiline />
+              <Text style={styles.formTitle}>{t("careers.yourApplication")}</Text>
+              <Field label={t("careers.fullName")} required value={form.name} onChangeText={set("name")} placeholder="Jane Smith" />
+              <Field label={t("careers.email")} required value={form.email} onChangeText={set("email")} placeholder="you@example.com" keyboardType="email-address" />
+              <Field label={t("careers.telegram")} value={form.telegram} onChangeText={set("telegram")} placeholder="@username" />
+              <Field label={t("careers.xTwitter")} value={form.twitter} onChangeText={set("twitter")} placeholder="@username" />
+              <Field label={t("careers.instagram")} value={form.instagram} onChangeText={set("instagram")} placeholder="@username" />
+              <Field label={t("careers.linkedin")} value={form.linkedin} onChangeText={set("linkedin")} placeholder="linkedin.com/in/you" />
+              <Field label={t("careers.otherSocials")} value={form.other_socials} onChangeText={set("other_socials")} placeholder={t("careers.otherSocialsPlaceholder")} />
+              <Field label={t("careers.pastExperience")} value={form.past_experience} onChangeText={set("past_experience")} placeholder={t("careers.pastExperiencePlaceholder")} multiline />
+              <Field label={t("careers.whyHireYou")} value={form.why_hire_you} onChangeText={set("why_hire_you")} placeholder={t("careers.whyHireYouPlaceholder")} multiline />
               <Pressable style={[styles.submitBtn, submitting && { opacity: 0.6 }]} onPress={submit} disabled={submitting}>
                 {submitting ? (
                   <ActivityIndicator size="small" color="#000000" />
                 ) : (
                   <>
                     <Icon name="Send" size={15} color="#000000" />
-                    <Text style={styles.submitText}>Submit Application</Text>
+                    <Text style={styles.submitText}>{t("careers.submitApplication")}</Text>
                   </>
                 )}
               </Pressable>
@@ -277,47 +277,39 @@ export default function CareersScreen() {
         <View style={styles.roleCard}>
           <View style={styles.roleHead}>
             <View style={{ flex: 1 }}>
-              <Text style={styles.roleTitle}>Brand Ambassador</Text>
-              <Text style={styles.roleCategory}>Community & Evangelism</Text>
+              <Text style={styles.roleTitle}>{t("careers.ambassadorTitle")}</Text>
+              <Text style={styles.roleCategory}>{t("careers.ambassadorCategory")}</Text>
             </View>
             <View style={styles.openBadge}>
-              <Text style={styles.openBadgeText}>Open</Text>
+              <Text style={styles.openBadgeText}>{t("careers.open")}</Text>
             </View>
           </View>
 
           <View style={styles.tagsRow}>
-            <Tag icon="DollarSign" label="Negotiable Monthly Salary" />
-            <Tag icon="Clock" label="Flexible Hours" />
-            <Tag icon="MapPin" label="Fully Remote" />
+            <Tag icon="DollarSign" label={t("careers.negotiableMonthly")} />
+            <Tag icon="Clock" label={t("careers.flexibleHoursTag")} />
+            <Tag icon="MapPin" label={t("careers.fullyRemoteTag")} />
           </View>
 
-          <SectionBlock title="About the Role">
-            <Text style={styles.paragraph}>
-              As a DeHub Brand Ambassador you are the face and voice of the platform in your community. Your job is to
-              spread the word about DeHub across every channel you touch — social media, IRL meetups, gaming events,
-              university campuses, and beyond. This is a paid monthly salary role, not commission-based; you'll earn a
-              consistent income while growing alongside the platform.
-            </Text>
+          <SectionBlock title={t("careers.aboutTheRole")}>
+            <Text style={styles.paragraph}>{t("careers.ambassadorAbout")}</Text>
           </SectionBlock>
 
-          <SectionBlock title="Key Responsibilities">
-            <View style={{ gap: 10 }}>{AMB_RESP.map((r, i) => <Bullet key={i} {...r} />)}</View>
+          <SectionBlock title={t("careers.keyResponsibilities")}>
+            <View style={{ gap: 10 }}>{ambassadorResponsibilities.map((r, i) => <Bullet key={i} {...r} />)}</View>
           </SectionBlock>
 
-          <SectionBlock title="What We're Looking For">
-            <View style={{ gap: 10 }}>{AMB_REQ.map((t, i) => <Bullet key={i} icon="CircleCheckBig" text={t} />)}</View>
+          <SectionBlock title={t("careers.whatWereLooking")}>
+            <View style={{ gap: 10 }}>{ambassadorRequirements.map((text, i) => <Bullet key={i} icon="CircleCheckBig" text={text} />)}</View>
           </SectionBlock>
 
-          <SectionBlock title="Compensation">
-            <Text style={styles.paragraph}>
-              Brand Ambassadors receive a negotiable monthly salary paid consistently. Additional bonuses may be awarded
-              based on campaign performance, user sign-ups, and community growth milestones.
-            </Text>
+          <SectionBlock title={t("careers.compensation")}>
+            <Text style={styles.paragraph}>{t("careers.ambassadorComp")}</Text>
           </SectionBlock>
 
           <Pressable style={styles.applyBtn} onPress={() => openInApp(`${WEBSITE_LINK}/creators`)}>
             <Icon name="Users" size={16} color="#FFFFFF" />
-            <Text style={styles.applyText}>Apply as Brand Ambassador</Text>
+            <Text style={styles.applyText}>{t("careers.applyAmbassador")}</Text>
             <Icon name="ExternalLink" size={13} color="rgba(255,255,255,0.5)" />
           </Pressable>
         </View>
@@ -325,7 +317,7 @@ export default function CareersScreen() {
         {/* Footer */}
         <View style={styles.footer}>
           <Text style={styles.footerText}>
-            Don't see a role that fits? Reach out to us on{" "}
+            {t("careers.footerText")}{" "}
             <Text style={styles.footerLink} onPress={() => Linking.openURL(`mailto:${SUPPORT_MAIL}`)}>
               {SUPPORT_MAIL}
             </Text>

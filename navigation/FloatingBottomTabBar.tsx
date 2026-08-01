@@ -37,6 +37,7 @@ import { useAuthState, useUser } from "../context/AuthContext";
 import { useTotalUnreadMessagesCount } from "../store/dm.store";
 import { storage } from "../libs/storage";
 import { TAB_BAR_PILL_HEIGHT, TAB_BAR_SCRIM_HEIGHT } from "./tabBarLayout";
+import { useTranslation } from "react-i18next";
 
 const SCROLL_HINT_SEEN_KEY = "dehub:navScrollHintSeen";
 
@@ -52,19 +53,21 @@ const TAB_W = (NAV_WIDTH - CENTER_W - NAV_EDGE_PAD * 2) / 4;
 interface TabDef {
   name: string;
   icon: IconName;
+  labelKey: string;
   isCenter?: boolean;
 }
 
 const TABS: TabDef[] = [
-  { name: ScreenNames.Home, icon: "House" },
-  { name: ScreenNames.DM, icon: "MessageSquare" },
-  { name: ScreenNames.UploadTab, icon: "Plus", isCenter: true },
-  { name: ScreenNames.AIChat, icon: "Sparkles" },
-  { name: ScreenNames.Explore, icon: "Search" },
+  { name: ScreenNames.Home, icon: "House", labelKey: "nav.home" },
+  { name: ScreenNames.DM, icon: "MessageSquare", labelKey: "nav.messages" },
+  { name: ScreenNames.UploadTab, icon: "Plus", labelKey: "nav.create", isCenter: true },
+  { name: ScreenNames.AIChat, icon: "Sparkles", labelKey: "nav.assistant" },
+  { name: ScreenNames.Explore, icon: "Search", labelKey: "nav.explore" },
 ];
 
 interface ScrollNavItem {
   icon: IconName;
+  labelKey: string;
   screen?: string;
   url?: string;
 }
@@ -74,21 +77,21 @@ interface ScrollNavItem {
 // website for web-only pages. Web-only items with no mobile equivalent
 // (Prompt, Stages, Command Centre, Staking) are omitted.
 const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
-  { icon: "User", screen: ScreenNames.Profile },
-  { icon: "Bell", screen: ScreenNames.Notifications },
-  { icon: "CalendarDays", screen: ScreenNames.Events },
-  { icon: "Wallet", screen: ScreenNames.Dpay },
-  { icon: "ShieldCheck", screen: ScreenNames.Governance },
-  { icon: "Trophy", screen: ScreenNames.Leaderboard },
-  { icon: "Bookmark", screen: ScreenNames.MyLibrary },
-  { icon: "Settings", screen: ScreenNames.AccountSettings },
-  { icon: "Lightbulb", url: `${WEBSITE_LINK}/features` },
-  { icon: "Map", screen: ScreenNames.Guide },
-  { icon: "BookOpen", url: `${WEBSITE_LINK}/docs` },
-  { icon: "FileText", url: `${WEBSITE_LINK}/docs/blog` },
-  { icon: "Briefcase", screen: ScreenNames.Careers },
-  { icon: "Scroll", screen: ScreenNames.Glossary },
-  { icon: "Users", screen: ScreenNames.Communities },
+  { icon: "User", labelKey: "nav.profile", screen: ScreenNames.Profile },
+  { icon: "Bell", labelKey: "nav.notifications", screen: ScreenNames.Notifications },
+  { icon: "CalendarDays", labelKey: "nav.events", screen: ScreenNames.Events },
+  { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay },
+  { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
+  { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
+  { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary },
+  { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings },
+  { icon: "Lightbulb", labelKey: "nav.featureRequests", url: `${WEBSITE_LINK}/features` },
+  { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
+  { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },
+  { icon: "FileText", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
+  { icon: "Briefcase", labelKey: "nav.careers", screen: ScreenNames.Careers },
+  { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
+  { icon: "Users", labelKey: "nav.communities", screen: ScreenNames.Communities },
 ];
 
 const AUTHED_ONLY_SCREENS = new Set([
@@ -103,13 +106,14 @@ const AnimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
 const NavButton = memo<{
   icon: IconName;
+  label: string;
   isActive: boolean;
   isCenter?: boolean;
   onPress: () => void;
   index: number;
   animProgress: SharedValue<number>;
   badgeCount?: number;
-}>(({ icon, isActive, isCenter, onPress, index, animProgress, badgeCount = 0 }) => {
+}>(({ icon, label, isActive, isCenter, onPress, index, animProgress, badgeCount = 0 }) => {
   const scale = useSharedValue(1);
 
   const handlePressIn = useCallback(() => {
@@ -140,6 +144,8 @@ const NavButton = memo<{
   if (isCenter) {
     return (
       <AnimatedPressable
+        accessibilityRole="button"
+        accessibilityLabel={label}
         onPress={onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
@@ -165,6 +171,8 @@ const NavButton = memo<{
 
   return (
     <AnimatedPressable
+      accessibilityRole="button"
+      accessibilityLabel={label}
       onPress={onPress}
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
@@ -189,8 +197,8 @@ const NavButton = memo<{
   );
 });
 
-const ScrollNavButton = memo<{ icon: IconName; onPress: () => void }>(
-  ({ icon, onPress }) => {
+const ScrollNavButton = memo<{ icon: IconName; label: string; onPress: () => void }>(
+  ({ icon, label, onPress }) => {
     const scale = useSharedValue(1);
 
     const handlePressIn = useCallback(() => {
@@ -207,6 +215,8 @@ const ScrollNavButton = memo<{ icon: IconName; onPress: () => void }>(
 
     return (
       <AnimatedPressable
+        accessibilityRole="button"
+        accessibilityLabel={label}
         onPress={onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
@@ -219,6 +229,7 @@ const ScrollNavButton = memo<{ icon: IconName; onPress: () => void }>(
 );
 
 const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
@@ -443,6 +454,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
               <NavButton
                 key={tab.name}
                 icon={tab.icon}
+                label={t(tab.labelKey)}
                 isActive={isActive}
                 isCenter={tab.isCenter}
                 onPress={() => handlePress(tab.name)}
@@ -458,6 +470,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             <ScrollNavButton
               key={item.screen ?? item.url}
               icon={item.icon}
+              label={t(item.labelKey)}
               onPress={() => handleScrollItemPress(item)}
             />
           ))}
