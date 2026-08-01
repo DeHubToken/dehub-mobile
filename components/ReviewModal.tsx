@@ -354,7 +354,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
             <Ionicons
               name={star <= rating ? "star" : "star-outline"}
               size={40}
-              color={star <= rating ? "#FBBF24" : "#6B7280"}
+              color={star <= rating ? "#D4D4D8" : "#6B7280"}
             />
           </TouchableOpacity>
         ))}

@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   endBtn: {
     width: 32,
     height: 32,
-    borderRadius: 16,
+    borderRadius: 12,
     backgroundColor: "#EF4444",
     alignItems: "center",
     justifyContent: "center",

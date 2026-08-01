@@ -728,8 +728,8 @@ const NotificationScreen = () => {
             {/* Bounty available badge */}
             {item.type === NotificationType.BOUNTY_AVAILABLE && (
               <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
-                <View style={{ backgroundColor: 'rgba(245, 158, 11, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
-                  <Text style={{ color: '#fbbf24', fontSize: 12, fontWeight: '600' }}>
+                <View style={{ backgroundColor: 'rgba(255,255,255, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
+                  <Text style={{ color: '#D4D4D8', fontSize: 12, fontWeight: '600' }}>
                     💰 Claim your bounty
                   </Text>
                 </View>

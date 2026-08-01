@@ -147,7 +147,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
             Subscribe to{" "}
             <Text style={{ color: "#fff", fontWeight: "600" }}>{plan.name}</Text>{" "}
             for{" "}
-            <Text style={{ color: "#facc15", fontWeight: "600" }}>
+            <Text style={{ color: "#D4D4D8", fontWeight: "600" }}>
               {plan.price ?? 0} DHB
             </Text>{" "}
             / {formatDuration(plan.duration)}?
@@ -184,13 +184,13 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
 
 const s = StyleSheet.create({
   card: {
-    borderRadius: 16,
+    borderRadius: 12,
     overflow: "hidden",
     backgroundColor: "rgba(255,255,255,0.05)",
     marginBottom: 12,
   },
   cardBorder: {
-    borderRadius: 16,
+    borderRadius: 12,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "rgba(255,255,255,0.1)",
   },

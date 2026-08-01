@@ -221,7 +221,7 @@ const DMSettingsSection: React.FC = () => {
       <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
         {t("settings.dmSectionTitle")}
       </Text>
-      <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
+      <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
         <View className="px-4 py-3.5 flex-row items-center justify-between">
           <View className="flex-row items-center flex-1 pr-3">
             <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">

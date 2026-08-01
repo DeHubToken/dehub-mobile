@@ -52,7 +52,7 @@ const UploadAssetsSection: React.FC<UploadAssetsSectionProps> = ({
             <Image source={{ uri: thumbUri }} className="w-full h-48" resizeMode="cover" />
           ) : (
             <View className="w-full h-48 bg-zinc-900 items-center justify-center">
-              <ActivityIndicator color="#3B82F6" />
+              <ActivityIndicator color="#F4F4F5" />
             </View>
           )}
           <View className="absolute top-2 right-2 flex-row">
@@ -96,7 +96,7 @@ const UploadAssetsSection: React.FC<UploadAssetsSectionProps> = ({
                   <Image source={{ uri: (coverUri ?? thumbUri)! }} className="w-full h-40" resizeMode="cover" />
                 ) : (
                   <View className="w-full h-40 bg-zinc-900 items-center justify-center">
-                    <ActivityIndicator color="#3B82F6" />
+                    <ActivityIndicator color="#F4F4F5" />
                   </View>
                 )}
                 <View className="absolute top-2 right-2 flex-row">

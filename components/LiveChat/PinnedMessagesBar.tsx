@@ -75,7 +75,7 @@ const PinnedMessagesBar: React.FC<PinnedMessagesBarProps> = ({
                 height: segmentHeight,
                 marginBottom: i < count - 1 ? segmentGap : 0,
                 borderRadius: 1.5,
-                backgroundColor: i === safeIndex ? "#3B82F6" : "rgba(255,255,255,0.15)",
+                backgroundColor: i === safeIndex ? "#F4F4F5" : "rgba(255,255,255,0.15)",
               }}
             />
           ))}
@@ -87,7 +87,7 @@ const PinnedMessagesBar: React.FC<PinnedMessagesBarProps> = ({
               width: 2.5,
               height: 28,
               borderRadius: 1.5,
-              backgroundColor: "#3B82F6",
+              backgroundColor: "#F4F4F5",
             }}
           />
         </View>
@@ -96,7 +96,7 @@ const PinnedMessagesBar: React.FC<PinnedMessagesBarProps> = ({
       {/* Content */}
       <View className="flex-1 mr-2">
         <View className="flex-row items-center gap-1.5">
-          <Icon name="Pin" size={13} color="#3B82F6" />
+          <Icon name="Pin" size={13} color="#F4F4F5" />
           <Text className="text-blue-400 text-[11px] font-semibold">
             {count > 1 ? `Pinned Message #${safeIndex + 1}` : "Pinned Message"}
           </Text>

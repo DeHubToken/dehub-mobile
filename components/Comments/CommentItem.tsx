@@ -286,7 +286,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               left: 0,
               right: 0,
               bottom: 0,
-              backgroundColor: "rgba(59,130,246,0.12)",
+              backgroundColor: "rgba(255,255,255,0.12)",
               borderRadius: 10,
             },
             highlightAnimStyle,
@@ -323,7 +323,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                     part.isMention ? (
                       <Text
                         key={idx}
-                        style={{ fontWeight: "700", color: "#60A5FA" }}
+                        style={{ fontWeight: "700", color: "#D4D4D8" }}
                         onPress={() => handleMentionPress(part.username!)}
                         suppressHighlighting
                       >

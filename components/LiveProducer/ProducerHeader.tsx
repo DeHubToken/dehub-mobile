@@ -121,7 +121,7 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
   const dotColor = isLive
     ? "#ef4444"
     : isStarting || isEnding
-    ? "#f59e0b"
+    ? "#D4D4D8"
     : "#6b7280";
 
   return (
@@ -211,7 +211,7 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
           ) : null}
           {bitrateKbps > 0 ? (
             <View className="flex-row items-center gap-0.5">
-              <Zap color="#fbbf24" size={10} />
+              <Zap color="#D4D4D8" size={10} />
               <Text className="text-white/40 text-[10px]">
                 {bitrateKbps} kbps
               </Text>

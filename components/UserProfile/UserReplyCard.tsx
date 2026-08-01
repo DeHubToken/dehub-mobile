@@ -164,7 +164,7 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
       style={{
         borderWidth: 1,
         borderColor: "rgba(255,255,255,0.08)",
-        borderRadius: 16,
+        borderRadius: 12,
         overflow: "hidden",
         marginVertical: 4,
       }}

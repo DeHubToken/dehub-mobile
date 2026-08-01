@@ -857,7 +857,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
       {loading ? (
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#3B82F6" />
+          <ActivityIndicator size="large" color="#F4F4F5" />
         </View>
       ) : (
         <FlatList

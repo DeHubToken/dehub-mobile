@@ -179,19 +179,19 @@ const LiveChatPanel: React.FC<Props> = ({
   const usernamePalette = useMemo(
     () => [
       '#f87171', // red-400
-      '#f59e0b', // amber-500
+      '#D4D4D8', // amber-500
       '#10b981', // emerald-500
-      '#3b82f6', // blue-500
-      '#8b5cf6', // violet-500
-      '#ec4899', // pink-500
-      '#22d3ee', // cyan-400
+      '#F4F4F5', // blue-500
+      '#D4D4D8', // violet-500
+      '#D4D4D8', // pink-500
+      '#D4D4D8', // cyan-400
       '#84cc16', // lime-500
-      '#f97316', // orange-500
-      '#a855f7', // purple-500
-      '#06b6d4', // cyan-500
+      '#D4D4D8', // orange-500
+      '#D4D4D8', // purple-500
+      '#D4D4D8', // cyan-500
       '#ef4444', // red-500
-      '#14b8a6', // teal-500
-      '#0ea5e9', // sky-500
+      '#D4D4D8', // teal-500
+      '#D4D4D8', // sky-500
     ],
     []
   );
@@ -325,7 +325,7 @@ const LiveChatPanel: React.FC<Props> = ({
         style={{ bottom: inputBottom }}
         onLayout={(e) => setInputContainerHeight(e.nativeEvent.layout.height)}
       >
-        <View className="flex-row items-center bg-theme-neutrals-900 rounded-2xl px-3 py-2 border border-white/10">
+        <View className="flex-row items-center bg-theme-neutrals-900 rounded-xl px-3 py-2 border border-white/10">
           <TextInput
             value={message}
             onChangeText={setMessage}

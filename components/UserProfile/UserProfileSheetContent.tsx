@@ -532,10 +532,10 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
             className="flex-row items-center px-5 py-3.5"
           >
             <View className="w-10 h-10 rounded-full bg-white/10 items-center justify-center mr-3">
-              <Ionicons name="flag-outline" size={18} color="#F97316" />
+              <Ionicons name="flag-outline" size={18} color="#D4D4D8" />
             </View>
             <View className="flex-1">
-              <Text style={{ color: "#F97316" }} className="text-[15px] font-medium">
+              <Text style={{ color: "#D4D4D8" }} className="text-[15px] font-medium">
                 Report {profileData?.displayName || "user"}
               </Text>
               <Text className="text-theme-neutrals-500 text-xs mt-0.5">

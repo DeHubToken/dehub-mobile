@@ -58,19 +58,19 @@ const resolveProfileId = (a: ProducerChatActivity): string | undefined =>
 /** Deterministic color palette for usernames */
 const USERNAME_PALETTE = [
   "#f87171",
-  "#f59e0b",
+  "#D4D4D8",
   "#10b981",
-  "#3b82f6",
-  "#8b5cf6",
-  "#ec4899",
-  "#22d3ee",
+  "#F4F4F5",
+  "#D4D4D8",
+  "#D4D4D8",
+  "#D4D4D8",
   "#84cc16",
-  "#f97316",
-  "#a855f7",
-  "#06b6d4",
+  "#D4D4D8",
+  "#D4D4D8",
+  "#D4D4D8",
   "#ef4444",
-  "#14b8a6",
-  "#0ea5e9",
+  "#D4D4D8",
+  "#D4D4D8",
 ];
 
 const colorForUser = (key?: string): string => {

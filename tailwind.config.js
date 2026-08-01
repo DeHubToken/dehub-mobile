@@ -1,3 +1,17 @@
+const monochrome = {
+  50: "#FAFAFA",
+  100: "#F4F4F5",
+  200: "#E4E4E7",
+  300: "#D4D4D8",
+  400: "#A1A1AA",
+  500: "#71717A",
+  600: "#52525B",
+  700: "#3F3F46",
+  800: "#27272A",
+  900: "#18181B",
+  950: "#09090B",
+};
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -10,6 +24,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        blue: monochrome,
+        cyan: monochrome,
+        sky: monochrome,
+        teal: monochrome,
+        indigo: monochrome,
+        purple: monochrome,
+        violet: monochrome,
+        fuchsia: monochrome,
+        pink: monochrome,
+        rose: monochrome,
+        orange: monochrome,
+        amber: monochrome,
+        yellow: monochrome,
+        lime: monochrome,
         border: "hsl(214.3 31.8% 91.4%)",
         input: "hsl(214.3 31.8% 91.4%)",
         ring: "hsl(222.2 84% 4.9%)",
@@ -88,19 +116,7 @@ module.exports = {
             800: "hsl(155 90% 20%)" /* #05603A */,
             900: "hsl(156 88% 16%)" /* #054F31 */,
           },
-          blue: {
-            25: "hsl(198 100% 98%)" /* #F5FCFF */,
-            50: "hsl(201 100% 96%)" /* #EBF8FF */,
-            100: "hsl(203 89% 89%)" /* #CCEAFC */,
-            200: "hsl(206 88% 83%)" /* #AFD9FA */,
-            300: "hsl(211 89% 71%)" /* #74B4F7 */,
-            400: "hsl(217 91% 60%)" /* #3B82F6 */,
-            500: "hsl(218 70% 52%)" /* #306FDB */,
-            600: "hsl(220 70% 43%)" /* #2153B8 */,
-            700: "hsl(222 75% 33%)" /* #153B94 */,
-            800: "hsl(223 80% 24%)" /* #0C286E */,
-            900: "hsl(225 87% 15%)" /* #051647 */,
-          },
+          blue: monochrome,
           sky: {
             25: "hsl(192 100% 99%)" /* #FAFEFF */,
             50: "hsl(198 100% 98%)" /* #F5FCFF */,
@@ -126,9 +142,9 @@ module.exports = {
             900: "hsl(210 67% 1%)" /* #010305 */,
           },
           accent: {
-            DEFAULT: "#3B82F6",
-            foreground: "#FFFFFF",
-            secondary: "#62B0F0"
+            DEFAULT: "#F4F4F5",
+            foreground: "#09090B",
+            secondary: "#A1A1AA"
           },
         },
       },

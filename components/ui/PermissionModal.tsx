@@ -113,7 +113,7 @@ const PermissionModalProvider: React.FC = memo(() => {
     >
       <View className="items-center px-6 pt-8 pb-6">
         <View className="w-16 h-16 rounded-full bg-white/10 items-center justify-center mb-5">
-          <Ionicons name={config.icon} size={30} color="#3B82F6" />
+          <Ionicons name={config.icon} size={30} color="#F4F4F5" />
         </View>
 
         <Text className="text-white text-lg font-bold text-center mb-2">

@@ -393,7 +393,7 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
       <View className="px-0 pt-3">
         <TouchableOpacity
           activeOpacity={0.9}
-          className="border border-theme-neutrals-800 rounded-2xl overflow-hidden"
+          className="border border-theme-neutrals-800 rounded-xl overflow-hidden"
           onPress={handleFeedPress}
         >
           {/* Header */}
@@ -470,7 +470,7 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
                     activeOpacity={0.85}
                     className={`px-3 py-1.5 rounded-lg bg-transparent ${followLoading ? "opacity-60" : ""}`}
                   >
-                    <Text className="text-theme-neutrals-900 text-xs font-semibold">
+                    <Text className="text-white text-xs font-semibold">
                       Follow
                     </Text>
                   </TouchableOpacity>
@@ -538,7 +538,7 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
               <Ionicons
                 name="bookmark"
                 size={24}
-                color={saved ? "#FACC15" : "#9CA3AF"}
+                color={saved ? "#D4D4D8" : "#9CA3AF"}
               />
             </TouchableOpacity>
             <TouchableOpacity

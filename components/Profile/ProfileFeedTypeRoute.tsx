@@ -9,6 +9,7 @@ import {
 } from "../../services/feed.unified.service";
 import type { GetNFTsResponse, GetNFTsResult } from "../../services/nft.service";
 import { useAuthState } from "../../context/AuthContext";
+import ProfileEmptyState, { type ProfileEmptyStateKind } from "./ProfileEmptyState";
 
 interface ProfileFeedTypeRouteProps {
   address?: string;
@@ -16,13 +17,26 @@ interface ProfileFeedTypeRouteProps {
   postType: FeedPostType;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
   listHeader?: React.ReactNode;
+  emptyKind?: ProfileEmptyStateKind;
+  emptyTitle?: string;
+  emptySubtitle?: string;
+  onBeforeNavigate?: () => void;
 }
 
 /**
  * A profile content tab that lists a single feed post type (Posts, Audio, …)
  * using the unified feed endpoint. Mirrors FeedRoute but scoped to one type.
  */
-const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({ address, postType, onScroll, listHeader }) => {
+const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
+  address,
+  postType,
+  onScroll,
+  listHeader,
+  emptyKind = "songs",
+  emptyTitle = "No audio yet",
+  emptySubtitle = "Audio tracks will appear here",
+  onBeforeNavigate,
+}) => {
   const { isSignedIn } = useAuthState();
 
   const fetchPage = useCallback(
@@ -54,11 +68,22 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({ address, po
         enableBackToTop={false}
         onScroll={onScroll}
         headerComponent={listHeader}
+        emptyComponent={(
+          <ProfileEmptyState
+            kind={emptyKind}
+            title={emptyTitle}
+            subtitle={emptySubtitle}
+          />
+        )}
         // isVisible must be forwarded or FeedCard falls back to its own
         // `true` default and every windowed row attaches a video player.
         renderItem={({ item, isVisible }) => (
           <View className={listHeader ? 'px-4' : undefined}>
-            <FeedCard item={item as UnifiedFeedItem} isVisible={isVisible} />
+            <FeedCard
+              item={item as UnifiedFeedItem}
+              isVisible={isVisible}
+              onBeforeNavigate={onBeforeNavigate}
+            />
           </View>
         )}
       />

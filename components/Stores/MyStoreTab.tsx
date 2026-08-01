@@ -794,7 +794,7 @@ const styles = StyleSheet.create({
   emptyTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "700", marginTop: 12 },
 
   storeHeader: {
-    borderRadius: 16,
+    borderRadius: 12,
     overflow: "hidden",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.12)",

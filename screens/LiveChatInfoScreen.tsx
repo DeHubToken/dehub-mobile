@@ -295,7 +295,7 @@ const LiveChatInfoScreen: React.FC = () => {
       >
         <View className="items-center pt-6 pb-4 px-4">
           <View className="w-16 h-16 bg-blue-500/20 rounded-full items-center justify-center mb-3">
-            <Ionicons name="chatbubbles" size={28} color="#3B82F6" />
+            <Ionicons name="chatbubbles" size={28} color="#F4F4F5" />
           </View>
           <Text className="text-white text-lg font-bold">{room?.name || "Public Chat"}</Text>
           {room?.description ? (
@@ -303,7 +303,7 @@ const LiveChatInfoScreen: React.FC = () => {
           ) : null}
         </View>
 
-        <View className="mx-4 bg-white/5 rounded-2xl overflow-hidden mb-2">
+        <View className="mx-4 bg-white/5 rounded-xl overflow-hidden mb-2">
           <InfoRow
             icon="people-outline"
             label="Online"
@@ -340,7 +340,7 @@ const LiveChatInfoScreen: React.FC = () => {
               title={t("screens.pinnedMessages")}
               count={room.pinnedMessages.length}
             />
-            <View className="mx-4 bg-white/5 rounded-2xl overflow-hidden">
+            <View className="mx-4 bg-white/5 rounded-xl overflow-hidden">
               {room.pinnedMessages.map((msg, idx) => (
                 <React.Fragment key={msg._id || (msg as any).id || `pin-${idx}`}>
                   {idx > 0 && <View className="h-px bg-white/5 mx-4" />}
@@ -372,7 +372,7 @@ const LiveChatInfoScreen: React.FC = () => {
           title={t("screens.participants")}
           count={passedParticipants.length}
         />
-        <View className="mx-4 bg-white/5 rounded-2xl overflow-hidden">
+        <View className="mx-4 bg-white/5 rounded-xl overflow-hidden">
           {passedParticipants.length === 0 ? (
             <View className="items-center py-6">
               <Text className="text-white/30 text-sm">No participants yet</Text>
@@ -392,9 +392,9 @@ const LiveChatInfoScreen: React.FC = () => {
           icon="shield-checkmark-outline"
           title={t("screens.moderators")}
           count={room?.moderators?.length || 0}
-          iconColor="#F59E0B"
+          iconColor="#D4D4D8"
         />
-        <View className="mx-4 bg-white/5 rounded-2xl overflow-hidden">
+        <View className="mx-4 bg-white/5 rounded-xl overflow-hidden">
           {profilesLoading && modProfiles.length === 0 ? (
             <View className="items-center py-6">
               <ActivityIndicator size="small" color="rgba(255,255,255,0.3)" />
@@ -421,7 +421,7 @@ const LiveChatInfoScreen: React.FC = () => {
               count={room?.bannedUsers?.length || 0}
               iconColor="#EF4444"
             />
-            <View className="mx-4 bg-white/5 rounded-2xl overflow-hidden mb-8">
+            <View className="mx-4 bg-white/5 rounded-xl overflow-hidden mb-8">
               {profilesLoading && bannedProfiles.length === 0 ? (
                 <View className="items-center py-6">
                   <ActivityIndicator size="small" color="rgba(255,255,255,0.3)" />

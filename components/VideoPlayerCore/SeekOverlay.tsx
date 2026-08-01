@@ -29,7 +29,7 @@ const SeekOverlay: React.FC<SeekOverlayProps> = ({
       accessibilityElementsHidden
       importantForAccessibility="no-hide-descendants"
     >
-      <View className="bg-black/70 px-6 py-4 rounded-2xl items-center">
+      <View className="bg-black/70 px-6 py-4 rounded-xl items-center">
         <Ionicons name={iconName} size={32} color="#fff" />
         <Text className="text-white font-bold text-lg mt-1">{label}s</Text>
       </View>

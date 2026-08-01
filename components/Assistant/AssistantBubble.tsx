@@ -117,7 +117,7 @@ const s = StyleSheet.create({
     marginTop: 2,
   },
   content: {
-    borderRadius: 16,
+    borderRadius: 12,
     paddingHorizontal: 14,
     paddingVertical: 10,
     maxWidth: '100%',

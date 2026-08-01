@@ -784,10 +784,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               </View>
             </View>
             <View className="flex-row gap-3 mb-3">
-              <View className="w-14 h-14 rounded-2xl bg-black/40 border border-white/10 items-center justify-center">
+              <View className="w-14 h-14 rounded-xl bg-black/40 border border-white/10 items-center justify-center">
                 <Icon name="Ticket" size={24} color="#fff" />
               </View>
-              <View className="w-14 h-14 rounded-2xl bg-black/40 border border-white/10 items-center justify-center">
+              <View className="w-14 h-14 rounded-xl bg-black/40 border border-white/10 items-center justify-center">
                 <Icon name="Lock" size={24} color="#fff" />
               </View>
             </View>
@@ -821,7 +821,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 {formatCompactNumber(payPerViewAmount)} {payPerViewTokenSymbol}
               </Text>
             </View>
-            <View className="w-16 h-16 rounded-2xl bg-black/40 border border-white/10 items-center justify-center mb-3">
+            <View className="w-16 h-16 rounded-xl bg-black/40 border border-white/10 items-center justify-center mb-3">
               <Icon name="Ticket" size={28} color="#fff" />
             </View>
             <Text className="text-white font-semibold text-sm mb-1">Pay-Per-View Content</Text>
@@ -854,7 +854,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 {formatCompactNumber(lockContentAmount)} {lockContentTokenSymbol}
               </Text>
             </View>
-            <View className="w-16 h-16 rounded-2xl bg-black/40 border border-white/10 items-center justify-center mb-3">
+            <View className="w-16 h-16 rounded-xl bg-black/40 border border-white/10 items-center justify-center mb-3">
               <Icon name="Lock" size={28} color="#fff" />
             </View>
             <Text className="text-white font-semibold text-sm mb-1">Holdings Required</Text>
@@ -1098,7 +1098,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.12)',
         backgroundColor: 'rgba(255,255,255,0.03)',
-        borderRadius: 16,
+        borderRadius: 12,
         paddingTop: 12,
         paddingHorizontal: 12,
         paddingBottom: 24,

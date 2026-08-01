@@ -25,7 +25,7 @@ const DpayAbout: React.FC<DpayAboutProps> = ({ defaultOpen = false }) => {
   const toggle = React.useCallback(() => setOpen((v) => !v), []);
 
   return (
-    <View className="mt-4 rounded-2xl border border-theme-neutrals-700/60 bg-theme-neutrals-800">
+    <View className="mt-4 rounded-xl border border-theme-neutrals-700/60 bg-theme-neutrals-800">
       <TouchableOpacity
         onPress={toggle}
         activeOpacity={0.85}

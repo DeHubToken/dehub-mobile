@@ -250,7 +250,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       <View className="flex-1 bg-theme-neutrals-900">
         {!embedded && <ScreenHeader title={t('settings.accountPrivacy')} canGoBack />}
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#8b5cf6" />
+          <ActivityIndicator size="large" color="#D4D4D8" />
         </View>
       </View>
     );
@@ -262,7 +262,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
         <ScreenHeader
           title={t('settings.accountPrivacy')}
           canGoBack
-          rightContent={saving ? <ActivityIndicator size="small" color="#8b5cf6" /> : undefined}
+          rightContent={saving ? <ActivityIndicator size="small" color="#D4D4D8" /> : undefined}
         />
       )}
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 32 }}>
@@ -272,7 +272,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
           <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
             {t('settings.accountVisibility')}
           </Text>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
+          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
             <View className="px-4 py-3.5 flex-row items-center justify-between">
               <View className="flex-row items-center flex-1 pr-3">
                 <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
@@ -324,7 +324,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
           <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
             {t('settings.postVisibility')}
           </Text>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
+          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
             <TouchableOpacity
               onPress={() => setShowPostVisModal(true)}
               activeOpacity={0.7}
@@ -353,7 +353,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
           <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
             {t('settings.followerVisibilitySection')}
           </Text>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
+          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
             <TouchableOpacity
               onPress={() => setShowFollowerVisModal(true)}
               activeOpacity={0.7}
@@ -402,7 +402,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
         <View className="p-5">
           <View className="items-center mb-4">
             <View className="w-14 h-14 rounded-full bg-amber-500/20 items-center justify-center">
-              <Icon name="Users" size={28} color="#f59e0b" />
+              <Icon name="Users" size={28} color="#D4D4D8" />
             </View>
           </View>
           <Text className="text-white font-bold text-lg text-center mb-2">
@@ -471,7 +471,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
         <View className="flex-1">
           <View className="px-5 pt-4 pb-3 flex-row items-center justify-between border-b border-white/10">
             <Text className="text-white font-bold text-base">{t('settings.followRequests')}</Text>
-            {requestsLoading && <ActivityIndicator size="small" color="#8b5cf6" />}
+            {requestsLoading && <ActivityIndicator size="small" color="#D4D4D8" />}
           </View>
           {requests.length === 0 && !requestsLoading ? (
             <View className="flex-1 items-center justify-center py-12">
@@ -504,7 +504,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                       )}
                     </View>
                     {busy ? (
-                      <ActivityIndicator size="small" color="#8b5cf6" />
+                      <ActivityIndicator size="small" color="#D4D4D8" />
                     ) : (
                       <View className="flex-row gap-2">
                         <TouchableOpacity
@@ -559,7 +559,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                 <Text className="text-theme-neutrals-500 text-xs mt-0.5">{opt.desc}</Text>
               </View>
               {followerVisibility === opt.value && (
-                <Icon name="Check" size={18} color="#8b5cf6" />
+                <Icon name="Check" size={18} color="#D4D4D8" />
               )}
             </TouchableOpacity>
           ))}
@@ -593,7 +593,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                 <Text className="text-theme-neutrals-500 text-xs mt-0.5">{opt.desc}</Text>
               </View>
               {defaultPostVisibility === opt.value && (
-                <Icon name="Check" size={18} color="#8b5cf6" />
+                <Icon name="Check" size={18} color="#D4D4D8" />
               )}
             </TouchableOpacity>
           ))}

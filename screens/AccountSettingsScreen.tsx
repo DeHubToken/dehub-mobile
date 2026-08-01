@@ -104,7 +104,7 @@ const SectionLabel: React.FC<{ label: string }> = ({ label }) => (
 );
 
 const SectionCard: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
+  <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
     {children}
   </View>
 );
@@ -504,7 +504,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
         <View className="flex-1">
           <View className="px-5 pt-4 pb-3 flex-row items-center justify-between border-b border-white/10">
             <Text className="text-white font-bold text-base">{t("screens.freeDmAccessList")}</Text>
-            {freeAccessLoading && <ActivityIndicator size="small" color="#8b5cf6" />}
+            {freeAccessLoading && <ActivityIndicator size="small" color="#D4D4D8" />}
           </View>
           <Text className="text-theme-neutrals-500 text-xs px-5 pt-3 pb-1">
             {t("screens.freeDmAccessModalDesc")}

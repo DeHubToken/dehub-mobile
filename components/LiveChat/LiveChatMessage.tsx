@@ -53,7 +53,7 @@ const renderLinkedText = (text: string) => {
     parts.push(
       <Text
         key={match.index}
-        style={{ color: "#60A5FA" }}
+        style={{ color: "#D4D4D8" }}
         onPress={() => openInApp(url)}
       >
         {url}
@@ -154,7 +154,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: "rgba(59, 130, 246, 0.12)",
+            backgroundColor: "rgba(255,255,255, 0.12)",
             borderRadius: 10,
           },
           highlightStyle,
@@ -176,7 +176,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
           </Text>
           {message.isPinned && (
             <View className="flex-row items-center bg-amber-500/15 rounded px-1.5 py-0.5 gap-0.5">
-              <Icon name="Pin" size={9} color="#F59E0B" />
+              <Icon name="Pin" size={9} color="#D4D4D8" />
               <Text className="text-amber-400 text-[9px] font-bold">Pinned</Text>
             </View>
           )}

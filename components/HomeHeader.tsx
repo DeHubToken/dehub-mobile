@@ -7,7 +7,6 @@ import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { getAvatarUrl } from "../libs/misc";
-import { theme } from "../theme";
 
 interface HomeHeaderProps {
   onLogoPress?: () => void;
@@ -26,36 +25,20 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
     navigation.navigate(ScreenNames.Notifications);
   }, [navigation]);
 
-  const handleSignInPress = useCallback(() => {
-    navigation.navigate(ScreenNames.SignIn);
-  }, [navigation]);
-
   return (
-    <View className="flex-row items-center justify-between px-4 py-3">
-      <TouchableOpacity
-        onPress={onMenuPress}
-        activeOpacity={0.7}
-        className="w-9 h-9 items-center justify-center"
-      >
-        {isSignedIn ? (
-          <Avatar uri={avatarUrl} size={32} name={user?.displayName || user?.username} />
-        ) : (
-          <Icon name="Menu" size={24} color="#E5E7EB" />
-        )}
-      </TouchableOpacity>
-
+    <View className="flex-row items-center justify-between px-4 h-11">
       <TouchableOpacity onPress={onLogoPress} activeOpacity={0.7}>
         <SmartImage
-          source={require("../assets/web-icons/dehub-logo-compact.png")}
-          style={{ width: 32, height: 32 }}
+          source={require("../assets/web-icons/dehub-logo-white.png")}
+          style={{ width: 93, height: 28 }}
           contentFit="contain"
           cachePolicy="memory-disk"
           transition={150}
         />
       </TouchableOpacity>
 
-      <View className="flex-row items-center gap-1">
-        {isSignedIn ? (
+      <View className="flex-row items-center gap-3">
+        {isSignedIn && (
           <TouchableOpacity
             onPress={handleNotificationPress}
             activeOpacity={0.7}
@@ -63,24 +46,26 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
           >
             <Icon name="Bell" size={24} color="#E5E7EB" />
             {hasUnread && (
-              <View
-                className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full"
-                style={{ backgroundColor: theme.colors.accent }}
-                pointerEvents="none"
-              />
+              <View className="absolute -top-0.5 -right-1 min-w-[18px] h-[18px] px-1 bg-red-500 rounded-md items-center justify-center" pointerEvents="none">
+                <Text className="text-white text-[10px] font-bold">
+                  {(user?.notificationCount || 0) > 99 ? "99+" : user?.notificationCount}
+                </Text>
+              </View>
             )}
           </TouchableOpacity>
-        ) : (
-          <View className="w-9 h-9 items-center justify-center">
-            <Icon
-              name="LogIn"
-              size={24}
-              color="#E5E7EB"
-              tooltip="Sign In"
-              onPress={handleSignInPress}
-            />
-          </View>
         )}
+        <TouchableOpacity
+          onPress={onMenuPress}
+          activeOpacity={0.7}
+          accessibilityLabel="Open menu"
+          className="w-8 h-8 items-center justify-center"
+        >
+          {isSignedIn ? (
+            <Avatar uri={avatarUrl} size={27} name={user?.displayName || user?.username} />
+          ) : (
+            <Icon name="Menu" size={31} color="#FFFFFF" />
+          )}
+        </TouchableOpacity>
       </View>
     </View>
   );

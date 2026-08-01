@@ -161,7 +161,7 @@ const SavedPostsScreen: React.FC = () => {
         <View style={styles.folderCardContent}>
           <View style={styles.folderHeader}>
             <View style={styles.folderIconContainer}>
-              <Icon name="Folder" size={32} color="#FACC15" />
+              <Icon name="Folder" size={32} color="#D4D4D8" />
             </View>
             <TouchableOpacity
               onPress={() => {
@@ -365,7 +365,7 @@ const SavedPostsScreen: React.FC = () => {
         <View style={{ flex: 1 }}>
           {loadingFolders ? (
             <View style={styles.centerSpinner}>
-              <ActivityIndicator size="large" color="#FACC15" />
+              <ActivityIndicator size="large" color="#D4D4D8" />
             </View>
           ) : (
             <FlatList
@@ -385,7 +385,7 @@ const SavedPostsScreen: React.FC = () => {
                   style={styles.createCard}
                   activeOpacity={0.8}
                 >
-                  <Icon name="FolderPlus" size={24} color="#FACC15" />
+                  <Icon name="FolderPlus" size={24} color="#D4D4D8" />
                   <Text style={styles.createCardText}>New Collection</Text>
                 </TouchableOpacity>
               }
@@ -619,19 +619,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",
     borderStyle: "dashed",
-    borderRadius: 16,
+    borderRadius: 12,
     paddingVertical: 16,
     marginBottom: 16,
   },
   createCardText: {
-    color: "#FACC15",
+    color: "#D4D4D8",
     fontSize: 14,
     fontWeight: "600",
   },
   folderCard: {
     width: "48%",
     backgroundColor: "rgba(255,255,255,0.04)",
-    borderRadius: 16,
+    borderRadius: 12,
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.06)",
     marginBottom: 16,
@@ -650,7 +650,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 12,
-    backgroundColor: "rgba(250,204,21,0.08)",
+    backgroundColor: "rgba(255,255,255,0.08)",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -733,7 +733,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 46,
     borderRadius: 12,
-    backgroundColor: "#FACC15",
+    backgroundColor: "#D4D4D8",
     alignItems: "center",
     justifyContent: "center",
   },

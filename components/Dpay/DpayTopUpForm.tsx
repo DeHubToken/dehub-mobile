@@ -367,7 +367,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
   ]);
 
   return (
-    <View className="bg-theme-neutrals-800 rounded-2xl p-5 border border-theme-neutrals-700/60">
+    <View className="bg-theme-neutrals-800 rounded-xl p-5 border border-theme-neutrals-700/60">
       <Text className="text-white text-xl font-semibold mb-1">Top Up</Text>
       <Text className="text-gray-300 text-[11px] mb-4">
         Buy $DHB using card and get free gas to use instantly
@@ -533,7 +533,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
                   <TouchableOpacity
                     onPress={onCloseConfirm}
                     activeOpacity={0.9}
-                    className="rounded-2xl bg-theme-neutrals-800 border border-theme-neutrals-700 py-3 items-center"
+                    className="rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 py-3 items-center"
                   >
                     <Text className="text-white text-sm font-semibold">
                       Cancel

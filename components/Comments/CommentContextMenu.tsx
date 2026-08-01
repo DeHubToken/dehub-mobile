@@ -372,7 +372,7 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
         }}
       >
         <Pressable onPress={onClose}>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden">
+          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden">
             <FloatingComment comment={comment} isReply={isReply} liked={liked} />
           </View>
         </Pressable>
@@ -390,7 +390,7 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
         }}
       >
         <Pressable>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden py-1">
+          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden py-1">
             {onReply && (
               <ActionRow icon="MessageSquare" label="Reply" onPress={handleReply} />
             )}

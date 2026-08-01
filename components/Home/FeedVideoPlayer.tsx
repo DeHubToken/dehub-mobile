@@ -657,7 +657,7 @@ const styles = StyleSheet.create({
   spinner: {
     width: 32,
     height: 32,
-    borderRadius: 16,
+    borderRadius: 12,
     borderWidth: 2,
     borderColor: "rgba(255,255,255,0.3)",
     borderTopColor: "#fff",
@@ -692,7 +692,7 @@ const styles = StyleSheet.create({
   gatedIconBox: {
     width: 56,
     height: 56,
-    borderRadius: 16,
+    borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
@@ -702,7 +702,7 @@ const styles = StyleSheet.create({
   gatedIconBoxLarge: {
     width: 64,
     height: 64,
-    borderRadius: 16,
+    borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",

@@ -194,7 +194,7 @@ const BridgeTab: React.FC = () => {
     <View className="flex-1">
       {/* Balance stats */}
       <View className="flex-row gap-3 mb-5">
-        <View className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-4">
+        <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
           <Text className="text-white/50 text-[10px] uppercase tracking-wider mb-1">
             Base
           </Text>
@@ -205,7 +205,7 @@ const BridgeTab: React.FC = () => {
           )}
           <Text className="text-white/40 text-[10px] mt-0.5">DHB</Text>
         </View>
-        <View className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-4">
+        <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
           <Text className="text-white/50 text-[10px] uppercase tracking-wider mb-1">
             BNB Chain
           </Text>
@@ -219,7 +219,7 @@ const BridgeTab: React.FC = () => {
       </View>
 
       {/* Bridge card */}
-      <View className="bg-white/5 border border-white/10 rounded-2xl p-4 mb-4">
+      <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
         <Text className="text-white font-semibold text-base mb-4">Bridge DHB</Text>
 
         {/* Direction display */}
@@ -300,9 +300,9 @@ const BridgeTab: React.FC = () => {
       </View>
 
       {/* Info note */}
-      <View className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-4 mb-4">
+      <View className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 mb-4">
         <View className="flex-row items-center gap-2 mb-2">
-          <Ionicons name="information-circle-outline" size={16} color="#60a5fa" />
+          <Ionicons name="information-circle-outline" size={16} color="#D4D4D8" />
           <Text className="text-blue-400 font-semibold text-sm">How it works</Text>
         </View>
         <Text className="text-white/60 text-xs leading-5">
@@ -313,7 +313,7 @@ const BridgeTab: React.FC = () => {
       </View>
 
       {/* Recent bridges */}
-      <View className="bg-white/[0.03] border border-white/10 rounded-2xl p-4 mb-4">
+      <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4">
         <Text className="text-white/50 text-xs uppercase tracking-wider mb-3">
           Your recent bridges
         </Text>
@@ -367,7 +367,7 @@ const BridgeTab: React.FC = () => {
       </View>
 
       {/* Manual bridge address */}
-      <View className="bg-white/[0.03] border border-white/10 rounded-2xl p-4">
+      <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4">
         <Text className="text-white/50 text-xs mb-2">
           Bridge relay address (send DHB here on source chain):
         </Text>

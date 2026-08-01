@@ -5,6 +5,7 @@ import PlanFormSheet from "../Subscription/PlanFormSheet";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import Icon from "../ui/Icon";
 import { getPlans, type SubscriptionPlan } from "../../services/subscription.service";
+import ProfileEmptyState from "./ProfileEmptyState";
 
 interface SubscribersRouteProps {
   address?: string;
@@ -103,35 +104,29 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
         ListEmptyComponent={
           isOwnProfile ? (
             <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 40, paddingHorizontal: 24 }}>
-              <Icon name="Star" size={48} color="#52525b" />
-              <Text style={{ color: "#fff", fontSize: 18, fontWeight: "700", marginTop: 12 }}>
-                Subscriber Content
-              </Text>
-              <Text style={{ color: "#71717a", fontSize: 13, marginTop: 4, textAlign: "center" }}>
-                Create subscription plans to offer exclusive content to your subscribers
-              </Text>
-              <View style={{ marginTop: 16 }}>
+              <ProfileEmptyState
+                kind="subscribers"
+                title="Subscriber content"
+                subtitle="Create plans to offer exclusive content to subscribers"
+              />
+              <View style={{ marginTop: -20 }}>
                 <AccentButtonGradient>
                   <TouchableOpacity
                     onPress={handleCreatePress}
                     activeOpacity={0.7}
                     style={{ paddingHorizontal: 24, paddingVertical: 10 }}
                   >
-                    <Text style={{ color: "#000", fontSize: 14, fontWeight: "700" }}>Create Your First Plan</Text>
+                    <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "700" }}>Create Your First Plan</Text>
                   </TouchableOpacity>
                 </AccentButtonGradient>
               </View>
             </View>
           ) : (
-            <View style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
-              <Icon name="Star" size={48} color="#52525b" />
-              <Text style={{ color: "#a1a1aa", fontSize: 15, fontWeight: "600", marginTop: 12 }}>
-                No subscription plans
-              </Text>
-              <Text style={{ color: "#71717a", fontSize: 13, marginTop: 4 }}>
-                This creator hasn't set up any plans yet
-              </Text>
-            </View>
+            <ProfileEmptyState
+              kind="subscribers"
+              title="No subscription plans"
+              subtitle="This creator hasn't set up any plans yet"
+            />
           )
         }
         ListHeaderComponent={
@@ -141,10 +136,10 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
               <TouchableOpacity
                 onPress={handleCreatePress}
                 activeOpacity={0.7}
-                className="flex-row items-center justify-center gap-2 bg-blue-600/20 border border-blue-600/40 rounded-xl py-3 mb-3"
+                className="flex-row items-center justify-center gap-2 bg-white/10 border border-white/20 rounded-xl py-3 mb-3"
               >
-                <Icon name="Plus" size={16} color="#60a5fa" />
-                <Text className="text-blue-400 font-semibold text-sm">Add New Plan</Text>
+                <Icon name="Plus" size={16} color="#FFFFFF" />
+                <Text className="text-white font-semibold text-sm">Add New Plan</Text>
               </TouchableOpacity>
             ) : null}
           </>

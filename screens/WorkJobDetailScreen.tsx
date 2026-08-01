@@ -60,7 +60,7 @@ const num = (n: number, max = 4) =>
 const STATUS_STYLE: Record<string, { bg: string; fg: string }> = {
   open: { bg: "rgba(16,185,129,0.20)", fg: "#6EE7B7" },
   disputed: { bg: "rgba(239,68,68,0.20)", fg: "#FCA5A5" },
-  completed: { bg: "rgba(59,130,246,0.20)", fg: "#BFDBFE" },
+  completed: { bg: "rgba(255,255,255,0.20)", fg: "#BFDBFE" },
 };
 const statusStyle = (s: WorkJobStatus) =>
   STATUS_STYLE[s] ?? { bg: "rgba(255,255,255,0.10)", fg: "#A1A1AA" };
@@ -90,8 +90,8 @@ const Stars: React.FC<{ value: number; size?: number; onPick?: (n: number) => vo
         <Icon
           name="Star"
           size={size}
-          color={n <= value ? "#FBBF24" : "#3F3F46"}
-          fill={n <= value ? "#FBBF24" : "transparent"}
+          color={n <= value ? "#D4D4D8" : "#3F3F46"}
+          fill={n <= value ? "#D4D4D8" : "transparent"}
         />
       </Pressable>
     ))}
@@ -683,7 +683,7 @@ const styles = StyleSheet.create({
   headerTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "700", flex: 1 },
 
   card: {
-    borderRadius: 16,
+    borderRadius: 12,
     backgroundColor: "rgba(255,255,255,0.04)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.10)",

@@ -3,16 +3,18 @@ import { View, ScrollView, FlatList, ActivityIndicator, Text, type NativeSynthet
 import { apiClient } from "../../libs";
 import FeedCard from "../Home/FeedCard";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
+import ProfileEmptyState from "./ProfileEmptyState";
 
 interface PinnedRouteProps {
   address?: string;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
   listHeader?: React.ReactElement | null;
+  onBeforeNavigate?: () => void;
 }
 
 const PAGE_SIZE = 20;
 
-const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll, listHeader }) => {
+const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll, listHeader, onBeforeNavigate }) => {
   const [items, setItems] = useState<UnifiedFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -85,10 +87,11 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll, listHeader
     return (
       <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
-        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 60 }}>
-          <Text style={{ color: "#71717a", fontSize: 14 }}>No pinned posts yet</Text>
-          <Text style={{ color: "#52525b", fontSize: 12, marginTop: 4 }}>Pinned posts will appear here</Text>
-        </View>
+        <ProfileEmptyState
+          kind="pinned"
+          title="No pinned posts yet"
+          subtitle="Pinned posts will appear here"
+        />
       </ScrollView>
     );
   }
@@ -97,7 +100,9 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll, listHeader
     <FlatList
       data={items}
       keyExtractor={(item, idx) => `${item.tokenId ?? idx}`}
-      renderItem={({ item }) => <FeedCard item={item} />}
+      renderItem={({ item }) => (
+        <FeedCard item={item} onBeforeNavigate={onBeforeNavigate} />
+      )}
       ListHeaderComponent={listHeader}
       contentContainerStyle={{ paddingHorizontal: 8, paddingTop: 8, paddingBottom: 80 }}
       onScroll={onScroll}

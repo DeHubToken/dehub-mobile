@@ -14,7 +14,7 @@ const Card: React.FC<{
   className?: string;
 }> = ({ title, children, className }) => (
   <View
-    className={`bg-theme-neutrals-800 rounded-2xl p-4 border border-theme-neutrals-700/60 ${
+    className={`bg-theme-neutrals-800 rounded-xl p-4 border border-theme-neutrals-700/60 ${
       className || ""
     }`}
   >

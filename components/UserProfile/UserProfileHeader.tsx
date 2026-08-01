@@ -250,11 +250,11 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   return (
     <View>
       <TouchableOpacity activeOpacity={0.8} onPress={() => onOpenImage("cover")}>
-        <View className="mx-4 rounded-2xl overflow-hidden" style={{ height: 140 }}>
+        <View className="mx-4 rounded-xl overflow-hidden" style={{ height: 140 }}>
           <ImageBackground
             source={coverUrl === "default-banner" ? FallbackBanner : { uri: coverUrl as string }}
             style={{ width: "100%", height: "100%" }}
-            imageStyle={{ borderRadius: 16 }}
+            imageStyle={{ borderRadius: 12 }}
             resizeMode="cover"
           />
         </View>
