@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
   retryBtn: { marginTop: 14, paddingHorizontal: 20, paddingVertical: 8, borderRadius: 12, backgroundColor: "#27272A" },
   retryText: { color: "#FAFAFA", fontSize: 13, fontWeight: "600" },
   card: {
-    borderRadius: 16,
+    borderRadius: 12,
     backgroundColor: "rgba(255,255,255,0.04)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.07)",

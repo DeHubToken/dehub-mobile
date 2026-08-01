@@ -84,7 +84,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
     [type]
   );
 
-  const accentColor = type === "content" ? "#FBBF24" : "#F97316";
+  const accentColor = type === "content" ? "#D4D4D8" : "#D4D4D8";
 
   const headerConfig = useMemo(
     () =>
@@ -93,7 +93,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
             title: "Report Video",
             subtitle: "Why are you reporting this video?",
             icon: "flag-outline" as keyof typeof Ionicons.glyphMap,
-            iconColor: "#FBBF24",
+            iconColor: "#D4D4D8",
             iconBg: "bg-yellow-500/15",
             successMessage:
               "Thank you for helping keep the community safe. We'll review this content and take appropriate action.",
@@ -104,7 +104,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
               ? `Why are you reporting ${userName}?`
               : "Why are you reporting this user?",
             icon: "person-remove-outline" as keyof typeof Ionicons.glyphMap,
-            iconColor: "#F97316",
+            iconColor: "#D4D4D8",
             iconBg: "bg-orange-500/15",
             successMessage:
               "Thank you for your report. We'll review this account and take appropriate action.",

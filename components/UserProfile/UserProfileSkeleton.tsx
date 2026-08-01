@@ -6,7 +6,7 @@ const UserProfileSkeleton: React.FC = () => {
   return (
     <View>
       {/* Cover image */}
-      <View className="mx-4 rounded-2xl overflow-hidden" style={{ height: 140 }}>
+      <View className="mx-4 rounded-xl overflow-hidden" style={{ height: 140 }}>
         <View className="w-full h-full bg-theme-neutrals-800 animate-pulse" />
       </View>
 
@@ -15,7 +15,7 @@ const UserProfileSkeleton: React.FC = () => {
         <View className="flex-row items-end justify-between" style={{ marginTop: -44 }}>
           <View
             className="bg-theme-neutrals-700 animate-pulse"
-            style={{ width: 88, height: 88, borderRadius: 16, borderWidth: 3, borderColor: '#010305' }}
+            style={{ width: 88, height: 88, borderRadius: 12, borderWidth: 3, borderColor: '#010305' }}
           />
           <View className="h-9 w-24 bg-theme-neutrals-800 rounded-xl mb-1 animate-pulse" />
         </View>

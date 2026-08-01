@@ -35,7 +35,7 @@ const ChainSwitchModal: React.FC<ChainSwitchModalProps> = ({ visible, onClose })
         <Text className="text-theme-neutrals-400 text-xs mt-1">{t("settings.activeChainDesc")}</Text>
 
         <View className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-3 mt-4 flex-row items-start">
-          <Ionicons name="construct-outline" size={16} color="#FBBF24" />
+          <Ionicons name="construct-outline" size={16} color="#D4D4D8" />
           <Text className="text-yellow-300 text-[12px] ml-2 flex-1">
             {t("settings.chainSwitchUnavailable")}
           </Text>

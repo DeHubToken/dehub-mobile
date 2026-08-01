@@ -345,7 +345,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             exiting={FadeOut.duration(100)}
             className="flex-row items-center px-4 py-2 bg-theme-neutrals-800/50 border-l-2 border-theme-yellow-500 mx-3 mt-2 rounded-lg"
           >
-            <Icon name="Pencil" size={14} color="#EAB308" />
+            <Icon name="Pencil" size={14} color="#D4D4D8" />
             <View className="flex-1 ml-2">
               <Text className="text-[11px] text-theme-yellow-500 font-medium">
                 Editing message
@@ -370,7 +370,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             exiting={FadeOut.duration(100)}
             className="flex-row items-center mx-3 mt-2 px-3 py-1.5 bg-amber-500/10 rounded-lg self-start"
           >
-            <Icon name="Gem" size={12} color="#F59E0B" />
+            <Icon name="Gem" size={12} color="#D4D4D8" />
             <Text className="text-[11px] text-amber-400 font-medium ml-1">
               Tip: {tipAmount} DHB
             </Text>
@@ -584,9 +584,9 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                 className="p-2"
               >
                 {sending ? (
-                  <ActivityIndicator size="small" color="#3B82F6" />
+                  <ActivityIndicator size="small" color="#F4F4F5" />
                 ) : (
-                  <Icon name="Send" size={22} color="#3B82F6" />
+                  <Icon name="Send" size={22} color="#F4F4F5" />
                 )}
               </TouchableOpacity>
             )

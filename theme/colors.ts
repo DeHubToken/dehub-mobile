@@ -7,9 +7,9 @@ export const colors = {
 
   border: '#333333',
 
-  accent: '#3B82F6',
-  accentSecondary: '#62B0F0',
-  accentForeground: '#FFFFFF',
+  accent: '#F4F4F5',
+  accentSecondary: '#A1A1AA',
+  accentForeground: '#09090B',
 
   muted: '#2F2F2F',
   mutedForeground: '#AAAAAA',

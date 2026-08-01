@@ -211,7 +211,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
               <TouchableOpacity
                 onPress={handleClose}
                 activeOpacity={0.9}
-                className="rounded-2xl bg-theme-neutrals-800 border border-theme-neutrals-700 py-3 items-center"
+                className="rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 py-3 items-center"
               >
                 <Text className="text-white text-sm font-semibold">Close</Text>
               </TouchableOpacity>
@@ -220,7 +220,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
               <TouchableOpacity
                 onPress={goProfile}
                 activeOpacity={0.9}
-                className="rounded-2xl bg-green-500 py-3 items-center"
+                className="rounded-xl bg-green-500 py-3 items-center"
               >
                 <Text className="text-theme-neutrals-900 text-sm font-semibold">
                   Go to Profile
@@ -291,7 +291,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
             <TouchableOpacity
               onPress={handleClose}
               activeOpacity={0.9}
-              className="rounded-2xl bg-theme-neutrals-800 border border-theme-neutrals-700 py-3 items-center"
+              className="rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 py-3 items-center"
             >
               <Text className="text-white text-sm font-semibold">Close</Text>
             </TouchableOpacity>

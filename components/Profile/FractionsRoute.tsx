@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../ui/Icon";
+import ProfileEmptyState from "./ProfileEmptyState";
 import { supabase } from "../../services/supabase";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -125,7 +126,7 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
         activeOpacity={0.75}
       >
         <View style={styles.iconBox}>
-          <Icon name="ChartPie" size={22} color="#FACC15" />
+          <Icon name="ChartPie" size={22} color="#FFFFFF" />
         </View>
         <Text style={styles.tokenId} numberOfLines={1}>
           Post #{item.token_id}
@@ -146,7 +147,7 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
       <ScrollView>
         {listHeader}
         <View style={styles.center}>
-          <ActivityIndicator size="large" color="#FACC15" />
+          <ActivityIndicator size="large" color="#FFFFFF" />
         </View>
       </ScrollView>
     );
@@ -171,15 +172,15 @@ const FractionsRoute: React.FC<FractionsRouteProps> = ({
     return (
       <ScrollView>
         {listHeader}
-        <View style={styles.center}>
-          <Icon name="ChartPie" size={48} color="#4B5563" />
-          <Text style={styles.emptyTitle}>No fractions held</Text>
-          <Text style={styles.emptySubtitle}>
-            {isOwnProfile
+        <ProfileEmptyState
+          kind="fractions"
+          title="No fractions yet"
+          subtitle={
+            isOwnProfile
               ? "Buy fractions of posts to support creators"
-              : "This user holds no post fractions yet"}
-          </Text>
-        </View>
+              : "This user holds no post fractions yet"
+          }
+        />
       </ScrollView>
     );
   }
@@ -217,7 +218,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.04)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.07)",
-    borderRadius: 16,
+    borderRadius: 12,
     padding: 14,
     marginBottom: 12,
   },
@@ -225,17 +226,17 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 10,
-    backgroundColor: "rgba(250,204,21,0.1)",
+    backgroundColor: "rgba(255,255,255,0.1)",
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 10,
   },
   tokenId: { color: "#F9FBFF", fontSize: 13, fontWeight: "600" },
-  quantity: { color: "#FACC15", fontSize: 12, fontWeight: "600", marginTop: 3 },
+  quantity: { color: "#D4D4D8", fontSize: 12, fontWeight: "600", marginTop: 3 },
   date: { color: "#6F7174", fontSize: 10, marginTop: 4 },
   errorText: { color: "#8B8D90", fontSize: 14, textAlign: "center" },
-  retryBtn: { backgroundColor: "rgba(250,204,21,0.1)", borderRadius: 10, paddingHorizontal: 20, paddingVertical: 10 },
-  retryText: { color: "#FACC15", fontSize: 14, fontWeight: "600" },
+  retryBtn: { backgroundColor: "rgba(255,255,255,0.10)", borderRadius: 10, paddingHorizontal: 20, paddingVertical: 10 },
+  retryText: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
   emptyTitle: { color: "#F9FBFF", fontSize: 16, fontWeight: "600" },
   emptySubtitle: { color: "#6F7174", fontSize: 13, textAlign: "center" },
 });

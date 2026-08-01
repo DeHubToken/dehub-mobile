@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   },
   progressBar: {
     height: '100%',
-    backgroundColor: '#3B82F6', // theme-accent color
+    backgroundColor: '#F4F4F5', // theme-accent color
   },
 });
 

@@ -137,14 +137,8 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
     if (tokenId == null) return;
     onBeforeNavigate?.();
     hideUserProfile();
-    // This card can be rendered inside the profile sheet, which is a React
-    // Native <Modal> (a native Dialog). VideoPlayer/LiveViewer are modal-group
-    // screens (slide-up transition). Dismissing the Dialog (hideUserProfile)
-    // and starting that transition in the same tick races the native Dialog
-    // teardown and crashes on Android. Defer the navigation one frame so the
-    // Dialog is gone before the transition begins. (Card screens like
-    // FeedDetail aren't affected, which is why this only surfaced after
-    // switching the target to the modal-group player.)
+    // This card can be rendered inside the native profile sheet. Let that
+    // dialog close before starting the next screen transition on Android.
     requestAnimationFrame(() => {
       if (isLive) {
         navigation.navigate(ScreenNames.LiveViewer, {
@@ -154,10 +148,9 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
           streamId: (nft as any)?.stream?._id || (nft as any)?.stream?.id || nft?._id,
         });
       } else {
-        navigation.navigate(ScreenNames.VideoPlayer, {
-          tokenId,
-          nft,
-          accessInfo,
+        navigation.navigate(ScreenNames.FeedDetail, {
+          tokenId: String(tokenId),
+          postId: String(tokenId),
         });
       }
     });
@@ -167,10 +160,10 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
       <TouchableOpacity
         activeOpacity={0.85}
         onPress={handlePressVideo}
-        className="bg-theme-neutrals-900 rounded-2xl overflow-hidden flex-row items-start p-2 border border-theme-neutrals-700"
+        className="bg-theme-neutrals-900 rounded-xl overflow-hidden flex-row items-start p-2 border border-theme-neutrals-700"
       >
         <View
-          className="rounded-2xl overflow-hidden bg-theme-neutrals-800 justify-center items-center"
+          className="rounded-xl overflow-hidden bg-theme-neutrals-800 justify-center items-center"
           style={{ width: 150, aspectRatio: 16 / 9 }}
         >
           {hasThumbnail ? (

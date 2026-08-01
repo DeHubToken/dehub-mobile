@@ -79,7 +79,7 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
   if (!showInput) {
     return (
       <TouchableOpacity
-        className="flex-row items-center justify-center rounded-2xl bg-neutral-800 border border-neutral-700"
+        className="flex-row items-center justify-center rounded-xl bg-neutral-800 border border-neutral-700"
         style={{ width: "100%", height: 60 }}
         onPress={() => setShowInput(true)}
         disabled={disabled}
@@ -99,7 +99,7 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
 
   return (
     <View
-      className="flex-row items-center border border-neutral-700 rounded-2xl bg-neutral-800 px-4"
+      className="flex-row items-center border border-neutral-700 rounded-xl bg-neutral-800 px-4"
       style={{ width: "100%", height: 62 }}
     >
       <Ionicons

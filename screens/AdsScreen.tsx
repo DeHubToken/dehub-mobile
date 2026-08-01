@@ -75,8 +75,8 @@ const OBJECTIVES = ["awareness", "traffic", "engagement"] as const;
 
 const STATUS_COLOR: Record<string, string> = {
   active: "#34D399",
-  paused: "#FBBF24",
-  pending_review: "#60A5FA",
+  paused: "#D4D4D8",
+  pending_review: "#D4D4D8",
   draft: "#A1A1AA",
   rejected: "#F87171",
   completed: "#818CF8",
@@ -125,7 +125,7 @@ const PerfChart: React.FC<{ series: { day: string; impressions: number; clicks: 
   return (
     <Svg width="100%" height={H} viewBox={`0 0 ${W} ${H}`}>
       <SvgLine x1={PAD} y1={H - PAD} x2={W - PAD} y2={H - PAD} stroke="#3f3f46" strokeWidth="1" />
-      <Polyline points={build(series.map((s) => s.impressions))} fill="none" stroke="#3b82f6" strokeWidth="2" />
+      <Polyline points={build(series.map((s) => s.impressions))} fill="none" stroke="#F4F4F5" strokeWidth="2" />
       <Polyline points={build(series.map((s) => s.clicks))} fill="none" stroke="#22c55e" strokeWidth="2" />
     </Svg>
   );
@@ -513,7 +513,7 @@ export default function AdsScreen() {
                 <PerfChart series={series} />
                 <View style={styles.legend}>
                   <View style={styles.legendItem}>
-                    <View style={[styles.legendDot, { backgroundColor: "#3b82f6" }]} />
+                    <View style={[styles.legendDot, { backgroundColor: "#F4F4F5" }]} />
                     <Text style={styles.legendText}>{t("ads.impressions")}</Text>
                   </View>
                   <View style={styles.legendItem}>
@@ -668,7 +668,7 @@ const styles = StyleSheet.create({
   segmentTextActive: { color: "#FFFFFF" },
 
   card: {
-    borderRadius: 16, backgroundColor: "rgba(255,255,255,0.04)",
+    borderRadius: 12, backgroundColor: "rgba(255,255,255,0.04)",
     borderWidth: 1, borderColor: "rgba(255,255,255,0.10)", padding: 16, gap: 6,
   },
   cardTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "700", marginBottom: 4 },

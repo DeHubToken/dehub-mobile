@@ -9,7 +9,7 @@ const FeedCardSkeleton: React.FC<FeedCardSkeletonProps> = ({ count = 3 }) => {
   return (
     <View>
       {Array.from({ length: count }).map((_, idx) => (
-        <View key={idx} className="mb-3 p-3 rounded-2xl bg-theme-neutrals-900/40">
+        <View key={idx} className="mb-3 p-3 rounded-xl bg-theme-neutrals-900/40">
           {/* Header: avatar + name */}
           <View className="flex-row items-center mb-2">
             <View className="w-9 h-9 rounded-lg bg-theme-neutrals-800" />

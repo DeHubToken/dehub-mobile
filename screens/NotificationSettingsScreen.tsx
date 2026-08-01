@@ -219,29 +219,29 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
         <ScreenHeader
           title={t('settings.notifications')}
           canGoBack
-          rightContent={saving ? <ActivityIndicator size="small" color="#8b5cf6" /> : undefined}
+          rightContent={saving ? <ActivityIndicator size="small" color="#D4D4D8" /> : undefined}
         />
       )}
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 32 }}>
         {!pushPermissionGranted && (
           <TouchableOpacity
             onPress={openSystemSettings}
-            className="mx-4 mt-4 p-4 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex-row items-center"
+            className="mx-4 mt-4 p-4 bg-amber-500/10 border border-amber-500/30 rounded-xl flex-row items-center"
           >
             <View className="w-10 h-10 rounded-xl bg-amber-500/20 items-center justify-center mr-3">
-              <Icon name="BellOff" size={20} color="#f59e0b" />
+              <Icon name="BellOff" size={20} color="#D4D4D8" />
             </View>
             <View className="flex-1">
               <Text className="text-amber-400 text-sm font-semibold">{t('settings.pushNotificationsDisabled')}</Text>
               <Text className="text-amber-500/80 text-xs mt-0.5">{t('settings.tapEnableSystemSettings')}</Text>
             </View>
-            <Icon name="ChevronRight" size={18} color="#f59e0b" />
+            <Icon name="ChevronRight" size={18} color="#D4D4D8" />
           </TouchableOpacity>
         )}
 
         <View className="mt-4 mx-4">
           <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">{t('settings.masterControls')}</Text>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
+          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
             <View className="px-4 py-3.5 flex-row items-center justify-between">
               <View className="flex-row items-center flex-1 pr-3">
                 <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
@@ -280,7 +280,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
               <Icon name={category.icon} size={13} color="#9ca3af" />
               <Text className="text-theme-neutrals-500 text-[11px] uppercase ml-1.5 tracking-widest font-semibold">{category.label}</Text>
             </View>
-            <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
+            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
               {typesByCategory[category.key]?.map((type, i) => (
                 <React.Fragment key={type.key}>
                   {i > 0 && <View className="h-px bg-theme-neutrals-700/50 ml-16" />}
@@ -304,7 +304,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
             <Icon name="MessageSquare" size={13} color="#9ca3af" />
             <Text className="text-theme-neutrals-500 text-[11px] uppercase ml-1.5 tracking-widest font-semibold">{t('settings.chatSection')}</Text>
           </View>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
+          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
             <View className="px-4 py-3.5 flex-row items-center justify-between">
               <View className="flex-row items-center flex-1 pr-3">
                 <View className="mr-3 w-8 h-8 rounded-lg bg-theme-neutrals-700/50 items-center justify-center">
@@ -322,7 +322,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
 
         <View className="mt-6 mx-4">
           <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">{t('settings.quietHours')}</Text>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700">
+          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
             <View className="px-4 py-3.5 flex-row items-center justify-between">
               <View className="flex-row items-center flex-1 pr-3">
                 <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">

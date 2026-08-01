@@ -151,7 +151,7 @@ const s = StyleSheet.create({
   actionBtn: {
     width: 32,
     height: 32,
-    borderRadius: 16,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
   },

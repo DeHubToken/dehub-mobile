@@ -213,11 +213,13 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const handlePressVideo = useCallback(() => {
     if (tokenId == null) return; // require valid tokenId
     onBeforeNavigate?.();
-    const target = isLive ? ScreenNames.LiveViewer : ScreenNames.VideoPlayer;
+    const target = isLive ? ScreenNames.LiveViewer : ScreenNames.FeedDetail;
     navigation.navigate(
       target as never,
       {
         isLive,
+        tokenId: String(tokenId),
+        postId: String(tokenId),
         nft,
         accessInfo,
         streamId: (nft as any)?.stream?._id || (nft as any)?.stream?.id || nft?._id, // prefer livestream doc ID over NFT ID

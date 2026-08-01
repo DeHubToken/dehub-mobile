@@ -60,7 +60,7 @@ const JobItem = memo<{ job: UploadJob }>(({ job }) => {
   }, [job.id]);
 
   return (
-    <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden border border-theme-neutrals-700 mb-3">
+    <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700 mb-3">
       <View className="flex-row items-center px-4 py-3.5">
         {job.thumbnailUri ? (
           <Image
@@ -144,7 +144,7 @@ const JobItem = memo<{ job: UploadJob }>(({ job }) => {
 
 const EmptyState = memo(() => (
   <View className="flex-1 items-center justify-center py-20">
-    <View className="w-14 h-14 rounded-2xl bg-theme-neutrals-800 items-center justify-center mb-4">
+    <View className="w-14 h-14 rounded-xl bg-theme-neutrals-800 items-center justify-center mb-4">
       <Icon name="Upload" size={24} color="#4b5563" />
     </View>
     <Text className="text-theme-neutrals-500 text-sm font-medium">

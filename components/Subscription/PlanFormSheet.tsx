@@ -242,7 +242,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
             </View>
             {benefits.map((b, idx) => (
               <View key={idx} className="flex-row items-center bg-theme-neutrals-800/60 rounded-xl px-3 py-2 mb-1.5">
-                <Icon name="Check" size={14} color="#8b5cf6" />
+                <Icon name="Check" size={14} color="#D4D4D8" />
                 <Text className="flex-1 text-white text-sm ml-2">{b}</Text>
                 <TouchableOpacity onPress={() => removeBenefit(idx)} activeOpacity={0.7} hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}>
                   <Icon name="X" size={14} color="#6b7280" />

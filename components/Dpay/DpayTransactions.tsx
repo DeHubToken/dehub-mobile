@@ -104,7 +104,7 @@ const DpayTransactions: React.FC = () => {
         key={tx.id}
         activeOpacity={0.85}
         onPress={onPress}
-        className={`bg-theme-neutrals-800/90 rounded-2xl p-4 mb-2 border border-theme-neutrals-700 ${!tx.txHash ? 'opacity-70' : ''}`}
+        className={`bg-theme-neutrals-800/90 rounded-xl p-4 mb-2 border border-theme-neutrals-700 ${!tx.txHash ? 'opacity-70' : ''}`}
       >
         <View className="flex-row justify-between items-center">
           <View className="flex-row items-center">
@@ -150,7 +150,7 @@ const DpayTransactions: React.FC = () => {
       {loading ? (
         <>
           {Array.from({ length: 3 }).map((_, i) => (
-            <View key={i} className="bg-theme-neutrals-800/90 rounded-2xl p-4 mb-2 border border-theme-neutrals-700/60">
+            <View key={i} className="bg-theme-neutrals-800/90 rounded-xl p-4 mb-2 border border-theme-neutrals-700/60">
               <View className="flex-row justify-between items-center">
                 <View className="w-24 h-3 rounded bg-theme-neutrals-700/60" />
                 <View className="w-20 h-5 rounded bg-theme-neutrals-700/60" />

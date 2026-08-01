@@ -335,7 +335,7 @@ const LiveStageModal: React.FC = () => {
                 </View>
               )}
               {!isConnected && (
-                <Text style={{ color: "#f59e0b", fontSize: 11 }}>Connecting...</Text>
+                <Text style={{ color: "#D4D4D8", fontSize: 11 }}>Connecting...</Text>
               )}
             </View>
           </View>
@@ -645,14 +645,14 @@ const LiveStageModal: React.FC = () => {
                 width: 56,
                 height: 56,
                 borderRadius: 28,
-                backgroundColor: hasRaisedHand ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.08)",
+                backgroundColor: hasRaisedHand ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.08)",
                 borderWidth: 1,
-                borderColor: hasRaisedHand ? "rgba(245,158,11,0.5)" : "rgba(255,255,255,0.12)",
+                borderColor: hasRaisedHand ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.12)",
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              <Icon name="Hand" size={22} color={hasRaisedHand ? "#fbbf24" : "rgba(255,255,255,0.7)"} />
+              <Icon name="Hand" size={22} color={hasRaisedHand ? "#D4D4D8" : "rgba(255,255,255,0.7)"} />
             </TouchableOpacity>
           )}
 

@@ -63,7 +63,7 @@ const ProfileApps: React.FC = () => {
   );
 
   return (
-    <View className="mx-3 my-3 bg-theme-neutrals-800 rounded-2xl p-4 relative">
+    <View className="mx-3 my-3 bg-theme-neutrals-800 rounded-xl p-4 relative">
       {/* Header */}
       <View className="flex-row items-center justify-between mb-3">
         <Text className="text-base text-white font-semibold">Apps</Text>

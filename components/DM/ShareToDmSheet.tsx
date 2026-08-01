@@ -90,7 +90,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
           >
             {name}
           </Text>
-          <Ionicons name="send-outline" size={18} color="#FACC15" />
+          <Ionicons name="send-outline" size={18} color="#D4D4D8" />
         </TouchableOpacity>
       );
     },

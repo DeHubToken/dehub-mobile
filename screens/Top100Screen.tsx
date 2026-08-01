@@ -46,7 +46,7 @@ const METAL_COLORS: Record<string, { bg: string; fg: string; label: string }> = 
 };
 
 const KIND_TINT: Record<string, string> = {
-  crypto: "rgba(99,102,241,0.20)",
+  crypto: "rgba(255,255,255,0.20)",
   stock: "rgba(34,197,94,0.16)",
   commodity: "rgba(234,179,8,0.16)",
 };

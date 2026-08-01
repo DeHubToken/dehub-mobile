@@ -196,7 +196,7 @@ const EngagementChart: React.FC<{ data?: AnalyticsResponse }> = ({ data }) => {
         <Polyline points={likesPts} fill="none" stroke="#22c55e" strokeWidth="2" strokeLinejoin="round" />
       )}
       {!!followersPts && (
-        <Polyline points={followersPts} fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinejoin="round" />
+        <Polyline points={followersPts} fill="none" stroke="#F4F4F5" strokeWidth="2" strokeLinejoin="round" />
       )}
     </Svg>
   );
@@ -413,7 +413,7 @@ export default function CommandCentreScreen() {
                   <Text style={styles.legendText}>{t("commandCentre.likes")}</Text>
                 </View>
                 <View style={styles.legendItem}>
-                  <View style={[styles.legendDot, { backgroundColor: "#3b82f6" }]} />
+                  <View style={[styles.legendDot, { backgroundColor: "#F4F4F5" }]} />
                   <Text style={styles.legendText}>{t("commandCentre.newFollowers")}</Text>
                 </View>
               </View>
@@ -515,7 +515,7 @@ const styles = StyleSheet.create({
   subtitle: { color: "#71717A", fontSize: 12, marginTop: 1 },
 
   card: {
-    borderRadius: 16,
+    borderRadius: 12,
     backgroundColor: "rgba(255,255,255,0.04)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.10)",

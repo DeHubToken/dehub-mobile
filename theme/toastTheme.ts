@@ -30,7 +30,7 @@ export const toastTheme = {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(20,20,20,0.45)',
-    borderRadius: 16,
+    borderRadius: 12,
     paddingVertical: 14,
     paddingHorizontal: 16,
     borderWidth: 1,

@@ -524,7 +524,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         <Icon
           name={message.isRead ? "CheckCheck" : "Check"}
           size={12}
-          color={message.isRead ? "#3B82F6" : "rgba(255,255,255,0.4)"}
+          color={message.isRead ? "#F4F4F5" : "rgba(255,255,255,0.4)"}
         />
       )}
     </View>
@@ -532,15 +532,15 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
 
 
   const bubbleBg = isMine
-    ? "rounded-2xl rounded-br-sm"
-    : "bg-theme-neutrals-800 rounded-2xl rounded-bl-sm";
+    ? "rounded-xl rounded-br-sm"
+    : "bg-theme-neutrals-800 rounded-xl rounded-bl-sm";
 
   const isMediaOnly = mediaItems.length > 0 && !hasText && !isVoice;
   // Media-only paid msgs need a background for PaymentBadge; plain media-only don't
   const activeBubbleBg = isMediaOnly
     ? (isPaidMsg
         ? bubbleBg + " overflow-hidden"  // full bubble bg for payment badge area
-        : (isMine ? "rounded-2xl rounded-br-sm overflow-hidden" : "rounded-2xl rounded-bl-sm overflow-hidden"))
+        : (isMine ? "rounded-xl rounded-br-sm overflow-hidden" : "rounded-xl rounded-bl-sm overflow-hidden"))
     : bubbleBg;
 
   return (
@@ -560,7 +560,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         ]}
       >
         <View className="w-8 h-8 rounded-full bg-theme-neutrals-800 items-center justify-center">
-          <Icon name="Undo2" size={18} color="#3B82F6" />
+          <Icon name="Undo2" size={18} color="#F4F4F5" />
         </View>
       </Animated.View>
 
@@ -585,8 +585,8 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                 left: 0,
                 right: 0,
                 bottom: -2,
-                backgroundColor: "rgba(59, 130, 246, 0.12)",
-                borderRadius: 16,
+                backgroundColor: "rgba(255,255,255, 0.12)",
+                borderRadius: 12,
               },
               highlightStyle,
             ]}
@@ -765,7 +765,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                       isMine ? "bg-white/15" : "bg-accent/20"
                     }`}
                   >
-                    <Icon name="Mic" size={16} color={isMine ? "#fff" : "#3B82F6"} />
+                    <Icon name="Mic" size={16} color={isMine ? "#fff" : "#F4F4F5"} />
                   </View>
                   <Text
                     className={`text-[11px] ${
@@ -842,7 +842,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                     <Icon
                       name={message.isRead ? "CheckCheck" : "Check"}
                       size={12}
-                      color={message.isRead ? "#3B82F6" : "rgba(255,255,255,0.6)"}
+                      color={message.isRead ? "#F4F4F5" : "rgba(255,255,255,0.6)"}
                     />
                   )}
                 </View>

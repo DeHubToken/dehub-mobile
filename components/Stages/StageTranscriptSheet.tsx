@@ -504,7 +504,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
         {/* Header */}
         <View className="flex-row items-center justify-between border-b border-zinc-800/60 pb-3 mb-3">
           <View className="flex-row items-center gap-2">
-            <Icon name="FileText" size={20} color="#A855F7" />
+            <Icon name="FileText" size={20} color="#D4D4D8" />
             <View>
               <Text className="text-white font-bold text-base" numberOfLines={1}>
                 Transcript
@@ -538,7 +538,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
         {/* Loading / Status overlay */}
         {isTranscriptLoading && !transcript ? (
           <View className="flex-1 items-center justify-center py-20 gap-3">
-            <ActivityIndicator size="large" color="#A855F7" />
+            <ActivityIndicator size="large" color="#D4D4D8" />
             <Text className="text-gray-400 text-sm">Loading transcript...</Text>
           </View>
         ) : !space?.recording_url ? (
@@ -548,7 +548,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
           </View>
         ) : status === "pending" || status === "processing" ? (
           <View className="flex-1 items-center justify-center py-20 gap-3">
-            <ActivityIndicator size="large" color="#A855F7" />
+            <ActivityIndicator size="large" color="#D4D4D8" />
             <Text className="text-white font-semibold">Generating AI Transcript</Text>
             <Text className="text-gray-400 text-xs text-center px-6">
               This process may take a minute depending on the length of the stage recording.
@@ -597,9 +597,9 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                       await player.seekTo(val / 1000);
                     }
                   }}
-                  minimumTrackTintColor="#A855F7"
+                  minimumTrackTintColor="#D4D4D8"
                   maximumTrackTintColor="rgba(255,255,255,0.12)"
-                  thumbTintColor="#A855F7"
+                  thumbTintColor="#D4D4D8"
                   style={{ height: 16, marginHorizontal: -8 }}
                 />
                 <View className="flex-row justify-between">
@@ -692,7 +692,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
             {/* Loading/Error for Translation */}
             {language !== "original" && translation?.status === "processing" && (
               <View className="flex-row items-center gap-2 mb-2 ml-1">
-                <ActivityIndicator size="small" color="#A855F7" />
+                <ActivityIndicator size="small" color="#D4D4D8" />
                 <Text className="text-xs text-purple-300 italic">Translating transcript...</Text>
               </View>
             )}
@@ -732,7 +732,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                       <View className="flex-row items-center justify-between mb-2">
                         <View className="flex-row items-center gap-2 flex-1">
                           <View className="w-5 h-5 rounded-full bg-zinc-800 items-center justify-center">
-                            <Icon name="User" size={11} color="#A855F7" />
+                            <Icon name="User" size={11} color="#D4D4D8" />
                           </View>
                           <Text
                             className={`text-xs font-bold ${textColClass} flex-1`}
@@ -789,9 +789,9 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
         {renamingSpeaker && (
           <View
             style={StyleSheet.absoluteFillObject}
-            className="bg-black/70 items-center justify-center p-4 z-50 rounded-3xl"
+            className="bg-black/70 items-center justify-center p-4 z-50 rounded-xl"
           >
-            <View className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 w-full max-w-xs shadow-2xl">
+            <View className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 w-full max-w-xs shadow-2xl">
               <Text className="text-white font-bold text-sm mb-1">Rename Speaker</Text>
               <Text className="text-gray-400 text-[11px] mb-3">
                 Change speaker label globally across this transcript.

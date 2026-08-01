@@ -44,7 +44,7 @@ const TIME_FILTERS: { key: TimeFilter; label: string }[] = [
 
 const SOURCE_COLORS = {
   tips: "#22C55E",
-  ppv: "#EC4899",
+  ppv: "#D4D4D8",
 };
 
 function filterByTime<T extends { created_at: string }>(
@@ -228,7 +228,7 @@ const EarningsScreen: React.FC = () => {
 
       {loading ? (
         <View style={styles.center}>
-          <ActivityIndicator size="large" color="#FACC15" />
+          <ActivityIndicator size="large" color="#D4D4D8" />
         </View>
       ) : (
         <ScrollView
@@ -290,7 +290,7 @@ const EarningsScreen: React.FC = () => {
               <Text style={styles.statLabel}>Tips received</Text>
             </View>
             <View style={styles.statBox}>
-              <Icon name="Ticket" size={18} color="#EC4899" />
+              <Icon name="Ticket" size={18} color="#D4D4D8" />
               <Text style={styles.statNum}>{filteredPpv.length}</Text>
               <Text style={styles.statLabel}>PPV unlocks</Text>
             </View>
@@ -305,7 +305,7 @@ const EarningsScreen: React.FC = () => {
                   <View
                     style={[
                       styles.txIcon,
-                      { backgroundColor: tx.type === "tip" ? "rgba(34,197,94,0.12)" : "rgba(236,72,153,0.12)" },
+                      { backgroundColor: tx.type === "tip" ? "rgba(34,197,94,0.12)" : "rgba(255,255,255,0.12)" },
                     ]}
                   >
                     <Icon
@@ -365,7 +365,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.03)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.07)",
-    borderRadius: 16,
+    borderRadius: 12,
     padding: 16,
     marginBottom: 12,
   },
@@ -377,7 +377,7 @@ const styles = StyleSheet.create({
   legendValue: { color: "#F9FBFF", fontSize: 14, fontWeight: "600" },
   totalBox: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: "rgba(255,255,255,0.07)", paddingTop: 8 },
   totalLabel: { color: "#6F7174", fontSize: 11 },
-  totalValue: { color: "#FACC15", fontSize: 16, fontWeight: "700" },
+  totalValue: { color: "#D4D4D8", fontSize: 16, fontWeight: "700" },
   statsRow: { flexDirection: "row", gap: 10, marginBottom: 12 },
   statBox: {
     flex: 1,

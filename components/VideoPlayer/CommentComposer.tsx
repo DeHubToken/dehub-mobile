@@ -77,7 +77,7 @@ const CommentComposer: React.FC<CommentComposerProps> = ({
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={onPress}
-        className="bg-theme-neutrals-900 border border-theme-neutrals-800 rounded-2xl p-3 flex-row items-center"
+        className="bg-theme-neutrals-900 border border-theme-neutrals-800 rounded-xl p-3 flex-row items-center"
       >
         <Text className="flex-1 text-theme-neutrals-600 text-sm">{placeholder}</Text>
         <Text className="text-xs font-semibold text-theme-neutrals-600">Send</Text>
@@ -86,7 +86,7 @@ const CommentComposer: React.FC<CommentComposerProps> = ({
   }
 
   return (
-    <View className="bg-theme-neutrals-900 border border-theme-neutrals-800 rounded-2xl p-3">
+    <View className="bg-theme-neutrals-900 border border-theme-neutrals-800 rounded-xl p-3">
       {!!replyToLabel && (
         <View className="flex-row items-center mb-2 px-2 py-1 rounded-md bg-theme-neutrals-800">
           <Text className="flex-1 text-theme-neutrals-300 text-[11px]">Replying to <Text className="font-semibold">@{replyToLabel}</Text></Text>

@@ -172,7 +172,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
 
         {/* Controls */}
         <View className="absolute left-0 right-0 bottom-0 pb-6 pt-3 px-4">
-          <View className="bg-black/50 rounded-2xl px-3 py-2">
+          <View className="bg-black/50 rounded-xl px-3 py-2">
             <View className="flex-row items-center gap-3">
               <Text className="text-white text-xs w-10 text-center">{formatTime(position)}</Text>
               <Slider

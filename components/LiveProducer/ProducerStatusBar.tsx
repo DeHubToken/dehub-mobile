@@ -55,7 +55,7 @@ const ProducerStatusBar: React.FC<Props> = ({
   const isEnding = stage === 'ending';
   const isReady = stage === 'ready';
 
-  const dotColor = isLive ? '#ef4444' : isStarting || isEnding ? '#f59e0b' : '#6b7280';
+  const dotColor = isLive ? '#ef4444' : isStarting || isEnding ? '#D4D4D8' : '#6b7280';
   const statusLabel = isLive ? 'LIVE' : isStarting ? 'SETTING UP' : isEnding ? 'ENDING' : isReady ? 'READY' : '—';
 
   const handlePressClose = () => {
@@ -68,7 +68,7 @@ const ProducerStatusBar: React.FC<Props> = ({
 
   return (
     <View
-      className="absolute top-4 left-4 right-4 z-20 bg-black/50 rounded-2xl border border-white/10"
+      className="absolute top-4 left-4 right-4 z-20 bg-black/50 rounded-xl border border-white/10"
       style={{ paddingHorizontal: 10, paddingVertical: 8 }}
     >
       <View className="flex-row items-center">
@@ -113,7 +113,7 @@ const ProducerStatusBar: React.FC<Props> = ({
           </View>
           {typeof bitrateKbps === 'number' && bitrateKbps > 0 && (
             <View className="flex-row items-center gap-1">
-              <Zap color="#fbbf24" size={11} />
+              <Zap color="#D4D4D8" size={11} />
               <Text className="text-white/50 text-[11px]">{bitrateKbps} kbps</Text>
             </View>
           )}

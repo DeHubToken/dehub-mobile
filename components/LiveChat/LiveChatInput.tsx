@@ -204,7 +204,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
       {uploadingVoice ? (
         <View className="flex-row items-center justify-center py-4 bg-theme-neutrals-800 rounded-xl mx-2 my-1.5">
-          <ActivityIndicator size="small" color="#3B82F6" />
+          <ActivityIndicator size="small" color="#F4F4F5" />
           <Text className="text-white/70 text-sm ml-2">Uploading voice message...</Text>
         </View>
       ) : recorder.isRecording ? (
@@ -276,7 +276,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
               <Icon
                 name="Send"
                 size={22}
-                color={text.trim() && !disabled && !cooldown && !isOverLimit ? "#3B82F6" : "#333"}
+                color={text.trim() && !disabled && !cooldown && !isOverLimit ? "#F4F4F5" : "#333"}
               />
             </TouchableOpacity>
           ) : (

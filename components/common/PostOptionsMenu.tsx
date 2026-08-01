@@ -441,7 +441,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   icon="flag-outline"
                   label={t("postOptions.reportVideo")}
                   sublabel={t("postOptions.reportVideoDesc")}
-                  color="#FBBF24"
+                  color="#D4D4D8"
                   onPress={handleOpenReportContent}
                 />
               )}
@@ -449,7 +449,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                 icon="person-remove-outline"
                 label={t("postOptions.reportUser")}
                 sublabel={t("postOptions.reportUserDesc", { name: creatorDisplayName })}
-                color="#F97316"
+                color="#D4D4D8"
                 onPress={handleOpenReportUser}
               />
 

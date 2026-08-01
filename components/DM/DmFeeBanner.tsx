@@ -33,7 +33,7 @@ const DmFeeBannerComponent: React.FC<DmFeeBannerProps> = ({
     >
       {feeRequired && (
         <View className="flex-row items-center justify-center px-4 py-2 bg-blue-600/10 border-b border-theme-neutrals-800/50">
-          <Ionicons name="diamond" size={14} color="#3B82F6" />
+          <Ionicons name="diamond" size={14} color="#F4F4F5" />
           <Text className="text-[12px] text-blue-400 font-medium ml-1.5">
             {dmFee.fee} DHB per message
           </Text>

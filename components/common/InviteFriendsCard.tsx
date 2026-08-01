@@ -80,7 +80,7 @@ const InviteFriendsCard: React.FC<Props> = ({ address, shareName, style }) => {
     <View style={[styles.card, style]}>
       <View style={styles.headerRow}>
         <View style={styles.iconWrap}>
-          <Icon name="Gift" size={18} color="#FACC15" />
+          <Icon name="Gift" size={18} color="#D4D4D8" />
         </View>
         <View style={{ flex: 1 }}>
           <Text style={styles.title}>Invite friends & earn {AFFILIATE_COMMISSION_PCT}%</Text>
@@ -133,10 +133,10 @@ const InviteFriendsCard: React.FC<Props> = ({ address, shareName, style }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "rgba(250,204,21,0.06)",
+    backgroundColor: "rgba(255,255,255,0.06)",
     borderWidth: 1,
-    borderColor: "rgba(250,204,21,0.22)",
-    borderRadius: 16,
+    borderColor: "rgba(255,255,255,0.22)",
+    borderRadius: 12,
     padding: 16,
     marginBottom: 12,
     gap: 14,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 10,
-    backgroundColor: "rgba(250,204,21,0.12)",
+    backgroundColor: "rgba(255,255,255,0.12)",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 6,
-    backgroundColor: "#FACC15",
+    backgroundColor: "#D4D4D8",
     borderRadius: 10,
     paddingHorizontal: 16,
     paddingVertical: 10,
