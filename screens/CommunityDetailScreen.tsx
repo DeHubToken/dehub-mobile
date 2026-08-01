@@ -104,12 +104,12 @@ const CommunityDetailScreen: React.FC = () => {
         } else {
           await joinCommunity(walletAddress, community.id, community.is_private);
           toastSuccess(
-            community.is_private ? "Join request sent!" : t("communities.joined", "Joined community!"),
+            community.is_private ? t("communities.joinRequestSent") : t("communities.joined"),
           );
         }
         await load();
       } catch {
-        toastError("Action failed");
+        toastError(t("communities.actionFailed"));
       } finally {
         setActionLoading(false);
       }
@@ -136,7 +136,7 @@ const CommunityDetailScreen: React.FC = () => {
           toastSuccess(t("communities.pin"));
         }
       } catch {
-        toastError("Failed to update pin");
+        toastError(t("communities.pinUpdateFailed"));
       } finally {
         setActionLoading(false);
       }
@@ -147,7 +147,7 @@ const CommunityDetailScreen: React.FC = () => {
     if (!community) return;
     const url = `${WEBSITE_LINK}/app/communities/${community.slug}`;
     try {
-      await Share.share({ message: `Join ${community.name} on DeHub\n${url}`, url });
+      await Share.share({ message: `${t("communities.shareMessage", { name: community.name })}\n${url}`, url });
     } catch {
       copyToClipboard(url);
       toastSuccess(t("communities.linkCopied"));
@@ -307,11 +307,13 @@ const CommunityDetailScreen: React.FC = () => {
                   <Text className="text-white text-sm font-mono">
                     {m.wallet_address.slice(0, 6)}…{m.wallet_address.slice(-4)}
                   </Text>
-                  <Text className="text-zinc-500 text-xs capitalize">{m.role}</Text>
+                  <Text className="text-zinc-500 text-xs capitalize">
+                    {t(`communities.roles.${m.role}`, { defaultValue: m.role })}
+                  </Text>
                 </View>
               ))}
               {members.length === 0 && (
-                <Text className="text-zinc-500 text-center py-8">No members yet</Text>
+                <Text className="text-zinc-500 text-center py-8">{t("communities.noMembers")}</Text>
               )}
             </View>
           )}
@@ -322,7 +324,7 @@ const CommunityDetailScreen: React.FC = () => {
                 {community.description || t("communities.noDescription")}
               </Text>
               <Text className="text-zinc-500 text-xs mt-4">
-                {community.is_private ? "Private community" : "Public community"}
+                {community.is_private ? t("communities.privateLabel") : t("communities.publicLabel")}
               </Text>
             </View>
           )}

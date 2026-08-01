@@ -4,6 +4,7 @@ import { Image } from "expo-image";
 import Icon from "../ui/Icon";
 import type { Community } from "../../types/community";
 import { formatCompactNumber } from "../../libs/numbers.util";
+import { useTranslation, type TFunction } from "react-i18next";
 
 interface Props {
   community: Community;
@@ -11,17 +12,18 @@ interface Props {
   onPress: () => void;
 }
 
-function formatRelativeTime(dateString: string): string {
+function formatRelativeTime(dateString: string, t: TFunction): string {
   const diffDays = Math.floor((Date.now() - new Date(dateString).getTime()) / 86400000);
-  if (diffDays < 1) return "today";
-  if (diffDays === 1) return "yesterday";
-  if (diffDays < 7) return `${diffDays}d`;
-  if (diffDays < 30) return `${Math.floor(diffDays / 7)}w`;
-  if (diffDays < 365) return `${Math.floor(diffDays / 30)}m`;
-  return `${Math.floor(diffDays / 365)}y`;
+  if (diffDays < 1) return t("communities.time.today");
+  if (diffDays === 1) return t("communities.time.yesterday");
+  if (diffDays < 7) return t("communities.time.days", { count: diffDays });
+  if (diffDays < 30) return t("communities.time.weeks", { count: Math.floor(diffDays / 7) });
+  if (diffDays < 365) return t("communities.time.months", { count: Math.floor(diffDays / 30) });
+  return t("communities.time.years", { count: Math.floor(diffDays / 365) });
 }
 
 const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
+  const { t } = useTranslation();
   const isOwner = role === "owner";
 
   return (
@@ -35,7 +37,7 @@ const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
       )}
       <View style={styles.timeBadge}>
         <Icon name="Clock" size={11} color="#a1a1aa" />
-        <Text style={styles.timeText}>{formatRelativeTime(community.created_at)}</Text>
+        <Text style={styles.timeText}>{formatRelativeTime(community.created_at, t)}</Text>
       </View>
       <View style={styles.avatarWrap}>
         {community.avatar_url ? (
@@ -52,15 +54,15 @@ const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
           {community.is_private && <Icon name="Lock" size={12} color="#71717a" />}
           {isOwner && (
             <View style={styles.ownerBadge}>
-              <Text style={styles.ownerText}>Owner</Text>
+              <Text style={styles.ownerText}>{t("communities.owner")}</Text>
             </View>
           )}
         </View>
         <Text style={styles.desc} numberOfLines={1}>
-          {community.description || "No description"}
+          {community.description || t("communities.noDescription")}
         </Text>
         <Text style={styles.members}>
-          {formatCompactNumber(community.member_count)} members
+          {t("communities.memberCount", { count: formatCompactNumber(community.member_count) })}
         </Text>
       </View>
     </TouchableOpacity>

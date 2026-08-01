@@ -453,6 +453,9 @@
     "showOriginal": "Show original",
     "translating": "Translating...",
     "close": "Close",
+    "retry": "Retry",
+    "test": "Test",
+    "anonymous": "Anonymous",
     "done": "Done",
     "block": "Block",
     "unblock": "Unblock",
@@ -1111,7 +1114,21 @@
     "statusPlanned": "Planned",
     "statusInProgress": "In Progress",
     "statusCompleted": "Completed",
-    "statusDeclined": "Declined"
+    "statusDeclined": "Declined",
+    "justNow": "just now",
+    "minutesAgo": "{{count}}m ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago",
+    "monthsAgo": "{{count}}mo ago",
+    "deleteCommentTitle": "Delete comment?",
+    "deleteCommentDescription": "This can't be undone.",
+    "signInToComment": "Sign in to comment",
+    "attachmentOptional": "Attachment (optional)",
+    "addScreenshot": "Add a screenshot",
+    "loadFailed": "Couldn't load feature requests",
+    "submittedSubtitle": "{{count}} submitted · shape what gets built",
+    "shapeNext": "Shape what gets built next",
+    "noSearchResults": "No requests match your search"
   },
   "auth": {
     "loginRequired": "Log in required"
@@ -1159,7 +1176,87 @@
     "loginDescription": "Log in to view and manage your profile."
   },
   "tv": {
-    "title": "TV"
+    "title": "TV",
+    "subtitle": "Free channels from around the world",
+    "channelCount": "{{count}} free channels worldwide",
+    "searchPlaceholder": "Search channels",
+    "live": "LIVE",
+    "notBroadcasting": "This channel isn't broadcasting right now",
+    "reportedAutomatically": "It's been reported automatically.",
+    "loadFailed": "Couldn't load channels",
+    "noSearchResults": "No channels match your search",
+    "noChannels": "No channels available"
+  },
+  "top100": {
+    "title": "Top 100",
+    "subtitle": "Crypto, stocks and commodities by market cap",
+    "searchPlaceholder": "Search assets",
+    "noSearchResults": "Nothing matches your search",
+    "loadFailed": "Couldn't load market data"
+  },
+  "ads": {
+    "subtitle": "Reach DeHub holders by badge tier",
+    "tabs": {
+      "overview": "Overview",
+      "campaigns": "Campaigns",
+      "billing": "Billing"
+    },
+    "notEnoughData": "Not enough data yet",
+    "newCampaign": "New campaign",
+    "campaignName": "Campaign name",
+    "campaignNamePlaceholder": "Spring launch",
+    "objective": "Objective",
+    "objectives": {
+      "awareness": "Awareness",
+      "traffic": "Traffic",
+      "engagement": "Engagement"
+    },
+    "dailyBudget": "Daily budget (USD)",
+    "totalBudget": "Total budget (USD)",
+    "landingUrl": "Landing URL (optional)",
+    "targetTiers": "Target badge tiers (empty = everyone)",
+    "blendedCpm": "Blended CPM",
+    "estimatedImpressions": "≈ {{count}} impressions for {{amount}}",
+    "submitForReview": "Submit for review",
+    "walletNotReady": "Wallet not ready — try again in a moment.",
+    "priceUnavailable": "DHB price unavailable — try again in a moment.",
+    "insufficientBalance": "Insufficient DHB balance for this top-up.",
+    "transferReverted": "Transfer reverted on-chain — no credit applied.",
+    "noTransactionHash": "No transaction hash returned — nothing to verify.",
+    "transactionCancelled": "Transaction cancelled.",
+    "topUpFailed": "Top-up failed",
+    "spentOf": "{{spent}} of {{total}} spent",
+    "pause": "Pause",
+    "resume": "Resume",
+    "advertiseTitle": "Advertise on DeHub",
+    "advertiseDescription": "Pay per verified impression, priced by the viewer's badge tier. Open an advertiser account to create your first campaign.",
+    "openAccount": "Open advertiser account",
+    "availableCredit": "Available credit",
+    "accountTotals": "{{spent}} spent · {{deposited}} deposited",
+    "performance": "Performance",
+    "impressions": "Impressions",
+    "clicks": "Clicks",
+    "spend": "Spend",
+    "ecpm": "eCPM",
+    "campaigns": "Campaigns",
+    "noCampaigns": "No campaigns yet",
+    "createCampaign": "Create campaign",
+    "statuses": {
+      "active": "Active",
+      "paused": "Paused",
+      "pending_review": "Pending review",
+      "draft": "Draft",
+      "rejected": "Rejected",
+      "completed": "Completed",
+      "archived": "Archived"
+    },
+    "perDay": "{{amount}}/day",
+    "addCredit": "Add credit",
+    "payDhb": "Pay {{amount}} DHB",
+    "loadingPrice": "Loading price…",
+    "topUpExplanation": "DHB is transferred on-chain to the DeHub ads treasury, then your balance is credited after independent on-chain verification.",
+    "paymentHistory": "Payment history",
+    "noPayments": "No payments yet"
   },
   "buyCoins": {
     "title": "Buy Coins",
@@ -1755,7 +1852,35 @@
     "reject": "Reject",
     "pinToProfile": "Pin communities to profile",
     "joinFirst": "Join communities first to pin them",
-    "pinCommunity": "Pin community"
+    "pinCommunity": "Pin community",
+    "myCommunities": "My communities",
+    "discover": "Discover",
+    "memberCount": "{{count}} members",
+    "joinRequestSent": "Join request sent!",
+    "actionFailed": "Action failed",
+    "pinUpdateFailed": "Failed to update pin",
+    "shareMessage": "Join {{name}} on DeHub",
+    "noMembers": "No members yet",
+    "slugTaken": "That community URL is already taken",
+    "createFailed": "Failed to create community",
+    "sort": {
+      "top": "Top",
+      "new": "New",
+      "hot": "Hot"
+    },
+    "roles": {
+      "owner": "Owner",
+      "moderator": "Moderator",
+      "member": "Member"
+    },
+    "time": {
+      "today": "today",
+      "yesterday": "yesterday",
+      "days": "{{count}}d",
+      "weeks": "{{count}}w",
+      "months": "{{count}}mo",
+      "years": "{{count}}y"
+    }
   },
   "screens": {
     "drafts": "Drafts",
