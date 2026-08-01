@@ -18,6 +18,7 @@ import {
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import Avatar from "../components/common/Avatar";
 import { theme } from "../theme";
@@ -35,6 +36,7 @@ function money(n: number): string {
 }
 
 export default function StoreDetailScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.StoreDetail>>();
@@ -56,14 +58,14 @@ export default function StoreDetailScreen() {
           uri={getAvatarUrl(store?.avatar_url)}
           size={54}
           rounded
-          name={store?.name || "Store"}
+          name={store?.name || t("stores.store")}
         />
         <View style={{ flex: 1, minWidth: 0 }}>
           <Text style={styles.storeName} numberOfLines={1}>
-            {store?.name || "Store"}
+            {store?.name || t("stores.store")}
           </Text>
           <Text style={styles.storeMeta}>
-            {listings.length} {listings.length === 1 ? "listing" : "listings"}
+            {t("stores.listingCount", { count: listings.length })}
           </Text>
         </View>
       </View>
@@ -91,7 +93,7 @@ export default function StoreDetailScreen() {
           )}
           {item.stock_quantity === 0 && (
             <View style={styles.soldOverlay}>
-              <Text style={styles.soldText}>Sold out</Text>
+              <Text style={styles.soldText}>{t("stores.soldOut")}</Text>
             </View>
           )}
         </View>
@@ -112,7 +114,7 @@ export default function StoreDetailScreen() {
           <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
         </Pressable>
         <Text style={styles.headerTitle} numberOfLines={1}>
-          {store?.name || "Store"}
+          {store?.name || t("stores.store")}
         </Text>
       </View>
 
@@ -144,7 +146,7 @@ export default function StoreDetailScreen() {
           ListEmptyComponent={
             <View style={styles.center}>
               <Icon name="Package" size={40} color="#3F3F46" />
-              <Text style={styles.emptyText}>This store has no active listings</Text>
+              <Text style={styles.emptyText}>{t("stores.noActiveListings")}</Text>
             </View>
           }
         />

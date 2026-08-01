@@ -35,6 +35,7 @@ import { useQuery } from "@tanstack/react-query";
 import Icon from "../components/ui/Icon";
 import { theme } from "../theme";
 import { toastError } from "../libs/toast";
+import { useTranslation } from "react-i18next";
 import {
   getTVChannelsByCountry,
   searchTVChannels,
@@ -53,6 +54,7 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
   channel,
   onClose,
 }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const [failed, setFailed] = useState(false);
@@ -104,8 +106,8 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
           {failed ? (
             <View style={styles.videoFallback}>
               <Icon name="TriangleAlert" size={30} color="#F87171" />
-              <Text style={styles.playerError}>This channel isn't broadcasting right now</Text>
-              <Text style={styles.dim}>It's been reported automatically.</Text>
+              <Text style={styles.playerError}>{t("tv.notBroadcasting")}</Text>
+              <Text style={styles.dim}>{t("tv.reportedAutomatically")}</Text>
             </View>
           ) : (
             <VideoView
@@ -128,7 +130,9 @@ const ChannelCard: React.FC<{ channel: TVChannel; width: number; onPress: () => 
   channel,
   width,
   onPress,
-}) => (
+}) => {
+  const { t } = useTranslation();
+  return (
   <Pressable style={[styles.card, { width }]} onPress={onPress}>
     <View style={[styles.logoWrap, { height: Math.round(width * 0.62) }]}>
       {channel.logo ? (
@@ -143,7 +147,7 @@ const ChannelCard: React.FC<{ channel: TVChannel; width: number; onPress: () => 
       )}
       <View style={styles.livePill}>
         <View style={styles.liveDot} />
-        <Text style={styles.liveText}>LIVE</Text>
+        <Text style={styles.liveText}>{t("tv.live")}</Text>
       </View>
     </View>
     <View style={{ padding: 8 }}>
@@ -155,11 +159,13 @@ const ChannelCard: React.FC<{ channel: TVChannel; width: number; onPress: () => 
       </Text>
     </View>
   </Pressable>
-);
+  );
+};
 
 // ── Screen ──────────────────────────────────────────────────────────────────
 
 export default function TVScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const { width: screenW } = useWindowDimensions();
@@ -207,11 +213,11 @@ export default function TVScreen() {
           <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
         </Pressable>
         <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Live TV</Text>
+          <Text style={styles.title}>{t("nav.tv")}</Text>
           <Text style={styles.subtitle}>
             {countries.data?.[0]?.count
-              ? `${countries.data[0].count} free channels worldwide`
-              : "Free channels from around the world"}
+              ? t("tv.channelCount", { count: countries.data[0].count })
+              : t("tv.subtitle")}
           </Text>
         </View>
         <Icon name="Tv" size={22} color={theme.colors.accent} />
@@ -222,7 +228,7 @@ export default function TVScreen() {
         <TextInput
           value={search}
           onChangeText={setSearch}
-          placeholder="Search channels"
+          placeholder={t("tv.searchPlaceholder")}
           placeholderTextColor="#52525B"
           style={styles.searchInput}
           returnKeyType="search"
@@ -261,9 +267,9 @@ export default function TVScreen() {
       ) : channels.isError ? (
         <View style={styles.center}>
           <Icon name="TriangleAlert" size={38} color="#3F3F46" />
-          <Text style={styles.dim}>Couldn't load channels</Text>
+          <Text style={styles.dim}>{t("tv.loadFailed")}</Text>
           <Pressable onPress={() => channels.refetch()} style={styles.retryBtn}>
-            <Text style={styles.retryText}>Retry</Text>
+            <Text style={styles.retryText}>{t("common.retry")}</Text>
           </Pressable>
         </View>
       ) : (
@@ -292,7 +298,7 @@ export default function TVScreen() {
             <View style={styles.center}>
               <Icon name="Tv" size={38} color="#3F3F46" />
               <Text style={styles.dim}>
-                {debounced ? "No channels match your search" : "No channels available"}
+                {debounced ? t("tv.noSearchResults") : t("tv.noChannels")}
               </Text>
             </View>
           }

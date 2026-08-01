@@ -18,9 +18,9 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
 import { theme } from "../theme";
-import { useAuthState } from "../context/AuthContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
   useBrowseJobs,
@@ -33,29 +33,22 @@ import {
 
 type SortKey = "newest" | "highest_pay" | "ending_soon";
 
-const TABS: Array<{ id: WorkJobType | "all"; label: string; icon: IconName }> = [
-  { id: "all", label: "All", icon: "Briefcase" },
-  { id: "shill", label: "Social Media", icon: "MessageSquare" },
-  { id: "clipping", label: "Clipping", icon: "Scissors" },
-  { id: "contract", label: "Contracts", icon: "Briefcase" },
+const TABS: Array<{ id: WorkJobType | "all"; icon: IconName }> = [
+  { id: "all", icon: "Briefcase" },
+  { id: "shill", icon: "MessageSquare" },
+  { id: "clipping", icon: "Scissors" },
+  { id: "contract", icon: "Briefcase" },
 ];
 
-const CURRENCIES: Array<{ id: WorkCurrency | "all"; label: string }> = [
-  { id: "all", label: "All currencies" },
-  { id: "DHB", label: "DHB" },
-  { id: "USDC", label: "USDC" },
-];
+const CURRENCIES: Array<WorkCurrency | "all"> = ["all", "DHB", "USDC"];
 
-const SORTS: Array<{ id: SortKey; label: string }> = [
-  { id: "newest", label: "Newest" },
-  { id: "highest_pay", label: "Highest pay" },
-  { id: "ending_soon", label: "Ending soon" },
-];
+const SORTS: SortKey[] = ["newest", "highest_pay", "ending_soon"];
 
 const num = (n: number, max = 2) =>
   (Number(n) || 0).toLocaleString(undefined, { maximumFractionDigits: max });
 
 export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, onPress }) => {
+  const { t } = useTranslation();
   const isBoosted = !!job.boost_expires_at && new Date(job.boost_expires_at) > new Date();
 
   return (
@@ -64,7 +57,9 @@ export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, 
         <View style={styles.badgeRow}>
           <View style={styles.badge}>
             <Icon name="Briefcase" size={11} color="#D4D4D8" />
-            <Text style={styles.badgeText}>{WORK_TYPE_LABEL[job.job_type]}</Text>
+            <Text style={styles.badgeText}>
+              {t(`work.types.${job.job_type}`, { defaultValue: WORK_TYPE_LABEL[job.job_type] })}
+            </Text>
           </View>
           {!!job.platform && (
             <View style={styles.badgeDim}>
@@ -73,7 +68,7 @@ export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, 
           )}
           {isBoosted && (
             <View style={styles.badgeBoost}>
-              <Text style={styles.badgeBoostText}>Boosted</Text>
+              <Text style={styles.badgeBoostText}>{t("work.boosted")}</Text>
             </View>
           )}
         </View>
@@ -84,7 +79,7 @@ export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, 
           {job.job_type !== "contract" && (
             <Text style={styles.perUnit}>
               {job.price_per_unit} {job.currency}/
-              {job.job_type === "clipping" ? "1k views" : "task"}
+              {job.job_type === "clipping" ? t("work.thousandViews") : t("work.task")}
             </Text>
           )}
         </View>
@@ -100,11 +95,15 @@ export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, 
       <View style={styles.metaRow}>
         <View style={styles.metaItem}>
           <Icon name="Users" size={12} color="#71717A" />
-          <Text style={styles.metaText}>{job.application_count} apps</Text>
+          <Text style={styles.metaText}>
+            {t("work.applicationCount", { count: job.application_count })}
+          </Text>
         </View>
         <View style={styles.metaItem}>
           <Icon name="Eye" size={12} color="#71717A" />
-          <Text style={styles.metaText}>{job.submission_count} subs</Text>
+          <Text style={styles.metaText}>
+            {t("work.submissionCount", { count: job.submission_count })}
+          </Text>
         </View>
         <View style={styles.metaItem}>
           <Icon name="Coins" size={12} color="#71717A" />
@@ -124,10 +123,9 @@ export const JobCard: React.FC<{ job: WorkJob; onPress: () => void }> = ({ job, 
 };
 
 export default function WorkScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
-  const { isSignedIn, needsUsername } = useAuthState();
-  const isAuthed = isSignedIn && !needsUsername;
 
   const [tab, setTab] = useState<WorkJobType | "all">("all");
   const [currency, setCurrency] = useState<WorkCurrency | "all">("all");
@@ -180,8 +178,8 @@ export default function WorkScreen() {
           <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
         </Pressable>
         <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Bounties</Text>
-          <Text style={styles.subtitle}>Post a bounty or hunt one down. Paid in DHB or USDC.</Text>
+          <Text style={styles.title}>{t("work.title")}</Text>
+          <Text style={styles.subtitle}>{t("work.subtitle")}</Text>
         </View>
         <Pressable onPress={goPost} hitSlop={10} style={styles.addBtn}>
           <Icon name="Plus" size={20} color="#000000" />
@@ -194,16 +192,18 @@ export default function WorkScreen() {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.chipRow}
       >
-        {TABS.map((t) => {
-          const active = tab === t.id;
+        {TABS.map((tabItem) => {
+          const active = tab === tabItem.id;
           return (
             <Pressable
-              key={t.id}
-              onPress={() => setTab(t.id)}
+              key={tabItem.id}
+              onPress={() => setTab(tabItem.id)}
               style={[styles.tabChip, active && styles.tabChipActive]}
             >
-              <Icon name={t.icon} size={13} color={active ? "#FFFFFF" : "#A1A1AA"} />
-              <Text style={[styles.tabText, active && styles.tabTextActive]}>{t.label}</Text>
+              <Icon name={tabItem.icon} size={13} color={active ? "#FFFFFF" : "#A1A1AA"} />
+              <Text style={[styles.tabText, active && styles.tabTextActive]}>
+                {t(`work.types.${tabItem.id}`)}
+              </Text>
             </Pressable>
           );
         })}
@@ -214,7 +214,7 @@ export default function WorkScreen() {
         <TextInput
           value={search}
           onChangeText={setSearch}
-          placeholder="Search bounties…"
+          placeholder={t("work.searchPlaceholder")}
           placeholderTextColor="#52525B"
           style={styles.searchInput}
           returnKeyType="search"
@@ -232,25 +232,27 @@ export default function WorkScreen() {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.chipRow}
       >
-        {CURRENCIES.map((c) => (
+        {CURRENCIES.map((currencyKey) => (
           <Pressable
-            key={c.id}
-            onPress={() => setCurrency(c.id)}
-            style={[styles.chip, currency === c.id && styles.chipActive]}
+            key={currencyKey}
+            onPress={() => setCurrency(currencyKey)}
+            style={[styles.chip, currency === currencyKey && styles.chipActive]}
           >
-            <Text style={[styles.chipText, currency === c.id && styles.chipTextActive]}>
-              {c.label}
+            <Text style={[styles.chipText, currency === currencyKey && styles.chipTextActive]}>
+              {currencyKey === "all" ? t("work.allCurrencies") : currencyKey}
             </Text>
           </Pressable>
         ))}
         <View style={styles.chipDivider} />
-        {SORTS.map((s) => (
+        {SORTS.map((sortKey) => (
           <Pressable
-            key={s.id}
-            onPress={() => setSort(s.id)}
-            style={[styles.chip, sort === s.id && styles.chipActive]}
+            key={sortKey}
+            onPress={() => setSort(sortKey)}
+            style={[styles.chip, sort === sortKey && styles.chipActive]}
           >
-            <Text style={[styles.chipText, sort === s.id && styles.chipTextActive]}>{s.label}</Text>
+            <Text style={[styles.chipText, sort === sortKey && styles.chipTextActive]}>
+              {t(`work.sorts.${sortKey}`)}
+            </Text>
           </Pressable>
         ))}
       </ScrollView>
@@ -284,17 +286,17 @@ export default function WorkScreen() {
                 <Icon name="Briefcase" size={40} color="#3F3F46" />
                 <Text style={styles.emptyText}>
                   {hasFilters
-                    ? "No open bounties match these filters."
-                    : "No open bounties right now. Be the first to post one."}
+                    ? t("work.noMatchingBounties")
+                    : t("work.noOpenBounties")}
                 </Text>
                 <View style={styles.emptyActions}>
                   <Pressable onPress={goPost} style={styles.primaryBtn}>
                     <Icon name="Plus" size={15} color="#000000" />
-                    <Text style={styles.primaryBtnText}>Post a Bounty</Text>
+                    <Text style={styles.primaryBtnText}>{t("work.postBounty")}</Text>
                   </Pressable>
                   {hasFilters && (
                     <Pressable onPress={clearFilters} style={styles.secondaryBtn}>
-                      <Text style={styles.secondaryBtnText}>Clear filters</Text>
+                      <Text style={styles.secondaryBtnText}>{t("work.clearFilters")}</Text>
                     </Pressable>
                   )}
                 </View>
@@ -302,7 +304,7 @@ export default function WorkScreen() {
 
               {showCompletedFallback && completedJobs.length > 0 && (
                 <View style={{ gap: 12 }}>
-                  <Text style={styles.sectionHeading}>Recently completed</Text>
+                  <Text style={styles.sectionHeading}>{t("work.recentlyCompleted")}</Text>
                   {completedJobs.map((j) => (
                     <JobCard key={j.id} job={j} onPress={() => openJob(j)} />
                   ))}

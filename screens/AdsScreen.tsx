@@ -34,6 +34,7 @@ import Svg, { Polyline, Line as SvgLine } from "react-native-svg";
 import { ethers } from "ethers";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import { theme } from "../theme";
 import { formatCompactNumber } from "../libs";
@@ -100,13 +101,14 @@ const Kpi: React.FC<{ label: string; value: string }> = ({ label, value }) => (
 const PerfChart: React.FC<{ series: { day: string; impressions: number; clicks: number }[] }> = ({
   series,
 }) => {
+  const { t } = useTranslation();
   const W = 320;
   const H = 110;
   const PAD = 8;
   if (series.length < 2) {
     return (
       <View style={styles.chartEmpty}>
-        <Text style={styles.dim}>Not enough data yet</Text>
+        <Text style={styles.dim}>{t("ads.notEnoughData")}</Text>
       </View>
     );
   }
@@ -132,6 +134,7 @@ const PerfChart: React.FC<{ series: { day: string; impressions: number; clicks: 
 // ── Campaign form ───────────────────────────────────────────────────────────
 
 const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ visible, onClose }) => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const create = useCreateCampaign();
   const [name, setName] = useState("");
@@ -176,23 +179,23 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
           <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
             <View style={styles.sheetHead}>
-              <Text style={styles.sheetTitle}>New campaign</Text>
+              <Text style={styles.sheetTitle}>{t("ads.newCampaign")}</Text>
               <Pressable onPress={onClose} hitSlop={10}>
                 <Icon name="X" size={20} color="#A1A1AA" />
               </Pressable>
             </View>
 
             <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-              <Text style={styles.label}>Campaign name</Text>
+              <Text style={styles.label}>{t("ads.campaignName")}</Text>
               <TextInput
                 value={name}
                 onChangeText={setName}
-                placeholder="Spring launch"
+                placeholder={t("ads.campaignNamePlaceholder")}
                 placeholderTextColor="#52525B"
                 style={styles.input}
               />
 
-              <Text style={styles.label}>Objective</Text>
+              <Text style={styles.label}>{t("ads.objective")}</Text>
               <View style={styles.chipWrap}>
                 {OBJECTIVES.map((o) => (
                   <Pressable
@@ -200,12 +203,14 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
                     onPress={() => setObjective(o)}
                     style={[styles.chip, objective === o && styles.chipActive]}
                   >
-                    <Text style={[styles.chipText, objective === o && styles.chipTextActive]}>{o}</Text>
+                    <Text style={[styles.chipText, objective === o && styles.chipTextActive]}>
+                      {t(`ads.objectives.${o}`)}
+                    </Text>
                   </Pressable>
                 ))}
               </View>
 
-              <Text style={styles.label}>Daily budget (USD)</Text>
+              <Text style={styles.label}>{t("ads.dailyBudget")}</Text>
               <TextInput
                 value={daily}
                 onChangeText={setDaily}
@@ -215,7 +220,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
                 style={styles.input}
               />
 
-              <Text style={styles.label}>Total budget (USD)</Text>
+              <Text style={styles.label}>{t("ads.totalBudget")}</Text>
               <TextInput
                 value={total}
                 onChangeText={setTotal}
@@ -225,7 +230,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
                 style={styles.input}
               />
 
-              <Text style={styles.label}>Landing URL (optional)</Text>
+              <Text style={styles.label}>{t("ads.landingUrl")}</Text>
               <TextInput
                 value={ctaUrl}
                 onChangeText={setCtaUrl}
@@ -236,7 +241,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
                 style={styles.input}
               />
 
-              <Text style={styles.label}>Target badge tiers (empty = everyone)</Text>
+              <Text style={styles.label}>{t("ads.targetTiers")}</Text>
               <View style={styles.chipWrap}>
                 {POVR_TIERS.map((t) => {
                   const on = tiers.includes(t.name);
@@ -259,10 +264,13 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
               </View>
 
               <View style={styles.estBox}>
-                <Text style={styles.dim}>Blended CPM</Text>
+                <Text style={styles.dim}>{t("ads.blendedCpm")}</Text>
                 <Text style={styles.estValue}>{usd(cpm)}</Text>
                 <Text style={[styles.dim, { marginTop: 6 }]}>
-                  ≈ {formatCompactNumber(estImpressions)} impressions for {usd(Number(total) || 0)}
+                  {t("ads.estimatedImpressions", {
+                    count: formatCompactNumber(estImpressions),
+                    amount: usd(Number(total) || 0),
+                  })}
                 </Text>
               </View>
             </ScrollView>
@@ -275,7 +283,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
               {create.isPending ? (
                 <ActivityIndicator color="#000000" />
               ) : (
-                <Text style={styles.primaryBtnText}>Submit for review</Text>
+                <Text style={styles.primaryBtnText}>{t("ads.submitForReview")}</Text>
               )}
             </Pressable>
           </View>
@@ -288,6 +296,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
 // ── Screen ──────────────────────────────────────────────────────────────────
 
 export default function AdsScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -327,11 +336,11 @@ export default function AdsScreen() {
 
   const handleTopUp = useCallback(async () => {
     if (!tokenContract) {
-      toastError("Wallet not ready — try again in a moment.");
+      toastError(t("ads.walletNotReady"));
       return;
     }
     if (dhbPrice <= 0 || dhbForTopUp <= 0) {
-      toastError("DHB price unavailable — try again in a moment.");
+      toastError(t("ads.priceUnavailable"));
       return;
     }
     setBuying(true);
@@ -350,7 +359,7 @@ export default function AdsScreen() {
         const signerAddr = await tokenContract.signer?.getAddress?.();
         const bal = await tokenContract.balanceOf(signerAddr);
         if (bal && bal.lt(amountWei)) {
-          toastError("Insufficient DHB balance for this top-up.");
+          toastError(t("ads.insufficientBalance"));
           return;
         }
       } catch {
@@ -368,7 +377,7 @@ export default function AdsScreen() {
       try {
         const receipt = await res.wait(1);
         if (receipt?.status === 0) {
-          toastError("Transfer reverted on-chain — no credit applied.");
+          toastError(t("ads.transferReverted"));
           return;
         }
         txHash = txHash || receipt?.transactionHash || "";
@@ -377,39 +386,39 @@ export default function AdsScreen() {
       }
 
       if (!txHash) {
-        toastError("No transaction hash returned — nothing to verify.");
+        toastError(t("ads.noTransactionHash"));
         return;
       }
       await topUp.mutateAsync(txHash);
     } catch (err: any) {
-      const msg = String(err?.message || err || "Top-up failed");
+      const msg = String(err?.message || err || t("ads.topUpFailed"));
       if (msg.includes("user rejected") || msg.includes("cancelled")) {
-        toastError("Transaction cancelled.");
+        toastError(t("ads.transactionCancelled"));
       } else {
         toastError(msg.slice(0, 120));
       }
     } finally {
       setBuying(false);
     }
-  }, [tokenContract, dhbPrice, dhbForTopUp, chainId, topUp]);
+  }, [tokenContract, dhbPrice, dhbForTopUp, chainId, topUp, t]);
 
   const campaignMenu = useCallback(
     (c: AdCampaign) => {
       const next: CampaignStatus = c.status === "active" ? "paused" : "active";
-      Alert.alert(c.name, `Spent ${usd(c.spent_usd)} of ${usd(c.total_budget_usd)}`, [
+      Alert.alert(c.name, t("ads.spentOf", { spent: usd(c.spent_usd), total: usd(c.total_budget_usd) }), [
         {
-          text: c.status === "active" ? "Pause" : "Resume",
+          text: c.status === "active" ? t("ads.pause") : t("ads.resume"),
           onPress: () => updateCampaign.mutate({ id: c.id, status: next }),
         },
         {
-          text: "Delete",
+          text: t("common.delete"),
           style: "destructive",
           onPress: () => deleteCampaign.mutate(c.id),
         },
-        { text: "Cancel", style: "cancel" },
+        { text: t("common.cancel"), style: "cancel" },
       ]);
     },
-    [updateCampaign, deleteCampaign],
+    [updateCampaign, deleteCampaign, t],
   );
 
   const hasAccount = !!account.data;
@@ -421,8 +430,8 @@ export default function AdsScreen() {
           <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
         </Pressable>
         <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Ads</Text>
-          <Text style={styles.subtitle}>Reach DeHub holders by badge tier</Text>
+          <Text style={styles.title}>{t("nav.ads")}</Text>
+          <Text style={styles.subtitle}>{t("ads.subtitle")}</Text>
         </View>
         {tab === "campaigns" && hasAccount && (
           <Pressable onPress={() => setFormOpen(true)} hitSlop={10} style={styles.addBtn}>
@@ -432,14 +441,14 @@ export default function AdsScreen() {
       </View>
 
       <View style={styles.segment}>
-        {(["overview", "campaigns", "billing"] as const).map((t) => (
+        {(["overview", "campaigns", "billing"] as const).map((tabKey) => (
           <Pressable
-            key={t}
-            onPress={() => setTab(t)}
-            style={[styles.segmentBtn, tab === t && styles.segmentBtnActive]}
+            key={tabKey}
+            onPress={() => setTab(tabKey)}
+            style={[styles.segmentBtn, tab === tabKey && styles.segmentBtnActive]}
           >
-            <Text style={[styles.segmentText, tab === t && styles.segmentTextActive]}>
-              {t === "overview" ? "Overview" : t === "campaigns" ? "Campaigns" : "Billing"}
+            <Text style={[styles.segmentText, tab === tabKey && styles.segmentTextActive]}>
+              {t(`ads.tabs.${tabKey}`)}
             </Text>
           </Pressable>
         ))}
@@ -461,11 +470,8 @@ export default function AdsScreen() {
         ) : !hasAccount ? (
           <View style={styles.card}>
             <Icon name="Megaphone" size={34} color="#3F3F46" />
-            <Text style={styles.emptyTitle}>Advertise on DeHub</Text>
-            <Text style={styles.dim}>
-              Pay per verified impression, priced by the viewer's badge tier. Open an advertiser
-              account to create your first campaign.
-            </Text>
+            <Text style={styles.emptyTitle}>{t("ads.advertiseTitle")}</Text>
+            <Text style={styles.dim}>{t("ads.advertiseDescription")}</Text>
             <Pressable
               onPress={() => ensureAccount.mutate(undefined)}
               disabled={ensureAccount.isPending}
@@ -474,42 +480,45 @@ export default function AdsScreen() {
               {ensureAccount.isPending ? (
                 <ActivityIndicator color="#000000" />
               ) : (
-                <Text style={styles.primaryBtnText}>Open advertiser account</Text>
+                <Text style={styles.primaryBtnText}>{t("ads.openAccount")}</Text>
               )}
             </Pressable>
           </View>
         ) : tab === "overview" ? (
           <>
             <View style={styles.card}>
-              <Text style={styles.dim}>Available credit</Text>
+              <Text style={styles.dim}>{t("ads.availableCredit")}</Text>
               <Text style={styles.balance}>{usd(account.data!.balance_usd)}</Text>
               <Text style={styles.dim}>
-                {usd(account.data!.total_spent_usd)} spent · {usd(account.data!.total_deposited_usd)} deposited
+                {t("ads.accountTotals", {
+                  spent: usd(account.data!.total_spent_usd),
+                  deposited: usd(account.data!.total_deposited_usd),
+                })}
               </Text>
             </View>
 
             <View style={styles.card}>
-              <Text style={styles.cardTitle}>Performance</Text>
+              <Text style={styles.cardTitle}>{t("ads.performance")}</Text>
               <View style={styles.kpiRow}>
-                <Kpi label="Impressions" value={formatCompactNumber(kpis.impressions)} />
-                <Kpi label="Clicks" value={formatCompactNumber(kpis.clicks)} />
+                <Kpi label={t("ads.impressions")} value={formatCompactNumber(kpis.impressions)} />
+                <Kpi label={t("ads.clicks")} value={formatCompactNumber(kpis.clicks)} />
                 <Kpi label="CTR" value={`${kpis.ctr.toFixed(2)}%`} />
               </View>
               <View style={[styles.kpiRow, { marginTop: 8 }]}>
-                <Kpi label="Spend" value={usd(kpis.spend)} />
-                <Kpi label="eCPM" value={usd(kpis.ecpm)} />
-                <Kpi label="Campaigns" value={String((campaigns.data ?? []).length)} />
+                <Kpi label={t("ads.spend")} value={usd(kpis.spend)} />
+                <Kpi label={t("ads.ecpm")} value={usd(kpis.ecpm)} />
+                <Kpi label={t("ads.campaigns")} value={String((campaigns.data ?? []).length)} />
               </View>
               <View style={{ marginTop: 14 }}>
                 <PerfChart series={series} />
                 <View style={styles.legend}>
                   <View style={styles.legendItem}>
                     <View style={[styles.legendDot, { backgroundColor: "#3b82f6" }]} />
-                    <Text style={styles.legendText}>Impressions</Text>
+                    <Text style={styles.legendText}>{t("ads.impressions")}</Text>
                   </View>
                   <View style={styles.legendItem}>
                     <View style={[styles.legendDot, { backgroundColor: "#22c55e" }]} />
-                    <Text style={styles.legendText}>Clicks</Text>
+                    <Text style={styles.legendText}>{t("ads.clicks")}</Text>
                   </View>
                 </View>
               </View>
@@ -521,9 +530,9 @@ export default function AdsScreen() {
           ) : (campaigns.data ?? []).length === 0 ? (
             <View style={styles.card}>
               <Icon name="Megaphone" size={32} color="#3F3F46" />
-              <Text style={styles.emptyTitle}>No campaigns yet</Text>
+              <Text style={styles.emptyTitle}>{t("ads.noCampaigns")}</Text>
               <Pressable onPress={() => setFormOpen(true)} style={styles.primaryBtn}>
-                <Text style={styles.primaryBtnText}>Create campaign</Text>
+                <Text style={styles.primaryBtnText}>{t("ads.createCampaign")}</Text>
               </Pressable>
             </View>
           ) : (
@@ -545,18 +554,18 @@ export default function AdsScreen() {
                       ]}
                     >
                       <Text style={[styles.statusText, { color: STATUS_COLOR[c.status] ?? "#A1A1AA" }]}>
-                        {c.status.replace("_", " ")}
+                        {t(`ads.statuses.${c.status}`)}
                       </Text>
                     </View>
                   </View>
                   <Text style={styles.dim}>
-                    {c.objective} · {usd(c.daily_budget_usd)}/day
+                    {t(`ads.objectives.${c.objective}`)} · {t("ads.perDay", { amount: usd(c.daily_budget_usd) })}
                   </Text>
                   <View style={styles.progressTrack}>
                     <View style={[styles.progressFill, { width: `${pct}%` }]} />
                   </View>
                   <Text style={styles.dim}>
-                    {usd(c.spent_usd)} of {usd(c.total_budget_usd)} spent
+                    {t("ads.spentOf", { spent: usd(c.spent_usd), total: usd(c.total_budget_usd) })}
                   </Text>
                 </Pressable>
               );
@@ -565,10 +574,10 @@ export default function AdsScreen() {
         ) : (
           <>
             <View style={styles.card}>
-              <Text style={styles.dim}>Available credit</Text>
+              <Text style={styles.dim}>{t("ads.availableCredit")}</Text>
               <Text style={styles.balance}>{usd(account.data!.balance_usd)}</Text>
 
-              <Text style={[styles.label, { marginTop: 14 }]}>Add credit</Text>
+              <Text style={[styles.label, { marginTop: 14 }]}>{t("ads.addCredit")}</Text>
               <View style={styles.chipWrap}>
                 {TOPUP_PRESETS.map((p) => (
                   <Pressable
@@ -596,23 +605,20 @@ export default function AdsScreen() {
                 ) : (
                   <Text style={styles.primaryBtnText}>
                     {dhbForTopUp > 0
-                      ? `Pay ${dhbForTopUp.toLocaleString()} DHB`
-                      : "Loading price…"}
+                      ? t("ads.payDhb", { amount: dhbForTopUp.toLocaleString() })
+                      : t("ads.loadingPrice")}
                   </Text>
                 )}
               </Pressable>
-              <Text style={styles.hint}>
-                DHB is transferred on-chain to the DeHub ads treasury, then your balance is credited
-                after independent on-chain verification.
-              </Text>
+              <Text style={styles.hint}>{t("ads.topUpExplanation")}</Text>
             </View>
 
             <View style={styles.card}>
-              <Text style={styles.cardTitle}>Payment history</Text>
+              <Text style={styles.cardTitle}>{t("ads.paymentHistory")}</Text>
               {payments.isLoading ? (
                 <ActivityIndicator color="#FFFFFF" style={{ marginVertical: 18 }} />
               ) : (payments.data ?? []).length === 0 ? (
-                <Text style={[styles.dim, { paddingVertical: 12 }]}>No payments yet</Text>
+                <Text style={[styles.dim, { paddingVertical: 12 }]}>{t("ads.noPayments")}</Text>
               ) : (
                 (payments.data ?? []).map((p) => (
                   <View key={p.id} style={styles.payRow}>
