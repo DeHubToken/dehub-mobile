@@ -21,6 +21,7 @@ import {
 import DateTimePicker, { type DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
 import { useAuthState } from "../context/AuthContext";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -34,31 +35,19 @@ import {
 
 const TYPE_OPTIONS: Array<{
   id: WorkJobType;
-  label: string;
-  desc: string;
   icon: IconName;
-  unitLabel: string;
 }> = [
   {
     id: "shill",
-    label: "Comments / Shill",
-    desc: "Pay per verified comment on X, YouTube, IG, TikTok.",
     icon: "MessageSquare",
-    unitLabel: "comment",
   },
   {
     id: "clipping",
-    label: "Clipping",
-    desc: "Pay per 1k views on clips posted across TikTok, IG, YouTube.",
     icon: "Scissors",
-    unitLabel: "1k views",
   },
   {
     id: "contract",
-    label: "Contract",
-    desc: "Fixed-price gig. Pick one worker from applicants.",
     icon: "Briefcase",
-    unitLabel: "job",
   },
 ];
 
@@ -77,6 +66,7 @@ function toISODate(d: Date): string {
 }
 
 export default function WorkPostScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -98,10 +88,7 @@ export default function WorkPostScreen() {
   const priceNum = Number(pricePerUnit) || 0;
   const unitsNum = jobType === "contract" ? 1 : Number(maxUnits) || 0;
   const total = priceNum * unitsNum;
-  const unitLabel = useMemo(
-    () => TYPE_OPTIONS.find((t) => t.id === jobType)!.unitLabel,
-    [jobType],
-  );
+  const unitLabel = useMemo(() => t(`work.units.${jobType}`), [jobType, t]);
 
   const onDateChange = useCallback((_e: DateTimePickerEvent, selected?: Date) => {
     setShowDatePicker(Platform.OS === "ios");
@@ -152,8 +139,8 @@ export default function WorkPostScreen() {
           <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
         </Pressable>
         <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Post a Bounty</Text>
-          <Text style={styles.subtitle}>Step {step} of 3</Text>
+          <Text style={styles.title}>{t("work.postBounty")}</Text>
+          <Text style={styles.subtitle}>{t("work.stepOf", { step, total: 3 })}</Text>
         </View>
       </View>
 
@@ -169,46 +156,48 @@ export default function WorkPostScreen() {
         >
           {step === 1 && (
             <View style={{ gap: 10 }}>
-              {TYPE_OPTIONS.map((t) => {
-                const active = jobType === t.id;
+              {TYPE_OPTIONS.map((option) => {
+                const active = jobType === option.id;
                 return (
                   <Pressable
-                    key={t.id}
-                    onPress={() => setJobType(t.id)}
+                    key={option.id}
+                    onPress={() => setJobType(option.id)}
                     style={[styles.typeCard, active && styles.typeCardActive]}
                   >
                     <View style={styles.typeIcon}>
-                      <Icon name={t.icon} size={20} color="#FFFFFF" />
+                      <Icon name={option.icon} size={20} color="#FFFFFF" />
                     </View>
                     <View style={{ flex: 1 }}>
-                      <Text style={styles.typeLabel}>{t.label}</Text>
-                      <Text style={styles.typeDesc}>{t.desc}</Text>
+                      <Text style={styles.typeLabel}>{t(`work.postTypes.${option.id}.label`)}</Text>
+                      <Text style={styles.typeDesc}>
+                        {t(`work.postTypes.${option.id}.description`)}
+                      </Text>
                     </View>
                   </Pressable>
                 );
               })}
               <Pressable onPress={() => setStep(2)} style={styles.primaryBtn}>
-                <Text style={styles.primaryBtnText}>Continue</Text>
+                <Text style={styles.primaryBtnText}>{t("work.continue")}</Text>
               </Pressable>
             </View>
           )}
 
           {step === 2 && (
             <View>
-              <Field label="Title">
+              <Field label={t("work.fields.title")}>
                 <TextInput
                   value={title}
                   onChangeText={setTitle}
-                  placeholder="What needs to be done?"
+                  placeholder={t("work.fields.titlePlaceholder")}
                   placeholderTextColor="#52525B"
                   style={styles.input}
                 />
               </Field>
-              <Field label="Description">
+              <Field label={t("work.fields.description")}>
                 <TextInput
                   value={description}
                   onChangeText={setDescription}
-                  placeholder="Be specific. Include hashtags, talking points, links to assets, etc."
+                  placeholder={t("work.fields.descriptionPlaceholder")}
                   placeholderTextColor="#52525B"
                   multiline
                   style={[styles.input, { minHeight: 120, textAlignVertical: "top" }]}
@@ -217,7 +206,7 @@ export default function WorkPostScreen() {
 
               {jobType !== "contract" && (
                 <>
-                  <Field label="Platform">
+                  <Field label={t("work.fields.platform")}>
                     <View style={styles.chipWrap}>
                       {WORK_PLATFORMS.map((p) => (
                         <Pressable
@@ -237,8 +226,8 @@ export default function WorkPostScreen() {
                   <Field
                     label={
                       jobType === "clipping"
-                        ? "Original content URL (clip from)"
-                        : "Target post / channel URL"
+                        ? t("work.fields.originalContentUrl")
+                        : t("work.fields.targetUrl")
                     }
                   >
                     <TextInput
@@ -256,7 +245,7 @@ export default function WorkPostScreen() {
 
               <View style={styles.navRow}>
                 <Pressable onPress={() => setStep(1)} style={styles.secondaryBtn}>
-                  <Text style={styles.secondaryBtnText}>Back</Text>
+                  <Text style={styles.secondaryBtnText}>{t("common.goBack")}</Text>
                 </Pressable>
                 <Pressable
                   onPress={() => setStep(3)}
@@ -267,7 +256,7 @@ export default function WorkPostScreen() {
                     (!title.trim() || !description.trim()) && styles.disabled,
                   ]}
                 >
-                  <Text style={styles.primaryBtnText}>Continue</Text>
+                  <Text style={styles.primaryBtnText}>{t("work.continue")}</Text>
                 </Pressable>
               </View>
             </View>
@@ -275,7 +264,7 @@ export default function WorkPostScreen() {
 
           {step === 3 && (
             <View>
-              <Field label="Currency">
+              <Field label={t("work.fields.currency")}>
                 <View style={{ flexDirection: "row", gap: 8 }}>
                   {(["DHB", "USDC"] as WorkCurrency[]).map((c) => (
                     <Pressable
@@ -296,7 +285,13 @@ export default function WorkPostScreen() {
                 </View>
               </Field>
 
-              <Field label={jobType === "contract" ? "Total budget" : `Price per ${unitLabel}`}>
+              <Field
+                label={
+                  jobType === "contract"
+                    ? t("work.fields.totalBudget")
+                    : t("work.fields.pricePer", { unit: unitLabel })
+                }
+              >
                 <TextInput
                   value={pricePerUnit}
                   onChangeText={setPricePerUnit}
@@ -308,7 +303,7 @@ export default function WorkPostScreen() {
               </Field>
 
               {jobType !== "contract" && (
-                <Field label={`Max ${unitLabel}s`}>
+                <Field label={t("work.fields.maxUnits", { unit: unitLabel })}>
                   <TextInput
                     value={maxUnits}
                     onChangeText={setMaxUnits}
@@ -320,15 +315,15 @@ export default function WorkPostScreen() {
                 </Field>
               )}
 
-              <Field label="Deadline (optional)">
+              <Field label={t("work.fields.deadlineOptional")}>
                 <Pressable onPress={() => setShowDatePicker(true)} style={styles.input}>
                   <Text style={{ color: deadline ? "#FFFFFF" : "#52525B", fontSize: 14 }}>
-                    {deadline || "Pick a date"}
+                    {deadline || t("work.fields.pickDate")}
                   </Text>
                 </Pressable>
                 {deadline.length > 0 && (
                   <Pressable onPress={() => setDeadline("")} hitSlop={8}>
-                    <Text style={styles.clearDate}>Clear deadline</Text>
+                    <Text style={styles.clearDate}>{t("work.fields.clearDeadline")}</Text>
                   </Pressable>
                 )}
                 {showDatePicker && (
@@ -344,23 +339,22 @@ export default function WorkPostScreen() {
 
               <View style={styles.totalBox}>
                 <View style={styles.totalRow}>
-                  <Text style={styles.totalLabel}>Total to escrow</Text>
+                  <Text style={styles.totalLabel}>{t("work.totalEscrow")}</Text>
                   <Text style={styles.totalValue}>
                     {total.toLocaleString(undefined, { maximumFractionDigits: 4 })} {currency}
                   </Text>
                 </View>
                 <Text style={styles.totalHint}>
-                  +5% platform fee taken on each released payout.
+                  {t("work.platformFee")}
                 </Text>
                 <Text style={styles.totalWarn}>
-                  Escrow contract launching soon. Until then, jobs run on a trust-based ledger —
-                  fund manually via your wallet on payout.
+                  {t("work.escrowNotice")}
                 </Text>
               </View>
 
               <View style={styles.navRow}>
                 <Pressable onPress={() => setStep(2)} style={styles.secondaryBtn}>
-                  <Text style={styles.secondaryBtnText}>Back</Text>
+                  <Text style={styles.secondaryBtnText}>{t("common.goBack")}</Text>
                 </Pressable>
                 <Pressable
                   onPress={handleSubmit}
@@ -374,7 +368,7 @@ export default function WorkPostScreen() {
                   {createJob.isPending ? (
                     <ActivityIndicator color="#000000" />
                   ) : (
-                    <Text style={styles.primaryBtnText}>Post Job</Text>
+                    <Text style={styles.primaryBtnText}>{t("work.postJob")}</Text>
                   )}
                 </Pressable>
               </View>

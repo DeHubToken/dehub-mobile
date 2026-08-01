@@ -20,6 +20,7 @@ import {
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import MyStoreTab from "../components/Stores/MyStoreTab";
 import { theme } from "../theme";
@@ -51,6 +52,7 @@ const ListingCard: React.FC<{ listing: StoreListing; width: number; onPress: () 
   width,
   onPress,
 }) => {
+  const { t } = useTranslation();
   const img = firstImage(listing);
   const soldOut = listing.stock_quantity === 0;
 
@@ -66,12 +68,12 @@ const ListingCard: React.FC<{ listing: StoreListing; width: number; onPress: () 
         )}
         {listing.is_digital && (
           <View style={styles.digitalPill}>
-            <Text style={styles.digitalText}>Digital</Text>
+            <Text style={styles.digitalText}>{t("stores.digital")}</Text>
           </View>
         )}
         {soldOut && (
           <View style={styles.soldOverlay}>
-            <Text style={styles.soldText}>Sold out</Text>
+            <Text style={styles.soldText}>{t("stores.soldOut")}</Text>
           </View>
         )}
       </View>
@@ -92,6 +94,7 @@ const ListingCard: React.FC<{ listing: StoreListing; width: number; onPress: () 
 };
 
 export default function StoresScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const { width: screenW } = useWindowDimensions();
@@ -132,21 +135,21 @@ export default function StoresScreen() {
           <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
         </Pressable>
         <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Stores</Text>
-          <Text style={styles.subtitle}>Peer-to-peer marketplace, settled in DHB</Text>
+          <Text style={styles.title}>{t("screens.stores")}</Text>
+          <Text style={styles.subtitle}>{t("stores.subtitle")}</Text>
         </View>
         <Icon name="Store" size={22} color={theme.colors.accent} />
       </View>
 
       <View style={styles.segment}>
-        {(["browse", "my-store"] as const).map((t) => (
+        {(["browse", "my-store"] as const).map((tabKey) => (
           <Pressable
-            key={t}
-            onPress={() => setTab(t)}
-            style={[styles.segmentBtn, tab === t && styles.segmentBtnActive]}
+            key={tabKey}
+            onPress={() => setTab(tabKey)}
+            style={[styles.segmentBtn, tab === tabKey && styles.segmentBtnActive]}
           >
-            <Text style={[styles.segmentText, tab === t && styles.segmentTextActive]}>
-              {t === "browse" ? "Browse" : "My Store"}
+            <Text style={[styles.segmentText, tab === tabKey && styles.segmentTextActive]}>
+              {tabKey === "browse" ? t("stores.browse") : t("stores.myStore")}
             </Text>
           </Pressable>
         ))}
@@ -159,7 +162,7 @@ export default function StoresScreen() {
             <TextInput
               value={search}
               onChangeText={setSearch}
-              placeholder="Search listings"
+              placeholder={t("stores.searchPlaceholder")}
               placeholderTextColor="#52525B"
               style={styles.searchInput}
               returnKeyType="search"
@@ -183,7 +186,7 @@ export default function StoresScreen() {
                 style={[styles.chip, category === c.value && styles.chipActive]}
               >
                 <Text style={[styles.chipText, category === c.value && styles.chipTextActive]}>
-                  {c.label}
+                  {t(`stores.categories.${c.value}`)}
                 </Text>
               </Pressable>
             ))}
@@ -195,7 +198,7 @@ export default function StoresScreen() {
                 style={[styles.chip, sort === s.value && styles.chipActive]}
               >
                 <Text style={[styles.chipText, sort === s.value && styles.chipTextActive]}>
-                  {s.label}
+                  {t(`stores.sorts.${s.value}`)}
                 </Text>
               </Pressable>
             ))}
@@ -207,9 +210,9 @@ export default function StoresScreen() {
             </View>
           ) : isError ? (
             <View style={styles.center}>
-              <Text style={styles.emptyText}>Couldn't load listings</Text>
+              <Text style={styles.emptyText}>{t("stores.loadFailed")}</Text>
               <Pressable onPress={() => refetch()} style={styles.retryBtn}>
-                <Text style={styles.retryText}>Retry</Text>
+                <Text style={styles.retryText}>{t("common.retry")}</Text>
               </Pressable>
             </View>
           ) : (
@@ -238,7 +241,7 @@ export default function StoresScreen() {
                 <View style={styles.center}>
                   <Icon name="Package" size={44} color="#3F3F46" />
                   <Text style={styles.emptyText}>
-                    {search ? "Nothing matches your search" : "No listings yet"}
+                    {search ? t("stores.noSearchResults") : t("stores.noListings")}
                   </Text>
                 </View>
               }

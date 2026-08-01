@@ -39,7 +39,8 @@ import { formatCompactNumber } from "../libs";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { ScreenNames } from "../navigation/ScreenNames";
-import { useTranslation, type TFunction } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import {
   useFeatureRequests,
   useShippedFeatures,

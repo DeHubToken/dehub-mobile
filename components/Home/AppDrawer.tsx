@@ -45,7 +45,6 @@ interface DrawerItem {
   icon: IconName;
   /** i18n key for the label (resolved with t() at render). */
   labelKey: string;
-  testLabel: string;
   screen?: string;
   params?: Record<string, any>;
   url?: string;
@@ -106,6 +105,7 @@ interface MenuItemProps {
   icon: IconName;
   label: string;
   labelKey: string;
+  testLabel: string;
   soonLabel: string;
   onPress: () => void;
   disabled?: boolean;

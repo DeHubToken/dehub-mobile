@@ -33,7 +33,19 @@ describe("mobile navigation translations", () => {
 
   it("keeps Turkish coverage complete for recently added mobile pages", () => {
     const tr = readLocale("tr");
-    const namespaces = ["nav", "prompt", "communities", "careers", "features", "tv", "top100", "ads"];
+    const namespaces = [
+      "nav",
+      "prompt",
+      "communities",
+      "careers",
+      "features",
+      "tv",
+      "top100",
+      "ads",
+      "commandCentre",
+      "work",
+      "stores",
+    ];
 
     for (const namespace of namespaces) {
       expect(leafKeys(tr[namespace], namespace).sort()).toEqual(
