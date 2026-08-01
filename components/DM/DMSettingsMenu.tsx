@@ -51,7 +51,7 @@ const DMSettingsMenu: React.FC<DMSettingsMenuProps> = ({
             onPress={onToggleDnd}
             accessibilityRole="button"
           >
-            <Ionicons name={dnd ? 'moon' : 'moon-outline'} size={18} color={dnd ? '#60A5FA' : '#E5E7EB'} />
+            <Ionicons name={dnd ? 'moon' : 'moon-outline'} size={18} color={dnd ? '#D4D4D8' : '#E5E7EB'} />
             <Text className="ml-2 text-theme-neutrals-100 text-sm">{dnd ? 'DND: On' : 'DND'}</Text>
           </TouchableOpacity>
         </View>

@@ -87,7 +87,7 @@ const NewChatIntroComponent: React.FC<NewChatIntroProps> = ({
         ) : null}
       </View>
 
-      <View className="bg-theme-neutrals-800/50 rounded-2xl px-4 py-3 w-full max-w-[300px]">
+      <View className="bg-theme-neutrals-800/50 rounded-xl px-4 py-3 w-full max-w-[300px]">
         {/* DM status */}
         {policy.dmEnabled ? (
           <InfoRow
@@ -118,7 +118,7 @@ const NewChatIntroComponent: React.FC<NewChatIntroProps> = ({
             ) : (
               <InfoRow
                 icon="diamond"
-                iconColor="#3B82F6"
+                iconColor="#F4F4F5"
                 text={`${policy.perMessageFee} DHB per message`}
                 subtext="Each message requires a DHB payment"
               />

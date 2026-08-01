@@ -120,7 +120,7 @@ const MenuItem = memo<MenuItemProps>(({ icon, label, labelKey, testLabel, soonLa
   <TouchableOpacity
     accessibilityRole="button"
     accessibilityLabel={label}
-    className="flex-row items-center gap-3.5 px-3 py-3 mx-2 rounded-2xl"
+    className="flex-row items-center gap-3.5 px-3 py-3 mx-2 rounded-xl"
     activeOpacity={disabled ? 1 : 0.6}
     onPress={onPress}
     style={[styles.itemBase, active && styles.itemActive, disabled ? { opacity: 0.45 } : null]}

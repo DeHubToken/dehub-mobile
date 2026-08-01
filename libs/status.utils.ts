@@ -9,8 +9,8 @@ export const statusOptions: { id: string; label: string; icon: IonIconName; colo
   { id: 'new', label: 'New', icon: 'flash-outline', color: '#00FF88' },
   { id: 'mostLiked', label: 'Most Liked', icon: 'heart-outline', color: '#EF4444' },
   { id: 'ppv', label: 'Pay Per View', icon: 'cash-outline', color: '#10B981' },
-  { id: 'bounty', label: 'Bounties', icon: 'gift-outline', color: '#F59E0B' },
-  { id: 'locked', label: 'Locked', icon: 'lock-closed-outline', color: '#8B5CF6' },
+  { id: 'bounty', label: 'Bounties', icon: 'gift-outline', color: '#D4D4D8' },
+  { id: 'locked', label: 'Locked', icon: 'lock-closed-outline', color: '#D4D4D8' },
 ];
 
 export const getSelectedStatusLabel = (selectedStatus: string): string => {

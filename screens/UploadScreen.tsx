@@ -1218,7 +1218,7 @@ export default function UploadScreen() {
       {scheduledDate && (
         <View
           className="mx-4 mb-2 flex-row items-center px-3 py-2 rounded-xl"
-          style={{ backgroundColor: "rgba(99,102,241,0.15)", borderWidth: 1, borderColor: "rgba(99,102,241,0.3)" }}
+          style={{ backgroundColor: "rgba(255,255,255,0.15)", borderWidth: 1, borderColor: "rgba(255,255,255,0.3)" }}
         >
           <TouchableOpacity
             onPress={() => setShowScheduleSheet(true)}
@@ -1370,7 +1370,7 @@ export default function UploadScreen() {
 
             {!isLiveMode && mediaMode === "images" && attachedSound && (
               <View className="mt-3 bg-white/5 rounded-lg px-3 py-2 flex-row items-center">
-                <Icon name="Music" size={14} color="#7C3AED" />
+                <Icon name="Music" size={14} color="#A1A1AA" />
                 <Text className="text-white text-xs ml-1.5 flex-1" numberOfLines={1}>
                   {attachedSound.title} — {attachedSound.creator}
                 </Text>
@@ -1432,7 +1432,7 @@ export default function UploadScreen() {
                 />
                 {attachedSound && (
                   <View className="absolute top-2 left-2 bg-black/70 rounded-lg px-3 py-1.5 flex-row items-center z-20">
-                    <Icon name="Music" size={14} color="#7C3AED" />
+                    <Icon name="Music" size={14} color="#A1A1AA" />
                     <Text className="text-white text-xs ml-1.5" numberOfLines={1} style={{ maxWidth: 160 }}>
                       {attachedSound.title}
                     </Text>
@@ -1986,7 +1986,7 @@ export default function UploadScreen() {
                 <Icon
                   name={attachedSound ? "Music" : "Music"}
                   size={22}
-                  color={attachedSound ? "#7C3AED" : "#9CA3AF"}
+                  color={attachedSound ? "#A1A1AA" : "#9CA3AF"}
                 />
               </TouchableOpacity>
             )}
@@ -2000,7 +2000,7 @@ export default function UploadScreen() {
             className="mr-4"
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           >
-            <Icon name="ChartBarBig" size={22} color={pollEnabled ? "#3B82F6" : "#fff"} />
+            <Icon name="ChartBarBig" size={22} color={pollEnabled ? "#F4F4F5" : "#fff"} />
           </TouchableOpacity>
         )}
 
@@ -2205,9 +2205,9 @@ export default function UploadScreen() {
               openStages("browse");
             }}
             className="flex-row items-center gap-3 py-4 px-4 rounded-xl"
-            style={{ backgroundColor: "rgba(139,92,246,0.15)", borderWidth: 1, borderColor: "rgba(139,92,246,0.3)" }}
+            style={{ backgroundColor: "rgba(255,255,255,0.15)", borderWidth: 1, borderColor: "rgba(255,255,255,0.3)" }}
           >
-            <Icon name="Mic" size={22} color="#8B5CF6" />
+            <Icon name="Mic" size={22} color="#D4D4D8" />
             <View className="flex-1">
               <Text className="text-white font-semibold text-sm">Stages</Text>
               <Text className="text-theme-neutrals-400 text-xs mt-0.5">Join or start an audio stage</Text>

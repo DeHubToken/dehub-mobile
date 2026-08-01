@@ -11,26 +11,13 @@ import {
   Text,
   View,
   FlatList,
-  type ListRenderItemInfo,
+  Pressable,
   TouchableOpacity,
   type NativeSyntheticEvent,
   type NativeScrollEvent,
-  Pressable,
   type LayoutChangeEvent,
-  StyleSheet,
-  ScrollView,
 } from "react-native";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-  Easing,
-} from "react-native-reanimated";
-import Icon, { type IconName } from "../ui/Icon";
-import FeedCard from "../Home/FeedCard";
-import InfiniteFeed from "../Feed/InfiniteFeed";
-import type { GetNFTsResult } from "../../services/nft.service";
-import type { GetNFTsResponse } from "../../services/feed.service";
+import Icon from "../ui/Icon";
 import {
   getUnifiedFeed,
   type UnifiedFeedItem,
@@ -38,10 +25,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
-import { useAuthState } from "../../context/AuthContext";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { theme } from "../../theme";
-import UserRepostsList, { type UserRepostsListRef } from "./UserRepostsList";
 import ProfileImageGrid from "../Profile/ProfileImageGrid";
 import PlanCard from "../Subscription/PlanCard";
 import VideosRoute from "../Profile/VideosRoute";
@@ -50,7 +35,10 @@ import FractionsRoute from "../Profile/FractionsRoute";
 import PinnedRoute from "../Profile/PinnedRoute";
 import ProfileFeedTypeRoute from "../Profile/ProfileFeedTypeRoute";
 import PostsRoute from "../Profile/PostsRoute";
-import RepliesRoute from "../Profile/RepliesRoute";
+import FeedRoute from "../Profile/FeedRoute";
+import ProfileTabBar, { type ProfileTabItem } from "../Profile/ProfileTabBar";
+import ProfileEmptyState from "../Profile/ProfileEmptyState";
+import { useProfileContentCounts } from "../Profile/useProfileContentCounts";
 import { getPlans, type SubscriptionPlan } from "../../services/subscription.service";
 
 interface UserProfileBottomContentTabsProps {
@@ -74,8 +62,7 @@ interface UserProfileBottomContentTabsProps {
   blockedYou?: boolean;
 }
 
-const STICKY_BAR_HEIGHT = 48;
-const SLIDE_TIMING = { duration: 200, easing: Easing.out(Easing.cubic) };
+const STICKY_BAR_HEIGHT = 68;
 
 /** Horizontal padding for post cards. Kept tight so content isn't crowded by
  *  large left/right gaps inside the profile sheet. */
@@ -86,9 +73,8 @@ const LIST_CONTENT_STYLE = { paddingBottom: 80 } as const;
 const LIST_CONTENT_STYLE_COLLAPSED = { paddingBottom: 24 } as const;
 
 type ContentTab =
+  | "home"
   | "posts"
-  | "replies"
-  | "reposts"
   | "images"
   | "videos"
   | "songs"
@@ -97,21 +83,17 @@ type ContentTab =
   | "subscribers"
   | "pinned";
 
-const TAB_ITEMS: { key: ContentTab; label: string; icon: IconName }[] = [
-  { key: "posts", label: "Posts", icon: "Grid3x3" },
-  { key: "replies", label: "Replies", icon: "MessageSquare" },
-  { key: "reposts", label: "Reposts", icon: "Repeat2" },
+const BASE_TAB_ITEMS: ProfileTabItem<ContentTab>[] = [
+  { key: "home", label: "All", icon: "House" },
+  { key: "posts", label: "Posts", icon: "MessageSquare" },
   { key: "images", label: "Images", icon: "Image" },
   { key: "videos", label: "Videos", icon: "Film" },
-  { key: "songs", label: "Audio", icon: "Music" },
+  { key: "subscribers", label: "Subs", icon: "Star" },
+  { key: "songs", label: "Audio", icon: "Play" },
   { key: "live", label: "Live", icon: "Radio" },
   { key: "fractions", label: "Fractions", icon: "ChartPie" },
-  { key: "subscribers", label: "Subs", icon: "Star" },
-  { key: "pinned", label: "Pinned", icon: "Bookmark" },
+  { key: "pinned", label: "Pinned", icon: "Pin" },
 ];
-
-/** Fixed per-tab width so the (now scrollable) tab bar stays consistent. */
-const TAB_WIDTH = 68;
 
 const UserProfileBottomContentTabs: React.FC<
   UserProfileBottomContentTabsProps
@@ -135,12 +117,23 @@ const UserProfileBottomContentTabs: React.FC<
 }) => {
   const navigation = useNavigation<any>();
   const { hideUserProfile } = useUserProfileSheet();
-  const { isSignedIn } = useAuthState();
   const listRef = useRef<FlatList<any> | null>(null);
-  const repostsListRef = useRef<UserRepostsListRef>(null);
+  const counts = useProfileContentCounts(address);
 
   // Active content tab
-  const [activeTab, setActiveTab] = useState<ContentTab>("posts");
+  const [activeTab, setActiveTab] = useState<ContentTab>("home");
+
+  const tabItems = useMemo<ProfileTabItem<ContentTab>[]>(() => {
+    const withCounts = BASE_TAB_ITEMS.map((item) => ({
+      ...item,
+      count: (counts as Record<string, number | undefined>)[item.key] ?? 0,
+    }));
+    const home = withCounts.find((item) => item.key === "home")!;
+    const rest = withCounts
+      .filter((item) => item.key !== "home")
+      .sort((a, b) => (b.count ?? 0) - (a.count ?? 0));
+    return [home, ...rest];
+  }, [counts]);
 
   // Track scroll offset for sticky bar + back-to-top
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -228,22 +221,6 @@ const UserProfileBottomContentTabs: React.FC<
   }, [isFullScreen]);
 
   // Custom fetcher that uses the /feed endpoint
-  const fetchPage = useCallback(
-    async (page: number, limit: number): Promise<GetNFTsResponse> => {
-      const res = await getUnifiedFeed({
-        minter: address,
-        postType: "all",
-        sortBy: "createdAt",
-        sortOrder: "desc",
-        status: "minted",
-        page: page + 1, // /feed uses 1-indexed pages
-        limit,
-      });
-      return { result: res.result as unknown as GetNFTsResult[] };
-    },
-    [address],
-  );
-
   const scrollToTop = useCallback(() => {
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
   }, []);
@@ -273,17 +250,6 @@ const UserProfileBottomContentTabs: React.FC<
       } as never);
     },
     [images, address, navigation, hideUserProfile, onClose],
-  );
-
-  const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<GetNFTsResult>) => {
-      return (
-        <View style={{ paddingHorizontal: CONTENT_PX }}>
-          <FeedCard item={item as unknown as UnifiedFeedItem} onBeforeNavigate={onClose} />
-        </View>
-      );
-    },
-    [onClose],
   );
 
   // Measure profile header height to know when to show sticky bar
@@ -319,21 +285,6 @@ const UserProfileBottomContentTabs: React.FC<
   );
 
   // Underline indicator for tabs
-  const pillX = useSharedValue(0);
-  const pillW = useSharedValue(0);
-  const tabLayoutsRef = useRef<Record<string, { x: number; width: number }>>({});
-
-  const handleTabLayout = useCallback(
-    (key: ContentTab, x: number, width: number) => {
-      tabLayoutsRef.current[key] = { x, width };
-      if (key === activeTab) {
-        pillX.value = x;
-        pillW.value = width;
-      }
-    },
-    [activeTab],
-  );
-
   // Tab change handler — scroll back to top and reset sticky state
   const handleTabChange = useCallback(
     (tab: ContentTab) => {
@@ -341,93 +292,24 @@ const UserProfileBottomContentTabs: React.FC<
       stickyVisibleRef.current = false;
       setStickyVisible(false);
       setActiveTab(tab);
-      // Animate indicator
-      const layout = tabLayoutsRef.current[tab];
-      if (layout) {
-        pillX.value = withTiming(layout.x, SLIDE_TIMING);
-        pillW.value = withTiming(layout.width, SLIDE_TIMING);
-      }
       listRef.current?.scrollToOffset({ offset: 0, animated: false });
     },
     [activeTab],
   );
 
-  const indicatorStyle = useAnimatedStyle(() => ({
-    position: "absolute" as const,
-    bottom: 0,
-    left: pillX.value,
-    width: pillW.value,
-    height: 2,
-    backgroundColor: "#fff",
-    borderRadius: 1,
-  }));
-
   // Clean underline tab bar — horizontally scrollable so all content tabs fit.
   const TabBar = useMemo(
     () => (
-      <View
-        style={{
-          height: STICKY_BAR_HEIGHT,
-          borderBottomWidth: StyleSheet.hairlineWidth,
-          borderBottomColor: "rgba(255,255,255,0.08)",
-        }}
-      >
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ minWidth: "100%" }}
-        >
-          {TAB_ITEMS.map((tab) => {
-            const isActive = activeTab === tab.key;
-            const color = isActive ? "#fff" : "#52525b";
-            return (
-              <Pressable
-                key={tab.key}
-                onPress={() => handleTabChange(tab.key)}
-                onLayout={(e) => {
-                  const { x, width } = e.nativeEvent.layout;
-                  handleTabLayout(tab.key, x, width);
-                }}
-                style={{
-                  width: TAB_WIDTH,
-                  height: STICKY_BAR_HEIGHT,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 2,
-                }}
-              >
-                <Icon name={tab.icon} size={18} color={color} />
-                <Text style={{ color, fontSize: 10, fontWeight: isActive ? "700" : "500" }}>
-                  {tab.label}
-                </Text>
-              </Pressable>
-            );
-          })}
-          <Animated.View style={indicatorStyle} />
-        </ScrollView>
-      </View>
+      <ProfileTabBar
+        items={tabItems}
+        activeKey={activeTab}
+        onChange={handleTabChange}
+      />
     ),
-    [activeTab, handleTabChange, handleTabLayout, indicatorStyle],
+    [activeTab, handleTabChange, tabItems],
   );
 
   // Empty state for Reposts tab
-  const RepostsEmptyState = useMemo(
-    () => (
-      <View className="flex-1 items-center justify-center px-8 py-16">
-        <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
-          <Icon name="Repeat2" size={40} color="#666" />
-        </View>
-        <Text className="text-white text-lg font-bold text-center mb-2">
-          No Reposts Yet
-        </Text>
-        <Text className="text-gray-400 text-center text-sm leading-5">
-          When this user reposts content, it'll show up here.
-        </Text>
-      </View>
-    ),
-    [],
-  );
-
   // Private/blocked account message component
   const PrivateAccountMessage = useMemo(() => {
     if (canViewContent) return null;
@@ -489,15 +371,6 @@ const UserProfileBottomContentTabs: React.FC<
   ]);
 
   // Simple white activity indicator for loading state (preserves header visibility)
-  const postsLoadingComponent = useMemo(
-    () => (
-      <View className="flex-1 items-center justify-center py-16">
-        <ActivityIndicator size="large" color="#fff" />
-      </View>
-    ),
-    [],
-  );
-
   // Fullscreen list header: profile header + optional Edit Profile + tab bar inside FlatList
   const fullScreenListHeader = useMemo(() => {
     if (!profileHeader) return undefined;
@@ -558,6 +431,18 @@ const UserProfileBottomContentTabs: React.FC<
   const renderTabContent = () => {
     const mt = isFullScreen ? 0 : 4;
     switch (activeTab) {
+      case "home":
+        return (
+          <View style={{ flex: 1, marginTop: mt }}>
+            <FeedRoute
+              address={address}
+              onScroll={handleScroll}
+              scrollEnabled={scrollEnabled}
+              listHeader={isFullScreen ? fullScreenListHeader : undefined}
+              onBeforeNavigate={onClose}
+            />
+          </View>
+        );
       case "posts":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
@@ -570,35 +455,6 @@ const UserProfileBottomContentTabs: React.FC<
             />
           </View>
         );
-      case "replies":
-        return (
-          <View style={{ flex: 1, marginTop: mt }}>
-            <RepliesRoute
-              address={address}
-              onScroll={handleScroll}
-              scrollEnabled={scrollEnabled}
-              listHeader={isFullScreen ? fullScreenListHeader : undefined}
-              onClose={onClose}
-            />
-          </View>
-        );
-      case "reposts":
-        return (
-          <View style={{ flex: 1, marginTop: mt }}>
-            <UserRepostsList
-              ref={repostsListRef}
-              address={address}
-              contentPadding={CONTENT_PX}
-              scrollEnabled={scrollEnabled}
-              onScroll={handleScroll}
-              headerComponent={isFullScreen ? fullScreenListHeader : undefined}
-              contentContainerStyle={
-                isFullScreen ? LIST_CONTENT_STYLE : LIST_CONTENT_STYLE_COLLAPSED
-              }
-              onClose={onClose}
-            />
-          </View>
-        );
       case "images":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
@@ -608,9 +464,11 @@ const UserProfileBottomContentTabs: React.FC<
                 <ActivityIndicator color="#fff" />
               </View>
             ) : images.length === 0 ? (
-              <View style={{ alignItems: "center", paddingVertical: 60 }}>
-                <Text style={{ color: "#71717a", fontSize: 14 }}>No images yet</Text>
-              </View>
+              <ProfileEmptyState
+                kind="images"
+                title="No images yet"
+                subtitle="Image posts will appear here"
+              />
             ) : (
               <ProfileImageGrid images={gridImages} scrollEnabled={scrollEnabled} onImagePress={handleImagePress} />
             )}
@@ -625,15 +483,11 @@ const UserProfileBottomContentTabs: React.FC<
                 <ActivityIndicator color="#fff" />
               </View>
             ) : plans.length === 0 ? (
-              <View style={{ alignItems: "center", paddingVertical: 60, paddingHorizontal: 24 }}>
-                <Icon name="Star" size={40} color="#52525b" />
-                <Text style={{ color: "#a1a1aa", fontSize: 15, fontWeight: "600", marginTop: 12 }}>
-                  No subscription plans
-                </Text>
-                <Text style={{ color: "#71717a", fontSize: 13, marginTop: 4 }}>
-                  This creator hasn't set up any plans yet
-                </Text>
-              </View>
+              <ProfileEmptyState
+                kind="subscribers"
+                title="No subscription plans"
+                subtitle="This creator hasn't set up any plans yet"
+              />
             ) : (
               <FlatList
                 data={plans}
@@ -657,14 +511,18 @@ const UserProfileBottomContentTabs: React.FC<
         return (
           <View style={{ flex: 1, marginTop: mt }}>
             {isFullScreen && fullScreenListHeader}
-            <ProfileFeedTypeRoute address={address} postType="feed-audio" />
+            <ProfileFeedTypeRoute
+              address={address}
+              postType="feed-audio"
+              onBeforeNavigate={onClose}
+            />
           </View>
         );
       case "live":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
             {isFullScreen && fullScreenListHeader}
-            <LivestreamsRoute address={address} />
+            <LivestreamsRoute address={address} onBeforeNavigate={onClose} />
           </View>
         );
       case "fractions":
@@ -678,7 +536,7 @@ const UserProfileBottomContentTabs: React.FC<
         return (
           <View style={{ flex: 1, marginTop: mt }}>
             {isFullScreen && fullScreenListHeader}
-            <PinnedRoute address={address} />
+            <PinnedRoute address={address} onBeforeNavigate={onClose} />
           </View>
         );
       default:

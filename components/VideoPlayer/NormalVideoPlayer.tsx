@@ -527,7 +527,7 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
                 <TouchableOpacity
                   onPress={handleOpenComments}
                   activeOpacity={0.7}
-                  className="mt-4 rounded-2xl border border-theme-neutrals-800 p-3"
+                  className="mt-4 rounded-xl border border-theme-neutrals-800 p-3"
                 >
                   <View className="flex-row items-center justify-between px-1">
                     <Text className="text-theme-neutrals-400 text-xs font-semibold">

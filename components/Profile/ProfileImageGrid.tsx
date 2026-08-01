@@ -15,7 +15,8 @@ const ROW_HEIGHTS = [LARGE + GRID_GAP, LARGE + GRID_GAP, SMALL + GRID_GAP];
 const PATTERN_HEIGHT = ROW_HEIGHTS[0] + ROW_HEIGHTS[1] + ROW_HEIGHTS[2];
 
 interface ImagePost {
-  id: string | number;
+  id?: string | number;
+  tokenId?: string | number;
   imageUrls?: string[];
   imageUrl?: string;
   thumbnailUrl?: string;
@@ -77,7 +78,9 @@ const ImageTile = memo<{ post: ImagePost; size: number; onPress: () => void }>(
       </TouchableOpacity>
     );
   },
-  (prev, next) => prev.post.id === next.post.id && prev.size === next.size,
+  (prev, next) =>
+    (prev.post.id ?? prev.post.tokenId) ===
+      (next.post.id ?? next.post.tokenId) && prev.size === next.size,
 );
 
 const GridRow = memo<{ row: GridRowData; data: ImagePost[]; onPress: (index: number) => void }>(
@@ -156,7 +159,12 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePres
             {ListHeaderComponent}
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: GRID_GAP, paddingHorizontal: GRID_PADDING / 2 }}>
               {images.map((post, idx) => (
-                <ImageTile key={post.id} post={post} size={SMALL} onPress={() => onImagePress?.(idx)} />
+                <ImageTile
+                  key={post.id ?? post.tokenId ?? idx}
+                  post={post}
+                  size={SMALL}
+                  onPress={() => onImagePress?.(idx)}
+                />
               ))}
             </View>
           </>

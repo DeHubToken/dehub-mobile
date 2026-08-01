@@ -71,7 +71,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
                   : provider.charAt(0).toUpperCase() + provider.slice(1)
               }`}
               accessibilityRole="button"
-              className={`bg-neutral-800 rounded-2xl mx-2 w-16 h-16 items-center justify-center border border-neutral-700 ${
+              className={`bg-neutral-800 rounded-xl mx-2 w-16 h-16 items-center justify-center border border-neutral-700 ${
                 disabled ? "opacity-50" : ""
               }`}
               disabled={disabled}

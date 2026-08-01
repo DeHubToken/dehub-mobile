@@ -129,7 +129,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
                 width: 16,
                 height: 16,
                 borderRadius: 8,
-                backgroundColor: '#3B82F6',
+                backgroundColor: '#F4F4F5',
               },
               scrubberAnimatedStyle,
             ]}

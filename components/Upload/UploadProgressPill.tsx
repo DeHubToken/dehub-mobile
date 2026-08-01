@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   pill: {
-    borderRadius: 16,
+    borderRadius: 12,
     overflow: "hidden",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.1)",

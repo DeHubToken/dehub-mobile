@@ -164,8 +164,8 @@ const FloatingMessage: React.FC<{
   }
 
   const bubbleBg = isMine
-    ? "rounded-2xl rounded-br-sm"
-    : "bg-theme-neutrals-800 rounded-2xl rounded-bl-sm";
+    ? "rounded-xl rounded-br-sm"
+    : "bg-theme-neutrals-800 rounded-xl rounded-bl-sm";
 
   return (
     <View className="max-w-[75%]">
@@ -257,7 +257,7 @@ const FloatingMessage: React.FC<{
                 isMine ? "bg-white/15" : "bg-accent/20"
               }`}
             >
-              <Icon name="Mic" size={16} color={isMine ? "#fff" : "#3B82F6"} />
+              <Icon name="Mic" size={16} color={isMine ? "#fff" : "#F4F4F5"} />
             </View>
             <View className="flex-1 h-1 rounded-full bg-white/20" />
             <Text
@@ -329,7 +329,7 @@ const FloatingMessage: React.FC<{
                 <Icon
                   name={message.isRead ? "CheckCheck" : "Check"}
                   size={12}
-                  color={message.isRead ? "#3B82F6" : "rgba(255,255,255,0.6)"}
+                  color={message.isRead ? "#F4F4F5" : "rgba(255,255,255,0.6)"}
                 />
               )}
             </View>
@@ -360,7 +360,7 @@ const FloatingMessage: React.FC<{
               <Icon
                 name={message.isRead ? "CheckCheck" : "Check"}
                 size={12}
-                color={message.isRead ? "#3B82F6" : "rgba(255,255,255,0.4)"}
+                color={message.isRead ? "#F4F4F5" : "rgba(255,255,255,0.4)"}
               />
             )}
           </View>
@@ -559,7 +559,7 @@ const MessageContextMenuComponent: React.FC<MessageContextMenuProps> = ({
         }}
       >
         <Pressable>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden py-1">
+          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden py-1">
             {onReply && (
               <ActionRow
                 icon="MessageCircle"

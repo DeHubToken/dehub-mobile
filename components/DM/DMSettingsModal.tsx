@@ -187,7 +187,7 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
     <Switch
       value={allowNew}
       onValueChange={onToggleAllowNew}
-      thumbColor={allowNew ? '#60A5FA' : '#9CA3AF'}
+      thumbColor={allowNew ? '#D4D4D8' : '#9CA3AF'}
       trackColor={{ false: '#4B5563', true: '#1E3A8A' }}
       disabled={!dmsEnabled || submitting}
     />
@@ -209,7 +209,7 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
         </View>
 
         <View className="px-5 mt-4">
-          <View className="bg-theme-neutrals-800 rounded-2xl p-3 border border-theme-neutrals-700">
+          <View className="bg-theme-neutrals-800 rounded-xl p-3 border border-theme-neutrals-700">
             <Row
               title="Enable DMs"
               subtitle="Turn off to block all messages."

@@ -208,7 +208,7 @@ const StagesBrowseModal: React.FC = () => {
               {item.title}
             </Text>
             {isMySpace && (
-              <View style={{ backgroundColor: "#A855F7", borderRadius: 6, paddingHorizontal: 5, paddingVertical: 1 }}>
+              <View style={{ backgroundColor: "#D4D4D8", borderRadius: 6, paddingHorizontal: 5, paddingVertical: 1 }}>
                 <Text style={{ color: "#fff", fontSize: 9, fontWeight: "700" }}>YOURS</Text>
               </View>
             )}
@@ -283,9 +283,9 @@ const StagesBrowseModal: React.FC = () => {
               maximumValue={durationMs || 1}
               value={positionMs}
               onSlidingComplete={seekListSound}
-              minimumTrackTintColor="#A855F7"
+              minimumTrackTintColor="#D4D4D8"
               maximumTrackTintColor="rgba(255,255,255,0.12)"
-              thumbTintColor="#A855F7"
+              thumbTintColor="#D4D4D8"
               style={{ height: 16, marginHorizontal: -8 }}
             />
             <View style={styles.timeRow}>
@@ -443,7 +443,7 @@ const styles = StyleSheet.create({
   startBtn: {
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderRadius: 16,
+    borderRadius: 12,
     backgroundColor: "rgba(255,255,255,0.1)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.15)",
@@ -472,7 +472,7 @@ const styles = StyleSheet.create({
   playBtn: {
     width: 32,
     height: 32,
-    borderRadius: 16,
+    borderRadius: 12,
     backgroundColor: "rgba(168,85,247,0.12)",
     alignItems: "center",
     justifyContent: "center",
@@ -481,7 +481,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(168,85,247,0.25)",
   },
   playingBtn: {
-    backgroundColor: "#A855F7",
+    backgroundColor: "#D4D4D8",
   },
   pastSpaceInfo: {
     flex: 1,

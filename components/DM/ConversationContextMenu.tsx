@@ -171,7 +171,7 @@ const ConversationContextMenuComponent: React.FC<ConversationContextMenuProps> =
         }}
       >
         <Pressable>
-          <View className="bg-theme-neutrals-800 rounded-2xl overflow-hidden w-full" style={{ minWidth: 280, maxWidth: 340 }}>
+          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden w-full" style={{ minWidth: 280, maxWidth: 340 }}>
             {/* Preview header */}
             <TouchableOpacity
               onPress={handleOpen}

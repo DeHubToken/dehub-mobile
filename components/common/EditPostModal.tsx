@@ -199,7 +199,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         <View className="flex-row items-center justify-between mb-4">
           <View className="flex-row items-center">
             <View className="w-9 h-9 rounded-xl bg-blue-500/15 items-center justify-center mr-2">
-              <Ionicons name="create-outline" size={18} color="#60A5FA" />
+              <Ionicons name="create-outline" size={18} color="#D4D4D8" />
             </View>
             <Text className="text-white text-lg font-bold">Edit Post</Text>
           </View>

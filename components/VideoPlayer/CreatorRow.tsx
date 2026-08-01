@@ -214,7 +214,7 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
               {followLoading && (
                 <ActivityIndicator size="small" color="#fff" />
               )}
-              <Text className="text-theme-neutrals-900 text-xs font-semibold">Follow</Text>
+              <Text className="text-white text-xs font-semibold">Follow</Text>
             </TouchableOpacity>
           </AccentButtonGradient>
         ) : (

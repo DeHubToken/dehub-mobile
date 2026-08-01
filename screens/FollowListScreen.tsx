@@ -748,7 +748,7 @@ const FollowListScreen: React.FC = () => {
                       {option.label}
                     </Text>
                     {sortOption === option.key && (
-                      <Ionicons name="checkmark-circle" size={20} color="#3b82f6" />
+                      <Ionicons name="checkmark-circle" size={20} color="#F4F4F5" />
                     )}
                   </TouchableOpacity>
                 ))}

@@ -37,9 +37,9 @@ const GlassToast: React.FC<GlassToastProps> = ({
       case "error":
         return { bg: "#EF4444", fg: "#3b0a0a", icon: "close-circle" };
       case "warning":
-        return { bg: "#F59E0B", fg: "#3a2403", icon: "warning" };
+        return { bg: "#D4D4D8", fg: "#3a2403", icon: "warning" };
       case "loading":
-        return { bg: "#60A5FA", fg: "#0b2345", icon: "time-outline" };
+        return { bg: "#D4D4D8", fg: "#0b2345", icon: "time-outline" };
       default:
         return { bg: "#6B7280", fg: "#101214", icon: "information-circle" };
     }
@@ -47,7 +47,7 @@ const GlassToast: React.FC<GlassToastProps> = ({
 
   return (
     <View
-      className="w-[92%] self-center overflow-hidden rounded-2xl my-2"
+      className="w-[92%] self-center overflow-hidden rounded-xl my-2"
       style={{ borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
     >
       {/* Android's experimental blur (dimezisBlurView) crashes with

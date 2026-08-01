@@ -8,7 +8,7 @@
     "icon": "./assets/AppIcons/playstore.png",
     "notification": {
       "icon": "./assets/AppIcons/notification_badge.png",
-      "color": "#8b5cf6"
+      "color": "#ffffff"
     },
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
@@ -109,7 +109,7 @@
       [
         "expo-notifications",
         {
-          "color": "#8b5cf6",
+          "color": "#ffffff",
           "defaultChannel": "default"
         }
       ],

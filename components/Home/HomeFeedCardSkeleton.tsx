@@ -11,7 +11,7 @@ const CONTENT_WIDTH = SCREEN_WIDTH - 32 - 24;
 const HomeFeedCardSkeleton: React.FC = () => {
   return (
     <View
-      className="my-1 p-3 rounded-2xl"
+      className="my-1 p-3 rounded-xl"
       style={{ borderWidth: 1, borderColor: "#1D1F21" }}
     >
       {/* Header */}

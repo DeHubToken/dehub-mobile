@@ -545,7 +545,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.03)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.10)",
-    borderRadius: 16,
+    borderRadius: 12,
     padding: 14,
   },
   statHead: { flexDirection: "row", alignItems: "center", gap: 6 },

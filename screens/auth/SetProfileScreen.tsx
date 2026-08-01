@@ -275,7 +275,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
                 style={{ 
                   paddingVertical: 16,
                   alignItems: "center",
-                  shadowColor: "#3B82F6",
+                  shadowColor: "#F4F4F5",
                   shadowOffset: { width: 0, height: 4 },
                   shadowOpacity: disabled ? 0 : 0.5,
                   shadowRadius: 12,

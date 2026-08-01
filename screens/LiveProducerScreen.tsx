@@ -1196,7 +1196,7 @@ const LiveProducerScreen: React.FC = () => {
               className="absolute inset-0 z-30 items-center justify-center bg-black/70"
               pointerEvents="box-none"
             >
-              <View className="bg-black/80 rounded-2xl px-6 py-5 items-center border border-white/10 mx-8">
+              <View className="bg-black/80 rounded-xl px-6 py-5 items-center border border-white/10 mx-8">
                 <Text className="text-yellow-400 text-2xl mb-2">{"⏸"}</Text>
                 <Text className="text-white font-semibold text-sm">
                   Connection Interrupted

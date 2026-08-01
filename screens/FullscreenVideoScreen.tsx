@@ -443,7 +443,7 @@ const styles = StyleSheet.create({
   glassPlayButton: {
     width: 64,
     height: 64,
-    borderRadius: 16,
+    borderRadius: 12,
     overflow: "hidden",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.2)",

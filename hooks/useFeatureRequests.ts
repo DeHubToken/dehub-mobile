@@ -84,8 +84,8 @@ export const STATUS_LABELS: Record<FeatureStatus, string> = {
 /** Accent per status — mirrors the web badge colours. */
 export const STATUS_COLORS: Record<FeatureStatus, string> = {
   open: "#A1A1AA",
-  under_review: "#FBBF24",
-  planned: "#60A5FA",
+  under_review: "#D4D4D8",
+  planned: "#D4D4D8",
   in_progress: "#A78BFA",
   completed: "#34D399",
   shipped: "#34D399",

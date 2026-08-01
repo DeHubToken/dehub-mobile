@@ -519,8 +519,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
           <Icon
             name="Bookmark"
             size={28}
-            color={saved ? "#facc15" : "#fff"}
-            fill={saved ? "#facc15" : "none"}
+            color={saved ? "#D4D4D8" : "#fff"}
+            fill={saved ? "#D4D4D8" : "none"}
           />
           <Text style={styles.actionText}>{saved ? "Saved" : "Save"}</Text>
         </Pressable>

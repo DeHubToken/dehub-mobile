@@ -85,9 +85,9 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
         className="absolute inset-0 items-center justify-center"
         pointerEvents="none"
       >
-        <View className="bg-black/70 rounded-3xl px-8 py-6 items-center border border-white/10 mx-10">
+        <View className="bg-black/70 rounded-xl px-8 py-6 items-center border border-white/10 mx-10">
           <View className="flex-row items-center mb-3">
-            <PulseDot color="#eab308" />
+            <PulseDot color="#D4D4D8" />
             <Text className="text-yellow-400 text-base font-bold">
               Stream Paused
             </Text>
@@ -116,7 +116,7 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
         className="absolute inset-0 items-center justify-center"
         pointerEvents="none"
       >
-        <View className="bg-black/70 rounded-3xl px-8 py-6 items-center border border-white/10 mx-10">
+        <View className="bg-black/70 rounded-xl px-8 py-6 items-center border border-white/10 mx-10">
           <Text className="text-3xl mb-3">📺</Text>
           <Text className="text-white text-lg font-bold mb-1">
             Stream Ended
@@ -143,7 +143,7 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
         className="absolute inset-0 items-center justify-center"
         pointerEvents="none"
       >
-        <View className="bg-black/70 rounded-3xl px-8 py-6 items-center border border-white/10 mx-10">
+        <View className="bg-black/70 rounded-xl px-8 py-6 items-center border border-white/10 mx-10">
           <Text className="text-3xl mb-3">📅</Text>
           <Text className="text-white text-lg font-bold mb-1">
             Upcoming Stream
@@ -167,7 +167,7 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
         className="absolute inset-0 items-center justify-center"
         pointerEvents="none"
       >
-        <View className="bg-black/70 rounded-3xl px-8 py-6 items-center border border-white/10 mx-10">
+        <View className="bg-black/70 rounded-xl px-8 py-6 items-center border border-white/10 mx-10">
           <Text className="text-3xl mb-3">📡</Text>
           <Text className="text-white text-lg font-bold mb-1">
             Stream Offline

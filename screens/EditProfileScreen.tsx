@@ -330,7 +330,7 @@ const EditProfileScreen = () => {
             <TouchableOpacity
               onPress={handlePickCover}
               activeOpacity={0.85}
-              className="w-full rounded-2xl overflow-hidden bg-theme-neutrals-900 mt-2"
+              className="w-full rounded-xl overflow-hidden bg-theme-neutrals-900 mt-2"
               style={{ aspectRatio: 3 }}
             >
               {(localCover || (coverUrl && coverUrl !== "default-banner")) && (

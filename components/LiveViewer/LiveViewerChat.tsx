@@ -58,19 +58,19 @@ interface LiveViewerChatProps {
 
 const USERNAME_PALETTE = [
   "#f87171",
-  "#f59e0b",
+  "#D4D4D8",
   "#10b981",
-  "#3b82f6",
-  "#8b5cf6",
-  "#ec4899",
-  "#22d3ee",
+  "#F4F4F5",
+  "#D4D4D8",
+  "#D4D4D8",
+  "#D4D4D8",
   "#84cc16",
-  "#f97316",
-  "#a855f7",
-  "#06b6d4",
+  "#D4D4D8",
+  "#D4D4D8",
+  "#D4D4D8",
   "#ef4444",
-  "#14b8a6",
-  "#0ea5e9",
+  "#D4D4D8",
+  "#D4D4D8",
 ];
 
 const colorForUser = (key?: string): string => {
@@ -338,7 +338,7 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
               activeOpacity={0.7}
               className="ml-2"
             >
-              <Send color="#3b82f6" size={18} />
+              <Send color="#F4F4F5" size={18} />
             </TouchableOpacity>
           ) : null}
         </View>
@@ -350,7 +350,7 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
             activeOpacity={0.7}
             className="w-10 h-10 rounded-full bg-theme-neutrals-800/90 border border-theme-neutrals-600/40 items-center justify-center"
           >
-            <Gift color="#f59e0b" size={18} />
+            <Gift color="#D4D4D8" size={18} />
           </TouchableOpacity>
         )}
       </View>

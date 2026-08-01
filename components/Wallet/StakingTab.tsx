@@ -250,7 +250,7 @@ const StakingTab: React.FC = () => {
     <View className="flex-1">
       {/* Stats row */}
       <View className="flex-row gap-3 mb-5">
-        <View className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-4">
+        <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
           <Text className="text-white/50 text-[10px] uppercase tracking-wider mb-1">
             Your Staked
           </Text>
@@ -263,7 +263,7 @@ const StakingTab: React.FC = () => {
             DHB{unstakeQueued > 0 ? ` · ${fmt(unstakeQueued)} unstaking` : ""}
           </Text>
         </View>
-        <View className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-4">
+        <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
           <Text className="text-white/50 text-[10px] uppercase tracking-wider mb-1">
             Wallet Balance
           </Text>
@@ -278,7 +278,7 @@ const StakingTab: React.FC = () => {
 
       {/* Pending rewards (BNB legacy contract) */}
       {earned > 0 && (
-        <View className="flex-row items-center justify-between bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-4 mb-4">
+        <View className="flex-row items-center justify-between bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-4 mb-4">
           <View>
             <Text className="text-emerald-400 font-semibold text-sm">Pending Rewards</Text>
             <Text className="text-white text-lg font-bold mt-0.5">{fmt(earned)} DHB</Text>
@@ -290,7 +290,7 @@ const StakingTab: React.FC = () => {
       )}
 
       {/* Stake / Unstake card */}
-      <View className="bg-white/5 border border-white/10 rounded-2xl p-4 mb-4">
+      <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
         {/* Mode toggle */}
         <View className="flex-row bg-white/[0.04] rounded-xl p-1 mb-4">
           {(["stake", "unstake"] as const).map((m) => (
@@ -370,7 +370,7 @@ const StakingTab: React.FC = () => {
       </View>
 
       {/* Protocol stats */}
-      <View className="flex-row items-center justify-between bg-white/[0.03] border border-white/10 rounded-2xl p-4 mb-4">
+      <View className="flex-row items-center justify-between bg-white/[0.03] border border-white/10 rounded-xl p-4 mb-4">
         <Text className="text-white/50 text-xs">Total staked (protocol)</Text>
         <Text className="text-white font-semibold text-sm">
           {loading ? "…" : `${fmt(protocolTotal ?? 0)} DHB`}
@@ -378,7 +378,7 @@ const StakingTab: React.FC = () => {
       </View>
 
       {/* Manual staking address */}
-      <View className="bg-white/[0.03] border border-white/10 rounded-2xl p-4">
+      <View className="bg-white/[0.03] border border-white/10 rounded-xl p-4">
         <Text className="text-white/50 text-xs mb-2">
           Or send DHB directly to the staking address on Base:
         </Text>

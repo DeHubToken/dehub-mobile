@@ -238,7 +238,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
         activeOpacity={0.7}
       >
         <View style={styles.folderInfo}>
-          <Icon name="Folder" size={20} color="#FACC15" />
+          <Icon name="Folder" size={20} color="#D4D4D8" />
           <View style={{ marginLeft: 12, flex: 1 }}>
             <Text style={styles.folderName} numberOfLines={1}>
               {item.name}
@@ -252,7 +252,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
         </View>
 
         {item.updating ? (
-          <ActivityIndicator size="small" color="#FACC15" />
+          <ActivityIndicator size="small" color="#D4D4D8" />
         ) : (
           <View
             style={[
@@ -318,7 +318,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
 
             {loading ? (
               <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#FACC15" />
+                <ActivityIndicator size="large" color="#D4D4D8" />
                 <Text style={styles.loadingText}>Loading folders…</Text>
               </View>
             ) : (
@@ -385,7 +385,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
                 style={styles.addFolderBtn}
                 activeOpacity={0.8}
               >
-                <Icon name="FolderPlus" size={20} color="#FACC15" />
+                <Icon name="FolderPlus" size={20} color="#D4D4D8" />
                 <Text style={styles.addFolderBtnText}>Create New Folder</Text>
               </TouchableOpacity>
             )}
@@ -483,8 +483,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   checkboxChecked: {
-    backgroundColor: "#FACC15",
-    borderColor: "#FACC15",
+    backgroundColor: "#D4D4D8",
+    borderColor: "#D4D4D8",
   },
   emptyContainer: {
     alignItems: "center",
@@ -500,16 +500,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 8,
-    backgroundColor: "rgba(250,204,21,0.08)",
+    backgroundColor: "rgba(255,255,255,0.08)",
     borderWidth: 1,
-    borderColor: "rgba(250,204,21,0.2)",
+    borderColor: "rgba(255,255,255,0.2)",
     borderRadius: 14,
     marginHorizontal: 20,
     marginTop: 8,
     paddingVertical: 14,
   },
   addFolderBtnText: {
-    color: "#FACC15",
+    color: "#D4D4D8",
     fontSize: 14,
     fontWeight: "600",
   },
@@ -550,7 +550,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 46,
     borderRadius: 12,
-    backgroundColor: "#FACC15",
+    backgroundColor: "#D4D4D8",
     alignItems: "center",
     justifyContent: "center",
   },

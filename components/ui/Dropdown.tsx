@@ -98,7 +98,7 @@ const Dropdown: React.FC<Props> = ({
                     {item.label}
                   </Text>
                   {item.value === value ? (
-                    <Ionicons name="checkmark" size={16} color="#3B82F6" />
+                    <Ionicons name="checkmark" size={16} color="#F4F4F5" />
                   ) : null}
                 </TouchableOpacity>
               )}

@@ -228,8 +228,8 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         onPress={onSave}
         iconName="Bookmark"
         active={saved}
-        activeColor="#FACC15"
-        activeFill="#FACC15"
+        activeColor="#D4D4D8"
+        activeFill="#D4D4D8"
         inactiveColor={ICON_MUTED}
       />
       <AnimatedActionButton

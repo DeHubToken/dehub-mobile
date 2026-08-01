@@ -120,7 +120,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
   }, [isSelf, requireAuth, isFollowing, onUnfollow, onFollow]);
 
   const statusDotColor = isPaused
-    ? "#eab308"
+    ? "#D4D4D8"
     : isLive
       ? "#ef4444"
       : isEnded
