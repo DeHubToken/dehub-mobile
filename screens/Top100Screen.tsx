@@ -25,6 +25,7 @@ import { useNavigation } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
 import CashtagSheet from "../components/Home/CashtagSheet";
 import { theme } from "../theme";
+import { useTranslation } from "react-i18next";
 import {
   useCmcTop100,
   useTopAssets,
@@ -103,6 +104,7 @@ const AssetRow: React.FC<{ asset: UnifiedAsset; rank: number; onPress: () => voi
 );
 
 export default function Top100Screen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
 
@@ -143,8 +145,8 @@ export default function Top100Screen() {
           <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
         </Pressable>
         <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Top 100</Text>
-          <Text style={styles.subtitle}>Crypto, stocks and commodities by market cap</Text>
+          <Text style={styles.title}>{t("top100.title")}</Text>
+          <Text style={styles.subtitle}>{t("top100.subtitle")}</Text>
         </View>
         <Icon name="ChartNoAxesColumn" size={22} color={theme.colors.accent} />
       </View>
@@ -157,7 +159,7 @@ export default function Top100Screen() {
             setSearch(v);
             setVisible(PAGE_SIZE);
           }}
-          placeholder="Search assets"
+          placeholder={t("top100.searchPlaceholder")}
           placeholderTextColor="#52525B"
           style={styles.searchInput}
           autoCapitalize="characters"
@@ -211,7 +213,7 @@ export default function Top100Screen() {
             <View style={styles.center}>
               <Icon name="ChartNoAxesColumn" size={40} color="#3F3F46" />
               <Text style={styles.dim}>
-                {search ? "Nothing matches your search" : "Couldn't load market data"}
+                {search ? t("top100.noSearchResults") : t("top100.loadFailed")}
               </Text>
             </View>
           }

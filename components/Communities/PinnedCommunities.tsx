@@ -193,7 +193,7 @@ function PinPickerModal({
       }
       onClose();
     } catch {
-      toastError("Failed to update pin");
+      toastError(t("communities.pinUpdateFailed"));
     } finally {
       setBusyId(null);
     }

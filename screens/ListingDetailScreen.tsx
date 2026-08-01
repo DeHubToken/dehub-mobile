@@ -25,11 +25,12 @@ import { Image } from "expo-image";
 import { ethers } from "ethers";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import Avatar from "../components/common/Avatar";
 import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
-import { toastError, toastSuccess } from "../libs/toast";
+import { toastError } from "../libs/toast";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { useERC20Contract, useWeb3Provider } from "../hooks/use-web3";
@@ -90,6 +91,7 @@ const ReviewRow: React.FC<{ review: StoreReview }> = ({ review }) => (
 );
 
 export default function ListingDetailScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.ListingDetail>>();
@@ -139,12 +141,12 @@ export default function ListingDetailScreen() {
     }
     if (!listing || !sellerAddress) return;
     if (dhbPrice <= 0 || priceDhb <= 0) {
-      toastError("DHB price unavailable — try again in a moment.");
+      toastError(t("stores.detail.priceUnavailable"));
       return;
     }
 
     if (!tokenContract) {
-      toastError("Wallet not ready — try again in a moment.");
+      toastError(t("stores.detail.walletNotReady"));
       return;
     }
 
@@ -168,7 +170,7 @@ export default function ListingDetailScreen() {
         const signerAddr = await tokenContract.signer?.getAddress?.();
         const bal = await tokenContract.balanceOf(signerAddr);
         if (bal && bal.lt(amountWei)) {
-          toastError("Insufficient DHB balance for this purchase.");
+          toastError(t("stores.detail.insufficientBalance"));
           return;
         }
       } catch {
@@ -190,7 +192,7 @@ export default function ListingDetailScreen() {
       try {
         const receipt = await res.wait(1);
         if (receipt?.status === 0) {
-          toastError("Payment reverted on-chain — no order was created.");
+          toastError(t("stores.detail.paymentReverted"));
           return;
         }
         txHash = txHash || receipt?.transactionHash || "";
@@ -212,9 +214,9 @@ export default function ListingDetailScreen() {
       setNotes("");
       void hasPurchased.refetch();
     } catch (err: any) {
-      const msg = String(err?.message || err || "Purchase failed");
+      const msg = String(err?.message || err || t("stores.detail.purchaseFailed"));
       if (msg.includes("user rejected") || msg.includes("cancelled")) {
-        toastError("Transaction cancelled.");
+        toastError(t("stores.detail.transactionCancelled"));
       } else {
         toastError(msg.slice(0, 120));
       }
@@ -235,11 +237,12 @@ export default function ListingDetailScreen() {
     hasPurchased,
     tokenContract,
     chainId,
+    t,
   ]);
 
   const submitReview = useCallback(() => {
     if (!rating) {
-      toastError("Pick a star rating first.");
+      toastError(t("stores.detail.pickRating"));
       return;
     }
     createReview.mutate(
@@ -251,7 +254,7 @@ export default function ListingDetailScreen() {
         },
       },
     );
-  }, [rating, reviewText, createReview, listingId]);
+  }, [rating, reviewText, createReview, listingId, t]);
 
   if (isLoading && !listing) {
     return (
@@ -268,11 +271,11 @@ export default function ListingDetailScreen() {
           <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
             <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
           </Pressable>
-          <Text style={styles.headerTitle}>Listing</Text>
+          <Text style={styles.headerTitle}>{t("stores.detail.listing")}</Text>
         </View>
         <View style={styles.center}>
           <Icon name="Package" size={40} color="#3F3F46" />
-          <Text style={styles.emptyText}>This listing is no longer available</Text>
+          <Text style={styles.emptyText}>{t("stores.detail.unavailable")}</Text>
         </View>
       </View>
     );
@@ -352,19 +355,27 @@ export default function ListingDetailScreen() {
 
           <View style={styles.tagRow}>
             <View style={styles.tag}>
-              <Text style={styles.tagText}>{listing.category}</Text>
+              <Text style={styles.tagText}>
+                {t(`stores.categories.${listing.category}`, { defaultValue: listing.category })}
+              </Text>
             </View>
             {!!listing.condition && (
               <View style={styles.tag}>
-                <Text style={styles.tagText}>{listing.condition}</Text>
+                <Text style={styles.tagText}>
+                  {t(`stores.conditions.${listing.condition}`, { defaultValue: listing.condition })}
+                </Text>
               </View>
             )}
             <View style={styles.tag}>
-              <Text style={styles.tagText}>{listing.is_digital ? "Digital" : "Physical"}</Text>
+              <Text style={styles.tagText}>
+                {listing.is_digital ? t("stores.digital") : t("stores.detail.physical")}
+              </Text>
             </View>
             {typeof listing.stock_quantity === "number" && (
               <View style={styles.tag}>
-                <Text style={styles.tagText}>{listing.stock_quantity} in stock</Text>
+                <Text style={styles.tagText}>
+                  {t("stores.detail.inStock", { count: listing.stock_quantity })}
+                </Text>
               </View>
             )}
           </View>
@@ -416,32 +427,32 @@ export default function ListingDetailScreen() {
           {/* Buy */}
           {isSelf ? (
             <View style={styles.noteBox}>
-              <Text style={styles.noteText}>This is your own listing.</Text>
+              <Text style={styles.noteText}>{t("stores.detail.ownListing")}</Text>
             </View>
           ) : soldOut ? (
             <View style={styles.noteBox}>
-              <Text style={styles.noteText}>Sold out.</Text>
+              <Text style={styles.noteText}>{t("stores.soldOut")}</Text>
             </View>
           ) : (
             <>
               {!listing.is_digital && (
                 <>
-                  <Text style={styles.fieldLabel}>Shipping address</Text>
+                  <Text style={styles.fieldLabel}>{t("stores.detail.shippingAddress")}</Text>
                   <TextInput
                     value={shipping}
                     onChangeText={setShipping}
-                    placeholder="Where should this be sent?"
+                    placeholder={t("stores.detail.shippingPlaceholder")}
                     placeholderTextColor="#52525B"
                     multiline
                     style={[styles.input, { minHeight: 70, textAlignVertical: "top" }]}
                   />
                 </>
               )}
-              <Text style={styles.fieldLabel}>Note to seller (optional)</Text>
+              <Text style={styles.fieldLabel}>{t("stores.detail.noteOptional")}</Text>
               <TextInput
                 value={notes}
                 onChangeText={setNotes}
-                placeholder="Size, colour, anything else"
+                placeholder={t("stores.detail.notePlaceholder")}
                 placeholderTextColor="#52525B"
                 style={styles.input}
               />
@@ -458,21 +469,23 @@ export default function ListingDetailScreen() {
                     <Icon name="ShoppingCart" size={17} color="#000000" />
                     <Text style={styles.buyBtnText}>
                       {priceDhb > 0
-                        ? `Buy for ${priceDhb.toLocaleString("en-US")} DHB`
-                        : "Loading price…"}
+                        ? t("stores.detail.buyFor", {
+                            amount: priceDhb.toLocaleString("en-US"),
+                          })
+                        : t("stores.detail.loadingPrice")}
                     </Text>
                   </>
                 )}
               </Pressable>
               <Text style={styles.buyHint}>
-                Paid in DHB on Base, directly to the seller's wallet.
+                {t("stores.detail.paymentHint")}
               </Text>
             </>
           )}
 
           {/* Reviews */}
           <Text style={styles.sectionTitle}>
-            {count === 1 ? "1 review" : `${count} reviews`}
+            {t("stores.detail.reviewCount", { count })}
           </Text>
 
           {hasPurchased.data && (
@@ -481,7 +494,7 @@ export default function ListingDetailScreen() {
               <TextInput
                 value={reviewText}
                 onChangeText={setReviewText}
-                placeholder="How was it?"
+                placeholder={t("stores.detail.reviewPlaceholder")}
                 placeholderTextColor="#52525B"
                 style={[styles.input, { marginTop: 10 }]}
                 multiline
@@ -494,14 +507,14 @@ export default function ListingDetailScreen() {
                 {createReview.isPending ? (
                   <ActivityIndicator size="small" color="#000000" />
                 ) : (
-                  <Text style={styles.reviewBtnText}>Post review</Text>
+                  <Text style={styles.reviewBtnText}>{t("stores.detail.postReview")}</Text>
                 )}
               </Pressable>
             </View>
           )}
 
           {(reviews.data ?? []).length === 0 ? (
-            <Text style={styles.emptyText}>No reviews yet</Text>
+            <Text style={styles.emptyText}>{t("stores.detail.noReviews")}</Text>
           ) : (
             (reviews.data ?? []).map((r) => <ReviewRow key={r.id} review={r} />)
           )}

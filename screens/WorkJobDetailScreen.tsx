@@ -26,11 +26,12 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import { theme } from "../theme";
 import { openInApp } from "../libs/links.utils";
 import { toastError } from "../libs/toast";
-import { useUser, useAuthState } from "../context/AuthContext";
+import { useUser } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
@@ -98,14 +99,13 @@ const Stars: React.FC<{ value: number; size?: number; onPick?: (n: number) => vo
 );
 
 export default function WorkJobDetailScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.WorkJobDetail>>();
   const { jobId, job: seed } = route.params;
 
   const user = useUser() as any;
-  const { isSignedIn, needsUsername } = useAuthState();
-  const isAuthed = isSignedIn && !needsUsername;
   const me: string | undefined = (user?.walletAddress || user?.address || "")
     .toLowerCase() || undefined;
   const { showUserProfile } = useUserProfileSheet();
@@ -152,7 +152,7 @@ export default function WorkJobDetailScreen() {
     (submission: WorkSubmission) => {
       if (Platform.OS === "ios") {
         Alert.prompt(
-          "Reason for rejection?",
+          t("work.detail.rejectionReason"),
           undefined,
           (reason) => {
             if (reason && reason.trim()) {
@@ -170,7 +170,7 @@ export default function WorkJobDetailScreen() {
       setRejectTarget(submission);
       setRejectReason("");
     },
-    [rejectMutation],
+    [rejectMutation, t],
   );
 
   const roles = useMemo(() => {
@@ -205,10 +205,10 @@ export default function WorkJobDetailScreen() {
           <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
             <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
           </Pressable>
-          <Text style={styles.headerTitle}>Bounty</Text>
+          <Text style={styles.headerTitle}>{t("work.bounty")}</Text>
         </View>
         <View style={styles.center}>
-          <Text style={styles.dim}>Job not found.</Text>
+          <Text style={styles.dim}>{t("work.detail.notFound")}</Text>
         </View>
       </View>
     );
@@ -258,7 +258,7 @@ export default function WorkJobDetailScreen() {
             <View style={styles.badgeRow}>
               <View style={styles.badge}>
                 <Icon name="Briefcase" size={11} color="#D4D4D8" />
-                <Text style={styles.badgeText}>{job.job_type}</Text>
+                <Text style={styles.badgeText}>{t(`work.types.${job.job_type}`)}</Text>
               </View>
               {!!job.platform && (
                 <View style={styles.badgeDim}>
@@ -266,7 +266,9 @@ export default function WorkJobDetailScreen() {
                 </View>
               )}
               <View style={[styles.badgeDim, { backgroundColor: st.bg }]}>
-                <Text style={[styles.badgeDimText, { color: st.fg }]}>{job.status}</Text>
+                <Text style={[styles.badgeDimText, { color: st.fg }]}>
+                  {t(`work.status.${job.status}`, { defaultValue: job.status })}
+                </Text>
               </View>
             </View>
 
@@ -283,31 +285,32 @@ export default function WorkJobDetailScreen() {
             )}
 
             <View style={styles.statRow}>
-              <Stat label="Total" value={`${num(job.total_budget)} ${job.currency}`} />
+              <Stat label={t("work.detail.total")} value={`${num(job.total_budget)} ${job.currency}`} />
               {job.job_type !== "contract" ? (
-                <Stat label="Per unit" value={`${job.price_per_unit} ${job.currency}`} />
+                <Stat label={t("work.detail.perUnit")} value={`${job.price_per_unit} ${job.currency}`} />
               ) : (
-                <Stat label="Type" value="Contract" />
+                <Stat label={t("work.detail.type")} value={t("work.types.contract")} />
               )}
-              <Stat label="Slots" value={`${job.units_approved}/${job.max_units}`} />
+              <Stat label={t("work.detail.slots")} value={`${job.units_approved}/${job.max_units}`} />
             </View>
 
             <Pressable onPress={() => showUserProfile(job.poster_address)}>
               <Text style={styles.postedBy}>
-                Posted by <Text style={styles.postedByLink}>{shortAddr(job.poster_address)}</Text>
+                {t("work.detail.postedBy")} {""}
+                <Text style={styles.postedByLink}>{shortAddr(job.poster_address)}</Text>
               </Text>
             </Pressable>
           </View>
 
           {/* Applications — contract jobs only */}
           {job.job_type === "contract" && (
-            <Section title={`Applicants (${applications.length})`}>
+            <Section title={t("work.detail.applicants", { count: applications.length })}>
               {canApply && (
                 <View style={{ marginBottom: 14, gap: 8 }}>
                   <TextInput
                     value={coverLetter}
                     onChangeText={setCoverLetter}
-                    placeholder="Why are you a good fit?"
+                    placeholder={t("work.detail.coverLetterPlaceholder")}
                     placeholderTextColor="#52525B"
                     multiline
                     style={[styles.input, styles.textarea]}
@@ -326,13 +329,13 @@ export default function WorkJobDetailScreen() {
                       (!coverLetter.trim() || applyMutation.isPending) && styles.disabled,
                     ]}
                   >
-                    <Text style={styles.primaryBtnText}>Apply</Text>
+                    <Text style={styles.primaryBtnText}>{t("work.detail.apply")}</Text>
                   </Pressable>
                 </View>
               )}
 
               {applications.length === 0 ? (
-                <Text style={styles.dim}>No applicants yet.</Text>
+                <Text style={styles.dim}>{t("work.detail.noApplicants")}</Text>
               ) : (
                 applications.map((a) => (
                   <View key={a.id} style={styles.row}>
@@ -349,7 +352,7 @@ export default function WorkJobDetailScreen() {
                         <Text
                           style={[styles.pillText, a.status === "awarded" && { color: "#6EE7B7" }]}
                         >
-                          {a.status}
+                          {t(`work.status.${a.status}`, { defaultValue: a.status })}
                         </Text>
                       </View>
                     </View>
@@ -366,7 +369,7 @@ export default function WorkJobDetailScreen() {
                         }
                         style={styles.smallBtn}
                       >
-                        <Text style={styles.smallBtnText}>Award &amp; escrow</Text>
+                        <Text style={styles.smallBtnText}>{t("work.detail.awardEscrow")}</Text>
                       </Pressable>
                     )}
                   </View>
@@ -377,13 +380,13 @@ export default function WorkJobDetailScreen() {
 
           {/* Submissions */}
           {showSubmissions && (
-            <Section title={`Submissions (${submissions.length})`}>
+            <Section title={t("work.detail.submissions", { count: submissions.length })}>
               {canSubmitProof && (
                 <View style={{ marginBottom: 14, gap: 8 }}>
                   <TextInput
                     value={proofUrl}
                     onChangeText={setProofUrl}
-                    placeholder="Proof URL (link to post / clip / comment)"
+                    placeholder={t("work.detail.proofUrlPlaceholder")}
                     placeholderTextColor="#52525B"
                     autoCapitalize="none"
                     style={styles.input}
@@ -391,7 +394,7 @@ export default function WorkJobDetailScreen() {
                   <TextInput
                     value={proofText}
                     onChangeText={setProofText}
-                    placeholder="Notes (optional)"
+                    placeholder={t("work.detail.notesOptional")}
                     placeholderTextColor="#52525B"
                     multiline
                     style={[styles.input, { minHeight: 60, textAlignVertical: "top" }]}
@@ -420,13 +423,13 @@ export default function WorkJobDetailScreen() {
                       (!proofUrl.trim() || submitMutation.isPending) && styles.disabled,
                     ]}
                   >
-                    <Text style={styles.primaryBtnText}>Submit proof</Text>
+                    <Text style={styles.primaryBtnText}>{t("work.detail.submitProof")}</Text>
                   </Pressable>
                 </View>
               )}
 
               {submissions.length === 0 ? (
-                <Text style={styles.dim}>No submissions yet.</Text>
+                <Text style={styles.dim}>{t("work.detail.noSubmissions")}</Text>
               ) : (
                 submissions.map((s) => {
                   const approved = s.approval_status === "approved";
@@ -451,7 +454,9 @@ export default function WorkJobDetailScreen() {
                               rejected && { color: "#FCA5A5" },
                             ]}
                           >
-                            {s.approval_status}
+                            {t(`work.status.${s.approval_status}`, {
+                              defaultValue: s.approval_status,
+                            })}
                           </Text>
                         </View>
                       </View>
@@ -467,7 +472,10 @@ export default function WorkJobDetailScreen() {
 
                       {approved && s.payout_amount > 0 && (
                         <Text style={styles.paidText}>
-                          Paid {s.payout_amount} {job.currency}
+                          {t("work.detail.paid", {
+                            amount: s.payout_amount,
+                            currency: job.currency,
+                          })}
                         </Text>
                       )}
 
@@ -489,11 +497,11 @@ export default function WorkJobDetailScreen() {
                             style={styles.approveBtn}
                           >
                             <Icon name="Check" size={12} color="#6EE7B7" />
-                            <Text style={styles.approveText}>Approve &amp; release</Text>
+                            <Text style={styles.approveText}>{t("work.detail.approveRelease")}</Text>
                           </Pressable>
                           <Pressable onPress={() => promptReject(s)} style={styles.rejectBtn}>
                             <Icon name="X" size={12} color="#FCA5A5" />
-                            <Text style={styles.rejectText}>Reject</Text>
+                            <Text style={styles.rejectText}>{t("work.detail.reject")}</Text>
                           </Pressable>
                         </View>
                       )}
@@ -505,14 +513,14 @@ export default function WorkJobDetailScreen() {
           )}
 
           {/* Reviews */}
-          <Section title={`Reviews (${reviews.length})`}>
+          <Section title={t("work.detail.reviews", { count: reviews.length })}>
             {canReview && !myReview && (
               <View style={{ marginBottom: 14, gap: 10 }}>
                 <Stars value={rating} size={26} onPick={setRating} />
                 <TextInput
                   value={reviewComment}
                   onChangeText={setReviewComment}
-                  placeholder="Share your experience…"
+                  placeholder={t("work.detail.reviewPlaceholder")}
                   placeholderTextColor="#52525B"
                   multiline
                   style={[styles.input, { minHeight: 60, textAlignVertical: "top" }]}
@@ -524,7 +532,7 @@ export default function WorkJobDetailScreen() {
                         job.awarded_worker_address
                       : job.poster_address;
                     if (!reviewee) {
-                      toastError("No counterparty to review");
+                      toastError(t("work.detail.noCounterparty"));
                       return;
                     }
                     reviewMutation.mutate(
@@ -540,13 +548,13 @@ export default function WorkJobDetailScreen() {
                   }}
                   style={styles.primaryBtn}
                 >
-                  <Text style={styles.primaryBtnText}>Post review</Text>
+                  <Text style={styles.primaryBtnText}>{t("work.detail.postReview")}</Text>
                 </Pressable>
               </View>
             )}
 
             {reviews.length === 0 ? (
-              <Text style={styles.dim}>No reviews yet.</Text>
+              <Text style={styles.dim}>{t("work.detail.noReviews")}</Text>
             ) : (
               reviews.map((r) => (
                 <View key={r.id} style={styles.row}>
@@ -566,7 +574,7 @@ export default function WorkJobDetailScreen() {
           <View style={styles.actions}>
             {isPoster && job.status === "in_progress" && (
               <Pressable onPress={() => completeMutation.mutate(job.id)} style={styles.primaryBtn}>
-                <Text style={styles.primaryBtnText}>Mark complete</Text>
+                <Text style={styles.primaryBtnText}>{t("work.detail.markComplete")}</Text>
               </Pressable>
             )}
             {(isPoster || isAwarded) &&
@@ -574,7 +582,7 @@ export default function WorkJobDetailScreen() {
               job.status !== "disputed" && (
                 <Pressable onPress={() => setShowDispute((s) => !s)} style={styles.disputeBtn}>
                   <Icon name="TriangleAlert" size={13} color="#FCA5A5" />
-                  <Text style={styles.disputeBtnText}>Open dispute</Text>
+                  <Text style={styles.disputeBtnText}>{t("work.detail.openDispute")}</Text>
                 </Pressable>
               )}
           </View>
@@ -584,7 +592,7 @@ export default function WorkJobDetailScreen() {
               <TextInput
                 value={disputeReason}
                 onChangeText={setDisputeReason}
-                placeholder="Explain the issue…"
+                placeholder={t("work.detail.disputePlaceholder")}
                 placeholderTextColor="#52525B"
                 multiline
                 style={[styles.input, styles.textarea]}
@@ -602,7 +610,7 @@ export default function WorkJobDetailScreen() {
                 }}
                 style={[styles.disputeSubmit, !disputeReason.trim() && styles.disabled]}
               >
-                <Text style={styles.disputeSubmitText}>Submit dispute to admin</Text>
+                <Text style={styles.disputeSubmitText}>{t("work.detail.submitDispute")}</Text>
               </Pressable>
             </View>
           )}
@@ -619,11 +627,11 @@ export default function WorkJobDetailScreen() {
       >
         <View style={styles.modalBackdrop}>
           <View style={styles.modalCard}>
-            <Text style={styles.modalTitle}>Reason for rejection?</Text>
+            <Text style={styles.modalTitle}>{t("work.detail.rejectionReason")}</Text>
             <TextInput
               value={rejectReason}
               onChangeText={setRejectReason}
-              placeholder="Explain what was wrong"
+              placeholder={t("work.detail.rejectionPlaceholder")}
               placeholderTextColor="#52525B"
               multiline
               autoFocus
@@ -634,7 +642,7 @@ export default function WorkJobDetailScreen() {
                 onPress={() => setRejectTarget(null)}
                 style={[styles.secondaryBtn, { flex: 1 }]}
               >
-                <Text style={styles.secondaryBtnText}>Cancel</Text>
+                <Text style={styles.secondaryBtnText}>{t("common.cancel")}</Text>
               </Pressable>
               <Pressable
                 disabled={!rejectReason.trim()}
@@ -651,7 +659,7 @@ export default function WorkJobDetailScreen() {
                 }}
                 style={[styles.rejectConfirm, !rejectReason.trim() && styles.disabled, { flex: 1 }]}
               >
-                <Text style={styles.rejectConfirmText}>Reject</Text>
+                <Text style={styles.rejectConfirmText}>{t("work.detail.reject")}</Text>
               </Pressable>
             </View>
           </View>
