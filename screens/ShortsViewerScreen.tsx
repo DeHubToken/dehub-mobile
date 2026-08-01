@@ -99,6 +99,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
   const [showTipModal, setShowTipModal] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isPausedByUser, setIsPausedByUser] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [captionExpanded, setCaptionExpanded] = useState(false);
   const [reposted, setReposted] = useState(!!item.isReposted);
@@ -127,9 +128,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
       requestAudioFocus(() => { try { player.pause(); } catch {} });
       player.play();
       setIsPlaying(true);
+      setIsPausedByUser(false);
     } else {
       try { player.pause(); } catch {}
       setIsPlaying(false);
+      setIsPausedByUser(false);
     }
     return () => {
       if (isActive) {
@@ -147,9 +150,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
     if (isPlayingRef.current) {
       player.pause();
       setIsPlaying(false);
+      setIsPausedByUser(true);
     } else {
       player.play();
       setIsPlaying(true);
+      setIsPausedByUser(false);
     }
   });
   // keep ref current so timeout closures always call latest
@@ -158,9 +163,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
     if (isPlayingRef.current) {
       player.pause();
       setIsPlaying(false);
+      setIsPausedByUser(true);
     } else {
       player.play();
       setIsPlaying(true);
+      setIsPausedByUser(false);
     }
   };
 
@@ -447,7 +454,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
         </View>
       )}
 
-      {!isPlaying && !screenshotMode && (
+      {isActive && isPausedByUser && !screenshotMode && (
         <View style={styles.pauseOverlay} pointerEvents="none">
           <Icon name="Play" size={64} color="rgba(255,255,255,0.7)" />
         </View>
