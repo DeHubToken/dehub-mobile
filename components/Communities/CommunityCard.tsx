@@ -4,7 +4,8 @@ import { Image } from "expo-image";
 import Icon from "../ui/Icon";
 import type { Community } from "../../types/community";
 import { formatCompactNumber } from "../../libs/numbers.util";
-import { useTranslation, type TFunction } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 
 interface Props {
   community: Community;

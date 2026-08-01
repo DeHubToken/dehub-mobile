@@ -27,6 +27,8 @@ import Svg, { Circle, Polyline, Line as SvgLine, Text as SvgText } from "react-n
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import Icon from "../components/ui/Icon";
 import ProfileAssets from "../components/Profile/ProfileAssets";
 import { theme } from "../theme";
@@ -52,16 +54,16 @@ const ENG_RANGES: EngRange[] = ["7d", "30d", "90d"];
 
 const fmt = (n: number) => formatCompactNumber(Math.round(n));
 
-function timeAgo(iso: string): string {
+function timeAgo(iso: string, t: TFunction): string {
   const s = Math.floor((Date.now() - new Date(iso).getTime()) / 1000);
-  if (s < 60) return "just now";
+  if (s < 60) return t("commandCentre.time.justNow");
   const m = Math.floor(s / 60);
-  if (m < 60) return `${m}m`;
+  if (m < 60) return t("commandCentre.time.minutes", { count: m });
   const h = Math.floor(m / 60);
-  if (h < 24) return `${h}h`;
+  if (h < 24) return t("commandCentre.time.hours", { count: h });
   const d = Math.floor(h / 24);
-  if (d < 30) return `${d}d`;
-  return `${Math.floor(d / 30)}mo`;
+  if (d < 30) return t("commandCentre.time.days", { count: d });
+  return t("commandCentre.time.months", { count: Math.floor(d / 30) });
 }
 
 const Card: React.FC<{ children: React.ReactNode; style?: any }> = ({ children, style }) => (
@@ -142,6 +144,7 @@ function buildPoints(data: number[], w: number, h: number, pad: number) {
 }
 
 const EngagementChart: React.FC<{ data?: AnalyticsResponse }> = ({ data }) => {
+  const { t } = useTranslation();
   const W = 320;
   const H = 130;
   const PAD = 10;
@@ -163,7 +166,7 @@ const EngagementChart: React.FC<{ data?: AnalyticsResponse }> = ({ data }) => {
   if (merged.length === 0) {
     return (
       <View style={styles.chartEmpty}>
-        <Text style={styles.dim}>No data for this period</Text>
+        <Text style={styles.dim}>{t("commandCentre.noDataInPeriod")}</Text>
       </View>
     );
   }
@@ -201,25 +204,28 @@ const EngagementChart: React.FC<{ data?: AnalyticsResponse }> = ({ data }) => {
 
 // ── Activity row ────────────────────────────────────────────────────────────
 
-const ACTIVITY_META: Record<string, { icon: any; label: string }> = {
-  "tip-in": { icon: "ArrowDownLeft", label: "Tip received" },
-  "tip-out": { icon: "ArrowUpRight", label: "Tip sent" },
-  "ppv-in": { icon: "ArrowDownLeft", label: "PPV sale" },
-  "ppv-out": { icon: "ArrowUpRight", label: "PPV purchase" },
-  dpay: { icon: "CreditCard", label: "DHB purchase" },
+const ACTIVITY_META: Record<string, { icon: any; labelKey: string }> = {
+  "tip-in": { icon: "ArrowDownLeft", labelKey: "tipReceived" },
+  "tip-out": { icon: "ArrowUpRight", labelKey: "tipSent" },
+  "ppv-in": { icon: "ArrowDownLeft", labelKey: "ppvSale" },
+  "ppv-out": { icon: "ArrowUpRight", labelKey: "ppvPurchase" },
+  dpay: { icon: "CreditCard", labelKey: "dhbPurchase" },
 };
 
 const ActivityRow: React.FC<{ item: ActivityItem }> = ({ item }) => {
-  const meta = ACTIVITY_META[item.kind] ?? { icon: "Circle", label: item.kind };
+  const { t } = useTranslation();
+  const meta = ACTIVITY_META[item.kind];
   const positive = item.amount >= 0;
   return (
     <View style={styles.activityRow}>
       <View style={styles.activityIcon}>
-        <Icon name={meta.icon} size={14} color={positive ? "#34D399" : "#F87171"} />
+        <Icon name={meta?.icon ?? "Circle"} size={14} color={positive ? "#34D399" : "#F87171"} />
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
-        <Text style={styles.activityLabel}>{meta.label}</Text>
-        <Text style={styles.activityTime}>{timeAgo(item.createdAt)} ago</Text>
+        <Text style={styles.activityLabel}>
+          {meta ? t(`commandCentre.activity.${meta.labelKey}`) : item.kind}
+        </Text>
+        <Text style={styles.activityTime}>{timeAgo(item.createdAt, t)}</Text>
       </View>
       <Text style={[styles.activityAmount, { color: positive ? "#34D399" : "#F87171" }]}>
         {positive ? "+" : ""}
@@ -232,6 +238,7 @@ const ActivityRow: React.FC<{ item: ActivityItem }> = ({ item }) => {
 // ── Screen ──────────────────────────────────────────────────────────────────
 
 export default function CommandCentreScreen() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const user = useUser() as any;
@@ -282,13 +289,13 @@ export default function CommandCentreScreen() {
     return {
       totalEarned: Math.round(total * 100) / 100,
       slices: INCOME_SOURCES.filter((s) => totals[s.key] > 0).map((s) => ({
-        label: s.label,
+        label: t(`commandCentre.incomeSources.${s.key}`, { defaultValue: s.label }),
         color: s.color,
         raw: totals[s.key],
         value: total > 0 ? Math.round((totals[s.key] / total) * 1000) / 10 : 0,
       })),
     };
-  }, [tips.data, ppv.data, incomeRange]);
+  }, [tips.data, ppv.data, incomeRange, t]);
 
   const incomeLoading = tips.isLoading || ppv.isLoading;
 
@@ -304,10 +311,10 @@ export default function CommandCentreScreen() {
     tips.isRefetching || ppv.isRefetching || activity.isRefetching || analytics.isRefetching;
 
   const stats = [
-    { label: "Followers", value: fmt(user?.followers ?? 0) },
-    { label: "Following", value: fmt(user?.followings ?? 0) },
-    { label: "Tips In", value: fmt(user?.receivedTips ?? 0) },
-    { label: "Tips Out", value: fmt(user?.sentTips ?? 0) },
+    { label: t("commandCentre.followers"), value: fmt(user?.followers ?? 0) },
+    { label: t("commandCentre.following"), value: fmt(user?.followings ?? 0) },
+    { label: t("commandCentre.tipsIn"), value: fmt(user?.receivedTips ?? 0) },
+    { label: t("commandCentre.tipsOut"), value: fmt(user?.sentTips ?? 0) },
   ];
 
   return (
@@ -317,8 +324,8 @@ export default function CommandCentreScreen() {
           <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
         </Pressable>
         <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Command Centre</Text>
-          <Text style={styles.subtitle}>Your wallet, income and reach in one place</Text>
+          <Text style={styles.title}>{t("commandCentre.title")}</Text>
+          <Text style={styles.subtitle}>{t("commandCentre.mobileSubtitle")}</Text>
         </View>
         <Icon name="LayoutDashboard" size={22} color={theme.colors.accent} />
       </View>
@@ -337,13 +344,13 @@ export default function CommandCentreScreen() {
         {/* Balance */}
         <Card>
           <View style={styles.cardHead}>
-            <Text style={styles.cardTitle}>Balance</Text>
+            <Text style={styles.cardTitle}>{t("commandCentre.balance")}</Text>
             <Pressable
               onPress={() => navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" })}
               style={styles.walletBtn}
             >
               <Icon name="Wallet" size={15} color="#000000" />
-              <Text style={styles.walletBtnText}>Wallet</Text>
+              <Text style={styles.walletBtnText}>{t("commandCentre.fullWallet")}</Text>
             </Pressable>
           </View>
           <Text style={styles.balanceBig}>
@@ -357,7 +364,7 @@ export default function CommandCentreScreen() {
         <Card>
           <View style={styles.cardHead}>
             <View style={{ flex: 1 }}>
-              <Text style={styles.cardTitle}>Income</Text>
+              <Text style={styles.cardTitle}>{t("commandCentre.income")}</Text>
               {totalEarned > 0 && (
                 <Text style={styles.incomeTotal}>{totalEarned.toLocaleString()} DHB</Text>
               )}
@@ -369,7 +376,7 @@ export default function CommandCentreScreen() {
             <ActivityIndicator color="#FFFFFF" style={{ marginVertical: 32 }} />
           ) : slices.length === 0 ? (
             <View style={styles.chartEmpty}>
-              <Text style={styles.dim}>No income in this period</Text>
+              <Text style={styles.dim}>{t("commandCentre.noIncomeInPeriod")}</Text>
             </View>
           ) : (
             <View style={{ alignItems: "center", marginTop: 12 }}>
@@ -392,7 +399,7 @@ export default function CommandCentreScreen() {
         {/* Engagement */}
         <Card>
           <View style={styles.cardHead}>
-            <Text style={styles.cardTitle}>Engagement</Text>
+            <Text style={styles.cardTitle}>{t("commandCentre.engagement")}</Text>
           </View>
           <RangeRow items={ENG_RANGES} active={engRange} onSelect={setEngRange} />
           {analytics.isLoading ? (
@@ -403,19 +410,19 @@ export default function CommandCentreScreen() {
               <View style={styles.legend}>
                 <View style={styles.legendItem}>
                   <View style={[styles.legendDot, { backgroundColor: "#22c55e" }]} />
-                  <Text style={styles.legendText}>Likes</Text>
+                  <Text style={styles.legendText}>{t("commandCentre.likes")}</Text>
                 </View>
                 <View style={styles.legendItem}>
                   <View style={[styles.legendDot, { backgroundColor: "#3b82f6" }]} />
-                  <Text style={styles.legendText}>New followers</Text>
+                  <Text style={styles.legendText}>{t("commandCentre.newFollowers")}</Text>
                 </View>
               </View>
               {!!analytics.data && (
                 <View style={styles.totalsRow}>
                   {[
-                    { label: "Total Likes", value: analytics.data.totals?.likes ?? 0 },
-                    { label: "Followers", value: analytics.data.totals?.followers ?? 0 },
-                    { label: "Uploads", value: analytics.data.totals?.uploads ?? 0 },
+                    { label: t("commandCentre.totalLikes"), value: analytics.data.totals?.likes ?? 0 },
+                    { label: t("commandCentre.followers"), value: analytics.data.totals?.followers ?? 0 },
+                    { label: t("commandCentre.uploads"), value: analytics.data.totals?.uploads ?? 0 },
                   ].map((s) => (
                     <View key={s.label} style={{ flex: 1, alignItems: "center" }}>
                       <Text style={styles.totalsValue}>{fmt(s.value)}</Text>
@@ -431,13 +438,13 @@ export default function CommandCentreScreen() {
         {/* Recent activity */}
         <Card>
           <View style={styles.cardHead}>
-            <Text style={styles.cardTitle}>Recent activity</Text>
+            <Text style={styles.cardTitle}>{t("commandCentre.recentActivity")}</Text>
           </View>
           {activity.isLoading ? (
             <ActivityIndicator color="#FFFFFF" style={{ marginVertical: 24 }} />
           ) : (activity.data ?? []).length === 0 ? (
             <Text style={[styles.dim, { paddingVertical: 18, textAlign: "center" }]}>
-              No transactions yet
+              {t("commandCentre.noTransactionsYet")}
             </Text>
           ) : (
             (activity.data ?? []).slice(0, 12).map((a) => <ActivityRow key={a.id} item={a} />)
@@ -447,7 +454,7 @@ export default function CommandCentreScreen() {
         {/* Subscriptions */}
         <Card>
           <View style={styles.cardHead}>
-            <Text style={styles.cardTitle}>Subscriptions</Text>
+            <Text style={styles.cardTitle}>{t("commandCentre.subscriptions")}</Text>
           </View>
           {subs.isLoading ? (
             <ActivityIndicator color="#FFFFFF" style={{ marginVertical: 24 }} />
@@ -455,9 +462,9 @@ export default function CommandCentreScreen() {
             <>
               <View style={styles.statGrid}>
                 {[
-                  { label: "Active", value: subs.activeCount },
-                  { label: "Total", value: subs.total },
-                  { label: "Plans", value: subs.planCount },
+                  { label: t("commandCentre.active"), value: subs.activeCount },
+                  { label: t("commandCentre.total"), value: subs.total },
+                  { label: t("commandCentre.plansLabel"), value: subs.planCount },
                 ].map((s) => (
                   <View key={s.label} style={styles.statBox}>
                     <Text style={styles.statBoxLabel}>{s.label}</Text>
@@ -466,7 +473,7 @@ export default function CommandCentreScreen() {
                 ))}
               </View>
               <View style={styles.spendBox}>
-                <Text style={styles.dim}>Est. monthly spend</Text>
+                <Text style={styles.dim}>{t("commandCentre.estMonthlySpend")}</Text>
                 <Text style={styles.spendValue}>
                   {Math.round(subs.monthlySpend).toLocaleString()} DHB
                 </Text>

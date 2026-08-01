@@ -26,6 +26,7 @@ import {
 } from "react-native";
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
+import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { runWithPermissions } from "../../libs/permissions.util";
@@ -86,6 +87,7 @@ const StoreForm: React.FC<{
   existing?: Store | null;
   onClose: () => void;
 }> = ({ visible, existing, onClose }) => {
+  const { t } = useTranslation();
   const createStore = useCreateStore();
   const updateStore = useUpdateStore();
   const [name, setName] = useState(existing?.name ?? "");
@@ -112,11 +114,11 @@ const StoreForm: React.FC<{
       if (which === "avatar") setAvatarUrl(url);
       else setBannerUrl(url);
     } catch (e: any) {
-      toastError(e, "Upload failed");
+      toastError(e, t("stores.uploadFailed"));
     } finally {
       setUploading(null);
     }
-  }, []);
+  }, [t]);
 
   const busy = createStore.isPending || updateStore.isPending || !!uploading;
 
@@ -152,7 +154,9 @@ const StoreForm: React.FC<{
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
           <View style={styles.sheet}>
             <View style={styles.sheetHeader}>
-              <Text style={styles.sheetTitle}>{existing ? "Edit store" : "Create your store"}</Text>
+              <Text style={styles.sheetTitle}>
+                {existing ? t("stores.editStore") : t("stores.createYourStore")}
+              </Text>
               <Pressable onPress={onClose} hitSlop={10}>
                 <Icon name="X" size={20} color="#A1A1AA" />
               </Pressable>
@@ -169,7 +173,7 @@ const StoreForm: React.FC<{
                   ) : (
                     <>
                       <Icon name="ImagePlus" size={18} color="#FFFFFF" />
-                      <Text style={styles.pickText}>Banner</Text>
+                      <Text style={styles.pickText}>{t("stores.banner")}</Text>
                     </>
                   )}
                 </View>
@@ -188,20 +192,20 @@ const StoreForm: React.FC<{
                 </View>
               </Pressable>
 
-              <Text style={styles.label}>Store name</Text>
+              <Text style={styles.label}>{t("stores.storeName")}</Text>
               <TextInput
                 value={name}
                 onChangeText={setName}
-                placeholder="My Store"
+                placeholder={t("stores.storeNamePlaceholder")}
                 placeholderTextColor="#52525B"
                 style={styles.input}
               />
 
-              <Text style={styles.label}>Description</Text>
+              <Text style={styles.label}>{t("stores.description")}</Text>
               <TextInput
                 value={description}
                 onChangeText={setDescription}
-                placeholder="What do you sell?"
+                placeholder={t("stores.storeDescriptionPlaceholder")}
                 placeholderTextColor="#52525B"
                 multiline
                 style={[styles.input, styles.textarea]}
@@ -217,7 +221,7 @@ const StoreForm: React.FC<{
                 <ActivityIndicator color="#000000" />
               ) : (
                 <Text style={styles.primaryBtnText}>
-                  {existing ? "Save changes" : "Create store"}
+                  {existing ? t("stores.saveChanges") : t("stores.createStore")}
                 </Text>
               )}
             </Pressable>
@@ -235,6 +239,7 @@ const ListingForm: React.FC<{
   storeId: string;
   onClose: () => void;
 }> = ({ visible, storeId, onClose }) => {
+  const { t } = useTranslation();
   const createListing = useCreateListing();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -268,15 +273,15 @@ const ListingForm: React.FC<{
       const url = await uploadStoreMedia(uri, "listings");
       setImages((prev) => [...prev, url]);
     } catch (e: any) {
-      toastError(e, "Upload failed");
+      toastError(e, t("stores.uploadFailed"));
     } finally {
       setUploading(false);
     }
-  }, [images.length]);
+  }, [images.length, t]);
 
   const submit = useCallback(() => {
     if (!title.trim() || !price) {
-      toastError("Title and price are required");
+      toastError(t("stores.titlePriceRequired"));
       return;
     }
     createListing.mutate(
@@ -314,6 +319,7 @@ const ListingForm: React.FC<{
     createListing,
     reset,
     onClose,
+    t,
   ]);
 
   return (
@@ -322,7 +328,7 @@ const ListingForm: React.FC<{
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
           <View style={styles.sheet}>
             <View style={styles.sheetHeader}>
-              <Text style={styles.sheetTitle}>New listing</Text>
+              <Text style={styles.sheetTitle}>{t("stores.newListing")}</Text>
               <Pressable onPress={onClose} hitSlop={10}>
                 <Icon name="X" size={20} color="#A1A1AA" />
               </Pressable>
@@ -330,7 +336,7 @@ const ListingForm: React.FC<{
 
             <ScrollView keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
               {/* Images */}
-              <Text style={styles.label}>Photos ({images.length}/{MAX_IMAGES})</Text>
+              <Text style={styles.label}>{t("stores.photos", { count: images.length, max: MAX_IMAGES })}</Text>
               <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 4 }}>
                 <View style={{ flexDirection: "row", gap: 8 }}>
                   {images.map((uri, i) => (
@@ -357,26 +363,26 @@ const ListingForm: React.FC<{
                 </View>
               </ScrollView>
 
-              <Text style={styles.label}>Title</Text>
+              <Text style={styles.label}>{t("stores.titleLabel")}</Text>
               <TextInput
                 value={title}
                 onChangeText={setTitle}
-                placeholder="What are you selling?"
+                placeholder={t("stores.titlePlaceholder")}
                 placeholderTextColor="#52525B"
                 style={styles.input}
               />
 
-              <Text style={styles.label}>Description</Text>
+              <Text style={styles.label}>{t("stores.description")}</Text>
               <TextInput
                 value={description}
                 onChangeText={setDescription}
-                placeholder="Condition, details, what's included"
+                placeholder={t("stores.listingDescriptionPlaceholder")}
                 placeholderTextColor="#52525B"
                 multiline
                 style={[styles.input, styles.textarea]}
               />
 
-              <Text style={styles.label}>Price (USD)</Text>
+              <Text style={styles.label}>{t("stores.priceUsd")}</Text>
               <TextInput
                 value={price}
                 onChangeText={setPrice}
@@ -386,7 +392,7 @@ const ListingForm: React.FC<{
                 style={styles.input}
               />
 
-              <Text style={styles.label}>Category</Text>
+              <Text style={styles.label}>{t("stores.category")}</Text>
               <View style={styles.chipWrap}>
                 {LISTING_CATEGORIES.map((c) => (
                   <Pressable
@@ -395,13 +401,13 @@ const ListingForm: React.FC<{
                     style={[styles.chip, category === c.value && styles.chipActive]}
                   >
                     <Text style={[styles.chipText, category === c.value && styles.chipTextActive]}>
-                      {c.label}
+                      {t(`stores.categories.${c.value}`)}
                     </Text>
                   </Pressable>
                 ))}
               </View>
 
-              <Text style={styles.label}>Condition</Text>
+              <Text style={styles.label}>{t("stores.condition")}</Text>
               <View style={styles.chipWrap}>
                 {CONDITIONS.map((c) => (
                   <Pressable
@@ -410,14 +416,14 @@ const ListingForm: React.FC<{
                     style={[styles.chip, condition === c && styles.chipActive]}
                   >
                     <Text style={[styles.chipText, condition === c && styles.chipTextActive]}>
-                      {c}
+                      {t(`stores.conditions.${c}`)}
                     </Text>
                   </Pressable>
                 ))}
               </View>
 
               <View style={styles.switchRow}>
-                <Text style={styles.switchLabel}>Digital item</Text>
+                <Text style={styles.switchLabel}>{t("stores.digitalItem")}</Text>
                 <Switch
                   value={isDigital}
                   onValueChange={setIsDigital}
@@ -428,20 +434,20 @@ const ListingForm: React.FC<{
 
               {!isDigital && (
                 <>
-                  <Text style={styles.label}>Stock quantity (optional)</Text>
+                  <Text style={styles.label}>{t("stores.stockOptional")}</Text>
                   <TextInput
                     value={stockQty}
                     onChangeText={setStockQty}
-                    placeholder="Leave blank for unlimited"
+                    placeholder={t("stores.stockPlaceholder")}
                     placeholderTextColor="#52525B"
                     keyboardType="number-pad"
                     style={styles.input}
                   />
-                  <Text style={styles.label}>Shipping info (optional)</Text>
+                  <Text style={styles.label}>{t("stores.shippingOptional")}</Text>
                   <TextInput
                     value={shippingInfo}
                     onChangeText={setShippingInfo}
-                    placeholder="Ships worldwide, 3–5 days"
+                    placeholder={t("stores.shippingPlaceholder")}
                     placeholderTextColor="#52525B"
                     style={styles.input}
                   />
@@ -460,7 +466,7 @@ const ListingForm: React.FC<{
               {createListing.isPending ? (
                 <ActivityIndicator color="#000000" />
               ) : (
-                <Text style={styles.primaryBtnText}>Publish listing</Text>
+                <Text style={styles.primaryBtnText}>{t("stores.publishListing")}</Text>
               )}
             </Pressable>
           </View>
@@ -476,6 +482,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
   isAuthed,
   onSignIn,
 }) => {
+  const { t } = useTranslation();
   const { data: stores = [], isLoading: loadingStores } = useMyStores();
   const { data: listings = [] } = useMyListings();
   const sellerOrders = useMyOrders("seller");
@@ -502,54 +509,57 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
     (id: string) =>
       updateListing.mutate(
         { id, status: "archived" },
-        { onSuccess: () => toastSuccess("Listing archived") },
+        { onSuccess: () => toastSuccess(t("stores.listingArchived")) },
       ),
-    [updateListing],
+    [t, updateListing],
   );
   const markSold = useCallback(
     (id: string) =>
       updateListing.mutate(
         { id, status: "sold" },
-        { onSuccess: () => toastSuccess("Marked as sold") },
+        { onSuccess: () => toastSuccess(t("stores.markedSold")) },
       ),
-    [updateListing],
+    [t, updateListing],
   );
 
   const listingMenu = useCallback(
     (l: StoreListing) => {
       Alert.alert(l.title, undefined, [
-        { text: "Archive", onPress: () => archive(l.id) },
-        { text: "Mark as sold", onPress: () => markSold(l.id) },
-        { text: "Cancel", style: "cancel" },
+        { text: t("stores.archive"), onPress: () => archive(l.id) },
+        { text: t("stores.markSold"), onPress: () => markSold(l.id) },
+        { text: t("common.cancel"), style: "cancel" },
       ]);
     },
-    [archive, markSold],
+    [archive, markSold, t],
   );
 
   const advanceOrder = useCallback(
     (o: StoreOrder) => {
       const next = o.status === "pending" ? "shipped" : "completed";
-      Alert.alert(`Mark as ${next}?`, undefined, [
-        { text: "Cancel", style: "cancel" },
+      Alert.alert(t("stores.markOrderAs", { status: t(`stores.status.${next}`) }), undefined, [
+        { text: t("common.cancel"), style: "cancel" },
         {
-          text: "Confirm",
+          text: t("common.confirm"),
           onPress: () =>
             updateOrderStatus.mutate(
               { id: o.id, status: next },
-              { onSuccess: () => toastSuccess(`Order marked ${next}`) },
+              {
+                onSuccess: () =>
+                  toastSuccess(t("stores.orderMarked", { status: t(`stores.status.${next}`) })),
+              },
             ),
         },
       ]);
     },
-    [updateOrderStatus],
+    [t, updateOrderStatus],
   );
 
   if (!isAuthed) {
     return (
       <View style={styles.center}>
-        <Text style={styles.dim}>Sign in to manage your store</Text>
+        <Text style={styles.dim}>{t("stores.signInManage")}</Text>
         <Pressable onPress={onSignIn} style={[styles.primaryBtn, { marginTop: 14 }]}>
-          <Text style={styles.primaryBtnText}>Sign In</Text>
+          <Text style={styles.primaryBtnText}>{t("common.signIn")}</Text>
         </Pressable>
       </View>
     );
@@ -568,8 +578,8 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
     return (
       <View style={styles.center}>
         <Icon name="Store" size={44} color="#3F3F46" />
-        <Text style={styles.emptyTitle}>Open your store</Text>
-        <Text style={styles.dim}>List digital goods, merch, art or services.</Text>
+        <Text style={styles.emptyTitle}>{t("stores.openYourStore")}</Text>
+        <Text style={styles.dim}>{t("stores.openStoreDescription")}</Text>
         <Pressable
           onPress={() => {
             setEditingStore(null);
@@ -577,7 +587,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
           }}
           style={[styles.primaryBtn, { marginTop: 16 }]}
         >
-          <Text style={styles.primaryBtnText}>Create store</Text>
+          <Text style={styles.primaryBtnText}>{t("stores.createStore")}</Text>
         </Pressable>
         <StoreForm visible={storeFormOpen} onClose={() => setStoreFormOpen(false)} />
       </View>
@@ -585,9 +595,9 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
   }
 
   const TABS: { key: SubTab; label: string; count: number }[] = [
-    { key: "listings", label: "Listings", count: storeListings.length },
-    { key: "orders", label: "Orders", count: sellerOrders.data?.length ?? 0 },
-    { key: "purchases", label: "Purchases", count: buyerOrders.data?.length ?? 0 },
+    { key: "listings", label: t("stores.listings"), count: storeListings.length },
+    { key: "orders", label: t("stores.orders"), count: sellerOrders.data?.length ?? 0 },
+    { key: "purchases", label: t("stores.purchases"), count: buyerOrders.data?.length ?? 0 },
   ];
 
   const orders = subTab === "orders" ? sellerOrders.data ?? [] : buyerOrders.data ?? [];
@@ -612,14 +622,14 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
             uri={activeStore?.avatar_url ?? undefined}
             size={48}
             rounded
-            name={activeStore?.name || "Store"}
+            name={activeStore?.name || t("stores.store")}
           />
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={styles.storeName} numberOfLines={1}>
               {activeStore?.name}
             </Text>
             <Text style={styles.storeMeta} numberOfLines={1}>
-              {storeListings.length} {storeListings.length === 1 ? "listing" : "listings"}
+              {t("stores.listingCount", { count: storeListings.length })}
             </Text>
           </View>
           <Pressable
@@ -662,7 +672,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
           onPress={() => setListingFormOpen(true)}
           style={[styles.primaryBtn, { flex: 1 }]}
         >
-          <Text style={styles.primaryBtnText}>New listing</Text>
+          <Text style={styles.primaryBtnText}>{t("stores.newListing")}</Text>
         </Pressable>
         <Pressable
           onPress={() => {
@@ -671,7 +681,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
           }}
           style={styles.secondaryBtn}
         >
-          <Text style={styles.secondaryBtnText}>New store</Text>
+          <Text style={styles.secondaryBtnText}>{t("stores.newStore")}</Text>
         </Pressable>
       </View>
 
@@ -693,7 +703,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
       {subTab === "listings" ? (
         storeListings.length === 0 ? (
           <Text style={[styles.dim, { textAlign: "center", paddingVertical: 30 }]}>
-            No listings yet
+            {t("stores.noListingsYet")}
           </Text>
         ) : (
           storeListings.map((l) => {
@@ -712,7 +722,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
                     {l.title}
                   </Text>
                   <Text style={styles.rowMeta}>
-                    {money(l.price)} · {l.status}
+                    {money(l.price)} · {t(`stores.status.${l.status}`, { defaultValue: l.status })}
                   </Text>
                 </View>
                 <Pressable onPress={() => listingMenu(l)} hitSlop={8}>
@@ -724,7 +734,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
         )
       ) : orders.length === 0 ? (
         <Text style={[styles.dim, { textAlign: "center", paddingVertical: 30 }]}>
-          {subTab === "orders" ? "No orders yet" : "No purchases yet"}
+          {subTab === "orders" ? t("stores.noOrdersYet") : t("stores.noPurchasesYet")}
         </Text>
       ) : (
         orders.map((o) => {
@@ -747,10 +757,10 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
               </View>
               <View style={{ flex: 1, minWidth: 0 }}>
                 <Text style={styles.rowTitle} numberOfLines={1}>
-                  {o.store_listings?.title ?? "Listing removed"}
+                  {o.store_listings?.title ?? t("stores.listingRemoved")}
                 </Text>
                 <Text style={styles.rowMeta}>
-                  {money(o.amount)} · {o.status}
+                  {money(o.amount)} · {t(`stores.status.${o.status}`, { defaultValue: o.status })}
                 </Text>
               </View>
               {canAdvance && <Icon name="ChevronRight" size={16} color="#52525B" />}
