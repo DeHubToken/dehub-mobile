@@ -19,7 +19,7 @@ import {
   NativeScrollEvent,
   ViewToken,
 } from "react-native";
-import Animated, { useAnimatedStyle, type SharedValue } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import EmptyFeedState from "./EmptyFeedState";
 import FeedCard from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
@@ -61,7 +61,6 @@ interface InfiniteVideoFeedProps {
   contentContainerStyle?: any;
   headerComponent?: React.ReactNode;
   headerInset?: number;
-  headerTranslateY?: SharedValue<number>;
   onEndReachedAll?: () => void;
   /** Reanimated worklet scroll handler — when provided, scroll events stay on the UI thread. */
   scrollHandler?: any;
@@ -74,6 +73,15 @@ interface InfiniteVideoFeedProps {
   onCategorySelect?: (category: string) => void;
   feedRef?: React.MutableRefObject<InfiniteVideoFeedHandle | null>;
 }
+
+// Reserved height for the footer so its three states are interchangeable
+// without resizing the list. Sized to the large ActivityIndicator plus the
+// padding the spinner block used to carry.
+const FOOTER_SLOT = { height: 84 } as const;
+
+// Hoisted: a fresh object literal here would re-configure the native scroll
+// view on every render.
+const MAINTAIN_POSITION = { minIndexForVisible: 1 } as const;
 
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
 const DEFAULT_AVATAR = require("../../assets/default-avatar.png");
@@ -88,7 +96,6 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   contentContainerStyle,
   headerComponent,
   headerInset = 0,
-  headerTranslateY,
   onEndReachedAll,
   scrollHandler,
   onScrollOffset,
@@ -109,10 +116,20 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const listRef = useRef<FlatList<FeedItem>>(null);
   const prevYRef = useRef(0);
 
-  // Dynamic top spacer that shrinks/grows with header visibility
-  const topSpacerStyle = useAnimatedStyle(() => ({
-    height: Math.max(0, headerInset + (headerTranslateY?.value ?? 0)),
-  }));
+  // Fixed-height top spacer.
+  //
+  // This used to be an animated height driven by `headerTranslateY`, which made
+  // the list's own content box grow and shrink *while the user was scrolling*:
+  //   - every frame of the 380ms header animation relaid out the whole content
+  //     view (the scroll-time stutter), and
+  //   - the content below shifted by up to `headerInset` px on top of the
+  //     scroll itself, so a drag that reversed direction moved the feed at
+  //     double speed and then stopped dead (the "jumps around" symptom).
+  // The header is `position: absolute` over the pager (HomeScreen.styles
+  // .headerClip), so it can slide away on its own without the list resizing —
+  // and useCollapsibleHeader only hides it once scrollY has passed
+  // `headerInset`, which keeps this spacer off-screen whenever it is gone.
+  const topSpacerStyle = useMemo(() => ({ height: headerInset }), [headerInset]);
 
   const navigation = useNavigation<any>();
   const isFocused = useIsFocused();
@@ -370,6 +387,38 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     [visibleItemKeys, activeVideoKey],
   );
 
+  // Inline JSX here was a fresh element on every render — including the two
+  // renders per viewability change — so VirtualizedList re-rendered the header
+  // cell (and re-measured it, moving every row below) mid-fling.
+  const listHeader = useMemo(
+    () => (
+      <View>
+        <View style={topSpacerStyle} />
+        {headerComponent as any}
+      </View>
+    ),
+    [topSpacerStyle, headerComponent],
+  );
+
+  // One fixed-height slot for all three footer states. Previously the footer
+  // swapped between a spinner block, a text block and `null`, each a different
+  // height — so the content size changed underneath a user who was, by
+  // definition, sitting at the bottom of the list. Android clamps the scroll
+  // offset when content shrinks, which showed up as a jump every time a page
+  // finished loading.
+  const listFooter = useMemo(
+    () => (
+      <View style={FOOTER_SLOT} className="items-center justify-center">
+        {loadingMore ? (
+          <ActivityIndicator size="large" color="#fff" />
+        ) : endReached && items.length > 0 ? (
+          <Text className="text-theme-neutrals-400 text-xs">No more content</Text>
+        ) : null}
+      </View>
+    ),
+    [loadingMore, endReached, items.length],
+  );
+
   // Handle scroll begin to close filter panel
   const handleScrollBeginDrag = useCallback(() => {
     onScrollBegin?.();
@@ -387,7 +436,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
             list's ListHeaderComponent, which is where the header spacer lives —
             without this the skeleton starts at y=0 and its first cards render
             behind the header, so the wait looks broken as well as slow. */}
-        <Animated.View style={topSpacerStyle} />
+        <View style={topSpacerStyle} />
         <FeedCardSkeleton count={4} />
       </View>
     );
@@ -415,12 +464,16 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         data={items}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
-        ListHeaderComponent={
-          <Animated.View>
-            <Animated.View style={topSpacerStyle} />
-            {headerComponent as any}
-          </Animated.View>
-        }
+        ListHeaderComponent={listHeader}
+        // Anchors the scroll position to the first visible row, so anything that
+        // changes size *above* the viewport adjusts contentOffset instead of
+        // shoving the user. Three things in this feed do exactly that:
+        // SuggestedAccountsSection renders null until its fetch resolves and
+        // then expands inside cell 4; StoriesBar appearing grows the header and
+        // therefore the top spacer; and a card can measure differently once its
+        // thumbnail decodes. minIndexForVisible: 1 excludes the header cell, so
+        // scroll-to-top and pull-to-refresh still behave normally.
+        maintainVisibleContentPosition={MAINTAIN_POSITION}
         initialNumToRender={3}
         maxToRenderPerBatch={3}
         windowSize={5}
@@ -452,19 +505,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
             progressViewOffset={headerInset}
           />
         }
-        ListFooterComponent={
-          loadingMore ? (
-            <View className="items-center py-6">
-              <ActivityIndicator size="large" color="#fff" />
-            </View>
-          ) : endReached && items.length > 0 ? (
-            <View className="px-4 py-6 items-center">
-              <Text className="text-theme-neutrals-400 text-xs">
-                No more content
-              </Text>
-            </View>
-          ) : null
-        }
+        ListFooterComponent={listFooter}
         ListEmptyComponent={
           !initialLoading && !error ? (
             <EmptyFeedState
