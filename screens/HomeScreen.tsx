@@ -541,7 +541,6 @@ export default function HomeScreen() {
           params={feedParams}
           pageSize={20}
           headerInset={headerHeight}
-          headerTranslateY={headerTranslateY}
           onRefresh={handleRefresh}
           onScrollBegin={handleScrollBegin}
           scrollHandler={scrollHandler}
@@ -558,7 +557,6 @@ export default function HomeScreen() {
           params={feedParams}
           pageSize={20}
           headerInset={headerHeight}
-          headerTranslateY={headerTranslateY}
           onRefresh={handleRefresh}
           onScrollBegin={handleScrollBegin}
           scrollHandler={scrollHandler}
@@ -575,7 +573,6 @@ export default function HomeScreen() {
         params={feedListParamsByType[feedType]}
         pageSize={10}
         headerInset={headerHeight}
-        headerTranslateY={headerTranslateY}
         onRefresh={handleRefresh}
         onScrollBegin={handleScrollBegin}
         scrollHandler={scrollHandler}
