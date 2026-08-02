@@ -333,12 +333,21 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   // animates smoothly instead of snapping frame-by-frame with the header.
   const headerTranslateY = useTabBarHide();
   const tabSlide = useSharedValue(0);
+  // Last target handed to withTiming. The reaction below runs on every frame of
+  // the header's own 380ms animation, and it used to call withTiming on each of
+  // them — roughly 23 fresh 350ms animations, each resetting the previous one's
+  // start time and start value. tabSlide therefore never got to run a clean
+  // curve; it crawled and rubber-banded. Only a genuine change of destination
+  // should start an animation.
+  const tabSlideTarget = useSharedValue(0);
 
   useAnimatedReaction(
     () => headerTranslateY?.value ?? 0,
     (val) => {
       // Hide when header has scrolled past ~30% of a typical header
       const target = val < -55 ? 1 : 0;
+      if (target === tabSlideTarget.value) return;
+      tabSlideTarget.value = target;
       tabSlide.value = withTiming(target, {
         duration: 350,
         easing: Easing.bezier(0.25, 1, 0.5, 1),
