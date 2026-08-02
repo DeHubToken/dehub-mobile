@@ -61,6 +61,7 @@ import { useAppLifecycle } from "./hooks/useAppLifecycle";
 import { createLogger } from "./libs/logger";
 import { forceFlushBatchViews } from "./services/view.service";
 import PermissionModalProvider from "./components/ui/PermissionModal";
+import DimLightsOverlay from "./components/ui/DimLightsOverlay";
 import { useUploadProcessor } from "./services/upload.processor";
 import UploadProgressPill from "./components/Upload/UploadProgressPill";
 import { setUploadCacheKey, hydrateUploadStore, clearUploadStore } from "./store/upload.store";
@@ -217,6 +218,9 @@ export default function App() {
               }}
             />
             <PermissionModalProvider />
+            {/* Settings → Appearance → Dim Lights. Above every surface,
+                below nothing — same stacking as web's fixed overlay. */}
+            <DimLightsOverlay />
           </SafeAreaProvider>
         </GestureHandlerRootView>
         </PersistQueryClientProvider>
