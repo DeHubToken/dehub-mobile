@@ -9,7 +9,6 @@ import {
   Linking,
   Platform,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import ScreenHeader from '../components/ScreenHeader';
 import Icon, { type IconName } from '../components/ui/Icon';
 import CustomSwitch from '../components/ui/CustomSwitch';
@@ -25,8 +24,14 @@ import {
   getNotificationPermissionStatus,
 } from '../services/push/push.service';
 import { theme } from '../theme';
+import { useAppPrefs, setAppPref } from '../hooks/useAppPrefs';
+import { SettingsOptionModal } from '../components/Settings/SettingsPrimitives';
 
 const logger = createLogger('NotificationSettings');
+
+/** 00:00–23:00, the same 24 options web's quiet-hours selects offer. */
+const HOURS = Array.from({ length: 24 }, (_, i) => i);
+const formatHour = (h: number) => `${String(h).padStart(2, '0')}:00`;
 
 type NotificationTypeConfig = {
   key: NotificationPreferenceKey;
@@ -119,15 +124,17 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
   const [saving, setSaving] = useState(false);
   const [pushPermissionGranted, setPushPermissionGranted] = useState(false);
   const [prefs, setPrefs] = useState<NotificationPreferences>(getDefaultNotificationPreferences());
-  const [buyBotAlerts, setBuyBotAlerts] = useState(true);
+  /** Which quiet-hours bound the picker is editing, if any. */
+  const [hourPicker, setHourPicker] = useState<'start' | 'end' | null>(null);
 
-  useEffect(() => {
-    AsyncStorage.getItem('dehub_buybot_hidden').then(v => { if (v === 'true') setBuyBotAlerts(false); }).catch(() => {});
-  }, []);
-
+  // Buy Bot alerts are device-local on both clients. This used to live under
+  // `dehub_buybot_hidden`, which web never reads — web's `use-buy-bot-hidden`
+  // uses `dehub_hide_buy_bot`. `useAppPrefs` owns that key now, so the two
+  // clients finally name the same preference the same way.
+  const { buyBotHidden } = useAppPrefs();
+  const buyBotAlerts = !buyBotHidden;
   const onToggleBuyBot = useCallback((val: boolean) => {
-    setBuyBotAlerts(val);
-    AsyncStorage.setItem('dehub_buybot_hidden', String(!val)).catch(() => {});
+    setAppPref('buyBotHidden', !val);
   }, []);
 
   useEffect(() => {
@@ -346,8 +353,12 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                   <View className="flex-row items-center justify-between">
                     <View className="flex-1">
                       <Text className="text-theme-neutrals-400 text-xs mb-1">{t('settings.quietHoursFrom')}</Text>
-                      <TouchableOpacity className="bg-theme-neutrals-700 px-4 py-2.5 rounded-xl">
-                        <Text className="text-white text-sm">{prefs.quietHours.start}:00</Text>
+                      <TouchableOpacity
+                        onPress={() => setHourPicker('start')}
+                        activeOpacity={0.7}
+                        className="bg-theme-neutrals-700 px-4 py-2.5 rounded-xl"
+                      >
+                        <Text className="text-white text-sm">{formatHour(prefs.quietHours.start)}</Text>
                       </TouchableOpacity>
                     </View>
                     <View className="px-4">
@@ -355,8 +366,12 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                     </View>
                     <View className="flex-1">
                       <Text className="text-theme-neutrals-400 text-xs mb-1">{t('settings.quietHoursTo')}</Text>
-                      <TouchableOpacity className="bg-theme-neutrals-700 px-4 py-2.5 rounded-xl">
-                        <Text className="text-white text-sm">{prefs.quietHours.end}:00</Text>
+                      <TouchableOpacity
+                        onPress={() => setHourPicker('end')}
+                        activeOpacity={0.7}
+                        className="bg-theme-neutrals-700 px-4 py-2.5 rounded-xl"
+                      >
+                        <Text className="text-white text-sm">{formatHour(prefs.quietHours.end)}</Text>
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -376,6 +391,30 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
           </Text>
         </View>
       </ScrollView>
+
+      {/* Quiet-hours bound picker — the From/To buttons were previously inert,
+          so quiet hours could only ever run on the 22:00→08:00 default while
+          web let you choose. */}
+      <SettingsOptionModal
+        visible={hourPicker !== null}
+        onClose={() => setHourPicker(null)}
+        title={hourPicker === 'end' ? t('settings.quietHoursTo') : t('settings.quietHoursFrom')}
+        value={String(
+          hourPicker === 'end' ? prefs.quietHours?.end ?? 8 : prefs.quietHours?.start ?? 22
+        )}
+        options={HOURS.map((h) => ({ value: String(h), label: formatHour(h) }))}
+        onSelect={(value) => {
+          const hour = Number(value);
+          if (!Number.isFinite(hour)) return;
+          updatePrefs({
+            quietHours: {
+              ...prefs.quietHours,
+              [hourPicker === 'end' ? 'end' : 'start']: hour,
+            },
+          });
+        }}
+        maxHeight="60%"
+      />
     </View>
   );
 };
