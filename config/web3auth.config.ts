@@ -30,6 +30,18 @@ export const WEB3AUTH_NETWORK_ENV = "sapphire_mainnet";
 export const WEB3AUTH_CHAIN_ID = "0x2105"; // Base Mainnet
 export const WEB3AUTH_RPC_TARGET = "https://mainnet.base.org";
 
+// Sign in with Apple runs through a Web3Auth *custom* JWT verifier instead of
+// one of the built-in social logins, because the token is minted by Apple's
+// native sheet rather than by a browser hand-off. Set this to the verifier name
+// from the Web3Auth dashboard; empty means Apple stays hidden.
+export const WEB3AUTH_APPLE_VERIFIER: string =
+  env.WEB3AUTH_APPLE_VERIFIER ||
+  (process.env.WEB3AUTH_APPLE_VERIFIER as string) ||
+  "";
+
+export const isAppleSignInConfigured = () =>
+  Platform.OS === "ios" && !!WEB3AUTH_APPLE_VERIFIER;
+
 // --- Social Provider Metadata ------------------------------------------------
 import { GOOGLE_SVG_XML, TWITTER_SVG_XML } from "./socialIcons";
 
@@ -53,6 +65,7 @@ export const SOCIAL_PROVIDER_MAP: Record<string, SocialProviderMeta> =
 import * as WebBrowser from '@toruslabs/react-native-web-browser'
 import * as SecureStore from "expo-secure-store";
 import * as Linking from "expo-linking";
+import * as AppleAuthentication from "expo-apple-authentication";
 import { Platform } from "react-native";
 // Stop dynamic imports: use static top-level imports
 import Web3Auth, {
@@ -164,7 +177,18 @@ async function getOrCreateInstance() {
     // for Web3Auth embedded wallets.
     useAAWithExternalWallet: false,
     logLevel: "debug",
-    loginConfig: {},
+    // The `jwt` entry is Sign in with Apple (see loginWithSocial). Web3Auth
+    // wants the verifier at construction time, not at login time, so it has to
+    // be declared here even though nothing else uses it.
+    loginConfig: WEB3AUTH_APPLE_VERIFIER
+      ? {
+          jwt: {
+            verifier: WEB3AUTH_APPLE_VERIFIER,
+            typeOfLogin: "jwt",
+            clientId: WEB3AUTH_CLIENT_ID,
+          },
+        }
+      : {},
     // Extended session time (30 days) to reduce re-auth frequency
     // but this helps with local session management
     sessionTime: 86400 * 30, // 30 days in seconds
@@ -263,29 +287,110 @@ export interface Web3AuthLoginResult {
   userInfo: any;
   provider: any;
 }
+/**
+ * Run Apple's native sign-in sheet and turn the result into Web3Auth login
+ * params.
+ *
+ * Apple is the odd one out among the socials: the identity token is minted
+ * on-device before Web3Auth is involved, so it goes in through the custom JWT
+ * verifier rather than a browser hand-off. Everything downstream is identical —
+ * the key still comes from Web3Auth, so the AccountAbstractionProvider still
+ * produces the same kind of Safe smart account it does for a Google login.
+ *
+ * The display name is the reason this returns userInfo of its own: Apple sends
+ * it exactly once, on the very first authorization, and never inside the token.
+ * If it isn't captured here it is gone for good.
+ */
+const buildAppleLogin = async (): Promise<{ params: any; userInfo: Record<string, any> }> => {
+  if (!WEB3AUTH_APPLE_VERIFIER) {
+    throw new Error("Apple sign-in is not configured");
+  }
+  if (!(await AppleAuthentication.isAvailableAsync())) {
+    throw new Error("Sign in with Apple isn't available on this device");
+  }
+
+  let credential: AppleAuthentication.AppleAuthenticationCredential;
+  try {
+    credential = await AppleAuthentication.signInAsync({
+      requestedScopes: [
+        AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+        AppleAuthentication.AppleAuthenticationScope.EMAIL,
+      ],
+    });
+  } catch (e: any) {
+    // Dismissing the sheet is a normal thing to do, not a failure worth
+    // reporting as "Login failed. Please retry."
+    if (e?.code === "ERR_REQUEST_CANCELED") {
+      throw new Error("Sign in with Apple was cancelled");
+    }
+    throw e;
+  }
+
+  if (!credential.identityToken) {
+    throw new Error("Apple didn't return an identity token");
+  }
+
+  const name = [credential.fullName?.givenName, credential.fullName?.familyName]
+    .filter(Boolean)
+    .join(" ")
+    .trim();
+
+  log.info("buildAppleLogin:credential", {
+    hasName: !!name,
+    hasEmail: !!credential.email,
+  });
+
+  return {
+    params: {
+      loginProvider: (LOGIN_PROVIDER as any)?.JWT || "jwt",
+      redirectUrl: resolveRedirectUrl(),
+      curve: "secp256k1",
+      extraLoginOptions: {
+        id_token: credential.identityToken,
+        verifierIdField: "sub",
+        domain: "https://appleid.apple.com",
+      },
+    },
+    userInfo: {
+      typeOfLogin: "apple",
+      ...(name ? { name } : {}),
+      ...(credential.email ? { email: credential.email } : {}),
+    },
+  };
+};
+
 export const loginWithSocial = async (
-  provider: string, 
+  provider: string,
   extraLoginOptions?: any
 ): Promise<Web3AuthLoginResult> => {
   log.info("loginWithSocial:start", { provider });
   const instance = await ensureWeb3AuthReady();
+  // Apple has to collect its token before the Web3Auth call, and must be
+  // checked before the mapping below — LOGIN_PROVIDER.APPLE exists and would
+  // otherwise send it down the browser flow instead of the native sheet.
+  const apple = provider === "apple" ? await buildAppleLogin() : null;
   // Re-evaluate mapping after instance created (enums now attached)
   const mapped =
     (LOGIN_PROVIDER as any)?.[provider?.toUpperCase?.()] ||
     LOGIN_PROVIDER_MAP[provider] ||
     provider;
-  log.debug("loginWithSocial:mapped", { provider, mapped });
+  log.debug("loginWithSocial:mapped", { provider, mapped: apple?.params.loginProvider ?? mapped });
   try {
-    await instance.login({
-      loginProvider: mapped,
-      redirectUrl: resolveRedirectUrl(),
-      curve: "secp256k1",
-      extraLoginOptions,
-    });
+    await instance.login(
+      apple?.params ?? {
+        loginProvider: mapped,
+        redirectUrl: resolveRedirectUrl(),
+        curve: "secp256k1",
+        extraLoginOptions,
+      }
+    );
     log.info("loginWithSocial:web3auth:logged-in");
-    const userInfo = (instance as any).userInfo
+    const sdkUserInfo = (instance as any).userInfo
       ? (instance as any).userInfo()
       : null;
+    // Apple's name/email are merged on top: for a JWT login Web3Auth only sees
+    // what the token carries, which never includes the name.
+    const userInfo = apple ? { ...(sdkUserInfo || {}), ...apple.userInfo } : sdkUserInfo;
 
     // With Account Abstraction smart accounts, there is no private key exposed.
     // Derive the connected address via standard RPC.
