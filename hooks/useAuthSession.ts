@@ -12,11 +12,14 @@ import {
   getPreferredChainId,
   getRefreshToken,
 } from "../libs/auth.utils";
-import { AuthService } from "../services";
+import { AuthService, WalletNotLinkedError, WalletLinkAmbiguousError } from "../services";
 import { apiClient } from "../libs/api.client";
 import { clearSigningProvider } from "../libs/provider.registry";
+import { getPrivateKeyForAddress } from "../libs/wallets.local";
 import { clearPersistedNavigationState } from "./useNavigationPersistence";
 import { unregisterPushTokens } from "../services/push/push.service";
+import { createLocalEip1193ProviderForChain } from "../services/localwallet.provider";
+import { getAppKitInstance } from "../config/reown.config";
 // balances fetching centralized in useBalances
 
 type Logger = {
@@ -45,7 +48,7 @@ type SessionDeps = {
   clearAuthData: () => Promise<void>;
   providerReset: () => void;
   isMountedRef: { current: boolean };
-  setAuthMethodState: (v: "local" | "web3auth" | null) => void;
+  setAuthMethodState: (v: "local" | null) => void;
   didBootRefetchRef: { current: boolean };
 };
 
@@ -217,6 +220,26 @@ export function useAuthSession({
       } catch (e) {
         log.warn('signOut:revokeRefreshToken:error', e as any);
       }
+      // Disconnect any WalletConnect (Connect Wallet) session — otherwise
+      // AppKit's connection outlives the DeHub sign-out, and the next visit
+      // to the sign-in screen auto-authenticates with whatever wallet was
+      // last connected instead of showing the sign-in options. Mirrors
+      // dehubweb's clearWagmiStorage() call on disconnect.
+      try {
+        await getAppKitInstance()?.disconnect();
+      } catch (e) {
+        log.warn('signOut:disconnectWalletConnect:error', e as any);
+      }
+      // Also end the Supabase (Google/email) identity session — otherwise the
+      // next "Sign in with Google" resumes the previous identity's session
+      // instead of asking who is signing in. scope 'local' clears only THIS
+      // device; 'global' would revoke the user's web sessions too.
+      try {
+        const { supabase } = await import('../services/supabase');
+        await supabase.auth.signOut({ scope: 'local' });
+      } catch (e) {
+        log.warn('signOut:supabaseSignOut:error', e as any);
+      }
       await clearAuthData();
       setUser(null);
       setIsSignedIn(false);
@@ -260,6 +283,67 @@ export function useAuthSession({
     [setShowSignInModal, signOut]
   );
 
+  // Shared tail of a successful wallet authentication: adopt the signing
+  // provider, then either park the user on username setup or fully sign
+  // them in. Used by both signInWithWallet (signature flow) and
+  // signInWithSupabaseSession (session-exchange flow) so the two paths
+  // can't drift on what "signed in" means.
+  const applyWalletAuthResult = useCallback(
+    async (
+      walletUser: any,
+      token: any,
+      needsUsername: boolean,
+      chainId: number,
+      preOverride: any
+    ) => {
+      try {
+        if (preOverride && typeof preOverride.request === "function")
+          await adoptProvider(preOverride);
+        else await ensureProvider();
+      } catch (e) {
+        log.warn("ensureProvider:failed", e);
+      }
+      await setHasSeenAuth();
+      if (needsUsername) {
+        setNeedsUsername(true);
+        setProvisionalUser(walletUser);
+        setProvisionalToken(token);
+      } else {
+        setIsFirstTimeUser(false);
+        setNeedsUsername(false);
+        setProvisionalUser(null);
+        setProvisionalToken(null);
+        setIsSignedIn(true);
+        const enriched = await enrichAndStoreUser(walletUser, {
+          refetch: true,
+        });
+        // Prevent the consolidated boot effect from duplicating this enrich
+        didBootRefetchRef.current = true;
+        await persistLocalAccountIfPossible(enriched);
+        try {
+          setBalancesLoading(true);
+        } catch {}
+        try {
+          fetchAndStoreBalances(enriched, chainId).catch(() => {});
+        } catch {}
+      }
+    },
+    [
+      adoptProvider,
+      enrichAndStoreUser,
+      ensureProvider,
+      fetchAndStoreBalances,
+      log,
+      persistLocalAccountIfPossible,
+      setBalancesLoading,
+      setIsFirstTimeUser,
+      setIsSignedIn,
+      setNeedsUsername,
+      setProvisionalToken,
+      setProvisionalUser,
+    ]
+  );
+
   const signInWithWallet = useCallback(
     async (walletAddress: string, chainId: number, overridePrivateKey?: string, web3AuthMeta?: Record<string, any>) => {
       const mask = (addr?: string) =>
@@ -277,8 +361,9 @@ export function useAuthSession({
         const preOverride = getSigningProvider();
         const hasOverride = !!preOverride;
         log.debug("signInWithWallet:hasOverride", { hasOverride, preOverride });
-        // Persist the chosen auth method up-front; clear if the login fails
-        const methodNow = hasOverride ? "local" : "web3auth";
+        // Every sign-in path (social/email-provisioned or imported wallet)
+        // sets a local signing-provider override before calling this.
+        const methodNow: "local" = "local";
         try {
           await setAuthMethod(methodNow, walletAddress);
           try {
@@ -328,57 +413,116 @@ export function useAuthSession({
           } catch {}
           throw e;
         }
-        try {
-          // prefer the captured override even if a later read is cleared
-          if (preOverride && typeof preOverride.request === "function")
-            await adoptProvider(preOverride);
-          else await ensureProvider();
-        } catch (e) {
-          log.warn("ensureProvider:failed", e);
-        }
-        await setHasSeenAuth();
-        if (needsUsername) {
-          setNeedsUsername(true);
-          setProvisionalUser(walletUser);
-          setProvisionalToken(token);
-        } else {
-          setIsFirstTimeUser(false);
-          setNeedsUsername(false);
-          setProvisionalUser(null);
-          setProvisionalToken(null);
-          setIsSignedIn(true);
-          const enriched = await enrichAndStoreUser(walletUser, {
-            refetch: true,
-          });
-          // Prevent the consolidated boot effect from duplicating this enrich
-          didBootRefetchRef.current = true;
-          await persistLocalAccountIfPossible(enriched);
-          try {
-            setBalancesLoading(true);
-          } catch {}
-          try {
-            fetchAndStoreBalances(enriched, chainId).catch(() => {});
-          } catch {}
-        }
+        // prefer the captured override even if a later read is cleared
+        await applyWalletAuthResult(walletUser, token, needsUsername, chainId, preOverride);
       } finally {
         setIsLoading(false);
       }
     },
     [
-      adoptProvider,
-      enrichAndStoreUser,
-      ensureProvider,
-      fetchAndStoreBalances,
+      applyWalletAuthResult,
       getSigningProvider,
       log,
+      setAuthMethodState,
       setChainId,
-      setIsFirstTimeUser,
       setIsLoading,
-      setIsSignedIn,
-      setNeedsUsername,
-      setProvisionalToken,
-      setProvisionalUser,
     ]
+  );
+
+  /**
+   * Exchange a Supabase access token (Google/email sign-in) for a DeHub
+   * session with no wallet signature — used when this Supabase identity is
+   * already linked to an account (a link established by a previous
+   * signInWithWallet call's web3AuthMeta, on this or another device).
+   *
+   * `expectedAddress`, when the caller already knows which wallet this
+   * identity SHOULD map to (from the Supabase-stored wallet seed — the
+   * authoritative source, see identity-wallet.ts), is compared against what
+   * the backend resolves. Mirrors dehubweb's completeLoginWithoutUnlock: the
+   * web3AuthMeta link has no uniqueness constraint on the backend, so it CAN
+   * point to the wrong account (two different logins each set it on their
+   * own address, last write wins) — a caller with its own known-correct
+   * address must never have it silently overridden by that link. On
+   * mismatch this returns false exactly like "not linked", so the caller
+   * falls back to proving the expected address by other means (e.g.
+   * unlocking it with a password) instead of adopting the wrong one.
+   *
+   * Without expectedAddress (no local ground truth to check against), this
+   * always adopts the session once the backend resolves ANY linked address —
+   * refusing to recognize it would just cause the caller to mint a brand-new
+   * (wrong) account instead, which is the bug this shortcut exists to
+   * prevent in the first place. When no local key is available the user is
+   * signed in without a working signer (ensureProvider fails silently, same
+   * as any other provider-init failure) until the key is imported/recovered
+   * on this device. Returns false whenever the caller should fall back to
+   * the normal provisioning flow (not linked, mismatched, or any
+   * network/server error) — never throws for those, since this is always a
+   * best-effort shortcut ahead of the real sign-in flow. The one exception
+   * is WalletLinkAmbiguousError: that means the backend already has MORE
+   * THAN ONE wallet linked to this identity, so falling back to
+   * provisioning would mint and link a THIRD conflicting wallet, making the
+   * ambiguity permanently worse. It is rethrown so the caller can stop and
+   * point the user at Import Wallet instead of silently creating another
+   * account.
+   */
+  const signInWithSupabaseSession = useCallback(
+    async (supabaseAccessToken: string, chainId: number, expectedAddress?: string): Promise<boolean> => {
+      setIsLoading(true);
+      try {
+        let res: Awaited<ReturnType<typeof AuthService.authenticateWithSupabaseSession>>;
+        try {
+          res = await AuthService.authenticateWithSupabaseSession(supabaseAccessToken);
+        } catch (e) {
+          if (e instanceof WalletLinkAmbiguousError) {
+            log.warn("signInWithSupabaseSession:ambiguous-link");
+            throw e;
+          }
+          if (e instanceof WalletNotLinkedError) {
+            log.info("signInWithSupabaseSession:not-linked");
+          } else {
+            log.warn("signInWithSupabaseSession:error", e);
+          }
+          return false;
+        }
+
+        const address = (res.user as any)?.address as string | undefined;
+        if (!address) return false;
+
+        if (expectedAddress && address.toLowerCase() !== expectedAddress.toLowerCase()) {
+          log.warn("signInWithSupabaseSession:address-mismatch — falling back", {
+            linked: `${address.slice(0, 6)}...${address.slice(-4)}`,
+            expected: `${expectedAddress.slice(0, 6)}...${expectedAddress.slice(-4)}`,
+          });
+          return false;
+        }
+
+        // getPrivateKeyForAddress checks existence before doing anything that
+        // could prompt biometrics, so this is safe to call unconditionally.
+        const privateKey = await getPrivateKeyForAddress(address, {
+          purpose: "Sign in to DeHub",
+        });
+        if (!privateKey) {
+          log.warn("signInWithSupabaseSession:no-local-key-for-linked-address — adopting session without a signer", {
+            address: `${address.slice(0, 6)}...${address.slice(-4)}`,
+          });
+        }
+        const localProvider = privateKey
+          ? createLocalEip1193ProviderForChain(privateKey, chainId)
+          : null;
+        try {
+          await setAuthMethod("local", address);
+          try {
+            setAuthMethodState("local");
+          } catch {}
+        } catch {}
+
+        await applyWalletAuthResult(res.user, res.token, !!res.needsUsername, chainId, localProvider);
+        return true;
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [applyWalletAuthResult, log, setAuthMethodState, setIsLoading]
   );
 
   const completeUsername = useCallback(
@@ -471,6 +615,7 @@ export function useAuthSession({
 
   return {
     signInWithWallet,
+    signInWithSupabaseSession,
     completeUsername,
     requireAuth,
     skipAuth,

@@ -8,7 +8,6 @@ import React, {
   useMemo,
   memo,
 } from "react";
-// Adapter abstraction (currently only web3auth implementation)
 import { AuthAdapter } from "../services/auth/authAdapter";
 import { AppStateStatus } from "react-native";
 import SignInGatewayModal from "../components/auth/SignInGatewayModal";
@@ -36,7 +35,6 @@ import {
   removeAuthToken,
   clearAuthSignature,
 } from "../libs/auth.utils";
-import { resetWeb3AuthInstance } from "../config/web3auth.config";
 import { SUPPORTED_NETWORKS, supportedNetworks } from "../config/web3.constants";
 import { setLocalAuthChainId } from "../services/auth/localProviderAdapter";
 
@@ -121,6 +119,14 @@ interface AuthContextType {
   signOut: () => Promise<void>;
   skipAuth: () => Promise<void>;
   signInWithWallet: (walletAddress: string, chainId: number, overridePrivateKey?: string, web3AuthMeta?: Record<string, any>) => Promise<void>;
+  /**
+   * Try to sign in from an existing Supabase session (Google/email) alone —
+   * no wallet signature. Resolves to true only if this Supabase identity is
+   * already linked to an account (and, when expectedAddress is passed, that
+   * account matches it); false means the caller should fall back to
+   * signInWithWallet (which is what establishes the link on first login).
+   */
+  signInWithSupabaseSession: (supabaseAccessToken: string, chainId: number, expectedAddress?: string) => Promise<boolean>;
   needsUsername: boolean;
   provisionalUser: any | null;
   provisionalToken: string | null; // deprecated (token stored early)
@@ -136,7 +142,7 @@ interface AuthContextType {
   providerStatus: ProviderStatus;
   ensureProvider: () => Promise<void>;
   ensureFreshProvider: () => Promise<void>; // validates & reinitializes if stale
-  authMethod?: 'local' | 'web3auth' | null;
+  authMethod?: 'local' | null;
   // Switch active chain and block UI until done
   switchChain: (targetChainId: number) => Promise<void>;
   isSwitchingChain?: boolean;
@@ -165,7 +171,7 @@ interface ProviderContextType {
   provider?: EIP1193Provider | null;
   chainId?: number;
   providerStatus: ProviderStatus;
-  authMethod?: 'local' | 'web3auth' | null;
+  authMethod?: 'local' | null;
   isSwitchingChain?: boolean;
 }
 
@@ -174,6 +180,14 @@ interface AuthActionsContextType {
   signOut: () => Promise<void>;
   skipAuth: () => Promise<void>;
   signInWithWallet: (walletAddress: string, chainId: number, overridePrivateKey?: string, web3AuthMeta?: Record<string, any>) => Promise<void>;
+  /**
+   * Try to sign in from an existing Supabase session (Google/email) alone —
+   * no wallet signature. Resolves to true only if this Supabase identity is
+   * already linked to an account (and, when expectedAddress is passed, that
+   * account matches it); false means the caller should fall back to
+   * signInWithWallet (which is what establishes the link on first login).
+   */
+  signInWithSupabaseSession: (supabaseAccessToken: string, chainId: number, expectedAddress?: string) => Promise<boolean>;
   completeUsername: (finalUser: User) => void;
   refreshUser: () => Promise<void>;
   requireAuth: (action: () => void) => void;
@@ -212,7 +226,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [provisionalToken, setProvisionalToken] = useState<string | null>(null); // kept for backward compatibility
   const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
   const [showSignInModal, setShowSignInModal] = useState(false);
-  const [authMethod, setAuthMethodState] = useState<'local' | 'web3auth' | null>(null);
+  const [authMethod, setAuthMethodState] = useState<'local' | null>(null);
   const isMountedRef = useRef(true);
   const [isSwitchingChain, setIsSwitchingChain] = useState(false);
   const preferredChainRef = useRef<number | null>(null);
@@ -323,6 +337,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // Session management and actions
   const {
     signInWithWallet,
+    signInWithSupabaseSession,
     completeUsername,
     requireAuth: requireAuthRaw,
     skipAuth,
@@ -376,15 +391,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       await removeAuthToken();
       await clearAuthSignature();
 
-      // 3. Tear down the current Web3Auth instance & provider state
-      resetWeb3AuthInstance();
-
-      // 4. Re-create the Web3Auth instance on the new chain & re-init provider
+      // 3. Tear down and rebuild the provider on the new chain.
       //    forceReinitProvider bypasses the stale-closure guard in ensureProvider,
-      //    clears the cached authAdapter, and calls internalInitializeProvider directly.
+      //    clears the cached authAdapter, and calls internalInitializeProvider directly
+      //    (which rebuilds the local EIP-1193 provider from the persisted preferred chain id).
       await forceReinitProvider();
 
-      // 5. Re-authenticate with the backend on the new chain
+      // 4. Re-authenticate with the backend on the new chain
       if (address) {
         await signInWithWallet(address, targetChainId);
         log.info('switchChain:reauth:success', { targetChainId });
@@ -498,6 +511,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     signOut,
     skipAuth: skipAuthLocal,
     signInWithWallet,
+    signInWithSupabaseSession,
     completeUsername,
     refreshUser: refreshUserStable,
     requireAuth,
@@ -505,7 +519,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     ensureProvider,
     ensureFreshProvider,
     switchChain,
-  }), [signOut, skipAuthLocal, signInWithWallet, completeUsername, refreshUserStable, requireAuth, patchUser, ensureProvider, ensureFreshProvider, switchChain]);
+  }), [signOut, skipAuthLocal, signInWithWallet, signInWithSupabaseSession, completeUsername, refreshUserStable, requireAuth, patchUser, ensureProvider, ensureFreshProvider, switchChain]);
 
   // Legacy combined context value (for backward compatibility with useAuth)
   const authContextValue: AuthContextType = useMemo(() => ({
@@ -518,6 +532,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     signOut,
     skipAuth: skipAuthLocal,
     signInWithWallet,
+    signInWithSupabaseSession,
     needsUsername,
     provisionalUser,
     provisionalToken,
@@ -543,6 +558,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     signOut,
     skipAuthLocal,
     signInWithWallet,
+    signInWithSupabaseSession,
     needsUsername,
     provisionalUser,
     provisionalToken,

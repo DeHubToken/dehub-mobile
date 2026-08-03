@@ -23,6 +23,7 @@ import {
   supportedNetworks,
 } from "../../config";
 import { supportedTokens, defaultChainId as DEFAULT_CHAIN_ID } from "../../config/constants";
+import { isChainAASupported } from "../../libs/wallet-core/smart-account";
 import {
   useWeb3Provider,
   useStreamControllerContract,
@@ -558,10 +559,10 @@ export default function VideosTab({ onClose }: Props) {
   ]);
 
   const onUploadMint = useCallback(async () => {
-    // Block if user has no ETH to pay gas
-    // For imported (local) accounts, block when no ETH; sponsored users (web3auth) proceed
-    if (authMethod === 'local' && ethBalance <= 0) {
-      toastError("Gas sponsorship isn't available for imported accounts. Please deposit ETH for gas and try again.");
+    // Local wallets on a chain with Safe/Pimlico support (Base, BNB) are gasless.
+    // Only chains without an AA setup fall back to a plain EOA tx that needs ETH.
+    if (authMethod === 'local' && !isChainAASupported(activeChainId) && ethBalance <= 0) {
+      toastError("Gas sponsorship isn't available on this network. Please deposit ETH for gas and try again.");
       return;
     }
     if (!media?.uri) return;
@@ -631,15 +632,15 @@ export default function VideosTab({ onClose }: Props) {
     );
     setShowBountyApprove(false);
     setShowConfirm(true);
-  }, [media?.uri, fileSize, buildPayload, ethBalance]);
+  }, [media?.uri, fileSize, buildPayload, authMethod, activeChainId, ethBalance]);
 
   const handleUpload = useCallback(async () => {
     const payload = buildPayload();
     if (!payload) return;
-    // Safety: prevent upload if no ETH for gas
-    // For imported (local) accounts, block when no ETH; sponsored users (web3auth) proceed
-    if (authMethod === 'local' && ethBalance <= 0) {
-      toastError("Gas sponsorship isn't available for imported accounts. Please deposit ETH for gas and try again.");
+    // Safety: prevent upload if no ETH for gas -- only relevant on chains without
+    // Safe/Pimlico support; Base/BNB local wallets are gasless.
+    if (authMethod === 'local' && !isChainAASupported(activeChainId) && ethBalance <= 0) {
+      toastError("Gas sponsorship isn't available on this network. Please deposit ETH for gas and try again.");
       return;
     }
     try {
@@ -800,7 +801,7 @@ export default function VideosTab({ onClose }: Props) {
       setIsUploading(false);
       setUploadStage("idle");
     }
-  }, [buildPayload, coverUri, thumbUri, lockNetwork, ppvNetwork, bountyChain, uploadStage, ethBalance]);
+  }, [buildPayload, coverUri, thumbUri, lockNetwork, ppvNetwork, bountyChain, uploadStage, authMethod, activeChainId, ethBalance]);
 
   return (
     <View className="flex-1">

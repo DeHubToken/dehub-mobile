@@ -26,7 +26,8 @@ import {
 import { mintNftOnChain } from "../../services/mint.service";
 import { parseTxError } from "../../libs/web3.util";
 import { getOrCreateAuthSignature } from "../../libs/web3.auth.sign";
-import { web3AuthService } from "../../services/web3auth.service";
+import { isChainAASupported } from "../../libs/wallet-core/smart-account";
+import { defaultChainId as DEFAULT_CHAIN_ID } from "../../config/constants";
 
 type PickedImage = ImagePicker.ImagePickerAsset;
 
@@ -182,9 +183,10 @@ export default function FeedTab() {
   ]);
 
   const onUploadPress = useCallback(() => {
-    // For imported (local) accounts, require ETH for gas; Web3Auth users are gas sponsored
-    if (authMethod === 'local' && ethBalance <= 0) {
-      toastError("Gas sponsorship isn't available for imported accounts. Please deposit ETH for gas and try again.");
+    // Local wallets on a chain with Safe/Pimlico support (Base, BNB) are gasless.
+    // Only chains without an AA setup fall back to a plain EOA tx that needs ETH.
+    if (authMethod === 'local' && !isChainAASupported(chainId || DEFAULT_CHAIN_ID) && ethBalance <= 0) {
+      toastError("Gas sponsorship isn't available on this network. Please deposit ETH for gas and try again.");
       return;
     }
     if (!isFormValid) return;
@@ -192,7 +194,7 @@ export default function FeedTab() {
       "Are you sure the details are correct and you wish to proceed? Feed uploads are on-chain and immutable."
     );
     setShowConfirm(true);
-  }, [ethBalance, isFormValid, authMethod]);
+  }, [ethBalance, isFormValid, authMethod, chainId]);
 
   const handleUpload = useCallback(async () => {
     try {

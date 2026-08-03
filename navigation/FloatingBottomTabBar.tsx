@@ -21,9 +21,6 @@ import Reanimated, {
   type SharedValue,
 } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
-// The nav pill needs an untinted blur to match web's backdrop-filter, which
-// expo-blur can't produce; see the BlurView usage in the pill below.
-import { BlurView as GlassBlurView } from "@react-native-community/blur";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
@@ -374,45 +371,35 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
         pointerEvents="none"
       />
       <Reanimated.View style={[styles.navContainer, entranceStyle]}>
-        {/* Web is `backdrop-blur-2xl` (blur(40px) in our Tailwind config, not
-            the stock 24px) with every bit of its colour coming from
-            glassOverlay's zinc-900/10 — a strong blur under a near-transparent
-            wash. expo-blur can't express that, as its `intensity` drives blur
-            radius and tint alpha together, so the pill turns white before it
-            turns glassy. Hence this library on iOS, where UIKit's materials are
-            fixed-radius so the thinnest material is the least-tinted blur
-            available.
+        {/* Web is `backdrop-blur-2xl` (blur(40px)) with every bit of its
+            colour coming from glassOverlay's zinc-900/10 — a strong blur
+            under a near-transparent wash. Plain expo-blur tints (`dark`,
+            `light`, `default`) can't reproduce that: their `intensity` drives
+            blur radius and tint alpha together, so the pill turns white
+            before it turns glassy. `systemUltraThinMaterialDark` sidesteps
+            this — it's UIKit's own fixed-radius system material (the same
+            native effect the old @react-native-community/blur
+            `ultraThinMaterialDark` used), not a custom radius/tint blend, so
+            intensity only fades it in without shifting its colour. Not light:
+            `systemUltraThinMaterialLight` takes essentially all of its colour
+            from whatever is behind it, which falls apart on the Shorts tab —
+            a full-bleed grid of bright, moving video turns the pill into a
+            pale smear with no glass reading left. The Dark material tints
+            toward the app's own dark chrome instead, so the pill holds one
+            identity over any backdrop.
 
-            Android gets no real blur at all: the community BlurView is the
-            Dimezis library underneath, whose PreDrawBlurController re-snapshots
-            the root view every frame and throws IndexOutOfBoundsException when
-            a list mutates children mid-draw (same crash FeedNavBar and
-            AppDrawer already work around) — a permanently-mounted blur over an
-            infinite feed makes that a matter of time. Translucent tint only.
-
-            Upstream status (checked 2026-07-26): this is Dimezis/BlurView #191,
-            closed for inactivity in 2023 with no code fix. It IS fixed in
-            Dimezis 3.x — 3.0.0 replaced the per-frame root snapshot with a
-            BlurTarget RenderNode on API 31+, and 3.1.0 guarded the pre-31
-            software path — but neither library here ships it: expo-blur 15.0.7
-            pins BlurView 2.0.6, @react-native-community/blur 4.4.1 pins 2.0.4.
-            Forcing 3.x through Gradle does not work, since its API is not
-            source-compatible with expo-blur 15's native code. The real fix
-            arrives with Expo SDK 55 / expo-blur 55.0.0, which moves to BlurView
-            3.1.0 and adds a blurTarget API for scoping the blur source to a
-            stable subtree instead of the decorView. Until then this stands. */}
+            Android gets no real blur at all: expo-blur's experimental Android
+            blur methods sit on the same Dimezis BlurView lineage whose
+            PreDrawBlurController re-snapshots the root view every frame and
+            throws IndexOutOfBoundsException when a list mutates children
+            mid-draw (same crash FeedNavBar and AppDrawer already work
+            around) — a permanently-mounted blur over an infinite feed makes
+            that a matter of time. Translucent tint only, until expo-blur
+            ships a fixed BlurView lineage. */}
         {Platform.OS === "ios" ? (
-          // Dark material, not light. `ultraThinMaterialLight` takes essentially
-          // all of its colour from whatever is behind it, which is fine over the
-          // mostly-dark feed but falls apart on the Shorts tab: a full-bleed
-          // grid of bright, moving video turns the pill into a pale smear with
-          // no glass reading left in it. `ultraThinMaterialDark` is the same
-          // thinnest-available blur radius, but it tints toward the app's own
-          // dark chrome, so the pill holds one identity over any backdrop.
-          <GlassBlurView
-            blurType="ultraThinMaterialDark"
-            blurAmount={40}
-            reducedTransparencyFallbackColor="#1c1c20"
+          <BlurView
+            tint="systemUltraThinMaterialDark"
+            intensity={100}
             style={StyleSheet.absoluteFill}
           />
         ) : (
@@ -502,7 +489,7 @@ const styles = StyleSheet.create({
   navContainer: {
     width: "72%",
     maxWidth: 340,
-    borderRadius: 12, // web's rounded-xl
+    borderRadius: 16, // web's rounded-2xl on the pill (not rounded-xl — that's the center button only)
     overflow: "hidden",
     // No Android elevation: on a translucent container it renders as a harsh
     // dark slab that kills the glass look (see GlassIndicator's GLASS_SHADOW).
@@ -525,7 +512,7 @@ const styles = StyleSheet.create({
     // the base tint is zinc-900 itself, translucent enough that content
     // ghosts through the way a blur would.
     backgroundColor: "rgba(24, 24, 27, 0.45)",
-    borderRadius: 12,
+    borderRadius: 16,
   },
   androidInsetBottom: {
     position: "absolute",
@@ -540,7 +527,7 @@ const styles = StyleSheet.create({
     // Exactly web's bg-zinc-900/10 (zinc-900 is #18181b) + border-white/10.
     // The backdrop blur carries the glass; this is only a faint wash on top.
     backgroundColor: "rgba(24, 24, 27, 0.10)",
-    borderRadius: 12,
+    borderRadius: 16,
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.10)",
   },

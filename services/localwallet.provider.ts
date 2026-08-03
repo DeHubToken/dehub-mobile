@@ -1,4 +1,6 @@
 import { ethers } from "ethers";
+import { ChainId } from "../config/constants";
+import { SUPPORTED_NETWORKS } from "../config/web3.constants";
 
 export interface LocalProviderOptions {
   privateKey: string;
@@ -88,4 +90,17 @@ export function createLocalEip1193Provider(opts: LocalProviderOptions) {
   }
 
   return { request };
+}
+
+/** Build a local EIP-1193 provider for a given chain, resolving its RPC URL/hex chain id from config. */
+export function createLocalEip1193ProviderForChain(privateKey: string, chainId: number) {
+  const net =
+    SUPPORTED_NETWORKS[chainId] || SUPPORTED_NETWORKS[ChainId.BASE_MAINNET];
+  const rpcUrl =
+    net?.rpcUrls?.[0] ||
+    SUPPORTED_NETWORKS[ChainId.BASE_MAINNET]?.rpcUrls?.[0] ||
+    "https://mainnet.base.org";
+  const chainIdHex =
+    (net?.chainId as string) || "0x" + Number(chainId).toString(16) || "0x2105";
+  return createLocalEip1193Provider({ privateKey, rpcUrl, chainIdHex });
 }

@@ -1,6 +1,4 @@
 import { ethers } from "ethers";
-import { getAuthMethod } from "./auth.utils";
-import { web3AuthService } from "../services/web3auth.service";
 import { parseTxError, applyGasMargin } from "./web3.util";
 
 type Hex = `0x${string}`;
@@ -69,54 +67,10 @@ export async function writeContractAA(
     gasLimitBN = ethers.BigNumber.from(200_000);
   }
 
-  // 3) Decide path: Web3Auth AA vs EOA signer
-  let isWeb3Auth = false;
-  try {
-    const { method } = await getAuthMethod();
-    isWeb3Auth = method === "web3auth";
-  } catch {}
-
   const valueHex = toHex(options?.value ?? 0);
-  const gasHex = toHex(options?.gasLimit ?? gasLimitBN);
-
-  if (isWeb3Auth) {
-    // AA path: encode calldata and send via web3AuthService to ensure hex params
-    try {
-      const data = contract.interface.encodeFunctionData(functionName, args) as Hex;
-      // Prefer an explicit estimate; if it fails, allow the RPC to estimate
-      let gas: Hex | undefined = gasHex;
-      if (!gas) {
-        try {
-          const est = await web3AuthService.estimateGas({ to: contract.address, data, value: valueHex });
-          gas = est as Hex;
-        } catch {}
-      }
-      // Get AA gas price suggestion where required (e.g., BNB)
-  let fee: { maxFeePerGas?: Hex; maxPriorityFeePerGas?: Hex; __source?: 'provider'|'http'|'rpc' } = {} as any;
-  try { fee = await web3AuthService.getUserOperationGasPrice(); } catch {}
-  // If fallback source is plain RPC, omit explicit fees to let RPC/bundler choose best values.
-  const includeFees = fee && fee.__source && fee.__source !== 'rpc';
-      const txHash = await web3AuthService.sendTransaction({
-        to: contract.address,
-        data,
-        value: valueHex,
-        gas,
-        ...(includeFees && fee.maxFeePerGas ? { maxFeePerGas: fee.maxFeePerGas } : {}),
-        ...(includeFees && fee.maxPriorityFeePerGas ? { maxPriorityFeePerGas: fee.maxPriorityFeePerGas } : {}),
-      });
-      const wait = async (_confirmations = 1) => {
-        const receipt = await web3AuthService.waitForReceipt(txHash, 60000, 2500);
-        if (!receipt) throw new Error("Transaction not confirmed in time");
-        return receipt;
-      };
-      return { hash: txHash as string, wait };
-    } catch (aaErr: any) {
-      const friendly = parseTxError(aaErr, context);
-      throw new Error(friendly);
-    }
-  }
 
   // EOA path: call through ethers Contract with overrides
+
   try {
     const overrides: any = {};
     if (valueHex) overrides.value = valueHex;

@@ -6,5 +6,3 @@ export * from './toast';
 export * from './misc';
 export * from './strings.util';
 export * from './numbers.util';
-// export * from './web3AuthService';
-// export * from './web3AuthConfig';
