@@ -4,9 +4,10 @@ import { SvgXml } from "react-native-svg";
 import { Ionicons } from "@expo/vector-icons";
 import EmailLoginFlow from "./EmailLoginFlow";
 import PhoneLoginFlow from "./PhoneLoginFlow";
+import { isAppleSignInConfigured } from "../../config/web3auth.config";
 
 // Explicitly define supported providers (keys must match the provider id used by Web3Auth config)
-export type SocialProvider = "google" | "twitter" | "discord";
+export type SocialProvider = "google" | "twitter" | "discord" | "apple";
 
 interface SocialLoginIconsProps {
   onPress: (provider: string, emailOrPhone?: string) => void;
@@ -37,17 +38,32 @@ const DISCORD_ICON = `<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.
   </g>
 </svg>`;
 
+const APPLE_ICON = `<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+  <g transform='translate(12 12) scale(1.4) translate(-12 -12)'>
+    <path fill='#FFFFFF' d='M17.05 12.536c-.03-2.087 1.706-3.087 1.783-3.14-.972-1.42-2.484-1.615-3.025-1.638-1.372-.14-2.635.797-3.318.797-.699 0-1.767-.777-2.9-.757-1.49.023-2.865.866-3.626 2.2-1.548 2.685-.397 6.86.98 9.11.677 1.106 1.487 2.346 2.55 2.3.994-.038 1.386-.647 2.6-.647 1.21 0 1.567.647 2.62.63 1.08-.018 1.766-.976 2.44-2.083.775-1.253 1.09-2.487 1.109-2.552-.024-.01-2.19-.844-2.213-3.22zM14.85 5.865c.564-.68.945-1.63.842-2.573-.812.033-1.798.542-2.383 1.222-.522.6-.98 1.567-.857 2.492.902.07 1.827-.457 2.398-1.14z'/>
+  </g>
+</svg>`;
+
 const ICON_MAP: Record<SocialProvider, string> = {
   google: GOOGLE_ICON,
   twitter: X_ICON,
   discord: DISCORD_ICON,
+  apple: APPLE_ICON,
 };
+
+// Apple asks that Sign in with Apple be shown no less prominently than the
+// other options, hence first in the row. It is iOS-only and drops out entirely
+// when the verifier isn't configured, so nobody is offered a button that can
+// only fail.
+const DEFAULT_PROVIDERS: SocialProvider[] = isAppleSignInConfigured()
+  ? ["apple", "google", "twitter", "discord"]
+  : ["google", "twitter", "discord"];
 
 export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   onPress,
   busyProvider,
   disabled,
-  providers = ["google", "twitter", "discord"],
+  providers = DEFAULT_PROVIDERS,
   showEmailButton,
   showPhoneButton,
 }) => {
