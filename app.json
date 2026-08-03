@@ -25,6 +25,7 @@
       "supportsTablet": true,
       "jsEngine": "hermes",
       "bundleIdentifier": "io.dehub.mobile",
+      "usesAppleSignIn": true,
       "icon": "./assets/AppIcons/appstore.png",
       "associatedDomains": [
         "applinks:dehub.io",
@@ -127,6 +128,7 @@
       "@react-native-community/datetimepicker",
       "expo-localization",
       "expo-web-browser",
+      "expo-apple-authentication",
       [
         "expo-build-properties",
         {
