@@ -5,6 +5,7 @@ import {
   INFURA_KEY,
   ALCHEMY_API_KEY,
   WEB3AUTH_CLIENT_ID,
+  WEB3AUTH_APPLE_VERIFIER,
   CDN_BASE_URL,
   APP_ORIGIN,
   WEBSOCKET_URL,
@@ -31,6 +32,9 @@ const env = {
   INFURA_KEY: INFURA_KEY,
   ALCHEMY_API_KEY: ALCHEMY_API_KEY,
   WEB3AUTH_CLIENT_ID: WEB3AUTH_CLIENT_ID,
+  // Name of the custom JWT verifier that validates Apple's identity tokens.
+  // Unset means the Apple button doesn't render.
+  WEB3AUTH_APPLE_VERIFIER: WEB3AUTH_APPLE_VERIFIER || "",
   CDN_BASE_URL: CDN_BASE_URL,
   APP_ORIGIN: APP_ORIGIN || "https://dehub.io",
   WEBSOCKET_URL:
