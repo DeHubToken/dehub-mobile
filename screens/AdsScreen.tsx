@@ -43,7 +43,6 @@ import { useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { useERC20Contract, useWeb3Provider } from "../hooks/use-web3";
 import { writeContractAA } from "../libs/aa.write";
-import { web3AuthService } from "../services/web3auth.service";
 import { ChainId, DHB_ADDRESSESS } from "../config/constants";
 import { useTokenPrices } from "../hooks/useStores";
 import {
@@ -68,7 +67,6 @@ import {
 /** Same treasury the AI credits / paywalls pay into (see ads-topup edge fn). */
 const ADS_TREASURY = "0xbf3039b0bb672b268e8384e30d81b1e6a8a43b2c";
 const DHB_BASE = DHB_ADDRESSESS[ChainId.BASE_MAINNET];
-const BASE_CHAIN_HEX = "0x2105";
 const TOPUP_PRESETS = [25, 100, 500];
 
 const OBJECTIVES = ["awareness", "traffic", "engagement"] as const;
@@ -345,14 +343,6 @@ export default function AdsScreen() {
     }
     setBuying(true);
     try {
-      if (chainId !== ChainId.BASE_MAINNET) {
-        try {
-          await web3AuthService.ensureChain(BASE_CHAIN_HEX as `0x${string}`);
-        } catch {
-          /* preflight below will surface anything real */
-        }
-      }
-
       const amountWei = ethers.utils.parseUnits(String(dhbForTopUp), 18);
 
       try {

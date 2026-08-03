@@ -1,0 +1,44 @@
+diff --git a/node_modules/@noble/hashes/esm/utils.js b/node_modules/@noble/hashes/esm/utils.js
+index bd6d1f7..5ef1529 100644
+--- a/node_modules/@noble/hashes/esm/utils.js
++++ b/node_modules/@noble/hashes/esm/utils.js
+@@ -91,10 +91,13 @@ export function hexToBytes(hex) {
+     }
+     return array;
+ }
+-// There is no setImmediate in browser and setTimeout is slow.
+-// call of async fn will return Promise, which will be fullfiled only on
+-// next scheduler queue processing step and this is exactly what we need.
+-export const nextTick = async () => { };
++// PATCHED for React Native (Hermes): the upstream `async () => {}` yields
++// only a MICROTASK, which never returns control to the host event loop — so
++// asyncLoop-based KDFs (argon2idAsync, pbkdf2Async) block the JS thread for
++// their entire runtime: no rendering, no touch events, the app reads as
++// frozen for the 30s+ an Argon2id unlock takes on Hermes. setTimeout(0) is a
++// real macrotask yield, letting the UI paint between ticks.
++export const nextTick = () => new Promise((resolve) => setTimeout(resolve, 0));
+ // Returns control to thread each 'tick' ms to avoid blocking
+ export async function asyncLoop(iters, tick, cb) {
+     let ts = Date.now();
+diff --git a/node_modules/@noble/hashes/utils.js b/node_modules/@noble/hashes/utils.js
+index 5058c85..bbbcbf6 100644
+--- a/node_modules/@noble/hashes/utils.js
++++ b/node_modules/@noble/hashes/utils.js
+@@ -113,10 +113,13 @@ function hexToBytes(hex) {
+     }
+     return array;
+ }
+-// There is no setImmediate in browser and setTimeout is slow.
+-// call of async fn will return Promise, which will be fullfiled only on
+-// next scheduler queue processing step and this is exactly what we need.
+-const nextTick = async () => { };
++// PATCHED for React Native (Hermes): the upstream `async () => {}` yields
++// only a MICROTASK, which never returns control to the host event loop — so
++// asyncLoop-based KDFs (argon2idAsync, pbkdf2Async) block the JS thread for
++// their entire runtime: no rendering, no touch events, the app reads as
++// frozen for the 30s+ an Argon2id unlock takes on Hermes. setTimeout(0) is a
++// real macrotask yield, letting the UI paint between ticks.
++const nextTick = () => new Promise((resolve) => setTimeout(resolve, 0));
+ exports.nextTick = nextTick;
+ // Returns control to thread each 'tick' ms to avoid blocking
+ async function asyncLoop(iters, tick, cb) {

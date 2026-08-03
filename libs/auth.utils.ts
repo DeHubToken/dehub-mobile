@@ -264,7 +264,7 @@ export async function clearStoredProviderMeta(): Promise<void> {
   try { await SecureStore.deleteItemAsync(WEB3_PROVIDER_KEY); } catch {}
 }
 
-export type AuthMethod = 'local' | 'web3auth';
+export type AuthMethod = 'local';
 
 export async function setAuthMethod(method: AuthMethod, address?: string | null): Promise<void> {
   try {
@@ -281,7 +281,7 @@ export async function getAuthMethod(): Promise<{ method: AuthMethod | null; addr
       SecureStore.getItemAsync(AUTH_METHOD_KEY),
       SecureStore.getItemAsync(AUTH_METHOD_ADDR_KEY),
     ]);
-    const method = (m === 'local' || m === 'web3auth') ? (m as AuthMethod) : null;
+    const method = m === 'local' ? (m as AuthMethod) : null;
     return { method, address: a || null };
   } catch {
     return { method: null, address: null };

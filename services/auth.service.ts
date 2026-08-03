@@ -15,6 +15,36 @@ interface AuthResponse {
   needsUsername?: boolean;
 }
 
+/**
+ * Thrown when the backend has no wallet linked to this Supabase identity yet
+ * (or the link is ambiguous). The caller must fall back to the signature
+ * flow, which is what creates the link — a normal state for a first-ever
+ * login on this identity, not an error to surface to the user.
+ */
+export class WalletNotLinkedError extends Error {
+  constructor(message = "No wallet is linked to this login yet.") {
+    super(message);
+    this.name = "WalletNotLinkedError";
+  }
+}
+
+/**
+ * Thrown when the backend already has MORE THAN ONE wallet linked to this
+ * Supabase identity and refuses to pick one automatically. This is a data
+ * state, not a "first login" state — it must never be handled by silently
+ * provisioning and linking yet another wallet, since that would add a third
+ * conflicting link and make the ambiguity permanently worse. The only
+ * correct recovery is the user signing in with the specific wallet they mean
+ * to use (Import Wallet), which is unambiguous proof of which account is
+ * theirs.
+ */
+export class WalletLinkAmbiguousError extends Error {
+  constructor(message = "This login is linked to more than one wallet. Please sign in with your wallet.") {
+    super(message);
+    this.name = "WalletLinkAmbiguousError";
+  }
+}
+
 export const AuthService = {
   /**
    * Authenticate user with a wallet address
@@ -38,6 +68,16 @@ export const AuthService = {
       }
       if (opts?.web3AuthMeta && typeof opts.web3AuthMeta === "object") {
         body.web3AuthMeta = opts.web3AuthMeta;
+        // Prove ownership of the Supabase identity named in web3AuthMeta.
+        // The backend only stores an identity link it can verify (token
+        // subject must equal verifierId) and then makes it EXCLUSIVE across
+        // accounts; without the token it drops any link that would collide
+        // with another account — see backend vetSupabaseIdentityLink.
+        try {
+          const { getSupabaseAccessToken } = await import("./auth/supabaseAuth.service");
+          const supabaseToken = await getSupabaseAccessToken();
+          if (supabaseToken) body.supabaseAccessToken = supabaseToken;
+        } catch {}
       }
       // if (typeof opts?.storePrivateKey === "boolean") {
       //   body.storePrivateKey = opts.storePrivateKey;
@@ -70,6 +110,63 @@ export const AuthService = {
       };
     } catch (error) {
       console.error("Wallet sign in error:", error);
+      throw error;
+    }
+  },
+
+  /**
+   * Exchange a Supabase access token (Google/email sign-in) for a DeHub
+   * session, with no wallet signature — used to recognize an account this
+   * Supabase identity is already linked to (established previously by
+   * signInWithWallet's web3AuthMeta), instead of always minting a new local
+   * wallet on first mobile login.
+   *
+   * Mirrors dehubweb's authenticateWithSupabaseSession: does not create
+   * accounts or link wallets — throws WalletNotLinkedError (backend 409) when
+   * this identity has no link yet, so the caller can fall back to the
+   * signature flow to establish one.
+   */
+  async authenticateWithSupabaseSession(
+    supabaseAccessToken: string
+  ): Promise<AuthResponse> {
+    try {
+      const response = await apiClient.post<any>(
+        "/web/auth/supabase",
+        {},
+        {
+          isAuthRequired: false,
+          // Sent as a header rather than in the body so it does not land in
+          // request logs that record bodies.
+          headers: { Authorization: `Bearer ${supabaseAccessToken}` },
+          // Failures here are normal control flow (409 not-linked on every
+          // first login, ambiguous-link on polluted identities) and are fully
+          // handled below — mirrors the web client, which logs these as a
+          // warn and falls back to signing instead of surfacing an error.
+          quiet: true,
+        }
+      );
+      const needsUsername = !!response?.result?.isNewAccount;
+      await setAuthToken(response.token);
+      if (response.refreshToken) await setRefreshToken(response.refreshToken);
+      if (response.expiresIn) await setTokenExpiresAt(Date.now() + response.expiresIn * 1000);
+      return {
+        user: response.user,
+        token: response.token,
+        refreshToken: response.refreshToken,
+        expiresIn: response.expiresIn,
+        needsUsername,
+      };
+    } catch (error: any) {
+      const isAmbiguous =
+        error?.code === "WALLET_LINK_AMBIGUOUS" ||
+        /more than one wallet/i.test(error?.message || "");
+      if (isAmbiguous) {
+        throw new WalletLinkAmbiguousError(error?.message);
+      }
+      if (error?.status === 409 || error?.code === "WALLET_NOT_LINKED") {
+        throw new WalletNotLinkedError(error?.message);
+      }
+      console.error("Supabase session auth error:", error);
       throw error;
     }
   },

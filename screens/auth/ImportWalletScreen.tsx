@@ -14,7 +14,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import * as Clipboard from "expo-clipboard";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
-import { deriveAddressFromPrivateKey } from "../../config/web3auth.config";
+import { deriveAddressFromPrivateKey } from "../../libs/wallet.utils";
 import {
   upsertLocalAccount,
   listLocalAccounts,

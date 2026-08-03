@@ -9,8 +9,8 @@ import {
 import * as Clipboard from "expo-clipboard";
 import { Ionicons } from "@expo/vector-icons";
 import { ethers } from "ethers";
-import { useUser } from "../../context/AuthContext";
-import { web3AuthService } from "../../services/web3auth.service";
+import { useUser, useProvider, useAuthActions } from "../../context/AuthContext";
+import { getSigningProvider } from "../../libs/provider.registry";
 import { supabase } from "../../services/supabase";
 import { toastError, toastSuccess } from "../../libs/toast";
 
@@ -46,6 +46,8 @@ const StakingTab: React.FC = () => {
   const user = useUser() as any;
   const walletAddress: string | undefined =
     user?.walletAddress || user?.address;
+  const { chainId: activeChainId, provider: authProvider } = useProvider();
+  const { switchChain } = useAuthActions();
 
   const [walletBal, setWalletBal] = useState<number | null>(null);
   const [protocolTotal, setProtocolTotal] = useState<number | null>(null);
@@ -145,9 +147,19 @@ const StakingTab: React.FC = () => {
 
     setIsBusy(true);
     try {
-      const chainOk = await web3AuthService.ensureChain(BASE_CHAIN_HEX as `0x${string}`);
-      if (!chainOk) {
-        toastError("Failed to switch to Base network.");
+      const targetChainId = parseInt(BASE_CHAIN_HEX, 16);
+      let sendProvider = authProvider;
+      if (activeChainId !== targetChainId) {
+        try {
+          await switchChain(targetChainId);
+        } catch {
+          toastError("Failed to switch to Base network.");
+          return;
+        }
+        sendProvider = getSigningProvider() || authProvider;
+      }
+      if (!sendProvider?.request) {
+        toastError("Wallet not ready. Please try again.");
         return;
       }
 
@@ -155,9 +167,9 @@ const StakingTab: React.FC = () => {
       const amountWei = ethers.utils.parseUnits(amount, 18);
       const data = iface.encodeFunctionData("transfer", [STAKING_ADDRESS, amountWei]);
 
-      const txHash = await web3AuthService.sendTransaction({
-        to: DHB_BASE,
-        data: data as `0x${string}`,
+      const txHash = await sendProvider.request({
+        method: "eth_sendTransaction",
+        params: [{ from: walletAddress, to: DHB_BASE, data }],
       });
 
       // Wait for confirmation before recording so we never log a failed stake.

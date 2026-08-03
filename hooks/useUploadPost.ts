@@ -21,6 +21,7 @@ import {
   streamInfoKeys,
 } from "../config/constants";
 import { supportedNetworks } from "../config/web3.constants";
+import { isChainAASupported } from "../libs/wallet-core/smart-account";
 import { isSolanaChain, findSolanaToken } from "../config/solana.constants";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
 import type { AttachedSound } from "./usePostSound";
@@ -374,11 +375,13 @@ export function useUploadPost() {
 
   const preUploadCheck = useCallback(
     (p: UploadPayload): ValidationResult => {
-      // Imported accounts need ETH for gas
-      if (authMethod === "local" && ethBalance <= 0) {
+      // Local wallets on a chain with Safe/Pimlico support (Base, BNB) are gasless --
+      // no ETH needed regardless of balance. Only chains without an AA setup still
+      // fall back to a plain EOA transaction, which does need ETH for gas.
+      if (authMethod === "local" && !isChainAASupported(activeChainId) && ethBalance <= 0) {
         return {
           valid: false,
-          error: "Gas sponsorship isn't available for imported accounts. Please deposit ETH for gas and try again.",
+          error: "Gas sponsorship isn't available on this network. Please deposit ETH for gas and try again.",
         };
       }
 
@@ -399,7 +402,7 @@ export function useUploadPost() {
 
       return { valid: true };
     },
-    [authMethod, ethBalance, buildStreamInfo, user, tokenBalances],
+    [authMethod, activeChainId, ethBalance, buildStreamInfo, user, tokenBalances],
   );
 
   const upload = useCallback(

@@ -10,7 +10,9 @@ import "react-native-worklets";
 import "./globals";
 import "./i18n";
 
-// import "./config/reown.config";
+// Initializes the "Connect Wallet" (Reown/WalletConnect) sign-in option —
+// side-effect import, must run once at startup before any screen renders.
+import "./config/reown.config";
 
 // Silence noisy deprecation warning from transitive deps in dev
 //   LogBox.ignoreLogs(["SafeAreaView has been deprecated", "Failed to obtain view for PanGestureHandler"]);

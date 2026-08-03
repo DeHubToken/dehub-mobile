@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   Image,
   FlatList,
+  Alert,
 } from "react-native";
 import Constants from "expo-constants";
 import { useUser, useAuthState, useAuthActions, useProvider } from "../context/AuthContext";
@@ -16,10 +17,12 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { toastSuccess, toastError } from "../libs";
 import ScreenHeader from "../components/ScreenHeader";
 import LiquidGlass from "../components/ui/LiquidGlass";
-import { logoutWeb3Auth } from "../config/web3auth.config";
 import FullScreenLoader from "../components/FullScreenLoader";
 import ReportBugModal from "../components/Settings/ReportBugModal";
 import ExportPrivateKeyModal from "../components/Settings/ExportPrivateKeyModal";
+import SwitchAccountModal from "../components/Settings/SwitchAccountModal";
+import { forgetLocalWalletForIdentity } from "../libs/identity-wallet";
+import { getSupabaseUserId } from "../services/auth/supabaseAuth.service";
 import ReviewModal from "../components/ReviewModal";
 import Icon, { type IconName } from "../components/ui/Icon";
 import { openInApp } from "../libs/links.utils";
@@ -35,6 +38,7 @@ import GlassModal from "../components/ui/GlassModal";
 import { getFreeAccessList, removeFreeAccess } from "../services/dm/dm.api";
 import { truncateAddress } from "../libs/strings.util";
 import { ChainId } from "../config/constants";
+import { isChainAASupported } from "../libs/wallet-core/smart-account";
 import ChainSwitchModal from "../components/Settings/ChainSwitchModal";
 import BlockedAccountsModal from "../components/Settings/BlockedAccountsModal";
 import LanguageSelectModal from "../components/Settings/LanguageSelectModal";
@@ -121,6 +125,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   const [signingOut, setSigningOut] = useState(false);
   const [bugModalVisible, setBugModalVisible] = useState(false);
   const [exportPkVisible, setExportPkVisible] = useState(false);
+  const [switchAccountVisible, setSwitchAccountVisible] = useState(false);
   const [chainModalVisible, setChainModalVisible] = useState(false);
   const [blockedModalVisible, setBlockedModalVisible] = useState(false);
   const [reviewModalVisible, setReviewModalVisible] = useState(false);
@@ -130,8 +135,12 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   const [freeAccessList, setFreeAccessList] = useState<string[]>([]);
   const [freeAccessLoading, setFreeAccessLoading] = useState(false);
   const [revokingAddress, setRevokingAddress] = useState<string | null>(null);
+  const [resettingLink, setResettingLink] = useState(false);
   const { t } = useTranslation();
   const isImported = authMethod === "local";
+  // Gas is sponsored for any local wallet on a chain with Safe/Pimlico support (Base, BNB) --
+  // "local" alone (used for the "· Imported" label above) no longer implies self-paid gas.
+  const gasSponsored = authMethod === "local" && isChainAASupported(chainId ?? ChainId.BASE_MAINNET);
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
 
@@ -139,7 +148,6 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
     if (signingOut) return;
     setSigningOut(true);
     try {
-      await logoutWeb3Auth();
       await signOut();
       toastSuccess(t('settings.loggedOut'));
     } catch (e) {
@@ -149,6 +157,50 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
       setSigningOut(false);
     }
   }, [signingOut, signOut]);
+
+  /**
+   * Fixes the case where THIS PHONE resolves Google/email sign-in to the
+   * wrong account: resolveEvmWalletForIdentity checks this device's local
+   * identity->address cache BEFORE ever asking Supabase, so a wallet that
+   * was created/tested on this phone before it was linked to Supabase
+   * permanently shadows the real, Supabase-linked account (which the
+   * website always resolves correctly, since it has no such local
+   * shortcut). Clearing the cache and signing out makes the next Google/
+   * email sign-in fall through to Supabase's record — same one the website
+   * uses — instead of trusting this device's stale memory.
+   */
+  const handleResetDeviceLink = useCallback(async () => {
+    if (resettingLink) return;
+    const supabaseUserId = await getSupabaseUserId();
+    if (!supabaseUserId) {
+      toastError(null, "You're not signed in with Google or email on this device.");
+      return;
+    }
+    Alert.alert(
+      "Reset device account link?",
+      "This phone will forget which wallet it auto-selects for your Google/email sign-in. You'll be signed out, and next time you sign in you'll be asked to unlock the correct wallet with its password (the same one the website uses).",
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "Reset & sign out",
+          style: "destructive",
+          onPress: async () => {
+            setResettingLink(true);
+            try {
+              await forgetLocalWalletForIdentity(supabaseUserId);
+              await signOut();
+              toastSuccess("Device link reset. Sign in again to pick up the right account.");
+            } catch (e) {
+              console.error("[AccountSettings] resetDeviceLink error", e);
+              toastError(e, "Could not reset the device link.");
+            } finally {
+              setResettingLink(false);
+            }
+          },
+        },
+      ]
+    );
+  }, [resettingLink, signOut]);
 
   const blockedCount = (user?.blocklist?.blocked?.length || 0) as number;
 
@@ -275,11 +327,11 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
           <SettingsRow
             icon="Fuel"
             label={t("settings.gasSponsorship")}
-            subtitle={isImported ? t("settings.gasImportedDesc") : t("settings.gasSponsoredDesc")}
+            subtitle={gasSponsored ? t("settings.gasSponsoredDesc") : t("settings.gasImportedDesc")}
             rightElement={
-              <View className={`px-2.5 py-1 rounded-full ${isImported ? "bg-theme-neutrals-700/40" : "bg-emerald-500/20"}`}>
-                <Text className={`text-[10px] font-semibold ${isImported ? "text-theme-neutrals-400" : "text-emerald-400"}`}>
-                  {isImported ? t("settings.gasOff") : t("settings.gasActive")}
+              <View className={`px-2.5 py-1 rounded-full ${gasSponsored ? "bg-emerald-500/20" : "bg-theme-neutrals-700/40"}`}>
+                <Text className={`text-[10px] font-semibold ${gasSponsored ? "text-emerald-400" : "text-theme-neutrals-400"}`}>
+                  {gasSponsored ? t("settings.gasActive") : t("settings.gasOff")}
                 </Text>
               </View>
             }
@@ -291,6 +343,25 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
             subtitle={t("settings.exportPrivateKeyDesc")}
             onPress={() => setExportPkVisible(true)}
           />
+          {isImported && (
+            <>
+              <Divider />
+              <SettingsRow
+                icon="RefreshCw"
+                label="Reset device account link"
+                subtitle="Seeing a different account here than on the website? Fix it (no private key needed)"
+                disabled={resettingLink}
+                onPress={handleResetDeviceLink}
+              />
+              <Divider />
+              <SettingsRow
+                icon="Repeat"
+                label="Switch account"
+                subtitle="Have a private key for the account you want instead? Switch to it directly"
+                onPress={() => setSwitchAccountVisible(true)}
+              />
+            </>
+          )}
         </SectionCard>
       </View>
 
@@ -472,6 +543,11 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
       <ExportPrivateKeyModal
         visible={exportPkVisible}
         onClose={() => setExportPkVisible(false)}
+      />
+      <SwitchAccountModal
+        visible={switchAccountVisible}
+        onClose={() => setSwitchAccountVisible(false)}
+        currentAddress={user?.walletAddress || user?.address}
       />
       <ChainSwitchModal
         visible={chainModalVisible}

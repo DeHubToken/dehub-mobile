@@ -1,11 +1,12 @@
-import React, { memo, useCallback, useMemo } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { View, Text, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { getAvatarUrl, getImageUrl, getImageUrlApiSimple, getAudioUrl } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
+import { getNFT } from "../../services/nft.service";
 import Avatar from "./Avatar";
 import AudioPostPlayer from "../Home/AudioPostPlayer";
 
@@ -17,10 +18,50 @@ interface QuotedPostEmbedProps {
 }
 
 const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
-  ({ quotedPost, quotedTokenId }) => {
+  (props) => {
     const navigation = useNavigation<any>();
     const { hideUserProfile } = useUserProfileSheet();
 
+    // `quotedTokenId` was documented as "fallback when quotedPost is null" but
+    // was only ever used for navigation — it was never actually fetched, so
+    // any post whose feed/list response omitted the inline `quotedPost`
+    // (leaving only the id) always fell straight to "This post is
+    // unavailable" with no author, image, or text. Fetch it here instead.
+    // Only when quotedPost is missing entirely — a quotedPost explicitly
+    // marked `unavailable: true` is the backend telling us it's really gone
+    // (deleted/blocked), and re-fetching that would just waste a request.
+    const [fetchedPost, setFetchedPost] = useState<any>(null);
+    const [isFetching, setIsFetching] = useState(false);
+    const [fetchFailed, setFetchFailed] = useState(false);
+
+    const inlinePost = props.quotedPost;
+    const needsFetch = !inlinePost && !fetchedPost && !fetchFailed;
+    const fetchTokenId = props.quotedTokenId ?? undefined;
+
+    useEffect(() => {
+      if (!needsFetch || !fetchTokenId) return;
+      let cancelled = false;
+      setIsFetching(true);
+      getNFT(fetchTokenId)
+        .then((res: any) => {
+          if (cancelled) return;
+          const post = res?.result;
+          if (post) setFetchedPost(post);
+          else setFetchFailed(true);
+        })
+        .catch(() => {
+          if (!cancelled) setFetchFailed(true);
+        })
+        .finally(() => {
+          if (!cancelled) setIsFetching(false);
+        });
+      return () => {
+        cancelled = true;
+      };
+    }, [needsFetch, fetchTokenId]);
+
+    const quotedPost = inlinePost || fetchedPost;
+    const quotedTokenId = props.quotedTokenId;
     const isAvailable = !!quotedPost && !(quotedPost as any).unavailable;
 
     const handlePress = useCallback(() => {
@@ -30,6 +71,17 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
       hideUserProfile();
       navigation.navigate(ScreenNames.PostResolver, { tokenId: String(targetTokenId) });
     }, [navigation, quotedPost, quotedTokenId, hideUserProfile]);
+
+    if (!isAvailable && isFetching) {
+      return (
+        <View className="mt-3 rounded-xl border border-theme-neutrals-800 bg-theme-neutrals-800/30 p-3">
+          <View className="flex-row items-center gap-2">
+            <ActivityIndicator size="small" color="#666" />
+            <Text className="text-theme-neutrals-500 text-sm">Loading quoted post…</Text>
+          </View>
+        </View>
+      );
+    }
 
     if (!isAvailable) {
       return (

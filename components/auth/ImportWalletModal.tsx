@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import { Ionicons } from "@expo/vector-icons";
-import { deriveAddressFromPrivateKey } from "../../config/web3auth.config";
+import { deriveAddressFromPrivateKey } from "../../libs/wallet.utils";
 import { listLocalAccounts, removeLocalAccount, LocalAccount, getPrivateKeyForAddress, upsertLocalAccount } from "../../libs/wallets.local";
 import { miniAddress } from "../../libs/strings.util";
 import * as Clipboard from "expo-clipboard";

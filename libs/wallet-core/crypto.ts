@@ -44,6 +44,7 @@ import { sha256 } from "@noble/hashes/sha2";
 import { gcm } from "@noble/ciphers/aes";
 import { Buffer } from "buffer";
 import * as ExpoCrypto from "expo-crypto";
+import { nativeArgon2id } from "./native-argon2";
 
 // PBKDF2 legacy default (OWASP 2023 baseline for SHA-256).
 const PBKDF2_ITERATIONS_DEFAULT = 600_000;
@@ -56,11 +57,18 @@ const ARGON2_MEMORY_KIB = 65_536; // 64 MiB
 const ARGON2_ITERATIONS = 3;
 const ARGON2_PARALLELISM = 1;
 
-// Argon2id at 64 MiB × 3 passes takes seconds in pure JS on a mid-range phone.
-// The async variant yields to the event loop every `asyncTick` ms so the UI
-// keeps painting instead of freezing — the sync version would block Hermes
-// outright and read as an app hang.
-const ARGON2_ASYNC_TICK_MS = 16;
+// Argon2id at 64 MiB × 3 passes takes tens of seconds in pure JS on Hermes
+// (no WASM, no JIT — the web client's hash-wasm build does the same work in
+// ~hundreds of ms). The async variant yields to the event loop every
+// `asyncTick` ms so touches keep processing and the busy spinner can render;
+// note this only actually yields with our @noble/hashes patch (see
+// patches/@noble+hashes+*.patch) — upstream's nextTick is a microtask no-op
+// that never returns control to the host, which read as a full app freeze.
+// 100ms rather than something frame-rate-ish because each yield costs up to
+// a frame in RN's timer scheduling: at 16ms the KDF spent as long waiting as
+// working (~2x total time), while at 100ms the overhead is ~15% and the
+// native-driven ActivityIndicator animates on the UI thread regardless.
+const ARGON2_ASYNC_TICK_MS = 100;
 
 const SALT_BYTES = 16;
 const IV_BYTES = 12;
@@ -81,12 +89,24 @@ function base64ToBytes(b64: string): Uint8Array {
   return new Uint8Array(Buffer.from(b64, "base64"));
 }
 
+// Built on plain "base64" rather than Buffer's "base64url" encoding: the RN
+// `buffer` polyfill (v6.0.3, as installed here) does not implement
+// "base64url" at all — Buffer.from(str, "base64url") throws "Unknown
+// encoding: base64url" — which parseCiphertext's catch block was silently
+// turning into a misleading "Corrupted wallet payload" for every payload,
+// on every password, regardless of correctness. Standard base64 + the usual
+// URL-safe substitution (+/  -> -_, strip padding) is exactly what
+// "base64url" means, so this produces byte-identical output to the web
+// client's btoa-based version without depending on polyfill support.
 function base64UrlEncode(str: string): string {
-  return Buffer.from(str, "utf8").toString("base64url");
+  const b64 = Buffer.from(str, "utf8").toString("base64");
+  return b64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
 function base64UrlDecode(str: string): string {
-  return Buffer.from(str, "base64url").toString("utf8");
+  const b64 = str.replace(/-/g, "+").replace(/_/g, "/");
+  const pad = b64.length % 4 === 0 ? "" : "=".repeat(4 - (b64.length % 4));
+  return Buffer.from(b64 + pad, "base64").toString("utf8");
 }
 
 function randomBytes(n: number): Uint8Array {
@@ -123,6 +143,17 @@ async function deriveKeyArgon2id(
   salt: Uint8Array,
   header: Argon2Header,
 ): Promise<Uint8Array> {
+  // Native fast path (reference C implementation): ~hundreds of ms instead
+  // of tens of seconds. Only active once its output has been byte-verified
+  // against @noble this session — see native-argon2.ts; null means "use the
+  // proven JS path", never an error.
+  const fast = await nativeArgon2id(password, salt, {
+    m: header.m,
+    t: header.t,
+    p: header.p,
+    dkLen: 32,
+  });
+  if (fast) return fast;
   return await argon2idAsync(utf8(password), salt, {
     m: header.m,
     t: header.t,
@@ -303,6 +334,26 @@ export async function reEncryptString(plaintext: string, password: string): Prom
 /** True for wallets still using the legacy PBKDF2 KDF. */
 export function isLegacyPayload(payload: EncryptedPayload): boolean {
   return !payload.ciphertext.startsWith(V2_PREFIX);
+}
+
+/**
+ * Which KDF protects this payload, WITHOUT needing the password/key material
+ * to decrypt it — the header carries this openly. Callers use this to route
+ * to the right unlock UI (password prompt vs biometric one-tap) before
+ * asking the user for anything.
+ */
+export function getPayloadKdf(payload: EncryptedPayload): "argon2id" | "hkdf" | "pbkdf2" {
+  if (!payload.ciphertext.startsWith(V2_PREFIX)) return "pbkdf2";
+  try {
+    const { header } = parseCiphertext(payload.ciphertext);
+    if (header?.kdf === "hkdf") return "hkdf";
+    return "argon2id";
+  } catch {
+    // Corrupted/unknown v2 header — not a determination we can make; treat as
+    // the password path so the real error surfaces from an actual unlock
+    // attempt instead of being swallowed here.
+    return "argon2id";
+  }
 }
 
 export const DEFAULT_PBKDF2_ITERATIONS = PBKDF2_ITERATIONS_DEFAULT;

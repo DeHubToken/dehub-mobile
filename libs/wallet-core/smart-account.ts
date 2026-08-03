@@ -1,0 +1,209 @@
+/**
+ * Safe Smart Account (ERC-4337) via Pimlico
+ * ==========================================
+ * Wraps the locally-derived EOA private key (see derive.ts / wallets.local.ts) in a
+ * Safe smart account so writes (posts, tips, mints, PPV unlocks, ...) are gasless --
+ * mirroring the web app's src/lib/smart-wallet.ts exactly, including the package choice:
+ * @web3auth/ethereum-provider + @web3auth/account-abstraction-provider used as pure
+ * local libraries. Nothing here talks to Web3Auth's hosted auth backend -- the EOA key
+ * comes entirely from the self-custody wallet, same as everywhere else in this app.
+ *
+ * Chain/Pimlico config comes from the same Supabase edge function ("get-pimlico-config")
+ * the web app already calls -- same project, same secret, no new backend work.
+ */
+import { CHAIN_NAMESPACES, IProvider } from "@web3auth/base";
+import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
+import { AccountAbstractionProvider, SafeSmartAccount } from "@web3auth/account-abstraction-provider";
+import { supabase } from "../../services/supabase";
+import { createLogger } from "../logger";
+
+const log = createLogger("SmartAccount");
+
+const BASE_CHAIN_ID = 8453;
+const BNB_CHAIN_ID = 56;
+
+interface AAChainInfo {
+  chainId: string; // hex
+  rpcTarget: string;
+  displayName: string;
+  blockExplorerUrl: string;
+  ticker: string;
+  tickerName: string;
+}
+
+// Only chains DeHub actually deploys to get a Safe/Pimlico setup. Any other chainId
+// (Ethereum mainnet, old testnets, ...) falls through to the plain EOA path -- same
+// coverage as web (CHAIN_CONFIGS in src/lib/contracts/dhb-token.ts).
+const AA_CHAIN_CONFIGS: Record<number, AAChainInfo> = {
+  [BASE_CHAIN_ID]: {
+    chainId: "0x2105",
+    rpcTarget: "https://mainnet.base.org",
+    displayName: "Base",
+    blockExplorerUrl: "https://basescan.org",
+    ticker: "ETH",
+    tickerName: "Ethereum",
+  },
+  [BNB_CHAIN_ID]: {
+    chainId: "0x38",
+    rpcTarget: "https://binance.nodereal.io",
+    displayName: "BNB Chain",
+    blockExplorerUrl: "https://bscscan.com",
+    ticker: "BNB",
+    tickerName: "BNB",
+  },
+};
+
+let cachedPimlicoConfig: { bundlerUrl: string; paymasterUrl: string } | null = null;
+let pendingPimlicoFetch: Promise<{ bundlerUrl: string; paymasterUrl: string }> | null = null;
+
+async function getPimlicoConfig(): Promise<{ bundlerUrl: string; paymasterUrl: string }> {
+  if (cachedPimlicoConfig) return cachedPimlicoConfig;
+  if (pendingPimlicoFetch) return pendingPimlicoFetch;
+
+  pendingPimlicoFetch = (async () => {
+    const { data, error } = await supabase.functions.invoke("get-pimlico-config");
+    if (error || !data?.bundlerUrl || !data?.paymasterUrl) {
+      throw new Error(error?.message || "Pimlico config not configured");
+    }
+    const config = { bundlerUrl: data.bundlerUrl as string, paymasterUrl: data.paymasterUrl as string };
+    cachedPimlicoConfig = config;
+    return config;
+  })();
+
+  try {
+    return await pendingPimlicoFetch;
+  } finally {
+    pendingPimlicoFetch = null;
+  }
+}
+
+/** Pimlico v2 URLs are keyed by chain id in the path: /v2/{chainId}/rpc?apikey=... */
+function derivePimlicoUrlForChain(baseUrl: string, targetChainId: number): string {
+  return baseUrl.replace(/\/\d+\/rpc/, `/${targetChainId}/rpc`);
+}
+
+/**
+ * True when this chain has a Safe/Pimlico setup at all, i.e. a local wallet writing
+ * here can be gasless. Used by pre-flight UI checks that used to assume every local
+ * wallet needs an ETH balance -- that assumption predates this file and is only still
+ * true on chains without an AA_CHAIN_CONFIGS entry.
+ */
+export function isChainAASupported(chainId: number): boolean {
+  return !!AA_CHAIN_CONFIGS[chainId];
+}
+
+export interface AAProviderLike {
+  request: (args: { method: string; params?: any[] }) => Promise<any>;
+  on?: (event: string, listener: (...args: any[]) => void) => void;
+  removeListener?: (event: string, listener: (...args: any[]) => void) => void;
+  chainConfig?: any;
+}
+
+/**
+ * Answer eth_accounts/eth_requestAccounts instantly from a memoized address instead
+ * of round-tripping through the AA SDK on every call. useProviderLifecycle polls
+ * eth_accounts on a health-check interval and treats an empty/slow response as "the
+ * provider is broken", tearing it down and rebuilding -- which cascaded into
+ * "Provider is missing" for unrelated callers (e.g. the upload queue) whenever a
+ * live Safe-address lookup hiccuped. Every other method still passes through live.
+ */
+function wrapWithStableAccounts(provider: AccountAbstractionProvider, address: string): AAProviderLike {
+  const normalized = address.toLowerCase();
+  const raw = provider as unknown as AAProviderLike;
+  return {
+    request: async ({ method, params }: { method: string; params?: any[] }) => {
+      if (method === "eth_accounts" || method === "eth_requestAccounts") {
+        return [normalized];
+      }
+      return raw.request({ method, params });
+    },
+    on: raw.on?.bind(raw),
+    removeListener: raw.removeListener?.bind(raw),
+    chainConfig: raw.chainConfig,
+  };
+}
+
+// One AA provider per (address, chain) -- same key can be reused by any caller
+// within this app session; wiped on logout/lock via clearAAProviders().
+const storedAAProviders = new Map<string, AAProviderLike>();
+
+function cacheKey(address: string, chainId: number): string {
+  return `${address.toLowerCase()}:${chainId}`;
+}
+
+/**
+ * Build (or reuse) a Safe smart-account provider for the given EOA key + chain.
+ * Never throws -- returns null on any failure (unsupported chain, Pimlico config
+ * unavailable, provider construction error) so callers can fall back to the plain
+ * EOA path exactly as before. That fallback is what keeps a Pimlico outage from
+ * ever blocking a post.
+ */
+export async function setupAAProvider(
+  address: string,
+  privateKeyHex: string,
+  chainId: number,
+): Promise<AAProviderLike | null> {
+  const key = cacheKey(address, chainId);
+  const cached = storedAAProviders.get(key);
+  if (cached) return cached;
+
+  const chainInfo = AA_CHAIN_CONFIGS[chainId];
+  if (!chainInfo) return null;
+
+  try {
+    const pimlicoConfig = await getPimlicoConfig();
+    const bundlerUrl = derivePimlicoUrlForChain(pimlicoConfig.bundlerUrl, chainId);
+    const paymasterUrl = derivePimlicoUrlForChain(pimlicoConfig.paymasterUrl, chainId);
+
+    const chainConfig = {
+      chainNamespace: CHAIN_NAMESPACES.EIP155,
+      chainId: chainInfo.chainId,
+      rpcTarget: chainInfo.rpcTarget,
+      displayName: chainInfo.displayName,
+      blockExplorerUrl: chainInfo.blockExplorerUrl,
+      ticker: chainInfo.ticker,
+      tickerName: chainInfo.tickerName,
+    };
+
+    const normalizedPk = privateKeyHex.startsWith("0x") ? privateKeyHex.slice(2) : privateKeyHex;
+    const eoaProvider = new EthereumPrivateKeyProvider({ config: { chainConfig } });
+    await eoaProvider.setupProvider(normalizedPk);
+
+    const aaProvider = await AccountAbstractionProvider.getProviderInstance({
+      eoaProvider: eoaProvider as unknown as IProvider,
+      smartAccountInit: new SafeSmartAccount(),
+      chainConfig,
+      bundlerConfig: { url: bundlerUrl },
+      paymasterConfig: { url: paymasterUrl },
+    });
+
+    // Resolve the Safe address once up front so eth_accounts is a memoized read
+    // from here on (see wrapWithStableAccounts).
+    let safeAddress: string | null = null;
+    try {
+      const accounts = (await aaProvider.request({ method: "eth_accounts" })) as string[];
+      safeAddress = accounts?.[0] || null;
+    } catch (e) {
+      log.warn("Could not resolve Safe address up front", e);
+    }
+    if (!safeAddress) {
+      // Without a resolved address we can't safely memoize eth_accounts -- treat
+      // this the same as any other AA setup failure and fall back to plain EOA.
+      return null;
+    }
+
+    const wrapped = wrapWithStableAccounts(aaProvider, safeAddress);
+    storedAAProviders.set(key, wrapped);
+    log.info("AA provider ready", { chainId, safeAddress });
+    return wrapped;
+  } catch (e) {
+    log.warn("AA provider setup failed -- falling back to plain EOA", e);
+    return null;
+  }
+}
+
+/** Called on logout/lock so a stale Safe provider from a previous session is never reused. */
+export function clearAAProviders(): void {
+  storedAAProviders.clear();
+  cachedPimlicoConfig = null;
+}
