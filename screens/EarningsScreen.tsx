@@ -14,6 +14,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ScreenHeader from "../components/ScreenHeader";
 import Icon from "../components/ui/Icon";
 import InviteFriendsCard from "../components/common/InviteFriendsCard";
+import EarningsComparisonCard from "../components/Earnings/EarningsComparisonCard";
 import { supabase } from "../services/supabase";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
@@ -295,6 +296,9 @@ const EarningsScreen: React.FC = () => {
               <Text style={styles.statLabel}>PPV unlocks</Text>
             </View>
           </View>
+
+          {/* Earnings vs other platforms */}
+          <EarningsComparisonCard />
 
           {/* Recent transactions */}
           {recentTx.length > 0 && (
