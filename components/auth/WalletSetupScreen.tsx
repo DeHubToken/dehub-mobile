@@ -358,13 +358,16 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
               <TouchableOpacity
                 onPress={handleUnlockSubmit}
                 disabled={!canSubmitPassword || busy}
-                className="mt-4 rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent"
-                style={{ opacity: !canSubmitPassword || busy ? 0.5 : 1 }}
+                className="mt-4 flex-row items-center justify-center rounded-2xl bg-neutral-800 border border-neutral-700 active:opacity-80"
+                style={{ height: 60, opacity: !canSubmitPassword || busy ? 0.5 : 1 }}
               >
                 {busy ? (
                   <ActivityIndicator color="#fff" />
                 ) : (
-                  <Text className="text-white text-sm font-medium">Unlock</Text>
+                  <>
+                    <Ionicons name="lock-open" size={20} color="#FFFFFF" style={{ marginRight: 10 }} />
+                    <Text className="text-base font-medium text-white">Unlock</Text>
+                  </>
                 )}
               </TouchableOpacity>
               {busy && (
