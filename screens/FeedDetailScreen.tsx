@@ -14,12 +14,14 @@ import type { MediaAttachment } from "../components/Comments/CommentMediaPreview
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../components/Comments/VoiceNoteRecorder";
 import type { VoiceNoteResult } from "../components/Comments/VoiceNoteRecorder";
 import GifPicker from "../components/DM/GifPicker";
+import GlassTipSheet from "../components/Tip/GlassTipSheet";
 import Avatar from "../components/common/Avatar";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import CommentsSkeleton from "../components/Feed/CommentsSkeleton";
 import { useUser, useAuthActions } from "../context/AuthContext";
 import useKeyboard from "../hooks/useKeyboard";
 import { useMentions } from "../hooks/useMentions";
+import { useCommentTipTotals } from "../hooks/useCommentTipTotals";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import { getAvatarUrl, toastError } from "../libs";
@@ -77,6 +79,12 @@ export default function FeedDetailScreen() {
   const [contextComment, setContextComment] = useState<Comment | null>(null);
   const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
   const [contextMeta, setContextMeta] = useState<{ liked: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
+
+  // Tip-a-comment state + per-comment totals from tip_records
+  const [tipComment, setTipComment] = useState<Comment | null>(null);
+  const { totals: tipTotals, bump: bumpTipTotal } = useCommentTipTotals(
+    comments.map((c) => c.id),
+  );
 
   const inputRef = useRef<TextInput>(null);
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
@@ -449,6 +457,8 @@ export default function FeedDetailScreen() {
             isReply={isReply}
             onUserPress={handleUserPress}
             onReply={handleReplyPress}
+            onTip={setTipComment}
+            tipTotal={tipTotals[Number(c.id)]}
             onLike={handleLikeComment}
             onLongPress={handleCommentLongPress}
             tokenId={tokenId}
@@ -458,7 +468,7 @@ export default function FeedDetailScreen() {
         </View>
       );
     },
-    [handleReplyPress, handleUserPress, handleLikeComment, handleCommentLongPress, tokenId, highlightedCommentId]
+    [handleReplyPress, handleUserPress, tipTotals, handleLikeComment, handleCommentLongPress, tokenId, highlightedCommentId]
   );
 
   // Send media comment
@@ -854,6 +864,23 @@ export default function FeedDetailScreen() {
         onEdit={contextMeta?.isOwnComment ? handleContextEdit : undefined}
         onDelete={contextMeta?.isOwnComment ? handleContextDelete : undefined}
         tokenId={tokenId}
+      />
+
+      {/* Tip a comment's author. Always the EVM DHB flow — comment authors
+          are tipped as people, whatever chain the post lives on. */}
+      <GlassTipSheet
+        visible={tipComment !== null}
+        onClose={() => setTipComment(null)}
+        toAddress={tipComment?.user?.address || tipComment?.address || ""}
+        tokenId={Number(tokenId) || 0}
+        recipientName={
+          tipComment?.user?.displayName || tipComment?.user?.username
+        }
+        tipContext="user"
+        commentId={tipComment ? Number(tipComment.id) : undefined}
+        onSuccess={(amount) => {
+          if (tipComment) bumpTipTotal(Number(tipComment.id), amount);
+        }}
       />
     </View>
   );

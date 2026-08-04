@@ -18,6 +18,7 @@ import type { MediaAttachment } from "./CommentMediaPreview";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "./VoiceNoteRecorder";
 import type { VoiceNoteResult } from "./VoiceNoteRecorder";
 import GifPicker from "../DM/GifPicker";
+import GlassTipSheet from "../Tip/GlassTipSheet";
 import Avatar from "../common/Avatar";
 import MentionSuggestions from "../common/MentionSuggestions";
 import { useUser, useAuthActions } from "../../context/AuthContext";
@@ -40,6 +41,7 @@ import { getAvatarUrl, toastError } from "../../libs";
 import { openCroppedImagePicker, getFileName, guessMime } from "../../libs/assets.util";
 import useKeyboard from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
+import { useCommentTipTotals } from "../../hooks/useCommentTipTotals";
 
 // Extended comment type for flat list with reply info
 interface FlatComment extends Comment {
@@ -97,6 +99,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const [contextComment, setContextComment] = useState<Comment | null>(null);
   const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
   const [contextMeta, setContextMeta] = useState<{ liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
+
+  // Tip-a-comment state + per-comment totals from tip_records
+  const [tipComment, setTipComment] = useState<Comment | null>(null);
+  const { totals: tipTotals, bump: bumpTipTotal } = useCommentTipTotals(
+    flatComments.map((c) => c.id),
+  );
 
   // Media attachment state
   const [mediaAttachment, setMediaAttachment] = useState<MediaAttachment | null>(null);
@@ -791,6 +799,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           comment={item}
           isReply={item.isReply}
           onReply={handleReply}
+          onTip={setTipComment}
+          tipTotal={tipTotals[itemNumId]}
           onLike={handleLikeComment}
           onDislike={handleDislikeComment}
           onUserPress={handleUserPress}
@@ -807,6 +817,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     );
   }, [
     handleReply,
+    tipTotals,
     handleLikeComment,
     handleDislikeComment,
     handleUserPress,
@@ -1024,6 +1035,23 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         onLike={handleContextLike}
         onDislike={handleContextDislike}
         tokenId={tokenId}
+      />
+
+      {/* Tip a comment's author. Always the EVM DHB flow — comment authors
+          are tipped as people, whatever chain the post lives on. */}
+      <GlassTipSheet
+        visible={tipComment !== null}
+        onClose={() => setTipComment(null)}
+        toAddress={tipComment?.user?.address || tipComment?.address || ""}
+        tokenId={Number(tokenId) || 0}
+        recipientName={
+          tipComment?.user?.displayName || tipComment?.user?.username
+        }
+        tipContext="user"
+        commentId={tipComment ? Number(tipComment.id) : undefined}
+        onSuccess={(amount) => {
+          if (tipComment) bumpTipTotal(Number(tipComment.id), amount);
+        }}
       />
     </View>
   );
