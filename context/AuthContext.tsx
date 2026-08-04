@@ -81,6 +81,14 @@ export interface User {
   followings?: number; // count of following
   hideFollowers?: boolean; // privacy setting to hide follow lists
   isPrivate?: boolean; // privacy setting to make account private
+  /**
+   * Free-form profile settings blob returned by the account endpoints. Web
+   * keeps follow visibility (`followVisibility`), default post visibility
+   * (`defaultPostVisibility`) and default profile tab (`defaultProfileTab`) in
+   * here — see dehubweb src/hooks/use-privacy-settings.ts. PrivacySettingsScreen
+   * reads and writes the same keys so both clients agree.
+   */
+  customs?: Record<string, string>;
   likes?: string[];
   unlocked?: string[];
   createdAt?: string;

@@ -78,6 +78,14 @@ export interface PostOptionsMenuProps {
   isBlocked?: boolean;
   /** Called after block/unblock to update parent state */
   onBlockChange?: (blocked: boolean) => void;
+  /** Whether the viewer has bookmarked this post. Only read when `onToggleSave` is set. */
+  isSaved?: boolean;
+  /**
+   * Toggle the bookmark from inside this menu. Surfaces with no bookmark button
+   * of their own pass this — the shorts viewer keeps it here, as web does —
+   * while the feed card leaves it out and keeps bookmark on its action bar.
+   */
+  onToggleSave?: () => void;
   /** Hide the report content option (e.g., for livestreams) */
   hideReportContent?: boolean;
   /** Hide the edit option (e.g., for livestreams) */
@@ -142,7 +150,10 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onTranslatePress,
   onTranslateImagePress,
   isBlocked: isBlockedProp = false,
-  onBlockChange,  hideReportContent = false,  hideEdit = false,}) => {
+  onBlockChange,
+  isSaved = false,
+  onToggleSave,
+  hideReportContent = false,  hideEdit = false,}) => {
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { t } = useTranslation();
@@ -348,6 +359,16 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
 
         {/* Options list */}
         <View className="pb-6">
+          {/* Bookmark — first row, as in the web drawer. Only for hosts that
+              don't carry a bookmark button of their own. */}
+          {!!onToggleSave && (
+            <OptionRow
+              icon={isSaved ? "bookmark" : "bookmark-outline"}
+              label={isSaved ? "Remove bookmark" : "Bookmark"}
+              onPress={() => { onToggleSave(); onClose(); }}
+            />
+          )}
+
           {/* Share */}
           <OptionRow
             icon="share-outline"

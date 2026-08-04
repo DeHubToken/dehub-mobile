@@ -27,6 +27,16 @@ import {
   rejectFollowRequest,
 } from '../services/user.service';
 import { getAvatarUrl } from '../libs/misc';
+import { ScreenNames } from '../navigation/ScreenNames';
+import BlockedAccountsModal from '../components/Settings/BlockedAccountsModal';
+import GeoBlockingSection from '../components/Settings/GeoBlockingSection';
+import {
+  SettingsSection,
+  SettingsLinkRow,
+  SettingsToggleRow,
+  Divider,
+} from '../components/Settings/SettingsPrimitives';
+import { toastInfo } from '../libs';
 
 const logger = createLogger('PrivacySettings');
 
@@ -72,20 +82,49 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   // Post visibility modal
   const [showPostVisModal, setShowPostVisModal] = useState(false);
 
+  // Blocked accounts (web keeps this on the Privacy tab — `BlockedUsersSection`)
+  const [blockedModalVisible, setBlockedModalVisible] = useState(false);
+  const blockedCount = ((user as any)?.blocklist?.blocked?.length || 0) as number;
+
+  /**
+   * Web stores follow visibility and default post visibility inside the
+   * profile's `customs` blob (`followVisibility`, `defaultPostVisibility` —
+   * see dehubweb src/hooks/use-privacy-settings.ts), not as top-level profile
+   * fields. Mobile used to read and write top-level `showFollowersFollowing` /
+   * `hideFollowerCounts` / `defaultPostVisibility`, which the API does not
+   * persist — so nothing set here ever showed up on web.
+   *
+   * Read customs first and fall back to the legacy top-level fields so any
+   * account that did get them written keeps its value on this first load.
+   */
+  const customs = useMemo(
+    () => (((user as any)?.customs ?? {}) as Record<string, string>),
+    [user]
+  );
+
   const initial = useMemo(() => ({
     hideFollowers: (user as any)?.hideFollowers ?? false,
     isPrivate: (user as any)?.isPrivate ?? false,
     followerVisibility: (() => {
+      const fromCustoms = customs.followVisibility as FollowerVisibility | undefined;
+      if (fromCustoms === 'hidden' || fromCustoms === 'counts-only' || fromCustoms === 'public') {
+        return fromCustoms;
+      }
       if ((user as any)?.hideFollowerCounts) return 'hidden' as FollowerVisibility;
       if ((user as any)?.showFollowersFollowing === false) return 'counts-only' as FollowerVisibility;
+      // `hideFollowers` is the one flag the API does persist; web derives
+      // 'hidden' from it when customs is absent.
+      if ((user as any)?.hideFollowers) return 'hidden' as FollowerVisibility;
       return 'public' as FollowerVisibility;
     })(),
-    defaultPostVisibility: ((user as any)?.defaultPostVisibility ?? 'public') as PostVisibility,
-  }), [user]);
+    defaultPostVisibility: ((customs.defaultPostVisibility ??
+      (user as any)?.defaultPostVisibility ??
+      'public') as PostVisibility),
+  }), [user, customs]);
 
   const userKey = useMemo(() => {
-    return `${(user as any)?.hideFollowers}|${(user as any)?.isPrivate}|${(user as any)?.hideFollowerCounts}|${(user as any)?.showFollowersFollowing}|${(user as any)?.defaultPostVisibility}`;
-  }, [user]);
+    return `${(user as any)?.hideFollowers}|${(user as any)?.isPrivate}|${customs.followVisibility}|${customs.defaultPostVisibility}|${(user as any)?.hideFollowerCounts}|${(user as any)?.showFollowersFollowing}|${(user as any)?.defaultPostVisibility}`;
+  }, [user, customs]);
 
   useEffect(() => {
     if (saving) return;
@@ -103,11 +142,24 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     [patchUser]
   );
 
-  const saveSetting = useCallback(async (updates: Record<string, any>) => {
+  /**
+   * `updates` are top-level profile fields; `customsUpdates` are merged into
+   * the profile's `customs` blob. `AuthService.updateProfile` posts FormData,
+   * so customs has to go over the wire as JSON — exactly what web's
+   * `updateProfile` does (`formData.append("customs", JSON.stringify(...))`).
+   * The in-memory user keeps the parsed object so reads stay uniform.
+   */
+  const saveSetting = useCallback(async (
+    updates: Record<string, any>,
+    customsUpdates?: Record<string, string>,
+  ) => {
     setSaving(true);
+    const mergedCustoms = customsUpdates ? { ...customs, ...customsUpdates } : undefined;
     try {
-      optimisticPatch(updates);
-      await AuthService.updateProfile(updates);
+      optimisticPatch(mergedCustoms ? { ...updates, customs: mergedCustoms } : updates);
+      await AuthService.updateProfile(
+        mergedCustoms ? { ...updates, customs: JSON.stringify(mergedCustoms) } : updates
+      );
       toastSuccess(t('settings.privacySettingUpdated'));
     } catch (error) {
       logger.error('Failed to update setting', error);
@@ -120,7 +172,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     } finally {
       setSaving(false);
     }
-  }, [optimisticPatch, initial]);
+  }, [optimisticPatch, initial, customs, t]);
 
   const handleTogglePrivate = useCallback((value: boolean) => {
     if (!value && isPrivate && (user as any)?.pendingFollowRequests > 0) {
@@ -139,24 +191,18 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const handleFollowerVisChange = useCallback((vis: FollowerVisibility) => {
     setFollowerVisibility(vis);
     setShowFollowerVisModal(false);
-    const updates: Record<string, any> = {};
-    if (vis === 'public') {
-      updates.showFollowersFollowing = true;
-      updates.hideFollowerCounts = false;
-    } else if (vis === 'counts-only') {
-      updates.showFollowersFollowing = false;
-      updates.hideFollowerCounts = false;
-    } else {
-      updates.showFollowersFollowing = false;
-      updates.hideFollowerCounts = true;
-    }
-    saveSetting(updates);
+    // `hideFollowers` is the persisted top-level flag both clients agree on;
+    // the three-way granularity lives in customs.followVisibility, same as web.
+    saveSetting(
+      { hideFollowers: vis !== 'public' },
+      { followVisibility: vis }
+    );
   }, [saveSetting]);
 
   const handlePostVisChange = useCallback((vis: PostVisibility) => {
     setDefaultPostVisibility(vis);
     setShowPostVisModal(false);
-    saveSetting({ defaultPostVisibility: vis });
+    saveSetting({}, { defaultPostVisibility: vis });
   }, [saveSetting]);
 
   const pendingCount = (user as any)?.pendingFollowRequests || 0;
@@ -382,6 +428,65 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
           </Text>
         </View>
 
+        {/* Profile discoverability — both switches are `comingSoon` on web too
+            (`PrivacySettings` → Profile Visibility). */}
+        <SettingsSection label={t('settings.profileVisibility')} icon="Globe">
+          <SettingsToggleRow
+            icon="Globe"
+            label={t('settings.publicProfile')}
+            description={t('settings.publicProfileDesc')}
+            value
+            comingSoon
+          />
+          <Divider />
+          <SettingsToggleRow
+            icon="Search"
+            label={t('settings.searchEngineIndexing')}
+            description={t('settings.searchEngineIndexingDesc')}
+            value
+            comingSoon
+          />
+        </SettingsSection>
+
+        {/* Account security — web's `Account Security` block plus its
+            Active Sessions section. */}
+        <SettingsSection label={t('settings.accountSecurity')} icon="ShieldCheck">
+          <SettingsLinkRow
+            icon="Shield"
+            label={t('settings.twoFactorAuth')}
+            description={t('settings.twoFactorAuthDesc')}
+            value={t('settings.comingSoon')}
+            onPress={() => toastInfo(t('settings.comingSoon'))}
+          />
+          <Divider />
+          <SettingsLinkRow
+            icon="Smartphone"
+            label={t('settings.activeSessions')}
+            description={t('settings.activeSessionsDesc')}
+            onPress={() => navigation?.navigate(ScreenNames.ActiveSessions)}
+          />
+          <Divider />
+          <SettingsLinkRow
+            icon="Ban"
+            label={t('settings.blockedAccounts')}
+            description={blockedCount > 0 ? `${blockedCount} blocked` : t('settings.noneBlocked')}
+            onPress={() => setBlockedModalVisible(true)}
+          />
+        </SettingsSection>
+
+        {/* Your data — web's Extract Data row. */}
+        <SettingsSection label={t('settings.yourData')} icon="Download">
+          <SettingsLinkRow
+            icon="Download"
+            label={t('settings.extractData')}
+            description={t('settings.extractDataDesc')}
+            value={t('settings.download')}
+            onPress={() => toastInfo(t('settings.comingSoon'))}
+          />
+        </SettingsSection>
+
+        <GeoBlockingSection />
+
         <View className="mt-6 mx-4 p-4 bg-theme-neutrals-800/50 rounded-xl flex-row items-start">
           <Icon name="Info" size={16} color="#6b7280" />
           <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1">
@@ -389,6 +494,11 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
           </Text>
         </View>
       </ScrollView>
+
+      <BlockedAccountsModal
+        visible={blockedModalVisible}
+        onClose={() => setBlockedModalVisible(false)}
+      />
 
       {/* Go Public confirmation modal */}
       <GlassModal
