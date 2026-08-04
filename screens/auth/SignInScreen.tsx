@@ -21,6 +21,8 @@ import SocialLoginIcons from "../../components/auth/SocialLoginIcons";
 import EmailCodeEntry from "../../components/auth/EmailCodeEntry";
 import ImportWallet from "../../components/auth/ImportWallet";
 import WalletSetupScreen, { type WalletSetupRequest, type CreateProtection } from "../../components/auth/WalletSetupScreen";
+import LegacyAccountWarningModal from "../../components/auth/LegacyAccountWarningModal";
+import { checkLegacyAccount, type LegacyAccountMatch } from "../../libs/wallet-core/legacy-detect";
 import { WalletLinkAmbiguousError } from "../../services";
 import { openInApp } from "../../libs/links.utils";
 import { TERMS_OF_SERVICE_LINK, PRIVACY_POLICY_LINK } from "../../config/links";
@@ -70,6 +72,11 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   // DeHub sign-in step — reused on retry so the saved row isn't overwritten
   // by a fresh mnemonic (see handleWalletCreate).
   const pendingCreateRef = useRef<{ supabaseUserId: string; secret: string } | null>(null);
+  // Set when checkLegacyAccount finds a pre-migration Web3Auth account for
+  // this identity's email — gates the create-wallet screen behind a warning
+  // instead of silently minting a duplicate. See LegacyAccountWarningModal.
+  const [legacyAccounts, setLegacyAccounts] = useState<LegacyAccountMatch[] | null>(null);
+  const [pendingCreateUserId, setPendingCreateUserId] = useState<string | null>(null);
 
   const { isFirstTimeUser, provisionalUser, isLoading: authLoading, needsUsername, isSignedIn } = useAuthState();
   const { skipAuth, signInWithWallet, signInWithSupabaseSession } = useAuthActions();
@@ -290,8 +297,18 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         );
         return;
       }
-      // needs-create-password AND not linked to any backend account —
-      // genuinely first login for this identity.
+      // needs-create-password AND not linked to any backend account — could
+      // be a genuinely first login, or a pre-migration Web3Auth account this
+      // identity's email matches (the check that used to be missing here,
+      // which let real accounts — followers, uploads, DHB balance — get
+      // silently orphaned behind a fresh empty one). Gate on that check
+      // before opening the create-wallet screen.
+      const legacyHint = await checkLegacyAccount();
+      if (legacyHint.exists === true && legacyHint.accounts?.length) {
+        setPendingCreateUserId(supabaseUserId);
+        setLegacyAccounts(legacyHint.accounts);
+        return;
+      }
       setWalletSetupRequest({ mode: "create", supabaseUserId });
     },
     [completeLocalSignIn, signInWithSupabaseSession]
@@ -498,6 +515,20 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             onUnlock={handleWalletUnlock}
             onBiometricUnlock={handleWalletBiometricUnlock}
             onCreate={handleWalletCreate}
+          />
+
+          <LegacyAccountWarningModal
+            visible={!!legacyAccounts}
+            accounts={legacyAccounts ?? []}
+            onCreateAnyway={() => {
+              if (pendingCreateUserId) setWalletSetupRequest({ mode: "create", supabaseUserId: pendingCreateUserId });
+              setLegacyAccounts(null);
+              setPendingCreateUserId(null);
+            }}
+            onClose={() => {
+              setLegacyAccounts(null);
+              setPendingCreateUserId(null);
+            }}
           />
 
           {/* Terms and Privacy */}
