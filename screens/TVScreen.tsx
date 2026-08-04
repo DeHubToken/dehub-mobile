@@ -33,6 +33,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useQuery } from "@tanstack/react-query";
 import Icon from "../components/ui/Icon";
+import useKeyboard from "../hooks/useKeyboard";
+import TVChatPanel from "../components/TV/TVChatPanel";
 import { theme } from "../theme";
 import { toastError } from "../libs/toast";
 import { useTranslation } from "react-i18next";
@@ -58,6 +60,10 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const [failed, setFailed] = useState(false);
+  // Edge-to-edge Android ignores adjustResize, so the window does not shrink
+  // when the keyboard opens — lift manually on both platforms, same as
+  // LiveChatScreen/CommentSection.
+  const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
 
   const player: VideoPlayer = useVideoPlayer(channel?.streamUrl ?? null, (p) => {
     p.loop = false;
@@ -87,7 +93,12 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
       onRequestClose={onClose}
       supportedOrientations={["portrait", "landscape"]}
     >
-      <View style={[styles.playerRoot, { paddingTop: insets.top }]}>
+      <View
+        style={[
+          styles.playerRoot,
+          { paddingTop: insets.top, marginBottom: kbVisible ? kbHeight : 0 },
+        ]}
+      >
         <View style={styles.playerHeader}>
           <Pressable onPress={onClose} hitSlop={10} style={styles.backBtn}>
             <Icon name="ChevronDown" size={24} color="#FFFFFF" />
@@ -119,6 +130,18 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
             />
           )}
         </View>
+
+        {/* Live chat fills the space under the 16:9 box. Mounted only while a
+            channel is open so the realtime subscription follows the modal.
+            expo-video's native fullscreen presents its own view controller, so
+            this is portrait-only by construction. */}
+        {!!channel && (
+          <TVChatPanel
+            channelId={channel.id}
+            enabled={!!channel}
+            bottomInset={kbVisible ? 0 : insets.bottom}
+          />
+        )}
       </View>
     </Modal>
   );
