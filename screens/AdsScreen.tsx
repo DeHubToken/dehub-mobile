@@ -74,7 +74,7 @@ const TOPUP_PRESETS = [25, 100, 500];
 const OBJECTIVES = ["awareness", "traffic", "engagement"] as const;
 
 const STATUS_COLOR: Record<string, string> = {
-  active: "#34D399",
+  active: "#22C55E",
   paused: "#D4D4D8",
   pending_review: "#D4D4D8",
   draft: "#A1A1AA",

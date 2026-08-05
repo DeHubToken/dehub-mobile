@@ -72,8 +72,8 @@ const ChangeBadge: React.FC<{ value: number | null; small?: boolean }> = ({ valu
   const up = value >= 0;
   return (
     <View style={[styles.changePill, { backgroundColor: up ? "rgba(52,211,153,0.12)" : "rgba(248,113,113,0.12)" }]}>
-      <Icon name={up ? "TrendingUp" : "TrendingDown"} size={small ? 10 : 11} color={up ? "#34D399" : "#F87171"} />
-      <Text style={[styles.changeText, { color: up ? "#34D399" : "#F87171", fontSize: small ? 10.5 : 11.5 }]}>
+      <Icon name={up ? "TrendingUp" : "TrendingDown"} size={small ? 10 : 11} color={up ? "#22C55E" : "#EF4444"} />
+      <Text style={[styles.changeText, { color: up ? "#22C55E" : "#EF4444", fontSize: small ? 10.5 : 11.5 }]}>
         {Math.abs(value).toFixed(2)}%
       </Text>
     </View>

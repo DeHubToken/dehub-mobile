@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.20)",
   },
-  openBadgeText: { color: "#34D399", fontSize: 10, fontWeight: "600" },
+  openBadgeText: { color: "#22C55E", fontSize: 10, fontWeight: "600" },
   tagsRow: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 18 },
   tag: {
     flexDirection: "row",

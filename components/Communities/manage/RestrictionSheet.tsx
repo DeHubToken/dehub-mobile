@@ -132,7 +132,7 @@ export function RestrictionSheet({
         <Pressable style={styles.overlay} onPress={onClose}>
           <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
             <View style={styles.header}>
-              <Icon name={isMute ? "VolumeX" : "Ban"} size={18} color={isMute ? "#fbbf24" : "#EF4444"} />
+              <Icon name={isMute ? "VolumeX" : "Ban"} size={18} color={isMute ? "#FDB022" : "#EF4444"} />
               <Text style={styles.title} numberOfLines={1}>
                 {title}
               </Text>

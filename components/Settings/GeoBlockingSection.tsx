@@ -106,11 +106,11 @@ const GeoBlockingSection: React.FC = () => {
               className="flex-row items-center bg-red-500/20 px-3 py-1.5 rounded-lg"
               style={{ gap: 6 }}
             >
-              <Icon name="MapPin" size={12} color="#f87171" />
+              <Icon name="MapPin" size={12} color="#EF4444" />
               <Text className="text-red-400 text-xs">
                 {COUNTRIES.find((c) => c.code === code)?.name ?? code}
               </Text>
-              <Icon name="X" size={12} color="#f87171" />
+              <Icon name="X" size={12} color="#EF4444" />
             </TouchableOpacity>
           ))}
         </View>

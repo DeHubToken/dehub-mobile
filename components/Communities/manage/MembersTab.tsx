@@ -239,8 +239,8 @@ export function MembersTab({ community, membership }: MembersTabProps) {
                   </View>
                   {isMuted(member) && (
                     <View style={[styles.chip, styles.chipWarning]}>
-                      <Icon name="VolumeX" size={11} color="#fbbf24" />
-                      <Text style={[styles.chipText, { color: "#fbbf24" }]}>
+                      <Icon name="VolumeX" size={11} color="#FDB022" />
+                      <Text style={[styles.chipText, { color: "#FDB022" }]}>
                         {t("communities.manage.muted", { defaultValue: "Muted" })}
                       </Text>
                     </View>

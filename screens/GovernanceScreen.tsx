@@ -70,11 +70,11 @@ const ProposalCard: React.FC<{ proposal: GovernanceProposal }> = ({ proposal }) 
 
       <View style={styles.metaRow}>
         <View style={styles.metaItem}>
-          <Icon name="ThumbsUp" size={13} color="#34D399" />
+          <Icon name="ThumbsUp" size={13} color="#22C55E" />
           <Text style={styles.metaText}>{formatCompactNumber(forW)}</Text>
         </View>
         <View style={styles.metaItem}>
-          <Icon name="ThumbsDown" size={13} color="#F87171" />
+          <Icon name="ThumbsDown" size={13} color="#EF4444" />
           <Text style={styles.metaText}>{formatCompactNumber(againstW)}</Text>
         </View>
         <View style={styles.metaItem}>
@@ -202,11 +202,11 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.06)",
     marginTop: 4,
   },
-  barFor: { backgroundColor: "#34D399" },
-  barAgainst: { backgroundColor: "#F87171" },
+  barFor: { backgroundColor: "#22C55E" },
+  barAgainst: { backgroundColor: "#EF4444" },
   pctRow: { flexDirection: "row", justifyContent: "space-between" },
-  forText: { color: "#34D399", fontSize: 12, fontWeight: "600" },
-  againstText: { color: "#F87171", fontSize: 12, fontWeight: "600" },
+  forText: { color: "#22C55E", fontSize: 12, fontWeight: "600" },
+  againstText: { color: "#EF4444", fontSize: 12, fontWeight: "600" },
   metaRow: { flexDirection: "row", gap: 16, marginTop: 2 },
   metaItem: { flexDirection: "row", alignItems: "center", gap: 5 },
   metaText: { color: "#A1A1AA", fontSize: 12 },

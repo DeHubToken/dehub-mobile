@@ -377,7 +377,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: "rgba(255,255,255,0.08)",
   },
-  restriction: { color: "#fbbf24", fontSize: 12, marginTop: 6 },
+  restriction: { color: "#FDB022", fontSize: 12, marginTop: 6 },
   rowIcon: { width: 20, alignItems: "center", justifyContent: "center" },
   rowLabel: { fontSize: 14, fontWeight: "500" },
 });
