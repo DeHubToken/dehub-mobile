@@ -184,6 +184,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const [creating, setCreating] = useState(false);
   const createdConvIdRef = useRef<ID | null>(null);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [remoteTyping, setRemoteTyping] = useState(false);
 
@@ -543,6 +544,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
   useEffect(() => {
     if (!currentConvId || !address) return;
+    setInitialLoading(true);
     getMessages(currentConvId, { address, limit: PAGE_SIZE })
       .then((resp) => {
         const msgs = resp?.messages || [];
@@ -559,7 +561,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         if (msgs.length < PAGE_SIZE) setHasMore(false);
         if (userId) dmActions.markAllRead(currentConvId, userId);
       })
-      .catch((e) => log.error("fetch initial messages", e));
+      .catch((e) => log.error("fetch initial messages", e))
+      .finally(() => setInitialLoading(false));
   }, [currentConvId, address]);
 
 
@@ -1301,7 +1304,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       // Poll messages use a dedicated card
       if (item.msgType === "poll" && item.poll?.tokenId) {
         return (
-          <View className="px-3 py-0.5">
+          <View>
             <PollCard
               tokenId={item.poll.tokenId}
               pollOwnerAddress={
@@ -1314,7 +1317,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         );
       }
       return (
-        <View className="px-3 py-0.5">
+        <View>
           <MessageBubble
             message={item}
             isMine={mine}
@@ -1337,7 +1340,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     () =>
       loadingMore ? (
         <View className="py-4 items-center">
-          <ActivityIndicator size="small" color="#A6A9AC" />
+          <ActivityIndicator size="small" color="#F4F4F5" />
         </View>
       ) : null,
     [loadingMore],
@@ -1422,6 +1425,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               }}
               policy={peerPolicy}
             />
+          ) : initialLoading && messageList.length === 0 ? (
+            <View className="flex-1 items-center justify-center">
+              <ActivityIndicator size="small" color="#F4F4F5" />
+            </View>
           ) : (
             <FlatList
               ref={listRef}
@@ -1451,6 +1458,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               <TouchableOpacity
                 onPress={scrollToBottom}
                 activeOpacity={0.8}
+                hitSlop={8}
                 className="bg-theme-neutrals-700/90 rounded-full px-3 py-2 flex-row items-center"
               >
                 <Icon name="ChevronDown" size={16} color="#E5E7EB" />
@@ -1462,7 +1470,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           {/* Input or disabled banner — absolutely positioned, lifts with keyboard */}
           <View
             className="absolute left-0 right-0 bottom-0 bg-theme-neutrals-900"
-            style={{ marginBottom: inputLift, paddingBottom: Platform.OS === 'ios' ? (kbVisible ? 0 : insets.bottom) : 0 }}
+            style={{ marginBottom: inputLift, paddingBottom: kbVisible ? 0 : insets.bottom }}
             onLayout={(e) => setInputBarHeight(e.nativeEvent.layout.height)}
           >
             {voiceRecorder.isRecording ? (

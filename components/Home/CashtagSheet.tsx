@@ -81,7 +81,7 @@ function PriceChart({ candles, positive }: { candles: OhlcvCandle[]; positive: b
     points.map((p) => `L${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ") +
     ` L${points[points.length - 1].x.toFixed(1)},${H} Z`;
 
-  const color = positive ? "#10B981" : "#EF4444";
+  const color = positive ? "#22C55E" : "#EF4444";
   const gradId = positive ? "grad-up" : "grad-dn";
 
   return (
@@ -180,7 +180,7 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
 
   const change24h = pair?.priceChange?.h24;
   const isPositive = change24h != null && change24h >= 0;
-  const changeColor = change24h == null ? "#6F7174" : isPositive ? "#10B981" : "#EF4444";
+  const changeColor = change24h == null ? "#6F7174" : isPositive ? "#22C55E" : "#EF4444";
 
   return (
     <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={closeSheet}>

@@ -18,6 +18,10 @@ const CallButton: React.FC<CallButtonProps> = ({ recipientAddress }) => {
         disabled={disabled}
         style={[styles.btn, disabled && styles.disabled]}
         activeOpacity={0.6}
+        hitSlop={4}
+        accessibilityRole="button"
+        accessibilityLabel="Start voice call"
+        accessibilityState={{ disabled }}
       >
         <Icon name="Phone" size={18} color={disabled ? "#71717A" : "#FFFFFF"} />
       </TouchableOpacity>
@@ -26,6 +30,10 @@ const CallButton: React.FC<CallButtonProps> = ({ recipientAddress }) => {
         disabled={disabled}
         style={[styles.btn, disabled && styles.disabled]}
         activeOpacity={0.6}
+        hitSlop={4}
+        accessibilityRole="button"
+        accessibilityLabel="Start video call"
+        accessibilityState={{ disabled }}
       >
         <Icon name="Video" size={18} color={disabled ? "#71717A" : "#FFFFFF"} />
       </TouchableOpacity>

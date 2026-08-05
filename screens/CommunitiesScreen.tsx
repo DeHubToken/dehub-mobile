@@ -133,28 +133,24 @@ const CommunitiesScreen: React.FC = () => {
     requireAuth(() => setCreateOpen(true));
   };
 
+  const createButton = isSignedIn ? (
+    <TouchableOpacity
+      onPress={handleCreate}
+      className="flex-row items-center gap-1 bg-white px-3 py-2 rounded-full"
+    >
+      <Icon name="Plus" size={16} color="#000" />
+      <Text className="text-black text-sm font-semibold">{t("communities.create")}</Text>
+    </TouchableOpacity>
+  ) : undefined;
+
   const ListHeader = (
     <View>
-      <View className="flex-row items-center gap-2 mb-4">
-        <Icon name="Users" size={28} color="#fff" />
-        <Text className="text-white text-xl font-bold flex-1">{t("communities.title")}</Text>
-        {isSignedIn && (
-          <TouchableOpacity
-            onPress={handleCreate}
-            className="flex-row items-center gap-1 bg-white px-3 py-2 rounded-full"
-          >
-            <Icon name="Plus" size={16} color="#000" />
-            <Text className="text-black text-sm font-semibold">{t("communities.create")}</Text>
-          </TouchableOpacity>
-        )}
-      </View>
-
       <View className="flex-row items-center bg-theme-neutrals-800 rounded-xl px-3 mb-3">
-        <Icon name="Search" size={18} color="#71717a" />
+        <Icon name="Search" size={18} color="#A1A1AA" />
         <TextInput
           className="flex-1 text-white py-3 px-2 text-sm"
           placeholder={t("communities.searchPlaceholder")}
-          placeholderTextColor="#52525b"
+          placeholderTextColor="#8B8D90"
           value={search}
           onChangeText={setSearch}
         />
@@ -165,11 +161,12 @@ const CommunitiesScreen: React.FC = () => {
           <TouchableOpacity
             key={mode}
             onPress={() => setSortMode(mode)}
+            hitSlop={{ top: 8, bottom: 8 }}
             className={`px-3 py-1.5 rounded-full border ${
               sortMode === mode ? "bg-white/10 border-white/20" : "border-white/10"
             }`}
           >
-            <Text className={`text-xs font-medium ${sortMode === mode ? "text-white" : "text-zinc-500"}`}>
+            <Text className={`text-xs font-medium ${sortMode === mode ? "text-white" : "text-zinc-400"}`}>
               {t(`communities.sort.${mode}`)}
             </Text>
           </TouchableOpacity>
@@ -191,7 +188,7 @@ const CommunitiesScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title={t("communities.title")} />
+      <ScreenHeader title={t("communities.title")} rightContent={createButton} />
       <FlatList
         data={flatData}
         keyExtractor={(item) => item.id}
@@ -208,7 +205,7 @@ const CommunitiesScreen: React.FC = () => {
           />
         }
         ListEmptyComponent={
-          <Text className="text-theme-neutrals-400 text-center py-8">
+          <Text className="text-zinc-400 text-center py-8">
             {t("communities.noCommunities")}
           </Text>
         }

@@ -8,8 +8,8 @@
 import React, { useMemo, useState, useCallback } from "react";
 import { View, Text, TextInput, ScrollView, StyleSheet, Pressable, LayoutAnimation, Platform, UIManager } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
 import Icon, { type IconName } from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 
 if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -484,7 +484,6 @@ function sectionMatches(section: GuideSection, tokens: string[]): boolean {
 
 export default function GuideScreen() {
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<any>();
   const [query, setQuery] = useState("");
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set([SECTIONS[0].id]));
 
@@ -506,17 +505,8 @@ export default function GuideScreen() {
   }, []);
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Guide</Text>
-          <Text style={styles.subtitle}>Step-by-step walkthrough of every feature</Text>
-        </View>
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader title="Guide" subtitle="Step-by-step walkthrough of every feature" />
 
       {/* Search */}
       <View style={styles.searchWrap}>
@@ -525,7 +515,7 @@ export default function GuideScreen() {
           value={query}
           onChangeText={setQuery}
           placeholder="Search the guide..."
-          placeholderTextColor="#71717A"
+          placeholderTextColor="#8B8D90"
           style={styles.searchInput}
           autoCorrect={false}
         />
@@ -541,7 +531,12 @@ export default function GuideScreen() {
             const isOpen = expanded.has(section.id) || tokens.length > 0;
             return (
               <View key={section.id} style={styles.section}>
-                <Pressable style={styles.sectionHeader} onPress={() => toggle(section.id)}>
+                <Pressable
+                  style={styles.sectionHeader}
+                  onPress={() => toggle(section.id)}
+                  accessibilityRole="button"
+                  accessibilityState={{ expanded: isOpen }}
+                >
                   <View style={styles.sectionIcon}>
                     <Icon name={section.icon} size={18} color="#FFFFFF" strokeWidth={1.8} />
                   </View>
@@ -566,7 +561,7 @@ export default function GuideScreen() {
                       <View style={styles.tipsBox}>
                         {section.tips.map((tip, i) => (
                           <View key={i} style={styles.tipRow}>
-                            <Icon name="Lightbulb" size={13} color="#FCD34D" />
+                            <Icon name="Lightbulb" size={13} color="#D4D4D8" />
                             <Text style={styles.tipText}>{tip}</Text>
                           </View>
                         ))}
@@ -589,11 +584,7 @@ export default function GuideScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: { flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 12, paddingVertical: 12 },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  title: { color: "#FFFFFF", fontSize: 21, fontWeight: "700" },
-  subtitle: { color: "#71717A", fontSize: 12, marginTop: 1 },
+  root: { flex: 1, backgroundColor: "#010305" },
   searchWrap: {
     flexDirection: "row",
     alignItems: "center",
@@ -643,9 +634,9 @@ const styles = StyleSheet.create({
     marginTop: 2,
     padding: 10,
     borderRadius: 10,
-    backgroundColor: "rgba(252,211,77,0.06)",
+    backgroundColor: "rgba(255,255,255,0.06)",
     borderWidth: 1,
-    borderColor: "rgba(252,211,77,0.14)",
+    borderColor: "rgba(255,255,255,0.14)",
     gap: 6,
   },
   tipRow: { flexDirection: "row", alignItems: "flex-start", gap: 8 },

@@ -73,13 +73,13 @@ const CommunityFeedRoute: React.FC<Props> = ({
   if (!memberFilterReady) {
     return (
       <View className="py-12 items-center">
-        <ActivityIndicator color="#fff" />
+        <ActivityIndicator color="#F4F4F5" />
       </View>
     );
   }
 
   return (
-    <View className="flex-1 px-3">
+    <View className="flex-1 px-4">
       <InfiniteFeed
         insideNavigatorScreen={false}
         // memberAddresses is applied as a client-side filter inside fetchPage,

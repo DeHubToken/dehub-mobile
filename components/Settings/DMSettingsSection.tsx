@@ -291,7 +291,7 @@ const DMSettingsSection: React.FC = () => {
               </View>
             ) : feeSaved ? (
               <View className="ml-3 h-11 items-center justify-center">
-                <Icon name="CircleCheck" size={18} color="#34D399" />
+                <Icon name="CircleCheck" size={18} color="#32D583" />
               </View>
             ) : null}
           </View>

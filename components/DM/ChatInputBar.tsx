@@ -398,7 +398,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               color={tipBelowFee || insufficientBalance ? "#EF4444" : "#A6A9AC"}
             />
             <Text
-              className={`text-[10px] font-medium ml-1 ${
+              className={`text-[12px] font-medium ml-1 ${
                 tipBelowFee || insufficientBalance ? "text-red-400" : "text-theme-neutrals-400"
               }`}
             >
@@ -431,13 +431,15 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               )}
               {gifUrl && (
                 <View className="absolute bottom-1 left-1 bg-black/60 rounded px-1">
-                  <Text className="text-[9px] text-white font-bold">GIF</Text>
+                  <Text className="text-[11px] text-white font-bold">GIF</Text>
                 </View>
               )}
               <TouchableOpacity
                 onPress={handleRemoveMedia}
                 className="absolute -top-1.5 -right-1.5 bg-red-500 rounded-full w-5 h-5 items-center justify-center"
-                hitSlop={8}
+                hitSlop={12}
+                accessibilityRole="button"
+                accessibilityLabel="Remove attachment"
               >
                 <Icon name="X" size={12} color="#fff" />
               </TouchableOpacity>
@@ -452,7 +454,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             value={text}
             onChangeText={handleTextChange}
             placeholder={placeholder}
-            placeholderTextColor="#666"
+            placeholderTextColor="#8B8D90"
             multiline
             maxLength={DM_TEXT_MAX_LENGTH}
             className="text-white text-[15px] leading-5 p-0 m-0"
@@ -470,12 +472,15 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               hitSlop={4}
               activeOpacity={0.6}
               disabled={enhancing}
+              accessibilityRole="button"
+              accessibilityLabel="Add tip"
+              accessibilityState={{ disabled: enhancing }}
             >
-              <Icon name="Gem" size={22} color={enhancing ? '#3A3A3C' : '#A6A9AC'} />
+              <Icon name="Gem" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
             </TouchableOpacity>
           ) : (
             <View className="p-2">
-              <Icon name="Gem" size={22} color="#3A3A3C" />
+              <Icon name="Gem" size={22} color="#3F3F46" />
             </View>
           )}
 
@@ -486,8 +491,11 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             hitSlop={4}
             activeOpacity={0.6}
             disabled={enhancing}
+            accessibilityRole="button"
+            accessibilityLabel="Choose a GIF"
+            accessibilityState={{ disabled: enhancing }}
           >
-            <Text style={{ fontSize: 13, fontWeight: '800', color: enhancing ? '#3A3A3C' : '#A6A9AC' }}>GIF</Text>
+            <Text style={{ fontSize: 13, fontWeight: '800', color: enhancing ? '#3F3F46' : '#A6A9AC' }}>GIF</Text>
           </TouchableOpacity>
 
           {/* Image picker */}
@@ -497,8 +505,11 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             hitSlop={4}
             activeOpacity={0.6}
             disabled={enhancing}
+            accessibilityRole="button"
+            accessibilityLabel="Attach image"
+            accessibilityState={{ disabled: enhancing }}
           >
-            <Icon name="Image" size={22} color={enhancing ? '#3A3A3C' : '#A6A9AC'} />
+            <Icon name="Image" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
           </TouchableOpacity>
 
           {/* Video picker */}
@@ -508,8 +519,11 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             hitSlop={4}
             activeOpacity={0.6}
             disabled={enhancing}
+            accessibilityRole="button"
+            accessibilityLabel="Attach video"
+            accessibilityState={{ disabled: enhancing }}
           >
-            <Icon name="Video" size={22} color={enhancing ? '#3A3A3C' : '#A6A9AC'} />
+            <Icon name="Video" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
           </TouchableOpacity>
 
           {/* Mic */}
@@ -519,8 +533,11 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             hitSlop={4}
             activeOpacity={0.6}
             disabled={enhancing}
+            accessibilityRole="button"
+            accessibilityLabel="Record voice note"
+            accessibilityState={{ disabled: enhancing }}
           >
-            <Icon name="Mic" size={22} color={enhancing ? '#3A3A3C' : '#A6A9AC'} />
+            <Icon name="Mic" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
           </TouchableOpacity>
 
           {/* Poll */}
@@ -531,8 +548,11 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               hitSlop={4}
               activeOpacity={0.6}
               disabled={enhancing}
+              accessibilityRole="button"
+              accessibilityLabel="Create poll"
+              accessibilityState={{ disabled: enhancing }}
             >
-              <Icon name="ChartColumn" size={22} color={enhancing ? "#3A3A3C" : "#A6A9AC"} />
+              <Icon name="ChartColumn" size={22} color={enhancing ? "#3F3F46" : "#A6A9AC"} />
             </TouchableOpacity>
           )}
 
@@ -543,14 +563,17 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             hitSlop={4}
             activeOpacity={0.6}
             disabled={!text.trim() || enhancing}
+            accessibilityRole="button"
+            accessibilityLabel="Enhance message with AI"
+            accessibilityState={{ disabled: !text.trim() || enhancing }}
           >
             {enhancing ? (
-              <ActivityIndicator size={18} color="#A78BFA" />
+              <ActivityIndicator size={18} color="#F4F4F5" />
             ) : (
               <Icon
                 name="Sparkles"
                 size={22}
-                color={text.trim() ? '#A78BFA' : '#3A3A3C'}
+                color={text.trim() ? '#F4F4F5' : '#3F3F46'}
               />
             )}
           </TouchableOpacity>
@@ -562,8 +585,13 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                 onPress={handleSend}
                 disabled={sending || enhancing || insufficientBalance || tipBelowFee}
                 activeOpacity={0.7}
-                className={`flex-row items-center rounded-full px-3 py-1.5 ${
-                  insufficientBalance || tipBelowFee ? "bg-theme-neutrals-700" : "bg-blue-600"
+                accessibilityRole="button"
+                accessibilityLabel="Send message"
+                accessibilityState={{ disabled: sending || enhancing || insufficientBalance || tipBelowFee }}
+                className={`flex-row items-center rounded-full px-3 py-2.5 ${
+                  insufficientBalance || tipBelowFee
+                    ? "bg-theme-neutrals-700"
+                    : "bg-white/10 border border-white/20"
                 }`}
               >
                 {sending ? (
@@ -582,6 +610,9 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                 onPress={handleSend}
                 disabled={sending || enhancing}
                 className="p-2"
+                accessibilityRole="button"
+                accessibilityLabel="Send message"
+                accessibilityState={{ disabled: sending || enhancing }}
               >
                 {sending ? (
                   <ActivityIndicator size="small" color="#F4F4F5" />
@@ -595,8 +626,11 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               className="p-2"
               activeOpacity={0.6}
               disabled
+              accessibilityRole="button"
+              accessibilityLabel="Send message"
+              accessibilityState={{ disabled: true }}
             >
-              <Icon name="Send" size={22} color="#3A3A3C" />
+              <Icon name="Send" size={22} color="#3F3F46" />
             </TouchableOpacity>
           )}
         </View>

@@ -70,7 +70,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
         // isVisible must be forwarded or FeedCard falls back to its own
         // `true` default and every windowed row attaches a video player.
         renderItem={({ item, isVisible }) => (
-          <View className="px-3">
+          <View className="px-4">
             <FeedCard
               item={item as UnifiedFeedItem}
               isVisible={isVisible}

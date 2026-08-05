@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Image, KeyboardAvoidingView, Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import env from '../../config/env';
 
@@ -46,6 +47,7 @@ const useDebouncedCallback = (fn: (q: string) => void, delay = 400) => {
 };
 
 const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
+  const insets = useSafeAreaInsets();
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [items, setItems] = useState<TenorResult[]>([]);
@@ -118,7 +120,10 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
       {/* Edge-to-edge Android doesn't resize for the keyboard — lift the sheet. */}
       <KeyboardAvoidingView behavior="padding" className="flex-1 justify-end">
         <TouchableOpacity activeOpacity={1} onPress={onClose} className="flex-1 bg-black/40" />
-        <View className="bg-theme-neutrals-900 rounded-t-2xl p-3 h-[70%]">
+        <View
+          className="bg-[#0C0C0E] rounded-t-[20px] border-t border-white/10 p-3 h-[70%]"
+          style={{ paddingBottom: insets.bottom + 12 }}
+        >
           <View className="flex-row items-center mb-2">
             <TextInput
               placeholder="Search GIFs"
@@ -138,7 +143,7 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
           </View>
           {loading ? (
             <View className="py-8 items-center justify-center">
-              <ActivityIndicator size="small" />
+              <ActivityIndicator size="small" color="#F4F4F5" />
             </View>
           ) : error ? (
             <Text className="text-red-400 px-2 py-4">{error}</Text>

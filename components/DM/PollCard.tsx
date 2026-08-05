@@ -57,7 +57,12 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
   const myAddress = ((user as any)?.walletAddress || (user as any)?.address || "").toLowerCase();
   const isOwner = !!(myAddress && pollOwnerAddress?.toLowerCase() === myAddress);
 
-  if (loading || !poll) return null;
+  if (loading) {
+    return (
+      <View className="mx-2 my-1.5 rounded-xl bg-white/5 border border-white/10 p-3 h-[120px]" />
+    );
+  }
+  if (!poll) return null;
 
   const hasVoted = localVotedIndexes !== null || !!poll.userVote;
   const votedIndexes = localVotedIndexes ?? poll.userVote?.optionIndexes ?? [];
@@ -145,9 +150,10 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
           <TouchableOpacity
             onPress={() => closePoll(tokenId)}
             disabled={closing}
-            className="px-2 py-0.5 rounded-lg bg-white/10"
+            hitSlop={10}
+            className="px-2 py-1.5 rounded-lg bg-white/10"
           >
-            <Text className="text-zinc-400 text-[10px]">Close</Text>
+            <Text className="text-zinc-400 text-[12px]">Close</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -226,7 +232,7 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
           className="mt-2 py-2 rounded-lg bg-white/10 items-center"
         >
           {voting ? (
-            <ActivityIndicator size="small" color="#fff" />
+            <ActivityIndicator size="small" color="#F4F4F5" />
           ) : (
             <Text className="text-white text-sm font-medium">Vote</Text>
           )}
@@ -235,21 +241,22 @@ const PollCard: React.FC<PollCardProps> = ({ tokenId, pollOwnerAddress }) => {
 
       {/* Footer */}
       <View className="flex-row items-center justify-between mt-2">
-        <Text className="text-zinc-500 text-[10px]">
+        <Text className="text-zinc-400 text-[12px]">
           {totalVotes} {totalVotes === 1 ? "vote" : "votes"}
         </Text>
         <View className="flex-row items-center gap-2">
           {expiresLabel && (
-            <Text className="text-zinc-500 text-[10px]">{expiresLabel}</Text>
+            <Text className="text-zinc-400 text-[12px]">{expiresLabel}</Text>
           )}
           {hasVoted && poll.isActive && (
             <TouchableOpacity
               onPress={handleRemoveVote}
               disabled={removing}
-              className="flex-row items-center gap-0.5"
+              hitSlop={10}
+              className="flex-row items-center gap-0.5 py-1.5"
             >
-              <Icon name="X" size={10} color="#A6A9AC" />
-              <Text className="text-zinc-400 text-[10px]">Remove</Text>
+              <Icon name="X" size={12} color="#A6A9AC" />
+              <Text className="text-zinc-400 text-[12px]">Remove</Text>
             </TouchableOpacity>
           )}
         </View>

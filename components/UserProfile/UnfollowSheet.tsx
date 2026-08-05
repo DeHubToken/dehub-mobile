@@ -32,7 +32,10 @@ const UnfollowSheet: React.FC<UnfollowSheetProps> = memo(
           onPress={onClose}
           className="flex-1 bg-black/40"
         >
-          <View className="mt-auto bg-theme-neutrals-800 rounded-t-2xl px-5 pt-4 pb-6">
+          <View
+            className="mt-auto rounded-t-[20px] border border-white/10 px-5 pt-4 pb-6"
+            style={{ backgroundColor: "rgba(12,12,14,0.96)" }}
+          >
             <View className="w-12 h-1 bg-theme-neutrals-600 self-center rounded-full mb-4" />
             <Text className="text-white text-base font-semibold mb-3 text-center">
               {isCancelRequest

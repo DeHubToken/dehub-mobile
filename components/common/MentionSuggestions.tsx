@@ -55,7 +55,7 @@ const MentionSuggestions: React.FC<MentionSuggestionsProps> = ({
               )}
           </View>
           {item.isFollowing && (
-            <Text className="text-theme-neutrals-500 text-[10px]">
+            <Text className="text-theme-neutrals-500 text-xs">
               Following
             </Text>
           )}

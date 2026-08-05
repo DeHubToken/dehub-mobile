@@ -42,7 +42,13 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
         <View style={s.previewRow}>
           <View style={s.previewWrap}>
             <Image source={{ uri: attachedImage }} style={s.previewImg} />
-            <TouchableOpacity style={s.previewRemove} onPress={onRemoveImage} activeOpacity={0.7}>
+            <TouchableOpacity
+              style={s.previewRemove}
+              onPress={onRemoveImage}
+              activeOpacity={0.7}
+              accessibilityRole="button"
+              accessibilityLabel="Remove image"
+            >
               <Icon name="X" size={12} color="#FFF" />
             </TouchableOpacity>
           </View>
@@ -52,7 +58,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
         <TextInput
           style={s.input}
           placeholder="Ask me anything..."
-          placeholderTextColor="#6F7174"
+          placeholderTextColor="#8B8D90"
           value={value}
           onChangeText={onChangeText}
           onSubmitEditing={handleSubmit}
@@ -61,34 +67,37 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
           editable={!disabled && !loading}
         />
         <View style={s.actions}>
-          {/* {onAttach && (
+          {onAttach && (
             <TouchableOpacity
               onPress={onAttach}
               style={s.actionBtn}
               disabled={disabled || loading}
+              accessibilityRole="button"
+              accessibilityLabel="Attach image"
+              accessibilityState={{ disabled: disabled || loading }}
             >
               <Icon
                 name="Paperclip"
                 size={18}
-                color={disabled || loading ? '#3A3C3F' : '#6F7174'}
+                color={disabled || loading ? '#3F3F46' : '#6F7174'}
               />
             </TouchableOpacity>
           )}
-          <TouchableOpacity style={s.actionBtn} disabled>
-            <Icon name="Mic" size={18} color="#6F7174" />
-          </TouchableOpacity> */}
           <TouchableOpacity
             onPress={handleSubmit}
             style={s.actionBtn}
             disabled={!canSend}
+            accessibilityRole="button"
+            accessibilityLabel="Send message"
+            accessibilityState={{ disabled: !canSend }}
           >
             {loading ? (
-              <ActivityIndicator size="small" color="#A6A9AC" />
+              <ActivityIndicator size="small" color="#F4F4F5" />
             ) : (
               <Icon
                 name="Send"
                 size={18}
-                color={canSend ? '#F9FBFF' : '#3A3C3F'}
+                color={canSend ? '#F9FBFF' : '#3F3F46'}
               />
             )}
           </TouchableOpacity>

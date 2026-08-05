@@ -31,6 +31,7 @@ import * as ImagePicker from "expo-image-picker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import Avatar from "../components/common/Avatar";
 import { runWithPermissions } from "../libs/permissions.util";
 import { theme } from "../theme";
@@ -175,8 +176,10 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
                   {isMine && (
                     <Pressable
                       onPress={() => confirmDelete(c.id)}
-                      hitSlop={8}
+                      hitSlop={16}
                       style={{ marginLeft: "auto" }}
+                      accessibilityRole="button"
+                      accessibilityLabel={t("common.delete")}
                     >
                       <Icon name="Trash2" size={12} color="#71717A" />
                     </Pressable>
@@ -195,13 +198,15 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
             value={draft}
             onChangeText={(v) => setDraft(v.slice(0, COMMENT_MAX))}
             placeholder={t("features.addComment")}
-            placeholderTextColor="#52525B"
+            placeholderTextColor="#8B8D90"
             style={styles.composerInput}
             multiline
           />
           <Pressable
             onPress={send}
             disabled={!draft.trim() || submitComment.isPending}
+            accessibilityRole="button"
+            accessibilityLabel="Send comment"
             style={[
               styles.sendBtn,
               (!draft.trim() || submitComment.isPending) && styles.sendBtnDisabled,
@@ -237,7 +242,9 @@ const FeatureCard: React.FC<{
   const author =
     feature.author_username ||
     `${feature.author_wallet_address.slice(0, 6)}…${feature.author_wallet_address.slice(-4)}`;
-  const statusColor = STATUS_COLORS[feature.status] ?? "#A1A1AA";
+  // The shared STATUS_COLORS map ships violet for in_progress; keep badges monochrome here.
+  const statusColor =
+    feature.status === "in_progress" ? "#D4D4D8" : STATUS_COLORS[feature.status] ?? "#A1A1AA";
   // Web toggles comments per card with a local `showComments` flag.
   const [showComments, setShowComments] = useState(false);
 
@@ -248,20 +255,26 @@ const FeatureCard: React.FC<{
         <View style={styles.voteCol}>
           <Pressable
             onPress={() => votable && onVote(1)}
-            hitSlop={8}
+            hitSlop={10}
             style={[styles.voteBtn, myVote === 1 && styles.voteBtnUpActive]}
             disabled={!votable}
+            accessibilityRole="button"
+            accessibilityLabel="Upvote"
+            accessibilityState={{ selected: myVote === 1 }}
           >
-            <Icon name="ChevronUp" size={18} color={myVote === 1 ? "#34D399" : "#A1A1AA"} />
+            <Icon name="ChevronUp" size={18} color={myVote === 1 ? "#22C55E" : "#A1A1AA"} />
           </Pressable>
           <Text style={styles.voteCount}>{formatCompactNumber(feature.vote_count ?? 0)}</Text>
           <Pressable
             onPress={() => votable && onVote(-1)}
-            hitSlop={8}
+            hitSlop={10}
             style={[styles.voteBtn, myVote === -1 && styles.voteBtnDownActive]}
             disabled={!votable}
+            accessibilityRole="button"
+            accessibilityLabel="Downvote"
+            accessibilityState={{ selected: myVote === -1 }}
           >
-            <Icon name="ChevronDown" size={18} color={myVote === -1 ? "#F87171" : "#A1A1AA"} />
+            <Icon name="ChevronDown" size={18} color={myVote === -1 ? "#EF4444" : "#A1A1AA"} />
           </Pressable>
         </View>
 
@@ -304,7 +317,7 @@ const FeatureCard: React.FC<{
             <Text style={styles.time}>{timeAgo(feature.created_at, t)}</Text>
             <Pressable
               onPress={() => setShowComments((s) => !s)}
-              hitSlop={8}
+              hitSlop={14}
               style={[styles.metaItem, showComments && styles.metaItemActive]}
             >
               <Icon
@@ -382,7 +395,12 @@ const SubmitSheet: React.FC<{
           <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
             <View style={styles.sheetHeader}>
               <Text style={styles.sheetTitle}>{t("features.submitDrawerTitle")}</Text>
-              <Pressable onPress={handleClose} hitSlop={10}>
+              <Pressable
+                onPress={handleClose}
+                hitSlop={10}
+                accessibilityRole="button"
+                accessibilityLabel="Close"
+              >
                 <Icon name="X" size={20} color="#A1A1AA" />
               </Pressable>
             </View>
@@ -393,7 +411,7 @@ const SubmitSheet: React.FC<{
                 value={title}
                 onChangeText={(v) => setTitle(v.slice(0, TITLE_MAX))}
                 placeholder={t("features.titlePlaceholder")}
-                placeholderTextColor="#52525B"
+                placeholderTextColor="#8B8D90"
                 style={styles.input}
               />
               <Text style={styles.counter}>
@@ -405,7 +423,7 @@ const SubmitSheet: React.FC<{
                 value={description}
                 onChangeText={(v) => setDescription(v.slice(0, DESC_MAX))}
                 placeholder={t("features.descriptionPlaceholder")}
-                placeholderTextColor="#52525B"
+                placeholderTextColor="#8B8D90"
                 multiline
                 style={[styles.input, styles.textarea]}
               />
@@ -439,6 +457,8 @@ const SubmitSheet: React.FC<{
                     style={styles.mediaRemove}
                     onPress={() => setMediaUri(null)}
                     hitSlop={6}
+                    accessibilityRole="button"
+                    accessibilityLabel="Remove attachment"
                   >
                     <Icon name="X" size={13} color="#FFFFFF" />
                   </Pressable>
@@ -550,27 +570,26 @@ export default function FeatureRequestsScreen() {
   const onRefresh = view === "shipped" ? shipped.refetch : refetch;
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>{t("features.title")}</Text>
-          <Text style={styles.subtitle}>
-            {typeof totalCount === "number"
-              ? t("features.submittedSubtitle", { count: formatCompactNumber(totalCount) })
-              : t("features.shapeNext")}
-          </Text>
-        </View>
-        <Pressable
-          onPress={() => (isAuthed ? setSheetOpen(true) : navigation.navigate(ScreenNames.SignIn))}
-          hitSlop={10}
-          style={styles.addBtn}
-        >
-          <Icon name="Plus" size={20} color="#000000" />
-        </Pressable>
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader
+        title={t("features.title")}
+        subtitle={
+          typeof totalCount === "number"
+            ? t("features.submittedSubtitle", { count: formatCompactNumber(totalCount) })
+            : t("features.shapeNext")
+        }
+        rightContent={
+          <Pressable
+            onPress={() => (isAuthed ? setSheetOpen(true) : navigation.navigate(ScreenNames.SignIn))}
+            hitSlop={10}
+            style={styles.addBtn}
+            accessibilityRole="button"
+            accessibilityLabel={t("features.submitDrawerTitle")}
+          >
+            <Icon name="Plus" size={20} color="#000000" />
+          </Pressable>
+        }
+      />
 
       {/* Open / Shipped */}
       <View style={styles.segment}>
@@ -595,7 +614,7 @@ export default function FeatureRequestsScreen() {
               value={search}
               onChangeText={setSearch}
               placeholder={t("features.searchPlaceholder")}
-              placeholderTextColor="#52525B"
+              placeholderTextColor="#8B8D90"
               style={styles.searchInput}
               returnKeyType="search"
             />
@@ -673,7 +692,7 @@ export default function FeatureRequestsScreen() {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
-              tintColor={theme.colors.accentForeground}
+              tintColor={theme.colors.accent}
             />
           }
           onEndReachedThreshold={0.6}
@@ -713,17 +732,7 @@ export default function FeatureRequestsScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 12,
-  },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  title: { color: "#FFFFFF", fontSize: 21, fontWeight: "700" },
-  subtitle: { color: "#71717A", fontSize: 12, marginTop: 1 },
+  root: { flex: 1, backgroundColor: "#010305" },
   addBtn: {
     width: 34,
     height: 34,
@@ -787,7 +796,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 8,
     borderRadius: 12,
-    backgroundColor: "#27272A",
+    backgroundColor: "rgba(255,255,255,0.08)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.16)",
   },
   retryText: { color: "#FAFAFA", fontSize: 13, fontWeight: "600" },
 
@@ -871,7 +882,7 @@ const styles = StyleSheet.create({
 
   authorRow: { flexDirection: "row", alignItems: "center", gap: 6, marginTop: 10 },
   authorName: { color: "#D4D4D8", fontSize: 11.5, flexShrink: 1 },
-  time: { color: "#52525B", fontSize: 11 },
+  time: { color: "#A1A1AA", fontSize: 12 },
   metaItem: {
     flexDirection: "row",
     alignItems: "center",
@@ -890,11 +901,11 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "rgba(255,255,255,0.08)",
   },
-  noComments: { color: "#52525B", fontSize: 12, paddingVertical: 6 },
+  noComments: { color: "#A1A1AA", fontSize: 12, paddingVertical: 6 },
   commentRow: { flexDirection: "row", gap: 9, paddingVertical: 7 },
   commentHead: { flexDirection: "row", alignItems: "center", gap: 6 },
   commentAuthor: { color: "#E4E4E7", fontSize: 12, fontWeight: "600", flexShrink: 1 },
-  commentTime: { color: "#52525B", fontSize: 10.5 },
+  commentTime: { color: "#A1A1AA", fontSize: 12 },
   commentBody: { color: "#D4D4D8", fontSize: 12.5, lineHeight: 18, marginTop: 2 },
 
   composer: { flexDirection: "row", alignItems: "flex-end", gap: 8, marginTop: 10 },
@@ -933,15 +944,15 @@ const styles = StyleSheet.create({
 
   modalBackdrop: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.65)",
+    backgroundColor: "rgba(0,0,0,0.6)",
     justifyContent: "flex-end",
   },
   sheet: {
-    backgroundColor: "#0A0A0A",
-    borderTopLeftRadius: 22,
-    borderTopRightRadius: 22,
+    backgroundColor: "#0C0C0E",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     borderTopWidth: 1,
-    borderColor: "rgba(255,255,255,0.12)",
+    borderColor: "rgba(255,255,255,0.10)",
     paddingHorizontal: 18,
     paddingTop: 16,
     maxHeight: "88%",
@@ -965,7 +976,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   textarea: { minHeight: 110, textAlignVertical: "top" },
-  counter: { color: "#52525B", fontSize: 10.5, textAlign: "right", marginTop: 4 },
+  counter: { color: "#A1A1AA", fontSize: 12, textAlign: "right", marginTop: 4 },
   catWrap: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 8 },
 
   submitBtn: {

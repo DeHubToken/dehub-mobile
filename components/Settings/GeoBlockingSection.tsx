@@ -106,11 +106,11 @@ const GeoBlockingSection: React.FC = () => {
               className="flex-row items-center bg-red-500/20 px-3 py-1.5 rounded-lg"
               style={{ gap: 6 }}
             >
-              <Icon name="MapPin" size={12} color="#f87171" />
+              <Icon name="MapPin" size={12} color="#EF4444" />
               <Text className="text-red-400 text-xs">
                 {COUNTRIES.find((c) => c.code === code)?.name ?? code}
               </Text>
-              <Icon name="X" size={12} color="#f87171" />
+              <Icon name="X" size={12} color="#EF4444" />
             </TouchableOpacity>
           ))}
         </View>
@@ -148,7 +148,7 @@ const GeoBlockingSection: React.FC = () => {
             <Text className="text-white font-bold text-base mb-3">
               {t('settings.blockCountries')}
             </Text>
-            <View className="flex-row items-center bg-white/5 border border-white/10 rounded-xl px-3">
+            <View className="flex-row items-center bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl px-3">
               <Icon name="Search" size={16} color="#6b7280" />
               <TextInput
                 value={search}
@@ -158,7 +158,14 @@ const GeoBlockingSection: React.FC = () => {
                 className="flex-1 text-white text-sm px-2 h-11"
               />
               {search ? (
-                <TouchableOpacity onPress={() => setSearch('')} activeOpacity={0.7}>
+                <TouchableOpacity
+                  onPress={() => setSearch('')}
+                  activeOpacity={0.7}
+                  className="p-2 -mr-2"
+                  accessibilityRole="button"
+                  accessibilityLabel="Clear search"
+                  hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                >
                   <Icon name="X" size={16} color="#6b7280" />
                 </TouchableOpacity>
               ) : null}

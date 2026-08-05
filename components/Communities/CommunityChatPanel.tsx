@@ -142,7 +142,7 @@ const ChatRow: React.FC<{
       <View className="flex-1 ml-2.5">
         <View className="flex-row items-center gap-1.5 mb-0.5 flex-wrap">
           <Text
-            className={`font-bold text-[13px] ${isMe ? "text-blue-400" : "text-white"}`}
+            className="font-bold text-[13px] text-white"
             numberOfLines={1}
             onPress={() => profileId && onOpenProfile(profileId)}
           >
@@ -152,14 +152,14 @@ const ChatRow: React.FC<{
             <RNImage source={badgeImg} style={{ width: 13, height: 13 }} resizeMode="contain" />
           )}
           {!!message.pinned_at && <Icon name="Pin" size={10} color="#A1A1AA" />}
-          <Text className="text-white/30 text-[10px] ml-auto">
+          <Text className="text-zinc-400 text-xs ml-auto">
             {formatClock(new Date(message.created_at))}
           </Text>
         </View>
 
         {!!message.reply_to && (
-          <View className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1 border-l-2 border-blue-500/50">
-            <Text className="text-blue-400/70 text-[11px] font-medium" numberOfLines={1}>
+          <View className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1 border-l-2 border-white/30">
+            <Text className="text-zinc-300 text-[11px] font-medium" numberOfLines={1}>
               {message.reply_to.sender_name}
             </Text>
             <Text className="text-white/50 text-xs" numberOfLines={1}>
@@ -177,11 +177,11 @@ const ChatRow: React.FC<{
         )}
 
         {!!message.content && (
-          <Text className="text-white/70 text-[13px] leading-5">{message.content}</Text>
+          <Text className="text-white/70 text-sm leading-5">{message.content}</Text>
         )}
 
         {!!message.edited_at && (
-          <Text className="text-white/25 text-[10px] mt-0.5">
+          <Text className="text-zinc-400 text-xs mt-0.5">
             {t("communities.chatPanel.edited", { defaultValue: "edited" })}
           </Text>
         )}
@@ -470,7 +470,12 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
             </Text>
           </View>
           {canPin && (
-            <Pressable onPress={() => void setPinned(pinnedMessage.id, false)} hitSlop={8}>
+            <Pressable
+              onPress={() => void setPinned(pinnedMessage.id, false)}
+              hitSlop={15}
+              accessibilityRole="button"
+              accessibilityLabel={t("communities.unpin", { defaultValue: "Unpin" })}
+            >
               <Icon name="X" size={14} color="#71717a" />
             </Pressable>
           )}
@@ -479,7 +484,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
 
       {isLoading ? (
         <View style={styles.center}>
-          <ActivityIndicator size="small" color="#FFFFFF" />
+          <ActivityIndicator size="small" color="#F4F4F5" />
         </View>
       ) : (
         <FlatList
@@ -550,7 +555,12 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
                 t("communities.chatPanel.mediaMessage", { defaultValue: "Media" })}
             </Text>
           </View>
-          <Pressable onPress={() => setReplyTo(null)} hitSlop={8}>
+          <Pressable
+            onPress={() => setReplyTo(null)}
+            hitSlop={15}
+            accessibilityRole="button"
+            accessibilityLabel={t("common.cancel", { defaultValue: "Cancel" })}
+          >
             <Icon name="X" size={14} color="#71717a" />
           </Pressable>
         </View>
@@ -572,7 +582,9 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
               setEditing(null);
               setText("");
             }}
-            hitSlop={8}
+            hitSlop={15}
+            accessibilityRole="button"
+            accessibilityLabel={t("common.cancel", { defaultValue: "Cancel" })}
           >
             <Icon name="X" size={14} color="#71717a" />
           </Pressable>
@@ -602,7 +614,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
               value={text}
               onChangeText={(v) => v.length <= MAX_LEN && setText(v)}
               placeholder={t("communities.typeMessage", { defaultValue: "Type a message..." })}
-              placeholderTextColor="#52525B"
+              placeholderTextColor="#8B8D90"
               style={styles.input}
               multiline
               maxLength={MAX_LEN}
@@ -612,6 +624,8 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
               disabled={sendDisabled}
               style={[styles.sendBtn, sendDisabled && { opacity: 0.4 }]}
               hitSlop={6}
+              accessibilityRole="button"
+              accessibilityLabel="Send message"
             >
               {sending ? (
                 <ActivityIndicator size="small" color="#FFFFFF" />
@@ -728,8 +742,8 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
 
                 {sheetCanDelete && (
                   <Pressable style={styles.sheetRow} onPress={() => confirmDelete(sheetFor)}>
-                    <Icon name="Trash2" size={16} color="#f87171" />
-                    <Text style={[styles.sheetRowText, { color: "#f87171" }]}>
+                    <Icon name="Trash2" size={16} color="#EF4444" />
+                    <Text style={[styles.sheetRowText, { color: "#EF4444" }]}>
                       {t("common.delete", { defaultValue: "Delete" })}
                     </Text>
                   </Pressable>
@@ -753,7 +767,7 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
 
   center: { flex: 1, alignItems: "center", justifyContent: "center", gap: 8, padding: 24 },
-  dim: { color: "#71717a", fontSize: 12, textAlign: "center" },
+  dim: { color: "#A1A1AA", fontSize: 12, textAlign: "center" },
 
   flash: {
     backgroundColor: "rgba(255,255,255,0.08)",
@@ -778,8 +792,8 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     borderRadius: 6,
     borderWidth: 1,
-    borderColor: "#3F3F46",
-    backgroundColor: "rgba(39,39,42,0.5)",
+    borderColor: "rgba(255,255,255,0.1)",
+    backgroundColor: "rgba(255,255,255,0.06)",
   },
   reactionPillMine: {
     borderColor: "rgba(255,255,255,0.3)",
@@ -797,12 +811,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: "rgba(255,255,255,0.08)",
   },
-  pinnedLabel: { color: "#FFFFFF", fontSize: 10.5, fontWeight: "700" },
-  pinnedBody: { color: "#a1a1aa", fontSize: 11.5 },
+  pinnedLabel: { color: "#FFFFFF", fontSize: 12, fontWeight: "700" },
+  pinnedBody: { color: "#a1a1aa", fontSize: 12 },
   pinnedName: { color: "#e4e4e7", fontWeight: "600" },
 
   showMore: { alignSelf: "center", paddingVertical: 8, paddingHorizontal: 14 },
-  showMoreText: { color: "#71717a", fontSize: 12, fontWeight: "600" },
+  showMoreText: { color: "#A1A1AA", fontSize: 12, fontWeight: "600" },
 
   contextBar: {
     flexDirection: "row",
@@ -815,10 +829,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderLeftWidth: 2,
     borderLeftColor: "rgba(255,255,255,0.3)",
-    backgroundColor: "rgba(39,39,42,0.7)",
+    backgroundColor: "rgba(255,255,255,0.06)",
   },
-  contextName: { color: "#FFFFFF", fontSize: 10.5, fontWeight: "600" },
-  contextBody: { color: "#A1A1AA", fontSize: 10.5 },
+  contextName: { color: "#FFFFFF", fontSize: 12, fontWeight: "600" },
+  contextBody: { color: "#A1A1AA", fontSize: 12 },
 
   slowModeLine: {
     color: "#71717a",
@@ -875,18 +889,20 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "rgba(255,255,255,0.1)",
   },
-  noticeText: { color: "#71717a", fontSize: 12.5, flexShrink: 1, textAlign: "center" },
+  noticeText: { color: "#A1A1AA", fontSize: 12, flexShrink: 1, textAlign: "center" },
 
   overlay: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   sheet: {
-    backgroundColor: "#111316",
+    backgroundColor: "rgba(12,12,14,0.96)",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.1)",
     padding: 16,
     paddingBottom: 28,
   },
   sheetPreview: {
-    color: "#71717a",
+    color: "#A1A1AA",
     fontSize: 12,
     marginBottom: 12,
     paddingHorizontal: 4,

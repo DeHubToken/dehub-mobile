@@ -233,13 +233,13 @@ const ImagePaywallModalComponent: React.FC<ImagePaywallModalProps> = ({
               onChange={(item) => setSelectedModel(item.value)}
               style={s.dropdown}
               containerStyle={s.dropdownContainer}
-              activeColor="rgba(42,106,255,0.12)"
+              activeColor="rgba(255,255,255,0.12)"
               selectedTextStyle={s.dropdownSelectedText}
               placeholderStyle={s.dropdownSelectedText}
               iconColor="#6F7174"
               renderLeftIcon={() => (
                 <View style={{ marginRight: 10 }}>
-                  <Icon name="Zap" size={16} color="#F5C542" />
+                  <Icon name="Zap" size={16} color="#A6A9AC" />
                 </View>
               )}
               renderItem={(item) => (
@@ -266,7 +266,7 @@ const ImagePaywallModalComponent: React.FC<ImagePaywallModalProps> = ({
               </View>
               <View style={s.costLine}>
                 <Text style={s.costLabel}>Staker Discount</Text>
-                <Text style={[s.costValue, { color: '#00C566' }]}>0%</Text>
+                <Text style={[s.costValue, { color: '#22C55E' }]}>0%</Text>
               </View>
               <View style={s.divider} />
               <View style={s.costLine}>
@@ -283,7 +283,7 @@ const ImagePaywallModalComponent: React.FC<ImagePaywallModalProps> = ({
                 </View>
                 <View style={s.payRight}>
                   {loadingPrice ? (
-                    <ActivityIndicator size="small" color="#D4A843" />
+                    <ActivityIndicator size="small" color="#F4F4F5" />
                   ) : (
                     <>
                       <Text style={s.payAmount}>{costInDHB > 0 ? `${formatDHB(costInDHB)} DHB` : '— DHB'}</Text>
@@ -326,7 +326,7 @@ const ImagePaywallModalComponent: React.FC<ImagePaywallModalProps> = ({
               activeOpacity={0.7}
             >
               {paying ? (
-                <ActivityIndicator size="small" color="#000" />
+                <ActivityIndicator size="small" color="#09090B" />
               ) : (
                 <Text style={s.generateBtnText}>Generate</Text>
               )}
@@ -359,15 +359,15 @@ const s = StyleSheet.create({
   headerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20, marginBottom: 4 },
   headerLeft: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   title: { color: '#F9FBFF', fontSize: 18, fontWeight: '700' },
-  subtitle: { color: '#6F7174', fontSize: 13, paddingHorizontal: 20, marginBottom: 16 },
+  subtitle: { color: '#A6A9AC', fontSize: 13, paddingHorizontal: 20, marginBottom: 16 },
   dropdown: {
     marginHorizontal: 16,
     paddingHorizontal: 14,
     paddingVertical: 14,
     borderRadius: 14,
     borderWidth: 1,
-    borderColor: '#2A6AFF',
-    backgroundColor: 'rgba(42,106,255,0.06)',
+    borderColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: 'rgba(255,255,255,0.05)',
   },
   dropdownContainer: {
     backgroundColor: '#1A1A1D',
@@ -389,10 +389,10 @@ const s = StyleSheet.create({
   },
   dropdownLeft: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   dropdownName: { color: '#F9FBFF', fontSize: 14, fontWeight: '500' },
-  dropdownDesc: { color: '#6F7174', fontSize: 11, marginTop: 1 },
+  dropdownDesc: { color: '#A6A9AC', fontSize: 11, marginTop: 1 },
   dropdownRight: { alignItems: 'flex-end' },
   dropdownPrice: { color: '#F9FBFF', fontSize: 14, fontWeight: '600' },
-  dropdownDhb: { color: '#6F7174', fontSize: 11, marginTop: 1 },
+  dropdownDhb: { color: '#A6A9AC', fontSize: 11, marginTop: 1 },
   costSection: {
     marginHorizontal: 16,
     marginTop: 16,
@@ -418,7 +418,7 @@ const s = StyleSheet.create({
   payLabel: { color: '#F9FBFF', fontSize: 14, fontWeight: '500' },
   payRight: { alignItems: 'flex-end' },
   payAmount: { color: '#F9FBFF', fontSize: 17, fontWeight: '700' },
-  payRate: { color: '#6F7174', fontSize: 11, marginTop: 2 },
+  payRate: { color: '#A6A9AC', fontSize: 11, marginTop: 2 },
   coinIcon: { width: 22, height: 22 },
   balanceRow: {
     flexDirection: 'row',
@@ -432,7 +432,7 @@ const s = StyleSheet.create({
   balanceLabel: { color: '#A6A9AC', fontSize: 13 },
   balanceRight: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   balanceCoin: { width: 18, height: 18 },
-  balanceAmount: { color: '#00C566', fontSize: 14, fontWeight: '600' },
+  balanceAmount: { color: '#22C55E', fontSize: 14, fontWeight: '600' },
   warningBanner: {
     marginHorizontal: 16,
     marginTop: 10,
@@ -468,10 +468,10 @@ const s = StyleSheet.create({
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#2A6AFF',
+    backgroundColor: '#F4F4F5',
   },
   generateBtnDisabled: { opacity: 0.4 },
-  generateBtnText: { color: '#FFF', fontSize: 15, fontWeight: '700' },
+  generateBtnText: { color: '#09090B', fontSize: 15, fontWeight: '700' },
 });
 
 export default memo(ImagePaywallModalComponent);

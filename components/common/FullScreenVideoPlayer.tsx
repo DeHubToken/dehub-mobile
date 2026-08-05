@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Modal, View, TouchableOpacity, Text, AppState } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { VideoView, useVideoPlayer, type VideoPlayer } from 'expo-video';
 import * as ScreenOrientation from 'expo-screen-orientation';
@@ -12,6 +13,7 @@ export type FullScreenVideoPlayerProps = {
 };
 
 const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, uri, onClose }) => {
+  const insets = useSafeAreaInsets();
   const sourceUrl = useMemo(() => (uri ? String(uri) : null), [uri]);
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [position, setPosition] = useState<number>(0);
@@ -144,7 +146,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
     <Modal visible={visible} animationType="fade" onRequestClose={handleClose}>
       <View className="flex-1 bg-black">
         {/* Close button */}
-        <View className="absolute top-10 left-4 z-50">
+        <View className="absolute left-4 z-50" style={{ top: insets.top + 8 }}>
           <TouchableOpacity
             onPress={handleClose}
             className="bg-black/60 p-2 rounded-full"
@@ -183,7 +185,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
                 onSlidingStart={handleSlidingStart}
                 onSlidingComplete={handleSlidingComplete}
                 minimumTrackTintColor="#FFFFFF"
-                maximumTrackTintColor="#999999"
+                maximumTrackTintColor="#8B8D90"
                 thumbTintColor="#FFFFFF"
                 disabled={!sourceUrl}
               />

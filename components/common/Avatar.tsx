@@ -61,7 +61,6 @@ const Avatar: React.FC<AvatarProps> = ({
         {
           width: size,
           height: size,
-          marginHorizontal: 1,
           borderRadius: radius,
           overflow: "hidden",
           borderWidth,

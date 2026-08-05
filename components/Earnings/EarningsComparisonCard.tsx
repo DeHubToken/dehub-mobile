@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   cardTitle: { color: "#F9FBFF", fontSize: 15, fontWeight: "700" },
-  cardSubtitle: { color: "#6F7174", fontSize: 11, marginTop: 2, marginBottom: 14 },
+  cardSubtitle: { color: "#A6A9AC", fontSize: 12, marginTop: 2, marginBottom: 14 },
   loadingBox: { alignItems: "center", paddingVertical: 24 },
   tilesRow: { flexDirection: "row", gap: 6, marginBottom: 12 },
   tile: {
@@ -303,9 +303,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
   },
-  tileLabel: { color: "#8B8D90", fontSize: 10 },
+  tileLabel: { color: "#A6A9AC", fontSize: 12 },
   tileValue: { color: "#F9FBFF", fontSize: 15, fontWeight: "700", marginTop: 2 },
-  tileSub: { color: "#6F7174", fontSize: 9, marginTop: 2 },
+  tileSub: { color: "#A6A9AC", fontSize: 12, marginTop: 2 },
   platformRow: {
     backgroundColor: "rgba(255,255,255,0.02)",
     borderWidth: 1,
@@ -315,9 +315,9 @@ const styles = StyleSheet.create({
   },
   platformTop: { flexDirection: "row", alignItems: "center", gap: 8 },
   platformName: { color: "#F9FBFF", fontSize: 13, fontWeight: "600" },
-  platformRange: { color: "#6F7174", fontSize: 10, marginTop: 1 },
+  platformRange: { color: "#A6A9AC", fontSize: 12, marginTop: 1 },
   rpmBox: { flexDirection: "row", alignItems: "center", gap: 4 },
-  rpmLabel: { color: "#6F7174", fontSize: 10 },
+  rpmLabel: { color: "#A6A9AC", fontSize: 12 },
   rpmInput: {
     width: 56,
     backgroundColor: "rgba(255,255,255,0.06)",
@@ -325,7 +325,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.1)",
     borderRadius: 8,
     paddingHorizontal: 8,
-    paddingVertical: 4,
+    paddingVertical: 12,
     color: "#F9FBFF",
     fontSize: 12,
   },
@@ -333,7 +333,7 @@ const styles = StyleSheet.create({
   earnValue: { color: "#D4D4D8", fontSize: 13, fontWeight: "700" },
   earnDelta: { fontSize: 10, marginTop: 1 },
   earnDeltaMuted: { color: "#6F7174", fontSize: 10, marginTop: 1 },
-  platformNote: { color: "#6F7174", fontSize: 10, marginTop: 6 },
+  platformNote: { color: "#A6A9AC", fontSize: 12, marginTop: 6 },
   estimatorBox: {
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: "rgba(255,255,255,0.07)",
@@ -363,7 +363,7 @@ const styles = StyleSheet.create({
   },
   estimatorValue: { color: "#F9FBFF", fontSize: 13, fontWeight: "700", marginTop: 2 },
   footnote: { flexDirection: "row", gap: 8, marginTop: 12, paddingRight: 8 },
-  footnoteText: { color: "#6F7174", fontSize: 10, lineHeight: 15, flex: 1 },
+  footnoteText: { color: "#A6A9AC", fontSize: 12, lineHeight: 17, flex: 1 },
 });
 
 export default EarningsComparisonCard;

@@ -708,6 +708,9 @@ const SearchScreen: React.FC = () => {
             {searchQuery.length > 0 && (
               <TouchableOpacity
                 onPress={clearSearch}
+                accessibilityRole="button"
+                accessibilityLabel="Clear search"
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                 className="w-6 h-6 rounded-full bg-theme-neutrals-700 items-center justify-center mr-2"
               >
                 <Icon name="X" size={14} color="#E5E7EB" />

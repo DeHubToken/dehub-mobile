@@ -218,6 +218,8 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
               hitSlop={4}
               activeOpacity={0.6}
               style={{ width: 38, height: 38 }}
+              accessibilityRole="button"
+              accessibilityLabel="Add a GIF"
             >
               <Text style={{ fontSize: 12, fontWeight: '900', color: '#A6A9AC', letterSpacing: 0.5 }}>GIF</Text>
             </TouchableOpacity>
@@ -230,7 +232,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
               onChangeText={handleChangeText}
               onSelectionChange={mentions.handleSelectionChange}
               placeholder={placeholder}
-              placeholderTextColor="#666"
+              placeholderTextColor="#8B8D90"
               multiline
               maxLength={MAX_LENGTH}
               editable={!disabled && !enhancing}
@@ -255,14 +257,17 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             hitSlop={4}
             activeOpacity={0.6}
             disabled={!text.trim() || enhancing}
+            accessibilityRole="button"
+            accessibilityLabel="Enhance message"
+            accessibilityState={{ disabled: !text.trim() || enhancing }}
           >
             {enhancing ? (
-              <ActivityIndicator size={18} color="#A78BFA" />
+              <ActivityIndicator size={18} color="#F4F4F5" />
             ) : (
               <Icon
                 name="Sparkles"
                 size={22}
-                color={text.trim() ? "#A78BFA" : "#3A3A3C"}
+                color={text.trim() ? "#F4F4F5" : "#52525B"}
               />
             )}
           </TouchableOpacity>
@@ -272,11 +277,17 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
               onPress={handleSend}
               disabled={disabled || !text.trim() || cooldown || isOverLimit || enhancing}
               className="p-2"
+              hitSlop={4}
+              accessibilityRole="button"
+              accessibilityLabel="Send message"
+              accessibilityState={{
+                disabled: disabled || !text.trim() || cooldown || isOverLimit || enhancing,
+              }}
             >
               <Icon
                 name="Send"
                 size={22}
-                color={text.trim() && !disabled && !cooldown && !isOverLimit ? "#F4F4F5" : "#333"}
+                color={text.trim() && !disabled && !cooldown && !isOverLimit ? "#F4F4F5" : "#52525B"}
               />
             </TouchableOpacity>
           ) : (
@@ -284,11 +295,15 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
               onPress={handleStartRecording}
               disabled={disabled}
               className="p-2"
+              hitSlop={4}
+              accessibilityRole="button"
+              accessibilityLabel="Record voice message"
+              accessibilityState={{ disabled }}
             >
               <Icon
                 name="Mic"
                 size={22}
-                color={!disabled ? "#A6A9AC" : "#333"}
+                color={!disabled ? "#A6A9AC" : "#52525B"}
               />
             </TouchableOpacity>
           )}

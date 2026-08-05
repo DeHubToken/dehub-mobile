@@ -317,7 +317,7 @@ const s = StyleSheet.create({
     color: '#F9FBFF',
   },
   itemBadge: {
-    color: '#6F7174',
+    color: '#A6A9AC',
     fontSize: 11,
     marginTop: 2,
   },
@@ -336,7 +336,7 @@ const s = StyleSheet.create({
     gap: 12,
   },
   emptyText: {
-    color: '#6F7174',
+    color: '#A6A9AC',
     fontSize: 14,
   },
 });

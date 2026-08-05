@@ -299,6 +299,8 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
         <TouchableOpacity
           onPress={handlePlayPress}
           activeOpacity={0.7}
+          accessibilityRole="button"
+          accessibilityLabel={isPlaying ? "Pause voice note" : "Play voice note"}
           className="w-9 h-9 rounded-full bg-white items-center justify-center mr-2.5"
         >
           {isLoading ? (
@@ -332,7 +334,7 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
         </View>
       </GestureDetector>
 
-      <Text className="text-[10px] text-theme-neutrals-400 ml-2.5 min-w-[28px] text-right">
+      <Text className="text-xs text-theme-neutrals-400 ml-2.5 min-w-[28px] text-right">
         {timeLabel}
       </Text>
     </View>

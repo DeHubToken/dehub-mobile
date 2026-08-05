@@ -18,7 +18,6 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  Switch,
   Text,
   TextInput,
   TouchableOpacity,
@@ -26,6 +25,7 @@ import {
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "../../ui/Icon";
+import CustomSwitch from "../../ui/CustomSwitch";
 import {
   ADMIN_RIGHTS,
   DEFAULT_ADMIN_PERMISSIONS,
@@ -178,18 +178,23 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
         <Pressable style={styles.overlay} onPress={onClose}>
         <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
           <View style={styles.header}>
-            <Icon name="Shield" size={20} color="#60a5fa" />
+            <Icon name="Shield" size={20} color="#fff" />
             <View style={{ flex: 1 }}>
               <Text className="text-white text-sm font-mono" numberOfLines={1}>
                 {shortWallet(target.wallet_address)}
               </Text>
-              <Text className="text-zinc-500 text-xs mt-0.5">
+              <Text className="text-zinc-400 text-xs mt-0.5">
                 {isExistingAdmin
                   ? t("communities.manage.roleAdmin", { defaultValue: "Administrator" })
                   : t("communities.manage.roleMember", { defaultValue: "Member" })}
               </Text>
             </View>
-            <TouchableOpacity onPress={onClose} hitSlop={12}>
+            <TouchableOpacity
+              onPress={onClose}
+              hitSlop={12}
+              accessibilityRole="button"
+              accessibilityLabel="Close"
+            >
               <Icon name="X" size={20} color="#71717a" />
             </TouchableOpacity>
           </View>
@@ -222,7 +227,7 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
                         defaultValue: RIGHT_COPY[right.key].label,
                       })}
                     </Text>
-                    <Text className="text-zinc-500 text-xs mt-0.5">
+                    <Text className="text-zinc-400 text-xs mt-0.5">
                       {locked
                         ? t("communities.manage.rightNotHeld", {
                             defaultValue: "You do not have this right yourself",
@@ -232,7 +237,7 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
                           })}
                     </Text>
                   </View>
-                  <Switch
+                  <CustomSwitch
                     value={locked ? false : permissions[right.key] === true}
                     onValueChange={(next) =>
                       setPermissions((prev) => {
@@ -242,8 +247,6 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
                       })
                     }
                     disabled={locked || busy}
-                    trackColor={{ false: "#27272a", true: "rgba(255,255,255,0.35)" }}
-                    thumbColor={locked ? "#52525b" : "#ffffff"}
                   />
                 </View>
               );
@@ -259,12 +262,12 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
               placeholder={t("communities.manage.customTitlePlaceholder", {
                 defaultValue: "Admin",
               })}
-              placeholderTextColor="#52525b"
+              placeholderTextColor="#8B8D90"
               maxLength={MAX_TITLE_LENGTH}
               editable={!busy}
               autoCapitalize="none"
             />
-            <Text className="text-zinc-500 text-xs mt-2">
+            <Text className="text-zinc-400 text-xs mt-2">
               {t("communities.manage.customTitleHint", {
                 defaultValue: "Shown instead of the default Admin badge.",
               })}
@@ -288,7 +291,7 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
 
             {canDismiss && (
               <TouchableOpacity style={styles.dismissBtn} onPress={handleDismiss} disabled={busy}>
-                <Icon name="ShieldOff" size={16} color="#f87171" />
+                <Icon name="ShieldOff" size={16} color="#EF4444" />
                 <Text style={styles.dismissBtnText}>
                   {t("communities.manage.dismissAdmin", { defaultValue: "Dismiss admin" })}
                 </Text>
@@ -305,9 +308,11 @@ export function AdminRightsSheet({ community, membership, target, visible, onClo
 const styles = StyleSheet.create({
   overlay: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   sheet: {
-    backgroundColor: "#111316",
+    backgroundColor: "rgba(12,12,14,0.96)",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.1)",
     paddingHorizontal: 20,
     paddingTop: 16,
     paddingBottom: 24,
@@ -341,9 +346,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingVertical: 12,
     borderRadius: 12,
-    backgroundColor: "rgba(248,113,113,0.08)",
+    backgroundColor: "rgba(239,68,68,0.08)",
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "rgba(248,113,113,0.25)",
+    borderColor: "rgba(239,68,68,0.25)",
   },
-  dismissBtnText: { color: "#f87171", fontSize: 13, fontWeight: "600" },
+  dismissBtnText: { color: "#EF4444", fontSize: 13, fontWeight: "600" },
 });

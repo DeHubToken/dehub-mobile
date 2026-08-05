@@ -163,9 +163,11 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     title,
     description,
     selectedCategories,
+    commentsDisabled,
     initialTitle,
     initialDescription,
     initialCategories,
+    initialCommentsDisabled,
     onSuccess,
     onClose,
   ]);
@@ -173,6 +175,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const hasChanges =
     title.trim() !== initialTitle ||
     description.trim() !== initialDescription ||
+    commentsDisabled !== initialCommentsDisabled ||
     JSON.stringify(selectedCategories.sort()) !==
       JSON.stringify([...(initialCategories || [])].sort());
 
@@ -206,10 +209,11 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
           <TouchableOpacity
             onPress={onClose}
             disabled={saving}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             className="p-2 bg-white/5 rounded-full"
             activeOpacity={0.8}
           >
-            <Ionicons name="close" size={20} color="#9CA3AF" />
+            <Ionicons name="close" size={20} color="#A6A9AC" />
           </TouchableOpacity>
         </View>
 
@@ -225,7 +229,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               onSelectionChange={titleMentions.handleSelectionChange}
               maxLength={140}
               placeholder="Post title"
-              placeholderTextColor="#6B7280"
+              placeholderTextColor="#8B8D90"
               className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm mb-1"
             />
             <MentionSuggestions
@@ -234,7 +238,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               onSelect={titleMentions.selectMention}
               loading={titleMentions.loading}
             />
-            <Text className="text-theme-neutrals-500 text-[10px] text-right mb-3">
+            <Text className="text-theme-neutrals-500 text-xs text-right mb-3">
               {title.length}/140
             </Text>
           </>
@@ -252,7 +256,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               onSelectionChange={descMentions.handleSelectionChange}
               maxLength={500}
               placeholder="Post description"
-              placeholderTextColor="#6B7280"
+              placeholderTextColor="#8B8D90"
               multiline
               numberOfLines={4}
               textAlignVertical="top"
@@ -264,7 +268,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               onSelect={descMentions.selectMention}
               loading={descMentions.loading}
             />
-            <Text className="text-theme-neutrals-500 text-[10px] text-right mb-3">
+            <Text className="text-theme-neutrals-500 text-xs text-right mb-3">
               {description.length}/500
             </Text>
           </>
@@ -287,7 +291,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
                       {c.charAt(0).toUpperCase() + c.slice(1)}
                     </Text>
                     <TouchableOpacity onPress={() => removeCategory(c)} className="ml-1">
-                      <Ionicons name="close" size={12} color="#256DFA" />
+                      <Ionicons name="close" size={12} color="#F4F4F5" />
                     </TouchableOpacity>
                   </View>
                 ))}
@@ -328,7 +332,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             </View>
             <View
               className={`w-11 h-6 rounded-full justify-center ${
-                commentsDisabled ? "bg-neutral-700" : "bg-emerald-500"
+                commentsDisabled ? "bg-neutral-700" : "bg-green-500"
               }`}
             >
               <View

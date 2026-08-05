@@ -140,14 +140,14 @@ export function DangerZone({ community, membership, onClose }: DangerZoneProps) 
     >
       <View style={styles.dangerCard}>
         <View className="flex-row items-center gap-2">
-          <Icon name="Shield" size={16} color="#f87171" />
+          <Icon name="Shield" size={16} color="#EF4444" />
           <Text className="text-white text-sm font-medium">
             {t("communities.manage.danger.transferHeading", {
               defaultValue: "Transfer ownership",
             })}
           </Text>
         </View>
-        <Text className="text-zinc-500 text-xs mt-1">
+        <Text className="text-zinc-400 text-xs mt-1">
           {t("communities.manage.danger.transferHint", {
             defaultValue: "Pick the member who should own this community from here on.",
           })}
@@ -162,7 +162,7 @@ export function DangerZone({ community, membership, onClose }: DangerZoneProps) 
             placeholder={t("communities.manage.danger.searchMembers", {
               defaultValue: "Search members",
             })}
-            placeholderTextColor="#52525b"
+            placeholderTextColor="#8B8D90"
             autoCapitalize="none"
             autoCorrect={false}
           />
@@ -170,10 +170,10 @@ export function DangerZone({ community, membership, onClose }: DangerZoneProps) 
 
         {isLoading ? (
           <View className="py-8 items-center">
-            <ActivityIndicator size="small" color="#fff" />
+            <ActivityIndicator size="small" color="#F4F4F5" />
           </View>
         ) : shown.length === 0 ? (
-          <Text className="text-zinc-500 text-xs text-center py-8">
+          <Text className="text-zinc-400 text-xs text-center py-8">
             {search.trim()
               ? t("communities.manage.danger.noMatches", {
                   defaultValue: "No member matches that search.",
@@ -196,7 +196,7 @@ export function DangerZone({ community, membership, onClose }: DangerZoneProps) 
                     <Text className="text-white text-sm font-mono" numberOfLines={1}>
                       {shortWallet(member.wallet_address)}
                     </Text>
-                    <Text className="text-zinc-500 text-xs mt-0.5">
+                    <Text className="text-zinc-400 text-xs mt-0.5">
                       {member.custom_title
                         ? label
                         : t(`communities.roles.${member.role}`, { defaultValue: member.role })}
@@ -208,7 +208,7 @@ export function DangerZone({ community, membership, onClose }: DangerZoneProps) 
                     disabled={busy || deleting}
                   >
                     {busy ? (
-                      <ActivityIndicator size="small" color="#f87171" />
+                      <ActivityIndicator size="small" color="#EF4444" />
                     ) : (
                       <Text style={styles.transferBtnText}>
                         {t("communities.manage.danger.transferAction", {
@@ -237,12 +237,12 @@ export function DangerZone({ community, membership, onClose }: DangerZoneProps) 
 
       <View style={styles.dangerCard}>
         <View className="flex-row items-center gap-2">
-          <Icon name="TriangleAlert" size={16} color="#f87171" />
+          <Icon name="TriangleAlert" size={16} color="#EF4444" />
           <Text className="text-white text-sm font-medium">
             {t("communities.manage.danger.deleteHeading", { defaultValue: "Delete community" })}
           </Text>
         </View>
-        <Text className="text-zinc-500 text-xs mt-1">
+        <Text className="text-zinc-400 text-xs mt-1">
           {t("communities.manage.danger.deleteHint", {
             defaultValue:
               "Every member, message, event and invite link is removed permanently. There is no way back.",
@@ -255,10 +255,10 @@ export function DangerZone({ community, membership, onClose }: DangerZoneProps) 
           disabled={deleting}
         >
           {deleting ? (
-            <ActivityIndicator size="small" color="#f87171" />
+            <ActivityIndicator size="small" color="#EF4444" />
           ) : (
             <>
-              <Icon name="Trash2" size={16} color="#f87171" />
+              <Icon name="Trash2" size={16} color="#EF4444" />
               <Text style={styles.deleteBtnText}>
                 {t("communities.manage.danger.deleteAction", {
                   defaultValue: "Delete this community",
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
   dangerCard: {
     borderRadius: 12,
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "rgba(248,113,113,0.2)",
+    borderColor: "rgba(239,68,68,0.2)",
     backgroundColor: "rgba(255,255,255,0.04)",
     padding: 14,
   },
@@ -297,13 +297,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 10,
-    backgroundColor: "rgba(248,113,113,0.12)",
+    backgroundColor: "rgba(239,68,68,0.12)",
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "rgba(248,113,113,0.2)",
+    borderColor: "rgba(239,68,68,0.2)",
     minWidth: 96,
     alignItems: "center",
   },
-  transferBtnText: { color: "#f87171", fontSize: 12.5, fontWeight: "600" },
+  transferBtnText: { color: "#EF4444", fontSize: 12, fontWeight: "600" },
   showMoreBtn: {
     marginTop: 12,
     paddingVertical: 10,
@@ -322,9 +322,9 @@ const styles = StyleSheet.create({
     marginTop: 14,
     paddingVertical: 12,
     borderRadius: 12,
-    backgroundColor: "rgba(248,113,113,0.12)",
+    backgroundColor: "rgba(239,68,68,0.12)",
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "rgba(248,113,113,0.2)",
+    borderColor: "rgba(239,68,68,0.2)",
   },
-  deleteBtnText: { color: "#f87171", fontSize: 13.5, fontWeight: "700" },
+  deleteBtnText: { color: "#EF4444", fontSize: 14, fontWeight: "700" },
 });

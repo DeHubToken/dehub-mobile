@@ -17,13 +17,13 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  Switch,
   Share,
   Alert,
   StyleSheet,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "../../ui/Icon";
+import CustomSwitch from "../../ui/CustomSwitch";
 import { useCommunityInvitesQuery, useCommunityModeration } from "../../../hooks/useCommunityAdmin";
 import { getCommunityAbilities } from "../../../libs/community-permissions";
 import { WEBSITE_LINK } from "../../../config";
@@ -138,14 +138,14 @@ const InviteRow: React.FC<InviteRowProps> = ({ invite, busy, onCopy, onShare, on
           <Text className="text-white text-sm font-medium" numberOfLines={1}>
             {invite.name || t("communities.manage.inviteLink", { defaultValue: "Invite link" })}
           </Text>
-          <Text className="text-zinc-500 text-xs mt-0.5" numberOfLines={1} ellipsizeMode="middle">
+          <Text className="text-zinc-400 text-xs mt-0.5" numberOfLines={1} ellipsizeMode="middle">
             {url}
           </Text>
         </View>
       </View>
 
       <View className="flex-row flex-wrap items-center gap-2 mt-2.5">
-        <Text className="text-zinc-500 text-xs">
+        <Text className="text-zinc-400 text-xs">
           {t("communities.manage.inviteUses", { defaultValue: "{{n}} joined", n: invite.uses })}
         </Text>
         {meta.map((label) => (
@@ -185,7 +185,7 @@ const InviteRow: React.FC<InviteRowProps> = ({ invite, busy, onCopy, onShare, on
               <ActivityIndicator size="small" color="#fff" />
             ) : (
               <>
-                <Icon name="Trash2" size={14} color="#f87171" />
+                <Icon name="Trash2" size={14} color="#EF4444" />
                 <Text style={[styles.secondaryBtnText, styles.destructiveText]}>
                   {t("communities.manage.revoke", { defaultValue: "Revoke" })}
                 </Text>
@@ -294,7 +294,7 @@ export function InviteLinksTab({ community, membership }: InviteLinksTabProps) {
   if (!canInvite) {
     return (
       <View className="px-4 py-10">
-        <Text className="text-zinc-500 text-sm text-center">
+        <Text className="text-zinc-400 text-sm text-center">
           {t("communities.manage.inviteNoPermission", {
             defaultValue: "You do not have permission to manage invite links.",
           })}
@@ -319,7 +319,7 @@ export function InviteLinksTab({ community, membership }: InviteLinksTabProps) {
           placeholder={t("communities.manage.inviteNamePlaceholder", {
             defaultValue: "Name (optional)",
           })}
-          placeholderTextColor="#52525b"
+          placeholderTextColor="#8B8D90"
           maxLength={64}
         />
 
@@ -372,14 +372,14 @@ export function InviteLinksTab({ community, membership }: InviteLinksTabProps) {
                 defaultValue: "Require admin approval",
               })}
             </Text>
-            <Text className="text-zinc-500 text-xs mt-1">
+            <Text className="text-zinc-400 text-xs mt-1">
               {t("communities.manage.inviteRequireApprovalHint", {
                 defaultValue:
                   "People who use this link have to be approved before they can join.",
               })}
             </Text>
           </View>
-          <Switch value={requiresApproval} onValueChange={setRequiresApproval} disabled={creating} />
+          <CustomSwitch value={requiresApproval} onValueChange={setRequiresApproval} disabled={creating} />
         </View>
 
         <TouchableOpacity
@@ -400,10 +400,10 @@ export function InviteLinksTab({ community, membership }: InviteLinksTabProps) {
       <View className="mt-5">
         {isLoading ? (
           <View className="py-10 items-center">
-            <ActivityIndicator size="small" color="#fff" />
+            <ActivityIndicator size="small" color="#F4F4F5" />
           </View>
         ) : invites.length === 0 ? (
-          <Text className="text-zinc-500 text-sm text-center py-10">
+          <Text className="text-zinc-400 text-sm text-center py-10">
             {t("communities.manage.noInvites", {
               defaultValue: "No invite links yet. Create one to invite people directly.",
             })}
@@ -469,14 +469,14 @@ const styles = StyleSheet.create({
   fieldLabel: { color: "#71717a", fontSize: 12, marginTop: 14, marginBottom: 8 },
   choice: {
     paddingHorizontal: 12,
-    paddingVertical: 7,
+    paddingVertical: 10,
     borderRadius: 999,
     backgroundColor: "rgba(255,255,255,0.06)",
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "rgba(255,255,255,0.1)",
   },
   choiceActive: { backgroundColor: "#fff", borderColor: "#fff" },
-  choiceText: { color: "#a1a1aa", fontSize: 12.5, fontWeight: "600" },
+  choiceText: { color: "#a1a1aa", fontSize: 12, fontWeight: "600" },
   choiceTextActive: { color: "#000" },
   chip: {
     paddingHorizontal: 8,
@@ -487,8 +487,8 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.1)",
   },
   chipText: { color: "#a1a1aa", fontSize: 11 },
-  chipMuted: { backgroundColor: "rgba(248,113,113,0.12)", borderColor: "rgba(248,113,113,0.25)" },
-  chipMutedText: { color: "#f87171" },
+  chipMuted: { backgroundColor: "rgba(239,68,68,0.12)", borderColor: "rgba(239,68,68,0.25)" },
+  chipMutedText: { color: "#EF4444" },
   primaryBtn: {
     marginTop: 16,
     backgroundColor: "#fff",
@@ -510,8 +510,8 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "rgba(255,255,255,0.1)",
   },
-  secondaryBtnText: { color: "#fff", fontSize: 12.5, fontWeight: "600" },
-  destructiveText: { color: "#f87171" },
+  secondaryBtnText: { color: "#fff", fontSize: 12, fontWeight: "600" },
+  destructiveText: { color: "#EF4444" },
   btnDisabled: { opacity: 0.6 },
   showMoreBtn: {
     marginTop: 4,

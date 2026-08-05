@@ -54,10 +54,21 @@ const VoiceCallModal: React.FC = () => {
         <Text style={styles.subtitle}>{statusText}</Text>
 
         <View style={styles.actions}>
-          <TouchableOpacity onPress={toggleMute} style={[styles.roundBtn, isMuted && styles.activeBtn]}>
+          <TouchableOpacity
+            onPress={toggleMute}
+            style={[styles.roundBtn, isMuted && styles.activeBtn]}
+            accessibilityRole="button"
+            accessibilityLabel={isMuted ? "Unmute microphone" : "Mute microphone"}
+            accessibilityState={{ selected: isMuted }}
+          >
             <Icon name={isMuted ? "MicOff" : "Mic"} size={22} color="#FFFFFF" />
           </TouchableOpacity>
-          <TouchableOpacity onPress={endCall} style={styles.endBtn}>
+          <TouchableOpacity
+            onPress={endCall}
+            style={styles.endBtn}
+            accessibilityRole="button"
+            accessibilityLabel="End call"
+          >
             <Icon name="PhoneOff" size={22} color="#FFFFFF" />
           </TouchableOpacity>
         </View>

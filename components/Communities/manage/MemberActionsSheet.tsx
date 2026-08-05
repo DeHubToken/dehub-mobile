@@ -231,7 +231,7 @@ export function MemberActionsSheet({
             <View style={styles.header}>
               <View className="flex-1">
                 <Text className="text-white text-sm font-mono">{name}</Text>
-                <Text className="text-zinc-500 text-xs mt-0.5">
+                <Text className="text-zinc-400 text-xs mt-0.5">
                   {t(`communities.roles.${member.role}`, {
                     defaultValue: ROLE_LABELS[member.role] ?? member.role,
                   })}
@@ -241,7 +241,12 @@ export function MemberActionsSheet({
                 )}
                 {!!restriction && <Text style={styles.restriction}>{restriction}</Text>}
               </View>
-              <TouchableOpacity onPress={onClose} hitSlop={12}>
+              <TouchableOpacity
+                onPress={onClose}
+                hitSlop={12}
+                accessibilityRole="button"
+                accessibilityLabel="Close"
+              >
                 <Icon name="X" size={20} color="#71717a" />
               </TouchableOpacity>
             </View>
@@ -254,7 +259,6 @@ export function MemberActionsSheet({
                     ? t("communities.manage.editAdminRights", { defaultValue: "Edit admin rights" })
                     : t("communities.manage.promoteToAdmin", { defaultValue: "Promote to admin" })
                 }
-                color="#60a5fa"
                 disabled={rowBusy}
                 onPress={() => {
                   onClose();
@@ -298,7 +302,7 @@ export function MemberActionsSheet({
                 <ActionRow
                   icon="Ban"
                   label={t("communities.manage.ban", { defaultValue: "Ban" })}
-                  color="#f87171"
+                  color="#EF4444"
                   disabled={rowBusy}
                   onPress={() => openRestriction("ban")}
                 />
@@ -310,7 +314,7 @@ export function MemberActionsSheet({
                 label={t("communities.manage.deleteAllMessages", {
                   defaultValue: "Delete all messages",
                 })}
-                color="#f87171"
+                color="#EF4444"
                 busy={acting === "purge"}
                 disabled={rowBusy && acting !== "purge"}
                 onPress={confirmPurge}
@@ -323,7 +327,7 @@ export function MemberActionsSheet({
                 label={t("communities.manage.removeFromCommunity", {
                   defaultValue: "Remove from community",
                 })}
-                color="#f87171"
+                color="#EF4444"
                 busy={acting === "kick"}
                 disabled={rowBusy && acting !== "kick"}
                 onPress={confirmKick}
@@ -331,7 +335,7 @@ export function MemberActionsSheet({
             )}
 
             {nothingToDo && (
-              <Text className="text-zinc-500 text-xs text-center py-6">
+              <Text className="text-zinc-400 text-xs text-center py-6">
                 {t("communities.manage.noActionsAvailable", {
                   defaultValue: "You cannot moderate this member.",
                 })}
@@ -356,9 +360,11 @@ export function MemberActionsSheet({
 const styles = StyleSheet.create({
   overlay: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   sheet: {
-    backgroundColor: "#111316",
+    backgroundColor: "rgba(12,12,14,0.96)",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.1)",
     paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom: 32,
@@ -371,7 +377,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: "rgba(255,255,255,0.08)",
   },
-  restriction: { color: "#fbbf24", fontSize: 12, marginTop: 6 },
+  restriction: { color: "#FDB022", fontSize: 12, marginTop: 6 },
   rowIcon: { width: 20, alignItems: "center", justifyContent: "center" },
   rowLabel: { fontSize: 14, fontWeight: "500" },
 });

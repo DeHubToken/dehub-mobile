@@ -175,20 +175,20 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
             {displayName}
           </Text>
           {message.isPinned && (
-            <View className="flex-row items-center bg-amber-500/15 rounded px-1.5 py-0.5 gap-0.5">
+            <View className="flex-row items-center bg-white/10 rounded px-1.5 py-0.5 gap-0.5">
               <Icon name="Pin" size={9} color="#D4D4D8" />
-              <Text className="text-amber-400 text-[9px] font-bold">Pinned</Text>
+              <Text className="text-theme-neutrals-200 text-[10px] font-bold">Pinned</Text>
             </View>
           )}
           {isMod && (
-            <View className="bg-emerald-500/15 rounded px-1.5 py-0.5">
-              <Text className="text-emerald-400 text-[9px] font-bold">MOD</Text>
+            <View className="bg-white/10 rounded px-1.5 py-0.5">
+              <Text className="text-theme-neutrals-200 text-[10px] font-bold">MOD</Text>
             </View>
           )}
           {!!badgeImg && (
             <Image source={badgeImg} style={{ width: 14, height: 14 }} resizeMode="contain" />
           )}
-          <Text className="text-white/30 text-[10px] ml-auto">
+          <Text className="text-white/50 text-[11px] ml-auto">
             {formatTime(message.createdAt)}
           </Text>
         </View>

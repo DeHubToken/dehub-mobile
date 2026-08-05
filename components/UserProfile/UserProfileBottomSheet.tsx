@@ -225,7 +225,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
                           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                           className="w-10 h-10 items-center justify-center"
                         >
-                          <Icon name="EllipsisVertical" size={20} color="#e5e5e5" />
+                          <Icon name="EllipsisVertical" size={20} color="#E5E7EB" />
                         </TouchableOpacity>
                       ) : undefined
                     }

@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { colors } from '../theme/colors';
 
 export interface ScreenHeaderProps {
   title: string;
@@ -58,8 +59,10 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
             onPress={handleBack}
             className="w-10 h-10 mr-2 items-center justify-center active:opacity-70"
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            accessibilityRole="button"
+            accessibilityLabel="Go back"
           >
-            <Ionicons name="arrow-back" size={22} color="#E5E7EB" />
+            <Ionicons name="arrow-back" size={22} color={colors.neutrals[100]} />
           </TouchableOpacity>
         )}
         {leftContent ? (
@@ -75,7 +78,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
           {subtitle ? (
             <Text
               numberOfLines={1}
-              className="text-theme-neutrals-400 text-[11px] mt-0.5 tracking-wide"
+              className="text-theme-neutrals-400 text-xs mt-0.5 tracking-wide"
             >
               {subtitle}
             </Text>

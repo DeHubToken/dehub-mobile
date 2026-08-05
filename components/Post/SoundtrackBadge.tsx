@@ -137,6 +137,7 @@ const SoundtrackBadge: React.FC<Props> = ({ title, creator, url }) => {
       onPress={togglePlay}
       activeOpacity={0.75}
       style={styles.container}
+      hitSlop={{ top: 6, bottom: 6, left: 4, right: 4 }}
     >
       <Animated.View style={[styles.disc, { transform: [{ rotate: spin }] }]}>
         <Ionicons name="musical-note" size={12} color="#fff" />

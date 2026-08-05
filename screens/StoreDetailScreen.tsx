@@ -20,6 +20,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import Avatar from "../components/common/Avatar";
 import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
@@ -28,7 +29,7 @@ import type { AppStackParamList } from "../navigation/types";
 import { useStoreById, useStoreListings, type StoreListing } from "../hooks/useStores";
 
 const GRID_GAP = 10;
-const H_PADDING = 12;
+const H_PADDING = 16;
 
 function money(n: number): string {
   const v = Number(n) || 0;
@@ -108,15 +109,8 @@ export default function StoreDetailScreen() {
   };
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <Text style={styles.headerTitle} numberOfLines={1}>
-          {store?.name || t("stores.store")}
-        </Text>
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader title={store?.name || t("stores.store")} />
 
       {storeLoading && isLoading ? (
         <View style={styles.center}>
@@ -140,7 +134,7 @@ export default function StoreDetailScreen() {
             <RefreshControl
               refreshing={isRefetching}
               onRefresh={refetch}
-              tintColor={theme.colors.accentForeground}
+              tintColor={theme.colors.accent}
             />
           }
           ListEmptyComponent={
@@ -156,17 +150,8 @@ export default function StoreDetailScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
+  root: { flex: 1, backgroundColor: "#010305" },
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 60 },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    paddingHorizontal: H_PADDING,
-    paddingBottom: 10,
-  },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  headerTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "700", flex: 1 },
 
   banner: {
     width: "100%",
@@ -176,7 +161,7 @@ const styles = StyleSheet.create({
   },
   identity: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 12 },
   storeName: { color: "#FFFFFF", fontSize: 18, fontWeight: "700" },
-  storeMeta: { color: "#71717A", fontSize: 12, marginTop: 2 },
+  storeMeta: { color: "#A1A1AA", fontSize: 12, marginTop: 2 },
   storeDesc: { color: "#A1A1AA", fontSize: 13, lineHeight: 19, marginTop: 12 },
 
   card: {
@@ -198,5 +183,5 @@ const styles = StyleSheet.create({
   cardTitle: { color: "#FFFFFF", fontSize: 13, fontWeight: "600", lineHeight: 17 },
   cardPrice: { color: "#FFFFFF", fontSize: 14, fontWeight: "700", marginTop: 5 },
 
-  emptyText: { color: "#71717A", fontSize: 13, marginTop: 12, textAlign: "center" },
+  emptyText: { color: "#A1A1AA", fontSize: 13, marginTop: 12, textAlign: "center" },
 });

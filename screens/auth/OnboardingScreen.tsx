@@ -181,8 +181,27 @@ const OnboardingScreen: React.FC = () => {
       }
     });
 
+  const handleAccessibilityAction = useCallback(
+    (event: { nativeEvent: { actionName: string } }) => {
+      const currentIdx = currentIndexRef.current;
+      if (event.nativeEvent.actionName === "increment") {
+        goToSlide((currentIdx + 1) % SLIDES.length);
+      } else if (event.nativeEvent.actionName === "decrement") {
+        goToSlide(currentIdx > 0 ? currentIdx - 1 : SLIDES.length - 1);
+      }
+    },
+    [goToSlide]
+  );
+
   return (
-    <View style={styles.container}>
+    <View
+      style={styles.container}
+      accessibilityActions={[
+        { name: "increment", label: "Next slide" },
+        { name: "decrement", label: "Previous slide" },
+      ]}
+      onAccessibilityAction={handleAccessibilityAction}
+    >
       {/* Rive Background - Full screen, behind everything */}
       <OnboardingBackground activeIndex={activeIndex} totalSlides={SLIDES.length} />
 
@@ -199,9 +218,12 @@ const OnboardingScreen: React.FC = () => {
           ))}
         </View>
 
-        {/* Tap zones for navigation */}
-        <Pressable 
+        {/* Tap zones for navigation (hidden from assistive tech; slides are
+            exposed via accessibilityActions on the root container) */}
+        <Pressable
           style={styles.tapZone}
+          accessible={false}
+          importantForAccessibility="no"
           onPress={(e) => handleTap(e.nativeEvent.pageX)}
         />
 

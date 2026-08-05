@@ -53,12 +53,12 @@ const PRIVACY_OPTIONS = [
 ];
 
 const SPEAKER_COLORS = [
-  "text-sky-300",
-  "text-emerald-300",
-  "text-amber-300",
-  "text-pink-300",
-  "text-violet-300",
-  "text-rose-300",
+  "text-zinc-100",
+  "text-zinc-200",
+  "text-zinc-300",
+  "text-zinc-400",
+  "text-zinc-100",
+  "text-zinc-300",
 ];
 
 const formatTimestamp = (seconds: number): string => {
@@ -500,9 +500,9 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
 
   return (
     <GlassModal visible={visible} onClose={onClose} presentation="bottom" maxHeight="90%">
-      <View className="flex-1 w-full bg-zinc-950/80 rounded-t-3xl border-t border-zinc-800 p-4 relative">
+      <View className="flex-1 w-full rounded-t-3xl p-4 relative">
         {/* Header */}
-        <View className="flex-row items-center justify-between border-b border-zinc-800/60 pb-3 mb-3">
+        <View className="flex-row items-center justify-between border-b border-white/10 pb-3 mb-3">
           <View className="flex-row items-center gap-2">
             <Icon name="FileText" size={20} color="#D4D4D8" />
             <View>
@@ -510,7 +510,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                 Transcript
               </Text>
               {space?.title && (
-                <Text className="text-gray-400 text-xs" numberOfLines={1}>
+                <Text className="text-theme-neutrals-400 text-xs" numberOfLines={1}>
                   {space.title}
                 </Text>
               )}
@@ -528,9 +528,12 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
             )}
             <TouchableOpacity
               onPress={onClose}
-              className="w-8 h-8 rounded-full bg-zinc-800 items-center justify-center"
+              hitSlop={8}
+              className="w-8 h-8 rounded-full bg-white/10 items-center justify-center"
+              accessibilityRole="button"
+              accessibilityLabel="Close"
             >
-              <Icon name="X" size={16} color="#9CA3AF" />
+              <Icon name="X" size={16} color="#A6A9AC" />
             </TouchableOpacity>
           </View>
         </View>
@@ -539,30 +542,30 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
         {isTranscriptLoading && !transcript ? (
           <View className="flex-1 items-center justify-center py-20 gap-3">
             <ActivityIndicator size="large" color="#D4D4D8" />
-            <Text className="text-gray-400 text-sm">Loading transcript...</Text>
+            <Text className="text-theme-neutrals-400 text-sm">Loading transcript...</Text>
           </View>
         ) : !space?.recording_url ? (
           <View className="flex-1 items-center justify-center py-20 gap-3">
             <Icon name="FileText" size={40} color="rgba(255,255,255,0.2)" />
-            <Text className="text-gray-400 text-sm">No audio recording available</Text>
+            <Text className="text-theme-neutrals-400 text-sm">No audio recording available</Text>
           </View>
         ) : status === "pending" || status === "processing" ? (
           <View className="flex-1 items-center justify-center py-20 gap-3">
             <ActivityIndicator size="large" color="#D4D4D8" />
             <Text className="text-white font-semibold">Generating AI Transcript</Text>
-            <Text className="text-gray-400 text-xs text-center px-6">
+            <Text className="text-theme-neutrals-400 text-xs text-center px-6">
               This process may take a minute depending on the length of the stage recording.
             </Text>
           </View>
         ) : status === "failed" ? (
           <View className="flex-1 items-center justify-center py-20 gap-4">
             <Icon name="RefreshCw" size={32} color="#EF4444" />
-            <Text className="text-gray-400 text-sm">Transcription failed</Text>
+            <Text className="text-theme-neutrals-400 text-sm">Transcription failed</Text>
             {transcript?.error && <Text className="text-red-400 text-xs px-6 text-center">{transcript.error}</Text>}
             <TouchableOpacity
               onPress={() => handleTranscribe(false, true)}
               disabled={isRequestingTranscribe}
-              className="px-4 py-2 bg-zinc-800 rounded-xl border border-zinc-700 flex-row items-center gap-2"
+              className="px-4 py-2 bg-white/10 rounded-xl border border-white/15 flex-row items-center gap-2"
             >
               {isRequestingTranscribe ? (
                 <ActivityIndicator size="small" color="#fff" />
@@ -574,7 +577,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
         ) : (
           <View className="flex-1">
             {/* Audio Controller */}
-            <View className="bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-3 mb-3 flex-row items-center gap-3">
+            <View className="bg-white/5 border border-white/10 rounded-xl p-3 mb-3 flex-row items-center gap-3">
               <TouchableOpacity
                 onPress={togglePlay}
                 disabled={isAudioLoading}
@@ -603,10 +606,10 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                   style={{ height: 16, marginHorizontal: -8 }}
                 />
                 <View className="flex-row justify-between">
-                  <Text className="text-gray-400 text-[10px] font-mono">
+                  <Text className="text-theme-neutrals-400 text-[10px] font-mono">
                     {formatTimestamp(positionMs / 1000)}
                   </Text>
-                  <Text className="text-gray-400 text-[10px] font-mono">
+                  <Text className="text-theme-neutrals-400 text-[10px] font-mono">
                     {formatTimestamp(durationMs / 1000)}
                   </Text>
                 </View>
@@ -615,12 +618,12 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
 
             {/* AI Summary and chapters panel */}
             {(summary || chapters.length > 0 || transcript?.summary_status === "processing") && (
-              <View className="bg-zinc-900/40 border border-zinc-900/80 rounded-xl p-3 mb-3 gap-2">
+              <View className="bg-white/5 border border-white/10 rounded-xl p-3 mb-3 gap-2">
                 <View className="flex-row items-center gap-2">
-                  <Icon name="Sparkles" size={13} color="#D8B4FE" />
+                  <Icon name="Sparkles" size={13} color="#D4D4D8" />
                   <Text className="text-purple-300 font-bold text-xs uppercase tracking-wider">AI Summary</Text>
                   {transcript?.summary_status === "processing" && (
-                    <Text className="text-[10px] text-gray-500 font-medium italic">generating summary...</Text>
+                    <Text className="text-[10px] text-zinc-400 font-medium italic">generating summary...</Text>
                   )}
                 </View>
                 {summary ? (
@@ -632,7 +635,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                       <TouchableOpacity
                         key={i}
                         onPress={() => seekTo(chapter.start)}
-                        className="px-2.5 py-1.5 rounded-lg bg-zinc-800/80 border border-zinc-700/60 flex-row items-center mr-2"
+                        className="px-2.5 py-1.5 rounded-lg bg-white/10 border border-white/15 flex-row items-center mr-2"
                       >
                         <Text className="text-purple-300 font-mono text-[10px] mr-1.5">
                           {formatTimestamp(chapter.start)}
@@ -648,18 +651,18 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
             {/* Toolbar: Search & Language & Actions */}
             <View className="flex-row items-center gap-2 mb-3">
               {/* Search bar */}
-              <View className="flex-1 flex-row items-center bg-zinc-900/60 border border-zinc-800/80 rounded-xl h-10 px-2.5">
-                <Icon name="Search" size={14} color="#9CA3AF" />
+              <View className="flex-1 flex-row items-center bg-white/5 border border-white/10 rounded-xl h-10 px-2.5">
+                <Icon name="Search" size={14} color="#A6A9AC" />
                 <TextInput
                   value={searchQuery}
                   onChangeText={setSearchQuery}
                   placeholder="Search transcript..."
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#8B8D90"
                   className="flex-1 ml-2 text-white text-xs"
                 />
                 {searchQuery.length > 0 && (
                   <TouchableOpacity onPress={() => setSearchQuery("")}>
-                    <Icon name="X" size={12} color="#9CA3AF" />
+                    <Icon name="X" size={12} color="#A6A9AC" />
                   </TouchableOpacity>
                 )}
               </View>
@@ -677,13 +680,13 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
               {/* Toolbar Buttons */}
               <TouchableOpacity
                 onPress={handleCopy}
-                className="w-10 h-10 rounded-xl bg-zinc-900/60 border border-zinc-800/80 items-center justify-center"
+                className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center"
               >
                 <Icon name="Copy" size={16} color="#fff" />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={handleShare}
-                className="w-10 h-10 rounded-xl bg-zinc-900/60 border border-zinc-800/80 items-center justify-center"
+                className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center"
               >
                 <Icon name="Share2" size={16} color="#fff" />
               </TouchableOpacity>
@@ -703,7 +706,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
             {/* Transcript scrollable segments list */}
             <ScrollView className="flex-1 pr-1" showsVerticalScrollIndicator={true}>
               {transcript?.source_language && language === "original" && (
-                <Text className="text-[10px] text-gray-500 font-semibold uppercase tracking-wider mb-2 ml-1">
+                <Text className="text-[10px] text-zinc-400 font-semibold uppercase tracking-wider mb-2 ml-1">
                   Detected language: {transcript.source_language}
                 </Text>
               )}
@@ -724,14 +727,14 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                       }`}
                       style={
                         isSegmentActive
-                          ? { backgroundColor: "rgba(168,85,247,0.06)", borderColor: "rgba(168,85,247,0.3)" }
+                          ? { backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.3)" }
                           : { backgroundColor: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.05)" }
                       }
                     >
                       {/* Segment Header */}
                       <View className="flex-row items-center justify-between mb-2">
                         <View className="flex-row items-center gap-2 flex-1">
-                          <View className="w-5 h-5 rounded-full bg-zinc-800 items-center justify-center">
+                          <View className="w-5 h-5 rounded-full bg-white/10 items-center justify-center">
                             <Icon name="User" size={11} color="#D4D4D8" />
                           </View>
                           <Text
@@ -743,26 +746,26 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                           {isHost && transcript?.speaker_map?.[segment.speaker]?.type !== "ai" && (
                             <TouchableOpacity
                               onPress={() => openRenamePrompt(segment.speaker)}
-                              className="p-1 rounded bg-zinc-800/80 mr-1"
+                              className="p-1 rounded bg-white/10 mr-1"
                               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                             >
-                              <Icon name="Pencil" size={10} color="#9CA3AF" />
+                              <Icon name="Pencil" size={10} color="#A6A9AC" />
                             </TouchableOpacity>
                           )}
                         </View>
                         <View className="flex-row items-center gap-2">
                           <TouchableOpacity
                             onPress={() => handleQuote(segment.text, speakerLabel)}
-                            className="p-1 rounded bg-zinc-800/40"
+                            className="p-1 rounded bg-white/10"
                             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                           >
                             <Text className="text-[10px] text-purple-300 font-semibold px-1">Quote</Text>
                           </TouchableOpacity>
                           <TouchableOpacity
                             onPress={() => seekTo(segment.start)}
-                            className="bg-zinc-900 border border-zinc-800/60 rounded px-1.5 py-0.5"
+                            className="bg-white/5 border border-white/10 rounded px-1.5 py-0.5"
                           >
-                            <Text className="text-gray-400 text-[10px] font-mono font-medium">
+                            <Text className="text-theme-neutrals-400 text-[10px] font-mono font-medium">
                               {formatTimestamp(segment.start)}
                             </Text>
                           </TouchableOpacity>
@@ -776,7 +779,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                 })
               ) : (
                 <View className="py-12 items-center justify-center">
-                  <Text className="text-gray-500 text-sm">
+                  <Text className="text-zinc-400 text-sm">
                     {searchQuery ? "No matching segments" : "No transcript segments found"}
                   </Text>
                 </View>
@@ -791,23 +794,26 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
             style={StyleSheet.absoluteFillObject}
             className="bg-black/70 items-center justify-center p-4 z-50 rounded-xl"
           >
-            <View className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 w-full max-w-xs shadow-2xl">
+            <View
+              className="border border-white/10 rounded-xl p-4 w-full max-w-xs shadow-2xl"
+              style={{ backgroundColor: "#0C0C0E" }}
+            >
               <Text className="text-white font-bold text-sm mb-1">Rename Speaker</Text>
-              <Text className="text-gray-400 text-[11px] mb-3">
+              <Text className="text-theme-neutrals-400 text-[11px] mb-3">
                 Change speaker label globally across this transcript.
               </Text>
               <TextInput
                 value={renameText}
                 onChangeText={setRenameText}
                 placeholder="Enter speaker name or handle"
-                placeholderTextColor="rgba(255,255,255,0.4)"
-                className="bg-black/50 border border-zinc-800 rounded-xl h-10 px-3 text-white text-xs mb-4"
+                placeholderTextColor="#8B8D90"
+                className="bg-black/50 border border-white/10 rounded-xl h-10 px-3 text-white text-xs mb-4"
                 autoFocus
               />
               <View className="flex-row justify-end gap-2">
                 <TouchableOpacity
                   onPress={() => setRenamingSpeaker(null)}
-                  className="px-3.5 py-2 rounded-xl bg-zinc-800 border border-zinc-700/55"
+                  className="px-3.5 py-2 rounded-xl bg-white/10 border border-white/15"
                 >
                   <Text className="text-white text-xs font-semibold">Cancel</Text>
                 </TouchableOpacity>

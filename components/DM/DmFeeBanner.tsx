@@ -32,9 +32,9 @@ const DmFeeBannerComponent: React.FC<DmFeeBannerProps> = ({
       exiting={FadeOut.duration(150)}
     >
       {feeRequired && (
-        <View className="flex-row items-center justify-center px-4 py-2 bg-blue-600/10 border-b border-theme-neutrals-800/50">
+        <View className="flex-row items-center justify-center px-4 py-2 bg-white/10 border-b border-theme-neutrals-800/50">
           <Ionicons name="diamond" size={14} color="#F4F4F5" />
-          <Text className="text-[12px] text-blue-400 font-medium ml-1.5">
+          <Text className="text-[12px] text-theme-neutrals-100 font-medium ml-1.5">
             {dmFee.fee} DHB per message
           </Text>
           {peerDisplayName ? (

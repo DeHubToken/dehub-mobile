@@ -177,8 +177,8 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
     <Switch
       value={dmsEnabled}
       onValueChange={onToggleDmsEnabled}
-      thumbColor={dmsEnabled ? '#34D399' : '#9CA3AF'}
-      trackColor={{ false: '#4B5563', true: '#065F46' }}
+      thumbColor={dmsEnabled ? '#F4F4F5' : '#A1A1AA'}
+      trackColor={{ false: 'rgba(255,255,255,0.2)', true: '#22C55E' }}
       disabled={submitting}
     />
   ), [dmsEnabled, onToggleDmsEnabled, submitting]);
@@ -187,8 +187,8 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
     <Switch
       value={allowNew}
       onValueChange={onToggleAllowNew}
-      thumbColor={allowNew ? '#D4D4D8' : '#9CA3AF'}
-      trackColor={{ false: '#4B5563', true: '#1E3A8A' }}
+      thumbColor={allowNew ? '#F4F4F5' : '#A1A1AA'}
+      trackColor={{ false: 'rgba(255,255,255,0.2)', true: '#22C55E' }}
       disabled={!dmsEnabled || submitting}
     />
   ), [allowNew, dmsEnabled, onToggleAllowNew, submitting]);
@@ -198,8 +198,8 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
       <View className="rounded-shadow-xl">
         <View className="px-5 pt-5">
           <View className="flex-row items-center">
-            <View className="w-9 h-9 rounded-xl bg-theme-brand-primary/15 items-center justify-center mr-2">
-              <Ionicons name="options-outline" color="#6EE7B7" size={18} />
+            <View className="w-9 h-9 rounded-xl bg-white/10 items-center justify-center mr-2">
+              <Ionicons name="options-outline" color="#F4F4F5" size={18} />
             </View>
             <Text className="text-theme-neutrals-100 text-[17px] font-semibold">DM Preferences</Text>
           </View>
@@ -238,11 +238,11 @@ const DMSettingsModal: React.FC<DMSettingsModalProps> = ({ open, onOpenChange })
                 />
                 {feeSubmitting ? (
                   <View className="ml-3 h-11 items-center justify-center">
-                    <ActivityIndicator size="small" color="#A6A9AC" />
+                    <ActivityIndicator size="small" color="#F4F4F5" />
                   </View>
                 ) : feeSaved ? (
                   <View className="ml-3 h-11 items-center justify-center">
-                    <Ionicons name="checkmark-circle" size={18} color="#34D399" />
+                    <Ionicons name="checkmark-circle" size={18} color="#22C55E" />
                   </View>
                 ) : null}
               </View>

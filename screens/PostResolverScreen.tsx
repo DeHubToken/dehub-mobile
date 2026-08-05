@@ -43,7 +43,7 @@ const PostResolverScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-black items-center justify-center">
-      <ActivityIndicator size="large" color="#fff" />
+      <ActivityIndicator size="large" color="#F4F4F5" />
     </View>
   );
 };
