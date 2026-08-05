@@ -153,8 +153,14 @@ const ImageFeedScreen = () => {
 
       {/* Fixed header */}
       <View style={[styles.topBar, { paddingTop: insets.top + 8 }]}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={12} style={styles.topBarBtn}>
-          <Icon name="ChevronLeft" size={28} color="#fff" />
+        <Pressable
+          onPress={() => navigation.goBack()}
+          hitSlop={12}
+          accessibilityRole="button"
+          accessibilityLabel="Go back"
+          style={styles.topBarBtn}
+        >
+          <Icon name="ChevronLeft" size={28} color="#F9FBFF" />
         </Pressable>
         <Text style={styles.topBarTitle}>Images</Text>
         <View style={{ width: 44 }} />
@@ -180,18 +186,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 12,
+    paddingHorizontal: 16,
     paddingBottom: 8,
     zIndex: 20,
+    // Scrim: the title and back arrow float over scrolled images.
+    backgroundColor: "rgba(1,3,5,0.55)",
   },
   topBarBtn: {
     width: 44,
     alignItems: "flex-start",
   },
   topBarTitle: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "600",
+    color: "#F9FBFF",
+    fontSize: 24,
+    fontWeight: "500",
   },
   bottomGradient: {
     position: "absolute",

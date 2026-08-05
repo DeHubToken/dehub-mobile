@@ -16,7 +16,7 @@ const EmptyFeedState: React.FC<EmptyFeedStateProps> = ({
 }) => {
   return (
     <View className="flex-1 items-center justify-center px-6 py-16">
-      <Ionicons name="videocam-off-outline" size={48} color={theme.colors.muted} />
+      <Ionicons name="videocam-off-outline" size={48} color={theme.colors.mutedForeground} />
       <Text className="text-center mt-4 text-base font-medium" style={{ color: theme.colors.foreground }}>
         {message}
       </Text>
