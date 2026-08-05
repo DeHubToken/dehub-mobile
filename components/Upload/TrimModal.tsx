@@ -139,7 +139,7 @@ const TrimModal: React.FC<TrimModalProps> = ({
             <Text className="text-white">Cancel</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={onContinue} className="px-3 py-2 rounded-lg bg-theme-accent">
-            <Text className="text-white font-bold">Continue</Text>
+            <Text className="text-theme-accent-foreground font-bold">Continue</Text>
           </TouchableOpacity>
         </View>
       </View>
