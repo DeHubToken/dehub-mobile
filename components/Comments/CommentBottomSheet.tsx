@@ -14,18 +14,18 @@ import Icon from "../ui/Icon";
 import CommentSection from "./CommentSection";
 import RepostTab from "./RepostTab";
 import QuoteTab from "./QuoteTab";
-import LikersTab from "./LikersTab";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const SHEET_FRACTION = 0.82;
 
-type SheetTab = "comments" | "quotes" | "reposts" | "likes";
+// No likes tab: who reacted is the author's to see, and it lives behind the ⓘ
+// in the reaction tray (ReactionInfoSheet) rather than in this public sheet.
+type SheetTab = "comments" | "quotes" | "reposts";
 
 const TAB_CONFIG: { key: SheetTab; icon: React.ComponentProps<typeof Icon>["name"]; label: string }[] = [
   { key: "comments", icon: "MessageSquare", label: "Comments" },
   { key: "quotes", icon: "Quote", label: "Quotes" },
   { key: "reposts", icon: "Repeat2", label: "Reposts" },
-  { key: "likes", icon: "ThumbsUp", label: "Likes" },
 ];
 
 interface CommentBottomSheetProps {
@@ -189,10 +189,6 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
 
           {activeTab === "reposts" && (
             <RepostTab tokenId={tokenId} />
-          )}
-
-          {activeTab === "likes" && (
-            <LikersTab tokenId={tokenId} />
           )}
         </Animated.View>
       </GestureHandlerRootView>

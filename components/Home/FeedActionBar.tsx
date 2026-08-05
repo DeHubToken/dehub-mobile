@@ -48,6 +48,12 @@ interface FeedActionBarProps {
    * hold-to-react tray (surfaces whose "posts" aren't posts, e.g. governance).
    */
   onReact?: (reaction: PostReaction) => void;
+  /**
+   * Opens the who-reacted-what breakdown from the ⓘ at the end of the tray.
+   * Pass only on the viewer's own posts — that list is the author's, and the
+   * API returns an empty one to anybody else.
+   */
+  onShowReactionInfo?: () => void;
 }
 
 const BOUNCE_CONFIG = { damping: 12, stiffness: 300 };
@@ -142,6 +148,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   myReaction = null,
   reactionCounts = null,
   onReact,
+  onShowReactionInfo,
 }) => {
   const [pickerOpen, setPickerOpen] = useState(false);
 
@@ -204,6 +211,14 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           current={myReaction}
           onSelect={handleSelect}
           align="right"
+          onShowInfo={
+            onShowReactionInfo
+              ? () => {
+                  setPickerOpen(false);
+                  onShowReactionInfo();
+                }
+              : undefined
+          }
         />
         <AnimatedActionButton
           onPress={() => {
