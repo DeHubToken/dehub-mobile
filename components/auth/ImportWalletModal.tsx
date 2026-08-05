@@ -246,9 +246,9 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
               className={`mt-3 rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent`}
             >
               {busy ? (
-                <ActivityIndicator color="#fff" />
+                <ActivityIndicator color="#09090B" />
               ) : (
-                <Text className="text-white text-sm">Import</Text>
+                <Text className="text-theme-accent-foreground text-sm">Import</Text>
               )}
             </TouchableOpacity>
           </View>

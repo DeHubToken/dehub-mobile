@@ -345,6 +345,9 @@ const buildAppleLogin = async (): Promise<{ params: any; userInfo: Record<string
       loginProvider: (LOGIN_PROVIDER as any)?.JWT || "jwt",
       redirectUrl: resolveRedirectUrl(),
       curve: "secp256k1",
+      // Same as the social path below: keep the hosted MFA enrollment page
+      // out of the login flow.
+      mfaLevel: "none",
       extraLoginOptions: {
         id_token: credential.identityToken,
         verifierIdField: "sub",
@@ -381,6 +384,12 @@ export const loginWithSocial = async (
         loginProvider: mapped,
         redirectUrl: resolveRedirectUrl(),
         curve: "secp256k1",
+        // Without this the hosted auth flow interposes its own "set up
+        // biometrics/passkey" enrollment page after the OAuth step, which has
+        // stranded sign-ins on devices where the passkey ceremony never
+        // completes inside the auth browser tab. Device-level key protection
+        // is unaffected; users can still enroll later from Web3Auth's side.
+        mfaLevel: "none",
         extraLoginOptions,
       }
     );

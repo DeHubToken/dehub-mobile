@@ -136,7 +136,11 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
             onPress={handleSubmit}
             className={`mt-4 py-3 rounded-md items-center ${disabled ? 'bg-neutral-700' : 'bg-theme-accent'}`}
           >
-            {submitting ? <ActivityIndicator color="#fff" /> : <Text className="text-white font-semibold">Continue</Text>}
+            {submitting ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text className={`font-semibold ${disabled ? 'text-white' : 'text-theme-accent-foreground'}`}>Continue</Text>
+            )}
           </TouchableOpacity>
         </View>
       </View>

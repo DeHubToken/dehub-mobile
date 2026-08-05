@@ -519,7 +519,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
             <AnimatedCheck
               size={80}
               className="bg-theme-accent"
-              iconColor="#fff"
+              iconColor="#09090B"
               animateKey={phase}
             />
             <Text className="text-white text-base font-semibold">
