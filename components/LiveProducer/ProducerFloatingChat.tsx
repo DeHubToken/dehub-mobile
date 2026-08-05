@@ -55,20 +55,20 @@ const resolveAvatarUrl = (a: ProducerChatActivity): string | undefined =>
 const resolveProfileId = (a: ProducerChatActivity): string | undefined =>
   a.user?.username || a.user?.address || a.meta?.username || a.address;
 
-/** Deterministic color palette for usernames */
+/** Deterministic color palette for usernames (monochrome neutrals ramp) */
 const USERNAME_PALETTE = [
-  "#f87171",
+  "#F9FBFF",
   "#D4D4D8",
-  "#10b981",
+  "#DDE0E3",
   "#F4F4F5",
   "#D4D4D8",
   "#D4D4D8",
   "#D4D4D8",
-  "#84cc16",
+  "#C2C4C7",
   "#D4D4D8",
   "#D4D4D8",
   "#D4D4D8",
-  "#ef4444",
+  "#F4F4F5",
   "#D4D4D8",
   "#D4D4D8",
 ];
@@ -161,7 +161,7 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
             }`}
           >
             <MessageCircleOff
-              color={chatEnabled ? "#a3e635" : "#f87171"}
+              color={chatEnabled ? "#32D583" : "#F97066"}
               size={12}
             />
             <Text className="text-white/70 text-[10px] ml-1 font-medium">
@@ -197,7 +197,7 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
           placeholder={
             isLive && canSend ? "Say something..." : "Chat unavailable"
           }
-          placeholderTextColor="#666"
+          placeholderTextColor="#8B8D90"
           className="flex-1 text-white text-[12px] leading-5"
           editable={canSend && isLive}
           maxLength={240}
@@ -261,12 +261,12 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
       }
       case StreamActivityType.TIP: {
         return (
-          <View className="flex-row items-center mb-1.5 bg-yellow-600/20 rounded-xl px-2.5 py-1.5 self-start max-w-[85%] border border-yellow-500/20">
+          <View className="flex-row items-center mb-1.5 bg-theme-yellow-500/20 rounded-xl px-2.5 py-1.5 self-start max-w-[85%] border border-theme-yellow-400/30">
             <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5">
               <Avatar uri={avatarUrl} size={18} name={displayName} />
             </TouchableOpacity>
             <Text className="text-[11px] mr-1">💰</Text>
-            <Text className="text-yellow-300 text-[11px] font-semibold" onPress={handlePress}>
+            <Text className="text-theme-yellow-300 text-[11px] font-semibold" onPress={handlePress}>
               {displayName}
             </Text>
             <Text className="text-white/70 text-[11px] ml-1">

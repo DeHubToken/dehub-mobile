@@ -102,18 +102,23 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
       <View className="pb-6">
         <View className="flex-row items-center justify-between px-4 pt-1 pb-3">
           <Text className="text-lg font-semibold text-white">Send to DM</Text>
-          <TouchableOpacity onPress={onClose} hitSlop={8}>
+          <TouchableOpacity
+            onPress={onClose}
+            className="w-11 h-11 items-center justify-center -mr-2"
+            accessibilityRole="button"
+            accessibilityLabel="Close"
+          >
             <Ionicons name="close" size={22} color="#A6A9AC" />
           </TouchableOpacity>
         </View>
 
         <View className="mx-4 mb-3 bg-theme-neutrals-800 rounded-xl px-3 py-2 flex-row items-center gap-2">
-          <Ionicons name="search" size={16} color="#666" />
+          <Ionicons name="search" size={16} color="#A1A1AA" />
           <TextInput
             value={search}
             onChangeText={setSearch}
             placeholder="Search conversations…"
-            placeholderTextColor="#666"
+            placeholderTextColor="#8B8D90"
             className="flex-1 text-white text-sm p-0 m-0"
           />
         </View>

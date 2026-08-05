@@ -34,7 +34,7 @@ const PinnedMessageBanner: React.FC<PinnedMessageBannerProps> = ({
       >
         <Icon name="Pin" size={14} color="#D4D4D8" />
         <View className="flex-1 ml-2 min-w-0">
-          <Text className="text-blue-400 text-[9px] font-semibold uppercase tracking-wider">
+          <Text className="text-blue-400 text-[11px] font-semibold uppercase">
             Pinned Message
           </Text>
           <Text className="text-blue-100/70 text-xs mt-0.5" numberOfLines={1}>
@@ -43,10 +43,12 @@ const PinnedMessageBanner: React.FC<PinnedMessageBannerProps> = ({
         </View>
         <TouchableOpacity
           onPress={onUnpin}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           className="ml-2 p-1"
+          accessibilityRole="button"
+          accessibilityLabel="Unpin message"
         >
-          <Icon name="X" size={14} color="rgba(96,165,250,0.5)" />
+          <Icon name="X" size={14} color="#A6A9AC" />
         </TouchableOpacity>
       </TouchableOpacity>
     </Animated.View>

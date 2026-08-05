@@ -153,7 +153,7 @@ export function PermissionsTab({ community, membership }: PermissionsTabProps) {
           </Text>
           {saving && <ActivityIndicator size="small" color="#fff" />}
         </View>
-        <Text className="text-zinc-500 text-xs mt-1">
+        <Text className="text-zinc-400 text-xs mt-1">
           {t("communities.manage.defaultPermissionsHint", {
             defaultValue: "What everyone can do here unless an admin right says otherwise.",
           })}
@@ -175,7 +175,7 @@ export function PermissionsTab({ community, membership }: PermissionsTabProps) {
                     defaultValue: RIGHT_COPY[right.labelKey] ?? right.labelKey,
                   })}
                 </Text>
-                <Text className="text-zinc-500 text-xs mt-0.5">
+                <Text className="text-zinc-400 text-xs mt-0.5">
                   {t(`communities.manage.rights.${right.hintKey}`, {
                     defaultValue: RIGHT_COPY[right.hintKey] ?? "",
                   })}
@@ -216,7 +216,7 @@ export function PermissionsTab({ community, membership }: PermissionsTabProps) {
             );
           })}
         </View>
-        <Text className="text-zinc-500 text-xs mt-3">{slowHelper}</Text>
+        <Text className="text-zinc-400 text-xs mt-3">{slowHelper}</Text>
       </View>
     </ScrollView>
   );

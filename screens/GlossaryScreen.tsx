@@ -6,10 +6,10 @@
  * no API. Sections and wording mirror the web app.
  */
 import React, { useMemo, useState } from "react";
-import { View, Text, TextInput, ScrollView, StyleSheet, Pressable } from "react-native";
+import { View, Text, TextInput, ScrollView, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
 import Icon, { type IconName } from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 
 interface GlossaryEntry {
   icon: IconName;
@@ -162,7 +162,6 @@ function GlossaryCard({ icon, title, description }: GlossaryEntry) {
 
 export default function GlossaryScreen() {
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<any>();
   const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
@@ -177,21 +176,8 @@ export default function GlossaryScreen() {
   }, [query]);
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Pressable
-          onPress={() => navigation.goBack()}
-          hitSlop={10}
-          style={styles.backBtn}
-        >
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Glossary</Text>
-          <Text style={styles.subtitle}>Learn what every icon and feature means</Text>
-        </View>
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader title="Glossary" subtitle="Learn what every icon and feature means" />
 
       {/* Search */}
       <View style={styles.searchWrap}>
@@ -200,7 +186,7 @@ export default function GlossaryScreen() {
           value={query}
           onChangeText={setQuery}
           placeholder="Search glossary..."
-          placeholderTextColor="#71717A"
+          placeholderTextColor="#8B8D90"
           style={styles.searchInput}
           autoCorrect={false}
         />
@@ -237,17 +223,7 @@ export default function GlossaryScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 12,
-  },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  title: { color: "#FFFFFF", fontSize: 21, fontWeight: "700" },
-  subtitle: { color: "#71717A", fontSize: 12, marginTop: 1 },
+  root: { flex: 1, backgroundColor: "#010305" },
   searchWrap: {
     flexDirection: "row",
     alignItems: "center",
@@ -284,8 +260,8 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.08)",
   },
   cardBody: { flex: 1 },
-  cardTitle: { color: "#FFFFFF", fontSize: 13, fontWeight: "600", marginBottom: 2 },
-  cardDesc: { color: "#A1A1AA", fontSize: 12, lineHeight: 17 },
+  cardTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "600", marginBottom: 2 },
+  cardDesc: { color: "#A1A1AA", fontSize: 14, lineHeight: 20 },
   empty: { alignItems: "center", justifyContent: "center", paddingVertical: 48 },
   emptyText: { color: "#71717A", fontSize: 13, marginTop: 12 },
 });

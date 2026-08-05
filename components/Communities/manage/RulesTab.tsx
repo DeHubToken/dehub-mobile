@@ -134,7 +134,7 @@ export function RulesTab({ community, membership }: RulesTabProps) {
           <Text className="text-white text-sm font-medium">
             {t("communities.manage.rulesTitle", { defaultValue: "Community rules" })}
           </Text>
-          <Text className="text-zinc-500 text-xs">
+          <Text className="text-zinc-400 text-xs">
             {t("communities.manage.rulesCount", {
               used: rules.length,
               max: MAX_RULES,
@@ -144,7 +144,7 @@ export function RulesTab({ community, membership }: RulesTabProps) {
         </View>
 
         {rules.length === 0 ? (
-          <Text className="text-zinc-500 text-xs text-center py-8">
+          <Text className="text-zinc-400 text-xs text-center py-8">
             {t("communities.manage.rulesEmpty", {
               defaultValue: "No rules yet — add the first one below.",
             })}
@@ -153,7 +153,7 @@ export function RulesTab({ community, membership }: RulesTabProps) {
           rules.map((rule, index) => (
             <View key={`rule-${index}`} style={styles.card}>
               <View className="flex-row items-start gap-2">
-                <Text className="text-zinc-500 text-xs mt-3">{index + 1}.</Text>
+                <Text className="text-zinc-400 text-xs mt-3">{index + 1}.</Text>
                 <TextInput
                   style={styles.input}
                   value={rule}
@@ -162,20 +162,22 @@ export function RulesTab({ community, membership }: RulesTabProps) {
                   placeholder={t("communities.manage.rulePlaceholder", {
                     defaultValue: "Describe the rule",
                   })}
-                  placeholderTextColor="#52525b"
+                  placeholderTextColor="#8B8D90"
                   multiline
                   maxLength={MAX_RULE_LENGTH}
                 />
               </View>
               <View className="flex-row items-center justify-between mt-2">
-                <Text className="text-zinc-500 text-xs">
+                <Text className="text-zinc-400 text-xs">
                   {rule.length}/{MAX_RULE_LENGTH}
                 </Text>
-                <View className="flex-row items-center gap-4">
+                <View className="flex-row items-center gap-1">
                   <TouchableOpacity
+                    style={styles.iconBtn}
                     onPress={() => moveRule(index, -1)}
                     disabled={!canEdit || saving || index === 0}
-                    hitSlop={8}
+                    accessibilityRole="button"
+                    accessibilityLabel="Move rule up"
                   >
                     <Icon
                       name="ChevronUp"
@@ -184,9 +186,11 @@ export function RulesTab({ community, membership }: RulesTabProps) {
                     />
                   </TouchableOpacity>
                   <TouchableOpacity
+                    style={styles.iconBtn}
                     onPress={() => moveRule(index, 1)}
                     disabled={!canEdit || saving || index === rules.length - 1}
-                    hitSlop={8}
+                    accessibilityRole="button"
+                    accessibilityLabel="Move rule down"
                   >
                     <Icon
                       name="ChevronDown"
@@ -195,11 +199,13 @@ export function RulesTab({ community, membership }: RulesTabProps) {
                     />
                   </TouchableOpacity>
                   <TouchableOpacity
+                    style={styles.iconBtn}
                     onPress={() => removeRule(index)}
                     disabled={!canEdit || saving}
-                    hitSlop={8}
+                    accessibilityRole="button"
+                    accessibilityLabel="Delete rule"
                   >
-                    <Icon name="Trash2" size={16} color={canEdit ? "#f87171" : "#3f3f46"} />
+                    <Icon name="Trash2" size={16} color={canEdit ? "#EF4444" : "#3f3f46"} />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -260,6 +266,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     textAlignVertical: "top",
   },
+  iconBtn: { padding: 14 },
   secondaryBtn: {
     flexDirection: "row",
     alignItems: "center",

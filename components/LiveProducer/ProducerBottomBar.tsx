@@ -73,6 +73,8 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
           onPress={onFlipCamera}
           activeOpacity={0.8}
           className={`${CIRCLE} bg-black/40 border border-white/10`}
+          accessibilityRole="button"
+          accessibilityLabel="Flip camera"
         >
           <RefreshCw color="#fff" size={20} />
         </TouchableOpacity>
@@ -83,6 +85,9 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
           className={`${CIRCLE} border border-white/10 ${
             micMuted ? "bg-red-600/40" : "bg-black/40"
           }`}
+          accessibilityRole="button"
+          accessibilityLabel={micMuted ? "Unmute microphone" : "Mute microphone"}
+          accessibilityState={{ selected: micMuted }}
         >
           {micMuted ? (
             <MicOff color="#fff" size={20} />
@@ -97,6 +102,9 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
           className={`${CIRCLE} border border-white/10 ${
             cameraOff ? "bg-red-600/40" : "bg-black/40"
           }`}
+          accessibilityRole="button"
+          accessibilityLabel={cameraOff ? "Turn camera on" : "Turn camera off"}
+          accessibilityState={{ selected: cameraOff }}
         >
           {cameraOff ? (
             <VideoOff color="#fff" size={20} />
@@ -113,6 +121,9 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
             className={`${CIRCLE} border border-white/10 ${
               externalMode ? "bg-indigo-600" : "bg-black/40"
             }`}
+            accessibilityRole="button"
+            accessibilityLabel="External streaming mode"
+            accessibilityState={{ selected: externalMode }}
           >
             <Server color="#fff" size={18} />
           </TouchableOpacity>
@@ -142,11 +153,15 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
               ? "bg-zinc-700/70"
               : externalMode
               ? "bg-indigo-600"
-              : "bg-green-600"
+              : "bg-theme-accent"
           }`}
         >
-          <Radio color="#fff" size={18} />
-          <Text className="text-white font-bold text-sm ml-2">
+          <Radio color={canStart && !externalMode ? "#09090B" : "#fff"} size={18} />
+          <Text
+            className={`font-bold text-sm ml-2 ${
+              canStart && !externalMode ? "text-theme-accent-foreground" : "text-white"
+            }`}
+          >
             {isStarting
               ? "Setting Up..."
               : startDisabled

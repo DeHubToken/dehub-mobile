@@ -615,10 +615,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 8,
     right: TAB_W / 2 - 18,
-    minWidth: 16,
-    height: 16,
+    minWidth: 18,
+    height: 18,
     paddingHorizontal: 3,
-    borderRadius: 8,
+    borderRadius: 9,
     backgroundColor: "#EF4444",
     alignItems: "center",
     justifyContent: "center",
@@ -627,9 +627,9 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     color: "#FFFFFF",
-    fontSize: 9,
+    fontSize: 11,
     fontWeight: "800",
-    lineHeight: 12,
+    lineHeight: 13,
   },
 });
 

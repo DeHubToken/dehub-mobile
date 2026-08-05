@@ -55,7 +55,7 @@ const CenterControls: React.FC<CenterControlsProps> = ({
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <Ionicons name="play-back" size={28} color="#fff" />
-            <Text className="text-white text-[10px] font-medium mt-0.5">
+            <Text className="text-white text-xs font-medium mt-0.5">
               {PLAYER_CONSTANTS.SEEK_BACKWARD_SECONDS}s
             </Text>
           </TouchableOpacity>
@@ -95,7 +95,7 @@ const CenterControls: React.FC<CenterControlsProps> = ({
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <Ionicons name="play-forward" size={28} color="#fff" />
-            <Text className="text-white text-[10px] font-medium mt-0.5">
+            <Text className="text-white text-xs font-medium mt-0.5">
               {PLAYER_CONSTANTS.SEEK_FORWARD_SECONDS}s
             </Text>
           </TouchableOpacity>

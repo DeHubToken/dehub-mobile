@@ -79,12 +79,11 @@ const formatPreset = (n: number): string => {
   return n.toLocaleString();
 };
 
-// ── Gold theme colors ────────────────────────────────────────────────────────
-const GOLD_LIGHT = "#D4A843";
-const GOLD_DARK = "#8B6914";
-const GOLD_GLOW = "rgba(212,168,67,0.15)";
-const GOLD_BORDER = "rgba(212,168,67,0.5)";
-const GOLD_GRADIENT: [string, string] = ["#D4A843", "#8B6914"];
+// ── Monochrome accent gradient (matches AccentButtonGradient) ────────────────
+const ACCENT_GRADIENT: [string, string] = [
+  "rgba(255,255,255,0.20)",
+  "rgba(255,255,255,0.08)",
+];
 
 // ── Props ────────────────────────────────────────────────────────────────────
 export interface GlassTipSheetProps {
@@ -494,7 +493,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
               <View style={styles.content}>
                 {/* Header */}
                 <View style={styles.headerRow}>
-                  <Icon name="Gem" size={18} color={GOLD_LIGHT} />
+                  <Icon name="Gem" size={18} color="#F9FBFF" />
                   <Text style={styles.headerTitle}>Send Tip</Text>
                 </View>
                 <Text style={styles.recipientText}>{subheader}</Text>
@@ -592,7 +591,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
 
                   <View style={{ flex: 1, opacity: disableSend && phase === "idle" ? 0.45 : 1 }}>
                     <LinearGradient
-                      colors={GOLD_GRADIENT}
+                      colors={ACCENT_GRADIENT}
                       start={{ x: 0, y: 0 }}
                       end={{ x: 1, y: 0 }}
                       style={styles.sendGradient}
@@ -625,19 +624,14 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             ) : (
               /* Success state */
               <View style={styles.successWrap}>
-                {/* Animated gold gem */}
+                {/* Animated gem */}
                 <Animated.View
                   entering={ZoomIn.duration(400).springify().damping(12)}
                   style={styles.successGemCircle}
                 >
-                  <LinearGradient
-                    colors={GOLD_GRADIENT}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
-                    style={styles.successGemGradient}
-                  >
-                    <Icon name="Gem" size={36} color="#fff" />
-                  </LinearGradient>
+                  <View style={styles.successGemFill}>
+                    <Icon name="Gem" size={36} color="#09090B" />
+                  </View>
                 </Animated.View>
 
                 <Animated.Text
@@ -766,8 +760,8 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.05)",
   },
   presetChipActive: {
-    borderColor: GOLD_BORDER,
-    backgroundColor: GOLD_GLOW,
+    borderColor: "rgba(255,255,255,0.4)",
+    backgroundColor: "rgba(255,255,255,0.12)",
   },
   presetText: {
     color: "#F9FBFF",
@@ -775,7 +769,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   presetTextActive: {
-    color: GOLD_LIGHT,
+    color: "#F9FBFF",
   },
   coinIcon: {
     width: 16,
@@ -809,8 +803,8 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   balanceText: {
-    color: "#6F7174",
-    fontSize: 11,
+    color: "#A6A9AC",
+    fontSize: 12,
   },
   errorSmall: {
     color: "#EF4444",
@@ -866,15 +860,16 @@ const styles = StyleSheet.create({
   successGemCircle: {
     marginBottom: 8,
   },
-  successGemGradient: {
+  successGemFill: {
     width: 80,
     height: 80,
     borderRadius: 40,
+    backgroundColor: "#F4F4F5",
     alignItems: "center",
     justifyContent: "center",
   },
   successTitle: {
-    color: GOLD_LIGHT,
+    color: "#F9FBFF",
     fontSize: 22,
     fontWeight: "800",
     letterSpacing: 0.5,

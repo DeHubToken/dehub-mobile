@@ -13,7 +13,7 @@ const SectionRow: React.FC<{ icon: keyof typeof Ionicons.glyphMap; title: string
         <Ionicons name={icon} size={14} color="#A6A9AC" />
         <Text className="text-white font-medium ml-2">{title}</Text>
       </View>
-      <Text className="text-gray-400 text-xs leading-5">
+      <Text className="text-theme-neutrals-400 text-xs leading-5">
         {children as any}
       </Text>
     </View>
@@ -34,10 +34,10 @@ const DpayAbout: React.FC<DpayAboutProps> = ({ defaultOpen = false }) => {
         <View>
           <Text className="text-white font-semibold">About DeHub & payments</Text>
           {!open && (
-            <Text className="text-gray-400 text-[11px] mt-0.5">Your gateway to seamless token payments</Text>
+            <Text className="text-theme-neutrals-400 text-[11px] mt-0.5">Your gateway to seamless token payments</Text>
           )}
         </View>
-        <Ionicons name={open ? "chevron-up" : "chevron-down"} size={18} color="#9CA3AF" />
+        <Ionicons name={open ? "chevron-up" : "chevron-down"} size={18} color="#A6A9AC" />
       </TouchableOpacity>
 
       {open && (

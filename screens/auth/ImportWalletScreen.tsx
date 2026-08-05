@@ -35,6 +35,7 @@ import {
 } from "../../libs/provider.registry";
 import { getPreferredChainId } from "../../libs/auth.utils";
 import AccentButtonGradient from "../../components/ui/AccentButtonGradient";
+import ScreenHeader from "../../components/ScreenHeader";
 
 // 3D wallet image
 const WALLET_3D_IMAGE = require("../../assets/onboarding/wallet-3d.png");
@@ -232,7 +233,8 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
   }, []);
 
   return (
-    <SafeAreaView className="flex-1 bg-black">
+    <SafeAreaView className="flex-1 bg-theme-neutrals-900">
+      <ScreenHeader title="Import Wallet" onBackPress={handleGoBack} />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
@@ -243,17 +245,6 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
           keyboardShouldPersistTaps="handled"
           className="px-6"
         >
-          {/* Back Button */}
-          <TouchableOpacity
-            onPress={handleGoBack}
-            disabled={busy}
-            className="flex-row items-center mt-2 mb-2"
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          >
-            <Ionicons name="chevron-back" size={24} color="#9CA3AF" />
-            <Text className="text-gray-400 text-base ml-1">Back</Text>
-          </TouchableOpacity>
-
           {/* Wallet 3D Image */}
           <View className="items-center">
             <Image
@@ -271,9 +262,6 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
             <Text className="text-gray-400 text-center text-sm px-2">
               Social logins are recommended.{"\n"} This tool is for importing
               existing accounts from DeHub.io.
-              {/* Only for users with existing DeHub.io wallets.{"\n"}
-              You can skip this and we will create a secure{"\n"}
-              wallet for you automatically. */}
             </Text>
           </View>
 
@@ -293,13 +281,17 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
                 autoCorrect={false}
                 secureTextEntry={!showPk}
                 placeholder="Enter your private key"
-                placeholderTextColor="#6B7280"
+                placeholderTextColor="#8B8D90"
                 className="flex-1 text-white text-base"
                 editable={!busy}
               />
               <TouchableOpacity
                 onPress={() => setShowPk(!showPk)}
-                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                accessibilityRole="button"
+                accessibilityLabel={
+                  showPk ? "Hide private key" : "Show private key"
+                }
               >
                 <Ionicons
                   name={showPk ? "eye-off-outline" : "eye-outline"}
@@ -313,9 +305,13 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
             {clipboardPk && !privateKey && (
               <TouchableOpacity
                 onPress={handlePasteFromClipboard}
-                className="mt-2 self-end"
+                className="mt-2 self-end py-2"
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               >
-                <Text className="text-blue-400 text-sm">
+                <Text
+                  className="text-white text-sm"
+                  style={{ textDecorationLine: "underline" }}
+                >
                   Paste from clipboard
                 </Text>
               </TouchableOpacity>
@@ -374,7 +370,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
               {/* Divider */}
               <View className="flex-row items-center my-3">
                 <View className="flex-1 h-[1px] bg-neutral-700" />
-                <Text className="mx-3 text-gray-500 text-xs uppercase tracking-wider">
+                <Text className="mx-3 text-gray-400 text-xs uppercase tracking-wider">
                   Accounts on this device
                 </Text>
                 <View className="flex-1 h-[1px] bg-neutral-700" />
@@ -390,7 +386,7 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
                     <Text className="text-white text-sm font-medium">
                       {account.username || "Imported account"}
                     </Text>
-                    <Text className="text-gray-500 text-xs">
+                    <Text className="text-gray-400 text-xs">
                       {miniAddress(account.address)}
                     </Text>
                   </View>
@@ -406,6 +402,9 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
                       onPress={() => handleDeleteAccount(account.address)}
                       disabled={busy}
                       className="p-2 rounded-lg bg-neutral-900"
+                      hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                      accessibilityRole="button"
+                      accessibilityLabel="Delete account"
                     >
                       <Ionicons
                         name="trash-outline"

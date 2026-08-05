@@ -19,12 +19,12 @@ import {
   Modal,
   Pressable,
   ActivityIndicator,
-  Switch,
   StyleSheet,
   KeyboardAvoidingView,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "../../ui/Icon";
+import CustomSwitch from "../../ui/CustomSwitch";
 import {
   RESTRICTION_DURATIONS,
   durationToTimestamp,
@@ -132,16 +132,21 @@ export function RestrictionSheet({
         <Pressable style={styles.overlay} onPress={onClose}>
           <Pressable style={styles.sheet} onPress={(e) => e.stopPropagation()}>
             <View style={styles.header}>
-              <Icon name={isMute ? "VolumeX" : "Ban"} size={18} color={isMute ? "#fbbf24" : "#f87171"} />
+              <Icon name={isMute ? "VolumeX" : "Ban"} size={18} color={isMute ? "#FDB022" : "#EF4444"} />
               <Text style={styles.title} numberOfLines={1}>
                 {title}
               </Text>
-              <TouchableOpacity onPress={onClose} hitSlop={12}>
+              <TouchableOpacity
+                onPress={onClose}
+                hitSlop={12}
+                accessibilityRole="button"
+                accessibilityLabel="Close"
+              >
                 <Icon name="X" size={20} color="#71717a" />
               </TouchableOpacity>
             </View>
 
-            <Text className="text-zinc-500 text-xs mb-2">
+            <Text className="text-zinc-400 text-xs mb-2">
               {t("communities.manage.durationLabel", { defaultValue: "Duration" })}
             </Text>
 
@@ -168,10 +173,10 @@ export function RestrictionSheet({
             {!isMute && (
               <>
                 <View className="flex-row items-center justify-between mb-2">
-                  <Text className="text-zinc-500 text-xs">
+                  <Text className="text-zinc-400 text-xs">
                     {t("communities.manage.reasonLabel", { defaultValue: "Reason (optional)" })}
                   </Text>
-                  <Text className="text-zinc-500 text-xs">
+                  <Text className="text-zinc-400 text-xs">
                     {t("communities.manage.reasonCounter", {
                       defaultValue: "{{len}}/200",
                       len: reason.length,
@@ -183,7 +188,7 @@ export function RestrictionSheet({
                   placeholder={t("communities.manage.reasonPlaceholder", {
                     defaultValue: "Why are they being banned?",
                   })}
-                  placeholderTextColor="#52525b"
+                  placeholderTextColor="#8B8D90"
                   value={reason}
                   onChangeText={setReason}
                   maxLength={MAX_REASON}
@@ -198,7 +203,7 @@ export function RestrictionSheet({
                         defaultValue: "Also delete all their messages",
                       })}
                     </Text>
-                    <Switch value={alsoDelete} onValueChange={setAlsoDelete} disabled={submitting} />
+                    <CustomSwitch value={alsoDelete} onValueChange={setAlsoDelete} disabled={submitting} />
                   </View>
                 )}
               </>
@@ -231,9 +236,11 @@ export function RestrictionSheet({
 const styles = StyleSheet.create({
   overlay: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   sheet: {
-    backgroundColor: "#111316",
+    backgroundColor: "rgba(12,12,14,0.96)",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.1)",
     padding: 20,
     paddingBottom: 32,
   },
@@ -261,7 +268,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.1)",
     padding: 12,
   },
-  effect: { color: "#71717a", fontSize: 12, lineHeight: 17, marginTop: 12, marginBottom: 16 },
+  effect: { color: "#A1A1AA", fontSize: 13, lineHeight: 18, marginTop: 12, marginBottom: 16 },
   submit: {
     backgroundColor: "#fff",
     borderRadius: 14,

@@ -182,26 +182,30 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
     ({ item }: { item: ProfilePostRow }) => {
       if (item.kind === "reply") {
         return (
-          <UserReplyCard
-            item={item.item}
-            onPress={(reply) => {
-              const tokenId = reply.tokenId ?? reply.post?.tokenId;
-              if (!tokenId) return;
-              onBeforeNavigate?.();
-              navigation.navigate(ScreenNames.FeedDetail, {
-                tokenId: String(tokenId),
-                commentId: String(reply.id),
-              });
-            }}
-          />
+          <View className="px-4">
+            <UserReplyCard
+              item={item.item}
+              onPress={(reply) => {
+                const tokenId = reply.tokenId ?? reply.post?.tokenId;
+                if (!tokenId) return;
+                onBeforeNavigate?.();
+                navigation.navigate(ScreenNames.FeedDetail, {
+                  tokenId: String(tokenId),
+                  commentId: String(reply.id),
+                });
+              }}
+            />
+          </View>
         );
       }
       return (
-        <FeedCard
-          item={item.item}
-          isVisible={isItemVisible(item.key, item.item)}
-          onBeforeNavigate={onBeforeNavigate}
-        />
+        <View className="px-4">
+          <FeedCard
+            item={item.item}
+            isVisible={isItemVisible(item.key, item.item)}
+            onBeforeNavigate={onBeforeNavigate}
+          />
+        </View>
       );
     },
     [isItemVisible, navigation, onBeforeNavigate],
@@ -234,7 +238,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   const headerElement = listHeader ? <>{listHeader}</> : undefined;
 
   return (
-    <View className="flex-1 px-3">
+    <View className="flex-1">
       <FlatList
         data={merged}
         keyExtractor={rowKeyExtractor}

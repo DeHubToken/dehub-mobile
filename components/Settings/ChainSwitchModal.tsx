@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import GlassModal from '../ui/GlassModal';
 import { useProvider } from '../../context/AuthContext';
 import { ChainId } from '../../config/constants';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../ui/Icon';
 
 const CHAIN_ICONS: Record<number, any> = {
   [ChainId.BASE_MAINNET]: require('../../assets/chains/base-icon.png'),
@@ -34,9 +34,9 @@ const ChainSwitchModal: React.FC<ChainSwitchModalProps> = ({ visible, onClose })
         <Text className="text-white font-semibold text-lg">{t("settings.activeChain")}</Text>
         <Text className="text-theme-neutrals-400 text-xs mt-1">{t("settings.activeChainDesc")}</Text>
 
-        <View className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-3 mt-4 flex-row items-start">
-          <Ionicons name="construct-outline" size={16} color="#D4D4D8" />
-          <Text className="text-yellow-300 text-[12px] ml-2 flex-1">
+        <View className="bg-theme-yellow-500/10 border border-theme-yellow-500/30 rounded-xl p-3 mt-4 flex-row items-start">
+          <Icon name="Wrench" size={16} color="#D4D4D8" />
+          <Text className="text-theme-yellow-300 text-[12px] ml-2 flex-1">
             {t("settings.chainSwitchUnavailable")}
           </Text>
         </View>
@@ -55,8 +55,8 @@ const ChainSwitchModal: React.FC<ChainSwitchModalProps> = ({ visible, onClose })
                 <Text className="text-theme-neutrals-200 text-[10px] font-semibold">{t("settings.chainActive")}</Text>
               </View>
             ) : (
-              <View className="bg-gray-700/40 px-2 py-1 rounded-full">
-                <Text className="text-gray-400 text-[10px]">{t("settings.comingSoon")}</Text>
+              <View className="bg-theme-neutrals-700/50 px-2 py-1 rounded-full">
+                <Text className="text-theme-neutrals-400 text-[11px]">{t("settings.comingSoon")}</Text>
               </View>
             )}
           </TouchableOpacity>
@@ -73,8 +73,8 @@ const ChainSwitchModal: React.FC<ChainSwitchModalProps> = ({ visible, onClose })
                 <Text className="text-theme-neutrals-200 text-[10px] font-semibold">{t("settings.chainActive")}</Text>
               </View>
             ) : (
-              <View className="bg-gray-700/50 px-2 py-1 rounded-full">
-                <Text className="text-gray-400 text-[10px]">{t("settings.comingSoon")}</Text>
+              <View className="bg-theme-neutrals-700/50 px-2 py-1 rounded-full">
+                <Text className="text-theme-neutrals-400 text-[11px]">{t("settings.comingSoon")}</Text>
               </View>
             )}
           </TouchableOpacity>

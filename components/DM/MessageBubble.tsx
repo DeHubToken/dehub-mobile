@@ -167,7 +167,7 @@ const AutoImage: React.FC<AutoImageProps> = memo(({ uri, isGif, onPress, onLongP
         />
         {isGif && (
           <View className="absolute bottom-1.5 left-1.5 bg-black/60 rounded px-1.5 py-0.5">
-            <Text className="text-[10px] text-white font-bold">GIF</Text>
+            <Text className="text-[11px] text-white font-bold">GIF</Text>
           </View>
         )}
       </View>
@@ -304,7 +304,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
             {message.content}
           </Text>
         </View>
-        <Text className="text-theme-neutrals-600 text-[10px] mt-1">
+        <Text className="text-theme-neutrals-400 text-[11px] mt-1">
           {formatTime(message.createdAt)}
         </Text>
       </View>
@@ -332,7 +332,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
           )}
         </View>
         {isPending && (
-          <Text className="text-theme-neutrals-500 text-[10px] mt-1">
+          <Text className="text-theme-neutrals-500 text-[11px] mt-1">
             Confirming on-chain…
           </Text>
         )}
@@ -505,7 +505,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
       }`}
     >
       <Text
-        className={`text-[10px] ${
+        className={`text-[11px] ${
           isMine ? "text-white/50" : "text-theme-neutrals-500"
         }`}
       >
@@ -513,7 +513,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
       </Text>
       {message.isEdited && (
         <Text
-          className={`text-[10px] ${
+          className={`text-[11px] ${
             isMine ? "text-white/40" : "text-theme-neutrals-600"
           }`}
         >
@@ -524,7 +524,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         <Icon
           name={message.isRead ? "CheckCheck" : "Check"}
           size={12}
-          color={message.isRead ? "#F4F4F5" : "rgba(255,255,255,0.4)"}
+          color={message.isRead ? "#F4F4F5" : "rgba(255,255,255,0.55)"}
         />
       )}
     </View>
@@ -615,7 +615,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
             {message.isForwarded && (
               <View className="flex-row items-center gap-1 px-3 pt-1.5">
                 <Icon name="Forward" size={10} color={isMine ? "rgba(255,255,255,0.5)" : "#A6A9AC"} />
-                <Text className={`text-[10px] italic ${isMine ? "text-white/50" : "text-theme-neutrals-400"}`}>
+                <Text className={`text-[11px] italic ${isMine ? "text-white/50" : "text-theme-neutrals-400"}`}>
                   Forwarded
                 </Text>
               </View>
@@ -728,7 +728,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                 {isUploading && (
                   <View className="absolute inset-0 items-center justify-center bg-black/40">
                     <ActivityIndicator color="#fff" size="small" />
-                    <Text className="text-[10px] text-white/80 mt-1">
+                    <Text className="text-[11px] text-white/80 mt-1">
                       Sending…
                     </Text>
                   </View>
@@ -834,9 +834,9 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                   </View>
                 )}
                 <View className={`${isPaidMsg ? "px-2 pb-1.5" : "absolute bottom-1.5 right-2"} flex-row items-center gap-1 ${isPaidMsg ? "justify-end" : "bg-black/50 rounded-full px-1.5 py-0.5"}`}>
-                  <Text className="text-[10px] text-white/80">{timeStr}</Text>
+                  <Text className="text-[11px] text-white/80">{timeStr}</Text>
                   {message.isEdited && (
-                    <Text className="text-[10px] text-white/50">· edited</Text>
+                    <Text className="text-[11px] text-white/50">· edited</Text>
                   )}
                   {isMine && (
                     <Icon

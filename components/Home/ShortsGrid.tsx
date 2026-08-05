@@ -308,7 +308,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            tintColor={theme.colors.accentForeground}
+            tintColor={theme.colors.accent}
             progressViewOffset={headerInset}
           />
         }

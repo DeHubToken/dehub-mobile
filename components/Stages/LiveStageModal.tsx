@@ -110,7 +110,7 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
           alignItems: "center",
           justifyContent: "center",
           borderWidth: (isSpeaking && !participant.is_muted) ? 2 : 0,
-          borderColor: "#22C55E",
+          borderColor: "#32D583",
           overflow: "hidden",
         }}
       >
@@ -128,12 +128,12 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
               width: 18,
               height: 18,
               borderRadius: 9,
-              backgroundColor: "#1f2937",
+              backgroundColor: "#383A3D",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <Icon name="MicOff" size={10} color="#9ca3af" />
+            <Icon name="MicOff" size={10} color="#A6A9AC" />
           </View>
         )}
       </View>
@@ -155,7 +155,7 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
             backgroundColor: "rgba(239,68,68,0.2)",
           }}
         >
-          <Text style={{ color: "#f87171", fontSize: 10 }}>Remove</Text>
+          <Text style={{ color: "#EF4444", fontSize: 10 }}>Remove</Text>
         </TouchableOpacity>
       )}
     </View>
@@ -205,7 +205,7 @@ const HandRequestRow: React.FC<HandRequestRowProps> = ({ request, onApprove }) =
           paddingHorizontal: 14,
           paddingVertical: 6,
           borderRadius: 14,
-          backgroundColor: "#22C55E",
+          backgroundColor: "#12B76A",
         }}
       >
         <Text style={{ color: "#fff", fontSize: 12, fontWeight: "600" }}>Let Speak</Text>
@@ -273,8 +273,8 @@ const LiveStageModal: React.FC = () => {
       presentationStyle="fullScreen"
       statusBarTranslucent
     >
-      <StatusBar barStyle="light-content" backgroundColor="#0a0a0f" />
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#0a0a0f" }}>
+      <StatusBar barStyle="light-content" backgroundColor="#000" />
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
         {/* Edge-to-edge Android doesn't resize for the keyboard — without this
             the TTS input at the bottom gets covered while typing. */}
         <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
@@ -341,6 +341,9 @@ const LiveStageModal: React.FC = () => {
           </View>
           <TouchableOpacity
             onPress={handleShare}
+            hitSlop={4}
+            accessibilityRole="button"
+            accessibilityLabel="Share"
             style={{
               width: 38,
               height: 38,
@@ -355,6 +358,9 @@ const LiveStageModal: React.FC = () => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={closeModal}
+            hitSlop={4}
+            accessibilityRole="button"
+            accessibilityLabel="Minimize"
             style={{
               width: 38,
               height: 38,
@@ -398,7 +404,7 @@ const LiveStageModal: React.FC = () => {
               />
             ))}
             {speakers.length === 0 && (
-              <Text style={{ color: "rgba(255,255,255,0.25)", fontSize: 13, marginBottom: 16, marginLeft: 4 }}>
+              <Text style={{ color: "rgba(255,255,255,0.6)", fontSize: 13, marginBottom: 16, marginLeft: 4 }}>
                 No speakers yet
               </Text>
             )}
@@ -450,6 +456,7 @@ const LiveStageModal: React.FC = () => {
               <TouchableOpacity
                 key={emoji}
                 onPress={() => sendReaction(emoji)}
+                hitSlop={4}
                 style={{
                   width: 40,
                   height: 40,
@@ -627,14 +634,14 @@ const LiveStageModal: React.FC = () => {
                 width: 56,
                 height: 56,
                 borderRadius: 28,
-                backgroundColor: isMuted ? "rgba(239,68,68,0.15)" : "rgba(34,197,94,0.15)",
+                backgroundColor: isMuted ? "rgba(239,68,68,0.15)" : "rgba(50,213,131,0.15)",
                 borderWidth: 1,
-                borderColor: isMuted ? "rgba(239,68,68,0.35)" : "rgba(34,197,94,0.35)",
+                borderColor: isMuted ? "rgba(239,68,68,0.35)" : "rgba(50,213,131,0.35)",
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              <Icon name={isMuted ? "MicOff" : "Mic"} size={22} color={isMuted ? "#f87171" : "#4ade80"} />
+              <Icon name={isMuted ? "MicOff" : "Mic"} size={22} color={isMuted ? "#EF4444" : "#32D583"} />
             </TouchableOpacity>
           )}
 
@@ -670,8 +677,8 @@ const LiveStageModal: React.FC = () => {
               borderColor: "rgba(239,68,68,0.4)",
             }}
           >
-            <Icon name={isHostRole ? "X" : "LogOut"} size={18} color={isHostRole ? "#fff" : "#f87171"} />
-            <Text style={{ color: isHostRole ? "#fff" : "#f87171", fontWeight: "600", fontSize: 14 }}>
+            <Icon name={isHostRole ? "X" : "LogOut"} size={18} color={isHostRole ? "#fff" : "#EF4444"} />
+            <Text style={{ color: isHostRole ? "#fff" : "#EF4444", fontWeight: "600", fontSize: 14 }}>
               {isHostRole ? "End Stage" : "Leave"}
             </Text>
           </TouchableOpacity>

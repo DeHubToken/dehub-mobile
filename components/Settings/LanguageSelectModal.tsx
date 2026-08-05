@@ -62,14 +62,9 @@ const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
       maxHeight="82%"
       blurIntensity={30}
     >
-      {/* Drag handle */}
-      <View className="items-center pt-3 pb-1">
-        <View className="w-9 h-1 rounded-full bg-theme-neutrals-600" />
-      </View>
-
-      <View className="px-4 pb-4 pt-2">
-        <View className="flex-row items-center justify-between mb-1">
-          <Text className="text-white font-semibold text-lg">{t("settings.language")}</Text>
+      <View className="px-5 pt-4 pb-3 border-b border-white/10">
+        <View className="flex-row items-center justify-between">
+          <Text className="text-white font-bold text-base">{t("settings.language")}</Text>
           {currentLangInfo && (
             <View className="bg-theme-neutrals-700/60 rounded-full px-3 py-1 flex-row items-center">
               <Icon name="Globe" size={11} color="#9ca3af" />
@@ -79,10 +74,12 @@ const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
             </View>
           )}
         </View>
-        <Text className="text-theme-neutrals-500 text-xs">
+        <Text className="text-theme-neutrals-500 text-xs mt-1">
           {t("settings.languageDesc")}
         </Text>
+      </View>
 
+      <View className="px-4 pb-4">
         {/* Search */}
         <View className="mt-4 bg-theme-neutrals-800 rounded-xl border border-theme-neutrals-700 flex-row items-center px-3">
           <Icon name="Search" size={14} color="#6b7280" />
@@ -95,7 +92,13 @@ const LanguageSelectModal: React.FC<LanguageSelectModalProps> = ({
             autoFocus={false}
           />
           {search.length > 0 && (
-            <TouchableOpacity onPress={() => setSearch("")}>
+            <TouchableOpacity
+              onPress={() => setSearch("")}
+              className="p-2 -mr-2"
+              accessibilityRole="button"
+              accessibilityLabel="Clear search"
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
               <Icon name="X" size={14} color="#6b7280" />
             </TouchableOpacity>
           )}

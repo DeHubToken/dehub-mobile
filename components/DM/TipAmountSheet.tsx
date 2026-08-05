@@ -41,9 +41,8 @@ interface TipAmountSheetProps {
 
 const PRESETS = [500, 1_000, 5_000, 10_000, 25_000, 50_000, 100_000, 1_000_000] as const;
 
-const GOLD_LIGHT = "#D4A843";
-const GOLD_GLOW = "rgba(212,168,67,0.15)";
-const GOLD_BORDER = "rgba(212,168,67,0.5)";
+const SELECTED_BG = "rgba(255,255,255,0.2)";
+const SELECTED_BORDER = "rgba(255,255,255,0.4)";
 
 const SHEET_HEIGHT = 420;
 
@@ -204,7 +203,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
 
             <View style={styles.content}>
               <View style={styles.headerRow}>
-                <Icon name="Gem" size={18} color={GOLD_LIGHT} />
+                <Icon name="Gem" size={18} color="#F4F4F5" />
                 <Text style={styles.headerTitle}>Add a Tip</Text>
               </View>
               <Text style={styles.recipientText}>
@@ -255,7 +254,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
                   value={inputValue}
                   onChangeText={handleInputChange}
                   placeholder="Enter amount"
-                  placeholderTextColor="#6F7174"
+                  placeholderTextColor="#8B8D90"
                   keyboardType="number-pad"
                   style={styles.textInput}
                 />
@@ -322,9 +321,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "rgba(20,20,20,0.55)",
+    backgroundColor: "rgba(12,12,14,0.85)",
     borderTopWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
+    borderColor: "rgba(255,255,255,0.06)",
   },
   handleWrap: {
     alignItems: "center",
@@ -381,8 +380,8 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.05)",
   },
   presetChipActive: {
-    borderColor: GOLD_BORDER,
-    backgroundColor: GOLD_GLOW,
+    borderColor: SELECTED_BORDER,
+    backgroundColor: SELECTED_BG,
   },
   presetText: {
     color: "#F9FBFF",
@@ -390,7 +389,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   presetTextActive: {
-    color: GOLD_LIGHT,
+    color: "#FFFFFF",
   },
   coinIcon: {
     width: 16,
@@ -424,8 +423,8 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   balanceText: {
-    color: "#6F7174",
-    fontSize: 11,
+    color: "#A6A9AC",
+    fontSize: 12,
   },
   errorSmall: {
     color: "#EF4444",
@@ -453,7 +452,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 46,
     borderRadius: 12,
-    backgroundColor: GOLD_LIGHT,
+    backgroundColor: "#F4F4F5",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -461,7 +460,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.08)",
   },
   confirmBtnText: {
-    color: "#1A1A1A",
+    color: "#09090B",
     fontSize: 14,
     fontWeight: "700",
   },

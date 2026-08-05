@@ -13,6 +13,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import DpayLoader from "../components/Dpay/DpayLoader";
+import Icon, { type IconName } from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import DpayInfoCards from "../components/Dpay/DpayInfoCards";
 import DpayTopUpForm from "../components/Dpay/DpayTopUpForm";
 import DpayTransactions from "../components/Dpay/DpayTransactions";
@@ -28,10 +30,10 @@ import type { AppStackParamList } from "../navigation/types";
 
 type WalletTab = "buy" | "stake" | "bridge";
 
-const TABS: { key: WalletTab; label: string; icon: string }[] = [
-  { key: "buy", label: "Buy DHB", icon: "💳" },
-  { key: "stake", label: "Stake", icon: "🔒" },
-  { key: "bridge", label: "Bridge", icon: "⇄" },
+const TABS: { key: WalletTab; label: string; icon: IconName }[] = [
+  { key: "buy", label: "Buy DHB", icon: "CreditCard" },
+  { key: "stake", label: "Stake", icon: "Lock" },
+  { key: "bridge", label: "Bridge", icon: "ArrowLeftRight" },
 ];
 
 const DpayScreen: React.FC = () => {
@@ -171,23 +173,21 @@ const DpayScreen: React.FC = () => {
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
-      style={{ flex: 1 }}
+      className="flex-1 bg-theme-neutrals-900"
     >
+      <ScreenHeader title={t("wallet.title")} subtitle={t("screens.walletSubtitle")} />
       <ScrollView
-        className="flex-1 px-0 pt-6"
+        className="flex-1 px-0"
         contentContainerStyle={{ paddingBottom: 40 }}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />}
       >
-        <DpayHeader
-          title={t("wallet.title")}
-          subtitle={t("screens.walletSubtitle")}
-        />
+        <DpayHeader />
 
         {/* Assets / token balances — moved here from the profile to match web. */}
         <ProfileAssets />
 
         {/* Tab switcher */}
-        <View className="flex-row px-5 gap-2 mb-5">
+        <View className="flex-row px-4 gap-2 mb-5">
           {TABS.map((tab) => (
             <TouchableOpacity
               key={tab.key}
@@ -198,7 +198,13 @@ const DpayScreen: React.FC = () => {
                   : "bg-white/[0.04] border-white/10"
               }`}
             >
-              <Text className="text-xs mb-0.5">{tab.icon}</Text>
+              <View className="mb-0.5">
+                <Icon
+                  name={tab.icon}
+                  size={14}
+                  color={activeTab === tab.key ? "#FFFFFF" : "rgba(255,255,255,0.5)"}
+                />
+              </View>
               <Text
                 className={`text-[11px] font-medium ${
                   activeTab === tab.key ? "text-white" : "text-white/50"
@@ -211,7 +217,7 @@ const DpayScreen: React.FC = () => {
         </View>
 
         {/* Tab content */}
-        <View className="px-5">
+        <View className="px-4">
           {activeTab === "buy" && (
             <>
               <DpayTopUpForm initialPrice={initialPrice ?? undefined} supplyData={supplyData ?? undefined} />

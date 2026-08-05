@@ -14,13 +14,14 @@ import {
   ScrollView,
   TextInput,
   ActivityIndicator,
+  KeyboardAvoidingView,
   LayoutAnimation,
   Platform,
   UIManager,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
 import Icon, { type IconName } from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import { supabase } from "../services/supabase";
 import { toastError, toastSuccess } from "../libs";
 import { openInApp } from "../libs/links.utils";
@@ -32,34 +33,12 @@ if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-const BDM_RESP = [
-  { icon: "Handshake" as IconName, text: "Identify and secure strategic partnerships with Web2 and Web3 companies that align with DeHub's mission" },
-  { icon: "Target" as IconName, text: "Build and manage a pipeline of prospective partners, sponsors, and integration opportunities" },
-  { icon: "Globe" as IconName, text: "Represent DeHub at industry events, conferences, and virtual summits" },
-  { icon: "TrendingUp" as IconName, text: "Negotiate partnership terms, revenue-sharing models, and co-marketing agreements" },
-  { icon: "Sparkles" as IconName, text: "Collaborate with the product and marketing teams to develop joint campaigns and integrations" },
-];
-const BDM_REQ = [
-  "Proven experience in business development, partnerships, or sales within tech, gaming, or Web3",
-  "Strong existing network in the crypto/Web3 or creator economy space is a huge plus",
-  "Excellent communication and negotiation skills — you can close deals and build lasting relationships",
-  "Self-motivated and comfortable working autonomously in a remote-first environment",
-  "Genuine interest in decentralised social media, NFTs, or blockchain technology",
-];
-const AMB_RESP = [
-  { icon: "Megaphone" as IconName, text: "Create and share authentic content about DeHub across your personal social channels" },
-  { icon: "Heart" as IconName, text: "Actively engage with the DeHub community on the app — post, comment, and interact with other users" },
-  { icon: "Globe" as IconName, text: "Attend and represent DeHub at real-life events, meetups, and conferences in your area" },
-  { icon: "Users" as IconName, text: "Onboard new users and creators to the platform through your personal network" },
-  { icon: "Sparkles" as IconName, text: "Provide feedback and ideas from the community to help shape the product roadmap" },
-];
-const AMB_REQ = [
-  "Active social media presence with genuine engagement (follower count matters less than authenticity)",
-  "Passion for Web3, crypto, gaming, or creator culture",
-  "Strong communication skills and ability to explain complex concepts simply",
-  "Self-starter who can plan and execute campaigns independently",
-  "Previous ambassador, influencer, or community management experience is a bonus",
-];
+// Copy comes from the careers.* i18n strings; these only define the icon per
+// responsibility row and how many requirement rows each role renders.
+const BDM_RESP_ICONS: IconName[] = ["Handshake", "Target", "Globe", "TrendingUp", "Sparkles"];
+const BDM_REQ_COUNT = 5;
+const AMB_RESP_ICONS: IconName[] = ["Megaphone", "Heart", "Globe", "Users", "Sparkles"];
+const AMB_REQ_COUNT = 5;
 
 const Tag = ({ icon, label }: { icon: IconName; label: string }) => (
   <View style={styles.tag}>
@@ -119,13 +98,13 @@ const Field = ({
   <View style={{ gap: 6 }}>
     <Text style={styles.fieldLabel}>
       {label}
-      {required && <Text style={{ color: "#F87171" }}> *</Text>}
+      {required && <Text style={{ color: "#EF4444" }}> *</Text>}
     </Text>
     <TextInput
       value={value}
       onChangeText={onChangeText}
       placeholder={placeholder}
-      placeholderTextColor="#52525B"
+      placeholderTextColor="#8B8D90"
       style={[styles.input, multiline && styles.inputMultiline]}
       multiline={multiline}
       autoCapitalize={keyboardType === "email-address" ? "none" : "sentences"}
@@ -137,20 +116,23 @@ const Field = ({
 export default function CareersScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<any>();
   const [formOpen, setFormOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState<BDMForm>(EMPTY_FORM);
-  const bdmResponsibilities = BDM_RESP.map((item, index) => ({
-    ...item,
+  const bdmResponsibilities = BDM_RESP_ICONS.map((icon, index) => ({
+    icon,
     text: t(`careers.bdmResp${index + 1}`),
   }));
-  const bdmRequirements = BDM_REQ.map((_, index) => t(`careers.bdmReq${index + 1}`));
-  const ambassadorResponsibilities = AMB_RESP.map((item, index) => ({
-    ...item,
+  const bdmRequirements = Array.from({ length: BDM_REQ_COUNT }, (_, index) =>
+    t(`careers.bdmReq${index + 1}`),
+  );
+  const ambassadorResponsibilities = AMB_RESP_ICONS.map((icon, index) => ({
+    icon,
     text: t(`careers.ambassadorResp${index + 1}`),
   }));
-  const ambassadorRequirements = AMB_REQ.map((_, index) => t(`careers.ambassadorReq${index + 1}`));
+  const ambassadorRequirements = Array.from({ length: AMB_REQ_COUNT }, (_, index) =>
+    t(`careers.ambassadorReq${index + 1}`),
+  );
 
   const set = useCallback((key: keyof BDMForm) => (t: string) => setForm((p) => ({ ...p, [key]: t })), []);
 
@@ -190,17 +172,14 @@ export default function CareersScreen() {
   }, [form, t]);
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>{t("careers.title")}</Text>
-          <Text style={styles.subtitle}>{t("careers.subtitle")}</Text>
-        </View>
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader title={t("careers.title")} subtitle={t("careers.subtitle")} />
 
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        keyboardVerticalOffset={insets.top + 44}
+      >
       <ScrollView
         contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 32, paddingTop: 4 }}
         showsVerticalScrollIndicator={false}
@@ -324,22 +303,19 @@ export default function CareersScreen() {
           </Text>
         </View>
       </ScrollView>
+      </KeyboardAvoidingView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: { flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 12, paddingVertical: 12 },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  title: { color: "#FFFFFF", fontSize: 20, fontWeight: "700" },
-  subtitle: { color: "#71717A", fontSize: 12, marginTop: 1 },
+  root: { flex: 1, backgroundColor: "#010305" },
   intro: { color: "#D4D4D8", fontSize: 13, lineHeight: 20, marginBottom: 16, paddingHorizontal: 2 },
   roleCard: {
     borderRadius: 14,
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",
-    backgroundColor: "rgba(0,0,0,0.4)",
+    backgroundColor: "rgba(255,255,255,0.04)",
     padding: 14,
     marginBottom: 16,
   },
@@ -354,7 +330,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.20)",
   },
-  openBadgeText: { color: "#34D399", fontSize: 10, fontWeight: "600" },
+  openBadgeText: { color: "#22C55E", fontSize: 10, fontWeight: "600" },
   tagsRow: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 18 },
   tag: {
     flexDirection: "row",
@@ -411,6 +387,6 @@ const styles = StyleSheet.create({
   },
   submitText: { color: "#000000", fontSize: 14, fontWeight: "700" },
   footer: { marginTop: 12, alignItems: "center" },
-  footerText: { color: "#71717A", fontSize: 12, textAlign: "center" },
+  footerText: { color: "#A1A1AA", fontSize: 12, textAlign: "center" },
   footerLink: { color: "#D4D4D8", textDecorationLine: "underline" },
 });

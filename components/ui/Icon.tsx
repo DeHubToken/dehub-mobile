@@ -38,6 +38,8 @@ export interface IconProps {
   glassPadding?: number;
   onPress?: () => void;
   onLongPress?: () => void;
+  /** Screen-reader label for interactive icons; falls back to the tooltip text. */
+  accessibilityLabel?: string;
 }
 
 const TOOLTIP_SHOW_DURATION = 1500;
@@ -56,6 +58,7 @@ const Icon: React.FC<IconProps> = ({
   glassPadding = 10,
   onPress,
   onLongPress,
+  accessibilityLabel,
 }) => {
   const LucideIcon = icons[name];
   const iconRef = useRef<View>(null);
@@ -175,6 +178,8 @@ const Icon: React.FC<IconProps> = ({
             onPress={onPress}
             onLongPress={(tooltip || onLongPress) ? handleLongPress : undefined}
             delayLongPress={LONG_PRESS_DELAY}
+            accessibilityRole="button"
+            accessibilityLabel={accessibilityLabel ?? tooltip}
             style={[
               styles.glassContainer,
               {
@@ -219,6 +224,8 @@ const Icon: React.FC<IconProps> = ({
           onPress={onPress}
           onLongPress={(tooltip || onLongPress) ? handleLongPress : undefined}
           delayLongPress={LONG_PRESS_DELAY}
+          accessibilityRole="button"
+          accessibilityLabel={accessibilityLabel ?? tooltip}
         >
           {iconElement}
         </Pressable>
@@ -246,7 +253,7 @@ const styles = StyleSheet.create({
   },
   tooltipText: {
     color: "#F3F4F6",
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: "600",
     textAlign: "center",
     paddingHorizontal: 12,

@@ -350,11 +350,16 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
             key={star}
             onPress={() => handleStarSelect(star)}
             activeOpacity={0.7}
+            hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
           >
             <Ionicons
               name={star <= rating ? "star" : "star-outline"}
               size={40}
-              color={star <= rating ? "#D4D4D8" : "#6B7280"}
+              color={
+                star <= rating
+                  ? theme.colors.accent
+                  : theme.colors.neutrals[600]
+              }
             />
           </TouchableOpacity>
         ))}
@@ -370,7 +375,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
               value={feedback}
               onChangeText={setFeedback}
               placeholder="What can we do better?"
-              placeholderTextColor="#6B7280"
+              placeholderTextColor={theme.colors.neutrals[500]}
               multiline
               numberOfLines={4}
               textAlignVertical="top"
@@ -386,7 +391,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
               value={telegram}
               onChangeText={setTelegram}
               placeholder="@username"
-              placeholderTextColor="#6B7280"
+              placeholderTextColor={theme.colors.neutrals[500]}
               autoCapitalize="none"
               className="bg-theme-neutrals-800 rounded-xl p-4 text-white text-sm"
             />
@@ -400,7 +405,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
               value={discord}
               onChangeText={setDiscord}
               placeholder="username#0000"
-              placeholderTextColor="#6B7280"
+              placeholderTextColor={theme.colors.neutrals[500]}
               autoCapitalize="none"
               className="bg-theme-neutrals-800 rounded-xl p-4 text-white text-sm"
             />
@@ -414,7 +419,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
             <AccentButtonGradient>
               <TouchableOpacity
                 onPress={handleSubmitFeedback}
-                className="py-3 px-6 items-center"
+                className={`py-3 px-6 items-center ${isSubmitting ? "opacity-50" : ""}`}
                 activeOpacity={0.8}
                 disabled={isSubmitting}
               >
@@ -426,7 +431,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
 
             <TouchableOpacity
               onPress={handleClose}
-              className="py-3 px-6 items-center"
+              className={`py-3 px-6 items-center ${isSubmitting ? "opacity-50" : ""}`}
               activeOpacity={0.7}
               disabled={isSubmitting}
             >

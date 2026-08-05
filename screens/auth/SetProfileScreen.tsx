@@ -210,14 +210,14 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
               autoCapitalize="none"
               autoCorrect={false}
               placeholder="@username"
-              placeholderTextColor="#6B7280"
+              placeholderTextColor="#8B8D90"
               className="border border-neutral-700 rounded-xl px-4 py-4 text-white text-base bg-neutral-900"
             />
             <View className="mt-2 min-h-[20px]">
               {checking && (
                 <View className="flex-row items-center">
-                  <ActivityIndicator size="small" color="#6B7280" />
-                  <Text className="text-xs text-gray-500 ml-2">Checking...</Text>
+                  <ActivityIndicator size="small" color="#F4F4F5" />
+                  <Text className="text-xs text-gray-400 ml-2">Checking...</Text>
                 </View>
               )}
               {!checking && available === true && username.length >= 3 && (
@@ -233,7 +233,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
                 </View>
               )}
               {!checking && available === null && (
-                <Text className="text-xs text-gray-500">
+                <Text className="text-xs text-gray-400">
                   3-30 characters: letters, numbers, underscore.
                 </Text>
               )}
@@ -249,37 +249,33 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
               autoCapitalize="words"
               autoCorrect={false}
               placeholder="Display name"
-              placeholderTextColor="#6B7280"
+              placeholderTextColor="#8B8D90"
               className="border border-neutral-700 rounded-xl px-4 py-4 text-white text-base bg-neutral-900"
             />
             <View className="mt-2 min-h-[20px]">
-              <Text className="text-xs text-gray-500">
+              <Text className="text-xs text-gray-400">
                 Your public name shown on your profile.
               </Text>
             </View>
           </View>
-
-          {/* Spacer */}
-          {/* <View className="flex-1" /> */}
 
           {/* Continue Button */}
           <View className="items-center mb-4">
             <TouchableOpacity
               disabled={disabled}
               onPress={handleSubmit}
-              style={{ width: 180, opacity: disabled ? 0.5 : 1 }}
+              style={{
+                width: "100%",
+                maxWidth: 280,
+                opacity: disabled ? 0.5 : 1,
+              }}
               accessibilityLabel="Continue to set profile"
             >
               <AccentButtonGradient
                 borderRadius={14}
-                style={{ 
+                style={{
                   paddingVertical: 16,
                   alignItems: "center",
-                  shadowColor: "#F4F4F5",
-                  shadowOffset: { width: 0, height: 4 },
-                  shadowOpacity: disabled ? 0 : 0.5,
-                  shadowRadius: 12,
-                  elevation: disabled ? 0 : 8,
                 }}
               >
                 {submitting ? (
@@ -314,7 +310,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
               disabled={submitting}
               className="py-3"
             >
-              <Text className="text-gray-500 text-sm">
+              <Text className="text-gray-400 text-sm">
                 Cancel and sign out
               </Text>
             </TouchableOpacity>

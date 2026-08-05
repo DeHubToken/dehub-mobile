@@ -56,19 +56,20 @@ interface LiveViewerChatProps {
   chatEnabled: boolean;
 }
 
+/** Deterministic color palette for usernames (monochrome neutrals ramp) */
 const USERNAME_PALETTE = [
-  "#f87171",
+  "#F9FBFF",
   "#D4D4D8",
-  "#10b981",
+  "#DDE0E3",
   "#F4F4F5",
   "#D4D4D8",
   "#D4D4D8",
   "#D4D4D8",
-  "#84cc16",
+  "#C2C4C7",
   "#D4D4D8",
   "#D4D4D8",
   "#D4D4D8",
-  "#ef4444",
+  "#F4F4F5",
   "#D4D4D8",
   "#D4D4D8",
 ];
@@ -167,12 +168,12 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
     case StreamActivityType.TIP: {
       const amt = a.meta?.amount || 0;
       return (
-        <View className="mb-1.5 bg-yellow-500/20 border border-yellow-400/30 rounded-xl px-2.5 py-2 self-start max-w-[85%] flex-row items-start">
+        <View className="mb-1.5 bg-theme-yellow-500/20 border border-theme-yellow-400/30 rounded-xl px-2.5 py-2 self-start max-w-[85%] flex-row items-start">
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
             <Avatar uri={avatarUrl} size={20} name={displayName} />
           </TouchableOpacity>
           <View className="flex-1 flex-shrink">
-            <Text style={{ color: '#fde047' }} className="text-[12px] font-semibold">
+            <Text className="text-theme-yellow-300 text-[12px] font-semibold">
               🎁{" "}
               <Text onPress={handlePress}>
                 {displayName}
@@ -336,7 +337,10 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
             <TouchableOpacity
               onPress={handleSend}
               activeOpacity={0.7}
-              className="ml-2"
+              className="ml-1 p-2"
+              hitSlop={8}
+              accessibilityRole="button"
+              accessibilityLabel="Send message"
             >
               <Send color="#F4F4F5" size={18} />
             </TouchableOpacity>

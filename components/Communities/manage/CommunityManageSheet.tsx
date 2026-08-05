@@ -161,11 +161,16 @@ export function CommunityManageSheet({
             <Text className="text-white text-base font-semibold" numberOfLines={1}>
               {community.name}
             </Text>
-            <Text className="text-zinc-500 text-xs mt-0.5">
+            <Text className="text-zinc-400 text-xs mt-0.5">
               {t("communities.manage.title", { defaultValue: "Manage" })}
             </Text>
           </View>
-          <TouchableOpacity onPress={onClose} hitSlop={12}>
+          <TouchableOpacity
+            onPress={onClose}
+            hitSlop={12}
+            accessibilityRole="button"
+            accessibilityLabel="Close"
+          >
             <Icon name="X" size={20} color="#71717a" />
           </TouchableOpacity>
         </View>

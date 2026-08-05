@@ -29,7 +29,7 @@ const ExternalStreamingOverlay: React.FC<ExternalStreamingOverlayProps> = ({
         </View>
       ) : (
         <View className="flex-row items-center gap-2 mb-3">
-          <Wifi color="#94a3b8" size={16} />
+          <Wifi color="#A6A9AC" size={16} />
           <Text className="text-white/80 font-semibold text-sm">External Streaming Mode</Text>
         </View>
       )}
@@ -51,7 +51,7 @@ const ExternalStreamingOverlay: React.FC<ExternalStreamingOverlayProps> = ({
             <Text className="text-white/80 text-[11px] flex-1" numberOfLines={1}>
               {streamKeyValue ? truncate(streamKeyValue, 30) : streamKeyLoading ? 'Loading…' : '—'}
             </Text>
-            {streamKeyValue && <Copy size={13} color="#94a3b8" />}
+            {streamKeyValue && <Copy size={13} color="#A6A9AC" />}
           </TouchableOpacity>
         </View>
         <View className="flex-row items-center bg-white/5 rounded-xl px-3 py-2">
@@ -63,7 +63,7 @@ const ExternalStreamingOverlay: React.FC<ExternalStreamingOverlayProps> = ({
             <Text className="text-white/80 text-[11px] flex-1" numberOfLines={1}>
               {truncate(LIVEPEER_RTMP_SERVER, 30)}
             </Text>
-            <Copy size={13} color="#94a3b8" />
+            <Copy size={13} color="#A6A9AC" />
           </TouchableOpacity>
         </View>
       </View>

@@ -77,11 +77,11 @@ const PaymentBadgeComponent: React.FC<PaymentBadgeProps> = ({
             ? "text-red-400"
             : isPending
             ? isMine
-              ? "text-amber-300/80"
-              : "text-amber-400/80"
+              ? "text-theme-neutrals-200/80"
+              : "text-theme-neutrals-300/80"
             : isMine
-            ? "text-amber-300"
-            : "text-amber-400"
+            ? "text-theme-neutrals-200"
+            : "text-theme-neutrals-300"
         }`}
       >
         {label}

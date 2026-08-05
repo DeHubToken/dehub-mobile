@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text } from "react-native";
 import Avatar from "../common/Avatar";
+import { theme } from "../../theme";
 import { getAvatarUrl } from "../../libs/misc";
 import type { FollowListItem } from "../../services/user.service";
 
@@ -30,7 +31,7 @@ const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
   }
 
   return (
-    <TouchableOpacity activeOpacity={0.7} className="flex-row items-center mt-3 gap-2">
+    <View className="flex-row items-center mt-3 gap-2">
       <View className="flex-row">
         {displayed.map((m, i) => (
           <Avatar
@@ -38,14 +39,14 @@ const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
             uri={getAvatarUrl(m.user.avatarImageUrl)}
             size={20}
             name={m.user.username || m.user.displayName || m.user.address}
-            style={i > 0 ? { marginLeft: -6, borderWidth: 1.5, borderColor: "#010305" } : undefined}
+            style={i > 0 ? { marginLeft: -6, borderWidth: 1.5, borderColor: theme.colors.neutrals[900] } : undefined}
           />
         ))}
       </View>
-      <Text className="text-zinc-500 text-xs flex-1" numberOfLines={1}>
+      <Text className="text-zinc-400 text-xs flex-1" numberOfLines={1}>
         {text}
       </Text>
-    </TouchableOpacity>
+    </View>
   );
 };
 

@@ -1,14 +1,12 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 
 type DpayHeaderProps = {
-  title: string;
   subtitle?: string;
   right?: React.ReactNode;
 };
 
-const DpayHeader: React.FC<DpayHeaderProps> = ({ title, subtitle, right }) => {
+const DpayHeader: React.FC<DpayHeaderProps> = ({ subtitle, right }) => {
   const hasRight = !!right;
 
   return (
@@ -24,14 +22,6 @@ const DpayHeader: React.FC<DpayHeaderProps> = ({ title, subtitle, right }) => {
           resizeMode="contain"
           style={{ alignSelf: hasRight ? 'flex-start' : 'center' }}
         />
-        {/* <Text
-            className={`text-white font-semibold font-sans ${
-              hasRight ? "text-2xl" : "text-3xl"
-            } tracking-tight`}
-            style={{ fontWeight: '600', includeFontPadding: false, lineHeight: hasRight ? 32 : 38 }}
-          >
-            {title}
-          </Text> */}
         {subtitle ? (
           <Text
             className={`text-gray-400 ${hasRight ? "text-sm" : "text-base text-center"} font-sans`}

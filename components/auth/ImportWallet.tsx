@@ -32,11 +32,11 @@ const ImportWallet: React.FC<ImportWalletProps> = memo(
       <View className={`mt-2 ${className || ""}`.trim()}>
         {/* OR divider */}
         <View className="flex-row items-center my-4">
-          <View className="flex-1 h-[1px] bg-neutral-700 mt-2 " />
-          <Text className="mx-4 mt-2 text-gray-500 text-base font-medium uppercase tracking-wider">
+          <View className="flex-1 h-[1px] bg-neutral-700" />
+          <Text className="mx-4 text-gray-400 text-xs font-medium uppercase tracking-wider">
             or
           </Text>
-          <View className="flex-1 h-[1px] bg-neutral-700 mt-2 " />
+          <View className="flex-1 h-[1px] bg-neutral-700" />
         </View>
 
         {/* Import wallet button */}
@@ -44,7 +44,7 @@ const ImportWallet: React.FC<ImportWalletProps> = memo(
           onPress={handlePress}
           disabled={isDisabled}
           accessibilityRole="button"
-          className="mt-4 flex-row items-center justify-center rounded-xl bg-neutral-800 border border-neutral-700 active:opacity-80"
+          className="mt-4 flex-row items-center justify-center rounded-xl bg-white/10 border border-white/20 active:opacity-80"
           style={{ width: "100%", height: 60, opacity: isDisabled ? 0.5 : 1 }}
         >
           <Ionicons name="key" size={20} color="#FFFFFF" style={{ marginRight: 10,}} />

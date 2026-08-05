@@ -149,7 +149,7 @@ const NewChatIntroComponent: React.FC<NewChatIntroProps> = ({
           )}
       </View>
 
-      <Text className="text-theme-neutrals-600 text-[11px] text-center mt-4 px-4">
+      <Text className="text-theme-neutrals-400 text-[12px] text-center mt-4 px-4">
         Send your first message to start the conversation
       </Text>
     </Animated.View>

@@ -143,8 +143,8 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
           <Text className="text-white font-bold text-base">
             {isEditing ? "Edit Plan" : "Create Subscription Plan"}
           </Text>
-          <TouchableOpacity onPress={onClose} activeOpacity={0.7} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-            <Icon name="X" size={20} color="#9ca3af" />
+          <TouchableOpacity onPress={onClose} activeOpacity={0.7} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <Icon name="X" size={20} color="#A1A1AA" />
           </TouchableOpacity>
         </View>
 
@@ -158,7 +158,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
             <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">Plan Name *</Text>
             <TextInput
               className="bg-theme-neutrals-800 border border-theme-neutrals-700 text-white text-sm px-4 py-3 rounded-xl"
-              placeholderTextColor="#6b7280"
+              placeholderTextColor="#8B8D90"
               placeholder="e.g. Premium, Gold, VIP..."
               value={name}
               onChangeText={setName}
@@ -171,7 +171,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
             <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">Description</Text>
             <TextInput
               className="bg-theme-neutrals-800 border border-theme-neutrals-700 text-white text-sm px-4 py-3 rounded-xl"
-              placeholderTextColor="#6b7280"
+              placeholderTextColor="#8B8D90"
               placeholder="What subscribers get..."
               value={description}
               onChangeText={setDescription}
@@ -187,7 +187,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
             <Text className="text-theme-neutrals-400 text-xs font-medium mb-1.5">Price (DHB) *</Text>
             <TextInput
               className="bg-theme-neutrals-800 border border-theme-neutrals-700 text-white text-sm px-4 py-3 rounded-xl"
-              placeholderTextColor="#6b7280"
+              placeholderTextColor="#8B8D90"
               placeholder="0"
               value={price}
               onChangeText={setPrice}
@@ -206,11 +206,11 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
                   activeOpacity={0.7}
                   className={`px-4 py-2 rounded-xl border ${
                     duration === opt.days
-                      ? "bg-blue-600 border-blue-500"
+                      ? "bg-white border-white"
                       : "bg-theme-neutrals-800 border-theme-neutrals-700"
                   }`}
                 >
-                  <Text className={`text-sm font-medium ${duration === opt.days ? "text-white" : "text-theme-neutrals-400"}`}>
+                  <Text className={`text-sm font-medium ${duration === opt.days ? "text-black" : "text-theme-neutrals-400"}`}>
                     {opt.label}
                   </Text>
                 </TouchableOpacity>
@@ -224,7 +224,7 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
             <View className="flex-row gap-2 mb-2">
               <TextInput
                 className="flex-1 bg-theme-neutrals-800 border border-theme-neutrals-700 text-white text-sm px-4 py-3 rounded-xl"
-                placeholderTextColor="#6b7280"
+                placeholderTextColor="#8B8D90"
                 placeholder="Add a benefit..."
                 value={benefitInput}
                 onChangeText={setBenefitInput}
@@ -235,17 +235,17 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
               <TouchableOpacity
                 onPress={addBenefit}
                 activeOpacity={0.7}
-                className="bg-blue-600 px-4 rounded-xl items-center justify-center"
+                className="bg-white px-4 rounded-xl items-center justify-center"
               >
-                <Icon name="Plus" size={18} color="#fff" />
+                <Icon name="Plus" size={18} color="#000000" />
               </TouchableOpacity>
             </View>
             {benefits.map((b, idx) => (
               <View key={idx} className="flex-row items-center bg-theme-neutrals-800/60 rounded-xl px-3 py-2 mb-1.5">
                 <Icon name="Check" size={14} color="#D4D4D8" />
                 <Text className="flex-1 text-white text-sm ml-2">{b}</Text>
-                <TouchableOpacity onPress={() => removeBenefit(idx)} activeOpacity={0.7} hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}>
-                  <Icon name="X" size={14} color="#6b7280" />
+                <TouchableOpacity onPress={() => removeBenefit(idx)} activeOpacity={0.7} hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}>
+                  <Icon name="X" size={14} color="#A1A1AA" />
                 </TouchableOpacity>
               </View>
             ))}
@@ -257,12 +257,12 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
             onPress={handleSave}
             disabled={saving}
             activeOpacity={0.85}
-            className={`py-3.5 rounded-xl items-center ${saving ? "bg-blue-800" : "bg-blue-600"}`}
+            className={`py-3.5 rounded-xl items-center bg-white ${saving ? "opacity-60" : ""}`}
           >
             {saving ? (
-              <ActivityIndicator color="#fff" size="small" />
+              <ActivityIndicator color="#000000" size="small" />
             ) : (
-              <Text className="text-white font-semibold text-sm">
+              <Text className="text-black font-semibold text-sm">
                 {isEditing ? "Save Changes" : "Create Plan"}
               </Text>
             )}

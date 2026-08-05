@@ -76,7 +76,7 @@ const StoryAvatarRing: React.FC<StoryAvatarRingProps> = ({
         accessibilityLabel="View story"
       >
         <LinearGradient
-          colors={["#F9CE34", "#EE2A7B", "#6228D7"]}
+          colors={["#FFFFFF", "#A1A1AA", "#FFFFFF"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={{

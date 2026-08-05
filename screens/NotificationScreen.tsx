@@ -5,13 +5,15 @@ import {
   Text,
   FlatList,
   Image,
+  ScrollView,
   TouchableOpacity,
+  ActivityIndicator,
   RefreshControl,
   Platform,
   UIManager,
 } from "react-native";
 import Animated, { useSharedValue, useAnimatedStyle, withSpring } from "react-native-reanimated";
-import { LinearGradient } from "expo-linear-gradient";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { 
@@ -66,7 +68,7 @@ const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
 };
 
 const SPRING_CONFIG = { stiffness: 400, damping: 30 };
-const TAB_HEIGHT = 36;
+const TAB_HEIGHT = 44;
 
 interface TypeTabsProps {
   selected: NotificationTypeFilter;
@@ -105,94 +107,110 @@ const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, disa
   }, [selected, indicatorX, indicatorW]);
 
   return (
-    <View className="border-b border-zinc-800/50" style={{ paddingHorizontal: 12, paddingVertical: 8 }}>
-      <View style={{ flexDirection: 'row', gap: 8, position: 'relative' }}>
-        <Animated.View
-          style={[
-            indicatorStyle,
-            { position: 'absolute', top: 0, height: TAB_HEIGHT, borderRadius: 12, overflow: 'hidden' },
-          ]}
-        >
-          <LinearGradient
-            colors={['rgba(255,255,255,0.20)', 'rgba(255,255,255,0.10)', 'rgba(255,255,255,0.05)']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={{
-              flex: 1,
-              borderRadius: 12,
-              borderWidth: 1,
-              borderColor: 'rgba(255,255,255,0.30)',
-            }}
+    <View className="border-b border-zinc-800/50" style={{ paddingVertical: 8 }}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{ paddingHorizontal: 12 }}
+      >
+        <View style={{ flexDirection: 'row', gap: 8, position: 'relative' }}>
+          <Animated.View
+            style={[
+              indicatorStyle,
+              {
+                position: 'absolute',
+                top: 0,
+                height: TAB_HEIGHT,
+                borderRadius: 12,
+                backgroundColor: 'rgba(255,255,255,0.2)',
+                borderWidth: 1,
+                borderColor: 'rgba(255,255,255,0.4)',
+              },
+            ]}
           />
-          <View
-            style={{
-              position: 'absolute',
-              top: 1,
-              left: '10%',
-              right: '10%',
-              height: 1,
-              backgroundColor: 'rgba(255,255,255,0.4)',
-              borderRadius: 1,
-            }}
-          />
-        </Animated.View>
 
-        {TYPE_TABS.map((tab) => {
-          const isActive = selected === tab.key;
-          const count = counts[tab.key];
-          return (
-            <TouchableOpacity
-              key={tab.key}
-              onPress={() => onSelect(tab.key)}
-              disabled={disabled}
-              activeOpacity={0.7}
-              onLayout={(e) => {
-                const { x, width } = e.nativeEvent.layout;
-                handleLayout(tab.key, x, width);
-              }}
-              style={[
-                {
-                  height: TAB_HEIGHT,
-                  paddingHorizontal: 10,
-                  borderRadius: 12,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 4,
-                },
-                !isActive && { backgroundColor: '#27272a' },
-                disabled && !isActive ? { opacity: 0.5 } : undefined,
-              ]}
-            >
-              <Icon
-                name={tab.icon as any}
-                size={14}
-                color={isActive ? '#fff' : '#a1a1aa'}
-              />
-              {count > 0 && (
-                <View
-                  style={{
-                    backgroundColor: isActive ? 'rgba(255,255,255,0.20)' : '#ef4444',
-                    borderRadius: 8,
-                    minWidth: 16,
-                    height: 16,
-                    paddingHorizontal: 4,
+          {TYPE_TABS.map((tab) => {
+            const isActive = selected === tab.key;
+            const count = counts[tab.key];
+            return (
+              <TouchableOpacity
+                key={tab.key}
+                onPress={() => onSelect(tab.key)}
+                disabled={disabled}
+                activeOpacity={0.7}
+                accessibilityRole="button"
+                accessibilityLabel={tab.label}
+                accessibilityState={{ selected: isActive }}
+                onLayout={(e) => {
+                  const { x, width } = e.nativeEvent.layout;
+                  handleLayout(tab.key, x, width);
+                }}
+                style={[
+                  {
+                    height: TAB_HEIGHT,
+                    paddingHorizontal: 14,
+                    borderRadius: 12,
+                    flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
-                  }}
-                >
-                  <Text style={{ color: '#fff', fontSize: 10, fontWeight: '700' }}>
-                    {count > 99 ? '99+' : count}
-                  </Text>
-                </View>
-              )}
-            </TouchableOpacity>
-          );
-        })}
-      </View>
+                    gap: 4,
+                  },
+                  !isActive && { backgroundColor: '#27272a' },
+                  disabled && !isActive ? { opacity: 0.5 } : undefined,
+                ]}
+              >
+                <Icon
+                  name={tab.icon as any}
+                  size={14}
+                  color={isActive ? '#fff' : '#a1a1aa'}
+                />
+                {count > 0 && (
+                  <View
+                    style={{
+                      backgroundColor: 'rgba(255,255,255,0.20)',
+                      borderRadius: 9,
+                      minWidth: 18,
+                      height: 18,
+                      paddingHorizontal: 4,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Text style={{ color: '#fff', fontSize: 12, fontWeight: '700' }}>
+                      {count > 99 ? '99+' : count}
+                    </Text>
+                  </View>
+                )}
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      </ScrollView>
     </View>
   );
 });
+
+// Monochrome constraint over the shared icon config: the per-type saturated
+// tints bypass the monochrome system. Semantic color survives only where it
+// means something — red for warnings/removals, green for money received.
+const MONEY_RECEIVED_TYPES = new Set<string>([
+  NotificationType.TIP,
+  NotificationType.BOUNTY_CLAIMED,
+  NotificationType.PPV_PURCHASE,
+  NotificationType.FIAT_PAYMENT_COMPLETED,
+]);
+const WARNING_TYPES = new Set<string>([
+  NotificationType.VIDEO_REMOVAL,
+  NotificationType.ACCOUNT_WARNING,
+]);
+const MONO_ICON_COLORS = new Set(['#F4F4F5', '#D4D4D8']);
+
+const getMonoIconConfig = (type: NotificationType | string): { name: string; color: string } => {
+  const cfg = getNotificationIconConfig(type);
+  if (WARNING_TYPES.has(type as string)) return { ...cfg, color: '#EF4444' };
+  if (MONEY_RECEIVED_TYPES.has(type as string)) return { ...cfg, color: '#22C55E' };
+  return MONO_ICON_COLORS.has(cfg.color) ? cfg : { ...cfg, color: '#D4D4D8' };
+};
 
 /**
  * Check if notification is clickable based on type and available data
@@ -254,6 +272,7 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
 
 const NotificationScreen = () => {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const { patchUser } = useAuthActions();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -599,7 +618,7 @@ const NotificationScreen = () => {
 
   const renderItem = useCallback(
     ({ item }: { item: NotificationItem }) => {
-      const icon = getNotificationIconConfig(item.type);
+      const icon = getMonoIconConfig(item.type);
       // Every positive reaction arrives as a `like`; show which one it was.
       // Absent on legacy rows and on aggregated rows whose actors disagreed —
       // the thumbs-up icon is right for both. The message text needs no special
@@ -628,8 +647,8 @@ const NotificationScreen = () => {
             alignItems: 'flex-start',
             padding: 16,
             borderBottomWidth: 1,
-            borderBottomColor: '#27272a',
-            backgroundColor: !item.read ? '#1a1a1d' : 'transparent',
+            borderBottomColor: '#1D1F21',
+            backgroundColor: !item.read ? 'rgba(255,255,255,0.08)' : 'transparent',
           }}
         >
           {/* Avatar or Icon — tap to open profile */}
@@ -672,12 +691,12 @@ const NotificationScreen = () => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   borderWidth: 2,
-                  borderColor: '#0a0a0a',
-                  backgroundColor: icon.color,
+                  borderColor: '#010305',
+                  backgroundColor: 'rgba(255,255,255,0.2)',
                 }}
               >
                 {reactionGlyph ? (
-                  <Text style={{ fontSize: 10, lineHeight: 13 }}>{reactionGlyph}</Text>
+                  <Text style={{ fontSize: 12, lineHeight: 15 }}>{reactionGlyph}</Text>
                 ) : (
                   <Icon name={icon.name as any} size={10} color="white" />
                 )}
@@ -687,11 +706,11 @@ const NotificationScreen = () => {
 
           {/* Content */}
           <View style={{ flex: 1, marginLeft: 12 }}>
-            <Text 
+            <Text
               style={{
                 fontSize: 14,
                 lineHeight: 20,
-                color: !item.read ? '#f5f5f5' : '#a3a3a3',
+                color: !item.read ? '#F9FBFF' : '#A6A9AC',
                 fontWeight: !item.read ? '500' : '400',
               }}
               numberOfLines={3}
@@ -701,14 +720,14 @@ const NotificationScreen = () => {
             
             {/* Aggregation indicator */}
             {item.aggregatedCount && item.aggregatedCount > 1 && item.latestActorNames && (
-              <Text style={{ color: '#6b7280', fontSize: 12, marginTop: 4 }}>
+              <Text style={{ color: '#A1A1AA', fontSize: 12, marginTop: 4 }}>
                 {item.latestActorNames.slice(0, 3).join(', ')}
                 {item.aggregatedCount > 3 && ` and ${item.aggregatedCount - 3} others`}
               </Text>
             )}
-            
+
             {/* Timestamp */}
-            <Text style={{ color: '#6b7280', fontSize: 12, marginTop: 4 }}>
+            <Text style={{ color: '#A1A1AA', fontSize: 12, marginTop: 4 }}>
               {formatNotificationDate(item.updatedAt || item.createdAt)}
             </Text>
 
@@ -718,7 +737,7 @@ const NotificationScreen = () => {
               item.type === NotificationType.PPV_PURCHASE) && item.amount && (
               <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
                 <View style={{ backgroundColor: 'rgba(34, 197, 94, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
-                  <Text style={{ color: '#4ade80', fontSize: 12, fontWeight: '600' }}>
+                  <Text style={{ color: '#22C55E', fontSize: 12, fontWeight: '600' }}>
                     +{item.amount} {item.currency || 'DHB'}
                   </Text>
                 </View>
@@ -743,13 +762,13 @@ const NotificationScreen = () => {
                   onPress={() => handleAcceptFollowRequest(item)}
                   activeOpacity={0.85}
                   style={{
-                    backgroundColor: '#256DFA',
+                    backgroundColor: '#fff',
                     paddingHorizontal: 16,
                     paddingVertical: 7,
                     borderRadius: 8,
                   }}
                 >
-                  <Text style={{ color: '#fff', fontSize: 13, fontWeight: '600' }}>
+                  <Text style={{ color: '#09090B', fontSize: 13, fontWeight: '600' }}>
                     Accept
                   </Text>
                 </TouchableOpacity>
@@ -763,7 +782,7 @@ const NotificationScreen = () => {
                     borderRadius: 8,
                   }}
                 >
-                  <Text style={{ color: '#a3a3a3', fontSize: 13, fontWeight: '600' }}>
+                  <Text style={{ color: '#A6A9AC', fontSize: 13, fontWeight: '600' }}>
                     Decline
                   </Text>
                 </TouchableOpacity>
@@ -792,7 +811,7 @@ const NotificationScreen = () => {
           {/* Clickable indicator */}
           {clickable && (
             <View style={{ position: 'absolute', top: 16, right: 16 }}>
-              <Icon name="ChevronRight" size={16} color="#6b7280" />
+              <Icon name="ChevronRight" size={16} color="#A1A1AA" />
             </View>
           )}
         </TouchableOpacity>
@@ -816,9 +835,9 @@ const NotificationScreen = () => {
         <View className="relative">
           <View className="w-11 h-11 rounded-full bg-theme-neutrals-800" />
           {/* Type badge */}
-          <View 
+          <View
             className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-theme-neutrals-700"
-            style={{ borderWidth: 2, borderColor: '#0a0a0a' }}
+            style={{ borderWidth: 2, borderColor: '#010305' }}
           />
         </View>
         
@@ -840,8 +859,8 @@ const NotificationScreen = () => {
   const ListFooter = useMemo(() => {
     if (!loadingMore) return null;
     return (
-      <View className="py-4 items-center">
-        <Text className="text-theme-neutrals-500 text-xs">Loading more...</Text>
+      <View className="py-6 items-center">
+        <ActivityIndicator size="small" color="#F4F4F5" />
       </View>
     );
   }, [loadingMore]);
@@ -887,11 +906,12 @@ const NotificationScreen = () => {
           data={filteredNotifications}
           keyExtractor={keyExtractor}
           renderItem={renderItem}
+          contentContainerStyle={{ paddingBottom: insets.bottom + 16 }}
           refreshControl={
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
-              tintColor="#fff"
+              tintColor="#F4F4F5"
             />
           }
           onEndReached={onLoadMore}
@@ -900,7 +920,7 @@ const NotificationScreen = () => {
           ListEmptyComponent={
             <View className="flex-1 items-center justify-center py-20">
               <View className="w-16 h-16 rounded-full bg-theme-neutrals-800 items-center justify-center mb-4">
-                <Icon name="BellOff" size={32} color="#6b7280" />
+                <Icon name="BellOff" size={32} color="#A1A1AA" />
               </View>
               <Text className="text-theme-neutrals-400 text-base font-medium mb-1">
                 No notifications

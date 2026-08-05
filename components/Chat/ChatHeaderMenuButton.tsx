@@ -11,6 +11,7 @@ const ChatHeaderMenuButton: React.FC<ChatHeaderMenuButtonProps> = ({ onPress }) 
     <TouchableOpacity
       className="w-10 h-10 items-center justify-center active:opacity-70"
       onPress={onPress}
+      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
       accessibilityRole="button"
       accessibilityLabel="Open chat menu"
     >

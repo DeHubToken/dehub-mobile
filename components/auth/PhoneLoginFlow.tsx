@@ -79,7 +79,9 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
   if (!showInput) {
     return (
       <TouchableOpacity
-        className="flex-row items-center justify-center rounded-xl bg-neutral-800 border border-neutral-700"
+        className={`flex-row items-center justify-center rounded-xl bg-white/10 border border-white/20 ${
+          disabled ? "opacity-50" : ""
+        }`}
         style={{ width: "100%", height: 60 }}
         onPress={() => setShowInput(true)}
         disabled={disabled}
@@ -99,8 +101,8 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
 
   return (
     <View
-      className="flex-row items-center border border-neutral-700 rounded-xl bg-neutral-800 px-4"
-      style={{ width: "100%", height: 62 }}
+      className="flex-row items-center border border-white/20 rounded-xl bg-white/10 px-4"
+      style={{ width: "100%", height: 60 }}
     >
       <Ionicons
         name="call"
@@ -112,7 +114,7 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
         ref={inputRef}
         className="flex-1 text-xl text-white"
         placeholder="+(00)123456"
-        placeholderTextColor="#6B7280"
+        placeholderTextColor="#8B8D90"
         value={phone}
         onChangeText={setPhone}
         editable={!loading && !disabled}
@@ -128,11 +130,11 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
       <TouchableOpacity
         onPress={validateAndSubmit}
         disabled={loading || disabled || isValidating || !isValidPhone(phone)}
-        className="ml-2"
+        className="ml-2 py-3 px-2"
         accessibilityLabel="Submit phone for login"
       >
-        {isValidating ? (
-          <ActivityIndicator color="#A0AEC0" size="small" />
+        {isValidating || loading ? (
+          <ActivityIndicator color="#fff" size="small" />
         ) : (
           <Text
             className="text-theme-accent font-medium text-base"
@@ -140,7 +142,7 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
               opacity: loading || disabled || !isValidPhone(phone) ? 0.5 : 1,
             }}
           >
-            {loading ? "..." : "Submit"}
+            Submit
           </Text>
         )}
       </TouchableOpacity>

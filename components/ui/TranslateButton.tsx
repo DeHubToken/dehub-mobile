@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
 import Icon from './Icon';
+import { colors } from '../../theme/colors';
 
 interface TranslateButtonProps {
   isTranslated: boolean;
@@ -27,8 +28,8 @@ const TranslateButtonComponent: React.FC<TranslateButtonProps> = ({
   if (isLoading) {
     return (
       <View style={style}>
-        <Icon name="Loader" size={12} color="#6F7174" />
-        <Text style={{ fontSize: 11, color: '#8B8D90' }}>Translating…</Text>
+        <Icon name="Loader" size={12} color={colors.neutrals[600]} />
+        <Text style={{ fontSize: 12, color: colors.neutrals[500] }}>Translating…</Text>
       </View>
     );
   }
@@ -41,8 +42,8 @@ const TranslateButtonComponent: React.FC<TranslateButtonProps> = ({
         hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
         style={style}
       >
-        <Icon name="RotateCcw" size={12} color="#6F7174" />
-        <Text style={{ fontSize: 11, color: '#8B8D90' }}>Show original</Text>
+        <Icon name="RotateCcw" size={12} color={colors.neutrals[600]} />
+        <Text style={{ fontSize: 12, color: colors.neutrals[500] }}>Show original</Text>
       </TouchableOpacity>
     );
   }
@@ -51,10 +52,12 @@ const TranslateButtonComponent: React.FC<TranslateButtonProps> = ({
     <TouchableOpacity
       onPress={onTranslate}
       activeOpacity={0.7}
-      hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+      hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
       style={inline ? ROW_STYLE : { paddingVertical: 6 }}
+      accessibilityRole="button"
+      accessibilityLabel="Translate"
     >
-      <Icon name="Languages" size={16} color="#6F7174" />
+      <Icon name="Languages" size={16} color={colors.neutrals[600]} />
     </TouchableOpacity>
   );
 };

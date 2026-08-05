@@ -30,6 +30,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import Icon from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import ProfileAssets from "../components/Profile/ProfileAssets";
 import { theme } from "../theme";
 import { formatCompactNumber } from "../libs";
@@ -80,6 +81,7 @@ const RangeRow: React.FC<{
       <Pressable
         key={r}
         onPress={() => onSelect(r)}
+        hitSlop={{ top: 10, bottom: 10 }}
         style={[styles.rangeChip, active === r && styles.rangeChipActive]}
       >
         <Text style={[styles.rangeText, active === r && styles.rangeTextActive]}>{r}</Text>
@@ -187,7 +189,7 @@ const EngagementChart: React.FC<{ data?: AnalyticsResponse }> = ({ data }) => {
         const p = (labels[idx] ?? "").split("-");
         const short = p.length === 3 ? `${parseInt(p[1])}/${parseInt(p[2])}` : labels[idx];
         return (
-          <SvgText key={idx} x={x} y={H - 1} fontSize={9} fill="#71717a" textAnchor="middle">
+          <SvgText key={idx} x={x} y={H - 1} fontSize={12} fill="#A1A1AA" textAnchor="middle">
             {short}
           </SvgText>
         );
@@ -219,7 +221,7 @@ const ActivityRow: React.FC<{ item: ActivityItem }> = ({ item }) => {
   return (
     <View style={styles.activityRow}>
       <View style={styles.activityIcon}>
-        <Icon name={meta?.icon ?? "Circle"} size={14} color={positive ? "#34D399" : "#F87171"} />
+        <Icon name={meta?.icon ?? "Circle"} size={14} color={positive ? "#22C55E" : "#EF4444"} />
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text style={styles.activityLabel}>
@@ -227,7 +229,7 @@ const ActivityRow: React.FC<{ item: ActivityItem }> = ({ item }) => {
         </Text>
         <Text style={styles.activityTime}>{timeAgo(item.createdAt, t)}</Text>
       </View>
-      <Text style={[styles.activityAmount, { color: positive ? "#34D399" : "#F87171" }]}>
+      <Text style={[styles.activityAmount, { color: positive ? "#22C55E" : "#EF4444" }]}>
         {positive ? "+" : ""}
         {fmt(item.amount)} {item.currency}
       </Text>
@@ -318,26 +320,22 @@ export default function CommandCentreScreen() {
   ];
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>{t("commandCentre.title")}</Text>
-          <Text style={styles.subtitle}>{t("commandCentre.mobileSubtitle")}</Text>
-        </View>
-        <Icon name="LayoutDashboard" size={22} color={theme.colors.accent} />
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader
+        title={t("commandCentre.title")}
+        subtitle={t("commandCentre.mobileSubtitle")}
+        canGoBack
+        rightContent={<Icon name="LayoutDashboard" size={22} color={theme.colors.accent} />}
+      />
 
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 28, gap: 12 }}
+        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 28, gap: 12 }}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            tintColor={theme.colors.accentForeground}
+            tintColor={theme.colors.accent}
           />
         }
       >
@@ -502,17 +500,7 @@ export default function CommandCentreScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 12,
-  },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  title: { color: "#FFFFFF", fontSize: 21, fontWeight: "700" },
-  subtitle: { color: "#71717A", fontSize: 12, marginTop: 1 },
+  root: { flex: 1, backgroundColor: "#010305" },
 
   card: {
     borderRadius: 12,
@@ -523,7 +511,7 @@ const styles = StyleSheet.create({
   },
   cardHead: { flexDirection: "row", alignItems: "center", marginBottom: 4 },
   cardTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "700" },
-  dim: { color: "#71717A", fontSize: 12 },
+  dim: { color: "#A1A1AA", fontSize: 12 },
 
   walletBtn: {
     flexDirection: "row",
@@ -534,12 +522,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 7,
   },
-  walletBtnText: { color: "#000000", fontSize: 12.5, fontWeight: "700" },
+  walletBtnText: { color: "#000000", fontSize: 12, fontWeight: "700" },
 
   balanceBig: { color: "#FFFFFF", fontSize: 32, fontWeight: "800", marginTop: 6 },
   balanceUnit: { color: "#71717A", fontSize: 15, fontWeight: "700" },
 
-  incomeTotal: { color: "#34D399", fontSize: 13, fontWeight: "700", marginTop: 2 },
+  incomeTotal: { color: "#22C55E", fontSize: 13, fontWeight: "700", marginTop: 2 },
 
   rangeRow: { flexDirection: "row", gap: 6, marginTop: 10 },
   rangeChip: {
@@ -549,7 +537,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.06)",
   },
   rangeChipActive: { backgroundColor: "#FFFFFF" },
-  rangeText: { color: "#A1A1AA", fontSize: 11.5, fontWeight: "700" },
+  rangeText: { color: "#A1A1AA", fontSize: 12, fontWeight: "700" },
   rangeTextActive: { color: "#000000" },
 
   chartEmpty: { height: 120, alignItems: "center", justifyContent: "center" },
@@ -567,7 +555,7 @@ const styles = StyleSheet.create({
     borderTopColor: "rgba(255,255,255,0.07)",
   },
   totalsValue: { color: "#FFFFFF", fontSize: 14, fontWeight: "700" },
-  totalsLabel: { color: "#71717A", fontSize: 10, marginTop: 2 },
+  totalsLabel: { color: "#A1A1AA", fontSize: 12, marginTop: 2 },
 
   activityRow: {
     flexDirection: "row",
@@ -586,7 +574,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   activityLabel: { color: "#E4E4E7", fontSize: 13, fontWeight: "600" },
-  activityTime: { color: "#52525B", fontSize: 10.5, marginTop: 2 },
+  activityTime: { color: "#A1A1AA", fontSize: 12, marginTop: 2 },
   activityAmount: { fontSize: 13, fontWeight: "700" },
 
   statGrid: { flexDirection: "row", gap: 8, marginTop: 12 },
@@ -609,5 +597,5 @@ const styles = StyleSheet.create({
   statCell: { flex: 1, alignItems: "center", paddingHorizontal: 4 },
   statCellDivider: { borderLeftWidth: 1, borderLeftColor: "rgba(255,255,255,0.07)" },
   statCellValue: { color: "#FFFFFF", fontSize: 15, fontWeight: "700" },
-  statCellLabel: { color: "#71717A", fontSize: 10, marginTop: 2 },
+  statCellLabel: { color: "#A1A1AA", fontSize: 12, marginTop: 2 },
 });

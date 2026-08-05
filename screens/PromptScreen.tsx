@@ -17,7 +17,6 @@ import React, { useCallback, useRef, useState } from "react";
 import {
   View,
   Text,
-  StyleSheet,
   Pressable,
   TextInput,
   ScrollView,
@@ -28,6 +27,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import { useAuthState } from "../context/AuthContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 
@@ -78,40 +78,42 @@ export default function PromptScreen() {
   );
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <Text style={styles.headerTitle}>{t("nav.prompt", "Prompt")}</Text>
-      </View>
+    <View className="flex-1 bg-theme-neutrals-900">
+      <ScreenHeader title={t("nav.prompt", "Prompt")} />
 
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
-        keyboardVerticalOffset={insets.top + 44}
+        keyboardVerticalOffset={insets.top + 64}
       >
         <ScrollView
-          contentContainerStyle={styles.body}
+          contentContainerStyle={{
+            paddingHorizontal: 20,
+            paddingTop: 28,
+            paddingBottom: 40,
+            alignItems: "center",
+          }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
-          <View style={styles.wandWrap}>
+          <View className="w-16 h-16 rounded-full bg-white/10 items-center justify-center mb-[18px]">
             <Icon name="Wand" size={30} color="#FFFFFF" />
           </View>
-          <Text style={styles.title}>{t("prompt.title", "What do you want to make?")}</Text>
-          <Text style={styles.subtitle}>
+          <Text className="text-white text-[22px] font-bold text-center">
+            {t("prompt.title", "What do you want to make?")}
+          </Text>
+          <Text className="text-theme-neutrals-400 text-sm leading-5 text-center mt-2 mb-[22px]">
             {t("prompt.subtitle", "Ask the DeHub assistant anything — or start from an idea below.")}
           </Text>
 
-          <View style={styles.composer}>
+          <View className="w-full flex-row items-end gap-2 bg-white/10 border border-white/20 rounded-[20px] px-3.5 py-2.5">
             <TextInput
               ref={inputRef}
               value={text}
               onChangeText={setText}
               placeholder={t("prompt.placeholder", "Ask anything…")}
-              placeholderTextColor="#52525B"
-              style={styles.input}
+              placeholderTextColor="#6F7174"
+              className="flex-1 text-white text-base max-h-[140px] p-0"
               multiline
               autoFocus
               returnKeyType="send"
@@ -120,19 +122,28 @@ export default function PromptScreen() {
             <Pressable
               onPress={() => submit()}
               disabled={!text.trim()}
-              style={[styles.sendBtn, !text.trim() && styles.sendBtnDisabled]}
+              hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+              className={`w-[34px] h-[34px] rounded-full bg-white items-center justify-center ${
+                !text.trim() ? "opacity-[0.35]" : ""
+              }`}
             >
               <Icon name="ArrowUp" size={18} color="#000000" />
             </Pressable>
           </View>
 
-          <View style={styles.suggestions}>
+          <View className="w-full gap-2 mt-[22px]">
             {SUGGESTION_KEYS.map((k) => {
               const label = t(k, SUGGESTION_FALLBACKS[k]);
               return (
-                <Pressable key={k} style={styles.suggestion} onPress={() => submit(label)}>
+                <Pressable
+                  key={k}
+                  className="flex-row items-center gap-[9px] px-3.5 py-3 rounded-[14px] bg-white/5 border border-white/10"
+                  onPress={() => submit(label)}
+                >
                   <Icon name="Sparkles" size={13} color="#A1A1AA" />
-                  <Text style={styles.suggestionText}>{label}</Text>
+                  <Text className="text-theme-neutrals-300 text-[13px] leading-[18px] flex-1">
+                    {label}
+                  </Text>
                 </Pressable>
               );
             })}
@@ -142,73 +153,3 @@ export default function PromptScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    paddingHorizontal: 12,
-    paddingBottom: 8,
-  },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  headerTitle: { color: "#FFFFFF", fontSize: 17, fontWeight: "700" },
-
-  body: { paddingHorizontal: 20, paddingTop: 28, paddingBottom: 40, alignItems: "center" },
-  wandWrap: {
-    width: 64,
-    height: 64,
-    borderRadius: 999,
-    backgroundColor: "rgba(255,255,255,0.08)",
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 18,
-  },
-  title: { color: "#FFFFFF", fontSize: 22, fontWeight: "700", textAlign: "center" },
-  subtitle: {
-    color: "#A1A1AA",
-    fontSize: 13.5,
-    lineHeight: 20,
-    textAlign: "center",
-    marginTop: 8,
-    marginBottom: 22,
-  },
-
-  composer: {
-    width: "100%",
-    flexDirection: "row",
-    alignItems: "flex-end",
-    gap: 8,
-    backgroundColor: "rgba(255,255,255,0.06)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.12)",
-    borderRadius: 20,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-  },
-  input: { flex: 1, color: "#FFFFFF", fontSize: 15, maxHeight: 140, padding: 0 },
-  sendBtn: {
-    width: 34,
-    height: 34,
-    borderRadius: 999,
-    backgroundColor: "#FFFFFF",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  sendBtnDisabled: { opacity: 0.35 },
-
-  suggestions: { width: "100%", gap: 8, marginTop: 22 },
-  suggestion: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 9,
-    paddingHorizontal: 14,
-    paddingVertical: 12,
-    borderRadius: 14,
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.08)",
-  },
-  suggestionText: { color: "#D4D4D8", fontSize: 13, flex: 1, lineHeight: 18 },
-});

@@ -8,6 +8,7 @@ import {
   Dimensions,
   StatusBar,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { Image } from "expo-image";
 import Icon from "../ui/Icon";
@@ -108,6 +109,7 @@ const StoryViewerModal: React.FC<StoryViewerModalProps> = ({
   onStoryShown,
   onStoriesChanged,
 }) => {
+  const insets = useSafeAreaInsets();
   const [liveStories, setLiveStories] = useState(stories);
   const [index, setIndex] = useState(initialIndex);
   const [progress, setProgress] = useState(0);
@@ -190,7 +192,7 @@ const StoryViewerModal: React.FC<StoryViewerModalProps> = ({
         />
 
         {/* Progress segments */}
-        <View style={styles.progressRow}>
+        <View style={[styles.progressRow, { top: insets.top + 12 }]}>
           {liveStories.map((s, i) => (
             <View key={s.id || i} style={styles.progressTrack}>
               <View
@@ -204,7 +206,7 @@ const StoryViewerModal: React.FC<StoryViewerModalProps> = ({
         </View>
 
         {/* Header: avatar + username + time + close */}
-        <View style={styles.header}>
+        <View style={[styles.header, { top: insets.top + 26 }]}>
           {avatar ? (
             <Image source={{ uri: avatar }} style={styles.avatar} contentFit="cover" />
           ) : (
