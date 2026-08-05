@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, ViewStyle, StyleSheet } from "react-native";
 import Icon from "./Icon";
+import { colors } from "../../theme/colors";
 
 interface GlassFollowButtonProps {
   isFollowing: boolean;
@@ -38,11 +39,11 @@ const GlassFollowButton: FC<GlassFollowButtonProps> = ({
 
   if (isPending) {
     label = "Requested";
-    labelColor = "#9CA3AF";
-    iconNode = <Icon name="Clock" size={12} color="#9CA3AF" />;
+    labelColor = colors.neutrals[400];
+    iconNode = <Icon name="Clock" size={12} color={colors.neutrals[400]} />;
   } else if (isFollowing) {
     label = "Following";
-    labelColor = "#D1D5DB";
+    labelColor = colors.neutrals[300];
   }
 
   return (
@@ -51,6 +52,7 @@ const GlassFollowButton: FC<GlassFollowButtonProps> = ({
       onPress={onPress}
       className={className}
       style={[btnStyles.wrapper, style]}
+      hitSlop={{ top: 6, bottom: 6 }}
     >
       <View style={btnStyles.content}>
         {iconNode}

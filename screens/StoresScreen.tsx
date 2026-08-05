@@ -22,6 +22,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import MyStoreTab from "../components/Stores/MyStoreTab";
 import { theme } from "../theme";
 import { useAuthState } from "../context/AuthContext";
@@ -34,7 +35,7 @@ import {
 } from "../hooks/useStores";
 
 const GRID_GAP = 10;
-const H_PADDING = 12;
+const H_PADDING = 16;
 
 function money(n: number): string {
   const v = Number(n) || 0;
@@ -129,17 +130,12 @@ export default function StoresScreen() {
   );
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>{t("screens.stores")}</Text>
-          <Text style={styles.subtitle}>{t("stores.subtitle")}</Text>
-        </View>
-        <Icon name="Store" size={22} color={theme.colors.accent} />
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader
+        title={t("screens.stores")}
+        subtitle={t("stores.subtitle")}
+        rightContent={<Icon name="Store" size={22} color={theme.colors.accent} />}
+      />
 
       <View style={styles.segment}>
         {(["browse", "my-store"] as const).map((tabKey) => (
@@ -163,12 +159,17 @@ export default function StoresScreen() {
               value={search}
               onChangeText={setSearch}
               placeholder={t("stores.searchPlaceholder")}
-              placeholderTextColor="#52525B"
+              placeholderTextColor="#8B8D90"
               style={styles.searchInput}
               returnKeyType="search"
             />
             {search.length > 0 && (
-              <Pressable onPress={() => setSearch("")} hitSlop={8}>
+              <Pressable
+                onPress={() => setSearch("")}
+                hitSlop={8}
+                accessibilityRole="button"
+                accessibilityLabel="Clear search"
+              >
                 <Icon name="X" size={15} color="#71717A" />
               </Pressable>
             )}
@@ -234,7 +235,7 @@ export default function StoresScreen() {
                 <RefreshControl
                   refreshing={isRefetching}
                   onRefresh={refetch}
-                  tintColor={theme.colors.accentForeground}
+                  tintColor={theme.colors.accent}
                 />
               }
               ListEmptyComponent={
@@ -259,17 +260,7 @@ export default function StoresScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    paddingHorizontal: H_PADDING,
-    paddingVertical: 12,
-  },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  title: { color: "#FFFFFF", fontSize: 21, fontWeight: "700" },
-  subtitle: { color: "#71717A", fontSize: 12, marginTop: 1 },
+  root: { flex: 1, backgroundColor: "#010305" },
 
   segment: {
     flexDirection: "row",
@@ -309,7 +300,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.08)",
   },
   chipActive: { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" },
-  chipText: { color: "#A1A1AA", fontSize: 12.5, fontWeight: "600" },
+  chipText: { color: "#A1A1AA", fontSize: 12, fontWeight: "600" },
   chipTextActive: { color: "#000000" },
   chipDivider: {
     width: 1,
@@ -336,7 +327,7 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     backgroundColor: "rgba(0,0,0,0.65)",
   },
-  digitalText: { color: "#E4E4E7", fontSize: 9.5, fontWeight: "700" },
+  digitalText: { color: "#E4E4E7", fontSize: 12, fontWeight: "700" },
   soldOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(0,0,0,0.6)",
@@ -347,7 +338,7 @@ const styles = StyleSheet.create({
 
   cardTitle: { color: "#FFFFFF", fontSize: 13, fontWeight: "600", lineHeight: 17 },
   cardPrice: { color: "#FFFFFF", fontSize: 14, fontWeight: "700", marginTop: 5 },
-  cardStore: { color: "#71717A", fontSize: 11, marginTop: 2 },
+  cardStore: { color: "#A1A1AA", fontSize: 12, marginTop: 2 },
 
   orderRow: {
     flexDirection: "row",
@@ -368,11 +359,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  orderTitle: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },
-  orderMeta: { color: "#71717A", fontSize: 11.5, marginTop: 3, textTransform: "capitalize" },
+  orderTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
+  orderMeta: { color: "#A1A1AA", fontSize: 12, marginTop: 3, textTransform: "capitalize" },
 
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 },
-  emptyText: { color: "#71717A", fontSize: 13, marginTop: 12, textAlign: "center" },
+  emptyText: { color: "#A1A1AA", fontSize: 13, marginTop: 12, textAlign: "center" },
   retryBtn: {
     marginTop: 14,
     paddingHorizontal: 20,

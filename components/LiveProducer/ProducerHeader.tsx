@@ -134,7 +134,10 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
         <TouchableOpacity
           onPress={handlePressClose}
           activeOpacity={0.8}
+          hitSlop={8}
           className="w-8 h-8 rounded-full items-center justify-center bg-black/40"
+          accessibilityRole="button"
+          accessibilityLabel="Close"
         >
           <ChevronDown color="#fff" size={18} />
         </TouchableOpacity>
@@ -177,18 +180,18 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
 
         <View className="flex-row items-center gap-2">
           {cameraOff ? (
-            <VideoOff color="#f87171" size={14} />
+            <VideoOff color="#F97066" size={14} />
           ) : (
-            <Video color="#a3e635" size={14} />
+            <Video color="#32D583" size={14} />
           )}
           {micMuted ? (
-            <MicOff color="#f87171" size={14} />
+            <MicOff color="#F97066" size={14} />
           ) : (
-            <Mic color="#a3e635" size={14} />
+            <Mic color="#32D583" size={14} />
           )}
           {isLive ? (
             <View className="flex-row items-center ml-1 bg-black/40 rounded-full px-2.5 py-1">
-              <Eye color="#94a3b8" size={12} />
+              <Eye color="#A6A9AC" size={12} />
               <Text className="text-white/80 text-[11px] ml-1 font-medium">
                 {viewers}
               </Text>

@@ -85,7 +85,10 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile }) => 
           onPress={() => openCommunity(community.slug)}
         >
           {!!community.banner_url && (
-            <Image source={{ uri: community.banner_url }} style={styles.pinBanner} contentFit="cover" />
+            <>
+              <Image source={{ uri: community.banner_url }} style={styles.pinBanner} contentFit="cover" />
+              <View style={styles.pinScrim} />
+            </>
           )}
           <View style={styles.pinAvatar}>
             {community.avatar_url ? (
@@ -115,6 +118,8 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile }) => 
                 setPickerOpen(true);
               }}
               hitSlop={8}
+              accessibilityRole="button"
+              accessibilityLabel={t("communities.pinToProfile")}
             >
               <Icon name="Pin" size={14} color="#a1a1aa" />
             </TouchableOpacity>
@@ -205,7 +210,7 @@ function PinPickerModal({
         <Pressable style={styles.modalSheet} onPress={(e) => e.stopPropagation()}>
           <Text style={styles.modalTitle}>{t("communities.pinToProfile")}</Text>
           {loading ? (
-            <ActivityIndicator color="#fff" style={{ marginVertical: 24 }} />
+            <ActivityIndicator color="#F4F4F5" style={{ marginVertical: 24 }} />
           ) : communities.length === 0 ? (
             <Text style={styles.modalEmpty}>{t("communities.noCommunities")}</Text>
           ) : (
@@ -233,7 +238,7 @@ function PinPickerModal({
                       {item.name}
                     </Text>
                     {isPinned ? (
-                      <Icon name="X" size={18} color="#f87171" />
+                      <Icon name="X" size={18} color="#EF4444" />
                     ) : canAdd ? (
                       <Icon name="Plus" size={18} color="#71717a" />
                     ) : null}
@@ -263,6 +268,7 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   pinBanner: { ...StyleSheet.absoluteFillObject, opacity: 0.35 },
+  pinScrim: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.45)" },
   pinAvatar: {
     width: 48,
     height: 48,
@@ -277,7 +283,7 @@ const styles = StyleSheet.create({
   pinBody: { flex: 1, zIndex: 1 },
   pinName: { color: "#fff", fontSize: 14, fontWeight: "600" },
   pinDesc: { color: "#a1a1aa", fontSize: 12, marginTop: 2 },
-  pinMembers: { color: "#71717a", fontSize: 11, marginTop: 4 },
+  pinMembers: { color: "#A1A1AA", fontSize: 12, marginTop: 4 },
   pinManage: {
     position: "absolute",
     top: 8,
@@ -296,22 +302,24 @@ const styles = StyleSheet.create({
     gap: 6,
     alignSelf: "flex-start",
     paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingVertical: 10,
     borderRadius: 12,
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.1)",
     borderStyle: "dashed",
   },
-  addPinText: { color: "#71717a", fontSize: 12 },
+  addPinText: { color: "#A1A1AA", fontSize: 12 },
   modalOverlay: {
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.6)",
     justifyContent: "flex-end",
   },
   modalSheet: {
-    backgroundColor: "#111316",
+    backgroundColor: "rgba(12,12,14,0.96)",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.1)",
     padding: 20,
     paddingBottom: 32,
     maxHeight: "70%",

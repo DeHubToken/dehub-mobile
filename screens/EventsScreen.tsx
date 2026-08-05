@@ -8,9 +8,9 @@ import React, { useCallback, useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, FlatList, ActivityIndicator, RefreshControl } from "react-native";
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import Icon from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { theme } from "../theme";
 import { toastInfo, toastError, formatCompactNumber } from "../libs";
@@ -89,6 +89,8 @@ const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp }) => {
           <Pressable
             style={[styles.rsvpBtn, going && styles.rsvpBtnActive]}
             onPress={() => onRsvp(event, "going")}
+            accessibilityRole="button"
+            accessibilityState={{ selected: going }}
           >
             <Icon name="Check" size={14} color={going ? "#000000" : "#FFFFFF"} />
             <Text style={[styles.rsvpText, going && styles.rsvpTextActive]}>Going</Text>
@@ -96,6 +98,8 @@ const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp }) => {
           <Pressable
             style={[styles.rsvpBtn, interested && styles.rsvpBtnActive]}
             onPress={() => onRsvp(event, "interested")}
+            accessibilityRole="button"
+            accessibilityState={{ selected: interested }}
           >
             <Icon name="Star" size={14} color={interested ? "#000000" : "#FFFFFF"} />
             <Text style={[styles.rsvpText, interested && styles.rsvpTextActive]}>Interested</Text>
@@ -108,7 +112,6 @@ const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp }) => {
 
 export default function EventsScreen() {
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<any>();
   const user = useUser() as { walletAddress?: string; address?: string } | null;
   const { isSignedIn } = useAuthState();
   const wallet = user?.walletAddress || user?.address || null;
@@ -166,17 +169,8 @@ export default function EventsScreen() {
   }, [filter]);
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Events</Text>
-          <Text style={styles.subtitle}>Discover and RSVP to community events</Text>
-        </View>
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader title="Events" subtitle="Discover and RSVP to community events" />
 
       {/* Filter tabs */}
       <View style={styles.filterRow}>
@@ -186,6 +180,7 @@ export default function EventsScreen() {
             <Pressable
               key={f.key}
               onPress={() => setFilter(f.key)}
+              hitSlop={{ top: 8, bottom: 8 }}
               style={[styles.filterChip, active && styles.filterChipActive]}
             >
               <Text style={[styles.filterText, active && styles.filterTextActive]}>{f.label}</Text>
@@ -213,7 +208,7 @@ export default function EventsScreen() {
           contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 24, paddingTop: 4, gap: 12 }}
           showsVerticalScrollIndicator={false}
           refreshControl={
-            <RefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accentForeground} />
+            <RefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accent} />
           }
           ListEmptyComponent={
             <View style={styles.center}>
@@ -228,11 +223,7 @@ export default function EventsScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: { flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 12, paddingVertical: 12 },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  title: { color: "#FFFFFF", fontSize: 21, fontWeight: "700" },
-  subtitle: { color: "#71717A", fontSize: 12, marginTop: 1 },
+  root: { flex: 1, backgroundColor: "#010305" },
   filterRow: { flexDirection: "row", gap: 8, paddingHorizontal: 12, paddingBottom: 10 },
   filterChip: {
     paddingHorizontal: 16,
@@ -247,7 +238,15 @@ const styles = StyleSheet.create({
   filterTextActive: { color: "#000000" },
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 },
   emptyText: { color: "#71717A", fontSize: 13, marginTop: 12 },
-  retryBtn: { marginTop: 14, paddingHorizontal: 20, paddingVertical: 8, borderRadius: 12, backgroundColor: "#27272A" },
+  retryBtn: {
+    marginTop: 14,
+    paddingHorizontal: 20,
+    paddingVertical: 8,
+    borderRadius: 12,
+    backgroundColor: "rgba(255,255,255,0.08)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.16)",
+  },
   retryText: { color: "#FAFAFA", fontSize: 13, fontWeight: "600" },
   card: {
     borderRadius: 12,
@@ -274,7 +273,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 6,
-    paddingVertical: 9,
+    paddingVertical: 12,
     borderRadius: 12,
     backgroundColor: "rgba(255,255,255,0.06)",
     borderWidth: 1,

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { View, ScrollView, FlatList, ActivityIndicator, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import { View, ScrollView, FlatList, ActivityIndicator, Pressable, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import Icon from "../ui/Icon";
 import { apiClient } from "../../libs";
 import FeedCard from "../Home/FeedCard";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
@@ -44,7 +45,7 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll, listHeader
     }
   }, [address]);
 
-  useEffect(() => {
+  const load = useCallback(() => {
     if (!address) { setLoading(false); return; }
     setLoading(true);
     setError(null);
@@ -52,6 +53,10 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll, listHeader
     endRef.current = false;
     fetchPins(1).catch((e: any) => setError(e?.message || "Failed to load")).finally(() => setLoading(false));
   }, [address, fetchPins]);
+
+  useEffect(() => {
+    load();
+  }, [load]);
 
   const handleLoadMore = useCallback(async () => {
     if (loadingMore || endRef.current || loading) return;
@@ -76,8 +81,16 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll, listHeader
     return (
       <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
-        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
-          <Text style={{ color: "#a1a1aa" }}>{error}</Text>
+        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40, paddingHorizontal: 24, gap: 12 }}>
+          <Icon name="WifiOff" size={48} color="#71717A" />
+          <Text style={{ color: "#A6A9AC", fontSize: 14, textAlign: "center" }}>{error}</Text>
+          <Pressable
+            onPress={load}
+            hitSlop={8}
+            style={{ height: 40, borderWidth: 1, borderColor: "rgba(255,255,255,0.30)", borderRadius: 12, paddingHorizontal: 16, justifyContent: "center", alignItems: "center" }}
+          >
+            <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "500" }}>Retry</Text>
+          </Pressable>
         </View>
       </ScrollView>
     );
@@ -104,7 +117,7 @@ const PinnedRoute: React.FC<PinnedRouteProps> = ({ address, onScroll, listHeader
         <FeedCard item={item} onBeforeNavigate={onBeforeNavigate} />
       )}
       ListHeaderComponent={listHeader}
-      contentContainerStyle={{ paddingHorizontal: 8, paddingTop: 8, paddingBottom: 80 }}
+      contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 80 }}
       onScroll={onScroll}
       scrollEventThrottle={16}
       onEndReached={endRef.current ? undefined : handleLoadMore}

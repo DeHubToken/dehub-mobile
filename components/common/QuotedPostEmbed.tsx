@@ -35,7 +35,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
       return (
         <View className="mt-3 rounded-xl border border-theme-neutrals-800 bg-theme-neutrals-800/30 p-3">
           <View className="flex-row items-center gap-2">
-            <Ionicons name="alert-circle-outline" size={16} color="#666" />
+            <Ionicons name="alert-circle-outline" size={16} color="#6F7174" />
             <Text className="text-theme-neutrals-500 text-sm">
               This post is unavailable
             </Text>

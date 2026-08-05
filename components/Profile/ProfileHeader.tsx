@@ -376,7 +376,7 @@ const ProfileHeader = () => {
                         className="items-center justify-center"
                         style={{ width: 32, height: 32 }}
                       >
-                        <Ionicons name={sc.icon as any} size={14} color="#9CA3AF" />
+                        <Ionicons name={sc.icon as any} size={14} color="#A1A1AA" />
                       </View>
                     </LiquidGlass>
                   </TouchableOpacity>
@@ -389,7 +389,7 @@ const ProfileHeader = () => {
           <View className="flex-row items-center mt-0.5 gap-2 flex-wrap">
             {!!username && (
               <TouchableOpacity onPress={() => copyToClipboard(username)} activeOpacity={0.7}>
-                <Text className="text-zinc-500 text-sm">@{username}</Text>
+                <Text className="text-zinc-400 text-sm">@{username}</Text>
               </TouchableOpacity>
             )}
             {!!address && (
@@ -397,7 +397,7 @@ const ProfileHeader = () => {
                 <Ionicons
                   name="wallet-outline"
                   size={13}
-                  color="#71717a"
+                  color="#71717A"
                   style={{ marginRight: 4 }}
                 />
                 <Text className="text-zinc-500 text-xs mr-1" numberOfLines={1}>
@@ -406,9 +406,9 @@ const ProfileHeader = () => {
                 <TouchableOpacity
                   onPress={() => copyToClipboard(address)}
                   accessibilityLabel="Copy address"
-                  hitSlop={{ top: 6, right: 6, bottom: 6, left: 6 }}
+                  hitSlop={{ top: 16, right: 16, bottom: 16, left: 16 }}
                 >
-                  <Ionicons name="copy-outline" size={13} color="#71717a" />
+                  <Ionicons name="copy-outline" size={13} color="#71717A" />
                 </TouchableOpacity>
               </View>
             )}
@@ -429,7 +429,7 @@ const ProfileHeader = () => {
 
           {/* Joined */}
           {!!createdAtFormatted && (
-            <Text className="text-zinc-500 text-sm mt-3">Joined {createdAtFormatted}</Text>
+            <Text className="text-zinc-400 text-sm mt-3">Joined {createdAtFormatted}</Text>
           )}
 
           {/* Following / Followers */}
@@ -439,7 +439,7 @@ const ProfileHeader = () => {
                 <Text className="text-white font-bold">
                   {formatCompactNumber(followingCount)}
                 </Text>
-                <Text className="text-zinc-500"> Following</Text>
+                <Text className="text-zinc-400"> Following</Text>
               </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => goToFollowList("followers")} activeOpacity={0.7}>
@@ -447,7 +447,7 @@ const ProfileHeader = () => {
                 <Text className="text-white font-bold">
                   {formatCompactNumber(followersCount)}
                 </Text>
-                <Text className="text-zinc-500"> Followers</Text>
+                <Text className="text-zinc-400"> Followers</Text>
               </Text>
             </TouchableOpacity>
           </View>

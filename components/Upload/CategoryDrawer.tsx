@@ -96,7 +96,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
         >
           <Text className="text-white text-[15px]">{cap(item)}</Text>
           {isSelected && (
-            <Ionicons name="checkmark-circle" size={20} color="#256DFA" />
+            <Ionicons name="checkmark-circle" size={20} color="#F4F4F5" />
           )}
         </TouchableOpacity>
       );
@@ -138,7 +138,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
               >
                 {categories.length}/{max}
               </Text>
-              <TouchableOpacity onPress={onClose} hitSlop={8}>
+              <TouchableOpacity onPress={onClose} hitSlop={14}>
                 <Ionicons name="close" size={22} color="#9CA3AF" />
               </TouchableOpacity>
             </View>
@@ -161,7 +161,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
                     <Ionicons
                       name="close"
                       size={12}
-                      color="#256DFA"
+                      color="#F4F4F5"
                       style={{ marginLeft: 4 }}
                     />
                   )}
@@ -187,7 +187,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
               autoCorrect={false}
             />
             {query.length > 0 && (
-              <TouchableOpacity onPress={() => setQuery("")} hitSlop={8}>
+              <TouchableOpacity onPress={() => setQuery("")} hitSlop={14}>
                 <Ionicons name="close-circle" size={16} color="#6F7174" />
               </TouchableOpacity>
             )}
@@ -199,7 +199,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
               activeOpacity={0.7}
               className="flex-row items-center px-4 py-3 border-b border-white/5"
             >
-              <Ionicons name="add-circle-outline" size={18} color="#256DFA" />
+              <Ionicons name="add-circle-outline" size={18} color="#F4F4F5" />
               <Text className="text-theme-accent text-[14px] ml-2 font-medium">
                 Create "{cap(query.trim())}"
               </Text>

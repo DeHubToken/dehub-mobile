@@ -8,6 +8,7 @@ import {
   BackHandler,
   StyleSheet,
   Platform,
+  ActivityIndicator,
 } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -36,9 +37,10 @@ import {
 } from "../libs/feedVideoFocus";
 import { createViewRecorder } from "../services/view.service";
 import { getCachedMuted, setMutedState } from "../libs/videoMutedState";
+import { PLAYER_CONSTANTS } from "../components/VideoPlayerCore/utils";
 
 const DISMISS_THRESHOLD = 150;
-const CONTROLS_TIMEOUT = 4000;
+const CONTROLS_TIMEOUT = PLAYER_CONSTANTS.HIDE_CONTROLS_DELAY;
 
 const formatTime = (seconds: number) => {
   const mins = Math.floor(seconds / 60);
@@ -326,7 +328,13 @@ const FullscreenVideoScreen = () => {
           pointerEvents="box-none"
         >
           <View style={styles.topBar} pointerEvents="box-none">
-            <Pressable onPress={closeScreen} style={styles.glassButton}>
+            <Pressable
+              onPress={closeScreen}
+              style={styles.glassButton}
+              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+              accessibilityRole="button"
+              accessibilityLabel="Close video"
+            >
               <BlurView
                 intensity={Platform.OS === "ios" ? 60 : 40}
                 tint="dark"
@@ -340,7 +348,13 @@ const FullscreenVideoScreen = () => {
             <View style={{ flex: 1 }} />
 
             <View style={styles.topButtonGroup}>
-              <Pressable onPress={handleToggleMute} style={styles.glassButton}>
+              <Pressable
+                onPress={handleToggleMute}
+                style={styles.glassButton}
+                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                accessibilityRole="button"
+                accessibilityLabel={isMuted ? "Unmute" : "Mute"}
+              >
                 <BlurView
                   intensity={Platform.OS === "ios" ? 60 : 40}
                   tint="dark"
@@ -350,7 +364,13 @@ const FullscreenVideoScreen = () => {
                 <View style={styles.glassOverlay} />
                 <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
               </Pressable>
-              <Pressable onPress={handleToggleRotation} style={styles.glassButton}>
+              <Pressable
+                onPress={handleToggleRotation}
+                style={styles.glassButton}
+                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                accessibilityRole="button"
+                accessibilityLabel="Rotate orientation"
+              >
                 <BlurView
                   intensity={Platform.OS === "ios" ? 60 : 40}
                   tint="dark"
@@ -364,7 +384,12 @@ const FullscreenVideoScreen = () => {
           </View>
 
           <View style={styles.centerControls} pointerEvents="box-none">
-            <Pressable onPress={handleTogglePlay} style={styles.glassPlayButton}>
+            <Pressable
+              onPress={handleTogglePlay}
+              style={styles.glassPlayButton}
+              accessibilityRole="button"
+              accessibilityLabel={isPlaying ? "Pause" : "Play"}
+            >
               <BlurView
                 intensity={Platform.OS === "ios" ? 60 : 40}
                 tint="dark"
@@ -384,10 +409,13 @@ const FullscreenVideoScreen = () => {
                   style={styles.progressTrack}
                   onPress={(e) => handleSeek(e.nativeEvent.locationX)}
                   onLayout={(e) => { progressTrackWidthRef.current = e.nativeEvent.layout.width; }}
+                  accessibilityRole="adjustable"
+                  accessibilityLabel={`Video progress: ${Math.round(progressPercent)}%`}
+                  accessibilityHint="Tap to seek to a specific position"
                 >
                   <View style={styles.progressTrackInner}>
                     <View style={[styles.progressFill, { width: `${progressPercent}%` }]} />
-                    <View style={[styles.progressThumb, { left: `${progressPercent}%`, marginLeft: -7 }]} />
+                    <View style={[styles.progressThumb, { left: `${progressPercent}%`, marginLeft: -8 }]} />
                   </View>
                 </Pressable>
                 <Text style={styles.timeText}>{formatTime(videoDuration)}</Text>
@@ -399,7 +427,7 @@ const FullscreenVideoScreen = () => {
 
       {isBuffering && (
         <View style={styles.bufferingOverlay} pointerEvents="none">
-          <View style={styles.spinner} />
+          <ActivityIndicator size="large" color="#fff" />
         </View>
       )}
     </View>
@@ -480,22 +508,22 @@ const styles = StyleSheet.create({
   },
   progressTrackInner: {
     height: 4,
-    backgroundColor: "rgba(255,255,255,0.3)",
+    backgroundColor: "rgba(255,255,255,0.2)",
     borderRadius: 2,
     overflow: "visible",
   },
   progressFill: {
     height: "100%",
-    backgroundColor: "#fff",
+    backgroundColor: "#F4F4F5",
     borderRadius: 2,
   },
   progressThumb: {
     position: "absolute",
-    top: -5,
-    width: 14,
-    height: 14,
-    borderRadius: 7,
-    backgroundColor: "#fff",
+    top: -6,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    backgroundColor: "#F4F4F5",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.4,
@@ -506,14 +534,6 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     alignItems: "center",
     justifyContent: "center",
-  },
-  spinner: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    borderWidth: 2,
-    borderColor: "rgba(255,255,255,0.3)",
-    borderTopColor: "#fff",
   },
 });
 

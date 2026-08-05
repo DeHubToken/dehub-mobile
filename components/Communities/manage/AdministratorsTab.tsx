@@ -63,7 +63,7 @@ export function AdministratorsTab({ community, membership }: Props) {
   if (isLoading) {
     return (
       <View className="items-center justify-center py-10">
-        <ActivityIndicator size="small" color="#fff" />
+        <ActivityIndicator size="small" color="#F4F4F5" />
       </View>
     );
   }
@@ -78,16 +78,16 @@ export function AdministratorsTab({ community, membership }: Props) {
       </Text>
       {owner ? (
         <View className="flex-row items-center gap-3 py-3 border-b border-white/5">
-          <Icon name="Crown" size={16} color="#fbbf24" />
+          <Icon name="Crown" size={16} color="#fff" />
           <Text className="text-white text-sm font-mono flex-1" numberOfLines={1}>
             {shortWallet(owner.wallet_address)}
           </Text>
-          <Text className="text-zinc-500 text-xs">
+          <Text className="text-zinc-400 text-xs">
             {t("communities.manage.ownerLabel", { defaultValue: "Owner" })}
           </Text>
         </View>
       ) : (
-        <Text className="text-zinc-500 text-xs text-center py-4">
+        <Text className="text-zinc-400 text-xs text-center py-4">
           {t("communities.manage.noOwner", { defaultValue: "No owner on record." })}
         </Text>
       )}
@@ -96,7 +96,7 @@ export function AdministratorsTab({ community, membership }: Props) {
         {t("communities.manage.administratorsSection", { defaultValue: "Administrators" })}
       </Text>
       {roster.admins.length === 0 ? (
-        <Text className="text-zinc-500 text-xs text-center py-6 px-4">
+        <Text className="text-zinc-400 text-xs text-center py-6 px-4">
           {t("communities.manage.noAdmins", {
             defaultValue: "No administrators yet. Promote a member to help you moderate.",
           })}
@@ -110,7 +110,7 @@ export function AdministratorsTab({ community, membership }: Props) {
               onPress={() => setEditing(admin)}
               className="flex-row items-center gap-3 py-3 border-b border-white/5"
             >
-              <Icon name="Shield" size={16} color="#60a5fa" />
+              <Icon name="Shield" size={16} color="#A1A1AA" />
               <View className="flex-1">
                 <View className="flex-row items-center gap-2">
                   <Text className="text-white text-sm font-mono" numberOfLines={1}>
@@ -123,7 +123,7 @@ export function AdministratorsTab({ community, membership }: Props) {
                     </Text>
                   </View>
                 </View>
-                <Text className="text-zinc-500 text-xs mt-0.5">
+                <Text className="text-zinc-400 text-xs mt-0.5">
                   {t("communities.manage.rightsSummary", {
                     defaultValue: "{{granted}} of {{total}} rights",
                     granted: countRights(admin),
@@ -153,7 +153,7 @@ export function AdministratorsTab({ community, membership }: Props) {
             {t("communities.manage.addAdministrator", { defaultValue: "Add administrator" })}
           </Text>
           <View style={styles.searchRow}>
-            <Icon name="Search" size={15} color="#52525b" />
+            <Icon name="Search" size={15} color="#A1A1AA" />
             <TextInput
               style={styles.searchInput}
               value={search}
@@ -161,14 +161,14 @@ export function AdministratorsTab({ community, membership }: Props) {
               placeholder={t("communities.manage.searchMembers", {
                 defaultValue: "Search members by wallet",
               })}
-              placeholderTextColor="#52525b"
+              placeholderTextColor="#8B8D90"
               autoCapitalize="none"
               autoCorrect={false}
             />
           </View>
 
           {matches.rows.length === 0 ? (
-            <Text className="text-zinc-500 text-xs text-center py-6">
+            <Text className="text-zinc-400 text-xs text-center py-6">
               {search.trim()
                 ? t("communities.manage.noMemberMatches", {
                     defaultValue: "No member matches that address.",
@@ -196,7 +196,7 @@ export function AdministratorsTab({ community, membership }: Props) {
                 </View>
               ))}
               {matches.truncated && (
-                <Text className="text-zinc-500 text-xs text-center py-3">
+                <Text className="text-zinc-400 text-xs text-center py-3">
                   {t("communities.manage.searchTruncated", {
                     defaultValue: "Showing the first {{limit}} — keep typing to narrow it down.",
                     limit: SEARCH_LIMIT,
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.06)",
     maxWidth: 120,
   },
-  chipText: { color: "#a1a1aa", fontSize: 10, fontWeight: "600" },
+  chipText: { color: "#a1a1aa", fontSize: 12, fontWeight: "600" },
   showMoreBtn: {
     alignSelf: "center",
     marginTop: 12,

@@ -128,7 +128,16 @@ const UploadProgressPill: React.FC = () => {
         ]}
         pointerEvents="box-none"
       >
-        <Pressable onPress={handleExpand} style={styles.badgePressable}>
+        <Pressable
+          onPress={handleExpand}
+          style={styles.badgePressable}
+          accessibilityRole="button"
+          accessibilityLabel={
+            isFailed
+              ? "Upload failed, expand upload status"
+              : `Upload ${progressPercent}% complete, expand upload status`
+          }
+        >
           <View style={styles.badgeCircle}>
             <Svg width={BADGE_SIZE} height={BADGE_SIZE} style={StyleSheet.absoluteFill}>
               <Circle
@@ -143,7 +152,7 @@ const UploadProgressPill: React.FC = () => {
                 cx={BADGE_SIZE / 2}
                 cy={BADGE_SIZE / 2}
                 r={BADGE_RADIUS}
-                stroke={isFailed ? "#f87171" : "#fff"}
+                stroke={isFailed ? "#EF4444" : "#fff"}
                 strokeWidth={BADGE_STROKE}
                 fill="none"
                 strokeLinecap="round"
@@ -156,7 +165,7 @@ const UploadProgressPill: React.FC = () => {
             <Icon
               name={iconName}
               size={18}
-              color={isFailed ? "#f87171" : "#fff"}
+              color={isFailed ? "#EF4444" : "#fff"}
             />
           </View>
         </Pressable>
@@ -177,7 +186,7 @@ const UploadProgressPill: React.FC = () => {
         <View style={styles.pill}>
           <View style={styles.inner}>
             <View style={styles.iconWrap}>
-              <Icon name={iconName} size={18} color={isFailed ? "#f87171" : "#fff"} />
+              <Icon name={iconName} size={18} color={isFailed ? "#EF4444" : "#fff"} />
             </View>
             <View style={styles.textWrap}>
               <View style={styles.titleRow}>
@@ -201,6 +210,8 @@ const UploadProgressPill: React.FC = () => {
               onPress={handleMinimize}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               style={styles.minimizeBtn}
+              accessibilityRole="button"
+              accessibilityLabel="Minimize upload status"
             >
               <Icon name="Minus" size={14} color="rgba(255,255,255,0.5)" />
             </Pressable>
@@ -278,16 +289,16 @@ const styles = StyleSheet.create({
   },
   countText: {
     color: "rgba(255,255,255,0.7)",
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: "700",
   },
   status: {
-    fontSize: 11,
+    fontSize: 12,
     marginTop: 1,
     color: "rgba(255,255,255,0.5)",
   },
   statusFailed: {
-    color: "#f87171",
+    color: "#EF4444",
   },
   minimizeBtn: {
     width: 28,
@@ -307,7 +318,7 @@ const styles = StyleSheet.create({
     borderRadius: 1,
   },
   progressFillFailed: {
-    backgroundColor: "#f87171",
+    backgroundColor: "#EF4444",
   },
 
   // Minimized circular badge

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Pressable, TouchableOpacity, View, Text, ScrollView } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '../ui/Icon';
 import type { icons } from 'lucide-react-native';
 
@@ -51,6 +52,7 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
   peerHasFreeAccess,
   isCreator,
 }) => {
+  const insets = useSafeAreaInsets();
   if (!visible) return null;
   return (
     <Modal visible transparent animationType="fade" onRequestClose={onClose}>
@@ -61,7 +63,8 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
       >
         <Pressable
           onPress={(e) => e.stopPropagation()}
-          className="absolute right-3 top-16 w-52 rounded-xl bg-theme-neutrals-800 shadow-lg overflow-hidden"
+          style={{ top: insets.top + 56 }}
+          className="absolute right-3 w-52 rounded-xl bg-theme-neutrals-800 shadow-lg overflow-hidden"
         >
           <ScrollView bounces={false}>
             {onSearchChat && (
@@ -113,8 +116,8 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
               icon={isBlocked ? "CircleMinus" : "Ban"}
               label={isBlocked ? "Unblock user" : "Block user"}
               onPress={isBlocked ? (onUnblockUser || onClose) : onBlockUser}
-              color={isBlocked ? "text-theme-blue-300" : "text-red-300"}
-              iconColor={isBlocked ? "#93C5FD" : "#FCA5A5"}
+              color={isBlocked ? "text-theme-neutrals-200" : "text-red-300"}
+              iconColor={isBlocked ? "#D4D4D8" : "#FCA5A5"}
             />
           </ScrollView>
         </Pressable>

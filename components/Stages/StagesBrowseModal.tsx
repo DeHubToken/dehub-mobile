@@ -209,7 +209,7 @@ const StagesBrowseModal: React.FC = () => {
             </Text>
             {isMySpace && (
               <View style={{ backgroundColor: "#D4D4D8", borderRadius: 6, paddingHorizontal: 5, paddingVertical: 1 }}>
-                <Text style={{ color: "#fff", fontSize: 9, fontWeight: "700" }}>YOURS</Text>
+                <Text style={{ color: "#09090B", fontSize: 10, fontWeight: "700" }}>YOURS</Text>
               </View>
             )}
           </View>
@@ -248,12 +248,21 @@ const StagesBrowseModal: React.FC = () => {
             ]}
           >
             {isAudioLoading && isPlaying ? (
-              <ActivityIndicator size="small" color="#fff" />
+              <ActivityIndicator
+                size="small"
+                color={isListAudioPlaying ? "#09090B" : "#fff"}
+              />
             ) : (
               <Icon
                 name={isPlaying && isListAudioPlaying ? "Pause" : "Play"}
                 size={16}
-                color={hasRecording ? "#FFFFFF" : "rgba(255,255,255,0.3)"}
+                color={
+                  isPlaying && isListAudioPlaying
+                    ? "#09090B"
+                    : hasRecording
+                      ? "#FFFFFF"
+                      : "rgba(255,255,255,0.3)"
+                }
                 fill={(isPlaying && isListAudioPlaying) || !hasRecording ? undefined : "#FFFFFF"}
               />
             )}
@@ -400,8 +409,8 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.08)",
   },
   mySpaceItem: {
-    borderColor: "rgba(168,85,247,0.35)",
-    backgroundColor: "rgba(168,85,247,0.08)",
+    borderColor: "rgba(255,255,255,0.2)",
+    backgroundColor: "rgba(255,255,255,0.08)",
   },
   spaceAvatar: {
     width: 44,
@@ -413,7 +422,7 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   mySpaceAvatar: {
-    backgroundColor: "rgba(168,85,247,0.25)",
+    backgroundColor: "rgba(255,255,255,0.15)",
   },
   spaceInfo: {
     flex: 1,
@@ -473,12 +482,12 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 12,
-    backgroundColor: "rgba(168,85,247,0.12)",
+    backgroundColor: "rgba(255,255,255,0.08)",
     alignItems: "center",
     justifyContent: "center",
     marginRight: 10,
     borderWidth: 1,
-    borderColor: "rgba(168,85,247,0.25)",
+    borderColor: "rgba(255,255,255,0.15)",
   },
   playingBtn: {
     backgroundColor: "#D4D4D8",
@@ -525,8 +534,8 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   timeText: {
-    color: "rgba(255,255,255,0.4)",
-    fontSize: 9,
+    color: "rgba(255,255,255,0.5)",
+    fontSize: 10,
     fontFamily: Platform.OS === "ios" ? "Courier New" : "monospace",
   },
 });

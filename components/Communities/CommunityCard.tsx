@@ -30,11 +30,14 @@ const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.75} style={styles.card}>
       {!!community.banner_url && (
-        <Image
-          source={{ uri: community.banner_url }}
-          style={styles.bannerBg}
-          contentFit="cover"
-        />
+        <>
+          <Image
+            source={{ uri: community.banner_url }}
+            style={styles.bannerBg}
+            contentFit="cover"
+          />
+          <View style={styles.bannerScrim} />
+        </>
       )}
       <View style={styles.timeBadge}>
         <Icon name="Clock" size={11} color="#a1a1aa" />
@@ -89,6 +92,10 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     opacity: 0.35,
   },
+  bannerScrim: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0,0,0,0.45)",
+  },
   timeBadge: {
     position: "absolute",
     top: 8,
@@ -104,7 +111,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.1)",
     zIndex: 2,
   },
-  timeText: { color: "#d4d4d8", fontSize: 10, fontWeight: "600" },
+  timeText: { color: "#d4d4d8", fontSize: 12, fontWeight: "600" },
   avatarWrap: {
     width: 48,
     height: 48,
@@ -125,9 +132,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 2,
   },
-  ownerText: { color: "#e4e4e7", fontSize: 10, fontWeight: "600" },
+  ownerText: { color: "#e4e4e7", fontSize: 12, fontWeight: "600" },
   desc: { color: "#a1a1aa", fontSize: 12, marginTop: 2 },
-  members: { color: "#71717a", fontSize: 11, marginTop: 4 },
+  members: { color: "#A1A1AA", fontSize: 12, marginTop: 4 },
 });
 
 export default memo(CommunityCard);

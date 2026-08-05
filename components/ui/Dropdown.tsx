@@ -2,6 +2,7 @@ import React, { useMemo, useState, useCallback } from "react";
 import { View, Text, TouchableOpacity, TextInput, FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "./GlassModal";
+import { colors } from "../../theme/colors";
 
 export type DropdownOption = { label: string; value: string; disabled?: boolean };
 
@@ -47,26 +48,26 @@ const Dropdown: React.FC<Props> = ({
         disabled={disabled}
         activeOpacity={0.8}
         onPress={() => setOpen(true)}
-        className={`h-11 px-3 rounded-lg bg-zinc-900 border border-zinc-800 flex-row items-center justify-between ${
+        className={`h-11 px-3 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700 flex-row items-center justify-between ${
           disabled ? "opacity-60" : ""
         }`}
       >
-        <Text className={selected ? "text-white" : "text-gray-400"}>
+        <Text className={selected ? "text-white" : "text-theme-neutrals-400"}>
           {selected ? selected.label : placeholder}
         </Text>
-        <Ionicons name="chevron-down" size={16} color="#9CA3AF" />
+        <Ionicons name="chevron-down" size={16} color={colors.neutrals[400]} />
       </TouchableOpacity>
 
       <GlassModal visible={open} onClose={() => setOpen(false)} presentation="bottom" maxHeight="70%">
         <View className="p-3">
           {searchable && (
             <View className="mb-2">
-              <View className="h-11 px-3 rounded-lg bg-zinc-900 border border-zinc-800 flex-row items-center">
-                <Ionicons name="search" size={16} color="#9CA3AF" />
+              <View className="h-11 px-3 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700 flex-row items-center">
+                <Ionicons name="search" size={16} color={colors.neutrals[400]} />
                 <TextInput
                   className="flex-1 ml-2 text-white"
                   placeholder="Search"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor={colors.neutrals[500]}
                   value={query}
                   onChangeText={setQuery}
                   autoFocus
@@ -77,7 +78,7 @@ const Dropdown: React.FC<Props> = ({
 
           {filtered.length === 0 ? (
             <View className="py-8 items-center">
-              <Text className="text-gray-400">No results</Text>
+              <Text className="text-theme-neutrals-400">No results</Text>
             </View>
           ) : (
             <FlatList
@@ -90,11 +91,11 @@ const Dropdown: React.FC<Props> = ({
                     if (item.disabled) return;
                     choose(item.value);
                   }}
-                  className={`px-3 py-3 border-b border-zinc-800 flex-row items-center justify-between ${
+                  className={`px-3 py-3 border-b border-theme-neutrals-700 flex-row items-center justify-between ${
                     item.disabled ? "opacity-50" : ""
                   }`}
                 >
-                  <Text className={item.disabled ? "text-gray-500" : "text-white"}>
+                  <Text className={item.disabled ? "text-theme-neutrals-500" : "text-white"}>
                     {item.label}
                   </Text>
                   {item.value === value ? (

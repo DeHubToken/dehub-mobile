@@ -100,7 +100,7 @@ const s = StyleSheet.create({
   bubble: {
     flexDirection: 'row',
     marginBottom: 12,
-    maxWidth: '85%',
+    maxWidth: '75%',
   },
   userBubble: {
     alignSelf: 'flex-end',

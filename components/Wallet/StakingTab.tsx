@@ -251,7 +251,7 @@ const StakingTab: React.FC = () => {
       {/* Stats row */}
       <View className="flex-row gap-3 mb-5">
         <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
-          <Text className="text-white/50 text-[10px] uppercase tracking-wider mb-1">
+          <Text className="text-white/50 text-xs uppercase tracking-wider mb-1">
             Your Staked
           </Text>
           {loading ? (
@@ -259,12 +259,12 @@ const StakingTab: React.FC = () => {
           ) : (
             <Text className="text-white text-lg font-bold">{fmt(userStaked)}</Text>
           )}
-          <Text className="text-white/40 text-[10px] mt-0.5">
+          <Text className="text-white/60 text-xs mt-0.5">
             DHB{unstakeQueued > 0 ? ` · ${fmt(unstakeQueued)} unstaking` : ""}
           </Text>
         </View>
         <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
-          <Text className="text-white/50 text-[10px] uppercase tracking-wider mb-1">
+          <Text className="text-white/50 text-xs uppercase tracking-wider mb-1">
             Wallet Balance
           </Text>
           {loading ? (
@@ -272,7 +272,7 @@ const StakingTab: React.FC = () => {
           ) : (
             <Text className="text-white text-lg font-bold">{fmt(walletBal ?? 0)}</Text>
           )}
-          <Text className="text-white/40 text-[10px] mt-0.5">DHB on Base</Text>
+          <Text className="text-white/60 text-xs mt-0.5">DHB on Base</Text>
         </View>
       </View>
 
@@ -315,7 +315,7 @@ const StakingTab: React.FC = () => {
           ))}
         </View>
 
-        <Text className="text-white/40 text-xs mb-4">
+        <Text className="text-white/60 text-xs mb-4">
           {mode === "stake"
             ? "Stake DHB on Base to earn protocol rewards."
             : "Request an unstake. Tokens are released after a 12-day cooldown."}
@@ -325,17 +325,21 @@ const StakingTab: React.FC = () => {
           <TextInput
             className="flex-1 text-white text-sm"
             placeholder="Amount"
-            placeholderTextColor="rgba(255,255,255,0.3)"
+            placeholderTextColor="rgba(255,255,255,0.5)"
             keyboardType="decimal-pad"
             value={amount}
             onChangeText={setAmount}
           />
-          <TouchableOpacity onPress={() => setAmount(String(max))}>
+          <TouchableOpacity
+            onPress={() => setAmount(String(max))}
+            className="px-2 py-3 -mr-1"
+            hitSlop={{ top: 14, bottom: 14, left: 8, right: 8 }}
+          >
             <Text className="text-white/50 text-xs font-bold uppercase">MAX</Text>
           </TouchableOpacity>
         </View>
 
-        <Text className="text-white/40 text-[11px] mb-3">
+        <Text className="text-white/60 text-xs mb-3">
           {mode === "stake"
             ? `Available: ${fmt(walletBal ?? 0)} DHB`
             : `Staked: ${fmt(userStaked)} DHB`}
@@ -397,8 +401,8 @@ const StakingTab: React.FC = () => {
         onPress={fetchData}
         className="mt-4 items-center flex-row justify-center gap-2"
       >
-        <Ionicons name="refresh-outline" size={14} color="rgba(255,255,255,0.4)" />
-        <Text className="text-white/40 text-xs">Refresh balances</Text>
+        <Ionicons name="refresh-outline" size={14} color="rgba(255,255,255,0.6)" />
+        <Text className="text-white/60 text-xs">Refresh balances</Text>
       </TouchableOpacity>
     </View>
   );

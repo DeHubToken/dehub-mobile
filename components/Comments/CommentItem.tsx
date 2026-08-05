@@ -275,7 +275,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   if (comment.notFound) {
     return (
       <View style={{ paddingVertical: 12, paddingLeft: isReply ? 48 : 0 }}>
-        <Text style={{ color: "#6F7174", fontSize: 13, fontStyle: "italic" }}>
+        <Text style={{ color: "#A6A9AC", fontSize: 13, fontStyle: "italic" }}>
           Comment not found
         </Text>
       </View>
@@ -317,17 +317,17 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
         <View style={{ flex: 1, marginLeft: 10 }}>
           <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
             <Text
-              style={{ fontSize: 13, fontWeight: "600", color: ICON_ACTIVE }}
+              style={{ fontSize: 14, fontWeight: "600", color: ICON_ACTIVE }}
               onPress={handleUserPress}
               numberOfLines={1}
             >
               {displayName}
             </Text>
-            <Text style={{ fontSize: 11, color: "#8B8D90" }}>{timeAgo}</Text>
+            <Text style={{ fontSize: 12, color: "#8B8D90" }}>{timeAgo}</Text>
           </View>
 
           {comment.content ? (
-            <Text style={{ fontSize: 13, color: "#C2C4C7", marginTop: 3, lineHeight: 18 }}>
+            <Text style={{ fontSize: 14, color: "#C2C4C7", marginTop: 3, lineHeight: 19 }}>
               {isTranslated
                 ? displayContent
                 : parsedContent.map((part, idx) =>
@@ -391,7 +391,10 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             <Pressable
               onPress={handleLikePress}
               disabled={isLiking}
-              hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+              accessibilityRole="button"
+              accessibilityLabel="Like"
+              accessibilityState={{ selected: liked }}
               style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
             >
               <Animated.View style={likeAnimStyle}>
@@ -404,14 +407,17 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 />
               </Animated.View>
               {likeCount > 0 && (
-                <Text style={{ fontSize: 11, color: "#8B8D90" }}>{likeCount}</Text>
+                <Text style={{ fontSize: 12, color: "#8B8D90" }}>{likeCount}</Text>
               )}
             </Pressable>
 
             <Pressable
               onPress={handleDislikePress}
               disabled={isDisliking}
-              hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+              accessibilityRole="button"
+              accessibilityLabel="Dislike"
+              accessibilityState={{ selected: disliked }}
               style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
             >
               <Animated.View style={dislikeAnimStyle}>
@@ -424,19 +430,21 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 />
               </Animated.View>
               {dislikeCount > 0 && (
-                <Text style={{ fontSize: 11, color: "#8B8D90" }}>{dislikeCount}</Text>
+                <Text style={{ fontSize: 12, color: "#8B8D90" }}>{dislikeCount}</Text>
               )}
             </Pressable>
 
             {onReply && (
               <Pressable
                 onPress={handleReplyPress}
-                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                accessibilityRole="button"
+                accessibilityLabel="Reply"
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
                 <Icon name="MessageSquare" size={14} color={ICON_MUTED} strokeWidth={1.8} />
                 {(comment.replyIds?.length ?? 0) > 0 && (
-                  <Text style={{ fontSize: 11, color: "#8B8D90" }}>
+                  <Text style={{ fontSize: 12, color: "#8B8D90" }}>
                     {comment.replyIds!.length}
                   </Text>
                 )}
@@ -450,12 +458,14 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             {onTip && !!(comment.user?.address || comment.address) && (
               <Pressable
                 onPress={() => onTip(comment)}
-                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                accessibilityRole="button"
+                accessibilityLabel="Tip"
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
                 <Icon name="Gem" size={14} color={ICON_MUTED} strokeWidth={1.8} />
                 {(tipTotal ?? 0) > 0 && (
-                  <Text style={{ fontSize: 11, color: "#8B8D90" }}>
+                  <Text style={{ fontSize: 12, color: "#8B8D90" }}>
                     {formatTipTotal(tipTotal!)}
                   </Text>
                 )}
@@ -464,7 +474,9 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
 
             <Pressable
               onPress={handleSharePress}
-              hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+              accessibilityRole="button"
+              accessibilityLabel="Share"
             >
               <Icon name="Share2" size={14} color={ICON_MUTED} strokeWidth={1.8} />
             </Pressable>
@@ -483,7 +495,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               {loadingReplies ? (
                 <ActivityIndicator size="small" color="#6F7174" style={{ marginRight: 6 }} />
               ) : null}
-              <Text style={{ fontSize: 12, fontWeight: "600", color: "#6F7174" }}>
+              <Text style={{ fontSize: 12, fontWeight: "600", color: "#A6A9AC" }}>
                 {repliesExpanded
                   ? "Hide replies"
                   : `View ${comment.replyIds.length} ${

@@ -38,7 +38,10 @@ const RepostUserRow: React.FC<RepostUserRowProps> = memo(({ item, onPress }) => 
   return (
     <Pressable
       onPress={handlePress}
-      style={{ flexDirection: "row", alignItems: "center", paddingHorizontal: 16, paddingVertical: 12 }}
+      style={({ pressed }) => [
+        { flexDirection: "row", alignItems: "center", paddingHorizontal: 16, paddingVertical: 12 },
+        pressed && { opacity: 0.7 },
+      ]}
     >
       <Avatar uri={avatarUrl} size={40} rounded={false} name={displayName} />
       <View style={{ flex: 1, marginLeft: 12 }}>
@@ -51,7 +54,7 @@ const RepostUserRow: React.FC<RepostUserRowProps> = memo(({ item, onPress }) => 
           </Text>
         )}
         {item.followers !== undefined && (
-          <Text style={{ color: "#6F7174", fontSize: 11, marginTop: 2 }}>
+          <Text style={{ color: "#8B8D90", fontSize: 12, marginTop: 2 }}>
             {formatCompactNumber(item.followers)} followers
           </Text>
         )}

@@ -33,9 +33,9 @@ import {
 import Svg, { Polyline, Line as SvgLine } from "react-native-svg";
 import { ethers } from "ethers";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import { theme } from "../theme";
 import { formatCompactNumber } from "../libs";
 import { toastError } from "../libs/toast";
@@ -78,8 +78,8 @@ const STATUS_COLOR: Record<string, string> = {
   paused: "#D4D4D8",
   pending_review: "#D4D4D8",
   draft: "#A1A1AA",
-  rejected: "#F87171",
-  completed: "#818CF8",
+  rejected: "#EF4444",
+  completed: "#D4D4D8",
   archived: "#71717A",
 };
 
@@ -180,7 +180,12 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
           <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
             <View style={styles.sheetHead}>
               <Text style={styles.sheetTitle}>{t("ads.newCampaign")}</Text>
-              <Pressable onPress={onClose} hitSlop={10}>
+              <Pressable
+                onPress={onClose}
+                hitSlop={12}
+                accessibilityRole="button"
+                accessibilityLabel="Close"
+              >
                 <Icon name="X" size={20} color="#A1A1AA" />
               </Pressable>
             </View>
@@ -191,7 +196,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
                 value={name}
                 onChangeText={setName}
                 placeholder={t("ads.campaignNamePlaceholder")}
-                placeholderTextColor="#52525B"
+                placeholderTextColor="#8B8D90"
                 style={styles.input}
               />
 
@@ -215,7 +220,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
                 value={daily}
                 onChangeText={setDaily}
                 placeholder="25"
-                placeholderTextColor="#52525B"
+                placeholderTextColor="#8B8D90"
                 keyboardType="decimal-pad"
                 style={styles.input}
               />
@@ -225,7 +230,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
                 value={total}
                 onChangeText={setTotal}
                 placeholder="500"
-                placeholderTextColor="#52525B"
+                placeholderTextColor="#8B8D90"
                 keyboardType="decimal-pad"
                 style={styles.input}
               />
@@ -235,7 +240,7 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
                 value={ctaUrl}
                 onChangeText={setCtaUrl}
                 placeholder="https://…"
-                placeholderTextColor="#52525B"
+                placeholderTextColor="#8B8D90"
                 autoCapitalize="none"
                 keyboardType="url"
                 style={styles.input}
@@ -298,7 +303,6 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
 export default function AdsScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<any>();
   const { isSignedIn, needsUsername } = useAuthState();
   useGateToHome(isSignedIn && !needsUsername);
 
@@ -424,21 +428,24 @@ export default function AdsScreen() {
   const hasAccount = !!account.data;
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>{t("nav.ads")}</Text>
-          <Text style={styles.subtitle}>{t("ads.subtitle")}</Text>
-        </View>
-        {tab === "campaigns" && hasAccount && (
-          <Pressable onPress={() => setFormOpen(true)} hitSlop={10} style={styles.addBtn}>
-            <Icon name="Plus" size={20} color="#000000" />
-          </Pressable>
-        )}
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader
+        title={t("nav.ads")}
+        subtitle={t("ads.subtitle")}
+        rightContent={
+          tab === "campaigns" && hasAccount ? (
+            <Pressable
+              onPress={() => setFormOpen(true)}
+              hitSlop={10}
+              style={styles.addBtn}
+              accessibilityRole="button"
+              accessibilityLabel={t("ads.newCampaign")}
+            >
+              <Icon name="Plus" size={20} color="#000000" />
+            </Pressable>
+          ) : undefined
+        }
+      />
 
       <View style={styles.segment}>
         {(["overview", "campaigns", "billing"] as const).map((tabKey) => (
@@ -455,13 +462,13 @@ export default function AdsScreen() {
       </View>
 
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 28, gap: 12 }}
+        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 28, gap: 12 }}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl
             refreshing={account.isRefetching || campaigns.isRefetching}
             onRefresh={onRefresh}
-            tintColor={theme.colors.accentForeground}
+            tintColor={theme.colors.accent}
           />
         }
       >
@@ -645,21 +652,14 @@ export default function AdsScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: {
-    flexDirection: "row", alignItems: "center", gap: 10,
-    paddingHorizontal: 12, paddingVertical: 12,
-  },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  title: { color: "#FFFFFF", fontSize: 21, fontWeight: "700" },
-  subtitle: { color: "#71717A", fontSize: 12, marginTop: 1 },
+  root: { flex: 1, backgroundColor: "#010305" },
   addBtn: {
     width: 34, height: 34, borderRadius: 999, backgroundColor: "#FFFFFF",
     alignItems: "center", justifyContent: "center",
   },
 
   segment: {
-    flexDirection: "row", gap: 4, marginHorizontal: 12, marginBottom: 10,
+    flexDirection: "row", gap: 4, marginHorizontal: 16, marginBottom: 10,
     backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 999, padding: 3,
   },
   segmentBtn: { flex: 1, paddingVertical: 7, borderRadius: 999, alignItems: "center" },
@@ -672,10 +672,10 @@ const styles = StyleSheet.create({
     borderWidth: 1, borderColor: "rgba(255,255,255,0.10)", padding: 16, gap: 6,
   },
   cardTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "700", marginBottom: 4 },
-  dim: { color: "#71717A", fontSize: 12, lineHeight: 17 },
+  dim: { color: "#A1A1AA", fontSize: 12, lineHeight: 17 },
   emptyTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "700", marginTop: 6 },
   balance: { color: "#FFFFFF", fontSize: 30, fontWeight: "800" },
-  hint: { color: "#52525B", fontSize: 10.5, lineHeight: 15, marginTop: 8 },
+  hint: { color: "#71717A", fontSize: 12, lineHeight: 16, marginTop: 8 },
 
   kpiRow: { flexDirection: "row", gap: 8 },
   kpi: {
@@ -683,7 +683,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10, paddingHorizontal: 8, alignItems: "center",
   },
   kpiValue: { color: "#FFFFFF", fontSize: 16, fontWeight: "700" },
-  kpiLabel: { color: "#71717A", fontSize: 10, marginTop: 3 },
+  kpiLabel: { color: "#A1A1AA", fontSize: 12, marginTop: 3 },
 
   chartEmpty: { height: 100, alignItems: "center", justifyContent: "center" },
   legend: { flexDirection: "row", gap: 14, justifyContent: "center", marginTop: 8 },
@@ -694,7 +694,7 @@ const styles = StyleSheet.create({
   rowBetween: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 8 },
   campaignName: { color: "#FFFFFF", fontSize: 14.5, fontWeight: "700", flex: 1 },
   statusPill: { paddingHorizontal: 8, paddingVertical: 3, borderRadius: 999 },
-  statusText: { fontSize: 10.5, fontWeight: "700", textTransform: "capitalize" },
+  statusText: { fontSize: 12, fontWeight: "700", textTransform: "capitalize" },
   progressTrack: {
     height: 5, borderRadius: 999, backgroundColor: "rgba(255,255,255,0.08)",
     overflow: "hidden", marginVertical: 6,
@@ -707,10 +707,10 @@ const styles = StyleSheet.create({
   },
   payAmount: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "700" },
 
-  backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.65)", justifyContent: "flex-end" },
+  backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   sheet: {
-    backgroundColor: "#0A0A0A", borderTopLeftRadius: 22, borderTopRightRadius: 22,
-    borderTopWidth: 1, borderColor: "rgba(255,255,255,0.12)",
+    backgroundColor: "#0C0C0E", borderTopLeftRadius: 20, borderTopRightRadius: 20,
+    borderTopWidth: 1, borderColor: "rgba(255,255,255,0.10)",
     paddingHorizontal: 18, paddingTop: 16, maxHeight: "90%",
   },
   sheetHead: {

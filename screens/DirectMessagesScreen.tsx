@@ -330,7 +330,7 @@ const DirectMessagesInner: React.FC = () => {
               style={{ width: 36, height: 36 }}
               contentFit="contain"
             />
-            <Text className="text-white text-xl font-bold">{t("messages.title")}</Text>
+            <Text className="text-theme-neutrals-100 text-2xl font-medium tracking-wide">{t("messages.title")}</Text>
           </View>
           <TouchableOpacity
             onPress={openSettings}
@@ -344,22 +344,23 @@ const DirectMessagesInner: React.FC = () => {
 
         {/* Search bar with + button */}
         <View className="px-4 mb-2">
-          <View className="flex-row items-center bg-[#1F2124] rounded-xl h-11">
+          <View className="flex-row items-center bg-theme-neutrals-800 rounded-xl h-11">
             <View className="pl-3 pr-2">
-              <Icon name="Search" size={16} color="#71717A" />
+              <Icon name="Search" size={16} color="#A1A1AA" />
             </View>
             <TextInput
               value={query}
               onChangeText={setQuery}
               placeholder="Search conversations..."
-              placeholderTextColor="#71717A"
+              placeholderTextColor="#8B8D90"
               className="flex-1 text-white text-sm py-0"
               returnKeyType="search"
             />
             <TouchableOpacity
               onPress={openNewDM}
-              className="w-7 h-7 rounded-xl items-center justify-center mr-1.5"
+              className="w-9 h-9 rounded-xl items-center justify-center mr-1.5"
               style={GLASS_SHADOW}
+              hitSlop={8}
               accessibilityRole="button"
               accessibilityLabel="New DM"
             >
@@ -380,7 +381,7 @@ const DirectMessagesInner: React.FC = () => {
             <RefreshControl
               refreshing={!!contactsLoading}
               onRefresh={refreshContacts}
-              tintColor="#A6A9AC"
+              tintColor="#F4F4F5"
             />
           }
           ListEmptyComponent={

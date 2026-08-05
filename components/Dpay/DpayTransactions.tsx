@@ -1,6 +1,8 @@
 import React, { useEffect, useCallback } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
+import Icon from "../ui/Icon";
 import { miniAddress } from "../../libs/strings.util";
 import { DPAY_TX_LINK, LEGACY_WEBSITE_LINK } from "../../config/links";
 import { openInApp, getTransactionLink } from "../../libs/links.utils";
@@ -33,12 +35,13 @@ const StatusPill: React.FC<{ label: string; intent: "green" | "red" | "grey" | "
     "bg-white text-black";
   return (
     <View className={`px-2 py-0.5 rounded-full mr-2 ${cls}`}>
-      <Text className={`text-[10px] ${intent === 'white' ? 'text-black' : 'text-white'}`}>{label}</Text>
+      <Text className={`text-xs ${intent === 'white' ? 'text-black' : 'text-white'}`}>{label}</Text>
     </View>
   );
 };
 
 const DpayTransactions: React.FC = () => {
+  const { t } = useTranslation();
   const [loading, setLoading] = React.useState<boolean>(true);
   const [items, setItems] = React.useState<Tx[]>([]);
 
@@ -126,13 +129,13 @@ const DpayTransactions: React.FC = () => {
             <Text className="text-gray-400 text-xs">≈ {tx.approxFiat.toFixed(2)} {tx.currency}</Text>
           </View>
           <View className="flex-row items-center">
-            <Ionicons name="time-outline" size={14} color="#9CA3AF" />
+            <Ionicons name="time-outline" size={14} color="#A1A1AA" />
             <Text className="text-gray-400 text-[11px] ml-1">{formatDistance(tx.createdAt as string, new Date(), { addSuffix: true })}</Text>
           </View>
         </View>
         <View className="flex-row justify-between items-center mt-2">
           <Text className="text-gray-300 text-xs">{miniAddress(tx.address)}</Text>
-          <Ionicons name="chevron-forward" size={16} color="#6B7280" />
+          <Ionicons name="chevron-forward" size={16} color="#A1A1AA" />
         </View>
       </TouchableOpacity>
     );
@@ -142,7 +145,11 @@ const DpayTransactions: React.FC = () => {
     <View className="mt-4">
       <View className="flex-row items-center justify-between mb-3">
         <Text className="text-white text-lg font-semibold tracking-wide">Latest Transactions</Text>
-        <TouchableOpacity onPress={onShowAll} className="px-3 py-1 rounded-full bg-gray-800 border border-gray-700 flex-row items-center">
+        <TouchableOpacity
+          onPress={onShowAll}
+          hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }}
+          className="px-3 py-1 rounded-full bg-theme-neutrals-800 border border-theme-neutrals-700 flex-row items-center"
+        >
           <Text className="text-white text-xs mr-1">Show all</Text>
           <Ionicons name="open-outline" size={14} color="#FFFFFF" />
         </TouchableOpacity>
@@ -169,6 +176,13 @@ const DpayTransactions: React.FC = () => {
             </View>
           ))}
         </>
+      ) : items.length === 0 ? (
+        <View className="items-center py-10">
+          <Icon name="Receipt" size={32} color="#3F3F46" />
+          <Text className="text-zinc-400 text-xs mt-3 text-center">
+            {t("commandCentre.noTransactionsFound")}
+          </Text>
+        </View>
       ) : (
         items.map(renderItem)
       )}

@@ -319,7 +319,7 @@ const UserProfileBottomContentTabs: React.FC<
       return (
         <View className="flex-1 items-center justify-center px-6 py-12">
           <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
-            <Icon name="Ban" size={40} color="#666" />
+            <Icon name="Ban" size={40} color={theme.colors.neutrals[500]} />
           </View>
           {!youBlocked && (
             <Text className="text-white text-lg font-bold text-center mb-2">
@@ -338,7 +338,7 @@ const UserProfileBottomContentTabs: React.FC<
     return (
       <View className="flex-1 items-center justify-center px-6 py-12">
         <View className="bg-theme-neutrals-800/50 rounded-full p-5 mb-5">
-          <Icon name="Lock" size={40} color="#666" />
+          <Icon name="Lock" size={40} color={theme.colors.neutrals[500]} />
         </View>
         <Text className="text-white text-lg font-bold text-center mb-2">
           This Account is Private
@@ -377,31 +377,10 @@ const UserProfileBottomContentTabs: React.FC<
     return (
       <View onLayout={handleHeaderLayout}>
         {profileHeader}
-        {isOwnProfile && isFullScreen && !!onEditProfile && (
-          <View className="px-5 mt-2 mb-1">
-            <TouchableOpacity
-              onPress={onEditProfile}
-              activeOpacity={0.8}
-              className="flex-row items-center justify-center gap-2 border border-theme-neutrals-700 py-2 rounded-full"
-            >
-              <Icon name="Pencil" size={15} color="#e5e5e5" />
-              <Text className="text-white text-sm font-semibold">
-                Edit Profile
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )}
         {TabBar}
       </View>
     );
-  }, [
-    profileHeader,
-    handleHeaderLayout,
-    TabBar,
-    isOwnProfile,
-    isFullScreen,
-    onEditProfile,
-  ]);
+  }, [profileHeader, handleHeaderLayout, TabBar]);
 
   if (!address) return null;
 
@@ -561,7 +540,7 @@ const UserProfileBottomContentTabs: React.FC<
             height: STICKY_BAR_HEIGHT,
             zIndex: 10,
             elevation: 10,
-            backgroundColor: "#010305",
+            backgroundColor: theme.colors.neutrals[900],
           }}
         >
           {TabBar}
@@ -586,7 +565,7 @@ const UserProfileBottomContentTabs: React.FC<
           <Icon
             name="ChevronUp"
             size={22}
-            color={theme.colors.accentForeground || "#fff"}
+            color={theme.colors.accent}
           />
         </Pressable>
       )}

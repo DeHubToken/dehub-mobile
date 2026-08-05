@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   Keyboard,
   Platform,
+  RefreshControl,
 } from "react-native";
 import Icon from "../ui/Icon";
 import CommentItem from "./CommentItem";
@@ -877,8 +878,14 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           keyExtractor={keyExtractor}
           contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: listBottomPadding }}
           keyboardShouldPersistTaps="handled"
-          refreshing={refreshing}
-          onRefresh={handleRefresh}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={handleRefresh}
+              tintColor="#F4F4F5"
+              progressBackgroundColor="#1a1a1a"
+            />
+          }
           viewabilityConfig={viewabilityConfig}
           onViewableItemsChanged={onViewableItemsChanged}
           ListEmptyComponent={
@@ -899,7 +906,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           bottom: 0,
           borderTopWidth: 1,
           borderTopColor: "rgba(255,255,255,0.06)",
-          backgroundColor: "rgba(30,30,30,0.8)",
+          backgroundColor: "rgba(12,12,14,0.8)",
           marginBottom: inputLift,
           paddingBottom: 8,
         }}
@@ -990,6 +997,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 <Pressable
                   onPress={handlePickImage}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  accessibilityRole="button"
+                  accessibilityLabel="Add image"
                   style={{ padding: 8, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 10 }}
                 >
                   <Icon name="ImagePlus" size={20} color="#8B8D90" />
@@ -997,6 +1006,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 <Pressable
                   onPress={handleOpenGifPicker}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  accessibilityRole="button"
+                  accessibilityLabel="Add GIF"
                   style={{ padding: 8, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 10 }}
                 >
                   <Text style={{ color: "#8B8D90", fontSize: 12, fontWeight: "700" }}>GIF</Text>
@@ -1004,6 +1015,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 <Pressable
                   onPress={handleStartRecording}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  accessibilityRole="button"
+                  accessibilityLabel="Record voice note"
                   style={{ padding: 8, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 10 }}
                 >
                   <Icon name="Mic" size={20} color="#8B8D90" />

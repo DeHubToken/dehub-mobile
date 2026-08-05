@@ -106,9 +106,9 @@ export function MembersTab({ community, membership }: MembersTabProps) {
   const renderRoleChip = (member: CommunityMember) => {
     if (member.role === "owner") {
       return (
-        <View style={[styles.chip, styles.chipOwner]}>
-          <Icon name="Crown" size={11} color="#fbbf24" />
-          <Text style={[styles.chipText, { color: "#fbbf24" }]}>
+        <View style={[styles.chip, styles.chipNeutral]}>
+          <Icon name="Crown" size={11} color="#fff" />
+          <Text style={[styles.chipText, { color: "#d4d4d8" }]}>
             {t("communities.roles.owner", { defaultValue: "Owner" })}
           </Text>
         </View>
@@ -116,9 +116,9 @@ export function MembersTab({ community, membership }: MembersTabProps) {
     }
     if (member.role === "admin") {
       return (
-        <View style={[styles.chip, styles.chipAdmin]}>
-          <Icon name="Shield" size={11} color="#60a5fa" />
-          <Text style={[styles.chipText, { color: "#60a5fa" }]}>
+        <View style={[styles.chip, styles.chipNeutral]}>
+          <Icon name="Shield" size={11} color="#A1A1AA" />
+          <Text style={[styles.chipText, { color: "#d4d4d8" }]}>
             {t("communities.roles.admin", { defaultValue: "Admin" })}
           </Text>
         </View>
@@ -190,14 +190,19 @@ export function MembersTab({ community, membership }: MembersTabProps) {
             placeholder={t("communities.manage.searchMembers", {
               defaultValue: "Search by wallet address",
             })}
-            placeholderTextColor="#52525b"
+            placeholderTextColor="#8B8D90"
             value={search}
             onChangeText={setSearch}
             autoCapitalize="none"
             autoCorrect={false}
           />
           {!!search && (
-            <TouchableOpacity onPress={() => setSearch("")} hitSlop={10}>
+            <TouchableOpacity
+              onPress={() => setSearch("")}
+              hitSlop={15}
+              accessibilityRole="button"
+              accessibilityLabel="Clear search"
+            >
               <Icon name="X" size={14} color="#71717a" />
             </TouchableOpacity>
           )}
@@ -205,10 +210,10 @@ export function MembersTab({ community, membership }: MembersTabProps) {
 
         {membersQuery.isLoading ? (
           <View className="py-8 items-center">
-            <ActivityIndicator size="small" color="#fff" />
+            <ActivityIndicator size="small" color="#F4F4F5" />
           </View>
         ) : shown.length === 0 ? (
-          <Text className="text-zinc-500 text-xs text-center py-8">
+          <Text className="text-zinc-400 text-xs text-center py-8">
             {search
               ? t("communities.manage.noMembersMatch", { defaultValue: "No member matches that." })
               : t("communities.manage.noMembers", { defaultValue: "No members yet." })}
@@ -229,11 +234,11 @@ export function MembersTab({ community, membership }: MembersTabProps) {
                       {shortWallet(member.wallet_address)}
                     </Text>
                     {!!member.custom_title && (
-                      <Text className="text-zinc-500 text-xs mt-0.5">{member.custom_title}</Text>
+                      <Text className="text-zinc-400 text-xs mt-0.5">{member.custom_title}</Text>
                     )}
                   </View>
                   {isMuted(member) && (
-                    <View style={[styles.chip, styles.chipOwner]}>
+                    <View style={[styles.chip, styles.chipWarning]}>
                       <Icon name="VolumeX" size={11} color="#fbbf24" />
                       <Text style={[styles.chipText, { color: "#fbbf24" }]}>
                         {t("communities.manage.muted", { defaultValue: "Muted" })}
@@ -294,9 +299,9 @@ export function MembersTab({ community, membership }: MembersTabProps) {
                   */}
                 </View>
                 {!!member.ban_reason && (
-                  <Text className="text-zinc-500 text-xs mt-1">{member.ban_reason}</Text>
+                  <Text className="text-zinc-400 text-xs mt-1">{member.ban_reason}</Text>
                 )}
-                {!!untilText && <Text className="text-zinc-500 text-xs mt-0.5">{untilText}</Text>}
+                {!!untilText && <Text className="text-zinc-400 text-xs mt-0.5">{untilText}</Text>}
               </View>
             );
           })}
@@ -355,8 +360,8 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     borderWidth: StyleSheet.hairlineWidth,
   },
-  chipOwner: { backgroundColor: "rgba(251,191,36,0.12)", borderColor: "rgba(251,191,36,0.3)" },
-  chipAdmin: { backgroundColor: "rgba(96,165,250,0.12)", borderColor: "rgba(96,165,250,0.3)" },
+  chipNeutral: { backgroundColor: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.1)" },
+  chipWarning: { backgroundColor: "rgba(251,191,36,0.12)", borderColor: "rgba(251,191,36,0.3)" },
   chipText: { fontSize: 11, fontWeight: "600" },
   approveBtn: {
     backgroundColor: "#fff",

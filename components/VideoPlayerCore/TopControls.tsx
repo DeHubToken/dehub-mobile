@@ -85,6 +85,9 @@ const TopControls: React.FC<TopControlsProps> = ({
             onPress={onToggleSpeed}
             className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
             activeOpacity={0.7}
+            accessibilityLabel="Playback speed"
+            accessibilityRole="button"
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <Text className="text-white text-xs font-bold">{playbackRate}x</Text>
           </TouchableOpacity>
@@ -95,8 +98,12 @@ const TopControls: React.FC<TopControlsProps> = ({
             onPress={onToggleLoop}
             className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
             activeOpacity={0.7}
+            accessibilityLabel="Toggle loop"
+            accessibilityRole="button"
+            accessibilityState={{ selected: isLooping }}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <MaterialIcons name={isLooping ? 'loop' : 'trending-flat'} size={20} color={isLooping ? "#fff" : "#9CA3AF"} />
+            <MaterialIcons name={isLooping ? 'loop' : 'trending-flat'} size={20} color={isLooping ? "#fff" : "#A1A1AA"} />
           </TouchableOpacity>
         )}
 
@@ -105,6 +112,9 @@ const TopControls: React.FC<TopControlsProps> = ({
             onPress={onPiP}
             className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
             activeOpacity={0.7}
+            accessibilityLabel="Picture in picture"
+            accessibilityRole="button"
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <MaterialIcons name="picture-in-picture-alt" size={18} color="#fff" />
           </TouchableOpacity>

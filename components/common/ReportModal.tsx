@@ -84,7 +84,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
     [type]
   );
 
-  const accentColor = type === "content" ? "#D4D4D8" : "#D4D4D8";
+  const accentColor = "#D4D4D8";
 
   const headerConfig = useMemo(
     () =>
@@ -93,7 +93,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
             title: "Report Video",
             subtitle: "Why are you reporting this video?",
             icon: "flag-outline" as keyof typeof Ionicons.glyphMap,
-            iconColor: "#D4D4D8",
+            iconColor: accentColor,
             iconBg: "bg-yellow-500/15",
             successMessage:
               "Thank you for helping keep the community safe. We'll review this content and take appropriate action.",
@@ -104,7 +104,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
               ? `Why are you reporting ${userName}?`
               : "Why are you reporting this user?",
             icon: "person-remove-outline" as keyof typeof Ionicons.glyphMap,
-            iconColor: "#D4D4D8",
+            iconColor: accentColor,
             iconBg: "bg-orange-500/15",
             successMessage:
               "Thank you for your report. We'll review this account and take appropriate action.",
@@ -237,10 +237,11 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
           <TouchableOpacity
             onPress={handleClose}
             disabled={submitting}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             className="p-2 bg-white/5 rounded-full"
             activeOpacity={0.8}
           >
-            <Ionicons name="close" size={20} color="#9CA3AF" />
+            <Ionicons name="close" size={20} color="#A6A9AC" />
           </TouchableOpacity>
         </View>
 
@@ -256,13 +257,13 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
                 className={`flex-row items-center px-4 py-3 rounded-xl mb-1.5 border ${
                   isSelected
                     ? "bg-white/10 border-white/20"
-                    : "bg-white/3 border-transparent"
+                    : "bg-white/5 border-transparent"
                 }`}
               >
                 <Ionicons
                   name={reason.icon}
                   size={18}
-                  color={isSelected ? accentColor : "#9CA3AF"}
+                  color={isSelected ? accentColor : "#A6A9AC"}
                 />
                 <Text
                   className={`ml-3 text-sm font-medium flex-1 ${
@@ -296,7 +297,7 @@ const ReportModalComponent: React.FC<ReportModalProps> = ({
               onChangeText={setAdditionalInfo}
               maxLength={500}
               placeholder="Provide more context…"
-              placeholderTextColor="#6B7280"
+              placeholderTextColor="#8B8D90"
               multiline
               numberOfLines={3}
               textAlignVertical="top"

@@ -155,6 +155,10 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
                   key={tab.key}
                   onPress={() => setActiveTab(tab.key)}
                   style={[glassStyles.tab, isActive && glassStyles.tabActive]}
+                  hitSlop={{ top: 4, bottom: 4, left: 2, right: 2 }}
+                  accessibilityRole="tab"
+                  accessibilityLabel={tab.label}
+                  accessibilityState={{ selected: isActive }}
                 >
                   <Icon
                     name={tab.icon}

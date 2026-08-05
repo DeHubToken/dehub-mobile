@@ -6,8 +6,8 @@ type ImageDef = { url: string; alt?: string };
 const LazyImg = ({ url }: { url: string }) => {
   const [loaded, setLoaded] = React.useState(false);
   return (
-    <View className="w-full h-full bg-neutral-800 overflow-hidden">
-      {!loaded && <View className="absolute inset-0 bg-neutral-800 animate-pulse" />}
+    <View className="w-full h-full bg-theme-neutrals-800 overflow-hidden">
+      {!loaded && <View className="absolute inset-0 bg-theme-neutrals-800 animate-pulse" />}
       <Image
         source={{ uri: url }}
         className="w-full h-full"

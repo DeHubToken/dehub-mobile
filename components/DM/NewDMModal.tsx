@@ -257,7 +257,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
             value={query}
             onChangeText={onChangeSearch}
             placeholder="Search..."
-            placeholderTextColor="#6B7280"
+            placeholderTextColor="#8B8D90"
             className="flex-1 text-white text-[15px]"
             returnKeyType="search"
             onFocus={() => setShowResults((query || "").trim().length >= 2)}
@@ -272,6 +272,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
               onPress={() => setQuery("")}
               accessibilityRole="button"
               accessibilityLabel="Clear search"
+              hitSlop={8}
               className="w-7 h-7 rounded-full bg-theme-neutrals-700 items-center justify-center"
             >
               <Ionicons name="close" size={14} color="#B4B8BE" />

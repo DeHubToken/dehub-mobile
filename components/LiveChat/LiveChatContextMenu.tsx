@@ -16,6 +16,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Avatar from "../common/Avatar";
 import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
 import { copyToClipboard } from "../../libs/clipboard.utils";
+import { theme } from "../../theme";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
 
 export interface MessageLayout {
@@ -58,7 +59,11 @@ const ActionRow: React.FC<ActionRowProps> = ({ icon, label, onPress, destructive
     className="flex-row items-center px-4 py-3"
   >
     <View className="w-8 items-center">
-      <Icon name={icon} size={20} color={destructive ? "#EF4444" : "#F9FBFF"} />
+      <Icon
+        name={icon}
+        size={20}
+        color={destructive ? "#EF4444" : theme.colors.neutrals[100]}
+      />
     </View>
     <Text
       className={`ml-3 text-[15px] ${destructive ? "text-red-400" : "text-theme-neutrals-100"}`}
@@ -96,14 +101,14 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
           {displayName}
         </Text>
         {isMod && (
-          <View className="bg-amber-500/20 rounded px-1 py-0.5">
-            <Text className="text-amber-400 text-[9px] font-bold">MOD</Text>
+          <View className="bg-white/10 rounded px-1 py-0.5">
+            <Text className="text-theme-neutrals-200 text-[10px] font-bold">MOD</Text>
           </View>
         )}
         {!!badgeImg && (
           <Image source={badgeImg} style={{ width: 14, height: 14 }} resizeMode="contain" />
         )}
-        <Text className="text-white/30 text-[10px] ml-auto">
+        <Text className="text-white/50 text-[11px] ml-auto">
           {formatTime(message.createdAt)}
         </Text>
       </View>
@@ -170,8 +175,8 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
       {/* Pinned indicator */}
       {message.isPinned && (
         <View className="flex-row items-center gap-1 mt-1">
-          <Icon name="Pin" size={11} color="rgba(255,255,255,0.3)" />
-          <Text className="text-white/30 text-[10px]">Pinned</Text>
+          <Icon name="Pin" size={11} color="rgba(255,255,255,0.5)" />
+          <Text className="text-white/50 text-[11px]">Pinned</Text>
         </View>
       )}
     </View>
@@ -361,6 +366,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
                   <TouchableOpacity
                     key={emoji}
                     onPress={() => handleReaction(emoji)}
+                    hitSlop={4}
                     className={`w-10 h-10 items-center justify-center rounded-full ${
                       alreadyReacted ? "bg-blue-500/20" : ""
                     }`}
@@ -396,7 +402,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
                     <Icon
                       name={message.isPinned ? "PinOff" : "Pin"}
                       size={20}
-                      color="#F9FBFF"
+                      color={theme.colors.neutrals[100]}
                     />
                   </View>
                   <Text className="ml-3 text-[15px] text-theme-neutrals-100">

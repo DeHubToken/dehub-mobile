@@ -7,7 +7,6 @@ import {
   Modal,
   Pressable,
   ActivityIndicator,
-  Switch,
   StyleSheet,
   KeyboardAvoidingView,
 } from "react-native";
@@ -15,6 +14,7 @@ import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
+import CustomSwitch from "../ui/CustomSwitch";
 import {
   createCommunity,
   resolveUniqueSlug,
@@ -117,13 +117,23 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
           <View style={styles.header}>
             <Icon name="Users" size={20} color="#fff" />
             <Text style={styles.title}>{t("communities.createCommunity")}</Text>
-            <TouchableOpacity onPress={onClose} hitSlop={12}>
+            <TouchableOpacity
+              onPress={onClose}
+              hitSlop={12}
+              accessibilityRole="button"
+              accessibilityLabel="Close"
+            >
               <Icon name="X" size={20} color="#71717a" />
             </TouchableOpacity>
           </View>
 
           <View style={styles.row}>
-            <TouchableOpacity style={styles.avatarPick} onPress={pickAvatar}>
+            <TouchableOpacity
+              style={styles.avatarPick}
+              onPress={pickAvatar}
+              accessibilityRole="button"
+              accessibilityLabel="Choose avatar"
+            >
               {avatarUri ? (
                 <Image source={{ uri: avatarUri }} style={styles.avatarImg} contentFit="cover" />
               ) : (
@@ -133,7 +143,7 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
             <TextInput
               style={styles.nameInput}
               placeholder={t("communities.communityName")}
-              placeholderTextColor="#52525b"
+              placeholderTextColor="#8B8D90"
               value={name}
               onChangeText={setName}
               maxLength={64}
@@ -143,7 +153,7 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
           <TextInput
             style={styles.descInput}
             placeholder={t("communities.whatsItAbout")}
-            placeholderTextColor="#52525b"
+            placeholderTextColor="#8B8D90"
             value={description}
             onChangeText={setDescription}
             multiline
@@ -152,7 +162,7 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
 
           <View style={styles.privateRow}>
             <Text style={styles.privateLabel}>{t("communities.privateCommunity")}</Text>
-            <Switch value={isPrivate} onValueChange={setIsPrivate} />
+            <CustomSwitch value={isPrivate} onValueChange={setIsPrivate} />
           </View>
 
           {!!baseSlug && (
@@ -180,9 +190,11 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
 const styles = StyleSheet.create({
   overlay: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   sheet: {
-    backgroundColor: "#111316",
+    backgroundColor: "rgba(12,12,14,0.96)",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.1)",
     padding: 20,
     paddingBottom: 32,
   },
@@ -205,17 +217,22 @@ const styles = StyleSheet.create({
     flex: 1,
     color: "#fff",
     fontSize: 16,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "rgba(255,255,255,0.15)",
-    paddingVertical: 8,
+    backgroundColor: "rgba(255,255,255,0.06)",
+    borderRadius: 10,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.1)",
+    paddingHorizontal: 12,
+    paddingVertical: 10,
   },
   descInput: {
     color: "#fff",
     fontSize: 14,
     minHeight: 80,
     textAlignVertical: "top",
-    backgroundColor: "rgba(255,255,255,0.04)",
-    borderRadius: 12,
+    backgroundColor: "rgba(255,255,255,0.06)",
+    borderRadius: 10,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.1)",
     padding: 12,
     marginBottom: 12,
   },
@@ -226,7 +243,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   privateLabel: { color: "#e4e4e7", fontSize: 14 },
-  slugPreview: { color: "#52525b", fontSize: 11, marginBottom: 16 },
+  slugPreview: { color: "#A1A1AA", fontSize: 12, marginBottom: 16 },
   submit: {
     backgroundColor: "#fff",
     borderRadius: 14,

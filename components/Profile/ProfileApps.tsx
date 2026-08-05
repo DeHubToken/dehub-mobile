@@ -82,13 +82,13 @@ const ProfileApps: React.FC = () => {
           >
             <View
               className={`w-14 h-14 rounded-full items-center justify-center ${
-                app.active ? "bg-gray-700" : "bg-gray-800"
+                app.active ? "bg-theme-neutrals-700" : "bg-theme-neutrals-800"
               }`}
             >
               <Icon
                 name={app.icon}
                 size={26}
-                color={app.active ? "#fff" : "#888"}
+                color={app.active ? "#fff" : "#A1A1AA"}
               />
             </View>
             <Text className="text-xs text-gray-300 mt-2 text-center">

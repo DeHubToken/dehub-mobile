@@ -115,7 +115,6 @@ const GlassModal: React.FC<GlassModalProps> = ({
                 style={StyleSheet.absoluteFill}
                 {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
               />
-              <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(12,12,14,0.68)" }} />
               {children}
             </View>
           ) : (

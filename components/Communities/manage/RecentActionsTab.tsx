@@ -214,17 +214,17 @@ const LogRow = memo(function LogRow({ entry }: { entry: CommunityAdminLogEntry }
 
       {!!quoted && (
         <View style={styles.quote}>
-          <Text className="text-zinc-500 text-xs leading-5">{quoted}</Text>
+          <Text className="text-zinc-400 text-xs leading-5">{quoted}</Text>
         </View>
       )}
 
       {!!reason && (
-        <Text className="text-zinc-500 text-xs mt-1.5">
+        <Text className="text-zinc-400 text-xs mt-1.5">
           {t("communities.manage.log.reason", { defaultValue: "Reason: {{value}}", value: reason })}
         </Text>
       )}
 
-      <Text className="text-zinc-600 text-xs mt-1.5">{formatRelativeTime(entry.created_at, t)}</Text>
+      <Text className="text-zinc-400 text-xs mt-1.5">{formatRelativeTime(entry.created_at, t)}</Text>
     </View>
   );
 });
@@ -267,7 +267,7 @@ export function RecentActionsTab({ community, membership }: RecentActionsTabProp
   if (!canView) {
     return (
       <View className="px-4 py-10">
-        <Text className="text-zinc-500 text-sm text-center">
+        <Text className="text-zinc-400 text-sm text-center">
           {t("communities.manage.log.restricted", {
             defaultValue: "Only moderators can see the moderation log.",
           })}
@@ -301,12 +301,12 @@ export function RecentActionsTab({ community, membership }: RecentActionsTabProp
 
       {isLoading ? (
         <View className="py-10 items-center">
-          <ActivityIndicator size="small" color="#fff" />
+          <ActivityIndicator size="small" color="#F4F4F5" />
         </View>
       ) : visible.length === 0 ? (
         <View className="py-10 items-center gap-2">
           <Icon name="History" size={24} color="#3f3f46" />
-          <Text className="text-zinc-500 text-sm text-center">
+          <Text className="text-zinc-400 text-sm text-center">
             {t("communities.manage.log.empty", {
               defaultValue: "Nothing here yet. Moderation actions will show up as they happen.",
             })}
@@ -337,7 +337,7 @@ const styles = StyleSheet.create({
   filterRow: { flexDirection: "row", alignItems: "center", gap: 8, paddingRight: 4, paddingBottom: 4 },
   filterChip: {
     paddingHorizontal: 12,
-    paddingVertical: 6,
+    paddingVertical: 10,
     borderRadius: 999,
     backgroundColor: "rgba(255,255,255,0.06)",
     borderWidth: StyleSheet.hairlineWidth,

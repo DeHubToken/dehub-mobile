@@ -134,10 +134,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
               scrubberAnimatedStyle,
             ]}
             pointerEvents="none"
-          >
-            {/* Inner dot for better visibility */}
-            <View className="absolute inset-1 rounded-full bg-white" />
-          </Animated.View>
+          />
         )}
       </Pressable>
     </View>

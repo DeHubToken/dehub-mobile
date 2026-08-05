@@ -55,9 +55,11 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
         <TouchableOpacity activeOpacity={1} onPress={() => {}}>
           <View
             style={{
-              backgroundColor: "#18181B",
+              backgroundColor: "rgba(12,12,14,0.96)",
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
+              borderTopWidth: 1,
+              borderColor: "rgba(255,255,255,0.1)",
               paddingBottom: Math.max(insets.bottom, 16),
               maxHeight: 500,
             }}
@@ -68,8 +70,8 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
                 <Ionicons name="language-outline" size={20} color="#fff" />
                 <Text style={{ color: "#fff", fontSize: 16, fontWeight: "600" }}>Image Translation</Text>
               </View>
-              <TouchableOpacity onPress={onClose} hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}>
-                <Ionicons name="close" size={22} color="#9CA3AF" />
+              <TouchableOpacity onPress={onClose} hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}>
+                <Ionicons name="close" size={22} color="#A6A9AC" />
               </TouchableOpacity>
             </View>
 
@@ -77,8 +79,8 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
               {/* Loading */}
               {isLoading && (
                 <View style={{ alignItems: "center", paddingVertical: 40, gap: 12 }}>
-                  <ActivityIndicator size="large" color="#fff" />
-                  <Text style={{ color: "#9CA3AF", fontSize: 14 }}>Extracting and translating text...</Text>
+                  <ActivityIndicator size="large" color="#F4F4F5" />
+                  <Text style={{ color: "#A6A9AC", fontSize: 14 }}>Extracting and translating text...</Text>
                 </View>
               )}
 
@@ -86,19 +88,19 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
               {!!error && !isLoading && (
                 <View style={{ alignItems: "center", paddingVertical: 32, gap: 8 }}>
                   <View style={{ width: 48, height: 48, borderRadius: 12, backgroundColor: "rgba(239,68,68,0.2)", alignItems: "center", justifyContent: "center" }}>
-                    <Ionicons name="alert-circle-outline" size={24} color="#F87171" />
+                    <Ionicons name="alert-circle-outline" size={24} color="#EF4444" />
                   </View>
-                  <Text style={{ color: "#F87171", fontSize: 14, textAlign: "center" }}>{error}</Text>
+                  <Text style={{ color: "#EF4444", fontSize: 14, textAlign: "center" }}>{error}</Text>
                 </View>
               )}
 
               {/* No text found */}
               {result && !result.hasText && !isLoading && !error && (
                 <View style={{ alignItems: "center", paddingVertical: 32, gap: 8 }}>
-                  <View style={{ width: 48, height: 48, borderRadius: 12, backgroundColor: "#27272A", alignItems: "center", justifyContent: "center" }}>
-                    <Ionicons name="document-text-outline" size={24} color="#6B7280" />
+                  <View style={{ width: 48, height: 48, borderRadius: 12, backgroundColor: "#383A3D", alignItems: "center", justifyContent: "center" }}>
+                    <Ionicons name="document-text-outline" size={24} color="#6F7174" />
                   </View>
-                  <Text style={{ color: "#9CA3AF", fontSize: 14 }}>No text found in this image</Text>
+                  <Text style={{ color: "#A6A9AC", fontSize: 14 }}>No text found in this image</Text>
                 </View>
               )}
 
@@ -106,8 +108,8 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
               {result && result.hasText && !isLoading && !error && (
                 <>
                   <View style={{ flexDirection: "row" }}>
-                    <View style={{ backgroundColor: "#27272A", borderRadius: 8, paddingHorizontal: 10, paddingVertical: 4 }}>
-                      <Text style={{ color: "#D1D5DB", fontSize: 12 }}>Translated from {sourceLangName}</Text>
+                    <View style={{ backgroundColor: "#383A3D", borderRadius: 8, paddingHorizontal: 10, paddingVertical: 4 }}>
+                      <Text style={{ color: "#C2C4C7", fontSize: 12 }}>Translated from {sourceLangName}</Text>
                     </View>
                   </View>
 
@@ -119,15 +121,15 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
                     onPress={() => setShowOriginal((v) => !v)}
                     style={{ flexDirection: "row", alignItems: "center", gap: 6 }}
                   >
-                    <Text style={{ color: "#6B7280", fontSize: 12, fontWeight: "600", textTransform: "uppercase", letterSpacing: 0.5 }}>
+                    <Text style={{ color: "#A6A9AC", fontSize: 12, fontWeight: "600", textTransform: "uppercase", letterSpacing: 0.5 }}>
                       Original Text
                     </Text>
-                    <Ionicons name={showOriginal ? "chevron-up" : "chevron-down"} size={14} color="#6B7280" />
+                    <Ionicons name={showOriginal ? "chevron-up" : "chevron-down"} size={14} color="#A6A9AC" />
                   </TouchableOpacity>
 
                   {showOriginal && (
-                    <View style={{ backgroundColor: "#09090B", borderRadius: 12, padding: 14, borderWidth: 1, borderColor: "rgba(255,255,255,0.06)" }}>
-                      <Text style={{ color: "#9CA3AF", fontSize: 14, lineHeight: 22 }}>{result.extractedText}</Text>
+                    <View style={{ backgroundColor: "#010305", borderRadius: 12, padding: 14, borderWidth: 1, borderColor: "rgba(255,255,255,0.06)" }}>
+                      <Text style={{ color: "#A6A9AC", fontSize: 14, lineHeight: 22 }}>{result.extractedText}</Text>
                     </View>
                   )}
                 </>

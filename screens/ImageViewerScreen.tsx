@@ -47,6 +47,7 @@ const normalizeImageUri = (item: any): string => {
 /** Zoomable image — double-tap to zoom, pinch-to-zoom, pan when zoomed. */
 const ZoomableImage = memo(
   ({ uri, onZoomChange }: { uri: string; onZoomChange?: (zoomed: boolean) => void }) => {
+    const [loaded, setLoaded] = useState(false);
     const scale = useSharedValue(1);
     const savedScale = useSharedValue(1);
     const offsetX = useSharedValue(0);
@@ -209,9 +210,21 @@ const ZoomableImage = memo(
               source={{ uri }}
               style={{ width: SCREEN_W, height: SCREEN_H }}
               resizeMode="contain"
+              onLoad={() => setLoaded(true)}
             />
           </Animated.View>
         </GestureDetector>
+        {!loaded && (
+          <View
+            style={[
+              StyleSheet.absoluteFill,
+              { alignItems: "center", justifyContent: "center" },
+            ]}
+            pointerEvents="none"
+          >
+            <ActivityIndicator size="small" color="#fff" />
+          </View>
+        )}
       </View>
     );
   },
@@ -365,12 +378,6 @@ const ImageViewerScreen = () => {
     [images.length],
   );
 
-  useEffect(() => {
-    if (images.length > 1) {
-      // no-op — dot indicators don't need scrolling
-    }
-  }, [currentIndex, images.length]);
-
   const handleZoomChange = useCallback((zoomed: boolean) => {
     setIsZoomed(zoomed);
   }, []);
@@ -420,24 +427,44 @@ const ImageViewerScreen = () => {
         style={[styles.topBar, { top: insets.top + 8 }]}
         pointerEvents="box-none"
       >
-        {/* Spacer left (for centering counter) */}
-        <View style={styles.topBarSide} />
+        {/* Close — left (matches FullscreenVideoScreen) */}
+        <TouchableOpacity
+          onPress={closeViewer}
+          activeOpacity={0.7}
+          style={styles.glassButton}
+          hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+          accessibilityRole="button"
+          accessibilityLabel="Close"
+        >
+          <BlurView
+            intensity={Platform.OS === "ios" ? 60 : 40}
+            tint="dark"
+            style={StyleSheet.absoluteFill}
+            {...(Platform.OS === "android"
+              ? { experimentalBlurMethod: "dimezisBlurView" }
+              : {})}
+          />
+          <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
+          <Icon name="X" size={20} color="#fff" />
+        </TouchableOpacity>
 
-        {/* Counter pill — center */}
+        {/* Counter pill — absolutely centered */}
         {images.length > 1 && (
-          <View style={styles.counterPill}>
-            <BlurView
-              intensity={Platform.OS === "ios" ? 60 : 40}
-              tint="dark"
-              style={StyleSheet.absoluteFill}
-              {...(Platform.OS === "android"
-                ? { experimentalBlurMethod: "dimezisBlurView" }
-                : {})}
-            />
-            <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
-            <Text style={styles.counterText}>
-              {currentIndex + 1} / {images.length}
-            </Text>
+          <View style={styles.counterWrap} pointerEvents="none">
+            <View style={styles.counterPill}>
+              <BlurView
+                intensity={Platform.OS === "ios" ? 60 : 40}
+                tint="dark"
+                style={StyleSheet.absoluteFill}
+                {...(Platform.OS === "android"
+                  ? { experimentalBlurMethod: "dimezisBlurView" }
+                  : {})}
+              />
+              <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
+              <Text style={styles.counterText}>
+                {currentIndex + 1} / {images.length}
+              </Text>
+            </View>
           </View>
         )}
 
@@ -450,6 +477,8 @@ const ImageViewerScreen = () => {
               style={styles.glassButton}
               disabled={isSaving}
               hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+              accessibilityRole="button"
+              accessibilityLabel="Download image"
             >
               <BlurView
                 intensity={Platform.OS === "ios" ? 60 : 40}
@@ -467,23 +496,6 @@ const ImageViewerScreen = () => {
               )}
             </TouchableOpacity>
           )}
-          <TouchableOpacity
-            onPress={closeViewer}
-            activeOpacity={0.7}
-            style={styles.glassButton}
-            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-          >
-            <BlurView
-              intensity={Platform.OS === "ios" ? 60 : 40}
-              tint="dark"
-              style={StyleSheet.absoluteFill}
-              {...(Platform.OS === "android"
-                ? { experimentalBlurMethod: "dimezisBlurView" }
-                : {})}
-            />
-            <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
-            <Icon name="X" size={20} color="#fff" />
-          </TouchableOpacity>
         </View>
       </View>
 
@@ -497,7 +509,9 @@ const ImageViewerScreen = () => {
             <Pressable
               key={idx}
               onPress={() => scrollToImage(idx)}
-              hitSlop={8}
+              hitSlop={{ top: 18, bottom: 18, left: 5, right: 5 }}
+              accessibilityRole="button"
+              accessibilityLabel={`Go to image ${idx + 1}`}
             >
               <View
                 style={[
@@ -527,9 +541,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     zIndex: 50,
   },
-  topBarSide: {
-    width: 44,
-    alignItems: "flex-end",
+  counterWrap: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: "center",
+    justifyContent: "center",
   },
   topBarActions: {
     flexDirection: "row",
@@ -569,7 +588,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: 8,
+    gap: 12,
     zIndex: 50,
   },
   dot: {
