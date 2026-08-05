@@ -419,7 +419,7 @@ const TipModal: React.FC<TipModalProps> = ({
                 <AnimatedCheck
                   size={80}
                   className="bg-theme-accent"
-                  iconColor="#fff"
+                  iconColor="#09090B"
                   animateKey={phase}
                 />
                 <Text className="text-white text-base font-semibold">
@@ -433,7 +433,7 @@ const TipModal: React.FC<TipModalProps> = ({
                     }}
                     className="px-5 h-11 rounded-xl bg-theme-accent items-center justify-center"
                   >
-                    <Text className="text-white font-semibold">Resend</Text>
+                    <Text className="text-theme-accent-foreground font-semibold">Resend</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={close}
@@ -462,8 +462,8 @@ export const TipTriggerButton: React.FC<{
       className || ""
     }`}
   >
-    <Ionicons name="cash-outline" size={16} color="#fff" />
-    <Text className="text-white text-sm font-semibold">{text}</Text>
+    <Ionicons name="cash-outline" size={16} color="#09090B" />
+    <Text className="text-theme-accent-foreground text-sm font-semibold">{text}</Text>
   </TouchableOpacity>
 );
 
