@@ -26,7 +26,7 @@ const EmptyFeedState: React.FC<EmptyFeedStateProps> = ({
           onPress={onClear}
           className="mt-6 px-5 py-2 rounded-md bg-theme-neutrals-700 active:opacity-80"
         >
-          <Text className="text-sm font-medium" style={{ color: theme.colors.accentForeground }}>{clearLabel}</Text>
+          <Text className="text-sm font-medium" style={{ color: theme.colors.neutrals[100] }}>{clearLabel}</Text>
         </Pressable>
       )}
     </View>
