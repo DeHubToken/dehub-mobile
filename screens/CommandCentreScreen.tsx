@@ -221,7 +221,7 @@ const ActivityRow: React.FC<{ item: ActivityItem }> = ({ item }) => {
   return (
     <View style={styles.activityRow}>
       <View style={styles.activityIcon}>
-        <Icon name={meta?.icon ?? "Circle"} size={14} color={positive ? "#34D399" : "#F87171"} />
+        <Icon name={meta?.icon ?? "Circle"} size={14} color={positive ? "#22C55E" : "#EF4444"} />
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text style={styles.activityLabel}>
@@ -229,7 +229,7 @@ const ActivityRow: React.FC<{ item: ActivityItem }> = ({ item }) => {
         </Text>
         <Text style={styles.activityTime}>{timeAgo(item.createdAt, t)}</Text>
       </View>
-      <Text style={[styles.activityAmount, { color: positive ? "#34D399" : "#F87171" }]}>
+      <Text style={[styles.activityAmount, { color: positive ? "#22C55E" : "#EF4444" }]}>
         {positive ? "+" : ""}
         {fmt(item.amount)} {item.currency}
       </Text>
@@ -527,7 +527,7 @@ const styles = StyleSheet.create({
   balanceBig: { color: "#FFFFFF", fontSize: 32, fontWeight: "800", marginTop: 6 },
   balanceUnit: { color: "#71717A", fontSize: 15, fontWeight: "700" },
 
-  incomeTotal: { color: "#34D399", fontSize: 13, fontWeight: "700", marginTop: 2 },
+  incomeTotal: { color: "#22C55E", fontSize: 13, fontWeight: "700", marginTop: 2 },
 
   rangeRow: { flexDirection: "row", gap: 6, marginTop: 10 },
   rangeChip: {

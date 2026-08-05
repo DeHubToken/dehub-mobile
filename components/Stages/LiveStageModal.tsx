@@ -155,7 +155,7 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
             backgroundColor: "rgba(239,68,68,0.2)",
           }}
         >
-          <Text style={{ color: "#f87171", fontSize: 10 }}>Remove</Text>
+          <Text style={{ color: "#EF4444", fontSize: 10 }}>Remove</Text>
         </TouchableOpacity>
       )}
     </View>
@@ -641,7 +641,7 @@ const LiveStageModal: React.FC = () => {
                 justifyContent: "center",
               }}
             >
-              <Icon name={isMuted ? "MicOff" : "Mic"} size={22} color={isMuted ? "#f87171" : "#32D583"} />
+              <Icon name={isMuted ? "MicOff" : "Mic"} size={22} color={isMuted ? "#EF4444" : "#32D583"} />
             </TouchableOpacity>
           )}
 
@@ -677,8 +677,8 @@ const LiveStageModal: React.FC = () => {
               borderColor: "rgba(239,68,68,0.4)",
             }}
           >
-            <Icon name={isHostRole ? "X" : "LogOut"} size={18} color={isHostRole ? "#fff" : "#f87171"} />
-            <Text style={{ color: isHostRole ? "#fff" : "#f87171", fontWeight: "600", fontSize: 14 }}>
+            <Icon name={isHostRole ? "X" : "LogOut"} size={18} color={isHostRole ? "#fff" : "#EF4444"} />
+            <Text style={{ color: isHostRole ? "#fff" : "#EF4444", fontWeight: "600", fontSize: 14 }}>
               {isHostRole ? "End Stage" : "Leave"}
             </Text>
           </TouchableOpacity>

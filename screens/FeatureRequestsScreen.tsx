@@ -262,7 +262,7 @@ const FeatureCard: React.FC<{
             accessibilityLabel="Upvote"
             accessibilityState={{ selected: myVote === 1 }}
           >
-            <Icon name="ChevronUp" size={18} color={myVote === 1 ? "#34D399" : "#A1A1AA"} />
+            <Icon name="ChevronUp" size={18} color={myVote === 1 ? "#22C55E" : "#A1A1AA"} />
           </Pressable>
           <Text style={styles.voteCount}>{formatCompactNumber(feature.vote_count ?? 0)}</Text>
           <Pressable
@@ -274,7 +274,7 @@ const FeatureCard: React.FC<{
             accessibilityLabel="Downvote"
             accessibilityState={{ selected: myVote === -1 }}
           >
-            <Icon name="ChevronDown" size={18} color={myVote === -1 ? "#F87171" : "#A1A1AA"} />
+            <Icon name="ChevronDown" size={18} color={myVote === -1 ? "#EF4444" : "#A1A1AA"} />
           </Pressable>
         </View>
 

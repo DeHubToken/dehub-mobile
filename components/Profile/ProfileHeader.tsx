@@ -400,7 +400,7 @@ const ProfileHeader = () => {
                   color="#71717A"
                   style={{ marginRight: 4 }}
                 />
-                <Text className="text-zinc-500 text-xs mr-1" numberOfLines={1}>
+                <Text className="text-zinc-400 text-xs mr-1" numberOfLines={1}>
                   {shortAddr}
                 </Text>
                 <TouchableOpacity
