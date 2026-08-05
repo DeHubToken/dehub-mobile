@@ -31,6 +31,12 @@ import { WEBSITE_LINK } from "../../config";
 const ICON_MUTED = "#6F7174";
 const ICON_ACTIVE = "#F9FBFF";
 
+function formatTipTotal(n: number): string {
+  if (n >= 1e6) return `${(n / 1e6).toFixed(1)}M`;
+  if (n >= 1e3) return `${(n / 1e3).toFixed(1)}K`;
+  return String(Math.round(n));
+}
+
 function formatShortTime(date: Date | string | undefined): string {
   if (!date) return "";
   const now = new Date();
@@ -57,6 +63,9 @@ interface CommentItemProps {
   comment: Comment;
   isReply?: boolean;
   onReply?: (comment: Comment) => void;
+  onTip?: (comment: Comment) => void;
+  /** DHB already tipped to this comment, shown beside the gem when > 0. */
+  tipTotal?: number;
   onLike?: (commentId: number) => Promise<LikeCommentResult | void>;
   onDislike?: (commentId: number) => Promise<DislikeCommentResult | void>;
   onUserPress?: (userId: string) => void;
@@ -74,6 +83,8 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   comment,
   isReply = false,
   onReply,
+  onTip,
+  tipTotal,
   onLike,
   onDislike,
   onUserPress,
@@ -427,6 +438,25 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 {(comment.replyIds?.length ?? 0) > 0 && (
                   <Text style={{ fontSize: 11, color: "#8B8D90" }}>
                     {comment.replyIds!.length}
+                  </Text>
+                )}
+              </Pressable>
+            )}
+
+            {/* Tip the comment's author. Shown for own comments too so the
+                author sees what the comment earned; the sheet refuses
+                self-tips. Hidden when the API gave us no author address to
+                pay. */}
+            {onTip && !!(comment.user?.address || comment.address) && (
+              <Pressable
+                onPress={() => onTip(comment)}
+                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
+              >
+                <Icon name="Gem" size={14} color={ICON_MUTED} strokeWidth={1.8} />
+                {(tipTotal ?? 0) > 0 && (
+                  <Text style={{ fontSize: 11, color: "#8B8D90" }}>
+                    {formatTipTotal(tipTotal!)}
                   </Text>
                 )}
               </Pressable>
