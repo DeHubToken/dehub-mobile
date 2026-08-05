@@ -511,7 +511,7 @@ const FeedCardBase: React.FC<FeedCardBaseProps> = memo(
                 <Ionicons
                   name="heart"
                   size={24}
-                  color={liked ? "#EF4444" : "#9CA3AF"}
+                  color={liked ? "#FFFFFF" : "#9CA3AF"}
                 />
               </Animated.View>
               <Text className="ml-2 text-theme-neutrals-400 text-base">

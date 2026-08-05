@@ -72,7 +72,7 @@ module.exports = {
           foreground: "hsl(222.2 84% 4.9%)",
         },
         theme: {
-          background: "hsl(0 0% 7%)" /* #111111 */,
+          background: "hsl(210 67% 1%)" /* #010305 — matches theme.neutrals.900 */,
           "mine-shaft-dark": "hsl(0 0% 16%)" /* #292929 */,
           "cloud-burst": "hsl(215 35% 20%)" /* #223146 */,
           "mine-shaft": "hsl(0 0% 23%)" /* #3a3a3a */,

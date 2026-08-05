@@ -400,7 +400,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
           Amount [{currency.toUpperCase()}]
         </Text>
         <View className="h-11 px-3 rounded-lg bg-zinc-900 border border-zinc-800 flex-row items-center">
-          <Ionicons name="cash-outline" size={16} color="#9CA3AF" />
+          <Ionicons name="cash-outline" size={16} color="#A1A1AA" />
           <TextInput
             value={amountUsd}
             onChangeText={onChangeAmount}
@@ -420,7 +420,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
       <View className="mb-3">
         <Text className="text-gray-400 text-[11px] mb-1">Wallet Address</Text>
         <View className="h-11 px-3 rounded-lg bg-zinc-900 border border-zinc-800 flex-row items-center">
-          <Ionicons name="wallet-outline" size={16} color="#9CA3AF" />
+          <Ionicons name="wallet-outline" size={16} color="#A1A1AA" />
           <Text className="text-white text-sm ml-2">
             {miniAddress(
               address || "0x0000000000000000000000000000000000000000"
@@ -440,11 +440,11 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
       </View>
 
       <View className="flex-row items-center mb-4">
-        <Ionicons name="receipt-outline" size={14} color="#9CA3AF" />
+        <Ionicons name="receipt-outline" size={14} color="#A1A1AA" />
         <Text className="text-gray-300 text-[11px] ml-2">
           You’ll receive approximately{" "}
           <Text className="text-white font-semibold">
-            {approxReceive} DEHUB
+            {approxReceive} DHB
           </Text>
         </Text>
       </View>
@@ -521,7 +521,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
                   I accept the{" "}
                   <Text
                     onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
-                    className="text-blue-400 font-semibold"
+                    className="text-white font-semibold underline"
                   >
                     Terms and Service
                   </Text>

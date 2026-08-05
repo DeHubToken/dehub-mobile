@@ -108,34 +108,14 @@ export default function ScheduleSheet({
     >
       {/* Header */}
       <View className="flex-row items-center justify-between px-4 pt-4 pb-3 border-b border-white/10">
+        <Text className="text-white font-semibold text-base">Schedule Post</Text>
+
         <TouchableOpacity
           onPress={onClose}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           className="w-8 h-8 items-center justify-center"
         >
-          <Icon name="X" size={20} color="#9CA3AF" />
-        </TouchableOpacity>
-
-        <Text className="text-white font-semibold text-base">Schedule Post</Text>
-
-        <TouchableOpacity
-          onPress={handleConfirm}
-          disabled={!selectedDate}
-          activeOpacity={0.7}
-          className="flex-row items-center px-3 py-1.5 rounded-xl"
-          style={{
-            backgroundColor: selectedDate ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.04)",
-            borderWidth: 1,
-            borderColor: selectedDate ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.08)",
-          }}
-        >
-          <Icon name="Check" size={14} color={selectedDate ? "#fff" : "#4B5563"} />
-          <Text
-            className="text-xs font-medium ml-1"
-            style={{ color: selectedDate ? "#fff" : "#4B5563" }}
-          >
-            Confirm
-          </Text>
+          <Icon name="X" size={20} color="#A1A1AA" />
         </TouchableOpacity>
       </View>
 
@@ -171,7 +151,7 @@ export default function ScheduleSheet({
         <View className="flex-row px-4 mb-1">
           {DAY_LABELS.map((d) => (
             <View key={d} className="flex-1 items-center py-1">
-              <Text className="text-xs text-zinc-500">{d}</Text>
+              <Text className="text-xs text-zinc-400">{d}</Text>
             </View>
           ))}
         </View>
@@ -221,7 +201,7 @@ export default function ScheduleSheet({
         <View className="mx-4 mt-4 border-t border-white/10 pt-4">
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-center">
-              <Icon name="Clock" size={16} color="#9CA3AF" />
+              <Icon name="Clock" size={16} color="#A1A1AA" />
               <Text className="text-white text-sm ml-2">Time</Text>
             </View>
 
@@ -255,6 +235,24 @@ export default function ScheduleSheet({
             />
           )}
         </View>
+
+        {/* Confirm button */}
+        <TouchableOpacity
+          onPress={handleConfirm}
+          disabled={!selectedDate}
+          activeOpacity={0.7}
+          className="mx-4 mt-4 py-3 rounded-full items-center"
+          style={{
+            backgroundColor: selectedDate ? "#fff" : "rgba(255,255,255,0.1)",
+          }}
+        >
+          <Text
+            className="text-sm font-semibold"
+            style={{ color: selectedDate ? "#09090B" : "#71717A" }}
+          >
+            Confirm
+          </Text>
+        </TouchableOpacity>
 
         {/* Clear button */}
         {scheduledDate && (

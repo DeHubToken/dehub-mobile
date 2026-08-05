@@ -21,8 +21,8 @@ import {
   TextInput,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import CashtagSheet from "../components/Home/CashtagSheet";
 import { theme } from "../theme";
 import { useTranslation } from "react-i18next";
@@ -37,18 +37,18 @@ import {
 
 const PAGE_SIZE = 100;
 
-/** Metals get web's tinted pills; everything else falls back to initials. */
+/** Metals keep their chemical-symbol pills; kinds are told apart by label only. */
 const METAL_COLORS: Record<string, { bg: string; fg: string; label: string }> = {
-  GOLD: { bg: "#D4A017", fg: "#000000", label: "Au" },
-  SILVER: { bg: "#C0C0C0", fg: "#000000", label: "Ag" },
-  COPPER: { bg: "#B87333", fg: "#000000", label: "Cu" },
-  PLATINUM: { bg: "#B5B5B3", fg: "#000000", label: "Pt" },
+  GOLD: { bg: "rgba(255,255,255,0.20)", fg: "#FFFFFF", label: "Au" },
+  SILVER: { bg: "rgba(255,255,255,0.20)", fg: "#FFFFFF", label: "Ag" },
+  COPPER: { bg: "rgba(255,255,255,0.20)", fg: "#FFFFFF", label: "Cu" },
+  PLATINUM: { bg: "rgba(255,255,255,0.20)", fg: "#FFFFFF", label: "Pt" },
 };
 
 const KIND_TINT: Record<string, string> = {
   crypto: "rgba(255,255,255,0.20)",
-  stock: "rgba(34,197,94,0.16)",
-  commodity: "rgba(234,179,8,0.16)",
+  stock: "rgba(255,255,255,0.16)",
+  commodity: "rgba(255,255,255,0.16)",
 };
 
 const AssetBadge: React.FC<{ asset: UnifiedAsset }> = ({ asset }) => {
@@ -106,7 +106,6 @@ const AssetRow: React.FC<{ asset: UnifiedAsset; rank: number; onPress: () => voi
 export default function Top100Screen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<any>();
 
   const coins = useCmcTop100();
   const assets = useTopAssets();
@@ -139,17 +138,12 @@ export default function Top100Screen() {
   const rankOf = useCallback((a: UnifiedAsset) => all.indexOf(a) + 1, [all]);
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>{t("top100.title")}</Text>
-          <Text style={styles.subtitle}>{t("top100.subtitle")}</Text>
-        </View>
-        <Icon name="ChartNoAxesColumn" size={22} color={theme.colors.accent} />
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader
+        title={t("top100.title")}
+        subtitle={t("top100.subtitle")}
+        rightContent={<Icon name="ChartNoAxesColumn" size={22} color={theme.colors.accent} />}
+      />
 
       <View style={styles.searchWrap}>
         <Icon name="Search" size={15} color="#71717A" />
@@ -160,13 +154,18 @@ export default function Top100Screen() {
             setVisible(PAGE_SIZE);
           }}
           placeholder={t("top100.searchPlaceholder")}
-          placeholderTextColor="#52525B"
+          placeholderTextColor="#8B8D90"
           style={styles.searchInput}
           autoCapitalize="characters"
           returnKeyType="search"
         />
         {search.length > 0 && (
-          <Pressable onPress={() => setSearch("")} hitSlop={8}>
+          <Pressable
+            onPress={() => setSearch("")}
+            hitSlop={8}
+            accessibilityRole="button"
+            accessibilityLabel="Clear search"
+          >
             <Icon name="X" size={15} color="#71717A" />
           </Pressable>
         )}
@@ -197,7 +196,7 @@ export default function Top100Screen() {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={onRefresh}
-              tintColor={theme.colors.accentForeground}
+              tintColor={theme.colors.accent}
             />
           }
           onEndReachedThreshold={0.6}
@@ -231,17 +230,7 @@ export default function Top100Screen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 12,
-  },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  title: { color: "#FFFFFF", fontSize: 21, fontWeight: "700" },
-  subtitle: { color: "#71717A", fontSize: 12, marginTop: 1 },
+  root: { flex: 1, backgroundColor: "#010305" },
 
   searchWrap: {
     flexDirection: "row",
@@ -269,7 +258,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",
   },
-  rank: { color: "#52525B", fontSize: 11.5, fontWeight: "700", width: 24 },
+  rank: { color: "#A1A1AA", fontSize: 11.5, fontWeight: "700", width: 24 },
   badge: {
     width: 32,
     height: 32,
@@ -280,7 +269,7 @@ const styles = StyleSheet.create({
   badgeText: { color: "#FFFFFF", fontSize: 10.5, fontWeight: "800" },
 
   name: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },
-  symbol: { color: "#71717A", fontSize: 11, marginTop: 2 },
+  symbol: { color: "#A1A1AA", fontSize: 12, marginTop: 2 },
   price: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "700" },
 
   changePill: {

@@ -28,11 +28,14 @@ import {
   NativeScrollEvent,
   Animated,
   GestureResponderEvent,
+  ActivityIndicator,
+  Platform,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { LinearGradient } from "expo-linear-gradient";
+import { BlurView } from "expo-blur";
 import { Image } from "expo-image";
 import Icon from "../components/ui/Icon";
 import type { IconName } from "../components/ui/Icon";
@@ -602,7 +605,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
               </View>
             </Pressable>
 
-            <Pressable onPress={() => setCaptionExpanded((p) => !p)}>
+            <Pressable onPress={() => setCaptionExpanded((p) => !p)} hitSlop={8}>
               {title ? (
                 <Text
                   numberOfLines={captionExpanded ? undefined : 1}
@@ -620,7 +623,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
                 </Text>
               ) : null}
               {description.length > 80 || title.length > 40 ? (
-                <Text className="text-white/50 text-[11px] mt-0.5">
+                <Text className="text-white/50 text-xs mt-0.5">
                   {captionExpanded ? "less" : "more"}
                 </Text>
               ) : null}
@@ -730,6 +733,20 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
   );
 });
 
+/** Shared glass fill for the top overlay buttons — the house recipe used by
+    FullscreenVideoScreen and ImageViewerScreen (BlurView + black/45 overlay). */
+const TopButtonGlass = () => (
+  <>
+    <BlurView
+      intensity={Platform.OS === "ios" ? 60 : 40}
+      tint="dark"
+      style={StyleSheet.absoluteFill}
+      {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
+    />
+    <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
+  </>
+);
+
 const ShortsViewerScreen = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
@@ -754,6 +771,8 @@ const ShortsViewerScreen = () => {
   const shuffleSeedRef = useRef<string | undefined>(feedParams.shuffleSeed);
   const [containerHeight, setContainerHeight] = useState(SCREEN_HEIGHT);
   const [noMoreShorts, setNoMoreShorts] = useState(false);
+  // True until the first page resolves when the viewer opened without items.
+  const [initialLoading, setInitialLoading] = useState(initialItems.length === 0);
 
   // Viewer-level playback chrome — mute and speed persist across shorts, as on
   // web, rather than resetting with every slide.
@@ -825,6 +844,7 @@ const ShortsViewerScreen = () => {
       // silent
     } finally {
       fetchingRef.current = false;
+      setInitialLoading(false);
     }
   }, [page, feedParams]);
 
@@ -905,7 +925,7 @@ const ShortsViewerScreen = () => {
   const listRef = useRef<FlatList>(null);
 
   const renderFooter = useCallback(() => {
-    if (!noMoreShorts) return null;
+    if (!noMoreShorts || items.length === 0) return null;
     return (
       <View
         style={{
@@ -919,12 +939,34 @@ const ShortsViewerScreen = () => {
         <Text className="text-white/50 text-sm mt-3 font-medium">
           You're all caught up
         </Text>
-        <Text className="text-white/30 text-xs mt-1">
+        <Text className="text-white/60 text-xs mt-1">
           Check back later for more shorts
         </Text>
       </View>
     );
-  }, [noMoreShorts, containerHeight]);
+  }, [noMoreShorts, items.length, containerHeight]);
+
+  const renderEmpty = useCallback(() => {
+    if (initialLoading) return null;
+    return (
+      <View
+        style={{
+          width: SCREEN_WIDTH,
+          height: containerHeight,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Icon name="Film" size={48} color="rgba(255,255,255,0.3)" />
+        <Text className="text-white/50 text-sm mt-3 font-medium">
+          You're all caught up
+        </Text>
+        <Text className="text-white/60 text-xs mt-1">
+          Check back later for more shorts
+        </Text>
+      </View>
+    );
+  }, [initialLoading, containerHeight]);
 
   const handleScrollEnd = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
     if (!noMoreShorts || !listRef.current || items.length === 0) return;
@@ -986,6 +1028,7 @@ const ShortsViewerScreen = () => {
         onEndReachedThreshold={0.5}
         onMomentumScrollEnd={handleScrollEnd}
         ListFooterComponent={renderFooter}
+        ListEmptyComponent={renderEmpty}
         removeClippedSubviews
         windowSize={3}
         maxToRenderPerBatch={2}
@@ -998,6 +1041,7 @@ const ShortsViewerScreen = () => {
           strip stays with the video underneath. */}
       <View style={[styles.topBar, { paddingTop: insets.top + 8 }]} pointerEvents="box-none">
         <Pressable onPress={handleBack} hitSlop={12} style={styles.topButton} accessibilityLabel="Back">
+          <TopButtonGlass />
           <Icon name="ChevronLeft" size={24} color="#fff" />
         </Pressable>
 
@@ -1007,26 +1051,44 @@ const ShortsViewerScreen = () => {
             style={[styles.topButton, styles.speedButton]}
             accessibilityLabel="Playback speed"
           >
+            <TopButtonGlass />
             <Text style={styles.speedButtonText}>{formatRate(playbackRate)}</Text>
           </Pressable>
 
           <Pressable
             onPress={() => setIsMuted((m) => !m)}
             style={styles.topButton}
+            hitSlop={12}
             accessibilityLabel={isMuted ? "Unmute" : "Mute"}
           >
+            <TopButtonGlass />
             <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
           </Pressable>
 
           <Pressable
             onPress={() => setShowOptionsMenu(true)}
             style={styles.topButton}
+            hitSlop={12}
             accessibilityLabel="More options"
           >
+            <TopButtonGlass />
             <Icon name="Ellipsis" size={20} color="#fff" />
           </Pressable>
         </View>
       </View>
+
+      {/* Initial-load spinner — the first page is still in flight. */}
+      {initialLoading && items.length === 0 && (
+        <View
+          style={[
+            StyleSheet.absoluteFill,
+            { alignItems: "center", justifyContent: "center" },
+          ]}
+          pointerEvents="none"
+        >
+          <ActivityIndicator size="large" color="#fff" />
+        </View>
+      )}
 
       {/* Options menu — bookmark, follow, report, block and the owner actions,
           matching the web viewer's options drawer. */}
@@ -1070,7 +1132,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 12,
+    paddingHorizontal: 16,
     paddingBottom: 8,
     zIndex: 20,
   },
@@ -1083,9 +1145,14 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
+    overflow: "hidden",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.2)",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(24,24,27,0.6)",
+  },
+  glassOverlay: {
+    backgroundColor: "rgba(0,0,0,0.45)",
   },
   speedButton: {
     minWidth: 44,
@@ -1094,7 +1161,7 @@ const styles = StyleSheet.create({
   },
   speedButtonText: {
     color: "#fff",
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: "700",
   },
   bottomGradient: {
@@ -1107,8 +1174,8 @@ const styles = StyleSheet.create({
   },
   bottomStack: {
     position: "absolute",
-    left: 12,
-    right: 12,
+    left: 16,
+    right: 16,
     bottom: 0,
     zIndex: 10,
   },

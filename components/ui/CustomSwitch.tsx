@@ -6,6 +6,7 @@ import Animated, {
   withTiming,
   interpolateColor,
 } from "react-native-reanimated";
+import { colors } from "../../theme/colors";
 
 type CustomSwitchProps = {
   value: boolean;
@@ -34,7 +35,7 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
     backgroundColor: interpolateColor(
       progress.value,
       [0, 1],
-      ["#2C2C2E", "#FFFFFF"],
+      [colors.neutrals[800], "#FFFFFF"],
     ),
   }));
 
@@ -43,7 +44,7 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
     backgroundColor: interpolateColor(
       progress.value,
       [0, 1],
-      ["#636366", "#000000"],
+      [colors.accentSecondary, "#000000"],
     ),
   }));
 
@@ -52,7 +53,13 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
   };
 
   return (
-    <Pressable onPress={handlePress} hitSlop={4}>
+    <Pressable
+      onPress={handlePress}
+      hitSlop={{ top: 10, bottom: 10, left: 6, right: 6 }}
+      accessibilityRole="switch"
+      accessibilityState={{ checked: value, disabled }}
+      style={disabled ? { opacity: 0.5 } : undefined}
+    >
       <Animated.View style={[styles.track, trackStyle]}>
         <Animated.View style={[styles.thumb, thumbStyle]} />
       </Animated.View>

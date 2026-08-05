@@ -7,7 +7,7 @@
  * - Voice note: VoiceNotePlayer waveform with remove (trash) and send buttons
  */
 import React, { memo, useCallback } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import VoiceNotePlayer from "./VoiceNotePlayer";
 
@@ -35,8 +35,15 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
   if (media.type === "audio") {
     return (
       <View className="flex-row items-center px-4 py-2 bg-theme-neutrals-800/80">
-        <TouchableOpacity onPress={handleRemove} activeOpacity={0.7} className="mr-2">
-          <Ionicons name="trash-outline" size={20} color="#f87171" />
+        <TouchableOpacity
+          onPress={handleRemove}
+          activeOpacity={0.7}
+          accessibilityRole="button"
+          accessibilityLabel="Remove voice note"
+          hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+          className="mr-2"
+        >
+          <Ionicons name="trash-outline" size={20} color="#EF4444" />
         </TouchableOpacity>
 
         <View className="flex-1">
@@ -51,6 +58,9 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           onPress={handleSend}
           activeOpacity={0.7}
           disabled={sending}
+          accessibilityRole="button"
+          accessibilityLabel="Send"
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           className="ml-2 w-9 h-9 rounded-full bg-white items-center justify-center"
         >
           <Ionicons name="send" size={16} color="#000" />
@@ -75,6 +85,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           activeOpacity={0.7}
           accessibilityRole="button"
           accessibilityLabel="Remove media"
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-black/60 items-center justify-center"
         >
           <Ionicons name="close" size={14} color="#FFFFFF" />
@@ -87,10 +98,13 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
         onPress={handleSend}
         activeOpacity={0.7}
         disabled={sending}
+        accessibilityRole="button"
+        accessibilityLabel="Send"
+        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         className="w-9 h-9 rounded-full bg-white items-center justify-center"
       >
         {sending ? (
-          <Text className="text-black text-[10px] font-semibold">...</Text>
+          <ActivityIndicator size="small" color="#000" />
         ) : (
           <Ionicons name="send" size={16} color="#000" />
         )}

@@ -218,7 +218,7 @@ const VideoPaywallModalComponent: React.FC<VideoPaywallModalProps> = ({
           <ScrollView style={{ flexGrow: 0 }} showsVerticalScrollIndicator={false} bounces={false}>
             <View style={s.headerRow}>
               <View style={s.headerLeft}>
-                <Icon name="Video" size={22} color="#A855F6" />
+                <Icon name="Video" size={22} color="#F9FBFF" />
                 <Text style={s.title}>Generate Video</Text>
               </View>
               <TouchableOpacity onPress={closeSheet} activeOpacity={0.7}>
@@ -235,13 +235,13 @@ const VideoPaywallModalComponent: React.FC<VideoPaywallModalProps> = ({
               onChange={(item) => setSelectedModel(item.value)}
               style={s.dropdown}
               containerStyle={s.dropdownContainer}
-              activeColor="rgba(168,85,246,0.12)"
+              activeColor="rgba(255,255,255,0.12)"
               selectedTextStyle={s.dropdownSelectedText}
               placeholderStyle={s.dropdownSelectedText}
               iconColor="#6F7174"
               renderLeftIcon={() => (
                 <View style={{ marginRight: 10 }}>
-                  <Icon name="Rocket" size={16} color="#A855F6" />
+                  <Icon name="Rocket" size={16} color="#A6A9AC" />
                 </View>
               )}
               renderItem={(item) => (
@@ -253,7 +253,7 @@ const VideoPaywallModalComponent: React.FC<VideoPaywallModalProps> = ({
                         <Text style={s.dropdownName}>{item.name}</Text>
                         {item.hasAudio && (
                           <View style={s.audioBadgeSmall}>
-                            <Icon name="Volume2" size={8} color="#FFF" />
+                            <Icon name="Volume2" size={10} color="#FFF" />
                             <Text style={s.audioBadgeSmallText}>Audio</Text>
                           </View>
                         )}
@@ -276,7 +276,7 @@ const VideoPaywallModalComponent: React.FC<VideoPaywallModalProps> = ({
               </View>
               <View style={s.costLine}>
                 <Text style={s.costLabel}>Staker Discount</Text>
-                <Text style={[s.costValue, { color: '#00C566' }]}>0%</Text>
+                <Text style={[s.costValue, { color: '#22C55E' }]}>0%</Text>
               </View>
               <View style={s.divider} />
               <View style={s.costLine}>
@@ -293,7 +293,7 @@ const VideoPaywallModalComponent: React.FC<VideoPaywallModalProps> = ({
                 </View>
                 <View style={s.payRight}>
                   {loadingPrice ? (
-                    <ActivityIndicator size="small" color="#D4A843" />
+                    <ActivityIndicator size="small" color="#F4F4F5" />
                   ) : (
                     <>
                       <Text style={s.payAmount}>{costInDHB > 0 ? `${formatDHB(costInDHB)} DHB` : '— DHB'}</Text>
@@ -336,7 +336,7 @@ const VideoPaywallModalComponent: React.FC<VideoPaywallModalProps> = ({
               activeOpacity={0.7}
             >
               {paying ? (
-                <ActivityIndicator size="small" color="#FFF" />
+                <ActivityIndicator size="small" color="#09090B" />
               ) : (
                 <Text style={s.generateBtnText}>Generate</Text>
               )}
@@ -369,15 +369,15 @@ const s = StyleSheet.create({
   headerRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20, marginBottom: 4 },
   headerLeft: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   title: { color: '#F9FBFF', fontSize: 18, fontWeight: '700' },
-  subtitle: { color: '#6F7174', fontSize: 13, paddingHorizontal: 20, marginBottom: 16 },
+  subtitle: { color: '#A6A9AC', fontSize: 13, paddingHorizontal: 20, marginBottom: 16 },
   dropdown: {
     marginHorizontal: 16,
     paddingHorizontal: 14,
     paddingVertical: 14,
     borderRadius: 14,
     borderWidth: 1,
-    borderColor: '#A855F6',
-    backgroundColor: 'rgba(168,85,246,0.06)',
+    borderColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: 'rgba(255,255,255,0.05)',
   },
   dropdownContainer: {
     backgroundColor: '#1A1A1D',
@@ -391,13 +391,13 @@ const s = StyleSheet.create({
   audioBadgeSmall: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 2,
-    backgroundColor: '#A855F6',
+    gap: 3,
+    backgroundColor: 'rgba(255,255,255,0.14)',
     borderRadius: 4,
-    paddingHorizontal: 4,
-    paddingVertical: 1,
+    paddingHorizontal: 5,
+    paddingVertical: 2,
   },
-  audioBadgeSmallText: { color: '#FFF', fontSize: 8, fontWeight: '600' },
+  audioBadgeSmallText: { color: '#FFF', fontSize: 11, fontWeight: '600' },
   dropdownItem: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -410,10 +410,10 @@ const s = StyleSheet.create({
   dropdownLeft: { flexDirection: 'row', alignItems: 'center', gap: 10, flex: 1 },
   dropdownNameRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   dropdownName: { color: '#F9FBFF', fontSize: 14, fontWeight: '500' },
-  dropdownDesc: { color: '#6F7174', fontSize: 11, marginTop: 1 },
+  dropdownDesc: { color: '#A6A9AC', fontSize: 11, marginTop: 1 },
   dropdownRight: { alignItems: 'flex-end' },
   dropdownPrice: { color: '#F9FBFF', fontSize: 14, fontWeight: '600' },
-  dropdownDhb: { color: '#6F7174', fontSize: 11, marginTop: 1 },
+  dropdownDhb: { color: '#A6A9AC', fontSize: 11, marginTop: 1 },
   costSection: {
     marginHorizontal: 16,
     marginTop: 16,
@@ -439,7 +439,7 @@ const s = StyleSheet.create({
   payLabel: { color: '#F9FBFF', fontSize: 14, fontWeight: '500' },
   payRight: { alignItems: 'flex-end' },
   payAmount: { color: '#F9FBFF', fontSize: 17, fontWeight: '700' },
-  payRate: { color: '#6F7174', fontSize: 11, marginTop: 2 },
+  payRate: { color: '#A6A9AC', fontSize: 11, marginTop: 2 },
   coinIcon: { width: 22, height: 22 },
   balanceRow: {
     flexDirection: 'row',
@@ -453,7 +453,7 @@ const s = StyleSheet.create({
   balanceLabel: { color: '#A6A9AC', fontSize: 13 },
   balanceRight: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   balanceCoin: { width: 18, height: 18 },
-  balanceAmount: { color: '#00C566', fontSize: 14, fontWeight: '600' },
+  balanceAmount: { color: '#22C55E', fontSize: 14, fontWeight: '600' },
   warningBanner: {
     marginHorizontal: 16,
     marginTop: 10,
@@ -489,10 +489,10 @@ const s = StyleSheet.create({
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#A855F6',
+    backgroundColor: '#F4F4F5',
   },
   generateBtnDisabled: { opacity: 0.4 },
-  generateBtnText: { color: '#FFF', fontSize: 15, fontWeight: '700' },
+  generateBtnText: { color: '#09090B', fontSize: 15, fontWeight: '700' },
 });
 
 export default memo(VideoPaywallModalComponent);

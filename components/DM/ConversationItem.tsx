@@ -169,13 +169,13 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
               <Image source={badgeImg} style={{ width: 14, height: 14 }} resizeMode="contain" />
             )}
             {username && (
-              <Text className="text-zinc-500 text-[12px]" numberOfLines={1}>
+              <Text className="text-zinc-400 text-[12px]" numberOfLines={1}>
                 @{username}
               </Text>
             )}
             {unreadCount > 0 && (
-              <View className="bg-blue-600 rounded-full min-w-[18px] h-[18px] items-center justify-center px-1">
-                <Text className="text-[10px] text-white font-bold">
+              <View className="bg-theme-accent rounded-full min-w-[18px] h-[18px] items-center justify-center px-1">
+                <Text className="text-[10px] text-theme-accent-foreground font-bold">
                   {unreadCount > 99 ? "99+" : unreadCount}
                 </Text>
               </View>

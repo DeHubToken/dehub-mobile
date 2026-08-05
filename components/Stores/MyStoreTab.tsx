@@ -26,6 +26,7 @@ import {
 } from "react-native";
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
@@ -48,13 +49,7 @@ import {
 
 type SubTab = "listings" | "orders" | "purchases";
 
-const LISTING_CATEGORIES = [
-  { value: "digital", label: "Digital" },
-  { value: "merch", label: "Merch" },
-  { value: "art", label: "Art" },
-  { value: "service", label: "Service" },
-  { value: "other", label: "Other" },
-];
+const LISTING_CATEGORIES = ["digital", "merch", "art", "service", "other"];
 
 const CONDITIONS = ["new", "used", "refurbished"];
 const MAX_IMAGES = 5;
@@ -88,6 +83,7 @@ const StoreForm: React.FC<{
   onClose: () => void;
 }> = ({ visible, existing, onClose }) => {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const createStore = useCreateStore();
   const updateStore = useUpdateStore();
   const [name, setName] = useState(existing?.name ?? "");
@@ -152,12 +148,17 @@ const StoreForm: React.FC<{
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
       <View style={styles.backdrop}>
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
-          <View style={styles.sheet}>
+          <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
             <View style={styles.sheetHeader}>
               <Text style={styles.sheetTitle}>
                 {existing ? t("stores.editStore") : t("stores.createYourStore")}
               </Text>
-              <Pressable onPress={onClose} hitSlop={10}>
+              <Pressable
+                onPress={onClose}
+                hitSlop={12}
+                accessibilityRole="button"
+                accessibilityLabel="Close"
+              >
                 <Icon name="X" size={20} color="#A1A1AA" />
               </Pressable>
             </View>
@@ -197,7 +198,7 @@ const StoreForm: React.FC<{
                 value={name}
                 onChangeText={setName}
                 placeholder={t("stores.storeNamePlaceholder")}
-                placeholderTextColor="#52525B"
+                placeholderTextColor="#8B8D90"
                 style={styles.input}
               />
 
@@ -206,7 +207,7 @@ const StoreForm: React.FC<{
                 value={description}
                 onChangeText={setDescription}
                 placeholder={t("stores.storeDescriptionPlaceholder")}
-                placeholderTextColor="#52525B"
+                placeholderTextColor="#8B8D90"
                 multiline
                 style={[styles.input, styles.textarea]}
               />
@@ -240,6 +241,7 @@ const ListingForm: React.FC<{
   onClose: () => void;
 }> = ({ visible, storeId, onClose }) => {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const createListing = useCreateListing();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -326,10 +328,15 @@ const ListingForm: React.FC<{
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
       <View style={styles.backdrop}>
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
-          <View style={styles.sheet}>
+          <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
             <View style={styles.sheetHeader}>
               <Text style={styles.sheetTitle}>{t("stores.newListing")}</Text>
-              <Pressable onPress={onClose} hitSlop={10}>
+              <Pressable
+                onPress={onClose}
+                hitSlop={12}
+                accessibilityRole="button"
+                accessibilityLabel="Close"
+              >
                 <Icon name="X" size={20} color="#A1A1AA" />
               </Pressable>
             </View>
@@ -345,7 +352,9 @@ const ListingForm: React.FC<{
                       <Pressable
                         style={styles.thumbRemove}
                         onPress={() => setImages((prev) => prev.filter((_, idx) => idx !== i))}
-                        hitSlop={6}
+                        hitSlop={12}
+                        accessibilityRole="button"
+                        accessibilityLabel="Remove photo"
                       >
                         <Icon name="X" size={12} color="#FFFFFF" />
                       </Pressable>
@@ -368,7 +377,7 @@ const ListingForm: React.FC<{
                 value={title}
                 onChangeText={setTitle}
                 placeholder={t("stores.titlePlaceholder")}
-                placeholderTextColor="#52525B"
+                placeholderTextColor="#8B8D90"
                 style={styles.input}
               />
 
@@ -377,7 +386,7 @@ const ListingForm: React.FC<{
                 value={description}
                 onChangeText={setDescription}
                 placeholder={t("stores.listingDescriptionPlaceholder")}
-                placeholderTextColor="#52525B"
+                placeholderTextColor="#8B8D90"
                 multiline
                 style={[styles.input, styles.textarea]}
               />
@@ -387,7 +396,7 @@ const ListingForm: React.FC<{
                 value={price}
                 onChangeText={setPrice}
                 placeholder="0.00"
-                placeholderTextColor="#52525B"
+                placeholderTextColor="#8B8D90"
                 keyboardType="decimal-pad"
                 style={styles.input}
               />
@@ -396,12 +405,12 @@ const ListingForm: React.FC<{
               <View style={styles.chipWrap}>
                 {LISTING_CATEGORIES.map((c) => (
                   <Pressable
-                    key={c.value}
-                    onPress={() => setCategory(c.value)}
-                    style={[styles.chip, category === c.value && styles.chipActive]}
+                    key={c}
+                    onPress={() => setCategory(c)}
+                    style={[styles.chip, category === c && styles.chipActive]}
                   >
-                    <Text style={[styles.chipText, category === c.value && styles.chipTextActive]}>
-                      {t(`stores.categories.${c.value}`)}
+                    <Text style={[styles.chipText, category === c && styles.chipTextActive]}>
+                      {t(`stores.categories.${c}`)}
                     </Text>
                   </Pressable>
                 ))}
@@ -439,7 +448,7 @@ const ListingForm: React.FC<{
                     value={stockQty}
                     onChangeText={setStockQty}
                     placeholder={t("stores.stockPlaceholder")}
-                    placeholderTextColor="#52525B"
+                    placeholderTextColor="#8B8D90"
                     keyboardType="number-pad"
                     style={styles.input}
                   />
@@ -448,7 +457,7 @@ const ListingForm: React.FC<{
                     value={shippingInfo}
                     onChangeText={setShippingInfo}
                     placeholder={t("stores.shippingPlaceholder")}
-                    placeholderTextColor="#52525B"
+                    placeholderTextColor="#8B8D90"
                     style={styles.input}
                   />
                 </>
@@ -639,6 +648,8 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
             }}
             hitSlop={8}
             style={styles.iconBtn}
+            accessibilityRole="button"
+            accessibilityLabel={t("stores.editStore")}
           >
             <Icon name="Settings" size={16} color="#FFFFFF" />
           </Pressable>
@@ -725,7 +736,12 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
                     {money(l.price)} · {t(`stores.status.${l.status}`, { defaultValue: l.status })}
                   </Text>
                 </View>
-                <Pressable onPress={() => listingMenu(l)} hitSlop={8}>
+                <Pressable
+                  onPress={() => listingMenu(l)}
+                  hitSlop={14}
+                  accessibilityRole="button"
+                  accessibilityLabel="Listing options"
+                >
                   <Icon name="EllipsisVertical" size={16} color="#A1A1AA" />
                 </Pressable>
               </View>
@@ -790,7 +806,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
 
 const styles = StyleSheet.create({
   center: { alignItems: "center", justifyContent: "center", paddingVertical: 60 },
-  dim: { color: "#71717A", fontSize: 13, textAlign: "center", marginTop: 6 },
+  dim: { color: "#A1A1AA", fontSize: 13, textAlign: "center", marginTop: 6 },
   emptyTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "700", marginTop: 12 },
 
   storeHeader: {
@@ -849,18 +865,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   rowTitle: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },
-  rowMeta: { color: "#71717A", fontSize: 11.5, marginTop: 3, textTransform: "capitalize" },
+  rowMeta: { color: "#A1A1AA", fontSize: 12, marginTop: 3, textTransform: "capitalize" },
 
-  backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.65)", justifyContent: "flex-end" },
+  backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   sheet: {
-    backgroundColor: "#0A0A0A",
-    borderTopLeftRadius: 22,
-    borderTopRightRadius: 22,
+    backgroundColor: "#0C0C0E",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     borderTopWidth: 1,
-    borderColor: "rgba(255,255,255,0.12)",
+    borderColor: "rgba(255,255,255,0.10)",
     paddingHorizontal: 18,
     paddingTop: 16,
-    paddingBottom: 24,
     maxHeight: "90%",
   },
   sheetHeader: {

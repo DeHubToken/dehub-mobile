@@ -29,7 +29,12 @@ const CreateStageModal: React.FC = () => {
     <GlassModal visible={true} onClose={closeModal} presentation="bottom">
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={handleBack}>
+          <TouchableOpacity
+            onPress={handleBack}
+            hitSlop={12}
+            accessibilityRole="button"
+            accessibilityLabel="Back"
+          >
             <Icon name="ArrowLeft" size={20} color="#FFFFFF" />
           </TouchableOpacity>
           <Text style={styles.title}>Start a Stage</Text>
@@ -39,7 +44,7 @@ const CreateStageModal: React.FC = () => {
         <TextInput
           style={styles.input}
           placeholder="Stage title..."
-          placeholderTextColor="rgba(255,255,255,0.4)"
+          placeholderTextColor="#8B8D90"
           value={title}
           onChangeText={setTitle}
           autoFocus
@@ -53,7 +58,7 @@ const CreateStageModal: React.FC = () => {
           disabled={!title.trim() || isLoading}
           style={[styles.goLiveBtn, (!title.trim() || isLoading) && styles.disabled]}
         >
-          <Icon name="Radio" size={18} color="#FFFFFF" />
+          <Icon name="Radio" size={18} color="#09090B" />
           <Text style={styles.goLiveText}>
             {isLoading ? "Starting..." : "Go Live"}
           </Text>
@@ -95,12 +100,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 8,
-    backgroundColor: "#22C55E",
+    backgroundColor: "#F4F4F5",
     paddingVertical: 14,
     borderRadius: 12,
   },
   goLiveText: {
-    color: "#FFFFFF",
+    color: "#09090B",
     fontSize: 16,
     fontWeight: "600",
   },
@@ -108,7 +113,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   errorText: {
-    color: "#F87171",
+    color: "#EF4444",
     fontSize: 13,
     marginBottom: 12,
     textAlign: "center",

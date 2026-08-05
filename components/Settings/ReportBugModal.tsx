@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import { View, Text, TouchableOpacity, Linking, Platform } from "react-native";
+import Constants from "expo-constants";
 import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import {
@@ -9,6 +10,8 @@ import {
   copyToClipboard,
 } from "../../libs";
 import { SUPPORT_MAIL, DEV_MAIL } from "../../config/links";
+
+const APP_VERSION = Constants.expoConfig?.version ?? "1.0.0";
 
 type ReportBugModalProps = {
   visible: boolean;
@@ -41,7 +44,7 @@ const ReportBugModal: React.FC<ReportBugModalProps> = ({
       "",
       `User: ${displayName}`,
       `Device: ${Platform.OS} ${Platform.Version}`,
-      "App Version: v1.0.0",
+      `App Version: v${APP_VERSION}`,
     ].join("\n");
   }, [displayName]);
 
@@ -99,16 +102,16 @@ const ReportBugModal: React.FC<ReportBugModalProps> = ({
     >
       <View className="p-4">
         <Text className="text-white font-bold text-lg mb-2">{t("settings.reportBug")}</Text>
-        <Text className="text-gray-300 text-sm mb-3">
+        <Text className="text-theme-neutrals-300 text-sm mb-3">
           {t("settings.reportBugThanks")}
         </Text>
 
-        <View className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 mb-3">
-          <Text className="text-zinc-400 text-[11px] mb-2">
+        <View className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-lg p-3 mb-3">
+          <Text className="text-theme-neutrals-400 text-[11px] mb-2">
             {t("settings.templatePreview")}
           </Text>
           <View className="bg-black/50 rounded-md p-3">
-            <Text selectable className="text-gray-200 text-xs">
+            <Text selectable className="text-theme-neutrals-200 text-xs">
               {templatePreview}
             </Text>
           </View>
@@ -117,21 +120,21 @@ const ReportBugModal: React.FC<ReportBugModalProps> = ({
         <View className="flex-row justify-end">
           <TouchableOpacity
             onPress={onClose}
-            className="px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700 mr-2"
+            className="h-11 px-4 rounded-xl items-center justify-center bg-theme-neutrals-700 mr-2"
           >
             <Text className="text-white">{t("common.close")}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={handleCopy}
-            className="px-3 py-2 rounded-lg bg-zinc-700 mr-2"
+            className="h-11 px-4 rounded-xl items-center justify-center bg-white/10 border border-white/20 mr-2"
           >
             <Text className="text-white font-semibold">{t("settings.copyDetails")}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={handleOpenMail}
-            className="px-3 py-2 rounded-lg bg-blue-600"
+            className="h-11 px-4 rounded-xl items-center justify-center bg-theme-accent"
           >
-            <Text className="text-white font-semibold">{t("settings.openEmail")}</Text>
+            <Text className="text-theme-accent-foreground font-semibold">{t("settings.openEmail")}</Text>
           </TouchableOpacity>
         </View>
       </View>

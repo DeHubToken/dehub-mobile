@@ -101,7 +101,7 @@ const PinnedMessagesBar: React.FC<PinnedMessagesBarProps> = ({
             {count > 1 ? `Pinned Message #${safeIndex + 1}` : "Pinned Message"}
           </Text>
           {count > 1 && (
-            <Text className="text-white/20 text-[10px]">
+            <Text className="text-white/40 text-[11px]">
               {safeIndex + 1}/{count}
             </Text>
           )}
@@ -112,7 +112,7 @@ const PinnedMessagesBar: React.FC<PinnedMessagesBarProps> = ({
       </View>
 
       {/* Sender name */}
-      <Text className="text-white/25 text-[10px] mr-2" numberOfLines={1}>
+      <Text className="text-white/60 text-[11px] mr-2" numberOfLines={1}>
         {senderName}
       </Text>
 

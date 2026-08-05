@@ -9,9 +9,9 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, FlatList, ActivityIndicator, RefreshControl } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
 import { useQuery } from "@tanstack/react-query";
 import Icon from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import Avatar from "../components/common/Avatar";
 import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
@@ -88,7 +88,6 @@ const ProposalCard: React.FC<{ proposal: GovernanceProposal }> = ({ proposal }) 
 
 export default function GovernanceScreen() {
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<any>();
   const [tab, setTab] = useState<GovernanceTab>("active");
 
   const { data: proposals = [], isLoading, isError, refetch, isRefetching } = useQuery({
@@ -109,17 +108,12 @@ export default function GovernanceScreen() {
   }, [tab]);
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Governance</Text>
-          <Text style={styles.subtitle}>Vote on proposals that shape the platform</Text>
-        </View>
-        <Icon name="ShieldCheck" size={22} color={theme.colors.accent} />
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader
+        title="Governance"
+        subtitle="Vote on proposals that shape the platform"
+        rightContent={<Icon name="ShieldCheck" size={22} color={theme.colors.accent} />}
+      />
 
       <View style={styles.filterRow}>
         {TABS.map((tb) => {
@@ -148,7 +142,7 @@ export default function GovernanceScreen() {
           renderItem={renderItem}
           contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 24, paddingTop: 4, gap: 12 }}
           showsVerticalScrollIndicator={false}
-          refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accentForeground} />}
+          refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accent} />}
           ListEmptyComponent={
             <View style={styles.center}>
               <Icon name="ShieldCheck" size={44} color="#3F3F46" />
@@ -162,11 +156,7 @@ export default function GovernanceScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: { flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 12, paddingVertical: 12 },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  title: { color: "#FFFFFF", fontSize: 21, fontWeight: "700" },
-  subtitle: { color: "#71717A", fontSize: 12, marginTop: 1 },
+  root: { flex: 1, backgroundColor: "#010305" },
   filterRow: { flexDirection: "row", gap: 8, paddingHorizontal: 12, paddingBottom: 10 },
   filterChip: {
     paddingHorizontal: 16,
@@ -181,7 +171,15 @@ const styles = StyleSheet.create({
   filterTextActive: { color: "#000000" },
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 },
   emptyText: { color: "#71717A", fontSize: 13, marginTop: 12 },
-  retryBtn: { marginTop: 14, paddingHorizontal: 20, paddingVertical: 8, borderRadius: 12, backgroundColor: "#27272A" },
+  retryBtn: {
+    marginTop: 14,
+    paddingHorizontal: 20,
+    paddingVertical: 8,
+    borderRadius: 12,
+    backgroundColor: "rgba(255,255,255,0.08)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.16)",
+  },
   retryText: { color: "#FAFAFA", fontSize: 13, fontWeight: "600" },
   card: {
     borderRadius: 12,
@@ -193,7 +191,7 @@ const styles = StyleSheet.create({
   },
   authorRow: { flexDirection: "row", alignItems: "center", gap: 8 },
   authorName: { flex: 1, color: "#D4D4D8", fontSize: 13, fontWeight: "600" },
-  time: { color: "#71717A", fontSize: 11 },
+  time: { color: "#A1A1AA", fontSize: 12 },
   cardTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "700", lineHeight: 20 },
   cardDesc: { color: "#A1A1AA", fontSize: 13, lineHeight: 19 },
   barTrack: {

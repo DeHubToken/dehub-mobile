@@ -22,7 +22,6 @@ import ConfirmModal from "./ConfirmModal";
 import ConfirmBlockModal from "./ConfirmBlockModal";
 import EditPostModal from "./EditPostModal";
 import ReportModal from "./ReportModal";
-import CreatePollSheet from "../DM/CreatePollSheet";
 import {
   editPost,
   togglePostVisibility,
@@ -164,7 +163,6 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   const [showReportContent, setShowReportContent] = useState(false);
   const [showReportUser, setShowReportUser] = useState(false);
   const [showBlockConfirm, setShowBlockConfirm] = useState(false);
-  const [showPoll, setShowPoll] = useState(false);
 
   // Loading states
   const [followLoading, setFollowLoading] = useState(false);
@@ -313,11 +311,6 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     setTimeout(() => setShowDeleteConfirm(true), 200);
   }, [onClose]);
 
-  const handleOpenPoll = useCallback(() => {
-    onClose();
-    setTimeout(() => setShowPoll(true), 200);
-  }, [onClose]);
-
   const handleShare = useCallback(async () => {
     if (tokenId == null) return;
     const url = `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
@@ -428,15 +421,6 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   onPress={handleOpenEdit}
                 />
               )}
-              {/* Create Poll disabled — polls can't be added to a post after creation (matches web)
-              {!hideEdit && (
-                <OptionRow
-                  icon="bar-chart-outline"
-                  label={t("postOptions.createPoll")}
-                  sublabel={t("postOptions.createPollDesc")}
-                  onPress={handleOpenPoll}
-                />
-              )} */}
               <OptionRow
                 icon={isHidden ? "eye-outline" : "eye-off-outline"}
                 label={isHidden ? t("postOptions.showPost") : t("postOptions.hidePost")}
@@ -552,13 +536,6 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         loading={blockLoading}
       />
 
-      {/* Create poll sheet */}
-      <CreatePollSheet
-        visible={showPoll}
-        onClose={() => setShowPoll(false)}
-        tokenId={tokenId != null ? Number(tokenId) : 0}
-        onCreated={() => setShowPoll(false)}
-      />
     </>
   );
 };

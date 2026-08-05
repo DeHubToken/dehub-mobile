@@ -112,7 +112,7 @@ const ProfileAssets = () => {
           onOpenChange={setShowInfo}
           triggerClassName="pl-3"
         >
-          <Text className="text-[11px] leading-4 text-white">
+          <Text className="text-xs leading-5 text-white">
             {(() => {
               const isBase = chainId === ChainId.BASE_MAINNET;
               const isBNB = chainId === ChainId.BSC_MAINNET;
@@ -154,7 +154,7 @@ const ProfileAssets = () => {
                 <Ionicons
                   name={showDHBOptions ? "chevron-down" : "chevron-forward"}
                   size={14}
-                  color="#9CA3AF"
+                  color="#A1A1AA"
                   className="ml-1"
                 />
               )}
@@ -174,7 +174,7 @@ const ProfileAssets = () => {
                 <TouchableOpacity
                   key={action.label}
                   className={`py-2 px-3 rounded-xl flex-1 mx-1 ${
-                    action.disabled ? "bg-gray-800" : "bg-gray-700"
+                    action.disabled ? "bg-theme-neutrals-800" : "bg-theme-neutrals-700"
                   }`}
                   onPress={
                     action.disabled

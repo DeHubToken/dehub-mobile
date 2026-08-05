@@ -153,22 +153,10 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
     [t]
   );
 
-  /** Page bento: title + tab row, matching web's sticky settings header. */
+  /** Page bento: tab row, matching web's sticky settings header. */
   const headerBento = (
     <View className="px-4 pt-3">
       <View className="bg-theme-neutrals-800 rounded-2xl p-4 border border-theme-neutrals-700">
-        <View className="flex-row items-center mb-4">
-          <View className="w-10 h-10 rounded-xl bg-theme-neutrals-700/50 items-center justify-center mr-3">
-            <Icon name="Settings" size={20} color="#9ca3af" />
-          </View>
-          <View className="flex-1">
-            <Text className="text-white text-lg font-bold">{t("settings.title")}</Text>
-            <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-              {t("settings.manageAccount")}
-            </Text>
-          </View>
-        </View>
-
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -177,7 +165,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
           {TABS.map((tab) => {
             const active = activeTab === tab.key;
             const inner = (
-              <View className="p-3">
+              <View className="p-3.5">
                 <Icon name={tab.icon} size={18} color={active ? "#fff" : "#8B8D90"} />
               </View>
             );
@@ -261,7 +249,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
         />
       </SettingsSection>
 
-      <Text className="text-center text-theme-neutrals-600 text-xs mt-6">
+      <Text className="text-center text-theme-neutrals-500 text-xs mt-6">
         DeHub v{APP_VERSION}
       </Text>
     </ScrollView>
@@ -330,6 +318,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
             onPress={handleSignOut}
             disabled={signingOut}
             activeOpacity={0.7}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             className="flex-row items-center px-2.5 py-1.5 rounded-lg bg-red-500/10 border border-red-500/20"
             style={{ gap: 6 }}
           >
@@ -398,7 +387,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
             <Text className="text-white font-bold text-base">
               {t("screens.freeDmAccessList")}
             </Text>
-            {freeAccessLoading && <ActivityIndicator size="small" color="#D4D4D8" />}
+            {freeAccessLoading && <ActivityIndicator size="small" color="#F4F4F5" />}
           </View>
           <Text className="text-theme-neutrals-500 text-xs px-5 pt-3 pb-1">
             {t("screens.freeDmAccessModalDesc")}
@@ -409,7 +398,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
               <Text className="text-theme-neutrals-500 text-sm mt-3">
                 {t("screens.noFreeAccessUsers")}
               </Text>
-              <Text className="text-theme-neutrals-600 text-xs mt-1 text-center px-8">
+              <Text className="text-theme-neutrals-500 text-xs mt-1 text-center px-8">
                 {t("screens.freeDmGrantHint")}
               </Text>
             </View>
@@ -431,6 +420,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                     <TouchableOpacity
                       onPress={() => handleRevokeAccess(address)}
                       disabled={busy}
+                      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                       className="bg-red-500/20 border border-red-500/30 px-3 py-1.5 rounded-lg"
                       activeOpacity={0.7}
                     >

@@ -1167,6 +1167,8 @@ export default function UploadScreen() {
           <TouchableOpacity
             onPress={handleClose}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            accessibilityRole="button"
+            accessibilityLabel="Close"
           >
             <Icon name="X" size={26} color="#fff" />
           </TouchableOpacity>
@@ -1188,6 +1190,8 @@ export default function UploadScreen() {
               activeOpacity={0.7}
               className="mr-3 w-9 h-9 rounded-full bg-white/10 items-center justify-center border border-white/20"
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              accessibilityRole="button"
+              accessibilityLabel="Save draft"
             >
               <Icon name="Save" size={16} color="#fff" />
             </TouchableOpacity>
@@ -1198,6 +1202,8 @@ export default function UploadScreen() {
             disabled={isLiveMode ? (!canGoLive || activeIsUploading) : (!canPost || activeIsUploading)}
             activeOpacity={0.8}
             className="h-10 px-5 rounded-full items-center justify-center"
+            accessibilityRole="button"
+            accessibilityLabel={isLiveMode ? "Go live" : "Post"}
             style={{
               backgroundColor: (isLiveMode ? canGoLive : canPost) ? '#fff' : 'rgba(255,255,255,0.1)',
             }}
@@ -1225,8 +1231,8 @@ export default function UploadScreen() {
             activeOpacity={0.7}
             className="flex-row items-center flex-1"
           >
-            <Icon name="Clock" size={14} color="#818CF8" />
-            <Text className="text-indigo-400 text-xs font-medium ml-2">
+            <Icon name="Clock" size={14} color="#fff" />
+            <Text className="text-theme-neutrals-200 text-xs font-medium ml-2">
               Scheduled for{" "}
               {scheduledDate.toLocaleString(undefined, {
                 month: "short",
@@ -1239,8 +1245,10 @@ export default function UploadScreen() {
           <TouchableOpacity
             onPress={() => setScheduledDate(null)}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            accessibilityRole="button"
+            accessibilityLabel="Remove schedule"
           >
-            <Icon name="X" size={14} color="#818CF8" />
+            <Icon name="X" size={14} color="#A1A1AA" />
           </TouchableOpacity>
         </View>
       )}
@@ -1342,6 +1350,8 @@ export default function UploadScreen() {
                         onPress={handlePickLiveThumbnail}
                         activeOpacity={0.7}
                         className="mr-2 w-8 h-8 rounded-full bg-black/60 items-center justify-center border border-white/10"
+                        accessibilityRole="button"
+                        accessibilityLabel="Change thumbnail"
                       >
                         <Icon name="Pencil" size={14} color="#fff" />
                       </TouchableOpacity>
@@ -1349,6 +1359,8 @@ export default function UploadScreen() {
                         onPress={() => setLiveThumbnailUri(null)}
                         activeOpacity={0.7}
                         className="w-8 h-8 rounded-full bg-black/60 items-center justify-center border border-white/10"
+                        accessibilityRole="button"
+                        accessibilityLabel="Remove thumbnail"
                       >
                         <Icon name="Trash2" size={14} color="#fff" />
                       </TouchableOpacity>
@@ -1359,8 +1371,8 @@ export default function UploadScreen() {
                     onPress={handlePickLiveThumbnail}
                     className="h-32 rounded-xl border border-dashed border-theme-neutrals-700 bg-theme-neutrals-800 items-center justify-center"
                   >
-                    <Icon name="Image" size={28} color="#9CA3AF" />
-                    <Text className="text-gray-400 text-xs mt-2">
+                    <Icon name="Image" size={28} color="#A1A1AA" />
+                    <Text className="text-theme-neutrals-400 text-xs mt-2">
                       Add Thumbnail <Text className="text-red-500">*</Text>
                     </Text>
                   </TouchableOpacity>
@@ -1377,8 +1389,10 @@ export default function UploadScreen() {
                 <TouchableOpacity
                   onPress={clearSound}
                   hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                  accessibilityRole="button"
+                  accessibilityLabel="Remove sound"
                 >
-                  <Icon name="X" size={12} color="#9CA3AF" />
+                  <Icon name="X" size={12} color="#A1A1AA" />
                 </TouchableOpacity>
               </View>
             )}
@@ -1400,6 +1414,8 @@ export default function UploadScreen() {
                         onPress={() => handleRemoveImage(idx)}
                         className="absolute top-2 right-2 w-7 h-7 rounded-full items-center justify-center bg-black/70"
                         hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                        accessibilityRole="button"
+                        accessibilityLabel="Remove image"
                       >
                         <Icon name="X" size={16} color="#fff" />
                       </TouchableOpacity>
@@ -1440,8 +1456,10 @@ export default function UploadScreen() {
                       onPress={clearSound}
                       className="ml-2"
                       hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                      accessibilityRole="button"
+                      accessibilityLabel="Remove sound"
                     >
-                      <Icon name="X" size={12} color="#9CA3AF" />
+                      <Icon name="X" size={12} color="#A1A1AA" />
                     </TouchableOpacity>
                   </View>
                 )}
@@ -1449,6 +1467,8 @@ export default function UploadScreen() {
                   <TouchableOpacity
                     onPress={handleTogglePlay}
                     className="w-12 h-12 rounded-full bg-black/50 items-center justify-center"
+                    accessibilityRole="button"
+                    accessibilityLabel={isPlaying ? "Pause video" : "Play video"}
                   >
                     <Icon
                       name={isPlaying ? "Pause" : "Play"}
@@ -1461,6 +1481,8 @@ export default function UploadScreen() {
                   onPress={handleToggleMute}
                   className="absolute bottom-2 left-2 w-8 h-8 rounded-full bg-black/60 items-center justify-center"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                  accessibilityRole="button"
+                  accessibilityLabel={isMuted ? "Unmute video" : "Mute video"}
                 >
                   <Icon
                     name={isMuted ? "VolumeX" : "Volume2"}
@@ -1478,6 +1500,8 @@ export default function UploadScreen() {
                   onPress={handleRemoveVideo}
                   className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/70 items-center justify-center"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                  accessibilityRole="button"
+                  accessibilityLabel="Remove video"
                 >
                   <Icon name="X" size={18} color="#fff" />
                 </TouchableOpacity>
@@ -1485,6 +1509,8 @@ export default function UploadScreen() {
                   onPress={handleChangeVideo}
                   className="absolute top-2 right-12 w-8 h-8 rounded-full bg-black/70 items-center justify-center"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                  accessibilityRole="button"
+                  accessibilityLabel="Change video"
                 >
                   <Icon name="Pencil" size={16} color="#fff" />
                 </TouchableOpacity>
@@ -1509,6 +1535,8 @@ export default function UploadScreen() {
                       onPress={toggleCoverHidden}
                       className="absolute -top-2 right-1 w-5 h-5 rounded-full bg-black/70 items-center justify-center"
                       hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                      accessibilityRole="button"
+                      accessibilityLabel="Hide cover"
                     >
                       <Icon name="EyeOff" size={11} color="#fff" />
                     </TouchableOpacity>
@@ -1567,7 +1595,7 @@ export default function UploadScreen() {
                   >
                     {fmtRecordTime(audioRecordingElapsed)}
                   </Text>
-                  <Text className="text-theme-neutrals-500 text-[10px] mr-1">
+                  <Text className="text-theme-neutrals-500 text-xs mr-1">
                     Max 60s
                   </Text>
 
@@ -1575,14 +1603,18 @@ export default function UploadScreen() {
                     onPress={handleCancelAudioRecording}
                     activeOpacity={0.7}
                     className="w-9 h-9 rounded-full bg-theme-neutrals-700 items-center justify-center mr-2 ml-auto"
+                    accessibilityRole="button"
+                    accessibilityLabel="Discard recording"
                   >
-                    <Icon name="Trash2" size={18} color="#f87171" />
+                    <Icon name="Trash2" size={18} color="#EF4444" />
                   </TouchableOpacity>
 
                   <TouchableOpacity
                     onPress={handleStopAudioRecording}
                     activeOpacity={0.7}
                     className="w-9 h-9 rounded-full bg-white items-center justify-center"
+                    accessibilityRole="button"
+                    accessibilityLabel="Finish recording"
                   >
                     <Icon name="Check" size={20} color="#000" />
                   </TouchableOpacity>
@@ -1646,6 +1678,8 @@ export default function UploadScreen() {
                     onPress={handleRemoveAudio}
                     className="w-8 h-8 rounded-full bg-black/60 items-center justify-center"
                     hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                    accessibilityRole="button"
+                    accessibilityLabel="Remove audio"
                   >
                     <Icon name="X" size={16} color="#fff" />
                   </TouchableOpacity>
@@ -1663,6 +1697,8 @@ export default function UploadScreen() {
                   onPress={handleRemoveQuoteEmbed}
                   className="absolute top-1 right-1 w-7 h-7 rounded-full bg-black/70 items-center justify-center z-10"
                   hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                  accessibilityRole="button"
+                  accessibilityLabel="Remove quoted post"
                 >
                   <Icon name="X" size={16} color="#fff" />
                 </TouchableOpacity>
@@ -1732,10 +1768,10 @@ export default function UploadScreen() {
                 >
                   <View
                     className={`w-5 h-5 rounded items-center justify-center border ${
-                      pollIsMultiple ? "bg-blue-500 border-blue-500" : "border-theme-neutrals-500"
+                      pollIsMultiple ? "bg-white border-white" : "border-theme-neutrals-500"
                     }`}
                   >
-                    {pollIsMultiple && <Icon name="Check" size={12} color="#fff" />}
+                    {pollIsMultiple && <Icon name="Check" size={12} color="#09090B" />}
                   </View>
                   <Text className="text-theme-neutrals-300 text-sm ml-2">Allow multiple answers</Text>
                 </TouchableOpacity>
@@ -1898,6 +1934,8 @@ export default function UploadScreen() {
               activeOpacity={0.7}
               className="mr-4"
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              accessibilityRole="button"
+              accessibilityLabel="Add images"
               style={{ opacity: imageDisabled ? 0.3 : 1 }}
             >
               <Icon name="Image" size={24} color="#fff" />
@@ -1909,6 +1947,8 @@ export default function UploadScreen() {
               activeOpacity={0.7}
               className="mr-4"
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              accessibilityRole="button"
+              accessibilityLabel="Add video"
               style={{ opacity: videoDisabled ? 0.3 : 1 }}
             >
               <Icon name="Video" size={24} color="#fff" />
@@ -1920,6 +1960,8 @@ export default function UploadScreen() {
                 disabled={audioDisabled}
                 activeOpacity={0.7}
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                accessibilityRole="button"
+                accessibilityLabel="Add audio"
                 style={{ opacity: audioDisabled ? 0.3 : 1 }}
               >
                 <Icon name="Music" size={22} color="#fff" />
@@ -1982,11 +2024,13 @@ export default function UploadScreen() {
                 activeOpacity={0.7}
                 className="mr-4"
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                accessibilityRole="button"
+                accessibilityLabel="Add soundtrack"
               >
                 <Icon
-                  name={attachedSound ? "Music" : "Music"}
+                  name="Music"
                   size={22}
-                  color={attachedSound ? "#A1A1AA" : "#9CA3AF"}
+                  color={attachedSound ? "#fff" : "#A1A1AA"}
                 />
               </TouchableOpacity>
             )}
@@ -1999,8 +2043,10 @@ export default function UploadScreen() {
             activeOpacity={0.7}
             className="mr-4"
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            accessibilityRole="button"
+            accessibilityLabel="Add poll"
           >
-            <Icon name="ChartBarBig" size={22} color={pollEnabled ? "#F4F4F5" : "#fff"} />
+            <Icon name="ChartBarBig" size={22} color={pollEnabled ? "#fff" : "#A1A1AA"} />
           </TouchableOpacity>
         )}
 
@@ -2010,8 +2056,10 @@ export default function UploadScreen() {
             activeOpacity={0.7}
             className="mr-4"
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            accessibilityRole="button"
+            accessibilityLabel="Schedule post"
           >
-            <Icon name="Clock" size={22} color={scheduledDate ? "#818CF8" : "#fff"} />
+            <Icon name="Clock" size={22} color={scheduledDate ? "#fff" : "#A1A1AA"} />
           </TouchableOpacity>
         )}
 
@@ -2028,6 +2076,8 @@ export default function UploadScreen() {
             activeOpacity={0.7}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             className={isLiveMode ? "" : "mr-4"}
+            accessibilityRole="button"
+            accessibilityLabel={isLiveMode ? "Exit livestream mode" : "Live features"}
             style={{ opacity: liveDisabled && !isLiveMode ? 0.3 : 1 }}
           >
             <Icon
@@ -2045,6 +2095,8 @@ export default function UploadScreen() {
             onPress={toggleLiveSettings}
             activeOpacity={0.7}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            accessibilityRole="button"
+            accessibilityLabel="Livestream settings"
           >
             <Icon
               name="Settings"
@@ -2062,6 +2114,8 @@ export default function UploadScreen() {
                 activeOpacity={0.7}
                 className="mr-3"
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                accessibilityRole="button"
+                accessibilityLabel="Pay-per-view settings"
               >
                 <Icon name="CreditCard" size={18} color="#fff" />
               </TouchableOpacity>
@@ -2072,6 +2126,8 @@ export default function UploadScreen() {
                 activeOpacity={0.7}
                 className="mr-3"
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                accessibilityRole="button"
+                accessibilityLabel="Bounty settings"
               >
                 <Icon name="Gift" size={16} color="#fff" />
               </TouchableOpacity>
@@ -2082,6 +2138,8 @@ export default function UploadScreen() {
                 activeOpacity={0.7}
                 className="mr-3"
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                accessibilityRole="button"
+                accessibilityLabel="Token gate settings"
               >
                 <Icon name="ShieldCheck" size={16} color="#fff" />
               </TouchableOpacity>
@@ -2090,6 +2148,8 @@ export default function UploadScreen() {
               onPress={toggleMonetization}
               activeOpacity={0.7}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              accessibilityRole="button"
+              accessibilityLabel="Monetization options"
             >
               <Icon
                 name="DollarSign"

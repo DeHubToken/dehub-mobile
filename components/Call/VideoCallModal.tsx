@@ -103,16 +103,38 @@ const VideoCallModal: React.FC = () => {
 
         {/* Bottom controls */}
         <View style={[styles.controls, { paddingBottom: Math.max(24, insets.bottom + 12) }]}>
-          <TouchableOpacity onPress={toggleMute} style={[styles.ctrlBtn, isMuted && styles.ctrlActive]}>
+          <TouchableOpacity
+            onPress={toggleMute}
+            style={[styles.ctrlBtn, isMuted && styles.ctrlActive]}
+            accessibilityRole="button"
+            accessibilityLabel={isMuted ? "Unmute microphone" : "Mute microphone"}
+            accessibilityState={{ selected: isMuted }}
+          >
             <Icon name={isMuted ? "MicOff" : "Mic"} size={22} color="#FFFFFF" />
           </TouchableOpacity>
-          <TouchableOpacity onPress={toggleCamera} style={[styles.ctrlBtn, isCameraOff && styles.ctrlInactive]}>
+          <TouchableOpacity
+            onPress={toggleCamera}
+            style={[styles.ctrlBtn, isCameraOff && styles.ctrlInactive]}
+            accessibilityRole="button"
+            accessibilityLabel={isCameraOff ? "Turn camera on" : "Turn camera off"}
+            accessibilityState={{ selected: isCameraOff }}
+          >
             <Icon name={isCameraOff ? "VideoOff" : "Video"} size={22} color="#FFFFFF" />
           </TouchableOpacity>
-          <TouchableOpacity onPress={switchCamera} style={styles.ctrlBtn}>
+          <TouchableOpacity
+            onPress={switchCamera}
+            style={styles.ctrlBtn}
+            accessibilityRole="button"
+            accessibilityLabel="Switch camera"
+          >
             <Icon name="RefreshCw" size={20} color="#FFFFFF" />
           </TouchableOpacity>
-          <TouchableOpacity onPress={endCall} style={styles.endBtn}>
+          <TouchableOpacity
+            onPress={endCall}
+            style={styles.endBtn}
+            accessibilityRole="button"
+            accessibilityLabel="End call"
+          >
             <Icon name="PhoneOff" size={24} color="#FFFFFF" />
           </TouchableOpacity>
         </View>
@@ -124,13 +146,13 @@ const VideoCallModal: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0A0A0A",
+    backgroundColor: "#000",
   },
   remotePlaceholder: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#0A0A0A",
+    backgroundColor: "#000",
     gap: 12,
   },
   waitingText: {
@@ -147,7 +169,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderWidth: 2,
     borderColor: "rgba(255,255,255,0.3)",
-    backgroundColor: "#18181B",
+    backgroundColor: "#1D1F21",
   },
   topBar: {
     position: "absolute",
@@ -195,6 +217,7 @@ const styles = StyleSheet.create({
   },
   ctrlActive: {
     backgroundColor: "rgba(255,255,255,0.28)",
+    borderColor: "rgba(255,255,255,0.4)",
   },
   ctrlInactive: {
     backgroundColor: "rgba(239,68,68,0.4)",

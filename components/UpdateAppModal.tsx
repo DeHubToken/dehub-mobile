@@ -41,7 +41,7 @@ const UpdateAppModal: React.FC<UpdateAppModalProps> = ({
       blurIntensity={80}
       dismissible={!isRequired}
     >
-      <View className="rounded-xl p-6 mx-6">
+      <View className="rounded-xl p-6">
         {/* Icon */}
         <View className="items-center mb-4">
           <View className="bg-theme-accent/10 rounded-full p-4">

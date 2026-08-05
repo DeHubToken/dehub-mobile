@@ -97,7 +97,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
             <View style={s.benefits}>
               {plan.benefits.map((b, i) => (
                 <View key={i} style={s.benefitRow}>
-                  <Icon name="Check" size={14} color="#4ade80" />
+                  <Icon name="Check" size={14} color="#D4D4D8" />
                   <Text style={s.benefitText}>{b}</Text>
                 </View>
               ))}
@@ -107,7 +107,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
           {/* Subscriber count */}
           {typeof plan.subscriberCount === "number" && (
             <View style={s.subCountRow}>
-              <Icon name="Users" size={14} color="#71717a" />
+              <Icon name="Users" size={14} color="#A1A1AA" />
               <Text style={s.subCountText}>
                 {plan.subscriberCount} subscriber{plan.subscriberCount !== 1 ? "s" : ""}
               </Text>
@@ -127,7 +127,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
           ) : (
             <AccentButtonGradient>
               <TouchableOpacity onPress={handleSubscribe} activeOpacity={0.7} style={s.subBtn}>
-                <Icon name="Star" size={16} color="#000" />
+                <Icon name="Star" size={16} color="#FFFFFF" />
                 <Text style={s.subBtnText}>Subscribe</Text>
               </TouchableOpacity>
             </AccentButtonGradient>
@@ -169,7 +169,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
                 activeOpacity={0.7}
               >
                 {subscribing ? (
-                  <ActivityIndicator color="#000" />
+                  <ActivityIndicator color="#FFFFFF" />
                 ) : (
                   <Text style={s.confirmBtnText}>Confirm</Text>
                 )}
@@ -221,7 +221,7 @@ const s = StyleSheet.create({
     marginLeft: 8,
   },
   subscribedText: {
-    color: "#4ade80",
+    color: "#22C55E",
     fontSize: 11,
     fontWeight: "600",
   },
@@ -261,7 +261,7 @@ const s = StyleSheet.create({
     gap: 6,
   },
   subCountText: {
-    color: "#71717a",
+    color: "#A1A1AA",
     fontSize: 12,
   },
   editBtn: {
@@ -288,7 +288,7 @@ const s = StyleSheet.create({
     paddingVertical: 10,
   },
   subBtnText: {
-    color: "#000",
+    color: "#fff",
     fontSize: 14,
     fontWeight: "700",
   },
@@ -330,7 +330,7 @@ const s = StyleSheet.create({
     alignItems: "center",
   },
   confirmBtnText: {
-    color: "#000",
+    color: "#fff",
     fontSize: 14,
     fontWeight: "700",
   },

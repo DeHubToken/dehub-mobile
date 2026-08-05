@@ -78,7 +78,7 @@ export function CommunityInfoEditor({ community, onSaved }: CommunityInfoEditorP
         onChangeText={(v) => setName(v.slice(0, NAME_MAX))}
         style={styles.input}
         placeholder={t("communities.communityName")}
-        placeholderTextColor="#52525b"
+        placeholderTextColor="#8B8D90"
         editable={!saving}
       />
       {trimmedName.length > 0 && trimmedName.length < 3 && (
@@ -91,11 +91,11 @@ export function CommunityInfoEditor({ community, onSaved }: CommunityInfoEditorP
         onChangeText={(v) => setDescription(v.slice(0, DESCRIPTION_MAX))}
         style={[styles.input, styles.textarea]}
         placeholder={t("communities.communityDescription")}
-        placeholderTextColor="#52525b"
+        placeholderTextColor="#8B8D90"
         multiline
         editable={!saving}
       />
-      <Text className="text-zinc-600 text-xs mt-1 text-right">
+      <Text className="text-zinc-400 text-xs mt-1 text-right">
         {description.length}/{DESCRIPTION_MAX}
       </Text>
 
@@ -136,6 +136,8 @@ const styles = StyleSheet.create({
     gap: 6,
     marginTop: 12,
     alignSelf: "flex-start",
+    paddingVertical: 12,
+    minHeight: 44,
   },
   editTriggerText: { color: "#a1a1aa", fontSize: 13 },
   card: {

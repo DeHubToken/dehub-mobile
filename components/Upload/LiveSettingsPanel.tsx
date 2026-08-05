@@ -16,6 +16,8 @@ import Animated, {
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
+import Icon from "../ui/Icon";
+import GlassIndicator from "../ui/GlassIndicator";
 import CustomSwitch from "../ui/CustomSwitch";
 
 
@@ -262,9 +264,10 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
           <View className="flex-row justify-end mt-2 gap-3">
             <TouchableOpacity
               onPress={confirmSchedule}
-              className="flex-row items-center px-4 py-2 rounded-lg bg-theme-blue-500"
+              className="flex-row items-center px-4 py-2 rounded-xl overflow-hidden"
             >
-              <Ionicons name="checkmark" size={16} color="#fff" />
+              <GlassIndicator borderRadius={12} />
+              <Icon name="Check" size={16} color="#fff" />
               <Text className="text-white text-sm ml-1">Done</Text>
             </TouchableOpacity>
           </View>
@@ -309,9 +312,10 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
             </TouchableOpacity>
             <TouchableOpacity
               onPress={confirmTip}
-              className="flex-row items-center px-4 py-2 rounded-lg bg-theme-blue-500"
+              className="flex-row items-center px-4 py-2 rounded-xl overflow-hidden"
             >
-              <Ionicons name="checkmark" size={16} color="#fff" />
+              <GlassIndicator borderRadius={12} />
+              <Icon name="Check" size={16} color="#fff" />
               <Text className="text-white text-sm ml-1">Confirm</Text>
             </TouchableOpacity>
           </View>

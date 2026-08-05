@@ -28,6 +28,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import { theme } from "../theme";
 import { openInApp } from "../libs/links.utils";
 import { toastError } from "../libs/toast";
@@ -60,7 +61,7 @@ const num = (n: number, max = 4) =>
 const STATUS_STYLE: Record<string, { bg: string; fg: string }> = {
   open: { bg: "rgba(16,185,129,0.20)", fg: "#6EE7B7" },
   disputed: { bg: "rgba(239,68,68,0.20)", fg: "#FCA5A5" },
-  completed: { bg: "rgba(255,255,255,0.20)", fg: "#BFDBFE" },
+  completed: { bg: "rgba(16,185,129,0.20)", fg: "#6EE7B7" },
 };
 const statusStyle = (s: WorkJobStatus) =>
   STATUS_STYLE[s] ?? { bg: "rgba(255,255,255,0.10)", fg: "#A1A1AA" };
@@ -192,7 +193,7 @@ export default function WorkJobDetailScreen() {
 
   if (isLoading && !job) {
     return (
-      <View style={[styles.root, styles.center, { paddingTop: insets.top }]}>
+      <View style={[styles.root, styles.center]}>
         <ActivityIndicator size="large" color="#FFFFFF" />
       </View>
     );
@@ -200,13 +201,8 @@ export default function WorkJobDetailScreen() {
 
   if (!job || !roles) {
     return (
-      <View style={[styles.root, { paddingTop: insets.top }]}>
-        <View style={styles.header}>
-          <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-            <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-          </Pressable>
-          <Text style={styles.headerTitle}>{t("work.bounty")}</Text>
-        </View>
+      <View style={styles.root}>
+        <ScreenHeader title={t("work.bounty")} />
         <View style={styles.center}>
           <Text style={styles.dim}>{t("work.detail.notFound")}</Text>
         </View>
@@ -226,15 +222,8 @@ export default function WorkJobDetailScreen() {
   const showSubmissions = job.job_type !== "contract" || isAwarded || isPoster;
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <Text style={styles.headerTitle} numberOfLines={1}>
-          {job.title}
-        </Text>
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader title={job.title} />
 
       <KeyboardAvoidingView
         style={{ flex: 1 }}
@@ -249,7 +238,7 @@ export default function WorkJobDetailScreen() {
             <RefreshControl
               refreshing={isRefetching}
               onRefresh={refetch}
-              tintColor={theme.colors.accentForeground}
+              tintColor={theme.colors.accent}
             />
           }
         >
@@ -311,7 +300,7 @@ export default function WorkJobDetailScreen() {
                     value={coverLetter}
                     onChangeText={setCoverLetter}
                     placeholder={t("work.detail.coverLetterPlaceholder")}
-                    placeholderTextColor="#52525B"
+                    placeholderTextColor="#8B8D90"
                     multiline
                     style={[styles.input, styles.textarea]}
                   />
@@ -387,7 +376,7 @@ export default function WorkJobDetailScreen() {
                     value={proofUrl}
                     onChangeText={setProofUrl}
                     placeholder={t("work.detail.proofUrlPlaceholder")}
-                    placeholderTextColor="#52525B"
+                    placeholderTextColor="#8B8D90"
                     autoCapitalize="none"
                     style={styles.input}
                   />
@@ -395,7 +384,7 @@ export default function WorkJobDetailScreen() {
                     value={proofText}
                     onChangeText={setProofText}
                     placeholder={t("work.detail.notesOptional")}
-                    placeholderTextColor="#52525B"
+                    placeholderTextColor="#8B8D90"
                     multiline
                     style={[styles.input, { minHeight: 60, textAlignVertical: "top" }]}
                   />
@@ -521,7 +510,7 @@ export default function WorkJobDetailScreen() {
                   value={reviewComment}
                   onChangeText={setReviewComment}
                   placeholder={t("work.detail.reviewPlaceholder")}
-                  placeholderTextColor="#52525B"
+                  placeholderTextColor="#8B8D90"
                   multiline
                   style={[styles.input, { minHeight: 60, textAlignVertical: "top" }]}
                 />
@@ -593,7 +582,7 @@ export default function WorkJobDetailScreen() {
                 value={disputeReason}
                 onChangeText={setDisputeReason}
                 placeholder={t("work.detail.disputePlaceholder")}
-                placeholderTextColor="#52525B"
+                placeholderTextColor="#8B8D90"
                 multiline
                 style={[styles.input, styles.textarea]}
               />
@@ -632,7 +621,7 @@ export default function WorkJobDetailScreen() {
               value={rejectReason}
               onChangeText={setRejectReason}
               placeholder={t("work.detail.rejectionPlaceholder")}
-              placeholderTextColor="#52525B"
+              placeholderTextColor="#8B8D90"
               multiline
               autoFocus
               style={[styles.input, styles.textarea]}
@@ -670,17 +659,8 @@ export default function WorkJobDetailScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
+  root: { flex: 1, backgroundColor: "#010305" },
   center: { flex: 1, alignItems: "center", justifyContent: "center" },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    paddingHorizontal: 12,
-    paddingBottom: 10,
-  },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  headerTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "700", flex: 1 },
 
   card: {
     borderRadius: 12,
@@ -715,7 +695,7 @@ const styles = StyleSheet.create({
   },
 
   jobTitle: { color: "#FFFFFF", fontSize: 20, fontWeight: "700", lineHeight: 26 },
-  jobDesc: { color: "#D4D4D8", fontSize: 13.5, lineHeight: 20, marginTop: 8 },
+  jobDesc: { color: "#D4D4D8", fontSize: 14, lineHeight: 20, marginTop: 8 },
 
   linkRow: { flexDirection: "row", alignItems: "center", gap: 6, marginTop: 10 },
   linkText: { color: "#A1A1AA", fontSize: 11.5, flex: 1 },
@@ -728,11 +708,11 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "rgba(255,255,255,0.10)",
   },
-  statLabel: { color: "#71717A", fontSize: 10.5, fontWeight: "600" },
+  statLabel: { color: "#71717A", fontSize: 12, fontWeight: "600" },
   statValue: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "700", marginTop: 3 },
 
-  postedBy: { color: "#52525B", fontSize: 11, marginTop: 12 },
-  postedByLink: { color: "#A1A1AA", textDecorationLine: "underline" },
+  postedBy: { color: "#A1A1AA", fontSize: 11, marginTop: 12 },
+  postedByLink: { color: "#E4E4E7", textDecorationLine: "underline" },
 
   section: { marginBottom: 18 },
   sectionTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "700", marginBottom: 10 },
@@ -752,7 +732,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   rowAddr: { color: "#FFFFFF", fontSize: 13, fontWeight: "600" },
-  rowBody: { color: "#A1A1AA", fontSize: 12.5, lineHeight: 18, marginTop: 4 },
+  rowBody: { color: "#A1A1AA", fontSize: 14, lineHeight: 20, marginTop: 4 },
   pill: {
     paddingHorizontal: 8,
     paddingVertical: 2,
@@ -808,7 +788,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "rgba(16,185,129,0.20)",
   },
-  approveText: { color: "#6EE7B7", fontSize: 11.5, fontWeight: "700" },
+  approveText: { color: "#6EE7B7", fontSize: 12, fontWeight: "700" },
   rejectBtn: {
     flexDirection: "row",
     alignItems: "center",
@@ -818,7 +798,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "rgba(239,68,68,0.20)",
   },
-  rejectText: { color: "#FCA5A5", fontSize: 11.5, fontWeight: "700" },
+  rejectText: { color: "#FCA5A5", fontSize: 12, fontWeight: "700" },
 
   actions: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 6 },
   disputeBtn: {
@@ -852,15 +832,15 @@ const styles = StyleSheet.create({
 
   modalBackdrop: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.7)",
+    backgroundColor: "rgba(0,0,0,0.6)",
     justifyContent: "center",
     paddingHorizontal: 22,
   },
   modalCard: {
-    backgroundColor: "#0A0A0A",
-    borderRadius: 18,
+    backgroundColor: "#0C0C0E",
+    borderRadius: 20,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.12)",
+    borderColor: "rgba(255,255,255,0.10)",
     padding: 18,
   },
   modalTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "700", marginBottom: 12 },

@@ -108,7 +108,7 @@ const ProfileTabs: React.FC = () => {
     }
   };
 
-  return <View className="flex-1 bg-black">{renderScene(activeKey)}</View>;
+  return <View className="flex-1 bg-theme-neutrals-900">{renderScene(activeKey)}</View>;
 };
 
 export default ProfileTabs;

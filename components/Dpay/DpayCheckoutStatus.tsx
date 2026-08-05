@@ -220,7 +220,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
               <TouchableOpacity
                 onPress={goProfile}
                 activeOpacity={0.9}
-                className="rounded-xl bg-green-500 py-3 items-center"
+                className="rounded-xl bg-white py-3 items-center"
               >
                 <Text className="text-theme-neutrals-900 text-sm font-semibold">
                   Go to Profile
@@ -234,9 +234,6 @@ const DpayCheckoutStatus: React.FC<Props> = ({
           <Text className="text-white text-xl font-semibold text-center mb-4">
             Waiting for confirmation…
           </Text>
-          {/* <Text className="text-gray-300 text-xs text-center mb-4">
-            Please don’t close this window.
-          </Text> */}
 
           <View className="border-t border-theme-neutrals-700/60 mt-2">
             <View className="flex-row items-center justify-between py-3 border-b border-theme-neutrals-700/60">
@@ -281,7 +278,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
           </View>
 
           <View className="items-center mt-2 min-h-[24px]">
-            {shouldPoll ? <ActivityIndicator color="#9CA3AF" /> : null}
+            {shouldPoll ? <ActivityIndicator color="#F4F4F5" /> : null}
           </View>
           <Text className="text-gray-400 text-[11px] text-center mt-2 px-4">
             You can leave this screen. Your tokens will arrive in your wallet once your payment is confirmed.

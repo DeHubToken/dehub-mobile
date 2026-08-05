@@ -28,7 +28,7 @@ const CHAIN_ICONS: Record<number, any> = {
 
 const EmptyOwnership: React.FC<{ icon: any; label: string }> = ({ icon, label }) => (
   <View className="items-center justify-center py-8">
-    <Icon name={icon} size={36} color="#52525b" />
+    <Icon name={icon} size={36} color="#4b5563" />
     <Text className="text-theme-neutrals-500 text-sm mt-3">{label}</Text>
   </View>
 );
@@ -104,10 +104,10 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
           description={isImported ? t('settings.gasImportedDesc') : t('settings.gasSponsoredDesc')}
           right={
             <View
-              className={`px-2.5 py-1 rounded-full ${isImported ? 'bg-theme-neutrals-700/40' : 'bg-emerald-500/20'}`}
+              className={`px-2.5 py-1 rounded-full ${isImported ? 'bg-theme-neutrals-700/40' : 'bg-theme-green-500/20'}`}
             >
               <Text
-                className={`text-[10px] font-semibold ${isImported ? 'text-theme-neutrals-400' : 'text-emerald-400'}`}
+                className={`text-[11px] font-semibold ${isImported ? 'text-theme-neutrals-400' : 'text-theme-green-400'}`}
               >
                 {isImported ? t('settings.gasOff') : t('settings.gasActive')}
               </Text>

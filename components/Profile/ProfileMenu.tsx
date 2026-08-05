@@ -69,7 +69,7 @@ const ProfileMenu: React.FC = () => {
   ];
 
   return (
-    <View className="mt-6 mb-10 mx-4 bg-theme-neutrals-800 rounded-xl overflow-hidden border">
+    <View className="mt-6 mb-10 mx-4 bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
       {items.map((item, idx) => (
         <TouchableOpacity
           key={item.key}

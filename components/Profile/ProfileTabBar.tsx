@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     minHeight: TAB_HEIGHT,
     borderRadius: 12,
     overflow: "hidden",
-    backgroundColor: "#18181B",
+    backgroundColor: "#1D1F21",
   },
   content: {
     position: "relative",
@@ -166,9 +166,9 @@ const styles = StyleSheet.create({
     opacity: 0.72,
   },
   count: {
-    color: "#71717A",
-    fontSize: 10,
-    lineHeight: 12,
+    color: "#A1A1AA",
+    fontSize: 12,
+    lineHeight: 14,
     marginTop: 1,
     fontWeight: "500",
   },

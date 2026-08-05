@@ -37,10 +37,10 @@ const GoldenScreenEffect: React.FC<{ item: TipAnimationItem; seconds: number }> 
   const label = seconds === 10 ? "Golden Screen (10s)" : seconds === 3 ? "Golden Screen (3s)" : "Ultimate Celebration";
   return (
     <Animated.View className="absolute inset-0 items-center justify-center" style={fade}>
-      <View className="absolute inset-0 bg-yellow-400/15" />
+      <View className="absolute inset-0 bg-theme-yellow-400/15" />
       <Pill text={`${label}`} extra={`${item.amount} DHB`} />
       <View className="absolute top-6 inset-x-0 items-center">
-        <Text className="text-yellow-300 text-base">🪙🪙🪙</Text>
+        <Text className="text-theme-yellow-300 text-base">🪙🪙🪙</Text>
       </View>
       <View className="absolute bottom-10 inset-x-0 items-center">
         <Text className="text-red-400 text-sm">🚨 Sirens 🚨</Text>

@@ -21,9 +21,12 @@ const BUTTON_WIDTH = 262;
 const BUTTON_HEIGHT = 90;
 const PILL_PADDING = 8;
 const ARROW_SIZE = BUTTON_HEIGHT - PILL_PADDING * 2; // Arrow fits inside pill with padding
-const PILL_BG_COLOR = "#FFFFFF1A";
-const TEXT_COLOR = "#9CA3AF";
-const ACCENT_GRADIENT = ["#b9d6f7", "#256DFA"] as const;
+const PILL_BG_COLOR = "#FFFFFF1A"; // white/10
+const TEXT_COLOR = "#9CA3AF"; // gray-400
+const ACCENT_GRADIENT = [
+  "rgba(255,255,255,0.20)",
+  "rgba(255,255,255,0.08)",
+] as const;
 
 export interface SwipeButtonRef {
   setProgress: (progress: number) => void;
@@ -149,6 +152,34 @@ const SwipeButton = forwardRef<SwipeButtonRef, SwipeButtonProps>(
       ),
     }));
 
+    const triggerComplete = useCallback(() => {
+      // First: arrow moves to end and changes to tick
+      isComplete.value = withTiming(1, { duration: 200 });
+      swipeProgress.value = withTiming(1, { duration: 200 });
+
+      // Then: expand to fill the pill (longer delay so user sees checkmark)
+      expandProgress.value = withDelay(
+        600, // Wait 600ms so user can see the checkmark
+        withTiming(1, { duration: 400 }, (finished) => {
+          if (finished) {
+            // Show confetti icon after expansion
+            showConfettiIcon.value = withTiming(1, { duration: 200 }, (done) => {
+              if (done) {
+                // Navigate after showing confetti icon
+                runOnJS(handleNavigate)();
+              }
+            });
+          }
+        })
+      );
+    }, [
+      handleNavigate,
+      isComplete,
+      swipeProgress,
+      expandProgress,
+      showConfettiIcon,
+    ]);
+
     useImperativeHandle(ref, () => ({
       setProgress: (progress: number) => {
         swipeProgress.value = Math.min(1, Math.max(0, progress));
@@ -156,27 +187,7 @@ const SwipeButton = forwardRef<SwipeButtonRef, SwipeButtonProps>(
           isPressed.value = 1;
         }
       },
-      triggerComplete: () => {
-        // First: arrow moves to end and changes to tick
-        isComplete.value = withTiming(1, { duration: 200 });
-        swipeProgress.value = withTiming(1, { duration: 200 });
-
-        // Then: expand to fill the pill (longer delay so user sees checkmark)
-        expandProgress.value = withDelay(
-          600, // Wait 600ms so user can see the checkmark
-          withTiming(1, { duration: 400 }, (finished) => {
-            if (finished) {
-              // Show confetti icon after expansion
-              showConfettiIcon.value = withTiming(1, { duration: 200 }, (done) => {
-                if (done) {
-                  // Navigate after showing confetti icon
-                  runOnJS(handleNavigate)();
-                }
-              });
-            }
-          })
-        );
-      },
+      triggerComplete,
       reset: () => {
         swipeProgress.value = withTiming(0, { duration: 200 });
         isPressed.value = 0;
@@ -187,7 +198,19 @@ const SwipeButton = forwardRef<SwipeButtonRef, SwipeButtonProps>(
     }));
 
     return (
-      <View style={styles.container}>
+      <View
+        style={styles.container}
+        accessible
+        accessibilityRole="button"
+        accessibilityLabel="Swipe to start"
+        onAccessibilityTap={triggerComplete}
+        accessibilityActions={[{ name: "activate" }]}
+        onAccessibilityAction={(event) => {
+          if (event.nativeEvent.actionName === "activate") {
+            triggerComplete();
+          }
+        }}
+      >
         <View style={styles.pill}>
           <Animated.View style={[styles.arrowButton, arrowButtonStyle]}>
             {/* Dark background (visible when idle) */}
@@ -205,7 +228,7 @@ const SwipeButton = forwardRef<SwipeButtonRef, SwipeButtonProps>(
 
             {/* Arrow icon */}
             <Animated.View style={[styles.iconContainer, arrowStyle]}>
-              <Ionicons name="arrow-forward" size={36} color="#1C1B1F" />
+              <Ionicons name="arrow-forward" size={36} color="#FFFFFF" />
             </Animated.View>
 
             {/* Tick icon (shown on complete) */}
@@ -258,7 +281,7 @@ const styles = StyleSheet.create({
   },
   innerBg: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "#6F7174",
+    backgroundColor: "#52525B",
     borderRadius: ARROW_SIZE / 2,
   },
   gradient: {

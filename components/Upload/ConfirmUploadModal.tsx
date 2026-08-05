@@ -62,12 +62,12 @@ const ConfirmUploadModal: React.FC<Props> = ({
     >
       <View className="p-4">
         <Text className="text-white font-bold text-lg mb-2">{title}</Text>
-        <Text className="text-gray-300 text-sm">{confirmText}</Text>
+        <Text className="text-theme-neutrals-300 text-sm">{confirmText}</Text>
         <View className="flex-row justify-end mt-4">
           <TouchableOpacity
             disabled={busy}
             onPress={onClose}
-            className={`px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700 mr-2 ${
+            className={`px-4 py-3 rounded-full bg-theme-neutrals-800 border border-theme-neutrals-700 mr-2 ${
               busy ? "opacity-50" : ""
             }`}
           >
@@ -76,11 +76,11 @@ const ConfirmUploadModal: React.FC<Props> = ({
           <TouchableOpacity
               disabled={busy}
               onPress={onConfirm}
-              className={`px-3 py-2 rounded-xl overflow-hidden ${
+              className={`px-4 py-3 rounded-full overflow-hidden ${
                 busy ? "opacity-50" : ""
               }`}
             >
-              <GlassIndicator borderRadius={12} />
+              <GlassIndicator borderRadius={24} />
               {busy ? (
                 <View className="flex-row items-center">
                   <ActivityIndicator color="#FFFFFF" size="small" />

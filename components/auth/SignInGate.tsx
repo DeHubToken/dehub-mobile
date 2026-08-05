@@ -48,7 +48,7 @@ const SignInPrompt: React.FC = () => {
 
 const s = StyleSheet.create({
   glassBtn: {
-    height: 40,
+    height: 44,
     paddingHorizontal: 28,
     borderRadius: BTN_RADIUS,
     overflow: "hidden",

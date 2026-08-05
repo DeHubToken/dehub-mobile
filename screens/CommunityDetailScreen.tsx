@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
+  RefreshControl,
   StyleSheet,
   Share,
 } from "react-native";
@@ -60,6 +61,7 @@ const CommunityDetailScreen: React.FC = () => {
   const [membership, setMembership] = useState<CommunityMember | null>(null);
   const [isPinned, setIsPinned] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [actionLoading, setActionLoading] = useState(false);
   const [tab, setTab] = useState<Tab>("posts");
   const [manageOpen, setManageOpen] = useState(false);
@@ -227,9 +229,9 @@ const CommunityDetailScreen: React.FC = () => {
   if (!community) {
     return (
       <View className="flex-1 bg-theme-neutrals-900">
-        <ScreenHeader title={t("communities.title")} />
+        <ScreenHeader title={t("communities.title")} canGoBack={false} />
         <View className="flex-1 items-center justify-center px-6">
-          <Text className="text-zinc-500 mb-4">{t("communities.communityNotFound")}</Text>
+          <Text className="text-zinc-400 mb-4">{t("communities.communityNotFound")}</Text>
           <TouchableOpacity
             onPress={() => navigation.navigate(ScreenNames.Communities)}
             className="px-4 py-2 rounded-xl border border-white/10"
@@ -274,14 +276,6 @@ const CommunityDetailScreen: React.FC = () => {
 
   const HeaderBlock = (
     <View>
-      <TouchableOpacity
-        onPress={() => navigation.navigate(ScreenNames.Communities)}
-        className="flex-row items-center gap-1 px-4 pt-2 pb-1"
-      >
-        <Icon name="ArrowLeft" size={18} color="#71717a" />
-        <Text className="text-zinc-500 text-sm">{t("communities.backToCommunities")}</Text>
-      </TouchableOpacity>
-
       <View style={styles.bannerWrap}>
         {community.banner_url ? (
           <Image source={{ uri: community.banner_url }} style={styles.banner} contentFit="cover" />
@@ -308,7 +302,7 @@ const CommunityDetailScreen: React.FC = () => {
               </Text>
               {community.is_private && <Icon name="Lock" size={14} color="#71717a" />}
             </View>
-            <Text className="text-zinc-500 text-sm mt-1">
+            <Text className="text-zinc-400 text-sm mt-1">
               {formatCompactNumber(community.member_count)} {t("communities.membersLabel")}
             </Text>
           </View>
@@ -368,7 +362,7 @@ const CommunityDetailScreen: React.FC = () => {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title={community.name} />
+      <ScreenHeader title={t("communities.title")} />
       {tab === "posts" ? (
         <View className="flex-1">
           <CommunityFeedRoute
@@ -384,7 +378,21 @@ const CommunityDetailScreen: React.FC = () => {
           <CommunityChatPanel community={community} membership={membership} isMember={isMember} />
         </View>
       ) : (
-        <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 80 }}>
+        <ScrollView
+          className="flex-1"
+          contentContainerStyle={{ paddingBottom: 80 }}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={async () => {
+                setRefreshing(true);
+                await load();
+                setRefreshing(false);
+              }}
+              tintColor={theme.colors.accent}
+            />
+          }
+        >
           {HeaderBlock}
           {tab === "members" && (
             <View className="px-4 pt-2">
@@ -396,13 +404,13 @@ const CommunityDetailScreen: React.FC = () => {
                     className="py-3 border-b border-white/5 flex-row items-center justify-between gap-2"
                   >
                     <View className="flex-row items-center gap-2 flex-1">
-                      {m.role === "owner" && <Icon name="Crown" size={13} color="#fbbf24" />}
-                      {m.role === "admin" && <Icon name="Shield" size={13} color="#60a5fa" />}
+                      {m.role === "owner" && <Icon name="Crown" size={13} color="#fff" />}
+                      {m.role === "admin" && <Icon name="Shield" size={13} color="#A1A1AA" />}
                       <Text className="text-white text-sm font-mono" numberOfLines={1}>
                         {m.wallet_address.slice(0, 6)}…{m.wallet_address.slice(-4)}
                       </Text>
                       {muted && (
-                        <Text className="text-amber-400 text-[10px]">
+                        <Text className="text-amber-400 text-xs">
                           {t("communities.muted", { defaultValue: "Muted" })}
                         </Text>
                       )}
@@ -414,7 +422,7 @@ const CommunityDetailScreen: React.FC = () => {
                 );
               })}
               {members.length === 0 && (
-                <Text className="text-zinc-500 text-center py-8">{t("communities.noMembers")}</Text>
+                <Text className="text-zinc-400 text-center py-8">{t("communities.noMembers")}</Text>
               )}
             </View>
           )}
@@ -493,15 +501,15 @@ const CommunityDetailScreen: React.FC = () => {
 const styles = StyleSheet.create({
   bannerWrap: { height: 140, position: "relative" },
   banner: { width: "100%", height: "100%" },
-  bannerPlaceholder: { backgroundColor: "#1a1d21" },
+  bannerPlaceholder: { backgroundColor: theme.colors.neutrals[800] },
   avatarOverlay: { position: "absolute", left: 16, bottom: -32 },
   avatarBox: {
     width: 72,
     height: 72,
     borderRadius: 12,
-    backgroundColor: "#111316",
+    backgroundColor: theme.colors.neutrals[800],
     borderWidth: 3,
-    borderColor: "#010305",
+    borderColor: theme.colors.neutrals[900],
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
@@ -535,7 +543,7 @@ const styles = StyleSheet.create({
     height: 18,
     paddingHorizontal: 4,
     borderRadius: 9,
-    backgroundColor: "#ef4444",
+    backgroundColor: theme.colors.destructive,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -556,7 +564,7 @@ const styles = StyleSheet.create({
   },
   tab: { paddingHorizontal: 16, paddingVertical: 12, borderBottomWidth: 2, borderBottomColor: "transparent" },
   tabActive: { borderBottomColor: "#fff" },
-  tabText: { color: "#71717a", fontSize: 14, fontWeight: "500" },
+  tabText: { color: "#A1A1AA", fontSize: 14, fontWeight: "500" },
   tabTextActive: { color: "#fff", fontWeight: "600" },
 });
 

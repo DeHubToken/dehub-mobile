@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, ScrollView, ActivityIndicator, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import { View, ScrollView, ActivityIndicator, Pressable, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
+import Icon from "../ui/Icon";
 import ProfileImageGrid from "./ProfileImageGrid";
 import { getUnifiedFeed, type UnifiedFeedItem } from "../../services/feed.unified.service";
 import { useNavigation } from "@react-navigation/native";
@@ -46,7 +47,7 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll, listHeader
     }
   }, [address]);
 
-  useEffect(() => {
+  const load = useCallback(() => {
     if (!address) return;
     setLoading(true);
     setError(null);
@@ -54,6 +55,10 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll, listHeader
     endRef.current = false;
     fetchImages(1).finally(() => setLoading(false));
   }, [address, fetchImages]);
+
+  useEffect(() => {
+    load();
+  }, [load]);
 
   const handleLoadMore = useCallback(async () => {
     if (loadingMore || endRef.current || loading) return;
@@ -98,8 +103,16 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll, listHeader
     return (
       <ScrollView onScroll={onScroll} scrollEventThrottle={16}>
         {listHeader}
-        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
-          <Text style={{ color: "#a1a1aa", marginBottom: 8 }}>{error}</Text>
+        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40, paddingHorizontal: 24, gap: 12 }}>
+          <Icon name="WifiOff" size={48} color="#71717A" />
+          <Text style={{ color: "#A6A9AC", fontSize: 14, textAlign: "center" }}>{error}</Text>
+          <Pressable
+            onPress={load}
+            hitSlop={8}
+            style={{ height: 40, borderWidth: 1, borderColor: "rgba(255,255,255,0.30)", borderRadius: 12, paddingHorizontal: 16, justifyContent: "center", alignItems: "center" }}
+          >
+            <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "500" }}>Retry</Text>
+          </Pressable>
         </View>
       </ScrollView>
     );

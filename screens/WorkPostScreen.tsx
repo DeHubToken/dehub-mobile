@@ -23,6 +23,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import { useAuthState } from "../context/AuthContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
@@ -133,16 +134,11 @@ export default function WorkPostScreen() {
   ]);
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>{t("work.postBounty")}</Text>
-          <Text style={styles.subtitle}>{t("work.stepOf", { step, total: 3 })}</Text>
-        </View>
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader
+        title={t("work.postBounty")}
+        subtitle={t("work.stepOf", { step, total: 3 })}
+      />
 
       <KeyboardAvoidingView
         style={{ flex: 1 }}
@@ -189,7 +185,7 @@ export default function WorkPostScreen() {
                   value={title}
                   onChangeText={setTitle}
                   placeholder={t("work.fields.titlePlaceholder")}
-                  placeholderTextColor="#52525B"
+                  placeholderTextColor="#8B8D90"
                   style={styles.input}
                 />
               </Field>
@@ -198,7 +194,7 @@ export default function WorkPostScreen() {
                   value={description}
                   onChangeText={setDescription}
                   placeholder={t("work.fields.descriptionPlaceholder")}
-                  placeholderTextColor="#52525B"
+                  placeholderTextColor="#8B8D90"
                   multiline
                   style={[styles.input, { minHeight: 120, textAlignVertical: "top" }]}
                 />
@@ -234,7 +230,7 @@ export default function WorkPostScreen() {
                       value={targetUrl}
                       onChangeText={setTargetUrl}
                       placeholder="https://…"
-                      placeholderTextColor="#52525B"
+                      placeholderTextColor="#8B8D90"
                       autoCapitalize="none"
                       keyboardType="url"
                       style={styles.input}
@@ -296,7 +292,7 @@ export default function WorkPostScreen() {
                   value={pricePerUnit}
                   onChangeText={setPricePerUnit}
                   placeholder="0.00"
-                  placeholderTextColor="#52525B"
+                  placeholderTextColor="#8B8D90"
                   keyboardType="decimal-pad"
                   style={styles.input}
                 />
@@ -308,7 +304,7 @@ export default function WorkPostScreen() {
                     value={maxUnits}
                     onChangeText={setMaxUnits}
                     placeholder="100"
-                    placeholderTextColor="#52525B"
+                    placeholderTextColor="#8B8D90"
                     keyboardType="number-pad"
                     style={styles.input}
                   />
@@ -317,12 +313,17 @@ export default function WorkPostScreen() {
 
               <Field label={t("work.fields.deadlineOptional")}>
                 <Pressable onPress={() => setShowDatePicker(true)} style={styles.input}>
-                  <Text style={{ color: deadline ? "#FFFFFF" : "#52525B", fontSize: 14 }}>
+                  <Text style={{ color: deadline ? "#FFFFFF" : "#8B8D90", fontSize: 14 }}>
                     {deadline || t("work.fields.pickDate")}
                   </Text>
                 </Pressable>
                 {deadline.length > 0 && (
-                  <Pressable onPress={() => setDeadline("")} hitSlop={8}>
+                  <Pressable
+                    onPress={() => setDeadline("")}
+                    hitSlop={16}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("work.fields.clearDeadline")}
+                  >
                     <Text style={styles.clearDate}>{t("work.fields.clearDeadline")}</Text>
                   </Pressable>
                 )}
@@ -381,17 +382,7 @@ export default function WorkPostScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    paddingHorizontal: 12,
-    paddingBottom: 12,
-  },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  title: { color: "#FFFFFF", fontSize: 19, fontWeight: "700" },
-  subtitle: { color: "#71717A", fontSize: 12, marginTop: 1 },
+  root: { flex: 1, backgroundColor: "#010305" },
 
   typeCard: {
     flexDirection: "row",
