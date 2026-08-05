@@ -61,6 +61,8 @@ import { writeContractAA } from "../../libs/aa.write";
 import { sendSolanaPayment } from "../../services/solana-payment.service";
 import { isSolanaChain } from "../../config/solana.constants";
 import { formatCompactNumber } from "../../libs";
+import { supabase } from "../../services/supabase";
+import { withWalletHeader } from "../../libs/supabase-wallet-client";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -95,7 +97,45 @@ export interface GlassTipSheetProps {
   tipContext?: "content" | "user";
   /** Post's chain — when Solana (101/103), tip in SOL via the backend-built tx (#41). */
   paymentChainId?: number;
+  /** Tipping a comment's author: stamped on the tip record so the comment can
+   *  show its own total. Comment tips always take the EVM DHB path — don't
+   *  pass paymentChainId with this. */
+  commentId?: number;
   onSuccess?: (amount: number) => void;
+}
+
+/**
+ * Mirror of web's persistTipRecord: the earnings screens and per-comment tip
+ * totals read Supabase tip_records, and a tip that only exists on-chain is
+ * invisible to both. Fire-and-forget with retries — a failed save must not
+ * error a tip that already moved money.
+ */
+async function persistTipRecord(params: {
+  senderAddress: string;
+  receiverAddress: string;
+  amount: number;
+  chainId: number;
+  txHash: string;
+  tokenId: number;
+  commentId: number | null;
+}): Promise<void> {
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    const { error } = await withWalletHeader(
+      supabase.from("tip_records").insert({
+        sender_address: params.senderAddress.toLowerCase(),
+        receiver_address: params.receiverAddress.toLowerCase(),
+        amount: params.amount,
+        chain_id: params.chainId,
+        tx_hash: params.txHash,
+        token_id: params.tokenId ? String(params.tokenId) : null,
+        comment_id: params.commentId != null ? String(params.commentId) : null,
+      } as any),
+      params.senderAddress,
+    );
+    if (!error) return;
+    console.warn(`[Tip] record attempt ${attempt}/3 failed:`, error.message);
+    if (attempt < 3) await new Promise((r) => setTimeout(r, 1000 * attempt));
+  }
 }
 
 // ── Component ────────────────────────────────────────────────────────────────
@@ -107,6 +147,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   recipientName,
   tipContext = "content",
   paymentChainId,
+  commentId,
   onSuccess,
 }) => {
   const insets = useSafeAreaInsets();
@@ -321,6 +362,25 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           const receipt = await res.wait?.(1);
           setPhase("sent");
           setLastAmount(numericAmount);
+
+          // Record the tip the way web does. Mobile tips never wrote a
+          // tip_records row, which is why they're missing from the earnings
+          // screens; comment tips additionally need the row for their totals.
+          // DHB path only — Solana tips are SOL-denominated and would corrupt
+          // the DHB sums this table feeds.
+          const txHash: string =
+            (res as any)?.hash || receipt?.transactionHash || "";
+          if (txHash && account) {
+            void persistTipRecord({
+              senderAddress: account,
+              receiverAddress: toAddress,
+              amount: numericAmount,
+              chainId,
+              txHash,
+              tokenId,
+              commentId: commentId ?? null,
+            });
+          }
 
           // Optimistic balance patch
           try {
