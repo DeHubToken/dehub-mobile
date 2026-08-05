@@ -53,6 +53,7 @@ import {
 } from "../libs";
 import { voteOnNFT, reactToNFT } from "../services/nft.service";
 import ReactionPicker from "../components/Home/ReactionPicker";
+import ReactionInfoSheet from "../components/Home/ReactionInfoSheet";
 import ShareSheet from "../components/Home/ShareSheet";
 import PostOptionsMenu from "../components/common/PostOptionsMenu";
 import {
@@ -185,6 +186,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
 
   const minterAddress = item.minter || item.minterUser?.address || "";
   const userAddress = user?.address || user?.walletAddress || "";
+  // Who reacted what is the author's to see, so the ⓘ in the tray only exists
+  // on your own shorts (the API withholds the list from everyone else too).
+  const isOwnShort = !!(
+    userAddress && minterAddress && userAddress.toLowerCase() === minterAddress.toLowerCase()
+  );
 
   // Shared overlay — every surface showing this post reads the same numbers.
   const engagementKey = engagementKeyOf(item);
@@ -200,6 +206,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
   } = useEngagement(item);
 
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [showReactionInfo, setShowReactionInfo] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showTipModal, setShowTipModal] = useState(false);
   const [showShareSheet, setShowShareSheet] = useState(false);
@@ -678,6 +685,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
                   current={myReaction}
                   onSelect={(reaction) => { setPickerOpen(false); handleReaction(reaction); }}
                   align="right"
+                  onShowInfo={
+                    isOwnShort && tokenId != null
+                      ? () => { setPickerOpen(false); setShowReactionInfo(true); }
+                      : undefined
+                  }
                 />
                 <ActionButton
                   icon="ThumbsUp"
@@ -716,6 +728,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
           commentsDisabled={!!(item as any).commentsDisabled}
+        />
+      )}
+
+      {showReactionInfo && tokenId != null && (
+        <ReactionInfoSheet
+          visible={showReactionInfo}
+          onClose={() => setShowReactionInfo(false)}
+          tokenId={tokenId}
         />
       )}
 

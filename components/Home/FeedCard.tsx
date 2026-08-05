@@ -24,6 +24,7 @@ import AudioPostPlayer from "./AudioPostPlayer";
 import FeedVideoPlayer from "./FeedVideoPlayer";
 import StatusBadge from "./StatusBadge";
 import { CommentBottomSheet } from "../Comments";
+import ReactionInfoSheet from "./ReactionInfoSheet";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import ImageTranslationSheet from "../common/ImageTranslationSheet";
 import QuotedPostEmbed from "../common/QuotedPostEmbed";
@@ -306,6 +307,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   } = useEngagement(item);
   const [showShareSheet, setShowShareSheet] = useState(false);
   const [showComments, setShowComments] = useState(false);
+  const [showReactionInfo, setShowReactionInfo] = useState(false);
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
   const [showTipModal, setShowTipModal] = useState(false);
   const [showPPVModal, setShowPPVModal] = useState(false);
@@ -1222,6 +1224,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onTip={handleTipPress}
           onSave={handleSavePress}
           onInfo={handleInfoPress}
+          onShowReactionInfo={
+            isOwnerPost && tokenId != null ? () => setShowReactionInfo(true) : undefined
+          }
         />
       )}
 
@@ -1240,6 +1245,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
           commentsDisabled={localCommentsDisabled}
+        />
+      )}
+
+      {showReactionInfo && tokenId != null && (
+        <ReactionInfoSheet
+          visible={showReactionInfo}
+          onClose={() => setShowReactionInfo(false)}
+          tokenId={tokenId}
         />
       )}
 
