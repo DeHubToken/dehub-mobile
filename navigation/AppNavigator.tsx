@@ -191,6 +191,10 @@ export default function AppNavigator() {
           getComponent={() => require("../screens/CommunityDetailScreen").default}
         />
         <Stack.Screen
+          name={ScreenNames.CommunityInvite}
+          getComponent={() => require("../screens/CommunityInviteScreen").default}
+        />
+        <Stack.Screen
           name={ScreenNames.Feed}
           getComponent={() => require("../screens/FeedScreen").default}
         />
