@@ -1,15 +1,15 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-  Dimensions,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text, ScrollView, Dimensions, StyleSheet } from "react-native";
 import GlassModal from "../ui/GlassModal";
-import { Ionicons } from "@expo/vector-icons";
+import {
+  AuthButton,
+  AuthDivider,
+  AuthField,
+  AuthIconButton,
+  AuthTextButton,
+  authColors,
+  authText,
+} from "./AuthControls";
 import { deriveAddressFromPrivateKey } from "../../libs/wallet.utils";
 import { listLocalAccounts, removeLocalAccount, LocalAccount, getPrivateKeyForAddress, upsertLocalAccount } from "../../libs/wallets.local";
 import { miniAddress } from "../../libs/strings.util";
@@ -187,143 +187,97 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
         blurIntensity={50}
         dismissible={!busy}
       >
-        <View className="max-h-[90%] p-6">
-          <View className="px-5 pt-5 pb-3">
-            <Text className="text-white text-lg font-semibold">
-              Import external wallet
+        <View style={styles.sheet}>
+          <Text style={authText.modalTitle}>Import external wallet</Text>
+          <Text style={[authText.caption, { marginTop: 8, marginBottom: 20 }]}>
+            Social logins are recommended. This tool is for importing existing accounts from{" "}
+            <Text style={styles.link} onPress={() => openInApp(WEBSITE_LINK)}>
+              dehub.io
             </Text>
-            <Text className="text-theme-neutrals-400 text-xs mt-2">
-              Social logins are recommended. This tool is for importing existing
-              accounts from
-              <Text
-                className="text-blue-400"
-                onPress={() => openInApp(WEBSITE_LINK)}
-              >
-                {" "}
-                dehub.io
-              </Text>
-              .
-            </Text>
-          </View>
+            .
+          </Text>
 
-          <View className="px-5 mb-3">
-            <Text className="text-theme-neutrals-500 text-xs mb-2">
-              Private key
-            </Text>
-            <View className="flex-row items-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-900 px-3 py-2">
-              <TextInput
-                value={privateKey}
-                onChangeText={setPrivateKey}
-                placeholder="0x... (64 hex)"
-                placeholderTextColor="#6B7280"
-                autoCapitalize="none"
-                autoCorrect={false}
-                secureTextEntry={!showPk}
-                className="flex-1 text-white text-sm"
-              />
-              <TouchableOpacity
+          <AuthField
+            label="Private key"
+            value={privateKey}
+            onChangeText={setPrivateKey}
+            placeholder="0x… (64 hex)"
+            autoCapitalize="none"
+            autoCorrect={false}
+            secureTextEntry={!showPk}
+            trailing={
+              <AuthIconButton
+                icon={showPk ? "eye-off-outline" : "eye-outline"}
                 onPress={() => setShowPk((s) => !s)}
-                className="pl-2 py-1"
-              >
-                <Ionicons
-                  name={showPk ? "eye-off-outline" : "eye-outline"}
-                  size={18}
-                  color="#9CA3AF"
-                />
-              </TouchableOpacity>
-            </View>
-            {clipboardPk && !privateKey ? (
-              <TouchableOpacity
-                onPress={() => setPrivateKey(clipboardPk)}
-                className="mt-2 self-end"
-              >
-                <Text className="text-blue-400 text-xs">Paste from clipboard</Text>
-              </TouchableOpacity>
-            ) : null}
-            <TouchableOpacity
-              onPress={handleImport}
-              disabled={!isPkValid || busy}
-              className="mt-3 flex-row items-center justify-center rounded-2xl bg-neutral-800 border border-neutral-700 active:opacity-80"
-              style={{ height: 60, opacity: !isPkValid || busy ? 0.5 : 1 }}
-            >
-              {busy ? (
-                <ActivityIndicator color="#09090B" />
-              ) : (
-                <>
-                  <Ionicons name="key" size={20} color="#FFFFFF" style={{ marginRight: 10 }} />
-                  <Text className="text-base font-medium text-white">Import</Text>
-                </>
-              )}
-            </TouchableOpacity>
-          </View>
+                accessibilityLabel={showPk ? "Hide private key" : "Show private key"}
+              />
+            }
+          />
+          {clipboardPk && !privateKey ? (
+            <AuthTextButton
+              label="Paste from clipboard"
+              onPress={() => setPrivateKey(clipboardPk)}
+              tone="default"
+              align="end"
+            />
+          ) : null}
+          <AuthButton
+            variant="primary"
+            icon="key"
+            label="Import"
+            onPress={handleImport}
+            disabled={!isPkValid}
+            loading={busy}
+            style={{ marginTop: 12 }}
+          />
 
-          <View className="px-5 mt-2">
-            <View className="flex-row items-center my-2">
-              <View className="flex-1 h-[1px] bg-theme-neutrals-800" />
-              <Text className="mx-3 text-theme-neutrals-500 text-[11px] uppercase tracking-wider">
-                Accounts on this device
-              </Text>
-              <View className="flex-1 h-[1px] bg-theme-neutrals-800" />
-            </View>
-          </View>
+          <AuthDivider label="Accounts on this device" />
 
-          <View className="px-5">
-            {accounts.length === 0 ? (
-              <Text className="text-theme-neutrals-500 text-xs text-center mt-3 mb-6">
-                No imported accounts yet.
-              </Text>
-            ) : (
-              <ScrollView
-                showsVerticalScrollIndicator
-                keyboardShouldPersistTaps="handled"
-                style={{ maxHeight: LIST_MAX_HEIGHT }}
-                contentContainerStyle={{ paddingBottom: 12 }}
-              >
-                {accounts.map((item) => (
-                  <View
-                    key={item.address}
-                    className="py-3 border-b border-theme-neutrals-800 flex-row items-center justify-between"
-                  >
-                    <View>
-                      <Text className="text-white text-sm font-medium">
-                        {item.username || "Imported account"}
-                      </Text>
-                      <Text className="text-theme-neutrals-500 text-xs">
-                        {miniAddress(item.address)}
-                      </Text>
-                    </View>
-                    <View className="flex-row items-center">
-                      <TouchableOpacity
-                        onPress={() => handleUse(item.address)}
-                        className="px-3 py-2 rounded-lg bg-theme-neutrals-800 mr-2"
-                      >
-                        <Text className="text-white text-xs">Use</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        onPress={() => handleDelete(item.address)}
-                        className="p-2 rounded-lg bg-theme-neutrals-900"
-                      >
-                        <Ionicons name="trash-outline" size={18} color="#EF4444" />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                ))}
-              </ScrollView>
-            )}
-          </View>
-
-          <View className="px-5 py-4">
-            <Text className="text-theme-neutrals-500 text-[11px] text-center">
-              Learn more at
-              <Text
-                className="text-blue-400"
-                onPress={() => openInApp(WEBSITE_LINK)}
-              >
-                {" "}
-                dehub.io
-              </Text>
+          {accounts.length === 0 ? (
+            <Text style={[authText.caption, { textAlign: "center", marginBottom: 12 }]}>
+              No imported accounts yet.
             </Text>
-          </View>
+          ) : (
+            <ScrollView
+              showsVerticalScrollIndicator
+              keyboardShouldPersistTaps="handled"
+              style={{ maxHeight: LIST_MAX_HEIGHT }}
+              contentContainerStyle={{ paddingBottom: 12 }}
+            >
+              {accounts.map((item) => (
+                <View key={item.address} style={styles.accountRow}>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.accountName}>
+                      {item.username || "Imported account"}
+                    </Text>
+                    <Text style={authText.caption}>{miniAddress(item.address)}</Text>
+                  </View>
+                  <View style={styles.accountActions}>
+                    <AuthButton
+                      label="Use"
+                      onPress={() => handleUse(item.address)}
+                      disabled={busy}
+                      style={styles.useButton}
+                      accessibilityLabel={`Use account ${item.username || miniAddress(item.address)}`}
+                    />
+                    <AuthIconButton
+                      icon="trash-outline"
+                      onPress={() => handleDelete(item.address)}
+                      disabled={busy}
+                      accessibilityLabel={`Remove account ${item.username || miniAddress(item.address)}`}
+                    />
+                  </View>
+                </View>
+              ))}
+            </ScrollView>
+          )}
+
+          <Text style={[authText.caption, { textAlign: "center", marginTop: 16 }]}>
+            Learn more at{" "}
+            <Text style={styles.link} onPress={() => openInApp(WEBSITE_LINK)}>
+              dehub.io
+            </Text>
+          </Text>
         </View>
       </GlassModal>
       );
@@ -331,4 +285,40 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
   );
 
 ImportWalletModal.displayName = "ImportWalletModal";
+
+const styles = StyleSheet.create({
+  sheet: {
+    maxHeight: "90%",
+    padding: 24,
+  },
+  link: {
+    color: authColors.label,
+    textDecorationLine: "underline",
+  },
+  accountRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 8,
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: authColors.hairline,
+  },
+  accountName: {
+    color: authColors.label,
+    fontSize: 14,
+    fontWeight: "500",
+  },
+  accountActions: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  useButton: {
+    width: "auto",
+    minHeight: 44,
+    paddingHorizontal: 16,
+  },
+});
+
 export default ImportWalletModal;

@@ -2,16 +2,13 @@ import React, { useState, useCallback, useMemo, useEffect } from "react";
 import {
   View,
   Text,
-  TextInput,
-  TouchableOpacity,
-  ActivityIndicator,
   Image,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  StyleSheet,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
 import * as Clipboard from "expo-clipboard";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { deriveAddressFromPrivateKey } from "../../libs/wallet.utils";
@@ -34,7 +31,15 @@ import {
   clearSigningProvider,
 } from "../../libs/provider.registry";
 import { getPreferredChainId } from "../../libs/auth.utils";
-import AccentButtonGradient from "../../components/ui/AccentButtonGradient";
+import {
+  AuthButton,
+  AuthDivider,
+  AuthField,
+  AuthIconButton,
+  AuthTextButton,
+  authColors,
+  authText,
+} from "../../components/auth/AuthControls";
 import ScreenHeader from "../../components/ScreenHeader";
 
 // 3D wallet image
@@ -255,163 +260,89 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
           </View>
 
           {/* Header - overlaps with image shadow */}
-          <View className="items-center mb-4" style={{ marginTop: -20 }}>
-            <Text className="text-white text-2xl font-bold mb-2">
+          <View style={{ alignItems: "center", marginTop: -20, marginBottom: 24 }}>
+            <Text style={[authText.title, { marginBottom: 8 }]}>
               Import Wallet (Optional)
             </Text>
-            <Text className="text-gray-400 text-center text-sm px-2">
+            <Text style={[authText.body, { textAlign: "center", paddingHorizontal: 8 }]}>
               Social logins are recommended.{"\n"} This tool is for importing
               existing accounts from DeHub.io.
             </Text>
           </View>
 
           {/* Private Key Input */}
-          <View className="mb-2">
-            <Text className="text-white text-sm font-medium mb-2">
-              Private Key
-            </Text>
-            <View
-              className="flex-row items-center border border-neutral-700 rounded-xl bg-neutral-900 px-4"
-              style={{ height: 56 }}
-            >
-              <TextInput
-                value={privateKey}
-                onChangeText={setPrivateKey}
-                autoCapitalize="none"
-                autoCorrect={false}
-                secureTextEntry={!showPk}
-                placeholder="Enter your private key"
-                placeholderTextColor="#8B8D90"
-                className="flex-1 text-white text-base"
-                editable={!busy}
-              />
-              <TouchableOpacity
+          <AuthField
+            label="Private Key"
+            value={privateKey}
+            onChangeText={setPrivateKey}
+            autoCapitalize="none"
+            autoCorrect={false}
+            secureTextEntry={!showPk}
+            placeholder="Enter your private key"
+            editable={!busy}
+            trailing={
+              <AuthIconButton
+                icon={showPk ? "eye-off-outline" : "eye-outline"}
                 onPress={() => setShowPk(!showPk)}
-                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-                accessibilityRole="button"
-                accessibilityLabel={
-                  showPk ? "Hide private key" : "Show private key"
-                }
-              >
-                <Ionicons
-                  name={showPk ? "eye-off-outline" : "eye-outline"}
-                  size={22}
-                  color="#9CA3AF"
-                />
-              </TouchableOpacity>
-            </View>
+                accessibilityLabel={showPk ? "Hide private key" : "Show private key"}
+              />
+            }
+          />
 
-            {/* Paste from clipboard */}
-            {clipboardPk && !privateKey && (
-              <TouchableOpacity
-                onPress={handlePasteFromClipboard}
-                className="mt-2 self-end py-2"
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              >
-                <Text
-                  className="text-white text-sm"
-                  style={{ textDecorationLine: "underline" }}
-                >
-                  Paste from clipboard
-                </Text>
-              </TouchableOpacity>
-            )}
-          </View>
-
-          {/* Learn More Link */}
-          <TouchableOpacity
-            onPress={handleLearnMore}
-            className="flex-row items-center justify-center my-4"
-          >
-            <Text className="text-gray-400 text-sm">
-              Learn more at dehub.io
-            </Text>
-            <Ionicons
-              name="open-outline"
-              size={14}
-              color="#9CA3AF"
-              style={{ marginLeft: 4 }}
+          {/* Paste from clipboard */}
+          {clipboardPk && !privateKey && (
+            <AuthTextButton
+              label="Paste from clipboard"
+              onPress={handlePasteFromClipboard}
+              tone="default"
+              align="end"
             />
-          </TouchableOpacity>
+          )}
 
           {/* Import Wallet Button */}
-          <View className="items-center mb-4">
-            <TouchableOpacity
-              disabled={!isPkValid || busy}
-              onPress={handleImport}
-              style={{
-                width: "100%",
-                maxWidth: 280,
-                opacity: !isPkValid || busy ? 0.5 : 1,
-              }}
-              accessibilityLabel="Import Wallet"
-            >
-              <AccentButtonGradient
-                borderRadius={14}
-                style={{
-                  paddingVertical: 16,
-                  alignItems: "center",
-                }}
-              >
-                {busy ? (
-                  <ActivityIndicator color="#fff" />
-                ) : (
-                  <Text className="text-white font-semibold text-base">
-                    Import Wallet
-                  </Text>
-                )}
-              </AccentButtonGradient>
-            </TouchableOpacity>
-          </View>
+          <AuthButton
+            variant="primary"
+            label="Import Wallet"
+            onPress={handleImport}
+            disabled={!isPkValid}
+            loading={busy}
+            style={{ marginTop: 16 }}
+          />
+
+          {/* Learn More Link */}
+          <AuthTextButton
+            label="Learn more at dehub.io"
+            onPress={handleLearnMore}
+            style={{ marginTop: 8 }}
+          />
 
           {/* Previously Imported Accounts */}
           {accounts.length > 0 && (
-            <View className="mt-2">
-              {/* Divider */}
-              <View className="flex-row items-center my-3">
-                <View className="flex-1 h-[1px] bg-neutral-700" />
-                <Text className="mx-3 text-gray-400 text-xs uppercase tracking-wider">
-                  Accounts on this device
-                </Text>
-                <View className="flex-1 h-[1px] bg-neutral-700" />
-              </View>
+            <View style={{ marginTop: 8 }}>
+              <AuthDivider label="Accounts on this device" />
 
-              {/* Account List */}
               {accounts.map((account) => (
-                <View
-                  key={account.address}
-                  className="flex-row items-center justify-between py-3 border-b border-neutral-800"
-                >
-                  <View className="flex-1">
-                    <Text className="text-white text-sm font-medium">
+                <View key={account.address} style={styles.accountRow}>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.accountName}>
                       {account.username || "Imported account"}
                     </Text>
-                    <Text className="text-gray-400 text-xs">
-                      {miniAddress(account.address)}
-                    </Text>
+                    <Text style={authText.caption}>{miniAddress(account.address)}</Text>
                   </View>
-                  <View className="flex-row items-center">
-                    <TouchableOpacity
+                  <View style={styles.accountActions}>
+                    <AuthButton
+                      label="Use"
                       onPress={() => handleUseAccount(account.address)}
                       disabled={busy}
-                      className="px-4 py-2 rounded-lg bg-neutral-800 mr-2"
-                    >
-                      <Text className="text-white text-sm">Use</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
+                      style={styles.useButton}
+                      accessibilityLabel={`Use account ${account.username || miniAddress(account.address)}`}
+                    />
+                    <AuthIconButton
+                      icon="trash-outline"
                       onPress={() => handleDeleteAccount(account.address)}
                       disabled={busy}
-                      className="p-2 rounded-lg bg-neutral-900"
-                      hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                      accessibilityRole="button"
-                      accessibilityLabel="Delete account"
-                    >
-                      <Ionicons
-                        name="trash-outline"
-                        size={18}
-                        color="#EF4444"
-                      />
-                    </TouchableOpacity>
+                      accessibilityLabel={`Remove account ${account.username || miniAddress(account.address)}`}
+                    />
                   </View>
                 </View>
               ))}
@@ -425,5 +356,32 @@ const ImportWalletScreen: React.FC<ImportWalletScreenProps> = ({
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  accountRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 8,
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: authColors.hairline,
+  },
+  accountName: {
+    color: authColors.label,
+    fontSize: 14,
+    fontWeight: "500",
+  },
+  accountActions: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  useButton: {
+    width: "auto",
+    minHeight: 44,
+    paddingHorizontal: 16,
+  },
+});
 
 export default ImportWalletScreen;

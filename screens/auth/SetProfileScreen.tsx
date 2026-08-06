@@ -2,15 +2,15 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   View,
   Text,
-  TextInput,
-  TouchableOpacity,
   ActivityIndicator,
   Image,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   BackHandler,
+  type ViewStyle,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect, CommonActions } from "@react-navigation/native";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
@@ -20,13 +20,21 @@ import { toastError, toastSuccess, toastInfo } from "../../libs";
 import { setAuthUser } from "../../libs/auth.utils";
 import { User } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import AccentButtonGradient from "../../components/ui/AccentButtonGradient";
+import {
+  AuthButton,
+  AuthField,
+  AuthTextButton,
+  authColors,
+  authText,
+} from "../../components/auth/AuthControls";
 import { createLogger } from "../../libs/logger";
 
 const log = createLogger("SetProfileScreen");
 
 // 3D user image
 const USER_3D_IMAGE = require("../../assets/onboarding/user-3d.png");
+
+const statusRow: ViewStyle = { flexDirection: "row", alignItems: "center", gap: 6 };
 
 interface SetProfileScreenProps {
   navigation: any;
@@ -192,129 +200,94 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
           </View>
 
           {/* Header - overlaps with image shadow */}
-          <View className="items-center mb-6" style={{ marginTop: -55 }}>
-            <Text className="text-white text-2xl font-bold mb-2">
-              Set your profile
-            </Text>
-            <Text className="text-gray-400 text-center text-base">
+          <View style={{ alignItems: "center", marginTop: -55, marginBottom: 24 }}>
+            <Text style={[authText.title, { marginBottom: 8 }]}>Set your profile</Text>
+            <Text style={[authText.body, { textAlign: "center" }]}>
               Choose how you'll be known on DeHub.{"\n"}You can change them later.
             </Text>
           </View>
 
           {/* Username Input */}
-          <View className="mb-4">
-            <Text className="text-white text-sm font-medium mb-2">Username</Text>
-            <TextInput
-              value={username}
-              onChangeText={handleUsernameChange}
-              autoCapitalize="none"
-              autoCorrect={false}
-              placeholder="@username"
-              placeholderTextColor="#8B8D90"
-              className="border border-neutral-700 rounded-xl px-4 py-4 text-white text-base bg-neutral-900"
-            />
-            <View className="mt-2 min-h-[20px]">
-              {checking && (
-                <View className="flex-row items-center">
-                  <ActivityIndicator size="small" color="#F4F4F5" />
-                  <Text className="text-xs text-gray-400 ml-2">Checking...</Text>
-                </View>
-              )}
-              {!checking && available === true && username.length >= 3 && (
-                <View className="flex-row items-center">
-                  <View className="w-2 h-2 rounded-full bg-green-500 mr-2" />
-                  <Text className="text-xs text-green-400">Available</Text>
-                </View>
-              )}
-              {!checking && available === false && username.length >= 3 && (
-                <View className="flex-row items-center">
-                  <View className="w-2 h-2 rounded-full bg-red-500 mr-2" />
-                  <Text className="text-xs text-red-400">Username taken</Text>
-                </View>
-              )}
-              {!checking && available === null && (
-                <Text className="text-xs text-gray-400">
-                  3-30 characters: letters, numbers, underscore.
+          <AuthField
+            label="Username"
+            value={username}
+            onChangeText={handleUsernameChange}
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder="@username"
+          />
+          <View style={{ marginTop: 8, marginBottom: 16, minHeight: 20 }}>
+            {checking && (
+              <View style={statusRow}>
+                <ActivityIndicator size="small" color={authColors.subtle} />
+                <Text style={authText.caption}>Checking…</Text>
+              </View>
+            )}
+            {!checking && available === true && username.length >= 3 && (
+              <View style={statusRow}>
+                <Ionicons name="checkmark-circle" size={14} color={authColors.label} />
+                <Text style={[authText.caption, { color: authColors.label }]}>Available</Text>
+              </View>
+            )}
+            {!checking && available === false && username.length >= 3 && (
+              <View style={statusRow}>
+                <Ionicons name="close-circle" size={14} color={authColors.danger} />
+                <Text style={[authText.caption, { color: authColors.danger }]}>
+                  Username taken
                 </Text>
-              )}
-            </View>
+              </View>
+            )}
+            {!checking && available === null && (
+              <Text style={authText.caption}>
+                3-30 characters: letters, numbers, underscore.
+              </Text>
+            )}
           </View>
 
           {/* Display Name Input */}
-          <View className="mb-6">
-            <Text className="text-white text-sm font-medium mb-2">Display Name</Text>
-            <TextInput
-              value={displayName}
-              onChangeText={handleDisplayNameChange}
-              autoCapitalize="words"
-              autoCorrect={false}
-              placeholder="Display name"
-              placeholderTextColor="#8B8D90"
-              className="border border-neutral-700 rounded-xl px-4 py-4 text-white text-base bg-neutral-900"
-            />
-            <View className="mt-2 min-h-[20px]">
-              <Text className="text-xs text-gray-400">
-                Your public name shown on your profile.
-              </Text>
-            </View>
+          <AuthField
+            label="Display Name"
+            value={displayName}
+            onChangeText={handleDisplayNameChange}
+            autoCapitalize="words"
+            autoCorrect={false}
+            placeholder="Display name"
+          />
+          <View style={{ marginTop: 8, marginBottom: 24, minHeight: 20 }}>
+            <Text style={authText.caption}>Your public name shown on your profile.</Text>
           </View>
 
           {/* Continue Button */}
-          <View className="items-center mb-4">
-            <TouchableOpacity
-              disabled={disabled}
-              onPress={handleSubmit}
-              style={{
-                width: "100%",
-                maxWidth: 280,
-                opacity: disabled ? 0.5 : 1,
-              }}
-              accessibilityLabel="Continue to set profile"
-            >
-              <AccentButtonGradient
-                borderRadius={14}
-                style={{
-                  paddingVertical: 16,
-                  alignItems: "center",
-                }}
-              >
-                {submitting ? (
-                  <ActivityIndicator color="#fff" />
-                ) : (
-                  <Text className="text-white font-semibold text-base">
-                    Continue
-                  </Text>
-                )}
-              </AccentButtonGradient>
-            </TouchableOpacity>
-          </View>
+          <AuthButton
+            variant="primary"
+            label="Continue"
+            onPress={handleSubmit}
+            disabled={disabled}
+            loading={submitting}
+            accessibilityLabel="Continue to set profile"
+          />
 
           {/* Cancel / Sign Out option */}
-          <View className="items-center mb-8">
-            <TouchableOpacity
-              onPress={async () => {
-                try {
-                  log.info("User cancelled, signing out");
-                  await signOut();
-                  // After sign out, navigate back to SignIn
-                  if (isMountedRef.current) {
-                    navigation.reset({
-                      index: 0,
-                      routes: [{ name: ScreenNames.SignIn }],
-                    });
-                  }
-                } catch (e) {
-                  log.warn("Sign out error", e);
+          <AuthTextButton
+            label="Cancel and sign out"
+            onPress={async () => {
+              try {
+                log.info("User cancelled, signing out");
+                await signOut();
+                // After sign out, navigate back to SignIn
+                if (isMountedRef.current) {
+                  navigation.reset({
+                    index: 0,
+                    routes: [{ name: ScreenNames.SignIn }],
+                  });
                 }
-              }}
-              disabled={submitting}
-              className="py-3"
-            >
-              <Text className="text-gray-400 text-sm">
-                Cancel and sign out
-              </Text>
-            </TouchableOpacity>
-          </View>
+              } catch (e) {
+                log.warn("Sign out error", e);
+              }
+            }}
+            disabled={submitting}
+            style={{ marginTop: 16, marginBottom: 32 }}
+          />
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
