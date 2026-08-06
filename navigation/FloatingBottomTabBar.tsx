@@ -155,17 +155,15 @@ const NavButton = memo<{
       >
         <View style={styles.centerIconWrap}>
           {/* Web: bg-white/18 + backdrop-blur(24px) + border-white/30 +
-              inset_0_1px_1px white/20 + 0_2px_8px black/30.
-              iOS only — see the note on the pill below for why this surface
-              refuses dimezisBlurView; the translucent white glass below stands
-              in for it on Android. */}
-          {Platform.OS === "ios" && (
-            <BlurView
-              intensity={24}
-              tint="light"
-              style={styles.centerGlassBlur}
-            />
-          )}
+              inset_0_1px_1px white/20 + 0_2px_8px black/30 */}
+          <BlurView
+            intensity={24}
+            tint="light"
+            {...(Platform.OS === "android"
+              ? { experimentalBlurMethod: "dimezisBlurView" as const }
+              : {})}
+            style={styles.centerGlassBlur}
+          />
           <View style={styles.centerGlass} />
           <View style={styles.centerGlassInsetTop} pointerEvents="none" />
           <Icon name={icon} size={20} color="#FFFFFF" strokeWidth={2} />
@@ -418,21 +416,15 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             still applies here — BlurEffectWithAmount injects it as `blurRadius`
             into the effect settings, materials included.
 
-            Android gets no real blur: the community BlurView and expo-blur's
-            `dimezisBlurView` are both the Dimezis library, whose
-            PreDrawBlurController re-snapshots the root view every frame and
-            throws IndexOutOfBoundsException when a list mutates children
-            mid-draw. Every *transient* glass surface in the app opts into it
-            safely; the ones permanently mounted over a live list — FeedNavBar,
-            GlassToast, FeedScreen — all refuse it, and this pill is the most
-            permanently-mounted surface there is. Translucent tint only.
-
-            Upstream status: Dimezis/BlurView #191, fixed in Dimezis 3.x but
-            neither library here ships it (expo-blur 15.0.7 pins 2.0.6,
-            @react-native-community/blur 4.4.1 pins 2.0.4), and 3.x is not
-            source-compatible with expo-blur 15's native code. Expo SDK 55 moves
-            to 3.1.0 and adds a blurTarget API for scoping the blur source to a
-            stable subtree; until then this stands. */}
+            Android does get real blur, via expo-blur's `dimezisBlurView`. That
+            is the Dimezis library, whose PreDrawBlurController re-snapshots the
+            root view every frame — the reason FeedNavBar, GlassToast and
+            FeedScreen all refuse it (Dimezis/BlurView #191, an
+            IndexOutOfBoundsException when a list mutates children mid-draw).
+            It is enabled here anyway and deliberately: a flat tint on this
+            surface reads as no glass at all, which is a certain regression
+            traded against a possible crash. If #191 does start showing up in
+            the wild, this is the first thing to switch back to `'none'`. */}
         {Platform.OS === "ios" ? (
           <GlassBlurView
             blurType="thinMaterialDark"
@@ -441,27 +433,12 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             style={StyleSheet.absoluteFill}
           />
         ) : (
-          <>
-            <View style={styles.androidBlurFallback} />
-            {/* Web's glass has no white wash — its sheen comes from the blur
-                itself — so keep this whisper-faint over the dark zinc tint.
-                Graded top-to-bottom, not diagonally: a diagonal sheen reads as
-                glossy plastic, whereas real blur output is vertically graded by
-                the luminance behind it, and it darkens slightly at the bottom
-                where the scrim sits. */}
-            <LinearGradient
-              colors={[
-                "rgba(255,255,255,0.07)",
-                "rgba(255,255,255,0.015)",
-                "rgba(0,0,0,0.05)",
-              ]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-              style={StyleSheet.absoluteFill}
-              pointerEvents="none"
-            />
-            <View style={styles.androidInsetBottom} pointerEvents="none" />
-          </>
+          <BlurView
+            tint="default"
+            intensity={22}
+            experimentalBlurMethod="dimezisBlurView"
+            style={StyleSheet.absoluteFill}
+          />
         )}
         <View style={styles.glassOverlay} />
         <ScrollView
@@ -539,32 +516,13 @@ const styles = StyleSheet.create({
       android: {},
     }),
   },
-  androidBlurFallback: {
-    ...StyleSheet.absoluteFillObject,
-    // Stands in for the missing backdrop blur. Web's pill is zinc-900/10 over
-    // blur(40) of the mostly dark app, which reads as dark smoky glass — so the
-    // base tint is zinc-900 itself, translucent enough that content ghosts
-    // through the way a blur would.
-    backgroundColor: "rgba(24, 24, 27, 0.45)",
-    borderRadius: 16,
-  },
-  androidInsetBottom: {
-    position: "absolute",
-    bottom: 1,
-    left: 1,
-    right: 1,
-    height: 1,
-    backgroundColor: "rgba(255,255,255,0.10)",
-  },
   glassOverlay: {
     ...StyleSheet.absoluteFillObject,
-    // Web is bg-zinc-900/10; this runs a little heavier because a phone pill
-    // has no page chrome around it to seat it, and because the wash is the
-    // second half of the Shorts fix — the scrim sets a floor on how bright the
-    // backdrop can get, this sets a floor on how much of it comes through.
-    // Together with the scrim above, roughly a tenth of the backdrop reaches
-    // the eye at the pill's worst case instead of a third.
-    backgroundColor: "rgba(24, 24, 27, 0.16)",
+    // Web's bg-zinc-900/10 exactly. It was briefly pushed to 0.16 as a second
+    // luminance floor for the Shorts tab, but with a real blur on both
+    // platforms the scrim behind the pill already darkens what the blur
+    // samples, and a heavier wash here only mutes the blur it sits on.
+    backgroundColor: "rgba(24, 24, 27, 0.10)",
     borderRadius: 16,
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.10)",
