@@ -17,6 +17,7 @@ import ChatHistorySheet from '../components/Assistant/ChatHistorySheet';
 import ImagePaywallModal from '../components/Assistant/ImagePaywallModal';
 import VideoPaywallModal from '../components/Assistant/VideoPaywallModal';
 import { useUser, useAuthState } from '../context/AuthContext';
+import { getAuthToken } from '../libs/auth.utils';
 import { useAIConversation } from '../hooks/useAIConversation';
 import { useKeyboard } from '../hooks/useKeyboard';
 import {
@@ -158,9 +159,11 @@ function AIChatScreenInner() {
             isAuthenticated: !!user,
             userLanguage: getDeviceLanguage(),
             // Full assistant surface — the agent gets the personal-data tools
-            // alongside the public ones and answers from live platform data.
+            // alongside the public ones. The token is what proves who is
+            // asking; the API verifies it and scopes those tools to that
+            // account, so an address alone would not be enough.
             surface: 'assistant',
-            callerAddress: user?.walletAddress || user?.address || undefined,
+            dehubToken: (await getAuthToken()) || undefined,
           });
           response = res.response;
           break;
