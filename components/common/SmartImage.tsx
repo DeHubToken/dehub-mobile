@@ -16,6 +16,8 @@ type SmartImageProps = {
   recyclingKey?: string | null;
   priority?: "low" | "normal" | "high";
   placeholder?: ImageProps["placeholder"];
+  /** Locked-post previews blur their thumbnail; expo-image does this on the GPU. */
+  blurRadius?: number;
   style?: StyleProp<ImageStyle>;
   className?: string;
   onLoadStart?: () => void;
@@ -32,6 +34,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   recyclingKey,
   priority,
   placeholder,
+  blurRadius,
   style,
   className,
   onLoadStart,
@@ -47,6 +50,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
       recyclingKey={recyclingKey}
       priority={priority}
       placeholder={placeholder}
+      blurRadius={blurRadius}
       style={style}
       className={className as any}
       onLoadStart={onLoadStart}
