@@ -14,6 +14,7 @@ import Avatar from "../common/Avatar";
 import VoiceNotePlayer from "./VoiceNotePlayer";
 import { getAvatarUrl } from "../../libs";
 import { buildCdnPath } from "../../libs/misc";
+import { isAssistantAddress } from "../../libs/assistant";
 
 const resolveMediaUrl = (path: string): string => {
   if (path.startsWith('file://') || path.startsWith('/') || path.startsWith('http://') || path.startsWith('https://')) {
@@ -323,6 +324,24 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             >
               {displayName}
             </Text>
+            {/* The bot comments under a normal account, so without this it is
+                indistinguishable from a user who picked the handle. */}
+            {isAssistantAddress(user?.address || comment.address) && (
+              <View
+                style={{
+                  paddingHorizontal: 6,
+                  paddingVertical: 2,
+                  borderRadius: 6,
+                  backgroundColor: "rgba(255,255,255,0.12)",
+                  borderWidth: 1,
+                  borderColor: "rgba(255,255,255,0.12)",
+                }}
+              >
+                <Text style={{ fontSize: 10, fontWeight: "600", color: "rgba(255,255,255,0.75)" }}>
+                  AI
+                </Text>
+              </View>
+            )}
             <Text style={{ fontSize: 12, color: "#8B8D90" }}>{timeAgo}</Text>
           </View>
 
