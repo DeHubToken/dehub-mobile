@@ -1,35 +1,63 @@
 /**
  * PromptScreen
  * ============
- * Native port of web's PromptLanding (/prompt): a focused entry point that
- * takes a question and hands it to the assistant.
+ * Native port of web's feed-prompting flow. On web this is two pieces:
+ * `pages/PromptLanding.tsx` (the "What do you want to see?" landing) which
+ * redirects to `/app?prompt=…`, and `components/app/feeds/PromptFlowModal.tsx`
+ * which then runs input → analysing → tune and writes the resulting categories
+ * back onto the home feed.
  *
- * Web navigates to /app?prompt=… ; here it navigates to the AIChat tab with an
- * `initialPrompt` param, which seeds the composer rather than auto-sending —
- * matching web, where the assistant receives the text but the user still
- * confirms it.
+ * Mobile has no equivalent of a URL query param handoff, so both halves live
+ * here: the landing collects the prompt, the same three stages run in place,
+ * and Save applies the result to HomeScreen via `promptFeedEvents`.
+ *
+ * One real difference from web: web's home feed holds `selectedCategories`
+ * (an array), so it saves every category with weight > 0. Mobile's feed holds a
+ * single `selectedCategory` string, so Save applies the highest-weighted one.
+ * The sliders still tune the mix — they decide which category wins.
  *
  * Voice input: web uses the browser SpeechRecognition API, which React Native
- * has no equivalent for. The assistant screen already owns audio/attachment
- * handling, so the mic lives there rather than being stubbed here.
+ * has no equivalent for, so the landing here has no mic button.
  */
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
+  StyleSheet,
   Pressable,
   TextInput,
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  ActivityIndicator,
+  Easing,
+  Animated as RNAnimated,
 } from "react-native";
+import Slider from "@react-native-community/slider";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
-import Icon from "../components/ui/Icon";
-import ScreenHeader from "../components/ScreenHeader";
-import { useAuthState } from "../context/AuthContext";
+import Icon, { type IconName } from "../components/ui/Icon";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { getCategoriesCached } from "../services/nft.service";
+import { scorePromptAgainstCategories, CategoryWeight } from "../libs/promptFeed";
+import { promptFeedEvents } from "../libs/eventBus";
+import { storage } from "../libs/storage";
+
+type Stage = "input" | "analysing" | "tune";
+
+/** Same nine orbit icons as web's ORBIT_ICONS, in the same order. */
+const ORBIT_ICONS: IconName[] = [
+  "Sparkles",
+  "Cpu",
+  "Atom",
+  "Gamepad2",
+  "Trophy",
+  "Music2",
+  "Film",
+  "Image",
+  "Radio",
+];
 
 /** Same five suggestion slots as web's SUGGESTION_KEYS. */
 const SUGGESTION_KEYS = [
@@ -41,115 +69,415 @@ const SUGGESTION_KEYS = [
 ] as const;
 
 const SUGGESTION_FALLBACKS: Record<string, string> = {
-  "prompt.suggestion1": "Summarise what's trending on DeHub today",
-  "prompt.suggestion2": "Draft a post about my latest upload",
-  "prompt.suggestion3": "Explain DHB staking in simple terms",
-  "prompt.suggestion4": "Find creators I should follow",
-  "prompt.suggestion5": "Write a bounty brief for a clipping campaign",
+  "prompt.suggestion1": "More AI and crypto news",
+  "prompt.suggestion2": "Gaming clips and esports",
+  "prompt.suggestion3": "Indie music discoveries",
+  "prompt.suggestion4": "Tech founders and startups",
+  "prompt.suggestion5": "Football highlights",
 };
+
+/** Web fakes the analysis with a 1400ms timer; matched here. */
+const ANALYSE_MS = 1400;
+const ORBIT_RADIUS = 72;
+
+function AnalysingOrbit() {
+  const spin = useRef(new RNAnimated.Value(0)).current;
+
+  useEffect(() => {
+    const loop = RNAnimated.loop(
+      RNAnimated.timing(spin, {
+        toValue: 1,
+        duration: 8000,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      }),
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [spin]);
+
+  const rotate = spin.interpolate({ inputRange: [0, 1], outputRange: ["0deg", "360deg"] });
+  const counterRotate = spin.interpolate({ inputRange: [0, 1], outputRange: ["0deg", "-360deg"] });
+
+  return (
+    <View style={styles.orbitWrap}>
+      <View style={styles.orbitRing} />
+      <RNAnimated.View style={[styles.orbitLayer, { transform: [{ rotate }] }]}>
+        {ORBIT_ICONS.slice(0, 6).map((name, i) => {
+          const angle = (i / 6) * Math.PI * 2 - Math.PI / 2;
+          const x = Math.cos(angle) * ORBIT_RADIUS;
+          const y = Math.sin(angle) * ORBIT_RADIUS;
+          return (
+            <RNAnimated.View
+              key={name}
+              style={[
+                styles.orbitNode,
+                { transform: [{ translateX: x }, { translateY: y }, { rotate: counterRotate }] },
+              ]}
+            >
+              <Icon name={name} size={16} color="#FFFFFF" />
+            </RNAnimated.View>
+          );
+        })}
+      </RNAnimated.View>
+      <View style={styles.orbitCore}>
+        <Icon name="Sparkles" size={24} color="#FFFFFF" />
+      </View>
+    </View>
+  );
+}
 
 export default function PromptScreen() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
-  const { isSignedIn, needsUsername } = useAuthState();
-  const isAuthed = isSignedIn && !needsUsername;
 
+  const [stage, setStage] = useState<Stage>("input");
   const [text, setText] = useState("");
+  const [weights, setWeights] = useState<CategoryWeight[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
   const inputRef = useRef<TextInput>(null);
+
+  // Keep latest categories in a ref so the deferred timer always scores against
+  // fresh data — same guard web uses via `categoriesRef`.
+  const categoriesRef = useRef(categories);
+  categoriesRef.current = categories;
+
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const list = await getCategoriesCached();
+        if (mounted && Array.isArray(list)) {
+          setCategories(list.filter((c) => typeof c === "string" && c.trim().length > 0));
+        }
+      } catch {}
+    })();
+    return () => { mounted = false; };
+  }, []);
+
+  // If we reached `tune` before categories arrived (race), recompute on arrival.
+  useEffect(() => {
+    if (stage === "tune" && weights.length === 0 && categories.length > 0 && text.trim()) {
+      setWeights(scorePromptAgainstCategories(text, categories));
+    }
+  }, [stage, weights.length, categories, text]);
 
   const submit = useCallback(
     (value?: string) => {
       const v = (value ?? text).trim();
       if (!v) return;
-      if (!isAuthed) {
-        navigation.navigate(ScreenNames.SignIn);
-        return;
-      }
-      // AIChat lives in the bottom-tab navigator, so it has to be reached
-      // through Root rather than directly from the stack.
-      navigation.navigate(ScreenNames.Root, {
-        screen: ScreenNames.AIChat,
-        params: { initialPrompt: v },
-      });
-      setText("");
+      setText(v);
+      setStage("analysing");
+      setTimeout(() => {
+        setWeights(scorePromptAgainstCategories(v, categoriesRef.current));
+        setStage("tune");
+      }, ANALYSE_MS);
     },
-    [text, isAuthed, navigation],
+    [text],
   );
 
+  const handleWeightChange = useCallback((id: string, weight: number) => {
+    setWeights((prev) => prev.map((w) => (w.id === id ? { ...w, weight: Math.round(weight) } : w)));
+  }, []);
+
+  const topCategory = useMemo(() => {
+    const positive = weights.filter((w) => w.weight > 0);
+    if (positive.length === 0) return undefined;
+    return positive.reduce((best, w) => (w.weight > best.weight ? w : best)).name;
+  }, [weights]);
+
+  const handleSave = useCallback(() => {
+    // Persist so a cold start keeps the tuned feed, and emit so the already
+    // mounted HomeScreen picks it up now.
+    try { storage.set("dehub:defaultCategory", topCategory ?? ""); } catch {}
+    promptFeedEvents.chooseCategory(topCategory);
+    navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home });
+  }, [topCategory, navigation]);
+
   return (
-    <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title={t("nav.prompt", "Prompt")} />
+    <View style={[styles.root, { paddingTop: insets.top }]}>
+      <View style={styles.header}>
+        <Pressable
+          onPress={() => (stage === "input" ? navigation.goBack() : setStage("input"))}
+          hitSlop={10}
+          style={styles.backBtn}
+        >
+          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
+        </Pressable>
+        <Text style={styles.headerTitle}>{t("nav.prompt", "Prompt")}</Text>
+      </View>
 
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
-        keyboardVerticalOffset={insets.top + 64}
+        keyboardVerticalOffset={insets.top + 44}
       >
         <ScrollView
-          contentContainerStyle={{
-            paddingHorizontal: 20,
-            paddingTop: 28,
-            paddingBottom: 40,
-            alignItems: "center",
-          }}
+          contentContainerStyle={styles.body}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
-          <View className="w-16 h-16 rounded-full bg-white/10 items-center justify-center mb-[18px]">
-            <Icon name="Wand" size={30} color="#FFFFFF" />
-          </View>
-          <Text className="text-white text-[22px] font-bold text-center">
-            {t("prompt.title", "What do you want to make?")}
-          </Text>
-          <Text className="text-theme-neutrals-400 text-sm leading-5 text-center mt-2 mb-[22px]">
-            {t("prompt.subtitle", "Ask the DeHub assistant anything — or start from an idea below.")}
-          </Text>
+          {stage === "input" && (
+            <>
+              <View style={styles.wandWrap}>
+                <Icon name="Wand" size={30} color="#FFFFFF" />
+              </View>
+              <Text style={styles.title}>{t("prompt.headline", "What do you want to see?")}</Text>
+              <Text style={styles.subtitle}>
+                {t("prompt.subheadline", "Describe your perfect feed.")}
+              </Text>
 
-          <View className="w-full flex-row items-end gap-2 bg-white/10 border border-white/20 rounded-[20px] px-3.5 py-2.5">
-            <TextInput
-              ref={inputRef}
-              value={text}
-              onChangeText={setText}
-              placeholder={t("prompt.placeholder", "Ask anything…")}
-              placeholderTextColor="#6F7174"
-              className="flex-1 text-white text-base max-h-[140px] p-0"
-              multiline
-              autoFocus
-              returnKeyType="send"
-              onSubmitEditing={() => submit()}
-            />
-            <Pressable
-              onPress={() => submit()}
-              disabled={!text.trim()}
-              hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-              className={`w-[34px] h-[34px] rounded-full bg-white items-center justify-center ${
-                !text.trim() ? "opacity-[0.35]" : ""
-              }`}
-            >
-              <Icon name="ArrowUp" size={18} color="#000000" />
-            </Pressable>
-          </View>
-
-          <View className="w-full gap-2 mt-[22px]">
-            {SUGGESTION_KEYS.map((k) => {
-              const label = t(k, SUGGESTION_FALLBACKS[k]);
-              return (
+              <View style={styles.composer}>
+                <TextInput
+                  ref={inputRef}
+                  value={text}
+                  onChangeText={setText}
+                  placeholder={t("prompt.placeholder", "More AI, gaming clips, indie music…")}
+                  placeholderTextColor="#52525B"
+                  style={styles.input}
+                  multiline
+                  autoFocus
+                  returnKeyType="send"
+                  onSubmitEditing={() => submit()}
+                />
                 <Pressable
-                  key={k}
-                  className="flex-row items-center gap-[9px] px-3.5 py-3 rounded-[14px] bg-white/5 border border-white/10"
-                  onPress={() => submit(label)}
+                  onPress={() => submit()}
+                  disabled={!text.trim()}
+                  style={[styles.sendBtn, !text.trim() && styles.sendBtnDisabled]}
                 >
-                  <Icon name="Sparkles" size={13} color="#A1A1AA" />
-                  <Text className="text-theme-neutrals-300 text-[13px] leading-[18px] flex-1">
-                    {label}
-                  </Text>
+                  <Icon name="ArrowUp" size={18} color="#000000" />
                 </Pressable>
-              );
-            })}
-          </View>
+              </View>
+
+              <View style={styles.suggestions}>
+                {SUGGESTION_KEYS.map((k) => {
+                  const label = t(k, SUGGESTION_FALLBACKS[k]);
+                  return (
+                    <Pressable key={k} style={styles.suggestion} onPress={() => submit(label)}>
+                      <Icon name="Sparkles" size={13} color="#A1A1AA" />
+                      <Text style={styles.suggestionText}>{label}</Text>
+                    </Pressable>
+                  );
+                })}
+              </View>
+
+              <Pressable
+                style={styles.skip}
+                onPress={() => navigation.navigate(ScreenNames.Root, { screen: ScreenNames.Home })}
+              >
+                <Text style={styles.skipText}>
+                  {t("prompt.skip", "Skip — just take me to the feed")}
+                </Text>
+              </Pressable>
+            </>
+          )}
+
+          {stage === "analysing" && (
+            <View style={styles.analysing}>
+              <AnalysingOrbit />
+              <Text style={styles.analysingText}>
+                {t("prompt.analysing", "Analysing your interests…")}
+              </Text>
+            </View>
+          )}
+
+          {stage === "tune" && (
+            <View style={styles.tune}>
+              <Text style={styles.title}>{t("prompt.timelineReady", "Your timeline is ready")}</Text>
+              <Text style={styles.subtitle}>
+                {t("prompt.dragToTune", "Drag to fine-tune your mix.")}
+              </Text>
+
+              {weights.length === 0 ? (
+                <ActivityIndicator color="#FFFFFF" style={{ marginTop: 24 }} />
+              ) : (
+                <View style={styles.sliders}>
+                  {weights.map((w, idx) => (
+                    <View key={w.id} style={styles.sliderRow}>
+                      <View style={styles.sliderIcon}>
+                        <Icon name={ORBIT_ICONS[idx % ORBIT_ICONS.length]} size={16} color="#FFFFFF" />
+                      </View>
+                      <Text style={styles.sliderLabel} numberOfLines={1}>
+                        {w.name}
+                      </Text>
+                      <Slider
+                        style={styles.slider}
+                        minimumValue={0}
+                        maximumValue={100}
+                        step={1}
+                        value={w.weight}
+                        onValueChange={(v) => handleWeightChange(w.id, v)}
+                        minimumTrackTintColor="#FFFFFF"
+                        maximumTrackTintColor="rgba(255,255,255,0.15)"
+                        thumbTintColor="#FFFFFF"
+                      />
+                      <Text style={styles.sliderValue}>{w.weight}%</Text>
+                    </View>
+                  ))}
+                </View>
+              )}
+
+              <Pressable style={styles.saveBtn} onPress={handleSave}>
+                <Icon name="Check" size={17} color="#000000" />
+                <Text style={styles.saveText}>{t("prompt.save", "Save")}</Text>
+              </Pressable>
+            </View>
+          )}
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  root: { flex: 1, backgroundColor: "#000000" },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    paddingHorizontal: 12,
+    paddingBottom: 8,
+  },
+  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
+  headerTitle: { color: "#FFFFFF", fontSize: 17, fontWeight: "700" },
+
+  body: { paddingHorizontal: 20, paddingTop: 28, paddingBottom: 40, alignItems: "center" },
+  wandWrap: {
+    width: 64,
+    height: 64,
+    borderRadius: 999,
+    backgroundColor: "rgba(255,255,255,0.08)",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 18,
+  },
+  title: { color: "#FFFFFF", fontSize: 22, fontWeight: "700", textAlign: "center" },
+  subtitle: {
+    color: "#A1A1AA",
+    fontSize: 13.5,
+    lineHeight: 20,
+    textAlign: "center",
+    marginTop: 8,
+    marginBottom: 22,
+  },
+
+  composer: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "flex-end",
+    gap: 8,
+    backgroundColor: "rgba(255,255,255,0.06)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.12)",
+    borderRadius: 20,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+  },
+  input: { flex: 1, color: "#FFFFFF", fontSize: 15, maxHeight: 140, padding: 0 },
+  sendBtn: {
+    width: 34,
+    height: 34,
+    borderRadius: 999,
+    backgroundColor: "#FFFFFF",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  sendBtnDisabled: { opacity: 0.35 },
+
+  suggestions: { width: "100%", gap: 8, marginTop: 22 },
+  suggestion: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 9,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    borderRadius: 14,
+    backgroundColor: "rgba(255,255,255,0.04)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.08)",
+  },
+  suggestionText: { color: "#D4D4D8", fontSize: 13, flex: 1, lineHeight: 18 },
+  skip: { marginTop: 24, paddingVertical: 8 },
+  skipText: { color: "rgba(255,255,255,0.4)", fontSize: 12 },
+
+  analysing: { alignItems: "center", paddingTop: 40, gap: 24 },
+  orbitWrap: { width: 176, height: 176, alignItems: "center", justifyContent: "center" },
+  orbitRing: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
+  },
+  orbitLayer: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  orbitNode: {
+    position: "absolute",
+    width: 40,
+    height: 40,
+    borderRadius: 14,
+    backgroundColor: "rgba(255,255,255,0.05)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  orbitCore: {
+    width: 48,
+    height: 48,
+    borderRadius: 16,
+    backgroundColor: "rgba(255,255,255,0.1)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.2)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  analysingText: { color: "rgba(255,255,255,0.6)", fontSize: 13.5 },
+
+  tune: { width: "100%", alignItems: "center" },
+  sliders: { width: "100%", gap: 14, marginTop: 4 },
+  sliderRow: { flexDirection: "row", alignItems: "center", gap: 10 },
+  sliderIcon: {
+    width: 36,
+    height: 36,
+    borderRadius: 12,
+    backgroundColor: "rgba(255,255,255,0.05)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  sliderLabel: { color: "#FFFFFF", fontSize: 13, width: 76 },
+  slider: { flex: 1, height: 32 },
+  sliderValue: {
+    color: "rgba(255,255,255,0.6)",
+    fontSize: 11.5,
+    width: 38,
+    textAlign: "right",
+    fontVariant: ["tabular-nums"],
+  },
+
+  saveBtn: {
+    marginTop: 26,
+    width: "100%",
+    height: 48,
+    borderRadius: 999,
+    backgroundColor: "#FFFFFF",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+  },
+  saveText: { color: "#000000", fontSize: 15, fontWeight: "700" },
+});
