@@ -1,29 +1,43 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+/**
+ * Shorts Viewer — full-screen vertical carousel.
+ *
+ * The chrome mirrors the web viewer (dehubweb
+ * src/components/app/cards/ShortsViewer.tsx): a horizontal action bar spread
+ * across the bottom of the frame in feed-card order — views · tip · dislike ·
+ * share · comments · like, with like at the far right for thumb reach — and the
+ * creator row + caption stacked above it. Back sits top-left; playback speed,
+ * mute and the options menu top-right. Bookmark and the moderation actions live
+ * in that menu rather than on the bar, as on web.
+ *
+ * Engagement goes through the shared overlay (libs/engagementCache) instead of
+ * local state, so a like cast here is the same like the feed card shows — the
+ * mobile equivalent of web's vote cache.
+ */
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
   FlatList,
   Dimensions,
   Pressable,
-  ActivityIndicator,
   StatusBar,
   StyleSheet,
   ViewToken,
   LayoutChangeEvent,
-  Modal,
-  Platform,
   NativeSyntheticEvent,
   NativeScrollEvent,
   Animated,
   GestureResponderEvent,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { VideoView, useVideoPlayer } from "expo-video";
-import { BlurView } from "expo-blur";
+import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "expo-image";
 import Icon from "../components/ui/Icon";
+import type { IconName } from "../components/ui/Icon";
 import { CommentBottomSheet } from "../components/Comments";
-import { useUser, useAuthActions, useAuthState } from "../context/AuthContext";
+import { useUser, useAuthActions } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import {
   getVideoUrl,
@@ -36,16 +50,23 @@ import {
 } from "../libs";
 import { voteOnNFT, reactToNFT } from "../services/nft.service";
 import ReactionPicker from "../components/Home/ReactionPicker";
+import ReactionInfoSheet from "../components/Home/ReactionInfoSheet";
+import ShareSheet from "../components/Home/ShareSheet";
+import PostOptionsMenu from "../components/common/PostOptionsMenu";
 import {
   applyReactionDelta,
   isPositiveReaction,
   reactionMeta,
-  resolveMyReaction,
-  resolveReactionCounts,
   resolveTopReaction,
   type PostReaction,
-  type ReactionCounts,
 } from "../libs/reactions";
+import {
+  applyEngagement,
+  engagementKeyOf,
+  isFailedResponse,
+  revertEngagement,
+  useEngagement,
+} from "../libs/engagementCache";
 import { savePost } from "../services/feed.service";
 import { toggleRepost } from "../services/repost.service";
 import { getShortsFeed } from "../services/feed.unified.service";
@@ -60,17 +81,92 @@ import { useMergedViewCount } from "../hooks/useAnonViewCount";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
+/** Same ladder the web viewer cycles through on its speed button. */
+const PLAYBACK_RATES = [0.5, 1, 1.25, 1.5, 2] as const;
+const formatRate = (rate: number) => `${rate}x`;
+
+const ICON_COLOR = "#fff";
+const COUNT_COLOR = "rgba(255,255,255,0.7)";
+
+interface ActionButtonProps {
+  icon: IconName;
+  /** Renders in place of the icon — used to show a reaction emoji. */
+  glyph?: string;
+  active?: boolean;
+  label?: string;
+  onPress: () => void;
+  onLongPress?: () => void;
+  accessibilityLabel?: string;
+}
+
+/**
+ * One button on the bottom bar. Icon and count sit side by side, matching the
+ * feed card's bar (FeedActionBar) and the web viewer's row.
+ */
+const ActionButton: React.FC<ActionButtonProps> = ({
+  icon,
+  glyph,
+  active,
+  label,
+  onPress,
+  onLongPress,
+  accessibilityLabel,
+}) => {
+  const scale = useRef(new Animated.Value(1)).current;
+
+  const handlePress = useCallback(() => {
+    Animated.sequence([
+      Animated.timing(scale, { toValue: 1.3, duration: 100, useNativeDriver: true }),
+      Animated.spring(scale, { toValue: 1, friction: 4, tension: 220, useNativeDriver: true }),
+    ]).start();
+    onPress();
+  }, [onPress, scale]);
+
+  return (
+    <Pressable
+      onPress={handlePress}
+      onLongPress={onLongPress}
+      // Matches the web tray's 400ms hold so the gesture feels the same on both.
+      delayLongPress={400}
+      accessibilityLabel={accessibilityLabel}
+      // Vertical slop takes the icon to a 44pt tap height without changing
+      // layout. Horizontal stays tight so neighbouring buttons in this
+      // space-between row can't steal each other's taps.
+      hitSlop={{ top: 13, bottom: 13, left: 6, right: 6 }}
+      style={styles.actionButton}
+    >
+      <Animated.View style={{ transform: [{ scale }] }}>
+        {glyph ? (
+          <Text style={styles.actionGlyph}>{glyph}</Text>
+        ) : (
+          <Icon
+            name={icon}
+            size={20}
+            color={ICON_COLOR}
+            strokeWidth={1.8}
+            fill={active ? ICON_COLOR : "none"}
+          />
+        )}
+      </Animated.View>
+      {label !== undefined && <Text style={styles.actionCount}>{label}</Text>}
+    </Pressable>
+  );
+};
+
 interface ShortItemProps {
   item: UnifiedFeedItem;
   isActive: boolean;
   itemHeight: number;
+  /** Viewer-level, so mute and speed carry across shorts as they do on web. */
+  isMuted: boolean;
+  playbackRate: number;
+  bottomInset: number;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMuted, playbackRate, bottomInset }) => {
   const navigation = useNavigation<any>();
   const user = useUser();
   const { requireAuth } = useAuthActions();
-  const { isSignedIn } = useAuthState();
   const { showUserProfile } = useUserProfileSheet();
 
   const tokenId = item.tokenId ?? item.id;
@@ -86,24 +182,34 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
   const description = item.description || "";
 
   const minterAddress = item.minter || item.minterUser?.address || "";
+  const userAddress = user?.address || user?.walletAddress || "";
+  // Who reacted what is the author's to see, so the ⓘ in the tray only exists
+  // on your own shorts (the API withholds the list from everyone else too).
+  const isOwnShort = !!(
+    userAddress && minterAddress && userAddress.toLowerCase() === minterAddress.toLowerCase()
+  );
 
-  const [liked, setLiked] = useState(!!item.isLiked);
-  const [disliked, setDisliked] = useState(!!item.isDisliked);
-  const [myReaction, setMyReaction] = useState<PostReaction | null>(() => resolveMyReaction(item));
-  const [reactionCounts, setReactionCounts] = useState<ReactionCounts>(() => resolveReactionCounts(item));
+  // Shared overlay — every surface showing this post reads the same numbers.
+  const engagementKey = engagementKeyOf(item);
+  const {
+    isLiked: liked,
+    isDisliked: disliked,
+    isReposted: reposted,
+    likeCount,
+    dislikeCount,
+    repostCount,
+    myReaction,
+    reactionCounts,
+  } = useEngagement(item);
+
   const [pickerOpen, setPickerOpen] = useState(false);
-  const [likeCount, setLikeCount] = useState((item as any).totalVotes?.for || item.likes || 0);
-  const [dislikeCount, setDislikeCount] = useState((item as any).totalVotes?.against || item.dislikes || 0);
-  const [saved, setSaved] = useState(!!item.isSaved);
+  const [showReactionInfo, setShowReactionInfo] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showTipModal, setShowTipModal] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [showShareSheet, setShowShareSheet] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isPausedByUser, setIsPausedByUser] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
   const [captionExpanded, setCaptionExpanded] = useState(false);
-  const [reposted, setReposted] = useState(!!item.isReposted);
-  const [repostCount, setRepostCount] = useState(item.reposts || 0);
   const [screenshotMode, setScreenshotMode] = useState(false);
   const [is2xSpeed, setIs2xSpeed] = useState(false);
 
@@ -116,9 +222,15 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
   const longPressActiveRef = useRef(false);
   const wasPlayingBeforeLongPress = useRef(true);
 
+  // The initialiser runs once, so read the current mute through a ref —
+  // otherwise a short opened while muted plays a burst of sound before the
+  // sync effect below lands.
+  const mutedRef = useRef(isMuted);
+  mutedRef.current = isMuted;
+
   const player = useVideoPlayer(videoUrl || null, (p) => {
     p.loop = true;
-    p.muted = false;
+    p.muted = mutedRef.current;
   });
 
   useEffect(() => {
@@ -142,21 +254,22 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
     };
   }, [isActive, player]);
 
+  useEffect(() => {
+    if (!player) return;
+    try { player.muted = isMuted; } catch {}
+  }, [player, isMuted]);
+
+  // Hold-on-the-right temporarily overrides the chosen rate; releasing drops
+  // back to it rather than hardcoding 1x.
+  useEffect(() => {
+    if (!player) return;
+    try { (player as any).playbackRate = is2xSpeed ? 2 : playbackRate; } catch {}
+  }, [player, playbackRate, is2xSpeed]);
+
   const isPlayingRef = useRef(isPlaying);
   isPlayingRef.current = isPlaying;
 
-  const togglePlayPauseRef = useRef(() => {
-    if (!player || longPressActiveRef.current) return;
-    if (isPlayingRef.current) {
-      player.pause();
-      setIsPlaying(false);
-      setIsPausedByUser(true);
-    } else {
-      player.play();
-      setIsPlaying(true);
-      setIsPausedByUser(false);
-    }
-  });
+  const togglePlayPauseRef = useRef(() => {});
   // keep ref current so timeout closures always call latest
   togglePlayPauseRef.current = () => {
     if (!player || longPressActiveRef.current) return;
@@ -171,13 +284,6 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
     }
   };
 
-  const toggleMute = useCallback(() => {
-    if (!player) return;
-    const next = !isMuted;
-    player.muted = next;
-    setIsMuted(next);
-  }, [player, isMuted]);
-
   /**
    * Cast, switch or toggle off a reaction on the current short.
    *
@@ -191,6 +297,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
       const wasDisliked = disliked;
       const wasReaction = myReaction;
       const wasCounts = reactionCounts;
+      const wasLikeCount = likeCount;
+      const wasDislikeCount = dislikeCount;
 
       const isRemoving = wasReaction === reaction;
       const next: PostReaction | null = isRemoving ? null : reaction;
@@ -200,36 +308,48 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
       const nextPositive = next ? isPositiveReaction(next) : false;
       const nextNegative = next ? !nextPositive : false;
 
-      let likeDelta = 0;
-      let dislikeDelta = 0;
-      if (wasPositive && !nextPositive) likeDelta = -1;
-      if (!wasPositive && nextPositive) likeDelta = 1;
-      if (wasNegative && !nextNegative) dislikeDelta = -1;
-      if (!wasNegative && nextNegative) dislikeDelta = 1;
+      let nextLikeCount = wasLikeCount;
+      let nextDislikeCount = wasDislikeCount;
+      if (wasPositive && !nextPositive) nextLikeCount = Math.max(0, nextLikeCount - 1);
+      if (!wasPositive && nextPositive) nextLikeCount += 1;
+      if (wasNegative && !nextNegative) nextDislikeCount = Math.max(0, nextDislikeCount - 1);
+      if (!wasNegative && nextNegative) nextDislikeCount += 1;
 
-      setLiked(nextPositive);
-      setDisliked(nextNegative);
-      setMyReaction(next);
-      setReactionCounts(applyReactionDelta(wasCounts, wasReaction, next));
-      if (likeDelta) setLikeCount((c: number) => Math.max(0, c + likeDelta));
-      if (dislikeDelta) setDislikeCount((c: number) => Math.max(0, c + dislikeDelta));
+      applyEngagement(engagementKey, {
+        isLiked: nextPositive,
+        isDisliked: nextNegative,
+        myReaction: next,
+        likeCount: nextLikeCount,
+        dislikeCount: nextDislikeCount,
+        reactionCounts: applyReactionDelta(wasCounts, wasReaction, next),
+      });
+
+      const rollback = () => {
+        // Restore only the fields this handler owns, so a concurrent save or
+        // repost that succeeded is not undone.
+        revertEngagement(engagementKey, {
+          isLiked: wasLiked,
+          isDisliked: wasDisliked,
+          myReaction: wasReaction,
+          likeCount: wasLikeCount,
+          dislikeCount: wasDislikeCount,
+          reactionCounts: wasCounts,
+        });
+        toastError("Failed to update reaction");
+      };
 
       const request =
         reaction === "like" || reaction === "dislike"
-          ? voteOnNFT({ streamTokenId: tokenId, vote: reaction === "like" })
+          ? voteOnNFT({ streamTokenId: tokenId, vote: reaction === "like", account: userAddress })
           : reactToNFT({ streamTokenId: tokenId, reaction });
 
-      request.catch(() => {
-        setLiked(wasLiked);
-        setDisliked(wasDisliked);
-        setMyReaction(wasReaction);
-        setReactionCounts(wasCounts);
-        if (likeDelta) setLikeCount((c: number) => Math.max(0, c - likeDelta));
-        if (dislikeDelta) setDislikeCount((c: number) => Math.max(0, c - dislikeDelta));
-        toastError("Failed to update reaction");
-      });
+      // A 200 carrying `{ error }` resolves rather than throwing, so `.catch`
+      // alone would record a failed vote as successful.
+      request
+        .then((res) => { if (isFailedResponse(res)) rollback(); })
+        .catch(rollback);
     });
-  }, [liked, disliked, myReaction, reactionCounts, tokenId, requireAuth]);
+  }, [liked, disliked, myReaction, reactionCounts, likeCount, dislikeCount, engagementKey, tokenId, userAddress, requireAuth]);
 
   /** Tapping a thumb re-sends the held reaction of that polarity, which toggles it off. */
   const togglePolarity = useCallback((positive: boolean) => {
@@ -242,23 +362,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
 
   /** Viewer's own reaction wins over the short's most-used one. */
   const leadReaction = myReaction ?? resolveTopReaction(reactionCounts);
+  const leadGlyph = leadReaction && leadReaction !== "like" ? reactionMeta(leadReaction).emoji : undefined;
 
   const handleTip = useCallback(() => {
     if (!minterAddress) return;
     requireAuth(() => { setShowTipModal(true); });
   }, [minterAddress, requireAuth]);
-
-  const handleSave = useCallback(() => {
-    if (tokenId == null) return;
-    requireAuth(() => {
-      const wasSaved = saved;
-      setSaved(!wasSaved);
-      savePost(Number(tokenId)).catch(() => {
-        setSaved(wasSaved);
-        toastError("Failed to save");
-      });
-    });
-  }, [saved, tokenId, requireAuth]);
 
   const handleComment = useCallback(() => {
     setShowComments(true);
@@ -269,42 +378,52 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
     if (id) showUserProfile(id);
   }, [username, item.minter, showUserProfile]);
 
-  const handleMenuPress = useCallback(() => {
-    setShowMenu(true);
-  }, []);
-
-  const handleRepost = useCallback(() => {
+  const handleRepost = useCallback((next: boolean) => {
     if (tokenId == null) return;
     requireAuth(() => {
-      const was = reposted;
-      const prev = repostCount;
-      setReposted(!was);
-      setRepostCount((c) => c + (was ? -1 : 1));
-      toggleRepost(Number(tokenId)).catch(() => {
-        setReposted(was);
-        setRepostCount(prev);
-        toastError("Failed to repost");
+      const wasReposted = reposted;
+      const prevCount = repostCount;
+      applyEngagement(engagementKey, {
+        isReposted: next,
+        repostCount: next ? prevCount + 1 : Math.max(0, prevCount - 1),
       });
+      const rollback = () => {
+        revertEngagement(engagementKey, { isReposted: wasReposted, repostCount: prevCount });
+        toastError(next ? "Failed to repost" : "Failed to remove repost");
+      };
+      toggleRepost(Number(tokenId))
+        .then((res) => {
+          if (isFailedResponse(res)) {
+            rollback();
+            return;
+          }
+          // Server flag wins. Its own repostCount is not adopted — see the note
+          // in FeedCard.handleUndoRepost about quotes being folded into it.
+          if (typeof res?.reposted === "boolean" && res.reposted !== next) {
+            applyEngagement(engagementKey, { isReposted: res.reposted, repostCount: prevCount });
+          }
+        })
+        .catch(rollback);
     });
-    setShowMenu(false);
-  }, [tokenId, reposted, repostCount, requireAuth]);
+  }, [tokenId, reposted, repostCount, engagementKey, requireAuth]);
 
   const handleQuote = useCallback(() => {
-    setShowMenu(false);
-    navigation.navigate(ScreenNames.Upload, {
-      quotedTokenId: tokenId,
-      quotedPost: item as any,
+    requireAuth(() => {
+      navigation.navigate(ScreenNames.Upload, {
+        quotedTokenId: tokenId,
+        quotedPost: item as any,
+      });
     });
-  }, [navigation, tokenId, item]);
+  }, [navigation, tokenId, item, requireAuth]);
 
   const handleCopyLink = useCallback(() => {
     if (tokenId == null) return;
     copyToClipboard(ShareLinks.post(String(tokenId)));
     toastSuccess("Link copied");
-    setShowMenu(false);
   }, [tokenId]);
 
   const commentCount = item.commentCount || 0;
+  const tipCount = (item as any).totalTips || (item as any).tips || 0;
   // Includes views from signed-out viewers, which are recorded separately
   const views = useMergedViewCount(tokenId, item.views);
 
@@ -342,6 +461,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
   // Handle screen tap — double tap = like, single tap = play/pause
   const handleScreenPress = useCallback((e: GestureResponderEvent) => {
     if (longPressActiveRef.current) return;
+    // A tap that dismisses the reaction tray is not also a play/pause.
+    if (pickerOpen) {
+      setPickerOpen(false);
+      return;
+    }
     const now = Date.now();
     const { pageX, pageY } = e.nativeEvent;
     if (now - lastTapRef.current < 300) {
@@ -360,7 +484,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
         }
       }, 300);
     }
-  }, [liked, handleLike, showLikeAnimation]);
+  }, [liked, handleLike, showLikeAnimation, pickerOpen]);
 
   // Long press — detect center vs right side
   const handleLongPressIn = useCallback((e: GestureResponderEvent) => {
@@ -371,9 +495,6 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
     if (isRightSide) {
       // Right side → 2x speed
       setIs2xSpeed(true);
-      if (player) {
-        try { (player as any).playbackRate = 2; } catch {}
-      }
     } else {
       // Center/left → screenshot mode: pause + hide UI
       wasPlayingBeforeLongPress.current = isPlaying;
@@ -387,12 +508,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
   const handleLongPressOut = useCallback(() => {
     longPressActiveRef.current = false;
 
-    if (is2xSpeed) {
-      setIs2xSpeed(false);
-      if (player) {
-        try { (player as any).playbackRate = 1; } catch {}
-      }
-    }
+    // Clearing the flag restores the viewer's chosen rate via the effect above.
+    if (is2xSpeed) setIs2xSpeed(false);
 
     if (screenshotMode) {
       setScreenshotMode(false);
@@ -404,6 +521,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
       }
     }
   }, [is2xSpeed, screenshotMode, player]);
+
+  const chromeVisible = !screenshotMode;
 
   return (
     <View style={{ width: SCREEN_WIDTH, height: itemHeight }}>
@@ -454,166 +573,165 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
         </View>
       )}
 
-      {isActive && isPausedByUser && !screenshotMode && (
+      {isActive && isPausedByUser && chromeVisible && (
         <View style={styles.pauseOverlay} pointerEvents="none">
           <Icon name="Play" size={64} color="rgba(255,255,255,0.7)" />
         </View>
       )}
 
-      {!screenshotMode && (
-        <View style={[styles.actionBar, { bottom: 16 }]}>
-        {/* Reactions — tap to like/unlike, hold to pick one of the nine. */}
-        <View style={{ position: "relative" }} className="items-center mb-5">
-          <ReactionPicker
-            open={pickerOpen}
-            current={myReaction}
-            onSelect={(reaction) => { setPickerOpen(false); handleReaction(reaction); }}
-            align="right"
+      {chromeVisible && (
+        <>
+          {/* Legibility gradient behind the bottom stack, as on web. */}
+          <LinearGradient
+            colors={["transparent", "rgba(0,0,0,0.45)", "rgba(0,0,0,0.85)"]}
+            style={styles.bottomGradient}
+            pointerEvents="none"
           />
-          <Pressable
-            onPress={() => { if (pickerOpen) { setPickerOpen(false); return; } handleLike(); }}
-            onLongPress={() => setPickerOpen(true)}
-            delayLongPress={400}
-            accessibilityLabel={
-              myReaction
-                ? `${reactionMeta(myReaction).label} — hold to change your reaction`
-                : "Like — hold to react"
-            }
-            className="items-center"
+
+          {/* Creator info + caption, with the action bar as the bottommost row.
+              box-none so the gaps between buttons still toggle playback rather
+              than swallowing the tap. */}
+          <View
+            style={[styles.bottomStack, { paddingBottom: bottomInset + 16 }]}
+            pointerEvents="box-none"
           >
-            {leadReaction && leadReaction !== "like" ? (
-              <Text style={{ fontSize: 25, lineHeight: 32 }}>{reactionMeta(leadReaction).emoji}</Text>
-            ) : (
-              <Icon
-                name="ThumbsUp"
-                size={28}
-                color={liked ? "#F9FBFF" : "#fff"}
-                fill={liked ? "#F9FBFF" : "none"}
+            <Pressable onPress={handleUserPress} className="flex-row items-center gap-2 mb-2">
+              <Image source={avatar} style={styles.avatar} contentFit="cover" />
+              <View className="flex-1">
+                <Text numberOfLines={1} className="text-white text-sm font-semibold">
+                  {displayName}
+                </Text>
+                {username ? (
+                  <Text numberOfLines={1} className="text-white/60 text-xs">
+                    @{username}
+                  </Text>
+                ) : null}
+              </View>
+            </Pressable>
+
+            <Pressable onPress={() => setCaptionExpanded((p) => !p)}>
+              {title ? (
+                <Text
+                  numberOfLines={captionExpanded ? undefined : 1}
+                  className="text-white text-sm mb-0.5"
+                >
+                  {title}
+                </Text>
+              ) : null}
+              {description ? (
+                <Text
+                  numberOfLines={captionExpanded ? undefined : 2}
+                  className="text-white/70 text-xs"
+                >
+                  {description}
+                </Text>
+              ) : null}
+              {description.length > 80 || title.length > 40 ? (
+                <Text className="text-white/50 text-[11px] mt-0.5">
+                  {captionExpanded ? "less" : "more"}
+                </Text>
+              ) : null}
+            </Pressable>
+
+            {/* Action bar — one row spread edge to edge, like at the far right,
+                matching the web viewer and the feed card's own bar. */}
+            <View style={styles.actionBar} pointerEvents="box-none">
+              {/* Views — a readout, not a button, as on web. */}
+              <View style={styles.actionButton}>
+                <Icon name="Eye" size={20} color={ICON_COLOR} strokeWidth={1.8} />
+                <Text style={styles.actionCount}>{formatCompactNumber(views)}</Text>
+              </View>
+
+              <ActionButton
+                icon="Gem"
+                label={formatCompactNumber(tipCount)}
+                onPress={handleTip}
+                accessibilityLabel="Tip"
               />
-            )}
-            <Text style={styles.actionText}>{formatCompactNumber(likeCount)}</Text>
-          </Pressable>
-        </View>
 
-        <Pressable onPress={handleDislike} className="items-center mb-5">
-          <Icon
-            name="ThumbsDown"
-            size={28}
-            color={disliked ? "#F9FBFF" : "#fff"}
-            fill={disliked ? "#F9FBFF" : "none"}
-          />
-          <Text style={styles.actionText}>{formatCompactNumber(dislikeCount)}</Text>
-        </Pressable>
+              <ActionButton
+                icon="ThumbsDown"
+                active={disliked}
+                label={formatCompactNumber(dislikeCount)}
+                onPress={handleDislike}
+                accessibilityLabel="Dislike"
+              />
 
-        <Pressable onPress={handleComment} className="items-center mb-5">
-          <Icon name="MessageSquare" size={28} color="#fff" />
-          <Text style={styles.actionText}>{formatCompactNumber(commentCount)}</Text>
-        </Pressable>
+              {/* Share — carries the repost count, and opens the share sheet. */}
+              <ActionButton
+                icon="Share2"
+                active={reposted}
+                label={formatCompactNumber(repostCount)}
+                onPress={() => setShowShareSheet(true)}
+                accessibilityLabel="Share"
+              />
 
-        <Pressable onPress={handleTip} className="items-center mb-5">
-          <Icon name="Gem" size={28} color="#fff" />
-          <Text style={styles.actionText}>Tip</Text>
-        </Pressable>
+              <ActionButton
+                icon="MessageSquare"
+                label={formatCompactNumber(commentCount)}
+                onPress={handleComment}
+                accessibilityLabel="Comments"
+              />
 
-        <Pressable onPress={handleSave} className="items-center mb-5">
-          <Icon
-            name="Bookmark"
-            size={28}
-            color={saved ? "#D4D4D8" : "#fff"}
-            fill={saved ? "#D4D4D8" : "none"}
-          />
-          <Text style={styles.actionText}>{saved ? "Saved" : "Save"}</Text>
-        </Pressable>
-
-        <Pressable onPress={handleMenuPress} className="items-center">
-          <Icon name="Ellipsis" size={28} color="#fff" />
-        </Pressable>
-      </View>
+              {/* Reactions — tap to like/unlike, hold to pick one of the nine.
+                  The wrapper is the tray's positioning context and stays a
+                  single flex item so the row's spacing is unchanged. */}
+              <View style={{ position: "relative" }}>
+                <ReactionPicker
+                  open={pickerOpen}
+                  current={myReaction}
+                  onSelect={(reaction) => { setPickerOpen(false); handleReaction(reaction); }}
+                  align="right"
+                  onShowInfo={
+                    isOwnShort && tokenId != null
+                      ? () => { setPickerOpen(false); setShowReactionInfo(true); }
+                      : undefined
+                  }
+                />
+                <ActionButton
+                  icon="ThumbsUp"
+                  glyph={leadGlyph}
+                  active={liked}
+                  label={formatCompactNumber(likeCount)}
+                  onPress={() => { if (pickerOpen) { setPickerOpen(false); return; } handleLike(); }}
+                  onLongPress={() => setPickerOpen(true)}
+                  accessibilityLabel={
+                    myReaction
+                      ? `${reactionMeta(myReaction).label} — hold to change your reaction`
+                      : "Like — hold to react"
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </>
       )}
 
-      {/* Menu bottom sheet */}
-      <Modal
-        visible={showMenu}
-        transparent
-        animationType="slide"
-        onRequestClose={() => setShowMenu(false)}
-      >
-        <Pressable style={styles.menuOverlay} onPress={() => setShowMenu(false)}>
-          <Pressable style={styles.menuSheet} onPress={(e) => e.stopPropagation()}>
-            <BlurView
-              intensity={80}
-              tint="dark"
-              style={StyleSheet.absoluteFill}
-              {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
-            />
-            <View style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(255,255,255,0.08)" }]} />
-
-            <View style={styles.menuHandle} />
-
-            <Pressable onPress={handleRepost} style={styles.menuItem}>
-              <Icon name="Repeat2" size={22} color={reposted ? "#22c55e" : "#fff"} />
-              <Text style={styles.menuItemText}>{reposted ? "Undo Repost" : "Repost"}</Text>
-            </Pressable>
-
-            <Pressable onPress={handleQuote} style={styles.menuItem}>
-              <Icon name="Quote" size={22} color="#fff" />
-              <Text style={styles.menuItemText}>Quote</Text>
-            </Pressable>
-
-            <Pressable onPress={handleCopyLink} style={styles.menuItem}>
-              <Icon name="Link" size={22} color="#fff" />
-              <Text style={styles.menuItemText}>Copy Link</Text>
-            </Pressable>
-          </Pressable>
-        </Pressable>
-      </Modal>
-
-      {!screenshotMode && (
-      <View style={[styles.creatorInfo, { bottom: 16 }]}>
-        <Pressable onPress={handleUserPress} className="flex-row items-center gap-2 mb-2">
-          <Image source={avatar} style={styles.avatar} contentFit="cover" />
-          <View className="flex-1">
-            <Text numberOfLines={1} className="text-white text-sm font-semibold">
-              {displayName}
-            </Text>
-            {username ? (
-              <Text numberOfLines={1} className="text-white/60 text-xs">
-                @{username}
-              </Text>
-            ) : null}
-          </View>
-        </Pressable>
-
-        <Pressable onPress={() => setCaptionExpanded((p) => !p)}>
-          {title ? (
-            <Text
-              numberOfLines={captionExpanded ? undefined : 1}
-              className="text-white text-sm mb-0.5"
-            >
-              {title}
-            </Text>
-          ) : null}
-          {description ? (
-            <Text
-              numberOfLines={captionExpanded ? undefined : 2}
-              className="text-white/70 text-xs"
-            >
-              {description}
-            </Text>
-          ) : null}
-        </Pressable>
-
-        <View className="flex-row items-center gap-1 mt-1.5">
-          <Icon name="Eye" size={12} color="rgba(255,255,255,0.5)" />
-          <Text style={styles.viewsText}>{formatCompactNumber(views)} views</Text>
-        </View>
-      </View>
+      {showShareSheet && tokenId != null && (
+        <ShareSheet
+          visible={showShareSheet}
+          onClose={() => setShowShareSheet(false)}
+          isReposted={reposted}
+          onRepost={() => handleRepost(true)}
+          onUndoRepost={() => handleRepost(false)}
+          onQuote={handleQuote}
+          onCopyLink={handleCopyLink}
+        />
       )}
 
       {tokenId != null && (
         <CommentBottomSheet
           visible={showComments}
           onClose={() => setShowComments(false)}
+          tokenId={tokenId}
+          commentsDisabled={!!(item as any).commentsDisabled}
+        />
+      )}
+
+      {showReactionInfo && tokenId != null && (
+        <ReactionInfoSheet
+          visible={showReactionInfo}
+          onClose={() => setShowReactionInfo(false)}
           tokenId={tokenId}
         />
       )}
@@ -635,6 +753,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight }) =>
 const ShortsViewerScreen = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
+  const insets = useSafeAreaInsets();
+  const user = useUser();
+  const { requireAuth } = useAuthActions();
   const {
     initialIndex = 0,
     initialItems = [],
@@ -653,6 +774,34 @@ const ShortsViewerScreen = () => {
   const shuffleSeedRef = useRef<string | undefined>(feedParams.shuffleSeed);
   const [containerHeight, setContainerHeight] = useState(SCREEN_HEIGHT);
   const [noMoreShorts, setNoMoreShorts] = useState(false);
+
+  // Viewer-level playback chrome — mute and speed persist across shorts, as on
+  // web, rather than resetting with every slide.
+  const [isMuted, setIsMuted] = useState(false);
+  const [playbackRate, setPlaybackRate] = useState<number>(1);
+  const [showOptionsMenu, setShowOptionsMenu] = useState(false);
+
+  // Follow / visibility overrides keyed by creator address and token, so an
+  // action taken in the options menu sticks while the viewer stays open.
+  const [followOverrides, setFollowOverrides] = useState<Record<string, boolean>>({});
+  const [hiddenOverrides, setHiddenOverrides] = useState<Record<string, boolean>>({});
+
+  const activeItem = items[activeIndex];
+  const activeTokenId = activeItem?.tokenId ?? activeItem?.id;
+  const activeEngagement = useEngagement(activeItem);
+  const activeMinter = activeItem?.minter || activeItem?.minterUser?.address || "";
+  const activeUsername = activeItem?.minterUser?.username || activeItem?.minterUsername || "";
+  const activeDisplayName =
+    activeItem?.minterUser?.displayName || activeItem?.minterDisplayName || activeUsername;
+  const userAddress = user?.address || user?.walletAddress || "";
+  const isOwnerOfActive = !!(
+    (activeItem as any)?.isOwner ||
+    (userAddress && activeMinter && userAddress.toLowerCase() === activeMinter.toLowerCase())
+  );
+  const activeIsFollowing =
+    followOverrides[activeMinter.toLowerCase()] ?? !!(activeItem as any)?.isFollowing;
+  const activeIsHidden =
+    hiddenOverrides[String(activeTokenId)] ?? !!(activeItem as any)?.isHidden;
 
   const handleContainerLayout = useCallback((e: LayoutChangeEvent) => {
     const h = e.nativeEvent.layout.height;
@@ -702,6 +851,68 @@ const ShortsViewerScreen = () => {
   const handleBack = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
+
+  const handleCycleSpeed = useCallback(() => {
+    setPlaybackRate((rate) => {
+      const idx = PLAYBACK_RATES.indexOf(rate as any);
+      return PLAYBACK_RATES[(idx + 1) % PLAYBACK_RATES.length];
+    });
+  }, []);
+
+  /** Bookmark lives in the options menu here, as it does on web. */
+  const handleToggleSave = useCallback(() => {
+    if (activeTokenId == null) return;
+    requireAuth(() => {
+      const key = engagementKeyOf(activeItem);
+      const wasSaved = activeEngagement.isSaved;
+      applyEngagement(key, { isSaved: !wasSaved });
+      const rollback = () => {
+        revertEngagement(key, { isSaved: wasSaved });
+        toastError("Failed to save");
+      };
+      savePost(Number(activeTokenId), userAddress)
+        .then((res) => {
+          if (isFailedResponse(res)) {
+            rollback();
+            return;
+          }
+          toastSuccess(wasSaved ? "Removed from saved" : "Saved");
+        })
+        .catch(rollback);
+    });
+  }, [activeItem, activeTokenId, activeEngagement.isSaved, userAddress, requireAuth]);
+
+  const handleFollowChange = useCallback((following: boolean) => {
+    if (!activeMinter) return;
+    setFollowOverrides((prev) => ({ ...prev, [activeMinter.toLowerCase()]: following }));
+  }, [activeMinter]);
+
+  const handleVisibilityChange = useCallback((hidden: boolean) => {
+    setHiddenOverrides((prev) => ({ ...prev, [String(activeTokenId)]: hidden }));
+  }, [activeTokenId]);
+
+  const handleEditSuccess = useCallback((data: { name?: string; description?: string; category?: string[] }) => {
+    setItems((prev) => prev.map((it) => (
+      (it.tokenId ?? it.id) === activeTokenId
+        ? {
+            ...it,
+            ...(data.name !== undefined ? { name: data.name } : {}),
+            ...(data.description !== undefined ? { description: data.description } : {}),
+            ...(data.category !== undefined ? { category: data.category } : {}),
+          }
+        : it
+    )));
+  }, [activeTokenId]);
+
+  const handleDeleteSuccess = useCallback(() => {
+    setShowOptionsMenu(false);
+    setItems((prev) => {
+      const next = prev.filter((it) => (it.tokenId ?? it.id) !== activeTokenId);
+      if (next.length === 0) navigation.goBack();
+      return next;
+    });
+    setActiveIndex((i) => Math.max(0, i - 1));
+  }, [activeTokenId, navigation]);
 
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {
     if (viewableItems.length > 0 && viewableItems[0].index != null) {
@@ -757,9 +968,12 @@ const ShortsViewerScreen = () => {
         item={item}
         isActive={index === activeIndex}
         itemHeight={containerHeight}
+        isMuted={isMuted}
+        playbackRate={playbackRate}
+        bottomInset={insets.bottom}
       />
     ),
-    [activeIndex, containerHeight],
+    [activeIndex, containerHeight, isMuted, playbackRate, insets.bottom],
   );
 
   const keyExtractor = useCallback(
@@ -799,14 +1013,64 @@ const ShortsViewerScreen = () => {
         getItemLayout={getItemLayout}
       />
 
-      {/* Fixed transparent header overlay – does not scroll */}
-      <View style={styles.topBar}>
-        <Pressable onPress={handleBack} hitSlop={12} className="p-2">
-          <Icon name="ChevronLeft" size={28} color="#fff" />
+      {/* Fixed header overlay – back left, playback chrome right (as on web).
+          box-none so only the buttons themselves take touches; the rest of the
+          strip stays with the video underneath. */}
+      <View style={[styles.topBar, { paddingTop: insets.top + 8 }]} pointerEvents="box-none">
+        <Pressable onPress={handleBack} hitSlop={12} style={styles.topButton} accessibilityLabel="Back">
+          <Icon name="ChevronLeft" size={24} color="#fff" />
         </Pressable>
-        <Text className="text-white text-base font-semibold">Shorts</Text>
-        <View style={{ width: 44 }} />
+
+        <View style={styles.topRight}>
+          <Pressable
+            onPress={handleCycleSpeed}
+            style={[styles.topButton, styles.speedButton]}
+            accessibilityLabel="Playback speed"
+          >
+            <Text style={styles.speedButtonText}>{formatRate(playbackRate)}</Text>
+          </Pressable>
+
+          <Pressable
+            onPress={() => setIsMuted((m) => !m)}
+            style={styles.topButton}
+            accessibilityLabel={isMuted ? "Unmute" : "Mute"}
+          >
+            <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
+          </Pressable>
+
+          <Pressable
+            onPress={() => setShowOptionsMenu(true)}
+            style={styles.topButton}
+            accessibilityLabel="More options"
+          >
+            <Icon name="Ellipsis" size={20} color="#fff" />
+          </Pressable>
+        </View>
       </View>
+
+      {/* Options menu — bookmark, follow, report, block and the owner actions,
+          matching the web viewer's options drawer. */}
+      {showOptionsMenu && !!activeItem && (
+        <PostOptionsMenu
+          visible={showOptionsMenu}
+          onClose={() => setShowOptionsMenu(false)}
+          tokenId={activeTokenId}
+          isOwner={isOwnerOfActive}
+          isHidden={activeIsHidden}
+          creatorDisplayName={activeDisplayName}
+          creatorIdentifier={activeMinter || activeUsername || ""}
+          isFollowing={activeIsFollowing}
+          currentTitle={activeItem.name || activeItem.title || ""}
+          currentDescription={activeItem.description || ""}
+          currentCategories={activeItem.category || []}
+          isSaved={activeEngagement.isSaved}
+          onToggleSave={handleToggleSave}
+          onFollowChange={handleFollowChange}
+          onVisibilityChange={handleVisibilityChange}
+          onEditSuccess={handleEditSuccess}
+          onDeleteSuccess={handleDeleteSuccess}
+        />
+      )}
     </View>
   );
 };
@@ -827,75 +1091,81 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingBottom: 8,
     zIndex: 20,
   },
-  actionBar: {
-    position: "absolute",
-    right: 12,
+  topRight: {
+    flexDirection: "row",
     alignItems: "center",
-    zIndex: 10,
+    gap: 8,
   },
-  actionText: {
+  topButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(24,24,27,0.6)",
+  },
+  speedButton: {
+    minWidth: 44,
+    width: undefined,
+    paddingHorizontal: 8,
+  },
+  speedButtonText: {
     color: "#fff",
     fontSize: 11,
-    marginTop: 2,
-    fontWeight: "500",
+    fontWeight: "700",
   },
-  creatorInfo: {
+  bottomGradient: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: "45%",
+    zIndex: 5,
+  },
+  bottomStack: {
     position: "absolute",
     left: 12,
-    right: 72,
+    right: 12,
+    bottom: 0,
     zIndex: 10,
   },
+  actionBar: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: 14,
+  },
+  actionButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  actionGlyph: {
+    fontSize: 18,
+    lineHeight: 24,
+    width: 20,
+    textAlign: "center",
+  },
+  actionCount: {
+    color: COUNT_COLOR,
+    fontSize: 12,
+    fontWeight: "500",
+  },
   avatar: {
-    width: 36,
-    height: 36,
-    borderRadius: 10,
+    width: 44,
+    height: 44,
+    borderRadius: 12,
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.3)",
-  },
-  viewsText: {
-    color: "rgba(255,255,255,0.5)",
-    fontSize: 11,
   },
   pauseOverlay: {
     ...StyleSheet.absoluteFillObject,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "rgba(0,0,0,0.2)",
-  },
-  menuOverlay: {
-    flex: 1,
-    justifyContent: "flex-end",
-    backgroundColor: "rgba(0,0,0,0.4)",
-  },
-  menuSheet: {
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    overflow: "hidden",
-    paddingBottom: 40,
-    paddingTop: 12,
-    paddingHorizontal: 20,
-  },
-  menuHandle: {
-    width: 36,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: "rgba(255,255,255,0.3)",
-    alignSelf: "center",
-    marginBottom: 20,
-  },
-  menuItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 14,
-    paddingVertical: 14,
-  },
-  menuItemText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "500",
   },
   speedOverlay: {
     ...StyleSheet.absoluteFillObject,

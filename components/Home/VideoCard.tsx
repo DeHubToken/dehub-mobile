@@ -25,6 +25,7 @@ import {
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import { voteOnNFT, reactToNFT } from "../../services/nft.service";
 import ReactionPicker from "./ReactionPicker";
+import ReactionInfoSheet from "./ReactionInfoSheet";
 import {
   applyReactionDelta,
   isPositiveReaction,
@@ -182,6 +183,7 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
   const [reactionCounts, setReactionCounts] = useState<ReactionCounts>(() => resolveReactionCounts(nft));
   const [pickerOpen, setPickerOpen] = useState<boolean>(false);
   const [showComments, setShowComments] = useState<boolean>(false);
+  const [showReactionInfo, setShowReactionInfo] = useState<boolean>(false);
   const [reposted, setReposted] = useState<boolean>(!!nft.isReposted);
   const [repostCount, setRepostCount] = useState<number>(((nft as any).reposts || 0) + ((nft as any).quotes || 0));
   const [showRepostPopover, setShowRepostPopover] = useState<boolean>(false);
@@ -567,6 +569,11 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
               current={myReaction}
               onSelect={(reaction) => { setPickerOpen(false); handleReaction(reaction); }}
               align="left"
+              onShowInfo={
+                isOwnerPost && tokenId != null
+                  ? () => { setPickerOpen(false); setShowReactionInfo(true); }
+                  : undefined
+              }
             />
             <TouchableOpacity
               onPress={() => { if (pickerOpen) { setPickerOpen(false); return; } handleLikePress(); }}
@@ -686,6 +693,14 @@ const VideoCardComponent: React.FC<VideoCardProps> = ({
         onClose={() => setShowComments(false)}
         tokenId={tokenId}
       />
+
+      {showReactionInfo && tokenId != null && (
+        <ReactionInfoSheet
+          visible={showReactionInfo}
+          onClose={() => setShowReactionInfo(false)}
+          tokenId={tokenId}
+        />
+      )}
 
       {/* Post Options Menu */}
       <PostOptionsMenu
