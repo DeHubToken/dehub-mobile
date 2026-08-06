@@ -21,6 +21,11 @@ import Reanimated, {
   type SharedValue,
 } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
+// The nav pill needs a dark, low-tint backdrop blur that expo-blur can't
+// express — its `intensity` drives blur radius and tint alpha together, so the
+// pill turns white before it turns glassy. See the pill's BlurView below.
+import { BlurView as GlassBlurView } from "@react-native-community/blur";
+import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import Icon from "../components/ui/Icon";
@@ -32,21 +37,10 @@ import { useTabBarHide } from "../context/TabBarHideContext";
 import { useAuthState, useUser } from "../context/AuthContext";
 import { useTotalUnreadMessagesCount } from "../store/dm.store";
 import { storage } from "../libs/storage";
-import { TAB_BAR_PILL_HEIGHT } from "./tabBarLayout";
+import { TAB_BAR_PILL_HEIGHT, TAB_BAR_SCRIM_HEIGHT } from "./tabBarLayout";
 import { useTranslation } from "react-i18next";
 
 const SCROLL_HINT_SEEN_KEY = "dehub:navScrollHintSeen";
-
-// Web nav: bg-zinc-900/10 backdrop-blur-2xl border-white/10 — neutral blur with
-// only a 10% zinc wash. No white frost/sheen on the pill itself.
-const PILL_BLUR_PROPS =
-  Platform.OS === "ios"
-    ? ({ tint: "systemThinMaterialLight", intensity: 30 } as const)
-    : ({
-        tint: "default",
-        intensity: 22,
-        experimentalBlurMethod: "dimezisBlurView",
-      } as const);
 
 const { width: SCREEN_W } = Dimensions.get("window");
 // Container is 72% of the screen minus outerWrap's 16px horizontal padding —
@@ -161,18 +155,14 @@ const NavButton = memo<{
       >
         <View style={styles.centerIconWrap}>
           {/* Web: bg-white/18 + backdrop-blur(24px) + border-white/30 +
-              inset_0_1px_1px white/20 + 0_2px_8px black/30 */}
-          {Platform.OS === "ios" ? (
+              inset_0_1px_1px white/20 + 0_2px_8px black/30.
+              iOS only — see the note on the pill below for why this surface
+              refuses dimezisBlurView; the translucent white glass below stands
+              in for it on Android. */}
+          {Platform.OS === "ios" && (
             <BlurView
               intensity={24}
               tint="light"
-              style={styles.centerGlassBlur}
-            />
-          ) : (
-            <BlurView
-              intensity={24}
-              tint="light"
-              experimentalBlurMethod="dimezisBlurView"
               style={styles.centerGlassBlur}
             />
           )}
@@ -347,12 +337,21 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   // animates smoothly instead of snapping frame-by-frame with the header.
   const headerTranslateY = useTabBarHide();
   const tabSlide = useSharedValue(0);
+  // Last target handed to withTiming. The reaction below runs on every frame of
+  // the header's own 380ms animation, and it used to call withTiming on each of
+  // them — roughly 23 fresh 350ms animations, each resetting the previous one's
+  // start time and start value. tabSlide therefore never got to run a clean
+  // curve; it crawled and rubber-banded. Only a genuine change of destination
+  // should start an animation.
+  const tabSlideTarget = useSharedValue(0);
 
   useAnimatedReaction(
     () => headerTranslateY?.value ?? 0,
     (val) => {
       // Hide when header has scrolled past ~30% of a typical header
       const target = val < -55 ? 1 : 0;
+      if (target === tabSlideTarget.value) return;
+      tabSlideTarget.value = target;
       tabSlide.value = withTiming(target, {
         duration: 350,
         easing: Easing.bezier(0.25, 1, 0.5, 1),
@@ -374,9 +373,96 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
 
   return (
     <Reanimated.View style={[styles.outerWrap, { paddingBottom: bottomPadding }, hideStyle]} pointerEvents="box-none">
+      {/* Scrim under the floating pill, and the reason the pill can afford to
+          stay near-transparent at all.
+
+          The pill borrows its entire appearance from whatever is behind it, so
+          its apparent opacity is a function of the backdrop's luminance. That
+          is fine everywhere the app is dark-dominant — the top nav pill sits on
+          headerClip's opaque #010305 — but the Shorts grid is the one surface
+          that puts full-bleed, edge-to-edge, autoplaying video across the whole
+          width, and against that the pill read as clear glass with icons
+          floating on video. This scrim is the luminance floor that stops that.
+
+          `locations` matter as much as the colours: the ramp is anchored to
+          outerWrap's bottom, which hangs 12px below the screen edge, so an even
+          three-stop ramp wasted its darkest 12px off-screen and only reached
+          ~0.3-0.5 across the band the pill actually occupies. Peak now lands at
+          0.42 — just as the pill starts — and holds flat to the bottom. */}
+      <LinearGradient
+        colors={[
+          "rgba(9,9,11,0)",
+          "rgba(9,9,11,0.42)",
+          "rgba(9,9,11,0.75)",
+          "rgba(9,9,11,0.75)",
+        ]}
+        locations={[0, 0.28, 0.42, 1]}
+        style={styles.gradientOverlay}
+        pointerEvents="none"
+      />
       <Reanimated.View style={[styles.navContainer, entranceStyle]}>
-        {/* Web: bg-zinc-900/10 backdrop-blur-2xl border-white/10 — blur + wash only */}
-        <BlurView {...PILL_BLUR_PROPS} style={StyleSheet.absoluteFill} />
+        {/* Web is `backdrop-blur-2xl` (blur(40px) in our Tailwind config) with
+            every bit of its colour coming from glassOverlay's zinc wash — a
+            strong blur under a near-transparent tint. expo-blur can't express
+            that: its `intensity` drives blur radius and tint alpha together, so
+            the pill turns white before it turns glassy. Hence this library on
+            iOS, whose UIKit materials let the radius and the tint be chosen
+            separately.
+
+            `thinMaterialDark`, not `ultraThinMaterialDark` and emphatically not
+            a *Light* material. Light takes essentially all its colour from what
+            is behind it, which survives the mostly-dark feed and falls apart on
+            Shorts. UltraThin is the least-tinted material UIKit ships, which is
+            the same failure one notch quieter. Thin is the same family with
+            enough tint left to hold one identity over any backdrop. blurAmount
+            still applies here — BlurEffectWithAmount injects it as `blurRadius`
+            into the effect settings, materials included.
+
+            Android gets no real blur: the community BlurView and expo-blur's
+            `dimezisBlurView` are both the Dimezis library, whose
+            PreDrawBlurController re-snapshots the root view every frame and
+            throws IndexOutOfBoundsException when a list mutates children
+            mid-draw. Every *transient* glass surface in the app opts into it
+            safely; the ones permanently mounted over a live list — FeedNavBar,
+            GlassToast, FeedScreen — all refuse it, and this pill is the most
+            permanently-mounted surface there is. Translucent tint only.
+
+            Upstream status: Dimezis/BlurView #191, fixed in Dimezis 3.x but
+            neither library here ships it (expo-blur 15.0.7 pins 2.0.6,
+            @react-native-community/blur 4.4.1 pins 2.0.4), and 3.x is not
+            source-compatible with expo-blur 15's native code. Expo SDK 55 moves
+            to 3.1.0 and adds a blurTarget API for scoping the blur source to a
+            stable subtree; until then this stands. */}
+        {Platform.OS === "ios" ? (
+          <GlassBlurView
+            blurType="thinMaterialDark"
+            blurAmount={40}
+            reducedTransparencyFallbackColor="#1c1c20"
+            style={StyleSheet.absoluteFill}
+          />
+        ) : (
+          <>
+            <View style={styles.androidBlurFallback} />
+            {/* Web's glass has no white wash — its sheen comes from the blur
+                itself — so keep this whisper-faint over the dark zinc tint.
+                Graded top-to-bottom, not diagonally: a diagonal sheen reads as
+                glossy plastic, whereas real blur output is vertically graded by
+                the luminance behind it, and it darkens slightly at the bottom
+                where the scrim sits. */}
+            <LinearGradient
+              colors={[
+                "rgba(255,255,255,0.07)",
+                "rgba(255,255,255,0.015)",
+                "rgba(0,0,0,0.05)",
+              ]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0, y: 1 }}
+              style={StyleSheet.absoluteFill}
+              pointerEvents="none"
+            />
+            <View style={styles.androidInsetBottom} pointerEvents="none" />
+          </>
+        )}
         <View style={styles.glassOverlay} />
         <ScrollView
           ref={scrollRef}
@@ -426,6 +512,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 8,
   },
+  gradientOverlay: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    // Taller than the pill so the fade starts well above it and reads as depth
+    // rather than as a band.
+    height: TAB_BAR_SCRIM_HEIGHT,
+  },
   navContainer: {
     width: "72%",
     maxWidth: 340,
@@ -444,10 +539,32 @@ const styles = StyleSheet.create({
       android: {},
     }),
   },
+  androidBlurFallback: {
+    ...StyleSheet.absoluteFillObject,
+    // Stands in for the missing backdrop blur. Web's pill is zinc-900/10 over
+    // blur(40) of the mostly dark app, which reads as dark smoky glass — so the
+    // base tint is zinc-900 itself, translucent enough that content ghosts
+    // through the way a blur would.
+    backgroundColor: "rgba(24, 24, 27, 0.45)",
+    borderRadius: 16,
+  },
+  androidInsetBottom: {
+    position: "absolute",
+    bottom: 1,
+    left: 1,
+    right: 1,
+    height: 1,
+    backgroundColor: "rgba(255,255,255,0.10)",
+  },
   glassOverlay: {
     ...StyleSheet.absoluteFillObject,
-    // bg-zinc-900/10 + border-white/10 — exactly web's nav classes
-    backgroundColor: "rgba(24, 24, 27, 0.09)",
+    // Web is bg-zinc-900/10; this runs a little heavier because a phone pill
+    // has no page chrome around it to seat it, and because the wash is the
+    // second half of the Shorts fix — the scrim sets a floor on how bright the
+    // backdrop can get, this sets a floor on how much of it comes through.
+    // Together with the scrim above, roughly a tenth of the backdrop reaches
+    // the eye at the pill's worst case instead of a third.
+    backgroundColor: "rgba(24, 24, 27, 0.16)",
     borderRadius: 16,
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.10)",
