@@ -49,6 +49,33 @@ export async function verifyEmailOtp(email: string, token: string): Promise<stri
   return userId;
 }
 
+export async function sendPhoneOtp(phone: string): Promise<void> {
+  const { error } = await supabase.auth.signInWithOtp({
+    phone: phone.trim(),
+    options: { shouldCreateUser: true },
+  });
+  if (error) {
+    log.warn("sendPhoneOtp:error", error.message);
+    throw new Error(error.message || "Failed to send code");
+  }
+}
+
+/** Verifies the texted code and returns the Supabase user id. */
+export async function verifyPhoneOtp(phone: string, token: string): Promise<string> {
+  const { data, error } = await supabase.auth.verifyOtp({
+    phone: phone.trim(),
+    token: token.trim(),
+    type: "sms",
+  });
+  if (error) {
+    log.warn("verifyPhoneOtp:error", error.message);
+    throw new Error(error.message || "Invalid or expired code");
+  }
+  const userId = data?.user?.id;
+  if (!userId) throw new Error("Sign-in failed. Please try again.");
+  return userId;
+}
+
 /** Opens an OAuth browser flow for the given provider and returns the Supabase user id. */
 async function signInWithOAuthProvider(
   provider: "google" | "apple",

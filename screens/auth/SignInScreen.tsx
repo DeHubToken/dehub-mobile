@@ -32,6 +32,8 @@ import { createLogger } from "../../libs/logger";
 import {
   sendEmailOtp,
   verifyEmailOtp,
+  sendPhoneOtp,
+  verifyPhoneOtp,
   signInWithGoogle,
   signInWithApple,
   getSupabaseAccessToken,
@@ -64,8 +66,9 @@ interface SignInScreenProps {
 const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const [isLocalLoading, setIsLocalLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
-  const [authStep, setAuthStep] = useState<"main" | "email-code">("main");
+  const [authStep, setAuthStep] = useState<"main" | "email-code" | "phone-code">("main");
   const [pendingEmail, setPendingEmail] = useState("");
+  const [pendingPhone, setPendingPhone] = useState("");
   // Set when resolveEvmWalletForIdentity finds a Supabase-backed wallet that
   // needs unlocking (password or biometric), or no wallet at all (needs setup
   // for a new one). Cleared once WalletSetupScreen succeeds or is cancelled.
@@ -439,6 +442,46 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     handleEmailSubmit(pendingEmail);
   }, [pendingEmail, handleEmailSubmit]);
 
+  const handlePhoneSubmit = useCallback(async (phone: string) => {
+    setIsLocalLoading(true);
+    setCurrentProvider("phone");
+    try {
+      await sendPhoneOtp(phone);
+      setPendingPhone(phone);
+      setAuthStep("phone-code");
+    } catch (e: any) {
+      log.error("Phone OTP send error", e);
+      toastError(e, "Could not send code. Please retry.");
+    } finally {
+      if (isMountedRef.current) {
+        setIsLocalLoading(false);
+        setCurrentProvider("");
+      }
+    }
+  }, []);
+
+  const handlePhoneCodeSubmit = useCallback(
+    async (code: string) => {
+      hasNavigatedRef.current = false;
+      setIsLocalLoading(true);
+      try {
+        const supabaseUserId = await verifyPhoneOtp(pendingPhone, code);
+        await runProvisionAndSignIn(supabaseUserId);
+      } catch (e: any) {
+        log.error("Phone code verify error", e);
+        toastError(e, "Invalid code. Please retry.");
+        hasNavigatedRef.current = false;
+      } finally {
+        if (isMountedRef.current) setIsLocalLoading(false);
+      }
+    },
+    [pendingPhone, runProvisionAndSignIn]
+  );
+
+  const handleResendPhoneCode = useCallback(() => {
+    handlePhoneSubmit(pendingPhone);
+  }, [pendingPhone, handlePhoneSubmit]);
+
   const handleSkipOrClose = useCallback(async () => {
     if (isFirstTimeUser) {
       await skipAuth();
@@ -473,23 +516,33 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             </Text>
           </View>
 
-          {/* Sign-in options: Email, Google, Apple, and Connect Wallet are
-              live; Phone mirrors the web app's "Coming Soon" state. */}
+          {/* Sign-in options: Email, Phone, Google, Apple, and Connect Wallet
+              are all live. */}
           {authStep === "main" ? (
             <SocialLoginIcons
               onGoogle={handleGoogleLogin}
               onApple={handleAppleLogin}
               onEmailSubmit={handleEmailSubmit}
+              onPhoneSubmit={handlePhoneSubmit}
               onConnectWallet={handleWalletConnect}
               busyProvider={isLocalLoading ? currentProvider : isWalletLoading ? "wallet" : undefined}
               disabled={isLoading}
             />
-          ) : (
+          ) : authStep === "email-code" ? (
             <EmailCodeEntry
               email={pendingEmail}
               onSubmit={handleEmailCodeSubmit}
               onBack={() => setAuthStep("main")}
               onResend={handleResendEmailCode}
+              loading={isLocalLoading}
+              disabled={authLoading}
+            />
+          ) : (
+            <EmailCodeEntry
+              email={pendingPhone}
+              onSubmit={handlePhoneCodeSubmit}
+              onBack={() => setAuthStep("main")}
+              onResend={handleResendPhoneCode}
               loading={isLocalLoading}
               disabled={authLoading}
             />

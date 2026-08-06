@@ -3,6 +3,7 @@ import { View, TouchableOpacity, ActivityIndicator, Text } from "react-native";
 import { SvgXml } from "react-native-svg";
 import { Ionicons } from "@expo/vector-icons";
 import EmailLoginFlow from "./EmailLoginFlow";
+import PhoneLoginFlow from "./PhoneLoginFlow";
 
 // Monochrome Google glyph (white)
 const GOOGLE_ICON = `<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -19,36 +20,17 @@ interface SocialLoginIconsProps {
   onGoogle: () => void;
   onApple: () => void;
   onEmailSubmit: (email: string) => void;
+  onPhoneSubmit: (phone: string) => void;
   onConnectWallet?: () => void;
-  busyProvider?: string; // 'google' | 'apple' | 'email' | 'wallet'
+  busyProvider?: string; // 'google' | 'apple' | 'email' | 'phone' | 'wallet'
   disabled?: boolean;
 }
-
-const ComingSoonButton: React.FC<{ icon?: string; iconName?: any; label: string }> = ({
-  icon,
-  iconName,
-  label,
-}) => (
-  <View
-    className="flex-row items-center justify-center rounded-2xl bg-neutral-900 border border-neutral-800"
-    style={{ width: "100%", height: 60, marginBottom: 12, opacity: 0.5 }}
-  >
-    {icon ? (
-      <SvgXml xml={icon} width={20} height={20} style={{ marginRight: 10 }} />
-    ) : iconName ? (
-      <Ionicons name={iconName} size={20} color="#9CA3AF" style={{ marginRight: 10 }} />
-    ) : null}
-    <Text className="text-base font-medium text-gray-400 mr-2">{label}</Text>
-    <View className="rounded-full bg-neutral-700 px-2 py-0.5">
-      <Text className="text-[10px] text-gray-300">Coming Soon</Text>
-    </View>
-  </View>
-);
 
 export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   onGoogle,
   onApple,
   onEmailSubmit,
+  onPhoneSubmit,
   onConnectWallet,
   busyProvider,
   disabled,
@@ -102,8 +84,14 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
         )}
       </TouchableOpacity>
 
-      {/* Phone — same as web today: shown, disabled, "Coming Soon" */}
-      <ComingSoonButton iconName="call" label="Continue with Phone" />
+      {/* Phone — working, mirrors dehubweb's Supabase SMS OTP flow */}
+      <View className="w-full mb-3">
+        <PhoneLoginFlow
+          onSubmit={onPhoneSubmit}
+          loading={busyProvider === "phone"}
+          disabled={disabled}
+        />
+      </View>
 
       {/* Connect Wallet — authenticate with an external wallet app (MetaMask,
           Trust Wallet, Coinbase Wallet, ...) via Reown/WalletConnect. */}
