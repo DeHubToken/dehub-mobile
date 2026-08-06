@@ -20,7 +20,6 @@ import {
 import { fetchWallet, fetchWalletReliably } from "./wallet-core/store";
 import { checkLegacyAccount } from "./wallet-core/legacy-detect";
 import { getSupabaseUserId } from "../services/auth/supabaseAuth.service";
-import { AuthService, WalletNotLinkedError } from "../services/auth.service";
 import type { SupabaseSessionExchangeResult } from "../hooks/useAuthSession";
 import type { WalletSetupRequest } from "../components/auth/WalletSetupScreen";
 import type { LegacyAccountMatch } from "./wallet-core/legacy-detect";
@@ -91,62 +90,6 @@ async function waitForSupabaseSession(expectedUserId: string): Promise<void> {
   log.warn("provision:supabase-session-wait-timeout", {
     expectedUserId: `${expectedUserId.slice(0, 8)}...`,
   });
-}
-
-/**
- * Ask the backend which DeHub account this Google identity is linked to — the
- * same /web/auth/supabase call the website uses. Does not adopt the session.
- */
-async function peekBackendLinkedAccount(
-  accessToken: string
-): Promise<{ address: string; username?: string } | null> {
-  try {
-    const res = await AuthService.authenticateWithSupabaseSession(accessToken);
-    const user = res.user as unknown as Record<string, unknown>;
-    const address = (user?.address || user?.walletAddress) as string | undefined;
-    if (!address) return null;
-    const username = typeof user?.username === "string" ? user.username : undefined;
-    return { address, username };
-  } catch (e) {
-    if (e instanceof WalletNotLinkedError) return null;
-    return null;
-  }
-}
-
-/** Backend link disagrees with user_wallets / this phone's wallet row. */
-async function detectCloudBackendMismatch(
-  accessToken: string | null,
-  cloudAddress: string,
-  supabaseUserId: string
-): Promise<ProvisionOutcome | null> {
-  if (!accessToken) return null;
-  const backend = await peekBackendLinkedAccount(accessToken);
-  if (!backend) return null;
-  const linked = backend.address.toLowerCase();
-  const cloud = cloudAddress.toLowerCase();
-  if (linked === cloud) return null;
-
-  log.warn("provision:cloud-backend-mismatch", {
-    cloud: `${cloud.slice(0, 6)}...${cloud.slice(-4)}`,
-    backend: `${linked.slice(0, 6)}...${linked.slice(-4)}`,
-    backendUsername: backend.username,
-  });
-  // eslint-disable-next-line no-console
-  console.error("[provision] cloud-backend-mismatch", {
-    cloudWallet: `${cloud.slice(0, 8)}...`,
-    webAccount: `${linked.slice(0, 8)}...`,
-    webUsername: backend.username,
-  });
-  return {
-    kind: "wallet-setup",
-    request: {
-      mode: "web-account-mismatch",
-      supabaseUserId,
-      cloudAddress,
-      webAddress: backend.address,
-      webUsername: backend.username,
-    },
-  };
 }
 
 async function trySessionExchange(
@@ -366,13 +309,6 @@ async function handleReadyResolution(
 ): Promise<ProvisionOutcome> {
   const localAddr = resolution.address.toLowerCase();
 
-  const mismatch = await detectCloudBackendMismatch(
-    accessToken,
-    resolution.address,
-    supabaseUserId
-  );
-  if (mismatch) return mismatch;
-
   let remoteAddr: string | null = null;
   try {
     const remote = await fetchWallet(supabaseUserId);
@@ -422,17 +358,6 @@ async function routeToWalletUi(
   sessionOutcome: SupabaseSessionExchangeResult,
   accessToken: string | null
 ): Promise<ProvisionOutcome> {
-  const cloudAddr = getKnownWalletAddress(resolution);
-  if (
-    cloudAddr &&
-    (resolution.status === "needs-unlock" ||
-      resolution.status === "needs-biometric-unlock" ||
-      resolution.status === "needs-web-passkey-sync")
-  ) {
-    const mismatch = await detectCloudBackendMismatch(accessToken, cloudAddr, supabaseUserId);
-    if (mismatch) return mismatch;
-  }
-
   if (resolution.status === "wallet-lookup-failed") {
     log.error("provision:wallet-lookup-failed", { supabaseUserId: `${supabaseUserId.slice(0, 8)}...` });
     return {
