@@ -79,6 +79,9 @@ async function getPimlicoConfig(): Promise<{ bundlerUrl: string; paymasterUrl: s
 
 /** Pimlico v2 URLs are keyed by chain id in the path: /v2/{chainId}/rpc?apikey=... */
 function derivePimlicoUrlForChain(baseUrl: string, targetChainId: number): string {
+  if (!baseUrl || typeof baseUrl !== "string") {
+    throw new Error("Pimlico URL not configured");
+  }
   return baseUrl.replace(/\/\d+\/rpc/, `/${targetChainId}/rpc`);
 }
 

@@ -17,9 +17,10 @@ const APPLE_ICON = `<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.or
 
 interface SocialLoginIconsProps {
   onGoogle: () => void;
+  onApple: () => void;
   onEmailSubmit: (email: string) => void;
   onConnectWallet?: () => void;
-  busyProvider?: string; // 'google' | 'email' | 'wallet'
+  busyProvider?: string; // 'google' | 'apple' | 'email' | 'wallet'
   disabled?: boolean;
 }
 
@@ -46,6 +47,7 @@ const ComingSoonButton: React.FC<{ icon?: string; iconName?: any; label: string 
 
 export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   onGoogle,
+  onApple,
   onEmailSubmit,
   onConnectWallet,
   busyProvider,
@@ -82,9 +84,26 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
         )}
       </TouchableOpacity>
 
-      {/* Phone, Apple — same as web today: shown, disabled, "Coming Soon" */}
+      {/* Apple — working */}
+      <TouchableOpacity
+        className="flex-row items-center justify-center rounded-2xl bg-neutral-800 border border-neutral-700"
+        style={{ width: "100%", height: 60, marginBottom: 12 }}
+        onPress={onApple}
+        disabled={disabled}
+        accessibilityLabel="Continue with Apple"
+      >
+        {busyProvider === "apple" ? (
+          <ActivityIndicator color="#fff" />
+        ) : (
+          <>
+            <SvgXml xml={APPLE_ICON} width={20} height={20} style={{ marginRight: 10 }} />
+            <Text className="text-base font-medium text-white">Continue with Apple</Text>
+          </>
+        )}
+      </TouchableOpacity>
+
+      {/* Phone — same as web today: shown, disabled, "Coming Soon" */}
       <ComingSoonButton iconName="call" label="Continue with Phone" />
-      <ComingSoonButton icon={APPLE_ICON} label="Continue with Apple" />
 
       {/* Connect Wallet — authenticate with an external wallet app (MetaMask,
           Trust Wallet, Coinbase Wallet, ...) via Reown/WalletConnect. */}

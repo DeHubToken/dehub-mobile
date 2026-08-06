@@ -16,10 +16,17 @@ import {
   getPrivateKeyForAddress,
 } from "./wallets.local";
 import { createLogger } from "./logger";
-import { fetchWallet, saveWallet, type StoredWallet } from "./wallet-core/store";
+import {
+  fetchWalletReliably,
+  saveWallet,
+  type StoredWallet,
+} from "./wallet-core/store";
 import { encryptString, getPayloadKdf, type EncryptedPayload } from "./wallet-core/crypto";
 import { generateMnemonic12, deriveFromSecret } from "./wallet-core/derive";
 import { enrollBiometricUnlock, hasBiometricWrapKey, unlockWithBiometrics } from "./wallet-core/biometric-unlock";
+import { setupAAProvider } from "./wallet-core/smart-account";
+import { getPreferredChainId } from "./auth.utils";
+import { ChainId } from "../config/constants";
 
 const log = createLogger("identity-wallet");
 
@@ -87,20 +94,24 @@ export type EvmWalletResolution =
   // password. The caller must prompt for it and call finishWalletUnlock —
   // creating a new wallet here would silently orphan the user's real one.
   | { status: "needs-unlock"; address: string; payload: EncryptedPayload }
-  // Supabase has a wallet for this identity, protected by biometrics, and
-  // THIS device holds the wrap key that opens it (it was enrolled here).
-  // The caller can offer a one-tap biometric unlock — no typing needed.
+  // Supabase has a biometric/passkey-protected wallet (hkdf payload). If this
+  // device enrolled the wrap key, one-tap unlock works; otherwise the unlock
+  // UI falls back to wallet password.
   | { status: "needs-biometric-unlock"; address: string; payload: EncryptedPayload }
-  // Supabase has a wallet for this identity but nothing on this device can
-  // open it — either it has no password backup at all, or it is
-  // biometric-protected by a DIFFERENT device's wrap key (biometric wraps
-  // are device-local, never portable). There is nothing to prompt for, only
-  // a "use the other device" message.
-  | { status: "no-recovery-method"; address: string }
+  // Web passkey/biometric wallet: address is in Supabase but encrypted_seed was
+  // intentionally omitted (unlocks only in the browser via WebAuthn — not portable
+  // to the phone's fingerprint). User must add a password backup on dehub.io.
+  | { status: "needs-web-passkey-sync"; address: string }
   // No wallet exists anywhere for this identity yet — genuinely first login.
   // The caller must prompt to set up protection (password or biometric) and
   // call createAndSaveEvmWalletForIdentity.
-  | { status: "needs-create-password" };
+  | { status: "needs-create-password" }
+  // Supabase wallet lookup failed (network/RLS/transient). The caller must NOT
+  // treat this as "no wallet" and mint a new one — try the backend session
+  // exchange first, then retry or show unlock. Mirrors dehubweb's
+  // proceedToWalletPhase catch, which defaults to unlock (not create) on
+  // fetch failure so an existing wallet is never overwritten by accident.
+  | { status: "wallet-lookup-failed" };
 
 /**
  * Figures out what this Supabase identity's EVM wallet situation is, without
@@ -110,35 +121,100 @@ export type EvmWalletResolution =
 export async function resolveEvmWalletForIdentity(
   supabaseUserId: string,
 ): Promise<EvmWalletResolution> {
-  const map = await readMap(EVM_MAP_KEY);
-  const existingAddress = map[supabaseUserId];
-  if (existingAddress && (await hasPrivateKeyForAddress(existingAddress))) {
-    const pk = await getPrivateKeyForAddress(existingAddress, {
-      purpose: "Sign in to DeHub",
+  // Authoritative cross-device source FIRST — same order as dehubweb's
+  // proceedToWalletPhase → fetchWallet. The local identity→address map is
+  // only a fast path when it agrees with this record; checking it before
+  // Supabase is what made mobile open a different account than the website
+  // for the same Google login (stale wallet created/tested on this phone
+  // shadowed the real Supabase-linked one).
+  const { wallet: remote, failed: fetchFailed } = await fetchWalletReliably(
+    supabaseUserId
+  );
+  if (fetchFailed) {
+    log.warn("resolveEvmWalletForIdentity:fetchWallet:exhausted-retries", {
+      supabaseUserId: `${supabaseUserId.slice(0, 8)}...`,
     });
-    if (pk) return { status: "ready", address: existingAddress, privateKey: pk };
   }
 
-  let remote: StoredWallet | null = null;
-  try {
-    remote = await fetchWallet(supabaseUserId);
-  } catch (e) {
-    log.warn("resolveEvmWalletForIdentity:fetchWallet:error", e);
-  }
+  const map = await readMap(EVM_MAP_KEY);
+  const cachedAddress = map[supabaseUserId]?.toLowerCase();
+
+  const tryReady = async (address: string): Promise<EvmWalletResolution | null> => {
+    if (!(await hasPrivateKeyForAddress(address))) return null;
+    const pk = await getPrivateKeyForAddress(address, {
+      purpose: "Sign in to DeHub",
+    });
+    if (!pk) return null;
+    return { status: "ready", address, privateKey: pk };
+  };
+
   if (remote) {
-    if (remote.payload) {
-      if (getPayloadKdf(remote.payload) === "hkdf") {
-        if (await hasBiometricWrapKey(remote.ethAddress)) {
-          return { status: "needs-biometric-unlock", address: remote.ethAddress, payload: remote.payload };
-        }
-        return { status: "no-recovery-method", address: remote.ethAddress };
-      }
-      return { status: "needs-unlock", address: remote.ethAddress, payload: remote.payload };
+    const remoteAddr = remote.ethAddress?.toLowerCase?.();
+    if (!remoteAddr) {
+      log.warn("resolveEvmWalletForIdentity:remote-row-missing-address", { supabaseUserId });
+      if (fetchFailed) return { status: "wallet-lookup-failed" };
+      return { status: "needs-create-password" };
     }
-    return { status: "no-recovery-method", address: remote.ethAddress };
+    if (cachedAddress && cachedAddress !== remoteAddr) {
+      log.warn("resolveEvmWalletForIdentity:stale-local-map-cleared", {
+        cached: `${cachedAddress.slice(0, 6)}...${cachedAddress.slice(-4)}`,
+        canonical: `${remoteAddr.slice(0, 6)}...${remoteAddr.slice(-4)}`,
+      });
+      await deleteMapEntry(EVM_MAP_KEY, supabaseUserId);
+    }
+
+    const ready = await tryReady(remoteAddr);
+    if (ready) return ready;
+
+    if (remote.payload) {
+      const kdf = getPayloadKdf(remote.payload);
+      // eslint-disable-next-line no-console
+      console.error("[resolveEvmWallet] cloud payload", { kdf, address: `${remoteAddr.slice(0, 6)}...` });
+      if (kdf === "hkdf") {
+        const hasWrap = await hasBiometricWrapKey(remoteAddr);
+        // eslint-disable-next-line no-console
+        console.error("[resolveEvmWallet] hkdf wallet", {
+          address: `${remoteAddr.slice(0, 6)}...`,
+          hasDeviceWrapKey: hasWrap,
+        });
+        return { status: "needs-biometric-unlock", address: remoteAddr, payload: remote.payload };
+      }
+      return { status: "needs-unlock", address: remoteAddr, payload: remote.payload };
+    }
+    // eslint-disable-next-line no-console
+    console.error("[resolveEvmWallet] web passkey wallet — no cloud seed row", {
+      address: `${remoteAddr.slice(0, 6)}...`,
+    });
+    return { status: "needs-web-passkey-sync", address: remoteAddr };
+  }
+
+  if (fetchFailed) {
+    return { status: "wallet-lookup-failed" };
+  }
+
+  // No Supabase row — never trust a device-only cache; the backend may still
+  // recognize this identity via web3AuthMeta (session exchange handles that).
+  if (cachedAddress) {
+    log.warn("resolveEvmWalletForIdentity:orphan-local-cache-ignored", {
+      cached: `${cachedAddress.slice(0, 6)}...${cachedAddress.slice(-4)}`,
+    });
+    await deleteMapEntry(EVM_MAP_KEY, supabaseUserId);
   }
 
   return { status: "needs-create-password" };
+}
+
+/** Supabase-stored wallet address when resolution already knows one. */
+export function getKnownWalletAddress(resolution: EvmWalletResolution): string | undefined {
+  switch (resolution.status) {
+    case "ready":
+    case "needs-unlock":
+    case "needs-biometric-unlock":
+    case "needs-web-passkey-sync":
+      return resolution.address;
+    default:
+      return undefined;
+  }
 }
 
 /**
@@ -259,14 +335,39 @@ export async function switchActiveWalletForIdentity(
   password: string,
 ): Promise<{ address: string; privateKey: string }> {
   const derived = deriveFromSecret(secret);
+
+  // Many DeHub accounts (especially pre-migration Web3Auth-era ones, and any
+  // AA-enabled account created via the normal write path -- see
+  // wallet-core/smart-account.ts / services/auth/localProviderAdapter.ts)
+  // are registered under their Safe SMART-ACCOUNT address, not the raw EOA
+  // address `deriveFromSecret` returns. Using the raw EOA address here made
+  // switching to (or recovering) such an account land on a brand-new,
+  // unrelated account instead -- the backend simply had no record of that
+  // EOA address. setupAAProvider deterministically recomputes the same Safe
+  // address the account was originally created with (never throws --
+  // returns null for unsupported chains/Pimlico outages, in which case we
+  // fall back to the raw EOA address exactly as before).
+  let canonicalAddress = derived.ethAddress;
+  try {
+    const chainId = (await getPreferredChainId()) ?? ChainId.BASE_MAINNET;
+    const aaProvider = await setupAAProvider(derived.ethAddress, derived.ethPrivateKey, chainId);
+    if (aaProvider) {
+      const accounts = (await aaProvider.request({ method: "eth_accounts" })) as string[];
+      if (accounts?.[0]) canonicalAddress = accounts[0];
+    }
+  } catch (e) {
+    log.warn("switchActiveWalletForIdentity:aa-resolve-failed", e);
+  }
+
   const encrypted = await encryptString(derived.secret, password);
-  await saveWallet(supabaseUserId, derived.ethAddress, encrypted);
-  await upsertLocalAccount({ address: derived.ethAddress, privateKey: derived.ethPrivateKey });
-  await writeMapEntry(EVM_MAP_KEY, supabaseUserId, derived.ethAddress.toLowerCase());
+  await saveWallet(supabaseUserId, canonicalAddress, encrypted);
+  await upsertLocalAccount({ address: canonicalAddress, privateKey: derived.ethPrivateKey });
+  await writeMapEntry(EVM_MAP_KEY, supabaseUserId, canonicalAddress.toLowerCase());
   log.info("switchActiveWalletForIdentity:switched", {
-    address: `${derived.ethAddress.slice(0, 6)}...${derived.ethAddress.slice(-4)}`,
+    address: `${canonicalAddress.slice(0, 6)}...${canonicalAddress.slice(-4)}`,
+    isSmartAccount: canonicalAddress.toLowerCase() !== derived.ethAddress.toLowerCase(),
   });
-  return { address: derived.ethAddress, privateKey: derived.ethPrivateKey };
+  return { address: canonicalAddress, privateKey: derived.ethPrivateKey };
 }
 
 /**

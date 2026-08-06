@@ -89,7 +89,8 @@ export const AuthService = {
       );
       const augmentedUser = { ...response.user, authSignature: sigMeta } as any;
       // Use isNewAccount from backend response to determine if username setup is needed
-      const needsUsername = !!(response as any)?.result?.isNewAccount;
+      const needsUsername =
+        !!(response as any)?.result?.isNewAccount && !(response as any)?.user?.username;
       const storeTokens = async () => {
         await setAuthToken(response.token);
         if (response.refreshToken) await setRefreshToken(response.refreshToken);
@@ -145,10 +146,12 @@ export const AuthService = {
           quiet: true,
         }
       );
-      const needsUsername = !!response?.result?.isNewAccount;
-      await setAuthToken(response.token);
-      if (response.refreshToken) await setRefreshToken(response.refreshToken);
-      if (response.expiresIn) await setTokenExpiresAt(Date.now() + response.expiresIn * 1000);
+      const needsUsername =
+        !!response?.result?.isNewAccount && !response?.user?.username;
+      // Do NOT persist DeHub tokens here — signInWithSupabaseSession validates
+      // the resolved address against user_wallets before adopting. Writing tokens
+      // early let a polluted web3AuthMeta link (shubham_new) stick even when the
+      // cloud wallet row names a different address (shubham_new2).
       return {
         user: response.user,
         token: response.token,
@@ -160,10 +163,9 @@ export const AuthService = {
       const isAmbiguous =
         error?.code === "WALLET_LINK_AMBIGUOUS" ||
         /more than one wallet/i.test(error?.message || "");
-      if (isAmbiguous) {
-        throw new WalletLinkAmbiguousError(error?.message);
-      }
-      if (error?.status === 409 || error?.code === "WALLET_NOT_LINKED") {
+      // Mirrors dehubweb: ambiguous link is resolved by signing once, so treat
+      // it like "not linked" for session exchange and fall back to unlock/sign.
+      if (error?.status === 409 || error?.code === "WALLET_NOT_LINKED" || isAmbiguous) {
         throw new WalletNotLinkedError(error?.message);
       }
       console.error("Supabase session auth error:", error);

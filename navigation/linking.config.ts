@@ -160,10 +160,14 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // 'auth-callback' is expo-web-browser's OAuth redirect target, already
     // consumed by signInWithGoogle() — it must never be treated as a profile
     // username, and must never trigger a navigation reset that could unmount
-    // the in-progress sign-in screen.
-    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback'];
-    if (segments[0] === 'auth-callback') {
-      logger.info('Ignoring OAuth callback deep link (already consumed by signInWithGoogle)', { path });
+    // the in-progress sign-in screen. 'auth' is the same situation for
+    // @web3auth/react-native-sdk's connectTo() redirect (see
+    // libs/legacy-web3auth.ts, reusing the pre-migration app's already
+    // dashboard-whitelisted redirect path) — already consumed by that
+    // promise resolving.
+    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth'];
+    if (segments[0] === 'auth-callback' || segments[0] === 'auth') {
+      logger.info('Ignoring OAuth callback deep link (already consumed in-flight)', { path });
       return undefined;
     }
     if (

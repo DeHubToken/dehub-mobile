@@ -26,7 +26,7 @@ import { getSigningProvider } from "../libs/provider.registry";
 import { useProviderLifecycle, type EIP1193Provider, type ProviderStatus } from "../hooks/useProviderLifecycle";
 import { useBalances } from "../hooks/useBalances";
 import { useAuthBoot } from "../hooks/useAuthBoot";
-import { useAuthSession } from "../hooks/useAuthSession";
+import { useAuthSession, type SupabaseSessionExchangeResult } from "../hooks/useAuthSession";
 import FullScreenLoader from "../components/FullScreenLoader";
 import { toastSuccess, toastError } from "../libs";
 import {
@@ -134,7 +134,12 @@ interface AuthContextType {
    * account matches it); false means the caller should fall back to
    * signInWithWallet (which is what establishes the link on first login).
    */
-  signInWithSupabaseSession: (supabaseAccessToken: string, chainId: number, expectedAddress?: string) => Promise<boolean>;
+  signInWithSupabaseSession: (
+    supabaseAccessToken: string,
+    chainId: number,
+    expectedAddress?: string,
+    supabaseUserId?: string
+  ) => Promise<SupabaseSessionExchangeResult>;
   needsUsername: boolean;
   provisionalUser: any | null;
   provisionalToken: string | null; // deprecated (token stored early)
@@ -195,7 +200,12 @@ interface AuthActionsContextType {
    * account matches it); false means the caller should fall back to
    * signInWithWallet (which is what establishes the link on first login).
    */
-  signInWithSupabaseSession: (supabaseAccessToken: string, chainId: number, expectedAddress?: string) => Promise<boolean>;
+  signInWithSupabaseSession: (
+    supabaseAccessToken: string,
+    chainId: number,
+    expectedAddress?: string,
+    supabaseUserId?: string
+  ) => Promise<SupabaseSessionExchangeResult>;
   completeUsername: (finalUser: User) => void;
   refreshUser: () => Promise<void>;
   requireAuth: (action: () => void) => void;
@@ -369,6 +379,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setShowSignInModal,
     getSigningProvider,
     ensureProvider,
+    forceReinitProvider,
     adoptProvider,
     fetchAndStoreBalances,
     clearAuthData,
