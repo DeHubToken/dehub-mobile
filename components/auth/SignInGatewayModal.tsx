@@ -17,6 +17,8 @@ import { getPreferredChainId } from "../../libs/auth.utils";
 import {
   sendEmailOtp,
   verifyEmailOtp,
+  sendPhoneOtp,
+  verifyPhoneOtp,
   signInWithGoogle,
   signInWithApple,
   getSupabaseAccessToken,
@@ -56,8 +58,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   const { isWalletLoading, handleWalletConnect } = useWalletAuth();
   const [isLocalLoading, setIsLocalLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
-  const [authStep, setAuthStep] = useState<"main" | "email-code">("main");
+  const [authStep, setAuthStep] = useState<"main" | "email-code" | "phone-code">("main");
   const [pendingEmail, setPendingEmail] = useState("");
+  const [pendingPhone, setPendingPhone] = useState("");
   // Set when resolveEvmWalletForIdentity finds a Supabase-backed wallet that
   // needs unlocking (password or biometric), or no wallet at all (needs setup
   // for a new one). Cleared once WalletSetupScreen succeeds or is cancelled.
@@ -331,6 +334,44 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
     handleEmailSubmit(pendingEmail);
   }, [pendingEmail, handleEmailSubmit]);
 
+  const handlePhoneSubmit = useCallback(async (phone: string) => {
+    setIsLocalLoading(true);
+    setCurrentProvider("phone");
+    setInlineError(null);
+    try {
+      await sendPhoneOtp(phone);
+      setPendingPhone(phone);
+      setAuthStep("phone-code");
+    } catch (e: any) {
+      console.error("[SignInGatewayModal] Phone OTP send error", e);
+      setInlineError(e?.message || "Could not send code. Please retry.");
+    } finally {
+      setIsLocalLoading(false);
+      setCurrentProvider("");
+    }
+  }, []);
+
+  const handlePhoneCodeSubmit = useCallback(
+    async (code: string) => {
+      setIsLocalLoading(true);
+      setInlineError(null);
+      try {
+        const supabaseUserId = await verifyPhoneOtp(pendingPhone, code);
+        await runProvisionAndSignIn(supabaseUserId);
+      } catch (e: any) {
+        console.error("[SignInGatewayModal] Phone code verify error", e);
+        setInlineError(e?.message || "Invalid code. Please retry.");
+      } finally {
+        setIsLocalLoading(false);
+      }
+    },
+    [pendingPhone, runProvisionAndSignIn]
+  );
+
+  const handleResendPhoneCode = useCallback(() => {
+    handlePhoneSubmit(pendingPhone);
+  }, [pendingPhone, handlePhoneSubmit]);
+
   return (
     <GlassModal
       visible={visible}
@@ -385,16 +426,26 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
               onGoogle={handleGoogleLogin}
               onApple={handleAppleLogin}
               onEmailSubmit={handleEmailSubmit}
+              onPhoneSubmit={handlePhoneSubmit}
               onConnectWallet={handleWalletConnect}
               busyProvider={isLocalLoading ? currentProvider : isWalletLoading ? "wallet" : undefined}
               disabled={isBusy}
             />
-          ) : (
+          ) : authStep === "email-code" ? (
             <EmailCodeEntry
               email={pendingEmail}
               onSubmit={handleEmailCodeSubmit}
               onBack={() => setAuthStep("main")}
               onResend={handleResendEmailCode}
+              loading={isLocalLoading}
+              disabled={authLoading}
+            />
+          ) : (
+            <EmailCodeEntry
+              email={pendingPhone}
+              onSubmit={handlePhoneCodeSubmit}
+              onBack={() => setAuthStep("main")}
+              onResend={handleResendPhoneCode}
               loading={isLocalLoading}
               disabled={authLoading}
             />
