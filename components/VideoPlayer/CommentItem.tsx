@@ -4,6 +4,7 @@ import Avatar from '../common/Avatar';
 import { getAvatarUrl } from '../../libs/misc';
 import { truncateAddress } from '../../libs/strings.util';
 import { useUserProfileSheet } from '../../context/UserProfileSheetContext';
+import { isAssistantAddress } from '../../libs/assistant';
 
 const DEFAULT_AVATAR = require('../../assets/default-avatar.png');
 
@@ -47,6 +48,15 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isReply = false, onR
 
   // Indent replies with an empty spacer equal to avatar (32) + gap (12) = 44px
   const replyIndent = 44;
+  // The bot comments under a normal account, so without this it is
+  // indistinguishable from a user who picked the handle. Built once and used in
+  // both layouts below.
+  const assistantBadge = isAssistantAddress(comment?.address) ? (
+    <View className="ml-1 px-1.5 py-0.5 rounded-md bg-white/15 border border-white/15">
+      <Text className="text-white/75 text-[10px] font-semibold">AI</Text>
+    </View>
+  ) : null;
+
   if (isReply) {
     return (
       <View className="w-full flex-row items-start justify-start">
@@ -58,6 +68,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isReply = false, onR
               <Text onPress={handleOpenProfile} className="text-theme-neutrals-200 text-[12px] font-medium" numberOfLines={1}>
                 {username}
               </Text>
+              {assistantBadge}
               <Text className="text-theme-neutrals-500 text-[12px] font-normal ml-1" numberOfLines={1}>{updatedAt}</Text>
             </View>
             <Text className="mt-1 text-theme-neutrals-200 text-[13px]">{contentText}</Text>
@@ -75,6 +86,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ comment, isReply = false, onR
           <Text onPress={handleOpenProfile} className="text-theme-neutrals-200 text-[12px] font-semibold" numberOfLines={1}>
             {username}
           </Text>
+          {assistantBadge}
           <Text className="text-theme-neutrals-500 text-[12px] font-normal ml-1" numberOfLines={1}>{updatedAt}</Text>
         </View>
         <Text className="mt-1 text-theme-neutrals-400 text-[13px]">{contentText}</Text>

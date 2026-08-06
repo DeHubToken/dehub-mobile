@@ -42,6 +42,8 @@ import { getAvatarUrl, toastError } from "../../libs";
 import { openCroppedImagePicker, getFileName, guessMime } from "../../libs/assets.util";
 import useKeyboard from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
+import { useAssistantPendingReply } from "../../hooks/useAssistantPendingReply";
+import { mentionsAssistant } from "../../libs/assistant";
 import { useCommentTipTotals } from "../../hooks/useCommentTipTotals";
 
 // Extended comment type for flat list with reply info
@@ -251,6 +253,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     setLoading(true);
     loadComments().finally(() => setLoading(false));
   }, [loadComments]);
+
+  // Tagging @assistant produces a real comment, but only once the model has
+  // answered — several seconds after the post returns. This keeps a placeholder
+  // in the thread and reloads until the reply lands.
+  const { isWaiting: isAssistantReplying, arm: armAssistantReply } =
+    useAssistantPendingReply(() => loadComments(true), flatComments);
 
   // Refresh
   const handleRefresh = useCallback(async () => {
@@ -676,6 +684,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
               })
             );
           }
+
+          // The bot has to call the model before its comment exists, so the
+          // thread needs to keep looking for it rather than assume it is there.
+          if (mentionsAssistant(text)) armAssistantReply();
         }
       } catch (e) {
         console.error("Failed to post/edit comment:", e);
@@ -693,7 +705,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         setPosting(false);
       }
     });
-  }, [inputText, posting, requireAuth, tokenId, replyingTo, editingComment, loadComments, user, userAddress]);
+  }, [inputText, posting, requireAuth, tokenId, replyingTo, editingComment, loadComments, user, userAddress, armAssistantReply]);
 
   // Handle user press
   const handleUserPress = useCallback((userId: string) => {
@@ -888,6 +900,16 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           }
           viewabilityConfig={viewabilityConfig}
           onViewableItemsChanged={onViewableItemsChanged}
+          ListHeaderComponent={
+            isAssistantReplying ? (
+              <View className="flex-row items-center py-3">
+                <ActivityIndicator size="small" color="#8B8D90" />
+                <Text style={{ color: "#8B8D90", fontSize: 13, marginLeft: 8 }}>
+                  DeHub Assistant is replying…
+                </Text>
+              </View>
+            ) : null
+          }
           ListEmptyComponent={
             <View className="flex-1 items-center justify-center py-16">
               <Text style={{ color: "#8B8D90", fontSize: 14 }}>
@@ -967,7 +989,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 value={inputText}
                 onChangeText={mentions.handleChangeText}
                 onSelectionChange={mentions.handleSelectionChange}
-                placeholder={editingComment ? "Edit your comment..." : replyingTo ? "Write a reply..." : "Add a reply..."}
+                // Tagging the bot is invisible unless something says so — this
+                // is the only discovery surface the thread has.
+                placeholder={editingComment ? "Edit your comment..." : replyingTo ? "Write a reply..." : "Add a reply, or tag @assistant to ask"}
                 placeholderTextColor="#6F7174"
                 style={{ flex: 1, color: "#F9FBFF", fontSize: 14, maxHeight: 80, paddingVertical: 0 }}
                 maxLength={500}
