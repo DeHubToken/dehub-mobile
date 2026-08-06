@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { View, type NativeSyntheticEvent, type NativeScrollEvent } from 'react-native';
-import InfiniteFeed from '../Feed/InfiniteFeed';
+import InfiniteFeed, { type InfiniteFeedRenderItemInfo } from '../Feed/InfiniteFeed';
 import FeedCard from '../Home/FeedCard';
 import { getUnifiedFeed, type UnifiedFeedItem } from '../../services/feed.unified.service';
 import type { GetNFTsResponse, GetNFTsResult } from '../../services/nft.service';
@@ -47,6 +47,22 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
     [address],
   );
 
+  // Stable identity: InfiniteFeed's own renderItem useCallback lists this in
+  // its deps, so a fresh arrow per render invalidated it and re-rendered every
+  // cell in the window on any re-render of this route.
+  const renderItem = useCallback(
+    ({ item, isVisible }: InfiniteFeedRenderItemInfo) => (
+      <View className="px-4">
+        <FeedCard
+          item={item as UnifiedFeedItem}
+          isVisible={isVisible}
+          onBeforeNavigate={onBeforeNavigate}
+        />
+      </View>
+    ),
+    [onBeforeNavigate],
+  );
+
   return (
     <View className="flex-1">
       <InfiniteFeed
@@ -69,15 +85,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
         )}
         // isVisible must be forwarded or FeedCard falls back to its own
         // `true` default and every windowed row attaches a video player.
-        renderItem={({ item, isVisible }) => (
-          <View className="px-4">
-            <FeedCard
-              item={item as UnifiedFeedItem}
-              isVisible={isVisible}
-              onBeforeNavigate={onBeforeNavigate}
-            />
-          </View>
-        )}
+        renderItem={renderItem}
       />
     </View>
   );
