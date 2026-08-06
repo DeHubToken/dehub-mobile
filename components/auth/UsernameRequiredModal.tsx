@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, type ViewStyle } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import GlassModal from '../ui/GlassModal';
+import { AuthButton, AuthField, authColors, authText } from './AuthControls';
 import { AuthService } from '../../services/auth.service';
 import { useDebounceCallback } from '../../hooks/useDebounceCallback';
 import { toastError, toastSuccess } from '../../libs';
 import { setAuthToken, setAuthUser } from '../../libs/auth.utils';
 import { User } from '../../context/AuthContext';
+
+const statusRow: ViewStyle = { flexDirection: 'row', alignItems: 'center', gap: 6 };
 
 interface Props {
   visible: boolean;
@@ -69,80 +73,77 @@ export const UsernameRequiredModal: React.FC<Props> = ({ visible, provisionalUse
 
   return (
     <GlassModal visible={visible} onClose={() => {}} presentation="center" blurIntensity={50}>
-      <View className="items-center justify-center px-6 py-6">
-        <View className="w-full rounded-xl p-6 bg-transparent">
-          <Text className="text-white text-xl font-semibold mb-4">Set your profile</Text>
-          <Text className="text-neutral-400 text-sm mb-4">Choose a username and display name to continue. You can change them later.</Text>
-          {/* Uncontrolled: passing `value` back causes char duplication on Android
-              when re-renders (BlurView) lag behind fast typing */}
-          <TextInput
-            defaultValue={username}
-            onChangeText={handleChange}
-            autoCapitalize="none"
-            autoCorrect={false}
-            placeholder="Username"
-            placeholderTextColor="#666"
-            className="border border-neutral-700 rounded-md px-4 py-3 text-white"
-          />
-          <View className="mt-2 min-h-[32px]">
-            {checking && (
-              <View className="flex-row items-center">
-                <ActivityIndicator size="small" color="#888" />
-                <Text className="text-xs text-neutral-400 ml-2">Checking availability…</Text>
-              </View>
-            )}
-            {!checking && available === true && username.length > 0 && (
-                <View>
-                <View className="flex-row items-center mb-1">
-                   <View className="w-2 h-2 rounded-full bg-green-500 mr-2" />
-                  <Text className="text-xs text-green-400 font-medium">Username is available</Text>
-                </View>
-                <Text className="text-[10px] text-neutral-500">You can use this username.</Text>
-              </View>
-            )}
-            {!checking && available === false && username.length > 0 && (
-              <View>
-                <View className="flex-row items-center mb-1">
-                  <View className="w-2 h-2 rounded-full bg-red-500 mr-2" />
-                  <Text className="text-xs text-red-400 font-medium">Username taken</Text>
-                </View>
-                <Text className="text-[10px] text-neutral-500">Try adding numbers or an underscore.</Text>
-              </View>
-            )}
-            {available === null && !checking && username.length === 0 && (
-              <Text className="text-[10px] text-neutral-500">3-30 chars: letters, numbers, underscore.</Text>
-            )}
-          </View>
-          <View className="mt-4" />
-          <TextInput
-            defaultValue={displayName}
-            onChangeText={handleDisplayNameChange}
-            autoCapitalize="words"
-            autoCorrect={false}
-            placeholder="Display name"
-            placeholderTextColor="#666"
-            className="border border-neutral-700 rounded-md px-4 py-3 text-white"
-          />
-          <View className="mt-2 min-h-[20px]">
-            {!isDisplayNameValid && displayName.length > 0 && (
-              <Text className="text-[10px] text-red-400">Display name must be 2-50 characters.</Text>
-            )}
-            {displayName.length === 0 && (
-              <Text className="text-[10px] text-neutral-500">Your public name shown on your profile.</Text>
-            )}
-          </View>
-          <TouchableOpacity
-            disabled={disabled}
-            onPress={handleSubmit}
-            className={`mt-4 py-3 rounded-md items-center ${disabled ? 'bg-neutral-700' : 'bg-theme-accent'}`}
-          >
-            {submitting ? (
-              <ActivityIndicator color="#fff" />
-            ) : (
-              <Text className={`font-semibold ${disabled ? 'text-white' : 'text-theme-accent-foreground'}`}>Continue</Text>
-            )}
-          </TouchableOpacity>
+      <View style={{ padding: 24 }}>
+        <Text style={authText.modalTitle}>Set your profile</Text>
+        <Text style={[authText.body, { marginTop: 8, marginBottom: 20 }]}>
+          Choose a username and display name to continue. You can change them later.
+        </Text>
+        {/* Uncontrolled: passing `value` back causes char duplication on Android
+            when re-renders (BlurView) lag behind fast typing */}
+        <AuthField
+          defaultValue={username}
+          onChangeText={handleChange}
+          autoCapitalize="none"
+          autoCorrect={false}
+          placeholder="Username"
+          accessibilityLabel="Username"
+        />
+        <View style={{ marginTop: 8, minHeight: 32 }}>
+          {checking && (
+            <View style={statusRow}>
+              <ActivityIndicator size="small" color={authColors.subtle} />
+              <Text style={authText.caption}>Checking availability…</Text>
+            </View>
+          )}
+          {!checking && available === true && username.length > 0 && (
+            <View style={statusRow}>
+              <Ionicons name="checkmark-circle" size={14} color={authColors.label} />
+              <Text style={[authText.caption, { color: authColors.label }]}>
+                Username is available
+              </Text>
+            </View>
+          )}
+          {!checking && available === false && username.length > 0 && (
+            <View style={statusRow}>
+              <Ionicons name="close-circle" size={14} color={authColors.danger} />
+              <Text style={[authText.caption, { color: authColors.danger }]}>
+                Username taken — try adding numbers or an underscore
+              </Text>
+            </View>
+          )}
+          {available === null && !checking && username.length === 0 && (
+            <Text style={authText.caption}>3-30 chars: letters, numbers, underscore.</Text>
+          )}
         </View>
+
+        <AuthField
+          defaultValue={displayName}
+          onChangeText={handleDisplayNameChange}
+          autoCapitalize="words"
+          autoCorrect={false}
+          placeholder="Display name"
+          accessibilityLabel="Display name"
+          containerStyle={{ marginTop: 16 }}
+        />
+        <View style={{ marginTop: 8, minHeight: 20 }}>
+          {!isDisplayNameValid && displayName.length > 0 && (
+            <Text style={[authText.caption, { color: authColors.danger }]}>
+              Display name must be 2-50 characters.
+            </Text>
+          )}
+          {displayName.length === 0 && (
+            <Text style={authText.caption}>Your public name shown on your profile.</Text>
+          )}
+        </View>
+
+        <AuthButton
+          variant="primary"
+          label="Continue"
+          onPress={handleSubmit}
+          disabled={disabled}
+          loading={submitting}
+          style={{ marginTop: 16 }}
+        />
       </View>
     </GlassModal>
   );

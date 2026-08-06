@@ -1,11 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  TextInput,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, Text, TextInput } from "react-native";
+import { AuthButton, AuthField, AuthTextButton, authText } from "./AuthControls";
 
 interface EmailCodeEntryProps {
   email: string;
@@ -33,56 +28,52 @@ const EmailCodeEntry: React.FC<EmailCodeEntryProps> = ({
 
   const canSubmit = code.trim().length >= 6 && !loading && !disabled;
 
-  return (
-    <View className="w-full">
-      <Text className="text-gray-400 text-sm mb-3 text-center">
-        Enter the code sent to{"\n"}
-        <Text className="text-white">{email}</Text>
-      </Text>
-      <View
-        className="flex-row items-center border border-neutral-700 rounded-2xl bg-neutral-800 px-4"
-        style={{ width: "100%", height: 62 }}
-      >
-        <Ionicons name="key" size={20} color="#FFFFFF" style={{ marginRight: 10 }} />
-        <TextInput
-          ref={inputRef}
-          className="flex-1 text-xl text-white"
-          placeholder="6-digit code"
-          placeholderTextColor="#6B7280"
-          value={code}
-          onChangeText={setCode}
-          editable={!loading && !disabled}
-          keyboardType="number-pad"
-          maxLength={6}
-          autoFocus
-          style={{
-            paddingVertical: 0,
-            color: "#fff",
-            backgroundColor: "transparent",
-          }}
-        />
-        <TouchableOpacity
-          onPress={() => canSubmit && onSubmit(code.trim())}
-          disabled={!canSubmit}
-          className="ml-2"
-          accessibilityLabel="Verify code"
-        >
-          <Text
-            className="text-theme-accent font-medium text-base"
-            style={{ opacity: canSubmit ? 1 : 0.5 }}
-          >
-            {loading ? "..." : "Verify"}
-          </Text>
-        </TouchableOpacity>
-      </View>
+  const handleSubmit = () => {
+    if (canSubmit) onSubmit(code.trim());
+  };
 
-      <View className="flex-row justify-between mt-3">
-        <TouchableOpacity onPress={onBack} disabled={loading} accessibilityLabel="Back">
-          <Text className="text-gray-400 text-sm">Back</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={onResend} disabled={loading} accessibilityLabel="Resend code">
-          <Text className="text-theme-accent text-sm">Resend code</Text>
-        </TouchableOpacity>
+  return (
+    <View style={{ width: "100%", gap: 12 }}>
+      <Text style={[authText.body, { textAlign: "center" }]}>
+        Enter the code sent to{"\n"}
+        <Text style={authText.emphasis}>{email}</Text>
+      </Text>
+
+      <AuthField
+        ref={inputRef}
+        icon="key"
+        value={code}
+        onChangeText={setCode}
+        placeholder="6-digit code"
+        accessibilityLabel="Verification code"
+        editable={!loading && !disabled}
+        keyboardType="number-pad"
+        textContentType="oneTimeCode"
+        autoComplete="one-time-code"
+        maxLength={6}
+        autoFocus
+        returnKeyType="go"
+        onSubmitEditing={handleSubmit}
+        style={{ letterSpacing: 4 }}
+      />
+
+      <AuthButton
+        variant="primary"
+        label="Verify"
+        onPress={handleSubmit}
+        disabled={code.trim().length < 6 || disabled}
+        loading={loading}
+      />
+
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <AuthTextButton label="Back" onPress={onBack} disabled={loading} align="start" />
+        <AuthTextButton
+          label="Resend code"
+          onPress={onResend}
+          disabled={loading}
+          tone="default"
+          align="end"
+        />
       </View>
     </View>
   );
