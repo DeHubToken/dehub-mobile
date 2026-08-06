@@ -1,7 +1,17 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, TextInput } from "react-native";
+import { View, Text, ScrollView, ActivityIndicator, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "../ui/GlassModal";
+import {
+  AUTH_CONTROL_HEIGHT,
+  AUTH_RADIUS,
+  AuthButton,
+  AuthErrorNotice,
+  AuthField,
+  AuthTextButton,
+  authColors,
+  authText,
+} from "./AuthControls";
 import { WEBSITE_LINK } from "../../config/links";
 import { openInApp } from "../../libs/links.utils";
 import { startLegacyMigration, type LegacyProvider } from "../../libs/legacy-web3auth";
@@ -97,91 +107,100 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
   return (
     <GlassModal visible={visible} onClose={handleClose} presentation="bottom" blurIntensity={50} maxHeight="88%">
       <ScrollView className="px-6 pt-6 pb-8" contentContainerStyle={{ flexGrow: 1 }}>
-        <View className="flex-row items-center mb-3" style={{ gap: 8 }}>
-          <Ionicons name="warning-outline" size={22} color="#fbbf24" />
-          <Text className="text-white text-xl font-bold">Existing account found</Text>
+        <View style={styles.titleRow}>
+          <Ionicons name="warning-outline" size={22} color={authColors.label} />
+          <Text style={authText.modalTitle}>Existing account found</Text>
         </View>
-        <Text className="text-theme-neutrals-400 text-sm mb-4">
+        <Text style={[authText.body, { marginBottom: 16 }]}>
           This login is linked to an older DeHub account. Creating a new wallet here will NOT
           recover it — you'd end up with a separate, empty account instead.
         </Text>
 
-        <View className="rounded-xl border border-white/10 bg-white/5 p-3" style={{ gap: 8 }}>
+        <View style={styles.accountCard}>
           {accounts.map((a, i) => (
-            <View key={i} className="flex-row items-center justify-between">
-              <Text className="text-white text-sm">
+            <View key={i} style={styles.accountRow}>
+              <Text style={styles.accountName}>
                 {a.username ? `@${a.username}` : "Unnamed account"}
                 {a.signupMethod ? ` · ${a.signupMethod}` : ""}
               </Text>
               {typeof a.badgeBalance === "number" && (
-                <Text className="text-green-300 text-xs">{a.badgeBalance.toLocaleString()} DHB</Text>
+                <Text style={authText.caption}>{a.badgeBalance.toLocaleString()} DHB</Text>
               )}
             </View>
           ))}
         </View>
 
-        <Text className="text-theme-neutrals-400 text-sm mt-4 mb-2">
+        <Text style={[authText.body, { marginTop: 16, marginBottom: 12 }]}>
           Sign in with the OLD login for the account you want back — this reconstructs its wallet
           right here on your phone:
         </Text>
 
         {busyProvider ? (
-          <View className="flex-row items-center py-3" style={{ gap: 8 }}>
-            <ActivityIndicator color="#fff" />
-            <Text className="text-theme-neutrals-400 text-sm">Retrieving old wallet…</Text>
+          <View style={styles.busyRow}>
+            <ActivityIndicator color={authColors.label} />
+            <Text style={authText.body}>Retrieving old wallet…</Text>
           </View>
         ) : (
           <View style={{ gap: 8 }}>
             {PROVIDERS.map(({ key, label }) => {
               const known = accountFor(key);
+              // A known match is marked with a filled chip rather than a green
+              // border — the design system is monochrome, and colour alone is
+              // not an accessible signal anyway.
               return (
-                <TouchableOpacity
+                <AuthButton
                   key={key}
+                  align="start"
+                  label={`Old account: ${label}`}
                   onPress={() => handleProviderPress(key)}
                   disabled={!!busyProvider}
-                  className={`rounded-xl px-4 py-3 flex-row items-center justify-between bg-white/10 border ${
-                    known ? "border-green-400/50" : "border-white/10"
-                  }`}
-                >
-                  <Text className="text-white text-sm font-medium">Old account: {label}</Text>
-                  {known && (
-                    <Text className="text-green-300 text-xs">
-                      {known.username ? `@${known.username}` : ""}
-                      {typeof known.badgeBalance === "number" ? ` · ${known.badgeBalance.toLocaleString()} DHB` : ""}
-                    </Text>
-                  )}
-                </TouchableOpacity>
+                  style={known ? styles.matchedButton : undefined}
+                  accessibilityLabel={
+                    known
+                      ? `Recover old ${label} account${known.username ? ` @${known.username}` : ""}`
+                      : `Recover old ${label} account`
+                  }
+                  trailing={
+                    known ? (
+                      <View style={styles.matchChip}>
+                        <Ionicons name="checkmark" size={12} color={authColors.onPrimary} />
+                        <Text style={styles.matchChipLabel} numberOfLines={1}>
+                          {known.username ? `@${known.username}` : "Found"}
+                          {typeof known.badgeBalance === "number"
+                            ? ` · ${known.badgeBalance.toLocaleString()} DHB`
+                            : ""}
+                        </Text>
+                      </View>
+                    ) : null
+                  }
+                />
               );
             })}
-            <View className="flex-row items-center" style={{ gap: 8 }}>
-              <View
-                className={`flex-1 flex-row items-center rounded-xl border bg-theme-neutrals-900 px-3 py-2 ${
-                  emailAccount ? "border-green-400/50" : "border-theme-neutrals-700"
-                }`}
-              >
-                <TextInput
-                  value={email}
-                  onChangeText={setEmail}
-                  placeholder="Old account email"
-                  placeholderTextColor="#6B7280"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  keyboardType="email-address"
-                  className="flex-1 text-white text-sm"
-                />
-              </View>
-              <TouchableOpacity
+            <View style={styles.emailRow}>
+              <AuthField
+                containerStyle={{ flex: 1 }}
+                value={email}
+                onChangeText={setEmail}
+                placeholder="Old account email"
+                accessibilityLabel="Old account email"
+                autoCapitalize="none"
+                autoCorrect={false}
+                keyboardType="email-address"
+                textContentType="emailAddress"
+              />
+              <AuthButton
+                label="Recover"
+                icon="arrow-forward-outline"
                 onPress={() => handleProviderPress("email_passwordless", email)}
                 disabled={!!busyProvider || !email}
-                className="rounded-xl px-4 py-3 items-center justify-center bg-white/10 border border-white/10"
-                style={{ opacity: !email ? 0.5 : 1 }}
-              >
-                <Ionicons name="arrow-down-outline" size={18} color="#FFFFFF" />
-              </TouchableOpacity>
+                accessibilityLabel="Recover old account from this email"
+                style={styles.emailSubmit}
+              />
             </View>
             {emailAccount && (
-              <Text className="text-green-300 text-[10px] px-1">
-                {emailAccount.username ? `@${emailAccount.username}` : ""}
+              <Text style={[authText.caption, { paddingHorizontal: 4 }]}>
+                Match found:{" "}
+                {emailAccount.username ? `@${emailAccount.username}` : "this email"}
                 {typeof emailAccount.badgeBalance === "number"
                   ? ` · ${emailAccount.badgeBalance.toLocaleString()} DHB`
                   : ""}
@@ -190,34 +209,92 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
           </View>
         )}
 
-        {error && <Text className="text-red-400 text-xs mt-3">{error}</Text>}
+        <AuthErrorNotice message={error} style={{ marginTop: 12 }} />
 
-        <Text className="text-theme-neutrals-500 text-xs mt-4 mb-2">
+        <Text style={[authText.caption, { marginTop: 16, marginBottom: 12 }]}>
           Provider not working, or Twitter/Discord/email not shown above? Recover it on the
           website instead.
         </Text>
-        <TouchableOpacity
+        <AuthButton
+          icon="open-outline"
+          label="Recover on dehub.io"
           onPress={() => openInApp(WEBSITE_LINK)}
           disabled={!!busyProvider}
-          className="rounded-xl px-4 py-3 items-center active:opacity-80 bg-neutral-800 border border-neutral-700 flex-row justify-center"
-          style={{ gap: 8 }}
-        >
-          <Ionicons name="open-outline" size={18} color="#FFFFFF" />
-          <Text className="text-white text-sm font-medium">Recover on dehub.io</Text>
-        </TouchableOpacity>
+        />
 
-        <TouchableOpacity onPress={onCreateAnyway} disabled={!!busyProvider} className="mt-4 items-center py-2">
-          <Text className="text-theme-neutrals-500 text-xs">
-            I don't want that account — create a new one anyway
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={handleClose} disabled={!!busyProvider} className="mt-2 items-center py-2">
-          <Text className="text-theme-neutrals-500 text-xs">Cancel</Text>
-        </TouchableOpacity>
+        <AuthTextButton
+          label="I don't want that account — create a new one anyway"
+          onPress={onCreateAnyway}
+          disabled={!!busyProvider}
+          style={{ marginTop: 16 }}
+        />
+        <AuthTextButton label="Cancel" onPress={handleClose} disabled={!!busyProvider} />
       </ScrollView>
     </GlassModal>
   );
 };
+
+const styles = StyleSheet.create({
+  titleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    marginBottom: 12,
+  },
+  accountCard: {
+    gap: 8,
+    padding: 12,
+    borderRadius: AUTH_RADIUS,
+    backgroundColor: authColors.field,
+    borderWidth: 1,
+    borderColor: authColors.fieldBorder,
+  },
+  accountRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 8,
+  },
+  accountName: {
+    color: authColors.label,
+    fontSize: 14,
+    flexShrink: 1,
+  },
+  busyRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    paddingVertical: 12,
+  },
+  matchedButton: {
+    borderColor: "rgba(255,255,255,0.45)",
+  },
+  matchChip: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+    maxWidth: "50%",
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 999,
+    backgroundColor: authColors.primary,
+  },
+  matchChipLabel: {
+    color: authColors.onPrimary,
+    fontSize: 11,
+    fontWeight: "600",
+    flexShrink: 1,
+  },
+  emailRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  emailSubmit: {
+    width: "auto",
+    minHeight: AUTH_CONTROL_HEIGHT,
+    paddingHorizontal: 14,
+  },
+});
 
 export default LegacyAccountWarningModal;

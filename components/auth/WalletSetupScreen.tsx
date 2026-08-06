@@ -1,8 +1,18 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, ScrollView } from "react-native";
+import { View, Text, Pressable, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "../ui/GlassModal";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";
+import {
+  AUTH_RADIUS,
+  AuthButton,
+  AuthErrorNotice,
+  AuthField,
+  AuthIconButton,
+  AuthTextButton,
+  authColors,
+  authText,
+} from "./AuthControls";
 import {
   assessLocal,
   assessPassword,
@@ -45,8 +55,14 @@ export interface WalletSetupScreenProps {
   onSwitchAccount?: (privateKey: string, password: string) => Promise<void>;
 }
 
-const inputWrapClass =
-  "flex-row items-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-900 px-3 py-2";
+/** Shared reveal toggle for every password field on this screen. */
+const RevealToggle: React.FC<{ shown: boolean; onToggle: () => void }> = ({ shown, onToggle }) => (
+  <AuthIconButton
+    icon={shown ? "eye-off-outline" : "eye-outline"}
+    onPress={onToggle}
+    accessibilityLabel={shown ? "Hide password" : "Show password"}
+  />
+);
 
 /**
  * Full wallet setup/unlock experience — the mobile counterpart of dehubweb's
@@ -288,113 +304,96 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ flexGrow: 1 }}
         >
-          <Text className="text-white text-2xl font-bold mb-2">{title}</Text>
+          <Text style={[authText.title, { marginBottom: 8 }]}>{title}</Text>
 
           {mode === "create" && (
             <>
-              <Text className="text-theme-neutrals-400 text-sm mb-5">
+              <Text style={[authText.body, { marginBottom: 20 }]}>
                 To ensure only you can post or transact with this account, protect your wallet with a
                 password or your device's biometrics.
               </Text>
 
               {biometricAvailable && (
-                <View className="flex-row rounded-xl bg-white/5 p-1 mb-5" style={{ gap: 4 }}>
-                  <TouchableOpacity
-                    onPress={() => setProtectionChoice("biometric")}
-                    className="flex-1 h-10 rounded-lg items-center justify-center"
-                    style={{ backgroundColor: protectionChoice === "biometric" ? "#ffffff26" : "transparent" }}
-                  >
-                    <Text className="text-white text-sm">Biometric</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => setProtectionChoice("password")}
-                    className="flex-1 h-10 rounded-lg items-center justify-center"
-                    style={{ backgroundColor: protectionChoice === "password" ? "#ffffff26" : "transparent" }}
-                  >
-                    <Text className="text-white text-sm">Password</Text>
-                  </TouchableOpacity>
+                <View style={styles.segment} accessibilityRole="tablist">
+                  {(["biometric", "password"] as const).map((choice) => {
+                    const active = protectionChoice === choice;
+                    return (
+                      <Pressable
+                        key={choice}
+                        onPress={() => setProtectionChoice(choice)}
+                        accessibilityRole="tab"
+                        accessibilityState={{ selected: active }}
+                        style={[styles.segmentItem, active && styles.segmentItemActive]}
+                      >
+                        <Text style={[styles.segmentLabel, active && styles.segmentLabelActive]}>
+                          {choice === "biometric" ? "Biometric" : "Password"}
+                        </Text>
+                      </Pressable>
+                    );
+                  })}
                 </View>
               )}
 
               {protectionChoice === "biometric" && biometricAvailable ? (
                 <View>
-                  <View className="rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-900 p-4 flex-row items-start" style={{ gap: 10 }}>
-                    <Ionicons name="finger-print" size={22} color="#FFFFFF" />
-                    <Text className="text-theme-neutrals-400 text-xs flex-1">
+                  <View style={styles.note}>
+                    <Ionicons name="finger-print" size={22} color={authColors.label} />
+                    <Text style={[authText.caption, { flex: 1 }]}>
                       Unlock with your fingerprint or face on THIS device — nothing to type or remember.
                       This is device-only: it can't recover your wallet on a different phone. Use a
                       password instead if you need that.
                     </Text>
                   </View>
-                  {error && <Text className="text-red-400 text-xs mt-3">{error}</Text>}
-                  <TouchableOpacity
+                  <AuthErrorNotice message={error} style={{ marginTop: 12 }} />
+                  <AuthButton
+                    variant="primary"
+                    icon="finger-print"
+                    label="Secure with biometrics"
                     onPress={handleCreateWithBiometric}
-                    disabled={busy}
-                    className="mt-4 rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent flex-row justify-center"
-                    style={{ opacity: busy ? 0.5 : 1, gap: 8 }}
-                  >
-                    {busy ? (
-                      <ActivityIndicator color="#fff" />
-                    ) : (
-                      <>
-                        <Ionicons name="finger-print" size={18} color="#FFFFFF" />
-                        <Text className="text-white text-sm font-medium">Secure with biometrics</Text>
-                      </>
-                    )}
-                  </TouchableOpacity>
+                    loading={busy}
+                    style={{ marginTop: 16 }}
+                  />
                 </View>
               ) : (
                 <View>
-                  <Text className="text-theme-neutrals-500 text-xs mb-2">
-                    Password (min {MIN_PASSWORD_LENGTH} chars)
-                  </Text>
-                  <View className={inputWrapClass}>
-                    <TextInput
-                      value={password}
-                      onChangeText={setPassword}
-                      placeholder="Password"
-                      placeholderTextColor="#6B7280"
-                      autoCapitalize="none"
-                      autoCorrect={false}
-                      secureTextEntry={!showPw}
-                      className="flex-1 text-white text-sm"
-                      autoFocus
-                    />
-                    <TouchableOpacity onPress={() => setShowPw((s) => !s)} className="pl-2 py-1">
-                      <Ionicons name={showPw ? "eye-off-outline" : "eye-outline"} size={18} color="#9CA3AF" />
-                    </TouchableOpacity>
-                  </View>
+                  <AuthField
+                    label={`Password (min ${MIN_PASSWORD_LENGTH} chars)`}
+                    value={password}
+                    onChangeText={setPassword}
+                    placeholder="Password"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    secureTextEntry={!showPw}
+                    textContentType="newPassword"
+                    autoFocus
+                    trailing={<RevealToggle shown={showPw} onToggle={() => setShowPw((s) => !s)} />}
+                  />
                   <PasswordStrengthMeter assessment={liveAssessment} />
 
-                  <View className={`${inputWrapClass} mt-3`}>
-                    <TextInput
-                      value={confirm}
-                      onChangeText={setConfirm}
-                      placeholder="Confirm password"
-                      placeholderTextColor="#6B7280"
-                      autoCapitalize="none"
-                      autoCorrect={false}
-                      secureTextEntry={!showPw}
-                      className="flex-1 text-white text-sm"
-                    />
-                  </View>
+                  <AuthField
+                    value={confirm}
+                    onChangeText={setConfirm}
+                    placeholder="Confirm password"
+                    accessibilityLabel="Confirm password"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    secureTextEntry={!showPw}
+                    textContentType="newPassword"
+                    containerStyle={{ marginTop: 12 }}
+                  />
 
-                  {error && <Text className="text-red-400 text-xs mt-3">{error}</Text>}
+                  <AuthErrorNotice message={error} style={{ marginTop: 12 }} />
 
-                  <TouchableOpacity
+                  <AuthButton
+                    variant="primary"
+                    label="Secure wallet"
                     onPress={handleCreateWithPassword}
-                    disabled={!canSubmitPassword || busy}
-                    className="mt-4 rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent"
-                    style={{ opacity: !canSubmitPassword || busy ? 0.5 : 1 }}
-                  >
-                    {busy ? (
-                      <ActivityIndicator color="#fff" />
-                    ) : (
-                      <Text className="text-white text-sm font-medium">Secure wallet</Text>
-                    )}
-                  </TouchableOpacity>
+                    disabled={!canSubmitPassword}
+                    loading={busy}
+                    style={{ marginTop: 16 }}
+                  />
                   {busy && (
-                    <Text className="text-theme-neutrals-500 text-xs mt-3 text-center">
+                    <Text style={[authText.caption, { marginTop: 12, textAlign: "center" }]}>
                       Securing your wallet — this can take up to a minute on some devices…
                     </Text>
                   )}
@@ -405,177 +404,147 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
 
           {mode === "web-passkey-sync" && request?.mode === "web-passkey-sync" && (
             <View>
-              <Text className="text-theme-neutrals-400 text-sm mb-4">
-                Your wallet uses <Text className="text-white font-medium">biometrics or a passkey on the web</Text>.
+              <Text style={[authText.body, { marginBottom: 16 }]}>
+                Your wallet uses <Text style={authText.emphasis}>biometrics or a passkey on the web</Text>.
                 That unlock stays in your browser — it does not sync to this phone, so we cannot prompt
                 for fingerprint here yet.
               </Text>
-              <Text className="text-theme-neutrals-400 text-sm mb-5">
+              <Text style={[authText.body, { marginBottom: 20 }]}>
                 To use this account on mobile, open dehub.io on your computer, sign in with the same
-                Google account, and <Text className="text-white font-medium">add a wallet password</Text>{" "}
+                Google account, and <Text style={authText.emphasis}>add a wallet password</Text>{" "}
                 (this saves an encrypted backup to the cloud). Then come back here and sign in again.
               </Text>
-              <Text className="text-theme-neutrals-500 text-xs mb-4">
+              <Text style={[authText.caption, { marginBottom: 16 }]}>
                 Wallet: {request.address.slice(0, 6)}…{request.address.slice(-4)}
               </Text>
-              <TouchableOpacity
+              <AuthButton
+                variant="primary"
+                icon="open-outline"
+                label="Open dehub.io"
                 onPress={() => openInApp(WEBSITE_LINK)}
-                className="rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent mb-3"
-              >
-                <Text className="text-white text-sm font-medium">Open dehub.io</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
+                style={{ marginBottom: 12 }}
+              />
+              <AuthButton
+                label="I added a password — try again"
                 onPress={handleClose}
-                className="rounded-xl px-4 py-3 items-center active:opacity-80 bg-neutral-800 border border-neutral-700"
-              >
-                <Text className="text-white text-sm font-medium">I added a password — try again</Text>
-              </TouchableOpacity>
+              />
             </View>
           )}
 
           {mode === "legacy-recovered" && request?.mode === "legacy-recovered" && (
             <View>
-              <Text className="text-theme-neutrals-400 text-sm mb-4">
+              <Text style={[authText.body, { marginBottom: 16 }]}>
                 Verified your old account{request.label ? ` (${request.label})` : ""} and recovered
                 its wallet. Set a password to protect it on this device — on this phone and
                 everywhere else, from now on.
               </Text>
               {legacyRecoveredAddress && (
-                <View className="rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-900 px-4 py-3 mb-4">
-                  <Text className="text-theme-neutrals-500 text-xs mb-1">Recovered wallet</Text>
-                  <Text className="text-white text-sm font-medium">
+                <View style={styles.summaryCard}>
+                  <Text style={[authText.caption, { marginBottom: 4 }]}>Recovered wallet</Text>
+                  <Text style={styles.summaryValue}>
                     {legacyRecoveredAddress.slice(0, 6)}…{legacyRecoveredAddress.slice(-4)}
                   </Text>
                 </View>
               )}
 
-              <Text className="text-theme-neutrals-500 text-xs mb-2">
-                New password (min {MIN_PASSWORD_LENGTH} chars)
-              </Text>
-              <View className={inputWrapClass}>
-                <TextInput
-                  value={password}
-                  onChangeText={setPassword}
-                  placeholder="Password"
-                  placeholderTextColor="#6B7280"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  secureTextEntry={!showPw}
-                  className="flex-1 text-white text-sm"
-                  autoFocus
-                />
-                <TouchableOpacity onPress={() => setShowPw((s) => !s)} className="pl-2 py-1">
-                  <Ionicons name={showPw ? "eye-off-outline" : "eye-outline"} size={18} color="#9CA3AF" />
-                </TouchableOpacity>
-              </View>
-              <View className={`${inputWrapClass} mt-3`}>
-                <TextInput
-                  value={confirm}
-                  onChangeText={setConfirm}
-                  placeholder="Confirm password"
-                  placeholderTextColor="#6B7280"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  secureTextEntry={!showPw}
-                  className="flex-1 text-white text-sm"
-                />
-              </View>
+              <AuthField
+                label={`New password (min ${MIN_PASSWORD_LENGTH} chars)`}
+                value={password}
+                onChangeText={setPassword}
+                placeholder="Password"
+                autoCapitalize="none"
+                autoCorrect={false}
+                secureTextEntry={!showPw}
+                textContentType="newPassword"
+                autoFocus
+                trailing={<RevealToggle shown={showPw} onToggle={() => setShowPw((s) => !s)} />}
+              />
+              <AuthField
+                value={confirm}
+                onChangeText={setConfirm}
+                placeholder="Confirm password"
+                accessibilityLabel="Confirm password"
+                autoCapitalize="none"
+                autoCorrect={false}
+                secureTextEntry={!showPw}
+                textContentType="newPassword"
+                containerStyle={{ marginTop: 12 }}
+              />
 
-              {error && <Text className="text-red-400 text-xs mt-3">{error}</Text>}
+              <AuthErrorNotice message={error} style={{ marginTop: 12 }} />
 
-              <TouchableOpacity
+              <AuthButton
+                variant="primary"
+                label="Finish setting up this account"
                 onPress={handleLegacyRecoveredSubmit}
-                disabled={!canSubmitLegacyRecovered || busy}
-                className="mt-5 rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent"
-                style={{ opacity: !canSubmitLegacyRecovered || busy ? 0.5 : 1 }}
-              >
-                {busy ? (
-                  <ActivityIndicator color="#fff" />
-                ) : (
-                  <Text className="text-white text-sm font-medium">Finish setting up this account</Text>
-                )}
-              </TouchableOpacity>
+                disabled={!canSubmitLegacyRecovered}
+                loading={busy}
+                style={{ marginTop: 20 }}
+              />
             </View>
           )}
 
           {mode === "biometric-unlock" && (
             <View>
               {deviceWrapKeyReady === null ? (
-                <ActivityIndicator color="#fff" className="my-6" />
+                <ActivityIndicator color={authColors.label} style={{ marginVertical: 24 }} />
               ) : deviceWrapKeyReady ? (
                 <>
-                  <Text className="text-theme-neutrals-400 text-sm mb-5">
+                  <Text style={[authText.body, { marginBottom: 20 }]}>
                     This wallet is protected by this device&apos;s biometrics. Confirm with
                     fingerprint or face to continue.
                   </Text>
-                  {error && (
-                    <Text className="text-red-400 text-xs mb-3">
-                      {error} If this keeps failing, use your wallet password below or
-                      &quot;Import external wallet&quot;.
-                    </Text>
-                  )}
-                  <TouchableOpacity
+                  <AuthErrorNotice
+                    message={
+                      error
+                        ? `${error} If this keeps failing, use your wallet password below or "Import external wallet".`
+                        : null
+                    }
+                    style={{ marginBottom: 12 }}
+                  />
+                  <AuthButton
+                    variant="primary"
+                    icon="finger-print"
+                    label="Unlock with biometrics"
                     onPress={handleBiometricUnlockPress}
-                    disabled={busy}
-                    className="rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent flex-row justify-center"
-                    style={{ opacity: busy ? 0.5 : 1, gap: 8 }}
-                  >
-                    {busy ? (
-                      <ActivityIndicator color="#fff" />
-                    ) : (
-                      <>
-                        <Ionicons name="finger-print" size={18} color="#FFFFFF" />
-                        <Text className="text-white text-sm font-medium">Unlock with biometrics</Text>
-                      </>
-                    )}
-                  </TouchableOpacity>
+                    loading={busy}
+                  />
                 </>
               ) : (
                 <>
-                  <Text className="text-theme-neutrals-400 text-sm mb-5">
+                  <Text style={[authText.body, { marginBottom: 20 }]}>
                     This wallet uses biometrics or a passkey on the web. This phone does not have
                     the biometric key yet — enter your wallet password to unlock here, or set a
                     password backup on dehub.io if you only use passkey on web.
                   </Text>
-                  <TouchableOpacity
+                  <AuthButton
+                    icon="finger-print"
+                    label="Try biometrics on this phone"
                     onPress={handleBiometricUnlockPress}
                     disabled={busy}
-                    className="mb-4 rounded-xl px-4 py-3 items-center active:opacity-80 bg-neutral-800 border border-neutral-700 flex-row justify-center"
-                    style={{ opacity: busy ? 0.5 : 1, gap: 8 }}
-                  >
-                    <Ionicons name="finger-print" size={18} color="#FFFFFF" />
-                    <Text className="text-white text-sm font-medium">Try biometrics on this phone</Text>
-                  </TouchableOpacity>
-                  <Text className="text-theme-neutrals-500 text-xs mb-2">Or enter wallet password</Text>
-                  <View className={inputWrapClass}>
-                    <TextInput
-                      value={password}
-                      onChangeText={setPassword}
-                      placeholder="Wallet password"
-                      placeholderTextColor="#6B7280"
-                      autoCapitalize="none"
-                      autoCorrect={false}
-                      secureTextEntry={!showPw}
-                      className="flex-1 text-white text-sm"
-                      autoFocus
-                    />
-                    <TouchableOpacity onPress={() => setShowPw((s) => !s)} className="pl-2 py-1">
-                      <Ionicons name={showPw ? "eye-off-outline" : "eye-outline"} size={18} color="#9CA3AF" />
-                    </TouchableOpacity>
-                  </View>
-                  {error && <Text className="text-red-400 text-xs mt-3">{error}</Text>}
-                  <TouchableOpacity
+                    style={{ marginBottom: 16 }}
+                  />
+                  <AuthField
+                    label="Or enter wallet password"
+                    value={password}
+                    onChangeText={setPassword}
+                    placeholder="Wallet password"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    secureTextEntry={!showPw}
+                    textContentType="password"
+                    autoFocus
+                    trailing={<RevealToggle shown={showPw} onToggle={() => setShowPw((s) => !s)} />}
+                  />
+                  <AuthErrorNotice message={error} style={{ marginTop: 12 }} />
+                  <AuthButton
+                    variant="primary"
+                    label="Unlock with password"
                     onPress={handleUnlockSubmit}
-                    disabled={!canSubmitPassword || busy}
-                    className="mt-4 flex-row items-center justify-center rounded-2xl bg-neutral-800 border border-neutral-700 active:opacity-80"
-                    style={{ height: 60, opacity: !canSubmitPassword || busy ? 0.5 : 1 }}
-                  >
-                    {busy ? (
-                      <ActivityIndicator color="#fff" />
-                    ) : (
-                      <Text className="text-white text-sm font-medium">Unlock with password</Text>
-                    )}
-                  </TouchableOpacity>
+                    disabled={!canSubmitPassword}
+                    loading={busy}
+                    style={{ marginTop: 16 }}
+                  />
                 </>
               )}
             </View>
@@ -583,57 +552,49 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
 
           {mode === "unlock" && (
             <View>
-              <Text className="text-theme-neutrals-400 text-sm mb-5">
+              <Text style={[authText.body, { marginBottom: 20 }]}>
                 {unlockPasskeyOnly
                   ? "This wallet was secured with a passkey on the web and has no password backup in the cloud yet. If you set a wallet password on dehub.io, enter it here — otherwise use Import external wallet below."
                   : "This account already has a wallet, protected by a password. Enter it to recover your wallet on this device."}
               </Text>
-              <Text className="text-theme-neutrals-500 text-xs mb-2">Wallet password</Text>
-              <View className={inputWrapClass}>
-                <TextInput
-                  value={password}
-                  onChangeText={setPassword}
-                  placeholder="Password"
-                  placeholderTextColor="#6B7280"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  secureTextEntry={!showPw}
-                  className="flex-1 text-white text-sm"
-                  autoFocus
-                />
-                <TouchableOpacity onPress={() => setShowPw((s) => !s)} className="pl-2 py-1">
-                  <Ionicons name={showPw ? "eye-off-outline" : "eye-outline"} size={18} color="#9CA3AF" />
-                </TouchableOpacity>
-              </View>
+              <AuthField
+                label="Wallet password"
+                value={password}
+                onChangeText={setPassword}
+                placeholder="Password"
+                autoCapitalize="none"
+                autoCorrect={false}
+                secureTextEntry={!showPw}
+                textContentType="password"
+                autoFocus
+                trailing={<RevealToggle shown={showPw} onToggle={() => setShowPw((s) => !s)} />}
+              />
 
-              {error && <Text className="text-red-400 text-xs mt-3">{error}</Text>}
+              <AuthErrorNotice message={error} style={{ marginTop: 12 }} />
 
-              <TouchableOpacity
+              <AuthButton
+                variant="primary"
+                icon="lock-open"
+                label="Unlock"
                 onPress={handleUnlockSubmit}
-                disabled={!canSubmitPassword || busy}
-                className="mt-4 flex-row items-center justify-center rounded-2xl bg-neutral-800 border border-neutral-700 active:opacity-80"
-                style={{ height: 60, opacity: !canSubmitPassword || busy ? 0.5 : 1 }}
-              >
-                {busy ? (
-                  <ActivityIndicator color="#fff" />
-                ) : (
-                  <>
-                    <Ionicons name="lock-open" size={20} color="#FFFFFF" style={{ marginRight: 10 }} />
-                    <Text className="text-base font-medium text-white">Unlock</Text>
-                  </>
-                )}
-              </TouchableOpacity>
+                disabled={!canSubmitPassword}
+                loading={busy}
+                style={{ marginTop: 16 }}
+              />
               {busy && (
-                <Text className="text-theme-neutrals-500 text-xs mt-3 text-center">
+                <Text style={[authText.caption, { marginTop: 12, textAlign: "center" }]}>
                   Unlocking your wallet — this can take up to a minute on some devices…
                 </Text>
               )}
             </View>
           )}
 
-          <TouchableOpacity onPress={handleClose} disabled={busy} className="mt-4 items-center py-2">
-            <Text className="text-theme-neutrals-500 text-xs">Cancel</Text>
-          </TouchableOpacity>
+          <AuthTextButton
+            label="Cancel"
+            onPress={handleClose}
+            disabled={busy}
+            style={{ marginTop: 16 }}
+          />
         </ScrollView>
       </GlassModal>
     );
@@ -641,4 +602,58 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
 );
 
 WalletSetupScreen.displayName = "WalletSetupScreen";
+
+const styles = StyleSheet.create({
+  segment: {
+    flexDirection: "row",
+    gap: 4,
+    padding: 4,
+    borderRadius: AUTH_RADIUS,
+    backgroundColor: "rgba(255,255,255,0.06)",
+    marginBottom: 20,
+  },
+  segmentItem: {
+    flex: 1,
+    height: 40,
+    borderRadius: AUTH_RADIUS - 4,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  segmentItemActive: {
+    backgroundColor: authColors.surfacePressed,
+  },
+  segmentLabel: {
+    color: authColors.muted,
+    fontSize: 14,
+    fontWeight: "500",
+  },
+  segmentLabelActive: {
+    color: authColors.label,
+  },
+  note: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    gap: 10,
+    padding: 16,
+    borderRadius: AUTH_RADIUS,
+    backgroundColor: authColors.field,
+    borderWidth: 1,
+    borderColor: authColors.fieldBorder,
+  },
+  summaryCard: {
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    marginBottom: 16,
+    borderRadius: AUTH_RADIUS,
+    backgroundColor: authColors.field,
+    borderWidth: 1,
+    borderColor: authColors.fieldBorder,
+  },
+  summaryValue: {
+    color: authColors.label,
+    fontSize: 14,
+    fontWeight: "600",
+  },
+});
+
 export default WalletSetupScreen;
