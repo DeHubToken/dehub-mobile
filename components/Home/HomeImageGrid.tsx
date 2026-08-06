@@ -11,7 +11,7 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
 } from "react-native";
-import Animated, { useAnimatedStyle, type SharedValue } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import { Image } from "expo-image";
 import { useNavigation, useScrollToTop } from "@react-navigation/native";
 import Icon from "../ui/Icon";
@@ -32,7 +32,6 @@ interface HomeImageGridProps {
   pageSize?: number;
   gridRef?: React.MutableRefObject<HomeImageGridHandle | null>;
   headerInset?: number;
-  headerTranslateY?: SharedValue<number>;
   /** Reanimated worklet scroll handler — when provided, scroll events stay on the UI thread. */
   scrollHandler?: any;
   onScrollOffset?: (offsetY: number, deltaY: number) => void;
@@ -210,7 +209,6 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   pageSize = 20,
   gridRef,
   headerInset = 0,
-  headerTranslateY,
   scrollHandler,
   onScrollOffset,
   onScrollEnd,
@@ -221,10 +219,13 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   const listRef = useRef<FlatList>(null);
   const prevYRef = useRef(0);
 
-  // Dynamic top spacer that shrinks/grows with header visibility
-  const topSpacerStyle = useAnimatedStyle(() => ({
-    height: Math.max(0, headerInset + (headerTranslateY?.value ?? 0)),
-  }));
+  // Fixed height — see the note in InfiniteVideoFeed. Animating this resized the
+  // list's content box on every frame of the header animation, which relaid out
+  // the grid mid-scroll and shifted every row below it.
+  const topSpacerStyle = useMemo(() => ({ height: headerInset }), [headerInset]);
+  // Memoised so the header cell isn't a fresh element (and a fresh measurement)
+  // on every list render.
+  const listHeader = useMemo(() => <View style={topSpacerStyle} />, [topSpacerStyle]);
 
   const navigation = useNavigation<any>();
 
@@ -338,7 +339,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
       <View className="flex-1 px-2">
         {/* Same spacer the list carries in its ListHeaderComponent — without it
             the placeholder renders behind the collapsible header. */}
-        <Animated.View style={topSpacerStyle} />
+        <View style={topSpacerStyle} />
         <View className="rounded-xl overflow-hidden">
           <GridSkeleton />
         </View>
@@ -365,7 +366,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         keyExtractor={keyExtractor}
         renderItem={renderGridRow}
         getItemLayout={getGridItemLayout}
-        ListHeaderComponent={<Animated.View style={topSpacerStyle} />}
+        ListHeaderComponent={listHeader}
         // Reserve room for the floating nav pill; without it the last grid row
         // is stuck underneath it.
         contentContainerStyle={{ paddingTop: 0, paddingBottom: TAB_BAR_CONTENT_INSET }}

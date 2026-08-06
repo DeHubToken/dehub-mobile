@@ -10,7 +10,7 @@ import {
   NativeScrollEvent,
   ViewToken,
 } from "react-native";
-import Animated, { useAnimatedStyle, type SharedValue } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import { useNavigation, useScrollToTop } from "@react-navigation/native";
 import ShortsGridCard, { CARD_HEIGHT, GRID_GAP } from "./ShortsGridCard";
 import ShortsGridSkeleton from "./ShortsGridSkeleton";
@@ -33,7 +33,6 @@ interface ShortsGridProps {
   active?: boolean;
   gridRef?: React.MutableRefObject<ShortsGridHandle | null>;
   headerInset?: number;
-  headerTranslateY?: SharedValue<number>;
   /** Reanimated worklet scroll handler — when provided, scroll events stay on the UI thread. */
   scrollHandler?: any;
   onScrollOffset?: (offsetY: number, deltaY: number) => void;
@@ -53,7 +52,6 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   active = true,
   gridRef,
   headerInset = 0,
-  headerTranslateY,
   scrollHandler,
   onScrollOffset,
   onScrollEnd,
@@ -64,10 +62,13 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   const listRef = useRef<FlatList>(null);
   const prevYRef = useRef(0);
 
-  // Dynamic top spacer that shrinks/grows with header visibility
-  const topSpacerStyle = useAnimatedStyle(() => ({
-    height: Math.max(0, headerInset + (headerTranslateY?.value ?? 0)),
-  }));
+  // Fixed height — see the note in InfiniteVideoFeed. Animating this resized the
+  // list's content box on every frame of the header animation, which relaid out
+  // the grid mid-scroll and shifted every row below it.
+  const topSpacerStyle = useMemo(() => ({ height: headerInset }), [headerInset]);
+  // Memoised so the header cell isn't a fresh element (and a fresh measurement)
+  // on every list render.
+  const listHeader = useMemo(() => <View style={topSpacerStyle} />, [topSpacerStyle]);
   const navigation = useNavigation<any>();
   const [visibleIndices, setVisibleIndices] = useState<Set<number>>(new Set());
 
@@ -254,7 +255,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
       <View className="flex-1 px-2">
         {/* Same spacer the list carries in its ListHeaderComponent — without it
             the placeholder renders behind the collapsible header. */}
-        <Animated.View style={topSpacerStyle} />
+        <View style={topSpacerStyle} />
         <ShortsGridSkeleton />
       </View>
     );
@@ -280,7 +281,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
         renderItem={renderItem}
         numColumns={2}
         columnWrapperStyle={{ gap: GRID_GAP }}
-        ListHeaderComponent={<Animated.View style={topSpacerStyle} />}
+        ListHeaderComponent={listHeader}
         // paddingBottom was missing entirely, so the last row of shorts sat
         // permanently under the floating nav pill — unreadable and untappable,
         // and it left bright video hard against the pill's edge, which is what
