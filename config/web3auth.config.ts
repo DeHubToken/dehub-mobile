@@ -72,6 +72,8 @@ import Web3Auth, {
   ChainNamespace,
   LOGIN_PROVIDER,
   WEB3AUTH_NETWORK,
+  // Aliased because the local init object below is also called SdkInitParams.
+  type SdkInitParams as Web3AuthInitParams,
 } from "@web3auth/react-native-sdk";
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import {
@@ -166,6 +168,26 @@ async function getOrCreateInstance() {
 
   const redirectUrl = resolveRedirectUrl();
   log.debug("resolvedRedirectUrl", { redirectUrl });
+
+  // The `jwt` entry is Sign in with Apple (see loginWithSocial). Web3Auth
+  // wants the verifier at construction time, not at login time, so it has to
+  // be declared here even though nothing else uses it.
+  //
+  // Annotated rather than inlined below: with no contextual type the ternary
+  // infers `{ jwt: {...} } | { jwt?: undefined }`, and that second branch has
+  // no way to satisfy LoginConfig's index signature (`undefined` is not a
+  // login config entry). The annotation also keeps typeOfLogin as the literal
+  // "jwt" instead of widening it to string.
+  const loginConfig: Web3AuthInitParams["loginConfig"] = WEB3AUTH_APPLE_VERIFIER
+    ? {
+        jwt: {
+          verifier: WEB3AUTH_APPLE_VERIFIER,
+          typeOfLogin: "jwt",
+          clientId: WEB3AUTH_CLIENT_ID,
+        },
+      }
+    : {};
+
   const SdkInitParams = {
     clientId: WEB3AUTH_CLIENT_ID,
     network: WEB3AUTH_NETWORK.SAPPHIRE_MAINNET,
@@ -177,18 +199,7 @@ async function getOrCreateInstance() {
     // for Web3Auth embedded wallets.
     useAAWithExternalWallet: false,
     logLevel: "debug",
-    // The `jwt` entry is Sign in with Apple (see loginWithSocial). Web3Auth
-    // wants the verifier at construction time, not at login time, so it has to
-    // be declared here even though nothing else uses it.
-    loginConfig: WEB3AUTH_APPLE_VERIFIER
-      ? {
-          jwt: {
-            verifier: WEB3AUTH_APPLE_VERIFIER,
-            typeOfLogin: "jwt",
-            clientId: WEB3AUTH_CLIENT_ID,
-          },
-        }
-      : {},
+    loginConfig,
     // Extended session time (30 days) to reduce re-auth frequency
     // but this helps with local session management
     sessionTime: 86400 * 30, // 30 days in seconds
