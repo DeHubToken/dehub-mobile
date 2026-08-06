@@ -155,7 +155,8 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native-web": "^0.21.0",
-    "permissionless": "0.2.57"
+    "permissionless": "0.2.57",
+    "postcss": "^8.5.18"
   },
   "resolutions": {
     "valtio": "1.11.2",
