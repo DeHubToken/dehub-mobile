@@ -1,12 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  TextInput,
-  ActivityIndicator,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, TextInput } from "react-native";
+import { AuthButton, AuthField } from "./AuthControls";
 
 interface EmailLoginFlowProps {
   onSubmit: (provider: string, email?: string) => void;
@@ -30,80 +24,50 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
     }
   }, [showInput]);
 
+  const isValid = !!email && email.includes("@");
+
+  const handleSubmit = () => {
+    if (isValid) onSubmit("email_passwordless", email);
+  };
+
   if (!showInput) {
     return (
-      <TouchableOpacity
-        className={`flex-row items-center justify-center rounded-xl bg-white/10 border border-white/20 ${
-          disabled ? "opacity-50" : ""
-        }`}
-        style={{ width: "100%", height: 60 }}
+      <AuthButton
+        icon="mail"
+        label="Continue with Email"
         onPress={() => setShowInput(true)}
         disabled={disabled}
-        accessibilityLabel="Continue with Email"
-      >
-        <Ionicons name="mail" size={20} color="#FFFFFF" style={{ marginRight: 10 }} />
-        {!!loading ? (
-          <ActivityIndicator color="#fff" />
-        ) : (
-          <Text className="text-xl font-medium text-white">
-            Continue with Email
-          </Text>
-        )}
-      </TouchableOpacity>
+        loading={loading}
+      />
     );
   }
+
   return (
-    <View
-      className="flex-row items-center border border-white/20 rounded-xl bg-white/10 px-4"
-      style={{ width: "100%", height: 60 }}
-    >
-      <Ionicons
-        name="mail"
-        size={20}
-        color="#FFFFFF"
-        style={{ marginRight: 10 }}
-      />
-      <TextInput
+    <View style={{ gap: 12 }}>
+      <AuthField
         ref={inputRef}
-        className="flex-1 text-xl text-white"
-        placeholder="user@example.com"
-        placeholderTextColor="#8B8D90"
+        icon="mail"
         value={email}
         onChangeText={setEmail}
+        placeholder="user@example.com"
+        accessibilityLabel="Email address"
         editable={!loading && !disabled}
         keyboardType="email-address"
+        textContentType="emailAddress"
         autoCapitalize="none"
         autoCorrect={false}
-        style={{
-          paddingVertical: 0,
-          color: "#fff",
-          backgroundColor: "transparent",
-        }}
+        autoFocus
+        returnKeyType="go"
+        onSubmitEditing={handleSubmit}
       />
-      <TouchableOpacity
-        onPress={() => {
-          if (email && email.includes("@")) {
-            onSubmit("email_passwordless", email);
-          }
-        }}
-        disabled={loading || disabled || !email || !email.includes("@")}
-        className="ml-2 py-3 px-2"
-        accessibilityLabel="Submit email for login"
-      >
-        {loading ? (
-          <ActivityIndicator color="#fff" size="small" />
-        ) : (
-          <Text
-            className="text-theme-accent font-medium text-base"
-            style={{
-              opacity:
-                loading || disabled || !email || !email.includes("@") ? 0.5 : 1,
-            }}
-          >
-            Submit
-          </Text>
-        )}
-      </TouchableOpacity>
+      <AuthButton
+        variant="primary"
+        label="Send code"
+        onPress={handleSubmit}
+        disabled={!isValid || disabled}
+        loading={loading}
+        accessibilityLabel="Send sign-in code to this email"
+      />
     </View>
   );
 };

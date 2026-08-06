@@ -1,12 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  TextInput,
-  ActivityIndicator,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, TextInput } from "react-native";
+import { AuthButton, AuthField } from "./AuthControls";
 
 // Mirrors dehubweb's LoginModal phone validation — E.164 format
 // ("+" country code, 7-15 digits total).
@@ -35,75 +29,48 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
 
   const isValid = E164_PHONE_REGEX.test(phone.trim());
 
+  const handleSubmit = () => {
+    if (isValid) onSubmit(phone.trim());
+  };
+
   if (!showInput) {
     return (
-      <TouchableOpacity
-        className={`flex-row items-center justify-center rounded-2xl bg-neutral-800 border border-neutral-700 ${
-          disabled ? "opacity-50" : ""
-        }`}
-        style={{ width: "100%", height: 60 }}
+      <AuthButton
+        icon="call"
+        label="Continue with Phone"
         onPress={() => setShowInput(true)}
         disabled={disabled}
-        accessibilityLabel="Continue with Phone"
-      >
-        <Ionicons name="call" size={20} color="#FFFFFF" style={{ marginRight: 10 }} />
-        {!!loading ? (
-          <ActivityIndicator color="#fff" />
-        ) : (
-          <Text className="text-base font-medium text-white">
-            Continue with Phone
-          </Text>
-        )}
-      </TouchableOpacity>
+        loading={loading}
+      />
     );
   }
+
   return (
-    <View
-      className="flex-row items-center border border-neutral-700 rounded-2xl bg-neutral-800 px-4"
-      style={{ width: "100%", height: 60 }}
-    >
-      <Ionicons
-        name="call"
-        size={20}
-        color="#FFFFFF"
-        style={{ marginRight: 10 }}
-      />
-      <TextInput
+    <View style={{ gap: 12 }}>
+      <AuthField
         ref={inputRef}
-        className="flex-1 text-xl text-white"
-        placeholder="+1 415 555 2671"
-        placeholderTextColor="#6B7280"
+        icon="call"
         value={phone}
         onChangeText={setPhone}
+        placeholder="+1 415 555 2671"
+        accessibilityLabel="Phone number with country code"
         editable={!loading && !disabled}
         keyboardType="phone-pad"
+        textContentType="telephoneNumber"
         autoCapitalize="none"
         autoCorrect={false}
-        style={{
-          paddingVertical: 0,
-          color: "#fff",
-          backgroundColor: "transparent",
-        }}
+        autoFocus
+        returnKeyType="go"
+        onSubmitEditing={handleSubmit}
       />
-      <TouchableOpacity
-        onPress={() => {
-          if (isValid) onSubmit(phone.trim());
-        }}
-        disabled={loading || disabled || !isValid}
-        className="ml-2 py-3 px-2"
-        accessibilityLabel="Submit phone number for login"
-      >
-        {loading ? (
-          <ActivityIndicator color="#fff" size="small" />
-        ) : (
-          <Text
-            className="text-theme-accent font-medium text-base"
-            style={{ opacity: loading || disabled || !isValid ? 0.5 : 1 }}
-          >
-            Submit
-          </Text>
-        )}
-      </TouchableOpacity>
+      <AuthButton
+        variant="primary"
+        label="Send code"
+        onPress={handleSubmit}
+        disabled={!isValid || disabled}
+        loading={loading}
+        accessibilityLabel="Send sign-in code to this phone number"
+      />
     </View>
   );
 };

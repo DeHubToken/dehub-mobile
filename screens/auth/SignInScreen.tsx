@@ -4,14 +4,9 @@ import React, {
   useEffect,
   useRef,
 } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  Platform,
-} from "react-native";
+import { View, Text, ScrollView, Platform, type TextStyle } from "react-native";
 import { toastError } from "../../libs";
+import { AuthButton, authColors, authText } from "../../components/auth/AuthControls";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -58,6 +53,11 @@ const log = createLogger("SignInScreen");
 
 // Target chain for wallet sign-in (Base Mainnet)
 const TARGET_CHAIN_ID = ChainId.BASE_MAINNET;
+
+const legalLink: TextStyle = {
+  color: authColors.label,
+  textDecorationLine: "underline",
+};
 
 interface SignInScreenProps {
   navigation: any;
@@ -507,11 +507,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           className="px-6"
         >
           {/* Header */}
-          <View className="items-center mt-12 mb-8">
-            <Text className="text-white text-2xl font-bold mb-3">
-              Welcome to DeHub
-            </Text>
-            <Text className="text-gray-400 text-center text-base">
+          <View style={{ alignItems: "center", marginTop: 48, marginBottom: 32 }}>
+            <Text style={[authText.title, { marginBottom: 8 }]}>Welcome to DeHub</Text>
+            <Text style={[authText.body, { textAlign: "center" }]}>
               Jump in with your preferred sign-in{"\n"}option.
             </Text>
           </View>
@@ -578,21 +576,21 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
 
 
           {/* Terms and Privacy */}
-          <View className="mt-6">
-            <Text className="text-gray-400 text-sm text-center">
+          <View style={{ marginTop: 24 }}>
+            <Text style={[authText.caption, { textAlign: "center" }]}>
               By continuing, you agree to our{" "}
               <Text
-                style={{ textDecorationLine: "underline" }}
-                className="text-white"
+                style={legalLink}
                 onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
+                accessibilityRole="link"
               >
                 Terms of Service
               </Text>
               {"\n"}and{" "}
               <Text
-                style={{ textDecorationLine: "underline" }}
-                className="text-white"
+                style={legalLink}
                 onPress={() => openInApp(PRIVACY_POLICY_LINK)}
+                accessibilityRole="link"
               >
                 Privacy Policy
               </Text>
@@ -603,21 +601,17 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           {/* Spacer */}
           <View className="flex-1" />
 
-          {/* Explore without signing in button */}
-          <View className="items-center mb-8">
-            <TouchableOpacity
-              className={`bg-white/10 border border-white/20 rounded-full px-5 py-3 ${
-                isLoading || needsUsername ? "opacity-40" : ""
-              }`}
-              onPress={handleSkipOrClose}
-              disabled={isLoading || needsUsername}
-              accessibilityLabel={isFirstTimeUser ? "Explore DeHub without signing in" : "Continue exploring DeHub"}
-            >
-              <Text className="text-white text-sm">
-                {isFirstTimeUser ? "Explore DeHub without signing in" : "Continue exploring DeHub"}
-              </Text>
-            </TouchableOpacity>
-          </View>
+          {/* Explore without signing in */}
+          <AuthButton
+            variant="ghost"
+            label={isFirstTimeUser ? "Explore without signing in" : "Continue exploring"}
+            onPress={handleSkipOrClose}
+            disabled={isLoading || needsUsername}
+            accessibilityLabel={
+              isFirstTimeUser ? "Explore DeHub without signing in" : "Continue exploring DeHub"
+            }
+            style={{ marginTop: 24, marginBottom: 32 }}
+          />
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>

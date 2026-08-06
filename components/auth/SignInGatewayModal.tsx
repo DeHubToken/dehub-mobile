@@ -1,7 +1,8 @@
 import React, { useCallback, useRef, useState } from "react";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import GlassModal from "../ui/GlassModal";
+import { AuthButton, AuthErrorNotice, authColors, authText } from "./AuthControls";
 import { ChainId } from "../../config/constants";
 import { useAuthActions, useAuthState } from "../../context/AuthContext";
 import FullScreenLoader from "../FullScreenLoader";
@@ -385,22 +386,14 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
         {isBusy && (
           <FullScreenLoader message="Signing you in…" />
         )}
-        <TouchableOpacity
-          className={`absolute right-5 top-3 z-10 px-3 py-2 rounded-full bg-white/10 border border-white/20 ${
-            authLoading || isLocalLoading || needsUsername ? "opacity-40" : ""
-          }`}
+        <AuthButton
+          variant="ghost"
+          label="Cancel"
           onPress={onClose}
           disabled={isBusy || needsUsername}
           accessibilityLabel="Close authentication modal"
-        >
-          <Text
-            className={`text-white font-medium ${
-              isBusy || needsUsername ? "opacity-40" : ""
-            }`}
-          >
-            Cancel
-          </Text>
-        </TouchableOpacity>
+          style={styles.cancel}
+        />
         <ScrollView
           contentContainerStyle={{
             flexGrow: 1,
@@ -408,19 +401,13 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
             paddingVertical: 20,
           }}
         >
-          <View className="items-center mt-8">
-            <Text className="text-white text-2xl font-bold mb-3">
-              Sign in to continue
-            </Text>
-            <Text className="text-gray-400 text-center text-sm mb-6">
+          <View style={{ alignItems: "center", marginTop: 32, marginBottom: 24 }}>
+            <Text style={[authText.title, { marginBottom: 8 }]}>Sign in to continue</Text>
+            <Text style={[authText.body, { textAlign: "center" }]}>
               You need to sign in to perform this action.
             </Text>
           </View>
-          {inlineError && (
-            <View className="mb-4 rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3">
-              <Text className="text-red-400 text-sm">{inlineError}</Text>
-            </View>
-          )}
+          <AuthErrorNotice message={inlineError} style={{ marginBottom: 16 }} />
           {authStep === "main" ? (
             <SocialLoginIcons
               onGoogle={handleGoogleLogin}
@@ -474,21 +461,21 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
               setPendingCreateUserId(null);
             }}
           />
-          <View className="mt-6 mb-4">
-            <Text className="text-gray-400 text-sm text-center">
+          <View style={{ marginTop: 24, marginBottom: 16 }}>
+            <Text style={[authText.caption, { textAlign: "center" }]}>
               By continuing, you agree to our{" "}
               <Text
-                className="text-white"
-                style={{ textDecorationLine: "underline" }}
+                style={styles.legalLink}
                 onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
+                accessibilityRole="link"
               >
                 Terms of Service
               </Text>{" "}
               and{" "}
               <Text
-                className="text-white"
-                style={{ textDecorationLine: "underline" }}
+                style={styles.legalLink}
                 onPress={() => openInApp(PRIVACY_POLICY_LINK)}
+                accessibilityRole="link"
               >
                 Privacy Policy
               </Text>
@@ -500,5 +487,21 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
     </GlassModal>
   );
 };
+
+const styles = StyleSheet.create({
+  cancel: {
+    position: "absolute",
+    right: 20,
+    top: 12,
+    zIndex: 10,
+    width: "auto",
+    minHeight: 44,
+    paddingHorizontal: 16,
+  },
+  legalLink: {
+    color: authColors.label,
+    textDecorationLine: "underline",
+  },
+});
 
 export default SignInGatewayModal;
