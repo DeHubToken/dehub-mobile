@@ -169,10 +169,17 @@ export const useCollapsibleHeader = () => {
     jsVisible.current = true;
     jsAccum.current = 0;
     jsLastToggle.current = Date.now();
+    // The worklet path keeps its own accumulator, and every screen that drives
+    // this hook with `scrollHandler` uses that one. Leaving it holding the
+    // scroll-down travel that was in flight when the header was shown
+    // programmatically meant the very next scroll event could push it straight
+    // back over SCROLL_DEAD_ZONE and hide the header again.
+    wAccum.value = 0;
+    wLastToggle.value = Date.now();
     cancelAnimation(translateY);
     translateY.value = withTiming(0, ANIM_CONFIG);
     visibleSV.value = 1;
-  }, [translateY, visibleSV]);
+  }, [translateY, visibleSV, wAccum, wLastToggle]);
 
   return {
     translateY,
