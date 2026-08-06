@@ -13,6 +13,7 @@ import { useTranslation } from "../../hooks/useTranslation";
 import Avatar from "../common/Avatar";
 import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
 import { openInApp } from "../../libs/links.utils";
+import { ASSISTANT_USERNAME, isAssistantAddress } from "../../libs/assistant";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
 import type { MessageLayout } from "./LiveChatContextMenu";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
@@ -78,11 +79,16 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
   const sender = message.sender;
   const isMe = message.senderAddress?.toLowerCase() === myAddress;
   const isSystem = message.messageType === "system";
+  // The @assistant bot posts as a real account, so its reply arrives here like
+  // any other message — it just gets an AI tag instead of a holder badge.
+  const isAssistant = isAssistantAddress(message.senderAddress);
   const avatarUrl = getAvatarUrl(sender?.avatarUrl || "");
-  const displayName = sender?.displayName || sender?.username || message.senderAddress?.slice(0, 8) || "Anon";
+  const displayName = isAssistant
+    ? ASSISTANT_USERNAME
+    : sender?.displayName || sender?.username || message.senderAddress?.slice(0, 8) || "Anon";
   const badgeBalance = resolveBadgeBalance(sender || {});
-  const badgeImg = getBadgeUrl(badgeBalance);
-  const isMod = sender?.isModerator;
+  const badgeImg = isAssistant ? null : getBadgeUrl(badgeBalance);
+  const isMod = sender?.isModerator && !isAssistant;
 
   const containerRef = useRef<View>(null);
 
@@ -178,6 +184,11 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
             <View className="flex-row items-center bg-white/10 rounded px-1.5 py-0.5 gap-0.5">
               <Icon name="Pin" size={9} color="#D4D4D8" />
               <Text className="text-theme-neutrals-200 text-[10px] font-bold">Pinned</Text>
+            </View>
+          )}
+          {isAssistant && (
+            <View className="bg-white/10 rounded px-1.5 py-0.5">
+              <Text className="text-theme-neutrals-200 text-[10px] font-bold">AI</Text>
             </View>
           )}
           {isMod && (
