@@ -6,6 +6,12 @@ export interface MentionUser {
   avatarImageUrl: string;
   address: string;
   isFollowing: boolean;
+  /**
+   * Present only on the official AI account. The API also ranks it first among
+   * its own matches, so tagging the bot is one tap rather than a scroll past
+   * everyone who shares the prefix.
+   */
+  isAssistant?: boolean;
 }
 
 export async function mentionSearch(q: string): Promise<MentionUser[]> {
