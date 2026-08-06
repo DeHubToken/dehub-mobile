@@ -2,7 +2,6 @@ import React, { memo, useCallback, useRef, useState, useMemo, useEffect } from "
 import {
   View,
   Text,
-  Image,
   TouchableOpacity,
   Dimensions,
   Pressable,
@@ -28,6 +27,7 @@ import ReactionInfoSheet from "./ReactionInfoSheet";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import ImageTranslationSheet from "../common/ImageTranslationSheet";
 import QuotedPostEmbed from "../common/QuotedPostEmbed";
+import SmartImage from "../common/SmartImage";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import PPVSheet from "../PPV/PPVSheet";
 import BountyInfoSheet from "./BountyInfoSheet";
@@ -764,10 +764,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           className="mt-2 rounded-xl overflow-hidden"
           style={{ height: IMAGE_WIDTH * 0.75 }}
         >
-          <Image
+          <SmartImage
             source={{ uri: galleryImages[0] }}
             style={{ width: "100%", height: "100%" }}
-            resizeMode="cover"
+            recyclingKey={galleryImages[0]}
             blurRadius={20}
           />
           <View className="absolute inset-0 bg-black/30 items-center justify-center">
@@ -810,10 +810,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           className="mt-2 rounded-xl overflow-hidden"
           style={{ height: IMAGE_WIDTH * 0.75 }}
         >
-          <Image
+          <SmartImage
             source={{ uri: galleryImages[0] }}
             style={{ width: "100%", height: "100%" }}
-            resizeMode="cover"
+            recyclingKey={galleryImages[0]}
             blurRadius={20}
           />
           <View className="absolute inset-0 bg-black/30 items-center justify-center">
@@ -843,10 +843,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           className="mt-2 rounded-xl overflow-hidden"
           style={{ height: IMAGE_WIDTH * 0.75 }}
         >
-          <Image
+          <SmartImage
             source={{ uri: galleryImages[0] }}
             style={{ width: "100%", height: "100%" }}
-            resizeMode="cover"
+            recyclingKey={galleryImages[0]}
             blurRadius={20}
           />
           <View className="absolute inset-0 bg-black/30 items-center justify-center">
@@ -871,11 +871,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (!hasMultipleImages) {
       return (
         <Pressable onPress={() => handleImagePress(0)} className="mt-2">
-          <Image
+          <SmartImage
             source={{ uri: galleryImages[0] }}
             className="w-full rounded-xl"
             style={{ height: IMAGE_WIDTH * 0.75 }}
-            resizeMode="cover"
+            recyclingKey={galleryImages[0]}
           />
         </Pressable>
       );
@@ -899,11 +899,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       >
         {galleryImages.map((uri, index) => (
           <Pressable key={index} onPress={() => handleImagePress(index)} style={{ width: itemWidth }}>
-            <Image
+            <SmartImage
               source={{ uri }}
               className="rounded-xl"
               style={{ width: itemWidth, height: itemWidth }}
-              resizeMode="cover"
+              recyclingKey={uri}
             />
           </Pressable>
         ))}
@@ -986,10 +986,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const renderLiveThumbnail = () => (
     <Pressable onPress={handleCardPress} className="relative w-full h-48 bg-zinc-800 rounded-xl overflow-hidden mt-2">
       {hasThumb ? (
-        <Image
+        <SmartImage
           source={{ uri: thumbnail }}
           className="absolute inset-0 w-full h-full"
-          resizeMode="cover"
+          recyclingKey={thumbnail}
         />
       ) : (
         <View className="absolute inset-0 w-full h-full bg-zinc-800 items-center justify-center">

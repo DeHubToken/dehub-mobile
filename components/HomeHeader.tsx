@@ -46,8 +46,14 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
           >
             <Icon name="Bell" size={24} color="#E5E7EB" />
             {hasUnread && (
-              <View className="absolute -top-0.5 -right-1 min-w-[18px] h-[18px] px-1 bg-red-500 rounded-md items-center justify-center" pointerEvents="none">
-                <Text className="text-white text-[10px] font-bold">
+              // rounded-md on an 18px box read as a square block. A full pill
+              // with a black ring separates it from the bell the way the rest of
+              // the app's badges do.
+              <View
+                className="absolute -top-0.5 -right-1 min-w-[18px] h-[18px] px-[5px] bg-red-500 rounded-full border-[1.5px] border-black items-center justify-center"
+                pointerEvents="none"
+              >
+                <Text className="text-white text-[10px] font-bold leading-[12px]">
                   {(user?.notificationCount || 0) > 99 ? "99+" : user?.notificationCount}
                 </Text>
               </View>
