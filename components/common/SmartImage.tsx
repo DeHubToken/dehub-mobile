@@ -20,6 +20,8 @@ type SmartImageProps = {
   className?: string;
   onLoadStart?: () => void;
   onLoadEnd?: () => void;
+  /** Fires before onLoadEnd when the source fails, for callers that swap in a fallback. */
+  onError?: () => void;
 };
 
 export const SmartImage: React.FC<SmartImageProps> = ({
@@ -34,6 +36,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   className,
   onLoadStart,
   onLoadEnd,
+  onError,
 }) => {
   return (
     <Image
@@ -48,6 +51,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
       className={className as any}
       onLoadStart={onLoadStart}
       onLoadEnd={onLoadEnd}
+      onError={onError}
     />
   );
 };
