@@ -222,9 +222,19 @@ export default function AppNavigator() {
           name={ScreenNames.ShortsViewer}
           getComponent={() => require("../screens/ShortsViewerScreen").default}
         />
+        {/* The image feed is a drawer, not a page: it slides up under the
+            screen you opened it from and leaves it visible above. The card
+            itself therefore has to be transparent and must not animate — the
+            sheet inside does all the moving. */}
         <Stack.Screen
           name={ScreenNames.ImageFeed}
           getComponent={() => require("../screens/ImageFeedScreen").default}
+          options={{
+            presentation: 'transparentModal',
+            cardStyle: { backgroundColor: 'transparent' },
+            cardOverlayEnabled: false,
+            animation: 'none',
+          }}
         />
         <Stack.Screen
           name={ScreenNames.FollowList}
