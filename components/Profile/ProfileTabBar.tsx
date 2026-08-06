@@ -1,20 +1,12 @@
-import React, { memo, useEffect, useMemo, useRef } from "react";
+import React, { memo, useMemo } from "react";
 import {
   PanResponder,
-  Pressable,
-  ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
 import Icon, { type IconName } from "../ui/Icon";
-import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
 import { formatCompactNumber } from "../../libs/numbers.util";
 
 export interface ProfileTabItem<Key extends string = string> {
@@ -30,33 +22,14 @@ interface ProfileTabBarProps<Key extends string = string> {
   onChange: (key: Key) => void;
 }
 
-const TAB_WIDTH = 56;
 const TAB_HEIGHT = 52;
-const TRANSITION = {
-  duration: 260,
-  easing: Easing.bezier(0.16, 1, 0.3, 1),
-};
 
 function ProfileTabBarInner<Key extends string>({
   items,
   activeKey,
   onChange,
 }: ProfileTabBarProps<Key>) {
-  const scrollRef = useRef<ScrollView>(null);
   const activeIndex = Math.max(0, items.findIndex((item) => item.key === activeKey));
-  const indicatorX = useSharedValue(activeIndex * TAB_WIDTH);
-
-  useEffect(() => {
-    indicatorX.value = withTiming(activeIndex * TAB_WIDTH, TRANSITION);
-    scrollRef.current?.scrollTo({
-      x: Math.max(0, activeIndex * TAB_WIDTH - TAB_WIDTH * 2),
-      animated: true,
-    });
-  }, [activeIndex, indicatorX]);
-
-  const indicatorStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: indicatorX.value }],
-  }));
 
   const panResponder = useMemo(
     () =>
@@ -79,52 +52,44 @@ function ProfileTabBarInner<Key extends string>({
 
   return (
     <View style={styles.outerWrap}>
+      {/* Plain flex row, no ScrollView: the web profile page gives every tab
+          flex-1 so the whole set spreads evenly across the pill. A horizontal
+          ScrollView here refused to stretch its content container to the full
+          width, which left all tabs bunched at the left edge. */}
       <View style={styles.container}>
-        <ScrollView
-          ref={scrollRef}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.content}
-        >
-          <Animated.View
-            pointerEvents="none"
-            style={[styles.indicator, indicatorStyle, GLASS_SHADOW]}
-          >
-            <GlassIndicator borderRadius={12} />
-          </Animated.View>
-          {items.map((item) => {
-            const focused = item.key === activeKey;
-            return (
-              <Pressable
-                key={item.key}
-                {...(focused ? panResponder.panHandlers : {})}
-                accessibilityRole="tab"
-                accessibilityLabel={item.label}
-                accessibilityState={{ selected: focused }}
-                onPress={() => onChange(item.key)}
-                style={({ pressed }) => [
-                  styles.tab,
-                  pressed && styles.tabPressed,
-                ]}
+        {items.map((item) => {
+          const focused = item.key === activeKey;
+          return (
+            <TouchableOpacity
+              key={item.key}
+              {...(focused ? panResponder.panHandlers : {})}
+              accessibilityRole="tab"
+              accessibilityLabel={item.label}
+              accessibilityState={{ selected: focused }}
+              onPress={() => onChange(item.key)}
+              activeOpacity={0.72}
+              style={[
+                styles.tab,
+                focused && styles.tabActive,
+              ]}
+            >
+              <Icon
+                name={item.icon}
+                size={18}
+                color={focused ? "#FFFFFF" : "#71717A"}
+                strokeWidth={2}
+              />
+              <Text
+                numberOfLines={1}
+                style={[styles.count, focused && styles.countActive]}
               >
-                <Icon
-                  name={item.icon}
-                  size={18}
-                  color={focused ? "#FFFFFF" : "#71717A"}
-                  strokeWidth={2}
-                />
-                <Text
-                  numberOfLines={1}
-                  style={[styles.count, focused && styles.countActive]}
-                >
-                  {typeof item.count === "number"
-                    ? formatCompactNumber(item.count)
-                    : ""}
-                </Text>
-              </Pressable>
-            );
-          })}
-        </ScrollView>
+                {typeof item.count === "number"
+                  ? formatCompactNumber(item.count)
+                  : ""}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
     </View>
   );
@@ -132,43 +97,38 @@ function ProfileTabBarInner<Key extends string>({
 
 const styles = StyleSheet.create({
   outerWrap: {
+    width: "100%",
     paddingHorizontal: 8,
     paddingTop: 8,
     paddingBottom: 8,
   },
   container: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
     minHeight: TAB_HEIGHT,
     borderRadius: 12,
-    overflow: "hidden",
-    backgroundColor: "#1D1F21",
-  },
-  content: {
-    position: "relative",
-    minWidth: "100%",
-  },
-  indicator: {
-    position: "absolute",
-    left: 0,
-    top: 0,
-    width: TAB_WIDTH,
-    height: TAB_HEIGHT,
-    borderRadius: 12,
-    overflow: "hidden",
+    backgroundColor: "#18181B",
+    paddingHorizontal: 4,
+    paddingVertical: 2,
   },
   tab: {
-    width: TAB_WIDTH,
-    height: TAB_HEIGHT,
+    flex: 1,
+    height: TAB_HEIGHT - 4,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 12,
+    borderRadius: 10,
   },
-  tabPressed: {
-    opacity: 0.72,
+  tabActive: {
+    backgroundColor: "rgba(255,255,255,0.12)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.35)",
   },
   count: {
-    color: "#A1A1AA",
-    fontSize: 12,
-    lineHeight: 14,
+    textAlign: "center",
+    color: "#71717A",
+    fontSize: 10,
+    lineHeight: 12,
     marginTop: 1,
     fontWeight: "500",
   },

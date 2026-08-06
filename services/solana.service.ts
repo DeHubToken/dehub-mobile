@@ -1,15 +1,17 @@
 /**
- * Solana minting (#41) — derives the user's Solana keypair from the Web3Auth
- * ed25519 session key, signs the backend's partially-signed mint transaction as
- * fee payer, broadcasts it, and confirms with the backend.
+ * Solana minting (#41) — derives the user's Solana keypair from the local
+ * Solana keypair provisioned alongside their EVM wallet at sign-in, signs the
+ * backend's partially-signed mint transaction as fee payer, broadcasts it, and
+ * confirms with the backend.
  *
- * No external wallet (Phantom) is required — signing reuses the existing
- * Web3Auth social login. Imported EVM-wallet users have no Solana key and will
- * get a clear error.
+ * Only Supabase-identity (Google/email) sign-ins get a Solana keypair —
+ * imported (pasted private key) wallets have none and will get a clear error,
+ * same as before.
  */
 import { Connection, Keypair, Transaction } from "@solana/web3.js";
 import { Buffer } from "buffer";
-import { getEd25519PrivateKey } from "../config/web3auth.config";
+import { getAuthUser } from "../libs/auth.utils";
+import { getLocalSolanaSecretKeyHex } from "../libs/identity-wallet";
 import { getSolanaRpcUrl, SOLANA_MAINNET_CHAIN_ID } from "../config/solana.constants";
 import { apiClient } from "../libs/api.client";
 
@@ -24,10 +26,12 @@ function hexToBytes(hex: string): Uint8Array {
   return out;
 }
 
-/** Derive (and cache) the Solana keypair from the Web3Auth ed25519 key. */
+/** Derive (and cache) the Solana keypair provisioned for the signed-in wallet. */
 export async function getSolanaKeypair(): Promise<Keypair> {
   if (cachedKeypair) return cachedKeypair;
-  const hex = await getEd25519PrivateKey();
+  const user = await getAuthUser<any>();
+  const address: string | undefined = user?.walletAddress || user?.address;
+  const hex = address ? await getLocalSolanaSecretKeyHex(address) : null;
   if (!hex) {
     throw new Error(
       "Solana wallet unavailable. Sign in with a social account to post on Solana.",

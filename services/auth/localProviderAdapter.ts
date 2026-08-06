@@ -6,6 +6,10 @@ import { getLocalAccountDetails } from '../../libs/wallets.local';
 import { getAuthUser, getAuthMethod, getPreferredChainId } from '../../libs/auth.utils';
 import { ethers } from 'ethers';
 import { ethersService } from '../ethers.service';
+import { setupAAProvider } from '../../libs/wallet-core/smart-account';
+import { createLogger } from '../../libs/logger';
+
+const log = createLogger('LocalProviderAdapter');
 
 type Eip1193Shim = {
   request: (args: { method: string; params?: any[] }) => Promise<any>;
@@ -152,13 +156,32 @@ export class LocalProviderAdapter implements AuthAdapter {
           } catch {}
           const built = await buildLocalEip1193FromPrivateKey(details.privateKey, targetChainId);
           if (built) {
-            this.shim = built.shim;
+            // Always keep the plain EOA signer/provider around -- getPrivateKey()/
+            // getChainId() below rely on it regardless of which shim gets returned,
+            // and "export private key" must always export the EOA owner key, never
+            // a smart-account address.
             this.signer = built.signer;
             this.provider = built.provider;
             this.address = built.address;
             this.chainId = built.chainId;
-            setSigningProvider(this.shim as any);
-            return this.shim as any;
+
+            // Prefer the gasless Safe smart-account path (matches web's Pimlico setup).
+            // setupAAProvider never throws -- it returns null on any failure (unsupported
+            // chain, Pimlico outage, ...) so a sponsor-side problem falls back to the
+            // plain EOA shim below rather than blocking the write entirely.
+            let shimToUse: Eip1193Shim = built.shim;
+            try {
+              const aaProvider = await setupAAProvider(built.address, details.privateKey, targetChainId);
+              if (aaProvider) {
+                shimToUse = aaProvider as unknown as Eip1193Shim;
+              }
+            } catch (e) {
+              log.warn('AA provider unavailable, using plain EOA signer', e);
+            }
+
+            this.shim = shimToUse;
+            setSigningProvider(shimToUse as any);
+            return shimToUse as any;
           }
         }
       }
@@ -169,10 +192,17 @@ export class LocalProviderAdapter implements AuthAdapter {
   }
 
   async getAccounts(): Promise<string[]> {
-    if (this.address) return [this.address];
-    const prov: any = await this.getProvider();
-    if (!prov?.request) return [];
-    try { const accounts = await prov.request({ method: 'eth_accounts' }); return Array.isArray(accounts) ? accounts : []; } catch { return []; }
+    // Ask the live shim first -- once the Safe smart-account path is active, eth_accounts
+    // returns the Safe address, not the cached EOA address in this.address. Only fall back
+    // to this.address (the EOA identity address) if the shim can't answer.
+    const prov: any = this.shim || (await this.getProvider());
+    if (prov?.request) {
+      try {
+        const accounts = await prov.request({ method: 'eth_accounts' });
+        if (Array.isArray(accounts) && accounts.length) return accounts;
+      } catch {}
+    }
+    return this.address ? [this.address] : [];
   }
 
   async getChainId(): Promise<number | undefined> {

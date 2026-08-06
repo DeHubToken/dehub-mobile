@@ -1157,7 +1157,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
-      {tokenId != null && (
+      {tokenId != null && !isLive && !(item as any).isQuotePost && (
         <PollCard tokenId={Number(tokenId)} pollOwnerAddress={minterAddress} />
       )}
 

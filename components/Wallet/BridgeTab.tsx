@@ -10,8 +10,8 @@ import {
 import * as Clipboard from "expo-clipboard";
 import { Ionicons } from "@expo/vector-icons";
 import { ethers } from "ethers";
-import { useUser } from "../../context/AuthContext";
-import { web3AuthService } from "../../services/web3auth.service";
+import { useUser, useProvider, useAuthActions } from "../../context/AuthContext";
+import { getSigningProvider } from "../../libs/provider.registry";
 import { supabase } from "../../services/supabase";
 import { toastError, toastSuccess } from "../../libs/toast";
 
@@ -63,6 +63,8 @@ const BridgeTab: React.FC = () => {
   const user = useUser() as any;
   const walletAddress: string | undefined =
     user?.walletAddress || user?.address;
+  const { chainId, provider } = useProvider();
+  const { switchChain } = useAuthActions();
 
   const [baseBal, setBaseBal] = useState<ethers.BigNumber | null>(null);
   const [bnbBal, setBnbBal] = useState<ethers.BigNumber | null>(null);
@@ -149,9 +151,19 @@ const BridgeTab: React.FC = () => {
 
     setIsBridging(true);
     try {
-      const chainOk = await web3AuthService.ensureChain(sourceChainHex as `0x${string}`);
-      if (!chainOk) {
-        toastError(`Could not switch to ${sourceChain}. Switch manually in your wallet.`);
+      const targetChainId = parseInt(sourceChainHex, 16);
+      let activeProvider = provider;
+      if (chainId !== targetChainId) {
+        try {
+          await switchChain(targetChainId);
+        } catch {
+          toastError(`Could not switch to ${sourceChain}. Please try again.`);
+          return;
+        }
+        activeProvider = getSigningProvider() || provider;
+      }
+      if (!activeProvider?.request) {
+        toastError("Wallet not ready. Please try again.");
         return;
       }
 
@@ -159,9 +171,9 @@ const BridgeTab: React.FC = () => {
       const amountWei = ethers.utils.parseUnits(amount, 18);
       const data = iface.encodeFunctionData("transfer", [BRIDGE_ADDRESS, amountWei]);
 
-      const txHash = await web3AuthService.sendTransaction({
-        to: sourceToken,
-        data: data as `0x${string}`,
+      const txHash = await activeProvider.request({
+        method: "eth_sendTransaction",
+        params: [{ from: walletAddress, to: sourceToken, data }],
       });
 
       toastSuccess(`Bridge initiated! TX: ${txHash.slice(0, 10)}…`);

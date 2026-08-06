@@ -124,7 +124,7 @@ describe("wallet-core/crypto — refuses to guess", () => {
   });
 
   it("does not treat a biometric payload as a password payload", async () => {
-    await expect(decryptString(WEB_HKDF, PASSWORD)).rejects.toThrow(/biometrics, not a password/);
+    await expect(decryptString(WEB_HKDF, PASSWORD)).rejects.toThrow(/passkey-protected/i);
   });
 
   it("does not treat a password payload as a biometric payload", async () => {

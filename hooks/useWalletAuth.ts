@@ -1,91 +1,111 @@
-import { useState, useCallback, useEffect } from "react";
-import { toastError, toastInfo } from '../libs';
-import { useAppKit, useAppKitAccount } from "@reown/appkit-ethers5-react-native";
+// "Connect Wallet" sign-in — authenticates with an EXTERNAL wallet app
+// (MetaMask, Trust Wallet, Coinbase Wallet, ...) via Reown AppKit/WalletConnect,
+// instead of DeHub provisioning a local wallet (see identity-wallet.ts).
+//
+// An earlier version of this hook only tracked the connected address and
+// called signInWithWallet directly — it never registered the connected
+// wallet as the active SIGNING provider, so the personal_sign step inside
+// signInWithWallet (see libs/web3.auth.sign.ts's getOrCreateAuthSignature)
+// had nothing to sign with and would fail with "No signing provider
+// available". setSigningProvider(walletProvider) below is what was missing:
+// it's what makes the connected wallet the thing that actually signs the
+// DeHub auth message.
+import { useState, useCallback, useEffect, useRef } from "react";
+import { toastError } from "../libs";
+import { useAppKit, useAppKitAccount, useAppKitProvider } from "@reown/appkit-ethers5-react-native";
 import { useAuthActions } from "../context/AuthContext";
-import { ChainId, isDevMode } from "../config/constants";
+import { ChainId } from "../config/constants";
 import { getPreferredChainId as getStoredPreferredChainId } from "../libs/auth.utils";
+import { setSigningProvider, clearSigningProvider } from "../libs/provider.registry";
+import { createLogger } from "../libs/logger";
 
-// Determine default fallback chain (Base) when no stored preference exists
+const log = createLogger("useWalletAuth");
+
 const getDefaultChainId = () => ChainId.BASE_MAINNET;
 
-const isSupportedChain = (chainId: number): boolean => {
-  const supportedChains = isDevMode
-    ? [ChainId.GORLI, ChainId.BSC_TESTNET]
-    : [ChainId.BSC_MAINNET, ChainId.BASE_MAINNET];
-  return supportedChains.includes(chainId);
-};
-
-const getChainName = (chainId: number): string => {
-  const chainNames: Record<number, string> = {
-    [ChainId.GORLI]: "Goerli Testnet",
-    [ChainId.BSC_MAINNET]: "BNB Chain",
-    [ChainId.BSC_TESTNET]: "BNB Testnet",
-    [ChainId.BASE_MAINNET]: "Base",
-  };
-  return chainNames[chainId] || `Chain ID ${chainId}`;
-};
-
-export const useWalletAuth = (_navigation: any) => {
+export const useWalletAuth = () => {
   const [isWalletLoading, setIsWalletLoading] = useState(false);
-  const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const { open } = useAppKit();
-  const { address: accountAddress, chainId: currentChainId, isConnected } = useAppKitAccount();
+  const { address: accountAddress, chainId: currentChainId } = useAppKitAccount();
+  const { walletProvider } = useAppKitProvider();
   const { signInWithWallet } = useAuthActions();
 
-  // Keep local state in sync with AppKit account
-  useEffect(() => {
-    setWalletAddress(accountAddress ?? null);
-    // If no account, ensure loading is not shown
-    if (!accountAddress) setIsWalletLoading(false);
-  }, [accountAddress]);
+  // Guards the auto-authenticate effect below from re-firing for the same
+  // connection — AppKit's account/provider hooks can re-render several times
+  // as a connection settles, and each render is not a new "the user connected".
+  const authenticatedKeyRef = useRef<string | null>(null);
+
+  // True only while THIS mount is actively waiting on a connection the user
+  // just asked for via handleWalletConnect()'s open() call. AppKit persists
+  // WalletConnect pairings across app restarts/screens, so on mount it can
+  // report an already-connected account/provider from a stale prior pairing
+  // (e.g. the user tried "Connect Wallet" once, long ago). Without this
+  // guard, the auto-authenticate effect below would silently re-authenticate
+  // against that stale external wallet — hijacking an unrelated Google/email
+  // session with a Trust Wallet/MetaMask sign-in the user never asked for.
+  const awaitingUserInitiatedConnectRef = useRef(false);
 
   const authenticateWithWallet = useCallback(
     async (address: string, chainId: number) => {
+      if (!walletProvider) {
+        log.warn("authenticate:no-provider");
+        toastError(null, "Wallet connected but not ready to sign yet. Please try again.");
+        return;
+      }
+      setIsWalletLoading(true);
+      // Register the connected wallet as the signer BEFORE calling
+      // signInWithWallet — see the file header for why this is required.
+      setSigningProvider(walletProvider as any);
       try {
         const preferred = await getStoredPreferredChainId();
         const effectiveChainId = preferred ?? chainId ?? getDefaultChainId();
         await signInWithWallet(address, effectiveChainId);
+        authenticatedKeyRef.current = `${address.toLowerCase()}-${chainId}`;
       } catch (error) {
-  console.error('[WalletAuth] authentication error', error);
-  toastError(error, 'Wallet authentication failed. Please try again.');
+        log.error("authenticate:error", error);
+        toastError(error, "Wallet authentication failed. Please try again.");
+      } finally {
+        clearSigningProvider();
+        setIsWalletLoading(false);
       }
     },
-    [signInWithWallet]
+    [walletProvider, signInWithWallet]
   );
 
   const handleWalletConnect = useCallback(async () => {
-    // If already connected, authenticate immediately (respect preferred chain)
-    if (accountAddress && currentChainId) {
-      setIsWalletLoading(true);
+    // Already connected — authenticate immediately instead of reopening the
+    // connect sheet. This is still an explicit tap, so mark it as
+    // user-initiated too.
+    if (accountAddress && currentChainId && walletProvider) {
+      awaitingUserInitiatedConnectRef.current = true;
       await authenticateWithWallet(accountAddress, currentChainId);
-      setIsWalletLoading(false);
       return;
     }
+    awaitingUserInitiatedConnectRef.current = true;
+    await open();
+  }, [accountAddress, currentChainId, walletProvider, open, authenticateWithWallet]);
 
-    // Open AppKit modal without toggling loading yet
-    open();
-  }, [accountAddress, currentChainId, open, authenticateWithWallet]);
-
-  // When account and chain become available (user finished connection)
+  // Once AppKit finishes connecting (address + chain + provider all become
+  // available), authenticate automatically — the user already proved wallet
+  // ownership by connecting; asking them to tap a second button would be a
+  // redundant step the web flow doesn't have either.
+  //
+  // Gated on awaitingUserInitiatedConnectRef so this never fires just
+  // because AppKit's own persisted session already has an address/provider
+  // on mount (see comment on that ref above).
   useEffect(() => {
-  if (!accountAddress || !currentChainId) return;
-
-    const proceed = async () => {
-      setIsWalletLoading(true);
-  const chainId = currentChainId;
-
-      // Always prefer stored preferred chain for authentication
-      await authenticateWithWallet(accountAddress, chainId);
-      setIsWalletLoading(false);
-    };
-
-    proceed();
+    if (!accountAddress || !currentChainId || !walletProvider) return;
+    if (!awaitingUserInitiatedConnectRef.current) return;
+    const key = `${accountAddress.toLowerCase()}-${currentChainId}`;
+    if (authenticatedKeyRef.current === key) return;
+    awaitingUserInitiatedConnectRef.current = false;
+    authenticateWithWallet(accountAddress, currentChainId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accountAddress, currentChainId]);
+  }, [accountAddress, currentChainId, walletProvider]);
 
   return {
     isWalletLoading,
-    walletAddress,
+    walletAddress: accountAddress ?? null,
     handleWalletConnect,
   };
 };

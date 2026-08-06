@@ -47,7 +47,6 @@ import RootNavigator from "./navigation/RootNavigator";
 import { MessagingProvider } from "./context/MessagingContext";
 import { PushNotificationsProvider } from "./services/push";
 import { linkingConfig } from "./navigation/linking.config";
-import { prewarmWeb3Auth } from "./config/web3auth.config";
 import { loadMutedState } from "./libs/videoMutedState";
 import { loadHueState } from "./libs/audioHueState";
 import { Platform } from "react-native";
@@ -71,16 +70,9 @@ import CallMiniPlayer from "./components/Call/CallMiniPlayer";
 import { StageProvider } from "./context/StageContext";
 import StagesModalsHost from "./components/Stages/StagesModalsHost";
 import StageMiniPlayer from "./components/Stages/StageMiniPlayer";
+import { AppKit } from "@reown/appkit-ethers5-react-native";
 
 const logger = createLogger("App");
-
-/**
- * Only rebuild the Web3Auth instance on resume if the app was away long enough
- * for its session to plausibly have gone stale. A quick app-switch does not
- * need it, and the rebuild is expensive enough to show up as a stutter on the
- * frame the app comes back.
- */
-const WEB3AUTH_REPREWARM_AFTER_MS = 5 * 60 * 1000;
 
 export const navigationRef = createNavigationContainerRef();
 
@@ -112,9 +104,9 @@ export default function App() {
     if (fontsLoaded) applyGlobalFont();
   }, [fontsLoaded]);
 
-  // Complete any pending browser auth sessions (Web3Auth, OAuth). In an effect,
-  // not the render body: it was running on every re-render of the root
-  // component, on the critical path of each one.
+  // Complete any pending browser auth sessions (Supabase Google OAuth). In an
+  // effect, not the render body: it was running on every re-render of the
+  // root component, on the critical path of each one.
   React.useEffect(() => {
     WebBrowser.maybeCompleteAuthSession();
   }, []);
@@ -126,17 +118,6 @@ export default function App() {
   useAppLifecycle({
     onForeground: useCallback((backgroundMs: number) => {
       logger.info("App came to foreground", { backgroundMs });
-      // Re-prewarm Web3Auth on resume – if the session went stale while
-      // backgrounded the old instance was already discarded so this creates
-      // a fresh one silently.
-      //
-      // Only after a long background, though: this fired on every single
-      // foreground, including an app-switch of a few seconds, and rebuilding
-      // the Web3Auth instance is expensive enough to be felt as a stutter on
-      // the frame the app comes back.
-      if (backgroundMs >= WEB3AUTH_REPREWARM_AFTER_MS) {
-        prewarmWeb3Auth();
-      }
     }, []),
     onBackground: useCallback(() => {
       logger.info("App went to background");
@@ -146,8 +127,6 @@ export default function App() {
   });
 
   React.useEffect(() => {
-    // Kick off background Web3Auth prewarm to avoid first SignIn lag
-    prewarmWeb3Auth();
     // Pre-warm persistent media settings so video/audio players have correct
     // initial values synchronously (no race condition with AsyncStorage)
     loadMutedState().catch(() => { });
@@ -218,6 +197,7 @@ export default function App() {
               }}
             />
             <PermissionModalProvider />
+            <AppKit />
             {/* Settings → Appearance → Dim Lights. Above every surface,
                 below nothing — same stacking as web's fixed overlay. */}
             <DimLightsOverlay />

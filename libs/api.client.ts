@@ -17,6 +17,13 @@ interface ApiOptions {
   headers?: Record<string, string>;
   isAuthRequired?: boolean;
   params?: Record<string, any>;
+  /**
+   * Skip the console.error on failure. For calls where a non-2xx response is
+   * expected control flow the caller fully handles (e.g. the Supabase
+   * session-exchange shortcut, which 409s for every first login), so the log
+   * doesn't read as a crash.
+   */
+  quiet?: boolean;
 }
 
 /**
@@ -36,6 +43,7 @@ export const apiClient = {
       headers = {},
       isAuthRequired = true,
       params,
+      quiet = false,
     } = options;
 
     // Construct full URL, appending query params if provided
@@ -168,7 +176,12 @@ export const apiClient = {
         const message = data?.message || data?.error || (typeof data === 'string' ? data : undefined) || 'API request failed';
         // Add hint if we got HTML
         const htmlHint = rawBody && rawBody.trim().startsWith('<') ? ' (Received HTML instead of JSON - check endpoint URL / server / proxy / CORS)' : '';
-        throw new Error(message + htmlHint);
+        // Attach status/code so callers that need to branch on the specific
+        // failure (e.g. 409 WALLET_NOT_LINKED) don't have to re-parse the message.
+        const err: any = new Error(message + htmlHint);
+        err.status = status;
+        if (data?.code) err.code = data.code;
+        throw err;
       }
 
       if (response.ok) {
@@ -176,7 +189,7 @@ export const apiClient = {
       }
       return data as T;
     } catch (error) {
-      console.error(`API Error (${url}):`, error);
+      if (!quiet) console.error(`API Error (${url}):`, error);
       throw error;
     }
   },

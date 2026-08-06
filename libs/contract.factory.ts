@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
-import { getWeb3AuthProvider } from "../services/web3auth.service";
 import { getAuthMethod } from "../libs/auth.utils";
+import { createAuthAdapter } from "../services/auth/authAdapter";
 import STREAM_CONTROLLER_ABI from "../config/abis/stream-controller.json";
 import STREAMNFT_ABI from "../config/abis/erc1155.json";
 import {
@@ -12,24 +12,11 @@ export async function deriveSignerOrProvider(
   eip1193: any,
   withSigner: boolean,
 ): Promise<{ signerOrProvider: any }> {
-  let authMethod: "local" | "web3auth" | null = null;
+  let authMethod: "local" | null = null;
   try {
     const { method } = await getAuthMethod();
     authMethod = method;
   } catch {}
-
-  if (authMethod === "web3auth") {
-    try {
-      const wap = await getWeb3AuthProvider();
-      const ethProvider = new ethers.providers.Web3Provider(wap as any, "any");
-      if (!withSigner) return { signerOrProvider: ethProvider };
-      const signer = ethProvider.getSigner();
-      try { await signer.getAddress(); } catch {}
-      return { signerOrProvider: signer };
-    } catch {
-      // Fall through to generic derivation
-    }
-  }
 
   if ((eip1193 as any)?._isSigner) return { signerOrProvider: eip1193 };
   if ((eip1193 as any)?._isProvider) {
@@ -88,7 +75,7 @@ export async function getContractsForMint(chainId: number): Promise<{
   collectionContract: any;
   controllerContract: any;
 }> {
-  const provider = await getWeb3AuthProvider();
+  const provider = await createAuthAdapter().getProvider();
 
   const collectionAddr =
     STREAM_COLLECTION_CONTRACT_ADDRESSES[chainId as keyof typeof STREAM_COLLECTION_CONTRACT_ADDRESSES];

@@ -174,9 +174,9 @@ describe('libs/auth.utils', () => {
     });
 
     it('stores and retrieves auth method', async () => {
-      await setAuthMethod('web3auth', '0xABC');
+      await setAuthMethod('local', '0xABC');
       const { method, address } = await getAuthMethod();
-      expect(method).toBe('web3auth');
+      expect(method).toBe('local');
       expect(address).toBe('0xabc'); // lowercased
     });
 

@@ -64,7 +64,10 @@ export const toastError = (
   fallback = 'Something went wrong', 
   options?: ToastOptions
 ) => {
-  const message = extractMessage(error) || fallback;
+  const message =
+    error === null || error === undefined
+      ? fallback
+      : (extractMessage(error) || fallback);
   return createGlassToast('error', message, options);
 };
 

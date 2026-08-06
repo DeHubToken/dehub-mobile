@@ -12,16 +12,24 @@ import { toastError, toastSuccess } from "../libs/toast";
 
 // Feed cards mount/unmount constantly while scrolling; without a cache every
 // remount refires GET /poll/<id> (even for non-poll posts), tripping the API
-// rate limiter. Cache results — including "not a poll" (null) — for 5 minutes
-// and dedupe concurrent requests for the same tokenId.
+// rate limiter. A poll can only be attached at post-creation time (there is
+// no "add poll to an existing post" flow), so once a tokenId comes back with
+// no poll, it will *never* have one — cache that negative result for the
+// life of the app instead of re-checking it every few minutes. Only actual
+// polls (which get new votes over time) are re-fetched on a TTL, and
+// concurrent requests for the same tokenId are deduped.
 const POLL_CACHE_TTL = 5 * 60 * 1000;
 const pollCache = new Map<number, { data: DmPoll | null; ts: number }>();
 const pollInflight = new Map<number, Promise<DmPoll | null>>();
 
+function isCacheFresh(cached: { data: DmPoll | null; ts: number }): boolean {
+  return cached.data === null || Date.now() - cached.ts < POLL_CACHE_TTL;
+}
+
 function fetchPollCached(tokenId: number, force = false): Promise<DmPoll | null> {
   if (!force) {
     const cached = pollCache.get(tokenId);
-    if (cached && Date.now() - cached.ts < POLL_CACHE_TTL) {
+    if (cached && isCacheFresh(cached)) {
       return Promise.resolve(cached.data);
     }
     const existing = pollInflight.get(tokenId);
@@ -61,7 +69,7 @@ export function usePoll(tokenId: number | null) {
       return;
     }
     const cached = pollCache.get(tokenId);
-    if (cached && Date.now() - cached.ts < POLL_CACHE_TTL) {
+    if (cached && isCacheFresh(cached)) {
       setPoll(cached.data);
       return;
     }
