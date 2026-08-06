@@ -13,6 +13,7 @@ import { Gesture, GestureDetector, type GestureType } from "react-native-gesture
 import { PagerGestureProvider } from "../context/PagerGestureContext";
 import InfiniteVideoFeed, { type InfiniteVideoFeedHandle } from "../components/Home/InfiniteVideoFeed";
 import HomeImageGrid, { type HomeImageGridHandle } from "../components/Home/HomeImageGrid";
+import ImageFeedDrawer from "../components/Home/ImageFeedDrawer";
 import ShortsGrid, { type ShortsGridHandle } from "../components/Home/ShortsGrid";
 import HomeHeader from "../components/HomeHeader";
 import FeedNavBar from "../components/Home/FeedNavBar";
@@ -28,7 +29,13 @@ import { useIsFetching, useQueryClient } from "@tanstack/react-query";
 import FeedFilterLoader from "../components/Home/FeedFilterLoader";
 import { useFeedFilterTransition } from "../hooks/useFeedFilterTransition";
 import { getUnifiedFeed, getShortsFeed } from "../services/feed.unified.service";
-import type { FeedRange, FeedSortBy, FeedPostType } from "../services/feed.unified.service";
+import type {
+  FeedRange,
+  FeedSortBy,
+  FeedPostType,
+  UnifiedFeedItem,
+} from "../services/feed.unified.service";
+import { TAB_BAR_CONTENT_INSET } from "../navigation/tabBarLayout";
 
 const FALLBACK_CATEGORIES: string[] = [];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
@@ -83,8 +90,22 @@ const indexForPostType = (postType: PostTypeOption): number => {
   return i >= 0 ? i : 0;
 };
 
+/**
+ * Payload for the image drawer. Held here rather than in the grid because the
+ * drawer has to be a sibling of the header — it hangs off the bottom of it and
+ * must not be clipped by, or paint over, the nav bar.
+ */
+type ImageFeedRequest = {
+  items: UnifiedFeedItem[];
+  index: number;
+  /** Remount key, so re-opening always starts a fresh sheet at the new post. */
+  token: number;
+};
+
 export default function HomeScreen() {
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
+  const [imageFeed, setImageFeed] = useState<ImageFeedRequest | null>(null);
+  const imageFeedToken = useRef(0);
   const [filters, setFilters] = useState<FeedFilters>(DEFAULT_FILTERS);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const { width: pageWidth } = useWindowDimensions();
@@ -251,8 +272,25 @@ export default function HomeScreen() {
 
   const setPostType = useCallback((postType: PostTypeOption) => {
     setFilterPanelVisible(false);
+    // Changing tab is the one dismissal that skips the slide-out: the drawer is
+    // covering the page the tap is asking for, so it has to be gone this frame.
+    setImageFeed(null);
     setFilters((prev) => (prev.postType === postType ? prev : { ...prev, postType }));
   }, []);
+
+  const handleOpenImageFeed = useCallback(
+    (index: number, items: UnifiedFeedItem[]) => {
+      // The sheet rests against the bottom of the header, so the header has to
+      // be down before it opens — otherwise it docks to a bar that isn't there.
+      showHeader();
+      setFilterPanelVisible(false);
+      imageFeedToken.current += 1;
+      setImageFeed({ items, index, token: imageFeedToken.current });
+    },
+    [showHeader],
+  );
+
+  const handleCloseImageFeed = useCallback(() => setImageFeed(null), []);
 
   // Called from the UI thread once a drag has picked its landing page. The
   // animation is already running by then; this only catches React up.
@@ -559,6 +597,7 @@ export default function HomeScreen() {
           onScrollBegin={handleScrollBegin}
           scrollHandler={scrollHandler}
           onScrollEnd={handleScrollEnd}
+          onOpenImageFeed={handleOpenImageFeed}
         />
       );
     }
@@ -651,6 +690,26 @@ export default function HomeScreen() {
           {filterLoaderActive && <FeedFilterLoader topInset={headerHeight} />}
         </View>
       </GestureDetector>
+
+      {/* Outside the pager's GestureDetector on purpose: while the drawer is up
+          a horizontal drag on it belongs to the post's own image gallery, not
+          to a tab change happening invisibly behind the sheet. */}
+      {imageFeed ? (
+        <ImageFeedDrawer
+          key={imageFeed.token}
+          initialItems={imageFeed.items}
+          initialIndex={imageFeed.index}
+          feedParams={feedParams}
+          pageSize={20}
+          topInset={headerHeight}
+          headerTranslateY={headerTranslateY}
+          bottomInset={TAB_BAR_CONTENT_INSET}
+          scrollHandler={scrollHandler}
+          onScrollBegin={handleScrollBegin}
+          onScrollEnd={handleScrollEnd}
+          onClose={handleCloseImageFeed}
+        />
+      ) : null}
     </View>
   );
 }

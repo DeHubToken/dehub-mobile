@@ -38,6 +38,12 @@ interface HomeImageGridProps {
   onScrollEnd?: () => void;
   onScrollBegin?: () => void;
   onRefresh?: () => void;
+  /**
+   * Opens the tapped post in the host's image drawer. Hosts that don't have one
+   * (nothing today, but the grid doesn't need to know that) fall back to
+   * pushing the ImageFeed screen.
+   */
+  onOpenImageFeed?: (index: number, items: UnifiedFeedItem[]) => void;
 }
 
 // Animated wrapper so a worklet onScroll runs on the UI thread; cast keeps FlatList generics.
@@ -214,6 +220,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   onScrollEnd,
   onScrollBegin,
   onRefresh: onRefreshProp,
+  onOpenImageFeed,
 }) => {
   const [refreshing, setRefreshing] = useState(false);
   const listRef = useRef<FlatList>(null);
@@ -316,12 +323,16 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   );
 
   const handleGridItemPress = useCallback((index: number) => {
+    if (onOpenImageFeed) {
+      onOpenImageFeed(index, items);
+      return;
+    }
     navigation.navigate(ScreenNames.ImageFeed as any, {
       initialIndex: index,
       initialItems: items,
       feedParams: mergedParams,
     });
-  }, [items, navigation, mergedParams]);
+  }, [items, navigation, mergedParams, onOpenImageFeed]);
 
   const gridRows = useMemo(() => buildGridRows(items.length), [items.length]);
 
