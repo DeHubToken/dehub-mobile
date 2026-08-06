@@ -157,6 +157,10 @@ function AIChatScreenInner() {
             userContext,
             isAuthenticated: !!user,
             userLanguage: getDeviceLanguage(),
+            // Full assistant surface — the agent gets the personal-data tools
+            // alongside the public ones and answers from live platform data.
+            surface: 'assistant',
+            callerAddress: user?.walletAddress || user?.address || undefined,
           });
           response = res.response;
           break;
