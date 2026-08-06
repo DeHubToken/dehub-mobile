@@ -22,13 +22,6 @@ export type WalletSetupRequest =
   | { mode: "biometric-unlock"; supabaseUserId: string; address: string; payload: EncryptedPayload }
   | { mode: "web-passkey-sync"; supabaseUserId: string; address: string }
   | {
-      mode: "web-account-mismatch";
-      supabaseUserId: string;
-      cloudAddress: string;
-      webAddress: string;
-      webUsername?: string;
-    }
-  | {
       mode: "legacy-recovered";
       supabaseUserId: string;
       privateKey: string;
@@ -270,8 +263,6 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         ? "Secure your wallet"
         : mode === "web-passkey-sync"
         ? "Unlock on mobile"
-        : mode === "web-account-mismatch"
-        ? "Different account on web"
         : mode === "legacy-recovered"
         ? "Old account found"
         : mode === "biometric-unlock"
@@ -438,53 +429,6 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                 className="rounded-xl px-4 py-3 items-center active:opacity-80 bg-neutral-800 border border-neutral-700"
               >
                 <Text className="text-white text-sm font-medium">I added a password — try again</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-
-          {mode === "web-account-mismatch" && request?.mode === "web-account-mismatch" && (
-            <View>
-              <Text className="text-theme-neutrals-400 text-sm mb-4">
-                This Google login has{" "}
-                <Text className="text-white font-medium">more than one DeHub wallet</Text> tied to
-                it. The phone backup and the backend link name different accounts — unlocking with a
-                password here will not switch you to the account you use on the website.
-              </Text>
-              <View className="rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-900 px-4 py-3 mb-4">
-                <Text className="text-theme-neutrals-500 text-xs mb-1">Backend link (API)</Text>
-                <Text className="text-white text-sm font-medium">
-                  {request.webUsername ? `@${request.webUsername}` : "Linked on web"}
-                </Text>
-                <Text className="text-theme-neutrals-400 text-xs mt-1">
-                  {request.webAddress.slice(0, 6)}…{request.webAddress.slice(-4)}
-                </Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-3 mb-1">Cloud backup on phone</Text>
-                <Text className="text-theme-neutrals-400 text-xs">
-                  {request.cloudAddress.slice(0, 6)}…{request.cloudAddress.slice(-4)}
-                </Text>
-              </View>
-              <Text className="text-theme-neutrals-400 text-sm mb-5">
-                To use the account you see on dehub.io, check the wallet address under{" "}
-                <Text className="text-white font-medium">Settings → Assets</Text>, export its private
-                key from{" "}
-                <Text className="text-white font-medium">
-                  Settings → Privacy → Account Security
-                </Text>
-                , then tap <Text className="text-white font-medium">Import external wallet</Text>{" "}
-                below. Or use <Text className="text-white font-medium">Recover old account</Text> if
-                this is a pre-migration Web3Auth wallet.
-              </Text>
-              <TouchableOpacity
-                onPress={() => openInApp(WEBSITE_LINK)}
-                className="rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent mb-3"
-              >
-                <Text className="text-white text-sm font-medium">Open dehub.io</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={handleClose}
-                className="rounded-xl px-4 py-3 items-center active:opacity-80 bg-neutral-800 border border-neutral-700"
-              >
-                <Text className="text-white text-sm font-medium">Got it</Text>
               </TouchableOpacity>
             </View>
           )}
