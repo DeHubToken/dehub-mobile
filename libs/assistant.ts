@@ -1,10 +1,11 @@
 /**
- * The @assistant bot's identity in live chat.
+ * The @assistant bot's identity.
  *
- * Replies are posted by the API under a reserved account and broadcast to the
- * room like any other message, so mobile gets them over the existing socket
- * with no extra plumbing. All the client does is recognise the sender and give
- * it the assistant treatment.
+ * The bot answers on two surfaces, and on both of them the API writes the reply
+ * as a real row under a reserved account: a chat message broadcast to the room,
+ * or a comment in the thread it was tagged in. Mobile gets each over the plumbing
+ * it already had — the socket, and the comment list — so all the client does is
+ * recognise the sender and give it the assistant treatment.
  *
  * Keep in sync with `assistantConfig.walletAddress` in the API.
  */
@@ -19,7 +20,7 @@ export function isAssistantAddress(address?: string | null): boolean {
   return !!address && address.toLowerCase() === ASSISTANT_ADDRESS.toLowerCase();
 }
 
-/** True when a draft message will trigger a reply from the bot. */
+/** True when a draft message or comment will trigger a reply from the bot. */
 export function mentionsAssistant(content?: string | null): boolean {
   return !!content && ASSISTANT_MENTION.test(content);
 }
