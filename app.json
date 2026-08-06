@@ -51,6 +51,7 @@
         "foregroundImage": "./assets/AppIcons/playstore.png",
         "backgroundColor": "#000000"
       },
+      "allowBackup": false,
       "package": "io.dehub.mobile",
       "versionCode": 43,
       "compileSdkVersion": 35,

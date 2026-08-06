@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState, useCallback } from "react";
-import { getWeb3AuthProvider } from "../services/web3auth.service";
 import STREAM_CONTROLLER_ABI from "../config/abis/stream-controller.json";
 import STREAMNFT_ABI from "../config/abis/erc1155.json";
 import ERC20_ABI from "../config/abis/erc20.json";
@@ -84,35 +83,12 @@ async function buildContract(
 async function deriveSignerOrProvider(eip1193: any, withSigner: boolean) {
   const logPrefix = "[use-web3][derive]";
   try {
-    // Check persisted auth method to branch logic early
-    let authMethod: 'local' | 'web3auth' | null = null;
+    // Check persisted auth method (used by the local-provider fallback below)
+    let authMethod: 'local' | null = null;
     try {
       const { method } = await getAuthMethod();
       authMethod = method;
     } catch {}
-
-    // If using Web3Auth (smart account), construct signer/provider from the canonical Web3Auth provider
-    if (authMethod === 'web3auth') {
-      try {
-        const wap = await getWeb3AuthProvider();
-        const ethProvider = new ethers.providers.Web3Provider(wap as any, "any");
-        if (!withSigner) {
-          console.log(`${logPrefix} web3auth: returning provider only`);
-          return { signerOrProvider: ethProvider };
-        }
-        const signer = ethProvider.getSigner();
-        try {
-          const addr = await signer.getAddress();
-          // console.log(`${logPrefix} web3auth signer ready`, { address: addr });
-        } catch (e) {
-          console.warn(`${logPrefix} web3auth signer getAddress failed`, e);
-        }
-        return { signerOrProvider: signer };
-      } catch (wae) {
-        console.warn(`${logPrefix} web3auth path failed; falling back`, wae);
-        // Continue to generic derivation below
-      }
-    }
 
     // Fast-path: if we were given an ethers Signer or Provider directly, just return it
     if ((eip1193 as any)?._isSigner) {
@@ -406,7 +382,7 @@ export function usePaymentRouterContract(routerAddress?: string) {
   return contract;
 }
 
-// Utility for allowance check and approve via web3AuthService provider level
+// Utility for allowance check and approve via the AA-aware write path
 export async function ensureAllowance(
   tokenContract: any,
   owner: string,

@@ -20,12 +20,8 @@ config.resolver.extraNodeModules = {
 	buffer: require.resolve('buffer'),
 	assert: (() => { try { return require.resolve('assert'); } catch { return require.resolve('util'); } })(),
 	// Fallback stubs (optional) – only add if build complains about these modules
-	// http: require.resolve('empty-module'),
-	// https: require.resolve('empty-module'),
 	// os: require.resolve('empty-module'),
 	// path: require.resolve('empty-module'),
-	// zlib: require.resolve('empty-module'),
-	// url: require.resolve('empty-module'),
 };
 
 // Keep SVGs as assets (we're using inline SVG XML, not transformer) – merge without dropping defaults
@@ -86,6 +82,49 @@ config.transformer = {
 // "permissionless/accounts" correctly resolve to _cjs builds.
 const _path = require('path');
 const _fs = require('fs');
+
+// @web3auth/react-native-sdk and @web3auth/no-modal both list "import"
+// before "require" in their package.json "exports" map. With no explicit
+// condition names configured, Metro falls back to whichever key appears
+// FIRST, so it picks their dist/lib.esm builds — whose nested
+// `import {...} from "@web3auth/no-modal"` then resolves to a broken/
+// undefined module at runtime (login/init crashing with "Cannot read
+// property 'CommonJRPCProvider'/'SMART_ACCOUNT_WALLET_SCOPE' of undefined").
+// Forcing Metro's built-in "require" condition (via unstable_conditionNames)
+// globally fixed this but broke an unrelated ESM-only package elsewhere in
+// the bundle — so instead, force ONLY this package's CJS build, scoped by
+// exact module name.
+const _CJS_FORCED_PACKAGES = new Set(['@web3auth/react-native-sdk', '@web3auth/no-modal']);
+function _resolveForcedCjsEntry(moduleName) {
+	try {
+		const pkgDir = _path.join(__dirname, 'node_modules', ...moduleName.split('/'));
+		const pkgJsonPath = _path.join(pkgDir, 'package.json');
+		const pkgJson = JSON.parse(_fs.readFileSync(pkgJsonPath, 'utf8'));
+		const requireEntry = pkgJson.exports && pkgJson.exports['.'] && pkgJson.exports['.'].require;
+		if (!requireEntry) return null;
+		return _path.join(pkgDir, requireEntry);
+	} catch {
+		return null;
+	}
+}
+
+// @web3auth/no-modal's barrel file unconditionally imports its
+// MetaMask-browser-extension connector (metamaskConnector.js ->
+// @metamask/connect-multichain -> the real Node `ws` package), even though
+// this app only ever uses Web3Auth's social-login/DKG path and never that
+// connector. `ws` (a real Node.js WebSocket client/server, not a
+// browser-safe one) pulls in a long chain of Node core modules
+// (zlib/http/https/net/tls/url) plus optional native addons
+// (utf-8-validate -> node-gyp-build -> os) that don't exist in React Native.
+// `extraNodeModules` can't stub these out -- it's only a FALLBACK Metro
+// consults when normal resolution finds nothing, and both `ws` and
+// `@metamask/connect-multichain` are real, physically-present packages, so
+// normal resolution always wins and the fallback is never reached. Must
+// intercept here in resolveRequest instead, which takes priority over any
+// real package on disk. None of that subtree ever actually executes for us.
+const _STUBBED_PACKAGES = new Set(['ws', '@metamask/connect-multichain']);
+const _emptyModulePath = require.resolve('empty-module');
+
 config.resolver.resolveRequest = (context, moduleName, platform) => {
 	const origin = (context.originModulePath || '').replace(/\\/g, '/');
 	if (origin.includes('/node_modules/ox/_cjs/') && moduleName.startsWith('./')) {
@@ -93,6 +132,15 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
 		if (_fs.existsSync(filePath)) {
 			return { type: 'sourceFile', filePath };
 		}
+	}
+	if (_CJS_FORCED_PACKAGES.has(moduleName)) {
+		const filePath = _resolveForcedCjsEntry(moduleName);
+		if (filePath && _fs.existsSync(filePath)) {
+			return { type: 'sourceFile', filePath };
+		}
+	}
+	if (_STUBBED_PACKAGES.has(moduleName)) {
+		return { type: 'sourceFile', filePath: _emptyModulePath };
 	}
 	return context.resolveRequest(context, moduleName, platform);
 };

@@ -38,7 +38,6 @@ import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { useERC20Contract, useWeb3Provider } from "../hooks/use-web3";
 import { writeContractAA } from "../libs/aa.write";
-import { web3AuthService } from "../services/web3auth.service";
 import { ChainId, DHB_ADDRESSESS } from "../config/constants";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
@@ -55,7 +54,6 @@ import {
 
 /** Listings settle in DHB on Base, matching web's ListingDetailDrawer. */
 const DHB_BASE = DHB_ADDRESSESS[ChainId.BASE_MAINNET];
-const BASE_CHAIN_HEX = "0x2105"; // 8453
 
 function money(n: number): string {
   const v = Number(n) || 0;
@@ -162,16 +160,6 @@ export default function ListingDetailScreen() {
 
     setBuying(true);
     try {
-      // Best-effort chain switch. Only meaningful for the Web3Auth provider;
-      // other providers manage their own chain, so a failure here is not fatal.
-      if (chainId !== ChainId.BASE_MAINNET) {
-        try {
-          await web3AuthService.ensureChain(BASE_CHAIN_HEX as `0x${string}`);
-        } catch {
-          // fall through — writeContractAA's preflight will surface a real problem
-        }
-      }
-
       const amountWei = ethers.utils.parseUnits(String(priceDhb), 18);
 
       // Fail before signing if the balance can't cover it (same preflight as
@@ -187,9 +175,6 @@ export default function ListingDetailScreen() {
         // Preflight is advisory only.
       }
 
-      // AA-aware write: routes through the bundler for Web3Auth smart wallets
-      // and through the EOA signer otherwise. Using web3AuthService directly
-      // here would break every non-Web3Auth provider and skip gas sponsorship.
       const res = await writeContractAA(
         tokenContract,
         "transfer",

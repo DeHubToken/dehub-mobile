@@ -23,6 +23,7 @@ import {
   ScrollView,
   ActivityIndicator,
   FlatList,
+  Alert,
 } from "react-native";
 import Constants from "expo-constants";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
@@ -31,7 +32,6 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { toastSuccess, toastError } from "../libs";
 import ScreenHeader from "../components/ScreenHeader";
 import LiquidGlass from "../components/ui/LiquidGlass";
-import { logoutWeb3Auth } from "../config/web3auth.config";
 import FullScreenLoader from "../components/FullScreenLoader";
 import ReportBugModal from "../components/Settings/ReportBugModal";
 import ReviewModal from "../components/ReviewModal";
@@ -107,7 +107,6 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
     if (signingOut) return;
     setSigningOut(true);
     try {
-      await logoutWeb3Auth();
       await signOut();
       toastSuccess(t("settings.loggedOut"));
     } catch (e) {

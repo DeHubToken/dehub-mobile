@@ -228,7 +228,7 @@ export function useProviderLifecycle({
         providerMetaRef.current.authAdapter = createAuthAdapter();
       const eip1193 = await providerMetaRef.current.authAdapter.getProvider();
       if (!eip1193)
-        throw new Error("getWeb3AuthProvider returned null/undefined");
+        throw new Error("authAdapter.getProvider() returned null/undefined");
       if (!providerMetaRef.current.isMounted) return;
       log.info("provider:init:adopt");
       let mode: "local" | "override" | "auth" = "auth";
@@ -329,9 +329,8 @@ export function useProviderLifecycle({
               providerMetaRef.current.consecutiveEmptyAccounts = 0;
             }
             // Only trigger session expired after 3+ failed attempts
-            // Web3Auth tokens expire after 2 hours - at this point we need re-auth
             if (providerMetaRef.current.consecutiveEmptyAccounts >= 3) {
-              log.error("session expired - Web3Auth token likely expired (2hr TTL)");
+              log.error("session expired - provider has no accounts after repeated reinit");
               await onSessionExpired(reason);
             }
           }, 2500); // Give more time for reinit to complete

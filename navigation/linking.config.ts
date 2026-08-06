@@ -149,9 +149,20 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
    */
   getStateFromPath: (path, options) => {
     logger.info('Processing deep link', { path });
-    
+
+    // OAuth redirects (dehub://auth-callback#access_token=...&refresh_token=...)
+    // carry their payload as a URL FRAGMENT. That fragment is already consumed
+    // by WebBrowser.openAuthSessionAsync inside signInWithGoogle() — but on
+    // Android the same URL can ALSO be delivered here as a second, generic
+    // incoming deep link. Strip the fragment BEFORE any segment matching so it
+    // can never glue onto a path segment (e.g. 'auth-callback#access_token=…'
+    // failing an exact 'auth-callback' match and being misread as a profile
+    // username lookup, which was interrupting sign-in mid-flow).
+    const hashIndex = path.indexOf('#');
+    const pathNoFragment = hashIndex >= 0 ? path.slice(0, hashIndex) : path;
+
     // Normalize the path
-    const normalizedPath = path.replace(/^\/+/, '');
+    const normalizedPath = pathNoFragment.replace(/^\/+/, '');
     const parts = normalizedPath.split('?');
     const pathOnly = parts[0] || '';
     const queryString = parts[1] || '';
@@ -163,7 +174,19 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       return getStateFromPath(newPath, options);
     }
 
-    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome'];
+    // 'auth-callback' is expo-web-browser's OAuth redirect target, already
+    // consumed by signInWithGoogle() — it must never be treated as a profile
+    // username, and must never trigger a navigation reset that could unmount
+    // the in-progress sign-in screen. 'auth' is the same situation for
+    // @web3auth/react-native-sdk's connectTo() redirect (see
+    // libs/legacy-web3auth.ts, reusing the pre-migration app's already
+    // dashboard-whitelisted redirect path) — already consumed by that
+    // promise resolving.
+    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth'];
+    if (segments[0] === 'auth-callback' || segments[0] === 'auth') {
+      logger.info('Ignoring OAuth callback deep link (already consumed in-flight)', { path });
+      return undefined;
+    }
     if (
       segments.length === 1 &&
       !RESERVED_PREFIXES.includes(segments[0])

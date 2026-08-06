@@ -16,7 +16,7 @@ import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import { useAuthActions, useProvider } from "../../context/AuthContext";
 import { copyToClipboard, toastError, toastInfo, apiClient } from "../../libs";
-import { deriveAddressFromPrivateKey } from "../../config/web3auth.config";
+import { deriveAddressFromPrivateKey } from "../../libs/wallet.utils";
 import Icon from "../ui/Icon";
 
 type ExportPrivateKeyModalProps = {

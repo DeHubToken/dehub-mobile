@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="345" failures="2" errors="0" time="214.855">
+  <testsuite name="libs/auth.utils" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:39" time="15.212" tests="26">
+    <testcase classname="libs/auth.utils token operations getAuthToken returns null when empty" name="libs/auth.utils token operations getAuthToken returns null when empty" time="0.015">
+    </testcase>
+    <testcase classname="libs/auth.utils token operations setAuthToken + getAuthToken round-trips" name="libs/auth.utils token operations setAuthToken + getAuthToken round-trips" time="0.001">
+    </testcase>
+    <testcase classname="libs/auth.utils token operations removeAuthToken clears the token" name="libs/auth.utils token operations removeAuthToken clears the token" time="0.001">
+    </testcase>
+    <testcase classname="libs/auth.utils refresh token operations round-trips refresh token" name="libs/auth.utils refresh token operations round-trips refresh token" time="0.001">
+    </testcase>
+    <testcase classname="libs/auth.utils refresh token operations removeRefreshToken clears it" name="libs/auth.utils refresh token operations removeRefreshToken clears it" time="0.003">
+    </testcase>
+    <testcase classname="libs/auth.utils token expiry round-trips expires at timestamp" name="libs/auth.utils token expiry round-trips expires at timestamp" time="0.001">
+    </testcase>
+    <testcase classname="libs/auth.utils token expiry returns null when not set" name="libs/auth.utils token expiry returns null when not set" time="0">
+    </testcase>
+    <testcase classname="libs/auth.utils auth user returns null when not set" name="libs/auth.utils auth user returns null when not set" time="0.001">
+    </testcase>
+    <testcase classname="libs/auth.utils auth user stores only essential fields" name="libs/auth.utils auth user stores only essential fields" time="0.002">
+    </testcase>
+    <testcase classname="libs/auth.utils auth user removeAuthUser clears it" name="libs/auth.utils auth user removeAuthUser clears it" time="0">
+    </testcase>
+    <testcase classname="libs/auth.utils onboarding flags hasSeenAuth defaults to false" name="libs/auth.utils onboarding flags hasSeenAuth defaults to false" time="0">
+    </testcase>
+    <testcase classname="libs/auth.utils onboarding flags setHasSeenAuth sets flag" name="libs/auth.utils onboarding flags setHasSeenAuth sets flag" time="0">
+    </testcase>
+    <testcase classname="libs/auth.utils onboarding flags hasSeenOnboarding defaults to false" name="libs/auth.utils onboarding flags hasSeenOnboarding defaults to false" time="0.001">
+    </testcase>
+    <testcase classname="libs/auth.utils onboarding flags setHasSeenOnboarding sets flag" name="libs/auth.utils onboarding flags setHasSeenOnboarding sets flag" time="0">
+    </testcase>
+    <testcase classname="libs/auth.utils clearAuthData clears all auth-related keys" name="libs/auth.utils clearAuthData clears all auth-related keys" time="0.001">
+    </testcase>
+    <testcase classname="libs/auth.utils createAuthHeaders returns Authorization header when token exists" name="libs/auth.utils createAuthHeaders returns Authorization header when token exists" time="0">
+    </testcase>
+    <testcase classname="libs/auth.utils createAuthHeaders returns empty object when no token" name="libs/auth.utils createAuthHeaders returns empty object when no token" time="0.001">
+    </testcase>
+    <testcase classname="libs/auth.utils isTokenExpired returns true for empty token" name="libs/auth.utils isTokenExpired returns true for empty token" time="0">
+    </testcase>
+    <testcase classname="libs/auth.utils isTokenExpired returns true for malformed JWT" name="libs/auth.utils isTokenExpired returns true for malformed JWT" time="0">
+    </testcase>
+    <testcase classname="libs/auth.utils isTokenExpired returns true for expired token" name="libs/auth.utils isTokenExpired returns true for expired token" time="0">
+    </testcase>
+    <testcase classname="libs/auth.utils isTokenExpired returns false for token expiring in the future" name="libs/auth.utils isTokenExpired returns false for token expiring in the future" time="0.001">
+    </testcase>
+    <testcase classname="libs/auth.utils auth method defaults to null" name="libs/auth.utils auth method defaults to null" time="0.001">
+    </testcase>
+    <testcase classname="libs/auth.utils auth method stores and retrieves auth method" name="libs/auth.utils auth method stores and retrieves auth method" time="0">
+    </testcase>
+    <testcase classname="libs/auth.utils auth method clearAuthMethod resets" name="libs/auth.utils auth method clearAuthMethod resets" time="0">
+    </testcase>
+    <testcase classname="libs/auth.utils preferred chain id defaults to null" name="libs/auth.utils preferred chain id defaults to null" time="0">
+    </testcase>
+    <testcase classname="libs/auth.utils preferred chain id stores and retrieves chain id" name="libs/auth.utils preferred chain id stores and retrieves chain id" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="libs/token-refresh" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:55" time="0.445" tests="8">
+    <testcase classname="libs/token-refresh attemptRefresh returns null when no refresh token stored" name="libs/token-refresh attemptRefresh returns null when no refresh token stored" time="0.002">
+    </testcase>
+    <testcase classname="libs/token-refresh attemptRefresh refreshes token and stores new tokens" name="libs/token-refresh attemptRefresh refreshes token and stores new tokens" time="0.001">
+    </testcase>
+    <testcase classname="libs/token-refresh attemptRefresh clears auth data on refresh failure" name="libs/token-refresh attemptRefresh clears auth data on refresh failure" time="0">
+    </testcase>
+    <testcase classname="libs/token-refresh attemptRefresh coalesces concurrent refresh calls" name="libs/token-refresh attemptRefresh coalesces concurrent refresh calls" time="0.002">
+    </testcase>
+    <testcase classname="libs/token-refresh ensureFreshToken does nothing when no expiry is set" name="libs/token-refresh ensureFreshToken does nothing when no expiry is set" time="0">
+    </testcase>
+    <testcase classname="libs/token-refresh ensureFreshToken does nothing when token expires far in the future" name="libs/token-refresh ensureFreshToken does nothing when token expires far in the future" time="0.001">
+    </testcase>
+    <testcase classname="libs/token-refresh ensureFreshToken triggers refresh when token expires within buffer" name="libs/token-refresh ensureFreshToken triggers refresh when token expires within buffer" time="0">
+    </testcase>
+    <testcase classname="libs/token-refresh onTokenRefreshed notifies listeners after successful refresh" name="libs/token-refresh onTokenRefreshed notifies listeners after successful refresh" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="libs/api.client" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:39" time="15.817" tests="14">
+    <testcase classname="libs/api.client GET requests makes GET request with correct headers" name="libs/api.client GET requests makes GET request with correct headers" time="0.049">
+    </testcase>
+    <testcase classname="libs/api.client POST requests sends JSON body" name="libs/api.client POST requests sends JSON body" time="0.002">
+    </testcase>
+    <testcase classname="libs/api.client error handling throws on non-OK response" name="libs/api.client error handling throws on non-OK response" time="0.017">
+    </testcase>
+    <testcase classname="libs/api.client error handling adds HTML hint when response is HTML" name="libs/api.client error handling adds HTML hint when response is HTML" time="0.002">
+    </testcase>
+    <testcase classname="libs/api.client error handling handles 204 No Content" name="libs/api.client error handling handles 204 No Content" time="0.001">
+    </testcase>
+    <testcase classname="libs/api.client error handling handles non-JSON response body" name="libs/api.client error handling handles non-JSON response body" time="0.001">
+    </testcase>
+    <testcase classname="libs/api.client auth headers attaches Bearer token for auth-required requests" name="libs/api.client auth headers attaches Bearer token for auth-required requests" time="0.001">
+    </testcase>
+    <testcase classname="libs/api.client 401 retry retries with new token on 401" name="libs/api.client 401 retry retries with new token on 401" time="0.001">
+    </testcase>
+    <testcase classname="libs/api.client 401 retry throws &quot;Authentication required&quot; when refresh fails" name="libs/api.client 401 retry throws &quot;Authentication required&quot; when refresh fails" time="0.001">
+    </testcase>
+    <testcase classname="libs/api.client isAuthenticated returns false when no token" name="libs/api.client isAuthenticated returns false when no token" time="0.001">
+    </testcase>
+    <testcase classname="libs/api.client isAuthenticated returns true when token exists" name="libs/api.client isAuthenticated returns true when token exists" time="0.001">
+    </testcase>
+    <testcase classname="libs/api.client convenience methods put sends PUT method" name="libs/api.client convenience methods put sends PUT method" time="0.001">
+    </testcase>
+    <testcase classname="libs/api.client convenience methods patch sends PATCH method" name="libs/api.client convenience methods patch sends PATCH method" time="0.001">
+    </testcase>
+    <testcase classname="libs/api.client convenience methods delete sends DELETE method" name="libs/api.client convenience methods delete sends DELETE method" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="services/repost.service" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:39" time="16.024" tests="15">
+    <testcase classname="services/repost.service toggleRepost sends POST /repost with tokenId" name="services/repost.service toggleRepost sends POST /repost with tokenId" time="0.054">
+    </testcase>
+    <testcase classname="services/repost.service toggleRepost unwraps data wrapper" name="services/repost.service toggleRepost unwraps data wrapper" time="0.001">
+    </testcase>
+    <testcase classname="services/repost.service toggleRepost re-throws on API error" name="services/repost.service toggleRepost re-throws on API error" time="0.04">
+    </testcase>
+    <testcase classname="services/repost.service getUserReposts passes pagination query params" name="services/repost.service getUserReposts passes pagination query params" time="0.002">
+    </testcase>
+    <testcase classname="services/repost.service getUserReposts defaults page=1, limit=20" name="services/repost.service getUserReposts defaults page=1, limit=20" time="0.001">
+    </testcase>
+    <testcase classname="services/repost.service getUserReposts returns empty array for non-array result" name="services/repost.service getUserReposts returns empty array for non-array result" time="0.001">
+    </testcase>
+    <testcase classname="services/repost.service getUserReposts unwraps data wrapper" name="services/repost.service getUserReposts unwraps data wrapper" time="0.001">
+    </testcase>
+    <testcase classname="services/repost.service getRepostUsers normalises user data from nested shape" name="services/repost.service getRepostUsers normalises user data from nested shape" time="0.001">
+    </testcase>
+    <testcase classname="services/repost.service getRepostUsers falls back to raw address when user is missing" name="services/repost.service getRepostUsers falls back to raw address when user is missing" time="0">
+    </testcase>
+    <testcase classname="services/repost.service getRepostUsers uses avatarUrl fallback when avatarImageUrl is missing" name="services/repost.service getRepostUsers uses avatarUrl fallback when avatarImageUrl is missing" time="0">
+    </testcase>
+    <testcase classname="services/repost.service getRepostUsers includes pagination in response" name="services/repost.service getRepostUsers includes pagination in response" time="0.001">
+    </testcase>
+    <testcase classname="services/repost.service createQuotePost sends FormData to /quote_post" name="services/repost.service createQuotePost sends FormData to /quote_post" time="0.001">
+    </testcase>
+    <testcase classname="services/repost.service createQuotePost unwraps data wrapper" name="services/repost.service createQuotePost unwraps data wrapper" time="0.001">
+    </testcase>
+    <testcase classname="services/repost.service getQuotePosts passes tokenId and pagination in query" name="services/repost.service getQuotePosts passes tokenId and pagination in query" time="0.001">
+    </testcase>
+    <testcase classname="services/repost.service getQuotePosts returns empty array for non-array result" name="services/repost.service getQuotePosts returns empty array for non-array result" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="libs/feedVideoFocus" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:39" time="16.077" tests="4">
+    <testcase classname="libs/feedVideoFocus stops previous player when new one requests focus" name="libs/feedVideoFocus stops previous player when new one requests focus" time="0.024">
+    </testcase>
+    <testcase classname="libs/feedVideoFocus does not stop itself on duplicate request" name="libs/feedVideoFocus does not stop itself on duplicate request" time="0.001">
+    </testcase>
+    <testcase classname="libs/feedVideoFocus release only works for active player" name="libs/feedVideoFocus release only works for active player" time="0.001">
+    </testcase>
+    <testcase classname="libs/feedVideoFocus revoke stops and clears" name="libs/feedVideoFocus revoke stops and clears" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="libs/numbers.util" errors="0" failures="1" skipped="0" timestamp="2026-07-31T12:28:39" time="16.083" tests="25">
+    <testcase classname="libs/numbers.util pad pads single digit to 2 chars" name="libs/numbers.util pad pads single digit to 2 chars" time="0.035">
+    </testcase>
+    <testcase classname="libs/numbers.util pad does not pad if already sufficient length" name="libs/numbers.util pad does not pad if already sufficient length" time="0.001">
+    </testcase>
+    <testcase classname="libs/numbers.util pad pads to custom size" name="libs/numbers.util pad pads to custom size" time="0.008">
+    </testcase>
+    <testcase classname="libs/numbers.util pad truncates decimal part" name="libs/numbers.util pad truncates decimal part" time="0.001">
+    </testcase>
+    <testcase classname="libs/numbers.util clamp clamps value within range" name="libs/numbers.util clamp clamps value within range" time="0.003">
+    </testcase>
+    <testcase classname="libs/numbers.util clamp returns value when min &gt; max" name="libs/numbers.util clamp returns value when min &gt; max" time="0">
+    </testcase>
+    <testcase classname="libs/numbers.util clamp handles edge case of equal min and max" name="libs/numbers.util clamp handles edge case of equal min and max" time="0.001">
+    </testcase>
+    <testcase classname="libs/numbers.util toNumberSafe returns number directly" name="libs/numbers.util toNumberSafe returns number directly" time="0">
+    </testcase>
+    <testcase classname="libs/numbers.util toNumberSafe parses strings" name="libs/numbers.util toNumberSafe parses strings" time="0.001">
+    </testcase>
+    <testcase classname="libs/numbers.util toNumberSafe returns fallback for non-numeric" name="libs/numbers.util toNumberSafe returns fallback for non-numeric" time="0.001">
+    </testcase>
+    <testcase classname="libs/numbers.util toNumberSafe returns fallback for Infinity" name="libs/numbers.util toNumberSafe returns fallback for Infinity" time="0.001">
+    </testcase>
+    <testcase classname="libs/numbers.util percent calculates percentage" name="libs/numbers.util percent calculates percentage" time="0.001">
+    </testcase>
+    <testcase classname="libs/numbers.util percent returns 0 when whole is 0" name="libs/numbers.util percent returns 0 when whole is 0" time="0">
+    </testcase>
+    <testcase classname="libs/numbers.util percent respects custom precision" name="libs/numbers.util percent respects custom precision" time="0.001">
+    </testcase>
+    <testcase classname="libs/numbers.util formatCompactNumber returns &quot;0&quot; for null/undefined/NaN/Infinity" name="libs/numbers.util formatCompactNumber returns &quot;0&quot; for null/undefined/NaN/Infinity" time="0.001">
+    </testcase>
+    <testcase classname="libs/numbers.util formatCompactNumber formats small integers" name="libs/numbers.util formatCompactNumber formats small integers" time="0">
+    </testcase>
+    <testcase classname="libs/numbers.util formatCompactNumber formats thousands with K suffix" name="libs/numbers.util formatCompactNumber formats thousands with K suffix" time="0.001">
+    </testcase>
+    <testcase classname="libs/numbers.util formatCompactNumber formats millions with M suffix" name="libs/numbers.util formatCompactNumber formats millions with M suffix" time="0.002">
+    </testcase>
+    <testcase classname="libs/numbers.util formatCompactNumber formats billions with B suffix" name="libs/numbers.util formatCompactNumber formats billions with B suffix" time="0.001">
+    </testcase>
+    <testcase classname="libs/numbers.util formatCompactNumber handles negative numbers" name="libs/numbers.util formatCompactNumber handles negative numbers" time="0.002">
+    </testcase>
+    <testcase classname="libs/numbers.util formatCompactNumber handles fractional numbers &lt; 1" name="libs/numbers.util formatCompactNumber handles fractional numbers &lt; 1" time="0">
+    </testcase>
+    <testcase classname="libs/numbers.util formatCompactNumber trims trailing zeros for decimals &lt; 1000" name="libs/numbers.util formatCompactNumber trims trailing zeros for decimals &lt; 1000" time="0.002">
+    </testcase>
+    <testcase classname="libs/numbers.util formatNumber returns &quot;0&quot; for null/undefined" name="libs/numbers.util formatNumber returns &quot;0&quot; for null/undefined" time="0.004">
+    </testcase>
+    <testcase classname="libs/numbers.util formatNumber formats with locale separators" name="libs/numbers.util formatNumber formats with locale separators" time="0.081">
+      <failure>Error: expect(received).toMatch(expected)
+
+Expected pattern: /1.*234.*567/
+Received string:  &quot;12,34,567&quot;
+    at Object.&lt;anonymous&gt; (E:\new dehub mobile\dehub-mobile\__tests__\libs\numbers.util.test.ts:131:22)
+    at Promise.then.completed (E:\new dehub mobile\dehub-mobile\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (E:\new dehub mobile\dehub-mobile\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (E:\new dehub mobile\dehub-mobile\node_modules\jest-circus\build\run.js:316:40)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at _runTest (E:\new dehub mobile\dehub-mobile\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (E:\new dehub mobile\dehub-mobile\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (E:\new dehub mobile\dehub-mobile\node_modules\jest-circus\build\run.js:121:9)
+    at _runTestsForDescribeBlock (E:\new dehub mobile\dehub-mobile\node_modules\jest-circus\build\run.js:121:9)
+    at run (E:\new dehub mobile\dehub-mobile\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (E:\new dehub mobile\dehub-mobile\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (E:\new dehub mobile\dehub-mobile\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (E:\new dehub mobile\dehub-mobile\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (E:\new dehub mobile\dehub-mobile\node_modules\jest-runner\build\runTest.js:444:34)
+    at Object.worker (E:\new dehub mobile\dehub-mobile\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
+    </testcase>
+    <testcase classname="libs/numbers.util formatNumber uses more decimals for values &lt; 1" name="libs/numbers.util formatNumber uses more decimals for values &lt; 1" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="libs/misc" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:55" time="0.393" tests="46">
+    <testcase classname="libs/misc getAvatarUrl returns default for null/undefined/empty" name="libs/misc getAvatarUrl returns default for null/undefined/empty" time="0.002">
+    </testcase>
+    <testcase classname="libs/misc getAvatarUrl extracts filename and builds CDN URL" name="libs/misc getAvatarUrl extracts filename and builds CDN URL" time="0">
+    </testcase>
+    <testcase classname="libs/misc getAvatarUrl handles simple filename" name="libs/misc getAvatarUrl handles simple filename" time="0.001">
+    </testcase>
+    <testcase classname="libs/misc getCoverUrl returns default for falsy input" name="libs/misc getCoverUrl returns default for falsy input" time="0">
+    </testcase>
+    <testcase classname="libs/misc getCoverUrl builds CDN cover URL" name="libs/misc getCoverUrl builds CDN cover URL" time="0">
+    </testcase>
+    <testcase classname="libs/misc buildCdnPath returns undefined for falsy" name="libs/misc buildCdnPath returns undefined for falsy" time="0.001">
+    </testcase>
+    <testcase classname="libs/misc buildCdnPath prepends CDN base URL" name="libs/misc buildCdnPath prepends CDN base URL" time="0">
+    </testcase>
+    <testcase classname="libs/misc getVideoUrl returns undefined for null/undefined" name="libs/misc getVideoUrl returns undefined for null/undefined" time="0.001">
+    </testcase>
+    <testcase classname="libs/misc getVideoUrl builds video URL from number tokenId" name="libs/misc getVideoUrl builds video URL from number tokenId" time="0">
+    </testcase>
+    <testcase classname="libs/misc getVideoUrl builds video URL from string tokenId" name="libs/misc getVideoUrl builds video URL from string tokenId" time="0">
+    </testcase>
+    <testcase classname="libs/misc getVideoUrl returns undefined for empty string" name="libs/misc getVideoUrl returns undefined for empty string" time="0">
+    </testcase>
+    <testcase classname="libs/misc getShortsThumbnailUrl returns undefined for null/undefined" name="libs/misc getShortsThumbnailUrl returns undefined for null/undefined" time="0.001">
+    </testcase>
+    <testcase classname="libs/misc getShortsThumbnailUrl builds shorts thumbnail URL" name="libs/misc getShortsThumbnailUrl builds shorts thumbnail URL" time="0">
+    </testcase>
+    <testcase classname="libs/misc getPreviewUrl returns undefined for falsy" name="libs/misc getPreviewUrl returns undefined for falsy" time="0">
+    </testcase>
+    <testcase classname="libs/misc getPreviewUrl builds preview URL" name="libs/misc getPreviewUrl builds preview URL" time="0">
+    </testcase>
+    <testcase classname="libs/misc resolveThumbnail returns default-banner when no thumbnail fields exist" name="libs/misc resolveThumbnail returns default-banner when no thumbnail fields exist" time="0">
+    </testcase>
+    <testcase classname="libs/misc resolveThumbnail resolves from thumbnail field" name="libs/misc resolveThumbnail resolves from thumbnail field" time="0">
+    </testcase>
+    <testcase classname="libs/misc resolveThumbnail falls back through thumbnailUrl then imageUrl" name="libs/misc resolveThumbnail falls back through thumbnailUrl then imageUrl" time="0.001">
+    </testcase>
+    <testcase classname="libs/misc getImageUrl returns empty string for empty input" name="libs/misc getImageUrl returns empty string for empty input" time="0">
+    </testcase>
+    <testcase classname="libs/misc getImageUrl returns http URLs unchanged (with optional dimensions)" name="libs/misc getImageUrl returns http URLs unchanged (with optional dimensions)" time="0.001">
+    </testcase>
+    <testcase classname="libs/misc getImageUrl builds CDN images URL for relative paths" name="libs/misc getImageUrl builds CDN images URL for relative paths" time="0">
+    </testcase>
+    <testcase classname="libs/misc getExtension extracts file extension" name="libs/misc getExtension extracts file extension" time="0.001">
+    </testcase>
+    <testcase classname="libs/misc getExtension defaults to jpg when no extension" name="libs/misc getExtension defaults to jpg when no extension" time="0">
+    </testcase>
+    <testcase classname="libs/misc buildImageUrl returns empty for no apiImagePath" name="libs/misc buildImageUrl returns empty for no apiImagePath" time="0">
+    </testcase>
+    <testcase classname="libs/misc buildImageUrl returns http URLs unchanged" name="libs/misc buildImageUrl returns http URLs unchanged" time="0.001">
+    </testcase>
+    <testcase classname="libs/misc buildImageUrl builds CDN URL with tokenId and extension" name="libs/misc buildImageUrl builds CDN URL with tokenId and extension" time="0">
+    </testcase>
+    <testcase classname="libs/misc getImageUrlApi builds API image URL with tokenId" name="libs/misc getImageUrlApi builds API image URL with tokenId" time="0.001">
+    </testcase>
+    <testcase classname="libs/misc getImageUrlApi includes width/height params" name="libs/misc getImageUrlApi includes width/height params" time="0">
+    </testcase>
+    <testcase classname="libs/misc getImageUrlApiSimple prepends API base URL to path" name="libs/misc getImageUrlApiSimple prepends API base URL to path" time="0">
+    </testcase>
+    <testcase classname="libs/misc getAudioUrl returns empty for empty input" name="libs/misc getAudioUrl returns empty for empty input" time="0.001">
+    </testcase>
+    <testcase classname="libs/misc getAudioUrl returns http URLs unchanged" name="libs/misc getAudioUrl returns http URLs unchanged" time="0">
+    </testcase>
+    <testcase classname="libs/misc getAudioUrl prepends CDN for relative paths" name="libs/misc getAudioUrl prepends CDN for relative paths" time="0">
+    </testcase>
+    <testcase classname="libs/misc getAudioUrl strips leading slashes" name="libs/misc getAudioUrl strips leading slashes" time="0">
+    </testcase>
+    <testcase classname="libs/misc getBadgeName returns undefined below minimum threshold" name="libs/misc getBadgeName returns undefined below minimum threshold" time="0">
+    </testcase>
+    <testcase classname="libs/misc getBadgeName returns Crab at 10000" name="libs/misc getBadgeName returns Crab at 10000" time="0">
+    </testcase>
+    <testcase classname="libs/misc getBadgeName returns highest matching badge" name="libs/misc getBadgeName returns highest matching badge" time="0.015">
+    </testcase>
+    <testcase classname="libs/misc getBadgeName handles string input" name="libs/misc getBadgeName handles string input" time="0">
+    </testcase>
+    <testcase classname="libs/misc getBadgeName returns undefined for NaN/Infinity" name="libs/misc getBadgeName returns undefined for NaN/Infinity" time="0">
+    </testcase>
+    <testcase classname="libs/misc resolveBadgeBalance returns 0 for null/undefined" name="libs/misc resolveBadgeBalance returns 0 for null/undefined" time="0.001">
+    </testcase>
+    <testcase classname="libs/misc resolveBadgeBalance returns badgeBalance first" name="libs/misc resolveBadgeBalance returns badgeBalance first" time="0">
+    </testcase>
+    <testcase classname="libs/misc resolveBadgeBalance falls through stakedDHB → staked → minterStaked" name="libs/misc resolveBadgeBalance falls through stakedDHB → staked → minterStaked" time="0">
+    </testcase>
+    <testcase classname="libs/misc resolveBadgeBalance returns 0 when no balance fields" name="libs/misc resolveBadgeBalance returns 0 when no balance fields" time="0.001">
+    </testcase>
+    <testcase classname="libs/misc resolveBadgeBalance skips zero values" name="libs/misc resolveBadgeBalance skips zero values" time="0">
+    </testcase>
+    <testcase classname="libs/misc getDefaultBanner returns first banner for empty identifier" name="libs/misc getDefaultBanner returns first banner for empty identifier" time="0">
+    </testcase>
+    <testcase classname="libs/misc getDefaultBanner returns deterministic banner for same identifier" name="libs/misc getDefaultBanner returns deterministic banner for same identifier" time="0.001">
+    </testcase>
+    <testcase classname="libs/misc getDefaultBanner returns a value for any identifier" name="libs/misc getDefaultBanner returns a value for any identifier" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="services/user.service" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:55" time="0.497" tests="47">
+    <testcase classname="services/user.service getAccount calls /account_info with encoded username" name="services/user.service getAccount calls /account_info with encoded username" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service getAccount encodes special characters" name="services/user.service getAccount encodes special characters" time="0">
+    </testcase>
+    <testcase classname="services/user.service usersSearch returns mapped users when successful" name="services/user.service usersSearch returns mapped users when successful" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service usersSearch returns raw response when not successful" name="services/user.service usersSearch returns raw response when not successful" time="0">
+    </testcase>
+    <testcase classname="services/user.service getNotifications calls /notification without params" name="services/user.service getNotifications calls /notification without params" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service getNotifications passes category and page as query params" name="services/user.service getNotifications passes category and page as query params" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service getNotifications includes unreadOnly=false when explicitly set" name="services/user.service getNotifications includes unreadOnly=false when explicitly set" time="0">
+    </testcase>
+    <testcase classname="services/user.service markNotificationAsRead returns null for empty id" name="services/user.service markNotificationAsRead returns null for empty id" time="0">
+    </testcase>
+    <testcase classname="services/user.service markNotificationAsRead calls PATCH on specific notification" name="services/user.service markNotificationAsRead calls PATCH on specific notification" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service markAllNotificationsAsRead calls /notification/mark-all-read without category" name="services/user.service markAllNotificationsAsRead calls /notification/mark-all-read without category" time="0">
+    </testcase>
+    <testcase classname="services/user.service markAllNotificationsAsRead includes category query param" name="services/user.service markAllNotificationsAsRead includes category query param" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service refreshAccount returns null for null user" name="services/user.service refreshAccount returns null for null user" time="0">
+    </testcase>
+    <testcase classname="services/user.service refreshAccount returns current user when no identifier" name="services/user.service refreshAccount returns current user when no identifier" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service refreshAccount returns fresh user on success" name="services/user.service refreshAccount returns fresh user on success" time="0">
+    </testcase>
+    <testcase classname="services/user.service refreshAccount returns current user on error" name="services/user.service refreshAccount returns current user on error" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service followUser / unfollowUser follows a user" name="services/user.service followUser / unfollowUser follows a user" time="0">
+    </testcase>
+    <testcase classname="services/user.service followUser / unfollowUser unfollows a user" name="services/user.service followUser / unfollowUser unfollows a user" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service followUser / unfollowUser defaults status when missing" name="services/user.service followUser / unfollowUser defaults status when missing" time="0">
+    </testcase>
+    <testcase classname="services/user.service isFollowing returns false for empty address" name="services/user.service isFollowing returns false for empty address" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service isFollowing returns following status" name="services/user.service isFollowing returns following status" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service isFollowing returns false on error" name="services/user.service isFollowing returns false on error" time="0">
+    </testcase>
+    <testcase classname="services/user.service removeFollower sends POST to /followers/remove" name="services/user.service removeFollower sends POST to /followers/remove" time="0.002">
+    </testcase>
+    <testcase classname="services/user.service getFollowList builds correct URL with all params" name="services/user.service getFollowList builds correct URL with all params" time="0.002">
+    </testcase>
+    <testcase classname="services/user.service getFollowRequests returns normalised structure" name="services/user.service getFollowRequests returns normalised structure" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service getFollowRequests defaults to empty items when missing" name="services/user.service getFollowRequests defaults to empty items when missing" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service acceptFollowRequest / rejectFollowRequest calls accept endpoint" name="services/user.service acceptFollowRequest / rejectFollowRequest calls accept endpoint" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service acceptFollowRequest / rejectFollowRequest calls reject endpoint" name="services/user.service acceptFollowRequest / rejectFollowRequest calls reject endpoint" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service acceptAllFollowRequests / rejectAllFollowRequests accept-all returns data" name="services/user.service acceptAllFollowRequests / rejectAllFollowRequests accept-all returns data" time="0">
+    </testcase>
+    <testcase classname="services/user.service acceptAllFollowRequests / rejectAllFollowRequests reject-all returns data" name="services/user.service acceptAllFollowRequests / rejectAllFollowRequests reject-all returns data" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getLikedPosts uses 1-indexed page" name="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getLikedPosts uses 1-indexed page" time="0">
+    </testcase>
+    <testcase classname="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getLikedPosts handles nested result shapes" name="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getLikedPosts handles nested result shapes" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getLikedPosts handles items wrapper" name="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getLikedPosts handles items wrapper" time="0">
+    </testcase>
+    <testcase classname="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getMyPosts uses 1-indexed page" name="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getMyPosts uses 1-indexed page" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getMyPosts handles nested result shapes" name="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getMyPosts handles nested result shapes" time="0">
+    </testcase>
+    <testcase classname="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getMyPosts handles items wrapper" name="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getMyPosts handles items wrapper" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getSavedPosts uses 1-indexed page" name="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getSavedPosts uses 1-indexed page" time="0">
+    </testcase>
+    <testcase classname="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getSavedPosts handles nested result shapes" name="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getSavedPosts handles nested result shapes" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getSavedPosts handles items wrapper" name="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getSavedPosts handles items wrapper" time="0">
+    </testcase>
+    <testcase classname="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getUnlockedPosts uses 1-indexed page" name="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getUnlockedPosts uses 1-indexed page" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getUnlockedPosts handles nested result shapes" name="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getUnlockedPosts handles nested result shapes" time="0">
+    </testcase>
+    <testcase classname="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getUnlockedPosts handles items wrapper" name="services/user.service paginated post lists (getLikedPosts, getMyPosts, getSavedPosts, getUnlockedPosts) getUnlockedPosts handles items wrapper" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service getUserReplies passes address and pagination" name="services/user.service getUserReplies passes address and pagination" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service getUserReplies defaults pagination when missing" name="services/user.service getUserReplies defaults pagination when missing" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service getSuggestedAccounts returns items from result wrapper" name="services/user.service getSuggestedAccounts returns items from result wrapper" time="0.001">
+    </testcase>
+    <testcase classname="services/user.service getSuggestedAccounts returns empty array on error" name="services/user.service getSuggestedAccounts returns empty array on error" time="0">
+    </testcase>
+    <testcase classname="services/user.service getUserReposts (user.service version) calls /user/{address}/reposts" name="services/user.service getUserReposts (user.service version) calls /user/{address}/reposts" time="0.003">
+    </testcase>
+    <testcase classname="services/user.service getUserReposts (user.service version) returns empty array for non-array result" name="services/user.service getUserReposts (user.service version) returns empty array for non-array result" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="requireDeviceOwner — a device that cannot verify" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:55" time="0.49" tests="12">
+    <testcase classname="requireDeviceOwner — a device that cannot verify permits the release rather than locking the user out" name="requireDeviceOwner — a device that cannot verify permits the release rather than locking the user out" time="0.002">
+    </testcase>
+    <testcase classname="requireDeviceOwner — a device that cannot verify does not even try to prompt, since there is nothing to prompt for" name="requireDeviceOwner — a device that cannot verify does not even try to prompt, since there is nothing to prompt for" time="0">
+    </testcase>
+    <testcase classname="requireDeviceOwner — a device that cannot verify treats biometric hardware with nothing enrolled and no passcode the same way" name="requireDeviceOwner — a device that cannot verify treats biometric hardware with nothing enrolled and no passcode the same way" time="0">
+    </testcase>
+    <testcase classname="requireDeviceOwner — a device that can verify returns verified when the owner passes" name="requireDeviceOwner — a device that can verify returns verified when the owner passes" time="0.001">
+    </testcase>
+    <testcase classname="requireDeviceOwner — a device that can verify prompts a passcode-only device instead of waving it through" name="requireDeviceOwner — a device that can verify prompts a passcode-only device instead of waving it through" time="0.001">
+    </testcase>
+    <testcase classname="requireDeviceOwner — a device that can verify blocks when the owner cancels — refusing is not the same as being unable" name="requireDeviceOwner — a device that can verify blocks when the owner cancels — refusing is not the same as being unable" time="0.001">
+    </testcase>
+    <testcase classname="requireDeviceOwner — a device that can verify blocks when a capable device cannot present the prompt" name="requireDeviceOwner — a device that can verify blocks when a capable device cannot present the prompt" time="0">
+    </testcase>
+    <testcase classname="requireDeviceOwner — a device that can verify passes the caller&apos;s purpose through to the system prompt" name="requireDeviceOwner — a device that can verify passes the caller&apos;s purpose through to the system prompt" time="0.001">
+    </testcase>
+    <testcase classname="requireDeviceOwner — a device that can verify leaves the OS passcode fallback available" name="requireDeviceOwner — a device that can verify leaves the OS passcode fallback available" time="0.001">
+    </testcase>
+    <testcase classname="getBiometricCapability reports a passcode-only device as usable but not biometric" name="getBiometricCapability reports a passcode-only device as usable but not biometric" time="0.001">
+    </testcase>
+    <testcase classname="getBiometricCapability reports an unlockable device as unusable" name="getBiometricCapability reports an unlockable device as unusable" time="0">
+    </testcase>
+    <testcase classname="getBiometricCapability degrades to unusable rather than throwing when the platform errors" name="getBiometricCapability degrades to unusable rather than throwing when the platform errors" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="libs/date.util" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:56" time="0.369" tests="22">
+    <testcase classname="libs/date.util secondsToHMMSS returns undefined for undefined/null/NaN" name="libs/date.util secondsToHMMSS returns undefined for undefined/null/NaN" time="0.002">
+    </testcase>
+    <testcase classname="libs/date.util secondsToHMMSS formats seconds under an hour as MM:SS" name="libs/date.util secondsToHMMSS formats seconds under an hour as MM:SS" time="0.001">
+    </testcase>
+    <testcase classname="libs/date.util secondsToHMMSS formats seconds over an hour as HH:MM:SS" name="libs/date.util secondsToHMMSS formats seconds over an hour as HH:MM:SS" time="0.001">
+    </testcase>
+    <testcase classname="libs/date.util secondsToHMMSS treats negative values as 0" name="libs/date.util secondsToHMMSS treats negative values as 0" time="0">
+    </testcase>
+    <testcase classname="libs/date.util msToHHMMSS returns undefined for undefined/null" name="libs/date.util msToHHMMSS returns undefined for undefined/null" time="0">
+    </testcase>
+    <testcase classname="libs/date.util msToHHMMSS converts milliseconds to HH:MM:SS" name="libs/date.util msToHHMMSS converts milliseconds to HH:MM:SS" time="0.001">
+    </testcase>
+    <testcase classname="libs/date.util formatJoinedDate returns null for falsy input" name="libs/date.util formatJoinedDate returns null for falsy input" time="0">
+    </testcase>
+    <testcase classname="libs/date.util formatJoinedDate returns null for invalid date" name="libs/date.util formatJoinedDate returns null for invalid date" time="0">
+    </testcase>
+    <testcase classname="libs/date.util formatJoinedDate formats a valid ISO date" name="libs/date.util formatJoinedDate formats a valid ISO date" time="0.032">
+    </testcase>
+    <testcase classname="libs/date.util formatRelativeFromNow returns &quot;now&quot; for falsy input" name="libs/date.util formatRelativeFromNow returns &quot;now&quot; for falsy input" time="0.001">
+    </testcase>
+    <testcase classname="libs/date.util formatRelativeFromNow returns &quot;now&quot; for invalid date" name="libs/date.util formatRelativeFromNow returns &quot;now&quot; for invalid date" time="0">
+    </testcase>
+    <testcase classname="libs/date.util formatRelativeFromNow returns &quot;now&quot; for very recent time" name="libs/date.util formatRelativeFromNow returns &quot;now&quot; for very recent time" time="0.001">
+    </testcase>
+    <testcase classname="libs/date.util formatRelativeFromNow returns minutes ago" name="libs/date.util formatRelativeFromNow returns minutes ago" time="0">
+    </testcase>
+    <testcase classname="libs/date.util formatRelativeFromNow returns singular &quot;1 min ago&quot;" name="libs/date.util formatRelativeFromNow returns singular &quot;1 min ago&quot;" time="0">
+    </testcase>
+    <testcase classname="libs/date.util formatRelativeFromNow returns hours ago" name="libs/date.util formatRelativeFromNow returns hours ago" time="0">
+    </testcase>
+    <testcase classname="libs/date.util formatRelativeFromNow returns days ago" name="libs/date.util formatRelativeFromNow returns days ago" time="0.001">
+    </testcase>
+    <testcase classname="libs/date.util formatRelativeFromNow returns weeks ago" name="libs/date.util formatRelativeFromNow returns weeks ago" time="0">
+    </testcase>
+    <testcase classname="libs/date.util formatRelativeFromNow returns months ago" name="libs/date.util formatRelativeFromNow returns months ago" time="0">
+    </testcase>
+    <testcase classname="libs/date.util formatRelativeFromNow returns years ago" name="libs/date.util formatRelativeFromNow returns years ago" time="0">
+    </testcase>
+    <testcase classname="libs/date.util formatChatTimeSmart returns &quot;now&quot; for falsy" name="libs/date.util formatChatTimeSmart returns &quot;now&quot; for falsy" time="0.001">
+    </testcase>
+    <testcase classname="libs/date.util formatChatTimeSmart returns relative time within threshold" name="libs/date.util formatChatTimeSmart returns relative time within threshold" time="0">
+    </testcase>
+    <testcase classname="libs/date.util formatChatTimeSmart returns absolute time beyond threshold" name="libs/date.util formatChatTimeSmart returns absolute time beyond threshold" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="services/auth.service" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:56" time="0.561" tests="13">
+    <testcase classname="services/auth.service checkUsernameAvailability rejects empty username" name="services/auth.service checkUsernameAvailability rejects empty username" time="0.002">
+    </testcase>
+    <testcase classname="services/auth.service checkUsernameAvailability rejects short username" name="services/auth.service checkUsernameAvailability rejects short username" time="0.002">
+    </testcase>
+    <testcase classname="services/auth.service checkUsernameAvailability rejects username over 30 chars" name="services/auth.service checkUsernameAvailability rejects username over 30 chars" time="0.001">
+    </testcase>
+    <testcase classname="services/auth.service checkUsernameAvailability rejects invalid characters" name="services/auth.service checkUsernameAvailability rejects invalid characters" time="0.001">
+    </testcase>
+    <testcase classname="services/auth.service checkUsernameAvailability returns available for valid username" name="services/auth.service checkUsernameAvailability returns available for valid username" time="0.001">
+    </testcase>
+    <testcase classname="services/auth.service checkUsernameAvailability returns taken for unavailable username" name="services/auth.service checkUsernameAvailability returns taken for unavailable username" time="0.001">
+    </testcase>
+    <testcase classname="services/auth.service checkUsernameAvailability handles API error gracefully" name="services/auth.service checkUsernameAvailability handles API error gracefully" time="0.001">
+    </testcase>
+    <testcase classname="services/auth.service signOut calls logout API and clears auth data" name="services/auth.service signOut calls logout API and clears auth data" time="0.003">
+    </testcase>
+    <testcase classname="services/auth.service signOut still clears auth data if logout API fails" name="services/auth.service signOut still clears auth data if logout API fails" time="0.001">
+    </testcase>
+    <testcase classname="services/auth.service getCurrentUser fetches current user from API" name="services/auth.service getCurrentUser fetches current user from API" time="0">
+    </testcase>
+    <testcase classname="services/auth.service logoutAllDevices calls logout-all and clears auth" name="services/auth.service logoutAllDevices calls logout-all and clears auth" time="0">
+    </testcase>
+    <testcase classname="services/auth.service updateProfile sends FormData and returns partial user" name="services/auth.service updateProfile sends FormData and returns partial user" time="0.001">
+    </testcase>
+    <testcase classname="services/auth.service updateProfile throws when API returns error" name="services/auth.service updateProfile throws when API returns error" time="0.015">
+    </testcase>
+  </testsuite>
+  <testsuite name="services/dpay.service" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:56" time="0.417" tests="11">
+    <testcase classname="services/dpay.service dpayCreateOrder returns result on success" name="services/dpay.service dpayCreateOrder returns result on success" time="0.002">
+    </testcase>
+    <testcase classname="services/dpay.service dpayCreateOrder normalizes 400 error" name="services/dpay.service dpayCreateOrder normalizes 400 error" time="0.021">
+    </testcase>
+    <testcase classname="services/dpay.service dpayCreateOrder normalizes 401 error" name="services/dpay.service dpayCreateOrder normalizes 401 error" time="0.002">
+    </testcase>
+    <testcase classname="services/dpay.service dpayCreateOrder normalizes 500 error" name="services/dpay.service dpayCreateOrder normalizes 500 error" time="0">
+    </testcase>
+    <testcase classname="services/dpay.service dpayCreateOrder passes through unknown errors" name="services/dpay.service dpayCreateOrder passes through unknown errors" time="0">
+    </testcase>
+    <testcase classname="services/dpay.service getDpayTnx passes filter as query params" name="services/dpay.service getDpayTnx passes filter as query params" time="0.001">
+    </testcase>
+    <testcase classname="services/dpay.service getDpayTnx normalizes 404 error" name="services/dpay.service getDpayTnx normalizes 404 error" time="0">
+    </testcase>
+    <testcase classname="services/dpay.service getDpayPrice passes filter params" name="services/dpay.service getDpayPrice passes filter params" time="0.001">
+    </testcase>
+    <testcase classname="services/dpay.service getDpayPrice normalizes errors" name="services/dpay.service getDpayPrice normalizes errors" time="0.001">
+    </testcase>
+    <testcase classname="services/dpay.service getSupply fetches without auth" name="services/dpay.service getSupply fetches without auth" time="0.001">
+    </testcase>
+    <testcase classname="services/dpay.service getSuccessTotal fetches total with success type" name="services/dpay.service getSuccessTotal fetches total with success type" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="services/nft.service" errors="0" failures="1" skipped="0" timestamp="2026-07-31T12:28:39" time="17.011" tests="50">
+    <testcase classname="services/nft.service getNFTs builds query params and returns result array" name="services/nft.service getNFTs builds query params and returns result array" time="0.015">
+    </testcase>
+    <testcase classname="services/nft.service getNFTs handles direct array response" name="services/nft.service getNFTs handles direct array response" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service getNFTs handles data array wrapper" name="services/nft.service getNFTs handles data array wrapper" time="0">
+    </testcase>
+    <testcase classname="services/nft.service getNFTs returns empty for unexpected shape" name="services/nft.service getNFTs returns empty for unexpected shape" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service getNFTs strips undefined/null params" name="services/nft.service getNFTs strips undefined/null params" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service getNFT fetches single NFT by tokenId" name="services/nft.service getNFT fetches single NFT by tokenId" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service getNFT throws for null tokenId" name="services/nft.service getNFT throws for null tokenId" time="0.051">
+    </testcase>
+    <testcase classname="services/nft.service getNFT passes commentId in query" name="services/nft.service getNFT passes commentId in query" time="0">
+    </testcase>
+    <testcase classname="services/nft.service getNFT wraps bare object into result" name="services/nft.service getNFT wraps bare object into result" time="0">
+    </testcase>
+    <testcase classname="services/nft.service getNFT throws for invalid response" name="services/nft.service getNFT throws for invalid response" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service getSuggestedVideos calls /suggested/{tokenId}" name="services/nft.service getSuggestedVideos calls /suggested/{tokenId}" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service getSuggestedVideos throws for null tokenId" name="services/nft.service getSuggestedVideos throws for null tokenId" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service getSuggestedVideos handles direct array response" name="services/nft.service getSuggestedVideos handles direct array response" time="0">
+    </testcase>
+    <testcase classname="services/nft.service getSuggestedVideos returns empty for unexpected shape" name="services/nft.service getSuggestedVideos returns empty for unexpected shape" time="0">
+    </testcase>
+    <testcase classname="services/nft.service getCategories returns direct array" name="services/nft.service getCategories returns direct array" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service getCategories unwraps result array" name="services/nft.service getCategories unwraps result array" time="0">
+    </testcase>
+    <testcase classname="services/nft.service getCategories returns empty on error" name="services/nft.service getCategories returns empty on error" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service getCategoriesCached caches result on second call" name="services/nft.service getCategoriesCached caches result on second call" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service getCategoriesCached force refresh bypasses cache" name="services/nft.service getCategoriesCached force refresh bypasses cache" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service recordView calls /record-view/{tokenId}" name="services/nft.service recordView calls /record-view/{tokenId}" time="0">
+    </testcase>
+    <testcase classname="services/nft.service recordView silently ignores null tokenId" name="services/nft.service recordView silently ignores null tokenId" time="0">
+    </testcase>
+    <testcase classname="services/nft.service recordView swallows errors silently" name="services/nft.service recordView swallows errors silently" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service voteOnNFT sends vote to /request_vote" name="services/nft.service voteOnNFT sends vote to /request_vote" time="0.007">
+      <failure>Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
+
+- Expected
++ Received
+
+  &quot;/request_vote&quot;,
+  Object {
+    &quot;streamTokenId&quot;: 42,
+-   &quot;vote&quot;: true,
++   &quot;vote&quot;: &quot;true&quot;,
+  },
+  {&quot;isAuthRequired&quot;: true},
+
+Number of calls: 1
+    at Object.&lt;anonymous&gt; (E:\new dehub mobile\dehub-mobile\__tests__\services\nft.service.test.ts:202:24)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)</failure>
+    </testcase>
+    <testcase classname="services/nft.service voteOnNFT returns undefined for null streamTokenId" name="services/nft.service voteOnNFT returns undefined for null streamTokenId" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service postComment sends comment to /request_comment" name="services/nft.service postComment sends comment to /request_comment" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service postComment throws for null streamTokenId" name="services/nft.service postComment throws for null streamTokenId" time="0.002">
+    </testcase>
+    <testcase classname="services/nft.service postComment throws for empty content" name="services/nft.service postComment throws for empty content" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service postComment includes commentId for replies" name="services/nft.service postComment includes commentId for replies" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service getCommentsForToken fetches comments with query params" name="services/nft.service getCommentsForToken fetches comments with query params" time="0">
+    </testcase>
+    <testcase classname="services/nft.service getCommentsForToken throws for null tokenId" name="services/nft.service getCommentsForToken throws for null tokenId" time="0">
+    </testcase>
+    <testcase classname="services/nft.service getCommentsForToken wraps direct array response" name="services/nft.service getCommentsForToken wraps direct array response" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service getCommentsForToken returns empty for unexpected shape" name="services/nft.service getCommentsForToken returns empty for unexpected shape" time="0">
+    </testcase>
+    <testcase classname="services/nft.service likeComment sends like request" name="services/nft.service likeComment sends like request" time="0">
+    </testcase>
+    <testcase classname="services/nft.service likeComment throws for null commentId" name="services/nft.service likeComment throws for null commentId" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service editComment edits comment via query params" name="services/nft.service editComment edits comment via query params" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service editComment throws for empty content" name="services/nft.service editComment throws for empty content" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service deleteComment deletes comment" name="services/nft.service deleteComment deletes comment" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service postGifComment sends gif comment" name="services/nft.service postGifComment sends gif comment" time="0">
+    </testcase>
+    <testcase classname="services/nft.service postGifComment throws for missing gifUrl" name="services/nft.service postGifComment throws for missing gifUrl" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service getClaimBountySignature fetches bounty signature" name="services/nft.service getClaimBountySignature fetches bounty signature" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service getClaimBountySignature throws for null tokenId" name="services/nft.service getClaimBountySignature throws for null tokenId" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service minNft (mint) posts FormData to /user_mint" name="services/nft.service minNft (mint) posts FormData to /user_mint" time="0.002">
+    </testcase>
+    <testcase classname="services/nft.service editPost patches NFT data" name="services/nft.service editPost patches NFT data" time="0">
+    </testcase>
+    <testcase classname="services/nft.service editPost throws for null tokenId" name="services/nft.service editPost throws for null tokenId" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service togglePostVisibility sends visibility toggle" name="services/nft.service togglePostVisibility sends visibility toggle" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service deletePost deletes NFT" name="services/nft.service deletePost deletes NFT" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service reportContent reports content" name="services/nft.service reportContent reports content" time="0">
+    </testcase>
+    <testcase classname="services/nft.service reportContent throws for null tokenId" name="services/nft.service reportContent throws for null tokenId" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service reportUser reports user" name="services/nft.service reportUser reports user" time="0.001">
+    </testcase>
+    <testcase classname="services/nft.service reportUser throws for empty userId" name="services/nft.service reportUser throws for empty userId" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="services/feed.unified.service" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:56" time="0.37" tests="14">
+    <testcase classname="services/feed.unified.service getUnifiedFeed returns parsed response with result and pagination" name="services/feed.unified.service getUnifiedFeed returns parsed response with result and pagination" time="0.002">
+    </testcase>
+    <testcase classname="services/feed.unified.service getUnifiedFeed passes query params correctly" name="services/feed.unified.service getUnifiedFeed passes query params correctly" time="0.001">
+    </testcase>
+    <testcase classname="services/feed.unified.service getUnifiedFeed returns empty result for unexpected response shape" name="services/feed.unified.service getUnifiedFeed returns empty result for unexpected response shape" time="0.001">
+    </testcase>
+    <testcase classname="services/feed.unified.service getUnifiedFeed propagates API errors" name="services/feed.unified.service getUnifiedFeed propagates API errors" time="0.018">
+    </testcase>
+    <testcase classname="services/feed.unified.service getUnifiedFeed builds default pagination when missing" name="services/feed.unified.service getUnifiedFeed builds default pagination when missing" time="0">
+    </testcase>
+    <testcase classname="services/feed.unified.service getShortsFeed calls /feed/shorts endpoint" name="services/feed.unified.service getShortsFeed calls /feed/shorts endpoint" time="0.001">
+    </testcase>
+    <testcase classname="services/feed.unified.service getShortsFeed returns empty for non-object response" name="services/feed.unified.service getShortsFeed returns empty for non-object response" time="0.001">
+    </testcase>
+    <testcase classname="services/feed.unified.service type guard functions isVideoItem returns true for video or undefined postType" name="services/feed.unified.service type guard functions isVideoItem returns true for video or undefined postType" time="0.001">
+    </testcase>
+    <testcase classname="services/feed.unified.service type guard functions isLiveItem identifies live posts" name="services/feed.unified.service type guard functions isLiveItem identifies live posts" time="0">
+    </testcase>
+    <testcase classname="services/feed.unified.service type guard functions isImagePostItem identifies image posts" name="services/feed.unified.service type guard functions isImagePostItem identifies image posts" time="0">
+    </testcase>
+    <testcase classname="services/feed.unified.service type guard functions isTextPostItem identifies text posts" name="services/feed.unified.service type guard functions isTextPostItem identifies text posts" time="0.001">
+    </testcase>
+    <testcase classname="services/feed.unified.service type guard functions isAudioPostItem identifies audio posts" name="services/feed.unified.service type guard functions isAudioPostItem identifies audio posts" time="0">
+    </testcase>
+    <testcase classname="services/feed.unified.service type guard functions isFeedPostItem identifies any feed post" name="services/feed.unified.service type guard functions isFeedPostItem identifies any feed post" time="0">
+    </testcase>
+    <testcase classname="services/feed.unified.service type guard functions isShortItem identifies shorts" name="services/feed.unified.service type guard functions isShortItem identifies shorts" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="services/feed.service" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:56" time="0.296" tests="11">
+    <testcase classname="services/feed.service getFeedNFTs returns parsed result array" name="services/feed.service getFeedNFTs returns parsed result array" time="0.001">
+    </testcase>
+    <testcase classname="services/feed.service getFeedNFTs handles direct array response" name="services/feed.service getFeedNFTs handles direct array response" time="0">
+    </testcase>
+    <testcase classname="services/feed.service getFeedNFTs handles data wrapper response" name="services/feed.service getFeedNFTs handles data wrapper response" time="0">
+    </testcase>
+    <testcase classname="services/feed.service getFeedNFTs returns empty result for unexpected shape" name="services/feed.service getFeedNFTs returns empty result for unexpected shape" time="0">
+    </testcase>
+    <testcase classname="services/feed.service getFeedNFTs uses search params when search is provided" name="services/feed.service getFeedNFTs uses search params when search is provided" time="0">
+    </testcase>
+    <testcase classname="services/feed.service getFeedNFTs passes page as 1-indexed" name="services/feed.service getFeedNFTs passes page as 1-indexed" time="0">
+    </testcase>
+    <testcase classname="services/feed.service savePost sends tokenId as number" name="services/feed.service savePost sends tokenId as number" time="0">
+    </testcase>
+    <testcase classname="services/feed.service savePost throws for null tokenId" name="services/feed.service savePost throws for null tokenId" time="0.016">
+    </testcase>
+    <testcase classname="services/feed.service savePost wraps API errors" name="services/feed.service savePost wraps API errors" time="0">
+    </testcase>
+    <testcase classname="services/feed.service getSavedPosts passes pagination params" name="services/feed.service getSavedPosts passes pagination params" time="0">
+    </testcase>
+    <testcase classname="services/feed.service getSavedPosts handles various response shapes" name="services/feed.service getSavedPosts handles various response shapes" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="hooks/useNetworkStatus" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:55" time="1.16" tests="6">
+    <testcase classname="hooks/useNetworkStatus starts with null connection state" name="hooks/useNetworkStatus starts with null connection state" time="0.011">
+    </testcase>
+    <testcase classname="hooks/useNetworkStatus updates on NetInfo state change" name="hooks/useNetworkStatus updates on NetInfo state change" time="0.001">
+    </testcase>
+    <testcase classname="hooks/useNetworkStatus reports no internet when disconnected" name="hooks/useNetworkStatus reports no internet when disconnected" time="0.001">
+    </testcase>
+    <testcase classname="hooks/useNetworkStatus hasInternet is true when connected and reachable is null" name="hooks/useNetworkStatus hasInternet is true when connected and reachable is null" time="0.002">
+    </testcase>
+    <testcase classname="hooks/useNetworkStatus checkConnection triggers manual fetch" name="hooks/useNetworkStatus checkConnection triggers manual fetch" time="0.002">
+    </testcase>
+    <testcase classname="hooks/useNetworkStatus unsubscribes on unmount" name="hooks/useNetworkStatus unsubscribes on unmount" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="hooks/useDebounceCallback" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:55" time="1.179" tests="4">
+    <testcase classname="hooks/useDebounceCallback calls function after delay" name="hooks/useDebounceCallback calls function after delay" time="0.016">
+    </testcase>
+    <testcase classname="hooks/useDebounceCallback resets timer on rapid calls, only fires last" name="hooks/useDebounceCallback resets timer on rapid calls, only fires last" time="0.003">
+    </testcase>
+    <testcase classname="hooks/useDebounceCallback uses default 400ms delay" name="hooks/useDebounceCallback uses default 400ms delay" time="0.002">
+    </testcase>
+    <testcase classname="hooks/useDebounceCallback fires separately for calls spaced beyond delay" name="hooks/useDebounceCallback fires separately for calls spaced beyond delay" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="libs/audioFocus" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:56" time="0.211" tests="5">
+    <testcase classname="libs/audioFocus calls previous holder stop when new holder requests focus" name="libs/audioFocus calls previous holder stop when new holder requests focus" time="0.001">
+    </testcase>
+    <testcase classname="libs/audioFocus does not call stop on itself when re-requesting" name="libs/audioFocus does not call stop on itself when re-requesting" time="0">
+    </testcase>
+    <testcase classname="libs/audioFocus release only works for current holder" name="libs/audioFocus release only works for current holder" time="0.001">
+    </testcase>
+    <testcase classname="libs/audioFocus release clears holder so no stop is called on next request" name="libs/audioFocus release clears holder so no stop is called on next request" time="0">
+    </testcase>
+    <testcase classname="libs/audioFocus revokeAudioFocus calls and clears the current holder" name="libs/audioFocus revokeAudioFocus calls and clears the current holder" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="wallet-core/crypto — opens web-written payloads" errors="0" failures="0" skipped="0" timestamp="2026-07-31T12:28:39" time="212.72" tests="12">
+    <testcase classname="wallet-core/crypto — opens web-written payloads decrypts an Argon2id wallet created on the web" name="wallet-core/crypto — opens web-written payloads decrypts an Argon2id wallet created on the web" time="0.708">
+    </testcase>
+    <testcase classname="wallet-core/crypto — opens web-written payloads decrypts a legacy PBKDF2 wallet created on the web" name="wallet-core/crypto — opens web-written payloads decrypts a legacy PBKDF2 wallet created on the web" time="2.43">
+    </testcase>
+    <testcase classname="wallet-core/crypto — opens web-written payloads decrypts an HKDF-wrapped wallet created on the web" name="wallet-core/crypto — opens web-written payloads decrypts an HKDF-wrapped wallet created on the web" time="0.001">
+    </testcase>
+    <testcase classname="wallet-core/crypto — opens web-written payloads decrypts a web wallet at production parameters" name="wallet-core/crypto — opens web-written payloads decrypts a web wallet at production parameters" time="68.04">
+    </testcase>
+    <testcase classname="wallet-core/crypto — format it writes writes a payload the web client can read, at production parameters" name="wallet-core/crypto — format it writes writes a payload the web client can read, at production parameters" time="125.379">
+    </testcase>
+    <testcase classname="wallet-core/crypto — format it writes round-trips its own HKDF output" name="wallet-core/crypto — format it writes round-trips its own HKDF output" time="0.001">
+    </testcase>
+    <testcase classname="wallet-core/crypto — refuses to guess rejects a wrong password without revealing anything" name="wallet-core/crypto — refuses to guess rejects a wrong password without revealing anything" time="0.365">
+    </testcase>
+    <testcase classname="wallet-core/crypto — refuses to guess does not treat a biometric payload as a password payload" name="wallet-core/crypto — refuses to guess does not treat a biometric payload as a password payload" time="0.005">
+    </testcase>
+    <testcase classname="wallet-core/crypto — refuses to guess does not treat a password payload as a biometric payload" name="wallet-core/crypto — refuses to guess does not treat a password payload as a biometric payload" time="0.001">
+    </testcase>
+    <testcase classname="wallet-core/crypto — refuses to guess rejects short key material rather than encrypting weakly" name="wallet-core/crypto — refuses to guess rejects short key material rather than encrypting weakly" time="0">
+    </testcase>
+    <testcase classname="wallet-core/crypto — refuses to guess distinguishes an unknown KDF from corruption" name="wallet-core/crypto — refuses to guess distinguishes an unknown KDF from corruption" time="0.001">
+    </testcase>
+    <testcase classname="wallet-core/crypto — refuses to guess reports a truncated header as corruption" name="wallet-core/crypto — refuses to guess reports a truncated header as corruption" time="0">
+    </testcase>
+  </testsuite>
+</testsuites>
