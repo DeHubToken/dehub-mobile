@@ -13,6 +13,8 @@ export const PREFERRED_CHAIN_ID_KEY = 'preferred_chain_id';
 export const PENDING_CHAIN_SWITCH_KEY = 'pending_chain_switch';
 export const REFRESH_TOKEN_KEY = 'auth_refresh_token';
 export const TOKEN_EXPIRES_AT_KEY = 'auth_token_expires_at';
+/** Tags which Supabase identity produced the current DeHub session (dehubweb: dehub_supabase_uid). */
+export const SUPABASE_UID_KEY = 'auth_supabase_uid';
 
 /**
  * Gets the authentication token from SecureStore
@@ -76,6 +78,18 @@ export async function setTokenExpiresAt(expiresAt: number): Promise<void> {
  */
 export async function removeTokenExpiresAt(): Promise<void> {
   return SecureStore.deleteItemAsync(TOKEN_EXPIRES_AT_KEY);
+}
+
+export async function getStoredSupabaseUserId(): Promise<string | null> {
+  return SecureStore.getItemAsync(SUPABASE_UID_KEY);
+}
+
+export async function setStoredSupabaseUserId(userId: string): Promise<void> {
+  return SecureStore.setItemAsync(SUPABASE_UID_KEY, userId);
+}
+
+export async function clearStoredSupabaseUserId(): Promise<void> {
+  return SecureStore.deleteItemAsync(SUPABASE_UID_KEY);
 }
 
 /**
@@ -195,6 +209,7 @@ export async function clearAuthData(): Promise<void> {
   try { await SecureStore.deleteItemAsync(AUTH_METHOD_ADDR_KEY); } catch {}
   try { await SecureStore.deleteItemAsync(PREFERRED_CHAIN_ID_KEY); } catch {}
   try { await SecureStore.deleteItemAsync(PENDING_CHAIN_SWITCH_KEY); } catch {}
+  try { await clearStoredSupabaseUserId(); } catch {}
 }
 
 /**
@@ -220,6 +235,7 @@ export function isTokenExpired(token: string): boolean {
   
   try {
     const base64Url = token.split('.')[1];
+    if (!base64Url) return true;
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const jsonPayload = decodeURIComponent(
       atob(base64)

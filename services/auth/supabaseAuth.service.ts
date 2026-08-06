@@ -10,6 +10,18 @@ import { createLogger } from "../../libs/logger";
 
 const log = createLogger("supabaseAuth");
 
+/** OAuth redirect URI — must not depend on Constants.linkingUri being set. */
+function getOAuthRedirectUri(): string {
+  try {
+    return Linking.createURL("auth-callback");
+  } catch (e) {
+    log.warn("getOAuthRedirectUri:createURL:error", e);
+  }
+  // Bare/dev-client fallback when expo-linking can't resolve hostUri
+  // (Constants.linkingUri undefined → removeScheme(undefined).replace(...) crash).
+  return "dehub://auth-callback";
+}
+
 export async function sendEmailOtp(email: string): Promise<void> {
   const { error } = await supabase.auth.signInWithOtp({
     email: email.trim(),
@@ -37,29 +49,28 @@ export async function verifyEmailOtp(email: string, token: string): Promise<stri
   return userId;
 }
 
-/** Opens the Google OAuth browser flow and returns the Supabase user id. */
-export async function signInWithGoogle(): Promise<string> {
-  const redirectTo = Linking.createURL("auth-callback");
+/** Opens an OAuth browser flow for the given provider and returns the Supabase user id. */
+async function signInWithOAuthProvider(
+  provider: "google" | "apple",
+  queryParams?: Record<string, string>
+): Promise<string> {
+  const redirectTo = getOAuthRedirectUri();
   const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "google",
+    provider,
     options: {
       redirectTo,
       skipBrowserRedirect: true,
-      // The system browser keeps Google's cookies across app sign-outs, so
-      // without this Google silently reuses the last-chosen account —
-      // "signing in with a different account" would quietly re-authenticate
-      // the previous identity instead of showing the account picker.
-      queryParams: { prompt: "select_account" },
+      ...(queryParams ? { queryParams } : {}),
     },
   });
   if (error || !data?.url) {
-    log.warn("signInWithGoogle:start:error", error?.message);
-    throw new Error(error?.message || "Could not start Google sign-in");
+    log.warn(`signInWith:${provider}:start:error`, error?.message);
+    throw new Error(error?.message || `Could not start ${provider} sign-in`);
   }
 
   const result = await WebBrowser.openAuthSessionAsync(data.url, redirectTo);
   if (result.type !== "success" || !result.url) {
-    throw new Error("Google sign-in was cancelled");
+    throw new Error(`${provider} sign-in was cancelled`);
   }
 
   // Supabase returns tokens in the URL fragment (#access_token=...&refresh_token=...).
@@ -68,7 +79,7 @@ export async function signInWithGoogle(): Promise<string> {
   const access_token = params.get("access_token");
   const refresh_token = params.get("refresh_token");
   if (!access_token || !refresh_token) {
-    throw new Error("Google sign-in did not return a session");
+    throw new Error(`${provider} sign-in did not return a session`);
   }
 
   const { data: sessionData, error: sessionError } = await supabase.auth.setSession({
@@ -76,10 +87,22 @@ export async function signInWithGoogle(): Promise<string> {
     refresh_token,
   });
   if (sessionError || !sessionData?.user?.id) {
-    log.warn("signInWithGoogle:setSession:error", sessionError?.message);
+    log.warn(`signInWith:${provider}:setSession:error`, sessionError?.message);
     throw new Error(sessionError?.message || "Could not establish session");
   }
   return sessionData.user.id;
+}
+
+export async function signInWithGoogle(): Promise<string> {
+  // The system browser keeps Google's cookies across app sign-outs, so
+  // without this Google silently reuses the last-chosen account —
+  // "signing in with a different account" would quietly re-authenticate
+  // the previous identity instead of showing the account picker.
+  return signInWithOAuthProvider("google", { prompt: "select_account" });
+}
+
+export async function signInWithApple(): Promise<string> {
+  return signInWithOAuthProvider("apple");
 }
 
 /** The current Supabase session's access token, or null if not signed in. */

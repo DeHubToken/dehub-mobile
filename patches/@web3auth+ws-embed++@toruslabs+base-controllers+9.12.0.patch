@@ -1,0 +1,26 @@
+diff --git a/node_modules/@web3auth/ws-embed/node_modules/@toruslabs/base-controllers/dist/lib.cjs/utils/utils.js b/node_modules/@web3auth/ws-embed/node_modules/@toruslabs/base-controllers/dist/lib.cjs/utils/utils.js
+index f97abc7..0d3329d 100644
+--- a/node_modules/@web3auth/ws-embed/node_modules/@toruslabs/base-controllers/dist/lib.cjs/utils/utils.js
++++ b/node_modules/@web3auth/ws-embed/node_modules/@toruslabs/base-controllers/dist/lib.cjs/utils/utils.js
+@@ -244,13 +244,14 @@ const getCaipChainId = chain => {
+   return `${chain.chainNamespace}:${chain.chainId}`;
+ };
+ const getEnvVariable = variable => {
+-  var _import$meta$env, _process$env;
+-  // Check for Vite/browser environment (import.meta.env)
+-  if (typeof ({ url: (typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('utils/utils.js', document.baseURI).href)) }) !== "undefined" && (_import$meta$env = undefined) !== null && _import$meta$env !== void 0 && _import$meta$env[variable]) {
+-    var _import$meta$env2;
+-    return (_import$meta$env2 = undefined) === null || _import$meta$env2 === void 0 ? void 0 : _import$meta$env2[variable];
+-  }
+-  // Check for Node.js environment (process.env)
++  var _process$env;
++  // The original Vite/import.meta.env branch here always evaluated to a
++  // hardcoded `undefined` in this CJS build (see the `_import$meta$env =
++  // undefined` assignment it used to short-circuit on) -- it never
++  // contributed real functionality, but its dead condition still called
++  // `require('url').pathToFileURL(...)` on every invocation, which does not
++  // exist in the React Native runtime (no Node standard library) and broke
++  // Metro bundling. Patched out via patch-package -- see patches/.
+   if (typeof process !== "undefined" && (_process$env = process.env) !== null && _process$env !== void 0 && _process$env[variable]) {
+     var _process$env2;
+     return (_process$env2 = process.env) === null || _process$env2 === void 0 ? void 0 : _process$env2[variable];

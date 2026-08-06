@@ -11,7 +11,7 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
-import { toastError, toastWarning } from "../../libs";
+import { toastError } from "../../libs";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -22,8 +22,7 @@ import EmailCodeEntry from "../../components/auth/EmailCodeEntry";
 import ImportWallet from "../../components/auth/ImportWallet";
 import WalletSetupScreen, { type WalletSetupRequest, type CreateProtection } from "../../components/auth/WalletSetupScreen";
 import LegacyAccountWarningModal from "../../components/auth/LegacyAccountWarningModal";
-import { checkLegacyAccount, type LegacyAccountMatch } from "../../libs/wallet-core/legacy-detect";
-import { WalletLinkAmbiguousError } from "../../services";
+import { type LegacyAccountMatch } from "../../libs/wallet-core/legacy-detect";
 import { openInApp } from "../../libs/links.utils";
 import { TERMS_OF_SERVICE_LINK, PRIVACY_POLICY_LINK } from "../../config/links";
 import { getPreferredChainId } from "../../libs/auth.utils";
@@ -34,20 +33,23 @@ import {
   sendEmailOtp,
   verifyEmailOtp,
   signInWithGoogle,
+  signInWithApple,
   getSupabaseAccessToken,
   getSupabaseAuthMeta,
 } from "../../services/auth/supabaseAuth.service";
 import {
-  resolveEvmWalletForIdentity,
   finishWalletUnlock,
   finishBiometricUnlock,
   createAndSaveEvmWalletForIdentity,
   getOrCreateSolanaKeypairForAddress,
+  switchActiveWalletForIdentity,
 } from "../../libs/identity-wallet";
+import { provisionAndSignIn, markProvisionedIdentity } from "../../libs/provision-and-sign-in";
 import { decryptString } from "../../libs/wallet-core/crypto";
 import { deriveFromSecret } from "../../libs/wallet-core/derive";
 import { createLocalEip1193ProviderForChain } from "../../services/localwallet.provider";
 import { setSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
+import { setupAAProvider } from "../../libs/wallet-core/smart-account";
 import { useWalletAuth } from "../../hooks/useWalletAuth";
 
 const log = createLogger("SignInScreen");
@@ -179,10 +181,36 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     async (evmAddress: string, privateKey: string, web3AuthMeta?: Record<string, any>) => {
       const preferred = await getPreferredChainId();
       const effectiveChainId = preferred ?? TARGET_CHAIN_ID;
-      const localProvider = createLocalEip1193ProviderForChain(privateKey, effectiveChainId);
+
+      // Resolve to the Safe smart-account address when available, matching
+      // web (which authenticates as its Safe address -- "method: 'smart-sa'"
+      // in its own login logs) and this app's OWN posting path
+      // (services/auth/localProviderAdapter.ts, used for every write after
+      // sign-in). Without this, sign-in registers the raw EOA address while
+      // every post/tip/mint afterwards happens from the Safe address --
+      // splitting one identity into two different backend accounts (root
+      // cause of a post showing up under an unrelated auto-named account).
+      // setupAAProvider never throws -- returns null on unsupported chains
+      // or a Pimlico outage, in which case we fall back to the plain EOA
+      // provider/address exactly as before.
+      let signInAddress = evmAddress;
+      let localProvider: any = createLocalEip1193ProviderForChain(privateKey, effectiveChainId);
+      try {
+        const aaProvider = await setupAAProvider(evmAddress, privateKey, effectiveChainId);
+        if (aaProvider) {
+          const accounts = (await aaProvider.request({ method: "eth_accounts" })) as string[];
+          if (accounts?.[0]) {
+            signInAddress = accounts[0];
+            localProvider = aaProvider;
+          }
+        }
+      } catch (e) {
+        log.warn("completeLocalSignIn:aa-resolve-failed", e);
+      }
+
       setSigningProvider(localProvider);
       try {
-        await signInWithWallet(evmAddress, effectiveChainId, privateKey, web3AuthMeta);
+        await signInWithWallet(signInAddress, effectiveChainId, privateKey, web3AuthMeta);
       } finally {
         clearSigningProvider();
       }
@@ -190,126 +218,31 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     [signInWithWallet]
   );
 
-  /**
-   * Resolve this Supabase identity to a wallet and sign in — checking
-   * whether THIS DEVICE can actually produce a working signer BEFORE asking
-   * the backend to merely recognize the identity. Backend recognition alone
-   * (signInWithSupabaseSession) adopts a session with no way to sign a tip,
-   * post, or like; if a real key is recoverable (already local, or unlocked
-   * from the Supabase-backed wallet with a password) that's always
-   * preferred. Falls back to backend-only recognition (read-only) when
-   * nothing is recoverable, and only provisions a brand-new wallet when the
-   * backend confirms this identity truly isn't linked to anything yet —
-   * otherwise every login without a locally-cached key would look like a
-   * new account, even for someone who already has one.
-   *
-   * When Supabase already names a specific wallet (needs-unlock), the
-   * backend's answer is passed as expectedAddress and cross-checked rather
-   * than trusted outright — mirrors dehubweb's completeLoginWithoutUnlock.
-   * The backend's web3AuthMeta link has no uniqueness constraint (two
-   * different logins can each set it on their own address, last write
-   * wins), so on its own it is NOT a reliable "which account" signal; the
-   * Supabase-stored wallet is. A mismatch here falls through to unlocking
-   * that Supabase wallet with a password instead of adopting whatever the
-   * backend linked — the bug that put someone in the wrong account earlier.
-   */
-  const provisionAndSignIn = useCallback(
+  const runProvisionAndSignIn = useCallback(
     async (supabaseUserId: string) => {
-      const resolution = await resolveEvmWalletForIdentity(supabaseUserId);
+      const outcome = await provisionAndSignIn(supabaseUserId, {
+        getSupabaseAccessToken,
+        signInWithSupabaseSession,
+        completeLocalSignIn,
+        getSupabaseAuthMeta,
+        getOrCreateSolanaKeypairForAddress,
+      });
 
-      if (resolution.status === "ready") {
-        const web3AuthMeta = await getSupabaseAuthMeta();
-        // Solana keypair is best-effort — Solana-only features degrade gracefully without it.
-        getOrCreateSolanaKeypairForAddress(resolution.address).catch(() => {});
-        await completeLocalSignIn(resolution.address, resolution.privateKey, web3AuthMeta);
-        return;
+      switch (outcome.kind) {
+        case "signed-in":
+          return;
+        case "wallet-setup":
+          setWalletSetupRequest(outcome.request);
+          return;
+        case "legacy-warning":
+          setPendingCreateUserId(outcome.supabaseUserId);
+          setLegacyAccounts(outcome.accounts);
+          return;
+        case "error":
+          log.error("provision:outcome-error", outcome.message);
+          toastError(outcome.message);
+          return;
       }
-
-      const knownAddress =
-        resolution.status === "needs-unlock" || resolution.status === "needs-biometric-unlock"
-          ? resolution.address
-          : undefined;
-
-      const accessToken = await getSupabaseAccessToken();
-      if (accessToken) {
-        const preferred = await getPreferredChainId();
-        try {
-          const linked = await signInWithSupabaseSession(accessToken, preferred ?? TARGET_CHAIN_ID, knownAddress);
-          if (linked) {
-            if (resolution.status === "no-recovery-method") {
-              toastWarning(
-                "Signed in, but this wallet has no password backup on this device — you won't be able to post, tip, or like until you import its private key or unlock it from the device it was created on."
-              );
-            }
-            return;
-          }
-        } catch (e) {
-          if (e instanceof WalletLinkAmbiguousError) {
-            // The ambiguity lives in DeHub's OWN backend account table (no
-            // uniqueness constraint on web3AuthMeta.verifierId — see above),
-            // NOT in Supabase's user_wallets row, which is 1:1 per identity
-            // and is the actual source of truth `resolution` came from. When
-            // resolution already names a specific address (needs-unlock /
-            // needs-biometric-unlock / no-recovery-method), we don't need the
-            // backend to resolve anything — fall through to the normal
-            // unlock flow below exactly as the non-ambiguous case does.
-            // Only when Supabase has NO wallet for this identity either
-            // (needs-create-password) is there genuinely no safe address to
-            // fall back to, since minting one now would add a THIRD
-            // conflicting backend link.
-            if (resolution.status === "needs-create-password") {
-              toastError(
-                e,
-                "This login is linked to more than one wallet. Use \"Import external wallet\" below to sign in with your wallet."
-              );
-              return;
-            }
-          } else {
-            throw e;
-          }
-        }
-      }
-
-      // Backend didn't confirm (not linked, mismatched, no token, or a
-      // network error) — fall back to whatever this device can recover.
-      if (resolution.status === "needs-unlock") {
-        setWalletSetupRequest({
-          mode: "unlock",
-          supabaseUserId,
-          address: resolution.address,
-          payload: resolution.payload,
-        });
-        return;
-      }
-      if (resolution.status === "needs-biometric-unlock") {
-        setWalletSetupRequest({
-          mode: "biometric-unlock",
-          supabaseUserId,
-          address: resolution.address,
-          payload: resolution.payload,
-        });
-        return;
-      }
-      if (resolution.status === "no-recovery-method") {
-        toastError(
-          null,
-          "This wallet has no password backup, so it can't be recovered on this device yet. Sign in on the device it was created on, or use \"Import external wallet\" if you have the private key."
-        );
-        return;
-      }
-      // needs-create-password AND not linked to any backend account — could
-      // be a genuinely first login, or a pre-migration Web3Auth account this
-      // identity's email matches (the check that used to be missing here,
-      // which let real accounts — followers, uploads, DHB balance — get
-      // silently orphaned behind a fresh empty one). Gate on that check
-      // before opening the create-wallet screen.
-      const legacyHint = await checkLegacyAccount();
-      if (legacyHint.exists === true && legacyHint.accounts?.length) {
-        setPendingCreateUserId(supabaseUserId);
-        setLegacyAccounts(legacyHint.accounts);
-        return;
-      }
-      setWalletSetupRequest({ mode: "create", supabaseUserId });
     },
     [completeLocalSignIn, signInWithSupabaseSession]
   );
@@ -319,18 +252,22 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       const web3AuthMeta = await getSupabaseAuthMeta();
       getOrCreateSolanaKeypairForAddress(address).catch(() => {});
       await completeLocalSignIn(address, privateKey, web3AuthMeta);
-      // Close only after the DeHub sign-in fully succeeded. Closing first
-      // made any /mobile/auth failure invisible: the error propagated into
-      // WalletSetupScreen's setError on an already-hidden modal, leaving the
-      // user on a silent dead end with no message and no retry.
+      if (walletSetupRequest?.supabaseUserId) {
+        await markProvisionedIdentity(walletSetupRequest.supabaseUserId);
+      }
       setWalletSetupRequest(null);
     },
-    [completeLocalSignIn]
+    [completeLocalSignIn, walletSetupRequest]
   );
 
   const handleWalletUnlock = useCallback(
     async (password: string) => {
-      if (!walletSetupRequest || walletSetupRequest.mode !== "unlock") return;
+      if (
+        !walletSetupRequest ||
+        (walletSetupRequest.mode !== "unlock" && walletSetupRequest.mode !== "biometric-unlock")
+      ) {
+        return;
+      }
       const secret = await decryptString(walletSetupRequest.payload, password);
       const derived = deriveFromSecret(secret);
       if (derived.ethAddress.toLowerCase() !== walletSetupRequest.address.toLowerCase()) {
@@ -391,15 +328,48 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     [walletSetupRequest, finishWalletSetupSignIn]
   );
 
+  // legacy-recovered: native Web3Auth migration retrieved a pre-migration
+  // account's key — make it canonical for this Supabase identity, mirroring
+  // dehubweb's "Switch to a different old account" (see
+  // AuthProvider.switchActiveWallet / WalletRecoveryTools.tsx).
+  const handleWalletSwitchAccount = useCallback(
+    async (privateKey: string, password: string) => {
+      if (!walletSetupRequest || walletSetupRequest.mode !== "legacy-recovered") {
+        return;
+      }
+      const { address, privateKey: derivedPk } = await switchActiveWalletForIdentity(
+        walletSetupRequest.supabaseUserId,
+        privateKey,
+        password
+      );
+      await finishWalletSetupSignIn(address, derivedPk);
+    },
+    [walletSetupRequest, finishWalletSetupSignIn]
+  );
+
+  // Native legacy-account recovery succeeded (see LegacyAccountWarningModal /
+  // libs/legacy-web3auth.ts) — hand the recovered key to the same
+  // "legacy-recovered" WalletSetupScreen mode used for the cloud/backend-link
+  // mismatch case, so the user just sets a password to finish.
+  const handleLegacyRecovered = useCallback(
+    (privateKey: string, label?: string) => {
+      if (!pendingCreateUserId) return;
+      setWalletSetupRequest({ mode: "legacy-recovered", supabaseUserId: pendingCreateUserId, privateKey, label });
+      setLegacyAccounts(null);
+      setPendingCreateUserId(null);
+    },
+    [pendingCreateUserId]
+  );
+
   const handleGoogleLogin = useCallback(async () => {
     hasNavigatedRef.current = false;
     setIsLocalLoading(true);
     setCurrentProvider("google");
     try {
       const supabaseUserId = await signInWithGoogle();
-      await provisionAndSignIn(supabaseUserId);
+      await runProvisionAndSignIn(supabaseUserId);
     } catch (e: any) {
-      log.error("Google login error", e);
+      log.error("Google login error", e?.stack || e);
       toastError(e, "Login failed. Please retry.");
       hasNavigatedRef.current = false;
     } finally {
@@ -408,7 +378,26 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         setCurrentProvider("");
       }
     }
-  }, [provisionAndSignIn]);
+  }, [runProvisionAndSignIn]);
+
+  const handleAppleLogin = useCallback(async () => {
+    hasNavigatedRef.current = false;
+    setIsLocalLoading(true);
+    setCurrentProvider("apple");
+    try {
+      const supabaseUserId = await signInWithApple();
+      await runProvisionAndSignIn(supabaseUserId);
+    } catch (e: any) {
+      log.error("Apple login error", e?.stack || e);
+      toastError(e, "Login failed. Please retry.");
+      hasNavigatedRef.current = false;
+    } finally {
+      if (isMountedRef.current) {
+        setIsLocalLoading(false);
+        setCurrentProvider("");
+      }
+    }
+  }, [runProvisionAndSignIn]);
 
   const handleEmailSubmit = useCallback(async (email: string) => {
     setIsLocalLoading(true);
@@ -434,7 +423,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       setIsLocalLoading(true);
       try {
         const supabaseUserId = await verifyEmailOtp(pendingEmail, code);
-        await provisionAndSignIn(supabaseUserId);
+        await runProvisionAndSignIn(supabaseUserId);
       } catch (e: any) {
         log.error("Email code verify error", e);
         toastError(e, "Invalid code. Please retry.");
@@ -443,7 +432,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         if (isMountedRef.current) setIsLocalLoading(false);
       }
     },
-    [pendingEmail, provisionAndSignIn]
+    [pendingEmail, runProvisionAndSignIn]
   );
 
   const handleResendEmailCode = useCallback(() => {
@@ -484,11 +473,12 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             </Text>
           </View>
 
-          {/* Sign-in options: Email, Google, and Connect Wallet are live;
-              Phone/Apple mirror the web app's "Coming Soon" state. */}
+          {/* Sign-in options: Email, Google, Apple, and Connect Wallet are
+              live; Phone mirrors the web app's "Coming Soon" state. */}
           {authStep === "main" ? (
             <SocialLoginIcons
               onGoogle={handleGoogleLogin}
+              onApple={handleAppleLogin}
               onEmailSubmit={handleEmailSubmit}
               onConnectWallet={handleWalletConnect}
               busyProvider={isLocalLoading ? currentProvider : isWalletLoading ? "wallet" : undefined}
@@ -515,11 +505,13 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             onUnlock={handleWalletUnlock}
             onBiometricUnlock={handleWalletBiometricUnlock}
             onCreate={handleWalletCreate}
+            onSwitchAccount={handleWalletSwitchAccount}
           />
 
           <LegacyAccountWarningModal
             visible={!!legacyAccounts}
             accounts={legacyAccounts ?? []}
+            onRecovered={handleLegacyRecovered}
             onCreateAnyway={() => {
               if (pendingCreateUserId) setWalletSetupRequest({ mode: "create", supabaseUserId: pendingCreateUserId });
               setLegacyAccounts(null);

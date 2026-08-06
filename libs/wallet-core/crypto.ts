@@ -241,9 +241,9 @@ export async function decryptString(payload: EncryptedPayload, password: string)
   const ct = base64ToBytes(body);
 
   if (header?.kdf === "hkdf") {
-    // Biometric-wrapped payload handed to the password path — no password can
-    // ever open it, so say so plainly instead of reporting a wrong password.
-    throw new Error("This wallet copy is unlocked with biometrics, not a password.");
+    throw new Error(
+      "This wallet is passkey-protected on the web — add a wallet password on dehub.io (Settings), then try again, or import your private key."
+    );
   }
 
   // Explicit rather than relying on narrowing: no header at all means a legacy

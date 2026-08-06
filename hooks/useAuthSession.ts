@@ -11,6 +11,10 @@ import {
   clearAuthMethod,
   getPreferredChainId,
   getRefreshToken,
+  setStoredSupabaseUserId,
+  setAuthToken,
+  setRefreshToken,
+  setTokenExpiresAt,
 } from "../libs/auth.utils";
 import { AuthService, WalletNotLinkedError, WalletLinkAmbiguousError } from "../services";
 import { apiClient } from "../libs/api.client";
@@ -20,6 +24,9 @@ import { clearPersistedNavigationState } from "./useNavigationPersistence";
 import { unregisterPushTokens } from "../services/push/push.service";
 import { createLocalEip1193ProviderForChain } from "../services/localwallet.provider";
 import { getAppKitInstance } from "../config/reown.config";
+import { getSupabaseUserId } from "../services/auth/supabaseAuth.service";
+import { fetchWalletReliably } from "../libs/wallet-core/store";
+import { forgetLocalWalletForIdentity } from "../libs/identity-wallet";
 // balances fetching centralized in useBalances
 
 type Logger = {
@@ -27,6 +34,8 @@ type Logger = {
   info: (...a: any[]) => void;
   warn: (...a: any[]) => void;
 };
+
+export type SupabaseSessionExchangeResult = "linked" | "not-linked" | "failed";
 
 type SessionDeps = {
   log: Logger;
@@ -43,6 +52,8 @@ type SessionDeps = {
   setShowSignInModal: (v: boolean) => void;
   getSigningProvider: () => any;
   ensureProvider: () => Promise<void>;
+  /** Bypasses ensureProvider's "already ready" guard -- see applyWalletAuthResult. */
+  forceReinitProvider: () => Promise<void>;
   adoptProvider: (prov: any) => Promise<void>;
   fetchAndStoreBalances: (u: User, chainIdOverride?: number) => Promise<void>;
   clearAuthData: () => Promise<void>;
@@ -67,6 +78,7 @@ export function useAuthSession({
   setShowSignInModal,
   getSigningProvider,
   ensureProvider,
+  forceReinitProvider,
   adoptProvider,
   fetchAndStoreBalances,
   clearAuthData,
@@ -299,11 +311,24 @@ export function useAuthSession({
       try {
         if (preOverride && typeof preOverride.request === "function")
           await adoptProvider(preOverride);
-        else await ensureProvider();
+        else
+          // ensureProvider() no-ops when a provider from a PREVIOUS
+          // account is still marked "ready" (see useProviderLifecycle) --
+          // signing would then silently keep using that old account's key
+          // even though this session just switched to a different one
+          // (confirmed on-chain: a mint transaction signed by a stale
+          // account after a same-session identity switch). forceReinitProvider
+          // bypasses that guard and always rebuilds against the JUST-
+          // established session.
+          await forceReinitProvider();
       } catch (e) {
         log.warn("ensureProvider:failed", e);
       }
       await setHasSeenAuth();
+      try {
+        const uid = await getSupabaseUserId();
+        if (uid) await setStoredSupabaseUserId(uid);
+      } catch {}
       if (needsUsername) {
         setNeedsUsername(true);
         setProvisionalUser(walletUser);
@@ -443,9 +468,8 @@ export function useAuthSession({
    * point to the wrong account (two different logins each set it on their
    * own address, last write wins) — a caller with its own known-correct
    * address must never have it silently overridden by that link. On
-   * mismatch this returns false exactly like "not linked", so the caller
-   * falls back to proving the expected address by other means (e.g.
-   * unlocking it with a password) instead of adopting the wrong one.
+   * mismatch this returns "not-linked" so the caller falls back to unlocking
+   * the expected address with a password instead of adopting the wrong one.
    *
    * Without expectedAddress (no local ground truth to check against), this
    * always adopts the session once the backend resolves ANY linked address —
@@ -466,7 +490,12 @@ export function useAuthSession({
    * account.
    */
   const signInWithSupabaseSession = useCallback(
-    async (supabaseAccessToken: string, chainId: number, expectedAddress?: string): Promise<boolean> => {
+    async (
+      supabaseAccessToken: string,
+      chainId: number,
+      expectedAddress?: string,
+      supabaseUserId?: string
+    ): Promise<SupabaseSessionExchangeResult> => {
       setIsLoading(true);
       try {
         let res: Awaited<ReturnType<typeof AuthService.authenticateWithSupabaseSession>>;
@@ -479,36 +508,85 @@ export function useAuthSession({
           }
           if (e instanceof WalletNotLinkedError) {
             log.info("signInWithSupabaseSession:not-linked");
-          } else {
-            log.warn("signInWithSupabaseSession:error", e);
+            return "not-linked";
           }
-          return false;
+          log.warn("signInWithSupabaseSession:error", e);
+          return "failed";
         }
 
-        const address = (res.user as any)?.address as string | undefined;
-        if (!address) return false;
+        const address = (
+          (res.user as any)?.address ||
+          (res.user as any)?.walletAddress ||
+          (res as any)?.result?.address
+        ) as string | undefined;
+        if (!address) {
+          log.warn("signInWithSupabaseSession:no-address-in-response");
+          return "failed";
+        }
 
-        if (expectedAddress && address.toLowerCase() !== expectedAddress.toLowerCase()) {
-          log.warn("signInWithSupabaseSession:address-mismatch — falling back", {
-            linked: `${address.slice(0, 6)}...${address.slice(-4)}`,
-            expected: `${expectedAddress.slice(0, 6)}...${expectedAddress.slice(-4)}`,
+        const linkedAddr = address.toLowerCase();
+
+        // user_wallets is authoritative — even when the caller did not pass
+        // expectedAddress (e.g. resolve thought there was no row on a race),
+        // never adopt a polluted web3AuthMeta session (shubham_new) when the
+        // cloud wallet row names a different address (shubham_new2).
+        let canonicalAddr: string | undefined;
+        let walletFetchFailed = false;
+        const walletUid = supabaseUserId || (await getSupabaseUserId());
+        if (walletUid) {
+          const { wallet: remote, failed } = await fetchWalletReliably(walletUid);
+          walletFetchFailed = failed;
+          canonicalAddr = remote?.ethAddress?.toLowerCase();
+          if (failed) {
+            log.warn("signInWithSupabaseSession:fetchWallet:exhausted-retries", {
+              uid: `${walletUid.slice(0, 8)}...`,
+            });
+          }
+        }
+
+        if (walletFetchFailed && !expectedAddress) {
+          log.warn("signInWithSupabaseSession:refusing-session-wallet-lookup-failed");
+          return "failed";
+        }
+
+        const expected = (expectedAddress || canonicalAddr)?.toLowerCase();
+        if (expected && linkedAddr !== expected) {
+          log.warn("signInWithSupabaseSession:refusing-wrong-account", {
+            backend: `${linkedAddr.slice(0, 6)}...${linkedAddr.slice(-4)}`,
+            expected: `${expected.slice(0, 6)}...${expected.slice(-4)}`,
+            source: expectedAddress ? "caller" : "user_wallets",
           });
-          return false;
+          try {
+            await clearAuthData();
+          } catch (e) {
+            log.warn("signInWithSupabaseSession:clearAuthData:error", e);
+          }
+          try {
+            if (walletUid) await forgetLocalWalletForIdentity(walletUid);
+          } catch (e) {
+            log.warn("signInWithSupabaseSession:forget-stale-cache:error", e);
+          }
+          return "not-linked";
         }
 
-        // getPrivateKeyForAddress checks existence before doing anything that
-        // could prompt biometrics, so this is safe to call unconditionally.
         const privateKey = await getPrivateKeyForAddress(address, {
           purpose: "Sign in to DeHub",
         });
         if (!privateKey) {
-          log.warn("signInWithSupabaseSession:no-local-key-for-linked-address — adopting session without a signer", {
+          log.warn("signInWithSupabaseSession:refusing-session-without-local-signer", {
             address: `${address.slice(0, 6)}...${address.slice(-4)}`,
+            cloudWallet: canonicalAddr
+              ? `${canonicalAddr.slice(0, 6)}...${canonicalAddr.slice(-4)}`
+              : null,
           });
+          return "not-linked";
         }
-        const localProvider = privateKey
-          ? createLocalEip1193ProviderForChain(privateKey, chainId)
-          : null;
+
+        await setAuthToken(res.token);
+        if (res.refreshToken) await setRefreshToken(res.refreshToken);
+        if (res.expiresIn) await setTokenExpiresAt(Date.now() + res.expiresIn * 1000);
+
+        const localProvider = createLocalEip1193ProviderForChain(privateKey, chainId);
         try {
           await setAuthMethod("local", address);
           try {
@@ -517,12 +595,12 @@ export function useAuthSession({
         } catch {}
 
         await applyWalletAuthResult(res.user, res.token, !!res.needsUsername, chainId, localProvider);
-        return true;
+        return "linked";
       } finally {
         setIsLoading(false);
       }
     },
-    [applyWalletAuthResult, log, setAuthMethodState, setIsLoading]
+    [applyWalletAuthResult, clearAuthData, log, setAuthMethodState, setIsLoading]
   );
 
   const completeUsername = useCallback(

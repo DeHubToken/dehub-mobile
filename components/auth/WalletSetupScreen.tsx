@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "../ui/GlassModal";
@@ -9,12 +9,31 @@ import {
   MIN_PASSWORD_LENGTH,
   type PasswordAssessment,
 } from "../../libs/wallet-core/passwordStrength";
-import { isBiometricUnlockAvailable } from "../../libs/wallet-core/biometric-unlock";
+import { isBiometricUnlockAvailable, hasBiometricWrapKey } from "../../libs/wallet-core/biometric-unlock";
+import { openInApp } from "../../libs/links.utils";
+import { WEBSITE_LINK } from "../../config/links";
+import { deriveAddressFromPrivateKey } from "../../libs/wallet.utils";
+
 import type { EncryptedPayload } from "../../libs/wallet-core/crypto";
+import { getPayloadKdf } from "../../libs/wallet-core/crypto";
 
 export type WalletSetupRequest =
   | { mode: "unlock"; supabaseUserId: string; address: string; payload: EncryptedPayload }
   | { mode: "biometric-unlock"; supabaseUserId: string; address: string; payload: EncryptedPayload }
+  | { mode: "web-passkey-sync"; supabaseUserId: string; address: string }
+  | {
+      mode: "web-account-mismatch";
+      supabaseUserId: string;
+      cloudAddress: string;
+      webAddress: string;
+      webUsername?: string;
+    }
+  | {
+      mode: "legacy-recovered";
+      supabaseUserId: string;
+      privateKey: string;
+      label?: string;
+    }
   | { mode: "create"; supabaseUserId: string };
 
 export type CreateProtection = { kind: "password"; password: string } | { kind: "biometric" };
@@ -29,6 +48,8 @@ export interface WalletSetupScreenProps {
   onBiometricUnlock: () => Promise<void>;
   /** create mode: generate + protect + save a brand-new wallet. */
   onCreate: (protection: CreateProtection) => Promise<void>;
+  /** legacy-recovered mode: make the recovered key's wallet the active one for this identity. */
+  onSwitchAccount?: (privateKey: string, password: string) => Promise<void>;
 }
 
 const inputWrapClass =
@@ -42,7 +63,7 @@ const inputWrapClass =
  * only ever recoverable from this device, unlike a password.
  */
 const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
-  ({ visible, request, onClose, onUnlock, onBiometricUnlock, onCreate }) => {
+  ({ visible, request, onClose, onUnlock, onBiometricUnlock, onCreate, onSwitchAccount }) => {
     const [password, setPassword] = useState("");
     const [confirm, setConfirm] = useState("");
     const [showPw, setShowPw] = useState(false);
@@ -50,6 +71,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
     const [error, setError] = useState<string | null>(null);
     const [protectionChoice, setProtectionChoice] = useState<"biometric" | "password">("password");
     const [biometricAvailable, setBiometricAvailable] = useState<boolean | null>(null);
+    const [deviceWrapKeyReady, setDeviceWrapKeyReady] = useState<boolean | null>(null);
     const [liveAssessment, setLiveAssessment] = useState<PasswordAssessment | null>(null);
 
     const mode = request?.mode ?? "create";
@@ -64,7 +86,22 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
     useEffect(() => {
       if (!visible) return;
       reset();
+      setDeviceWrapKeyReady(null);
     }, [visible, request, reset]);
+
+    useEffect(() => {
+      if (!visible || mode !== "biometric-unlock" || request?.mode !== "biometric-unlock") {
+        setDeviceWrapKeyReady(null);
+        return;
+      }
+      let cancelled = false;
+      hasBiometricWrapKey(request.address).then((ready) => {
+        if (!cancelled) setDeviceWrapKeyReady(ready);
+      });
+      return () => {
+        cancelled = true;
+      };
+    }, [visible, mode, request]);
 
     useEffect(() => {
       if (mode !== "create") return;
@@ -72,7 +109,9 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       isBiometricUnlockAvailable().then((available) => {
         if (cancelled) return;
         setBiometricAvailable(available);
-        if (available) setProtectionChoice("biometric");
+        // Default to password — it works across devices. Biometric protection
+        // is device-local only and strands users on a new phone (the bug
+        // captchahenryevery@gmail.com hit when mobile minted a fresh wallet).
       });
       return () => {
         cancelled = true;
@@ -99,6 +138,48 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       if (mode === "create" && password !== confirm) return false;
       return true;
     }, [password, confirm, mode]);
+
+    const legacyRecoveredAddress = useMemo(
+      () =>
+        request?.mode === "legacy-recovered" ? deriveAddressFromPrivateKey(request.privateKey) : null,
+      [request]
+    );
+
+    const canSubmitLegacyRecovered = useMemo(
+      () => password.length >= MIN_PASSWORD_LENGTH && password === confirm,
+      [password, confirm]
+    );
+
+    const handleLegacyRecoveredSubmit = useCallback(async () => {
+      if (
+        !canSubmitLegacyRecovered ||
+        busy ||
+        !onSwitchAccount ||
+        !request ||
+        request.mode !== "legacy-recovered"
+      ) {
+        return;
+      }
+      setBusy(true);
+      setError(null);
+      try {
+        const full = await assessPassword(password);
+        if (!full.acceptable) {
+          setError(
+            full.breached === true
+              ? "This password has appeared in a data breach — choose a different one"
+              : full.warnings[0] || "Choose a stronger password"
+          );
+          return;
+        }
+        await onSwitchAccount(request.privateKey, password);
+        reset();
+      } catch (e: any) {
+        setError(e?.message || "Could not finish setting up this account. Please try again.");
+      } finally {
+        setBusy(false);
+      }
+    }, [canSubmitLegacyRecovered, busy, onSwitchAccount, request, password, reset]);
 
     const handleUnlockSubmit = useCallback(async () => {
       if (!canSubmitPassword || busy) return;
@@ -127,6 +208,25 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         setBusy(false);
       }
     }, [busy, onBiometricUnlock, reset]);
+
+    // When this phone enrolled the biometric wrap key, prompt immediately.
+    const autoBiometricAttemptedRef = useRef(false);
+    useEffect(() => {
+      if (!visible) {
+        autoBiometricAttemptedRef.current = false;
+        return;
+      }
+      if (
+        mode !== "biometric-unlock" ||
+        deviceWrapKeyReady !== true ||
+        busy ||
+        autoBiometricAttemptedRef.current
+      ) {
+        return;
+      }
+      autoBiometricAttemptedRef.current = true;
+      handleBiometricUnlockPress();
+    }, [visible, mode, deviceWrapKeyReady, busy, handleBiometricUnlockPress]);
 
     const handleCreateWithPassword = useCallback(async () => {
       if (!canSubmitPassword || busy) return;
@@ -168,9 +268,20 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
     const title =
       mode === "create"
         ? "Secure your wallet"
+        : mode === "web-passkey-sync"
+        ? "Unlock on mobile"
+        : mode === "web-account-mismatch"
+        ? "Different account on web"
+        : mode === "legacy-recovered"
+        ? "Old account found"
         : mode === "biometric-unlock"
         ? "Unlock your wallet"
         : "Unlock your wallet";
+
+    const unlockPasskeyOnly =
+      mode === "unlock" &&
+      request?.mode === "unlock" &&
+      getPayloadKdf(request.payload) === "hkdf";
 
     return (
       <GlassModal
@@ -301,39 +412,237 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
             </>
           )}
 
-          {mode === "biometric-unlock" && (
+          {mode === "web-passkey-sync" && request?.mode === "web-passkey-sync" && (
             <View>
-              <Text className="text-theme-neutrals-400 text-sm mb-5">
-                This account's wallet is protected by this device's biometrics.
+              <Text className="text-theme-neutrals-400 text-sm mb-4">
+                Your wallet uses <Text className="text-white font-medium">biometrics or a passkey on the web</Text>.
+                That unlock stays in your browser — it does not sync to this phone, so we cannot prompt
+                for fingerprint here yet.
               </Text>
-              {error && (
-                <Text className="text-red-400 text-xs mb-3">
-                  {error} If this keeps failing, use "Import external wallet" instead.
-                </Text>
-              )}
+              <Text className="text-theme-neutrals-400 text-sm mb-5">
+                To use this account on mobile, open dehub.io on your computer, sign in with the same
+                Google account, and <Text className="text-white font-medium">add a wallet password</Text>{" "}
+                (this saves an encrypted backup to the cloud). Then come back here and sign in again.
+              </Text>
+              <Text className="text-theme-neutrals-500 text-xs mb-4">
+                Wallet: {request.address.slice(0, 6)}…{request.address.slice(-4)}
+              </Text>
               <TouchableOpacity
-                onPress={handleBiometricUnlockPress}
-                disabled={busy}
-                className="rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent flex-row justify-center"
-                style={{ opacity: busy ? 0.5 : 1, gap: 8 }}
+                onPress={() => openInApp(WEBSITE_LINK)}
+                className="rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent mb-3"
+              >
+                <Text className="text-white text-sm font-medium">Open dehub.io</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleClose}
+                className="rounded-xl px-4 py-3 items-center active:opacity-80 bg-neutral-800 border border-neutral-700"
+              >
+                <Text className="text-white text-sm font-medium">I added a password — try again</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+
+          {mode === "web-account-mismatch" && request?.mode === "web-account-mismatch" && (
+            <View>
+              <Text className="text-theme-neutrals-400 text-sm mb-4">
+                This Google login has{" "}
+                <Text className="text-white font-medium">more than one DeHub wallet</Text> tied to
+                it. The phone backup and the backend link name different accounts — unlocking with a
+                password here will not switch you to the account you use on the website.
+              </Text>
+              <View className="rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-900 px-4 py-3 mb-4">
+                <Text className="text-theme-neutrals-500 text-xs mb-1">Backend link (API)</Text>
+                <Text className="text-white text-sm font-medium">
+                  {request.webUsername ? `@${request.webUsername}` : "Linked on web"}
+                </Text>
+                <Text className="text-theme-neutrals-400 text-xs mt-1">
+                  {request.webAddress.slice(0, 6)}…{request.webAddress.slice(-4)}
+                </Text>
+                <Text className="text-theme-neutrals-500 text-xs mt-3 mb-1">Cloud backup on phone</Text>
+                <Text className="text-theme-neutrals-400 text-xs">
+                  {request.cloudAddress.slice(0, 6)}…{request.cloudAddress.slice(-4)}
+                </Text>
+              </View>
+              <Text className="text-theme-neutrals-400 text-sm mb-5">
+                To use the account you see on dehub.io, check the wallet address under{" "}
+                <Text className="text-white font-medium">Settings → Assets</Text>, export its private
+                key from{" "}
+                <Text className="text-white font-medium">
+                  Settings → Privacy → Account Security
+                </Text>
+                , then tap <Text className="text-white font-medium">Import external wallet</Text>{" "}
+                below. Or use <Text className="text-white font-medium">Recover old account</Text> if
+                this is a pre-migration Web3Auth wallet.
+              </Text>
+              <TouchableOpacity
+                onPress={() => openInApp(WEBSITE_LINK)}
+                className="rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent mb-3"
+              >
+                <Text className="text-white text-sm font-medium">Open dehub.io</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleClose}
+                className="rounded-xl px-4 py-3 items-center active:opacity-80 bg-neutral-800 border border-neutral-700"
+              >
+                <Text className="text-white text-sm font-medium">Got it</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+
+          {mode === "legacy-recovered" && request?.mode === "legacy-recovered" && (
+            <View>
+              <Text className="text-theme-neutrals-400 text-sm mb-4">
+                Verified your old account{request.label ? ` (${request.label})` : ""} and recovered
+                its wallet. Set a password to protect it on this device — on this phone and
+                everywhere else, from now on.
+              </Text>
+              {legacyRecoveredAddress && (
+                <View className="rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-900 px-4 py-3 mb-4">
+                  <Text className="text-theme-neutrals-500 text-xs mb-1">Recovered wallet</Text>
+                  <Text className="text-white text-sm font-medium">
+                    {legacyRecoveredAddress.slice(0, 6)}…{legacyRecoveredAddress.slice(-4)}
+                  </Text>
+                </View>
+              )}
+
+              <Text className="text-theme-neutrals-500 text-xs mb-2">
+                New password (min {MIN_PASSWORD_LENGTH} chars)
+              </Text>
+              <View className={inputWrapClass}>
+                <TextInput
+                  value={password}
+                  onChangeText={setPassword}
+                  placeholder="Password"
+                  placeholderTextColor="#6B7280"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  secureTextEntry={!showPw}
+                  className="flex-1 text-white text-sm"
+                  autoFocus
+                />
+                <TouchableOpacity onPress={() => setShowPw((s) => !s)} className="pl-2 py-1">
+                  <Ionicons name={showPw ? "eye-off-outline" : "eye-outline"} size={18} color="#9CA3AF" />
+                </TouchableOpacity>
+              </View>
+              <View className={`${inputWrapClass} mt-3`}>
+                <TextInput
+                  value={confirm}
+                  onChangeText={setConfirm}
+                  placeholder="Confirm password"
+                  placeholderTextColor="#6B7280"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  secureTextEntry={!showPw}
+                  className="flex-1 text-white text-sm"
+                />
+              </View>
+
+              {error && <Text className="text-red-400 text-xs mt-3">{error}</Text>}
+
+              <TouchableOpacity
+                onPress={handleLegacyRecoveredSubmit}
+                disabled={!canSubmitLegacyRecovered || busy}
+                className="mt-5 rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent"
+                style={{ opacity: !canSubmitLegacyRecovered || busy ? 0.5 : 1 }}
               >
                 {busy ? (
                   <ActivityIndicator color="#fff" />
                 ) : (
-                  <>
-                    <Ionicons name="finger-print" size={18} color="#FFFFFF" />
-                    <Text className="text-white text-sm font-medium">Unlock with biometrics</Text>
-                  </>
+                  <Text className="text-white text-sm font-medium">Finish setting up this account</Text>
                 )}
               </TouchableOpacity>
+            </View>
+          )}
+
+          {mode === "biometric-unlock" && (
+            <View>
+              {deviceWrapKeyReady === null ? (
+                <ActivityIndicator color="#fff" className="my-6" />
+              ) : deviceWrapKeyReady ? (
+                <>
+                  <Text className="text-theme-neutrals-400 text-sm mb-5">
+                    This wallet is protected by this device&apos;s biometrics. Confirm with
+                    fingerprint or face to continue.
+                  </Text>
+                  {error && (
+                    <Text className="text-red-400 text-xs mb-3">
+                      {error} If this keeps failing, use your wallet password below or
+                      &quot;Import external wallet&quot;.
+                    </Text>
+                  )}
+                  <TouchableOpacity
+                    onPress={handleBiometricUnlockPress}
+                    disabled={busy}
+                    className="rounded-xl px-4 py-3 items-center active:opacity-80 bg-theme-accent flex-row justify-center"
+                    style={{ opacity: busy ? 0.5 : 1, gap: 8 }}
+                  >
+                    {busy ? (
+                      <ActivityIndicator color="#fff" />
+                    ) : (
+                      <>
+                        <Ionicons name="finger-print" size={18} color="#FFFFFF" />
+                        <Text className="text-white text-sm font-medium">Unlock with biometrics</Text>
+                      </>
+                    )}
+                  </TouchableOpacity>
+                </>
+              ) : (
+                <>
+                  <Text className="text-theme-neutrals-400 text-sm mb-5">
+                    This wallet uses biometrics or a passkey on the web. This phone does not have
+                    the biometric key yet — enter your wallet password to unlock here, or set a
+                    password backup on dehub.io if you only use passkey on web.
+                  </Text>
+                  <TouchableOpacity
+                    onPress={handleBiometricUnlockPress}
+                    disabled={busy}
+                    className="mb-4 rounded-xl px-4 py-3 items-center active:opacity-80 bg-neutral-800 border border-neutral-700 flex-row justify-center"
+                    style={{ opacity: busy ? 0.5 : 1, gap: 8 }}
+                  >
+                    <Ionicons name="finger-print" size={18} color="#FFFFFF" />
+                    <Text className="text-white text-sm font-medium">Try biometrics on this phone</Text>
+                  </TouchableOpacity>
+                  <Text className="text-theme-neutrals-500 text-xs mb-2">Or enter wallet password</Text>
+                  <View className={inputWrapClass}>
+                    <TextInput
+                      value={password}
+                      onChangeText={setPassword}
+                      placeholder="Wallet password"
+                      placeholderTextColor="#6B7280"
+                      autoCapitalize="none"
+                      autoCorrect={false}
+                      secureTextEntry={!showPw}
+                      className="flex-1 text-white text-sm"
+                      autoFocus
+                    />
+                    <TouchableOpacity onPress={() => setShowPw((s) => !s)} className="pl-2 py-1">
+                      <Ionicons name={showPw ? "eye-off-outline" : "eye-outline"} size={18} color="#9CA3AF" />
+                    </TouchableOpacity>
+                  </View>
+                  {error && <Text className="text-red-400 text-xs mt-3">{error}</Text>}
+                  <TouchableOpacity
+                    onPress={handleUnlockSubmit}
+                    disabled={!canSubmitPassword || busy}
+                    className="mt-4 flex-row items-center justify-center rounded-2xl bg-neutral-800 border border-neutral-700 active:opacity-80"
+                    style={{ height: 60, opacity: !canSubmitPassword || busy ? 0.5 : 1 }}
+                  >
+                    {busy ? (
+                      <ActivityIndicator color="#fff" />
+                    ) : (
+                      <Text className="text-white text-sm font-medium">Unlock with password</Text>
+                    )}
+                  </TouchableOpacity>
+                </>
+              )}
             </View>
           )}
 
           {mode === "unlock" && (
             <View>
               <Text className="text-theme-neutrals-400 text-sm mb-5">
-                This account already has a wallet, protected by a password. Enter it to recover your
-                wallet on this device.
+                {unlockPasskeyOnly
+                  ? "This wallet was secured with a passkey on the web and has no password backup in the cloud yet. If you set a wallet password on dehub.io, enter it here — otherwise use Import external wallet below."
+                  : "This account already has a wallet, protected by a password. Enter it to recover your wallet on this device."}
               </Text>
               <Text className="text-theme-neutrals-500 text-xs mb-2">Wallet password</Text>
               <View className={inputWrapClass}>
