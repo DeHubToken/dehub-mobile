@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View, Text, ActivityIndicator } from "react-native";
-import InfiniteFeed from "../Feed/InfiniteFeed";
+import InfiniteFeed, { type InfiniteFeedRenderItemInfo } from "../Feed/InfiniteFeed";
 import FeedCard from "../Home/FeedCard";
 import { getFeedNFTs } from "../../services/feed.service";
 import type { GetNFTsResponse, GetNFTsResult } from "../../services/nft.service";
@@ -70,6 +70,18 @@ const CommunityFeedRoute: React.FC<Props> = ({
     [isMember, t],
   );
 
+  // Stable identity: InfiniteFeed's own renderItem useCallback lists this in
+  // its deps, so a fresh arrow per render invalidated it and re-rendered every
+  // cell in the window on any re-render of this route. Declared above the
+  // memberFilterReady early return — it is a hook, so it has to run on every
+  // render of this component.
+  const renderItem = useCallback(
+    ({ item, isVisible }: InfiniteFeedRenderItemInfo) => (
+      <FeedCard item={item as UnifiedFeedItem} isVisible={isVisible} />
+    ),
+    [],
+  );
+
   if (!memberFilterReady) {
     return (
       <View className="py-12 items-center">
@@ -95,9 +107,7 @@ const CommunityFeedRoute: React.FC<Props> = ({
         emptyComponent={emptyComponent}
         // isVisible must be forwarded or FeedCard falls back to its own
         // `true` default and every windowed row attaches a video player.
-        renderItem={({ item, isVisible }) => (
-          <FeedCard item={item as UnifiedFeedItem} isVisible={isVisible} />
-        )}
+        renderItem={renderItem}
       />
     </View>
   );
