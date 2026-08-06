@@ -12,6 +12,7 @@ import Icon from "../ui/Icon";
 import MentionSuggestions from "../common/MentionSuggestions";
 import { useMentions } from "../../hooks/useMentions";
 import { sendAIChat } from "../../services/ai.service";
+import { ASSISTANT_USERNAME, mentionsAssistant } from "../../libs/assistant";
 import type { LiveChatMessageData } from "../../services/livechat.service";
 import { uploadLiveChatVoice } from "../../services/livechat.service";
 import { toastError } from "../../libs/toast";
@@ -103,6 +104,12 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
   const remaining = MAX_LENGTH - text.length;
   const showCounter = remaining <= WARN_THRESHOLD;
   const isOverLimit = remaining < 0;
+
+  /** Prefix the draft with the mention and put the cursor after it. */
+  const handleAskAssistant = useCallback(() => {
+    setText((prev) => (mentionsAssistant(prev) ? prev : `@${ASSISTANT_USERNAME} ${prev.trimStart()}`));
+    inputRef.current?.focus();
+  }, []);
 
   const handleSend = useCallback(() => {
     const trimmed = text.trim();
@@ -201,6 +208,33 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         onSelect={mentions.selectMention}
         loading={mentions.loading}
       />
+
+      {/* The bot only ever answers a direct mention, so the tag has to be
+          discoverable — otherwise nobody knows it is there. */}
+      {!disabled && !editingMessage && !recorder.isRecording && !uploadingVoice && (
+        <View className="flex-row items-center px-3 pt-1.5">
+          {mentionsAssistant(text) ? (
+            <View className="flex-row items-center gap-1">
+              <Icon name="Sparkles" size={11} color="#A6A9AC" />
+              <Text className="text-white/50 text-[11px]">
+                {ASSISTANT_USERNAME} will reply in chat
+              </Text>
+            </View>
+          ) : (
+            <TouchableOpacity
+              onPress={handleAskAssistant}
+              hitSlop={6}
+              activeOpacity={0.6}
+              className="flex-row items-center gap-1"
+              accessibilityRole="button"
+              accessibilityLabel="Ask the assistant"
+            >
+              <Icon name="Sparkles" size={11} color="#8B8D90" />
+              <Text className="text-white/35 text-[11px]">Tag @assistant for help</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      )}
 
       {uploadingVoice ? (
         <View className="flex-row items-center justify-center py-4 bg-theme-neutrals-800 rounded-xl mx-2 my-1.5">

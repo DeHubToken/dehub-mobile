@@ -97,6 +97,13 @@ export type AIModel =
   | 'gpt-5-mini'
   | 'grok-4';
 
+/**
+ * Which surface is asking. `assistant` gets the full tool set, including the
+ * caller's own account data; `chat` is the public-room bot and is limited to
+ * tools that read public data only.
+ */
+export type AISurface = 'assistant' | 'chat';
+
 export interface AIChatRequest {
   messages: AIChatMessage[];
   style?: AIStyle;
@@ -106,6 +113,17 @@ export interface AIChatRequest {
   postContext?: AIPostContext;
   userContext?: AIUserContext;
   dehubToken?: string;
+  surface?: AISurface;
+  /** Wallet of the asking user — scopes the personal-data tools to them. */
+  callerAddress?: string;
+}
+
+/** One tool the assistant ran while answering. */
+export interface AIToolTraceEntry {
+  tool: string;
+  args: Record<string, unknown>;
+  ok: boolean;
+  ms: number;
 }
 
 export interface AIChatResponse {
@@ -115,6 +133,9 @@ export interface AIChatResponse {
   modelUsed: string;
   modelTier: string;
   modelReason: string;
+  /** Present when the tool-calling agent handled the request. */
+  toolTrace?: AIToolTraceEntry[];
+  agentRounds?: number;
 }
 
 export type AIImageModel =
