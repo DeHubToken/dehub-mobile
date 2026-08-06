@@ -29,7 +29,11 @@ export function useFeedCardVisibility(keyExtractor?: KeyExtractor) {
 
   const viewabilityConfig = useRef({
     itemVisiblePercentThreshold: 50,
-    minimumViewTime: 0,
+    // Was 0, so a fling fired this callback — and the two setStates below, and
+    // the list re-render they cause — on essentially every frame it crossed a
+    // row boundary. 150ms matches the Home feed and means only rows the user
+    // actually dwelled on move the visibility set.
+    minimumViewTime: 150,
   }).current;
 
   const onViewableItemsChanged = useRef(
