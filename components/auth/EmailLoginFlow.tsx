@@ -33,7 +33,9 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
   if (!showInput) {
     return (
       <TouchableOpacity
-        className="flex-row items-center justify-center rounded-xl bg-neutral-800 border border-neutral-700"
+        className={`flex-row items-center justify-center rounded-xl bg-white/10 border border-white/20 ${
+          disabled ? "opacity-50" : ""
+        }`}
         style={{ width: "100%", height: 60 }}
         onPress={() => setShowInput(true)}
         disabled={disabled}
@@ -52,8 +54,8 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
   }
   return (
     <View
-      className="flex-row items-center border border-neutral-700 rounded-xl bg-neutral-800 px-4"
-      style={{ width: "100%", height: 62 }}
+      className="flex-row items-center border border-white/20 rounded-xl bg-white/10 px-4"
+      style={{ width: "100%", height: 60 }}
     >
       <Ionicons
         name="mail"
@@ -65,7 +67,7 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
         ref={inputRef}
         className="flex-1 text-xl text-white"
         placeholder="user@example.com"
-        placeholderTextColor="#6B7280"
+        placeholderTextColor="#8B8D90"
         value={email}
         onChangeText={setEmail}
         editable={!loading && !disabled}
@@ -85,18 +87,22 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
           }
         }}
         disabled={loading || disabled || !email || !email.includes("@")}
-        className="ml-2"
+        className="ml-2 py-3 px-2"
         accessibilityLabel="Submit email for login"
       >
-        <Text
-          className="text-theme-accent font-medium text-base"
-          style={{
-            opacity:
-              loading || disabled || !email || !email.includes("@") ? 0.5 : 1,
-          }}
-        >
-          {loading ? "..." : "Submit"}
-        </Text>
+        {loading ? (
+          <ActivityIndicator color="#fff" size="small" />
+        ) : (
+          <Text
+            className="text-theme-accent font-medium text-base"
+            style={{
+              opacity:
+                loading || disabled || !email || !email.includes("@") ? 0.5 : 1,
+            }}
+          >
+            Submit
+          </Text>
+        )}
       </TouchableOpacity>
     </View>
   );

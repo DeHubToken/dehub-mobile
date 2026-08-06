@@ -32,7 +32,7 @@ const CHAIN_ICONS: Record<number, any> = {
 
 const EmptyOwnership: React.FC<{ icon: any; label: string }> = ({ icon, label }) => (
   <View className="items-center justify-center py-8">
-    <Icon name={icon} size={36} color="#52525b" />
+    <Icon name={icon} size={36} color="#4b5563" />
     <Text className="text-theme-neutrals-500 text-sm mt-3">{label}</Text>
   </View>
 );

@@ -60,7 +60,7 @@ const ImageTile = memo<{ post: ImagePost; size: number; onPress: () => void }>(
       <TouchableOpacity
         activeOpacity={0.85}
         onPress={onPress}
-        style={{ width: size, height: size, backgroundColor: "#262626" }}
+        style={{ width: size, height: size, backgroundColor: "#1D1F21" }}
       >
         <Image
           source={uri}
@@ -201,7 +201,7 @@ const ProfileImageGrid: React.FC<ProfileImageGridProps> = ({ images, onImagePres
 const s = StyleSheet.create({
   row: { flexDirection: "row", gap: GRID_GAP },
   stackCol: { gap: GRID_GAP },
-  multiIcon: { position: "absolute", top: 4, right: 4 },
+  multiIcon: { position: "absolute", top: 4, right: 4, backgroundColor: "rgba(0,0,0,0.4)", borderRadius: 6, padding: 3 },
 });
 
 export default memo(ProfileImageGrid);

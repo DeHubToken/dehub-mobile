@@ -6,7 +6,6 @@ import { toastInfo } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useUser, useAuthState, useAuthActions, useProvider } from "../../context/AuthContext";
 import PPVModal from "../PPV/PPVModal";
-import AccentButtonGradient from "../ui/AccentButtonGradient";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { ChainId, supportedChainIds } from "../../config/constants";
@@ -26,6 +25,8 @@ export interface VideoAreaProps {
   onPPVSuccess?: () => void;
   /** When true, video fills the entire container instead of using 16:9 aspect ratio */
   fullscreen?: boolean;
+  /** Suppress the player's built-in top controls when an external header already provides close/mute. */
+  hideTopControls?: boolean;
 }
 
 const VideoArea: React.FC<VideoAreaProps> = ({
@@ -41,6 +42,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   isLive,
   onPPVSuccess,
   fullscreen,
+  hideTopControls,
 }) => {
   const normalizedUrl: string | null =
     effectiveVideoUrl === undefined ? null : effectiveVideoUrl;
@@ -61,14 +63,6 @@ const VideoArea: React.FC<VideoAreaProps> = ({
       undefined,
     [minter, accessInfo]
   );
-  //   const tokenId: number | string | undefined = useMemo(
-  //     () =>
-  //       accessInfo?.tokenId ||
-  //       accessInfo?.nft?.tokenId ||
-  //       accessInfo?.result?.tokenId ||
-  //       undefined,
-  //     [accessInfo]
-  //   );
   const ppvAmount = streamInfo?.payPerViewAmount;
   const ppvSymbol = streamInfo?.payPerViewTokenSymbol;
   const [ppvOpen, setPpvOpen] = useState(false);
@@ -128,7 +122,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   if (isTranscoding) {
     return (
       <View className="w-full aspect-video bg-black items-center justify-center">
-        <Ionicons name="videocam" size={48} color="#888" />
+        <Ionicons name="videocam" size={48} color="#8B8D90" />
         <Text className="text-theme-neutrals-300 mt-2 text-sm">
           Transcoding…
         </Text>
@@ -140,25 +134,22 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   if (isLive && !isSignedIn) {
     return (
       <View className="w-full aspect-video bg-black items-center justify-center px-6">
-        <Ionicons name="log-in" size={46} color="#888" />
+        <Ionicons name="log-in" size={46} color="#8B8D90" />
         <Text
           className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
           numberOfLines={3}
         >
           Sign in to view this live.
         </Text>
-        <AccentButtonGradient style={{ marginTop: 16 }}>
-          <TouchableOpacity
-            onPress={handleSignIn}
-            className="px-5 py-2"
-            style={{ backgroundColor: 'transparent' }}
-            activeOpacity={0.85}
-          >
-            <Text className="text-white text-xs font-semibold">
-              Sign In
-            </Text>
-          </TouchableOpacity>
-        </AccentButtonGradient>
+        <TouchableOpacity
+          onPress={handleSignIn}
+          className="mt-4 bg-white/10 border border-white/20 rounded-xl px-5 py-2"
+          activeOpacity={0.85}
+        >
+          <Text className="text-white text-xs font-semibold">
+            Sign In
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -166,25 +157,22 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   if (!isFree && !isSignedIn) {
     return (
       <View className="w-full aspect-video bg-black items-center justify-center px-6">
-        <Ionicons name="log-in" size={46} color="#888" />
+        <Ionicons name="log-in" size={46} color="#8B8D90" />
         <Text
           className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
           numberOfLines={3}
         >
           Sign in to unlock and view this video.
         </Text>
-        <AccentButtonGradient style={{ marginTop: 16 }}>
-          <TouchableOpacity
-            onPress={handleSignIn}
-            className="px-5 py-2"
-            style={{ backgroundColor: 'transparent' }}
-            activeOpacity={0.85}
-          >
-            <Text className="text-white text-xs font-semibold">
-              Sign In
-            </Text>
-          </TouchableOpacity>
-        </AccentButtonGradient>
+        <TouchableOpacity
+          onPress={handleSignIn}
+          className="mt-4 bg-white/10 border border-white/20 rounded-xl px-5 py-2"
+          activeOpacity={0.85}
+        >
+          <Text className="text-white text-xs font-semibold">
+            Sign In
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -210,7 +198,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
       const neededSymbol = streamInfo?.lockContentTokenSymbol || "";
       return (
         <View className="w-full aspect-video bg-black items-center justify-center px-6">
-          <Ionicons name="lock-closed" size={46} color="#888" />
+          <Ionicons name="lock-closed" size={46} color="#8B8D90" />
           <Text
             className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
             numberOfLines={3}
@@ -220,18 +208,15 @@ const VideoArea: React.FC<VideoAreaProps> = ({
           <Text className="text-theme-neutrals-400 mt-2 text-[11px]">
             Your DHB balance: {formatCompactNumber(userDhbBalance)}
           </Text>
-          <AccentButtonGradient style={{ marginTop: 16 }}>
-            <TouchableOpacity
-              onPress={() => handleTopUp(neededAmt, neededSymbol)}
-              className="px-5 py-2"
-              style={{ backgroundColor: 'transparent' }}
-              activeOpacity={0.85}
-            >
-              <Text className="text-white text-xs font-semibold">
-                Top Up
-              </Text>
-            </TouchableOpacity>
-          </AccentButtonGradient>
+          <TouchableOpacity
+            onPress={() => handleTopUp(neededAmt, neededSymbol)}
+            className="mt-4 bg-white/10 border border-white/20 rounded-xl px-5 py-2"
+            activeOpacity={0.85}
+          >
+            <Text className="text-white text-xs font-semibold">
+              Top Up
+            </Text>
+          </TouchableOpacity>
         </View>
       );
     }
@@ -242,7 +227,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
       if (ppvChainIds.length > 0 && !hasSupportedPPVChain) {
         return (
           <View className="w-full aspect-video bg-black items-center justify-center px-6">
-            <Ionicons name="warning" size={46} color="#888" />
+            <Ionicons name="warning" size={46} color="#8B8D90" />
             <Text
               className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
               numberOfLines={3}
@@ -258,7 +243,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
       if (isWrongChainForPPV) {
         return (
           <View className="w-full aspect-video bg-black items-center justify-center px-6">
-            <Ionicons name="swap-horizontal" size={46} color="#888" />
+            <Ionicons name="swap-horizontal" size={46} color="#8B8D90" />
             <Text
               className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
               numberOfLines={3}
@@ -268,22 +253,19 @@ const VideoArea: React.FC<VideoAreaProps> = ({
             <Text className="text-theme-neutrals-400 mt-2 text-center text-xs leading-5" numberOfLines={3}>
               This content requires PPV on {requiredChainLabel || "another network"}. Go to Settings and switch to the required network to pay.
             </Text>
-            <AccentButtonGradient style={{ marginTop: 16 }}>
-              <TouchableOpacity
-                onPress={goToSettings}
-                className="px-5 py-2"
-                style={{ backgroundColor: 'transparent' }}
-                activeOpacity={0.85}
-              >
-                <Text className="text-white text-xs font-semibold">Open Settings</Text>
-              </TouchableOpacity>
-            </AccentButtonGradient>
+            <TouchableOpacity
+              onPress={goToSettings}
+              className="mt-4 bg-white/10 border border-white/20 rounded-xl px-5 py-2"
+              activeOpacity={0.85}
+            >
+              <Text className="text-white text-xs font-semibold">Open Settings</Text>
+            </TouchableOpacity>
           </View>
         );
       }
       return (
         <View className="w-full aspect-video bg-black items-center justify-center px-6">
-          <Ionicons name="pricetag" size={46} color="#888" />
+          <Ionicons name="pricetag" size={46} color="#8B8D90" />
           <Text
             className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
             numberOfLines={3}
@@ -299,19 +281,16 @@ const VideoArea: React.FC<VideoAreaProps> = ({
             tokenSymbol={ppvSymbol as string}
             paymentChainId={ppvChainIds[0]}
             trigger={
-              <AccentButtonGradient style={{ marginTop: 16 }}>
-                <TouchableOpacity
-                  onPress={() => handleUnlockPPV(ppvAmt, ppvSymbol)}
-                  className="flex-row items-center gap-2 px-5 py-2"
-                  style={{ backgroundColor: 'transparent' }}
-                  activeOpacity={0.85}
-                >
-                  <Ionicons name="pricetag-outline" size={16} color="#fff" />
-                  <Text className="text-white text-xs font-semibold">
-                    Unlock
-                  </Text>
-                </TouchableOpacity>
-              </AccentButtonGradient>
+              <TouchableOpacity
+                onPress={() => handleUnlockPPV(ppvAmt, ppvSymbol)}
+                className="mt-4 flex-row items-center gap-2 bg-white/10 border border-white/20 rounded-xl px-5 py-2"
+                activeOpacity={0.85}
+              >
+                <Ionicons name="pricetag-outline" size={16} color="#fff" />
+                <Text className="text-white text-xs font-semibold">
+                  Unlock
+                </Text>
+              </TouchableOpacity>
             }
             onSuccess={() => {
               setPpvOpen(false);
@@ -323,7 +302,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
     }
     return (
       <View className="w-full aspect-video bg-black items-center justify-center px-6">
-        <Ionicons name="alert-circle" size={46} color="#888" />
+        <Ionicons name="alert-circle" size={46} color="#8B8D90" />
         <Text
           className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
           numberOfLines={3}
@@ -344,8 +323,8 @@ const VideoArea: React.FC<VideoAreaProps> = ({
         sourceUrl={normalizedUrl}
         autoplay
         loop
-        // initialMuted
         liveMode={!!isLive}
+        hideTopControls={hideTopControls}
         onProgress={onProgress}
       />
     </View>

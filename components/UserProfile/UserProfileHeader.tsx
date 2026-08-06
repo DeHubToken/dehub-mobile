@@ -292,11 +292,17 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             {socialItems.length > 0 && (
               <View className="flex-row items-center gap-1">
                 {socialItems.map((si) => (
-                  <FakeGlass key={si.key} className="rounded-xl" style={{ width: 32, height: 32, alignItems: "center", justifyContent: "center" }}>
-                    <TouchableOpacity onPress={() => openExternalLink(si.url)} activeOpacity={0.7}>
-                      <SvgXml xml={si.svg} width={14} height={14} color="#9CA3AF" />
-                    </TouchableOpacity>
-                  </FakeGlass>
+                  <TouchableOpacity
+                    key={si.key}
+                    onPress={() => openExternalLink(si.url)}
+                    activeOpacity={0.7}
+                    hitSlop={{ top: 6, right: 6, bottom: 6, left: 6 }}
+                    accessibilityLabel={si.key}
+                  >
+                    <FakeGlass className="rounded-xl" style={{ width: 32, height: 32, alignItems: "center", justifyContent: "center" }}>
+                      <SvgXml xml={si.svg} width={14} height={14} color="#A1A1AA" />
+                    </FakeGlass>
+                  </TouchableOpacity>
                 ))}
               </View>
             )}
@@ -305,12 +311,12 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           <View className="flex-row items-center mt-0.5 gap-2">
             {!!username && (
               <TouchableOpacity onPress={handleCopyUsername} activeOpacity={0.7}>
-                <Text className="text-zinc-500 text-sm">@{username}</Text>
+                <Text className="text-zinc-400 text-sm">@{username}</Text>
               </TouchableOpacity>
             )}
             {followsYou && (
               <View className="px-2 py-0.5 bg-theme-neutrals-800 rounded">
-                <Text className="text-theme-neutrals-400 text-[10px] font-medium">Follows you</Text>
+                <Text className="text-theme-neutrals-400 text-[11px] font-medium">Follows you</Text>
               </View>
             )}
           </View>
@@ -328,7 +334,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
           )}
 
           {!!joinedDate && (
-            <Text className="text-zinc-500 text-sm mt-3">Joined {joinedDate}</Text>
+            <Text className="text-zinc-400 text-sm mt-3">Joined {joinedDate}</Text>
           )}
 
           {(followingItem || followersItem) && (
@@ -340,7 +346,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                 >
                   <Text className="text-sm">
                     <Text className="text-white font-bold">{followingItem.value.toLocaleString()}</Text>
-                    <Text className="text-zinc-500"> Following</Text>
+                    <Text className="text-zinc-400"> Following</Text>
                   </Text>
                 </TouchableOpacity>
               )}
@@ -351,7 +357,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                 >
                   <Text className="text-sm">
                     <Text className="text-white font-bold">{followersItem.value.toLocaleString()}</Text>
-                    <Text className="text-zinc-500"> Followers</Text>
+                    <Text className="text-zinc-400"> Followers</Text>
                   </Text>
                 </TouchableOpacity>
               )}

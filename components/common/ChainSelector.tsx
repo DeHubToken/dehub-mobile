@@ -101,7 +101,7 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
       <Modal
         visible={open}
         transparent
-        animationType="fade"
+        animationType="slide"
         statusBarTranslucent
         onRequestClose={() => setOpen(false)}
       >
@@ -120,7 +120,6 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
             />
             <View style={[StyleSheet.absoluteFill, styles.sheetOverlay]} />
 
-            <View style={styles.handle} />
             <Text style={styles.title}>{title}</Text>
 
             {chains.map((chain) => {
@@ -183,20 +182,12 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     overflow: "hidden",
     paddingHorizontal: 16,
-    paddingTop: 10,
+    paddingTop: 16,
   },
   sheetOverlay: {
     backgroundColor: "rgba(20,20,20,0.55)",
     borderTopWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",
-  },
-  handle: {
-    alignSelf: "center",
-    width: 36,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: "rgba(255,255,255,0.2)",
-    marginBottom: 14,
   },
   title: {
     color: "#F9FBFF",

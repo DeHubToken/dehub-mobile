@@ -207,6 +207,10 @@ const SavedPostsScreen: React.FC = () => {
                 setActiveMenuFolder(selectedFolder);
                 setShowMenuModal(true);
               }}
+              accessibilityRole="button"
+              accessibilityLabel="Collection options"
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              className="w-10 h-10 items-center justify-center active:opacity-70"
             >
               <Icon name="MoveVertical" size={22} color="#E5E7EB" />
             </TouchableOpacity>
@@ -288,7 +292,7 @@ const SavedPostsScreen: React.FC = () => {
               <Text style={styles.modalTitle}>Edit Collection</Text>
               <TextInput
                 placeholder="Name"
-                placeholderTextColor="#4B5563"
+                placeholderTextColor="#A1A1AA"
                 value={folderName}
                 onChangeText={setFolderName}
                 style={styles.modalInput}
@@ -296,7 +300,7 @@ const SavedPostsScreen: React.FC = () => {
               />
               <TextInput
                 placeholder="Description (Optional)"
-                placeholderTextColor="#4B5563"
+                placeholderTextColor="#A1A1AA"
                 value={folderDesc}
                 onChangeText={setFolderDesc}
                 style={[styles.modalInput, { height: 70, textAlignVertical: "top" }]}
@@ -391,7 +395,7 @@ const SavedPostsScreen: React.FC = () => {
               }
               ListEmptyComponent={
                 <View style={styles.emptyGrid}>
-                  <Icon name="Folder" size={48} color="#4B5563" />
+                  <Icon name="Folder" size={48} color="#A1A1AA" />
                   <Text style={styles.emptyGridText}>No custom collections yet</Text>
                 </View>
               }
@@ -466,7 +470,7 @@ const SavedPostsScreen: React.FC = () => {
             <Text style={styles.modalTitle}>Create Collection</Text>
             <TextInput
               placeholder="Collection Name"
-              placeholderTextColor="#4B5563"
+              placeholderTextColor="#A1A1AA"
               value={folderName}
               onChangeText={setFolderName}
               style={styles.modalInput}
@@ -475,7 +479,7 @@ const SavedPostsScreen: React.FC = () => {
             />
             <TextInput
               placeholder="Description (Optional)"
-              placeholderTextColor="#4B5563"
+              placeholderTextColor="#A1A1AA"
               value={folderDesc}
               onChangeText={setFolderDesc}
               style={[styles.modalInput, { height: 70, textAlignVertical: "top" }]}
@@ -525,7 +529,7 @@ const SavedPostsScreen: React.FC = () => {
             <Text style={styles.modalTitle}>Edit Collection</Text>
             <TextInput
               placeholder="Name"
-              placeholderTextColor="#4B5563"
+              placeholderTextColor="#A1A1AA"
               value={folderName}
               onChangeText={setFolderName}
               style={styles.modalInput}
@@ -533,7 +537,7 @@ const SavedPostsScreen: React.FC = () => {
             />
             <TextInput
               placeholder="Description (Optional)"
-              placeholderTextColor="#4B5563"
+              placeholderTextColor="#A1A1AA"
               value={folderDesc}
               onChangeText={setFolderDesc}
               style={[styles.modalInput, { height: 70, textAlignVertical: "top" }]}
@@ -591,7 +595,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.08)",
   },
   tabText: {
-    color: "#6F7174",
+    color: "#A6A9AC",
     fontSize: 14,
     fontWeight: "600",
   },
@@ -665,7 +669,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   folderDescription: {
-    color: "#6F7174",
+    color: "#A6A9AC",
     fontSize: 12,
     marginTop: 6,
     lineHeight: 16,
@@ -675,7 +679,7 @@ const styles = StyleSheet.create({
     paddingVertical: 60,
   },
   emptyGridText: {
-    color: "#6F7174",
+    color: "#A6A9AC",
     fontSize: 14,
     marginTop: 12,
   },

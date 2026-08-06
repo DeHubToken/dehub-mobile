@@ -90,7 +90,7 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(({ item, onPress,
       {/* Avatar with gradient ring */}
       <View className="relative">
         <LinearGradient
-          colors={["#833ab4", "#fd1d1d", "#fcb045"]}
+          colors={["#383A3D", "#383A3D", "#383A3D"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={{ borderRadius: 30, padding: 2 }}
@@ -112,7 +112,7 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(({ item, onPress,
           </Text>
         )}
         {user.followers !== undefined && (
-          <Text className="text-gray-600 text-xs mt-0.5">
+          <Text className="text-zinc-400 text-xs mt-0.5">
             {formatCompactNumber(user.followers)} followers
           </Text>
         )}
@@ -128,7 +128,7 @@ const FollowUserRow: React.FC<FollowUserRowProps> = React.memo(({ item, onPress,
           <Text className="text-gray-300 text-xs font-semibold">Remove</Text>
         </TouchableOpacity>
       ) : (
-        <Ionicons name="chevron-forward" size={20} color="#555" />
+        <Ionicons name="chevron-forward" size={20} color="#A1A1AA" />
       )}
     </TouchableOpacity>
   );
@@ -164,7 +164,7 @@ const FollowRequestRow: React.FC<FollowRequestRowProps> = React.memo(
         <TouchableOpacity activeOpacity={0.6} onPress={handlePress}>
           <View className="relative">
             <LinearGradient
-              colors={["#833ab4", "#fd1d1d", "#fcb045"]}
+              colors={["#383A3D", "#383A3D", "#383A3D"]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={{ borderRadius: 30, padding: 2 }}
@@ -216,7 +216,7 @@ const FollowRequestRow: React.FC<FollowRequestRowProps> = React.memo(
 const HiddenFollowersMessage: React.FC<{ username?: string }> = ({ username }) => (
   <View className="flex-1 items-center justify-center px-8">
     <View className="bg-theme-neutrals-800/50 rounded-full p-6 mb-6">
-      <Ionicons name="lock-closed" size={48} color="#666" />
+      <Ionicons name="lock-closed" size={48} color="#A1A1AA" />
     </View>
     <Text className="text-white text-xl font-bold text-center mb-2">
       This Account is Private
@@ -567,7 +567,7 @@ const FollowListScreen: React.FC = () => {
     if (!hasMore && data.length > 0) {
       return (
         <View className="py-6 items-center">
-          <Text className="text-gray-600 text-sm">No more {activeTab}</Text>
+          <Text className="text-zinc-400 text-sm">No more {activeTab}</Text>
         </View>
       );
     }
@@ -579,7 +579,7 @@ const FollowListScreen: React.FC = () => {
     return (
       <View className="flex-1 items-center justify-center py-16">
         <View className="bg-theme-neutrals-800/30 rounded-full p-5 mb-4">
-          <Ionicons name="people-outline" size={40} color="#555" />
+          <Ionicons name="people-outline" size={40} color="#A1A1AA" />
         </View>
         <Text className="text-gray-400 text-base text-center px-8">
           {debouncedSearch
@@ -670,7 +670,7 @@ const FollowListScreen: React.FC = () => {
             ListEmptyComponent={
               <View className="flex-1 items-center justify-center py-16">
                 <View className="bg-theme-neutrals-800/30 rounded-full p-5 mb-4">
-                  <Ionicons name="person-add-outline" size={40} color="#555" />
+                  <Ionicons name="person-add-outline" size={40} color="#A1A1AA" />
                 </View>
                 <Text className="text-gray-400 text-base text-center px-8">
                   No pending follow requests
@@ -686,12 +686,12 @@ const FollowListScreen: React.FC = () => {
           {/* Search and Sort Row */}
           <View className="px-4 py-3 flex-row items-center gap-3">
             <View className="flex-1 flex-row items-center bg-theme-neutrals-800/60 rounded-xl px-4 h-10">
-              <Ionicons name="search" size={18} color="#666" />
+              <Ionicons name="search" size={18} color="#A1A1AA" />
               <TextInput
                 value={searchQuery}
                 onChangeText={setSearchQuery}
                 placeholder="Search"
-                placeholderTextColor="#555"
+                placeholderTextColor="#A1A1AA"
                 className="flex-1 ml-2 text-white text-[15px]"
                 returnKeyType="search"
                 onSubmitEditing={dismissKeyboard}
@@ -703,7 +703,7 @@ const FollowListScreen: React.FC = () => {
                   onPress={() => setSearchQuery("")}
                   hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                 >
-                  <Ionicons name="close-circle" size={18} color="#666" />
+                  <Ionicons name="close-circle" size={18} color="#A1A1AA" />
                 </TouchableOpacity>
               )}
             </View>
@@ -738,7 +738,7 @@ const FollowListScreen: React.FC = () => {
                     <Ionicons 
                       name={option.icon as any} 
                       size={20} 
-                      color={sortOption === option.key ? "#fff" : "#888"} 
+                      color={sortOption === option.key ? "#fff" : "#A1A1AA"} 
                     />
                     <Text 
                       className={`flex-1 ml-3 text-[15px] ${

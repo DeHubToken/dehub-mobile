@@ -538,7 +538,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
                   activeOpacity={0.7}
                 >
                   {isBusy ? (
-                    <ActivityIndicator size="small" color="#fff" />
+                    <ActivityIndicator size="small" color="#010305" />
                   ) : (
                     <Text style={styles.payBtnText}>
                       {phase === "error"
@@ -724,14 +724,12 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 46,
     borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.08)",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.1)",
+    backgroundColor: "#F4F4F5",
     alignItems: "center",
     justifyContent: "center",
   },
   payBtnText: {
-    color: "#F9FBFF",
+    color: "#010305",
     fontSize: 14,
     fontWeight: "600",
   },
@@ -746,7 +744,7 @@ const styles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: 36,
-    backgroundColor: "#22c55e",
+    backgroundColor: "#22C55E",
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 8,

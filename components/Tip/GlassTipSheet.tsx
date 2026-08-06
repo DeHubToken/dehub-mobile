@@ -61,6 +61,8 @@ import { writeContractAA } from "../../libs/aa.write";
 import { sendSolanaPayment } from "../../services/solana-payment.service";
 import { isSolanaChain } from "../../config/solana.constants";
 import { formatCompactNumber } from "../../libs";
+import { supabase } from "../../services/supabase";
+import { withWalletHeader } from "../../libs/supabase-wallet-client";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -77,12 +79,11 @@ const formatPreset = (n: number): string => {
   return n.toLocaleString();
 };
 
-// ── Gold theme colors ────────────────────────────────────────────────────────
-const GOLD_LIGHT = "#D4A843";
-const GOLD_DARK = "#8B6914";
-const GOLD_GLOW = "rgba(212,168,67,0.15)";
-const GOLD_BORDER = "rgba(212,168,67,0.5)";
-const GOLD_GRADIENT: [string, string] = ["#D4A843", "#8B6914"];
+// ── Monochrome accent gradient (matches AccentButtonGradient) ────────────────
+const ACCENT_GRADIENT: [string, string] = [
+  "rgba(255,255,255,0.20)",
+  "rgba(255,255,255,0.08)",
+];
 
 // ── Props ────────────────────────────────────────────────────────────────────
 export interface GlassTipSheetProps {
@@ -95,7 +96,45 @@ export interface GlassTipSheetProps {
   tipContext?: "content" | "user";
   /** Post's chain — when Solana (101/103), tip in SOL via the backend-built tx (#41). */
   paymentChainId?: number;
+  /** Tipping a comment's author: stamped on the tip record so the comment can
+   *  show its own total. Comment tips always take the EVM DHB path — don't
+   *  pass paymentChainId with this. */
+  commentId?: number;
   onSuccess?: (amount: number) => void;
+}
+
+/**
+ * Mirror of web's persistTipRecord: the earnings screens and per-comment tip
+ * totals read Supabase tip_records, and a tip that only exists on-chain is
+ * invisible to both. Fire-and-forget with retries — a failed save must not
+ * error a tip that already moved money.
+ */
+async function persistTipRecord(params: {
+  senderAddress: string;
+  receiverAddress: string;
+  amount: number;
+  chainId: number;
+  txHash: string;
+  tokenId: number;
+  commentId: number | null;
+}): Promise<void> {
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    const { error } = await withWalletHeader(
+      supabase.from("tip_records").insert({
+        sender_address: params.senderAddress.toLowerCase(),
+        receiver_address: params.receiverAddress.toLowerCase(),
+        amount: params.amount,
+        chain_id: params.chainId,
+        tx_hash: params.txHash,
+        token_id: params.tokenId ? String(params.tokenId) : null,
+        comment_id: params.commentId != null ? String(params.commentId) : null,
+      } as any),
+      params.senderAddress,
+    );
+    if (!error) return;
+    console.warn(`[Tip] record attempt ${attempt}/3 failed:`, error.message);
+    if (attempt < 3) await new Promise((r) => setTimeout(r, 1000 * attempt));
+  }
 }
 
 // ── Component ────────────────────────────────────────────────────────────────
@@ -107,6 +146,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   recipientName,
   tipContext = "content",
   paymentChainId,
+  commentId,
   onSuccess,
 }) => {
   const insets = useSafeAreaInsets();
@@ -322,6 +362,25 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           setPhase("sent");
           setLastAmount(numericAmount);
 
+          // Record the tip the way web does. Mobile tips never wrote a
+          // tip_records row, which is why they're missing from the earnings
+          // screens; comment tips additionally need the row for their totals.
+          // DHB path only — Solana tips are SOL-denominated and would corrupt
+          // the DHB sums this table feeds.
+          const txHash: string =
+            (res as any)?.hash || receipt?.transactionHash || "";
+          if (txHash && account) {
+            void persistTipRecord({
+              senderAddress: account,
+              receiverAddress: toAddress,
+              amount: numericAmount,
+              chainId,
+              txHash,
+              tokenId,
+              commentId: commentId ?? null,
+            });
+          }
+
           // Optimistic balance patch
           try {
             await patchUser((prev) => ({
@@ -434,7 +493,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
               <View style={styles.content}>
                 {/* Header */}
                 <View style={styles.headerRow}>
-                  <Icon name="Gem" size={18} color={GOLD_LIGHT} />
+                  <Icon name="Gem" size={18} color="#F9FBFF" />
                   <Text style={styles.headerTitle}>Send Tip</Text>
                 </View>
                 <Text style={styles.recipientText}>{subheader}</Text>
@@ -532,7 +591,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
 
                   <View style={{ flex: 1, opacity: disableSend && phase === "idle" ? 0.45 : 1 }}>
                     <LinearGradient
-                      colors={GOLD_GRADIENT}
+                      colors={ACCENT_GRADIENT}
                       start={{ x: 0, y: 0 }}
                       end={{ x: 1, y: 0 }}
                       style={styles.sendGradient}
@@ -565,19 +624,14 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             ) : (
               /* Success state */
               <View style={styles.successWrap}>
-                {/* Animated gold gem */}
+                {/* Animated gem */}
                 <Animated.View
                   entering={ZoomIn.duration(400).springify().damping(12)}
                   style={styles.successGemCircle}
                 >
-                  <LinearGradient
-                    colors={GOLD_GRADIENT}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
-                    style={styles.successGemGradient}
-                  >
-                    <Icon name="Gem" size={36} color="#fff" />
-                  </LinearGradient>
+                  <View style={styles.successGemFill}>
+                    <Icon name="Gem" size={36} color="#09090B" />
+                  </View>
                 </Animated.View>
 
                 <Animated.Text
@@ -706,8 +760,8 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.05)",
   },
   presetChipActive: {
-    borderColor: GOLD_BORDER,
-    backgroundColor: GOLD_GLOW,
+    borderColor: "rgba(255,255,255,0.4)",
+    backgroundColor: "rgba(255,255,255,0.12)",
   },
   presetText: {
     color: "#F9FBFF",
@@ -715,7 +769,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   presetTextActive: {
-    color: GOLD_LIGHT,
+    color: "#F9FBFF",
   },
   coinIcon: {
     width: 16,
@@ -749,8 +803,8 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   balanceText: {
-    color: "#6F7174",
-    fontSize: 11,
+    color: "#A6A9AC",
+    fontSize: 12,
   },
   errorSmall: {
     color: "#EF4444",
@@ -806,15 +860,16 @@ const styles = StyleSheet.create({
   successGemCircle: {
     marginBottom: 8,
   },
-  successGemGradient: {
+  successGemFill: {
     width: 80,
     height: 80,
     borderRadius: 40,
+    backgroundColor: "#F4F4F5",
     alignItems: "center",
     justifyContent: "center",
   },
   successTitle: {
-    color: GOLD_LIGHT,
+    color: "#F9FBFF",
     fontSize: 22,
     fontWeight: "800",
     letterSpacing: 0.5,

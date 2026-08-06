@@ -327,6 +327,8 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
         userContext,
         isAuthenticated: !!user,
         userLanguage: getDeviceLanguage(),
+        surface: "assistant",
+        callerAddress: user?.walletAddress || user?.address || undefined,
       });
 
       const greeting: AIChatMessage = {
@@ -431,6 +433,8 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
           userContext,
           isAuthenticated: !!user,
           userLanguage: getDeviceLanguage(),
+          surface: "assistant",
+          callerAddress: user?.walletAddress || user?.address || undefined,
         });
 
         const aiMsg: AIChatMessage = { role: "assistant", content: res.response };

@@ -30,6 +30,7 @@ import {
 } from 'react-native-gesture-handler';
 import { VideoView, useVideoPlayer, VideoPlayer } from 'expo-video';
 import { setAudioModeAsync } from 'expo-audio';
+import { Ionicons } from '@expo/vector-icons';
 import TopControls from './TopControls';
 import CenterControls from './CenterControls';
 import ProgressBar from './ProgressBar';
@@ -53,6 +54,8 @@ interface VideoPlayerCoreProps {
   loop?: boolean;
   initialMuted?: boolean;
   liveMode?: boolean;
+  /** Suppress the built-in top controls row when an external header already provides close/mute. */
+  hideTopControls?: boolean;
   title?: string;
   onReady?: (durationMs: number) => void;
   onPlayStateChange?: (playing: boolean) => void;
@@ -67,6 +70,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   loop = true,
   initialMuted = false,
   liveMode = false,
+  hideTopControls = false,
   title,
   onReady,
   onPlayStateChange,
@@ -606,7 +610,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
       {hasError && (
         <View className="absolute inset-0 items-center justify-center bg-black/80">
           <View className="items-center">
-            <ActivityIndicator size="large" color="#fff" />
+            <Ionicons name="alert-circle" size={46} color="#8B8D90" />
           </View>
         </View>
       )}
@@ -653,22 +657,26 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
               : 12,
           }}
         >
-          {/* Top Controls */}
-          <TopControls
-            onClose={handleClosePress}
-            onMute={toggleMute}
-            onFullscreen={toggleFullscreen}
-            onRotateToPortrait={handleRotateToPortrait}
-            onPiP={handlePiP}
-            onToggleLoop={toggleLoop}
-            onToggleSpeed={toggleSpeed}
-            isMuted={isMuted}
-            fullscreen={fullscreen}
-            isLooping={isLooping}
-            playbackRate={playbackRate}
-            title={title}
-            showTitle={fullscreen}
-          />
+          {/* Top Controls — suppressed when an external header already provides them */}
+          {hideTopControls ? (
+            <View />
+          ) : (
+            <TopControls
+              onClose={handleClosePress}
+              onMute={toggleMute}
+              onFullscreen={toggleFullscreen}
+              onRotateToPortrait={handleRotateToPortrait}
+              onPiP={handlePiP}
+              onToggleLoop={toggleLoop}
+              onToggleSpeed={toggleSpeed}
+              isMuted={isMuted}
+              fullscreen={fullscreen}
+              isLooping={isLooping}
+              playbackRate={playbackRate}
+              title={title}
+              showTitle={fullscreen}
+            />
+          )}
 
           {/* Center Controls */}
           <CenterControls

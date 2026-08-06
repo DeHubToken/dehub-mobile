@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import SmartImage from '../common/SmartImage';
 
 type ImageDef = { url: string; alt?: string };
 
 const LazyImg = ({ url }: { url: string }) => {
   const [loaded, setLoaded] = React.useState(false);
   return (
-    <View className="w-full h-full bg-neutral-800 overflow-hidden">
-      {!loaded && <View className="absolute inset-0 bg-neutral-800 animate-pulse" />}
-      <Image
+    <View className="w-full h-full bg-theme-neutrals-800 overflow-hidden">
+      {!loaded && <View className="absolute inset-0 bg-theme-neutrals-800 animate-pulse" />}
+      {/* SmartImage (expo-image), not RN Image: this gallery renders inside a
+          recycling feed list, and RN's Image has no disk cache — every
+          scroll-back re-downloaded and re-decoded the post's images.
+          recyclingKey keeps a reused tile from showing the previous post's
+          picture while the new one decodes. */}
+      <SmartImage
         source={{ uri: url }}
         className="w-full h-full"
-        resizeMode="cover"
+        contentFit="cover"
+        recyclingKey={url}
         onLoadStart={() => setLoaded(false)}
         onLoadEnd={() => setLoaded(true)}
       />

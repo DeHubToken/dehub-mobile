@@ -12,11 +12,12 @@ export interface AnimatedCheckProps {
   scaleFrom?: number; // starting scale value
 }
 
-// Default green background (Tailwind green-600) & white check; colors customizable via props
+// No background of its own by default — call sites paint the circle (usually the
+// near-white accent), so the check defaults to dark accent-foreground content.
 const AnimatedCheck: React.FC<AnimatedCheckProps> = ({
   size = 80,
-//   backgroundColor = '#16a34a',
-  iconColor = '#ffffff',
+  backgroundColor,
+  iconColor = '#09090B',
   className = '',
   animateKey,
   delayMs = 0,
@@ -40,7 +41,7 @@ const AnimatedCheck: React.FC<AnimatedCheckProps> = ({
   return (
     <Animated.View
       className={`items-center justify-center ${className}`}
-      style={{ width: size, height: size, borderRadius: size / 2, transform: [{ scale }] }}
+      style={{ width: size, height: size, borderRadius: size / 2, transform: [{ scale }], ...(backgroundColor ? { backgroundColor } : {}) }}
     >
       <Ionicons name="checkmark" size={Math.round(size * 0.5)} color={iconColor} />
     </Animated.View>

@@ -14,6 +14,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ScreenHeader from "../components/ScreenHeader";
 import Icon from "../components/ui/Icon";
 import InviteFriendsCard from "../components/common/InviteFriendsCard";
+import EarningsComparisonCard from "../components/Earnings/EarningsComparisonCard";
 import { supabase } from "../services/supabase";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
@@ -137,7 +138,7 @@ function PieChart({ tips, ppv }: { tips: number; ppv: number }) {
         <Text style={{ color: "#F9FBFF", fontSize: 14, fontWeight: "700" }}>
           {fmtAmount(total)}
         </Text>
-        <Text style={{ color: "#8B8D90", fontSize: 10 }}>DHB</Text>
+        <Text style={{ color: "#8B8D90", fontSize: 12 }}>DHB</Text>
       </View>
     </View>
   );
@@ -223,7 +224,7 @@ const EarningsScreen: React.FC = () => {
   }, [filteredTips, filteredPpv]);
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#09090B" }}>
+    <View style={{ flex: 1, backgroundColor: "#010305" }}>
       <ScreenHeader title={t("settings.categoryEarnings")} canGoBack />
 
       {loading ? (
@@ -296,6 +297,9 @@ const EarningsScreen: React.FC = () => {
             </View>
           </View>
 
+          {/* Earnings vs other platforms */}
+          <EarningsComparisonCard />
+
           {/* Recent transactions */}
           {recentTx.length > 0 && (
             <View style={styles.card}>
@@ -333,7 +337,7 @@ const EarningsScreen: React.FC = () => {
 
           {recentTx.length === 0 && !loading && (
             <View style={styles.center}>
-              <Icon name="TrendingUp" size={48} color="#4B5563" />
+              <Icon name="TrendingUp" size={48} color="#3F3F46" />
               <Text style={styles.emptyTitle}>No earnings yet</Text>
               <Text style={styles.emptySubtitle}>
                 Tips and PPV sales will appear here
@@ -359,7 +363,7 @@ const styles = StyleSheet.create({
   },
   filterBtn: { flex: 1, paddingVertical: 8, alignItems: "center", borderRadius: 9 },
   filterBtnActive: { backgroundColor: "rgba(255,255,255,0.08)" },
-  filterText: { color: "#6F7174", fontSize: 13, fontWeight: "600" },
+  filterText: { color: "#A6A9AC", fontSize: 13, fontWeight: "600" },
   filterTextActive: { color: "#F9FBFF" },
   card: {
     backgroundColor: "rgba(255,255,255,0.03)",
@@ -376,7 +380,7 @@ const styles = StyleSheet.create({
   legendLabel: { color: "#8B8D90", fontSize: 12 },
   legendValue: { color: "#F9FBFF", fontSize: 14, fontWeight: "600" },
   totalBox: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: "rgba(255,255,255,0.07)", paddingTop: 8 },
-  totalLabel: { color: "#6F7174", fontSize: 11 },
+  totalLabel: { color: "#A6A9AC", fontSize: 12 },
   totalValue: { color: "#D4D4D8", fontSize: 16, fontWeight: "700" },
   statsRow: { flexDirection: "row", gap: 10, marginBottom: 12 },
   statBox: {
@@ -390,16 +394,16 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   statNum: { color: "#F9FBFF", fontSize: 22, fontWeight: "700" },
-  statLabel: { color: "#6F7174", fontSize: 11 },
+  statLabel: { color: "#A6A9AC", fontSize: 12 },
   txRow: { flexDirection: "row", alignItems: "center", paddingVertical: 10, gap: 12 },
   txBorder: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: "rgba(255,255,255,0.05)" },
   txIcon: { width: 32, height: 32, borderRadius: 8, alignItems: "center", justifyContent: "center" },
   txType: { color: "#F9FBFF", fontSize: 13, fontWeight: "600" },
-  txFrom: { color: "#6F7174", fontSize: 11, fontFamily: "monospace", marginTop: 2 },
+  txFrom: { color: "#A6A9AC", fontSize: 12, fontFamily: "monospace", marginTop: 2 },
   txAmount: { fontSize: 13, fontWeight: "700" },
-  txDate: { color: "#6F7174", fontSize: 11, marginTop: 2 },
+  txDate: { color: "#A6A9AC", fontSize: 12, marginTop: 2 },
   emptyTitle: { color: "#F9FBFF", fontSize: 16, fontWeight: "600" },
-  emptySubtitle: { color: "#6F7174", fontSize: 13, textAlign: "center" },
+  emptySubtitle: { color: "#A6A9AC", fontSize: 13, textAlign: "center" },
 });
 
 export default EarningsScreen;

@@ -20,6 +20,8 @@ import {
   ActivityIndicator,
   RefreshControl,
   useWindowDimensions,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { Image } from "expo-image";
 import { ethers } from "ethers";
@@ -27,6 +29,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import Avatar from "../components/common/Avatar";
 import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
@@ -66,7 +69,14 @@ const Stars: React.FC<{ value: number; size?: number; onPick?: (n: number) => vo
 }) => (
   <View style={{ flexDirection: "row", gap: 2 }}>
     {[1, 2, 3, 4, 5].map((n) => (
-      <Pressable key={n} onPress={onPick ? () => onPick(n) : undefined} disabled={!onPick} hitSlop={4}>
+      <Pressable
+        key={n}
+        onPress={onPick ? () => onPick(n) : undefined}
+        disabled={!onPick}
+        hitSlop={onPick ? 11 : 4}
+        accessibilityRole={onPick ? "button" : undefined}
+        accessibilityLabel={onPick ? `Rate ${n} of 5` : undefined}
+      >
         <Icon
           name="Star"
           size={size}
@@ -243,7 +253,7 @@ export default function ListingDetailScreen() {
 
   if (isLoading && !listing) {
     return (
-      <View style={[styles.root, styles.center, { paddingTop: insets.top }]}>
+      <View style={[styles.root, styles.center]}>
         <ActivityIndicator size="large" color="#FFFFFF" />
       </View>
     );
@@ -251,13 +261,8 @@ export default function ListingDetailScreen() {
 
   if (!listing) {
     return (
-      <View style={[styles.root, { paddingTop: insets.top }]}>
-        <View style={styles.header}>
-          <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-            <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-          </Pressable>
-          <Text style={styles.headerTitle}>{t("stores.detail.listing")}</Text>
-        </View>
+      <View style={styles.root}>
+        <ScreenHeader title={t("stores.detail.listing")} />
         <View style={styles.center}>
           <Icon name="Package" size={40} color="#3F3F46" />
           <Text style={styles.emptyText}>{t("stores.detail.unavailable")}</Text>
@@ -269,16 +274,13 @@ export default function ListingDetailScreen() {
   const heroH = Math.round(screenW * 0.82);
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <Text style={styles.headerTitle} numberOfLines={1}>
-          {listing.title}
-        </Text>
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader title={listing.title} />
 
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+      >
       <ScrollView
         contentContainerStyle={{ paddingBottom: insets.bottom + 28 }}
         showsVerticalScrollIndicator={false}
@@ -287,7 +289,7 @@ export default function ListingDetailScreen() {
           <RefreshControl
             refreshing={isRefetching}
             onRefresh={refetch}
-            tintColor={theme.colors.accentForeground}
+            tintColor={theme.colors.accent}
           />
         }
       >
@@ -328,7 +330,7 @@ export default function ListingDetailScreen() {
           )}
         </View>
 
-        <View style={{ padding: 14 }}>
+        <View style={{ padding: 16 }}>
           <Text style={styles.title}>{listing.title}</Text>
 
           <View style={styles.priceRow}>
@@ -427,7 +429,7 @@ export default function ListingDetailScreen() {
                     value={shipping}
                     onChangeText={setShipping}
                     placeholder={t("stores.detail.shippingPlaceholder")}
-                    placeholderTextColor="#52525B"
+                    placeholderTextColor="#8B8D90"
                     multiline
                     style={[styles.input, { minHeight: 70, textAlignVertical: "top" }]}
                   />
@@ -438,7 +440,7 @@ export default function ListingDetailScreen() {
                 value={notes}
                 onChangeText={setNotes}
                 placeholder={t("stores.detail.notePlaceholder")}
-                placeholderTextColor="#52525B"
+                placeholderTextColor="#8B8D90"
                 style={styles.input}
               />
 
@@ -480,7 +482,7 @@ export default function ListingDetailScreen() {
                 value={reviewText}
                 onChangeText={setReviewText}
                 placeholder={t("stores.detail.reviewPlaceholder")}
-                placeholderTextColor="#52525B"
+                placeholderTextColor="#8B8D90"
                 style={[styles.input, { marginTop: 10 }]}
                 multiline
               />
@@ -505,22 +507,14 @@ export default function ListingDetailScreen() {
           )}
         </View>
       </ScrollView>
+      </KeyboardAvoidingView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
+  root: { flex: 1, backgroundColor: "#010305" },
   center: { flex: 1, alignItems: "center", justifyContent: "center" },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    paddingHorizontal: 12,
-    paddingBottom: 10,
-  },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  headerTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "700", flex: 1 },
 
   dots: {
     position: "absolute",
@@ -562,7 +556,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.08)",
   },
   sellerName: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },
-  sellerAddr: { color: "#71717A", fontSize: 11, marginTop: 2 },
+  sellerAddr: { color: "#A1A1AA", fontSize: 11, marginTop: 2 },
 
   desc: { color: "#D4D4D8", fontSize: 13.5, lineHeight: 20, marginTop: 16 },
 
@@ -610,7 +604,7 @@ const styles = StyleSheet.create({
   },
   buyBtnDisabled: { opacity: 0.45 },
   buyBtnText: { color: "#000000", fontSize: 15, fontWeight: "700" },
-  buyHint: { color: "#52525B", fontSize: 11, textAlign: "center", marginTop: 8 },
+  buyHint: { color: "#71717A", fontSize: 12, textAlign: "center", marginTop: 8 },
 
   sectionTitle: {
     color: "#FFFFFF",
@@ -645,5 +639,5 @@ const styles = StyleSheet.create({
   reviewAuthor: { color: "#E4E4E7", fontSize: 12.5, fontWeight: "600" },
   reviewBody: { color: "#A1A1AA", fontSize: 13, lineHeight: 19, marginTop: 5 },
 
-  emptyText: { color: "#71717A", fontSize: 13, marginTop: 8, textAlign: "center" },
+  emptyText: { color: "#A1A1AA", fontSize: 13, marginTop: 8, textAlign: "center" },
 });

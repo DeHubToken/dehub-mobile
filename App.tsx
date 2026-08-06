@@ -258,7 +258,7 @@ const BootGate: React.FC = () => {
   return (
     <>
       <SafeAreaView className="flex-1 bg-theme-background">
-        <StatusBar barStyle="light-content" backgroundColor="#000" />
+        <StatusBar barStyle="light-content" backgroundColor="#010305" />
         <ErrorBoundary
           showDetails={__DEV__}
           onError={(error) => {

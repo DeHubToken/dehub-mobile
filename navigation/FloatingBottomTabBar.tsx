@@ -21,7 +21,6 @@ import Reanimated, {
   type SharedValue,
 } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
-import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import Icon from "../components/ui/Icon";
@@ -33,10 +32,21 @@ import { useTabBarHide } from "../context/TabBarHideContext";
 import { useAuthState, useUser } from "../context/AuthContext";
 import { useTotalUnreadMessagesCount } from "../store/dm.store";
 import { storage } from "../libs/storage";
-import { TAB_BAR_PILL_HEIGHT, TAB_BAR_SCRIM_HEIGHT } from "./tabBarLayout";
+import { TAB_BAR_PILL_HEIGHT } from "./tabBarLayout";
 import { useTranslation } from "react-i18next";
 
 const SCROLL_HINT_SEEN_KEY = "dehub:navScrollHintSeen";
+
+// Web nav: bg-zinc-900/10 backdrop-blur-2xl border-white/10 — neutral blur with
+// only a 10% zinc wash. No white frost/sheen on the pill itself.
+const PILL_BLUR_PROPS =
+  Platform.OS === "ios"
+    ? ({ tint: "systemThinMaterialLight", intensity: 30 } as const)
+    : ({
+        tint: "default",
+        intensity: 22,
+        experimentalBlurMethod: "dimezisBlurView",
+      } as const);
 
 const { width: SCREEN_W } = Dimensions.get("window");
 // Container is 72% of the screen minus outerWrap's 16px horizontal padding —
@@ -150,17 +160,24 @@ const NavButton = memo<{
         style={[styles.centerButton, animatedStyle]}
       >
         <View style={styles.centerIconWrap}>
-          {/* Liquid-glass bubble — matches web's backdrop-blur(24px) create button.
-              Real blur is iOS-only; Android keeps the translucent glass tint
-              fallback (its experimental BlurView crashes on list mutation). */}
-          {Platform.OS === "ios" && (
+          {/* Web: bg-white/18 + backdrop-blur(24px) + border-white/30 +
+              inset_0_1px_1px white/20 + 0_2px_8px black/30 */}
+          {Platform.OS === "ios" ? (
             <BlurView
-              intensity={40}
+              intensity={24}
               tint="light"
+              style={styles.centerGlassBlur}
+            />
+          ) : (
+            <BlurView
+              intensity={24}
+              tint="light"
+              experimentalBlurMethod="dimezisBlurView"
               style={styles.centerGlassBlur}
             />
           )}
           <View style={styles.centerGlass} />
+          <View style={styles.centerGlassInsetTop} pointerEvents="none" />
           <Icon name={icon} size={20} color="#FFFFFF" strokeWidth={2} />
         </View>
       </AnimatedPressable>
@@ -180,8 +197,8 @@ const NavButton = memo<{
         <Icon
           name={icon}
           size={20}
-          color="#FFFFFF"
-          strokeWidth={2}
+          color={isActive ? "#FFFFFF" : "rgba(255, 255, 255, 0.72)"}
+          strokeWidth={isActive ? 2 : 1.75}
         />
       </View>
       {badgeCount > 0 && (
@@ -220,7 +237,7 @@ const ScrollNavButton = memo<{ icon: IconName; label: string; onPress: () => voi
         onPressOut={handlePressOut}
         style={[styles.scrollNavItem, animatedStyle]}
       >
-        <Icon name={icon} size={20} color="#FFFFFF" strokeWidth={2} />
+        <Icon name={icon} size={20} color="rgba(255, 255, 255, 0.72)" strokeWidth={1.75} />
       </AnimatedPressable>
     );
   },
@@ -357,78 +374,10 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
 
   return (
     <Reanimated.View style={[styles.outerWrap, { paddingBottom: bottomPadding }, hideStyle]} pointerEvents="box-none">
-      {/* Scrim under the floating pill. This was a bare View with no
-          backgroundColor, so it rendered nothing at all. It matters most on
-          Android, where the pill has no real blur: without it, sharp bright
-          feed content scrolls right up to the pill's edge and breaks the
-          illusion. It also seats the pill in the scene — the job Android
-          elevation would normally do, which is deliberately refused here
-          because elevation renders as a harsh dark slab on a translucent
-          container (see navContainer below). */}
-      <LinearGradient
-        colors={["rgba(9,9,11,0)", "rgba(9,9,11,0.35)", "rgba(9,9,11,0.6)"]}
-        style={styles.gradientOverlay}
-        pointerEvents="none"
-      />
       <Reanimated.View style={[styles.navContainer, entranceStyle]}>
-        {/* Web is `backdrop-blur-2xl` (blur(40px)) with every bit of its
-            colour coming from glassOverlay's zinc-900/10 — a strong blur
-            under a near-transparent wash. Plain expo-blur tints (`dark`,
-            `light`, `default`) can't reproduce that: their `intensity` drives
-            blur radius and tint alpha together, so the pill turns white
-            before it turns glassy. `systemUltraThinMaterialDark` sidesteps
-            this — it's UIKit's own fixed-radius system material (the same
-            native effect the old @react-native-community/blur
-            `ultraThinMaterialDark` used), not a custom radius/tint blend, so
-            intensity only fades it in without shifting its colour. Not light:
-            `systemUltraThinMaterialLight` takes essentially all of its colour
-            from whatever is behind it, which falls apart on the Shorts tab —
-            a full-bleed grid of bright, moving video turns the pill into a
-            pale smear with no glass reading left. The Dark material tints
-            toward the app's own dark chrome instead, so the pill holds one
-            identity over any backdrop.
-
-            Android gets no real blur at all: expo-blur's experimental Android
-            blur methods sit on the same Dimezis BlurView lineage whose
-            PreDrawBlurController re-snapshots the root view every frame and
-            throws IndexOutOfBoundsException when a list mutates children
-            mid-draw (same crash FeedNavBar and AppDrawer already work
-            around) — a permanently-mounted blur over an infinite feed makes
-            that a matter of time. Translucent tint only, until expo-blur
-            ships a fixed BlurView lineage. */}
-        {Platform.OS === "ios" ? (
-          <BlurView
-            tint="systemUltraThinMaterialDark"
-            intensity={100}
-            style={StyleSheet.absoluteFill}
-          />
-        ) : (
-          // Glass without blur: tint + a diagonal white sheen + inset
-          // hairlines (GlassIndicator's recipe) to fake refraction depth.
-          <>
-            <View style={styles.androidBlurFallback} />
-            {/* Web's glass has no white wash — its sheen comes from the blur
-                itself — so keep this whisper-faint over the dark zinc tint.
-                Graded top-to-bottom, not diagonally: a diagonal sheen reads as
-                glossy plastic, whereas real blur output is vertically graded by
-                the luminance behind it, and it darkens slightly at the bottom
-                where the scrim sits. */}
-            <LinearGradient
-              colors={[
-                "rgba(255,255,255,0.07)",
-                "rgba(255,255,255,0.015)",
-                "rgba(0,0,0,0.05)",
-              ]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-              style={StyleSheet.absoluteFill}
-              pointerEvents="none"
-            />
-            <View style={styles.androidInsetBottom} pointerEvents="none" />
-          </>
-        )}
+        {/* Web: bg-zinc-900/10 backdrop-blur-2xl border-white/10 — blur + wash only */}
+        <BlurView {...PILL_BLUR_PROPS} style={StyleSheet.absoluteFill} />
         <View style={styles.glassOverlay} />
-        <View style={styles.specularHighlight} />
         <ScrollView
           ref={scrollRef}
           horizontal
@@ -477,15 +426,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 8,
   },
-  gradientOverlay: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    // Taller than the pill so the fade starts well above it and reads as
-    // depth rather than as a band.
-    height: TAB_BAR_SCRIM_HEIGHT,
-  },
   navContainer: {
     width: "72%",
     maxWidth: 340,
@@ -493,53 +433,24 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     // No Android elevation: on a translucent container it renders as a harsh
     // dark slab that kills the glass look (see GlassIndicator's GLASS_SHADOW).
-    // web's shadow-xl: 0 20px 25px -5px rgb(0 0 0 / .1). RN has no spread, so
-    // the offset/radius are scaled down to compensate for the missing -5px.
+    // web shadow-xl: 0 20px 25px -5px rgb(0 0 0 / .1), 0 8px 10px -6px rgb(0 0 0 / .1)
     ...Platform.select({
       ios: {
         shadowColor: "#000",
-        shadowOffset: { width: 0, height: 10 },
+        shadowOffset: { width: 0, height: 8 },
         shadowOpacity: 0.1,
-        shadowRadius: 12,
+        shadowRadius: 20,
       },
       android: {},
     }),
   },
-  androidBlurFallback: {
-    ...StyleSheet.absoluteFillObject,
-    // Stands in for the missing backdrop blur. Web's pill is zinc-900/10 over
-    // blur(40) of the mostly dark app, which reads as dark smoky glass — so
-    // the base tint is zinc-900 itself, translucent enough that content
-    // ghosts through the way a blur would.
-    backgroundColor: "rgba(24, 24, 27, 0.45)",
-    borderRadius: 16,
-  },
-  androidInsetBottom: {
-    position: "absolute",
-    bottom: 1,
-    left: 1,
-    right: 1,
-    height: 1,
-    backgroundColor: "rgba(255,255,255,0.10)",
-  },
   glassOverlay: {
     ...StyleSheet.absoluteFillObject,
-    // Exactly web's bg-zinc-900/10 (zinc-900 is #18181b) + border-white/10.
-    // The backdrop blur carries the glass; this is only a faint wash on top.
-    backgroundColor: "rgba(24, 24, 27, 0.10)",
+    // bg-zinc-900/10 + border-white/10 — exactly web's nav classes
+    backgroundColor: "rgba(24, 24, 27, 0.09)",
     borderRadius: 16,
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.10)",
-  },
-  specularHighlight: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 1,
-    backgroundColor: "rgba(255, 255, 255, 0.15)",
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
   },
   navRow: {
     flexDirection: "row",
@@ -560,14 +471,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   centerIconWrap: {
-    width: 38,
-    height: 38,
+    // Web: w-9 h-9 rounded-xl inside a w-12 h-12 tap target.
+    width: 36,
+    height: 36,
     borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
     position: "relative",
-    // Clip the BlurView bubble to the rounded corners.
     overflow: "hidden",
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+      },
+      android: { elevation: 4 },
+    }),
   },
   centerGlassBlur: {
     ...StyleSheet.absoluteFillObject,
@@ -576,20 +496,37 @@ const styles = StyleSheet.create({
   centerGlass: {
     ...StyleSheet.absoluteFillObject,
     borderRadius: 12,
-    // Match web: bg-white/18 + border-white/30 over the blur bubble.
     backgroundColor: "rgba(255, 255, 255, 0.18)",
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.30)",
   },
+  centerGlassInsetTop: {
+    position: "absolute",
+    top: 1,
+    left: 1,
+    right: 1,
+    height: 1,
+    backgroundColor: "rgba(255, 255, 255, 0.20)",
+  },
   activeGlow: {
+    // Web: drop-shadow only on the active icon — inactive tabs stay flat/dim.
     ...Platform.select({
       ios: {
         shadowColor: "#FFFFFF",
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.9,
-        shadowRadius: 12,
+        shadowOpacity: 0.55,
+        shadowRadius: 8,
       },
-      android: {},
+      android: {
+        // RN shadow needs a non-transparent backdrop on Android; a hairline
+        // fill lets the white halo render only on the active tab wrapper.
+        backgroundColor: "rgba(255, 255, 255, 0.01)",
+        shadowColor: "#FFFFFF",
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.45,
+        shadowRadius: 6,
+        elevation: 0,
+      },
     }),
   },
   scrollNavItem: {
@@ -602,10 +539,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 8,
     right: TAB_W / 2 - 18,
-    minWidth: 16,
-    height: 16,
+    minWidth: 18,
+    height: 18,
     paddingHorizontal: 3,
-    borderRadius: 8,
+    borderRadius: 9,
     backgroundColor: "#EF4444",
     alignItems: "center",
     justifyContent: "center",
@@ -614,9 +551,9 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     color: "#FFFFFF",
-    fontSize: 9,
+    fontSize: 11,
     fontWeight: "800",
-    lineHeight: 12,
+    lineHeight: 13,
   },
 });
 

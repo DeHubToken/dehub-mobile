@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 12,
     paddingVertical: 10,
-    minHeight: 40,
+    minHeight: 44,
   },
   codeText: { color: "#D4D6D9", fontSize: 12, flex: 1 },
   shareBtn: {
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    minHeight: 40,
+    minHeight: 44,
     minWidth: 96,
   },
   shareText: { color: "#09090B", fontSize: 14, fontWeight: "700" },

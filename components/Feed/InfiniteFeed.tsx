@@ -409,7 +409,7 @@ const InfiniteFeedBase: React.FC<
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            tintColor={theme.colors.accentForeground}
+            tintColor={theme.colors.accent}
           />
         }
         ListFooterComponent={
@@ -434,7 +434,7 @@ const InfiniteFeedBase: React.FC<
           <Ionicons
             name="chevron-up"
             size={22}
-            color={theme.colors.accentForeground || "#fff"}
+            color={theme.colors.accent}
           />
         </Pressable>
       )}

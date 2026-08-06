@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, TouchableOpacity, View, Text } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
 export type DMSettingsMenuProps = {
@@ -19,6 +20,7 @@ const DMSettingsMenu: React.FC<DMSettingsMenuProps> = ({
   dnd,
   onToggleDnd,
 }) => {
+  const insets = useSafeAreaInsets();
   if (!visible) return null;
   return (
     <Modal visible transparent animationType="fade" onRequestClose={onClose}>
@@ -27,7 +29,10 @@ const DMSettingsMenu: React.FC<DMSettingsMenuProps> = ({
         onPress={onClose}
         className="flex-1 bg-black/40"
       >
-        <View className="absolute right-3 top-16 w-44 rounded-xl bg-theme-neutrals-800 shadow-lg overflow-hidden">
+        <View
+          style={{ top: insets.top + 56 }}
+          className="absolute right-3 w-44 rounded-xl bg-theme-neutrals-800 shadow-lg overflow-hidden"
+        >
           <TouchableOpacity
             className="flex-row items-center px-3 py-3 active:opacity-70"
             onPress={onNewDM}

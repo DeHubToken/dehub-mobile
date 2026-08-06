@@ -345,7 +345,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
           <FullScreenLoader message="Signing you in…" />
         )}
         <TouchableOpacity
-          className="absolute right-5 top-3 z-10 px-3 py-2 rounded-full bg-gray-800"
+          className={`absolute right-5 top-3 z-10 px-3 py-2 rounded-full bg-white/10 border border-white/20 ${
+            authLoading || isLocalLoading || needsUsername ? "opacity-40" : ""
+          }`}
           onPress={onClose}
           disabled={isBusy || needsUsername}
           accessibilityLabel="Close authentication modal"
@@ -358,7 +360,13 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
             Cancel
           </Text>
         </TouchableOpacity>
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }} className="p-5">
+        <ScrollView
+          contentContainerStyle={{
+            flexGrow: 1,
+            paddingHorizontal: 24,
+            paddingVertical: 20,
+          }}
+        >
           <View className="items-center mt-8">
             <Text className="text-white text-2xl font-bold mb-3">
               Sign in to continue
@@ -416,17 +424,19 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
             }}
           />
           <View className="mt-6 mb-4">
-            <Text className="text-gray-500 text-[11px] text-center">
+            <Text className="text-gray-400 text-sm text-center">
               By continuing, you agree to our{" "}
               <Text
-                className="text-blue-400"
+                className="text-white"
+                style={{ textDecorationLine: "underline" }}
                 onPress={() => openInApp(TERMS_OF_SERVICE_LINK)}
               >
                 Terms of Service
               </Text>{" "}
               and{" "}
               <Text
-                className="text-blue-400"
+                className="text-white"
+                style={{ textDecorationLine: "underline" }}
                 onPress={() => openInApp(PRIVACY_POLICY_LINK)}
               >
                 Privacy Policy

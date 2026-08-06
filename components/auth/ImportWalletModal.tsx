@@ -247,7 +247,7 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
               style={{ height: 60, opacity: !isPkValid || busy ? 0.5 : 1 }}
             >
               {busy ? (
-                <ActivityIndicator color="#fff" />
+                <ActivityIndicator color="#09090B" />
               ) : (
                 <>
                   <Ionicons name="key" size={20} color="#FFFFFF" style={{ marginRight: 10 }} />

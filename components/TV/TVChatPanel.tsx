@@ -74,7 +74,7 @@ const ChatRow: React.FC<{
       <View className="flex-1 ml-2.5">
         <View className="flex-row items-center gap-1.5 mb-0.5 flex-wrap">
           <Text
-            className={`font-bold text-[13px] ${isMe ? "text-blue-400" : "text-white"}`}
+            className={`font-bold text-[13px] ${isMe ? "text-theme-accent" : "text-white"}`}
             numberOfLines={1}
             onPress={() => profileId && onOpenProfile(profileId)}
           >
@@ -83,14 +83,14 @@ const ChatRow: React.FC<{
           {!!badgeImg && (
             <Image source={badgeImg} style={{ width: 13, height: 13 }} resizeMode="contain" />
           )}
-          <Text className="text-white/30 text-[10px] ml-auto">
+          <Text className="text-white/60 text-xs ml-auto">
             {formatTime(message.created_at)}
           </Text>
         </View>
 
         {!!message.reply_to && (
-          <View className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1 border-l-2 border-blue-500/50">
-            <Text className="text-blue-400/70 text-[11px] font-medium" numberOfLines={1}>
+          <View className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1 border-l-2 border-white/30">
+            <Text className="text-white/70 text-xs font-medium" numberOfLines={1}>
               {message.reply_to.sender_name}
             </Text>
             <Text className="text-white/50 text-xs" numberOfLines={1}>
@@ -112,6 +112,7 @@ const ChatRow: React.FC<{
                   key={emoji}
                   onPress={() => onToggleReaction(message.id, emoji)}
                   style={[styles.reactionPill, mine && styles.reactionPillMine]}
+                  hitSlop={8}
                 >
                   <Text style={{ fontSize: 11 }}>{emoji}</Text>
                   <Text style={[styles.reactionCount, mine && { color: "#FFFFFF" }]}>
@@ -133,6 +134,7 @@ const ChatRow: React.FC<{
                   setShowPicker(false);
                 }}
                 style={styles.pickerBtn}
+                hitSlop={4}
               >
                 <Text style={{ fontSize: 15 }}>{emoji}</Text>
               </Pressable>
@@ -143,6 +145,9 @@ const ChatRow: React.FC<{
                 setShowPicker(false);
               }}
               style={styles.pickerBtn}
+              hitSlop={4}
+              accessibilityRole="button"
+              accessibilityLabel="Reply"
             >
               <Icon name="Reply" size={14} color="#A1A1AA" />
             </Pressable>
@@ -153,8 +158,11 @@ const ChatRow: React.FC<{
                   setShowPicker(false);
                 }}
                 style={styles.pickerBtn}
+                hitSlop={4}
+                accessibilityRole="button"
+                accessibilityLabel="Delete"
               >
-                <Icon name="Trash2" size={14} color="#F87171" />
+                <Icon name="Trash2" size={14} color="#EF4444" />
               </Pressable>
             )}
           </View>
@@ -297,8 +305,13 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({ channelId, enabled = true, bo
               {replyTo.content || "Media"}
             </Text>
           </View>
-          <Pressable onPress={() => setReplyTo(null)} hitSlop={8}>
-            <Icon name="X" size={14} color="#71717A" />
+          <Pressable
+            onPress={() => setReplyTo(null)}
+            hitSlop={8}
+            accessibilityRole="button"
+            accessibilityLabel="Dismiss reply"
+          >
+            <Icon name="X" size={14} color="#A1A1AA" />
           </Pressable>
         </View>
       )}
@@ -310,7 +323,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({ channelId, enabled = true, bo
               value={text}
               onChangeText={(v) => v.length <= MAX_LEN && setText(v)}
               placeholder="Type here..."
-              placeholderTextColor="#52525B"
+              placeholderTextColor="#8B8D90"
               style={styles.input}
               multiline
               maxLength={MAX_LEN}
@@ -320,6 +333,8 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({ channelId, enabled = true, bo
               disabled={!text.trim() || sending}
               style={[styles.sendBtn, (!text.trim() || sending) && { opacity: 0.4 }]}
               hitSlop={6}
+              accessibilityRole="button"
+              accessibilityLabel="Send"
             >
               {sending ? (
                 <ActivityIndicator size="small" color="#FFFFFF" />
@@ -351,10 +366,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "rgba(255,255,255,0.06)",
   },
-  headerText: { color: "#FFFFFF", fontSize: 12.5, fontWeight: "700" },
+  headerText: { color: "#FFFFFF", fontSize: 14, fontWeight: "700" },
 
   center: { flex: 1, alignItems: "center", justifyContent: "center", gap: 8 },
-  dim: { color: "#71717A", fontSize: 12, textAlign: "center" },
+  dim: { color: "#A1A1AA", fontSize: 12, textAlign: "center" },
 
   reactionPill: {
     flexDirection: "row",
@@ -371,7 +386,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.3)",
     backgroundColor: "rgba(255,255,255,0.1)",
   },
-  reactionCount: { color: "#A1A1AA", fontSize: 10 },
+  reactionCount: { color: "#A1A1AA", fontSize: 12 },
 
   pickerRow: {
     flexDirection: "row",
@@ -384,8 +399,8 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
   },
   pickerBtn: {
-    width: 28,
-    height: 28,
+    width: 36,
+    height: 36,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 8,
@@ -404,8 +419,8 @@ const styles = StyleSheet.create({
     borderLeftColor: "rgba(255,255,255,0.3)",
     backgroundColor: "rgba(39,39,42,0.7)",
   },
-  replyName: { color: "#FFFFFF", fontSize: 10.5, fontWeight: "600" },
-  replyBody: { color: "#A1A1AA", fontSize: 10.5 },
+  replyName: { color: "#FFFFFF", fontSize: 12, fontWeight: "600" },
+  replyBody: { color: "#A1A1AA", fontSize: 12 },
 
   composer: {
     flexDirection: "row",
@@ -450,7 +465,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",
   },
-  signInText: { color: "#A1A1AA", fontSize: 12.5, fontWeight: "600" },
+  signInText: { color: "#A1A1AA", fontSize: 14, fontWeight: "600" },
 });
 
 export default TVChatPanel;

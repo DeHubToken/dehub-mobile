@@ -20,6 +20,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import { theme } from "../theme";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
@@ -172,19 +173,22 @@ export default function WorkScreen() {
   );
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>{t("work.title")}</Text>
-          <Text style={styles.subtitle}>{t("work.subtitle")}</Text>
-        </View>
-        <Pressable onPress={goPost} hitSlop={10} style={styles.addBtn}>
-          <Icon name="Plus" size={20} color="#000000" />
-        </Pressable>
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader
+        title={t("work.title")}
+        subtitle={t("work.subtitle")}
+        rightContent={
+          <Pressable
+            onPress={goPost}
+            hitSlop={10}
+            style={styles.addBtn}
+            accessibilityRole="button"
+            accessibilityLabel={t("work.postBounty")}
+          >
+            <Icon name="Plus" size={20} color="#000000" />
+          </Pressable>
+        }
+      />
 
       {/* Type tabs */}
       <ScrollView
@@ -215,12 +219,17 @@ export default function WorkScreen() {
           value={search}
           onChangeText={setSearch}
           placeholder={t("work.searchPlaceholder")}
-          placeholderTextColor="#52525B"
+          placeholderTextColor="#8B8D90"
           style={styles.searchInput}
           returnKeyType="search"
         />
         {search.length > 0 && (
-          <Pressable onPress={() => setSearch("")} hitSlop={8}>
+          <Pressable
+            onPress={() => setSearch("")}
+            hitSlop={14}
+            accessibilityRole="button"
+            accessibilityLabel="Clear search"
+          >
             <Icon name="X" size={15} color="#71717A" />
           </Pressable>
         )}
@@ -277,7 +286,7 @@ export default function WorkScreen() {
             <RefreshControl
               refreshing={isRefetching}
               onRefresh={refetch}
-              tintColor={theme.colors.accentForeground}
+              tintColor={theme.colors.accent}
             />
           }
           ListEmptyComponent={
@@ -319,17 +328,7 @@ export default function WorkScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 12,
-  },
-  backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  title: { color: "#FFFFFF", fontSize: 21, fontWeight: "700" },
-  subtitle: { color: "#71717A", fontSize: 12, marginTop: 1 },
+  root: { flex: 1, backgroundColor: "#010305" },
   addBtn: {
     width: 34,
     height: 34,
@@ -376,7 +375,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.08)",
   },
   chipActive: { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" },
-  chipText: { color: "#A1A1AA", fontSize: 12.5, fontWeight: "600" },
+  chipText: { color: "#A1A1AA", fontSize: 14, fontWeight: "600" },
   chipTextActive: { color: "#000000" },
   chipDivider: {
     width: 1,
@@ -403,36 +402,36 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     backgroundColor: "rgba(255,255,255,0.10)",
   },
-  badgeText: { color: "#D4D4D8", fontSize: 10.5, fontWeight: "600" },
+  badgeText: { color: "#D4D4D8", fontSize: 12, fontWeight: "600" },
   badgeDim: {
     paddingHorizontal: 7,
     paddingVertical: 2,
     borderRadius: 7,
     backgroundColor: "rgba(255,255,255,0.05)",
   },
-  badgeDimText: { color: "#A1A1AA", fontSize: 10.5, fontWeight: "600" },
+  badgeDimText: { color: "#A1A1AA", fontSize: 12, fontWeight: "600" },
   badgeBoost: {
     paddingHorizontal: 7,
     paddingVertical: 2,
     borderRadius: 7,
-    backgroundColor: "rgba(251,191,36,0.20)",
+    backgroundColor: "rgba(255,255,255,0.20)",
   },
-  badgeBoostText: { color: "#FDE68A", fontSize: 10.5, fontWeight: "600" },
+  badgeBoostText: { color: "#FFFFFF", fontSize: 12, fontWeight: "600" },
 
   budget: { color: "#FFFFFF", fontSize: 16, fontWeight: "700" },
-  perUnit: { color: "#71717A", fontSize: 10.5, marginTop: 2 },
+  perUnit: { color: "#A1A1AA", fontSize: 12, marginTop: 2 },
 
   cardTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "600" },
   cardDesc: { color: "#A1A1AA", fontSize: 12.5, lineHeight: 18, marginTop: 4, marginBottom: 12 },
 
   metaRow: { flexDirection: "row", alignItems: "center", gap: 14 },
   metaItem: { flexDirection: "row", alignItems: "center", gap: 4 },
-  metaText: { color: "#71717A", fontSize: 11 },
+  metaText: { color: "#A1A1AA", fontSize: 12 },
 
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 },
   emptyBlock: { alignItems: "center", paddingVertical: 48 },
   emptyText: {
-    color: "#71717A",
+    color: "#A1A1AA",
     fontSize: 13,
     marginTop: 12,
     marginBottom: 16,
@@ -449,7 +448,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     backgroundColor: "#FFFFFF",
   },
-  primaryBtnText: { color: "#000000", fontSize: 13.5, fontWeight: "700" },
+  primaryBtnText: { color: "#000000", fontSize: 14, fontWeight: "700" },
   secondaryBtn: {
     paddingHorizontal: 16,
     paddingVertical: 10,
@@ -458,7 +457,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.10)",
   },
-  secondaryBtnText: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },
+  secondaryBtnText: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
 
   sectionHeading: {
     color: "#FFFFFF",

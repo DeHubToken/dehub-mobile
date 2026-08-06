@@ -86,8 +86,16 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
     return (
       <ScrollView>
         {listHeader}
-        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40 }}>
-          <Text style={{ color: "#a1a1aa", marginBottom: 8 }}>{error}</Text>
+        <View style={{ alignItems: "center", justifyContent: "center", paddingVertical: 40, paddingHorizontal: 24, gap: 12 }}>
+          <Icon name="CircleAlert" size={40} color="#71717A" />
+          <Text style={{ color: "#A6A9AC", fontSize: 14, textAlign: "center" }}>{error}</Text>
+          <TouchableOpacity
+            onPress={fetchPlans}
+            activeOpacity={0.7}
+            style={{ backgroundColor: "rgba(255,255,255,0.10)", borderRadius: 10, paddingHorizontal: 20, paddingVertical: 10 }}
+          >
+            <Text style={{ color: "#FFFFFF", fontSize: 14, fontWeight: "600" }}>Retry</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     );
@@ -99,7 +107,7 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
         data={plans}
         keyExtractor={(item) => String(item._id || item.id || Math.random())}
         renderItem={renderItem}
-        contentContainerStyle={{ padding: 12 }}
+        contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 80 }}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={
           isOwnProfile ? (
@@ -109,7 +117,7 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
                 title="Subscriber content"
                 subtitle="Create plans to offer exclusive content to subscribers"
               />
-              <View style={{ marginTop: -20 }}>
+              <View>
                 <AccentButtonGradient>
                   <TouchableOpacity
                     onPress={handleCreatePress}

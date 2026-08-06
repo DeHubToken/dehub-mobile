@@ -35,7 +35,7 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
               className="w-6 h-6 rounded-full -ml-4 border border-theme-neutrals-900"
             />
           </View>
-          <Text className="text-gray-300 text-lg font-semibold ml-2">DHB</Text>
+          <Text className="text-zinc-300 text-lg font-semibold ml-2">DHB</Text>
         </View>
         <Text className="text-theme-accent text-2xl font-bold">
           {typeof transfersTotal === "number"
@@ -43,7 +43,7 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
             : "—"}
         </Text>
       </Card>
-      <Card title="📦 Supply Monitor" className="flex-1">
+      <Card title="Supply Monitor" className="flex-1">
         <View className="flex-row items-center mb-2">
           <View className="flex-row items-center">
             <Image source={baseIcon} className="w-6 h-6 rounded-full" />
@@ -52,12 +52,12 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
               className="w-6 h-6 rounded-full -ml-4 border border-theme-neutrals-900"
             />
           </View>
-          <Text className="text-gray-300 text-lg font-semibold ml-2">DHB</Text>
+          <Text className="text-zinc-300 text-lg font-semibold ml-2">DHB</Text>
         </View>
         {typeof supplyAmount === "number" ? (
           supplyAmount === 0 ? (
-            <Text className="text-gray-300 text-sm">
-              DHB : <Text className="text-rose-400">No Supply</Text>
+            <Text className="text-zinc-300 text-sm">
+              DHB : <Text className="text-[#EF4444]">No Supply</Text>
             </Text>
           ) : (
             <Text className="text-theme-accent text-2xl font-bold">
@@ -67,7 +67,7 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
             </Text>
           )
         ) : (
-          <Text className="text-gray-500 text-sm">DHB : —</Text>
+          <Text className="text-zinc-400 text-sm">DHB : —</Text>
         )}
       </Card>
     </View>

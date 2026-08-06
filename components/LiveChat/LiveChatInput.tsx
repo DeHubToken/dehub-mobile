@@ -12,6 +12,7 @@ import Icon from "../ui/Icon";
 import MentionSuggestions from "../common/MentionSuggestions";
 import { useMentions } from "../../hooks/useMentions";
 import { sendAIChat } from "../../services/ai.service";
+import { ASSISTANT_USERNAME, mentionsAssistant } from "../../libs/assistant";
 import type { LiveChatMessageData } from "../../services/livechat.service";
 import { uploadLiveChatVoice } from "../../services/livechat.service";
 import { toastError } from "../../libs/toast";
@@ -103,6 +104,12 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
   const remaining = MAX_LENGTH - text.length;
   const showCounter = remaining <= WARN_THRESHOLD;
   const isOverLimit = remaining < 0;
+
+  /** Prefix the draft with the mention and put the cursor after it. */
+  const handleAskAssistant = useCallback(() => {
+    setText((prev) => (mentionsAssistant(prev) ? prev : `@${ASSISTANT_USERNAME} ${prev.trimStart()}`));
+    inputRef.current?.focus();
+  }, []);
 
   const handleSend = useCallback(() => {
     const trimmed = text.trim();
@@ -202,6 +209,33 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         loading={mentions.loading}
       />
 
+      {/* The bot only ever answers a direct mention, so the tag has to be
+          discoverable — otherwise nobody knows it is there. */}
+      {!disabled && !editingMessage && !recorder.isRecording && !uploadingVoice && (
+        <View className="flex-row items-center px-3 pt-1.5">
+          {mentionsAssistant(text) ? (
+            <View className="flex-row items-center gap-1">
+              <Icon name="Sparkles" size={11} color="#A6A9AC" />
+              <Text className="text-white/50 text-[11px]">
+                {ASSISTANT_USERNAME} will reply in chat
+              </Text>
+            </View>
+          ) : (
+            <TouchableOpacity
+              onPress={handleAskAssistant}
+              hitSlop={6}
+              activeOpacity={0.6}
+              className="flex-row items-center gap-1"
+              accessibilityRole="button"
+              accessibilityLabel="Ask the assistant"
+            >
+              <Icon name="Sparkles" size={11} color="#8B8D90" />
+              <Text className="text-white/35 text-[11px]">Tag @assistant for help</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      )}
+
       {uploadingVoice ? (
         <View className="flex-row items-center justify-center py-4 bg-theme-neutrals-800 rounded-xl mx-2 my-1.5">
           <ActivityIndicator size="small" color="#F4F4F5" />
@@ -218,6 +252,8 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
               hitSlop={4}
               activeOpacity={0.6}
               style={{ width: 38, height: 38 }}
+              accessibilityRole="button"
+              accessibilityLabel="Add a GIF"
             >
               <Text style={{ fontSize: 12, fontWeight: '900', color: '#A6A9AC', letterSpacing: 0.5 }}>GIF</Text>
             </TouchableOpacity>
@@ -230,7 +266,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
               onChangeText={handleChangeText}
               onSelectionChange={mentions.handleSelectionChange}
               placeholder={placeholder}
-              placeholderTextColor="#666"
+              placeholderTextColor="#8B8D90"
               multiline
               maxLength={MAX_LENGTH}
               editable={!disabled && !enhancing}
@@ -255,14 +291,17 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             hitSlop={4}
             activeOpacity={0.6}
             disabled={!text.trim() || enhancing}
+            accessibilityRole="button"
+            accessibilityLabel="Enhance message"
+            accessibilityState={{ disabled: !text.trim() || enhancing }}
           >
             {enhancing ? (
-              <ActivityIndicator size={18} color="#A78BFA" />
+              <ActivityIndicator size={18} color="#F4F4F5" />
             ) : (
               <Icon
                 name="Sparkles"
                 size={22}
-                color={text.trim() ? "#A78BFA" : "#3A3A3C"}
+                color={text.trim() ? "#F4F4F5" : "#52525B"}
               />
             )}
           </TouchableOpacity>
@@ -272,11 +311,17 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
               onPress={handleSend}
               disabled={disabled || !text.trim() || cooldown || isOverLimit || enhancing}
               className="p-2"
+              hitSlop={4}
+              accessibilityRole="button"
+              accessibilityLabel="Send message"
+              accessibilityState={{
+                disabled: disabled || !text.trim() || cooldown || isOverLimit || enhancing,
+              }}
             >
               <Icon
                 name="Send"
                 size={22}
-                color={text.trim() && !disabled && !cooldown && !isOverLimit ? "#F4F4F5" : "#333"}
+                color={text.trim() && !disabled && !cooldown && !isOverLimit ? "#F4F4F5" : "#52525B"}
               />
             </TouchableOpacity>
           ) : (
@@ -284,11 +329,15 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
               onPress={handleStartRecording}
               disabled={disabled}
               className="p-2"
+              hitSlop={4}
+              accessibilityRole="button"
+              accessibilityLabel="Record voice message"
+              accessibilityState={{ disabled }}
             >
               <Icon
                 name="Mic"
                 size={22}
-                color={!disabled ? "#A6A9AC" : "#333"}
+                color={!disabled ? "#A6A9AC" : "#52525B"}
               />
             </TouchableOpacity>
           )}

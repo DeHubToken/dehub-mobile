@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from "react";
 import {
-  Image,
   TouchableOpacity,
   View,
   Text,
   ViewStyle,
   ImageSourcePropType,
 } from "react-native";
+import SmartImage from "./SmartImage";
 
 interface AvatarProps {
   uri?: string | null;
@@ -45,8 +45,14 @@ const Avatar: React.FC<AvatarProps> = ({
   className,
   name,
 }) => {
-  const [loaded, setLoaded] = useState(false);
-  const [errored, setErrored] = useState(false);
+  // Keyed on `uri` and reset during render rather than in an effect: in a
+  // recycling list the same Avatar instance is handed a different user's uri,
+  // and carrying the previous `loaded`/`errored` over meant a recycled row
+  // either skipped the initial-letter placeholder or stayed stuck on it.
+  const [load, setLoad] = useState({ uri, loaded: false, errored: false });
+  if (load.uri !== uri) setLoad({ uri, loaded: false, errored: false });
+  const { loaded, errored } = load;
+
   const radius = rounded ? size / 2 : Math.round(size * 0.16);
   const isRemote = !!uri && uri !== "default-avatar";
   const showImage = isRemote && !errored;
@@ -61,7 +67,6 @@ const Avatar: React.FC<AvatarProps> = ({
         {
           width: size,
           height: size,
-          marginHorizontal: 1,
           borderRadius: radius,
           overflow: "hidden",
           borderWidth,
@@ -75,7 +80,12 @@ const Avatar: React.FC<AvatarProps> = ({
     >
       {showImage ? (
         <>
-          <Image
+          {/* SmartImage (expo-image), not RN Image: every avatar in the app
+              comes through here, and RN's Image has no disk cache — each one
+              re-downloaded and re-decoded on every scroll-back. `recyclingKey`
+              is the uri so a reused row can never flash the previous user's
+              face before the new one decodes. */}
+          <SmartImage
             source={{ uri: uri! }}
             style={{
               width: "100%",
@@ -83,9 +93,10 @@ const Avatar: React.FC<AvatarProps> = ({
               borderRadius: radius,
               position: "absolute",
             }}
-            resizeMode="cover"
-            onLoad={() => setLoaded(true)}
-            onError={() => { setLoaded(true); setErrored(true); }}
+            contentFit="cover"
+            recyclingKey={uri}
+            onLoadEnd={() => setLoad((s) => (s.uri === uri ? { ...s, loaded: true } : s))}
+            onError={() => setLoad((s) => (s.uri === uri ? { ...s, errored: true } : s))}
           />
           {!loaded && (
             <Text

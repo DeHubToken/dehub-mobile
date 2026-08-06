@@ -946,6 +946,8 @@ export interface LikerUser {
   displayName?: string;
   avatarImageUrl?: string;
   followers?: number;
+  /** Which of the nine reactions this person left. */
+  reaction?: PostReaction;
   likedAt?: string;
 }
 
@@ -956,7 +958,15 @@ export interface GetPostLikersInput {
 }
 
 export interface GetPostLikersResult {
-  result: LikerUser[];
+  /**
+   * False for anyone but the post's owner/minter — and then `data` is empty
+   * because the server withheld it, not because nobody reacted. Check this
+   * before rendering an empty state.
+   */
+  canViewLikers: boolean;
+  data: LikerUser[];
+  /** Per-reaction totals for the whole post; null unless you own it. */
+  reactionCounts: Partial<Record<PostReaction, number>> | null;
   pagination: {
     page: number;
     limit: number;
@@ -982,25 +992,38 @@ export async function getMyAnalytics(range: '7d' | '30d' | '90d' = '30d'): Promi
   return apiClient.get('/my-analytics', { params: { range } });
 }
 
+/**
+ * The reaction roll-call for a post — who reacted, and with what.
+ *
+ * Author-only: the API answers everyone else with `canViewLikers: false` and an
+ * empty list, so the client gate is only about not offering a dead door.
+ *
+ * The JWT has to go up for that check to pass, and the page index is 0-based —
+ * this used to call a `/likes` route that doesn't exist, unauthenticated and
+ * 1-based, which is why the list has been coming back empty.
+ */
 export async function getPostLikers(input: GetPostLikersInput): Promise<GetPostLikersResult> {
-  const { tokenId, page = 1, limit = 20 } = input;
+  const { tokenId, page = 0, limit = 50 } = input;
   if (tokenId == null) throw new Error('tokenId required');
+  const empty: GetPostLikersResult = {
+    canViewLikers: false,
+    data: [],
+    reactionCounts: null,
+    pagination: { page, limit, totalCount: 0, hasMore: false },
+  };
   try {
     const q = new URLSearchParams();
     q.set('tokenId', String(tokenId));
     q.set('page', String(page));
     q.set('limit', String(limit));
-    const res = await apiClient.get<GetPostLikersResult>(
-      `/likes?${q.toString()}`,
-      { isAuthRequired: false }
-    );
-    if (Array.isArray(res)) {
-      return {
-        result: res as unknown as LikerUser[],
-        pagination: { page, limit, totalCount: res.length, hasMore: false },
-      };
-    }
-    return res ?? { result: [], pagination: { page, limit, totalCount: 0, hasMore: false } };
+    const res = await apiClient.get<GetPostLikersResult>(`/post-likers?${q.toString()}`);
+    if (!res) return empty;
+    return {
+      canViewLikers: !!res.canViewLikers,
+      data: Array.isArray(res.data) ? res.data : [],
+      reactionCounts: res.reactionCounts ?? null,
+      pagination: res.pagination ?? { page, limit, totalCount: 0, hasMore: false },
+    };
   } catch (e) {
     console.error('[NFTService] getPostLikers error', e);
     throw e;

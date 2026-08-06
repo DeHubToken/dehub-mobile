@@ -64,6 +64,7 @@ const SessionCard = React.memo<{
   onRevoke: (deviceId: string) => void;
   revoking: string | null;
 }>(({ session, onRevoke, revoking }) => {
+  const { t } = useTranslation();
   const isRevoking = revoking === session.deviceId;
 
   const handleRevoke = useCallback(() => {
@@ -97,8 +98,8 @@ const SessionCard = React.memo<{
                 {getDeviceLabel(session)}
               </Text>
               {session.current && (
-                <View className="ml-2 bg-emerald-500/20 px-2 py-0.5 rounded-full">
-                  <Text className="text-emerald-400 text-[10px] font-bold">This device</Text>
+                <View className="ml-2 bg-white/10 px-2 py-0.5 rounded-full">
+                  <Text className="text-theme-neutrals-200 text-[11px] font-bold">This device</Text>
                 </View>
               )}
             </View>
@@ -111,6 +112,9 @@ const SessionCard = React.memo<{
               onPress={handleRevoke}
               disabled={isRevoking}
               activeOpacity={0.7}
+              accessibilityRole="button"
+              accessibilityLabel={t('settings.logOut')}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               className="rounded-xl overflow-hidden"
               style={{ opacity: isRevoking ? 0.5 : 1 }}
             >
@@ -125,7 +129,7 @@ const SessionCard = React.memo<{
             </TouchableOpacity>
           )}
         </View>
-        <View className="flex-row items-center mt-2.5 ml-13">
+        <View className="flex-row items-center mt-2.5 ml-[52px]">
           <Icon name="Clock" size={12} color="#6b7280" />
           <Text className="text-theme-neutrals-500 text-xs ml-1.5">
             {formatRelativeTime(session.lastActiveAt)}
@@ -238,7 +242,7 @@ export default function ActiveSessionsScreen() {
           {sessions.length} active session{sessions.length !== 1 ? 's' : ''}
         </Text>
       </View>
-      <Text className="text-theme-neutrals-500 text-[11px] leading-4">
+      <Text className="text-theme-neutrals-500 text-xs leading-5">
         These devices are currently signed in to your account. If you see something unfamiliar, log it out and change your credentials.
       </Text>
     </View>
@@ -276,7 +280,7 @@ export default function ActiveSessionsScreen() {
       <ScreenHeader title={t("settings.activeSessions")} canGoBack />
       {loading ? (
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#fff" />
+          <ActivityIndicator size="large" color="#F4F4F5" />
         </View>
       ) : (
         <FlatList
@@ -300,7 +304,7 @@ export default function ActiveSessionsScreen() {
             <RefreshControl
               refreshing={refreshing}
               onRefresh={handleRefresh}
-              tintColor="#fff"
+              tintColor="#F4F4F5"
             />
           }
         />

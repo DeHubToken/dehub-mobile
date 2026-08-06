@@ -34,7 +34,7 @@ const STATUS_CONFIG: Record<
   processing: { label: "Processing…", color: "#fff", icon: "Loader" },
   minting: { label: "Minting…", color: "#fff", icon: "Coins" },
   done: { label: "Posted", color: "#fff", icon: "CircleCheck" },
-  failed: { label: "Failed", color: "#f87171", icon: "CircleAlert" },
+  failed: { label: "Failed", color: "#EF4444", icon: "CircleAlert" },
 };
 
 const JobItem = memo<{ job: UploadJob }>(({ job }) => {
@@ -150,7 +150,7 @@ const EmptyState = memo(() => (
     <Text className="text-theme-neutrals-500 text-sm font-medium">
       No uploads
     </Text>
-    <Text className="text-theme-neutrals-600 text-xs mt-1">
+    <Text className="text-theme-neutrals-400 text-xs mt-1">
       Your uploads will appear here
     </Text>
   </View>

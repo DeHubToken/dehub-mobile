@@ -140,6 +140,7 @@ export type AppStackParamList = {
   };
   [ScreenNames.Communities]: undefined;
   [ScreenNames.CommunityDetail]: { slug: string };
+  [ScreenNames.CommunityInvite]: { code: string };
   [ScreenNames.Glossary]: undefined;
   [ScreenNames.Guide]: undefined;
   [ScreenNames.Events]: undefined;

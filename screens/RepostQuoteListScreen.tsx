@@ -72,17 +72,17 @@ const RepostUserRow: React.FC<RepostUserRowProps> = React.memo(
             {displayName}
           </Text>
           {hasUsername && (
-            <Text className="text-gray-500 text-sm" numberOfLines={1}>
+            <Text className="text-theme-neutrals-400 text-sm" numberOfLines={1}>
               @{item.username}
             </Text>
           )}
           {item.followers !== undefined && (
-            <Text className="text-gray-600 text-xs mt-0.5">
+            <Text className="text-theme-neutrals-400 text-xs mt-0.5">
               {formatCompactNumber(item.followers)} followers
             </Text>
           )}
         </View>
-        <Ionicons name="chevron-forward" size={20} color="#555" />
+        <Ionicons name="chevron-forward" size={20} color="#A1A1AA" />
       </TouchableOpacity>
     );
   }
@@ -261,14 +261,14 @@ const RepostQuoteListScreen: React.FC = () => {
     if (repostLoadingMore) {
       return (
         <View className="py-6 items-center">
-          <ActivityIndicator size="small" color="#fff" />
+          <ActivityIndicator size="small" color="#F4F4F5" />
         </View>
       );
     }
     if (!repostHasMore && repostUsers.length > 0) {
       return (
         <View className="py-6 items-center">
-          <Text className="text-gray-600 text-sm">No more reposts</Text>
+          <Text className="text-theme-neutrals-400 text-sm">No more reposts</Text>
         </View>
       );
     }
@@ -279,14 +279,14 @@ const RepostQuoteListScreen: React.FC = () => {
     if (quoteLoadingMore) {
       return (
         <View className="py-6 items-center">
-          <ActivityIndicator size="small" color="#fff" />
+          <ActivityIndicator size="small" color="#F4F4F5" />
         </View>
       );
     }
     if (!quoteHasMore && quotePosts.length > 0) {
       return (
         <View className="py-6 items-center">
-          <Text className="text-gray-600 text-sm">No more quotes</Text>
+          <Text className="text-theme-neutrals-400 text-sm">No more quotes</Text>
         </View>
       );
     }
@@ -298,7 +298,7 @@ const RepostQuoteListScreen: React.FC = () => {
     return (
       <View className="flex-1 items-center justify-center py-16">
         <View className="bg-theme-neutrals-800/30 rounded-full p-5 mb-4">
-          <Ionicons name="git-compare-outline" size={40} color="#555" />
+          <Ionicons name="git-compare-outline" size={40} color="#A1A1AA" />
         </View>
         <Text className="text-gray-400 text-base text-center px-8">
           No reposts yet
@@ -312,7 +312,7 @@ const RepostQuoteListScreen: React.FC = () => {
     return (
       <View className="flex-1 items-center justify-center py-16">
         <View className="bg-theme-neutrals-800/30 rounded-full p-5 mb-4">
-          <Ionicons name="chatbubble-ellipses-outline" size={40} color="#555" />
+          <Ionicons name="chatbubble-ellipses-outline" size={40} color="#A1A1AA" />
         </View>
         <Text className="text-gray-400 text-base text-center px-8">
           No quotes yet
@@ -325,7 +325,7 @@ const RepostQuoteListScreen: React.FC = () => {
   const isRefreshing = activeTab === "reposts" ? repostRefreshing : quoteRefreshing;
 
   return (
-    <View className="flex-1 bg-black">
+    <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title={t("screens.repostsQuotes")} />
 
       {/* Tabs */}
@@ -343,7 +343,7 @@ const RepostQuoteListScreen: React.FC = () => {
               <View className="flex-row items-center gap-1">
                 <Text
                   className={`font-semibold text-base ${
-                    isActive ? "text-white" : "text-gray-500"
+                    isActive ? "text-white" : "text-theme-neutrals-400"
                   }`}
                 >
                   {tab.label}
@@ -351,7 +351,7 @@ const RepostQuoteListScreen: React.FC = () => {
                 {count > 0 && (
                   <Text
                     className={`text-xs ${
-                      isActive ? "text-gray-400" : "text-gray-600"
+                      isActive ? "text-theme-neutrals-300" : "text-theme-neutrals-400"
                     }`}
                   >
                     {formatCompactNumber(count)}
@@ -369,7 +369,7 @@ const RepostQuoteListScreen: React.FC = () => {
       {/* Count indicator */}
       {!isLoading && (activeTab === "reposts" ? repostTotal : quoteTotal) > 0 && (
         <View className="px-4 py-2">
-          <Text className="text-gray-500 text-sm font-medium">
+          <Text className="text-theme-neutrals-400 text-sm font-medium">
             {formatCompactNumber(activeTab === "reposts" ? repostTotal : quoteTotal)}{" "}
             {activeTab}
           </Text>
@@ -379,7 +379,7 @@ const RepostQuoteListScreen: React.FC = () => {
       {/* Content */}
       {isLoading ? (
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#fff" />
+          <ActivityIndicator size="large" color="#F4F4F5" />
         </View>
       ) : activeTab === "reposts" ? (
         <FlatList
@@ -393,8 +393,8 @@ const RepostQuoteListScreen: React.FC = () => {
             <RefreshControl
               refreshing={repostRefreshing}
               onRefresh={handleRefresh}
-              tintColor="#fff"
-              progressBackgroundColor="#1a1a1a"
+              tintColor="#F4F4F5"
+              progressBackgroundColor="#1D1F21"
             />
           }
           ListFooterComponent={repostFooter}
@@ -413,8 +413,8 @@ const RepostQuoteListScreen: React.FC = () => {
             <RefreshControl
               refreshing={quoteRefreshing}
               onRefresh={handleRefresh}
-              tintColor="#fff"
-              progressBackgroundColor="#1a1a1a"
+              tintColor="#F4F4F5"
+              progressBackgroundColor="#1D1F21"
             />
           }
           ListFooterComponent={quoteFooter}

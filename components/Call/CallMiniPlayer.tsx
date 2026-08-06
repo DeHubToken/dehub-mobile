@@ -17,7 +17,13 @@ const CallMiniPlayer: React.FC = () => {
         </View>
         <Text style={styles.duration}>{callDuration}</Text>
       </View>
-      <TouchableOpacity onPress={endCall} style={styles.endBtn}>
+      <TouchableOpacity
+        onPress={endCall}
+        style={styles.endBtn}
+        hitSlop={8}
+        accessibilityRole="button"
+        accessibilityLabel="End call"
+      >
         <Icon name="PhoneOff" size={14} color="#FFFFFF" />
       </TouchableOpacity>
     </View>
@@ -32,7 +38,7 @@ const styles = StyleSheet.create({
     right: 16,
     height: 44,
     borderRadius: 22,
-    backgroundColor: "#18181B",
+    backgroundColor: "#1D1F21",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.12)",
     flexDirection: "row",

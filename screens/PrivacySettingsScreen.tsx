@@ -296,7 +296,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       <View className="flex-1 bg-theme-neutrals-900">
         {!embedded && <ScreenHeader title={t('settings.accountPrivacy')} canGoBack />}
         <View className="flex-1 items-center justify-center">
-          <ActivityIndicator size="large" color="#D4D4D8" />
+          <ActivityIndicator size="large" color="#F4F4F5" />
         </View>
       </View>
     );
@@ -308,7 +308,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
         <ScreenHeader
           title={t('settings.accountPrivacy')}
           canGoBack
-          rightContent={saving ? <ActivityIndicator size="small" color="#D4D4D8" /> : undefined}
+          rightContent={saving ? <ActivityIndicator size="small" color="#F4F4F5" /> : undefined}
         />
       )}
       <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 32 }}>
@@ -518,12 +518,12 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
           <Text className="text-white font-bold text-lg text-center mb-2">
             {t('settings.switchToPublicTitle')}
           </Text>
-          <Text className="text-gray-300 text-sm text-center leading-5 mb-1">
+          <Text className="text-theme-neutrals-300 text-sm text-center leading-5 mb-1">
             {pendingCount === 1
               ? t('settings.pendingFollowRequestSingular', { count: pendingCount })
               : t('settings.pendingFollowRequestPlural', { count: pendingCount })}
           </Text>
-          <Text className="text-gray-400 text-sm text-center leading-5 mb-5">
+          <Text className="text-theme-neutrals-400 text-sm text-center leading-5 mb-5">
             {t('settings.switchToPublicDesc')}
           </Text>
           <View className="gap-3">
@@ -564,7 +564,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
               className="py-3 rounded-xl items-center"
               activeOpacity={0.7}
             >
-              <Text className="text-gray-400 font-medium text-sm">{t('common.cancel')}</Text>
+              <Text className="text-theme-neutrals-400 font-medium text-sm">{t('common.cancel')}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -581,7 +581,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
         <View className="flex-1">
           <View className="px-5 pt-4 pb-3 flex-row items-center justify-between border-b border-white/10">
             <Text className="text-white font-bold text-base">{t('settings.followRequests')}</Text>
-            {requestsLoading && <ActivityIndicator size="small" color="#D4D4D8" />}
+            {requestsLoading && <ActivityIndicator size="small" color="#F4F4F5" />}
           </View>
           {requests.length === 0 && !requestsLoading ? (
             <View className="flex-1 items-center justify-center py-12">
@@ -614,18 +614,20 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                       )}
                     </View>
                     {busy ? (
-                      <ActivityIndicator size="small" color="#D4D4D8" />
+                      <ActivityIndicator size="small" color="#F4F4F5" />
                     ) : (
                       <View className="flex-row gap-2">
                         <TouchableOpacity
                           onPress={() => handleAcceptOne(item.requestId)}
-                          className="bg-blue-600 px-3 py-1.5 rounded-lg"
+                          hitSlop={{ top: 8, bottom: 8 }}
+                          className="bg-theme-accent px-3 py-1.5 rounded-lg"
                           activeOpacity={0.7}
                         >
-                          <Text className="text-white text-xs font-semibold">{t('settings.accept')}</Text>
+                          <Text className="text-theme-accent-foreground text-xs font-semibold">{t('settings.accept')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                           onPress={() => handleRejectOne(item.requestId)}
+                          hitSlop={{ top: 8, bottom: 8 }}
                           className="bg-theme-neutrals-700 px-3 py-1.5 rounded-lg"
                           activeOpacity={0.7}
                         >

@@ -30,18 +30,18 @@ const GlassToast: React.FC<GlassToastProps> = ({
 }) => {
   if (!title) return null;
 
-  const accent = useMemo((): { bg: string; fg: string; icon: string } => {
+  const accent = useMemo((): { bg: string; icon: string } => {
     switch (type) {
       case "success":
-        return { bg: "#10B981", fg: "#052e1f", icon: "checkmark-circle" };
+        return { bg: "#22C55E", icon: "checkmark-circle" };
       case "error":
-        return { bg: "#EF4444", fg: "#3b0a0a", icon: "close-circle" };
+        return { bg: "#EF4444", icon: "close-circle" };
       case "warning":
-        return { bg: "#D4D4D8", fg: "#3a2403", icon: "warning" };
+        return { bg: "#D4D4D8", icon: "warning" };
       case "loading":
-        return { bg: "#D4D4D8", fg: "#0b2345", icon: "time-outline" };
+        return { bg: "#D4D4D8", icon: "time-outline" };
       default:
-        return { bg: "#6B7280", fg: "#101214", icon: "information-circle" };
+        return { bg: "#6B7280", icon: "information-circle" };
     }
   }, [type]);
 
@@ -104,9 +104,9 @@ const GlassToast: React.FC<GlassToastProps> = ({
         {onClose && (
           <TouchableOpacity
             accessibilityLabel="Close"
-            // hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            accessibilityRole="button"
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             onPress={onClose}
-            // className="mt-0.5"
           >
               <Ionicons name="close" size={25} color="#FFFFFF" />
           </TouchableOpacity>

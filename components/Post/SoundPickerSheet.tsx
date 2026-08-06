@@ -8,7 +8,6 @@ import {
   ActivityIndicator,
   Dimensions,
   StyleSheet,
-  Image,
   PanResponder,
   Animated,
   TextInput,
@@ -16,6 +15,7 @@ import {
 } from "react-native";
 import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
+import Avatar from "../common/Avatar";
 import { useAudioPlayer } from "expo-audio";
 import { getUnifiedFeed, type UnifiedFeedItem } from "../../services/feed.unified.service";
 import { getAvatarUrl } from "../../libs";
@@ -250,6 +250,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
             style={styles.playBtn}
             onPress={() => togglePreview(item)}
             activeOpacity={0.7}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           >
             <Ionicons
               name={isPlaying ? "pause" : "play"}
@@ -257,13 +258,11 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
               color={isSelected ? "#A1A1AA" : "#fff"}
             />
           </TouchableOpacity>
-          <Image
-            source={{
-              uri: item.minterAvatarUrl
-                ? getAvatarUrl(item.minterAvatarUrl)
-                : "https://via.placeholder.com/40",
-            }}
-            style={styles.avatar}
+          <Avatar
+            uri={item.minterAvatarUrl ? getAvatarUrl(item.minterAvatarUrl) : undefined}
+            name={item.minterDisplayName || item.minterUsername || item.minter}
+            size={40}
+            style={{ marginRight: 10 }}
           />
           <View style={styles.trackInfo}>
             <Text style={styles.trackTitle} numberOfLines={1}>
@@ -277,6 +276,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
             style={[styles.selectBtn, isSelected && styles.selectBtnActive]}
             onPress={() => handleSelect(item)}
             activeOpacity={0.7}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
           >
             <Text style={[styles.selectBtnText, isSelected && styles.selectBtnTextActive]}>
               {isSelected ? "Selected" : "Add"}
@@ -301,7 +301,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
           lifts the absolute-bottom sheet so the search stays visible. */}
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
       <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={onClose}>
-        <BlurView intensity={15} tint="dark" style={StyleSheet.absoluteFill} />
+        <BlurView intensity={30} tint="dark" style={StyleSheet.absoluteFill} />
       </TouchableOpacity>
       <Animated.View
         style={[styles.sheet, { height: sheetHeight }]}
@@ -374,13 +374,15 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: "#1A1B1E",
+    backgroundColor: "rgba(12,12,14,0.96)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     overflow: "hidden",
   },
   handleBar: { alignItems: "center", paddingTop: 10, paddingBottom: 4 },
-  handle: { width: 36, height: 4, borderRadius: 2, backgroundColor: "#3F4146" },
+  handle: { width: 36, height: 4, borderRadius: 2, backgroundColor: "rgba(255,255,255,0.2)" },
   header: {
     flexDirection: "row",
     alignItems: "center",
@@ -397,7 +399,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     height: 40,
     borderRadius: 10,
-    backgroundColor: "#27282C",
+    backgroundColor: "#1D1F21",
     gap: 8,
   },
   searchInput: { flex: 1, fontSize: 15, color: "#fff" },
@@ -410,7 +412,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 2,
   },
-  trackRowSelected: { backgroundColor: "rgba(124, 58, 237, 0.12)" },
+  trackRowSelected: { backgroundColor: "rgba(255,255,255,0.08)" },
   playBtn: {
     width: 36,
     height: 36,
@@ -420,16 +422,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginRight: 10,
   },
-  avatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 6,
-    backgroundColor: "#27282C",
-    marginRight: 10,
-  },
   trackInfo: { flex: 1 },
   trackTitle: { fontSize: 14, fontWeight: "600", color: "#fff" },
-  trackCreator: { fontSize: 12, color: "#9CA3AF", marginTop: 2 },
+  trackCreator: { fontSize: 12, color: "#A6A9AC", marginTop: 2 },
   selectBtn: {
     paddingHorizontal: 14,
     paddingVertical: 7,
@@ -438,7 +433,7 @@ const styles = StyleSheet.create({
   },
   selectBtnActive: { backgroundColor: "#A1A1AA" },
   selectBtnText: { fontSize: 13, fontWeight: "500", color: "#fff" },
-  selectBtnTextActive: { color: "#fff" },
+  selectBtnTextActive: { color: "#09090B" },
   emptyText: { textAlign: "center", color: "#6F7174", marginTop: 40, fontSize: 14 },
 });
 

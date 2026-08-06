@@ -50,6 +50,26 @@ config.transformer = {
 			inlineRequires: true,
 		},
 	}),
+	// Strip dev logging from release bundles. There are ~430 raw `console.*`
+	// calls across the app — `libs/logger.ts` is correctly gated on DEBUG, but
+	// these are not — and each one is a real bridge call. The worst offenders
+	// sit in hot paths: use-web3 (36), LiveProducerScreen (36), nft.service (28),
+	// use-live (27).
+	//
+	// Routed through terser rather than babel-plugin-transform-remove-console so
+	// this needs no new dependency and no lockfile change. Metro only minifies
+	// release builds, so dev keeps every log.
+	//
+	// `pure_funcs` drops a call only where its return value is unused, so it
+	// cannot alter control flow. error/warn are kept deliberately — they are the
+	// crash breadcrumbs.
+	minifierConfig: {
+		...(config.transformer?.minifierConfig || {}),
+		compress: {
+			...(config.transformer?.minifierConfig?.compress || {}),
+			pure_funcs: ['console.log', 'console.debug', 'console.info'],
+		},
+	},
 	// If you later adopt a custom transformer (e.g., react-native-react-bridge), set babelTransformerPath here.
 	// babelTransformerPath: require.resolve('react-native-react-bridge/lib/plugin'),
 };

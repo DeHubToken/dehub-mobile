@@ -348,7 +348,7 @@ export default function VideoPreview({
                 style={{
                   width: `${displayProgress * 100}%`,
                   height: "100%",
-                  backgroundColor: "#ff0000",
+                  backgroundColor: "#FFFFFF",
                 }}
               />
             </View>

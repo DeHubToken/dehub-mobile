@@ -69,6 +69,11 @@ export const DeepLinkPaths = {
   NOTIFICATIONS: 'app/notifications',
   LEADERBOARD: 'app/leaderboard',
   MESSAGES: 'app/messages',
+
+  // Communities — the invite path has to be declared before the slug one, or
+  // ':slug' swallows 'join' and the code is lost.
+  COMMUNITY_INVITE: 'app/communities/join/:code',
+  COMMUNITY: 'app/communities/:slug',
 } as const;
 
 /**
@@ -108,6 +113,18 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.Notifications]: DeepLinkPaths.NOTIFICATIONS,
 
           [ScreenNames.Leaderboard]: DeepLinkPaths.LEADERBOARD,
+
+          // An invite link shared from either client opens straight into the
+          // join screen rather than bouncing through the website.
+          [ScreenNames.CommunityInvite]: {
+            path: DeepLinkPaths.COMMUNITY_INVITE,
+            parse: { code: (code: string) => code },
+          },
+
+          [ScreenNames.CommunityDetail]: {
+            path: DeepLinkPaths.COMMUNITY,
+            parse: { slug: (slug: string) => slug },
+          },
 
           [ScreenNames.Root]: {
             screens: {
@@ -290,6 +307,10 @@ export const ShareLinks = {
   leaderboard: () => `${SHARE_BASE}/app/leaderboard`,
   /** Messages */
   messages: () => `${SHARE_BASE}/app/messages`,
+  /** Community — dehub.io/app/communities/:slug */
+  community: (slug: string) => `${SHARE_BASE}/app/communities/${encodeURIComponent(slug)}`,
+  /** Community invite — dehub.io/app/communities/join/:code */
+  communityInvite: (code: string) => `${SHARE_BASE}/app/communities/join/${encodeURIComponent(code)}`,
 };
 
 /**
@@ -325,6 +346,16 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
     // /app/messages
     if (pathParts[0] === 'app' && pathParts[1] === 'messages') {
       return { type: 'messages', params: qp };
+    }
+
+    // /app/communities/join/:code  — checked before the slug form below
+    if (pathParts[0] === 'app' && pathParts[1] === 'communities' && pathParts[2] === 'join' && pathParts[3]) {
+      return { type: 'communityInvite', params: { code: pathParts[3], ...qp } };
+    }
+
+    // /app/communities/:slug
+    if (pathParts[0] === 'app' && pathParts[1] === 'communities' && pathParts[2]) {
+      return { type: 'community', params: { slug: pathParts[2], ...qp } };
     }
 
     // Legacy: /stream/:videoId
