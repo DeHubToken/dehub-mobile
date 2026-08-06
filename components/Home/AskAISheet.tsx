@@ -41,6 +41,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Icon from "../ui/Icon";
 import GlassIndicator from "../ui/GlassIndicator";
 import { useUser } from "../../context/AuthContext";
+import { getAuthToken } from "../../libs/auth.utils";
 import {
   sendAIChat,
   generateImage,
@@ -328,7 +329,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
         isAuthenticated: !!user,
         userLanguage: getDeviceLanguage(),
         surface: "assistant",
-        callerAddress: user?.walletAddress || user?.address || undefined,
+        dehubToken: (await getAuthToken()) || undefined,
       });
 
       const greeting: AIChatMessage = {
@@ -434,7 +435,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
           isAuthenticated: !!user,
           userLanguage: getDeviceLanguage(),
           surface: "assistant",
-          callerAddress: user?.walletAddress || user?.address || undefined,
+          dehubToken: (await getAuthToken()) || undefined,
         });
 
         const aiMsg: AIChatMessage = { role: "assistant", content: res.response };
