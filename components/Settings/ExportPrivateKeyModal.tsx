@@ -17,7 +17,7 @@ import GlassModal from "../ui/GlassModal";
 import { useAuthActions, useProvider } from "../../context/AuthContext";
 import { copyToClipboard, toastError, toastInfo, apiClient } from "../../libs";
 import { deriveAddressFromPrivateKey } from "../../libs/wallet.utils";
-import { Ionicons } from "@expo/vector-icons";
+import Icon from "../ui/Icon";
 
 type ExportPrivateKeyModalProps = {
   visible: boolean;
@@ -159,29 +159,29 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
                 <Text className="text-red-400 text-sm mb-2">
                   {t("settings.exportPkWarning")}
                 </Text>
-                <View className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 mb-3">
-                  <Text className="text-gray-300 text-sm">
+                <View className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-lg p-3 mb-3">
+                  <Text className="text-theme-neutrals-300 text-sm">
                     - {t("settings.exportPkBullet1")}
                   </Text>
-                  <Text className="text-gray-300 text-sm mt-1">
+                  <Text className="text-theme-neutrals-300 text-sm mt-1">
                     - {t("settings.exportPkBullet2")}
                   </Text>
-                  <Text className="text-gray-300 text-sm mt-1">
+                  <Text className="text-theme-neutrals-300 text-sm mt-1">
                     - {t("settings.exportPkBullet3")}
                   </Text>
-                  <Text className="text-gray-300 text-sm mt-1">
+                  <Text className="text-theme-neutrals-300 text-sm mt-1">
                     - {t("settings.exportPkBullet4")}
                   </Text>
                 </View>
-                <Text className="text-gray-400 text-xs mb-1">
+                <Text className="text-theme-neutrals-400 text-xs mb-1">
                   {t("settings.exportPkTypeToContinue", { phrase: REQUIRED_PHRASE })}
                 </Text>
                 <TextInput
                   value={confirmText}
                   onChangeText={setConfirmText}
                   placeholder={REQUIRED_PHRASE}
-                  placeholderTextColor="#6b7280"
-                  className="border border-zinc-700 rounded-md px-3 py-2 text-white bg-zinc-900"
+                  placeholderTextColor="#8B8D90"
+                  className="border border-theme-neutrals-700 rounded-md px-3 py-2 text-white bg-theme-neutrals-800"
                 />
                 {error ? (
                   <Text className="text-red-500 text-xs mt-2">{error}</Text>
@@ -189,15 +189,15 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
                 <View className="flex-row justify-end mt-4">
                   <TouchableOpacity
                     onPress={handleClose}
-                    className="px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700 mr-2"
+                    className="h-11 px-4 rounded-xl items-center justify-center bg-theme-neutrals-700 mr-2"
                   >
                     <Text className="text-white">{t("common.cancel")}</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     disabled={!canContinue || isFetching}
                     onPress={handleProceed}
-                    className={`px-3 py-2 rounded-lg ${
-                      canContinue ? "bg-blue-600" : "bg-zinc-700"
+                    className={`h-11 px-4 rounded-xl items-center justify-center bg-white/10 border border-white/20 ${
+                      canContinue ? "" : "opacity-40"
                     } ${isFetching ? "opacity-80" : ""}`}
                   >
                     {isFetching ? (
@@ -215,11 +215,11 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
               </>
             ) : (
               <>
-                <View className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 mb-3">
-                  <Text className="text-gray-300 text-sm">
+                <View className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-lg p-3 mb-3">
+                  <Text className="text-theme-neutrals-300 text-sm">
                     {t("settings.exportPkSmartAccount1")}
                   </Text>
-                  <Text className="text-gray-300 text-sm mt-1">
+                  <Text className="text-theme-neutrals-300 text-sm mt-1">
                     {t("settings.exportPkSmartAccount2")}
                   </Text>
                 </View>
@@ -229,7 +229,7 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
                 <View className="flex-row justify-end mt-2">
                   <TouchableOpacity
                     onPress={handleClose}
-                    className="px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700"
+                    className="h-11 px-4 rounded-xl items-center justify-center bg-theme-neutrals-700"
                   >
                     <Text className="text-white">{t("common.close")}</Text>
                   </TouchableOpacity>
@@ -245,37 +245,45 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
               {t("settings.yourPrivateKey")}
             </Text>
             {address ? (
-              <Text className="text-gray-400 text-xs mb-2">
+              <Text className="text-theme-neutrals-400 text-xs mb-2">
                 {t("settings.addressLabel")}: {address}
               </Text>
             ) : null}
-            <View className="flex-row items-center bg-black/50 rounded-md p-3 border border-zinc-800 mb-3">
-              <TouchableOpacity onPress={toggleMasked} className="mr-3 p-1">
-                <Ionicons
-                  name={masked ? "eye-outline" : "eye-off-outline"}
-                  size={18}
-                  color="#e5e7eb"
-                />
+            <View className="flex-row items-center bg-black/50 rounded-md p-3 border border-theme-neutrals-700 mb-3">
+              <TouchableOpacity
+                onPress={toggleMasked}
+                className="mr-3 p-1"
+                accessibilityRole="button"
+                accessibilityLabel={masked ? "Reveal private key" : "Hide private key"}
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              >
+                <Icon name={masked ? "Eye" : "EyeOff"} size={18} color="#e5e7eb" />
               </TouchableOpacity>
               <Text
                 selectable
-                className="text-gray-200 text-xs flex-1"
+                className="text-theme-neutrals-200 text-xs flex-1"
                 numberOfLines={1}
               >
                 {masked ? maskedPk : privateKey}
               </Text>
-              <TouchableOpacity onPress={handleCopyPk} className="ml-3 p-1">
-                <Ionicons
-                  name={copied ? "checkmark-outline" : "copy-outline"}
+              <TouchableOpacity
+                onPress={handleCopyPk}
+                className="ml-3 p-1"
+                accessibilityRole="button"
+                accessibilityLabel="Copy private key"
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              >
+                <Icon
+                  name={copied ? "Check" : "Copy"}
                   size={18}
-                  color={copied ? "#10b981" : "#e5e7eb"}
+                  color={copied ? "#22C55E" : "#e5e7eb"}
                 />
               </TouchableOpacity>
             </View>
             <View className="flex-row justify-end">
               <TouchableOpacity
                 onPress={handleClose}
-                className="px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700"
+                className="h-11 px-4 rounded-xl items-center justify-center bg-theme-neutrals-700"
               >
                 <Text className="text-white">{t("common.done")}</Text>
               </TouchableOpacity>

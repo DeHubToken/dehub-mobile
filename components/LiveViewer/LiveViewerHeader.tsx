@@ -177,7 +177,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
               style={{ backgroundColor: statusDotColor }}
             />
             <Text
-              className="text-[9px] font-bold"
+              className="text-[10px] font-bold"
               style={{ color: statusDotColor }}
             >
               {statusLabel}
@@ -203,12 +203,12 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
             className={`rounded-full px-3 py-1.5 mr-2 ${
               isFollowing
                 ? "bg-white/10 border border-white/20"
-                : "bg-red-500"
+                : "bg-theme-accent"
             } ${followLoading ? "opacity-60" : ""}`}
           >
             <Text
               className={`text-[11px] font-bold ${
-                isFollowing ? "text-white/70" : "text-white"
+                isFollowing ? "text-white/70" : "text-theme-accent-foreground"
               }`}
             >
               {isFollowing ? "Following" : "Follow"}
@@ -220,7 +220,10 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
         <TouchableOpacity
           onPress={handleClose}
           activeOpacity={0.7}
+          hitSlop={8}
           className="w-8 h-8 rounded-full bg-black/50 items-center justify-center border border-white/10"
+          accessibilityRole="button"
+          accessibilityLabel="Close"
         >
           <X color="#fff" size={16} />
         </TouchableOpacity>

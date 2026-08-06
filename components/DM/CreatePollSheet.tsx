@@ -107,12 +107,18 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
         <Animated.View
           entering={SlideInUp.duration(300)}
           exiting={SlideOutDown.duration(200)}
-          className="bg-theme-neutrals-800 rounded-t-2xl max-h-[80%]"
+          className="bg-[#0C0C0E] rounded-t-[20px] border-t border-white/10 max-h-[80%]"
           style={{ paddingBottom: insets.bottom + 16 }}
         >
           {/* Header */}
           <View className="flex-row items-center justify-between px-4 pt-4 pb-2 border-b border-theme-neutrals-700/50">
-            <TouchableOpacity onPress={onClose} className="p-1">
+            <TouchableOpacity
+              onPress={onClose}
+              className="p-1"
+              hitSlop={10}
+              accessibilityRole="button"
+              accessibilityLabel="Close"
+            >
               <Icon name="X" size={20} color="#A6A9AC" />
             </TouchableOpacity>
             <Text className="text-white font-semibold text-base">Create Poll</Text>
@@ -120,13 +126,19 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
               onPress={handleCreate}
               disabled={!canCreate}
               className={`px-4 py-1.5 rounded-full ${
-                canCreate ? "bg-blue-500" : "bg-blue-500/30"
+                canCreate ? "bg-white" : "bg-white/10"
               }`}
             >
               {loading ? (
-                <ActivityIndicator size="small" color="#fff" />
+                <ActivityIndicator size="small" color="#F4F4F5" />
               ) : (
-                <Text className="text-white text-sm font-medium">Create</Text>
+                <Text
+                  className={`text-sm font-medium ${
+                    canCreate ? "text-black" : "text-white"
+                  }`}
+                >
+                  Create
+                </Text>
               )}
             </TouchableOpacity>
           </View>
@@ -144,7 +156,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
               value={question}
               onChangeText={setQuestion}
               placeholder="Ask something..."
-              placeholderTextColor="#6B7280"
+              placeholderTextColor="#8B8D90"
               maxLength={200}
               className="bg-theme-neutrals-700 rounded-xl px-3 py-2.5 text-white text-sm mb-4"
             />
@@ -166,7 +178,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
                     value={opt}
                     onChangeText={(t) => updateOption(idx, t)}
                     placeholder={`Option ${idx + 1}`}
-                    placeholderTextColor="#6B7280"
+                    placeholderTextColor="#8B8D90"
                     maxLength={60}
                     className="flex-1 text-white text-sm"
                   />
@@ -175,8 +187,11 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
                   <TouchableOpacity
                     onPress={() => removeOption(idx)}
                     className="p-1.5"
+                    hitSlop={10}
+                    accessibilityRole="button"
+                    accessibilityLabel="Remove option"
                   >
-                    <Icon name="X" size={16} color="#6B7280" />
+                    <Icon name="X" size={16} color="#A1A1AA" />
                   </TouchableOpacity>
                 )}
               </View>
@@ -185,10 +200,10 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
             {options.length < 4 && (
               <TouchableOpacity
                 onPress={addOption}
-                className="flex-row items-center gap-2 px-3 py-2.5 rounded-xl border border-dashed border-zinc-600 mb-4"
+                className="flex-row items-center gap-2 px-3 py-2.5 rounded-xl border border-dashed border-zinc-500 mb-4"
               >
-                <Icon name="Plus" size={14} color="#6B7280" />
-                <Text className="text-zinc-500 text-sm">Add option</Text>
+                <Icon name="Plus" size={14} color="#A1A1AA" />
+                <Text className="text-zinc-400 text-sm">Add option</Text>
               </TouchableOpacity>
             )}
 
@@ -196,16 +211,19 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
             <TouchableOpacity
               onPress={() => setIsMultipleChoice((p) => !p)}
               className="flex-row items-center gap-3 mb-4"
+              accessibilityRole="checkbox"
+              accessibilityLabel="Allow multiple answers"
+              accessibilityState={{ checked: isMultipleChoice }}
             >
               <View
                 className={`w-5 h-5 rounded items-center justify-center border ${
                   isMultipleChoice
-                    ? "bg-blue-500 border-blue-500"
+                    ? "bg-white border-white"
                     : "border-zinc-500"
                 }`}
               >
                 {isMultipleChoice && (
-                  <Icon name="Check" size={12} color="#fff" />
+                  <Icon name="Check" size={12} color="#09090B" />
                 )}
               </View>
               <Text className="text-zinc-300 text-sm">

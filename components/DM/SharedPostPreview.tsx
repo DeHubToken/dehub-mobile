@@ -152,7 +152,7 @@ const SharedPostPreviewComponent: React.FC<SharedPostPreviewProps> = ({
       <View className="px-3 py-2">
         <View className="flex-row items-center gap-1 mb-0.5">
           <Icon name="Link" size={11} color={isMine ? "rgba(255,255,255,0.6)" : "#71717a"} />
-          <Text className={`text-[10px] ${subColor}`}>DeHub post</Text>
+          <Text className={`text-[11px] ${subColor}`}>DeHub post</Text>
         </View>
         {!!title && (
           <Text className={`text-[13px] font-semibold leading-4 ${titleColor}`} numberOfLines={2}>
@@ -167,7 +167,7 @@ const SharedPostPreviewComponent: React.FC<SharedPostPreviewProps> = ({
                 style={{ width: 16, height: 16, borderRadius: 8 }}
               />
             ) : null}
-            <Text className={`text-[11px] ${subColor}`} numberOfLines={1}>
+            <Text className={`text-[12px] ${subColor}`} numberOfLines={1}>
               {meta.creator}
             </Text>
           </View>

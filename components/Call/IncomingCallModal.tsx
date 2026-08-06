@@ -34,11 +34,21 @@ const IncomingCallModal: React.FC = () => {
           {currentCall?.call_type === "video" ? "Incoming video call..." : "Incoming voice call..."}
         </Text>
         <View style={styles.actions}>
-          <TouchableOpacity onPress={rejectCall} style={styles.rejectBtn}>
+          <TouchableOpacity
+            onPress={rejectCall}
+            style={styles.rejectBtn}
+            accessibilityRole="button"
+            accessibilityLabel="Decline call"
+          >
             <Icon name="PhoneOff" size={24} color="#FFFFFF" />
           </TouchableOpacity>
           <View style={styles.spacer} />
-          <TouchableOpacity onPress={acceptCall} style={styles.acceptBtn}>
+          <TouchableOpacity
+            onPress={acceptCall}
+            style={styles.acceptBtn}
+            accessibilityRole="button"
+            accessibilityLabel="Accept call"
+          >
             <Icon name="Phone" size={24} color="#FFFFFF" />
           </TouchableOpacity>
         </View>

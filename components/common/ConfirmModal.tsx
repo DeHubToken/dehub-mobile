@@ -15,9 +15,16 @@ export type ConfirmModalProps = {
 };
 
 const kindBg: Record<NonNullable<ConfirmModalProps["confirmKind"]>, string> = {
-  primary: "bg-blue-600",
+  primary: "bg-theme-accent",
   danger: "bg-red-600",
   neutral: "bg-theme-neutrals-700",
+};
+
+// Near-white accent fill needs dark content; dark fills keep white content.
+const kindContent: Record<NonNullable<ConfirmModalProps["confirmKind"]>, string> = {
+  primary: "#09090B",
+  danger: "#FFFFFF",
+  neutral: "#FFFFFF",
 };
 
 const ConfirmModal: React.FC<ConfirmModalProps> = ({
@@ -40,21 +47,23 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
         )}
         <View className="flex-row justify-end mt-5">
           <TouchableOpacity
-            className="px-4 py-2 rounded-md bg-theme-neutrals-700/70 mr-2 active:opacity-80"
+            className="px-4 py-2 rounded-xl bg-theme-neutrals-700/70 mr-2 active:opacity-80"
             onPress={onCancel}
             disabled={!!loading}
           >
             <Text className="text-theme-neutrals-100 text-sm">{cancelText}</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            className={`${kindBg[confirmKind]} px-4 py-2 rounded-md active:opacity-80`}
+            className={`${kindBg[confirmKind]} px-4 py-2 rounded-xl active:opacity-80`}
             onPress={onConfirm}
             disabled={!!loading}
           >
             {loading ? (
-              <ActivityIndicator color="#fff" />
+              <ActivityIndicator color={kindContent[confirmKind]} />
             ) : (
-              <Text className="text-white text-sm">{confirmText}</Text>
+              <Text className="text-sm font-semibold" style={{ color: kindContent[confirmKind] }}>
+                {confirmText}
+              </Text>
             )}
           </TouchableOpacity>
         </View>

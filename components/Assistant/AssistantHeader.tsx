@@ -19,7 +19,7 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
 }) => {
   return (
     <View
-      className="flex-row items-center justify-between px-4 h-14 bg-black"
+      className="flex-row items-center justify-between px-4 h-16 bg-theme-neutrals-900"
     >
       <TouchableOpacity
         onPress={onNewChat}
@@ -31,7 +31,7 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
           style={{ width: 26, height: 26 }}
           resizeMode="contain"
         />
-        <Text className="text-white text-xl font-bold ml-2.5 tracking-wide">
+        <Text className="text-theme-neutrals-100 text-2xl font-medium ml-2.5 tracking-wide">
           Assistant
         </Text>
       </TouchableOpacity>
@@ -40,27 +40,36 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
         {hasMessages && (
           <TouchableOpacity
             onPress={onNewChat}
-            className="w-8 h-8 rounded-lg items-center justify-center"
+            className="w-10 h-10 rounded-lg items-center justify-center"
             style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
             activeOpacity={0.7}
+            hitSlop={4}
+            accessibilityRole="button"
+            accessibilityLabel="New chat"
           >
             <Icon name="SquarePen" size={16} color="#A6A9AC" />
           </TouchableOpacity>
         )}
         <TouchableOpacity
           onPress={onHistoryPress}
-          className="w-8 h-8 rounded-lg items-center justify-center"
+          className="w-10 h-10 rounded-lg items-center justify-center"
           style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
           activeOpacity={0.7}
+          hitSlop={4}
+          accessibilityRole="button"
+          accessibilityLabel="Chat history"
         >
           <Icon name="History" size={16} color="#A6A9AC" />
         </TouchableOpacity>
         {onSettingsPress && (
           <TouchableOpacity
             onPress={onSettingsPress}
-            className="w-8 h-8 rounded-lg items-center justify-center"
+            className="w-10 h-10 rounded-lg items-center justify-center"
             style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
             activeOpacity={0.7}
+            hitSlop={4}
+            accessibilityRole="button"
+            accessibilityLabel="Settings"
           >
             <Icon name="Settings" size={16} color="#A6A9AC" />
           </TouchableOpacity>

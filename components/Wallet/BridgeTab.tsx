@@ -207,7 +207,7 @@ const BridgeTab: React.FC = () => {
       {/* Balance stats */}
       <View className="flex-row gap-3 mb-5">
         <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
-          <Text className="text-white/50 text-[10px] uppercase tracking-wider mb-1">
+          <Text className="text-white/50 text-xs uppercase tracking-wider mb-1">
             Base
           </Text>
           {loading ? (
@@ -215,10 +215,10 @@ const BridgeTab: React.FC = () => {
           ) : (
             <Text className="text-white text-lg font-bold">{formatDHB(baseBal)}</Text>
           )}
-          <Text className="text-white/40 text-[10px] mt-0.5">DHB</Text>
+          <Text className="text-white/60 text-xs mt-0.5">DHB</Text>
         </View>
         <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
-          <Text className="text-white/50 text-[10px] uppercase tracking-wider mb-1">
+          <Text className="text-white/50 text-xs uppercase tracking-wider mb-1">
             BNB Chain
           </Text>
           {loading ? (
@@ -226,7 +226,7 @@ const BridgeTab: React.FC = () => {
           ) : (
             <Text className="text-white text-lg font-bold">{formatDHB(bnbBal)}</Text>
           )}
-          <Text className="text-white/40 text-[10px] mt-0.5">DHB</Text>
+          <Text className="text-white/60 text-xs mt-0.5">DHB</Text>
         </View>
       </View>
 
@@ -237,7 +237,7 @@ const BridgeTab: React.FC = () => {
         {/* Direction display */}
         <View className="flex-row items-center gap-3 mb-5">
           <View className="flex-1 border border-white/10 bg-white/[0.03] rounded-xl p-3 items-center">
-            <Text className="text-white/40 text-[10px] uppercase tracking-wider mb-1">
+            <Text className="text-white/60 text-xs uppercase tracking-wider mb-1">
               From
             </Text>
             <Text className="text-white text-sm font-semibold">{sourceChain}</Text>
@@ -251,12 +251,15 @@ const BridgeTab: React.FC = () => {
               setAmount("");
             }}
             className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 items-center justify-center"
+            hitSlop={{ top: 2, bottom: 2, left: 2, right: 2 }}
+            accessibilityRole="button"
+            accessibilityLabel="Swap bridge direction"
           >
             <Ionicons name="swap-vertical-outline" size={18} color="rgba(255,255,255,0.6)" />
           </TouchableOpacity>
 
           <View className="flex-1 border border-white/10 bg-white/[0.03] rounded-xl p-3 items-center">
-            <Text className="text-white/40 text-[10px] uppercase tracking-wider mb-1">
+            <Text className="text-white/60 text-xs uppercase tracking-wider mb-1">
               To
             </Text>
             <Text className="text-white text-sm font-semibold">{destChain}</Text>
@@ -264,7 +267,7 @@ const BridgeTab: React.FC = () => {
         </View>
 
         {/* Available balance */}
-        <Text className="text-white/40 text-xs mb-3">
+        <Text className="text-white/60 text-xs mb-3">
           Available:{" "}
           <Text className="text-white/70 font-medium">{sourceBalF} DHB</Text> on{" "}
           {sourceChain}
@@ -286,6 +289,8 @@ const BridgeTab: React.FC = () => {
                 setAmount(ethers.utils.formatUnits(sourceBal, 18));
               }
             }}
+            className="px-2 py-3 -mr-1"
+            hitSlop={{ top: 14, bottom: 14, left: 8, right: 8 }}
           >
             <Text className="text-white/50 text-xs font-bold uppercase">MAX</Text>
           </TouchableOpacity>
@@ -312,10 +317,10 @@ const BridgeTab: React.FC = () => {
       </View>
 
       {/* Info note */}
-      <View className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 mb-4">
+      <View className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
         <View className="flex-row items-center gap-2 mb-2">
           <Ionicons name="information-circle-outline" size={16} color="#D4D4D8" />
-          <Text className="text-blue-400 font-semibold text-sm">How it works</Text>
+          <Text className="text-white font-semibold text-sm">How it works</Text>
         </View>
         <Text className="text-white/60 text-xs leading-5">
           Send DHB to the bridge relay address on the source chain. The relay
@@ -334,7 +339,7 @@ const BridgeTab: React.FC = () => {
             <ActivityIndicator size="small" color="#fff" />
           </View>
         ) : transfers.length === 0 ? (
-          <Text className="text-white/30 text-xs text-center py-3">
+          <Text className="text-white/50 text-xs text-center py-3">
             No bridge transfers in the last 7 days.
           </Text>
         ) : (
@@ -345,18 +350,8 @@ const BridgeTab: React.FC = () => {
                 onPress={() => t.explorerUrl && Linking.openURL(t.explorerUrl)}
                 className="flex-row items-center gap-3 bg-white/[0.03] border border-white/5 rounded-xl px-3 py-2.5"
               >
-                <View
-                  className={`w-8 h-8 rounded-lg items-center justify-center ${
-                    t.chainId === 8453
-                      ? "bg-blue-500/10 border border-blue-500/20"
-                      : "bg-yellow-500/10 border border-yellow-500/20"
-                  }`}
-                >
-                  <Text
-                    className={`text-[10px] font-bold ${
-                      t.chainId === 8453 ? "text-blue-400" : "text-yellow-400"
-                    }`}
-                  >
+                <View className="w-8 h-8 rounded-lg items-center justify-center bg-white/10 border border-white/20">
+                  <Text className="text-xs font-bold text-white">
                     {t.chainId === 8453 ? "B" : "BNB"}
                   </Text>
                 </View>
@@ -367,7 +362,7 @@ const BridgeTab: React.FC = () => {
                     })}{" "}
                     DHB
                   </Text>
-                  <Text className="text-white/30 text-[10px] mt-0.5">
+                  <Text className="text-white/50 text-xs mt-0.5">
                     from {t.chain} · {timeAgo(t.timestamp)}
                   </Text>
                 </View>
@@ -398,8 +393,8 @@ const BridgeTab: React.FC = () => {
         onPress={fetchBalances}
         className="mt-4 items-center flex-row justify-center gap-2"
       >
-        <Ionicons name="refresh-outline" size={14} color="rgba(255,255,255,0.4)" />
-        <Text className="text-white/40 text-xs">Refresh balances</Text>
+        <Ionicons name="refresh-outline" size={14} color="rgba(255,255,255,0.6)" />
+        <Text className="text-white/60 text-xs">Refresh balances</Text>
       </TouchableOpacity>
     </View>
   );

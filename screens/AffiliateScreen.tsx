@@ -24,10 +24,10 @@ import {
 } from "react-native";
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import Icon from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import Avatar from "../components/common/Avatar";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
@@ -169,7 +169,6 @@ const AffiliateRow: React.FC<{ entry: AffiliateReferralEntry }> = ({ entry }) =>
 
 export default function AffiliateScreen() {
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const user = useUser() as any;
   const { isSignedIn, needsUsername } = useAuthState();
@@ -252,21 +251,14 @@ export default function AffiliateScreen() {
   const shown = list.slice(0, visible);
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>{t("nav.affiliate", "Affiliate")}</Text>
-          <Text style={styles.subtitle}>
-            {t("affiliate.subtitle", "Earn from everyone you invite — forever")}
-          </Text>
-        </View>
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader
+        title={t("nav.affiliate", "Affiliate")}
+        subtitle={t("affiliate.subtitle", "Earn from everyone you invite — forever")}
+      />
 
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 32, paddingTop: 4 }}
+        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 32, paddingTop: 4 }}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#ffffff" />
@@ -356,7 +348,13 @@ export default function AffiliateScreen() {
             <View style={styles.linkSkeleton} />
           ) : stats?.code ? (
             <>
-              <Pressable style={styles.linkBox} onPress={onCopy}>
+              <Pressable
+                style={styles.linkBox}
+                onPress={onCopy}
+                accessibilityRole="button"
+                accessibilityLabel={inviteLink}
+                accessibilityHint="Copies invite link"
+              >
                 <Text style={styles.linkText} numberOfLines={1}>
                   {inviteLink}
                 </Text>
@@ -506,17 +504,7 @@ export default function AffiliateScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-    gap: 10,
-    paddingHorizontal: 12,
-    paddingBottom: 12,
-  },
-  backBtn: { padding: 4, marginTop: 2 },
-  title: { color: "#FFFFFF", fontSize: 20, fontWeight: "700" },
-  subtitle: { color: "#A1A1AA", fontSize: 12, marginTop: 2 },
+  root: { flex: 1, backgroundColor: "#010305" },
 
   shareImageWrap: {
     width: "100%",
@@ -551,13 +539,13 @@ const styles = StyleSheet.create({
   statHead: { flexDirection: "row", alignItems: "center", gap: 6 },
   statLabel: {
     color: "#A1A1AA",
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: "600",
     letterSpacing: 0.8,
     textTransform: "uppercase",
   },
   statValue: { color: "#FFFFFF", fontSize: 22, fontWeight: "700", marginTop: 8 },
-  statHint: { color: "#71717A", fontSize: 10, marginTop: 4 },
+  statHint: { color: "#A1A1AA", fontSize: 12, marginTop: 4 },
   statSkeleton: {
     height: 26,
     width: 80,
@@ -651,12 +639,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "rgba(255,255,255,0.08)",
   },
-  rowSub: { color: "#71717A", fontSize: 11.5, marginTop: 3 },
+  rowSub: { color: "#A1A1AA", fontSize: 12, marginTop: 3 },
 
   empty: { alignItems: "center", paddingVertical: 28 },
   emptyTitle: { color: "#D4D4D8", fontSize: 14, fontWeight: "600", marginTop: 10 },
   emptyBody: {
-    color: "#71717A",
+    color: "#A1A1AA",
     fontSize: 12,
     textAlign: "center",
     marginTop: 4,
@@ -680,5 +668,5 @@ const styles = StyleSheet.create({
   stepTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
   stepBody: { color: "#A1A1AA", fontSize: 12.5, lineHeight: 18, marginTop: 3 },
 
-  footer: { color: "#52525B", fontSize: 11, textAlign: "center", marginTop: 4 },
+  footer: { color: "#71717A", fontSize: 12, textAlign: "center", marginTop: 4 },
 });

@@ -30,9 +30,9 @@ import {
 import { Image } from "expo-image";
 import { VideoView, useVideoPlayer, type VideoPlayer } from "expo-video";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
 import { useQuery } from "@tanstack/react-query";
 import Icon from "../components/ui/Icon";
+import ScreenHeader from "../components/ScreenHeader";
 import useKeyboard from "../hooks/useKeyboard";
 import TVChatPanel from "../components/TV/TVChatPanel";
 import { theme } from "../theme";
@@ -48,7 +48,7 @@ import {
 
 const PAGE_LIMIT = 200;
 const GRID_GAP = 10;
-const H_PADDING = 12;
+const H_PADDING = 16;
 
 // ── Player ──────────────────────────────────────────────────────────────────
 
@@ -100,7 +100,13 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
         ]}
       >
         <View style={styles.playerHeader}>
-          <Pressable onPress={onClose} hitSlop={10} style={styles.backBtn}>
+          <Pressable
+            onPress={onClose}
+            hitSlop={10}
+            style={styles.backBtn}
+            accessibilityRole="button"
+            accessibilityLabel="Close player"
+          >
             <Icon name="ChevronDown" size={24} color="#FFFFFF" />
           </Pressable>
           <View style={{ flex: 1, minWidth: 0 }}>
@@ -116,7 +122,7 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
         <View style={[styles.videoWrap, { height: Math.round((width * 9) / 16) }]}>
           {failed ? (
             <View style={styles.videoFallback}>
-              <Icon name="TriangleAlert" size={30} color="#F87171" />
+              <Icon name="TriangleAlert" size={30} color={theme.colors.destructive} />
               <Text style={styles.playerError}>{t("tv.notBroadcasting")}</Text>
               <Text style={styles.dim}>{t("tv.reportedAutomatically")}</Text>
             </View>
@@ -156,7 +162,10 @@ const ChannelCard: React.FC<{ channel: TVChannel; width: number; onPress: () => 
 }) => {
   const { t } = useTranslation();
   return (
-  <Pressable style={[styles.card, { width }]} onPress={onPress}>
+  <Pressable
+    style={({ pressed }) => [styles.card, { width }, pressed && { opacity: 0.85 }]}
+    onPress={onPress}
+  >
     <View style={[styles.logoWrap, { height: Math.round(width * 0.62) }]}>
       {channel.logo ? (
         <Image
@@ -166,7 +175,7 @@ const ChannelCard: React.FC<{ channel: TVChannel; width: number; onPress: () => 
           transition={150}
         />
       ) : (
-        <Icon name="Tv" size={26} color="#3F3F46" />
+        <Icon name="Tv" size={26} color={theme.colors.neutrals[700]} />
       )}
       <View style={styles.livePill}>
         <View style={styles.liveDot} />
@@ -190,7 +199,6 @@ const ChannelCard: React.FC<{ channel: TVChannel; width: number; onPress: () => 
 export default function TVScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<any>();
   const { width: screenW } = useWindowDimensions();
 
   const [country, setCountry] = useState("all");
@@ -230,35 +238,35 @@ export default function TVScreen() {
   const countryPills = useMemo(() => (countries.data ?? []).slice(0, 40), [countries.data]);
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={10} style={styles.backBtn}>
-          <Icon name="ArrowLeft" size={22} color="#FFFFFF" />
-        </Pressable>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>{t("nav.tv")}</Text>
-          <Text style={styles.subtitle}>
-            {countries.data?.[0]?.count
-              ? t("tv.channelCount", { count: countries.data[0].count })
-              : t("tv.subtitle")}
-          </Text>
-        </View>
-        <Icon name="Tv" size={22} color={theme.colors.accent} />
-      </View>
+    <View style={styles.root}>
+      <ScreenHeader
+        title={t("nav.tv")}
+        subtitle={
+          countries.data?.[0]?.count
+            ? t("tv.channelCount", { count: countries.data[0].count })
+            : t("tv.subtitle")
+        }
+        rightContent={<Icon name="Tv" size={22} color={theme.colors.accent} />}
+      />
 
       <View style={styles.searchWrap}>
-        <Icon name="Search" size={15} color="#71717A" />
+        <Icon name="Search" size={15} color={theme.colors.neutrals[400]} />
         <TextInput
           value={search}
           onChangeText={setSearch}
           placeholder={t("tv.searchPlaceholder")}
-          placeholderTextColor="#52525B"
+          placeholderTextColor={theme.colors.neutrals[500]}
           style={styles.searchInput}
           returnKeyType="search"
         />
         {search.length > 0 && (
-          <Pressable onPress={() => setSearch("")} hitSlop={8}>
-            <Icon name="X" size={15} color="#71717A" />
+          <Pressable
+            onPress={() => setSearch("")}
+            hitSlop={14}
+            accessibilityRole="button"
+            accessibilityLabel="Clear search"
+          >
+            <Icon name="X" size={15} color={theme.colors.neutrals[400]} />
           </Pressable>
         )}
       </View>
@@ -273,7 +281,12 @@ export default function TVScreen() {
             <Pressable
               key={c.id}
               onPress={() => setCountry(c.id)}
-              style={[styles.chip, country === c.id && styles.chipActive]}
+              hitSlop={{ top: 8, bottom: 8 }}
+              style={({ pressed }) => [
+                styles.chip,
+                country === c.id && styles.chipActive,
+                pressed && { opacity: 0.7 },
+              ]}
             >
               <Text style={[styles.chipText, country === c.id && styles.chipTextActive]}>
                 {c.label} ({c.count})
@@ -289,7 +302,7 @@ export default function TVScreen() {
         </View>
       ) : channels.isError ? (
         <View style={styles.center}>
-          <Icon name="TriangleAlert" size={38} color="#3F3F46" />
+          <Icon name="TriangleAlert" size={38} color={theme.colors.neutrals[700]} />
           <Text style={styles.dim}>{t("tv.loadFailed")}</Text>
           <Pressable onPress={() => channels.refetch()} style={styles.retryBtn}>
             <Text style={styles.retryText}>{t("common.retry")}</Text>
@@ -314,12 +327,12 @@ export default function TVScreen() {
             <RefreshControl
               refreshing={channels.isRefetching}
               onRefresh={onRefresh}
-              tintColor={theme.colors.accentForeground}
+              tintColor={theme.colors.accent}
             />
           }
           ListEmptyComponent={
             <View style={styles.center}>
-              <Icon name="Tv" size={38} color="#3F3F46" />
+              <Icon name="Tv" size={38} color={theme.colors.neutrals[700]} />
               <Text style={styles.dim}>
                 {debounced ? t("tv.noSearchResults") : t("tv.noChannels")}
               </Text>
@@ -334,22 +347,14 @@ export default function TVScreen() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#000000" },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    paddingHorizontal: H_PADDING,
-    paddingVertical: 12,
-  },
+  root: { flex: 1, backgroundColor: "#010305" },
   backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
-  title: { color: "#FFFFFF", fontSize: 21, fontWeight: "700" },
-  subtitle: { color: "#71717A", fontSize: 12, marginTop: 1 },
 
   searchWrap: {
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
+    marginTop: 8,
     marginHorizontal: H_PADDING,
     paddingHorizontal: 12,
     paddingVertical: 9,
@@ -399,19 +404,19 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     backgroundColor: "rgba(0,0,0,0.65)",
   },
-  liveDot: { width: 5, height: 5, borderRadius: 999, backgroundColor: "#F87171" },
-  liveText: { color: "#FFFFFF", fontSize: 8.5, fontWeight: "800" },
-  channelName: { color: "#FFFFFF", fontSize: 12.5, fontWeight: "600" },
-  channelCountry: { color: "#71717A", fontSize: 10.5, marginTop: 2 },
+  liveDot: { width: 5, height: 5, borderRadius: 999, backgroundColor: theme.colors.destructive },
+  liveText: { color: "#FFFFFF", fontSize: 11, fontWeight: "800" },
+  channelName: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
+  channelCountry: { color: theme.colors.neutrals[400], fontSize: 12, marginTop: 2 },
 
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 60, gap: 10 },
-  dim: { color: "#71717A", fontSize: 12.5, textAlign: "center" },
+  dim: { color: theme.colors.neutrals[400], fontSize: 12, textAlign: "center" },
   retryBtn: {
     marginTop: 6,
     paddingHorizontal: 20,
     paddingVertical: 8,
     borderRadius: 12,
-    backgroundColor: "#27272A",
+    backgroundColor: theme.colors.neutrals[800],
   },
   retryText: { color: "#FAFAFA", fontSize: 13, fontWeight: "600" },
 
@@ -424,7 +429,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   playerTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "700" },
-  playerCountry: { color: "#71717A", fontSize: 11.5, marginTop: 1 },
+  playerCountry: { color: theme.colors.neutrals[400], fontSize: 12, marginTop: 1 },
   videoWrap: { width: "100%", backgroundColor: "#000000" },
   videoFallback: {
     ...StyleSheet.absoluteFillObject,

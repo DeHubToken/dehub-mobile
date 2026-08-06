@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator, FlatList, type ListRenderItemInfo } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '../ui/Icon';
 import GlassModal from '../ui/GlassModal';
 import Avatar from '../common/Avatar';
 import ConfirmBlockModal from '../common/ConfirmBlockModal';
@@ -109,6 +109,7 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
         <TouchableOpacity
           onPress={() => handleUnblockPress(item)}
           activeOpacity={0.8}
+          hitSlop={{ top: 8, bottom: 8 }}
           className="bg-theme-neutrals-800 border border-theme-neutrals-700 px-3 py-1.5 rounded-full"
         >
           <Text className="text-red-400 text-xs font-semibold">{t('settings.unblock')}</Text>
@@ -121,21 +122,22 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
 
   return (
     <>
-      <GlassModal visible={visible} onClose={onClose} presentation="center" maxHeight="75%" blurIntensity={30}>
-        <View className="p-4">
-          <Text className="text-white font-semibold text-lg">{t('settings.blockedAccounts')}</Text>
+      <GlassModal visible={visible} onClose={onClose} presentation="bottom" maxHeight="75%" blurIntensity={30}>
+        <View className="px-5 pt-4 pb-3 border-b border-white/10">
+          <Text className="text-white font-bold text-base">{t('settings.blockedAccounts')}</Text>
           <Text className="text-theme-neutrals-400 text-xs mt-1">
             {t('settings.blockedAccountsModalDesc')}
           </Text>
-
-          <View className="mt-4 bg-theme-neutrals-900 rounded-xl border border-theme-neutrals-800 overflow-hidden" style={{ maxHeight: 400 }}>
+        </View>
+        <View className="p-4 pb-6">
+          <View className="bg-theme-neutrals-900 rounded-xl border border-theme-neutrals-800 overflow-hidden" style={{ maxHeight: 400 }}>
             {loading ? (
               <View className="px-4 py-8 items-center justify-center">
-                <ActivityIndicator size="small" color="#9CA3AF" />
+                <ActivityIndicator size="small" color="#F4F4F5" />
               </View>
             ) : items.length === 0 ? (
               <View className="px-4 py-8 items-center justify-center">
-                <Ionicons name="checkmark-circle-outline" size={32} color="#4B5563" />
+                <Icon name="CircleCheck" size={32} color="#4b5563" />
                 <Text className="text-theme-neutrals-400 text-sm mt-2">{t('settings.noBlockedUsers')}</Text>
               </View>
             ) : (
@@ -148,7 +150,7 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
                 ListFooterComponent={
                   loadingMore ? (
                     <View className="py-3 items-center">
-                      <ActivityIndicator size="small" color="#9CA3AF" />
+                      <ActivityIndicator size="small" color="#F4F4F5" />
                     </View>
                   ) : null
                 }

@@ -121,8 +121,8 @@ const RepostPopover: React.FC<RepostPopoverProps> = ({
                     activeOpacity={0.7}
                     className="flex-row items-center gap-2.5 px-4 py-3"
                   >
-                    <Icon name={isReposted ? "X" : "Repeat2"} size={16} color={isReposted ? "#EF4444" : "#fff"} />
-                    <Text className={`text-xs font-medium ${isReposted ? "text-red-400" : "text-white"}`}>
+                    <Icon name={isReposted ? "X" : "Repeat2"} size={20} color={isReposted ? "#EF4444" : "#fff"} />
+                    <Text className={`text-[15px] font-medium ${isReposted ? "text-red-400" : "text-white"}`}>
                       {isReposted ? "Undo Repost" : "Repost"}
                     </Text>
                   </TouchableOpacity>
@@ -134,8 +134,8 @@ const RepostPopover: React.FC<RepostPopoverProps> = ({
                     activeOpacity={0.7}
                     className="flex-row items-center gap-2.5 px-4 py-3"
                   >
-                    <Icon name="Quote" size={16} color="#fff" />
-                    <Text className="text-white text-xs font-medium">Quote</Text>
+                    <Icon name="Quote" size={20} color="#fff" />
+                    <Text className="text-white text-[15px] font-medium">Quote</Text>
                   </TouchableOpacity>
                 </View>
               </BlurView>

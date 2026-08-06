@@ -2,11 +2,13 @@ import React, { Component, ErrorInfo, ReactNode } from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
   StyleSheet,
   ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
+import { colors } from '../theme/colors';
+import PrimaryButton from './ui/PrimaryButton';
 import { createLogger } from '../libs/logger';
 
 const logger = createLogger('ErrorBoundary');
@@ -72,15 +74,19 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         <SafeAreaView style={styles.container}>
           <View style={styles.content}>
-            <Text style={styles.emoji}>😕</Text>
+            <View style={styles.iconCircle}>
+              <Ionicons
+                name="alert-circle-outline"
+                size={64}
+                color={colors.neutrals[600]}
+              />
+            </View>
             <Text style={styles.title}>Something went wrong</Text>
             <Text style={styles.message}>
               The app encountered an unexpected error. Please try again.
             </Text>
 
-            <TouchableOpacity style={styles.button} onPress={this.handleRetry}>
-              <Text style={styles.buttonText}>Try Again</Text>
-            </TouchableOpacity>
+            <PrimaryButton title="Try Again" onPress={this.handleRetry} />
 
             {this.props.showDetails && this.state.error && (
               <ScrollView style={styles.detailsContainer}>
@@ -124,7 +130,7 @@ export function withErrorBoundary<P extends object>(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: colors.neutrals[900],
   },
   content: {
     flex: 1,
@@ -132,57 +138,48 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 32,
   },
-  emoji: {
-    fontSize: 64,
+  iconCircle: {
+    backgroundColor: colors.neutrals[800],
+    borderRadius: 999,
+    padding: 24,
     marginBottom: 16,
   },
   title: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#fff',
+    color: colors.neutrals[100],
     marginBottom: 8,
     textAlign: 'center',
   },
   message: {
     fontSize: 16,
-    color: '#9CA3AF',
+    color: colors.neutrals[300],
     textAlign: 'center',
     marginBottom: 24,
     lineHeight: 24,
-  },
-  button: {
-    backgroundColor: '#4F8EF7',
-    paddingHorizontal: 32,
-    paddingVertical: 14,
-    borderRadius: 12,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
   },
   detailsContainer: {
     marginTop: 24,
     maxHeight: 200,
     width: '100%',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: colors.neutrals[800],
     borderRadius: 8,
     padding: 12,
   },
   detailsTitle: {
-    color: '#ef4444',
+    color: colors.destructive,
     fontSize: 14,
     fontWeight: '600',
     marginBottom: 8,
   },
   detailsText: {
-    color: '#f87171',
+    color: colors.destructive,
     fontSize: 12,
     fontFamily: 'monospace',
   },
   stackText: {
-    color: '#6b7280',
-    fontSize: 10,
+    color: colors.neutrals[400],
+    fontSize: 12,
     fontFamily: 'monospace',
     marginTop: 8,
   },

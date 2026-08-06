@@ -120,7 +120,7 @@ const PermissionModalProvider: React.FC = memo(() => {
           {config.title}
         </Text>
 
-        <Text className="text-neutral-400 text-sm text-center leading-5 mb-7">
+        <Text className="text-theme-neutrals-400 text-sm text-center leading-5 mb-7">
           {config.message}
         </Text>
 
@@ -141,7 +141,7 @@ const PermissionModalProvider: React.FC = memo(() => {
           activeOpacity={0.7}
           onPress={dismiss}
         >
-          <Text className="text-neutral-400 text-sm font-medium">
+          <Text className="text-theme-neutrals-400 text-sm font-medium">
             {isSettings ? "Cancel" : "Not Now"}
           </Text>
         </TouchableOpacity>

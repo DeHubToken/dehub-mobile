@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   Keyboard,
   Platform,
+  RefreshControl,
 } from "react-native";
 import Icon from "../ui/Icon";
 import CommentItem from "./CommentItem";
@@ -18,6 +19,7 @@ import type { MediaAttachment } from "./CommentMediaPreview";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "./VoiceNoteRecorder";
 import type { VoiceNoteResult } from "./VoiceNoteRecorder";
 import GifPicker from "../DM/GifPicker";
+import GlassTipSheet from "../Tip/GlassTipSheet";
 import Avatar from "../common/Avatar";
 import MentionSuggestions from "../common/MentionSuggestions";
 import { useUser, useAuthActions } from "../../context/AuthContext";
@@ -40,6 +42,7 @@ import { getAvatarUrl, toastError } from "../../libs";
 import { openCroppedImagePicker, getFileName, guessMime } from "../../libs/assets.util";
 import useKeyboard from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
+import { useCommentTipTotals } from "../../hooks/useCommentTipTotals";
 
 // Extended comment type for flat list with reply info
 interface FlatComment extends Comment {
@@ -97,6 +100,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const [contextComment, setContextComment] = useState<Comment | null>(null);
   const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
   const [contextMeta, setContextMeta] = useState<{ liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
+
+  // Tip-a-comment state + per-comment totals from tip_records
+  const [tipComment, setTipComment] = useState<Comment | null>(null);
+  const { totals: tipTotals, bump: bumpTipTotal } = useCommentTipTotals(
+    flatComments.map((c) => c.id),
+  );
 
   // Media attachment state
   const [mediaAttachment, setMediaAttachment] = useState<MediaAttachment | null>(null);
@@ -791,6 +800,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           comment={item}
           isReply={item.isReply}
           onReply={handleReply}
+          onTip={setTipComment}
+          tipTotal={tipTotals[itemNumId]}
           onLike={handleLikeComment}
           onDislike={handleDislikeComment}
           onUserPress={handleUserPress}
@@ -807,6 +818,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     );
   }, [
     handleReply,
+    tipTotals,
     handleLikeComment,
     handleDislikeComment,
     handleUserPress,
@@ -866,8 +878,14 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           keyExtractor={keyExtractor}
           contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: listBottomPadding }}
           keyboardShouldPersistTaps="handled"
-          refreshing={refreshing}
-          onRefresh={handleRefresh}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={handleRefresh}
+              tintColor="#F4F4F5"
+              progressBackgroundColor="#1a1a1a"
+            />
+          }
           viewabilityConfig={viewabilityConfig}
           onViewableItemsChanged={onViewableItemsChanged}
           ListEmptyComponent={
@@ -888,7 +906,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           bottom: 0,
           borderTopWidth: 1,
           borderTopColor: "rgba(255,255,255,0.06)",
-          backgroundColor: "rgba(30,30,30,0.8)",
+          backgroundColor: "rgba(12,12,14,0.8)",
           marginBottom: inputLift,
           paddingBottom: 8,
         }}
@@ -979,6 +997,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 <Pressable
                   onPress={handlePickImage}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  accessibilityRole="button"
+                  accessibilityLabel="Add image"
                   style={{ padding: 8, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 10 }}
                 >
                   <Icon name="ImagePlus" size={20} color="#8B8D90" />
@@ -986,6 +1006,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 <Pressable
                   onPress={handleOpenGifPicker}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  accessibilityRole="button"
+                  accessibilityLabel="Add GIF"
                   style={{ padding: 8, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 10 }}
                 >
                   <Text style={{ color: "#8B8D90", fontSize: 12, fontWeight: "700" }}>GIF</Text>
@@ -993,6 +1015,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 <Pressable
                   onPress={handleStartRecording}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  accessibilityRole="button"
+                  accessibilityLabel="Record voice note"
                   style={{ padding: 8, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 10 }}
                 >
                   <Icon name="Mic" size={20} color="#8B8D90" />
@@ -1024,6 +1048,23 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         onLike={handleContextLike}
         onDislike={handleContextDislike}
         tokenId={tokenId}
+      />
+
+      {/* Tip a comment's author. Always the EVM DHB flow — comment authors
+          are tipped as people, whatever chain the post lives on. */}
+      <GlassTipSheet
+        visible={tipComment !== null}
+        onClose={() => setTipComment(null)}
+        toAddress={tipComment?.user?.address || tipComment?.address || ""}
+        tokenId={Number(tokenId) || 0}
+        recipientName={
+          tipComment?.user?.displayName || tipComment?.user?.username
+        }
+        tipContext="user"
+        commentId={tipComment ? Number(tipComment.id) : undefined}
+        onSuccess={(amount) => {
+          if (tipComment) bumpTipTotal(Number(tipComment.id), amount);
+        }}
       />
     </View>
   );

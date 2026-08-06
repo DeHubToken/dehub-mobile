@@ -1,6 +1,7 @@
 import React from "react";
 import { View, TouchableOpacity, ViewStyle } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { colors } from "../../theme/colors";
 
 type InfoTooltipProps = {
   open: boolean;
@@ -23,13 +24,13 @@ const InfoTooltip: React.FC<InfoTooltipProps> = ({
   onOpenChange,
   children,
   triggerClassName,
-  panelClassName = "bg-zinc-900 border border-zinc-800 rounded-lg p-3",
+  panelClassName = "bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-lg p-3",
   widthClassName = "w-64",
   placement = "right",
   topClassName = "top-10",
   iconName = "information-circle",
   iconSize = 18,
-  iconColor = "#9CA3AF",
+  iconColor = colors.neutrals[400],
   hitSlop = { top: 8, bottom: 8, left: 8, right: 8 },
   style,
 }) => {
@@ -40,6 +41,8 @@ const InfoTooltip: React.FC<InfoTooltipProps> = ({
         hitSlop={hitSlop}
         className={triggerClassName}
         style={style}
+        accessibilityRole="button"
+        accessibilityLabel="More info"
       >
         <Ionicons name={iconName} size={iconSize} color={iconColor} />
       </TouchableOpacity>

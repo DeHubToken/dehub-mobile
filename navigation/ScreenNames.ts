@@ -50,6 +50,7 @@ export enum ScreenNames {
   Earnings = 'Earnings',
   Communities = 'Communities',
   CommunityDetail = 'CommunityDetail',
+  CommunityInvite = 'CommunityInvite',
   Glossary = 'Glossary',
   Guide = 'Guide',
   Events = 'Events',

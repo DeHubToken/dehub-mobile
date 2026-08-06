@@ -20,7 +20,7 @@ import { toastInfo } from '../../libs';
 
 export const SectionLabel: React.FC<{ label: string; icon?: IconName }> = ({ label, icon }) => (
   <View className="flex-row items-center mb-2 ml-1">
-    {icon ? <Icon name={icon} size={13} color="#9ca3af" /> : null}
+    {icon ? <Icon name={icon} size={13} color="#A6A9AC" /> : null}
     <Text
       className={`text-theme-neutrals-500 text-[11px] uppercase tracking-widest font-semibold ${icon ? 'ml-1.5' : ''}`}
     >
@@ -65,7 +65,7 @@ type BaseRowProps = {
 
 const RowShell: React.FC<BaseRowProps & { right?: React.ReactNode }> = ({
   icon,
-  iconColor = '#9ca3af',
+  iconColor = '#A6A9AC',
   label,
   description,
   disabled,
@@ -103,7 +103,7 @@ export const SettingsLinkRow: React.FC<
           <Icon
             name={external ? 'ExternalLink' : 'ChevronRight'}
             size={18}
-            color={rest.destructive ? '#ef4444' : '#6b7280'}
+            color={rest.destructive ? '#ef4444' : '#8B8D90'}
           />
         </View>
       }
@@ -131,6 +131,7 @@ export const SettingsToggleRow: React.FC<
   return (
     <RowShell
       {...rest}
+      disabled={rest.disabled || comingSoon}
       right={
         <CustomSwitch
           value={value}
@@ -201,7 +202,7 @@ export const SettingsOptionModal: React.FC<{
 /** Grey explainer block web renders under several sections. */
 export const SettingsNote: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <View className="mt-6 mx-4 p-4 bg-theme-neutrals-800/50 rounded-xl flex-row items-start">
-    <Icon name="Info" size={16} color="#6b7280" />
+    <Icon name="Info" size={16} color="#8B8D90" />
     <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1">{children}</Text>
   </View>
 );

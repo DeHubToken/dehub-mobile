@@ -23,7 +23,7 @@ const DescriptionBlock: React.FC<DescriptionBlockProps> = ({ title = 'Descriptio
   return (
     <View className="mt-4">
       <View className="bg-theme-neutrals-800 rounded-xl p-4 overflow-hidden">
-        <Text className="text-theme-neutrals-400 text-[10px] uppercase tracking-wide mb-2">
+        <Text className="text-theme-neutrals-400 text-xs uppercase tracking-wide mb-2">
           {title}
         </Text>
         <Text
@@ -43,8 +43,13 @@ const DescriptionBlock: React.FC<DescriptionBlockProps> = ({ title = 'Descriptio
           </Text>
         )}
         {showToggle && (
-          <TouchableOpacity onPress={onToggle} activeOpacity={0.7} className="mt-2 self-start">
-            <Text className="text-theme-neutrals-500 text-[10px]">
+          <TouchableOpacity
+            onPress={onToggle}
+            activeOpacity={0.7}
+            className="mt-2 self-start"
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
+            <Text className="text-theme-neutrals-500 text-xs">
               {showDesc ? 'Show less' : 'Show more'}
             </Text>
           </TouchableOpacity>

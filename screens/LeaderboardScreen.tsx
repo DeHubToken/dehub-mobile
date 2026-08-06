@@ -200,6 +200,7 @@ const LeaderboardScreen = () => {
               data={filteredData}
               keyExtractor={keyExtractor}
               renderItem={renderItem}
+              contentContainerStyle={{ paddingBottom: 24 }}
               refreshControl={
                 <RefreshControl
                   refreshing={refreshing}

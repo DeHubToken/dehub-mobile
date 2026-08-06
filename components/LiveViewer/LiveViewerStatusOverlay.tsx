@@ -55,8 +55,6 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
   endedAtDate,
   startedAtDate,
 }) => {
-  if (!status) return null;
-
   const durationText = useMemo(() => {
     if (!endedAtDate || !startedAtDate) return null;
     const ms = Math.max(0, endedAtDate.getTime() - startedAtDate.getTime());
@@ -67,6 +65,8 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
     const pad = (n: number) => n.toString().padStart(2, "0");
     return h > 0 ? `${pad(h)}:${pad(m)}:${pad(s)}` : `${pad(m)}:${pad(s)}`;
   }, [endedAtDate, startedAtDate]);
+
+  if (!status) return null;
 
   if (status === "loading") {
     return (

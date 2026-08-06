@@ -283,7 +283,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
     >
       <View className="p-6 gap-5 relative">
         <View className="gap-2">
-          <Text className="text-white font-bold text-3xl tracking-wider">
+          <Text className="text-white font-bold text-2xl tracking-wider">
             Transfer tokens
           </Text>
           {!!recipient && (
@@ -304,7 +304,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
           <TextInput
             keyboardType="numeric"
             placeholder="0"
-            placeholderTextColor="#666"
+            placeholderTextColor="#8B8D90"
             value={amount}
             onChangeText={setAmount}
             className="border border-theme-neutrals-700 rounded-lg px-3 h-12 text-white text-base"
@@ -339,7 +339,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
             <View className="relative">
               <TextInput
                 placeholder="Enter username or paste address"
-                placeholderTextColor="#666"
+                placeholderTextColor="#8B8D90"
                 value={query}
                 onChangeText={(t) => {
                   setQuery(t);
@@ -395,8 +395,10 @@ const TransferModal: React.FC<TransferModalProps> = ({
                   }}
                   className="absolute right-2 top-2 h-8 w-8 items-center justify-center"
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  accessibilityRole="button"
+                  accessibilityLabel="Clear recipient"
                 >
-                  <Ionicons name="close-circle" size={20} color="#e7e6e6ff" />
+                  <Ionicons name="close-circle" size={20} color="#E4E4E7" />
                 </TouchableOpacity>
               )}
             </View>
@@ -449,7 +451,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
             <TouchableOpacity
               disabled={!canSend || sending}
               onPress={handleSend}
-              className={`flex-row items-center gap-2 px-5 h-11 rounded-full bg-transparent ${
+              className={`flex-row items-center gap-2 px-5 h-11 rounded-xl bg-transparent ${
                 !canSend || sending ? "opacity-60" : ""
               }`}
             >

@@ -236,7 +236,7 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
         <RefreshControl
           refreshing={refreshing}
           onRefresh={handleRefresh}
-          tintColor={theme.colors.accentForeground}
+          tintColor={theme.colors.accent}
         />
       }
       ListFooterComponent={

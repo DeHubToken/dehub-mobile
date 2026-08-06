@@ -69,8 +69,10 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
             <View className="p-4 pb-5">
               <TouchableOpacity
                 onPress={onClose}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
                 className="absolute top-2 right-2 p-1 rounded-full bg-white/10"
+                accessibilityRole="button"
+                accessibilityLabel="Close"
               >
                 <X size={14} color="#ffffff" />
               </TouchableOpacity>

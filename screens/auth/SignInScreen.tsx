@@ -523,9 +523,10 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             }}
           />
 
+
           {/* Terms and Privacy */}
           <View className="mt-6">
-            <Text className="text-gray-500 text-sm text-center">
+            <Text className="text-gray-400 text-sm text-center">
               By continuing, you agree to our{" "}
               <Text
                 style={{ textDecorationLine: "underline" }}
@@ -552,16 +553,14 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           {/* Explore without signing in button */}
           <View className="items-center mb-8">
             <TouchableOpacity
-              className="border border-gray-600 rounded-full px-5 py-3"
+              className={`bg-white/10 border border-white/20 rounded-full px-5 py-3 ${
+                isLoading || needsUsername ? "opacity-40" : ""
+              }`}
               onPress={handleSkipOrClose}
               disabled={isLoading || needsUsername}
               accessibilityLabel={isFirstTimeUser ? "Explore DeHub without signing in" : "Continue exploring DeHub"}
             >
-              <Text
-                className={`text-white text-sm ${
-                  isLoading || needsUsername ? "opacity-40" : ""
-                }`}
-              >
+              <Text className="text-white text-sm">
                 {isFirstTimeUser ? "Explore DeHub without signing in" : "Continue exploring DeHub"}
               </Text>
             </TouchableOpacity>

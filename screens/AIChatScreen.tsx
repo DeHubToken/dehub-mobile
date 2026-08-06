@@ -157,6 +157,10 @@ function AIChatScreenInner() {
             userContext,
             isAuthenticated: !!user,
             userLanguage: getDeviceLanguage(),
+            // Full assistant surface — the agent gets the personal-data tools
+            // alongside the public ones and answers from live platform data.
+            surface: 'assistant',
+            callerAddress: user?.walletAddress || user?.address || undefined,
           });
           response = res.response;
           break;
@@ -431,7 +435,7 @@ function AIChatScreenInner() {
               <View style={s.typingRow}>
                 <Image source={AI_AVATAR} style={s.typingAvatar} />
                 <View style={s.typingBubble}>
-                  <ActivityIndicator size="small" color="#A6A9AC" />
+                  <ActivityIndicator size="small" color="#F4F4F5" />
                   <Text style={s.typingText}>
                     {isGeneratingImage ? 'Creating...' : 'Thinking...'}
                   </Text>
@@ -482,7 +486,7 @@ function AIChatScreenInner() {
 const s = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#010305',
   },
   welcomeWrap: {
     flex: 1,

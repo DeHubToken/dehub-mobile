@@ -14,10 +14,14 @@ env:
   NODE_VERSION: '20'
 
 jobs:
-  lint-typecheck:
-    name: Lint & Typecheck
+  # Typecheck and tests share one runner and one install. They were two jobs,
+  # and `cache: npm` caches the download but not node_modules — so a dependency
+  # tree this size paid the install twice per run to buy parallelism that a
+  # 20-file suite does not need.
+  verify:
+    name: Typecheck & Test
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -26,27 +30,24 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
 
+      # patches/ is in the key because postinstall runs patch-package: a changed
+      # patch has to invalidate the cached tree.
+      - name: Cache node_modules
+        id: node-modules-cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-${{ env.NODE_VERSION }}-${{ hashFiles('package-lock.json', 'patches/**') }}
+
       - name: Install dependencies
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
         run: npm ci --legacy-peer-deps
 
       - name: TypeScript check
         run: npx tsc --noEmit
 
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
-
+      # Thresholds are enforced by coverageThreshold in jest.config.js, so a
+      # coverage regression fails this step directly.
       - name: Run tests with coverage
         run: npm run test:ci
 
@@ -58,6 +59,9 @@ jobs:
           path: coverage/
           retention-days: 14
 
+      # coverage-summary.json only exists now that jest.config.js lists the
+      # json-summary reporter. Before that this guard fell through silently and
+      # printed nothing on every run.
       - name: Coverage summary
         if: always()
         run: |
@@ -73,35 +77,6 @@ jobs:
               console.log('Lines:     ', fmt(c.lines));
             " >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
-          fi
-
-  test-results:
-    name: Publish Results
-    runs-on: ubuntu-latest
-    needs: [test]
-    if: always()
-    steps:
-      - name: Download coverage
-        uses: actions/download-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage/
-
-      - name: Check coverage thresholds
-        run: |
-          if [ -f coverage/coverage-summary.json ]; then
-            node -e "
-              const c = require('./coverage/coverage-summary.json').total;
-              const threshold = 10;
-              const failed = [];
-              ['statements','branches','functions','lines'].forEach(k => {
-                if (c[k].pct < threshold) failed.push(k + ': ' + c[k].pct + '%');
-              });
-              if (failed.length) {
-                console.error('Coverage below ' + threshold + '% threshold:');
-                failed.forEach(f => console.error('  ' + f));
-                process.exit(1);
-              }
-              console.log('All coverage thresholds met (' + threshold + '%)');
-            "
+          else
+            echo "No coverage summary produced." >> $GITHUB_STEP_SUMMARY
           fi

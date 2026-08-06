@@ -114,7 +114,7 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
           <ShareRow
             icon="Repeat2"
             label="Undo Repost"
-            color="#F87171"
+            color="#EF4444"
             onPress={() => {
               onUndoRepost();
               onClose();

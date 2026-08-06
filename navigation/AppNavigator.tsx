@@ -44,7 +44,7 @@ const slideFromBottomWithOverlay: StackCardStyleInterpolator = ({ current, layou
     ],
   },
   overlayStyle: {
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    backgroundColor: 'rgba(0,0,0,0.35)',
     opacity: current.progress.interpolate({
       inputRange: [0, 1],
       outputRange: [0, 1],
@@ -105,7 +105,7 @@ export default function AppNavigator() {
       initialRouteName={ScreenNames.Root}
       screenOptions={{
         headerShown: false,
-        cardStyle: { backgroundColor: '#000' },
+        cardStyle: { backgroundColor: '#010305' },
       }}
     >
       <Stack.Screen
@@ -189,6 +189,10 @@ export default function AppNavigator() {
         <Stack.Screen
           name={ScreenNames.CommunityDetail}
           getComponent={() => require("../screens/CommunityDetailScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.CommunityInvite}
+          getComponent={() => require("../screens/CommunityInviteScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.Feed}

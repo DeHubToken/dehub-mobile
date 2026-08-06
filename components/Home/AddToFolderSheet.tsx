@@ -329,7 +329,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
                 contentContainerStyle={styles.listContent}
                 ListEmptyComponent={
                   <View style={styles.emptyContainer}>
-                    <Icon name="FolderPlus" size={48} color="#4B5563" />
+                    <Icon name="FolderPlus" size={48} color="#8B8D90" />
                     <Text style={styles.emptyText}>No folders created yet</Text>
                   </View>
                 }
@@ -340,7 +340,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
               <View style={styles.createForm}>
                 <TextInput
                   placeholder="Folder Name (e.g. Cooking, Travel)"
-                  placeholderTextColor="#4B5563"
+                  placeholderTextColor="#8B8D90"
                   value={newFolderName}
                   onChangeText={setNewFolderName}
                   style={styles.input}
@@ -349,7 +349,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
                 />
                 <TextInput
                   placeholder="Description (Optional)"
-                  placeholderTextColor="#4B5563"
+                  placeholderTextColor="#8B8D90"
                   value={newFolderDesc}
                   onChangeText={setNewFolderDesc}
                   style={[styles.input, { height: 60, textAlignVertical: "top" }]}
@@ -478,7 +478,7 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 6,
     borderWidth: 2,
-    borderColor: "#4B5563",
+    borderColor: "#8B8D90",
     alignItems: "center",
     justifyContent: "center",
   },

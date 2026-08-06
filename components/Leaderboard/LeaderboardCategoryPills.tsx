@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useRef, useEffect } from "react";
 import { Text, ScrollView, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { theme } from "../../theme";
 
 export type SortCategory = "holdings" | "sentTips" | "receivedTips" | "followers" | "likes";
 
@@ -69,6 +70,7 @@ const LeaderboardCategoryPills: React.FC<Props> = ({ active, onSelect }) => {
             key={cat.key}
             onPress={handlePress(cat.key)}
             activeOpacity={0.7}
+            hitSlop={{ top: 8, bottom: 8 }}
             className={`flex-row items-center px-4 py-2 rounded-full border ${
               isActive
                 ? "bg-white border-white"
@@ -78,7 +80,7 @@ const LeaderboardCategoryPills: React.FC<Props> = ({ active, onSelect }) => {
             <Ionicons
               name={cat.icon}
               size={14}
-              color={isActive ? "#010305" : "#A6A9AC"}
+              color={isActive ? theme.colors.neutrals[900] : theme.colors.neutrals[400]}
               style={{ marginRight: 6 }}
             />
             <Text

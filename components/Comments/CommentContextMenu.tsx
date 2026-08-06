@@ -173,9 +173,10 @@ const FloatingComment: React.FC<{
                 key={idx}
                 className={
                   part.isMention
-                    ? "font-bold text-theme-neutrals-100"
+                    ? "font-bold"
                     : "font-normal text-theme-neutrals-300"
                 }
+                style={part.isMention ? { color: "#D4D4D8" } : undefined}
               >
                 {part.text}
               </Text>
@@ -184,27 +185,27 @@ const FloatingComment: React.FC<{
         ) : null}
 
         {comment.imageUrl ? (
-          <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-700" style={{ maxWidth: 180 }}>
+          <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-700" style={{ maxWidth: 220 }}>
             <Image
               source={{ uri: resolveMediaUrl(comment.imageUrl) }}
-              style={{ width: 180, height: 135 }}
+              style={{ width: 220, height: 165 }}
               resizeMode="cover"
             />
           </View>
         ) : null}
 
         {comment.gifUrl ? (
-          <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-700" style={{ maxWidth: 180 }}>
+          <View className="mt-1.5 rounded-lg overflow-hidden bg-theme-neutrals-700" style={{ maxWidth: 220 }}>
             <Image
               source={{ uri: comment.gifUrl }}
-              style={{ width: 180, height: 135 }}
+              style={{ width: 220, height: 165 }}
               resizeMode="cover"
             />
           </View>
         ) : null}
 
         {comment.audioUrl ? (
-          <View className="mt-1.5 rounded-lg bg-theme-neutrals-700/60 px-2" style={{ maxWidth: 220 }}>
+          <View className="mt-1.5 rounded-lg bg-theme-neutrals-700/60 px-2" style={{ maxWidth: 260 }}>
             <VoiceNotePlayer
               audioUrl={resolveMediaUrl(comment.audioUrl)}
               duration={comment.audioDuration}
@@ -223,7 +224,7 @@ const FloatingComment: React.FC<{
           strokeWidth={1.8}
         />
         {(comment.likeCount ?? 0) > 0 && (
-          <Text style={{ fontSize: 10, color: "#8B8D90", marginTop: 2 }}>
+          <Text style={{ fontSize: 12, color: "#8B8D90", marginTop: 2 }}>
             {comment.likeCount}
           </Text>
         )}

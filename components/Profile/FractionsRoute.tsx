@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
   center: { flex: 1, alignItems: "center", justifyContent: "center", padding: 32, gap: 12 },
   grid: { padding: 16, paddingBottom: 80 },
   row: { justifyContent: "space-between" },
-  count: { color: "#6F7174", fontSize: 12, marginBottom: 12 },
+  count: { color: "#A6A9AC", fontSize: 12, marginBottom: 12 },
   card: {
     width: "48%",
     backgroundColor: "rgba(255,255,255,0.04)",
@@ -233,12 +233,10 @@ const styles = StyleSheet.create({
   },
   tokenId: { color: "#F9FBFF", fontSize: 13, fontWeight: "600" },
   quantity: { color: "#D4D4D8", fontSize: 12, fontWeight: "600", marginTop: 3 },
-  date: { color: "#6F7174", fontSize: 10, marginTop: 4 },
+  date: { color: "#A6A9AC", fontSize: 12, marginTop: 4 },
   errorText: { color: "#8B8D90", fontSize: 14, textAlign: "center" },
   retryBtn: { backgroundColor: "rgba(255,255,255,0.10)", borderRadius: 10, paddingHorizontal: 20, paddingVertical: 10 },
   retryText: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
-  emptyTitle: { color: "#F9FBFF", fontSize: 16, fontWeight: "600" },
-  emptySubtitle: { color: "#6F7174", fontSize: 13, textAlign: "center" },
 });
 
 export default FractionsRoute;

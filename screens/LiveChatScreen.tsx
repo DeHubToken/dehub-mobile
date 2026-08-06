@@ -466,7 +466,7 @@ const LiveChatScreen: React.FC = () => {
         return (
           <View className="items-center py-3">
             <View className="bg-white/5 rounded-full px-3 py-1">
-              <Text className="text-white/30 text-[11px] font-medium">{item.label}</Text>
+              <Text className="text-white/60 text-[11px] font-medium">{item.label}</Text>
             </View>
           </View>
         );
@@ -575,12 +575,12 @@ const LiveChatScreen: React.FC = () => {
         {joining ? (
           <>
             <ActivityIndicator size="large" color="rgba(255,255,255,0.3)" />
-            <Text className="text-white/30 text-sm mt-4">Joining chat...</Text>
+            <Text className="text-white/60 text-sm mt-4">Joining chat...</Text>
           </>
         ) : !connected ? (
           <>
             <Icon name="WifiOff" size={48} color="rgba(255,255,255,0.15)" />
-            <Text className="text-white/30 text-sm mt-3">Not connected</Text>
+            <Text className="text-white/60 text-sm mt-3">Not connected</Text>
             <TouchableOpacity
               onPress={reconnect}
               className="mt-3 px-4 py-2 bg-blue-500/20 rounded-full"
@@ -591,8 +591,8 @@ const LiveChatScreen: React.FC = () => {
         ) : (
           <>
             <Icon name="MessageCircle" size={48} color="rgba(255,255,255,0.1)" />
-            <Text className="text-white/30 text-sm mt-3">No messages yet</Text>
-            <Text className="text-white/20 text-xs mt-1">Be the first to say something!</Text>
+            <Text className="text-white/60 text-sm mt-3">No messages yet</Text>
+            <Text className="text-white/60 text-xs mt-1">Be the first to say something!</Text>
           </>
         )}
       </View>
@@ -685,7 +685,7 @@ const LiveChatScreen: React.FC = () => {
         >
           {typingText && (
             <View className="px-4 py-1.5 border-b border-white/5">
-              <Text className="text-white/30 text-xs italic">{typingText}</Text>
+              <Text className="text-white/60 text-xs italic">{typingText}</Text>
             </View>
           )}
 

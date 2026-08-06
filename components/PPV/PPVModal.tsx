@@ -435,8 +435,8 @@ const PPVModal: React.FC<PPVModalProps> = ({
           !toAddress ? "opacity-50" : ""
         } ${triggerClassName || ""}`}
       >
-        <Ionicons name="pricetag-outline" size={16} color="#fff" />
-        <Text className="text-white text-sm font-semibold">{triggerText}</Text>
+        <Ionicons name="pricetag-outline" size={16} color="#09090B" />
+        <Text className="text-theme-accent-foreground text-sm font-semibold">{triggerText}</Text>
       </TouchableOpacity>
     );
   };
@@ -604,7 +604,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
                 <AnimatedCheck
                   size={80}
                   className="bg-theme-accent"
-                  iconColor="#fff"
+                  iconColor="#09090B"
                   animateKey={phase}
                 />
                 <Text className="text-white text-base font-semibold">

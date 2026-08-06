@@ -1044,7 +1044,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     seededViewersRef.current = sid;
   }, [streamEntity, streamId]);
 
-  // Optimistic gift echo: ActionsRow will call this on on-chain success
+  // Optimistic gift echo: called on on-chain gift success
   const onGiftOptimistic = useCallback(
     ({ amount, message }: { amount: number; message?: string }) => {
       const username = (user as any)?.username || undefined;
@@ -1097,7 +1097,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     }
   }, [streamLoading, streamEntity, navigation, streamId]);
 
-  // Derive user vote for ActionsRow from isLiked field in stream entity
+  // Derive user vote from isLiked field in stream entity
   const actionsUserVote = useMemo(() => {
     if (typeof (streamEntity as any)?.isLiked === 'boolean') {
       return (streamEntity as any).isLiked ? 'like' : null;
@@ -1200,6 +1200,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             onProgress={() => {}}
             isLive={true}
             fullscreen
+            hideTopControls
           />
         ) : (
           <View className="flex-1 bg-black" />
