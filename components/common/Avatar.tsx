@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from "react";
 import {
-  Image,
   TouchableOpacity,
   View,
   Text,
   ViewStyle,
   ImageSourcePropType,
 } from "react-native";
+import SmartImage from "./SmartImage";
 
 interface AvatarProps {
   uri?: string | null;
@@ -45,7 +45,12 @@ const Avatar: React.FC<AvatarProps> = ({
   className,
   name,
 }) => {
-  const [loaded, setLoaded] = useState(false);
+  // There used to be a `loaded` state set from the Image's onLoad, purely to
+  // decide whether to show the initial behind it. That was a guaranteed extra
+  // render for every avatar in the feed as it scrolled into view — and with RN
+  // Image's lack of a disk cache, a re-download and re-decode each time a row
+  // recycled. The initial now simply sits underneath the (opaque) image, so
+  // there is nothing to toggle.
   const [errored, setErrored] = useState(false);
   const radius = rounded ? size / 2 : Math.round(size * 0.16);
   const isRemote = !!uri && uri !== "default-avatar";
@@ -66,51 +71,35 @@ const Avatar: React.FC<AvatarProps> = ({
           overflow: "hidden",
           borderWidth,
           borderColor,
-          backgroundColor: showImage && loaded ? "transparent" : INITIAL_BG,
+          backgroundColor: INITIAL_BG,
           alignItems: "center",
           justifyContent: "center",
         },
         style,
       ]}
     >
-      {showImage ? (
-        <>
-          <Image
-            source={{ uri: uri! }}
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: radius,
-              position: "absolute",
-            }}
-            resizeMode="cover"
-            onLoad={() => setLoaded(true)}
-            onError={() => { setLoaded(true); setErrored(true); }}
-          />
-          {!loaded && (
-            <Text
-              style={{
-                fontSize,
-                fontWeight: "700",
-                color: INITIAL_COLOR,
-              }}
-              numberOfLines={1}
-            >
-              {initial}
-            </Text>
-          )}
-        </>
-      ) : (
-        <Text
+      <Text
+        style={{ fontSize, fontWeight: "700", color: INITIAL_COLOR }}
+        numberOfLines={1}
+      >
+        {initial}
+      </Text>
+      {showImage && (
+        <SmartImage
+          source={{ uri: uri! }}
           style={{
-            fontSize,
-            fontWeight: "700",
-            color: INITIAL_COLOR,
+            width: "100%",
+            height: "100%",
+            borderRadius: radius,
+            position: "absolute",
           }}
-          numberOfLines={1}
-        >
-          {initial}
-        </Text>
+          // Same avatar across many rows is the common case, so the memory half
+          // of the cache does most of the work here; the recycling key keeps a
+          // reused row from flashing the previous user's face.
+          recyclingKey={uri}
+          transition={0}
+          onError={() => setErrored(true)}
+        />
       )}
     </View>
   );

@@ -77,6 +77,10 @@ export interface InfiniteFeedProps {
   trackFeedCardVisibility?: boolean;
 }
 
+// Hoisted: a fresh object literal would re-configure the native scroll view on
+// every render.
+const MAINTAIN_POSITION = { minIndexForVisible: 1 } as const;
+
 interface FeedItem extends GetNFTsResult {
   __listKey: string;
 }
@@ -384,6 +388,11 @@ const InfiniteFeedBase: React.FC<
         keyExtractor={keyExtractor || _keyExtractor}
         renderItem={renderFeedItem}
         ListHeaderComponent={composedListHeader}
+        // See InfiniteVideoFeed: anchors the scroll to the first visible row so
+        // a card that measures differently after its media decodes, or a header
+        // that grows once its data lands, adjusts contentOffset instead of
+        // shoving whatever the user was reading.
+        maintainVisibleContentPosition={MAINTAIN_POSITION}
         initialNumToRender={4}
         maxToRenderPerBatch={4}
         windowSize={7}
@@ -401,7 +410,11 @@ const InfiniteFeedBase: React.FC<
         scrollEventThrottle={16}
         nestedScrollEnabled
         onEndReached={endReached ? undefined : loadMore}
-        onEndReachedThreshold={0.4}
+        // Was 0.4 — the next page was only requested when the user was already
+        // within half a screen of the end, so they routinely hit the bottom and
+        // watched the skeleton footer appear. A full screen of runway means the
+        // page is usually appended before it is ever scrolled to.
+        onEndReachedThreshold={1.2}
         viewabilityConfig={feedCardViewabilityConfig}
         onViewableItemsChanged={handleViewableItemsChanged}
         extraData={trackFeedCardVisibility ? visibilityExtraData : undefined}

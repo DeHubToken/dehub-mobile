@@ -22,6 +22,7 @@ import FeedFilterPanel, { FeedFilters, PostTypeOption } from "../components/Home
 import StoriesBar from "../components/Story/StoriesBar";
 import { getCategoriesCached } from "../services/nft.service";
 import { storage } from "../libs/storage";
+import { promptFeedEvents } from "../libs/eventBus";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import { useIsFetching, useQueryClient } from "@tanstack/react-query";
 import FeedFilterLoader from "../components/Home/FeedFilterLoader";
@@ -513,6 +514,19 @@ export default function HomeScreen() {
     setFilterPanelVisible(false);
   }, [refreshShuffleSeed, beginFilterTransition]);
 
+  // PromptScreen tunes the feed on a separate route, and this screen only reads
+  // the persisted category on mount — so the result arrives over the event bus
+  // rather than through MMKV, which would otherwise only apply next cold start.
+  useEffect(
+    () =>
+      promptFeedEvents.onCategoryChosen((category) => {
+        beginFilterTransition();
+        setSelectedCategory(category);
+        if (!category) setFilters(DEFAULT_FILTERS);
+      }),
+    [beginFilterTransition],
+  );
+
   useEffect(() => {
     let mounted = true;
     (async () => {
@@ -541,7 +555,6 @@ export default function HomeScreen() {
           params={feedParams}
           pageSize={20}
           headerInset={headerHeight}
-          headerTranslateY={headerTranslateY}
           onRefresh={handleRefresh}
           onScrollBegin={handleScrollBegin}
           scrollHandler={scrollHandler}
@@ -558,7 +571,6 @@ export default function HomeScreen() {
           params={feedParams}
           pageSize={20}
           headerInset={headerHeight}
-          headerTranslateY={headerTranslateY}
           onRefresh={handleRefresh}
           onScrollBegin={handleScrollBegin}
           scrollHandler={scrollHandler}
@@ -575,7 +587,6 @@ export default function HomeScreen() {
         params={feedListParamsByType[feedType]}
         pageSize={10}
         headerInset={headerHeight}
-        headerTranslateY={headerTranslateY}
         onRefresh={handleRefresh}
         onScrollBegin={handleScrollBegin}
         scrollHandler={scrollHandler}

@@ -9,12 +9,19 @@ import {
 } from 'react-native-reanimated';
 import type { LayoutChangeEvent, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 
-const ANIM_CONFIG = { duration: 380, easing: Easing.bezier(0.25, 1, 0.5, 1) };
+const ANIM_DURATION = 380;
+const ANIM_CONFIG = { duration: ANIM_DURATION, easing: Easing.bezier(0.25, 1, 0.5, 1) };
 
 const TOP_THRESHOLD = 60;
-const SCROLL_DEAD_ZONE = 18;
+// 18px is inside the noise band of a normal fling — a finger that wobbles a
+// couple of pixels the other way flipped the header, and the reversal was
+// visible as a stutter. 40px is still well under a deliberate direction change.
+const SCROLL_DEAD_ZONE = 40;
 const JUMP_GUARD = 300;
-const COOLDOWN_MS = 250;
+// Must be >= ANIM_DURATION. At 250ms a second toggle could land while the first
+// was still animating, cancelAnimation would tear it out mid-flight and the
+// header would reverse from a partial offset — the "header flapping" jitter.
+const COOLDOWN_MS = ANIM_DURATION;
 
 export const useCollapsibleHeader = () => {
   const translateY = useSharedValue(0);
@@ -79,7 +86,10 @@ export const useCollapsibleHeader = () => {
     const now = Date.now();
     if (now - wLastToggle.value < COOLDOWN_MS) return;
 
-    if (wAccum.value > SCROLL_DEAD_ZONE && visibleSV.value === 1) {
+    // Only hide once the header's own band has been scrolled past. The feed's
+    // top spacer is a fixed `headerInset` tall, so hiding earlier would leave a
+    // blank strip where the header used to be.
+    if (wAccum.value > SCROLL_DEAD_ZONE && visibleSV.value === 1 && scrollY > h) {
       animateTo(-h);
       wAccum.value = 0;
       wLastToggle.value = now;
@@ -124,7 +134,7 @@ export const useCollapsibleHeader = () => {
       const now = Date.now();
       if (now - jsLastToggle.current < COOLDOWN_MS) return;
 
-      if (jsAccum.current > SCROLL_DEAD_ZONE && jsVisible.current) {
+      if (jsAccum.current > SCROLL_DEAD_ZONE && jsVisible.current && scrollY > h) {
         jsVisible.current = false;
         jsLastToggle.current = now;
         jsAccum.current = 0;

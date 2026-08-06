@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
+import SmartImage from "../common/SmartImage";
 import { BlurView } from "expo-blur";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../ui/Icon";
@@ -27,6 +28,7 @@ import { createViewRecorder } from "../../services/view.service";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { getCachedMuted, setMutedState } from "../../libs/videoMutedState";
 import { useDataSaver } from "../../hooks/useDataSaver";
+import { useAppPrefs } from "../../hooks/useAppPrefs";
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
@@ -96,6 +98,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(() => getCachedMuted());
   const [currentTime, setCurrentTime] = useState(0);
+  // `currentTime` only reaches the screen through the scrubber, which exists
+  // only while `showControls` is true. With `timeUpdateEventInterval = 0.5` the
+  // old unconditional setState re-rendered the autoplaying card twice a second
+  // for nothing — right through every fling. The ref carries the real value for
+  // seek/fullscreen; state is only committed while something is watching it.
+  const currentTimeRef = useRef(0);
+  const showControlsRef = useRef(false);
   const [videoDuration, setVideoDuration] = useState(0);
   const [hasStartedAutoplay, setHasStartedAutoplay] = useState(false);
   const [isBuffering, setIsBuffering] = useState(false);
@@ -107,6 +116,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const isPlayingRef = useRef(false);
   const autoplayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { liteMode } = useDataSaver();
+  const { autoplay: autoplayEnabled } = useAppPrefs();
   const playerRef = useRef<VideoPlayer | null>(null);
   const videoViewRef = useRef<VideoView>(null);
   const progressTrackWidthRef = useRef(0);
@@ -137,6 +147,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   const [showControls, setShowControls] = useState(false);
   const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Mirrors showControls for the timeUpdate listener (which is subscribed once
+  // per player and must not re-subscribe when the controls toggle). Revealing
+  // the controls seeds the scrubber from the ref so it starts at the real
+  // position rather than at whatever it held when it was last hidden.
+  useEffect(() => {
+    showControlsRef.current = showControls;
+    if (showControls) setCurrentTime(currentTimeRef.current);
+  }, [showControls]);
 
   const clearHideTimer = useCallback(() => {
     if (hideControlsTimerRef.current) {
@@ -205,7 +224,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     try {
       subs.push(
         player.addListener("timeUpdate", ({ currentTime: ct }: any) => {
-          setCurrentTime(ct ?? 0);
+          currentTimeRef.current = ct ?? 0;
+          if (showControlsRef.current) setCurrentTime(ct ?? 0);
           if (ct != null && viewRecorderRef.current) {
             viewRecorderRef.current.onProgress(
               ct * 1000,
@@ -233,6 +253,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // Data Saver: skip autoplay entirely, same as web's VideoCard lite-mode
     // guard. The card stays tappable — this only suppresses *auto* playback.
     if (liteMode) return;
+    // Settings → Appearance → Auto-play videos, mirroring web's AutoplayContext
+    // gate in VideoCard. Same as Data Saver, this only suppresses *auto* play.
+    if (!autoplayEnabled) return;
     autoplayTimerRef.current = setTimeout(() => {
       const p = playerRef.current;
       if (isPlayingRef.current || !p || !canPlay) return;
@@ -250,7 +273,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       }
     }, AUTOPLAY_DELAY);
     return () => { if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; } };
-  }, [canPlay, isVisible, hasStartedAutoplay, liteMode, stopPlayback, startPlayback, clearHideTimer]);
+  }, [canPlay, isVisible, hasStartedAutoplay, liteMode, autoplayEnabled, stopPlayback, startPlayback, clearHideTimer]);
 
   useEffect(() => {
     const h = (state: AppStateStatus) => {
@@ -319,14 +342,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   }, [startHideTimer]);
 
   const handleFullscreen = useCallback(() => {
-    const time = currentTime;
+    // From the ref, not state: state is only live while the controls are up.
+    const time = currentTimeRef.current;
     const muted = isMuted;
     stopPlayback();
     navigation.navigate(ScreenNames.FullscreenVideo as never, {
       videoUrl, startTime: time, isMuted: muted, thumbnail,
       tokenId, isSignedIn,
     } as never);
-  }, [currentTime, isMuted, videoUrl, thumbnail, stopPlayback, navigation]);
+  }, [isMuted, videoUrl, thumbnail, tokenId, isSignedIn, stopPlayback, navigation]);
 
 
   const handleSeek = useCallback(
@@ -334,6 +358,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       if (!playerRef.current || videoDuration <= 0 || progressTrackWidthRef.current <= 0) return;
       const ratio = Math.max(0, Math.min(1, locationX / progressTrackWidthRef.current));
       playerRef.current.currentTime = ratio * videoDuration;
+      currentTimeRef.current = ratio * videoDuration;
       setCurrentTime(ratio * videoDuration);
     },
     [videoDuration]
@@ -396,7 +421,20 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   return (
     <View style={styles.container}>
       {thumbnail ? (
-        <Image source={{ uri: thumbnail }} style={styles.thumbnail} resizeMode="cover" />
+        // SmartImage (expo-image), not RN Image: RN's has no disk cache and no
+        // recycling key, so every time FlatList reused this cell the full-width
+        // thumbnail was re-fetched and re-decoded on the way past — the biggest
+        // single source of dropped frames while flinging a video feed.
+        // `recyclingKey` tells expo-image the view is being reused for a
+        // different source, so it drops the old bitmap instead of briefly
+        // showing the previous card's thumbnail.
+        <SmartImage
+          source={{ uri: thumbnail }}
+          style={styles.thumbnail}
+          contentFit="cover"
+          recyclingKey={thumbnail}
+          transition={0}
+        />
       ) : (
         <View style={[styles.thumbnail, styles.noThumb]}>
           <Icon name="VideoOff" size={40} color="#666" />
