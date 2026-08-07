@@ -8,12 +8,28 @@
  * imported (pasted private key) wallets have none and will get a clear error,
  * same as before.
  */
-import { Connection, Keypair, Transaction } from "@solana/web3.js";
+import { Connection, Keypair, SendTransactionError, Transaction } from "@solana/web3.js";
 import { Buffer } from "buffer";
-import { getAuthUser } from "../libs/auth.utils";
-import { getLocalSolanaSecretKeyHex } from "../libs/identity-wallet";
+import { getAuthUser, getStoredSupabaseUserId } from "../libs/auth.utils";
+import { getLocalSolanaSecretKeyHex, getOrCreateSolanaKeypairForAddress } from "../libs/identity-wallet";
 import { getSolanaRpcUrl, SOLANA_MAINNET_CHAIN_ID } from "../config/solana.constants";
 import { apiClient } from "../libs/api.client";
+
+export interface SolanaMintStatus {
+  chainsConfigured: number[];
+  mintingEnabled: boolean;
+  message: string;
+}
+
+/** GET /solana/status — whether the backend can mint on Solana right now. */
+export async function getSolanaMintStatus(): Promise<SolanaMintStatus> {
+  const res = await apiClient.get<SolanaMintStatus | { result: SolanaMintStatus }>(
+    "/solana/status",
+    { isAuthRequired: false },
+  );
+  const raw = (res as any)?.result ?? res;
+  return raw as SolanaMintStatus;
+}
 
 let cachedKeypair: Keypair | null = null;
 
@@ -31,7 +47,17 @@ export async function getSolanaKeypair(): Promise<Keypair> {
   if (cachedKeypair) return cachedKeypair;
   const user = await getAuthUser<any>();
   const address: string | undefined = user?.walletAddress || user?.address;
-  const hex = address ? await getLocalSolanaSecretKeyHex(address) : null;
+  let hex = address ? await getLocalSolanaSecretKeyHex(address) : null;
+
+  // Sign-in flows provision this keypair, but a session restored from a
+  // persisted login never re-runs them — that left every account signed in
+  // before this backfill existed stuck with no keypair. Create it lazily here
+  // for any Supabase-identity (social/email) wallet.
+  if (!hex && address && (await getStoredSupabaseUserId())) {
+    const provisioned = await getOrCreateSolanaKeypairForAddress(address).catch(() => null);
+    hex = provisioned?.secretKeyHex ?? null;
+  }
+
   if (!hex) {
     throw new Error(
       "Solana wallet unavailable. Sign in with a social account to post on Solana.",
@@ -130,6 +156,17 @@ export async function broadcastSolanaMint(
       preflightCommitment: "confirmed",
     });
   } catch (err) {
+    // web3.js's own error text just says "call getLogs() for full details" —
+    // without actually calling it, every simulation failure surfaces as the
+    // same useless "Transaction simulation failed" message.
+    if (err instanceof SendTransactionError) {
+      const logs = await err.getLogs(connection).catch(() => null);
+      console.error("[Solana] sendRawTransaction simulation failed", {
+        message: err.message,
+        logs,
+      });
+    }
+
     const msg = err instanceof Error ? err.message : String(err);
     const lower = msg.toLowerCase();
     if (lower.includes("insufficient")) {

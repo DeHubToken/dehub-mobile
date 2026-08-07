@@ -1,10 +1,10 @@
 import React, { memo } from "react";
 import {
   ActivityIndicator,
-  Pressable,
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
   type StyleProp,
   type TextInputProps,
@@ -106,26 +106,25 @@ export const AuthButton: React.FC<AuthButtonProps> = memo(
     const foreground = VARIANT_FOREGROUND[variant];
 
     return (
-      <Pressable
+      <TouchableOpacity
         onPress={onPress}
         disabled={isDisabled}
+        activeOpacity={0.7}
         accessibilityRole="button"
         accessibilityLabel={accessibilityLabel ?? label}
         accessibilityHint={accessibilityHint}
         accessibilityState={{ disabled: isDisabled, busy: !!loading }}
-        style={({ pressed }) => [
+        style={[
           styles.button,
           align === "start" && styles.buttonStart,
-          variant === "primary" && {
-            backgroundColor: pressed ? authColors.primaryPressed : authColors.primary,
-          },
+          variant === "primary" && { backgroundColor: authColors.primary },
           variant === "secondary" && {
-            backgroundColor: pressed ? authColors.surfacePressed : authColors.surface,
+            backgroundColor: authColors.surface,
             borderWidth: 1,
             borderColor: authColors.border,
           },
           variant === "ghost" && {
-            backgroundColor: pressed ? authColors.surface : "transparent",
+            backgroundColor: "transparent",
             borderWidth: 1,
             borderColor: authColors.border,
           },
@@ -154,7 +153,7 @@ export const AuthButton: React.FC<AuthButtonProps> = memo(
             {trailing}
           </>
         )}
-      </Pressable>
+      </TouchableOpacity>
     );
   }
 );
@@ -178,18 +177,19 @@ export interface AuthTextButtonProps {
  */
 export const AuthTextButton: React.FC<AuthTextButtonProps> = memo(
   ({ label, onPress, disabled, tone = "muted", align = "center", accessibilityLabel, style }) => (
-    <Pressable
+    <TouchableOpacity
       onPress={onPress}
       disabled={disabled}
+      activeOpacity={0.6}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel ?? label}
       accessibilityState={{ disabled: !!disabled }}
       hitSlop={AUTH_HIT_SLOP}
-      style={({ pressed }) => [
+      style={[
         styles.textButton,
         align === "start" && { alignItems: "flex-start" },
         align === "end" && { alignItems: "flex-end" },
-        (disabled || pressed) && { opacity: disabled ? AUTH_DISABLED_OPACITY : 0.6 },
+        disabled && { opacity: AUTH_DISABLED_OPACITY },
         style,
       ]}
     >
@@ -201,7 +201,7 @@ export const AuthTextButton: React.FC<AuthTextButtonProps> = memo(
       >
         {label}
       </Text>
-    </Pressable>
+    </TouchableOpacity>
   )
 );
 AuthTextButton.displayName = "AuthTextButton";
@@ -253,17 +253,18 @@ export interface AuthIconButtonProps {
  */
 export const AuthIconButton: React.FC<AuthIconButtonProps> = memo(
   ({ icon, onPress, accessibilityLabel, disabled, color = authColors.muted, size = 20 }) => (
-    <Pressable
+    <TouchableOpacity
       onPress={onPress}
       disabled={disabled}
+      activeOpacity={0.6}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
       accessibilityState={{ disabled: !!disabled }}
       hitSlop={AUTH_HIT_SLOP}
-      style={({ pressed }) => [styles.iconButton, (pressed || disabled) && { opacity: 0.6 }]}
+      style={[styles.iconButton, disabled && { opacity: 0.6 }]}
     >
       <Ionicons name={icon} size={size} color={color} />
-    </Pressable>
+    </TouchableOpacity>
   )
 );
 AuthIconButton.displayName = "AuthIconButton";
