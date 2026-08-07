@@ -21,11 +21,14 @@ interface NavItem {
   tooltip: string;
 }
 
+// Order matters twice over: it is the pager's page order (HomeScreen's
+// TAB_ORDER must stay identical — the two are indexed against each other) and
+// it matches web's FEED_TABS, so the same tab sits in the same place on both.
 const NAV_ITEMS: NavItem[] = [
   { icon: "House", postType: "all", tooltip: "Home" },
-  { icon: "Video", postType: "video", tooltip: "Videos" },
-  { icon: "Image", postType: "feed-images", tooltip: "Images" },
   { icon: "Film", postType: "short", tooltip: "Shorts" },
+  { icon: "Image", postType: "feed-images", tooltip: "Images" },
+  { icon: "Video", postType: "video", tooltip: "Videos" },
   { icon: "Mic", postType: "feed-audio", tooltip: "Music" },
   { icon: "Radio", postType: "live", tooltip: "Live" },
 ];
@@ -43,6 +46,14 @@ interface FeedNavBarProps {
   hasActiveFilters: boolean;
   onPostTypeChange: (postType: PostTypeOption) => void;
   onFilterPress: () => void;
+  /**
+   * While a sub-view is up over the feed (the image drawer), the leading slot
+   * stops being the filter toggle and becomes that sub-view's way out — the
+   * same slot doing the same job as web's nav pill, so leaving a feed is always
+   * the same control in the same place.
+   */
+  backMode?: boolean;
+  onBackPress?: () => void;
 }
 
 // Web-parity slide: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1). Only used for
@@ -79,9 +90,11 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   hasActiveFilters,
   onPostTypeChange,
   onFilterPress,
+  backMode = false,
+  onBackPress,
 }) => {
   const [containerWidth, setContainerWidth] = useState(0);
-  const buttonCount = NAV_ITEMS.length + 1; // +1 for filter button
+  const buttonCount = NAV_ITEMS.length + 1; // +1 for the leading filter/back slot
   const buttonWidth = containerWidth > 0 ? containerWidth / buttonCount : 60;
 
   // Read on the UI thread by the drag worklet, which cannot see React refs.
@@ -147,9 +160,11 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
     [buttonWidth, commitIndex, progress, dragStart],
   );
 
-  // Sliding glass indicator — always visible, UI-thread driven
+  // Sliding glass indicator — always visible, UI-thread driven. The +1 is the
+  // filter/back slot the row now leads with: tab 0 starts one slot in, so
+  // without it the indicator sits under the filter button on the Home tab.
   const indicatorStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: progress.value * buttonWidth }],
+    transform: [{ translateX: (progress.value + 1) * buttonWidth }],
     width: buttonWidth,
   }));
 
@@ -180,18 +195,18 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
           </Reanimated.View>
 
           <View style={styles.navRow}>
-            {NAV_ITEMS.map((item, index) => (
-              <NavButton
-                key={item.postType}
-                icon={item.icon}
-                active={index === activeIndex}
-                onPress={() => handleNavPress(item.postType)}
-              />
-            ))}
-
-            <Pressable onPress={onFilterPress} style={styles.navButton}>
+            {/* Leading slot, web parity: filter toggle normally, the image
+                drawer's back arrow while that drawer is up. */}
+            <Pressable
+              onPress={backMode ? onBackPress : onFilterPress}
+              style={styles.navButton}
+              accessibilityRole="button"
+              accessibilityLabel={backMode ? "Back to grid" : "Feed filters"}
+            >
               {({ pressed }) => {
-                const filterActive = isFilterOpen || hasActiveFilters;
+                // In back mode the glass pill is suppressed even with filters
+                // active — the slot is not reporting filter state any more.
+                const filterActive = !backMode && (isFilterOpen || hasActiveFilters);
                 return (
                   <>
                     {filterActive && (
@@ -203,16 +218,25 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
                     )}
                     <View style={{ opacity: pressed ? 0.6 : 1 }}>
                       <Icon
-                        name={isFilterOpen ? "X" : "Settings2"}
+                        name={backMode ? "ArrowLeft" : isFilterOpen ? "X" : "Settings2"}
                         size={16}
-                        color={filterActive ? "#FFFFFF" : "#71717A"}
-                        strokeWidth={filterActive ? 2 : 1.8}
+                        color={filterActive || backMode ? "#FFFFFF" : "#71717A"}
+                        strokeWidth={filterActive || backMode ? 2 : 1.8}
                       />
                     </View>
                   </>
                 );
               }}
             </Pressable>
+
+            {NAV_ITEMS.map((item, index) => (
+              <NavButton
+                key={item.postType}
+                icon={item.icon}
+                active={index === activeIndex}
+                onPress={() => handleNavPress(item.postType)}
+              />
+            ))}
           </View>
         </View>
       </View>
