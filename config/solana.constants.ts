@@ -19,7 +19,9 @@ export function isEvmChain(chainId?: number | null): boolean {
 }
 
 export const SOLANA_RPC_URLS: Record<number, string> = {
-  [SOLANA_MAINNET_CHAIN_ID]: "https://api.mainnet-beta.solana.com",
+  // Public mainnet-beta RPC forbids sendTransaction (403) — mirrors the web
+  // app's fallback (cosmic-echo-hero/src/lib/solana/mint.ts).
+  [SOLANA_MAINNET_CHAIN_ID]: "https://solana-rpc.publicnode.com",
   [SOLANA_DEVNET_CHAIN_ID]: "https://api.devnet.solana.com",
 };
 

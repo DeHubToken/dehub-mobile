@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, Pressable, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "../ui/GlassModal";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";
@@ -318,9 +318,10 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   {(["biometric", "password"] as const).map((choice) => {
                     const active = protectionChoice === choice;
                     return (
-                      <Pressable
+                      <TouchableOpacity
                         key={choice}
                         onPress={() => setProtectionChoice(choice)}
+                        activeOpacity={0.7}
                         accessibilityRole="tab"
                         accessibilityState={{ selected: active }}
                         style={[styles.segmentItem, active && styles.segmentItemActive]}
@@ -328,7 +329,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                         <Text style={[styles.segmentLabel, active && styles.segmentLabelActive]}>
                           {choice === "biometric" ? "Biometric" : "Password"}
                         </Text>
-                      </Pressable>
+                      </TouchableOpacity>
                     );
                   })}
                 </View>
