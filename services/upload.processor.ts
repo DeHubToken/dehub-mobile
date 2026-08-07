@@ -6,7 +6,7 @@ import {
   type UploadJob,
   type MintParams,
 } from "../store/upload.store";
-import { xhrUploadFormData } from "../libs/xhr-upload";
+import { unwrapUploadResponse, xhrUploadFormData, isRateLimitUploadError } from "../libs/xhr-upload";
 import { getContractsForMint } from "../libs/contract.factory";
 import { mintNftOnChain, mintWithBounty } from "../services/mint.service";
 import { broadcastSolanaMint } from "../services/solana.service";
@@ -20,6 +20,54 @@ import { createPoll } from "../services/polls.service";
 
 // Abort tracking per-job
 const abortFlags: Record<string, { current: boolean }> = {};
+
+/** Backoff when api.dehub.io's Solana RPC returns 429 during /user_mint. */
+const SOLANA_RATE_LIMIT_RETRIES = 3;
+const SOLANA_RATE_LIMIT_DELAYS_MS = [10_000, 25_000, 60_000];
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function uploadMintFormData(
+  job: UploadJob,
+  fd: FormData,
+  endpoint: string,
+  abortRef: { current: boolean },
+  onProgress: (frac: number) => void,
+): Promise<any> {
+  let lastError: Error | null = null;
+
+  for (let attempt = 0; attempt <= SOLANA_RATE_LIMIT_RETRIES; attempt++) {
+    if (abortRef.current) throw new Error("Upload cancelled");
+
+    try {
+      return await xhrUploadFormData<any>({
+        endpoint,
+        formData: fd,
+        onProgress,
+        abortRef,
+      });
+    } catch (e: any) {
+      lastError = e instanceof Error ? e : new Error(String(e?.message || e));
+      const canRetry =
+        job.isSolana &&
+        isRateLimitUploadError(lastError.message) &&
+        attempt < SOLANA_RATE_LIMIT_RETRIES;
+
+      if (!canRetry) throw lastError;
+
+      const delay = SOLANA_RATE_LIMIT_DELAYS_MS[attempt] ?? 60_000;
+      console.warn(
+        `[upload.processor] Solana RPC rate limit on ${endpoint}, ` +
+          `retry ${attempt + 1}/${SOLANA_RATE_LIMIT_RETRIES} in ${delay / 1000}s`,
+      );
+      await sleep(delay);
+    }
+  }
+
+  throw lastError ?? new Error("Upload failed");
+}
 
 export function getAbortRef(jobId: string) {
   if (!abortFlags[jobId]) abortFlags[jobId] = { current: false };
@@ -100,6 +148,10 @@ function rebuildFormData(job: UploadJob): FormData {
     fd.append("quotedTokenId", String(job.quotedTokenId));
   }
 
+  if (payload.scheduledAt) {
+    fd.append("scheduledAt", payload.scheduledAt);
+  }
+
   return fd;
 }
 
@@ -116,19 +168,23 @@ async function processJob(job: UploadJob): Promise<void> {
     const fd = rebuildFormData(job);
     const endpoint = job.isQuote ? "/quote_post" : "/user_mint";
 
-    const res = await xhrUploadFormData<any>({
+    const res = await uploadMintFormData(
+      job,
+      fd,
       endpoint,
-      formData: fd,
-      onProgress: (frac) => uploadActions.updateProgress(job.id, frac * 0.8),
       abortRef,
-    });
+      (frac) => uploadActions.updateProgress(job.id, frac * 0.8),
+    );
 
     uploadActions.updateProgress(job.id, 0.82);
     uploadActions.updateStage(job.id, "processing");
 
-    const result = res?.data ?? res;
+    const result = unwrapUploadResponse(res);
     if (result?.error) {
-      throw new Error(result?.error_msg || result?.msg || "Upload failed");
+      // error_msg/msg is often a one-line summary ("Failed to mint NFT") with
+      // the actual cause only in the rest of the backend's response body.
+      console.error(`[upload.processor] ${endpoint} returned an error`, result);
+      throw new Error(result?.error_msg || result?.msg || result?.message || "Upload failed");
     }
 
     const createdTokenId = Number(result?.createdTokenId);
@@ -136,7 +192,7 @@ async function processJob(job: UploadJob): Promise<void> {
     // Solana mint: backend returns a partially-signed tx + mint address instead of v/r/s.
     const isSolanaMint = !!(result?.isSolana && result?.transaction && result?.mintAddress);
     if (job.isSolana || isSolanaMint) {
-      if (!isSolanaMint || !createdTokenId) {
+      if (!isSolanaMint || !Number.isFinite(createdTokenId)) {
         throw new Error(
           result?.isSolana
             ? "Solana mint data incomplete from server. Please try again."
@@ -155,7 +211,7 @@ async function processJob(job: UploadJob): Promise<void> {
       const r = result?.r;
       const s = result?.s;
 
-      if (createdTokenId == null || timestamp == null || v == null || !r || !s) {
+      if (!Number.isFinite(createdTokenId) || timestamp == null || v == null || !r || !s) {
         throw new Error("Mint signature payload missing from server response");
       }
 

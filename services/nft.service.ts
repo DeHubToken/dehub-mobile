@@ -769,7 +769,8 @@ export interface MintNftResponse {
 export async function minNft(data: FormData): Promise<MintNftResponse> {
   try {
     const res = await apiClient.post<MintNftResponse>(`/user_mint`, data, { isAuthRequired: true });
-    return res;
+    const raw = (res as any)?.data ?? res;
+    return (raw as any)?.result ?? raw;
   } catch (e) {
     console.error('[NFTService] minNft error', e);
     throw e;

@@ -375,14 +375,23 @@ export function useUploadPost() {
 
   const preUploadCheck = useCallback(
     (p: UploadPayload): ValidationResult => {
-      // Local wallets on a chain with Safe/Pimlico support (Base, BNB) are gasless --
-      // no ETH needed regardless of balance. Only chains without an AA setup still
-      // fall back to a plain EOA transaction, which does need ETH for gas.
-      if (authMethod === "local" && !isChainAASupported(activeChainId) && ethBalance <= 0) {
-        return {
-          valid: false,
-          error: "Gas sponsorship isn't available on this network. Please deposit ETH for gas and try again.",
-        };
+      const postingOnSolana = isSolanaChain(p.postChainId);
+
+      // Solana posts sign a partial tx with the embedded ed25519 wallet — no EVM gas.
+      if (!postingOnSolana) {
+        // Local wallets on a chain with Safe/Pimlico support (Base, BNB) are gasless --
+        // no ETH needed regardless of balance. Only chains without an AA setup still
+        // fall back to a plain EOA transaction, which does need ETH for gas.
+        if (authMethod === "local" && !isChainAASupported(activeChainId) && ethBalance <= 0) {
+          return {
+            valid: false,
+            error: "Gas sponsorship isn't available on this network. Please deposit ETH for gas and try again.",
+          };
+        }
+      }
+
+      if (postingOnSolana && p.monetization.bountyEnabled) {
+        return { valid: false, error: "Bounty is not available on Solana posts." };
       }
 
       // For bounty, verify the user has enough tokens
@@ -595,7 +604,13 @@ export function useUploadPost() {
 
       // Solana post (#41): mints on Solana via the user's base58 wallet as `minter`.
       // The EVM `address` (auth/owner identity) is kept in walletAddress.
-      const isSolanaPost = isSolanaChain(p.postChainId) && !!p.solanaAddress;
+      const postingOnSolana = isSolanaChain(p.postChainId);
+      const isSolanaPost = postingOnSolana && !!p.solanaAddress;
+
+      if (postingOnSolana && !p.solanaAddress) {
+        toastError("Solana wallet unavailable. Sign in with a social account to post on Solana.");
+        return false;
+      }
 
       const job: UploadJob = {
         id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,

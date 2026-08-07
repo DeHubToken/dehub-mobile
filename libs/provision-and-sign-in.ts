@@ -335,7 +335,10 @@ async function handleReadyResolution(
   if (supabaseRowMatchesLocal) {
     try {
       const web3AuthMeta = await deps.getSupabaseAuthMeta();
-      deps.getOrCreateSolanaKeypairForAddress(resolution.address).catch(() => {});
+      // Awaited so the Solana keypair is in SecureStore before sign-in
+      // completes — a fire-and-forget call here raced posting/paying on
+      // Solana right after sign-in, throwing "Solana wallet unavailable".
+      await deps.getOrCreateSolanaKeypairForAddress(resolution.address).catch(() => {});
       await deps.completeLocalSignIn(resolution.address, resolution.privateKey, web3AuthMeta);
       await markSupabaseIdentitySignedIn(supabaseUserId);
       return { kind: "signed-in" };
