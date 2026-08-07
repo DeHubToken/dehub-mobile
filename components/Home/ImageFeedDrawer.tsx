@@ -1,4 +1,12 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   BackHandler,
   Dimensions,
@@ -81,8 +89,19 @@ export interface ImageFeedDrawerProps {
   scrollHandler?: any;
   onScrollBegin?: () => void;
   onScrollEnd?: () => void;
+  /**
+   * The X in the grab handle. Hosts whose own chrome offers a way out — the
+   * home nav bar, whose leading slot becomes a back arrow — turn it off rather
+   * than show two exits at once. The routed host has no nav bar, so it keeps it.
+   */
+  showCloseButton?: boolean;
   /** Called once the sheet has finished animating off-screen. */
   onClose: () => void;
+}
+
+export interface ImageFeedDrawerHandle {
+  /** Slide the sheet out, then fire `onClose`. Same path as the X and back. */
+  close: () => void;
 }
 
 /**
@@ -101,7 +120,7 @@ export interface ImageFeedDrawerProps {
  * and shift every row below the fold — the same trap documented in
  * HomeImageGrid.
  */
-const ImageFeedDrawer: React.FC<ImageFeedDrawerProps> = ({
+const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(({
   initialItems,
   initialIndex,
   feedParams,
@@ -112,8 +131,9 @@ const ImageFeedDrawer: React.FC<ImageFeedDrawerProps> = ({
   scrollHandler,
   onScrollBegin,
   onScrollEnd,
+  showCloseButton = true,
   onClose,
-}) => {
+}, ref) => {
   const [items, setItems] = useState<UnifiedFeedItem[]>(initialItems);
   // The tapped post is rotated to the front (see orderedItems), so the card in
   // view on open is index 0 — not initialIndex.
@@ -159,6 +179,10 @@ const ImageFeedDrawer: React.FC<ImageFeedDrawerProps> = ({
       if (finished) runOnJS(onClose)();
     });
   }, [sheetY, onClose]);
+
+  // The host's nav bar drives the same animated dismissal the X and the flick
+  // use, rather than unmounting the sheet from under itself.
+  useImperativeHandle(ref, () => ({ close }), [close]);
 
   // Back closes the sheet instead of unwinding the whole screen behind it.
   useEffect(() => {
@@ -387,21 +411,25 @@ const ImageFeedDrawer: React.FC<ImageFeedDrawerProps> = ({
             pointerEvents={handleActive ? "auto" : "none"}
           >
             <View style={styles.grabBar} />
-            <Pressable
-              onPress={close}
-              hitSlop={14}
-              accessibilityRole="button"
-              accessibilityLabel="Close images"
-              style={styles.closeBtn}
-            >
-              <Icon name="X" size={18} color={colors.neutrals[400]} />
-            </Pressable>
+            {showCloseButton && (
+              <Pressable
+                onPress={close}
+                hitSlop={14}
+                accessibilityRole="button"
+                accessibilityLabel="Close images"
+                style={styles.closeBtn}
+              >
+                <Icon name="X" size={18} color={colors.neutrals[400]} />
+              </Pressable>
+            )}
           </Animated.View>
         </GestureDetector>
       </Animated.View>
     </View>
   );
-};
+});
+
+ImageFeedDrawer.displayName = "ImageFeedDrawer";
 
 export default ImageFeedDrawer;
 
