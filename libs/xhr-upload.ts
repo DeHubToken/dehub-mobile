@@ -15,6 +15,47 @@ export interface XhrUploadOptions {
   formData: FormData;
   onProgress?: (fraction: number) => void;
   abortRef?: { current: boolean };
+  /** Unwrap `{ result: … }` envelopes — mirrors dehubweb authedUpload. Default true. */
+  unwrapResult?: boolean;
+}
+
+/** Normalize mint/upload API payloads (`{ result }`, `{ data }`, or flat). */
+export function unwrapUploadResponse<T = any>(res: unknown, unwrapResult = true): T {
+  const raw = (res as any)?.data ?? res;
+  if (!unwrapResult) return raw as T;
+  return ((raw as any)?.result ?? raw) as T;
+}
+
+/** True when a thrown/rejected upload error looks like an upstream Solana RPC 429. */
+export function isRateLimitUploadError(message?: string): boolean {
+  if (!message) return false;
+  const lower = message.toLowerCase();
+  return (
+    lower.includes("429") ||
+    lower.includes("rate limit") ||
+    lower.includes("too many requests") ||
+    lower.includes("busy right now")
+  );
+}
+
+/** Turn backend mint/upload error bodies into a user-facing message. */
+export function formatUploadErrorMessage(body: any, fallback: string): string {
+  const parts = [body?.message, body?.msg, body?.error_msg, body?.error]
+    .filter((v): v is string => typeof v === "string" && v.trim().length > 0)
+    .join(" ");
+
+  const lower = parts.toLowerCase();
+  if (isRateLimitUploadError(lower)) {
+    return (
+      "Solana posting is temporarily unavailable — DeHub's server hit an RPC rate limit. " +
+      "Wait a few minutes and retry, or switch to Base/BNB to post now."
+    );
+  }
+  if (lower.includes("insufficient") && lower.includes("sol")) {
+    return "Insufficient SOL for transaction fees. Add a small amount of SOL to your wallet and try again.";
+  }
+
+  return body?.msg || body?.error_msg || body?.message || fallback;
 }
 
 export async function xhrUploadFormData<T = any>(
@@ -61,18 +102,21 @@ export async function xhrUploadFormData<T = any>(
       settle(() => {
         if (xhr.status >= 200 && xhr.status < 300) {
           try {
-            resolve(JSON.parse(xhr.responseText));
+            const parsed = JSON.parse(xhr.responseText);
+            resolve(unwrapUploadResponse<T>(parsed, opts.unwrapResult !== false));
           } catch {
             reject(new Error("Invalid JSON response from server"));
           }
         } else {
           let msg = `Upload failed (${xhr.status})`;
+          let body: any;
           try {
-            const body = JSON.parse(xhr.responseText);
-            if (body?.msg || body?.error_msg || body?.message) {
-              msg = body.msg || body.error_msg || body.message;
-            }
+            body = JSON.parse(xhr.responseText);
+            msg = formatUploadErrorMessage(body, msg);
           } catch {}
+          // msg is a one-line summary; the rest of the body is usually where
+          // the actual cause (a validation error, a chain-specific reason) is.
+          console.error(`[xhr-upload] ${opts.endpoint} failed (${xhr.status})`, body ?? xhr.responseText);
           reject(new Error(msg));
         }
       });

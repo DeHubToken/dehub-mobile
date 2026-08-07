@@ -37,7 +37,7 @@ import { useUser, useAuthActions, useProvider } from "../context/AuthContext";
 import { useWeb3Provider } from "../hooks/use-web3";
 import ChainSelector from "../components/common/ChainSelector";
 import { isSolanaChain } from "../config/solana.constants";
-import { getSolanaAddress } from "../services/solana.service";
+import { getSolanaAddress, getSolanaMintStatus } from "../services/solana.service";
 import { useKeyboard } from "../hooks/useKeyboard";
 import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
@@ -111,6 +111,15 @@ export default function UploadScreen() {
         if (!addr) {
           toastError("Solana posting needs a social login. Sign in with a social account to continue.");
           return;
+        }
+        try {
+          const status = await getSolanaMintStatus();
+          if (status.mintingEnabled === false) {
+            toastError(status.message || "Solana posting is temporarily unavailable. Try Base or BNB instead.");
+            return;
+          }
+        } catch {
+          // Status endpoint optional — don't block if it fails.
         }
         setSolanaAddress(addr);
         setPostChainId(targetChainId);
@@ -654,13 +663,24 @@ export default function UploadScreen() {
     );
   }, [nav]);
 
-  const handleConfirmUpload = useCallback(() => {
-    const payload = getPayload();
+  const handleConfirmUpload = useCallback(async () => {
+    let payload = getPayload();
+
+    if (isSolanaChain(payload.postChainId)) {
+      const addr = payload.solanaAddress ?? (await getSolanaAddress().catch(() => null));
+      if (!addr) {
+        toastError("Solana posting needs a social login. Sign in with a social account to continue.");
+        return;
+      }
+      payload = { ...payload, solanaAddress: addr };
+      if (!solanaAddress) setSolanaAddress(addr);
+    }
+
     const ok = enqueueJob(payload);
     if (!ok) return;
     setShowConfirm(false);
     setTimeout(navigateHome, 120);
-  }, [getPayload, enqueueJob, navigateHome]);
+  }, [getPayload, enqueueJob, navigateHome, solanaAddress]);
 
   const handleRemoveQuoteEmbed = useCallback(() => {
     setIsQuoteMode(false);
