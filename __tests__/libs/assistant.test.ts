@@ -21,10 +21,15 @@ describe('libs/assistant', () => {
   });
 
   describe('mentionsAssistant', () => {
-    it('matches both handles anywhere in the message', () => {
+    it('matches the handle anywhere in the message', () => {
       expect(mentionsAssistant('@assistant what is my rank?')).toBe(true);
-      expect(mentionsAssistant('hey @dehub how do tips work')).toBe(true);
       expect(mentionsAssistant('can someone ask @Assistant about this')).toBe(true);
+    });
+
+    it('leaves @dehub alone, because that is a real user', () => {
+      // This used to be a second trigger. It is somebody's handle, so tagging
+      // them summoned the bot instead of notifying them.
+      expect(mentionsAssistant('hey @dehub how do tips work')).toBe(false);
     });
 
     it('ignores near-misses so the bot stays quiet', () => {
@@ -33,7 +38,6 @@ describe('libs/assistant', () => {
       expect(mentionsAssistant('email me at bob@assistant.com')).toBe(false);
       // Longer handles are different users, not the bot.
       expect(mentionsAssistant('@assistantbot hello')).toBe(false);
-      expect(mentionsAssistant('@dehubber posted this')).toBe(false);
     });
 
     it('handles empty input', () => {
