@@ -13,7 +13,7 @@ import { Gesture, GestureDetector, type GestureType } from "react-native-gesture
 import { PagerGestureProvider } from "../context/PagerGestureContext";
 import InfiniteVideoFeed, { type InfiniteVideoFeedHandle } from "../components/Home/InfiniteVideoFeed";
 import HomeImageGrid, { type HomeImageGridHandle } from "../components/Home/HomeImageGrid";
-import ImageFeedDrawer from "../components/Home/ImageFeedDrawer";
+import ImageFeedDrawer, { type ImageFeedDrawerHandle } from "../components/Home/ImageFeedDrawer";
 import ShortsGrid, { type ShortsGridHandle } from "../components/Home/ShortsGrid";
 import HomeHeader from "../components/HomeHeader";
 import FeedNavBar from "../components/Home/FeedNavBar";
@@ -54,7 +54,9 @@ const DEFAULT_FILTERS: FeedFilters = {
 // The six tabs of the nav bar, in pager order. Every one of them is a page in
 // the horizontal pager below, which is what makes a swipe track the finger
 // instead of waiting for a fling to be recognised and then swapping lists.
-const TAB_ORDER = ["all", "video", "feed-images", "short", "feed-audio", "live"] as const;
+// Indexed against FeedNavBar's NAV_ITEMS — the two must stay in the same order,
+// which is also web's FEED_TABS order.
+const TAB_ORDER = ["all", "short", "feed-images", "video", "feed-audio", "live"] as const;
 type TabKey = (typeof TAB_ORDER)[number];
 const LAST_INDEX = TAB_ORDER.length - 1;
 
@@ -291,6 +293,14 @@ export default function HomeScreen() {
   );
 
   const handleCloseImageFeed = useCallback(() => setImageFeed(null), []);
+
+  // The nav bar's back arrow asks the sheet to slide out first; unmounting it
+  // straight away would make the one deliberate control the only abrupt exit.
+  const imageDrawerRef = useRef<ImageFeedDrawerHandle>(null);
+  const handleImageFeedBack = useCallback(() => {
+    if (imageDrawerRef.current) imageDrawerRef.current.close();
+    else setImageFeed(null);
+  }, []);
 
   // Called from the UI thread once a drag has picked its landing page. The
   // animation is already running by then; this only catches React up.
@@ -652,6 +662,8 @@ export default function HomeScreen() {
           hasActiveFilters={hasActiveFilters}
           onPostTypeChange={setPostType}
           onFilterPress={handleFilterPress}
+          backMode={!!imageFeed}
+          onBackPress={handleImageFeedBack}
         />
 
         {filters.postType === "all" ? <StoriesBar /> : null}
@@ -697,6 +709,8 @@ export default function HomeScreen() {
       {imageFeed ? (
         <ImageFeedDrawer
           key={imageFeed.token}
+          ref={imageDrawerRef}
+          showCloseButton={false}
           initialItems={imageFeed.items}
           initialIndex={imageFeed.index}
           feedParams={feedParams}
