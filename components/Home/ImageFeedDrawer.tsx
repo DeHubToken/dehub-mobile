@@ -3,6 +3,7 @@ import React, {
   useCallback,
   useEffect,
   useImperativeHandle,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -163,8 +164,17 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
   const headerSV = headerTranslateY ?? null;
   const closingRef = useRef(false);
 
-  useEffect(() => {
+  // The list is held back for one frame so the slide can begin in the commit
+  // that mounts the sheet. FeedCard is a heavy mount — a carousel, an action
+  // bar and a dozen lazy sheets each — and rendering even one of them in the
+  // same commit pushed `withSpring` a frame or more past the tap, which is the
+  // pause that read as "nothing happened yet". The sheet is still off the
+  // bottom of the screen while it is empty, so nothing blank is ever on show.
+  const [contentReady, setContentReady] = useState(false);
+  useLayoutEffect(() => {
     sheetY.value = withSpring(0, OPEN_SPRING);
+    const raf = requestAnimationFrame(() => setContentReady(true));
+    return () => cancelAnimationFrame(raf);
   }, [sheetY]);
 
   useEffect(() => {
@@ -376,32 +386,38 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
       <Animated.View style={[styles.sheet, sheetStyle]}>
         <GestureDetector gesture={contentPan}>
           <View style={styles.fill}>
-            <AnimatedFlatList
-              ref={listRef}
-              data={orderedItems}
-              keyExtractor={keyExtractor}
-              renderItem={renderItem}
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={contentContainerStyle}
-              onScroll={scrollHandler}
-              scrollEventThrottle={16}
-              onScrollBeginDrag={onScrollBegin}
-              onScrollEndDrag={onScrollEnd}
-              onMomentumScrollEnd={onScrollEnd}
-              onViewableItemsChanged={onViewableItemsChanged}
-              viewabilityConfig={viewabilityConfig}
-              onEndReached={loadMore}
-              onEndReachedThreshold={2}
-              ListFooterComponent={renderFooter}
-              // Deliberately not removeClippedSubviews, unlike the feeds: on
-              // Android it clips against the parent's *untransformed* bounds,
-              // and this list's parent is translated by the full height of the
-              // nav chrome, which blanks the rows nearest the fold. windowSize
-              // already bounds what stays mounted.
-              windowSize={5}
-              maxToRenderPerBatch={3}
-              initialNumToRender={3}
-            />
+            {contentReady ? (
+              <AnimatedFlatList
+                ref={listRef}
+                data={orderedItems}
+                keyExtractor={keyExtractor}
+                renderItem={renderItem}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={contentContainerStyle}
+                onScroll={scrollHandler}
+                scrollEventThrottle={16}
+                onScrollBeginDrag={onScrollBegin}
+                onScrollEndDrag={onScrollEnd}
+                onMomentumScrollEnd={onScrollEnd}
+                onViewableItemsChanged={onViewableItemsChanged}
+                viewabilityConfig={viewabilityConfig}
+                onEndReached={loadMore}
+                onEndReachedThreshold={2}
+                ListFooterComponent={renderFooter}
+                // Deliberately not removeClippedSubviews, unlike the feeds: on
+                // Android it clips against the parent's *untransformed* bounds,
+                // and this list's parent is translated by the full height of
+                // the nav chrome, which blanks the rows nearest the fold.
+                // windowSize already bounds what stays mounted.
+                windowSize={5}
+                maxToRenderPerBatch={3}
+                // One, not three: the tapped post is rotated to the front, so
+                // it is the only card on screen when the sheet lands. The next
+                // two used to mount in the same commit as the open and cost it
+                // its first frames.
+                initialNumToRender={1}
+              />
+            ) : null}
           </View>
         </GestureDetector>
 
