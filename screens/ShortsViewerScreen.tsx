@@ -9,6 +9,13 @@
  * mute and the options menu top-right. Bookmark and the moderation actions live
  * in that menu rather than on the bar, as on web.
  *
+ * All of that chrome is one material: the top buttons, the creator avatar and
+ * the action bar share a single fill, hairline and corner radius (see the
+ * CHROME_* tokens), and both bars hang off the same EDGE margin. The action
+ * bar's six cells are equal flex shares rather than `space-between` over
+ * content-sized children, so the icons hold a fixed grid no matter how wide the
+ * counts under them get.
+ *
  * Engagement goes through the shared overlay (libs/engagementCache) instead of
  * local state, so a like cast here is the same like the feed card shows — the
  * mobile equivalent of web's vote cache.
@@ -30,6 +37,8 @@ import {
   GestureResponderEvent,
   ActivityIndicator,
   Platform,
+  StyleProp,
+  ViewStyle,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -89,7 +98,59 @@ const PLAYBACK_RATES = [0.5, 1, 1.25, 1.5, 2] as const;
 const formatRate = (rate: number) => `${rate}x`;
 
 const ICON_COLOR = "#fff";
-const COUNT_COLOR = "rgba(255,255,255,0.7)";
+const COUNT_COLOR = "rgba(255,255,255,0.72)";
+
+/**
+ * One chrome language for the whole viewer.
+ *
+ * Every floating control — the three top buttons, the creator avatar and the
+ * bottom action bar — is built from these tokens, so the top of the frame and
+ * the bottom read as the same system rather than two unrelated treatments.
+ * EDGE is also what anchors both bars to the same left/right margin.
+ */
+const EDGE = 12;
+const CHROME_GAP = 8;
+const CHROME_SIZE = 40;
+const CHROME_RADIUS = 14;
+const BAR_HEIGHT = 46;
+const BAR_RADIUS = 16;
+const CHROME_FILL = "rgba(9,9,11,0.55)";
+const CHROME_BORDER = "rgba(255,255,255,0.14)";
+// Takes the 40pt buttons past the 44pt tap minimum. The horizontal half is
+// exactly CHROME_GAP / 2, so neighbours in the top-right group meet at the
+// midpoint of the gap instead of overlapping and stealing each other's taps.
+const CHROME_HIT_SLOP = { top: 6, bottom: 6, left: CHROME_GAP / 2, right: CHROME_GAP / 2 };
+
+/**
+ * The shared glass material, as an absolutely-positioned sibling rather than a
+ * wrapper.
+ *
+ * Two reasons it is not a wrapper: the reaction tray pops out of the top of the
+ * action bar, and the `overflow: hidden` a rounded blur needs would clip it;
+ * and keeping the fill `pointerEvents="none"` lets taps on the bar's own
+ * padding still reach the video underneath.
+ *
+ * The Android backdrop blur is deliberately absent. `dimezisBlurView`
+ * re-snapshots the root view every frame and throws when a list mutates its
+ * children mid-draw, so it is only safe on surfaces that mount and unmount
+ * (see components/ui/LiquidGlass.tsx) — never on chrome pinned over a video
+ * feed that is recycling cells. The 55% fill carries the contrast on its own.
+ */
+const ChromeFill: React.FC<{ radius?: number }> = ({ radius = CHROME_RADIUS }) => (
+  <View
+    pointerEvents="none"
+    style={[
+      StyleSheet.absoluteFill,
+      styles.chromeFill,
+      { borderRadius: radius },
+    ]}
+  >
+    {Platform.OS === "ios" && (
+      <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
+    )}
+    <View style={[StyleSheet.absoluteFill, { backgroundColor: CHROME_FILL }]} />
+  </View>
+);
 
 interface ActionButtonProps {
   icon: IconName;
@@ -100,11 +161,18 @@ interface ActionButtonProps {
   onPress: () => void;
   onLongPress?: () => void;
   accessibilityLabel?: string;
+  /** Overrides the stretch-to-fill cell. Only the like button needs it — see below. */
+  style?: StyleProp<ViewStyle>;
 }
 
 /**
  * One button on the bottom bar. Icon and count sit side by side, matching the
  * feed card's bar (FeedActionBar) and the web viewer's row.
+ *
+ * The button IS the cell: it stretches to fill an equal share of the bar, so
+ * the icons sit on a fixed grid. The row used to be `space-between` over
+ * content-sized children, which let a count growing from "9" to "12.4K" shove
+ * every icon beside it sideways.
  */
 const ActionButton: React.FC<ActionButtonProps> = ({
   icon,
@@ -114,6 +182,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   onPress,
   onLongPress,
   accessibilityLabel,
+  style,
 }) => {
   const scale = useRef(new Animated.Value(1)).current;
 
@@ -132,11 +201,10 @@ const ActionButton: React.FC<ActionButtonProps> = ({
       // Matches the web tray's 400ms hold so the gesture feels the same on both.
       delayLongPress={400}
       accessibilityLabel={accessibilityLabel}
-      // Vertical slop takes the icon to a 44pt tap height without changing
-      // layout. Horizontal stays tight so neighbouring buttons in this
-      // space-between row can't steal each other's taps.
-      hitSlop={{ top: 13, bottom: 13, left: 6, right: 6 }}
-      style={styles.actionButton}
+      // The cell is already 46pt tall and ~56pt wide, so no slop is needed to
+      // clear the 44pt minimum — and adding any would make adjacent cells
+      // overlap and steal each other's taps.
+      style={style ?? styles.actionCell}
     >
       <Animated.View style={{ transform: [{ scale }] }}>
         {glyph ? (
@@ -144,14 +212,18 @@ const ActionButton: React.FC<ActionButtonProps> = ({
         ) : (
           <Icon
             name={icon}
-            size={20}
+            size={19}
             color={ICON_COLOR}
             strokeWidth={1.8}
             fill={active ? ICON_COLOR : "none"}
           />
         )}
       </Animated.View>
-      {label !== undefined && <Text style={styles.actionCount}>{label}</Text>}
+      {label !== undefined && (
+        <Text style={styles.actionCount} numberOfLines={1}>
+          {label}
+        </Text>
+      )}
     </Pressable>
   );
 };
@@ -164,9 +236,15 @@ interface ShortItemProps {
   isMuted: boolean;
   playbackRate: number;
   bottomInset: number;
+  /**
+   * Reports the hold-to-hide-UI state up to the screen, so the top bar and its
+   * scrim disappear with the bottom stack. They live outside this component
+   * and used to stay on screen through a "hide the chrome" gesture.
+   */
+  onChromeVisibilityChange: (visible: boolean) => void;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMuted, playbackRate, bottomInset }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMuted, playbackRate, bottomInset, onChromeVisibilityChange }) => {
   const navigation = useNavigation<any>();
   const user = useUser();
   const { requireAuth } = useAuthActions();
@@ -527,6 +605,15 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
 
   const chromeVisible = !screenshotMode;
 
+  // Only the short being watched drives the screen-level chrome, and the
+  // cleanup puts it back — otherwise swiping away mid-hold would strand the
+  // top bar hidden.
+  useEffect(() => {
+    if (!isActive) return;
+    onChromeVisibilityChange(chromeVisible);
+    return () => onChromeVisibilityChange(true);
+  }, [isActive, chromeVisible, onChromeVisibilityChange]);
+
   return (
     <View style={{ width: SCREEN_WIDTH, height: itemHeight }}>
       <Pressable
@@ -595,115 +682,141 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
               box-none so the gaps between buttons still toggle playback rather
               than swallowing the tap. */}
           <View
-            style={[styles.bottomStack, { paddingBottom: bottomInset + 16 }]}
+            style={[
+              styles.bottomStack,
+              // insets.bottom is already the nav bar / home indicator under an
+              // edge-to-edge window, so the bar only needs a small optical gap
+              // on top of it. It used to add 16 there and float well clear of
+              // the bottom of the frame.
+              { paddingBottom: bottomInset + 10 },
+            ]}
             pointerEvents="box-none"
           >
-            <Pressable onPress={handleUserPress} className="flex-row items-center gap-2 mb-2">
-              <Image source={avatar} style={styles.avatar} contentFit="cover" />
-              <View className="flex-1">
-                <Text numberOfLines={1} className="text-white text-sm font-semibold">
-                  {displayName}
-                </Text>
-                {username ? (
-                  <Text numberOfLines={1} className="text-white/60 text-xs">
-                    @{username}
+            {/* Caption block is inset by the bar's own inner padding so the
+                creator name starts on the same vertical line as the first icon
+                below it. */}
+            <View style={styles.captionBlock} pointerEvents="box-none">
+              <Pressable onPress={handleUserPress} style={styles.creatorRow}>
+                <Image source={avatar} style={styles.avatar} contentFit="cover" />
+                <View className="flex-1">
+                  <Text numberOfLines={1} className="text-white text-sm font-semibold">
+                    {displayName}
+                  </Text>
+                  {username ? (
+                    <Text numberOfLines={1} className="text-white/60 text-xs">
+                      @{username}
+                    </Text>
+                  ) : null}
+                </View>
+              </Pressable>
+
+              <Pressable onPress={() => setCaptionExpanded((p) => !p)} hitSlop={8}>
+                {title ? (
+                  <Text
+                    numberOfLines={captionExpanded ? undefined : 1}
+                    className="text-white text-sm mb-0.5"
+                  >
+                    {title}
                   </Text>
                 ) : null}
-              </View>
-            </Pressable>
+                {description ? (
+                  <Text
+                    numberOfLines={captionExpanded ? undefined : 2}
+                    className="text-white/70 text-xs"
+                  >
+                    {description}
+                  </Text>
+                ) : null}
+                {description.length > 80 || title.length > 40 ? (
+                  <Text className="text-white/50 text-xs mt-0.5">
+                    {captionExpanded ? "less" : "more"}
+                  </Text>
+                ) : null}
+              </Pressable>
+            </View>
 
-            <Pressable onPress={() => setCaptionExpanded((p) => !p)} hitSlop={8}>
-              {title ? (
-                <Text
-                  numberOfLines={captionExpanded ? undefined : 1}
-                  className="text-white text-sm mb-0.5"
-                >
-                  {title}
-                </Text>
-              ) : null}
-              {description ? (
-                <Text
-                  numberOfLines={captionExpanded ? undefined : 2}
-                  className="text-white/70 text-xs"
-                >
-                  {description}
-                </Text>
-              ) : null}
-              {description.length > 80 || title.length > 40 ? (
-                <Text className="text-white/50 text-xs mt-0.5">
-                  {captionExpanded ? "less" : "more"}
-                </Text>
-              ) : null}
-            </Pressable>
+            {/* Action bar — the same glass slab as the top buttons, divided
+                into six equal cells so the icons keep a fixed rhythm whatever
+                the counts read. Order matches the web viewer and the feed
+                card's own bar, like at the far right for thumb reach. */}
+            <View style={styles.actionBarWrap} pointerEvents="box-none">
+              <ChromeFill radius={BAR_RADIUS} />
 
-            {/* Action bar — one row spread edge to edge, like at the far right,
-                matching the web viewer and the feed card's own bar. */}
-            <View style={styles.actionBar} pointerEvents="box-none">
-              {/* Views — a readout, not a button, as on web. */}
-              <View style={styles.actionButton}>
-                <Icon name="Eye" size={20} color={ICON_COLOR} strokeWidth={1.8} />
-                <Text style={styles.actionCount}>{formatCompactNumber(views)}</Text>
-              </View>
+              <View style={styles.actionBar} pointerEvents="box-none">
+                {/* Views — a readout, not a button, as on web. */}
+                <View style={styles.actionCell}>
+                  <Icon name="Eye" size={19} color={ICON_COLOR} strokeWidth={1.8} />
+                  <Text style={styles.actionCount} numberOfLines={1}>
+                    {formatCompactNumber(views)}
+                  </Text>
+                </View>
 
-              <ActionButton
-                icon="Gem"
-                label={formatCompactNumber(tipCount)}
-                onPress={handleTip}
-                accessibilityLabel="Tip"
-              />
-
-              <ActionButton
-                icon="ThumbsDown"
-                active={disliked}
-                label={formatCompactNumber(dislikeCount)}
-                onPress={handleDislike}
-                accessibilityLabel="Dislike"
-              />
-
-              {/* Share — carries the repost count, and opens the share sheet. */}
-              <ActionButton
-                icon="Share2"
-                active={reposted}
-                label={formatCompactNumber(repostCount)}
-                onPress={() => setShowShareSheet(true)}
-                accessibilityLabel="Share"
-              />
-
-              <ActionButton
-                icon="MessageSquare"
-                label={formatCompactNumber(commentCount)}
-                onPress={handleComment}
-                accessibilityLabel="Comments"
-              />
-
-              {/* Reactions — tap to like/unlike, hold to pick one of the nine.
-                  The wrapper is the tray's positioning context and stays a
-                  single flex item so the row's spacing is unchanged. */}
-              <View style={{ position: "relative" }}>
-                <ReactionPicker
-                  open={pickerOpen}
-                  current={myReaction}
-                  onSelect={(reaction) => { setPickerOpen(false); handleReaction(reaction); }}
-                  align="right"
-                  onShowInfo={
-                    isOwnShort && tokenId != null
-                      ? () => { setPickerOpen(false); setShowReactionInfo(true); }
-                      : undefined
-                  }
-                />
                 <ActionButton
-                  icon="ThumbsUp"
-                  glyph={leadGlyph}
-                  active={liked}
-                  label={formatCompactNumber(likeCount)}
-                  onPress={() => { if (pickerOpen) { setPickerOpen(false); return; } handleLike(); }}
-                  onLongPress={() => setPickerOpen(true)}
-                  accessibilityLabel={
-                    myReaction
-                      ? `${reactionMeta(myReaction).label} — hold to change your reaction`
-                      : "Like — hold to react"
-                  }
+                  icon="Gem"
+                  label={formatCompactNumber(tipCount)}
+                  onPress={handleTip}
+                  accessibilityLabel="Tip"
                 />
+
+                <ActionButton
+                  icon="ThumbsDown"
+                  active={disliked}
+                  label={formatCompactNumber(dislikeCount)}
+                  onPress={handleDislike}
+                  accessibilityLabel="Dislike"
+                />
+
+                {/* Share — carries the repost count, and opens the share sheet. */}
+                <ActionButton
+                  icon="Share2"
+                  active={reposted}
+                  label={formatCompactNumber(repostCount)}
+                  onPress={() => setShowShareSheet(true)}
+                  accessibilityLabel="Share"
+                />
+
+                <ActionButton
+                  icon="MessageSquare"
+                  label={formatCompactNumber(commentCount)}
+                  onPress={handleComment}
+                  accessibilityLabel="Comments"
+                />
+
+                {/* Reactions — tap to like/unlike, hold to pick one of the nine.
+                    The outer view is the cell; the inner one is the tray's
+                    positioning context and stays button-sized, so the tray still
+                    anchors to the thumb rather than to the whole cell (anchored
+                    to the cell it would sit ~15pt further right and run off the
+                    edge of the screen). */}
+                <View style={styles.actionCell}>
+                  <View style={{ position: "relative" }}>
+                    <ReactionPicker
+                      open={pickerOpen}
+                      current={myReaction}
+                      onSelect={(reaction) => { setPickerOpen(false); handleReaction(reaction); }}
+                      align="right"
+                      onShowInfo={
+                        isOwnShort && tokenId != null
+                          ? () => { setPickerOpen(false); setShowReactionInfo(true); }
+                          : undefined
+                      }
+                    />
+                    <ActionButton
+                      style={styles.actionInline}
+                      icon="ThumbsUp"
+                      glyph={leadGlyph}
+                      active={liked}
+                      label={formatCompactNumber(likeCount)}
+                      onPress={() => { if (pickerOpen) { setPickerOpen(false); return; } handleLike(); }}
+                      onLongPress={() => setPickerOpen(true)}
+                      accessibilityLabel={
+                        myReaction
+                          ? `${reactionMeta(myReaction).label} — hold to change your reaction`
+                          : "Like — hold to react"
+                      }
+                    />
+                  </View>
+                </View>
               </View>
             </View>
           </View>
@@ -753,20 +866,6 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
   );
 });
 
-/** Shared glass fill for the top overlay buttons — the house recipe used by
-    FullscreenVideoScreen and ImageViewerScreen (BlurView + black/45 overlay). */
-const TopButtonGlass = () => (
-  <>
-    <BlurView
-      intensity={Platform.OS === "ios" ? 60 : 40}
-      tint="dark"
-      style={StyleSheet.absoluteFill}
-      {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
-    />
-    <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
-  </>
-);
-
 const ShortsViewerScreen = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
@@ -799,6 +898,9 @@ const ShortsViewerScreen = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [playbackRate, setPlaybackRate] = useState<number>(1);
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
+  // Holding the middle of a short hides its chrome for a clean screenshot; the
+  // active item reports that up so the top bar goes with it.
+  const [chromeVisible, setChromeVisible] = useState(true);
 
   // Follow / visibility overrides keyed by creator address and token, so an
   // action taken in the options menu sticks while the viewer stays open.
@@ -1013,9 +1115,10 @@ const ShortsViewerScreen = () => {
         isMuted={isMuted}
         playbackRate={playbackRate}
         bottomInset={insets.bottom}
+        onChromeVisibilityChange={setChromeVisible}
       />
     ),
-    [activeIndex, containerHeight, isMuted, playbackRate, insets.bottom],
+    [activeIndex, containerHeight, isMuted, playbackRate, insets.bottom, setChromeVisible],
   );
 
   const keyExtractor = useCallback(
@@ -1058,44 +1161,59 @@ const ShortsViewerScreen = () => {
 
       {/* Fixed header overlay – back left, playback chrome right (as on web).
           box-none so only the buttons themselves take touches; the rest of the
-          strip stays with the video underneath. */}
-      <View style={[styles.topBar, { paddingTop: insets.top + 8 }]} pointerEvents="box-none">
-        <Pressable onPress={handleBack} hitSlop={12} style={styles.topButton} accessibilityLabel="Back">
-          <TopButtonGlass />
-          <Icon name="ChevronLeft" size={24} color="#fff" />
-        </Pressable>
+          strip stays with the video underneath. Every button is the same 40pt
+          square in the same glass as the bottom bar; the speed pill only differs
+          in width, and keeps the height so the group reads as one row. */}
+      {chromeVisible && (
+        <>
+          {/* Mirror of the bottom scrim — the top buttons had nothing behind
+              them, so they washed out over a bright first frame. */}
+          <LinearGradient
+            colors={["rgba(0,0,0,0.55)", "transparent"]}
+            style={[styles.topGradient, { height: insets.top + 96 }]}
+            pointerEvents="none"
+          />
 
-        <View style={styles.topRight}>
-          <Pressable
-            onPress={handleCycleSpeed}
-            style={[styles.topButton, styles.speedButton]}
-            accessibilityLabel="Playback speed"
-          >
-            <TopButtonGlass />
-            <Text style={styles.speedButtonText}>{formatRate(playbackRate)}</Text>
-          </Pressable>
+          <View style={[styles.topBar, { paddingTop: insets.top + 10 }]} pointerEvents="box-none">
+            <Pressable onPress={handleBack} hitSlop={CHROME_HIT_SLOP} style={styles.topButton} accessibilityLabel="Back">
+              <ChromeFill />
+              <Icon name="ChevronLeft" size={22} color="#fff" />
+            </Pressable>
 
-          <Pressable
-            onPress={() => setIsMuted((m) => !m)}
-            style={styles.topButton}
-            hitSlop={12}
-            accessibilityLabel={isMuted ? "Unmute" : "Mute"}
-          >
-            <TopButtonGlass />
-            <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
-          </Pressable>
+            <View style={styles.topRight}>
+              <Pressable
+                onPress={handleCycleSpeed}
+                hitSlop={CHROME_HIT_SLOP}
+                style={[styles.topButton, styles.speedButton]}
+                accessibilityLabel="Playback speed"
+              >
+                <ChromeFill />
+                <Text style={styles.speedButtonText}>{formatRate(playbackRate)}</Text>
+              </Pressable>
 
-          <Pressable
-            onPress={() => setShowOptionsMenu(true)}
-            style={styles.topButton}
-            hitSlop={12}
-            accessibilityLabel="More options"
-          >
-            <TopButtonGlass />
-            <Icon name="Ellipsis" size={20} color="#fff" />
-          </Pressable>
-        </View>
-      </View>
+              <Pressable
+                onPress={() => setIsMuted((m) => !m)}
+                style={styles.topButton}
+                hitSlop={CHROME_HIT_SLOP}
+                accessibilityLabel={isMuted ? "Unmute" : "Mute"}
+              >
+                <ChromeFill />
+                <Icon name={isMuted ? "VolumeX" : "Volume2"} size={19} color="#fff" />
+              </Pressable>
+
+              <Pressable
+                onPress={() => setShowOptionsMenu(true)}
+                style={styles.topButton}
+                hitSlop={CHROME_HIT_SLOP}
+                accessibilityLabel="More options"
+              >
+                <ChromeFill />
+                <Icon name="Ellipsis" size={19} color="#fff" />
+              </Pressable>
+            </View>
+          </View>
+        </>
+      )}
 
       {/* Initial-load spinner — the first page is still in flight. */}
       {initialLoading && items.length === 0 && (
@@ -1144,6 +1262,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#000",
   },
+  chromeFill: {
+    overflow: "hidden",
+    borderWidth: 1,
+    borderColor: CHROME_BORDER,
+  },
+  topGradient: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 15,
+  },
   topBar: {
     position: "absolute",
     top: 0,
@@ -1152,32 +1282,27 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 16,
-    paddingBottom: 8,
+    paddingHorizontal: EDGE,
+    paddingBottom: 10,
     zIndex: 20,
   },
   topRight: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: CHROME_GAP,
   },
   topButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 12,
-    overflow: "hidden",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.2)",
+    width: CHROME_SIZE,
+    height: CHROME_SIZE,
     alignItems: "center",
     justifyContent: "center",
   },
-  glassOverlay: {
-    backgroundColor: "rgba(0,0,0,0.45)",
-  },
+  // Wider than the icon buttons but the same height, so the group's baseline
+  // and cap line stay flush.
   speedButton: {
-    minWidth: 44,
     width: undefined,
-    paddingHorizontal: 8,
+    minWidth: 46,
+    paddingHorizontal: 12,
   },
   speedButtonText: {
     color: "#fff",
@@ -1189,44 +1314,72 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    height: "45%",
+    // Shorter than it was: the action bar carries its own contrast now, so the
+    // scrim only has to cover the caption instead of washing out half the video.
+    height: "34%",
     zIndex: 5,
   },
   bottomStack: {
     position: "absolute",
-    left: 16,
-    right: 16,
+    left: EDGE,
+    right: EDGE,
     bottom: 0,
     zIndex: 10,
   },
-  actionBar: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginTop: 14,
+  captionBlock: {
+    paddingHorizontal: 4,
+    marginBottom: 10,
   },
-  actionButton: {
+  creatorRow: {
     flexDirection: "row",
     alignItems: "center",
+    gap: 10,
+    marginBottom: 8,
+  },
+  actionBarWrap: {
+    height: BAR_HEIGHT,
+  },
+  actionBar: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "stretch",
+    paddingHorizontal: 4,
+  },
+  /** Equal share of the bar — this is what puts the icons on a fixed grid. */
+  actionCell: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     gap: 4,
   },
+  /** Content-sized variant, so the reaction tray anchors to the thumb. */
+  actionInline: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 4,
+    paddingVertical: 11,
+  },
   actionGlyph: {
-    fontSize: 18,
-    lineHeight: 24,
-    width: 20,
+    fontSize: 17,
+    lineHeight: 22,
+    width: 19,
     textAlign: "center",
   },
   actionCount: {
     color: COUNT_COLOR,
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: "500",
   },
+  // Same square-with-a-hairline as the top buttons, so the avatar belongs to
+  // the chrome rather than sitting in a shape of its own.
   avatar: {
-    width: 44,
-    height: 44,
-    borderRadius: 12,
+    width: CHROME_SIZE,
+    height: CHROME_SIZE,
+    borderRadius: CHROME_RADIUS,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.3)",
+    borderColor: CHROME_BORDER,
   },
   pauseOverlay: {
     ...StyleSheet.absoluteFillObject,
