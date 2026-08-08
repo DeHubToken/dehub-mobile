@@ -43,6 +43,13 @@ const SEED_CHECK_INTERVAL_MS = 60_000;
 
 const generateShuffleSeed = () => String(Date.now());
 
+const CATEGORY_STORAGE_KEY = "dehub:defaultCategory";
+
+/** The category outlives the session, so resetting filters has to clear it. */
+const clearPersistedCategory = () => {
+  try { storage.set(CATEGORY_STORAGE_KEY, ""); } catch {}
+};
+
 const DEFAULT_FILTERS: FeedFilters = {
   // Default home sort is chronological latest; "For You" (score) remains a filter option.
   sortBy: "createdAt",
@@ -115,7 +122,7 @@ export default function HomeScreen() {
   // Load persisted category on mount (MMKV is sync — no async race)
   useEffect(() => {
     try {
-      const val = storage.getString("dehub:defaultCategory");
+      const val = storage.getString(CATEGORY_STORAGE_KEY);
       if (val) setSelectedCategory(val);
     } catch {}
   }, []);
@@ -504,7 +511,7 @@ export default function HomeScreen() {
     const value = category === "All" ? undefined : category;
     beginFilterTransition();
     setSelectedCategory(value);
-    try { storage.set("dehub:defaultCategory", value ?? ""); } catch {}
+    try { storage.set(CATEGORY_STORAGE_KEY, value ?? ""); } catch {}
     setFilterPanelVisible(false);
   }, [beginFilterTransition]);
 
@@ -541,6 +548,7 @@ export default function HomeScreen() {
   const handleClearFilters = useCallback(() => {
     beginFilterTransition();
     setSelectedCategory(undefined);
+    clearPersistedCategory();
     setFilters(DEFAULT_FILTERS);
     refreshShuffleSeed();
   }, [refreshShuffleSeed, beginFilterTransition]);
@@ -550,16 +558,21 @@ export default function HomeScreen() {
     if (value === selectedCategory) return;
     beginFilterTransition();
     setSelectedCategory(value);
-    try { storage.set("dehub:defaultCategory", value ?? ""); } catch {}
+    try { storage.set(CATEGORY_STORAGE_KEY, value ?? ""); } catch {}
     if (!value) setFilters(DEFAULT_FILTERS);
   }, [selectedCategory, beginFilterTransition]);
 
+  // Leaves the panel open, so the pills visibly snap back to their defaults
+  // instead of the panel vanishing with no sign anything happened (web does the
+  // same). Clearing the persisted category matters too: without it the category
+  // comes straight back on the next launch, which reads as a reset that didn't
+  // take.
   const handleResetFilters = useCallback(() => {
     beginFilterTransition();
     setSelectedCategory(undefined);
+    clearPersistedCategory();
     setFilters(DEFAULT_FILTERS);
     refreshShuffleSeed();
-    setFilterPanelVisible(false);
   }, [refreshShuffleSeed, beginFilterTransition]);
 
   // PromptScreen tunes the feed on a separate route, and this screen only reads
