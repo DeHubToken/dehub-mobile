@@ -49,30 +49,79 @@ export async function verifyEmailOtp(email: string, token: string): Promise<stri
   return userId;
 }
 
+/**
+ * Phone login step 1 — send a 6-digit code.
+ *
+ * Not supabase.auth.signInWithOtp({ phone }), which is what this used to call.
+ * That path needs Supabase's native Phone provider, and the provider is off
+ * because routing it to CloudTalk requires Authentication -> Hooks -> Send SMS,
+ * a toggle this project's management surface doesn't expose. GoTrue rejects the
+ * phone grant outright while it is off, so every mobile phone sign-in failed
+ * with "Unsupported phone provider" no matter what the SMS side was doing.
+ *
+ * The web app hit the same wall and answered it with the request-phone-otp /
+ * verify-phone-otp edge functions, which generate, store and check the code
+ * themselves and send it through CloudTalk directly. Mobile now uses the same
+ * pair, so both clients share one implementation, one rate limit and one
+ * message template.
+ *
+ * `phone` must be E.164 — the function rejects anything else. PhoneLoginFlow
+ * enforces the identical regex before we get here.
+ */
 export async function sendPhoneOtp(phone: string): Promise<void> {
-  const { error } = await supabase.auth.signInWithOtp({
-    phone: phone.trim(),
-    options: { shouldCreateUser: true },
+  // These functions answer 200 with { error } rather than a non-2xx, because
+  // functions.invoke() only surfaces a body on 2xx. Same check as
+  // fetchAgoraToken: the transport error first, then the payload error.
+  const { data, error } = await supabase.functions.invoke("request-phone-otp", {
+    body: { phone: phone.trim() },
   });
   if (error) {
-    log.warn("sendPhoneOtp:error", error.message);
+    log.warn("sendPhoneOtp:invoke:error", error.message);
     throw new Error(error.message || "Failed to send code");
+  }
+  if (data?.error) {
+    log.warn("sendPhoneOtp:error", data.error);
+    throw new Error(data.error);
   }
 }
 
-/** Verifies the texted code and returns the Supabase user id. */
+/**
+ * Phone login step 2 — verify the code and return the Supabase user id.
+ *
+ * verify-phone-otp hands back a real access/refresh pair rather than a user id
+ * alone, so the session has to be installed on this client before the id means
+ * anything to the callers that follow (wallet provisioning reads the signed-in
+ * user). setSession also persists it through AsyncStorage, which is what keeps
+ * the user signed in across app launches.
+ */
 export async function verifyPhoneOtp(phone: string, token: string): Promise<string> {
-  const { data, error } = await supabase.auth.verifyOtp({
-    phone: phone.trim(),
-    token: token.trim(),
-    type: "sms",
+  const { data, error } = await supabase.functions.invoke("verify-phone-otp", {
+    body: { phone: phone.trim(), code: token.trim() },
   });
   if (error) {
-    log.warn("verifyPhoneOtp:error", error.message);
+    log.warn("verifyPhoneOtp:invoke:error", error.message);
     throw new Error(error.message || "Invalid or expired code");
   }
-  const userId = data?.user?.id;
-  if (!userId) throw new Error("Sign-in failed. Please try again.");
+  if (data?.error) {
+    log.warn("verifyPhoneOtp:error", data.error);
+    throw new Error(data.error);
+  }
+
+  const session = data?.session;
+  if (!session?.access_token || !session?.refresh_token) {
+    log.warn("verifyPhoneOtp:missing-session");
+    throw new Error("Sign-in failed. Please try again.");
+  }
+
+  const { data: sessionData, error: sessionError } = await supabase.auth.setSession({
+    access_token: session.access_token,
+    refresh_token: session.refresh_token,
+  });
+  const userId = sessionData?.session?.user?.id;
+  if (sessionError || !userId) {
+    log.warn("verifyPhoneOtp:setSession:error", sessionError?.message);
+    throw new Error(sessionError?.message || "Sign-in failed. Please try again.");
+  }
   return userId;
 }
 
