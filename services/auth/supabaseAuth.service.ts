@@ -49,31 +49,50 @@ export async function verifyEmailOtp(email: string, token: string): Promise<stri
   return userId;
 }
 
+// Phone OTP goes through request-phone-otp/verify-phone-otp instead of
+// supabase.auth.signInWithOtp/verifyOtp — the native path needs Authentication
+// -> Hooks -> Send SMS enabled on the Supabase dashboard to route delivery
+// through CloudTalk, and that toggle isn't reachable on this project. The
+// edge functions do the same job directly (see cosmic-echo-hero's
+// supabase/functions/verify-phone-otp) and hand back a normal session.
 export async function sendPhoneOtp(phone: string): Promise<void> {
-  const { error } = await supabase.auth.signInWithOtp({
-    phone: phone.trim(),
-    options: { shouldCreateUser: true },
+  const { data, error } = await supabase.functions.invoke("request-phone-otp", {
+    body: { phone: phone.trim() },
   });
   if (error) {
     log.warn("sendPhoneOtp:error", error.message);
     throw new Error(error.message || "Failed to send code");
   }
+  if (data?.error) {
+    throw new Error(data.error);
+  }
 }
 
-/** Verifies the texted code and returns the Supabase user id. */
+/** Verifies the texted code, establishes the session, and returns the Supabase user id. */
 export async function verifyPhoneOtp(phone: string, token: string): Promise<string> {
-  const { data, error } = await supabase.auth.verifyOtp({
-    phone: phone.trim(),
-    token: token.trim(),
-    type: "sms",
+  const { data, error } = await supabase.functions.invoke("verify-phone-otp", {
+    body: { phone: phone.trim(), code: token.trim() },
   });
   if (error) {
     log.warn("verifyPhoneOtp:error", error.message);
     throw new Error(error.message || "Invalid or expired code");
   }
-  const userId = data?.user?.id;
-  if (!userId) throw new Error("Sign-in failed. Please try again.");
-  return userId;
+  if (data?.error) {
+    throw new Error(data.error);
+  }
+  const session = data?.session;
+  if (!session?.access_token || !session?.refresh_token) {
+    throw new Error("Sign-in failed. Please try again.");
+  }
+  const { data: sessionData, error: sessionError } = await supabase.auth.setSession({
+    access_token: session.access_token,
+    refresh_token: session.refresh_token,
+  });
+  if (sessionError || !sessionData?.user?.id) {
+    log.warn("verifyPhoneOtp:setSession:error", sessionError?.message);
+    throw new Error(sessionError?.message || "Could not establish session");
+  }
+  return sessionData.user.id;
 }
 
 /** Opens an OAuth browser flow for the given provider and returns the Supabase user id. */
@@ -167,11 +186,15 @@ export async function getSupabaseAuthMeta(): Promise<Record<string, any> | undef
     const u = data?.user;
     if (!u) return undefined;
     const md = (u.user_metadata ?? {}) as Record<string, unknown>;
+    // Phone-login accounts get a synthetic @phone.dehub.internal email so
+    // they can sign in via password (see cosmic-echo-hero's verify-phone-otp)
+    // — never a real address, so it must never surface as "the user's email".
+    const realEmail = u.email?.endsWith("@phone.dehub.internal") ? undefined : u.email;
     return {
       typeOfLogin: (u.app_metadata?.provider as string) || "email",
       verifier: "dehub-supabase",
       verifierId: u.id,
-      email: u.email ?? (md.email as string | undefined),
+      email: realEmail ?? (md.email as string | undefined),
       name: (md.full_name as string) ?? (md.name as string) ?? undefined,
       profileImage: (md.avatar_url as string) ?? (md.picture as string) ?? undefined,
     };
