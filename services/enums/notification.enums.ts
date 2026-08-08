@@ -22,6 +22,10 @@ export enum NotificationType {
   FOLLOW_REQUEST = 'follow_request',
   FOLLOW_REQUEST_ACCEPTED = 'follow_request_accepted',
   FIAT_PAYMENT_COMPLETED = 'fiat_payment_completed',
+  FRACTION_OFFER = 'fraction_offer',
+  FRACTION_OFFER_ACCEPTED = 'fraction_offer_accepted',
+  FRACTION_OFFER_REJECTED = 'fraction_offer_rejected',
+  FRACTION_PURCHASED = 'fraction_purchased',
 }
 
 export enum NotificationCategory {
@@ -114,6 +118,12 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
       return { name: 'Info', color: '#6b7280' };
     case NotificationType.FIAT_PAYMENT_COMPLETED:
       return { name: 'CreditCard', color: '#22c55e' };
+    case NotificationType.FRACTION_OFFER:
+    case NotificationType.FRACTION_OFFER_REJECTED:
+      return { name: 'Store', color: '#D4D4D8' };
+    case NotificationType.FRACTION_OFFER_ACCEPTED:
+    case NotificationType.FRACTION_PURCHASED:
+      return { name: 'Store', color: '#22c55e' };
     default:
       return { name: 'Bell', color: '#9ca3af' };
   }
