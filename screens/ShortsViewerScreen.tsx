@@ -784,10 +784,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
 
                 {/* Reactions — tap to like/unlike, hold to pick one of the nine.
                     The outer view is the cell; the inner one is the tray's
-                    positioning context and stays button-sized, so the tray still
-                    anchors to the thumb rather than to the whole cell (anchored
-                    to the cell it would sit ~15pt further right and run off the
-                    edge of the screen). */}
+                    positioning context and stays button-sized, so the tray
+                    anchors to the thumb rather than to the whole cell. The tray
+                    keeps itself inside the screen from there. */}
                 <View style={styles.actionCell}>
                   <View style={{ position: "relative" }}>
                     <ReactionPicker
