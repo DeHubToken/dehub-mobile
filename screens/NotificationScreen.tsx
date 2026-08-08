@@ -67,6 +67,23 @@ const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
   livestreams: [NotificationType.LIVESTREAM_START],
 };
 
+/**
+ * Types the API does not store, so it cannot filter on them. Sending one makes
+ * the API drop the whole filter and answer with an unfiltered page, so they are
+ * stripped before the request and matched client-side only.
+ *
+ * fiat_payment_completed exists in this app's enum but has no counterpart
+ * server-side and nothing emits it, so the Payments tab stays empty until
+ * something does.
+ */
+const CLIENT_ONLY_TYPES = new Set<string>([NotificationType.FIAT_PAYMENT_COMPLETED]);
+
+/** The subset of a tab's types the API can filter on, or undefined for no server filter. */
+function apiTypesForFilter(filter: NotificationTypeFilter): string[] | undefined {
+  const types = FILTER_TYPE_MAP[filter].filter((t) => !CLIENT_ONLY_TYPES.has(t));
+  return types.length ? types : undefined;
+}
+
 const SPRING_CONFIG = { stiffness: 400, damping: 30 };
 const TAB_HEIGHT = 44;
 
@@ -285,6 +302,9 @@ const NotificationScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [selectedFilter, setSelectedFilter] = useState<NotificationTypeFilter>('all');
+  // Unfiltered snapshot kept alongside the (now server-filtered) list purely so
+  // the tab badges and the app badge keep seeing every type.
+  const [countsSource, setCountsSource] = useState<NotificationItem[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -352,10 +372,12 @@ const NotificationScreen = () => {
       setNotifications((prev) =>
         prev.map((n) => (n._id === _id ? { ...n, read: true } : n))
       );
-      const currentCount = user?.notificationCount || 0;
-      if (currentCount > 0) {
-        patchUser?.({ notificationCount: currentCount - 1 });
-      }
+      // The app badge is derived from this snapshot by the effect below, so
+      // marking the row read here is the whole update — no manual decrement to
+      // race with it.
+      setCountsSource((prev) =>
+        prev.map((n) => (n._id === _id ? { ...n, read: true } : n))
+      );
       markAsReadAsync(_id);
     }
 
@@ -430,13 +452,11 @@ const NotificationScreen = () => {
         break;
     }
   }, [
-    navigateToFeed, 
-    openUserProfile, 
-    navigateToLivestream, 
+    navigateToFeed,
+    openUserProfile,
+    navigateToLivestream,
     navigateToDM,
     markAsReadAsync,
-    patchUser, 
-    user?.notificationCount
   ]);
 
   const pageRef = useRef(1);
@@ -450,6 +470,9 @@ const NotificationScreen = () => {
     selectedFilterRef.current = selectedFilter;
   }, [selectedFilter]);
 
+  // The list arrives already narrowed by the API. This pass still runs: it
+  // covers the client-only types, and it keeps the tab correct against an API
+  // that predates the `types` param.
   const filteredNotifications = useMemo(() => {
     if (selectedFilter === 'all') return notifications;
     const allowedTypes = FILTER_TYPE_MAP[selectedFilter];
@@ -461,7 +484,7 @@ const NotificationScreen = () => {
       all: 0, likes: 0, follows: 0, comments: 0,
       reposts: 0, subscriptions: 0, tips: 0, payments: 0, livestreams: 0,
     };
-    const unread = notifications.filter((n) => !n.read);
+    const unread = countsSource.filter((n) => !n.read);
     counts.all = unread.length;
     for (const n of unread) {
       for (const [key, types] of Object.entries(FILTER_TYPE_MAP)) {
@@ -471,33 +494,55 @@ const NotificationScreen = () => {
       }
     }
     return counts;
-  }, [notifications]);
+  }, [countsSource]);
+
+  // App badge follows the unfiltered snapshot, so selecting a tab no longer
+  // rewrites it with just that tab's unread count.
+  useEffect(() => {
+    patchUser?.({ notificationCount: countsSource.filter((n) => !n.read).length });
+    // patchUser is intentionally not a dependency: it is recreated on every
+    // user patch, and depending on it would make this effect re-run its own
+    // update forever.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countsSource]);
 
   const fetchNotifications = useCallback(
     async (isRefresh = false) => {
       try {
         const targetPage = isRefresh ? 1 : pageRef.current;
-        
+        const types = apiTypesForFilter(selectedFilterRef.current);
+
+        // Ask for this tab's types rather than paging through everything and
+        // narrowing in memory — that left a tab empty whenever its rows sat
+        // past the loaded window.
         const res: any = await getNotifications({
           unreadOnly: false,
+          types,
           page: targetPage,
           limit: 30,
         });
-        
+
         const payload = res?.data?.result || res?.result || [];
-        
+
         if (isRefresh) {
           setNotifications(payload);
           setPage(1);
         } else {
           setNotifications((prev) => [...prev, ...payload]);
         }
-        
+
         setHasMore(payload.length >= 30);
-        
+
         if (isRefresh) {
-          const unreadCount = payload.filter((n: NotificationItem) => !n.read).length;
-          patchUser?.({ notificationCount: unreadCount });
+          // The tab badges and the app badge both need every type, so a
+          // filtered refresh pulls one unfiltered page alongside it. On the All
+          // tab the response we already have is that page.
+          if (types) {
+            const allRes: any = await getNotifications({ unreadOnly: false, page: 1, limit: 30 });
+            setCountsSource(allRes?.data?.result || allRes?.result || []);
+          } else {
+            setCountsSource(payload);
+          }
         }
       } catch (e) {
         console.warn("[NotificationScreen] fetch error", e);
@@ -507,7 +552,7 @@ const NotificationScreen = () => {
         setLoadingMore(false);
       }
     },
-    [patchUser]
+    []
   );
 
   // Store fetchNotifications in a ref to avoid dependency issues
@@ -534,8 +579,14 @@ const NotificationScreen = () => {
       isFirstFilterRender.current = false;
       return;
     }
-    // Client-side filtering - no need to refetch, just show loading briefly
+    // The filter is applied server-side now, so a tab change needs a refetch
+    // rather than the cosmetic loading blip this used to do. selectedFilterRef
+    // is updated by the effect above, which runs first — it is declared earlier
+    // in the file, and React fires effects in declaration order.
     setIsChangingCategory(true);
+    setPage(1);
+    setNotifications([]);
+    fetchNotificationsRef.current(true);
     requestAnimationFrame(() => setIsChangingCategory(false));
   }, [selectedFilter]);
 
@@ -564,12 +615,15 @@ const NotificationScreen = () => {
 
   const handleMarkAllRead = useCallback(async () => {
     setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
-    patchUser?.({ notificationCount: 0 });
-    
+    // Keep the badge source in step, or the tab counts stay lit until the next
+    // refresh even though the rows all show as read. The app badge follows from
+    // this via the effect above.
+    setCountsSource((prev) => prev.map((n) => ({ ...n, read: true })));
+
     markAllNotificationsAsRead().catch((e) => {
       console.warn('[NotificationScreen] markAllRead error', e);
     });
-  }, [patchUser]);
+  }, []);
 
   const handleAcceptFollowRequest = useCallback(async (notification: NotificationItem) => {
     const followId = notification.metadata?.followId;
