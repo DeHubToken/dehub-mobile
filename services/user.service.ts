@@ -141,6 +141,13 @@ export interface NotificationItem {
 export interface GetNotificationsParams {
   unreadOnly?: boolean;
   category?: NotificationCategory;
+  /**
+   * Exact types to return, e.g. ['like', 'comment_like']. Backs the per-type
+   * tabs — `category` cannot, because likes and comments are both `engagement`.
+   * The API ignores names it does not know, so an unrecognised list widens to
+   * no filter rather than returning nothing.
+   */
+  types?: string[];
   page?: number;
   limit?: number;
 }
@@ -202,6 +209,9 @@ export async function getNotifications(params?: GetNotificationsParams) {
   }
   if (params?.category) {
     cleaned.category = params.category;
+  }
+  if (params?.types?.length) {
+    cleaned.types = params.types.join(',');
   }
   if (params?.page !== undefined) {
     cleaned.page = String(params.page);
