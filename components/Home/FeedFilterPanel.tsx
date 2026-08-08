@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -6,6 +6,9 @@ import {
   TextInput,
   ScrollView,
   StyleSheet,
+  type LayoutChangeEvent,
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import Animated, {
@@ -15,8 +18,14 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
+import MaskedView from "@react-native-masked-view/masked-view";
 import Icon from "../ui/Icon";
 import GlassIndicator, { GLASS_SHADOW } from "../ui/GlassIndicator";
+import {
+  resolveEdgeFadeMask,
+  resolveEdgeFadeSides,
+  type EdgeFadeSides,
+} from "../../libs/edgeFadeMask";
 
 export type SortOption = "score" | "random" | "createdAt" | "views" | "likes" | "comments" | "tips";
 export type DateRangeOption = "" | "day" | "week" | "month" | "year";
@@ -47,7 +56,6 @@ interface FeedFilterPanelProps {
 
 const MAX_HEIGHT = 440;
 const PILL_BORDER_RADIUS = 8;
-const FADE_COLORS: [string, string] = ["transparent", "#000000"];
 
 interface GlassPillProps {
   label: string;
@@ -104,6 +112,81 @@ const pillStyles = StyleSheet.create({
   },
 });
 
+/**
+ * A horizontal pill row whose overflowing edges dissolve the pills themselves.
+ *
+ * Every row used to be covered by a `transparent → #000000` gradient over its
+ * right 24px. A painted strip has to match the surface underneath it: this
+ * panel is #09090b, so the strip read as a black box rather than a fade, it sat
+ * over rows that don't overflow at all, and it would be an outright black bar
+ * on any lighter theme. Masking the row has no colour of its own, so it blends
+ * on any background.
+ *
+ * Only a side that actually has pills hidden past it is faded — a row that
+ * fits, or one scrolled to its end, is never clipped.
+ */
+const FadeEdgeRow: React.FC<{ children: React.ReactNode }> = memo(({ children }) => {
+  const metrics = useRef({ contentWidth: 0, offset: 0 });
+  const [layoutWidth, setLayoutWidth] = useState(0);
+  const [sides, setSides] = useState<EdgeFadeSides>({ start: false, end: false });
+
+  const sync = useCallback((width: number) => {
+    const next = resolveEdgeFadeSides({ ...metrics.current, layoutWidth: width });
+    setSides((prev) => (prev.start === next.start && prev.end === next.end ? prev : next));
+  }, []);
+
+  const handleLayout = useCallback((e: LayoutChangeEvent) => {
+    const width = e.nativeEvent.layout.width;
+    setLayoutWidth((prev) => (prev === width ? prev : width));
+    sync(width);
+  }, [sync]);
+
+  const handleContentSizeChange = useCallback((contentWidth: number) => {
+    metrics.current.contentWidth = contentWidth;
+    sync(layoutWidth);
+  }, [sync, layoutWidth]);
+
+  const handleScroll = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
+    metrics.current = { contentWidth: contentSize.width, offset: contentOffset.x };
+    sync(layoutMeasurement.width);
+  }, [sync]);
+
+  const mask = useMemo(() => resolveEdgeFadeMask(sides, layoutWidth), [sides, layoutWidth]);
+
+  const row = (
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={sectionStyles.rowContent}
+      onLayout={handleLayout}
+      onContentSizeChange={handleContentSizeChange}
+      onScroll={handleScroll}
+      scrollEventThrottle={32}
+    >
+      {children}
+    </ScrollView>
+  );
+
+  if (!mask) return row;
+
+  return (
+    <MaskedView
+      maskElement={
+        <LinearGradient
+          colors={mask.colors as [string, string, ...string[]]}
+          locations={mask.locations as [number, number, ...number[]]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={StyleSheet.absoluteFill}
+        />
+      }
+    >
+      {row}
+    </MaskedView>
+  );
+});
+
 interface GlassFilterRowProps {
   title: string;
   children: React.ReactNode;
@@ -112,22 +195,7 @@ interface GlassFilterRowProps {
 const GlassFilterRow: React.FC<GlassFilterRowProps> = memo(({ title, children }) => (
   <View style={sectionStyles.section}>
     <Text style={sectionStyles.label}>{title}</Text>
-    <View>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={sectionStyles.rowContent}
-      >
-        {children}
-      </ScrollView>
-      <LinearGradient
-        colors={FADE_COLORS}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        style={sectionStyles.fade}
-        pointerEvents="none"
-      />
-    </View>
+    <FadeEdgeRow>{children}</FadeEdgeRow>
   </View>
 ));
 
@@ -147,13 +215,6 @@ const sectionStyles = StyleSheet.create({
     paddingLeft: 4,
     paddingRight: 24,
     paddingVertical: 4,
-  },
-  fade: {
-    position: "absolute",
-    right: 0,
-    top: 0,
-    bottom: 0,
-    width: 24,
   },
 });
 
@@ -287,37 +348,24 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
               autoCapitalize="none"
               autoCorrect={false}
             />
-            <View>
-              <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={sectionStyles.rowContent}
-              >
-                <GlassPill
-                  label={t("filters.all")}
-                  selected={!selectedCategory}
-                  onPress={() => handleSelectCategory("All")}
-                />
-                {filteredCategories.map((cat) => (
-                  <GlassPill
-                    key={cat}
-                    label={cat.charAt(0).toUpperCase() + cat.slice(1)}
-                    selected={selectedCategory === cat}
-                    onPress={() => handleSelectCategory(cat)}
-                  />
-                ))}
-                {filteredCategories.length === 0 && categorySearch.trim() && (
-                  <Text style={panelStyles.noMatches}>{t("filters.noMatches")}</Text>
-                )}
-              </ScrollView>
-              <LinearGradient
-                colors={FADE_COLORS}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={sectionStyles.fade}
-                pointerEvents="none"
+            <FadeEdgeRow>
+              <GlassPill
+                label={t("filters.all")}
+                selected={!selectedCategory}
+                onPress={() => handleSelectCategory("All")}
               />
-            </View>
+              {filteredCategories.map((cat) => (
+                <GlassPill
+                  key={cat}
+                  label={cat.charAt(0).toUpperCase() + cat.slice(1)}
+                  selected={selectedCategory === cat}
+                  onPress={() => handleSelectCategory(cat)}
+                />
+              ))}
+              {filteredCategories.length === 0 && categorySearch.trim() && (
+                <Text style={panelStyles.noMatches}>{t("filters.noMatches")}</Text>
+              )}
+            </FadeEdgeRow>
           </View>
         )}
 
@@ -348,42 +396,37 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
         {!hideContentAccess && (
           <View style={[sectionStyles.section, { marginBottom: 0 }]}>
             <Text style={sectionStyles.label}>{t("filters.contentAccess").toUpperCase()}</Text>
-            <View>
-              <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={sectionStyles.rowContent}
-              >
-                {CONTENT_ACCESS_OPTIONS.map((option) => (
-                  <GlassPill
-                    key={option.id}
-                    label={option.label}
-                    selected={filters.contentAccess.includes(option.id)}
-                    onPress={() => handleContentAccessToggle(option.id)}
-                  />
-                ))}
-              </ScrollView>
-              <LinearGradient
-                colors={FADE_COLORS}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={sectionStyles.fade}
-                pointerEvents="none"
-              />
-            </View>
+            <FadeEdgeRow>
+              {CONTENT_ACCESS_OPTIONS.map((option) => (
+                <GlassPill
+                  key={option.id}
+                  label={option.label}
+                  selected={filters.contentAccess.includes(option.id)}
+                  onPress={() => handleContentAccessToggle(option.id)}
+                />
+              ))}
+            </FadeEdgeRow>
           </View>
         )}
-
-        {onResetFilters && (
-          <TouchableOpacity
-            onPress={onResetFilters}
-            activeOpacity={0.6}
-            style={panelStyles.resetButton}
-          >
-            <Icon name="RefreshCw" size={14} color="#71717a" />
-          </TouchableOpacity>
-        )}
       </ScrollView>
+
+      {/* Pinned to the panel rather than to the bottom of the scrolling
+          content. Inside the ScrollView it sat on top of the last pill row, so
+          the row took the touch as a scroll gesture and the press was cancelled
+          — the button looked dead. Out here it owns its corner, and hitSlop
+          gives the 26pt icon a thumb-sized target. */}
+      {onResetFilters && (
+        <TouchableOpacity
+          onPress={onResetFilters}
+          activeOpacity={0.6}
+          hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+          accessibilityRole="button"
+          accessibilityLabel={t("filters.resetFilters")}
+          style={panelStyles.resetButton}
+        >
+          <Icon name="RefreshCw" size={14} color="#71717a" />
+        </TouchableOpacity>
+      )}
     </Animated.View>
   );
 };
@@ -420,10 +463,11 @@ const panelStyles = StyleSheet.create({
   },
   resetButton: {
     position: "absolute",
-    bottom: 0,
-    right: 0,
+    bottom: 6,
+    right: 6,
     padding: 6,
     borderRadius: 8,
+    zIndex: 10,
   },
 });
 
