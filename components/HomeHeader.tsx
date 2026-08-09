@@ -27,17 +27,41 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
 
   return (
     <View className="flex-row items-center justify-between px-4 h-11">
-      <TouchableOpacity onPress={onLogoPress} activeOpacity={0.7}>
-        <SmartImage
-          source={require("../assets/web-icons/dehub-logo-white.png")}
-          style={{ width: 93, height: 28 }}
-          contentFit="contain"
-          cachePolicy="memory-disk"
-          transition={150}
-        />
+      {/* Profile — left */}
+      <TouchableOpacity
+        onPress={onMenuPress}
+        activeOpacity={0.7}
+        accessibilityLabel="Open menu"
+        className="w-8 h-8 items-center justify-center"
+      >
+        {isSignedIn ? (
+          <Avatar uri={avatarUrl} size={27} name={user?.displayName || user?.username} />
+        ) : (
+          <Icon name="Menu" size={31} color="#FFFFFF" />
+        )}
       </TouchableOpacity>
 
-      <View className="flex-row items-center gap-3">
+      {/* dehub mark — centred on the bar itself rather than between the two
+          side controls, so it stays put whether or not the bell is rendered
+          (it is signed-in only). box-none lets taps through the full-width
+          overlay to the profile and bell underneath it. */}
+      <View
+        className="absolute inset-0 items-center justify-center"
+        pointerEvents="box-none"
+      >
+        <TouchableOpacity onPress={onLogoPress} activeOpacity={0.7}>
+          <SmartImage
+            source={require("../assets/web-icons/dehub-logo-compact.png")}
+            style={{ width: 33, height: 28 }}
+            contentFit="contain"
+            cachePolicy="memory-disk"
+            transition={150}
+          />
+        </TouchableOpacity>
+      </View>
+
+      {/* Notifications — right */}
+      <View className="flex-row items-center">
         {isSignedIn && (
           <TouchableOpacity
             onPress={handleNotificationPress}
@@ -60,18 +84,6 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
             )}
           </TouchableOpacity>
         )}
-        <TouchableOpacity
-          onPress={onMenuPress}
-          activeOpacity={0.7}
-          accessibilityLabel="Open menu"
-          className="w-8 h-8 items-center justify-center"
-        >
-          {isSignedIn ? (
-            <Avatar uri={avatarUrl} size={27} name={user?.displayName || user?.username} />
-          ) : (
-            <Icon name="Menu" size={31} color="#FFFFFF" />
-          )}
-        </TouchableOpacity>
       </View>
     </View>
   );

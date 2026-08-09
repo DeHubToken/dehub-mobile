@@ -630,7 +630,6 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
           <Avatar
             uri={activeStore?.avatar_url ?? undefined}
             size={48}
-            rounded
             name={activeStore?.name || t("stores.store")}
           />
           <View style={{ flex: 1, minWidth: 0 }}>

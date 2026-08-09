@@ -715,11 +715,13 @@ const NotificationScreen = () => {
             {hasAvatar ? (
               <Avatar uri={avatarUrl || undefined} size={44} name={item.actorUsername} />
             ) : (
-              <View 
+              <View
                 style={{
                   width: 44,
                   height: 44,
-                  borderRadius: 22,
+                  // Fills the avatar slot, so it wears the avatar's squared
+                  // corner (Avatar uses size * 0.16), not a circle.
+                  borderRadius: 7,
                   alignItems: 'center',
                   justifyContent: 'center',
                   backgroundColor: `${icon.color}20`,
@@ -887,7 +889,8 @@ const NotificationScreen = () => {
       <View className="flex-row items-start p-4 border-b border-theme-neutrals-800">
         {/* Avatar with badge overlay */}
         <View className="relative">
-          <View className="w-11 h-11 rounded-full bg-theme-neutrals-800" />
+          {/* Squared like Avatar's default shape (size * 0.16), not a circle. */}
+          <View className="w-11 h-11 rounded-[7px] bg-theme-neutrals-800" />
           {/* Type badge */}
           <View
             className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-theme-neutrals-700"

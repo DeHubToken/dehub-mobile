@@ -13,7 +13,8 @@ const LeaderboardSkeleton: React.FC = () => (
         </View>
         {/* Avatar + Name */}
         <View className="flex-1 flex-row items-center ml-2">
-          <View className="w-10 h-10 bg-theme-neutrals-800 rounded-full mr-3 animate-pulse" />
+          {/* Squared like Avatar's default shape (size * 0.16), not a circle. */}
+          <View className="w-10 h-10 bg-theme-neutrals-800 rounded-[6px] mr-3 animate-pulse" />
           <View className="flex-1">
             <View className="h-3.5 w-24 bg-theme-neutrals-800 rounded animate-pulse" />
             <View className="h-3 w-16 bg-theme-neutrals-800 rounded mt-1.5 animate-pulse" />

@@ -137,7 +137,8 @@ const CreatorRow: React.FC<CreatorRowProps> = ({
   if (loading) {
     return (
       <View className="flex-row items-center mt-4">
-        <View className="w-10 h-10 rounded-full mr-3 bg-theme-neutrals-800 animate-pulse" />
+        {/* Squared like Avatar's default shape (size * 0.16), not a circle. */}
+        <View className="w-10 h-10 rounded-[6px] mr-3 bg-theme-neutrals-800 animate-pulse" />
         <View className="flex-1">
           <View className="h-3 w-32 bg-theme-neutrals-800 rounded mb-2 animate-pulse" />
           <View className="h-3 w-24 bg-theme-neutrals-800 rounded animate-pulse" />
