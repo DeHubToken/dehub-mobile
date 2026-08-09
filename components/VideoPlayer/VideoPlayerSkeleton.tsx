@@ -20,7 +20,8 @@ const ActionButtonsSkeleton = ({ count }: { count: number }) => (
 
 const ChannelRowSkeleton = () => (
   <View className="flex-row items-center mt-1">
-    <View className="w-10 h-10 rounded-full bg-theme-neutrals-800 mr-3 animate-pulse" />
+    {/* Squared like Avatar's default shape (size * 0.16), not a circle. */}
+    <View className="w-10 h-10 rounded-[6px] bg-theme-neutrals-800 mr-3 animate-pulse" />
     <View className="flex-1">
       <View className="h-4 w-32 bg-theme-neutrals-800 rounded mb-2 animate-pulse" />
       <View className="h-3 w-20 bg-theme-neutrals-700 rounded animate-pulse" />

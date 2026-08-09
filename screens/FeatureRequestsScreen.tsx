@@ -165,7 +165,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
           return (
             <View key={c.id} style={styles.commentRow}>
               <Pressable onPress={() => showUserProfile(c.username || c.wallet_address)}>
-                <Avatar uri={getAvatarUrl(c.avatar)} size={26} rounded name={name} />
+                <Avatar uri={getAvatarUrl(c.avatar)} size={26} name={name} />
               </Pressable>
               <View style={{ flex: 1, minWidth: 0 }}>
                 <View style={styles.commentHead}>
@@ -310,7 +310,7 @@ const FeatureCard: React.FC<{
           )}
 
           <View style={styles.authorRow}>
-            <Avatar uri={getAvatarUrl(feature.author_avatar)} size={20} rounded name={author} />
+            <Avatar uri={getAvatarUrl(feature.author_avatar)} size={20} name={author} />
             <Text style={styles.authorName} numberOfLines={1}>
               @{author}
             </Text>

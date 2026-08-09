@@ -1290,7 +1290,6 @@ export default function UploadScreen() {
                   : undefined
               }
               size={40}
-              rounded
               name={authUser?.displayName}
             />
           </View>

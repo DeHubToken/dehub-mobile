@@ -144,7 +144,6 @@ const AffiliateRow: React.FC<{ entry: AffiliateReferralEntry }> = ({ entry }) =>
       <Avatar
         uri={getAvatarUrl(profile?.avatarImageUrl)}
         size={40}
-        rounded
         name={name}
       />
       <View style={{ flex: 1, minWidth: 0 }}>

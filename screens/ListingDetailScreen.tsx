@@ -389,7 +389,6 @@ export default function ListingDetailScreen() {
               <Avatar
                 uri={getAvatarUrl(listing.stores.avatar_url)}
                 size={32}
-                rounded
                 name={listing.stores.name}
               />
               <View style={{ flex: 1, minWidth: 0 }}>
