@@ -37,7 +37,11 @@ interface AAChainInfo {
 const AA_CHAIN_CONFIGS: Record<number, AAChainInfo> = {
   [BASE_CHAIN_ID]: {
     chainId: "0x2105",
-    rpcTarget: "https://mainnet.base.org",
+    // Same endpoints web uses (src/lib/smart-wallet.ts). These were the public
+    // mainnet.base.org / binance.nodereal.io RPCs, which rate-limit hard enough
+    // that Safe address resolution below can fail on a cold start -- and that
+    // failure is silent, because it just drops the caller onto the plain EOA.
+    rpcTarget: "https://base-rpc.publicnode.com",
     displayName: "Base",
     blockExplorerUrl: "https://basescan.org",
     ticker: "ETH",
@@ -45,13 +49,51 @@ const AA_CHAIN_CONFIGS: Record<number, AAChainInfo> = {
   },
   [BNB_CHAIN_ID]: {
     chainId: "0x38",
-    rpcTarget: "https://binance.nodereal.io",
+    rpcTarget: "https://bsc-dataseed.binance.org",
     displayName: "BNB Chain",
     blockExplorerUrl: "https://bscscan.com",
     ticker: "BNB",
     tickerName: "BNB",
   },
 };
+
+/** Why a gasless setup attempt for a chain ended the way it did. */
+export type AAFailureReason =
+  | "unsupported-chain"
+  | "config-unavailable"
+  | "address-unresolved"
+  | "setup-failed";
+
+export type AASetupOutcome =
+  | { ok: true; safeAddress: string }
+  | { ok: false; reason: AAFailureReason; detail?: string };
+
+// setupAAProvider deliberately never throws -- a Pimlico outage falls back to a
+// plain EOA rather than blocking the write. The cost of that is the failure
+// leaving no trace: the post then reverts for gas and nothing anywhere says why.
+// Recording the last outcome per chain is what lets pre-flight checks and
+// support tell "gasless is off" apart from "the user is out of ETH".
+const aaOutcomes = new Map<number, AASetupOutcome>();
+
+function recordAAOutcome(chainId: number, outcome: AASetupOutcome): AASetupOutcome {
+  aaOutcomes.set(chainId, outcome);
+  return outcome;
+}
+
+/** Last gasless setup result for a chain, or null if it was never attempted. */
+export function getAASetupOutcome(chainId: number): AASetupOutcome | null {
+  return aaOutcomes.get(chainId) ?? null;
+}
+
+/**
+ * True only when a gasless setup for this chain was attempted AND failed.
+ * Deliberately false for "never attempted" -- callers use this to block a write,
+ * and an unattempted chain is not evidence of anything.
+ */
+export function hasAASetupFailed(chainId: number): boolean {
+  const outcome = aaOutcomes.get(chainId);
+  return outcome != null && outcome.ok === false;
+}
 
 let cachedPimlicoConfig: { bundlerUrl: string; paymasterUrl: string } | null = null;
 let pendingPimlicoFetch: Promise<{ bundlerUrl: string; paymasterUrl: string }> | null = null;
@@ -151,10 +193,28 @@ export async function setupAAProvider(
   if (cached) return cached;
 
   const chainInfo = AA_CHAIN_CONFIGS[chainId];
-  if (!chainInfo) return null;
+  if (!chainInfo) {
+    recordAAOutcome(chainId, { ok: false, reason: "unsupported-chain" });
+    return null;
+  }
+
+  let pimlicoConfig: { bundlerUrl: string; paymasterUrl: string };
+  try {
+    pimlicoConfig = await getPimlicoConfig();
+  } catch (e) {
+    // log.error, not warn: the logger drops warn/info entirely unless DEBUG is
+    // set, so on a release build this was the one line that would have named
+    // the cause and it never printed.
+    log.error("Pimlico config unavailable -- falling back to plain EOA", e);
+    recordAAOutcome(chainId, {
+      ok: false,
+      reason: "config-unavailable",
+      detail: (e as Error)?.message,
+    });
+    return null;
+  }
 
   try {
-    const pimlicoConfig = await getPimlicoConfig();
     const bundlerUrl = derivePimlicoUrlForChain(pimlicoConfig.bundlerUrl, chainId);
     const paymasterUrl = derivePimlicoUrlForChain(pimlicoConfig.paymasterUrl, chainId);
 
@@ -183,24 +243,37 @@ export async function setupAAProvider(
     // Resolve the Safe address once up front so eth_accounts is a memoized read
     // from here on (see wrapWithStableAccounts).
     let safeAddress: string | null = null;
+    let addressError: unknown;
     try {
       const accounts = (await aaProvider.request({ method: "eth_accounts" })) as string[];
       safeAddress = accounts?.[0] || null;
     } catch (e) {
-      log.warn("Could not resolve Safe address up front", e);
+      addressError = e;
     }
     if (!safeAddress) {
       // Without a resolved address we can't safely memoize eth_accounts -- treat
       // this the same as any other AA setup failure and fall back to plain EOA.
+      log.error("Could not resolve Safe address -- falling back to plain EOA", addressError);
+      recordAAOutcome(chainId, {
+        ok: false,
+        reason: "address-unresolved",
+        detail: (addressError as Error)?.message,
+      });
       return null;
     }
 
     const wrapped = wrapWithStableAccounts(aaProvider, safeAddress);
     storedAAProviders.set(key, wrapped);
+    recordAAOutcome(chainId, { ok: true, safeAddress });
     log.info("AA provider ready", { chainId, safeAddress });
     return wrapped;
   } catch (e) {
-    log.warn("AA provider setup failed -- falling back to plain EOA", e);
+    log.error("AA provider setup failed -- falling back to plain EOA", e);
+    recordAAOutcome(chainId, {
+      ok: false,
+      reason: "setup-failed",
+      detail: (e as Error)?.message,
+    });
     return null;
   }
 }
@@ -209,4 +282,7 @@ export async function setupAAProvider(
 export function clearAAProviders(): void {
   storedAAProviders.clear();
   cachedPimlicoConfig = null;
+  // Outcomes describe the session that just ended -- keeping them would let a
+  // previous user's failure block the next one's post.
+  aaOutcomes.clear();
 }
