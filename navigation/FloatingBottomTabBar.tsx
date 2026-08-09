@@ -200,8 +200,8 @@ const NavButton = memo<{
   );
 });
 
-const ScrollNavButton = memo<{ icon: IconName; label: string; onPress: () => void }>(
-  ({ icon, label, onPress }) => {
+const ScrollNavButton = memo<{ icon: IconName; label: string; onPress: () => void; badgeCount?: number }>(
+  ({ icon, label, onPress, badgeCount = 0 }) => {
     const scale = useSharedValue(1);
 
     const handlePressIn = useCallback(() => {
@@ -219,13 +219,20 @@ const ScrollNavButton = memo<{ icon: IconName; label: string; onPress: () => voi
     return (
       <AnimatedPressable
         accessibilityRole="button"
-        accessibilityLabel={label}
+        accessibilityLabel={badgeCount > 0 ? `${label}, ${badgeCount} unread` : label}
         onPress={onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         style={[styles.scrollNavItem, animatedStyle]}
       >
         <Icon name={icon} size={20} color="rgba(255, 255, 255, 0.72)" strokeWidth={1.75} />
+        {badgeCount > 0 && (
+          <View style={styles.badge} pointerEvents="none">
+            <Text style={styles.badgeText} numberOfLines={1}>
+              {badgeCount > 99 ? "99+" : badgeCount}
+            </Text>
+          </View>
+        )}
       </AnimatedPressable>
     );
   },
@@ -472,6 +479,11 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
               icon={item.icon}
               label={t(item.labelKey)}
               onPress={() => handleScrollItemPress(item)}
+              badgeCount={
+                item.screen === ScreenNames.Notifications && isAuthed
+                  ? user?.notificationCount ?? 0
+                  : 0
+              }
             />
           ))}
         </ScrollView>

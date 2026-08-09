@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useCallback } from 'react';
 import * as Notifications from 'expo-notifications';
 import { AppState, AppStateStatus } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { useUser, useAuthState } from '../../context/AuthContext';
+import { useUser, useAuthState, useAuthActions } from '../../context/AuthContext';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import {
   registerForPushNotifications,
@@ -13,6 +13,8 @@ import {
 import { createLogger } from '../../libs/logger';
 import { NotificationType, NotificationCategory } from '../enums/notification.enums';
 import { storage } from '../../libs/storage';
+import { getNotifications } from '../user.service';
+import { countUnreadNotifications, incrementUnreadCount } from '../../libs/notifications.unread';
 
 const logger = createLogger('PushProvider');
 
@@ -99,6 +101,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   const navigation = useNavigation<NavigationProp<any>>();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
+  const { patchUser } = useAuthActions();
   const isFullySignedIn = isSignedIn && !needsUsername;
   const userAddress = user?.walletAddress || user?.address;
   
@@ -116,6 +119,19 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   const coldStartCheckedRef = useRef(false);
   // Track the last processed notification identifier to avoid double-handling
   const lastProcessedIdRef = useRef<string | null>(null);
+
+  const refreshUnreadCount = useCallback(async () => {
+    if (!isFullySignedIn) return;
+
+    try {
+      // The backend defaults to unread-only. Fetch enough rows to support the
+      // app's 99+ badge without downloading notification history.
+      const response = await getNotifications({ limit: 100 });
+      await patchUser({ notificationCount: countUnreadNotifications(response) });
+    } catch (error) {
+      logger.warn('Unread notification refresh failed', error);
+    }
+  }, [isFullySignedIn, patchUser]);
 
   const handleNotificationNavigation = useCallback((data: NotificationData, responseId?: string) => {
     // Guard: Don't navigate if no valid notification type
@@ -410,6 +426,14 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
         logger.debug('Notification received in foreground', {
           title: notification.request.content.title,
         });
+        // Foreground pushes do not trigger auth enrichment, so update the
+        // in-app badge immediately. The periodic/server refresh below remains
+        // authoritative and corrects aggregation or duplicate delivery.
+        if (isFullySignedIn) {
+          void patchUser((current) => ({
+            notificationCount: incrementUnreadCount(current.notificationCount),
+          }));
+        }
         // Notification will be shown by the OS based on setNotificationHandler config
       }
     );
@@ -460,12 +484,24 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
         tokenRefreshListener.current.remove();
       }
     };
-  }, [handleNotificationNavigation, isFullySignedIn, userAddress]);
+  }, [handleNotificationNavigation, isFullySignedIn, patchUser, userAddress]);
+
+  // Keep the home bell and navigation badge fresh even when push permission is
+  // denied or a delivery is missed. This also replaces the auth-time snapshot,
+  // which otherwise remains stale for the entire session.
+  useEffect(() => {
+    if (!isFullySignedIn) return;
+    void refreshUnreadCount();
+    const interval = setInterval(() => void refreshUnreadCount(), 60_000);
+    return () => clearInterval(interval);
+  }, [isFullySignedIn, refreshUnreadCount]);
 
   useEffect(() => {
     const handleAppStateChange = (nextState: AppStateStatus) => {
       if (appStateRef.current.match(/inactive|background/) && nextState === 'active') {
-        // App came to foreground - clear badge
+        // App came to foreground: refresh the in-app count before clearing the
+        // OS-level app icon badge. The two indicators have separate lifecycles.
+        void refreshUnreadCount();
         clearBadge();
       }
       appStateRef.current = nextState;
@@ -473,7 +509,7 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
 
     const subscription = AppState.addEventListener('change', handleAppStateChange);
     return () => subscription.remove();
-  }, []);
+  }, [refreshUnreadCount]);
 
   return <>{children}</>;
 };
