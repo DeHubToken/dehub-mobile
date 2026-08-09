@@ -66,12 +66,19 @@ Create a `.env` file in the project root. Required variables:
 | `LIVEPEER_API_KEY` | Livepeer streaming API key |
 | `STRIPE_PUBLISHABLE_KEY` | Stripe payments key |
 | `TENOR_API_KEY` | Tenor GIF API key |
-| `PIMLICO_API_KEY` | Pimlico bundler key |
 | `SUPABASE_EDGE_BASE_URL` | Supabase edge functions URL |
 | `APP_ORIGIN` | Deep link origin (`dehub.io`) |
 | `LEGACY_APP_ORIGIN` | Legacy deep link origin |
 | `AUTH_PROVIDER` | Auth provider identifier |
 | `DEBUG` | Enable debug logging |
+
+### Gasless posting (Pimlico)
+
+There is deliberately no `PIMLICO_API_KEY` here. The bundler/paymaster URLs are
+fetched at runtime from the `get-pimlico-config` Supabase edge function, which is
+shared with the web app and reads the key from the **Supabase project secret** of
+the same name. Setting a `PIMLICO_API_KEY` in this app's `.env` does nothing —
+rotate the key in Supabase instead.
 
 ## Project Structure
 
