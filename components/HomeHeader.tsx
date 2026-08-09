@@ -19,6 +19,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
   const user = useUser();
 
   const hasUnread = (user?.notificationCount || 0) > 0;
+  const unreadCount = user?.notificationCount || 0;
   const avatarUrl = getAvatarUrl(user?.avatarImageUrl);
 
   const handleNotificationPress = useCallback(() => {
@@ -42,6 +43,8 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
           <TouchableOpacity
             onPress={handleNotificationPress}
             activeOpacity={0.7}
+            accessibilityRole="button"
+            accessibilityLabel={hasUnread ? `Notifications, ${unreadCount} unread` : "Notifications"}
             className="w-9 h-9 items-center justify-center"
           >
             <Icon name="Bell" size={24} color="#E5E7EB" />
@@ -54,7 +57,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
                 pointerEvents="none"
               >
                 <Text className="text-white text-[10px] font-bold leading-[12px]">
-                  {(user?.notificationCount || 0) > 99 ? "99+" : user?.notificationCount}
+                  {unreadCount > 99 ? "99+" : unreadCount}
                 </Text>
               </View>
             )}
