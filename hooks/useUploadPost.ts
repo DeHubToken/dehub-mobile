@@ -21,7 +21,7 @@ import {
   streamInfoKeys,
 } from "../config/constants";
 import { supportedNetworks } from "../config/web3.constants";
-import { isChainAASupported } from "../libs/wallet-core/smart-account";
+import { isChainAASupported, hasAASetupFailed } from "../libs/wallet-core/smart-account";
 import { isSolanaChain, findSolanaToken } from "../config/solana.constants";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
 import type { AttachedSound } from "./usePostSound";
@@ -378,14 +378,28 @@ export function useUploadPost() {
       const postingOnSolana = isSolanaChain(p.postChainId);
 
       // Solana posts sign a partial tx with the embedded ed25519 wallet — no EVM gas.
-      if (!postingOnSolana) {
+      if (!postingOnSolana && authMethod === "local" && ethBalance <= 0) {
         // Local wallets on a chain with Safe/Pimlico support (Base, BNB) are gasless --
         // no ETH needed regardless of balance. Only chains without an AA setup still
         // fall back to a plain EOA transaction, which does need ETH for gas.
-        if (authMethod === "local" && !isChainAASupported(activeChainId) && ethBalance <= 0) {
+        if (!isChainAASupported(activeChainId)) {
           return {
             valid: false,
             error: "Gas sponsorship isn't available on this network. Please deposit ETH for gas and try again.",
+          };
+        }
+
+        // isChainAASupported is a static table lookup — it says the chain *can* be
+        // gasless, not that it is. When the Safe provider actually failed to build,
+        // setupAAProvider silently hands back the plain EOA, so the upload used to
+        // sail through this check and then die at the mint with an out-of-gas error
+        // that named neither Pimlico nor the wallet. Catch it here instead.
+        if (hasAASetupFailed(activeChainId)) {
+          return {
+            valid: false,
+            error:
+              "Gas sponsorship is unavailable right now, so this post can't be sent for free. " +
+              "Sign out and back in to retry, or deposit ETH for gas.",
           };
         }
       }
