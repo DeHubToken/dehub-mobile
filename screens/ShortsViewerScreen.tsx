@@ -88,7 +88,7 @@ import { ShareLinks } from "../navigation/linking.config";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
 import { requestFeedVideoFocus, releaseFeedVideoFocus } from "../libs/feedVideoFocus";
 import GlassTipSheet from "../components/Tip/GlassTipSheet";
-import { useMergedViewCount } from "../hooks/useAnonViewCount";
+import { resolveViewCount } from "../libs/numbers.util";
 
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
@@ -505,8 +505,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
 
   const commentCount = item.commentCount || 0;
   const tipCount = (item as any).totalTips || (item as any).tips || 0;
-  // Includes views from signed-out viewers, which are recorded separately
-  const views = useMergedViewCount(tokenId, item.views);
+  // Signed-out viewers are already folded into totalViews by the API.
+  const views = resolveViewCount(item);
 
   // Trigger the floating like animation
   const showLikeAnimation = useCallback((x: number, y: number) => {
