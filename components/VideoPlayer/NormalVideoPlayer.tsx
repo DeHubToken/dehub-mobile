@@ -32,7 +32,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { CommentBottomSheet } from "../Comments";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useNavigation } from "@react-navigation/native";
-import { useMergedViewCount } from "../../hooks/useAnonViewCount";
+import { resolveViewCount } from "../../libs/numbers.util";
 
 interface NormalVideoPlayerProps {
   tokenId?: string | number;
@@ -195,11 +195,10 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
     title || nftData?.name || nftData?.title || nftData?.result?.title;
   const resolvedDescription =
     nftData?.description || nftData?.result?.description || description;
-  // Includes views from signed-out viewers, which are recorded separately
-  const resolvedViews = useMergedViewCount(
-    tokenId,
-    (nftData?.views ?? nftData?.result?.views ?? views) as number,
-  );
+  // Signed-out viewers are already folded into totalViews by the API — see
+  // resolveViewCount.
+  const resolvedViews =
+    resolveViewCount(nftData) || resolveViewCount(nftData?.result) || (views as number) || 0;
   const resolvedTotalTips = (nftData?.totalTips ??
     nftData?.result?.totalTips ??
     totalTips) as number;

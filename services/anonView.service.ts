@@ -14,6 +14,13 @@ import { supabase } from "./supabase";
  * hits this, so nobody is counted twice. Server-side dedup is one view per
  * viewer per post per UTC day, where the viewer is a salted hash of the device
  * id below plus the request IP.
+ *
+ * Recording only. The edge function forwards what it records to the DeHub API,
+ * which folds it into the post's `totalViews`, so that is where the count is
+ * read back from — see resolveViewCount in libs/numbers.util. This module used
+ * to expose a fetchAnonViewCounts() the cards added on at display time, which
+ * made the count arrive in two pieces and double-count whenever the base it was
+ * added to already included the anonymous half.
  */
 
 const DEVICE_ID_KEY = "dhb_anon_view_id";
@@ -85,34 +92,5 @@ export async function recordAnonViews(
   } catch (e) {
     console.error("[AnonView] record error", e);
     return null;
-  }
-}
-
-/**
- * Anonymous view totals for a set of posts, as a map of token id to count. Posts
- * with no anonymous views are absent, so treat a missing key as zero. Returns an
- * empty map on failure.
- */
-export async function fetchAnonViewCounts(
-  tokenIds: (string | number)[],
-): Promise<Record<string, number>> {
-  if (tokenIds.length === 0) return {};
-
-  try {
-    const query = tokenIds.map(String).join(",");
-    const { data, error } = await supabase.functions.invoke(
-      `anon-views?token_ids=${encodeURIComponent(query)}`,
-      { method: "GET" },
-    );
-
-    if (error) {
-      console.error("[AnonView] count fetch failed", error);
-      return {};
-    }
-
-    return ((data as { counts?: Record<string, number> })?.counts) || {};
-  } catch (e) {
-    console.error("[AnonView] count fetch error", e);
-    return {};
   }
 }
