@@ -11,11 +11,18 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
+  Dimensions,
 } from "react-native";
 import { SvgXml } from "react-native-svg";
 import { useNavigation } from "@react-navigation/native";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { getAvatarUrl, getCoverUrl } from "../libs/misc";
+
+/** Matches the Avatar `size={88}` below. */
+const EDIT_AVATAR_PT = 88;
+/** The cover strip is full-bleed. */
+const EDIT_COVER_WIDTH_PT = Dimensions.get("window").width;
+
 import Avatar from "../components/common/Avatar";
 import Icon from "../components/ui/Icon";
 import { openCroppedImagePicker, resizeAndCompress, createRNImageFile } from "../libs/assets.util";
@@ -76,8 +83,16 @@ const EditProfileScreen = () => {
   const [usernameAvailable, setUsernameAvailable] = useState<boolean | null>(null);
   const [socialErrors, setSocialErrors] = useState<Record<string, string | undefined>>({});
 
-  const avatarUrl = useMemo(() => getAvatarUrl(user?.avatarImageUrl), [user?.avatarImageUrl]);
-  const coverUrl = useMemo(() => getCoverUrl(user?.coverImageUrl), [user?.coverImageUrl]);
+  // Explicit sizes — this avatar renders at 88pt and the cover is full-bleed,
+  // both larger than getAvatarUrl's feed-row default.
+  const avatarUrl = useMemo(
+    () => getAvatarUrl(user?.avatarImageUrl, EDIT_AVATAR_PT),
+    [user?.avatarImageUrl],
+  );
+  const coverUrl = useMemo(
+    () => getCoverUrl(user?.coverImageUrl, EDIT_COVER_WIDTH_PT),
+    [user?.coverImageUrl],
+  );
 
   const initial = useMemo(
     () => ({

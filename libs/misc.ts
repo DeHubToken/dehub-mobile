@@ -1,21 +1,34 @@
 import env from "../config/env";
 import { Share, Platform } from "react-native";
+import { cdnImage } from "./cdnImage";
 
-export function getAvatarUrl(url: string | undefined | null): string {
+/**
+ * Default avatar request size, in CSS points. Every avatar in this app renders
+ * between 20pt (comment rows) and 44pt (feed card header), so a single default
+ * covers all 60-odd call sites; the larger ones (profile header, user sheet)
+ * pass their own. See libs/cdnImage.ts for why sizing is opt-in everywhere else.
+ */
+const DEFAULT_AVATAR_PT = 48;
+
+export function getAvatarUrl(
+  url: string | undefined | null,
+  /** Rendered size in CSS points. Pass 0 for the untouched original. */
+  sizePt: number = DEFAULT_AVATAR_PT,
+): string {
   if (!url) return "default-avatar"; // handled by Image source resolver with local asset mapping
   const fileName = url.split("/").pop();
   const base = `${env.CDN_BASE_URL}/avatars/${fileName}`;
-  // TODO: Remove this cache busting mechanism later
-  const perHalfHourKey  = Math.floor(Date.now() / (30 * 60 * 1000));
-  const join = base.includes("?") ? "&" : "?";
-  // return `${base}${join}v=${perHalfHourKey}`;
-  return `${base}`;
+  return cdnImage(base, { width: sizePt });
 }
 
-export function getCoverUrl(url: string | undefined | null): string {
+export function getCoverUrl(
+  url: string | undefined | null,
+  /** Rendered width in CSS points. Omit for the untouched original. */
+  widthPt?: number,
+): string {
   if (!url) return "default-banner";
   const fileName = url.split("/").pop();
-  return `${env.CDN_BASE_URL}/covers/${fileName}`;
+  return cdnImage(`${env.CDN_BASE_URL}/covers/${fileName}`, { width: widthPt });
 }
 
 export function buildCdnPath(path?: string | null): string | undefined {
@@ -31,11 +44,15 @@ export function getVideoUrl(tokenId?: string | number | null): string | undefine
   return `${env.CDN_BASE_URL}/videos/${id}.mp4`;
 }
 
-export function getShortsThumbnailUrl(tokenId?: string | number | null): string | undefined {
+export function getShortsThumbnailUrl(
+  tokenId?: string | number | null,
+  /** Rendered width in CSS points. Omit for the untouched original. */
+  widthPt?: number,
+): string | undefined {
   if (tokenId === null || tokenId === undefined) return undefined;
   const id = typeof tokenId === 'number' ? tokenId.toString() : tokenId.trim();
   if (!id) return undefined;
-  return `${env.CDN_BASE_URL}/shorts/${id}.jpg`;
+  return cdnImage(`${env.CDN_BASE_URL}/shorts/${id}.jpg`, { width: widthPt });
 }
 
 export function getPreviewUrl(tokenId?: string | number | null): string | undefined {
@@ -45,29 +62,50 @@ export function getPreviewUrl(tokenId?: string | number | null): string | undefi
   return `${env.CDN_BASE_URL}/previews/${id}.mp4`;
 }
 
-export function resolveThumbnail(obj: Record<string, any>): string | undefined {
+/**
+ * Returns `string`, not `string | undefined`. Both branches provably produce a
+ * string — the signature said otherwise, and until now nothing caught it
+ * because FeedCard's thumbnail chain also contained bare `any` returns, and one
+ * `any` in a union collapses the whole union to `any`. Removing those (they are
+ * now routed through cdnImage) made the phantom `undefined` visible.
+ */
+export function resolveThumbnail(
+  obj: Record<string, any>,
+  /** Rendered width in CSS points. Omit for the untouched original. */
+  widthPt?: number,
+): string {
   const raw = obj.thumbnail || obj.thumbnailUrl || obj.imageUrl;
-  return raw ? `${env.CDN_BASE_URL}/${raw}` : "default-banner";
+  if (!raw) return "default-banner";
+  return cdnImage(`${env.CDN_BASE_URL}/${raw}`, { width: widthPt });
 }
 
-// Generic image URL builder with optional resize query params
 const baseUrlWithoutSlash = (env.CDN_BASE_URL ?? "").replace(/\/+$/, "");
+
+/**
+ * Generic image URL builder.
+ *
+ * `width` is a request for a resized image, and it is now honoured. It used to
+ * be accepted and thrown away: the CDN branch that appended `?w=&h=` was
+ * commented out, so the two call sites that ask for 640x360 thumbnails
+ * (Home/FeedCard, Home/CompactVideoCard) were served full-resolution originals
+ * — which is the whole reason feed scrolling pulled megabytes it did not need.
+ *
+ * `width` is in CSS POINTS, not pixels; DPR is applied inside cdnImage. `height`
+ * is accepted for call-site compatibility and intentionally unused — Cloudflare
+ * preserves aspect ratio from width alone, and passing both would crop.
+ */
 export function getImageUrl(
   url: string,
   width?: number,
-  height?: number
+  _height?: number
 ): string {
   if (!url) return "";
   const fileName = url.split("/").pop();
   const protocol = url.split(":")[0];
-  const q = width && height ? `?w=${width}&h=${height}` : "";
-  if (protocol === "http" || protocol === "https") return url + q;
-  try {
-    // return `${baseUrlWithoutSlash}/images/${fileName}${q}`;
-    return `${baseUrlWithoutSlash}/images/${fileName}`;
-  } catch {
-    return url + q;
-  }
+  // Already absolute (external host, or an already-built CDN URL): cdnImage
+  // decides for itself whether it owns that host.
+  if (protocol === "http" || protocol === "https") return cdnImage(url, { width });
+  return cdnImage(`${baseUrlWithoutSlash}/images/${fileName}`, { width });
 }
 
 /**
@@ -88,11 +126,13 @@ export function getExtension(path: string): string {
 export function buildImageUrl(
   tokenId: number | string,
   apiImagePath: string | undefined | null,
+  /** Rendered width in CSS points. Omit for the untouched original. */
+  widthPt?: number,
 ): string {
   if (!apiImagePath) return '';
-  if (apiImagePath.startsWith('http')) return apiImagePath;
+  if (apiImagePath.startsWith('http')) return cdnImage(apiImagePath, { width: widthPt });
   const ext = getExtension(apiImagePath);
-  return `${baseUrlWithoutSlash}/images/${tokenId}.${ext}`;
+  return cdnImage(`${baseUrlWithoutSlash}/images/${tokenId}.${ext}`, { width: widthPt });
 }
 
 // API image URL builders (for signed feed images) ---------------------------

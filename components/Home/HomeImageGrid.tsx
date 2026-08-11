@@ -73,10 +73,14 @@ interface GridItemProps {
 const GridItem = memo<GridItemProps>(({ item, index, size, onPress }) => {
   const imageUri = useMemo(() => {
     const urls: string[] = Array.isArray(item.imageUrls) ? item.imageUrls : [];
+    // API-served post images are on a different host to the CDN and are not a
+    // transformable remote source, so these stay as-is; only the CDN fallback
+    // below can be sized. Tapping a tile opens the full-size original in the
+    // drawer either way.
     if (urls.length > 0) return getImageUrlApiSimple(urls[0]);
-    const single = getImageUrl(item.imageUrl || item.thumbnailUrl || "");
+    const single = getImageUrl(item.imageUrl || item.thumbnailUrl || "", size);
     return single || null;
-  }, [item.imageUrls, item.imageUrl, item.thumbnailUrl]);
+  }, [item.imageUrls, item.imageUrl, item.thumbnailUrl, size]);
 
   const hasMultiple = (item.imageUrls?.length ?? 0) > 1;
   const handlePress = useCallback(() => onPress(index), [onPress, index]);

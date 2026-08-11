@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect } from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator, Dimensions } from "react-native";
 import SmartImage from "../common/SmartImage";
 import StoryAvatarRing from "../Story/StoryAvatarRing";
 import { useWatchedStories } from "../../hooks/useWatchedStories";
@@ -26,6 +26,11 @@ import { formatJoinedDate } from "../../libs/date.util";
 import { formatCompactNumber, resolveCount } from "../../libs/numbers.util";
 import { shareProfile } from "../../libs/misc";
 import * as ImagePicker from "expo-image-picker";
+
+/** Matches the StoryAvatarRing `size={88}` below. */
+const PROFILE_AVATAR_PT = 88;
+/** The cover is full-bleed, so it is fetched at the screen's own width. */
+const COVER_WIDTH_PT = Dimensions.get("window").width;
 import {
   openCroppedImagePicker,
   resizeAndCompress,
@@ -73,8 +78,16 @@ const ProfileHeader = () => {
   }, [refreshMyStories]);
 
   const shortAddr = truncateAddress(address, 5, 5);
-  const avatarUrl = getAvatarUrl(user?.avatarImageUrl);
-  const coverUrl = getCoverUrl(user?.coverImageUrl);
+  // Explicit sizes: this avatar renders at 88pt, well above the 48pt default
+  // getAvatarUrl assumes for feed and comment rows, and the cover is full-bleed.
+  const avatarUrl = getAvatarUrl(user?.avatarImageUrl, PROFILE_AVATAR_PT);
+  const coverUrl = getCoverUrl(user?.coverImageUrl, COVER_WIDTH_PT);
+  // Both are tappable and open the pinch-zoom viewer, which has to be handed the
+  // original — the sized versions above are for the 88pt/140pt boxes on screen,
+  // and blowing one of those up to fullscreen is exactly the softness the
+  // sizing is meant to be invisible at. `0` / no width means no transform.
+  const avatarFullUrl = getAvatarUrl(user?.avatarImageUrl, 0);
+  const coverFullUrl = getCoverUrl(user?.coverImageUrl);
   const badgeVal = resolveBadgeBalance(user as any);
   const badge = getBadgeName(badgeVal);
   const badgeImage = getBadgeUrl(badgeVal);
@@ -247,7 +260,8 @@ const ProfileHeader = () => {
         activeOpacity={0.9}
         onPress={() =>
           openViewer(
-            localCoverUri || (coverUrl !== "default-banner" ? coverUrl : undefined)
+            localCoverUri ||
+              (coverFullUrl !== "default-banner" ? coverFullUrl : undefined)
           )
         }
       >
@@ -294,7 +308,9 @@ const ProfileHeader = () => {
               unwatched={hasUnwatchedStories}
               onPressStory={openMyStories}
               onPressAvatar={() =>
-                openViewer(avatarUrl === "default-avatar" ? undefined : avatarUrl)
+                openViewer(
+                  avatarFullUrl === "default-avatar" ? undefined : avatarFullUrl
+                )
               }
               rounded={false}
             />

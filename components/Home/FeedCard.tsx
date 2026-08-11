@@ -29,6 +29,7 @@ import PostOptionsMenu from "../common/PostOptionsMenu";
 import ImageTranslationSheet from "../common/ImageTranslationSheet";
 import QuotedPostEmbed from "../common/QuotedPostEmbed";
 import SmartImage from "../common/SmartImage";
+import { cdnImage } from "../../libs/cdnImage";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import PPVSheet from "../PPV/PPVSheet";
 import BountyInfoSheet from "./BountyInfoSheet";
@@ -217,23 +218,29 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const hasMultipleImages = galleryImages.length > 1;
 
   // --- Video/Live thumbnail ---
+  // Every branch is sized to IMAGE_WIDTH — the card's real content width, which
+  // is also what the thumbnail renders into. This is a poster frame behind a
+  // play button, never something the user zooms into, so it does not need the
+  // original: the fullscreen player fetches the video itself.
   const thumbnail = useMemo(() => {
     if (isLive) {
       const thumb = stream?.thumbnail;
       if (thumb) {
-        if (thumb.startsWith("http")) return thumb;
-        return `${env.CDN_BASE_URL}/${thumb}`;
+        const abs = thumb.startsWith("http") ? thumb : `${env.CDN_BASE_URL}/${thumb}`;
+        return cdnImage(abs, { width: IMAGE_WIDTH });
       }
       const itemThumb = item.imageUrl || item.thumbnailUrl;
       if (itemThumb) {
-        if (itemThumb.startsWith("http")) return itemThumb;
-        return `${env.CDN_BASE_URL}/${itemThumb}`;
+        const abs = itemThumb.startsWith("http")
+          ? itemThumb
+          : `${env.CDN_BASE_URL}/${itemThumb}`;
+        return cdnImage(abs, { width: IMAGE_WIDTH });
       }
-      return resolveThumbnail(item as any);
+      return resolveThumbnail(item as any, IMAGE_WIDTH);
     }
     if (isVideo) {
       if (isShort) {
-        return getShortsThumbnailUrl(tokenId) || "";
+        return getShortsThumbnailUrl(tokenId, IMAGE_WIDTH) || "";
       }
       const rawThumb =
         (item as any).thumbnail ||
@@ -241,10 +248,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         item.thumbnailUrl ||
         item.imageUrl ||
         "";
-      return getImageUrl(rawThumb, 640, 360);
+      return getImageUrl(rawThumb, IMAGE_WIDTH);
     }
     return "";
-  }, [item, stream, isLive, isVideo]);
+  }, [item, stream, isLive, isVideo, isShort, tokenId]);
 
   const hasThumb = typeof thumbnail === "string" && thumbnail.trim().length > 0;
   const duration = (item as any).videoDuration ? secondsToHMMSS((item as any).videoDuration) : undefined;
