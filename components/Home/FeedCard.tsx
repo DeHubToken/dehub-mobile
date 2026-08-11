@@ -19,6 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 import { FeedCardHeader } from "./FeedCardHeader";
 import FeedActionBar from "./FeedActionBar";
 import { FeedCaption } from "./FeedCaption";
+import { PostAttachments } from "../common/PostAttachments";
 import AudioPostPlayer from "./AudioPostPlayer";
 import FeedVideoPlayer from "./FeedVideoPlayer";
 import StatusBadge from "./StatusBadge";
@@ -1149,6 +1150,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         fullContent={fullContent}
         showCategories={fullContent}
       />
+
+      {/* Attached documents (feed-file posts) */}
+      <PostAttachments attachments={(item as any).attachments} />
 
       {(item as any).isQuotePost && (
         <QuotedPostEmbed
