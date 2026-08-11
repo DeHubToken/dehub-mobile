@@ -216,11 +216,15 @@ export async function getSupabaseAuthMeta(): Promise<Record<string, any> | undef
     const u = data?.user;
     if (!u) return undefined;
     const md = (u.user_metadata ?? {}) as Record<string, unknown>;
+    // Phone-login accounts get a synthetic @phone.dehub.internal email so they
+    // can sign in via password (see cosmic-echo-hero's verify-phone-otp) — never
+    // a real address, so it must never surface as "the user's email".
+    const realEmail = u.email?.endsWith("@phone.dehub.internal") ? undefined : u.email;
     return {
       typeOfLogin: (u.app_metadata?.provider as string) || "email",
       verifier: "dehub-supabase",
       verifierId: u.id,
-      email: u.email ?? (md.email as string | undefined),
+      email: realEmail ?? (md.email as string | undefined),
       name: (md.full_name as string) ?? (md.name as string) ?? undefined,
       profileImage: (md.avatar_url as string) ?? (md.picture as string) ?? undefined,
     };
