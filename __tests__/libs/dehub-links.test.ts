@@ -147,7 +147,19 @@ describe('findDehubLinks', () => {
   });
 
   it('ignores links to other sites', () => {
+    // Regression: the bare-path pass used to reach inside a rejected foreign
+    // URL, read its /app/post/1 as a host-less path — which can only be ours —
+    // and card somebody else's link as one of our posts.
     expect(findDehubLinks('https://example.com/app/post/1')).toEqual([]);
+    expect(findDehubLinks('example.com/app/post/1')).toEqual([]);
+    expect(findDehubLinks('read https://example.com/app/communities/x now')).toEqual([]);
+  });
+
+  it('still reads our own link when a foreign one sits beside it', () => {
+    const text = 'https://example.com/app/post/1 vs https://dehub.io/app/post/2';
+    const found = findDehubLinks(text);
+    expect(found).toHaveLength(1);
+    expect(found[0]).toMatchObject({ kind: 'post', tokenId: '2' });
   });
 
   it('handles empty input', () => {
