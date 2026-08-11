@@ -30,6 +30,8 @@ import { useNavigation, useRoute, type RouteProp } from "@react-navigation/nativ
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import ShareLinkButton from "../components/common/ShareLinkButton";
+import { ShareLinks } from "../navigation/linking.config";
 import Avatar from "../components/common/Avatar";
 import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
@@ -275,7 +277,15 @@ export default function ListingDetailScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title={listing.title} />
+      <ScreenHeader
+        title={listing.title}
+        rightContent={
+          <ShareLinkButton
+            url={ShareLinks.listing(listing.store_id, listing.id)}
+            title={listing.title}
+          />
+        }
+      />
 
       <KeyboardAvoidingView
         style={{ flex: 1 }}

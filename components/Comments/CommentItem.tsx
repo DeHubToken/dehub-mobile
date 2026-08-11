@@ -28,6 +28,8 @@ import { LikeCommentResult, DislikeCommentResult } from "../../services/nft.serv
 import type { Comment } from "../../services/nft.service";
 import type { CommentLayout } from "./CommentContextMenu";
 import { WEBSITE_LINK } from "../../config";
+import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
+import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
 
 const ICON_MUTED = "#6F7174";
 const ICON_ACTIVE = "#F9FBFF";
@@ -156,8 +158,19 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
 
   const displayContent = isTranslated ? (translatedTexts.content || comment.content) : comment.content;
 
+  // A reply pointing at another post, a shop item or a community gets the same
+  // card the post got, and its URL comes out of the text.
+  const dehubLinks = useMemo(
+    () => findDehubLinks(displayContent).slice(0, MAX_CARDS_PER_MESSAGE),
+    [displayContent],
+  );
+  const linkFreeContent = useMemo(
+    () => (dehubLinks.length ? stripDehubLinkMatches(displayContent, dehubLinks) : displayContent || ""),
+    [displayContent, dehubLinks],
+  );
+
   const parsedContent = useMemo(() => {
-    const content = comment.content || "";
+    const content = linkFreeContent || "";
     const parts: { text: string; isMention: boolean; username?: string }[] = [];
     const regex = /@([\w.]+)/g;
     let lastIndex = 0;
@@ -174,7 +187,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
       parts.push({ text: content.slice(lastIndex), isMention: false });
     }
     return parts.length > 0 ? parts : [{ text: content, isMention: false }];
-  }, [comment.content]);
+  }, [linkFreeContent]);
 
   const handleMentionPress = useCallback((username: string) => {
     showUserProfile(username);
@@ -345,26 +358,26 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             <Text style={{ fontSize: 12, color: "#8B8D90" }}>{timeAgo}</Text>
           </View>
 
-          {comment.content ? (
+          {linkFreeContent ? (
             <Text style={{ fontSize: 14, color: "#C2C4C7", marginTop: 3, lineHeight: 19 }}>
-              {isTranslated
-                ? displayContent
-                : parsedContent.map((part, idx) =>
-                    part.isMention ? (
-                      <Text
-                        key={idx}
-                        style={{ fontWeight: "700", color: "#D4D4D8" }}
-                        onPress={() => handleMentionPress(part.username!)}
-                        suppressHighlighting
-                      >
-                        {part.text}
-                      </Text>
-                    ) : (
-                      <Text key={idx}>{part.text}</Text>
-                    )
-                  )}
+              {parsedContent.map((part, idx) =>
+                part.isMention ? (
+                  <Text
+                    key={idx}
+                    style={{ fontWeight: "700", color: "#D4D4D8" }}
+                    onPress={() => handleMentionPress(part.username!)}
+                    suppressHighlighting
+                  >
+                    {part.text}
+                  </Text>
+                ) : (
+                  <Text key={idx}>{part.text}</Text>
+                )
+              )}
             </Text>
           ) : null}
+
+          <DehubLinkCards links={dehubLinks} />
 
           {showTranslate && (
             <TranslateButton

@@ -148,7 +148,8 @@ export type AppStackParamList = {
   [ScreenNames.Affiliate]: undefined;
   [ScreenNames.FeatureRequests]: undefined;
   [ScreenNames.Stores]: undefined;
-  [ScreenNames.StoreDetail]: { storeId: string };
+  /** `listing` is the shared-item deep link (`/app/stores/<id>?listing=<id>`). */
+  [ScreenNames.StoreDetail]: { storeId: string; listing?: string };
   /** `listing` seeds the detail screen from the browse grid so it paints instantly. */
   [ScreenNames.ListingDetail]: {
     listingId: string;
