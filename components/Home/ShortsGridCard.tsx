@@ -4,6 +4,7 @@ import { Image } from "expo-image";
 import { VideoView, useVideoPlayer } from "expo-video";
 import Icon from "../ui/Icon";
 import { getShortsThumbnailUrl, getVideoUrl, getAvatarUrl, formatCompactNumber, buildCdnPath } from "../../libs";
+import { cdnImage } from "../../libs/cdnImage";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import { resolveViewCount } from "../../libs/numbers.util";
 
@@ -27,13 +28,21 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
   const tokenId = item.tokenId ?? item.id;
   const mediaKey = String(tokenId);
 
-  // Resolve a raw API path (e.g. "shorts/123.jpg") or full URL to a CDN URL.
+  // Resolve a raw API path (e.g. "shorts/123.jpg") or full URL to a CDN URL,
+  // sized to the card rather than fetched at full resolution — this is a poster
+  // behind an autoplaying video, and the video is the thing worth the bytes.
   const resolveCdn = (raw?: string | null): string | undefined =>
-    raw ? (raw.startsWith("http") ? raw : buildCdnPath(raw)) : undefined;
+    raw
+      ? cdnImage(raw.startsWith("http") ? raw : buildCdnPath(raw), { width: CARD_WIDTH })
+      : undefined;
 
   // Prefer the poster/thumbnail returned by the API, fall back to the derived path.
   const thumbnailUri = useMemo(() => {
-    return resolveCdn(item.imageUrl || item.thumbnailUrl) || getShortsThumbnailUrl(tokenId) || "";
+    return (
+      resolveCdn(item.imageUrl || item.thumbnailUrl) ||
+      getShortsThumbnailUrl(tokenId, CARD_WIDTH) ||
+      ""
+    );
   }, [item.imageUrl, item.thumbnailUrl, tokenId]);
 
   const avatarUri = useMemo(
