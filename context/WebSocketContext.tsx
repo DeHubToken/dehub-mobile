@@ -79,8 +79,44 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const reconnectListenersRef = useRef<Set<() => void>>(new Set());
   // No domain state kept (stream-specific logic removed)
 
-  // Initialize or update auth
+  // ── Subscriptions ─────────────────────────────────────────────────────────
+  //
+  // Held here rather than handed straight to a client, because the clients no
+  // longer exist for the whole life of the provider (see the gate below). A
+  // handler registered while signed out would otherwise be dropped on the floor
+  // and never re-attach once the sockets came up.
+  type Sub = { event: string; handler: (data: any) => void; detach?: () => void };
+  const subsRef = useRef<Set<Sub>>(new Set());
+
+  const isDmEvent = useCallback((event: string) => DMSocketEventSet.has(event), []);
+
+  /** Bind one subscription to its namespace. No-op while that client is absent. */
+  const attachSub = useCallback((sub: Sub) => {
+    const target = isDmEvent(sub.event) ? dmClientRef.current : clientRef.current;
+    if (!target) return;
+    sub.detach = target.on(sub.event, sub.handler);
+  }, [isDmEvent]);
+
+  /** Bind everything that is still waiting for a client. */
+  const attachPendingSubs = useCallback(() => {
+    subsRef.current.forEach((sub) => {
+      if (!sub.detach) attachSub(sub);
+    });
+  }, [attachSub]);
+
+  // Initialize or update auth.
+  //
+  // Gated on having a wallet address. Both sockets used to be constructed with
+  // autoConnect on the provider's first render, which is unconditional and sits
+  // above the whole app — so a signed-out visitor opened two socket.io
+  // connections during boot, competing with the feed's own first requests, and
+  // then sat in socket.io's reconnect loop against a server with nothing to say
+  // to an unauthenticated client. Nothing this app does over either socket
+  // (DMs, calls, live chat, notifications) means anything without an account.
+  const hasIdentity = !!getAddress();
+
   useEffect(() => {
+    if (!hasIdentity) return;
     if (!clientRef.current) {
       const baseRaw = env?.WEBSOCKET_URL || 'https://api.dehub.io';
       // Ensure base URL does not already include the socket.io path
@@ -139,11 +175,13 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         connectedDMRef.current = false;
         setConnected(connectedCoreRef.current);
       });
+      // Anything that subscribed before sign-in is bound now.
+      attachPendingSubs();
     } else {
       clientRef.current.updateAuth();
       dmClientRef.current?.updateAuth();
     }
-  }, [getAuthToken, getAddress]);
+  }, [hasIdentity, getAuthToken, getAddress, attachPendingSubs]);
 
   // When user changes (token/address), ask client to refresh handshake auth
   useEffect(() => {
@@ -182,49 +220,38 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     return () => { sub.remove(); };
   }, [log]);
 
-  const isDmEvent = useCallback((event: string) => DMSocketEventSet.has(event), []);
   const emit = useCallback((event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => {
     const target = isDmEvent(event) ? dmClientRef.current : clientRef.current;
     target?.emit(event, payload, ack);
   }, [isDmEvent]);
-  // Authed emitter: merges current token into payload
-  const emitAuthed = useCallback((event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => {
-    const token = tokenRef.current;
-    // const merged = token ? { ...(payload || {}), token } : payload;
-     const merged = { ...(payload || {}) };
-     const target = isDmEvent(event) ? dmClientRef.current : clientRef.current;
-     if (ack) {
-      target?.emit(event, merged, ack);
-    } else {
-      target?.emit(event, merged);
-    }
-  }, [isDmEvent]);
-  // Since WebSocketClient.on returns an unsubscribe, we wrap it to also track handlers for a lightweight off.
-  // event -> (handler -> unsubscribe)
-  const handlerMapRef = useRef<Map<string, Map<Function, Function>>>(new Map());
+
+  /**
+   * Kept as a distinct name because eight DM call sites use it, but it no
+   * longer differs from `emit`: the token merge it is named for was commented
+   * out and the socket authenticates on the handshake instead. Left as an alias
+   * rather than a copy so the two cannot drift.
+   */
+  const emitAuthed = emit;
+
   const on = useCallback((event: string, handler: (data: any) => void) => {
-    const unsubCore = clientRef.current?.on(event, handler) || (() => {});
-    const unsubDM = dmClientRef.current?.on(event, handler) || (() => {});
-    const unsubscribeBoth = () => {
-      try { unsubCore(); } catch {}
-      try { unsubDM(); } catch {}
-    };
-    // Track unsubscribe for this handler
-    let map = handlerMapRef.current.get(event);
-    if (!map) { map = new Map(); handlerMapRef.current.set(event, map); }
-    map.set(handler, unsubscribeBoth);
-    // Return an unsubscribe that calls both underlying unsubscribes and removes tracking
+    // Routed by namespace, exactly like emit(). This used to subscribe the same
+    // handler to BOTH sockets unconditionally, so any event name the two
+    // namespaces share delivered twice — one action, two handler calls, which
+    // is what a message appearing twice in a thread looks like.
+    const sub: Sub = { event, handler };
+    subsRef.current.add(sub);
+    attachSub(sub);
     return () => {
-      try { unsubscribeBoth(); } catch {}
-      map?.delete(handler);
+      try { sub.detach?.(); } catch {}
+      subsRef.current.delete(sub);
     };
-  }, []);
+  }, [attachSub]);
+
   const off = useCallback((event: string, handler: (data: any) => void) => {
-    const map = handlerMapRef.current.get(event);
-    const unsub = map?.get(handler);
-    if (unsub) {
-      try { unsub(); } catch {}
-      map?.delete(handler);
+    for (const sub of subsRef.current) {
+      if (sub.event !== event || sub.handler !== handler) continue;
+      try { sub.detach?.(); } catch {}
+      subsRef.current.delete(sub);
     }
   }, []);
   const value = useMemo(() => ({ connected, emit, emitAuthed, on, off, client: clientRef.current }), [connected, emit, emitAuthed, on, off]);

@@ -25,6 +25,7 @@ import {
   KeyboardAvoidingView,
   LogBox,
   StatusBar,
+  StyleSheet,
   View,
 } from "react-native";
 import * as WebBrowser from "expo-web-browser";
@@ -156,16 +157,6 @@ export default function App() {
     );
   }
 
-  if (!hasInternet) {
-    return (
-      <I18nextProvider i18n={i18n}>
-        <SafeAreaProvider className="flex-1 select-none bg-theme-background">
-          <NoInternetScreen onRetry={checkConnection} />
-        </SafeAreaProvider>
-      </I18nextProvider>
-    );
-  }
-
   return (
     <I18nextProvider i18n={i18n}>
       <ErrorBoundary showDetails={__DEV__}>
@@ -201,6 +192,20 @@ export default function App() {
             {/* Settings → Appearance → Dim Lights. Above every surface,
                 below nothing — same stacking as web's fixed overlay. */}
             <DimLightsOverlay />
+            {/* Offline is an overlay, never a replacement for the tree.
+                Returning NoInternetScreen instead of the app — which is what
+                this did — unmounted AuthProvider, the query cache, both
+                sockets and the whole navigator every time the radio dropped
+                for a second, so a lift or a Wi-Fi handoff cost the user their
+                scroll position, any open sheet, and any upload in flight, and
+                then paid the full boot cost again on the way back.
+                useNetworkStatus debounces the drop; this covers the app while
+                it lasts and gets out of the way the moment it is over. */}
+            {!hasInternet && (
+              <View style={StyleSheet.absoluteFill} pointerEvents="auto">
+                <NoInternetScreen onRetry={checkConnection} />
+              </View>
+            )}
           </SafeAreaProvider>
         </GestureHandlerRootView>
         </PersistQueryClientProvider>
