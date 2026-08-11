@@ -596,7 +596,15 @@ export default function HomeScreen() {
       if (mounted && list?.length) {
         const cleaned = list.filter((c) => c && c.toLowerCase() !== "all");
         setCategories(cleaned);
-        if (selectedCategory && !cleaned.includes(selectedCategory)) setSelectedCategory(undefined);
+        // Read through the updater rather than the closure. This effect runs
+        // once, and the effect that restores the persisted category runs before
+        // it — so the `selectedCategory` captured here was always the initial
+        // `undefined`, and a persisted category the backend has since dropped
+        // was never cleared. The feed then filtered on a dead category with no
+        // sign of why it was empty.
+        setSelectedCategory((current) =>
+          current && !cleaned.includes(current) ? undefined : current,
+        );
       }
       if (mounted) setCategoriesLoading(false);
     })();
