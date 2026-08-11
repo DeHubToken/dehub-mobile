@@ -17,9 +17,24 @@ const log = createLogger("reown.config");
 
 export const projectId = env.REOWN_PROJECT_ID;
 
+/**
+ * Whether the "Connect Wallet" option is usable in this build.
+ *
+ * This module is a side-effect import from index.ts, which runs before
+ * registerRootComponent — so anything it throws happens before React exists, let
+ * alone the ErrorBoundary. A missing REOWN_PROJECT_ID (or a malformed
+ * supportedNetworks) used to take the whole app down to a white screen with no
+ * message, on a build where every other sign-in method would have worked fine.
+ *
+ * Connect Wallet is one of five sign-in options. Losing it is a degraded build;
+ * losing boot is a dead one. Callers gate on this instead.
+ */
+export let isWalletConnectAvailable = false;
+
 if (!projectId) {
-  log.error("REOWN_PROJECT_ID is missing from environment variables");
-  throw new Error("REOWN_PROJECT_ID is required");
+  log.error(
+    "REOWN_PROJECT_ID is missing — Connect Wallet will be unavailable in this build",
+  );
 }
 
 export const metadata = {
@@ -60,18 +75,25 @@ const WEB_PARITY_WALLET_IDS = [
 // result in favor of a hardcoded [Ethereum mainnet, Polygon] — chains the
 // rest of the app has no contracts on — which would have offered a
 // wallet-connect flow that could never actually complete a DeHub sign-in.
+//
+// Returns null rather than throwing, for the same reason as the projectId check
+// above: this runs at module scope during boot, where a throw is a white screen.
 function resolveChains() {
   if (!Array.isArray(supportedNetworks) || supportedNetworks.length === 0) {
-    throw new Error("supportedNetworks is empty or invalid — cannot configure AppKit chains");
+    log.error("supportedNetworks is empty or invalid — cannot configure AppKit chains");
+    return null;
   }
-  supportedNetworks.forEach((network, index) => {
+  for (let index = 0; index < supportedNetworks.length; index++) {
+    const network = supportedNetworks[index];
     if (!network || typeof network !== "object") {
-      throw new Error(`Invalid network at index ${index}: not an object`);
+      log.error(`Invalid network at index ${index}: not an object`);
+      return null;
     }
     if (!network.chainId || !network.name || !network.currency) {
-      throw new Error(`Invalid network at index ${index}: missing required properties`);
+      log.error(`Invalid network at index ${index}: missing required properties`);
+      return null;
     }
-  });
+  }
   return supportedNetworks.map((n) => ({
     chainId: n.chainId,
     name: n.name,
@@ -87,20 +109,32 @@ const chains = resolveChains();
 const APPKIT_GLOBAL_KEY = "__REOWN_APPKIT_INITIALIZED__" as const;
 const APPKIT_INSTANCE_KEY = "__REOWN_APPKIT_INSTANCE__" as const;
 
-if (!(globalThis as any)[APPKIT_GLOBAL_KEY]) {
-  const instance = createAppKit({
-    projectId,
-    metadata,
-    chains,
-    config,
-    enableAnalytics: false,
-    includeWalletIds: WEB_PARITY_WALLET_IDS,
-    featuredWalletIds: WEB_PARITY_WALLET_IDS,
-  });
-  (globalThis as any)[APPKIT_GLOBAL_KEY] = true;
-  (globalThis as any)[APPKIT_INSTANCE_KEY] = instance;
-  log.info("AppKit initialized", { chainsCount: chains.length });
+if (!projectId || !chains) {
+  // Already logged above. Leaves isWalletConnectAvailable false, so App.tsx
+  // skips <AppKit /> and the sign-in sheet hides the Connect Wallet button.
+} else if (!(globalThis as any)[APPKIT_GLOBAL_KEY]) {
+  try {
+    const instance = createAppKit({
+      projectId,
+      metadata,
+      chains,
+      config,
+      enableAnalytics: false,
+      includeWalletIds: WEB_PARITY_WALLET_IDS,
+      featuredWalletIds: WEB_PARITY_WALLET_IDS,
+    });
+    (globalThis as any)[APPKIT_GLOBAL_KEY] = true;
+    (globalThis as any)[APPKIT_INSTANCE_KEY] = instance;
+    isWalletConnectAvailable = true;
+    log.info("AppKit initialized", { chainsCount: chains.length });
+  } catch (e) {
+    // createAppKit reaches the WalletConnect relay and the wallet explorer at
+    // construction time. Whatever it dislikes, it must not be the reason the
+    // app fails to start.
+    log.error("AppKit failed to initialize — Connect Wallet unavailable", e);
+  }
 } else {
+  isWalletConnectAvailable = true;
   log.debug("AppKit already initialized, skipping");
 }
 
