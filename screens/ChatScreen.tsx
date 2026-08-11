@@ -26,6 +26,7 @@ import MessageBubble from "../components/DM/MessageBubble";
 import ChatInputBar, {
   type ChatMediaAttachment,
 } from "../components/DM/ChatInputBar";
+import type { SmartReplyTurn } from "../services/ai.service";
 import MessageContextMenu, {
   type MessageLayout,
 } from "../components/DM/MessageContextMenu";
@@ -344,6 +345,31 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       return false;
     },
     [userId, address],
+  );
+
+  /**
+   * Tail of the thread handed to the reply drafter, oldest first. Text only —
+   * an image or voice note carries nothing the model can reply to.
+   *
+   * messageList is newest-first for the inverted FlatList, so this takes the
+   * head and flips it; slicing the tail would hand over the OLDEST twelve
+   * messages in the conversation.
+   */
+  const smartReplyThread = useMemo<SmartReplyTurn[]>(
+    () =>
+      messageList
+        .filter((m) => (m.msgType ?? "msg") === "msg" && !!m.content?.trim())
+        .slice(0, 12)
+        .reverse()
+        .map((m) => {
+          const mine = isMine(m);
+          return {
+            from: mine ? ("me" as const) : ("them" as const),
+            name: mine ? undefined : peerLabel,
+            text: m.content!.trim(),
+          };
+        }),
+    [messageList, isMine, peerLabel],
   );
 
 
@@ -1514,6 +1540,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 dhbBalance={dhbBalance}
                 onPollPress={() => setPollSheetVisible(true)}
                 initialText={route?.params?.sharedText}
+                thread={smartReplyThread}
+                peerName={peerLabel}
               />
             )}
           </View>
