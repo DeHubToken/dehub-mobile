@@ -36,6 +36,7 @@ const POST_TYPE_ICON: Record<string, string> = {
   "feed-images": "Image",
   "feed-audio": "Headphones",
   "feed-simple": "FileText",
+  "feed-file": "Paperclip",
 };
 
 /** Short-form elapsed time. */

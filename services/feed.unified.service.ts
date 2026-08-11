@@ -1,6 +1,7 @@
 import { apiClient } from "../libs";
+import type { PostAttachment } from "../libs/attachments";
 
-export type FeedPostType = "video" | "feed-images" | "feed-simple" | "feed-audio" | "live" | "short" | "all";
+export type FeedPostType = "video" | "feed-images" | "feed-simple" | "feed-audio" | "feed-file" | "live" | "short" | "all";
 export type FeedSortBy = "score" | "likes" | "views" | "createdAt" | "tips" | "comments" | "random";
 export type FeedSortOrder = "asc" | "desc";
 export type FeedRange = "day" | "week" | "month" | "year";
@@ -87,8 +88,11 @@ export interface UnifiedFeedItem {
   videoUrl?: string;
   previewUrl?: string;
   
+  /** Documents on a feed-file post. */
+  attachments?: PostAttachment[];
+
   // Type & Status
-  postType: "video" | "feed-images" | "feed-simple" | "feed-audio" | "live" | "short";
+  postType: "video" | "feed-images" | "feed-simple" | "feed-audio" | "feed-file" | "live" | "short";
   status?: string;
   category?: string[];
   
