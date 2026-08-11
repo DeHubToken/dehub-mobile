@@ -28,7 +28,15 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
 
   return (
     <View className="flex-row items-center justify-between px-4 h-11">
-      <TouchableOpacity onPress={onLogoPress} activeOpacity={0.7}>
+      {/* The logo is a control, not decoration — it scrolls the active feed to
+          the top and refreshes it. Unlabelled it announced as "image button". */}
+      <TouchableOpacity
+        onPress={onLogoPress}
+        activeOpacity={0.7}
+        accessibilityRole="button"
+        accessibilityLabel="DeHub"
+        accessibilityHint="Scrolls to the top of the feed and refreshes it"
+      >
         <SmartImage
           source={require("../assets/web-icons/dehub-logo-white.png")}
           style={{ width: 93, height: 28 }}
@@ -66,6 +74,9 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
         <TouchableOpacity
           onPress={onMenuPress}
           activeOpacity={0.7}
+          accessibilityRole="button"
+          // Signed in this control is the user's own avatar, which is why the
+          // label says what it does rather than what it looks like.
           accessibilityLabel="Open menu"
           className="w-8 h-8 items-center justify-center"
         >

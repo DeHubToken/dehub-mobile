@@ -102,7 +102,18 @@ const AnimatedActionButton: React.FC<{
       onLongPress={onLongPress}
       // Matches the web tray's 400ms hold so the gesture feels the same on both.
       delayLongPress={400}
-      accessibilityLabel={accessibilityLabel}
+      accessibilityRole="button"
+      // The count is folded into the label rather than left as a sibling Text:
+      // once a Pressable carries an accessibilityLabel its children stop being
+      // announced, so "Comments" alone would lose the number entirely.
+      accessibilityLabel={
+        accessibilityLabel !== undefined && count !== undefined
+          ? `${accessibilityLabel}, ${count}`
+          : accessibilityLabel
+      }
+      // `active` means liked / disliked / reposted / saved depending on the
+      // button; all four are on-off states the UI only signals with colour.
+      accessibilityState={active === undefined ? undefined : { selected: active }}
       // Vertical slop takes the 18pt icon to a 44pt tap height (HIG minimum)
       // without changing layout. Horizontal stays at 6: the row is
       // justify-between with ~16pt gaps, so wider horizontal slop would make
@@ -172,12 +183,14 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
     <View className="flex-row items-center justify-between pt-2">
       <AnimatedActionButton
         onPress={onTip}
+        accessibilityLabel="Tip"
         iconName="Gem"
         count={tipCount}
         formatCount
       />
       <AnimatedActionButton
         onPress={onDislike}
+        accessibilityLabel="Dislike"
         iconName="ThumbsDown"
         active={disliked}
         activeFill={ICON_ACTIVE}
@@ -187,6 +200,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
       {/* Share — carries the repost count; bolder + larger once reposted. */}
       <AnimatedActionButton
         onPress={onShare}
+        accessibilityLabel="Share and repost"
         iconName="Share2"
         active={reposted}
         activeColor={ICON_ACTIVE}
@@ -198,6 +212,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
       />
       <AnimatedActionButton
         onPress={onComment}
+        accessibilityLabel="Comments"
         iconName="MessageSquare"
         count={commentCount}
         formatCount
@@ -241,6 +256,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
       </View>
       <AnimatedActionButton
         onPress={onSave}
+        accessibilityLabel="Save to library"
         iconName="Bookmark"
         active={saved}
         activeColor="#D4D4D8"
@@ -249,6 +265,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
       />
       <AnimatedActionButton
         onPress={onInfo}
+        accessibilityLabel="Post details"
         iconName="Info"
         inactiveColor={ICON_MUTED}
       />
