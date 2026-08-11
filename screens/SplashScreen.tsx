@@ -16,11 +16,37 @@ import { Fit, RiveView, useRiveFile } from "@rive-app/react-native";
  * - Blank screen while animation loads
  * - Visual jarring from mismatched backgrounds
  */
+/**
+ * How long the splash has to still be up before the Rive animation is worth
+ * loading at all.
+ *
+ * The file is ~1.5 MB and gets decoded at the most contended moment in the
+ * app's life: auth resolving, the query cache rehydrating out of MMKV, the
+ * navigation state restoring. On a warm start all of that finishes in a few
+ * hundred milliseconds and the animation never becomes visible — so the cost
+ * was paid for nothing, and it was paid out of exactly the frames that decide
+ * how fast the app feels.
+ *
+ * Under this threshold the static logo carries the whole splash on its own,
+ * which is what was on screen for the first 700ms in any case.
+ */
+const RIVE_LOAD_DELAY_MS = 400;
+
 export default function SplashScreen() {
+  // Gates the require, not just the render: useRiveFile starts loading the
+  // moment it is handed a source.
+  const [wantRive, setWantRive] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setWantRive(true), RIVE_LOAD_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // `undefined`, not `null` — that is the absent value useRiveFile's own
+  // signature accepts (RiveFileInput | undefined).
   const { riveFile } = useRiveFile(
-    require("../assets/riv/dehub_-_loading_screen.riv")
+    wantRive ? require("../assets/riv/dehub_-_loading_screen.riv") : undefined
   );
-  
+
   // Track if Rive is ready and played for at least a moment
   const [riveReady, setRiveReady] = useState(false);
   const fadeAnim = useState(() => new Animated.Value(1))[0]; // Start with static logo visible

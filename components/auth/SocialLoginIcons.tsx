@@ -4,6 +4,7 @@ import { SvgXml } from "react-native-svg";
 import EmailLoginFlow from "./EmailLoginFlow";
 import PhoneLoginFlow from "./PhoneLoginFlow";
 import { AuthButton } from "./AuthControls";
+import { isWalletConnectAvailable } from "../../config/reown.config";
 
 // Monochrome Google glyph — tinted at render time so it stays legible on both
 // the white-glass secondary fill and (if ever reused) the light primary fill.
@@ -80,8 +81,12 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
       />
 
       {/* Connect Wallet — authenticate with an external wallet app (MetaMask,
-          Trust Wallet, Coinbase Wallet, ...) via Reown/WalletConnect. */}
-      {onConnectWallet && (
+          Trust Wallet, Coinbase Wallet, ...) via Reown/WalletConnect. Hidden
+          when AppKit could not be configured (missing REOWN_PROJECT_ID, bad
+          chain list): reown.config no longer takes the whole app down over
+          that, so the button has to answer for itself rather than open a sheet
+          that can never connect. */}
+      {onConnectWallet && isWalletConnectAvailable && (
         <AuthButton
           icon="wallet"
           label="Connect Wallet"
