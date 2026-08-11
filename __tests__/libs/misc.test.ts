@@ -22,16 +22,30 @@ describe('libs/misc', () => {
       expect(getAvatarUrl('')).toBe('default-avatar');
     });
 
-    it('extracts filename and builds CDN URL', () => {
+    // Avatars are the one helper that sizes by default — they are never shown
+    // larger than ~88pt, so there is no call site that wants the original. The
+    // 96 is the 48pt default at the mocked DPR of 2, snapped to the ladder.
+    it('extracts filename and builds a sized CDN URL', () => {
       expect(getAvatarUrl('uploads/avatars/abc.png')).toBe(
-        'https://cdn.test.dehub.io/avatars/abc.png'
+        'https://dehub.io/cdn-cgi/image/format=webp,quality=80,width=96/https://cdn.test.dehub.io/avatars/abc.png'
       );
     });
 
     it('handles simple filename', () => {
       expect(getAvatarUrl('user123.jpg')).toBe(
-        'https://cdn.test.dehub.io/avatars/user123.jpg'
+        'https://dehub.io/cdn-cgi/image/format=webp,quality=80,width=96/https://cdn.test.dehub.io/avatars/user123.jpg'
       );
+    });
+
+    it('sizes to an explicit request', () => {
+      // 88pt at DPR 2 = 176px, which snaps up to the 192 rung.
+      expect(getAvatarUrl('abc.png', 88)).toBe(
+        'https://dehub.io/cdn-cgi/image/format=webp,quality=80,width=192/https://cdn.test.dehub.io/avatars/abc.png'
+      );
+    });
+
+    it('returns the untouched original at size 0, for fullscreen viewers', () => {
+      expect(getAvatarUrl('abc.png', 0)).toBe('https://cdn.test.dehub.io/avatars/abc.png');
     });
   });
 
@@ -128,16 +142,25 @@ describe('libs/misc', () => {
       expect(getImageUrl('')).toBe('');
     });
 
-    it('returns http URLs unchanged (with optional dimensions)', () => {
+    it('leaves third-party hosts alone, sized or not', () => {
+      // Only our own CDN is a permitted remote source for the transform, so a
+      // width here is a no-op rather than a URL that would 404.
       expect(getImageUrl('https://example.com/img.png')).toBe('https://example.com/img.png');
-      expect(getImageUrl('https://example.com/img.png', 200, 300)).toBe(
-        'https://example.com/img.png?w=200&h=300'
+      expect(getImageUrl('https://example.com/img.png', 200)).toBe(
+        'https://example.com/img.png'
       );
     });
 
     it('builds CDN images URL for relative paths', () => {
       expect(getImageUrl('uploads/photo.jpg')).toBe(
         'https://cdn.test.dehub.io/images/photo.jpg'
+      );
+    });
+
+    it('sizes the CDN URL when a width is given', () => {
+      // 180pt at DPR 2 = 360px, which is on the ladder exactly.
+      expect(getImageUrl('uploads/photo.jpg', 180)).toBe(
+        'https://dehub.io/cdn-cgi/image/format=webp,quality=80,width=360/https://cdn.test.dehub.io/images/photo.jpg'
       );
     });
   });
