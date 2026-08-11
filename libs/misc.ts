@@ -62,11 +62,18 @@ export function getPreviewUrl(tokenId?: string | number | null): string | undefi
   return `${env.CDN_BASE_URL}/previews/${id}.mp4`;
 }
 
+/**
+ * Returns `string`, not `string | undefined`. Both branches provably produce a
+ * string — the signature said otherwise, and until now nothing caught it
+ * because FeedCard's thumbnail chain also contained bare `any` returns, and one
+ * `any` in a union collapses the whole union to `any`. Removing those (they are
+ * now routed through cdnImage) made the phantom `undefined` visible.
+ */
 export function resolveThumbnail(
   obj: Record<string, any>,
   /** Rendered width in CSS points. Omit for the untouched original. */
   widthPt?: number,
-): string | undefined {
+): string {
   const raw = obj.thumbnail || obj.thumbnailUrl || obj.imageUrl;
   if (!raw) return "default-banner";
   return cdnImage(`${env.CDN_BASE_URL}/${raw}`, { width: widthPt });
