@@ -156,6 +156,11 @@ describe('findDehubLinks', () => {
     expect(findDehubLinks('look at https://evil.example/app/post/1 now')).toEqual([]);
     expect(findDehubLinks('https://example.com/communities/dehub')).toEqual([]);
     expect(findDehubLinks('https://dehub.io.attacker.com/app/post/9')).toEqual([]);
+    // Scheme-less, which is the case that pins the regex: ABSOLUTE_URL_RE makes
+    // https?:// optional, so pass 1 still claims this span and rejects it on the
+    // host check. Require the scheme and pass 2 reads the trailing /app/post/1
+    // as a host-less path — which can only be ours — and cards it.
+    expect(findDehubLinks('example.com/app/post/1')).toEqual([]);
   });
 
   it('still finds our own link when a foreign one sits beside it', () => {
