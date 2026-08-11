@@ -66,10 +66,21 @@ const LAST_INDEX = NAV_ITEMS.length - 1;
 
 const NavButton = memo<{
   icon: IconName;
+  label: string;
   active: boolean;
   onPress: () => void;
-}>(({ icon, active, onPress }) => (
-  <Pressable onPress={onPress} style={styles.navButton}>
+}>(({ icon, label, active, onPress }) => (
+  // These six are the most-used control in the app and were icon-only with no
+  // label, so a screen reader announced all of them identically as "button".
+  // NAV_ITEMS already carries the right words in `tooltip`; `selected` is what
+  // conveys which tab you are on, since the icon does it visually via colour.
+  <Pressable
+    onPress={onPress}
+    style={styles.navButton}
+    accessibilityRole="tab"
+    accessibilityLabel={label}
+    accessibilityState={{ selected: active }}
+  >
     {({ pressed }) => (
       <View style={{ opacity: pressed ? 0.6 : 1 }}>
         <Icon
@@ -233,6 +244,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
               <NavButton
                 key={item.postType}
                 icon={item.icon}
+                label={item.tooltip}
                 active={index === activeIndex}
                 onPress={() => handleNavPress(item.postType)}
               />
