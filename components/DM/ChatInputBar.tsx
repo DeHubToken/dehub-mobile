@@ -24,6 +24,10 @@ import * as VideoThumbnails from "expo-video-thumbnails";
 import { openCroppedImagePicker } from "../../libs/assets.util";
 import { runWithPermissions } from "../../libs/permissions.util";
 import GifPicker from "./GifPicker";
+import SmartReplyTray from "./SmartReplyTray";
+import ReplyOrb from "./ReplyOrb";
+import { useSmartReplies } from "../../hooks/useSmartReplies";
+import type { SmartReplyTurn } from "../../services/ai.service";
 import type { DmMessage, DmFee } from "../../services/dm/dm.types";
 import { DM_TEXT_MAX_LENGTH } from "../../services/dm/dm.types";
 
@@ -63,6 +67,13 @@ interface ChatInputBarProps {
   onPollPress?: () => void;
   /** Pre-fill the text input on mount (e.g. shared post URL). */
   initialText?: string;
+  /**
+   * Recent turns, oldest first. Supplying this turns on the reply orb; leave it
+   * off and the composer is exactly what it was.
+   */
+  thread?: SmartReplyTurn[];
+  /** Who the user is talking to — labels the other side for the drafter. */
+  peerName?: string;
 }
 
 
@@ -88,6 +99,8 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   dhbBalance,
   onPollPress,
   initialText,
+  thread,
+  peerName,
 }) => {
   const inputRef = useRef<TextInput>(null);
   const [text, setText] = useState("");
@@ -95,8 +108,34 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const [gifUrl, setGifUrl] = useState<string | null>(null);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
   const [enhancing, setEnhancing] = useState(false);
+  const [showReplyTray, setShowReplyTray] = useState(false);
   const typingRef = useRef(false);
   const typingTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const smartReplies = useSmartReplies(thread ?? [], peerName);
+  const replyOrbEnabled = !!thread && thread.length > 0;
+
+  const handleOrbToggle = useCallback(() => {
+    if (showReplyTray) {
+      setShowReplyTray(false);
+      return;
+    }
+    setShowReplyTray(true);
+    // Only draft on the first open; the tray keeps whatever it already has,
+    // so reopening is free. Its own orb is the redraft control.
+    if (smartReplies.status === "idle") smartReplies.generate();
+  }, [showReplyTray, smartReplies]);
+
+  /**
+   * Drop a suggestion into the composer rather than sending it. The user still
+   * owns the send — a drafted line that fires on one tap is how the wrong
+   * thing gets sent to the wrong person.
+   */
+  const handlePickSuggestion = useCallback((suggestion: string) => {
+    setText((prev) => (prev.trim() ? `${prev.trimEnd()} ${suggestion}` : suggestion));
+    setShowReplyTray(false);
+    requestAnimationFrame(() => inputRef.current?.focus());
+  }, []);
 
   // Pre-fill with shared text on mount
   useEffect(() => {
@@ -149,6 +188,10 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
 
   const handleSend = useCallback(() => {
     if (sending) return;
+
+    // Whatever is in the tray was drafted against a thread that no longer ends
+    // where it did, so it goes away with the send.
+    setShowReplyTray(false);
 
     // GIF with optional caption
     if (gifUrl) {
@@ -314,6 +357,19 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   return (
     <>
       <View className="bg-theme-neutrals-900 border-t border-theme-neutrals-800/50">
+        {replyOrbEnabled && showReplyTray && (
+          <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(120)}>
+            <SmartReplyTray
+              status={smartReplies.status}
+              suggestions={smartReplies.suggestions}
+              error={smartReplies.error}
+              onGenerate={smartReplies.generate}
+              onPick={handlePickSuggestion}
+              onDismiss={() => setShowReplyTray(false)}
+            />
+          </Animated.View>
+        )}
+
         {/* Reply-to preview */}
         {replyTo && (
           <Animated.View
@@ -556,27 +612,48 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             </TouchableOpacity>
           )}
 
-          {/* Sparkles — AI enhance */}
-          <TouchableOpacity
-            onPress={handleEnhance}
-            className="p-2"
-            hitSlop={4}
-            activeOpacity={0.6}
-            disabled={!text.trim() || enhancing}
-            accessibilityRole="button"
-            accessibilityLabel="Enhance message with AI"
-            accessibilityState={{ disabled: !text.trim() || enhancing }}
-          >
-            {enhancing ? (
-              <ActivityIndicator size={18} color="#F4F4F5" />
-            ) : (
-              <Icon
-                name="Sparkles"
+          {/* One AI slot, two jobs. The toolbar is already eight items wide on
+              a 360dp screen, so the orb takes over the Sparkles position while
+              the composer is empty — there is nothing to enhance then anyway,
+              and "what do I say" is exactly the empty-composer problem. Type
+              anything and it reverts to enhance. */}
+          {!text.trim() && replyOrbEnabled && !enhancing ? (
+            <TouchableOpacity
+              onPress={handleOrbToggle}
+              className="p-2"
+              hitSlop={4}
+              activeOpacity={0.6}
+              accessibilityRole="button"
+              accessibilityLabel="Suggested replies"
+              accessibilityState={{ expanded: showReplyTray }}
+            >
+              <ReplyOrb
+                state={showReplyTray && smartReplies.status === "loading" ? "thinking" : "idle"}
                 size={22}
-                color={text.trim() ? '#F4F4F5' : '#3F3F46'}
               />
-            )}
-          </TouchableOpacity>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              onPress={handleEnhance}
+              className="p-2"
+              hitSlop={4}
+              activeOpacity={0.6}
+              disabled={!text.trim() || enhancing}
+              accessibilityRole="button"
+              accessibilityLabel="Enhance message with AI"
+              accessibilityState={{ disabled: !text.trim() || enhancing }}
+            >
+              {enhancing ? (
+                <ActivityIndicator size={18} color="#F4F4F5" />
+              ) : (
+                <Icon
+                  name="Sparkles"
+                  size={22}
+                  color={text.trim() ? '#F4F4F5' : '#3F3F46'}
+                />
+              )}
+            </TouchableOpacity>
+          )}
 
           {/* Send */}
           {showSendButton ? (
