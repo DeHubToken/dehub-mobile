@@ -1,30 +1,33 @@
 import { renderHook, act, waitFor } from '@testing-library/react-native';
 
-const store: Record<string, string> = {};
+// Everything a jest.mock factory closes over has to be named mock* — the
+// factories are hoisted above these declarations, and jest rejects any other
+// out-of-scope reference outright.
+const mockStore: Record<string, string> = {};
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
-  getItem: jest.fn(async (k: string) => store[k] ?? null),
+  getItem: jest.fn(async (k: string) => mockStore[k] ?? null),
   setItem: jest.fn(async (k: string, v: string) => {
-    store[k] = v;
+    mockStore[k] = v;
   }),
 }));
 
 // One chainable stub serves both shapes the hook uses:
 // select().order().limit() for the read, and insert().select().single() for the
 // write. delete().eq() terminates on eq.
-let listResult: any = { data: [], error: null };
-let insertResult: any = { data: { id: 'row-1' }, error: null };
-const eqSpy = jest.fn(async () => ({ error: null }));
+let mockListResult: any = { data: [], error: null };
+let mockInsertResult: any = { data: { id: 'row-1' }, error: null };
+const mockEqSpy = jest.fn(async () => ({ error: null }));
 
 jest.mock('../../services/supabase', () => {
   const q: any = {};
   q.select = jest.fn(() => q);
   q.order = jest.fn(() => q);
-  q.limit = jest.fn(async () => listResult);
+  q.limit = jest.fn(async () => mockListResult);
   q.insert = jest.fn(() => q);
-  q.single = jest.fn(async () => insertResult);
+  q.single = jest.fn(async () => mockInsertResult);
   q.delete = jest.fn(() => q);
-  q.eq = jest.fn((...args: any[]) => eqSpy(...(args as [])));
+  q.eq = jest.fn((...args: any[]) => mockEqSpy(...(args as [])));
   return { supabase: { from: jest.fn(() => q) } };
 });
 
@@ -32,6 +35,7 @@ import { useDrafts } from '../../hooks/useDrafts';
 import { supabase } from '../../services/supabase';
 
 const ADDRESS = '0xAbC0000000000000000000000000000000000001';
+const KEY = `@dhb_drafts:${ADDRESS.toLowerCase()}`;
 
 const newDraft = (bodyText: string) =>
   ({
@@ -48,15 +52,13 @@ const newDraft = (bodyText: string) =>
 describe('hooks/useDrafts', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    for (const k of Object.keys(store)) delete store[k];
-    listResult = { data: [], error: null };
-    insertResult = { data: { id: 'row-1' }, error: null };
+    for (const k of Object.keys(mockStore)) delete mockStore[k];
+    mockListResult = { data: [], error: null };
+    mockInsertResult = { data: { id: 'row-1' }, error: null };
   });
 
   it('reads existing drafts out of AsyncStorage', async () => {
-    store[`@dhb_drafts:${ADDRESS.toLowerCase()}`] = JSON.stringify([
-      { id: 'a', bodyText: 'hello', createdAt: 1 },
-    ]);
+    mockStore[KEY] = JSON.stringify([{ id: 'a', bodyText: 'hello', createdAt: 1 }]);
 
     const { result } = renderHook(() => useDrafts(ADDRESS));
 
@@ -76,7 +78,7 @@ describe('hooks/useDrafts', () => {
     expect(result.current.drafts[0].remoteId).toBe('row-1');
     expect(supabase.from).toHaveBeenCalledWith('post_drafts');
     // The local copy is written before the network call, so it survives either way.
-    expect(store[`@dhb_drafts:${ADDRESS.toLowerCase()}`]).toContain('synced');
+    expect(mockStore[KEY]).toContain('synced');
   });
 
   it('does not touch the server when there is no address', async () => {
@@ -93,7 +95,7 @@ describe('hooks/useDrafts', () => {
   });
 
   it('keeps the draft locally when the server write fails', async () => {
-    insertResult = { data: null, error: { message: 'nope' } };
+    mockInsertResult = { data: null, error: { message: 'nope' } };
 
     const { result } = renderHook(() => useDrafts(ADDRESS));
     await waitFor(() => expect(result.current.loading).toBe(false));
@@ -107,7 +109,7 @@ describe('hooks/useDrafts', () => {
   });
 
   it('folds in server drafts this device has not seen, without media', async () => {
-    listResult = {
+    mockListResult = {
       data: [
         {
           id: 'row-9',
@@ -143,6 +145,6 @@ describe('hooks/useDrafts', () => {
     });
 
     expect(result.current.drafts).toHaveLength(0);
-    expect(eqSpy).toHaveBeenCalledWith('id', 'row-1');
+    expect(mockEqSpy).toHaveBeenCalledWith('id', 'row-1');
   });
 });
