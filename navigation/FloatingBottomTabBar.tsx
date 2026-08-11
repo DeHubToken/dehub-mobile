@@ -174,8 +174,14 @@ const NavButton = memo<{
 
   return (
     <AnimatedPressable
-      accessibilityRole="button"
-      accessibilityLabel={label}
+      accessibilityRole="tab"
+      // Which tab you are on is conveyed purely by icon colour and a glow, and
+      // the unread count purely by a red badge — neither reaches a screen
+      // reader on its own. `selected` handles the first; the count is folded
+      // into the label because a sibling Text inside a labelled Pressable is
+      // not announced.
+      accessibilityLabel={badgeCount > 0 ? `${label}, ${badgeCount} unread` : label}
+      accessibilityState={{ selected: isActive }}
       onPress={onPress}
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
