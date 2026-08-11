@@ -2,6 +2,7 @@ import React, {
   createContext,
   useCallback,
   useContext,
+  useMemo,
   useState,
   type ReactNode,
 } from "react";
@@ -42,8 +43,17 @@ export const StoryViewerProvider: React.FC<{ children: ReactNode }> = ({ childre
 
   const closeStories = useCallback(() => setVisible(false), []);
 
+  // Both functions are stable, but the object around them was not: a bare
+  // literal here gave the context a new identity on each of the six state
+  // updates above, so opening or closing a story re-rendered every
+  // useStoryViewer() consumer in the app for no change at all.
+  const value = useMemo(
+    () => ({ openStories, closeStories }),
+    [openStories, closeStories],
+  );
+
   return (
-    <StoryViewerContext.Provider value={{ openStories, closeStories }}>
+    <StoryViewerContext.Provider value={value}>
       {children}
       <StoryViewerModal
         visible={visible}
