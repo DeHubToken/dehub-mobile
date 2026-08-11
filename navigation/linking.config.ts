@@ -74,6 +74,14 @@ export const DeepLinkPaths = {
   // ':slug' swallows 'join' and the code is lost.
   COMMUNITY_INVITE: 'app/communities/join/:code',
   COMMUNITY: 'app/communities/:slug',
+
+  // Commerce — dehub.io/app/stores/:storeId (+ ?listing=<id> for one item)
+  STORE: 'app/stores/:storeId',
+
+  // Events — dehub.io/app/events/:eventNumber. There is no per-event screen
+  // yet, so this lands on the list; a link that opens the right part of the
+  // app beats one that opens the website in a browser.
+  EVENT: 'app/events/:eventNumber',
 } as const;
 
 /**
@@ -125,6 +133,16 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
             path: DeepLinkPaths.COMMUNITY,
             parse: { slug: (slug: string) => slug },
           },
+
+          // `?listing=` rides through as a route param; StoreDetailScreen
+          // pushes the item screen when it is present, so a shared item link
+          // lands on the item and not on the shop around it.
+          [ScreenNames.StoreDetail]: {
+            path: DeepLinkPaths.STORE,
+            parse: { storeId: (storeId: string) => storeId },
+          },
+
+          [ScreenNames.Events]: DeepLinkPaths.EVENT,
 
           [ScreenNames.Root]: {
             screens: {
@@ -311,6 +329,20 @@ export const ShareLinks = {
   community: (slug: string) => `${SHARE_BASE}/app/communities/${encodeURIComponent(slug)}`,
   /** Community invite — dehub.io/app/communities/join/:code */
   communityInvite: (code: string) => `${SHARE_BASE}/app/communities/join/${encodeURIComponent(code)}`,
+  /** Store — dehub.io/app/stores/:storeId */
+  store: (storeId: string) => `${SHARE_BASE}/app/stores/${encodeURIComponent(storeId)}`,
+  /**
+   * Shop item — dehub.io/app/stores/:storeId?listing=:listingId
+   *
+   * The item id rides in the query rather than the path because that is the
+   * URL the web app builds and the one its store page reads. A link shared
+   * from mobile has to open on web, so the shape is not ours to choose.
+   */
+  listing: (storeId: string, listingId: string) =>
+    `${SHARE_BASE}/app/stores/${encodeURIComponent(storeId)}?listing=${encodeURIComponent(listingId)}`,
+  /** Event — dehub.io/app/events/:eventNumber */
+  event: (eventNumber: string | number) =>
+    `${SHARE_BASE}/app/events/${encodeURIComponent(String(eventNumber))}`,
 };
 
 /**
@@ -356,6 +388,18 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
     // /app/communities/:slug
     if (pathParts[0] === 'app' && pathParts[1] === 'communities' && pathParts[2]) {
       return { type: 'community', params: { slug: pathParts[2], ...qp } };
+    }
+
+    // /app/stores/:storeId — with ?listing= it is one item, without it the shop
+    if (pathParts[0] === 'app' && pathParts[1] === 'stores' && pathParts[2]) {
+      return qp.listing
+        ? { type: 'listing', params: { storeId: pathParts[2], ...qp } }
+        : { type: 'store', params: { storeId: pathParts[2], ...qp } };
+    }
+
+    // /app/events/:eventNumber
+    if (pathParts[0] === 'app' && pathParts[1] === 'events' && pathParts[2]) {
+      return { type: 'event', params: { eventNumber: pathParts[2], ...qp } };
     }
 
     // Legacy: /stream/:videoId

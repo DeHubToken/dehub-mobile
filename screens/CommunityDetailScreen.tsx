@@ -29,7 +29,7 @@ import {
 } from "../services/communities.service";
 import type { Community, CommunityMember } from "../types/community";
 import { ScreenNames } from "../navigation/ScreenNames";
-import { WEBSITE_LINK } from "../config";
+import { ShareLinks } from "../navigation/linking.config";
 import { formatCompactNumber } from "../libs/numbers.util";
 import { toastError, toastSuccess } from "../libs/toast";
 import { copyToClipboard } from "../libs";
@@ -206,7 +206,7 @@ const CommunityDetailScreen: React.FC = () => {
 
   const handleShare = async () => {
     if (!community) return;
-    const url = `${WEBSITE_LINK}/app/communities/${community.slug}`;
+    const url = ShareLinks.community(community.slug);
     try {
       await Share.share({ message: `${t("communities.shareMessage", { name: community.name })}\n${url}`, url });
     } catch {
