@@ -212,4 +212,61 @@ describe('libs/api.client', () => {
       expect(mockFetch.mock.calls[0][1].method).toBe('DELETE');
     });
   });
+
+  describe('timeouts', () => {
+    it('passes an abort signal on every request', async () => {
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        headers: { get: () => 'application/json' },
+        json: () => Promise.resolve({ ok: true }),
+      });
+
+      await apiClient.get('/test', { isAuthRequired: false });
+      expect(mockFetch.mock.calls[0][1].signal).toBeDefined();
+    });
+
+    it('rejects with RequestTimeoutError when the socket never answers', async () => {
+      // A fetch that settles only when aborted is what a dead mobile radio
+      // looks like: no response, no rejection, forever. Before the signal
+      // existed this promise simply never resolved, so React Query's retry
+      // never fired and the caller sat on a skeleton indefinitely.
+      mockFetch.mockImplementationOnce(
+        (_url: string, init: any) =>
+          new Promise((_resolve, reject) => {
+            init.signal.addEventListener('abort', () => {
+              const err: any = new Error('Aborted');
+              err.name = 'AbortError';
+              reject(err);
+            });
+          }),
+      );
+
+      await expect(
+        apiClient.get('/hangs', { isAuthRequired: false, timeoutMs: 10 }),
+      ).rejects.toMatchObject({ name: 'RequestTimeoutError', isTimeout: true });
+    });
+
+    it('does not abort a request that answers in time', async () => {
+      mockFetch.mockImplementationOnce(
+        () =>
+          new Promise((resolve) =>
+            setTimeout(
+              () =>
+                resolve({
+                  ok: true,
+                  status: 200,
+                  headers: { get: () => 'application/json' },
+                  json: () => Promise.resolve({ ok: true }),
+                }),
+              5,
+            ),
+          ),
+      );
+
+      await expect(
+        apiClient.get('/slow', { isAuthRequired: false, timeoutMs: 500 }),
+      ).resolves.toEqual({ ok: true });
+    });
+  });
 });
