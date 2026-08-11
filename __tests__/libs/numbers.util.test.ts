@@ -1,6 +1,35 @@
-import { pad, clamp, toNumberSafe, percent, formatCompactNumber, formatNumber } from '../../libs/numbers.util';
+import { pad, clamp, toNumberSafe, percent, formatCompactNumber, formatNumber, resolveViewCount } from '../../libs/numbers.util';
 
 describe('libs/numbers.util', () => {
+  describe('resolveViewCount', () => {
+    it('prefers totalViews — the whole audience', () => {
+      expect(resolveViewCount({ totalViews: 250, views: 200 })).toBe(250);
+    });
+
+    it('falls back to views when totalViews is absent', () => {
+      // An older or cached response: undercount rather than show nothing.
+      expect(resolveViewCount({ views: 200 })).toBe(200);
+    });
+
+    it('does not add the halves together', () => {
+      // The bug this replaced: the anonymous half was fetched separately and
+      // added to a base that had already included it, so a post with 50
+      // anonymous views and no signed-in ones reported 100.
+      expect(resolveViewCount({ totalViews: 50, views: 0 })).toBe(50);
+    });
+
+    it('reads a zero total as zero, not as missing', () => {
+      expect(resolveViewCount({ totalViews: 0, views: 99 })).toBe(0);
+    });
+
+    it('is 0 for nothing usable', () => {
+      expect(resolveViewCount(null)).toBe(0);
+      expect(resolveViewCount(undefined)).toBe(0);
+      expect(resolveViewCount({})).toBe(0);
+      expect(resolveViewCount({ views: NaN })).toBe(0);
+    });
+  });
+
   describe('pad', () => {
     it('pads single digit to 2 chars', () => {
       expect(pad(1)).toBe('01');

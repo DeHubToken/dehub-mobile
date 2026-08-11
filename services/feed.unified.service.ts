@@ -93,7 +93,14 @@ export interface UnifiedFeedItem {
   category?: string[];
   
   // Metrics
+  /** Signed-in viewers only. Read totalViews for anything shown to a viewer. */
   views?: number;
+  /**
+   * Every viewer, signed in or not — the count the cards render. The API folds
+   * the signed-out half in, so this is read as-is and never summed on the
+   * client. Go through resolveViewCount rather than reading either field.
+   */
+  totalViews?: number;
   likes?: number;
   dislikes?: number;
   commentCount?: number;

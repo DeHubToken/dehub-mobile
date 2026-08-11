@@ -19,7 +19,7 @@ import { useUser } from "../../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useStreamAccessInfo } from "../../libs/validators.util";
-import { useMergedViewCount } from "../../hooks/useAnonViewCount";
+import { resolveViewCount } from "../../libs/numbers.util";
 
 interface CompactVideoCardProps {
   nft: any;
@@ -91,15 +91,14 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
     (nft as any).stream?.likes ||
     (nft as any).likes ||
     0;
-  // Includes views from signed-out viewers, which are recorded separately
-  const views = useMergedViewCount(
-    tokenId,
-    nft.views ||
-      (nft as any).peakViewers ||
-      (nft as any).totalViews ||
-      (nft as any).stream?.totalViews ||
-      0,
-  );
+  // Signed-out viewers are already folded into totalViews by the API — see
+  // resolveViewCount. peakViewers/stream.totalViews stay for live posts, which
+  // report an audience rather than a view count.
+  const views =
+    resolveViewCount(nft) ||
+    (nft as any).peakViewers ||
+    (nft as any).stream?.totalViews ||
+    0;
   const commentCount = (nft as any).commentCount ?? 0;
   const createdAt =
     nft.createdAt || (nft as any).stream?.createdAt || new Date().toISOString();
