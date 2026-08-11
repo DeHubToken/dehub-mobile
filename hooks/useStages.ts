@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import { Platform, PermissionsAndroid } from "react-native";
 import * as FileSystem from "expo-file-system/legacy";
 import createAgoraRtcEngine, {
@@ -977,7 +977,16 @@ export function useStages(): UseStagesReturn {
     return () => { supabase.removeChannel(listChan); };
   }, [refreshSpaces]);
 
-  return {
+  // Memoised because StageProvider hands this straight to its context value and
+  // wraps the entire navigator. A fresh object literal gave every consumer —
+  // AppDrawer, UploadScreen, every stage modal — a new context value on each of
+  // this hook's two dozen state updates, whether or not the field they read had
+  // moved.
+  //
+  // Deps come from Object.values rather than a hand-written list: the shape is a
+  // fixed object literal, so the array length is stable across renders, and a
+  // 45-name list would drift out of sync the first time a field was added.
+  const fields = {
     liveSpaces,
     pastSpaces,
     currentSpace,
@@ -1019,4 +1028,7 @@ export function useStages(): UseStagesReturn {
     fetchTranscript,
     refreshSpaces,
   };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  return useMemo(() => fields, Object.values(fields));
 }

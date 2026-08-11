@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import { Platform, PermissionsAndroid, AppState } from "react-native";
 import createAgoraRtcEngine, {
   RtcSurfaceView,
@@ -62,6 +62,13 @@ function getEngine(): IRtcEngine {
   return engineInstance;
 }
 
+/** Constant, so it lives outside the component and never changes identity. */
+const LOCAL_CANVAS: VideoCanvas = {
+  uid: 0,
+  sourceType: VideoSourceType.VideoSourceCamera,
+  renderMode: RenderModeType.RenderModeHidden,
+};
+
 export function useCall(): UseCallReturn {
   const [isCallActive, setIsCallActive] = useState(false);
   const [isIncoming, setIsIncoming] = useState(false);
@@ -88,18 +95,18 @@ export function useCall(): UseCallReturn {
   const realtimeChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
   const watchChannelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
 
-  // Canvas configs for RtcSurfaceView
-  const localCanvas: VideoCanvas = {
-    uid: 0,
-    sourceType: VideoSourceType.VideoSourceCamera,
-    renderMode: RenderModeType.RenderModeHidden,
-  };
-
-  const remoteCanvas: VideoCanvas = {
-    uid: remoteUid ?? 0,
-    sourceType: VideoSourceType.VideoSourceRemote,
-    renderMode: RenderModeType.RenderModeHidden,
-  };
+  // Canvas configs for RtcSurfaceView. Both are memoised because they feed the
+  // memoised return object below — a fresh literal here would give that object
+  // a new identity on every render and defeat the whole thing. The local one is
+  // constant, so it is hoisted out of the component entirely.
+  const remoteCanvas: VideoCanvas = useMemo(
+    () => ({
+      uid: remoteUid ?? 0,
+      sourceType: VideoSourceType.VideoSourceRemote,
+      renderMode: RenderModeType.RenderModeHidden,
+    }),
+    [remoteUid],
+  );
 
   // ── Agora engine ───────────────────────────────────────────────────────────
 
@@ -514,25 +521,52 @@ export function useCall(): UseCallReturn {
       : currentCall.caller_address
     : "";
 
-  return {
-    isCallActive,
-    isIncoming,
-    currentCall,
-    isConnecting,
-    isMuted,
-    isCameraOff,
-    callDuration,
-    remoteUid,
-    peerAddress,
-    localCanvas,
-    remoteCanvas,
-    startCall,
-    endCall,
-    acceptCall,
-    rejectCall,
-    toggleMute,
-    toggleCamera,
-    switchCamera,
-    setCallMessageHandler,
-  };
+  // Memoised because CallProvider passes this straight through as its context
+  // value, and CallProvider wraps the entire navigator. A fresh object literal
+  // here meant every consumer re-rendered on every render of the provider — and
+  // during a call `callDuration` ticks once a second, so that was every second,
+  // for the life of the call.
+  return useMemo(
+    () => ({
+      isCallActive,
+      isIncoming,
+      currentCall,
+      isConnecting,
+      isMuted,
+      isCameraOff,
+      callDuration,
+      remoteUid,
+      peerAddress,
+      localCanvas: LOCAL_CANVAS,
+      remoteCanvas,
+      startCall,
+      endCall,
+      acceptCall,
+      rejectCall,
+      toggleMute,
+      toggleCamera,
+      switchCamera,
+      setCallMessageHandler,
+    }),
+    [
+      isCallActive,
+      isIncoming,
+      currentCall,
+      isConnecting,
+      isMuted,
+      isCameraOff,
+      callDuration,
+      remoteUid,
+      peerAddress,
+      remoteCanvas,
+      startCall,
+      endCall,
+      acceptCall,
+      rejectCall,
+      toggleMute,
+      toggleCamera,
+      switchCamera,
+      setCallMessageHandler,
+    ],
+  );
 }
