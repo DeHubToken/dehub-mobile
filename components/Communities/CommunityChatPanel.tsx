@@ -55,6 +55,8 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useCommunityChat } from "../../hooks/useCommunityChat";
 import { getCommunityAbilities, isForever } from "../../libs/community-permissions";
 import type { Community, CommunityChatMessage, CommunityMember } from "../../types/community";
+import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
+import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
 const MAX_LEN = 500;
@@ -128,6 +130,17 @@ const ChatRow: React.FC<{
 
   const profileId = message.username || message.wallet_address;
 
+  // A shop item, an event or another community dropped into a channel arrived
+  // as a bare URL; card it the same way the feed and DMs now do.
+  const dehubLinks = useMemo(
+    () => findDehubLinks(message.content).slice(0, MAX_CARDS_PER_MESSAGE),
+    [message.content],
+  );
+  const linkFreeContent = useMemo(
+    () => (dehubLinks.length ? stripDehubLinkMatches(message.content, dehubLinks) : message.content),
+    [message.content, dehubLinks],
+  );
+
   return (
     <Pressable
       onLongPress={() => onLongPress(message)}
@@ -176,9 +189,11 @@ const ChatRow: React.FC<{
           />
         )}
 
-        {!!message.content && (
-          <Text className="text-white/70 text-sm leading-5">{message.content}</Text>
+        {!!linkFreeContent && (
+          <Text className="text-white/70 text-sm leading-5">{linkFreeContent}</Text>
         )}
+
+        <DehubLinkCards links={dehubLinks} />
 
         {!!message.edited_at && (
           <Text className="text-zinc-400 text-xs mt-0.5">

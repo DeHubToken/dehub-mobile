@@ -3,6 +3,8 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { openInApp } from "../../libs/links.utils";
 import { hasValidTLD } from "../../libs/tlds";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
+import { DehubLinkCards, useOpenDehubLink, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
+import { findDehubLinks, parseDehubLink, stripDehubLinkMatches } from "../../libs/dehub-links";
 
 type Segment =
   | { type: "text"; value: string }
@@ -84,8 +86,27 @@ const FeedDescription: React.FC<FeedDescriptionProps> = ({
 }) => {
   const [expanded, setExpanded] = useState<boolean>(false);
   const { showUserProfile } = useUserProfileSheet();
+  const openDehubLink = useOpenDehubLink();
 
-  const trimmedDescription = useMemo(() => (descriptionText || "").trim(), [descriptionText]);
+  // DeHub links become cards, and the URLs that became cards come out of the
+  // copy — before the truncation below, not after. Stripping afterwards would
+  // let the character clamp cut a URL in half so it no longer matched, leaving
+  // half a link on screen next to its own card; it also spent a third of the
+  // visible budget on a URL nobody reads.
+  const dehubLinks = useMemo(
+    () => findDehubLinks([titleText, descriptionText].filter(Boolean).join("\n")).slice(0, MAX_CARDS_PER_MESSAGE),
+    [titleText, descriptionText],
+  );
+  const linkFreeTitle = useMemo(
+    () => (dehubLinks.length ? stripDehubLinkMatches(titleText, dehubLinks) : titleText),
+    [titleText, dehubLinks],
+  );
+  const linkFreeDescription = useMemo(
+    () => (dehubLinks.length ? stripDehubLinkMatches(descriptionText, dehubLinks) : descriptionText),
+    [descriptionText, dehubLinks],
+  );
+
+  const trimmedDescription = useMemo(() => (linkFreeDescription || "").trim(), [linkFreeDescription]);
 
   const shouldTruncate = useMemo(() => {
     return trimmedDescription.length > CHAR_LIMIT_FOR_TOGGLE;
@@ -100,7 +121,7 @@ const FeedDescription: React.FC<FeedDescriptionProps> = ({
     setExpanded((p) => !p);
   }, [shouldTruncate]);
 
-  const titleSegments = useMemo(() => parseTextToSegments(titleText), [titleText]);
+  const titleSegments = useMemo(() => parseTextToSegments(linkFreeTitle), [linkFreeTitle]);
   const collapsedDescription = useMemo(() => {
     if (!shouldTruncate) return trimmedDescription;
     return `${trimmedDescription.slice(0, CHAR_LIMIT_FOR_TOGGLE).trimEnd()}…`;
@@ -113,8 +134,15 @@ const FeedDescription: React.FC<FeedDescriptionProps> = ({
   const segments = useMemo(() => parseTextToSegments(visibleDescription), [visibleDescription]);
 
   const handleOpenLink = useCallback((url: string) => {
+    // A link to something inside DeHub stays inside DeHub. Handing it to the
+    // in-app browser loaded a web view of our own site inside the app.
+    const dehubLink = parseDehubLink(url);
+    if (dehubLink) {
+      openDehubLink(dehubLink);
+      return;
+    }
     openInApp(url);
-  }, []);
+  }, [openDehubLink]);
 
   const handleMentionPress = useCallback((username: string) => {
     showUserProfile(username);
@@ -158,11 +186,12 @@ const FeedDescription: React.FC<FeedDescriptionProps> = ({
     return renderSegments(segments, "d");
   }, [segments, renderSegments]);
 
+  // A caption that was nothing but a link still has a card to show.
   if (!titleText && !descriptionText) return null;
 
   return (
     <View className="px-3 py-2">
-      {!!titleText && (
+      {!!linkFreeTitle && (
         <Text
           className="text-theme-neutrals-100 text-[14px] font-semibold"
           onPress={onPressTitle}
@@ -172,8 +201,8 @@ const FeedDescription: React.FC<FeedDescriptionProps> = ({
         </Text>
       )}
 
-      {!!descriptionText && (
-        <View className={titleText ? "mt-1" : ""}>
+      {!!trimmedDescription && (
+        <View className={linkFreeTitle ? "mt-1" : ""}>
           <Text
             className="text-theme-neutrals-200 text-[13px] leading-5"
           >
@@ -189,6 +218,8 @@ const FeedDescription: React.FC<FeedDescriptionProps> = ({
           )}
         </View>
       )}
+
+      <DehubLinkCards links={dehubLinks} />
     </View>
   );
 };
