@@ -131,6 +131,16 @@ function rebuildFormData(job: UploadJob): FormData {
       } as any);
     }
     fd.append("streamInfo", "{}");
+  } else if (payload.postType === "feed-file") {
+    for (const doc of payload.files ?? []) {
+      // @ts-ignore RN FormData file shape
+      fd.append("feed-file", {
+        uri: doc.uri,
+        name: doc.name,
+        type: doc.mimeType,
+      } as any);
+    }
+    fd.append("streamInfo", "{}");
   } else {
     fd.append("streamInfo", "{}");
   }

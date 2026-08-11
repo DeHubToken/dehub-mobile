@@ -29,7 +29,7 @@ import {
 
 export type SortOption = "score" | "random" | "createdAt" | "views" | "likes" | "comments" | "tips";
 export type DateRangeOption = "" | "day" | "week" | "month" | "year";
-export type PostTypeOption = "all" | "video" | "feed-images" | "feed-audio" | "feed-simple" | "short" | "live";
+export type PostTypeOption = "all" | "video" | "feed-images" | "feed-audio" | "feed-simple" | "feed-file" | "short" | "live";
 export type ContentAccessOption = "ppv" | "bounty" | "locked";
 
 export interface FeedFilters {
@@ -256,6 +256,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
     { id: "feed-images" as PostTypeOption, label: t("filters.images") },
     { id: "feed-audio" as PostTypeOption, label: t("filters.audio") },
     { id: "feed-simple" as PostTypeOption, label: t("filters.text") },
+    { id: "feed-file" as PostTypeOption, label: t("filters.files", "Files") },
     { id: "live" as PostTypeOption, label: t("filters.live") },
   ], [t]);
 
