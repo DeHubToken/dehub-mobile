@@ -35,6 +35,38 @@ export function resolveCount(
   return 0;
 }
 
+/**
+ * The view count to show for a post — the one number, from one place.
+ *
+ * `views` means signed-in viewers only. Signed-out ones are recorded by the
+ * `anon-views` edge function and folded into `totalViews` by the API, so
+ * `totalViews` is the whole audience and the only count worth rendering.
+ *
+ * Mobile used to fetch the signed-out half separately and add it on at display
+ * time (useMergedViewCount). That made the count arrive in two pieces — it
+ * painted, then grew — and double-counted the moment `views` was absent or
+ * zero, because the fallback chain then picked `totalViews`, which already
+ * included the anonymous half, and added it again. Read this instead; never sum
+ * the halves on the client.
+ *
+ * Falls back to `views` so a cached or older response still renders something
+ * sensible, undercounting rather than showing nothing.
+ */
+export function resolveViewCount(
+  source:
+    | {
+        totalViews?: number | null;
+        views?: number | null;
+        view_count?: number | null;
+      }
+    | null
+    | undefined
+): number {
+  if (!source) return 0;
+  const value = source.totalViews ?? source.views ?? source.view_count;
+  return typeof value === 'number' && Number.isFinite(value) ? value : 0;
+}
+
 export function percent(part: number, whole: number, precision = 2): number {
   if (!whole) return 0;
   const p = (part / whole) * 100;

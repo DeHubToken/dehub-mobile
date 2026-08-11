@@ -43,7 +43,7 @@ import { useSyncedAudio } from "../../hooks/useSyncedAudio";
 import { parseSoundtrack } from "../../libs/parseSoundtrack";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useImageTranslation } from "../../hooks/useImageTranslation";
-import { useMergedViewCount } from "../../hooks/useAnonViewCount";
+import { resolveViewCount } from "../../libs/numbers.util";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUser, useAuthActions, useAuthState } from "../../context/AuthContext";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -190,8 +190,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const soundtrack = useMemo(() => parseSoundtrack(description), [description]);
   const hasSoundtrack = !!soundtrack;
   const commentCount = item.commentCount || (item as any).comments || stream?.commentCount || 0;
-  // Includes views from signed-out viewers, which are recorded separately
-  const views = useMergedViewCount(tokenId, item.views || (item as any).peakViewers || (item as any).totalViews || stream?.totalViews || 0);
+  // Signed-out viewers are already folded into totalViews by the API — see
+  // resolveViewCount. peakViewers/stream.totalViews stay for live posts, which
+  // report an audience rather than a view count.
+  const views = resolveViewCount(item) || (item as any).peakViewers || stream?.totalViews || 0;
   const totalTips = (item as any).totalTips || (item as any).tips || 0;
   const isAudioPost = contentType === "audio";
   const isLive = contentType === "live";
