@@ -4,7 +4,7 @@
  * Native port of the web StoreDetailPage (/app/stores/:storeId): a store's
  * banner, identity and its active listings.
  */
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -21,6 +21,8 @@ import { useNavigation, useRoute, type RouteProp } from "@react-navigation/nativ
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
+import ShareLinkButton from "../components/common/ShareLinkButton";
+import { ShareLinks } from "../navigation/linking.config";
 import Avatar from "../components/common/Avatar";
 import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
@@ -41,11 +43,22 @@ export default function StoreDetailScreen() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.StoreDetail>>();
-  const { storeId } = route.params;
+  const { storeId, listing: linkedListingId } = route.params;
   const { width: screenW } = useWindowDimensions();
 
   const { data: store, isLoading: storeLoading } = useStoreById(storeId);
   const { data: listings = [], isLoading, refetch, isRefetching } = useStoreListings(storeId);
+
+  // A shared item link is `/app/stores/<id>?listing=<id>` — the same URL the
+  // web app uses, where the query opens the item's drawer over the store. Here
+  // it pushes the item screen once, so the shared link lands on the item rather
+  // than on the shop it happens to live in.
+  const openedLinkedListing = useRef(false);
+  useEffect(() => {
+    if (!linkedListingId || openedLinkedListing.current) return;
+    openedLinkedListing.current = true;
+    navigation.navigate(ScreenNames.ListingDetail, { listingId: linkedListingId });
+  }, [linkedListingId, navigation]);
 
   const cardWidth = (screenW - H_PADDING * 2 - GRID_GAP) / 2;
 
@@ -110,7 +123,14 @@ export default function StoreDetailScreen() {
 
   return (
     <View style={styles.root}>
-      <ScreenHeader title={store?.name || t("stores.store")} />
+      <ScreenHeader
+        title={store?.name || t("stores.store")}
+        rightContent={
+          store ? (
+            <ShareLinkButton url={ShareLinks.store(store.id)} title={store.name || undefined} />
+          ) : undefined
+        }
+      />
 
       {storeLoading && isLoading ? (
         <View style={styles.center}>
