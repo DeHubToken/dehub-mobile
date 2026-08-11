@@ -205,22 +205,30 @@ export function findDehubLinks(text?: string | null): DehubLinkMatch[] {
   const matches: DehubLinkMatch[] = [];
   const claimed: Array<[number, number]> = [];
 
-  const scan = (re: RegExp) => {
-    re.lastIndex = 0;
-    let m: RegExpExecArray | null;
-    while ((m = re.exec(text)) !== null) {
-      const start = m.index;
-      if (claimed.some(([s, e]) => start >= s && start < e)) continue;
-      const parsed = parseDehubLink(m[0]);
-      if (parsed) {
-        matches.push(parsed);
-        claimed.push([start, start + parsed.raw.length]);
-      }
-    }
-  };
+  // Pass 1 — host-qualified URLs.
+  //
+  // Every one is claimed whether or not it turns out to be ours. That is the
+  // whole point: `https://example.com/app/post/1` is rejected here on the host
+  // check, and if its span were left unclaimed the bare-path pass below would
+  // find `/app/post/1` sitting inside it, read it as a host-less path — which
+  // can only be ours — and render somebody else's link as one of our post
+  // cards. Claiming foreign URLs is what makes the host check hold.
+  ABSOLUTE_URL_RE.lastIndex = 0;
+  let m: RegExpExecArray | null;
+  while ((m = ABSOLUTE_URL_RE.exec(text)) !== null) {
+    claimed.push([m.index, m.index + m[0].length]);
+    const parsed = parseDehubLink(m[0]);
+    if (parsed) matches.push(parsed);
+  }
 
-  scan(ABSOLUTE_URL_RE);
-  scan(BARE_PATH_RE);
+  // Pass 2 — bare in-app paths, wherever no URL already covers them.
+  BARE_PATH_RE.lastIndex = 0;
+  while ((m = BARE_PATH_RE.exec(text)) !== null) {
+    const start = m.index;
+    if (claimed.some(([s, e]) => start >= s && start < e)) continue;
+    const parsed = parseDehubLink(m[0]);
+    if (parsed) matches.push(parsed);
+  }
 
   return matches.sort((a, b) => text.indexOf(a.raw) - text.indexOf(b.raw));
 }
