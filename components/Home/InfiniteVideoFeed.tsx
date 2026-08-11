@@ -138,6 +138,23 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // View tracking: map of tokenId -> tracker (for feed posts only, not videos)
   const viewTrackersRef = useRef<Map<string, ReturnType<typeof createPostViewTracker>>>(new Map());
 
+  // FlatList refuses a changing onViewableItemsChanged, so that handler is
+  // frozen in a ref on first render — and it reaches getViewTracker, which
+  // reads isSignedIn. Captured directly, that meant a session that signed in
+  // without remounting the feed kept minting anonymous trackers for the rest of
+  // its life. A ref is the only value the frozen handler can see change.
+  const isSignedInRef = useRef(isSignedIn);
+  useEffect(() => { isSignedInRef.current = isSignedIn; }, [isSignedIn]);
+
+  // Signing in or out changes where a view is attributed, so trackers minted
+  // under the old state are stale. Dropping them lets the next viewability tick
+  // rebuild them; pending dwell time is flushed rather than silently binned.
+  useEffect(() => {
+    viewTrackersRef.current.forEach((tracker) => tracker.cleanup());
+    viewTrackersRef.current.clear();
+    forceFlushBatchViews();
+  }, [isSignedIn]);
+
   // Cleanup view trackers and flush batch on unmount
   useEffect(() => {
     return () => {
@@ -152,11 +169,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     const key = String(tokenId);
     let tracker = viewTrackersRef.current.get(key);
     if (!tracker) {
-      tracker = createPostViewTracker(tokenId, isSignedIn);
+      tracker = createPostViewTracker(tokenId, isSignedInRef.current);
       viewTrackersRef.current.set(key, tracker);
     }
     return tracker;
-  }, [isSignedIn]);
+  }, []);
 
   // Viewability config: item is "viewable" when 50% visible
   const viewabilityConfig = useRef({

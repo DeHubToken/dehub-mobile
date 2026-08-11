@@ -11,12 +11,46 @@ const PLATFORM = Platform.OS; // 'ios' | 'android'
 // Base API URL - replace with your actual API URL
 const API_BASE_URL = env.API_URL;
 
+/**
+ * Wall-clock ceiling on a single request.
+ *
+ * There was none. `fetch` with no signal hangs for the platform default, which
+ * on a degraded mobile radio means a promise that never settles — and one that
+ * never settles never rejects, so React Query's `retry` never fires and the
+ * caller sits on a skeleton indefinitely with no error and no way back. That is
+ * the "the feed just spins forever" report.
+ *
+ * 20s is generous for an API that normally answers in well under one. It is a
+ * backstop against a dead socket, not a latency budget.
+ */
+const DEFAULT_TIMEOUT_MS = 20_000;
+
+/** Uploads push real bytes over a slow uplink, so they get their own ceiling. */
+const UPLOAD_TIMEOUT_MS = 120_000;
+
+/**
+ * Rejects with something callers can branch on: a timeout is a retryable
+ * network condition, not a 4xx, and the two should not look the same to error
+ * handling or to the copy shown to the user.
+ */
+export class RequestTimeoutError extends Error {
+  readonly isTimeout = true;
+  readonly url: string;
+  constructor(url: string, ms: number) {
+    super(`Request timed out after ${ms}ms`);
+    this.name = 'RequestTimeoutError';
+    this.url = url;
+  }
+}
+
 interface ApiOptions {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
   body?: any;
   headers?: Record<string, string>;
   isAuthRequired?: boolean;
   params?: Record<string, any>;
+  /** Override the request ceiling. Defaults to 20s, or 120s for FormData bodies. */
+  timeoutMs?: number;
   /**
    * Skip the console.error on failure. For calls where a non-2xx response is
    * expected control flow the caller fully handles (e.g. the Supabase
@@ -43,6 +77,7 @@ export const apiClient = {
       headers = {},
       isAuthRequired = true,
       params,
+      timeoutMs,
       quiet = false,
     } = options;
 
@@ -90,14 +125,41 @@ export const apiClient = {
       method,
       headers: requestHeaders,
     };
-    
+
     // Add body if provided
     if (body) {
       requestOptions.body = isFormData ? body : JSON.stringify(body);
     }
-    
+
+    const limitMs = timeoutMs ?? (isFormData ? UPLOAD_TIMEOUT_MS : DEFAULT_TIMEOUT_MS);
+
+    /**
+     * One controller per attempt. The 401 path below retries with a fresh
+     * token, and that retry needs its own clock rather than whatever was left
+     * of the first one's.
+     */
+    const withTimeout = async (init: RequestInit): Promise<Response> => {
+      const controller = new AbortController();
+      let timedOut = false;
+      const timer = setTimeout(() => {
+        timedOut = true;
+        controller.abort();
+      }, limitMs);
+      try {
+        return await fetch(url, { ...init, signal: controller.signal });
+      } catch (err: any) {
+        // An abort we caused reads as a plain AbortError, which is
+        // indistinguishable from a caller cancelling. Re-throw as our own type
+        // so the difference survives.
+        if (timedOut) throw new RequestTimeoutError(url, limitMs);
+        throw err;
+      } finally {
+        clearTimeout(timer);
+      }
+    };
+
     try {
-      const response = await fetch(url, requestOptions);
+      const response = await withTimeout(requestOptions);
 
       const status = response.status;
       const contentType = response.headers.get('content-type') || '';
@@ -149,7 +211,7 @@ export const apiClient = {
             if (body) {
               retryOptions.body = isFormData ? body : JSON.stringify(body);
             }
-            const retryResponse = await fetch(url, retryOptions);
+            const retryResponse = await withTimeout(retryOptions);
             if (retryResponse.ok) {
               const retryContentType = retryResponse.headers.get('content-type') || '';
               if (retryResponse.status === 204 || retryResponse.status === 205) {
@@ -184,9 +246,19 @@ export const apiClient = {
         throw err;
       }
 
-      if (response.ok) {
-        console.log(`[apiClient] Success (${url}):`, JSON.stringify(data).slice(0, 200));
-      }
+      // No success log here on purpose. It used to be:
+      //
+      //   console.log(`[apiClient] Success (${url}):`,
+      //               JSON.stringify(data).slice(0, 200));
+      //
+      // which serialised the ENTIRE response on the JS thread — a full feed
+      // page, every page — in order to print 200 characters of it. Metro's
+      // `pure_funcs: ['console.log']` drops the call in release but not its
+      // argument: terser cannot prove `JSON.stringify(data)` is side-effect
+      // free, because a `toJSON` getter could do anything. So the serialisation
+      // survived minification and ran on every successful request in
+      // production. Anything that needs this belongs behind `createLogger`,
+      // which is gated on DEBUG.
       return data as T;
     } catch (error) {
       if (!quiet) console.error(`API Error (${url}):`, error);
