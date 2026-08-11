@@ -262,6 +262,41 @@ export async function pollVideoGeneration(predictionId: string): Promise<AIVideo
   return edgeFetch<AIVideoResponse>('generate-video', { predictionId });
 }
 
+/** One turn of chat context handed to the reply drafter. */
+export interface SmartReplyTurn {
+  from: 'me' | 'them';
+  name?: string;
+  text: string;
+}
+
+export interface SmartReplySuggestion {
+  /** 2-4 words naming the move — "Turn it back". This is what users read. */
+  label: string;
+  /** The reply itself, inserted into the composer on tap. */
+  text: string;
+}
+
+export interface SmartReplyResponse {
+  suggestions: SmartReplySuggestion[];
+  /** 'awaiting-reply' when the user sent last — an empty list, not a failure. */
+  reason?: string;
+}
+
+/**
+ * Drafts two replies to the newest incoming message.
+ *
+ * Shares the `suggest-replies` edge function with dehubweb, so both apps
+ * suggest the same thing for the same thread. Trimming and the safety rails
+ * live server side; callers just hand over the tail of the conversation,
+ * oldest first.
+ */
+export async function suggestReplies(
+  thread: SmartReplyTurn[],
+  peerName?: string,
+): Promise<SmartReplyResponse> {
+  return edgeFetch<SmartReplyResponse>('suggest-replies', { thread, peerName });
+}
+
 const IMAGE_VERBS = /\b(generate|create|make|draw|design|paint|sketch|render|show me)\b/i;
 const IMAGE_NOUNS = /\b(image|picture|photo|drawing|illustration|art|artwork|graphic|portrait|logo|icon|wallpaper)\b/i;
 const VIDEO_NOUNS = /\b(video|animation|clip|footage)\b/i;
