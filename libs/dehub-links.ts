@@ -204,23 +204,33 @@ export function findDehubLinks(text?: string | null): DehubLinkMatch[] {
 
   const matches: DehubLinkMatch[] = [];
   const claimed: Array<[number, number]> = [];
+  const isClaimed = (start: number) => claimed.some(([s, e]) => start >= s && start < e);
 
-  const scan = (re: RegExp) => {
-    re.lastIndex = 0;
-    let m: RegExpExecArray | null;
-    while ((m = re.exec(text)) !== null) {
-      const start = m.index;
-      if (claimed.some(([s, e]) => start >= s && start < e)) continue;
-      const parsed = parseDehubLink(m[0]);
-      if (parsed) {
-        matches.push(parsed);
-        claimed.push([start, start + parsed.raw.length]);
-      }
+  // Pass 1 — whole URLs. The range is claimed whether or not it parsed, which
+  // is the point: a URL on somebody else's host has already been judged, and
+  // rule 1 above only holds if the bare-path pass cannot then match the
+  // `/app/post/1` sitting inside `https://example.com/app/post/1` and card it
+  // as ours. Claiming only successes let exactly that through.
+  ABSOLUTE_URL_RE.lastIndex = 0;
+  let m: RegExpExecArray | null;
+  while ((m = ABSOLUTE_URL_RE.exec(text)) !== null) {
+    if (isClaimed(m.index)) continue;
+    const parsed = parseDehubLink(m[0]);
+    if (parsed) matches.push(parsed);
+    claimed.push([m.index, m.index + m[0].length]);
+  }
+
+  // Pass 2 — bare in-app paths, which can only be ours. Anything inside a URL
+  // pass 1 already saw is skipped.
+  BARE_PATH_RE.lastIndex = 0;
+  while ((m = BARE_PATH_RE.exec(text)) !== null) {
+    if (isClaimed(m.index)) continue;
+    const parsed = parseDehubLink(m[0]);
+    if (parsed) {
+      matches.push(parsed);
+      claimed.push([m.index, m.index + parsed.raw.length]);
     }
-  };
-
-  scan(ABSOLUTE_URL_RE);
-  scan(BARE_PATH_RE);
+  }
 
   return matches.sort((a, b) => text.indexOf(a.raw) - text.indexOf(b.raw));
 }
