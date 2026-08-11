@@ -25,12 +25,14 @@ import {
 } from './SettingsPrimitives';
 import { useAppPrefs, setAppPref } from '../../hooks/useAppPrefs';
 import { useDataSaver, setDataSaverPref } from '../../hooks/useDataSaver';
+import { useHighQualityImages, setHighQualityImages } from '../../libs/cdnImage';
 import i18nInstance, { SUPPORTED_LANGUAGES } from '../../i18n';
 
 const AppearancePanel: React.FC = () => {
   const { t } = useTranslation();
   const prefs = useAppPrefs();
   const { pref: dataSaverPref } = useDataSaver();
+  const highQuality = useHighQualityImages();
   const [languageModalVisible, setLanguageModalVisible] = useState(false);
   const [currentLang, setCurrentLang] = useState(i18nInstance.language);
 
@@ -101,6 +103,18 @@ const AppearancePanel: React.FC = () => {
           description={t('settings.dataSaverDesc')}
           value={dataSaverPref === 'on'}
           onValueChange={(v) => setDataSaverPref(v ? 'on' : 'auto')}
+        />
+        <Divider />
+        {/* Feed thumbnails, grid tiles and avatars are normally fetched at the
+            size they render at. Fullscreen and zoomable views always use the
+            original regardless of this switch — this is for anyone who would
+            rather spend the bytes than accept a resize anywhere at all. */}
+        <SettingsToggleRow
+          icon="Image"
+          label={t('settings.highQualityImages')}
+          description={t('settings.highQualityImagesDesc')}
+          value={highQuality}
+          onValueChange={setHighQualityImages}
         />
       </SettingsSection>
 

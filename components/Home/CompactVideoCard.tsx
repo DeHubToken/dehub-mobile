@@ -21,6 +21,9 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import { resolveViewCount } from "../../libs/numbers.util";
 
+/** Matches the thumbnail's own box below (`width: 150`). */
+const COMPACT_THUMB_PT = 150;
+
 interface CompactVideoCardProps {
   nft: any;
   enablePreview?: boolean;
@@ -47,9 +50,12 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
     nft.thumbnailUrl ||
     nft.imageUrl ||
     "";
+  // Sized to the 150pt box it renders into. This asked for 640 before, and
+  // because getImageUrl discarded the size it was served the full-resolution
+  // original either way.
   const thumbUrl = isLive
-    ? resolveThumbnail(nft as any)
-    : getImageUrl(rawThumb, 640, 360);
+    ? resolveThumbnail(nft as any, COMPACT_THUMB_PT)
+    : getImageUrl(rawThumb, COMPACT_THUMB_PT);
   const thumbnail = thumbUrl && thumbUrl.length > 0 ? thumbUrl : "";
   const title =
     (nft as any).name ||

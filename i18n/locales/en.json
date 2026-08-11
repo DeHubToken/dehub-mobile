@@ -320,6 +320,8 @@
     "exportPrivateKeyDesc": "Reveal your wallet's private key",
     "dataSaver": "Data Saver",
     "dataSaverDesc": "Reduce image & video usage",
+    "highQualityImages": "High Quality Images",
+    "highQualityImagesDesc": "Always load originals. Fullscreen already does",
     "comingSoon": "Soon",
     "accountPrivacy": "Account Privacy",
     "accountPrivacyDesc": "Private account, hide followers",

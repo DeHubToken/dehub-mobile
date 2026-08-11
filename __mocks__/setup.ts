@@ -40,6 +40,70 @@ jest.mock('expo-secure-store', () => {
   };
 });
 
+// AsyncStorage's real module reaches for NativeModules.RNCAsyncStorage, which
+// the react-native mock above does not provide. libs/storage pulls it in for
+// its one-time MMKV migration, so anything importing libs/* now needs this.
+jest.mock('@react-native-async-storage/async-storage', () => {
+  const store: Record<string, string> = {};
+  return {
+    __esModule: true,
+    default: {
+      getItem: jest.fn((key: string) => Promise.resolve(store[key] ?? null)),
+      setItem: jest.fn((key: string, value: string) => {
+        store[key] = value;
+        return Promise.resolve();
+      }),
+      removeItem: jest.fn((key: string) => {
+        delete store[key];
+        return Promise.resolve();
+      }),
+      multiGet: jest.fn((keys: string[]) =>
+        Promise.resolve(keys.map((k) => [k, store[k] ?? null])),
+      ),
+      multiSet: jest.fn((pairs: [string, string][]) => {
+        pairs.forEach(([k, v]) => {
+          store[k] = v;
+        });
+        return Promise.resolve();
+      }),
+      clear: jest.fn(() => {
+        Object.keys(store).forEach((k) => delete store[k]);
+        return Promise.resolve();
+      }),
+    },
+  };
+});
+
+// MMKV is a JSI native module, so it cannot be constructed under Jest. An
+// in-memory map with the same surface covers everything that reads it.
+jest.mock('react-native-mmkv', () => {
+  class MMKV {
+    private store: Record<string, string | number | boolean> = {};
+    getString(key: string): string | undefined {
+      const v = this.store[key];
+      return typeof v === 'string' ? v : undefined;
+    }
+    getBoolean(key: string): boolean | undefined {
+      const v = this.store[key];
+      return typeof v === 'boolean' ? v : undefined;
+    }
+    getNumber(key: string): number | undefined {
+      const v = this.store[key];
+      return typeof v === 'number' ? v : undefined;
+    }
+    set(key: string, value: string | number | boolean): void {
+      this.store[key] = value;
+    }
+    delete(key: string): void {
+      delete this.store[key];
+    }
+    clearAll(): void {
+      this.store = {};
+    }
+  }
+  return { MMKV };
+});
+
 jest.mock('expo-clipboard', () => ({
   setString: jest.fn(),
   getStringAsync: jest.fn().mockResolvedValue(''),
