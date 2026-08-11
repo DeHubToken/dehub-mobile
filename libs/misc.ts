@@ -223,18 +223,22 @@ const BADGE_IMAGES: Record<string, number> = {
   Meglodon: require("../assets/badges/Meglodon.png"),
 };
 
+// JPEG, not PNG. These are the placeholder cover strips behind a profile: they
+// render into roughly 390x140pt, they carry no transparency (every one is
+// rgb24), and they were shipping as 3000x1000 PNGs totalling 14.6 MB. Resized
+// to 1200 wide and encoded to a >=40 dB luma PSNR floor they come to 0.84 MB.
 const DEFAULT_BANNERS = [
-  require("../assets/banners/1.png"),
-  require("../assets/banners/2.png"),
-  require("../assets/banners/3.png"),
-  require("../assets/banners/4.png"),
-  require("../assets/banners/5.png"),
-  require("../assets/banners/6.png"),
-  require("../assets/banners/7.png"),
-  require("../assets/banners/8.png"),
-  require("../assets/banners/9.png"),
-  require("../assets/banners/10.png"),
-  require("../assets/banners/11.png"),
+  require("../assets/banners/1.jpg"),
+  require("../assets/banners/2.jpg"),
+  require("../assets/banners/3.jpg"),
+  require("../assets/banners/4.jpg"),
+  require("../assets/banners/5.jpg"),
+  require("../assets/banners/6.jpg"),
+  require("../assets/banners/7.jpg"),
+  require("../assets/banners/8.jpg"),
+  require("../assets/banners/9.jpg"),
+  require("../assets/banners/10.jpg"),
+  require("../assets/banners/11.jpg"),
 ];
 
 export function getDefaultBanner(identifier: string = ""): number {
