@@ -150,6 +150,20 @@ describe('findDehubLinks', () => {
     expect(findDehubLinks('https://example.com/app/post/1')).toEqual([]);
   });
 
+  it('does not card a foreign URL through its path', () => {
+    // A card claims the content is DeHub's. The bare-path pass used to match
+    // the "/app/post/1" sitting inside an already-rejected foreign URL.
+    expect(findDehubLinks('look at https://evil.example/app/post/1 now')).toEqual([]);
+    expect(findDehubLinks('https://example.com/communities/dehub')).toEqual([]);
+    expect(findDehubLinks('https://dehub.io.attacker.com/app/post/9')).toEqual([]);
+  });
+
+  it('still finds our own link when a foreign one sits beside it', () => {
+    const found = findDehubLinks('https://example.com/app/post/1 and https://dehub.io/app/post/2');
+    expect(found).toHaveLength(1);
+    expect(found[0].tokenId).toBe('2');
+  });
+
   it('handles empty input', () => {
     expect(findDehubLinks('')).toEqual([]);
     expect(findDehubLinks(null)).toEqual([]);
