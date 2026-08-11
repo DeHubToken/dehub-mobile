@@ -9,7 +9,7 @@
 import React, { useCallback } from "react";
 import { View, Text, TouchableOpacity, Linking } from "react-native";
 import Icon, { type IconName } from "../ui/Icon";
-import { env } from "../../config/env";
+import env from "../../config/env";
 import { toastError } from "../../libs/toast";
 import {
   formatAttachmentSize,
