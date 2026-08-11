@@ -71,6 +71,7 @@ import { StageProvider } from "./context/StageContext";
 import StagesModalsHost from "./components/Stages/StagesModalsHost";
 import StageMiniPlayer from "./components/Stages/StageMiniPlayer";
 import { AppKit } from "@reown/appkit-ethers5-react-native";
+import { isWalletConnectAvailable } from "./config/reown.config";
 
 const logger = createLogger("App");
 
@@ -197,7 +198,11 @@ export default function App() {
               }}
             />
             <PermissionModalProvider />
-            <AppKit />
+            {/* Only when createAppKit actually succeeded — see reown.config.
+                Rendering AppKit against a configuration that never initialised
+                is what a missing REOWN_PROJECT_ID now degrades to, instead of
+                a module-scope throw that killed boot before React existed. */}
+            {isWalletConnectAvailable && <AppKit />}
             {/* Settings → Appearance → Dim Lights. Above every surface,
                 below nothing — same stacking as web's fixed overlay. */}
             <DimLightsOverlay />
