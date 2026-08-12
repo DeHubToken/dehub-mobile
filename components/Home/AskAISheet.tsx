@@ -404,10 +404,15 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
       if (isImageRequest(text)) {
         setIsGeneratingImage(true);
         try {
-          const imgRes = await generateImage({
-            prompt: text,
-            conversationHistory: updatedMessages,
-          });
+          // `generate-image` charges the caller's DHB credit and answers 401
+          // without a DeHub token, so the wallet has to travel with the request.
+          const imgRes = await generateImage(
+            {
+              prompt: text,
+              conversationHistory: updatedMessages,
+            },
+            user?.walletAddress || user?.address,
+          );
           if (imgRes.imageUrl) {
             const imgMsg: AIChatMessage = {
               role: "assistant",

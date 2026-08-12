@@ -1,4 +1,22 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+/**
+ * AI Assistant.
+ * =============
+ * The mobile counterpart of dehubweb's `/app/assistant`. Everything the web
+ * page routes, this routes the same way and in the same order, because the
+ * classification is what decides whether a sentence costs money:
+ *
+ *   fal.ai tool  →  video  →  image (poster if DeHub-branded)  →  chat
+ *
+ * Chat streams token-by-token off `general-ai-chat` and names the tools the
+ * agent runs while it works. Paid generations quote and charge server-side
+ * through the credit ledger — see `hooks/useAiCredits.ts` for why that replaced
+ * the on-chain transfer this screen used to make before every image.
+ *
+ * RULE (web's, and it applies here): all assistant text renders through
+ * MarkdownText. `AssistantBubble` owns that.
+ */
+
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -8,62 +26,147 @@ import {
   StyleSheet,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import * as FileSystem from 'expo-file-system/legacy';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import AssistantHeader from '../components/Assistant/AssistantHeader';
 import AssistantBubble from '../components/Assistant/AssistantBubble';
 import AssistantInputBar from '../components/Assistant/AssistantInputBar';
-import QuickActionChips from '../components/Assistant/QuickActionChips';
+import QuickActionChips, { type QuickAction } from '../components/Assistant/QuickActionChips';
 import ChatHistorySheet from '../components/Assistant/ChatHistorySheet';
-import ImagePaywallModal from '../components/Assistant/ImagePaywallModal';
-import VideoPaywallModal from '../components/Assistant/VideoPaywallModal';
-import { useUser, useAuthState } from '../context/AuthContext';
+import CreditPaywallSheet from '../components/Assistant/CreditPaywallSheet';
+import AssistantSettingsSheet, {
+  type AssistantSettings,
+} from '../components/Assistant/AssistantSettingsSheet';
+import AssistantStyleSheet from '../components/Assistant/AssistantStyleSheet';
+import MusicConfirmSheet, { type MusicParams } from '../components/Assistant/MusicConfirmSheet';
+import PosterConfigSheet, { type PosterConfig } from '../components/Assistant/PosterConfigSheet';
+import { ImageGenerationSkeleton } from '../components/Assistant/GenerationSkeleton';
+import MentionSuggestions from '../components/common/MentionSuggestions';
+import { useUser } from '../context/AuthContext';
 import { getAuthToken } from '../libs/auth.utils';
-import { useAIConversation } from '../hooks/useAIConversation';
+import { useAIConversation, type ConversationEntry } from '../hooks/useAIConversation';
 import { useKeyboard } from '../hooks/useKeyboard';
+import { useMentions } from '../hooks/useMentions';
 import {
-  sendAIChat,
+  streamAIChat,
   generateImage,
   startVideoGeneration,
   pollVideoGeneration,
+  startAiTool,
+  pollAiTool,
   isImageRequest,
   isVideoRequest,
+  requiresLogoAsset,
+  isCreativeLogoRequest,
+  isDeHubBrandedImageRequest,
+  detectAiToolRequest,
+  buildDeHubBrandPrompt,
+  describeTools,
   AIServiceError,
   type AIChatMessage,
   type AIUserContext,
-  type AIImageModel,
-  type AIVideoModel,
 } from '../services/ai.service';
+import {
+  AI_TOOL_MODELS,
+  CATEGORY_LABELS,
+  DEFAULT_CHAT_MODEL,
+  DEFAULT_IMAGE_MODEL,
+  DEFAULT_TOOL_FOR_CATEGORY,
+  DEFAULT_VIDEO_MODEL,
+  DEHUB_BRAND_IMAGE_MODEL,
+  IMAGE_MODEL_OPTIONS,
+  VIDEO_MODELS,
+  VIDEO_MODEL_OPTIONS,
+  getToolsByCategory,
+  imageModelSupportsEdit,
+  videoSupportsImage,
+  videoSupportsText,
+  type AiToolCategory,
+} from '../config/ai-models.constants';
+import { AI_ASSISTANT_STYLE_OPTIONS } from '../config/ai-styles.constants';
 import { openCroppedImagePicker } from '../libs/assets.util';
+import {
+  bundledLogoDataUrl,
+  buildMediaDraft,
+  copyImage,
+  saveToLibrary,
+  shareAudio,
+  toImageDataUrl,
+} from '../libs/assistantMedia';
 import { getDeviceLanguage } from '../services/translation.service';
-import { toastError } from '../libs';
+import { supabase } from '../services/supabase';
+import { toastError, toastSuccess } from '../libs/toast';
 import { ScreenNames } from '../navigation/ScreenNames';
 import { createLogger } from '../libs/logger';
 import SignInGate from '../components/auth/SignInGate';
 
 const log = createLogger('AIChatScreen');
 const AI_AVATAR = require('../assets/web-icons/ai-assistant-avatar.png');
+const DEHUB_LOGO = require('../assets/web-icons/dehub-logo-white.png');
 
 const WELCOME_MESSAGE =
   'Use the text box below or these action buttons to get started.';
 
-const NON_RETRYABLE = new Set(['RATE_LIMIT', 'CREDITS_EXHAUSTED']);
-const MAX_RETRIES = 2;
-const RETRY_DELAYS = [1000, 2000];
 const TAB_BAR_HEIGHT = 80;
+const POLL_INTERVAL_MS = 5000;
+/**
+ * Clip length every render asks for. Web's composer exposes a duration slider;
+ * this screen does not, so the figure is fixed — and it has to be the same
+ * number in the request, the quote and the per-second row prices, or the
+ * paywall shows one price and the server charges another.
+ */
+const VIDEO_DURATION_SECONDS = 5;
+
+/** Keys that let a render survive the app being closed, as web's do a reload. */
+const PENDING_VIDEO_KEY = 'dehub-pending-video';
+const PENDING_TOOL_KEY = 'dehub-pending-ai-tool';
+const SETTINGS_KEY = 'dehub-assistant-settings';
+
+interface PendingVideo {
+  predictionId: string;
+  provider?: string;
+  falAppId?: string;
+  /** Id of the placeholder turn this render fills in. */
+  messageId: string;
+  content: string;
+}
+
+interface PendingTool {
+  requestId: string;
+  appId: string;
+  toolKey: string;
+  statusUrl?: string;
+  responseUrl?: string;
+  messageId: string;
+  content: string;
+}
+
+let turnSeq = 0;
+/** Unique enough within a session, and stable once written to a saved thread. */
+const newTurnId = (): string => `t-${Date.now()}-${(turnSeq += 1)}`;
+
+const DEFAULT_SETTINGS: AssistantSettings = {
+  chatModel: DEFAULT_CHAT_MODEL,
+  imageModel: DEFAULT_IMAGE_MODEL,
+  videoModel: DEFAULT_VIDEO_MODEL,
+  voice: 'female',
+  alwaysSpeakReplies: false,
+};
 
 function AIChatScreenInner() {
   const navigation = useNavigation<any>();
+  const route = useRoute<any>();
   const user = useUser();
-  const { isSignedIn } = useAuthState();
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
   const flatListRef = useRef<FlatList<AIChatMessage>>(null);
 
-  const userId = user?.walletAddress || user?.address || 'anon';
+  const walletAddress = user?.walletAddress || user?.address || null;
+  const userId = walletAddress || 'anon';
   const {
     conversationId,
     messages,
     conversations,
     startNewConversation,
+    appendLocalMessage,
     loadConversation,
     saveMessage,
     deleteConversation,
@@ -72,37 +175,114 @@ function AIChatScreenInner() {
   } = useAIConversation(userId);
 
   const [input, setInput] = useState('');
+  const mentions = useMentions(input, setInput);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isGeneratingImage, setIsGeneratingImage] = useState(false);
+  const [activeTools, setActiveTools] = useState<string[]>([]);
+  const [attachedImage, setAttachedImage] = useState<string | null>(null);
+  /** The in-flight assistant answer: rendered as a bubble, saved only on done. */
+  const [streamingContent, setStreamingContent] = useState<string | null>(null);
+
+  const [settings, setSettings] = useState<AssistantSettings>(DEFAULT_SETTINGS);
+  const [selectedStyle, setSelectedStyle] = useState<string>('normal');
+
+  const [historyVisible, setHistoryVisible] = useState(false);
+  const [settingsVisible, setSettingsVisible] = useState(false);
+  const [styleVisible, setStyleVisible] = useState(false);
+  const [posterVisible, setPosterVisible] = useState(false);
+  const [musicVisible, setMusicVisible] = useState(false);
+
+  const [pendingPrompt, setPendingPrompt] = useState('');
+  const [pendingSourceImage, setPendingSourceImage] = useState<string | undefined>();
+  const [pendingLogoImage, setPendingLogoImage] = useState<string | undefined>();
+  const [pendingPosterConfig, setPendingPosterConfig] = useState<PosterConfig | null>(null);
+  const [pendingToolLyrics, setPendingToolLyrics] = useState<string | undefined>();
+
+  const [imagePaywallVisible, setImagePaywallVisible] = useState(false);
+  const [videoPaywallVisible, setVideoPaywallVisible] = useState(false);
+  const [toolPaywallVisible, setToolPaywallVisible] = useState(false);
+  const [toolCategory, setToolCategory] = useState<AiToolCategory>('music');
+  const [selectedToolId, setSelectedToolId] = useState<string>('minimax-music');
+  const [imageModelOverride, setImageModelOverride] = useState<string | null>(null);
+
+  /** Timers for in-flight polls, cleared on unmount. */
+  const pollTimers = useRef<Record<string, ReturnType<typeof setInterval>>>({});
+  const streamRef = useRef<{ abort: () => void } | null>(null);
+  /** Latest messages, for callbacks that must not close over a stale array. */
+  const messagesRef = useRef<AIChatMessage[]>(messages);
+  messagesRef.current = messages;
+
+  const currentStyle =
+    AI_ASSISTANT_STYLE_OPTIONS.find((s) => s.id === selectedStyle) ||
+    AI_ASSISTANT_STYLE_OPTIONS[0];
+
+  /* ── Settings persistence ────────────────────────────────────────────── */
+
+  useEffect(() => {
+    AsyncStorage.getItem(SETTINGS_KEY)
+      .then((raw) => {
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        setSettings({ ...DEFAULT_SETTINGS, ...parsed.settings });
+        if (parsed.style) setSelectedStyle(parsed.style);
+      })
+      .catch(() => {
+        // Defaults are fine.
+      });
+  }, []);
+
+  const persistSettings = useCallback(
+    (next: AssistantSettings, style: string) => {
+      AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify({ settings: next, style })).catch(
+        () => {},
+      );
+    },
+    [],
+  );
+
+  const updateSettings = useCallback(
+    (patch: Partial<AssistantSettings>) => {
+      setSettings((prev) => {
+        const next = { ...prev, ...patch };
+        persistSettings(next, selectedStyle);
+        return next;
+      });
+    },
+    [persistSettings, selectedStyle],
+  );
+
+  const handleStyleSelect = useCallback(
+    (styleId: string) => {
+      setSelectedStyle(styleId);
+      persistSettings(settings, styleId);
+    },
+    [persistSettings, settings],
+  );
+
+  /* ── Entry points ────────────────────────────────────────────────────── */
 
   // The Prompt entry screen hands its text over as a route param. Seed the
   // composer with it rather than auto-sending, so the user still gets a look
   // at what will be asked — same as web, which lands on /app?prompt=…
-  const route = useRoute<any>();
   const initialPrompt: string | undefined = route.params?.initialPrompt;
-  React.useEffect(() => {
+  useEffect(() => {
     if (initialPrompt) setInput(initialPrompt);
   }, [initialPrompt]);
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [isGeneratingImage, setIsGeneratingImage] = useState(false);
-  const [historyVisible, setHistoryVisible] = useState(false);
-  const [attachedImage, setAttachedImage] = useState<string | null>(null);
-  const [imagePaywallVisible, setImagePaywallVisible] = useState(false);
-  const [videoPaywallVisible, setVideoPaywallVisible] = useState(false);
-  const [pendingPrompt, setPendingPrompt] = useState('');
 
   const userContext: AIUserContext | undefined = useMemo(() => {
     if (!user) return undefined;
     return {
       username: user.username,
       displayName: user.displayName,
-      walletAddress: user.walletAddress || user.address,
+      walletAddress: walletAddress || undefined,
       followers: user.followers,
       following: user.followings,
       badgeBalance: user.badgeBalance,
       tipsReceived: user.receivedTips,
       tipsSent: user.sentTips,
     };
-  }, [user]);
+  }, [user, walletAddress]);
 
   const isEmpty = messages.length === 0;
 
@@ -112,252 +292,866 @@ function AIChatScreenInner() {
     }, 100);
   }, []);
 
-  const readImageAsBase64 = useCallback(async (uri: string): Promise<string | null> => {
-    try {
-      return await FileSystem.readAsStringAsync(uri, { encoding: FileSystem.EncodingType.Base64 });
-    } catch {
-      log.error('Failed to read image as base64');
-      return null;
+  /* ── Diagnostics ─────────────────────────────────────────────────────── */
+
+  /**
+   * Mirror of web's failure logging. Both clients write to the same table, so a
+   * report that only reproduces on a phone is diagnosable from the same place.
+   */
+  const logAssistantError = useCallback(
+    (error: unknown, context: Record<string, unknown>) => {
+      const err = error instanceof Error ? error : new Error(String(error));
+      const code = error instanceof AIServiceError ? error.errorCode : undefined;
+      supabase
+        .from('client_error_logs')
+        .insert({
+          level: 'error',
+          message: `Assistant error [${code || 'UNKNOWN'}]: ${err.message}`,
+          component: 'AIChatScreen',
+          stack_trace: err.stack?.substring(0, 500) || null,
+          metadata: { ...context, errorCode: code },
+          user_address: walletAddress,
+        })
+        .then(undefined, (logErr) => log.error('failed to log assistant error:', logErr));
+    },
+    [walletAddress],
+  );
+
+  const describeError = useCallback((error: unknown): string => {
+    if (error instanceof AIServiceError) {
+      switch (error.errorCode) {
+        case 'RATE_LIMIT':
+          return 'Too many requests — try again shortly.';
+        case 'CREDITS_EXHAUSTED':
+        case 'INSUFFICIENT_CREDITS':
+          return 'Out of DHB credit for AI. Top up to keep going.';
+        case 'TIMEOUT':
+          return 'That request timed out. Try again.';
+        case 'UNAUTHENTICATED':
+          return 'Sign in again to use the assistant.';
+        default:
+          return error.message || 'Something went wrong.';
+      }
+    }
+    return error instanceof Error ? error.message : 'Something went wrong.';
+  }, []);
+
+  /* ── Chat ────────────────────────────────────────────────────────────── */
+
+  const doSendChat = useCallback(
+    async (text: string, history: AIChatMessage[]) => {
+      setIsLoading(true);
+      setActiveTools([]);
+      scrollToEnd();
+
+      const token = (await getAuthToken()) || undefined;
+      let streamed = '';
+
+      const commit = (content: string, isError = false) => {
+        const reply: AIChatMessage = { role: 'assistant', content, ...(isError && { isError: true }) };
+        saveMessage([...history, reply]);
+      };
+
+      streamRef.current = streamAIChat(
+        {
+          messages: history,
+          style: selectedStyle as any,
+          model: settings.chatModel as any,
+          userContext,
+          isAuthenticated: !!user,
+          userLanguage: getDeviceLanguage(),
+          // Full assistant surface — the agent gets the personal-data tools
+          // alongside the public ones. The token is what proves who is asking;
+          // the API verifies it and scopes those tools to that account, so an
+          // address alone would not be enough.
+          surface: 'assistant',
+          dehubToken: token,
+          callerAddress: walletAddress || undefined,
+        },
+        {
+          onTool: ({ status, tools }) => setActiveTools(status === 'running' ? tools : []),
+          onDelta: (delta) => {
+            streamed += delta;
+            // Render the partial answer as it arrives, but only persist the
+            // finished turn — writing on every token would hammer AsyncStorage
+            // and the remote mirror.
+            //
+            // `isLoading` deliberately stays true for the whole stream, as it
+            // does on web: it is what stops a second prompt being sent into a
+            // half-finished answer, with two streams then writing to the same
+            // thread. The spinner is hidden by `streamingContent` instead.
+            setActiveTools([]);
+            setStreamingContent(streamed);
+          },
+          onDone: () => {
+            streamRef.current = null;
+            setStreamingContent(null);
+            setIsLoading(false);
+            setActiveTools([]);
+            commit(streamed || 'No response');
+            scrollToEnd();
+          },
+          onError: (err) => {
+            streamRef.current = null;
+            setStreamingContent(null);
+            setIsLoading(false);
+            setActiveTools([]);
+            log.error('chat error:', err);
+            logAssistantError(err, {
+              userMessage: text.substring(0, 100),
+              model: settings.chatModel,
+            });
+            commit(describeError(err), true);
+            scrollToEnd();
+          },
+        },
+      );
+    },
+    [
+      selectedStyle,
+      settings.chatModel,
+      userContext,
+      user,
+      walletAddress,
+      saveMessage,
+      scrollToEnd,
+      logAssistantError,
+      describeError,
+    ],
+  );
+
+  /* ── Image ───────────────────────────────────────────────────────────── */
+
+  const doGenerateImage = useCallback(
+    async (
+      prompt: string,
+      model: string,
+      history: AIChatMessage[],
+      extras?: {
+        sourceImage?: string;
+        logoImage?: string;
+        headline?: string;
+        bannerRenderer?: 'template' | 'scene';
+        bannerFormat?: 'landscape' | 'square' | 'portrait';
+      },
+    ) => {
+      setIsLoading(true);
+      setIsGeneratingImage(true);
+      scrollToEnd();
+
+      try {
+        const res = await generateImage(
+          {
+            prompt,
+            model,
+            conversationHistory: history,
+            sourceImage: extras?.sourceImage,
+            logoImage: extras?.logoImage,
+            headline: extras?.headline,
+            bannerRenderer: extras?.bannerRenderer,
+            bannerFormat: extras?.bannerFormat,
+          },
+          walletAddress,
+        );
+
+        if (res.error) {
+          const message = res.safetyBlocked
+            ? "That prompt was blocked by the model's safety filter. Try describing it differently."
+            : res.error;
+          // `clearHistory` means the conversation itself is what tripped the
+          // filter, so carrying it forward would fail every following turn.
+          if (res.clearHistory) {
+            startNewConversation();
+            await saveMessage([{ role: 'assistant', content: message, isError: true }]);
+          } else {
+            await saveMessage([...history, { role: 'assistant', content: message, isError: true }]);
+          }
+          return;
+        }
+
+        if (res.imageUrl) {
+          await saveMessage([
+            ...history,
+            { role: 'assistant', content: res.text || '', imageUrl: res.imageUrl },
+          ]);
+          toastSuccess('Image generated');
+        } else {
+          await saveMessage([
+            ...history,
+            {
+              role: 'assistant',
+              content: res.text || "The image couldn't be generated. Try a different prompt.",
+              isError: true,
+            },
+          ]);
+        }
+        scrollToEnd();
+      } catch (err) {
+        log.error('image generation failed:', err);
+        logAssistantError(err, { kind: 'image', model });
+        await saveMessage([
+          ...history,
+          { role: 'assistant', content: describeError(err), isError: true },
+        ]);
+      } finally {
+        setIsLoading(false);
+        setIsGeneratingImage(false);
+      }
+    },
+    [walletAddress, saveMessage, scrollToEnd, startNewConversation, logAssistantError, describeError],
+  );
+
+  /* ── Video ───────────────────────────────────────────────────────────── */
+
+  const stopPoll = useCallback((key: string) => {
+    const timer = pollTimers.current[key];
+    if (timer) {
+      clearInterval(timer);
+      delete pollTimers.current[key];
     }
   }, []);
+
+  /**
+   * Patch the turn a long-running job belongs to.
+   *
+   * Keyed on the placeholder's id, not on "the last assistant message" — a
+   * render takes minutes, and by the time it lands the user may well have had
+   * another exchange, so position is not a safe handle.
+   */
+  const patchMessage = useCallback(
+    (id: string, patch: Partial<AIChatMessage>): boolean => {
+      const current = messagesRef.current;
+      const index = current.findIndex((m) => m.id === id);
+      if (index === -1) return false;
+      const next = [...current];
+      next[index] = { ...next[index], ...patch };
+      saveMessage(next);
+      return true;
+    },
+    [saveMessage],
+  );
+
+  const pollVideo = useCallback(
+    async (pending: PendingVideo) => {
+      // The thread holding the placeholder was cleared or another one loaded,
+      // so there is nothing left to fill in. An empty thread is not proof of
+      // that — on a resumed poll the placeholder is still being re-injected —
+      // so only a populated thread without the id ends the poll.
+      const current = messagesRef.current;
+      if (current.length > 0 && !current.some((m) => m.id === pending.messageId)) {
+        stopPoll(pending.predictionId);
+        AsyncStorage.removeItem(PENDING_VIDEO_KEY).catch(() => {});
+        return;
+      }
+      try {
+        const res = await pollVideoGeneration(pending.predictionId, {
+          provider: pending.provider,
+          falAppId: pending.falAppId,
+          walletAddress,
+        });
+        if (res.status === 'succeeded' && res.videoUrl) {
+          stopPoll(pending.predictionId);
+          AsyncStorage.removeItem(PENDING_VIDEO_KEY).catch(() => {});
+          patchMessage(pending.messageId, {
+            content: '',
+            videoUrl: res.videoUrl,
+            isVideoGenerating: false,
+            videoPredictionId: undefined,
+          });
+          toastSuccess('Video generated');
+        } else if (res.status === 'failed') {
+          stopPoll(pending.predictionId);
+          AsyncStorage.removeItem(PENDING_VIDEO_KEY).catch(() => {});
+          patchMessage(pending.messageId, {
+            content: `Video generation failed: ${res.error || 'unknown error'}`,
+            isVideoGenerating: false,
+            isError: true,
+          });
+        }
+      } catch (err) {
+        // A single failed poll is normal (a cold provider, a dropped request);
+        // the interval will try again.
+        log.error('video poll failed:', err);
+      }
+    },
+    [walletAddress, stopPoll, patchMessage],
+  );
+
+  const startVideoPoll = useCallback(
+    (pending: PendingVideo) => {
+      if (pollTimers.current[pending.predictionId]) return;
+      pollTimers.current[pending.predictionId] = setInterval(
+        () => pollVideo(pending),
+        POLL_INTERVAL_MS,
+      );
+      pollVideo(pending);
+    },
+    [pollVideo],
+  );
+
+  const doGenerateVideo = useCallback(
+    async (prompt: string, model: string, history: AIChatMessage[], sourceImage?: string) => {
+      const videoModel = VIDEO_MODELS[model];
+      setIsLoading(true);
+      scrollToEnd();
+
+      try {
+        const res = await startVideoGeneration(
+          {
+            prompt,
+            model,
+            sourceImage,
+            duration: `${VIDEO_DURATION_SECONDS}s` as '5s',
+            aspectRatio: '16:9',
+          },
+          walletAddress,
+        );
+
+        if (res.error) {
+          await saveMessage([
+            ...history,
+            { role: 'assistant', content: `Video generation failed: ${res.error}`, isError: true },
+          ]);
+          return;
+        }
+
+        // Some providers answer immediately; most hand back a prediction id.
+        if (res.videoUrl) {
+          await saveMessage([...history, { role: 'assistant', content: '', videoUrl: res.videoUrl }]);
+          toastSuccess('Video generated');
+          return;
+        }
+
+        if (!res.predictionId) {
+          await saveMessage([
+            ...history,
+            {
+              role: 'assistant',
+              content: 'The video job started but returned no id, so it cannot be tracked.',
+              isError: true,
+            },
+          ]);
+          return;
+        }
+
+        const content = `🎬 Generating video with **${videoModel?.name || model}**…\n\n_This may take 1-3 minutes_`;
+        const messageId = newTurnId();
+        await saveMessage([
+          ...history,
+          {
+            id: messageId,
+            role: 'assistant',
+            content,
+            isVideoGenerating: true,
+            videoPredictionId: res.predictionId,
+            videoProvider: res.provider,
+            videoFalAppId: res.falAppId,
+          },
+        ]);
+
+        const pending: PendingVideo = {
+          predictionId: res.predictionId,
+          provider: res.provider,
+          falAppId: res.falAppId,
+          messageId,
+          content,
+        };
+        // Persist so a backgrounded app that gets killed still finishes the
+        // render it has already been charged for.
+        AsyncStorage.setItem(PENDING_VIDEO_KEY, JSON.stringify(pending)).catch(() => {});
+        startVideoPoll(pending);
+        scrollToEnd();
+      } catch (err) {
+        log.error('video generation failed:', err);
+        logAssistantError(err, { kind: 'video', model });
+        await saveMessage([
+          ...history,
+          { role: 'assistant', content: describeError(err), isError: true },
+        ]);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [walletAddress, saveMessage, scrollToEnd, startVideoPoll, logAssistantError, describeError],
+  );
+
+  /* ── fal.ai tools ────────────────────────────────────────────────────── */
+
+  const pollTool = useCallback(
+    async (pending: PendingTool) => {
+      const current = messagesRef.current;
+      if (current.length > 0 && !current.some((m) => m.id === pending.messageId)) {
+        stopPoll(pending.requestId);
+        AsyncStorage.removeItem(PENDING_TOOL_KEY).catch(() => {});
+        return;
+      }
+      try {
+        const res = await pollAiTool(
+          {
+            requestId: pending.requestId,
+            appId: pending.appId,
+            statusUrl: pending.statusUrl,
+            responseUrl: pending.responseUrl,
+          },
+          walletAddress,
+        );
+        if (res.status === 'succeeded') {
+          stopPoll(pending.requestId);
+          AsyncStorage.removeItem(PENDING_TOOL_KEY).catch(() => {});
+          const toolModel = AI_TOOL_MODELS[pending.toolKey];
+          patchMessage(pending.messageId, {
+            isToolProcessing: false,
+            toolRequestId: undefined,
+            content: res.text
+              ? `📝 **Transcription:**\n\n${res.text}`
+              : res.audioUrl || res.imageUrl
+                ? ''
+                : `✅ ${toolModel?.name || 'Tool'} completed successfully.`,
+            ...(res.audioUrl ? { audioUrl: res.audioUrl } : {}),
+            ...(res.imageUrl ? { imageUrl: res.imageUrl } : {}),
+          });
+          toastSuccess(`${toolModel?.name || 'AI tool'} completed`);
+        } else if (res.status === 'failed') {
+          stopPoll(pending.requestId);
+          AsyncStorage.removeItem(PENDING_TOOL_KEY).catch(() => {});
+          patchMessage(pending.messageId, {
+            isToolProcessing: false,
+            toolRequestId: undefined,
+            content: `Processing failed: ${res.error || 'unknown error'}`,
+            isError: true,
+          });
+        }
+      } catch (err) {
+        log.error('tool poll failed:', err);
+      }
+    },
+    [walletAddress, stopPoll, patchMessage],
+  );
+
+  const startToolPoll = useCallback(
+    (pending: PendingTool) => {
+      if (pollTimers.current[pending.requestId]) return;
+      pollTimers.current[pending.requestId] = setInterval(
+        () => pollTool(pending),
+        POLL_INTERVAL_MS,
+      );
+      pollTool(pending);
+    },
+    [pollTool],
+  );
+
+  const doRunTool = useCallback(
+    async (
+      toolId: string,
+      category: AiToolCategory,
+      prompt: string,
+      history: AIChatMessage[],
+      extras?: { sourceImage?: string; lyrics?: string },
+    ) => {
+      const toolModel = AI_TOOL_MODELS[toolId];
+      setIsLoading(true);
+      scrollToEnd();
+
+      try {
+        const res = await startAiTool(
+          {
+            tool: toolId,
+            prompt,
+            ...(category === 'tts' ? { text: prompt } : {}),
+            ...(extras?.lyrics ? { lyrics: extras.lyrics } : {}),
+            ...(extras?.sourceImage ? { image_url: extras.sourceImage } : {}),
+          },
+          walletAddress,
+        );
+
+        if (res.error) {
+          await saveMessage([
+            ...history,
+            { role: 'assistant', content: res.error, isError: true },
+          ]);
+          return;
+        }
+
+        if (res.status === 'succeeded') {
+          await saveMessage([
+            ...history,
+            {
+              role: 'assistant',
+              content: res.text
+                ? `📝 **Transcription:**\n\n${res.text}`
+                : res.audioUrl || res.imageUrl
+                  ? ''
+                  : `✅ ${toolModel?.name || 'Tool'} completed.`,
+              ...(res.audioUrl ? { audioUrl: res.audioUrl } : {}),
+              ...(res.imageUrl ? { imageUrl: res.imageUrl } : {}),
+            },
+          ]);
+          toastSuccess(`${toolModel?.name || 'AI tool'} completed`);
+          return;
+        }
+
+        if (!res.requestId || !res.appId) {
+          await saveMessage([
+            ...history,
+            {
+              role: 'assistant',
+              content: 'That tool started but returned no request id, so it cannot be tracked.',
+              isError: true,
+            },
+          ]);
+          return;
+        }
+
+        const content = `${toolModel?.emoji || '⏳'} Processing with **${toolModel?.name || toolId}**…\n\n_This may take a minute_`;
+        const messageId = newTurnId();
+        await saveMessage([
+          ...history,
+          {
+            id: messageId,
+            role: 'assistant',
+            content,
+            isToolProcessing: true,
+            toolRequestId: res.requestId,
+            toolAppId: res.appId,
+            toolType: toolId,
+          },
+        ]);
+
+        const pending: PendingTool = {
+          requestId: res.requestId,
+          appId: res.appId,
+          toolKey: toolId,
+          statusUrl: res.statusUrl,
+          responseUrl: res.responseUrl,
+          messageId,
+          content,
+        };
+        AsyncStorage.setItem(PENDING_TOOL_KEY, JSON.stringify(pending)).catch(() => {});
+        startToolPoll(pending);
+        scrollToEnd();
+      } catch (err) {
+        log.error('tool run failed:', err);
+        logAssistantError(err, { kind: 'tool', tool: toolId });
+        await saveMessage([
+          ...history,
+          { role: 'assistant', content: describeError(err), isError: true },
+        ]);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [walletAddress, saveMessage, scrollToEnd, startToolPoll, logAssistantError, describeError],
+  );
+
+  /* ── Resume work that outlived the app ───────────────────────────────── */
+
+  useEffect(() => {
+    // A render or a tool run that outlived the app. It is already paid for, so
+    // the placeholder goes back on screen and the poll picks up where it left
+    // off, the same way web restores one across a reload.
+    AsyncStorage.getItem(PENDING_VIDEO_KEY)
+      .then((raw) => {
+        if (!raw) return;
+        const pending = JSON.parse(raw) as PendingVideo;
+        if (!pending?.predictionId || !pending?.messageId) return;
+        appendLocalMessage({
+          id: pending.messageId,
+          role: 'assistant',
+          content: pending.content || '🎬 Resuming video generation…',
+          isVideoGenerating: true,
+          videoPredictionId: pending.predictionId,
+        });
+        startVideoPoll(pending);
+      })
+      .catch(() => {});
+
+    AsyncStorage.getItem(PENDING_TOOL_KEY)
+      .then((raw) => {
+        if (!raw) return;
+        const pending = JSON.parse(raw) as PendingTool;
+        if (!pending?.requestId || !pending?.appId || !pending?.messageId) return;
+        appendLocalMessage({
+          id: pending.messageId,
+          role: 'assistant',
+          content: pending.content || '⏳ Resuming processing…',
+          isToolProcessing: true,
+          toolRequestId: pending.requestId,
+          toolAppId: pending.appId,
+          toolType: pending.toolKey,
+        });
+        startToolPoll(pending);
+      })
+      .catch(() => {});
+    // Once, on mount — a resumed poll re-registers itself by key.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(
+    () => () => {
+      Object.values(pollTimers.current).forEach(clearInterval);
+      pollTimers.current = {};
+      streamRef.current?.abort();
+    },
+    [],
+  );
+
+  /* ── Send ────────────────────────────────────────────────────────────── */
+
+  /**
+   * Decide what a prompt is asking for and hand it to the right flow.
+   *
+   * Shared by send and retry so a failed image request retries as an image
+   * request. `history` already ends with the user's turn.
+   */
+  const routePrompt = useCallback(
+    async (
+      text: string,
+      history: AIChatMessage[],
+      sourceImage: string | undefined,
+      hadAttachment: boolean,
+    ) => {
+      /* Logo requests: show the bundled asset rather than paying to redraw it. */
+      const wantsBrand = isDeHubBrandedImageRequest(text);
+      const wantsLogo = wantsBrand || requiresLogoAsset(text);
+      if (wantsLogo && !isCreativeLogoRequest(text)) {
+        await saveMessage([
+          ...history,
+          {
+            role: 'assistant',
+            content: "Here's the official DeHub logo!",
+            imageUrl: Image.resolveAssetSource(DEHUB_LOGO).uri,
+          },
+        ]);
+        scrollToEnd();
+        return;
+      }
+
+      /* Classification order is web's: tools, then video, then image, then chat. */
+      const category = detectAiToolRequest(text, hadAttachment);
+      if (category) {
+        setPendingPrompt(text);
+        setPendingSourceImage(sourceImage);
+        setToolCategory(category);
+        if (category === 'music') {
+          setMusicVisible(true);
+        } else {
+          setSelectedToolId(DEFAULT_TOOL_FOR_CATEGORY[category]);
+          setToolPaywallVisible(true);
+        }
+        return;
+      }
+
+      if (isVideoRequest(text)) {
+        // Checked before the paywall, not after payment: these models have no
+        // endpoint for the other direction at all.
+        const model = VIDEO_MODELS[settings.videoModel];
+        if (model && !videoSupportsImage(model) && sourceImage) {
+          toastError(`${model.name} cannot animate an attached image. Pick another video model.`);
+          return;
+        }
+        if (model && !videoSupportsText(model) && !sourceImage) {
+          toastError(`${model.name} needs an image to animate. Attach one or pick another model.`);
+          return;
+        }
+        setPendingPrompt(text);
+        setPendingSourceImage(sourceImage);
+        setVideoPaywallVisible(true);
+        return;
+      }
+
+      if (isImageRequest(text, hadAttachment)) {
+        // A DeHub-branded piece of content goes through the poster studio first.
+        if (wantsBrand) {
+          setPendingPrompt(text);
+          setPosterVisible(true);
+          return;
+        }
+        setPendingPrompt(text);
+        setPendingSourceImage(sourceImage);
+        setPendingLogoImage(undefined);
+        setPendingPosterConfig(null);
+        setImageModelOverride(null);
+        setImagePaywallVisible(true);
+        return;
+      }
+
+      await doSendChat(text, history);
+    },
+    [saveMessage, scrollToEnd, settings.videoModel, doSendChat],
+  );
 
   const handleSend = useCallback(async () => {
     const text = input.trim();
     if ((!text && !attachedImage) || isLoading) return;
 
-    if (isVideoRequest(text)) {
-      setPendingPrompt(text);
-      setVideoPaywallVisible(true);
-      return;
-    }
-
-    if (isImageRequest(text) || attachedImage) {
-      setPendingPrompt(text);
-      setImagePaywallVisible(true);
-      return;
-    }
-
-    await doSendChat(text);
-  }, [input, attachedImage, isLoading]);
-
-  const doSendChat = useCallback(async (text: string) => {
-    const userMsg: AIChatMessage = { role: 'user', content: text };
-    const updated = [...messages, userMsg];
-    await saveMessage(updated);
+    mentions.reset();
+    const userMessage: AIChatMessage = {
+      role: 'user',
+      content: text,
+      ...(attachedImage ? { attachedImage } : {}),
+    };
+    const history = [...messages, userMessage];
+    await saveMessage(history);
     setInput('');
-    setAttachedImage(null);
-    setIsLoading(true);
-    scrollToEnd();
 
-    try {
-      let response: string | null = null;
-      for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-        try {
-          const res = await sendAIChat({
-            messages: updated,
-            userContext,
-            isAuthenticated: !!user,
-            userLanguage: getDeviceLanguage(),
-            // Full assistant surface — the agent gets the personal-data tools
-            // alongside the public ones. The token is what proves who is
-            // asking; the API verifies it and scopes those tools to that
-            // account, so an address alone would not be enough.
-            surface: 'assistant',
-            dehubToken: (await getAuthToken()) || undefined,
-          });
-          response = res.response;
-          break;
-        } catch (err) {
-          if (
-            err instanceof AIServiceError &&
-            err.errorCode &&
-            NON_RETRYABLE.has(err.errorCode)
-          ) {
-            throw err;
-          }
-          if (attempt < MAX_RETRIES) {
-            await new Promise((r) => setTimeout(r, RETRY_DELAYS[attempt]));
-          } else {
-            throw err;
-          }
-        }
-      }
-
-      if (response) {
-        const aiMsg: AIChatMessage = { role: 'assistant', content: response };
-        await saveMessage([...updated, aiMsg]);
-      }
-      scrollToEnd();
-    } catch (err) {
-      log.error('Chat error:', err);
-      handleAIError(err);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [messages, userContext, user, saveMessage, scrollToEnd]);
-
-  const doGenerateImage = useCallback(async (text: string, model: AIImageModel) => {
-    const userMsg: AIChatMessage = { role: 'user', content: text || 'Generate image' };
-    const updated = [...messages, userMsg];
-    await saveMessage(updated);
-    setInput('');
-    setIsLoading(true);
-    setIsGeneratingImage(true);
-    scrollToEnd();
-
-    try {
-      let sourceImage: string | undefined;
-      if (attachedImage) {
-        const base64 = await readImageAsBase64(attachedImage);
-        if (base64) sourceImage = base64;
-      }
-      setAttachedImage(null);
-
-      const imgRes = await generateImage({
-        prompt: text,
-        sourceImage,
-        conversationHistory: updated,
-        model,
-      });
-
-      if (imgRes.imageUrl) {
-        const imgMsg: AIChatMessage = {
-          role: 'assistant',
-          content: imgRes.text || "Here's the image I generated:",
-          imageUrl: imgRes.imageUrl,
-        };
-        await saveMessage([...updated, imgMsg]);
-      } else {
-        const fallback: AIChatMessage = {
-          role: 'assistant',
-          content: imgRes.text || "The image couldn't be generated. Try a different prompt.",
-        };
-        await saveMessage([...updated, fallback]);
-      }
-      scrollToEnd();
-    } catch {
-      toastError('Image generation failed — try again');
-    } finally {
-      setIsLoading(false);
-      setIsGeneratingImage(false);
-    }
-  }, [messages, attachedImage, saveMessage, scrollToEnd, readImageAsBase64]);
-
-  const doGenerateVideo = useCallback(async (text: string, model: AIVideoModel) => {
-    const userMsg: AIChatMessage = { role: 'user', content: text };
-    const updated = [...messages, userMsg];
-    await saveMessage(updated);
-    setInput('');
-    setAttachedImage(null);
-    setIsLoading(true);
-    scrollToEnd();
-
-    try {
-      let sourceImage: string | undefined;
-      if (attachedImage) {
-        const base64 = await readImageAsBase64(attachedImage);
-        if (base64) sourceImage = base64;
-      }
-
-      const startRes = await startVideoGeneration({
-        prompt: text,
-        model,
-        sourceImage,
-      });
-
-      if (startRes.videoUrl) {
-        const vidMsg: AIChatMessage = {
-          role: 'assistant',
-          content: `Video generated! ${startRes.videoUrl}`,
-        };
-        await saveMessage([...updated, vidMsg]);
-      } else if (startRes.predictionId) {
-        const pendingMsg: AIChatMessage = {
-          role: 'assistant',
-          content: 'Your video is being generated. This may take a few minutes...',
-        };
-        await saveMessage([...updated, pendingMsg]);
-        pollForVideo(startRes.predictionId, updated);
-      }
-      scrollToEnd();
-    } catch {
-      toastError('Video generation failed — try again');
-    } finally {
-      setIsLoading(false);
-    }
-  }, [messages, attachedImage, saveMessage, scrollToEnd, readImageAsBase64]);
-
-  const pollForVideo = useCallback(async (predictionId: string, baseMessages: AIChatMessage[]) => {
-    const maxPolls = 60;
-    for (let i = 0; i < maxPolls; i++) {
-      await new Promise((r) => setTimeout(r, 5000));
+    const hadAttachment = !!attachedImage;
+    // The data URL, not the file URI: generate-image hands this straight to the
+    // provider as an image reference.
+    let sourceImage: string | undefined;
+    if (attachedImage) {
       try {
-        const poll = await pollVideoGeneration(predictionId);
-        if (poll.status === 'succeeded' && poll.videoUrl) {
-          const vidMsg: AIChatMessage = {
-            role: 'assistant',
-            content: `Video is ready! ${poll.videoUrl}`,
-          };
-          await saveMessage([...baseMessages, vidMsg]);
-          scrollToEnd();
-          return;
-        }
-        if (poll.status === 'failed') {
-          const failMsg: AIChatMessage = {
-            role: 'assistant',
-            content: 'Video generation failed. Please try again with a different prompt.',
-          };
-          await saveMessage([...baseMessages, failMsg]);
-          scrollToEnd();
-          return;
-        }
-      } catch {
-        break;
+        sourceImage = await toImageDataUrl(attachedImage);
+      } catch (err) {
+        log.error('could not read the attached image:', err);
+        toastError('Could not read that image');
       }
     }
-  }, [saveMessage, scrollToEnd]);
-
-  const handleAIError = useCallback((err: unknown) => {
-    if (err instanceof AIServiceError) {
-      if (err.errorCode === 'RATE_LIMIT') {
-        toastError('Too many requests — try again shortly');
-      } else if (err.safetyBlocked) {
-        toastError(err.message);
-        if (err.clearHistory) startNewConversation();
-      } else {
-        toastError(err.message || 'AI request failed');
-      }
-    } else {
-      toastError('Something went wrong');
-    }
-  }, [startNewConversation]);
-
-  const handleImagePaywallConfirm = useCallback((model: AIImageModel) => {
-    setImagePaywallVisible(false);
-    doGenerateImage(pendingPrompt, model);
-  }, [pendingPrompt, doGenerateImage]);
-
-  const handleVideoPaywallConfirm = useCallback((model: AIVideoModel) => {
-    setVideoPaywallVisible(false);
-    doGenerateVideo(pendingPrompt, model);
-  }, [pendingPrompt, doGenerateVideo]);
-
-  const handleAttach = useCallback(async () => {
-    try {
-      const uri = await openCroppedImagePicker({ free: true });
-      if (uri) setAttachedImage(uri);
-    } catch {
-      // user cancelled
-    }
-  }, []);
-
-  const handleRemoveImage = useCallback(() => {
     setAttachedImage(null);
-  }, []);
 
-  const handleChipPress = useCallback((prompt: string) => {
-    setInput(prompt);
-  }, []);
+    await routePrompt(text, history, sourceImage, hadAttachment);
+  }, [input, attachedImage, isLoading, messages, mentions, saveMessage, routePrompt]);
+
+  /** Drop the failed turn and re-run the last thing the user asked for. */
+  const handleRetry = useCallback(async () => {
+    const current = messagesRef.current;
+    const lastUser = [...current].reverse().find((m) => m.role === 'user');
+    if (!lastUser) return;
+    const trimmed = current.filter((m) => !m.isError);
+    await saveMessage(trimmed);
+
+    let sourceImage: string | undefined;
+    if (lastUser.attachedImage) {
+      try {
+        sourceImage = await toImageDataUrl(lastUser.attachedImage);
+      } catch {
+        // Retry without it rather than refusing outright.
+      }
+    }
+    await routePrompt(lastUser.content, trimmed, sourceImage, !!lastUser.attachedImage);
+  }, [saveMessage, routePrompt]);
+
+  /* ── Paywall confirmations ───────────────────────────────────────────── */
+
+  const historyForGeneration = useCallback(() => messagesRef.current, []);
+
+  const handleImageConfirm = useCallback(() => {
+    setImagePaywallVisible(false);
+    const model = imageModelOverride || settings.imageModel;
+    const cfg = pendingPosterConfig;
+    doGenerateImage(
+      cfg ? buildDeHubBrandPrompt(cfg.finalPrompt) : pendingPrompt,
+      model,
+      historyForGeneration(),
+      {
+        sourceImage: pendingSourceImage,
+        logoImage: pendingLogoImage,
+        ...(cfg
+          ? {
+              headline: cfg.tagline.trim(),
+              // An explicit cinematic archetype opts into the diffusion "scene"
+              // pipeline; anything else gets the on-brand template banner.
+              bannerRenderer:
+                cfg.style === 'dehub-template' || cfg.style === 'auto'
+                  ? ('template' as const)
+                  : ('scene' as const),
+              bannerFormat:
+                cfg.dimension === 'landscape'
+                  ? ('landscape' as const)
+                  : cfg.dimension === 'square'
+                    ? ('square' as const)
+                    : ('portrait' as const),
+            }
+          : {}),
+      },
+    );
+    setPendingPosterConfig(null);
+    setPendingLogoImage(undefined);
+    setPendingSourceImage(undefined);
+  }, [
+    imageModelOverride,
+    settings.imageModel,
+    pendingPosterConfig,
+    pendingPrompt,
+    pendingSourceImage,
+    pendingLogoImage,
+    doGenerateImage,
+    historyForGeneration,
+  ]);
+
+  const handleVideoConfirm = useCallback(() => {
+    setVideoPaywallVisible(false);
+    doGenerateVideo(
+      pendingPrompt,
+      settings.videoModel,
+      historyForGeneration(),
+      pendingSourceImage,
+    );
+    setPendingSourceImage(undefined);
+  }, [
+    pendingPrompt,
+    settings.videoModel,
+    pendingSourceImage,
+    doGenerateVideo,
+    historyForGeneration,
+  ]);
+
+  const handleToolConfirm = useCallback(() => {
+    setToolPaywallVisible(false);
+    doRunTool(selectedToolId, toolCategory, pendingPrompt, historyForGeneration(), {
+      sourceImage: pendingSourceImage,
+      lyrics: pendingToolLyrics,
+    });
+    setPendingSourceImage(undefined);
+    setPendingToolLyrics(undefined);
+  }, [
+    selectedToolId,
+    toolCategory,
+    pendingPrompt,
+    pendingSourceImage,
+    pendingToolLyrics,
+    doRunTool,
+    historyForGeneration,
+  ]);
+
+  const handleMusicConfirm = useCallback(
+    (params: MusicParams) => {
+      setMusicVisible(false);
+      // Same structured prompt web builds; lyrics travel separately so the
+      // model does not treat them as style instructions.
+      const parts: string[] = [];
+      if (params.title) parts.push(`Title: ${params.title}`);
+      if (params.style) parts.push(`Style: ${params.style}`);
+      if (params.voiceGender !== 'auto') parts.push(`Voice: ${params.voiceGender}`);
+      setPendingPrompt(parts.join('. ') || pendingPrompt);
+      setPendingToolLyrics(params.lyrics || undefined);
+      setToolCategory('music');
+      setSelectedToolId(DEFAULT_TOOL_FOR_CATEGORY.music);
+      setToolPaywallVisible(true);
+    },
+    [pendingPrompt],
+  );
+
+  const handlePosterConfirm = useCallback(
+    async (config: PosterConfig) => {
+      setPosterVisible(false);
+      try {
+        const logo = await bundledLogoDataUrl(config.logoVariant);
+        setPendingLogoImage(logo);
+      } catch (err) {
+        log.error('logo asset unavailable:', err);
+        // Without the wordmark this is not a brand poster, so say so rather
+        // than quietly generating something off-brand.
+        toastError('Could not load the DeHub logo — generating without it');
+      }
+      setPendingPosterConfig(config);
+      setPendingSourceImage(undefined);
+      setImageModelOverride(DEHUB_BRAND_IMAGE_MODEL);
+      setImagePaywallVisible(true);
+    },
+    [],
+  );
+
+  /* ── Media actions ───────────────────────────────────────────────────── */
 
   const handleImagePress = useCallback(
     (url: string, allUrls: string[]) => {
@@ -370,10 +1164,70 @@ function AIChatScreenInner() {
     [navigation],
   );
 
+  const handleAttachGenerated = useCallback((url: string) => {
+    setAttachedImage(url);
+    toastSuccess('Image attached — describe your edits');
+  }, []);
+
+  const handlePostMedia = useCallback(
+    async (url: string, kind: 'image' | 'video') => {
+      try {
+        const draft = await buildMediaDraft(url, kind);
+        navigation.navigate(ScreenNames.Upload, { draft });
+      } catch (err) {
+        log.error('could not prepare media for posting:', err);
+        toastError('Could not prepare that for posting');
+      }
+    },
+    [navigation],
+  );
+
+  /* ── Composer helpers ────────────────────────────────────────────────── */
+
+  const handleAttach = useCallback(async () => {
+    try {
+      const uri = await openCroppedImagePicker({ free: true });
+      if (uri) setAttachedImage(uri);
+    } catch {
+      // user cancelled
+    }
+  }, []);
+
+  const handleQuickAction = useCallback(
+    (action: QuickAction) => {
+      switch (action.kind) {
+        case 'prompt':
+          setInput(action.text);
+          break;
+        case 'poster':
+          setPendingPrompt('');
+          setPosterVisible(true);
+          break;
+        case 'song':
+          setPendingPrompt('');
+          setMusicVisible(true);
+          break;
+        case 'edit-image':
+          handleAttach();
+          break;
+        case 'builder':
+          // Web links to /app/builder. There is no builder screen in this app
+          // yet, so the composer seeds the request instead of dead-ending.
+          setInput('Build me a mini app that ');
+          break;
+      }
+    },
+    [handleAttach],
+  );
+
   const handleNewChat = useCallback(() => {
+    streamRef.current?.abort();
+    streamRef.current = null;
+    setStreamingContent(null);
     startNewConversation();
     setInput('');
     setAttachedImage(null);
+    setIsLoading(false);
   }, [startNewConversation]);
 
   const handleHistoryOpen = useCallback(() => {
@@ -381,37 +1235,100 @@ function AIChatScreenInner() {
     setHistoryVisible(true);
   }, [refreshConversations]);
 
-  const handleHistoryClose = useCallback(() => {
-    setHistoryVisible(false);
-  }, []);
-
   const handleHistorySelect = useCallback(
-    (entry: any) => {
+    (entry: ConversationEntry) => {
       loadConversation(entry);
       setInput('');
     },
     [loadConversation],
   );
 
+  /* ── Render ──────────────────────────────────────────────────────────── */
+
+  const renderedMessages = useMemo(() => {
+    if (streamingContent === null) return messages;
+    return [...messages, { role: 'assistant' as const, content: streamingContent }];
+  }, [messages, streamingContent]);
+
   const renderMessage = useCallback(
     ({ item }: { item: AIChatMessage }) => (
-      <AssistantBubble message={item} onImagePress={handleImagePress} />
+      <AssistantBubble
+        message={item}
+        onImagePress={handleImagePress}
+        onAttachImage={handleAttachGenerated}
+        onCopyImage={copyImage}
+        onSaveMedia={saveToLibrary}
+        onPostMedia={handlePostMedia}
+        onShareAudio={shareAudio}
+        onRetry={item.isError ? handleRetry : undefined}
+      />
     ),
-    [handleImagePress],
+    [handleImagePress, handleAttachGenerated, handlePostMedia, handleRetry],
   );
 
   const keyExtractor = useCallback(
-    (_: AIChatMessage, index: number) => `msg-${index}`,
+    (item: AIChatMessage, index: number) => item.id || `msg-${index}`,
     [],
   );
 
+  const imagePaywallModels = useMemo(() => {
+    const editing = !!pendingSourceImage;
+    return IMAGE_MODEL_OPTIONS.map((model) => ({
+      id: model.id,
+      name: model.name,
+      description: model.description,
+      emoji: model.emoji,
+      baseCostUsd: model.baseCostUsd,
+      // Flagged here rather than after payment: these models have no edit
+      // endpoint at all, so generate-image rejects the request.
+      unavailableReason:
+        editing && !imageModelSupportsEdit(model) ? 'Cannot edit an attached image' : undefined,
+    }));
+  }, [pendingSourceImage]);
+
+  const videoPaywallModels = useMemo(
+    () =>
+      VIDEO_MODEL_OPTIONS.map((model) => ({
+        id: model.id,
+        name: model.name,
+        description: model.description,
+        emoji: model.emoji,
+        // Per-second models are priced for the 5s clip this screen requests, so
+        // the row figure matches what the server then quotes.
+        baseCostUsd: model.perSecondCostUsd
+          ? model.perSecondCostUsd * VIDEO_DURATION_SECONDS
+          : model.baseCostUsd,
+        unavailableReason: pendingSourceImage
+          ? videoSupportsImage(model)
+            ? undefined
+            : 'Text-to-video only'
+          : videoSupportsText(model)
+            ? undefined
+            : 'Needs an image to animate',
+      })),
+    [pendingSourceImage],
+  );
+
+  const toolPaywallModels = useMemo(
+    () =>
+      getToolsByCategory(toolCategory).map((tool) => ({
+        id: tool.id,
+        name: tool.name,
+        description: tool.description,
+        emoji: tool.emoji,
+        baseCostUsd: tool.baseCostUsd,
+      })),
+    [toolCategory],
+  );
+
   return (
-    <View
-      style={s.root}
-    >
+    <View style={s.root}>
       <AssistantHeader
         onNewChat={handleNewChat}
         onHistoryPress={handleHistoryOpen}
+        onSettingsPress={() => setSettingsVisible(true)}
+        onStylePress={() => setStyleVisible(true)}
+        styleEmoji={currentStyle.emoji}
         hasMessages={!isEmpty}
       />
 
@@ -420,12 +1337,12 @@ function AIChatScreenInner() {
           <View style={s.welcomeCenter}>
             <Text style={s.welcomeText}>{WELCOME_MESSAGE}</Text>
           </View>
-          <QuickActionChips onChipPress={handleChipPress} />
+          <QuickActionChips onAction={handleQuickAction} />
         </View>
       ) : (
         <FlatList
           ref={flatListRef}
-          data={messages}
+          data={renderedMessages}
           renderItem={renderMessage}
           keyExtractor={keyExtractor}
           style={s.messageList}
@@ -434,53 +1351,134 @@ function AIChatScreenInner() {
           keyboardDismissMode="interactive"
           onContentSizeChange={() => scrollToEnd(false)}
           ListFooterComponent={
-            isLoading ? (
+            isGeneratingImage ? (
+              <View style={s.footerRow}>
+                <Image source={AI_AVATAR} style={s.typingAvatar} />
+                <ImageGenerationSkeleton />
+              </View>
+            ) : isLoading && streamingContent === null ? (
               <View style={s.typingRow}>
                 <Image source={AI_AVATAR} style={s.typingAvatar} />
                 <View style={s.typingBubble}>
                   <ActivityIndicator size="small" color="#F4F4F5" />
                   <Text style={s.typingText}>
-                    {isGeneratingImage ? 'Creating...' : 'Thinking...'}
+                    {activeTools.length > 0 ? describeTools(activeTools) : 'Thinking...'}
                   </Text>
                 </View>
               </View>
-            ) : null
+            ) : isLoading ? null : (
+              // Web keeps the quick actions visible after every answer.
+              <QuickActionChips onAction={handleQuickAction} />
+            )
           }
         />
       )}
 
       <View style={{ marginBottom: kbVisible ? kbHeight : TAB_BAR_HEIGHT }}>
+        <MentionSuggestions
+          visible={mentions.showSuggestions}
+          suggestions={mentions.suggestions}
+          onSelect={mentions.selectMention}
+          loading={mentions.loading}
+        />
         <AssistantInputBar
           value={input}
-          onChangeText={setInput}
+          onChangeText={mentions.handleChangeText}
+          onSelectionChange={mentions.handleSelectionChange}
           onSend={handleSend}
           onAttach={handleAttach}
           attachedImage={attachedImage}
-          onRemoveImage={handleRemoveImage}
+          onRemoveImage={() => setAttachedImage(null)}
           loading={isLoading}
         />
       </View>
 
       <ChatHistorySheet
         visible={historyVisible}
-        onClose={handleHistoryClose}
+        onClose={() => setHistoryVisible(false)}
         conversations={conversations}
         onSelect={handleHistorySelect}
         onDelete={deleteConversation}
         onClearAll={clearAll}
         activeConversationId={conversationId}
+        walletAddress={walletAddress}
+        onMediaPress={handleImagePress}
       />
 
-      <ImagePaywallModal
+      <AssistantSettingsSheet
+        visible={settingsVisible}
+        onClose={() => setSettingsVisible(false)}
+        settings={settings}
+        onChange={updateSettings}
+      />
+
+      <AssistantStyleSheet
+        visible={styleVisible}
+        onClose={() => setStyleVisible(false)}
+        selectedStyle={selectedStyle}
+        onSelect={handleStyleSelect}
+      />
+
+      <PosterConfigSheet
+        visible={posterVisible}
+        onClose={() => setPosterVisible(false)}
+        userPrompt={pendingPrompt}
+        onConfirm={handlePosterConfirm}
+      />
+
+      <MusicConfirmSheet
+        visible={musicVisible}
+        onClose={() => setMusicVisible(false)}
+        userPrompt={pendingPrompt}
+        onConfirm={handleMusicConfirm}
+      />
+
+      <CreditPaywallSheet
         visible={imagePaywallVisible}
+        title="Generate Image"
+        icon="Image"
+        models={imagePaywallModels}
+        selectedModelId={imageModelOverride || settings.imageModel}
+        onSelectModel={(id) => {
+          setImageModelOverride(id);
+          if (!pendingPosterConfig) updateSettings({ imageModel: id });
+        }}
+        quoteKind="image"
+        isBusy={isGeneratingImage}
         onClose={() => setImagePaywallVisible(false)}
-        onConfirm={handleImagePaywallConfirm}
+        onConfirm={handleImageConfirm}
+        footnote={
+          pendingPosterConfig
+            ? 'The wordmark and headline are composited after generation, crisply.'
+            : undefined
+        }
       />
 
-      <VideoPaywallModal
+      <CreditPaywallSheet
         visible={videoPaywallVisible}
+        title="Generate Video"
+        icon="Video"
+        models={videoPaywallModels}
+        selectedModelId={settings.videoModel}
+        onSelectModel={(id) => updateSettings({ videoModel: id })}
+        quoteKind="video"
+        quoteExtras={{ durationSeconds: VIDEO_DURATION_SECONDS }}
         onClose={() => setVideoPaywallVisible(false)}
-        onConfirm={handleVideoPaywallConfirm}
+        onConfirm={handleVideoConfirm}
+        footnote="Renders take 1-3 minutes and keep going if you leave this screen."
+      />
+
+      <CreditPaywallSheet
+        visible={toolPaywallVisible}
+        title={CATEGORY_LABELS[toolCategory].label}
+        icon={toolCategory === 'music' ? 'Music' : toolCategory === 'tts' ? 'Volume2' : 'Wand'}
+        models={toolPaywallModels}
+        selectedModelId={selectedToolId}
+        onSelectModel={setSelectedToolId}
+        quoteKind="tool"
+        confirmLabel="Run"
+        onClose={() => setToolPaywallVisible(false)}
+        onConfirm={handleToolConfirm}
       />
     </View>
   );
@@ -517,6 +1515,11 @@ const s = StyleSheet.create({
   typingRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 12,
+  },
+  footerRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
     marginBottom: 12,
   },
   typingAvatar: {

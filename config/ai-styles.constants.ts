@@ -39,7 +39,19 @@ export const AI_STYLE_OPTIONS = [
   { id: 'communist', label: 'Communist', emoji: '🚩' },
 ] as const;
 
+/**
+ * The assistant's personality picker: the same list with "Normal" at the front,
+ * exactly as web's `AI_ASSISTANT_STYLE_OPTIONS`. `normal` is a real id meaning
+ * "no persona" — sending no style at all is not the same thing, because
+ * `general-ai-chat` only skips the persona block when it recognises the id.
+ */
+export const AI_ASSISTANT_STYLE_OPTIONS = [
+  { id: 'normal', label: 'Normal', emoji: '🤖' },
+  ...AI_STYLE_OPTIONS,
+] as const;
+
 export type AIStyleId = (typeof AI_STYLE_OPTIONS)[number]['id'];
+export type AIAssistantStyleId = (typeof AI_ASSISTANT_STYLE_OPTIONS)[number]['id'];
 
 /** Emoji picker categories — same four groups, same order, as web's EmojiGifPicker. */
 export const EMOJI_CATEGORIES: Record<string, string[]> = {
