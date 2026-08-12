@@ -124,36 +124,48 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const typingTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const smartReplies = useSmartReplies(thread ?? [], peerName);
-  // There is only something to reply TO when the other side spoke last. If the
+  const hasThread = !!thread && thread.length > 0;
+  // There is only something to reply TO when the other side spoke last — if the
   // user sent the last message the drafter would be answering the user.
-  const replyOrbEnabled =
-    !!thread && thread.length > 0 && thread[thread.length - 1].from === "them";
+  //
+  // This decides whether we SPEND A MODEL CALL. It must never also decide
+  // whether the tray mounts: it was the outer render condition once, and
+  // because the user's own message is the newest after every single send, the
+  // feature silently ceased to exist for the rest of the conversation — no
+  // panel, no orb, no empty state, nothing to press to find out why.
+  const canDraft = hasThread && thread![thread!.length - 1].from === "them";
 
   const [composerFocused, setComposerFocused] = useState(false);
 
   // Tail the tray has already opened itself for. One auto-open per incoming
-  // message: dismissing or picking must not be undone by the next tap into the
-  // box, and re-focusing must not re-spend a model call.
+  // message: dismissing must not be undone by the next tap into the box, and
+  // re-focusing must not re-spend a model call. A new message changes the key,
+  // which re-arms it on its own.
   const autoOpenedFor = useRef<string | null>(null);
 
   // Read through a ref so the effect below can depend on the two things that
   // should actually retrigger it — focus and the newest message — instead of
   // re-running on every keystroke and every render of the hook.
-  const latest = useRef({ smartReplies, text, replyOrbEnabled });
-  latest.current = { smartReplies, text, replyOrbEnabled };
+  const latest = useRef({ smartReplies, text, canDraft, hasThread });
+  latest.current = { smartReplies, text, canDraft, hasThread };
 
   /**
    * Being in the composer to reply IS the request for suggestions — there is
    * no button to press first. Held back only when the user has already started
    * typing (they know what to say) or when this message has had its turn.
+   *
+   * Note this opens whenever there is a conversation at all, not only when
+   * there is something to draft. A tray that says "nothing to reply to yet" is
+   * a feature the user can see; one that declines to mount is indistinguishable
+   * from one that is broken.
    */
   const openTrayIfDue = useCallback(() => {
-    const { smartReplies: sr, text: draft, replyOrbEnabled: enabled } = latest.current;
-    if (!enabled || draft.trim()) return;
+    const { smartReplies: sr, text: draft, canDraft: draftable, hasThread: any } = latest.current;
+    if (!any || draft.trim()) return;
     if (autoOpenedFor.current === sr.tailKey) return;
     autoOpenedFor.current = sr.tailKey;
     setShowReplyTray(true);
-    if (sr.status === "idle") sr.generate();
+    if (draftable && sr.status === "idle") sr.generate();
   }, []);
 
   // Fires on the tap into the box, and again if a new message lands while the
@@ -436,13 +448,18 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   return (
     <>
       <View className="bg-theme-neutrals-900 border-t border-theme-neutrals-800/50">
-        {replyOrbEnabled && showReplyTray && (
+        {/* Mounts on showReplyTray alone. Whether there is anything to draft is
+            a question the tray ANSWERS — as its own empty line, with the orb
+            still there to press — not one that decides whether it exists. */}
+        {showReplyTray && (
           <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(120)}>
             <SmartReplyTray
-              status={smartReplies.status}
-              suggestions={smartReplies.suggestions}
+              status={canDraft ? smartReplies.status : "empty"}
+              suggestions={canDraft ? smartReplies.suggestions : []}
               error={smartReplies.error}
-              onGenerate={smartReplies.generate}
+              onGenerate={() => {
+                if (latest.current.canDraft) smartReplies.generate();
+              }}
               onPick={handlePickSuggestion}
               onDismiss={handleDismissTray}
             />
