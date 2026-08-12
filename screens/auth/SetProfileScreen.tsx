@@ -28,6 +28,7 @@ import {
   authText,
 } from "../../components/auth/AuthControls";
 import { createLogger } from "../../libs/logger";
+import { isReservedUsername } from "../../libs/reserved-usernames";
 
 const log = createLogger("SetProfileScreen");
 
@@ -127,6 +128,14 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
       setAvailable(null);
       return;
     }
+    // Names that collide with a web route leave the profile unreachable at
+    // dehub.io/:username. The availability endpoint reports them as free, so
+    // this has to be decided here.
+    if (isReservedUsername(name)) {
+      setAvailable(false);
+      setChecking(false);
+      return;
+    }
     setChecking(true);
     try {
       const res = await AuthService.checkUsernameAvailability(name);
@@ -150,10 +159,18 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
 
   const isUsernameValid = username.length >= 3 && username.length <= 30;
   const isDisplayNameValid = displayName.trim().length >= 2 && displayName.trim().length <= 50;
-  const disabled = !isUsernameValid || available === false || checking || submitting || !isDisplayNameValid;
+  // `available !== true`, not `available === false`: the answer is null for the
+  // whole debounce window, so the old gate let a name through that nothing had
+  // checked yet.
+  const disabled =
+    !isUsernameValid || available !== true || checking || submitting || !isDisplayNameValid;
 
   const handleSubmit = async () => {
     if (disabled) return;
+    if (isReservedUsername(username)) {
+      toastError(null, "This username is reserved");
+      return;
+    }
     setSubmitting(true);
     try {
       await AuthService.updateProfile({
