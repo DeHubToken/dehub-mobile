@@ -65,6 +65,7 @@ interface DrawerItem {
 // same order, labels and icons. Items with a native screen navigate in-app;
 // the rest open the corresponding page on the website.
 const NAV_ITEMS: DrawerItem[] = [
+  { icon: "House", labelKey: "nav.home", screen: ScreenNames.Home, tab: true },
   { icon: "User", labelKey: "nav.profile", screen: ScreenNames.Profile, requiresAuth: true },
   { icon: "Search", labelKey: "nav.explore", screen: ScreenNames.Explore, tab: true },
   { icon: "Wand", labelKey: "nav.prompt", screen: ScreenNames.Prompt },
@@ -72,9 +73,9 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "MessageSquare", labelKey: "nav.messages", screen: ScreenNames.DM, requiresAuth: true, tab: true },
   { icon: "Users", labelKey: "nav.communities", screen: ScreenNames.Communities },
   { icon: "Sparkles", labelKey: "nav.assistant", screen: ScreenNames.AIChat, tab: true },
+  { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings, requiresAuth: true },
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
   { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary, requiresAuth: true },
-  { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings, requiresAuth: true },
   { icon: "LayoutDashboard", labelKey: "nav.command", screen: ScreenNames.CommandCentre, requiresAuth: true },
   // Passes initialTab explicitly so returning here from the Staking entry
   // (same screen, different tab) resets to Buy instead of keeping Stake.
@@ -101,7 +102,6 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
   { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },
   { icon: "FileText", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
-  { icon: "House", labelKey: "nav.home", screen: ScreenNames.Home, tab: true },
 ];
 
 interface MenuItemProps {
