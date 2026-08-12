@@ -7,7 +7,9 @@ import Animated, {
   SharedValue,
 } from "react-native-reanimated";
 
-// Placeholder: using cards.riv for all slides, replace with actual files later
+// One file per slide. The comment that used to sit here said these were a
+// placeholder for `cards.riv` — they are not, and have not been for a while:
+// cards.riv was 2.58 MB of nothing, referenced by that sentence and by no code.
 const SLIDE_ANIMATIONS = [
   require("../../assets/riv/card_01.riv"),
   require("../../assets/riv/card_02.riv"),
