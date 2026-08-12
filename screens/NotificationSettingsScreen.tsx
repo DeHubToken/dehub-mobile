@@ -20,6 +20,7 @@ import {
   type NotificationPreferences,
   type NotificationPreferenceKey,
   getDefaultNotificationPreferences,
+  mergePreferences,
   updateNotificationPreferences,
   getNotificationPermissionStatus,
 } from '../services/push/push.service';
@@ -146,7 +147,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
         if (userPrefs) {
           try {
             const parsed = typeof userPrefs === 'string' ? JSON.parse(userPrefs) : userPrefs;
-            setPrefs({ ...getDefaultNotificationPreferences(), ...parsed });
+            setPrefs(mergePreferences(getDefaultNotificationPreferences(), parsed));
           } catch {
             logger.warn('Failed to parse notification preferences');
           }
