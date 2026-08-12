@@ -4,7 +4,7 @@ import React, {
   useEffect,
   useRef,
 } from "react";
-import { View, Text, ScrollView, Platform, type TextStyle } from "react-native";
+import { View, Text, Image, ScrollView, Platform, type TextStyle } from "react-native";
 import { toastError } from "../../libs";
 import { AuthButton, authColors, authText } from "../../components/auth/AuthControls";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -510,10 +510,13 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         >
           {/* Header */}
           <View style={{ alignItems: "center", marginTop: 48, marginBottom: 32 }}>
-            <Text style={[authText.title, { marginBottom: 8 }]}>Welcome to DeHub</Text>
-            <Text style={[authText.body, { textAlign: "center" }]}>
-              Jump in with your preferred sign-in{"\n"}option.
-            </Text>
+            <Image
+              source={require("../../assets/web-icons/dehub-logo-center.png")}
+              style={{ width: 72, height: 72, marginBottom: 16 }}
+              resizeMode="contain"
+              accessibilityIgnoresInvertColors
+            />
+            <Text style={authText.title}>Welcome to DeHub</Text>
           </View>
 
           {/* Sign-in options: Email, Phone, Google, Apple, and Connect Wallet
