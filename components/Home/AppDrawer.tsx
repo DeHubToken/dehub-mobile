@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, memo } from "react";
+import React, { useCallback, useEffect, useMemo, useState, memo } from "react";
 import {
   View,
   Text,
+  TextInput,
   TouchableOpacity,
   ScrollView,
   StyleSheet,
@@ -178,6 +179,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const user = useUser();
   const { t } = useTranslation();
   const { openModal: openStages } = useStages();
+  const [menuQuery, setMenuQuery] = useState("");
 
   // Current route name, so the matching drawer item highlights like the web
   // sidebar. Tab screens live nested under Root — descend into it to find them.
@@ -261,6 +263,36 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
     [navigation, onClose],
   );
 
+  // Menu search. Matching is a case-insensitive substring of the TRANSLATED
+  // label, so it works in the language the row is actually rendered in; prefix
+  // matches sort ahead of mid-word ones and ties keep the menu's own order,
+  // which Array#sort preserves.
+  const visibleItems = useMemo(() => {
+    const allowed = NAV_ITEMS.filter((item) => isSignedIn || !item.requiresAuth);
+    const query = menuQuery.trim().toLowerCase();
+    if (!query) return allowed;
+    return allowed
+      .map((item) => ({ item, at: t(item.labelKey).toLowerCase().indexOf(query) }))
+      .filter((entry) => entry.at !== -1)
+      .sort((a, b) => (a.at === 0 ? 0 : 1) - (b.at === 0 ? 0 : 1))
+      .map((entry) => entry.item);
+  }, [isSignedIn, menuQuery, t]);
+
+  // Never reopen the drawer mid-filter.
+  useEffect(() => {
+    if (!visible) setMenuQuery("");
+  }, [visible]);
+
+  // The escape hatch: run whatever was typed as a real search instead. `ts`
+  // is a nonce — without it a repeat of the same term produces identical route
+  // params, and the Explore screen has no change to react to.
+  const runFullSearch = useCallback(() => {
+    const query = menuQuery.trim();
+    if (!query) return;
+    setMenuQuery("");
+    navigate(ScreenNames.Explore, { q: query, ts: Date.now() }, true);
+  }, [menuQuery, navigate]);
+
   const handleItemPress = useCallback(
     (item: DrawerItem) => {
       if (item.disabled) {
@@ -332,21 +364,18 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
           )}
           <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
 
-          {/* Plain padding, NOT insets.top/insets.bottom. This drawer lives
+          {/* The profile block and the search field are pinned; only the item
+              list scrolls under them. The field has to sit outside the
+              ScrollView to stay put, and the profile comes with it so the field
+              keeps its place directly beneath.
+
+              Plain padding, NOT insets.top/insets.bottom. This drawer lives
               inside the navigator, and the navigator is already wrapped in a
               full-edge <SafeAreaView> up in App.tsx's BootGate — so the panel's
               own top: 0 is already below the status bar. Adding the device
               inset again here counted it twice, which pushed the profile block
               down by a second notch-height and left a dead band above it. */}
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            bounces={false}
-            contentContainerStyle={{
-              flexGrow: 1,
-              paddingTop: 16,
-              paddingBottom: 24,
-            }}
-          >
+          <View style={{ paddingTop: 16 }}>
             {isSignedIn && user ? (
               <View className="px-5 pb-4 mb-2">
                 <TouchableOpacity
@@ -409,8 +438,49 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
               </View>
             )}
 
+            {/* Menu search. This filters the 27 rows below it — it is not a
+                second content search, which is why it says "Search menu".
+                Anything that is not a page is one row away: the hand-off at the
+                bottom of the list runs the query on the Explore tab. */}
+            <View style={styles.searchWrap}>
+              <Icon name="Search" size={16} color="#71717A" />
+              <TextInput
+                value={menuQuery}
+                onChangeText={setMenuQuery}
+                placeholder={t("sidebar.searchMenu")}
+                placeholderTextColor="#71717A"
+                style={styles.searchInput}
+                returnKeyType="search"
+                onSubmitEditing={runFullSearch}
+                autoCorrect={false}
+                autoCapitalize="none"
+                accessibilityLabel={t("sidebar.searchMenu")}
+              />
+              {menuQuery.length > 0 && (
+                <TouchableOpacity
+                  onPress={() => setMenuQuery("")}
+                  hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("sidebar.clearSearch")}
+                >
+                  <Icon name="X" size={15} color="#A1A1AA" />
+                </TouchableOpacity>
+              )}
+            </View>
+          </View>
+
+          <ScrollView
+            // flex: 1 now that the ScrollView has a sibling above it — without
+            // it the list sizes to its content inside the fixed-height panel
+            // and stops scrolling at the bottom of the drawer.
+            style={{ flex: 1 }}
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+            keyboardShouldPersistTaps="handled"
+            contentContainerStyle={{ flexGrow: 1, paddingBottom: 24 }}
+          >
             <View className="py-2">
-              {NAV_ITEMS.filter((item) => isSignedIn || !item.requiresAuth).map((item) => (
+              {visibleItems.map((item) => (
                 <MenuItem
                   key={item.labelKey}
                   icon={item.icon}
@@ -423,6 +493,31 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                   onPress={() => handleItemPress(item)}
                 />
               ))}
+
+              {menuQuery.trim().length > 0 && (
+                <>
+                  {visibleItems.length === 0 && (
+                    <Text className="text-neutral-500 text-sm px-5 py-3">
+                      {t("sidebar.noMenuMatches")}
+                    </Text>
+                  )}
+                  <View style={styles.handoffRule} />
+                  <TouchableOpacity
+                    accessibilityRole="button"
+                    className="flex-row items-center gap-3.5 px-3 py-3 mx-2 rounded-xl"
+                    activeOpacity={0.6}
+                    onPress={runFullSearch}
+                  >
+                    <View style={styles.iconChip}>
+                      <Icon name="Search" size={20} color="#A1A1AA" strokeWidth={1.8} />
+                    </View>
+                    <Text className="text-[15px] text-neutral-400 flex-1" numberOfLines={1}>
+                      {t("sidebar.searchDehubFor", { query: menuQuery.trim() })}
+                    </Text>
+                    <Icon name="ChevronRight" size={16} color="#71717A" />
+                  </TouchableOpacity>
+                </>
+              )}
             </View>
           </ScrollView>
         </Animated.View>
@@ -458,6 +553,35 @@ const styles = StyleSheet.create({
   itemActive: {
     backgroundColor: "rgba(255, 255, 255, 0.10)",
     borderColor: "rgba(255, 255, 255, 0.22)",
+  },
+  // Same translucent fill and hairline as the icon chips, so the field reads as
+  // part of the menu rather than a control dropped on top of it.
+  searchWrap: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 9,
+    height: 40,
+    marginHorizontal: 14,
+    marginBottom: 10,
+    paddingHorizontal: 11,
+    borderRadius: 12,
+    backgroundColor: "rgba(255, 255, 255, 0.06)",
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.10)",
+  },
+  searchInput: {
+    flex: 1,
+    color: "#FFFFFF",
+    fontSize: 15,
+    // Android's TextInput carries its own vertical padding, which pushes the
+    // text off-centre inside a fixed-height row.
+    paddingVertical: 0,
+  },
+  handoffRule: {
+    height: 1,
+    marginHorizontal: 18,
+    marginVertical: 8,
+    backgroundColor: "rgba(255, 255, 255, 0.10)",
   },
   iconChip: {
     width: 40,
