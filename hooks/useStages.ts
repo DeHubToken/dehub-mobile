@@ -17,6 +17,7 @@ import { useAuth } from "../context/AuthContext";
 import { createLogger } from "../libs/logger";
 import env from "../config/env";
 import { getAuthToken } from "../libs/auth.utils";
+import { withWalletHeader } from "../libs/supabase-wallet-client";
 
 const log = createLogger("useStages");
 
@@ -27,7 +28,12 @@ export interface AudioSpace {
   host_avatar?: string | null;
   title: string;
   description?: string | null;
-  status: "live" | "ended";
+  /**
+   * `scheduled` is a stage announced ahead of time — the row exists and is
+   * shareable, but no Agora channel has been opened. It becomes `live` when
+   * the host starts it.
+   */
+  status: "scheduled" | "live" | "ended";
   channel_name: string;
   listener_count: number;
   speaker_count: number;
@@ -35,6 +41,20 @@ export interface AudioSpace {
   ended_at?: string | null;
   created_at: string;
   recording_url?: string | null;
+  /** Intended start time — set only on `scheduled` stages. */
+  scheduled_at?: string | null;
+  /** Optional cover graphic, backing the announcement card and the live room. */
+  cover_image_url?: string | null;
+}
+
+/** What the schedule form collects. */
+export interface ScheduleSpaceInput {
+  title: string;
+  description?: string;
+  /** ISO timestamp for the intended start. */
+  scheduledAt: string;
+  /** Public URL of an already-uploaded cover graphic. */
+  coverImageUrl?: string | null;
 }
 
 export type SpaceRole = "host" | "speaker" | "listener";
@@ -131,6 +151,7 @@ export interface StageTranscript {
 export interface UseStagesReturn {
   liveSpaces: AudioSpace[];
   pastSpaces: AudioSpace[];
+  scheduledSpaces: AudioSpace[];
   currentSpace: AudioSpace | null;
   participants: SpaceParticipant[];
   handRequests: RaiseHandRequest[];
@@ -153,6 +174,9 @@ export interface UseStagesReturn {
   openModal: (view?: "browse" | "create" | "live") => void;
   closeModal: () => void;
   createSpace: (title: string, description?: string) => Promise<AudioSpace | null>;
+  scheduleSpace: (input: ScheduleSpaceInput) => Promise<AudioSpace | null>;
+  startScheduledSpace: (spaceId: string) => Promise<boolean>;
+  cancelScheduledSpace: (spaceId: string) => Promise<void>;
   joinSpace: (spaceId: string) => Promise<boolean>;
   leaveSpace: () => Promise<void>;
   endSpace: () => Promise<void>;
@@ -171,6 +195,14 @@ export interface UseStagesReturn {
   refreshSpaces: () => Promise<void>;
 }
 
+/**
+ * How long a scheduled stage stays on the upcoming shelf after its start time
+ * passes. Hosts run late, and a stage vanishing from the list at the exact
+ * minute it was due — while people are still arriving from the link — reads as
+ * the feature being broken. Kept in step with dehubweb's StageContext.
+ */
+const SCHEDULED_GRACE_MS = 2 * 60 * 60 * 1000;
+
 let stageEngineInstance: IRtcEngine | null = null;
 let stageEngineInit = false;
 
@@ -184,6 +216,7 @@ function getStageEngine(): IRtcEngine {
 export function useStages(): UseStagesReturn {
   const [liveSpaces, setLiveSpaces] = useState<AudioSpace[]>([]);
   const [pastSpaces, setPastSpaces] = useState<AudioSpace[]>([]);
+  const [scheduledSpaces, setScheduledSpaces] = useState<AudioSpace[]>([]);
   const [currentSpace, setCurrentSpace] = useState<AudioSpace | null>(null);
   const [participants, setParticipants] = useState<SpaceParticipant[]>([]);
   const [handRequests, setHandRequests] = useState<RaiseHandRequest[]>([]);
@@ -252,6 +285,20 @@ export function useStages(): UseStagesReturn {
         .limit(20);
       if (endedError) throw endedError;
       setPastSpaces((endedData as AudioSpace[]) || []);
+
+      // Upcoming, soonest first. Stages whose time came and went without the
+      // host starting them drop off the shelf after a grace period rather than
+      // being deleted — the row stays reachable by link so a shared card still
+      // resolves, it just stops sitting in the upcoming list forever.
+      const cutoff = new Date(Date.now() - SCHEDULED_GRACE_MS).toISOString();
+      const { data: scheduledData, error: scheduledError } = await supabase
+        .from("audio_spaces")
+        .select("*")
+        .eq("status", "scheduled")
+        .gte("scheduled_at", cutoff)
+        .order("scheduled_at", { ascending: true });
+      if (scheduledError) throw scheduledError;
+      setScheduledSpaces((scheduledData as AudioSpace[]) || []);
     } catch (err) {
       log.error("Error fetching stages:", err);
     }
@@ -386,6 +433,8 @@ export function useStages(): UseStagesReturn {
   // ── Upgrade listener → speaker when host approves ─────────────────────────
 
   const upgradeSpeakerRef = useRef<() => Promise<void>>(async () => {});
+  /** startScheduledSpace falls back to a plain rejoin, and is defined above joinSpace. */
+  const joinSpaceRef = useRef<(spaceId: string) => Promise<boolean>>(async () => false);
 
   const upgradeSpeaker = useCallback(async () => {
     const engine = getStageEngine();
@@ -684,6 +733,127 @@ export function useStages(): UseStagesReturn {
     }
   }, [userAddress, user, joinStageChannel, refreshSpaces]);
 
+  // ── Scheduling ────────────────────────────────────────────────────────────
+
+  /**
+   * Announce a stage for later. No Agora, no participant row — nothing exists
+   * yet except the announcement itself and the link that points at it.
+   */
+  const scheduleSpace = useCallback(async (input: ScheduleSpaceInput): Promise<AudioSpace | null> => {
+    if (!userAddress) return null;
+    setIsLoading(true);
+    try {
+      // Minted now and kept for the whole life of the stage, so the link handed
+      // out today is the room people walk into.
+      const channelName = `stage_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+      const { data, error } = await supabase
+        .from("audio_spaces")
+        .insert({
+          host_wallet_address: userAddress,
+          host_username: user?.username || null,
+          host_avatar: user?.avatarImageUrl || null,
+          title: input.title,
+          description: input.description,
+          status: "scheduled",
+          scheduled_at: input.scheduledAt,
+          cover_image_url: input.coverImageUrl ?? null,
+          channel_name: channelName,
+          speaker_count: 0,
+          listener_count: 0,
+        })
+        .select()
+        .single();
+      if (error) throw error;
+
+      await refreshSpaces();
+      return data as AudioSpace;
+    } catch (err) {
+      log.error("Failed to schedule space:", err);
+      return null;
+    } finally {
+      setIsLoading(false);
+    }
+  }, [userAddress, user, refreshSpaces]);
+
+  /** Take a stage that was scheduled earlier live now. Host only. */
+  const startScheduledSpace = useCallback(async (spaceId: string): Promise<boolean> => {
+    if (!userAddress) return false;
+    setIsLoading(true);
+    try {
+      const { data: existing, error: readErr } = await supabase
+        .from("audio_spaces")
+        .select("*")
+        .eq("id", spaceId)
+        .single();
+      if (readErr || !existing) throw readErr || new Error("Stage not found");
+      if (existing.host_wallet_address !== userAddress) return false;
+      if (existing.status === "live") return await joinSpaceRef.current(spaceId);
+      if (existing.status !== "scheduled") return false;
+
+      const { data, error } = await supabase
+        .from("audio_spaces")
+        .update({
+          status: "live",
+          // started_at defaulted to the moment the row was inserted, which for
+          // a scheduled stage is whenever it was announced. Stamp the real
+          // start so duration and the recorded list stay honest.
+          started_at: new Date().toISOString(),
+          speaker_count: 1,
+        })
+        .eq("id", spaceId)
+        .select()
+        .single();
+      if (error) throw error;
+      const space = data as AudioSpace;
+
+      await supabase.from("space_participants").insert({
+        space_id: space.id,
+        wallet_address: userAddress,
+        username: user?.username || null,
+        avatar: user?.avatarImageUrl || null,
+        role: "host",
+        is_muted: true,
+      });
+
+      const success = await joinStageChannel(space, "host");
+      if (!success) {
+        // Back to scheduled, not ended — a failed start must not quietly
+        // destroy an announcement people are already holding a link to.
+        await supabase.from("audio_spaces").update({ status: "scheduled" }).eq("id", space.id);
+        throw new Error("Failed to join Agora channel");
+      }
+
+      setCurrentSpace(space);
+      setMyRole("host");
+      setIsMuted(true);
+      await refreshSpaces();
+      return true;
+    } catch (err) {
+      log.error("Failed to start scheduled space:", err);
+      return false;
+    } finally {
+      setIsLoading(false);
+    }
+  }, [userAddress, user, joinStageChannel, refreshSpaces]);
+
+  /** Call off a scheduled stage. Host only; the row is removed outright. */
+  const cancelScheduledSpace = useCallback(async (spaceId: string): Promise<void> => {
+    if (!userAddress) return;
+    try {
+      // The delete policy compares the host wallet to the x-wallet-address
+      // header, and the plain client never sends it — without this the row
+      // silently stays.
+      const { error } = await withWalletHeader(
+        supabase.from("audio_spaces").delete().eq("id", spaceId).eq("status", "scheduled"),
+        userAddress,
+      );
+      if (error) throw error;
+      await refreshSpaces();
+    } catch (err) {
+      log.error("Failed to cancel scheduled space:", err);
+    }
+  }, [userAddress, refreshSpaces]);
+
   const joinSpace = useCallback(async (spaceId: string): Promise<boolean> => {
     if (!userAddress) return false;
     setIsLoading(true);
@@ -727,6 +897,8 @@ export function useStages(): UseStagesReturn {
       setIsLoading(false);
     }
   }, [userAddress, user, joinStageChannel]);
+
+  joinSpaceRef.current = joinSpace;
 
   const leaveSpace = useCallback(async () => {
     const space = currentSpaceRef.current;
@@ -989,6 +1161,7 @@ export function useStages(): UseStagesReturn {
   const fields = {
     liveSpaces,
     pastSpaces,
+    scheduledSpaces,
     currentSpace,
     participants,
     handRequests,
@@ -1011,6 +1184,9 @@ export function useStages(): UseStagesReturn {
     openModal,
     closeModal,
     createSpace,
+    scheduleSpace,
+    startScheduledSpace,
+    cancelScheduledSpace,
     joinSpace,
     leaveSpace,
     endSpace,
