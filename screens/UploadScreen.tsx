@@ -113,6 +113,7 @@ export default function UploadScreen() {
   const incomingDraft = route.params?.draft as Draft | undefined;
   const incomingQuotedTokenId = route.params?.quotedTokenId;
   const incomingQuotedPost = route.params?.quotedPost as Record<string, any> | undefined;
+  const incomingInitialText = route.params?.initialText;
   const authUser = useUser();
   const { switchChain } = useAuthActions();
   const { isSwitchingChain } = useProvider();
@@ -353,6 +354,18 @@ export default function UploadScreen() {
     })();
     return () => { mounted = false; };
   }, []);
+
+  // Seed the composer with text handed over by another surface — currently the
+  // stage scheduler's "Post about it". Deliberately not a fake Draft: a Draft
+  // carries a full monetisation state and a restore id, and inventing those to
+  // pass one line of text would put a phantom draft into the drafts flow.
+  //
+  // Only seeds an empty composer, so arriving here on top of half-written text
+  // (or a restored draft, whose effect runs after this one) never overwrites it.
+  useEffect(() => {
+    if (!incomingInitialText) return;
+    setBodyText((prev) => (prev ? prev : incomingInitialText));
+  }, [incomingInitialText]);
 
   useEffect(() => {
     if (!incomingDraft) return;

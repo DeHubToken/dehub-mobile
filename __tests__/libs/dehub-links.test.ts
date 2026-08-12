@@ -75,6 +75,25 @@ describe('parseDehubLink', () => {
     });
   });
 
+  it('reads a stage link, which is top-level rather than /app-scoped', () => {
+    expect(
+      parseDehubLink('https://dehub.io/stage/6f1c2d84-9a3b-4c7e-8f01-2b5d9e7a4c33'),
+    ).toMatchObject({
+      kind: 'stage',
+      stageId: '6f1c2d84-9a3b-4c7e-8f01-2b5d9e7a4c33',
+    });
+    // The bare path form has to work too — it is what the composer inserts
+    // when the share origin matches the current host.
+    expect(parseDehubLink('/stage/6f1c2d84-9a3b-4c7e-8f01-2b5d9e7a4c33')).toMatchObject({
+      kind: 'stage',
+      stageId: '6f1c2d84-9a3b-4c7e-8f01-2b5d9e7a4c33',
+    });
+  });
+
+  it('rejects a stage id that is not id-shaped', () => {
+    expect(parseDehubLink('https://dehub.io/stage/nope')).toBeNull();
+  });
+
   it('reads a profile link and strips a leading @', () => {
     expect(parseDehubLink('https://dehub.io/sableraven')).toMatchObject({
       kind: 'profile',
