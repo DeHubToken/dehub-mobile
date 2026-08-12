@@ -22,6 +22,11 @@ const BUTTON_WIDTH = 262;
 const BUTTON_HEIGHT = 90;
 const PILL_PADDING = 8;
 const ARROW_SIZE = BUTTON_HEIGHT - PILL_PADDING * 2; // Arrow fits inside pill with padding
+// rounded-xl, the app's dominant corner and the AUTH_RADIUS every control in
+// the sign-in flow this screen hands off to already uses. The outer radius is
+// the knob's plus the padding, so the two sets of corners stay concentric.
+const KNOB_RADIUS = 12;
+const PILL_RADIUS = KNOB_RADIUS + PILL_PADDING;
 const PILL_BG_COLOR = "#FFFFFF1A"; // white/10
 const TEXT_COLOR = "#9CA3AF"; // gray-400
 
@@ -126,7 +131,7 @@ const SwipeButton = forwardRef<SwipeButtonRef, SwipeButtonProps>(
         borderRadius: interpolate(
           expandProgress.value,
           [0, 1],
-          [ARROW_SIZE / 2, BUTTON_HEIGHT / 2],
+          [KNOB_RADIUS, PILL_RADIUS],
           Extrapolation.CLAMP
         ),
       };
@@ -158,7 +163,7 @@ const SwipeButton = forwardRef<SwipeButtonRef, SwipeButtonProps>(
       borderRadius: interpolate(
         expandProgress.value,
         [0, 1],
-        [ARROW_SIZE / 2, BUTTON_HEIGHT / 2],
+        [KNOB_RADIUS, PILL_RADIUS],
         Extrapolation.CLAMP
       ),
     }));
@@ -340,7 +345,7 @@ const styles = StyleSheet.create({
     width: BUTTON_WIDTH,
     height: BUTTON_HEIGHT,
     backgroundColor: PILL_BG_COLOR,
-    borderRadius: BUTTON_HEIGHT / 2,
+    borderRadius: PILL_RADIUS,
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: PILL_PADDING,
@@ -348,7 +353,7 @@ const styles = StyleSheet.create({
   arrowButton: {
     width: ARROW_SIZE,
     height: ARROW_SIZE,
-    borderRadius: ARROW_SIZE / 2,
+    borderRadius: KNOB_RADIUS,
     justifyContent: "center",
     alignItems: "center",
     overflow: "hidden",
@@ -357,7 +362,7 @@ const styles = StyleSheet.create({
   innerBg: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "#52525B",
-    borderRadius: ARROW_SIZE / 2,
+    borderRadius: KNOB_RADIUS,
   },
   gradient: {
     flex: 1,
