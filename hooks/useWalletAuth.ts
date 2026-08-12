@@ -17,6 +17,7 @@ import { useAuthActions } from "../context/AuthContext";
 import { ChainId } from "../config/constants";
 import { getPreferredChainId as getStoredPreferredChainId } from "../libs/auth.utils";
 import { setSigningProvider, clearSigningProvider } from "../libs/provider.registry";
+import { getAppKitInstance } from "../config/reown.config";
 import { createLogger } from "../libs/logger";
 
 const log = createLogger("useWalletAuth");
@@ -25,6 +26,18 @@ const getDefaultChainId = () => ChainId.BASE_MAINNET;
 
 export const useWalletAuth = () => {
   const [isWalletLoading, setIsWalletLoading] = useState(false);
+  // True while AppKit's own wallet-picker sheet is on screen. AppKit renders
+  // that sheet with react-native-modal's `coverScreen: false`, i.e. inline in
+  // the app's root view (it is mounted next to the navigator in App.tsx)
+  // rather than in a native modal window. Anything presented in a real RN
+  // <Modal> — every GlassModal sheet, including the sign-in one that owns the
+  // "Connect Wallet" button — therefore sits ABOVE it and swallows it, so the
+  // wallet-brand list appears half-buried behind the sheet that opened it and
+  // cannot be tapped. Callers that live inside a <Modal> use this to step out
+  // of the way while the picker is up. Read through the AppKit instance rather
+  // than useAppKitState() so this stays safe on a build where createAppKit
+  // never ran (missing REOWN_PROJECT_ID — see reown.config).
+  const [isWalletSheetOpen, setIsWalletSheetOpen] = useState(false);
   const { open } = useAppKit();
   const { address: accountAddress, chainId: currentChainId } = useAppKitAccount();
   const { walletProvider } = useAppKitProvider();
@@ -44,6 +57,15 @@ export const useWalletAuth = () => {
   // against that stale external wallet — hijacking an unrelated Google/email
   // session with a Trust Wallet/MetaMask sign-in the user never asked for.
   const awaitingUserInitiatedConnectRef = useRef(false);
+
+  useEffect(() => {
+    const instance = getAppKitInstance();
+    if (!instance) return;
+    setIsWalletSheetOpen(!!instance.getState().open);
+    return instance.subscribeStateKey("open", (value) => {
+      setIsWalletSheetOpen(!!value);
+    });
+  }, []);
 
   const authenticateWithWallet = useCallback(
     async (address: string, chainId: number) => {
@@ -105,6 +127,7 @@ export const useWalletAuth = () => {
 
   return {
     isWalletLoading,
+    isWalletSheetOpen,
     walletAddress: accountAddress ?? null,
     handleWalletConnect,
   };
