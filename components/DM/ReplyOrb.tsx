@@ -3,204 +3,206 @@ import { View } from "react-native";
 import Animated, {
   Easing,
   cancelAnimation,
-  interpolate,
   useAnimatedStyle,
   useSharedValue,
-  withDelay,
   withRepeat,
   withTiming,
+  type SharedValue,
 } from "react-native-reanimated";
 
 /**
- * The reply orb — the AI affordance under the suggestion cards.
+ * The reply orb — a ball of cosmic dust turning on its own axis, sitting under
+ * the suggestion cards.
  *
- * Monochrome by design: a white core over stacked white-alpha haloes, nothing
- * hued, so it sits on whatever surface the screen paints.
+ * Monochrome by design: white motes over near-black, nothing hued.
  *
  * GEOMETRY IS SHARED WITH WEB. dehubweb's src/components/app/chat/ReplyOrb.tsx
- * is the CSS-keyframe twin of this file — same ratios, same durations, same
- * scale endpoints. Change one, change the other, or the two apps stop looking
- * like the same product.
+ * is the CSS-keyframe twin of this file — same mote distribution, same
+ * durations, same depth curve. Change one, change the other, or the two apps
+ * stop looking like the same product.
  *
- * Every layer animates transform and opacity only, so the whole thing runs on
- * the UI thread and survives a busy JS thread (which, on the chat screen mid
- * send, is the normal case).
+ * One shared `phase` value drives every mote, and each mote's worklet derives
+ * its own position from that plus its fixed starting angle. Web gets the same
+ * effect from a single keyframe track plus a negative animation-delay per
+ * element. Both stay off their respective JS threads.
  */
 
-const RATIO = {
-  halo3: 1,
-  halo2: 0.77,
-  halo1: 0.59,
-  sonar: 0.5,
-  core: 0.41,
-  dot: 0.068,
-  orbit: 0.34,
-} as const;
+/** Enough to read as dust at 44px; every one is an animated view. */
+const MOTES = 30;
+
+/**
+ * Golden-angle fraction (137.5°/360°). Spacing the starting angles by this
+ * scatters the motes instead of banding them into visible stripes, which is
+ * what any simple i/N spacing does.
+ */
+const GOLDEN_FRACTION = 0.381966;
 
 /** ms — mirrored in the web twin. */
 const DURATION = {
-  idle: { breathe: 2600, sonar: 3400, orbit: 6000 },
-  thinking: { breathe: 900, sonar: 1600, orbit: 1400 },
+  idle: { spin: 9000, haze: 3000 },
+  thinking: { spin: 2600, haze: 1200 },
 } as const;
+
+/** Sphere radius and mote size as fractions of the box. */
+const RATIO = { sphere: 0.42, mote: 0.05, haze: 0.62 } as const;
+
+/** The ball leans, so the spin axis reads as 3D rather than a spinning disc. */
+const TILT_DEG = -14;
+
+const TAU = Math.PI * 2;
 
 export type ReplyOrbState = "idle" | "thinking";
 
+/**
+ * Fixed mote layout. `y` is uniform in [-1, 1] rather than an even sweep of
+ * latitude angles — even latitudes crowd the poles, uniform y spreads points
+ * evenly over the actual surface.
+ */
+const LAYOUT = Array.from({ length: MOTES }, (_, i) => {
+  const t = (i + 0.5) / MOTES;
+  const y = 1 - 2 * t;
+  return {
+    y,
+    ringRadius: Math.sqrt(Math.max(0, 1 - y * y)),
+    phase: (i * GOLDEN_FRACTION) % 1,
+    // A few brighter, larger grains stop the field reading as uniform noise.
+    bright: i % 7 === 3,
+  };
+});
+
+interface MoteProps {
+  spin: SharedValue<number>;
+  phase: number;
+  ringRadius: number;
+  y: number;
+  /** Diameter of this grain. */
+  size: number;
+  /** Sphere radius in px. */
+  radius: number;
+  /** Container edge, so the grain can centre itself in it. */
+  box: number;
+  color: string;
+}
+
+/**
+ * One grain. The hook lives here rather than in a loop in the parent so the
+ * number of hooks stays fixed at MOTES — the layout table is a module
+ * constant, so React always sees the same call order.
+ */
+const Mote: React.FC<MoteProps> = ({ spin, phase, ringRadius, y, size, radius, box, color }) => {
+  const style = useAnimatedStyle(() => {
+    const angle = (spin.value + phase) * TAU;
+    // cos gives depth: +1 is the front of the ball, -1 the back.
+    const depth = (Math.cos(angle) + 1) / 2;
+    return {
+      transform: [
+        { translateX: ringRadius * radius * Math.sin(angle) },
+        { scale: 0.55 + 0.45 * depth },
+      ],
+      opacity: 0.2 + 0.8 * depth,
+    };
+  });
+
+  return (
+    <Animated.View
+      style={[
+        {
+          position: "absolute",
+          width: size,
+          height: size,
+          borderRadius: size / 2,
+          backgroundColor: color,
+          // Latitude is fixed; only the ring sweep is animated.
+          left: (box - size) / 2,
+          top: (box - size) / 2 + y * radius,
+        },
+        style,
+      ]}
+    />
+  );
+};
+
 interface ReplyOrbProps {
   state?: ReplyOrbState;
-  /** Box size. Every layer is derived from this. */
+  /** Box size. Everything is derived from this. */
   size?: number;
 }
 
 const ReplyOrb: React.FC<ReplyOrbProps> = ({ state = "idle", size = 44 }) => {
   const d = DURATION[state];
   const busy = state === "thinking";
+  const R = size * RATIO.sphere;
+  const moteBase = Math.max(1.5, size * RATIO.mote);
+  const hazeSize = size * RATIO.haze;
 
-  // One 0→1 driver per effect. Deriving scale/opacity by interpolation is what
-  // keeps this a literal port of the CSS keyframes rather than an approximation.
-  const breathe = useSharedValue(0);
-  const sonarA = useSharedValue(0);
-  const sonarB = useSharedValue(0);
-  const orbit = useSharedValue(0);
+  const spin = useSharedValue(0);
+  const haze = useSharedValue(0);
 
   useEffect(() => {
     // Restart from zero on a state change so a slow idle cycle can't stall
     // halfway into the fast one.
-    breathe.value = 0;
-    sonarA.value = 0;
-    sonarB.value = 0;
-    orbit.value = 0;
-
-    breathe.value = withRepeat(
-      withTiming(1, { duration: d.breathe / 2, easing: Easing.inOut(Easing.ease) }),
+    spin.value = 0;
+    haze.value = 0;
+    spin.value = withRepeat(
+      withTiming(1, { duration: d.spin, easing: Easing.linear }),
+      -1,
+      false,
+    );
+    haze.value = withRepeat(
+      withTiming(1, { duration: d.haze / 2, easing: Easing.inOut(Easing.ease) }),
       -1,
       true,
     );
-    sonarA.value = withRepeat(
-      withTiming(1, { duration: d.sonar, easing: Easing.out(Easing.ease) }),
-      -1,
-      false,
-    );
-    // Half a period behind, so one ring is always mid-flight. CSS gets this
-    // with a negative animation-delay; here the offset lands after the first
-    // half-cycle, which is invisible on a loop this short.
-    sonarB.value = withDelay(
-      d.sonar / 2,
-      withRepeat(
-        withTiming(1, { duration: d.sonar, easing: Easing.out(Easing.ease) }),
-        -1,
-        false,
-      ),
-    );
-    orbit.value = withRepeat(
-      withTiming(1, { duration: d.orbit, easing: Easing.linear }),
-      -1,
-      false,
-    );
-
     return () => {
-      cancelAnimation(breathe);
-      cancelAnimation(sonarA);
-      cancelAnimation(sonarB);
-      cancelAnimation(orbit);
+      cancelAnimation(spin);
+      cancelAnimation(haze);
     };
-  }, [d.breathe, d.sonar, d.orbit, breathe, sonarA, sonarB, orbit]);
+  }, [d.spin, d.haze, spin, haze]);
 
-  const px = (r: number) => Math.round(size * r);
-
-  /** Absolutely-centred circle of a given diameter. */
-  const layer = (ratio: number) => {
-    const dim = px(ratio);
-    return {
-      position: "absolute" as const,
-      width: dim,
-      height: dim,
-      left: (size - dim) / 2,
-      top: (size - dim) / 2,
-      borderRadius: dim / 2,
-    };
-  };
-
-  const breatheStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: interpolate(breathe.value, [0, 1], [1, 1.08]) }],
+  const hazeStyle = useAnimatedStyle(() => ({
+    opacity: 0.5 + haze.value * 0.4,
+    transform: [{ scale: 1 + haze.value * 0.12 }],
   }));
 
-  // 0% scale .85 / opacity .55 → 70% opacity 0 → 100% scale 2.2. Same curve as
-  // the `orb-sonar` keyframe. Written out twice rather than through a helper:
-  // a factory that calls useAnimatedStyle is a rules-of-hooks violation even
-  // when the call count happens to be stable.
-  const sonarAStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(sonarA.value, [0, 0.7, 1], [0.55, 0, 0]),
-    transform: [{ scale: interpolate(sonarA.value, [0, 1], [0.85, 2.2]) }],
-  }));
-  const sonarBStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(sonarB.value, [0, 0.7, 1], [0.55, 0, 0]),
-    transform: [{ scale: interpolate(sonarB.value, [0, 1], [0.85, 2.2]) }],
-  }));
-
-  const orbitStyle = useAnimatedStyle(() => ({
-    transform: [{ rotate: `${interpolate(orbit.value, [0, 1], [0, 360])}deg` }],
-  }));
-
-  const orbitBox = px(RATIO.orbit * 2);
-  // At the 22px toolbar size the ratio rounds the speck down to 1px, which
-  // renders as a smudge on a 3x screen. Two is the smallest it reads at.
-  const dot = Math.max(2, px(RATIO.dot));
+  const moteColor = busy ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.68)";
 
   return (
-    <View style={{ width: size, height: size }} pointerEvents="none">
-      {/* Three stacked washes instead of a blur: RN has no cheap blur, and at
-          this size the banding is invisible. */}
-      <View style={[layer(RATIO.halo3), { backgroundColor: "rgba(255,255,255,0.05)" }]} />
-      <View style={[layer(RATIO.halo2), { backgroundColor: "rgba(255,255,255,0.08)" }]} />
-      <View style={[layer(RATIO.halo1), { backgroundColor: "rgba(255,255,255,0.14)" }]} />
-
+    <View
+      style={{ width: size, height: size, transform: [{ rotate: `${TILT_DEG}deg` }] }}
+      pointerEvents="none"
+    >
+      {/* Faint core haze — without it the motes read as a ring of dots rather
+          than a body with volume. RN has no radial gradient without pulling in
+          a dependency, so this is a soft disc at low alpha; at this size the
+          difference from the web twin's gradient is not visible. */}
       <Animated.View
         style={[
-          layer(RATIO.sonar),
-          { borderWidth: 1, borderColor: "rgba(255,255,255,0.5)" },
-          sonarAStyle,
-        ]}
-      />
-      <Animated.View
-        style={[
-          layer(RATIO.sonar),
-          { borderWidth: 1, borderColor: "rgba(255,255,255,0.5)" },
-          sonarBStyle,
-        ]}
-      />
-
-      {/* Orbiting speck: a rotator box with the dot pinned to its top edge, so
-          one rotate transform does all the work. */}
-      <Animated.View style={[layer(RATIO.orbit * 2), orbitStyle]}>
-        <View
-          style={{
-            position: "absolute",
-            width: dot,
-            height: dot,
-            borderRadius: dot / 2,
-            left: (orbitBox - dot) / 2,
-            top: -dot / 2,
-            backgroundColor: busy ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.6)",
-          }}
-        />
-      </Animated.View>
-
-      <Animated.View
-        style={[
-          layer(RATIO.core),
           {
-            backgroundColor: busy ? "rgba(255,255,255,0.96)" : "rgba(255,255,255,0.88)",
-            // RN shadows are per-platform; elevation gives Android the same
-            // lift that shadowRadius gives iOS.
-            shadowColor: "#FFFFFF",
-            shadowOpacity: busy ? 0.45 : 0.22,
-            shadowRadius: busy ? 7 : 4,
-            shadowOffset: { width: 0, height: 0 },
-            elevation: busy ? 6 : 3,
+            position: "absolute",
+            width: hazeSize,
+            height: hazeSize,
+            borderRadius: hazeSize / 2,
+            left: (size - hazeSize) / 2,
+            top: (size - hazeSize) / 2,
+            backgroundColor: busy ? "rgba(255,255,255,0.13)" : "rgba(255,255,255,0.08)",
           },
-          breatheStyle,
+          hazeStyle,
         ]}
       />
+
+      {LAYOUT.map((m, i) => (
+        <Mote
+          key={i}
+          spin={spin}
+          phase={m.phase}
+          ringRadius={m.ringRadius}
+          y={m.y}
+          size={m.bright ? moteBase * 1.45 : moteBase}
+          radius={R}
+          box={size}
+          color={m.bright ? "rgba(255,255,255,0.95)" : moteColor}
+        />
+      ))}
     </View>
   );
 };
