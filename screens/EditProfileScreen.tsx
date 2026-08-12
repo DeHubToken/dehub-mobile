@@ -32,6 +32,7 @@ import { toastError, toastSuccess } from "../libs/toast";
 import ScreenHeader from "../components/ScreenHeader";
 import { useDebounceCallback } from "../hooks/useDebounceCallback";
 import { validateSocial } from "../libs/links.utils";
+import { isReservedUsername } from "../libs/reserved-usernames";
 import {
   TWITTER_SVG_XML,
   INSTAGRAM_SVG_XML,
@@ -137,6 +138,14 @@ const EditProfileScreen = () => {
       setCheckingUsername(false);
       return;
     }
+    // Names that collide with a web route leave the profile unreachable at
+    // dehub.io/:username. Checked before the availability call, which reports
+    // every one of them as free.
+    if (isReservedUsername(name)) {
+      setUsernameAvailable(false);
+      setCheckingUsername(false);
+      return;
+    }
     setCheckingUsername(true);
     try {
       const res = await AuthService.checkUsernameAvailability(name.trim());
@@ -214,6 +223,10 @@ const EditProfileScreen = () => {
     const prevUserSnapshot = user;
     try {
       setSaving(true);
+      const usernameChanged = username?.trim() !== initial.username.trim();
+      if (usernameChanged && isReservedUsername(username)) {
+        throw new Error("This username is reserved");
+      }
       const tw = validateSocial("x", twitterLink);
       const ig = validateSocial("instagram", instagramLink);
       const tk = validateSocial("tiktok", tiktokLink);
@@ -237,7 +250,10 @@ const EditProfileScreen = () => {
 
       const payload: Record<string, any> = {
         displayName: displayName?.trim(),
-        username: username?.trim(),
+        // Only sent when it actually changed. It used to go on every save, so
+        // once a name became reserved its existing holder could no longer edit
+        // their own bio without the guard above rejecting the whole save.
+        ...(usernameChanged ? { username: username?.trim() } : {}),
         aboutMe: aboutMe?.trim(),
         twitterLink: tw.normalized,
         instagramLink: ig.normalized,
@@ -289,7 +305,7 @@ const EditProfileScreen = () => {
   }, [
     displayName, username, aboutMe,
     twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink,
-    localAvatar, localCover, user, patchUser, refreshUser, navigation,
+    localAvatar, localCover, user, patchUser, refreshUser, navigation, initial,
   ]);
 
   const socialFields: SocialField[] = useMemo(
@@ -305,11 +321,15 @@ const EditProfileScreen = () => {
     [twitterLink, instagramLink, tiktokLink, youtubeLink, discordLink, telegramLink, facebookLink]
   );
 
+  // A changed username has to be positively cleared. The old gate only blocked
+  // on an explicit `false`, and the answer is null for the whole debounce
+  // window, so typing a name and saving straight away sent it unchecked.
+  const usernameEdited = username.trim() !== initial.username.trim();
   const saveDisabled =
     saving ||
     !isDirty ||
     checkingUsername ||
-    (username.trim() !== initial.username.trim() && usernameAvailable === false);
+    (usernameEdited && (usernameAvailable !== true || isReservedUsername(username)));
 
   return (
     <View className="flex-1 bg-black">
@@ -408,8 +428,16 @@ const EditProfileScreen = () => {
                 placeholderTextColor="#6b7280"
                 placeholder="@username"
                 value={username}
-                onChangeText={setUsername}
+                // Was `setUsername` raw: this field accepted uppercase, spaces,
+                // punctuation and any length, none of which the web signup form
+                // allows and none of which survives being put in a URL. Match
+                // the web rule at the keystroke.
+                onChangeText={(text) =>
+                  setUsername(text.replace(/[^a-zA-Z0-9_]/g, "").toLowerCase().slice(0, 30))
+                }
                 autoCapitalize="none"
+                autoCorrect={false}
+                maxLength={30}
               />
               <View className="mt-1 min-h-[16px]">
                 {checkingUsername && (
@@ -425,7 +453,9 @@ const EditProfileScreen = () => {
                   username.trim().length > 0 &&
                   username.trim() !== initial.username.trim() &&
                   usernameAvailable === false && (
-                    <Text className="text-[10px] text-red-400">Username taken</Text>
+                    <Text className="text-[10px] text-red-400">
+                      {isReservedUsername(username) ? "This username is reserved" : "Username taken"}
+                    </Text>
                   )}
                 {!checkingUsername && username.trim().length === 0 && (
                   <Text className="text-[10px] text-neutral-500">3–30 chars: letters, numbers, underscore.</Text>
