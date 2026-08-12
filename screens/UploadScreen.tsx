@@ -30,14 +30,6 @@ import {
   runWithPermissions,
 } from "../libs/permissions.util";
 import { openCroppedImagePicker, getFileName, guessMime } from "../libs/assets.util";
-import {
-  ATTACHMENT_PICKER_TYPES,
-  MAX_ATTACHMENTS,
-  formatAttachmentSize,
-  getAttachmentLabel,
-  validateAttachments,
-  type PickedAttachment,
-} from "../libs/attachments";
 import { getCategoriesCached } from "../services/nft.service";
 import { toastError, toastSuccess } from "../libs/toast";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
@@ -92,7 +84,7 @@ const CATEGORIES_MAX = 5;
 const MAX_SHORT_DURATION_MS = 90_000; // 90 seconds
 
 type PickedAsset = ImagePicker.ImagePickerAsset;
-type MediaMode = "none" | "images" | "video" | "audio" | "files";
+type MediaMode = "none" | "images" | "video" | "audio";
 
 /**
  * Some Android ContentProviders hand back a null `type`, so fall back to the
@@ -172,7 +164,6 @@ export default function UploadScreen() {
   const [pickedImages, setPickedImages] = useState<PickedAsset[]>([]);
   const [pickedVideo, setPickedVideo] = useState<PickedAsset | null>(null);
   const [pickedAudio, setPickedAudio] = useState<PickedAudio | null>(null);
-  const [pickedFiles, setPickedFiles] = useState<PickedAttachment[]>([]);
   const [isAudioRecording, setIsAudioRecording] = useState(false);
   const [audioRecordingElapsed, setAudioRecordingElapsed] = useState(0);
   const audioRecordingRef = useRef<Audio.Recording | null>(null);
@@ -267,9 +258,8 @@ export default function UploadScreen() {
     if (pickedVideo) return "video";
     if (pickedAudio) return "audio";
     if (pickedImages.length > 0) return "images";
-    if (pickedFiles.length > 0) return "files";
     return "none";
-  }, [pickedVideo, pickedAudio, pickedImages.length, pickedFiles.length]);
+  }, [pickedVideo, pickedAudio, pickedImages.length]);
 
   const isShortCandidate = useMemo(
     () => !!pickedVideo && isShortCandidateFn(pickedVideo),
@@ -302,12 +292,11 @@ export default function UploadScreen() {
   // matching dehubweb's PostActionBar — which also keeps the row short enough to
   // breathe on a narrow phone.
 
-  // One attach button covers photos and videos: gone once a video, audio clip or
-  // file is on the draft, or the 4-image cap is reached.
+  // One attach button covers photos and videos: gone once a video or audio clip
+  // is on the draft, or the 4-image cap is reached.
   const mediaDisabled =
     mediaMode === "video" ||
     mediaMode === "audio" ||
-    mediaMode === "files" ||
     pickedImages.length >= IMAGES_MAX ||
     isAudioRecording;
   const showMediaButton = !isLiveMode && !mediaDisabled;
@@ -315,11 +304,6 @@ export default function UploadScreen() {
   const showCameraButton = !isLiveMode && !hasMedia && !isAudioRecording;
   // audio button disabled when: any media is selected (but not during recording — that's the audio button's own mode)
   const audioDisabled = hasMedia;
-  // file button disabled when other media is selected, or the cap is reached.
-  // A file post carries only files — the backend maps one post to one postType.
-  const fileDisabled =
-    (hasMedia && mediaMode !== "files") || pickedFiles.length >= MAX_ATTACHMENTS || isAudioRecording;
-  const showFileButton = !isLiveMode && !isQuoteMode && !fileDisabled;
   // live button disabled when media is already selected OR recording
   const liveDisabled = hasMedia || isAudioRecording;
   const showLiveButton = !isQuoteMode && (isLiveMode || !liveDisabled);
@@ -427,11 +411,10 @@ export default function UploadScreen() {
       pickedImages.length > 0 ||
       !!pickedVideo ||
       !!pickedAudio ||
-      pickedFiles.length > 0 ||
       !!liveThumbnailUri ||
       isLiveMode ||
       pollEnabled,
-    [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, pickedFiles, liveThumbnailUri, isLiveMode, pollEnabled],
+    [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, liveThumbnailUri, isLiveMode, pollEnabled],
   );
 
   /** Close handler – placed before useUploadPost; isUploading guard is in the X button's disabled prop */
@@ -554,9 +537,9 @@ export default function UploadScreen() {
 
   // The Music button carries the audio-post options (upload/record) and the
   // soundtrack search, so it stays as long as either group has something to
-  // offer. Files are exclusive, so it goes once any is attached.
+  // offer.
   const showAudioButton =
-    !isLiveMode && pickedFiles.length === 0 && (!audioDisabled || soundtrackEnabled);
+    !isLiveMode && (!audioDisabled || soundtrackEnabled);
 
   // Regular and quote uploads are now background-queued (not blocking).
   // Only live mode blocks the screen.
@@ -594,7 +577,6 @@ export default function UploadScreen() {
       pickedImages,
       pickedVideo,
       pickedAudio,
-      pickedFiles,
       thumbnailUri,
       coverUri,
       monetization,
@@ -610,7 +592,7 @@ export default function UploadScreen() {
       postChainId: effectivePostChainId,
       solanaAddress: solanaAddress ?? undefined,
     };
-  }, [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, pickedFiles, thumbnailUri, coverUri, monetization, postAsShort, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress]);
+  }, [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, postAsShort, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -630,7 +612,6 @@ export default function UploadScreen() {
         setPickedVideo(null);
         setPickedImages([]);
         setPickedAudio(null);
-        setPickedFiles([]);
         setShowMonetization(false);
         setThumbnailUri(null);
         setCoverUri(null);
@@ -1205,47 +1186,6 @@ export default function UploadScreen() {
     } catch (e) {
       console.error("[UploadScreen] audio pick error:", e);
     }
-  }, []);
-
-  const handlePickFiles = useCallback(async () => {
-    try {
-      const result = await DocumentPicker.getDocumentAsync({
-        type: ATTACHMENT_PICKER_TYPES,
-        multiple: true,
-        copyToCacheDirectory: true,
-      });
-
-      if (result.canceled || !result.assets?.length) return;
-
-      const picked: PickedAttachment[] = result.assets.map((asset) => ({
-        uri: asset.uri,
-        name: asset.name || "file",
-        // Android hands back null for plenty of types; the backend decides from
-        // the extension anyway and re-labels the stored object itself.
-        mimeType: asset.mimeType || "application/octet-stream",
-        size: asset.size ?? 0,
-      }));
-
-      setPickedFiles((prev) => {
-        const check = validateAttachments(
-          picked,
-          prev.length,
-          prev.reduce((sum, f) => sum + f.size, 0),
-        );
-        if (!check.ok) {
-          toastError(check.error!);
-          return prev;
-        }
-        return [...prev, ...picked];
-      });
-    } catch (e) {
-      console.error("[UploadScreen] file pick error:", e);
-      toastError("Couldn't attach that file.");
-    }
-  }, []);
-
-  const handleRemoveFile = useCallback((index: number) => {
-    setPickedFiles((prev) => prev.filter((_, i) => i !== index));
   }, []);
 
   const handleToggleAudioPreview = useCallback(async () => {
@@ -1937,38 +1877,6 @@ export default function UploadScreen() {
               </View>
             )}
 
-            {!isLiveMode && mediaMode === "files" && pickedFiles.length > 0 && (
-              <View className="mt-3">
-                {pickedFiles.map((doc, index) => (
-                  <View
-                    key={`${doc.uri}-${index}`}
-                    className="flex-row items-center rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-3 mb-2"
-                  >
-                    <View className="w-10 h-10 rounded-lg bg-theme-neutrals-700 items-center justify-center mr-3">
-                      <Icon name="FileText" size={20} color="#fff" />
-                    </View>
-                    <View className="flex-1">
-                      <Text className="text-white text-sm font-medium" numberOfLines={1}>
-                        {doc.name}
-                      </Text>
-                      <Text className="text-theme-neutrals-400 text-xs mt-0.5">
-                        {getAttachmentLabel(doc.name)} · {formatAttachmentSize(doc.size)}
-                      </Text>
-                    </View>
-                    <TouchableOpacity
-                      onPress={() => handleRemoveFile(index)}
-                      className="w-8 h-8 rounded-full bg-black/60 items-center justify-center"
-                      hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
-                      accessibilityRole="button"
-                      accessibilityLabel={`Remove ${doc.name}`}
-                    >
-                      <Icon name="X" size={16} color="#fff" />
-                    </TouchableOpacity>
-                  </View>
-                ))}
-              </View>
-            )}
-
             {isQuoteMode && quotedPost && (
               <View className="mt-3 relative">
                 <QuotedPostEmbed
@@ -2235,19 +2143,6 @@ export default function UploadScreen() {
             accessibilityLabel="Add photos or video"
           >
             <Icon name="Image" size={24} color="#fff" />
-          </TouchableOpacity>
-        )}
-
-        {showFileButton && (
-          <TouchableOpacity
-            onPress={handlePickFiles}
-            activeOpacity={0.7}
-            className="mr-4"
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            accessibilityRole="button"
-            accessibilityLabel="Attach files"
-          >
-            <Icon name="Paperclip" size={22} color={pickedFiles.length > 0 ? "#fff" : "#A1A1AA"} />
           </TouchableOpacity>
         )}
 

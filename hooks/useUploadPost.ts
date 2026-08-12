@@ -11,7 +11,6 @@ import {
 import { minNft } from "../services/nft.service";
 import { mintNftOnChain, mintWithBounty } from "../services/mint.service";
 import { getFileName, guessMime } from "../libs/assets.util";
-import { validateAttachments, type PickedAttachment } from "../libs/attachments";
 import { extractHashtagCategories } from "../libs/strings.util";
 import { filteredStreamInfo, isValidDataForMinting, getTotalBountyAmount } from "../libs/validators.util";
 import { parseTxError } from "../libs/web3.util";
@@ -46,7 +45,7 @@ export type UploadStage =
   | "finalizing"
   | "done";
 
-type MediaMode = "none" | "images" | "video" | "audio" | "files";
+type MediaMode = "none" | "images" | "video" | "audio";
 
 const MAX_SHORT_DURATION_MS = 90_000;
 
@@ -72,8 +71,6 @@ export type UploadPayload = {
   pickedImages: ImagePicker.ImagePickerAsset[];
   pickedVideo: ImagePicker.ImagePickerAsset | null;
   pickedAudio: PickedAudio | null;
-  /** Document attachments. A file post carries no other media. */
-  pickedFiles?: PickedAttachment[];
   thumbnailUri: string | null;
   coverUri: string | null;
   monetization: MonetizationState;
@@ -87,37 +84,6 @@ export type UploadPayload = {
   solanaAddress?: string;
 };
 
-
-/**
- * Which kind of post the picked media adds up to. Was inlined as the same
- * ternary chain in six places, which is exactly the shape that leaves one
- * behind when a new media type is added.
- */
-type PostMode = "video" | "audio" | "images" | "files" | "text";
-
-const resolveMode = (p: {
-  pickedVideo?: ImagePicker.ImagePickerAsset | null;
-  pickedAudio?: PickedAudio | null;
-  pickedImages?: ImagePicker.ImagePickerAsset[];
-  pickedFiles?: PickedAttachment[];
-}): PostMode => {
-  if (p.pickedVideo) return "video";
-  if (p.pickedAudio) return "audio";
-  if ((p.pickedImages?.length ?? 0) > 0) return "images";
-  if ((p.pickedFiles?.length ?? 0) > 0) return "files";
-  return "text";
-};
-
-/** Wire value for each mode. `video`/`short` are decided by the caller, not here. */
-const POST_TYPE_BY_MODE: Record<
-  Exclude<PostMode, "video">,
-  SerializedUploadPayload["postType"]
-> = {
-  audio: "feed-audio",
-  images: "feed-images",
-  files: "feed-file",
-  text: "feed-simple",
-};
 
 const parsePositiveNumber = (v: string): number | undefined => {
   if (!v) return undefined;
@@ -159,12 +125,14 @@ export function useUploadPost() {
   const activeNetworkLabel = useMemo(() => getActiveNetworkLabel(chainId), [chainId]);
 
   const getMediaMode = useCallback((p: UploadPayload): MediaMode => {
-    const mode = resolveMode(p);
-    return mode === "text" ? "none" : mode;
+    if (p.pickedVideo) return "video";
+    if (p.pickedAudio) return "audio";
+    if (p.pickedImages.length > 0) return "images";
+    return "none";
   }, []);
 
   const validate = useCallback((p: UploadPayload): ValidationResult => {
-    const mode = resolveMode(p);
+    const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
 
     if (mode === "video" && p.postAsShort) {
       const title = p.bodyText.trim();
@@ -195,15 +163,6 @@ export function useUploadPost() {
     // Image mode: at least one image required
     if (mode === "images") {
       if (p.pickedImages.length < 1) return { valid: false, error: "At least one image is required." };
-    }
-
-    // File mode: same rules the backend enforces, checked before the upload
-    // starts rather than after 50 MB has gone over the wire.
-    if (mode === "files") {
-      const files = p.pickedFiles ?? [];
-      if (files.length < 1) return { valid: false, error: "At least one file is required." };
-      const check = validateAttachments(files);
-      if (!check.ok) return { valid: false, error: check.error };
     }
 
     // Text mode: description or a valid poll is required
@@ -310,7 +269,7 @@ export function useUploadPost() {
 
   const buildConfirmText = useCallback(
     (p: UploadPayload): string => {
-      const mode = resolveMode(p);
+      const mode = p.pickedVideo ? "video" : p.pickedImages.length > 0 ? "images" : "text";
       const lines: string[] = [];
 
       lines.push(
@@ -348,7 +307,7 @@ export function useUploadPost() {
 
   const buildFormData = useCallback(
     (p: UploadPayload): FormData => {
-      const mode = resolveMode(p);
+      const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
       const addr = (user?.walletAddress || user?.address || "").toLowerCase();
       const fd = new FormData();
 
@@ -398,14 +357,6 @@ export function useUploadPost() {
           const type = guessMime(img.uri, "image/jpeg");
           // @ts-ignore React Native FormData file shape
           fd.append("feed-images", { uri: img.uri, name, type } as any);
-        });
-        fd.append("streamInfo", JSON.stringify({}));
-      } else if (mode === "files") {
-        fd.append("postType", "feed-file");
-        (p.pickedFiles ?? []).forEach((doc) => {
-          if (!doc?.uri) return;
-          // @ts-ignore React Native FormData file shape
-          fd.append("feed-file", { uri: doc.uri, name: doc.name, type: doc.mimeType } as any);
         });
         fd.append("streamInfo", JSON.stringify({}));
       } else {
@@ -479,7 +430,7 @@ export function useUploadPost() {
 
   const upload = useCallback(
     async (p: UploadPayload) => {
-      const mode = resolveMode(p);
+      const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
       try {
         setIsUploading(true);
         setUploadStage("uploading");
@@ -604,13 +555,9 @@ export function useUploadPost() {
 
   const enqueueJob = useCallback(
     (p: UploadPayload): boolean => {
-      const mode = resolveMode(p);
+      const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
       const isShort = mode === "video" && p.postAsShort;
-      const postType = isShort
-        ? "short"
-        : mode === "video"
-          ? "video"
-          : POST_TYPE_BY_MODE[mode];
+      const postType = isShort ? "short" : mode === "video" ? "video" : mode === "audio" ? "feed-audio" : mode === "images" ? "feed-images" : "feed-simple";
 
       const video: SerializedMedia | null = p.pickedVideo
         ? {
@@ -633,13 +580,6 @@ export function useUploadPost() {
         mimeType: guessMime(img.uri, "image/jpeg"),
       }));
 
-      const files: SerializedMedia[] = (p.pickedFiles ?? []).map((doc) => ({
-        uri: doc.uri,
-        name: doc.name,
-        mimeType: doc.mimeType,
-        size: doc.size,
-      }));
-
       const streamInfo = (mode === "video" && !isShort) ? buildStreamInfo(p.monetization, p.postChainId) : {};
       const thumb = p.coverUri || p.thumbnailUri || null;
 
@@ -657,7 +597,6 @@ export function useUploadPost() {
         images,
         video,
         audio,
-        files,
         thumbnailUri: thumb,
         streamInfoJson: JSON.stringify((mode === "video" && !isShort) ? filteredStreamInfo(streamInfo) : {}),
         pollData: p.pollData,
@@ -728,9 +667,8 @@ export function useUploadPost() {
       thumbnailUri: string | null;
       quotedTokenId: number;
     }): boolean => {
-      // Quote posts don't offer a file picker, so `mode` never lands on "files" here.
-      const mode = resolveMode(p);
-      const postType = mode === "video" ? "video" : POST_TYPE_BY_MODE[mode];
+      const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
+      const postType = mode === "video" ? "video" : mode === "audio" ? "feed-audio" : mode === "images" ? "feed-images" : "feed-simple";
 
       const video: SerializedMedia | null = p.pickedVideo
         ? { uri: p.pickedVideo.uri, name: getFileName(p.pickedVideo.uri, "video.mp4"), mimeType: guessMime(p.pickedVideo.uri, "video/mp4") }
