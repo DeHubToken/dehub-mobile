@@ -68,13 +68,16 @@ import ScheduleSheet from "../components/Upload/ScheduleSheet";
 import { useDrafts } from "../hooks/useDrafts";
 import type { Draft } from "../hooks/useDrafts";
 import GlassModal from "../components/ui/GlassModal";
+import EnhanceSheet from "../components/Upload/EnhanceSheet";
+import EmojiSheet from "../components/Upload/EmojiSheet";
 import type { UploadPayload, UploadStage, PickedAudio } from "../hooks/useUploadPost";
 import type { LiveUploadPayload } from "../hooks/useUploadLive";
 import type { AppStackParamList } from "../navigation/types";
 import { useStages } from "../context/StageContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 import QuotedPostEmbed from "../components/common/QuotedPostEmbed";
-import { sendAIChat } from "../services/ai.service";
+import { enhanceText } from "../services/ai.service";
+import type { EnhanceMode } from "../services/ai.service";
 
 const TITLE_MAX = 140;
 const DESCRIPTION_MAX = 500;
@@ -90,6 +93,13 @@ const MAX_SHORT_DURATION_MS = 90_000; // 90 seconds
 
 type PickedAsset = ImagePicker.ImagePickerAsset;
 type MediaMode = "none" | "images" | "video" | "audio" | "files";
+
+/**
+ * Some Android ContentProviders hand back a null `type`, so fall back to the
+ * MIME type before assuming a pick is a photo.
+ */
+const isVideoAsset = (asset: PickedAsset): boolean =>
+  asset.type === "video" || !!asset.mimeType?.startsWith("video/");
 
 const isPortraitVideo = (asset: PickedAsset): boolean =>
   (asset.height ?? 0) > (asset.width ?? 0);
@@ -144,7 +154,7 @@ export default function UploadScreen() {
   const titleRef = useRef<TextInput>(null);
   const descriptionRef = useRef<TextInput>(null);
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
-  const { saveDraft, deleteDraft } = useDrafts(authUser?.address);
+  const { drafts, saveDraft, deleteDraft } = useDrafts(authUser?.address);
 
   const avatarUri = useMemo(
     () => getAvatarUrl(authUser?.avatarImageUrl),
@@ -216,6 +226,11 @@ export default function UploadScreen() {
   const [showDiscardModal, setShowDiscardModal] = useState(false);
   const [isEnhancing, setIsEnhancing] = useState(false);
   const [isEnhancingDesc, setIsEnhancingDesc] = useState(false);
+  const [showEnhanceSheet, setShowEnhanceSheet] = useState(false);
+  const [showDescEnhanceSheet, setShowDescEnhanceSheet] = useState(false);
+  const [showEmojiSheet, setShowEmojiSheet] = useState(false);
+  /** Caret position in the body input, so emoji land where the cursor is. */
+  const bodySelectionRef = useRef({ start: 0, end: 0 });
   /** Track the draft id if we're editing one (so we can delete on save/post) */
   const restoredDraftIdRef = useRef<string | null>(null);
 
@@ -282,18 +297,34 @@ export default function UploadScreen() {
   const showExtras = isLiveMode || hasContent || showDescription
     || description.length > 0 || categories.length > 0;
 
-  // image button disabled when: video/audio/files selected OR 4 images already OR recording
-  const imageDisabled = mediaMode === "video" || mediaMode === "audio" || mediaMode === "files" || pickedImages.length >= IMAGES_MAX || isAudioRecording;
-  // video button disabled when: any media is selected OR recording
-  const videoDisabled = hasMedia || isAudioRecording;
+  // The action bar hides a control the draft can't use rather than dimming it,
+  // matching dehubweb's PostActionBar — which also keeps the row short enough to
+  // breathe on a narrow phone.
+
+  // One attach button covers photos and videos: gone once a video, audio clip or
+  // file is on the draft, or the 4-image cap is reached.
+  const mediaDisabled =
+    mediaMode === "video" ||
+    mediaMode === "audio" ||
+    mediaMode === "files" ||
+    pickedImages.length >= IMAGES_MAX ||
+    isAudioRecording;
+  const showMediaButton = !isLiveMode && !mediaDisabled;
+  // Camera only ever starts a fresh capture, so it goes as soon as media exists.
+  const showCameraButton = !isLiveMode && !hasMedia && !isAudioRecording;
   // audio button disabled when: any media is selected (but not during recording — that's the audio button's own mode)
   const audioDisabled = hasMedia;
   // file button disabled when other media is selected, or the cap is reached.
   // A file post carries only files — the backend maps one post to one postType.
   const fileDisabled =
     (hasMedia && mediaMode !== "files") || pickedFiles.length >= MAX_ATTACHMENTS || isAudioRecording;
+  const showFileButton = !isLiveMode && !isQuoteMode && !fileDisabled;
   // live button disabled when media is already selected OR recording
   const liveDisabled = hasMedia || isAudioRecording;
+  const showLiveButton = !isQuoteMode && (isLiveMode || !liveDisabled);
+  // Polls are text-only on web too — no video, no images.
+  const showPollButton =
+    !isLiveMode && !isQuoteMode && !pickedVideo && pickedImages.length === 0;
 
   const player = useVideoPlayer(pickedVideo?.uri ?? null, (p) => {
     p.loop = true;
@@ -399,55 +430,78 @@ export default function UploadScreen() {
     }
   }, [nav, formHasContent]);
 
-  const handleEnhanceText = useCallback(async () => {
-    const text = bodyText.trim();
-    if (!text || isEnhancing) return;
-    setIsEnhancing(true);
-    try {
-      const res = await sendAIChat({
-        messages: [
-          {
-            role: "user",
-            content: `Enhance this social media post text. Make it more engaging, add relevant emojis, and keep it concise. Only return the enhanced text, nothing else:\n\n${text}`,
-          },
-        ],
-        isAuthenticated: !!authUser,
-      });
-      if (res.response) {
-        const enhanced = res.response.trim().slice(0, TITLE_MAX);
-        setBodyText(enhanced);
+  /**
+   * Runs the body copy through the shared `enhance-text` edge function — the
+   * same modes and style ids dehubweb's Enhance drawer uses, so both apps
+   * produce the same rewrite for a given choice.
+   */
+  const handleEnhanceText = useCallback(
+    async (mode: EnhanceMode, styleId?: string) => {
+      const text = bodyText.trim();
+      if (!text) {
+        toastError("Enter some text first");
+        return;
       }
-    } catch (e: any) {
-      toastError(e?.message || "Failed to enhance text");
-    } finally {
-      setIsEnhancing(false);
-    }
-  }, [bodyText, isEnhancing, authUser]);
+      if (isEnhancing) return;
+      setIsEnhancing(true);
+      try {
+        const enhanced = await enhanceText(text, mode, styleId);
+        setBodyText(enhanced.slice(0, TITLE_MAX));
+        toastSuccess(mode === "style" ? "Style applied!" : "Text updated!");
+      } catch (e: any) {
+        toastError(e?.message || "Failed to process text");
+      } finally {
+        setIsEnhancing(false);
+      }
+    },
+    [bodyText, isEnhancing],
+  );
 
-  const handleEnhanceDescription = useCallback(async () => {
-    const text = description.trim();
-    if (!text || isEnhancingDesc) return;
-    setIsEnhancingDesc(true);
-    try {
-      const res = await sendAIChat({
-        messages: [
-          {
-            role: "user",
-            content: `Enhance this social media post description. Make it more detailed and engaging, add relevant emojis, and keep it natural. Only return the enhanced text, nothing else:\n\n${text}`,
-          },
-        ],
-        isAuthenticated: !!authUser,
-      });
-      if (res.response) {
-        const enhanced = res.response.trim().slice(0, DESCRIPTION_MAX);
-        setDescription(enhanced);
+  const handleEnhanceDescription = useCallback(
+    async (mode: EnhanceMode, styleId?: string) => {
+      const text = description.trim();
+      if (!text) {
+        toastError("Enter some text first");
+        return;
       }
-    } catch (e: any) {
-      toastError(e?.message || "Failed to enhance description");
-    } finally {
-      setIsEnhancingDesc(false);
-    }
-  }, [description, isEnhancingDesc, authUser]);
+      if (isEnhancingDesc) return;
+      setIsEnhancingDesc(true);
+      try {
+        const enhanced = await enhanceText(text, mode, styleId);
+        setDescription(enhanced.slice(0, DESCRIPTION_MAX));
+        toastSuccess(mode === "style" ? "Style applied!" : "Text updated!");
+      } catch (e: any) {
+        toastError(e?.message || "Failed to process text");
+      } finally {
+        setIsEnhancingDesc(false);
+      }
+    },
+    [description, isEnhancingDesc],
+  );
+
+  /** "Generate Content" — hands off to the assistant, as web does. */
+  const handleGenerateContent = useCallback(() => {
+    nav.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: ScreenNames.Root, params: { screen: ScreenNames.AIChat } }],
+      }),
+    );
+  }, [nav]);
+
+  /** Emoji land at the caret, not appended, matching web's insertEmoji. */
+  const handleInsertEmoji = useCallback((emoji: string) => {
+    setBodyText((prev) => {
+      const { start, end } = bodySelectionRef.current;
+      const safeStart = Math.min(Math.max(start, 0), prev.length);
+      const safeEnd = Math.min(Math.max(end, safeStart), prev.length);
+      const next = prev.slice(0, safeStart) + emoji + prev.slice(safeEnd);
+      if (next.length > TITLE_MAX) return prev;
+      const caret = safeStart + emoji.length;
+      bodySelectionRef.current = { start: caret, end: caret };
+      return next;
+    });
+  }, []);
 
   const handleBodyChange = useCallback((text: string) => {
     if (text.length <= TITLE_MAX) bodyMentions.handleChangeText(text);
@@ -484,6 +538,12 @@ export default function UploadScreen() {
 
   const soundtrackEnabled =
     !isLiveMode && !isQuoteMode && !postAsShort && (mediaMode === "video" || mediaMode === "images");
+
+  // The Music button carries the audio-post options (upload/record) and the
+  // soundtrack search, so it stays as long as either group has something to
+  // offer. Files are exclusive, so it goes once any is attached.
+  const showAudioButton =
+    !isLiveMode && pickedFiles.length === 0 && (!audioDisabled || soundtrackEnabled);
 
   // Regular and quote uploads are now background-queued (not blocking).
   // Only live mode blocks the screen.
@@ -764,44 +824,6 @@ export default function UploadScreen() {
     nav.goBack();
   }, [nav]);
 
-  const handlePickImage = useCallback(async () => {
-    if (imageDisabled) return;
-    try {
-      await runWithPermissions(["photos"], async () => {
-        const remaining = IMAGES_MAX - pickedImages.length;
-        const result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ["images"],
-          allowsMultipleSelection: true,
-          selectionLimit: remaining,
-          quality: 0.8,
-        });
-
-        if (!result.canceled && result.assets?.length) {
-          // Filter out oversized images
-          const validAssets: PickedAsset[] = [];
-          for (const asset of result.assets) {
-            try {
-              const info = await FileSystem.getInfoAsync(asset.uri);
-              const size = (info as any)?.size as number | undefined;
-              if (size && size > MAX_IMAGE_SIZE_BYTES) {
-                toastError(`Image exceeds 20 MB limit and was skipped.`);
-                continue;
-              }
-            } catch {}
-            validAssets.push(asset);
-          }
-          if (validAssets.length > 0) {
-            setPickedImages((prev) =>
-              [...prev, ...validAssets].slice(0, IMAGES_MAX),
-            );
-          }
-        }
-      });
-    } catch (err) {
-      console.error("[UploadScreen] image pick error:", err);
-    }
-  }, [imageDisabled, pickedImages.length]);
-
   const generateThumbnail = useCallback(async (uri: string) => {
     try {
       const res = await VideoThumbnails.getThumbnailAsync(uri, {
@@ -838,36 +860,6 @@ export default function UploadScreen() {
     setCoverHidden((prev) => !prev);
   }, []);
 
-  const handlePickVideo = useCallback(async () => {
-    if (videoDisabled) return;
-    try {
-      await runWithPermissions(["photos"], async () => {
-        const result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ["videos"],
-          allowsMultipleSelection: false,
-          quality: 0.8,
-        });
-
-        if (!result.canceled && result.assets?.[0]) {
-          const asset = result.assets[0];
-          try {
-            const info = await FileSystem.getInfoAsync(asset.uri);
-            const size = (info as any)?.size as number | undefined;
-            if (size && size > MAX_VIDEO_SIZE_BYTES) {
-              toastError("Video exceeds 200 MB limit. Please choose a smaller file.");
-              return;
-            }
-          } catch {}
-          setPickedVideo(asset);
-          setCoverUri(null);
-          generateThumbnail(asset.uri);
-        }
-      });
-    } catch (err) {
-      console.error("[UploadScreen] video pick error:", err);
-    }
-  }, [videoDisabled, generateThumbnail]);
-
   const handleChangeVideo = useCallback(async () => {
     try {
       await runWithPermissions(["photos"], async () => {
@@ -896,6 +888,136 @@ export default function UploadScreen() {
       console.error("[UploadScreen] video change error:", err);
     }
   }, [generateThumbnail]);
+
+  /** Size-checks a video asset and adopts it as the post's media. */
+  const adoptVideoAsset = useCallback(
+    async (asset: PickedAsset): Promise<boolean> => {
+      try {
+        const info = await FileSystem.getInfoAsync(asset.uri);
+        const size = (info as any)?.size as number | undefined;
+        if (size && size > MAX_VIDEO_SIZE_BYTES) {
+          toastError("Video exceeds 200 MB limit. Please choose a smaller file.");
+          return false;
+        }
+      } catch {}
+      setPickedVideo(asset);
+      setCoverUri(null);
+      generateThumbnail(asset.uri);
+      return true;
+    },
+    [generateThumbnail],
+  );
+
+  /** Size-filters image assets and appends them up to the 4-image cap. */
+  const adoptImageAssets = useCallback(async (assets: PickedAsset[]) => {
+    const validAssets: PickedAsset[] = [];
+    for (const asset of assets) {
+      try {
+        const info = await FileSystem.getInfoAsync(asset.uri);
+        const size = (info as any)?.size as number | undefined;
+        if (size && size > MAX_IMAGE_SIZE_BYTES) {
+          toastError("Image exceeds 20 MB limit and was skipped.");
+          continue;
+        }
+      } catch {}
+      validAssets.push(asset);
+    }
+    if (validAssets.length > 0) {
+      setPickedImages((prev) => [...prev, ...validAssets].slice(0, IMAGES_MAX));
+    }
+  }, []);
+
+  /** "Add more" tile on the image grid — already in image mode, so images only. */
+  const handlePickMoreImages = useCallback(async () => {
+    if (pickedImages.length >= IMAGES_MAX) return;
+    try {
+      await runWithPermissions(["photos"], async () => {
+        const result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ["images"],
+          allowsMultipleSelection: true,
+          selectionLimit: IMAGES_MAX - pickedImages.length,
+          quality: 0.8,
+        });
+        if (result.canceled || !result.assets?.length) return;
+        await adoptImageAssets(result.assets);
+      });
+    } catch (err) {
+      console.error("[UploadScreen] image pick error:", err);
+    }
+  }, [pickedImages.length, adoptImageAssets]);
+
+  /**
+   * One attach button for photos and videos. A post carries either a single
+   * video or up to four images — never both — the same rule dehubweb enforces
+   * with its two separate inputs, so a mixed selection keeps the video and
+   * says so rather than silently dropping half the pick.
+   */
+  const handlePickMedia = useCallback(async () => {
+    if (mediaDisabled) return;
+    try {
+      await runWithPermissions(["photos"], async () => {
+        const remaining = IMAGES_MAX - pickedImages.length;
+        const result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ["images", "videos"],
+          allowsMultipleSelection: true,
+          selectionLimit: remaining,
+          quality: 0.8,
+        });
+
+        if (result.canceled || !result.assets?.length) return;
+
+        const videos = result.assets.filter(isVideoAsset);
+        const images = result.assets.filter((a) => !isVideoAsset(a));
+
+        if (videos.length > 0) {
+          if (pickedImages.length > 0) {
+            toastError("A post can hold images or a video, not both. Remove the images first.");
+            return;
+          }
+          if (videos.length > 1 || images.length > 0) {
+            toastError("Only one video per post — kept the first one.");
+          }
+          await adoptVideoAsset(videos[0]);
+          return;
+        }
+
+        await adoptImageAssets(images);
+      });
+    } catch (err) {
+      console.error("[UploadScreen] media pick error:", err);
+    }
+  }, [mediaDisabled, pickedImages.length, adoptVideoAsset, adoptImageAssets]);
+
+  /**
+   * Camera capture — the native camera handles the photo/video toggle itself,
+   * which is mobile's stand-in for web's CameraCaptureModal.
+   */
+  const handleCaptureMedia = useCallback(async () => {
+    if (mediaDisabled) return;
+    try {
+      await runWithPermissions(["camera", "microphone"], async () => {
+        const result = await ImagePicker.launchCameraAsync({
+          mediaTypes: ["images", "videos"],
+          quality: 0.8,
+        });
+
+        if (result.canceled || !result.assets?.[0]) return;
+        const asset = result.assets[0];
+
+        if (isVideoAsset(asset)) {
+          if (pickedImages.length > 0) {
+            toastError("A post can hold images or a video, not both. Remove the images first.");
+            return;
+          }
+          await adoptVideoAsset(asset);
+          return;
+        }
+        await adoptImageAssets([asset]);
+      });
+    } catch (err) {
+      console.error("[UploadScreen] camera capture error:", err);
+    }
+  }, [mediaDisabled, pickedImages.length, adoptVideoAsset, adoptImageAssets]);
 
   const handleRemoveImage = useCallback((index: number) => {
     setPickedImages((prev) => {
@@ -1262,16 +1384,46 @@ export default function UploadScreen() {
         </View>
 
         <View className="flex-row items-center">
+          {/* Schedule and Drafts sit beside the chain selector, the same cluster
+              web puts them in — and off the action bar, which frees a slot. */}
+          {!isLiveMode && !isQuoteMode && (
+            <TouchableOpacity
+              onPress={() => setShowScheduleSheet(true)}
+              activeOpacity={0.7}
+              className="mr-3 w-9 h-9 rounded-xl items-center justify-center border"
+              style={{
+                backgroundColor: scheduledDate ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.1)",
+                borderColor: scheduledDate ? "rgba(245,158,11,0.4)" : "rgba(255,255,255,0.2)",
+              }}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              accessibilityRole="button"
+              accessibilityLabel={scheduledDate ? "Edit schedule" : "Schedule post"}
+            >
+              <Icon name="Calendar" size={16} color="#fff" />
+            </TouchableOpacity>
+          )}
+
           {formHasContent && !activeIsUploading && (
             <TouchableOpacity
               onPress={handleDraftButton}
               activeOpacity={0.7}
-              className="mr-3 w-9 h-9 rounded-full bg-white/10 items-center justify-center border border-white/20"
+              className="mr-3 w-9 h-9 rounded-xl bg-white/10 items-center justify-center border border-white/20"
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               accessibilityRole="button"
               accessibilityLabel="Save draft"
             >
               <Icon name="Save" size={16} color="#fff" />
+              {/* Saved-draft count, as web badges its Drafts button */}
+              {drafts.length > 0 && (
+                <View
+                  className="absolute w-4 h-4 rounded-full bg-white items-center justify-center"
+                  style={{ top: -4, right: -4 }}
+                >
+                  <Text className="text-black font-bold" style={{ fontSize: 10 }}>
+                    {drafts.length}
+                  </Text>
+                </View>
+              )}
             </TouchableOpacity>
           )}
 
@@ -1281,16 +1433,18 @@ export default function UploadScreen() {
             activeOpacity={0.8}
             className="h-10 px-5 rounded-full items-center justify-center"
             accessibilityRole="button"
-            accessibilityLabel={isLiveMode ? "Go live" : "Post"}
+            accessibilityLabel={isLiveMode ? "Go live" : scheduledDate ? "Schedule" : "Post"}
             style={{
-              backgroundColor: (isLiveMode ? canGoLive : canPost) ? '#fff' : 'rgba(255,255,255,0.1)',
+              backgroundColor: (isLiveMode ? canGoLive : canPost)
+                ? (!isLiveMode && scheduledDate ? '#F59E0B' : '#fff')
+                : 'rgba(255,255,255,0.1)',
             }}
           >
             {activeIsUploading ? (
               <ActivityIndicator size="small" color={(isLiveMode ? canGoLive : canPost) ? '#000' : '#6F7174'} />
             ) : (
               <Icon
-                name={isLiveMode ? "Radio" : "Send"}
+                name={isLiveMode ? "Radio" : scheduledDate ? "Clock" : "Send"}
                 size={18}
                 color={(isLiveMode ? canGoLive : canPost) ? '#000' : '#6F7174'}
               />
@@ -1302,15 +1456,15 @@ export default function UploadScreen() {
       {scheduledDate && (
         <View
           className="mx-4 mb-2 flex-row items-center px-3 py-2 rounded-xl"
-          style={{ backgroundColor: "rgba(255,255,255,0.15)", borderWidth: 1, borderColor: "rgba(255,255,255,0.3)" }}
+          style={{ backgroundColor: "rgba(245,158,11,0.2)", borderWidth: 1, borderColor: "rgba(245,158,11,0.4)" }}
         >
           <TouchableOpacity
             onPress={() => setShowScheduleSheet(true)}
             activeOpacity={0.7}
             className="flex-row items-center flex-1"
           >
-            <Icon name="Clock" size={14} color="#fff" />
-            <Text className="text-theme-neutrals-200 text-xs font-medium ml-2">
+            <Icon name="Clock" size={14} color="#FBBF24" />
+            <Text className="text-xs font-medium ml-2" style={{ color: "#FBBF24" }}>
               Scheduled for{" "}
               {scheduledDate.toLocaleString(undefined, {
                 month: "short",
@@ -1358,7 +1512,10 @@ export default function UploadScreen() {
               ref={titleRef}
               value={bodyText}
               onChangeText={handleBodyChange}
-              onSelectionChange={bodyMentions.handleSelectionChange}
+              onSelectionChange={(e) => {
+                bodySelectionRef.current = e.nativeEvent.selection;
+                bodyMentions.handleSelectionChange(e);
+              }}
               placeholder={isQuoteMode ? "Add a comment…" : "What's happening?"}
               placeholderTextColor="#6F7174"
               maxLength={TITLE_MAX}
@@ -1380,10 +1537,12 @@ export default function UploadScreen() {
 
             <View className="flex-row items-center justify-between mt-1">
               <TouchableOpacity
-                onPress={handleEnhanceText}
+                onPress={() => setShowEnhanceSheet(true)}
                 disabled={!bodyText.trim() || isEnhancing}
                 activeOpacity={0.7}
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                accessibilityRole="button"
+                accessibilityLabel="Enhance text"
                 style={{ opacity: !bodyText.trim() || isEnhancing ? 0.3 : 1 }}
               >
                 {isEnhancing ? (
@@ -1503,7 +1662,7 @@ export default function UploadScreen() {
                 {pickedImages.length < IMAGES_MAX && (
                   <View className="w-1/2 p-1">
                     <TouchableOpacity
-                      onPress={handlePickImage}
+                      onPress={handlePickMoreImages}
                       className="h-40 rounded-xl border border-dashed border-theme-neutrals-700 bg-theme-neutrals-800 items-center justify-center"
                     >
                       <Icon name="Plus" size={28} color="#6F7174" />
@@ -1936,10 +2095,12 @@ export default function UploadScreen() {
                       />
                       <View className="flex-row items-center justify-between mt-1">
                         <TouchableOpacity
-                          onPress={handleEnhanceDescription}
+                          onPress={() => setShowDescEnhanceSheet(true)}
                           disabled={!description.trim() || isEnhancingDesc}
                           activeOpacity={0.7}
                           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                          accessibilityRole="button"
+                          accessibilityLabel="Enhance description"
                           style={{ opacity: !description.trim() || isEnhancingDesc ? 0.3 : 1 }}
                         >
                           {isEnhancingDesc ? (
@@ -2036,133 +2197,160 @@ export default function UploadScreen() {
         className="flex-row items-center px-4 h-12"
         style={{ marginBottom: bottomPad > 0 ? bottomPad : 0 }}
       >
-        {!isLiveMode && (
-          <>
-            <TouchableOpacity
-              onPress={handlePickImage}
-              disabled={imageDisabled}
-              activeOpacity={0.7}
-              className="mr-4"
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              accessibilityRole="button"
-              accessibilityLabel="Add images"
-              style={{ opacity: imageDisabled ? 0.3 : 1 }}
-            >
-              <Icon name="Image" size={24} color="#fff" />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={handlePickVideo}
-              disabled={videoDisabled}
-              activeOpacity={0.7}
-              className="mr-4"
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              accessibilityRole="button"
-              accessibilityLabel="Add video"
-              style={{ opacity: videoDisabled ? 0.3 : 1 }}
-            >
-              <Icon name="Video" size={24} color="#fff" />
-            </TouchableOpacity>
-
-            <View className="mr-4" style={{ position: "relative", zIndex: 100 }}>
-              <TouchableOpacity
-                onPress={() => setShowAudioMenu((prev) => !prev)}
-                disabled={audioDisabled}
-                activeOpacity={0.7}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                accessibilityRole="button"
-                accessibilityLabel="Add audio"
-                style={{ opacity: audioDisabled ? 0.3 : 1 }}
-              >
-                <Icon name="Music" size={22} color="#fff" />
-              </TouchableOpacity>
-
-              {showAudioMenu && (
-                <>
-                  <Pressable
-                    onPress={() => setShowAudioMenu(false)}
-                    style={{
-                      position: "absolute",
-                      top: -1000,
-                      left: -1000,
-                      right: -1000,
-                      bottom: -1000,
-                      zIndex: 98,
-                    }}
-                  />
-                  <View
-                    className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl"
-                    style={{
-                      position: "absolute",
-                      bottom: 44,
-                      left: -8,
-                      zIndex: 99,
-                      minWidth: 160,
-                      shadowColor: "#000",
-                      shadowOffset: { width: 0, height: 4 },
-                      shadowOpacity: 0.4,
-                      shadowRadius: 8,
-                      elevation: 8,
-                    }}
-                  >
-                    <TouchableOpacity
-                      onPress={handleStartAudioRecording}
-                      activeOpacity={0.7}
-                      className="flex-row items-center px-4 py-3"
-                    >
-                      <Icon name="Mic" size={20} color="#fff" />
-                      <Text className="text-white text-sm ml-3">Record Voice</Text>
-                    </TouchableOpacity>
-                    <View className="h-px bg-theme-neutrals-700 mx-3" />
-                    <TouchableOpacity
-                      onPress={handlePickAudioFile}
-                      activeOpacity={0.7}
-                      className="flex-row items-center px-4 py-3"
-                    >
-                      <Icon name="CloudUpload" size={20} color="#fff" />
-                      <Text className="text-white text-sm ml-3">Upload Audio</Text>
-                    </TouchableOpacity>
-                  </View>
-                </>
-              )}
-            </View>
-
-            {/* Soundtrack picker button — visible for video/image posts */}
-            {soundtrackEnabled && (
-              <TouchableOpacity
-                onPress={() => setShowSoundPicker(true)}
-                activeOpacity={0.7}
-                className="mr-4"
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                accessibilityRole="button"
-                accessibilityLabel="Add soundtrack"
-              >
-                <Icon
-                  name="Music"
-                  size={22}
-                  color={attachedSound ? "#fff" : "#A1A1AA"}
-                />
-              </TouchableOpacity>
-            )}
-          </>
+        {/* Camera — leftmost, as on web */}
+        {showCameraButton && (
+          <TouchableOpacity
+            onPress={handleCaptureMedia}
+            activeOpacity={0.7}
+            className="mr-4"
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            accessibilityRole="button"
+            accessibilityLabel="Take photo or record video"
+          >
+            <Icon name="Camera" size={24} color="#fff" />
+          </TouchableOpacity>
         )}
 
-        {!isLiveMode && !isQuoteMode && (
+        {/* One attach button for photos and videos */}
+        {showMediaButton && (
+          <TouchableOpacity
+            onPress={handlePickMedia}
+            activeOpacity={0.7}
+            className="mr-4"
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            accessibilityRole="button"
+            accessibilityLabel="Add photos or video"
+          >
+            <Icon name="Image" size={24} color="#fff" />
+          </TouchableOpacity>
+        )}
+
+        {showFileButton && (
           <TouchableOpacity
             onPress={handlePickFiles}
-            disabled={fileDisabled}
             activeOpacity={0.7}
             className="mr-4"
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             accessibilityRole="button"
             accessibilityLabel="Attach files"
-            style={{ opacity: fileDisabled ? 0.3 : 1 }}
           >
             <Icon name="Paperclip" size={22} color={pickedFiles.length > 0 ? "#fff" : "#A1A1AA"} />
           </TouchableOpacity>
         )}
 
-        {!isLiveMode && !isQuoteMode && (
+        {/* Audio: upload, record and sound search all live behind one button,
+            the same grouping web uses for its Music popover. */}
+        {showAudioButton && (
+          <View className="mr-4" style={{ position: "relative", zIndex: 100 }}>
+            <TouchableOpacity
+              onPress={() => setShowAudioMenu((prev) => !prev)}
+              activeOpacity={0.7}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              accessibilityRole="button"
+              accessibilityLabel="Audio options"
+            >
+              <Icon
+                name="Music"
+                size={22}
+                color={pickedAudio || attachedSound ? "#fff" : "#A1A1AA"}
+              />
+            </TouchableOpacity>
+
+            {showAudioMenu && (
+              <>
+                <Pressable
+                  onPress={() => setShowAudioMenu(false)}
+                  style={{
+                    position: "absolute",
+                    top: -1000,
+                    left: -1000,
+                    right: -1000,
+                    bottom: -1000,
+                    zIndex: 98,
+                  }}
+                />
+                <View
+                  className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl"
+                  style={{
+                    position: "absolute",
+                    bottom: 44,
+                    left: -8,
+                    zIndex: 99,
+                    minWidth: 160,
+                    shadowColor: "#000",
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.4,
+                    shadowRadius: 8,
+                    elevation: 8,
+                  }}
+                >
+                  {!audioDisabled && (
+                    <>
+                      <TouchableOpacity
+                        onPress={handlePickAudioFile}
+                        activeOpacity={0.7}
+                        className="flex-row items-center px-4 py-3"
+                      >
+                        <Icon name="CloudUpload" size={20} color="#fff" />
+                        <Text className="text-white text-sm ml-3">Upload Audio</Text>
+                      </TouchableOpacity>
+                      <View className="h-px bg-theme-neutrals-700 mx-3" />
+                      <TouchableOpacity
+                        onPress={handleStartAudioRecording}
+                        activeOpacity={0.7}
+                        className="flex-row items-center px-4 py-3"
+                      >
+                        <Icon name="Mic" size={20} color="#fff" />
+                        <Text className="text-white text-sm ml-3">Record Voice</Text>
+                      </TouchableOpacity>
+                    </>
+                  )}
+                  {soundtrackEnabled && (
+                    <>
+                      {!audioDisabled && <View className="h-px bg-theme-neutrals-700 mx-3" />}
+                      <TouchableOpacity
+                        onPress={() => {
+                          setShowAudioMenu(false);
+                          setShowSoundPicker(true);
+                        }}
+                        activeOpacity={0.7}
+                        className="flex-row items-center px-4 py-3"
+                      >
+                        <Icon name="Search" size={20} color="#fff" />
+                        <Text className="text-white text-sm ml-3">Search Sounds</Text>
+                      </TouchableOpacity>
+                    </>
+                  )}
+                </View>
+              </>
+            )}
+          </View>
+        )}
+
+        {showLiveButton && (
+          <TouchableOpacity
+            onPress={() => {
+              if (isLiveMode) {
+                handleToggleLiveMode();
+              } else {
+                setShowLiveOptions(true);
+              }
+            }}
+            activeOpacity={0.7}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            className="mr-4"
+            accessibilityRole="button"
+            accessibilityLabel={isLiveMode ? "Exit livestream mode" : "Live features"}
+          >
+            <Icon
+              name="Radio"
+              size={24}
+              color={isLiveMode ? "#EF4444" : "#fff"}
+            />
+          </TouchableOpacity>
+        )}
+
+        {showPollButton && (
           <TouchableOpacity
             onPress={handleTogglePoll}
             activeOpacity={0.7}
@@ -2175,43 +2363,17 @@ export default function UploadScreen() {
           </TouchableOpacity>
         )}
 
-        {!isLiveMode && !isQuoteMode && (
-          <TouchableOpacity
-            onPress={() => setShowScheduleSheet(true)}
-            activeOpacity={0.7}
-            className="mr-4"
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            accessibilityRole="button"
-            accessibilityLabel="Schedule post"
-          >
-            <Icon name="Clock" size={22} color={scheduledDate ? "#fff" : "#A1A1AA"} />
-          </TouchableOpacity>
-        )}
-
-        {!isQuoteMode && (
-          <TouchableOpacity
-            onPress={() => {
-              if (isLiveMode) {
-                handleToggleLiveMode();
-              } else if (!liveDisabled) {
-                setShowLiveOptions(true);
-              }
-            }}
-            disabled={liveDisabled && !isLiveMode}
-            activeOpacity={0.7}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            className={isLiveMode ? "" : "mr-4"}
-            accessibilityRole="button"
-            accessibilityLabel={isLiveMode ? "Exit livestream mode" : "Live features"}
-            style={{ opacity: liveDisabled && !isLiveMode ? 0.3 : 1 }}
-          >
-            <Icon
-              name="Radio"
-              size={24}
-              color={isLiveMode ? "#EF4444" : "#fff"}
-            />
-          </TouchableOpacity>
-        )}
+        {/* Emoji — always available, as on web */}
+        <TouchableOpacity
+          onPress={() => setShowEmojiSheet(true)}
+          activeOpacity={0.7}
+          className="mr-4"
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          accessibilityRole="button"
+          accessibilityLabel="Insert emoji"
+        >
+          <Icon name="Smile" size={22} color="#A1A1AA" />
+        </TouchableOpacity>
 
         <View className="flex-1" />
 
@@ -2342,6 +2504,26 @@ export default function UploadScreen() {
           </View>
         </View>
       </GlassModal>
+
+      <EnhanceSheet
+        visible={showEnhanceSheet}
+        onClose={() => setShowEnhanceSheet(false)}
+        onEnhance={handleEnhanceText}
+        onGenerateContent={handleGenerateContent}
+      />
+
+      <EnhanceSheet
+        visible={showDescEnhanceSheet}
+        onClose={() => setShowDescEnhanceSheet(false)}
+        onEnhance={handleEnhanceDescription}
+        onGenerateContent={handleGenerateContent}
+      />
+
+      <EmojiSheet
+        visible={showEmojiSheet}
+        onClose={() => setShowEmojiSheet(false)}
+        onSelect={handleInsertEmoji}
+      />
 
       <SoundPickerSheet
         visible={showSoundPicker}
