@@ -386,23 +386,48 @@ export function getDefaultNotificationPreferences(): NotificationPreferences {
     announcements: true,
   };
 
-  // Push defaults: likes off by default (can be noisy), rest on
-  const defaultPushPrefs: Record<NotificationPreferenceKey, boolean> = {
-    ...defaultTypePrefs,
-    likes: false, // Off by default for push (can be noisy)
-  };
-
+  // Push mirrors in-app: every type on. These defaults are only ever a display
+  // state — nothing writes them at load, and the server treats an absent key as
+  // enabled — so any type that starts `false` here describes something the
+  // backend is not doing, and only becomes true once an unrelated toggle saves
+  // the whole object. Keep the two lists in agreement.
   return {
     inAppEnabled: true,
     pushEnabled: true,
     inApp: { ...defaultTypePrefs },
-    push: { ...defaultPushPrefs },
+    push: { ...defaultTypePrefs },
     quietHours: {
       enabled: false,
       start: 22, // 10 PM
       end: 8,    // 8 AM (matching API docs)
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     },
+  };
+}
+
+/**
+ * Merge a saved preferences blob onto the defaults.
+ *
+ * A plain spread is shallow, so a saved `inApp` block replaces the defaults
+ * wholesale rather than filling the gaps: a user who has only ever toggled one
+ * type ends up with a single key and `undefined` for the other twelve. That
+ * currently survives because the screen reads every switch as `value ?? true`,
+ * but it means the in-memory object does not describe what the server will do,
+ * and `savePreferences` sends that object back verbatim. Merge per block so the
+ * two always agree, and so an unknown key from a newer client is preserved
+ * rather than dropped on the next save.
+ */
+export function mergePreferences(
+  defaults: NotificationPreferences,
+  saved: Partial<NotificationPreferences> | null | undefined,
+): NotificationPreferences {
+  if (!saved || typeof saved !== 'object') return defaults;
+  return {
+    ...defaults,
+    ...saved,
+    inApp: { ...defaults.inApp, ...(saved.inApp ?? {}) },
+    push: { ...defaults.push, ...(saved.push ?? {}) },
+    quietHours: { ...defaults.quietHours, ...(saved.quietHours ?? {}) },
   };
 }
 
@@ -573,6 +598,7 @@ export default {
   getCachedPushToken,
   clearPushTokenCache,
   getDefaultNotificationPreferences,
+  mergePreferences,
   updateNotificationPreferences,
   getBadgeCount,
   setBadgeCount,
