@@ -6,32 +6,34 @@
  * `src/config/arcade-games.ts` — same slugs, same copy, same art — so the two
  * catalogues stay diffable by eye.
  *
- * WHY THIS LIST IS SHORTER THAN THE WEB'S
- * ---------------------------------------
- * The web arcade carries three games. Two of them cannot be played on a
- * touchscreen, and that is a property of the engines rather than something to
- * be worked around from out here:
+ * HOW THE OTHER TWO BECAME PLAYABLE
+ * ---------------------------------
+ * This list was one game long when the arcade first shipped here. Claude of
+ * Duty and Jungle Trail are mouse-look-and-WASD upstream — between them four
+ * `requestPointerLock` calls, `mousemove` for the head and `keydown`/`keyup`
+ * for the legs, and no touch handler in either engine — so a phone reached the
+ * end of a long bake and stood somewhere it could neither move nor look. A
+ * WebView is never granted pointer lock, so a keyboard would not have helped.
  *
- *   - Claude of Duty is mouse-look and WASD. Its four `requestPointerLock`
- *     calls are the whole camera, and its single `touchstart` listener is in
- *     the gesture list that unlocks the audio context — not a control.
- *   - Jungle Trail is the same shape: `requestPointerLock` plus `mousemove`
- *     for the head and `keydown`/`keyup` for the legs, and no touch handler
- *     anywhere in `src/player/controller.js`.
+ * They are here now because dehubweb grew a touch layer for them
+ * (`public/arcade-touch/`, plus a per-game adapter in each vendored
+ * `index.html`): an on-screen stick, a look-drag surface and action buttons,
+ * behind a coarse-pointer check so a desktop player never sees them. Since the
+ * games are loaded from dehub.io rather than bundled, that arrived here with no
+ * release of this app at all.
  *
- * Neither engine has a mobile control scheme to fall back to, and a WebView
- * does not grant pointer lock, so a phone cannot drive either one even with a
- * keyboard attached. Both would boot to a world the player cannot move in.
- * They are therefore absent here rather than listed and disabled — a card that
- * exists only to say "not on this device" is worse than no card.
+ * WHAT THAT MEANS FOR THIS FILE
+ * -----------------------------
+ * Nothing in this repo makes those two playable, and nothing here can tell
+ * whether they still are. **If the stick or the buttons regress on the web,
+ * these two entries become cards that open a game nobody can move in** — the
+ * exact state they were kept out of the list to avoid. The guard against that
+ * lives with the code it protects, in dehubweb's `src/test/arcade.test.ts`,
+ * which asserts the adapters still line up with the engines they reach into.
  *
- * King's Gambit is a different engine and genuinely lands on touch: board and
- * camera are driven by pointer events with `setPointerCapture`, and the build
- * ships `@media (hover:none) and (pointer:coarse)` plus a phone breakpoint at
- * 600px. It is the whole mobile arcade today.
- *
- * If either of the other two ever grows touch controls, restoring it is one
- * entry in this file — nothing else here is per-game.
+ * King's Gambit needs none of that: it is a different engine that was always
+ * touch-native, with pointer events, `setPointerCapture`, a coarse-pointer
+ * media query and a phone breakpoint at 600px.
  *
  * WHERE THE GAMES COME FROM
  * -------------------------
@@ -88,6 +90,24 @@ export interface ArcadeGame {
    * tau and 86% at 2x tau; it is a shape, not a measurement.
    */
   bootTauMs: number;
+  /**
+   * `postMessage({ source })` value the game's own page uses to announce that
+   * its engine is up, for the games whose boot is long enough to need one.
+   *
+   * Without this the readout would retire at `onLoadEnd` — the moment the
+   * DOCUMENT finished loading, which for these two is the moment a bake of
+   * 25-60 seconds BEGINS, and it renders black throughout. That is
+   * indistinguishable from a crash, and is exactly how the web embed was first
+   * reported.
+   *
+   * It works here for a reason worth writing down, because the neighbouring
+   * exit bridge does not (see the note below): the readiness scripts are not
+   * gated on being framed. They call `parent.postMessage` unconditionally, and
+   * in a top-level WebView `parent === window`, so the message is dispatched to
+   * the game's own window — where the forwarder ArcadeGameScreen injects picks
+   * it up and hands it to React Native.
+   */
+  readySource?: string;
 }
 
 /**
@@ -127,6 +147,70 @@ export const ARCADE_GAMES: ArcadeGame[] = [
     // better than anything modelled out here, so this bar only covers the gap
     // before the WebView's first paint — hence the short tau.
     bootTauMs: 6000,
+  },
+  {
+    slug: 'claude-of-duty',
+    title: 'Claude of Duty',
+    tagline: 'A browser FPS with every asset generated at boot.',
+    description:
+      'A first-person shooter that ships no art at all: every mesh, texture, weapon and sound is generated in JavaScript on your machine while the level loads.',
+    action: 'Deploy',
+    art: `${WEBSITE_LINK}/arcade/claude-of-duty.webp`,
+    artAlt: 'First-person view down a weapon across the procedurally generated terrain of Claude of Duty',
+    credit: {
+      name: 'Claude of Duty',
+      url: 'https://github.com/mshumer/Claude-of-Duty',
+      licence: 'MIT',
+      licenceFile: 'LICENSE-ClaudeOfDuty',
+    },
+    /*
+     * Both settings are pinned rather than negotiated, because unlike the web
+     * host there is nothing here to negotiate with: that page picks `q` from a
+     * live GPU probe, and this side has no DOM to probe from before the WebView
+     * exists. `low` is what the same probe resolves to on any coarse pointer
+     * anyway, so this is the answer it would have reached, arrived at earlier.
+     *
+     * `prewarm=0` is not an optimisation but a hang fix — see the long note in
+     * dehubweb's WarGameLauncher, which owns this URL's history.
+     */
+    url: `${WEBSITE_LINK}/war-game/index.html?q=low&prewarm=0`,
+    // 25-60s of procedural baking with no loading UI of its own, and it renders
+    // black throughout. Without a readout that is indistinguishable from a
+    // crash, which is exactly how it was first reported on the web.
+    bootTauMs: 22000,
+    readySource: 'war-game',
+  },
+  {
+    slug: 'jungle-trail',
+    title: 'Jungle Trail',
+    tagline: 'Walk a rainforest that is built the moment you arrive.',
+    description:
+      'A first-person walk through a procedurally generated rainforest — a hundred thousand plants, weather and a day cycle, all grown on your machine as you arrive.',
+    action: 'Walk in',
+    art: `${WEBSITE_LINK}/arcade/jungle-trail.webp`,
+    artAlt: 'A path through dense procedurally generated rainforest canopy in Jungle Trail',
+    credit: {
+      name: 'Jungle Trail',
+      url: 'https://github.com/StarKnightt/jungle-trail',
+      licence: 'MIT',
+      licenceFile: 'LICENSE-JungleTrail',
+    },
+    /*
+     * The tier goes in the HASH, not the query string — that is where this
+     * engine reads its settings (`new URLSearchParams(location.hash.slice(1))`).
+     * `?tier=low` is silently ignored, which is the kind of bug that looks like
+     * "the quality setting does nothing".
+     *
+     * Pinning also switches OFF the engine's own adaptive downgrade, which is
+     * normally the better judge because it watches real frame times. It is
+     * still right here: this is a phone, which is the one case the web host
+     * pins for too.
+     */
+    url: `${WEBSITE_LINK}/jungle-game/index.html#tier=low`,
+    // The world is built inside one synchronous constructor, so there is no
+    // progress to report from inside — this bar is modelled against a clock.
+    bootTauMs: 14000,
+    readySource: 'jungle-game',
   },
 ];
 
