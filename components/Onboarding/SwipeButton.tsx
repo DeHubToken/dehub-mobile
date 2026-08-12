@@ -8,6 +8,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import Animated, {
   useSharedValue,
+  useDerivedValue,
   useAnimatedStyle,
   withTiming,
   withDelay,
@@ -23,10 +24,32 @@ const PILL_PADDING = 8;
 const ARROW_SIZE = BUTTON_HEIGHT - PILL_PADDING * 2; // Arrow fits inside pill with padding
 const PILL_BG_COLOR = "#FFFFFF1A"; // white/10
 const TEXT_COLOR = "#9CA3AF"; // gray-400
-const ACCENT_GRADIENT = [
-  "rgba(255,255,255,0.20)",
-  "rgba(255,255,255,0.08)",
+
+// Polished chrome, on the brand's #fff -> #6f6f76 silver ramp. The extra stops
+// are the specular banding that reads as metal: hotspot, roll-off, a dark
+// "horizon" band just past the middle, then a second, softer hotspot. It runs
+// diagonally, so the light re-rakes across the fill as the knob opens out into
+// the full pill. Matches the chrome 3D icons in the slide backgrounds.
+const CHROME_GRADIENT = [
+  "#FFFFFF",
+  "#DDDFE3",
+  "#9A9EA6",
+  "#6F6F76",
+  "#A8ACB3",
+  "#F4F5F7",
+  "#8E9299",
 ] as const;
+const CHROME_LOCATIONS = [0, 0.14, 0.33, 0.46, 0.62, 0.82, 1] as const;
+// Wet-looking gloss over the top half of the fill.
+const CHROME_SHEEN = [
+  "rgba(255,255,255,0.55)",
+  "rgba(255,255,255,0.06)",
+  "rgba(255,255,255,0)",
+] as const;
+const CHROME_SHEEN_LOCATIONS = [0, 0.35, 0.62] as const;
+// Icons sit on bright silver once the fill lands, so they have to go near-black.
+const ON_CHROME = "#0B0B0C";
+const CHROME_FADE = { duration: 160 } as const;
 
 export interface SwipeButtonRef {
   setProgress: (progress: number) => void;
@@ -109,19 +132,49 @@ const SwipeButton = forwardRef<SwipeButtonRef, SwipeButtonProps>(
       };
     });
 
+    // Eases to 1 once the chrome fill should be showing (pressed, swiping or
+    // complete). Animating here rather than per style keeps it a plain number,
+    // so the cross-fades below can multiply it.
+    const chromeIn = useDerivedValue(() =>
+      withTiming(
+        isPressed.value || swipeProgress.value > 0 || isComplete.value ? 1 : 0,
+        CHROME_FADE
+      )
+    );
+
     // Arrow button inner background (dark when idle)
     const innerBgStyle = useAnimatedStyle(() => ({
-      opacity: isPressed.value || swipeProgress.value > 0 || isComplete.value ? 0 : 1,
+      opacity: 1 - chromeIn.value,
     }));
 
-    // Gradient visibility (shown when pressed or swiping)
+    // Chrome fill visibility (shown when pressed or swiping)
     const gradientStyle = useAnimatedStyle(() => ({
-      opacity: isPressed.value || swipeProgress.value > 0 || isComplete.value ? 1 : 0,
+      opacity: chromeIn.value,
     }));
 
-    // Arrow icon style (fades out on complete)
-    const arrowStyle = useAnimatedStyle(() => ({
-      opacity: interpolate(isComplete.value, [0, 0.5], [1, 0]),
+    // Hairline rim that sells the polish; tracks the pill's expanding radius
+    const rimStyle = useAnimatedStyle(() => ({
+      opacity: chromeIn.value,
+      borderRadius: interpolate(
+        expandProgress.value,
+        [0, 1],
+        [ARROW_SIZE / 2, BUTTON_HEIGHT / 2],
+        Extrapolation.CLAMP
+      ),
+    }));
+
+    // Arrow icon fades out on complete. It is drawn twice — white over the dark
+    // idle knob, near-black over the chrome — and cross-faded with the fill.
+    const arrowLightStyle = useAnimatedStyle(() => ({
+      opacity:
+        interpolate(isComplete.value, [0, 0.5], [1, 0], Extrapolation.CLAMP) *
+        (1 - chromeIn.value),
+    }));
+
+    const arrowDarkStyle = useAnimatedStyle(() => ({
+      opacity:
+        interpolate(isComplete.value, [0, 0.5], [1, 0], Extrapolation.CLAMP) *
+        chromeIn.value,
     }));
 
     // Tick icon style (fades in on complete, then fades out when confetti shows)
@@ -216,29 +269,51 @@ const SwipeButton = forwardRef<SwipeButtonRef, SwipeButtonProps>(
             {/* Dark background (visible when idle) */}
             <Animated.View style={[styles.innerBg, innerBgStyle]} />
 
-            {/* Gradient background (visible when pressed/swiping/complete) */}
+            {/* Chrome fill (visible when pressed/swiping/complete) */}
             <Animated.View style={[StyleSheet.absoluteFill, gradientStyle]}>
               <LinearGradient
-                colors={ACCENT_GRADIENT}
+                colors={CHROME_GRADIENT}
+                locations={CHROME_LOCATIONS}
                 start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
+                end={{ x: 1, y: 1 }}
                 style={styles.gradient}
+              />
+              <LinearGradient
+                colors={CHROME_SHEEN}
+                locations={CHROME_SHEEN_LOCATIONS}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 0, y: 1 }}
+                style={StyleSheet.absoluteFill}
+                pointerEvents="none"
               />
             </Animated.View>
 
-            {/* Arrow icon */}
-            <Animated.View style={[styles.iconContainer, arrowStyle]}>
+            {/* Rim highlight around the chrome */}
+            <Animated.View
+              style={[styles.rim, rimStyle]}
+              pointerEvents="none"
+            />
+
+            {/* Arrow icon — white on the idle knob, near-black on the chrome */}
+            <Animated.View style={[styles.iconContainer, arrowLightStyle]}>
               <Ionicons name="arrow-forward" size={36} color="#FFFFFF" />
+            </Animated.View>
+            <Animated.View style={[styles.iconContainer, arrowDarkStyle]}>
+              <Ionicons name="arrow-forward" size={36} color={ON_CHROME} />
             </Animated.View>
 
             {/* Tick icon (shown on complete) */}
             <Animated.View style={[styles.iconContainer, tickStyle]}>
-              <Ionicons name="checkmark" size={28} color="#fff" />
+              <Ionicons name="checkmark" size={28} color={ON_CHROME} />
             </Animated.View>
 
             {/* Confetti/Party popper icon (shown after expansion) */}
             <Animated.View style={[styles.iconContainer, confettiIconStyle]}>
-              <MaterialCommunityIcons name="party-popper" size={32} color="#fff" />
+              <MaterialCommunityIcons
+                name="party-popper"
+                size={32}
+                color={ON_CHROME}
+              />
             </Animated.View>
           </Animated.View>
 
@@ -286,6 +361,11 @@ const styles = StyleSheet.create({
   },
   gradient: {
     flex: 1,
+  },
+  rim: {
+    ...StyleSheet.absoluteFillObject,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.60)",
   },
   iconContainer: {
     position: "absolute",
