@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, ActivityIndicator, ScrollView, Platform } from "react-native";
+import { View, Text, StyleSheet, ActivityIndicator, ScrollView, Platform, Alert } from "react-native";
 import { TouchableOpacity } from "react-native";
+import { Image } from "expo-image";
 import { useAudioPlayer } from "expo-audio";
 import { configureForPlayback } from "../../libs/audioSession";
 import Slider from "@react-native-community/slider";
@@ -36,6 +37,7 @@ const StagesBrowseModal: React.FC = () => {
   const {
     liveSpaces,
     pastSpaces,
+    scheduledSpaces,
     isLoading,
     isModalOpen,
     initialModalView,
@@ -45,6 +47,8 @@ const StagesBrowseModal: React.FC = () => {
     closeModal,
     refreshSpaces,
     endSpace,
+    startScheduledSpace,
+    cancelScheduledSpace,
   } = useStages();
 
   const { user } = useAuth();
@@ -175,6 +179,84 @@ const StagesBrowseModal: React.FC = () => {
   if (!isModalOpen || initialModalView !== "browse") return null;
 
   const handleCreate = () => openModal("create");
+
+  /**
+   * A stage that has been announced but has not started.
+   *
+   * The host gets Start / Cancel inline; everyone else gets the announcement
+   * and nothing to tap, because there is no room to walk into yet.
+   */
+  const renderScheduledItem = (item: AudioSpace) => {
+    const isMySpace = item.host_wallet_address === userAddress;
+    const starts = item.scheduled_at ? new Date(item.scheduled_at) : null;
+    const isOverdue = !!starts && starts.getTime() < Date.now();
+    const hostName = item.host_username || `${item.host_wallet_address?.slice(0, 6)}...`;
+    const when = starts
+      ? `${starts.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" })} · ${starts.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })}`
+      : "";
+
+    return (
+      <View key={item.id} style={[styles.spaceItem, styles.scheduledItem]}>
+        {!!item.cover_image_url && (
+          <>
+            <Image
+              source={{ uri: item.cover_image_url }}
+              style={styles.scheduledCover}
+              contentFit="cover"
+            />
+            <View style={styles.scheduledScrim} />
+          </>
+        )}
+        <View style={styles.spaceAvatar}>
+          <Icon name="Calendar" size={20} color="#FFFFFF" />
+        </View>
+        <View style={styles.spaceInfo}>
+          <Text style={styles.spaceTitle} numberOfLines={1}>
+            {item.title}
+          </Text>
+          <Text style={styles.spaceSub} numberOfLines={1}>
+            @{hostName} · {isOverdue ? "starting soon" : when}
+          </Text>
+        </View>
+        {isMySpace && (
+          <View style={{ flexDirection: "row", gap: 6 }}>
+            <TouchableOpacity
+              onPress={() => {
+                startScheduledSpace(item.id).then((ok) => {
+                  if (ok) openModal("live");
+                });
+              }}
+              style={styles.startBtn}
+            >
+              <Text style={styles.startBtnText}>Start</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                Alert.alert(
+                  "Cancel stage?",
+                  `"${item.title}" will be removed and its link stops working.`,
+                  [
+                    { text: "Keep it", style: "cancel" },
+                    {
+                      text: "Cancel stage",
+                      style: "destructive",
+                      onPress: () => { void cancelScheduledSpace(item.id); },
+                    },
+                  ],
+                );
+              }}
+              hitSlop={8}
+              style={styles.cancelBtn}
+              accessibilityRole="button"
+              accessibilityLabel="Cancel scheduled stage"
+            >
+              <Icon name="X" size={16} color="rgba(255,255,255,0.6)" />
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
+    );
+  };
 
   const renderLiveItem = (item: AudioSpace) => {
     const isMySpace = item.host_wallet_address === userAddress;
@@ -335,6 +417,16 @@ const StagesBrowseModal: React.FC = () => {
               liveSpaces.map((item) => renderLiveItem(item))
             )}
 
+            {/* Upcoming Stages Section — only when there are any, so the modal
+                does not grow a permanently empty shelf for a feature most
+                browsing users never touch. */}
+            {scheduledSpaces.length > 0 && (
+              <>
+                <Text style={[styles.sectionTitle, { marginTop: 24 }]}>Upcoming</Text>
+                {scheduledSpaces.map((item) => renderScheduledItem(item))}
+              </>
+            )}
+
             {/* Past Stages Section */}
             <Text style={[styles.sectionTitle, { marginTop: 24 }]}>Past Stages</Text>
             {pastSpaces.length === 0 ? (
@@ -407,6 +499,22 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.05)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",
+  },
+  // The cover fills the row behind the content, so the row has to clip to its
+  // own radius or the image squares off the corners.
+  scheduledItem: { overflow: "hidden" },
+  scheduledCover: { ...StyleSheet.absoluteFillObject },
+  // Heavy enough to keep the title and host legible over an arbitrary
+  // user-supplied image — same intent as the web card's gradient scrim.
+  scheduledScrim: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.62)" },
+  cancelBtn: {
+    width: 32,
+    height: 32,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(255,255,255,0.06)",
+    marginTop: 4,
   },
   mySpaceItem: {
     borderColor: "rgba(255,255,255,0.2)",

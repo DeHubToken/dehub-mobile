@@ -27,7 +27,8 @@ export type DehubLinkKind =
   | 'communityInvite'
   | 'store'
   | 'listing'
-  | 'event';
+  | 'event'
+  | 'stage';
 
 export interface DehubLinkMatch {
   kind: DehubLinkKind;
@@ -42,6 +43,7 @@ export interface DehubLinkMatch {
   storeId?: string;
   listingId?: string;
   eventNumber?: string;
+  stageId?: string;
 }
 
 // ── Hosts ───────────────────────────────────────────────────────────────────
@@ -74,7 +76,9 @@ const RESERVED_ROOT_SEGMENTS = new Set([
 // ── Tokenising ──────────────────────────────────────────────────────────────
 
 const ABSOLUTE_URL_RE = /(?:https?:\/\/)?(?:[a-z0-9-]+\.)+[a-z]{2,}(?::\d+)?\/[^\s<>"'`]*/gi;
-const BARE_PATH_RE = /\/(?:app|communities)\/[^\s<>"'`]*/gi;
+// `stage` sits alongside the /app prefix rather than under it because web's
+// invite route is top-level — /stage/:id, not /app/stage/:id.
+const BARE_PATH_RE = /\/(?:app|communities|stage)\/[^\s<>"'`]*/gi;
 const TRAILING_PUNCTUATION_RE = /[.,;:!?)\]}>"']+$/;
 
 function trimTrailingPunctuation(token: string): string {
@@ -174,6 +178,15 @@ export function parseDehubLink(input: string): DehubLinkMatch | null {
   if (isAppScoped && scoped[0] === 'events' && scoped[1]) {
     if (!/^\d+$/.test(scoped[1])) return null;
     return { ...base, kind: 'event', eventNumber: scoped[1] };
+  }
+
+  // ── stage — the invite / announcement link ──
+  //
+  // Deliberately not app-scoped: web's route is top-level. Accepted either way
+  // so a hand-typed /app/stage/... still cards up rather than falling through.
+  if (scoped[0] === 'stage' && scoped[1]) {
+    if (!/^[a-fA-F0-9-]{8,}$/.test(scoped[1])) return null;
+    return { ...base, kind: 'stage', stageId: scoped[1] };
   }
 
   // ── profile ──
@@ -279,6 +292,7 @@ export function dehubLinkLabel(kind: DehubLinkKind): string {
     case 'store': return 'store';
     case 'listing': return 'item';
     case 'event': return 'event';
+    case 'stage': return 'stage';
     default: return 'link';
   }
 }
