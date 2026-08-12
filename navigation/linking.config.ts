@@ -343,6 +343,13 @@ export const ShareLinks = {
   /** Event — dehub.io/app/events/:eventNumber */
   event: (eventNumber: string | number) =>
     `${SHARE_BASE}/app/events/${encodeURIComponent(String(eventNumber))}`,
+  /**
+   * Stage invite / announcement — dehub.io/stage/:id
+   *
+   * Top-level, not under /app: that is the shape web's invite route already
+   * serves, and a link shared from here has to open there.
+   */
+  stage: (stageId: string) => `${SHARE_BASE}/stage/${encodeURIComponent(stageId)}`,
 };
 
 /**

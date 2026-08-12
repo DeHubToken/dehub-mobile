@@ -275,6 +275,33 @@ const LiveStageModal: React.FC = () => {
     >
       <StatusBar barStyle="light-content" backgroundColor="#000" />
       <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
+        {/* Host's cover graphic, behind the room.
+            Deliberately faint and heavily scrimmed: this is a listening surface
+            with avatars, controls and a TTS input stacked over it, and a
+            graphic bright enough to admire is one that makes the speaker names
+            hard to read. Only rendered when the host set one. */}
+        {!!currentSpace.cover_image_url && (
+          <View
+            pointerEvents="none"
+            style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
+          >
+            <Image
+              source={{ uri: currentSpace.cover_image_url }}
+              style={{ width: "100%", height: "100%", opacity: 0.22 }}
+              resizeMode="cover"
+            />
+            <View
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(0,0,0,0.55)",
+              }}
+            />
+          </View>
+        )}
         {/* Edge-to-edge Android doesn't resize for the keyboard — without this
             the TTS input at the bottom gets covered while typing. */}
         <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>

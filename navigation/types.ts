@@ -36,6 +36,8 @@ export type AppStackParamList = {
     draft?: import('../hooks/useDrafts').Draft;
     quotedTokenId?: number | string;
     quotedPost?: Record<string, unknown>;
+    /** Body text to open the composer with, e.g. a scheduled stage announcement. */
+    initialText?: string;
   } | undefined;
   [ScreenNames.VideoPlayer]: {
     videoId?: string;

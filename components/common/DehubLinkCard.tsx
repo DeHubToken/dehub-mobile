@@ -31,6 +31,7 @@ import { useStoreById, useStoreListing } from '../../hooks/useStores';
 import { getAvatarUrl } from '../../libs/misc';
 import { formatCompactNumber } from '../../libs/numbers.util';
 import { dehubLinkLabel, type DehubLinkMatch } from '../../libs/dehub-links';
+import { useStages } from '../../context/StageContext';
 
 /** How many cards one message or caption may draw before the rest stay as text. */
 export const MAX_CARDS_PER_MESSAGE = 2;
@@ -285,6 +286,65 @@ const EventCardEmbed: React.FC<{ eventNumber: string; onOpen: () => void; fallba
   );
 };
 
+const StageCardEmbed: React.FC<{ stageId: string; onOpen: () => void; fallback: React.ReactElement }> = ({
+  stageId,
+  onOpen,
+  fallback,
+}) => {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['dehub-link', 'stage', stageId],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('audio_spaces')
+        .select('*')
+        .eq('id', stageId)
+        .maybeSingle();
+      if (error) throw error;
+      return data as any;
+    },
+    // A scheduled stage's only volatile field is whether it has started, and
+    // the card is cheap to be a minute stale about.
+    staleTime: 60_000,
+  });
+
+  if (isLoading) return <SkeletonCard />;
+  if (isError || !data) return fallback;
+
+  const starts = data.scheduled_at ? new Date(data.scheduled_at) : null;
+  const isLive = data.status === 'live';
+  const isEnded = data.status === 'ended';
+  const isOverdue = !!starts && starts.getTime() < Date.now();
+
+  const when = starts
+    ? starts.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })
+    : '';
+  const time = starts
+    ? starts.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })
+    : '';
+
+  // A live stage has already answered "when", and an ended one has nothing to
+  // answer — so the subtitle only carries a date while the stage is upcoming.
+  const subtitle = isLive
+    ? `${Math.max(1, (data.speaker_count || 1) + (data.listener_count || 0))} listening`
+    : isEnded
+      ? 'Ended'
+      : [when, time].filter(Boolean).join(' · ') || undefined;
+
+  return (
+    <RowCard
+      eyebrow={isLive ? 'Live now' : isEnded ? 'Stage' : isOverdue ? 'Starting soon' : 'Upcoming stage'}
+      title={data.title}
+      subtitle={subtitle}
+      meta={`@${data.host_username || String(data.host_wallet_address || '').slice(0, 6)}`}
+      imageUri={data.cover_image_url}
+      bannerUri={data.cover_image_url}
+      fallbackIcon="Mic"
+      dimmed={isEnded}
+      onPress={onOpen}
+    />
+  );
+};
+
 const ProfileCardEmbed: React.FC<{ username: string; onOpen: () => void; fallback: React.ReactElement }> = ({
   username,
   onOpen,
@@ -352,6 +412,7 @@ interface DehubLinkCardProps {
  */
 export function useOpenDehubLink() {
   const navigation = useNavigation<any>();
+  const { openModal: openStages, joinSpace } = useStages();
 
   return useCallback(
     (link: DehubLinkMatch) => {
@@ -379,11 +440,22 @@ export function useOpenDehubLink() {
           // event link can actually land, and it beats a dead tap.
           navigation.navigate(ScreenNames.Events);
           return;
+        case 'stage':
+          // Stages are modal-based on native — there is no stage screen to
+          // navigate to. Joining is attempted first because a live stage is
+          // what the link most often points at; joinSpace refuses anything
+          // that is not live, and the browse modal (which lists upcoming) is
+          // the right landing spot for a stage that has not started.
+          openStages('browse');
+          void joinSpace(link.stageId!).then((ok) => {
+            if (ok) openStages('live');
+          });
+          return;
         default:
           return;
       }
     },
-    [navigation],
+    [navigation, openStages, joinSpace],
   );
 }
 
@@ -441,6 +513,9 @@ const DehubLinkCardComponent: React.FC<DehubLinkCardProps> = ({
       break;
     case 'event':
       card = <EventCardEmbed eventNumber={link.eventNumber!} onOpen={open} fallback={fallback} />;
+      break;
+    case 'stage':
+      card = <StageCardEmbed stageId={link.stageId!} onOpen={open} fallback={fallback} />;
       break;
     default:
       card = fallback;
