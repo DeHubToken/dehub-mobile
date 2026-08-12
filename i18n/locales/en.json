@@ -1550,7 +1550,11 @@
     "comingSoon": "Coming soon — regional trends are on the way!",
     "post": "Post",
     "logOut": "Log out",
-    "logIn": "Log in"
+    "logIn": "Log in",
+    "searchMenu": "Search menu",
+    "clearSearch": "Clear search",
+    "noMenuMatches": "Nothing in the menu matches",
+    "searchDehubFor": "Search DeHub for \"{{query}}\""
   },
   "postInfo": {
     "title": "Post Info",

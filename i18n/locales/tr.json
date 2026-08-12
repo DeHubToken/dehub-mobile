@@ -1486,7 +1486,11 @@
     "comingSoon": "Yakında — bölgesel trendler yolda!",
     "post": "Gönderi",
     "logOut": "Çıkış yap",
-    "logIn": "Giriş yap"
+    "logIn": "Giriş yap",
+    "searchMenu": "Menüde ara",
+    "clearSearch": "Aramayı temizle",
+    "noMenuMatches": "Menüde eşleşen bir şey yok",
+    "searchDehubFor": "DeHub'ta \"{{query}}\" ara"
   },
   "postInfo": {
     "title": "Gönderi Bilgisi",
