@@ -7,6 +7,7 @@ import {
   Pressable,
   ActivityIndicator,
   Dimensions,
+  Linking,
 } from "react-native";
 import Animated, {
   useAnimatedStyle,
@@ -24,6 +25,8 @@ import { useNavigation } from "@react-navigation/native";
 import * as VideoThumbnails from "expo-video-thumbnails";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
+import { toastError } from "../../libs/toast";
+import { formatAttachmentSize, getAttachmentLabel } from "../../libs/attachments";
 import GlassIndicator from "../ui/GlassIndicator";
 import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
 import PaymentBadge from "./PaymentBadge";
@@ -417,6 +420,17 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
     const items = message.mediaUrls.map((mu) => {
       const raw = typeof mu === "string" ? mu : mu.url;
       const mime = typeof mu === "object" ? mu.mimeType || mu.type : undefined;
+      // A document is flagged by the entry's own type, and must be checked
+      // before localMediaUri — that branch assumes a preview-ready image.
+      const isFile = typeof mu === "object" && mu.type === "file";
+      if (isFile) {
+        return {
+          url: resolveUrl(raw),
+          kind: "file" as const,
+          name: (mu as any).name as string | undefined,
+          size: (mu as any).size as number | undefined,
+        };
+      }
       const url = localMediaUri || resolveUrl(raw);
       // localMediaUri is always a preview-ready asset (thumbnail jpg for video, original for image)
       const kind: "image" | "video" | "gif" = localMediaUri
@@ -476,6 +490,24 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
     },
     [onVideoPress],
   );
+
+  /**
+   * Documents are handed to the OS rather than opened in-app: they're stored
+   * with `Content-Disposition: attachment`, so the download manager takes them
+   * and nothing an uploader supplied is ever parsed or rendered by us.
+   */
+  const handleFileTap = useCallback(async (url: string) => {
+    try {
+      const supported = await Linking.canOpenURL(url);
+      if (!supported) {
+        toastError("Can't open this file on this device.");
+        return;
+      }
+      await Linking.openURL(url);
+    } catch {
+      toastError("Couldn't open that file.");
+    }
+  }, []);
 
 
   const timeStr = formatTime(message.createdAt);
@@ -699,7 +731,45 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
             {mediaItems.length > 0 && !isVoice && (
               <View>
                 {mediaItems.map((item, idx) =>
-                  item.kind === "video" ? (
+                  item.kind === "file" ? (
+                    <TouchableOpacity
+                      key={idx}
+                      onPress={() => handleFileTap(item.url)}
+                      onLongPress={handleLongPress}
+                      activeOpacity={0.7}
+                      accessibilityRole="button"
+                      accessibilityLabel={`Download ${(item as any).name || "attachment"}`}
+                      className="flex-row items-center px-3 py-2.5"
+                      style={{ maxWidth: MAX_IMAGE_WIDTH }}
+                    >
+                      <View
+                        className={`w-9 h-9 rounded-lg items-center justify-center mr-2.5 ${
+                          isMine ? "bg-white/15" : "bg-theme-neutrals-700"
+                        }`}
+                      >
+                        <Icon name="FileText" size={18} color={isMine ? "#fff" : "#F4F4F5"} />
+                      </View>
+                      <View className="flex-1">
+                        <Text
+                          className={`text-[14px] font-medium ${
+                            isMine ? "text-white" : "text-theme-neutrals-100"
+                          }`}
+                          numberOfLines={1}
+                        >
+                          {(item as any).name || "Attachment"}
+                        </Text>
+                        <Text
+                          className={`text-[11px] mt-0.5 ${
+                            isMine ? "text-white/70" : "text-theme-neutrals-500"
+                          }`}
+                        >
+                          {getAttachmentLabel((item as any).name || "")}
+                          {(item as any).size ? ` · ${formatAttachmentSize((item as any).size)}` : ""}
+                        </Text>
+                      </View>
+                      <Icon name="Download" size={16} color={isMine ? "#ffffffaa" : "#8B8D90"} />
+                    </TouchableOpacity>
+                  ) : item.kind === "video" ? (
                     <VideoThumb
                       key={idx}
                       uri={item.url}

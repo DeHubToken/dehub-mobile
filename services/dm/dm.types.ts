@@ -98,8 +98,13 @@ export interface PollAttachment {
 
 export interface DmMediaUrl {
   url: string;
+  /** 'image' | 'video' | 'audio' | 'gif' | 'file' */
   type?: string;
   mimeType?: string;
+  /** Documents only — the sender's filename, not recoverable from the CDN key. */
+  name?: string;
+  /** Documents only — bytes. */
+  size?: number;
   _id?: ID;
 }
 

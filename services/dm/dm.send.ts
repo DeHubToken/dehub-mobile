@@ -64,11 +64,18 @@ interface MediaSendJob extends BaseSendJob {
   kind: "media";
   uri: string;
   thumbnailUri?: string;
-  mediaType: "image" | "video";
+  mediaType: "image" | "video" | "file";
   mimeType: string;
   caption?: string;
   msgType?: DmMsgType;
   voiceDuration?: number;
+  /**
+   * Documents only. The server validates a document by its **extension**, so
+   * the real filename has to survive the trip — the synthesised
+   * `${Date.now()}.jpg` used for photos would be rejected as a type mismatch.
+   */
+  fileName?: string;
+  fileSize?: number;
 }
 
 interface TipSendJob extends BaseSendJob {
@@ -229,7 +236,7 @@ class DmSendQueue {
     address: string;
     uri: string;
     thumbnailUri?: string;
-    mediaType: "image" | "video";
+    mediaType: "image" | "video" | "file";
     mimeType?: string;
     caption?: string;
     replyTo?: DmMessage | null;
@@ -237,6 +244,8 @@ class DmSendQueue {
     tipAmount?: number;
     msgType?: DmMsgType;
     voiceDuration?: number;
+    fileName?: string;
+    fileSize?: number;
   }): string {
     const tempId = this.makeTempId();
     const {
@@ -245,7 +254,10 @@ class DmSendQueue {
     } = params;
     const effectiveMsgType = params.msgType || "media";
 
-    const mime = params.mimeType || guessMime(uri, mediaType === "video" ? "video/mp4" : "image/jpeg");
+    const mime = params.mimeType || guessMime(
+      uri,
+      mediaType === "video" ? "video/mp4" : mediaType === "file" ? "application/octet-stream" : "image/jpeg",
+    );
 
     const feeRequired = !!dmFee?.required && !dmFee?.hasFreeAccess;
     const paymentAmount = tipAmount || (feeRequired ? dmFee?.fee : undefined) || undefined;
@@ -256,8 +268,17 @@ class DmSendQueue {
       content: caption || "",
       msgType: effectiveMsgType,
       replyTo,
-      mediaUrls: [{ url: uri, type: mediaType, mimeType: mime }],
-      localMediaUri: effectiveMsgType === "voice" ? undefined : (mediaType === "video" ? (thumbnailUri || uri) : uri),
+      mediaUrls: [{
+        url: uri,
+        type: mediaType,
+        mimeType: mime,
+        ...(mediaType === "file" && { name: params.fileName, size: params.fileSize }),
+      }],
+      // A document has no local preview to show, so it must not seed
+      // localMediaUri — the bubble would try to render the file as an image.
+      localMediaUri: effectiveMsgType === "voice" || mediaType === "file"
+        ? undefined
+        : (mediaType === "video" ? (thumbnailUri || uri) : uri),
       uploadStatus: "pending",
       tipAmount: paymentAmount,
       paymentStatus: paymentAmount ? "pending" : undefined,
@@ -281,6 +302,8 @@ class DmSendQueue {
       tipAmount,
       msgType: effectiveMsgType,
       voiceDuration: params.voiceDuration,
+      fileName: params.fileName,
+      fileSize: params.fileSize,
     });
 
     return tempId;
@@ -526,11 +549,17 @@ class DmSendQueue {
     const ext = isVoice ? "m4a" : job.mediaType === "video" ? "mp4" : "jpg";
     const file = {
       uri: job.uri,
-      name: `${Date.now()}.${ext}`,
+      // Documents keep the name the user picked — the server reads the
+      // extension off it to decide whether the file is allowed at all.
+      name: job.mediaType === "file"
+        ? (job.fileName || "file")
+        : `${Date.now()}.${ext}`,
       type: job.mimeType,
     };
 
-    const timeout = job.mediaType === "video" ? UPLOAD_TIMEOUT_VIDEO : UPLOAD_TIMEOUT_IMAGE;
+    // Documents share the video budget: both are large and both go straight to
+    // S3 without a transcode step.
+    const timeout = job.mediaType === "image" ? UPLOAD_TIMEOUT_IMAGE : UPLOAD_TIMEOUT_VIDEO;
 
     const serverMsg = await withRetry(
       () =>
