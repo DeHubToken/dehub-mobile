@@ -23,8 +23,6 @@ export interface SerializedMedia {
   durationMs?: number;
   width?: number;
   height?: number;
-  /** Bytes. Only set for document attachments, which are size-capped. */
-  size?: number;
 }
 
 export interface SerializedPollData {
@@ -38,12 +36,10 @@ export interface SerializedUploadPayload {
   bodyText: string;
   description: string;
   categories: string[];
-  postType: "video" | "feed-audio" | "feed-images" | "feed-simple" | "feed-file" | "short";
+  postType: "video" | "feed-audio" | "feed-images" | "feed-simple" | "short";
   images: SerializedMedia[];
   video: SerializedMedia | null;
   audio: SerializedMedia | null;
-  /** Document attachments on a feed-file post. Empty for every other type. */
-  files?: SerializedMedia[];
   thumbnailUri: string | null;
   streamInfoJson: string;
   pollData?: SerializedPollData;

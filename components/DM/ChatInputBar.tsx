@@ -20,8 +20,16 @@ import Animated, { FadeIn, FadeOut, SlideInDown } from "react-native-reanimated"
 import Icon from "../ui/Icon";
 import { sendAIChat } from "../../services/ai.service";
 import * as ImagePicker from "expo-image-picker";
+import * as DocumentPicker from "expo-document-picker";
 import * as VideoThumbnails from "expo-video-thumbnails";
 import { openCroppedImagePicker } from "../../libs/assets.util";
+import { toastError } from "../../libs/toast";
+import {
+  ATTACHMENT_PICKER_TYPES,
+  formatAttachmentSize,
+  getAttachmentLabel,
+  validateAttachment,
+} from "../../libs/attachments";
 import { runWithPermissions } from "../../libs/permissions.util";
 import GifPicker from "./GifPicker";
 import SmartReplyTray from "./SmartReplyTray";
@@ -33,10 +41,14 @@ import { DM_TEXT_MAX_LENGTH } from "../../services/dm/dm.types";
 
 
 export type ChatMediaAttachment = {
-  type: "image" | "video" | "gif";
+  type: "image" | "video" | "gif" | "file";
   uri: string;
   thumbnailUri?: string;
   mimeType?: string;
+  /** Documents only — the picker's filename, needed for the upload and the bubble. */
+  name?: string;
+  /** Documents only — bytes, so the composer chip can show a size. */
+  size?: number;
 };
 
 interface ChatInputBarProps {
@@ -278,6 +290,44 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     });
   }, []);
 
+  const handlePickFile = useCallback(async () => {
+    try {
+      const result = await DocumentPicker.getDocumentAsync({
+        type: ATTACHMENT_PICKER_TYPES,
+        copyToCacheDirectory: true,
+      });
+      if (result.canceled || !result.assets?.[0]) return;
+      const asset = result.assets[0];
+
+      const picked = {
+        uri: asset.uri,
+        name: asset.name || "file",
+        // Android returns null for plenty of types; the server decides from the
+        // extension anyway and re-labels the stored object itself.
+        mimeType: asset.mimeType || "application/octet-stream",
+        size: asset.size ?? 0,
+      };
+
+      const check = validateAttachment(picked);
+      if (!check.ok) {
+        toastError(check.error!);
+        return;
+      }
+
+      setGifUrl(null);
+      setMedia({
+        type: "file",
+        uri: picked.uri,
+        mimeType: picked.mimeType,
+        name: picked.name,
+        size: picked.size,
+      });
+    } catch (e) {
+      console.error("[ChatInputBar] file picker error", e);
+      toastError("Couldn't attach that file.");
+    }
+  }, []);
+
   const handleGifPicked = useCallback((url: string) => {
     setGifPickerVisible(false);
     setMedia(null); // clear media if any
@@ -474,12 +524,31 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             className="px-3 pt-2"
           >
             <View className="relative self-start">
-              <Image
-                source={{ uri: media?.thumbnailUri || media?.uri || gifUrl || "" }}
-                style={{ width: 80, height: 80, borderRadius: 12 }}
-                resizeMode="cover"
-                className="bg-theme-neutrals-700"
-              />
+              {media?.type === "file" ? (
+                /* A document has no thumbnail to show, so the chip carries the
+                   name and size instead of an 80×80 Image of nothing. */
+                <View className="flex-row items-center bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl px-3 py-2 max-w-[260px]">
+                  <View className="w-9 h-9 rounded-lg bg-theme-neutrals-700 items-center justify-center mr-2.5">
+                    <Icon name="FileText" size={18} color="#fff" />
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-white text-[13px] font-medium" numberOfLines={1}>
+                      {media.name}
+                    </Text>
+                    <Text className="text-theme-neutrals-400 text-[11px] mt-0.5">
+                      {getAttachmentLabel(media.name || "")}
+                      {media.size ? ` · ${formatAttachmentSize(media.size)}` : ""}
+                    </Text>
+                  </View>
+                </View>
+              ) : (
+                <Image
+                  source={{ uri: media?.thumbnailUri || media?.uri || gifUrl || "" }}
+                  style={{ width: 80, height: 80, borderRadius: 12 }}
+                  resizeMode="cover"
+                  className="bg-theme-neutrals-700"
+                />
+              )}
               {media?.type === "video" && (
                 <View className="absolute inset-0 items-center justify-center">
                   <Icon name="CirclePlay" size={28} color="#fff" />
@@ -580,6 +649,20 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             accessibilityState={{ disabled: enhancing }}
           >
             <Icon name="Video" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
+          </TouchableOpacity>
+
+          {/* File picker */}
+          <TouchableOpacity
+            onPress={handlePickFile}
+            className="p-2"
+            hitSlop={4}
+            activeOpacity={0.6}
+            disabled={enhancing}
+            accessibilityRole="button"
+            accessibilityLabel="Attach file"
+            accessibilityState={{ disabled: enhancing }}
+          >
+            <Icon name="Paperclip" size={22} color={enhancing ? '#3F3F46' : '#A6A9AC'} />
           </TouchableOpacity>
 
           {/* Mic */}
