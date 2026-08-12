@@ -1,12 +1,12 @@
 /**
- * Document attachments on `feed-file` posts.
+ * Document attachments on direct messages.
  *
  * The allowlist mirrors `ALLOWED_DOCUMENT_TYPES` in the backend's
  * `src/cdn/cdn.service.ts` (and `src/lib/attachments.ts` on web). The backend is
  * the real gate — it re-validates every upload and stores objects with
  * `Content-Disposition: attachment` — so this copy exists to keep the picker
  * honest and to fail before a 50 MB upload rather than after it. Keep the three
- * in step: an extension added here but not on the server is rejected at mint.
+ * in step: an extension added here but not on the server is rejected on upload.
  */
 
 /** Extensions the backend accepts, in the order they appear in its table. */
@@ -19,14 +19,10 @@ export const ALLOWED_ATTACHMENT_EXTENSIONS = [
   ".epub",
 ];
 
-/** Matches the backend's per-file cap. */
+/** Matches the backend's DM_FILE_MAX_SIZE. */
 export const MAX_ATTACHMENT_SIZE = 50 * 1024 * 1024;
-/** Matches the backend's combined cap for one post. */
-export const MAX_ATTACHMENTS_TOTAL_SIZE = 100 * 1024 * 1024;
-/** Matches the backend's per-post file count cap. */
-export const MAX_ATTACHMENTS = 5;
 
-/** A document stored on a post, as returned by the API. */
+/** A document attached to a message, as returned by the API. */
 export interface PostAttachment {
   url: string;
   name: string;
@@ -47,7 +43,7 @@ export function isAllowedAttachment(name: string): boolean {
  * MIME types for the document picker. expo-document-picker takes MIME types
  * rather than extensions, and iOS in particular will grey out anything not
  * listed. `*` alongside is deliberate: several of these have no single agreed
- * MIME, and the extension check in `validateAttachments` is what actually
+ * MIME, and the extension check in `validateAttachment` is what actually
  * decides — this list only shapes the picker.
  */
 export const ATTACHMENT_PICKER_TYPES = [
@@ -159,42 +155,21 @@ export interface AttachmentValidationResult {
 }
 
 /**
- * Validate picked files against the same rules the backend applies, so the
- * composer can refuse them before an upload starts.
+ * Validate a picked file against the same rules the backend applies, so the
+ * composer can refuse it before an upload starts rather than after it.
  */
-export function validateAttachments(
-  files: PickedAttachment[],
-  existingCount = 0,
-  existingBytes = 0,
-): AttachmentValidationResult {
-  if (existingCount + files.length > MAX_ATTACHMENTS) {
-    return { ok: false, error: `You can attach up to ${MAX_ATTACHMENTS} files.` };
+export function validateAttachment(file: PickedAttachment): AttachmentValidationResult {
+  if (!isAllowedAttachment(file.name)) {
+    return { ok: false, error: `"${file.name}" isn't a supported file type.` };
   }
-
-  for (const file of files) {
-    if (!isAllowedAttachment(file.name)) {
-      return { ok: false, error: `"${file.name}" isn't a supported file type.` };
-    }
-    if (!file.size) {
-      return { ok: false, error: `"${file.name}" is empty.` };
-    }
-    if (file.size > MAX_ATTACHMENT_SIZE) {
-      return {
-        ok: false,
-        error: `"${file.name}" is over the ${formatAttachmentSize(MAX_ATTACHMENT_SIZE)} limit.`,
-      };
-    }
+  if (!file.size) {
+    return { ok: false, error: `"${file.name}" is empty.` };
   }
-
-  const total = existingBytes + files.reduce((sum, f) => sum + (f.size || 0), 0);
-  if (total > MAX_ATTACHMENTS_TOTAL_SIZE) {
+  if (file.size > MAX_ATTACHMENT_SIZE) {
     return {
       ok: false,
-      error:
-        `Attachments total ${formatAttachmentSize(total)}. ` +
-        `The limit is ${formatAttachmentSize(MAX_ATTACHMENTS_TOTAL_SIZE)} per post.`,
+      error: `"${file.name}" is over the ${formatAttachmentSize(MAX_ATTACHMENT_SIZE)} limit.`,
     };
   }
-
   return { ok: true };
 }

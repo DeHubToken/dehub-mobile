@@ -1022,8 +1022,11 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         address,
         uri: attachment.uri,
         thumbnailUri: attachment.thumbnailUri,
-        mediaType: attachment.type === "video" ? "video" : "image",
+        mediaType:
+          attachment.type === "video" ? "video" : attachment.type === "file" ? "file" : "image",
         mimeType: attachment.mimeType,
+        fileName: attachment.name,
+        fileSize: attachment.size,
         caption: caption?.trim(),
         replyTo,
         dmFee,
