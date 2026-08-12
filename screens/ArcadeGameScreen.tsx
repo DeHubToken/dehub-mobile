@@ -8,27 +8,36 @@
  * `config/arcade-games`. This screen knows how to host a game and nothing
  * about any particular one.
  *
+ * THE TWO postMessage BRIDGES, AND WHY ONLY ONE OF THEM WORKS
+ * -----------------------------------------------------------
+ * Every vendored game has two channels back to its host, both `postMessage` to
+ * `parent`. A WebView loads the game as a TOP-LEVEL document, so
+ * `window.parent === window` and both are delivered to the game's own window.
+ * What separates them is whether the page bothers to send at all:
+ *
+ *   - READINESS still fires. Those scripts call `parent.postMessage`
+ *     unconditionally, so the message is dispatched and merely lands nowhere.
+ *     READY_BRIDGE below injects the listener that was missing and forwards it
+ *     on — which is what lets the boot readout tell a 25-60 second procedural
+ *     bake apart from a crash, on the two games that render black throughout.
+ *   - EXIT never fires. That control is *built* only when
+ *     `window.parent !== window`, because it exists to solve a problem this
+ *     screen does not have: a click cannot be aimed at host chrome layered over
+ *     an iframe holding a pointer lock. Here it is never created, so there is
+ *     nothing to listen for and deliberately no listener.
+ *
  * WHY THIS DRAWS ITS OWN EXIT
  * ---------------------------
- * The web arcade does not: it relies on the browser's Back plus a "Leave Game"
- * control that the vendored build adds to its own settings menu. That control
- * is created only when `window.parent !== window` — it exists to solve a
- * problem this screen does not have, namely that a click cannot be aimed at
- * host chrome layered over an iframe holding a pointer lock. A WebView loads
- * the game as a TOP-LEVEL document, so `window.parent === window` and the
- * button is never built. The web's `postMessage` exit bridge is therefore inert
- * here by construction, and there is deliberately no listener for it.
- *
- * That leaves the way out to this screen, and it cannot be a swipe: the board
- * is driven by drag-to-orbit, so a horizontal drag belongs to the game and the
- * stack's edge-swipe cannot be relied on. Hence a real, always-visible control
- * rather than one that fades out — on iOS it would otherwise be the only exit,
- * and a hidden only-exit is a trap.
+ * Which follows from the above: the in-game way out does not exist here. Nor
+ * can it be a swipe — these games are driven by drag, so a horizontal drag
+ * belongs to the game and the stack's edge-swipe cannot be relied on. Hence a
+ * real, always-visible control rather than one that fades out: on iOS it would
+ * otherwise be the only exit, and a hidden only-exit is a trap.
  */
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, StatusBar } from "react-native";
 import { WebView } from "react-native-webview";
-import type { WebViewNavigation } from "react-native-webview";
+import type { WebViewMessageEvent, WebViewNavigation } from "react-native-webview";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import * as ScreenOrientation from "expo-screen-orientation";
 import Icon from "../components/ui/Icon";
@@ -49,12 +58,46 @@ const SETTLE_MS = 320;
 /**
  * Hard ceiling on the boot readout, in ms.
  *
- * `onLoadEnd` is the signal that retires the panel. If a request stalls behind
- * a captive portal or a dead connection that event may never arrive, and a
- * progress bar with no way to end is worse than no bar. Well past the slowest
- * boot measured.
+ * The panel is retired by `onLoadEnd` for a game with no readiness bridge, and
+ * by the bridge itself for the two that have one. Neither is guaranteed: a
+ * request can stall behind a captive portal, and a bridge can go stale on a
+ * re-vendor — and a progress bar with no way to end is worse than no bar. Well
+ * past the slowest boot measured, which is Claude of Duty's procedural bake.
  */
-const BOOT_CAP_MS = 120000;
+const BOOT_CAP_MS = 180000;
+
+/**
+ * Injected into every game, and the reason the boot readout can be honest.
+ *
+ * The vendored pages report readiness with `parent.postMessage`. That was
+ * written for the web arcade, where the game is an iframe and `parent` is the
+ * host — but a WebView loads the game as the TOP-LEVEL document, so
+ * `parent === window` and the announcement is delivered to the game's own
+ * window, where nothing was listening. This adds the listener and hands the
+ * message on to React Native, which is a hop the page has no other way to make.
+ *
+ * Only messages carrying a `source` are forwarded, so the channel stays as
+ * narrow as the one the host listens on and cannot be widened by anything else
+ * the page happens to post at itself.
+ *
+ * The trailing `true;` is required rather than stylistic: react-native-webview
+ * warns when injected script evaluates to a non-primitive, and on iOS the
+ * completion value of the last statement is what gets marshalled back.
+ */
+const READY_BRIDGE = `
+(function () {
+  if (window.__dehubReadyBridge) return;
+  window.__dehubReadyBridge = true;
+  window.addEventListener('message', function (e) {
+    try {
+      var d = e && e.data;
+      if (!d || !d.source) return;
+      window.ReactNativeWebView.postMessage(JSON.stringify(d));
+    } catch (err) {}
+  });
+})();
+true;
+`;
 
 /**
  * A percentage readout for the game's boot.
@@ -124,6 +167,16 @@ const ArcadeGameScreen = () => {
 
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
+  /**
+   * A non-fatal complaint from inside the game, shown under the bar.
+   *
+   * Deliberately not the same thing as `failed`: that replaces the game with a
+   * panel and is for a document that never loaded. These engines report the odd
+   * throw on the way up and then carry on — the chess build's whole asset story
+   * is built around surviving exactly that — so this says what happened without
+   * taking the game away from someone who can still play it.
+   */
+  const [fault, setFault] = useState("");
   const { pct, showBoot, dismiss } = useBootProgress(ready || failed, game?.bootTauMs ?? 8000);
 
   // A deep link opens the player with nothing beneath it, so "back" has to mean
@@ -149,6 +202,30 @@ const ArcadeGameScreen = () => {
       ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP).catch(() => {});
     };
   }, []);
+
+  /**
+   * The other end of READY_BRIDGE.
+   *
+   * `type: 'error'` is surfaced under the bar rather than replacing the game
+   * with a failure panel: the pages send it from a global `error` handler, and
+   * these engines throw non-fatally on the way up more often than they die.
+   * Unknown types are ignored rather than asserted on, so a stale vendored
+   * page can never break this screen.
+   */
+  const onFrameMessage = useCallback(
+    (e: WebViewMessageEvent) => {
+      if (!game?.readySource) return;
+      try {
+        const d = JSON.parse(e.nativeEvent.data) as { source?: string; type?: string; text?: string };
+        if (d.source !== game.readySource) return;
+        if (d.type === 'ready') setReady(true);
+        else if (d.type === 'error') setFault(d.text || 'unknown');
+      } catch {
+        // Not our JSON. A page is free to post whatever it likes at itself.
+      }
+    },
+    [game?.readySource],
+  );
 
   /**
    * Keep the WebView on the game.
@@ -225,10 +302,24 @@ const ArcadeGameScreen = () => {
           // difference between a first open and every open.
           cacheEnabled
           onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
-          // The game draws its own loading screen with a real count, so first
-          // paint is the right moment to hand over — anything after that would
-          // hide a readout better than this one.
-          onLoadEnd={() => setReady(true)}
+          // Forwards each game's own readiness bridge out to React Native.
+          //
+          // The vendored pages announce themselves with `parent.postMessage`.
+          // In an iframe that reaches the host directly; here the WebView IS
+          // the top-level document, so `parent === window`, the message is
+          // dispatched to the game's own window, and nothing outside ever sees
+          // it. This listener is the missing hop.
+          injectedJavaScript={READY_BRIDGE}
+          onMessage={onFrameMessage}
+          // For a game with NO readiness bridge, the document's load event is
+          // the hand-off: King's Gambit has a real loading screen of its own,
+          // driven by real download counts, and that beats anything this side
+          // can model. Retiring here for a game that HAS one would be actively
+          // wrong — for the other two, `onLoadEnd` is the moment a 25-60s bake
+          // BEGINS, and they render black throughout it.
+          onLoadEnd={() => {
+            if (!game.readySource) setReady(true);
+          }}
           onError={() => setFailed(true)}
           onHttpError={() => setFailed(true)}
         />
@@ -271,6 +362,7 @@ const ArcadeGameScreen = () => {
           <Text style={styles.bootPct} accessibilityElementsHidden importantForAccessibility="no">
             {pct}%
           </Text>
+          {fault ? <Text style={styles.bootFault}>{fault}</Text> : null}
           <Pressable onPress={dismiss} hitSlop={10}>
             <Text style={styles.bootHide}>Hide this</Text>
           </Pressable>
@@ -314,6 +406,14 @@ const styles = StyleSheet.create({
   bootFill: { height: "100%", borderRadius: 2, backgroundColor: "#FFFFFF" },
   bootPct: { color: "#71717A", fontSize: 12, fontVariant: ["tabular-nums"] },
   bootHide: { color: "#71717A", fontSize: 11, textDecorationLine: "underline" },
+  bootFault: {
+    color: "#FBBF24",
+    fontSize: 11,
+    lineHeight: 16,
+    textAlign: "center",
+    maxWidth: 320,
+    paddingHorizontal: 24,
+  },
   panel: {
     flex: 1,
     alignItems: "center",
