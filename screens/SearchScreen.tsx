@@ -40,6 +40,7 @@ import {
   type UnifiedFeedResponse,
   type FeedPostType,
 } from "../services/feed.unified.service";
+import { useRoute } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import FeedCard from "../components/Home/FeedCard";
 import SearchAccountCard from "../components/Search/SearchAccountCard";
@@ -127,6 +128,10 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
 const SearchScreen: React.FC = () => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  // The app drawer's menu search hands off here when what was typed is not a
+  // page — see AppDrawer's runFullSearch.
+  const route = useRoute<{ key: string; name: string; params?: { q?: string } }>();
+  const routeParams = route.params;
   const authUser = useUser() as { address?: string } | null;
   const userAddress = authUser?.address;
 
@@ -291,6 +296,19 @@ const SearchScreen: React.FC = () => {
     },
     [activeTab, userAddress],
   );
+
+  // Arriving with a query from the drawer: fill the field and run it, rather
+  // than dropping the user on an empty Explore tab having to retype what they
+  // just typed. Keyed on the params OBJECT, not the string, so the same term
+  // handed off twice still runs the second time (the drawer sends a nonce).
+  useEffect(() => {
+    const q = typeof routeParams?.q === "string" ? routeParams.q.trim() : "";
+    if (!q) return;
+    setSearchQuery(q);
+    setInputFocused(false);
+    executeSearch(q, activeTab, 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [routeParams]);
 
   const handleSearch = useCallback(() => {
     if (!searchQuery.trim()) return;
