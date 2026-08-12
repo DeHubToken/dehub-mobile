@@ -33,7 +33,6 @@ import {
 import { runWithPermissions } from "../../libs/permissions.util";
 import GifPicker from "./GifPicker";
 import SmartReplyTray from "./SmartReplyTray";
-import ReplyOrb from "./ReplyOrb";
 import { useSmartReplies } from "../../hooks/useSmartReplies";
 import type { SmartReplyTurn } from "../../services/ai.service";
 import type { DmMessage, DmFee } from "../../services/dm/dm.types";
@@ -125,18 +124,48 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const typingTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const smartReplies = useSmartReplies(thread ?? [], peerName);
-  const replyOrbEnabled = !!thread && thread.length > 0;
+  // There is only something to reply TO when the other side spoke last. If the
+  // user sent the last message the drafter would be answering the user.
+  const replyOrbEnabled =
+    !!thread && thread.length > 0 && thread[thread.length - 1].from === "them";
 
-  const handleOrbToggle = useCallback(() => {
-    if (showReplyTray) {
-      setShowReplyTray(false);
-      return;
-    }
+  const [composerFocused, setComposerFocused] = useState(false);
+
+  // Tail the tray has already opened itself for. One auto-open per incoming
+  // message: dismissing or picking must not be undone by the next tap into the
+  // box, and re-focusing must not re-spend a model call.
+  const autoOpenedFor = useRef<string | null>(null);
+
+  // Read through a ref so the effect below can depend on the two things that
+  // should actually retrigger it — focus and the newest message — instead of
+  // re-running on every keystroke and every render of the hook.
+  const latest = useRef({ smartReplies, text, replyOrbEnabled });
+  latest.current = { smartReplies, text, replyOrbEnabled };
+
+  /**
+   * Being in the composer to reply IS the request for suggestions — there is
+   * no button to press first. Held back only when the user has already started
+   * typing (they know what to say) or when this message has had its turn.
+   */
+  const openTrayIfDue = useCallback(() => {
+    const { smartReplies: sr, text: draft, replyOrbEnabled: enabled } = latest.current;
+    if (!enabled || draft.trim()) return;
+    if (autoOpenedFor.current === sr.tailKey) return;
+    autoOpenedFor.current = sr.tailKey;
     setShowReplyTray(true);
-    // Only draft on the first open; the tray keeps whatever it already has,
-    // so reopening is free. Its own orb is the redraft control.
-    if (smartReplies.status === "idle") smartReplies.generate();
-  }, [showReplyTray, smartReplies]);
+    if (sr.status === "idle") sr.generate();
+  }, []);
+
+  // Fires on the tap into the box, and again if a new message lands while the
+  // user is already sitting there — otherwise the tray would wait for them to
+  // dismiss the keyboard and come back before offering anything.
+  useEffect(() => {
+    if (composerFocused) openTrayIfDue();
+  }, [composerFocused, smartReplies.tailKey, openTrayIfDue]);
+
+  // Stays dismissed for this message — autoOpenedFor is already set, so the
+  // next focus won't drag it back up.
+  const handleDismissTray = useCallback(() => setShowReplyTray(false), []);
 
   /**
    * Drop a suggestion into the composer rather than sending it. The user still
@@ -415,7 +444,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
               error={smartReplies.error}
               onGenerate={smartReplies.generate}
               onPick={handlePickSuggestion}
-              onDismiss={() => setShowReplyTray(false)}
+              onDismiss={handleDismissTray}
             />
           </Animated.View>
         )}
@@ -578,6 +607,8 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             ref={inputRef}
             value={text}
             onChangeText={handleTextChange}
+            onFocus={() => setComposerFocused(true)}
+            onBlur={() => setComposerFocused(false)}
             placeholder={placeholder}
             placeholderTextColor="#8B8D90"
             multiline
@@ -695,48 +726,29 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             </TouchableOpacity>
           )}
 
-          {/* One AI slot, two jobs. The toolbar is already eight items wide on
-              a 360dp screen, so the orb takes over the Sparkles position while
-              the composer is empty — there is nothing to enhance then anyway,
-              and "what do I say" is exactly the empty-composer problem. Type
-              anything and it reverts to enhance. */}
-          {!text.trim() && replyOrbEnabled && !enhancing ? (
-            <TouchableOpacity
-              onPress={handleOrbToggle}
-              className="p-2"
-              hitSlop={4}
-              activeOpacity={0.6}
-              accessibilityRole="button"
-              accessibilityLabel="Suggested replies"
-              accessibilityState={{ expanded: showReplyTray }}
-            >
-              <ReplyOrb
-                state={showReplyTray && smartReplies.status === "loading" ? "thinking" : "idle"}
+          {/* Sparkles — AI enhance. The orb no longer shares this slot: the
+              tray raises itself when the composer takes focus, so the only orb
+              is the one at the bottom of that tray. */}
+          <TouchableOpacity
+            onPress={handleEnhance}
+            className="p-2"
+            hitSlop={4}
+            activeOpacity={0.6}
+            disabled={!text.trim() || enhancing}
+            accessibilityRole="button"
+            accessibilityLabel="Enhance message with AI"
+            accessibilityState={{ disabled: !text.trim() || enhancing }}
+          >
+            {enhancing ? (
+              <ActivityIndicator size={18} color="#F4F4F5" />
+            ) : (
+              <Icon
+                name="Sparkles"
                 size={22}
+                color={text.trim() ? '#F4F4F5' : '#3F3F46'}
               />
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              onPress={handleEnhance}
-              className="p-2"
-              hitSlop={4}
-              activeOpacity={0.6}
-              disabled={!text.trim() || enhancing}
-              accessibilityRole="button"
-              accessibilityLabel="Enhance message with AI"
-              accessibilityState={{ disabled: !text.trim() || enhancing }}
-            >
-              {enhancing ? (
-                <ActivityIndicator size={18} color="#F4F4F5" />
-              ) : (
-                <Icon
-                  name="Sparkles"
-                  size={22}
-                  color={text.trim() ? '#F4F4F5' : '#3F3F46'}
-                />
-              )}
-            </TouchableOpacity>
-          )}
+            )}
+          </TouchableOpacity>
 
           {/* Send */}
           {showSendButton ? (
