@@ -187,10 +187,14 @@ const CreateStageModal: React.FC = () => {
               reset();
               closeModal();
               if (navigationRef.isReady()) {
-                navigationRef.navigate(
-                  ScreenNames.Upload as never,
-                  { initialText: announcement } as never,
-                );
+                // The { name, params } form rather than two arguments: the ref
+                // is created untyped in App.tsx, so its navigate() resolves to
+                // a single-parameter overload and a two-argument call fails to
+                // typecheck no matter what it is cast to.
+                navigationRef.navigate({
+                  name: ScreenNames.Upload,
+                  params: { initialText: announcement },
+                } as never);
               }
             }}
           >
