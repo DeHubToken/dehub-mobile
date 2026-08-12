@@ -83,5 +83,7 @@ export function useSmartReplies(thread: SmartReplyTurn[], peerName?: string) {
     setError(null);
   }, []);
 
-  return { status, suggestions, error, generate, reset };
+  // Exposed so the composer can open the tray at most once per incoming
+  // message: it remembers the key it last auto-opened for and compares.
+  return { status, suggestions, error, generate, reset, tailKey };
 }
