@@ -90,6 +90,46 @@ export type AIStyle =
   | 'nationalist'
   | 'communist';
 
+/** Text-enhancement modes accepted by the shared `enhance-text` edge function. */
+export type EnhanceMode = 'spellcheck' | 'grammar' | 'style';
+
+/**
+ * Enhance post copy through the same `enhance-text` edge function dehubweb's
+ * post composer uses, so both apps produce identical results for a given
+ * mode/style. The function is public (IP rate-limited), so no auth header.
+ */
+export async function enhanceText(
+  text: string,
+  mode: EnhanceMode = 'spellcheck',
+  style?: string,
+): Promise<string> {
+  const res = await fetch(`${EDGE_BASE}/enhance-text`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text: text.trim(), mode, style }),
+  });
+
+  const raw = await res.text();
+  let data: any = null;
+  try {
+    data = JSON.parse(raw);
+  } catch {
+    log.error('enhanceText: unparseable response', res.status, raw.substring(0, 200));
+  }
+
+  if (!res.ok || data?.error) {
+    // The function returns a human-readable `error` for rate limits (429) and
+    // exhausted AI credits (402) — surface it rather than a generic failure.
+    throw new Error(data?.error || `Failed to process text (${res.status})`);
+  }
+
+  const enhanced = data?.enhancedText;
+  if (typeof enhanced !== 'string' || !enhanced.trim()) {
+    throw new Error('Failed to process text');
+  }
+  return enhanced.trim();
+}
+
 export type AIModel =
   | 'auto'
   | 'gemini-2.5-flash'
