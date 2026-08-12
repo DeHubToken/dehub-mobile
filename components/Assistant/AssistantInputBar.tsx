@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import {
   View,
   TextInput,
@@ -6,12 +6,18 @@ import {
   StyleSheet,
   ActivityIndicator,
   Image,
+  Dimensions,
+  type NativeSyntheticEvent,
+  type TextInputSelectionChangeEventData,
 } from 'react-native';
 import Icon from '../ui/Icon';
+
+const MAX_INPUT_HEIGHT = Dimensions.get('window').height * 0.3;
 
 interface AssistantInputBarProps {
   value: string;
   onChangeText: (text: string) => void;
+  onSelectionChange?: (e: NativeSyntheticEvent<TextInputSelectionChangeEventData>) => void;
   onSend: () => void;
   onAttach?: () => void;
   attachedImage?: string | null;
@@ -23,6 +29,7 @@ interface AssistantInputBarProps {
 const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
   value,
   onChangeText,
+  onSelectionChange,
   onSend,
   onAttach,
   attachedImage,
@@ -30,6 +37,10 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
   disabled,
   loading,
 }) => {
+  // Grow with the text, as web's auto-expanding textarea does. A single-line
+  // input made every multi-paragraph prompt — which is most image prompts —
+  // impossible to read back before sending.
+  const [height, setHeight] = useState(20);
   const canSend = (value.trim().length > 0 || !!attachedImage) && !disabled && !loading;
 
   const handleSubmit = useCallback(() => {
@@ -56,14 +67,14 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
       )}
       <View style={s.inputRow}>
         <TextInput
-          style={s.input}
-          placeholder="Ask me anything..."
+          style={[s.input, { height: Math.min(Math.max(20, height), MAX_INPUT_HEIGHT) }]}
+          placeholder={attachedImage ? 'Describe your edits…' : 'Ask me anything...'}
           placeholderTextColor="#8B8D90"
           value={value}
           onChangeText={onChangeText}
-          onSubmitEditing={handleSubmit}
-          returnKeyType="send"
-          multiline={false}
+          onSelectionChange={onSelectionChange}
+          onContentSizeChange={(e) => setHeight(e.nativeEvent.contentSize.height)}
+          multiline
           editable={!disabled && !loading}
         />
         <View style={s.actions}>
@@ -149,8 +160,11 @@ const s = StyleSheet.create({
   input: {
     color: '#F9FBFF',
     fontSize: 14,
-    paddingVertical: 0,
+    lineHeight: 20,
+    paddingTop: 0,
+    paddingBottom: 0,
     marginBottom: 4,
+    textAlignVertical: 'top',
   },
   actions: {
     flexDirection: 'row',
