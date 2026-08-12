@@ -10,7 +10,6 @@ import {
   BackHandler,
 } from "react-native";
 import { BlurView } from "expo-blur";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useNavigationState } from "@react-navigation/native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
@@ -174,7 +173,6 @@ interface AppDrawerProps {
 }
 
 const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
-  const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const { isSignedIn } = useAuthState();
   const user = useUser();
@@ -334,13 +332,19 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
           )}
           <View style={[StyleSheet.absoluteFill, styles.glassOverlay]} />
 
+          {/* Plain padding, NOT insets.top/insets.bottom. This drawer lives
+              inside the navigator, and the navigator is already wrapped in a
+              full-edge <SafeAreaView> up in App.tsx's BootGate — so the panel's
+              own top: 0 is already below the status bar. Adding the device
+              inset again here counted it twice, which pushed the profile block
+              down by a second notch-height and left a dead band above it. */}
           <ScrollView
             showsVerticalScrollIndicator={false}
             bounces={false}
             contentContainerStyle={{
               flexGrow: 1,
-              paddingTop: insets.top + 12,
-              paddingBottom: insets.bottom + 20,
+              paddingTop: 16,
+              paddingBottom: 24,
             }}
           >
             {isSignedIn && user ? (
