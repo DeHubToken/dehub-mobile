@@ -131,6 +131,18 @@ export default function AppNavigator() {
           getComponent={() => require("../screens/GuideScreen").default}
         />
         <Stack.Screen
+          name={ScreenNames.Arcade}
+          getComponent={() => require("../screens/ArcadeScreen").default}
+        />
+        {/* The player owns the whole screen — it hides the status bar and
+            unlocks orientation for the duration. Its own entry rather than a
+            mode of the grid, so the WebView is torn down on the way out
+            instead of being kept alive behind a list. */}
+        <Stack.Screen
+          name={ScreenNames.ArcadeGame}
+          getComponent={() => require("../screens/ArcadeGameScreen").default}
+        />
+        <Stack.Screen
           name={ScreenNames.Events}
           getComponent={() => require("../screens/EventsScreen").default}
         />
