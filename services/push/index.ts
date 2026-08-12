@@ -13,6 +13,7 @@ export {
   getCachedPushToken,
   clearPushTokenCache,
   getDefaultNotificationPreferences,
+  mergePreferences,
   updateNotificationPreferences,
   getBadgeCount,
   setBadgeCount,
