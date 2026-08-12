@@ -56,7 +56,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
 }) => {
   const { signInWithWallet, signInWithSupabaseSession } = useAuthActions();
   const { needsUsername, isLoading: authLoading } = useAuthState();
-  const { isWalletLoading, handleWalletConnect } = useWalletAuth();
+  const { isWalletLoading, isWalletSheetOpen, handleWalletConnect } = useWalletAuth();
   const [isLocalLoading, setIsLocalLoading] = useState(false);
   const [currentProvider, setCurrentProvider] = useState("");
   const [authStep, setAuthStep] = useState<"main" | "email-code" | "phone-code">("main");
@@ -377,7 +377,15 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
 
   return (
     <GlassModal
-      visible={visible}
+      // Stand down while AppKit's wallet-brand picker is up. That picker is
+      // NOT a native modal — it renders inline at the app root (see
+      // useWalletAuth's isWalletSheetOpen), so this <Modal> would cover it and
+      // the user would be left tapping at a wallet list buried behind the very
+      // sheet whose "Connect Wallet" button opened it. This component stays
+      // MOUNTED throughout — only the modal window goes away — because
+      // useWalletAuth's auto-authenticate effect lives up here and has to
+      // survive the round trip out to the wallet app and back.
+      visible={visible && !isWalletSheetOpen}
       onClose={onClose}
       presentation="bottom"
       blurIntensity={50}
