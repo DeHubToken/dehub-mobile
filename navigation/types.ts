@@ -145,6 +145,9 @@ export type AppStackParamList = {
   [ScreenNames.CommunityInvite]: { code: string };
   [ScreenNames.Glossary]: undefined;
   [ScreenNames.Guide]: undefined;
+  [ScreenNames.Arcade]: undefined;
+  /** `slug` keys into ARCADE_GAMES; an unknown one renders the "no such game" panel. */
+  [ScreenNames.ArcadeGame]: { slug: string };
   [ScreenNames.Events]: undefined;
   [ScreenNames.Careers]: undefined;
   [ScreenNames.Affiliate]: undefined;
