@@ -82,6 +82,18 @@ export const DeepLinkPaths = {
   // yet, so this lands on the list; a link that opens the right part of the
   // app beats one that opens the website in a browser.
   EVENT: 'app/events/:eventNumber',
+
+  // Arcade — dehub.io/arcade is the canonical grid URL on the web, and
+  // /arcade/:slug is one game. The player-path is declared before the grid for
+  // the same reason the community invite is: the more specific pattern first.
+  //
+  // A slug the native registry does not carry (the web lists games this app
+  // deliberately omits — see config/arcade-games) lands on the player's "no
+  // such game" panel, which offers the grid. That is the right end state for a
+  // link to a game a phone cannot play: it says so, in the app, instead of
+  // opening a world the player cannot move in.
+  ARCADE_GAME: 'arcade/:slug',
+  ARCADE: 'arcade',
 } as const;
 
 /**
@@ -144,6 +156,13 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
           [ScreenNames.Events]: DeepLinkPaths.EVENT,
 
+          [ScreenNames.ArcadeGame]: {
+            path: DeepLinkPaths.ARCADE_GAME,
+            parse: { slug: (slug: string) => slug },
+          },
+
+          [ScreenNames.Arcade]: DeepLinkPaths.ARCADE,
+
           [ScreenNames.Root]: {
             screens: {
               [ScreenNames.DM]: DeepLinkPaths.MESSAGES,
@@ -200,7 +219,12 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // libs/legacy-web3auth.ts, reusing the pre-migration app's already
     // dashboard-whitelisted redirect path) — already consumed by that
     // promise resolving.
-    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth'];
+    // 'arcade' is a one-segment product URL (dehub.io/arcade), so without it
+    // here the branch below would read the grid link as the username @arcade
+    // and open an empty profile sheet. Any future top-level route needs the
+    // same entry — the mirror of this rule for profile NAMES is
+    // libs/reserved-usernames.ts, which already lists 'arcade'.
+    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth', 'arcade'];
     if (segments[0] === 'auth-callback' || segments[0] === 'auth') {
       logger.info('Ignoring OAuth callback deep link (already consumed in-flight)', { path });
       return undefined;
@@ -350,6 +374,10 @@ export const ShareLinks = {
    * serves, and a link shared from here has to open there.
    */
   stage: (stageId: string) => `${SHARE_BASE}/stage/${encodeURIComponent(stageId)}`,
+  /** Arcade grid — dehub.io/arcade */
+  arcade: () => `${SHARE_BASE}/arcade`,
+  /** One game — dehub.io/arcade/:slug */
+  arcadeGame: (slug: string) => `${SHARE_BASE}/arcade/${encodeURIComponent(slug)}`,
 };
 
 /**
@@ -407,6 +435,14 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
     // /app/events/:eventNumber
     if (pathParts[0] === 'app' && pathParts[1] === 'events' && pathParts[2]) {
       return { type: 'event', params: { eventNumber: pathParts[2], ...qp } };
+    }
+
+    // /arcade/:slug and /arcade — checked before the single-segment profile
+    // branch below, which would otherwise report the grid as the user @arcade.
+    if (pathParts[0] === 'arcade') {
+      return pathParts[1]
+        ? { type: 'arcadeGame', params: { slug: pathParts[1], ...qp } }
+        : { type: 'arcade', params: qp };
     }
 
     // Legacy: /stream/:videoId

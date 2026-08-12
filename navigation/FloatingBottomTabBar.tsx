@@ -92,6 +92,7 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "FileText", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
   { icon: "Briefcase", labelKey: "nav.careers", screen: ScreenNames.Careers },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
+  { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade },
   { icon: "Users", labelKey: "nav.communities", screen: ScreenNames.Communities },
 ];
 

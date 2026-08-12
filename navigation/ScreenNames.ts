@@ -53,6 +53,8 @@ export enum ScreenNames {
   CommunityInvite = 'CommunityInvite',
   Glossary = 'Glossary',
   Guide = 'Guide',
+  Arcade = 'Arcade',
+  ArcadeGame = 'ArcadeGame',
   Events = 'Events',
   Careers = 'Careers',
   Affiliate = 'Affiliate',
