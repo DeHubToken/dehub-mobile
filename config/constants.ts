@@ -4,6 +4,9 @@ import EthIcon from "../assets/chains/ethereum-icon.png";
 import BnbIcon from "../assets/chains/bnb-icon.png";
 import BnbTestnet from "../assets/chains/bnb-icon.png";
 import GorliTestnet from "../assets/chains/gorli-icon.png";
+// Placeholder mark in the monochrome house style — swap for the official
+// Robinhood Chain logo once we have one we are licensed to ship.
+import RobinhoodIcon from "../assets/chains/robinhood-icon.png";
 
 // export const isDevMode = env.APP_ENV === "development";
 export const isDevMode = false;
@@ -23,8 +26,42 @@ export enum ChainId {
   OKEX_MAINNET = 66,
   POLYGON_MAINNET = 137,
   BASE_MAINNET = 8453,
+  // Robinhood Chain — Arbitrum Orbit L2 settling to Ethereum, ETH for gas.
+  ROBINHOOD_MAINNET = 4663,
+  ROBINHOOD_TESTNET = 46630,
   SEPOLIA = 11155111,
 }
+
+/**
+ * Robinhood Chain runs the v3 stream contracts, whose mint and bounty-claim
+ * authorisations are EIP-712 rather than v1's packed `personal_sign`. The API
+ * marks a v3 response with `sigVersion: 3`; this is the check for the paths
+ * that need to know before the call goes out.
+ */
+export const isV3Chain = (chainId: number): boolean =>
+  chainId === ChainId.ROBINHOOD_MAINNET || chainId === ChainId.ROBINHOOD_TESTNET;
+
+/** The zero address means "native currency" to a v3 controller. */
+export const NATIVE_TOKEN_ADDRESS = "0x0000000000000000000000000000000000000000";
+
+/**
+ * DHB is not on Robinhood Chain yet.
+ *
+ * Not an invented placeholder: Robinhood Chain runs the standard Arbitrum
+ * token bridge, and its live L2 Gateway Router resolves DHB-on-Ethereum
+ * (0x99BB…8EC0) to the address below. It holds no code today; bridging DHB
+ * from L1 deploys it exactly there and this config starts working unchanged.
+ */
+export const DHB_ROBINHOOD_PENDING_BRIDGE_ADDRESS =
+  "0x7Ae0d21a4c650C857051814c11A82F5E9Ca64b89";
+
+/** Token addresses read off Robinhood Chain itself. USDT/USDC are 6 decimals. */
+export const ROBINHOOD_TOKENS = {
+  ETH: NATIVE_TOKEN_ADDRESS,
+  WETH: "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+  USDT: "0xe246bC49b0598D7cD9F0Ead48b885034f1254380",
+  USDC: "0x80E0e24718DBFcaD49eCaa6f1e6C89A190586cA8",
+};
 
 export const chainIcons: Record<number, any> = {
   [ChainId.MAINNET]: EthIcon,
@@ -32,6 +69,7 @@ export const chainIcons: Record<number, any> = {
   [ChainId.BSC_MAINNET]: BnbIcon,
   [ChainId.BSC_TESTNET]: BnbTestnet,
   [ChainId.GORLI]: GorliTestnet,
+  [ChainId.ROBINHOOD_MAINNET]: RobinhoodIcon,
   [ChainId.SEPOLIA]: "https://sepolia.etherscan.io/images/logo-128.png",
 };
 
