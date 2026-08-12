@@ -13,10 +13,12 @@ export type SmartReplyStatus = "idle" | "loading" | "ready" | "empty" | "error";
 /**
  * Drafts replies to the newest incoming message.
  *
- * Only ever fires on an explicit tap — never on mount, never on a new message.
- * Suggestions are a paid model call on a surface that receives unsolicited
- * traffic, so an automatic fetch would let anyone who can DM the user spend
- * against the rate limit just by typing.
+ * Never fires on mount. The composer calls generate() when it raises the tray,
+ * which is at most once per incoming message — suggestions are a paid call on a
+ * surface that receives unsolicited traffic, so anyone who can DM the user must
+ * not be able to spend against the rate limit just by typing. The guard in
+ * generate() is the backstop: a thread the user spoke last in never costs a
+ * request, whichever surface asks.
  *
  * Mirrors dehubweb's src/hooks/use-smart-replies.ts.
  */
@@ -45,7 +47,12 @@ export function useSmartReplies(thread: SmartReplyTurn[], peerName?: string) {
 
   const generate = useCallback(async () => {
     if (inFlight.current) return;
-    if (thread.length === 0) {
+    // Nothing to reply to — no thread, or the user spoke last and the drafter
+    // would be answering them. Belt and braces with the caller's own check: the
+    // request is paid, so the refusal belongs where no caller can skip it.
+    const tail = thread[thread.length - 1];
+    if (!tail || tail.from === "me") {
+      setSuggestions([]);
       setStatus("empty");
       return;
     }
