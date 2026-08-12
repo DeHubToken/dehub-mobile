@@ -31,7 +31,8 @@
     "affiliate": "Affiliate",
     "ads": "Ads",
     "prompt": "Prompt",
-    "tv": "Live TV"
+    "tv": "Live TV",
+    "arcade": "Arcade"
   },
   "prompt": {
     "title": "What do you want to make?",
@@ -2200,5 +2201,8 @@
     "signIn": "Sign in",
     "tapToGetStarted": "Tap to get started",
     "soon": "Soon"
+  },
+  "arcade": {
+    "intro": "Games that run right here in the app. Nothing to install, nothing to buy — open source, and served from DeHub itself."
   }
 }
