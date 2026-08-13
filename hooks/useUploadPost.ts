@@ -622,7 +622,7 @@ export function useUploadPost() {
       const isSolanaPost = postingOnSolana && !!p.solanaAddress;
 
       if (postingOnSolana && !p.solanaAddress) {
-        toastError("Solana wallet unavailable. Sign in with a social account to post on Solana.");
+        toastError("Solana wallet unavailable — this device does not hold your wallet key. Sign in again to restore it.");
         return false;
       }
 
