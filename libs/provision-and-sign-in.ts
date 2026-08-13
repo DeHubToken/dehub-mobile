@@ -154,12 +154,19 @@ async function provisionAndSignInInner(
   await ensureSessionMatchesSupabaseIdentity(supabaseUserId);
   await waitForSupabaseSession(supabaseUserId);
 
-  const preferred = await getPreferredChainId();
+  // These three are independent of each other and each cost a round trip
+  // (device storage, Supabase session, the user_wallets read). Awaiting them
+  // in sequence was serialising ~three latencies onto the sign-in critical
+  // path for no ordering reason — the wallet read only has to come before the
+  // session exchange, which is still below.
+  const [preferred, accessToken, resolutionResult] = await Promise.all([
+    getPreferredChainId(),
+    deps.getSupabaseAccessToken(),
+    // Same order as dehubweb proceedToWalletPhase → fetchWallet before unlock.
+    resolveEvmWalletForIdentity(supabaseUserId),
+  ]);
   const chainId = preferred ?? TARGET_CHAIN_ID;
-  const accessToken = await deps.getSupabaseAccessToken();
-
-  // Same order as dehubweb proceedToWalletPhase → fetchWallet before unlock.
-  let resolution = await resolveEvmWalletForIdentity(supabaseUserId);
+  let resolution = resolutionResult;
 
   log.warn("provision:wallet-resolution", {
     status: resolution.status,
@@ -200,11 +207,20 @@ async function provisionAndSignInInner(
     }
   }
 
+  // Set once a SECOND clean read has also come back with no row — i.e. two
+  // independent successful lookups agree this identity has no cloud wallet.
+  // Distinct from a failed lookup, which fetchWalletReliably reports as
+  // `failed` and which must never be read as "no wallet exists".
+  let confirmedNoCloudRow = false;
+
   // A single null read after OAuth is not proof there is no cloud wallet.
   if (resolution.status === "needs-create-password") {
-    const { wallet: cloudRow, failed } = await fetchWalletReliably(supabaseUserId);
+    const confirm = await fetchWalletReliably(supabaseUserId);
+    const { wallet: cloudRow, failed } = confirm;
     if (cloudRow?.ethAddress) {
-      resolution = await resolveEvmWalletForIdentity(supabaseUserId);
+      // Feed the row we just read straight back in rather than making
+      // resolveEvmWalletForIdentity fetch it a third time.
+      resolution = await resolveEvmWalletForIdentity(supabaseUserId, confirm);
       log.warn("provision:wallet-resolution:cloud-row-found-on-retry", {
         status: resolution.status,
         address:
@@ -220,6 +236,8 @@ async function provisionAndSignInInner(
       }
     } else if (failed) {
       resolution = { status: "wallet-lookup-failed" };
+    } else {
+      confirmedNoCloudRow = true;
     }
   }
 
@@ -279,7 +297,14 @@ async function provisionAndSignInInner(
     }
     // Session exchange without a local signer (or wrong web3AuthMeta link) —
     // re-resolve so unlock UI targets shubham_new2 instead of create-wallet.
-    if (sessionOutcome === "not-linked") {
+    //
+    // Skipped once two clean reads have already agreed there is no cloud row
+    // AND the backend has just said it does not recognize this identity
+    // either: a third read can only return the same nothing, and it sits
+    // directly between the user tapping "confirm code" and the wallet sheet
+    // appearing. A FAILED lookup never reaches here — it resolves to
+    // wallet-lookup-failed above, where re-reading is still the right move.
+    if (sessionOutcome === "not-linked" && !confirmedNoCloudRow) {
       resolution = await resolveEvmWalletForIdentity(supabaseUserId);
       log.warn("provision:wallet-resolution:after-session-refused", {
         status: resolution.status,

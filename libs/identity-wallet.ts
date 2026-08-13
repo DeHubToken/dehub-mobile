@@ -118,8 +118,18 @@ export type EvmWalletResolution =
  * ever minting a wallet on the caller's behalf. See EvmWalletResolution for
  * what each outcome means and what the caller must do next.
  */
+/**
+ * `prefetched` lets a caller that has ALREADY read the cloud row hand it in
+ * instead of paying for a second identical round trip. The wallet-lookup
+ * retries this function exists to survive are about a row that may not have
+ * REPLICATED yet — once a caller has a definite answer in hand, re-asking
+ * costs a network round trip and can only return the same thing. Callers must
+ * not pass a row read from before a write (create/unlock/forget); those paths
+ * still call with no argument so they re-read.
+ */
 export async function resolveEvmWalletForIdentity(
   supabaseUserId: string,
+  prefetched?: { wallet: StoredWallet | null; failed: boolean },
 ): Promise<EvmWalletResolution> {
   // Authoritative cross-device source FIRST — same order as dehubweb's
   // proceedToWalletPhase → fetchWallet. The local identity→address map is
@@ -127,9 +137,8 @@ export async function resolveEvmWalletForIdentity(
   // Supabase is what made mobile open a different account than the website
   // for the same Google login (stale wallet created/tested on this phone
   // shadowed the real Supabase-linked one).
-  const { wallet: remote, failed: fetchFailed } = await fetchWalletReliably(
-    supabaseUserId
-  );
+  const { wallet: remote, failed: fetchFailed } =
+    prefetched ?? (await fetchWalletReliably(supabaseUserId));
   if (fetchFailed) {
     log.warn("resolveEvmWalletForIdentity:fetchWallet:exhausted-retries", {
       supabaseUserId: `${supabaseUserId.slice(0, 8)}...`,

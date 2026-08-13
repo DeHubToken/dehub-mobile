@@ -88,9 +88,13 @@ export const AuthService = {
         { isAuthRequired: false }
       );
       const augmentedUser = { ...response.user, authSignature: sigMeta } as any;
-      // Use isNewAccount from backend response to determine if username setup is needed
-      const needsUsername =
-        !!(response as any)?.result?.isNewAccount && !(response as any)?.user?.username;
+      // isNewAccount ALONE, exactly as dehubweb decides it (AuthProvider's
+      // applyAuthenticatedSession / setRequiresUsername). This used to also
+      // require `!response.user.username`, which silently skipped the whole
+      // profile step for every sign-up the backend hands a placeholder
+      // username to — the account is then stuck on an auto-generated name the
+      // user was never shown, never asked about, and never told to change.
+      const needsUsername = !!(response as any)?.result?.isNewAccount;
       const storeTokens = async () => {
         await setAuthToken(response.token);
         if (response.refreshToken) await setRefreshToken(response.refreshToken);
@@ -146,8 +150,8 @@ export const AuthService = {
           quiet: true,
         }
       );
-      const needsUsername =
-        !!response?.result?.isNewAccount && !response?.user?.username;
+      // isNewAccount alone — same rule as signInWithWallet above and as web.
+      const needsUsername = !!response?.result?.isNewAccount;
       // Do NOT persist DeHub tokens here — signInWithSupabaseSession validates
       // the resolved address against user_wallets before adopting. Writing tokens
       // early let a polluted web3AuthMeta link (shubham_new) stick even when the
