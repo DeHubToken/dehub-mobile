@@ -2,7 +2,6 @@ import {
   REOWN_PROJECT_ID,
   API_URL,
   APP_ENV,
-  INFURA_KEY,
   ALCHEMY_API_KEY,
   WEB3AUTH_CLIENT_ID,
   WEB3AUTH_APPLE_VERIFIER,
@@ -28,7 +27,6 @@ const env = {
   // API_URL: "http://192.168.1.233:9015/api",
   // API_URL: "https://api.dehub.io/api",
   APP_ENV: APP_ENV || "development",
-  INFURA_KEY: INFURA_KEY,
   ALCHEMY_API_KEY: ALCHEMY_API_KEY,
   WEB3AUTH_CLIENT_ID: WEB3AUTH_CLIENT_ID,
   // Name of the custom JWT verifier that validates Apple's identity tokens.
