@@ -2,7 +2,6 @@ export const API_URL = 'https://api.test.dehub.io/api';
 export const CDN_BASE_URL = 'https://cdn.test.dehub.io';
 export const APP_ENV = 'test';
 export const REOWN_PROJECT_ID = 'test-project-id';
-export const INFURA_KEY = 'test-infura-key';
 export const ALCHEMY_API_KEY = 'test-alchemy-key';
 export const WEB3AUTH_CLIENT_ID = 'test-web3auth-client-id';
 export const APP_ORIGIN = 'https://test.dehub.io';
