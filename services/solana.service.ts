@@ -1,17 +1,31 @@
 /**
- * Solana minting (#41) — derives the user's Solana keypair from the local
- * Solana keypair provisioned alongside their EVM wallet at sign-in, signs the
- * backend's partially-signed mint transaction as fee payer, broadcasts it, and
- * confirms with the backend.
+ * Solana minting (#41) — derives the user's Solana keypair from their EVM
+ * wallet key, signs the backend's partially-signed mint transaction as fee
+ * payer, broadcasts it, and confirms with the backend.
  *
- * Only Supabase-identity (Google/email) sign-ins get a Solana keypair —
- * imported (pasted private key) wallets have none and will get a clear error,
- * same as before.
+ * The keypair is derived on demand rather than stored (see libs/solana-derive.ts):
+ * the same DeHub wallet yields the same Solana address on every device, and
+ * there is no secret left behind to lose with the handset. Any wallet holding
+ * an EVM key has one now — including imported (pasted private key) wallets,
+ * which previously got no Solana wallet at all.
  */
-import { Connection, Keypair, SendTransactionError, Transaction } from "@solana/web3.js";
+import {
+  Connection,
+  Keypair,
+  LAMPORTS_PER_SOL,
+  PublicKey,
+  SendTransactionError,
+  Transaction,
+} from "@solana/web3.js";
 import { Buffer } from "buffer";
-import { getAuthUser, getStoredSupabaseUserId } from "../libs/auth.utils";
-import { getLocalSolanaSecretKeyHex, getOrCreateSolanaKeypairForAddress } from "../libs/identity-wallet";
+import { getAuthUser } from "../libs/auth.utils";
+import {
+  getCachedSolanaAddress,
+  getLegacySolanaSecretKeyHex,
+  provisionSolanaAddressForWallet,
+} from "../libs/identity-wallet";
+import { getPrivateKeyForAddress } from "../libs/wallets.local";
+import { deriveSolanaKeypair, hexToBytes } from "../libs/solana-derive";
 import { getSolanaRpcUrl, SOLANA_MAINNET_CHAIN_ID } from "../config/solana.constants";
 import { apiClient } from "../libs/api.client";
 
@@ -33,52 +47,63 @@ export async function getSolanaMintStatus(): Promise<SolanaMintStatus> {
 
 let cachedKeypair: Keypair | null = null;
 
-function hexToBytes(hex: string): Uint8Array {
-  const clean = hex.startsWith("0x") ? hex.slice(2) : hex;
-  const out = new Uint8Array(clean.length / 2);
-  for (let i = 0; i < out.length; i++) {
-    out[i] = parseInt(clean.substr(i * 2, 2), 16);
-  }
-  return out;
+async function getSignedInEvmAddress(): Promise<string | null> {
+  const user = await getAuthUser<any>();
+  return user?.walletAddress || user?.address || null;
 }
 
-/** Derive (and cache) the Solana keypair provisioned for the signed-in wallet. */
+/**
+ * Derive (and memoise for the session) the Solana keypair for the signed-in
+ * wallet.
+ *
+ * Releasing the EVM key runs the same device-owner check every other signing
+ * path runs, and honours the same grace window — so in practice this does not
+ * add a prompt to a session that has already signed something.
+ */
 export async function getSolanaKeypair(): Promise<Keypair> {
   if (cachedKeypair) return cachedKeypair;
-  const user = await getAuthUser<any>();
-  const address: string | undefined = user?.walletAddress || user?.address;
-  let hex = address ? await getLocalSolanaSecretKeyHex(address) : null;
 
-  // Sign-in flows provision this keypair, but a session restored from a
-  // persisted login never re-runs them — that left every account signed in
-  // before this backfill existed stuck with no keypair. Create it lazily here
-  // for any Supabase-identity (social/email) wallet.
-  if (!hex && address && (await getStoredSupabaseUserId())) {
-    const provisioned = await getOrCreateSolanaKeypairForAddress(address).catch(() => null);
-    hex = provisioned?.secretKeyHex ?? null;
+  const address = await getSignedInEvmAddress();
+  if (!address) {
+    throw new Error("Solana wallet unavailable. Sign in to post on Solana.");
   }
 
-  if (!hex) {
+  const evmPrivateKey = await getPrivateKeyForAddress(address, {
+    purpose: "Sign your Solana transaction",
+  });
+  if (!evmPrivateKey) {
     throw new Error(
-      "Solana wallet unavailable. Sign in with a social account to post on Solana.",
+      "Solana wallet unavailable — this device does not hold the key for your wallet.",
     );
   }
-  const bytes = hexToBytes(hex);
-  let kp: Keypair;
-  if (bytes.length === 64) {
-    kp = Keypair.fromSecretKey(bytes);
-  } else if (bytes.length === 32) {
-    kp = Keypair.fromSeed(bytes);
-  } else {
-    throw new Error(`Unexpected Solana key length: ${bytes.length}`);
-  }
+
+  const kp = deriveSolanaKeypair(evmPrivateKey);
   cachedKeypair = kp;
+
+  // Keep the display cache in step, so the wallet screen can show the address
+  // without a second owner-verification prompt.
+  await provisionSolanaAddressForWallet(address, evmPrivateKey).catch(() => {});
+
   return kp;
 }
 
-/** Base58 Solana address for the current user, or null if unavailable. */
+/**
+ * Base58 Solana address for the current user, or null if unavailable.
+ *
+ * Reads the cached address first so that merely displaying it — or stamping it
+ * on an upload — never triggers an owner-verification prompt. Only the first
+ * call on a device (or one made before the cache was written) falls through to
+ * deriving it.
+ */
 export async function getSolanaAddress(): Promise<string | null> {
+  if (cachedKeypair) return cachedKeypair.publicKey.toBase58();
   try {
+    const address = await getSignedInEvmAddress();
+    if (!address) return null;
+
+    const cached = await getCachedSolanaAddress(address);
+    if (cached) return cached;
+
     const kp = await getSolanaKeypair();
     return kp.publicKey.toBase58();
   } catch {
@@ -89,6 +114,43 @@ export async function getSolanaAddress(): Promise<string | null> {
 /** Clear cached keypair (call on logout / chain account change). */
 export function clearSolanaKeypairCache(): void {
   cachedKeypair = null;
+}
+
+/**
+ * Address of the pre-derivation random keypair, if this device still holds one.
+ *
+ * Nothing signs with it any more, but it may still hold SOL that was deposited
+ * to pay mint fees. The wallet screen surfaces it so the funds are at least
+ * visible rather than silently abandoned.
+ */
+export async function getLegacySolanaAddress(): Promise<string | null> {
+  try {
+    const address = await getSignedInEvmAddress();
+    if (!address) return null;
+    const hex = await getLegacySolanaSecretKeyHex(address);
+    if (!hex) return null;
+
+    const bytes = hexToBytes(hex);
+    const kp =
+      bytes.length === 64
+        ? Keypair.fromSecretKey(bytes)
+        : bytes.length === 32
+          ? Keypair.fromSeed(bytes)
+          : null;
+    return kp?.publicKey.toBase58() ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/** Current SOL balance of the user's Solana wallet, in SOL. */
+export async function getSolanaBalance(
+  address: string,
+  chainId: number = SOLANA_MAINNET_CHAIN_ID,
+): Promise<number> {
+  const connection = new Connection(getSolanaRpcUrl(chainId), "confirmed");
+  const lamports = await connection.getBalance(new PublicKey(address));
+  return lamports / LAMPORTS_PER_SOL;
 }
 
 /** POST /solana/confirm-mint — persist the on-chain mint to the backend. */
