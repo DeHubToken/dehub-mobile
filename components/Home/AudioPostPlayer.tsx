@@ -31,6 +31,10 @@ const COMPACT_BAR_WIDTH = 2;
 const COMPACT_BAR_GAP = 1;
 const COMPACT_WAVEFORM_HEIGHT = 28;
 
+// Matches FeedVideoPlayer's AUTOPLAY_DELAY: how long a card must stay visible
+// before it is treated as scrolled-to rather than scrolled-past.
+const PRELOAD_SETTLE_MS = 400;
+
 type VisualizerStyle = "static" | "bars" | "wave" | "mirror";
 
 const VISUALIZER_STYLES: { value: VisualizerStyle; label: string }[] = [
@@ -521,16 +525,13 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   useEffect(() => {
     if (!isVisible || !isFocused || preloadedRef.current) return;
     let cancelled = false;
-    (async () => {
+    // Same settle grace the video cards use: becoming 50% visible mid-fling
+    // used to start a download (and reconfigure the global audio session) for
+    // every audio card the viewport passed over. Only a card the scroll
+    // actually stopped on is worth preloading. The audio mode is set at play
+    // time now — preloading with shouldPlay: false doesn't need the session.
+    const settleTimer = setTimeout(async () => {
       try {
-        await Audio.setAudioModeAsync({
-          allowsRecordingIOS: false,
-          playsInSilentModeIOS: true,
-          interruptionModeIOS: InterruptionModeIOS.DuckOthers,
-          interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
-          shouldDuckAndroid: true,
-          staysActiveInBackground: false,
-        });
         const { sound } = await Audio.Sound.createAsync(
           { uri: audioUrl },
           { shouldPlay: false, progressUpdateIntervalMillis: 100 },
@@ -559,8 +560,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       } catch (e) {
         // Preload failed — will load on play tap
       }
-    })();
-    return () => { cancelled = true; };
+    }, PRELOAD_SETTLE_MS);
+    return () => { cancelled = true; clearTimeout(settleTimer); };
   }, [isVisible, isFocused, audioUrl, stopPositionTracking]);
 
   useEffect(() => {
@@ -597,6 +598,18 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       requestAudioFocus(focusStopRef.current);
       stopActivePreview();
 
+      // Moved here from the preload path: silent-switch playback and ducking
+      // are only needed once something actually plays, and setting the global
+      // session per scrolled-past card was main-thread work mid-fling.
+      await Audio.setAudioModeAsync({
+        allowsRecordingIOS: false,
+        playsInSilentModeIOS: true,
+        interruptionModeIOS: InterruptionModeIOS.DuckOthers,
+        interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
+        shouldDuckAndroid: true,
+        staysActiveInBackground: false,
+      });
+
       if (soundRef.current) {
         const status = await soundRef.current.getStatusAsync();
         if (status.isLoaded) {
@@ -619,15 +632,6 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       }
 
       setIsLoading(true);
-      await Audio.setAudioModeAsync({
-        allowsRecordingIOS: false,
-        playsInSilentModeIOS: true,
-        interruptionModeIOS: InterruptionModeIOS.DuckOthers,
-        interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
-        shouldDuckAndroid: true,
-        staysActiveInBackground: false,
-      });
-
       const { sound } = await Audio.Sound.createAsync(
         { uri: audioUrl },
         { shouldPlay: true, progressUpdateIntervalMillis: 100 },
