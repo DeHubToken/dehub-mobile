@@ -85,6 +85,18 @@ interface FeedCaptionProps {
   showCategories?: boolean;
 }
 
+// Measured "see more" verdicts, keyed on the caption content. The verdict
+// arrives from onTextLayout one frame after mount, and appending the link row
+// then grows the card — under maintainVisibleContentPosition every growth
+// above the viewport becomes a scroll correction, so a feed whose cards
+// remount as they scroll back into the render window jiggled mid-scroll.
+// Remounts hit this cache and render their final height in the first frame;
+// only a caption's first-ever mount can still grow, and that happens off-
+// screen below the viewport in the common scroll-down case. Keyed on text
+// rather than post id so an edited caption re-measures naturally.
+const seeMoreVerdicts = new Map<string, boolean>();
+const SEE_MORE_CACHE_MAX = 500;
+
 const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   title,
   description,
@@ -96,7 +108,10 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   showCategories = true,
 }) => {
   const [expanded, setExpanded] = useState(fullContent);
-  const [showSeeMore, setShowSeeMore] = useState(false);
+  const verdictKey = `${maxLines}|${description ?? ""}`;
+  const [showSeeMore, setShowSeeMore] = useState(
+    () => !fullContent && (seeMoreVerdicts.get(verdictKey) ?? false),
+  );
   const { showUserProfile } = useUserProfileSheet();
 
   const handleTextLayout = useCallback((e: NativeSyntheticEvent<TextLayoutEventData>) => {
@@ -105,10 +120,12 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
     if (!expanded && lines.length >= maxLines) {
       const lastLine = lines[lines.length - 1];
       if (lastLine && lines.length === maxLines) {
+        if (seeMoreVerdicts.size >= SEE_MORE_CACHE_MAX) seeMoreVerdicts.clear();
+        seeMoreVerdicts.set(verdictKey, true);
         setShowSeeMore(true);
       }
     }
-  }, [expanded, maxLines, fullContent]);
+  }, [expanded, maxLines, fullContent, verdictKey]);
 
   const toggleExpanded = useCallback(() => {
     setExpanded((prev) => !prev);
