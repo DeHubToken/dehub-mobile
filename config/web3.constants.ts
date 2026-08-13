@@ -9,12 +9,25 @@ export const VAULT_CONTRACT_ADDRESSES = {
   [ChainId.POLYGON_MAINNET]: "0xfBA69f9a77CAB5892D568144397DC6A2068EceD3",
 };
 
+/**
+ * Robinhood Chain ships dark until its v3 stream contracts are deployed.
+ *
+ * Everything else about the chain is wired below — RPC, explorer, wallet-add
+ * payload — so turning it on is this flag plus the two addresses. A picker
+ * entry whose controller address is empty is an option that fails the moment
+ * someone presses send.
+ */
+export const ROBINHOOD_ENABLED = false;
+export const ROBINHOOD_STREAM_COLLECTION = "";
+export const ROBINHOOD_STREAM_CONTROLLER = "";
+
 export const STREAM_CONTROLLER_CONTRACT_ADDRESSES = {
   // live networks
   [ChainId.MAINNET]: "0x6e19ba22da239c46941582530c0ef61400b0e3e6",
   [ChainId.BSC_MAINNET]: "0x6e19ba22da239c46941582530c0ef61400b0e3e6",
   [ChainId.POLYGON_MAINNET]: "0x6e19ba22da239c46941582530c0ef61400b0e3e6",
   [ChainId.BASE_MAINNET]: "0x4fa30dAef50c6dc8593470750F3c721CA3275581",
+  [ChainId.ROBINHOOD_MAINNET]: ROBINHOOD_STREAM_CONTROLLER,
   // testnets
   [ChainId.GORLI]: "0x2B44a04d2e62d84395EB30f9cF71a256Bc7b158A",
   [ChainId.BSC_TESTNET]: "0x6e19ba22da239c46941582530c0ef61400b0e3e6",
@@ -30,6 +43,7 @@ export const STREAM_COLLECTION_CONTRACT_ADDRESSES = {
   [ChainId.BSC_MAINNET]: "0x1065F5922a336C75623B55D22c4a0C760efCe947",
   [ChainId.POLYGON_MAINNET]: "0x1065F5922a336C75623B55D22c4a0C760efCe947",
   [ChainId.BASE_MAINNET]: "0x9f8012074d27F8596C0E5038477ACB52057BC934",
+  [ChainId.ROBINHOOD_MAINNET]: ROBINHOOD_STREAM_COLLECTION,
   // testnets
   [ChainId.GORLI]: "0xfdFe40A30416e0aEcF4814d1d140e027253c00c7",
   [ChainId.BSC_TESTNET]: "0xfdFe40A30416e0aEcF4814d1d140e027253c00c7",
@@ -51,6 +65,9 @@ export const NETWORK_URLS: {
   [ChainId.POLYGON_MAINNET]: "https://polygon-rpc.co",
   // Prefer the public Base RPC for broad compatibility; avoids Alchemy key/timeouts for local providers
   [ChainId.BASE_MAINNET]: `https://mainnet.base.org`,
+  // Public sequencer RPC, same reasoning as Base.
+  [ChainId.ROBINHOOD_MAINNET]: `https://rpc.mainnet.chain.robinhood.com`,
+  [ChainId.ROBINHOOD_TESTNET]: `https://rpc.testnet.chain.robinhood.com`,
 };
 const testNetworks = [
   {
@@ -125,6 +142,24 @@ const mainNetworks = [
     iconUrl:
       "https://basescan.org/assets/base/images/svg/logos/chain-light.svg?v=25.1.2.0",
   },
+  ...(ROBINHOOD_ENABLED
+    ? [
+        {
+          id: ChainId.ROBINHOOD_MAINNET,
+          chainId: ChainId.ROBINHOOD_MAINNET,
+          ticker: "ETH",
+          currency: "ETH",
+          name: "Robinhood Chain",
+          shortName: "Robinhood",
+          rpcUrl: NETWORK_URLS[ChainId.ROBINHOOD_MAINNET],
+          explorerUrl: "https://robinhoodchain.blockscout.com/",
+          value: "Robinhood Chain",
+          label: "Robinhood Chain",
+          customAbbreviation: "robinhood",
+          iconUrl: "",
+        },
+      ]
+    : []),
 ];
 
 export const supportedNetworks = isDevMode ? testNetworks : mainNetworks;
@@ -198,6 +233,19 @@ const MAIN_NETWORKS = {
     },
     rpcUrls: ["https://exchainrpc.okex.org"],
     blockExplorerUrls: ["https://www.oklink.com/en/okc"],
+  },
+  [ChainId.ROBINHOOD_MAINNET]: {
+    // 4663. Note the docs print 0x123F on the connection page, which decodes
+    // to 4671 — the chain's own eth_chainId answers 0x1237.
+    chainId: "0x1237",
+    chainName: "Robinhood Chain",
+    nativeCurrency: {
+      name: "Ether",
+      symbol: "ETH",
+      decimals: 18,
+    },
+    rpcUrls: ["https://rpc.mainnet.chain.robinhood.com"],
+    blockExplorerUrls: ["https://robinhoodchain.blockscout.com"],
   },
   [ChainId.BASE_MAINNET]: {
     chainId: "0x2105",
