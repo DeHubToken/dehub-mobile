@@ -989,9 +989,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 value={inputText}
                 onChangeText={mentions.handleChangeText}
                 onSelectionChange={mentions.handleSelectionChange}
-                // Tagging the bot is invisible unless something says so — this
-                // is the only discovery surface the thread has.
-                placeholder={editingComment ? "Edit your comment..." : replyingTo ? "Write a reply..." : "Add a reply, or tag @assistant to ask"}
+                placeholder={editingComment ? "Edit your comment..." : replyingTo ? "Write a reply..." : "Type here..."}
                 placeholderTextColor="#6F7174"
                 style={{ flex: 1, color: "#F9FBFF", fontSize: 14, maxHeight: 80, paddingVertical: 0 }}
                 maxLength={500}
