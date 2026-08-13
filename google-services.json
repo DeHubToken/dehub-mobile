@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "854299582596",
-    "project_id": "dehub-6b4d7",
-    "storage_bucket": "dehub-6b4d7.firebasestorage.app"
+    "project_number": "1046495997210",
+    "project_id": "dehub-ca4d8",
+    "storage_bucket": "dehub-ca4d8.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:854299582596:android:d1277670b1d384f64fe2d1",
+        "mobilesdk_app_id": "1:1046495997210:android:1398575d8d5158f28090a3",
         "android_client_info": {
           "package_name": "io.dehub.mobile"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCVz9mYD19z897bjl7bQQoXn3Ifth5BcDg"
+          "current_key": "AIzaSyCusm6oeGBelvdobc-8i4K97fcZ1dLrFPs"
         }
       ],
       "services": {
