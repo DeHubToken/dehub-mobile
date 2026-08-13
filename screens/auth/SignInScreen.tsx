@@ -38,7 +38,7 @@ import {
   finishWalletUnlock,
   finishBiometricUnlock,
   createAndSaveEvmWalletForIdentity,
-  getOrCreateSolanaKeypairForAddress,
+  provisionSolanaAddressForWallet,
   switchActiveWalletForIdentity,
 } from "../../libs/identity-wallet";
 import { provisionAndSignIn, markProvisionedIdentity } from "../../libs/provision-and-sign-in";
@@ -228,7 +228,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         signInWithSupabaseSession,
         completeLocalSignIn,
         getSupabaseAuthMeta,
-        getOrCreateSolanaKeypairForAddress,
+        provisionSolanaAddressForWallet,
       });
 
       switch (outcome.kind) {
@@ -253,9 +253,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const finishWalletSetupSignIn = useCallback(
     async (address: string, privateKey: string) => {
       const web3AuthMeta = await getSupabaseAuthMeta();
-      // Awaited so the Solana keypair is in SecureStore before sign-in
+      // Awaited so the Solana address cache is populated before sign-in
       // completes — see libs/provision-and-sign-in.ts for the race this avoids.
-      await getOrCreateSolanaKeypairForAddress(address).catch(() => {});
+      await provisionSolanaAddressForWallet(address, privateKey).catch(() => {});
       await completeLocalSignIn(address, privateKey, web3AuthMeta);
       if (walletSetupRequest?.supabaseUserId) {
         await markProvisionedIdentity(walletSetupRequest.supabaseUserId);

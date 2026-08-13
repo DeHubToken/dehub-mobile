@@ -2,7 +2,7 @@
  * Solana payments (#41) — PPV unlock + tips paid in SOL / SPL tokens.
  *
  * Mirrors the mint flow: the backend builds an unsigned transfer transaction,
- * the client signs it with the Web3Auth-derived Solana keypair and broadcasts,
+ * the client signs it with the wallet-derived Solana keypair and broadcasts,
  * then the backend verifies the transfer on-chain and records the unlock/tip.
  */
 import { Connection, Transaction } from "@solana/web3.js";
@@ -47,7 +47,7 @@ export async function sendSolanaPayment(params: {
   const payerWallet = await getSolanaAddress();
   if (!payerWallet) {
     throw new Error(
-      "Solana wallet unavailable. Sign in with a social account to pay on Solana.",
+      "Solana wallet unavailable — this device does not hold your wallet key. Sign in again to restore it.",
     );
   }
 

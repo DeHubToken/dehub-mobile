@@ -48,7 +48,10 @@ export type ProvisionDeps = {
     web3AuthMeta?: Record<string, any>
   ) => Promise<void>;
   getSupabaseAuthMeta: () => Promise<Record<string, any> | undefined>;
-  getOrCreateSolanaKeypairForAddress: (address: string) => Promise<unknown>;
+  provisionSolanaAddressForWallet: (
+    address: string,
+    privateKey: string
+  ) => Promise<unknown>;
 };
 
 async function ensureSessionMatchesSupabaseIdentity(supabaseUserId: string): Promise<void> {
@@ -360,10 +363,12 @@ async function handleReadyResolution(
   if (supabaseRowMatchesLocal) {
     try {
       const web3AuthMeta = await deps.getSupabaseAuthMeta();
-      // Awaited so the Solana keypair is in SecureStore before sign-in
+      // Awaited so the Solana address cache is populated before sign-in
       // completes — a fire-and-forget call here raced posting/paying on
       // Solana right after sign-in, throwing "Solana wallet unavailable".
-      await deps.getOrCreateSolanaKeypairForAddress(resolution.address).catch(() => {});
+      await deps
+        .provisionSolanaAddressForWallet(resolution.address, resolution.privateKey)
+        .catch(() => {});
       await deps.completeLocalSignIn(resolution.address, resolution.privateKey, web3AuthMeta);
       await markSupabaseIdentitySignedIn(supabaseUserId);
       return { kind: "signed-in" };

@@ -22,18 +22,20 @@ import DpayAbout from "../components/Dpay/DpayAbout";
 import DpayHeader from "../components/Dpay/DpayHeader";
 import StakingTab from "../components/Wallet/StakingTab";
 import BridgeTab from "../components/Wallet/BridgeTab";
+import SolanaTab from "../components/Wallet/SolanaTab";
 import ProfileAssets from "../components/Profile/ProfileAssets";
 import { getSupply, getSuccessTotal, getDpayPrice } from "../services";
 import { ChainId } from "../config/constants";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
 
-type WalletTab = "buy" | "stake" | "bridge";
+type WalletTab = "buy" | "stake" | "bridge" | "solana";
 
 const TABS: { key: WalletTab; label: string; icon: IconName }[] = [
   { key: "buy", label: "Buy DHB", icon: "CreditCard" },
   { key: "stake", label: "Stake", icon: "Lock" },
   { key: "bridge", label: "Bridge", icon: "ArrowLeftRight" },
+  { key: "solana", label: "Solana", icon: "Coins" },
 ];
 
 const DpayScreen: React.FC = () => {
@@ -228,6 +230,7 @@ const DpayScreen: React.FC = () => {
           )}
           {activeTab === "stake" && <StakingTab />}
           {activeTab === "bridge" && <BridgeTab />}
+          {activeTab === "solana" && <SolanaTab />}
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
