@@ -78,7 +78,13 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
     const [showPw, setShowPw] = useState(false);
     const [busy, setBusy] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [protectionChoice, setProtectionChoice] = useState<"biometric" | "password">("password");
+    // Biometric-first. On a phone, fingerprint/face is the protection people
+    // expect and the one they can actually complete — a typed password is the
+    // fallback, not the default. It also skips Argon2id entirely (HKDF over a
+    // device wrap key is instant), which is the single largest stall between
+    // confirming a code and reaching the app. Flipped to "password" below when
+    // the device turns out to have no usable biometrics.
+    const [protectionChoice, setProtectionChoice] = useState<"biometric" | "password">("biometric");
     const [biometricAvailable, setBiometricAvailable] = useState<boolean | null>(null);
     const [deviceWrapKeyReady, setDeviceWrapKeyReady] = useState<boolean | null>(null);
     const [liveAssessment, setLiveAssessment] = useState<PasswordAssessment | null>(null);
@@ -118,9 +124,10 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       isBiometricUnlockAvailable().then((available) => {
         if (cancelled) return;
         setBiometricAvailable(available);
-        // Default to password — it works across devices. Biometric protection
-        // is device-local only and strands users on a new phone (the bug
-        // captchahenryevery@gmail.com hit when mobile minted a fresh wallet).
+        // No enrolled fingerprint/face (or no sensor) — the biometric tab is
+        // not rendered at all in that case, so the choice has to move off it
+        // or the create body would show an option the user cannot pick.
+        if (!available) setProtectionChoice("password");
       });
       return () => {
         cancelled = true;
@@ -306,11 +313,19 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         >
           <Text style={[authText.title, { marginBottom: 8 }]}>{title}</Text>
 
-          {mode === "create" && (
+          {mode === "create" && biometricAvailable === null && (
+            // Held until the capability check answers. Rendering the password
+            // form first and swapping to biometric a moment later flashed a
+            // keyboard up and stole focus on every biometric-capable phone —
+            // which is nearly all of them.
+            <ActivityIndicator color={authColors.label} style={{ marginVertical: 32 }} />
+          )}
+
+          {mode === "create" && biometricAvailable !== null && (
             <>
               <Text style={[authText.body, { marginBottom: 20 }]}>
-                To ensure only you can post or transact with this account, protect your wallet with a
-                password or your device's biometrics.
+                To ensure only you can post or transact with this account, protect your wallet with
+                your device's biometrics or a password.
               </Text>
 
               {biometricAvailable && (
@@ -340,9 +355,9 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   <View style={styles.note}>
                     <Ionicons name="finger-print" size={22} color={authColors.label} />
                     <Text style={[authText.caption, { flex: 1 }]}>
-                      Unlock with your fingerprint or face on THIS device — nothing to type or remember.
-                      This is device-only: it can't recover your wallet on a different phone. Use a
-                      password instead if you need that.
+                      Unlock with your fingerprint or face — nothing to type or remember. This is
+                      device-only: to reach this wallet from another phone or the website, choose
+                      Password instead.
                     </Text>
                   </View>
                   <AuthErrorNotice message={error} style={{ marginTop: 12 }} />
