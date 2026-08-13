@@ -51,15 +51,17 @@ export const STREAM_COLLECTION_CONTRACT_ADDRESSES = {
   //BSC_TESTNET dummy 0x5ae62df56ff1e68fb1772a337859b856caeefab6
 };
 
-const infuraKey = env.INFURA_KEY;
+const alchemyKey = env.ALCHEMY_API_KEY;
 export const NETWORK_URLS: {
   [chainId: number]: string;
 } = {
-  [ChainId.MAINNET]: `https://mainnet.infura.io/v3/${infuraKey}`,
-  [ChainId.ROPSTEN]: `https://ropsten.infura.io/v3/${infuraKey}`,
-  [ChainId.RINKEBY]: `https://rinkeby.infura.io/v3/${infuraKey}`,
-  [ChainId.GORLI]: `https://goerli.infura.io/v3/${infuraKey}`,
-  [ChainId.KOVAN]: `https://kovan.infura.io/v3/${infuraKey}`,
+  // Alchemy when a key is configured, matching the backend. The key is optional
+  // in this app, so fall back to a public endpoint rather than shipping a URL
+  // with an empty key in it — Ethereum is a supported chain for minting and for
+  // the wallet-add payload below, so this has to resolve either way.
+  [ChainId.MAINNET]: alchemyKey
+    ? `https://eth-mainnet.g.alchemy.com/v2/${alchemyKey}`
+    : "https://ethereum-rpc.publicnode.com",
   [ChainId.BSC_MAINNET]: "https://binance.nodereal.io",
   [ChainId.BSC_TESTNET]: `https://data-seed-prebsc-1-s2.binance.org:8545`, //'https://bsc-testnet-rpc.publicnode.com',//`
   [ChainId.POLYGON_MAINNET]: "https://polygon-rpc.co",
@@ -82,19 +84,6 @@ const testNetworks = [
     value: "BNB Testnet",
     label: "BNB Testnet",
     customAbbreviation: "bsc_test",
-  },
-  {
-    id: ChainId.GORLI,
-    chainId: ChainId.GORLI,
-    ticker: "ETH",
-    currency: "ETH",
-    name: "Goerli Testnet",
-    shortName: "Goerli",
-    rpcUrl: NETWORK_URLS[ChainId.GORLI],
-    explorerUrl: "https://goerli.etherscan.io/",
-    value: "Goerli Testnet",
-    label: "Goerli Testnet",
-    customAbbreviation: "goerli",
   },
 ];
 
