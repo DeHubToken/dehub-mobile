@@ -8,6 +8,8 @@ import {
   Platform,
   ScrollView,
   BackHandler,
+  TouchableOpacity,
+  StyleSheet,
   type ViewStyle,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -29,11 +31,16 @@ import {
 } from "../../components/auth/AuthControls";
 import { createLogger } from "../../libs/logger";
 import { isReservedUsername } from "../../libs/reserved-usernames";
+import {
+  openCroppedImagePicker,
+  resizeAndCompress,
+  createRNImageFile,
+} from "../../libs/assets.util";
+import { runWithPermissions } from "../../libs/permissions.util";
 
 const log = createLogger("SetProfileScreen");
 
-// 3D user image
-const USER_3D_IMAGE = require("../../assets/onboarding/user-3d.png");
+const AVATAR_PT = 112;
 
 const statusRow: ViewStyle = { flexDirection: "row", alignItems: "center", gap: 6 };
 
@@ -50,7 +57,11 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
   const [checking, setChecking] = useState(false);
   const [available, setAvailable] = useState<boolean | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  
+  // Local file URI of a picked avatar, uploaded with the profile on Continue.
+  // Optional on purpose: a missing picture must never block finishing sign-up.
+  const [localAvatar, setLocalAvatar] = useState<string | null>(null);
+  const [processingAvatar, setProcessingAvatar] = useState(false);
+
   const isMountedRef = useRef(true);
   const hasNavigatedRef = useRef(false);
 
@@ -157,6 +168,37 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
     setDisplayName(text);
   };
 
+  // Same pipeline as EditProfileScreen's avatar picker (crop square, then
+  // downscale to 512 before upload) so a picture set at sign-up is byte-for-byte
+  // what the edit screen would have produced later.
+  const handlePickAvatar = useCallback(async () => {
+    try {
+      setProcessingAvatar(true);
+      await runWithPermissions(["photos"], async () => {
+        const picked = await openCroppedImagePicker({
+          width: 800,
+          height: 800,
+          circle: true,
+          quality: 0.9,
+          forceJpg: true,
+        });
+        if (!picked) return;
+        const manip = await resizeAndCompress(picked, {
+          width: 512,
+          height: 512,
+          compress: 0.85,
+          format: "jpeg",
+        });
+        if (isMountedRef.current) setLocalAvatar(manip);
+      });
+    } catch (e) {
+      log.warn("Avatar pick failed", e);
+      toastError(e, "Could not use that image");
+    } finally {
+      if (isMountedRef.current) setProcessingAvatar(false);
+    }
+  }, []);
+
   const isUsernameValid = username.length >= 3 && username.length <= 30;
   const isDisplayNameValid = displayName.trim().length >= 2 && displayName.trim().length <= 50;
   // `available !== true`, not `available === false`: the answer is null for the
@@ -173,14 +215,23 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
     }
     setSubmitting(true);
     try {
-      await AuthService.updateProfile({
+      const payload: Record<string, any> = {
         username: username.trim(),
         displayName: displayName.trim(),
-      });
+      };
+      if (localAvatar) {
+        // Both keys, matching EditProfileScreen — the backend reads one of the
+        // two depending on the route that handles the multipart body.
+        const avatarFile = createRNImageFile(localAvatar, "avatar");
+        payload.avatar = avatarFile;
+        payload.avatarImg = avatarFile;
+      }
+      await AuthService.updateProfile(payload);
       const finalUser: User = {
         ...provisionalUser,
         username: username.trim(),
         displayName: displayName.trim(),
+        ...(localAvatar ? { avatarImageUrl: localAvatar } : {}),
       };
       await setAuthUser(finalUser);
       toastSuccess("Profile set successfully!");
@@ -207,20 +258,50 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
           keyboardShouldPersistTaps="handled"
           className="px-6"
         >
-          {/* User 3D Image */}
-          <View className="items-center mt-8">
-            <Image
-              source={USER_3D_IMAGE}
-              style={{ width: 250, height: 250 }}
-              resizeMode="contain"
-            />
-          </View>
-
-          {/* Header - overlaps with image shadow */}
-          <View style={{ alignItems: "center", marginTop: -55, marginBottom: 24 }}>
+          {/* Header */}
+          <View style={{ alignItems: "center", marginTop: 32, marginBottom: 24 }}>
             <Text style={[authText.title, { marginBottom: 8 }]}>Set your profile</Text>
             <Text style={[authText.body, { textAlign: "center" }]}>
               Choose how you'll be known on DeHub.{"\n"}You can change them later.
+            </Text>
+          </View>
+
+          {/* Profile picture — optional, never gates Continue. This replaces the
+              generic 3D user illustration that used to sit above the header:
+              the same spot now holds the user's actual picture, so the screen
+              does not show a stand-in avatar directly above a real one. */}
+          <View style={{ alignItems: "center", marginBottom: 28 }}>
+            <TouchableOpacity
+              onPress={handlePickAvatar}
+              disabled={processingAvatar || submitting}
+              activeOpacity={0.8}
+              accessibilityRole="button"
+              accessibilityLabel={
+                localAvatar ? "Change profile picture" : "Add a profile picture"
+              }
+              style={styles.avatarTarget}
+            >
+              {localAvatar ? (
+                <Image source={{ uri: localAvatar }} style={styles.avatarImage} />
+              ) : (
+                <View style={styles.avatarPlaceholder}>
+                  <Ionicons name="person" size={40} color={authColors.subtle} />
+                </View>
+              )}
+              <View style={styles.avatarBadge}>
+                {processingAvatar ? (
+                  <ActivityIndicator size="small" color={authColors.label} />
+                ) : (
+                  <Ionicons
+                    name={localAvatar ? "pencil" : "add"}
+                    size={16}
+                    color={authColors.label}
+                  />
+                )}
+              </View>
+            </TouchableOpacity>
+            <Text style={[authText.caption, { marginTop: 10 }]}>
+              {localAvatar ? "Tap to change" : "Add a photo (optional)"}
             </Text>
           </View>
 
@@ -310,5 +391,41 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  avatarTarget: {
+    width: AVATAR_PT,
+    height: AVATAR_PT,
+  },
+  avatarImage: {
+    width: AVATAR_PT,
+    height: AVATAR_PT,
+    borderRadius: AVATAR_PT / 2,
+  },
+  avatarPlaceholder: {
+    width: AVATAR_PT,
+    height: AVATAR_PT,
+    borderRadius: AVATAR_PT / 2,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: authColors.field,
+    borderWidth: 1,
+    borderColor: authColors.fieldBorder,
+  },
+  avatarBadge: {
+    position: "absolute",
+    right: -2,
+    bottom: -2,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: authColors.surfacePressed,
+    borderWidth: 2,
+    // Punches the badge out of the avatar edge against the screen's black bg.
+    borderColor: "#000",
+  },
+});
 
 export default SetProfileScreen;
