@@ -120,7 +120,7 @@ export default function UploadScreen() {
       if (isSolanaChain(targetChainId)) {
         const addr = await getSolanaAddress();
         if (!addr) {
-          toastError("Solana posting needs a social login. Sign in with a social account to continue.");
+          toastError("Solana wallet unavailable — this device does not hold your wallet key. Sign in again to restore it.");
           return;
         }
         try {
@@ -740,7 +740,7 @@ export default function UploadScreen() {
     if (isSolanaChain(payload.postChainId)) {
       const addr = payload.solanaAddress ?? (await getSolanaAddress().catch(() => null));
       if (!addr) {
-        toastError("Solana posting needs a social login. Sign in with a social account to continue.");
+        toastError("Solana wallet unavailable — this device does not hold your wallet key. Sign in again to restore it.");
         return;
       }
       payload = { ...payload, solanaAddress: addr };

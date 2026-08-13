@@ -9,7 +9,7 @@
 // That table lookup, and the password unlock/creation it requires, is what
 // makes this genuinely cross-device instead of merely per-device.
 import * as SecureStore from "expo-secure-store";
-import { Keypair } from "@solana/web3.js";
+import { deriveSolanaAddress } from "./solana-derive";
 import {
   upsertLocalAccount,
   hasPrivateKeyForAddress,
@@ -31,9 +31,13 @@ import { ChainId } from "../config/constants";
 const log = createLogger("identity-wallet");
 
 const EVM_MAP_KEY = "supabase_identity_wallet_map_v1";
+// Pre-derivation random keypairs. Read-only now — see getLegacySolanaSecretKeyHex.
 const SOLANA_SK_PREFIX = "local_solana_sk_";
+// Derived Solana address cache. Public data; stored only to keep the wallet
+// screen from prompting for owner verification to display an address.
+const SOLANA_ADDR_PREFIX = "local_solana_addr_";
 
-// THIS_DEVICE_ONLY keeps the Solana secret out of iCloud/Keychain sync and
+// THIS_DEVICE_ONLY keeps stored wallet material out of iCloud/Keychain sync and
 // device backups, matching the accessibility level wallets.local.ts uses for
 // EVM keys.
 const KEY_ACCESSIBILITY = {
@@ -70,19 +74,6 @@ async function deleteMapEntry(key: string, id: string): Promise<void> {
   } catch (e) {
     log.warn("deleteMapEntry:error", { key, e });
   }
-}
-
-function bytesToHex(bytes: Uint8Array): string {
-  return Array.from(bytes)
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
-}
-
-function hexToBytes(hex: string): Uint8Array {
-  const clean = hex.startsWith("0x") ? hex.slice(2) : hex;
-  const out = new Uint8Array(clean.length / 2);
-  for (let i = 0; i < out.length; i++) out[i] = parseInt(clean.substr(i * 2, 2), 16);
-  return out;
 }
 
 export type EvmWalletResolution =
@@ -380,37 +371,53 @@ export async function switchActiveWalletForIdentity(
 }
 
 /**
- * Returns the local Solana keypair tied to an EVM wallet address, generating
- * one the first time. Only Supabase-identity (social/email) wallets get a
- * Solana keypair here — imported (pasted private key) wallets never had one,
- * same as before this change.
+ * Record the Solana address derived from this wallet's EVM private key.
+ *
+ * Only the ADDRESS is cached, and only so the wallet screen can show it
+ * without asking the device owner to authenticate for a public value. The
+ * secret is never written anywhere: it is recomputed from the EVM key at
+ * signing time (see services/solana.service.ts), which is what makes it
+ * survive a reinstall or a new handset.
  */
-export async function getOrCreateSolanaKeypairForAddress(
+export async function provisionSolanaAddressForWallet(
   evmAddress: string,
-): Promise<{ address: string; secretKeyHex: string }> {
-  const storeKey = SOLANA_SK_PREFIX + evmAddress.toLowerCase();
+  evmPrivateKey: string,
+): Promise<string> {
+  const address = deriveSolanaAddress(evmPrivateKey);
   try {
-    const existing = await SecureStore.getItemAsync(storeKey);
-    if (existing) {
-      const kp = Keypair.fromSecretKey(hexToBytes(existing));
-      return { address: kp.publicKey.toBase58(), secretKeyHex: existing };
-    }
+    await SecureStore.setItemAsync(
+      SOLANA_ADDR_PREFIX + evmAddress.toLowerCase(),
+      address,
+      KEY_ACCESSIBILITY,
+    );
   } catch (e) {
-    log.warn("getOrCreateSolanaKeypairForAddress:read:error", e);
+    // Losing the cache costs one extra owner-verification prompt the next time
+    // the address is needed, nothing more — the address is re-derivable.
+    log.warn("provisionSolanaAddressForWallet:cache:error", e);
   }
-
-  const kp = Keypair.generate();
-  const hex = bytesToHex(kp.secretKey);
-  try {
-    await SecureStore.setItemAsync(storeKey, hex, KEY_ACCESSIBILITY);
-  } catch (e) {
-    log.warn("getOrCreateSolanaKeypairForAddress:write:error", e);
-  }
-  return { address: kp.publicKey.toBase58(), secretKeyHex: hex };
+  return address;
 }
 
-/** Hex-encoded Solana secret key for an EVM address, or null if none was provisioned. */
-export async function getLocalSolanaSecretKeyHex(evmAddress: string): Promise<string | null> {
+/** Cached Solana address for an EVM wallet, or null if it hasn't been derived yet. */
+export async function getCachedSolanaAddress(evmAddress: string): Promise<string | null> {
+  try {
+    return await SecureStore.getItemAsync(SOLANA_ADDR_PREFIX + evmAddress.toLowerCase());
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Hex secret key of the pre-derivation, randomly generated Solana wallet, if
+ * this device still holds one.
+ *
+ * Builds before the switch to deterministic derivation minted a random keypair
+ * per device. Those keys are not reproducible from anything, so they are left
+ * in place rather than overwritten — the wallet screen surfaces the address
+ * when it still holds a balance so the funds can be moved out. Nothing signs
+ * with it any more.
+ */
+export async function getLegacySolanaSecretKeyHex(evmAddress: string): Promise<string | null> {
   try {
     return await SecureStore.getItemAsync(SOLANA_SK_PREFIX + evmAddress.toLowerCase());
   } catch {
