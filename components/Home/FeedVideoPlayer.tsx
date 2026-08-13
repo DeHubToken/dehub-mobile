@@ -57,8 +57,9 @@ interface FeedVideoPlayerProps {
   hideControls?: boolean;
 }
 
-// Grace period before a scrolled-to video starts, so a fast flick past a row
-// doesn't spin up a player it is about to discard. Was 1200ms — well past the
+// Grace period before a scrolled-to video gets a media source at all, so a
+// fast flick past a row doesn't spin up a player it is about to discard.
+// Playback starts on readyToPlay after this fires. Was 1200ms — well past the
 // point where a settled card reads as broken rather than loading. The shorts
 // grid has always used 250ms for the same job.
 const AUTOPLAY_DELAY = 400;
@@ -129,11 +130,20 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   const canPlay = !isContentGated && !!videoUrl;
 
-  // Only attach the media source while the card is visible. Off-screen cards
-  // keep an empty player, so their ExoPlayer buffers are released — with
-  // FlatList's render window this is the difference between 1 and 10+ live
-  // players and was causing OutOfMemoryError on Android.
-  const player = useVideoPlayer(canPlay && isVisible ? videoUrl : null, (p) => {
+  // True once something has actually asked for media: the autoplay settle
+  // timer, or a tap. Visibility alone used to attach the source, which created
+  // (and then released) a native player + network prepare for every video card
+  // the viewport passed over — most of the cost of scrolling a video feed, and
+  // it downloaded video for Data Saver users who autoplay would never serve.
+  const [sourceRequested, setSourceRequested] = useState(false);
+  // A play intent waiting for the deferred source to reach readyToPlay.
+  const pendingPlayRef = useRef(false);
+
+  // Only attach the media source while the card is visible AND intent exists.
+  // Off-screen cards keep an empty player, so their ExoPlayer buffers are
+  // released — with FlatList's render window this is the difference between 1
+  // and 10+ live players and was causing OutOfMemoryError on Android.
+  const player = useVideoPlayer(canPlay && isVisible && sourceRequested ? videoUrl : null, (p) => {
     p.loop = true;
     p.muted = getCachedMuted();
     p.timeUpdateEventInterval = 0.5;
@@ -217,6 +227,18 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           if (status === "readyToPlay") {
             setVideoReady(true);
             if (player.duration > 0) setVideoDuration(player.duration);
+            // The deferred source has arrived; honour the intent that attached
+            // it. Seed mute from the shared cache the same way the old direct
+            // path did.
+            if (pendingPlayRef.current) {
+              pendingPlayRef.current = false;
+              try {
+                const m = getCachedMuted();
+                player.muted = m;
+                setIsMuted(m);
+              } catch {}
+              startPlayback();
+            }
           }
         })
       );
@@ -236,12 +258,16 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       );
     } catch {}
     return () => { subs.forEach((s) => { try { s.remove(); } catch {} }); };
-  }, [player]);
+  }, [player, startPlayback]);
 
   useEffect(() => {
     if (!canPlay || !isVisible) {
       if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; }
+      // Cleared before the source detaches so a readyToPlay event landing in
+      // the same frame can't start a card that has already scrolled off.
+      pendingPlayRef.current = false;
       if (isPlayingRef.current) stopPlayback();
+      setSourceRequested(false);
       setHasStartedAutoplay(false);
       setVideoReady(false);
       setFirstFrameRendered(false);
@@ -256,24 +282,19 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // Settings → Appearance → Auto-play videos, mirroring web's AutoplayContext
     // gate in VideoCard. Same as Data Saver, this only suppresses *auto* play.
     if (!autoplayEnabled) return;
+    // The card survived the settle delay, so this is a real stop, not a fling
+    // passing through. Attach the source now; statusChange plays it on ready.
+    // The timer only ever fires with no source attached — a tap in the window
+    // sets hasStartedAutoplay, which re-runs this effect and clears the timer.
     autoplayTimerRef.current = setTimeout(() => {
-      const p = playerRef.current;
-      if (isPlayingRef.current || !p || !canPlay) return;
-      // Card may have scrolled off in the 1200ms since scheduling, releasing
-      // the native player. Guard every access — a released shared object throws.
-      try {
-        const m = getCachedMuted();
-        p.muted = m;
-        setIsMuted(m);
-        startPlayback();
-        setHasStartedAutoplay(true);
-        setShowControls(false); // Controls hidden on autoplay
-      } catch {
-        // Player was already released — nothing to autoplay.
-      }
+      if (isPlayingRef.current || !canPlay) return;
+      pendingPlayRef.current = true;
+      setHasStartedAutoplay(true);
+      setShowControls(false); // Controls hidden on autoplay
+      setSourceRequested(true);
     }, AUTOPLAY_DELAY);
     return () => { if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; } };
-  }, [canPlay, isVisible, hasStartedAutoplay, liteMode, autoplayEnabled, stopPlayback, startPlayback, clearHideTimer]);
+  }, [canPlay, isVisible, hasStartedAutoplay, liteMode, autoplayEnabled, stopPlayback, clearHideTimer]);
 
   useEffect(() => {
     const h = (state: AppStateStatus) => {
@@ -291,18 +312,27 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
   const handleVideoPress = useCallback(() => {
     if (!canPlay) { onPress(); return; }
-    
+
     // Toggle play state and manage controls visibility
     if (isPlayingRef.current) {
       stopPlayback();
       setShowControls(true);
       clearHideTimer(); // Stay visible while paused
+    } else if (!sourceRequested) {
+      // First touch on a card that never autoplayed (Data Saver, autoplay off,
+      // or the tap beat the settle timer): attach the source and play as soon
+      // as it reaches readyToPlay. The buffering spinner covers the gap.
+      pendingPlayRef.current = true;
+      setHasStartedAutoplay(true);
+      setSourceRequested(true);
+      setShowControls(true);
+      startHideTimer();
     } else {
       startPlayback();
       setShowControls(true);
       startHideTimer(); // Auto-hide after 1.5s when playing
     }
-  }, [canPlay, onPress, stopPlayback, startPlayback, clearHideTimer, startHideTimer]);
+  }, [canPlay, sourceRequested, onPress, stopPlayback, startPlayback, clearHideTimer, startHideTimer]);
 
   const handleToggleMute = useCallback(() => {
     if (!playerRef.current) return;
@@ -441,7 +471,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         </View>
       )}
 
-      {canPlay && isVisible && player && (
+      {canPlay && isVisible && sourceRequested && player && (
         <VideoView
           ref={videoViewRef}
           player={player}
