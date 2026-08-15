@@ -37,7 +37,6 @@ import {
   Exo_600SemiBold,
   Exo_700Bold,
 } from "@expo-google-fonts/exo";
-import { applyGlobalFont } from "./libs/globalFont";
 import { theme } from "./theme";
 import { AuthProvider, useAuthState, useUser } from "./context/AuthContext";
 import { WebSocketProvider } from "./context/WebSocketContext";
@@ -102,9 +101,9 @@ export default function App() {
   });
   const fontsSettled = fontsLoaded || !!fontError;
 
-  React.useEffect(() => {
-    if (fontsLoaded) applyGlobalFont();
-  }, [fontsLoaded]);
+  // Exo itself is installed over the JSX runtime from index.ts, before any
+  // element exists; all that is left here is holding the splash until the TTFs
+  // have actually registered, so nothing paints in the fallback face first.
 
   // Complete any pending browser auth sessions (Supabase Google OAuth). In an
   // effect, not the render body: it was running on every re-render of the
