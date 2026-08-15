@@ -11,6 +11,7 @@ import {
   type ViewStyle,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 /**
  * Shared chrome for every sign-in / wallet-setup surface.
@@ -31,8 +32,26 @@ import { Ionicons } from "@expo/vector-icons";
  */
 
 export const AUTH_CONTROL_HEIGHT = 56;
+/**
+ * Compact height for standalone CTAs (the sign-in gate), mirroring web's `h-10`
+ * Button. Rounded up from web's 40px to the 44pt iOS / 48dp Android tap floor,
+ * which a bare 40 would sit under.
+ */
+export const AUTH_COMPACT_HEIGHT = 44;
 export const AUTH_RADIUS = 12;
 export const AUTH_HIT_SLOP = { top: 10, bottom: 10, left: 10, right: 10 };
+
+/**
+ * dehubweb's `Button variant="glass"` — `from-white/20 via-white/10 to-white/5`
+ * on a `to-br` axis with a `white/30` hairline. `backdrop-blur-xl` is dropped
+ * deliberately: these sit on the app's flat black, so a BlurView would cost a
+ * render target to blur nothing.
+ */
+export const AUTH_GLASS_COLORS = [
+  "rgba(255,255,255,0.20)",
+  "rgba(255,255,255,0.10)",
+  "rgba(255,255,255,0.05)",
+] as const;
 
 export const authColors = {
   /** White-glass fill used by every secondary control. */
@@ -56,12 +75,13 @@ export const authColors = {
 
 export const AUTH_DISABLED_OPACITY = 0.45;
 
-export type AuthButtonVariant = "primary" | "secondary" | "ghost";
+export type AuthButtonVariant = "primary" | "secondary" | "ghost" | "glass";
 
 const VARIANT_FOREGROUND: Record<AuthButtonVariant, string> = {
   primary: authColors.onPrimary,
   secondary: authColors.label,
   ghost: authColors.label,
+  glass: authColors.label,
 };
 
 export interface AuthButtonProps {
@@ -78,6 +98,12 @@ export interface AuthButtonProps {
   disabled?: boolean;
   /** Left-align the label instead of centring it (list-style rows). */
   align?: "center" | "start";
+  /**
+   * `full` is the 56pt full-width bar every step of the sign-in flow uses.
+   * `compact` is web's standalone pill — 44pt, hugging its label at a 120pt
+   * floor — for a CTA that stands on its own rather than in a stack.
+   */
+  size?: "full" | "compact";
   accessibilityLabel?: string;
   accessibilityHint?: string;
   style?: StyleProp<ViewStyle>;
@@ -98,6 +124,7 @@ export const AuthButton: React.FC<AuthButtonProps> = memo(
     loading,
     disabled,
     align = "center",
+    size = "full",
     accessibilityLabel,
     accessibilityHint,
     style,
@@ -116,6 +143,7 @@ export const AuthButton: React.FC<AuthButtonProps> = memo(
         accessibilityState={{ disabled: isDisabled, busy: !!loading }}
         style={[
           styles.button,
+          size === "compact" && styles.buttonCompact,
           align === "start" && styles.buttonStart,
           variant === "primary" && { backgroundColor: authColors.primary },
           variant === "secondary" && {
@@ -128,10 +156,23 @@ export const AuthButton: React.FC<AuthButtonProps> = memo(
             borderWidth: 1,
             borderColor: authColors.border,
           },
+          variant === "glass" && styles.buttonGlass,
           isDisabled && { opacity: AUTH_DISABLED_OPACITY },
           style,
         ]}
       >
+        {variant === "glass" && (
+          <>
+            <LinearGradient
+              colors={AUTH_GLASS_COLORS}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={StyleSheet.absoluteFill}
+              pointerEvents="none"
+            />
+            <View style={styles.glassHighlight} pointerEvents="none" />
+          </>
+        )}
         {loading ? (
           <ActivityIndicator color={foreground} />
         ) : (
@@ -143,7 +184,7 @@ export const AuthButton: React.FC<AuthButtonProps> = memo(
               style={[
                 styles.label,
                 { color: foreground },
-                variant === "primary" && styles.labelPrimary,
+                (variant === "primary" || variant === "glass") && styles.labelPrimary,
                 align === "start" && styles.labelStart,
               ]}
               numberOfLines={1}
@@ -296,6 +337,8 @@ AuthErrorNotice.displayName = "AuthErrorNotice";
 export const authText = StyleSheet.create({
   title: { color: authColors.label, fontSize: 24, fontWeight: "700" },
   modalTitle: { color: authColors.label, fontSize: 20, fontWeight: "700" },
+  /** Web's `text-xl font-semibold` on the sign-in gate — 20/600, not 20/700. */
+  gateTitle: { color: authColors.label, fontSize: 20, fontWeight: "600" },
   body: { color: authColors.muted, fontSize: 14, lineHeight: 20 },
   caption: { color: authColors.subtle, fontSize: 12, lineHeight: 17 },
   emphasis: { color: authColors.label, fontWeight: "600" },
@@ -314,6 +357,32 @@ const styles = StyleSheet.create({
   },
   buttonStart: {
     justifyContent: "flex-start",
+  },
+  buttonCompact: {
+    width: "auto",
+    alignSelf: "center",
+    minWidth: 120,
+    minHeight: AUTH_COMPACT_HEIGHT,
+    paddingHorizontal: 24,
+  },
+  buttonGlass: {
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.30)",
+    // The gradient fill is an absolutely-positioned child, so it has to be
+    // clipped to the radius rather than painted by the container. Web's
+    // `0_8px_32px_rgba(0,0,0,0.2)` drop shadow is not reproduced: iOS clips a
+    // shadow on any view with `overflow: hidden`, and a black shadow on this
+    // screen's black ground reads as nothing either way. The inset top
+    // highlight below is the half of that shadow stack that actually shows.
+    overflow: "hidden",
+  },
+  glassHighlight: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 1,
+    backgroundColor: "rgba(255,255,255,0.40)",
   },
   label: {
     fontSize: 16,

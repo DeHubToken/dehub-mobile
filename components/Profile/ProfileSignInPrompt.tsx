@@ -1,31 +1,16 @@
 import React from "react";
-import { Image, View, Text } from "react-native";
-import { ScreenNames } from "../../navigation/ScreenNames";
-import { useNavigation } from "@react-navigation/native";
-import { AuthButton, authText } from "../auth/AuthControls";
+import { SignInPrompt } from "../auth/SignInGate";
 
-const ProfileSignInPrompt: React.FC = () => {
-  const navigation = useNavigation<any>();
-  return (
-    <View className="flex-1 bg-theme-neutrals-900 justify-center items-center px-6">
-      <View style={{ alignItems: "center", width: "100%", maxWidth: 320, marginBottom: 32 }}>
-        <Image
-          source={require("../../assets/web-icons/profile-icon.png")}
-          accessibilityLabel="Profile"
-          resizeMode="contain"
-          style={{ width: 80, height: 80, marginBottom: 20 }}
-        />
-        <Text style={[authText.title, { textAlign: "center", marginBottom: 20 }]}>
-          Log in required
-        </Text>
-        <AuthButton
-          variant="primary"
-          label="Log in / Sign up"
-          onPress={() => navigation.navigate(ScreenNames.SignIn)}
-        />
-      </View>
-    </View>
-  );
-};
+/**
+ * The signed-out profile screen. Web routes this through the very same
+ * `AuthGate` as its twelve other gated pages, so mobile does too rather than
+ * keeping the near-duplicate it had — a 24/700 heading, a hardcoded English
+ * "Log in / Sign up" label and a solid near-white bar, none of which matched
+ * the gate two taps away.
+ *
+ * `ProfileScreen` already paints the background and the header above this, so
+ * the transparent, unpadded prompt is the right half to render.
+ */
+const ProfileSignInPrompt: React.FC = () => <SignInPrompt />;
 
 export default ProfileSignInPrompt;
