@@ -34,6 +34,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getCategoriesCached, getMintFee } from "../services/nft.service";
 import type { MintFeeQuoteResponse } from "../services/nft.service";
 import { getAuthMethod } from "../libs/auth.utils";
+import { isShortOfMintFee } from "../services/mint.service";
 import { toastError, toastSuccess } from "../libs/toast";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
 import { useUser, useAuthActions, useProvider } from "../context/AuthContext";
@@ -812,11 +813,31 @@ export default function UploadScreen() {
       if (!solanaAddress) setSolanaAddress(addr);
     }
 
+    /**
+     * Can this account pay for the mint?
+     *
+     * Checked here, before the job is queued, because it is the last moment at
+     * which coming up short is harmless. Once /user_mint has run the post
+     * exists expecting to be minted, and a mint that then fails leaves it to
+     * be swept to 'failed' three minutes later — so a missing fee would cost
+     * the creator the post rather than just the mint.
+     */
+    if (payload.shouldMint && !isSolanaChain(payload.postChainId) && mintFee?.chargeable
+        && mintFee.amount > 0 && !mintFee.isNative) {
+      const short = await isShortOfMintFee(mintFee, effectivePostChainId).catch(() => false);
+      if (short) {
+        payload = { ...payload, shouldMint: false };
+        toastSuccess(
+          `Posting without minting — that costs ${mintFee.amount} ${mintFee.symbol} and your balance is short. You can mint it later from the post menu.`,
+        );
+      }
+    }
+
     const ok = enqueueJob(payload);
     if (!ok) return;
     setShowConfirm(false);
     setTimeout(navigateHome, 120);
-  }, [getPayload, enqueueJob, navigateHome, solanaAddress]);
+  }, [getPayload, enqueueJob, navigateHome, solanaAddress, mintFee, effectivePostChainId]);
 
   const handleRemoveQuoteEmbed = useCallback(() => {
     setIsQuoteMode(false);

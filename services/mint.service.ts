@@ -1,6 +1,8 @@
 import { ethers } from "ethers";
 import { applyGasMargin } from "../libs/web3.util";
 import { writeContractAA, writeBatchAA } from "../libs/aa.write";
+import { getAuthMethod } from "../libs/auth.utils";
+import { ethersService } from "./ethers.service";
 
 export type MinimalToken = {
   address: string;
@@ -83,6 +85,25 @@ export type MintFeeQuote = {
 const ERC20_TRANSFER_IFACE = new ethers.utils.Interface([
   "function transfer(address to, uint256 amount) returns (bool)",
 ]);
+
+/**
+ * True when the signed-in account cannot cover `fee`.
+ *
+ * Answers false on any error. A balance read that fails must not be what
+ * decides a post goes out unminted — let the transfer itself be the judge.
+ */
+export async function isShortOfMintFee(fee: MintFeeQuote, chainId: number): Promise<boolean> {
+  try {
+    const { address } = await getAuthMethod();
+    if (!address) return false;
+    const balance = await ethersService.getErc20Balance(fee.tokenAddress, address, chainId);
+    const needed = ethers.utils.parseUnits(fee.amount.toFixed(fee.decimals), fee.decimals);
+    return balance.lt(needed);
+  } catch (e) {
+    console.warn("[mint.service] could not read DHB balance", e);
+    return false;
+  }
+}
 
 /**
  * Mint, and pay the mint fee, in a single sponsored transaction.

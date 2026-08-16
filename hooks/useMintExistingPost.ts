@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { getContractsForMint } from "../libs/contract.factory";
 import { createAuthAdapter } from "../services/auth/authAdapter";
 import { getMintFee, mintExistingPost } from "../services/nft.service";
-import { mintNftOnChainWithFee } from "../services/mint.service";
+import { mintNftOnChainWithFee, isShortOfMintFee } from "../services/mint.service";
 import { getAuthMethod } from "../libs/auth.utils";
 import { toastError, toastSuccess } from "../libs/toast";
 
@@ -24,6 +24,15 @@ export function useMintExistingPost() {
         // Only sponsored sessions are charged, so only they price it.
         const { method } = await getAuthMethod().catch(() => ({ method: null as null }));
         const fee = method === "local" ? await getMintFee(chainId) : null;
+
+        // Checked before the signature is issued, so being short of DHB is a
+        // clear message rather than a reverted transaction.
+        if (fee?.chargeable && fee.amount > 0 && !fee.isNative) {
+          if (await isShortOfMintFee(fee, chainId)) {
+            toastError(`Minting costs ${fee.amount} ${fee.symbol} — top up and try again.`);
+            return false;
+          }
+        }
 
         const sig = await mintExistingPost(tokenId);
         const timestamp = (sig as any)?.timestamp;
