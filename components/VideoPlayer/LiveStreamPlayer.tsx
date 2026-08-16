@@ -22,6 +22,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import ReactionOverlay from "../LiveProducer/ReactionOverlay";
 import TipAnimationsOverlay from "../LiveProducer/TipAnimationsOverlay";
 import GiftModal from "../Tip/GiftModal";
+import StreamShopOverlay from "../LiveViewer/StreamShopOverlay";
 import { useTipAnimations } from "../../hooks/useTipAnimations";
 import { useReactions } from "../../hooks/useReactions";
 import type { ReactionType } from "../LiveProducer/ReactionOverlay";
@@ -1258,8 +1259,15 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             {/* Middle area - transparent, shows video */}
             <View className="flex-1" pointerEvents="box-none" />
 
-            {/* Bottom section: chat + reactions + input */}
+            {/* Bottom section: shop + chat + reactions + input */}
             <View pointerEvents="box-none" style={{ paddingBottom: Math.max(insets.bottom, 8) }}>
+              {/* Whatever the host has put "on air", above the chat so a busy
+                  room cannot scroll it away. Renders nothing when the stream
+                  has no products attached. */}
+              <StreamShopOverlay
+                tokenId={(streamEntity?.tokenId as any) || (tokenId as any)}
+              />
+
               {/* TikTok-style join/gift banners */}
               <LiveEventBanner joinEvent={joinEvent} giftEvent={giftEvent} />
 
