@@ -35,6 +35,7 @@ import { getCategoriesCached, getMintFee } from "../services/nft.service";
 import type { MintFeeQuoteResponse } from "../services/nft.service";
 import { getAuthMethod } from "../libs/auth.utils";
 import { isShortOfMintFee } from "../services/mint.service";
+import { defaultChainId } from "../config/constants";
 import { toastError, toastSuccess } from "../libs/toast";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
 import { useUser, useAuthActions, useProvider } from "../context/AuthContext";
@@ -122,6 +123,9 @@ export default function UploadScreen() {
   const [postChainId, setPostChainId] = useState<number | undefined>(undefined);
   const [solanaAddress, setSolanaAddress] = useState<string | null>(null);
   const effectivePostChainId = postChainId ?? activeChainId;
+  // The above stays optional — no provider has reported a chain yet on first
+  // paint — but a fee has to be priced against a real one either way.
+  const mintChainId = effectivePostChainId ?? defaultChainId;
   const handleMintChainChange = useCallback(
     async (targetChainId: number) => {
       if (isSolanaChain(targetChainId)) {
@@ -327,11 +331,11 @@ export default function UploadScreen() {
     (async () => {
       const { method } = await getAuthMethod().catch(() => ({ method: null as null }));
       if (cancelled || method !== "local") return;
-      const quote = await getMintFee(effectivePostChainId);
+      const quote = await getMintFee(mintChainId);
       if (!cancelled) setMintFee(quote);
     })();
     return () => { cancelled = true; };
-  }, [effectiveShouldMint, effectivePostChainId]);
+  }, [effectiveShouldMint, mintChainId]);
 
   const mintFeeLabel =
     mintFee?.chargeable && mintFee.amount > 0
@@ -824,7 +828,7 @@ export default function UploadScreen() {
      */
     if (payload.shouldMint && !isSolanaChain(payload.postChainId) && mintFee?.chargeable
         && mintFee.amount > 0 && !mintFee.isNative) {
-      const short = await isShortOfMintFee(mintFee, effectivePostChainId).catch(() => false);
+      const short = await isShortOfMintFee(mintFee, mintChainId).catch(() => false);
       if (short) {
         payload = { ...payload, shouldMint: false };
         toastSuccess(
@@ -837,7 +841,7 @@ export default function UploadScreen() {
     if (!ok) return;
     setShowConfirm(false);
     setTimeout(navigateHome, 120);
-  }, [getPayload, enqueueJob, navigateHome, solanaAddress, mintFee, effectivePostChainId]);
+  }, [getPayload, enqueueJob, navigateHome, solanaAddress, mintFee, mintChainId]);
 
   const handleRemoveQuoteEmbed = useCallback(() => {
     setIsQuoteMode(false);
