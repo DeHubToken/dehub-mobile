@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   View,
   Text,
@@ -73,6 +74,7 @@ import type { EnhanceMode } from "../services/ai.service";
 
 const TITLE_MAX = 140;
 const DESCRIPTION_MAX = 500;
+const SHOW_TITLE_PREF_KEY = "@dhb_post_show_title";
 const IMAGES_MAX = 4;
 const MAX_IMAGE_SIZE_BYTES = 20 * 1024 * 1024; // 20 MB per image
 const MAX_VIDEO_SIZE_BYTES = 200 * 1024 * 1024; // 200 MB
@@ -145,7 +147,6 @@ export default function UploadScreen() {
   );
   const insets = useSafeAreaInsets();
   const titleRef = useRef<TextInput>(null);
-  const descriptionRef = useRef<TextInput>(null);
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
   const { drafts, saveDraft, deleteDraft } = useDrafts(authUser?.address);
 
@@ -154,10 +155,22 @@ export default function UploadScreen() {
     [authUser?.avatarImageUrl],
   );
 
+  // The main input is always the post description (500 chars), as on web.
+  // The title is its own 140-char field: forced for video/audio, toggleable
+  // for everything else via the "Title" switch in the extras section.
   const [bodyText, setBodyText] = useState("");
   const bodyMentions = useMentions(bodyText, setBodyText);
-  const [description, setDescription] = useState("");
-  const descMentions = useMentions(description, setDescription);
+  const [titleText, setTitleText] = useState("");
+  const [showTitle, setShowTitle] = useState(false);
+
+  // Same preference web keeps in localStorage under `post_show_title`.
+  useEffect(() => {
+    AsyncStorage.getItem(SHOW_TITLE_PREF_KEY)
+      .then((v) => {
+        if (v === "true") setShowTitle(true);
+      })
+      .catch(() => {});
+  }, []);
   const [categories, setCategories] = useState<string[]>([]);
   const [allCategories, setAllCategories] = useState<string[]>([]);
   const [categoryOpen, setCategoryOpen] = useState(false);
@@ -181,7 +194,6 @@ export default function UploadScreen() {
     setIsAudioPreviewPlaying(false);
   }, []);
   const [isMuted, setIsMuted] = useState(true);
-  const [showDescription, setShowDescription] = useState(false);
   const [showMonetization, setShowMonetization] = useState(false);
   const [monetization, setMonetization] = useState<MonetizationState>({
     ppvEnabled: false,
@@ -217,9 +229,7 @@ export default function UploadScreen() {
   const [showSaveDraftModal, setShowSaveDraftModal] = useState(false);
   const [showDiscardModal, setShowDiscardModal] = useState(false);
   const [isEnhancing, setIsEnhancing] = useState(false);
-  const [isEnhancingDesc, setIsEnhancingDesc] = useState(false);
   const [showEnhanceSheet, setShowEnhanceSheet] = useState(false);
-  const [showDescEnhanceSheet, setShowDescEnhanceSheet] = useState(false);
   const [showEmojiSheet, setShowEmojiSheet] = useState(false);
   /** Caret position in the body input, so emoji land where the cursor is. */
   const bodySelectionRef = useRef({ start: 0, end: 0 });
@@ -278,15 +288,19 @@ export default function UploadScreen() {
   }, [postAsShort]);
 
   const hasMedia = mediaMode !== "none";
+  const hasVideoOrAudio = mediaMode === "video" || mediaMode === "audio";
+  // Title input is forced for video/audio (they need a name on-chain) and for
+  // live mode (the stream title); otherwise it follows the user's toggle.
+  const showTitleInput = showTitle || hasVideoOrAudio || isLiveMode;
   const pollIsValid = pollEnabled && pollQuestion.trim().length > 0 && pollOptions.filter(o => o.trim()).length >= 2;
   const hasContent = bodyText.trim().length > 0 || hasMedia || isQuoteMode || pollIsValid;
   const canPost = !isLiveMode && (bodyText.trim().length > 0 || hasMedia || isQuoteMode || pollIsValid);
-  const canGoLive = isLiveMode && bodyText.trim().length > 0 && !!(liveThumbnailUri || coverUri);
+  const canGoLive = isLiveMode && titleText.trim().length > 0 && !!(liveThumbnailUri || coverUri);
 
-  // Show description/category area when user has typed or picked media
-  // Once opened, they stay even if title is cleared (to preserve filled data)
-  const showExtras = isLiveMode || hasContent || showDescription
-    || description.length > 0 || categories.length > 0;
+  // Show title-toggle/category area when user has typed or picked media
+  // Once opened, they stay even if the text is cleared (to preserve filled data)
+  const showExtras = isLiveMode || hasContent
+    || titleText.length > 0 || categories.length > 0;
 
   // The action bar hides a control the draft can't use rather than dimming it,
   // matching dehubweb's PostActionBar — which also keeps the row short enough to
@@ -354,10 +368,19 @@ export default function UploadScreen() {
   useEffect(() => {
     if (!incomingDraft) return;
     restoredDraftIdRef.current = incomingDraft.id;
-    setBodyText(incomingDraft.bodyText);
-    setDescription(incomingDraft.description);
+    if (incomingDraft.titleText != null) {
+      setTitleText(incomingDraft.titleText.slice(0, TITLE_MAX));
+      setBodyText(incomingDraft.bodyText);
+      if (incomingDraft.titleText.trim().length > 0) setShowTitle(true);
+    } else if (incomingDraft.videoUri) {
+      // Legacy draft from before the title/description split: bodyText held
+      // the video title and description held the body.
+      setTitleText(incomingDraft.bodyText.slice(0, TITLE_MAX));
+      setBodyText(incomingDraft.description);
+    } else {
+      setBodyText(incomingDraft.bodyText || incomingDraft.description);
+    }
     setCategories(incomingDraft.categories);
-    if (incomingDraft.description.length > 0) setShowDescription(true);
     if (incomingDraft.thumbnailUri) setThumbnailUri(incomingDraft.thumbnailUri);
     if (incomingDraft.coverUri) setCoverUri(incomingDraft.coverUri);
     setMonetization(incomingDraft.monetization);
@@ -406,7 +429,7 @@ export default function UploadScreen() {
   const formHasContent = useMemo(
     () =>
       bodyText.trim().length > 0 ||
-      description.trim().length > 0 ||
+      titleText.trim().length > 0 ||
       categories.length > 0 ||
       pickedImages.length > 0 ||
       !!pickedVideo ||
@@ -414,7 +437,7 @@ export default function UploadScreen() {
       !!liveThumbnailUri ||
       isLiveMode ||
       pollEnabled,
-    [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, liveThumbnailUri, isLiveMode, pollEnabled],
+    [bodyText, titleText, categories, pickedImages, pickedVideo, pickedAudio, liveThumbnailUri, isLiveMode, pollEnabled],
   );
 
   /** Close handler – placed before useUploadPost; isUploading guard is in the X button's disabled prop */
@@ -442,7 +465,7 @@ export default function UploadScreen() {
       setIsEnhancing(true);
       try {
         const enhanced = await enhanceText(text, mode, styleId);
-        setBodyText(enhanced.slice(0, TITLE_MAX));
+        setBodyText(enhanced.slice(0, DESCRIPTION_MAX));
         toastSuccess(mode === "style" ? "Style applied!" : "Text updated!");
       } catch (e: any) {
         toastError(e?.message || "Failed to process text");
@@ -451,28 +474,6 @@ export default function UploadScreen() {
       }
     },
     [bodyText, isEnhancing],
-  );
-
-  const handleEnhanceDescription = useCallback(
-    async (mode: EnhanceMode, styleId?: string) => {
-      const text = description.trim();
-      if (!text) {
-        toastError("Enter some text first");
-        return;
-      }
-      if (isEnhancingDesc) return;
-      setIsEnhancingDesc(true);
-      try {
-        const enhanced = await enhanceText(text, mode, styleId);
-        setDescription(enhanced.slice(0, DESCRIPTION_MAX));
-        toastSuccess(mode === "style" ? "Style applied!" : "Text updated!");
-      } catch (e: any) {
-        toastError(e?.message || "Failed to process text");
-      } finally {
-        setIsEnhancingDesc(false);
-      }
-    },
-    [description, isEnhancingDesc],
   );
 
   /** "Generate Content" — hands off to the assistant, as web does. */
@@ -492,7 +493,7 @@ export default function UploadScreen() {
       const safeStart = Math.min(Math.max(start, 0), prev.length);
       const safeEnd = Math.min(Math.max(end, safeStart), prev.length);
       const next = prev.slice(0, safeStart) + emoji + prev.slice(safeEnd);
-      if (next.length > TITLE_MAX) return prev;
+      if (next.length > DESCRIPTION_MAX) return prev;
       const caret = safeStart + emoji.length;
       bodySelectionRef.current = { start: caret, end: caret };
       return next;
@@ -500,12 +501,8 @@ export default function UploadScreen() {
   }, []);
 
   const handleBodyChange = useCallback((text: string) => {
-    if (text.length <= TITLE_MAX) bodyMentions.handleChangeText(text);
+    if (text.length <= DESCRIPTION_MAX) bodyMentions.handleChangeText(text);
   }, [bodyMentions]);
-
-  const handleDescriptionChange = useCallback((text: string) => {
-    if (text.length <= DESCRIPTION_MAX) descMentions.handleChangeText(text);
-  }, [descMentions]);
 
   const {
     validate,
@@ -563,15 +560,27 @@ export default function UploadScreen() {
   const [confirmText, setConfirmText] = useState("");
 
   const getPayload = useCallback((): UploadPayload => {
-    // For non-video posts the "title" input IS the description on the backend.
-    // Send empty bodyText (name) so only description is populated.
-    // Videos keep separate title (name) + description.
-    const isVideo = !!pickedVideo;
+    // Field mapping mirrors web's usePostForm: the main input is always the
+    // description; `bodyText` (the backend's `name`) comes from the title
+    // field. Video/audio posts without an explicit title fall back to using
+    // the description text as the title, exactly as web does.
+    const isVideoOrAudio = !!pickedVideo || !!pickedAudio;
     const soundTag = attachedSound ? buildSoundtrackTag(attachedSound) : "";
-    const desc = isVideo ? description : bodyText;
+    let name = "";
+    let desc = bodyText;
+    if (isVideoOrAudio) {
+      if (titleText.trim()) {
+        name = titleText.trim();
+      } else {
+        name = bodyText.trim().slice(0, TITLE_MAX);
+        desc = "";
+      }
+    } else if (showTitle && titleText.trim()) {
+      name = titleText.trim();
+    }
     const descWithSound = soundTag ? `${soundTag}\n${desc}`.trim() : desc;
     return {
-      bodyText: isVideo ? bodyText : "",
+      bodyText: name,
       description: descWithSound,
       categories,
       pickedImages,
@@ -592,7 +601,7 @@ export default function UploadScreen() {
       postChainId: effectivePostChainId,
       solanaAddress: solanaAddress ?? undefined,
     };
-  }, [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, postAsShort, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress]);
+  }, [bodyText, titleText, showTitle, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, postAsShort, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -646,13 +655,13 @@ export default function UploadScreen() {
   }, []);
 
   const getLivePayload = useCallback((): LiveUploadPayload => ({
-    title: bodyText,
-    description,
+    title: titleText,
+    description: bodyText,
     categories,
     thumbnailUri: liveThumbnailUri,
     coverUri: null,
     settings: liveSettings,
-  }), [bodyText, description, categories, liveThumbnailUri, liveSettings]);
+  }), [titleText, bodyText, categories, liveThumbnailUri, liveSettings]);
 
   const handleGoLive = useCallback(() => {
     if (!canGoLive || activeIsUploading) return;
@@ -761,9 +770,14 @@ export default function UploadScreen() {
 
   const handleConfirmQuoteUpload = useCallback(() => {
     if (!quotedTokenId) return;
+    // The quote hook folds `bodyText` into the description for non-video
+    // quotes, so pass the comment there; a video quote keeps name + description
+    // split, with the same title fallback the regular payload uses.
     const ok = enqueueQuoteJob({
-      bodyText: bodyText.trim(),
-      description: description.trim(),
+      bodyText: pickedVideo
+        ? titleText.trim() || bodyText.trim().slice(0, TITLE_MAX)
+        : bodyText.trim(),
+      description: pickedVideo && !titleText.trim() ? "" : bodyText.trim(),
       categories,
       pickedVideo,
       pickedImages,
@@ -776,20 +790,21 @@ export default function UploadScreen() {
     setShowConfirm(false);
     setTimeout(navigateHome, 120);
   }, [
-    quotedTokenId, categories, pickedVideo, bodyText, description,
+    quotedTokenId, categories, pickedVideo, bodyText, titleText,
     coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome,
   ]);
 
   const buildDraftData = useCallback(() => ({
     bodyText,
-    description,
+    titleText,
+    description: "",
     categories,
     imageUris: pickedImages.map((img) => img.uri),
     videoUri: pickedVideo?.uri ?? null,
     thumbnailUri,
     coverUri,
     monetization,
-  }), [bodyText, description, categories, pickedImages, pickedVideo, thumbnailUri, coverUri, monetization]);
+  }), [bodyText, titleText, categories, pickedImages, pickedVideo, thumbnailUri, coverUri, monetization]);
 
   /** "Draft" button in top bar */
   const handleDraftButton = useCallback(() => {
@@ -883,6 +898,18 @@ export default function UploadScreen() {
     }
   }, [generateThumbnail]);
 
+  /**
+   * When a video or audio clip lands on a draft whose title is still empty,
+   * the text already typed was almost certainly meant as the title — move it
+   * there, the way web's processVideoFile/processAudioFile do.
+   */
+  const movePendingBodyToTitle = useCallback(() => {
+    if (bodyText.trim() && !titleText.trim()) {
+      setTitleText(bodyText.trim().slice(0, TITLE_MAX));
+      setBodyText("");
+    }
+  }, [bodyText, titleText]);
+
   /** Size-checks a video asset and adopts it as the post's media. */
   const adoptVideoAsset = useCallback(
     async (asset: PickedAsset): Promise<boolean> => {
@@ -894,12 +921,13 @@ export default function UploadScreen() {
           return false;
         }
       } catch {}
+      movePendingBodyToTitle();
       setPickedVideo(asset);
       setCoverUri(null);
       generateThumbnail(asset.uri);
       return true;
     },
-    [generateThumbnail],
+    [generateThumbnail, movePendingBodyToTitle],
   );
 
   /** Size-filters image assets and appends them up to the 4-image cap. */
@@ -1129,6 +1157,7 @@ export default function UploadScreen() {
       await Audio.setAudioModeAsync({ allowsRecordingIOS: false });
 
       if (uri && durationMs > 500) {
+        movePendingBodyToTitle();
         setPickedAudio({
           uri,
           name: "voice-recording.m4a",
@@ -1140,7 +1169,7 @@ export default function UploadScreen() {
       console.error("[UploadScreen] audio recording stop error:", e);
       setIsAudioRecording(false);
     }
-  }, [audioRecordingElapsed]);
+  }, [audioRecordingElapsed, movePendingBodyToTitle]);
 
   const handleCancelAudioRecording = useCallback(async () => {
     if (audioTimerRef.current) {
@@ -1178,6 +1207,7 @@ export default function UploadScreen() {
         return;
       }
 
+      movePendingBodyToTitle();
       setPickedAudio({
         uri: asset.uri,
         name: asset.name || "audio-upload",
@@ -1186,7 +1216,7 @@ export default function UploadScreen() {
     } catch (e) {
       console.error("[UploadScreen] audio pick error:", e);
     }
-  }, []);
+  }, [movePendingBodyToTitle]);
 
   const handleToggleAudioPreview = useCallback(async () => {
     try {
@@ -1281,9 +1311,10 @@ export default function UploadScreen() {
     setIsMuted((prev) => !prev);
   }, []);
 
-  const handleShowDescription = useCallback(() => {
-    setShowDescription(true);
-    setTimeout(() => descriptionRef.current?.focus(), 100);
+  const handleToggleTitle = useCallback((value: boolean) => {
+    setShowTitle(value);
+    AsyncStorage.setItem(SHOW_TITLE_PREF_KEY, String(value)).catch(() => {});
+    if (value) setTimeout(() => titleRef.current?.focus(), 100);
   }, []);
 
   const openCategoryDrawer = useCallback(() => {
@@ -1461,17 +1492,35 @@ export default function UploadScreen() {
           </View>
 
           <View className="flex-1">
+            {showTitleInput && (
+              <TextInput
+                ref={titleRef}
+                value={titleText}
+                onChangeText={setTitleText}
+                placeholder="Title"
+                placeholderTextColor="#6F7174"
+                maxLength={TITLE_MAX}
+                blurOnSubmit={false}
+                returnKeyType="default"
+                className="text-white text-lg font-medium mb-1"
+              />
+            )}
             <TextInput
-              ref={titleRef}
               value={bodyText}
               onChangeText={handleBodyChange}
               onSelectionChange={(e) => {
                 bodySelectionRef.current = e.nativeEvent.selection;
                 bodyMentions.handleSelectionChange(e);
               }}
-              placeholder={isQuoteMode ? "Add a comment…" : "What's happening?"}
+              placeholder={
+                isQuoteMode
+                  ? "Add a comment…"
+                  : showTitleInput
+                    ? "Description (optional)"
+                    : "What's happening?"
+              }
               placeholderTextColor="#6F7174"
-              maxLength={TITLE_MAX}
+              maxLength={DESCRIPTION_MAX}
               multiline
               blurOnSubmit={false}
               returnKeyType="default"
@@ -1506,12 +1555,12 @@ export default function UploadScreen() {
               </TouchableOpacity>
               <Text
                 className={`text-xs ${
-                  bodyText.length >= TITLE_MAX
+                  bodyText.length >= DESCRIPTION_MAX
                     ? "text-theme-red-500"
                     : "text-theme-neutrals-500"
                 }`}
               >
-                {bodyText.length}/{TITLE_MAX}
+                {bodyText.length}/{DESCRIPTION_MAX}
               </Text>
             </View>
 
@@ -1985,69 +2034,22 @@ export default function UploadScreen() {
 
             {showExtras && (
               <View className="mt-4">
-                {((mediaMode === "video" && !postAsShort) || isLiveMode) && (
-                  !showDescription ? (
-                    <TouchableOpacity
-                      onPress={handleShowDescription}
-                      activeOpacity={0.7}
-                      className="flex-row items-center"
-                    >
-                      <Icon name="FileText" size={18} color="#6F7174" />
+                {/* Title is forced on for video/audio/live, toggleable for the
+                    rest — same rule as web's PostAccessToggles. Non-video
+                    quotes can't carry a title, so the switch hides there. */}
+                {!isQuoteMode && !isLiveMode && !hasVideoOrAudio && (
+                  <View className="flex-row items-center justify-between">
+                    <View className="flex-row items-center">
+                      <Icon name="Type" size={18} color="#6F7174" />
                       <Text className="text-theme-neutrals-400 text-sm ml-1.5">
-                        Add description
+                        Title
                       </Text>
-                    </TouchableOpacity>
-                  ) : (
-                    <View>
-                      <TextInput
-                        ref={descriptionRef}
-                        value={description}
-                        onChangeText={handleDescriptionChange}
-                        onSelectionChange={descMentions.handleSelectionChange}
-                        placeholder="Add a description…"
-                        placeholderTextColor="#6F7174"
-                        multiline
-                        blurOnSubmit={false}
-                        returnKeyType="default"
-                        maxLength={DESCRIPTION_MAX}
-                        className="text-white text-sm"
-                        style={{ textAlignVertical: "top" }}
-                        scrollEnabled={false}
-                      />
-                      <View className="flex-row items-center justify-between mt-1">
-                        <TouchableOpacity
-                          onPress={() => setShowDescEnhanceSheet(true)}
-                          disabled={!description.trim() || isEnhancingDesc}
-                          activeOpacity={0.7}
-                          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                          accessibilityRole="button"
-                          accessibilityLabel="Enhance description"
-                          style={{ opacity: !description.trim() || isEnhancingDesc ? 0.3 : 1 }}
-                        >
-                          {isEnhancingDesc ? (
-                            <ActivityIndicator size="small" color="#fff" />
-                          ) : (
-                            <Icon name="Sparkles" size={16} color="#fff" />
-                          )}
-                        </TouchableOpacity>
-                        <Text
-                          className={`text-xs ${
-                            description.length >= DESCRIPTION_MAX
-                              ? "text-theme-red-500"
-                              : "text-theme-neutrals-500"
-                          }`}
-                        >
-                          {description.length}/{DESCRIPTION_MAX}
-                        </Text>
-                      </View>
-                      <MentionSuggestions
-                        visible={descMentions.showSuggestions}
-                        suggestions={descMentions.suggestions}
-                        onSelect={descMentions.selectMention}
-                        loading={descMentions.loading}
-                      />
                     </View>
-                  )
+                    <CustomSwitch
+                      value={showTitle}
+                      onValueChange={handleToggleTitle}
+                    />
+                  </View>
                 )}
 
                 <View className="mt-4">
@@ -2417,13 +2419,6 @@ export default function UploadScreen() {
         visible={showEnhanceSheet}
         onClose={() => setShowEnhanceSheet(false)}
         onEnhance={handleEnhanceText}
-        onGenerateContent={handleGenerateContent}
-      />
-
-      <EnhanceSheet
-        visible={showDescEnhanceSheet}
-        onClose={() => setShowDescEnhanceSheet(false)}
-        onEnhance={handleEnhanceDescription}
         onGenerateContent={handleGenerateContent}
       />
 
