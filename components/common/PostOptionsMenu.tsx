@@ -33,6 +33,8 @@ import { useUser, useAuthActions } from "../../context/AuthContext";
 import { toastSuccess, toastError } from "../../libs";
 import { WEBSITE_LINK } from "../../config";
 import { markPostDeleted } from "../../libs/deleted-posts-store";
+import { useMintExistingPost } from "../../hooks/useMintExistingPost";
+import { defaultChainId } from "../../config/constants";
 
 export interface PostOptionsMenuProps {
   visible: boolean;
@@ -41,6 +43,14 @@ export interface PostOptionsMenuProps {
   tokenId: number | string | undefined;
   /** Whether the current viewer owns this post */
   isOwner: boolean;
+  /**
+   * The post's mint status. 'signed' means it was published off-chain and can
+   * still be minted; anything else (or absent) hides the Mint post row, so a
+   * caller that does not know simply does not offer it.
+   */
+  postStatus?: string;
+  /** Chain the post was created on — needed to mint one published off-chain. */
+  postChainId?: number;
   /** Whether the post is currently hidden */
   isHidden: boolean;
   /** Creator's display name */
@@ -132,6 +142,8 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onClose,
   tokenId,
   isOwner,
+  postStatus,
+  postChainId,
   isHidden,
   creatorDisplayName,
   creatorIdentifier,
@@ -156,6 +168,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { t } = useTranslation();
+  const { mint: mintExisting, isMinting } = useMintExistingPost();
 
   // Sub-modal states
   const [showEdit, setShowEdit] = useState(false);
@@ -419,6 +432,21 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   label={t("postOptions.editPost")}
                   sublabel={t("postOptions.editPostDesc")}
                   onPress={handleOpenEdit}
+                />
+              )}
+              {/* Only for posts published off-chain — 'signed' is the status
+                  the backend keeps them at for life. */}
+              {postStatus === "signed" && tokenId != null && (
+                <OptionRow
+                  icon="diamond-outline"
+                  label="Mint post"
+                  sublabel="Publish this post on-chain"
+                  loading={isMinting}
+                  onPress={() => {
+                    mintExisting(Number(tokenId), postChainId ?? defaultChainId).then(
+                      (ok) => { if (ok) onClose(); },
+                    );
+                  }}
                 />
               )}
               <OptionRow

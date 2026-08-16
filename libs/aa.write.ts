@@ -85,6 +85,56 @@ export async function writeContractAA(
   }
 }
 
+/**
+ * Send several calls as ONE sponsored user operation.
+ *
+ * A Safe smart account executes a list of calls atomically, which is what lets
+ * a mint fee ride along with the mint itself: one signature, one sponsored
+ * transaction, and no fee-aware `mint` on the collection contract. Transferring
+ * the account's own tokens needs no `approve` either.
+ *
+ * The EIP-1193 surface cannot express this — eth_sendTransaction takes a single
+ * transaction, which the SDK wraps in a one-entry `calls` array — so this uses
+ * the bundler client carried on AAProviderLike.
+ *
+ * Throws BATCH_UNSUPPORTED when the session has no bundler (the plain-EOA
+ * fallback). Callers must treat that as "send the calls separately", never as
+ * a failed mint.
+ */
+export async function writeBatchAA(
+  provider: any,
+  calls: { to: string; data: Hex; value?: ethers.BigNumber }[],
+  options?: { context?: string },
+): Promise<{ hash: string }> {
+  if (!calls?.length) throw new Error("writeBatchAA called with no calls");
+
+  const bundlerClient = provider?.bundlerClient;
+  const smartAccount = provider?.smartAccount;
+  if (!bundlerClient || !smartAccount) throw new Error("BATCH_UNSUPPORTED");
+
+  try {
+    const userOpHash = await bundlerClient.sendUserOperation({
+      account: smartAccount,
+      calls: calls.map((c) => ({
+        to: c.to,
+        // The SDK's own path converts explicitly for the same reason: a hex
+        // string here is passed straight through and read as the wrong value.
+        value: BigInt(c.value ? c.value.toString() : 0),
+        data: c.data,
+      })),
+    });
+
+    const receipt = await bundlerClient.waitForUserOperationReceipt({ hash: userOpHash });
+    if (!receipt?.success) {
+      throw new Error(receipt?.reason || "User operation reverted");
+    }
+    return { hash: receipt.receipt.transactionHash as string };
+  } catch (err: any) {
+    if (err?.message === "BATCH_UNSUPPORTED") throw err;
+    throw new Error(parseTxError(err, options?.context || "send"));
+  }
+}
+
 /** Convenience: ERC20 transfer via AA-aware path */
 export async function erc20TransferAA(
   tokenContract: any,

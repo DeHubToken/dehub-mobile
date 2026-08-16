@@ -8,7 +8,9 @@ import {
 } from "../store/upload.store";
 import { unwrapUploadResponse, xhrUploadFormData, isRateLimitUploadError } from "../libs/xhr-upload";
 import { getContractsForMint } from "../libs/contract.factory";
-import { mintNftOnChain, mintWithBounty } from "../services/mint.service";
+import { createAuthAdapter } from "../services/auth/authAdapter";
+import { mintNftOnChainWithFee, mintWithBounty } from "../services/mint.service";
+import { getMintFee } from "../services/nft.service";
 import { broadcastSolanaMint } from "../services/solana.service";
 import { supportedTokens } from "../config/constants";
 import { toastError, toastSuccess } from "../libs/toast";
@@ -152,6 +154,12 @@ function rebuildFormData(job: UploadJob): FormData {
     fd.append("scheduledAt", payload.scheduledAt);
   }
 
+  // Tells the backend to keep the post at status 'signed' for good, and to
+  // exempt it from the sweep that fails tokens which never got minted.
+  if (job.mintOptOut) {
+    fd.append("mintOptOut", "true");
+  }
+
   return fd;
 }
 
@@ -189,35 +197,47 @@ async function processJob(job: UploadJob): Promise<void> {
 
     const createdTokenId = Number(result?.createdTokenId);
 
-    // Solana mint: backend returns a partially-signed tx + mint address instead of v/r/s.
-    const isSolanaMint = !!(result?.isSolana && result?.transaction && result?.mintAddress);
-    if (job.isSolana || isSolanaMint) {
-      if (!isSolanaMint || !Number.isFinite(createdTokenId)) {
-        throw new Error(
-          result?.isSolana
-            ? "Solana mint data incomplete from server. Please try again."
-            : "Solana minting is not enabled on the server. Try an EVM chain.",
-        );
+    // Published off-chain: the API call WAS the whole upload. The post is
+    // already in the feed, so there is no signature to validate — the mint
+    // phase below is skipped and only the poll still has work to do.
+    if (job.mintOptOut) {
+      if (!Number.isFinite(createdTokenId)) {
+        throw new Error("Upload succeeded but no token id came back");
       }
-      mintParams = {
-        createdTokenId,
-        solanaTransaction: result.transaction,
-        solanaMintAddress: result.mintAddress,
-      } as MintParams;
+      mintParams = { createdTokenId } as MintParams;
       uploadActions.updateStage(job.id, "processing", mintParams);
     } else {
-      const timestamp = result?.timestamp;
-      const v = result?.v;
-      const r = result?.r;
-      const s = result?.s;
 
-      if (!Number.isFinite(createdTokenId) || timestamp == null || v == null || !r || !s) {
-        throw new Error("Mint signature payload missing from server response");
+      // Solana mint: backend returns a partially-signed tx + mint address instead of v/r/s.
+      const isSolanaMint = !!(result?.isSolana && result?.transaction && result?.mintAddress);
+      if (job.isSolana || isSolanaMint) {
+        if (!isSolanaMint || !Number.isFinite(createdTokenId)) {
+          throw new Error(
+            result?.isSolana
+              ? "Solana mint data incomplete from server. Please try again."
+              : "Solana minting is not enabled on the server. Try an EVM chain.",
+          );
+        }
+        mintParams = {
+          createdTokenId,
+          solanaTransaction: result.transaction,
+          solanaMintAddress: result.mintAddress,
+        } as MintParams;
+        uploadActions.updateStage(job.id, "processing", mintParams);
+      } else {
+        const timestamp = result?.timestamp;
+        const v = result?.v;
+        const r = result?.r;
+        const s = result?.s;
+
+        if (!Number.isFinite(createdTokenId) || timestamp == null || v == null || !r || !s) {
+          throw new Error("Mint signature payload missing from server response");
+        }
+
+        mintParams = { createdTokenId, timestamp, v, r, s };
+        uploadActions.updateStage(job.id, "processing", mintParams);
       }
-
-      mintParams = { createdTokenId, timestamp, v, r, s };
-      uploadActions.updateStage(job.id, "processing", mintParams);
-    }
+    } // end of the on-chain signature handling
   }
 
   // Final abort check before minting — once we call the contract there's no undo
@@ -225,61 +245,71 @@ async function processJob(job: UploadJob): Promise<void> {
     throw new Error("Upload cancelled");
   }
 
-  // Mint phase
-  uploadActions.updateProgress(job.id, 0.85);
-  uploadActions.updateStage(job.id, "minting");
+  // Mint phase — skipped wholesale for a post published off-chain. Everything
+  // after it (the poll, the done stage) runs the same either way.
+  if (!job.mintOptOut) {
+    uploadActions.updateProgress(job.id, 0.85);
+    uploadActions.updateStage(job.id, "minting");
 
-  // Solana mint (#41): sign the partial tx as fee payer + broadcast — no EVM contracts.
-  if (job.isSolana && mintParams.solanaTransaction && mintParams.solanaMintAddress) {
-    uploadActions.updateProgress(job.id, 0.9);
-    const sol = await broadcastSolanaMint({
-      transactionBase64: mintParams.solanaTransaction,
-      mintAddress: mintParams.solanaMintAddress,
-      tokenId: mintParams.createdTokenId,
-      chainId: job.chainId,
-    });
-    if (sol.confirmWarning) {
-      toastError(sol.confirmWarning);
-    }
-  } else {
-    const { collectionContract, controllerContract } =
-      await getContractsForMint(job.chainId);
-
-    uploadActions.updateProgress(job.id, 0.9);
-
-    let tx: any;
-
-    if (job.isBounty && job.bountyConfig) {
-      const bountyToken = supportedTokens.find(
-        (t) => t.symbol === job.bountyConfig!.tokenSymbol && t.chainId === job.chainId,
-      );
-      if (!bountyToken) throw new Error("Unsupported bounty token for this chain");
-
-      tx = await mintWithBounty(
-        controllerContract,
-        mintParams.createdTokenId,
-        mintParams.timestamp!,
-        mintParams.v!,
-        mintParams.r!,
-        mintParams.s!,
-        bountyToken as any,
-        Number(job.bountyConfig.rewardPerPerson),
-        Number(job.bountyConfig.viewers),
-        Number(job.bountyConfig.commenters),
-      );
+    // Solana mint (#41): sign the partial tx as fee payer + broadcast — no EVM contracts.
+    if (job.isSolana && mintParams.solanaTransaction && mintParams.solanaMintAddress) {
+      uploadActions.updateProgress(job.id, 0.9);
+      const sol = await broadcastSolanaMint({
+        transactionBase64: mintParams.solanaTransaction,
+        mintAddress: mintParams.solanaMintAddress,
+        tokenId: mintParams.createdTokenId,
+        chainId: job.chainId,
+      });
+      if (sol.confirmWarning) {
+        toastError(sol.confirmWarning);
+      }
     } else {
-      tx = await mintNftOnChain(
-        collectionContract,
-        mintParams.createdTokenId,
-        mintParams.timestamp!,
-        mintParams.v!,
-        mintParams.r!,
-        mintParams.s!,
-      );
-    }
+      const { collectionContract, controllerContract } =
+        await getContractsForMint(job.chainId);
 
-    await tx?.wait?.(1);
-  }
+      uploadActions.updateProgress(job.id, 0.9);
+
+      let tx: any;
+
+      if (job.isBounty && job.bountyConfig) {
+        const bountyToken = supportedTokens.find(
+          (t) => t.symbol === job.bountyConfig!.tokenSymbol && t.chainId === job.chainId,
+        );
+        if (!bountyToken) throw new Error("Unsupported bounty token for this chain");
+
+        tx = await mintWithBounty(
+          controllerContract,
+          mintParams.createdTokenId,
+          mintParams.timestamp!,
+          mintParams.v!,
+          mintParams.r!,
+          mintParams.s!,
+          bountyToken as any,
+          Number(job.bountyConfig.rewardPerPerson),
+          Number(job.bountyConfig.viewers),
+          Number(job.bountyConfig.commenters),
+        );
+      } else {
+        // The fee, when there is one, rides in the same user operation as the
+        // mint — one signature, one sponsored transaction. With nothing to
+        // charge this is exactly the old mintNftOnChain call.
+        const fee = await getMintFee(job.chainId);
+        const provider = await createAuthAdapter().getProvider();
+        tx = await mintNftOnChainWithFee(
+          collectionContract,
+          provider,
+          mintParams.createdTokenId,
+          mintParams.timestamp!,
+          mintParams.v!,
+          mintParams.r!,
+          mintParams.s!,
+          fee,
+        );
+      }
+
+      await tx?.wait?.(1);
+    }
+  } // end of the mint phase
 
   if (job.payload.pollData) {
     try {

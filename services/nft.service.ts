@@ -777,6 +777,54 @@ export async function minNft(data: FormData): Promise<MintNftResponse> {
   }
 }
 
+export interface MintFeeQuoteResponse {
+  chainId: number;
+  amount: number;
+  symbol: string;
+  tokenAddress: string;
+  recipient?: string;
+  chargeable: boolean;
+  decimals: number;
+  isNative: boolean;
+  ttlSeconds: number;
+}
+
+/**
+ * What minting one post costs on `chainId`, in the token it is paid in.
+ *
+ * Quoted server-side and never computed here — the fee tracks live gas, so a
+ * second cost table in the app would be wrong within the hour. Returns null
+ * rather than throwing: a missing quote must degrade to "mint without
+ * charging", never to a blocked post.
+ */
+export async function getMintFee(chainId: number): Promise<MintFeeQuoteResponse | null> {
+  try {
+    const res = await apiClient.get<any>(`/mint_fee?chainId=${chainId}`);
+    const raw = (res as any)?.data ?? res;
+    const quote = (raw as any)?.result ?? raw;
+    return quote && typeof quote.amount === "number" ? (quote as MintFeeQuoteResponse) : null;
+  } catch (e) {
+    console.warn("[NFTService] getMintFee failed", e);
+    return null;
+  }
+}
+
+/**
+ * Ask for a fresh mint signature for a post published off-chain.
+ *
+ * The post already has its token id, so the response carries the same
+ * signature fields as minNft and feeds straight into the on-chain step.
+ */
+export async function mintExistingPost(tokenId: number): Promise<MintNftResponse> {
+  const res = await apiClient.post<MintNftResponse>(
+    `/mint_existing`,
+    { tokenId },
+    { isAuthRequired: true },
+  );
+  const raw = (res as any)?.data ?? res;
+  return (raw as any)?.result ?? raw;
+}
+
 export interface EditPostInput {
   name?: string;
   description?: string;
