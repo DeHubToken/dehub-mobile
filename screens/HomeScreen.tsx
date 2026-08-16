@@ -223,7 +223,7 @@ export default function HomeScreen() {
       category: selectedCategory,
       sortBy: filters.sortBy as FeedSortBy,
       sortOrder: "desc" as const,
-      status: "minted" as const,
+      status: "all" as const,
     };
 
     if (filters.sortBy === "random") params.shuffleSeed = shuffleSeed;

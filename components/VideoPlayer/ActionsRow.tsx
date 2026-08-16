@@ -10,7 +10,7 @@ import env from "../../config/env";
 import { shareProfile } from "../../libs/misc";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { likeLiveStream } from "../../services/live.service";
-import { toastError } from "../../libs/toast";
+import { toastError, toastInfo } from "../../libs/toast";
 import { WEBSITE_LINK } from "../../config";
 
 export interface ActionsRowProps {
@@ -21,6 +21,12 @@ export interface ActionsRowProps {
   userVote?: 'like' | 'dislike' | null;
   chainId?: number;
   mintTxHash?: string;
+  /**
+   * The post's mint status. 'signed' means published off-chain: the info
+   * button then explains itself instead of silently doing nothing, since
+   * there is no transaction to open.
+   */
+  postStatus?: string;
   isLive?: boolean;
   streamId?: string | null;
   liveActive?: boolean; // whether the stream is currently live (enables like/tip)
@@ -38,6 +44,7 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
   userVote: initialUserVote,
   chainId,
   mintTxHash,
+  postStatus,
   isLive,
   streamId,
   liveActive,
@@ -179,8 +186,13 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
         <TouchableOpacity
           className="px-3 py-1.5 rounded-xl bg-theme-neutrals-800 mr-2"
           onPress={() => {
-            const url = getTransactionLink(chainId as any, mintTxHash as any);
-            if (url) openInApp(url);
+            const url = mintTxHash ? getTransactionLink(chainId as any, mintTxHash as any) : null;
+            if (url) {
+              openInApp(url);
+            } else if (postStatus === "signed") {
+              // Published off-chain — there is no transaction to show.
+              toastInfo("Mint this post to generate this section");
+            }
           }}
         >
           <Ionicons name="information-circle-outline" size={16} color="#fff" />
