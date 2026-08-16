@@ -19,6 +19,7 @@ import Icon from "../ui/Icon";
 import { useStages } from "../../context/StageContext";
 import type { SpaceParticipant, RaiseHandRequest, FloatingReaction } from "../../hooks/useStages";
 import { VOICE_EFFECTS } from "../../hooks/useStages";
+import StageSoundboard from "./StageSoundboard";
 
 const { width: SW, height: SH } = Dimensions.get("window");
 
@@ -541,6 +542,10 @@ const LiveStageModal: React.FC = () => {
             </ScrollView>
           </View>
         )}
+
+        {/* Soundboard (host/speaker only) — clips ride the same channel
+            injection TTS uses, so listeners hear them even while muted. */}
+        {canSpeak && <StageSoundboard />}
 
         {/* TTS (host/speaker only) */}
         {canSpeak && (
