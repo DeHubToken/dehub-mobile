@@ -1,5 +1,7 @@
 import * as SecureStore from 'expo-secure-store';
 import { clearAllEngagement } from './engagementCache';
+import { clearUnlockedTokens } from './unlocked-tokens';
+import { queryClient } from '../config/queryClient';
 
 // Storage keys
 export const AUTH_USER_KEY = 'auth_user';
@@ -200,6 +202,12 @@ export async function clearAuthData(): Promise<void> {
   // Drop this account's optimistic like/save/repost overlay, otherwise it would
   // keep beating the next account's server state for the full TTL.
   try { clearAllEngagement(); } catch {}
+  // Session PPV unlocks are per-account too.
+  try { clearUnlockedTokens(); } catch {}
+  // The feed query caches are viewer-shaped (isLiked/isSaved ride in the
+  // items), keyed without a viewer, and MMKV-persisted for 24h — clearing here
+  // is what stops one account's engagement state painting for the next.
+  try { queryClient.clear(); } catch {}
   await removeAuthToken();
   await removeRefreshToken();
   await removeTokenExpiresAt();
