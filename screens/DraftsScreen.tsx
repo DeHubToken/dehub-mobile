@@ -48,7 +48,7 @@ const DraftItem: React.FC<DraftItemProps> = React.memo(
     const handlePress = useCallback(() => onPress(draft), [draft, onPress]);
     const handleDelete = useCallback(() => onDelete(draft.id), [draft.id, onDelete]);
 
-    const preview = draft.bodyText.trim() || "";
+    const preview = draft.bodyText.trim() || draft.titleText?.trim() || "";
     const mediaLabel = getMediaLabel(draft);
     const time = formatRelativeDate(draft.createdAt);
 

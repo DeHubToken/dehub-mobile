@@ -1,12 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, ActivityIndicator, ScrollView, Platform, Alert } from "react-native";
+import { View, Text, StyleSheet, ActivityIndicator, ScrollView, Platform, Alert, Share } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
 import { useAudioPlayer } from "expo-audio";
 import { configureForPlayback } from "../../libs/audioSession";
 import Slider from "@react-native-community/slider";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
+import Avatar from "../common/Avatar";
+import { getAvatarUrl } from "../../libs/misc";
+import { ShareLinks } from "../../navigation/linking.config";
 import { useStages } from "../../context/StageContext";
 import { useAuth } from "../../context/AuthContext";
 import type { AudioSpace } from "../../hooks/useStages";
@@ -183,8 +187,14 @@ const StagesBrowseModal: React.FC = () => {
   /**
    * A stage that has been announced but has not started.
    *
-   * The host gets Start / Cancel inline; everyone else gets the announcement
-   * and nothing to tap, because there is no room to walk into yet.
+   * The host gets Start now / Cancel inline; everyone else gets the
+   * announcement and nothing to tap, because there is no room to walk into yet.
+   *
+   * Laid out as a card rather than a list row, matching web's
+   * ScheduledStageCard: the cover is the point of an announcement, and behind
+   * a 68pt row it was a letterbox strip of an image nobody could read. The
+   * cover now backs a full card at the same 16:9-ish proportion web gives it,
+   * under web's own bottom-anchored gradient rather than a flat 62% wash.
    */
   const renderScheduledItem = (item: AudioSpace) => {
     const isMySpace = item.host_wallet_address === userAddress;
@@ -194,66 +204,126 @@ const StagesBrowseModal: React.FC = () => {
     const when = starts
       ? `${starts.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" })} · ${starts.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })}`
       : "";
+    const hasCover = !!item.cover_image_url;
 
     return (
-      <View key={item.id} style={[styles.spaceItem, styles.scheduledItem]}>
-        {!!item.cover_image_url && (
+      <View
+        key={item.id}
+        style={[styles.scheduledCard, hasCover ? styles.scheduledCardCovered : styles.scheduledCardFlat]}
+      >
+        {hasCover && (
           <>
             <Image
-              source={{ uri: item.cover_image_url }}
+              source={{ uri: item.cover_image_url! }}
               style={styles.scheduledCover}
               contentFit="cover"
+              transition={180}
             />
-            <View style={styles.scheduledScrim} />
+            {/* Web's `bg-gradient-to-t from-black via-black/80 to-black/50` —
+                densest at the bottom, where the title and buttons sit. */}
+            <LinearGradient
+              colors={["rgba(0,0,0,0.5)", "rgba(0,0,0,0.8)", "rgba(0,0,0,0.96)"]}
+              locations={[0, 0.55, 1]}
+              style={StyleSheet.absoluteFill}
+              pointerEvents="none"
+            />
           </>
         )}
-        <View style={styles.spaceAvatar}>
-          <Icon name="Calendar" size={20} color="#FFFFFF" />
-        </View>
-        <View style={styles.spaceInfo}>
-          <Text style={styles.spaceTitle} numberOfLines={1}>
-            {item.title}
-          </Text>
-          <Text style={styles.spaceSub} numberOfLines={1}>
-            @{hostName} · {isOverdue ? "starting soon" : when}
-          </Text>
-        </View>
-        {isMySpace && (
-          <View style={{ flexDirection: "row", gap: 6 }}>
+
+        <View style={styles.scheduledBody}>
+          <View style={styles.scheduledTopRow}>
+            <View style={styles.scheduledChip}>
+              <Icon name="CalendarDays" size={12} color="#D4D4D8" />
+              <Text style={styles.scheduledChipText}>
+                {isOverdue ? "Starting soon" : "Upcoming"}
+              </Text>
+            </View>
             <TouchableOpacity
               onPress={() => {
-                startScheduledSpace(item.id).then((ok) => {
-                  if (ok) openModal("live");
-                });
-              }}
-              style={styles.startBtn}
-            >
-              <Text style={styles.startBtnText}>Start</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                Alert.alert(
-                  "Cancel stage?",
-                  `"${item.title}" will be removed and its link stops working.`,
-                  [
-                    { text: "Keep it", style: "cancel" },
-                    {
-                      text: "Cancel stage",
-                      style: "destructive",
-                      onPress: () => { void cancelScheduledSpace(item.id); },
-                    },
-                  ],
-                );
+                Share.share({
+                  message: `🎙️ ${item.title} — live on Stages${when ? ` ${when}` : ""}\n\n${ShareLinks.stage(item.id)}`,
+                }).catch(() => {});
               }}
               hitSlop={8}
-              style={styles.cancelBtn}
+              style={styles.scheduledIconBtn}
               accessibilityRole="button"
-              accessibilityLabel="Cancel scheduled stage"
+              accessibilityLabel="Share invite link"
             >
-              <Icon name="X" size={16} color="rgba(255,255,255,0.6)" />
+              <Icon name="Link" size={14} color="rgba(255,255,255,0.6)" />
             </TouchableOpacity>
           </View>
-        )}
+
+          <View style={styles.scheduledHostRow}>
+            <Avatar
+              uri={item.host_avatar ? getAvatarUrl(item.host_avatar, 40) : null}
+              size={40}
+              name={item.host_username || item.host_wallet_address}
+              borderWidth={2}
+              borderColor="rgba(255,255,255,0.2)"
+            />
+            <View style={styles.scheduledHostText}>
+              <Text style={styles.scheduledHostedBy}>Hosted by</Text>
+              <Text style={styles.scheduledHostName} numberOfLines={1}>
+                @{hostName}
+              </Text>
+            </View>
+          </View>
+
+          <Text style={styles.scheduledTitle} numberOfLines={2}>
+            {item.title}
+          </Text>
+          {!!starts && (
+            <View style={styles.scheduledWhenRow}>
+              <Icon name="CalendarDays" size={12} color="#D4D4D8" />
+              <Text style={styles.scheduledWhen} numberOfLines={1}>
+                {when}
+              </Text>
+            </View>
+          )}
+          {!!item.description && (
+            <Text style={styles.scheduledDesc} numberOfLines={2}>
+              {item.description}
+            </Text>
+          )}
+
+          {isMySpace && (
+            <View style={styles.scheduledActions}>
+              <TouchableOpacity
+                onPress={() => {
+                  startScheduledSpace(item.id).then((ok) => {
+                    if (ok) openModal("live");
+                  });
+                }}
+                style={styles.scheduledStartBtn}
+                accessibilityRole="button"
+              >
+                <Icon name="Radio" size={15} color="#09090B" />
+                <Text style={styles.scheduledStartText}>Start now</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  Alert.alert(
+                    "Cancel stage?",
+                    `"${item.title}" will be removed and its link stops working.`,
+                    [
+                      { text: "Keep it", style: "cancel" },
+                      {
+                        text: "Cancel stage",
+                        style: "destructive",
+                        onPress: () => { void cancelScheduledSpace(item.id); },
+                      },
+                    ],
+                  );
+                }}
+                style={styles.scheduledCancelBtn}
+                accessibilityRole="button"
+                accessibilityLabel="Cancel scheduled stage"
+              >
+                <Text style={styles.scheduledCancelText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </View>
       </View>
     );
   };
@@ -267,11 +337,9 @@ const StagesBrowseModal: React.FC = () => {
     return (
       <TouchableOpacity
         key={item.id}
-        style={[styles.spaceItem, isMySpace && styles.mySpaceItem]}
+        style={[styles.liveCard, isMySpace && styles.liveCardMine]}
         onPress={() => {
-          if (isCurrentSpace) {
-            openModal("live");
-          } else if (isMySpace) {
+          if (isCurrentSpace || isMySpace) {
             openModal("live");
           } else {
             joinSpace(item.id).then((ok) => {
@@ -279,34 +347,76 @@ const StagesBrowseModal: React.FC = () => {
             });
           }
         }}
-        activeOpacity={0.7}
+        activeOpacity={0.85}
       >
-        <View style={[styles.spaceAvatar, isMySpace && styles.mySpaceAvatar]}>
-          <Icon name="Radio" size={20} color={isMySpace ? "#fff" : "#FFFFFF"} />
-        </View>
-        <View style={styles.spaceInfo}>
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
-            <Text style={styles.spaceTitle} numberOfLines={1}>
-              {item.title}
+        {!!item.cover_image_url && (
+          <>
+            <Image
+              source={{ uri: item.cover_image_url }}
+              style={styles.scheduledCover}
+              contentFit="cover"
+              transition={180}
+            />
+            <LinearGradient
+              colors={["rgba(0,0,0,0.5)", "rgba(0,0,0,0.8)", "rgba(0,0,0,0.96)"]}
+              locations={[0, 0.55, 1]}
+              style={StyleSheet.absoluteFill}
+              pointerEvents="none"
+            />
+          </>
+        )}
+
+        <View style={styles.liveTopRow}>
+          <View style={styles.liveChip}>
+            <View style={styles.liveDot} />
+            <Text style={styles.liveChipText}>
+              {isCurrentSpace ? "IN THIS STAGE" : isMySpace ? "YOURS · LIVE" : "LIVE"}
             </Text>
-            {isMySpace && (
-              <View style={{ backgroundColor: "#D4D4D8", borderRadius: 6, paddingHorizontal: 5, paddingVertical: 1 }}>
-                <Text style={{ color: "#09090B", fontSize: 10, fontWeight: "700" }}>YOURS</Text>
-              </View>
-            )}
           </View>
-          <Text style={styles.spaceSub}>
-            @{hostName} · {item.speaker_count} speaking · {totalListeners} listening
-          </Text>
+          <View style={styles.liveCountRow}>
+            <Icon name="Users" size={13} color="rgba(255,255,255,0.5)" />
+            {/* Web counts the host in; a stage with a host and no audience read
+                as "0 listening" here while web showed 1. */}
+            <Text style={styles.liveCountText}>
+              {Math.max(1, (item.speaker_count || 1) + totalListeners)}
+            </Text>
+          </View>
         </View>
-        {isMySpace && (
-          <TouchableOpacity
-            onPress={endSpace}
-            style={{ paddingHorizontal: 10, paddingVertical: 5, borderRadius: 10, backgroundColor: "#ef4444" }}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          >
-            <Text style={{ color: "#fff", fontSize: 11, fontWeight: "700" }}>End</Text>
-          </TouchableOpacity>
+
+        <View style={styles.scheduledHostRow}>
+          <Avatar
+            uri={item.host_avatar ? getAvatarUrl(item.host_avatar, 40) : null}
+            size={40}
+            name={item.host_username || item.host_wallet_address}
+            borderWidth={2}
+            borderColor="rgba(255,255,255,0.2)"
+          />
+          <View style={styles.scheduledHostText}>
+            <Text style={styles.scheduledHostedBy}>Hosted by</Text>
+            <Text style={styles.scheduledHostName} numberOfLines={1}>
+              @{hostName}
+            </Text>
+          </View>
+          {isMySpace && (
+            <TouchableOpacity
+              onPress={endSpace}
+              style={styles.liveEndBtn}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              accessibilityRole="button"
+              accessibilityLabel="End this stage"
+            >
+              <Text style={styles.liveEndText}>End</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+
+        <Text style={styles.scheduledTitle} numberOfLines={2}>
+          {item.title}
+        </Text>
+        {!!item.description && (
+          <Text style={styles.scheduledDesc} numberOfLines={2}>
+            {item.description}
+          </Text>
         )}
       </TouchableOpacity>
     );
@@ -489,61 +599,195 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     opacity: 0.6,
   },
-  spaceItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 12,
-    marginBottom: 6,
-    borderRadius: 12,
+  // ── Live stage card ───────────────────────────────────────────────────────
+  // Web's LiveStageCard shape: status chip + headcount, then host, then title.
+  // The one piece not ported is the animated LiveWaveform strip along its
+  // bottom — mobile has no shared waveform component for stages.
+  liveCard: {
+    borderRadius: 16,
+    overflow: "hidden",
+    padding: 14,
+    marginBottom: 10,
     backgroundColor: "rgba(255,255,255,0.05)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",
   },
-  // The cover fills the row behind the content, so the row has to clip to its
-  // own radius or the image squares off the corners.
-  scheduledItem: { overflow: "hidden" },
-  scheduledCover: { ...StyleSheet.absoluteFillObject },
-  // Heavy enough to keep the title and host legible over an arbitrary
-  // user-supplied image — same intent as the web card's gradient scrim.
-  scheduledScrim: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.62)" },
-  cancelBtn: {
-    width: 32,
-    height: 32,
-    borderRadius: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "rgba(255,255,255,0.06)",
-    marginTop: 4,
-  },
-  mySpaceItem: {
+  liveCardMine: {
     borderColor: "rgba(255,255,255,0.2)",
     backgroundColor: "rgba(255,255,255,0.08)",
   },
-  spaceAvatar: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    backgroundColor: "rgba(255,255,255,0.1)",
+  liveTopRow: {
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    marginRight: 12,
+    justifyContent: "space-between",
+    marginBottom: 12,
   },
-  mySpaceAvatar: {
-    backgroundColor: "rgba(255,255,255,0.15)",
+  liveChip: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 8,
+    backgroundColor: "rgba(239,68,68,0.2)",
   },
-  spaceInfo: {
-    flex: 1,
+  liveDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "#EF4444",
   },
-  spaceTitle: {
+  liveChipText: {
+    color: "#F87171",
+    fontSize: 11,
+    fontWeight: "600",
+    letterSpacing: 0.3,
+  },
+  liveCountRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  liveCountText: {
+    color: "rgba(255,255,255,0.5)",
+    fontSize: 12,
+  },
+  liveEndBtn: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 10,
+    backgroundColor: "#EF4444",
+  },
+  liveEndText: {
     color: "#FFFFFF",
-    fontSize: 15,
+    fontSize: 12,
+    fontWeight: "700",
+  },
+
+  // ── Upcoming (scheduled) stage card ───────────────────────────────────────
+  // The cover fills the card behind the content, so the card has to clip to
+  // its own radius or the image squares off the corners.
+  scheduledCard: {
+    borderRadius: 16,
+    overflow: "hidden",
+    marginBottom: 10,
+  },
+  // With a cover, the card is given real height so the image reads as artwork
+  // rather than as a tinted background. Without one there is nothing to show,
+  // so it collapses to its content and keeps the modal's own surface treatment
+  // instead of web's opaque zinc-900 (which would punch a hole in the glass).
+  scheduledCardCovered: { minHeight: 176 },
+  scheduledCardFlat: {
+    backgroundColor: "rgba(255,255,255,0.05)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.08)",
+  },
+  scheduledCover: { ...StyleSheet.absoluteFillObject },
+  scheduledBody: {
+    flex: 1,
+    padding: 14,
+    // Bottom-anchored, which is what makes the cover readable: the gradient is
+    // densest at the bottom, so clustering the text there leaves the top of
+    // the card as clear artwork instead of blacked-out empty space. With no
+    // cover the card hugs its content and this has no effect.
+    justifyContent: "flex-end",
+  },
+  scheduledTopRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 12,
+  },
+  scheduledChip: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 8,
+    backgroundColor: "rgba(255,255,255,0.1)",
+  },
+  scheduledChipText: {
+    color: "#D4D4D8",
+    fontSize: 11,
     fontWeight: "500",
   },
-  spaceSub: {
+  scheduledIconBtn: {
+    width: 28,
+    height: 28,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(255,255,255,0.1)",
+  },
+  scheduledHostRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    marginBottom: 12,
+  },
+  scheduledHostText: { flex: 1, minWidth: 0 },
+  scheduledHostedBy: {
+    color: "rgba(255,255,255,0.45)",
+    fontSize: 10,
+  },
+  scheduledHostName: {
+    color: "#FFFFFF",
+    fontSize: 12,
+    fontWeight: "500",
+  },
+  scheduledTitle: {
+    color: "#FFFFFF",
+    fontSize: 15,
+    fontWeight: "600",
+    lineHeight: 20,
+  },
+  scheduledWhenRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    marginTop: 6,
+  },
+  scheduledWhen: {
+    color: "#D4D4D8",
+    fontSize: 12,
+    flex: 1,
+  },
+  scheduledDesc: {
     color: "rgba(255,255,255,0.5)",
+    fontSize: 12,
+    marginTop: 4,
+    lineHeight: 16,
+  },
+  scheduledActions: {
+    flexDirection: "row",
+    gap: 8,
+    marginTop: 12,
+  },
+  scheduledStartBtn: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 6,
+    paddingVertical: 9,
+    borderRadius: 12,
+    backgroundColor: "#FFFFFF",
+  },
+  scheduledStartText: {
+    color: "#09090B",
     fontSize: 13,
-    marginTop: 2,
+    fontWeight: "600",
+  },
+  scheduledCancelBtn: {
+    paddingHorizontal: 14,
+    paddingVertical: 9,
+    borderRadius: 12,
+    backgroundColor: "rgba(255,255,255,0.1)",
+  },
+  scheduledCancelText: {
+    color: "rgba(255,255,255,0.7)",
+    fontSize: 13,
   },
   loader: {
     paddingVertical: 20,
