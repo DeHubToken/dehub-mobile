@@ -554,6 +554,38 @@ export async function dislikeComment(input: DislikeCommentInput): Promise<Dislik
   }
 }
 
+// Who liked a comment — author-only, the comment-level sibling of
+// getPostLikers. Comments only carry plain likes, so no reaction grouping.
+export interface CommentLiker {
+  address: string;
+  username?: string | null;
+  displayName?: string | null;
+  avatarImageUrl?: string | null;
+}
+
+export interface CommentLikersResponse {
+  result: boolean;
+  /** False for everyone but the comment's author — `data` is then empty by
+   *  design, not because nobody liked it. Same contract as post likers. */
+  canViewLikers: boolean;
+  data: CommentLiker[];
+  pagination?: { page: number; limit: number; totalCount: number; hasMore: boolean };
+}
+
+export async function getCommentLikers(params: {
+  commentId: string | number;
+  page?: number;
+  limit?: number;
+}): Promise<CommentLikersResponse> {
+  const { commentId, page = 0, limit = 50 } = params;
+  const query = objectToGetParams(
+    removeUndefined({ commentId: String(commentId), page, limit }),
+  );
+  return apiClient.get<CommentLikersResponse>(`/comment-likers${query}`, {
+    isAuthRequired: true,
+  });
+}
+
 // Edit a comment
 export interface EditCommentInput {
   commentId: number | string;

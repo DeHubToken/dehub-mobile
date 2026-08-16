@@ -13,6 +13,7 @@ import {
 import Icon from "../ui/Icon";
 import CommentItem from "./CommentItem";
 import CommentContextMenu from "./CommentContextMenu";
+import CommentLikersSheet from "./CommentLikersSheet";
 import type { CommentLayout } from "./CommentContextMenu";
 import CommentMediaPreview from "./CommentMediaPreview";
 import type { MediaAttachment } from "./CommentMediaPreview";
@@ -105,6 +106,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
   // Tip-a-comment state + per-comment totals from tip_records
   const [tipComment, setTipComment] = useState<Comment | null>(null);
+  // Author-only who-liked list, opened from an own comment's like button.
+  const [likersCommentId, setLikersCommentId] = useState<number | null>(null);
   const { totals: tipTotals, bump: bumpTipTotal } = useCommentTipTotals(
     flatComments.map((c) => c.id),
   );
@@ -816,6 +819,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           tipTotal={tipTotals[itemNumId]}
           onLike={handleLikeComment}
           onDislike={handleDislikeComment}
+          onShowLikers={setLikersCommentId}
           onUserPress={handleUserPress}
           onEdit={handleStartEdit}
           onLongPress={handleCommentLongPress}
@@ -1069,6 +1073,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         onDelete={contextMeta?.isOwnComment ? handleContextDelete : undefined}
         onLike={handleContextLike}
         onDislike={handleContextDislike}
+        onShowLikers={
+          contextComment ? () => setLikersCommentId(Number(contextComment.id)) : undefined
+        }
         tokenId={tokenId}
       />
 
@@ -1087,6 +1094,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         onSuccess={(amount) => {
           if (tipComment) bumpTipTotal(Number(tipComment.id), amount);
         }}
+      />
+
+      <CommentLikersSheet
+        visible={likersCommentId !== null}
+        onClose={() => setLikersCommentId(null)}
+        commentId={likersCommentId}
       />
     </View>
   );

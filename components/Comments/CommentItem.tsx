@@ -71,6 +71,9 @@ interface CommentItemProps {
   tipTotal?: number;
   onLike?: (commentId: number) => Promise<LikeCommentResult | void>;
   onDislike?: (commentId: number) => Promise<DislikeCommentResult | void>;
+  /** Own comment's like button opens who-liked instead of liking — the server
+   *  refuses self-likes, and this is the author's only door to the list. */
+  onShowLikers?: (commentId: number) => void;
   onUserPress?: (userId: string) => void;
   onEdit?: (comment: Comment) => void;
   onLongPress?: (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean }) => void;
@@ -90,6 +93,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   tipTotal,
   onLike,
   onDislike,
+  onShowLikers,
   onUserPress,
   onEdit,
   onLongPress,
@@ -206,6 +210,16 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const handleLikePress = useCallback(async () => {
     if (isLiking) return;
 
+    if (isOwnComment) {
+      if (onShowLikers) {
+        onShowLikers(comment.id);
+        return;
+      }
+      // No likers sheet wired here — still never send a like the server will
+      // 400. Un-liking a historical self-like stays allowed.
+      if (!liked) return;
+    }
+
     const wasLiked = liked;
     const oldCount = likeCount;
     setLiked(!wasLiked);
@@ -229,7 +243,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     } finally {
       setIsLiking(false);
     }
-  }, [liked, likeCount, isLiking, comment.id, onLike, likeScale]);
+  }, [liked, likeCount, isLiking, isOwnComment, comment.id, onLike, onShowLikers, likeScale]);
 
   const handleDislikePress = useCallback(async () => {
     if (isDisliking) return;
@@ -443,28 +457,33 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               )}
             </Pressable>
 
-            <Pressable
-              onPress={handleDislikePress}
-              disabled={isDisliking}
-              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-              accessibilityRole="button"
-              accessibilityLabel="Dislike"
-              accessibilityState={{ selected: disliked }}
-              style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
-            >
-              <Animated.View style={dislikeAnimStyle}>
-                <Icon
-                  name="ThumbsDown"
-                  size={14}
-                  color={disliked ? ICON_ACTIVE : ICON_MUTED}
-                  fill={disliked ? ICON_ACTIVE : undefined}
-                  strokeWidth={1.8}
-                />
-              </Animated.View>
-              {dislikeCount > 0 && (
-                <Text style={{ fontSize: 12, color: "#8B8D90" }}>{dislikeCount}</Text>
-              )}
-            </Pressable>
+            {/* Gated on the handler like Reply below: a host that passes no
+                onDislike used to get a button whose taps stuck visually and
+                were never sent. */}
+            {onDislike && (
+              <Pressable
+                onPress={handleDislikePress}
+                disabled={isDisliking}
+                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                accessibilityRole="button"
+                accessibilityLabel="Dislike"
+                accessibilityState={{ selected: disliked }}
+                style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
+              >
+                <Animated.View style={dislikeAnimStyle}>
+                  <Icon
+                    name="ThumbsDown"
+                    size={14}
+                    color={disliked ? ICON_ACTIVE : ICON_MUTED}
+                    fill={disliked ? ICON_ACTIVE : undefined}
+                    strokeWidth={1.8}
+                  />
+                </Animated.View>
+                {dislikeCount > 0 && (
+                  <Text style={{ fontSize: 12, color: "#8B8D90" }}>{dislikeCount}</Text>
+                )}
+              </Pressable>
+            )}
 
             {onReply && (
               <Pressable
