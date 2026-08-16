@@ -23,6 +23,7 @@ import type { EventBannerData } from "../components/LiveViewer/LiveEventBanner";
 import ProducerHeader from "../components/LiveProducer/ProducerHeader";
 import ProducerFloatingChat from "../components/LiveProducer/ProducerFloatingChat";
 import ProducerBottomBar from "../components/LiveProducer/ProducerBottomBar";
+import ProducerShopButton from "../components/LiveProducer/ProducerShopButton";
 import StreamDetailsTooltip from "../components/LiveProducer/StreamDetailsTooltip";
 import { useTipAnimations } from "../hooks/useTipAnimations";
 import { useReactions } from "../hooks/useReactions";
@@ -1146,6 +1147,16 @@ const LiveProducerScreen: React.FC = () => {
               >
                 {/* TikTok-style join/gift banners */}
                 <LiveEventBanner joinEvent={joinEvent} giftEvent={giftEvent} />
+
+                {/* Shop controls — attach listings and put one on air without
+                    leaving the broadcast. Right-aligned above the chat so it
+                    stays clear of the message column. */}
+                <View className="flex-row justify-end px-3 mb-2" pointerEvents="box-none">
+                  <ProducerShopButton
+                    tokenId={tokenId || (streamEntity as any)?.tokenId}
+                    visible={!uiHidden}
+                  />
+                </View>
 
                 {/* Floating chat messages + input */}
                 <ProducerFloatingChat
