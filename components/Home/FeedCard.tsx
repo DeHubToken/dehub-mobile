@@ -55,6 +55,7 @@ import {
   resolveBadgeBalance,
   getImageUrl,
   getImageUrlApiSimple,
+  buildFeedImageUrls,
   getAudioUrl,
   getVideoUrl,
   getShortsThumbnailUrl,
@@ -75,6 +76,7 @@ import {
   isFailedResponse,
   useEngagement,
 } from "../../libs/engagementCache";
+import { isTokenUnlocked, markTokenUnlocked } from "../../libs/unlocked-tokens";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import { voteOnNFT, reactToNFT, getPpvSalesCount } from "../../services/nft.service";
@@ -213,7 +215,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // --- Gallery images (for image posts) ---
   const galleryImages = useMemo(() => {
     const urls: string[] = Array.isArray(item.imageUrls) ? item.imageUrls : [];
-    if (urls.length > 0) return urls.map((u) => getImageUrlApiSimple(u));
+    // Through the image CDN with a resize, like the single-image path — the
+    // API-origin URLs served full-resolution originals on every scroll.
+    if (urls.length > 0) return buildFeedImageUrls(urls, 640);
     const single = getImageUrl(item.imageUrl || item.thumbnailUrl || "");
     return single ? [single] : [];
   }, [item]);
@@ -329,7 +333,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [showAddToFolder, setShowAddToFolder] = useState(false);
   const [showShareToDm, setShowShareToDm] = useState(false);
   const [activeCashtag, setActiveCashtag] = useState<string | null>(null);
-  const [ppvUnlocked, setPpvUnlocked] = useState(false);
+  // Seeded from the session store so a card recycled out of the FlatList
+  // window does not re-lock a post the viewer just paid for.
+  const [ppvUnlocked, setPpvUnlocked] = useState(() => isTokenUnlocked(tokenId));
   // Local unlock overrides server PPV state after successful payment
   const isActuallyLockedPPV = isServerLockedPPV && !ppvUnlocked;
   const isActuallyComboLocked = isActuallyLockedPPV && isActuallyLockedHoldings;
@@ -546,8 +552,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }, [requireAuth]);
 
   const handlePPVSuccess = useCallback(() => {
+    markTokenUnlocked(tokenId);
     setPpvUnlocked(true);
-  }, []);
+  }, [tokenId]);
 
   const handleBountyBadgePress = useCallback(() => {
     requireAuth?.(() => {
