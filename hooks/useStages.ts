@@ -191,6 +191,14 @@ export interface UseStagesReturn {
   applyVoiceEffect: (effectId: string) => void;
   fetchTtsVoices: () => Promise<void>;
   generateTts: (text: string, voiceId: string) => Promise<void>;
+  /** Pad currently playing through the channel, or null. */
+  playingSoundId: string | null;
+  /**
+   * Play a soundboard clip into the Agora channel so everyone hears it, the
+   * same route TTS takes. `id` is only an identity for the pressed-pad state.
+   */
+  playSoundEffect: (url: string, id: string) => Promise<void>;
+  stopSoundEffect: () => void;
   fetchTranscript: (spaceId: string) => Promise<void>;
   refreshSpaces: () => Promise<void>;
 }
@@ -227,6 +235,7 @@ export function useStages(): UseStagesReturn {
   const [hasRaisedHand, setHasRaisedHand] = useState(false);
   const [floatingReactions, setFloatingReactions] = useState<FloatingReaction[]>([]);
   const [voiceEffect, setVoiceEffect] = useState("none");
+  const [playingSoundId, setPlayingSoundId] = useState<string | null>(null);
   const [ttsVoices, setTtsVoices] = useState<TtsVoice[]>([]);
   const [isTtsVoicesLoading, setIsTtsVoicesLoading] = useState(false);
   const [isTtsGenerating, setIsTtsGenerating] = useState(false);
@@ -419,6 +428,9 @@ export function useStages(): UseStagesReturn {
         setIsRecording(false);
       }
       engine.setAudioEffectPreset(AudioEffectPreset.AudioEffectOff);
+      // A soundboard clip is a mixing stream, not channel audio, so it
+      // outlives leaveChannel and would keep playing into the next stage.
+      engine.stopAudioMixing();
       await engine.leaveChannel();
     } catch (e) {
       log.warn("Stage leave error:", e);
@@ -426,6 +438,7 @@ export function useStages(): UseStagesReturn {
     setIsConnected(false);
     setIsMuted(true);
     setVoiceEffect("none");
+    setPlayingSoundId(null);
     setActiveSpeakerUids([]);
     return savedRecPath;
   }, []);
@@ -553,6 +566,55 @@ export function useStages(): UseStagesReturn {
       setIsTtsGenerating(false);
     }
   }, [isTtsGenerating]);
+
+  /**
+   * Soundboard playback.
+   *
+   * The clips are the same files web's soundboard serves out of its public
+   * dir, fetched over the network and cached on disk rather than bundled:
+   * they are unencoded WAV and total ~19.5MB, with one 9.7MB file among them,
+   * so shipping them would roughly double the download size of the app for a
+   * host-only novelty. Cached by URL, so each clip crosses the network once
+   * per install and is instant after that.
+   *
+   * Playback itself is startAudioMixing, the route generateTts already uses —
+   * that is what puts the sound in the channel rather than only in the host's
+   * earpiece, and it is why this works while the host is muted. Agora allows
+   * one mixing stream at a time, so a second pad cuts straight to the new clip
+   * without any explicit stop, which is the DJ-deck behaviour web has.
+   */
+  const playSoundEffect = useCallback(async (url: string, id: string) => {
+    setPlayingSoundId(id);
+    try {
+      const cacheName = `stage_sfx_${url.replace(/[^a-zA-Z0-9]/g, "_").slice(-96)}`;
+      const cachePath = `${FileSystem.cacheDirectory}${cacheName}`;
+      const existing = await FileSystem.getInfoAsync(cachePath);
+      if (!existing.exists) {
+        const { status } = await FileSystem.downloadAsync(url, cachePath);
+        if (status !== 200) throw new Error(`Sound download failed (${status})`);
+      }
+      // startAudioMixing wants a plain filesystem path, not a file:// URL.
+      const rawPath = cachePath.startsWith("file://")
+        ? decodeURIComponent(cachePath.substring(7))
+        : cachePath;
+      getStageEngine().startAudioMixing(rawPath, false, 1);
+    } catch (err) {
+      log.error("Soundboard playback failed:", err);
+      // Only clear if this pad is still the active one — a pad tapped while
+      // this one was loading has already claimed the slot.
+      setPlayingSoundId((cur) => (cur === id ? null : cur));
+      throw err;
+    }
+  }, []);
+
+  const stopSoundEffect = useCallback(() => {
+    try {
+      getStageEngine().stopAudioMixing();
+    } catch (err) {
+      log.warn("Failed to stop soundboard clip:", err);
+    }
+    setPlayingSoundId(null);
+  }, []);
 
   const sendReaction = useCallback((emoji: string) => {
     const now = Date.now();
@@ -1200,6 +1262,9 @@ export function useStages(): UseStagesReturn {
     applyVoiceEffect,
     fetchTtsVoices,
     generateTts,
+    playingSoundId,
+    playSoundEffect,
+    stopSoundEffect,
     inviteSpeaker,
     fetchTranscript,
     refreshSpaces,
