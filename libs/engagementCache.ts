@@ -2,6 +2,8 @@ import { useCallback, useSyncExternalStore } from "react";
 import {
   resolveMyReaction,
   resolveReactionCounts,
+  resolveLikeCount,
+  resolveDislikeCount,
   type PostReaction,
   type ReactionCounts,
 } from "./reactions";
@@ -159,12 +161,24 @@ function fromItem(item: any): EngagementFields {
     isDisliked: !!item?.isDisliked,
     isSaved: !!item?.isSaved,
     isReposted: !!item?.isReposted,
-    likeCount: item?.totalVotes?.for || item?.likes || 0,
-    dislikeCount: item?.totalVotes?.against || item?.dislikes || 0,
+    likeCount: resolveLikeCount(item),
+    dislikeCount: resolveDislikeCount(item),
     repostCount: (item?.reposts || 0) + (item?.quotes || 0),
     myReaction: resolveMyReaction(item),
     reactionCounts: resolveReactionCounts(item),
   };
+}
+
+/**
+ * Viewer-scoped fields the API includes only when it recognises the caller.
+ * api.dehub.io answers an EXPIRED token with 200-and-none-of-these rather than
+ * a 401, so their joint absence means "anonymous response", not "the viewer
+ * has no engagement".
+ */
+const VIEWER_FIELDS = ["isLiked", "isDisliked", "isSaved", "isReposted", "myReaction", "isUnlocked", "isOwner"] as const;
+
+export function itemHasViewerFields(item: any): boolean {
+  return !!item && VIEWER_FIELDS.some((f) => item[f] !== undefined);
 }
 
 function resolve(item: any, entry: Entry | undefined): EngagementFields {
@@ -173,6 +187,12 @@ function resolve(item: any, entry: Entry | undefined): EngagementFields {
   if (Date.now() - entry.timestamp > ENGAGEMENT_TTL_MS) return base;
 
   const p = entry.patch;
+
+  // An anonymous response (expired token → 200 with every viewer field
+  // stripped) expresses no opinion about this viewer; judging the overlay
+  // against it would retire held reactions to neutral. Keep the patch until a
+  // response that actually carries viewer fields agrees.
+  if (!itemHasViewerFields(item)) return { ...base, ...p };
   // Retire the overlay once the server agrees on every flag we hold. Without
   // this the overlay would keep winning for the full TTL even after a
   // pull-to-refresh delivered authoritative counts, so a refreshed post would

@@ -128,12 +128,13 @@ function setCooldown(tokenId: TokenId): void {
 
 /**
  * Compute the minimum watch time threshold for counting a video view.
- * Matches web behavior: 10% of duration OR 3 seconds, whichever comes first.
+ * Matches web (view-tracker.ts): the LARGER of 10% of duration and 3 seconds.
+ * Math.min here counted a 10s short as viewed after 1s while web needed 3s.
  */
 export function computeVideoViewThresholdMs(durationMs?: number | null): number {
   if (!durationMs || durationMs <= 0) return VIDEO_MIN_WATCH_MS;
   const tenPercent = durationMs * VIDEO_MIN_WATCH_PERCENT;
-  return Math.min(tenPercent, VIDEO_MIN_WATCH_MS);
+  return Math.max(tenPercent, VIDEO_MIN_WATCH_MS);
 }
 
 /** Determines if the user is authenticated enough to record a view. */
