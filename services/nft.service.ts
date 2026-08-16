@@ -76,16 +76,43 @@ function objectToGetParams(obj?: Record<string, any>): string {
   return `?${query}`;
 }
 
+// /feed only understands this sortBy set; anything else is silently ignored
+// server-side and the feed comes back in the default (likes) order.
+const FEED_SORT_BY = new Set(["likes", "views", "createdAt", "tips", "comments", "random", "score"]);
+
+export function resolveFeedSort(mode?: string): { sortBy?: string; sortOrder?: string } {
+  if (!mode) return {};
+  switch (mode) {
+    case "new":
+      return { sortBy: "createdAt", sortOrder: "desc" };
+    case "popular":
+      return { sortBy: "likes", sortOrder: "desc" };
+    case "trending":
+      return { sortBy: "views", sortOrder: "desc" };
+    case "by-comments":
+      return { sortBy: "comments", sortOrder: "desc" };
+    default:
+      return FEED_SORT_BY.has(mode) ? { sortBy: mode } : {};
+  }
+}
+
+// 'feed-all' is a /search alias, not a /feed filter value — /feed applies no
+// filter at all for unknown postTypes, so omit the param instead.
+export function resolveFeedPostType(postType?: string): string | undefined {
+  if (!postType || postType === "all" || postType === "feed-all") return undefined;
+  return postType;
+}
+
 export async function getNFTs(params?: SearchParams): Promise<GetNFTsResponse> {
   const baseParams: Record<string, any> = {
     search: params?.search || params?.q,
-    sortBy: params?.sortMode || params?.sort,
+    ...resolveFeedSort(params?.sortMode || params?.sort),
     limit: params?.unit ?? 40,
     range: params?.range,
     category: params?.category,
     address: params?.address,
     page: (params?.page ?? 0) + 1, // /feed uses 1-indexed pages
-    postType: params?.postType,
+    postType: resolveFeedPostType(params?.postType),
     minter: params?.minter,
     owner: params?.owner,
   };

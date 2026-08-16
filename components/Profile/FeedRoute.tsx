@@ -38,7 +38,9 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
         minter: address,
         sortBy: 'createdAt',
         sortOrder: 'desc',
-        status: 'minted',
+        // 'all' resolves to minted+signed server-side; 'minted' alone hides
+        // off-chain (mint-opt-out) posts from their own author's profile.
+        status: 'all',
         page: page + 1, // /feed uses 1-indexed pages
         limit,
       });
