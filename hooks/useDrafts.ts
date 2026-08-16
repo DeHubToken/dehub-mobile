@@ -31,6 +31,12 @@ export interface Draft {
   id: string;
   bodyText: string;
   description: string;
+  /**
+   * Post title, present since the composer gained a separate title field.
+   * Older drafts don't have it — for those, a video draft's title lives in
+   * `bodyText` and its body in `description` (the pre-split field mapping).
+   */
+  titleText?: string;
   categories: string[];
   imageUris: string[];
   videoUri: string | null;
@@ -79,6 +85,7 @@ const fromRow = (row: any): Draft => ({
   id: `remote_${row.id}`,
   bodyText: row.text ?? "",
   description: row.description ?? "",
+  titleText: row.metadata?.titleText,
   categories: row.metadata?.categories ?? (row.selected_category ? [row.selected_category] : []),
   imageUris: [],
   videoUri: null,
@@ -132,6 +139,7 @@ const pushRemote = async (draft: Draft, address?: string): Promise<string | null
         metadata: {
           categories: draft.categories,
           monetization: draft.monetization,
+          titleText: draft.titleText ?? "",
           source: "mobile",
         },
       })
