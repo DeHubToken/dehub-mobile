@@ -1,4 +1,5 @@
 import { apiClient } from "../libs";
+import { resolveFeedSort, resolveFeedPostType } from "./nft.service";
 import type { SearchParams, GetNFTsResult, GetNFTsResponse } from "./nft.service";
 
 // Local helpers (duplicated from nft.service with minimal scope)
@@ -27,18 +28,19 @@ export async function getFeedNFTs(params?: SearchParams): Promise<GetNFTsRespons
     const base = removeUndefined({
       search: params?.search || params?.q,
       limit: 50,
-      sortBy: params?.sortMode || params?.sort,
+      ...resolveFeedSort(params?.sortMode || params?.sort),
       range: params?.range,
       category: params?.category,
       address: params?.address,
-      postType: params?.postType || "feed-all",
+      postType: resolveFeedPostType(params?.postType),
       minter: params?.minter,
       owner: params?.owner,
       page: (params?.page ?? 0) + 1, // /feed uses 1-indexed pages
     });
     const query = objectToGetParams(base);
     const url = `/feed${query}`;
-    const res = await apiClient.get<any>(url, { isAuthRequired: false });
+    // Auth on: an anonymous /feed answers 200 without isLiked/isSaved/isOwner.
+    const res = await apiClient.get<any>(url, { isAuthRequired: true });
     if (Array.isArray(res)) return { result: res } as GetNFTsResponse;
     if (res?.result && Array.isArray(res.result)) return res as GetNFTsResponse;
     if (Array.isArray(res?.data)) return { result: res.data } as GetNFTsResponse;
@@ -47,19 +49,20 @@ export async function getFeedNFTs(params?: SearchParams): Promise<GetNFTsRespons
 
   const base = removeUndefined({
     search: params?.search || params?.q,
-    sortBy: params?.sortMode || params?.sort,
+    ...resolveFeedSort(params?.sortMode || params?.sort),
     limit: params?.unit ?? 20,
     range: params?.range,
     category: params?.category,
     address: params?.address,
     page: (params?.page ?? 0) + 1, // /feed uses 1-indexed pages
-    postType: params?.postType || "feed-all",
+    postType: resolveFeedPostType(params?.postType),
     minter: params?.minter,
     owner: params?.owner,
   });
   const query = objectToGetParams(base);
   const url = `/feed${query}`;
-  const res = await apiClient.get<any>(url, { isAuthRequired: false });
+  // Auth on: an anonymous /feed answers 200 without isLiked/isSaved/isOwner.
+  const res = await apiClient.get<any>(url, { isAuthRequired: true });
   if (Array.isArray(res)) return { result: res } as GetNFTsResponse;
   if (res?.result && Array.isArray(res.result)) return res as GetNFTsResponse;
   if (Array.isArray(res?.data)) return { result: res.data } as GetNFTsResponse;

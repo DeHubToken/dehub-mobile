@@ -90,7 +90,9 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
         postType: "feed-simple",
         sortBy: "createdAt",
         sortOrder: "desc",
-        status: "minted",
+        // 'all' resolves to minted+signed server-side; 'minted' alone hides
+        // off-chain (mint-opt-out) posts from their own author's profile.
+        status: "all",
         page: page + 1,
         limit: PAGE_SIZE,
       });

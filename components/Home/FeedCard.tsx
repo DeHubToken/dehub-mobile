@@ -1183,10 +1183,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           />
           <Text style={{ fontSize: 11, color: "#8B8D90" }}>
             {isAudioPost
-              ? (item.listens || 0)
+              ? formatCompactNumber(item.listens || 0)
               : isLive
                 ? formatCompactNumber(currentViewers)
-                : views}
+                : formatCompactNumber(views)}
           </Text>
         </View>
         {isLive && liveViewCount > 0 && (
