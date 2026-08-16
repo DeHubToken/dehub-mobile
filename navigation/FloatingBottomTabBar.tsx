@@ -34,6 +34,8 @@ import { ScreenNames } from "./ScreenNames";
 import { WEBSITE_LINK } from "../config/links";
 import { openInApp } from "../libs/links.utils";
 import { useTabBarHide } from "../context/TabBarHideContext";
+// Imperative opener rather than `useStages()` — see the note on the export.
+import { openStageModal } from "../context/StageContext";
 import { useAuthState, useUser } from "../context/AuthContext";
 import { useTotalUnreadMessagesCount } from "../store/dm.store";
 import { storage } from "../libs/storage";
@@ -70,23 +72,41 @@ interface ScrollNavItem {
   icon: IconName;
   labelKey: string;
   screen?: string;
+  params?: Record<string, unknown>;
   url?: string;
+  /**
+   * Feature presented as a global modal rather than a route — same escape
+   * hatch AppDrawer uses, because this list is module-level and cannot hold
+   * hook-derived callbacks.
+   */
+  action?: "stages";
 }
 
-// Mirror the web nav pill: same icons and order, mapped to native screens
-// where they exist and to the website for web-only pages.
+// Mirror the web nav pill (MobileBottomNav's SCROLL_NAV_ITEMS): same icons and
+// order, mapped to native screens where they exist and to the website for
+// web-only pages. Everything after Communities has no web nav-pill counterpart
+// and follows the drawer's order instead, so every destination in the drawer is
+// also reachable from here.
 const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "User", labelKey: "nav.profile", screen: ScreenNames.Profile },
   { icon: "Bell", labelKey: "nav.notifications", screen: ScreenNames.Notifications },
   { icon: "Wand", labelKey: "nav.prompt", screen: ScreenNames.Prompt },
   { icon: "CalendarDays", labelKey: "nav.events", screen: ScreenNames.Events },
+  // Stages is modal-based on native (StagesModalsHost is mounted app-wide in
+  // App.tsx), so it opens the browse modal instead of navigating to a route.
+  { icon: "Mic", labelKey: "nav.stages", action: "stages" },
   { icon: "LayoutDashboard", labelKey: "nav.commandCentre", screen: ScreenNames.CommandCentre },
-  { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay },
+  // Wallet and Staking are the same screen on native, split by tab — hence the
+  // explicit initialTab on both, so arriving from one never inherits the
+  // other's tab.
+  { icon: "Wallet", labelKey: "nav.wallet", screen: ScreenNames.Dpay, params: { initialTab: "buy" } },
+  { icon: "Vault", labelKey: "nav.staking", screen: ScreenNames.Dpay, params: { initialTab: "stake" } },
   { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
   { icon: "Trophy", labelKey: "nav.leaderboard", screen: ScreenNames.Leaderboard },
   { icon: "Bookmark", labelKey: "nav.bookmarks", screen: ScreenNames.MyLibrary },
   { icon: "Settings", labelKey: "nav.settings", screen: ScreenNames.AccountSettings },
-  { icon: "Lightbulb", labelKey: "nav.featureRequests", url: `${WEBSITE_LINK}/features` },
+  // Native screen, not the website — the drawer has routed here for a while.
+  { icon: "Lightbulb", labelKey: "nav.featureRequests", screen: ScreenNames.FeatureRequests },
   { icon: "Map", labelKey: "nav.guide", screen: ScreenNames.Guide },
   { icon: "BookOpen", labelKey: "nav.docs", url: `${WEBSITE_LINK}/docs` },
   { icon: "FileText", labelKey: "nav.blog", url: `${WEBSITE_LINK}/docs/blog` },
@@ -94,6 +114,15 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
   { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade },
   { icon: "Users", labelKey: "nav.communities", screen: ScreenNames.Communities },
+  // Drawer-only tail. Web's sidebar reuses Briefcase for both Bounties and
+  // Careers and Users for both Communities and Affiliate; it can afford to,
+  // because it draws a label beside every icon. This bar is icons only, so
+  // the second of each pair takes a distinct glyph.
+  { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV },
+  { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores },
+  { icon: "Hammer", labelKey: "screens.work", screen: ScreenNames.Work },
+  { icon: "Handshake", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate },
+  { icon: "Megaphone", labelKey: "nav.ads", screen: ScreenNames.Ads },
 ];
 
 const AUTHED_ONLY_SCREENS = new Set([
@@ -103,6 +132,8 @@ const AUTHED_ONLY_SCREENS = new Set([
   ScreenNames.Dpay,
   ScreenNames.CommandCentre,
   ScreenNames.AccountSettings,
+  ScreenNames.Affiliate,
+  ScreenNames.Ads,
 ]);
 
 const AnimatedPressable = Reanimated.createAnimatedComponent(Pressable);
@@ -332,10 +363,12 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
 
   const handleScrollItemPress = useCallback(
     (item: ScrollNavItem) => {
-      if (item.url) {
+      if (item.action === "stages") {
+        openStageModal("browse");
+      } else if (item.url) {
         openInApp(item.url);
       } else if (item.screen) {
-        navigation.navigate(item.screen as never);
+        navigation.navigate(item.screen as never, item.params as never);
       }
     },
     [navigation],
@@ -482,7 +515,8 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
             .filter((item) => isAuthed || !item.screen || !AUTHED_ONLY_SCREENS.has(item.screen as any))
             .map((item) => (
             <ScrollNavButton
-              key={item.screen ?? item.url}
+              // Not the screen name: Wallet and Staking are both Dpay.
+              key={item.labelKey}
               icon={item.icon}
               label={t(item.labelKey)}
               onPress={() => handleScrollItemPress(item)}
