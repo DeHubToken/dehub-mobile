@@ -197,10 +197,21 @@ async function processJob(job: UploadJob): Promise<void> {
 
     const createdTokenId = Number(result?.createdTokenId);
 
-    // Published off-chain: the API call WAS the whole upload. The post is
-    // already in the feed, so there is no signature to validate — the mint
-    // phase below is skipped and only the poll still has work to do.
-    if (job.mintOptOut) {
+    // Scheduled: the server parked the token at status 'scheduled' and the
+    // cron publishes it at the chosen time. The response still carries a mint
+    // signature, but using it NOW would put a not-yet-visible post on-chain
+    // ahead of its schedule — skip the mint phase exactly like an off-chain
+    // post's.
+    if (result?.scheduled) {
+      if (!Number.isFinite(createdTokenId)) {
+        throw new Error("Upload succeeded but no token id came back");
+      }
+      mintParams = { createdTokenId, scheduled: true, scheduledAt: result?.scheduledAt } as MintParams;
+      uploadActions.updateStage(job.id, "processing", mintParams);
+    } else if (job.mintOptOut) {
+      // Published off-chain: the API call WAS the whole upload. The post is
+      // already in the feed, so there is no signature to validate — the mint
+      // phase below is skipped and only the poll still has work to do.
       if (!Number.isFinite(createdTokenId)) {
         throw new Error("Upload succeeded but no token id came back");
       }
@@ -245,9 +256,9 @@ async function processJob(job: UploadJob): Promise<void> {
     throw new Error("Upload cancelled");
   }
 
-  // Mint phase — skipped wholesale for a post published off-chain. Everything
-  // after it (the poll, the done stage) runs the same either way.
-  if (!job.mintOptOut) {
+  // Mint phase — skipped wholesale for a post published off-chain or parked as
+  // scheduled. Everything after it (the poll, the done stage) runs the same.
+  if (!job.mintOptOut && !mintParams.scheduled) {
     uploadActions.updateProgress(job.id, 0.85);
     uploadActions.updateStage(job.id, "minting");
 
@@ -327,10 +338,18 @@ async function processJob(job: UploadJob): Promise<void> {
 
   uploadActions.updateProgress(job.id, 1);
   uploadActions.updateStage(job.id, "done");
-  setTimeout(() => feedEvents.requestRefresh(), 3000);
-  toastSuccess("Post sent!", {
-    description: "Your post is being processed. It may take a moment to appear in your feed.",
-  });
+  if (mintParams.scheduled) {
+    // Nothing to refresh — the post stays invisible until the cron flips it.
+    const when = mintParams.scheduledAt ? new Date(mintParams.scheduledAt).toLocaleString() : null;
+    toastSuccess("Post scheduled", {
+      description: when ? `It will publish ${when}.` : "It will publish at the scheduled time.",
+    });
+  } else {
+    setTimeout(() => feedEvents.requestRefresh(), 3000);
+    toastSuccess("Post sent!", {
+      description: "Your post is being processed. It may take a moment to appear in your feed.",
+    });
+  }
 }
 
 export function useUploadProcessor() {
