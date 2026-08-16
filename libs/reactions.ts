@@ -180,12 +180,31 @@ export function resolveMyReaction(item: any): PostReaction | null {
   return null;
 }
 
+/**
+ * A count that may arrive as a number, an ARRAY of voters (legacy `likes`
+ * rows), or not at all. Mirrors web's toCount — using `||` here dropped a
+ * legitimate `totalVotes.for` of 0 through to the legacy fields, and an
+ * array-valued `likes` failed the `> 0` seed test entirely.
+ */
+export function toCount(value: unknown): number | undefined {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (Array.isArray(value)) return value.length;
+  return undefined;
+}
+
+/** Positive-polarity total for an API-shaped post — same chain web uses. */
+export function resolveLikeCount(item: any): number {
+  return toCount(item?.totalVotes?.for) ?? toCount(item?.likes) ?? toCount(item?.like_count) ?? 0;
+}
+
+/** Negative-polarity total for an API-shaped post. */
+export function resolveDislikeCount(item: any): number {
+  return toCount(item?.totalVotes?.against) ?? toCount(item?.dislikes) ?? toCount(item?.dislike_count) ?? 0;
+}
+
 /** Per-reaction tally for an API-shaped post, seeded from polarity when absent. */
 export function resolveReactionCounts(item: any): ReactionCounts {
   const stored = item?.reactionCounts as ReactionCounts | undefined;
   if (stored && Object.values(stored).some((value) => (value ?? 0) > 0)) return stored;
-  return seedReactionCounts(
-    item?.totalVotes?.for || item?.likes || 0,
-    item?.totalVotes?.against || item?.dislikes || 0,
-  );
+  return seedReactionCounts(resolveLikeCount(item), resolveDislikeCount(item));
 }

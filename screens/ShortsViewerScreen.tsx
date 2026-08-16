@@ -371,9 +371,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
    * Counts track POLARITY, so swapping like → love moves neither — only
    * `reactionCounts`. See components/Home/FeedCard.tsx for the full reasoning.
    */
+  const voteInFlightRef = useRef(false);
   const handleReaction = useCallback((reaction: PostReaction) => {
     if (tokenId == null) return;
+    // One vote at a time — same double-tap guard as FeedCard.
+    if (voteInFlightRef.current) return;
     requireAuth(() => {
+      voteInFlightRef.current = true;
       const wasLiked = liked;
       const wasDisliked = disliked;
       const wasReaction = myReaction;
@@ -428,7 +432,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
       // alone would record a failed vote as successful.
       request
         .then((res) => { if (isFailedResponse(res)) rollback(); })
-        .catch(rollback);
+        .catch(rollback)
+        .finally(() => {
+          voteInFlightRef.current = false;
+        });
     });
   }, [liked, disliked, myReaction, reactionCounts, likeCount, dislikeCount, engagementKey, tokenId, userAddress, requireAuth]);
 
