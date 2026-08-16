@@ -82,6 +82,11 @@ export type UploadPayload = {
   postChainId?: number;
   /** Solana minter address (base58) — required when postChainId is a Solana chain. */
   solanaAddress?: string;
+  /**
+   * Put this post on-chain. Off by default on the built-in wallet, so a first
+   * post needs no wallet and no gas; on for an external one.
+   */
+  shouldMint?: boolean;
 };
 
 
@@ -642,6 +647,9 @@ export function useUploadPost() {
         isQuote: false,
         isSolana: isSolanaPost,
         solanaAddress: isSolanaPost ? (p.solanaAddress as string) : undefined,
+        // Bounty locks tokens through the mint transaction, so a bounty post
+        // has to go on-chain whatever the toggle says.
+        mintOptOut: p.shouldMint === false && !isBounty,
       };
 
       const queued = uploadActions.enqueue(job);

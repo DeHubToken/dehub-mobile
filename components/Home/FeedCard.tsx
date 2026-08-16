@@ -1327,6 +1327,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onClose={() => setShowOptionsMenu(false)}
           tokenId={tokenId}
           isOwner={!!isOwnerPost}
+          // rawStatus doubles as the live-stream status on live posts, but a
+          // live post is never 'signed', so the Mint post row cannot show up
+          // on one by accident.
+          postStatus={rawStatus}
+          postChainId={(item as any).chainId}
           isHidden={isHidden}
           creatorDisplayName={displayName}
           creatorIdentifier={minterAddress || username || ""}

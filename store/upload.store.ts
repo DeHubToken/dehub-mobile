@@ -82,6 +82,12 @@ export interface UploadJob {
   isSolana?: boolean;
   /** Solana minter address (base58) — case-sensitive, not lowercased. */
   solanaAddress?: string;
+  /**
+   * Publish without going on-chain. The upload finishes at the API call: no
+   * signature, no contract, no wallet. Persisted with the job so a queued post
+   * resumed after a restart keeps the creator's choice.
+   */
+  mintOptOut?: boolean;
 }
 
 interface UploadStoreState {
