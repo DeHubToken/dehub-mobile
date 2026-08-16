@@ -368,7 +368,15 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
       } else if (item.url) {
         openInApp(item.url);
       } else if (item.screen) {
-        navigation.navigate(item.screen as never, item.params as never);
+        // Cast the function, not the arguments: `navigate(x as never, y as never)`
+        // does not typecheck, because `never` collapses the two-arg overload.
+        // Most of these routes are not in this navigator's param list at all —
+        // they bubble up to the root stack — so the call is untypeable either
+        // way and the cast belongs at the boundary.
+        (navigation.navigate as (screen: string, params?: Record<string, unknown>) => void)(
+          item.screen,
+          item.params,
+        );
       }
     },
     [navigation],
