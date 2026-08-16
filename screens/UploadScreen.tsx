@@ -30,7 +30,10 @@ import {
   runWithPermissions,
 } from "../libs/permissions.util";
 import { openCroppedImagePicker, getFileName, guessMime } from "../libs/assets.util";
-import { getCategoriesCached } from "../services/nft.service";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getCategoriesCached, getMintFee } from "../services/nft.service";
+import type { MintFeeQuoteResponse } from "../services/nft.service";
+import { getAuthMethod } from "../libs/auth.utils";
 import { toastError, toastSuccess } from "../libs/toast";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
 import { useUser, useAuthActions, useProvider } from "../context/AuthContext";
@@ -70,6 +73,9 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import QuotedPostEmbed from "../components/common/QuotedPostEmbed";
 import { enhanceText } from "../services/ai.service";
 import type { EnhanceMode } from "../services/ai.service";
+
+/** Same key web writes to localStorage — see hooks/useAppPrefs.ts on naming. */
+const SHOULD_MINT_KEY = "post_should_mint";
 
 const TITLE_MAX = 140;
 const DESCRIPTION_MAX = 500;
@@ -272,6 +278,64 @@ export default function UploadScreen() {
   useEffect(() => {
     setPostAsShort(!!pickedVideo && isShortCandidateFn(pickedVideo));
   }, [pickedVideo]);
+
+  /**
+   * Whether this post goes on-chain.
+   *
+   * Off by default on the built-in wallet — a first post then needs no wallet
+   * key, no gas and no waiting on a transaction, and lands in the feed as soon
+   * as the upload finishes. On by default for an external wallet, which signs
+   * for itself and pays its own gas. Remembered once set either way, under the
+   * same key web uses (see hooks/useAppPrefs.ts on key naming).
+   */
+  const [shouldMint, setShouldMint] = useState(false);
+  const [mintFee, setMintFee] = useState<MintFeeQuoteResponse | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const stored = await AsyncStorage.getItem(SHOULD_MINT_KEY).catch(() => null);
+      if (cancelled) return;
+      if (stored === "true" || stored === "false") {
+        setShouldMint(stored === "true");
+        return;
+      }
+      const { method } = await getAuthMethod().catch(() => ({ method: null as null }));
+      if (!cancelled) setShouldMint(method !== "local");
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
+  const handleSetShouldMint = useCallback((value: boolean) => {
+    setShouldMint(value);
+    AsyncStorage.setItem(SHOULD_MINT_KEY, String(value)).catch(() => {});
+  }, []);
+
+  // Bounty locks tokens through the mint transaction, so it cannot ride on a
+  // post that never goes on-chain.
+  const mintRequired = monetization.bountyEnabled;
+  const effectiveShouldMint = shouldMint || mintRequired;
+
+  /** What the mint costs. Only sponsored sessions are charged, so only they ask. */
+  useEffect(() => {
+    if (!effectiveShouldMint || isSolanaChain(effectivePostChainId)) {
+      setMintFee(null);
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      const { method } = await getAuthMethod().catch(() => ({ method: null as null }));
+      if (cancelled || method !== "local") return;
+      const quote = await getMintFee(effectivePostChainId);
+      if (!cancelled) setMintFee(quote);
+    })();
+    return () => { cancelled = true; };
+  }, [effectiveShouldMint, effectivePostChainId]);
+
+  const mintFeeLabel =
+    mintFee?.chargeable && mintFee.amount > 0
+      ? `${mintFee.amount} ${mintFee.symbol}`
+      : null;
 
   useEffect(() => {
     if (postAsShort) setShowMonetization(false);
@@ -591,8 +655,9 @@ export default function UploadScreen() {
       scheduledAt: scheduledDate ?? undefined,
       postChainId: effectivePostChainId,
       solanaAddress: solanaAddress ?? undefined,
+      shouldMint,
     };
-  }, [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, postAsShort, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress]);
+  }, [bodyText, description, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, postAsShort, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -1746,6 +1811,36 @@ export default function UploadScreen() {
                   Show cover
                 </Text>
               </TouchableOpacity>
+            )}
+
+            {!isLiveMode && !isQuoteMode && (
+              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 px-4 py-3">
+                <View className="flex-row items-center justify-between">
+                  <View className="flex-row items-center flex-1 mr-3">
+                    <Icon name="Coins" size={16} color="#fff" />
+                    <Text className="text-white text-sm font-medium ml-2">
+                      Mint post
+                    </Text>
+                    {shouldMint && mintFeeLabel ? (
+                      <Text className="text-theme-neutrals-500 text-xs ml-2">
+                        {mintFeeLabel}
+                      </Text>
+                    ) : null}
+                  </View>
+                  <CustomSwitch
+                    value={effectiveShouldMint}
+                    onValueChange={handleSetShouldMint}
+                    disabled={mintRequired}
+                  />
+                </View>
+                <Text className="text-theme-neutrals-500 text-xs mt-1.5">
+                  {mintRequired
+                    ? "Required — a bounty is locked by the mint transaction."
+                    : effectiveShouldMint
+                      ? "Published on-chain. Needs your wallet."
+                      : "Posts straight away. You can mint it later from the post menu."}
+                </Text>
+              </View>
             )}
 
             {isShortCandidate && (
