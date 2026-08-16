@@ -173,7 +173,7 @@ const UserProfileBottomContentTabs: React.FC<
             postType: "feed-images",
             sortBy: "createdAt",
             sortOrder: "desc",
-            status: "minted",
+            status: "all",
             page: 1,
             limit: 30,
           });

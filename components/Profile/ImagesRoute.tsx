@@ -30,7 +30,7 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll, listHeader
         postType: "feed-images",
         sortBy: "createdAt",
         sortOrder: "desc",
-        status: "minted",
+        status: "all",
         page,
         limit: 21,
       });
