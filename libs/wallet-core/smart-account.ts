@@ -142,6 +142,18 @@ export interface AAProviderLike {
   on?: (event: string, listener: (...args: any[]) => void) => void;
   removeListener?: (event: string, listener: (...args: any[]) => void) => void;
   chainConfig?: any;
+  /**
+   * The bundler and account sitting underneath the EIP-1193 surface.
+   *
+   * Carried through so callers can send SEVERAL calls as one user operation.
+   * request() cannot express that: eth_sendTransaction takes a single
+   * transaction and the SDK wraps it in a one-entry `calls` array. Batching is
+   * what lets a mint fee ride along with the mint itself, in one signature.
+   *
+   * Absent on the plain-EOA fallback, so every caller needs a path without it.
+   */
+  bundlerClient?: any;
+  smartAccount?: any;
 }
 
 /**
@@ -165,6 +177,9 @@ function wrapWithStableAccounts(provider: AccountAbstractionProvider, address: s
     on: raw.on?.bind(raw),
     removeListener: raw.removeListener?.bind(raw),
     chainConfig: raw.chainConfig,
+    // Public getters on the SDK provider — see AAProviderLike.
+    bundlerClient: (provider as any).bundlerClient,
+    smartAccount: (provider as any).smartAccount,
   };
 }
 
