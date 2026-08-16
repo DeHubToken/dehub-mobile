@@ -302,7 +302,8 @@ export async function getUserVideos(userOrAddress: User | string, params?: UserC
 }
 
 /**
- * Fetch user live streams. Uses sortMode='live' rather than postType.
+ * Fetch user live streams. sortMode='live' was never a real /feed sort — the
+ * server ignored it and returned every post type; the live filter is postType.
  */
 export async function getUserLiveVideos(userOrAddress: User | string, params?: UserContentSearchParams): Promise<GetNFTsResponse> {
   const address = resolveAddress(userOrAddress);
@@ -312,7 +313,8 @@ export async function getUserLiveVideos(userOrAddress: User | string, params?: U
     owner: address,
     address,
     unit: params?.unit ?? 40,
-    sortMode: 'live',
+    postType: 'live',
+    sortMode: 'new',
     // page: params?.page,
   };
   return getNFTs(searchParams);

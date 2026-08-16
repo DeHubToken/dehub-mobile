@@ -231,7 +231,7 @@ const InfiniteFeedBase: React.FC<
         ...p,
         unit: pageSize,
         page,
-        postType: (p as any)?.postType || "feed-all",
+        postType: (p as any)?.postType,
       });
     },
     initialPageParam: 0,
