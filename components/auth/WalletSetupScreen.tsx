@@ -91,8 +91,12 @@ export interface WalletSetupScreenProps {
    */
   onSwitchAccount?: (secret: string, password: string) => Promise<void>;
   /**
-   * biometric-unlock mode with the wrap key absent, and nowhere else. Abandon
-   * the unreachable wallet and switch this screen to `create`. This screen owns
+   * The two states where nothing anywhere can open the wallet on file, and
+   * nowhere else:
+   *  - biometric-unlock with the device wrap key absent (HKDF payload, and the
+   *    key that opens it is on a device this isn't);
+   *  - web-passkey-sync, where the row has an address and no payload at all.
+   * Abandon that wallet and switch this screen to `create`. This screen owns
    * the confirmation gate; the caller owns the pre-flight re-read of the cloud
    * row and the mode switch.
    */
@@ -189,6 +193,12 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
             Checking whether you have any other way back into this wallet…
           </Text>
           <ActivityIndicator color={authColors.label} style={{ marginVertical: 16 }} />
+          {/* Both probe reads are un-timed Supabase queries, so this can sit
+              here a while. Without its own way back, the only exit is the
+              screen-level Cancel — which closes the whole sheet and, on the
+              biometric-unlock route, wipes a half-typed recovery phrase that
+              exitResetReview deliberately preserves. */}
+          <AuthTextButton label="Go back" onPress={onBack} />
         </View>
       );
     }
@@ -207,8 +217,8 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
             <Text style={[authText.body, { marginBottom: 12 }]}>
               This account has a <Text style={authText.emphasis}>recovery record</Text> from
               dehub.io. The 24-word recovery code you were given still opens this wallet. Open
-              dehub.io on a computer, sign in the same way, and use that code — it brings the
-              wallet, and your account, back exactly as they were.
+              dehub.io on a computer, sign in the same way and with the same account, and use that
+              code — it brings the wallet, and your account, back exactly as they were.
             </Text>
           )}
           {n > 0 && (
@@ -425,8 +435,15 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       setShowPw(false);
     }, []);
 
+    // Deliberately NOT behind `if (!visible) return`. The hosts keep this
+    // component mounted for the whole session and only toggle `visible`, so
+    // clearing on open alone left every one of these alive across a close —
+    // and the first committed render of the NEXT open, for whatever identity
+    // opens it, showed the previous one's state before the effect ran. For
+    // `recoveryPhrase` that is the abandoned wallet's 12 words on screen under
+    // someone else's sign-in; for the reset group it is a pre-ticked
+    // acknowledgement and a pre-typed RESET.
     useEffect(() => {
-      if (!visible) return;
       reset();
       setDeviceWrapKeyReady(null);
       setRecoveryPhrase(null);
@@ -1045,9 +1062,9 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                 phone was interrupted before it finished.
               </Text>
               <Text style={[authText.body, { marginBottom: 20 }]}>
-                If you have used dehub.io before, open it on your computer, sign in the same way,
-                and <Text style={authText.emphasis}>add a wallet password</Text> — that saves an
-                encrypted backup to the cloud. Then come back here and try again.
+                If you have used dehub.io before, open it on your computer, sign in the same way and
+                with the same account, and <Text style={authText.emphasis}>add a wallet password</Text>{" "}
+                — that saves an encrypted backup to the cloud. Then come back here and try again.
               </Text>
               <Text style={[authText.caption, { marginBottom: 16 }]}>
                 Wallet: {request.address.slice(0, 6)}…{request.address.slice(-4)}
@@ -1278,9 +1295,10 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
 
                   {/* Deliberately the last thing on the screen, and a text
                       button rather than a filled one: it must never read as
-                      the way forward. Only offered here — the other unlock
-                      states all still have a working key somewhere, and a
-                      failed cloud read never reaches this screen at all. */}
+                      the way forward. Offered only in the two states nothing
+                      can open — here, and web-passkey-sync above. The other
+                      unlock states all still have a working key somewhere, and
+                      a failed cloud read never reaches this screen at all. */}
                   {!!onResetWallet && (
                     <AuthTextButton
                       label="I've lost the phrase too — start over"
