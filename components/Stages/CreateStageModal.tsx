@@ -144,7 +144,7 @@ const CreateStageModal: React.FC = () => {
     });
 
     if (space) {
-      setScheduledLink(ShareLinks.stage(space.id));
+      setScheduledLink(ShareLinks.stage(space));
     } else {
       setError("Failed to schedule stage. Please try again.");
     }

@@ -94,6 +94,24 @@ describe('parseDehubLink', () => {
     expect(parseDehubLink('https://dehub.io/stage/nope')).toBeNull();
   });
 
+  it('reads the short stage form, which is what web now shares', () => {
+    expect(parseDehubLink('https://dehub.io/stages/7')).toMatchObject({
+      kind: 'stage',
+      stageShortId: '7',
+    });
+    expect(parseDehubLink('/stages/7')).toMatchObject({
+      kind: 'stage',
+      stageShortId: '7',
+    });
+  });
+
+  it('leaves the stages hub and its non-numeric children alone', () => {
+    // Bare /stages is the list page, not a stage; anything else under it has
+    // no route on either client.
+    expect(parseDehubLink('https://dehub.io/stages')).toBeNull();
+    expect(parseDehubLink('https://dehub.io/stages/upcoming')).toBeNull();
+  });
+
   it('reads a profile link and strips a leading @', () => {
     expect(parseDehubLink('https://dehub.io/sableraven')).toMatchObject({
       kind: 'profile',
@@ -192,6 +210,14 @@ describe('findDehubLinks', () => {
     expect(findDehubLinks('')).toEqual([]);
     expect(findDehubLinks(null)).toEqual([]);
     expect(findDehubLinks(undefined)).toEqual([]);
+  });
+
+  it('finds a short stage link written as a bare path', () => {
+    // The bare-path pass has to admit the plural: /stages/7 is the form web's
+    // share sheet builds whenever the row has a short_id.
+    const links = findDehubLinks('town hall tonight — /stages/7 see you there');
+    expect(links).toHaveLength(1);
+    expect(links[0]).toMatchObject({ kind: 'stage', stageShortId: '7' });
   });
 
   it('findDehubLink returns the first, hasDehubLink the presence', () => {
