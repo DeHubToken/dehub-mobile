@@ -339,7 +339,10 @@ const actionButtonStyle = {
   justifyContent: 'center',
 } as const;
 
-const ACTION_HIT_SLOP = { top: 8, bottom: 8, left: 8, right: 8 };
+// Vertical slop is half the 8pt gap between the two buttons, so their touch
+// areas meet rather than overlap — an overlap sends the tap to whichever
+// happens to be on top, and the two do very different things.
+const ACTION_HIT_SLOP = { top: 4, bottom: 4, left: 10, right: 10 };
 
 interface NotificationRowProps {
   item: NotificationItem;
