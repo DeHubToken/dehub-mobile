@@ -587,7 +587,6 @@ export default function UploadScreen() {
   const {
     validate,
     preUploadCheck,
-    buildConfirmText,
     enqueueJob,
     enqueueQuoteJob,
   } = useUploadPost();
@@ -769,49 +768,6 @@ export default function UploadScreen() {
     setShowLiveSettings((prev) => !prev);
   }, []);
 
-  const handlePost = useCallback(() => {
-    if (activeIsUploading) return;
-    if (isLiveMode) {
-      handleGoLive();
-      return;
-    }
-    if (!canPost) return;
-
-    // Quote mode: simpler validation, skip monetization checks
-    if (isQuoteMode) {
-      if (bodyText.trim().length === 0 && !pickedVideo && !pickedAudio && pickedImages.length === 0) {
-        toastError("Write something or add media to quote this post.");
-        return;
-      }
-      setConfirmText(
-        "This quote post is on-chain and cannot be edited or deleted once posted. Please make sure everything is correct before proceeding."
-      );
-      setShowConfirm(true);
-      return;
-    }
-
-    const payload = getPayload();
-
-    // Validate form
-    const validation = validate(payload);
-    if (!validation.valid) {
-      toastError(validation.error ?? "Please fill in required fields.");
-      return;
-    }
-
-    // Pre-upload checks (gas, balance)
-    const preCheck = preUploadCheck(payload);
-    if (!preCheck.valid) {
-      toastError(preCheck.error ?? "Pre-upload check failed.");
-      return;
-    }
-
-    // Build confirmation text and show modal
-    const text = buildConfirmText(payload);
-    setConfirmText(text);
-    setShowConfirm(true);
-  }, [canPost, activeIsUploading, isLiveMode, isQuoteMode, bodyText, pickedVideo, pickedAudio, pickedImages, getPayload, validate, preUploadCheck, buildConfirmText, handleGoLive]);
-
   const navigateHome = useCallback(() => {
     nav.dispatch(
       CommonActions.reset({
@@ -821,7 +777,7 @@ export default function UploadScreen() {
     );
   }, [nav]);
 
-  const handleConfirmUpload = useCallback(async () => {
+  const submitPost = useCallback(async () => {
     let payload = getPayload();
 
     if (isSolanaChain(payload.postChainId)) {
@@ -857,7 +813,6 @@ export default function UploadScreen() {
     const ok = enqueueJob(payload);
     if (!ok) return;
     consumeRestoredDraft();
-    setShowConfirm(false);
     setTimeout(navigateHome, 120);
   }, [getPayload, enqueueJob, navigateHome, solanaAddress, mintFee, mintChainId, consumeRestoredDraft]);
 
@@ -867,7 +822,7 @@ export default function UploadScreen() {
     setQuotedPost(undefined);
   }, []);
 
-  const handleConfirmQuoteUpload = useCallback(() => {
+  const submitQuotePost = useCallback(() => {
     if (!quotedTokenId) return;
     // The quote hook folds `bodyText` into the description for non-video
     // quotes, so pass the comment there; a video quote keeps name + description
@@ -887,12 +842,60 @@ export default function UploadScreen() {
     });
     if (!ok) return;
     consumeRestoredDraft();
-    setShowConfirm(false);
     setTimeout(navigateHome, 120);
   }, [
     quotedTokenId, categories, pickedVideo, bodyText, titleText,
     coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome,
     consumeRestoredDraft,
+  ]);
+
+  /**
+   * Post button. Regular and quote posts go straight into the upload queue —
+   * validation failures still surface as toasts, but nothing gates a valid
+   * post behind an "are you sure". The queue reports progress from here, and
+   * a post can be edited or deleted afterwards, so there was nothing the
+   * confirmation could usefully warn about. Live mode is the exception: it
+   * blocks on a mint and keeps its confirm step (see handleGoLive).
+   */
+  const handlePost = useCallback(() => {
+    if (activeIsUploading) return;
+    if (isLiveMode) {
+      handleGoLive();
+      return;
+    }
+    if (!canPost) return;
+
+    // Quote mode: simpler validation, skip monetization checks
+    if (isQuoteMode) {
+      if (bodyText.trim().length === 0 && !pickedVideo && !pickedAudio && pickedImages.length === 0) {
+        toastError("Write something or add media to quote this post.");
+        return;
+      }
+      submitQuotePost();
+      return;
+    }
+
+    const payload = getPayload();
+
+    // Validate form
+    const validation = validate(payload);
+    if (!validation.valid) {
+      toastError(validation.error ?? "Please fill in required fields.");
+      return;
+    }
+
+    // Pre-upload checks (gas, balance)
+    const preCheck = preUploadCheck(payload);
+    if (!preCheck.valid) {
+      toastError(preCheck.error ?? "Pre-upload check failed.");
+      return;
+    }
+
+    submitPost();
+  }, [
+    canPost, activeIsUploading, isLiveMode, isQuoteMode, bodyText, pickedVideo,
+    pickedAudio, pickedImages, getPayload, validate, preUploadCheck, handleGoLive,
+    submitPost, submitQuotePost,
   ]);
 
   const buildDraftData = useCallback(() => ({
@@ -2505,16 +2508,20 @@ export default function UploadScreen() {
         type="feed"
       />
 
+      {/*
+        Live only. Posting no longer confirms anything, but going live blocks
+        the screen while the stream mints and this modal is the only thing
+        rendering that progress.
+      */}
       <ConfirmUploadModal
-        visible={showConfirm}
+        visible={showConfirm && isLiveMode}
         onClose={() => {
           if (!activeIsUploading) setShowConfirm(false);
         }}
-        onConfirm={isQuoteMode ? handleConfirmQuoteUpload : isLiveMode ? handleConfirmGoLive : handleConfirmUpload}
+        onConfirm={handleConfirmGoLive}
         confirmText={confirmText}
         stage={activeUploadStage}
-        variant={!isLiveMode && !isQuoteMode && monetization.bountyEnabled ? "bounty" : "default"}
-        title={isQuoteMode ? "Confirm Quote Post" : isLiveMode ? "Confirm Livestream" : "Confirm Upload"}
+        title="Confirm Livestream"
       />
 
       <GlassModal
