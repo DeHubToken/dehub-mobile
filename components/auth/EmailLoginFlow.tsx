@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { View, TextInput } from "react-native";
 import { AuthButton, AuthField } from "./AuthControls";
 
@@ -6,16 +6,20 @@ interface EmailLoginFlowProps {
   onSubmit: (provider: string, email?: string) => void;
   loading?: boolean;
   disabled?: boolean;
+  /** See PhoneLoginFlow — lets the host screen scroll this clear of the keyboard. */
+  onExpand?: (node: View | null) => void;
 }
 
 const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
   onSubmit,
   loading,
   disabled,
+  onExpand,
 }) => {
   const [showInput, setShowInput] = useState(false);
   const [email, setEmail] = useState("");
   const inputRef = useRef<TextInput>(null);
+  const containerRef = useRef<View>(null);
 
   // Focus input when it appears
   useEffect(() => {
@@ -30,6 +34,13 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
     if (isValid) onSubmit("email_passwordless", email);
   };
 
+  // On focus rather than on layout — see PhoneLoginFlow for why.
+  const handleFocus = useCallback(() => {
+    onExpand?.(containerRef.current);
+  }, [onExpand]);
+
+  useEffect(() => () => onExpand?.(null), [onExpand]);
+
   if (!showInput) {
     return (
       <AuthButton
@@ -43,10 +54,11 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
   }
 
   return (
-    <View style={{ gap: 12 }}>
+    <View ref={containerRef} style={{ gap: 12 }}>
       <AuthField
         ref={inputRef}
         icon="mail"
+        onFocus={handleFocus}
         value={email}
         onChangeText={setEmail}
         placeholder="user@example.com"

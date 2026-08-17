@@ -19,9 +19,23 @@ export function generateMnemonic12(): string {
   return ethers.utils.entropyToMnemonic(ethers.utils.randomBytes(16));
 }
 
+/**
+ * Collapse the whitespace a real recovery phrase arrives wrapped in.
+ *
+ * ethers v5 splits a mnemonic on `/ +/g` — literal spaces only — so a phrase
+ * pasted from a notes app where it was saved three words per line, or copied
+ * out of a document that used non-breaking spaces, is rejected as invalid
+ * despite being exactly right. That reads to the user as "my backup doesn't
+ * work", on the one screen where the phrase is the last way back into the
+ * account, so it has to be handled here rather than at each call site.
+ */
+function normalizePhrase(phrase: string): string {
+  return (phrase ?? "").trim().replace(/\s+/g, " ").toLowerCase();
+}
+
 export function isValidMnemonic(phrase: string): boolean {
   try {
-    ethers.Wallet.fromMnemonic(phrase.trim().toLowerCase());
+    ethers.Wallet.fromMnemonic(normalizePhrase(phrase));
     return true;
   } catch {
     return false;
@@ -47,7 +61,7 @@ export function deriveFromSecret(rawSecret: string): DerivedWallet {
     return { secret: pk, ethAddress: wallet.address, ethPrivateKey: wallet.privateKey };
   }
 
-  const mnemonic = trimmed.toLowerCase();
+  const mnemonic = normalizePhrase(trimmed);
   if (!isValidMnemonic(mnemonic)) {
     throw new Error("Invalid recovery phrase");
   }

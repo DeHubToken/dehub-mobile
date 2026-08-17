@@ -75,13 +75,17 @@ export const authColors = {
 
 export const AUTH_DISABLED_OPACITY = 0.45;
 
-export type AuthButtonVariant = "primary" | "secondary" | "ghost" | "glass";
+export type AuthButtonVariant = "primary" | "secondary" | "ghost" | "glass" | "danger";
 
 const VARIANT_FOREGROUND: Record<AuthButtonVariant, string> = {
   primary: authColors.onPrimary,
   secondary: authColors.label,
   ghost: authColors.label,
   glass: authColors.label,
+  // Tinted red on a red wash rather than white on solid #F87171, which lands
+  // at ~2.5:1. Same red language as AuthErrorNotice, so "this is the one that
+  // cannot be undone" reads without a second look.
+  danger: authColors.danger,
 };
 
 export interface AuthButtonProps {
@@ -157,6 +161,11 @@ export const AuthButton: React.FC<AuthButtonProps> = memo(
             borderColor: authColors.border,
           },
           variant === "glass" && styles.buttonGlass,
+          variant === "danger" && {
+            backgroundColor: "rgba(248,113,113,0.12)",
+            borderWidth: 1,
+            borderColor: "rgba(248,113,113,0.40)",
+          },
           isDisabled && { opacity: AUTH_DISABLED_OPACITY },
           style,
         ]}
@@ -250,6 +259,13 @@ AuthTextButton.displayName = "AuthTextButton";
 export interface AuthFieldProps extends TextInputProps {
   /** Leading Ionicon. */
   icon?: React.ComponentProps<typeof Ionicons>["name"];
+  /**
+   * Fixed, unselectable text between the icon and the caret — the phone
+   * field's "+". Distinct from a placeholder or an initial value: it is never
+   * part of what the user edits, so it cannot be deleted, duplicated by a
+   * paste, or left out.
+   */
+  prefix?: React.ReactNode;
   /** Trailing slot — reveal toggle, submit affordance. */
   trailing?: React.ReactNode;
   label?: string;
@@ -258,13 +274,14 @@ export interface AuthFieldProps extends TextInputProps {
 
 /** Text input matched to AuthButton's height, radius and palette. */
 export const AuthField = React.forwardRef<TextInput, AuthFieldProps>(
-  ({ icon, trailing, label, containerStyle, style, ...inputProps }, ref) => (
+  ({ icon, prefix, trailing, label, containerStyle, style, ...inputProps }, ref) => (
     <View style={containerStyle}>
       {!!label && <Text style={styles.fieldLabel}>{label}</Text>}
       <View style={styles.field}>
         {icon && (
           <Ionicons name={icon} size={20} color={authColors.label} style={styles.fieldIcon} />
         )}
+        {prefix}
         <TextInput
           ref={ref}
           placeholderTextColor={authColors.placeholder}
