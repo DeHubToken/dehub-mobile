@@ -12,22 +12,42 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
   }),
 }));
 
-// One chainable stub serves both shapes the hook uses:
-// select().order().limit() for the read, and insert().select().single() for the
-// write. delete().eq() terminates on eq.
+// One chainable stub serves every shape the hook uses:
+// select().eq().order().limit() for the read, insert().select().single() for
+// the write, and delete().eq() — awaited directly — for the remove. The stub
+// is thenable so awaiting the bare chain (the delete path) resolves, and
+// setHeader models the wallet-header client the post_drafts RLS requires.
 let mockListResult: any = { data: [], error: null };
 let mockInsertResult: any = { data: { id: 'row-1' }, error: null };
-const mockEqSpy = jest.fn(async () => ({ error: null }));
+const mockEqSpy = jest.fn();
 
 jest.mock('../../services/supabase', () => {
+  // Mirrors the real supabase-js shape: every method returns the builder and
+  // the builder itself is thenable — which is what lets withWalletHeader call
+  // setHeader on the finished chain before it is awaited.
   const q: any = {};
+  let pending: () => any = () => ({ error: null });
   q.select = jest.fn(() => q);
   q.order = jest.fn(() => q);
-  q.limit = jest.fn(async () => mockListResult);
+  q.limit = jest.fn(() => {
+    pending = () => mockListResult;
+    return q;
+  });
   q.insert = jest.fn(() => q);
-  q.single = jest.fn(async () => mockInsertResult);
-  q.delete = jest.fn(() => q);
-  q.eq = jest.fn((...args: any[]) => mockEqSpy(...(args as [])));
+  q.single = jest.fn(() => {
+    pending = () => mockInsertResult;
+    return q;
+  });
+  q.delete = jest.fn(() => {
+    pending = () => ({ error: null });
+    return q;
+  });
+  q.eq = jest.fn((...args: any[]) => {
+    mockEqSpy(...(args as []));
+    return q;
+  });
+  q.setHeader = jest.fn(() => q);
+  q.then = (resolve: any, reject: any) => Promise.resolve(pending()).then(resolve, reject);
   return { supabase: { from: jest.fn(() => q) } };
 });
 
@@ -129,6 +149,12 @@ describe('hooks/useDrafts', () => {
     expect(result.current.drafts[0].bodyText).toBe('from the laptop');
     expect(result.current.drafts[0].remoteId).toBe('row-9');
     expect(result.current.drafts[0].imageUris).toEqual([]);
+    // A remote row with no metadata.monetization (a web-created draft) must
+    // restore as a usable state object, not undefined — see fromRow.
+    expect(result.current.drafts[0].monetization).toBeTruthy();
+    // The RLS gate: without this header the select matches zero rows.
+    const chain = (supabase.from as jest.Mock).mock.results[0]?.value;
+    expect(chain.setHeader).toHaveBeenCalledWith('x-wallet-address', ADDRESS.toLowerCase());
   });
 
   it('deletes the server row alongside the local one', async () => {
