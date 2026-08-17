@@ -158,7 +158,7 @@ interface AuthContextType {
   ensureFreshProvider: () => Promise<void>; // validates & reinitializes if stale
   authMethod?: 'local' | null;
   // Switch active chain and block UI until done
-  switchChain: (targetChainId: number) => Promise<void>;
+  switchChain: (targetChainId: number, opts?: { reauth?: boolean }) => Promise<void>;
   isSwitchingChain?: boolean;
   // Add more auth methods as needed
 }
@@ -213,7 +213,7 @@ interface AuthActionsContextType {
   patchUser: (update: Partial<User> | ((prev: User) => Partial<User>)) => Promise<User | null>;
   ensureProvider: () => Promise<void>;
   ensureFreshProvider: () => Promise<void>;
-  switchChain: (targetChainId: number) => Promise<void>;
+  switchChain: (targetChainId: number, opts?: { reauth?: boolean }) => Promise<void>;
 }
 
 // Create split contexts
@@ -398,23 +398,36 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => { sessionExpiredHandlerRef.current = handleSessionExpired; }, [handleSessionExpired]);
 
   // In-place chain switch: tear down the Web3Auth singleton, persist the new
-  // preference, re-create the instance on the target chain, and re-authenticate
-  // — all without restarting the app.
-  const switchChain = useCallback(async (targetChainId: number) => {
+  // preference, re-create the instance on the target chain, and (normally)
+  // re-authenticate — all without restarting the app.
+  const switchChain = useCallback(async (targetChainId: number, opts?: { reauth?: boolean }) => {
     if (!targetChainId) return;
     if (chainIdRef.current === targetChainId && providerStatusRef.current === 'ready') return;
+    // Backend identity is chain-independent (sign-in always resolves to the
+    // Safe smart-account address on the AA-anchor chain, same as dehubweb —
+    // see completeLocalSignIn) -- picking a different chain to post/mint/tip
+    // on was never something the backend needed to know about, and
+    // re-authenticating against `targetChainId` here is what caused
+    // "switching to Base on the post modal" to fail: the freshly rebuilt
+    // provider signs as the Safe (personal_sign never recovers to the stored
+    // EOA-shaped address on AA chains), so the re-auth call itself errors out.
+    // Callers that only need a chain-scoped provider (e.g. picking a mint
+    // chain in the post composer) should pass { reauth: false }.
+    const reauth = opts?.reauth ?? true;
     setIsSwitchingChain(true);
     try {
       const address = userRef.current?.walletAddress || userRef.current?.address;
-      log.info('switchChain:start', { targetChainId, currentChainId: chainIdRef.current, address: address ? `${address.slice(0,6)}...${address.slice(-4)}` : undefined });
+      log.info('switchChain:start', { targetChainId, currentChainId: chainIdRef.current, reauth, address: address ? `${address.slice(0,6)}...${address.slice(-4)}` : undefined });
 
       // 1. Persist preference (cold boots will also use this chain)
       await setPreferredChainId(targetChainId);
       try { setLocalAuthChainId(targetChainId); } catch {}
 
-      // 2. Clear stale auth artefacts for the old chain
-      await removeAuthToken();
-      await clearAuthSignature();
+      if (reauth) {
+        // 2. Clear stale auth artefacts for the old chain
+        await removeAuthToken();
+        await clearAuthSignature();
+      }
 
       // 3. Tear down and rebuild the provider on the new chain.
       //    forceReinitProvider bypasses the stale-closure guard in ensureProvider,
@@ -423,7 +436,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       await forceReinitProvider();
 
       // 4. Re-authenticate with the backend on the new chain
-      if (address) {
+      if (reauth && address) {
         await signInWithWallet(address, targetChainId);
         log.info('switchChain:reauth:success', { targetChainId });
       }

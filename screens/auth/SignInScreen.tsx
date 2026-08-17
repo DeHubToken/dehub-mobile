@@ -333,6 +333,15 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     [walletSetupRequest, finishWalletSetupSignIn]
   );
 
+  // Escape hatch from a web-passkey-sync / biometric-unlock dead end: neither
+  // this device nor a password can ever decrypt the wallet on file, so drop
+  // it and provision a fresh one the normal "create" way instead.
+  const handleWalletStartFresh = useCallback(() => {
+    if (!walletSetupRequest) return;
+    pendingCreateRef.current = null;
+    setWalletSetupRequest({ mode: "create", supabaseUserId: walletSetupRequest.supabaseUserId });
+  }, [walletSetupRequest]);
+
   // legacy-recovered: native Web3Auth migration retrieved a pre-migration
   // account's key — make it canonical for this Supabase identity, mirroring
   // dehubweb's "Switch to a different old account" (see
@@ -562,6 +571,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             onBiometricUnlock={handleWalletBiometricUnlock}
             onCreate={handleWalletCreate}
             onSwitchAccount={handleWalletSwitchAccount}
+            onStartFresh={handleWalletStartFresh}
           />
 
           <LegacyAccountWarningModal
