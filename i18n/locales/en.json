@@ -1025,6 +1025,7 @@
     "noNotificationsDesc": "When you get likes, comments, tips, or new subscribers, they'll show up here.",
     "loadMore": "Load more",
     "markAsRead": "Mark as read",
+    "clearNotification": "Clear notification",
     "loginDescription": "Log in to view your notifications and stay updated with your friends on DeHub.",
     "likedPost": "{{name}} liked your post",
     "likedPosts": "{{name}} liked {{count}} of your posts",

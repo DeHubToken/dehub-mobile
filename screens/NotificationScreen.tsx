@@ -4,7 +4,6 @@ import {
   View,
   Text,
   FlatList,
-  Image,
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
@@ -12,7 +11,15 @@ import {
   Platform,
   UIManager,
 } from "react-native";
-import Animated, { useSharedValue, useAnimatedStyle, withSpring } from "react-native-reanimated";
+import Animated, {
+  Easing,
+  runOnJS,
+  useSharedValue,
+  useAnimatedStyle,
+  withDelay,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
@@ -31,9 +38,12 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { formatNotificationDate } from "../libs/date.util";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
-import { getAvatarUrl } from "../libs";
+import { buildCdnPath, getAvatarUrl, getShortsThumbnailUrl } from "../libs";
+import { cdnImage } from "../libs/cdnImage";
+import { addDismissedIds, getDismissedIds } from "../libs/notifications.dismissed";
 import { openInApp } from "../libs/links.utils";
 import Avatar from "../components/common/Avatar";
+import SmartImage from "../components/common/SmartImage";
 import { reactionMeta } from "../libs/reactions";
 import {
   NotificationType,
@@ -287,6 +297,391 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
   return !!(notification.tokenId || notification.actorAddress || notification.actorUsername);
 };
 
+/** Rendered size of the row's post preview, in CSS points. */
+const THUMB_PT = 56;
+
+/**
+ * The API sends `tokenThumbnail` as a CDN-relative path ("images/2008.jpg"),
+ * which React Native's image loader cannot resolve — so the row painted an
+ * empty tile with the play badge floating in it, which is the "sideways
+ * triangle instead of a preview" this fixes. Web has always prefixed the CDN
+ * origin here; this is that same rule, plus the resize every other image in
+ * the app asks for.
+ */
+function resolveNotificationThumbnail(item: NotificationItem): string | undefined {
+  const raw = item.tokenThumbnail?.trim();
+  if (raw) {
+    const absolute = /^https?:\/\//i.test(raw) ? raw : buildCdnPath(raw) ?? raw;
+    return cdnImage(absolute, { width: THUMB_PT });
+  }
+  // Shorts carry no stored thumbnail path — their poster frame is derived from
+  // the tokenId, the same way the feed builds it. Long-form video posts can't
+  // be derived (the extension lives in the stored path), so they stay blank.
+  if (item.postType === 'short' && item.tokenId != null) {
+    return getShortsThumbnailUrl(item.tokenId, THUMB_PT);
+  }
+  return undefined;
+}
+
+// Motion for the per-row actions, copied from web's mark-as-read button: a
+// 400ms envelope flip on the same easing curve, then the button leaves.
+const FLIP_DURATION = 400;
+const FLIP_EXIT_DURATION = 200;
+const CLEAR_DURATION = 260;
+const ACTION_EASING = Easing.bezier(0.4, 0, 0.2, 1);
+
+const actionButtonStyle = {
+  width: 30,
+  height: 30,
+  borderRadius: 10,
+  backgroundColor: 'rgba(255,255,255,0.06)',
+  alignItems: 'center',
+  justifyContent: 'center',
+} as const;
+
+// Vertical slop is half the 8pt gap between the two buttons, so their touch
+// areas meet rather than overlap — an overlap sends the tap to whichever
+// happens to be on top, and the two do very different things.
+const ACTION_HIT_SLOP = { top: 4, bottom: 4, left: 10, right: 10 };
+
+interface NotificationRowProps {
+  item: NotificationItem;
+  onPress: (item: NotificationItem) => void;
+  onMarkRead: (item: NotificationItem) => void;
+  onClear: (item: NotificationItem) => void;
+  onOpenProfile: (actorAddress?: string, actorUsername?: string) => void;
+  onAcceptFollowRequest: (item: NotificationItem) => void;
+  onRejectFollowRequest: (item: NotificationItem) => void;
+}
+
+const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
+  item,
+  onPress,
+  onMarkRead,
+  onClear,
+  onOpenProfile,
+  onAcceptFollowRequest,
+  onRejectFollowRequest,
+}) => {
+  const { t } = useTranslation();
+  const icon = getMonoIconConfig(item.type);
+  // Every positive reaction arrives as a `like`; show which one it was.
+  // Absent on legacy rows and on aggregated rows whose actors disagreed —
+  // the thumbs-up icon is right for both. The message text needs no special
+  // casing: it comes from the server's pre-rendered `content`, which
+  // already uses the reaction's verb ("Ada loved your post").
+  const reactionGlyph =
+    item.type === 'like' && item.reaction && item.reaction !== 'like'
+      ? reactionMeta(item.reaction).emoji
+      : null;
+  const avatarUrl = getAvatarUrl(item.actorAvatar);
+  const hasAvatar = !!item.actorAvatar &&
+    item.type !== NotificationType.VIDEO_MILESTONE &&
+    item.type !== NotificationType.VIDEO_REMOVAL &&
+    item.type !== NotificationType.SYSTEM &&
+    item.type !== NotificationType.ACCOUNT_WARNING;
+
+  const clickable = isNotificationClickable(item);
+  const thumbnail = useMemo(() => resolveNotificationThumbnail(item), [item]);
+  const [thumbFailed, setThumbFailed] = useState(false);
+  const [marking, setMarking] = useState(false);
+
+  // Clear: the row slides out and collapses, then the parent drops it. maxHeight
+  // rather than height so the resting style needs no measurement — 9999 does not
+  // constrain a row, and the measured value is only used once the collapse runs.
+  const clearing = useSharedValue(0);
+  const collapse = useSharedValue(0);
+  const measuredHeight = useSharedValue(0);
+  // The collapse shrinks the view it is measured from, so the last natural
+  // height has to be frozen before the animation starts or each layout pass
+  // feeds a smaller height back in and the row snaps shut.
+  const clearingRef = useRef(false);
+
+  const finishClear = useCallback(() => onClear(item), [onClear, item]);
+  const finishMarkRead = useCallback(() => onMarkRead(item), [onMarkRead, item]);
+
+  const rowStyle = useAnimatedStyle(() => {
+    const collapsing = clearing.value === 1;
+    return {
+      opacity: collapsing ? 1 - collapse.value : 1,
+      transform: [{ translateX: collapsing ? collapse.value * 56 : 0 }],
+      // 9999 at rest constrains nothing; the measured value only takes over
+      // once the collapse runs.
+      maxHeight: collapsing ? measuredHeight.value * (1 - collapse.value) : 9999,
+    };
+  });
+
+  const clearIconStyle = useAnimatedStyle(() => ({
+    transform: [
+      { rotate: `${collapse.value * 90}deg` },
+      { scale: 1 - collapse.value * 0.25 },
+    ],
+  }));
+
+  const handleClear = useCallback(() => {
+    if (clearingRef.current) return;
+    clearingRef.current = true;
+    clearing.value = 1;
+    collapse.value = withTiming(
+      1,
+      { duration: CLEAR_DURATION, easing: ACTION_EASING },
+      (finished) => {
+        if (finished) runOnJS(finishClear)();
+      },
+    );
+  }, [clearing, collapse, finishClear]);
+
+  // Mark as read: the envelope flips open-to-closed, then the button itself
+  // leaves — the row's own read styling lands as it finishes.
+  const flip = useSharedValue(0);
+  const markOpacity = useSharedValue(1);
+  const markScale = useSharedValue(1);
+
+  const markIconStyle = useAnimatedStyle(() => ({
+    transform: [{ perspective: 400 }, { rotateX: `${flip.value * 180}deg` }],
+  }));
+
+  const markButtonStyle = useAnimatedStyle(() => ({
+    opacity: markOpacity.value,
+    transform: [{ scale: markScale.value }],
+  }));
+
+  const handleMarkRead = useCallback(() => {
+    if (marking) return;
+    setMarking(true);
+    flip.value = withTiming(1, { duration: FLIP_DURATION, easing: ACTION_EASING });
+    markScale.value = withDelay(
+      FLIP_DURATION,
+      withTiming(0.8, { duration: FLIP_EXIT_DURATION, easing: ACTION_EASING }),
+    );
+    markOpacity.value = withDelay(
+      FLIP_DURATION,
+      withTiming(0, { duration: FLIP_EXIT_DURATION, easing: ACTION_EASING }, (finished) => {
+        if (finished) runOnJS(finishMarkRead)();
+      }),
+    );
+  }, [marking, flip, markOpacity, markScale, finishMarkRead]);
+
+  return (
+    <Animated.View
+      style={[{ overflow: 'hidden' }, rowStyle]}
+      onLayout={(e) => {
+        if (!clearingRef.current) measuredHeight.value = e.nativeEvent.layout.height;
+      }}
+    >
+      <TouchableOpacity
+        onPress={() => onPress(item)}
+        disabled={!clickable}
+        activeOpacity={0.5}
+        style={{
+          flexDirection: 'row',
+          alignItems: 'flex-start',
+          padding: 16,
+          borderBottomWidth: 1,
+          borderBottomColor: '#1D1F21',
+          backgroundColor: !item.read ? 'rgba(255,255,255,0.08)' : 'transparent',
+        }}
+      >
+        {/* Avatar or Icon — tap to open profile */}
+        <TouchableOpacity
+          activeOpacity={0.7}
+          disabled={!item.actorUsername && !item.actorAddress}
+          onPress={() => onOpenProfile(item.actorAddress, item.actorUsername)}
+          style={{ position: 'relative' }}
+        >
+          {hasAvatar ? (
+            <Avatar uri={avatarUrl || undefined} size={44} name={item.actorUsername} />
+          ) : (
+            <View
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: 22,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: `${icon.color}20`,
+              }}
+            >
+              {reactionGlyph ? (
+                <Text style={{ fontSize: 20, lineHeight: 26 }}>{reactionGlyph}</Text>
+              ) : (
+                <Icon name={icon.name as any} size={22} color={icon.color} />
+              )}
+            </View>
+          )}
+          {/* Type badge overlay for avatar */}
+          {hasAvatar && (
+            <View
+              style={{
+                position: 'absolute',
+                bottom: -4,
+                right: -4,
+                width: 20,
+                height: 20,
+                borderRadius: 10,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderWidth: 2,
+                borderColor: '#010305',
+                backgroundColor: 'rgba(255,255,255,0.2)',
+              }}
+            >
+              {reactionGlyph ? (
+                <Text style={{ fontSize: 12, lineHeight: 15 }}>{reactionGlyph}</Text>
+              ) : (
+                <Icon name={icon.name as any} size={10} color="white" />
+              )}
+            </View>
+          )}
+        </TouchableOpacity>
+
+        {/* Content */}
+        <View style={{ flex: 1, marginLeft: 12 }}>
+          <Text
+            style={{
+              fontSize: 14,
+              lineHeight: 20,
+              color: !item.read ? '#F9FBFF' : '#A6A9AC',
+              fontWeight: !item.read ? '500' : '400',
+            }}
+            numberOfLines={3}
+          >
+            {item.content}
+          </Text>
+
+          {/* Aggregation indicator */}
+          {item.aggregatedCount && item.aggregatedCount > 1 && item.latestActorNames && (
+            <Text style={{ color: '#A1A1AA', fontSize: 12, marginTop: 4 }}>
+              {item.latestActorNames.slice(0, 3).join(', ')}
+              {item.aggregatedCount > 3 && ` and ${item.aggregatedCount - 3} others`}
+            </Text>
+          )}
+
+          {/* Timestamp */}
+          <Text style={{ color: '#A1A1AA', fontSize: 12, marginTop: 4 }}>
+            {formatNotificationDate(item.updatedAt || item.createdAt)}
+          </Text>
+
+          {/* Tip/Bounty amount badge */}
+          {(item.type === NotificationType.TIP ||
+            item.type === NotificationType.BOUNTY_CLAIMED ||
+            item.type === NotificationType.PPV_PURCHASE) && item.amount && (
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
+              <View style={{ backgroundColor: 'rgba(34, 197, 94, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
+                <Text style={{ color: '#22C55E', fontSize: 12, fontWeight: '600' }}>
+                  +{item.amount} {item.currency || 'DHB'}
+                </Text>
+              </View>
+            </View>
+          )}
+
+          {/* Bounty available badge */}
+          {item.type === NotificationType.BOUNTY_AVAILABLE && (
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
+              <View style={{ backgroundColor: 'rgba(255,255,255, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
+                <Text style={{ color: '#D4D4D8', fontSize: 12, fontWeight: '600' }}>
+                  💰 Claim your bounty
+                </Text>
+              </View>
+            </View>
+          )}
+
+          {/* Follow request accept/reject buttons */}
+          {(item.type as string) === NotificationType.FOLLOW_REQUEST && (
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10, gap: 8 }}>
+              <TouchableOpacity
+                onPress={() => onAcceptFollowRequest(item)}
+                activeOpacity={0.85}
+                style={{
+                  backgroundColor: '#fff',
+                  paddingHorizontal: 16,
+                  paddingVertical: 7,
+                  borderRadius: 8,
+                }}
+              >
+                <Text style={{ color: '#09090B', fontSize: 13, fontWeight: '600' }}>
+                  Accept
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => onRejectFollowRequest(item)}
+                activeOpacity={0.85}
+                style={{
+                  backgroundColor: '#27272a',
+                  paddingHorizontal: 16,
+                  paddingVertical: 7,
+                  borderRadius: 8,
+                }}
+              >
+                <Text style={{ color: '#A6A9AC', fontSize: 13, fontWeight: '600' }}>
+                  Decline
+                </Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </View>
+
+        {/* Thumbnail for content notifications. A source that 404s hides the
+            whole tile — a play badge over nothing is what this looked like. */}
+        {!!thumbnail && !thumbFailed && (
+          <View style={{ marginLeft: 12 }}>
+            <SmartImage
+              source={{ uri: thumbnail }}
+              style={{ width: THUMB_PT, height: THUMB_PT, borderRadius: 8, backgroundColor: '#18181B' }}
+              contentFit="cover"
+              recyclingKey={item._id}
+              transition={120}
+              onError={() => setThumbFailed(true)}
+            />
+            {(item.postType === 'video' || item.postType === 'short') && (
+              <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: 12, padding: 4 }}>
+                  <Icon name="Play" size={12} color="white" fill="white" />
+                </View>
+              </View>
+            )}
+          </View>
+        )}
+
+        {/* Row actions: mark this one read, clear this one away. */}
+        <View style={{ marginLeft: 10, alignItems: 'center', gap: 8 }}>
+          {!item.read && (
+            <Animated.View style={markButtonStyle}>
+              <TouchableOpacity
+                onPress={handleMarkRead}
+                activeOpacity={0.7}
+                hitSlop={ACTION_HIT_SLOP}
+                accessibilityRole="button"
+                accessibilityLabel={t('notifications.markAsRead')}
+                style={actionButtonStyle}
+              >
+                <Animated.View style={markIconStyle}>
+                  <Icon name={marking ? 'Mail' : 'MailOpen'} size={15} color="#A1A1AA" />
+                </Animated.View>
+              </TouchableOpacity>
+            </Animated.View>
+          )}
+
+          <TouchableOpacity
+            onPress={handleClear}
+            activeOpacity={0.7}
+            hitSlop={ACTION_HIT_SLOP}
+            accessibilityRole="button"
+            accessibilityLabel={t('notifications.clearNotification')}
+            style={actionButtonStyle}
+          >
+            <Animated.View style={clearIconStyle}>
+              <Icon name="X" size={15} color="#A1A1AA" />
+            </Animated.View>
+          </TouchableOpacity>
+
+          {clickable && <Icon name="ChevronRight" size={14} color="#52525B" />}
+        </View>
+      </TouchableOpacity>
+    </Animated.View>
+  );
+});
+
 const NotificationScreen = () => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -298,7 +693,15 @@ const NotificationScreen = () => {
   const navigation = useNavigation<any>();
   const { showUserProfile } = useUserProfileSheet();
   
+  const walletAddress = user?.walletAddress || user?.address || null;
+
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
+  /**
+   * Rows this device has cleared. The API has no delete endpoint, so a cleared
+   * row is remembered here and filtered out — otherwise the next refetch would
+   * hand every one of them straight back.
+   */
+  const [dismissedIds, setDismissedIds] = useState<Set<string>>(new Set());
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [selectedFilter, setSelectedFilter] = useState<NotificationTypeFilter>('all');
@@ -309,6 +712,22 @@ const NotificationScreen = () => {
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [isChangingCategory, setIsChangingCategory] = useState(false);
+
+  // Cleared rows are per account: two wallets on one phone must not inherit
+  // each other's list.
+  useEffect(() => {
+    if (!walletAddress) {
+      setDismissedIds(new Set());
+      return;
+    }
+    let alive = true;
+    getDismissedIds(walletAddress).then((ids) => {
+      if (alive) setDismissedIds(new Set(ids));
+    });
+    return () => {
+      alive = false;
+    };
+  }, [walletAddress]);
 
   // Enable LayoutAnimation on Android
   useEffect(() => {
@@ -474,17 +893,27 @@ const NotificationScreen = () => {
   // covers the client-only types, and it keeps the tab correct against an API
   // that predates the `types` param.
   const filteredNotifications = useMemo(() => {
-    if (selectedFilter === 'all') return notifications;
+    const visible = dismissedIds.size
+      ? notifications.filter((n) => !dismissedIds.has(n._id))
+      : notifications;
+    if (selectedFilter === 'all') return visible;
     const allowedTypes = FILTER_TYPE_MAP[selectedFilter];
-    return notifications.filter((n) => allowedTypes.includes(n.type as NotificationType));
-  }, [notifications, selectedFilter]);
+    return visible.filter((n) => allowedTypes.includes(n.type as NotificationType));
+  }, [notifications, selectedFilter, dismissedIds]);
+
+  // Both badge sources — the tabs and the app icon — count what is still on
+  // screen, so a cleared row stops being counted the moment it goes.
+  const visibleCountsSource = useMemo(
+    () => (dismissedIds.size ? countsSource.filter((n) => !dismissedIds.has(n._id)) : countsSource),
+    [countsSource, dismissedIds],
+  );
 
   const tabCounts = useMemo(() => {
     const counts: Record<NotificationTypeFilter, number> = {
       all: 0, likes: 0, follows: 0, comments: 0,
       reposts: 0, subscriptions: 0, tips: 0, payments: 0, livestreams: 0,
     };
-    const unread = countsSource.filter((n) => !n.read);
+    const unread = visibleCountsSource.filter((n) => !n.read);
     counts.all = unread.length;
     for (const n of unread) {
       for (const [key, types] of Object.entries(FILTER_TYPE_MAP)) {
@@ -494,12 +923,12 @@ const NotificationScreen = () => {
       }
     }
     return counts;
-  }, [countsSource]);
+  }, [visibleCountsSource]);
 
   // App badge follows the unfiltered snapshot, so selecting a tab no longer
   // rewrites it with just that tab's unread count.
   useEffect(() => {
-    patchUser?.({ notificationCount: countsSource.filter((n) => !n.read).length });
+    patchUser?.({ notificationCount: visibleCountsSource.filter((n) => !n.read).length });
     // patchUser is intentionally not a dependency: it is recreated on every
     // user patch, and depending on it would make this effect re-run its own
     // update forever.
@@ -670,208 +1099,58 @@ const NotificationScreen = () => {
     }
   }, []);
 
+  /** Per-row mark as read — the row's own button, not the header's mark-all. */
+  const handleMarkRead = useCallback((notification: NotificationItem) => {
+    if (notification.read) return;
+    setNotifications((prev) =>
+      prev.map((n) => (n._id === notification._id ? { ...n, read: true } : n))
+    );
+    setCountsSource((prev) =>
+      prev.map((n) => (n._id === notification._id ? { ...n, read: true } : n))
+    );
+    markAsReadAsync(notification._id);
+  }, [markAsReadAsync]);
+
+  /**
+   * Clear one row. `/notification` exposes PATCH (read) and mark-all-read and
+   * nothing else, so there is no server-side delete to call: the row is marked
+   * read — which keeps the badge honest on every device — and its id is
+   * remembered locally so a refetch cannot resurrect it here.
+   */
+  const handleClearNotification = useCallback((notification: NotificationItem) => {
+    setDismissedIds((prev) => {
+      const next = new Set(prev);
+      next.add(notification._id);
+      return next;
+    });
+    setNotifications((prev) => prev.filter((n) => n._id !== notification._id));
+    setCountsSource((prev) => prev.filter((n) => n._id !== notification._id));
+    if (!notification.read) markAsReadAsync(notification._id);
+    addDismissedIds(walletAddress, [notification._id]).catch((e) => {
+      console.warn('[NotificationScreen] persist cleared notification failed', e);
+    });
+  }, [markAsReadAsync, walletAddress]);
+
   const renderItem = useCallback(
-    ({ item }: { item: NotificationItem }) => {
-      const icon = getMonoIconConfig(item.type);
-      // Every positive reaction arrives as a `like`; show which one it was.
-      // Absent on legacy rows and on aggregated rows whose actors disagreed —
-      // the thumbs-up icon is right for both. The message text needs no special
-      // casing: it comes from the server's pre-rendered `content`, which
-      // already uses the reaction's verb ("Ada loved your post").
-      const reactionGlyph =
-        item.type === 'like' && item.reaction && item.reaction !== 'like'
-          ? reactionMeta(item.reaction).emoji
-          : null;
-      const avatarUrl = getAvatarUrl(item.actorAvatar);
-      const hasAvatar = !!item.actorAvatar && 
-        item.type !== NotificationType.VIDEO_MILESTONE && 
-        item.type !== NotificationType.VIDEO_REMOVAL &&
-        item.type !== NotificationType.SYSTEM &&
-        item.type !== NotificationType.ACCOUNT_WARNING;
-      
-      const clickable = isNotificationClickable(item);
-      
-      return (
-        <TouchableOpacity
-          onPress={() => handleNotificationPress(item)}
-          disabled={!clickable}
-          activeOpacity={0.5}
-          style={{
-            flexDirection: 'row',
-            alignItems: 'flex-start',
-            padding: 16,
-            borderBottomWidth: 1,
-            borderBottomColor: '#1D1F21',
-            backgroundColor: !item.read ? 'rgba(255,255,255,0.08)' : 'transparent',
-          }}
-        >
-          {/* Avatar or Icon — tap to open profile */}
-          <TouchableOpacity
-            activeOpacity={0.7}
-            disabled={!item.actorUsername && !item.actorAddress}
-            onPress={() => openUserProfile(item.actorAddress, item.actorUsername)}
-            style={{ position: 'relative' }}
-          >
-            {hasAvatar ? (
-              <Avatar uri={avatarUrl || undefined} size={44} name={item.actorUsername} />
-            ) : (
-              <View 
-                style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: 22,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: `${icon.color}20`,
-                }}
-              >
-                {reactionGlyph ? (
-                  <Text style={{ fontSize: 20, lineHeight: 26 }}>{reactionGlyph}</Text>
-                ) : (
-                  <Icon name={icon.name as any} size={22} color={icon.color} />
-                )}
-              </View>
-            )}
-            {/* Type badge overlay for avatar */}
-            {hasAvatar && (
-              <View 
-                style={{
-                  position: 'absolute',
-                  bottom: -4,
-                  right: -4,
-                  width: 20,
-                  height: 20,
-                  borderRadius: 10,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderWidth: 2,
-                  borderColor: '#010305',
-                  backgroundColor: 'rgba(255,255,255,0.2)',
-                }}
-              >
-                {reactionGlyph ? (
-                  <Text style={{ fontSize: 12, lineHeight: 15 }}>{reactionGlyph}</Text>
-                ) : (
-                  <Icon name={icon.name as any} size={10} color="white" />
-                )}
-              </View>
-            )}
-          </TouchableOpacity>
-
-          {/* Content */}
-          <View style={{ flex: 1, marginLeft: 12 }}>
-            <Text
-              style={{
-                fontSize: 14,
-                lineHeight: 20,
-                color: !item.read ? '#F9FBFF' : '#A6A9AC',
-                fontWeight: !item.read ? '500' : '400',
-              }}
-              numberOfLines={3}
-            >
-              {item.content}
-            </Text>
-            
-            {/* Aggregation indicator */}
-            {item.aggregatedCount && item.aggregatedCount > 1 && item.latestActorNames && (
-              <Text style={{ color: '#A1A1AA', fontSize: 12, marginTop: 4 }}>
-                {item.latestActorNames.slice(0, 3).join(', ')}
-                {item.aggregatedCount > 3 && ` and ${item.aggregatedCount - 3} others`}
-              </Text>
-            )}
-
-            {/* Timestamp */}
-            <Text style={{ color: '#A1A1AA', fontSize: 12, marginTop: 4 }}>
-              {formatNotificationDate(item.updatedAt || item.createdAt)}
-            </Text>
-
-            {/* Tip/Bounty amount badge */}
-            {(item.type === NotificationType.TIP || 
-              item.type === NotificationType.BOUNTY_CLAIMED ||
-              item.type === NotificationType.PPV_PURCHASE) && item.amount && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
-                <View style={{ backgroundColor: 'rgba(34, 197, 94, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
-                  <Text style={{ color: '#22C55E', fontSize: 12, fontWeight: '600' }}>
-                    +{item.amount} {item.currency || 'DHB'}
-                  </Text>
-                </View>
-              </View>
-            )}
-
-            {/* Bounty available badge */}
-            {item.type === NotificationType.BOUNTY_AVAILABLE && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
-                <View style={{ backgroundColor: 'rgba(255,255,255, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
-                  <Text style={{ color: '#D4D4D8', fontSize: 12, fontWeight: '600' }}>
-                    💰 Claim your bounty
-                  </Text>
-                </View>
-              </View>
-            )}
-
-            {/* Follow request accept/reject buttons */}
-            {(item.type as string) === NotificationType.FOLLOW_REQUEST && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10, gap: 8 }}>
-                <TouchableOpacity
-                  onPress={() => handleAcceptFollowRequest(item)}
-                  activeOpacity={0.85}
-                  style={{
-                    backgroundColor: '#fff',
-                    paddingHorizontal: 16,
-                    paddingVertical: 7,
-                    borderRadius: 8,
-                  }}
-                >
-                  <Text style={{ color: '#09090B', fontSize: 13, fontWeight: '600' }}>
-                    Accept
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => handleRejectFollowRequest(item)}
-                  activeOpacity={0.85}
-                  style={{
-                    backgroundColor: '#27272a',
-                    paddingHorizontal: 16,
-                    paddingVertical: 7,
-                    borderRadius: 8,
-                  }}
-                >
-                  <Text style={{ color: '#A6A9AC', fontSize: 13, fontWeight: '600' }}>
-                    Decline
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            )}
-          </View>
-
-          {/* Thumbnail for content notifications */}
-          {item.tokenThumbnail && (
-            <View style={{ marginLeft: 12 }}>
-              <Image
-                source={{ uri: item.tokenThumbnail }}
-                style={{ width: 56, height: 56, borderRadius: 8 }}
-                resizeMode="cover"
-              />
-              {item.postType === 'video' && (
-                <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center', justifyContent: 'center' }}>
-                  <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', borderRadius: 12, padding: 4 }}>
-                    <Icon name="Play" size={12} color="white" />
-                  </View>
-                </View>
-              )}
-            </View>
-          )}
-
-          {/* Clickable indicator */}
-          {clickable && (
-            <View style={{ position: 'absolute', top: 16, right: 16 }}>
-              <Icon name="ChevronRight" size={16} color="#A1A1AA" />
-            </View>
-          )}
-        </TouchableOpacity>
-      );
-    },
-    [handleNotificationPress, handleAcceptFollowRequest, handleRejectFollowRequest, openUserProfile]
+    ({ item }: { item: NotificationItem }) => (
+      <NotificationRow
+        item={item}
+        onPress={handleNotificationPress}
+        onMarkRead={handleMarkRead}
+        onClear={handleClearNotification}
+        onOpenProfile={openUserProfile}
+        onAcceptFollowRequest={handleAcceptFollowRequest}
+        onRejectFollowRequest={handleRejectFollowRequest}
+      />
+    ),
+    [
+      handleNotificationPress,
+      handleMarkRead,
+      handleClearNotification,
+      handleAcceptFollowRequest,
+      handleRejectFollowRequest,
+      openUserProfile,
+    ]
   );
 
   const keyExtractor = useCallback((item: NotificationItem) => item._id, []);
@@ -920,7 +1199,7 @@ const NotificationScreen = () => {
   }, [loadingMore]);
 
   // Header with mark all read button
-  const hasUnread = notifications.some((n) => !n.read);
+  const hasUnread = filteredNotifications.some((n) => !n.read);
   const showLoading = loading || isChangingCategory;
 
   return (
