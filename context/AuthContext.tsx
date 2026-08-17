@@ -37,6 +37,7 @@ import {
 } from "../libs/auth.utils";
 import { SUPPORTED_NETWORKS, supportedNetworks } from "../config/web3.constants";
 import { setLocalAuthChainId } from "../services/auth/localProviderAdapter";
+import { setViewAccount } from "../services/view.service";
 
 export interface User {
   id: string;
@@ -252,7 +253,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const authAdapterRef = useRef<AuthAdapter | null>(null);
   // Keep user in ref for async flows
   const userRef = useRef<User | null>(null);
-  useEffect(() => { userRef.current = user; }, [user]);
+  useEffect(() => {
+    userRef.current = user;
+    // Scope view-dedup storage to the signed-in account — without this the
+    // previous account's 24h cooldowns suppress the next account's views.
+    setViewAccount(user?.address ?? null);
+  }, [user]);
   // Refs for stable callback access (avoid re-creating requireAuth/switchChain on state changes)
   const isSignedInRef = useRef(isSignedIn);
   useEffect(() => { isSignedInRef.current = isSignedIn; }, [isSignedIn]);

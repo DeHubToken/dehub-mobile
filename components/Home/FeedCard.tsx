@@ -419,9 +419,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
    * reactionCounts. Getting that wrong would make a post's like count jump
    * every time somebody changed their mind.
    */
+  const voteInFlightRef = useRef(false);
   const handleReaction = useCallback((reaction: PostReaction) => {
     if (tokenId == null) return;
+    // One vote at a time: a double-tap otherwise reads the same stale
+    // myReaction twice and fires two toggles that cancel server-side, leaving
+    // the overlay asserting a reaction the server no longer holds.
+    if (voteInFlightRef.current) return;
     requireAuth?.(() => {
+      voteInFlightRef.current = true;
       const wasLiked = liked;
       const wasDisliked = disliked;
       const wasLikeCount = likeCount;
@@ -483,7 +489,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         .then((res) => {
           if (isFailedResponse(res)) rollback();
         })
-        .catch(rollback);
+        .catch(rollback)
+        .finally(() => {
+          voteInFlightRef.current = false;
+        });
     });
   }, [tokenId, liked, disliked, likeCount, dislikeCount, myReaction, reactionCounts, engagementKey, userAddress, requireAuth]);
 
