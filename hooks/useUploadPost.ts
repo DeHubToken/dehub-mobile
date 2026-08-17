@@ -36,11 +36,6 @@ export type UploadStage =
   | "finalizing"
   | "done";
 
-const MAX_SHORT_DURATION_MS = 90_000;
-
-export const isShortVideo = (asset: ImagePicker.ImagePickerAsset): boolean =>
-  (asset.height ?? 0) > (asset.width ?? 0) && (asset.duration ?? Infinity) <= MAX_SHORT_DURATION_MS;
-
 export type ValidationResult = {
   valid: boolean;
   error?: string;
@@ -63,7 +58,6 @@ export type UploadPayload = {
   thumbnailUri: string | null;
   coverUri: string | null;
   monetization: MonetizationState;
-  postAsShort: boolean;
   attachedSound?: AttachedSound;
   pollData?: SerializedPollData;
   scheduledAt?: Date;
@@ -115,16 +109,6 @@ export function useUploadPost() {
   const validate = useCallback((p: UploadPayload): ValidationResult => {
     const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
 
-    if (mode === "video" && p.postAsShort) {
-      const title = p.bodyText.trim();
-      if (title.length < 1) return { valid: false, error: "Title is required for shorts." };
-      if (!p.pickedVideo) return { valid: false, error: "A video is required." };
-      if ((p.pickedVideo.duration ?? 0) > MAX_SHORT_DURATION_MS) {
-        return { valid: false, error: "Shorts must be 90 seconds or less." };
-      }
-      return { valid: true };
-    }
-
     // Video mode: title + video + thumbnail required
     if (mode === "video") {
       const title = p.bodyText.trim();
@@ -157,8 +141,9 @@ export function useUploadPost() {
       }
     }
 
-    // Monetization validation (only for video)
-    if (mode === "video") {
+    // Monetization applies to every post type, as it does on web — a text or
+    // image post can be gated or sold just like a video.
+    {
       const { monetization: m } = p;
       if (m.ppvEnabled) {
         const price = parsePositiveNumber(m.ppvData.price);
@@ -180,6 +165,9 @@ export function useUploadPost() {
         if (addr && !isSolanaChain(p.postChainId) && !/^0x[0-9a-fA-F]{40}$/.test(addr)) {
           return { valid: false, error: "Token Gated: enter a valid token contract address." };
         }
+      }
+      if (m.subscribersEnabled && isSolanaChain(p.postChainId)) {
+        return { valid: false, error: "Subscribers-only is not available on Solana posts." };
       }
     }
 
@@ -241,6 +229,20 @@ export function useUploadPost() {
           if (contractAddress) info[streamInfoKeys.lockContentContractAddress] = contractAddress;
           info[streamInfoKeys.lockContentChainIds] = [lockChainId];
         }
+      } else if (m.subscribersEnabled && !solana) {
+        // Subscribers-only is a DHB lock with no minimum — the same shape web
+        // sends, and the same precedence: an explicit token gate wins.
+        const lockChainId =
+          postChainId && !isSolanaChain(postChainId) ? postChainId : evmChainId;
+        const dhb = supportedTokens.find(
+          (t) => t.chainId === lockChainId && t.symbol === "DHB",
+        );
+        if (dhb) {
+          info[streamInfoKeys.isLockContent] = true;
+          info[streamInfoKeys.lockContentTokenSymbol] = "DHB";
+          info[streamInfoKeys.lockContentContractAddress] = dhb.address;
+          info[streamInfoKeys.lockContentChainIds] = [lockChainId];
+        }
       }
 
       return info;
@@ -283,6 +285,10 @@ export function useUploadPost() {
         return { valid: false, error: "Bounty is not available on Solana posts." };
       }
 
+      if (postingOnSolana && p.monetization.subscribersEnabled) {
+        return { valid: false, error: "Subscribers-only is not available on Solana posts." };
+      }
+
       // For bounty, verify the user has enough tokens
       if (p.monetization.bountyEnabled) {
         const streamInfo = buildStreamInfo(p.monetization);
@@ -307,8 +313,11 @@ export function useUploadPost() {
   const enqueueJob = useCallback(
     (p: UploadPayload): boolean => {
       const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
-      const isShort = mode === "video" && p.postAsShort;
-      const postType = isShort ? "short" : mode === "video" ? "video" : mode === "audio" ? "feed-audio" : mode === "images" ? "feed-images" : "feed-simple";
+      // Every video posts as `video`. The server's shorts lane already picks up
+      // any video of 90s or less by duration, so a vertical clip lands in Shorts
+      // *and* in the video feed — where posting it as `short` reached only the
+      // one tab and dropped its monetization on the way.
+      const postType = mode === "video" ? "video" : mode === "audio" ? "feed-audio" : mode === "images" ? "feed-images" : "feed-simple";
 
       const video: SerializedMedia | null = p.pickedVideo
         ? {
@@ -331,7 +340,7 @@ export function useUploadPost() {
         mimeType: guessMime(img.uri, "image/jpeg"),
       }));
 
-      const streamInfo = (mode === "video" && !isShort) ? buildStreamInfo(p.monetization, p.postChainId) : {};
+      const streamInfo = buildStreamInfo(p.monetization, p.postChainId);
       const thumb = p.coverUri || p.thumbnailUri || null;
 
       const { cleanTitle, cleanDescription, categories: mergedCategories } = extractHashtagCategories(
@@ -349,12 +358,12 @@ export function useUploadPost() {
         video,
         audio,
         thumbnailUri: thumb,
-        streamInfoJson: JSON.stringify((mode === "video" && !isShort) ? filteredStreamInfo(streamInfo) : {}),
+        streamInfoJson: JSON.stringify(filteredStreamInfo(streamInfo)),
         pollData: p.pollData,
         scheduledAt: p.scheduledAt?.toISOString(),
       };
 
-      const isBounty = mode === "video" && !isShort && p.monetization.bountyEnabled;
+      const isBounty = p.monetization.bountyEnabled;
       let bountyConfig: BountyConfig | undefined;
       if (isBounty) {
         bountyConfig = {
