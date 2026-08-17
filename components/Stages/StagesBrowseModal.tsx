@@ -241,7 +241,7 @@ const StagesBrowseModal: React.FC = () => {
             <TouchableOpacity
               onPress={() => {
                 Share.share({
-                  message: `🎙️ ${item.title} — live on Stages${when ? ` ${when}` : ""}\n\n${ShareLinks.stage(item.id)}`,
+                  message: `🎙️ ${item.title} — live on Stages${when ? ` ${when}` : ""}\n\n${ShareLinks.stage(item)}`,
                 }).catch(() => {});
               }}
               hitSlop={8}

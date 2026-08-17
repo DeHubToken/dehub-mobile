@@ -382,12 +382,20 @@ export const ShareLinks = {
   event: (eventNumber: string | number) =>
     `${SHARE_BASE}/app/events/${encodeURIComponent(String(eventNumber))}`,
   /**
-   * Stage invite / announcement — dehub.io/stage/:id
+   * Stage invite / announcement — dehub.io/stages/:n, or dehub.io/stage/:uuid
+   * for a row that predates short ids.
    *
    * Top-level, not under /app: that is the shape web's invite route already
-   * serves, and a link shared from here has to open there.
+   * serves, and a link shared from here has to open there. Pass the row rather
+   * than a bare id wherever one is to hand — web's share sheet prefers the
+   * short form, so a mobile link built from the uuid is the odd one out.
    */
-  stage: (stageId: string) => `${SHARE_BASE}/stage/${encodeURIComponent(stageId)}`,
+  stage: (stage: string | { id: string; short_id?: number | null }) => {
+    if (typeof stage === 'string') return `${SHARE_BASE}/stage/${encodeURIComponent(stage)}`;
+    return stage.short_id != null
+      ? `${SHARE_BASE}/stages/${stage.short_id}`
+      : `${SHARE_BASE}/stage/${encodeURIComponent(stage.id)}`;
+  },
   /** Arcade grid — dehub.io/arcade */
   arcade: () => `${SHARE_BASE}/arcade`,
   /** One game — dehub.io/arcade/:slug */

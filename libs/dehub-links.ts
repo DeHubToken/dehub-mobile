@@ -44,6 +44,8 @@ export interface DehubLinkMatch {
   listingId?: string;
   eventNumber?: string;
   stageId?: string;
+  /** Set when the link used the short form (/stages/7) instead of the uuid. */
+  stageShortId?: string;
 }
 
 // ── Hosts ───────────────────────────────────────────────────────────────────
@@ -77,8 +79,9 @@ const RESERVED_ROOT_SEGMENTS = new Set([
 
 const ABSOLUTE_URL_RE = /(?:https?:\/\/)?(?:[a-z0-9-]+\.)+[a-z]{2,}(?::\d+)?\/[^\s<>"'`]*/gi;
 // `stage` sits alongside the /app prefix rather than under it because web's
-// invite route is top-level — /stage/:id, not /app/stage/:id.
-const BARE_PATH_RE = /\/(?:app|communities|stage)\/[^\s<>"'`]*/gi;
+// invite route is top-level — /stage/:id, not /app/stage/:id. The optional `s`
+// also admits the short share form, /stages/7.
+const BARE_PATH_RE = /\/(?:app|communities|stages?)\/[^\s<>"'`]*/gi;
 const TRAILING_PUNCTUATION_RE = /[.,;:!?)\]}>"']+$/;
 
 function trimTrailingPunctuation(token: string): string {
@@ -187,6 +190,16 @@ export function parseDehubLink(input: string): DehubLinkMatch | null {
   if (scoped[0] === 'stage' && scoped[1]) {
     if (!/^[a-fA-F0-9-]{8,}$/.test(scoped[1])) return null;
     return { ...base, kind: 'stage', stageId: scoped[1] };
+  }
+
+  // ── /stages/:n — the short share form of the same link ──
+  //
+  // Web's share sheet prefers this form whenever the row has a short_id, so it
+  // is the shape most stage links in the wild now use. Only the numeric shape:
+  // bare /stages is the hub page, and anything else under it has no route.
+  if (scoped[0] === 'stages' && scoped[1]) {
+    if (!/^\d+$/.test(scoped[1])) return null;
+    return { ...base, kind: 'stage', stageShortId: scoped[1] };
   }
 
   // ── profile ──

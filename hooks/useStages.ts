@@ -45,6 +45,11 @@ export interface AudioSpace {
   scheduled_at?: string | null;
   /** Optional cover graphic, backing the announcement card and the live room. */
   cover_image_url?: string | null;
+  /**
+   * Short share id backing dehub.io/stages/:n. Nullable because a row created
+   * before the column existed never got one, and those still share by uuid.
+   */
+  short_id?: number | null;
 }
 
 /** What the schedule form collects. */

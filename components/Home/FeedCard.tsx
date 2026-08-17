@@ -27,6 +27,8 @@ import ReactionInfoSheet from "./ReactionInfoSheet";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import ImageTranslationSheet from "../common/ImageTranslationSheet";
 import QuotedPostEmbed from "../common/QuotedPostEmbed";
+import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
+import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
 import SmartImage from "../common/SmartImage";
 import { cdnImage } from "../../libs/cdnImage";
 import GlassTipSheet from "../Tip/GlassTipSheet";
@@ -354,6 +356,25 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }), [localTitle, localDescription]);
   const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate } =
     useTranslation(translationTexts, item.detectedLanguage);
+  // DeHub links in the caption become entity cards, and the URLs that became
+  // cards come out of the text — the same contract the DM, comment and
+  // community-chat surfaces already follow, and the same one web's PostCard
+  // uses. Without this the feed was the one surface where a stage, community
+  // or shop link stayed a bare URL that opened the in-app browser.
+  //
+  // Run on the text actually being displayed, not the original: a translation
+  // that mangled a URL then keeps it as visible text rather than dropping it
+  // for a card that never renders.
+  const captionText = (isTranslated ? translatedTexts.description : localDescription) || '';
+  const dehubLinks = useMemo(
+    () => findDehubLinks(captionText).slice(0, MAX_CARDS_PER_MESSAGE),
+    [captionText],
+  );
+  const captionWithoutLinks = useMemo(
+    () => stripDehubLinkMatches(captionText, dehubLinks),
+    [captionText, dehubLinks],
+  );
+
   const { isLoading: imgTranslating, error: imgTranslateError, result: imgTranslateResult, translateImage, clearResult: clearImgResult } =
     useImageTranslation();
   const [showImgTranslationSheet, setShowImgTranslationSheet] = useState(false);
@@ -1197,7 +1218,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
       <FeedCaption
         title={(isTranslated ? translatedTexts.title : localTitle) || undefined}
-        description={(isTranslated ? translatedTexts.description : localDescription) || undefined}
+        description={captionWithoutLinks || undefined}
         categories={localCategories}
         onCategoryPress={onCategorySelect}
         onCashtagPress={(sym) => setActiveCashtag(sym)}
@@ -1211,6 +1232,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           quotedTokenId={(item as any).quotedTokenId}
         />
       )}
+
+      {/* DeHub entity cards — stage, post, profile, community, invite, store,
+          item, event. Placed after the quote embed to match web's PostCard. */}
+      <DehubLinkCards links={dehubLinks} />
+
 
       {tokenId != null && !isLive && !(item as any).isQuotePost && (
         <PollCard tokenId={Number(tokenId)} pollOwnerAddress={minterAddress} />
