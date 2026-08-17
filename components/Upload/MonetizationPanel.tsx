@@ -1,9 +1,10 @@
 /**
  * MonetizationPanel
  *
- * Slide-up panel for PPV, Bounty, and Token Gated settings.
- * Each option has a toggle + expandable inline form.
- * Toggling on opens the form; confirming closes it and keeps the toggle on.
+ * Slide-up panel for Subscribers, PPV, Bounty, and Token Gated settings —
+ * the same four switches web shows in PostAccessToggles, in the same order.
+ * Each option that needs values has a toggle + expandable inline form:
+ * toggling on opens the form; confirming closes it and keeps the toggle on.
  */
 import React, { useCallback, useEffect, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
@@ -46,14 +47,16 @@ export type MonetizationState = {
   bountyData: BountyData;
   tokenGatedEnabled: boolean;
   tokenGateData: TokenGateData;
+  /** DHB-holder gate with no minimum — web's "Subscribers" switch. EVM only. */
+  subscribersEnabled: boolean;
 };
 
 type MonetizationPanelProps = {
   state: MonetizationState;
   onChange: (next: MonetizationState) => void;
-  /** Which section to auto-expand when panel opens (tapped icon in bottom bar) */
+  /** Which section to auto-expand when the panel mounts, if any. */
   autoExpandSection?: "ppv" | "bounty" | "tokenGated" | null;
-  onAutoExpandHandled: () => void;
+  onAutoExpandHandled?: () => void;
   /** Active post mint chain — enables SPL token selection on Solana (#41). */
   postChainId?: number;
 };
@@ -174,7 +177,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
         );
         setGateError(null);
       }
-      onAutoExpandHandled();
+      onAutoExpandHandled?.();
     }
   }, [autoExpandSection, onAutoExpandHandled, state, evmLockTokens]);
 
@@ -280,9 +283,40 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
     setExpandedSection(null);
   }, [state, onChange]);
 
+  const handleSubscribersToggle = useCallback(
+    (val: boolean) => {
+      onChange({ ...state, subscribersEnabled: val });
+    },
+    [state, onChange],
+  );
+
 
   return (
-    <View className="border-t border-theme-neutrals-700 mx-4 pt-2 pb-1">
+    <View className="border-t border-theme-neutrals-700 mt-4 pt-1 pb-1">
+      {/* Subscribers — a DHB gate with no minimum, so it needs no form. EVM
+          only: the lock is priced in DHB, which has no Solana mint. */}
+      {!isSolana && (
+        <View className="py-3">
+          <View className="flex-row items-center justify-between">
+            <View className="flex-row items-center">
+              <Icon name="Lock" size={18} color="#fff" />
+              <Text className="text-white text-sm ml-3">Subscribers</Text>
+            </View>
+            <CustomSwitch
+              value={state.subscribersEnabled}
+              onValueChange={handleSubscribersToggle}
+            />
+          </View>
+          {state.subscribersEnabled && (
+            <Text className="text-theme-neutrals-500 text-xs mt-1.5">
+              {state.tokenGatedEnabled
+                ? "Overridden by the token gate below."
+                : "Only DHB holders can open this post."}
+            </Text>
+          )}
+        </View>
+      )}
+
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">
           <Icon name="CreditCard" size={20} color="#fff" />
@@ -339,18 +373,22 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
         </View>
       </ExpandableSection>
 
-      <View className="flex-row items-center justify-between py-3">
-        <View className="flex-row items-center">
-          <Icon name="Gift" size={18} color="#fff" />
-          <Text className="text-white text-sm ml-3">Bounty</Text>
+      {/* Bounty is EVM-only, as on web — the reward is locked in DHB by the
+          mint transaction, and there is no Solana path for it. */}
+      {!isSolana && (
+        <View className="flex-row items-center justify-between py-3">
+          <View className="flex-row items-center">
+            <Icon name="Gift" size={18} color="#fff" />
+            <Text className="text-white text-sm ml-3">Bounty</Text>
+          </View>
+          <CustomSwitch
+            value={state.bountyEnabled || expandedSection === "bounty"}
+            onValueChange={handleBountyToggle}
+          />
         </View>
-        <CustomSwitch
-          value={state.bountyEnabled || expandedSection === "bounty"}
-          onValueChange={handleBountyToggle}
-        />
-      </View>
+      )}
       <ExpandableSection
-        expanded={expandedSection === "bounty"}
+        expanded={!isSolana && expandedSection === "bounty"}
         maxHeight={SECTION_HEIGHT_BOUNTY}
       >
         <View className="pb-3">
