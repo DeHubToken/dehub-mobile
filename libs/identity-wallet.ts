@@ -14,16 +14,23 @@ import {
   upsertLocalAccount,
   hasPrivateKeyForAddress,
   getPrivateKeyForAddress,
+  removeLocalAccount,
 } from "./wallets.local";
 import { createLogger } from "./logger";
 import {
   fetchWalletReliably,
   saveWallet,
+  deleteOtherSeedCopies,
   type StoredWallet,
 } from "./wallet-core/store";
 import { encryptString, getPayloadKdf, type EncryptedPayload } from "./wallet-core/crypto";
 import { generateMnemonic12, deriveFromSecret } from "./wallet-core/derive";
-import { enrollBiometricUnlock, hasBiometricWrapKey, unlockWithBiometrics } from "./wallet-core/biometric-unlock";
+import {
+  enrollBiometricUnlock,
+  forgetBiometricWrapKey,
+  hasBiometricWrapKey,
+  unlockWithBiometrics,
+} from "./wallet-core/biometric-unlock";
 import { setupAAProvider } from "./wallet-core/smart-account";
 import { getPreferredChainId } from "./auth.utils";
 import { ChainId } from "../config/constants";
@@ -31,6 +38,51 @@ import { ChainId } from "../config/constants";
 const log = createLogger("identity-wallet");
 
 const EVM_MAP_KEY = "supabase_identity_wallet_map_v1";
+// uid -> address of a wallet whose replacement row has been written but whose
+// cleanup did not finish. Read only by retryPendingResetCleanup, which
+// re-validates against the live row before acting on it.
+const RESET_CLEANUP_KEY = "wallet_reset_cleanup_v2";
+
+/**
+ * What a deferred reset cleanup needs to know. Serialised into the map above.
+ *
+ * v1 stored the abandoned address alone, which was not enough to be safe: the
+ * retry could only ask "has the row changed?", and ANY later change satisfied
+ * that — so a marker left by one interrupted reset would happily delete a
+ * different, live wallet's recovery record months later. The replacement
+ * address is what actually answers "did my reset land?".
+ */
+interface ResetCleanupMarker {
+  abandoned: string;
+  replacement: string;
+  clearOtherSeedCopies: boolean;
+  /** Failed cloud-clear attempts so far; bounded so a retry cannot run forever. */
+  attempts?: number;
+}
+
+function parseResetMarker(raw: string | undefined): ResetCleanupMarker | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw);
+    if (
+      parsed &&
+      typeof parsed.abandoned === "string" &&
+      typeof parsed.replacement === "string"
+    ) {
+      return {
+        abandoned: parsed.abandoned.toLowerCase(),
+        replacement: parsed.replacement.toLowerCase(),
+        clearOtherSeedCopies: parsed.clearOtherSeedCopies !== false,
+        attempts: typeof parsed.attempts === "number" ? parsed.attempts : 0,
+      };
+    }
+  } catch {
+    // A v1 marker (a bare address) or anything corrupt. Unreadable means
+    // unsafe: this runs fire-and-forget from sign-in, so it must never throw
+    // and must never guess.
+  }
+  return null;
+}
 // Pre-derivation random keypairs. Read-only now — see getLegacySolanaSecretKeyHex.
 const SOLANA_SK_PREFIX = "local_solana_sk_";
 // Derived Solana address cache. Public data; stored only to keep the wallet
@@ -273,6 +325,17 @@ export async function createAndSaveEvmWalletForIdentity(
   supabaseUserId: string,
   protection: { kind: "password"; password: string } | { kind: "biometric" },
   existingSecret?: string,
+  /**
+   * Marks this as a RESET: the identity already has a wallet whose key nobody
+   * can reach, and this row deliberately overwrites it.
+   *
+   * It stays a single upsert, never a delete followed by a create. During the
+   * gap a delete would open, resolveEvmWalletForIdentity sees no row and
+   * reports "needs-create-password", and the backend's stale web3AuthMeta link
+   * plus a lingering local key is enough to sign the user back into the
+   * account they are trying to leave.
+   */
+  replacing?: { address: string; clearOtherSeedCopies: boolean },
 ): Promise<{ address: string; privateKey: string; secret: string }> {
   const mnemonic = existingSecret ?? generateMnemonic12();
   const derived = deriveFromSecret(mnemonic);
@@ -280,15 +343,196 @@ export async function createAndSaveEvmWalletForIdentity(
     protection.kind === "password"
       ? await encryptString(derived.secret, protection.password)
       : await enrollBiometricUnlock(derived.ethAddress, derived.secret);
+
+  // Paranoia: never "clean up" the wallet we are about to write. A retry that
+  // reuses `existingSecret` can legitimately land on the same address twice.
+  const abandoning =
+    replacing && replacing.address.toLowerCase() !== derived.ethAddress.toLowerCase()
+      ? replacing
+      : undefined;
+
+  if (abandoning) {
+    // Written BEFORE the upsert so a crash in between is recoverable. It
+    // names the replacement as well as the wallet being left, which is what
+    // lets retryPendingResetCleanup tell "my reset landed" from "the row
+    // changed for some other reason" — a marker left by a FAILED upsert, or
+    // one that outlived its reset, is then discarded rather than acted on.
+    const marker: ResetCleanupMarker = {
+      abandoned: abandoning.address.toLowerCase(),
+      replacement: derived.ethAddress.toLowerCase(),
+      clearOtherSeedCopies: abandoning.clearOtherSeedCopies,
+    };
+    await writeMapEntry(RESET_CLEANUP_KEY, supabaseUserId, JSON.stringify(marker));
+  }
+
   await saveWallet(supabaseUserId, derived.ethAddress, encrypted);
+
+  if (abandoning) {
+    // Only now. Until the upsert landed, the old wallet was still this
+    // identity's wallet and these were the user's routes back to it.
+    await runResetCleanup(supabaseUserId, {
+      abandoned: abandoning.address.toLowerCase(),
+      replacement: derived.ethAddress.toLowerCase(),
+      clearOtherSeedCopies: abandoning.clearOtherSeedCopies,
+      attempts: 0,
+    });
+  }
+
   await upsertLocalAccount({ address: derived.ethAddress, privateKey: derived.ethPrivateKey });
   await writeMapEntry(EVM_MAP_KEY, supabaseUserId, derived.ethAddress.toLowerCase());
   log.info("createAndSaveEvmWalletForIdentity:created", {
     address: `${derived.ethAddress.slice(0, 6)}...${derived.ethAddress.slice(-4)}`,
     protection: protection.kind,
     reusedSecret: !!existingSecret,
+    replaced: abandoning
+      ? `${abandoning.address.slice(0, 6)}...${abandoning.address.slice(-4)}`
+      : null,
   });
   return { address: derived.ethAddress, privateKey: derived.ethPrivateKey, secret: derived.secret };
+}
+
+/**
+ * Local traces of a wallet this identity has just ABANDONED.
+ *
+ * This is housekeeping, not protection, and on the device that performed the
+ * reset it is very nearly a no-op. Reaching the reset at all requires that
+ * tryReady found no private key and hasBiometricWrapKey was false, so both
+ * deletes below have nothing to delete. What is actually left behind is a
+ * keyless row in the Import Wallet list (tapping it just reports "No private
+ * key stored for this account") and a stale Solana address cache — clutter
+ * naming a wallet the user has abandoned, rather than a way back into it.
+ * Worth clearing; not worth blocking anything for.
+ *
+ * `local_solana_sk_<address>` is deliberately left in place — see
+ * getLegacySolanaSecretKeyHex. On pre-derivation builds it is the only copy of
+ * a Solana key nothing can re-derive, and any balance it holds is still the
+ * user's regardless of which EVM wallet DeHub now points at.
+ */
+export async function forgetAbandonedWalletLocally(address: string): Promise<void> {
+  const addr = address.toLowerCase();
+  try {
+    await removeLocalAccount(addr);
+  } catch (e) {
+    log.warn("forgetAbandonedWalletLocally:removeLocalAccount", e);
+  }
+  await forgetBiometricWrapKey(addr);
+  try {
+    await SecureStore.deleteItemAsync(SOLANA_ADDR_PREFIX + addr);
+  } catch (e) {
+    log.warn("forgetAbandonedWalletLocally:solana-addr-cache", e);
+  }
+  log.info("forgetAbandonedWalletLocally:done", {
+    address: `${addr.slice(0, 6)}...${addr.slice(-4)}`,
+  });
+}
+
+/**
+ * The two halves of a reset's cleanup, run independently and in the order that
+ * cannot strand the other.
+ *
+ * Local first: it is offline, cannot fail in a way the cloud cares about, and
+ * running it second meant one Supabase error left the abandoned wallet listed
+ * in Import Wallet forever, even though the two failures have nothing to do
+ * with each other.
+ *
+ * The marker survives only for the part that actually failed, and only for a
+ * bounded number of attempts — an identity whose DELETE policy is missing
+ * would otherwise re-run two failing deletes on every sign-in for the life of
+ * the install. Giving up fails SAFE: the user keeps a route back into the old
+ * wallet that the reset panel said would close, which is the harmless
+ * direction, but it does mean that copy can end up overstating what happened.
+ */
+const RESET_CLEANUP_MAX_ATTEMPTS = 5;
+
+async function runResetCleanup(
+  supabaseUserId: string,
+  marker: ResetCleanupMarker,
+): Promise<void> {
+  // Local sweep first. forgetAbandonedWalletLocally swallows its own errors,
+  // so once the replacement row is live this always happens.
+  //
+  // Skipped only if this device has since acquired the abandoned wallet's key:
+  // the reset panel tells the user to go and export it from the handset that
+  // set the wallet up, so a key that is here now is one they deliberately
+  // brought back, and a leftover marker must not delete it.
+  if (!(await hasPrivateKeyForAddress(marker.abandoned))) {
+    await forgetAbandonedWalletLocally(marker.abandoned);
+  } else {
+    log.info("resetCleanup:kept-reimported-key");
+  }
+
+  if (marker.clearOtherSeedCopies) {
+    try {
+      await deleteOtherSeedCopies(supabaseUserId);
+    } catch (e) {
+      const attempts = (marker.attempts ?? 0) + 1;
+      if (attempts < RESET_CLEANUP_MAX_ATTEMPTS) {
+        log.warn("resetCleanup:other-seed-copies-deferred", { attempts, e });
+        await writeMapEntry(
+          RESET_CLEANUP_KEY,
+          supabaseUserId,
+          JSON.stringify({ ...marker, attempts })
+        );
+        return;
+      }
+      log.error("resetCleanup:giving-up-on-other-seed-copies", {
+        attempts,
+        error: e instanceof Error ? e.message : String(e),
+      });
+    }
+  }
+
+  await deleteMapEntry(RESET_CLEANUP_KEY, supabaseUserId);
+}
+
+/**
+ * Finish a reset whose cleanup was interrupted (app killed, or the sibling-row
+ * deletes failed). Safe to call on every successful sign-in: without a marker
+ * it does nothing.
+ *
+ * The live-row re-read is the whole safety property. The marker is written
+ * BEFORE the replacement upsert, so one also exists when that upsert FAILED —
+ * and in that case it names the wallet that is still live. Acting on it would
+ * delete a working wallet's recovery record. So: only clean up once the row
+ * names a DIFFERENT wallet, i.e. the replacement demonstrably landed.
+ */
+export async function retryPendingResetCleanup(supabaseUserId: string): Promise<void> {
+  const map = await readMap(RESET_CLEANUP_KEY);
+  const marker = parseResetMarker(map[supabaseUserId]);
+  if (!marker) {
+    // Unparseable (a v1 marker, or corrupt). Drop it rather than act on a
+    // guess — the cost is an unfinished cleanup, which is cosmetic; the cost
+    // of guessing is deleting a live wallet's last backup.
+    if (map[supabaseUserId]) {
+      await deleteMapEntry(RESET_CLEANUP_KEY, supabaseUserId);
+      log.warn("retryPendingResetCleanup:discarded-unreadable-marker");
+    }
+    return;
+  }
+
+  const { wallet, failed } = await fetchWalletReliably(supabaseUserId);
+  if (failed) return; // unknown — leave the marker, retry on a later sign-in
+  const current = wallet?.ethAddress?.toLowerCase();
+  if (!current) return; // no row at all — never guess
+
+  if (current !== marker.replacement) {
+    // Either the upsert never landed (row is still the abandoned wallet), or
+    // the wallet has moved on again since. In both cases the rows this would
+    // delete belong to whatever wallet is live NOW, not to the one this
+    // marker was about. Discard without deleting anything.
+    await deleteMapEntry(RESET_CLEANUP_KEY, supabaseUserId);
+    log.info("retryPendingResetCleanup:discarded-marker-row-moved-on", {
+      current: `${current.slice(0, 6)}...${current.slice(-4)}`,
+    });
+    return;
+  }
+
+  try {
+    await runResetCleanup(supabaseUserId, marker);
+    log.info("retryPendingResetCleanup:ran");
+  } catch (e) {
+    log.warn("retryPendingResetCleanup:failed-will-retry", e);
+  }
 }
 
 /**
@@ -333,6 +577,18 @@ export async function switchActiveWalletForIdentity(
   supabaseUserId: string,
   secret: string,
   password: string,
+  /**
+   * When the caller already knows which wallet this is supposed to be — the
+   * recovery path, where the row names an address the user is trying to get
+   * back INTO — the write is refused unless the secret derives to it. Without
+   * this, one mistyped-but-valid recovery phrase silently replaces the row and
+   * drops the user into a different, empty DeHub account, with the original
+   * row (and the account behind it) gone.
+   *
+   * Both the raw EOA and the Safe smart-account address count as a match,
+   * since rows written before/after AA resolution hold different ones.
+   */
+  expectedAddress?: string,
 ): Promise<{ address: string; privateKey: string }> {
   const derived = deriveFromSecret(secret);
 
@@ -359,15 +615,46 @@ export async function switchActiveWalletForIdentity(
     log.warn("switchActiveWalletForIdentity:aa-resolve-failed", e);
   }
 
+  // Which address the row ends up carrying. Recomputing the Safe is right when
+  // ADOPTING a wallet (the legacy path — the account may well be registered
+  // under its Safe). It is wrong when RECOVERING one, because the row already
+  // says which address this account is, and rewriting it to the other one
+  // breaks the very password backup this call is creating:
+  // handleWalletUnlock compares deriveFromSecret(seed).ethAddress — always the
+  // EOA — against the row's address and refuses to sign in when they differ.
+  // Flip an EOA-addressed row to its Safe and no password can ever open it
+  // again. So when the caller named an expected address, write that one back.
+  let addressToSave = canonicalAddress;
+  if (expectedAddress) {
+    const want = expectedAddress.toLowerCase();
+    if (want === derived.ethAddress.toLowerCase()) {
+      // Keep the derived form rather than `expectedAddress` itself: the latter
+      // arrives lowercased from resolveEvmWalletForIdentity, and the row
+      // should hold a checksummed address.
+      addressToSave = derived.ethAddress;
+    } else if (want === canonicalAddress.toLowerCase()) {
+      addressToSave = canonicalAddress;
+    } else {
+      log.error("switchActiveWalletForIdentity:expected-address-mismatch", {
+        expected: `${expectedAddress.slice(0, 6)}...${expectedAddress.slice(-4)}`,
+        derived: `${derived.ethAddress.slice(0, 6)}...${derived.ethAddress.slice(-4)}`,
+      });
+      throw new Error(
+        `That recovery phrase or private key belongs to a different wallet (${derived.ethAddress.slice(0, 6)}…${derived.ethAddress.slice(-4)}), not this account's (${expectedAddress.slice(0, 6)}…${expectedAddress.slice(-4)}). Nothing was changed.`
+      );
+    }
+  }
+
   const encrypted = await encryptString(derived.secret, password);
-  await saveWallet(supabaseUserId, canonicalAddress, encrypted);
-  await upsertLocalAccount({ address: canonicalAddress, privateKey: derived.ethPrivateKey });
-  await writeMapEntry(EVM_MAP_KEY, supabaseUserId, canonicalAddress.toLowerCase());
+  await saveWallet(supabaseUserId, addressToSave, encrypted);
+  await upsertLocalAccount({ address: addressToSave, privateKey: derived.ethPrivateKey });
+  await writeMapEntry(EVM_MAP_KEY, supabaseUserId, addressToSave.toLowerCase());
   log.info("switchActiveWalletForIdentity:switched", {
-    address: `${canonicalAddress.slice(0, 6)}...${canonicalAddress.slice(-4)}`,
-    isSmartAccount: canonicalAddress.toLowerCase() !== derived.ethAddress.toLowerCase(),
+    address: `${addressToSave.slice(0, 6)}...${addressToSave.slice(-4)}`,
+    isSmartAccount: addressToSave.toLowerCase() !== derived.ethAddress.toLowerCase(),
+    pinnedToExpected: !!expectedAddress,
   });
-  return { address: canonicalAddress, privateKey: derived.ethPrivateKey };
+  return { address: addressToSave, privateKey: derived.ethPrivateKey };
 }
 
 /**

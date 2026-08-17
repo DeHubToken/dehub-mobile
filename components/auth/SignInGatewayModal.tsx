@@ -9,7 +9,11 @@ import FullScreenLoader from "../FullScreenLoader";
 import SocialLoginIcons from "./SocialLoginIcons";
 import EmailCodeEntry from "./EmailCodeEntry";
 import ImportWallet from "./ImportWallet";
-import WalletSetupScreen, { type WalletSetupRequest, type CreateProtection } from "./WalletSetupScreen";
+import WalletSetupScreen, {
+  type WalletSetupRequest,
+  type CreateProtection,
+  type CreateResult,
+} from "./WalletSetupScreen";
 import LegacyAccountWarningModal from "./LegacyAccountWarningModal";
 import { type LegacyAccountMatch } from "../../libs/wallet-core/legacy-detect";
 import { openInApp } from "../../libs/links.utils";
@@ -33,13 +37,15 @@ import {
   switchActiveWalletForIdentity,
 } from "../../libs/identity-wallet";
 import { provisionAndSignIn, markProvisionedIdentity } from "../../libs/provision-and-sign-in";
-import { decryptString } from "../../libs/wallet-core/crypto";
-import { deriveFromSecret } from "../../libs/wallet-core/derive";
+import { decryptString, getPayloadKdf } from "../../libs/wallet-core/crypto";
+import { fetchWalletReliably } from "../../libs/wallet-core/store";
+import { deriveFromSecret, generateMnemonic12, isValidMnemonic } from "../../libs/wallet-core/derive";
 import { createLocalEip1193ProviderForChain } from "../../services/localwallet.provider";
 import { setSigningProvider, clearSigningProvider } from "../../libs/provider.registry";
 import { setupAAProvider } from "../../libs/wallet-core/smart-account";
 import { createLogger } from "../../libs/logger";
 import { useWalletAuth } from "../../hooks/useWalletAuth";
+import { useScrollFieldIntoView } from "../../hooks/useScrollFieldIntoView";
 
 const log = createLogger("SignInGatewayModal");
 
@@ -62,6 +68,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   const [authStep, setAuthStep] = useState<"main" | "email-code" | "phone-code">("main");
   const [pendingEmail, setPendingEmail] = useState("");
   const [pendingPhone, setPendingPhone] = useState("");
+  // Same expanding-field-under-the-keyboard problem as SignInScreen, and worse
+  // here: the sheet is only 98% tall to begin with.
+  const { scrollViewProps, scrollIntoView } = useScrollFieldIntoView();
   // Set when resolveEvmWalletForIdentity finds a Supabase-backed wallet that
   // needs unlocking (password or biometric), or no wallet at all (needs setup
   // for a new one). Cleared once WalletSetupScreen succeeds or is cancelled.
@@ -70,9 +79,12 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   // which a native RN Modal covers — a toastError fired while this modal is
   // up is invisible, so errors here must be rendered in the modal itself.
   const [inlineError, setInlineError] = useState<string | null>(null);
-  // Wallet from a create attempt that saved to Supabase but failed at the
-  // DeHub sign-in step — reused on retry so the saved row isn't overwritten
-  // by a fresh mnemonic (see handleWalletCreate).
+  // Secret from a create attempt that has not finished yet: either it saved to
+  // Supabase but failed at the DeHub sign-in step (reused on retry so the saved
+  // row isn't overwritten by a fresh mnemonic), or it is a biometric wallet
+  // generated but deliberately NOT yet saved, waiting on the user to
+  // acknowledge its recovery phrase. See handleWalletCreate /
+  // handleWalletCreateConfirmed.
   const pendingCreateRef = useRef<{ supabaseUserId: string; secret: string } | null>(null);
   // Set when checkLegacyAccount finds a pre-migration Web3Auth account for
   // this identity's email — gates the create-wallet screen behind a warning
@@ -209,8 +221,8 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   }, [walletSetupRequest, finishWalletSetupSignIn]);
 
   const handleWalletCreate = useCallback(
-    async (protection: CreateProtection) => {
-      if (!walletSetupRequest || walletSetupRequest.mode !== "create") return;
+    async (protection: CreateProtection): Promise<CreateResult> => {
+      if (!walletSetupRequest || walletSetupRequest.mode !== "create") return undefined;
       // A retry after "wallet saved but sign-in failed" must re-protect the
       // SAME wallet (possibly under a newly-typed password), not mint a new
       // mnemonic that overwrites the row just saved to Supabase.
@@ -219,10 +231,26 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
         prior && prior.supabaseUserId === walletSetupRequest.supabaseUserId
           ? prior.secret
           : undefined;
+
+      // Generate but do NOT save a biometric wallet until its recovery phrase
+      // has been acknowledged — see SignInScreen.handleWalletCreate, which this
+      // mirrors; the two entry points must not drift.
+      if (protection.kind === "biometric") {
+        const secret = existingSecret ?? generateMnemonic12();
+        if (isValidMnemonic(secret)) {
+          pendingCreateRef.current = {
+            supabaseUserId: walletSetupRequest.supabaseUserId,
+            secret,
+          };
+          return { recoveryPhrase: secret };
+        }
+      }
+
       const created = await createAndSaveEvmWalletForIdentity(
         walletSetupRequest.supabaseUserId,
         protection,
-        existingSecret
+        existingSecret,
+        walletSetupRequest.replacing
       );
       pendingCreateRef.current = {
         supabaseUserId: walletSetupRequest.supabaseUserId,
@@ -230,37 +258,96 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       };
       await finishWalletSetupSignIn(created.address, created.privateKey);
       pendingCreateRef.current = null;
+      return undefined;
     },
     [walletSetupRequest, finishWalletSetupSignIn]
   );
 
-  // Escape hatch from a web-passkey-sync / biometric-unlock dead end: neither
-  // this device nor a password can ever decrypt the wallet on file, so drop
-  // it and provision a fresh one the normal "create" way instead.
-  const handleWalletStartFresh = useCallback(() => {
-    if (!walletSetupRequest) return;
+  const handleWalletCreateConfirmed = useCallback(async () => {
+    const pending = pendingCreateRef.current;
+    if (!walletSetupRequest || walletSetupRequest.mode !== "create" || !pending) return;
+    const created = await createAndSaveEvmWalletForIdentity(
+      walletSetupRequest.supabaseUserId,
+      { kind: "biometric" },
+      pending.secret,
+      walletSetupRequest.replacing
+    );
+    await finishWalletSetupSignIn(created.address, created.privateKey);
     pendingCreateRef.current = null;
-    setWalletSetupRequest({ mode: "create", supabaseUserId: walletSetupRequest.supabaseUserId });
-  }, [walletSetupRequest]);
+  }, [walletSetupRequest, finishWalletSetupSignIn]);
 
-  // legacy-recovered: native Web3Auth migration retrieved a pre-migration
-  // account's key — make it canonical for this Supabase identity, mirroring
-  // dehubweb's "Switch to a different old account" (see
-  // AuthProvider.switchActiveWallet / WalletRecoveryTools.tsx).
+  // Two callers, both handing over a secret to become this identity's wallet:
+  //  - legacy-recovered: native Web3Auth migration retrieved a pre-migration
+  //    account's key, mirroring dehubweb's "Switch to a different old account"
+  //    (AuthProvider.switchActiveWallet / WalletRecoveryTools.tsx). Which
+  //    wallet it lands on is the whole point, so no address is enforced.
+  //  - biometric-unlock: the user is restoring the wallet this row already
+  //    names, from its recovery phrase, because the device that held its wrap
+  //    key is gone. Here the address IS known, and enforcing it stops a
+  //    mistyped-but-valid phrase from overwriting the row and stranding the
+  //    account it pointed at.
   const handleWalletSwitchAccount = useCallback(
-    async (privateKey: string, password: string) => {
-      if (!walletSetupRequest || walletSetupRequest.mode !== "legacy-recovered") {
+    async (secret: string, password: string) => {
+      if (
+        !walletSetupRequest ||
+        (walletSetupRequest.mode !== "legacy-recovered" &&
+          walletSetupRequest.mode !== "biometric-unlock")
+      ) {
         return;
       }
       const { address, privateKey: derivedPk } = await switchActiveWalletForIdentity(
         walletSetupRequest.supabaseUserId,
-        privateKey,
-        password
+        secret,
+        password,
+        walletSetupRequest.mode === "biometric-unlock" ? walletSetupRequest.address : undefined
       );
       await finishWalletSetupSignIn(address, derivedPk);
     },
     [walletSetupRequest, finishWalletSetupSignIn]
   );
+
+  // Last-resort escape from a wallet whose key nobody has. Mirrors
+  // SignInScreen.handleResetWallet exactly — see the reasoning there for why
+  // the pre-flight re-read is the load-bearing part.
+  const handleResetWallet = useCallback(async () => {
+    if (
+      !walletSetupRequest ||
+      (walletSetupRequest.mode !== "biometric-unlock" &&
+        walletSetupRequest.mode !== "web-passkey-sync")
+    ) {
+      return;
+    }
+    const { supabaseUserId, address } = walletSetupRequest;
+
+    const { wallet, failed } = await fetchWalletReliably(supabaseUserId);
+    if (failed) {
+      throw new Error(
+        "Couldn't reach your wallet record. Check your connection and try again — nothing has been changed."
+      );
+    }
+    if (!wallet?.ethAddress) {
+      throw new Error(
+        "There is no wallet on this account any more. Close this and sign in again."
+      );
+    }
+    if (wallet.ethAddress.toLowerCase() !== address.toLowerCase()) {
+      throw new Error(
+        "This account's wallet changed while this screen was open. Close this and sign in again — you may not need to start over."
+      );
+    }
+    if (wallet.payload && getPayloadKdf(wallet.payload) !== "hkdf") {
+      throw new Error(
+        "This wallet now has a password backup, so it can be unlocked. Close this and sign in again."
+      );
+    }
+
+    pendingCreateRef.current = null;
+    setWalletSetupRequest({
+      mode: "create",
+      supabaseUserId,
+      replacing: { address: wallet.ethAddress, clearOtherSeedCopies: true },
+    });
+  }, [walletSetupRequest]);
 
   // Native legacy-account recovery succeeded (see LegacyAccountWarningModal /
   // libs/legacy-web3auth.ts) — hand the recovered key to the same
@@ -414,6 +501,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
           style={styles.cancel}
         />
         <ScrollView
+          {...scrollViewProps}
           contentContainerStyle={{
             flexGrow: 1,
             paddingHorizontal: 24,
@@ -436,6 +524,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
               onConnectWallet={handleWalletConnect}
               busyProvider={isLocalLoading ? currentProvider : isWalletLoading ? "wallet" : undefined}
               disabled={isBusy}
+              onFieldExpand={scrollIntoView}
             />
           ) : authStep === "email-code" ? (
             <EmailCodeEntry
@@ -464,8 +553,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
             onUnlock={handleWalletUnlock}
             onBiometricUnlock={handleWalletBiometricUnlock}
             onCreate={handleWalletCreate}
+            onCreateConfirmed={handleWalletCreateConfirmed}
             onSwitchAccount={handleWalletSwitchAccount}
-            onStartFresh={handleWalletStartFresh}
+            onResetWallet={handleResetWallet}
           />
           <LegacyAccountWarningModal
             visible={!!legacyAccounts}

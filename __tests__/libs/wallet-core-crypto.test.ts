@@ -124,7 +124,19 @@ describe("wallet-core/crypto — refuses to guess", () => {
   });
 
   it("does not treat a biometric payload as a password payload", async () => {
-    await expect(decryptString(WEB_HKDF, PASSWORD)).rejects.toThrow(/passkey-protected/i);
+    await expect(decryptString(WEB_HKDF, PASSWORD)).rejects.toThrow(/biometrics held on one/i);
+  });
+
+  it("does not send the user to the website, which holds the same unopenable blob", async () => {
+    // The old message told them to add a wallet password on dehub.io. For a
+    // phone-created biometric wallet that is impossible there too, so the two
+    // clients pointed at each other and the user could not get in from either.
+    expect.assertions(1);
+    try {
+      await decryptString(WEB_HKDF, PASSWORD);
+    } catch (e) {
+      expect((e as Error).message).not.toMatch(/dehub\.io/i);
+    }
   });
 
   it("does not treat a password payload as a biometric payload", async () => {
