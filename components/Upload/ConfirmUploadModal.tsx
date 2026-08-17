@@ -18,7 +18,6 @@ type Props = {
   onConfirm: () => void;
   confirmText: string;
   stage: UploadStage;
-  variant?: "bounty" | "default"; // controls primary button label when idle
   title?: string;
 };
 
@@ -45,11 +44,9 @@ const ConfirmUploadModal: React.FC<Props> = ({
   onConfirm,
   confirmText,
   stage,
-  variant = "default",
-  title = "Are you absolutely sure?",
+  title = "Confirm",
 }) => {
   const busy = stage !== "idle" && stage !== "done";
-  const primaryIdleLabel = variant === "bounty" ? "Proceed" : "Continue";
   return (
     <GlassModal
       visible={visible}
@@ -89,9 +86,7 @@ const ConfirmUploadModal: React.FC<Props> = ({
                   </Text>
                 </View>
               ) : (
-                <Text className="text-white font-semibold">
-                  {primaryIdleLabel}
-                </Text>
+                <Text className="text-white font-semibold">Continue</Text>
               )}
             </TouchableOpacity>
         </View>
