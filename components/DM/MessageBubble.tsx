@@ -36,6 +36,12 @@ import { getSenderUser } from "../../services/dm/dm.types";
 import type { MessageLayout } from "./MessageContextMenu";
 import DehubLinkCard from "../common/DehubLinkCard";
 import { findDehubLink, stripDehubLinkMatches } from "../../libs/dehub-links";
+import {
+  AssetRefCards,
+  BUBBLE_ASSET_CARD_WIDTH,
+  MAX_ASSET_CARDS_PER_MESSAGE,
+} from "../common/AssetRefCard";
+import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 
 
 const resolveUrl = (path: string): string => {
@@ -461,6 +467,20 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
     return { link, caption };
   }, [message.content, isVoice, isGif, mediaItems.length]);
 
+  // Market references in a plain message. Skipped when the message is an entity
+  // share, which has its own card.
+  const assetRefs = useMemo(
+    () =>
+      sharedLink
+        ? []
+        : findAssetRefs(message.content ?? "").slice(0, MAX_ASSET_CARDS_PER_MESSAGE),
+    [message.content, sharedLink],
+  );
+  const assetDisplayText = useMemo(
+    () => (assetRefs.length ? stripAssetRefs(message.content ?? "", assetRefs) : message.content),
+    [message.content, assetRefs],
+  );
+
   const handleLongPress = useCallback(() => {
     containerRef.current?.measureInWindow((x, y, width, height) => {
       onLongPress?.(message, { x, y, width, height }, isMine);
@@ -870,15 +890,32 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
               </>
             ) : (
               hasText && (
-                <Text
-                  className={`px-3 ${
-                    mediaItems.length > 0 ? "pt-1.5 pb-0.5" : "pt-2.5 pb-0.5"
-                  } text-[15px] leading-5 ${
-                    isMine ? "text-white" : "text-theme-neutrals-100"
-                  }`}
-                >
-                  {message.content}
-                </Text>
+                <>
+                  {!!assetDisplayText?.trim() && (
+                    <Text
+                      className={`px-3 ${
+                        mediaItems.length > 0 ? "pt-1.5 pb-0.5" : "pt-2.5 pb-0.5"
+                      } text-[15px] leading-5 ${
+                        isMine ? "text-white" : "text-theme-neutrals-100"
+                      }`}
+                    >
+                      {assetDisplayText}
+                    </Text>
+                  )}
+                  {/* A contract address or a $TICKER in a message cards up the
+                      same way it does in a post. Entity shares are left alone:
+                      they already have a card above. The width is fixed because
+                      a bubble sizes to its text, and an address-only message has
+                      no text left to size it. */}
+                  {assetRefs.length > 0 && (
+                    <View
+                      className="px-3 pb-1"
+                      style={{ width: BUBBLE_ASSET_CARD_WIDTH + 24 }}
+                    >
+                      <AssetRefCards refs={assetRefs} />
+                    </View>
+                  )}
+                </>
               )
             )}
 

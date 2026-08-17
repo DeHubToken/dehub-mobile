@@ -57,6 +57,8 @@ import { getCommunityAbilities, isForever } from "../../libs/community-permissio
 import type { Community, CommunityChatMessage, CommunityMember } from "../../types/community";
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
 import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
+import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
+import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
 const MAX_LEN = 500;
@@ -140,6 +142,15 @@ const ChatRow: React.FC<{
     () => (dehubLinks.length ? stripDehubLinkMatches(message.content, dehubLinks) : message.content),
     [message.content, dehubLinks],
   );
+  // Same for a contract address or a ticker dropped into a channel.
+  const assetRefs = useMemo(
+    () => findAssetRefs(linkFreeContent).slice(0, MAX_ASSET_CARDS_PER_MESSAGE),
+    [linkFreeContent],
+  );
+  const displayContent = useMemo(
+    () => stripAssetRefs(linkFreeContent, assetRefs),
+    [linkFreeContent, assetRefs],
+  );
 
   return (
     <Pressable
@@ -189,11 +200,12 @@ const ChatRow: React.FC<{
           />
         )}
 
-        {!!linkFreeContent && (
-          <Text className="text-white/70 text-sm leading-5">{linkFreeContent}</Text>
+        {!!displayContent && (
+          <Text className="text-white/70 text-sm leading-5">{displayContent}</Text>
         )}
 
         <DehubLinkCards links={dehubLinks} />
+        <AssetRefCards refs={assetRefs} />
 
         {!!message.edited_at && (
           <Text className="text-zinc-400 text-xs mt-0.5">
