@@ -62,7 +62,10 @@ import {
   formatCompactNumber,
   toastError,
   toastSuccess,
+  toastInfo,
+  toastWithAction,
 } from "../../libs";
+import { useMintExistingPost } from "../../hooks/useMintExistingPost";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import { sharePostAsImage } from "../../libs/shareImage";
 import {
@@ -158,6 +161,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const { requireAuth } = useAuthActions();
   const { isSignedIn } = useAuthState();
   const { showUserProfile, hideUserProfile } = useUserProfileSheet();
+  const { mint: mintExisting } = useMintExistingPost();
 
   const contentType = useMemo(() => resolveContentType(item), [item]);
 
@@ -651,8 +655,24 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (mintTxHash) {
       const url = getTransactionLink(chainId, mintTxHash);
       if (url) openInApp(url);
+      return;
     }
-  }, [mintTxHash, chainId]);
+    // Published off-chain: there is no transaction to open. Say so instead of
+    // a button that silently does nothing — and hand the owner the mint
+    // directly, which is the same path as Mint post in the options menu.
+    if (rawStatus === "signed") {
+      if (isOwnerPost && tokenId != null) {
+        toastWithAction(
+          "info",
+          "Mint this post to generate this section",
+          "Mint",
+          () => { mintExisting(Number(tokenId), chainId); },
+        );
+      } else {
+        toastInfo("Mint this post to generate this section");
+      }
+    }
+  }, [mintTxHash, chainId, rawStatus, isOwnerPost, tokenId, mintExisting]);
 
   const handleOpenOptions = useCallback(() => {
     setShowOptionsMenu(true);

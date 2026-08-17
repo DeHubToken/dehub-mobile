@@ -24,7 +24,7 @@ async function countFor(minter: string, postType?: FeedPostType): Promise<number
     const res = await getUnifiedFeed({
       minter,
       postType,
-      status: "minted",
+      status: "all",
       sortBy: "createdAt",
       sortOrder: "desc",
       page: 1,
