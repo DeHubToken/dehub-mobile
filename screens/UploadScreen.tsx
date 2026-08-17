@@ -144,10 +144,14 @@ export default function UploadScreen() {
         setPostChainId(targetChainId);
         return;
       }
-      // EVM chain — switch the active wallet chain.
+      // EVM chain — switch the active wallet chain. Posting to a different
+      // chain never needs a fresh backend login: sign-in identity is the
+      // chain-independent Safe smart-account address (see AuthContext's
+      // switchChain), so re-authenticating here only risked failing against
+      // the just-rebuilt AA provider for no benefit.
       setSolanaAddress(null);
       setPostChainId(targetChainId);
-      if (targetChainId !== activeChainId) switchChain(targetChainId).catch(() => {});
+      if (targetChainId !== activeChainId) switchChain(targetChainId, { reauth: false }).catch(() => {});
     },
     [activeChainId, switchChain]
   );
