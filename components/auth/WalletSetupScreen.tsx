@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, StyleSheet, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "../ui/GlassModal";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";
@@ -53,6 +53,16 @@ export interface WalletSetupScreenProps {
   onCreate: (protection: CreateProtection) => Promise<void>;
   /** legacy-recovered mode: make the recovered key's wallet the active one for this identity. */
   onSwitchAccount?: (privateKey: string, password: string) => Promise<void>;
+  /**
+   * Escape hatch for web-passkey-sync / biometric-unlock: this identity has a
+   * wallet address on file with no payload this device can ever decrypt (no
+   * password was set, and this device's biometric wrap key is gone or was
+   * never this device's). That is as likely to be an interrupted sign-up as
+   * a real cross-device case, and either way there is no other surface that
+   * can unblock it -- offer to abandon that address and provision a fresh
+   * wallet for this identity instead, same as first-time create.
+   */
+  onStartFresh?: () => void;
 }
 
 /** Shared reveal toggle for every password field on this screen. */
@@ -72,7 +82,7 @@ const RevealToggle: React.FC<{ shown: boolean; onToggle: () => void }> = ({ show
  * only ever recoverable from this device, unlike a password.
  */
 const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
-  ({ visible, request, onClose, onUnlock, onBiometricUnlock, onCreate, onSwitchAccount }) => {
+  ({ visible, request, onClose, onUnlock, onBiometricUnlock, onCreate, onSwitchAccount, onStartFresh }) => {
     const [password, setPassword] = useState("");
     const [confirm, setConfirm] = useState("");
     const [showPw, setShowPw] = useState(false);
@@ -267,6 +277,18 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       }
     }, [canSubmitPassword, busy, password, onCreate, reset]);
 
+    const handleStartFresh = useCallback(() => {
+      if (busy || !onStartFresh) return;
+      Alert.alert(
+        "Start a new wallet?",
+        "The wallet on this account can't be unlocked from this phone or a password, and there's no other way to reach it from here. Starting fresh replaces it with a brand-new wallet on this device. Only do this if you never funded the old one — its funds cannot be recovered afterward.",
+        [
+          { text: "Cancel", style: "cancel" },
+          { text: "Start fresh", style: "destructive", onPress: onStartFresh },
+        ]
+      );
+    }, [busy, onStartFresh]);
+
     const handleCreateWithBiometric = useCallback(async () => {
       if (busy) return;
       setBusy(true);
@@ -421,14 +443,15 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
           {mode === "web-passkey-sync" && request?.mode === "web-passkey-sync" && (
             <View>
               <Text style={[authText.body, { marginBottom: 16 }]}>
-                Your wallet uses <Text style={authText.emphasis}>biometrics or a passkey on the web</Text>.
-                That unlock stays in your browser — it does not sync to this phone, so we cannot prompt
-                for fingerprint here yet.
+                This account has a wallet address on file, but no password backup this phone can use —
+                either it was protected with biometrics or a passkey on the web (that unlock stays in
+                the browser and does not sync here), or an earlier sign-up on this phone was
+                interrupted before it finished.
               </Text>
               <Text style={[authText.body, { marginBottom: 20 }]}>
-                To use this account on mobile, open dehub.io on your computer, sign in with the same
-                Google account, and <Text style={authText.emphasis}>add a wallet password</Text>{" "}
-                (this saves an encrypted backup to the cloud). Then come back here and sign in again.
+                If you have used dehub.io before, open it on your computer, sign in with the same
+                account, and <Text style={authText.emphasis}>add a wallet password</Text> (this saves
+                an encrypted backup to the cloud) — then come back here and try again.
               </Text>
               <Text style={[authText.caption, { marginBottom: 16 }]}>
                 Wallet: {request.address.slice(0, 6)}…{request.address.slice(-4)}
@@ -443,7 +466,15 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
               <AuthButton
                 label="I added a password — try again"
                 onPress={handleClose}
+                style={{ marginBottom: 12 }}
               />
+              {onStartFresh && (
+                <AuthTextButton
+                  label="Never used dehub.io — start a new wallet instead"
+                  onPress={handleStartFresh}
+                  disabled={busy}
+                />
+              )}
             </View>
           )}
 
@@ -561,6 +592,14 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                     loading={busy}
                     style={{ marginTop: 16 }}
                   />
+                  {onStartFresh && (
+                    <AuthTextButton
+                      label="No password either — start a new wallet instead"
+                      onPress={handleStartFresh}
+                      disabled={busy}
+                      style={{ marginTop: 16 }}
+                    />
+                  )}
                 </>
               )}
             </View>
