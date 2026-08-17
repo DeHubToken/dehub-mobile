@@ -964,6 +964,7 @@
     "noNotificationsDesc": "Beğeni, yorum, bahşiş veya yeni aboneler aldığınızda burada görünecekler.",
     "loadMore": "Daha fazla yükle",
     "markAsRead": "Okundu işaretle",
+    "clearNotification": "Bildirimi temizle",
     "loginDescription": "Bildirimlerinizi görmek ve DeHub'daki arkadaşlarınızla güncel kalmak için giriş yapın.",
     "likedPost": "{{name}} gönderinizi beğendi",
     "likedPosts": "{{name}} {{count}} gönderinizi beğendi",
