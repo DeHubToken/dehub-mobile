@@ -57,6 +57,9 @@ interface CommentContextMenuProps {
   liked?: boolean;
   onDislike?: () => void;
   disliked?: boolean;
+  /** Own comments swap the Like row for a who-liked row — the server refuses
+   *  self-likes, and the author is the only one allowed to see the list. */
+  onShowLikers?: () => void;
   tokenId?: number | string;
   /** Whether current user can delete (own comment or video owner) */
   canDelete?: boolean;
@@ -252,6 +255,7 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
   liked,
   onDislike,
   disliked,
+  onShowLikers,
   tokenId,
   canDelete,
 }) => {
@@ -294,6 +298,11 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
     // Fire after modal dismisses so the async call isn't interrupted
     setTimeout(() => onLike?.(), 100);
   }, [onLike, onClose]);
+
+  const handleShowLikers = useCallback(() => {
+    onClose();
+    setTimeout(() => onShowLikers?.(), 100);
+  }, [onShowLikers, onClose]);
 
   const handleDislike = useCallback(() => {
     onClose();
@@ -402,12 +411,22 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
 
             <ActionRow icon="Share2" label="Share" onPress={handleShare} />
 
-            {onLike && (
+            {onLike && !isOwnComment && (
               <ActionRow
                 icon="ThumbsUp"
                 label={liked ? "Unlike" : "Like"}
                 onPress={handleLike}
               />
+            )}
+
+            {/* Own comment: liking would 400 server-side, so the row becomes
+                the author-only who-liked list. Un-liking a historical
+                self-like stays possible. */}
+            {isOwnComment && liked && onLike && (
+              <ActionRow icon="ThumbsUp" label="Unlike" onPress={handleLike} />
+            )}
+            {isOwnComment && onShowLikers && (
+              <ActionRow icon="Users" label="Who liked" onPress={handleShowLikers} />
             )}
 
             {onDislike && (
