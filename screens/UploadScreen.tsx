@@ -31,7 +31,6 @@ import {
   runWithPermissions,
 } from "../libs/permissions.util";
 import { openCroppedImagePicker, getFileName, guessMime } from "../libs/assets.util";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getCategoriesCached, getMintFee } from "../services/nft.service";
 import type { MintFeeQuoteResponse } from "../services/nft.service";
 import { getAuthMethod } from "../libs/auth.utils";
