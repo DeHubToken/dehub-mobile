@@ -62,7 +62,7 @@ import { usePostSound } from "../hooks/usePostSound";
 import { buildSoundtrackTag } from "../libs/parseSoundtrack";
 import SoundPickerSheet from "../components/Post/SoundPickerSheet";
 import ScheduleSheet from "../components/Upload/ScheduleSheet";
-import { useDrafts } from "../hooks/useDrafts";
+import { useDrafts, emptyMonetization } from "../hooks/useDrafts";
 import type { Draft } from "../hooks/useDrafts";
 import GlassModal from "../components/ui/GlassModal";
 import EnhanceSheet from "../components/Upload/EnhanceSheet";
@@ -451,7 +451,9 @@ export default function UploadScreen() {
     setCategories(incomingDraft.categories);
     if (incomingDraft.thumbnailUri) setThumbnailUri(incomingDraft.thumbnailUri);
     if (incomingDraft.coverUri) setCoverUri(incomingDraft.coverUri);
-    setMonetization(incomingDraft.monetization);
+    // Web-created (and pre-monetization) drafts carry no monetization blob;
+    // restoring undefined crashes the first monetization.ppvEnabled read.
+    setMonetization(incomingDraft.monetization ?? emptyMonetization());
 
     // Restore images (we can only restore URIs — they may be stale)
     if (incomingDraft.imageUris.length > 0) {
@@ -472,10 +474,20 @@ export default function UploadScreen() {
         assetId: undefined,
       } as any);
     }
-    // Delete the draft — it's now restored into the editor
-    deleteDraft(incomingDraft.id);
+    // Deliberately NOT deleted here. Deleting at mount meant a crash or
+    // force-quit between restore and post lost the draft everywhere, local
+    // and remote. It is consumed when the composer actually produces
+    // something from it — a queued post or a re-saved draft.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  /** Delete the restored draft once the composer has produced something from it. */
+  const consumeRestoredDraft = useCallback(() => {
+    const id = restoredDraftIdRef.current;
+    if (!id) return;
+    restoredDraftIdRef.current = null;
+    deleteDraft(id).catch(() => {});
+  }, [deleteDraft]);
 
   const addCategory = useCallback(
     (name: string) => {
@@ -847,9 +859,10 @@ export default function UploadScreen() {
 
     const ok = enqueueJob(payload);
     if (!ok) return;
+    consumeRestoredDraft();
     setShowConfirm(false);
     setTimeout(navigateHome, 120);
-  }, [getPayload, enqueueJob, navigateHome, solanaAddress, mintFee, mintChainId]);
+  }, [getPayload, enqueueJob, navigateHome, solanaAddress, mintFee, mintChainId, consumeRestoredDraft]);
 
   const handleRemoveQuoteEmbed = useCallback(() => {
     setIsQuoteMode(false);
@@ -876,11 +889,13 @@ export default function UploadScreen() {
       quotedTokenId: Number(quotedTokenId),
     });
     if (!ok) return;
+    consumeRestoredDraft();
     setShowConfirm(false);
     setTimeout(navigateHome, 120);
   }, [
     quotedTokenId, categories, pickedVideo, bodyText, titleText,
     coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome,
+    consumeRestoredDraft,
   ]);
 
   const buildDraftData = useCallback(() => ({
@@ -906,15 +921,19 @@ export default function UploadScreen() {
   const handleConfirmSaveDraft = useCallback(async () => {
     setShowSaveDraftModal(false);
     await saveDraft(buildDraftData());
+    // The new save supersedes the restored original — drop it or every
+    // restore-and-save cycle would duplicate the draft.
+    consumeRestoredDraft();
     nav.goBack();
-  }, [saveDraft, buildDraftData, nav]);
+  }, [saveDraft, buildDraftData, nav, consumeRestoredDraft]);
 
   /** "Save Draft" from discard warning modal */
   const handleDiscardSaveDraft = useCallback(async () => {
     setShowDiscardModal(false);
     await saveDraft(buildDraftData());
+    consumeRestoredDraft();
     nav.goBack();
-  }, [saveDraft, buildDraftData, nav]);
+  }, [saveDraft, buildDraftData, nav, consumeRestoredDraft]);
 
   /** "Discard" from discard warning modal */
   const handleDiscard = useCallback(() => {
