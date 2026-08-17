@@ -248,45 +248,6 @@ export function useUploadPost() {
     [activeNetworkLabel, activeChainId],
   );
 
-  const buildConfirmText = useCallback(
-    (p: UploadPayload): string => {
-      const mode = p.pickedVideo ? "video" : p.pickedImages.length > 0 ? "images" : "text";
-      const lines: string[] = [];
-
-      lines.push(
-        "This upload is on-chain and cannot be edited or deleted once posted. Please make sure everything is correct before proceeding."
-      );
-
-      if (mode === "video" && (p.monetization.ppvEnabled || p.monetization.bountyEnabled || p.monetization.tokenGatedEnabled)) {
-        lines.push("");
-        lines.push("Monetization details:");
-
-        if (p.monetization.ppvEnabled) {
-          lines.push(`• Pay Per View: ${p.monetization.ppvData.price} DHB`);
-        }
-
-        if (p.monetization.bountyEnabled) {
-          const reward = parsePositiveNumber(p.monetization.bountyData.rewardPerPerson) ?? 0;
-          const viewers = parsePositiveNumber(p.monetization.bountyData.viewers) ?? 0;
-          const commenters = parsePositiveNumber(p.monetization.bountyData.commenters) ?? 0;
-          const total = reward * (viewers + commenters);
-          lines.push(
-            `• Bounty: ${p.monetization.bountyData.rewardPerPerson} DHB per person (${p.monetization.bountyData.viewers} viewers, ${p.monetization.bountyData.commenters} commenters) — Total: ${total} DHB`
-          );
-        }
-
-        if (p.monetization.tokenGatedEnabled) {
-          const gateSym = p.monetization.tokenGateData.tokenSymbol || "DHB";
-          lines.push(`• Token Gated: Minimum ${p.monetization.tokenGateData.minAmount} ${gateSym} required to view`);
-        }
-      }
-
-      return lines.join("\n");
-    },
-    [],
-  );
-
-
   const preUploadCheck = useCallback(
     (p: UploadPayload): ValidationResult => {
       const postingOnSolana = isSolanaChain(p.postChainId);
@@ -523,7 +484,6 @@ export function useUploadPost() {
   return {
     validate,
     preUploadCheck,
-    buildConfirmText,
     enqueueJob,
     enqueueQuoteJob,
   };
