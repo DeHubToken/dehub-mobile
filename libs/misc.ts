@@ -154,6 +154,28 @@ export function getImageUrlApiSimple(url: string): string {
   return `${base}/${path}`;
 }
 
+/**
+ * Multi-image posts: cdn/feed-images/{filename}, resized. Mirrors web's
+ * buildFeedImageUrls. These used to go through getImageUrlApiSimple — the raw
+ * API origin — which served full-resolution originals with no resize and no
+ * CDN cache: the exact cost the width plumbing above exists to avoid.
+ */
+export function buildFeedImageUrls(
+  apiImageUrls: string[] | undefined | null,
+  /** Rendered width in CSS points; DPR is applied inside cdnImage. */
+  widthPt?: number,
+): string[] {
+  if (!apiImageUrls?.length) return [];
+  return apiImageUrls.map((imgUrl) => {
+    if (!imgUrl) return "";
+    if (imgUrl.startsWith("http")) return cdnImage(imgUrl, { width: widthPt });
+    const filename = imgUrl.split("/").pop() || "";
+    return filename
+      ? cdnImage(`${baseUrlWithoutSlash}/feed-images/${filename}`, { width: widthPt })
+      : imgUrl;
+  });
+}
+
 /** Resolve a relative audio path (e.g. "feed-audio/123-audio.audio") to a full CDN URL */
 export function getAudioUrl(url: string): string {
   if (!url) return "";

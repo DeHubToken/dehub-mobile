@@ -38,3 +38,12 @@ export async function isPostDeleted(tokenId: string | number): Promise<boolean> 
 export function isPostDeletedSync(tokenId: string | number): boolean {
   return cache !== null && cache.has(String(tokenId));
 }
+
+/**
+ * Warm the in-memory cache so isPostDeletedSync can answer. The feed lists
+ * call this on mount — without it the sync check is always false until the
+ * first markPostDeleted of the session.
+ */
+export async function warmDeletedPosts(): Promise<void> {
+  await load();
+}

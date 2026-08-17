@@ -45,6 +45,7 @@ import {
   type TokenId,
 } from "../../services/view.service";
 import { feedEvents } from "../../libs/eventBus";
+import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import SuggestedAccountsSection from "./SuggestedAccountsSection";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
@@ -257,31 +258,43 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     },
   });
 
+  // Locally-deleted posts keep coming back from cached pages until a refetch;
+  // the tombstone store exists for exactly this and was written but never read.
+  const [tombstonesReady, setTombstonesReady] = useState(false);
+  useEffect(() => {
+    warmDeletedPosts().then(() => setTombstonesReady(true)).catch(() => {});
+  }, []);
+
   const items = useMemo<FeedItem[]>(() => {
     const pages = data?.pages ?? [];
-    return pages.flatMap((res, pageIdx) =>
-      (res.result || []).map((it, idx) => {
-        // Always include page + index to guarantee uniqueness even if backend returns duplicate ids
-        const base =
-          (it as any).tokenId ||
-          (it as any).id ||
-          (it as any).nftId ||
-          (it as any).streamKey ||
-          (it as any).stream?.id ||
-          (it as any).stream?.streamKey ||
-          `auto`; // fallback
-        const created =
-          (it as any).createdAt ||
-          (it as any).stream?.createdAt ||
-          (it as any).created_at ||
-          `nocreated`;
-        return {
-          ...it,
-          __listKey: `${base}-${created}-p${pageIdx + 1}-i${idx}`,
-        };
-      }),
-    );
-  }, [data]);
+    return pages
+      .flatMap((res, pageIdx) =>
+        (res.result || []).map((it, idx) => {
+          // Always include page + index to guarantee uniqueness even if backend returns duplicate ids
+          const base =
+            (it as any).tokenId ||
+            (it as any).id ||
+            (it as any).nftId ||
+            (it as any).streamKey ||
+            (it as any).stream?.id ||
+            (it as any).stream?.streamKey ||
+            `auto`; // fallback
+          const created =
+            (it as any).createdAt ||
+            (it as any).stream?.createdAt ||
+            (it as any).created_at ||
+            `nocreated`;
+          return {
+            ...it,
+            __listKey: `${base}-${created}-p${pageIdx + 1}-i${idx}`,
+          };
+        }),
+      )
+      .filter((it: any) => {
+        const id = it.tokenId ?? it.id ?? it.stream?.tokenId;
+        return id == null || !isPostDeletedSync(id);
+      });
+  }, [data, tombstonesReady]);
 
   const endReached = hasNextPage === false;
   const error = queryError ? (queryError as Error).message || "Failed to load" : null;

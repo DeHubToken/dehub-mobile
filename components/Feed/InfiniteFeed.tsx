@@ -23,6 +23,7 @@ import {
 } from "../../services/view.service";
 import { useFeedCardVisibility } from "../../hooks/useFeedCardVisibility";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
 
 export type InfiniteFeedRenderItemInfo = {
   item: GetNFTsResult;
@@ -239,16 +240,28 @@ const InfiniteFeedBase: React.FC<
       (lastPage.result?.length ?? 0) < pageSize ? undefined : (lastPageParam as number) + 1,
   });
 
+  // Locally-deleted posts keep coming back from cached pages until a refetch;
+  // the tombstone store exists for exactly this and was written but never read.
+  const [tombstonesReady, setTombstonesReady] = useState(false);
+  useEffect(() => {
+    warmDeletedPosts().then(() => setTombstonesReady(true)).catch(() => {});
+  }, []);
+
   const items = useMemo<FeedItem[]>(() => {
     const pages = data?.pages ?? [];
-    return pages.flatMap((res, pageNum) =>
-      (res.result || []).map((it, idx) => {
-        const base = (it as any).tokenId || (it as any).id || (it as any).nftId || `auto`;
-        const created = (it as any).createdAt || (it as any).created_at || `nocreated`;
-        return { ...(it as any), __listKey: `${base}-${created}-p${pageNum}-i${idx}` } as FeedItem;
-      }),
-    );
-  }, [data]);
+    return pages
+      .flatMap((res, pageNum) =>
+        (res.result || []).map((it, idx) => {
+          const base = (it as any).tokenId || (it as any).id || (it as any).nftId || `auto`;
+          const created = (it as any).createdAt || (it as any).created_at || `nocreated`;
+          return { ...(it as any), __listKey: `${base}-${created}-p${pageNum}-i${idx}` } as FeedItem;
+        }),
+      )
+      .filter((it: any) => {
+        const id = it.tokenId ?? it.id;
+        return id == null || !isPostDeletedSync(id);
+      });
+  }, [data, tombstonesReady]);
 
   const endReached = hasNextPage === false;
   const initialLoading = isLoading;
