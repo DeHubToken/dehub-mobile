@@ -443,6 +443,7 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
                   ? "dislike"
                   : null
               }
+              myReaction={nftData?.myReaction ?? nftData?.result?.myReaction ?? null}
               chainId={
                 (nftData?.chainId ?? nftData?.result?.chainId) as any
               }

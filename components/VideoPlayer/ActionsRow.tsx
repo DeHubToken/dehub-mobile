@@ -12,6 +12,7 @@ import { useUser, useAuthActions } from "../../context/AuthContext";
 import { likeLiveStream } from "../../services/live.service";
 import { toastError, toastInfo } from "../../libs/toast";
 import { WEBSITE_LINK } from "../../config";
+import type { PostReaction } from "../../libs/reactions";
 
 export interface ActionsRowProps {
   likes: number;
@@ -19,6 +20,7 @@ export interface ActionsRowProps {
   tokenId: number | string | undefined;
   minter?: string;
   userVote?: 'like' | 'dislike' | null;
+  myReaction?: PostReaction | null;
   chainId?: number;
   mintTxHash?: string;
   /**
@@ -42,6 +44,7 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
   tokenId,
   minter,
   userVote: initialUserVote,
+  myReaction,
   chainId,
   mintTxHash,
   postStatus,
@@ -122,10 +125,10 @@ const ActionsRow: React.FC<ActionsRowProps> = ({
           <Text className="text-theme-neutrals-100 text-xs ml-1">{likeCount.toLocaleString()}</Text>
         </TouchableOpacity>
       ) : (
-        <LikeButton vote tokenId={tokenId} votes={likes} userVote={userVote} onVoted={(d) => setUserVote(d)} />
+        <LikeButton vote tokenId={tokenId} votes={likes} userVote={userVote} myReaction={myReaction} onVoted={(d) => setUserVote(d)} />
       )}
       {!isLive && (
-        <LikeButton vote={false} tokenId={tokenId} votes={dislikes} userVote={userVote} onVoted={(d) => setUserVote(d)} />
+        <LikeButton vote={false} tokenId={tokenId} votes={dislikes} userVote={userVote} myReaction={myReaction} onVoted={(d) => setUserVote(d)} />
       )}
 
       {/* Live Gift (glass modal) or VOD Tip */}

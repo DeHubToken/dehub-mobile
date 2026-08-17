@@ -326,7 +326,8 @@ export async function getPostReactions(tokenId: number | string): Promise<PostRe
   if (tokenId == null) return undefined;
   try {
     return await apiClient.get<PostReactionsResponse>(
-      `/post-reactions?tokenId=${encodeURIComponent(String(tokenId))}`
+      `/post-reactions?tokenId=${encodeURIComponent(String(tokenId))}`,
+      { isAuthRequired: true },
     );
   } catch (e) {
     console.warn('[NFTService] getPostReactions error', e);

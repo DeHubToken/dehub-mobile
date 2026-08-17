@@ -14,19 +14,26 @@ export interface LikeButtonProps {
   votes?: number; // initial count
   className?: string;
   userVote?: 'like' | 'dislike' | null;
+  /** Exact persisted reaction, restored from the post API after a reload. */
+  myReaction?: PostReaction | null;
   onVoted?: (dir: 'like' | 'dislike') => void;
 }
 
-const LikeButton: React.FC<LikeButtonProps> = ({ vote, tokenId, votes = 0, className, userVote = null, onVoted }) => {
+const LikeButton: React.FC<LikeButtonProps> = ({ vote, tokenId, votes = 0, className, userVote = null, myReaction = null, onVoted }) => {
   const { requireAuth } = useAuthActions();
   const { account } = useWeb3Provider();
   const [count, setCount] = useState<number>(Number(votes) || 0);
   const [pending, setPending] = useState(false);
   const [optimisticActive, setOptimisticActive] = useState(false);
-  const [chosenReaction, setChosenReaction] = useState<PostReaction | null>(null);
+  const [chosenReaction, setChosenReaction] = useState<PostReaction | null>(
+    myReaction ?? (userVote === 'like' ? 'like' : userVote === 'dislike' ? 'dislike' : null),
+  );
   const [pickerOpen, setPickerOpen] = useState(false);
   const scale = useRef(new Animated.Value(1)).current;
   const already = userVote != null;
+  const reactionForButton = chosenReaction && isPositiveReaction(chosenReaction) === vote
+    ? chosenReaction
+    : null;
 
   /**
    * Cast a reaction.
@@ -104,6 +111,12 @@ const LikeButton: React.FC<LikeButtonProps> = ({ vote, tokenId, votes = 0, class
     }
   }, [userVote]);
 
+  useEffect(() => {
+    setChosenReaction(
+      myReaction ?? (userVote === 'like' ? 'like' : userVote === 'dislike' ? 'dislike' : null),
+    );
+  }, [myReaction, userVote]);
+
   return (
     <View style={{ position: "relative" }}>
       {/* Only the positive button carries the tray — the thumbs-down instance
@@ -126,8 +139,8 @@ const LikeButton: React.FC<LikeButtonProps> = ({ vote, tokenId, votes = 0, class
         className={containerCls}
       >
         <Animated.View className="mr-1" style={{ transform: [{ scale }] }}>
-          {chosenReaction && chosenReaction !== 'like' && chosenReaction !== 'dislike' ? (
-            <Text style={{ fontSize: 13, lineHeight: 18 }}>{reactionMeta(chosenReaction).emoji}</Text>
+          {reactionForButton && reactionForButton !== 'like' && reactionForButton !== 'dislike' ? (
+            <Text style={{ fontSize: 13, lineHeight: 18 }}>{reactionMeta(reactionForButton).emoji}</Text>
           ) : (
             <Ionicons name={iconName as any} size={14} color={iconColor} />
           )}

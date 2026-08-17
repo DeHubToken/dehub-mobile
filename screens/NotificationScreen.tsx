@@ -45,7 +45,7 @@ type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'repost
 
 const TYPE_TABS: { key: NotificationTypeFilter; icon: string; label: string }[] = [
   { key: 'all', icon: 'Bell', label: 'All' },
-  { key: 'likes', icon: 'ThumbsUp', label: 'Likes' },
+  { key: 'likes', icon: 'ThumbsUp', label: 'Reactions' },
   { key: 'follows', icon: 'UserPlus', label: 'Follows' },
   { key: 'comments', icon: 'MessageSquareText', label: 'Comments' },
   { key: 'reposts', icon: 'Repeat2', label: 'Reposts' },
