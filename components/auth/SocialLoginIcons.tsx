@@ -26,6 +26,12 @@ interface SocialLoginIconsProps {
   onConnectWallet?: () => void;
   busyProvider?: string; // 'google' | 'apple' | 'email' | 'phone' | 'wallet'
   disabled?: boolean;
+  /**
+   * Passed straight to the two rows that expand into a text field. The host
+   * screen owns the ScrollView, so only it can scroll a newly-revealed input
+   * clear of the keyboard that input's own autoFocus just raised.
+   */
+  onFieldExpand?: (node: View | null) => void;
 }
 
 /**
@@ -43,6 +49,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   onConnectWallet,
   busyProvider,
   disabled,
+  onFieldExpand,
 }) => {
   return (
     <View style={{ width: "100%", gap: 12 }}>
@@ -52,6 +59,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
         }}
         loading={busyProvider === "email"}
         disabled={disabled}
+        onExpand={onFieldExpand}
       />
 
       <AuthButton
@@ -78,6 +86,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
         onSubmit={onPhoneSubmit}
         loading={busyProvider === "phone"}
         disabled={disabled}
+        onExpand={onFieldExpand}
       />
 
       {/* Connect Wallet — authenticate with an external wallet app (MetaMask,
