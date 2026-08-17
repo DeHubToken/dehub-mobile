@@ -95,6 +95,8 @@ function rebuildFormData(job: UploadJob): FormData {
   fd.append("category", JSON.stringify(payload.categories));
   fd.append("postType", payload.postType);
 
+  // "short" is no longer produced — the composer posts every video as `video`
+  // — but a job queued by an older build can still be sitting in storage.
   if (payload.postType === "video" || payload.postType === "short") {
     if (payload.video) {
       // @ts-ignore RN FormData file shape
@@ -112,7 +114,6 @@ function rebuildFormData(job: UploadJob): FormData {
         type: "image/jpeg",
       } as any);
     }
-    fd.append("streamInfo", payload.postType === "short" ? "{}" : payload.streamInfoJson);
   } else if (payload.postType === "feed-audio") {
     if (payload.audio) {
       // @ts-ignore RN FormData file shape
@@ -122,7 +123,6 @@ function rebuildFormData(job: UploadJob): FormData {
         type: payload.audio.mimeType,
       } as any);
     }
-    fd.append("streamInfo", "{}");
   } else if (payload.postType === "feed-images") {
     for (const img of payload.images) {
       // @ts-ignore RN FormData file shape
@@ -132,10 +132,11 @@ function rebuildFormData(job: UploadJob): FormData {
         type: img.mimeType,
       } as any);
     }
-    fd.append("streamInfo", "{}");
-  } else {
-    fd.append("streamInfo", "{}");
   }
+
+  // Access and monetization ride every post type, as they do from web — the
+  // composer already sends "{}" when nothing is set.
+  fd.append("streamInfo", payload.streamInfoJson || "{}");
 
   fd.append("plans", JSON.stringify([]));
   if (walletAddress) fd.append("address", walletAddress.toLowerCase());
