@@ -35,6 +35,9 @@ export enum ScreenNames {
   Drafts = 'Drafts',
   MyLibrary = 'MyLibrary',
   PostResolver = 'PostResolver',
+  /** Same component as PostResolver — react-navigation allows one deep-link
+   *  path per screen, and /newpost/:n needs its own. */
+  PostResolverNewPost = 'PostResolverNewPost',
   LiveChat = 'LiveChat',
   LiveChatInfo = 'LiveChatInfo',
   FullscreenVideo = 'FullscreenVideo',

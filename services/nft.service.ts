@@ -868,6 +868,30 @@ export async function getMintFee(chainId: number): Promise<MintFeeQuoteResponse 
   }
 }
 
+export interface NewPostResolution {
+  tokenId: number;
+  newPostId: number;
+  /** True once the post minted — land on the post by tokenId either way. */
+  minted: boolean;
+}
+
+/**
+ * Resolve an off-chain post slug (dehub.io/newpost/<n>) to its post.
+ *
+ * The mapping survives minting, so a link shared while the post was off-chain
+ * keeps working forever. Null on unknown slugs and transport failure alike.
+ */
+export async function resolveNewPost(n: number | string): Promise<NewPostResolution | null> {
+  try {
+    const res = await apiClient.get<any>(`/newpost/${encodeURIComponent(String(n))}`);
+    const raw = (res as any)?.data ?? res;
+    return raw && typeof raw.tokenId === "number" ? (raw as NewPostResolution) : null;
+  } catch (e) {
+    console.warn("[NFTService] resolveNewPost failed", e);
+    return null;
+  }
+}
+
 /**
  * Ask for a fresh mint signature for a post published off-chain.
  *

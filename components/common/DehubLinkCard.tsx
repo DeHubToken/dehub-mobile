@@ -72,30 +72,37 @@ const RowCard: React.FC<RowCardProps> = ({
     delayLongPress={350}
     style={[styles.card, dimmed && styles.cardDimmed]}
   >
+    {/* The cover, whole and uncropped — the same 16:9 contain-on-black
+        treatment the stage page itself uses. It used to be a dimmed
+        object-cover layer BEHIND the row, which reduced a full graphic to
+        ~68px of its middle. */}
     {!!bannerUri && (
-      <>
-        <Image source={{ uri: bannerUri }} style={styles.bannerBg} contentFit="cover" />
-        <View style={styles.bannerScrim} />
-      </>
+      <Image source={{ uri: bannerUri }} style={styles.banner} contentFit="contain" />
     )}
-    <View style={styles.thumbWrap}>
-      {imageUri ? (
-        <Image source={{ uri: imageUri }} style={styles.thumb} contentFit="cover" />
-      ) : (
-        <Icon name={fallbackIcon} size={20} color="#71717a" />
+    <View style={styles.row}>
+      {/* With the banner showing the artwork in full, repeating it as a 48px
+          square is noise — the thumb only earns its place bannerless. */}
+      {!bannerUri && (
+        <View style={styles.thumbWrap}>
+          {imageUri ? (
+            <Image source={{ uri: imageUri }} style={styles.thumb} contentFit="cover" />
+          ) : (
+            <Icon name={fallbackIcon} size={20} color="#71717a" />
+          )}
+        </View>
       )}
-    </View>
-    <View style={styles.body}>
-      {!!eyebrow && <Text style={styles.eyebrow}>{eyebrow}</Text>}
-      <Text style={styles.title} numberOfLines={1}>
-        {title}
-      </Text>
-      {!!subtitle && (
-        <Text style={styles.subtitle} numberOfLines={1}>
-          {subtitle}
+      <View style={styles.body}>
+        {!!eyebrow && <Text style={styles.eyebrow}>{eyebrow}</Text>}
+        <Text style={styles.title} numberOfLines={1}>
+          {title}
         </Text>
-      )}
-      {!!meta && <Text style={styles.meta}>{meta}</Text>}
+        {!!subtitle && (
+          <Text style={styles.subtitle} numberOfLines={1}>
+            {subtitle}
+          </Text>
+        )}
+        {!!meta && <Text style={styles.meta}>{meta}</Text>}
+      </View>
     </View>
   </TouchableOpacity>
 );
@@ -532,10 +539,6 @@ const BUBBLE_CARD_WIDTH = Math.min(240, Math.round(Dimensions.get('window').widt
 const styles = StyleSheet.create({
   bubbleWrap: { width: BUBBLE_CARD_WIDTH, paddingHorizontal: 8, paddingBottom: 2 },
   card: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    padding: 10,
     marginTop: 8,
     borderRadius: 14,
     backgroundColor: 'rgba(255,255,255,0.04)',
@@ -545,8 +548,13 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   cardDimmed: { opacity: 0.65 },
-  bannerBg: { ...StyleSheet.absoluteFillObject, opacity: 0.3 },
-  bannerScrim: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.5)' },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    padding: 10,
+  },
+  banner: { width: '100%', aspectRatio: 16 / 9, backgroundColor: '#000' },
   thumbWrap: {
     width: 48,
     height: 48,
