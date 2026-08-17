@@ -40,7 +40,7 @@ import { runWithPermissions } from "../../libs/permissions.util";
 import { AuthService } from "../../services/auth.service";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { WEBSITE_LINK } from "../../config";
-import { translateText, getDeviceLanguage } from "../../services/translation.service";
+import { translateText, getUserLanguage } from "../../services/translation.service";
 import { TranslateButton } from "../ui/TranslateButton";
 
 const ProfileHeader = () => {
@@ -49,7 +49,13 @@ const ProfileHeader = () => {
   const { refreshUser, patchUser } = useAuthActions();
   const [translatedBio, setTranslatedBio] = useState<string | null>(null);
   const [isTranslatingBio, setIsTranslatingBio] = useState(false);
-  const targetLang = useRef(getDeviceLanguage());
+  // The reader's chosen language, not the handset's: a Turkish reader on an
+  // English phone was being served "translations" back into English.
+  //
+  // Left on-demand deliberately, unlike every other surface — this is the
+  // signed-in user's OWN bio, which they wrote. Auto-translating someone's own
+  // words back at them is not the parity anyone wanted.
+  const targetLang = useRef(getUserLanguage());
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
   const [localAvatarUri, setLocalAvatarUri] = useState<string | null>(null);
   const [uploadingCover, setUploadingCover] = useState(false);
