@@ -397,14 +397,12 @@ export default function UploadScreen() {
   // live mode (the stream title); otherwise it follows the user's toggle.
   const showTitleInput = showTitle || hasVideoOrAudio || isLiveMode;
   const pollIsValid = pollEnabled && pollQuestion.trim().length > 0 && pollOptions.filter(o => o.trim()).length >= 2;
-  const hasContent = bodyText.trim().length > 0 || hasMedia || isQuoteMode || pollIsValid;
   const canPost = !isLiveMode && (bodyText.trim().length > 0 || hasMedia || isQuoteMode || pollIsValid);
   const canGoLive = isLiveMode && titleText.trim().length > 0 && !!(liveThumbnailUri || coverUri);
 
-  // Show title-toggle/category area when user has typed or picked media
-  // Once opened, they stay even if the text is cleared (to preserve filled data)
-  const showExtras = isLiveMode || hasContent
-    || titleText.length > 0 || categories.length > 0;
+  // The post options are rendered unconditionally, as web's PostAccessToggles is.
+  // They used to appear only once there was content, which hid the mint switch —
+  // the one option you most want to see before you start — behind typing.
 
   // The action bar hides a control the draft can't use rather than dimming it,
   // matching dehubweb's PostActionBar — which also keeps the row short enough to
@@ -1931,36 +1929,6 @@ export default function UploadScreen() {
               </TouchableOpacity>
             )}
 
-            {!isLiveMode && !isQuoteMode && (
-              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 px-4 py-3">
-                <View className="flex-row items-center justify-between">
-                  <View className="flex-row items-center flex-1 mr-3">
-                    <Icon name="Coins" size={16} color="#fff" />
-                    <Text className="text-white text-sm font-medium ml-2">
-                      Mint post
-                    </Text>
-                    {shouldMint && mintFeeLabel ? (
-                      <Text className="text-theme-neutrals-500 text-xs ml-2">
-                        {mintFeeLabel}
-                      </Text>
-                    ) : null}
-                  </View>
-                  <CustomSwitch
-                    value={effectiveShouldMint}
-                    onValueChange={handleSetShouldMint}
-                    disabled={mintRequired}
-                  />
-                </View>
-                <Text className="text-theme-neutrals-500 text-xs mt-1.5">
-                  {mintRequired
-                    ? "Required — a bounty is locked by the mint transaction."
-                    : effectiveShouldMint
-                      ? "Published on-chain. Needs your wallet."
-                      : "Posts straight away. You can mint it later from the post menu."}
-                </Text>
-              </View>
-            )}
-
             {isAudioRecording && (
               <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 p-4">
                 <View className="flex-row items-center">
@@ -2169,113 +2137,132 @@ export default function UploadScreen() {
               </View>
             )}
 
-            {/* One list of post options, in web's order: Title, Category,
+            {/* One list of post options, in web's order: Mint, Title, Category,
                 Community, then the access/monetization switches. Every switch
                 applies to every post type, as it does on web — a text or image
-                post can be gated or sold just like a video. */}
-            {showExtras && (
-              <View className="mt-4">
-                {/* Title is forced on for video/audio/live, toggleable for the
-                    rest — same rule as web's PostAccessToggles. Non-video
-                    quotes can't carry a title, so the switch hides there. */}
-                {!isQuoteMode && !isLiveMode && !hasVideoOrAudio && (
-                  <View className="flex-row items-center justify-between">
-                    <View className="flex-row items-center">
-                      <Icon name="Type" size={18} color="#6F7174" />
-                      <Text className="text-theme-neutrals-400 text-sm ml-1.5">
-                        Title
+                post can be gated or sold just like a video. Rendered whatever
+                the draft holds, so the options are on screen from first open. */}
+            <View className="mt-4">
+              {/* Mint sits in the list rather than in a card of its own, as
+                  web's first PostAccessToggles row. Off by default, so a first
+                  post needs no wallet at all. */}
+              {!isLiveMode && !isQuoteMode && (
+                <View className="flex-row items-center justify-between py-3">
+                  <View className="flex-row items-center flex-1 mr-3">
+                    <Icon name="Coins" size={18} color="#fff" />
+                    <Text className="text-white text-sm ml-3">Mint post</Text>
+                    {/* Web can afford a separate span for each of these; a phone
+                        row cannot, so they share one line when both apply. */}
+                    {mintRequired || (effectiveShouldMint && mintFeeLabel) ? (
+                      <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
+                        ({[mintRequired ? "required for bounty" : null, effectiveShouldMint ? mintFeeLabel : null]
+                          .filter(Boolean)
+                          .join(" · ")})
                       </Text>
-                    </View>
+                    ) : null}
+                  </View>
+                  <CustomSwitch
+                    value={effectiveShouldMint}
+                    onValueChange={handleSetShouldMint}
+                    disabled={mintRequired}
+                  />
+                </View>
+              )}
+
+              {/* Title is forced on for video/audio/live, toggleable for the
+                  rest — same rule as web's PostAccessToggles. Non-video
+                  quotes can't carry a title, so the switch hides there. */}
+              {!isQuoteMode && !isLiveMode && !hasVideoOrAudio && (
+                <View className="flex-row items-center justify-between py-3">
+                  <View className="flex-row items-center">
+                    <Icon name="Type" size={18} color="#fff" />
+                    <Text className="text-white text-sm ml-3">Title</Text>
+                  </View>
+                  <CustomSwitch
+                    value={showTitle}
+                    onValueChange={handleToggleTitle}
+                  />
+                </View>
+              )}
+
+              <View className="py-3">
+                {plainCategories.length > 0 && (
+                  <View className="flex-row flex-wrap gap-2 mb-2">
+                    {plainCategories.map((c) => (
+                      <View
+                        key={c}
+                        className="flex-row items-center px-2 py-1 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700"
+                      >
+                        <Text className="text-white text-xs">{c.charAt(0).toUpperCase() + c.slice(1)}</Text>
+                        <TouchableOpacity
+                          onPress={() => removeCategory(c)}
+                          className="ml-1"
+                        >
+                          <Icon name="CircleX" size={14} color="#6F7174" />
+                        </TouchableOpacity>
+                      </View>
+                    ))}
+                  </View>
+                )}
+
+                {categories.length < CATEGORIES_MAX && (
+                  <TouchableOpacity
+                    onPress={openCategoryDrawer}
+                    activeOpacity={0.7}
+                    className="flex-row items-center"
+                  >
+                    <Icon name="Tag" size={18} color="#fff" />
+                    <Text className="text-white text-sm ml-3">Add categories</Text>
+                  </TouchableOpacity>
+                )}
+
+              </View>
+
+              {/* Community — only for the ones this account belongs to, the
+                  same condition web puts on its Community switch. Filing a
+                  post means carrying the slug as a category. */}
+              {!isLiveMode && userCommunities.length > 0 && (
+                <View className="py-3">
+                  <View className="flex-row items-center justify-between">
+                    <TouchableOpacity
+                      onPress={() => setCommunityOpen(true)}
+                      activeOpacity={0.7}
+                      className="flex-row items-center flex-1"
+                    >
+                      <Icon name="Users" size={18} color="#fff" />
+                      <Text className="text-white text-sm ml-3">Community</Text>
+                    </TouchableOpacity>
                     <CustomSwitch
-                      value={showTitle}
-                      onValueChange={handleToggleTitle}
+                      value={!!selectedCommunity}
+                      onValueChange={(v) =>
+                        v ? setCommunityOpen(true) : handleClearCommunity()
+                      }
                     />
                   </View>
-                )}
-
-                <View className="mt-4">
-                  {plainCategories.length > 0 && (
-                    <View className="flex-row flex-wrap gap-2 mb-2">
-                      {plainCategories.map((c) => (
-                        <View
-                          key={c}
-                          className="flex-row items-center px-2 py-1 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700"
-                        >
-                          <Text className="text-white text-xs">{c.charAt(0).toUpperCase() + c.slice(1)}</Text>
-                          <TouchableOpacity
-                            onPress={() => removeCategory(c)}
-                            className="ml-1"
-                          >
-                            <Icon name="CircleX" size={14} color="#6F7174" />
-                          </TouchableOpacity>
-                        </View>
-                      ))}
-                    </View>
-                  )}
-
-                  {categories.length < CATEGORIES_MAX && (
-                    <TouchableOpacity
-                      onPress={openCategoryDrawer}
-                      activeOpacity={0.7}
-                      className="flex-row items-center"
-                    >
-                      <Icon name="Tag" size={18} color="#6F7174" />
-                      <Text className="text-theme-neutrals-400 text-sm ml-1.5">
-                        Add categories
-                      </Text>
-                    </TouchableOpacity>
-                  )}
-
-                </View>
-
-                {/* Community — only for the ones this account belongs to, the
-                    same condition web puts on its Community switch. Filing a
-                    post means carrying the slug as a category. */}
-                {!isLiveMode && userCommunities.length > 0 && (
-                  <View className="mt-4">
-                    <View className="flex-row items-center justify-between">
-                      <TouchableOpacity
-                        onPress={() => setCommunityOpen(true)}
-                        activeOpacity={0.7}
-                        className="flex-row items-center flex-1"
-                      >
-                        <Icon name="Users" size={18} color="#6F7174" />
-                        <Text className="text-theme-neutrals-400 text-sm ml-1.5">
-                          Community
+                  {selectedCommunity && (
+                    <View className="flex-row flex-wrap gap-2 mt-2">
+                      <View className="flex-row items-center px-2 py-1 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700">
+                        <Icon name="Users" size={12} color="#6F7174" />
+                        <Text className="text-white text-xs ml-1">
+                          {selectedCommunity.name}
                         </Text>
-                      </TouchableOpacity>
-                      <CustomSwitch
-                        value={!!selectedCommunity}
-                        onValueChange={(v) =>
-                          v ? setCommunityOpen(true) : handleClearCommunity()
-                        }
-                      />
-                    </View>
-                    {selectedCommunity && (
-                      <View className="flex-row flex-wrap gap-2 mt-2">
-                        <View className="flex-row items-center px-2 py-1 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700">
-                          <Icon name="Users" size={12} color="#6F7174" />
-                          <Text className="text-white text-xs ml-1">
-                            {selectedCommunity.name}
-                          </Text>
-                          <TouchableOpacity onPress={handleClearCommunity} className="ml-1">
-                            <Icon name="CircleX" size={14} color="#6F7174" />
-                          </TouchableOpacity>
-                        </View>
+                        <TouchableOpacity onPress={handleClearCommunity} className="ml-1">
+                          <Icon name="CircleX" size={14} color="#6F7174" />
+                        </TouchableOpacity>
                       </View>
-                    )}
-                  </View>
-                )}
+                    </View>
+                  )}
+                </View>
+              )}
 
-                {!isLiveMode && !isQuoteMode && (
-                  <MonetizationPanel
-                    state={monetization}
-                    onChange={handleMonetizationChange}
-                    postChainId={effectivePostChainId}
-                  />
-                )}
-              </View>
-            )}
+              {!isLiveMode && !isQuoteMode && (
+                <MonetizationPanel
+                  state={monetization}
+                  onChange={handleMonetizationChange}
+                  postChainId={effectivePostChainId}
+                />
+              )}
+            </View>
           </View>
         </View>
         </Pressable>
