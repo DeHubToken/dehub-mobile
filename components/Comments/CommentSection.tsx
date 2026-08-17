@@ -11,6 +11,7 @@ import {
   RefreshControl,
 } from "react-native";
 import Icon from "../ui/Icon";
+import { COMPOSER, composerStyles } from "./composerLayout";
 import CommentItem from "./CommentItem";
 import CommentContextMenu from "./CommentContextMenu";
 import CommentLikersSheet from "./CommentLikersSheet";
@@ -934,11 +935,13 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           borderTopColor: "rgba(255,255,255,0.06)",
           backgroundColor: "rgba(12,12,14,0.8)",
           marginBottom: inputLift,
-          paddingBottom: 8,
         }}
       >
         {(replyingTo || editingComment) && !recorder.isRecording && (
-          <View className="flex-row items-center px-4 py-2" style={{ backgroundColor: "rgba(255,255,255,0.04)" }}>
+          <View
+            className="flex-row items-center py-2"
+            style={{ backgroundColor: "rgba(255,255,255,0.04)", paddingHorizontal: COMPOSER.gutter }}
+          >
             <Icon name="CornerDownLeft" size={14} color="#6F7174" />
             <Text style={{ flex: 1, fontSize: 12, color: "#A6A9AC", marginLeft: 6 }}>
               {editingComment ? "Editing comment" : `Replying to @${replyingTo?.user?.displayName || replyingTo?.user?.username || "user"}`}
@@ -957,7 +960,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         />
 
         {commentsDisabled ? (
-          <View className="flex-row items-center justify-center px-4 py-4" style={{ gap: 8 }}>
+          <View
+            className="flex-row items-center justify-center"
+            style={{ gap: COMPOSER.gap, padding: COMPOSER.gutter, minHeight: COMPOSER.control + COMPOSER.gutter * 2 }}
+          >
             <Icon name="MessageSquare" size={16} color="#6F7174" />
             <Text className="text-theme-neutrals-400 text-sm">
               Comments are turned off for this post
@@ -973,19 +979,22 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             sending={mediaPosting}
           />
         ) : (
-          <View className="flex-row items-end px-3 py-2" style={{ gap: 8 }}>
+          <View className="flex-row items-end" style={{ gap: COMPOSER.gap, padding: COMPOSER.gutter }}>
             <View
               style={{
                 flex: 1,
                 flexDirection: "row",
-                alignItems: "flex-end",
+                // `center`, not `flex-end`: a single line of 14px text is ~18 tall
+                // inside a 40 box, and flex-end pinned it to the bottom edge. Once
+                // the text wraps the input grows past the minimum and this is moot.
+                alignItems: "center",
                 backgroundColor: "rgba(255,255,255,0.06)",
-                borderRadius: 12,
+                borderRadius: COMPOSER.radius,
                 borderWidth: 1,
                 borderColor: "rgba(255,255,255,0.08)",
                 paddingHorizontal: 12,
                 paddingVertical: 8,
-                minHeight: 44,
+                minHeight: COMPOSER.control,
               }}
             >
               <TextInput
@@ -995,7 +1004,16 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 onSelectionChange={mentions.handleSelectionChange}
                 placeholder={editingComment ? "Edit your comment..." : replyingTo ? "Write a reply..." : "Type here..."}
                 placeholderTextColor="#6F7174"
-                style={{ flex: 1, color: "#F9FBFF", fontSize: 14, maxHeight: 80, paddingVertical: 0 }}
+                style={{
+                  flex: 1,
+                  color: "#F9FBFF",
+                  fontSize: 14,
+                  maxHeight: 80,
+                  paddingVertical: 0,
+                  // Android multiline inputs default to top-aligned text regardless
+                  // of the parent's alignment.
+                  textAlignVertical: "center",
+                }}
                 maxLength={500}
                 multiline
               />
@@ -1005,27 +1023,39 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
               <Pressable
                 onPress={handlePost}
                 disabled={posting || !inputText.trim()}
-                style={{
-                  backgroundColor: inputText.trim() ? "#F9FBFF" : "rgba(255,255,255,0.1)",
-                  borderRadius: 10,
-                  paddingHorizontal: 16,
-                  paddingVertical: 10,
-                }}
+                accessibilityRole="button"
+                accessibilityLabel="Post comment"
+                style={[
+                  composerStyles.control,
+                  { backgroundColor: inputText.trim() ? "#F9FBFF" : "rgba(255,255,255,0.1)" },
+                ]}
               >
-                {posting ? (
-                  <ActivityIndicator size="small" color="#000" />
-                ) : (
-                  <Text style={{ color: inputText.trim() ? "#010305" : "#6F7174", fontSize: 14, fontWeight: "600" }}>Post</Text>
-                )}
+                {/* The spinner is sized to the label it replaces so the pill does not
+                    resize mid-send. */}
+                <View style={{ minWidth: 30, alignItems: "center" }}>
+                  {posting ? (
+                    <ActivityIndicator size="small" color="#010305" />
+                  ) : (
+                    <Text
+                      style={{
+                        color: inputText.trim() ? "#010305" : "#6F7174",
+                        fontSize: 14,
+                        fontWeight: "600",
+                      }}
+                    >
+                      Post
+                    </Text>
+                  )}
+                </View>
               </Pressable>
             ) : (
-              <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+              <View style={{ flexDirection: "row", alignItems: "center", gap: COMPOSER.gap / 2 }}>
                 <Pressable
                   onPress={handlePickImage}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   accessibilityRole="button"
                   accessibilityLabel="Add image"
-                  style={{ padding: 8, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 10 }}
+                  style={composerStyles.iconControl}
                 >
                   <Icon name="ImagePlus" size={20} color="#8B8D90" />
                 </Pressable>
@@ -1034,8 +1064,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   accessibilityRole="button"
                   accessibilityLabel="Add GIF"
-                  style={{ padding: 8, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 10 }}
+                  style={composerStyles.iconControl}
                 >
+                  {/* A text glyph, not an icon — it only lines up with its neighbours
+                      because the box is sized explicitly rather than by padding. */}
                   <Text style={{ color: "#8B8D90", fontSize: 12, fontWeight: "700" }}>GIF</Text>
                 </Pressable>
                 <Pressable
@@ -1043,7 +1075,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   accessibilityRole="button"
                   accessibilityLabel="Record voice note"
-                  style={{ padding: 8, backgroundColor: "rgba(255,255,255,0.06)", borderRadius: 10 }}
+                  style={composerStyles.iconControl}
                 >
                   <Icon name="Mic" size={20} color="#8B8D90" />
                 </Pressable>
