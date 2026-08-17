@@ -30,6 +30,8 @@ import type { CommentLayout } from "./CommentContextMenu";
 import { WEBSITE_LINK } from "../../config";
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
 import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
+import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
+import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 
 const ICON_MUTED = "#6F7174";
 const ICON_ACTIVE = "#F9FBFF";
@@ -173,8 +175,19 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     [displayContent, dehubLinks],
   );
 
+  // Contract addresses and tickers card up here too. Addresses come out of the
+  // text; tickers stay, because they read as part of the sentence.
+  const assetRefs = useMemo(
+    () => findAssetRefs(linkFreeContent).slice(0, MAX_ASSET_CARDS_PER_MESSAGE),
+    [linkFreeContent],
+  );
+  const assetFreeContent = useMemo(
+    () => stripAssetRefs(linkFreeContent, assetRefs),
+    [linkFreeContent, assetRefs],
+  );
+
   const parsedContent = useMemo(() => {
-    const content = linkFreeContent || "";
+    const content = assetFreeContent || "";
     const parts: { text: string; isMention: boolean; username?: string }[] = [];
     const regex = /@([\w.]+)/g;
     let lastIndex = 0;
@@ -191,7 +204,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
       parts.push({ text: content.slice(lastIndex), isMention: false });
     }
     return parts.length > 0 ? parts : [{ text: content, isMention: false }];
-  }, [linkFreeContent]);
+  }, [assetFreeContent]);
 
   const handleMentionPress = useCallback((username: string) => {
     showUserProfile(username);
@@ -372,7 +385,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             <Text style={{ fontSize: 12, color: "#8B8D90" }}>{timeAgo}</Text>
           </View>
 
-          {linkFreeContent ? (
+          {assetFreeContent ? (
             <Text style={{ fontSize: 14, color: "#C2C4C7", marginTop: 3, lineHeight: 19 }}>
               {parsedContent.map((part, idx) =>
                 part.isMention ? (
@@ -392,6 +405,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
           ) : null}
 
           <DehubLinkCards links={dehubLinks} />
+          <AssetRefCards refs={assetRefs} />
 
           {showTranslate && (
             <TranslateButton

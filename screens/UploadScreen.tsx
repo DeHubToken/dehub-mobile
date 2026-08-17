@@ -48,6 +48,8 @@ import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
 import Avatar from "../components/common/Avatar";
 import MentionSuggestions from "../components/common/MentionSuggestions";
+import AssetSuggestions from "../components/common/AssetSuggestions";
+import { useAssetPicker } from "../hooks/useAssetPicker";
 import CategoryDrawer from "../components/Upload/CategoryDrawer";
 import CommunityDrawer from "../components/Upload/CommunityDrawer";
 import { getUserCommunities } from "../services/communities.service";
@@ -166,6 +168,7 @@ export default function UploadScreen() {
   // for everything else via the "Title" switch in the extras section.
   const [bodyText, setBodyText] = useState("");
   const bodyMentions = useMentions(bodyText, setBodyText);
+  const bodyAssets = useAssetPicker(bodyText, setBodyText);
   const [titleText, setTitleText] = useState("");
   const [showTitle, setShowTitle] = useState(false);
 
@@ -610,8 +613,13 @@ export default function UploadScreen() {
   }, []);
 
   const handleBodyChange = useCallback((text: string) => {
-    if (text.length <= DESCRIPTION_MAX) bodyMentions.handleChangeText(text);
-  }, [bodyMentions]);
+    if (text.length > DESCRIPTION_MAX) return;
+    // The mention hook is the one that owns `setText` while typing — it rewrites
+    // the text to delete a whole mention on backspace. The ticker picker only
+    // reads, so it goes second and sees what was accepted.
+    bodyMentions.handleChangeText(text);
+    bodyAssets.handleChangeText(text);
+  }, [bodyMentions, bodyAssets]);
 
   const {
     validate,
@@ -1628,6 +1636,7 @@ export default function UploadScreen() {
               onSelectionChange={(e) => {
                 bodySelectionRef.current = e.nativeEvent.selection;
                 bodyMentions.handleSelectionChange(e);
+                bodyAssets.handleSelectionChange(e);
               }}
               placeholder={
                 isQuoteMode
@@ -1652,6 +1661,16 @@ export default function UploadScreen() {
               suggestions={bodyMentions.suggestions}
               onSelect={bodyMentions.selectMention}
               loading={bodyMentions.loading}
+            />
+
+            {/* Ticker picker — `$` opens tokens and stocks. Cannot be open at
+                the same time as the mention list: `@` and `$` are different
+                triggers at the same caret. */}
+            <AssetSuggestions
+              visible={bodyAssets.showSuggestions}
+              suggestions={bodyAssets.suggestions}
+              onSelect={bodyAssets.selectAsset}
+              loading={bodyAssets.loading}
             />
 
             <View className="flex-row items-center justify-between mt-1">
