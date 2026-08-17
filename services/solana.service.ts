@@ -14,7 +14,6 @@ import {
   Keypair,
   LAMPORTS_PER_SOL,
   PublicKey,
-  SendTransactionError,
   Transaction,
 } from "@solana/web3.js";
 import { Buffer } from "buffer";
@@ -192,7 +191,9 @@ export async function broadcastSolanaMint(
 ): Promise<SolanaMintResult> {
   const chainId = params.chainId ?? SOLANA_MAINNET_CHAIN_ID;
   const keypair = await getSolanaKeypair();
-  const connection = new Connection(getSolanaRpcUrl(chainId), "confirmed");
+  const rpcUrl = getSolanaRpcUrl(chainId);
+  console.log("[Solana] broadcasting via", rpcUrl.replace(/\/v2\/.+$/, "/v2/<redacted>"));
+  const connection = new Connection(rpcUrl, "confirmed");
 
   let tx: Transaction;
   try {
@@ -202,13 +203,20 @@ export async function broadcastSolanaMint(
     throw new Error("Invalid mint transaction from server. Please try again.");
   }
 
-  // Fee-payer signature — keeps the backend's mint-authority signature intact.
-  try {
-    tx.partialSign(keypair);
-  } catch (err) {
-    throw new Error(
-      err instanceof Error ? err.message : "Failed to sign Solana transaction",
-    );
+  // Sponsored mints are fully signed by the backend already (it pays fees +
+  // rent as fee payer), so the local keypair isn't always a required signer
+  // any more — partialSign throws "unknown signer" if it isn't. Only sign
+  // when this wallet's pubkey actually appears in the transaction's signer
+  // set (still true for the payment path, which spends the user's own SOL).
+  const isRequiredSigner = tx.signatures.some((sig) => sig.publicKey.equals(keypair.publicKey));
+  if (isRequiredSigner) {
+    try {
+      tx.partialSign(keypair);
+    } catch (err) {
+      throw new Error(
+        err instanceof Error ? err.message : "Failed to sign Solana transaction",
+      );
+    }
   }
 
   let signature: string;
@@ -218,23 +226,54 @@ export async function broadcastSolanaMint(
       preflightCommitment: "confirmed",
     });
   } catch (err) {
-    // web3.js's own error text just says "call getLogs() for full details" —
-    // without actually calling it, every simulation failure surfaces as the
-    // same useless "Transaction simulation failed" message.
-    if (err instanceof SendTransactionError) {
-      const logs = await err.getLogs(connection).catch(() => null);
-      console.error("[Solana] sendRawTransaction simulation failed", {
-        message: err.message,
-        logs,
-      });
+    // SendTransactionError.getLogs() fetches the CONFIRMED transaction by
+    // signature — useless here because preflight rejected the tx before it
+    // ever reached the network, so nothing was ever confirmed to fetch. A
+    // fresh simulateTransaction() call is the only way to get the RPC's
+    // actual structured reason (blockhash/signature/account error) instead
+    // of the empty logs array both attempts produce identically.
+    let simErr: unknown;
+    let simLogs: string[] | null | undefined;
+    try {
+      const sim = await connection.simulateTransaction(tx, undefined, undefined);
+      simErr = sim.value.err;
+      simLogs = sim.value.logs;
+    } catch (simulateThrew) {
+      simErr = simulateThrew instanceof Error ? simulateThrew.message : String(simulateThrew);
     }
+    console.error("[Solana] sendRawTransaction failed", {
+      message: err instanceof Error ? err.message : String(err),
+      simulateErr: simErr,
+      simulateLogs: simLogs,
+      // The backend is fee payer on sponsored mints, so this local wallet
+      // isn't necessarily who's actually paying — logged for correlation.
+      localWallet: keypair.publicKey.toBase58(),
+      recentBlockhash: tx.recentBlockhash,
+    });
 
+    const simErrStr = JSON.stringify(simErr).toLowerCase();
     const msg = err instanceof Error ? err.message : String(err);
     const lower = msg.toLowerCase();
-    if (lower.includes("insufficient")) {
-      throw new Error("Insufficient SOL for transaction fees. Add SOL to your wallet.");
+    if (
+      lower.includes("insufficient") ||
+      simErrStr.includes("insufficient") ||
+      // A brand-new fee-payer wallet with zero lamports has no ledger entry
+      // at all yet — same "needs SOL" failure, just surfaced as
+      // AccountNotFound since there's no account to even check a balance on.
+      simErrStr.includes("accountnotfound")
+    ) {
+      // Minting is backend-sponsored (the signer is fee payer), so this is
+      // never the user's own wallet running dry — it's DeHub's funded
+      // wallet. Payments (a different flow, solana-payment.service.ts) do
+      // still spend the user's own SOL and keep their own message for this.
+      throw new Error("Solana minting is temporarily unavailable. Please try again shortly.");
     }
-    if (lower.includes("blockhash") || lower.includes("expired") || lower.includes("timeout")) {
+    if (
+      lower.includes("blockhash") ||
+      lower.includes("expired") ||
+      lower.includes("timeout") ||
+      simErrStr.includes("blockhashnotfound")
+    ) {
       throw new Error("Solana transaction expired. Please try posting again.");
     }
     throw new Error(`Solana broadcast failed: ${msg}`);
