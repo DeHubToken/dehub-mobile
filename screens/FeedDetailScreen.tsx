@@ -4,7 +4,8 @@ import { View, Text, FlatList, TextInput, TouchableOpacity, ActivityIndicator, K
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
-import { getNFT, type Comment, likeComment, type LikeCommentResult, postComment, editComment, deleteComment, postImageComment, postGifComment, postAudioComment } from "../services/nft.service";
+import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, postComment, editComment, deleteComment, postImageComment, postGifComment, postAudioComment } from "../services/nft.service";
+import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
 import FeedCard from "../components/Home/FeedCard";
 import { CommentItem } from "../components/Comments";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
@@ -78,10 +79,12 @@ export default function FeedDetailScreen() {
   // Context menu state
   const [contextComment, setContextComment] = useState<Comment | null>(null);
   const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
-  const [contextMeta, setContextMeta] = useState<{ liked: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
+  const [contextMeta, setContextMeta] = useState<{ liked: boolean; disliked?: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
 
   // Tip-a-comment state + per-comment totals from tip_records
   const [tipComment, setTipComment] = useState<Comment | null>(null);
+  // Author-only who-liked list, opened from an own comment's like button.
+  const [likersCommentId, setLikersCommentId] = useState<number | null>(null);
   const { totals: tipTotals, bump: bumpTipTotal } = useCommentTipTotals(
     comments.map((c) => c.id),
   );
@@ -364,9 +367,18 @@ export default function FeedDetailScreen() {
     }
   }, [address]);
 
+  const handleDislikeComment = useCallback(async (commentId: number): Promise<DislikeCommentResult | void> => {
+    if (!address) return;
+    try {
+      const result = await dislikeComment({ commentId });
+      return result;
+    } catch (e) {
+      console.error("[FeedDetailScreen] dislikeComment error", e);
+    }
+  }, [address]);
 
   const handleCommentLongPress = useCallback(
-    (comment: Comment, layout: CommentLayout, extra: { liked: boolean; isOwnComment: boolean; isReply: boolean }) => {
+    (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked?: boolean; isOwnComment: boolean; isReply: boolean }) => {
       setContextComment(comment);
       setContextLayout(layout);
       setContextMeta(extra);
@@ -407,6 +419,24 @@ export default function FeedDetailScreen() {
       }
     } catch (e) {
       console.error('[FeedDetailScreen] contextLike error', e);
+    }
+  }, [contextComment, address]);
+
+  const handleContextDislike = useCallback(async () => {
+    if (!contextComment || !address) return;
+    try {
+      const result = await dislikeComment({ commentId: contextComment.id });
+      if (result && typeof result.disliked === 'boolean') {
+        setComments((prev) =>
+          prev.map((c) =>
+            c.id === contextComment.id
+              ? { ...c, isDisliked: result.disliked, dislikeCount: result.dislikes }
+              : c
+          )
+        );
+      }
+    } catch (e) {
+      console.error('[FeedDetailScreen] contextDislike error', e);
     }
   }, [contextComment, address]);
 
@@ -460,6 +490,8 @@ export default function FeedDetailScreen() {
             onTip={setTipComment}
             tipTotal={tipTotals[Number(c.id)]}
             onLike={handleLikeComment}
+            onDislike={handleDislikeComment}
+            onShowLikers={setLikersCommentId}
             onLongPress={handleCommentLongPress}
             tokenId={tokenId}
             contentType="feed"
@@ -468,7 +500,7 @@ export default function FeedDetailScreen() {
         </View>
       );
     },
-    [handleReplyPress, handleUserPress, tipTotals, handleLikeComment, handleCommentLongPress, tokenId, highlightedCommentId]
+    [handleReplyPress, handleUserPress, tipTotals, handleLikeComment, handleDislikeComment, handleCommentLongPress, tokenId, highlightedCommentId]
   );
 
   // Send media comment
@@ -858,11 +890,17 @@ export default function FeedDetailScreen() {
         isReply={contextMeta?.isReply}
         isOwnComment={contextMeta?.isOwnComment ?? false}
         liked={contextMeta?.liked}
+        disliked={contextMeta?.disliked}
         canDelete={contextMeta?.isOwnComment}
         onClose={closeContextMenu}
         onReply={contextMeta?.isReply ? undefined : handleContextReply}
         onEdit={contextMeta?.isOwnComment ? handleContextEdit : undefined}
         onDelete={contextMeta?.isOwnComment ? handleContextDelete : undefined}
+        onLike={handleContextLike}
+        onDislike={handleContextDislike}
+        onShowLikers={
+          contextComment ? () => setLikersCommentId(Number(contextComment.id)) : undefined
+        }
         tokenId={tokenId}
       />
 
@@ -881,6 +919,12 @@ export default function FeedDetailScreen() {
         onSuccess={(amount) => {
           if (tipComment) bumpTipTotal(Number(tipComment.id), amount);
         }}
+      />
+
+      <CommentLikersSheet
+        visible={likersCommentId !== null}
+        onClose={() => setLikersCommentId(null)}
+        commentId={likersCommentId}
       />
     </View>
   );
