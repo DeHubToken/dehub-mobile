@@ -15,7 +15,6 @@ import { toastInfo } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import TransferModal from "../Transfer/TransferModal";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
-import { useSellerBalance, formatUsd } from "../../hooks/useSellerBalance";
 
 /** Shimmering placeholder shown while balances load for the first time. */
 const BalanceSkeleton: React.FC = () => (
@@ -52,13 +51,6 @@ const ProfileAssets = () => {
   // when we already have data to display.
   // Also show skeleton if balances have never loaded yet (provider not ready).
   const showSkeleton = isInitialLoad;
-
-  // Card sales inside the 30-day hold. Kept out of the `assets` array below:
-  // that is symbol-keyed on-chain data with an icon per entry, and this is a
-  // server-side USD figure with no token and no chain behind it. It also has
-  // its own loading state — showSkeleton is derived from tokenBalances, which
-  // says nothing about whether this has loaded.
-  const { pendingUsd: sellerPendingUsd, hasActivity: hasSellerActivity } = useSellerBalance();
 
   const assets = useMemo(() => {
     const isBase = chainId === 8453; // ChainId.BASE_MAINNET
@@ -210,27 +202,6 @@ const ProfileAssets = () => {
           )}
         </View>
       ))}
-      {/* Store earnings still inside the 30-day hold. A sibling of the asset
-          rows rather than one of them — it is not a token, has no chain, and
-          cannot be transferred from here. Absent entirely for the majority of
-          wallets, which have never sold anything. */}
-      {hasSellerActivity && sellerPendingUsd > 0 && (
-        <View className="flex-row items-center justify-between px-4 py-3 border-t border-white/5">
-          <View className="flex-row items-center">
-            <Ionicons name="storefront-outline" size={16} color="#34d399" />
-            <Text className="text-white/70 text-xs ml-2">Store earnings</Text>
-          </View>
-          <View className="items-end">
-            <Text className="text-emerald-400 text-sm font-semibold">
-              + {formatUsd(sellerPendingUsd)} pending
-            </Text>
-            <Text className="text-white/40 text-[10px] mt-0.5">
-              Unlocks 30 days after each sale
-            </Text>
-          </View>
-        </View>
-      )}
-
       <TransferModal open={transferOpen} onOpenChange={setTransferOpen} />
     </View>
   );
