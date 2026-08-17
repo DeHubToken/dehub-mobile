@@ -88,6 +88,23 @@ export async function enrollBiometricUnlock(
 }
 
 /**
+ * Drop this device's wrap key for `address`. Deleting a key is not releasing
+ * one, so unlike unlockWithBiometrics this needs no device-owner check.
+ *
+ * Only meaningful when the wallet at `address` is being abandoned: once its
+ * user_wallets row has been overwritten, the ciphertext this key opened no
+ * longer exists anywhere, and the key is dead weight in the keychain.
+ */
+export async function forgetBiometricWrapKey(address: string): Promise<void> {
+  try {
+    await SecureStore.deleteItemAsync(WRAP_KEY_PREFIX + address.toLowerCase());
+    log.info("forget:ok", { address: `${address.slice(0, 6)}...${address.slice(-4)}` });
+  } catch (e) {
+    log.warn("forget:error", e);
+  }
+}
+
+/**
  * Unlock an HKDF-wrapped payload using this device's stored wrap key,
  * requiring a fresh device-owner check first. Throws BiometricUnavailableError
  * if this device never enrolled a wrap key for `address` — that condition is

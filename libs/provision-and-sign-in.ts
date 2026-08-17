@@ -15,6 +15,7 @@ import {
   resolveEvmWalletForIdentity,
   getKnownWalletAddress,
   forgetLocalWalletForIdentity,
+  retryPendingResetCleanup,
   type EvmWalletResolution,
 } from "./identity-wallet";
 import { fetchWallet, fetchWalletReliably } from "./wallet-core/store";
@@ -82,6 +83,12 @@ async function markSupabaseIdentitySignedIn(supabaseUserId: string): Promise<voi
   } catch (e) {
     log.warn("provision:setStoredSupabaseUserId:error", e);
   }
+  // Finishes a wallet reset whose cleanup was interrupted. A no-op without a
+  // marker, and it re-validates against the live row before touching anything.
+  // Deliberately not awaited: it must never delay or fail a sign-in.
+  void retryPendingResetCleanup(supabaseUserId).catch((e) =>
+    log.warn("provision:retryPendingResetCleanup:error", e)
+  );
 }
 
 async function waitForSupabaseSession(expectedUserId: string): Promise<void> {

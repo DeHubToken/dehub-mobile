@@ -242,7 +242,11 @@ export async function decryptString(payload: EncryptedPayload, password: string)
 
   if (header?.kdf === "hkdf") {
     throw new Error(
-      "This wallet is passkey-protected on the web — add a wallet password on dehub.io (Settings), then try again, or import your private key."
+      // Not "add a password on dehub.io": for a wallet created with biometrics
+      // on a phone, the website holds the same HKDF blob and can no more open
+      // it than we can, so that instruction sent users into a loop between the
+      // two clients. Nothing derived from a password can open this payload.
+      "This wallet unlocks with biometrics held on one specific device, not with a password. Use its recovery phrase, or sign in on the device that set it up."
     );
   }
 
