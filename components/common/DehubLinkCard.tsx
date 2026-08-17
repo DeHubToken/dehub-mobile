@@ -293,19 +293,23 @@ const EventCardEmbed: React.FC<{ eventNumber: string; onOpen: () => void; fallba
   );
 };
 
-const StageCardEmbed: React.FC<{ stageId: string; onOpen: () => void; fallback: React.ReactElement }> = ({
-  stageId,
-  onOpen,
-  fallback,
-}) => {
+const StageCardEmbed: React.FC<{
+  /** The uuid form (/stage/:id). One of the two ids is always present. */
+  stageId?: string;
+  /** The short numeric form (/stages/7). */
+  stageShortId?: string;
+  onOpen: () => void;
+  fallback: React.ReactElement;
+}> = ({ stageId, stageShortId, onOpen, fallback }) => {
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['dehub-link', 'stage', stageId],
+    queryKey: ['dehub-link', 'stage', stageId ?? `short:${stageShortId}`],
+    enabled: !!stageId || !!stageShortId,
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('audio_spaces')
-        .select('*')
-        .eq('id', stageId)
-        .maybeSingle();
+      const query = supabase.from('audio_spaces').select('*');
+      const { data, error } = await (stageId
+        ? query.eq('id', stageId)
+        : query.eq('short_id', Number(stageShortId))
+      ).maybeSingle();
       if (error) throw error;
       return data as any;
     },
@@ -447,17 +451,29 @@ export function useOpenDehubLink() {
           // event link can actually land, and it beats a dead tap.
           navigation.navigate(ScreenNames.Events);
           return;
-        case 'stage':
+        case 'stage': {
           // Stages are modal-based on native — there is no stage screen to
           // navigate to. Joining is attempted first because a live stage is
           // what the link most often points at; joinSpace refuses anything
           // that is not live, and the browse modal (which lists upcoming) is
           // the right landing spot for a stage that has not started.
           openStages('browse');
-          void joinSpace(link.stageId!).then((ok) => {
-            if (ok) openStages('live');
-          });
+          void (async () => {
+            // A /stages/7 link carries no uuid, and joinSpace keys on one.
+            let id = link.stageId;
+            if (!id && link.stageShortId) {
+              const { data } = await supabase
+                .from('audio_spaces')
+                .select('id')
+                .eq('short_id', Number(link.stageShortId))
+                .maybeSingle();
+              id = (data as any)?.id;
+            }
+            if (!id) return;
+            if (await joinSpace(id)) openStages('live');
+          })();
           return;
+        }
         default:
           return;
       }
@@ -522,7 +538,14 @@ const DehubLinkCardComponent: React.FC<DehubLinkCardProps> = ({
       card = <EventCardEmbed eventNumber={link.eventNumber!} onOpen={open} fallback={fallback} />;
       break;
     case 'stage':
-      card = <StageCardEmbed stageId={link.stageId!} onOpen={open} fallback={fallback} />;
+      card = (
+        <StageCardEmbed
+          stageId={link.stageId}
+          stageShortId={link.stageShortId}
+          onOpen={open}
+          fallback={fallback}
+        />
+      );
       break;
     default:
       card = fallback;
