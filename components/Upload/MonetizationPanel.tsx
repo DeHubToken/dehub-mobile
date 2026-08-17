@@ -292,7 +292,10 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
 
 
   return (
-    <View className="border-t border-theme-neutrals-700 mt-4 pt-1 pb-1">
+    // No divider or top margin: these rows are the tail of the composer's single
+    // options list (Mint, Title, Category, Community, then these), the way web's
+    // PostAccessToggles renders them. UploadScreen is the only render site.
+    <View>
       {/* Subscribers — a DHB gate with no minimum, so it needs no form. EVM
           only: the lock is priced in DHB, which has no Solana mint. */}
       {!isSolana && (
