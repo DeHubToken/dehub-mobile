@@ -76,9 +76,24 @@ jest.mock('@react-native-async-storage/async-storage', () => {
 
 // MMKV is a JSI native module, so it cannot be constructed under Jest. An
 // in-memory map with the same surface covers everything that reads it.
+//
+// Stores are shared per instance id, as the real thing is: two `new MMKV({ id:
+// 'dehub' })` calls open the same file, so a mock that gave each instance its
+// own map would let a test pass while the app it stands in for could not work.
+// It matters as soon as a test re-imports a module that constructs its own
+// handle — the writes went to a map nothing else could see.
 jest.mock('react-native-mmkv', () => {
+  const stores: Record<string, Record<string, string | number | boolean>> = {};
+
   class MMKV {
-    private store: Record<string, string | number | boolean> = {};
+    private store: Record<string, string | number | boolean>;
+
+    constructor(config?: { id?: string }) {
+      const id = config?.id ?? 'mmkv.default';
+      stores[id] = stores[id] ?? {};
+      this.store = stores[id];
+    }
+
     getString(key: string): string | undefined {
       const v = this.store[key];
       return typeof v === 'string' ? v : undefined;
@@ -98,7 +113,9 @@ jest.mock('react-native-mmkv', () => {
       delete this.store[key];
     }
     clearAll(): void {
-      this.store = {};
+      // Emptied in place, not rebound: the map is shared with every other
+      // handle on this id, and reassigning would quietly detach this one.
+      for (const key of Object.keys(this.store)) delete this.store[key];
     }
   }
   return { MMKV };
