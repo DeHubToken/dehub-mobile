@@ -28,65 +28,83 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress }) => 
 
   return (
     <View className="flex-row items-center justify-between px-4 h-11">
-      {/* The logo is a control, not decoration — it scrolls the active feed to
-          the top and refreshes it. Unlabelled it announced as "image button". */}
+      {/* Profile — left. Matches web's MobileHeader, which puts the drawer
+          trigger on the left, the mark in the middle and the bell on the
+          right. */}
       <TouchableOpacity
-        onPress={onLogoPress}
+        onPress={onMenuPress}
         activeOpacity={0.7}
         accessibilityRole="button"
-        accessibilityLabel="DeHub"
-        accessibilityHint="Scrolls to the top of the feed and refreshes it"
+        // Signed in this control is the user's own avatar, which is why the
+        // label says what it does rather than what it looks like.
+        accessibilityLabel="Open menu"
+        className="w-8 h-8 items-center justify-center"
       >
-        <SmartImage
-          source={require("../assets/web-icons/dehub-logo-white.png")}
-          style={{ width: 93, height: 28 }}
-          contentFit="contain"
-          cachePolicy="memory-disk"
-          transition={150}
-        />
+        {isSignedIn ? (
+          <Avatar uri={avatarUrl} size={27} name={user?.displayName || user?.username} />
+        ) : (
+          <Icon name="Menu" size={31} color="#FFFFFF" />
+        )}
       </TouchableOpacity>
 
-      <View className="flex-row items-center gap-3">
-        {isSignedIn && (
-          <TouchableOpacity
-            onPress={handleNotificationPress}
-            activeOpacity={0.7}
-            accessibilityRole="button"
-            accessibilityLabel={hasUnread ? `Notifications, ${unreadCount} unread` : "Notifications"}
-            className="w-9 h-9 items-center justify-center"
-          >
-            <Icon name="Bell" size={24} color="#E5E7EB" />
-            {hasUnread && (
-              // rounded-md on an 18px box read as a square block. A full pill
-              // with a black ring separates it from the bell the way the rest of
-              // the app's badges do.
-              <View
-                className="absolute -top-0.5 -right-1 min-w-[18px] h-[18px] px-[5px] bg-red-500 rounded-full border-[1.5px] border-black items-center justify-center"
-                pointerEvents="none"
-              >
-                <Text className="text-white text-[10px] font-bold leading-[12px]">
-                  {unreadCount > 99 ? "99+" : unreadCount}
-                </Text>
-              </View>
-            )}
-          </TouchableOpacity>
-        )}
+      {/* dehub mark — centred on the bar itself rather than between the two
+          side controls, so it stays put whether or not the bell is rendered
+          (it is signed-in only). box-none lets taps through the full-width
+          overlay to the profile and bell underneath it.
+
+          The logo is a control, not decoration — it scrolls the active feed to
+          the top and refreshes it. Unlabelled it announced as "image button". */}
+      <View
+        className="absolute inset-0 items-center justify-center"
+        pointerEvents="box-none"
+      >
         <TouchableOpacity
-          onPress={onMenuPress}
+          onPress={onLogoPress}
           activeOpacity={0.7}
           accessibilityRole="button"
-          // Signed in this control is the user's own avatar, which is why the
-          // label says what it does rather than what it looks like.
-          accessibilityLabel="Open menu"
-          className="w-8 h-8 items-center justify-center"
+          accessibilityLabel="DeHub"
+          accessibilityHint="Scrolls to the top of the feed and refreshes it"
         >
-          {isSignedIn ? (
-            <Avatar uri={avatarUrl} size={27} name={user?.displayName || user?.username} />
-          ) : (
-            <Icon name="Menu" size={31} color="#FFFFFF" />
-          )}
+          <SmartImage
+            source={require("../assets/web-icons/dehub-logo-compact.png")}
+            style={{ width: 33, height: 28 }}
+            contentFit="contain"
+            cachePolicy="memory-disk"
+            transition={150}
+          />
         </TouchableOpacity>
       </View>
+
+      {/* Notifications — right. Signed-in only; the centred mark does not move
+          when this is absent. */}
+      {isSignedIn ? (
+        <TouchableOpacity
+          onPress={handleNotificationPress}
+          activeOpacity={0.7}
+          accessibilityRole="button"
+          accessibilityLabel={hasUnread ? `Notifications, ${unreadCount} unread` : "Notifications"}
+          className="w-9 h-9 items-center justify-center"
+        >
+          <Icon name="Bell" size={24} color="#E5E7EB" />
+          {hasUnread && (
+            // rounded-md on an 18px box read as a square block. A full pill
+            // with a black ring separates it from the bell the way the rest of
+            // the app's badges do.
+            <View
+              className="absolute -top-0.5 -right-1 min-w-[18px] h-[18px] px-[5px] bg-red-500 rounded-full border-[1.5px] border-black items-center justify-center"
+              pointerEvents="none"
+            >
+              <Text className="text-white text-[10px] font-bold leading-[12px]">
+                {unreadCount > 99 ? "99+" : unreadCount}
+              </Text>
+            </View>
+          )}
+        </TouchableOpacity>
+      ) : (
+        // Holds the right edge so the left control cannot drift into the
+        // centre under justify-between when there is no bell.
+        <View className="w-9 h-9" />
+      )}
     </View>
   );
 };
