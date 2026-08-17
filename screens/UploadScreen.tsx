@@ -588,9 +588,6 @@ export default function UploadScreen() {
     validate,
     preUploadCheck,
     buildConfirmText,
-    upload,
-    uploadStage,
-    isUploading,
     enqueueJob,
     enqueueQuoteJob,
   } = useUploadPost();
@@ -623,7 +620,7 @@ export default function UploadScreen() {
   const activeIsUploading = isLiveMode ? isLiveUploading : false;
   const activeUploadStage = isLiveMode ? liveUploadStage : "idle" as UploadStage;
 
-  // Intercept Android back button (placed after useUploadPost for isUploading)
+  // Intercept Android back button (uses activeIsUploading, i.e. live mode only)
   useEffect(() => {
     const sub = BackHandler.addEventListener("hardwareBackPress", () => {
       if (activeIsUploading) return true; // prevent closing during upload
