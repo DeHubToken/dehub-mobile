@@ -58,6 +58,11 @@ export const DeepLinkPaths = {
   // Content — dehub.io/app/post/:tokenId
   POST: 'app/post/:tokenId',
 
+  // An off-chain post's own slug — dehub.io/newpost/:newPostId. Top-level,
+  // like the canonical share form web hands out. PostResolverScreen resolves
+  // it to a tokenId through GET /newpost/:n.
+  NEWPOST: 'newpost/:newPostId',
+
   // Legacy content paths (backward compat)
   LEGACY_STREAM: 'stream/:videoId',
   LEGACY_FEED: 'feeds/:postId',
@@ -117,6 +122,15 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
             path: DeepLinkPaths.POST,
             parse: {
               tokenId: (tokenId: string) => tokenId,
+            },
+          },
+
+          // Off-chain post slug. Same resolver component; it sees newPostId
+          // instead of tokenId and resolves through the API first.
+          [ScreenNames.PostResolverNewPost]: {
+            path: DeepLinkPaths.NEWPOST,
+            parse: {
+              newPostId: (n: string) => n,
             },
           },
 

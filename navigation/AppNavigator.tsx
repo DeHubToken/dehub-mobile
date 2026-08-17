@@ -214,6 +214,12 @@ export default function AppNavigator() {
           name={ScreenNames.PostResolver}
           getComponent={() => require("../screens/PostResolverScreen").default}
         />
+        {/* Same component under a second name — react-navigation allows one
+            deep-link path per screen, and /newpost/:n needs its own. */}
+        <Stack.Screen
+          name={ScreenNames.PostResolverNewPost}
+          getComponent={() => require("../screens/PostResolverScreen").default}
+        />
         <Stack.Screen
           name={ScreenNames.FeedDetail}
           getComponent={() => require("../screens/FeedDetailScreen").default}
