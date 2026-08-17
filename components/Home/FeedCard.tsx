@@ -541,11 +541,21 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     });
   }, [tokenId, userAddress, saved, engagementKey, requireAuth]);
 
+  // An off-chain post shares as its own slug (/newpost/<n>), never as the
+  // NFT-style /app/post/<tokenId> it hasn't earned. The slug survives minting
+  // server-side, so links handed out now keep working after a mint.
+  const shareUrl = useMemo(() => {
+    const newPostId = (item as any).newPostId;
+    if (rawStatus === "signed" && newPostId != null) {
+      return `${WEBSITE_LINK || ""}/newpost/${newPostId}`;
+    }
+    return `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
+  }, [item, rawStatus, tokenId]);
+
   const handleSharePress = useCallback(() => {
     if (tokenId == null) return;
-    const url = `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
-    sharePostAsImage(Number(tokenId), url, localTitle || undefined).catch(() => {});
-  }, [tokenId, localTitle]);
+    sharePostAsImage(Number(tokenId), shareUrl, localTitle || undefined).catch(() => {});
+  }, [tokenId, shareUrl, localTitle]);
 
   const handleTipPress = useCallback(() => {
     if (!minterAddress) return;
@@ -588,9 +598,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const handleCopyLink = useCallback(() => {
     if (tokenId == null) return;
-    copyToClipboard(`${WEBSITE_LINK || ""}/app/post/${tokenId}`);
+    copyToClipboard(shareUrl);
     toastSuccess("Post link copied to clipboard");
-  }, [tokenId]);
+  }, [tokenId, shareUrl]);
 
   const handleUndoRepost = useCallback(() => {
     if (tokenId == null) return;
