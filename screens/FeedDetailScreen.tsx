@@ -11,6 +11,7 @@ import { CommentItem } from "../components/Comments";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
 import type { CommentLayout } from "../components/Comments/CommentContextMenu";
 import CommentMediaPreview from "../components/Comments/CommentMediaPreview";
+import { COMPOSER, composerStyles } from "../components/Comments/composerLayout";
 import type { MediaAttachment } from "../components/Comments/CommentMediaPreview";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../components/Comments/VoiceNoteRecorder";
 import type { VoiceNoteResult } from "../components/Comments/VoiceNoteRecorder";
@@ -767,11 +768,14 @@ export default function FeedDetailScreen() {
       />
       <View
         className="absolute left-0 right-0 bottom-0 border-t border-theme-neutrals-800 bg-theme-neutrals-900"
-        style={{ marginBottom: inputLift, paddingBottom: 8 }}
+        style={{ marginBottom: inputLift }}
       >
         {/* Replying / Editing indicator */}
         {(replyTo || editingComment) && !recorder.isRecording && (
-          <View className="flex-row items-center px-4 py-2 bg-theme-neutrals-800/50">
+          <View
+            className="flex-row items-center py-2 bg-theme-neutrals-800/50"
+            style={{ paddingHorizontal: COMPOSER.gutter }}
+          >
             <Text className="flex-1 text-xs text-theme-neutrals-400">
               {editingComment ? (
                 "Editing comment"
@@ -810,54 +814,91 @@ export default function FeedDetailScreen() {
           />
         ) : (
           /* Standard input row */
-          <View className="flex-row items-center px-4 py-2">
+          <View
+            className="flex-row items-end"
+            style={{ gap: COMPOSER.gap, padding: COMPOSER.gutter }}
+          >
             <Avatar
               uri={userAvatar && userAvatar !== "default-avatar" ? userAvatar : undefined}
               size={32}
               name={user?.displayName || user?.username}
+              style={{ marginBottom: (COMPOSER.control - 32) / 2 }}
             />
-            <TextInput
-              ref={inputRef}
-              value={inputText}
-              onChangeText={mentions.handleChangeText}
-              onSelectionChange={mentions.handleSelectionChange}
-              placeholder={editingComment ? "Edit your comment..." : replyTo ? "Write a reply..." : "Add a comment..."}
-              placeholderTextColor={theme.colors.mutedForeground}
-              className="flex-1 mx-3 text-sm text-theme-neutrals-100"
-              style={{ maxHeight: 80 }}
-              multiline
-              returnKeyType="send"
-              onSubmitEditing={handleSend}
-            />
+            <View
+              className="flex-1 flex-row bg-theme-neutrals-800/60 border border-theme-neutrals-700"
+              style={{
+                // `center`, not `flex-end`: one line of 14px text is ~18 tall in a
+                // 40 box. Once the text wraps, the box grows and this is moot.
+                alignItems: "center",
+                borderRadius: COMPOSER.radius,
+                paddingHorizontal: 12,
+                paddingVertical: 8,
+                minHeight: COMPOSER.control,
+              }}
+            >
+              <TextInput
+                ref={inputRef}
+                value={inputText}
+                onChangeText={mentions.handleChangeText}
+                onSelectionChange={mentions.handleSelectionChange}
+                placeholder={editingComment ? "Edit your comment..." : replyTo ? "Write a reply..." : "Add a comment..."}
+                placeholderTextColor={theme.colors.mutedForeground}
+                className="flex-1 text-sm text-theme-neutrals-100"
+                style={{
+                  maxHeight: 80,
+                  paddingVertical: 0,
+                  // Android multiline inputs top-align regardless of the parent.
+                  textAlignVertical: "center",
+                }}
+                multiline
+                returnKeyType="send"
+                onSubmitEditing={handleSend}
+              />
+            </View>
 
             {inputText.trim() || editingComment ? (
               <TouchableOpacity
                 onPress={handleSend}
                 disabled={posting || !inputText.trim()}
                 activeOpacity={0.7}
-                className="p-2"
+                accessibilityRole="button"
+                accessibilityLabel="Post comment"
+                style={[
+                  composerStyles.iconControl,
+                  { backgroundColor: inputText.trim() ? "#F9FBFF" : "rgba(255,255,255,0.1)" },
+                ]}
               >
                 {posting ? (
-                  <ActivityIndicator size="small" color="#fff" />
+                  <ActivityIndicator size="small" color="#010305" />
                 ) : (
-                  <View
-                    className={`w-9 h-9 rounded-full items-center justify-center ${inputText.trim() ? "bg-white" : "bg-theme-neutrals-700"}`}
-                  >
-                    <Ionicons
-                      name="send"
-                      size={16}
-                      color={inputText.trim() ? "#000" : theme.colors.mutedForeground}
-                    />
-                  </View>
+                  <Ionicons
+                    name="send"
+                    size={18}
+                    color={inputText.trim() ? "#010305" : theme.colors.mutedForeground}
+                  />
                 )}
               </TouchableOpacity>
             ) : (
-              <View className="flex-row items-center gap-1">
-                <TouchableOpacity onPress={handlePickImage} activeOpacity={0.7} className="p-2">
-                  <Ionicons name="image-outline" size={22} color={theme.colors.mutedForeground} />
+              <View className="flex-row items-center" style={{ gap: COMPOSER.gap / 2 }}>
+                <TouchableOpacity
+                  onPress={handlePickImage}
+                  activeOpacity={0.7}
+                  accessibilityRole="button"
+                  accessibilityLabel="Add image"
+                  style={composerStyles.iconControl}
+                >
+                  <Ionicons name="image-outline" size={20} color={theme.colors.mutedForeground} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={handleOpenGifPicker} activeOpacity={0.7} className="p-2">
-                  <Text className="text-xs font-bold text-theme-neutrals-400 px-0.5">GIF</Text>
+                <TouchableOpacity
+                  onPress={handleOpenGifPicker}
+                  activeOpacity={0.7}
+                  accessibilityRole="button"
+                  accessibilityLabel="Add GIF"
+                  style={composerStyles.iconControl}
+                >
+                  {/* A text glyph, not an icon — it only lines up with its neighbours
+                      because the box is sized explicitly rather than by padding. */}
+                  <Text className="text-xs font-bold text-theme-neutrals-400">GIF</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -865,9 +906,11 @@ export default function FeedDetailScreen() {
                     recorder.startRecording();
                   }}
                   activeOpacity={0.7}
-                  className="p-2"
+                  accessibilityRole="button"
+                  accessibilityLabel="Record voice note"
+                  style={composerStyles.iconControl}
                 >
-                  <Ionicons name="mic-outline" size={22} color={theme.colors.mutedForeground} />
+                  <Ionicons name="mic-outline" size={20} color={theme.colors.mutedForeground} />
                 </TouchableOpacity>
               </View>
             )}
