@@ -2,25 +2,34 @@
  * Shorts Viewer — full-screen vertical carousel.
  *
  * The chrome mirrors the web viewer (dehubweb
- * src/components/app/cards/ShortsViewer.tsx): a horizontal action bar spread
+ * src/components/app/cards/ShortsViewer.tsx): a horizontal action row spread
  * across the bottom of the frame in feed-card order — views · tip · dislike ·
  * share · comments · like, with like at the far right for thumb reach — and the
  * creator row + caption stacked above it. Back sits top-left; playback speed,
  * mute and the options menu top-right. Bookmark and the moderation actions live
- * in that menu rather than on the bar, as on web.
+ * in that menu rather than on the row, as on web.
  *
- * All of that chrome is one material: the top buttons, the creator avatar and
- * the action bar share a single fill, hairline and corner radius (see the
- * CHROME_* tokens), and both bars hang off the same EDGE margin. The action
- * bar's six cells are equal flex shares rather than `space-between` over
- * content-sized children, so the icons hold a fixed grid no matter how wide the
- * counts under them get.
+ * What web puts a fill behind is exactly the four top buttons, and nothing
+ * else: the action row is bare icons with a text shadow over the bottom scrim.
+ * This screen used to draw a glass slab under that row too, which is what made
+ * it read as a different app. The action row's six cells are still equal flex
+ * shares rather than `space-between` over content-sized children, so the icons
+ * hold a fixed grid no matter how wide the counts under them get, with the two
+ * end cells aligned outwards so the row still spans edge to edge.
+ *
+ * Every margin is a flat EDGE with no safe-area inset added — see the EDGE
+ * comment; the navigator already sits inside a SafeAreaView.
+ *
+ * Two gestures clear and restore the chrome, both ported from web: swipe down
+ * over the bottom stack to clear it, tap the middle band to bring it back.
+ * Holding the middle of the frame still hides it for a screenshot for as long
+ * as the finger is down. See HIDE_SWIPE_MIN / RESTORE_ZONE_TOP.
  *
  * Engagement goes through the shared overlay (libs/engagementCache) instead of
  * local state, so a like cast here is the same like the feed card shows — the
  * mobile equivalent of web's vote cache.
  */
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -40,7 +49,9 @@ import {
   StyleProp,
   ViewStyle,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { runOnJS, useSharedValue } from "react-native-reanimated";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import type { NativeGesture } from "react-native-gesture-handler";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { LinearGradient } from "expo-linear-gradient";
@@ -53,18 +64,19 @@ import { useUser, useAuthActions } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import {
   getVideoUrl,
-  getAvatarUrl,
   getShortsThumbnailUrl,
+  getAvatarUrl,
   formatCompactNumber,
   toastError,
   toastSuccess,
   copyToClipboard,
 } from "../libs";
-import { voteOnNFT, reactToNFT } from "../services/nft.service";
+import { voteOnNFT, reactToNFT, getNFT } from "../services/nft.service";
 import ReactionPicker from "../components/Home/ReactionPicker";
 import ReactionInfoSheet from "../components/Home/ReactionInfoSheet";
 import ShareSheet from "../components/Home/ShareSheet";
 import PostOptionsMenu from "../components/common/PostOptionsMenu";
+import Avatar from "../components/common/Avatar";
 import {
   applyReactionDelta,
   isPositiveReaction,
@@ -98,53 +110,110 @@ const PLAYBACK_RATES = [0.5, 1, 1.25, 1.5, 2] as const;
 const formatRate = (rate: number) => `${rate}x`;
 
 const ICON_COLOR = "#fff";
-const COUNT_COLOR = "rgba(255,255,255,0.72)";
+// Web's `text-white/70` on every count under the action row.
+const COUNT_COLOR = "rgba(255,255,255,0.7)";
 
 /**
- * One chrome language for the whole viewer.
+ * One margin for the whole frame.
  *
- * Every floating control — the three top buttons, the creator avatar and the
- * bottom action bar — is built from these tokens, so the top of the frame and
- * the bottom read as the same system rather than two unrelated treatments.
- * EDGE is also what anchors both bars to the same left/right margin.
+ * Web hangs every piece of chrome off a single 16px margin — `top-4 left-4`
+ * on the back button, `top-4 right-4` on the playback group, `px-4` on the
+ * caption and the action row — and closes the bottom with
+ * `pb-[max(1rem,env(safe-area-inset-bottom))]`, i.e. 16 unless the device
+ * needs more.
+ *
+ * Here it is a flat 16 on all four sides, with no `insets.*` added, because
+ * `App.tsx` wraps the whole NavigationContainer in a full-edge `SafeAreaView`
+ * (App.tsx:269) — this screen is an ordinary card inside that navigator, so
+ * the notch and the home indicator are already paid for before it mounts.
+ * `useSafeAreaInsets()` still reports the *full* device inset to descendants
+ * of a SafeAreaView (only SafeAreaProvider narrows it), so the old
+ * `insets.top + 10` / `insets.bottom + 10` spent it a second time at both
+ * ends and left the two bars floating well clear of the edges.
  */
-const EDGE = 12;
-const CHROME_GAP = 8;
+const EDGE = 16;
+
+/** Web `gap-3` between the top-right buttons. */
+const CHROME_GAP = 12;
+/** Web `w-10 h-10` / `rounded-xl` on every top button. */
 const CHROME_SIZE = 40;
-const CHROME_RADIUS = 14;
-const BAR_HEIGHT = 46;
-const BAR_RADIUS = 16;
-const CHROME_FILL = "rgba(9,9,11,0.55)";
-const CHROME_BORDER = "rgba(255,255,255,0.14)";
+const CHROME_RADIUS = 12;
+/** Web `bg-zinc-900/60 backdrop-blur-sm`, and nothing else — no hairline. */
+const CHROME_FILL = "rgba(24,24,27,0.6)";
 // Takes the 40pt buttons past the 44pt tap minimum. The horizontal half is
 // exactly CHROME_GAP / 2, so neighbours in the top-right group meet at the
 // midpoint of the gap instead of overlapping and stealing each other's taps.
 const CHROME_HIT_SLOP = { top: 6, bottom: 6, left: CHROME_GAP / 2, right: CHROME_GAP / 2 };
 
 /**
- * The shared glass material, as an absolutely-positioned sibling rather than a
- * wrapper.
+ * Web leans on `drop-shadow-lg` to keep white overlay text legible over an
+ * arbitrary video frame. RN has no filter, so the same job is done with a
+ * text shadow on the type and the bottom scrim behind it.
+ */
+const TEXT_SHADOW = {
+  textShadowColor: "rgba(0,0,0,0.55)",
+  textShadowOffset: { width: 0, height: 1 },
+  textShadowRadius: 4,
+} as const;
+
+/**
+ * Swipe down over the bottom stack to clear the chrome, then tap the middle
+ * band to bring it back — the same two gestures web runs (ShortsViewer.tsx
+ * `handleOverlayGestureTouch*` / `handleRestoreTouch*`), with web's own
+ * thresholds.
  *
- * Two reasons it is not a wrapper: the reaction tray pops out of the top of the
- * action bar, and the `overflow: hidden` a rounded blur needs would clip it;
- * and keeping the fill `pointerEvents="none"` lets taps on the bar's own
+ * RN and the DOM differ in the one way that matters here. On web the overlay
+ * is `pointer-events-auto` above the carousel's drag layer, so a drag that
+ * begins on the caption never reaches it. In RN a cell's child does not
+ * shield the paging FlatList, so the same drag would page to the previous
+ * short *and* clear the chrome.
+ *
+ * Winning that race takes gesture-handler, not RN's own responder system.
+ * A JS responder cannot get there in time: Android's ScrollView intercepts at
+ * the 8dp touch slop and `notifyNativeGestureStarted` then stops delivering
+ * touches to JS entirely, and on iOS RCTScrollView cancels the JS touch
+ * stream when its pan recognizer begins. So the claim is a manually-activated
+ * `Gesture.Pan`, deciding on the UI thread the same way ImageFeedDrawer's
+ * `contentPan` does, and declaring `blocksExternalGesture` against the pager
+ * so the list has to wait for this gesture to fail before it scrolls.
+ *
+ * Because the relation makes the pager *wait*, there is no race left to win
+ * and the thresholds can be comfortable rather than hair-trigger. The cost is
+ * that the pager is held for as long as this gesture stays undecided, so the
+ * direction has to be resolved quickly and released the moment it is not a
+ * downward drag — hence a small RELEASE threshold against a larger CLAIM one.
+ * Get that wrong and the whole bottom stack becomes a paging dead zone.
+ *
+ * HIDE_SWIPE_MIN stays at web's 40 as the commit threshold: a drag shorter
+ * than that simply does nothing and the chrome stays put.
+ */
+const HIDE_SWIPE_MIN = 40;
+/** Downward travel that makes the drag ours. Above a tap's incidental drift. */
+const DRAG_CLAIM_MIN = 16;
+/** Travel in any other direction that hands the drag straight back to the pager. */
+const DRAG_RELEASE_MIN = 6;
+const RESTORE_ZONE_TOP = 0.55;
+const RESTORE_ZONE_BOTTOM = 0.85;
+
+/**
+ * The glass behind a top button, as an absolutely-positioned sibling rather
+ * than a wrapper, so `pointerEvents="none"` lets taps on the button's own
  * padding still reach the video underneath.
+ *
+ * Only the top row uses it. Web puts `bg-zinc-900/60 backdrop-blur-sm` behind
+ * its four playback controls and nothing at all behind the action row — the
+ * icons there are bare, and the bottom scrim plus a text shadow does the
+ * legibility work. The slab this viewer used to draw under the action row was
+ * the single biggest thing making it read as a different app.
  *
  * The Android backdrop blur is deliberately absent. `dimezisBlurView`
  * re-snapshots the root view every frame and throws when a list mutates its
  * children mid-draw, so it is only safe on surfaces that mount and unmount
  * (see components/ui/LiquidGlass.tsx) — never on chrome pinned over a video
- * feed that is recycling cells. The 55% fill carries the contrast on its own.
+ * feed that is recycling cells. The 60% fill carries the contrast on its own.
  */
-const ChromeFill: React.FC<{ radius?: number }> = ({ radius = CHROME_RADIUS }) => (
-  <View
-    pointerEvents="none"
-    style={[
-      StyleSheet.absoluteFill,
-      styles.chromeFill,
-      { borderRadius: radius },
-    ]}
-  >
+const ChromeFill: React.FC = () => (
+  <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.chromeFill]}>
     {Platform.OS === "ios" && (
       <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
     )}
@@ -201,18 +270,20 @@ const ActionButton: React.FC<ActionButtonProps> = ({
       // Matches the web tray's 400ms hold so the gesture feels the same on both.
       delayLongPress={400}
       accessibilityLabel={accessibilityLabel}
-      // The cell is already 46pt tall and ~56pt wide, so no slop is needed to
-      // clear the 44pt minimum — and adding any would make adjacent cells
-      // overlap and steal each other's taps.
+      // No hitSlop: the cell carries `minHeight: 44` and an equal share of the
+      // row's width (~56pt), so it already clears the 44pt minimum on its own,
+      // and slop here would make adjacent cells overlap and steal each other's
+      // taps. If that minHeight ever goes, this needs slop instead.
       style={style ?? styles.actionCell}
     >
       <Animated.View style={{ transform: [{ scale }] }}>
         {glyph ? (
           <Text style={styles.actionGlyph}>{glyph}</Text>
         ) : (
+          // Web's `w-5 h-5`.
           <Icon
             name={icon}
-            size={19}
+            size={20}
             color={ICON_COLOR}
             strokeWidth={1.8}
             fill={active ? ICON_COLOR : "none"}
@@ -235,16 +306,20 @@ interface ShortItemProps {
   /** Viewer-level, so mute and speed carry across shorts as they do on web. */
   isMuted: boolean;
   playbackRate: number;
-  bottomInset: number;
   /**
-   * Reports the hold-to-hide-UI state up to the screen, so the top bar and its
+   * The pager's own gesture, so the swipe-down can declare that the list must
+   * wait on it rather than race it. See hidePan.
+   */
+  pagerGesture: NativeGesture;
+  /**
+   * Reports the hide-the-chrome state up to the screen, so the top bar and its
    * scrim disappear with the bottom stack. They live outside this component
    * and used to stay on screen through a "hide the chrome" gesture.
    */
   onChromeVisibilityChange: (visible: boolean) => void;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMuted, playbackRate, bottomInset, onChromeVisibilityChange }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMuted, playbackRate, pagerGesture, onChromeVisibilityChange }) => {
   const navigation = useNavigation<any>();
   const user = useUser();
   const { requireAuth } = useAuthActions();
@@ -253,16 +328,45 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
   const tokenId = item.tokenId ?? item.id;
   const videoUrl = getVideoUrl(tokenId) || undefined;
   const thumbnail = getShortsThumbnailUrl(tokenId);
-  const avatar = getAvatarUrl(item.minterUser?.avatarImageUrl || item.minterAvatarUrl);
+  const minterAddress = item.minter || item.minterUser?.address || "";
+
+  // `getAvatarUrl` answers the literal string "default-avatar" — not a URI —
+  // when a creator has none, and it routes real URLs through the CDN image
+  // transform, which 404s outright if the zone setting is ever off. Both used
+  // to go straight into a bare expo-image with no background and no onError,
+  // so the slot painted nothing at all over the video. Guarding the sentinel
+  // and handing the rest to the shared Avatar is what every other surface in
+  // the app does (FeedCardHeader, CommentItem, ProfileHeader…), and it brings
+  // the initial-letter fallback web draws in AvatarFallback with it.
+  const avatarUrl = (() => {
+    const resolved = getAvatarUrl(item.minterUser?.avatarImageUrl || item.minterAvatarUrl, 48);
+    return resolved && resolved !== "default-avatar" ? resolved : undefined;
+  })();
   const username = item.minterUser?.username || item.minterUsername || "";
-  const displayName = item.minterUser?.displayName || item.minterDisplayName || username;
+  // Five deep and ending somewhere visible, matching FeedCard — the chain
+  // stopped at `username` here, so a row that came back with only an address
+  // rendered an empty name and, because the handle is conditional, no author
+  // line whatever.
+  const displayName =
+    item.minterUser?.displayName ||
+    item.minterDisplayName ||
+    username ||
+    (minterAddress ? `${minterAddress.slice(0, 6)}…${minterAddress.slice(-4)}` : "") ||
+    "Unknown";
+  // The title carries the caption in practice: UploadScreen puts the composer
+  // body into `name` and leaves `description` empty unless the author fills in
+  // a separate one, so almost every live short has text here and nothing in
+  // `description`. Web's mobile overlay renders only the description — this
+  // one has to render both, or most shorts show no text at all.
+  //
+  // Trimmed before the emptiness test as well as the "untitled" one: a
+  // whitespace-only name passes a bare truthiness check and draws a blank line
+  // above the caption.
   const title = (() => {
-    const raw = item.name || item.title || "";
+    const raw = (item.name || item.title || "").trim();
     return raw.toLowerCase() === "untitled" ? "" : raw;
   })();
-  const description = item.description || "";
-
-  const minterAddress = item.minter || item.minterUser?.address || "";
+  const description = (item.description || "").trim();
   const userAddress = user?.address || user?.walletAddress || "";
   // Who reacted what is the author's to see, so the ⓘ in the tray only exists
   // on your own shorts (the API withholds the list from everyone else too).
@@ -293,6 +397,16 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
   const [captionExpanded, setCaptionExpanded] = useState(false);
   const [screenshotMode, setScreenshotMode] = useState(false);
   const [is2xSpeed, setIs2xSpeed] = useState(false);
+  /** Swipe-down-to-clear, web's `overlaysHidden`. Separate from screenshotMode
+   *  (a hold) because the two are different ways into the same state and only
+   *  the swipe one survives the finger coming off the glass. */
+  const [overlaysHidden, setOverlaysHidden] = useState(false);
+
+  /** Faded rather than unmounted, so the chrome does not re-layout on the way
+   *  back in — web animates the same 250ms easeOut opacity. */
+  const chromeOpacity = useRef(new Animated.Value(1)).current;
+  /** Touch origin for the swipe-down, read on the UI thread by hidePan. */
+  const panStart = useSharedValue({ x: 0, y: 0 });
 
   // Double-tap like animation
   const lastTapRef = useRef(0);
@@ -546,6 +660,71 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
     ]).start();
   }, [likeAnimOpacity, likeAnimScale, likeAnimTransY]);
 
+  /**
+   * Swipe down over the bottom stack to clear the chrome — web's
+   * `handleOverlayGestureTouch*`. See the HIDE_SWIPE_MIN block above for why
+   * this is a gesture-handler Pan and not a PanResponder.
+   *
+   * Manual activation, and never on touch-down, so the buttons underneath keep
+   * their taps: the gesture only claims once the finger has clearly travelled
+   * downwards.
+   *
+   * Unlike ImageFeedDrawer's contentPan — which stays in BEGAN on a
+   * non-matching move and lets the native scroll take it — this one must fail
+   * explicitly, because `blocksExternalGesture` holds the pager for exactly as
+   * long as this gesture is undecided. Sitting in BEGAN would leave the pager
+   * waiting until the finger lifted, and the bottom stack, which is where a
+   * thumb rests, would stop paging altogether.
+   */
+  const hidePan = useMemo(
+    () =>
+      Gesture.Pan()
+        .manualActivation(true)
+        .onTouchesDown((e) => {
+          "worklet";
+          // First finger only: a second one landing mid-drag would otherwise
+          // re-seat the origin and reset the travel measured so far.
+          if (e.numberOfTouches !== 1) return;
+          panStart.value = { x: e.allTouches[0]?.x ?? 0, y: e.allTouches[0]?.y ?? 0 };
+        })
+        .onTouchesMove((e, state) => {
+          "worklet";
+          const t = e.allTouches[0];
+          if (!t || e.numberOfTouches !== 1) return;
+          const dy = t.y - panStart.value.y;
+          const dx = Math.abs(t.x - panStart.value.x);
+          // Anything that is not a downward drag belongs to the pager — hand
+          // it back at once rather than making it wait on us.
+          if (dy < -DRAG_RELEASE_MIN || dx > Math.abs(dy) + DRAG_RELEASE_MIN) {
+            state.fail();
+            return;
+          }
+          if (dy > DRAG_CLAIM_MIN && dy > dx) state.activate();
+        })
+        .onEnd((e, success) => {
+          "worklet";
+          // `onEnd` also runs for a cancelled gesture; only a real release
+          // should clear the chrome.
+          if (!success) return;
+          if (e.translationY > HIDE_SWIPE_MIN && e.translationY > Math.abs(e.translationX)) {
+            runOnJS(setOverlaysHidden)(true);
+          }
+        })
+        // Makes the pager wait on this gesture instead of racing it. Without
+        // it the list still wins on iOS, where a handler living inside the
+        // scroll view cannot disable it on its own.
+        //
+        // It has to be the pager's *gesture*, never the FlatList's ref.
+        // `convertToHandlerTag` resolves a relation by reading `.handlerTag`
+        // off the target and answers -1 for anything without one, which
+        // `extractValidHandlerTags` then filters out — so a plain RN
+        // component ref is discarded in silence and the relation never
+        // reaches native. Same reasoning as useHorizontalScrollGuard in
+        // context/PagerGestureContext.tsx.
+        .blocksExternalGesture(pagerGesture),
+    [panStart, pagerGesture],
+  );
+
   // Handle screen tap — double tap = like, single tap = play/pause
   const handleScreenPress = useCallback((e: GestureResponderEvent) => {
     if (longPressActiveRef.current) return;
@@ -554,8 +733,24 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
       setPickerOpen(false);
       return;
     }
-    const now = Date.now();
     const { pageX, pageY } = e.nativeEvent;
+    // Tap the middle band to bring cleared chrome back — web's
+    // `handleRestoreTouchEnd`. It restores on a tap rather than an upward
+    // swipe because an upward flick is exactly the gesture that pages to the
+    // next short, and the two fought; and the band stops short of the bottom
+    // 15% so a restore tap never lands on the action row. Returning here is
+    // what keeps the same tap from also toggling playback — web suppresses
+    // the follow-on tap for 400ms for the same reason.
+    if (overlaysHidden) {
+      if (
+        pageY > SCREEN_HEIGHT * RESTORE_ZONE_TOP &&
+        pageY < SCREEN_HEIGHT * RESTORE_ZONE_BOTTOM
+      ) {
+        setOverlaysHidden(false);
+      }
+      return;
+    }
+    const now = Date.now();
     if (now - lastTapRef.current < 300) {
       // Double tap → like
       lastTapRef.current = 0;
@@ -572,7 +767,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
         }
       }, 300);
     }
-  }, [liked, handleLike, showLikeAnimation, pickerOpen]);
+  }, [liked, handleLike, showLikeAnimation, pickerOpen, overlaysHidden]);
 
   // Long press — detect center vs right side
   const handleLongPressIn = useCallback((e: GestureResponderEvent) => {
@@ -610,7 +805,23 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
     }
   }, [is2xSpeed, screenshotMode, player]);
 
-  const chromeVisible = !screenshotMode;
+  const chromeVisible = !screenshotMode && !overlaysHidden;
+
+  // Swiping to another short brings the chrome back with it, so a cleared
+  // frame never carries over to the next one.
+  useEffect(() => {
+    if (isActive) return;
+    setOverlaysHidden(false);
+    setCaptionExpanded(false);
+  }, [isActive]);
+
+  useEffect(() => {
+    Animated.timing(chromeOpacity, {
+      toValue: chromeVisible ? 1 : 0,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
+  }, [chromeVisible, chromeOpacity]);
 
   // Only the short being watched drives the screen-level chrome, and the
   // cleanup puts it back — otherwise swiping away mid-hold would strand the
@@ -676,158 +887,182 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
         </View>
       )}
 
-      {chromeVisible && (
-        <>
-          {/* Legibility gradient behind the bottom stack, as on web. */}
-          <LinearGradient
-            colors={["transparent", "rgba(0,0,0,0.45)", "rgba(0,0,0,0.85)"]}
-            style={styles.bottomGradient}
-            pointerEvents="none"
-          />
+      {/* Faded, not unmounted: the swipe-down clear and the restore tap both
+          animate this, and keeping it mounted means nothing re-lays-out on the
+          way back. pointerEvents goes with it so a cleared frame cannot be
+          tapped through an invisible avatar. */}
+      <Animated.View
+        style={[StyleSheet.absoluteFill, { opacity: chromeOpacity }]}
+        pointerEvents={chromeVisible ? "box-none" : "none"}
+      >
+        {/* Legibility gradient behind the bottom stack, as on web. */}
+        <LinearGradient
+          colors={["transparent", "rgba(0,0,0,0.45)", "rgba(0,0,0,0.85)"]}
+          style={styles.bottomGradient}
+          pointerEvents="none"
+        />
 
-          {/* Creator info + caption, with the action bar as the bottommost row.
-              box-none so the gaps between buttons still toggle playback rather
-              than swallowing the tap. */}
-          <View
-            style={[
-              styles.bottomStack,
-              // insets.bottom is already the nav bar / home indicator under an
-              // edge-to-edge window, so the bar only needs a small optical gap
-              // on top of it. It used to add 16 there and float well clear of
-              // the bottom of the frame.
-              { paddingBottom: bottomInset + 10 },
-            ]}
-            pointerEvents="box-none"
-          >
-            {/* Caption block is inset by the bar's own inner padding so the
-                creator name starts on the same vertical line as the first icon
-                below it. */}
-            <View style={styles.captionBlock} pointerEvents="box-none">
+        {/* Creator info + caption, with the action row as the bottommost
+            element.
+
+            The stack takes touches rather than being box-none, which is both
+            what web does (`pointer-events-auto` on its caption and action row,
+            `none` only on the wrapper) and what the swipe-down needs. On
+            Android gesture-handler runs its own hit test, and under BOX_NONE
+            it records a view's handlers only if some descendant was itself a
+            valid target — background-less Views never are, and an Icon is SVG
+            rather than child Views, so the handler would only ever be reached
+            through the text leaves. Empty pixels between the icons, which is
+            most of the row, would silently not start the gesture.
+
+            The trade is explicit: these pixels can start the swipe or fall
+            through to the video, not both. Web makes the same one. */}
+        <GestureDetector gesture={hidePan}>
+          <View style={styles.bottomStack}>
+            <View style={styles.captionBlock}>
               <Pressable onPress={handleUserPress} style={styles.creatorRow}>
-                <Image source={avatar} style={styles.avatar} contentFit="cover" />
-                <View className="flex-1">
-                  <Text numberOfLines={1} className="text-white text-sm font-semibold">
+                {/* The shared Avatar, not a bare expo-image: it guards the
+                    "default-avatar" sentinel, falls back to the initial on a
+                    load error, and carries a recyclingKey so a reused cell never
+                    shows the previous creator's face. Web's equivalent is the
+                    Avatar/AvatarFallback pair at w-12 h-12 rounded-xl. */}
+                <Avatar
+                  uri={avatarUrl}
+                  name={displayName}
+                  size={48}
+                  style={styles.avatar}
+                />
+                <View style={styles.creatorText}>
+                  <Text numberOfLines={1} style={styles.creatorName}>
                     {displayName}
                   </Text>
                   {username ? (
-                    <Text numberOfLines={1} className="text-white/60 text-xs">
+                    <Text numberOfLines={1} style={styles.creatorHandle}>
                       @{username}
                     </Text>
                   ) : null}
                 </View>
               </Pressable>
 
-              <Pressable onPress={() => setCaptionExpanded((p) => !p)} hitSlop={8}>
-                {title ? (
-                  <Text
-                    numberOfLines={captionExpanded ? undefined : 1}
-                    className="text-white text-sm mb-0.5"
-                  >
-                    {title}
-                  </Text>
-                ) : null}
-                {description ? (
-                  <Text
-                    numberOfLines={captionExpanded ? undefined : 2}
-                    className="text-white/70 text-xs"
-                  >
-                    {description}
-                  </Text>
-                ) : null}
-                {description.length > 80 || title.length > 40 ? (
-                  <Text className="text-white/50 text-xs mt-0.5">
-                    {captionExpanded ? "less" : "more"}
-                  </Text>
-                ) : null}
-              </Pressable>
+              {title || description ? (
+                <Pressable onPress={() => setCaptionExpanded((p) => !p)} hitSlop={8}>
+                  {title ? (
+                    <Text
+                      numberOfLines={captionExpanded ? undefined : 1}
+                      style={styles.captionTitle}
+                    >
+                      {title}
+                    </Text>
+                  ) : null}
+                  {description ? (
+                    <Text
+                      numberOfLines={captionExpanded ? undefined : 2}
+                      style={styles.captionBody}
+                    >
+                      {description}
+                    </Text>
+                  ) : null}
+                  {/* Web shows the affordance on a long description; the title
+                      is clamped to one line here, so a long one earns it too —
+                      otherwise a clamped caption offers no hint it opens. */}
+                  {description.length > 80 || title.length > 40 ? (
+                    <Text style={styles.captionMore}>
+                      {captionExpanded ? "less" : "more"}
+                    </Text>
+                  ) : null}
+                </Pressable>
+              ) : null}
             </View>
 
-            {/* Action bar — the same glass slab as the top buttons, divided
-                into six equal cells so the icons keep a fixed rhythm whatever
-                the counts read. Order matches the web viewer and the feed
-                card's own bar, like at the far right for thumb reach. */}
-            <View style={styles.actionBarWrap} pointerEvents="box-none">
-              <ChromeFill radius={BAR_RADIUS} />
+            {/* Action row — bare icons over the scrim, no slab. Web draws this
+                as `flex items-center justify-between` with nothing behind it;
+                the glass tray that used to sit here is what made the viewer read
+                as a different app from the web one.
 
-              <View style={styles.actionBar} pointerEvents="box-none">
-                {/* Views — a readout, not a button, as on web. */}
-                <View style={styles.actionCell}>
-                  <Icon name="Eye" size={19} color={ICON_COLOR} strokeWidth={1.8} />
-                  <Text style={styles.actionCount} numberOfLines={1}>
-                    {formatCompactNumber(views)}
-                  </Text>
-                </View>
+                The cells are still equal flex shares rather than
+                `justify-between` over content-sized children, because a count
+                growing from "9" to "12.4K" shoved every icon beside it sideways.
+                The first and last cell align to their outer edges, so the row
+                still starts and ends flush with the caption above it exactly as
+                web's does. */}
+            <View style={styles.actionBar}>
+              {/* Views — a readout, not a button, as on web. */}
+              <View style={[styles.actionCell, styles.actionCellFirst]}>
+                <Icon name="Eye" size={20} color={ICON_COLOR} strokeWidth={1.8} />
+                <Text style={styles.actionCount} numberOfLines={1}>
+                  {formatCompactNumber(views)}
+                </Text>
+              </View>
 
-                <ActionButton
-                  icon="Gem"
-                  label={formatCompactNumber(tipCount)}
-                  onPress={handleTip}
-                  accessibilityLabel="Tip"
-                />
+              <ActionButton
+                icon="Gem"
+                label={formatCompactNumber(tipCount)}
+                onPress={handleTip}
+                accessibilityLabel="Tip"
+              />
 
-                <ActionButton
-                  icon="ThumbsDown"
-                  active={disliked}
-                  label={formatCompactNumber(dislikeCount)}
-                  onPress={handleDislike}
-                  accessibilityLabel="Dislike"
-                />
+              <ActionButton
+                icon="ThumbsDown"
+                active={disliked}
+                label={formatCompactNumber(dislikeCount)}
+                onPress={handleDislike}
+                accessibilityLabel="Dislike"
+              />
 
-                {/* Share — carries the repost count, and opens the share sheet. */}
-                <ActionButton
-                  icon="Share2"
-                  active={reposted}
-                  label={formatCompactNumber(repostCount)}
-                  onPress={() => setShowShareSheet(true)}
-                  accessibilityLabel="Share"
-                />
+              {/* Share — carries the repost count, and opens the share sheet. */}
+              <ActionButton
+                icon="Share2"
+                active={reposted}
+                label={formatCompactNumber(repostCount)}
+                onPress={() => setShowShareSheet(true)}
+                accessibilityLabel="Share"
+              />
 
-                <ActionButton
-                  icon="MessageSquare"
-                  label={formatCompactNumber(commentCount)}
-                  onPress={handleComment}
-                  accessibilityLabel="Comments"
-                />
+              <ActionButton
+                icon="MessageSquare"
+                label={formatCompactNumber(commentCount)}
+                onPress={handleComment}
+                accessibilityLabel="Comments"
+              />
 
-                {/* Reactions — tap to like/unlike, hold to pick one of the nine.
-                    The outer view is the cell; the inner one is the tray's
-                    positioning context and stays button-sized, so the tray
-                    anchors to the thumb rather than to the whole cell. The tray
-                    keeps itself inside the screen from there. */}
-                <View style={styles.actionCell}>
-                  <View style={{ position: "relative" }}>
-                    <ReactionPicker
-                      open={pickerOpen}
-                      current={myReaction}
-                      onSelect={(reaction) => { setPickerOpen(false); handleReaction(reaction); }}
-                      align="right"
-                      onShowInfo={
-                        isOwnShort && tokenId != null
-                          ? () => { setPickerOpen(false); setShowReactionInfo(true); }
-                          : undefined
-                      }
-                    />
-                    <ActionButton
-                      style={styles.actionInline}
-                      icon="ThumbsUp"
-                      glyph={leadGlyph}
-                      active={liked}
-                      label={formatCompactNumber(likeCount)}
-                      onPress={() => { if (pickerOpen) { setPickerOpen(false); return; } handleLike(); }}
-                      onLongPress={() => setPickerOpen(true)}
-                      accessibilityLabel={
-                        myReaction
-                          ? `${reactionMeta(myReaction).label} — hold to change your reaction`
-                          : "Like — hold to react"
-                      }
-                    />
-                  </View>
+              {/* Reactions — tap to like/unlike, hold to pick one of the nine.
+                  The outer view is the cell; the inner one is the tray's
+                  positioning context and stays button-sized, so the tray anchors
+                  to the thumb rather than to the whole cell. The tray keeps
+                  itself inside the screen from there. */}
+              <View style={[styles.actionCell, styles.actionCellLast]}>
+                <View style={{ position: "relative" }}>
+                  <ReactionPicker
+                    open={pickerOpen}
+                    current={myReaction}
+                    onSelect={(reaction) => { setPickerOpen(false); handleReaction(reaction); }}
+                    align="right"
+                    onShowInfo={
+                      isOwnShort && tokenId != null
+                        ? () => { setPickerOpen(false); setShowReactionInfo(true); }
+                        : undefined
+                    }
+                  />
+                  <ActionButton
+                    style={styles.actionInline}
+                    icon="ThumbsUp"
+                    glyph={leadGlyph}
+                    active={liked}
+                    label={formatCompactNumber(likeCount)}
+                    onPress={() => { if (pickerOpen) { setPickerOpen(false); return; } handleLike(); }}
+                    onLongPress={() => setPickerOpen(true)}
+                    accessibilityLabel={
+                      myReaction
+                        ? `${reactionMeta(myReaction).label} — hold to change your reaction`
+                        : "Like — hold to react"
+                    }
+                  />
                 </View>
               </View>
             </View>
           </View>
-        </>
-      )}
+        </GestureDetector>
+      </Animated.View>
 
       {showShareSheet && tokenId != null && (
         <ShareSheet
@@ -875,7 +1110,6 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
 const ShortsViewerScreen = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
-  const insets = useSafeAreaInsets();
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const {
@@ -904,9 +1138,18 @@ const ShortsViewerScreen = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [playbackRate, setPlaybackRate] = useState<number>(1);
   const [showOptionsMenu, setShowOptionsMenu] = useState(false);
-  // Holding the middle of a short hides its chrome for a clean screenshot; the
-  // active item reports that up so the top bar goes with it.
+  // Clearing a short's chrome — by holding the middle of it, or by the
+  // swipe-down — is reported up so the top bar goes with it.
   const [chromeVisible, setChromeVisible] = useState(true);
+  const topChromeOpacity = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    Animated.timing(topChromeOpacity, {
+      toValue: chromeVisible ? 1 : 0,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
+  }, [chromeVisible, topChromeOpacity]);
 
   // Follow / visibility overrides keyed by creator address and token, so an
   // action taken in the options menu sticks while the viewer stays open.
@@ -919,7 +1162,10 @@ const ShortsViewerScreen = () => {
   const activeMinter = activeItem?.minter || activeItem?.minterUser?.address || "";
   const activeUsername = activeItem?.minterUser?.username || activeItem?.minterUsername || "";
   const activeDisplayName =
-    activeItem?.minterUser?.displayName || activeItem?.minterDisplayName || activeUsername;
+    activeItem?.minterUser?.displayName ||
+    activeItem?.minterDisplayName ||
+    activeUsername ||
+    (activeMinter ? `${activeMinter.slice(0, 6)}…${activeMinter.slice(-4)}` : "");
   const userAddress = user?.address || user?.walletAddress || "";
   const isOwnerOfActive = !!(
     (activeItem as any)?.isOwner ||
@@ -933,6 +1179,60 @@ const ShortsViewerScreen = () => {
   const handleContainerLayout = useCallback((e: LayoutChangeEvent) => {
     const h = e.nativeEvent.layout.height;
     if (h > 0) setContainerHeight(h);
+  }, []);
+
+  /**
+   * Fill in a caller that handed us only a tokenId.
+   *
+   * NotificationScreen navigates here with `[{ tokenId, postType: 'short' }]`
+   * and nothing else (NotificationScreen.tsx:744-753). The video still plays,
+   * because its URL is derived from the tokenId alone — but the avatar, the
+   * creator name, the title, the description and every count come from the
+   * payload, so that short renders as a playing video with no author and no
+   * text at all. `loadMore` only ever appends, so nothing else ever fixes it:
+   * swipe once and the fetched shorts are complete, which is why it looks
+   * intermittent.
+   *
+   * Hydrating here rather than in the caller covers every future thin caller
+   * too. The existing fields win over the fetched ones so anything the caller
+   * did know stays authoritative.
+   */
+  useEffect(() => {
+    const seed = items[0];
+    if (!seed || items.length !== 1) return;
+    if (seed.minterUser || seed.minterAvatarUrl || seed.name) return;
+    const id = seed.tokenId ?? seed.id;
+    if (id == null) return;
+
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await getNFT(id);
+        const payload = (res?.result || res) as any;
+        if (cancelled || !payload || typeof payload !== "object") return;
+        setItems((prev) =>
+          prev.map((it, i) =>
+            i === 0
+              ? {
+                  ...payload,
+                  // `/nft_info/:id` answers `mintername`, not `minterUsername`
+                  // — without this the username fallback rung is dead on a
+                  // hydrated item.
+                  minterUsername: payload.minterUsername || payload.mintername,
+                  ...it,
+                }
+              : it,
+          ),
+        );
+      } catch {
+        // The video still plays; leaving the husk beats blanking the screen.
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+    // Once, on mount — a later append must not retrigger it.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadMore = useCallback(async () => {
@@ -1051,6 +1351,18 @@ const ShortsViewerScreen = () => {
   const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 60 }).current;
 
   const listRef = useRef<FlatList>(null);
+  /**
+   * The pager, as something a gesture relation can actually name.
+   *
+   * A relation resolves through `.handlerTag`, which only gesture-handler's
+   * own objects and its wrapped components carry — a bare FlatList ref
+   * resolves to -1 and is dropped without a warning. Wrapping the list in a
+   * Native gesture gives each short's swipe-down a real handler to block, so
+   * the pager waits for that gesture to fail instead of racing it. Same shape
+   * as useHorizontalScrollGuard in context/PagerGestureContext.tsx, from the
+   * other side of the relation.
+   */
+  const pagerGesture = useMemo(() => Gesture.Native(), []);
 
   const renderFooter = useCallback(() => {
     if (!noMoreShorts || items.length === 0) return null;
@@ -1120,11 +1432,11 @@ const ShortsViewerScreen = () => {
         itemHeight={containerHeight}
         isMuted={isMuted}
         playbackRate={playbackRate}
-        bottomInset={insets.bottom}
+        pagerGesture={pagerGesture}
         onChromeVisibilityChange={setChromeVisible}
       />
     ),
-    [activeIndex, containerHeight, isMuted, playbackRate, insets.bottom, setChromeVisible],
+    [activeIndex, containerHeight, isMuted, playbackRate, pagerGesture, setChromeVisible],
   );
 
   const keyExtractor = useCallback(
@@ -1142,84 +1454,98 @@ const ShortsViewerScreen = () => {
     <View style={styles.container} onLayout={handleContainerLayout}>
       <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
 
-      <FlatList
-        ref={listRef}
-        data={items}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
-        pagingEnabled
-        horizontal={false}
-        showsVerticalScrollIndicator={false}
-        initialScrollIndex={initialIndex}
-        onViewableItemsChanged={onViewableItemsChanged}
-        viewabilityConfig={viewabilityConfig}
-        onEndReached={loadMore}
-        onEndReachedThreshold={0.5}
-        onMomentumScrollEnd={handleScrollEnd}
-        ListFooterComponent={renderFooter}
-        ListEmptyComponent={renderEmpty}
-        removeClippedSubviews
-        windowSize={3}
-        maxToRenderPerBatch={2}
-        initialNumToRender={2}
-        getItemLayout={getItemLayout}
-      />
+      {/* The Native gesture is what makes the pager nameable in a relation —
+          see pagerGesture. It wraps the list without changing how it scrolls. */}
+      <GestureDetector gesture={pagerGesture}>
+        <FlatList
+          ref={listRef}
+          data={items}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          pagingEnabled
+          horizontal={false}
+          showsVerticalScrollIndicator={false}
+          initialScrollIndex={initialIndex}
+          onViewableItemsChanged={onViewableItemsChanged}
+          viewabilityConfig={viewabilityConfig}
+          onEndReached={loadMore}
+          onEndReachedThreshold={0.5}
+          onMomentumScrollEnd={handleScrollEnd}
+          ListFooterComponent={renderFooter}
+          ListEmptyComponent={renderEmpty}
+          removeClippedSubviews
+          windowSize={3}
+          maxToRenderPerBatch={2}
+          initialNumToRender={2}
+          getItemLayout={getItemLayout}
+        />
+      </GestureDetector>
 
       {/* Fixed header overlay – back left, playback chrome right (as on web).
           box-none so only the buttons themselves take touches; the rest of the
           strip stays with the video underneath. Every button is the same 40pt
-          square in the same glass as the bottom bar; the speed pill only differs
-          in width, and keeps the height so the group reads as one row. */}
-      {chromeVisible && (
-        <>
-          {/* Mirror of the bottom scrim — the top buttons had nothing behind
-              them, so they washed out over a bright first frame. */}
-          <LinearGradient
-            colors={["rgba(0,0,0,0.55)", "transparent"]}
-            style={[styles.topGradient, { height: insets.top + 96 }]}
-            pointerEvents="none"
-          />
+          square in the same `bg-zinc-900/60` glass web gives them; the speed
+          pill only differs in width, and keeps the height so the group reads as
+          one row.
 
-          <View style={[styles.topBar, { paddingTop: insets.top + 10 }]} pointerEvents="box-none">
-            <Pressable onPress={handleBack} hitSlop={CHROME_HIT_SLOP} style={styles.topButton} accessibilityLabel="Back">
+          It fades on the same 250ms curve as the bottom stack rather than
+          unmounting, so clearing the chrome is one movement across the whole
+          frame instead of a pop at the top and a fade at the bottom. */}
+      <Animated.View
+        style={[StyleSheet.absoluteFill, { opacity: topChromeOpacity }]}
+        pointerEvents={chromeVisible ? "box-none" : "none"}
+      >
+        {/* Mirror of the bottom scrim — the top buttons had nothing behind
+            them, so they washed out over a bright first frame. Its height is
+            a constant now for the same reason the bar's padding is: the
+            device inset was already spent by the root SafeAreaView. */}
+        <LinearGradient
+          colors={["rgba(0,0,0,0.55)", "transparent"]}
+          style={styles.topGradient}
+          pointerEvents="none"
+        />
+
+        <View style={styles.topBar} pointerEvents="box-none">
+          <Pressable onPress={handleBack} hitSlop={CHROME_HIT_SLOP} style={styles.topButton} accessibilityLabel="Back">
+            <ChromeFill />
+            {/* Web's `w-6 h-6` on the back chevron — larger than the three
+                playback controls opposite it, as there. */}
+            <Icon name="ChevronLeft" size={24} color="#fff" />
+          </Pressable>
+
+          <View style={styles.topRight}>
+            <Pressable
+              onPress={handleCycleSpeed}
+              hitSlop={CHROME_HIT_SLOP}
+              style={[styles.topButton, styles.speedButton]}
+              accessibilityLabel="Playback speed"
+            >
               <ChromeFill />
-              <Icon name="ChevronLeft" size={22} color="#fff" />
+              <Text style={styles.speedButtonText}>{formatRate(playbackRate)}</Text>
             </Pressable>
 
-            <View style={styles.topRight}>
-              <Pressable
-                onPress={handleCycleSpeed}
-                hitSlop={CHROME_HIT_SLOP}
-                style={[styles.topButton, styles.speedButton]}
-                accessibilityLabel="Playback speed"
-              >
-                <ChromeFill />
-                <Text style={styles.speedButtonText}>{formatRate(playbackRate)}</Text>
-              </Pressable>
+            <Pressable
+              onPress={() => setIsMuted((m) => !m)}
+              style={styles.topButton}
+              hitSlop={CHROME_HIT_SLOP}
+              accessibilityLabel={isMuted ? "Unmute" : "Mute"}
+            >
+              <ChromeFill />
+              <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
+            </Pressable>
 
-              <Pressable
-                onPress={() => setIsMuted((m) => !m)}
-                style={styles.topButton}
-                hitSlop={CHROME_HIT_SLOP}
-                accessibilityLabel={isMuted ? "Unmute" : "Mute"}
-              >
-                <ChromeFill />
-                <Icon name={isMuted ? "VolumeX" : "Volume2"} size={19} color="#fff" />
-              </Pressable>
-
-              <Pressable
-                onPress={() => setShowOptionsMenu(true)}
-                style={styles.topButton}
-                hitSlop={CHROME_HIT_SLOP}
-                accessibilityLabel="More options"
-              >
-                <ChromeFill />
-                <Icon name="Ellipsis" size={19} color="#fff" />
-              </Pressable>
-            </View>
+            <Pressable
+              onPress={() => setShowOptionsMenu(true)}
+              style={styles.topButton}
+              hitSlop={CHROME_HIT_SLOP}
+              accessibilityLabel="More options"
+            >
+              <ChromeFill />
+              <Icon name="Ellipsis" size={20} color="#fff" />
+            </Pressable>
           </View>
-        </>
-      )}
+        </View>
+      </Animated.View>
 
       {/* Initial-load spinner — the first page is still in flight. */}
       {initialLoading && items.length === 0 && (
@@ -1270,14 +1596,14 @@ const styles = StyleSheet.create({
   },
   chromeFill: {
     overflow: "hidden",
-    borderWidth: 1,
-    borderColor: CHROME_BORDER,
+    borderRadius: CHROME_RADIUS,
   },
   topGradient: {
     position: "absolute",
     top: 0,
     left: 0,
     right: 0,
+    height: 96,
     zIndex: 15,
   },
   topBar: {
@@ -1288,6 +1614,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    // Web's `top-4 left-4 right-4`, flat — see the EDGE comment for why no
+    // inset is added on top of it.
+    paddingTop: EDGE,
     paddingHorizontal: EDGE,
     paddingBottom: 10,
     zIndex: 20,
@@ -1303,16 +1632,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  // Wider than the icon buttons but the same height, so the group's baseline
-  // and cap line stay flush.
+  // Web's `h-10 min-w-[40px] px-1.5`: it grows past the square only when the
+  // rate needs the room ("1.25x"), and keeps the height so the group's
+  // baseline and cap line stay flush.
   speedButton: {
     width: undefined,
-    minWidth: 46,
-    paddingHorizontal: 12,
+    minWidth: CHROME_SIZE,
+    paddingHorizontal: 6,
   },
+  // Web's `text-[11px] font-bold`.
   speedButtonText: {
     color: "#fff",
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: "700",
   },
   bottomGradient: {
@@ -1329,63 +1660,135 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: EDGE,
     right: EDGE,
-    bottom: 0,
+    // Web closes the frame with `pb-[max(1rem,env(safe-area-inset-bottom))]`.
+    // Inside the root SafeAreaView that resolves to a flat 16 — the old
+    // `insets.bottom + 10` was the notch charged twice.
+    bottom: EDGE,
     zIndex: 10,
   },
   captionBlock: {
-    paddingHorizontal: 4,
-    marginBottom: 10,
+    // Web's `mb-3`, both between the creator row and the caption and between
+    // the caption and the action row. It is a gap rather than a margin on
+    // creatorRow because the caption is conditional, and Yoga does not
+    // collapse a trailing margin — a short with neither title nor description
+    // ended up with 24pt of air above the action row instead of 12.
+    gap: 12,
+    marginBottom: 12,
   },
+  // Web's `gap-2`.
   creatorRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 10,
-    marginBottom: 8,
+    gap: 8,
   },
-  actionBarWrap: {
-    height: BAR_HEIGHT,
-  },
-  actionBar: {
+  creatorText: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "stretch",
-    paddingHorizontal: 4,
   },
-  /** Equal share of the bar — this is what puts the icons on a fixed grid. */
+  // Web: `text-base font-semibold` over `text-sm text-white/70`, both with
+  // `leading-tight` and a drop shadow.
+  creatorName: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "600",
+    lineHeight: 20,
+    ...TEXT_SHADOW,
+  },
+  creatorHandle: {
+    color: "rgba(255,255,255,0.7)",
+    fontSize: 14,
+    lineHeight: 18,
+    ...TEXT_SHADOW,
+  },
+  // Web's caption is `text-sm leading-relaxed`; the title carries the same
+  // size at a heavier weight so it reads as the headline of the two.
+  captionTitle: {
+    color: "#fff",
+    fontSize: 14,
+    fontWeight: "600",
+    lineHeight: 20,
+    marginBottom: 2,
+    ...TEXT_SHADOW,
+  },
+  captionBody: {
+    color: "#fff",
+    fontSize: 14,
+    lineHeight: 20,
+    ...TEXT_SHADOW,
+  },
+  captionMore: {
+    color: "rgba(255,255,255,0.6)",
+    fontSize: 12,
+    marginTop: 4,
+    ...TEXT_SHADOW,
+  },
+  // No wrapper and no fixed height any more: without a slab to fill, the row
+  // is exactly as tall as its tallest cell.
+  actionBar: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  /**
+   * Equal share of the row — this is what puts the icons on a fixed grid.
+   *
+   * `minHeight`, not vertical padding: the slab used to give every cell a
+   * fixed 46pt through `alignItems: "stretch"` inside it, and taking the slab
+   * away took the height with it. Padding around a 20pt icon would leave the
+   * buttons at 32pt, under both the 44pt iOS minimum and Android's 48dp, on
+   * the one surface a viewer actually thumbs. 44 also lands the row within
+   * 2pt of the old height, so nothing above it moves.
+   */
   actionCell: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     gap: 4,
+    minHeight: 44,
   },
-  /** Content-sized variant, so the reaction tray anchors to the thumb. */
+  /** The outer cells align to the caption's edges, as web's `justify-between`
+   *  does, while the middle four stay centred in their share. */
+  actionCellFirst: {
+    justifyContent: "flex-start",
+  },
+  actionCellLast: {
+    justifyContent: "flex-end",
+  },
+  /**
+   * Content-sized variant, so the reaction tray anchors to the thumb. Carries
+   * the same 44pt floor as the cell rather than padding on top of it — the
+   * two nest, and padding on both made the outer box 44 while leaving the
+   * Pressable inside it at 32.
+   *
+   * `minWidth` as well, which the flex cells get from their equal share and
+   * this one does not: it is the only button sized by its content, so on a
+   * short with no likes yet it was a 20pt icon plus a "0" — about 31pt wide,
+   * on the most-tapped control on the screen.
+   */
   actionInline: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     gap: 4,
-    paddingVertical: 11,
+    minHeight: 44,
+    minWidth: 44,
   },
   actionGlyph: {
     fontSize: 17,
     lineHeight: 22,
-    width: 19,
+    width: 20,
     textAlign: "center",
   },
+  // Web's `text-xs font-medium text-white/70 drop-shadow-lg`.
   actionCount: {
     color: COUNT_COLOR,
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: "500",
+    ...TEXT_SHADOW,
   },
-  // Same square-with-a-hairline as the top buttons, so the avatar belongs to
-  // the chrome rather than sitting in a shape of its own.
+  // Web's `w-12 h-12 rounded-xl`. Avatar derives its own radius from the size
+  // (16% → 8), so the 12 web draws is set here.
   avatar: {
-    width: CHROME_SIZE,
-    height: CHROME_SIZE,
-    borderRadius: CHROME_RADIUS,
-    borderWidth: 1,
-    borderColor: CHROME_BORDER,
+    borderRadius: 12,
   },
   pauseOverlay: {
     ...StyleSheet.absoluteFillObject,
