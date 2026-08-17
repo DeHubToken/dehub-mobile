@@ -24,6 +24,7 @@
 import { useCallback, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { supabase } from "../services/supabase";
+import { withWalletHeader } from "../libs/supabase-wallet-client";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
 
 
@@ -80,6 +81,19 @@ const writeDrafts = async (drafts: Draft[], address?: string): Promise<void> => 
 };
 
 
+/**
+ * A web-created draft has no metadata.monetization; restoring `undefined` into
+ * the composer would crash on the first `monetization.ppvEnabled` read.
+ */
+export const emptyMonetization = (): MonetizationState => ({
+  ppvEnabled: false,
+  ppvData: { price: "" },
+  bountyEnabled: false,
+  bountyData: { viewers: "", commenters: "", rewardPerPerson: "" },
+  tokenGatedEnabled: false,
+  tokenGateData: { minAmount: "" },
+});
+
 /** A server row rebuilt as a Draft. Media comes back empty — see the note above. */
 const fromRow = (row: any): Draft => ({
   id: `remote_${row.id}`,
@@ -91,7 +105,7 @@ const fromRow = (row: any): Draft => ({
   videoUri: null,
   thumbnailUri: null,
   coverUri: null,
-  monetization: row.metadata?.monetization,
+  monetization: row.metadata?.monetization ?? emptyMonetization(),
   createdAt: row.created_at ? new Date(row.created_at).getTime() : Date.now(),
   remoteId: row.id,
 });
@@ -104,11 +118,18 @@ const fromRow = (row: any): Draft => ({
 const mergeRemote = async (local: Draft[], address?: string): Promise<Draft[]> => {
   if (!address) return local;
   try {
-    const { data, error } = await supabase
-      .from("post_drafts")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .limit(50);
+    // post_drafts RLS keys ENTIRELY off the x-wallet-address header — without
+    // withWalletHeader the policy compares against NULL, SELECT returns zero
+    // rows, and every write is refused. This sync was silently dead.
+    const { data, error } = await withWalletHeader(
+      supabase
+        .from("post_drafts")
+        .select("*")
+        .eq("wallet_address", address.toLowerCase())
+        .order("created_at", { ascending: false })
+        .limit(50),
+      address,
+    );
     if (error || !data) return local;
 
     const known = new Set(local.map((d) => d.remoteId).filter(Boolean));
@@ -127,24 +148,27 @@ const pushRemote = async (draft: Draft, address?: string): Promise<string | null
   // nothing valid to write; the draft simply stays on the device.
   if (!address) return null;
   try {
-    const { data, error } = await supabase
-      .from("post_drafts")
-      .insert({
-        wallet_address: address.toLowerCase(),
-        text: draft.bodyText,
-        description: draft.description,
-        selected_category: draft.categories[0] ?? "",
-        has_image: draft.imageUris.length > 0,
-        has_video: Boolean(draft.videoUri),
-        metadata: {
-          categories: draft.categories,
-          monetization: draft.monetization,
-          titleText: draft.titleText ?? "",
-          source: "mobile",
-        },
-      })
-      .select("id")
-      .single();
+    const { data, error } = await withWalletHeader(
+      supabase
+        .from("post_drafts")
+        .insert({
+          wallet_address: address.toLowerCase(),
+          text: draft.bodyText,
+          description: draft.description,
+          selected_category: draft.categories[0] ?? "",
+          has_image: draft.imageUris.length > 0,
+          has_video: Boolean(draft.videoUri),
+          metadata: {
+            categories: draft.categories,
+            monetization: draft.monetization,
+            titleText: draft.titleText ?? "",
+            source: "mobile",
+          },
+        })
+        .select("id")
+        .single(),
+      address,
+    );
     if (error || !data) return null;
     return data.id as string;
   } catch {
@@ -152,10 +176,13 @@ const pushRemote = async (draft: Draft, address?: string): Promise<string | null
   }
 };
 
-const removeRemote = async (remoteId?: string): Promise<void> => {
+const removeRemote = async (remoteId?: string, address?: string): Promise<void> => {
   if (!remoteId) return;
   try {
-    await supabase.from("post_drafts").delete().eq("id", remoteId);
+    await withWalletHeader(
+      supabase.from("post_drafts").delete().eq("id", remoteId),
+      address,
+    );
   } catch {
     // Offline deletes stay local. The row reappears on the next merge, which is
     // the safe direction to fail: a draft that will not die beats one that
@@ -226,7 +253,7 @@ export function useDrafts(address?: string) {
       const updated = drafts.filter((d) => d.id !== id);
       setDrafts(updated);
       await writeDrafts(updated, address);
-      await removeRemote(target?.remoteId);
+      await removeRemote(target?.remoteId, address);
     },
     [drafts, address],
   );
@@ -236,7 +263,7 @@ export function useDrafts(address?: string) {
     const remoteIds = drafts.map((d) => d.remoteId).filter(Boolean) as string[];
     setDrafts([]);
     await writeDrafts([], address);
-    await Promise.all(remoteIds.map((rid) => removeRemote(rid)));
+    await Promise.all(remoteIds.map((rid) => removeRemote(rid, address)));
   }, [drafts, address]);
 
   return {
