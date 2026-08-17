@@ -49,6 +49,9 @@ import { getAvatarUrl } from "../libs/misc";
 import Avatar from "../components/common/Avatar";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import CategoryDrawer from "../components/Upload/CategoryDrawer";
+import CommunityDrawer from "../components/Upload/CommunityDrawer";
+import { getUserCommunities } from "../services/communities.service";
+import type { Community } from "../types/community";
 import MonetizationPanel from "../components/Upload/MonetizationPanel";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
 import CustomSwitch from "../components/ui/CustomSwitch";
@@ -90,7 +93,6 @@ const MAX_AUDIO_DURATION_MS = 60_000; // 60 seconds
 const AUDIO_MIME_TYPES = ["audio/mpeg", "audio/wav", "audio/aac", "audio/ogg", "audio/x-m4a", "audio/mp4", "audio/webm"];
 const CATEGORIES_MIN = 0;
 const CATEGORIES_MAX = 5;
-const MAX_SHORT_DURATION_MS = 90_000; // 90 seconds
 
 type PickedAsset = ImagePicker.ImagePickerAsset;
 type MediaMode = "none" | "images" | "video" | "audio";
@@ -101,12 +103,6 @@ type MediaMode = "none" | "images" | "video" | "audio";
  */
 const isVideoAsset = (asset: PickedAsset): boolean =>
   asset.type === "video" || !!asset.mimeType?.startsWith("video/");
-
-const isPortraitVideo = (asset: PickedAsset): boolean =>
-  (asset.height ?? 0) > (asset.width ?? 0);
-
-const isShortCandidateFn = (asset: PickedAsset): boolean =>
-  isPortraitVideo(asset) && (asset.duration ?? Infinity) <= MAX_SHORT_DURATION_MS;
 
 export default function UploadScreen() {
   const nav = useNavigation<any>();
@@ -184,6 +180,8 @@ export default function UploadScreen() {
   const [categories, setCategories] = useState<string[]>([]);
   const [allCategories, setAllCategories] = useState<string[]>([]);
   const [categoryOpen, setCategoryOpen] = useState(false);
+  const [communityOpen, setCommunityOpen] = useState(false);
+  const [userCommunities, setUserCommunities] = useState<Community[]>([]);
   const [pickedImages, setPickedImages] = useState<PickedAsset[]>([]);
   const [pickedVideo, setPickedVideo] = useState<PickedAsset | null>(null);
   const [pickedAudio, setPickedAudio] = useState<PickedAudio | null>(null);
@@ -204,7 +202,6 @@ export default function UploadScreen() {
     setIsAudioPreviewPlaying(false);
   }, []);
   const [isMuted, setIsMuted] = useState(true);
-  const [showMonetization, setShowMonetization] = useState(false);
   const [monetization, setMonetization] = useState<MonetizationState>({
     ppvEnabled: false,
     ppvData: { price: "" },
@@ -212,10 +209,8 @@ export default function UploadScreen() {
     bountyData: { viewers: "", commenters: "", rewardPerPerson: "" },
     tokenGatedEnabled: false,
     tokenGateData: { minAmount: "" },
+    subscribersEnabled: false,
   });
-  const [autoExpandSection, setAutoExpandSection] = useState<
-    "ppv" | "bounty" | "tokenGated" | null
-  >(null);
   const [thumbnailUri, setThumbnailUri] = useState<string | null>(null);
   const [coverUri, setCoverUri] = useState<string | null>(null);
   const [coverHidden, setCoverHidden] = useState(false);
@@ -246,20 +241,6 @@ export default function UploadScreen() {
   /** Track the draft id if we're editing one (so we can delete on save/post) */
   const restoredDraftIdRef = useRef<string | null>(null);
 
-  const monetizationProgress = useSharedValue(0);
-
-  useEffect(() => {
-    monetizationProgress.value = withTiming(showMonetization ? 1 : 0, {
-      duration: 250,
-    });
-  }, [showMonetization, monetizationProgress]);
-
-  const monetizationAnimStyle = useAnimatedStyle(() => ({
-    opacity: monetizationProgress.value,
-    maxHeight: monetizationProgress.value * 600,
-    overflow: "hidden" as const,
-  }));
-
   const liveSettingsProgress = useSharedValue(0);
 
   useEffect(() => {
@@ -280,18 +261,6 @@ export default function UploadScreen() {
     if (pickedImages.length > 0) return "images";
     return "none";
   }, [pickedVideo, pickedAudio, pickedImages.length]);
-
-  const isShortCandidate = useMemo(
-    () => !!pickedVideo && isShortCandidateFn(pickedVideo),
-    [pickedVideo],
-  );
-
-  const [postAsShort, setPostAsShort] = useState(false);
-
-  // Auto-set toggle when video changes
-  useEffect(() => {
-    setPostAsShort(!!pickedVideo && isShortCandidateFn(pickedVideo));
-  }, [pickedVideo]);
 
   /**
    * Whether this post goes on-chain.
@@ -351,9 +320,69 @@ export default function UploadScreen() {
       ? `${mintFee.amount} ${mintFee.symbol}`
       : null;
 
+  /**
+   * A post is filed under a community by carrying its slug as a category —
+   * the contract web writes and CommunityFeedRoute reads back. Only the
+   * account's own communities count, so the slug list comes from membership.
+   */
   useEffect(() => {
-    if (postAsShort) setShowMonetization(false);
-  }, [postAsShort]);
+    const addr = authUser?.address;
+    if (!addr) {
+      setUserCommunities([]);
+      return;
+    }
+    let cancelled = false;
+    getUserCommunities(addr)
+      .then((rows) => {
+        if (cancelled) return;
+        setUserCommunities(
+          rows.map((r) => r.communities).filter((c): c is Community => !!c),
+        );
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [authUser?.address]);
+
+  // Bounty and subscribers-only are both DHB-denominated, so neither survives
+  // a switch to Solana. Clear them with the chain rather than letting the
+  // upload fail its pre-check on a switch the user already made.
+  useEffect(() => {
+    if (!isSolanaChain(effectivePostChainId)) return;
+    setMonetization((prev) =>
+      prev.bountyEnabled || prev.subscribersEnabled
+        ? { ...prev, bountyEnabled: false, subscribersEnabled: false }
+        : prev,
+    );
+  }, [effectivePostChainId]);
+
+  const communitySlugs = useMemo(
+    () => new Set(userCommunities.map((c) => c.slug)),
+    [userCommunities],
+  );
+  const selectedCommunity = useMemo(
+    () => userCommunities.find((c) => categories.includes(c.slug)),
+    [userCommunities, categories],
+  );
+  /** Categories minus the community slug, which gets its own chip. */
+  const plainCategories = useMemo(
+    () => categories.filter((c) => !communitySlugs.has(c)),
+    [categories, communitySlugs],
+  );
+
+  const handleSelectCommunity = useCallback(
+    (community: Community) => {
+      setCategories((prev) => {
+        const rest = prev.filter((c) => !communitySlugs.has(c));
+        // Slug first, so the category cap can never drop the community.
+        return [community.slug, ...rest].slice(0, CATEGORIES_MAX);
+      });
+    },
+    [communitySlugs],
+  );
+
+  const handleClearCommunity = useCallback(() => {
+    setCategories((prev) => prev.filter((c) => !communitySlugs.has(c)));
+  }, [communitySlugs]);
 
   const hasMedia = mediaMode !== "none";
   const hasVideoOrAudio = mediaMode === "video" || mediaMode === "audio";
@@ -606,7 +635,7 @@ export default function UploadScreen() {
   const [showScheduleSheet, setShowScheduleSheet] = useState(false);
 
   const soundtrackEnabled =
-    !isLiveMode && !isQuoteMode && !postAsShort && (mediaMode === "video" || mediaMode === "images");
+    !isLiveMode && !isQuoteMode && (mediaMode === "video" || mediaMode === "images");
 
   // The Music button carries the audio-post options (upload/record) and the
   // soundtrack search, so it stays as long as either group has something to
@@ -665,7 +694,6 @@ export default function UploadScreen() {
       thumbnailUri,
       coverUri,
       monetization,
-      postAsShort,
       attachedSound: attachedSound || undefined,
       pollData: pollIsValid ? {
         question: pollQuestion.trim(),
@@ -678,7 +706,7 @@ export default function UploadScreen() {
       solanaAddress: solanaAddress ?? undefined,
       shouldMint,
     };
-  }, [bodyText, titleText, showTitle, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, postAsShort, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint]);
+  }, [bodyText, titleText, showTitle, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -694,11 +722,10 @@ export default function UploadScreen() {
     setIsLiveMode((prev) => {
       const next = !prev;
       if (next) {
-        // Entering live mode: clear media, hide monetization
+        // Entering live mode: clear media
         setPickedVideo(null);
         setPickedImages([]);
         setPickedAudio(null);
-        setShowMonetization(false);
         setThumbnailUri(null);
         setCoverUri(null);
         setCoverHidden(false);
@@ -1160,7 +1187,6 @@ export default function UploadScreen() {
   const handleRemoveVideo = useCallback(() => {
     setPickedVideo(null);
     setIsMuted(true);
-    setShowMonetization(false);
     setThumbnailUri(null);
     setCoverUri(null);
     setCoverHidden(false);
@@ -1429,26 +1455,9 @@ export default function UploadScreen() {
     setCategoryOpen(true);
   }, []);
 
-  const toggleMonetization = useCallback(() => {
-    setShowMonetization((prev) => !prev);
-    setAutoExpandSection(null);
-  }, []);
-
   const handleMonetizationChange = useCallback((next: MonetizationState) => {
     setMonetization(next);
   }, []);
-
-  const handleAutoExpandHandled = useCallback(() => {
-    setAutoExpandSection(null);
-  }, []);
-
-  const openMonetizationSection = useCallback(
-    (section: "ppv" | "bounty" | "tokenGated") => {
-      setShowMonetization(true);
-      setAutoExpandSection(section);
-    },
-    [],
-  );
 
   const bottomPad = kbVisible ? kbHeight : insets.bottom;
 
@@ -1837,12 +1846,6 @@ export default function UploadScreen() {
                     color="#fff"
                   />
                 </TouchableOpacity>
-                {postAsShort && (
-                  <View className="absolute top-2 left-2 bg-white/20 rounded px-2.5 py-0.5 flex-row items-center">
-                    <Icon name="Film" size={12} color="#fff" />
-                    <Text className="text-white text-xs font-semibold ml-1">Short</Text>
-                  </View>
-                )}
                 <TouchableOpacity
                   onPress={handleRemoveVideo}
                   className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/70 items-center justify-center"
@@ -1932,33 +1935,6 @@ export default function UploadScreen() {
                       ? "Published on-chain. Needs your wallet."
                       : "Posts straight away. You can mint it later from the post menu."}
                 </Text>
-              </View>
-            )}
-
-            {isShortCandidate && (
-              <View className="mt-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 px-4 py-3">
-                <View className="flex-row items-center justify-between">
-                  <View className="flex-row items-center flex-1 mr-3">
-                    <Icon name="Film" size={16} color="#fff" />
-                    <Text className="text-white text-sm font-medium ml-2">
-                      Post as Short
-                    </Text>
-                  </View>
-                  <CustomSwitch
-                    value={postAsShort}
-                    onValueChange={setPostAsShort}
-                  />
-                </View>
-                {postAsShort && (
-                  <Text className="text-theme-neutrals-500 text-xs mt-1.5">
-                    Thumbnail is optional — one will be auto-generated.
-                  </Text>
-                )}
-                {!postAsShort && (
-                  <Text className="text-theme-neutrals-500 text-xs mt-1.5">
-                    Will be posted as a normal video.
-                  </Text>
-                )}
               </View>
             )}
 
@@ -2170,6 +2146,10 @@ export default function UploadScreen() {
               </View>
             )}
 
+            {/* One list of post options, in web's order: Title, Category,
+                Community, then the access/monetization switches. Every switch
+                applies to every post type, as it does on web — a text or image
+                post can be gated or sold just like a video. */}
             {showExtras && (
               <View className="mt-4">
                 {/* Title is forced on for video/audio/live, toggleable for the
@@ -2191,9 +2171,9 @@ export default function UploadScreen() {
                 )}
 
                 <View className="mt-4">
-                  {categories.length > 0 && (
+                  {plainCategories.length > 0 && (
                     <View className="flex-row flex-wrap gap-2 mb-2">
-                      {categories.map((c) => (
+                      {plainCategories.map((c) => (
                         <View
                           key={c}
                           className="flex-row items-center px-2 py-1 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700"
@@ -2224,24 +2204,59 @@ export default function UploadScreen() {
                   )}
 
                 </View>
+
+                {/* Community — only for the ones this account belongs to, the
+                    same condition web puts on its Community switch. Filing a
+                    post means carrying the slug as a category. */}
+                {!isLiveMode && userCommunities.length > 0 && (
+                  <View className="mt-4">
+                    <View className="flex-row items-center justify-between">
+                      <TouchableOpacity
+                        onPress={() => setCommunityOpen(true)}
+                        activeOpacity={0.7}
+                        className="flex-row items-center flex-1"
+                      >
+                        <Icon name="Users" size={18} color="#6F7174" />
+                        <Text className="text-theme-neutrals-400 text-sm ml-1.5">
+                          Community
+                        </Text>
+                      </TouchableOpacity>
+                      <CustomSwitch
+                        value={!!selectedCommunity}
+                        onValueChange={(v) =>
+                          v ? setCommunityOpen(true) : handleClearCommunity()
+                        }
+                      />
+                    </View>
+                    {selectedCommunity && (
+                      <View className="flex-row flex-wrap gap-2 mt-2">
+                        <View className="flex-row items-center px-2 py-1 rounded-lg bg-theme-neutrals-800 border border-theme-neutrals-700">
+                          <Icon name="Users" size={12} color="#6F7174" />
+                          <Text className="text-white text-xs ml-1">
+                            {selectedCommunity.name}
+                          </Text>
+                          <TouchableOpacity onPress={handleClearCommunity} className="ml-1">
+                            <Icon name="CircleX" size={14} color="#6F7174" />
+                          </TouchableOpacity>
+                        </View>
+                      </View>
+                    )}
+                  </View>
+                )}
+
+                {!isLiveMode && !isQuoteMode && (
+                  <MonetizationPanel
+                    state={monetization}
+                    onChange={handleMonetizationChange}
+                    postChainId={effectivePostChainId}
+                  />
+                )}
               </View>
             )}
           </View>
         </View>
         </Pressable>
       </ScrollView>
-
-      {!isLiveMode && !isQuoteMode && !postAsShort && (
-        <Animated.View style={monetizationAnimStyle}>
-          <MonetizationPanel
-            state={monetization}
-            onChange={handleMonetizationChange}
-            autoExpandSection={autoExpandSection}
-            onAutoExpandHandled={handleAutoExpandHandled}
-            postChainId={effectivePostChainId}
-          />
-        </Animated.View>
-      )}
 
       {isLiveMode && (
         <Animated.View style={liveSettingsAnimStyle}>
@@ -2441,59 +2456,6 @@ export default function UploadScreen() {
           </TouchableOpacity>
         )}
 
-        {!isLiveMode && !isQuoteMode && mediaMode === "video" && !postAsShort && (
-          <View className="flex-row items-center">
-            {!showMonetization && monetization.ppvEnabled && (
-              <TouchableOpacity
-                onPress={() => openMonetizationSection("ppv")}
-                activeOpacity={0.7}
-                className="mr-3"
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                accessibilityRole="button"
-                accessibilityLabel="Pay-per-view settings"
-              >
-                <Icon name="CreditCard" size={18} color="#fff" />
-              </TouchableOpacity>
-            )}
-            {!showMonetization && monetization.bountyEnabled && (
-              <TouchableOpacity
-                onPress={() => openMonetizationSection("bounty")}
-                activeOpacity={0.7}
-                className="mr-3"
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                accessibilityRole="button"
-                accessibilityLabel="Bounty settings"
-              >
-                <Icon name="Gift" size={16} color="#fff" />
-              </TouchableOpacity>
-            )}
-            {!showMonetization && monetization.tokenGatedEnabled && (
-              <TouchableOpacity
-                onPress={() => openMonetizationSection("tokenGated")}
-                activeOpacity={0.7}
-                className="mr-3"
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                accessibilityRole="button"
-                accessibilityLabel="Token gate settings"
-              >
-                <Icon name="ShieldCheck" size={16} color="#fff" />
-              </TouchableOpacity>
-            )}
-            <TouchableOpacity
-              onPress={toggleMonetization}
-              activeOpacity={0.7}
-              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-              accessibilityRole="button"
-              accessibilityLabel="Monetization options"
-            >
-              <Icon
-                name="DollarSign"
-                size={20}
-                color="#fff"
-              />
-            </TouchableOpacity>
-          </View>
-        )}
       </View>
 
       <CategoryDrawer
@@ -2506,6 +2468,15 @@ export default function UploadScreen() {
         onAdd={addCategory}
         onRemove={removeCategory}
         type="feed"
+      />
+
+      <CommunityDrawer
+        visible={communityOpen}
+        onClose={() => setCommunityOpen(false)}
+        communities={userCommunities}
+        selectedSlug={selectedCommunity?.slug}
+        onSelect={handleSelectCommunity}
+        onClear={handleClearCommunity}
       />
 
       {/*

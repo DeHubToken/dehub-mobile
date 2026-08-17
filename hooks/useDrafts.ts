@@ -92,6 +92,7 @@ export const emptyMonetization = (): MonetizationState => ({
   bountyData: { viewers: "", commenters: "", rewardPerPerson: "" },
   tokenGatedEnabled: false,
   tokenGateData: { minAmount: "" },
+  subscribersEnabled: false,
 });
 
 /** A server row rebuilt as a Draft. Media comes back empty — see the note above. */
