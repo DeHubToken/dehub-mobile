@@ -29,6 +29,8 @@ import ImageTranslationSheet from "../common/ImageTranslationSheet";
 import QuotedPostEmbed from "../common/QuotedPostEmbed";
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
 import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
+import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
+import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import SmartImage from "../common/SmartImage";
 import { cdnImage } from "../../libs/cdnImage";
 import GlassTipSheet from "../Tip/GlassTipSheet";
@@ -373,6 +375,17 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const captionWithoutLinks = useMemo(
     () => stripDehubLinkMatches(captionText, dehubLinks),
     [captionText, dehubLinks],
+  );
+  // Market references get the same treatment, and in this order: the entity pass
+  // claims whole URLs first, so a dehub.io link carrying a hex id cannot also
+  // read as a contract address. Tickers stay in the caption; addresses come out.
+  const assetRefs = useMemo(
+    () => findAssetRefs(captionWithoutLinks).slice(0, MAX_ASSET_CARDS_PER_MESSAGE),
+    [captionWithoutLinks],
+  );
+  const displayCaption = useMemo(
+    () => stripAssetRefs(captionWithoutLinks, assetRefs),
+    [captionWithoutLinks, assetRefs],
   );
 
   const { isLoading: imgTranslating, error: imgTranslateError, result: imgTranslateResult, translateImage, clearResult: clearImgResult } =
@@ -1218,7 +1231,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
       <FeedCaption
         title={(isTranslated ? translatedTexts.title : localTitle) || undefined}
-        description={captionWithoutLinks || undefined}
+        description={displayCaption || undefined}
         categories={localCategories}
         onCategoryPress={onCategorySelect}
         onCashtagPress={(sym) => setActiveCashtag(sym)}
@@ -1236,6 +1249,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       {/* DeHub entity cards — stage, post, profile, community, invite, store,
           item, event. Placed after the quote embed to match web's PostCard. */}
       <DehubLinkCards links={dehubLinks} />
+
+      {/* Market cards — a contract address somebody pasted, or a $TICKER */}
+      <AssetRefCards refs={assetRefs} />
 
 
       {tokenId != null && !isLive && !(item as any).isQuotePost && (
