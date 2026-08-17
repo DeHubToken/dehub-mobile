@@ -319,7 +319,7 @@ const FeedScreen = () => {
       sortBy: filters.sortBy as FeedSortBy,
       sortOrder: "desc" as const,
       postType: "feed-images",
-      status: "minted" as const,
+      status: "all" as const,
     };
     if (filters.dateRange) params.range = filters.dateRange as FeedRange;
     return params;

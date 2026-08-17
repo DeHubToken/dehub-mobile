@@ -449,6 +449,9 @@ const NormalVideoPlayer: React.FC<NormalVideoPlayerProps> = ({
               mintTxHash={
                 (nftData?.mintTxHash ?? nftData?.result?.mintTxHash) as any
               }
+              postStatus={
+                (nftData?.status ?? nftData?.result?.status) as any
+              }
             />
           )}
           {/* Repost & Quote stats */}
