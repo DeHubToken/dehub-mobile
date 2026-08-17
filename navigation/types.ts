@@ -65,6 +65,16 @@ export type AppStackParamList = {
     postId?: string;
     commentId?: string;
   };
+  /**
+   * Same component as PostResolver, registered a second time because
+   * react-navigation allows one deep-link path per screen and /newpost/:n
+   * needs its own. It carries the slug rather than a tokenId — the resolver
+   * exchanges one for the other before forwarding to FeedDetail.
+   */
+  [ScreenNames.PostResolverNewPost]: {
+    newPostId?: string;
+    commentId?: string;
+  };
   [ScreenNames.FeedDetail]: {
     postId?: string;
     tokenId?: string;
