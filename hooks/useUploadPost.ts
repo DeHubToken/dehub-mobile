@@ -1,20 +1,11 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import * as ImagePicker from "expo-image-picker";
-import { useNavigation, CommonActions } from "@react-navigation/native";
-import { ScreenNames } from "../navigation/ScreenNames";
 import { useUser, useProvider } from "../context/AuthContext";
-import {
-  useWeb3Provider,
-  useStreamControllerContract,
-  useStreamCollectionContract,
-} from "../hooks/use-web3";
-import { minNft } from "../services/nft.service";
-import { mintNftOnChain, mintWithBounty } from "../services/mint.service";
+import { useWeb3Provider } from "../hooks/use-web3";
 import { getFileName, guessMime } from "../libs/assets.util";
 import { extractHashtagCategories } from "../libs/strings.util";
 import { filteredStreamInfo, isValidDataForMinting, getTotalBountyAmount } from "../libs/validators.util";
-import { parseTxError } from "../libs/web3.util";
-import { toastError, toastSuccess } from "../libs/toast";
+import { toastError } from "../libs/toast";
 import {
   supportedTokens,
   defaultChainId as DEFAULT_CHAIN_ID,
@@ -44,8 +35,6 @@ export type UploadStage =
   | "minting"
   | "finalizing"
   | "done";
-
-type MediaMode = "none" | "images" | "video" | "audio";
 
 const MAX_SHORT_DURATION_MS = 90_000;
 
@@ -108,16 +97,10 @@ const getActiveNetworkLabel = (chainId: number | null | undefined): string => {
 
 
 export function useUploadPost() {
-  const nav = useNavigation<any>();
   const user = useUser() as any;
   const { authMethod } = useProvider();
   const tokenBalances = user?.tokenBalances;
   const { chainId } = useWeb3Provider();
-  const streamController = useStreamControllerContract();
-  const streamCollectionContract = useStreamCollectionContract();
-
-  const [uploadStage, setUploadStage] = useState<UploadStage>("idle");
-  const [isUploading, setIsUploading] = useState(false);
 
   // Derive ETH balance (used for gas checks on imported accounts)
   const ethBalance = useMemo(() => {
@@ -128,13 +111,6 @@ export function useUploadPost() {
 
   const activeChainId = useMemo(() => chainId || DEFAULT_CHAIN_ID, [chainId]);
   const activeNetworkLabel = useMemo(() => getActiveNetworkLabel(chainId), [chainId]);
-
-  const getMediaMode = useCallback((p: UploadPayload): MediaMode => {
-    if (p.pickedVideo) return "video";
-    if (p.pickedAudio) return "audio";
-    if (p.pickedImages.length > 0) return "images";
-    return "none";
-  }, []);
 
   const validate = useCallback((p: UploadPayload): ValidationResult => {
     const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
@@ -310,73 +286,6 @@ export function useUploadPost() {
     [],
   );
 
-  const buildFormData = useCallback(
-    (p: UploadPayload): FormData => {
-      const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
-      const addr = (user?.walletAddress || user?.address || "").toLowerCase();
-      const fd = new FormData();
-
-      fd.append("name", p.bodyText.trim());
-      fd.append("description", p.description.trim());
-      fd.append("chainId", String(chainId ?? DEFAULT_CHAIN_ID));
-      fd.append("category", JSON.stringify(p.categories));
-
-      if (mode === "video") {
-        fd.append("postType", p.postAsShort ? "short" : "video");
-
-        // Video file
-        if (p.pickedVideo?.uri) {
-          const vName = getFileName(p.pickedVideo.uri, "video.mp4");
-          const vType = guessMime(p.pickedVideo.uri, "video/mp4");
-          // @ts-ignore React Native FormData file shape
-          fd.append("files", { uri: p.pickedVideo.uri, name: vName, type: vType } as any);
-        }
-
-        // Thumbnail: prefer user-picked cover over auto-generated
-        const thumb = p.coverUri || p.thumbnailUri;
-        if (thumb) {
-          const tName = getFileName(thumb, "thumbnail.jpg");
-          const tType = guessMime(thumb, "image/jpeg");
-          // @ts-ignore React Native FormData file shape
-          fd.append("files", { uri: thumb, name: tName, type: tType } as any);
-        }
-
-        const streamInfo = p.postAsShort ? {} : buildStreamInfo(p.monetization);
-        fd.append("streamInfo", JSON.stringify(p.postAsShort ? {} : filteredStreamInfo(streamInfo)));
-      } else if (mode === "audio") {
-        fd.append("postType", "feed-audio");
-        if (p.pickedAudio) {
-          // @ts-ignore React Native FormData file shape
-          fd.append("feed-audio", {
-            uri: p.pickedAudio.uri,
-            name: p.pickedAudio.name || "audio.m4a",
-            type: p.pickedAudio.mimeType || "audio/x-m4a",
-          } as any);
-        }
-        fd.append("streamInfo", JSON.stringify({}));
-      } else if (mode === "images") {
-        fd.append("postType", "feed-images");
-        p.pickedImages.forEach((img) => {
-          if (!img?.uri) return;
-          const name = getFileName(img.uri, "image.jpg");
-          const type = guessMime(img.uri, "image/jpeg");
-          // @ts-ignore React Native FormData file shape
-          fd.append("feed-images", { uri: img.uri, name, type } as any);
-        });
-        fd.append("streamInfo", JSON.stringify({}));
-      } else {
-        fd.append("postType", "feed-simple");
-        fd.append("streamInfo", JSON.stringify({}));
-      }
-
-      fd.append("plans", JSON.stringify([]));
-      if (addr) fd.append("address", addr);
-      if (p.scheduledAt) fd.append("scheduledAt", p.scheduledAt.toISOString());
-
-      return fd;
-    },
-    [user?.walletAddress, user?.address, chainId, buildStreamInfo],
-  );
 
   const preUploadCheck = useCallback(
     (p: UploadPayload): ValidationResult => {
@@ -433,130 +342,6 @@ export function useUploadPost() {
     [authMethod, activeChainId, ethBalance, buildStreamInfo, user, tokenBalances],
   );
 
-  const upload = useCallback(
-    async (p: UploadPayload) => {
-      const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
-      try {
-        setIsUploading(true);
-        setUploadStage("uploading");
-
-        const fd = buildFormData(p);
-        const res = await minNft(fd as any);
-
-        setUploadStage("processing");
-        const result: any = (res as any)?.data ?? res;
-
-        if (result?.error) {
-          throw new Error(result?.error_msg || result?.msg || "Upload failed");
-        }
-
-        const createdTokenId = result?.createdTokenId;
-        const timestamp = result?.timestamp;
-        const v = result?.v;
-        const r = result?.r;
-        const s = result?.s;
-
-        if (createdTokenId == null || timestamp == null || v == null || !r || !s) {
-          throw new Error("Mint signature payload missing");
-        }
-
-        // Bounty flow → mintWithBounty via controller
-        if (mode === "video" && p.monetization.bountyEnabled) {
-          const streamInfo = buildStreamInfo(p.monetization);
-          if (!streamController) throw new Error("Wallet not ready to mint with bounty");
-
-          setUploadStage("awaiting-wallet");
-          const tokenSymbol = streamInfo[streamInfoKeys.addBountyTokenSymbol] || "DHB";
-          const bountyToken = supportedTokens.find(
-            (e) => e.symbol === tokenSymbol && e.chainId === activeChainId,
-          );
-          if (!bountyToken) throw new Error("Unsupported bounty token for this chain");
-
-          const firstXViewer = parsePositiveNumber(p.monetization.bountyData.viewers) ?? 0;
-          const firstXComment = parsePositiveNumber(p.monetization.bountyData.commenters) ?? 0;
-          const bountyAmt = parsePositiveNumber(p.monetization.bountyData.rewardPerPerson) ?? 0;
-
-          const tx = await mintWithBounty(
-            streamController,
-            createdTokenId,
-            timestamp,
-            v,
-            r,
-            s,
-            bountyToken as any,
-            bountyAmt,
-            firstXViewer,
-            firstXComment,
-          );
-          setUploadStage("minting");
-          await tx?.wait?.(1);
-
-          setUploadStage("done");
-          toastSuccess("Post sent!", {
-            description: "Your post is being processed. It may take a moment to appear in your feed.",
-          });
-
-          setIsUploading(false);
-          setUploadStage("idle");
-          // Reset navigation so user cannot go back to the upload screen
-          nav.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{ name: ScreenNames.Root, params: { screen: ScreenNames.Home } }],
-            }),
-          );
-          return;
-        }
-
-        // Standard mint via collection contract
-        if (!streamCollectionContract) throw new Error("Wallet not ready to mint");
-
-        setUploadStage("awaiting-wallet");
-        const tx = await mintNftOnChain(
-          streamCollectionContract,
-          createdTokenId,
-          timestamp,
-          v,
-          r,
-          s,
-        );
-        setUploadStage("minting");
-        await tx?.wait?.(1);
-
-        setUploadStage("done");
-        toastSuccess("Post sent!", {
-          description: "Your post is being processed. It may take a moment to appear in your feed.",
-        });
-
-        setIsUploading(false);
-        setUploadStage("idle");
-        // Reset navigation so user cannot go back to the upload screen
-        nav.dispatch(
-          CommonActions.reset({
-            index: 0,
-            routes: [{ name: ScreenNames.Root, params: { screen: ScreenNames.Home } }],
-          }),
-        );
-      } catch (e: any) {
-        console.error("[useUploadPost] upload error:", e);
-        const inMintPhase = ["awaiting-wallet", "minting", "finalizing"].includes(uploadStage);
-        const msg = inMintPhase ? parseTxError(e, "send") : (e?.message || "Upload failed");
-        toastError(msg);
-      } finally {
-        setIsUploading(false);
-        setUploadStage("idle");
-      }
-    },
-    [
-      buildFormData,
-      buildStreamInfo,
-      streamController,
-      streamCollectionContract,
-      activeChainId,
-      uploadStage,
-      nav,
-    ],
-  );
 
   const enqueueJob = useCallback(
     (p: UploadPayload): boolean => {
@@ -739,9 +524,6 @@ export function useUploadPost() {
     validate,
     preUploadCheck,
     buildConfirmText,
-    upload,
-    uploadStage,
-    isUploading,
     enqueueJob,
     enqueueQuoteJob,
   };
