@@ -431,7 +431,15 @@ export function useProviderLifecycle({
     providerMetaRef.current.authAdapter = null;
     providerMetaRef.current.providerInitInFlight = null;
 
-    // 3. Directly call init (no guard checks)
+    // 3. Drop the module-scoped signing override, as attemptReinitializeProvider
+    //    below already does. Without it the "fresh" adapter hands straight back
+    //    whatever is in the registry — LocalProviderAdapter.getProvider() returns
+    //    that before it ever reads the preferred chain id — so a chain switch
+    //    rebuilt nothing, eth_chainId reported the OLD chain, and the app set
+    //    itself right back onto it.
+    clearSigningProvider();
+
+    // 4. Directly call init (no guard checks)
     await internalInitializeProvider();
   }, [internalInitializeProvider]);
 

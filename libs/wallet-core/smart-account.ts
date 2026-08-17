@@ -137,6 +137,24 @@ export function isChainAASupported(chainId: number): boolean {
   return !!AA_CHAIN_CONFIGS[chainId];
 }
 
+/**
+ * True when this address is a Safe resolved during this session rather than a
+ * plain EOA — i.e. the signed-in identity only exists on AA-configured chains.
+ *
+ * False for "not seen yet", so a caller filtering a chain list keeps offering
+ * everything until a Safe has actually been built. That is the safe direction:
+ * an over-generous list is caught by switchChain, which refuses and rolls back
+ * rather than signing the user in as a different wallet.
+ */
+export function isSmartAccountIdentity(address?: string | null): boolean {
+  if (!address) return false;
+  const wanted = address.toLowerCase();
+  for (const outcome of aaOutcomes.values()) {
+    if (outcome.ok && outcome.safeAddress.toLowerCase() === wanted) return true;
+  }
+  return false;
+}
+
 export interface AAProviderLike {
   request: (args: { method: string; params?: any[] }) => Promise<any>;
   on?: (event: string, listener: (...args: any[]) => void) => void;
