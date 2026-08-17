@@ -48,6 +48,11 @@ export interface SerializedUploadPayload {
 
 export interface MintParams {
   createdTokenId: number;
+  /** The server parked the token at status 'scheduled' — the cron publishes it
+   *  later, and the signature in the response must NOT be used now, so the
+   *  mint phase is skipped (a retry resumes past it too). */
+  scheduled?: boolean;
+  scheduledAt?: string;
   // EVM signature components (absent for Solana mints)
   timestamp?: number;
   v?: number;
