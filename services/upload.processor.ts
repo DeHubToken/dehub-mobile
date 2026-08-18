@@ -89,6 +89,13 @@ function rebuildFormData(job: UploadJob): FormData {
   const { payload, walletAddress } = job;
   const fd = new FormData();
 
+  // The job id is allocated once at enqueue and persisted with the job, so it
+  // survives a Retry and a rehydrate — which is exactly what makes it the
+  // right key. Both of those re-run this upload from the top, and before the
+  // server understood the key that meant a second post whenever the first
+  // send had actually reached it.
+  fd.append("idempotencyKey", job.id);
+
   fd.append("name", payload.bodyText.trim());
   fd.append("description", payload.description.trim());
   fd.append("chainId", String(job.chainId));
@@ -198,12 +205,28 @@ async function processJob(job: UploadJob): Promise<void> {
 
     const createdTokenId = Number(result?.createdTokenId);
 
+    // `duplicate` means this exact upload had already reached the server — the
+    // first send's response just never got back to us. The post exists and no
+    // second one was made, so this job only has to finish against the token
+    // that is already there.
+    //
+    // Only `alreadyMinted` changes what happens next: that token is on chain,
+    // so there is no signature to use and the mint phase must be skipped. A
+    // duplicate that is still off-chain comes back carrying a fresh
+    // authorization and falls through to the normal branches below.
+    if (result?.duplicate && result?.alreadyMinted) {
+      if (!Number.isFinite(createdTokenId)) {
+        throw new Error("Upload succeeded but no token id came back");
+      }
+      mintParams = { createdTokenId, alreadyMinted: true } as MintParams;
+      uploadActions.updateStage(job.id, "processing", mintParams);
+    }
     // Scheduled: the server parked the token at status 'scheduled' and the
     // cron publishes it at the chosen time. The response still carries a mint
     // signature, but using it NOW would put a not-yet-visible post on-chain
     // ahead of its schedule — skip the mint phase exactly like an off-chain
     // post's.
-    if (result?.scheduled) {
+    else if (result?.scheduled) {
       if (!Number.isFinite(createdTokenId)) {
         throw new Error("Upload succeeded but no token id came back");
       }
@@ -257,9 +280,10 @@ async function processJob(job: UploadJob): Promise<void> {
     throw new Error("Upload cancelled");
   }
 
-  // Mint phase — skipped wholesale for a post published off-chain or parked as
-  // scheduled. Everything after it (the poll, the done stage) runs the same.
-  if (!job.mintOptOut && !mintParams.scheduled) {
+  // Mint phase — skipped wholesale for a post published off-chain, parked as
+  // scheduled, or already minted by the send this one is a repeat of.
+  // Everything after it (the poll, the done stage) runs the same.
+  if (!job.mintOptOut && !mintParams.scheduled && !mintParams.alreadyMinted) {
     uploadActions.updateProgress(job.id, 0.85);
     uploadActions.updateStage(job.id, "minting");
 
