@@ -35,6 +35,7 @@ import type { DmMessage, DmMsgType, DmMediaUrl, ReplyPreview } from "../../servi
 import { getSenderUser } from "../../services/dm/dm.types";
 import type { MessageLayout } from "./MessageContextMenu";
 import DehubLinkCard from "../common/DehubLinkCard";
+import LinkedText from "../common/LinkedText";
 import { findDehubLink, stripDehubLinkMatches } from "../../libs/dehub-links";
 import {
   AssetRefCards,
@@ -460,10 +461,14 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
     if (isVoice || isGif || mediaItems.length > 0) return null;
     const link = findDehubLink(message.content ?? "");
     if (!link) return null;
-    // Everything except the link itself is the caption.
-    const caption = stripDehubLinkMatches(message.content ?? "", [link])
-      .replace(/https?:\/\/\S+/gi, "")
-      .trim();
+    // Everything except the carded link itself is the caption.
+    //
+    // A blanket `https?://\S+` sweep used to run here as well, which deleted
+    // every *other* link in the message — send someone a post and an article
+    // together and the article was simply not there on arrival. The web app
+    // never did this; whatever survives stripping now renders as a tappable
+    // link instead of as debris.
+    const caption = stripDehubLinkMatches(message.content ?? "", [link]).trim();
     return { link, caption };
   }, [message.content, isVoice, isGif, mediaItems.length]);
 
@@ -872,13 +877,13 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                 {/* The post card folds the caption into itself as a title; the
                     others are a row, so their caption is printed above. */}
                 {!!sharedLink.caption && sharedLink.link.kind !== "post" && (
-                  <Text
+                  <LinkedText
+                    text={sharedLink.caption}
                     className={`px-3 pt-2.5 text-[15px] leading-5 ${
                       isMine ? "text-white" : "text-theme-neutrals-100"
                     }`}
-                  >
-                    {sharedLink.caption}
-                  </Text>
+                    onLongPress={handleLongPress}
+                  />
                 )}
                 <DehubLinkCard
                   link={sharedLink.link}
@@ -892,15 +897,15 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
               hasText && (
                 <>
                   {!!assetDisplayText?.trim() && (
-                    <Text
+                    <LinkedText
+                      text={assetDisplayText}
                       className={`px-3 ${
                         mediaItems.length > 0 ? "pt-1.5 pb-0.5" : "pt-2.5 pb-0.5"
                       } text-[15px] leading-5 ${
                         isMine ? "text-white" : "text-theme-neutrals-100"
                       }`}
-                    >
-                      {assetDisplayText}
-                    </Text>
+                      onLongPress={handleLongPress}
+                    />
                   )}
                   {/* A contract address or a $TICKER in a message cards up the
                       same way it does in a post. Entity shares are left alone:
