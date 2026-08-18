@@ -87,6 +87,7 @@ import { voteOnNFT, reactToNFT, getPpvSalesCount } from "../../services/nft.serv
 import {
   applyReactionDelta,
   isPositiveReaction,
+  reactionForTap,
   type PostReaction,
 } from "../../libs/reactions";
 import { savePost } from "../../services/feed.service";
@@ -537,15 +538,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }, [tokenId, liked, disliked, likeCount, dislikeCount, myReaction, reactionCounts, engagementKey, userAddress, requireAuth]);
 
   /**
-   * Tapping a thumb re-sends whatever reaction of that polarity the viewer
-   * already holds, which the server reads as "toggle it off" — so tapping the
-   * thumb clears a 🔥 the same way it clears a 👍, instead of silently
-   * downgrading it to a plain like.
+   * Tapping a thumb casts whichever reaction it is WEARING: a card leading with
+   * 🔥 draws a 🔥 thumb, so the tap reacts 🔥 rather than quietly casting a 👍
+   * the viewer never picked. Tapping a reaction you already hold re-sends it,
+   * which the server reads as "toggle it off" — so the thumb clears a 🔥 the
+   * same way it clears a 👍, instead of downgrading it to a plain like.
    */
   const togglePolarity = useCallback((positive: boolean) => {
-    const holdsSamePolarity = myReaction !== null && isPositiveReaction(myReaction) === positive;
-    handleReaction(holdsSamePolarity ? myReaction! : (positive ? "like" : "dislike"));
-  }, [handleReaction, myReaction]);
+    handleReaction(reactionForTap(positive, myReaction, reactionCounts));
+  }, [handleReaction, myReaction, reactionCounts]);
 
   const handleLikePress = useCallback(() => togglePolarity(true), [togglePolarity]);
   const handleDislikePress = useCallback(() => togglePolarity(false), [togglePolarity]);

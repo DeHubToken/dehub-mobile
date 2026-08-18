@@ -104,15 +104,45 @@ export function asReaction(value: unknown): PostReaction | null {
 export type ReactionCounts = Partial<Record<PostReaction, number>>;
 
 /**
- * The reaction to lead with on a card: whichever has the most, ties broken by
- * POST_REACTIONS order so a tie between like and love shows like. Null when
- * nobody has reacted — callers fall back to the plain thumbs-up.
+ * The single reaction a card's thumbs-up wears.
+ *
+ * One glyph, never a row of them: the button stands for the post's reaction as
+ * a whole, so it shows whichever reaction has the most — ties broken by
+ * POST_REACTIONS order, which is why a post split evenly between 👍 and ❤️
+ * still reads as a like.
+ *
+ * Two rules sit on top of the count:
+ *
+ * 1. **The viewer's own reaction wins.** Seeing your 😂 on the post you laughed
+ *    at is what tells you the reaction registered; the crowd's pick is the
+ *    fallback, not the override.
+ * 2. **Negative reactions never lead.** They belong to the thumbs-DOWN button,
+ *    and a 👎 or 💩 drawn beside the *like* count reads as a rendering bug
+ *    rather than as data.
+ *
+ * Null means "draw the plain thumbs-up icon" — returned both when no positive
+ * reaction leads and when the leader is a plain like, since the icon is already
+ * that reaction's glyph.
+ *
+ * Whatever this returns is also what a tap on the thumb casts — the glyph and
+ * the vote are one promise, kept in `reactionForTap`.
  */
-export function resolveTopReaction(counts: ReactionCounts | null | undefined): PostReaction | null {
+export function resolveLeadReaction(
+  counts: ReactionCounts | null | undefined,
+  myReaction?: PostReaction | null,
+): PostReaction | null {
+  const own = myReaction && isPositiveReaction(myReaction) ? myReaction : null;
+  const lead = own ?? topPositiveReaction(counts);
+  return lead && lead !== DEFAULT_POSITIVE_REACTION ? lead : null;
+}
+
+/** Most-used positive reaction, ties broken by picker order. */
+function topPositiveReaction(counts: ReactionCounts | null | undefined): PostReaction | null {
   if (!counts) return null;
   let top: PostReaction | null = null;
   let best = 0;
   for (const key of POST_REACTIONS) {
+    if (!isPositiveReaction(key)) continue;
     const value = counts[key] ?? 0;
     if (value > best) {
       best = value;
@@ -120,6 +150,33 @@ export function resolveTopReaction(counts: ReactionCounts | null | undefined): P
     }
   }
   return top;
+}
+
+/**
+ * The reaction a plain tap on a thumb casts.
+ *
+ * The thumbs-up wears whatever `resolveLeadReaction` picks, so a tap has to
+ * send that same reaction: a post leading with 🔥 draws a 🔥 thumb, and tapping
+ * it must react 🔥 — casting a 👍 the viewer never chose makes the button lie
+ * about what it does. The plain 👍 is only the fallback, for a thumb that is
+ * drawing the plain icon because nothing leads.
+ *
+ * Re-sending the reaction the viewer already holds is what the server reads as
+ * "remove it", so this doubles as the un-react path — tapping the thumb clears
+ * a 🔥 the same way it clears a 👍, rather than downgrading it to a like.
+ *
+ * The thumbs-DOWN never wears a glyph, so it stays a plain dislike unless the
+ * viewer is toggling off a 💩.
+ */
+export function reactionForTap(
+  positive: boolean,
+  myReaction: PostReaction | null | undefined,
+  counts?: ReactionCounts | null,
+): PostReaction {
+  const held = myReaction ?? null;
+  if (held && isPositiveReaction(held) === positive) return held;
+  if (!positive) return DEFAULT_NEGATIVE_REACTION;
+  return resolveLeadReaction(counts, held) ?? DEFAULT_POSITIVE_REACTION;
 }
 
 /** The top few reactions, most-used first, for the stacked card summary. */
