@@ -3,5 +3,13 @@
   <color name="iconBackground">#000000</color>
   <color name="colorPrimary">#023c69</color>
   <color name="colorPrimaryDark">#000000</color>
-  <color name="notification_icon_color">#8b5cf6</color>
+  <!-- Tints the small icon in the notification shade (wired up in
+       AndroidManifest as both firebase and expo default_notification_color).
+       DeHub is monochrome, and this was left on Expo's violet (#8b5cf6) — the
+       one purple thing on an otherwise black-and-white phone.
+
+       app.json has said #ffffff for a long time and never took effect: the
+       android/ project is committed, so the expo-notifications config plugin
+       does not regenerate this file. Change both together or they drift again. -->
+  <color name="notification_icon_color">#ffffff</color>
 </resources>
