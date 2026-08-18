@@ -197,6 +197,21 @@ const RESTORE_ZONE_TOP = 0.55;
 const RESTORE_ZONE_BOTTOM = 0.85;
 
 /**
+ * How long a short plays untouched before the chrome clears itself.
+ *
+ * The swipe-down above is a deliberate act, and almost nobody discovers it —
+ * so a short played straight through kept its caption, avatar and action row
+ * over the frame for its whole run. This is the same clear, reached by doing
+ * nothing: long enough to read who posted it, short enough that the video is
+ * unobstructed for most of its length.
+ *
+ * Any tap brings it back (and re-arms this), as does pausing, expanding the
+ * caption, or opening any sheet — see `autoHidden`. Unlike the swipe it never
+ * carries to the next short, because the timer restarts with each one.
+ */
+const AUTO_HIDE_MS = 3000;
+
+/**
  * The glass behind a top button, as an absolutely-positioned sibling rather
  * than a wrapper, so `pointerEvents="none"` lets taps on the button's own
  * padding still reach the video underneath.
@@ -402,6 +417,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
    *  (a hold) because the two are different ways into the same state and only
    *  the swipe one survives the finger coming off the glass. */
   const [overlaysHidden, setOverlaysHidden] = useState(false);
+  /** The same clear, reached by playing untouched for AUTO_HIDE_MS. Kept apart
+   *  from `overlaysHidden` so a tap can undo it without also undoing a swipe
+   *  the viewer meant, and so it can re-arm itself while a swipe must not. */
+  const [autoHidden, setAutoHidden] = useState(false);
 
   /** Faded rather than unmounted, so the chrome does not re-layout on the way
    *  back in — web animates the same 250ms easeOut opacity. */
@@ -756,6 +775,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
       }
       return;
     }
+    // The auto-clear takes no band and swallows no tap: it was not asked for,
+    // so undoing it should not cost the viewer the play/pause they meant. The
+    // timer re-arms from the state change and clears the frame again.
+    if (autoHidden) setAutoHidden(false);
     const now = Date.now();
     if (now - lastTapRef.current < 300) {
       // Double tap → like
@@ -773,7 +796,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
         }
       }, 300);
     }
-  }, [liked, handleLike, showLikeAnimation, pickerOpen, overlaysHidden]);
+  }, [liked, handleLike, showLikeAnimation, pickerOpen, overlaysHidden, autoHidden]);
 
   // Long press — detect center vs right side
   const handleLongPressIn = useCallback((e: GestureResponderEvent) => {
@@ -811,15 +834,52 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
     }
   }, [is2xSpeed, screenshotMode, player]);
 
-  const chromeVisible = !screenshotMode && !overlaysHidden;
+  const chromeVisible = !screenshotMode && !overlaysHidden && !autoHidden;
 
   // Swiping to another short brings the chrome back with it, so a cleared
   // frame never carries over to the next one.
   useEffect(() => {
     if (isActive) return;
     setOverlaysHidden(false);
+    setAutoHidden(false);
     setCaptionExpanded(false);
   }, [isActive]);
+
+  /**
+   * Clear the chrome once the short has played untouched for AUTO_HIDE_MS.
+   *
+   * Every condition here is a reason the viewer is *reading* rather than
+   * watching, and each one both blocks the timer and restarts it when it
+   * lifts: paused, caption open, a sheet up, the reaction tray out, or the
+   * chrome already cleared some other way.
+   */
+  useEffect(() => {
+    if (
+      !isActive ||
+      !isPlaying ||
+      autoHidden ||
+      overlaysHidden ||
+      screenshotMode ||
+      captionExpanded ||
+      showComments ||
+      showTipModal ||
+      showShareSheet ||
+      pickerOpen
+    ) {
+      return;
+    }
+    const timer = setTimeout(() => setAutoHidden(true), AUTO_HIDE_MS);
+    return () => clearTimeout(timer);
+  }, [
+    isActive, isPlaying, autoHidden, overlaysHidden, screenshotMode,
+    captionExpanded, showComments, showTipModal, showShareSheet, pickerOpen,
+  ]);
+
+  // Pausing is a request to look at the frame, not to keep it clear — whatever
+  // stopped playback (a tap, a sheet, losing focus) puts the chrome back.
+  useEffect(() => {
+    if (!isPlaying) setAutoHidden(false);
+  }, [isPlaying]);
 
   useEffect(() => {
     Animated.timing(chromeOpacity, {
