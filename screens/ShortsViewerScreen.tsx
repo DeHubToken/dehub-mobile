@@ -80,8 +80,9 @@ import Avatar from "../components/common/Avatar";
 import {
   applyReactionDelta,
   isPositiveReaction,
+  reactionForTap,
   reactionMeta,
-  resolveTopReaction,
+  resolveLeadReaction,
   type PostReaction,
 } from "../libs/reactions";
 import {
@@ -553,18 +554,23 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
     });
   }, [liked, disliked, myReaction, reactionCounts, likeCount, dislikeCount, engagementKey, tokenId, userAddress, requireAuth]);
 
-  /** Tapping a thumb re-sends the held reaction of that polarity, which toggles it off. */
+  /**
+   * Tapping a thumb casts whichever reaction it is WEARING — a short leading
+   * with 🔥 reacts 🔥, not a 👍 the viewer never picked — and re-sending a
+   * reaction you already hold is what toggles it off.
+   */
   const togglePolarity = useCallback((positive: boolean) => {
-    const holdsSamePolarity = myReaction !== null && isPositiveReaction(myReaction) === positive;
-    handleReaction(holdsSamePolarity ? myReaction! : (positive ? "like" : "dislike"));
-  }, [handleReaction, myReaction]);
+    handleReaction(reactionForTap(positive, myReaction, reactionCounts));
+  }, [handleReaction, myReaction, reactionCounts]);
 
   const handleLike = useCallback(() => togglePolarity(true), [togglePolarity]);
   const handleDislike = useCallback(() => togglePolarity(false), [togglePolarity]);
 
-  /** Viewer's own reaction wins over the short's most-used one. */
-  const leadReaction = myReaction ?? resolveTopReaction(reactionCounts);
-  const leadGlyph = leadReaction && leadReaction !== "like" ? reactionMeta(leadReaction).emoji : undefined;
+  /** The one glyph the thumb wears — and, on a tap, the reaction it casts. */
+  const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
+  const leadGlyph = leadReaction ? reactionMeta(leadReaction).emoji : undefined;
+  /** A 👎 or 💩 belongs to the thumbs-DOWN; this button must not announce it. */
+  const myPositiveReaction = myReaction && isPositiveReaction(myReaction) ? myReaction : null;
 
   const handleTip = useCallback(() => {
     if (!minterAddress) return;
@@ -1052,9 +1058,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
                     onPress={() => { if (pickerOpen) { setPickerOpen(false); return; } handleLike(); }}
                     onLongPress={() => setPickerOpen(true)}
                     accessibilityLabel={
-                      myReaction
-                        ? `${reactionMeta(myReaction).label} — hold to change your reaction`
-                        : "Like — hold to react"
+                      myPositiveReaction
+                        ? `${reactionMeta(myPositiveReaction).label} — hold to change your reaction`
+                        : `${reactionMeta(leadReaction ?? "like").label} — hold to react`
                     }
                   />
                 </View>
