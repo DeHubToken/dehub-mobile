@@ -11,6 +11,7 @@ import {
   clearBadge,
 } from './push.service';
 import { createLogger } from '../../libs/logger';
+import { openInApp } from '../../libs/links.utils';
 import { NotificationType, NotificationCategory } from '../enums/notification.enums';
 import { storage } from '../../libs/storage';
 import { getNotifications } from '../user.service';
@@ -93,6 +94,29 @@ const NON_NAVIGABLE_TYPES = new Set([
   NotificationType.VIDEO_REMOVAL,
 ]);
 
+/**
+ * A platform announcement names the page it is about in `articleUrl`, which the
+ * admin broadcast puts in both the in-app row's metadata and the push payload.
+ * NotificationScreen has always opened it on a row tap; a push tap fell through
+ * to NON_NAVIGABLE_TYPES and dumped the user on the notifications list, so the
+ * two taps on the same announcement went to different places.
+ *
+ * Same three types the row handles, and only http(s) — the value is
+ * admin-authored, but openInApp prefixes a bare scheme onto anything, so an
+ * unfiltered value would decide for itself what it opens.
+ */
+const ANNOUNCEMENT_TYPES = new Set([
+  NotificationType.SYSTEM,
+  NotificationType.ACCOUNT_WARNING,
+  NotificationType.VIDEO_REMOVAL,
+]);
+
+function announcementUrl(data: NotificationData): string | null {
+  if (!ANNOUNCEMENT_TYPES.has(data.type as NotificationType)) return null;
+  const url = typeof data.articleUrl === 'string' ? data.articleUrl.trim() : '';
+  return /^https?:\/\//i.test(url) ? url : null;
+}
+
 interface PushNotificationsProviderProps {
   children: React.ReactNode;
 }
@@ -162,6 +186,16 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
     logger.info('Handling notification tap', { type, tokenId, commentId });
 
     try {
+      // An announcement carrying a link goes to the link. Notifications first,
+      // so dismissing the in-app browser leaves the user on the row that sent
+      // them there rather than on whatever screen the tap interrupted.
+      const articleUrl = announcementUrl(data);
+      if (articleUrl) {
+        navigation.navigate(ScreenNames.Notifications);
+        openInApp(articleUrl);
+        return;
+      }
+
       // Non-navigable types - just open notifications screen
       if (NON_NAVIGABLE_TYPES.has(type as NotificationType)) {
         navigation.navigate(ScreenNames.Notifications);
