@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState, useRef } from "react";
+import React, { useCallback, useMemo } from "react";
 import { View, Text, Image, ImageBackground, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
 import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
@@ -8,7 +8,7 @@ import StoryAvatarRing from "../Story/StoryAvatarRing";
 import Icon from "../ui/Icon";
 import { copyToClipboard } from "../../libs";
 import { getSocialLink, openExternalLink } from "../../libs/links.utils";
-import { translateText, getDeviceLanguage } from "../../services/translation.service";
+import { useTranslation } from "../../hooks/useTranslation";
 import { TranslateButton } from "../ui/TranslateButton";
 import FakeGlass from "../ui/FakeGlass";
 import MutualFollowers from "./MutualFollowers";
@@ -58,6 +58,9 @@ export interface UserProfileHeaderProps {
   isPrivate?: boolean;
   canViewContent?: boolean;
   bio?: string | null;
+  /** ISO 639-1 the backend detected for the bio, so a bio already in the
+   *  reader's language costs no request at all. */
+  bioLanguage?: string | null;
   isFollowing?: boolean;
   isFollowRequestPending?: boolean;
   followLoading?: boolean;
@@ -95,6 +98,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   followsYou,
   isPrivate,
   bio,
+  bioLanguage,
   isFollowing = false,
   isFollowRequestPending = false,
   followLoading = false,
@@ -117,22 +121,21 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   hasUnwatchedStories = false,
   onStoryPress,
 }) => {
-  const [translatedBio, setTranslatedBio] = useState<string | null>(null);
-  const [isTranslatingBio, setIsTranslatingBio] = useState(false);
-  const targetLang = useRef(getDeviceLanguage());
-
-  const handleTranslateBio = useCallback(async () => {
-    if (!bio) return;
-    setIsTranslatingBio(true);
-    try {
-      const { translatedText } = await translateText(bio, targetLang.current);
-      setTranslatedBio(translatedText);
-    } catch {
-      // silently ignore
-    } finally {
-      setIsTranslatingBio(false);
-    }
-  }, [bio]);
+  // Bios go through the shared hook rather than a private translateText call,
+  // which is what gets them auto-translation, the persisted cache and — the
+  // reason the old code was wrong — the reader's CHOSEN language. It targeted
+  // the device locale, so a Turkish reader on an English handset was served
+  // "translations" back into English.
+  const bioTexts = useMemo(() => ({ bio: bio || "" }), [bio]);
+  const {
+    isTranslated: isBioTranslated,
+    translatedTexts: translatedBioTexts,
+    isLoading: isTranslatingBio,
+    handleTranslate: handleTranslateBio,
+    handleShowOriginal: handleShowOriginalBio,
+    shouldShow: showBioTranslate,
+  } = useTranslation(bioTexts, bioLanguage);
+  const displayBio = isBioTranslated ? translatedBioTexts.bio || bio : bio;
 
   const handleCopyUsername = useCallback(() => {
     if (username) copyToClipboard(username);
@@ -323,13 +326,15 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
 
           {!!bio && (
             <View className="mt-3">
-              <Text className="text-white/90 text-sm">{translatedBio ?? bio}</Text>
-              <TranslateButton
-                isTranslated={!!translatedBio}
-                isLoading={isTranslatingBio}
-                onTranslate={handleTranslateBio}
-                onShowOriginal={() => setTranslatedBio(null)}
-              />
+              <Text className="text-white/90 text-sm">{displayBio}</Text>
+              {showBioTranslate && (
+                <TranslateButton
+                  isTranslated={isBioTranslated}
+                  isLoading={isTranslatingBio}
+                  onTranslate={handleTranslateBio}
+                  onShowOriginal={handleShowOriginalBio}
+                />
+              )}
             </View>
           )}
 

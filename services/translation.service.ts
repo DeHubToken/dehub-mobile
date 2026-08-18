@@ -1,6 +1,7 @@
 import { NativeModules, Platform } from 'react-native';
 import { createLogger } from '../libs/logger';
 import i18n from '../i18n';
+import { storage } from '../libs/storage';
 import { supabase } from './supabase';
 
 const log = createLogger('translation.service');
@@ -17,6 +18,12 @@ export interface TranslateResponse {
     language: string;
     confidence: number;
   };
+  /**
+   * Set by the edge function when the text was already in the target language,
+   * so the body comes back untouched. Callers must not present that as a
+   * translation — see the no-op handling in hooks/useTranslation.
+   */
+  sameLanguage?: boolean;
 }
 
 /** Error from the translation endpoint. */
@@ -30,13 +37,21 @@ const MAX_CACHE = 200;
 interface CacheEntry {
   translatedText: string;
   sourceLang: string | null;
+  sameLanguage?: boolean;
 }
 
 /** Simple LRU cache backed by a Map (insertion order). */
 const cache = new Map<string, CacheEntry>();
 
+// Keyed on the whole text, not a 200-char prefix.
+//
+// Truncating was survivable while this cache died with the session: two posts
+// sharing an opening paragraph would swap translations until the next launch.
+// Now that entries are persisted, a collision outlives the app — and posts that
+// share a long prefix are not hypothetical here, they are reposts and templated
+// announcements. Web keys on the full text for the same reason.
 function cacheKey(text: string, targetLang: string): string {
-  return `${text.slice(0, 200)}::${targetLang}`;
+  return `${text}::${targetLang}`;
 }
 
 function getCached(text: string, targetLang: string): CacheEntry | undefined {
@@ -56,6 +71,95 @@ function setCache(text: string, targetLang: string, entry: CacheEntry): void {
     if (oldest) cache.delete(oldest);
   }
   cache.set(key, entry);
+  schedulePersist();
+}
+
+// ---------------------------------------------------------------------------
+// Persistence
+//
+// Session-only caching was survivable when a translation cost one deliberate
+// button press. Now that the feed translates itself, a cold start meant
+// re-requesting every post on screen — free for the reader, but a paid call for
+// us on anything the shared server cache has since evicted, and a visible
+// re-flicker either way. Persisting makes a relaunch cost nothing.
+//
+// The `-v2` suffix carries over from web, where v1 was populated while the
+// server could still cache a model's refusal prose as the "translation". This
+// client never wrote a v1, but keeping the names aligned means the next purge
+// is one shared decision rather than two.
+// ---------------------------------------------------------------------------
+
+const TRANSLATION_STORE_KEY = 'dehub-translation-cache-v2';
+
+function loadPersistedTranslations(): void {
+  try {
+    const raw = storage.getString(TRANSLATION_STORE_KEY);
+    if (!raw) return;
+    const entries = JSON.parse(raw) as [string, CacheEntry][];
+    if (!Array.isArray(entries)) return;
+    // Oldest first, so the in-memory eviction order matches what was stored.
+    for (const [key, value] of entries.slice(-MAX_CACHE)) {
+      if (value && typeof value.translatedText === 'string') cache.set(key, value);
+    }
+  } catch {
+    // A corrupt blob is not worth failing a launch over; the cache starts
+    // empty and refills.
+  }
+}
+loadPersistedTranslations();
+
+// Writing on every hit would serialise the whole map per translated post during
+// a scroll. Coalesce into one write per tick instead.
+let persistTimer: ReturnType<typeof setTimeout> | null = null;
+function schedulePersist(): void {
+  if (persistTimer) return;
+  persistTimer = setTimeout(() => {
+    persistTimer = null;
+    try {
+      storage.set(TRANSLATION_STORE_KEY, JSON.stringify(Array.from(cache.entries())));
+    } catch {
+      // Storage full or unavailable. The in-memory cache still works for this
+      // session.
+    }
+  }, 1000);
+}
+
+// The same (text, language) pair is routinely asked for by more than one
+// component at once — a repost shows the same body twice on one screen, and a
+// card and its detail view mount together on navigation. Sharing the promise
+// makes those one request instead of several identical ones landing on the edge
+// function within a frame.
+const inFlightRequests = new Map<string, Promise<TranslateResponse>>();
+
+function requestTranslation(
+  text: string,
+  targetLang: string,
+  sourceLang: string,
+): Promise<TranslateResponse> {
+  const key = cacheKey(text, targetLang);
+  const existing = inFlightRequests.get(key);
+  if (existing) return existing;
+
+  const request = (async () => {
+    const { data, error } = await supabase.functions.invoke('translate-text', {
+      body: { text, targetLang, sourceLang } satisfies TranslateRequest,
+    });
+    if (error) {
+      log.error('translate-text failed:', error);
+      throw new TranslationServiceError(error.message || 'Translation failed', 500);
+    }
+    return (data ?? {}) as TranslateResponse;
+  })();
+
+  inFlightRequests.set(key, request);
+  // Settled either way — a failure must not pin the key and make every later
+  // attempt at this text replay the same rejection.
+  request
+    .catch(() => {})
+    .then(() => {
+      inFlightRequests.delete(key);
+    });
+  return request;
 }
 
 export function getDeviceLanguage(): string {
@@ -95,44 +199,63 @@ export function getUserLanguage(): string {
   return getDeviceLanguage();
 }
 
+export interface TranslateTextResult {
+  translatedText: string;
+  sourceLang: string | null;
+  /**
+   * True when nothing was translated because the text was already in the
+   * target language — either the server said so, or it handed the body back
+   * unchanged. Distinct from a failure: the answer is correct and final.
+   */
+  sameLanguage: boolean;
+}
+
+// A translation that came back as the text it was given did not translate
+// anything. Compared loosely because providers normalise trailing whitespace.
+function isNoOpTranslation(translated: string, original: string): boolean {
+  return translated.trim() === original.trim();
+}
+
 export async function translateText(
   text: string,
   targetLang: string,
   sourceLang: string = 'auto',
-): Promise<{ translatedText: string; sourceLang: string | null }> {
+): Promise<TranslateTextResult> {
   if (!text || text.trim().length < 1) {
-    return { translatedText: text, sourceLang: null };
+    return { translatedText: text, sourceLang: null, sameLanguage: true };
   }
 
   const cached = getCached(text, targetLang);
   if (cached) {
     log.debug('Cache hit for translation');
-    return { translatedText: cached.translatedText, sourceLang: cached.sourceLang };
+    return {
+      translatedText: cached.translatedText,
+      sourceLang: cached.sourceLang,
+      sameLanguage: cached.sameLanguage ?? isNoOpTranslation(cached.translatedText, text),
+    };
   }
 
   log.debug('Translating text', { targetLang, sourceLang, length: text.length });
 
-  const { data, error } = await supabase.functions.invoke('translate-text', {
-    body: { text, targetLang, sourceLang } satisfies TranslateRequest,
-  });
-
-  if (error) {
-    log.error('translate-text failed:', error);
-    throw new TranslationServiceError(error.message || 'Translation failed', 500);
-  }
+  const data = await requestTranslation(text, targetLang, sourceLang);
 
   if (!data?.translatedText) {
     throw new TranslationServiceError('Translation unavailable', 500);
   }
 
-  const detectedLang = (data as TranslateResponse).detectedLanguage?.language ?? null;
+  const detectedLang = data.detectedLanguage?.language ?? null;
+  const sameLanguage = data.sameLanguage === true || isNoOpTranslation(data.translatedText, text);
 
+  // Cached either way — a post already in the reader's language is a settled
+  // answer, and not storing it means auto-translate asks again for every card
+  // that remounts.
   setCache(text, targetLang, {
     translatedText: data.translatedText,
     sourceLang: detectedLang,
+    sameLanguage,
   });
 
-  return { translatedText: data.translatedText, sourceLang: detectedLang };
+  return { translatedText: data.translatedText, sourceLang: detectedLang, sameLanguage };
 }
 
 export interface ImageTranslateResponse {
