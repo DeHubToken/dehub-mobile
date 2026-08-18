@@ -54,6 +54,10 @@ export interface MintParams {
    *  mint phase is skipped (a retry resumes past it too). */
   scheduled?: boolean;
   scheduledAt?: string;
+  /** This upload had already been published AND minted by an earlier send of
+   *  the same job — the server answered with the existing token and no
+   *  signature, because it cannot be minted a second time. */
+  alreadyMinted?: boolean;
   // EVM signature components (absent for Solana mints)
   timestamp?: number;
   v?: number;
