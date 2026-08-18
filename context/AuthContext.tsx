@@ -32,7 +32,6 @@ import { toastSuccess, toastError } from "../libs";
 import {
   getPreferredChainId,
   setPreferredChainId,
-  removeAuthToken,
   clearAuthSignature,
 } from "../libs/auth.utils";
 import { SUPPORTED_NETWORKS, supportedNetworks } from "../config/web3.constants";
@@ -158,7 +157,7 @@ interface AuthContextType {
   ensureFreshProvider: () => Promise<void>; // validates & reinitializes if stale
   authMethod?: 'local' | null;
   // Switch active chain and block UI until done
-  switchChain: (targetChainId: number, opts?: { reauth?: boolean }) => Promise<void>;
+  switchChain: (targetChainId: number) => Promise<void>;
   isSwitchingChain?: boolean;
   // Add more auth methods as needed
 }
@@ -213,7 +212,7 @@ interface AuthActionsContextType {
   patchUser: (update: Partial<User> | ((prev: User) => Partial<User>)) => Promise<User | null>;
   ensureProvider: () => Promise<void>;
   ensureFreshProvider: () => Promise<void>;
-  switchChain: (targetChainId: number, opts?: { reauth?: boolean }) => Promise<void>;
+  switchChain: (targetChainId: number) => Promise<void>;
 }
 
 // Create split contexts
@@ -397,62 +396,90 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // Update session-expired handler ref
   useEffect(() => { sessionExpiredHandlerRef.current = handleSessionExpired; }, [handleSessionExpired]);
 
-  // In-place chain switch: tear down the Web3Auth singleton, persist the new
-  // preference, re-create the instance on the target chain, and (normally)
-  // re-authenticate — all without restarting the app.
-  const switchChain = useCallback(async (targetChainId: number, opts?: { reauth?: boolean }) => {
+  /** Who the freshly built provider actually signs as. */
+  const getProviderAccount = useCallback(async (): Promise<string | null> => {
+    try {
+      const prov: any = getSigningProvider();
+      const accounts = await prov?.request?.({ method: 'eth_accounts' });
+      return Array.isArray(accounts) && accounts[0] ? String(accounts[0]) : null;
+    } catch {
+      return null;
+    }
+  }, []);
+
+  // In-place chain switch: persist the new preference, rebuild the local
+  // provider on the target chain, and re-authenticate — all without restarting
+  // the app, and all undone again if any step of it fails.
+  const switchChain = useCallback(async (targetChainId: number) => {
     if (!targetChainId) return;
     if (chainIdRef.current === targetChainId && providerStatusRef.current === 'ready') return;
-    // Backend identity is chain-independent (sign-in always resolves to the
-    // Safe smart-account address on the AA-anchor chain, same as dehubweb —
-    // see completeLocalSignIn) -- picking a different chain to post/mint/tip
-    // on was never something the backend needed to know about, and
-    // re-authenticating against `targetChainId` here is what caused
-    // "switching to Base on the post modal" to fail: the freshly rebuilt
-    // provider signs as the Safe (personal_sign never recovers to the stored
-    // EOA-shaped address on AA chains), so the re-auth call itself errors out.
-    // Callers that only need a chain-scoped provider (e.g. picking a mint
-    // chain in the post composer) should pass { reauth: false }.
-    const reauth = opts?.reauth ?? true;
+    const chainName =
+      (SUPPORTED_NETWORKS as any)?.[targetChainId]?.chainName || `Chain ${targetChainId}`;
+    const previousChainId = chainIdRef.current ?? (await getPreferredChainId());
     setIsSwitchingChain(true);
     try {
       const address = userRef.current?.walletAddress || userRef.current?.address;
-      log.info('switchChain:start', { targetChainId, currentChainId: chainIdRef.current, reauth, address: address ? `${address.slice(0,6)}...${address.slice(-4)}` : undefined });
+      log.info('switchChain:start', { targetChainId, currentChainId: chainIdRef.current, address: address ? `${address.slice(0,6)}...${address.slice(-4)}` : undefined });
 
-      // 1. Persist preference (cold boots will also use this chain)
+      // 1. Persist preference (cold boots use this chain, and so does the
+      //    provider rebuilt in step 3 — it reads the preference to decide
+      //    which chain to build on)
       await setPreferredChainId(targetChainId);
       try { setLocalAuthChainId(targetChainId); } catch {}
 
-      if (reauth) {
-        // 2. Clear stale auth artefacts for the old chain
-        await removeAuthToken();
-        await clearAuthSignature();
-      }
+      // 2. Drop the cached signature so the new session signs fresh — this app
+      //    accepts a stored signature for 30 days, the backend for 24 hours.
+      //    The auth TOKEN deliberately survives until the new one lands: wiping
+      //    it here left a failed switch with no session at all, so the next
+      //    request 401'd and the app demanded a fresh sign-in.
+      await clearAuthSignature();
 
       // 3. Tear down and rebuild the provider on the new chain.
       //    forceReinitProvider bypasses the stale-closure guard in ensureProvider,
-      //    clears the cached authAdapter, and calls internalInitializeProvider directly
-      //    (which rebuilds the local EIP-1193 provider from the persisted preferred chain id).
+      //    clears the cached authAdapter and the signing-provider override, and calls
+      //    internalInitializeProvider directly (which rebuilds the local EIP-1193
+      //    provider from the persisted preferred chain id).
       await forceReinitProvider();
 
       // 4. Re-authenticate with the backend on the new chain
-      if (reauth && address) {
+      if (address) {
+        // A smart-account identity has no Safe on a chain AA isn't configured
+        // for, so step 3 falls back to the bare EOA there. Signing as one
+        // address while the payload claims the other is rejected outright, and
+        // going through with it would file every later post from a different
+        // backend account — the identity split completeLocalSignIn exists to
+        // prevent. Refuse the chain rather than half-perform the switch.
+        const signingAddress = await getProviderAccount();
+        if (signingAddress && signingAddress.toLowerCase() !== address.toLowerCase()) {
+          throw new Error(`${chainName} is not available for this account.`);
+        }
         await signInWithWallet(address, targetChainId);
         log.info('switchChain:reauth:success', { targetChainId });
       }
 
-      try {
-        const name = (SUPPORTED_NETWORKS as any)?.[targetChainId]?.chainName || `Chain ${targetChainId}`;
-        toastSuccess(`Switched to ${name}`);
-      } catch {}
+      try { toastSuccess(`Switched to ${chainName}`); } catch {}
     } catch (e) {
       log.error('switchChain:failed', e as any);
+      // Put the wallet back on the chain it came from. Persisting the target up
+      // front and never undoing it is what stranded accounts on a chain they
+      // could not authenticate on: the preference outlives the failure, so every
+      // launch afterwards rebuilt from it and every escape attempt failed the
+      // same way.
+      if (typeof previousChainId === 'number' && previousChainId !== targetChainId) {
+        try {
+          await setPreferredChainId(previousChainId);
+          try { setLocalAuthChainId(previousChainId); } catch {}
+          await forceReinitProvider();
+        } catch (restoreError) {
+          log.error('switchChain:restore:failed', restoreError as any);
+        }
+      }
       try { toastError(e, 'Failed to switch network'); } catch {}
       throw e;
     } finally {
       setIsSwitchingChain(false);
     }
-  }, [log, forceReinitProvider, signInWithWallet]);
+  }, [log, forceReinitProvider, getProviderAccount, signInWithWallet]);
 
   // One consolidated effect, split logically via guards:
   // - Once post-boot, refresh profile details (skip balances)

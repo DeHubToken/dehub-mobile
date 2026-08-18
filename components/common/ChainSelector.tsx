@@ -54,6 +54,12 @@ interface ChainSelectorProps {
   title?: string;
   /** Include Solana (post minting). Default false (EVM-only). */
   includeSolana?: boolean;
+  /**
+   * Restrict the EVM chains offered. Omit to offer all of them. Used to keep a
+   * smart-account identity off chains where it would have to act as its owner
+   * EOA — a different account — rather than letting the pick fail on selection.
+   */
+  allowedChainIds?: number[];
 }
 
 const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
@@ -63,10 +69,21 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
   disabled = false,
   title = "Choose network",
   includeSolana = false,
+  allowedChainIds,
 }) => {
   const insets = useSafeAreaInsets();
   const [open, setOpen] = useState(false);
-  const chains = includeSolana ? ALL_CHAINS : EVM_CHAINS;
+  const chains = useMemo(() => {
+    const base = includeSolana ? ALL_CHAINS : EVM_CHAINS;
+    if (!allowedChainIds?.length) return base;
+    const allowed = new Set(allowedChainIds);
+    // Solana is governed by includeSolana alone — it is derived from the same
+    // key rather than held by the smart account, so no EVM restriction applies.
+    const filtered = base.filter(
+      (c) => allowed.has(c.id) || (includeSolana && c.id === SOLANA_MAINNET_CHAIN_ID),
+    );
+    return filtered.length ? filtered : base;
+  }, [includeSolana, allowedChainIds]);
   const selected = useMemo(
     () => getChainOption(selectedChainId) || chains[0],
     [selectedChainId, chains],
