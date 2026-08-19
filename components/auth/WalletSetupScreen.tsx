@@ -259,10 +259,21 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
         )}
 
         <Text style={styles.resetHeading}>What you lose</Text>
+        {/* Stated as a loss, not softened with "but it's still on-chain".
+            Anyone who reaches this screen has already failed the restore form,
+            i.e. has no phrase and no private key — so "you could still reach
+            it if you find the phrase" describes a route this user has just
+            told us they do not have, and reads as reassurance for a decision
+            that deserves none. */}
         <ResetPoint
           tone="lose"
-          head="Your DeHub account."
-          body="Posts, comments, followers, tips and token balances all belong to the old wallet's address. They stay with it. You start again on an empty profile."
+          head="Anything the old wallet holds."
+          body={`Its balances stay at ${short} on the blockchain — nothing is spent or taken — but moving them needs that wallet's recovery phrase or private key. Without one, nobody can reach them: not you, not us. Unless you can get the key off the device that made it, treat what's in there as gone.`}
+        />
+        <ResetPoint
+          tone="lose"
+          head="Your DeHub profile."
+          body="Posts, comments, followers, tips and token balances hang off the old wallet's address, and your account is looked up by that address — so a new wallet signs you in to a new, empty profile."
         />
         <ResetPoint
           tone="lose"
@@ -305,23 +316,13 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
         <Text style={[styles.resetHeading, { marginTop: 16 }]}>What this does not do</Text>
         <ResetPoint
           tone="keep"
-          head="It doesn't touch what the old wallet holds."
-          body={`Everything in it stays at ${short} on the blockchain. Nothing is spent, burned or taken.`}
-        />
-        <ResetPoint
-          tone="keep"
-          head="It doesn't close that door forever."
-          body="If you ever find that wallet's 12-word phrase or its private key, you can import it here — or into any other wallet app — and reach what's in it again."
-        />
-        <ResetPoint
-          tone="keep"
           head="It doesn't touch the device you set it up on."
-          body="A phone keeps its own copy of the key while DeHub is installed, and a browser keeps its passkey. If you still have either, go there and export the private key before you continue."
+          body="A phone keeps its own copy of the key while DeHub is installed, and a browser keeps its passkey. If you still have either, go there, export the private key, and come back and use Restore instead — that keeps everything."
         />
         <ResetPoint
           tone="keep"
           head="It doesn't change how you sign in."
-          body="Same login, same one tap."
+          body="Same phone number, email or Google account, same one tap. It is the wallet behind the login that is being replaced, not the login."
         />
 
         <Text style={[authText.caption, { marginTop: 16 }]}>Wallet being left behind: {short}</Text>
@@ -340,7 +341,7 @@ const ResetWalletPanel: React.FC<ResetWalletPanelProps> = memo(
             color={acknowledged ? authColors.label : authColors.muted}
           />
           <Text style={[authText.body, { flex: 1, color: authColors.label }]}>
-            I understand the old wallet and its DeHub account will be out of my reach for good
+            I understand the old wallet, and anything in it, will be out of my reach for good
           </Text>
         </TouchableOpacity>
 

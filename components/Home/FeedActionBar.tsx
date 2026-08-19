@@ -11,8 +11,9 @@ import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import ReactionPicker from "./ReactionPicker";
 import {
+  isPositiveReaction,
   reactionMeta,
-  resolveTopReaction,
+  resolveLeadReaction,
   type PostReaction,
   type ReactionCounts,
 } from "../../libs/reactions";
@@ -172,9 +173,15 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
     onReact?.(reaction);
   }, [onReact]);
 
-  /** Viewer's own reaction wins over the post's most-used one. */
-  const leadReaction = myReaction ?? resolveTopReaction(reactionCounts);
-  const leadGlyph = leadReaction && leadReaction !== "like" ? reactionMeta(leadReaction).emoji : undefined;
+  /**
+   * The one glyph the thumb wears — the viewer's own positive reaction, else
+   * the post's most-used, else undefined for the plain thumbs-up icon. It is
+   * also what a tap casts, so the two can never disagree.
+   */
+  const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
+  const leadGlyph = leadReaction ? reactionMeta(leadReaction).emoji : undefined;
+  /** A 👎 or 💩 belongs to the thumbs-DOWN; this button must not announce it. */
+  const myPositiveReaction = myReaction && isPositiveReaction(myReaction) ? myReaction : null;
 
   // Single row, every button a direct child spread edge-to-edge (matches the
   // web ActionBar). Order left → right: tip · dislike · share · comment · like
@@ -248,9 +255,9 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           count={likeCount}
           formatCount
           accessibilityLabel={
-            myReaction
-              ? `${reactionMeta(myReaction).label} — hold to change your reaction`
-              : "Like — hold to react"
+            myPositiveReaction
+              ? `${reactionMeta(myPositiveReaction).label} — hold to change your reaction`
+              : `${reactionMeta(leadReaction ?? "like").label} — hold to react`
           }
         />
       </View>
