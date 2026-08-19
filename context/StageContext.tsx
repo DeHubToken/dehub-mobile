@@ -4,6 +4,7 @@ import type { UseStagesReturn } from "../hooks/useStages";
 import { supabase } from "../services/supabase";
 import { setStageDeepLinkHandler } from "../libs/deeplink.events";
 import { createLogger } from "../libs/logger";
+import { useStageAlerts } from "../hooks/useStageAlerts";
 
 const log = createLogger("StageDeepLink");
 
@@ -29,6 +30,12 @@ export const openStageModal = (view: StageModalView = "browse") => {
 export const StageProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const stages = useStagesImpl();
   const { openModal, joinSpace } = stages;
+
+  // Mounted here because it has to be app-wide and outlive any stage screen:
+  // the point is being told about a stage you are NOT currently looking at.
+  // It raises alerts through the same deep-link bus registered below, so the
+  // toast's action lands in exactly the same place an invite link does.
+  useStageAlerts();
 
   useEffect(() => {
     openStageModalImpl = openModal;
