@@ -84,7 +84,9 @@
     "images": "Images",
     "shorts": "Shorts",
     "music": "Music",
-    "live": "Live"
+    "live": "Live",
+    "newPosts_one": "{{count}} new post",
+    "newPosts_other": "{{count}} new posts"
   },
   "explore": {
     "all": "All",

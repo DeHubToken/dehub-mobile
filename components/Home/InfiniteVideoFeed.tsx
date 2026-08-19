@@ -24,6 +24,8 @@ import EmptyFeedState from "./EmptyFeedState";
 import FeedCard from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
 import Icon from "../ui/Icon";
+import { useTranslation } from "react-i18next";
+import useNewPostsSignal from "../../hooks/useNewPostsSignal";
 import { useAuthState } from "../../context/AuthContext";
 import {
   getUnifiedFeed,
@@ -134,6 +136,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   const navigation = useNavigation<any>();
   const isFocused = useIsFocused();
+  const { t } = useTranslation();
   const { isSignedIn } = useAuthState();
 
   // View tracking: map of tokenId -> tracker (for feed posts only, not videos)
@@ -365,6 +368,29 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     onScrollEnd?.();
   }, [onScrollEnd]);
 
+
+  // "N new posts" — the chronological feed's only cue that the timeline moved
+  // on. Only for the default createdAt sort: under the ranked sorts position
+  // isn't time, so the pill would promise something the list can't honour.
+  const newestRenderedCreatedAt = useMemo(() => {
+    const first = data?.pages?.[0]?.result?.[0] as
+      | { createdAt?: string; created_at?: string }
+      | undefined;
+    return first?.createdAt || first?.created_at || undefined;
+  }, [data]);
+
+  const { newPostCount, atCap: newPostsAtCap } = useNewPostsSignal({
+    enabled: active && isFocused && (params?.sortBy ?? "createdAt") === "createdAt",
+    params,
+    newestCreatedAt: newestRenderedCreatedAt,
+  });
+
+  const showNewPosts = useCallback(() => {
+    // onRefresh already drops every page past the first before refetching, so
+    // this is the same work pull-to-refresh does, minus the gesture.
+    void onRefresh();
+    listRef.current?.scrollToOffset({ offset: 0, animated: true });
+  }, [onRefresh]);
   const handleMomentumScrollEnd = useCallback(() => {
     onScrollEnd?.();
   }, [onScrollEnd]);
@@ -489,6 +515,25 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   return (
     <View className="flex-1" onTouchStart={handleTouchStart}>
+      {newPostCount > 0 && (
+        <View
+          pointerEvents="box-none"
+          style={{ position: "absolute", top: headerInset + 8, left: 0, right: 0, alignItems: "center", zIndex: 20 }}
+        >
+          <Pressable
+            onPress={showNewPosts}
+            accessibilityRole="button"
+            accessibilityLabel={`${newPostCount} new posts, tap to refresh`}
+            className="flex-row items-center gap-1.5 rounded-full border border-white/20 bg-black/85 px-4 py-2"
+          >
+            <Icon name="ArrowUp" size={14} color="#E5E7EB" />
+            <Text className="text-xs font-semibold text-white">
+              {t("feed.newPosts", { count: newPostCount })}
+              {newPostsAtCap ? "+" : ""}
+            </Text>
+          </Pressable>
+        </View>
+      )}
       <AnimatedFlatList
         ref={listRef}
         data={items}
