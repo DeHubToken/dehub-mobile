@@ -20,8 +20,16 @@ import { useStages } from "../../context/StageContext";
 import type { SpaceParticipant, RaiseHandRequest, FloatingReaction } from "../../hooks/useStages";
 import { VOICE_EFFECTS } from "../../hooks/useStages";
 import StageSoundboard from "./StageSoundboard";
+import StageScreenShare from "./StageScreenShare";
 
 const { width: SW, height: SH } = Dimensions.get("window");
+
+/**
+ * Ceiling for a shared screen inside the sheet. A 16:9 box off the full width
+ * is fine held upright, but the same box on a phone turned landscape is taller
+ * than the sheet itself and would hand the entire room over to it.
+ */
+const SCREEN_SHARE_MAX_H = Math.round(SH * 0.4);
 
 const REACTIONS = ["👍", "👎", "🔥", "💩", "🚀", "🎉", "🥶", "❤️", "👏"];
 
@@ -407,6 +415,13 @@ const LiveStageModal: React.FC = () => {
           contentContainerStyle={{ paddingHorizontal: 12, paddingTop: 20, paddingBottom: 20 }}
           showsVerticalScrollIndicator={false}
         >
+          {/* A screen the host is sharing from the web app. Renders nothing
+              when nobody is — this app can watch a share but never send one. */}
+          <StageScreenShare
+            sharerName={currentSpace.host_username}
+            maxHeight={SCREEN_SHARE_MAX_H}
+          />
+
           {/* Speakers grid */}
           <Text
             style={{
