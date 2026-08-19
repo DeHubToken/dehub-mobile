@@ -5,11 +5,15 @@ import Icon from "../ui/Icon";
 import { useStages } from "../../context/StageContext";
 
 const StageMiniPlayer: React.FC = () => {
-  const { currentSpace, isConnected, myRole, leaveSpace, endSpace, openModal } = useStages();
+  const { currentSpace, isConnected, myRole, leaveSpace, endSpace, openModal, screenShareUid } =
+    useStages();
 
   if (!currentSpace || !isConnected) return null;
 
   const isHost = myRole === "host";
+  // The screen only exists inside the full room, so the collapsed player says
+  // one is up rather than reading as a stage with nothing to look at.
+  const isWatchingScreen = screenShareUid != null;
 
   return (
     <TouchableOpacity activeOpacity={0.9} onPress={() => openModal("live")} style={styles.container}>
@@ -19,7 +23,15 @@ const StageMiniPlayer: React.FC = () => {
         </View>
         <View>
           <Text style={styles.title} numberOfLines={1}>{currentSpace.title}</Text>
-          <Text style={styles.subtitle}>{isHost ? "Hosting" : myRole === "speaker" ? "Speaking" : "Listening"}</Text>
+          <View style={styles.subtitleRow}>
+            <Text style={styles.subtitle}>{isHost ? "Hosting" : myRole === "speaker" ? "Speaking" : "Listening"}</Text>
+            {isWatchingScreen && (
+              <>
+                <Text style={styles.subtitle}>·</Text>
+                <Icon name="ScreenShare" size={11} color="rgba(255,255,255,0.7)" />
+              </>
+            )}
+          </View>
         </View>
       </View>
       <TouchableOpacity
@@ -69,6 +81,11 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: "500",
     maxWidth: 160,
+  },
+  subtitleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
   },
   subtitle: {
     color: "rgba(255,255,255,0.5)",
