@@ -10,6 +10,9 @@ import createAgoraRtcEngine, {
   UserOfflineReasonType,
   type ChannelMediaOptions,
   AudioEffectPreset,
+  RemoteVideoState,
+  type RemoteVideoStateReason,
+  VideoStreamType,
 } from "react-native-agora";
 import { supabase, fetchAgoraToken } from "../services/supabase";
 import { AGORA_APP_ID } from "../config/agora.config";
@@ -174,6 +177,11 @@ export interface UseStagesReturn {
   isTtsGenerating: boolean;
   isRecording: boolean;
   activeSpeakerUids: number[];
+  /**
+   * Agora uid of whoever is sharing a screen into this stage, or null. A web
+   * host publishes it; this app only ever watches — see joinStageChannel.
+   */
+  screenShareUid: number | null;
   transcript: StageTranscript | null;
   isTranscriptLoading: boolean;
   openModal: (view?: "browse" | "create" | "live") => void;
@@ -306,6 +314,7 @@ export function useStages(): UseStagesReturn {
   const [isTtsGenerating, setIsTtsGenerating] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [activeSpeakerUids, setActiveSpeakerUids] = useState<number[]>([]);
+  const [screenShareUid, setScreenShareUid] = useState<number | null>(null);
   const [transcript, setTranscript] = useState<StageTranscript | null>(null);
   const [isTranscriptLoading, setIsTranscriptLoading] = useState(false);
 
@@ -405,6 +414,35 @@ export function useStages(): UseStagesReturn {
       if (!AGORA_APP_ID) throw new Error("AGORA_APP_ID is not configured");
       engine.registerEventHandler(stageEventHandlerRef.current);
       await engine.initialize({ appId: AGORA_APP_ID });
+
+      // ── Watch a shared screen, never send one ────────────────────────────
+      //
+      // A web host can put their display on a stage; this app has no way to
+      // publish one — that needs a ReplayKit broadcast extension on iOS and a
+      // MediaProjection service on Android, both native build work — so the
+      // video module is turned on strictly to receive.
+      //
+      // `enableLocalVideo(false)` and `muteLocalVideoStream(true)` are the
+      // load-bearing half of that. `enableVideo()` alone starts camera
+      // capture, which in an audio room means a camera indicator lighting up
+      // on a stage where nobody is on video, and on iOS a camera permission
+      // prompt nobody asked for.
+      //
+      // Set here, once, rather than per join: `enableVideo()` resets the
+      // engine (and, called from inside a channel, resets `enableLocalVideo`
+      // and the remote-mute flags), while these settings survive
+      // `leaveChannel` — so doing it at init keeps the reset off the path
+      // every single stage join walks.
+      //
+      // Phones take the small copy of the screen the web host publishes
+      // alongside the full one. A handset renders it a few hundred pixels
+      // wide, and on cellular the 1080p stream is the difference between a
+      // stage that plays and one that stutters.
+      engine.enableVideo();
+      engine.enableLocalVideo(false);
+      engine.muteLocalVideoStream(true);
+      engine.setRemoteDefaultVideoStreamType(VideoStreamType.VideoStreamLow);
+
       stageEngineInit = true;
       log.info("Stage Agora engine initialized");
     }
@@ -420,6 +458,38 @@ export function useStages(): UseStagesReturn {
     onUserOffline: (_connection: RtcConnection, remoteUid: number, _reason: UserOfflineReasonType) => {
       log.info("Stage user left:", remoteUid);
       setActiveSpeakerUids(prev => prev.filter(u => u !== remoteUid));
+      // A sharer who force-quits never gets to stop their video cleanly.
+      setScreenShareUid(prev => (prev === remoteUid ? null : prev));
+    },
+    /**
+     * The only video anyone publishes into a stage is a screen share — nobody
+     * has a camera in here — so a remote video track appearing IS the share.
+     *
+     * `Starting` is included alongside `Decoding` so the surface is mounted
+     * before the first frame arrives: RtcSurfaceView has to exist for the SDK
+     * to render into, and waiting for `Decoding` on a slow connection shows a
+     * gap where the screen should be. `Frozen` is deliberately not cleared —
+     * that is a stall, not a stop, and blanking on it would flicker the whole
+     * panel every time the network hiccuped.
+     */
+    onRemoteVideoStateChanged: (
+      _connection: RtcConnection,
+      remoteUid: number,
+      state: RemoteVideoState,
+      _reason: RemoteVideoStateReason,
+      _elapsed: number,
+    ) => {
+      if (
+        state === RemoteVideoState.RemoteVideoStateStarting ||
+        state === RemoteVideoState.RemoteVideoStateDecoding
+      ) {
+        setScreenShareUid(remoteUid);
+      } else if (
+        state === RemoteVideoState.RemoteVideoStateStopped ||
+        state === RemoteVideoState.RemoteVideoStateFailed
+      ) {
+        setScreenShareUid(prev => (prev === remoteUid ? null : prev));
+      }
     },
     onAudioVolumeIndication: (_connection: RtcConnection, speakers: any[], _speakerCount: number, _totalVolume: number) => {
       const active = speakers
@@ -462,7 +532,9 @@ export function useStages(): UseStagesReturn {
         publishMicrophoneTrack: role !== "listener",
         publishCameraTrack: false,
         autoSubscribeAudio: true,
-        autoSubscribeVideo: false,
+        // A web host can put their screen on the stage — see the receive-only
+        // video setup in initStageEngine. Nothing else ever publishes video.
+        autoSubscribeVideo: true,
       };
       engine.joinChannel(tokenData.token, channelName, tokenData.uid ?? 0, options);
       setIsConnected(true);
@@ -524,6 +596,7 @@ export function useStages(): UseStagesReturn {
     setVoiceEffect("none");
     setPlayingSoundId(null);
     setActiveSpeakerUids([]);
+    setScreenShareUid(null);
     return savedRecPath;
   }, []);
 
@@ -1373,6 +1446,7 @@ export function useStages(): UseStagesReturn {
     isTtsGenerating,
     isRecording,
     activeSpeakerUids,
+    screenShareUid,
     transcript,
     isTranscriptLoading,
     openModal,
