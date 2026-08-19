@@ -92,6 +92,11 @@ import {
   revertEngagement,
   useEngagement,
 } from "../libs/engagementCache";
+import {
+  usePostLinkCopyCount,
+  useLinkCopyFloor,
+  useTrackPostLinkCopy,
+} from "../libs/link-copy-count";
 import { savePost } from "../services/feed.service";
 import { toggleRepost } from "../services/repost.service";
 import { getShortsFeed } from "../services/feed.unified.service";
@@ -403,6 +408,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
     reactionCounts,
   } = useEngagement(item);
 
+  // Share counter = reposts + link copies. The floor is the copies made this
+  // session; taking max() rather than adding a delta is what stops a copy
+  // being counted twice once the refetched server total already contains it.
+  const { data: linkCopyCount = 0 } = usePostLinkCopyCount(tokenId);
+  const linkCopyFloor = useLinkCopyFloor(tokenId);
+  const shareCount = repostCount + Math.max(linkCopyCount, linkCopyFloor);
+  const trackLinkCopy = useTrackPostLinkCopy();
+
   const [pickerOpen, setPickerOpen] = useState(false);
   const [showReactionInfo, setShowReactionInfo] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -647,7 +660,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
     if (tokenId == null) return;
     copyToClipboard(ShareLinks.post(String(tokenId)));
     toastSuccess("Link copied");
-  }, [tokenId]);
+    // A copy is a share: it counts once per actor per post, next to reposts.
+    trackLinkCopy(tokenId, userAddress, linkCopyCount);
+  }, [tokenId, trackLinkCopy, userAddress, linkCopyCount]);
 
   const commentCount = item.commentCount || 0;
   const tipCount = (item as any).totalTips || (item as any).tips || 0;
@@ -1079,7 +1094,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
               <ActionButton
                 icon="Share2"
                 active={reposted}
-                label={formatCompactNumber(repostCount)}
+                label={formatCompactNumber(shareCount)}
                 onPress={() => setShowShareSheet(true)}
                 accessibilityLabel="Share"
               />

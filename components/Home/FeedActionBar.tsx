@@ -31,6 +31,12 @@ interface FeedActionBarProps {
   dislikeCount: number;
   commentCount: number;
   repostCount: number;
+  /**
+   * Reposts + link copies. A copy of the post URL is a share too, so the
+   * button carries both; falls back to the repost count when a surface has
+   * not loaded copy data.
+   */
+  shareCount?: number;
   tipCount: number;
   onLike: () => void;
   onDislike: () => void;
@@ -149,6 +155,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
   dislikeCount,
   commentCount,
   repostCount,
+  shareCount,
   tipCount,
   onLike,
   onDislike,
@@ -204,7 +211,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         count={dislikeCount}
         formatCount
       />
-      {/* Share — carries the repost count; bolder + larger once reposted. */}
+      {/* Share — carries reposts + link copies; bolder + larger once reposted. */}
       <AnimatedActionButton
         onPress={onShare}
         accessibilityLabel="Share and repost"
@@ -213,7 +220,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         activeColor={ICON_ACTIVE}
         activeStrokeWidth={2.6}
         iconSize={reposted ? 20 : 18}
-        count={repostCount}
+        count={shareCount ?? repostCount}
         countColor={reposted ? ICON_ACTIVE : COUNT_COLOR}
         formatCount
       />
