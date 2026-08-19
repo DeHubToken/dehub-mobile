@@ -1,5 +1,6 @@
 import * as SecureStore from 'expo-secure-store';
 import { clearAllEngagement } from './engagementCache';
+import { clearLinkCopyFloors } from './link-copy-floors';
 import { clearUnlockedTokens } from './unlocked-tokens';
 import { queryClient } from '../config/queryClient';
 
@@ -202,6 +203,8 @@ export async function clearAuthData(): Promise<void> {
   // Drop this account's optimistic like/save/repost overlay, otherwise it would
   // keep beating the next account's server state for the full TTL.
   try { clearAllEngagement(); } catch {}
+  // Same for the link-copy floor: the next account has not copied anything.
+  try { clearLinkCopyFloors(); } catch {}
   // Session PPV unlocks are per-account too.
   try { clearUnlockedTokens(); } catch {}
   // The feed query caches are viewer-shaped (isLiked/isSaved ride in the

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useState } from 'react';
 import * as Notifications from 'expo-notifications';
 import { AppState, AppStateStatus } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
@@ -9,7 +9,9 @@ import {
   registerPushTokenWithBackend,
   isValidExpoPushToken,
   clearBadge,
+  getNotificationPermissionStatus,
 } from './push.service';
+import NotificationPermissionPrompt from '../../components/NotificationPermissionPrompt';
 import { createLogger } from '../../libs/logger';
 import { openInApp } from '../../libs/links.utils';
 import { NotificationType, NotificationCategory } from '../enums/notification.enums';
@@ -22,6 +24,16 @@ const logger = createLogger('PushProvider');
 // Persisted so a cold start can tell a fresh notification tap apart from the
 // stale response Android replays on every launch via getLastNotificationResponseAsync.
 const LAST_HANDLED_RESPONSE_KEY = 'push.lastHandledResponseId';
+
+// When the user last said "Not now" to the branded pre-prompt. Declining ours
+// never reaches the OS, so we are free to ask again — just not soon.
+const SOFT_ASK_DECLINED_AT_KEY = 'push.softAskDeclinedAt';
+const SOFT_ASK_COOLDOWN_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
+
+// The OS dialog used to fire one second after sign-in, landing on top of the
+// welcome copy a new user is still reading. The pre-prompt waits until they
+// have had time with the app instead.
+const SOFT_ASK_DELAY_MS = 12_000;
 
 export interface NotificationData {
   type: NotificationType;
@@ -143,6 +155,9 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
   const coldStartCheckedRef = useRef(false);
   // Track the last processed notification identifier to avoid double-handling
   const lastProcessedIdRef = useRef<string | null>(null);
+  // Branded pre-prompt shown ahead of the un-styleable OS permission dialog
+  const [softAskVisible, setSoftAskVisible] = useState(false);
+  const softAskHandledRef = useRef(false);
 
   const refreshUnreadCount = useCallback(async () => {
     if (!isFullySignedIn) return;
@@ -386,12 +401,63 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
     }
   }, [isFullySignedIn, userAddress]);
 
+  /**
+   * Decide whether to raise the branded pre-prompt.
+   *
+   * Permission already granted is the common case for a returning user: just
+   * register, no UI at all. A hard OS-level denial (`canAskAgain === false`)
+   * cannot be undone from inside the app, so asking again would be theatre.
+   * Everything else gets our own modal first, and only a yes there reaches
+   * `registerForPushNotifications`, which is what triggers the OS dialog.
+   */
+  const maybeAskForPushPermission = useCallback(async () => {
+    if (hasRegisteredRef.current || isRegisteringRef.current) return;
+    if (softAskHandledRef.current) return;
+
+    const { granted, canAskAgain } = await getNotificationPermissionStatus();
+
+    if (granted) {
+      softAskHandledRef.current = true;
+      registerPushToken();
+      return;
+    }
+
+    if (!canAskAgain) {
+      logger.debug('Notification permission denied at OS level; not prompting');
+      softAskHandledRef.current = true;
+      return;
+    }
+
+    const declinedAt = storage.getNumber(SOFT_ASK_DECLINED_AT_KEY);
+    if (declinedAt && Date.now() - declinedAt < SOFT_ASK_COOLDOWN_MS) {
+      logger.debug('Pre-prompt still in cooldown');
+      softAskHandledRef.current = true;
+      return;
+    }
+
+    softAskHandledRef.current = true;
+    setSoftAskVisible(true);
+  }, [registerPushToken]);
+
+  const handleSoftAskAllow = useCallback(() => {
+    setSoftAskVisible(false);
+    storage.delete(SOFT_ASK_DECLINED_AT_KEY);
+    // This is the call that raises the OS dialog — now that the user has
+    // opted in, and with our modal already out of the way.
+    registerPushToken();
+  }, [registerPushToken]);
+
+  const handleSoftAskDecline = useCallback(() => {
+    setSoftAskVisible(false);
+    storage.set(SOFT_ASK_DECLINED_AT_KEY, Date.now());
+  }, []);
+
   useEffect(() => {
-    // Register when user signs in - add delay to ensure auth is fully propagated
+    // Ask once the user is settled in the app, not the instant auth resolves.
     if (isFullySignedIn && userAddress && !hasRegisteredRef.current) {
       const timer = setTimeout(() => {
-        registerPushToken();
-      }, 1000); // 1 second delay to ensure JWT is ready
+        maybeAskForPushPermission();
+      }, SOFT_ASK_DELAY_MS);
       return () => clearTimeout(timer);
     }
 
@@ -411,8 +477,10 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
       isRegisteringRef.current = false;
       pushTokenRef.current = null;
       pendingNavigationRef.current = null;
+      softAskHandledRef.current = false;
+      setSoftAskVisible(false);
     }
-  }, [isFullySignedIn, userAddress, registerPushToken, handleNotificationNavigation]);
+  }, [isFullySignedIn, userAddress, maybeAskForPushPermission, handleNotificationNavigation]);
 
   // When the app is launched from a killed state by tapping a notification,
   // addNotificationResponseReceivedListener may fire before this component
@@ -545,7 +613,16 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
     return () => subscription.remove();
   }, [refreshUnreadCount]);
 
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <NotificationPermissionPrompt
+        visible={softAskVisible}
+        onAllow={handleSoftAskAllow}
+        onDecline={handleSoftAskDecline}
+      />
+    </>
+  );
 };
 
 export default PushNotificationsProvider;
