@@ -244,7 +244,32 @@ async function recountSpace(spaceId: string): Promise<void> {
     // both figures server-side, so it hands out no privilege beyond these two
     // columns and there is no caller-supplied number to be wrong about.
     const { error } = await supabase.rpc("recount_space", { p_space_id: spaceId });
-    if (error) throw error;
+    if (!error) return;
+
+    // The RPC does not exist until the staged migration is applied, and the
+    // error comes back in the result object — shipping a build that depends on
+    // it ahead of the DB would freeze every headcount this client touches,
+    // exactly the regression web shipped and then hotfixed. Until the function
+    // exists, recount inline the way this code did before the RPC; once the
+    // migration lands, the RPC answers first and this path never runs again.
+    const { count: listeners } = await supabase
+      .from("space_participants")
+      .select("*", { count: "exact", head: true })
+      .eq("space_id", spaceId)
+      .eq("role", "listener")
+      .is("left_at", null);
+
+    const { count: speakers } = await supabase
+      .from("space_participants")
+      .select("*", { count: "exact", head: true })
+      .eq("space_id", spaceId)
+      .in("role", ["host", "speaker"])
+      .is("left_at", null);
+
+    await supabase
+      .from("audio_spaces")
+      .update({ listener_count: listeners ?? 0, speaker_count: speakers ?? 1 })
+      .eq("id", spaceId);
   } catch (err) {
     // A headcount is not worth failing a join or a leave over.
     log.error("Failed to recount stage participants:", err);
@@ -1155,7 +1180,7 @@ export function useStages(): UseStagesReturn {
     } catch (err) {
       log.error("Recording upload failed (non-fatal):", err);
     }
-  }, []);
+  }, [signed]);
 
   const endSpace = useCallback(async () => {
     const space = currentSpaceRef.current;
