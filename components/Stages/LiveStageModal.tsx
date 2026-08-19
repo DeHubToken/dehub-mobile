@@ -17,6 +17,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import { useStages } from "../../context/StageContext";
+import { useAuthActions } from "../../context/AuthContext";
 import type { SpaceParticipant, RaiseHandRequest, FloatingReaction } from "../../hooks/useStages";
 import { VOICE_EFFECTS } from "../../hooks/useStages";
 import StageSoundboard from "./StageSoundboard";
@@ -256,6 +257,7 @@ const LiveStageModal: React.FC = () => {
     generateTts,
     closeModal,
   } = useStages();
+  const { requireAuth } = useAuthActions();
 
   const [ttsText, setTtsText] = useState("");
   const [selectedVoiceId, setSelectedVoiceId] = useState("");
@@ -270,6 +272,8 @@ const LiveStageModal: React.FC = () => {
   const isHostRole = myRole === "host";
   const isSpeakerRole = myRole === "speaker";
   const isListenerRole = myRole === "listener";
+  // Connected with no participant row at all — guestListenSpace's signature.
+  const isGuest = myRole === null;
   const canSpeak = isHostRole || isSpeakerRole;
 
   const speakers = participants.filter(p => p.role === "host" || p.role === "speaker");
@@ -689,6 +693,28 @@ const LiveStageModal: React.FC = () => {
               }}
             >
               <Icon name={isMuted ? "MicOff" : "Mic"} size={22} color={isMuted ? "#EF4444" : "#32D583"} />
+            </TouchableOpacity>
+          )}
+
+          {isGuest && (
+            <TouchableOpacity
+              onPress={() => requireAuth(() => {})}
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 8,
+                paddingHorizontal: 20,
+                height: 56,
+                borderRadius: 28,
+                backgroundColor: "rgba(255,255,255,0.08)",
+                borderWidth: 1,
+                borderColor: "rgba(255,255,255,0.12)",
+              }}
+            >
+              <Icon name="LogIn" size={18} color="rgba(255,255,255,0.85)" />
+              <Text style={{ color: "rgba(255,255,255,0.85)", fontWeight: "600", fontSize: 14 }}>
+                Sign in to join in
+              </Text>
             </TouchableOpacity>
           )}
 

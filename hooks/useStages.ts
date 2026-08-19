@@ -191,6 +191,14 @@ export interface UseStagesReturn {
   startScheduledSpace: (spaceId: string) => Promise<boolean>;
   cancelScheduledSpace: (spaceId: string) => Promise<void>;
   joinSpace: (spaceId: string) => Promise<boolean>;
+  /**
+   * Listen to a live stage without an account — matches dehubweb's
+   * `guestListen()`. Subscriber-only Agora token (the edge function accepts
+   * one with no auth), no `space_participants` row, no headcount bump.
+   * `myRole` stays null so every speak/raise-hand control (gated on
+   * "host"/"speaker"/"listener") stays hidden for a guest automatically.
+   */
+  guestListenSpace: (spaceId: string) => Promise<boolean>;
   leaveSpace: () => Promise<void>;
   endSpace: () => Promise<void>;
   toggleMute: () => void;
@@ -1156,6 +1164,38 @@ export function useStages(): UseStagesReturn {
 
   joinSpaceRef.current = joinSpace;
 
+  // Matches dehubweb's guestListen(): a signed-out visitor on an invite link
+  // can hear the room without an account. joinStageChannel/fetchAgoraToken
+  // already only attach auth headers for the publisher role, so a subscriber
+  // request here needs no wallet at all -- nothing server-side to change.
+  const guestListenSpace = useCallback(async (spaceId: string): Promise<boolean> => {
+    setIsLoading(true);
+    try {
+      const { data, error } = await supabase
+        .from("audio_spaces")
+        .select("*")
+        .eq("id", spaceId)
+        .single();
+      if (error || !data) throw error || new Error("Space not found");
+      const space = data as AudioSpace;
+      if (space.status !== "live") return false;
+
+      const success = await joinStageChannel(space, "listener");
+      if (!success) return false;
+
+      setCurrentSpace(space);
+      setMyRole(null);
+      setIsMuted(true);
+      setHasRaisedHand(false);
+      return true;
+    } catch (err) {
+      log.error("Failed to join space as guest:", err);
+      return false;
+    } finally {
+      setIsLoading(false);
+    }
+  }, [joinStageChannel]);
+
   const leaveSpace = useCallback(async () => {
     const space = currentSpaceRef.current;
     if (space && userAddress) {
@@ -1456,6 +1496,7 @@ export function useStages(): UseStagesReturn {
     startScheduledSpace,
     cancelScheduledSpace,
     joinSpace,
+    guestListenSpace,
     leaveSpace,
     endSpace,
     toggleMute,
