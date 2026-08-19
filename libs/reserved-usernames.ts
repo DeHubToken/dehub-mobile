@@ -25,8 +25,8 @@
 const ROUTE_SEGMENTS = [
   // SPA top-level routes
   "admin", "affiliate", "agents", "apk", "app", "arcade", "assistant",
-  "auth", "bridge", "communities", "connect", "creator", "creators",
-  "delete-account", "docs", "editor", "events", "explore", "features",
+  "auth", "bridge", "builder", "communities", "connect", "creator", "creators",
+  "delete-account", "depin", "docs", "editor", "events", "explore", "features",
   "governance", "guide", "guides", "jobs", "launchpad", "leaderboard",
   "mcp", "mobile-preview", "music", "premium", "pricing", "prompt", "r",
   "radio", "shorts", "stage", "stages", "stake", "stats", "top-100", "tv",
