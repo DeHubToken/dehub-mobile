@@ -72,6 +72,11 @@ import {
 } from "../../libs";
 import { useMintExistingPost } from "../../hooks/useMintExistingPost";
 import { copyToClipboard } from "../../libs/clipboard.utils";
+import {
+  usePostLinkCopyCount,
+  useLinkCopyFloor,
+  useTrackPostLinkCopy,
+} from "../../libs/link-copy-count";
 import { sharePostAsImage } from "../../libs/shareImage";
 import {
   applyEngagement,
@@ -327,6 +332,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     myReaction,
     reactionCounts,
   } = useEngagement(item);
+
+  // Share counter = reposts + link copies. The copies come from Supabase
+  // (batched to one request per feed page); the floor is the copies made this
+  // session, so the number moves on the tap rather than on the next refetch.
+  const { data: linkCopyCount = 0 } = usePostLinkCopyCount(tokenId);
+  const linkCopyFloor = useLinkCopyFloor(tokenId);
+  const shareCount = repostCount + Math.max(linkCopyCount, linkCopyFloor);
+  const trackLinkCopy = useTrackPostLinkCopy();
   const [showShareSheet, setShowShareSheet] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showReactionInfo, setShowReactionInfo] = useState(false);
@@ -635,7 +648,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (tokenId == null) return;
     copyToClipboard(shareUrl);
     toastSuccess("Post link copied to clipboard");
-  }, [tokenId, shareUrl]);
+    // A copy is a share: it counts once per actor per post, next to reposts.
+    trackLinkCopy(tokenId, userAddress, linkCopyCount);
+  }, [tokenId, shareUrl, trackLinkCopy, userAddress, linkCopyCount]);
 
   const handleUndoRepost = useCallback(() => {
     if (tokenId == null) return;
@@ -1311,6 +1326,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           dislikeCount={dislikeCount}
           commentCount={commentCount}
           repostCount={repostCount}
+          shareCount={shareCount}
           tipCount={totalTips}
           onLike={handleLikePress}
           onDislike={handleDislikePress}
