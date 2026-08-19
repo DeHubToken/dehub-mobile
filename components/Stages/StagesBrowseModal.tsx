@@ -14,6 +14,7 @@ import { ShareLinks } from "../../navigation/linking.config";
 import { useStages } from "../../context/StageContext";
 import { useAuth } from "../../context/AuthContext";
 import { sameWallet, type AudioSpace } from "../../hooks/useStages";
+import { useStageReminder } from "../../hooks/useStageReminder";
 import { StageTranscriptSheet } from "./StageTranscriptSheet";
 
 const formatTimestamp = (seconds: number): string => {
@@ -35,6 +36,39 @@ const formatDate = (dateStr?: string | null) => {
   } catch (e) {
     return "";
   }
+};
+
+/**
+ * "Remind me" on an announced stage.
+ *
+ * Its own component because `useStageReminder` is a hook and the cards are
+ * rendered by a plain function, and because each card watches its own row —
+ * one query per visible announcement, which at the volume this feature sees is
+ * a handful.
+ *
+ * Filled bell = you hold a reminder. Signed-out users get nothing rather than a
+ * control that would fail: the row is keyed by wallet.
+ */
+const StageReminderBell: React.FC<{ spaceId: string }> = ({ spaceId }) => {
+  const { hasReminder, canRemind, toggleReminder, isToggling } = useStageReminder(spaceId);
+  if (!canRemind) return null;
+  return (
+    <TouchableOpacity
+      onPress={toggleReminder}
+      disabled={isToggling}
+      hitSlop={8}
+      style={styles.scheduledIconBtn}
+      accessibilityRole="button"
+      accessibilityState={{ selected: hasReminder, disabled: isToggling }}
+      accessibilityLabel={hasReminder ? "Remove reminder" : "Remind me when this starts"}
+    >
+      <Icon
+        name={hasReminder ? "BellRing" : "Bell"}
+        size={14}
+        color={hasReminder ? "#FAFAFA" : "rgba(255,255,255,0.6)"}
+      />
+    </TouchableOpacity>
+  );
 };
 
 const StagesBrowseModal: React.FC = () => {
@@ -238,19 +272,23 @@ const StagesBrowseModal: React.FC = () => {
                 {isOverdue ? "Starting soon" : "Upcoming"}
               </Text>
             </View>
-            <TouchableOpacity
-              onPress={() => {
-                Share.share({
-                  message: `🎙️ ${item.title} — live on Stages${when ? ` ${when}` : ""}\n\n${ShareLinks.stage(item)}`,
-                }).catch(() => {});
-              }}
-              hitSlop={8}
-              style={styles.scheduledIconBtn}
-              accessibilityRole="button"
-              accessibilityLabel="Share invite link"
-            >
-              <Icon name="Link" size={14} color="rgba(255,255,255,0.6)" />
-            </TouchableOpacity>
+            <View style={styles.scheduledTopActions}>
+              {/* The host is already going; a bell on your own stage is noise. */}
+              {!isMySpace && <StageReminderBell spaceId={item.id} />}
+              <TouchableOpacity
+                onPress={() => {
+                  Share.share({
+                    message: `🎙️ ${item.title} — live on Stages${when ? ` ${when}` : ""}\n\n${ShareLinks.stage(item)}`,
+                  }).catch(() => {});
+                }}
+                hitSlop={8}
+                style={styles.scheduledIconBtn}
+                accessibilityRole="button"
+                accessibilityLabel="Share invite link"
+              >
+                <Icon name="Link" size={14} color="rgba(255,255,255,0.6)" />
+              </TouchableOpacity>
+            </View>
           </View>
 
           <View style={styles.scheduledHostRow}>
@@ -729,6 +767,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "rgba(255,255,255,0.1)",
+  },
+  scheduledTopActions: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
   },
   scheduledHostRow: {
     flexDirection: "row",
