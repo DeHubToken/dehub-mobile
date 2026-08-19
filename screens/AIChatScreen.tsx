@@ -1245,7 +1245,7 @@ function AIChatScreenInner() {
           handleAttach();
           break;
         case 'builder':
-          // Web links to /app/builder. There is no builder screen in this app
+          // Web links to dehub.io/builder. There is no builder screen in this app
           // yet, so the composer seeds the request instead of dead-ending.
           setInput('Build me a mini app that ');
           break;

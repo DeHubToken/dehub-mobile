@@ -289,7 +289,9 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // 'stage' and 'stages' are handled by the branch above whenever they carry
     // an id, but a bare /stage would otherwise fall through here and open the
     // profile @stage. Both are reserved on the web for the same reason.
-    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth', 'arcade', 'stage', 'stages'];
+    // 'builder' is the newest of these: the web app moved its app builder to
+    // dehub.io/builder, so a tapped link would open the profile @builder.
+    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth', 'arcade', 'builder', 'stage', 'stages'];
     if (segments[0] === 'auth-callback' || segments[0] === 'auth') {
       logger.info('Ignoring OAuth callback deep link (already consumed in-flight)', { path });
       return undefined;
