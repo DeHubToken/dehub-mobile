@@ -40,7 +40,9 @@
     "images": "Görseller",
     "shorts": "Kısa Videolar",
     "music": "Müzik",
-    "live": "Canlı"
+    "live": "Canlı",
+    "newPosts_one": "{{count}} yeni gönderi",
+    "newPosts_other": "{{count}} yeni gönderi"
   },
   "explore": {
     "all": "Tümü",
