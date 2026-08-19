@@ -152,6 +152,19 @@ const DEFAULT_SETTINGS: AssistantSettings = {
   alwaysSpeakReplies: false,
 };
 
+/**
+ * Which renderer a poster config asks the server for. An explicit cinematic
+ * archetype opts into the diffusion "scene" pipeline; anything else gets the
+ * on-brand SM Template banner.
+ *
+ * This also decides whether to show the paywall: template banners are drawn by
+ * our own code server-side and are not charged, so quoting for one would ask
+ * for money the server will not take — and could send someone through an
+ * on-chain top-up for a free render.
+ */
+const posterRenderer = (cfg: PosterConfig): 'template' | 'scene' =>
+  cfg.style === 'dehub-template' || cfg.style === 'auto' ? 'template' : 'scene';
+
 function AIChatScreenInner() {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
@@ -1034,48 +1047,58 @@ function AIChatScreenInner() {
 
   const historyForGeneration = useCallback(() => messagesRef.current, []);
 
+  /**
+   * Fire the generation. Takes everything explicitly rather than reading the
+   * pending-* state, so the free poster path can call it in the same tick it
+   * receives the config — React would not have committed the state yet.
+   */
+  const startImageGeneration = useCallback(
+    (
+      cfg: PosterConfig | null,
+      model: string,
+      opts: { logoImage?: string; sourceImage?: string },
+    ) => {
+      doGenerateImage(
+        cfg ? buildDeHubBrandPrompt(cfg.finalPrompt) : pendingPrompt,
+        model,
+        historyForGeneration(),
+        {
+          sourceImage: opts.sourceImage,
+          logoImage: opts.logoImage,
+          ...(cfg
+            ? {
+                headline: cfg.tagline.trim(),
+                bannerRenderer: posterRenderer(cfg),
+                bannerFormat:
+                  cfg.dimension === 'landscape'
+                    ? ('landscape' as const)
+                    : cfg.dimension === 'square'
+                      ? ('square' as const)
+                      : ('portrait' as const),
+              }
+            : {}),
+        },
+      );
+      setPendingPosterConfig(null);
+      setPendingLogoImage(undefined);
+      setPendingSourceImage(undefined);
+    },
+    [pendingPrompt, doGenerateImage, historyForGeneration],
+  );
+
   const handleImageConfirm = useCallback(() => {
     setImagePaywallVisible(false);
-    const model = imageModelOverride || settings.imageModel;
-    const cfg = pendingPosterConfig;
-    doGenerateImage(
-      cfg ? buildDeHubBrandPrompt(cfg.finalPrompt) : pendingPrompt,
-      model,
-      historyForGeneration(),
-      {
-        sourceImage: pendingSourceImage,
-        logoImage: pendingLogoImage,
-        ...(cfg
-          ? {
-              headline: cfg.tagline.trim(),
-              // An explicit cinematic archetype opts into the diffusion "scene"
-              // pipeline; anything else gets the on-brand template banner.
-              bannerRenderer:
-                cfg.style === 'dehub-template' || cfg.style === 'auto'
-                  ? ('template' as const)
-                  : ('scene' as const),
-              bannerFormat:
-                cfg.dimension === 'landscape'
-                  ? ('landscape' as const)
-                  : cfg.dimension === 'square'
-                    ? ('square' as const)
-                    : ('portrait' as const),
-            }
-          : {}),
-      },
-    );
-    setPendingPosterConfig(null);
-    setPendingLogoImage(undefined);
-    setPendingSourceImage(undefined);
+    startImageGeneration(pendingPosterConfig, imageModelOverride || settings.imageModel, {
+      logoImage: pendingLogoImage,
+      sourceImage: pendingSourceImage,
+    });
   }, [
     imageModelOverride,
     settings.imageModel,
     pendingPosterConfig,
-    pendingPrompt,
     pendingSourceImage,
     pendingLogoImage,
-    doGenerateImage,
-    historyForGeneration,
+    startImageGeneration,
   ]);
 
   const handleVideoConfirm = useCallback(() => {
@@ -1134,8 +1157,9 @@ function AIChatScreenInner() {
   const handlePosterConfirm = useCallback(
     async (config: PosterConfig) => {
       setPosterVisible(false);
+      let logo: string | undefined;
       try {
-        const logo = await bundledLogoDataUrl(config.logoVariant);
+        logo = await bundledLogoDataUrl(config.logoVariant);
         setPendingLogoImage(logo);
       } catch (err) {
         log.error('logo asset unavailable:', err);
@@ -1143,12 +1167,22 @@ function AIChatScreenInner() {
         // than quietly generating something off-brand.
         toastError('Could not load the DeHub logo — generating without it');
       }
+
+      // A template banner is free, so there is nothing to quote and no reason
+      // to make anyone tap through a price. Go straight to the render, the way
+      // web does. Only the cinematic archetypes reach a metered model.
+      if (posterRenderer(config) === 'template') {
+        setPendingSourceImage(undefined);
+        startImageGeneration(config, DEHUB_BRAND_IMAGE_MODEL, { logoImage: logo });
+        return;
+      }
+
       setPendingPosterConfig(config);
       setPendingSourceImage(undefined);
       setImageModelOverride(DEHUB_BRAND_IMAGE_MODEL);
       setImagePaywallVisible(true);
     },
-    [],
+    [startImageGeneration],
   );
 
   /* ── Media actions ───────────────────────────────────────────────────── */
