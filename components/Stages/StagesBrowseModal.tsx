@@ -13,7 +13,7 @@ import { getAvatarUrl } from "../../libs/misc";
 import { ShareLinks } from "../../navigation/linking.config";
 import { useStages } from "../../context/StageContext";
 import { useAuth } from "../../context/AuthContext";
-import type { AudioSpace } from "../../hooks/useStages";
+import { sameWallet, type AudioSpace } from "../../hooks/useStages";
 import { StageTranscriptSheet } from "./StageTranscriptSheet";
 
 const formatTimestamp = (seconds: number): string => {
@@ -197,7 +197,7 @@ const StagesBrowseModal: React.FC = () => {
    * under web's own bottom-anchored gradient rather than a flat 62% wash.
    */
   const renderScheduledItem = (item: AudioSpace) => {
-    const isMySpace = item.host_wallet_address === userAddress;
+    const isMySpace = sameWallet(item.host_wallet_address, userAddress);
     const starts = item.scheduled_at ? new Date(item.scheduled_at) : null;
     const isOverdue = !!starts && starts.getTime() < Date.now();
     const hostName = item.host_username || `${item.host_wallet_address?.slice(0, 6)}...`;
@@ -291,7 +291,17 @@ const StagesBrowseModal: React.FC = () => {
               <TouchableOpacity
                 onPress={() => {
                   startScheduledSpace(item.id).then((ok) => {
-                    if (ok) openModal("live");
+                    if (ok) {
+                      openModal("live");
+                      return;
+                    }
+                    // Every failure path returned false with nothing said, so
+                    // a stage that would not start read as a dead button
+                    // rather than as a problem worth retrying.
+                    Alert.alert(
+                      "Could not start the stage",
+                      "The stage could not be opened. Check your connection and try again.",
+                    );
                   });
                 }}
                 style={styles.scheduledStartBtn}
@@ -329,7 +339,7 @@ const StagesBrowseModal: React.FC = () => {
   };
 
   const renderLiveItem = (item: AudioSpace) => {
-    const isMySpace = item.host_wallet_address === userAddress;
+    const isMySpace = sameWallet(item.host_wallet_address, userAddress);
     const isCurrentSpace = currentSpace?.id === item.id;
     const totalListeners = item.listener_count || 0;
     const hostName = item.host_username || `${item.host_wallet_address?.slice(0, 6)}...`;

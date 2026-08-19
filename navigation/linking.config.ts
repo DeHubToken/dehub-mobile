@@ -3,9 +3,36 @@ import { LinkingOptions, getStateFromPath } from '@react-navigation/native';
 import { ScreenNames } from './ScreenNames';
 import type { RootStackParamList } from './types';
 import { createLogger } from '../libs/logger';
-import { emitProfileDeepLink } from '../libs/deeplink.events';
+import { emitProfileDeepLink, emitStageDeepLink } from '../libs/deeplink.events';
 
 const logger = createLogger('DeepLink');
+
+/**
+ * Navigation state for "put the app on Home".
+ *
+ * Used by every link whose destination is not a screen — a profile sheet, a
+ * stage modal. The surface opens over Home rather than over whatever the app
+ * happened to be showing, and the modal itself is raised through
+ * libs/deeplink.events.
+ */
+const homeState = () =>
+  ({
+    routes: [
+      {
+        name: ScreenNames.App,
+        state: {
+          routes: [
+            {
+              name: ScreenNames.Root,
+              state: {
+                routes: [{ name: ScreenNames.Home }],
+              },
+            },
+          ],
+        },
+      },
+    ],
+  }) as any;
 
 /** 
  * Domains that should open in the app via Universal Links / App Links 
@@ -225,6 +252,27 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       return getStateFromPath(newPath, options);
     }
 
+    // Stage invite links, both shapes the web app hands out. Stages are modals
+    // rather than a screen, so there is no route for React Navigation to
+    // resolve and these previously fell through to "could not be resolved" —
+    // an invite link tapped on a phone with the app installed did nothing.
+    // Handled through the same event bus profiles use, with the app itself
+    // sent to Home so the modal opens over something.
+    if (segments[0] === 'stage' && segments[1]) {
+      const id = decodeURIComponent(segments[1]);
+      logger.info('Stage deep link', { id });
+      emitStageDeepLink({ id });
+      return homeState();
+    }
+    if (segments[0] === 'stages') {
+      // Only the numeric shape is a stage; bare /stages is the hub, and
+      // anything else under it has no route on the web either.
+      const shortId = segments[1] && /^\d+$/.test(segments[1]) ? Number(segments[1]) : undefined;
+      logger.info('Stage deep link', { shortId });
+      emitStageDeepLink(shortId != null ? { shortId } : {});
+      return homeState();
+    }
+
     // 'auth-callback' is expo-web-browser's OAuth redirect target, already
     // consumed by signInWithGoogle() — it must never be treated as a profile
     // username, and must never trigger a navigation reset that could unmount
@@ -238,7 +286,10 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // and open an empty profile sheet. Any future top-level route needs the
     // same entry — the mirror of this rule for profile NAMES is
     // libs/reserved-usernames.ts, which already lists 'arcade'.
-    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth', 'arcade'];
+    // 'stage' and 'stages' are handled by the branch above whenever they carry
+    // an id, but a bare /stage would otherwise fall through here and open the
+    // profile @stage. Both are reserved on the web for the same reason.
+    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth', 'arcade', 'stage', 'stages'];
     if (segments[0] === 'auth-callback' || segments[0] === 'auth') {
       logger.info('Ignoring OAuth callback deep link (already consumed in-flight)', { path });
       return undefined;
@@ -252,23 +303,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       // Emit event so UserProfileSheetProvider can open the profile bottom sheet
       emitProfileDeepLink(username);
       // Navigate to Home tab
-      return {
-        routes: [
-          {
-            name: ScreenNames.App,
-            state: {
-              routes: [
-                {
-                  name: ScreenNames.Root,
-                  state: {
-                    routes: [{ name: ScreenNames.Home }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      } as any;
+      return homeState();
     }
     
     // Use default path matching for everything else
