@@ -216,6 +216,51 @@ export interface UseStagesReturn {
  */
 const SCHEDULED_GRACE_MS = 2 * 60 * 60 * 1000;
 
+/**
+ * Wallet equality, the way the rest of the stack does it — every RLS policy on
+ * a stage table compares `lower(...)`, and so does dehubweb.
+ */
+export function sameWallet(a?: string | null, b?: string | null): boolean {
+  return !!a && !!b && a.toLowerCase() === b.toLowerCase();
+}
+
+/**
+ * Recount a room's headcounts from the participant rows themselves.
+ *
+ * This used to be a blind `listener_count + 1` on join and `- 1` on leave,
+ * which drifts on every rejoin (the upsert collides, so no row is added but
+ * the counter still moved) and on every crash-out (the decrement never runs).
+ * Speakers were never counted at all, so promoting someone left the figure
+ * stale until the next full refresh. dehubweb recounts on both edges for
+ * exactly this reason; a count derived from the rows is self-healing, and both
+ * clients now converge on the same number instead of fighting over it.
+ */
+async function recountSpace(spaceId: string): Promise<void> {
+  try {
+    const { count: listeners } = await supabase
+      .from("space_participants")
+      .select("*", { count: "exact", head: true })
+      .eq("space_id", spaceId)
+      .eq("role", "listener")
+      .is("left_at", null);
+
+    const { count: speakers } = await supabase
+      .from("space_participants")
+      .select("*", { count: "exact", head: true })
+      .eq("space_id", spaceId)
+      .in("role", ["host", "speaker"])
+      .is("left_at", null);
+
+    await supabase
+      .from("audio_spaces")
+      .update({ listener_count: listeners ?? 0, speaker_count: speakers ?? 1 })
+      .eq("id", spaceId);
+  } catch (err) {
+    // A headcount is not worth failing a join or a leave over.
+    log.error("Failed to recount stage participants:", err);
+  }
+}
+
 let stageEngineInstance: IRtcEngine | null = null;
 let stageEngineInit = false;
 
@@ -672,7 +717,7 @@ export function useStages(): UseStagesReturn {
             } else {
               setParticipants(prev => prev.map(x => x.id === p.id ? p : x));
               // If current user was just approved as speaker — upgrade Agora role
-              if (p.wallet_address === userAddressRef.current && p.role === "speaker" && myRoleRef.current === "listener") {
+              if (sameWallet(p.wallet_address, userAddressRef.current) && p.role === "speaker" && myRoleRef.current === "listener") {
                 upgradeSpeakerRef.current();
               }
             }
@@ -697,7 +742,7 @@ export function useStages(): UseStagesReturn {
             const r = payload.new as RaiseHandRequest;
             if (r.status !== "pending") {
               setHandRequests(prev => prev.filter(x => x.id !== r.id));
-              if (r.wallet_address === userAddressRef.current) setHasRaisedHand(false);
+              if (sameWallet(r.wallet_address, userAddressRef.current)) setHasRaisedHand(false);
             }
           } else if (payload.eventType === "DELETE") {
             const r = payload.old as RaiseHandRequest;
@@ -853,7 +898,10 @@ export function useStages(): UseStagesReturn {
         .eq("id", spaceId)
         .single();
       if (readErr || !existing) throw readErr || new Error("Stage not found");
-      if (existing.host_wallet_address !== userAddress) return false;
+      // Case-insensitive, like the RLS policies and dehubweb. A raw !==
+      // depended on the auth layer normalising, and a row carrying a
+      // checksummed address refused its own host.
+      if (!sameWallet(existing.host_wallet_address, userAddress)) return false;
       if (existing.status === "live") return await joinSpaceRef.current(spaceId);
       if (existing.status !== "scheduled") return false;
 
@@ -934,27 +982,45 @@ export function useStages(): UseStagesReturn {
       const space = data as AudioSpace;
       if (space.status !== "live") return false;
 
-      // Register as listener participant (upsert handles re-join)
+      // Work out what this wallet comes back AS before writing anything. The
+      // upsert below collides on (space_id, wallet_address), so joining with a
+      // hardcoded "listener" overwrote the row the host already held: it
+      // demoted them in everyone's participant list, handed them a subscriber
+      // token so they could not talk in their own room, and left the auto-end
+      // trigger with no row marked `host` to act on.
+      const isHost = sameWallet(space.host_wallet_address, userAddress);
+      const { data: existingParticipant } = await supabase
+        .from("space_participants")
+        .select("role")
+        .eq("space_id", spaceId)
+        .eq("wallet_address", userAddress)
+        .is("left_at", null)
+        .maybeSingle();
+
+      const rejoiningRole: SpaceRole = isHost
+        ? "host"
+        : existingParticipant?.role === "speaker" || existingParticipant?.role === "host"
+          ? "speaker"
+          : "listener";
+
       await supabase.from("space_participants").upsert({
         space_id: spaceId,
         wallet_address: userAddress,
         username: user?.username || null,
         avatar: user?.avatarImageUrl || null,
-        role: "listener",
+        role: rejoiningRole,
         is_muted: true,
         left_at: null,
       }, { onConflict: "space_id,wallet_address" });
 
-      // Increment listener count
-      await supabase.from("audio_spaces")
-        .update({ listener_count: (space.listener_count || 0) + 1 })
-        .eq("id", spaceId);
+      await recountSpace(spaceId);
 
-      const success = await joinStageChannel(space, "listener");
+      const success = await joinStageChannel(space, rejoiningRole);
       if (!success) return false;
 
       setCurrentSpace(space);
-      setMyRole("listener");
+      setMyRole(rejoiningRole);
+      setIsMuted(true);
       setHasRaisedHand(false);
       return true;
     } catch (err) {
@@ -976,11 +1042,7 @@ export function useStages(): UseStagesReturn {
         .eq("space_id", space.id)
         .eq("wallet_address", userAddress);
 
-      if (myRoleRef.current === "listener") {
-        await supabase.from("audio_spaces")
-          .update({ listener_count: Math.max(0, (space.listener_count || 1) - 1) })
-          .eq("id", space.id);
-      }
+      await recountSpace(space.id);
     }
     await leaveStageChannel();
     setCurrentSpace(null);
@@ -1090,10 +1152,17 @@ export function useStages(): UseStagesReturn {
     setIsMuted(next);
     const space = currentSpaceRef.current;
     if (space && userAddress) {
-      supabase.from("space_participants")
+      // `void`, not bare: a postgrest builder only issues its request inside
+      // then(), so an un-awaited chain here sent nothing at all — every remote
+      // participant stayed at the is_muted: true written on join, so the room
+      // rendered everyone permanently muted however much they talked.
+      void supabase.from("space_participants")
         .update({ is_muted: next })
         .eq("space_id", space.id)
-        .eq("wallet_address", userAddress);
+        .eq("wallet_address", userAddress)
+        .then(({ error }) => {
+          if (error) log.error("Failed to persist mute state:", error);
+        });
     }
   }, [isMuted, myRole, userAddress]);
 
