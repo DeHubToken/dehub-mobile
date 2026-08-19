@@ -237,24 +237,14 @@ export function sameWallet(a?: string | null, b?: string | null): boolean {
  */
 async function recountSpace(spaceId: string): Promise<void> {
   try {
-    const { count: listeners } = await supabase
-      .from("space_participants")
-      .select("*", { count: "exact", head: true })
-      .eq("space_id", spaceId)
-      .eq("role", "listener")
-      .is("left_at", null);
-
-    const { count: speakers } = await supabase
-      .from("space_participants")
-      .select("*", { count: "exact", head: true })
-      .eq("space_id", spaceId)
-      .in("role", ["host", "speaker"])
-      .is("left_at", null);
-
-    await supabase
-      .from("audio_spaces")
-      .update({ listener_count: listeners ?? 0, speaker_count: speakers ?? 1 })
-      .eq("id", spaceId);
+    // Through the RPC rather than counting and writing from here. Once
+    // audio_spaces UPDATE is host-only, a listener writing these columns
+    // directly is refused — and a listener arriving or leaving is exactly when
+    // the count has to move. recount_space() is SECURITY DEFINER and derives
+    // both figures server-side, so it hands out no privilege beyond these two
+    // columns and there is no caller-supplied number to be wrong about.
+    const { error } = await supabase.rpc("recount_space", { p_space_id: spaceId });
+    if (error) throw error;
   } catch (err) {
     // A headcount is not worth failing a join or a leave over.
     log.error("Failed to recount stage participants:", err);
@@ -310,6 +300,25 @@ export function useStages(): UseStagesReturn {
 
   const userAddressRef = useRef<string>("");
   useEffect(() => { userAddressRef.current = userAddress; }, [userAddress]);
+
+  /**
+   * Every stage WRITE goes through this.
+   *
+   * The stage tables' write policies check `get_request_wallet_address()`,
+   * which reads the `x-wallet-address` request header, and the plain supabase
+   * client never sends it. Reads are `USING (true)` and need nothing; a write
+   * that skips this is refused once the policies are tightened — and refused
+   * SILENTLY, because a policy failure on an un-inspected update returns no
+   * rows rather than throwing.
+   *
+   * Deliberately reads `userAddress` rather than the ref: this is only ever
+   * called from inside a callback that already has the address in scope, and a
+   * stale ref would sign a write for the previous account.
+   */
+  const signed = useCallback(
+    <T,>(query: T): T => withWalletHeader(query as never, userAddress) as T,
+    [userAddress],
+  );
 
   const reactionCounterRef = useRef(0);
   const lastReactionTimeRef = useRef(0);
@@ -400,7 +409,7 @@ export function useStages(): UseStagesReturn {
   const joinStageChannel = useCallback(async (space: AudioSpace, role: SpaceRole): Promise<boolean> => {
     const channelName = space.channel_name;
     const agoraRole = role === "listener" ? "subscriber" : "publisher";
-    const tokenData = await fetchAgoraToken(channelName, agoraRole);
+    const tokenData = await fetchAgoraToken(channelName, agoraRole, 0, userAddressRef.current);
     if (!tokenData) return false;
 
     try {
@@ -797,38 +806,44 @@ export function useStages(): UseStagesReturn {
     setIsLoading(true);
     try {
       const channelName = `stage_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-      const { data, error } = await supabase
-        .from("audio_spaces")
-        .insert({
-          host_wallet_address: userAddress,
-          host_username: user?.username || null,
-          host_avatar: user?.avatarImageUrl || null,
-          title,
-          description,
-          status: "live",
-          channel_name: channelName,
-          speaker_count: 1,
-          listener_count: 0,
-          started_at: new Date().toISOString(),
-        })
-        .select()
-        .single();
+      const { data, error } = await signed(
+        supabase
+          .from("audio_spaces")
+          .insert({
+            host_wallet_address: userAddress,
+            host_username: user?.username || null,
+            host_avatar: user?.avatarImageUrl || null,
+            title,
+            description,
+            status: "live",
+            channel_name: channelName,
+            speaker_count: 1,
+            listener_count: 0,
+            started_at: new Date().toISOString(),
+          })
+          .select()
+          .single(),
+      );
       if (error) throw error;
       const space = data as AudioSpace;
 
       // Add host as participant so they appear in the speakers list
-      await supabase.from("space_participants").insert({
-        space_id: space.id,
-        wallet_address: userAddress,
-        username: user?.username || null,
-        avatar: user?.avatarImageUrl || null,
-        role: "host",
-        is_muted: true,
-      });
+      await signed(
+        supabase.from("space_participants").insert({
+          space_id: space.id,
+          wallet_address: userAddress,
+          username: user?.username || null,
+          avatar: user?.avatarImageUrl || null,
+          role: "host",
+          is_muted: true,
+        }),
+      );
 
       const success = await joinStageChannel(space, "host");
       if (!success) {
-        await supabase.from("audio_spaces").update({ status: "ended" }).eq("id", space.id);
+        await signed(
+          supabase.from("audio_spaces").update({ status: "ended" }).eq("id", space.id),
+        );
         throw new Error("Failed to join Agora channel");
       }
 
@@ -843,7 +858,7 @@ export function useStages(): UseStagesReturn {
     } finally {
       setIsLoading(false);
     }
-  }, [userAddress, user, joinStageChannel, refreshSpaces]);
+  }, [userAddress, user, joinStageChannel, refreshSpaces, signed]);
 
   // ── Scheduling ────────────────────────────────────────────────────────────
 
@@ -858,23 +873,25 @@ export function useStages(): UseStagesReturn {
       // Minted now and kept for the whole life of the stage, so the link handed
       // out today is the room people walk into.
       const channelName = `stage_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-      const { data, error } = await supabase
-        .from("audio_spaces")
-        .insert({
-          host_wallet_address: userAddress,
-          host_username: user?.username || null,
-          host_avatar: user?.avatarImageUrl || null,
-          title: input.title,
-          description: input.description,
-          status: "scheduled",
-          scheduled_at: input.scheduledAt,
-          cover_image_url: input.coverImageUrl ?? null,
-          channel_name: channelName,
-          speaker_count: 0,
-          listener_count: 0,
-        })
-        .select()
-        .single();
+      const { data, error } = await signed(
+        supabase
+          .from("audio_spaces")
+          .insert({
+            host_wallet_address: userAddress,
+            host_username: user?.username || null,
+            host_avatar: user?.avatarImageUrl || null,
+            title: input.title,
+            description: input.description,
+            status: "scheduled",
+            scheduled_at: input.scheduledAt,
+            cover_image_url: input.coverImageUrl ?? null,
+            channel_name: channelName,
+            speaker_count: 0,
+            listener_count: 0,
+          })
+          .select()
+          .single(),
+      );
       if (error) throw error;
 
       await refreshSpaces();
@@ -885,7 +902,7 @@ export function useStages(): UseStagesReturn {
     } finally {
       setIsLoading(false);
     }
-  }, [userAddress, user, refreshSpaces]);
+  }, [userAddress, user, refreshSpaces, signed]);
 
   /** Take a stage that was scheduled earlier live now. Host only. */
   const startScheduledSpace = useCallback(async (spaceId: string): Promise<boolean> => {
@@ -905,36 +922,42 @@ export function useStages(): UseStagesReturn {
       if (existing.status === "live") return await joinSpaceRef.current(spaceId);
       if (existing.status !== "scheduled") return false;
 
-      const { data, error } = await supabase
-        .from("audio_spaces")
-        .update({
-          status: "live",
-          // started_at defaulted to the moment the row was inserted, which for
-          // a scheduled stage is whenever it was announced. Stamp the real
-          // start so duration and the recorded list stay honest.
-          started_at: new Date().toISOString(),
-          speaker_count: 1,
-        })
-        .eq("id", spaceId)
-        .select()
-        .single();
+      const { data, error } = await signed(
+        supabase
+          .from("audio_spaces")
+          .update({
+            status: "live",
+            // started_at defaulted to the moment the row was inserted, which for
+            // a scheduled stage is whenever it was announced. Stamp the real
+            // start so duration and the recorded list stay honest.
+            started_at: new Date().toISOString(),
+            speaker_count: 1,
+          })
+          .eq("id", spaceId)
+          .select()
+          .single(),
+      );
       if (error) throw error;
       const space = data as AudioSpace;
 
-      await supabase.from("space_participants").insert({
-        space_id: space.id,
-        wallet_address: userAddress,
-        username: user?.username || null,
-        avatar: user?.avatarImageUrl || null,
-        role: "host",
-        is_muted: true,
-      });
+      await signed(
+        supabase.from("space_participants").insert({
+          space_id: space.id,
+          wallet_address: userAddress,
+          username: user?.username || null,
+          avatar: user?.avatarImageUrl || null,
+          role: "host",
+          is_muted: true,
+        }),
+      );
 
       const success = await joinStageChannel(space, "host");
       if (!success) {
         // Back to scheduled, not ended — a failed start must not quietly
         // destroy an announcement people are already holding a link to.
-        await supabase.from("audio_spaces").update({ status: "scheduled" }).eq("id", space.id);
+        await signed(
+          supabase.from("audio_spaces").update({ status: "scheduled" }).eq("id", space.id),
+        );
         throw new Error("Failed to join Agora channel");
       }
 
@@ -949,7 +972,7 @@ export function useStages(): UseStagesReturn {
     } finally {
       setIsLoading(false);
     }
-  }, [userAddress, user, joinStageChannel, refreshSpaces]);
+  }, [userAddress, user, joinStageChannel, refreshSpaces, signed]);
 
   /** Call off a scheduled stage. Host only; the row is removed outright. */
   const cancelScheduledSpace = useCallback(async (spaceId: string): Promise<void> => {
@@ -1003,15 +1026,17 @@ export function useStages(): UseStagesReturn {
           ? "speaker"
           : "listener";
 
-      await supabase.from("space_participants").upsert({
-        space_id: spaceId,
-        wallet_address: userAddress,
-        username: user?.username || null,
-        avatar: user?.avatarImageUrl || null,
-        role: rejoiningRole,
-        is_muted: true,
-        left_at: null,
-      }, { onConflict: "space_id,wallet_address" });
+      await signed(
+        supabase.from("space_participants").upsert({
+          space_id: spaceId,
+          wallet_address: userAddress,
+          username: user?.username || null,
+          avatar: user?.avatarImageUrl || null,
+          role: rejoiningRole,
+          is_muted: true,
+          left_at: null,
+        }, { onConflict: "space_id,wallet_address" }),
+      );
 
       await recountSpace(spaceId);
 
@@ -1029,7 +1054,7 @@ export function useStages(): UseStagesReturn {
     } finally {
       setIsLoading(false);
     }
-  }, [userAddress, user, joinStageChannel]);
+  }, [userAddress, user, joinStageChannel, signed]);
 
   joinSpaceRef.current = joinSpace;
 
@@ -1037,10 +1062,12 @@ export function useStages(): UseStagesReturn {
     const space = currentSpaceRef.current;
     if (space && userAddress) {
       // Soft delete — preserve history by setting left_at
-      await supabase.from("space_participants")
-        .update({ left_at: new Date().toISOString() })
-        .eq("space_id", space.id)
-        .eq("wallet_address", userAddress);
+      await signed(
+        supabase.from("space_participants")
+          .update({ left_at: new Date().toISOString() })
+          .eq("space_id", space.id)
+          .eq("wallet_address", userAddress),
+      );
 
       await recountSpace(space.id);
     }
@@ -1053,7 +1080,7 @@ export function useStages(): UseStagesReturn {
     setFloatingReactions([]);
     closeModal();
     await refreshSpaces();
-  }, [userAddress, leaveStageChannel, closeModal, refreshSpaces]);
+  }, [userAddress, leaveStageChannel, closeModal, refreshSpaces, signed]);
 
   // ── Recording upload + transcription ──────────────────────────────────────
 
@@ -1100,10 +1127,12 @@ export function useStages(): UseStagesReturn {
       if (result.status >= 200 && result.status < 300) {
         // Update recording_url in audio_spaces
         const recordingUrl = `${env.SUPABASE_URL}/storage/v1/object/public/stage-recordings/${spaceId}/recording.mp4`;
-        const { error: updateErr } = await supabase
-          .from("audio_spaces")
-          .update({ recording_url: recordingUrl })
-          .eq("id", spaceId);
+        const { error: updateErr } = await signed(
+          supabase
+            .from("audio_spaces")
+            .update({ recording_url: recordingUrl })
+            .eq("id", spaceId),
+        );
         if (updateErr) {
           log.error("Failed to update space recording_url in database:", updateErr);
         } else {
@@ -1134,16 +1163,18 @@ export function useStages(): UseStagesReturn {
     // Capture recording path before leaveSpace() nulls it out
     const recPath = recordingPathRef.current;
     if (space && myRoleRef.current === "host") {
-      await supabase.from("audio_spaces")
-        .update({ status: "ended", ended_at: new Date().toISOString() })
-        .eq("id", space.id);
+      await signed(
+        supabase.from("audio_spaces")
+          .update({ status: "ended", ended_at: new Date().toISOString() })
+          .eq("id", space.id),
+      );
     }
     await leaveSpace();
     // Upload recording in background after leaving (non-blocking)
     if (recPath && spaceId) {
       uploadAndTranscribe(recPath, spaceId);
     }
-  }, [leaveSpace, uploadAndTranscribe]);
+  }, [leaveSpace, uploadAndTranscribe, signed]);
 
   const toggleMute = useCallback(() => {
     if (myRole === "listener") return;
@@ -1156,96 +1187,98 @@ export function useStages(): UseStagesReturn {
       // then(), so an un-awaited chain here sent nothing at all — every remote
       // participant stayed at the is_muted: true written on join, so the room
       // rendered everyone permanently muted however much they talked.
-      void supabase.from("space_participants")
-        .update({ is_muted: next })
-        .eq("space_id", space.id)
-        .eq("wallet_address", userAddress)
-        .then(({ error }) => {
-          if (error) log.error("Failed to persist mute state:", error);
-        });
+      void signed(
+        supabase.from("space_participants")
+          .update({ is_muted: next })
+          .eq("space_id", space.id)
+          .eq("wallet_address", userAddress),
+      ).then(({ error }) => {
+        if (error) log.error("Failed to persist mute state:", error);
+      });
     }
-  }, [isMuted, myRole, userAddress]);
+  }, [isMuted, myRole, userAddress, signed]);
 
   const raiseHand = useCallback(async () => {
     const space = currentSpaceRef.current;
     if (!space || !userAddress || myRole !== "listener" || hasRaisedHand) return;
-    await supabase.from("raise_hand_requests").insert({
-      space_id: space.id,
-      wallet_address: userAddress,
-      username: user?.username || null,
-      avatar: user?.avatarImageUrl || null,
-      status: "pending",
-    });
+    await signed(
+      supabase.from("raise_hand_requests").insert({
+        space_id: space.id,
+        wallet_address: userAddress,
+        username: user?.username || null,
+        avatar: user?.avatarImageUrl || null,
+        status: "pending",
+      }),
+    );
     setHasRaisedHand(true);
-  }, [userAddress, user, myRole, hasRaisedHand]);
+  }, [userAddress, user, myRole, hasRaisedHand, signed]);
 
   const lowerHand = useCallback(async () => {
     const space = currentSpaceRef.current;
     if (!space || !userAddress) return;
-    await supabase.from("raise_hand_requests")
-      .update({ status: "rejected", resolved_at: new Date().toISOString() })
-      .eq("space_id", space.id)
-      .eq("wallet_address", userAddress)
-      .eq("status", "pending");
+    await signed(
+      supabase.from("raise_hand_requests")
+        .update({ status: "rejected", resolved_at: new Date().toISOString() })
+        .eq("space_id", space.id)
+        .eq("wallet_address", userAddress)
+        .eq("status", "pending"),
+    );
     setHasRaisedHand(false);
-  }, [userAddress]);
+  }, [userAddress, signed]);
 
   const approveSpeaker = useCallback(async (walletAddress: string) => {
     const space = currentSpaceRef.current;
     if (!space || myRoleRef.current !== "host") return;
 
-    await supabase.from("raise_hand_requests")
-      .update({ status: "approved", resolved_at: new Date().toISOString() })
-      .eq("space_id", space.id)
-      .eq("wallet_address", walletAddress)
-      .eq("status", "pending");
+    await signed(
+      supabase.from("raise_hand_requests")
+        .update({ status: "approved", resolved_at: new Date().toISOString() })
+        .eq("space_id", space.id)
+        .eq("wallet_address", walletAddress)
+        .eq("status", "pending"),
+    );
 
-    await supabase.from("space_participants")
-      .update({ role: "speaker", is_muted: true })
-      .eq("space_id", space.id)
-      .eq("wallet_address", walletAddress);
+    await signed(
+      supabase.from("space_participants")
+        .update({ role: "speaker", is_muted: true })
+        .eq("space_id", space.id)
+        .eq("wallet_address", walletAddress),
+    );
 
-    await supabase.from("audio_spaces")
-      .update({
-        speaker_count: (space.speaker_count || 1) + 1,
-        listener_count: Math.max(0, (space.listener_count || 1) - 1),
-      })
-      .eq("id", space.id);
-  }, []);
+    // Recount rather than ±1: the arithmetic assumed the promoted wallet was a
+    // listener sitting in the count and moved both figures even when it was
+    // not, so a promotion could leave the room reporting a listener it did not
+    // have.
+    await recountSpace(space.id);
+  }, [signed]);
 
   const removeSpeaker = useCallback(async (walletAddress: string) => {
     const space = currentSpaceRef.current;
     if (!space || myRoleRef.current !== "host") return;
 
-    await supabase.from("space_participants")
-      .update({ role: "listener", is_muted: true })
-      .eq("space_id", space.id)
-      .eq("wallet_address", walletAddress);
+    await signed(
+      supabase.from("space_participants")
+        .update({ role: "listener", is_muted: true })
+        .eq("space_id", space.id)
+        .eq("wallet_address", walletAddress),
+    );
 
-    await supabase.from("audio_spaces")
-      .update({
-        speaker_count: Math.max(1, (space.speaker_count || 2) - 1),
-        listener_count: (space.listener_count || 0) + 1,
-      })
-      .eq("id", space.id);
-  }, []);
+    await recountSpace(space.id);
+  }, [signed]);
 
   const inviteSpeaker = useCallback(async (walletAddress: string) => {
     const space = currentSpaceRef.current;
     if (!space || myRoleRef.current !== "host") return;
 
-    await supabase.from("space_participants")
-      .update({ role: "speaker", is_muted: true })
-      .eq("space_id", space.id)
-      .eq("wallet_address", walletAddress);
+    await signed(
+      supabase.from("space_participants")
+        .update({ role: "speaker", is_muted: true })
+        .eq("space_id", space.id)
+        .eq("wallet_address", walletAddress),
+    );
 
-    await supabase.from("audio_spaces")
-      .update({
-        speaker_count: (space.speaker_count || 1) + 1,
-        listener_count: Math.max(0, (space.listener_count || 1) - 1),
-      })
-      .eq("id", space.id);
-  }, []);
+    await recountSpace(space.id);
+  }, [signed]);
 
 
 
