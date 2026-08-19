@@ -15,9 +15,11 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
 import { useStages } from "../../context/StageContext";
 import { useAuthActions } from "../../context/AuthContext";
+import { getAvatarUrl } from "../../libs/misc";
 import type { SpaceParticipant, RaiseHandRequest, FloatingReaction } from "../../hooks/useStages";
 import { VOICE_EFFECTS } from "../../hooks/useStages";
 import StageSoundboard from "./StageSoundboard";
@@ -125,7 +127,7 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
         }}
       >
         {participant.avatar ? (
-          <Image source={{ uri: participant.avatar }} style={{ width: 64, height: 64 }} />
+          <Image source={{ uri: getAvatarUrl(participant.avatar, 64) }} style={{ width: 64, height: 64 }} />
         ) : (
           <Icon name="User" size={28} color="rgba(255,255,255,0.6)" />
         )}
@@ -203,7 +205,7 @@ const HandRequestRow: React.FC<HandRequestRowProps> = ({ request, onApprove }) =
         }}
       >
         {request.avatar ? (
-          <Image source={{ uri: request.avatar }} style={{ width: 36, height: 36 }} />
+          <Image source={{ uri: getAvatarUrl(request.avatar, 36) }} style={{ width: 36, height: 36 }} />
         ) : (
           <Icon name="User" size={16} color="rgba(255,255,255,0.6)" />
         )}
@@ -414,6 +416,50 @@ const LiveStageModal: React.FC = () => {
           </TouchableOpacity>
         </View>
 
+        {/* Raised Hands (host only) — pinned right under the header instead of
+            living inside the scrollable body below, so a request to speak
+            can't sit unnoticed just because the host hasn't scrolled past the
+            speaker grid yet. Capped at ~3 rows with its own scroll so a flood
+            of requests can't push the reactions bar and controls off-screen. */}
+        {isHostRole && handRequests.length > 0 && (
+          <View
+            style={{
+              paddingHorizontal: 12,
+              paddingTop: 10,
+              borderBottomWidth: 1,
+              borderBottomColor: "rgba(255,255,255,0.06)",
+            }}
+          >
+            <Text
+              style={{
+                color: "rgba(255,255,255,0.45)",
+                fontSize: 11,
+                fontWeight: "600",
+                textTransform: "uppercase",
+                letterSpacing: 1,
+                marginBottom: 8,
+                marginLeft: 4,
+              }}
+            >
+              Raised Hands ({handRequests.length})
+            </Text>
+            <ScrollView
+              style={{ maxHeight: 3 * 52 }}
+              contentContainerStyle={{
+                backgroundColor: "rgba(255,255,255,0.04)",
+                borderRadius: 14,
+                paddingHorizontal: 12,
+                paddingVertical: 4,
+              }}
+              showsVerticalScrollIndicator={false}
+            >
+              {handRequests.map(r => (
+                <HandRequestRow key={r.id} request={r} onApprove={approveSpeaker} />
+              ))}
+            </ScrollView>
+          </View>
+        )}
+
         <ScrollView
           style={{ flex: 1 }}
           contentContainerStyle={{ paddingHorizontal: 12, paddingTop: 20, paddingBottom: 20 }}
@@ -456,68 +502,60 @@ const LiveStageModal: React.FC = () => {
               </Text>
             )}
           </View>
-
-          {/* Hand raise queue (host only) */}
-          {isHostRole && handRequests.length > 0 && (
-            <View style={{ marginTop: 8 }}>
-              <Text
-                style={{
-                  color: "rgba(255,255,255,0.45)",
-                  fontSize: 11,
-                  fontWeight: "600",
-                  textTransform: "uppercase",
-                  letterSpacing: 1,
-                  marginBottom: 8,
-                  marginLeft: 4,
-                }}
-              >
-                Raised Hands ({handRequests.length})
-              </Text>
-              <View
-                style={{
-                  backgroundColor: "rgba(255,255,255,0.04)",
-                  borderRadius: 14,
-                  paddingHorizontal: 12,
-                  paddingVertical: 4,
-                }}
-              >
-                {handRequests.map(r => (
-                  <HandRequestRow key={r.id} request={r} onApprove={approveSpeaker} />
-                ))}
-              </View>
-            </View>
-          )}
         </ScrollView>
 
-        {/* Reactions bar */}
+        {/* Reactions slider — fade masks on both edges hint that it scrolls,
+            since a flat row of circles otherwise reads as a fixed toolbar
+            that happens to clip rather than an intentionally swipeable strip. */}
         <View
           style={{
             borderTopWidth: 1,
             borderTopColor: "rgba(255,255,255,0.06)",
             paddingVertical: 10,
-            paddingHorizontal: 8,
           }}
         >
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6, paddingHorizontal: 4 }}>
-            {REACTIONS.map(emoji => (
-              <TouchableOpacity
-                key={emoji}
-                onPress={() => sendReaction(emoji)}
-                hitSlop={4}
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 20,
-                  backgroundColor: "rgba(255,255,255,0.07)",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                activeOpacity={0.6}
-              >
-                <Text style={{ fontSize: 20 }}>{emoji}</Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
+          <View style={{ position: "relative" }}>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{ gap: 8, paddingHorizontal: 16 }}
+              decelerationRate="fast"
+              snapToInterval={48}
+            >
+              {REACTIONS.map(emoji => (
+                <TouchableOpacity
+                  key={emoji}
+                  onPress={() => sendReaction(emoji)}
+                  hitSlop={4}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 20,
+                    backgroundColor: "rgba(255,255,255,0.07)",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  activeOpacity={0.6}
+                >
+                  <Text style={{ fontSize: 20 }}>{emoji}</Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+            <LinearGradient
+              colors={["#000", "transparent"]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 20 }}
+              pointerEvents="none"
+            />
+            <LinearGradient
+              colors={["transparent", "#000"]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 20 }}
+              pointerEvents="none"
+            />
+          </View>
         </View>
 
         {/* Voice Effects (host/speaker only) */}
