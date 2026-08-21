@@ -47,6 +47,7 @@ import {
 } from "../../services/swap.service";
 import { sendSolanaPayment } from "../../services/solana-payment.service";
 import { isSolanaChain } from "../../config/solana.constants";
+import PPVTopUpStep, { type PPVShortfall } from "./PPVTopUpStep";
 
 export interface PPVModalProps {
   open?: boolean;
@@ -85,6 +86,8 @@ const PPVModal: React.FC<PPVModalProps> = ({
     "idle" | "swapping" | "approving" | "sending" | "sent" | "error"
   >("idle");
   const [ppvError, setPpvError] = useState<string | null>(null);
+  // Not enough DHB is a step, not an error: the modal turns into a top-up.
+  const [shortfall, setShortfall] = useState<PPVShortfall | null>(null);
   const successScale = useRef(new Animated.Value(0.6)).current;
 
   // Atomic swap + PPV + tip in one tx via DeHubPaymentRouter (#45)
@@ -186,6 +189,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
     if (!actualOpen) {
       setPhase("idle");
       setPpvError(null);
+      setShortfall(null);
       setShowTip(false);
       setTipInput("");
     }
@@ -207,6 +211,9 @@ const PPVModal: React.FC<PPVModalProps> = ({
     requireAuth(async () => {
       if (isBusy || phase !== "idle") return;
       setPpvError(null);
+      // A retry after a top-up starts clean: the balance has moved, so the
+      // last attempt's gap says nothing about this one.
+      setShortfall(null);
 
       // Solana PPV (#41): pay the creator in SOL/SPL via the backend-built tx.
       if (isSolanaPpv) {
@@ -287,32 +294,53 @@ const PPVModal: React.FC<PPVModalProps> = ({
         // Auto-swap ETH → DHB on Base when on-chain DHB falls short (#44)
         let dhbBalance = await tokenContract.balanceOf(account);
         if (ethers.BigNumber.from(dhbBalance).lt(amountBN)) {
+          const shortfallWei = ethers.BigNumber.from(amountBN).sub(dhbBalance);
+          const heldHuman = Number(ethers.utils.formatUnits(dhbBalance, tokenDecimals));
+
+          // Every branch from here down that cannot pay hands the gap to the
+          // top-up step instead of dead-ending on a red line. `canTopUpInApp`
+          // separates "you can fix this in one tap" from "you have to bring
+          // tokens with you". Phase goes back to idle so the resumed unlock
+          // isn't turned away by the busy guard.
+          const raiseShortfall = (canTopUpInApp: boolean) => {
+            setPhase("idle");
+            setPpvError(null);
+            setShortfall({
+              symbol: tokenSymbol,
+              // Round up, and never to nothing: the exact fractional gap can
+              // still leave the wallet a wei short of the price.
+              needDhb: Math.max(1, Math.ceil(numericAmount - heldHuman)),
+              balanceDhb: heldHuman,
+              priceDhb: numericAmount,
+              canTopUpInApp,
+            });
+          };
+
           if (!canAutoSwap || !swapRouterContract) {
-            setPhase("error");
-            setPpvError(`Insufficient ${tokenSymbol} balance`);
+            raiseShortfall(false);
             return;
           }
-          const shortfall = ethers.BigNumber.from(amountBN).sub(dhbBalance);
           setPhase("swapping");
           try {
-            const quote = await getSwapQuote(shortfall);
+            const quote = await getSwapQuote(shortfallWei);
+            // No quote means no liquidity at this size — offering a swap would
+            // only fail the same way a second time.
             if (!quote) {
-              setPhase("error");
-              setPpvError("No swap route for DHB. Add DHB manually.");
+              raiseShortfall(false);
               return;
             }
             const maxETH = applySlippage(quote.amountIn);
             const ethBal = await getNativeBalanceBase(account);
+            // Too little ETH to cover the gap silently. The step can still get
+            // there from any other Base token, so it opens with the swap route
+            // offered rather than closed.
             if (ethBal.lt(maxETH)) {
-              setPhase("error");
-              setPpvError(
-                `Need ~${Number(ethers.utils.formatEther(maxETH)).toFixed(5)} ETH to swap but balance is too low`
-              );
+              raiseShortfall(true);
               return;
             }
             await swapETHForDHB({
               routerContract: swapRouterContract,
-              amountOutDHB: shortfall,
+              amountOutDHB: shortfallWei,
               maxETH,
               recipient: account,
               feeTier: quote.feeTier,
@@ -458,13 +486,24 @@ const PPVModal: React.FC<PPVModalProps> = ({
           >
             <View className="gap-2">
               <Text className="text-white font-bold text-3xl tracking-wider">
-                Unlock video
+                {shortfall ? "Top up to unlock" : "Unlock video"}
               </Text>
               <Text className="text-white/70 text-xs">
                 Recipient: {toAddress.slice(0, 6)}...{toAddress.slice(-4)}
               </Text>
             </View>
-            {phase !== "sent" ? (
+            {phase !== "sent" && shortfall ? (
+              <PPVTopUpStep
+                shortfall={shortfall}
+                account={account}
+                swapRouterContract={swapRouterContract}
+                // Funded, so send the unlock immediately — handleUnlock clears
+                // the shortfall itself and the modal returns to paying.
+                onFunded={handleUnlock}
+                onCancel={() => setShortfall(null)}
+                onClose={close}
+              />
+            ) : phase !== "sent" ? (
               <>
                 <View>
                   <Text className="text-base text-white mb-2">
@@ -530,14 +569,13 @@ const PPVModal: React.FC<PPVModalProps> = ({
                     </View>
                   )}
 
-                  {insufficient && !canAutoSwap && (
-                    <Text className="text-xs text-red-400 mt-2">
-                      Insufficient {tokenSymbol} balance
-                    </Text>
-                  )}
-                  {insufficient && canAutoSwap && phase === "idle" && (
+                  {/* Looking short is no longer a reason to block the button:
+                      the balance here is the cached one, and the real check
+                      happens on-chain and offers a top-up when it comes back
+                      short. */}
+                  {insufficient && phase === "idle" && (
                     <Text className="text-xs text-white/60 mt-2">
-                      Low on {tokenSymbol}? We'll swap ETH → DHB to cover it.
+                      Low on {tokenSymbol}? We'll top you up before unlocking.
                     </Text>
                   )}
                   {phase === "swapping" && (
@@ -557,9 +595,9 @@ const PPVModal: React.FC<PPVModalProps> = ({
                   )}
                 </View>
                 <View className="flex-row items-center justify-center gap-3">
-                  <AccentButtonGradient style={{ borderRadius: 14, opacity: isBusy || isSelf || (insufficient && !canAutoSwap) ? 0.6 : 1 }}>
+                  <AccentButtonGradient style={{ borderRadius: 14, opacity: isBusy || isSelf ? 0.6 : 1 }}>
                     <TouchableOpacity
-                      disabled={isBusy || isSelf || (insufficient && !canAutoSwap)}
+                      disabled={isBusy || isSelf}
                       onPress={handleUnlock}
                       className="flex-row items-center gap-2 px-5 h-11"
                       activeOpacity={0.85}
