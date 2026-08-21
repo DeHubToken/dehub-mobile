@@ -28,9 +28,7 @@
       "usesAppleSignIn": true,
       "icon": "./assets/AppIcons/appstore.png",
       "associatedDomains": [
-        "applinks:dehub.io",
-        "applinks:legacy.dehub.io",
-        "applinks:*.dehub.io"
+        "applinks:dehub.io"
       ],
       "infoPlist": {
         "LSApplicationQueriesSchemes": [
@@ -78,17 +76,32 @@
             {
               "scheme": "https",
               "host": "dehub.io",
-              "pathPrefix": "/app"
+              "path": "/app"
             },
             {
               "scheme": "https",
-              "host": "legacy.dehub.io",
-              "pathPrefix": "/stream"
+              "host": "dehub.io",
+              "pathPrefix": "/app/"
             },
             {
               "scheme": "https",
-              "host": "legacy.dehub.io",
-              "pathPrefix": "/feeds"
+              "host": "dehub.io",
+              "pathPrefix": "/newpost/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/stage/"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "path": "/stages"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/stages/"
             }
           ],
           "category": [
