@@ -81,6 +81,22 @@ def enableMinifyInReleaseBuilds = (findProperty('android.enableMinifyInReleaseBu
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
+/**
+ * Release signing material, read from a Gradle property or the matching
+ * environment variable. Returns null when neither is set.
+ */
+def releaseSigningProp(String name) {
+    def value = findProperty(name) ?: System.getenv(name)
+    return (value == null || value.toString().trim().isEmpty()) ? null : value.toString().trim()
+}
+
+def hasReleaseSigningConfig = ['DEHUB_UPLOAD_STORE_FILE', 'DEHUB_UPLOAD_STORE_PASSWORD',
+                               'DEHUB_UPLOAD_KEY_ALIAS', 'DEHUB_UPLOAD_KEY_PASSWORD']
+        .every { releaseSigningProp(it) != null }
+
+// EAS Build injects its own credentials, so it is exempt from the guard below.
+def isEasBuild = System.getenv('EAS_BUILD') == 'true'
+
 android {
     ndkVersion rootProject.ext.ndkVersion
 
@@ -110,15 +126,30 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        // The real release key. Never committed: the four values come from
+        // Gradle properties (~/.gradle/gradle.properties on a release machine,
+        // or -P flags in CI) or the matching env vars. Deliberately empty in an
+        // ordinary checkout, so a plain clone cannot produce a distributable
+        // build at all.
+        release {
+            def storePath = releaseSigningProp('DEHUB_UPLOAD_STORE_FILE')
+            if (storePath != null) {
+                storeFile file(storePath)
+                storePassword releaseSigningProp('DEHUB_UPLOAD_STORE_PASSWORD')
+                keyAlias releaseSigningProp('DEHUB_UPLOAD_KEY_ALIAS')
+                keyPassword releaseSigningProp('DEHUB_UPLOAD_KEY_PASSWORD')
+            }
+        }
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            // Use the real release key when it is configured; otherwise keep the
+            // debug key so IDE sync and non-release tasks still work, and let the
+            // task-graph guard at the bottom of this file stop the actual build.
+            signingConfig hasReleaseSigningConfig ? signingConfigs.release : signingConfigs.debug
             def enableShrinkResources = findProperty('android.enableShrinkResourcesInReleaseBuilds') ?: 'false'
             shrinkResources enableShrinkResources.toBoolean()
             minifyEnabled enableMinifyInReleaseBuilds
@@ -206,3 +237,25 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
+// Hard stop: a release artifact must never leave this repo signed with the
+// stock React Native debug key. That key ships in every RN project on earth,
+// so anyone could build io.dehub.mobile with it and have Android accept the
+// result as an update to an installed DeHub app — and its fingerprint can
+// therefore never go into dehub.io/.well-known/assetlinks.json.
+// v1.14.1 on dehub.io/apk was signed this way. Configure the four
+// DEHUB_UPLOAD_* values (see docs/android-signing.md) or build through EAS.
+gradle.taskGraph.whenReady { graph ->
+    if (hasReleaseSigningConfig || isEasBuild) {
+        return
+    }
+    def offender = graph.allTasks.find {
+        it.project == project && it.name ==~ /(?i)(assemble|bundle|package).*Release/
+    }
+    if (offender != null) {
+        throw new GradleException(
+            "Refusing to run ${offender.name}: no release keystore is configured, so this build " +
+            "would be signed with the public React Native debug key. Set DEHUB_UPLOAD_STORE_FILE, " +
+            "DEHUB_UPLOAD_STORE_PASSWORD, DEHUB_UPLOAD_KEY_ALIAS and DEHUB_UPLOAD_KEY_PASSWORD " +
+            "(see docs/android-signing.md), or build via EAS.")
+    }
+}
