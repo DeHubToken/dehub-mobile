@@ -67,9 +67,15 @@ import {
 import { sendSolanaPayment } from "../../services/solana-payment.service";
 import { isSolanaChain } from "../../config/solana.constants";
 import { formatCompactNumber } from "../../libs";
+import PPVTopUpStep, { type PPVShortfall } from "./PPVTopUpStep";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const SHEET_MAX_HEIGHT = SCREEN_HEIGHT * 0.52;
+// The top-up step carries more rows than the price view, and on a small phone
+// 52% of the screen clips its last button. It gets its own ceiling; the hide
+// offset covers the taller of the two so the sheet always animates fully off.
+const SHEET_TOPUP_MAX_HEIGHT = SCREEN_HEIGHT * 0.72;
+const SHEET_HIDE_OFFSET = SCREEN_HEIGHT * 0.75;
 
 export interface PPVSheetProps {
   visible: boolean;
@@ -100,7 +106,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
   const { requireAuth, patchUser } = useAuthActions();
   const { provider, account, chainId } = useWeb3Provider();
 
-  const translateY = useSharedValue(SHEET_MAX_HEIGHT);
+  const translateY = useSharedValue(SHEET_HIDE_OFFSET);
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useState(!visible);
 
@@ -108,6 +114,8 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
     "idle" | "swapping" | "approving" | "sending" | "sent" | "error"
   >("idle");
   const [ppvError, setPpvError] = useState<string | null>(null);
+  // Not enough DHB is a step, not an error: the sheet turns into a top-up.
+  const [shortfall, setShortfall] = useState<PPVShortfall | null>(null);
 
   // Atomic swap + PPV + tip in one tx via DeHubPaymentRouter (#45)
   const [routerAddress, setRouterAddress] = useState<string | undefined>(undefined);
@@ -166,6 +174,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
       setIsFullyClosed(false);
       setPhase("idle");
       setPpvError(null);
+      setShortfall(null);
       setShowTip(false);
       setTipInput("");
       translateY.value = withTiming(0, {
@@ -175,7 +184,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
       backdropOpacity.value = withTiming(1, { duration: 250 });
     } else {
       translateY.value = withTiming(
-        SHEET_MAX_HEIGHT,
+        SHEET_HIDE_OFFSET,
         { duration: 220, easing: Easing.in(Easing.cubic) },
         () => runOnJS(setIsFullyClosed)(true),
       );
@@ -186,7 +195,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
   const closeSheet = useCallback(() => {
     if (isBusy) return;
     translateY.value = withTiming(
-      SHEET_MAX_HEIGHT,
+      SHEET_HIDE_OFFSET,
       { duration: 220, easing: Easing.in(Easing.cubic) },
       () => runOnJS(onClose)(),
     );
@@ -220,6 +229,9 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
     requireAuth(async () => {
       if (isBusy || phase !== "idle") return;
       setPpvError(null);
+      // A retry after a top-up starts clean: the balance has moved, so the
+      // last attempt's gap says nothing about this one.
+      setShortfall(null);
 
       // Solana PPV (#41): pay the creator in SOL/SPL via the backend-built tx.
       if (isSolanaPpv) {
@@ -289,32 +301,53 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
         // Auto-swap ETH → DHB on Base when the on-chain DHB balance falls short (#44)
         let dhbBalance = await tokenContract.balanceOf(account);
         if (ethers.BigNumber.from(dhbBalance).lt(amountBN)) {
+          const shortfallWei = ethers.BigNumber.from(amountBN).sub(dhbBalance);
+          const heldHuman = Number(ethers.utils.formatUnits(dhbBalance, tokenDecimals));
+
+          // Every branch from here down that cannot pay hands the gap to the
+          // top-up step instead of dead-ending on a red line. `canTopUpInApp`
+          // separates "you can fix this in one tap" from "you have to bring
+          // tokens with you". Phase goes back to idle so the resumed unlock
+          // isn't turned away by the busy guard.
+          const raiseShortfall = (canTopUpInApp: boolean) => {
+            setPhase("idle");
+            setPpvError(null);
+            setShortfall({
+              symbol: tokenSymbol,
+              // Round up, and never to nothing: the exact fractional gap can
+              // still leave the wallet a wei short of the price.
+              needDhb: Math.max(1, Math.ceil(numericAmount - heldHuman)),
+              balanceDhb: heldHuman,
+              priceDhb: numericAmount,
+              canTopUpInApp,
+            });
+          };
+
           if (!canAutoSwap || !swapRouterContract) {
-            setPhase("error");
-            setPpvError(`Insufficient ${tokenSymbol} balance`);
+            raiseShortfall(false);
             return;
           }
-          const shortfall = ethers.BigNumber.from(amountBN).sub(dhbBalance);
           setPhase("swapping");
           try {
-            const quote = await getSwapQuote(shortfall);
+            const quote = await getSwapQuote(shortfallWei);
+            // No quote means no liquidity at this size — offering a swap would
+            // only fail the same way a second time.
             if (!quote) {
-              setPhase("error");
-              setPpvError("No swap route for DHB. Add DHB manually.");
+              raiseShortfall(false);
               return;
             }
             const maxETH = applySlippage(quote.amountIn);
             const ethBal = await getNativeBalanceBase(account);
+            // Too little ETH to cover the gap silently. The step can still get
+            // there from any other Base token, so it opens with the swap route
+            // offered rather than closed.
             if (ethBal.lt(maxETH)) {
-              setPhase("error");
-              setPpvError(
-                `Need ~${Number(ethers.utils.formatEther(maxETH)).toFixed(5)} ETH to swap but balance is too low`,
-              );
+              raiseShortfall(true);
               return;
             }
             await swapETHForDHB({
               routerContract: swapRouterContract,
-              amountOutDHB: shortfall,
+              amountOutDHB: shortfallWei,
               maxETH,
               recipient: account,
               feeTier: quote.feeTier,
@@ -388,7 +421,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
 
   const handleSuccessContinue = useCallback(() => {
     translateY.value = withTiming(
-      SHEET_MAX_HEIGHT,
+      SHEET_HIDE_OFFSET,
       { duration: 220, easing: Easing.in(Easing.cubic) },
       () => {
         runOnJS(onClose)();
@@ -419,7 +452,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
         </Animated.View>
 
         <Animated.View
-          style={[styles.sheet, { maxHeight: SHEET_MAX_HEIGHT, paddingBottom: insets.bottom }, sheetStyle]}
+          style={[styles.sheet, { maxHeight: shortfall ? SHEET_TOPUP_MAX_HEIGHT : SHEET_MAX_HEIGHT, paddingBottom: insets.bottom }, sheetStyle]}
         >
           <BlurView
             intensity={80}
@@ -435,7 +468,24 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
             </Animated.View>
           </GestureDetector>
 
-          {phase !== "sent" ? (
+          {phase !== "sent" && shortfall ? (
+            <View style={styles.content}>
+              <View style={styles.headerRow}>
+                <Icon name="Ticket" size={18} color="#F9FBFF" />
+                <Text style={styles.headerTitle}>Top up to unlock</Text>
+              </View>
+              <PPVTopUpStep
+                shortfall={shortfall}
+                account={account}
+                swapRouterContract={swapRouterContract}
+                // Funded, so send the unlock immediately — handleUnlock clears
+                // the shortfall itself and the sheet returns to paying.
+                onFunded={handleUnlock}
+                onCancel={() => setShortfall(null)}
+                onClose={closeSheet}
+              />
+            </View>
+          ) : phase !== "sent" ? (
             <View style={styles.content}>
               <View style={styles.headerRow}>
                 <Icon name="Ticket" size={18} color="#F9FBFF" />
@@ -486,12 +536,12 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
                 </View>
               )}
 
-              {insufficient && !canAutoSwap && (
-                <Text style={styles.errorText}>Insufficient {tokenSymbol} balance</Text>
-              )}
-              {insufficient && canAutoSwap && phase === "idle" && (
+              {/* Looking short is no longer a reason to block the button: the
+                  balance here is the cached one, and the real check happens
+                  on-chain and offers a top-up when it comes back short. */}
+              {insufficient && phase === "idle" && (
                 <Text style={styles.hintText}>
-                  Low on {tokenSymbol}? We'll swap ETH → DHB to cover it.
+                  Low on {tokenSymbol}? We'll top you up before unlocking.
                 </Text>
               )}
               {isSelf && (
@@ -530,11 +580,8 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
 
                 <TouchableOpacity
                   onPress={handleUnlock}
-                  disabled={isBusy || isSelf || (insufficient && !canAutoSwap)}
-                  style={[
-                    styles.payBtn,
-                    (isBusy || isSelf || (insufficient && !canAutoSwap)) && { opacity: 0.5 },
-                  ]}
+                  disabled={isBusy || isSelf}
+                  style={[styles.payBtn, (isBusy || isSelf) && { opacity: 0.5 }]}
                   activeOpacity={0.7}
                 >
                   {isBusy ? (
