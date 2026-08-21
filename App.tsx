@@ -42,6 +42,7 @@ import { AuthProvider, useAuthState, useUser } from "./context/AuthContext";
 import { WebSocketProvider } from "./context/WebSocketContext";
 import { DMProvider } from "./context/DMContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
+import NewMemberRegistrar from "./components/common/NewMemberRegistrar";
 import { StoryViewerProvider } from "./context/StoryViewerContext";
 import RootNavigator from "./navigation/RootNavigator";
 import { MessagingProvider } from "./context/MessagingContext";
@@ -300,6 +301,7 @@ const BootGate: React.FC = () => {
                   <CallProvider>
                     <StageProvider>
                       <RootNavigator />
+                      <NewMemberRegistrar />
                       <CallModalsHost />
                       <CallMiniPlayer />
                       <StagesModalsHost />
