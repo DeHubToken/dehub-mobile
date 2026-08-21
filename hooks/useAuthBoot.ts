@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { isTokenExpired, clearAuthData } from "../libs/auth.utils";
+import { isTokenExpired } from "../libs/auth.utils";
 import { tokenRefreshManager } from "../libs/token-refresh";
 
 type BootDeps<User> = {
@@ -48,12 +48,15 @@ export function useAuthBoot<User>({
                 log.warn("boot:ensureProvider:failed", e);
               });
             } else {
-              log.warn?.("boot:refresh-failed", "Token refresh failed, clearing auth data");
-              try {
-                await clearAuthData();
-              } catch (clearErr) {
-                log.warn("boot:clearAuthData:failed", clearErr);
-              }
+              // tokenRefreshManager.attemptRefresh() already cleared stored
+              // credentials if (and only if) the backend definitively
+              // rejected the refresh token. If it didn't -- a network error
+              // or a 5xx -- the refresh token in storage is still probably
+              // good, so don't destroy it here just because this one boot
+              // couldn't confirm it. The user sits signed-out for this
+              // session and gets a real retry next launch instead of a
+              // forced full re-login over a flaky connection.
+              log.warn?.("boot:refresh-failed", "Token refresh failed, staying signed out for this session");
             }
           } else {
             // Token is valid, restore session

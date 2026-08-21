@@ -258,6 +258,7 @@ const LiveStageModal: React.FC = () => {
     fetchTtsVoices,
     generateTts,
     closeModal,
+    joinSpace,
   } = useStages();
   const { requireAuth } = useAuthActions();
 
@@ -736,7 +737,7 @@ const LiveStageModal: React.FC = () => {
 
           {isGuest && (
             <TouchableOpacity
-              onPress={() => requireAuth(() => {})}
+              onPress={() => requireAuth(() => { void joinSpace(currentSpace.id); })}
               style={{
                 flexDirection: "row",
                 alignItems: "center",
