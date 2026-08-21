@@ -36,8 +36,9 @@ the identically named environment variable:
 | `DEHUB_UPLOAD_STORE_PASSWORD` | keystore password |
 | `DEHUB_UPLOAD_KEY_ALIAS` | key alias |
 | `DEHUB_UPLOAD_KEY_PASSWORD` | key password |
+| `DEHUB_UPLOAD_STORE_TYPE` | optional; defaults to `PKCS12` |
 
-If all four are present, release builds use them. If any is missing, a
+If all four of the required values are present, release builds use them. If any is missing, a
 `gradle.taskGraph` guard **fails** any `assemble*Release` / `bundle*Release` /
 `package*Release` task rather than quietly falling back to the debug key.
 Builds running under EAS (`EAS_BUILD=true`) are exempt, because EAS injects its
@@ -46,33 +47,60 @@ own credentials.
 Nothing secret is committed. The keystore and its passwords live outside the
 repo.
 
+## The current release key
+
+Generated 2026-08-21, RSA 4096, valid to 2054-01-06, alias `dehub`:
+
+```
+Subject: C=GB, ST=England, L=London, O=DeLabs LTD, OU=DeHub, CN=DeHub
+SHA-256 79:73:A1:8F:05:50:4F:DF:46:07:64:AC:77:6A:4C:61:A6:C7:32:98:36:4E:1F:55:E9:D0:7C:CA:24:7B:35:64
+SHA-1   2E:7B:60:4D:6C:19:64:6F:B0:16:96:07:12:AC:F2:40:01:F5:20:3F
+```
+
+The SHA-256 above is the fingerprint that goes into `assetlinks.json` for
+sideloaded builds. It is public by design — the keystore and its password are
+what must stay private.
+
 ## Setting it up on a release machine
 
 Generate the keystore once, and back it up somewhere durable — losing it means
-losing the ability to update sideloaded installs:
+losing the ability to update sideloaded installs. With a JDK:
 
 ```bash
-keytool -genkeypair -v -keystore dehub-release.keystore -alias dehub -keyalg RSA -keysize 4096 -validity 10000
+keytool -genkeypair -v -keystore dehub-release.p12 -storetype PKCS12 -alias dehub -keyalg RSA -keysize 4096 -validity 10000
 ```
+
+Without one — Git for Windows ships OpenSSL, which produces an equivalent
+PKCS12 keystore, and is how the current key was made:
+
+```bash
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 10000 -nodes -subj "/C=GB/ST=England/L=London/O=DeLabs LTD/OU=DeHub/CN=DeHub"
+openssl pkcs12 -export -inkey key.pem -in cert.pem -name dehub -out dehub-release.p12
+```
+
+PKCS12 has a single password, so the store and key passwords are the same
+value. Delete `key.pem` afterwards — it is the private key in the clear.
 
 Then put the values in `~/.gradle/gradle.properties` (never in the repo):
 
 ```properties
-DEHUB_UPLOAD_STORE_FILE=/absolute/path/to/dehub-release.keystore
+DEHUB_UPLOAD_STORE_FILE=/absolute/path/to/dehub-release.p12
+DEHUB_UPLOAD_STORE_TYPE=PKCS12
 DEHUB_UPLOAD_STORE_PASSWORD=…
 DEHUB_UPLOAD_KEY_ALIAS=dehub
 DEHUB_UPLOAD_KEY_PASSWORD=…
 ```
 
-Read back the fingerprint you will need for assetlinks:
+Read back the fingerprint you need for assetlinks:
 
 ```bash
-keytool -list -v -keystore dehub-release.keystore -alias dehub | grep SHA256
+openssl pkcs12 -in dehub-release.p12 -nokeys -noenc | openssl x509 -noout -fingerprint -sha256
 ```
 
 Alternatively, skip local keystores entirely and let EAS manage Android
 credentials (`eas credentials -p android`); the guard already exempts EAS
-builds.
+builds. Note that EAS would use a *different* key, whose fingerprint then has
+to be added to `assetlinks.json` too.
 
 ## Cutover cost
 
