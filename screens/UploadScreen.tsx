@@ -40,7 +40,8 @@ import { toastError, toastSuccess } from "../libs/toast";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
 import { useUser, useAuthActions, useProvider } from "../context/AuthContext";
 import { useWeb3Provider } from "../hooks/use-web3";
-import ChainSelector from "../components/common/ChainSelector";
+import ChainSelector, { EVM_CHAINS } from "../components/common/ChainSelector";
+import { isChainAASupported, isSmartAccountIdentity } from "../libs/wallet-core/smart-account";
 import { isSolanaChain } from "../config/solana.constants";
 import { getSolanaAddress, getSolanaMintStatus } from "../services/solana.service";
 import { useKeyboard } from "../hooks/useKeyboard";
@@ -125,6 +126,17 @@ export default function UploadScreen() {
   // The above stays optional — no provider has reported a chain yet on first
   // paint — but a fee has to be priced against a real one either way.
   const mintChainId = effectivePostChainId ?? defaultChainId;
+  // A Safe smart account exists only where account abstraction is configured.
+  // Offering the others would mean posting from the owner EOA, which the backend
+  // keys as a separate account — so don't offer them. switchChain refuses the
+  // same pick anyway; this keeps it from being presented as a choice at all.
+  const postChainIds = useMemo(
+    () =>
+      isSmartAccountIdentity(authUser?.walletAddress || authUser?.address)
+        ? EVM_CHAINS.filter((c) => isChainAASupported(c.id)).map((c) => c.id)
+        : undefined,
+    [authUser?.walletAddress, authUser?.address],
+  );
   const handleMintChainChange = useCallback(
     async (targetChainId: number) => {
       if (isSolanaChain(targetChainId)) {
@@ -146,14 +158,10 @@ export default function UploadScreen() {
         setPostChainId(targetChainId);
         return;
       }
-      // EVM chain — switch the active wallet chain. Posting to a different
-      // chain never needs a fresh backend login: sign-in identity is the
-      // chain-independent Safe smart-account address (see AuthContext's
-      // switchChain), so re-authenticating here only risked failing against
-      // the just-rebuilt AA provider for no benefit.
+      // EVM chain — switch the active wallet chain.
       setSolanaAddress(null);
       setPostChainId(targetChainId);
-      if (targetChainId !== activeChainId) switchChain(targetChainId, { reauth: false }).catch(() => {});
+      if (targetChainId !== activeChainId) switchChain(targetChainId).catch(() => {});
     },
     [activeChainId, switchChain]
   );
@@ -1491,6 +1499,7 @@ export default function UploadScreen() {
             disabled={activeIsUploading || isSwitchingChain}
             title="Mint on network"
             includeSolana
+            allowedChainIds={postChainIds}
           />
         </View>
 

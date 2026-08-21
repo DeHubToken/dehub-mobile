@@ -423,7 +423,7 @@ interface DehubLinkCardProps {
  */
 export function useOpenDehubLink() {
   const navigation = useNavigation<any>();
-  const { openModal: openStages, joinSpace } = useStages();
+  const { openModal: openStages, joinSpace, guestListenSpace } = useStages();
 
   return useCallback(
     (link: DehubLinkMatch) => {
@@ -470,7 +470,9 @@ export function useOpenDehubLink() {
               id = (data as any)?.id;
             }
             if (!id) return;
-            if (await joinSpace(id)) openStages('live');
+            // A signed-in wallet can hold a seat; anyone else still gets to
+            // listen, matching web's guest-listen invite link.
+            if ((await joinSpace(id)) || (await guestListenSpace(id))) openStages('live');
           })();
           return;
         }
@@ -478,7 +480,7 @@ export function useOpenDehubLink() {
           return;
       }
     },
-    [navigation, openStages, joinSpace],
+    [navigation, openStages, joinSpace, guestListenSpace],
   );
 }
 
