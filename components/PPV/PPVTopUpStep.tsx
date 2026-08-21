@@ -33,6 +33,8 @@ import {
   getERC20BalanceBase,
   getNativeBalanceBase,
   quoteDhbPurchase,
+  waitForBalance,
+  DHB_BASE,
   type DhbBuyRoute,
 } from "../../services/swap.service";
 
@@ -205,6 +207,11 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
     setPhase("buying");
     setError("");
     try {
+      // Measured, not derived from the displayed price: turning a float back
+      // into wei can set a target the balance never quite reaches. Any
+      // increase at all means the swap has been seen.
+      const before = await getERC20BalanceBase(DHB_BASE, account);
+
       await buyDhbViaRoute({
         routerContract: swapRouterContract,
         tokenContract: payTokenContract,
@@ -213,6 +220,13 @@ const PPVTopUpStep: React.FC<PPVTopUpStepProps> = ({
         maxAmountIn: pick.maxIn,
         recipient: account,
       });
+
+      // Let the balance actually show up before handing back. The swap is
+      // mined, but the next read goes to whichever public RPC node answers,
+      // and one a block behind would make the unlock believe nothing arrived
+      // and buy the shortfall a second time.
+      await waitForBalance(() => getERC20BalanceBase(DHB_BASE, account), before.add(1));
+
       // Straight back into the unlock — the sheet never closes and the viewer
       // never taps twice.
       onFunded();
