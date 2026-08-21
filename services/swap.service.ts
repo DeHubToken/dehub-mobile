@@ -11,7 +11,7 @@ import { NETWORK_URLS } from "../config/web3.constants";
 export const UNISWAP_SWAP_ROUTER = "0x2626664c2603336E57B271c5C0b26F421741e481";
 const UNISWAP_QUOTER_V2 = "0x3d4e44Eb1374240CE5F1B871ab261CD16335B76a";
 const WETH_BASE = "0x4200000000000000000000000000000000000006";
-const DHB_BASE = "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c";
+export const DHB_BASE = "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c";
 
 const FEE_TIERS = [10000, 3000, 500] as const; // 1%, 0.3%, 0.05%
 const SWAP_DEADLINE_SECONDS = 30;
@@ -154,6 +154,32 @@ export async function getERC20BalanceBase(
   } catch {
     return ethers.BigNumber.from(0);
   }
+}
+
+/**
+ * Read a balance until it reaches `atLeast`, or give up.
+ *
+ * A confirmed transaction does not mean the next call sees it: reads go through
+ * a load-balanced public RPC, and a node one block behind reports the old
+ * balance. Acting on that is worse than waiting — a swap that "didn't arrive"
+ * gets bought a second time with the user's own money. Returns the last balance
+ * read either way, so the caller still decides what to do.
+ */
+export async function waitForBalance(
+  read: () => Promise<ethers.BigNumber>,
+  atLeast: ethers.BigNumber,
+  attempts = 6,
+  delayMs = 1500,
+): Promise<ethers.BigNumber> {
+  let balance = ethers.BigNumber.from(0);
+  for (let attempt = 0; attempt < attempts; attempt++) {
+    balance = await read().catch(() => balance);
+    if (ethers.BigNumber.from(balance).gte(atLeast)) return balance;
+    if (attempt < attempts - 1) {
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+    }
+  }
+  return balance;
 }
 
 /**
