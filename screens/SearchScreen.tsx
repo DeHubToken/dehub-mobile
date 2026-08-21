@@ -46,6 +46,7 @@ import FeedCard from "../components/Home/FeedCard";
 import SearchAccountCard from "../components/Search/SearchAccountCard";
 import SearchAccountChip from "../components/Search/SearchAccountChip";
 import FeedCardSkeleton from "../components/Feed/FeedCardSkeleton";
+import NewMembersRail from "../components/common/NewMembersRail";
 import type { FollowState } from "../components/Search/SearchAccountChip";
 import { useUser } from "../context/AuthContext";
 
@@ -665,9 +666,13 @@ const SearchScreen: React.FC = () => {
       );
     }
 
-    // Not typing / not focused → show trending
+    // Not typing / not focused → new members, then trending
     return (
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 80 }}>
+        {/* Above trending on purpose: this is the screen people already open to
+            find other people, and a welcome is worth less the longer it waits.
+            Renders nothing when nobody joined recently. */}
+        <NewMembersRail />
         {trendingLoading ? (
           <View className="px-2 pt-2">
             <FeedCardSkeleton count={3} />

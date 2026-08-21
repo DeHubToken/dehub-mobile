@@ -167,6 +167,8 @@
     "showActivityStatusDesc": "Let others see when you're active",
     "searchEngineIndexing": "Search Engine Indexing",
     "searchEngineIndexingDesc": "Allow search engines to index your profile",
+    "showAsNewMember": "Show me as a new member",
+    "showAsNewMemberDesc": "Lets other members see you just joined so they can welcome you. Ends automatically 30 days after you signed up.",
     "postVisibility": "Post Visibility",
     "defaultPostVisibility": "Default Post Visibility",
     "defaultPostVisibilityDesc": "Applies to all current and future posts",

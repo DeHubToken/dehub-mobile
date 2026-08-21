@@ -42,6 +42,7 @@ import { toastError, toastSuccess } from "../../libs/toast";
 import { WEBSITE_LINK } from "../../config";
 import { translateText, getUserLanguage } from "../../services/translation.service";
 import { TranslateButton } from "../ui/TranslateButton";
+import NewMemberChip from "../common/NewMemberChip";
 
 const ProfileHeader = () => {
   const navigation = useNavigation<any>();
@@ -414,6 +415,9 @@ const ProfileHeader = () => {
                 <Text className="text-zinc-400 text-sm">@{username}</Text>
               </TouchableOpacity>
             )}
+            {/* Temporary — gone 30 days after signup, and immediately if they
+                switch it off in Settings › Privacy. Renders nothing otherwise. */}
+            <NewMemberChip address={address} />
             {!!address && (
               <View className="flex-row items-center">
                 <Ionicons

@@ -37,6 +37,7 @@ import {
   Divider,
 } from '../components/Settings/SettingsPrimitives';
 import { toastInfo } from '../libs';
+import { useNewMemberSelf } from '../hooks/useNewMembers';
 
 const logger = createLogger('PrivacySettings');
 
@@ -58,6 +59,26 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
   const { t } = useTranslation();
+
+  const {
+    isNewMember,
+    optedOut: newMemberOptedOut,
+    isLoading: isNewMemberLoading,
+    setOptedOut: setNewMemberOptedOut,
+    isUpdating: isNewMemberUpdating,
+  } = useNewMemberSelf();
+
+  const handleNewMemberToggle = useCallback(
+    async (visible: boolean) => {
+      try {
+        await setNewMemberOptedOut(!visible);
+        toastSuccess(visible ? 'Showing as a new member' : 'Hidden from new members');
+      } catch {
+        toastError('Failed to update');
+      }
+    },
+    [setNewMemberOptedOut],
+  );
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -446,6 +467,25 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
             value
             comingSoon
           />
+          {/* Only rendered while it still does something: outside the 30-day
+              window there is no row to update and no chip to hide, and a
+              toggle that silently changes nothing is worse than no toggle. */}
+          {isNewMember && (
+            <>
+              <Divider />
+              <SettingsToggleRow
+                icon="Sparkles"
+                label={t('settings.showAsNewMember', 'Show me as a new member')}
+                description={t(
+                  'settings.showAsNewMemberDesc',
+                  'Lets other members see you just joined so they can welcome you. Ends automatically 30 days after you signed up.',
+                )}
+                value={!newMemberOptedOut}
+                onValueChange={handleNewMemberToggle}
+                disabled={isNewMemberUpdating || isNewMemberLoading}
+              />
+            </>
+          )}
         </SettingsSection>
 
         {/* Account security — web's `Account Security` block plus its
