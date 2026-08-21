@@ -44,6 +44,7 @@ import {
   applySlippage,
   getNativeBalanceBase,
   swapETHForDHB,
+  waitForBalance,
 } from "../../services/swap.service";
 import { sendSolanaPayment } from "../../services/solana-payment.service";
 import { isSolanaChain } from "../../config/solana.constants";
@@ -345,7 +346,13 @@ const PPVModal: React.FC<PPVModalProps> = ({
               recipient: account,
               feeTier: quote.feeTier,
             });
-            dhbBalance = await tokenContract.balanceOf(account);
+            // Read back with patience: a mined swap can still be invisible to
+            // whichever public RPC node answers next, and treating that as a
+            // failed swap sends someone who has already paid back to the start.
+            dhbBalance = await waitForBalance(
+              () => tokenContract.balanceOf(account),
+              amountBN,
+            );
             if (ethers.BigNumber.from(dhbBalance).lt(amountBN)) {
               setPhase("error");
               setPpvError("Swap done but DHB still short. Try again.");
