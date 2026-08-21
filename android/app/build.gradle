@@ -135,6 +135,9 @@ android {
             def storePath = releaseSigningProp('DEHUB_UPLOAD_STORE_FILE')
             if (storePath != null) {
                 storeFile file(storePath)
+                // The DeHub release keystore is PKCS12, not JKS. AGP's default
+                // store-type detection is JKS-first, so it has to be told.
+                storeType releaseSigningProp('DEHUB_UPLOAD_STORE_TYPE') ?: 'PKCS12'
                 storePassword releaseSigningProp('DEHUB_UPLOAD_STORE_PASSWORD')
                 keyAlias releaseSigningProp('DEHUB_UPLOAD_KEY_ALIAS')
                 keyPassword releaseSigningProp('DEHUB_UPLOAD_KEY_PASSWORD')
