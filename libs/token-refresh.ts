@@ -43,6 +43,23 @@ function notifyListeners() {
 }
 
 /**
+ * Thrown on a non-2xx response, with the HTTP status attached so callers can
+ * tell "the refresh token was rejected" (401/403 — genuinely signed out)
+ * apart from a network blip or a 5xx (server unreachable — still logged in,
+ * just can't prove it this instant). A plain `fetch` rejection (offline, DNS,
+ * timeout) has no `.status` at all, which the caller treats the same as a
+ * 5xx: don't destroy credentials over it.
+ */
+class RefreshRejectedError extends Error {
+  readonly status: number;
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = 'RefreshRejectedError';
+    this.status = status;
+  }
+}
+
+/**
  * Calls POST /auth/refresh using raw fetch (not apiClient) to avoid
  * circular interceptor loops. No auth header needed.
  */
@@ -66,7 +83,10 @@ async function callRefreshEndpoint(refreshToken: string): Promise<{
 
   if (!response.ok) {
     const data = await response.json().catch(() => ({}));
-    throw new Error(data?.message || `Refresh failed (${response.status})`);
+    throw new RefreshRejectedError(
+      data?.message || `Refresh failed (${response.status})`,
+      response.status
+    );
   }
 
   return response.json();
@@ -113,8 +133,19 @@ export const tokenRefreshManager = {
         console.error('[tokenRefresh] Refresh failed:', error);
         processQueue(error, null);
 
-        // Refresh failed — clear all tokens; callers should trigger re-login
-        try { await clearAuthData(); } catch {}
+        // Only a definitive rejection from the backend (401/403 — this
+        // refresh token is invalid, expired, or revoked) means the user is
+        // actually signed out and local credentials should be wiped. A
+        // network error, timeout, or 5xx just means we couldn't PROVE the
+        // session is still good right now — the refresh token in storage may
+        // still be perfectly valid, so leave it there for the next attempt
+        // instead of forcing a full re-login over a flaky connection.
+        const isRejected =
+          error instanceof RefreshRejectedError &&
+          (error.status === 401 || error.status === 403);
+        if (isRejected) {
+          try { await clearAuthData(); } catch {}
+        }
 
         return null;
       } finally {
