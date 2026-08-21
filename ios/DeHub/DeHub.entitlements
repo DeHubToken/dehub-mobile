@@ -11,7 +11,6 @@
     <key>com.apple.developer.associated-domains</key>
     <array>
       <string>applinks:dehub.io</string>
-      <string>applinks:legacy.dehub.io</string>
     </array>
   </dict>
 </plist>

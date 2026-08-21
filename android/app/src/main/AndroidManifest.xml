@@ -53,9 +53,12 @@
       </intent-filter>
       <intent-filter android:autoVerify="true" data-generated="true">
         <action android:name="android.intent.action.VIEW"/>
-        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/app"/>
-        <data android:scheme="https" android:host="legacy.dehub.io" android:pathPrefix="/stream"/>
-        <data android:scheme="https" android:host="legacy.dehub.io" android:pathPrefix="/feeds"/>
+        <data android:scheme="https" android:host="dehub.io" android:path="/app"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/app/"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/newpost/"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/stage/"/>
+        <data android:scheme="https" android:host="dehub.io" android:path="/stages"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/stages/"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <category android:name="android.intent.category.DEFAULT"/>
       </intent-filter>
