@@ -29,7 +29,7 @@ export const openStageModal = (view: StageModalView = "browse") => {
 
 export const StageProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const stages = useStagesImpl();
-  const { openModal, joinSpace } = stages;
+  const { openModal, joinSpace, guestListenSpace } = stages;
 
   // Mounted here because it has to be app-wide and outlive any stage screen:
   // the point is being told about a stage you are NOT currently looking at.
@@ -73,14 +73,17 @@ export const StageProvider: React.FC<PropsWithChildren> = ({ children }) => {
             id = (data as { id?: string } | null)?.id ?? undefined;
           }
           if (!id) return;
-          if (await joinSpace(id)) openModal("live");
+          // A signed-in wallet can hold a seat; anyone else still gets to
+          // listen, matching web's guest-listen invite link (no account, no
+          // participant row). joinSpace itself refuses when signed out.
+          if ((await joinSpace(id)) || (await guestListenSpace(id))) openModal("live");
         } catch (err) {
           log.error("Failed to open stage from deep link:", err);
         }
       })();
     });
     return () => setStageDeepLinkHandler(null);
-  }, [openModal, joinSpace]);
+  }, [openModal, joinSpace, guestListenSpace]);
 
   return <StageContext.Provider value={stages}>{children}</StageContext.Provider>;
 };

@@ -3,10 +3,10 @@ import { getSigningProvider, setSigningProvider } from '../../libs/provider.regi
 import { NETWORK_URLS } from '../../config/web3.constants';
 import { defaultChainId } from '../../config/constants';
 import { getLocalAccountDetails } from '../../libs/wallets.local';
-import { getAuthUser, getAuthMethod, getPreferredChainId } from '../../libs/auth.utils';
+import { getAuthUser, getAuthMethod, getPreferredChainId, setPreferredChainId } from '../../libs/auth.utils';
 import { ethers } from 'ethers';
 import { ethersService } from '../ethers.service';
-import { setupAAProvider } from '../../libs/wallet-core/smart-account';
+import { isChainAASupported, setupAAProvider } from '../../libs/wallet-core/smart-account';
 import { createLogger } from '../../libs/logger';
 
 const log = createLogger('LocalProviderAdapter');
@@ -20,6 +20,20 @@ type Eip1193Shim = {
 
 function toHexChainId(id: number): string {
   return '0x' + id.toString(16);
+}
+
+/**
+ * True when the signed-in address is not the key's own EOA — i.e. this account
+ * was registered as its Safe smart account (see SignInScreen's completeLocalSignIn),
+ * an address that only exists on the chains AA is configured for.
+ */
+function isSmartAccountAddress(identityAddress: string, privateKey: string): boolean {
+  try {
+    const pk = privateKey.startsWith('0x') ? privateKey : `0x${privateKey}`;
+    return identityAddress.toLowerCase() !== new ethers.Wallet(pk).address.toLowerCase();
+  } catch {
+    return false;
+  }
 }
 
 // Module-scoped override to allow switching chains for local (private key) accounts
@@ -154,6 +168,24 @@ export class LocalProviderAdapter implements AuthAdapter {
               targetChainId = pref;
             }
           } catch {}
+
+          // A Safe smart account only exists on the chains AA is configured for.
+          // Building this identity anywhere else silently demotes it to its owner
+          // EOA -- a different address, and therefore a different backend account.
+          // A preference naming such a chain could outlive the failed switch that
+          // wrote it, so every launch rebuilt the wrong identity and every attempt
+          // to switch away failed the same way. Fall back to the default chain and
+          // forget the unusable preference instead.
+          if (!isChainAASupported(targetChainId) && isSmartAccountAddress(activeAddr, details.privateKey)) {
+            log.warn('preferred chain cannot host this smart account, falling back', {
+              preferred: targetChainId,
+              fallback: defaultChainId,
+            });
+            targetChainId = defaultChainId;
+            try { await setPreferredChainId(defaultChainId); } catch {}
+            LOCAL_CHAIN_ID_OVERRIDE = defaultChainId;
+          }
+
           const built = await buildLocalEip1193FromPrivateKey(details.privateKey, targetChainId);
           if (built) {
             // Always keep the plain EOA signer/provider around -- getPrivateKey()/

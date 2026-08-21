@@ -87,6 +87,7 @@ const StagesBrowseModal: React.FC = () => {
     endSpace,
     startScheduledSpace,
     cancelScheduledSpace,
+    deleteEndedSpace,
   } = useStages();
 
   const { user } = useAuth();
@@ -358,7 +359,16 @@ const StagesBrowseModal: React.FC = () => {
                       {
                         text: "Cancel stage",
                         style: "destructive",
-                        onPress: () => { void cancelScheduledSpace(item.id); },
+                        onPress: () => {
+                          cancelScheduledSpace(item.id).then((ok) => {
+                            if (!ok) {
+                              Alert.alert(
+                                "Could not cancel the stage",
+                                "Check your connection and try again.",
+                              );
+                            }
+                          });
+                        },
                       },
                     ],
                   );
@@ -474,6 +484,32 @@ const StagesBrowseModal: React.FC = () => {
     const isPlaying = playingSpaceId === item.id;
     const hostName = item.host_username || `${item.host_wallet_address?.slice(0, 6)}...`;
     const hasRecording = !!item.recording_url;
+    const isMySpace = sameWallet(item.host_wallet_address, userAddress);
+
+    const handleDelete = () => {
+      Alert.alert(
+        "Delete this stage?",
+        `"${item.title}" and its recording will be removed. This can't be undone.`,
+        [
+          { text: "Keep it", style: "cancel" },
+          {
+            text: "Delete",
+            style: "destructive",
+            onPress: () => {
+              if (isPlaying) void unloadListSound();
+              deleteEndedSpace(item).then((ok) => {
+                if (!ok) {
+                  Alert.alert(
+                    "Could not delete the stage",
+                    "Check your connection and try again.",
+                  );
+                }
+              });
+            },
+          },
+        ],
+      );
+    };
 
     return (
       <View key={item.id} style={styles.pastSpaceItem}>
@@ -521,6 +557,18 @@ const StagesBrowseModal: React.FC = () => {
             <TouchableOpacity onPress={() => setSelectedPastSpace(item)} style={styles.transcriptBtn}>
               <Icon name="FileText" size={12} color="#FFFFFF" />
               <Text style={styles.transcriptBtnText}>Transcript</Text>
+            </TouchableOpacity>
+          )}
+
+          {isMySpace && (
+            <TouchableOpacity
+              onPress={handleDelete}
+              style={styles.pastDeleteBtn}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              accessibilityRole="button"
+              accessibilityLabel="Delete stage"
+            >
+              <Icon name="Trash2" size={14} color="rgba(255,255,255,0.4)" />
             </TouchableOpacity>
           )}
         </View>
@@ -926,6 +974,14 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 11,
     fontWeight: "600",
+  },
+  pastDeleteBtn: {
+    width: 28,
+    height: 28,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: 4,
   },
   scrubberContainer: {
     marginTop: 10,

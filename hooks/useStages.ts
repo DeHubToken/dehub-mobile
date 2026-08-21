@@ -189,8 +189,18 @@ export interface UseStagesReturn {
   createSpace: (title: string, description?: string) => Promise<AudioSpace | null>;
   scheduleSpace: (input: ScheduleSpaceInput) => Promise<AudioSpace | null>;
   startScheduledSpace: (spaceId: string) => Promise<boolean>;
-  cancelScheduledSpace: (spaceId: string) => Promise<void>;
+  cancelScheduledSpace: (spaceId: string) => Promise<boolean>;
+  /** Host-only: delete an ended stage's row and its recording file, if any. */
+  deleteEndedSpace: (space: AudioSpace) => Promise<boolean>;
   joinSpace: (spaceId: string) => Promise<boolean>;
+  /**
+   * Listen to a live stage without an account — matches dehubweb's
+   * `guestListen()`. Subscriber-only Agora token (the edge function accepts
+   * one with no auth), no `space_participants` row, no headcount bump.
+   * `myRole` stays null so every speak/raise-hand control (gated on
+   * "host"/"speaker"/"listener") stays hidden for a guest automatically.
+   */
+  guestListenSpace: (spaceId: string) => Promise<boolean>;
   leaveSpace: () => Promise<void>;
   endSpace: () => Promise<void>;
   toggleMute: () => void;
@@ -1073,8 +1083,8 @@ export function useStages(): UseStagesReturn {
   }, [userAddress, user, joinStageChannel, refreshSpaces, signed]);
 
   /** Call off a scheduled stage. Host only; the row is removed outright. */
-  const cancelScheduledSpace = useCallback(async (spaceId: string): Promise<void> => {
-    if (!userAddress) return;
+  const cancelScheduledSpace = useCallback(async (spaceId: string): Promise<boolean> => {
+    if (!userAddress) return false;
     try {
       // The delete policy compares the host wallet to the x-wallet-address
       // header, and the plain client never sends it — without this the row
@@ -1085,8 +1095,45 @@ export function useStages(): UseStagesReturn {
       );
       if (error) throw error;
       await refreshSpaces();
+      return true;
     } catch (err) {
       log.error("Failed to cancel scheduled space:", err);
+      return false;
+    }
+  }, [userAddress, refreshSpaces]);
+
+  /**
+   * Delete an ended stage's record, matching dehubweb's PastStagesList
+   * handleDelete: remove the storage recording first (if any), then the row.
+   * Host only -- callers gate the button on sameWallet(host_wallet_address),
+   * and the delete policy independently checks the same thing server-side
+   * against the x-wallet-address header.
+   */
+  const deleteEndedSpace = useCallback(async (space: AudioSpace): Promise<boolean> => {
+    if (!userAddress) return false;
+    try {
+      if (space.recording_url) {
+        const path = space.recording_url.split("/stage-recordings/")[1];
+        if (path) {
+          const { error: storageError } = await supabase.storage
+            .from("stage-recordings")
+            .remove([decodeURIComponent(path)]);
+          // Not fatal -- an orphaned recording file is a storage-quota
+          // problem, not a reason to leave the row (and its transcript,
+          // wrong listing) behind for the host to keep seeing.
+          if (storageError) log.warn("Failed to remove stage recording file:", storageError);
+        }
+      }
+      const { error } = await withWalletHeader(
+        supabase.from("audio_spaces").delete().eq("id", space.id).eq("status", "ended"),
+        userAddress,
+      );
+      if (error) throw error;
+      await refreshSpaces();
+      return true;
+    } catch (err) {
+      log.error("Failed to delete ended space:", err);
+      return false;
     }
   }, [userAddress, refreshSpaces]);
 
@@ -1155,6 +1202,38 @@ export function useStages(): UseStagesReturn {
   }, [userAddress, user, joinStageChannel, signed]);
 
   joinSpaceRef.current = joinSpace;
+
+  // Matches dehubweb's guestListen(): a signed-out visitor on an invite link
+  // can hear the room without an account. joinStageChannel/fetchAgoraToken
+  // already only attach auth headers for the publisher role, so a subscriber
+  // request here needs no wallet at all -- nothing server-side to change.
+  const guestListenSpace = useCallback(async (spaceId: string): Promise<boolean> => {
+    setIsLoading(true);
+    try {
+      const { data, error } = await supabase
+        .from("audio_spaces")
+        .select("*")
+        .eq("id", spaceId)
+        .single();
+      if (error || !data) throw error || new Error("Space not found");
+      const space = data as AudioSpace;
+      if (space.status !== "live") return false;
+
+      const success = await joinStageChannel(space, "listener");
+      if (!success) return false;
+
+      setCurrentSpace(space);
+      setMyRole(null);
+      setIsMuted(true);
+      setHasRaisedHand(false);
+      return true;
+    } catch (err) {
+      log.error("Failed to join space as guest:", err);
+      return false;
+    } finally {
+      setIsLoading(false);
+    }
+  }, [joinStageChannel]);
 
   const leaveSpace = useCallback(async () => {
     const space = currentSpaceRef.current;
@@ -1455,7 +1534,9 @@ export function useStages(): UseStagesReturn {
     scheduleSpace,
     startScheduledSpace,
     cancelScheduledSpace,
+    deleteEndedSpace,
     joinSpace,
+    guestListenSpace,
     leaveSpace,
     endSpace,
     toggleMute,
