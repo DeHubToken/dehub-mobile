@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 import {
   View,
   Text,
@@ -10,9 +10,6 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import { useAudioPlayer } from "expo-audio";
-import { configureForPlayback } from "../../libs/audioSession";
-import Slider from "@react-native-community/slider";
 import { supabase } from "../../services/supabase";
 import { useAuth } from "../../context/AuthContext";
 import { toastSuccess, toastError, toastInfo } from "../../libs/toast";
@@ -20,6 +17,8 @@ import { copyToClipboard } from "../../libs/clipboard.utils";
 import Icon from "../ui/Icon";
 import Dropdown from "../ui/Dropdown";
 import GlassModal from "../ui/GlassModal";
+import StageRecordingPlayer from "./StageRecordingPlayer";
+import { seekStageRecordingToTime, useStagePlayback } from "../../libs/stage-playback";
 import type { AudioSpace, StageTranscript, Segment, Chapter, SpeakerMapEntry, SpeakerOverride } from "../../hooks/useStages";
 
 interface Props {
@@ -105,17 +104,13 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   const { user } = useAuth();
   const walletAddress = user?.walletAddress || user?.address || "";
 
-  // Sound playback state. One long-lived player; the recording is attached on
-  // demand with replace(). loadedRef stands in for the old
-  // `soundRef.current !== null` check, since the player object always exists.
-  const player = useAudioPlayer(null);
-  const loadedRef = useRef(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  // MILLISECONDS by convention here (the slider and formatTimestamp(x / 1000)
-  // depend on it). expo-audio reports seconds, converted at the boundaries.
-  const [positionMs, setPositionMs] = useState(0);
-  const [durationMs, setDurationMs] = useState(0);
-  const [isAudioLoading, setIsAudioLoading] = useState(false);
+  // Playback is the shared engine's (libs/stage-playback), the same one behind
+  // the Recorded list and the stage card in the feed. This sheet used to run a
+  // second player of its own, so opening it stopped whatever the list was
+  // playing and started the same file again from zero.
+  const playback = useStagePlayback();
+  const isThisLoaded = !!space && playback.spaceId === space.id;
+  const playheadSec = isThisLoaded ? playback.position : 0;
 
   // Transcript state
   const [transcript, setTranscript] = useState<StageTranscript | null>(null);
@@ -223,86 +218,26 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
     }
   }, [stageId, fetchTranscript]);
 
-  // Sound setup & control. Status now arrives on the player's event stream
-  // rather than a per-Sound callback, so it lives in an effect.
-  useEffect(() => {
-    const sub = player.addListener("playbackStatusUpdate", (status) => {
-      if (!status.isLoaded) return;
-      setIsPlaying(status.playing);
-      // seconds -> milliseconds
-      setPositionMs(status.currentTime * 1000);
-      if (status.duration) {
-        setDurationMs(status.duration * 1000);
-      }
-      if (status.didJustFinish) {
-        setIsPlaying(false);
-        setPositionMs(0);
-        player.seekTo(0).catch(() => {});
-      }
-    });
-    return () => sub.remove();
-  }, [player]);
+  /**
+   * A chapter or a transcript line is a timestamp, so tapping one jumps there —
+   * starting the recording if it was not already the one loaded. Recordings
+   * whose container carries no index cannot be seeked at all (see
+   * libs/stage-playback); the lines stay tappable and simply start playback,
+   * because refusing the tap outright reads as a dead transcript.
+   */
+  const seekTo = useCallback(
+    (seconds: number) => {
+      if (!space) return;
+      seekStageRecordingToTime(space, seconds);
+    },
+    [space],
+  );
 
-  const loadAudio = useCallback(async () => {
-    if (!space?.recording_url) return;
-    setIsAudioLoading(true);
-    try {
-      await configureForPlayback();
-      // replace() swaps the source on the existing player; there is no
-      // separate unload step. shouldPlay:false is the default — we simply do
-      // not call play() here.
-      player.replace({ uri: space.recording_url });
-      loadedRef.current = true;
-    } catch (e) {
-      console.warn("Failed to load transcript audio", e);
-    } finally {
-      setIsAudioLoading(false);
-    }
-  }, [space?.recording_url, player]);
-
-  const togglePlay = useCallback(async () => {
-    if (!loadedRef.current) {
-      await loadAudio();
-    }
-    if (!loadedRef.current) return;
-
-    try {
-      // playing is a plain property, and play()/pause() are synchronous.
-      if (player.playing) player.pause();
-      else player.play();
-    } catch (e) {
-      console.warn("Play/pause error", e);
-    }
-  }, [loadAudio, player]);
-
-  const seekTo = useCallback(async (seconds: number) => {
-    if (!loadedRef.current) {
-      await loadAudio();
-    }
-    if (loadedRef.current) {
-      try {
-        // Already seconds — expo-audio's seekTo takes seconds, so the old
-        // `* 1000` conversion drops away entirely.
-        await player.seekTo(seconds);
-        player.play();
-      } catch (e) {
-        console.warn("Seek error", e);
-      }
-    }
-  }, [loadAudio, player]);
-
-  // Clean up audio on close or unmount
+  // Closing the sheet resets what belongs to the sheet. Playback is no longer
+  // one of those things: a recording carried out to the corner player keeps
+  // going, and StageRecordingPlayer's own unmount stops one that was not.
   useEffect(() => {
     if (!visible) {
-      // The player itself is released by useAudioPlayer on unmount; on close
-      // we just stop it and mark the source detached so the next open reloads.
-      try {
-        player.pause();
-      } catch {}
-      loadedRef.current = false;
-      setIsPlaying(false);
-      setPositionMs(0);
-      setDurationMs(0);
       setTranscript(null);
       setTranslation(null);
       setLanguage("original");
@@ -311,9 +246,8 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
       setHasRetriedLegacy(false);
     } else {
       fetchTranscript();
-      loadAudio();
     }
-  }, [visible, space?.recording_url, fetchTranscript, loadAudio]);
+  }, [visible, space?.recording_url, fetchTranscript]);
 
   // Realtime subscriptions
   useEffect(() => {
@@ -426,9 +360,11 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   );
 
   const activeSegmentIndex = useMemo(() => {
-    const timeSec = positionMs / 1000;
-    return segments.findIndex((s) => timeSec >= s.start && timeSec < (s.end || s.start + 2));
-  }, [segments, positionMs]);
+    if (!isThisLoaded) return -1;
+    return segments.findIndex(
+      (s) => playheadSec >= s.start && playheadSec < (s.end || s.start + 2),
+    );
+  }, [segments, playheadSec, isThisLoaded]);
 
   // Actions
   const handleCopy = () => {
@@ -576,45 +512,20 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
           </View>
         ) : (
           <View className="flex-1">
-            {/* Audio Controller */}
-            <View className="bg-white/5 border border-white/10 rounded-xl p-3 mb-3 flex-row items-center gap-3">
-              <TouchableOpacity
-                onPress={togglePlay}
-                disabled={isAudioLoading}
-                className="w-10 h-10 rounded-full bg-purple-600 items-center justify-center"
-              >
-                {isAudioLoading ? (
-                  <ActivityIndicator size="small" color="#fff" />
-                ) : (
-                  <Icon name={isPlaying ? "Pause" : "Play"} size={18} color="#fff" fill={isPlaying ? undefined : "#fff"} />
-                )}
-              </TouchableOpacity>
-              <View className="flex-1 justify-center">
-                <Slider
-                  minimumValue={0}
-                  maximumValue={durationMs || 1}
-                  value={positionMs}
-                  onSlidingComplete={async (val) => {
-                    // Slider value is milliseconds; seekTo takes seconds.
-                    if (loadedRef.current) {
-                      await player.seekTo(val / 1000);
-                    }
-                  }}
-                  minimumTrackTintColor="#D4D4D8"
-                  maximumTrackTintColor="rgba(255,255,255,0.12)"
-                  thumbTintColor="#D4D4D8"
-                  style={{ height: 16, marginHorizontal: -8 }}
+            {/* The same player as the Recorded list and the feed card, on the
+                same audio — opening this sheet over a playing recording now
+                picks it up where it is instead of restarting it. */}
+            {!!space && (
+              <View className="mb-3">
+                <StageRecordingPlayer
+                  spaceId={space.id}
+                  recordingUrl={space.recording_url}
+                  title={space.title}
+                  startedAt={space.started_at}
+                  endedAt={space.ended_at}
                 />
-                <View className="flex-row justify-between">
-                  <Text className="text-theme-neutrals-400 text-[10px] font-mono">
-                    {formatTimestamp(positionMs / 1000)}
-                  </Text>
-                  <Text className="text-theme-neutrals-400 text-[10px] font-mono">
-                    {formatTimestamp(durationMs / 1000)}
-                  </Text>
-                </View>
               </View>
-            </View>
+            )}
 
             {/* AI Summary and chapters panel */}
             {(summary || chapters.length > 0 || transcript?.summary_status === "processing") && (

@@ -32,6 +32,7 @@ import { getAvatarUrl } from '../../libs/misc';
 import { formatCompactNumber } from '../../libs/numbers.util';
 import { dehubLinkLabel, type DehubLinkMatch } from '../../libs/dehub-links';
 import { useStages } from '../../context/StageContext';
+import StageRecordingPlayer from '../Stages/StageRecordingPlayer';
 
 /** How many cards one message or caption may draw before the rest stay as text. */
 export const MAX_CARDS_PER_MESSAGE = 2;
@@ -49,6 +50,12 @@ interface RowCardProps {
   fallbackIcon: IconName;
   bannerUri?: string | null;
   dimmed?: boolean;
+  /**
+   * Controls that live inside the card but are not the card. Rendered under the
+   * row and walled off from the card's own press, so a stage recording can be
+   * played and scrubbed here without the tap also opening the stage.
+   */
+  footer?: React.ReactNode;
   onPress: () => void;
   onLongPress?: () => void;
 }
@@ -62,6 +69,7 @@ const RowCard: React.FC<RowCardProps> = ({
   fallbackIcon,
   bannerUri,
   dimmed,
+  footer,
   onPress,
   onLongPress,
 }) => (
@@ -104,6 +112,17 @@ const RowCard: React.FC<RowCardProps> = ({
         {!!meta && <Text style={styles.meta}>{meta}</Text>}
       </View>
     </View>
+    {!!footer && (
+      // Claims the touch before the card does. Without this every press on the
+      // play button and every drag on the scrub bar also opened the stage.
+      <View
+        style={styles.footer}
+        onStartShouldSetResponder={() => true}
+        onResponderTerminationRequest={() => false}
+      >
+        {footer}
+      </View>
+    )}
   </TouchableOpacity>
 );
 
@@ -351,6 +370,25 @@ const StageCardEmbed: React.FC<{
       bannerUri={data.cover_image_url}
       fallbackIcon="Mic"
       dimmed={isEnded}
+      // Listen back where the card sits. What you want from a post about a
+      // stage that already happened is usually to hear it without leaving the
+      // feed, and until now the card offered nothing but a dead-end tap into an
+      // empty modal. Web's StageLinkEmbed carries the same player.
+      footer={
+        isEnded && data.recording_url ? (
+          <StageRecordingPlayer
+            spaceId={data.id}
+            recordingUrl={data.recording_url}
+            title={data.title}
+            startedAt={data.started_at}
+            endedAt={data.ended_at}
+            // A feed row unmounts because the list recycled it, not because
+            // anybody left — so scrolling past hands the audio to the corner
+            // player instead of killing it mid-sentence.
+            whenGone="popOut"
+          />
+        ) : undefined
+      }
       onPress={onOpen}
     />
   );
@@ -573,6 +611,11 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   cardDimmed: { opacity: 0.65 },
+  footer: {
+    paddingHorizontal: 10,
+    paddingBottom: 10,
+    marginTop: -2,
+  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
