@@ -20,7 +20,7 @@ import {
 import { supabase } from "../services/supabase";
 import { useUser } from "../context/AuthContext";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
-import { toastError, toastSuccess } from "../libs/toast";
+import { toastError, toastSuccess, toastWarning } from "../libs/toast";
 import { createLogger } from "../libs/logger";
 
 const log = createLogger("useFeatureRequests");
@@ -54,6 +54,12 @@ export interface FeatureRequest {
   author_username: string | null;
   author_avatar: string | null;
   image_url: string | null;
+  /**
+   * Every attachment on the request. `image_url` mirrors the first one for
+   * clients that predate the column — read through `featureAttachments` rather
+   * than either field, exactly as web's lib/feature-attachments.ts does.
+   */
+  image_urls?: string[] | null;
   vote_count: number;
   like_count: number;
   dislike_count: number;
@@ -98,11 +104,46 @@ const PAGE_SIZE = 15;
 const SHIPPED_STATUSES = ["completed", "shipped"];
 
 /**
- * Statuses the Requests list must not show: shipped ones have their own tab, and
- * declined ones are resolved too — without this a declined request sits in the
- * list forever. Matches web's use-feature-requests.ts.
+ * Statuses the Requests list must not show: shipped ones have their own tab,
+ * in-progress ones have theirs, and declined ones are resolved — without this a
+ * declined request sits in the list forever. Matches web's
+ * use-feature-requests.ts, including `in_progress`: leaving it out here is what
+ * put the same row on two tabs at once.
  */
-const RESOLVED_STATUSES = '("completed","shipped","declined")';
+const RESOLVED_STATUSES = '("completed","shipped","declined","in_progress")';
+
+/** Matches the cardinality bound on feature_requests.image_urls. */
+export const MAX_FEATURE_ATTACHMENTS = 6;
+
+/** Per-file ceiling, same as web's. */
+export const MAX_FEATURE_ATTACHMENT_BYTES = 20 * 1024 * 1024;
+
+/**
+ * Every attachment on a request, oldest-first. `image_urls` is the authority
+ * when present; rows written before the column existed only carry `image_url`.
+ * Mirrors web's lib/feature-attachments.ts so both clients read the same rows
+ * the same way.
+ */
+export function featureAttachments(
+  feature: { image_url?: string | null; image_urls?: string[] | null } | null | undefined,
+): string[] {
+  if (!feature) return [];
+  const many = feature.image_urls;
+  if (Array.isArray(many)) {
+    const urls = many.filter((u): u is string => typeof u === "string" && u.length > 0);
+    if (urls.length > 0) return urls;
+  }
+  return typeof feature.image_url === "string" && feature.image_url.length > 0
+    ? [feature.image_url]
+    : [];
+}
+
+const VIDEO_EXTENSIONS = /\.(mp4|mov|webm|ogg)(\?|#|$)/i;
+
+/** Whether an attachment should play rather than render as a still. */
+export function isVideoAttachment(url: string): boolean {
+  return VIDEO_EXTENSIONS.test(url);
+}
 
 /**
  * PostgREST parses `or=(...)` as a filter tree whose clauses are comma-separated,
@@ -181,15 +222,43 @@ export function useShippedFeatures() {
   });
 }
 
-export function useTotalFeatureCount() {
+/** Requests currently being built — the Shipping tab. */
+export function useInProgressFeatures() {
+  return useQuery({
+    queryKey: ["feature-requests-in-progress"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("feature_requests")
+        .select("*")
+        .eq("status", "in_progress")
+        .order("updated_at", { ascending: false });
+      if (error) throw error;
+      return (data || []) as FeatureRequest[];
+    },
+    staleTime: 60_000,
+    gcTime: 5 * 60_000,
+  });
+}
+
+/**
+ * Board totals for the header and the Requests tab badge. `open` is counted
+ * with the same status filter the list uses, so the badge can never disagree
+ * with the rows underneath it.
+ */
+export function useFeatureCounts() {
   return useQuery({
     queryKey: ["feature-requests-total-count"],
     queryFn: async () => {
-      const { count, error } = await supabase
-        .from("feature_requests")
-        .select("*", { count: "exact", head: true });
-      if (error) throw error;
-      return count ?? 0;
+      const [totalRes, openRes] = await Promise.all([
+        supabase.from("feature_requests").select("*", { count: "exact", head: true }),
+        supabase
+          .from("feature_requests")
+          .select("*", { count: "exact", head: true })
+          .not("status", "in", RESOLVED_STATUSES),
+      ]);
+      if (totalRes.error) throw totalRes.error;
+      if (openRes.error) throw openRes.error;
+      return { total: totalRes.count ?? 0, open: openRes.count ?? 0 };
     },
     staleTime: 60_000,
     gcTime: 5 * 60_000,
@@ -481,13 +550,19 @@ export function useDeleteComment() {
 }
 
 /**
- * Upload a picked local image to the shared `feature-media` bucket and return
- * its public URL. Web uploads a `File` to `${wallet}/${Date.now()}.${ext}`;
+ * Upload a picked local file to the shared `feature-media` bucket and return
+ * its public URL. Web uploads a `File` to `${wallet}/${Date.now()}-${i}.${ext}`;
  * React Native has no File, so the local URI is read into a Blob first.
  */
-async function uploadFeatureMedia(localUri: string, wallet: string): Promise<string> {
-  const ext = localUri.split(".").pop()?.split("?")[0] || "jpg";
-  const path = `${wallet.toLowerCase()}/${Date.now()}.${ext}`;
+async function uploadFeatureMedia(
+  localUri: string,
+  wallet: string,
+  index: number,
+): Promise<string> {
+  const ext = localUri.split(".").pop()?.split("?")[0]?.toLowerCase() || "jpg";
+  // The filename is stamped with Date.now(); the index keeps same-extension
+  // files picked in the same millisecond from colliding, as on web.
+  const path = `${wallet.toLowerCase()}/${Date.now()}-${index}.${ext}`;
   const response = await fetch(localUri);
   const blob = await response.blob();
   const { error } = await supabase.storage
@@ -496,6 +571,12 @@ async function uploadFeatureMedia(localUri: string, wallet: string): Promise<str
   if (error) throw new Error(`Upload failed: ${error.message}`);
   const { data } = supabase.storage.from("feature-media").getPublicUrl(path);
   return data.publicUrl;
+}
+
+/** True when Postgres rejected the payload because the column isn't there yet. */
+function isMissingColumn(error: any, column: string): boolean {
+  const message = String(error?.message ?? "");
+  return error?.code === "PGRST204" || (message.includes(column) && /column/i.test(message));
 }
 
 export function useSubmitFeatureRequest() {
@@ -508,34 +589,59 @@ export function useSubmitFeatureRequest() {
       title,
       description,
       category,
-      mediaUri,
+      mediaUris,
     }: {
       title: string;
       description: string;
       category: FeatureCategory;
-      mediaUri?: string | null;
+      /** Local URIs, oldest-first. Capped at MAX_FEATURE_ATTACHMENTS. */
+      mediaUris?: string[] | null;
     }) => {
       if (!wallet) throw new Error("Not authenticated");
       const addr = wallet.toLowerCase();
 
-      const imageUrl = mediaUri ? await uploadFeatureMedia(mediaUri, addr) : null;
+      const picked = (mediaUris ?? []).slice(0, MAX_FEATURE_ATTACHMENTS);
+      const imageUrls: string[] = [];
+      // Sequential, not parallel — see the filename note in uploadFeatureMedia.
+      for (const [index, uri] of picked.entries()) {
+        imageUrls.push(await uploadFeatureMedia(uri, addr, index));
+      }
 
-      const { data, error } = await withWalletHeader(
-        supabase
-          .from("feature_requests")
-          .insert({
-            title: title.trim(),
-            description: description.trim(),
-            category,
-            image_url: imageUrl,
-            author_wallet_address: addr,
-            author_username: user?.username || null,
-            author_avatar: user?.avatarImageUrl || null,
-          })
-          .select()
-          .single(),
-        addr,
+      const row = {
+        title: title.trim(),
+        description: description.trim(),
+        category,
+        image_url: imageUrls[0] ?? null,
+        author_wallet_address: addr,
+        author_username: user?.username || null,
+        author_avatar: user?.avatarImageUrl || null,
+      };
+
+      const insert = (payload: Record<string, unknown>) =>
+        withWalletHeader(
+          supabase.from("feature_requests").insert(payload as any).select().single(),
+          addr,
+        );
+
+      const { data, error } = await insert(
+        imageUrls.length > 0 ? { ...row, image_urls: imageUrls } : row,
       );
+
+      // The board must keep accepting reports where image_urls has not been
+      // migrated in yet: retry on the single-attachment shape rather than lose
+      // the submission. image_url already holds the first upload, so only the
+      // extras are dropped — and the toast says so.
+      if (error && isMissingColumn(error, "image_urls")) {
+        const retry = await insert(row);
+        if (retry.error) throw retry.error;
+        if (imageUrls.length > 1) {
+          toastWarning(
+            "Only the first attachment was saved — attachments are still rolling out",
+          );
+        }
+        return retry.data;
+      }
+
       if (error) throw error;
       return data;
     },
@@ -547,6 +653,76 @@ export function useSubmitFeatureRequest() {
     onError: (error) => {
       log.error("Submit feature request failed:", error);
       toastError(error, "Failed to submit feature request");
+    },
+  });
+}
+
+/** Author-only edit of their own request. Mirrors web's useEditFeatureRequest. */
+export function useEditFeatureRequest() {
+  const queryClient = useQueryClient();
+  const wallet = useWallet();
+
+  return useMutation({
+    mutationFn: async ({
+      id,
+      title,
+      description,
+      category,
+    }: {
+      id: string;
+      title: string;
+      description: string;
+      category: FeatureCategory;
+    }) => {
+      if (!wallet) throw new Error("Not authenticated");
+      const addr = wallet.toLowerCase();
+      const { data, error } = await withWalletHeader(
+        supabase
+          .from("feature_requests")
+          .update({ title: title.trim(), description: description.trim(), category })
+          .eq("id", id)
+          .select()
+          .single(),
+        addr,
+      );
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["feature-requests"] });
+      toastSuccess("Feature request updated!");
+    },
+    onError: (error) => {
+      log.error("Edit feature request failed:", error);
+      toastError(error, "Failed to update feature request");
+    },
+  });
+}
+
+/** Author-only delete. Mirrors web's useDeleteFeatureRequest. */
+export function useDeleteFeatureRequest() {
+  const queryClient = useQueryClient();
+  const wallet = useWallet();
+
+  return useMutation({
+    mutationFn: async (id: string) => {
+      if (!wallet) throw new Error("Not authenticated");
+      const addr = wallet.toLowerCase();
+      const { error } = await withWalletHeader(
+        supabase.from("feature_requests").delete().eq("id", id),
+        addr,
+      );
+      if (error) throw error;
+      return id;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["feature-requests"] });
+      queryClient.invalidateQueries({ queryKey: ["feature-requests-total-count"] });
+      toastSuccess("Feature request deleted");
+    },
+    onError: (error) => {
+      log.error("Delete feature request failed:", error);
+      toastError(error, "Failed to delete feature request");
     },
   });
 }
