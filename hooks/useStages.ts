@@ -24,6 +24,20 @@ import { withWalletHeader } from "../libs/supabase-wallet-client";
 
 const log = createLogger("useStages");
 
+/**
+ * Stage recordings are AAC in an ADTS elementary stream — the only compressed
+ * shape Agora's recorder can write (`encode: true`; the alternative is raw
+ * WAV, which for a half-hour stage is ~100 MB off a phone). It is not an MP4,
+ * so the extension and the Content-Type both have to say AAC. Three consumers
+ * read them and none of them should have to sniff: the `transcribe-stage` edge
+ * function passes the name and type straight to the speech service, dehubweb
+ * plays the object URL in a plain `<audio>`, and `libs/stage-playback` feeds
+ * it to ExoPlayer.
+ */
+const RECORDING_EXT = "aac";
+const RECORDING_MIME = "audio/aac";
+const RECORDING_OBJECT = `recording.${RECORDING_EXT}`;
+
 export interface AudioSpace {
   id: string;
   host_wallet_address: string;
@@ -551,7 +565,7 @@ export function useStages(): UseStagesReturn {
 
       // Host records the mixed channel audio for later transcription
       if (role === "host") {
-        const recPath = `${FileSystem.cacheDirectory}stage_${space.id}_${Date.now()}.aac`;
+        const recPath = `${FileSystem.cacheDirectory}stage_${space.id}_${Date.now()}.${RECORDING_EXT}`;
         const rawRecPath = recPath.startsWith("file://")
           ? decodeURIComponent(recPath.substring(7))
           : recPath;
@@ -1285,8 +1299,14 @@ export function useStages(): UseStagesReturn {
         return;
       }
 
+      // Agora writes a raw ADTS AAC elementary stream (startAudioRecording with
+      // encode: true) — there is no MP4 container anywhere in these bytes, and
+      // the SDK offers no option to write one. Name and type the object after
+      // what it actually is: transcribe-stage forwards both on to the speech
+      // service, and dehubweb hands the same URL to a bare <audio> element that
+      // has nothing but the Content-Type to go on.
       const result = await FileSystem.uploadAsync(
-        `${env.SUPABASE_URL}/storage/v1/object/stage-recordings/${spaceId}/recording.mp4`,
+        `${env.SUPABASE_URL}/storage/v1/object/stage-recordings/${spaceId}/${RECORDING_OBJECT}`,
         recPath,
         {
           httpMethod: "POST",
@@ -1294,7 +1314,7 @@ export function useStages(): UseStagesReturn {
           headers: {
             Authorization: `Bearer ${env.SUPABASE_PUBLISHABLE_KEY}`,
             apikey: env.SUPABASE_PUBLISHABLE_KEY,
-            "Content-Type": "audio/mp4",
+            "Content-Type": RECORDING_MIME,
             "x-upsert": "true",
           },
         },
@@ -1303,7 +1323,7 @@ export function useStages(): UseStagesReturn {
       log.info(`Upload response status: ${result.status}`);
       if (result.status >= 200 && result.status < 300) {
         // Update recording_url in audio_spaces
-        const recordingUrl = `${env.SUPABASE_URL}/storage/v1/object/public/stage-recordings/${spaceId}/recording.mp4`;
+        const recordingUrl = `${env.SUPABASE_URL}/storage/v1/object/public/stage-recordings/${spaceId}/${RECORDING_OBJECT}`;
         const { error: updateErr } = await signed(
           supabase
             .from("audio_spaces")
