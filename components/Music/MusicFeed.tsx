@@ -36,7 +36,7 @@ import {
 } from "react-native";
 import Animated from "react-native-reanimated";
 import { GestureDetector } from "react-native-gesture-handler";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import Icon, { type IconName } from "../ui/Icon";
 import CompactVideoCard from "../Home/CompactVideoCard";
@@ -253,6 +253,27 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
 
   const stations: RadioStation[] = isSearchingRadio ? searchedStations : genreStations;
   const loadingStations = isSearchingRadio ? loadingSearch : loadingGenre;
+
+  // Pull-to-refresh has to invalidate this page's own queries. HomeScreen's
+  // handler only re-seeds the shuffle for the feed lists, which this page is
+  // not one of — wired to that alone, the spinner would run and nothing behind
+  // it would change.
+  const queryClient = useQueryClient();
+  const [refreshing, setRefreshing] = useState(false);
+  const handleRefresh = useCallback(async () => {
+    setRefreshing(true);
+    onRefresh?.();
+    try {
+      await queryClient.invalidateQueries({
+        predicate: (q) => {
+          const key = String(q.queryKey?.[0] ?? "");
+          return key.startsWith("music-") || key.startsWith("radio-");
+        },
+      });
+    } finally {
+      setRefreshing(false);
+    }
+  }, [queryClient, onRefresh]);
 
   // ── List content per tab ──────────────────────────────────────────────────
 
@@ -515,14 +536,12 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
       onMomentumScrollEnd={onScrollEnd}
       scrollEventThrottle={16}
       refreshControl={
-        onRefresh ? (
-          <RefreshControl
-            refreshing={false}
-            onRefresh={onRefresh}
-            tintColor="#FFFFFF"
-            progressViewOffset={headerInset}
-          />
-        ) : undefined
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
+          tintColor="#FFFFFF"
+          progressViewOffset={headerInset}
+        />
       }
     />
   );
