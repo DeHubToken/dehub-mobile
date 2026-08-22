@@ -1133,7 +1133,20 @@
     "loadFailed": "Özellik istekleri yüklenemedi",
     "submittedSubtitle": "{{count}} gönderildi · geliştirilecekleri şekillendir",
     "shapeNext": "Sırada neyin geliştirileceğini şekillendir",
-    "noSearchResults": "Aramanızla eşleşen istek yok"
+    "noSearchResults": "Aramanızla eşleşen istek yok",
+    "shipping": "Geliştiriliyor",
+    "noShippingYet": "Devam eden bir şey yok",
+    "shippingAppearHere": "Geliştirilmekte olan istekler burada görünecek.",
+    "deviceLabel": "Cihaz ve İşletim Sistemi Bilgileri (isteğe bağlı)",
+    "devicePlaceholder": "örn. iPhone 15 Pro, iOS 18.2 / Samsung S24, Android 15…",
+    "attachLabel": "Görsel veya Video Ekle (isteğe bağlı)",
+    "upTo": "en fazla {{max}}",
+    "clickToUpload": "Yüklemek için dokunun",
+    "addAnother": "Bir tane daha ekle",
+    "edit": "Düzenle",
+    "deleteRequestTitle": "Bu istek silinsin mi?",
+    "deleteRequestDescription": "Bu işlem geri alınamaz.",
+    "attachmentTooLarge": "Her dosya 20MB’den küçük olmalı"
   },
   "profile": {
     "back": "Geri",

@@ -1196,7 +1196,20 @@
     "loadFailed": "Couldn't load feature requests",
     "submittedSubtitle": "{{count}} submitted · shape what gets built",
     "shapeNext": "Shape what gets built next",
-    "noSearchResults": "No requests match your search"
+    "noSearchResults": "No requests match your search",
+    "shipping": "Shipping",
+    "noShippingYet": "Nothing in progress",
+    "shippingAppearHere": "Requests being built will appear here.",
+    "deviceLabel": "Device & OS Details (optional)",
+    "devicePlaceholder": "e.g. iPhone 15 Pro, iOS 18.2 / Samsung S24, Android 15…",
+    "attachLabel": "Attach Images or Videos (optional)",
+    "upTo": "up to {{max}}",
+    "clickToUpload": "Tap to upload",
+    "addAnother": "Add another",
+    "edit": "Edit",
+    "deleteRequestTitle": "Delete this request?",
+    "deleteRequestDescription": "This can't be undone.",
+    "attachmentTooLarge": "Each file must be under 20MB"
   },
   "auth": {
     "loginRequired": "Log in required"
