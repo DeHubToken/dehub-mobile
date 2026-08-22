@@ -15,6 +15,7 @@ import InfiniteVideoFeed, { type InfiniteVideoFeedHandle } from "../components/H
 import HomeImageGrid, { type HomeImageGridHandle } from "../components/Home/HomeImageGrid";
 import ImageFeedDrawer, { type ImageFeedDrawerHandle } from "../components/Home/ImageFeedDrawer";
 import ShortsGrid, { type ShortsGridHandle } from "../components/Home/ShortsGrid";
+import MusicFeed, { type MusicFeedHandle } from "../components/Music/MusicFeed";
 import HomeHeader from "../components/HomeHeader";
 import FeedNavBar from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
@@ -70,7 +71,7 @@ const LAST_INDEX = TAB_ORDER.length - 1;
 // The four tabs served by InfiniteVideoFeed (images and shorts have their own
 // grid components). Each gets its own kept-mounted list so switching never
 // re-creates a FlatList.
-const FEED_LIST_TYPES = ["all", "video", "feed-audio", "live"] as const;
+const FEED_LIST_TYPES = ["all", "video", "live"] as const;
 type FeedListType = (typeof FEED_LIST_TYPES)[number];
 
 // Page-turn animation. Short and front-loaded: the page should be visibly
@@ -134,11 +135,11 @@ export default function HomeScreen() {
   const feedRefs = useRef<Record<FeedListType, { current: InfiniteVideoFeedHandle | null }>>({
     all: { current: null },
     video: { current: null },
-    "feed-audio": { current: null },
     live: { current: null },
   });
   const imageGridRef = useRef<HomeImageGridHandle | null>(null);
   const shortsGridRef = useRef<ShortsGridHandle | null>(null);
+  const musicFeedRef = useRef<MusicFeedHandle | null>(null);
   // Published to the page tree so horizontally-scrolling descendants (image
   // galleries, the suggestions carousel) can block the page turn while they are
   // scrolling — see PagerGestureContext.
@@ -251,7 +252,6 @@ export default function HomeScreen() {
     return {
       all: homeSlotPostType ? { ...feedParams, postType: homeSlotPostType } : feedParams,
       video: { ...feedParams, postType: "video" as const },
-      "feed-audio": { ...feedParams, postType: "feed-audio" as const },
       live: { ...feedParams, postType: "live" as const },
     } satisfies Record<FeedListType, Record<string, any>>;
   }, [feedParams, homeSlotPostType]);
@@ -425,7 +425,7 @@ export default function HomeScreen() {
       const base = feedParamsRef.current;
 
       const jobs: Array<() => void> = [
-        ...(["video", "feed-audio", "live"] as const).map((postType) => () => {
+        ...(["video", "live"] as const).map((postType) => () => {
           const p = { ...base, postType };
           queryClient.prefetchInfiniteQuery({
             queryKey: ["home-feed", p, 10],
@@ -526,6 +526,8 @@ export default function HomeScreen() {
       imageGridRef.current?.scrollToTopAndRefresh();
     } else if (activeTabKey === "short") {
       shortsGridRef.current?.scrollToTopAndRefresh();
+    } else if (activeTabKey === "feed-audio") {
+      musicFeedRef.current?.scrollToTop();
     } else {
       feedRefs.current[activeTabKey as FeedListType]?.current?.scrollToTopAndRefresh();
     }
@@ -629,6 +631,23 @@ export default function HomeScreen() {
           scrollHandler={scrollHandler}
           onScrollEnd={handleScrollEnd}
           onOpenImageFeed={handleOpenImageFeed}
+        />
+      );
+    }
+
+    // The Audio tab is a browse surface, not a list of audio posts. It used to
+    // be the plain `feed-audio` feed, which is why it read as nothing but voice
+    // recordings while web's Music tab carried shelves of videos, radio, audio
+    // uploads and live stages.
+    if (key === "feed-audio") {
+      return (
+        <MusicFeed
+          feedRef={musicFeedRef}
+          headerInset={headerHeight}
+          scrollHandler={scrollHandler}
+          onScrollBegin={handleScrollBegin}
+          onScrollEnd={handleScrollEnd}
+          onRefresh={handleRefresh}
         />
       );
     }
