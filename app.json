@@ -150,7 +150,8 @@
             "androidGradlePlugin": "8.8.0",
             "compileSdkVersion": 35,
             "targetSdkVersion": 35,
-            "enableSeparateBuildPerCPUArchitecture": true
+            "enableSeparateBuildPerCPUArchitecture": true,
+            "usesCleartextTraffic": true
           }
         }
       ]
