@@ -126,8 +126,21 @@ const HorizontalShelf: React.FC<{
   return scrollGuard ? <GestureDetector gesture={scrollGuard}>{list}</GestureDetector> : list;
 };
 
+/**
+ * Wraps a horizontally-scrolling child so it blocks Home's page-turn gesture
+ * while it is scrolling. Same job HorizontalShelf does for itself, for the
+ * chrome rows that are not shelves.
+ */
+const GuardedRow: React.FC<{ children: React.ReactElement }> = ({ children }) => {
+  const scrollGuard = useHorizontalScrollGuard();
+  return scrollGuard ? <GestureDetector gesture={scrollGuard}>{children}</GestureDetector> : children;
+};
+
 const ShelfSkeleton: React.FC<{ width: number; height: number }> = ({ width, height }) => (
-  <View style={styles.shelfContent}>
+  // Explicitly a row: shelfContent is a FlatList contentContainerStyle, which
+  // the horizontal list lays out sideways for itself. A plain View would stack
+  // these three down the page.
+  <View style={[styles.shelfContent, styles.skeletonRow]}>
     {[0, 1, 2].map((i) => (
       <View key={i} style={[styles.skeleton, { width, height }]} />
     ))}
@@ -392,6 +405,9 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
             collapsing header rather than under it. */}
         <View style={{ height: headerInset }} />
 
+        {/* Guarded like the shelves: these rows overflow the screen, and a drag
+            along them would otherwise turn the feed page instead. */}
+        <GuardedRow>
         <FlatList
           data={SUB_TABS}
           keyExtractor={(t) => t.value}
@@ -420,6 +436,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
             );
           }}
         />
+        </GuardedRow>
 
         {tab === "radio" && (
           <View style={styles.radioChrome}>
@@ -442,6 +459,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
             </View>
 
             {!isSearchingRadio && (
+              <GuardedRow>
               <FlatList
                 data={RADIO_GENRES as unknown as { id: RadioGenreId; label: string }[]}
                 keyExtractor={(g) => g.id}
@@ -464,6 +482,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
                   );
                 }}
               />
+              </GuardedRow>
             )}
           </View>
         )}
@@ -653,6 +672,10 @@ const styles = StyleSheet.create({
   skeleton: {
     borderRadius: 14,
     backgroundColor: "rgba(255,255,255,0.05)",
+  },
+  skeletonRow: {
+    flexDirection: "row",
+    overflow: "hidden",
   },
   rowWrap: {
     paddingHorizontal: 12,
