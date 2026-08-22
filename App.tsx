@@ -71,6 +71,7 @@ import CallMiniPlayer from "./components/Call/CallMiniPlayer";
 import { StageProvider } from "./context/StageContext";
 import StagesModalsHost from "./components/Stages/StagesModalsHost";
 import StageMiniPlayer from "./components/Stages/StageMiniPlayer";
+import StageRecordingMiniPlayer from "./components/Stages/StageRecordingMiniPlayer";
 import { AppKit } from "@reown/appkit-ethers5-react-native";
 import { isWalletConnectAvailable } from "./config/reown.config";
 
@@ -306,6 +307,7 @@ const BootGate: React.FC = () => {
                       <CallMiniPlayer />
                       <StagesModalsHost />
                       <StageMiniPlayer />
+                      <StageRecordingMiniPlayer />
                     </StageProvider>
                   </CallProvider>
                 </MessagingProvider>

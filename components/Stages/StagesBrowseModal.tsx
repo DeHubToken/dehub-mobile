@@ -1,11 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, ActivityIndicator, ScrollView, Platform, Alert, Share } from "react-native";
+import { View, Text, StyleSheet, ActivityIndicator, ScrollView, Alert, Share } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
-import { useAudioPlayer } from "expo-audio";
-import { configureForPlayback } from "../../libs/audioSession";
-import Slider from "@react-native-community/slider";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
@@ -16,16 +13,19 @@ import { useAuth } from "../../context/AuthContext";
 import { sameWallet, type AudioSpace } from "../../hooks/useStages";
 import { useStageReminder } from "../../hooks/useStageReminder";
 import { StageTranscriptSheet } from "./StageTranscriptSheet";
+import StageRecordingPlayer from "./StageRecordingPlayer";
+import { getStagePlaybackState, stopStageRecording, useStagePlayback } from "../../libs/stage-playback";
 
-const formatTimestamp = (seconds: number): string => {
-  if (!Number.isFinite(seconds) || seconds < 0) seconds = 0;
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  const s = Math.floor(seconds % 60);
-  if (h > 0) {
-    return `${h}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
-  }
-  return `${m}:${s.toString().padStart(2, "0")}`;
+/** How long the stage ran, from its own timestamps. Mirrors web's row. */
+const stageDuration = (space: AudioSpace): string | null => {
+  if (!space.started_at || !space.ended_at) return null;
+  const secs = Math.round(
+    (new Date(space.ended_at).getTime() - new Date(space.started_at).getTime()) / 1000,
+  );
+  if (secs <= 0) return null;
+  const m = Math.floor(secs / 60);
+  const s = secs % 60;
+  return m > 0 ? `${m}m ${s}s` : `${s}s`;
 };
 
 const formatDate = (dateStr?: string | null) => {
@@ -96,94 +96,12 @@ const StagesBrowseModal: React.FC = () => {
   // Selected past space for transcript sheet
   const [selectedPastSpace, setSelectedPastSpace] = useState<AudioSpace | null>(null);
 
-  // List audio playback states
-  // One long-lived player, source attached on demand via replace(). The hook
-  // releases it on unmount, so there is no manual unload.
-  const player = useAudioPlayer(null);
-  const [playingSpaceId, setPlayingSpaceId] = useState<string | null>(null);
-  const [isListAudioPlaying, setIsListAudioPlaying] = useState(false);
-  // NOTE: this component works in MILLISECONDS throughout — the slider's
-  // maximumValue/value and formatTimestamp(x / 1000) all assume it. expo-audio
-  // reports SECONDS, so the conversion happens at the two boundaries below
-  // (the status listener and seekListSound) and nothing else changes.
-  const [positionMs, setPositionMs] = useState(0);
-  const [durationMs, setDurationMs] = useState(0);
-  const [isAudioLoading, setIsAudioLoading] = useState(false);
-
-  const unloadListSound = async () => {
-    try {
-      player.pause();
-      await player.seekTo(0);
-    } catch (e) {
-      console.warn("Error stopping list sound", e);
-    }
-    setPlayingSpaceId(null);
-    setIsListAudioPlaying(false);
-    setPositionMs(0);
-    setDurationMs(0);
-  };
-
-  const togglePlayPastSpace = async (space: AudioSpace) => {
-    if (!space.recording_url) return;
-
-    // Toggle play/pause if this is already the playing space. isLoaded and
-    // playing are plain properties in expo-audio, and play()/pause() are
-    // synchronous.
-    if (playingSpaceId === space.id && player.isLoaded) {
-      try {
-        if (player.playing) player.pause();
-        else player.play();
-      } catch (e) {
-        console.warn("Toggle play/pause failed", e);
-      }
-      return;
-    }
-
-    // Unload existing audio first
-    await unloadListSound();
-    setIsAudioLoading(true);
-    setPlayingSpaceId(space.id);
-
-    try {
-      await configureForPlayback();
-      // Status updates are delivered by the listener effect below rather than
-      // a per-Sound callback.
-      player.replace({ uri: space.recording_url });
-      player.play();
-    } catch (e) {
-      console.warn("Error loading audio in list", e);
-      setPlayingSpaceId(null);
-    } finally {
-      setIsAudioLoading(false);
-    }
-  };
-
-  // The slider hands us MILLISECONDS; expo-audio's seekTo takes SECONDS.
-  const seekListSound = async (val: number) => {
-    try {
-      await player.seekTo(val / 1000);
-    } catch (e) {
-      console.warn("Seek error", e);
-    }
-  };
-
-  // Drives the scrubber. expo-audio reports currentTime/duration in SECONDS,
-  // so both are converted to milliseconds to match this component's state.
-  useEffect(() => {
-    const sub = player.addListener("playbackStatusUpdate", (status) => {
-      if (!status.isLoaded) return;
-      setIsListAudioPlaying(status.playing);
-      setPositionMs(status.currentTime * 1000);
-      if (status.duration) {
-        setDurationMs(status.duration * 1000);
-      }
-      if (status.didJustFinish) {
-        unloadListSound();
-      }
-    });
-    return () => sub.remove();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [player]);
+  // Playback belongs to libs/stage-playback now, shared with the transcript
+  // sheet and the stage card in the feed. This modal used to own a full copy of
+  // it — its own player, its own status listener, its own slider in
+  // milliseconds — which is why the times were wrong here and nowhere else, and
+  // why leaving the modal killed the audio with no way to carry it.
+  const { spaceId: playingSpaceId } = useStagePlayback();
 
   useEffect(() => {
     if (isModalOpen && initialModalView === "browse") {
@@ -191,29 +109,15 @@ const StagesBrowseModal: React.FC = () => {
     }
   }, [isModalOpen, initialModalView, refreshSpaces]);
 
-  // Clean up playback when modal is closed
+  // Closing the modal stops a recording that has not been popped out: its only
+  // control goes with the modal, and audio nobody can reach is worse than audio
+  // that stopped. Popping out is how you say you want to carry it with you.
+  // Web's AudioSpacesModal.handleClose does exactly this.
   useEffect(() => {
-    if (!isModalOpen || initialModalView !== "browse") {
-      unloadListSound();
-    }
+    if (isModalOpen && initialModalView === "browse") return;
+    const live = getStagePlaybackState();
+    if (live.spaceId && !live.popout) stopStageRecording();
   }, [isModalOpen, initialModalView]);
-
-  // Clean up playback when transcript sheet opens
-  useEffect(() => {
-    if (selectedPastSpace) {
-      unloadListSound();
-    }
-  }, [selectedPastSpace]);
-
-  // Stop playback on unmount. The native player itself is released by
-  // useAudioPlayer, so there is nothing to unload here.
-  useEffect(() => {
-    return () => {
-      try {
-        player.pause();
-      } catch {}
-    };
-  }, [player]);
 
   if (!isModalOpen || initialModalView !== "browse") return null;
 
@@ -481,10 +385,12 @@ const StagesBrowseModal: React.FC = () => {
   };
 
   const renderPastItem = (item: AudioSpace) => {
-    const isPlaying = playingSpaceId === item.id;
+    const isLoaded = playingSpaceId === item.id;
     const hostName = item.host_username || `${item.host_wallet_address?.slice(0, 6)}...`;
     const hasRecording = !!item.recording_url;
     const isMySpace = sameWallet(item.host_wallet_address, userAddress);
+    const duration = stageDuration(item);
+    const heads = Math.max(1, (item.speaker_count || 0) + (item.listener_count || 0));
 
     const handleDelete = () => {
       Alert.alert(
@@ -496,7 +402,7 @@ const StagesBrowseModal: React.FC = () => {
             text: "Delete",
             style: "destructive",
             onPress: () => {
-              if (isPlaying) void unloadListSound();
+              if (isLoaded) stopStageRecording();
               deleteEndedSpace(item).then((ok) => {
                 if (!ok) {
                   Alert.alert(
@@ -512,44 +418,19 @@ const StagesBrowseModal: React.FC = () => {
     };
 
     return (
-      <View key={item.id} style={styles.pastSpaceItem}>
+      <View key={item.id} style={[styles.pastSpaceItem, isLoaded && styles.pastSpaceItemLoaded]}>
+        {/* Title and the things you can do to the stage. The player is its own
+            line below rather than a button in this row: web stacks the same way
+            at phone widths, and a 90-bar scrub bar needs the whole width to be
+            worth dragging. */}
         <View style={styles.pastSpaceRow}>
-          <TouchableOpacity
-            onPress={() => togglePlayPastSpace(item)}
-            disabled={!hasRecording || (isAudioLoading && isPlaying)}
-            style={[
-              styles.playBtn,
-              isPlaying && isListAudioPlaying && styles.playingBtn,
-              !hasRecording && { opacity: 0.35, borderColor: "rgba(255,255,255,0.1)", backgroundColor: "rgba(255,255,255,0.05)" }
-            ]}
-          >
-            {isAudioLoading && isPlaying ? (
-              <ActivityIndicator
-                size="small"
-                color={isListAudioPlaying ? "#09090B" : "#fff"}
-              />
-            ) : (
-              <Icon
-                name={isPlaying && isListAudioPlaying ? "Pause" : "Play"}
-                size={16}
-                color={
-                  isPlaying && isListAudioPlaying
-                    ? "#09090B"
-                    : hasRecording
-                      ? "#FFFFFF"
-                      : "rgba(255,255,255,0.3)"
-                }
-                fill={(isPlaying && isListAudioPlaying) || !hasRecording ? undefined : "#FFFFFF"}
-              />
-            )}
-          </TouchableOpacity>
-
           <View style={styles.pastSpaceInfo}>
             <Text style={styles.pastSpaceTitle} numberOfLines={1}>
               {item.title}
             </Text>
             <Text style={styles.pastSpaceSub} numberOfLines={1}>
-              @{hostName} · {formatDate(item.ended_at)}{!hasRecording && " · No recording"}
+              @{hostName} · {formatDate(item.ended_at)} · {heads} here
+              {duration ? ` · ${duration}` : ""}
             </Text>
           </View>
 
@@ -573,23 +454,17 @@ const StagesBrowseModal: React.FC = () => {
           )}
         </View>
 
-        {isPlaying && (
-          <View style={styles.scrubberContainer}>
-            <Slider
-              minimumValue={0}
-              maximumValue={durationMs || 1}
-              value={positionMs}
-              onSlidingComplete={seekListSound}
-              minimumTrackTintColor="#D4D4D8"
-              maximumTrackTintColor="rgba(255,255,255,0.12)"
-              thumbTintColor="#D4D4D8"
-              style={{ height: 16, marginHorizontal: -8 }}
-            />
-            <View style={styles.timeRow}>
-              <Text style={styles.timeText}>{formatTimestamp(positionMs / 1000)}</Text>
-              <Text style={styles.timeText}>{formatTimestamp(durationMs / 1000)}</Text>
-            </View>
-          </View>
+        {hasRecording ? (
+          <StageRecordingPlayer
+            spaceId={item.id}
+            recordingUrl={item.recording_url}
+            title={item.title}
+            startedAt={item.started_at}
+            endedAt={item.ended_at}
+            style={styles.pastPlayer}
+          />
+        ) : (
+          <Text style={styles.pastNoRecording}>No recording</Text>
         )}
       </View>
     );
@@ -927,23 +802,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.05)",
   },
+  pastSpaceItemLoaded: {
+    borderColor: "rgba(255,255,255,0.18)",
+    backgroundColor: "rgba(255,255,255,0.06)",
+  },
   pastSpaceRow: {
     flexDirection: "row",
     alignItems: "center",
   },
-  playBtn: {
-    width: 32,
-    height: 32,
-    borderRadius: 12,
-    backgroundColor: "rgba(255,255,255,0.08)",
-    alignItems: "center",
-    justifyContent: "center",
-    marginRight: 10,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.15)",
+  pastPlayer: {
+    marginTop: 10,
   },
-  playingBtn: {
-    backgroundColor: "#D4D4D8",
+  pastNoRecording: {
+    color: "rgba(255,255,255,0.35)",
+    fontSize: 11,
+    marginTop: 8,
   },
   pastSpaceInfo: {
     flex: 1,
@@ -982,22 +855,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginLeft: 4,
-  },
-  scrubberContainer: {
-    marginTop: 10,
-    paddingTop: 6,
-    borderTopWidth: 1,
-    borderTopColor: "rgba(255,255,255,0.06)",
-  },
-  timeRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 2,
-  },
-  timeText: {
-    color: "rgba(255,255,255,0.5)",
-    fontSize: 10,
-    fontFamily: Platform.OS === "ios" ? "Courier New" : "monospace",
   },
 });
 
