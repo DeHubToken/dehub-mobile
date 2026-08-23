@@ -10,6 +10,11 @@
  * and an empty list. So an empty `data` is ambiguous on its own — read
  * `canViewLikers` before deciding nobody reacted.
  *
+ * NEGATIVE REACTIONS ARE ANONYMOUS
+ * The server never sends person rows for dislike/poo — not even to the author.
+ * Those sections are skipped here rather than rendered as bare count headers;
+ * their tallies still show on the post's own buttons.
+ *
  * The chrome here is the same construction as CommentBottomSheet (opaque
  * overlay, pan-to-dismiss off the grabber) so the two read as one
  * family; it is a separate sheet because reactions are no longer part of the
@@ -40,7 +45,7 @@ import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { getPostLikers, type LikerUser } from "../../services/nft.service";
-import { REACTION_LIST, type PostReaction } from "../../libs/reactions";
+import { NEGATIVE_REACTIONS, REACTION_LIST, type PostReaction } from "../../libs/reactions";
 import { getAvatarUrl } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 
@@ -199,13 +204,19 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
       if (bucket) bucket.push(person);
       else byReaction.set(key, [person]);
     });
-    return REACTION_LIST.map((meta) => ({
-      key: meta.key,
-      emoji: meta.emoji,
-      label: meta.label,
-      total: counts?.[meta.key] ?? byReaction.get(meta.key)?.length ?? 0,
-      data: byReaction.get(meta.key) ?? [],
-    })).filter((section) => section.total > 0 || section.data.length > 0);
+    return REACTION_LIST
+      // Negative reactions are anonymous — the server never sends their
+      // person rows, so they could only render as a bare count header here.
+      // Their tallies still show on the post's own buttons.
+      .filter((meta) => !NEGATIVE_REACTIONS.includes(meta.key))
+      .map((meta) => ({
+        key: meta.key,
+        emoji: meta.emoji,
+        label: meta.label,
+        total: counts?.[meta.key] ?? byReaction.get(meta.key)?.length ?? 0,
+        data: byReaction.get(meta.key) ?? [],
+      }))
+      .filter((section) => section.total > 0 || section.data.length > 0);
   }, [people, counts]);
 
   const totalReactions = useMemo(
