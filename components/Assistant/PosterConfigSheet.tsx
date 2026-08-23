@@ -35,7 +35,6 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { BlurView } from 'expo-blur';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '../ui/Icon';
 
@@ -422,12 +421,6 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
         pointerEvents="box-none"
       >
         <Animated.View style={[s.sheet, { paddingBottom: insets.bottom + 12 }, sheetStyle]}>
-          <BlurView
-            intensity={80}
-            tint="dark"
-            style={StyleSheet.absoluteFill}
-            {...(Platform.OS === 'android' ? { experimentalBlurMethod: 'dimezisBlurView' } : {})}
-          />
           <View style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <View style={s.handleWrap}>
@@ -627,7 +620,7 @@ const s = StyleSheet.create({
     overflow: 'hidden',
   },
   overlay: {
-    backgroundColor: 'rgba(12,12,14,0.92)',
+    backgroundColor: '#0C0C0E',
     borderTopWidth: 1,
     borderColor: 'rgba(255,255,255,0.06)',
   },

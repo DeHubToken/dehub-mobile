@@ -21,7 +21,6 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-gesture-handler";
-import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import { toastError, toastSuccess } from "../../libs";
@@ -291,12 +290,6 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
             sheetStyle,
           ]}
         >
-          <BlurView
-            intensity={90}
-            tint="dark"
-            style={StyleSheet.absoluteFill}
-            {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
-          />
           <View style={[StyleSheet.absoluteFill, styles.overlay]} />
 
           <GestureDetector gesture={panGesture}>
@@ -407,7 +400,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "rgba(12,12,14,0.75)",
+    backgroundColor: "#0C0C0E",
     borderTopWidth: 1,
     borderColor: "rgba(255,255,255,0.1)",
   },

@@ -15,7 +15,6 @@ import React, { memo, useEffect, useMemo, useState } from 'react';
 import {
   Dimensions,
   Modal,
-  Platform,
   ScrollView,
   StyleSheet,
   Switch,
@@ -31,7 +30,6 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
-import { BlurView } from 'expo-blur';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon, { type IconName } from '../ui/Icon';
 import {
@@ -175,12 +173,6 @@ const AssistantSettingsSheetComponent: React.FC<AssistantSettingsSheetProps> = (
         </Animated.View>
 
         <Animated.View style={[s.sheet, { paddingBottom: insets.bottom }, sheetStyle]}>
-          <BlurView
-            intensity={80}
-            tint="dark"
-            style={StyleSheet.absoluteFill}
-            {...(Platform.OS === 'android' ? { experimentalBlurMethod: 'dimezisBlurView' } : {})}
-          />
           <View style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <GestureDetector gesture={panGesture}>
@@ -288,7 +280,7 @@ const s = StyleSheet.create({
     overflow: 'hidden',
   },
   overlay: {
-    backgroundColor: 'rgba(12,12,14,0.9)',
+    backgroundColor: '#0C0C0E',
     borderTopWidth: 1,
     borderColor: 'rgba(255,255,255,0.06)',
   },

@@ -10,8 +10,8 @@
  * and an empty list. So an empty `data` is ambiguous on its own — read
  * `canViewLikers` before deciding nobody reacted.
  *
- * The glass chrome here is the same construction as CommentBottomSheet (blur +
- * overlay + frost, pan-to-dismiss off the grabber) so the two read as one
+ * The chrome here is the same construction as CommentBottomSheet (opaque
+ * overlay, pan-to-dismiss off the grabber) so the two read as one
  * family; it is a separate sheet because reactions are no longer part of the
  * comments surface at all.
  */
@@ -26,7 +26,6 @@ import {
   ActivityIndicator,
   Dimensions,
   StyleSheet,
-  Platform,
 } from "react-native";
 import Animated, {
   useAnimatedStyle,
@@ -36,7 +35,6 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-gesture-handler";
-import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
@@ -227,14 +225,7 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
         <Animated.View
           style={[glassStyles.sheet, { height: SHEET_HEIGHT, paddingBottom: insets.bottom }, sheetStyle]}
         >
-          <BlurView
-            intensity={95}
-            tint="dark"
-            style={StyleSheet.absoluteFill}
-            {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
-          />
           <View style={[StyleSheet.absoluteFill, glassStyles.overlay]} />
-          <View style={[StyleSheet.absoluteFill, glassStyles.frost]} />
 
           <GestureDetector gesture={gesture}>
             <Animated.View className="items-center py-2.5">
@@ -306,12 +297,9 @@ const glassStyles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "rgba(12,12,14,0.72)",
+    backgroundColor: "#0C0C0E",
     borderTopWidth: 1,
     borderColor: "rgba(255,255,255,0.14)",
-  },
-  frost: {
-    backgroundColor: "rgba(255,255,255,0.06)",
   },
   sectionHeader: {
     flexDirection: "row",

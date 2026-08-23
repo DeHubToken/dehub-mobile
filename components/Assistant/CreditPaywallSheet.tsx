@@ -28,7 +28,6 @@ import {
   Dimensions,
   Image,
   Modal,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -43,7 +42,6 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
-import { BlurView } from 'expo-blur';
 import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon, { type IconName } from '../ui/Icon';
@@ -276,12 +274,6 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
         </Animated.View>
 
         <Animated.View style={[s.sheet, { paddingBottom: insets.bottom + 16 }, sheetStyle]}>
-          <BlurView
-            intensity={80}
-            tint="dark"
-            style={StyleSheet.absoluteFill}
-            {...(Platform.OS === 'android' ? { experimentalBlurMethod: 'dimezisBlurView' } : {})}
-          />
           <View style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <GestureDetector gesture={panGesture}>
@@ -477,7 +469,7 @@ const s = StyleSheet.create({
     overflow: 'hidden',
   },
   overlay: {
-    backgroundColor: 'rgba(12,12,14,0.88)',
+    backgroundColor: '#0C0C0E',
     borderTopWidth: 1,
     borderColor: 'rgba(255,255,255,0.06)',
   },
