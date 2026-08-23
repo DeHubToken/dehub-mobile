@@ -14,7 +14,6 @@ import {
   Modal,
   Dimensions,
   StyleSheet,
-  Platform,
   ActivityIndicator,
   Image,
   InteractionManager,
@@ -34,7 +33,6 @@ import {
   GestureDetector,
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
-import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -535,7 +533,6 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
               sheetStyle,
             ]}
           >
-            <BlurView intensity={100} tint="dark" style={StyleSheet.absoluteFill} />
             <View style={[StyleSheet.absoluteFill, styles.overlay]} />
 
             <GestureDetector gesture={panGesture}>
@@ -635,7 +632,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "rgba(12,12,14,0.82)",
+    backgroundColor: "#0C0C0E",
     borderTopWidth: 1,
     borderColor: "rgba(255,255,255,0.06)",
   },
