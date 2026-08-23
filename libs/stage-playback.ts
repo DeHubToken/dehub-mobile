@@ -42,6 +42,7 @@ import { useEffect, useState } from "react";
 
 import { configureForPlayback } from "./audioSession";
 import { createLogger } from "./logger";
+import { storage } from "./storage";
 import { toastError, toastInfo } from "./toast";
 import { supabase } from "../services/supabase";
 
@@ -85,6 +86,25 @@ export interface StagePlaybackState {
   seekable: boolean;
   /** Formatted remaining time, e.g. "-3:21". Empty when unknown. */
   timeLeft: string;
+  /**
+   * Playback speed, shared by every surface and persisted between sessions —
+   * a town hall listened at 2x from the Recorded list is still 2x in the
+   * corner player. Mirrors web's lib/stage-playback rate.
+   */
+  rate: number;
+}
+
+/** Same ladder the video players cycle through, on both platforms. */
+export const STAGE_PLAYBACK_RATES = [1, 1.25, 1.5, 2] as const;
+
+const RATE_KEY = "stage-recording-rate";
+
+function readStoredRate(): number {
+  try {
+    const n = Number(storage.getString(RATE_KEY));
+    if (STAGE_PLAYBACK_RATES.includes(n as (typeof STAGE_PLAYBACK_RATES)[number])) return n;
+  } catch {}
+  return 1;
 }
 
 const IDLE: StagePlaybackState = {
@@ -98,10 +118,37 @@ const IDLE: StagePlaybackState = {
   duration: 0,
   seekable: false,
   timeLeft: "",
+  rate: readStoredRate(),
 };
 
 let state: StagePlaybackState = IDLE;
 const subscribers = new Set<(next: StagePlaybackState) => void>();
+
+/** Set the playback speed for stage recordings, now and for future plays. */
+export function setStageRecordingRate(rate: number) {
+  publish({ rate });
+  try {
+    storage.set(RATE_KEY, rate);
+  } catch {}
+  const p = player;
+  if (p) {
+    try {
+      // Pitch stays corrected, so voices stay natural at 2x.
+      p.shouldCorrectPitch = true;
+      p.setPlaybackRate(rate);
+    } catch (e) {
+      log.warn("setPlaybackRate failed", e);
+    }
+  }
+}
+
+/** Step through STAGE_PLAYBACK_RATES and land on the new rate. */
+export function cycleStageRecordingRate(): number {
+  const idx = STAGE_PLAYBACK_RATES.indexOf(state.rate as (typeof STAGE_PLAYBACK_RATES)[number]);
+  const next = STAGE_PLAYBACK_RATES[(idx + 1) % STAGE_PLAYBACK_RATES.length];
+  setStageRecordingRate(next);
+  return next;
+}
 
 function publish(patch: Partial<StagePlaybackState>) {
   const next = { ...state, ...patch };
@@ -346,6 +393,13 @@ export function playStageRecording(space: StagePlayable, seekRatio?: number) {
     try {
       await configureForPlayback();
       p.replace({ uri: space.recording_url! });
+      // A fresh source starts at the persisted rate.
+      try {
+        p.shouldCorrectPitch = true;
+        p.setPlaybackRate(state.rate);
+      } catch (e) {
+        log.warn("setPlaybackRate failed", e);
+      }
       p.play();
     } catch (e) {
       log.error("Could not start the recording", e);
@@ -379,6 +433,8 @@ export function pauseStageRecording() {
 export function resumeStageRecording() {
   if (!player || !state.spaceId || !state.paused) return;
   try {
+    player.shouldCorrectPitch = true;
+    player.setPlaybackRate(state.rate);
     player.play();
   } catch (e) {
     log.warn("Resume failed", e);
