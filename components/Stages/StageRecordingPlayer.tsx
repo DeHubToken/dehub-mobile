@@ -20,6 +20,7 @@ import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View, type StyleProp, type ViewStyle } from "react-native";
 
 import Icon from "../ui/Icon";
+import StageRateButton from "./StageRateButton";
 import StageWaveform from "./StageWaveform";
 import {
   closeStagePopout,
@@ -166,6 +167,9 @@ const StageRecordingPlayer: React.FC<StageRecordingPlayerProps> = ({
           onSeek={!isLoaded || seekable ? seek : undefined}
         />
         {isLoaded && !!timeLeft && <Text style={styles.time}>{timeLeft}</Text>}
+        {/* Only meaningful once this row is the loaded recording — an idle
+            chip would cycle a rate nothing is using yet. */}
+        {isLoaded && <StageRateButton />}
       </View>
 
       {!hidePopout && (

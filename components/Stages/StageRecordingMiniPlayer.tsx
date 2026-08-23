@@ -23,6 +23,7 @@ import React from "react";
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import Icon from "../ui/Icon";
+import StageRateButton from "./StageRateButton";
 import StageWaveform from "./StageWaveform";
 import { useStages } from "../../context/StageContext";
 import {
@@ -91,6 +92,7 @@ const StageRecordingMiniPlayer: React.FC = () => {
         </View>
 
         {!!timeLeft && <Text style={styles.time}>{timeLeft}</Text>}
+        <StageRateButton />
       </View>
     </View>
   );
