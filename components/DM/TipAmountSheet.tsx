@@ -23,7 +23,6 @@ import {
   GestureDetector,
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
-import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs";
@@ -185,14 +184,6 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
               sheetStyle,
             ]}
           >
-            <BlurView
-              intensity={80}
-              tint="dark"
-              style={StyleSheet.absoluteFill}
-              {...(Platform.OS === "android"
-                ? { experimentalBlurMethod: "dimezisBlurView" }
-                : {})}
-            />
             <View style={[StyleSheet.absoluteFill, styles.overlay]} />
 
             <GestureDetector gesture={panGesture}>
@@ -321,7 +312,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "rgba(12,12,14,0.85)",
+    backgroundColor: "#0C0C0E",
     borderTopWidth: 1,
     borderColor: "rgba(255,255,255,0.06)",
   },

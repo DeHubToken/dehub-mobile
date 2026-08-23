@@ -109,12 +109,6 @@ const GlassModal: React.FC<GlassModalProps> = ({
                 },
               ]}
             >
-              <BlurView
-                intensity={blurIntensity}
-                tint={blurTint}
-                style={StyleSheet.absoluteFill}
-                {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
-              />
               {children}
             </View>
           ) : (
@@ -138,7 +132,9 @@ const styles = StyleSheet.create({
   panel: {
     width: "100%",
     overflow: "hidden",
-    backgroundColor: "rgba(12,12,14,0.68)",
+    // Opaque: these panels sit over chat/video, and the old 68% fill let
+    // content bleed through behind text.
+    backgroundColor: "#0C0C0E",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.14)",
   },
