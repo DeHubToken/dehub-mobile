@@ -933,7 +933,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           bottom: 0,
           borderTopWidth: 1,
           borderTopColor: "rgba(255,255,255,0.06)",
-          backgroundColor: "rgba(12,12,14,0.8)",
+          // Opaque: the comment list scrolls underneath this bar, and the
+          // translucent fill put scrolled text behind the input.
+          backgroundColor: "#0C0C0E",
           marginBottom: inputLift,
         }}
       >
