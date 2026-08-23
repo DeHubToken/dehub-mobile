@@ -22,7 +22,7 @@ import {
   getAuthMethod,
 } from "../libs/auth.utils";
 import { createLogger } from "../libs/logger";
-import { getSigningProvider } from "../libs/provider.registry";
+import { getSigningProvider, clearSigningProvider } from "../libs/provider.registry";
 import { useProviderLifecycle, type EIP1193Provider, type ProviderStatus } from "../hooks/useProviderLifecycle";
 import { useBalances } from "../hooks/useBalances";
 import { useAuthBoot } from "../hooks/useAuthBoot";
@@ -37,6 +37,17 @@ import {
 import { SUPPORTED_NETWORKS, supportedNetworks } from "../config/web3.constants";
 import { setLocalAuthChainId } from "../services/auth/localProviderAdapter";
 import { setViewAccount } from "../services/view.service";
+import { tokenRefreshManager } from "../libs/token-refresh";
+import { clearPersistedNavigationState } from "../hooks/useNavigationPersistence";
+import {
+  currentProfileId,
+  beginAddProfileAttempt,
+  restoreDisplacedProfileIfAny,
+  beginProfileSwitch,
+  completeProfileSwitch,
+  abortProfileSwitch,
+  snapshotCurrentSession,
+} from "../libs/profiles";
 
 export interface User {
   id: string;
@@ -159,6 +170,10 @@ interface AuthContextType {
   // Switch active chain and block UI until done
   switchChain: (targetChainId: number) => Promise<void>;
   isSwitchingChain?: boolean;
+  /** Open the sign-in sheet to save another account on this device. */
+  openAddProfile: () => void;
+  /** Become another profile saved on this device. */
+  switchToProfile: (id: string) => Promise<boolean>;
   // Add more auth methods as needed
 }
 
@@ -213,6 +228,10 @@ interface AuthActionsContextType {
   ensureProvider: () => Promise<void>;
   ensureFreshProvider: () => Promise<void>;
   switchChain: (targetChainId: number) => Promise<void>;
+  /** Open the sign-in sheet to save another account on this device. */
+  openAddProfile: () => void;
+  /** Become another profile saved on this device. */
+  switchToProfile: (id: string) => Promise<boolean>;
 }
 
 // Create split contexts
@@ -244,6 +263,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [provisionalToken, setProvisionalToken] = useState<string | null>(null); // kept for backward compatibility
   const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
   const [showSignInModal, setShowSignInModal] = useState(false);
+  // True while the sheet was opened from "Add profile" — it must then render
+  // even though the user is signed in, and closing it restores whoever the
+  // attempt displaced.
+  const [addProfileIntent, setAddProfileIntent] = useState(false);
   const [authMethod, setAuthMethodState] = useState<'local' | null>(null);
   const isMountedRef = useRef(true);
   const [isSwitchingChain, setIsSwitchingChain] = useState(false);
@@ -529,6 +552,104 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, [log]);
 
+  // ── Multi-account (profiles) ──────────────────────────────────────────────
+  // Rehydrate React state from the session keys currently on disk. Mobile has
+  // no page reload to lean on (dehubweb reloads after a switch), so the same
+  // "boot already knows how to hydrate a key set" idea runs in place.
+  const rehydrateFromStorage = useCallback(async () => {
+    const restoredUser = await getAuthUser<User>();
+    setUser(restoredUser);
+    setIsSignedIn(!!restoredUser);
+    setNeedsUsername(false);
+    setProvisionalUser(null);
+    setProvisionalToken(null);
+    setBalancesLoading(false);
+    didBootRefetchRef.current = true;
+    resetProviderState();
+    clearSigningProvider();
+    try {
+      await forceReinitProvider();
+    } catch {}
+    clearPersistedNavigationState();
+  }, [resetProviderState, forceReinitProvider]);
+
+  const openAddProfile = useCallback(() => {
+    // Record who is live before anything in the sheet can displace them, so
+    // abandoning the attempt can put everything back exactly as it was.
+    beginAddProfileAttempt().catch(() => {});
+    setAddProfileIntent(true);
+    setShowSignInModal(true);
+  }, []);
+
+  /**
+   * Become another profile saved on this device. Silent when its stored
+   * session restores; otherwise the sign-in sheet opens ("Add a profile") and
+   * completing it lands on that account.
+   */
+  const switchToProfile = useCallback(
+    async (id: string): Promise<boolean> => {
+      if (!id) return false;
+      const prevId = await currentProfileId();
+      if (!prevId || id === prevId) return true;
+      // Freshen the outgoing account's stash first: refresh tokens rotate on
+      // use, and the snapshot must hold the one still live server-side.
+      try {
+        await tokenRefreshManager.ensureFreshToken();
+      } catch {}
+      log.info('switchToProfile:start', { from: `${prevId.slice(0, 12)}...`, to: `${id.slice(0, 12)}...` });
+      const plan = await beginProfileSwitch(id);
+      if (!plan) {
+        openAddProfile();
+        return false;
+      }
+      try {
+        if (plan.supabase) {
+          // Re-seats AND persists the stored Supabase session; raced against a
+          // timeout because a hung restore would leave the snapshot guard set
+          // and every later tracking write blocked.
+          const { supabase } = await import('../services/supabase');
+          await Promise.race([
+            supabase.auth.setSession({
+              access_token: plan.supabase.access_token,
+              refresh_token: plan.supabase.refresh_token,
+            }),
+            new Promise<never>((_, reject) =>
+              setTimeout(() => reject(new Error('Supabase session restore timed out')), 10_000)
+            ),
+          ]);
+        }
+        await rehydrateFromStorage();
+        await completeProfileSwitch(id);
+        toastSuccess('Switched account');
+        return true;
+      } catch (e) {
+        log.warn('switchToProfile:failed', e as any);
+        await abortProfileSwitch(prevId);
+        await rehydrateFromStorage();
+        toastError?.('Could not switch account');
+        return false;
+      }
+    },
+    [log, openAddProfile, rehydrateFromStorage]
+  );
+
+  useEffect(() => {
+    // Keep the live account's registry copy fresh across background refreshes.
+    return tokenRefreshManager.onTokenRefreshed(() => {
+      snapshotCurrentSession().catch(() => {});
+    });
+  }, []);
+
+  // A completed Add profile attempt (the new account is now live) closes the
+  // sheet and drops the intent — otherwise the gateway would stay open over a
+  // freshly signed-in session.
+  useEffect(() => {
+    if (isSignedIn && addProfileIntent) {
+      setAddProfileIntent(false);
+      setShowSignInModal(false);
+    }
+  }, [isSignedIn, addProfileIntent]);
+
   // Skip auth method - allows users to use the app without signing in
   const skipAuthLocal = useCallback(async () => {
     await setHasSeenAuth();
@@ -584,7 +705,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     ensureProvider,
     ensureFreshProvider,
     switchChain,
-  }), [signOut, skipAuthLocal, signInWithWallet, signInWithSupabaseSession, completeUsername, refreshUserStable, requireAuth, patchUser, ensureProvider, ensureFreshProvider, switchChain]);
+    openAddProfile,
+    switchToProfile,
+  }), [signOut, skipAuthLocal, signInWithWallet, signInWithSupabaseSession, completeUsername, refreshUserStable, requireAuth, patchUser, ensureProvider, ensureFreshProvider, switchChain, openAddProfile, switchToProfile]);
 
   // Legacy combined context value (for backward compatibility with useAuth)
   const authContextValue: AuthContextType = useMemo(() => ({
@@ -613,6 +736,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     authMethod,
     switchChain,
     isSwitchingChain,
+    openAddProfile,
+    switchToProfile,
   }), [
     user,
     isLoading,
@@ -639,6 +764,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     authMethod,
     switchChain,
     isSwitchingChain,
+    openAddProfile,
+    switchToProfile,
   ]);
 
   return (
@@ -651,12 +778,36 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
               {isSwitchingChain && (
                 <FullScreenLoader message="Switching network…" />
               )}
-              {showSignInModal && !isSignedIn && !needsUsername && (
+              {(showSignInModal && !needsUsername && (addProfileIntent || (!isSignedIn))) && (
                 <SignInGatewayModal
                   visible={showSignInModal}
                   onClose={() => {
                     setShowSignInModal(false);
                     setPendingAction(null);
+                    // An abandoned Add profile attempt gets undone, not just
+                    // closed: if the flow already displaced the live account
+                    // (staging ran, or the exchange started writing), the
+                    // previous account's snapshot goes back on disk, state
+                    // rehydrates into it, and closing the sheet costs nothing.
+                    if (addProfileIntent) {
+                      setAddProfileIntent(false);
+                      restoreDisplacedProfileIfAny()
+                        .then(async (restored) => {
+                          if (restored) {
+                            if (restored.supabase) {
+                              try {
+                                const { supabase } = await import('../services/supabase');
+                                await supabase.auth.setSession({
+                                  access_token: restored.supabase.access_token,
+                                  refresh_token: restored.supabase.refresh_token,
+                                });
+                              } catch {}
+                            }
+                            await rehydrateFromStorage();
+                          }
+                        })
+                        .catch(() => {});
+                    }
                   }}
                 />
               )}

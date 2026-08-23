@@ -53,6 +53,7 @@ import AppearancePanel from "../components/Settings/AppearancePanel";
 import ContentPanel from "../components/Settings/ContentPanel";
 import AssetsPanel from "../components/Settings/AssetsPanel";
 import MessagesPanel from "../components/Settings/MessagesPanel";
+import ProfilesSection from "../components/Settings/ProfilesSection";
 import {
   SettingsSection,
   SettingsLinkRow,
@@ -192,6 +193,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
 
   const profilePanel = (
     <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
+      {isSignedIn ? <ProfilesSection /> : null}
       <SettingsSection label={t("settings.profileSettings")} icon="User" className="mt-4">
         <View className="px-4 py-3.5 flex-row items-center">
           <Avatar

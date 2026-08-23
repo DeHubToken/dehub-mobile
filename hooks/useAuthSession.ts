@@ -27,6 +27,11 @@ import { getAppKitInstance } from "../config/reown.config";
 import { getSupabaseUserId } from "../services/auth/supabaseAuth.service";
 import { fetchWalletReliably } from "../libs/wallet-core/store";
 import { forgetLocalWalletForIdentity } from "../libs/identity-wallet";
+import {
+  currentProfileId,
+  displacesAnotherAccount,
+  stageIncomingIdentity,
+} from "../libs/profiles";
 // balances fetching centralized in useBalances
 
 type Logger = {
@@ -214,7 +219,8 @@ export function useAuthSession({
     [isMountedRef, log, setAuthUser, setUser]
   );
 
-  const signOut = useCallback(async () => {
+  const signOut = useCallback(
+    async (forgetProfile: boolean = true) => {
     setIsLoading(true);
     try {
       // Unregister push tokens before clearing auth
@@ -222,6 +228,21 @@ export function useAuthSession({
         await unregisterPushTokens();
       } catch (e) {
         log.warn('signOut:unregisterPushTokens:error', e as any);
+      }
+      // "Log out" means this device forgets the session — its stored profile
+      // snapshot (now-dead tokens) goes with it. Other saved profiles stay.
+      // Session-expiry paths pass false so a possibly-recoverable stash
+      // survives; restoring it will simply fail into the sign-in sheet.
+      if (forgetProfile) {
+        try {
+          const pid = await currentProfileId();
+          if (pid) {
+            const { removeProfile } = await import('../libs/profiles');
+            await removeProfile(pid);
+          }
+        } catch (e) {
+          log.warn('signOut:removeProfile:error', e as any);
+        }
       }
       // Revoke the refresh token on the backend (best-effort)
       try {
@@ -288,7 +309,9 @@ export function useAuthSession({
       // surface toast here to keep context thin
       toastError?.("Session expired, login again");
       try {
-        await signOut();
+        // Keep the stored profile snapshot — the account itself is fine; only
+        // this session's tokens died.
+        await signOut(false);
       } catch {}
       setShowSignInModal(true);
     },
@@ -329,6 +352,20 @@ export function useAuthSession({
         const uid = await getSupabaseUserId();
         if (uid) await setStoredSupabaseUserId(uid);
       } catch {}
+      // Multi-account bookkeeping: every key this session owns is on disk.
+      // An Add profile attempt adopts the new account explicitly; any other
+      // login (including same-user session refreshes) only refreshes what is
+      // already listed, so a borrowed phone never turns into a directory of
+      // whoever once signed in here. Mirrors dehubweb's
+      // applyAuthenticatedSession tail.
+      try {
+        const profiles = await import('../libs/profiles');
+        const attemptedFrom = profiles.consumeAddProfileAttempt();
+        if (attemptedFrom !== undefined) await profiles.adoptCurrentProfile();
+        else await profiles.snapshotCurrentSession();
+      } catch (e) {
+        log.warn('applyWalletAuthResult:profilesTail:error', e as any);
+      }
       if (needsUsername) {
         setNeedsUsername(true);
         setProvisionalUser(walletUser);
@@ -386,6 +423,17 @@ export function useAuthSession({
         const preOverride = getSigningProvider();
         const hasOverride = !!preOverride;
         log.debug("signInWithWallet:hasOverride", { hasOverride, preOverride });
+        // Multi-account: signing in while another account is live (Add
+        // profile) snapshots the outgoing session and clears its keys BEFORE
+        // the exchange writes the incoming ones — identities must never blend
+        // on disk, and a stale auth_supabase_uid would mislink the new login.
+        try {
+          if (await displacesAnotherAccount(walletAddress)) {
+            await stageIncomingIdentity();
+          }
+        } catch (e) {
+          log.warn("signInWithWallet:stageIncoming:error", e as any);
+        }
         // Every sign-in path (social/email-provisioned or imported wallet)
         // sets a local signing-provider override before calling this.
         const methodNow: "local" = "local";
@@ -585,6 +633,17 @@ export function useAuthSession({
         await setAuthToken(res.token);
         if (res.refreshToken) await setRefreshToken(res.refreshToken);
         if (res.expiresIn) await setTokenExpiresAt(Date.now() + res.expiresIn * 1000);
+
+        // Multi-account staging, same as the wallet path: the exchange just
+        // resolved to `address`, so any live keys for a DIFFERENT account must
+        // be snapshotted and cleared before this session's identity is adopted.
+        try {
+          if (await displacesAnotherAccount(address)) {
+            await stageIncomingIdentity();
+          }
+        } catch (e) {
+          log.warn("signInWithSupabaseSession:stageIncoming:error", e as any);
+        }
 
         const localProvider = createLocalEip1193ProviderForChain(privateKey, chainId);
         try {

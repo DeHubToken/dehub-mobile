@@ -9,10 +9,35 @@ import {
   getTokenExpiresAt,
   clearAuthData,
 } from './auth.utils';
+import * as SecureStore from 'expo-secure-store';
+import { SUPABASE_UID_KEY, AUTH_METHOD_ADDR_KEY } from './auth.utils';
 
 const API_BASE_URL = env.API_URL;
 const APP_VERSION = Constants.expoConfig?.version ?? '1.0.0';
 const PLATFORM = Platform.OS;
+
+/**
+ * Who owns the live session keys right now. Deliberately local and cheap —
+ * consulted around every refresh.
+ */
+async function readSessionOwner(): Promise<{ address: string; uid: string | null } | null> {
+  try {
+    const address = await SecureStore.getItemAsync(AUTH_METHOD_ADDR_KEY);
+    if (!address) return null;
+    const uid = await SecureStore.getItemAsync(SUPABASE_UID_KEY);
+    return { address: address.toLowerCase(), uid };
+  } catch {
+    return null;
+  }
+}
+
+function sameSessionOwner(
+  owner: Awaited<ReturnType<typeof readSessionOwner>>,
+  now: Awaited<ReturnType<typeof readSessionOwner>>
+): boolean {
+  if (!owner || !now) return owner === now;
+  return now.address === owner.address && now.uid === owner.uid;
+}
 
 // Buffer before expiry to trigger proactive refresh (60 seconds)
 const PROACTIVE_REFRESH_BUFFER_MS = 60 * 1000;
@@ -110,6 +135,13 @@ export const tokenRefreshManager = {
 
     isRefreshing = true;
 
+    // Captured before the request: the response lands an unknown time later —
+    // long enough for a profile switch to replace the live keys. Writing the
+    // rotated pair blindly then would graft this account's tokens onto whoever
+    // owns the session by then, and every later call would fail with a blended
+    // identity. Declared out here so the rejection branch below can see it.
+    let ownerAtStart: Awaited<ReturnType<typeof readSessionOwner>> = null;
+
     return (async () => {
       try {
         const storedRefreshToken = await getRefreshToken();
@@ -118,12 +150,34 @@ export const tokenRefreshManager = {
           return null;
         }
 
+        ownerAtStart = await readSessionOwner();
+
         const data = await callRefreshEndpoint(storedRefreshToken);
 
-        // Persist new tokens (refresh endpoint returns "accessToken", not "token")
-        await setAuthToken(data.accessToken);
-        await setRefreshToken(data.refreshToken);
-        await setTokenExpiresAt(Date.now() + data.expiresIn * 1000);
+        const ownerNow = await readSessionOwner();
+        if (sameSessionOwner(ownerAtStart, ownerNow)) {
+          // Persist new tokens (refresh endpoint returns "accessToken", not "token")
+          await setAuthToken(data.accessToken);
+          await setRefreshToken(data.refreshToken);
+          await setTokenExpiresAt(Date.now() + data.expiresIn * 1000);
+        } else {
+          // The keys changed hands mid-flight. File the pair into the OLD
+          // account's stored profile so switching back to it restores a chain
+          // the server still honours; writing to the live keys instead would
+          // blend two identities.
+          try {
+            const { mergeTokensIntoStoredProfile } = await import('./profiles');
+            if (ownerAtStart) {
+              await mergeTokensIntoStoredProfile(ownerAtStart, {
+                auth_token: data.accessToken,
+                ...(data.refreshToken ? { auth_refresh_token: data.refreshToken } : {}),
+                ...(data.expiresIn
+                  ? { auth_token_expires_at: String(Date.now() + data.expiresIn * 1000) }
+                  : {}),
+              });
+            }
+          } catch {}
+        }
 
         processQueue(null, data.accessToken);
         notifyListeners();
@@ -144,7 +198,15 @@ export const tokenRefreshManager = {
           error instanceof RefreshRejectedError &&
           (error.status === 401 || error.status === 403);
         if (isRejected) {
-          try { await clearAuthData(); } catch {}
+          // Only wipe when the live keys still belong to whoever started this
+          // refresh — a revoke landing after a profile switch must not take
+          // the incoming account's fresh keys down with it.
+          const ownerNow = await readSessionOwner();
+          if (sameSessionOwner(ownerAtStart, ownerNow)) {
+            try {
+              await clearAuthData();
+            } catch {}
+          }
         }
 
         return null;
