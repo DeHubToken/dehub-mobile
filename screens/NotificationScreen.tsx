@@ -17,7 +17,6 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withDelay,
-  withSpring,
   withTiming,
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -94,44 +93,59 @@ function apiTypesForFilter(filter: NotificationTypeFilter): string[] | undefined
   return types.length ? types : undefined;
 }
 
-const SPRING_CONFIG = { stiffness: 400, damping: 30 };
+/**
+ * The tab pill slides exactly like web's GlassIndicator: 400ms on the same
+ * expo-out curve, no overshoot. Web also renders the pill at the right spot
+ * with no animation until a user click moves it — placedRef gives the first
+ * placement here the same treatment instead of sliding in from {0,0}.
+ */
+const TAB_SLIDE = { duration: 400, easing: Easing.bezier(0.16, 1, 0.3, 1) };
 const TAB_HEIGHT = 44;
 
 interface TypeTabsProps {
   selected: NotificationTypeFilter;
   onSelect: (filter: NotificationTypeFilter) => void;
-  disabled?: boolean;
   counts: Record<NotificationTypeFilter, number>;
 }
 
-const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, disabled, counts }) => {
+const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, counts }) => {
   const tabWidths = useRef<Record<string, number>>({});
   const tabPositions = useRef<Record<string, number>>({});
   const indicatorX = useSharedValue(0);
   const indicatorW = useSharedValue(0);
+  const placedRef = useRef(false);
 
   const indicatorStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: indicatorX.value }],
     width: indicatorW.value,
   }));
 
+  const moveIndicator = useCallback((x: number, w: number) => {
+    if (!placedRef.current) {
+      placedRef.current = true;
+      indicatorX.value = x;
+      indicatorW.value = w;
+      return;
+    }
+    indicatorX.value = withTiming(x, TAB_SLIDE);
+    indicatorW.value = withTiming(w, TAB_SLIDE);
+  }, [indicatorX, indicatorW]);
+
   const handleLayout = useCallback((key: string, x: number, width: number) => {
     tabWidths.current[key] = width;
     tabPositions.current[key] = x;
     if (key === selected) {
-      indicatorX.value = withSpring(x, SPRING_CONFIG);
-      indicatorW.value = withSpring(width, SPRING_CONFIG);
+      moveIndicator(x, width);
     }
-  }, [selected, indicatorX, indicatorW]);
+  }, [selected, moveIndicator]);
 
   useEffect(() => {
     const x = tabPositions.current[selected];
     const w = tabWidths.current[selected];
     if (x !== undefined && w !== undefined) {
-      indicatorX.value = withSpring(x, SPRING_CONFIG);
-      indicatorW.value = withSpring(w, SPRING_CONFIG);
+      moveIndicator(x, w);
     }
-  }, [selected, indicatorX, indicatorW]);
+  }, [selected, moveIndicator]);
 
   return (
     <View className="border-b border-zinc-800/50" style={{ paddingVertical: 8 }}>
@@ -163,7 +177,6 @@ const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, disa
               <TouchableOpacity
                 key={tab.key}
                 onPress={() => onSelect(tab.key)}
-                disabled={disabled}
                 activeOpacity={0.7}
                 accessibilityRole="button"
                 accessibilityLabel={tab.label}
@@ -183,7 +196,6 @@ const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, disa
                     gap: 4,
                   },
                   !isActive && { backgroundColor: '#27272a' },
-                  disabled && !isActive ? { opacity: 0.5 } : undefined,
                 ]}
               >
                 <Icon
@@ -711,7 +723,6 @@ const NotificationScreen = () => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [isChangingCategory, setIsChangingCategory] = useState(false);
 
   // Cleared rows are per account: two wallets on one phone must not inherit
   // each other's list.
@@ -935,8 +946,15 @@ const NotificationScreen = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countsSource]);
 
+  // Each fetch takes a generation number; a response only paints if its
+  // generation is still the newest. Flicking through tabs fires overlapping
+  // requests, and without this the slowest one wins — landing you on rows
+  // from a tab you already left.
+  const fetchGenRef = useRef(0);
+
   const fetchNotifications = useCallback(
-    async (isRefresh = false) => {
+    async (isRefresh = false, opts?: { skipCounts?: boolean }) => {
+      const gen = ++fetchGenRef.current;
       try {
         const targetPage = isRefresh ? 1 : pageRef.current;
         const types = apiTypesForFilter(selectedFilterRef.current);
@@ -950,6 +968,7 @@ const NotificationScreen = () => {
           page: targetPage,
           limit: 30,
         });
+        if (gen !== fetchGenRef.current) return;
 
         const payload = res?.data?.result || res?.result || [];
 
@@ -962,12 +981,15 @@ const NotificationScreen = () => {
 
         setHasMore(payload.length >= 30);
 
-        if (isRefresh) {
+        if (isRefresh && !opts?.skipCounts) {
           // The tab badges and the app badge both need every type, so a
           // filtered refresh pulls one unfiltered page alongside it. On the All
-          // tab the response we already have is that page.
+          // tab the response we already have is that page. A tab switch skips
+          // this: the snapshot is kept honest by every local mark-read/clear,
+          // and it re-syncs on focus and pull-to-refresh.
           if (types) {
             const allRes: any = await getNotifications({ unreadOnly: false, page: 1, limit: 30 });
+            if (gen !== fetchGenRef.current) return;
             setCountsSource(allRes?.data?.result || allRes?.result || []);
           } else {
             setCountsSource(payload);
@@ -976,9 +998,11 @@ const NotificationScreen = () => {
       } catch (e) {
         console.warn("[NotificationScreen] fetch error", e);
       } finally {
-        setRefreshing(false);
-        setLoading(false);
-        setLoadingMore(false);
+        if (gen === fetchGenRef.current) {
+          setRefreshing(false);
+          setLoading(false);
+          setLoadingMore(false);
+        }
       }
     },
     []
@@ -1008,15 +1032,16 @@ const NotificationScreen = () => {
       isFirstFilterRender.current = false;
       return;
     }
-    // The filter is applied server-side now, so a tab change needs a refetch
-    // rather than the cosmetic loading blip this used to do. selectedFilterRef
-    // is updated by the effect above, which runs first — it is declared earlier
-    // in the file, and React fires effects in declaration order.
-    setIsChangingCategory(true);
+    // The filter is applied server-side now, so a tab change needs a refetch.
+    // No loading gate here: the old rows clear immediately and the new tab's
+    // rows land when the response does — the stale-response guard in
+    // fetchNotifications makes rapid flicking land on the last tab tapped.
+    // selectedFilterRef is updated by the effect above, which runs first — it
+    // is declared earlier in the file, and React fires effects in declaration
+    // order.
     setPage(1);
     setNotifications([]);
-    fetchNotificationsRef.current(true);
-    requestAnimationFrame(() => setIsChangingCategory(false));
+    fetchNotificationsRef.current(true, { skipCounts: true });
   }, [selectedFilter]);
 
   useEffect(() => {
@@ -1033,14 +1058,13 @@ const NotificationScreen = () => {
   }, []);
 
   const onLoadMore = useCallback(() => {
-    if (loadingMore || !hasMore || isChangingCategory) return;
+    if (loadingMore || !hasMore) return;
     setPage((p) => p + 1);
-  }, [loadingMore, hasMore, isChangingCategory]);
+  }, [loadingMore, hasMore]);
 
   const handleFilterChange = useCallback((filter: NotificationTypeFilter) => {
-    if (filter === selectedFilter || isChangingCategory) return;
     setSelectedFilter(filter);
-  }, [selectedFilter, isChangingCategory]);
+  }, []);
 
   const handleMarkAllRead = useCallback(async () => {
     setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
@@ -1200,7 +1224,7 @@ const NotificationScreen = () => {
 
   // Header with mark all read button
   const hasUnread = filteredNotifications.some((n) => !n.read);
-  const showLoading = loading || isChangingCategory;
+  const showLoading = loading;
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
@@ -1224,7 +1248,6 @@ const NotificationScreen = () => {
       <TypeTabs 
         selected={selectedFilter} 
         onSelect={handleFilterChange} 
-        disabled={isChangingCategory}
         counts={tabCounts}
       />
       
