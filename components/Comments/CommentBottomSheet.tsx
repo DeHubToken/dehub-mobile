@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
-import { View, Modal, Pressable, Dimensions, StyleSheet, Platform } from "react-native";
+import { View, Modal, Pressable, Dimensions, StyleSheet } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -8,7 +8,6 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-gesture-handler";
-import { BlurView } from "expo-blur";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import CommentSection from "./CommentSection";
@@ -132,14 +131,10 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
             sheetStyle,
           ]}
         >
-          <BlurView
-            intensity={95}
-            tint="dark"
-            style={StyleSheet.absoluteFill}
-            {...(Platform.OS === "android" ? { experimentalBlurMethod: "dimezisBlurView" } : {})}
-          />
+          {/* Opaque by design: the sheet opens over playing video, and a
+              translucent body let the frame bleed through every row of text.
+              The blur/frost layers died with the translucency. */}
           <View style={[StyleSheet.absoluteFill, glassStyles.overlay]} />
-          <View style={[StyleSheet.absoluteFill, glassStyles.frost]} />
 
           <GestureDetector gesture={gesture}>
             <Animated.View className="items-center py-2.5">
@@ -207,12 +202,9 @@ const glassStyles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "rgba(12,12,14,0.72)",
+    backgroundColor: "#0C0C0E",
     borderTopWidth: 1,
     borderColor: "rgba(255,255,255,0.14)",
-  },
-  frost: {
-    backgroundColor: "rgba(255,255,255,0.06)",
   },
   tabBar: {
     flexDirection: "row",
