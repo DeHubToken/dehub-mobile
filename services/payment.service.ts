@@ -19,14 +19,14 @@ export interface PaymentConfigResponse {
 let _cachedPaymentConfig: PaymentConfigResponse | null = null;
 
 /**
- * GET /api/config/payments — DHB/router addresses per chain (#44/#45).
+ * GET /config/payments — DHB/router addresses per chain (#44/#45).
  * Public (no auth). Cached for the session; pass force to refetch.
  */
 export async function getPaymentConfig(force = false): Promise<PaymentConfigResponse | null> {
   if (_cachedPaymentConfig && !force) return _cachedPaymentConfig;
   try {
     const res = await apiClient.fetch<{ status: boolean; result: PaymentConfigResponse }>(
-      '/api/config/payments',
+      '/config/payments',
       { method: 'GET', isAuthRequired: false },
     );
     _cachedPaymentConfig = res?.result ?? null;
@@ -56,14 +56,14 @@ export interface ConfirmPPVResponse {
 }
 
 /**
- * POST /api/ppv/confirm — notify backend after sendFundsForPPV tx (#44).
+ * POST /ppv/confirm — notify backend after sendFundsForPPV tx (#44).
  */
 export async function confirmPPVPurchase(params: {
   tokenId: string | number;
   txHash: string;
   chainId?: number;
 }): Promise<ConfirmPPVResponse> {
-  return apiClient.fetch<ConfirmPPVResponse>('/api/ppv/confirm', {
+  return apiClient.fetch<ConfirmPPVResponse>('/ppv/confirm', {
     method: 'POST',
     body: {
       tokenId: Number(params.tokenId),
