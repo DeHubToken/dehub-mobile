@@ -205,6 +205,17 @@ async function processJob(job: UploadJob): Promise<void> {
 
     const createdTokenId = Number(result?.createdTokenId);
 
+    // This post ran past the daily free allowance and the server has opened a
+    // bill for it. Kept on the job rather than in a local, so a queue resumed
+    // after a restart still knows what it owes.
+    if (result?.quota?.amountDhb > 0 && result?.quota?.recipient) {
+      uploadActions.attachQuotaBill(job.id, {
+        chargeId: String(result.quota.chargeId),
+        amountDhb: Number(result.quota.amountDhb),
+        recipient: result.quota.recipient,
+      });
+    }
+
     // `duplicate` means this exact upload had already reached the server — the
     // first send's response just never got back to us. The post exists and no
     // second one was made, so this job only has to finish against the token
@@ -363,6 +374,43 @@ async function processJob(job: UploadJob): Promise<void> {
 
   uploadActions.updateProgress(job.id, 1);
   uploadActions.updateStage(job.id, "done");
+
+  // The bill for a post that ran past the free allowance.
+  //
+  // Settled last, after the post is finished and the mint (which has its own
+  // prompt) is out of the way — two wallet sheets fighting over one post is
+  // worse than two in sequence. Read off the store rather than the local
+  // `result`, so a job resumed from a restart still pays what it owes.
+  //
+  // Deliberately does not fail the job: the post is published, and turning a
+  // live post into a red "failed" row because a transfer was declined would
+  // be a lie. Declining leaves the bill open, which is what blocks the NEXT
+  // paid post — that is the collection lever, not an oversight.
+  const quotaBill = uploadState.jobs.find((j) => j.id === job.id)?.quotaBill ?? job.quotaBill;
+  if (quotaBill?.amountDhb && quotaBill.recipient) {
+    try {
+      const { payPostQuota, settleWithRetry } = await import("./post-quota-payment");
+      const payment = await payPostQuota(quotaBill.amountDhb, quotaBill.recipient);
+      const settled = await settleWithRetry(payment.txHash, payment.chainId);
+      if (settled) {
+        toastSuccess(`Paid ${quotaBill.amountDhb.toLocaleString()} DHB for this post`);
+      } else {
+        // The DHB has left the wallet. Never offer a retry here — the transfer
+        // is the part that cannot be repeated safely, and the hash is stashed
+        // and re-sent on its own.
+        toastSuccess("Payment sent — still confirming", {
+          description: "Your DHB has been transferred. We will finish confirming it shortly.",
+        });
+      }
+    } catch (e: any) {
+      toastError(
+        e,
+        "The DHB transfer did not complete. You will be asked again before your next paid post.",
+        { description: "This post is published but unpaid." },
+      );
+    }
+  }
+
   if (mintParams.scheduled) {
     // Nothing to refresh — the post stays invisible until the cron flips it.
     const when = mintParams.scheduledAt ? new Date(mintParams.scheduledAt).toLocaleString() : null;
