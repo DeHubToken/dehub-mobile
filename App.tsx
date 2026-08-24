@@ -206,8 +206,8 @@ export default function App() {
 
 // How long the curtain fade runs once the app underneath is genuinely ready.
 const REVEAL_FADE_MS = 220;
-// A stuck ready path (deep-link edge case, a thrown navigator, anything that
-// keeps `settled` or `navReady` false) must not hold the curtain forever.
+// A shell that mounts but never reports ready (deep-link edge case, a thrown
+// navigator, a layout pass that never lands) must not hold the curtain forever.
 const REVEAL_FAILSAFE_MS = 5000;
 
 const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
@@ -243,6 +243,12 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     },
     [onStateChange]
   );
+
+  // The navigator only mounts once boot is genuinely done — RootNavigator
+  // captures its initial route exactly once, from auth state, so mounting it
+  // earlier would freeze the wrong route in place. Until then the preloader
+  // below carries the screen alone.
+  const settled = staged && !isBootLoading && isReady;
 
   // ── One-load reveal ────────────────────────────────────────────────────
   // The preloader below is mounted continuously across every boot phase and
@@ -290,17 +296,15 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     };
   }, [staged, navReady, beginReveal]);
 
+  // Failsafe. Armed only once the navigator is mounted, so what it uncovers is
+  // always the real app: `settled` waits on auth boot, which waits on a token
+  // refresh over the network, and a slow connection makes that window minutes
+  // wide. Timing out on it would trade a covered wait for a bare black screen.
   useEffect(() => {
-    if (!staged) return;
+    if (!settled) return;
     const timer = setTimeout(beginReveal, REVEAL_FAILSAFE_MS);
     return () => clearTimeout(timer);
-  }, [staged, beginReveal]);
-
-  // The navigator only mounts once boot is genuinely done — RootNavigator
-  // captures its initial route exactly once, from auth state, so mounting it
-  // earlier would freeze the wrong route in place. Until then the preloader
-  // below carries the screen alone.
-  const settled = staged && !isBootLoading && isReady;
+  }, [settled, beginReveal]);
 
   return (
     <>
