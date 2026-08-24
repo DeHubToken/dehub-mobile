@@ -2,10 +2,12 @@ import { useEffect, useMemo, useState, useCallback } from "react";
 import STREAM_CONTROLLER_ABI from "../config/abis/stream-controller.json";
 import STREAMNFT_ABI from "../config/abis/erc1155.json";
 import ERC20_ABI from "../config/abis/erc20.json";
+import SUBSCRIPTION_ABI from "../config/abis/subscription.json";
 import { useUser, useProvider } from "../context/AuthContext";
 import {
   STREAM_CONTROLLER_CONTRACT_ADDRESSES,
   STREAM_COLLECTION_CONTRACT_ADDRESSES,
+  SUBSCRIPTION_CONTRACT_ADDRESSES,
 } from "../config/web3.constants";
 import { ChainId } from "../config/constants";
 import { SWAP_ROUTER_ABI, UNISWAP_SWAP_ROUTER } from "../services/swap.service";
@@ -322,6 +324,41 @@ export function useStreamCollectionContract() {
         if (!stale) setContract(c);
       } catch (e) {
         console.warn("[useStreamCollectionContract]", e);
+      }
+    })();
+    return () => {
+      stale = true;
+    };
+  }, [provider, chainId]);
+  return contract;
+}
+
+/**
+ * Creator subscription contract for the connected chain.
+ *
+ * Undefined on a chain where it is not deployed, which the plan card reads as
+ * "not buyable here" rather than offering a button that reverts.
+ */
+export function useSubscriptionContract() {
+  const { provider, chainId } = useWeb3Provider();
+  const [contract, setContract] = useState<any>();
+  useEffect(() => {
+    if (!provider || !chainId) {
+      setContract(undefined);
+      return;
+    }
+    const address = SUBSCRIPTION_CONTRACT_ADDRESSES[chainId];
+    if (!address) {
+      setContract(undefined);
+      return;
+    }
+    let stale = false;
+    (async () => {
+      try {
+        const c = await buildContract(provider, SUBSCRIPTION_ABI, address, true);
+        if (!stale) setContract(c);
+      } catch (e) {
+        console.warn("[useSubscriptionContract]", e);
       }
     })();
     return () => {

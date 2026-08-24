@@ -11,9 +11,21 @@ import {
 } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
-import { createPlan, updatePlan, type SubscriptionPlan } from "../../services/subscription.service";
+import {
+  createPlan,
+  updatePlan,
+  confirmPlanPublished,
+  normaliseDuration,
+  planPrice,
+  type SubscriptionPlan,
+} from "../../services/subscription.service";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { useProvider } from "../../context/AuthContext";
+import { useSubscriptionContract } from "../../hooks/use-web3";
+import { writeContractAA } from "../../libs/aa.write";
+import { parseTxError } from "../../libs/web3.util";
+import { DHB_TOKEN_ADDRESSES } from "../../config/web3.constants";
+import { ethers } from "ethers";
 
 interface PlanFormSheetProps {
   visible: boolean;
@@ -23,11 +35,17 @@ interface PlanFormSheetProps {
   editPlan?: SubscriptionPlan | null;
 }
 
+/**
+ * Whole months, and **lifetime is 0** — the contract's range, not ours. It
+ * reverts outside 0–12, so the old day counts (30/90/180/365) produced plans
+ * nobody could ever buy.
+ */
 const DURATION_OPTIONS = [
-  { label: "1 Month", days: 30 },
-  { label: "3 Months", days: 90 },
-  { label: "6 Months", days: 180 },
-  { label: "1 Year", days: 365 },
+  { label: "1 Month", months: 1 },
+  { label: "3 Months", months: 3 },
+  { label: "6 Months", months: 6 },
+  { label: "1 Year", months: 12 },
+  { label: "Lifetime", months: 0 },
 ];
 
 const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
@@ -37,12 +55,14 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
   editPlan,
 }) => {
   const { chainId } = useProvider();
+  const subscriptionContract = useSubscriptionContract();
   const isEditing = !!editPlan;
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [duration, setDuration] = useState(30);
+  const [duration, setDuration] = useState(1);
+  const [stage, setStage] = useState("");
   const [benefitInput, setBenefitInput] = useState("");
   const [benefits, setBenefits] = useState<string[]>([]);
   const [saving, setSaving] = useState(false);
@@ -52,15 +72,16 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
     if (editPlan) {
       setName(editPlan.name || "");
       setDescription(editPlan.description || "");
-      const chainPrice = editPlan.chains?.[0]?.price ?? editPlan.price ?? 0;
+      const chainPrice = planPrice(editPlan) ?? 0;
       setPrice(chainPrice > 0 ? String(chainPrice) : "");
-      setDuration(editPlan.duration || 30);
+      // Legacy 999 lifetime plans fold onto 0 so the preset lights up.
+      setDuration(normaliseDuration(editPlan.duration) ?? 1);
       setBenefits(editPlan.benefits || []);
     } else {
       setName("");
       setDescription("");
       setPrice("");
-      setDuration(30);
+      setDuration(1);
       setBenefits([]);
     }
     setBenefitInput("");
@@ -88,11 +109,18 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
       return;
     }
 
+    const targetChain = chainId || 8453;
+    const dhbToken = DHB_TOKEN_ADDRESSES[targetChain];
+    if (!isEditing && !dhbToken) {
+      toastError(null, "Subscriptions are not available on this network — switch to Base or BNB");
+      return;
+    }
+
     setSaving(true);
     try {
-      let result: SubscriptionPlan;
+      let result: SubscriptionPlan | undefined;
       if (isEditing && editPlan) {
-        const planId = editPlan._id || editPlan.id || "";
+        const planId = editPlan.id || editPlan._id || "";
         result = await updatePlan(planId, {
           name: name.trim(),
           description: description.trim() || undefined,
@@ -102,30 +130,59 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
         });
         toastSuccess("Plan updated");
       } else {
+        // The token is the chain's DHB **address**. This used to send the
+        // string "DHB", which is not an address and cannot be charged — the
+        // API now rejects it rather than storing an unbuyable plan.
+        setStage("Creating…");
         result = await createPlan({
           name: name.trim(),
           description: description.trim() || undefined,
           duration,
           tier: 1,
           benefits,
-          chains: [
-            {
-              chainId: chainId || 8453,
-              token: "DHB",
-              price: parsedPrice,
-            },
-          ],
+          chains: [{ chainId: targetChain, token: dhbToken, price: parsedPrice }],
         });
-        toastSuccess("Plan created");
+
+        const planId = result?.id || result?._id;
+        if (!planId) throw new Error("The plan was not created");
+
+        // A plan only becomes buyable once it is listed on chain. If this leg
+        // fails the plan survives unpublished and can be published later,
+        // rather than silently reverting for every buyer.
+        if (!subscriptionContract) {
+          toastSuccess("Plan created — connect your wallet to publish it");
+        } else {
+          setStage("Confirm in your wallet…");
+          const tx = await writeContractAA(
+            subscriptionContract,
+            "createPlan",
+            [
+              ethers.BigNumber.from(String(planId)),
+              duration,
+              name.trim(),
+              description.trim() || "",
+              ethers.utils.parseUnits(String(parsedPrice), 18),
+              true,
+              dhbToken,
+            ],
+            { context: "send" },
+          );
+          setStage("Waiting for the transaction…");
+          await tx.wait(1);
+          setStage("Finishing up…");
+          await confirmPlanPublished(String(planId), targetChain);
+          toastSuccess("Plan created and published");
+        }
       }
-      onSuccess(result);
+      if (result) onSuccess(result);
       onClose();
     } catch (e) {
-      toastError(e, isEditing ? "Failed to update plan" : "Failed to create plan");
+      toastError(null, parseTxError(e, "send"));
     } finally {
       setSaving(false);
+      setStage("");
     }
-  }, [name, description, price, duration, benefits, isEditing, editPlan, chainId, onSuccess, onClose]);
+  }, [name, description, price, duration, benefits, isEditing, editPlan, chainId, subscriptionContract, onSuccess, onClose]);
 
   return (
     <GlassModal
@@ -201,16 +258,16 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
             <View className="flex-row flex-wrap gap-2">
               {DURATION_OPTIONS.map(opt => (
                 <TouchableOpacity
-                  key={opt.days}
-                  onPress={() => setDuration(opt.days)}
+                  key={opt.months}
+                  onPress={() => setDuration(opt.months)}
                   activeOpacity={0.7}
                   className={`px-4 py-2 rounded-xl border ${
-                    duration === opt.days
+                    duration === opt.months
                       ? "bg-white border-white"
                       : "bg-theme-neutrals-800 border-theme-neutrals-700"
                   }`}
                 >
-                  <Text className={`text-sm font-medium ${duration === opt.days ? "text-black" : "text-theme-neutrals-400"}`}>
+                  <Text className={`text-sm font-medium ${duration === opt.months ? "text-black" : "text-theme-neutrals-400"}`}>
                     {opt.label}
                   </Text>
                 </TouchableOpacity>
@@ -263,10 +320,15 @@ const PlanFormSheet: React.FC<PlanFormSheetProps> = ({
               <ActivityIndicator color="#000000" size="small" />
             ) : (
               <Text className="text-black font-semibold text-sm">
-                {isEditing ? "Save Changes" : "Create Plan"}
+                {isEditing ? "Save Changes" : "Create & Publish"}
               </Text>
             )}
           </TouchableOpacity>
+          {/* Publishing opens the wallet, so the button alone leaves people
+              wondering what it is waiting for. */}
+          <Text className="text-theme-neutrals-400 text-xs text-center mt-2">
+            {stage || (isEditing ? " " : "Publishing is an on-chain transaction")}
+          </Text>
         </View>
       </KeyboardAvoidingView>
     </GlassModal>
