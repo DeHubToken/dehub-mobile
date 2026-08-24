@@ -154,7 +154,10 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     if (draft.trim()) return;
     if (draftedFor.current === sr.tailKey) return;
     draftedFor.current = sr.tailKey;
-    if (sr.status === "idle") sr.generate();
+    // 'error' as well as 'idle': the hook only rewinds itself to idle when a
+    // SUCCESSFUL draft goes stale, so a single failure would otherwise leave
+    // the tray showing that failure for every message after it.
+    if (sr.status === "idle" || sr.status === "error") sr.generate();
   }, [hasThread, smartReplies.tailKey]);
 
   // A new message re-arms a dismissed tray. Dismissing is "not for this
