@@ -30,11 +30,14 @@ interface EditPostModalProps {
   initialDescription?: string;
   initialCategories?: string[];
   initialCommentsDisabled?: boolean;
+  /** Absent means safe — the API stores nothing for the default. */
+  initialContentRating?: string;
   onSuccess?: (data: {
     name?: string;
     description?: string;
     category?: string[];
     commentsDisabled?: boolean;
+    contentRating?: string;
   }) => void;
 }
 
@@ -46,9 +49,11 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   initialDescription = "",
   initialCategories = [],
   initialCommentsDisabled = false,
+  initialContentRating,
   onSuccess,
 }) => {
   const [commentsDisabled, setCommentsDisabled] = useState(initialCommentsDisabled);
+  const [isMature, setIsMature] = useState(initialContentRating === "mature");
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
   const titleMentions = useMentions(title, setTitle);
@@ -137,6 +142,12 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       if (commentsDisabled !== initialCommentsDisabled) {
         payload.commentsDisabled = commentsDisabled;
       }
+      // The API stores nothing for a safe post, so an unrated one arrives as
+      // undefined — compare against the rating it means, not the field.
+      const nextRating = isMature ? "mature" : "safe";
+      if (nextRating !== (initialContentRating ?? "safe")) {
+        payload.contentRating = nextRating;
+      }
 
       if (Object.keys(payload).length === 0) {
         onClose();
@@ -150,6 +161,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         description: payload.description,
         category: payload.category,
         commentsDisabled: payload.commentsDisabled,
+        contentRating: payload.contentRating,
       });
       onClose();
     } catch (e: any) {
@@ -164,10 +176,12 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     description,
     selectedCategories,
     commentsDisabled,
+    isMature,
     initialTitle,
     initialDescription,
     initialCategories,
     initialCommentsDisabled,
+    initialContentRating,
     onSuccess,
     onClose,
   ]);
@@ -176,6 +190,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     title.trim() !== initialTitle ||
     description.trim() !== initialDescription ||
     commentsDisabled !== initialCommentsDisabled ||
+    (isMature ? "mature" : "safe") !== (initialContentRating ?? "safe") ||
     JSON.stringify(selectedCategories.sort()) !==
       JSON.stringify([...(initialCategories || [])].sort());
 
@@ -338,6 +353,39 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               <View
                 className={`w-5 h-5 rounded-full bg-white ${
                   commentsDisabled ? "ml-0.5" : "ml-[22px]"
+                }`}
+              />
+            </View>
+          </TouchableOpacity>
+
+          {/* Content rating. Same switch the composer carries, for a post that
+              is already out — refused with 403 once a moderator has rated it,
+              and that message surfaces as-is. */}
+          <TouchableOpacity
+            onPress={() => setIsMature((v) => !v)}
+            activeOpacity={0.7}
+            accessibilityRole="switch"
+            accessibilityState={{ checked: isMature }}
+            className="flex-row items-center justify-between mt-3 p-3 rounded-xl bg-white/[0.03] border border-white/10"
+          >
+            <View className="flex-1 mr-3">
+              <Text className="text-white text-sm font-semibold">
+                {isMature ? "Marked mature" : "Mark as mature"}
+              </Text>
+              <Text className="text-theme-neutrals-400 text-xs mt-0.5">
+                {isMature
+                  ? "Kept off the public feed. Followers, your profile and the link still work."
+                  : "For adult or graphic posts. Turning this on takes it off the public feed."}
+              </Text>
+            </View>
+            <View
+              className={`w-11 h-6 rounded-full justify-center ${
+                isMature ? "bg-amber-500" : "bg-neutral-700"
+              }`}
+            >
+              <View
+                className={`w-5 h-5 rounded-full bg-white ${
+                  isMature ? "ml-[22px]" : "ml-0.5"
                 }`}
               />
             </View>
