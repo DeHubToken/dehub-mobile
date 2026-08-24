@@ -43,6 +43,7 @@ import { WEBSITE_LINK } from "../../config";
 import { translateText, getUserLanguage } from "../../services/translation.service";
 import { TranslateButton } from "../ui/TranslateButton";
 import NewMemberChip from "../common/NewMemberChip";
+import BadgePatronChip from "../common/BadgePatronChip";
 
 const ProfileHeader = () => {
   const navigation = useNavigation<any>();
@@ -418,6 +419,9 @@ const ProfileHeader = () => {
             {/* Temporary — gone 30 days after signup, and immediately if they
                 switch it off in Settings › Privacy. Renders nothing otherwise. */}
             <NewMemberChip address={address} />
+            {/* A lent badge draws like any other badge everywhere else; this
+                is the one place that says whose it is. */}
+            <BadgePatronChip lookupId={address} />
             {!!address && (
               <View className="flex-row items-center">
                 <Ionicons

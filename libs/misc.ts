@@ -289,6 +289,17 @@ export function getBadgeUrl(
 }
 
 /**
+ * Badge art for a tier named directly, rather than derived from a balance.
+ *
+ * Delegation talks in tier names — a slot lends "the Tiger Shark badge", and
+ * the server says which one it granted — so those surfaces have a name in hand
+ * and no balance to resolve it from. Mirrors web's `badgeImage`.
+ */
+export function badgeImageFor(tier: string | null | undefined): number | undefined {
+  return tier ? BADGE_IMAGES[tier] : undefined;
+}
+
+/**
  * Resolve the badge balance from a user-like object.
  * Prefers `badgeBalance` (backend-computed) over `stakedDHB` / `staked` / `minterStaked`.
  */

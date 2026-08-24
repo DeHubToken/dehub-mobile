@@ -16,6 +16,7 @@ import Icon from '../ui/Icon';
 import ChainSwitchModal from './ChainSwitchModal';
 import ExportPrivateKeyModal from './ExportPrivateKeyModal';
 import SwitchAccountModal from './SwitchAccountModal';
+import BadgeDelegationSection from './BadgeDelegationSection';
 import { SettingsSection, SettingsLinkRow, SettingsInfoRow, Divider } from './SettingsPrimitives';
 import { useUser, useProvider, useAuthActions } from '../../context/AuthContext';
 import { copyToClipboard, toastSuccess, toastError, truncateAddress } from '../../libs';
@@ -202,6 +203,10 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
           onPress={() => navigation.navigate(ScreenNames.Earnings)}
         />
       </SettingsSection>
+
+      {/* A badge is bought with DHB, so lending one belongs with the rest of
+          what DHB buys rather than off in Profile. */}
+      <BadgeDelegationSection />
 
       <SettingsSection label={t('settings.fractionsOwn')} icon="ChartPie">
         <EmptyOwnership icon="ChartPie" label={t('settings.noFractions')} />
