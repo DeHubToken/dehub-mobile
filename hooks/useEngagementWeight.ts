@@ -10,10 +10,13 @@
  * from module state, which `useBadgeScale` publishes once per sync, so this
  * costs nothing on a feed.
  *
- * **Advisory, not authoritative.** The server prices from the account's EARNED
- * balance and this side cannot see the earned/lent split, so a borrowed badge
- * reads heavier here than it counts there. Both vote endpoints return the
- * weight they actually applied — settle against that.
+ * A lent badge counts for what it draws, so `resolveBadgeBalance` — the number
+ * every badge here already resolves from — is the right one to price off; the
+ * API prices from the same rendered figure.
+ *
+ * **Advisory, not authoritative.** The cached account row here can be a beat
+ * behind the one the API priced from. Both vote endpoints return the weight
+ * they actually applied — settle against that.
  *
  * Mirror of dehubweb's `hooks/use-engagement-weight.ts`.
  */
