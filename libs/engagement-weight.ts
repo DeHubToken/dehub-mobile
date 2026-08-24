@@ -9,11 +9,15 @@
  * reaction and still counts as one unique viewer — the badge only changes what
  * that one is worth.
  *
- * **The server is the authority.** This exists so an optimistic count moves by
- * the right amount instead of by one and then snapping. `/request_vote` and
- * `/request_reaction` both return the `weight` they actually applied; prefer
- * that number where it can be read, because the server prices from the
- * account's EARNED balance and this side cannot see the earned/lent split.
+ * **A lent badge carries its weight**, so this reads the same `badgeBalance`
+ * that draws the badge — no earned/lent split to model. Influence is what
+ * delegation lends; the API prices from the same rendered number.
+ *
+ * **The server is still the authority.** This exists so an optimistic count
+ * moves by the right amount instead of by one and then snapping.
+ * `/request_vote` and `/request_reaction` both return the `weight` they
+ * actually applied; prefer that number where it can be read, because a cached
+ * account row here can be a beat behind the one the API priced from.
  *
  * Keep in step with `dehub-stream-backend/src/badge/engagement-weight.ts` and
  * `dehubweb/src/lib/engagement-weight.ts`.
