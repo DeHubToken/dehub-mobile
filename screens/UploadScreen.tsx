@@ -2306,10 +2306,11 @@ export default function UploadScreen() {
             )}
 
             {/* One list of post options, in web's order: Mint, Title, Category,
-                Community, then the access/monetization switches. Every switch
-                applies to every post type, as it does on web — a text or image
-                post can be gated or sold just like a video. Rendered whatever
-                the draft holds, so the options are on screen from first open. */}
+                Community, the access/monetization switches, then mature content
+                last of all. Every switch applies to every post type, as it does
+                on web — a text or image post can be gated or sold just like a
+                video. Rendered whatever the draft holds, so the options are on
+                screen from first open. */}
             <View className="mt-4">
               {/* Daily posting allowance. Quiet while there is headroom; it
                   only speaks up once the next post starts costing DHB. */}
@@ -2348,24 +2349,6 @@ export default function UploadScreen() {
                     onValueChange={handleSetShouldMint}
                     disabled={mintRequired}
                   />
-                </View>
-              )}
-
-              {/* Mature content — the creator's own declaration. Marking it
-                  keeps the post off the public feeds; it still reaches
-                  followers, the profile and anyone with the link. */}
-              {!isLiveMode && (
-                <View className="flex-row items-center justify-between py-3">
-                  <View className="flex-row items-center flex-1 mr-3">
-                    <Icon name="EyeOff" size={18} color="#fff" />
-                    <Text className="text-white text-sm ml-3">Mature content</Text>
-                    {isMature ? (
-                      <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
-                        (not shown on the public feed)
-                      </Text>
-                    ) : null}
-                  </View>
-                  <CustomSwitch value={isMature} onValueChange={setIsMature} />
                 </View>
               )}
 
@@ -2461,6 +2444,29 @@ export default function UploadScreen() {
                   onChange={handleMonetizationChange}
                   postChainId={effectivePostChainId}
                 />
+              )}
+
+              {/* Mature content — the creator's own declaration. Marking it
+                  keeps the post off the public feeds; it still reaches
+                  followers, the profile and anyone with the link.
+
+                  Last row, as on web. It is the only switch here that costs a
+                  creator reach on a post they believe is fine, so it sits past
+                  the options they came to set rather than second, under the
+                  thumb, where a stray tap goes unnoticed. */}
+              {!isLiveMode && (
+                <View className="flex-row items-center justify-between py-3">
+                  <View className="flex-row items-center flex-1 mr-3">
+                    <Icon name="EyeOff" size={18} color="#fff" />
+                    <Text className="text-white text-sm ml-3">Mature content</Text>
+                    {isMature ? (
+                      <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
+                        (not shown on the public feed)
+                      </Text>
+                    ) : null}
+                  </View>
+                  <CustomSwitch value={isMature} onValueChange={setIsMature} />
+                </View>
               )}
             </View>
           </View>
