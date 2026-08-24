@@ -915,11 +915,17 @@ export interface EditPostInput {
   /** true turns replies off. Existing comments stay readable — only new ones
    *  are refused, server-side — so re-enabling restores the thread intact. */
   commentsDisabled?: boolean;
+  /**
+   * Re-rate a published post. 'mature' takes it off the public feeds and
+   * leaves it on the profile, the Following feed and its own link; 'safe' puts
+   * it back. Refused with 403 once a moderator has rated the post.
+   */
+  contentRating?: 'safe' | 'mature';
 }
 
 export interface EditPostResponse {
   result: boolean;
-  data?: { tokenId: number; name?: string; description?: string; category?: string[] };
+  data?: { tokenId: number; name?: string; description?: string; category?: string[]; contentRating?: string };
 }
 
 /**

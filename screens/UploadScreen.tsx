@@ -356,6 +356,16 @@ export default function UploadScreen() {
     AsyncStorage.setItem(SHOULD_MINT_KEY, String(value)).catch(() => {});
   }, []);
 
+  /**
+   * The creator's own content rating.
+   *
+   * Deliberately NOT remembered between posts, unlike the mint and title
+   * toggles: a sticky "mature" would keep marking safe posts long after the
+   * one that needed it, and a sticky "safe" is worse — it makes the
+   * declaration something you forget rather than something you make.
+   */
+  const [isMature, setIsMature] = useState(false);
+
   // Bounty locks tokens through the mint transaction, so it cannot ride on a
   // post that never goes on-chain.
   const mintRequired = monetization.bountyEnabled;
@@ -829,8 +839,9 @@ export default function UploadScreen() {
       postChainId: effectivePostChainId,
       solanaAddress: solanaAddress ?? undefined,
       shouldMint,
+      contentRating: isMature ? ("mature" as const) : undefined,
     };
-  }, [bodyText, titleText, showTitle, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint]);
+  }, [bodyText, titleText, showTitle, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -2335,6 +2346,24 @@ export default function UploadScreen() {
                     onValueChange={handleSetShouldMint}
                     disabled={mintRequired}
                   />
+                </View>
+              )}
+
+              {/* Mature content — the creator's own declaration. Marking it
+                  keeps the post off the public feeds; it still reaches
+                  followers, the profile and anyone with the link. */}
+              {!isLiveMode && (
+                <View className="flex-row items-center justify-between py-3">
+                  <View className="flex-row items-center flex-1 mr-3">
+                    <Icon name="EyeOff" size={18} color="#fff" />
+                    <Text className="text-white text-sm ml-3">Mature content</Text>
+                    {isMature ? (
+                      <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
+                        (not shown on the public feed)
+                      </Text>
+                    ) : null}
+                  </View>
+                  <CustomSwitch value={isMature} onValueChange={setIsMature} />
                 </View>
               )}
 

@@ -20,6 +20,7 @@ import {
   Divider,
 } from './SettingsPrimitives';
 import { useAppPrefs, setAppPref } from '../../hooks/useAppPrefs';
+import { useMatureContent } from '../../hooks/useMatureContent';
 
 const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility: string }> = ({
   onOpenPrivacy,
@@ -27,6 +28,7 @@ const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility:
 }) => {
   const { t } = useTranslation();
   const prefs = useAppPrefs();
+  const { showMatureContent, setShowMatureContent, saving: savingMature } = useMatureContent();
 
   return (
     <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
@@ -51,28 +53,20 @@ const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility:
       </SettingsSection>
 
       <SettingsSection label={t('settings.contentFiltering')} icon="Funnel">
+        {/* One real switch replaces three device-local ones that filtered
+            nothing. "Filter explicit content" and "Content warnings" were this
+            same setting worded twice, and are what this one does when it is
+            off. Account-level, so it follows the reader onto web. */}
         <SettingsToggleRow
-          icon="Funnel"
-          label={t('settings.filterExplicit')}
-          description={t('settings.filterExplicitDesc')}
-          value={prefs.filterExplicit}
-          onValueChange={(v) => setAppPref('filterExplicit', v)}
-        />
-        <Divider />
-        <SettingsToggleRow
-          icon="Eye"
-          label={t('settings.showSensitive')}
-          description={t('settings.showSensitiveDesc')}
-          value={prefs.showSensitive}
-          onValueChange={(v) => setAppPref('showSensitive', v)}
-        />
-        <Divider />
-        <SettingsToggleRow
-          icon="TriangleAlert"
-          label={t('settings.enableContentWarnings')}
-          description={t('settings.enableContentWarningsDesc')}
-          value={prefs.contentWarnings}
-          onValueChange={(v) => setAppPref('contentWarnings', v)}
+          icon="EyeOff"
+          label={t('settings.matureContent', 'Show Mature Content')}
+          description={t(
+            'settings.matureContentDesc',
+            'Include adult and graphic posts in your feeds, and drop the warning on ones you already see. Off by default.',
+          )}
+          value={showMatureContent}
+          onValueChange={setShowMatureContent}
+          disabled={savingMature}
         />
       </SettingsSection>
 
