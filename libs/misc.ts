@@ -185,14 +185,34 @@ export function getAudioUrl(url: string): string {
 }
 
 // Badge utilities ---------------------------------------------------------
+//
+// The ladder is pegged in DOLLARS, not in DHB. The table below is what each
+// tier costs at `BADGE_PRICE_ANCHOR` ($0.001, which is also the price DHB is
+// currently pinned to); the DHB requirement at any other price is that
+// reference scaled by `anchor / price`. Meglodon stays about $50,000 of DHB
+// whatever the token is worth — flat amounts would have closed the top of the
+// ladder to everyone not already on it the moment DHB appreciated.
+//
+// Two limits on the scale: capped at 1, so a price below the anchor never
+// demands MORE than the published numbers, and rounded to two significant
+// figures so the ladder steps rather than chasing ticks.
+//
+// A tier once earned is not taken back by the price. `BadgeLock` — served by
+// the API on the account row and on every feed item's `minterUser` — records
+// the tier a holder reached and the DHB it cost them; they keep it while their
+// balance covers that number.
+//
+// Mirror of web's `src/lib/staking-badges.ts` and the backend's
+// `src/badge/badge-tiers.ts`. All three must agree: the app and the site draw
+// the same badge, and the gateway prices its holder discount off the same tier.
 interface BadgeDef {
   name: string;
-  min: number; // minimum holdings required to earn this badge
+  min: number; // DHB required at BADGE_PRICE_ANCHOR
 }
 
 // Ordered ascending by min threshold.
-// Each amount is the *minimum* DHB holdings required for that badge.
-// Users with < 10,000 DHB get NO badge.
+// Each amount is the *minimum* DHB holdings required for that badge at the
+// anchor price. Users below the entry rung get NO badge.
 const BADGE_LEVELS: BadgeDef[] = [
   { name: "Crab", min: 10_000 },
   { name: "Lobster", min: 25_000 },
@@ -217,23 +237,160 @@ const BADGE_LEVELS: BadgeDef[] = [
  */
 export const BADGE_ORDER: string[] = BADGE_LEVELS.map((b) => b.name);
 
+/** The DHB price, in USD, the reference ladder was written against. */
+export const BADGE_PRICE_ANCHOR = 0.001;
+
+/** Ceiling on the scale — the ladder is never harder than the reference. */
+export const MAX_BADGE_SCALE = 1;
+
+/** Floor on the scale, at a $1 token: Crab 10 DHB, Meglodon 50,000 DHB. */
+export const MIN_BADGE_SCALE = 0.001;
+
+/** Round to `digits` significant figures without the float drift of x/÷. */
+function significant(value: number, digits: number): number {
+  if (!Number.isFinite(value) || value === 0) return 0;
+  return Number(value.toPrecision(digits));
+}
+
+/**
+ * The ladder scale a DHB price implies. An unreadable price returns 1 — the
+ * reference ladder. A badge must never move because a price lookup failed.
+ */
+export function badgeScaleForPrice(
+  price: number | string | null | undefined,
+): number {
+  const numeric = typeof price === "string" ? parseFloat(price) : price;
+  if (typeof numeric !== "number" || !Number.isFinite(numeric) || numeric <= 0) {
+    return MAX_BADGE_SCALE;
+  }
+  const raw = significant(BADGE_PRICE_ANCHOR / numeric, 2);
+  return Math.min(MAX_BADGE_SCALE, Math.max(MIN_BADGE_SCALE, raw));
+}
+
+/**
+ * The scale used when a caller passes none.
+ *
+ * `getBadgeName` is called from feed mappers and quota maths with no hook in
+ * reach, so the scale has to be readable without one. `useBadgeLadderSync`
+ * publishes it; until then this is the reference ladder.
+ */
+let activeScale = MAX_BADGE_SCALE;
+
+export function activeBadgeScale(): number {
+  return activeScale;
+}
+
+export function setActiveBadgeScale(scale: number): number {
+  const clamped = Math.min(MAX_BADGE_SCALE, Math.max(MIN_BADGE_SCALE, scale));
+  activeScale = Number.isFinite(clamped) ? clamped : MAX_BADGE_SCALE;
+  return activeScale;
+}
+
+const ladderCache = new Map<number, BadgeDef[]>();
+
+/**
+ * The live ladder: what each tier costs in DHB at `scale`.
+ *
+ * Thresholds are rounded to three significant figures so they read as prices,
+ * then forced strictly ascending — a ladder that collapsed two tiers would
+ * hand the lower one the higher one's allowance.
+ */
+export function badgeThresholds(scale: number = activeScale): BadgeDef[] {
+  const key = Number.isFinite(scale) ? scale : MAX_BADGE_SCALE;
+  const cached = ladderCache.get(key);
+  if (cached) return cached;
+
+  let previous = 0;
+  const ladder = BADGE_LEVELS.map((level) => {
+    const min = Math.max(1, previous + 1, significant(level.min * key, 3));
+    previous = min;
+    return { name: level.name, min };
+  });
+
+  if (ladderCache.size > 32) ladderCache.clear();
+  ladderCache.set(key, ladder);
+  return ladder;
+}
+
+/** DHB needed for `tier` at `scale`, or undefined for an unknown tier name. */
+export function badgeThreshold(
+  tier: string | null | undefined,
+  scale: number = activeScale,
+): number | undefined {
+  if (!tier) return undefined;
+  return badgeThresholds(scale).find((b) => b.name === tier)?.min;
+}
+
+/**
+ * A tier a holder has already earned, and what it cost them.
+ * Written by the API; tier up only, requirement down only.
+ */
+export interface BadgeLock {
+  tier: string;
+  requirement: number;
+}
+
+/** Everything other than the balance that decides which badge is drawn. */
+export interface BadgeContext {
+  scale?: number;
+  lock?: BadgeLock | null;
+}
+
+/**
+ * Read a lock out of an API payload. Anything malformed resolves to undefined
+ * rather than throwing — a bad lock should cost a holder their grandfathering,
+ * not the screen it rode in on.
+ */
+export function parseBadgeLock(raw: unknown): BadgeLock | undefined {
+  if (!raw || typeof raw !== "object") return undefined;
+  const { tier, requirement } = raw as { tier?: unknown; requirement?: unknown };
+  if (typeof tier !== "string" || BADGE_ORDER.indexOf(tier) < 0) return undefined;
+  const amount =
+    typeof requirement === "string" ? parseFloat(requirement) : requirement;
+  if (typeof amount !== "number" || !Number.isFinite(amount) || amount <= 0) {
+    return undefined;
+  }
+  return { tier, requirement: amount };
+}
+
+/** The tier a balance earns outright on the ladder at `scale`. */
+function earnedTier(amount: number, scale: number): string | undefined {
+  let matched: string | undefined;
+  for (const badge of badgeThresholds(scale)) {
+    if (amount >= badge.min) matched = badge.name;
+    else break;
+  }
+  return matched;
+}
+
 /**
  * Get badge name for a given staking/holdings amount.
- * Returns the highest badge whose min threshold the user meets.
- * Returns undefined if holdings < 10,000 (no badge).
+ *
+ * Returns the highest badge the holder qualifies for on the live ladder, or
+ * the tier their lock grandfathers if that is higher. Undefined below the
+ * entry rung.
  */
-export function getBadgeName(stakingAmount: number | string): string | undefined {
+export function getBadgeName(
+  stakingAmount: number | string,
+  context?: BadgeContext,
+): string | undefined {
   const amt =
     typeof stakingAmount === "string"
       ? parseFloat(stakingAmount)
       : stakingAmount;
-  if (!Number.isFinite(amt) || amt < BADGE_LEVELS[0].min) return undefined;
-  let matched: string | undefined;
-  for (const badge of BADGE_LEVELS) {
-    if (amt >= badge.min) matched = badge.name;
-    else break;
-  }
-  return matched;
+  if (!Number.isFinite(amt)) return undefined;
+
+  const scale = context?.scale ?? activeScale;
+  const earned = earnedTier(amt, scale);
+
+  // A tier already earned is not taken back by the ladder moving under it —
+  // only by the holder falling below what it cost them.
+  const lock = parseBadgeLock(context?.lock);
+  const locked = lock && amt >= lock.requirement ? lock.tier : undefined;
+
+  const earnedIndex = earned ? BADGE_ORDER.indexOf(earned) : -1;
+  const lockedIndex = locked ? BADGE_ORDER.indexOf(locked) : -1;
+  return lockedIndex > earnedIndex ? locked : earned;
 }
 
 // Preload badge images (static requires; dynamic requires not supported by Metro)
@@ -283,9 +440,96 @@ export function getDefaultBanner(identifier: string = ""): number {
 
 export function getBadgeUrl(
   stakingAmount: number | string,
+  context?: BadgeContext,
 ): number | undefined {
-  const badge = getBadgeName(stakingAmount);
+  const badge = getBadgeName(stakingAmount, context);
   return badge ? BADGE_IMAGES[badge] : undefined;
+}
+
+/** The badge art for a tier name, for surfaces that already know the tier. */
+export function badgeImage(tier: string | null | undefined): number | undefined {
+  return tier ? BADGE_IMAGES[tier] : undefined;
+}
+
+/**
+ * The badge art for a user-like object — the balance and the lock read
+ * together.
+ *
+ * Every card, chat row and leaderboard row used to write
+ * `getBadgeUrl(resolveBadgeBalance(x))`, which finds the balance and misses
+ * the lock. A grandfathered holder would then wear a lower badge on a feed
+ * card than on their own profile. One call reads both.
+ */
+export function getBadgeUrlFor(
+  userOrItem: Record<string, any> | null | undefined,
+): number | undefined {
+  return getBadgeUrl(resolveBadgeBalance(userOrItem), {
+    lock: resolveBadgeLock(userOrItem),
+  });
+}
+
+/** Where a holder sits on the ladder — the progress panel's data model. */
+export interface BadgeStanding {
+  tier?: string;
+  image?: number;
+  /** Index in `BADGE_ORDER`, -1 with no badge. */
+  index: number;
+  balance: number;
+  currentThreshold: number;
+  nextTier?: string;
+  nextThreshold?: number;
+  /** DHB still to buy for the next tier, 0 at the top. */
+  remaining: number;
+  /** Progress across the current tier, 0-1. 1 at the top. */
+  progress: number;
+  /** True when the tier is held on a lock rather than on the live ladder. */
+  grandfathered: boolean;
+}
+
+/**
+ * Resolve a holder's full standing.
+ *
+ * `progress` runs from the current rung to the next, not from zero — crawling
+ * 2% of the way to Meglodon is not progress anyone can feel. Below the entry
+ * rung it runs from zero to Crab.
+ */
+export function getBadgeStanding(
+  badgeBalance: number | string | null | undefined,
+  context?: BadgeContext,
+): BadgeStanding {
+  const scale = context?.scale ?? activeScale;
+  const ladder = badgeThresholds(scale);
+  const parsed =
+    typeof badgeBalance === "string" ? parseFloat(badgeBalance) : badgeBalance;
+  const balance =
+    typeof parsed === "number" && Number.isFinite(parsed) ? Math.max(0, parsed) : 0;
+
+  const tier = getBadgeName(balance, context);
+  const index = tier ? BADGE_ORDER.indexOf(tier) : -1;
+  const currentThreshold = index >= 0 ? ladder[index].min : ladder[0].min;
+  const next = index + 1 < ladder.length ? ladder[index + 1] : undefined;
+
+  const floor = index >= 0 ? currentThreshold : 0;
+  const span = next ? next.min - floor : 0;
+  const progress = next
+    ? Math.min(1, Math.max(0, (balance - floor) / (span || 1)))
+    : 1;
+
+  const earned = earnedTier(balance, scale);
+  const earnedIndex = earned ? BADGE_ORDER.indexOf(earned) : -1;
+
+  return {
+    tier,
+    image: tier ? BADGE_IMAGES[tier] : undefined,
+    index,
+    balance,
+    currentThreshold,
+    nextTier: next?.name,
+    nextThreshold: next?.min,
+    remaining: next ? Math.max(0, next.min - balance) : 0,
+    progress,
+    grandfathered: index >= 0 && index > earnedIndex,
+  };
 }
 
 /**
@@ -307,6 +551,25 @@ export function resolveBadgeBalance(
   if (typeof userOrItem.minterStaked === "number" && userOrItem.minterStaked > 0)
     return userOrItem.minterStaked;
   return 0;
+}
+
+/**
+ * Resolve the grandfathered tier from a user-like object.
+ *
+ * Feed rows carry the author under `minterUser` / `author`, so look one level
+ * down as well as at the top — the lock rides the same account row the balance
+ * does, and a card that finds the balance but not the lock would draw a tier
+ * the profile screen does not.
+ */
+export function resolveBadgeLock(
+  userOrItem: Record<string, any> | null | undefined,
+): BadgeLock | undefined {
+  if (!userOrItem) return undefined;
+  return (
+    parseBadgeLock(userOrItem.badgeLock) ??
+    parseBadgeLock(userOrItem.minterUser?.badgeLock) ??
+    parseBadgeLock(userOrItem.author?.badgeLock)
+  );
 }
 
 /** Generic share helper.
@@ -339,7 +602,11 @@ export const Misc = {
   getPreviewUrl,
   getBadgeUrl,
   getBadgeName,
+  badgeImage,
+  badgeThresholds,
+  getBadgeStanding,
   resolveBadgeBalance,
+  resolveBadgeLock,
   getDefaultBanner,
   getExtension,
   buildImageUrl,

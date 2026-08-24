@@ -11,7 +11,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Icon from "../ui/Icon";
 import { useUser } from "../../context/AuthContext";
-import { getAvatarUrl, getBadgeUrl } from "../../libs";
+import { getAvatarUrl, getBadgeUrlFor } from "../../libs";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import {
   followUser,
@@ -57,7 +57,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
   const displayAvatar =
     avatarSrc && avatarSrc !== "default-avatar" ? avatarSrc : undefined;
   const followers = account.followers ?? 0;
-  const badgeImage = getBadgeUrl(account.badgeBalance ?? 0);
+  const badgeImage = getBadgeUrlFor(account);
 
 
   const reasonLine = useMemo(() => {

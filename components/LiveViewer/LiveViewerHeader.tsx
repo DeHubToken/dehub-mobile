@@ -2,7 +2,7 @@ import React, { memo, useCallback, useMemo } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { X } from "lucide-react-native";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor, resolveBadgeBalance } from "../../libs/misc";
 import { truncateAddress } from "../../libs/strings.util";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useNavigation } from "@react-navigation/native";
@@ -82,7 +82,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
     if (!creator) return 0;
     return resolveBadgeBalance(creator as any);
   }, [creator]);
-  const badgeImage = getBadgeUrl(stakedDHB);
+  const badgeImage = getBadgeUrlFor(creator as any);
 
   const isSelf = useMemo(() => {
     const v = (viewerAddress || "").toLowerCase();

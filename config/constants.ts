@@ -380,60 +380,6 @@ export const ErrMsgEn = {
   },
 };
 
-export const badges = [
-  {
-    name: "Crab",
-    amount: 10_000,
-  },
-  {
-    name: "Lobster",
-    amount: 25_000,
-  },
-  {
-    name: "Piranha",
-    amount: 50_000,
-  },
-  {
-    name: "Tortoise",
-    amount: 100_000,
-  },
-  {
-    name: "Cobra",
-    amount: 250_000,
-  },
-  {
-    name: "Octopus",
-    amount: 500_000,
-  },
-  {
-    name: "Crocodite",
-    amount: 1_000_000,
-  },
-  {
-    name: "Dolphin",
-    amount: 2_000_000,
-  },
-  {
-    name: "Tiger Shark",
-    amount: 3_000_000,
-  },
-  {
-    name: "Killer Whale",
-    amount: 5_000_000,
-  },
-  {
-    name: "Great White Shark",
-    amount: 10_000_000,
-  },
-  {
-    name: "Blue Whale",
-    amount: 20_000_000,
-  },
-  {
-    name: "Meglodon",
-    amount: 50_000_000,
-  },
-];
 export const MAX_CATEGORY_COUNT = 3;
 
 export const MULTICALL2_ADDRESSES: { [chainId: number]: string } = {

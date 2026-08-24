@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import { formatRelativeFromNow } from "../../libs/date.util";
 import type { DmConversation, DmMessage, DmUser } from "../../services/dm/dm.types";
 import { getOtherParticipant } from "../../services/dm/dm.types";
@@ -36,7 +36,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
   const displayName = other?.displayName || other?.username || "Unknown";
   const username = other?.username;
   const avatarUrl = getAvatarUrl(other?.avatarImageUrl);
-  const badgeImg = getBadgeUrl(resolveBadgeBalance(other as any));
+  const badgeImg = getBadgeUrlFor(other as any);
 
   // Last message preview
   const { previewText, previewIcon } = useMemo(() => {

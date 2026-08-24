@@ -10,8 +10,7 @@ import {
   getAvatarUrl,
   resolveThumbnail,
   getImageUrl,
-  getBadgeUrl,
-  resolveBadgeBalance,
+  getBadgeUrlFor,
   getVideoUrl,
 } from "../../libs";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -117,7 +116,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const isBounty = !!streamInfo?.isAddBounty;
   const bountyAmount = streamInfo?.addBountyAmount;
   const bountyTokenSymbol = streamInfo?.addBountyTokenSymbol;
-  const badgeImage = getBadgeUrl(resolveBadgeBalance((nft as any).minterUser || nft));
+  const badgeImage = getBadgeUrlFor((nft as any).minterUser || nft);
   const { showUserProfile, hideUserProfile } = useUserProfileSheet();
   const user = useUser();
   const navigation = useNavigation<any>();
