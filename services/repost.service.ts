@@ -177,6 +177,8 @@ export interface CreateQuotePostResponse {
   v: number;
   createdTokenId: string | number;
   timestamp: number;
+  /** URI suffix from the mint API — carries the quote text on chain. */
+  uri?: string;
   quotedTokenId: number;
   isQuotePost: boolean;
 }
