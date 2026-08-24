@@ -91,6 +91,11 @@ const MAINTAIN_POSITION = { minIndexForVisible: 1 } as const;
 // pulls another page rather than sitting on a screenful of nothing.
 const MIN_SCROLLABLE_ROWS = 6;
 
+// Ceiling on top-up fetches per query. Covers the real case — a filtered feed
+// whose first page caps to roughly half — while stopping a feed dominated by
+// one capped author, or a failing endpoint, from walking every page on mount.
+const MAX_TOP_UP_FETCHES = 3;
+
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
 const DEFAULT_AVATAR = require("../../assets/default-avatar.png");
 
@@ -245,6 +250,9 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // matching the web app's seamless tab switching.
   const queryClient = useQueryClient();
   const queryKey = useMemo(() => ["home-feed", params ?? {}, pageSize], [params, pageSize]);
+  // Stable string form, so the top-up counter resets on a real query change
+  // (filter, tab, refresh) rather than on every render that rebuilds the array.
+  const queryKeyString = useMemo(() => JSON.stringify(queryKey), [queryKey]);
 
   const {
     data,
@@ -313,10 +321,17 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // Capping across the flattened pages rather than per page keeps the rule
   // stable as more pages load. A creator- or search-scoped list is somebody
   // asking for one person's posts, so it is never capped.
+  // Live is exempt. Web has no cap on its LiveFeed either, and the rule exists
+  // to stop one author flooding a scroll of recorded posts — a second stream
+  // someone is broadcasting right now is time-critical and there are few of
+  // them, so hiding it costs a viewer the thing they came for and buys no
+  // anti-spam benefit.
+  const capExempt = !!(params?.minter || params?.owner || params?.search) || params?.postType === 'live';
+
   const cappedItems = useMemo<FeedItem[]>(() => {
-    if (params?.minter || params?.owner || params?.search) return items;
+    if (capExempt) return items;
     return capFeedByAuthorAllowance(items as any[]) as FeedItem[];
-  }, [items, params?.minter, params?.owner, params?.search]);
+  }, [items, capExempt]);
 
   const endReached = hasNextPage === false;
   const error = queryError ? (queryError as Error).message || "Failed to load" : null;
@@ -336,14 +351,47 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // rows AFTER the fetch — so a 10-row page can arrive as two visible cards. A
   // list that short never scrolls, `onEndReached` never fires again, and the
   // feed sits there looking finished. This pulls further pages until there is
-  // enough to scroll or the server runs out. `loadMore` already no-ops while a
-  // fetch is in flight, so this cannot stack requests.
+  // enough to scroll or the server runs out.
+  //
+  // It is BOUNDED, for two reasons found the hard way:
+  //
+  //  - If one capped author owns every row of every page, the condition never
+  //    clears and the effect fires once per page for as long as the server has
+  //    pages. On the all tab that is totalCount / limit — up to ~300 sequential
+  //    requests on mount, from a screen that has six of these mounted.
+  //  - If `fetchNextPage` REJECTS, TanStack leaves `hasNextPage` true and
+  //    returns `isFetchingNextPage` to false with the data unchanged, so every
+  //    dependency is back where it started and the effect fires again with no
+  //    delay. That is a tight retry loop against a failing endpoint.
+  //
+  // A handful of attempts covers the real case (a filtered feed whose first
+  // page caps to about half) and turns both runaways into "the user scrolls,
+  // onEndReached takes over". The counter resets whenever the query itself
+  // resets — a pull-to-refresh or a filter change — so a later short page is
+  // still topped up.
+  const topUpAttemptsRef = useRef(0);
+  useEffect(() => {
+    topUpAttemptsRef.current = 0;
+  }, [queryKeyString]);
 
   useEffect(() => {
     if (cappedItems.length >= MIN_SCROLLABLE_ROWS) return;
     if (!hasNextPage || initialLoading || loadingMore || refreshing) return;
+    // A rejected fetch must not be retried from here; the footer's retry and
+    // the user's own scroll are the recovery paths.
+    if (queryError) return;
+    if (topUpAttemptsRef.current >= MAX_TOP_UP_FETCHES) return;
+    topUpAttemptsRef.current += 1;
     loadMore();
-  }, [cappedItems.length, hasNextPage, initialLoading, loadingMore, refreshing, loadMore]);
+  }, [
+    cappedItems.length,
+    hasNextPage,
+    initialLoading,
+    loadingMore,
+    refreshing,
+    queryError,
+    loadMore,
+  ]);
 
   const onRefresh = useCallback(async () => {
     // Call external refresh callback (e.g., to refresh shuffle seed)
