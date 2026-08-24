@@ -168,6 +168,12 @@ function rebuildFormData(job: UploadJob): FormData {
     fd.append("mintOptOut", "true");
   }
 
+  // Only sent when it is 'mature': the server treats an absent rating as safe
+  // and deliberately stores nothing for it.
+  if (payload.contentRating === "mature") {
+    fd.append("contentRating", "mature");
+  }
+
   return fd;
 }
 

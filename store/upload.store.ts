@@ -45,6 +45,11 @@ export interface SerializedUploadPayload {
   streamInfoJson: string;
   pollData?: SerializedPollData;
   scheduledAt?: string;
+  /**
+   * 'mature' when the creator marked the post adult or graphic. Absent means
+   * safe, which is also what a job persisted by an older build reads as.
+   */
+  contentRating?: "mature";
 }
 
 export interface MintParams {

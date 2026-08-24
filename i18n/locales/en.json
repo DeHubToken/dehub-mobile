@@ -258,6 +258,8 @@
     "showSensitiveDesc": "Display content warnings for sensitive posts",
     "enableContentWarnings": "Enable Content Warnings",
     "enableContentWarningsDesc": "Show warnings before displaying sensitive content",
+    "matureContent": "Show Mature Content",
+    "matureContentDesc": "Include adult and graphic posts in your feeds, and drop the warning on ones you already see. Off by default.",
     "feedPreferences": "Feed Preferences",
     "showReposts": "Show Reposts",
     "showRepostsDesc": "Display posts shared by people you follow",

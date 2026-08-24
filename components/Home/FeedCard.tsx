@@ -19,6 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 import { FeedCardHeader } from "./FeedCardHeader";
 import FeedActionBar from "./FeedActionBar";
 import { FeedCaption } from "./FeedCaption";
+import MatureContentGate, { useMatureGate } from "./MatureContentGate";
 import AudioPostPlayer from "./AudioPostPlayer";
 import FeedVideoPlayer from "./FeedVideoPlayer";
 import StatusBadge from "./StatusBadge";
@@ -357,6 +358,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isActuallyLockedPPV = isServerLockedPPV && !ppvUnlocked;
   const isActuallyComboLocked = isActuallyLockedPPV && isActuallyLockedHoldings;
   const isActuallyGated = isActuallyLockedPPV || isActuallyLockedHoldings;
+  // Held locally like the title and categories, so re-rating a post from its
+  // own options menu takes effect without waiting for the feed to refetch.
+  const [localContentRating, setLocalContentRating] = useState<string | undefined>(
+    (item as any).contentRating,
+  );
+  // Independent of the monetisation gates above: a post can be both mature and
+  // pay-per-view, and the creator's own post is warned about too — the warning
+  // is for whoever is holding the phone.
+  const matureGate = useMatureGate(localContentRating);
   const [isHidden, setIsHidden] = useState(!!((item as any).isHidden));
   const [isFollowingCreator, setIsFollowingCreator] = useState(!!((item as any).isFollowing));
   const [isFollowReqPending, setIsFollowReqPending] = useState(!!((item as any).isFollowRequestPending));
@@ -762,13 +772,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     setIsHidden(hidden);
   }, []);
 
-  const handleEditSuccess = useCallback((data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean }) => {
+  const handleEditSuccess = useCallback((data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string }) => {
     if (data.name !== undefined) setLocalTitle(data.name);
     if (data.description !== undefined) setLocalDescription(data.description);
     if (data.category !== undefined) setLocalCategories(data.category);
     // Without this the composer stays live until the feed refetches, so the
     // creator would still see an input on a post they just closed.
     if (data.commentsDisabled !== undefined) setLocalCommentsDisabled(data.commentsDisabled);
+    if (data.contentRating !== undefined) setLocalContentRating(data.contentRating);
   }, []);
 
   const handleDeleteSuccess = useCallback(() => {
@@ -1232,6 +1243,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         </View>
       </View>
 
+      {/* Everything the post actually says — media, caption, embeds — sits
+          behind the warning together. A text post's body is its content, so
+          hiding only the media would warn about nothing. The header above and
+          the timestamp/action bar below stay live, so a post can be reported
+          or opened without being read first. */}
+      {matureGate.isGated ? (
+        <MatureContentGate onReveal={matureGate.reveal} />
+      ) : (
+        <>
       {renderContent()}
 
       {hasSoundtrack && (
@@ -1267,6 +1287,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
       {/* Market cards — a contract address somebody pasted, or a $TICKER */}
       <AssetRefCards refs={assetRefs} />
+        </>
+      )}
 
 
       {tokenId != null && !isLive && !(item as any).isQuotePost && (
@@ -1445,6 +1467,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentDescription={localDescription}
           currentCategories={localCategories}
           currentCommentsDisabled={localCommentsDisabled}
+          currentContentRating={localContentRating}
           hideReportContent={isLive}
           hideEdit={isLive}
           onFollowChange={handleFollowChange}

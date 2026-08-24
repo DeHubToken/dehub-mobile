@@ -27,11 +27,10 @@ const KEYS = {
   quietHoursEnabled: 'dehub_qh_enabled',
   quietHoursStart: 'dehub_qh_start',
   quietHoursEnd: 'dehub_qh_end',
-  // Content tab — web keeps these as `comingSoon` switches with no storage yet.
+  // Content tab. The three content-filter keys that used to sit here were
+  // device-local switches that filtered nothing; the one real filter is the
+  // account-level showMatureContent (see hooks/useMatureContent.ts).
   autoSaveDrafts: 'dehub_auto_save_drafts',
-  filterExplicit: 'dehub_filter_explicit',
-  showSensitive: 'dehub_show_sensitive',
-  contentWarnings: 'dehub_content_warnings',
   geoBlockedCountries: 'dehub_geo_blocked',
 } as const;
 
@@ -48,9 +47,6 @@ export interface AppPrefs {
   quietHoursStart: number;
   quietHoursEnd: number;
   autoSaveDrafts: boolean;
-  filterExplicit: boolean;
-  showSensitive: boolean;
-  contentWarnings: boolean;
   geoBlockedCountries: string[];
 }
 
@@ -66,9 +62,6 @@ export const DEFAULT_APP_PREFS: AppPrefs = {
   quietHoursStart: 22,
   quietHoursEnd: 8,
   autoSaveDrafts: true,
-  filterExplicit: false,
-  showSensitive: false,
-  contentWarnings: false,
   geoBlockedCountries: [],
 };
 
@@ -112,9 +105,6 @@ function init() {
         quietHoursStart: parseNum(get('quietHoursStart'), DEFAULT_APP_PREFS.quietHoursStart),
         quietHoursEnd: parseNum(get('quietHoursEnd'), DEFAULT_APP_PREFS.quietHoursEnd),
         autoSaveDrafts: parseBool(get('autoSaveDrafts'), DEFAULT_APP_PREFS.autoSaveDrafts),
-        filterExplicit: parseBool(get('filterExplicit'), DEFAULT_APP_PREFS.filterExplicit),
-        showSensitive: parseBool(get('showSensitive'), DEFAULT_APP_PREFS.showSensitive),
-        contentWarnings: parseBool(get('contentWarnings'), DEFAULT_APP_PREFS.contentWarnings),
         geoBlockedCountries: (() => {
           try {
             const parsed = JSON.parse(get('geoBlockedCountries') || '[]');
