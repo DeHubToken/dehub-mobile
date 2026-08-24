@@ -17,6 +17,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
+import Avatar from "../common/Avatar";
 import { useStages } from "../../context/StageContext";
 import { useAuthActions } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs/misc";
@@ -126,11 +127,17 @@ const SpeakerCard: React.FC<SpeakerCardProps> = ({ participant, isHost, isSpeaki
           overflow: "hidden",
         }}
       >
-        {participant.avatar ? (
-          <Image source={{ uri: getAvatarUrl(participant.avatar, 64) }} style={{ width: 64, height: 64 }} />
-        ) : (
-          <Icon name="User" size={28} color="rgba(255,255,255,0.6)" />
-        )}
+        {/* Avatar, not a bare <Image>: a raw Image has no error path, so one
+            unfetchable avatar — a dead `blob:` row, a transform the device
+            refuses, no signal — left an empty circle with nothing in it. This
+            falls back to the initial, the same as every other avatar in the
+            app, and covers the no-avatar case in the same breath. */}
+        <Avatar
+          uri={getAvatarUrl(participant.avatar, 64)}
+          size={64}
+          rounded
+          name={participant.username || participant.wallet_address}
+        />
         {participant.is_muted && (
           <View
             style={{
@@ -204,11 +211,12 @@ const HandRequestRow: React.FC<HandRequestRowProps> = ({ request, onApprove }) =
           overflow: "hidden",
         }}
       >
-        {request.avatar ? (
-          <Image source={{ uri: getAvatarUrl(request.avatar, 36) }} style={{ width: 36, height: 36 }} />
-        ) : (
-          <Icon name="User" size={16} color="rgba(255,255,255,0.6)" />
-        )}
+        <Avatar
+          uri={getAvatarUrl(request.avatar, 36)}
+          size={36}
+          rounded
+          name={request.username || request.wallet_address}
+        />
       </View>
       <Text style={{ color: "#fff", flex: 1, fontSize: 13 }} numberOfLines={1}>{name}</Text>
       <TouchableOpacity

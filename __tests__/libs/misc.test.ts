@@ -1,5 +1,5 @@
 import {
-  getAvatarUrl, getCoverUrl, buildCdnPath, getVideoUrl,
+  getAvatarUrl, getCoverUrl, persistableAvatar, buildCdnPath, getVideoUrl,
   getShortsThumbnailUrl, getPreviewUrl, resolveThumbnail,
   getImageUrl, getExtension, buildImageUrl, getImageUrlApi,
   getImageUrlApiSimple, getAudioUrl, getBadgeName, getBadgeUrl,
@@ -59,19 +59,49 @@ describe('libs/misc', () => {
       expect(getAvatarUrl(supabase, 0)).toBe(supabase);
     });
 
-    it('leaves blob and data previews alone', () => {
-      // A `blob:` optimistic preview was persisted onto some older rows; it is
-      // dead either way, but re-basing it produced a confusing CDN 403.
-      expect(getAvatarUrl('blob:https://dehub.io/96805841-a2b8-4c6d')).toBe(
-        'blob:https://dehub.io/96805841-a2b8-4c6d'
-      );
+    // A `blob:` only resolves inside the browser session that minted it, so one
+    // that reached the database cannot load for anyone else and never loads on
+    // a handset. Reporting "no avatar" gets the caller's initial drawn instead
+    // of an empty frame. `space_participants` still carries one.
+    it('treats a persisted blob: preview as no avatar', () => {
+      expect(getAvatarUrl('blob:https://dehub.io/96805841-a2b8-4c6d')).toBe('default-avatar');
+    });
+
+    it('leaves data and file previews alone — those still render locally', () => {
       expect(getAvatarUrl('data:image/png;base64,AAAA')).toBe('data:image/png;base64,AAAA');
+      expect(getAvatarUrl('file:///var/mobile/tmp/pick.jpg')).toBe(
+        'file:///var/mobile/tmp/pick.jpg'
+      );
     });
 
     it('still sizes an absolute URL that is already on our CDN', () => {
       expect(getAvatarUrl('https://cdn.test.dehub.io/avatars/abc.png')).toBe(
         'https://dehub.io/cdn-cgi/image/format=webp,quality=80,width=96/https://cdn.test.dehub.io/avatars/abc.png'
       );
+    });
+  });
+
+  describe('persistableAvatar', () => {
+    it('drops values that only exist on the device that made them', () => {
+      // Writing one of these onto a row pins a permanently dead image for every
+      // other viewer — how a stage participant ended up with a blob: avatar.
+      expect(persistableAvatar('blob:https://dehub.io/96805841')).toBeNull();
+      expect(persistableAvatar('data:image/png;base64,AAAA')).toBeNull();
+      expect(persistableAvatar('file:///var/mobile/tmp/pick.jpg')).toBeNull();
+    });
+
+    it('passes stored paths and real URLs through', () => {
+      expect(persistableAvatar('avatars/0xabc.jpg')).toBe('avatars/0xabc.jpg');
+      expect(persistableAvatar('statics/avatars/0xabc.jpeg')).toBe('statics/avatars/0xabc.jpeg');
+      expect(persistableAvatar('https://cdn.test.dehub.io/avatars/abc.png')).toBe(
+        'https://cdn.test.dehub.io/avatars/abc.png'
+      );
+    });
+
+    it('normalises absent input to null', () => {
+      expect(persistableAvatar(null)).toBeNull();
+      expect(persistableAvatar(undefined)).toBeNull();
+      expect(persistableAvatar('')).toBeNull();
     });
   });
 

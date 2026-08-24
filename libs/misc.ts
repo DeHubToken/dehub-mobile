@@ -21,11 +21,40 @@ const DEFAULT_AVATAR_PT = 48;
  * measured, the `statics/` prefix 403s and the flattened form 200s. But applied
  * to an absolute URL it keeps only the last segment and re-bases it onto our
  * CDN, so a Supabase Storage avatar becomes
- * `…/avatars/johncena.png` (403) and a leftover `blob:` preview becomes
- * `…/avatars/<uuid>` (403). Both render as a broken image.
+ * `…/avatars/johncena.png` (403). It renders as a broken image.
  */
 function isAlreadyAddressable(url: string): boolean {
-  return /^(https?:|blob:|data:|file:)/i.test(url);
+  return /^(https?:|data:|file:)/i.test(url);
+}
+
+/**
+ * A `blob:` URL only means anything inside the browser session that minted it,
+ * so one that reached the database is dead for every other viewer and on every
+ * native client — there is nothing to fetch and no size to ask for. Treat it as
+ * "no avatar" so callers fall through to their initial/placeholder instead of
+ * showing an empty frame.
+ *
+ * `space_participants` still carries one of these from the 2026-08-19 town
+ * hall; `persistableAvatar` below stops new ones being written.
+ */
+function isDeadPreview(url: string): boolean {
+  return /^blob:/i.test(url);
+}
+
+/**
+ * Strip a value that must never be persisted for other people to render: an
+ * optimistic `blob:` preview, a `data:` payload, or a `file://` path that only
+ * exists on this handset. `user.avatarImageUrl` holds one of these for a few
+ * seconds after a picture change, and any write that happens in that window
+ * pins a permanently dead image onto a row everyone else reads — which is how
+ * a stage participant ended up with a `blob:` avatar.
+ *
+ * Mobile counterpart of web's `persistableAvatar()` in `StageContext`
+ * (dehubweb #357).
+ */
+export function persistableAvatar(url: string | undefined | null): string | null {
+  if (!url) return null;
+  return /^(blob:|data:|file:)/i.test(url) ? null : url;
 }
 
 export function getAvatarUrl(
@@ -34,6 +63,7 @@ export function getAvatarUrl(
   sizePt: number = DEFAULT_AVATAR_PT,
 ): string {
   if (!url) return "default-avatar"; // handled by Image source resolver with local asset mapping
+  if (isDeadPreview(url)) return "default-avatar";
   // Already a URL: hand it to cdnImage as-is. cdnImage only rewrites our own
   // CDN prefixes, so a third-party host passes through untouched and one of
   // ours still gets sized.
