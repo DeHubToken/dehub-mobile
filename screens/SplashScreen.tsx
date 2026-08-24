@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Image, Animated } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Animated,
+  Platform,
+  useWindowDimensions,
+} from "react-native";
 import { Fit, RiveView, useRiveFile } from "@rive-app/react-native";
 
 /**
@@ -33,6 +40,16 @@ import { Fit, RiveView, useRiveFile } from "@rive-app/react-native";
 const RIVE_LOAD_DELAY_MS = 400;
 
 export default function SplashScreen() {
+  // The static layer must be indistinguishable from what the native splash
+  // shows at the moment of handover, or the swap reads as a flash:
+  //  - Android 12+ draws the system splash from the adaptive icon — the mark
+  //    centred at roughly 120dp on black. dehub-logo-center at 120dp matches.
+  //  - iOS still uses the legacy full-screen splash image (playstore.png,
+  //    contain), which renders at min(viewport width, height). Rendering that
+  //    exact asset at exactly that size makes the handover pixel-identical.
+  const { width: vw, height: vh } = useWindowDimensions();
+  const legacySplashSize = Math.min(vw, vh);
+
   // Gates the require, not just the render: useRiveFile starts loading the
   // moment it is handed a source.
   const [wantRive, setWantRive] = useState(false);
@@ -85,15 +102,23 @@ export default function SplashScreen() {
       </View>
       
       {/* Static logo layer (in front) - shows immediately, fades out when Rive ready.
-          Uses the compact icon to match the Rive animation's opening frame and
-          eliminate the flash between wide banner and icon that occurred before. */}
+          Sized per platform to be pixel-identical to the native splash it
+          replaces — see the comment above. */}
       {!riveReady && (
         <Animated.View style={[styles.staticLogoContainer, { opacity: fadeAnim }]}>
-          <Image
-            source={require("../assets/web-icons/dehub-logo-center.png")}
-            style={styles.staticLogo}
-            resizeMode="contain"
-          />
+          {Platform.OS === "ios" ? (
+            <Image
+              source={require("../assets/AppIcons/playstore.png")}
+              style={{ width: legacySplashSize, height: legacySplashSize }}
+              resizeMode="contain"
+            />
+          ) : (
+            <Image
+              source={require("../assets/web-icons/dehub-logo-center.png")}
+              style={styles.staticLogo}
+              resizeMode="contain"
+            />
+          )}
         </Animated.View>
       )}
     </View>

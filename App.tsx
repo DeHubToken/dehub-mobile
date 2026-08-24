@@ -19,14 +19,12 @@ import "./global.css";
 import SplashScreen from "./screens/SplashScreen";
 import NoInternetScreen from "./screens/NoInternetScreen";
 import { useNetworkStatus } from "./hooks/useNetworkStatus";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
-  BackHandler,
-  KeyboardAvoidingView,
-  LogBox,
   StatusBar,
   StyleSheet,
   View,
+  Animated,
 } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import * as ExpoSplashScreen from "expo-splash-screen";
@@ -50,7 +48,6 @@ import { PushNotificationsProvider } from "./services/push";
 import { linkingConfig } from "./navigation/linking.config";
 import { loadMutedState } from "./libs/videoMutedState";
 import { loadHueState } from "./libs/audioHueState";
-import { Platform } from "react-native";
 import UpdateAppModal from "./components/UpdateAppModal";
 import { useAppUpdate } from "./hooks/useAppUpdate";
 import { useNavigationPersistence } from "./hooks/useNavigationPersistence";
@@ -75,20 +72,21 @@ import StageRecordingMiniPlayer from "./components/Stages/StageRecordingMiniPlay
 import RadioMiniPlayer from "./components/Music/RadioMiniPlayer";
 import { AppKit } from "@reown/appkit-ethers5-react-native";
 import { isWalletConnectAvailable } from "./config/reown.config";
+import { markBootRevealed } from "./libs/bootReveal";
 
 const logger = createLogger("App");
 
 export const navigationRef = createNavigationContainerRef();
 
-// Keep the native splash screen visible until we explicitly hide it
-// This prevents white flash between native splash and React app
+// Hold the native splash until BootGate lifts the curtain (see beginReveal
+// there): hiding any earlier trades the splash for whatever the JS thread
+// happens to be painting at that moment, which is how the cold-start flash
+// looked.
 ExpoSplashScreen.preventAutoHideAsync().catch(() => {
   // Ignore errors - splash screen might already be hidden
 });
 
 export default function App() {
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [appReady, setAppReady] = React.useState(false);
   const { hasInternet, isConnected, checkConnection } = useNetworkStatus();
 
   // Exo is the web app's global typeface (dehubweb/src/index.css:46). Nothing
@@ -137,28 +135,11 @@ export default function App() {
     loadHueState().catch(() => { });
   }, []);
 
-  // Hide native splash once network status is determined
-  // This ensures our SplashScreen component is mounted and ready
-  React.useEffect(() => {
-    if (hasInternet !== null && isConnected !== null) {
-      // Small delay to ensure our SplashScreen is rendered
-      const timer = setTimeout(() => {
-        ExpoSplashScreen.hideAsync().catch(() => { });
-        setAppReady(true);
-      }, 50);
-      return () => clearTimeout(timer);
-    }
-  }, [hasInternet, isConnected]);
-
-  // Show our SplashScreen while checking network/loading
-  // The native splash stays visible until appReady
-  if (isLoading || !fontsSettled || hasInternet === null || isConnected === null) {
-    return (
-      <View style={{ flex: 1, backgroundColor: '#000000' }}>
-        <SplashScreen />
-      </View>
-    );
-  }
+  // Everything the preloader waits on before the navigator may mount. Fonts
+  // and network resolve in parallel with the provider tree, which now mounts
+  // immediately and does its boot work hidden behind the preloader instead of
+  // serialised ahead of it.
+  const staged = fontsSettled && hasInternet !== null && isConnected !== null;
 
   return (
     <I18nextProvider i18n={i18n}>
@@ -177,7 +158,7 @@ export default function App() {
               <WebSocketProvider>
                 <DMProvider>
                   <StoryViewerProvider>
-                    <BootGate />
+                    <BootGate staged={staged} />
                   </StoryViewerProvider>
                 </DMProvider>
               </WebSocketProvider>
@@ -207,8 +188,10 @@ export default function App() {
                 scroll position, any open sheet, and any upload in flight, and
                 then paid the full boot cost again on the way back.
                 useNetworkStatus debounces the drop; this covers the app while
-                it lasts and gets out of the way the moment it is over. */}
-            {!hasInternet && (
+                it lasts and gets out of the way the moment it is over.
+                Strictly `false`, never falsy: `null` is "NetInfo has not
+                answered yet", and the preloader is covering that window. */}
+            {hasInternet === false && (
               <View style={StyleSheet.absoluteFill} pointerEvents="auto">
                 <NoInternetScreen onRetry={checkConnection} />
               </View>
@@ -221,7 +204,13 @@ export default function App() {
   );
 }
 
-const BootGate: React.FC = () => {
+// How long the curtain fade runs once the app underneath is genuinely ready.
+const REVEAL_FADE_MS = 220;
+// A shell that mounts but never reports ready (deep-link edge case, a thrown
+// navigator, a layout pass that never lands) must not hold the curtain forever.
+const REVEAL_FAILSAFE_MS = 5000;
+
+const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
   const user = useUser();
   // Only run update checks in production builds
@@ -255,69 +244,122 @@ const BootGate: React.FC = () => {
     [onStateChange]
   );
 
-  // Show the splash only while boot is genuinely in progress — auth state
-  // resolving or navigation state restoring. No artificial minimum floor: go
-  // straight from the splash to the feed the moment the app is actually ready.
-  // Wrapped in a black View to prevent any white flash.
-  if (isBootLoading || !isReady) {
-    return (
-      <View style={{ flex: 1, backgroundColor: '#000000' }}>
-        <SplashScreen />
-      </View>
-    );
-  }
+  // The navigator only mounts once boot is genuinely done — RootNavigator
+  // captures its initial route exactly once, from auth state, so mounting it
+  // earlier would freeze the wrong route in place. Until then the preloader
+  // below carries the screen alone.
+  const settled = staged && !isBootLoading && isReady;
+
+  // ── One-load reveal ────────────────────────────────────────────────────
+  // The preloader below is mounted continuously across every boot phase and
+  // sits above everything, so the whole app mounts and settles underneath it:
+  // auth resolving, navigation state restoring, the home shell's first layout
+  // pass (header measured, feed inset applied, stories skeleton up) all
+  // happen hidden. When the navigator reports ready, two painted frames are
+  // enough for the header's onLayout commit to land — then the native splash
+  // hides underneath our still-opaque cover and the cover fades away. One
+  // transition, and nothing moves after it.
+  const [navReady, setNavReady] = useState(false);
+  const [coverMounted, setCoverMounted] = useState(true);
+  const coverOpacity = useRef(new Animated.Value(1)).current;
+  const revealingRef = useRef(false);
+
+  const beginReveal = useCallback(() => {
+    if (revealingRef.current) return;
+    revealingRef.current = true;
+    markBootRevealed();
+    // Native splash hands off underneath the opaque cover: by the time it is
+    // gone, the RN view above it already paints the same black-and-mark.
+    ExpoSplashScreen.hideAsync().catch(() => { });
+    Animated.timing(coverOpacity, {
+      toValue: 0,
+      duration: REVEAL_FADE_MS,
+      useNativeDriver: true,
+    }).start(() => setCoverMounted(false));
+  }, [coverOpacity]);
+
+  useEffect(() => {
+    if (!staged || !navReady) return;
+    let cancelled = false;
+    let settleTimer: ReturnType<typeof setTimeout> | undefined;
+    // First painted frame proves the shell composited; the short tail covers
+    // the header-measurement commit without being perceptible.
+    const frame = requestAnimationFrame(() => {
+      settleTimer = setTimeout(() => {
+        if (!cancelled) beginReveal();
+      }, 40);
+    });
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(frame);
+      if (settleTimer) clearTimeout(settleTimer);
+    };
+  }, [staged, navReady, beginReveal]);
+
+  // Failsafe. Armed only once the navigator is mounted, so what it uncovers is
+  // always the real app: `settled` waits on auth boot, which waits on a token
+  // refresh over the network, and a slow connection makes that window minutes
+  // wide. Timing out on it would trade a covered wait for a bare black screen.
+  useEffect(() => {
+    if (!settled) return;
+    const timer = setTimeout(beginReveal, REVEAL_FAILSAFE_MS);
+    return () => clearTimeout(timer);
+  }, [settled, beginReveal]);
 
   return (
     <>
-      <SafeAreaView className="flex-1 bg-theme-background">
-        <StatusBar barStyle="light-content" backgroundColor="#010305" />
-        <ErrorBoundary
-          showDetails={__DEV__}
-          onError={(error) => {
-            logger.error("Navigation error boundary caught", error);
-          }}
-        >
-          <NavigationContainer
-            ref={navigationRef}
-            linking={linkingConfig}
-            initialState={initialState}
-            onStateChange={handleStateChange}
-            theme={{
-              ...RNDarkTheme,
-              colors: {
-                ...RNDarkTheme.colors,
-                background: "#000000",
-                card: "#000000",
-                border: "#000000",
-                text: "#ffffff",
-                primary: theme.colors.accent,
-              },
-            }}
-            onReady={() => {
-              logger.info("Navigation container ready");
+      {settled ? (
+        <SafeAreaView className="flex-1 bg-theme-background">
+          <StatusBar barStyle="light-content" backgroundColor="#010305" />
+          <ErrorBoundary
+            showDetails={__DEV__}
+            onError={(error) => {
+              logger.error("Navigation error boundary caught", error);
             }}
           >
-            <PushNotificationsProvider>
-              <UserProfileSheetProvider>
-                <MessagingProvider>
-                  <CallProvider>
-                    <StageProvider>
-                      <RootNavigator />
-                      <NewMemberRegistrar />
-                      <CallModalsHost />
-                      <CallMiniPlayer />
-                      <StagesModalsHost />
-                      <StageMiniPlayer />
-                      <StageRecordingMiniPlayer />
-                      <RadioMiniPlayer />
-                    </StageProvider>
-                  </CallProvider>
-                </MessagingProvider>
-              </UserProfileSheetProvider>
-            </PushNotificationsProvider>
-          </NavigationContainer>
-        </ErrorBoundary>
-      </SafeAreaView>
+            <NavigationContainer
+              ref={navigationRef}
+              linking={linkingConfig}
+              initialState={initialState}
+              onStateChange={handleStateChange}
+              theme={{
+                ...RNDarkTheme,
+                colors: {
+                  ...RNDarkTheme.colors,
+                  background: "#000000",
+                  card: "#000000",
+                  border: "#000000",
+                  text: "#ffffff",
+                  primary: theme.colors.accent,
+                },
+              }}
+              onReady={() => {
+                logger.info("Navigation container ready");
+                setNavReady(true);
+              }}
+            >
+              <PushNotificationsProvider>
+                <UserProfileSheetProvider>
+                  <MessagingProvider>
+                    <CallProvider>
+                      <StageProvider>
+                        <RootNavigator />
+                        <NewMemberRegistrar />
+                        <CallModalsHost />
+                        <CallMiniPlayer />
+                        <StagesModalsHost />
+                        <StageMiniPlayer />
+                        <StageRecordingMiniPlayer />
+                        <RadioMiniPlayer />
+                      </StageProvider>
+                    </CallProvider>
+                  </MessagingProvider>
+                </UserProfileSheetProvider>
+              </PushNotificationsProvider>
+            </NavigationContainer>
+          </ErrorBoundary>
+        </SafeAreaView>
+      ) : null}
       <UploadProgressPill />
       {!__DEV__ && (
         <UpdateAppModal
@@ -328,6 +370,19 @@ const BootGate: React.FC = () => {
           releaseNotes={updateInfo.releaseNotes}
           downloadUrl={updateInfo.downloadUrl}
         />
+      )}
+      {/* The preloader. Opaque, edge-to-edge, above everything; taps land on
+          it until the fade starts, which is the point — there is nothing to
+          interact with underneath until the reveal begins. */}
+      {coverMounted && (
+        <Animated.View
+          style={[
+            StyleSheet.absoluteFill,
+            { backgroundColor: "#000000", opacity: coverOpacity },
+          ]}
+        >
+          <SplashScreen />
+        </Animated.View>
       )}
     </>
   );
