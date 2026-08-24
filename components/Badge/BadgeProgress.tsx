@@ -31,6 +31,10 @@ import {
   getBadgeStanding,
   type BadgeLock,
 } from "../../libs/misc";
+import {
+  engagementWeightForBadge,
+  formatEngagementWeight,
+} from "../../libs/engagement-weight";
 import { useBadgeLadderPrice, useBadgeScale } from "../../hooks/useBadgeScale";
 
 export interface BadgeProgressProps {
@@ -70,6 +74,7 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
   );
 
   const percent = Math.round(standing.progress * 100);
+  const weight = engagementWeightForBadge(standing.tier);
 
   // Width as a percentage string, driven once on mount and whenever the tier
   // moves. `withTiming` lives in the worklet, never in the style literal —
@@ -187,6 +192,16 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
           {standing.nextTier
             ? `${formatDhb(standing.remaining)} DHB to ${standing.nextTier}`
             : "Every tier unlocked"}
+        </Text>
+      </View>
+
+      {/* What the tier actually does, beyond drawing a picture. */}
+      <View className="mt-3 flex-row items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2">
+        <Text className="text-sm text-white">{formatEngagementWeight(weight)}</Text>
+        <Text className="text-[11px] leading-4 text-white/55 flex-1">
+          {standing.tier
+            ? `Every view you give and every reaction you leave counts ${formatEngagementWeight(weight)}. Still one reaction — it is just worth more.`
+            : "Views and reactions count once. A badge multiplies that — ×2 at Crab, up to ×14 at Meglodon."}
         </Text>
       </View>
 

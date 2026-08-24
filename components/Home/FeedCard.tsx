@@ -52,6 +52,8 @@ import { useImageTranslation } from "../../hooks/useImageTranslation";
 import { resolveViewCount } from "../../libs/numbers.util";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUser, useAuthActions, useAuthState } from "../../context/AuthContext";
+import { useEngagementWeight } from "../../hooks/useEngagementWeight";
+import { appliedEngagementWeight } from "../../libs/engagement-weight";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import PollCard from "../DM/PollCard";
 import {
@@ -218,6 +220,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isShort = contentType === "short";
 
   const userAddress = user?.address || user?.walletAddress || "";
+  // What one reaction from this viewer counts for — their badge multiplier.
+  // A badge never buys a second reaction, only a heavier one.
+  const voteWeight = useEngagementWeight();
   const isOwnerPost = !!(item as any).isOwner || (
     userAddress && minterAddress && userAddress.toLowerCase() === minterAddress.toLowerCase()
   );
@@ -506,23 +511,30 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       const nextPositive = next ? isPositiveReaction(next) : false;
       const nextNegative = next ? !nextPositive : false;
 
-      let nextLikeCount = wasLikeCount;
-      let nextDislikeCount = wasDislikeCount;
-      if (wasPositive && !nextPositive) nextLikeCount = Math.max(0, nextLikeCount - 1);
-      if (!wasPositive && nextPositive) nextLikeCount += 1;
-      if (wasNegative && !nextNegative) nextDislikeCount = Math.max(0, nextDislikeCount - 1);
-      if (!wasNegative && nextNegative) nextDislikeCount += 1;
+      // The whole optimistic result at a given weight. A function of the
+      // weight because the server answers with the weight it actually applied,
+      // and that can differ from the one guessed here — it prices from the
+      // earned badge, which this side cannot see.
+      const countsAt = (weight: number) => {
+        let nextLikeCount = wasLikeCount;
+        let nextDislikeCount = wasDislikeCount;
+        if (wasPositive && !nextPositive) nextLikeCount = Math.max(0, nextLikeCount - weight);
+        if (!wasPositive && nextPositive) nextLikeCount += weight;
+        if (wasNegative && !nextNegative) nextDislikeCount = Math.max(0, nextDislikeCount - weight);
+        if (!wasNegative && nextNegative) nextDislikeCount += weight;
+        return {
+          isLiked: nextPositive,
+          isDisliked: nextNegative,
+          myReaction: next,
+          likeCount: nextLikeCount,
+          dislikeCount: nextDislikeCount,
+          reactionCounts: applyReactionDelta(wasCounts, wasReaction, next, weight),
+        };
+      };
 
       // Publish to the shared overlay; the sync effect above pushes it into
       // this card and every other mounted card for the same post.
-      applyEngagement(engagementKey, {
-        isLiked: nextPositive,
-        isDisliked: nextNegative,
-        myReaction: next,
-        likeCount: nextLikeCount,
-        dislikeCount: nextDislikeCount,
-        reactionCounts: applyReactionDelta(wasCounts, wasReaction, next),
-      });
+      applyEngagement(engagementKey, countsAt(voteWeight));
 
       const rollback = () => {
         // Restore only the fields this handler owns, so a concurrent save or
@@ -549,15 +561,29 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         // A 200 carrying `{ error }` resolves rather than throwing
         // (libs/api.client.ts only throws on !response.ok), so `.catch` alone
         // would record a failed vote as successful and then share it.
-        .then((res) => {
-          if (isFailedResponse(res)) rollback();
+        .then((res: any) => {
+          if (isFailedResponse(res)) {
+            rollback();
+            return;
+          }
+          // Settle on the weight the server actually applied. Only differs
+          // when this side guessed a heavier badge than the account has earned
+          // (a lent one, say) — but the overlay outlives the refetch, so a
+          // wrong number would sit on the card until then. An API that does
+          // not send one is left alone rather than settled to 1: absent means
+          // "older build", not "counted once".
+          const raw = res?.weight ?? res?.result?.weight;
+          if (typeof raw === "number") {
+            const applied = appliedEngagementWeight(raw);
+            if (applied !== voteWeight) applyEngagement(engagementKey, countsAt(applied));
+          }
         })
         .catch(rollback)
         .finally(() => {
           voteInFlightRef.current = false;
         });
     });
-  }, [tokenId, liked, disliked, likeCount, dislikeCount, myReaction, reactionCounts, engagementKey, userAddress, requireAuth]);
+  }, [tokenId, liked, disliked, likeCount, dislikeCount, myReaction, reactionCounts, engagementKey, userAddress, requireAuth, voteWeight]);
 
   /**
    * Tapping a thumb casts whichever reaction it is WEARING: a card leading with

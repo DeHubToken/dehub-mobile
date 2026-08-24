@@ -198,16 +198,23 @@ export function topReactions(
  * engagement overlay derive the same numbers from the same inputs. `previous`
  * is the reaction being replaced (null when the user had none) and `next` the
  * new one (null when toggling off).
+ *
+ * `weight` is the reactor's badge multiplier — the server moves both the
+ * headline count and the per-reaction split by it, so a tray that moved by one
+ * while the headline moved by three would visibly disagree with itself. It is
+ * one reaction either way; the weight is only what that reaction counts for.
  */
 export function applyReactionDelta(
   counts: ReactionCounts | null | undefined,
   previous: PostReaction | null,
   next: PostReaction | null,
+  weight = 1,
 ): ReactionCounts {
   const result: ReactionCounts = { ...(counts ?? {}) };
   if (previous === next) return result;
-  if (previous) result[previous] = Math.max(0, (result[previous] ?? 0) - 1);
-  if (next) result[next] = (result[next] ?? 0) + 1;
+  const by = Number.isFinite(weight) ? Math.max(1, Math.floor(weight)) : 1;
+  if (previous) result[previous] = Math.max(0, (result[previous] ?? 0) - by);
+  if (next) result[next] = (result[next] ?? 0) + by;
   return result;
 }
 
