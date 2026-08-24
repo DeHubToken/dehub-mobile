@@ -12,6 +12,7 @@ import { useTranslation } from "../../hooks/useTranslation";
 import { TranslateButton } from "../ui/TranslateButton";
 import FakeGlass from "../ui/FakeGlass";
 import MutualFollowers from "./MutualFollowers";
+import BadgePatronChip from "../common/BadgePatronChip";
 import type { FollowListItem } from "../../services/user.service";
 
 const SOCIAL_SVGS: Record<string, string> = {
@@ -322,6 +323,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                 <Text className="text-theme-neutrals-400 text-[11px] font-medium">Follows you</Text>
               </View>
             )}
+            {/* A lent badge draws like any other badge everywhere else; this is
+                the one place that says whose it is. */}
+            <BadgePatronChip lookupId={address || username} />
           </View>
 
           {!!bio && (
