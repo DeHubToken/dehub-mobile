@@ -10,6 +10,7 @@ jest.mock('../../config/queryClient', () => ({
   queryClient: { clear: jest.fn() },
 }));
 
+import { getProfileAllowance, MAX_PROFILES_CEILING } from "../../libs/profileLimits";
 import {
   PROFILES_STORAGE_KEY,
   adoptCurrentProfile,
@@ -202,5 +203,52 @@ describe('libs/profiles', () => {
       expect(profiles).toHaveLength(1);
       expect(profiles[0].id).toBe(`addr:${ADDR_B.toLowerCase()}`);
     });
+  });
+});
+
+describe("device profile limit", () => {
+  // Mobile used to keep a flat 8 and, past that, SILENTLY delete the
+  // least-recently-active saved profile — taking its stored session with it.
+  // On an app where a lost wallet is a lost account, that is data loss, not a
+  // cache eviction. Web prices the same list 2..15 by badge tier and refuses
+  // to add rather than making room; these pin the app to that.
+  it("gives a device with no badge two slots", () => {
+    expect(getProfileAllowance([]).maxProfiles).toBe(2);
+    expect(getProfileAllowance([{ badgeBalance: 0 }]).maxProfiles).toBe(2);
+    expect(getProfileAllowance([{ badgeBalance: 9999 }]).isBaseline).toBe(true);
+  });
+
+  it("adds a slot per badge tier", () => {
+    expect(getProfileAllowance([{ badgeBalance: 10_000 }]).maxProfiles).toBe(3); // Crab
+    expect(getProfileAllowance([{ badgeBalance: 50_000_000 }]).maxProfiles).toBe(15); // Meglodon
+  });
+
+  it("prices the device off the BEST tier saved, not the newest", () => {
+    // Switching to a fresh alt must not drop the limit below what is already
+    // saved — that would read as the app losing accounts.
+    const holders = [{ badgeBalance: 50_000_000 }, { badgeBalance: 0 }];
+    expect(getProfileAllowance(holders).maxProfiles).toBe(15);
+  });
+
+  it("names the tier that would lift the limit", () => {
+    const allowance = getProfileAllowance([{ badgeBalance: 10_000 }]);
+    expect(allowance.tierName).toBe("Crab");
+    expect(allowance.nextTierName).toBe("Lobster");
+    expect(allowance.nextTierProfiles).toBe(4);
+  });
+
+  it("has no next tier at the top", () => {
+    expect(getProfileAllowance([{ badgeBalance: 50_000_000 }]).nextTierName).toBeNull();
+  });
+
+  it("honours the username overrides web applies", () => {
+    expect(getProfileAllowance([{ username: "maldoteth" }]).maxProfiles).toBe(15);
+    expect(getProfileAllowance([{ username: "@mal" }]).tierName).toBe("Meglodon");
+  });
+
+  it("never exceeds the storage ceiling", () => {
+    expect(getProfileAllowance([{ badgeBalance: 50_000_000 }]).maxProfiles).toBeLessThanOrEqual(
+      MAX_PROFILES_CEILING,
+    );
   });
 });
