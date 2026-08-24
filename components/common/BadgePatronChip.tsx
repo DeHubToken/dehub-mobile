@@ -1,22 +1,23 @@
 /**
  * Badge Patron Chip (mobile)
  * ==========================
- * "Lent by @someone", beside a name whose badge was delegated rather than
- * earned. Twin of web's `components/app/BadgePatronChip.tsx`.
+ * "Lent by @someone", for a badge that was delegated rather than earned. Twin
+ * of web's `components/app/BadgePatronChip.tsx`, where it is a hover tooltip.
  *
- * A lent badge draws identically to an earned one everywhere in the app — that
- * is deliberate, it is the same influence — so this chip is the one place that
- * says where it came from. Two things follow from putting it here and nowhere
- * else: a delegation becomes something to show off rather than something to
- * hide, and there is a trail when somebody starts handing badges to spam
- * accounts.
+ * There is no hover on a phone, so the equivalent is a tap: the chip is
+ * collapsed to a small chevron button by default and expands when pressed,
+ * collapsing again on a second press. Same intent as web's version — a lent
+ * badge should read as the badge, not as an annotation sitting permanently
+ * beside the name — while still being reachable, which a hover-only rule
+ * would not be here.
  *
- * Renders nothing for the overwhelming majority of accounts, whose badge is
- * their own.
+ * Renders nothing at all for the overwhelming majority of accounts, whose
+ * badge is their own.
  */
-import React, { FC } from "react";
-import { View, Text, Image } from "react-native";
+import React, { FC, useState } from "react";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useQuery } from "@tanstack/react-query";
+import Icon from "../ui/Icon";
 import { fetchBadgePatron } from "../../services/badge-delegation.service";
 import { badgeImageFor } from "../../libs";
 
@@ -26,6 +27,8 @@ interface BadgePatronChipProps {
 }
 
 const BadgePatronChip: FC<BadgePatronChipProps> = ({ lookupId }) => {
+  const [expanded, setExpanded] = useState(false);
+
   const { data } = useQuery({
     queryKey: ["badge-patron", lookupId],
     queryFn: () => fetchBadgePatron(lookupId!),
@@ -41,15 +44,27 @@ const BadgePatronChip: FC<BadgePatronChipProps> = ({ lookupId }) => {
   if (!data?.grantor) return null;
 
   const handle = data.grantor.username || data.grantor.displayName || null;
+  const who = handle ? `@${handle}` : "another holder";
   const source = badgeImageFor(data.tier);
 
   return (
-    <View className="flex-row items-center rounded-md border border-white/15 bg-white/10 px-2 py-0.5">
-      {source ? <Image source={source} className="w-3 h-3 mr-1" /> : null}
-      <Text className="text-white text-[11px] font-medium" numberOfLines={1}>
-        Lent by {handle ? `@${handle}` : "another holder"}
-      </Text>
-    </View>
+    <TouchableOpacity
+      onPress={() => setExpanded(prev => !prev)}
+      activeOpacity={0.7}
+      accessibilityRole="button"
+      accessibilityLabel={`This ${data.tier} badge was lent by ${who}`}
+      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+      className="flex-row items-center rounded-md border border-white/15 bg-white/10 px-1.5 py-0.5"
+    >
+      {source ? <Image source={source} className="w-3 h-3" /> : null}
+      {expanded ? (
+        <Text className="text-white text-[11px] font-medium ml-1" numberOfLines={1}>
+          Lent by {who}
+        </Text>
+      ) : (
+        <Icon name="ChevronDown" size={10} color="#FFFFFF" />
+      )}
+    </TouchableOpacity>
   );
 };
 

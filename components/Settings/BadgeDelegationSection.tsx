@@ -8,9 +8,8 @@
  * badge:
  *
  * - You get **one slot per rung climbed**, not one flat.
- * - You hand out the tier **below** yours, never your own. Someone reading
- *   "Killer Whale · 10 slots" will otherwise expect to be handing out Killer
- *   Whales, and the first grant is a surprise.
+ * - What you hand out is **your own tier** — the person you lend to wears the
+ *   badge you wear.
  * - A returned slot is not free straight away.
  *
  * A lent badge draws identically to an earned one everywhere else in the app —
@@ -92,7 +91,7 @@ const BadgeDelegationSection: React.FC = () => {
       icon="Award"
       note={
         data.ownTier
-          ? 'A slot lends your badge one tier down. Take it back whenever you like — the slot frees up a day later.'
+          ? 'A slot lends your own badge to another account. Take it back whenever you like — the slot frees up a day later.'
           : 'Delegation slots come with a staking badge. Stake DHB to earn one.'
       }
     >
@@ -104,19 +103,12 @@ const BadgeDelegationSection: React.FC = () => {
               {data.slots} slot{data.slots === 1 ? '' : 's'}
             </Text>
             , {slotsFree} free.
-            {data.grantableTier ? (
-              <Text>
-                {' '}
-                Each one lends another account the{' '}
-                <Text className="text-white">{data.grantableTier}</Text> badge.
-              </Text>
-            ) : (
-              <Text>
-                {' '}
-                A delegation grants the tier below yours, and there is nothing below Crab — the next
-                rung up lends a Crab badge.
-              </Text>
-            )}
+            <Text>
+              {' '}
+              Each one lends another account your own{' '}
+              <Text className="text-white">{data.grantableTier ?? data.ownTier}</Text> badge — they
+              wear what you wear.
+            </Text>
           </Text>
         ) : (
           <Text className="text-theme-neutrals-400 text-xs leading-5">
