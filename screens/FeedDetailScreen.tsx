@@ -650,6 +650,10 @@ export default function FeedDetailScreen() {
         } catch (e) {
           setComments((prev) => prev.filter((c) => c.id !== tempId));
           console.error("[FeedDetailScreen] postComment error", e);
+          // The comment vanished from the thread with nothing said at all
+          // before this. A refusal from the server explains itself — comments
+          // turned off, too long, a link that cannot be posted — so say it.
+          toastError(e instanceof Error && e.message ? e.message : "Failed to post comment");
         }
       } finally {
         setPosting(false);

@@ -347,6 +347,19 @@ export interface PostCommentResponse { result?: any; [k: string]: any }
  * - For a new comment: postComment({ streamTokenId, content })
  * - For a reply: postComment({ streamTokenId, content, commentId })
  */
+/**
+ * Refusals from the comment endpoints arrive as `{result: false, error}` with
+ * HTTP 200, so nothing threw and nothing read them: the optimistic comment
+ * simply kept its temporary id and the author was told "Failed to post
+ * comment" at best. Every reason the server gives — comments turned off, over
+ * 500 characters, a link the scanner will not allow — is worth more than that.
+ */
+function assertCommentAccepted(response: any, fallback = 'Could not post comment'): void {
+  if (response && typeof response === 'object' && response.result === false) {
+    throw new Error(response.error || fallback);
+  }
+}
+
 export async function postComment(input: PostCommentInput): Promise<PostCommentResponse> {
   const { streamTokenId, content, commentId } = input || ({} as PostCommentInput);
   if (streamTokenId == null) throw new Error('streamTokenId required');
@@ -363,6 +376,7 @@ export async function postComment(input: PostCommentInput): Promise<PostCommentR
       body,
       { isAuthRequired: true }
     );
+    assertCommentAccepted(res);
     return res;
   } catch (e) {
     console.error('[NFTService] postComment error', e);
@@ -677,6 +691,7 @@ export async function postImageComment(input: PostImageCommentInput): Promise<Po
       formData,
       { isAuthRequired: true }
     );
+    assertCommentAccepted(res);
     return res;
   } catch (e) {
     console.error('[NFTService] postImageComment error', e);
@@ -713,6 +728,7 @@ export async function postGifComment(input: PostGifCommentInput): Promise<PostGi
       },
       { isAuthRequired: true }
     );
+    assertCommentAccepted(res);
     return res;
   } catch (e) {
     console.error('[NFTService] postGifComment error', e);

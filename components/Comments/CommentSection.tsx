@@ -704,7 +704,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           setFlatComments((prev) => prev.filter((c) => c.id !== tempId));
         }
         
-        toastError(editingComment ? "Failed to edit comment" : "Failed to post comment");
+        // The server's own words when it has them: a refusal explains itself,
+        // and a generic failure leaves the author guessing.
+        const reason = e instanceof Error && e.message ? e.message : null;
+        toastError(reason || (editingComment ? "Failed to edit comment" : "Failed to post comment"));
       } finally {
         setPosting(false);
       }
