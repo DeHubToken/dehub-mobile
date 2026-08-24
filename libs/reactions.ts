@@ -259,14 +259,10 @@ export function resolveDislikeCount(item: any): number {
   return toCount(item?.totalVotes?.against) ?? toCount(item?.dislikes) ?? toCount(item?.dislike_count) ?? 0;
 }
 
-/** Total of one polarity's stored reactions. */
-function sumSide(counts: ReactionCounts, positive: boolean): number {
-  let total = 0;
-  for (const key of POST_REACTIONS) {
-    const value = counts[key] ?? 0;
-    if (value > 0 && isPositiveReaction(key) === positive) total += value;
-  }
-  return total;
+/** True when two counts maps hold the same non-zero entries. */
+function sameCounts(a: ReactionCounts, b: ReactionCounts): boolean {
+  const keys = POST_REACTIONS.filter((key) => (a[key] ?? 0) > 0 || (b[key] ?? 0) > 0);
+  return keys.every((key) => (a[key] ?? 0) === (b[key] ?? 0));
 }
 
 /**
@@ -302,7 +298,15 @@ export function reconcileReactionCounts(
       .map((key) => ({ key, count: Math.max(0, Math.floor(source[key] ?? 0)) }))
       .filter((entry) => entry.count > 0);
 
-    const sum = sumSide(source, positive);
+    // Sum the FLOORED entries, not the raw stored values. Summing raw values
+    // meant a fractional count like `{ like: 0.5 }` produced sum = 0.5, which
+    // is neither 0 nor the target — so both early branches were skipped while
+    // `entries` was empty (0.5 floors to 0 and is filtered out). The loop then
+    // evaluated `fractional[0 % 0]`, i.e. `fractional[NaN]`, and threw
+    // `Cannot read properties of undefined` inside render. Flooring first is
+    // also exactly what the API's copy does, so all three agree on this input
+    // instead of two of them crashing.
+    const sum = entries.reduce((total, entry) => total + entry.count, 0);
     if (sum === 0) {
       // No shape to keep on this side — attribute the whole total to the
       // side's default reaction, same rule seeding uses for legacy votes.
@@ -354,7 +358,18 @@ export function reconcileReactionCounts(
 export function resolveReactionCounts(item: any): ReactionCounts {
   const stored = item?.reactionCounts as ReactionCounts | undefined;
   if (stored && Object.values(stored).some((value) => (value ?? 0) > 0)) {
-    return reconcileReactionCounts(resolveLikeCount(item), resolveDislikeCount(item), stored);
+    const reconciled = reconcileReactionCounts(resolveLikeCount(item), resolveDislikeCount(item), stored);
+    // Hand back the item's OWN object when the reconcile changed nothing.
+    //
+    // This runs once per render per mounted card (engagementCache.fromItem ->
+    // useEngagement), and its result is a prop on the memoised FeedActionBar
+    // and a dependency of the reaction callbacks above it. A freshly allocated
+    // object every time means that memo can never bail out and those callbacks
+    // are new on every render — on a feed with six lists mounted over the same
+    // posts. Since the server-side split now agrees with the headline on every
+    // row, the reconcile is a no-op on effectively all real data, so this is
+    // the normal path rather than an optimisation for a rare case.
+    return sameCounts(reconciled, stored) ? stored : reconciled;
   }
   return seedReactionCounts(resolveLikeCount(item), resolveDislikeCount(item));
 }
