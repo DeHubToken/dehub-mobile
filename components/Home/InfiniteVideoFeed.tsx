@@ -47,6 +47,7 @@ import {
   type TokenId,
 } from "../../services/view.service";
 import { feedEvents } from "../../libs/eventBus";
+import { capFeedByAuthorAllowance } from "../../libs/postQuota";
 import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import SuggestedAccountsSection from "./SuggestedAccountsSection";
@@ -85,6 +86,10 @@ const FOOTER_SLOT = { height: 84 } as const;
 // Hoisted: a fresh object literal here would re-configure the native scroll
 // view on every render.
 const MAINTAIN_POSITION = { minIndexForVisible: 1 } as const;
+
+// Rows the capped list needs before it can scroll at all. Below this the feed
+// pulls another page rather than sitting on a screenful of nothing.
+const MIN_SCROLLABLE_ROWS = 6;
 
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
 const DEFAULT_AVATAR = require("../../assets/default-avatar.png");
@@ -299,6 +304,20 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       });
   }, [data, tombstonesReady]);
 
+  // Tiered home-feed visibility, matching web's HomeFeed. Posting is unlimited,
+  // profiles show everything, and followers keep seeing all of it — but the
+  // general home feed carries only each author's first `postsPerDay` posts per
+  // UTC day, from their own badge tier. Without this the app showed one author
+  // holding 14 of the first 30 rows while the site showed 2.
+  //
+  // Capping across the flattened pages rather than per page keeps the rule
+  // stable as more pages load. A creator- or search-scoped list is somebody
+  // asking for one person's posts, so it is never capped.
+  const cappedItems = useMemo<FeedItem[]>(() => {
+    if (params?.minter || params?.owner || params?.search) return items;
+    return capFeedByAuthorAllowance(items as any[]) as FeedItem[];
+  }, [items, params?.minter, params?.owner, params?.search]);
+
   const endReached = hasNextPage === false;
   const error = queryError ? (queryError as Error).message || "Failed to load" : null;
 
@@ -310,6 +329,21 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     if (initialLoading || loadingMore || refreshing || !hasNextPage) return;
     fetchNextPage().catch(() => {});
   }, [initialLoading, loadingMore, refreshing, hasNextPage, fetchNextPage]);
+
+  // Top up when the allowance cap leaves too little to scroll.
+  //
+  // One prolific author can hold most of a page, and capping them removes those
+  // rows AFTER the fetch — so a 10-row page can arrive as two visible cards. A
+  // list that short never scrolls, `onEndReached` never fires again, and the
+  // feed sits there looking finished. This pulls further pages until there is
+  // enough to scroll or the server runs out. `loadMore` already no-ops while a
+  // fetch is in flight, so this cannot stack requests.
+
+  useEffect(() => {
+    if (cappedItems.length >= MIN_SCROLLABLE_ROWS) return;
+    if (!hasNextPage || initialLoading || loadingMore || refreshing) return;
+    loadMore();
+  }, [cappedItems.length, hasNextPage, initialLoading, loadingMore, refreshing, loadMore]);
 
   const onRefresh = useCallback(async () => {
     // Call external refresh callback (e.g., to refresh shuffle seed)
@@ -467,12 +501,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       <View style={FOOTER_SLOT} className="items-center justify-center">
         {loadingMore ? (
           <ActivityIndicator size="large" color="#fff" />
-        ) : endReached && items.length > 0 ? (
+        ) : endReached && cappedItems.length > 0 ? (
           <Text className="text-theme-neutrals-400 text-xs">No more content</Text>
         ) : null}
       </View>
     ),
-    [loadingMore, endReached, items.length],
+    [loadingMore, endReached, cappedItems.length],
   );
 
   // Handle scroll begin to close filter panel
@@ -485,7 +519,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     onScrollBegin?.();
   }, [onScrollBegin]);
 
-  if (initialLoading && items.length === 0) {
+  if (initialLoading && cappedItems.length === 0) {
     return (
       <View className="flex-1 px-2">
         {/* Pushed below the collapsible header. The early return drops the
@@ -498,7 +532,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     );
   }
 
-  if (error && items.length === 0) {
+  if (error && cappedItems.length === 0) {
     return (
       <View className="flex-1 items-center justify-center px-4">
         <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
@@ -536,7 +570,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       )}
       <AnimatedFlatList
         ref={listRef}
-        data={items}
+        data={cappedItems}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         ListHeaderComponent={listHeader}
