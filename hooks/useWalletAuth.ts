@@ -12,6 +12,7 @@
 // DeHub auth message.
 import { useState, useCallback, useEffect, useRef } from "react";
 import { toastError } from "../libs";
+import { reportWalletSignupBlocked } from "../libs/walletSignupGate";
 import { useAppKit, useAppKitAccount, useAppKitProvider } from "@reown/appkit-ethers5-react-native";
 import { useAuthActions } from "../context/AuthContext";
 import { ChainId } from "../config/constants";
@@ -85,7 +86,9 @@ export const useWalletAuth = () => {
         authenticatedKeyRef.current = `${address.toLowerCase()}-${chainId}`;
       } catch (error) {
         log.error("authenticate:error", error);
-        toastError(error, "Wallet authentication failed. Please try again.");
+        if (!reportWalletSignupBlocked(error)) {
+          toastError(error, "Wallet authentication failed. Please try again.");
+        }
       } finally {
         clearSigningProvider();
         setIsWalletLoading(false);
