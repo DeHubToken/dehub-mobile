@@ -12,6 +12,7 @@ import {
 } from "./AuthControls";
 import { deriveAddressFromPrivateKey } from "../../libs/wallet.utils";
 import { listLocalAccounts, removeLocalAccount, LocalAccount, getPrivateKeyForAddress, upsertLocalAccount } from "../../libs/wallets.local";
+import { isWalletSignupBlocked, reportWalletSignupBlocked } from "../../libs/walletSignupGate";
 import { miniAddress } from "../../libs/strings.util";
 import * as Clipboard from "expo-clipboard";
 import { openInApp } from "../../libs/links.utils";
@@ -95,9 +96,11 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
 
     const handleImport = useCallback(async () => {
       if (!isPkValid) return;
+      // Declared out here so the catch can roll back a persisted account.
+      let address: string | undefined;
       try {
         setIsImporting(true);
-        const address = deriveAddressFromPrivateKey(privateKey)?.toLowerCase();
+        address = deriveAddressFromPrivateKey(privateKey)?.toLowerCase();
         if (!address) throw new Error("Invalid private key");
         // Choose preferred chain (fallback to Base) for local EIP-1193 provider
         const preferred = await getPreferredChainId();
@@ -120,7 +123,16 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
           clearSigningProvider();
         }
       } catch (e: any) {
-        toastError(e, "Could not import wallet");
+        // A wallet the server refused to open an account for must not be left
+        // sitting in the device's local account list with its private key —
+        // the import is persisted before sign-in so the signer is available,
+        // which means a refusal has to undo it.
+        if (address && isWalletSignupBlocked(e)) {
+          await removeLocalAccount(address).catch(() => {});
+        }
+        if (!reportWalletSignupBlocked(e)) {
+          toastError(e, "Could not import wallet");
+        }
       } finally {
         setIsImporting(false);
       }
@@ -159,7 +171,9 @@ const ImportWalletModal: React.FC<ImportWalletModalProps> = memo(
             clearSigningProvider();
           }
         } catch (e: any) {
-          toastError(e, "Failed to use this account");
+          if (!reportWalletSignupBlocked(e)) {
+            toastError(e, "Failed to use this account");
+          }
         } finally {
           setIsImporting(false);
         }
