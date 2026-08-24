@@ -36,10 +36,16 @@ const SKELETON = "rgba(255,255,255,0.07)";
  * off its seat.
  */
 const ORB = 44;
-const SOCKET = 52;
+/** Sized so the arc hugs the dust ball (37px across at ORB 44). */
+const SOCKET = 48;
+/** The orb's centre sits ON the cards' bottom edge, which is also the socket's
+ *  centre, so the hole is concentric with the ball and its lower half hangs
+ *  below the rail. Seating it any higher puts the seam through the orb. */
 const NOTCH = SOCKET / 2;
+/** Room under the cards for the half of the orb that hangs below them. */
+const ORB_OVERHANG = NOTCH + 8;
 /** Card padding below the text — must clear the socket. */
-const CARD_PAD_BOTTOM = NOTCH + 2;
+const CARD_PAD_BOTTOM = NOTCH + 4;
 const CARD_MIN_HEIGHT = 108;
 
 /** RN has no `animate-pulse`, so the loading blocks get their own driver. */
@@ -123,7 +129,10 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
   const rimColor = notice || busy ? CARD_BORDER_EMPTY : CARD_BORDER;
 
   return (
-    <View className="px-3 pt-2 pb-2 border-b border-theme-neutrals-800/50">
+    <View
+      className="px-3 pt-2 border-b border-theme-neutrals-800/50"
+      style={{ paddingBottom: ORB_OVERHANG }}
+    >
       <View style={{ position: "relative" }}>
         {notice ? (
           <View
@@ -224,9 +233,18 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
           />
         </View>
 
+        {/* Dropped by the notch radius so the orb's centre lands on the cards'
+            bottom edge — the same point the socket is centred on. The tray's
+            paddingBottom holds the half that hangs below. */}
         <View
           pointerEvents="box-none"
-          style={{ position: "absolute", left: 0, right: 0, bottom: 0, alignItems: "center" }}
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: -NOTCH,
+            alignItems: "center",
+          }}
         >
           <TouchableOpacity
             onPress={onGenerate}
