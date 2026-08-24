@@ -35,6 +35,7 @@ import { getOtherParticipant } from "../services/dm/dm.types";
 import { useDmContacts, dmActions } from "../store/dm.store";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useDMContext } from "../context/DMContext";
+import AppTopBar from "../components/AppTopBar";
 
 const DirectMessagesInner: React.FC = () => {
   const { t } = useTranslation();
@@ -326,6 +327,8 @@ const DirectMessagesInner: React.FC = () => {
       style={{ flex: 1 }}
     >
       <View className="flex-1 bg-theme-neutrals-900">
+        {/* The dehub mark bar is constant chrome on every screen, as on web. */}
+        <AppTopBar />
         {/* Header */}
         <View className="flex-row items-center justify-between px-4 h-16">
           <View className="flex-row items-center gap-3">
