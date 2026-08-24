@@ -41,7 +41,8 @@ import {
   type FeedPostType,
 } from "../services/feed.unified.service";
 import { useRoute } from "@react-navigation/native";
-import ScreenHeader from "../components/ScreenHeader";
+import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import FeedCard from "../components/Home/FeedCard";
 import SearchAccountCard from "../components/Search/SearchAccountCard";
 import SearchAccountChip from "../components/Search/SearchAccountChip";
@@ -129,6 +130,9 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
 const SearchScreen: React.FC = () => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  // The ScreenHeader is rendered above the KeyboardAvoidingView, so it counts
+  // as chrome on top of the root SafeAreaView's inset.
+  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
   // The app drawer's menu search hands off here when what was typed is not a
   // page — see AppDrawer's runFullSearch.
   const route = useRoute<{ key: string; name: string; params?: { q?: string } }>();
@@ -709,7 +713,7 @@ const SearchScreen: React.FC = () => {
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+        keyboardVerticalOffset={Platform.OS === "ios" ? keyboardOffset : 0}
       >
         <View className="px-4 pb-2">
           <View className="flex-row items-center bg-theme-neutrals-800 rounded-full px-3 py-2">

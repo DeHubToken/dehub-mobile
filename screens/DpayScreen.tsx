@@ -27,6 +27,7 @@ import ProfileAssets from "../components/Profile/ProfileAssets";
 import { getSupply, getSuccessTotal, getDpayPrice } from "../services";
 import { ChainId } from "../config/constants";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import type { AppStackParamList } from "../navigation/types";
 
 type WalletTab = "buy" | "stake" | "bridge" | "solana";
@@ -40,6 +41,9 @@ const TABS: { key: WalletTab; label: string; icon: IconName }[] = [
 
 const DpayScreen: React.FC = () => {
   const { t } = useTranslation();
+  // The KeyboardAvoidingView wraps the ScreenHeader too, so there is no chrome
+  // above it beyond the root SafeAreaView's inset.
+  const keyboardOffset = useKeyboardOffset();
   const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
@@ -174,7 +178,7 @@ const DpayScreen: React.FC = () => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+      keyboardVerticalOffset={Platform.OS === "ios" ? keyboardOffset : 0}
       className="flex-1 bg-theme-neutrals-900"
     >
       <ScreenHeader title={t("wallet.title")} subtitle={t("screens.walletSubtitle")} />

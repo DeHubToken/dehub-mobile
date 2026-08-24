@@ -10,12 +10,34 @@ import { cdnImage } from "./cdnImage";
  */
 const DEFAULT_AVATAR_PT = 48;
 
+/**
+ * True for a value that already addresses an image somewhere other than a
+ * stored DeHub avatar path — a full URL, an in-memory preview, or an inline
+ * payload.
+ *
+ * These have to be left alone. The flattening below is deliberate for stored
+ * paths, which arrive in two shapes (`avatars/0x….jpg` and
+ * `statics/avatars/0x….jpeg`) that both resolve under `/avatars/` on the CDN —
+ * measured, the `statics/` prefix 403s and the flattened form 200s. But applied
+ * to an absolute URL it keeps only the last segment and re-bases it onto our
+ * CDN, so a Supabase Storage avatar becomes
+ * `…/avatars/johncena.png` (403) and a leftover `blob:` preview becomes
+ * `…/avatars/<uuid>` (403). Both render as a broken image.
+ */
+function isAlreadyAddressable(url: string): boolean {
+  return /^(https?:|blob:|data:|file:)/i.test(url);
+}
+
 export function getAvatarUrl(
   url: string | undefined | null,
   /** Rendered size in CSS points. Pass 0 for the untouched original. */
   sizePt: number = DEFAULT_AVATAR_PT,
 ): string {
   if (!url) return "default-avatar"; // handled by Image source resolver with local asset mapping
+  // Already a URL: hand it to cdnImage as-is. cdnImage only rewrites our own
+  // CDN prefixes, so a third-party host passes through untouched and one of
+  // ours still gets sized.
+  if (isAlreadyAddressable(url)) return cdnImage(url, { width: sizePt });
   const fileName = url.split("/").pop();
   const base = `${env.CDN_BASE_URL}/avatars/${fileName}`;
   return cdnImage(base, { width: sizePt });
@@ -27,6 +49,9 @@ export function getCoverUrl(
   widthPt?: number,
 ): string {
   if (!url) return "default-banner";
+  // Same trap as getAvatarUrl: an absolute URL must not be reduced to its last
+  // path segment and re-based onto our CDN.
+  if (isAlreadyAddressable(url)) return cdnImage(url, { width: widthPt });
   const fileName = url.split("/").pop();
   return cdnImage(`${env.CDN_BASE_URL}/covers/${fileName}`, { width: widthPt });
 }

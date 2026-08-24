@@ -6,6 +6,7 @@ import {
   Modal,
   Pressable,
   Image,
+  ScrollView,
   StyleSheet,
   Platform,
 } from "react-native";
@@ -139,6 +140,8 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
 
             <Text style={styles.title}>{title}</Text>
 
+            {/* Scrolls so the sheet can be capped — see styles.sheet. */}
+            <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
             {chains.map((chain) => {
               const active = chain.id === selectedChainId;
               return (
@@ -156,6 +159,7 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
                 </TouchableOpacity>
               );
             })}
+            </ScrollView>
           </Pressable>
         </Pressable>
       </Modal>
@@ -200,6 +204,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     paddingHorizontal: 16,
     paddingTop: 16,
+    // Bottom-pinned sheet: more chains than fit would grow off the TOP of the
+    // screen. Cap it; the list scrolls.
+    maxHeight: "88%",
   },
   sheetOverlay: {
     backgroundColor: "rgba(20,20,20,0.55)",

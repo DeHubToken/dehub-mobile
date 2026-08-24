@@ -19,6 +19,7 @@ import {
   Modal,
   Pressable,
   ActivityIndicator,
+  ScrollView,
   StyleSheet,
   KeyboardAvoidingView,
 } from "react-native";
@@ -146,6 +147,12 @@ export function RestrictionSheet({
               </TouchableOpacity>
             </View>
 
+            {/* Scrolls so the sheet can be capped — see styles.sheet. */}
+            <ScrollView
+              bounces={false}
+              keyboardShouldPersistTaps="handled"
+              showsVerticalScrollIndicator={false}
+            >
             <Text className="text-zinc-400 text-xs mb-2">
               {t("communities.manage.durationLabel", { defaultValue: "Duration" })}
             </Text>
@@ -226,6 +233,7 @@ export function RestrictionSheet({
                 </Text>
               )}
             </TouchableOpacity>
+            </ScrollView>
           </Pressable>
         </Pressable>
       </KeyboardAvoidingView>
@@ -243,6 +251,9 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.1)",
     padding: 20,
     paddingBottom: 32,
+    // Bottom-pinned sheet: extra height grows off the TOP of the screen, and
+    // the keyboard is what pushes it there. Cap it; the body scrolls.
+    maxHeight: "88%",
   },
   header: { flexDirection: "row", alignItems: "center", gap: 10, marginBottom: 16 },
   title: { flex: 1, color: "#fff", fontSize: 16, fontWeight: "600" },

@@ -21,7 +21,7 @@ import Avatar from "../components/common/Avatar";
 import MentionSuggestions from "../components/common/MentionSuggestions";
 import CommentsSkeleton from "../components/Feed/CommentsSkeleton";
 import { useUser, useAuthActions } from "../context/AuthContext";
-import useKeyboard from "../hooks/useKeyboard";
+import { useKeyboardLift } from "../hooks/useKeyboardLayout";
 import { useMentions } from "../hooks/useMentions";
 import { useCommentTipTotals } from "../hooks/useCommentTipTotals";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
@@ -91,7 +91,9 @@ export default function FeedDetailScreen() {
   );
 
   const inputRef = useRef<TextInput>(null);
-  const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
+  // Keyboard height minus the bottom inset the root SafeAreaView already spent
+  // — see hooks/useKeyboardLayout.ts.
+  const { lift: kbLift } = useKeyboardLift();
   const { showUserProfile } = useUserProfileSheet();
 
   // User avatar for comment input
@@ -168,9 +170,7 @@ export default function FeedDetailScreen() {
     setMediaAttachment(null);
   }, []);
 
-  const inputLift = useMemo(() => {
-    return kbVisible ? kbHeight : 0;
-  }, [kbHeight, kbVisible]);
+  const inputLift = kbLift;
 
   const listBottomPadding = useMemo(() => {
     const base = 88;

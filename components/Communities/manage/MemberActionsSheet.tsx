@@ -20,6 +20,7 @@ import {
   Modal,
   Pressable,
   ActivityIndicator,
+  ScrollView,
   StyleSheet,
   Alert,
 } from "react-native";
@@ -251,6 +252,8 @@ export function MemberActionsSheet({
               </TouchableOpacity>
             </View>
 
+            {/* Scrolls so the sheet can be capped — see styles.sheet. */}
+            <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
             {canPromote && (
               <ActionRow
                 icon={member.role === "admin" ? "ShieldCheck" : "Shield"}
@@ -341,6 +344,7 @@ export function MemberActionsSheet({
                 })}
               </Text>
             )}
+            </ScrollView>
           </Pressable>
         </Pressable>
       </Modal>
@@ -368,6 +372,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom: 32,
+    // Bottom-pinned sheet: a long action list grows off the TOP of the screen.
+    // Cap it; the body scrolls.
+    maxHeight: "88%",
   },
   header: {
     flexDirection: "row",
