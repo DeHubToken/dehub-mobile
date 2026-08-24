@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Platform, Keyboard } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '../theme/colors';
+import AppTopBar, { APP_TOP_BAR_HEIGHT } from './AppTopBar';
 
 /**
  * Height of this header in points. Exported because any screen that puts a
@@ -11,7 +12,15 @@ import { colors } from '../theme/colors';
  * used to hardcode 44 or 64; reading it from here keeps them honest if the bar
  * ever changes height.
  */
-export const SCREEN_HEADER_HEIGHT = 64;
+export const SCREEN_HEADER_TITLE_HEIGHT = 64;
+
+/**
+ * Total header height — the constant dehub mark bar plus the title row. Screens
+ * feeding `keyboardVerticalOffset` read this, so they stay correct now that the
+ * mark bar sits above the title row (as on web, where a fixed mark bar sits
+ * above every page's own header).
+ */
+export const SCREEN_HEADER_HEIGHT = APP_TOP_BAR_HEIGHT + SCREEN_HEADER_TITLE_HEIGHT;
 
 export interface ScreenHeaderProps {
   title: string;
@@ -80,10 +89,12 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   }, []);
 
   return (
+    <View className="bg-theme-neutrals-900">
+    <AppTopBar />
     <View
       className="flex-row items-center justify-between px-4 bg-theme-neutrals-900"
       style={{
-        height: SCREEN_HEADER_HEIGHT,
+        height: SCREEN_HEADER_TITLE_HEIGHT,
         paddingTop: 0,
         ...(Platform.OS === 'android' ? { elevation: 0 } : {}),
       }}
@@ -123,6 +134,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
       {rightContent ? (
         <View className="ml-3 flex-row items-center">{rightContent}</View>
       ) : null}
+      </View>
     </View>
   );
 };

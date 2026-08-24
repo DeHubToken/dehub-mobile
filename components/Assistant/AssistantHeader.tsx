@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Icon from '../ui/Icon';
+import AppTopBar from '../AppTopBar';
 
 const AI_SPARKLE_ICON = require('../../assets/web-icons/ai-sparkle-icon.png');
 
@@ -23,6 +24,9 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
   hasMessages,
 }) => {
   return (
+    <View className="bg-theme-neutrals-900">
+    {/* The dehub mark bar is constant chrome on every screen, as on web. */}
+    <AppTopBar />
     <View className="flex-row items-center justify-between px-4 h-16 bg-theme-neutrals-900">
       <TouchableOpacity
         onPress={onNewChat}
@@ -88,6 +92,7 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
           <Text style={{ fontSize: 17 }}>{styleEmoji}</Text>
         </TouchableOpacity>
       </View>
+    </View>
     </View>
   );
 };
