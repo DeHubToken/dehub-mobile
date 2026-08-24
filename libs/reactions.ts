@@ -259,9 +259,102 @@ export function resolveDislikeCount(item: any): number {
   return toCount(item?.totalVotes?.against) ?? toCount(item?.dislikes) ?? toCount(item?.dislike_count) ?? 0;
 }
 
-/** Per-reaction tally for an API-shaped post, seeded from polarity when absent. */
+/** Total of one polarity's stored reactions. */
+function sumSide(counts: ReactionCounts, positive: boolean): number {
+  let total = 0;
+  for (const key of POST_REACTIONS) {
+    const value = counts[key] ?? 0;
+    if (value > 0 && isPositiveReaction(key) === positive) total += value;
+  }
+  return total;
+}
+
+/**
+ * Stretch or shrink a stored per-reaction split until its sums match the
+ * like/dislike counts the card displays.
+ *
+ * `totalVotes` and `reactionCounts` are written together by the vote
+ * endpoints, but hand edits (the admin panel sets `totalVotes.for` directly)
+ * and rows predating reactionCounts leave the split disagreeing with the
+ * headline — a post showing 97 likes whose tray only accounts for 30. The
+ * headline is the number people see and argue about, so it wins and the
+ * distribution is scaled to fit it.
+ *
+ * Scaling keeps whatever shape the real reactions had (4×👍 +1×❤️ against a
+ * target of 10 becomes 8×👍 +2×❤️, not 10×👍). Mirrors web's
+ * `reconcileReactionCounts` and the API's `config/reactions.ts` exactly —
+ * largest-remainder rounding with POST_REACTIONS order as the tiebreak — so
+ * every client derives identical numbers from the same row.
+ */
+export function reconcileReactionCounts(
+  likeCount: number,
+  dislikeCount: number,
+  stored?: ReactionCounts | null,
+): ReactionCounts {
+  const source: ReactionCounts = stored && typeof stored === "object" ? stored : {};
+  const result: ReactionCounts = {};
+
+  const applySide = (positive: boolean, targetRaw: number) => {
+    const target = Math.max(0, Math.floor(Number(targetRaw) || 0));
+    if (target === 0) return;
+
+    const entries = POST_REACTIONS.filter((key) => isPositiveReaction(key) === positive)
+      .map((key) => ({ key, count: Math.max(0, Math.floor(source[key] ?? 0)) }))
+      .filter((entry) => entry.count > 0);
+
+    const sum = sumSide(source, positive);
+    if (sum === 0) {
+      // No shape to keep on this side — attribute the whole total to the
+      // side's default reaction, same rule seeding uses for legacy votes.
+      result[positive ? DEFAULT_POSITIVE_REACTION : DEFAULT_NEGATIVE_REACTION] = target;
+      return;
+    }
+    if (sum === target) {
+      // Already agrees; serve the stored numbers untouched.
+      for (const entry of entries) result[entry.key] = entry.count;
+      return;
+    }
+
+    let allocated = 0;
+    const fractional: Array<{ key: PostReaction; fraction: number }> = [];
+    for (const entry of entries) {
+      const exact = (entry.count * target) / sum;
+      const base = Math.floor(exact);
+      allocated += base;
+      result[entry.key] = base;
+      fractional.push({ key: entry.key, fraction: exact - base });
+    }
+    fractional.sort(
+      (a, b) => b.fraction - a.fraction || POST_REACTIONS.indexOf(a.key) - POST_REACTIONS.indexOf(b.key),
+    );
+    let remainder = target - allocated;
+    let index = 0;
+    while (remainder > 0) {
+      const key = fractional[index % fractional.length].key;
+      result[key] = (result[key] ?? 0) + 1;
+      remainder--;
+      index++;
+    }
+  };
+
+  applySide(true, likeCount);
+  applySide(false, dislikeCount);
+  return result;
+}
+
+/**
+ * Per-reaction tally for an API-shaped post.
+ *
+ * A stored breakdown is served scaled to the polarity counts, not raw: the
+ * card's like count comes from `totalVotes` while the tray's breakdown comes
+ * from `reactionCounts`, and the two can disagree on hand-edited rows. Without
+ * the reconcile this screen showed a different tray total than web did for the
+ * same post. Falls back to seeding when there is no breakdown at all.
+ */
 export function resolveReactionCounts(item: any): ReactionCounts {
   const stored = item?.reactionCounts as ReactionCounts | undefined;
-  if (stored && Object.values(stored).some((value) => (value ?? 0) > 0)) return stored;
+  if (stored && Object.values(stored).some((value) => (value ?? 0) > 0)) {
+    return reconcileReactionCounts(resolveLikeCount(item), resolveDislikeCount(item), stored);
+  }
   return seedReactionCounts(resolveLikeCount(item), resolveDislikeCount(item));
 }
