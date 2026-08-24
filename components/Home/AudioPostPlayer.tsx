@@ -601,13 +601,23 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       // Moved here from the preload path: silent-switch playback and ducking
       // are only needed once something actually plays, and setting the global
       // session per scrolled-past card was main-thread work mid-fling.
+      //
+      // staysActiveInBackground is true because this branch only runs on a
+      // deliberate press of play. An audio post is the one thing on the feed
+      // you obviously want to keep hearing with the screen off — stopping it
+      // at lock was never a decision, it was the default nobody revisited.
+      //
+      // Muted video cards do not inherit this. The session category is global
+      // to the process and the last writer wins, but FeedVideoPlayer stops
+      // itself whenever AppState leaves "active", so a preview cannot ride a
+      // background-capable session out of the foreground.
       await Audio.setAudioModeAsync({
         allowsRecordingIOS: false,
         playsInSilentModeIOS: true,
         interruptionModeIOS: InterruptionModeIOS.DuckOthers,
         interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
         shouldDuckAndroid: true,
-        staysActiveInBackground: false,
+        staysActiveInBackground: true,
       });
 
       if (soundRef.current) {
