@@ -18,6 +18,7 @@ import { supabase, fetchAgoraToken } from "../services/supabase";
 import { AGORA_APP_ID } from "../config/agora.config";
 import { useAuth } from "../context/AuthContext";
 import { createLogger } from "../libs/logger";
+import { persistableAvatar } from "../libs/misc";
 import env from "../config/env";
 import { getAuthToken } from "../libs/auth.utils";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
@@ -934,7 +935,7 @@ export function useStages(): UseStagesReturn {
           .insert({
             host_wallet_address: userAddress,
             host_username: user?.username || null,
-            host_avatar: user?.avatarImageUrl || null,
+            host_avatar: persistableAvatar(user?.avatarImageUrl),
             title,
             description,
             status: "live",
@@ -955,7 +956,7 @@ export function useStages(): UseStagesReturn {
           space_id: space.id,
           wallet_address: userAddress,
           username: user?.username || null,
-          avatar: user?.avatarImageUrl || null,
+          avatar: persistableAvatar(user?.avatarImageUrl),
           role: "host",
           is_muted: true,
         }),
@@ -1001,7 +1002,7 @@ export function useStages(): UseStagesReturn {
           .insert({
             host_wallet_address: userAddress,
             host_username: user?.username || null,
-            host_avatar: user?.avatarImageUrl || null,
+            host_avatar: persistableAvatar(user?.avatarImageUrl),
             title: input.title,
             description: input.description,
             status: "scheduled",
@@ -1067,7 +1068,7 @@ export function useStages(): UseStagesReturn {
           space_id: space.id,
           wallet_address: userAddress,
           username: user?.username || null,
-          avatar: user?.avatarImageUrl || null,
+          avatar: persistableAvatar(user?.avatarImageUrl),
           role: "host",
           is_muted: true,
         }),
@@ -1190,7 +1191,7 @@ export function useStages(): UseStagesReturn {
           space_id: spaceId,
           wallet_address: userAddress,
           username: user?.username || null,
-          avatar: user?.avatarImageUrl || null,
+          avatar: persistableAvatar(user?.avatarImageUrl),
           role: rejoiningRole,
           is_muted: true,
           left_at: null,
@@ -1408,7 +1409,7 @@ export function useStages(): UseStagesReturn {
         space_id: space.id,
         wallet_address: userAddress,
         username: user?.username || null,
-        avatar: user?.avatarImageUrl || null,
+        avatar: persistableAvatar(user?.avatarImageUrl),
         status: "pending",
       }),
     );
