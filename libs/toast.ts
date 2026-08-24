@@ -25,6 +25,16 @@ interface ToastOptions extends Omit<Parameters<typeof toast>[1], 'description'> 
   actionLabel?: string;
   onActionPress?: () => void;
   dismissible?: boolean; // Whether to show close button
+  /**
+   * How long the toast stays up, ms (Infinity to pin it).
+   *
+   * Declared explicitly because the omitted base type does not carry it, yet
+   * it is passed through to sonner and honoured — toastPromise has relied on
+   * that since it was written, and only got away with it because a spread in
+   * the same literal suppresses excess-property checking. Anything longer than
+   * a glance needs it: an explanation nobody can finish reading is not one.
+   */
+  duration?: number;
 }
 
 // Create a glass toast with proper prop handling
