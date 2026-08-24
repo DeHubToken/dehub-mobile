@@ -29,10 +29,10 @@ const log = createLogger("useStages");
  * shape Agora's recorder can write (`encode: true`; the alternative is raw
  * WAV, which for a half-hour stage is ~100 MB off a phone). It is not an MP4,
  * so the extension and the Content-Type both have to say AAC. Three consumers
- * read them and none of them should have to sniff: the `transcribe-stage` edge
- * function passes the name and type straight to the speech service, dehubweb
- * plays the object URL in a plain `<audio>`, and `libs/stage-playback` feeds
- * it to ExoPlayer.
+ * read them and none of them should have to sniff: `finalize-stage-recording`
+ * remuxes the stream into a seekable MP4 and hands it on to the speech
+ * service, dehubweb plays the object URL in a plain `<audio>`, and
+ * `libs/stage-playback` feeds it to ExoPlayer.
  */
 const RECORDING_EXT = "aac";
 const RECORDING_MIME = "audio/aac";
@@ -1336,12 +1336,17 @@ export function useStages(): UseStagesReturn {
           log.info("Successfully updated recording_url in database");
         }
 
-        // Trigger transcription
+        // Finalize, then transcribe. An ADTS stream carries no duration and no
+        // index, so ExoPlayer reports duration 0 and drops every seek — the
+        // scrubber below is dead until this runs. finalize-stage-recording
+        // re-wraps the same AAC frames in an MP4 (no transcode, identical
+        // audio), repoints recording_url at it, and chains into
+        // transcribe-stage itself, including when the remux fails.
         try {
-          await supabase.functions.invoke("transcribe-stage", { body: { stageId: spaceId, timeline: [] } });
-          log.info("Transcription triggered for stage:", spaceId);
-        } catch (transcribeErr) {
-          log.error("Failed to trigger stage transcription:", transcribeErr);
+          await supabase.functions.invoke("finalize-stage-recording", { body: { stageId: spaceId, timeline: [] } });
+          log.info("Recording finalize + transcription triggered for stage:", spaceId);
+        } catch (finalizeErr) {
+          log.error("Failed to trigger stage finalize:", finalizeErr);
         }
       } else {
         log.error(`Recording upload to Supabase storage failed with status ${result.status}. Response: ${result.body}`);
