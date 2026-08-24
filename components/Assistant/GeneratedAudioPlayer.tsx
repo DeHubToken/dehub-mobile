@@ -100,9 +100,13 @@ const GeneratedAudioPlayer: React.FC<GeneratedAudioPlayerProps> = ({
       }
 
       setIsLoading(true);
+      // Background playback: a generated answer can run well past the point
+      // where the user switches away to act on what it is telling them, and
+      // cutting it off at that exact moment is the least useful behaviour
+      // available. Only reached on an explicit press.
       await Audio.setAudioModeAsync({
         playsInSilentModeIOS: true,
-        staysActiveInBackground: false,
+        staysActiveInBackground: true,
         interruptionModeIOS: InterruptionModeIOS.DoNotMix,
         interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
         shouldDuckAndroid: true,

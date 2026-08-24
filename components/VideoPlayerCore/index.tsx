@@ -29,7 +29,10 @@ import {
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
 import { VideoView, useVideoPlayer, VideoPlayer } from 'expo-video';
-import { setAudioModeAsync } from 'expo-audio';
+import {
+  configureForBackgroundPlayback,
+  releaseBackgroundPlayback,
+} from '../../libs/audioSession';
 import { Ionicons } from '@expo/vector-icons';
 import TopControls from './TopControls';
 import CenterControls from './CenterControls';
@@ -178,6 +181,11 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     p.loop = loop;
     p.muted = getCachedMuted();
     p.timeUpdateEventInterval = PLAYER_CONSTANTS.TIME_UPDATE_INTERVAL;
+    // This player only ever mounts on a surface the user navigated to on
+    // purpose — the live-stream viewer — never on a feed card. Backgrounding
+    // it should move the sound to the lock screen, not end it.
+    p.staysActiveInBackground = true;
+    p.showNowPlayingNotification = true;
     if (autoplay && sourceUrl) {
       p.play();
     }
@@ -488,25 +496,26 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     };
   }, [showAndScheduleHide, clearHideTimer, player]);
 
-  // Configure audio to play even if device is on silent (iOS)
-  // Sync shouldPlayInBackground with fullscreen state
+  // Configure audio to play even if device is on silent (iOS), and to keep
+  // playing once the app is backgrounded.
+  //
+  // This used to pass `shouldPlayInBackground: fullscreen`, which meant the
+  // sound survived leaving the app only if you happened to be in fullscreen at
+  // that moment — the same stream, watched inline, stopped dead. Nothing about
+  // the fullscreen flag says anything about whether the user wants to keep
+  // listening, so it never should have been the condition.
   useEffect(() => {
-    const setupAudio = async () => {
-      try {
-        await setAudioModeAsync({
-          playsInSilentMode: true,
-          allowsRecording: false,
-          shouldPlayInBackground: fullscreen,
-          interruptionMode: 'doNotMix',
-          interruptionModeAndroid: 'duckOthers',
-        });
-      } catch (error) {
-        logger.warn('[VideoPlayerCore] setAudioModeAsync failed:', error);
-      }
-    };
+    configureForBackgroundPlayback().catch((error) => {
+      logger.warn('[VideoPlayerCore] configureForBackgroundPlayback failed:', error);
+    });
 
-    setupAudio();
-  }, [fullscreen]);
+    return () => {
+      // Hand the category back on the way out. It is global to the process and
+      // the last writer wins, so leaving it background-capable would quietly
+      // change the terms for whatever plays next.
+      releaseBackgroundPlayback().catch(() => {});
+    };
+  }, []);
 
   // Progress bar press handler
   const handleProgressBarPress = useCallback(
@@ -593,7 +602,11 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
           style={styles.video}
           contentFit="contain"
           nativeControls={false}
-          allowsPictureInPicture={fullscreen}
+          // Was gated on `fullscreen` for the same non-reason as the audio
+          // session above: wanting the video to follow you out of the app has
+          // nothing to do with how large it currently is on screen.
+          allowsPictureInPicture={true}
+          startsPictureInPictureAutomatically={true}
           onPictureInPictureStart={handlePiPStart}
           onPictureInPictureStop={handlePiPStop}
         />
