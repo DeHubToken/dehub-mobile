@@ -6,8 +6,21 @@ import Icon from "../ui/Icon";
 import GlassModal from "../ui/GlassModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import type { SubscriptionPlan } from "../../services/subscription.service";
-import { buyPlan } from "../../services/subscription.service";
+import {
+  buyPlan,
+  confirmSubscriptionPurchase,
+  formatDuration,
+  isPlanPublished,
+  normaliseDuration,
+  planPrice,
+  primaryPlanChain,
+} from "../../services/subscription.service";
 import { useAuthActions } from "../../context/AuthContext";
+import { useSubscriptionContract, useERC20Contract, useWeb3Provider, ensureAllowance } from "../../hooks/use-web3";
+import { writeContractAA } from "../../libs/aa.write";
+import { parseTxError } from "../../libs/web3.util";
+import { DHB_TOKEN_ADDRESSES } from "../../config/web3.constants";
+import { ethers } from "ethers";
 import { toastSuccess, toastError } from "../../libs/toast";
 
 const GLASS_GRADIENT: [string, string, string] = [
@@ -15,14 +28,6 @@ const GLASS_GRADIENT: [string, string, string] = [
   "rgba(255,255,255,0.06)",
   "rgba(255,255,255,0.03)",
 ];
-
-function formatDuration(days: number): string {
-  if (days === 7) return "1 week";
-  if (days === 30) return "1 month";
-  if (days === 90) return "3 months";
-  if (days === 365) return "1 year";
-  return `${days} days`;
-}
 
 interface PlanCardProps {
   plan: SubscriptionPlan;
@@ -34,26 +39,103 @@ interface PlanCardProps {
 const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit }) => {
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [subscribing, setSubscribing] = useState(false);
+  const [stage, setStage] = useState<string>("");
+  const [total, setTotal] = useState<number | null>(null);
   const { requireAuth } = useAuthActions();
+  const { account, chainId } = useWeb3Provider();
+  const subscriptionContract = useSubscriptionContract();
+  const dhbContract = useERC20Contract(chainId ? DHB_TOKEN_ADDRESSES[chainId] : undefined);
+
+  const price = planPrice(plan);
+  const published = isPlanPublished(plan);
+  // 999 is what lifetime plans were stored as before the contract's 0–12 range
+  // was respected. Buying one reverts, so it is surfaced rather than hidden.
+  const isBuyable = normaliseDuration(plan.duration) !== null;
+  const creator = plan.address || plan.creatorAddress || "";
 
   const handleSubscribe = () => {
     requireAuth(async () => {
       setConfirmVisible(true);
+      // The platform fee is charged on TOP of the price and varies with the
+      // buyer's badges, so the only honest total is one the contract quotes.
+      if (!subscriptionContract || !account || !creator || price == null) return;
+      try {
+        const months = normaliseDuration(plan.duration);
+        if (months === null) return;
+        const fee = await subscriptionContract._checkFeeByBadges(creator, account, months);
+        const priceWei = ethers.utils.parseUnits(String(price), 18);
+        setTotal(Number(ethers.utils.formatUnits(priceWei.add(fee), 18)));
+      } catch {
+        /* leave the total unquoted rather than show one we cannot stand behind */
+      }
     });
   };
 
   const handleConfirm = async () => {
-    const planId = plan._id || plan.id;
+    const planId = plan.id || plan._id;
     if (!planId) return;
+    if (!subscriptionContract || !dhbContract || !account) {
+      toastError(null, "Connect your wallet to subscribe");
+      return;
+    }
+    const months = normaliseDuration(plan.duration);
+    if (months === null) {
+      toastError(null, "This plan cannot be bought — ask the creator to recreate it");
+      return;
+    }
+
     setSubscribing(true);
     try {
-      await buyPlan(planId);
-      toastSuccess("Subscribed successfully");
+      // 1. Reserve the row the purchase settles against.
+      setStage("Preparing…");
+      const intent = await buyPlan(String(planId), chainId);
+      if (!intent?.id) throw new Error("Could not start the subscription");
+
+      const priceWei = ethers.utils.parseUnits(String(intent.price ?? price ?? 0), 18);
+      const fee = await subscriptionContract._checkFeeByBadges(
+        intent.creatorAddress || creator,
+        account,
+        months,
+      );
+      const totalWei = priceWei.add(fee);
+
+      // 2. Approve the full debit — price plus fee, not the list price.
+      setStage("Approving…");
+      const approved = await ensureAllowance(
+        dhbContract,
+        account,
+        subscriptionContract.address,
+        totalWei.toString(),
+      );
+      if (!approved) throw new Error("Could not approve DHB");
+
+      // 3. Pay.
+      setStage("Confirm in your wallet…");
+      const tx = await writeContractAA(
+        subscriptionContract,
+        "buySubscription",
+        [intent.creatorAddress || creator, ethers.BigNumber.from(String(planId)), months],
+        { context: "send" },
+      );
+      setStage("Waiting for the transaction…");
+      await tx.wait(1);
+
+      // 4. Have the server verify it against chain state. A failure here costs
+      //    the buyer nothing permanent — their next read reconciles it.
+      setStage("Finishing up…");
+      if (tx?.hash) {
+        confirmSubscriptionPurchase(String(intent.id), tx.hash, intent.chainId || chainId || 0).catch(
+          err => console.warn("[Subscription] confirm failed, will reconcile on next read:", err),
+        );
+      }
+
+      toastSuccess("Subscribed");
       setConfirmVisible(false);
     } catch (e: any) {
-      toastError(e?.message || "Subscription failed");
+      toastError(null, parseTxError(e, "send"));
     } finally {
       setSubscribing(false);
+      setStage("");
     }
   };
 
@@ -88,7 +170,8 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
           {/* Price + duration */}
           <View style={s.priceRow}>
             <Text style={s.priceLabel}>$DHB</Text>
-            <Text style={s.price}>{plan.price ?? 0}</Text>
+            {/* The price lives inside `chains`; `plan.price` alone rendered 0. */}
+            <Text style={s.price}>{price ?? 0}</Text>
             <Text style={s.duration}> / {formatDuration(plan.duration)}</Text>
           </View>
 
@@ -124,6 +207,13 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
               <Icon name="Check" size={16} color="#71717a" />
               <Text style={[s.editBtnText, { color: "#71717a" }]}>Subscribed</Text>
             </View>
+          ) : !published || !isBuyable ? (
+            /* Not listed on chain — nobody can buy it, so say so instead of
+               offering a button that reverts in the buyer's wallet. */
+            <View style={[s.editBtn, { opacity: 0.6 }]}>
+              <Icon name="Clock" size={14} color="#71717a" />
+              <Text style={[s.editBtnText, { color: "#71717a" }]}>Not available yet</Text>
+            </View>
           ) : (
             <AccentButtonGradient>
               <TouchableOpacity onPress={handleSubscribe} activeOpacity={0.7} style={s.subBtn}>
@@ -148,10 +238,16 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
             <Text style={{ color: "#fff", fontWeight: "600" }}>{plan.name}</Text>{" "}
             for{" "}
             <Text style={{ color: "#D4D4D8", fontWeight: "600" }}>
-              {plan.price ?? 0} DHB
+              {price ?? 0} DHB
             </Text>{" "}
             / {formatDuration(plan.duration)}?
           </Text>
+          <Text style={s.confirmTotal}>
+            {total != null
+              ? `You pay ${total.toLocaleString(undefined, { maximumFractionDigits: 4 })} DHB including the platform fee`
+              : "Calculating the total…"}
+          </Text>
+          {!!stage && <Text style={s.confirmStage}>{stage}</Text>}
           <View style={s.confirmBtns}>
             <TouchableOpacity
               onPress={() => setConfirmVisible(false)}
@@ -307,6 +403,17 @@ const s = StyleSheet.create({
     fontSize: 14,
     textAlign: "center",
     lineHeight: 20,
+  },
+  confirmTotal: {
+    color: "#D4D4D8",
+    fontSize: 13,
+    textAlign: "center",
+    fontWeight: "600",
+  },
+  confirmStage: {
+    color: "#71717a",
+    fontSize: 12,
+    textAlign: "center",
   },
   confirmBtns: {
     flexDirection: "row",

@@ -37,6 +37,28 @@ export const STAKING_CONTRACT_ADDRESSES = {
   [ChainId.BSC_MAINNET]: "0x26d2Cd7763106FDcE443faDD36163E2ad33A76E6",
 };
 
+/**
+ * Creator subscriptions. Deployed and initialised on Base and BNB only — a
+ * chain missing here has no subscription contract, so plans cannot be listed
+ * or bought on it.
+ */
+export const SUBSCRIPTION_CONTRACT_ADDRESSES: Record<number, string> = {
+  [ChainId.BASE_MAINNET]: "0x91Cb5e924285484Ec666fF969D3941414fcE15d1",
+  [ChainId.BSC_MAINNET]: "0x64eD1cEf5ba5655DAe565Ee592b6eb229e8CB05C",
+};
+
+/**
+ * DHB per chain, for pricing plans.
+ *
+ * The plan form used to send the string `"DHB"` as the token, which is not an
+ * address and cannot be charged — the API now rejects it rather than storing a
+ * plan nobody can ever buy.
+ */
+export const DHB_TOKEN_ADDRESSES: Record<number, string> = {
+  [ChainId.BASE_MAINNET]: "0xD20ab1015f6a2De4a6FdDEbAB270113F689c2F7c",
+  [ChainId.BSC_MAINNET]: "0x680D3113caf77B61b510f332D5Ef4cf5b41A761D",
+};
+
 export const STREAM_COLLECTION_CONTRACT_ADDRESSES = {
   // live networks
   [ChainId.MAINNET]: "0x1065F5922a336C75623B55D22c4a0C760efCe947",
