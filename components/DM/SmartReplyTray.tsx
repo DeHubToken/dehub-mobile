@@ -20,7 +20,7 @@ import type { SmartReplySuggestion } from "../../services/ai.service";
 import type { SmartReplyStatus } from "../../hooks/useSmartReplies";
 
 /** The composer's own background. The socket is filled with it, which is how
- *  the hole in the rail is punched — there is no CSS mask here. */
+ *  the hole between the cards is punched — there is no CSS mask here. */
 const TRAY_BG = "#010305";
 const CARD_BG = "rgba(255,255,255,0.045)";
 const CARD_BG_PRESSED = "rgba(255,255,255,0.10)";
@@ -30,23 +30,22 @@ const CARD_BORDER_EMPTY = "rgba(255,255,255,0.07)";
 const SKELETON = "rgba(255,255,255,0.07)";
 
 /**
- * Three sizes and nothing else, shared with dehubweb's SmartReplyRail.tsx:
- * the orb, the socket it sits in, and the radius of the notch that socket
- * punches in the rail. Sizing any of the three by hand is how the orb ends up
- * off its seat.
+ * Four numbers, shared with dehubweb's SmartReplyRail.tsx: the orb, the socket
+ * it sits in, the radius of the bite that socket takes out of each card, and
+ * the gap it sits in. Sizing any of them by hand is how the orb ends up off
+ * its seat.
  */
 const ORB = 44;
-/** Sized so the arc hugs the dust ball (37px across at ORB 44). */
 const SOCKET = 48;
-/** The orb's centre sits ON the cards' bottom edge, which is also the socket's
- *  centre, so the hole is concentric with the ball and its lower half hangs
- *  below the rail. Seating it any higher puts the seam through the orb. */
 const NOTCH = SOCKET / 2;
-/** Room under the cards for the half of the orb that hangs below them. */
-const ORB_OVERHANG = NOTCH + 8;
-/** Card padding below the text — must clear the socket. */
-const CARD_PAD_BOTTOM = NOTCH + 4;
-const CARD_MIN_HEIGHT = 108;
+/** Space between the stacked cards. Wide enough that the socket bites less
+ *  deeply than the cards' own padding, so no text is ever covered. */
+const GAP = 28;
+/** Cards are a FIXED height, not a minimum: the orb is placed off this number,
+ *  and RN has no equal-rows grid to make "the centre of the gap" fall out of
+ *  the layout the way `grid-rows-2` does on web. Text is capped at two lines
+ *  to match. */
+const CARD_H = 80;
 
 /** RN has no `animate-pulse`, so the loading blocks get their own driver. */
 const PulseBlock: React.FC<{ width: DimensionValue; height: number; radius?: number }> = ({
@@ -86,18 +85,18 @@ interface SmartReplyTrayProps {
 }
 
 /**
- * Two drafted replies joined into one rail, with the orb seated in a circular
- * socket at their centre seam. The stack sits above the input because the
- * on-screen keyboard is the OS's space, not ours.
+ * Two drafted replies, one per line, with the orb centred in the gap between
+ * them. The stack sits above the input because the on-screen keyboard is the
+ * OS's space, not ours.
  *
  * Mirrors dehubweb's src/components/app/chat/SmartReplyRail.tsx — same socket,
- * same notch, same card rhythm. Change one, change the other.
+ * same notch, same gap, same copy. Change one, change the other.
  *
- * The socket is centred by a full-width absolute row with `alignItems:
- * "center"`, never by `left: "50%"` plus a negative margin: a percentage
- * offset on an absolute child resolves against a different box depending on
- * the Yoga version underneath, which put the orb off-centre by exactly the
- * tray's padding on some builds and not others.
+ * The orb is centred by a full-width absolute row with `alignItems: "center"`
+ * and a `top` computed from CARD_H, never by `left: "50%"` plus a negative
+ * margin: a percentage offset on an absolute child resolves against a
+ * different box depending on the Yoga version underneath, which put the orb
+ * off-centre by exactly the tray's padding on some builds and not others.
  */
 const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
   status,
@@ -108,10 +107,10 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
   onDismiss,
 }) => {
   // 'idle' is unresolved, not empty: the call is on its way, so it reads as
-  // loading rather than as a rail with nothing in it.
+  // loading rather than as a tray with nothing in it.
   const busy = status === "loading" || status === "idle";
 
-  // A failed draft keeps the rail — muted, one line of copy, orb live to press
+  // A failed draft keeps the tray — muted, one line of copy, orb live to press
   // again. A dead band and a working one must never be confusable.
   const notice =
     status === "empty"
@@ -121,149 +120,121 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
         : null;
 
   // Always exactly two slots. The drafter can come back with one usable
-  // suggestion, and a lone card in a two-slot rail leaves the socket under its
-  // outer edge — which is what "the orb isn't centred" looks like.
+  // suggestion, and a single card would leave the orb centred on nothing.
   const slots: (SmartReplySuggestion | null)[] =
     status === "ready" ? [suggestions[0] ?? null, suggestions[1] ?? null] : [null, null];
 
   const rimColor = notice || busy ? CARD_BORDER_EMPTY : CARD_BORDER;
 
-  return (
-    <View
-      className="px-3 pt-2 border-b border-theme-neutrals-800/50"
-      style={{ paddingBottom: ORB_OVERHANG }}
+  // Its border and fill ARE the socket — one element, so the ring cannot drift
+  // off the orb, and the opaque disc erases the card edges it overlaps the way
+  // web's mask does.
+  const orbButton = (
+    <TouchableOpacity
+      onPress={onGenerate}
+      disabled={busy}
+      activeOpacity={0.7}
+      hitSlop={8}
+      style={{
+        width: SOCKET,
+        height: SOCKET,
+        borderRadius: SOCKET / 2,
+        borderWidth: 1,
+        borderColor: rimColor,
+        backgroundColor: TRAY_BG,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+      accessibilityRole="button"
+      accessibilityLabel={busy ? "Drafting replies" : "Draft new replies"}
+      accessibilityState={{ disabled: busy }}
     >
+      <ReplyOrb state={busy ? "thinking" : "idle"} size={ORB} />
+    </TouchableOpacity>
+  );
+
+  return (
+    <View className="px-3 pt-2 pb-3 border-b border-theme-neutrals-800/50">
       <View style={{ position: "relative" }}>
         {notice ? (
-          <View
-            style={{
-              minHeight: CARD_MIN_HEIGHT,
-              alignItems: "center",
-              justifyContent: "center",
-              paddingHorizontal: 24,
-              paddingTop: 12,
-              paddingBottom: CARD_PAD_BOTTOM,
-              borderWidth: 1,
-              borderRadius: 16,
-              borderColor: CARD_BORDER_EMPTY,
-              backgroundColor: CARD_BG_EMPTY,
-            }}
-          >
-            <Text className="text-xs leading-[18px] text-theme-neutrals-500 text-center">
+          <View style={{ alignItems: "center", paddingVertical: 8, gap: 12 }}>
+            <Text className="text-xs leading-[18px] text-theme-neutrals-500 text-center px-8">
               {notice}
             </Text>
+            {orbButton}
           </View>
         ) : (
-          <View style={{ flexDirection: "row" }}>
-            {slots.map((s, i) => (
-              <Pressable
-                key={s ? `${s.label}-${i}` : `slot-${i}`}
-                disabled={!s}
-                onPress={() => s && onPick(s.text)}
-                accessibilityRole="button"
-                accessibilityLabel={s ? `${s.label}: ${s.text}` : "Drafting a reply"}
-                accessibilityState={{ disabled: !s }}
-                style={({ pressed }) => ({
-                  flex: 1,
-                  minHeight: CARD_MIN_HEIGHT,
-                  marginLeft: i === 1 ? -1 : 0,
-                  borderWidth: 1,
-                  borderTopLeftRadius: i === 0 ? 16 : 0,
-                  borderBottomLeftRadius: i === 0 ? 16 : 0,
-                  borderTopRightRadius: i === 1 ? 16 : 0,
-                  borderBottomRightRadius: i === 1 ? 16 : 0,
-                  paddingTop: 12,
-                  paddingBottom: CARD_PAD_BOTTOM,
-                  paddingLeft: i === 0 ? 12 : 10,
-                  paddingRight: i === 0 ? 10 : 30,
-                  backgroundColor: !s
-                    ? CARD_BG_EMPTY
-                    : pressed
-                      ? CARD_BG_PRESSED
-                      : CARD_BG,
-                  borderColor: s ? CARD_BORDER : CARD_BORDER_EMPTY,
-                })}
-              >
-                {s ? (
-                  <>
-                    <Text
-                      className="text-[9px] uppercase leading-4 text-theme-neutrals-500"
-                      style={{ letterSpacing: 0.9 }}
-                    >
-                      {s.label}
-                    </Text>
-                    <Text
-                      className="mt-1.5 text-[13px] leading-[18px] text-white"
-                      numberOfLines={3}
-                    >
-                      {s.text}
-                    </Text>
-                  </>
-                ) : (
-                  <View style={{ width: "100%", gap: 7 }}>
-                    <PulseBlock width={64} height={8} radius={999} />
-                    <PulseBlock width="100%" height={10} />
-                    <PulseBlock width="66%" height={10} />
-                  </View>
-                )}
-              </Pressable>
-            ))}
-          </View>
+          <>
+            <View>
+              {slots.map((s, i) => (
+                <Pressable
+                  key={s ? `${s.label}-${i}` : `slot-${i}`}
+                  disabled={!s}
+                  onPress={() => s && onPick(s.text)}
+                  accessibilityRole="button"
+                  accessibilityLabel={s ? `${s.label}: ${s.text}` : "Drafting a reply"}
+                  accessibilityState={{ disabled: !s }}
+                  style={({ pressed }) => ({
+                    height: CARD_H,
+                    marginTop: i === 1 ? GAP : 0,
+                    justifyContent: "center",
+                    borderWidth: 1,
+                    borderRadius: 16,
+                    paddingVertical: 12,
+                    paddingLeft: 16,
+                    // Room for the dismiss control in the top-right corner.
+                    paddingRight: i === 0 ? 36 : 16,
+                    backgroundColor: !s
+                      ? CARD_BG_EMPTY
+                      : pressed
+                        ? CARD_BG_PRESSED
+                        : CARD_BG,
+                    borderColor: s ? CARD_BORDER : CARD_BORDER_EMPTY,
+                  })}
+                >
+                  {s ? (
+                    <>
+                      <Text
+                        className="text-[9px] uppercase leading-4 text-theme-neutrals-500"
+                        style={{ letterSpacing: 0.9 }}
+                      >
+                        {s.label}
+                      </Text>
+                      <Text
+                        className="mt-1 text-[13px] leading-[18px] text-white"
+                        numberOfLines={2}
+                      >
+                        {s.text}
+                      </Text>
+                    </>
+                  ) : (
+                    <View style={{ width: "100%", gap: 8 }}>
+                      <PulseBlock width={64} height={8} radius={999} />
+                      <PulseBlock width="100%" height={10} />
+                      <PulseBlock width="50%" height={10} />
+                    </View>
+                  )}
+                </Pressable>
+              ))}
+            </View>
+
+            {/* Centred in the gap: the first card's height plus half the gap is
+                the gap's midline, less half the orb. Both cards are a fixed
+                height, so this cannot drift with the length of a suggestion. */}
+            <View
+              pointerEvents="box-none"
+              style={{
+                position: "absolute",
+                left: 0,
+                right: 0,
+                top: CARD_H + GAP / 2 - SOCKET / 2,
+                alignItems: "center",
+              }}
+            >
+              {orbButton}
+            </View>
+          </>
         )}
-
-        {/* The socket: a half-disc in the composer's own colour, so it erases
-            the rail's fill, its seam and its bottom border along the arc and
-            leaves a clean hole with a hairline rim — the native equivalent of
-            web's radial mask. */}
-        <View
-          pointerEvents="none"
-          style={{ position: "absolute", left: 0, right: 0, bottom: 0, alignItems: "center" }}
-        >
-          <View
-            style={{
-              width: SOCKET,
-              height: NOTCH,
-              borderTopLeftRadius: NOTCH,
-              borderTopRightRadius: NOTCH,
-              borderWidth: 1,
-              borderBottomWidth: 0,
-              borderColor: rimColor,
-              backgroundColor: TRAY_BG,
-            }}
-          />
-        </View>
-
-        {/* Dropped by the notch radius so the orb's centre lands on the cards'
-            bottom edge — the same point the socket is centred on. The tray's
-            paddingBottom holds the half that hangs below. */}
-        <View
-          pointerEvents="box-none"
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: -NOTCH,
-            alignItems: "center",
-          }}
-        >
-          <TouchableOpacity
-            onPress={onGenerate}
-            disabled={busy}
-            activeOpacity={0.7}
-            hitSlop={8}
-            style={{
-              width: SOCKET,
-              height: SOCKET,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            accessibilityRole="button"
-            accessibilityLabel={busy ? "Drafting replies" : "Draft new replies"}
-            accessibilityState={{ disabled: busy }}
-          >
-            <ReplyOrb state={busy ? "thinking" : "idle"} size={ORB} />
-          </TouchableOpacity>
-        </View>
 
         <TouchableOpacity
           onPress={onDismiss}
