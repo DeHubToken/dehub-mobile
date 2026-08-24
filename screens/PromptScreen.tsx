@@ -34,7 +34,6 @@ import {
   Animated as RNAnimated,
 } from "react-native";
 import Slider from "@react-native-community/slider";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
@@ -43,6 +42,10 @@ import { getCategoriesCached } from "../services/nft.service";
 import { scorePromptAgainstCategories, CategoryWeight } from "../libs/promptFeed";
 import { promptFeedEvents } from "../libs/eventBus";
 import { storage } from "../libs/storage";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
+
+/** 8pt + 32pt back button + 8pt — see styles.header / styles.backBtn. */
+const PROMPT_HEADER_HEIGHT = 48;
 
 type Stage = "input" | "analysing" | "tune";
 
@@ -128,7 +131,9 @@ function AnalysingOrbit() {
 }
 
 export default function PromptScreen() {
-  const insets = useSafeAreaInsets();
+  // This screen draws its own header rather than a ScreenHeader: a 32pt back
+  // button over 8pt of bottom padding.
+  const keyboardOffset = useKeyboardOffset(PROMPT_HEADER_HEIGHT);
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
 
@@ -196,7 +201,11 @@ export default function PromptScreen() {
   }, [topCategory, navigation]);
 
   return (
-    <View style={[styles.root, { paddingTop: insets.top }]}>
+    // No insets.top here. This screen lives inside the navigator, and the
+    // navigator is already wrapped in a full-edge <SafeAreaView> in App.tsx's
+    // BootGate, so adding the device inset again counted the notch twice and
+    // left a dead band above the header — the same trap AppDrawer hit.
+    <View style={styles.root}>
       <View style={styles.header}>
         <Pressable
           onPress={() => (stage === "input" ? navigation.goBack() : setStage("input"))}
@@ -211,7 +220,7 @@ export default function PromptScreen() {
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
-        keyboardVerticalOffset={insets.top + 44}
+        keyboardVerticalOffset={Platform.OS === "ios" ? keyboardOffset : 0}
       >
         <ScrollView
           contentContainerStyle={styles.body}
@@ -337,6 +346,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 8,
     paddingHorizontal: 12,
+    // Symmetric padding now that the root no longer double-counts the notch —
+    // without a top pad the back button sat flush against the status bar.
+    paddingTop: 8,
     paddingBottom: 8,
   },
   backBtn: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },

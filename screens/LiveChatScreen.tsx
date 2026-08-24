@@ -9,10 +9,8 @@ import {
   ListRenderItemInfo,
   NativeSyntheticEvent,
   NativeScrollEvent,
-  Platform,
 } from "react-native";
 import Icon from "../components/ui/Icon";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import ConfirmModal from "../components/common/ConfirmModal";
@@ -21,7 +19,7 @@ import LiveChatInput from "../components/LiveChat/LiveChatInput";
 import LiveChatContextMenu from "../components/LiveChat/LiveChatContextMenu";
 import type { MessageLayout } from "../components/LiveChat/LiveChatContextMenu";
 import PinnedMessagesBar from "../components/LiveChat/PinnedMessagesBar";
-import { useKeyboard } from "../hooks/useKeyboard";
+import { useKeyboardLift } from "../hooks/useKeyboardLayout";
 import GifPicker from "../components/DM/GifPicker";
 import { useLiveChat } from "../hooks/useLiveChat";
 import { useUser } from "../context/AuthContext";
@@ -85,11 +83,11 @@ const LiveChatScreen: React.FC = () => {
   const user = useUser();
   const { showUserProfile } = useUserProfileSheet();
   const navigation = useNavigation<any>();
-  const insets = useSafeAreaInsets();
-  const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
-
-  const inputLift = kbVisible ? kbHeight : 0;
-  const listBottomPadding = 88 + inputLift + (insets.bottom || 0);
+  // Lift by the keyboard height minus the bottom inset the root SafeAreaView
+  // has already given up — the raw height runs to the physical bottom of the
+  // screen, so using it whole leaves a home-indicator gap under the composer.
+  const { lift: inputLift } = useKeyboardLift();
+  const listBottomPadding = 88 + inputLift;
 
   const {
     connected,
@@ -681,7 +679,7 @@ const LiveChatScreen: React.FC = () => {
 
         <View
           className="absolute left-0 right-0 bottom-0 bg-theme-neutrals-900"
-          style={{ marginBottom: inputLift, paddingBottom: Platform.OS === 'ios' ? (kbVisible ? 0 : insets.bottom) : 0 }}
+          style={{ marginBottom: inputLift }}
         >
           {typingText && (
             <View className="px-4 py-1.5 border-b border-white/5">

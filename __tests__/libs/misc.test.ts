@@ -47,6 +47,32 @@ describe('libs/misc', () => {
     it('returns the untouched original at size 0, for fullscreen viewers', () => {
       expect(getAvatarUrl('abc.png', 0)).toBe('https://cdn.test.dehub.io/avatars/abc.png');
     });
+
+    // Flattening a stored path is right — `statics/avatars/x.jpeg` and
+    // `avatars/x.jpg` both live under /avatars on the CDN. Flattening an
+    // absolute URL is not: it kept only the last segment and re-based a store's
+    // Supabase Storage avatar onto our CDN, where it 403s.
+    it('leaves absolute third-party URLs alone', () => {
+      const supabase =
+        'https://xyz.supabase.co/storage/v1/object/public/store-media/0xabc/1775912272432.png';
+      expect(getAvatarUrl(supabase)).toBe(supabase);
+      expect(getAvatarUrl(supabase, 0)).toBe(supabase);
+    });
+
+    it('leaves blob and data previews alone', () => {
+      // A `blob:` optimistic preview was persisted onto some older rows; it is
+      // dead either way, but re-basing it produced a confusing CDN 403.
+      expect(getAvatarUrl('blob:https://dehub.io/96805841-a2b8-4c6d')).toBe(
+        'blob:https://dehub.io/96805841-a2b8-4c6d'
+      );
+      expect(getAvatarUrl('data:image/png;base64,AAAA')).toBe('data:image/png;base64,AAAA');
+    });
+
+    it('still sizes an absolute URL that is already on our CDN', () => {
+      expect(getAvatarUrl('https://cdn.test.dehub.io/avatars/abc.png')).toBe(
+        'https://dehub.io/cdn-cgi/image/format=webp,quality=80,width=96/https://cdn.test.dehub.io/avatars/abc.png'
+      );
+    });
   });
 
   describe('getCoverUrl', () => {
@@ -59,6 +85,11 @@ describe('libs/misc', () => {
       expect(getCoverUrl('covers/banner.jpg')).toBe(
         'https://cdn.test.dehub.io/covers/banner.jpg'
       );
+    });
+
+    it('leaves absolute third-party URLs alone', () => {
+      const remote = 'https://xyz.supabase.co/storage/v1/object/public/community-media/x/cover.png';
+      expect(getCoverUrl(remote)).toBe(remote);
     });
   });
 

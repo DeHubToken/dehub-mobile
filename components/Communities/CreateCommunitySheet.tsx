@@ -7,6 +7,7 @@ import {
   Modal,
   Pressable,
   ActivityIndicator,
+  ScrollView,
   StyleSheet,
   KeyboardAvoidingView,
 } from "react-native";
@@ -127,6 +128,15 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
             </TouchableOpacity>
           </View>
 
+          {/* Scrolls so the sheet can be capped. Without the cap a tall form —
+              and it is tallest exactly when the keyboard has shrunk the space
+              it sits in — grew straight out of the top of the screen, taking
+              the title with it. */}
+          <ScrollView
+            bounces={false}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+          >
           <View style={styles.row}>
             <TouchableOpacity
               style={styles.avatarPick}
@@ -180,6 +190,7 @@ const CreateCommunitySheet: React.FC<Props> = ({ visible, walletAddress, onClose
               <Text style={styles.submitText}>{t("communities.create")}</Text>
             )}
           </TouchableOpacity>
+          </ScrollView>
         </Pressable>
       </Pressable>
       </KeyboardAvoidingView>
@@ -197,6 +208,10 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.1)",
     padding: 20,
     paddingBottom: 32,
+    // A `justifyContent: "flex-end"` overlay pins the sheet's BOTTOM, so any
+    // height it gains grows upward and off the top of the screen — there is no
+    // notch to stop at. Cap it and let the body scroll instead.
+    maxHeight: "88%",
   },
   header: { flexDirection: "row", alignItems: "center", gap: 10, marginBottom: 16 },
   title: { flex: 1, color: "#fff", fontSize: 16, fontWeight: "600" },

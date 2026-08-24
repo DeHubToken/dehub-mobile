@@ -15,7 +15,6 @@ import {
   ActivityIndicator,
   Alert,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
@@ -96,7 +95,7 @@ import { blockUser, unblockUser } from "../services/block.service";
 import { truncateAddress } from "../libs/strings.util";
 import { getAvatarUrl } from "../libs/misc";
 import { toastError, toastInfo, toastSuccess, toastWarning } from "../libs/toast";
-import { useKeyboard } from "../hooks/useKeyboard";
+import { useKeyboardLift } from "../hooks/useKeyboardLayout";
 import { createLogger } from "../libs/logger";
 import { useDmPin } from "../hooks/useDmPin";
 import { useCall } from "../context/CallContext";
@@ -139,8 +138,6 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
   const ws = useWebSocket();
   const { showUserProfile } = useUserProfileSheet();
-  const insets = useSafeAreaInsets();
-  const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
 
   const { provider, account, chainId } = useWeb3Provider();
   const ethers = useMemo(() => (ethersImport as any).ethers || ethersImport, []);
@@ -159,7 +156,13 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   // With edge-to-edge enabled (Expo 54 / targetSdk 35) Android ignores
   // adjustResize — the window no longer shrinks when the keyboard opens —
   // so lift manually on both platforms (same as AIChatScreen/CommentsBottomSheet).
-  const inputLift = kbVisible ? kbHeight : 0;
+  //
+  // Not the raw keyboard height: it is measured to the physical bottom of the
+  // screen (the home indicator sits over the keys), while this screen's own
+  // bottom edge already stops `insets.bottom` short of it, courtesy of the root
+  // SafeAreaView in App.tsx. Lifting by the full height floated the composer a
+  // home-indicator clear of the keyboard.
+  const { lift: inputLift } = useKeyboardLift();
   const [inputBarHeight, setInputBarHeight] = useState(60);
   const listBottomPadding = inputBarHeight + inputLift;
 
@@ -1499,7 +1502,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           {/* Input or disabled banner — absolutely positioned, lifts with keyboard */}
           <View
             className="absolute left-0 right-0 bottom-0 bg-theme-neutrals-900"
-            style={{ marginBottom: inputLift, paddingBottom: kbVisible ? 0 : insets.bottom }}
+            // No insets.bottom pad at rest either: this container already ends
+            // above the home indicator, so adding it again left a dead strip
+            // under the composer.
+            style={{ marginBottom: inputLift }}
             onLayout={(e) => setInputBarHeight(e.nativeEvent.layout.height)}
           >
             {voiceRecorder.isRecording ? (

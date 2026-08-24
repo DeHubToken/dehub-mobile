@@ -29,7 +29,8 @@ import { openCroppedImagePicker, resizeAndCompress, createRNImageFile } from "..
 import { runWithPermissions } from "../libs/permissions.util";
 import { AuthService } from "../services/auth.service";
 import { toastError, toastSuccess } from "../libs/toast";
-import ScreenHeader from "../components/ScreenHeader";
+import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useDebounceCallback } from "../hooks/useDebounceCallback";
 import { validateSocial } from "../libs/links.utils";
 import { isReservedUsername } from "../libs/reserved-usernames";
@@ -57,6 +58,9 @@ type SocialField = {
 
 const EditProfileScreen = () => {
   const { t } = useTranslation();
+  // ScreenHeader sits above the KeyboardAvoidingView, on top of the inset the
+  // root SafeAreaView already spent.
+  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
   const navigation = useNavigation<any>();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
@@ -353,7 +357,7 @@ const EditProfileScreen = () => {
       />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={64}
+        keyboardVerticalOffset={Platform.OS === "ios" ? keyboardOffset : 0}
         style={{ flex: 1 }}
       >
         <ScrollView

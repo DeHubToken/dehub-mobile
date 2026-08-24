@@ -29,7 +29,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
-import ScreenHeader from "../components/ScreenHeader";
+import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import ShareLinkButton from "../components/common/ShareLinkButton";
 import { ShareLinks } from "../navigation/linking.config";
 import Avatar from "../components/common/Avatar";
@@ -103,6 +104,9 @@ const ReviewRow: React.FC<{ review: StoreReview }> = ({ review }) => (
 export default function ListingDetailScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  // ScreenHeader sits above the KeyboardAvoidingView, on top of the inset the
+  // root SafeAreaView already spent.
+  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.ListingDetail>>();
   const { listingId, listing: seed } = route.params;
@@ -290,6 +294,7 @@ export default function ListingDetailScreen() {
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
+        keyboardVerticalOffset={Platform.OS === "ios" ? keyboardOffset : 0}
       >
       <ScrollView
         contentContainerStyle={{ paddingBottom: insets.bottom + 28 }}

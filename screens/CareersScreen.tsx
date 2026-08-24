@@ -21,7 +21,8 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon, { type IconName } from "../components/ui/Icon";
-import ScreenHeader from "../components/ScreenHeader";
+import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { supabase } from "../services/supabase";
 import { toastError, toastSuccess } from "../libs";
 import { openInApp } from "../libs/links.utils";
@@ -116,6 +117,9 @@ const Field = ({
 export default function CareersScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  // ScreenHeader sits above the KeyboardAvoidingView, on top of the inset the
+  // root SafeAreaView already spent.
+  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
   const [formOpen, setFormOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState<BDMForm>(EMPTY_FORM);
@@ -178,7 +182,7 @@ export default function CareersScreen() {
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
-        keyboardVerticalOffset={insets.top + 44}
+        keyboardVerticalOffset={keyboardOffset}
       >
       <ScrollView
         contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 32, paddingTop: 4 }}

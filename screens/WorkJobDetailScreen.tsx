@@ -28,7 +28,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
-import ScreenHeader from "../components/ScreenHeader";
+import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { theme } from "../theme";
 import { openInApp } from "../libs/links.utils";
 import { toastError } from "../libs/toast";
@@ -102,6 +103,9 @@ const Stars: React.FC<{ value: number; size?: number; onPick?: (n: number) => vo
 export default function WorkJobDetailScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  // ScreenHeader sits above the KeyboardAvoidingView, on top of the inset the
+  // root SafeAreaView already spent.
+  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.WorkJobDetail>>();
   const { jobId, job: seed } = route.params;
@@ -228,7 +232,7 @@ export default function WorkJobDetailScreen() {
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
-        keyboardVerticalOffset={insets.top + 44}
+        keyboardVerticalOffset={keyboardOffset}
       >
         <ScrollView
           contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 32 }}

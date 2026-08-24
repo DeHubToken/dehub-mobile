@@ -14,7 +14,6 @@ import {
 import { useNavigation, useRoute, CommonActions, useFocusEffect } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
 import Icon from "../components/ui/Icon";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -46,7 +45,7 @@ import ChainSelector, { EVM_CHAINS } from "../components/common/ChainSelector";
 import { isChainAASupported, isSmartAccountIdentity } from "../libs/wallet-core/smart-account";
 import { isSolanaChain } from "../config/solana.constants";
 import { getSolanaAddress, getSolanaMintStatus } from "../services/solana.service";
-import { useKeyboard } from "../hooks/useKeyboard";
+import { useKeyboardLift } from "../hooks/useKeyboardLayout";
 import { useMentions } from "../hooks/useMentions";
 import { getAvatarUrl } from "../libs/misc";
 import Avatar from "../components/common/Avatar";
@@ -212,9 +211,10 @@ export default function UploadScreen() {
     },
     [activeChainId, switchChain]
   );
-  const insets = useSafeAreaInsets();
   const titleRef = useRef<TextInput>(null);
-  const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
+  // Keyboard height minus the bottom inset the root SafeAreaView already spent
+  // — see hooks/useKeyboardLayout.ts.
+  const { lift: kbLift } = useKeyboardLift();
   const { drafts, saveDraft, deleteDraft } = useDrafts(authUser?.address);
 
   const avatarUri = useMemo(
@@ -1634,7 +1634,9 @@ export default function UploadScreen() {
     setMonetization(next);
   }, []);
 
-  const bottomPad = kbVisible ? kbHeight : insets.bottom;
+  // 0 when the keyboard is down: this screen already ends above the home
+  // indicator, so padding by insets.bottom again left a dead strip.
+  const bottomPad = kbLift;
 
   return (
     <View className="flex-1 bg-black">{/* don't add top inset */}
