@@ -23,7 +23,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../components/ui/Icon";
-import ScreenHeader from "../components/ScreenHeader";
+import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useAuthState } from "../context/AuthContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
@@ -69,6 +70,9 @@ function toISODate(d: Date): string {
 export default function WorkPostScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  // ScreenHeader sits above the KeyboardAvoidingView, on top of the inset the
+  // root SafeAreaView already spent.
+  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
   const navigation = useNavigation<any>();
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
@@ -143,7 +147,7 @@ export default function WorkPostScreen() {
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
-        keyboardVerticalOffset={insets.top + 44}
+        keyboardVerticalOffset={keyboardOffset}
       >
         <ScrollView
           contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: insets.bottom + 32 }}

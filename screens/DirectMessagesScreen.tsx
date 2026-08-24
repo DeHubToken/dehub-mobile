@@ -33,6 +33,7 @@ import type {
 } from "../services/dm/dm.types";
 import { getOtherParticipant } from "../services/dm/dm.types";
 import { useDmContacts, dmActions } from "../store/dm.store";
+import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useDMContext } from "../context/DMContext";
 
 const DirectMessagesInner: React.FC = () => {
@@ -44,6 +45,9 @@ const DirectMessagesInner: React.FC = () => {
   const { contactsLoading, refreshContacts } = useDMContext();
   const conversations = useDmContacts();
   const { showUserProfile } = useUserProfileSheet();
+  // The KeyboardAvoidingView below is this screen's outermost element, so the
+  // only chrome above it is the root SafeAreaView's own inset.
+  const keyboardOffset = useKeyboardOffset();
 
   const myUserId = (user as any)?.id as string | undefined;
   const myAddress = (
@@ -318,7 +322,7 @@ const DirectMessagesInner: React.FC = () => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+      keyboardVerticalOffset={Platform.OS === "ios" ? keyboardOffset : 0}
       style={{ flex: 1 }}
     >
       <View className="flex-1 bg-theme-neutrals-900">

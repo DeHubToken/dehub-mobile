@@ -44,7 +44,7 @@ import MentionSuggestions from '../components/common/MentionSuggestions';
 import { useUser } from '../context/AuthContext';
 import { getAuthToken } from '../libs/auth.utils';
 import { useAIConversation, type ConversationEntry } from '../hooks/useAIConversation';
-import { useKeyboard } from '../hooks/useKeyboard';
+import { useKeyboardLift } from '../hooks/useKeyboardLayout';
 import { useMentions } from '../hooks/useMentions';
 import {
   streamAIChat,
@@ -169,7 +169,9 @@ function AIChatScreenInner() {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const user = useUser();
-  const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
+  // Keyboard height minus the bottom inset the root SafeAreaView already spent
+  // — see hooks/useKeyboardLayout.ts.
+  const { lift: kbLift, isVisible: kbVisible } = useKeyboardLift();
   const flatListRef = useRef<FlatList<AIChatMessage>>(null);
 
   const walletAddress = user?.walletAddress || user?.address || null;
@@ -1408,7 +1410,7 @@ function AIChatScreenInner() {
         />
       )}
 
-      <View style={{ marginBottom: kbVisible ? kbHeight : TAB_BAR_HEIGHT }}>
+      <View style={{ marginBottom: kbVisible ? kbLift : TAB_BAR_HEIGHT }}>
         <MentionSuggestions
           visible={mentions.showSuggestions}
           suggestions={mentions.suggestions}
