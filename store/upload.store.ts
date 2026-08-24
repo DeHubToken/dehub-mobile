@@ -98,6 +98,19 @@ export interface UploadJob {
    * resumed after a restart keeps the creator's choice.
    */
   mintOptOut?: boolean;
+  /**
+   * The bill for a post that ran past the daily free allowance.
+   *
+   * Opened by the server when the upload lands, and kept on the job so a
+   * queue resumed after a restart still knows what it owes — without it, a
+   * job that survives a crash between upload and payment would leave a tab
+   * open that nothing in the app could close.
+   */
+  quotaBill?: {
+    chargeId: string;
+    amountDhb: number;
+    recipient?: string | null;
+  };
 }
 
 interface UploadStoreState {
@@ -177,6 +190,13 @@ export const uploadActions = {
     if (!job) return;
     job.status = status;
     if (mintParams) job.mintParams = mintParams;
+  },
+
+  /** Record what the server billed for this upload, so a resumed job can still pay it. */
+  attachQuotaBill(id: string, bill: NonNullable<UploadJob["quotaBill"]>): void {
+    const job = uploadState.jobs.find((j) => j.id === id);
+    if (!job) return;
+    job.quotaBill = bill;
   },
 
   fail(id: string, error: string): void {
