@@ -11,14 +11,14 @@ const log = createLogger("useSmartReplies");
 export type SmartReplyStatus = "idle" | "loading" | "ready" | "empty" | "error";
 
 /**
- * Drafts replies to the newest incoming message.
+ * Drafts against the newest turns of the thread, whichever side holds the last
+ * word: replies to an incoming message, follow-ups to the user's own.
  *
- * Never fires on mount. The composer calls generate() when it raises the tray,
- * which is at most once per incoming message — suggestions are a paid call on a
- * surface that receives unsolicited traffic, so anyone who can DM the user must
- * not be able to spend against the rate limit just by typing. The guard in
- * generate() is the backstop: a thread the user spoke last in never costs a
- * request, whichever surface asks.
+ * Never fires on mount. The composer calls generate() once per thread tail —
+ * suggestions are a paid call on a surface that receives unsolicited traffic,
+ * so anyone who can DM the user must not be able to spend against the rate
+ * limit just by typing. That once-per-tail key is the ceiling; generate()
+ * itself only refuses an empty thread.
  *
  * Mirrors dehubweb's src/hooks/use-smart-replies.ts.
  */
@@ -47,11 +47,12 @@ export function useSmartReplies(thread: SmartReplyTurn[], peerName?: string) {
 
   const generate = useCallback(async () => {
     if (inFlight.current) return;
-    // Nothing to reply to — no thread, or the user spoke last and the drafter
-    // would be answering them. Belt and braces with the caller's own check: the
-    // request is paid, so the refusal belongs where no caller can skip it.
-    const tail = thread[thread.length - 1];
-    if (!tail || tail.from === "me") {
+    // An empty thread is the only thing there is nothing to draft from. When
+    // the user holds the last word the function drafts FOLLOW-UPS instead of a
+    // reply to oneself — the same both-directions behaviour web has had since
+    // dehubweb #434. Refusing here is what left the phone showing "you sent
+    // the last message" for the rest of every conversation.
+    if (thread.length === 0) {
       setSuggestions([]);
       setStatus("empty");
       return;
@@ -65,10 +66,12 @@ export function useSmartReplies(thread: SmartReplyTurn[], peerName?: string) {
       const res = await suggestReplies(thread, peerName);
       const next = Array.isArray(res?.suggestions) ? res.suggestions : [];
       if (next.length === 0) {
-        // 'awaiting-reply' is the expected no-op: the user sent last, so there
-        // is nothing to reply to. Not an error, just nothing to show.
+        // The call went through and came back with nothing usable — that is a
+        // failed draft, not an empty thread, and the rail says so with the orb
+        // live to press again.
         setSuggestions([]);
-        setStatus("empty");
+        setError("Could not draft replies");
+        setStatus("error");
         return;
       }
       setSuggestions(next);
