@@ -93,6 +93,12 @@ export interface User {
   hideFollowers?: boolean; // privacy setting to hide follow lists
   isPrivate?: boolean; // privacy setting to make account private
   /**
+   * This viewer asked to be served mature posts in the public feeds, and to
+   * see them without a content warning elsewhere. Off by default. Says
+   * nothing about their own posts, which carry their own rating.
+   */
+  showMatureContent?: boolean;
+  /**
    * Free-form profile settings blob returned by the account endpoints. Web
    * keeps follow visibility (`followVisibility`), default post visibility
    * (`defaultPostVisibility`) and default profile tab (`defaultProfileTab`) in

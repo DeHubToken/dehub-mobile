@@ -70,6 +70,13 @@ export type UploadPayload = {
    * post needs no wallet and no gas; on for an external one.
    */
   shouldMint?: boolean;
+  /**
+   * 'mature' marks the post adult or graphic. It then reaches the creator's
+   * followers, their profile and anyone with the link, but stays off the
+   * public home, shorts, search and suggestion feeds — unless a viewer has
+   * turned mature content on in their own settings. Omitted means safe.
+   */
+  contentRating?: 'mature';
 };
 
 
@@ -361,6 +368,7 @@ export function useUploadPost() {
         streamInfoJson: JSON.stringify(filteredStreamInfo(streamInfo)),
         pollData: p.pollData,
         scheduledAt: p.scheduledAt?.toISOString(),
+        contentRating: p.contentRating,
       };
 
       const isBounty = p.monetization.bountyEnabled;
