@@ -19,6 +19,7 @@ import {
   getBadgeUrl,
   getDefaultBanner,
   resolveBadgeBalance,
+  resolveBadgeLock,
 } from "../../libs/misc";
 import { openExternalLink } from "../../libs/links.utils";
 import { truncateAddress } from "../../libs/strings.util";
@@ -96,8 +97,11 @@ const ProfileHeader = () => {
   const avatarFullUrl = getAvatarUrl(user?.avatarImageUrl, 0);
   const coverFullUrl = getCoverUrl(user?.coverImageUrl);
   const badgeVal = resolveBadgeBalance(user as any);
-  const badge = getBadgeName(badgeVal);
-  const badgeImage = getBadgeUrl(badgeVal);
+  // The lock alongside the balance: a tier earned before the ladder moved is
+  // still theirs, and the badge here has to agree with the one on their posts.
+  const badgeLock = resolveBadgeLock(user as any);
+  const badge = getBadgeName(badgeVal, { lock: badgeLock });
+  const badgeImage = getBadgeUrl(badgeVal, { lock: badgeLock });
 
   // account_info returns followers/followings as arrays of addresses (or a
   // plain number elsewhere) — resolveCount normalises both to a count.

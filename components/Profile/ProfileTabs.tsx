@@ -17,6 +17,8 @@ import FractionsRoute from "./FractionsRoute";
 import ProfileTabBar, { type ProfileTabItem } from "./ProfileTabBar";
 import { useUser } from "../../context/AuthContext";
 import { useProfileContentCounts } from "./useProfileContentCounts";
+import BadgeProgress from "../Badge/BadgeProgress";
+import { resolveBadgeBalance, resolveBadgeLock } from "../../libs/misc";
 
 type ProfileRoute = { key: string; title: string; icon: IconName };
 
@@ -72,6 +74,14 @@ const ProfileTabs: React.FC = () => {
   const listHeader = (
     <View>
       <ProfileHeader />
+      <View className="px-3 pb-3">
+        {/* The ladder, on the one screen where the badge belongs to the person
+            reading it. */}
+        <BadgeProgress
+          balance={resolveBadgeBalance(user as any)}
+          lock={resolveBadgeLock(user as any)}
+        />
+      </View>
       <View className="px-3">
         <PinnedCommunities walletAddress={address || ""} isOwnProfile />
       </View>

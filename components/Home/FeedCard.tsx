@@ -55,8 +55,7 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import PollCard from "../DM/PollCard";
 import {
   getAvatarUrl,
-  getBadgeUrl,
-  resolveBadgeBalance,
+  getBadgeUrlFor,
   getImageUrl,
   getImageUrlApiSimple,
   buildFeedImageUrls,
@@ -196,7 +195,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const username = minterUser?.username || item.minterUsername || item.minter || "";
   const minterAddress = minterUser?.address || item.minter || item.owner || "";
   const avatar = getAvatarUrl(minterUser?.avatarImageUrl || item.minterAvatarUrl || "");
-  const badgeImg = getBadgeUrl(resolveBadgeBalance(minterUser || item));
+  const badgeImg = getBadgeUrlFor(minterUser || item);
 
   const createdAt = item.createdAt || stream?.createdAt;
   const title = (() => {

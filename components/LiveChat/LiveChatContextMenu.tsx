@@ -14,7 +14,7 @@ import { BlurView } from "expo-blur";
 import Icon, { type IconName } from "../ui/Icon";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance, resolveBadgeLock } from "../../libs/misc";
 import { copyToClipboard } from "../../libs/clipboard.utils";
 import { theme } from "../../theme";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
@@ -89,7 +89,8 @@ const FloatingLiveChatMessage: React.FC<{ message: LiveChatMessageData }> = ({ m
   const displayName =
     sender?.displayName || sender?.username || message.senderAddress?.slice(0, 8) || "Anon";
   const badgeBalance = resolveBadgeBalance(sender || {});
-  const badgeImg = getBadgeUrl(badgeBalance);
+  const badgeLock = resolveBadgeLock(sender || {});
+  const badgeImg = getBadgeUrl(badgeBalance, { lock: badgeLock });
   const isMod = sender?.isModerator;
 
   return (

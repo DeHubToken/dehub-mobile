@@ -11,7 +11,7 @@ import Icon from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
 import { useTranslation } from "../../hooks/useTranslation";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrl, resolveBadgeBalance, resolveBadgeLock } from "../../libs/misc";
 import { openInApp } from "../../libs/links.utils";
 import { ASSISTANT_USERNAME, isAssistantAddress } from "../../libs/assistant";
 import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.service";
@@ -87,7 +87,8 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
     ? ASSISTANT_USERNAME
     : sender?.displayName || sender?.username || message.senderAddress?.slice(0, 8) || "Anon";
   const badgeBalance = resolveBadgeBalance(sender || {});
-  const badgeImg = isAssistant ? null : getBadgeUrl(badgeBalance);
+  const badgeLock = resolveBadgeLock(sender || {});
+  const badgeImg = isAssistant ? null : getBadgeUrl(badgeBalance, { lock: badgeLock });
   const isMod = sender?.isModerator && !isAssistant;
 
   const containerRef = useRef<View>(null);

@@ -73,6 +73,7 @@ import RadioMiniPlayer from "./components/Music/RadioMiniPlayer";
 import { AppKit } from "@reown/appkit-ethers5-react-native";
 import { isWalletConnectAvailable } from "./config/reown.config";
 import { markBootRevealed } from "./libs/bootReveal";
+import BadgeLadderSync from "./components/Badge/BadgeLadderSync";
 
 const logger = createLogger("App");
 
@@ -163,6 +164,9 @@ export default function App() {
                 </DMProvider>
               </WebSocketProvider>
             </AuthProvider>
+            {/* Outside AuthProvider: badges draw for signed-out viewers too,
+                and every one of them resolves against this scale. */}
+            <BadgeLadderSync />
             <Toaster
               position="top-center"
               offset={56}
