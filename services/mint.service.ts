@@ -26,11 +26,13 @@ export async function mintWithBounty(
   bountyToken: MinimalToken,
   bountyAmount: string | number,
   countOfViewers: number,
-  countOfCommentor: number
+  countOfCommentor: number,
+  /** URI suffix from the mint API — carries the post's text on chain. */
+  uri?: string
 ) {
   if (!controllerContract) throw new Error("Controller contract unavailable");
   const amountBN = toBigAmount(bountyAmount, bountyToken);
-  const path = `/${createdTokenId}.json`;
+  const path = uri ?? `/${createdTokenId}.json`;
   // Use AA-aware writer; return shim with wait() for caller compatibility
   const res = await writeContractAA(
     controllerContract,
@@ -58,10 +60,12 @@ export async function mintNftOnChain(
   timestamp: number,
   v: number,
   r: string,
-  s: string
+  s: string,
+  /** URI suffix from the mint API — carries the post's text on chain. */
+  uri?: string
 ) {
   if (!streamCollectionContract) throw new Error("Collection contract unavailable");
-  const path = `${createdTokenId}.json`;
+  const path = uri ?? `${createdTokenId}.json`;
   const res = await writeContractAA(
     streamCollectionContract,
     "mint",
@@ -121,15 +125,17 @@ export async function mintNftOnChainWithFee(
   r: string,
   s: string,
   fee: MintFeeQuote | null,
+  /** URI suffix from the mint API — carries the post's text on chain. */
+  uri?: string,
 ) {
   const collectable = !!fee && fee.chargeable && !!fee.recipient && fee.amount > 0;
   if (!collectable) {
-    return mintNftOnChain(streamCollectionContract, createdTokenId, timestamp, v, r, s);
+    return mintNftOnChain(streamCollectionContract, createdTokenId, timestamp, v, r, s, uri);
   }
   if (!streamCollectionContract) throw new Error("Collection contract unavailable");
 
   const amountBN = ethers.utils.parseUnits(fee!.amount.toFixed(fee!.decimals), fee!.decimals);
-  const path = `${createdTokenId}.json`;
+  const path = uri ?? `${createdTokenId}.json`;
   const mintData = streamCollectionContract.interface.encodeFunctionData("mint", [
     createdTokenId,
     timestamp,
@@ -163,7 +169,7 @@ export async function mintNftOnChainWithFee(
     if (err?.message === "BATCH_UNSUPPORTED") {
       // A session with no bundler is not a failed mint — send it unbatched and
       // forgo the fee rather than blocking the creator.
-      return mintNftOnChain(streamCollectionContract, createdTokenId, timestamp, v, r, s);
+      return mintNftOnChain(streamCollectionContract, createdTokenId, timestamp, v, r, s, uri);
     }
     throw err;
   }
