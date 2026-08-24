@@ -39,6 +39,7 @@ import { openStageModal } from "../context/StageContext";
 import { useAuthState, useUser } from "../context/AuthContext";
 import { useTotalUnreadMessagesCount } from "../store/dm.store";
 import { storage } from "../libs/storage";
+import { bootRevealed } from "../libs/bootReveal";
 import { TAB_BAR_PILL_HEIGHT, TAB_BAR_SCRIM_HEIGHT } from "./tabBarLayout";
 import { useTranslation } from "react-i18next";
 
@@ -284,9 +285,14 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   const user = useUser();
   const myUserId = ((user as any)?._id || (user as any)?.id) as string | undefined;
   const dmUnread = useTotalUnreadMessagesCount(myUserId);
+  // Resting state by default: a mount that happens underneath the boot
+  // preloader (every cold start) must appear settled, or the user catches the
+  // tail of this choreography as movement right on top of the reveal. The
+  // first mount after the curtain has lifted — auth replace, sign-out/in —
+  // plays it once.
   const animProgress = useSharedValue(1);
-  const containerAnim = useSharedValue(0);
-  const entranceFade = useSharedValue(0);
+  const containerAnim = useSharedValue(1);
+  const entranceFade = useSharedValue(1);
   const hasAnimated = useRef(false);
   const scrollRef = useRef<ScrollView>(null);
 
@@ -305,7 +311,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
   });
 
   useEffect(() => {
-    if (hasAnimated.current) return;
+    if (hasAnimated.current || !bootRevealed) return;
     hasAnimated.current = true;
     animProgress.value = 0;
     containerAnim.value = 0;

@@ -4,7 +4,6 @@ import {
   Text,
   ScrollView,
   Pressable,
-  ActivityIndicator,
   StyleSheet,
 } from "react-native";
 import { Image } from "expo-image";
@@ -12,7 +11,6 @@ import ShimmerBorder from "./ShimmerBorder";
 // import AddStorySheet from "./AddStorySheet";
 import Avatar from "../common/Avatar";
 import { getAvatarUrl } from "../../libs";
-import { theme } from "../../theme";
 import { useStoriesFeed, type StoryUserGroup } from "../../hooks/useStoriesFeed";
 import { useWatchedStories } from "../../hooks/useWatchedStories";
 import { useStoryViewer } from "../../context/StoryViewerContext";
@@ -20,6 +18,8 @@ import { useUser } from "../../context/AuthContext";
 // import { ScreenNames } from "../../navigation/ScreenNames";
 
 const BUBBLE = 60;
+// Enough placeholders to fill any phone width; keys only, never rendered to.
+const PLACEHOLDER_COUNTS = ["p0", "p1", "p2", "p3", "p4", "p5", "p6", "p7"];
 
 interface StoriesBarProps {
   /** Refresh when parent uploads a story */
@@ -99,11 +99,25 @@ const StoriesBar: React.FC<StoriesBarProps> = ({ refreshKey = 0 }) => {
     return url === "default-avatar" ? undefined : url;
   }, []);
 
+  // While loading, render placeholder bubbles in the exact layout of loaded
+  // ones (same styles object tree), so the header never resizes when the
+  // stories resolve — it used to swap to an ActivityIndicator row half the
+  // height, and every surface docked to the header jumped when it grew back.
   if (loading && sortedUsers.length === 0) {
     return (
-      <View style={styles.loadingRow}>
-        <ActivityIndicator color={theme.colors.accent} size="small" />
-      </View>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.scroll}
+        pointerEvents="none"
+      >
+        {PLACEHOLDER_COUNTS.map((key) => (
+          <View key={key} style={styles.item}>
+            <View style={[styles.itemBubble, styles.skeletonBubble]} />
+            <View style={[styles.label, styles.skeletonLabel]} />
+          </View>
+        ))}
+      </ScrollView>
     );
   }
 
@@ -181,9 +195,25 @@ const StoriesBar: React.FC<StoriesBarProps> = ({ refreshKey = 0 }) => {
 export default StoriesBar;
 
 const styles = StyleSheet.create({
-  loadingRow: { paddingVertical: 14, alignItems: "center" },
   scroll: { paddingHorizontal: 12, paddingVertical: 10, gap: 10 },
   item: { width: 68, alignItems: "center" },
+  // Same box ShimmerBorder draws (60×60, radius 14 outer) so the skeleton is
+  // the loaded row to the pixel.
+  itemBubble: {
+    width: BUBBLE,
+    height: BUBBLE,
+    borderRadius: 14,
+    borderWidth: 1,
+  },
+  skeletonBubble: {
+    borderColor: "rgba(255,255,255,0.12)",
+    backgroundColor: "rgba(255,255,255,0.06)",
+    opacity: 0.65,
+  },
+  skeletonLabel: {
+    backgroundColor: "rgba(255,255,255,0.08)",
+    marginTop: 6,
+  },
   createOuter: {
     width: BUBBLE,
     height: BUBBLE,
@@ -203,7 +233,9 @@ const styles = StyleSheet.create({
   thumb: { width: "100%", height: "100%" },
   label: {
     marginTop: 6,
+    height: 14,
     fontSize: 11,
+    lineHeight: 14,
     color: "#9CA3AF",
     textAlign: "center",
     width: 64,
