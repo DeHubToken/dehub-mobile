@@ -35,6 +35,8 @@ import { getCategoriesCached, getMintFee } from "../services/nft.service";
 import type { MintFeeQuoteResponse } from "../services/nft.service";
 import { getAuthMethod } from "../libs/auth.utils";
 import { isShortOfMintFee } from "../services/mint.service";
+import { getPostQuota, quotePostCharge } from "../services/post-quota.service";
+import type { PostQuotaStatus } from "../services/post-quota.service";
 import { defaultChainId } from "../config/constants";
 import { toastError, toastSuccess } from "../libs/toast";
 import { requestAudioFocus, releaseAudioFocus } from "../libs/audioFocus";
@@ -87,6 +89,51 @@ const SHOULD_MINT_KEY = "post_should_mint";
 
 const TITLE_MAX = 140;
 const DESCRIPTION_MAX = 500;
+
+/**
+ * Bytes this upload will send, thumbnail included.
+ *
+ * Measured off the files rather than trusted from the picker: an
+ * ImagePickerAsset's `fileSize` is absent on some Android providers, and a
+ * missing size would quietly under-quote a video. `getInfoAsync` on a URI the
+ * app is about to upload is cheap, and a file it cannot stat counts as zero —
+ * the server measures the real request and is the authority either way.
+ */
+async function measureUploadBytes(payload: {
+  pickedImages: { uri: string }[];
+  pickedVideo: { uri: string } | null;
+  pickedAudio: { uri: string } | null;
+  coverUri: string | null;
+  thumbnailUri: string | null;
+}): Promise<number> {
+  const uris = [
+    ...payload.pickedImages.map((m) => m.uri),
+    payload.pickedVideo?.uri,
+    payload.pickedAudio?.uri,
+    // Only one of these is ever uploaded — enqueueJob takes cover first.
+    payload.coverUri || payload.thumbnailUri,
+  ].filter(Boolean) as string[];
+
+  const sizes = await Promise.all(
+    uris.map(async (uri) => {
+      try {
+        const info = await FileSystem.getInfoAsync(uri);
+        return info.exists && typeof (info as any).size === "number" ? (info as any).size : 0;
+      } catch {
+        return 0;
+      }
+    }),
+  );
+
+  return sizes.reduce((sum, n) => sum + n, 0);
+}
+
+/** Bytes as MB or GB, matching the server's 1024-based gigabyte. */
+function formatDataSize(bytes: number): string {
+  const GB = 1024 * 1024 * 1024;
+  if (bytes >= GB) return `${(bytes / GB).toFixed(bytes >= 10 * GB ? 0 : 1)} GB`;
+  return `${Math.round(bytes / (1024 * 1024))} MB`;
+}
 const SHOW_TITLE_PREF_KEY = "@dhb_post_show_title";
 const IMAGES_MAX = 4;
 const MAX_IMAGE_SIZE_BYTES = 20 * 1024 * 1024; // 20 MB per image
@@ -334,6 +381,65 @@ export default function UploadScreen() {
     mintFee?.chargeable && mintFee.amount > 0
       ? `${mintFee.amount} ${mintFee.symbol}`
       : null;
+
+  /**
+   * Today's free posting allowance, and what is left of it.
+   *
+   * Read once when the composer mounts. A payment whose settle call was lost
+   * in an earlier session is re-sent first — otherwise the creator would be
+   * told they still owe for a post they have already paid for.
+   */
+  const [postQuota, setPostQuota] = useState<PostQuotaStatus | null>(null);
+  useEffect(() => {
+    if (!authUser?.address) {
+      setPostQuota(null);
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      try {
+        const { flushPendingSettlements } = await import("../services/post-quota-payment");
+        await flushPendingSettlements();
+      } catch {}
+      const quota = await getPostQuota();
+      if (!cancelled) setPostQuota(quota);
+    })();
+    return () => { cancelled = true; };
+  }, [authUser?.address]);
+
+  /**
+   * The one line the composer shows about the allowance.
+   *
+   * Follows what is actually attached, because text posts and media draw on
+   * separate pools — telling someone with a video queued how many text posts
+   * they have left would answer a question they did not ask. Null when there
+   * is nothing to say; never a zero, which reads as "you are out" when it
+   * really means "we do not know".
+   */
+  const postQuotaLabel = useMemo(() => {
+    if (!postQuota?.chargingEnabled) return null;
+
+    const spendsData = !!pickedVideo || !!pickedAudio || pickedImages.length > 0 || isLiveMode;
+    if (spendsData) {
+      const left = Math.max(0, postQuota.mediaBytesPerDay - postQuota.mediaBytesUsed);
+      return left > 0
+        ? `${formatDataSize(left)} of ${formatDataSize(postQuota.mediaBytesPerDay)} left today`
+        : `${postQuota.dhbPerGb.toLocaleString()} DHB/GB — today's data used`;
+    }
+
+    const left = Math.max(0, postQuota.textPostsPerDay - postQuota.textPostsUsed);
+    return left > 0
+      ? `${left} of ${postQuota.textPostsPerDay} free posts left today`
+      : `${postQuota.dhbPerTextPost.toLocaleString()} DHB per post — today's free posts used`;
+  }, [postQuota, pickedVideo, pickedAudio, pickedImages.length, isLiveMode]);
+
+  /** True once today's allowance is spent and the next post costs DHB. */
+  const quotaExhausted = useMemo(() => {
+    if (!postQuota?.chargingEnabled) return false;
+    return !!pickedVideo || !!pickedAudio || pickedImages.length > 0 || isLiveMode
+      ? postQuota.mediaBytesUsed >= postQuota.mediaBytesPerDay
+      : postQuota.textPostsUsed >= postQuota.textPostsPerDay;
+  }, [postQuota, pickedVideo, pickedAudio, pickedImages.length, isLiveMode]);
 
   /**
    * A post is filed under a community by carrying its slug as a category —
@@ -855,11 +961,51 @@ export default function UploadScreen() {
       }
     }
 
+    /**
+     * Does this post fit in today's free allowance, and if not, can it be
+     * paid for?
+     *
+     * Asked before the job is queued. The server checks the same thing again
+     * and is the authority — this exists so that being short of DHB costs a
+     * moment rather than a whole upload over mobile data, and so the message
+     * says what is actually wrong instead of the queue going red on a 402.
+     *
+     * A quote that could not be fetched lets the post through. Losing a post
+     * to a failed price check would be the worse bug.
+     */
+    // Same mapping enqueueJob uses — the allowance has to be priced against
+    // the postType the server will actually be sent.
+    const quotaPostType = payload.pickedVideo
+      ? "video"
+      : payload.pickedAudio
+        ? "feed-audio"
+        : payload.pickedImages.length > 0
+          ? "feed-images"
+          : "feed-simple";
+
+    const quotaCost = await quotePostCharge(
+      quotaPostType,
+      await measureUploadBytes(payload),
+    ).catch(() => null);
+
+    if (quotaCost?.chargeable && quotaCost.amountDhb > 0) {
+      const { readDhbBalance } = await import("../services/post-quota-payment");
+      const held = await readDhbBalance();
+      const owed = quotaCost.amountDhb + (postQuota?.outstandingDhb ?? 0);
+      if (held < owed) {
+        toastError(
+          `This post costs ${owed.toLocaleString()} DHB and you hold ${Math.floor(held).toLocaleString()}. Top up, or it's free again tomorrow.`,
+          "You've used today's free posting allowance",
+        );
+        return;
+      }
+    }
+
     const ok = enqueueJob(payload);
     if (!ok) return;
     consumeRestoredDraft();
     setTimeout(navigateHome, 120);
-  }, [getPayload, enqueueJob, navigateHome, solanaAddress, mintFee, mintChainId, consumeRestoredDraft]);
+  }, [getPayload, enqueueJob, navigateHome, solanaAddress, mintFee, mintChainId, consumeRestoredDraft, postQuota]);
 
   const handleRemoveQuoteEmbed = useCallback(() => {
     setIsQuoteMode(false);
@@ -2152,6 +2298,20 @@ export default function UploadScreen() {
                 post can be gated or sold just like a video. Rendered whatever
                 the draft holds, so the options are on screen from first open. */}
             <View className="mt-4">
+              {/* Daily posting allowance. Quiet while there is headroom; it
+                  only speaks up once the next post starts costing DHB. */}
+              {postQuotaLabel ? (
+                <View className="flex-row items-center py-3">
+                  <Icon name="Gauge" size={18} color={quotaExhausted ? "#fff" : "#8f8f8f"} />
+                  <Text
+                    className={`text-xs ml-3 flex-1 ${quotaExhausted ? "text-white" : "text-theme-neutrals-500"}`}
+                    numberOfLines={1}
+                  >
+                    {postQuotaLabel}
+                  </Text>
+                </View>
+              ) : null}
+
               {/* Mint sits in the list rather than in a card of its own, as
                   web's first PostAccessToggles row. Off by default, so a first
                   post needs no wallet at all. */}
