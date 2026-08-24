@@ -33,11 +33,29 @@ import { clearAllEngagement } from './engagementCache';
 import { clearLinkCopyFloors } from './link-copy-floors';
 import { clearUnlockedTokens } from './unlocked-tokens';
 import { queryClient } from '../config/queryClient';
+import {
+  getProfileAllowance,
+  MAX_PROFILES_CEILING,
+  type ProfileAllowance,
+} from './profileLimits';
 
 export const PROFILES_STORAGE_KEY = '@dehub_profiles_v1';
 export const PROFILES_CHANGED_EVENT = 'dehub:profiles-changed';
 
-const MAX_PROFILES = 8;
+/**
+ * Thrown instead of quietly making room. The caller decides how to say it —
+ * the allowance carries the tier that would lift the limit, so the message can
+ * name it rather than stating a bare number.
+ */
+export class ProfileLimitReachedError extends Error {
+  readonly allowance: ProfileAllowance;
+
+  constructor(allowance: ProfileAllowance) {
+    super(`You can keep ${allowance.maxProfiles} profiles on this device`);
+    this.name = 'ProfileLimitReachedError';
+    this.allowance = allowance;
+  }
+}
 
 /** Everything a session owns in SecureStore. Stashed and restored as a set. */
 const SESSION_KEYS = [
@@ -70,6 +88,12 @@ export interface StoredProfile {
   avatarUrl: string | null;
   addedAt: number;
   lastActiveAt: number;
+  /**
+   * Staking balance at the last save, so the device's allowance can be priced
+   * without a network call. Null when it has never been seen — that profile
+   * simply contributes no tier, exactly as web treats a missing balance.
+   */
+  badgeBalance: number | string | null;
   /** Null once the session is gone — switching to it asks for sign-in again. */
   session: StoredProfileSession | null;
 }
@@ -79,6 +103,8 @@ interface CachedUser {
   username?: string;
   avatarImageUrl?: string;
   address?: string;
+  /** Staking balance, kept so the device allowance can be priced offline. */
+  badgeBalance?: number | string | null;
 }
 
 function emitChanged() {
@@ -228,24 +254,40 @@ async function snapshotSession(adopt: boolean): Promise<void> {
     avatarUrl: user?.avatarImageUrl ?? null,
     addedAt: existing?.addedAt ?? now,
     lastActiveAt: now,
+    badgeBalance: user?.badgeBalance ?? existing?.badgeBalance ?? null,
     session: {
       tokens,
       supabase: await readSupabaseSession(),
     },
   };
 
-  if (existingIndex >= 0) profiles[existingIndex] = entry;
-  else profiles.push(entry);
-
-  // Bound the list, never dropping whoever is live right now.
-  while (profiles.length > MAX_PROFILES) {
-    const oldest = [...profiles]
-      .sort((a, b) => a.lastActiveAt - b.lastActiveAt)
-      .find((p) => p.id !== identity.id);
-    if (!oldest) break;
-    profiles.splice(profiles.indexOf(oldest), 1);
+  if (existingIndex >= 0) {
+    // Already saved — updating a profile in place can never exceed the limit.
+    profiles[existingIndex] = entry;
+    await writeStore(profiles);
+    return;
   }
 
+  // A NEW profile is refused at the limit rather than making room for itself.
+  //
+  // This used to evict the least-recently-active saved profile, silently, with
+  // no prompt — so signing into a ninth account deleted an eighth one off the
+  // device, taking its stored session with it. On an app where a lost wallet is
+  // a lost ACCOUNT, that is not a cache eviction. Web made the same list
+  // tier-priced and explicitly dropped the eviction; this is the app half.
+  //
+  // The allowance comes from the best tier already on the device, so switching
+  // to a fresh alt cannot lower the limit below the number already saved.
+  const allowance = getProfileAllowance([
+    ...profiles.map((p) => ({ badgeBalance: p.badgeBalance, username: p.username })),
+    { badgeBalance: entry.badgeBalance, username: entry.username },
+  ]);
+
+  if (profiles.length >= Math.min(allowance.maxProfiles, MAX_PROFILES_CEILING)) {
+    throw new ProfileLimitReachedError(allowance);
+  }
+
+  profiles.push(entry);
   await writeStore(profiles);
 }
 

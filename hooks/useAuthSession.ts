@@ -364,7 +364,24 @@ export function useAuthSession({
         if (attemptedFrom !== undefined) await profiles.adoptCurrentProfile();
         else await profiles.snapshotCurrentSession();
       } catch (e) {
-        log.warn('applyWalletAuthResult:profilesTail:error', e as any);
+        const profiles = await import('../libs/profiles');
+        if (e instanceof profiles.ProfileLimitReachedError) {
+          // The sign-in itself succeeded; only the saving of it to the device
+          // list was refused. Say so, and name the tier that would lift it —
+          // silence here would look like the account simply not appearing.
+          const { allowance } = e;
+          toastError(
+            e,
+            `You can keep ${allowance.maxProfiles} profiles on this device`,
+          );
+          log.warn('applyWalletAuthResult:profileLimitReached', {
+            maxProfiles: allowance.maxProfiles,
+            tierName: allowance.tierName,
+            nextTierName: allowance.nextTierName,
+          } as any);
+        } else {
+          log.warn('applyWalletAuthResult:profilesTail:error', e as any);
+        }
       }
       if (needsUsername) {
         setNeedsUsername(true);
