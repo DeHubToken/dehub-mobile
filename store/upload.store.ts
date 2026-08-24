@@ -68,6 +68,8 @@ export interface MintParams {
   v?: number;
   r?: string;
   s?: string;
+  /** URI suffix from the mint API — carries the post's text on chain. */
+  uri?: string;
   // Solana mint (#41): partially-signed base64 tx + mint address
   solanaTransaction?: string;
   solanaMintAddress?: string;

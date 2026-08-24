@@ -55,6 +55,7 @@ export function useMintExistingPost() {
           r,
           s,
           fee,
+          (sig as any)?.uri,
         );
         await tx?.wait?.(1);
 
