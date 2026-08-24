@@ -513,8 +513,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
       // The whole optimistic result at a given weight. A function of the
       // weight because the server answers with the weight it actually applied,
-      // and that can differ from the one guessed here — it prices from the
-      // earned badge, which this side cannot see.
+      // and that can differ from the one guessed here — the cached account row
+      // can be a beat behind the one the API priced from.
       const countsAt = (weight: number) => {
         let nextLikeCount = wasLikeCount;
         let nextDislikeCount = wasDislikeCount;
@@ -567,11 +567,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             return;
           }
           // Settle on the weight the server actually applied. Only differs
-          // when this side guessed a heavier badge than the account has earned
-          // (a lent one, say) — but the overlay outlives the refetch, so a
-          // wrong number would sit on the card until then. An API that does
-          // not send one is left alone rather than settled to 1: absent means
-          // "older build", not "counted once".
+          // when this side is a beat behind the account row — but the overlay
+          // outlives the refetch, so a wrong number would sit on the card
+          // until then. An API that does not send one is left alone rather
+          // than settled to 1: absent means "older build", not "counted once".
           const raw = res?.weight ?? res?.result?.weight;
           if (typeof raw === "number") {
             const applied = appliedEngagementWeight(raw);
