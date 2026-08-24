@@ -399,7 +399,31 @@
     "exportPkNotAvailable": "Bu akıllı hesap için özel anahtarlar mevcut değil",
     "mustBeSignedIn": "Giriş yapmış olmalısınız",
     "feeNonNegative": "Mesaj başına ücret negatif olmayan bir sayı olmalıdır",
-    "failedUpdateDmPrefs": "DM tercihleri güncellenemedi"
+    "failedUpdateDmPrefs": "DM tercihleri güncellenemedi",
+    "showAsNewMember": "Beni yeni üye olarak göster",
+    "showAsNewMemberDesc": "Diğer üyelerin yeni katıldığınızı görüp sizi karşılamasını sağlar. Kaydolduktan 30 gün sonra otomatik olarak sona erer.",
+    "matureContent": "Yetişkin İçeriğini Göster",
+    "matureContentDesc": "Akışlarınıza yetişkin ve sert içerikli gönderileri dahil eder ve zaten gördüklerinizdeki uyarıyı kaldırır. Varsayılan olarak kapalı.",
+    "highQualityImages": "Yüksek Kaliteli Görseller",
+    "highQualityImagesDesc": "Her zaman orijinalleri yükle. Tam ekran zaten öyle yapıyor",
+    "editProfile": "Profili düzenle",
+    "editProfileDesc": "Ad, kullanıcı adı, biyografi, avatar ve kapak",
+    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
+    "yourContent": "İçerikleriniz",
+    "yourVideos": "Videolarınız",
+    "savedPosts": "Kaydedilen gönderiler",
+    "drafts": "Taslaklar",
+    "about": "Hakkında",
+    "appVersion": "Uygulama sürümü",
+    "reportBugDesc": "Hataları bildirerek sorunları çözmemize yardım edin",
+    "dimLights": "Işıkları Kıs",
+    "dimLightsDesc": "Mavi ışığa maruz kalmayı azaltır",
+    "dimStrength": "Yoğunluk",
+    "contentFilteringNote": "İçerik filtreleri bu cihaz için geçerlidir. Sunucu tarafında filtreleme yakında.",
+    "earnings": "Kazançlar",
+    "earningsDesc": "Bahşişler, abonelikler ve ödemeler",
+    "freeAccessList": "Ücretsiz DM Erişimi",
+    "freeAccessListDesc": "Mesaj ücretinizi ödemeden size ücretsiz yazabilecek kullanıcılar."
   },
   "common": {
     "save": "Kaydet",
@@ -2201,5 +2225,8 @@
     "suggestion3": "DHB staking'i basitçe açıkla",
     "suggestion4": "Takip etmem gereken içerik üreticilerini bul",
     "suggestion5": "Bir klip kampanyası için ödül ilanı hazırla"
+  },
+  "arcade": {
+    "intro": "Doğrudan uygulamanın içinde çalışan oyunlar. Kurulacak bir şey yok, satın alınacak bir şey yok — açık kaynak ve DeHub'ın kendisinden sunuluyor."
   }
 }
