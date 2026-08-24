@@ -137,3 +137,57 @@ describe("resolveReactionCounts", () => {
     expect(resolveReactionCounts({ likes: [1, 2, 3] })).toEqual({ like: 3 });
   });
 });
+
+describe("reconcileReactionCounts — fractional and identity edges", () => {
+  it("does not throw on a fractional stored count", () => {
+    // Floored entries used to be filtered out while the sum was computed from
+    // the RAW values, so neither early branch fired, `fractional` was empty and
+    // the rounding loop indexed fractional[NaN]. That threw inside render.
+    expect(() => reconcileReactionCounts(10, 0, { like: 0.5 })).not.toThrow();
+    expect(reconcileReactionCounts(10, 0, { like: 0.5 })).toEqual({ like: 10 });
+  });
+
+  it("matches the API's answer on fractional input rather than crashing", () => {
+    // config/reactions.ts sums already-floored entries and seeds; so do we now.
+    expect(reconcileReactionCounts(7, 2, { like: 0.4, love: 0.6, poo: 0.9 })).toEqual({
+      like: 7,
+      dislike: 2,
+    });
+  });
+
+  it("handles a mix of fractional and whole counts", () => {
+    const counts = reconcileReactionCounts(10, 0, { like: 4, love: 0.5 });
+    expect((counts.like ?? 0) + (counts.love ?? 0)).toBe(10);
+  });
+});
+
+describe("resolveReactionCounts — object identity", () => {
+  const item = {
+    totalVotes: { for: 6, against: 1 },
+    reactionCounts: { like: 4, love: 2, dislike: 1 },
+  };
+
+  it("returns the item's own object when the reconcile changes nothing", () => {
+    // A fresh object per call defeats React.memo on every card downstream.
+    expect(resolveReactionCounts(item)).toBe(item.reactionCounts);
+  });
+
+  it("is referentially stable across repeated calls", () => {
+    expect(resolveReactionCounts(item)).toBe(resolveReactionCounts(item));
+  });
+
+  it("still returns a corrected map when the split really is wrong", () => {
+    const drifted = { totalVotes: { for: 97, against: 0 }, reactionCounts: { like: 24, love: 6 } };
+    const out = resolveReactionCounts(drifted);
+    expect(out).not.toBe(drifted.reactionCounts);
+    expect((out.like ?? 0) + (out.love ?? 0)).toBe(97);
+  });
+
+  it("treats an absent key and a zero key as the same shape", () => {
+    const withZero = {
+      totalVotes: { for: 4, against: 0 },
+      reactionCounts: { like: 4, love: 0 },
+    };
+    expect(resolveReactionCounts(withZero)).toBe(withZero.reactionCounts);
+  });
+});
