@@ -210,6 +210,14 @@ const BADGE_LEVELS: BadgeDef[] = [
 ];
 
 /**
+ * Tier names, lowest first. Mirrors web's `BADGE_ORDER` in
+ * `src/lib/staking-badges.ts` — the index into this list is what
+ * `libs/postQuota.ts` turns into a daily home-feed allowance, so the two lists
+ * must stay in the same order.
+ */
+export const BADGE_ORDER: string[] = BADGE_LEVELS.map((b) => b.name);
+
+/**
  * Get badge name for a given staking/holdings amount.
  * Returns the highest badge whose min threshold the user meets.
  * Returns undefined if holdings < 10,000 (no badge).
