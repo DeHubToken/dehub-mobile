@@ -13,7 +13,10 @@ import {
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { VideoView, useVideoPlayer } from "expo-video";
-import { setAudioModeAsync } from "expo-audio";
+import {
+  configureForBackgroundPlayback,
+  releaseBackgroundPlayback,
+} from "../libs/audioSession";
 import { BlurView } from "expo-blur";
 import * as ScreenOrientation from "expo-screen-orientation";
 import Animated, {
@@ -96,32 +99,18 @@ const FullscreenVideoScreen = () => {
     return unsubscribe;
   }, [navigation]);
 
-  // Set up audio mode for background play/PiP
+  // Set up audio mode for background play/PiP.
+  // Routed through libs/audioSession so this screen is not a fourth place
+  // writing the global category by hand — and so it stops passing
+  // `interruptionModeAndroid`, which expo-audio deprecated in favour of
+  // `interruptionMode` working on both platforms.
   useEffect(() => {
-    const setupAudio = async () => {
-      try {
-        await setAudioModeAsync({
-          playsInSilentMode: true,
-          allowsRecording: false,
-          shouldPlayInBackground: true,
-          interruptionMode: 'doNotMix',
-          interruptionModeAndroid: 'duckOthers',
-        });
-      } catch (error) {
-        console.warn('[FullscreenVideoScreen] setAudioModeAsync failed:', error);
-      }
-    };
-    setupAudio();
+    configureForBackgroundPlayback().catch((error) => {
+      console.warn('[FullscreenVideoScreen] configureForBackgroundPlayback failed:', error);
+    });
 
     return () => {
-      // Restore standard audio mode (background play disabled) on unmount
-      setAudioModeAsync({
-        playsInSilentMode: true,
-        allowsRecording: false,
-        shouldPlayInBackground: false,
-        interruptionMode: 'doNotMix',
-        interruptionModeAndroid: 'duckOthers',
-      }).catch(() => {});
+      releaseBackgroundPlayback().catch(() => {});
     };
   }, []);
 
@@ -132,6 +121,15 @@ const FullscreenVideoScreen = () => {
     p.muted = getCachedMuted();
     p.timeUpdateEventInterval = 0.5;
     if (startTime > 0) p.currentTime = startTime;
+    // The audio mode above already allows background playback, but that only
+    // grants permission — the player still opts in per instance, and without
+    // this it pauses the moment the app is backgrounded regardless.
+    p.staysActiveInBackground = true;
+    // Lock-screen artwork and transport controls. Background audio with no way
+    // to pause it without reopening the app is half a feature; this is the
+    // other half. iOS only surfaces it while the session is doNotMix or auto,
+    // which is what the effect above sets.
+    p.showNowPlayingNotification = true;
   });
 
   useEffect(() => {
@@ -306,6 +304,12 @@ const FullscreenVideoScreen = () => {
                 contentFit="contain"
                 nativeControls={false}
                 allowsPictureInPicture={true}
+                // Leaving the app mid-video pops the player out into a floating
+                // window instead of stopping it. allowsPictureInPicture alone
+                // only permits PiP, it never enters it — which is why PiP has
+                // been technically enabled here and invisible in practice.
+                // Android 12+ and iOS; a no-op everywhere else.
+                startsPictureInPictureAutomatically={true}
                 onPictureInPictureStart={() => {
                   isInPiPRef.current = true;
                 }}
