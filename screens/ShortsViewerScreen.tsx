@@ -61,6 +61,8 @@ import Icon from "../components/ui/Icon";
 import type { IconName } from "../components/ui/Icon";
 import { CommentBottomSheet } from "../components/Comments";
 import { useUser, useAuthActions } from "../context/AuthContext";
+import { useEngagementWeight } from "../hooks/useEngagementWeight";
+import { appliedEngagementWeight } from "../libs/engagement-weight";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import {
   getVideoUrl,
@@ -389,6 +391,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
   })();
   const description = (item.description || "").trim();
   const userAddress = user?.address || user?.walletAddress || "";
+  // What one reaction from this viewer counts for — their badge multiplier.
+  const voteWeight = useEngagementWeight();
   // Who reacted what is the author's to see, so the ⓘ in the tray only exists
   // on your own shorts (the API withholds the list from everyone else too).
   const isOwnShort = !!(
@@ -540,21 +544,26 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
       const nextPositive = next ? isPositiveReaction(next) : false;
       const nextNegative = next ? !nextPositive : false;
 
-      let nextLikeCount = wasLikeCount;
-      let nextDislikeCount = wasDislikeCount;
-      if (wasPositive && !nextPositive) nextLikeCount = Math.max(0, nextLikeCount - 1);
-      if (!wasPositive && nextPositive) nextLikeCount += 1;
-      if (wasNegative && !nextNegative) nextDislikeCount = Math.max(0, nextDislikeCount - 1);
-      if (!wasNegative && nextNegative) nextDislikeCount += 1;
+      // Weighted by the viewer's badge, the same as FeedCard — one reaction,
+      // counted for what their tier makes it worth.
+      const countsAt = (weight: number) => {
+        let nextLikeCount = wasLikeCount;
+        let nextDislikeCount = wasDislikeCount;
+        if (wasPositive && !nextPositive) nextLikeCount = Math.max(0, nextLikeCount - weight);
+        if (!wasPositive && nextPositive) nextLikeCount += weight;
+        if (wasNegative && !nextNegative) nextDislikeCount = Math.max(0, nextDislikeCount - weight);
+        if (!wasNegative && nextNegative) nextDislikeCount += weight;
+        return {
+          isLiked: nextPositive,
+          isDisliked: nextNegative,
+          myReaction: next,
+          likeCount: nextLikeCount,
+          dislikeCount: nextDislikeCount,
+          reactionCounts: applyReactionDelta(wasCounts, wasReaction, next, weight),
+        };
+      };
 
-      applyEngagement(engagementKey, {
-        isLiked: nextPositive,
-        isDisliked: nextNegative,
-        myReaction: next,
-        likeCount: nextLikeCount,
-        dislikeCount: nextDislikeCount,
-        reactionCounts: applyReactionDelta(wasCounts, wasReaction, next),
-      });
+      applyEngagement(engagementKey, countsAt(voteWeight));
 
       const rollback = () => {
         // Restore only the fields this handler owns, so a concurrent save or
@@ -578,13 +587,25 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
       // A 200 carrying `{ error }` resolves rather than throwing, so `.catch`
       // alone would record a failed vote as successful.
       request
-        .then((res) => { if (isFailedResponse(res)) rollback(); })
+        .then((res: any) => {
+          if (isFailedResponse(res)) {
+            rollback();
+            return;
+          }
+          // Settle on the weight the server applied. An API that sends none is
+          // left alone — absent means "older build", not "counted once".
+          const raw = res?.weight ?? res?.result?.weight;
+          if (typeof raw === "number") {
+            const applied = appliedEngagementWeight(raw);
+            if (applied !== voteWeight) applyEngagement(engagementKey, countsAt(applied));
+          }
+        })
         .catch(rollback)
         .finally(() => {
           voteInFlightRef.current = false;
         });
     });
-  }, [liked, disliked, myReaction, reactionCounts, likeCount, dislikeCount, engagementKey, tokenId, userAddress, requireAuth]);
+  }, [liked, disliked, myReaction, reactionCounts, likeCount, dislikeCount, engagementKey, tokenId, userAddress, requireAuth, voteWeight]);
 
   /**
    * Tapping a thumb casts whichever reaction it is WEARING — a short leading
