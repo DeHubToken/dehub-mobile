@@ -196,6 +196,7 @@ export function useUploadLive() {
           v,
           r,
           s,
+          result?.uri,
         );
         setUploadStage("minting");
         await tx?.wait?.(1);

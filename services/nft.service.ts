@@ -809,6 +809,8 @@ export interface MintNftResponse {
   v: number;
   createdTokenId: number;
   timestamp: number;
+  /** URI suffix to mint — carries the post's text and its hash on chain. */
+  uri?: string;
   error: boolean;
   msg?: string;
   [k: string]: any;

@@ -286,7 +286,7 @@ async function processJob(job: UploadJob): Promise<void> {
           throw new Error("Mint signature payload missing from server response");
         }
 
-        mintParams = { createdTokenId, timestamp, v, r, s };
+        mintParams = { createdTokenId, timestamp, v, r, s, uri: result?.uri };
         uploadActions.updateStage(job.id, "processing", mintParams);
       }
     } // end of the on-chain signature handling
@@ -341,6 +341,7 @@ async function processJob(job: UploadJob): Promise<void> {
           Number(job.bountyConfig.rewardPerPerson),
           Number(job.bountyConfig.viewers),
           Number(job.bountyConfig.commenters),
+          mintParams.uri,
         );
       } else {
         // The fee, when there is one, rides in the same user operation as the
@@ -357,6 +358,7 @@ async function processJob(job: UploadJob): Promise<void> {
           mintParams.r!,
           mintParams.s!,
           fee,
+          mintParams.uri,
         );
       }
 
