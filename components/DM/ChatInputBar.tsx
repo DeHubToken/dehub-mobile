@@ -119,65 +119,55 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const [gifUrl, setGifUrl] = useState<string | null>(null);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
   const [enhancing, setEnhancing] = useState(false);
-  const [showReplyTray, setShowReplyTray] = useState(false);
+  const [trayDismissed, setTrayDismissed] = useState(false);
   const typingRef = useRef(false);
   const typingTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const smartReplies = useSmartReplies(thread ?? [], peerName);
   const hasThread = !!thread && thread.length > 0;
-  // There is only something to reply TO when the other side spoke last — if the
-  // user sent the last message the drafter would be answering the user.
-  //
-  // This decides whether we SPEND A MODEL CALL. It must never also decide
-  // whether the tray mounts: it was the outer render condition once, and
-  // because the user's own message is the newest after every single send, the
-  // feature silently ceased to exist for the rest of the conversation — no
-  // panel, no orb, no empty state, nothing to press to find out why.
-  const canDraft = hasThread && thread![thread!.length - 1].from === "them";
 
-  const [composerFocused, setComposerFocused] = useState(false);
 
-  // Tail the tray has already opened itself for. One auto-open per incoming
-  // message: dismissing must not be undone by the next tap into the box, and
-  // re-focusing must not re-spend a model call. A new message changes the key,
-  // which re-arms it on its own.
-  const autoOpenedFor = useRef<string | null>(null);
+  // Thread tail a draft has already been spent on. One model call per message,
+  // whichever side sent it: re-rendering and re-showing the tray must never
+  // re-spend it. A new message changes the key, which re-arms it.
+  const draftedFor = useRef<string | null>(null);
 
-  // Read through a ref so the effect below can depend on the two things that
-  // should actually retrigger it — focus and the newest message — instead of
-  // re-running on every keystroke and every render of the hook.
-  const latest = useRef({ smartReplies, text, canDraft, hasThread });
-  latest.current = { smartReplies, text, canDraft, hasThread };
+  // Read through a ref so the effect below can depend on the one thing that
+  // should actually retrigger it — the newest message — instead of re-running
+  // on every keystroke and every render of the hook.
+  const latest = useRef({ smartReplies, text, hasThread });
+  latest.current = { smartReplies, text, hasThread };
 
   /**
-   * Being in the composer to reply IS the request for suggestions — there is
-   * no button to press first. Held back only when the user has already started
-   * typing (they know what to say) or when this message has had its turn.
+   * The tray is up with a socket and two empty slots, so waiting for a tap
+   * into the composer before drafting would leave it showing nothing in the
+   * one moment it is being looked at. Spend the call when the thread tail
+   * changes instead — held back only when the user has already started typing,
+   * because then they know what to say.
    *
-   * Note this opens whenever there is a conversation at all, not only when
-   * there is something to draft. A tray that says "nothing to reply to yet" is
-   * a feature the user can see; one that declines to mount is indistinguishable
-   * from one that is broken.
+   * The drafter handles both directions: an incoming tail gets replies, the
+   * user's own last word gets follow-ups. Mirrors dehubweb's ChatInput.
    */
-  const openTrayIfDue = useCallback(() => {
-    const { smartReplies: sr, text: draft, canDraft: draftable, hasThread: any } = latest.current;
-    if (!any || draft.trim()) return;
-    if (autoOpenedFor.current === sr.tailKey) return;
-    autoOpenedFor.current = sr.tailKey;
-    setShowReplyTray(true);
-    if (draftable && sr.status === "idle") sr.generate();
-  }, []);
-
-  // Fires on the tap into the box, and again if a new message lands while the
-  // user is already sitting there — otherwise the tray would wait for them to
-  // dismiss the keyboard and come back before offering anything.
   useEffect(() => {
-    if (composerFocused) openTrayIfDue();
-  }, [composerFocused, smartReplies.tailKey, openTrayIfDue]);
+    if (!hasThread) return;
+    const { smartReplies: sr, text: draft } = latest.current;
+    if (draft.trim()) return;
+    if (draftedFor.current === sr.tailKey) return;
+    draftedFor.current = sr.tailKey;
+    // 'error' as well as 'idle': the hook only rewinds itself to idle when a
+    // SUCCESSFUL draft goes stale, so a single failure would otherwise leave
+    // the tray showing that failure for every message after it.
+    if (sr.status === "idle" || sr.status === "error") sr.generate();
+  }, [hasThread, smartReplies.tailKey]);
 
-  // Stays dismissed for this message — autoOpenedFor is already set, so the
-  // next focus won't drag it back up.
-  const handleDismissTray = useCallback(() => setShowReplyTray(false), []);
+  // A new message re-arms a dismissed tray. Dismissing is "not for this
+  // message", not "never again" — there is no orb anywhere else to press, so a
+  // permanent dismissal is a feature switched off by accident and never found.
+  useEffect(() => {
+    setTrayDismissed(false);
+  }, [smartReplies.tailKey]);
+
+  const handleDismissTray = useCallback(() => setTrayDismissed(true), []);
 
   /**
    * Drop a suggestion into the composer rather than sending it. The user still
@@ -186,7 +176,6 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
    */
   const handlePickSuggestion = useCallback((suggestion: string) => {
     setText((prev) => (prev.trim() ? `${prev.trimEnd()} ${suggestion}` : suggestion));
-    setShowReplyTray(false);
     requestAnimationFrame(() => inputRef.current?.focus());
   }, []);
 
@@ -243,8 +232,9 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     if (sending) return;
 
     // Whatever is in the tray was drafted against a thread that no longer ends
-    // where it did, so it goes away with the send.
-    setShowReplyTray(false);
+    // where it did, so it goes down with the send and comes back up on the next
+    // tail — as follow-ups, since the user now holds the last word.
+    setTrayDismissed(true);
 
     // GIF with optional caption
     if (gifUrl) {
@@ -414,6 +404,11 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const hasContent = text.trim().length > 0 || !!media || !!gifUrl;
   // Show send button when there's content OR a tip is attached (tip-only send)
   const showSendButton = hasContent || tipAmount > 0;
+  // The tray is up in EVERY open thread with an empty composer — a thread with
+  // nothing to draft from still gets its quiet one-liner, because an empty band
+  // and a broken feature are indistinguishable at a glance. Anything the user
+  // has already started (text, an attachment, an edit) takes the space back.
+  const showTray = hasThread && !trayDismissed && !hasContent && !editingMessage;
   const hasMediaOrGif = !!media || !!gifUrl;
   const placeholder = hasMediaOrGif ? "Add a caption…" : "Message…";
 
@@ -448,18 +443,20 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   return (
     <>
       <View className="bg-theme-neutrals-900 border-t border-theme-neutrals-800/50">
-        {/* Mounts on showReplyTray alone. Whether there is anything to draft is
-            a question the tray ANSWERS — as its own empty line, with the orb
-            still there to press — not one that decides whether it exists. */}
-        {showReplyTray && (
+        {/* Up in every open thread with an empty composer, keyboard or no
+            keyboard — it sits above the input, so nothing covers it. Whether
+            there is anything to draft is a question the tray ANSWERS, with the
+            orb still there to press, not one that decides whether it exists:
+            gating the mount on that check is what made the feature vanish for
+            the rest of every conversation. Stands down once there is typed
+            text, and on send. */}
+        {showTray && (
           <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(120)}>
             <SmartReplyTray
-              status={canDraft ? smartReplies.status : "empty"}
-              suggestions={canDraft ? smartReplies.suggestions : []}
+              status={smartReplies.status}
+              suggestions={smartReplies.suggestions}
               error={smartReplies.error}
-              onGenerate={() => {
-                if (latest.current.canDraft) smartReplies.generate();
-              }}
+              onGenerate={() => smartReplies.generate()}
               onPick={handlePickSuggestion}
               onDismiss={handleDismissTray}
             />
@@ -624,8 +621,6 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
             ref={inputRef}
             value={text}
             onChangeText={handleTextChange}
-            onFocus={() => setComposerFocused(true)}
-            onBlur={() => setComposerFocused(false)}
             placeholder={placeholder}
             placeholderTextColor="#8B8D90"
             multiline
