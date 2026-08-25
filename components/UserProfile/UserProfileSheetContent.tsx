@@ -239,6 +239,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           address={profileData.address}
           shortAddr={profileData.shortAddr}
           username={profileData.username}
+          ensName={profileData.ensName}
           hasUsername={profileData.hasUsername}
           joinedDate={profileData.joinedDate}
           followsYou={followsYou}

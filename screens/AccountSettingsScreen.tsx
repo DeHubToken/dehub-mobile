@@ -54,6 +54,7 @@ import ContentPanel from "../components/Settings/ContentPanel";
 import AssetsPanel from "../components/Settings/AssetsPanel";
 import MessagesPanel from "../components/Settings/MessagesPanel";
 import ProfilesSection from "../components/Settings/ProfilesSection";
+import EnsHandleSection from "../components/Settings/EnsHandleSection";
 import {
   SettingsSection,
   SettingsLinkRow,
@@ -229,6 +230,11 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
           onPress={() => navigation.navigate(ScreenNames.EditProfile)}
         />
       </SettingsSection>
+
+      {/* Under the profile rows, not the wallet ones: a .eth name is an alias
+          on the profile, and every wallet it involves belongs to somebody
+          proving ownership rather than to this account. */}
+      {isSignedIn ? <EnsHandleSection /> : null}
 
       <SettingsSection label={t("settings.yourContent")} icon="Film">
         <SettingsLinkRow

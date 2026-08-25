@@ -123,6 +123,32 @@ describe('parseDehubLink', () => {
     });
   });
 
+  it('reads a verified .eth handle as a profile', () => {
+    // dehub.io/mal.eth is a real profile URL — accounts.ensName is an alias on
+    // the account, and account_info answers for it exactly as for a username.
+    expect(parseDehubLink('https://dehub.io/mal.eth')).toMatchObject({
+      kind: 'profile',
+      username: 'mal.eth',
+    });
+    expect(parseDehubLink('https://dehub.io/@mal.eth')).toMatchObject({
+      kind: 'profile',
+      username: 'mal.eth',
+    });
+    // ENS names may be non-ASCII, which the username charset cannot express.
+    expect(parseDehubLink('https://dehub.io/%D9%85%D8%B1%D8%AD%D8%A8%D8%A7.eth')).toMatchObject({
+      kind: 'profile',
+      username: 'مرحبا.eth',
+    });
+  });
+
+  it('does not card a file as a person', () => {
+    // A username can never contain a dot, so anything dotted that is not a
+    // .eth name is an asset path — these used to card as @favicon.ico.
+    for (const asset of ['favicon.ico', 'og-image.png', 'dehub.apk', 'name.ethx']) {
+      expect(parseDehubLink(`https://dehub.io/${asset}`)).toBeNull();
+    }
+  });
+
   it('does not mistake a route for a person', () => {
     // /:username is the catch-all on web, so every product page would otherwise
     // parse as a profile that resolves to nothing.

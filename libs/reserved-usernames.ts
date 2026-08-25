@@ -75,7 +75,12 @@ export function isReservedUsername(value: string | null | undefined): boolean {
   const name = normalizeUsername(value);
   if (!name) return false;
   if (RESERVED_USERNAMES.has(name)) return true;
-  // A dotted name is read as a file by the web edge worker, never a profile.
+  // A dotted name is read as a file by the web edge worker, never a profile —
+  // and this stays true even now that dehub.io/mal.eth resolves. A verified ENS
+  // name is an ALIAS stored in accounts.ensName, proved with a signature from
+  // the address it points at; it is never a username, and admitting a dot here
+  // would let anyone TYPE `vitalik.eth` into the edit-profile box and claim it.
+  // See libs/ens-handle.ts for the routing side of the same rule.
   if (name.includes(".")) return true;
   // /app/<x> twins reach the same URL space from two directions.
   if (name.startsWith("app-") || name.startsWith("app_")) return true;

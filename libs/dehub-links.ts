@@ -19,6 +19,7 @@
  */
 
 import env from '../config/env';
+import { isEnsHandle } from './ens-handle';
 
 export type DehubLinkKind =
   | 'post'
@@ -215,7 +216,13 @@ export function parseDehubLink(input: string): DehubLinkMatch | null {
       username = raw0.replace(/^@/, '');
     }
     if (!username || RESERVED_ROOT_SEGMENTS.has(username.toLowerCase())) return null;
-    if (!/^[a-zA-Z0-9_.-]{2,40}$/.test(username)) return null;
+    // Two admissible shapes, and the dot is what separates them. A username can
+    // never contain one, so the charset below excludes it and `favicon.ico`
+    // stops carding up as somebody's profile. A verified `.eth` name is the
+    // exception — an alias on the account, not a username — and it is admitted
+    // by suffix rather than by charset because ENS names may be non-ASCII,
+    // which this pattern cannot express.
+    if (!isEnsHandle(username) && !/^[a-zA-Z0-9_-]{2,40}$/.test(username)) return null;
     return { ...base, kind: 'profile', username };
   }
 

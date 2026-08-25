@@ -85,6 +85,18 @@ export interface User {
   receivedTips?: number;
   sentTips?: number;
   address?: string; // sometimes returned as address
+  /**
+   * A verified ENS name, e.g. `mal.eth`, proved at /ens/link.
+   *
+   * An ALIAS, never the username: it adds dehub.io/mal.eth as a second URL and
+   * a chip on the profile, and `username` above is untouched by it. Present
+   * only when the account has one, and never client-writable — it is
+   * deliberately absent from what /update_profile accepts, because an entry
+   * there would hand out `vitalik.eth` for a POST with no signature at all.
+   */
+  ensName?: string | null;
+  /** When that name was last proven against Ethereum. */
+  ensVerifiedAt?: string | null;
   badgeBalance?: number; // backend-computed badge balance
   stakedDHB?: number;
   uploads?: number;

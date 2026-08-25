@@ -23,6 +23,11 @@ import { WEBSITE_LINK } from "../config";
 
 interface RemoteUser {
   username?: string;
+  /**
+   * A verified `.eth` name, when the account has proved one. An alias beside
+   * the username, never a replacement for it — account_info answers to either.
+   */
+  ensName?: string | null;
   address?: string;
   displayName?: string;
   aboutMe?: string;
@@ -231,6 +236,10 @@ export const useUserProfileData = (
       address,
       hasUsername,
       username,
+      // Kept separate from `username` on purpose. Everything downstream that
+      // identifies this account — follow, block, message, the share URL —
+      // must keep using the username; this is only ever displayed.
+      ensName: data?.ensName || null,
       displayName,
       shortAddr,
       joinedDate,
