@@ -47,6 +47,7 @@ import { MessagingProvider } from "./context/MessagingContext";
 import { PushNotificationsProvider } from "./services/push";
 import { linkingConfig } from "./navigation/linking.config";
 import { loadMutedState } from "./libs/videoMutedState";
+import { warmVideoPreferences } from "./libs/video-preferences";
 import { loadHueState } from "./libs/audioHueState";
 import UpdateAppModal from "./components/UpdateAppModal";
 import { useAppUpdate } from "./hooks/useAppUpdate";
@@ -133,6 +134,9 @@ export default function App() {
     // Pre-warm persistent media settings so video/audio players have correct
     // initial values synchronously (no race condition with AsyncStorage)
     loadMutedState().catch(() => { });
+    // Per-channel playback rates: read before any player mounts, so a pinned
+    // rate applies to the first video of the session and not the second.
+    warmVideoPreferences();
     loadHueState().catch(() => { });
   }, []);
 

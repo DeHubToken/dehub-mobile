@@ -13,7 +13,7 @@
  *    not a settings change.
  */
 import React, { useState } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Slider from '@react-native-community/slider';
 import LanguageSelectModal from './LanguageSelectModal';
@@ -26,6 +26,10 @@ import {
 import { useAppPrefs, setAppPref } from '../../hooks/useAppPrefs';
 import { useDataSaver, setDataSaverPref } from '../../hooks/useDataSaver';
 import { useHighQualityImages, setHighQualityImages } from '../../libs/cdnImage';
+import {
+  getCreatorPlaybackRateCount,
+  clearCreatorPlaybackRates,
+} from '../../libs/video-preferences';
 import i18nInstance, { SUPPORTED_LANGUAGES } from '../../i18n';
 
 const AppearancePanel: React.FC = () => {
@@ -35,6 +39,32 @@ const AppearancePanel: React.FC = () => {
   const highQuality = useHighQualityImages();
   const [languageModalVisible, setLanguageModalVisible] = useState(false);
   const [currentLang, setCurrentLang] = useState(i18nInstance.language);
+
+  // Re-read on mount rather than subscribing: the players write this while the
+  // settings screen is nowhere on the stack, so there is nothing to miss.
+  const [channelSpeedCount, setChannelSpeedCount] = useState(() => getCreatorPlaybackRateCount());
+
+  const resetChannelSpeeds = () => {
+    if (channelSpeedCount === 0) return;
+    Alert.alert(
+      t('settings.channelSpeed', 'Playback Speed Per Channel'),
+      t(
+        'settings.channelSpeedResetConfirm',
+        'Every channel goes back to your normal speed. Your normal speed is not changed.',
+      ),
+      [
+        { text: t('common.cancel', 'Cancel'), style: 'cancel' },
+        {
+          text: t('settings.reset', 'Reset'),
+          style: 'destructive',
+          onPress: () => {
+            clearCreatorPlaybackRates();
+            setChannelSpeedCount(0);
+          },
+        },
+      ],
+    );
+  };
 
   const languageName =
     SUPPORTED_LANGUAGES.find((l) => l.code === currentLang)?.nativeName ?? 'English';
@@ -115,6 +145,29 @@ const AppearancePanel: React.FC = () => {
           description={t('settings.highQualityImagesDesc')}
           value={highQuality}
           onValueChange={setHighQualityImages}
+        />
+        <Divider />
+        {/* Changing speed on a video pins that speed to its creator (see
+            libs/video-preferences.ts), which is what makes 1.5× on one channel
+            and 1× on another stick. That is invisible once set, so the count
+            and a way back live here. */}
+        <SettingsLinkRow
+          icon="Gauge"
+          label={t('settings.channelSpeed', 'Playback Speed Per Channel')}
+          description={
+            channelSpeedCount === 0
+              ? t(
+                  'settings.channelSpeedNone',
+                  'Change the speed while watching someone and it stays that way for their videos.',
+                )
+              : t('settings.channelSpeedCount', {
+                  defaultValue: '{{count}} channel(s) play at their own speed.',
+                  count: channelSpeedCount,
+                })
+          }
+          value={channelSpeedCount === 0 ? undefined : t('settings.reset', 'Reset')}
+          disabled={channelSpeedCount === 0}
+          onPress={resetChannelSpeeds}
         />
       </SettingsSection>
 
