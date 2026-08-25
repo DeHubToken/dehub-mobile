@@ -84,6 +84,21 @@ const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility:
           value={prefs.hideWatched}
           onValueChange={(v) => setAppPref('hideWatched', v)}
         />
+        <Divider />
+        {/* Off by default, and deliberately so: skipping a sponsor read is a
+            decision about someone else's income, so it is one the viewer makes
+            rather than one they find has been made for them. Every skip offers
+            an undo for the four seconds the toast is up. */}
+        <SettingsToggleRow
+          icon="FastForward"
+          label={t('settings.skipSegments', 'Skip Sponsors And Intros')}
+          description={t(
+            'settings.skipSegmentsDesc',
+            'Jump past sections other viewers have marked as sponsor reads, intros or outros. Every skip can be undone. Off by default.',
+          )}
+          value={prefs.skipSegments}
+          onValueChange={(v) => setAppPref('skipSegments', v)}
+        />
       </SettingsSection>
 
       <SettingsNote>{t('settings.contentFilteringNote')}</SettingsNote>

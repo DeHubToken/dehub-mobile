@@ -30,6 +30,9 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { getCachedMuted, setMutedState } from "../../libs/videoMutedState";
 import { useDataSaver } from "../../hooks/useDataSaver";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
+import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
+import { SEGMENT_LABELS } from "../../services/video-segments.service";
+import { toastInfo } from "../../libs";
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
@@ -121,7 +124,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const isPlayingRef = useRef(false);
   const autoplayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { liteMode } = useDataSaver();
-  const { autoplay: autoplayEnabled } = useAppPrefs();
+  const { autoplay: autoplayEnabled, skipSegments: skipSegmentsPref } = useAppPrefs();
   const playerRef = useRef<VideoPlayer | null>(null);
   const videoViewRef = useRef<VideoView>(null);
   const progressTrackWidthRef = useRef(0);
@@ -161,6 +164,51 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // New player instance = new source; the previous first frame no longer counts.
     setFirstFrameRendered(false);
   }, [player]);
+
+  // Crowdsourced sponsor reads and intros. Fetched only while this card has a
+  // source attached and the viewer asked for skipping — otherwise a feed of
+  // twenty cards would be twenty requests for a feature most leave off.
+  const skipSegmentsOn = skipSegmentsPref;
+  const { segments: skipSegments } = useVideoSegments(
+    tokenId,
+    skipSegmentsOn && canPlay && isVisible && sourceRequested,
+  );
+  // Segments already jumped in this session. Without it, seeking back into one
+  // by hand would be undone instantly by the next progress tick.
+  const skippedRef = useRef<Set<string>>(new Set());
+  const skipSegmentsRef = useRef(skipSegments);
+  useEffect(() => {
+    skipSegmentsRef.current = skipSegments;
+  }, [skipSegments]);
+  const skipOnRef = useRef(skipSegmentsOn);
+  useEffect(() => {
+    skipOnRef.current = skipSegmentsOn;
+  }, [skipSegmentsOn]);
+
+  /**
+   * Read from refs, not state: the timeUpdate listener is subscribed once per
+   * player and would otherwise close over the first render's empty list.
+   */
+  const maybeSkipSegment = useCallback(
+    (time: number) => {
+      if (!skipOnRef.current || !playerRef.current) return;
+      const segment = segmentAt(skipSegmentsRef.current, time);
+      if (!segment || skippedRef.current.has(segment.id)) return;
+      skippedRef.current.add(segment.id);
+      // Where they were when the jump fired, so Undo lands back at the start
+      // of the sponsor read rather than at zero.
+      const resumeAt = time;
+      playerRef.current.currentTime = segment.end_seconds;
+      toastInfo(`${SEGMENT_LABELS[segment.category]} skipped`, {
+        actionLabel: "Undo",
+        onActionPress: () => {
+          if (playerRef.current) playerRef.current.currentTime = resumeAt;
+        },
+        duration: 4000,
+      });
+    },
+    [],
+  );
 
   const [showControls, setShowControls] = useState(false);
   const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -255,6 +303,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         player.addListener("timeUpdate", ({ currentTime: ct }: any) => {
           currentTimeRef.current = ct ?? 0;
           if (showControlsRef.current) setCurrentTime(ct ?? 0);
+          if (ct != null) maybeSkipSegment(ct);
           if (ct != null && viewRecorderRef.current) {
             viewRecorderRef.current.onProgress(
               ct * 1000,
@@ -265,7 +314,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       );
     } catch {}
     return () => { subs.forEach((s) => { try { s.remove(); } catch {} }); };
-  }, [player, startPlayback]);
+  }, [player, startPlayback, maybeSkipSegment]);
 
   useEffect(() => {
     if (!canPlay || !isVisible) {

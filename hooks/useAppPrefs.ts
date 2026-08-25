@@ -34,6 +34,8 @@ const KEYS = {
   // Hide watched videos in the feeds. Same key web writes, so the two clients
   // mean the same thing by it if these ever move to a synced store.
   hideWatched: 'feed-hide-watched',
+  // Skip crowdsourced sponsor reads and intros. Web's key, same meaning.
+  skipSegments: 'skip-video-segments',
   geoBlockedCountries: 'dehub_geo_blocked',
 } as const;
 
@@ -51,6 +53,7 @@ export interface AppPrefs {
   quietHoursEnd: number;
   autoSaveDrafts: boolean;
   hideWatched: boolean;
+  skipSegments: boolean;
   geoBlockedCountries: string[];
 }
 
@@ -67,6 +70,10 @@ export const DEFAULT_APP_PREFS: AppPrefs = {
   quietHoursEnd: 8,
   autoSaveDrafts: true,
   hideWatched: false,
+  // Off by default: skipping a sponsor read is a decision about someone
+  // else's income, so it is one the viewer makes deliberately rather than one
+  // they discover has been made for them.
+  skipSegments: false,
   geoBlockedCountries: [],
 };
 
@@ -111,6 +118,7 @@ function init() {
         quietHoursEnd: parseNum(get('quietHoursEnd'), DEFAULT_APP_PREFS.quietHoursEnd),
         autoSaveDrafts: parseBool(get('autoSaveDrafts'), DEFAULT_APP_PREFS.autoSaveDrafts),
         hideWatched: parseBool(get('hideWatched'), DEFAULT_APP_PREFS.hideWatched),
+        skipSegments: parseBool(get('skipSegments'), DEFAULT_APP_PREFS.skipSegments),
         geoBlockedCountries: (() => {
           try {
             const parsed = JSON.parse(get('geoBlockedCountries') || '[]');

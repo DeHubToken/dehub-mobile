@@ -30,6 +30,10 @@ import {
 } from 'react-native-gesture-handler';
 import { VideoView, useVideoPlayer, VideoPlayer } from 'expo-video';
 import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from '../../libs/video-preferences';
+import { useAppPrefs } from '../../hooks/useAppPrefs';
+import { useVideoSegments, segmentAt } from '../../hooks/useVideoSegments';
+import { SEGMENT_LABELS } from '../../services/video-segments.service';
+import { toastInfo } from '../../libs';
 import {
   configureForBackgroundPlayback,
   releaseBackgroundPlayback,
@@ -202,6 +206,51 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     }
   });
 
+  // Crowdsourced sponsor reads and intros. Never on a live stream — there is
+  // nothing to skip past in something that has not happened yet.
+  const { skipSegments: skipSegmentsPref } = useAppPrefs();
+  const skipSegmentsOn = skipSegmentsPref && !liveMode;
+  const { segments: skipSegments } = useVideoSegments(
+    tokenId ?? undefined,
+    skipSegmentsOn && !!sourceUrl,
+  );
+  // Segments already jumped this session. Without it, scrubbing back into one
+  // by hand would be undone by the next progress tick.
+  const skippedRef = useRef<Set<string>>(new Set());
+  const skipSegmentsRef = useRef(skipSegments);
+  useEffect(() => {
+    skipSegmentsRef.current = skipSegments;
+  }, [skipSegments]);
+  const skipOnRef = useRef(skipSegmentsOn);
+  useEffect(() => {
+    skipOnRef.current = skipSegmentsOn;
+  }, [skipSegmentsOn]);
+
+  /**
+   * Read from refs: the timeUpdate listener is subscribed per player and would
+   * otherwise close over the first render's empty list.
+   */
+  const maybeSkipSegment = useCallback(
+    (seconds: number) => {
+      if (!skipOnRef.current) return;
+      const segment = segmentAt(skipSegmentsRef.current, seconds);
+      if (!segment || skippedRef.current.has(segment.id)) return;
+      skippedRef.current.add(segment.id);
+      // Where they were when the jump fired, so Undo lands back at the start
+      // of the sponsor read rather than at zero.
+      const resumeAt = seconds;
+      player.currentTime = segment.end_seconds;
+      toastInfo(`${SEGMENT_LABELS[segment.category]} skipped`, {
+        actionLabel: 'Undo',
+        onActionPress: () => {
+          player.currentTime = resumeAt;
+        },
+        duration: 4000,
+      });
+    },
+    [player],
+  );
+
   // Subscribe to player events
   useEffect(() => {
     const subscriptions = [
@@ -245,6 +294,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
           const curMs = Math.max(0, Math.floor((currentTime ?? 0) * 1000));
           setPosition((prev) => (prev !== curMs ? curMs : prev));
           onProgress?.(curMs, duration);
+          maybeSkipSegment(currentTime ?? 0);
 
           if (typeof buf === 'number' && buf >= 0) {
             setBufferedPosition(Math.floor(buf * 1000));
@@ -256,7 +306,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     return () => {
       subscriptions.forEach((sub) => sub.remove());
     };
-  }, [player, onPlayStateChange, onReady, onProgress, isReady, duration, onError]);
+  }, [player, onPlayStateChange, onReady, onProgress, isReady, duration, onError, maybeSkipSegment]);
 
   // Handle navigation events to stop playback when leaving screen
   // Guard with isInPiPRef — returning from PiP also triggers beforeRemove
