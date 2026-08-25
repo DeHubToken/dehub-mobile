@@ -21,6 +21,7 @@ import GlassModal from "../ui/GlassModal";
 import ConfirmModal from "./ConfirmModal";
 import ConfirmBlockModal from "./ConfirmBlockModal";
 import EditPostModal from "./EditPostModal";
+import BoostSheet from "./BoostSheet";
 import ReportModal from "./ReportModal";
 import {
   editPost,
@@ -175,6 +176,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
 
   // Sub-modal states
   const [showEdit, setShowEdit] = useState(false);
+  const [showBoost, setShowBoost] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [showReportContent, setShowReportContent] = useState(false);
   const [showReportUser, setShowReportUser] = useState(false);
@@ -437,6 +439,21 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   onPress={handleOpenEdit}
                 />
               )}
+              {/* Boost. Offered to every owner rather than only to badge
+                  holders: the sheet explains what a badge buys and links to
+                  staking, which is worth more than hiding the row from the
+                  people who have not staked yet. */}
+              {tokenId != null && (
+                <OptionRow
+                  icon="rocket-outline"
+                  label="Boost post"
+                  sublabel="Put it at the top of the home feed"
+                  onPress={() => {
+                    onClose();
+                    setShowBoost(true);
+                  }}
+                />
+              )}
               {/* Only for posts published off-chain — 'signed' is the status
                   the backend keeps them at for life. */}
               {postStatus === "signed" && tokenId != null && (
@@ -526,6 +543,14 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         loading={deleteLoading}
         onConfirm={handleDeleteConfirm}
         onCancel={() => setShowDeleteConfirm(false)}
+      />
+
+      {/* Boost sheet */}
+      <BoostSheet
+        visible={showBoost}
+        onClose={() => setShowBoost(false)}
+        tokenId={tokenId}
+        postTitle={currentTitle || currentDescription}
       />
 
       {/* Edit modal */}

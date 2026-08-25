@@ -88,6 +88,10 @@ const NAV_ITEMS: DrawerItem[] = [
   // Staking lives as a tab inside the wallet (Dpay) screen rather than its own
   // route, so it deep-links there. Web has it as a separate sidebar entry.
   { icon: "Vault", labelKey: "nav.staking", screen: ScreenNames.Dpay, params: { initialTab: "stake" }, requiresAuth: true },
+  // Sits under Staking because it is what staking buys. No `requiresAuth`: the
+  // ladder is worth reading before you hold a badge, which is the whole point
+  // of the screen.
+  { icon: "Rocket", labelKey: "nav.superpowers", screen: ScreenNames.SuperPowers },
   { icon: "ShieldCheck", labelKey: "nav.governance", screen: ScreenNames.Governance },
   { icon: "Briefcase", labelKey: "screens.work", screen: ScreenNames.Work },
   { icon: "Users", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate, requiresAuth: true },

@@ -154,6 +154,12 @@ export default function AppNavigator() {
           name={ScreenNames.Governance}
           getComponent={() => require("../screens/GovernanceScreen").default}
         />
+        {/* Public: the ladder is worth reading before you hold a badge, which
+            is the whole point of the screen. */}
+        <Stack.Screen
+          name={ScreenNames.SuperPowers}
+          getComponent={() => require("../screens/SuperPowersScreen").default}
+        />
         {/* Public: browsing is open, voting/submitting prompts sign-in. */}
         <Stack.Screen
           name={ScreenNames.FeatureRequests}

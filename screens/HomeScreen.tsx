@@ -683,6 +683,10 @@ export default function HomeScreen() {
         onCategorySelect={handleCategorySelect}
         onRetry={handleRetry}
         onClearFilters={handleClearFilters}
+        // The boost slot belongs on the main mixed feed only. "video" and
+        // "live" are somebody asking for one format, and a boosted text post
+        // arriving at the top of those reads as a bug rather than as a boost.
+        showBoostSlot={feedType === "all"}
       />
     );
   };
