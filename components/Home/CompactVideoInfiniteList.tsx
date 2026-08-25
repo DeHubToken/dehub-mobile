@@ -31,6 +31,11 @@ interface CompactVideoInfiniteListProps {
   showCreator?: boolean; // forward to CompactVideoCard
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
   onBeforeNavigate?: () => void;
+  /** Ordering, threaded from the profile toolbar. Presets cannot express "oldest". */
+  sortBy?: string;
+  sortOrder?: "asc" | "desc";
+  /** Free text, matched server-side against title and description. */
+  search?: string;
 }
 
 interface VideoItem extends GetNFTsResult {}
@@ -47,6 +52,9 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
   ListHeaderComponent = null,
   showCreator = true,
   onScroll,
+  sortBy,
+  sortOrder,
+  search,
   onBeforeNavigate,
 }) => {
   const [items, setItems] = useState<VideoItem[]>([]);
@@ -60,9 +68,11 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
     (addr: string, opts: { page: number; unit: number }) => {
       if (variant === "live") return getUserLiveVideos(addr, opts as any);
       if (variant === "liked") return getLikedNFTs(addr, opts as any);
-      return getUserVideos(addr, opts as any);
+      // Ordering and search only apply to a creator's own videos; the live and
+      // liked lists have their own shape and their own ordering.
+      return getUserVideos(addr, { ...(opts as any), sortBy, sortOrder, q: search || undefined });
     },
-    [variant]
+    [variant, sortBy, sortOrder, search]
   );
 
   const resolvedEnablePreview = enablePreview ?? variant !== "live";
