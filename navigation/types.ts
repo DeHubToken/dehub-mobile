@@ -183,6 +183,7 @@ export type AppStackParamList = {
   };
   [ScreenNames.WorkPost]: undefined;
   [ScreenNames.Governance]: undefined;
+  [ScreenNames.SuperPowers]: undefined;
 };
 
 export type AppStackScreenProps<T extends keyof AppStackParamList> = CompositeScreenProps<

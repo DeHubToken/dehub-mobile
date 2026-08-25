@@ -75,6 +75,7 @@ export enum ScreenNames {
   WorkJobDetail = 'WorkJobDetail',
   WorkPost = 'WorkPost',
   Governance = 'Governance',
+  SuperPowers = 'SuperPowers',
   // Auth screens
   Onboarding = 'Onboarding',
   SignIn = 'SignIn',

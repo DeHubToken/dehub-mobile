@@ -51,7 +51,9 @@ import { capFeedByAuthorAllowance } from "../../libs/postQuota";
 import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import SuggestedAccountsSection from "./SuggestedAccountsSection";
-import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-query";
+import { getNFT } from "../../services/nft.service";
+import { useBoostSlot } from "../../hooks/useSuperpowers";
 
 export interface InfiniteVideoFeedHandle {
   scrollToTopAndRefresh: () => void;
@@ -76,6 +78,14 @@ interface InfiniteVideoFeedProps {
   onScrollBegin?: () => void;
   onCategorySelect?: (category: string) => void;
   feedRef?: React.MutableRefObject<InfiniteVideoFeedHandle | null>;
+  /**
+   * Show the SuperPowers boost slot at the top of this list.
+   *
+   * Only the main home feed sets it. A filtered or profile-scoped list is
+   * somebody asking for particular posts, and dropping an unrelated boosted one
+   * into that reads as a bug rather than as a boost.
+   */
+  showBoostSlot?: boolean;
 }
 
 // Reserved height for the footer so its three states are interchangeable
@@ -119,6 +129,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   onScrollBegin,
   onCategorySelect,
   feedRef,
+  showBoostSlot = false,
 }) => {
   interface FeedItem extends UnifiedFeedItem {
     __listKey: string;
@@ -333,6 +344,50 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     return capFeedByAuthorAllowance(items as any[]) as FeedItem[];
   }, [items, capExempt]);
 
+  // ── The boost slot ────────────────────────────────────────────────────
+  // A badge holder spends an allowance to put one of their posts at the top of
+  // the feed for a window. When several are running the server deals one
+  // weighted by tier, so what arrives here is this viewer's draw rather than
+  // "the" boosted post — see `useBoostSlot`, where the cache window IS the
+  // rotation.
+  //
+  // Prepended as an ordinary row rather than pushed into the list header: the
+  // header's height is load-bearing for the collapsible chrome, and growing it
+  // asynchronously moves every row below it. A row costs the list nothing —
+  // `maintainVisibleContentPosition` already holds the viewport against
+  // exactly this kind of prepend.
+  //
+  // It arrives after the first page, so the feed never waits on it and never
+  // breaks without it.
+  const { data: boostSlot } = useBoostSlot(showBoostSlot);
+  const boostedTokenId = boostSlot?.tokenId;
+
+  const { data: boostedPost } = useQuery({
+    queryKey: ["boosted-post", boostedTokenId],
+    queryFn: () => getNFT(boostedTokenId!),
+    enabled: !!boostedTokenId,
+    staleTime: 5 * 60 * 1000,
+    retry: false,
+  });
+
+  const feedItems = useMemo<FeedItem[]>(() => {
+    if (!boostedTokenId) return cappedItems;
+
+    // Filter first, so a post that is both boosted and in the page it would
+    // have appeared in does not render twice.
+    const rest = cappedItems.filter(
+      it => String((it as any).tokenId ?? (it as any).id ?? "") !== String(boostedTokenId),
+    );
+
+    const post = (boostedPost as any)?.result;
+    if (!post) return rest;
+
+    return [
+      { ...post, __listKey: `boost-${boostedTokenId}-${boostSlot?.bookingId ?? ""}` } as FeedItem,
+      ...rest,
+    ];
+  }, [cappedItems, boostedTokenId, boostedPost, boostSlot?.bookingId]);
+
   const endReached = hasNextPage === false;
   const error = queryError ? (queryError as Error).message || "Failed to load" : null;
 
@@ -375,7 +430,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   }, [queryKeyString]);
 
   useEffect(() => {
-    if (cappedItems.length >= MIN_SCROLLABLE_ROWS) return;
+    if (feedItems.length >= MIN_SCROLLABLE_ROWS) return;
     if (!hasNextPage || initialLoading || loadingMore || refreshing) return;
     // A rejected fetch must not be retried from here; the footer's retry and
     // the user's own scroll are the recovery paths.
@@ -384,7 +439,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     topUpAttemptsRef.current += 1;
     loadMore();
   }, [
-    cappedItems.length,
+    feedItems.length,
     hasNextPage,
     initialLoading,
     loadingMore,
@@ -549,12 +604,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       <View style={FOOTER_SLOT} className="items-center justify-center">
         {loadingMore ? (
           <ActivityIndicator size="large" color="#fff" />
-        ) : endReached && cappedItems.length > 0 ? (
+        ) : endReached && feedItems.length > 0 ? (
           <Text className="text-theme-neutrals-400 text-xs">No more content</Text>
         ) : null}
       </View>
     ),
-    [loadingMore, endReached, cappedItems.length],
+    [loadingMore, endReached, feedItems.length],
   );
 
   // Handle scroll begin to close filter panel
@@ -567,7 +622,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     onScrollBegin?.();
   }, [onScrollBegin]);
 
-  if (initialLoading && cappedItems.length === 0) {
+  if (initialLoading && feedItems.length === 0) {
     return (
       <View className="flex-1 px-2">
         {/* Pushed below the collapsible header. The early return drops the
@@ -580,7 +635,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     );
   }
 
-  if (error && cappedItems.length === 0) {
+  if (error && feedItems.length === 0) {
     return (
       <View className="flex-1 items-center justify-center px-4">
         <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
@@ -618,7 +673,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       )}
       <AnimatedFlatList
         ref={listRef}
-        data={cappedItems}
+        data={feedItems}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         ListHeaderComponent={listHeader}
