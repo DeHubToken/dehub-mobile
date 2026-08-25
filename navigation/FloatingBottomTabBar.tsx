@@ -121,6 +121,7 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   // the second of each pair takes a distinct glyph.
   { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV },
   { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores },
+  { icon: "AtSign", labelKey: "screens.usernames", screen: ScreenNames.Usernames },
   { icon: "Hammer", labelKey: "screens.work", screen: ScreenNames.Work },
   { icon: "Handshake", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate },
   { icon: "Megaphone", labelKey: "nav.ads", screen: ScreenNames.Ads },
