@@ -543,6 +543,11 @@ export default function FeedDetailScreen() {
             onLongPress={handleCommentLongPress}
             tokenId={tokenId}
             contentType="feed"
+            postCreator={{
+              address: item?.minter || (item as any)?.minterUser?.address,
+              displayName: (item as any)?.minterUser?.displayName || (item as any)?.minterDisplayName,
+              username: (item as any)?.minterUser?.username || (item as any)?.minterUsername,
+            }}
             highlighted={isHighlighted}
           />
         </View>
