@@ -91,6 +91,17 @@ export interface PostOptionsMenuProps {
    * dead until it became one.
    */
   onBoostPress?: () => void;
+  /**
+   * Deep Current — spending one of your own boosts on somebody ELSE's post.
+   *
+   * Its own prop rather than reusing `onBoostPress`, because the two land in
+   * opposite halves of this menu and say opposite things. The caller passes it
+   * only when the account actually holds the power: unlike Boost, this row
+   * appears on other people's posts, which is every post in the feed, so
+   * showing it to everybody is noise on every card rather than an invitation
+   * on their own.
+   */
+  onGiftBoostPress?: () => void;
   /** Called when user taps Translate Post */
   onTranslatePress?: () => void;
   /** Called when user taps Translate Image (image posts only) */
@@ -172,6 +183,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onDeleteSuccess,
   onSendToDm,
   onBoostPress,
+  onGiftBoostPress,
   onTranslatePress,
   onTranslateImagePress,
   isBlocked: isBlockedProp = false,
@@ -495,6 +507,14 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {/* Report — for non-owners */}
           {!isOwner && (
             <>
+              {!!onGiftBoostPress && tokenId != null && (
+                <OptionRow
+                  icon="gift-outline"
+                  label="Gift a boost"
+                  sublabel="Spend one of yours on this post"
+                  onPress={() => { onClose(); setTimeout(() => onGiftBoostPress(), 300); }}
+                />
+              )}
               {!hideReportContent && (
                 <OptionRow
                   icon="flag-outline"

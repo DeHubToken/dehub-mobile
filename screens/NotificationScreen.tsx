@@ -909,6 +909,13 @@ const NotificationScreen = () => {
         if (tokenId) navigateToLivestream(tokenId, undefined);
         break;
 
+      // A Signal Flare points at a POST. Routing it to the livestream player
+      // — the obvious place to reuse, since it shares the preference toggle
+      // server-side — lands the tap on nothing to watch.
+      case 'signal_flare':
+        if (tokenId) navigateToFeed(tokenId, undefined, postType);
+        break;
+
       case 'new_message':
         if (metadata?.deepLink) {
           const match = metadata.deepLink.match(/\/dm\/(.+)/);

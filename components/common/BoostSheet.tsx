@@ -40,18 +40,36 @@ export interface BoostSheetProps {
   onClose: () => void;
   tokenId: number | string | undefined;
   postTitle?: string;
+  /**
+   * Whether the viewer wrote this post.
+   *
+   * Decides which HALF of the ladder is spendable on it: a gift only lands on
+   * somebody else's post, everything else only on your own. Left undefined by
+   * a caller that does not know, in which case nothing is hidden and the
+   * server's refusal is still the authority.
+   */
+  isOwnPost?: boolean;
 }
 
 /** Lucide keys — the shared `Icon` component is lucide, not Ionicons. */
 const ICONS: Partial<Record<SuperPowerKey, string>> = {
   boost: "Rocket",
   second_wind: "History",
+  timeline_bomber: "Radio",
+  signal_flare: "Siren",
   flak_jacket: "Shield",
   precision_strike: "Crosshair",
   harpoon: "Target",
+  deep_current: "Gift",
 };
 
-export default function BoostSheet({ visible, onClose, tokenId, postTitle }: BoostSheetProps) {
+export default function BoostSheet({
+  visible,
+  onClose,
+  tokenId,
+  postTitle,
+  isOwnPost,
+}: BoostSheetProps) {
   const navigation = useNavigation<any>();
   const { data: status, isLoading, isError } = useSuperpowers();
   const { data: ladder } = useSuperpowerLadder();
@@ -74,8 +92,8 @@ export default function BoostSheet({ visible, onClose, tokenId, postTitle }: Boo
   });
 
   const powers = useMemo(
-    () => spendablePowers(status, (postInfo as any)?.result?.createdAt),
-    [status, postInfo],
+    () => spendablePowers(status, (postInfo as any)?.result?.createdAt, isOwnPost),
+    [status, postInfo, isOwnPost],
   );
 
   // Default to the first one they can actually spend, so the common case is
@@ -185,8 +203,15 @@ export default function BoostSheet({ visible, onClose, tokenId, postTitle }: Boo
               )}
               <View className="min-w-0 flex-1">
                 <Text className="text-sm font-medium text-white">{status.tier}</Text>
+                {/* Two numbers when there are two pots. A Signal Flare comes
+                    out of a second allowance the same size as the boost one,
+                    so one figure covering both tells an Octopus who has spent
+                    their boosts that they have no flares either. */}
                 <Text className="text-xs text-zinc-400">
                   {status.boostsLeft} of {status.boostsPerCycle} boosts left
+                  {status.signalsLeft !== undefined
+                    ? ` · ${status.signalsLeft} flares`
+                    : ""}
                   {refillsOn ? ` · refills ${refillsOn}` : ""}
                 </Text>
               </View>
@@ -290,8 +315,10 @@ export default function BoostSheet({ visible, onClose, tokenId, postTitle }: Boo
                 <ActivityIndicator color="#09090B" />
               ) : (
                 <Text className="text-sm font-semibold text-[#09090B]">
-                  {status.boostsLeft < 1
-                    ? "No boosts left this cycle"
+                  {/* The reason THIS power cannot be spent, rather than a flat
+                      "no boosts left" that is wrong for a Signal Flare. */}
+                  {!active?.enabled && active?.blockedReason
+                    ? active.blockedReason
                     : `${active?.label ?? "Spend"} for ${status.minutesPerBoost} minutes`}
                 </Text>
               )}

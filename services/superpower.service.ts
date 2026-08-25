@@ -69,6 +69,13 @@ export interface SuperPowerBooking {
   /** Tier at booking time, frozen — not necessarily the tier worn now. */
   tier: string;
   status: 'active' | 'completed' | 'cancelled';
+  /**
+   * Whose post it landed on.
+   *
+   * The holder's own address for every power but Deep Current, which is a
+   * gift. Optional for the same deploy-skew reason as the flare counters.
+   */
+  beneficiary?: string;
   /** Times this boost has been dealt to a viewer. */
   served: number;
   live: boolean;
@@ -86,6 +93,17 @@ export interface SuperPowerStatus {
   boostsPerCycle: number;
   boostsUsed: number;
   boostsLeft: number;
+  /**
+   * The Signal Flare pot — a SECOND allowance the same size as the boost one,
+   * spent independently.
+   *
+   * Optional because the app can be newer or older than the API it is talking
+   * to, and the fallback has to be the boost count rather than zero: telling
+   * an Octopus "no flares left" on a deploy skew takes the power away.
+   */
+  signalsPerCycle?: number;
+  signalsUsed?: number;
+  signalsLeft?: number;
   minutesPerBoost: number;
   /** Share of the slot when several boosts run at once. */
   slotWeight: number;
@@ -262,6 +280,14 @@ export interface SpendablePower {
 export function spendablePowers(
   status: SuperPowerStatus | null | undefined,
   postCreatedAt: string | Date | undefined,
+  /**
+   * Whether the viewer wrote this post.
+   *
+   * Undefined means "not resolved yet", and nothing is filtered on it — the
+   * server still refuses, which is the authority either way. Passing it is
+   * what turns a refusal into a list the holder can read before they tap.
+   */
+  isOwnPost?: boolean,
 ): SpendablePower[] {
   if (!status) return [];
 
@@ -271,12 +297,30 @@ export function spendablePowers(
     harpoon: 'tiers',
   };
 
+  // Deep Current is the only gift on the ladder, and it is the exact inverse
+  // of every other power rather than an addition to them — offering it on
+  // your own post, or a Boost on a stranger's, produces a tap the server
+  // refuses with a sentence the holder could have been shown first.
+  const GIFTS: readonly SuperPowerKey[] = ['deep_current'];
+
+  // Signal Flare comes out of a second allowance the same size as the boost
+  // one. Reading boostsLeft for it tells an Octopus who has spent both boosts
+  // that they have no flares either.
+  const SIGNALS: readonly SuperPowerKey[] = ['signal_flare'];
+  const left = (key: SuperPowerKey) =>
+    SIGNALS.includes(key) ? (status.signalsLeft ?? status.boostsLeft) : status.boostsLeft;
+
   return status.powers
     .filter(p => {
       if (!p.available) return false;
       // Golden Hour acts on the account, not this post — it belongs on the
       // SuperPowers screen rather than in a post's sheet.
       if (p.key === 'golden_hour') return false;
+      // A gift is offered only on somebody else's post, and everything else
+      // only on your own. Unknown ownership hides nothing.
+      if (isOwnPost !== undefined) {
+        if (GIFTS.includes(p.key) !== !isOwnPost) return false;
+      }
       // Only the age-appropriate half of the Boost/Second Wind pair.
       if (p.key === 'boost' || p.key === 'second_wind') return p.key === ageChoice;
       return true;
@@ -286,11 +330,13 @@ export function spendablePowers(
       label: p.label,
       summary: p.summary,
       targeting: TARGETING[p.key] ?? 'none',
-      enabled: !!p.unlocked && status.boostsLeft > 0,
+      enabled: !!p.unlocked && left(p.key) > 0,
       blockedReason: !p.unlocked
         ? `Unlocks at ${p.tier}`
-        : status.boostsLeft < 1
-          ? 'No boosts left this cycle'
+        : left(p.key) < 1
+          ? SIGNALS.includes(p.key)
+            ? 'No Signal Flares left this cycle'
+            : 'No boosts left this cycle'
           : '',
     }));
 }

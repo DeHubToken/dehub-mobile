@@ -15,6 +15,8 @@ export enum NotificationType {
   BOUNTY_CLAIMED = 'bounty_claimed',
   VIDEO_MILESTONE = 'video_milestone',
   LIVESTREAM_START = 'livestream_start',
+  /** Someone you follow spent a Signal Flare to point you at one post */
+  SIGNAL_FLARE = 'signal_flare',
   NEW_MESSAGE = 'new_message',
   VIDEO_REMOVAL = 'video_removal',
   ACCOUNT_WARNING = 'account_warning',
