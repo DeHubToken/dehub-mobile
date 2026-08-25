@@ -365,6 +365,10 @@ export default function AppNavigator() {
               getComponent={() => require("../screens/TvRequestsScreen").default}
             />
             <Stack.Screen
+              name={ScreenNames.SignInTv}
+              getComponent={() => require("../screens/SignInTvScreen").default}
+            />
+            <Stack.Screen
               name={ScreenNames.YourVideos}
               getComponent={() => require("../screens/YourVideosScreen").default}
             />
