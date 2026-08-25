@@ -30,9 +30,13 @@ const ERC20_ABI = [
   "function decimals() view returns (uint8)",
 ];
 
+// The legacy DeHubStaking (UUPS) contract has no balanceOf/earned — calling
+// either reverts, and a catch-to-zero reads that revert as a real balance of
+// nothing. Staked amount lives in userInfos().totalAmount, rewards in
+// pendingHarvest(); same reads the web app and the leaderboard use.
 const STAKING_ABI = [
-  "function balanceOf(address account) view returns (uint256)",
-  "function earned(address account) view returns (uint256)",
+  "function userInfos(address) view returns (uint256 totalAmount, uint256 unlockAt, uint256 lastTierIndex, uint256 lastRewardIndex, uint256 harvestTotal, uint256 harvestClaimed, uint256 lastStakeAt)",
+  "function pendingHarvest(address account) view returns (uint256)",
 ];
 
 function fmt(val: number): string {
@@ -66,6 +70,21 @@ const StakingTab: React.FC = () => {
 
       const addr = walletAddress?.toLowerCase();
 
+      const legacyStaking = walletAddress
+        ? new ethers.Contract(
+            BNB_STAKING_CONTRACT,
+            STAKING_ABI,
+            new ethers.providers.JsonRpcProvider(BNB_RPC),
+          )
+        : null;
+      // A failed legacy read is logged, never folded into the total as a zero
+      // — silently dropping it is what made the staking card and the holdings
+      // leaderboard disagree.
+      const legacyZero = (label: string) => (err: unknown) => {
+        console.warn(`[StakingTab] legacy ${label} read failed:`, err);
+        return ethers.BigNumber.from(0);
+      };
+
       const [userWalletBal, totalStakedBal, dbRecords, legacyStaked, legacyEarned] =
         await Promise.all([
           walletAddress
@@ -79,23 +98,16 @@ const StakingTab: React.FC = () => {
                 .eq("wallet_address", addr)
             : Promise.resolve({ data: [] as any[] }),
           // Legacy on-chain staked balance on BNB (read-only)
-          walletAddress
-            ? new ethers.Contract(
-                BNB_STAKING_CONTRACT,
-                STAKING_ABI,
-                new ethers.providers.JsonRpcProvider(BNB_RPC),
-              )
-                .balanceOf(walletAddress)
-                .catch(() => ethers.BigNumber.from(0))
+          legacyStaking
+            ? legacyStaking
+                .userInfos(walletAddress)
+                .then((info: any) => info.totalAmount as ethers.BigNumber)
+                .catch(legacyZero("userInfos"))
             : Promise.resolve(ethers.BigNumber.from(0)),
-          walletAddress
-            ? new ethers.Contract(
-                BNB_STAKING_CONTRACT,
-                STAKING_ABI,
-                new ethers.providers.JsonRpcProvider(BNB_RPC),
-              )
-                .earned(walletAddress)
-                .catch(() => ethers.BigNumber.from(0))
+          legacyStaking
+            ? legacyStaking
+                .pendingHarvest(walletAddress)
+                .catch(legacyZero("pendingHarvest"))
             : Promise.resolve(ethers.BigNumber.from(0)),
         ]);
 
