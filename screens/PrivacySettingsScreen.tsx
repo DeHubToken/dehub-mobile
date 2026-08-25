@@ -30,6 +30,7 @@ import { getAvatarUrl } from '../libs/misc';
 import { ScreenNames } from '../navigation/ScreenNames';
 import BlockedAccountsModal from '../components/Settings/BlockedAccountsModal';
 import GeoBlockingSection from '../components/Settings/GeoBlockingSection';
+import DataPortabilitySection from '../components/Settings/DataPortabilitySection';
 import {
   SettingsSection,
   SettingsLinkRow,
@@ -533,15 +534,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
         </SettingsSection>
 
         {/* Your data — web's Extract Data row. */}
-        <SettingsSection label={t('settings.yourData')} icon="Download">
-          <SettingsLinkRow
-            icon="Download"
-            label={t('settings.extractData')}
-            description={t('settings.extractDataDesc')}
-            value={t('settings.download')}
-            onPress={() => toastInfo(t('settings.comingSoon'))}
-          />
-        </SettingsSection>
+        <DataPortabilitySection />
 
         <GeoBlockingSection />
 
