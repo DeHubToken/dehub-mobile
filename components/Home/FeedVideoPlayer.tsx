@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
+import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from "../../libs/video-preferences";
 import SmartImage from "../common/SmartImage";
 import { BlurView } from "expo-blur";
 import { useNavigation } from "@react-navigation/native";
@@ -54,6 +55,8 @@ interface FeedVideoPlayerProps {
   onLockPress?: () => void;
   onBountyPress?: () => void;
   /** Hide play button, controls, progress bar, and duration badge (used for shorts). */
+  /** Creator address — a rate pinned to this channel starts the video there. */
+  creator?: string | null;
   hideControls?: boolean;
 }
 
@@ -93,6 +96,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   onPPVPress,
   onLockPress,
   onBountyPress,
+  creator,
   hideControls = false,
 }) => {
   const navigation = useNavigation<any>();
@@ -147,6 +151,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     p.loop = true;
     p.muted = getCachedMuted();
     p.timeUpdateEventInterval = 0.5;
+    // A rate pinned to this creator applies from the first frame; everyone
+    // else plays at whatever rate was last used generally.
+    p.playbackRate = getPlaybackRateFor(creator);
   });
 
   useEffect(() => {
@@ -349,7 +356,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   }, [isMuted, stopPlayback, startHideTimer]);
 
   const [isLooping, setIsLooping] = useState(true);
-  const [playbackRate, setPlaybackRate] = useState(1);
+  const [playbackRate, setPlaybackRate] = useState(() => getPlaybackRateFor(creator));
 
   const handleToggleLoop = useCallback(() => {
     if (!playerRef.current) return;
@@ -368,8 +375,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     else nextSpeed = 1.0;
     playerRef.current.playbackRate = nextSpeed;
     setPlaybackRate(nextSpeed);
+    // Remembered against the creator, so this channel opens at this rate next
+    // time while the rest of the feed is unaffected.
+    persistPlaybackRate(nextSpeed, creator);
     if (isPlayingRef.current) startHideTimer();
-  }, [startHideTimer]);
+  }, [startHideTimer, creator]);
 
   const handleFullscreen = useCallback(() => {
     // From the ref, not state: state is only live while the controls are up.

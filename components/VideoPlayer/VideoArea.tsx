@@ -326,6 +326,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
         liveMode={!!isLive}
         hideTopControls={hideTopControls}
         tokenId={isLive ? undefined : tokenId}
+        creator={isLive ? undefined : minterAddress}
         onProgress={onProgress}
       />
     </View>
