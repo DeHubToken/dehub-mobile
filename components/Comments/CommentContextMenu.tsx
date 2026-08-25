@@ -53,6 +53,14 @@ interface CommentContextMenuProps {
   onShare?: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
+  /**
+   * Spend a Comment Anchor on this comment, or undefined when it cannot be.
+   *
+   * Undefined for a comment that is not yours, on a thread that IS yours, or
+   * for an account that has not reached Piranha — the same three refusals the
+   * server applies, resolved once by the caller rather than by every row.
+   */
+  onAnchor?: () => void;
   onLike?: () => void;
   liked?: boolean;
   onDislike?: () => void;
@@ -251,6 +259,7 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
   onShare,
   onEdit,
   onDelete,
+  onAnchor,
   onLike,
   liked,
   onDislike,
@@ -434,6 +443,22 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
                 icon="ThumbsDown"
                 label={disliked ? "Remove Dislike" : "Dislike"}
                 onPress={handleDislike}
+              />
+            )}
+
+            {/*
+              Comment Anchor — holding your own comment at the top of somebody
+              else's thread. Beside Edit and Delete because it is the same kind
+              of thing: something only the comment's author can do to it.
+            */}
+            {isOwnComment && onAnchor && (
+              <ActionRow
+                icon="Anchor"
+                label="Anchor to the top"
+                onPress={() => {
+                  onClose();
+                  setTimeout(() => onAnchor(), 150);
+                }}
               />
             )}
 
