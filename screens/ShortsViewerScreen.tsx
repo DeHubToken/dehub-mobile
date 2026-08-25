@@ -1184,6 +1184,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
           commentsDisabled={!!(item as any).commentsDisabled}
+          postCreator={{ address: minterAddress, displayName, username }}
         />
       )}
 

@@ -16,6 +16,8 @@ import { getAvatarUrl } from "../../libs";
 import { buildCdnPath } from "../../libs/misc";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { isAssistantAddress } from "../../libs/assistant";
+import { checkImpersonation } from "../../libs/impersonation";
+import type { PostCreator } from "../../libs/impersonation";
 
 const resolveMediaUrl = (path: string): string => {
   if (path.startsWith('file://') || path.startsWith('/') || path.startsWith('http://') || path.startsWith('https://')) {
@@ -86,6 +88,8 @@ interface CommentItemProps {
   repliesExpanded?: boolean;
   onToggleReplies?: () => void;
   loadingReplies?: boolean;
+  /** The post creator, for the Creator / Not-the-creator chips. */
+  postCreator?: PostCreator | null;
 }
 
 const CommentItemComponent: React.FC<CommentItemProps> = ({
@@ -106,6 +110,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   repliesExpanded = false,
   onToggleReplies,
   loadingReplies = false,
+  postCreator,
 }) => {
   const { showUserProfile } = useUserProfileSheet();
   const currentUser = useUser();
@@ -156,6 +161,21 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const isOwnComment = currentUser?.address === user?.address ||
                        currentUser?.walletAddress === user?.address ||
                        currentUser?.username === user?.username;
+
+  // Address is the identity; the name is only ever evidence. A commenter with
+  // no address makes no claim either way.
+  const { isCreator, isImpersonating } = useMemo(
+    () =>
+      checkImpersonation(
+        {
+          address: user?.address || comment.address,
+          displayName: user?.displayName,
+          username: user?.username,
+        },
+        postCreator,
+      ),
+    [user?.address, user?.displayName, user?.username, comment.address, postCreator],
+  );
 
   const timeAgo = formatShortTime(comment.createdAt);
 
@@ -365,6 +385,44 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             >
               {displayName}
             </Text>
+            {/* Creator on one side, name-wearer on the other. Both answer the
+                same question a reader is asking — is this really them — so
+                they sit next to the name rather than anywhere cleverer. */}
+            {isCreator && (
+              <View
+                style={{
+                  paddingHorizontal: 6,
+                  paddingVertical: 2,
+                  borderRadius: 6,
+                  backgroundColor: "rgba(255,255,255,0.12)",
+                  borderWidth: 1,
+                  borderColor: "rgba(255,255,255,0.12)",
+                }}
+              >
+                <Text style={{ fontSize: 10, fontWeight: "600", color: "rgba(255,255,255,0.75)" }}>
+                  Creator
+                </Text>
+              </View>
+            )}
+            {/* Same name, different account. Said plainly, and never by hiding
+                the comment — the reader decides, this only removes the doubt. */}
+            {isImpersonating && (
+              <View
+                accessibilityLabel="This account is not the creator of this post"
+                style={{
+                  paddingHorizontal: 6,
+                  paddingVertical: 2,
+                  borderRadius: 6,
+                  backgroundColor: "rgba(239,68,68,0.15)",
+                  borderWidth: 1,
+                  borderColor: "rgba(239,68,68,0.30)",
+                }}
+              >
+                <Text style={{ fontSize: 10, fontWeight: "600", color: "#FCA5A5" }}>
+                  Not the creator
+                </Text>
+              </View>
+            )}
             {/* The bot comments under a normal account, so without this it is
                 indistinguishable from a user who picked the handle. */}
             {isAssistantAddress(user?.address || comment.address) && (

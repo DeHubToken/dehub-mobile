@@ -13,6 +13,7 @@ import Icon from "../ui/Icon";
 import CommentSection from "./CommentSection";
 import RepostTab from "./RepostTab";
 import QuoteTab from "./QuoteTab";
+import type { PostCreator } from "../../libs/impersonation";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 const SHEET_FRACTION = 0.82;
@@ -35,6 +36,8 @@ interface CommentBottomSheetProps {
   contentType?: "video" | "feed";
   /** Creator turned replies off — swaps the composer for a notice. */
   commentsDisabled?: boolean;
+  /** The post creator, for the Creator / Not-the-creator chips on comments. */
+  postCreator?: PostCreator | null;
 }
 
 const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
@@ -44,6 +47,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   highlightCommentId,
   contentType = "video",
   commentsDisabled = false,
+  postCreator,
 }) => {
   const insets = useSafeAreaInsets();
   const SHEET_HEIGHT = SCREEN_HEIGHT * SHEET_FRACTION;
@@ -175,6 +179,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
               highlightCommentId={highlightCommentId}
               contentType={contentType}
               commentsDisabled={commentsDisabled}
+              postCreator={postCreator}
             />
           )}
 
