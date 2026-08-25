@@ -100,7 +100,22 @@ export interface GlassTipSheetProps {
    *  show its own total. Comment tips always take the EVM DHB path — don't
    *  pass paymentChainId with this. */
   commentId?: number;
-  onSuccess?: (amount: number) => void;
+  /**
+   * Fix the amount and hide the pickers.
+   *
+   * Set when the sheet is confirming a request raised somewhere else — a
+   * television asking this phone to sign for it. The person is approving a
+   * SPECIFIC amount that another screen is already showing them; letting them
+   * quietly change it here would resolve that request with a number the TV
+   * never displayed, and the TV would report a tip that did not happen.
+   */
+  lockedAmount?: number;
+  /**
+   * `txHash` is present on the EVM (DHB) path only. The Solana path submits
+   * through the backend and does not hand a signature back, so callers that
+   * need a hash — the TV approval flow — must stay on DHB.
+   */
+  onSuccess?: (amount: number, txHash?: string) => void;
 }
 
 /**
@@ -147,6 +162,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   tipContext = "content",
   paymentChainId,
   commentId,
+  lockedAmount,
   onSuccess,
 }) => {
   const insets = useSafeAreaInsets();
@@ -211,7 +227,8 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   }));
 
   // ── Tip state ────────────────────────────────────────────────────────────
-  const [amount, setAmount] = useState("");
+  const isLocked = typeof lockedAmount === "number" && lockedAmount > 0;
+  const [amount, setAmount] = useState(isLocked ? String(lockedAmount) : "");
   const [selectedPreset, setSelectedPreset] = useState<number | null>(null);
   const [phase, setPhase] = useState<
     "idle" | "approving" | "sending" | "sent" | "error"
@@ -249,27 +266,32 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   const controllerContract = useStreamControllerContract();
 
   const resetState = useCallback(() => {
-    setAmount("");
+    // A locked sheet resets TO its amount, not to empty. This runs on every
+    // open, so clearing here would blank the figure the moment the sheet
+    // appeared and leave the approve button disabled with nothing to explain it.
+    setAmount(isLocked ? String(lockedAmount) : "");
     setSelectedPreset(null);
     setPhase("idle");
     setTipError(null);
     setLastAmount(null);
-  }, []);
+  }, [isLocked, lockedAmount]);
 
   // ── Quick amount press ───────────────────────────────────────────────────
   const handlePresetPress = useCallback((preset: number) => {
+    if (isLocked) return;
     setSelectedPreset(preset);
     setAmount(String(preset));
-  }, []);
+  }, [isLocked]);
 
   const handleInputChange = useCallback((val: string) => {
+    if (isLocked) return;
     // Allow decimals for SOL tips; integer-only for DHB.
     const cleaned = isSolanaTip
       ? val.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, "$1")
       : val.replace(/[^0-9]/g, "");
     setAmount(cleaned);
     setSelectedPreset(null);
-  }, [isSolanaTip]);
+  }, [isSolanaTip, isLocked]);
 
   // ── Send tip (on-chain) ──────────────────────────────────────────────────
   const handleSend = useCallback(() => {
@@ -394,7 +416,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             } as any));
           } catch {}
 
-          onSuccess?.(numericAmount);
+          onSuccess?.(numericAmount, txHash || undefined);
           setAmount("");
           setSelectedPreset(null);
         } catch (e) {
@@ -498,11 +520,12 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                 </View>
                 <Text style={styles.recipientText}>{subheader}</Text>
 
-                {/* Quick amounts — DHB only (SOL tips use the custom field) */}
-                {!isSolanaTip && (
+                {/* Quick amounts — DHB only (SOL tips use the custom field),
+                    and never when the amount is fixed by whatever raised this. */}
+                {!isSolanaTip && !isLocked && (
                 <Text style={styles.sectionLabel}>Quick amounts</Text>
                 )}
-                {!isSolanaTip && (
+                {!isSolanaTip && !isLocked && (
                 <View style={styles.presetsGrid}>
                   {QUICK_AMOUNTS.map((preset) => {
                     const isSelected = selectedPreset === preset;
@@ -537,7 +560,11 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
 
                 {/* Custom input */}
                 <Text style={styles.sectionLabel}>
-                  {isSolanaTip ? `Amount (${tipCurrency})` : "Or enter amount"}
+                  {isLocked
+                    ? "Amount requested"
+                    : isSolanaTip
+                      ? `Amount (${tipCurrency})`
+                      : "Or enter amount"}
                 </Text>
                 <View style={styles.inputRow}>
                   {!isSolanaTip && (
@@ -550,6 +577,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                   <TextInput
                     value={amount}
                     onChangeText={handleInputChange}
+                    editable={!isLocked}
                     placeholder={isSolanaTip ? "0.0" : "Enter amount"}
                     placeholderTextColor="#6F7174"
                     keyboardType={isSolanaTip ? "decimal-pad" : "number-pad"}

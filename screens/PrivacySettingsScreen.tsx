@@ -506,6 +506,17 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
             onPress={() => navigation?.navigate(ScreenNames.ActiveSessions)}
           />
           <Divider />
+          {/* Sits with Active sessions because it is the same subject: other
+              devices signed into this account. Literal strings rather than
+              i18n keys — a new key here means touching every locale file, and
+              that is a separate change from shipping the feature. */}
+          <SettingsLinkRow
+            icon="Tv"
+            label="TV requests"
+            description="Approve tips your television asks you to sign"
+            onPress={() => navigation?.navigate(ScreenNames.TvRequests)}
+          />
+          <Divider />
           <SettingsLinkRow
             icon="Ban"
             label={t('settings.blockedAccounts')}
