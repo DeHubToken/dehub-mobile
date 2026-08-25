@@ -26,6 +26,25 @@ export interface GovernanceProposal {
   updated_at: string;
 }
 
+/**
+ * The verdict of a decided proposal, mirroring the web app's `verdictOf`.
+ *
+ * `status` is the record where one was written. Proposals decided before the
+ * verdict columns existed carry the older 'completed' and no verdict, so those
+ * fall back to the tally — like_count and dislike_count are sums of vote
+ * weight, not head counts. Filtering strictly on 'passed'/'rejected', which is
+ * what this did, made every one of those proposals invisible on mobile while
+ * the web board still listed them.
+ */
+function verdictOf(proposal: GovernanceProposal): "passed" | "rejected" | null {
+  if (proposal.status === "passed") return "passed";
+  if (proposal.status === "rejected") return "rejected";
+  if (proposal.status === "completed") {
+    return proposal.like_count > proposal.dislike_count ? "passed" : "rejected";
+  }
+  return null;
+}
+
 export async function getProposals(tab: GovernanceTab): Promise<GovernanceProposal[]> {
   let query = supabase.from("governance_proposals").select("*");
 
@@ -34,13 +53,16 @@ export async function getProposals(tab: GovernanceTab): Promise<GovernancePropos
       .eq("status", "open")
       .order("vote_count", { ascending: false })
       .order("created_at", { ascending: false });
-  } else if (tab === "passed") {
-    query = query.eq("status", "passed").order("updated_at", { ascending: false });
   } else {
-    query = query.eq("status", "rejected").order("updated_at", { ascending: false });
+    query = query
+      .in("status", ["passed", "rejected", "completed"])
+      .order("updated_at", { ascending: false });
   }
 
   const { data, error } = await query;
   if (error) throw error;
-  return (data ?? []) as GovernanceProposal[];
+
+  const proposals = (data ?? []) as GovernanceProposal[];
+  if (tab === "active") return proposals;
+  return proposals.filter((p) => verdictOf(p) === tab);
 }
