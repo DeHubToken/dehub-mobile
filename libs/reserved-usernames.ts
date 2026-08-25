@@ -30,7 +30,7 @@ const ROUTE_SEGMENTS = [
   "governance", "guide", "guides", "jobs", "launchpad", "leaderboard",
   "mcp", "mobile-preview", "music", "premium", "pricing", "prompt", "r",
   "radio", "shorts", "stage", "stages", "stake", "stats", "top-100", "tv",
-  "videos", "work",
+  "usernames", "videos", "work",
 
   // /app children — the worker collapses /app/<x> onto /<x>
   "ads", "bookmarks", "buy", "command-centre", "glossary", "messages",
