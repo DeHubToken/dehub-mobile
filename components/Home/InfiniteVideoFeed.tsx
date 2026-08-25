@@ -49,6 +49,7 @@ import {
 import { feedEvents } from "../../libs/eventBus";
 import { capFeedByAuthorAllowance } from "../../libs/postQuota";
 import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
+import { useWatchedVideoIds, filterWatched } from "../../hooks/useWatchedVideos";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import SuggestedAccountsSection from "./SuggestedAccountsSection";
 import { useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -293,12 +294,14 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   // Locally-deleted posts keep coming back from cached pages until a refetch;
   // the tombstone store exists for exactly this and was written but never read.
+  const { watchedIds, hideWatched } = useWatchedVideoIds();
+
   const [tombstonesReady, setTombstonesReady] = useState(false);
   useEffect(() => {
     warmDeletedPosts().then(() => setTombstonesReady(true)).catch(() => {});
   }, []);
 
-  const items = useMemo<FeedItem[]>(() => {
+  const rawItems = useMemo<FeedItem[]>(() => {
     const pages = data?.pages ?? [];
     return pages
       .flatMap((res, pageIdx) =>
@@ -328,6 +331,14 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         return id == null || !isPostDeletedSync(id);
       });
   }, [data, tombstonesReady]);
+
+  // Videos already played, dropped only when the reader asked for that in
+  // Settings. Kept as its own memo so the expensive flatMap above does not
+  // re-run when the watch history refreshes.
+  const items = useMemo<FeedItem[]>(
+    () => filterWatched(rawItems, watchedIds, hideWatched),
+    [rawItems, watchedIds, hideWatched],
+  );
 
   // Tiered home-feed visibility, matching web's HomeFeed. Posting is unlimited,
   // profiles show everything, and followers keep seeing all of it — but the

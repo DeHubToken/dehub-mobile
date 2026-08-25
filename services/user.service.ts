@@ -327,7 +327,16 @@ export async function getUserLiveVideos(userOrAddress: User | string, params?: U
 }
 
 
-export interface PostsParams { page?: number; unit?: number; }
+export interface PostsParams {
+  page?: number;
+  unit?: number;
+  /**
+   * Watch history only. The endpoint filters on it, and asking for `video`
+   * is what keeps "hide watched" from acting on an image that merely sat on
+   * screen long enough to count as viewed.
+   */
+  postType?: string;
+}
 
 /**
  * Fetch posts liked by the authenticated user.
@@ -421,7 +430,11 @@ export async function getUnlockedPosts(params?: PostsParams): Promise<GetNFTsRes
 export async function getWatchHistory(params?: PostsParams): Promise<GetNFTsResponse> {
   const page1 = (params?.page ?? 0) + 1;
   const limit = params?.unit ?? 20;
-  const query = new URLSearchParams({ page: String(page1), limit: String(limit) }).toString();
+  const query = new URLSearchParams({
+    page: String(page1),
+    limit: String(limit),
+    ...(params?.postType ? { postType: params.postType } : {}),
+  }).toString();
   const url = `/my_watched_nfts?${query}`;
   try {
     const res = await apiClient.get<any>(url, { isAuthRequired: true });
