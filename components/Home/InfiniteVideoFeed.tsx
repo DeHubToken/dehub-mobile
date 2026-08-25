@@ -407,11 +407,17 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         // that engagement decides reach, and an unlabelled paid slot at
         // position zero makes that untrue.
         __boosted: true,
+        // Backing a Crew Boost is offered on the row where one is being
+        // served. Carried on the item rather than looked up again in the card,
+        // which renders for every post in the feed and would have to ask about
+        // a booking almost none of them have.
+        __crewBookingId: boostSlot?.power === "crew_boost" ? boostSlot.bookingId : undefined,
+        __booster: boostSlot?.booster,
         __listKey: `boost-${boostedTokenId}-${boostSlot?.bookingId ?? ""}`,
       } as FeedItem,
       ...rest,
     ];
-  }, [cappedItems, boostedTokenId, boostedPost, boostSlot?.bookingId]);
+  }, [cappedItems, boostedTokenId, boostedPost, boostSlot?.bookingId, boostSlot?.power, boostSlot?.booster]);
 
   const endReached = hasNextPage === false;
   const error = queryError ? (queryError as Error).message || "Failed to load" : null;

@@ -40,13 +40,16 @@ import {
   recordCommentViews,
   Comment,
 } from "../../services/nft.service";
-import { getAvatarUrl, toastError } from "../../libs";
+import { getAvatarUrl, toastError, toastSuccess } from "../../libs";
 import { openCroppedImagePicker, getFileName, guessMime } from "../../libs/assets.util";
 import useKeyboard from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
 import { useAssistantPendingReply } from "../../hooks/useAssistantPendingReply";
 import { mentionsAssistant } from "../../libs/assistant";
 import { useCommentTipTotals } from "../../hooks/useCommentTipTotals";
+import { useBookBoost, useSuperpowers } from "../../hooks/useSuperpowers";
+import { getNFT } from "../../services/nft.service";
+import { useQuery } from "@tanstack/react-query";
 
 // Extended comment type for flat list with reply info
 interface FlatComment extends Comment {
@@ -729,6 +732,51 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     []
   );
 
+  /**
+   * Comment Anchor — the Piranha rung.
+   *
+   * Three conditions, resolved once here rather than per row, and mirroring
+   * the server's exactly: the account holds the power, the comment is theirs
+   * (per row, below), and the THREAD belongs to somebody else. On your own
+   * post a pin is already yours, free and permanent, so offering a paid
+   * fifteen-minute version of it would be selling somebody something they own.
+   *
+   * The post is read through the same cached key BoostSheet uses, so opening
+   * comments after opening the sheet costs nothing.
+   */
+  const { data: superpowerStatus } = useSuperpowers();
+  const anchorComment = useBookBoost();
+
+  const { data: threadPost } = useQuery({
+    queryKey: ["boosted-post", String(tokenId ?? "")],
+    queryFn: () => getNFT(tokenId),
+    enabled: tokenId != null,
+    staleTime: 5 * 60 * 1000,
+    retry: false,
+  });
+
+  const threadAuthor = ((threadPost as any)?.result?.minter ?? "").toLowerCase();
+  const canAnchor =
+    !!userAddress &&
+    !!threadAuthor &&
+    threadAuthor !== userAddress.toLowerCase() &&
+    !!superpowerStatus?.powers.some(p => p.key === "comment_anchor" && p.unlocked && p.available) &&
+    (superpowerStatus?.boostsLeft ?? 0) > 0;
+
+  const handleContextAnchor = useCallback(() => {
+    const id = contextComment?.id;
+    if (id == null) return;
+    anchorComment.mutate(
+      { tokenId: 0, power: "comment_anchor", commentId: String(id) },
+      {
+        onSuccess: booking =>
+          toastSuccess(`Anchored to the top for ${booking.minutes} minutes`),
+        // The server writes these sentences for a person to read.
+        onError: (error: any) => toastError(error?.message || "Could not anchor that comment"),
+      },
+    );
+  }, [contextComment, anchorComment]);
+
   const closeContextMenu = useCallback(() => {
     setContextComment(null);
     setContextLayout(null);
@@ -1108,6 +1156,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         onReply={handleContextReply}
         onEdit={contextMeta?.isOwnComment ? handleContextEdit : undefined}
         onDelete={contextMeta?.isOwnComment ? handleContextDelete : undefined}
+        onAnchor={
+          contextMeta?.isOwnComment && !contextMeta?.isReply && canAnchor
+            ? handleContextAnchor
+            : undefined
+        }
         onLike={handleContextLike}
         onDislike={handleContextDislike}
         onShowLikers={
