@@ -83,6 +83,7 @@ export type NotificationType =
   | 'bounty_claimed'
   | 'video_milestone' 
   | 'livestream_start' 
+  | 'signal_flare'
   | 'new_message'
   | 'video_removal'
   | 'account_warning'

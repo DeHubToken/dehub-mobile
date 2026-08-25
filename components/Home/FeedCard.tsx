@@ -41,6 +41,7 @@ import AskAISheet from "./AskAISheet";
 import AddToFolderSheet from "./AddToFolderSheet";
 import ShareToDmSheet from "../DM/ShareToDmSheet";
 import BoostSheet from "../common/BoostSheet";
+import { useSuperpowers } from "../../hooks/useSuperpowers";
 import ShareSheet from "./ShareSheet";
 import CashtagSheet from "./CashtagSheet";
 import Icon from "../ui/Icon";
@@ -175,6 +176,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { isSignedIn } = useAuthState();
+
+  // Deep Current is the one power spent on somebody ELSE's post, so it is the
+  // one row that belongs in the non-owner half of the options menu.
+  // `status.powers` is the authority for whether this account has it — the
+  // badge the client draws from a live wallet read deliberately over-reports.
+  const { data: superpowerStatus } = useSuperpowers();
+  const canGiftBoost = !!superpowerStatus?.powers.some(
+    p => p.key === 'deep_current' && p.unlocked && p.available,
+  );
   const { showUserProfile, hideUserProfile } = useUserProfileSheet();
   const { mint: mintExisting } = useMintExistingPost();
 
@@ -1521,6 +1531,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           // conditionally rendered, so onClose unmounts it and any state set in
           // the same handler goes with it.
           onBoostPress={isOwnerPost && isSignedIn ? () => setShowBoost(true) : undefined}
+          onGiftBoostPress={
+            !isOwnerPost && isSignedIn && canGiftBoost ? () => setShowBoost(true) : undefined
+          }
           onTranslatePress={handleTranslate}
           onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
         />
@@ -1541,6 +1554,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onClose={() => setShowBoost(false)}
           tokenId={tokenId}
           postTitle={localTitle || undefined}
+          // Decides which HALF of the ladder the sheet offers: a gift only
+          // lands on somebody else's post, everything else only on your own.
+          isOwnPost={!!isOwnerPost}
         />
       )}
 
