@@ -2,12 +2,16 @@ import React, { useCallback } from 'react';
 import { View, type NativeSyntheticEvent, type NativeScrollEvent } from 'react-native';
 import InfiniteFeed, { type InfiniteFeedRenderItemInfo } from '../Feed/InfiniteFeed';
 import FeedCard from '../Home/FeedCard';
-import { getUnifiedFeed, type UnifiedFeedItem } from '../../services/feed.unified.service';
+import { getUnifiedFeed, type FeedSortBy, type UnifiedFeedItem } from '../../services/feed.unified.service';
 import type { GetNFTsResponse, GetNFTsResult } from '../../services/nft.service';
 import { useAuthState } from '../../context/AuthContext';
 import ProfileEmptyState from './ProfileEmptyState';
 
 interface FeedRouteProps {
+  /** Channel toolbar state, threaded to the API rather than applied on screen. */
+  sortBy?: FeedSortBy;
+  sortOrder?: "asc" | "desc";
+  search?: string;
   address?: string;
   /** Profile header rendered as the scrollable list header (banner, info, tabs). */
   listHeader?: React.ReactNode;
@@ -28,6 +32,9 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
   onBeforeNavigate,
   onScroll,
   scrollEnabled = true,
+  sortBy,
+  sortOrder,
+  search,
 }) => {
   const { isSignedIn } = useAuthState();
 
@@ -36,8 +43,9 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
       if (!address) return { result: [] };
       const res = await getUnifiedFeed({
         minter: address,
-        sortBy: 'createdAt',
-        sortOrder: 'desc',
+        sortBy: sortBy ?? 'createdAt',
+        sortOrder: sortOrder ?? 'desc',
+        search: search || undefined,
         // 'all' resolves to minted+signed server-side; 'minted' alone hides
         // off-chain (mint-opt-out) posts from their own author's profile.
         status: 'all',
@@ -46,7 +54,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
       });
       return { result: res.result as unknown as GetNFTsResult[] };
     },
-    [address],
+    [address, sortBy, sortOrder, search],
   );
 
   // Stable identity: InfiniteFeed's own renderItem useCallback lists this in

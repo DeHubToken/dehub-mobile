@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 
@@ -15,12 +15,19 @@ import SubscribersRoute from "./SubscribersRoute";
 import PinnedRoute from "./PinnedRoute";
 import FractionsRoute from "./FractionsRoute";
 import ProfileTabBar, { type ProfileTabItem } from "./ProfileTabBar";
+import ProfileContentToolbar, {
+  PROFILE_SORT_PARAMS,
+  type ProfileSortMode,
+} from "./ProfileContentToolbar";
 import { useUser } from "../../context/AuthContext";
 import { useProfileContentCounts } from "./useProfileContentCounts";
 import BadgeProgress from "../Badge/BadgeProgress";
 import { resolveBadgeBalance, resolveBadgeLock } from "../../libs/misc";
 
 type ProfileRoute = { key: string; title: string; icon: IconName };
+
+/** Tabs served by the creator's own /feed query, and so by the toolbar. */
+const CONTENT_BACKED_TABS = ["home", "images", "videos"];
 
 const ProfileTabs: React.FC = () => {
   const user = useUser() as any;
@@ -31,6 +38,26 @@ const ProfileTabs: React.FC = () => {
   );
   const counts = useProfileContentCounts(address);
   const [activeKey, setActiveKey] = useState("home");
+
+  // Sort and search over this creator's own posts. Both are server-side:
+  // ordering only what has already been downloaded would put the oldest
+  // *loaded* post first rather than their first upload, and a search would
+  // only ever find what the reader had already scrolled past.
+  const [sort, setSort] = useState<ProfileSortMode>("newest");
+  const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+  useEffect(() => {
+    // A phone types a character at a time; without this every one is a request.
+    const timer = setTimeout(() => setDebouncedSearch(search.trim()), 350);
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  const sortParams = PROFILE_SORT_PARAMS[sort];
+  const contentQuery = {
+    sortBy: sortParams.sortBy,
+    sortOrder: sortParams.sortOrder,
+    search: debouncedSearch || undefined,
+  };
 
   // Keep the same information architecture as web: All stays first and the
   // remaining tabs are ordered by their content count.
@@ -90,19 +117,30 @@ const ProfileTabs: React.FC = () => {
         activeKey={activeKey}
         onChange={handleTabChange}
       />
+      {/* Only on the tabs actually served by this creator's content query.
+          Subscriptions, live, fractions and pinned come from their own
+          endpoints, where sorting by "most viewed" would do nothing. */}
+      {CONTENT_BACKED_TABS.includes(activeKey) && (
+        <ProfileContentToolbar
+          sort={sort}
+          onSortChange={setSort}
+          search={search}
+          onSearchChange={setSearch}
+        />
+      )}
     </View>
   );
 
   const renderScene = (key: string) => {
     switch (key) {
       case "home":
-        return <FeedRoute address={address} listHeader={listHeader} />;
+        return <FeedRoute address={address} listHeader={listHeader} {...contentQuery} />;
       case "posts":
         return <PostsRoute address={address} listHeader={listHeader} />;
       case "images":
-        return <ImagesRoute address={address} listHeader={listHeader} />;
+        return <ImagesRoute address={address} listHeader={listHeader} {...contentQuery} />;
       case "videos":
-        return <VideosRoute address={address} listHeader={listHeader} />;
+        return <VideosRoute address={address} listHeader={listHeader} {...contentQuery} />;
       case "subscribers":
         return <SubscribersRoute address={address} isOwnProfile listHeader={listHeader} />;
       case "songs":

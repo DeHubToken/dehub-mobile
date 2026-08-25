@@ -2,18 +2,22 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { View, ScrollView, ActivityIndicator, Pressable, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import Icon from "../ui/Icon";
 import ProfileImageGrid from "./ProfileImageGrid";
-import { getUnifiedFeed, type UnifiedFeedItem } from "../../services/feed.unified.service";
+import { getUnifiedFeed, type FeedSortBy, type UnifiedFeedItem } from "../../services/feed.unified.service";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import ProfileEmptyState from "./ProfileEmptyState";
 
 interface ImagesRouteProps {
+  /** Channel toolbar state, threaded to the API rather than applied on screen. */
+  sortBy?: FeedSortBy;
+  sortOrder?: "asc" | "desc";
+  search?: string;
   address?: string;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
   listHeader?: React.ReactElement | null;
 }
 
-const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll, listHeader }) => {
+const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll, listHeader, sortBy, sortOrder, search }) => {
   const [images, setImages] = useState<UnifiedFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -28,8 +32,9 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll, listHeader
       const res = await getUnifiedFeed({
         minter: address,
         postType: "feed-images",
-        sortBy: "createdAt",
-        sortOrder: "desc",
+        sortBy: sortBy ?? "createdAt",
+        sortOrder: sortOrder ?? "desc",
+        search: search || undefined,
         status: "all",
         page,
         limit: 21,
@@ -45,7 +50,7 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll, listHeader
     } catch (e: any) {
       if (page === 1) setError(e?.message || "Failed to load");
     }
-  }, [address]);
+  }, [address, sortBy, sortOrder, search]);
 
   const load = useCallback(() => {
     if (!address) return;
