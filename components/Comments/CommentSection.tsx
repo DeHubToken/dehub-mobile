@@ -904,6 +904,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
   // Comment view tracking — batch fire POST /api/comment_views when comments scroll into view
   const viewBatchRef = useRef<Set<number>>(new Set());
+  // Comments already counted this mounting. Without it a comment takes a
+  // fresh view every time it scrolls back into frame — the server increments
+  // blindly, so the dedup has to live here.
+  const viewSentRef = useRef<Set<number>>(new Set());
   const viewFlushTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const flushCommentViews = useCallback(() => {
@@ -918,7 +922,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: any[] }) => {
     for (const v of viewableItems) {
       const id = (v.item as FlatComment)?.id;
-      if (id != null) viewBatchRef.current.add(Number(id));
+      const numericId = Number(id);
+      if (id == null || !Number.isFinite(numericId)) continue;
+      if (viewSentRef.current.has(numericId)) continue;
+      viewSentRef.current.add(numericId);
+      viewBatchRef.current.add(numericId);
     }
     if (viewFlushTimer.current) clearTimeout(viewFlushTimer.current);
     viewFlushTimer.current = setTimeout(flushCommentViews, 2000);

@@ -431,6 +431,14 @@ export interface Comment {
   isLiked?: boolean;
   dislikeCount?: number;
   isDisliked?: boolean;
+  /**
+   * Times this comment has scrolled into a reader's viewport.
+   *
+   * A plain counter on the comment row. It has no denormalised sum and no
+   * per-viewer ledger behind it, unlike a post's view count, so it is an
+   * impression figure and reads a little high by comparison.
+   */
+  views?: number;
   notFound?: boolean;
   user?: CommentUser;
 }
