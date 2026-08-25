@@ -37,6 +37,11 @@ import {
   splitIntoLines,
   type SubtitleSize,
 } from '../../libs/subtitlePrefs';
+import {
+  useTranscriptCorrections,
+  applyCorrections,
+} from '../../hooks/useTranscriptCorrections';
+import CaptionFixSheet from './CaptionFixSheet';
 
 interface Props {
   /** Numeric post id. The overlay renders nothing without one. */
@@ -64,6 +69,7 @@ const CaptionOverlay: React.FC<Props> = ({
   const [lang, setLang] = useState<string>(getSubtitleLang);
   const [size] = useState<SubtitleSize>(getSubtitleSize);
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [fixOpen, setFixOpen] = useState(false);
 
   // Only fetch once the viewer has shown intent.
   const { transcript, status, inFlight, canRetry, start } = useTranscript(
@@ -92,14 +98,38 @@ const CaptionOverlay: React.FC<Props> = ({
     !!ref && enabled && isReady && targetLang !== 'original',
   );
 
+  // Fixes other viewers have had accepted. Applied to the transcript's own
+  // segments before the overlay re-wraps them: corrections are keyed on the
+  // segment index, and a wrapped display line has no stable identity.
+  const { accepted } = useTranscriptCorrections(
+    transcript?.id ?? null,
+    !!ref && enabled && isReady,
+  );
+
   const lines: TranscriptSegment[] = useMemo(() => {
     if (!isReady) return [];
+    const original = applyCorrections(transcript?.segments ?? [], accepted);
     const base =
       targetLang === 'original' || translation?.status !== 'ready'
-        ? transcript?.segments ?? []
-        : translation.segments;
+        ? original
+        : // A fix is written against a line in the source language; there is
+          // no honest way to graft it onto a machine translation of that line.
+          translation.segments;
     return splitIntoLines(base, 42);
-  }, [isReady, targetLang, translation, transcript]);
+  }, [isReady, targetLang, translation, transcript, accepted]);
+
+  /**
+   * Which of the transcript's own segments is playing — the index a correction
+   * is filed against. Null before the first line and in any gap between them.
+   */
+  const activeSegment = useMemo(() => {
+    const segments = transcript?.segments ?? [];
+    if (!segments.length) return null;
+    const t = positionMs / 1000;
+    const index = segments.findIndex((s) => t >= s.start && t < s.end);
+    if (index < 0) return null;
+    return { index, text: accepted.get(index)?.text ?? segments[index].text };
+  }, [transcript, positionMs, accepted]);
 
   // Walk the cursor rather than scanning the array every tick — a long video
   // is thousands of lines and this runs four times a second.
@@ -215,6 +245,23 @@ const CaptionOverlay: React.FC<Props> = ({
             </Text>
           )}
 
+          {/* Auto-captions get names, accents and jargon wrong, and the person
+              who can hear the difference is the one watching. Offered only for
+              the original language: a fix is written against the source line,
+              and grafting it onto a machine translation would be a guess. */}
+          {isReady && targetLang === 'original' && (
+            <Pressable
+              onPress={() => {
+                setPickerOpen(false);
+                setFixOpen(true);
+              }}
+              style={styles.langRow}
+            >
+              <Text style={styles.langText}>Fix the current line</Text>
+              <Ionicons name="create-outline" size={16} color="rgba(255,255,255,0.6)" />
+            </Pressable>
+          )}
+
           <ScrollView style={styles.langList}>
             {SUBTITLE_LANGUAGES.map((l) => (
               <Pressable
@@ -241,6 +288,14 @@ const CaptionOverlay: React.FC<Props> = ({
           </ScrollView>
         </View>
       </Modal>
+
+      <CaptionFixSheet
+        visible={fixOpen}
+        onClose={() => setFixOpen(false)}
+        transcriptId={transcript?.id ?? null}
+        segmentIndex={activeSegment?.index ?? null}
+        originalText={activeSegment?.text ?? ''}
+      />
     </>
   );
 };
