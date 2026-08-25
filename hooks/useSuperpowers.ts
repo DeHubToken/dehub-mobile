@@ -21,6 +21,8 @@ import {
   bookBoost,
   cancelBoost,
   fetchBoostSlot,
+  fetchFrontRow,
+  joinCrewBoost,
   fetchSuperpowerStatus,
   fetchSuperpowerTiers,
   type SuperPowerKey,
@@ -79,6 +81,43 @@ export function useBoostSlot(enabled = true) {
   });
 }
 
+/**
+ * The stage holding the front row, or null.
+ *
+ * Same cache window as the boost slot, and for the same reason: the server
+ * deals a fresh weighted draw on every call, so the window on this side IS
+ * the rotation. Two Blue Whales running at once each top the rail for part of
+ * the hour rather than one taking all of it.
+ *
+ * Never gated on being signed in — a stage is public, and most of the audience
+ * on a shared link is signed out.
+ */
+export function useFrontRow() {
+  return useQuery({
+    queryKey: ['superpowers', 'front-row'],
+    queryFn: fetchFrontRow,
+    staleTime: SLOT_ROTATION_MS,
+    gcTime: SLOT_ROTATION_MS,
+    refetchOnWindowFocus: false,
+    // The rail renders perfectly well unsorted. It must never wait on this,
+    // and must never break without it.
+    retry: false,
+  });
+}
+
+/** Put one of your own boosts behind somebody else's Crew Boost. */
+export function useJoinCrewBoost() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (bookingId: string) => joinCrewBoost(bookingId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: SUPERPOWERS_KEY });
+      queryClient.invalidateQueries({ queryKey: SUPERPOWERS_SLOT_KEY });
+    },
+  });
+}
+
 /** Spend a boost, then refresh the allowance and re-deal the slot. */
 export function useBookBoost() {
   const queryClient = useQueryClient();
@@ -90,6 +129,8 @@ export function useBookBoost() {
       startAt,
       targetAccount,
       targetTiers,
+      commentId,
+      stageId,
     }: {
       tokenId: number;
       power?: SuperPowerKey;
@@ -98,7 +139,12 @@ export function useBookBoost() {
       targetAccount?: string;
       /** harpoon: badge tier NAMES to aim at. */
       targetTiers?: string[];
-    }) => bookBoost(tokenId, power, startAt, { targetAccount, targetTiers }),
+      /** comment_anchor: your comment, in somebody else's thread. */
+      commentId?: string;
+      /** front_row: a Stage you host. */
+      stageId?: string;
+    }) =>
+      bookBoost(tokenId, power, startAt, { targetAccount, targetTiers, commentId, stageId }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: SUPERPOWERS_KEY });
       // So the holder can see their own boost land, rather than waiting out the

@@ -25,6 +25,8 @@ import type { SpaceParticipant, RaiseHandRequest, FloatingReaction } from "../..
 import { VOICE_EFFECTS } from "../../hooks/useStages";
 import StageSoundboard from "./StageSoundboard";
 import StageScreenShare from "./StageScreenShare";
+import { useBookBoost, useSuperpowers } from "../../hooks/useSuperpowers";
+import { toastError, toastSuccess } from "../../libs";
 
 const { width: SW, height: SH } = Dimensions.get("window");
 
@@ -278,6 +280,13 @@ const LiveStageModal: React.FC = () => {
     Share.share({ message: `Join me on DeHub Stages: "${spaceTitle}"`, title: spaceTitle });
   }, [spaceTitle]);
 
+  // Front Row is the Blue Whale rung. `status.powers` decides whether this
+  // account has it — the badge the client draws from a live wallet read
+  // deliberately over-reports, so a local answer would offer a control the
+  // server refuses.
+  const { data: superpowerStatus } = useSuperpowers();
+  const bookFrontRow = useBookBoost();
+
   if (!isModalOpen || initialModalView !== "live" || !currentSpace) return null;
 
   const isHostRole = myRole === "host";
@@ -285,6 +294,24 @@ const LiveStageModal: React.FC = () => {
   const isListenerRole = myRole === "listener";
   // Connected with no participant row at all — guestListenSpace's signature.
   const isGuest = myRole === null;
+  const canFrontRow =
+    isHostRole &&
+    !!currentSpace?.id &&
+    !!superpowerStatus?.powers.some(p => p.key === "front_row" && p.unlocked && p.available) &&
+    (superpowerStatus?.boostsLeft ?? 0) > 0;
+
+  const handleFrontRow = () => {
+    if (!currentSpace?.id) return;
+    bookFrontRow.mutate(
+      { tokenId: 0, power: "front_row", stageId: currentSpace.id },
+      {
+        onSuccess: booking => toastSuccess(`Front row for ${booking.minutes} minutes`),
+        // The server writes these sentences for a person to read.
+        onError: (error: any) => toastError(error?.message || "Could not take the front row"),
+      },
+    );
+  };
+
   const canSpeak = isHostRole || isSpeakerRole;
 
   const speakers = participants.filter(p => p.role === "host" || p.role === "speaker");
@@ -390,6 +417,34 @@ const LiveStageModal: React.FC = () => {
               )}
             </View>
           </View>
+          {/*
+            Front Row — the stage you host takes the top of the stages rail.
+            Offered to the host and nobody else, which is also the only account
+            the server accepts one from. Here rather than on the SuperPowers
+            screen because a stage is a live thing: the moment worth buying the
+            top of the rail is while the room is running.
+          */}
+          {canFrontRow && (
+            <TouchableOpacity
+              onPress={handleFrontRow}
+              disabled={bookFrontRow.isPending}
+              hitSlop={4}
+              accessibilityRole="button"
+              accessibilityLabel="Front row"
+              style={{
+                width: 38,
+                height: 38,
+                borderRadius: 19,
+                backgroundColor: "rgba(255,255,255,0.07)",
+                alignItems: "center",
+                justifyContent: "center",
+                marginRight: 8,
+                opacity: bookFrontRow.isPending ? 0.4 : 1,
+              }}
+            >
+              <Icon name="Crown" size={17} color="rgba(255,255,255,0.7)" />
+            </TouchableOpacity>
+          )}
           <TouchableOpacity
             onPress={handleShare}
             hitSlop={4}

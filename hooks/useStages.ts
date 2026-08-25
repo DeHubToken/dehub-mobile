@@ -22,6 +22,7 @@ import { persistableAvatar } from "../libs/misc";
 import env from "../config/env";
 import { getAuthToken } from "../libs/auth.utils";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
+import { useFrontRow } from './useSuperpowers';
 
 const log = createLogger("useStages");
 
@@ -1542,8 +1543,27 @@ export function useStages(): UseStagesReturn {
   // Deps come from Object.values rather than a hand-written list: the shape is a
   // fixed object literal, so the array length is stable across renders, and a
   // 45-name list would drift out of sync the first time a field was added.
+  // Front Row — the Blue Whale rung. Sorted HERE rather than in each rail,
+  // and that is the point: the carousel, the browse modal and every other
+  // surface read this one hook, so a holder who bought the top of the rail
+  // gets it everywhere instead of on whichever screen remembered to implement
+  // it.
+  //
+  // Ordering only. Nothing is added to or removed from the list, so a build
+  // that cannot reach the endpoint shows exactly what it showed before.
+  const { data: frontRow } = useFrontRow();
+  const orderedLiveSpaces = useMemo(() => {
+    const id = frontRow?.stageId;
+    if (!id || liveSpaces.length < 2) return liveSpaces;
+    const index = liveSpaces.findIndex(space => space?.id === id);
+    // Already first, or not in this list at all — a Front Row bought on a
+    // scheduled stage that has not started yet, for instance.
+    if (index < 1) return liveSpaces;
+    return [liveSpaces[index], ...liveSpaces.slice(0, index), ...liveSpaces.slice(index + 1)];
+  }, [liveSpaces, frontRow?.stageId]);
+
   const fields = {
-    liveSpaces,
+    liveSpaces: orderedLiveSpaces,
     pastSpaces,
     scheduledSpaces,
     currentSpace,

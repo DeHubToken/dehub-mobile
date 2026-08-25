@@ -69,6 +69,10 @@ export interface SuperPowerBooking {
   /** Tier at booking time, frozen — not necessarily the tier worn now. */
   tier: string;
   status: 'active' | 'completed' | 'cancelled';
+  /** The stage a Front Row is lifting. Null for every other power. */
+  stageId?: string | null;
+  /** Who else has put a boost behind this one, for a Crew Boost. */
+  contributors?: { address: string; tier: string; minutes: number }[];
   /**
    * Whose post it landed on.
    *
@@ -124,6 +128,14 @@ export interface SuperPowerLadder {
   cycleEndsAt: string;
   tiers: SuperPowerTierRow[];
   powers: SuperPowerInfo[];
+}
+
+/** The stage holding the front row, or null when nothing is running. */
+export interface FrontRow {
+  stageId: string;
+  bookingId: string;
+  tier: string;
+  endsAt: string;
 }
 
 export interface BoostSlot {
@@ -199,18 +211,54 @@ export async function bookBoost(
     targetAccount?: string;
     /** `harpoon` — badge tier NAMES, never balances. The ladder is dollar-pegged. */
     targetTiers?: string[];
+    /** `comment_anchor` — YOUR comment, in somebody else's thread. */
+    commentId?: string;
+    /** `front_row` — a Stage you host, live or scheduled. */
+    stageId?: string;
   },
 ): Promise<SuperPowerBooking> {
   const body: Record<string, unknown> = { tokenId, power };
   if (startAt) body.startAt = startAt;
   if (aim?.targetAccount) body.targetAccount = aim.targetAccount;
   if (aim?.targetTiers?.length) body.targetTiers = aim.targetTiers;
+  if (aim?.commentId) body.commentId = aim.commentId;
+  if (aim?.stageId) body.stageId = aim.stageId;
 
   const response = await apiClient.fetch<{ result: SuperPowerBooking }>('/superpowers/boost', {
     method: 'POST',
     body,
     isAuthRequired: true,
   });
+  return response.result;
+}
+
+/**
+ * Which stage tops the stages rail right now.
+ *
+ * Public — a stage is public by construction, so there is nothing here to gate
+ * on a viewer. Its own read rather than part of `/superpowers/slot`, because
+ * that one deals a POST and this deals a stage id from another database.
+ */
+export async function fetchFrontRow(): Promise<FrontRow | null> {
+  const response = await apiClient.fetch<{ result: FrontRow | null }>('/superpowers/front-row', {
+    method: 'GET',
+    isAuthRequired: false,
+  });
+  return response.result ?? null;
+}
+
+/**
+ * Put one of your boosts behind somebody else's Crew Boost.
+ *
+ * Minutes pool; weight does not — the leader's tier still decides how often
+ * the slot is dealt. Never write copy promising a joiner more reach: what they
+ * buy is a longer window for the post they are backing.
+ */
+export async function joinCrewBoost(bookingId: string): Promise<SuperPowerBooking> {
+  const response = await apiClient.fetch<{ result: SuperPowerBooking }>(
+    `/superpowers/boost/${encodeURIComponent(bookingId)}/join`,
+    { method: 'POST', isAuthRequired: true },
+  );
   return response.result;
 }
 
