@@ -22,6 +22,7 @@ import {
   resolveBadgeLock,
 } from "../../libs/misc";
 import { openExternalLink } from "../../libs/links.utils";
+import { ensProfileUrl } from "../../libs/ens-handle";
 import { truncateAddress } from "../../libs/strings.util";
 import { formatJoinedDate } from "../../libs/date.util";
 import { formatCompactNumber, resolveCount } from "../../libs/numbers.util";
@@ -68,6 +69,9 @@ const ProfileHeader = () => {
   const displayName = user?.displayName || "Unknown";
   const username = user?.username || user?.address || "";
   const address = user?.walletAddress || user?.address || "";
+  // An alias, not a rename — `username` above is untouched by it, and every
+  // share link on this screen still points at the username URL.
+  const ensName = user?.ensName || "";
   const { isWatched, markWatched } = useWatchedStories();
   const { openStories } = useStoryViewer();
   const [myStories, setMyStories] = useState<Story[]>([]);
@@ -418,6 +422,25 @@ const ProfileHeader = () => {
             {!!username && (
               <TouchableOpacity onPress={() => copyToClipboard(username)} activeOpacity={0.7}>
                 <Text className="text-zinc-400 text-sm">@{username}</Text>
+              </TouchableOpacity>
+            )}
+            {/* Beside the handle, never instead of it. Tapping copies the .eth
+                URL rather than the bare name — that is the half a recipient
+                can act on, and the reason to have claimed one. */}
+            {!!ensName && (
+              <TouchableOpacity
+                onPress={() => {
+                  copyToClipboard(ensProfileUrl(ensName));
+                  toastSuccess("ENS profile URL copied");
+                }}
+                activeOpacity={0.7}
+                accessibilityLabel={`Verified ENS name ${ensName}`}
+                className="px-2 py-0.5 bg-theme-neutrals-800 rounded-md flex-row items-center"
+              >
+                <Ionicons name="globe-outline" size={11} color="#A1A1AA" />
+                <Text className="text-theme-neutrals-300 text-[11px] font-medium ml-1">
+                  {ensName}
+                </Text>
               </TouchableOpacity>
             )}
             {/* Temporary — gone 30 days after signup, and immediately if they

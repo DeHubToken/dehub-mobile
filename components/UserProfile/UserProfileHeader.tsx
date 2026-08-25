@@ -7,6 +7,8 @@ import Avatar from "../common/Avatar";
 import StoryAvatarRing from "../Story/StoryAvatarRing";
 import Icon from "../ui/Icon";
 import { copyToClipboard } from "../../libs";
+import { toastSuccess } from "../../libs/toast";
+import { ensProfileUrl } from "../../libs/ens-handle";
 import { getSocialLink, openExternalLink } from "../../libs/links.utils";
 import { useTranslation } from "../../hooks/useTranslation";
 import { TranslateButton } from "../ui/TranslateButton";
@@ -53,6 +55,8 @@ export interface UserProfileHeaderProps {
   address?: string;
   shortAddr?: string;
   username?: string | null;
+  /** A verified `.eth` name, shown beside the handle. Never instead of it. */
+  ensName?: string | null;
   hasUsername: boolean;
   joinedDate?: string | null;
   followsYou?: boolean;
@@ -94,6 +98,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   address,
   shortAddr,
   username,
+  ensName,
   hasUsername,
   joinedDate,
   followsYou,
@@ -141,6 +146,14 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   const handleCopyUsername = useCallback(() => {
     if (username) copyToClipboard(username);
   }, [username]);
+
+  // The chip hands over the .eth URL rather than the bare name, because that
+  // is the thing worth showing off and the only half a recipient can act on.
+  const handleCopyEns = useCallback(() => {
+    if (!ensName) return;
+    copyToClipboard(ensProfileUrl(ensName));
+    toastSuccess("ENS profile URL copied");
+  }, [ensName]);
 
   const socialItems = useMemo(() => {
     if (!socials) return [];
@@ -316,6 +329,22 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             {!!username && (
               <TouchableOpacity onPress={handleCopyUsername} activeOpacity={0.7}>
                 <Text className="text-zinc-400 text-sm">@{username}</Text>
+              </TouchableOpacity>
+            )}
+            {/* Beside the handle, never instead of it: the username is what
+                this account is called, while the .eth name is a claim on
+                something that can be sold or left to expire. */}
+            {!!ensName && (
+              <TouchableOpacity
+                onPress={handleCopyEns}
+                activeOpacity={0.7}
+                accessibilityLabel={`Verified ENS name ${ensName}`}
+                className="px-2 py-0.5 bg-theme-neutrals-800 rounded-md flex-row items-center"
+              >
+                <Icon name="Globe" size={11} color="#A1A1AA" />
+                <Text className="text-theme-neutrals-300 text-[11px] font-medium ml-1">
+                  {ensName}
+                </Text>
               </TouchableOpacity>
             )}
             {followsYou && (

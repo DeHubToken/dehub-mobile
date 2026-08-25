@@ -4,6 +4,7 @@ import { ScreenNames } from './ScreenNames';
 import type { RootStackParamList } from './types';
 import { createLogger } from '../libs/logger';
 import { emitProfileDeepLink, emitStageDeepLink } from '../libs/deeplink.events';
+import { couldBeProfileSegment, isEnsHandle } from '../libs/ens-handle';
 
 const logger = createLogger('DeepLink');
 
@@ -62,6 +63,41 @@ function extractSubdomainUsername(url: string): string | null {
 }
 
 export const APP_SCHEME = 'dehub';
+
+/**
+ * One-segment paths that belong to a route, not to a person.
+ *
+ * Module scope on purpose: two places below decide "is this first segment a
+ * profile?" — getStateFromPath, which actually opens the sheet, and
+ * parseDeepLink, which reports what a URL is. dehubweb had the same judgement
+ * in four places and they drifted apart, which is how dehub.io/mal.eth ended up
+ * unfurling as the homepage there. One list, one helper, both callers.
+ *
+ * Any future top-level route needs an entry here. The mirror of this rule for
+ * profile NAMES is libs/reserved-usernames.ts, which lists these and more.
+ *
+ * - 'auth-callback' is expo-web-browser's OAuth redirect target, already
+ *   consumed by signInWithGoogle(). 'auth' is the same situation for
+ *   @web3auth/react-native-sdk's connectTo() redirect (see
+ *   libs/legacy-web3auth.ts, reusing the pre-migration app's already
+ *   dashboard-whitelisted redirect path), already consumed by that promise
+ *   resolving. Both get their own branch below, which resolves nothing.
+ * - 'arcade' is a one-segment product URL (dehub.io/arcade); without it the
+ *   grid link reads as the username @arcade and opens an empty profile sheet.
+ * - 'stage' and 'stages' are handled above whenever they carry an id, but a
+ *   bare /stage would otherwise fall through and open the profile @stage.
+ *   Both are reserved on the web for the same reason.
+ * - 'builder' is the newest of these: the web app moved its app builder to
+ *   dehub.io/builder, so a tapped link would open the profile @builder.
+ * - 'usernames' is the handle marketplace, and is here for a different reason
+ *   than the rest: it HAS a screen and a DeepLinkPaths entry, but the profile
+ *   branch runs BEFORE getStateFromPath, so without an entry the path would be
+ *   claimed as @usernames and never reach the route that exists for it.
+ */
+const RESERVED_PREFIXES = [
+  'app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth',
+  'arcade', 'builder', 'cinema', 'stage', 'stages', 'usernames',
+];
 
 export const getDeepLinkPrefix = (): string[] => {
   const prefixes = [
@@ -281,40 +317,29 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
       return homeState();
     }
 
-    // 'auth-callback' is expo-web-browser's OAuth redirect target, already
-    // consumed by signInWithGoogle() — it must never be treated as a profile
-    // username, and must never trigger a navigation reset that could unmount
-    // the in-progress sign-in screen. 'auth' is the same situation for
-    // @web3auth/react-native-sdk's connectTo() redirect (see
-    // libs/legacy-web3auth.ts, reusing the pre-migration app's already
-    // dashboard-whitelisted redirect path) — already consumed by that
-    // promise resolving.
-    // 'arcade' is a one-segment product URL (dehub.io/arcade), so without it
-    // here the branch below would read the grid link as the username @arcade
-    // and open an empty profile sheet. Any future top-level route needs the
-    // same entry — the mirror of this rule for profile NAMES is
-    // libs/reserved-usernames.ts, which already lists 'arcade'.
-    // 'stage' and 'stages' are handled by the branch above whenever they carry
-    // an id, but a bare /stage would otherwise fall through here and open the
-    // profile @stage. Both are reserved on the web for the same reason.
-    // 'builder' is the newest of these: the web app moved its app builder to
-    // dehub.io/builder, so a tapped link would open the profile @builder.
-    // 'usernames' is the handle marketplace. It now has a screen and a
-    // DeepLinkPaths entry, so it is here for a different reason than the rest:
-    // this branch runs BEFORE getStateFromPath, so without the entry the path
-    // would be claimed as the profile @usernames and never reach the route that
-    // exists for it.
-    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth', 'arcade', 'builder', 'cinema', 'stage', 'stages', 'usernames'];
+    // Already consumed in-flight by the sign-in promise that opened it (see
+    // RESERVED_PREFIXES). It must never be read as a profile username, and must
+    // never trigger a navigation reset that could unmount the sign-in screen
+    // mid-flow, so this resolves nothing at all rather than resolving Home.
     if (segments[0] === 'auth-callback' || segments[0] === 'auth') {
       logger.info('Ignoring OAuth callback deep link (already consumed in-flight)', { path });
       return undefined;
     }
-    if (
-      segments.length === 1 &&
-      !RESERVED_PREFIXES.includes(segments[0])
-    ) {
+    // couldBeProfileSegment carries two rules this branch was missing.
+    //
+    // A dotted segment is a file, not a person — /favicon.ico and
+    // /apple-app-site-association.json were opening an empty profile sheet for
+    // @favicon.ico, because the only test here was the reserved list.
+    // Usernames cannot contain a dot, so nothing real is refused by adding it.
+    //
+    // Except a `.eth` handle, which IS a person. A verified ENS name is an
+    // alias on the account (accounts.ensName — the username is untouched), and
+    // dehub.io/mal.eth is a real profile URL that web already serves. The
+    // decoded segment goes straight through to account_info exactly as a
+    // username does; that endpoint answers for either.
+    if (segments.length === 1 && couldBeProfileSegment(segments[0], RESERVED_PREFIXES)) {
       const username = decodeURIComponent(segments[0]);
-      logger.info('Profile deep link', { username });
+      logger.info('Profile deep link', { username, ens: isEnsHandle(username) });
       // Emit event so UserProfileSheetProvider can open the profile bottom sheet
       emitProfileDeepLink(username);
       // Navigate to Home tab
@@ -404,6 +429,15 @@ export const ShareLinks = {
   post: (tokenId: string | number) => `${SHARE_BASE}/app/post/${encodeURIComponent(String(tokenId))}`,
   /** Profile — dehub.io/:username */
   profile: (username: string) => `${SHARE_BASE}/${encodeURIComponent(username)}`,
+  /**
+   * The same profile at its verified ENS name — dehub.io/mal.eth.
+   *
+   * A second URL for one profile, not a replacement: the username is what the
+   * account is called, while a `.eth` name is a claim on something that can be
+   * sold or left to expire. Web's profile header offers both for the same
+   * reason, and its canonical still points at /username.
+   */
+  ensProfile: (ensName: string) => `${SHARE_BASE}/${encodeURIComponent(ensName)}`,
   /** Comment on a post — dehub.io/app/post/:tokenId?c=commentId */
   comment: (tokenId: string | number, commentId: string | number) =>
     `${SHARE_BASE}/app/post/${encodeURIComponent(String(tokenId))}?c=${encodeURIComponent(String(commentId))}`,
@@ -536,8 +570,10 @@ export const parseDeepLink = (url: string): { type: string; params: Record<strin
       return { type: 'feed', params: { postId: pathParts[1] } };
     }
 
-    // Profile: /:username (single segment)
-    if (pathParts.length === 1 && pathParts[0] !== 'app') {
+    // Profile: /:username or /:name.eth (single segment). Shares the reserved
+    // list and the dot rule with getStateFromPath above — this used to exclude
+    // 'app' and nothing else, so it reported /arcade as the user @arcade.
+    if (pathParts.length === 1 && couldBeProfileSegment(pathParts[0], RESERVED_PREFIXES)) {
       return { type: 'profile', params: { username: pathParts[0] } };
     }
     
