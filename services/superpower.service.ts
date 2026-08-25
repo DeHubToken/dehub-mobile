@@ -25,6 +25,7 @@
  */
 
 import { apiClient } from '../libs/api.client';
+import { getAuthToken } from '../libs/auth.utils';
 
 /** Keys are stable and stored on bookings; renaming one is a migration. */
 export type SuperPowerKey =
@@ -141,13 +142,21 @@ export async function fetchSuperpowerTiers(): Promise<SuperPowerLadder> {
  * refresh. Do not cache it for the session.
  */
 export async function fetchBoostSlot(): Promise<BoostSlot | null> {
+  const token = await getAuthToken();
   const response = await apiClient.fetch<{ result: BoostSlot | null }>('/superpowers/slot', {
     method: 'GET',
-    // Same default trap as the ladder above. A signed-out viewer sees boosts
-    // too — that is most of the audience on a shared link. The client still
-    // sends a token when one is present, which the server uses only to avoid
-    // showing somebody their own boost.
-    isAuthRequired: false,
+    // Not required, but SENT when there is one.
+    //
+    // `isAuthRequired: false` on this client does not merely relax the
+    // requirement — it omits the header entirely. The server reads the token
+    // on this endpoint for three things: to avoid dealing somebody their own
+    // boost, to apply their block list, and to apply their mature-content
+    // setting. Without it a holder was shown their own boost at the top of
+    // their own feed, burning an impression on the one person it cannot reach.
+    //
+    // A signed-out viewer still gets the slot — that is most of the audience on
+    // a shared link — and `getAuthToken` simply returns nothing for them.
+    isAuthRequired: !!token,
   });
   return response.result ?? null;
 }

@@ -21,7 +21,6 @@ import GlassModal from "../ui/GlassModal";
 import ConfirmModal from "./ConfirmModal";
 import ConfirmBlockModal from "./ConfirmBlockModal";
 import EditPostModal from "./EditPostModal";
-import BoostSheet from "./BoostSheet";
 import ReportModal from "./ReportModal";
 import {
   editPost,
@@ -82,6 +81,16 @@ export interface PostOptionsMenuProps {
   onDeleteSuccess?: () => void;
   /** Called when user taps Send to DM */
   onSendToDm?: () => void;
+  /**
+   * Called when the owner taps Boost.
+   *
+   * The sheet is owned by the CALLER, not by this menu. Every call site renders
+   * this component as `{showOptionsMenu && <PostOptionsMenu …>}`, so `onClose()`
+   * unmounts it — state set in the same handler goes with the fiber and nothing
+   * opens. That is why `onSendToDm` is a callback too, and the Boost row was
+   * dead until it became one.
+   */
+  onBoostPress?: () => void;
   /** Called when user taps Translate Post */
   onTranslatePress?: () => void;
   /** Called when user taps Translate Image (image posts only) */
@@ -162,6 +171,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onEditSuccess,
   onDeleteSuccess,
   onSendToDm,
+  onBoostPress,
   onTranslatePress,
   onTranslateImagePress,
   isBlocked: isBlockedProp = false,
@@ -176,7 +186,6 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
 
   // Sub-modal states
   const [showEdit, setShowEdit] = useState(false);
-  const [showBoost, setShowBoost] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [showReportContent, setShowReportContent] = useState(false);
   const [showReportUser, setShowReportUser] = useState(false);
@@ -443,15 +452,12 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   holders: the sheet explains what a badge buys and links to
                   staking, which is worth more than hiding the row from the
                   people who have not staked yet. */}
-              {tokenId != null && (
+              {!!onBoostPress && tokenId != null && (
                 <OptionRow
                   icon="rocket-outline"
                   label="Boost post"
                   sublabel="Put it at the top of the home feed"
-                  onPress={() => {
-                    onClose();
-                    setShowBoost(true);
-                  }}
+                  onPress={() => { onClose(); setTimeout(() => onBoostPress(), 300); }}
                 />
               )}
               {/* Only for posts published off-chain — 'signed' is the status
@@ -543,14 +549,6 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         loading={deleteLoading}
         onConfirm={handleDeleteConfirm}
         onCancel={() => setShowDeleteConfirm(false)}
-      />
-
-      {/* Boost sheet */}
-      <BoostSheet
-        visible={showBoost}
-        onClose={() => setShowBoost(false)}
-        tokenId={tokenId}
-        postTitle={currentTitle || currentDescription}
       />
 
       {/* Edit modal */}

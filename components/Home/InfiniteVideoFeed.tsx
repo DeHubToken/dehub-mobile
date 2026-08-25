@@ -95,7 +95,13 @@ const FOOTER_SLOT = { height: 84 } as const;
 
 // Hoisted: a fresh object literal here would re-configure the native scroll
 // view on every render.
-const MAINTAIN_POSITION = { minIndexForVisible: 1 } as const;
+// `autoscrollToTopThreshold` matters as much as the index here. Without it, a
+// row prepended while the viewer sits at the very top (the boost slot arrives
+// after the first page) is inserted ABOVE the anchor and the offset is raised
+// to hold position — so the boosted card lands scrolled off the top of the
+// screen and is never seen. The threshold keeps a viewer already at the top
+// pinned to the top.
+const MAINTAIN_POSITION = { minIndexForVisible: 1, autoscrollToTopThreshold: 100 } as const;
 
 // Rows the capped list needs before it can scroll at all. Below this the feed
 // pulls another page rather than sitting on a screenful of nothing.
@@ -360,10 +366,18 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // It arrives after the first page, so the feed never waits on it and never
   // breaks without it.
   const { data: boostSlot } = useBoostSlot(showBoostSlot);
-  const boostedTokenId = boostSlot?.tokenId;
+
+  // `showBoostSlot` gates the READ as well as the render. All three feed types
+  // stay mounted at once and share one react-query key, so the Video and Live
+  // lists — which opt out — would still see whatever the Home list had already
+  // written into that cache and render it. Gating only the fetch is not enough.
+  const boostedTokenId = showBoostSlot ? boostSlot?.tokenId : undefined;
 
   const { data: boostedPost } = useQuery({
-    queryKey: ["boosted-post", boostedTokenId],
+    // String key, matching BoostSheet's. Keyed on the raw number, the two
+    // caches could never share and boosting from the sheet immediately refetched
+    // a payload the sheet had just warmed.
+    queryKey: ["boosted-post", String(boostedTokenId ?? "")],
     queryFn: () => getNFT(boostedTokenId!),
     enabled: !!boostedTokenId,
     staleTime: 5 * 60 * 1000,
@@ -371,19 +385,30 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   });
 
   const feedItems = useMemo<FeedItem[]>(() => {
-    if (!boostedTokenId) return cappedItems;
+    const post = (boostedPost as any)?.result;
 
-    // Filter first, so a post that is both boosted and in the page it would
-    // have appeared in does not render twice.
+    // Nothing to prepend, so leave the list exactly as it was. Filtering the
+    // boosted id out here regardless would DELETE the post from the organic
+    // feed whenever its fetch failed — a transient 5xx and the creator's post
+    // silently disappears from a feed it had legitimately ranked into.
+    if (!boostedTokenId || !post) return cappedItems;
+
+    // Filter so a post that is both boosted and in the page it would have
+    // appeared in does not render twice.
     const rest = cappedItems.filter(
       it => String((it as any).tokenId ?? (it as any).id ?? "") !== String(boostedTokenId),
     );
 
-    const post = (boostedPost as any)?.result;
-    if (!post) return rest;
-
     return [
-      { ...post, __listKey: `boost-${boostedTokenId}-${boostSlot?.bookingId ?? ""}` } as FeedItem,
+      {
+        ...post,
+        // Read by FeedCard to draw the "Boosted" label. Paid placement at the
+        // top of the feed says so, on every client — the feed's whole pitch is
+        // that engagement decides reach, and an unlabelled paid slot at
+        // position zero makes that untrue.
+        __boosted: true,
+        __listKey: `boost-${boostedTokenId}-${boostSlot?.bookingId ?? ""}`,
+      } as FeedItem,
       ...rest,
     ];
   }, [cappedItems, boostedTokenId, boostedPost, boostSlot?.bookingId]);
@@ -622,7 +647,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     onScrollBegin?.();
   }, [onScrollBegin]);
 
-  if (initialLoading && feedItems.length === 0) {
+  // Both guards count ORGANIC rows. A live boost is one item in the list, so
+  // measuring `feedItems` let a boost mask a completely failed feed — the
+  // viewer got the paid post and "No more content", with no error and no
+  // retry, which turns an outage into a page that is only an advert.
+  if (initialLoading && cappedItems.length === 0) {
     return (
       <View className="flex-1 px-2">
         {/* Pushed below the collapsible header. The early return drops the
@@ -635,7 +664,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     );
   }
 
-  if (error && feedItems.length === 0) {
+  if (error && cappedItems.length === 0) {
     return (
       <View className="flex-1 items-center justify-center px-4">
         <Text className="text-theme-neutrals-200 mb-4">{error}</Text>
