@@ -110,6 +110,12 @@ export const DeepLinkPaths = {
   // Commerce — dehub.io/app/stores/:storeId (+ ?listing=<id> for one item)
   STORE: 'app/stores/:storeId',
 
+  // Handle marketplace. Web canonicalises /app/usernames onto the bare path and
+  // shares the bare form, so that is the one declared here. `?handle=` on a
+  // shared listing link rides through as a route param and seeds the search
+  // box, so the link lands on the handle rather than on the front of the shop.
+  USERNAMES: 'usernames',
+
   // Events — dehub.io/app/events/:eventNumber. There is no per-event screen
   // yet, so this lands on the list; a link that opens the right part of the
   // app beats one that opens the website in a browser.
@@ -194,6 +200,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
             path: DeepLinkPaths.STORE,
             parse: { storeId: (storeId: string) => storeId },
           },
+
+          [ScreenNames.Usernames]: DeepLinkPaths.USERNAMES,
 
           [ScreenNames.Events]: DeepLinkPaths.EVENT,
 
@@ -291,9 +299,11 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // profile @stage. Both are reserved on the web for the same reason.
     // 'builder' is the newest of these: the web app moved its app builder to
     // dehub.io/builder, so a tapped link would open the profile @builder.
-    // 'usernames' is the handle marketplace (dehubweb#546) — a link to it is
-    // the one link most likely to be shared with a handle in it, so reading it
-    // as the profile @usernames would be a bad first impression of the feature.
+    // 'usernames' is the handle marketplace. It now has a screen and a
+    // DeepLinkPaths entry, so it is here for a different reason than the rest:
+    // this branch runs BEFORE getStateFromPath, so without the entry the path
+    // would be claimed as the profile @usernames and never reach the route that
+    // exists for it.
     const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth', 'arcade', 'builder', 'cinema', 'stage', 'stages', 'usernames'];
     if (segments[0] === 'auth-callback' || segments[0] === 'auth') {
       logger.info('Ignoring OAuth callback deep link (already consumed in-flight)', { path });
@@ -418,6 +428,15 @@ export const ShareLinks = {
    */
   listing: (storeId: string, listingId: string) =>
     `${SHARE_BASE}/app/stores/${encodeURIComponent(storeId)}?listing=${encodeURIComponent(listingId)}`,
+  /**
+   * Handle for sale — dehub.io/usernames?handle=:handle
+   *
+   * The bare path, not `/app/usernames`: the web worker canonicalises the two
+   * onto this one, so a link shared from a phone has to be the form web itself
+   * publishes or it indexes and unfurls as a duplicate.
+   */
+  usernameListing: (handle: string) =>
+    `${SHARE_BASE}/usernames?handle=${encodeURIComponent(handle)}`,
   /** Event — dehub.io/app/events/:eventNumber */
   event: (eventNumber: string | number) =>
     `${SHARE_BASE}/app/events/${encodeURIComponent(String(eventNumber))}`,
