@@ -1475,6 +1475,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
           commentsDisabled={localCommentsDisabled}
+          postCreator={{ address: minterAddress, displayName, username }}
         />
       )}
 

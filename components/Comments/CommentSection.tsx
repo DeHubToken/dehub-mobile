@@ -50,6 +50,7 @@ import { useCommentTipTotals } from "../../hooks/useCommentTipTotals";
 import { useBookBoost, useSuperpowers } from "../../hooks/useSuperpowers";
 import { getNFT } from "../../services/nft.service";
 import { useQuery } from "@tanstack/react-query";
+import type { PostCreator } from "../../libs/impersonation";
 
 // Extended comment type for flat list with reply info
 interface FlatComment extends Comment {
@@ -69,6 +70,8 @@ interface CommentSectionProps {
    *  the list alone — disabling hides no history, the server simply refuses new
    *  comments (requestCommentFunc), so this is presentation not enforcement. */
   commentsDisabled?: boolean;
+  /** The post creator, for the Creator / Not-the-creator chips on comments. */
+  postCreator?: PostCreator | null;
 }
 
 const PAGE_SIZE = 50;
@@ -79,6 +82,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   highlightCommentId,
   contentType = "video",
   commentsDisabled = false,
+  postCreator,
 }) => {
   const user = useUser();
   const { requireAuth } = useAuthActions();
@@ -865,6 +869,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       <View style={indent > 0 ? { paddingLeft: indent } : undefined}>
         <CommentItem
           comment={item}
+          postCreator={postCreator}
           isReply={item.isReply}
           onReply={handleReply}
           onTip={setTipComment}
@@ -898,6 +903,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     expandedCommentIds,
     handleToggleReplies,
     loadingRepliesMap,
+    postCreator,
   ]);
 
   const keyExtractor = useCallback((item: FlatComment) => `comment-${item.id}`, []);
