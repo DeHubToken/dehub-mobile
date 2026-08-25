@@ -291,7 +291,10 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // profile @stage. Both are reserved on the web for the same reason.
     // 'builder' is the newest of these: the web app moved its app builder to
     // dehub.io/builder, so a tapped link would open the profile @builder.
-    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth', 'arcade', 'builder', 'stage', 'stages'];
+    // 'usernames' is the handle marketplace (dehubweb#546) — a link to it is
+    // the one link most likely to be shared with a handle in it, so reading it
+    // as the profile @usernames would be a bad first impression of the feature.
+    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth', 'arcade', 'builder', 'stage', 'stages', 'usernames'];
     if (segments[0] === 'auth-callback' || segments[0] === 'auth') {
       logger.info('Ignoring OAuth callback deep link (already consumed in-flight)', { path });
       return undefined;
