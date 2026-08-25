@@ -93,10 +93,11 @@ export const APP_SCHEME = 'dehub';
  *   than the rest: it HAS a screen and a DeepLinkPaths entry, but the profile
  *   branch runs BEFORE getStateFromPath, so without an entry the path would be
  *   claimed as @usernames and never reach the route that exists for it.
+ *   'accounts' — the account marketplace — is here for exactly the same reason.
  */
 const RESERVED_PREFIXES = [
   'app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth',
-  'arcade', 'builder', 'cinema', 'stage', 'stages', 'usernames',
+  'arcade', 'builder', 'cinema', 'stage', 'stages', 'usernames', 'accounts',
 ];
 
 export const getDeepLinkPrefix = (): string[] => {
@@ -151,6 +152,10 @@ export const DeepLinkPaths = {
   // shared listing link rides through as a route param and seeds the search
   // box, so the link lands on the handle rather than on the front of the shop.
   USERNAMES: 'usernames',
+
+  // Account marketplace — dehub.io/accounts, the bare path web canonicalises
+  // onto. `?handle=` on a shared listing link seeds the search box.
+  ACCOUNTS: 'accounts',
 
   // Events — dehub.io/app/events/:eventNumber. There is no per-event screen
   // yet, so this lands on the list; a link that opens the right part of the
@@ -238,6 +243,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           },
 
           [ScreenNames.Usernames]: DeepLinkPaths.USERNAMES,
+
+          [ScreenNames.Accounts]: DeepLinkPaths.ACCOUNTS,
 
           [ScreenNames.Events]: DeepLinkPaths.EVENT,
 
@@ -471,6 +478,14 @@ export const ShareLinks = {
    */
   usernameListing: (handle: string) =>
     `${SHARE_BASE}/usernames?handle=${encodeURIComponent(handle)}`,
+  /**
+   * Account for sale — dehub.io/accounts?handle=:handle
+   *
+   * Same shape as the handle market: the bare path is the one web publishes,
+   * with the handle riding in the query to seed the search box.
+   */
+  accountListing: (handle: string) =>
+    `${SHARE_BASE}/accounts?handle=${encodeURIComponent(handle)}`,
   /** Event — dehub.io/app/events/:eventNumber */
   event: (eventNumber: string | number) =>
     `${SHARE_BASE}/app/events/${encodeURIComponent(String(eventNumber))}`,
