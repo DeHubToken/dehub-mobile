@@ -6,6 +6,10 @@ import CompactVideoInfiniteList from '../Home/CompactVideoInfiniteList';
 const FALLBACK_ADDRESS = '0x4B12Ca78C722253cd174Db212E2122b1E635a18A';
 
 interface VideosRouteProps {
+  /** Channel toolbar state, threaded to the API rather than applied on screen. */
+  sortBy?: string;
+  sortOrder?: "asc" | "desc";
+  search?: string;
   address?: string;
   showCreator?: boolean;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
@@ -13,7 +17,7 @@ interface VideosRouteProps {
   onBeforeNavigate?: () => void;
 }
 
-const VideosRoute: React.FC<VideosRouteProps> = ({ address, showCreator = true, onScroll, listHeader, onBeforeNavigate }) => {
+const VideosRoute: React.FC<VideosRouteProps> = ({ address, showCreator = true, onScroll, listHeader, onBeforeNavigate, sortBy, sortOrder, search }) => {
   return (
     <CompactVideoInfiniteList
       address={address || FALLBACK_ADDRESS}
@@ -23,6 +27,9 @@ const VideosRoute: React.FC<VideosRouteProps> = ({ address, showCreator = true, 
       onScroll={onScroll}
       ListHeaderComponent={listHeader}
       onBeforeNavigate={onBeforeNavigate}
+      sortBy={sortBy}
+      sortOrder={sortOrder}
+      search={search}
     />
   );
 };

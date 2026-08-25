@@ -156,6 +156,9 @@ interface NotificationsResponse { result: NotificationItem[] }
 
 // Params accepted for user content queries
 export interface UserContentSearchParams {
+  /** Explicit ordering, for callers that need a direction the presets cannot express. */
+  sortBy?: string;
+  sortOrder?: 'asc' | 'desc';
   q?: string;            // search text
   sort?: string;         // e.g. 'new', 'popular'
   type?: string;         // maps to sortMode for videos (e.g. 'trending')
@@ -292,6 +295,8 @@ export async function getUserVideos(userOrAddress: User | string, params?: UserC
     unit: params?.unit ?? 40,
     postType: 'video',
     sortMode: params?.type, // maps provided type -> sortMode used by backend
+    sortBy: params?.sortBy,
+    sortOrder: params?.sortOrder,
     sort: params?.sort,
     category: params?.category === 'All' ? undefined : params?.category,
     range: params?.range,

@@ -7,6 +7,14 @@ export interface SearchParams {
   q?: string; // alias
   sort?: string;
   sortMode?: string;
+  /**
+   * Explicit ordering, when a caller knows exactly what it wants rather than
+   * naming a preset. Takes precedence over `sortMode`/`sort`, which resolve
+   * through a fixed table that has no ascending direction at all — "oldest
+   * first" cannot be expressed as a preset.
+   */
+  sortBy?: string;
+  sortOrder?: 'asc' | 'desc';
   range?: string | number;
   category?: string;
   address?: string; // viewer / current user address
@@ -16,7 +24,6 @@ export interface SearchParams {
   owner?: string;
   unit?: number; // page size
 }
-
 export interface StreamInfo {
   isAddBounty?: boolean;
   addBountyAmount?: number;
@@ -106,7 +113,10 @@ export function resolveFeedPostType(postType?: string): string | undefined {
 export async function getNFTs(params?: SearchParams): Promise<GetNFTsResponse> {
   const baseParams: Record<string, any> = {
     search: params?.search || params?.q,
-    ...resolveFeedSort(params?.sortMode || params?.sort),
+    // Explicit ordering wins: the preset table has no ascending direction.
+    ...(params?.sortBy
+      ? { sortBy: params.sortBy, sortOrder: params.sortOrder ?? "desc" }
+      : resolveFeedSort(params?.sortMode || params?.sort)),
     limit: params?.unit ?? 40,
     range: params?.range,
     category: params?.category,
