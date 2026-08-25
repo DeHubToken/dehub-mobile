@@ -128,7 +128,13 @@ export default function SuperPowersScreen() {
                       size={14}
                       color={booking.live ? "#4ADE80" : "#71717A"}
                     />
-                    <Text style={styles.bookingId}>#{booking.tokenId}</Text>
+                    {/* A Golden Hour acts on the whole account, so it has no
+                        post id to show. */}
+                    <Text style={styles.bookingId}>
+                      {booking.tokenId != null
+                        ? `#${booking.tokenId}`
+                        : (status?.powers.find(p => p.key === booking.power)?.label ?? booking.power)}
+                    </Text>
                     <Text style={styles.bookingState}>
                       {booking.live
                         ? `live until ${new Date(booking.endsAt).toLocaleTimeString(undefined, {
