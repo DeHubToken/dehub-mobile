@@ -294,7 +294,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // 'usernames' is the handle marketplace (dehubweb#546) — a link to it is
     // the one link most likely to be shared with a handle in it, so reading it
     // as the profile @usernames would be a bad first impression of the feature.
-    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth', 'arcade', 'builder', 'stage', 'stages', 'usernames'];
+    const RESERVED_PREFIXES = ['app', 'stream', 'feeds', 'signin', 'welcome', 'auth-callback', 'auth', 'arcade', 'builder', 'cinema', 'stage', 'stages', 'usernames'];
     if (segments[0] === 'auth-callback' || segments[0] === 'auth') {
       logger.info('Ignoring OAuth callback deep link (already consumed in-flight)', { path });
       return undefined;
