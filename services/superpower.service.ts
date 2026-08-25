@@ -57,7 +57,11 @@ export interface SuperPowerInfo {
 
 export interface SuperPowerBooking {
   id: string;
-  tokenId: number;
+  /**
+   * Null for a power that does not act on a post — a Golden Hour acts on the
+   * whole account. Check before navigating to a post.
+   */
+  tokenId: number | null;
   power: SuperPowerKey;
   startsAt: string;
   endsAt: string;
@@ -172,10 +176,21 @@ export async function bookBoost(
   tokenId: number,
   power: SuperPowerKey = 'boost',
   startAt?: string,
+  aim?: {
+    /** `precision_strike` — the account whose followers to reach. */
+    targetAccount?: string;
+    /** `harpoon` — badge tier NAMES, never balances. The ladder is dollar-pegged. */
+    targetTiers?: string[];
+  },
 ): Promise<SuperPowerBooking> {
+  const body: Record<string, unknown> = { tokenId, power };
+  if (startAt) body.startAt = startAt;
+  if (aim?.targetAccount) body.targetAccount = aim.targetAccount;
+  if (aim?.targetTiers?.length) body.targetTiers = aim.targetTiers;
+
   const response = await apiClient.fetch<{ result: SuperPowerBooking }>('/superpowers/boost', {
     method: 'POST',
-    body: startAt ? { tokenId, power, startAt } : { tokenId, power },
+    body,
     isAuthRequired: true,
   });
   return response.result;
@@ -215,3 +230,67 @@ export function powerForPostAge(createdAt: string | Date | undefined): SuperPowe
 // use Second Wind to bring it back", "You have used all 2 of your boosts this
 // cycle". Show it. Mapping it back to a code to look up a second wording only
 // gives the two places to disagree.
+
+/** What a power needs from the holder before it can be spent. */
+export type PowerTargeting = 'none' | 'account' | 'tiers';
+
+export interface SpendablePower {
+  key: SuperPowerKey;
+  label: string;
+  summary: string;
+  /** What the holder must supply — an account to aim at, or badge tiers. */
+  targeting: PowerTargeting;
+  /** False when the tier does not reach it, or it is not built yet. */
+  enabled: boolean;
+  /** Why it is disabled, written for the holder. Empty when enabled. */
+  blockedReason: string;
+}
+
+/**
+ * Every power this holder could spend on this post, in ladder order.
+ *
+ * Mirror of web's `spendablePowers`. Replaces the age-derived either/or the
+ * sheet started with: that was right while Boost and Second Wind were the only
+ * two — they split one job by age — but four of the six built have nothing to
+ * do with age, and inferring one silently hides the rest.
+ *
+ * `status.powers` is the authority for what is unlocked and what is built,
+ * never a table on this side. The client draws a badge from a live read that
+ * deliberately over-reports, so a local answer would offer powers the server
+ * will refuse.
+ */
+export function spendablePowers(
+  status: SuperPowerStatus | null | undefined,
+  postCreatedAt: string | Date | undefined,
+): SpendablePower[] {
+  if (!status) return [];
+
+  const ageChoice = powerForPostAge(postCreatedAt);
+  const TARGETING: Partial<Record<SuperPowerKey, PowerTargeting>> = {
+    precision_strike: 'account',
+    harpoon: 'tiers',
+  };
+
+  return status.powers
+    .filter(p => {
+      if (!p.available) return false;
+      // Golden Hour acts on the account, not this post — it belongs on the
+      // SuperPowers screen rather than in a post's sheet.
+      if (p.key === 'golden_hour') return false;
+      // Only the age-appropriate half of the Boost/Second Wind pair.
+      if (p.key === 'boost' || p.key === 'second_wind') return p.key === ageChoice;
+      return true;
+    })
+    .map(p => ({
+      key: p.key,
+      label: p.label,
+      summary: p.summary,
+      targeting: TARGETING[p.key] ?? 'none',
+      enabled: !!p.unlocked && status.boostsLeft > 0,
+      blockedReason: !p.unlocked
+        ? `Unlocks at ${p.tier}`
+        : status.boostsLeft < 1
+          ? 'No boosts left this cycle'
+          : '',
+    }));
+}
