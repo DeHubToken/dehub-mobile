@@ -8,9 +8,12 @@
  *
  * Two things not obvious from the endpoints:
  *
- * **A delegation grants the rung below yours**, never your own. Slots scale
- * with tier, so granting at your own rung would get cheaper the higher you
- * climb, and the rarest badges would be the cheapest to counterfeit.
+ * **A delegation grants your own tier**, not a lesser copy of it — Crab lends
+ * Crab, Meglodon lends Meglodon. Slots scale with tier, so one holder can put
+ * `slots + 1` of their badge on the platform: fourteen Meglodons behind one
+ * 50M stack. That is accepted rather than overlooked, because a tier claims
+ * influence *commanded* rather than DHB held. If the top rung ever needs
+ * protecting, the lever is the slot curve, not the granted tier.
  *
  * **A lent badge renders exactly like an earned one, everywhere.** The server
  * folds it into `badgeBalance`, which every surface already reads, so no feed
