@@ -31,6 +31,9 @@ const KEYS = {
   // device-local switches that filtered nothing; the one real filter is the
   // account-level showMatureContent (see hooks/useMatureContent.ts).
   autoSaveDrafts: 'dehub_auto_save_drafts',
+  // Hide watched videos in the feeds. Same key web writes, so the two clients
+  // mean the same thing by it if these ever move to a synced store.
+  hideWatched: 'feed-hide-watched',
   geoBlockedCountries: 'dehub_geo_blocked',
 } as const;
 
@@ -47,6 +50,7 @@ export interface AppPrefs {
   quietHoursStart: number;
   quietHoursEnd: number;
   autoSaveDrafts: boolean;
+  hideWatched: boolean;
   geoBlockedCountries: string[];
 }
 
@@ -62,6 +66,7 @@ export const DEFAULT_APP_PREFS: AppPrefs = {
   quietHoursStart: 22,
   quietHoursEnd: 8,
   autoSaveDrafts: true,
+  hideWatched: false,
   geoBlockedCountries: [],
 };
 
@@ -105,6 +110,7 @@ function init() {
         quietHoursStart: parseNum(get('quietHoursStart'), DEFAULT_APP_PREFS.quietHoursStart),
         quietHoursEnd: parseNum(get('quietHoursEnd'), DEFAULT_APP_PREFS.quietHoursEnd),
         autoSaveDrafts: parseBool(get('autoSaveDrafts'), DEFAULT_APP_PREFS.autoSaveDrafts),
+        hideWatched: parseBool(get('hideWatched'), DEFAULT_APP_PREFS.hideWatched),
         geoBlockedCountries: (() => {
           try {
             const parsed = JSON.parse(get('geoBlockedCountries') || '[]');
