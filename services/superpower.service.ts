@@ -71,6 +71,8 @@ export interface SuperPowerBooking {
   status: 'active' | 'completed' | 'cancelled';
   /** The stage a Front Row is lifting. Null for every other power. */
   stageId?: string | null;
+  /** The category a Trend Jacker is lifting. Null for every other power. */
+  category?: string | null;
   /** Who else has put a boost behind this one, for a Crew Boost. */
   contributors?: { address: string; tier: string; minutes: number }[];
   /**
@@ -215,6 +217,8 @@ export async function bookBoost(
     commentId?: string;
     /** `front_row` — a Stage you host, live or scheduled. */
     stageId?: string;
+    /** `trend_jacker` — a category you already post in. */
+    category?: string;
   },
 ): Promise<SuperPowerBooking> {
   const body: Record<string, unknown> = { tokenId, power };
@@ -223,6 +227,7 @@ export async function bookBoost(
   if (aim?.targetTiers?.length) body.targetTiers = aim.targetTiers;
   if (aim?.commentId) body.commentId = aim.commentId;
   if (aim?.stageId) body.stageId = aim.stageId;
+  if (aim?.category) body.category = aim.category;
 
   const response = await apiClient.fetch<{ result: SuperPowerBooking }>('/superpowers/boost', {
     method: 'POST',
