@@ -122,6 +122,7 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   { icon: "Tv", labelKey: "nav.tv", screen: ScreenNames.TV },
   { icon: "Store", labelKey: "screens.stores", screen: ScreenNames.Stores },
   { icon: "AtSign", labelKey: "screens.usernames", screen: ScreenNames.Usernames },
+  { icon: "IdCard", labelKey: "screens.accounts", screen: ScreenNames.Accounts },
   { icon: "Hammer", labelKey: "screens.work", screen: ScreenNames.Work },
   { icon: "Handshake", labelKey: "nav.affiliate", screen: ScreenNames.Affiliate },
   { icon: "Megaphone", labelKey: "nav.ads", screen: ScreenNames.Ads },

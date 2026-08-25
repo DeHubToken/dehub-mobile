@@ -175,6 +175,11 @@ export default function AppNavigator() {
           name={ScreenNames.Usernames}
           getComponent={() => require("../screens/UsernamesScreen").default}
         />
+        {/* Account marketplace — whole accounts, same posture. */}
+        <Stack.Screen
+          name={ScreenNames.Accounts}
+          getComponent={() => require("../screens/AccountsScreen").default}
+        />
         <Stack.Screen
           name={ScreenNames.StoreDetail}
           getComponent={() => require("../screens/StoreDetailScreen").default}
