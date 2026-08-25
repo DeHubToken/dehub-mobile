@@ -51,6 +51,12 @@ export interface PostOptionsMenuProps {
   postStatus?: string;
   /** Chain the post was created on — needed to mint one published off-chain. */
   postChainId?: number;
+  /**
+   * Whether this post has a video file that can be swapped. The creator only,
+   * and only a post whose media is a video — the endpoint refuses anything
+   * else, and offering the row would be a promise the server does not keep.
+   */
+  canReplaceVideo?: boolean;
   /** Whether the post is currently hidden */
   isHidden: boolean;
   /** Creator's display name */
@@ -165,6 +171,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onClose,
   tokenId,
   isOwner,
+  canReplaceVideo = false,
   postStatus,
   postChainId,
   isHidden,
@@ -581,6 +588,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         initialCategories={currentCategories}
         initialCommentsDisabled={currentCommentsDisabled}
         initialContentRating={currentContentRating}
+        canReplaceVideo={canReplaceVideo}
         onSuccess={handleEditDone}
       />
 

@@ -1548,6 +1548,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onClose={() => setShowOptionsMenu(false)}
           tokenId={tokenId}
           isOwner={!!isOwnerPost}
+          canReplaceVideo={
+            !!isOwnerPost && !isLive && (contentType === "video" || contentType === "short")
+          }
           // rawStatus doubles as the live-stream status on live posts, but a
           // live post is never 'signed', so the Mint post row cannot show up
           // on one by accident.

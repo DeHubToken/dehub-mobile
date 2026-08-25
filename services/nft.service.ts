@@ -1,6 +1,7 @@
 import { apiClient } from "../libs";
 import { streamInfoKeys } from "../config/constants";
 import type { PostReaction } from "../libs/reactions";
+import { xhrUploadFormData } from "../libs/xhr-upload";
 
 export interface SearchParams {
   search?: string;
@@ -977,6 +978,68 @@ export async function editPost(tokenId: number | string, input: EditPostInput): 
     console.error('[NFTService] editPost error', e);
     throw e;
   }
+}
+
+export interface ReplaceVideoFile {
+  uri: string;
+  name?: string;
+  type?: string;
+}
+
+export interface ReplaceVideoResponse {
+  result?: boolean;
+  message?: string;
+  tokenId?: number;
+  transcodingStatus?: string;
+}
+
+/**
+ * Swap the file behind a post, keeping the post.
+ * POST /api/nft/{tokenId}/video
+ *
+ * The server transcodes the replacement into the same storage key, so the URL,
+ * the views, the comments and every link already shared survive — which is the
+ * whole point, and also why a viewer who already downloaded the old file keeps
+ * it in their own cache for a while.
+ *
+ * Creator only, and a video mimetype only. Goes through the XHR uploader
+ * rather than apiClient: a video is far too big for the JSON path, and this is
+ * the one that reports progress and can be cancelled.
+ */
+export async function replaceVideoFile(
+  tokenId: number | string,
+  video: ReplaceVideoFile,
+  options: {
+    thumbnail?: ReplaceVideoFile | null;
+    onProgress?: (fraction: number) => void;
+    abortRef?: { current: boolean };
+  } = {},
+): Promise<ReplaceVideoResponse> {
+  if (tokenId == null) throw new Error('tokenId required');
+  if (!video?.uri) throw new Error('video file required');
+
+  const formData = new FormData();
+  // Field order is the contract: the server reads files[0] as the video and
+  // files[1] as the optional poster frame, exactly as the mint path does.
+  formData.append('video', {
+    uri: video.uri,
+    name: video.name || `replacement_${Date.now()}.mp4`,
+    type: video.type || 'video/mp4',
+  } as any);
+  if (options.thumbnail?.uri) {
+    formData.append('thumbnail', {
+      uri: options.thumbnail.uri,
+      name: options.thumbnail.name || `poster_${Date.now()}.jpg`,
+      type: options.thumbnail.type || 'image/jpeg',
+    } as any);
+  }
+
+  return xhrUploadFormData<ReplaceVideoResponse>({
+    endpoint: `/nft/${encodeURIComponent(String(tokenId))}/video`,
+    formData,
+    onProgress: options.onProgress,
+    abortRef: options.abortRef,
+  });
 }
 
 export interface ToggleVisibilityResponse {

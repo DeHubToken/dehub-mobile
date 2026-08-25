@@ -1670,6 +1670,7 @@ const ShortsViewerScreen = () => {
           onClose={() => setShowOptionsMenu(false)}
           tokenId={activeTokenId}
           isOwner={isOwnerOfActive}
+          canReplaceVideo={isOwnerOfActive}
           isHidden={activeIsHidden}
           creatorDisplayName={activeDisplayName}
           creatorIdentifier={activeMinter || activeUsername || ""}

@@ -11,13 +11,15 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   ScrollView,
+  Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import GlassModal from "../ui/GlassModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
 import MentionSuggestions from "../common/MentionSuggestions";
 import CategoryDrawer from "../Upload/CategoryDrawer";
-import { editPost, getCategoriesCached } from "../../services/nft.service";
+import * as ImagePicker from "expo-image-picker";
+import { editPost, getCategoriesCached, replaceVideoFile } from "../../services/nft.service";
 import { toastSuccess, toastError } from "../../libs";
 import { useKeyboard } from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
@@ -32,6 +34,8 @@ interface EditPostModalProps {
   initialCommentsDisabled?: boolean;
   /** Absent means safe — the API stores nothing for the default. */
   initialContentRating?: string;
+  /** Offer the "replace the file" row — creator, video post, not live. */
+  canReplaceVideo?: boolean;
   onSuccess?: (data: {
     name?: string;
     description?: string;
@@ -50,6 +54,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   initialCategories = [],
   initialCommentsDisabled = false,
   initialContentRating,
+  canReplaceVideo = false,
   onSuccess,
 }) => {
   const [commentsDisabled, setCommentsDisabled] = useState(initialCommentsDisabled);
@@ -63,6 +68,66 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const [allCategories, setAllCategories] = useState<string[]>([]);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [replacing, setReplacing] = useState(false);
+  const [replaceProgress, setReplaceProgress] = useState(0);
+
+  /**
+   * Pick a video and send it. Confirmed first: this overwrites the file every
+   * existing link points at, and there is no undo once the transcode lands.
+   */
+  const handleReplaceVideo = useCallback(async () => {
+    if (tokenId == null || replacing) return;
+
+    const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!perm.granted) {
+      toastError("Media library permission is required");
+      return;
+    }
+
+    // expo-image-picker renamed MediaTypeOptions; both spellings ship in the
+    // versions this app has run on.
+    const mediaTypes: any = (ImagePicker as any).MediaType
+      ? [(ImagePicker as any).MediaType.video]
+      : ImagePicker.MediaTypeOptions.Videos;
+
+    const picked = await ImagePicker.launchImageLibraryAsync({ mediaTypes, quality: 1 });
+    if (picked.canceled || !picked.assets?.[0]?.uri) return;
+    const asset = picked.assets[0];
+
+    const confirmed = await new Promise<boolean>((resolve) => {
+      Alert.alert(
+        "Replace this video?",
+        "The post keeps its link, views and comments. The file behind it is overwritten, and that cannot be undone.",
+        [
+          { text: "Cancel", style: "cancel", onPress: () => resolve(false) },
+          { text: "Replace", style: "destructive", onPress: () => resolve(true) },
+        ],
+        { cancelable: true, onDismiss: () => resolve(false) },
+      );
+    });
+    if (!confirmed) return;
+
+    setReplacing(true);
+    setReplaceProgress(0);
+    try {
+      await replaceVideoFile(
+        tokenId,
+        {
+          uri: asset.uri,
+          name: asset.fileName || `replacement_${Date.now()}.mp4`,
+          type: asset.mimeType || "video/mp4",
+        },
+        { onProgress: (fraction) => setReplaceProgress(Math.round(fraction * 100)) },
+      );
+      toastSuccess("New file uploaded — it will swap in once it finishes processing");
+    } catch (e: any) {
+      toastError(e?.message || "Could not replace that file");
+    } finally {
+      setReplacing(false);
+      setReplaceProgress(0);
+    }
+  }, [tokenId, replacing]);
+
   const [categoriesLoading, setCategoriesLoading] = useState(false);
   const { height: kbHeight, isVisible: kbVisible } = useKeyboard();
 
@@ -402,6 +467,41 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             onRemove={removeCategory}
           />
           </>
+        )}
+
+        {/* Replace the file behind the post. The post survives — same link,
+            same views, same comments — which is the entire reason this exists
+            rather than "delete and re-upload over a typo in the last render". */}
+        {canReplaceVideo && (
+          <View className="mt-4">
+            <Text className="text-theme-neutrals-300 text-xs font-medium mb-2">
+              Video file
+            </Text>
+            <TouchableOpacity
+              onPress={handleReplaceVideo}
+              disabled={replacing || saving}
+              activeOpacity={0.8}
+              className="flex-row items-center justify-between p-3 rounded-xl bg-white/5 border border-white/10"
+              style={{ opacity: replacing || saving ? 0.6 : 1 }}
+            >
+              <View className="flex-1 mr-3">
+                <Text className="text-white text-sm font-medium">
+                  {replacing
+                    ? `Uploading… ${replaceProgress}%`
+                    : "Replace video file"}
+                </Text>
+                <Text className="text-theme-neutrals-400 text-xs mt-0.5">
+                  Keeps this post's link, views and comments. The old file plays
+                  until the new one finishes processing.
+                </Text>
+              </View>
+              {replacing ? (
+                <ActivityIndicator size="small" color="#a1a1aa" />
+              ) : (
+                <Ionicons name="cloud-upload-outline" size={20} color="#a1a1aa" />
+              )}
+            </TouchableOpacity>
+          </View>
         )}
 
         {/* Actions */}
