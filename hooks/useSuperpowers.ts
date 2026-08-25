@@ -88,11 +88,17 @@ export function useBookBoost() {
       tokenId,
       power = 'boost',
       startAt,
+      targetAccount,
+      targetTiers,
     }: {
       tokenId: number;
       power?: SuperPowerKey;
       startAt?: string;
-    }) => bookBoost(tokenId, power, startAt),
+      /** precision_strike: whose followers to reach. */
+      targetAccount?: string;
+      /** harpoon: badge tier NAMES to aim at. */
+      targetTiers?: string[];
+    }) => bookBoost(tokenId, power, startAt, { targetAccount, targetTiers }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: SUPERPOWERS_KEY });
       // So the holder can see their own boost land, rather than waiting out the
