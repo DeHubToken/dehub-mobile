@@ -45,6 +45,7 @@ export enum ScreenNames {
   Explore = 'Explore',
   UploadQueue = 'UploadQueue',
   ActiveSessions = 'ActiveSessions',
+  TvRequests = 'TvRequests',
   ShortsViewer = 'ShortsViewer',
   ImageFeed = 'ImageFeed',
   // Calls and Stages are presented as app-wide modals (CallModalsHost /
