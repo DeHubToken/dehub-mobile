@@ -44,6 +44,7 @@ import { openInApp } from "../libs/links.utils";
 import Avatar from "../components/common/Avatar";
 import SmartImage from "../components/common/SmartImage";
 import { reactionMeta } from "../libs/reactions";
+import AppealSheet from "../components/Notifications/AppealSheet";
 import {
   NotificationType,
   getNotificationIconConfig,
@@ -398,6 +399,14 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
   const [thumbFailed, setThumbFailed] = useState(false);
   const [marking, setMarking] = useState(false);
 
+  // A decision someone can disagree with, as opposed to something that merely
+  // happened. The two types notifyModerationAction sends.
+  const isModerationDecision =
+    (item.type as string) === NotificationType.VIDEO_REMOVAL ||
+    (item.type as string) === NotificationType.ACCOUNT_WARNING;
+  const [appealOpen, setAppealOpen] = useState(false);
+  const [appealRef, setAppealRef] = useState<string | null>(null);
+
   // Clear: the row slides out and collapses, then the parent drops it. maxHeight
   // rather than height so the resting style needs no measurement — 9999 does not
   // constrain a row, and the measured value is only used once the collapse runs.
@@ -598,6 +607,40 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
             </View>
           )}
 
+          {/* A moderation decision is the one notification a reader may
+              actually disagree with. It used to end by asking them to email
+              support; this files an appeal against the decision itself. */}
+          {isModerationDecision && (
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10, gap: 8 }}>
+              {appealRef ? (
+                <View style={{ backgroundColor: '#27272a', paddingHorizontal: 10, paddingVertical: 5, borderRadius: 8 }}>
+                  <Text style={{ color: '#a1a1aa', fontSize: 12, fontWeight: '500' }}>
+                    {t('moderation.appealSentRef', { defaultValue: 'Appeal sent · {{ref}}', ref: appealRef })}
+                  </Text>
+                </View>
+              ) : (
+                <TouchableOpacity
+                  onPress={() => setAppealOpen(true)}
+                  activeOpacity={0.85}
+                  style={{
+                    backgroundColor: '#27272a',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 6,
+                    paddingHorizontal: 14,
+                    paddingVertical: 7,
+                    borderRadius: 8,
+                  }}
+                >
+                  <Icon name="Scale" size={13} color="#fff" />
+                  <Text style={{ color: '#fff', fontSize: 13, fontWeight: '600' }}>
+                    {t('moderation.appeal', 'Appeal')}
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          )}
+
           {/* Follow request accept/reject buttons */}
           {(item.type as string) === NotificationType.FOLLOW_REQUEST && (
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10, gap: 8 }}>
@@ -690,6 +733,16 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
           {clickable && <Icon name="ChevronRight" size={14} color="#52525B" />}
         </View>
       </TouchableOpacity>
+
+      {isModerationDecision && (
+        <AppealSheet
+          visible={appealOpen}
+          onClose={() => setAppealOpen(false)}
+          notificationId={item._id}
+          subject={item.tokenTitle ? `"${item.tokenTitle}"` : undefined}
+          onFiled={setAppealRef}
+        />
+      )}
     </Animated.View>
   );
 });
