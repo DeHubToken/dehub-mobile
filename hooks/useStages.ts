@@ -156,7 +156,9 @@ export interface SpeakerOverride {
 export interface StageTranscript {
   id: string;
   stage_id: string;
-  status: "pending" | "processing" | "ready" | "failed";
+  /** 'empty' is a finished run that found no speech — its own state so it can
+   *  be retried and does not render as a working transcript with nothing in it. */
+  status: "pending" | "processing" | "ready" | "empty" | "failed";
   source_language: string | null;
   full_text: string | null;
   segments: Segment[];
@@ -164,8 +166,11 @@ export interface StageTranscript {
   speaker_overrides: Record<string, SpeakerOverride> | null;
   summary: string | null;
   chapters: Chapter[] | null;
-  summary_status: "pending" | "processing" | "ready" | "failed";
+  summary_status: "pending" | "processing" | "ready" | "skipped" | "failed";
   privacy: "public" | "members" | "private";
+  /** How many transcription runs this row has spent. Past five, asking again
+   *  produces nothing but a spinner. */
+  attempts?: number;
   error: string | null;
   created_at: string;
 }
@@ -1490,10 +1495,17 @@ export function useStages(): UseStagesReturn {
   const fetchTranscript = useCallback(async (spaceId: string) => {
     setIsTranscriptLoading(true);
     try {
+      // One store for stage and video transcripts alike; the columns are
+      // aliased back to the names callers already use.
       const { data, error } = await supabase
-        .from("stage_transcripts")
-        .select("*")
-        .eq("stage_id", spaceId)
+        .from("transcripts")
+        .select(
+          "id, stage_id:source_ref, status, source_language:source_lang, full_text, segments, " +
+            "speaker_map, speaker_overrides, summary, chapters, summary_status, " +
+            "privacy:visibility, attempts, error, created_at",
+        )
+        .eq("source_kind", "stage")
+        .eq("source_ref", spaceId)
         .order("created_at", { ascending: false })
         .limit(1)
         .single();
