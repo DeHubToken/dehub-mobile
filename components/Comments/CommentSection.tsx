@@ -40,7 +40,7 @@ import {
   recordCommentViews,
   Comment,
 } from "../../services/nft.service";
-import { getAvatarUrl, toastError } from "../../libs";
+import { getAvatarUrl, toastError, toastSuccess } from "../../libs";
 import { openCroppedImagePicker, getFileName, guessMime } from "../../libs/assets.util";
 import useKeyboard from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
@@ -50,7 +50,6 @@ import { useCommentTipTotals } from "../../hooks/useCommentTipTotals";
 import { useBookBoost, useSuperpowers } from "../../hooks/useSuperpowers";
 import { getNFT } from "../../services/nft.service";
 import { useQuery } from "@tanstack/react-query";
-import { toastError, toastSuccess } from "../../libs";
 
 // Extended comment type for flat list with reply info
 interface FlatComment extends Comment {
