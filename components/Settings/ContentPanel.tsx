@@ -68,6 +68,22 @@ const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility:
           onValueChange={setShowMatureContent}
           disabled={savingMature}
         />
+        <Divider />
+        {/* Device-local, and deliberately off by default: a feed that quietly
+            drops what you have already seen is the wrong surprise to hand
+            someone who never asked for it. Only videos and shorts are ever
+            hidden — hooks/useWatchedVideos explains why a watch record on an
+            image means something else entirely. */}
+        <SettingsToggleRow
+          icon="EyeOff"
+          label={t('settings.hideWatched', 'Hide Watched Videos')}
+          description={t(
+            'settings.hideWatchedDesc',
+            'Keep videos you have already played out of your feeds. Off by default.',
+          )}
+          value={prefs.hideWatched}
+          onValueChange={(v) => setAppPref('hideWatched', v)}
+        />
       </SettingsSection>
 
       <SettingsNote>{t('settings.contentFilteringNote')}</SettingsNote>
