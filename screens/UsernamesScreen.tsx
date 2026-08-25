@@ -20,7 +20,6 @@ import {
   TextInput,
   ActivityIndicator,
   RefreshControl,
-  useWindowDimensions,
 } from "react-native";
 import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -40,15 +39,16 @@ import { useDebouncedValue } from "../hooks/useDebouncedValue";
 import { useBrowseUsernames, USERNAME_SORTS } from "../hooks/useUsernameMarket";
 import type { UsernameListing, UsernameSort } from "../services/username-market.service";
 
-const GRID_GAP = 10;
+/** Vertical gap between listing rows. */
+const ROW_GAP = 10;
 const H_PADDING = 16;
 
 /**
  * Price bands, matching web's presets.
  *
  * Chips in the same strip as the sorts rather than web's popover — a phone has
- * no room for a filter sheet over a two-column grid, and the whole filter set
- * is four sorts and four bands.
+ * no room for a filter sheet over the list, and the whole filter set is four
+ * sorts and four bands.
  */
 const PRICE_BANDS: { key: string; min?: number; max?: number }[] = [
   { key: "under10k", max: 10_000 },
@@ -60,22 +60,24 @@ const PRICE_BANDS: { key: string; min?: number; max?: number }[] = [
 /**
  * Handle type size, by length.
  *
- * The whole name is the product, so it never truncates — long ones step down
- * instead. `flexShrink: 0` on the label matters here: a `<Text>` allowed to
- * shrink below its intrinsic width renders as a bare `…` on Fabric.
+ * A full-width row holds far more than a half-width tile did, so this only
+ * steps down for genuinely long names and its floor is above the old ceiling.
+ * The whole name is the product; shrinking it to fit a box is the one thing
+ * this card must not do.
+ *
+ * `flexShrink: 0` on the label still matters: a `<Text>` allowed to shrink
+ * below its intrinsic width renders as a bare `…` on Fabric.
  */
 function handleSize(length: number): number {
-  if (length <= 8) return 22;
-  if (length <= 14) return 17;
-  if (length <= 20) return 14;
-  return 12;
+  if (length <= 12) return 24;
+  if (length <= 20) return 19;
+  return 15;
 }
 
 const UsernameCard: React.FC<{
   listing: UsernameListing;
-  width: number;
   onPress: () => void;
-}> = ({ listing, width, onPress }) => {
+}> = ({ listing, onPress }) => {
   const { t } = useTranslation();
   const seller = listing.seller;
   // `getBadgeUrlFor` rather than getBadgeUrl(resolveBadgeBalance(…)): it reads
@@ -84,8 +86,11 @@ const UsernameCard: React.FC<{
   const badgeImg = getBadgeUrlFor(seller as any);
 
   return (
-    <Pressable style={[styles.card, { width }]} onPress={onPress}>
-      <View style={styles.cardTop}>
+    <Pressable style={styles.card} onPress={onPress}>
+      {/* Left. `minWidth: 0` is what lets this shrink so the price stays on the
+          row — without it the flex child keeps its intrinsic width and pushes
+          the price off the right edge. */}
+      <View style={styles.cardMain}>
         <Text style={[styles.handle, { fontSize: handleSize(listing.length) }]}>
           <Text style={styles.at}>@</Text>
           {listing.username}
@@ -106,22 +111,10 @@ const UsernameCard: React.FC<{
           )}
         </View>
 
-        {!!listing.description && (
-          <Text style={styles.cardDesc} numberOfLines={2}>
-            {listing.description}
-          </Text>
-        )}
-      </View>
-
-      <View style={styles.cardFoot}>
-        <Text style={styles.cardPrice}>
-          {listing.priceDhb.toLocaleString("en-US")}
-          <Text style={styles.cardPriceUnit}> DHB</Text>
-        </Text>
         <View style={styles.sellerRow}>
           <Avatar
-            uri={getAvatarUrl(seller.avatarUrl, 15)}
-            size={15}
+            uri={getAvatarUrl(seller.avatarUrl, 14)}
+            size={14}
             rounded
             name={seller.displayName || seller.address}
           />
@@ -134,6 +127,20 @@ const UsernameCard: React.FC<{
             <Image source={badgeImg} style={styles.sellerBadge} contentFit="contain" />
           )}
         </View>
+
+        {!!listing.description && (
+          <Text style={styles.cardDesc} numberOfLines={1}>
+            {listing.description}
+          </Text>
+        )}
+      </View>
+
+      {/* Right: right-aligned so a column of rows lines up on the digits. */}
+      <View style={styles.cardPriceCol}>
+        <Text style={styles.cardPrice} numberOfLines={1}>
+          {listing.priceDhb.toLocaleString("en-US")}
+        </Text>
+        <Text style={styles.cardPriceUnit}>DHB</Text>
       </View>
     </Pressable>
   );
@@ -148,7 +155,6 @@ export default function UsernamesScreen() {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.Usernames>>();
-  const { width: screenW } = useWindowDimensions();
   const { isSignedIn, needsUsername } = useAuthState();
   const isAuthed = isSignedIn && !needsUsername;
 
@@ -170,7 +176,6 @@ export default function UsernamesScreen() {
   });
 
   const listings = data?.listings ?? [];
-  const cardWidth = (screenW - H_PADDING * 2 - GRID_GAP) / 2;
 
   const openListing = useCallback((listing: UsernameListing) => {
     setSelected(listing);
@@ -324,16 +329,14 @@ export default function UsernamesScreen() {
             <FlatList
               data={listings}
               keyExtractor={(l) => l.id}
-              numColumns={2}
-              columnWrapperStyle={{ gap: GRID_GAP }}
               renderItem={({ item }) => (
-                <UsernameCard listing={item} width={cardWidth} onPress={() => openListing(item)} />
+                <UsernameCard listing={item} onPress={() => openListing(item)} />
               )}
               ListHeaderComponent={banner}
               contentContainerStyle={{
                 paddingHorizontal: H_PADDING,
                 paddingBottom: insets.bottom + 96,
-                gap: GRID_GAP,
+                gap: ROW_GAP,
               }}
               showsVerticalScrollIndicator={false}
               refreshControl={
@@ -433,7 +436,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     gap: 9,
     padding: 12,
-    marginBottom: GRID_GAP,
+    marginBottom: ROW_GAP,
     borderRadius: 12,
     backgroundColor: "rgba(255,255,255,0.05)",
     borderWidth: 1,
@@ -447,16 +450,23 @@ const styles = StyleSheet.create({
   bannerFreeText: { flex: 1, color: "#D1FAE5", fontSize: 12.5, lineHeight: 18 },
 
   card: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 12,
     borderRadius: 14,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
     backgroundColor: "rgba(255,255,255,0.05)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.10)",
-    overflow: "hidden",
   },
-  cardTop: { paddingHorizontal: 12, paddingTop: 12, paddingBottom: 10, minHeight: 92 },
+  // minWidth: 0 lets this shrink so the price stays on the row. Without it the
+  // flex child keeps its intrinsic width and pushes the price off the edge.
+  cardMain: { flex: 1, minWidth: 0, gap: 6 },
+  cardPriceCol: { flexShrink: 0, alignItems: "flex-end" },
   handle: { color: "#FFFFFF", fontWeight: "700", flexShrink: 0 },
   at: { color: "#71717A" },
-  chipWrap: { flexDirection: "row", flexWrap: "wrap", gap: 5, marginTop: 7 },
+  chipWrap: { flexDirection: "row", flexWrap: "wrap", gap: 5 },
   metaChip: {
     flexDirection: "row",
     alignItems: "center",
@@ -467,19 +477,12 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.10)",
   },
   metaChipText: { color: "#D4D4D8", fontSize: 9.5, fontWeight: "600", flexShrink: 0 },
-  cardDesc: { color: "#A1A1AA", fontSize: 11, lineHeight: 15, marginTop: 7 },
+  cardDesc: { color: "#A1A1AA", fontSize: 11, lineHeight: 15 },
 
-  cardFoot: {
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    borderTopWidth: 1,
-    borderTopColor: "rgba(255,255,255,0.10)",
-    gap: 6,
-  },
-  cardPrice: { color: "#FFFFFF", fontSize: 14, fontWeight: "700", flexShrink: 0 },
-  cardPriceUnit: { color: "#71717A", fontSize: 11, fontWeight: "500" },
+  cardPrice: { color: "#FFFFFF", fontSize: 17, fontWeight: "700", flexShrink: 0 },
+  cardPriceUnit: { color: "#71717A", fontSize: 10, fontWeight: "500", flexShrink: 0 },
   sellerRow: { flexDirection: "row", alignItems: "center", gap: 5 },
-  sellerName: { flex: 1, color: "#A1A1AA", fontSize: 11 },
+  sellerName: { flexShrink: 1, color: "#A1A1AA", fontSize: 11 },
   sellerBadge: { width: 11, height: 11 },
 
   center: { alignItems: "center", justifyContent: "center", paddingVertical: 56, gap: 12 },
