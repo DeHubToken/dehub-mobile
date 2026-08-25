@@ -29,6 +29,7 @@ import {
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
 import { VideoView, useVideoPlayer, VideoPlayer } from 'expo-video';
+import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from '../../libs/video-preferences';
 import {
   configureForBackgroundPlayback,
   releaseBackgroundPlayback,
@@ -63,6 +64,8 @@ interface VideoPlayerCoreProps {
   /** Numeric post id. Drives the subtitle overlay; without it there are none. */
   tokenId?: number | string | null;
   title?: string;
+  /** Creator address — a rate pinned to this channel starts the video there. */
+  creator?: string | null;
   onReady?: (durationMs: number) => void;
   onPlayStateChange?: (playing: boolean) => void;
   onProgress?: (positionMs: number, durationMs: number) => void;
@@ -79,6 +82,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   hideTopControls = false,
   tokenId,
   title,
+  creator,
   onReady,
   onPlayStateChange,
   onProgress,
@@ -111,7 +115,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   const [isSeeking, setIsSeeking] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [isLooping, setIsLooping] = useState(loop);
-  const [playbackRate, setPlaybackRate] = useState(1);
+  const [playbackRate, setPlaybackRate] = useState(() => (liveMode ? 1 : getPlaybackRateFor(creator)));
   const [isInPiP, setIsInPiP] = useState(false);
   const [isLandscape, setIsLandscape] = useState(false);
 
@@ -185,6 +189,9 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     p.loop = loop;
     p.muted = getCachedMuted();
     p.timeUpdateEventInterval = PLAYER_CONSTANTS.TIME_UPDATE_INTERVAL;
+    // A rate pinned to this creator applies from the first frame. Live has no
+    // meaningful rate, so liveMode never carries one through.
+    if (!liveMode) p.playbackRate = getPlaybackRateFor(creator);
     // This player only ever mounts on a surface the user navigated to on
     // purpose — the live-stream viewer — never on a feed card. Backgrounding
     // it should move the sound to the lock screen, not end it.
@@ -294,7 +301,10 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     else nextSpeed = 1.0;
     player.playbackRate = nextSpeed;
     setPlaybackRate(nextSpeed);
-  }, [player]);
+    // Remembered against the creator: this channel opens at this rate next
+    // time, everyone else is unaffected.
+    if (!liveMode) persistPlaybackRate(nextSpeed, creator);
+  }, [player, liveMode, creator]);
 
   const handlePiPStart = useCallback(() => {
     isInPiPRef.current = true;

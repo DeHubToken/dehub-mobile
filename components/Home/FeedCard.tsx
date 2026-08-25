@@ -1135,6 +1135,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       videoUrl={isActuallyGated ? undefined : (getVideoUrl(tokenId) || undefined)}
       duration={duration}
       tokenId={tokenId}
+      creator={minterAddress}
       isContentGated={isActuallyGated}
       isPPVLocked={isActuallyLockedPPV}
       isHoldingsLocked={isActuallyLockedHoldings}
