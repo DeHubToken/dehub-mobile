@@ -10,7 +10,15 @@
  *   node scripts/i18n-coverage.js --missing  # list the English-only keys
  *   node scripts/i18n-coverage.js --locale fr
  *
- * Exits 1 when a key in en.json reaches no locale at all.
+ * Exits 1 when a key in en.json reaches no locale at all, unless that key is
+ * already listed in i18n/orphan-baseline.json. The baseline is the backlog we
+ * are working through; a key that is not in it is a feature that shipped
+ * English-only, and CI fails so it cannot merge that way.
+ *
+ *   node scripts/i18n-coverage.js --baseline  # rewrite the baseline to today
+ *
+ * Only ever shrink the baseline. Adding to it hides exactly the fault this
+ * script exists to catch.
  *
  * `--copies` additionally counts values that are byte-identical to English.
  * Those are not missing keys, so nothing flags them, but they are what a
@@ -70,12 +78,40 @@ if (args.includes('--copies')) {
     .forEach((r) => console.log(`  ${r.code.padEnd(5)} ${String(r.copies.length).padStart(5)} of ${enKeys.length}`));
 }
 
+
+const BASELINE = path.join(__dirname, '..', 'i18n', 'orphan-baseline.json');
+
+if (args.includes('--baseline')) {
+  fs.writeFileSync(BASELINE, `${JSON.stringify(orphans.slice().sort(), null, 2)}\n`);
+  console.log(`\nbaseline rewritten: ${orphans.length} key(s)`);
+  process.exit(0);
+}
+
+const baseline = fs.existsSync(BASELINE) ? new Set(JSON.parse(fs.readFileSync(BASELINE, 'utf8'))) : new Set();
+const unbaselined = orphans.filter((k) => !baseline.has(k));
+const cleared = [...baseline].filter((k) => !orphans.includes(k));
+
 if (orphans.length) {
   console.log(`\n${orphans.length} key(s) exist only in English — every other language falls back:`);
   const show = args.includes('--missing') ? orphans : orphans.slice(0, 20);
   show.forEach((k) => console.log(`  ${k}  ${JSON.stringify(en[k])}`));
   if (show.length < orphans.length) console.log(`  … ${orphans.length - show.length} more (--missing to list all)`);
+}
+
+if (cleared.length) {
+  console.log(`\n${cleared.length} baselined key(s) are now translated — run --baseline to shrink the baseline.`);
+}
+
+if (unbaselined.length) {
+  console.log(`\n${unbaselined.length} key(s) shipped English-only and are not in the baseline:`);
+  unbaselined.forEach((k) => console.log(`  ${k}  ${JSON.stringify(en[k])}`));
+  console.log('\nTranslate them into the locale files. The baseline is the backlog being worked through, not somewhere to add to.');
   process.exit(1);
+}
+
+if (orphans.length) {
+  console.log(`\nall ${orphans.length} English-only key(s) are in the baseline backlog`);
+  process.exit(0);
 }
 
 console.log('\nno English-only keys');
