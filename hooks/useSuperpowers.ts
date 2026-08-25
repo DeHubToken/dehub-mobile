@@ -131,6 +131,7 @@ export function useBookBoost() {
       targetTiers,
       commentId,
       stageId,
+      category,
     }: {
       tokenId: number;
       power?: SuperPowerKey;
@@ -143,8 +144,16 @@ export function useBookBoost() {
       commentId?: string;
       /** front_row: a Stage you host. */
       stageId?: string;
+      /** trend_jacker: a category you already post in. */
+      category?: string;
     }) =>
-      bookBoost(tokenId, power, startAt, { targetAccount, targetTiers, commentId, stageId }),
+      bookBoost(tokenId, power, startAt, {
+        targetAccount,
+        targetTiers,
+        commentId,
+        stageId,
+        category,
+      }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: SUPERPOWERS_KEY });
       // So the holder can see their own boost land, rather than waiting out the

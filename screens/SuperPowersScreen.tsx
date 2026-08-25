@@ -16,7 +16,7 @@
  * ladder is the product: the reason to climb a rung is knowing what the next
  * one holds.
  */
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import {
   View,
   Text,
@@ -33,10 +33,13 @@ import { theme } from "../theme";
 import { getBadgeUrl } from "../libs";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
+  useBookBoost,
   useCancelBoost,
   useSuperpowerLadder,
   useSuperpowers,
 } from "../hooks/useSuperpowers";
+import { useQuery } from "@tanstack/react-query";
+import { getCategories } from "../services/nft.service";
 import { toastError, toastSuccess } from "../libs";
 
 /** Total slot minutes a tier holds per cycle — the number worth comparing. */
@@ -64,6 +67,25 @@ export default function SuperPowersScreen() {
   }, [status?.cycleEndsAt, ladder?.cycleEndsAt]);
 
   const liveBookings = status?.bookings.filter(b => b.status === "active") ?? [];
+
+  // The two powers with no post to hang off. Both read `status.powers` for
+  // whether this account has them and the allowance for whether one is spare;
+  // the server re-checks both, so this only decides what to offer.
+  const [jackCategory, setJackCategory] = useState("");
+  const spendPower = useBookBoost();
+  const hasPower = (key: string) =>
+    !!status?.powers.some(p => p.key === key && p.unlocked && p.available) &&
+    (status?.boostsLeft ?? 0) > 0;
+  const canGoldenHour = hasPower("golden_hour");
+  const canTrendJack = hasPower("trend_jacker");
+
+  // Only fetched when a category actually has to be picked.
+  const { data: categories = [] } = useQuery({
+    queryKey: ["dehub-categories"],
+    queryFn: getCategories,
+    enabled: canTrendJack,
+    staleTime: 60 * 60 * 1000,
+  });
   const badgeArt = status?.tier ? getBadgeUrl(status.badgeBalance) : undefined;
 
   const handleCancel = (id: string) =>
@@ -117,6 +139,112 @@ export default function SuperPowersScreen() {
               <Text style={styles.footnote}>
                 Refills on {refillsOn} — the same moment for everybody.
               </Text>
+            )}
+
+
+            {/*
+              The two powers that are not about a post.
+
+              Every other power is spent from the post's own menu, because that
+              is where the decision happens — you finish something and want it
+              seen. These two have no post to hang off: a Golden Hour acts on
+              the account for the next hour, and a Trend Jacker acts on a
+              category. Without a home here they are live on the API and
+              reachable from nowhere on the phone.
+            */}
+            {(canGoldenHour || canTrendJack) && (
+              <View style={styles.bookings}>
+                {canGoldenHour && (
+                  <View style={styles.spendRow}>
+                    <View style={styles.spendText}>
+                      <Text style={styles.spendTitle}>
+                        {powers.find(p => p.key === "golden_hour")?.label ?? "Golden Hour"}
+                      </Text>
+                      <Text style={styles.muted}>
+                        {powers.find(p => p.key === "golden_hour")?.summary}
+                      </Text>
+                    </View>
+                    <Pressable
+                      onPress={() =>
+                        spendPower.mutate(
+                          { tokenId: 0, power: "golden_hour" },
+                          {
+                            onSuccess: booking =>
+                              toastSuccess(
+                                `Golden Hour running for ${booking.minutes} minutes`,
+                              ),
+                            onError: (error: any) =>
+                              toastError(error?.message || "Could not start Golden Hour"),
+                          },
+                        )
+                      }
+                      disabled={spendPower.isPending}
+                      style={[styles.spendBtn, spendPower.isPending && { opacity: 0.4 }]}
+                    >
+                      <Text style={styles.spendBtnText}>Start</Text>
+                    </Pressable>
+                  </View>
+                )}
+
+                {canTrendJack && (
+                  <View style={styles.spendCol}>
+                    <Text style={styles.spendTitle}>
+                      {powers.find(p => p.key === "trend_jacker")?.label ?? "Trend Jacker"}
+                    </Text>
+                    <Text style={styles.muted}>
+                      {powers.find(p => p.key === "trend_jacker")?.summary}
+                    </Text>
+                    {/*
+                      Chips rather than a text field: the server only accepts a
+                      category that exists AND that you have posted in, so a
+                      free field would mostly produce refusals a person could
+                      have been shown first.
+                    */}
+                    <View style={styles.chipRow}>
+                      {categories.slice(0, 24).map(name => {
+                        const picked = jackCategory === name;
+                        return (
+                          <Pressable
+                            key={name}
+                            onPress={() => setJackCategory(picked ? "" : name)}
+                            style={[styles.chip, picked && styles.chipPicked]}
+                          >
+                            <Text style={[styles.chipText, picked && styles.chipTextPicked]}>
+                              {name}
+                            </Text>
+                          </Pressable>
+                        );
+                      })}
+                    </View>
+                    <Pressable
+                      onPress={() =>
+                        spendPower.mutate(
+                          { tokenId: 0, power: "trend_jacker", category: jackCategory },
+                          {
+                            onSuccess: booking => {
+                              toastSuccess(
+                                `${booking.category ?? jackCategory} is trending for ${booking.minutes} minutes`,
+                              );
+                              setJackCategory("");
+                            },
+                            // The server writes these for a person to read —
+                            // "Post in that category first".
+                            onError: (error: any) =>
+                              toastError(error?.message || "Could not jack that trend"),
+                          },
+                        )
+                      }
+                      disabled={!jackCategory || spendPower.isPending}
+                      style={[
+                        styles.spendBtn,
+                        (!jackCategory || spendPower.isPending) && { opacity: 0.4 },
+                      ]}
+                    >
+                      <Text style={styles.spendBtnText}>Jack</Text>
+                    </Pressable>
+                  </View>
+                )}
+              </View>
             )}
 
             {liveBookings.length > 0 && (
@@ -278,6 +406,30 @@ const styles = StyleSheet.create({
   },
   ctaText: { color: "#fff", fontSize: 13 },
 
+  spendRow: { flexDirection: "row", alignItems: "center", gap: 12 },
+  spendCol: { gap: 6 },
+  spendText: { flex: 1, minWidth: 0, gap: 2 },
+  spendTitle: { color: "#fff", fontSize: 14 },
+  spendBtn: {
+    alignSelf: "flex-start",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.2)",
+    borderRadius: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+  },
+  spendBtnText: { color: "#fff", fontSize: 13 },
+  chipRow: { flexDirection: "row", flexWrap: "wrap", gap: 6, marginTop: 2 },
+  chip: {
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+  },
+  chipPicked: { borderColor: "rgba(255,255,255,0.4)", backgroundColor: "rgba(255,255,255,0.15)" },
+  chipText: { color: "#A1A1AA", fontSize: 11 },
+  chipTextPicked: { color: "#fff" },
   bookings: { borderTopWidth: 1, borderTopColor: "rgba(255,255,255,0.1)", paddingTop: 10, gap: 8 },
   bookingRow: { flexDirection: "row", alignItems: "center", gap: 8 },
   bookingId: { color: "#fff", fontSize: 13 },
