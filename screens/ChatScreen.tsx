@@ -93,6 +93,7 @@ import { dmSendQueue } from "../services/dm/dm.send";
 import { getAccount, isFollowing as checkIsFollowing } from "../services/user.service";
 import { blockUser, unblockUser } from "../services/block.service";
 import { truncateAddress } from "../libs/strings.util";
+import { dmDraftKey } from "../libs/draft-cache";
 import { getAvatarUrl } from "../libs/misc";
 import { toastError, toastInfo, toastSuccess, toastWarning } from "../libs/toast";
 import { useKeyboardLift } from "../hooks/useKeyboardLayout";
@@ -301,6 +302,14 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     () => peer.displayName || peer.username || truncateAddress(peer.address) || "user",
     [peer],
   );
+
+  /*
+   * Where this thread's unsent text is kept. Keyed on the peer, not on
+   * currentConvId, which does not exist at all until createAndStart answers —
+   * that is precisely the moment you are most likely to be mid-sentence,
+   * writing to someone for the first time.
+   */
+  const draftKey = useMemo(() => dmDraftKey(peer.address), [peer.address]);
 
   const iBlockedThem = useMemo(() => !!(target as any)?.youBlocked, [target]);
 
@@ -1551,6 +1560,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 initialText={route?.params?.sharedText}
                 thread={smartReplyThread}
                 peerName={peerLabel}
+                draftKey={draftKey}
               />
             )}
           </View>

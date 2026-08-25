@@ -8,6 +8,8 @@ import { formatRelativeFromNow } from "../../libs/date.util";
 import type { DmConversation, DmMessage, DmUser } from "../../services/dm/dm.types";
 import { getOtherParticipant } from "../../services/dm/dm.types";
 import { useUnreadCount } from "../../store/dm.store";
+import { dmDraftKey } from "../../libs/draft-cache";
+import { useDraftText } from "../../hooks/useDraft";
 
 interface ConversationItemProps {
   conversation: DmConversation;
@@ -32,6 +34,13 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
   );
 
   const unreadCount = useUnreadCount(conversation._id, myUserId);
+
+  /*
+   * An unsent message left in this thread's composer, shown in place of the
+   * last message the way every mail and chat client does it. Without it a saved
+   * draft is invisible from the list and so indistinguishable from a lost one.
+   */
+  const draft = useDraftText(dmDraftKey(other?.address));
 
   const displayName = other?.displayName || other?.username || "Unknown";
   const username = other?.username;
@@ -182,21 +191,28 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
             )}
           </View>
           <View className="flex-row items-center gap-1 mt-0.5">
-            {previewIcon === "gif" ? (
+            {!draft && (previewIcon === "gif" ? (
               <Text style={{ fontSize: 10, fontWeight: '800', color: unreadCount > 0 ? '#FFFFFF' : '#A6A9AC' }}>GIF</Text>
             ) : previewIcon && (
               <Icon name={previewIcon === "mic" ? "Mic" : previewIcon === "diamond" ? "Gem" : previewIcon === "videocam" ? "Video" : previewIcon === "image" ? "Image" : previewIcon === "arrow-redo" ? "Forward" : "MessageSquare"} size={13} color={unreadCount > 0 ? "#FFFFFF" : "#A6A9AC"} />
+            ))}
+            {draft ? (
+              <Text className="text-[13px] flex-1 text-theme-neutrals-400" numberOfLines={1}>
+                <Text className="text-white font-medium">Draft: </Text>
+                {draft}
+              </Text>
+            ) : (
+              <Text
+                className={`text-[13px] flex-1 ${
+                  unreadCount > 0
+                    ? "text-white font-medium"
+                    : "text-theme-neutrals-400"
+                }`}
+                numberOfLines={1}
+              >
+                {previewText}
+              </Text>
             )}
-            <Text
-              className={`text-[13px] flex-1 ${
-                unreadCount > 0
-                  ? "text-white font-medium"
-                  : "text-theme-neutrals-400"
-              }`}
-              numberOfLines={1}
-            >
-              {previewText}
-            </Text>
             <Text
               className={`text-[11px] ${
                 unreadCount > 0 ? "text-accent" : "text-theme-neutrals-500"
