@@ -512,6 +512,13 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
               that is a separate change from shipping the feature. */}
           <SettingsLinkRow
             icon="Tv"
+            label="Sign in a TV"
+            description="Type the code your television is showing"
+            onPress={() => navigation?.navigate(ScreenNames.SignInTv)}
+          />
+          <Divider />
+          <SettingsLinkRow
+            icon="Tv"
             label="TV requests"
             description="Approve tips your television asks you to sign"
             onPress={() => navigation?.navigate(ScreenNames.TvRequests)}
