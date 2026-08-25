@@ -4,7 +4,7 @@ import { View, Text, FlatList, TextInput, TouchableOpacity, ActivityIndicator, K
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
-import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, postComment, editComment, deleteComment, postImageComment, postGifComment, postAudioComment } from "../services/nft.service";
+import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, postComment, editComment, deleteComment, postImageComment, postGifComment, postAudioComment, recordCommentViews } from "../services/nft.service";
 import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
 import FeedCard from "../components/Home/FeedCard";
 import { CommentItem } from "../components/Comments";
@@ -469,6 +469,53 @@ export default function FeedDetailScreen() {
     }
   }, [contextComment, fetchData]);
 
+  // Comment views. This screen is the second of the two live mobile comment
+  // surfaces and the one that never sent them — CommentSection has had the
+  // same batch since the endpoint shipped, so a comment read here counted for
+  // nothing while the identical comment read in the video sheet counted.
+  //
+  // Batched behind a 2s debounce and deduped for the life of the screen: the
+  // server increments blindly, so without the sent Set a comment would take a
+  // fresh view every time it scrolled back into frame.
+  const viewBatchRef = useRef<Set<number>>(new Set());
+  const viewSentRef = useRef<Set<number>>(new Set());
+  const viewFlushTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const flushCommentViews = useCallback(() => {
+    if (!viewBatchRef.current.size) return;
+    const ids = Array.from(viewBatchRef.current);
+    viewBatchRef.current.clear();
+    recordCommentViews(ids).catch(() => {});
+  }, []);
+
+  // Reached through a ref because the viewability callback below is frozen at
+  // its first render and would otherwise call that render's flush forever.
+  const flushCommentViewsRef = useRef(flushCommentViews);
+  flushCommentViewsRef.current = flushCommentViews;
+
+  const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 50, minimumViewTime: 500 }).current;
+
+  // Frozen deliberately: FlatList treats a changed onViewableItemsChanged
+  // identity as an error rather than as an update.
+  const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: any[] }) => {
+    for (const v of viewableItems) {
+      const id = Number((v.item as ThreadedComment)?.id);
+      if (!Number.isFinite(id) || viewSentRef.current.has(id)) continue;
+      viewSentRef.current.add(id);
+      viewBatchRef.current.add(id);
+    }
+    if (!viewBatchRef.current.size) return;
+    if (viewFlushTimer.current) clearTimeout(viewFlushTimer.current);
+    viewFlushTimer.current = setTimeout(() => flushCommentViewsRef.current(), 2000);
+  }).current;
+
+  // Send whatever is still pending when the screen goes away, so the last
+  // comments read before a back-press are not lost with the timer.
+  useEffect(() => () => {
+    if (viewFlushTimer.current) clearTimeout(viewFlushTimer.current);
+    flushCommentViewsRef.current();
+  }, []);
+
   const renderCommentItem = useCallback(
     ({ item: c }: { item: ThreadedComment }) => {
       const isReply = c.depth > 0;
@@ -769,6 +816,8 @@ export default function FeedDetailScreen() {
         renderItem={renderCommentItem}
         contentContainerStyle={{ paddingHorizontal: 0, paddingBottom: listBottomPadding }}
         keyboardShouldPersistTaps="handled"
+        viewabilityConfig={viewabilityConfig}
+        onViewableItemsChanged={onViewableItemsChanged}
       />
       <View
         className="absolute left-0 right-0 bottom-0 border-t border-theme-neutrals-800 bg-theme-neutrals-900"
