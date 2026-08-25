@@ -135,6 +135,9 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   const [renameText, setRenameText] = useState("");
 
   const stageId = space?.id;
+  // The translation cache keys on the transcript row, not the stage — one
+  // store now serves stages and videos alike.
+  const transcriptId = (transcript as any)?.id ?? null;
   const isHost =
     !!walletAddress &&
     !!space?.host_wallet_address &&
@@ -145,10 +148,18 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
     if (!stageId) return;
     setIsTranscriptLoading(true);
     try {
+      // Stage and video transcripts share one table now. The columns are
+      // aliased back to the names this sheet has always used, so only the
+      // query moved.
       const { data, error } = await supabase
-        .from("stage_transcripts")
-        .select("*")
-        .eq("stage_id", stageId)
+        .from("transcripts")
+        .select(
+          "id, stage_id:source_ref, status, source_language:source_lang, full_text, segments, " +
+            "speaker_map, speaker_overrides, summary, chapters, summary_status, " +
+            "privacy:visibility, attempts, error",
+        )
+        .eq("source_kind", "stage")
+        .eq("source_ref", stageId)
         .maybeSingle();
 
       if (error) throw error;
@@ -162,16 +173,16 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
 
   // Load translation cache
   const fetchTranslation = useCallback(async () => {
-    if (!stageId || language === "original") {
+    if (!transcriptId || language === "original") {
       setTranslation(null);
       return;
     }
     setIsTranslationLoading(true);
     try {
       const { data, error } = await supabase
-        .from("stage_transcript_translations")
+        .from("transcript_translations")
         .select("status, segments, summary, chapters, error")
-        .eq("stage_id", stageId)
+        .eq("transcript_id", transcriptId)
         .eq("language", language)
         .maybeSingle();
 
@@ -182,31 +193,33 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
     } finally {
       setIsTranslationLoading(false);
     }
-  }, [stageId, language]);
+  }, [transcriptId, language]);
 
   // Handle requesting translation edge function
   const triggerTranslation = useCallback(async () => {
-    if (!stageId || language === "original" || transcript?.status !== "ready") return;
+    if (!transcriptId || language === "original" || transcript?.status !== "ready") return;
     if (translation?.status === "ready" || translation?.status === "processing") return;
 
     try {
+      // A language somebody already asked for — on any client — is a row read
+      // from the shared cache rather than a second bill.
       await supabase.functions.invoke("translate-transcript", {
-        body: { stageId, language },
+        body: { transcriptId, lang: language },
       });
       // Refetch after invoking
       fetchTranslation();
     } catch (e) {
       console.warn("Translate function invoke failed", e);
     }
-  }, [stageId, language, transcript?.status, translation, fetchTranslation]);
+  }, [transcriptId, language, transcript?.status, translation, fetchTranslation]);
 
   // Request transcription trigger
   const handleTranscribe = useCallback(async (silent = false, force = false) => {
     if (!stageId) return;
     setIsRequestingTranscribe(true);
     try {
-      const { error } = await supabase.functions.invoke("transcribe-stage", {
-        body: { stageId, force },
+      const { error } = await supabase.functions.invoke("transcribe", {
+        body: { kind: "stage", ref: stageId, action: "start", force },
       });
       if (error) throw error;
       if (!silent) toastSuccess("Transcribing — this may take a moment");
@@ -260,8 +273,8 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
         {
           event: "*",
           schema: "public",
-          table: "stage_transcripts",
-          filter: `stage_id=eq.${stageId}`,
+          table: "transcripts",
+          filter: `source_ref=eq.${stageId}`,
         },
         () => {
           fetchTranscript();
@@ -272,8 +285,8 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
         {
           event: "*",
           schema: "public",
-          table: "stage_transcript_translations",
-          filter: `stage_id=eq.${stageId}`,
+          table: "transcript_translations",
+          filter: `transcript_id=eq.${transcriptId ?? stageId}`,
         },
         () => {
           fetchTranslation();
@@ -391,9 +404,10 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   const setPrivacy = async (next: "public" | "members" | "private") => {
     if (!stageId) return;
     const { error } = await supabase
-      .from("stage_transcripts")
-      .update({ privacy: next })
-      .eq("stage_id", stageId);
+      .from("transcripts")
+      .update({ visibility: next })
+      .eq("source_kind", "stage")
+      .eq("source_ref", stageId);
 
     if (error) {
       toastError(error, "Could not update privacy");
@@ -414,9 +428,10 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
     }
 
     const { error } = await supabase
-      .from("stage_transcripts")
+      .from("transcripts")
       .update({ speaker_overrides: nextOverrides as any })
-      .eq("stage_id", stageId!);
+      .eq("source_kind", "stage")
+      .eq("source_ref", stageId!);
 
     if (error) {
       toastError(error, "Could not save label");

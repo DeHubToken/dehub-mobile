@@ -38,6 +38,7 @@ import TopControls from './TopControls';
 import CenterControls from './CenterControls';
 import ProgressBar from './ProgressBar';
 import SeekOverlay from './SeekOverlay';
+import CaptionOverlay from './CaptionOverlay';
 import {
   PLAYER_CONSTANTS,
   SeekDirection,
@@ -59,6 +60,8 @@ interface VideoPlayerCoreProps {
   liveMode?: boolean;
   /** Suppress the built-in top controls row when an external header already provides close/mute. */
   hideTopControls?: boolean;
+  /** Numeric post id. Drives the subtitle overlay; without it there are none. */
+  tokenId?: number | string | null;
   title?: string;
   onReady?: (durationMs: number) => void;
   onPlayStateChange?: (playing: boolean) => void;
@@ -74,6 +77,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
   initialMuted = false,
   liveMode = false,
   hideTopControls = false,
+  tokenId,
   title,
   onReady,
   onPlayStateChange,
@@ -714,6 +718,15 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
           />
         </View>
       )}
+
+      {/* Subtitles. Outside the controls block on purpose: hiding the chrome
+          must not take the captions with it. */}
+      <CaptionOverlay
+        tokenId={tokenId}
+        positionMs={position}
+        controlsVisible={showControls}
+        bottomOffset={showControls ? 68 : 24}
+      />
 
       {/* Seek Feedback Overlay */}
       {seekFeedback && (
