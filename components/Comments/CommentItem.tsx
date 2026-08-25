@@ -14,6 +14,7 @@ import Avatar from "../common/Avatar";
 import VoiceNotePlayer from "./VoiceNotePlayer";
 import { getAvatarUrl } from "../../libs";
 import { buildCdnPath } from "../../libs/misc";
+import { formatCompactNumber } from "../../libs/numbers.util";
 import { isAssistantAddress } from "../../libs/assistant";
 
 const resolveMediaUrl = (path: string): string => {
@@ -545,6 +546,29 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             >
               <Icon name="Share2" size={14} color={ICON_MUTED} strokeWidth={1.8} />
             </Pressable>
+
+            {/* Views on the comment itself, recorded by the host list when
+                the row scrolls into the viewport.
+
+                A View, not a Pressable, and last in the row on purpose: it
+                is the one static figure among tappable icons, and putting it
+                mid-row made it read as another button. No hitSlop for the
+                same reason — nothing here responds to a tap.
+
+                Hidden at 0, which is what a comment posted seconds ago and
+                not yet seen by anyone else reads as. */}
+            {(comment.views ?? 0) > 0 && (
+              <View
+                accessibilityRole="text"
+                accessibilityLabel={`${comment.views} views`}
+                style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
+              >
+                <Icon name="Eye" size={14} color={ICON_MUTED} strokeWidth={1.8} />
+                <Text style={{ fontSize: 12, color: "#8B8D90" }}>
+                  {formatCompactNumber(comment.views!)}
+                </Text>
+              </View>
+            )}
           </View>
 
           {comment.replyIds && comment.replyIds.length > 0 && onToggleReplies && (
