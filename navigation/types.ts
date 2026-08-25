@@ -162,6 +162,8 @@ export type AppStackParamList = {
   [ScreenNames.Careers]: undefined;
   [ScreenNames.Affiliate]: undefined;
   [ScreenNames.FeatureRequests]: undefined;
+  /** `handle` is the shared-listing deep link (`dehub.io/usernames?handle=x`). */
+  [ScreenNames.Usernames]: { handle?: string } | undefined;
   [ScreenNames.Stores]: undefined;
   /** `listing` is the shared-item deep link (`/app/stores/<id>?listing=<id>`). */
   [ScreenNames.StoreDetail]: { storeId: string; listing?: string };
