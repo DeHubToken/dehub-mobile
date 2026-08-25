@@ -52,6 +52,48 @@ const ProfileAssets = () => {
   // Also show skeleton if balances have never loaded yet (provider not ready).
   const showSkeleton = isInitialLoad;
 
+  /**
+   * DHB is a position, not a chain balance.
+   *
+   * Every other row here is what you hold on the chain you have selected, and
+   * for DHB that is close to meaningless: it lives on Base and BNB at once,
+   * and most of it is staked, so a wallet holding 11.1M DHB reported 0. The
+   * DHB row is the whole position instead — held plus staked, both chains —
+   * and the (i) above breaks it down.
+   *
+   * `ownBadgeBalance` is the server's version of exactly this sum and is the
+   * number the leaderboard and the badge ladder use, so preferring it keeps
+   * all three agreeing. Note it is `ownBadgeBalance` and never `badgeBalance`:
+   * the latter is the *rendered* badge number and a delegation can hold it
+   * above what the wallet owns, which on a wallet screen would be someone
+   * else's tokens shown as yours. Falling back to `balanceData` — the raw
+   * per-chain rows — gives the same figure without that risk.
+   */
+  const dhbBreakdown = useMemo(() => {
+    const BADGE_CHAINS: Record<number, string> = {
+      [ChainId.BSC_MAINNET]: "BNB Chain",
+      [ChainId.BASE_MAINNET]: "Base",
+    };
+    const rows = (user?.balanceData || [])
+      .filter((entry) => BADGE_CHAINS[entry.chainId] !== undefined)
+      .map((entry) => ({
+        chain: BADGE_CHAINS[entry.chainId],
+        wallet: Number(entry.walletBalance) || 0,
+        staked: Number(entry.staked) || 0,
+      }))
+      .filter((row) => row.wallet > 0 || row.staked > 0);
+    const summed = rows.reduce((acc, row) => acc + row.wallet + row.staked, 0);
+    return { rows, summed };
+  }, [user?.balanceData]);
+
+  const dhbPosition = useMemo(() => {
+    const own = user?.ownBadgeBalance;
+    if (typeof own === "number" && own > 0) return own;
+    if (dhbBreakdown.summed > 0) return dhbBreakdown.summed;
+    // Nothing from the server yet — the liquid balance is all we can stand behind.
+    return Number(walletBalances["DHB"] ?? 0);
+  }, [user?.ownBadgeBalance, dhbBreakdown.summed, walletBalances]);
+
   const assets = useMemo(() => {
     const isBase = chainId === 8453; // ChainId.BASE_MAINNET
     const isBNB = chainId === 56; // ChainId.BSC_MAINNET
@@ -77,12 +119,12 @@ const ProfileAssets = () => {
         : walletBalances[symbol] ?? 0;
       return {
         name: symbol,
-        balance,
+        balance: symbol === "DHB" ? dhbPosition : balance,
         icon: iconMap[symbol] || dhbIcon,
         hasActions: symbol === "DHB",
       };
     });
-  }, [walletBalances, chainId]);
+  }, [walletBalances, chainId, dhbPosition]);
 
   const [transferOpen, setTransferOpen] = useState(false);
   const dhbActions = [
@@ -113,6 +155,42 @@ const ProfileAssets = () => {
           triggerClassName="pl-3"
         >
           <Text className="text-xs leading-5 text-white">
+            {`DHB is your whole position — held plus staked, across Base and BNB Chain. Most of it is usually staked, so this is larger than what you can spend right now.`}
+          </Text>
+
+          {dhbBreakdown.rows.length > 0 && (
+            <View className="mt-2 border-t border-white/10 pt-2">
+              {dhbBreakdown.rows.map((row) => (
+                <View key={row.chain} className="mb-1">
+                  <Text className="text-[11px] text-white/60 mb-0.5">{row.chain}</Text>
+                  <View className="flex-row justify-between">
+                    <Text className="text-[11px] text-white/80">Held</Text>
+                    <Text className="text-[11px] text-white">
+                      {formatCompactNumber(row.wallet)} DHB
+                    </Text>
+                  </View>
+                  <View className="flex-row justify-between">
+                    <Text className="text-[11px] text-white/80">Staked</Text>
+                    <Text className="text-[11px] text-white">
+                      {formatCompactNumber(row.staked)} DHB
+                    </Text>
+                  </View>
+                </View>
+              ))}
+              <View className="flex-row justify-between border-t border-white/10 pt-1 mt-1">
+                <Text className="text-[11px] text-white font-semibold">Total</Text>
+                <Text className="text-[11px] text-white font-semibold">
+                  {formatCompactNumber(dhbPosition)} DHB
+                </Text>
+              </View>
+              <Text className="text-[10px] leading-4 text-white/50 mt-1">
+                Staked DHB includes anything you have asked to unstake but not
+                yet received back.
+              </Text>
+            </View>
+          )}
+
+          <Text className="text-xs leading-5 text-white mt-2">
             {(() => {
               const isBase = chainId === ChainId.BASE_MAINNET;
               const isBNB = chainId === ChainId.BSC_MAINNET;
@@ -122,9 +200,9 @@ const ProfileAssets = () => {
                 ? "BNB Chain"
                 : `Chain ${chainId ?? "N/A"}`;
               const gasSym = isBase ? "ETH" : isBNB ? "BNB" : "ETH";
-              return `Balances shown are on ${netName} (chain ${
+              return `Your other balances are on ${netName} (chain ${
                 chainId ?? "N/A"
-              }). DHB is the platform token used for tipping & rewards. ${gasSym} is your gas balance. Values may lag a few seconds. Bridge or transfer assets to ${netName} to use them here.`;
+              }) only. ${gasSym} is your gas balance. Values may lag a few seconds. Bridge or transfer assets to ${netName} to use them here.`;
             })()}
           </Text>
           <View className="flex-row justify-end mt-2">

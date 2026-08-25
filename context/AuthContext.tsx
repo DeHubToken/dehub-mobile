@@ -98,6 +98,15 @@ export interface User {
   /** When that name was last proven against Ethereum. */
   ensVerifiedAt?: string | null;
   badgeBalance?: number; // backend-computed badge balance
+  /**
+   * What the chain says this wallet owns — held plus staked, on Base and BNB.
+   *
+   * Use this, not `badgeBalance`, anywhere the number is presented as the
+   * user's own DHB: `badgeBalance` is the rendered badge figure and a
+   * delegation can hold it above what the wallet actually holds. Absent until
+   * the account's next chain read, so readers need a fallback.
+   */
+  ownBadgeBalance?: number;
   stakedDHB?: number;
   uploads?: number;
   followers?: number; // count of followers
