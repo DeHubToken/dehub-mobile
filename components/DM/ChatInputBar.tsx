@@ -34,6 +34,7 @@ import { runWithPermissions } from "../../libs/permissions.util";
 import GifPicker from "./GifPicker";
 import SmartReplyTray from "./SmartReplyTray";
 import { useSmartReplies } from "../../hooks/useSmartReplies";
+import { useDraft } from "../../hooks/useDraft";
 import type { SmartReplyTurn } from "../../services/ai.service";
 import type { DmMessage, DmFee } from "../../services/dm/dm.types";
 import { DM_TEXT_MAX_LENGTH } from "../../services/dm/dm.types";
@@ -85,6 +86,14 @@ interface ChatInputBarProps {
   thread?: SmartReplyTurn[];
   /** Who the user is talking to — labels the other side for the drafter. */
   peerName?: string;
+  /**
+   * Scope this composer's text is saved under, so a half-typed message survives
+   * backing out of the thread or the app being killed. MUST be stable for the
+   * life of the conversation — pass the peer, never the conversation id, which
+   * does not exist yet the first time you message someone (see libs/draft-cache).
+   * Omit it and the composer behaves as before.
+   */
+  draftKey?: string | null;
 }
 
 
@@ -112,9 +121,16 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   initialText,
   thread,
   peerName,
+  draftKey,
 }) => {
   const inputRef = useRef<TextInput>(null);
-  const [text, setText] = useState("");
+  /*
+   * Editing an existing message borrows the same box. Persisting then would
+   * save someone else's words over the user's draft, and cancelling would wipe
+   * it — so editing simply detaches from the store, and the parked draft comes
+   * back the moment edit mode ends.
+   */
+  const [text, setText] = useDraft(editingMessage ? null : draftKey);
   const [media, setMedia] = useState<ChatMediaAttachment | null>(null);
   const [gifUrl, setGifUrl] = useState<string | null>(null);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
@@ -179,12 +195,17 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     requestAnimationFrame(() => inputRef.current?.focus());
   }, []);
 
-  // Pre-fill with shared text on mount
+  // Pre-fill with shared text on mount — but only into an empty box, so a
+  // draft left in this thread days ago is not overwritten by a share.
   useEffect(() => {
-    if (initialText) {
-      setText(initialText);
-      requestAnimationFrame(() => inputRef.current?.focus());
-    }
+    if (!initialText) return;
+    let adopted = false;
+    setText((prev) => {
+      if (prev) return prev;
+      adopted = true;
+      return initialText;
+    });
+    if (adopted) requestAnimationFrame(() => inputRef.current?.focus());
     // Only run once on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
