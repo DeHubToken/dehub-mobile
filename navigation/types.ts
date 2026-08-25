@@ -98,6 +98,7 @@ export type AppStackParamList = {
   } | undefined;
   [ScreenNames.AccountSettings]: undefined;
   [ScreenNames.ActiveSessions]: undefined;
+  [ScreenNames.TvRequests]: undefined;
   [ScreenNames.YourVideos]: undefined;
   [ScreenNames.LikedVideos]: undefined;
   [ScreenNames.SavedPosts]: undefined;
