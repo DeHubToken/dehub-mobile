@@ -40,7 +40,7 @@ export interface BoostSheetProps {
 
 export default function BoostSheet({ visible, onClose, tokenId, postTitle }: BoostSheetProps) {
   const navigation = useNavigation<any>();
-  const { data: status, isLoading } = useSuperpowers();
+  const { data: status, isLoading, isError } = useSuperpowers();
   const bookBoost = useBookBoost();
 
   // The post's real timestamp, fetched rather than taken from the card a caller
@@ -105,6 +105,14 @@ export default function BoostSheet({ visible, onClose, tokenId, postTitle }: Boo
         {isLoading ? (
           <View className="py-10">
             <ActivityIndicator color="#fff" />
+          </View>
+        ) : isError ? (
+          // A failed request is not the same as no badge. Telling a Meglodon to
+          // go and stake because the API blipped is worse than saying nothing.
+          <View className="items-center gap-3 py-8">
+            <Text className="text-center text-sm text-white">
+              Could not load your SuperPowers just now. Try again in a moment.
+            </Text>
           </View>
         ) : !status?.tier ? (
           // No badge at all. Not an error — an invitation, with the one thing

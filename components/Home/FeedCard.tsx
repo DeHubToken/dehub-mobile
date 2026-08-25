@@ -40,6 +40,7 @@ import BountyInfoSheet from "./BountyInfoSheet";
 import AskAISheet from "./AskAISheet";
 import AddToFolderSheet from "./AddToFolderSheet";
 import ShareToDmSheet from "../DM/ShareToDmSheet";
+import BoostSheet from "../common/BoostSheet";
 import ShareSheet from "./ShareSheet";
 import CashtagSheet from "./CashtagSheet";
 import Icon from "../ui/Icon";
@@ -355,6 +356,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [showAISheet, setShowAISheet] = useState(false);
   const [showAddToFolder, setShowAddToFolder] = useState(false);
   const [showShareToDm, setShowShareToDm] = useState(false);
+  const [showBoost, setShowBoost] = useState(false);
   const [activeCashtag, setActiveCashtag] = useState<string | null>(null);
   // Seeded from the session store so a card recycled out of the FlatList
   // window does not re-lock a post the viewer just paid for.
@@ -1253,6 +1255,21 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           <Text className="text-xs text-theme-neutrals-400">Reposted</Text>
         </View>
       )}
+      {/*
+        A boosted post says so. Not a legal point, a product one: the feed's
+        whole pitch is that engagement decides reach, and an unlabelled paid
+        slot at position zero makes that untrue. Web has carried this label
+        since the feature shipped; the phone did not, so the same post read as
+        organic on Android and as paid on the web.
+      */}
+      {!!(item as any).__boosted && (
+        <View className="flex-row items-center gap-1.5 mb-2">
+          <Icon name="Rocket" size={14} color="#9CA3AF" />
+          <Text className="text-xs uppercase tracking-wider text-theme-neutrals-400">
+            Boosted
+          </Text>
+        </View>
+      )}
       <View className="flex-row items-start">
         <View className="flex-1">
           <FeedCardHeader
@@ -1500,6 +1517,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onEditSuccess={handleEditSuccess}
           onDeleteSuccess={handleDeleteSuccess}
           onSendToDm={isSignedIn ? () => setShowShareToDm(true) : undefined}
+          // The sheet is mounted below rather than inside the menu: the menu is
+          // conditionally rendered, so onClose unmounts it and any state set in
+          // the same handler goes with it.
+          onBoostPress={isOwnerPost && isSignedIn ? () => setShowBoost(true) : undefined}
           onTranslatePress={handleTranslate}
           onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
         />
@@ -1509,6 +1530,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         <ShareToDmSheet
           visible={showShareToDm}
           onClose={() => setShowShareToDm(false)}
+          tokenId={tokenId}
+          postTitle={localTitle || undefined}
+        />
+      )}
+
+      {showBoost && tokenId != null && (
+        <BoostSheet
+          visible={showBoost}
+          onClose={() => setShowBoost(false)}
           tokenId={tokenId}
           postTitle={localTitle || undefined}
         />
