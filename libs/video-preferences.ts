@@ -125,3 +125,22 @@ export function clearCreatorPlaybackRates() {
 // Loop and volume are carried through untouched: the players own both on
 // mobile (libs/videoMutedState, the loop prop), and they are kept in the blob
 // only so it stays the shape web writes.
+
+/** The whole map, for a data export to carry. */
+export function getCreatorPlaybackRates(): Record<string, number> {
+  return { ...cached.ratesByCreator };
+}
+
+/**
+ * Replace the map wholesale — what an import applies. Rates are validated on
+ * the way in: a file is a text file, and a zero or a string here would leave
+ * every video on that channel unplayable until the setting was reset.
+ */
+export function setCreatorPlaybackRates(rates: Record<string, number>) {
+  const clean: Record<string, number> = {};
+  for (const [creator, rate] of Object.entries(rates ?? {})) {
+    const key = normaliseCreator(creator);
+    if (key && typeof rate === "number" && rate > 0) clean[key] = rate;
+  }
+  save({ ...cached, ratesByCreator: clean });
+}
