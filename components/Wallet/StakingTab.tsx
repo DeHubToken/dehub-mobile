@@ -23,6 +23,7 @@ const DHB_BNB = "0x680D3113caf77B61b510f332D5Ef4cf5b41A761D";
 const BASE_RPC = "https://mainnet.base.org";
 const BNB_RPC = "https://bsc-dataseed.binance.org";
 const BASE_CHAIN_HEX = "0x2105"; // 8453
+const BNB_CHAIN_HEX = "0x38"; // 56
 
 const ERC20_ABI = [
   "function balanceOf(address owner) view returns (uint256)",
@@ -37,6 +38,7 @@ const ERC20_ABI = [
 const STAKING_ABI = [
   "function userInfos(address) view returns (uint256 totalAmount, uint256 unlockAt, uint256 lastTierIndex, uint256 lastRewardIndex, uint256 harvestTotal, uint256 harvestClaimed, uint256 lastStakeAt)",
   "function pendingHarvest(address account) view returns (uint256)",
+  "function unstake(uint256 amount)",
 ];
 
 function fmt(val: number): string {
@@ -56,6 +58,17 @@ const StakingTab: React.FC = () => {
   const [walletBal, setWalletBal] = useState<number | null>(null);
   const [protocolTotal, setProtocolTotal] = useState<number | null>(null);
   const [userStaked, setUserStaked] = useState<number>(0);
+  /**
+   * The slice of `userStaked` that sits in the legacy BNB contract.
+   *
+   * This is the only staked DHB anyone can actually withdraw themselves: it is
+   * a real contract with an `unstake()`. The rest is in the transfer pool,
+   * which is a plain wallet — there is no function to call and no amount of UI
+   * makes one appear.
+   */
+  const [legacyStaked, setLegacyStaked] = useState<number>(0);
+  /** When the legacy contract will let that position out (unix seconds, 0 = unknown). */
+  const [legacyUnlockAt, setLegacyUnlockAt] = useState<number>(0);
   const [unstakeQueued, setUnstakeQueued] = useState<number>(0);
   const [earned, setEarned] = useState<number>(0);
   const [loading, setLoading] = useState(true);
@@ -85,7 +98,7 @@ const StakingTab: React.FC = () => {
         return ethers.BigNumber.from(0);
       };
 
-      const [userWalletBal, totalStakedBal, dbRecords, legacyStaked, legacyEarned] =
+      const [userWalletBal, totalStakedBal, dbRecords, legacyInfo, legacyEarned] =
         await Promise.all([
           walletAddress
             ? baseDhb.balanceOf(walletAddress).catch(() => ethers.BigNumber.from(0))
@@ -97,13 +110,21 @@ const StakingTab: React.FC = () => {
                 .select("amount, action")
                 .eq("wallet_address", addr)
             : Promise.resolve({ data: [] as any[] }),
-          // Legacy on-chain staked balance on BNB (read-only)
+          // Legacy on-chain position on BNB. Both fields matter: the amount is
+          // what can be withdrawn, and `unlockAt` is what decides whether
+          // `unstake()` would revert if we let them press it.
           legacyStaking
             ? legacyStaking
                 .userInfos(walletAddress)
-                .then((info: any) => info.totalAmount as ethers.BigNumber)
-                .catch(legacyZero("userInfos"))
-            : Promise.resolve(ethers.BigNumber.from(0)),
+                .then((info: any) => ({
+                  amount: info.totalAmount as ethers.BigNumber,
+                  unlockAt: Number(info.unlockAt ?? 0),
+                }))
+                .catch((err: unknown) => {
+                  legacyZero("userInfos")(err);
+                  return { amount: ethers.BigNumber.from(0), unlockAt: 0 };
+                })
+            : Promise.resolve({ amount: ethers.BigNumber.from(0), unlockAt: 0 }),
           legacyStaking
             ? legacyStaking
                 .pendingHarvest(walletAddress)
@@ -127,7 +148,11 @@ const StakingTab: React.FC = () => {
       }
       if (dbStaked < 0) dbStaked = 0;
 
-      const legacyStakedNum = parseFloat(ethers.utils.formatUnits(legacyStaked, 18));
+      const legacyStakedNum = parseFloat(
+        ethers.utils.formatUnits(legacyInfo.amount, 18),
+      );
+      setLegacyStaked(legacyStakedNum);
+      setLegacyUnlockAt(legacyInfo.unlockAt);
       setUserStaked(dbStaked + legacyStakedNum);
       setUnstakeQueued(queued);
       setEarned(parseFloat(ethers.utils.formatUnits(legacyEarned, 18)));
@@ -237,26 +262,78 @@ const StakingTab: React.FC = () => {
       toastError(`You only have ${fmt(userStaked)} DHB staked.`);
       return;
     }
+    // Only the legacy BNB position is withdrawable. The rest sits in the
+    // transfer pool, which is a wallet rather than a contract — there is
+    // nothing to call. This used to write a `staking_records` row and promise
+    // a 12-day cooldown; no payout process was ever built behind it, so those
+    // rows just accumulated. Better to say so than to bank another one.
+    if (amt > legacyStaked) {
+      toastError(
+        legacyStaked > 0
+          ? `Only ${fmt(legacyStaked)} DHB can be unstaked right now — the rest is in the Base pool, which has no withdrawal contract yet.`
+          : "Your DHB is in the Base pool, which has no withdrawal contract yet. Contact support to withdraw.",
+      );
+      return;
+    }
+    const nowSeconds = Math.floor(Date.now() / 1000);
+    if (legacyUnlockAt > nowSeconds) {
+      toastError(
+        `Locked until ${new Date(legacyUnlockAt * 1000).toLocaleDateString()}.`,
+      );
+      return;
+    }
 
     setIsBusy(true);
     try {
-      const { error } = await supabase.from("staking_records").insert({
-        wallet_address: walletAddress.toLowerCase(),
-        amount: amt,
-        chain: "Base",
-        action: "unstake",
-        tx_hash: `unstake-request-${Date.now()}`,
-      });
-      if (error) throw error;
+      const targetChainId = parseInt(BNB_CHAIN_HEX, 16);
+      let sendProvider = authProvider;
+      if (activeChainId !== targetChainId) {
+        try {
+          await switchChain(targetChainId);
+        } catch {
+          toastError("Failed to switch to BNB Chain.");
+          return;
+        }
+        sendProvider = getSigningProvider() || authProvider;
+      }
+      if (!sendProvider?.request) {
+        toastError("Wallet not ready. Please try again.");
+        return;
+      }
 
-      toastSuccess(
-        `Unstake requested for ${amount} DHB. Tokens are released after the 12-day cooldown.`,
-      );
+      const iface = new ethers.utils.Interface(STAKING_ABI);
+      const data = iface.encodeFunctionData("unstake", [
+        ethers.utils.parseUnits(amount, 18),
+      ]);
+
+      const txHash = await sendProvider.request({
+        method: "eth_sendTransaction",
+        params: [{ from: walletAddress, to: BNB_STAKING_CONTRACT, data }],
+      });
+
+      try {
+        const provider = new ethers.providers.JsonRpcProvider(BNB_RPC);
+        const receipt = await provider.waitForTransaction(txHash, 1, 90_000);
+        if (receipt && receipt.status === 0) {
+          toastError("Unstake reverted on-chain.");
+          return;
+        }
+      } catch {
+        // Confirmation timed out — the transaction is still in flight, and the
+        // next fetchData will show the real position either way.
+      }
+
+      toastSuccess(`Unstaked ${amount} DHB! TX: ${txHash.slice(0, 10)}…`);
       setAmount("");
       setMode("stake");
-      setTimeout(fetchData, 1500);
+      setTimeout(fetchData, 4000);
     } catch (err: any) {
-      toastError(String(err?.message || "Unstake request failed").slice(0, 100));
+      const msg = String(err?.message || err || "Unstake failed");
+      if (msg.includes("user rejected") || msg.includes("cancelled")) {
+        toastError("Transaction cancelled.");
+      } else {
+        toastError(msg.slice(0, 100));
+      }
     } finally {
       setIsBusy(false);
     }
@@ -267,7 +344,9 @@ const StakingTab: React.FC = () => {
     toastSuccess("Staking address copied!");
   };
 
-  const max = mode === "stake" ? walletBal ?? 0 : userStaked;
+  // MAX on the unstake side is the legacy position, not the whole stake —
+  // filling it with pool DHB would just walk the user into a rejection.
+  const max = mode === "stake" ? walletBal ?? 0 : legacyStaked;
   const submit = mode === "stake" ? handleStake : handleUnstake;
 
   return (
@@ -366,7 +445,11 @@ const StakingTab: React.FC = () => {
         <Text className="text-white/60 text-xs mb-3">
           {mode === "stake"
             ? `Available: ${fmt(walletBal ?? 0)} DHB`
-            : `Staked: ${fmt(userStaked)} DHB`}
+            : `Withdrawable: ${fmt(legacyStaked)} DHB on BNB Chain${
+                userStaked - legacyStaked > 0
+                  ? ` · ${fmt(userStaked - legacyStaked)} in the Base pool`
+                  : ""
+              }`}
         </Text>
 
         <TouchableOpacity
