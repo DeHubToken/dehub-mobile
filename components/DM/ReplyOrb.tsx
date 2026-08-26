@@ -110,7 +110,6 @@ const Mote: React.FC<MoteProps> = ({ spin, phase, ringRadius, y, size, radius, b
           position: "absolute",
           width: size,
           height: size,
-          borderRadius: size / 2,
           backgroundColor: color,
           // Latitude is fixed; only the ring sweep is animated.
           left: (box - size) / 2,
