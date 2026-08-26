@@ -18,9 +18,8 @@ import AccentButtonGradient from "../ui/AccentButtonGradient";
 import GlassModal from "../ui/GlassModal";
 import { Ionicons } from "@expo/vector-icons";
 import { useUser, useAuthActions, useProvider } from "../../context/AuthContext";
-import { limitTip, supportedTokens } from "../../config/constants";
+import { ChainId, limitTip, supportedTokens } from "../../config/constants";
 import AnimatedCheck from "../common/AnimatedCheck";
-import ChainSelector from "../common/ChainSelector";
 import {
   useWeb3Provider,
   useERC20Contract,
@@ -29,6 +28,25 @@ import {
 import * as ethersImport from "ethers";
 import { applyGasMargin, parseTxError } from "../../libs/web3.util";
 import { writeContractAA } from "../../libs/aa.write";
+
+/**
+ * Send a tip
+ * ==========
+ * **It does not ask which network.** The first thing on screen on the way to
+ * sending money should not be a question about infrastructure. The tip goes out
+ * on the wallet's active chain and the sheet just names it, the same way the
+ * username and account buy sheets do.
+ *
+ * That is not a lost setting: switching chains here re-authenticates the whole
+ * session, so the picker was a re-auth hidden inside a payment. The real
+ * control lives in Settings -> Assets -> Active chain, where the cost of using
+ * it is obvious. Web pins its own preference there too, by balance rather than
+ * by switching, because a browser can move chains without signing back in.
+ */
+const CHAIN_NAMES: Record<number, string> = {
+  [ChainId.BASE_MAINNET]: "Base",
+  [ChainId.BSC_MAINNET]: "BNB Chain",
+};
 
 export interface TipModalProps {
   open?: boolean;
@@ -54,19 +72,12 @@ const TipModal: React.FC<TipModalProps> = ({
   triggerText = "Tip",
 }) => {
   const user = useUser();
-  const { requireAuth, patchUser, switchChain } = useAuthActions();
+  const { requireAuth, patchUser } = useAuthActions();
   const { provider, account, chainId } = useWeb3Provider();
+  // Still read: a switch started elsewhere (Settings, another sheet) must keep
+  // the tip button disabled while the session is mid-re-auth.
   const { isSwitchingChain } = useProvider();
 
-  const handleChainChange = useCallback(
-    (targetChainId: number) => {
-      if (targetChainId === chainId) return;
-      setTipError(null);
-      setPhase("idle");
-      switchChain(targetChainId).catch(() => {});
-    },
-    [chainId, switchChain]
-  );
   const [amount, setAmount] = useState<string>("");
   const [phase, setPhase] = useState<
     "idle" | "approving" | "sending" | "sent" | "error"
@@ -304,17 +315,11 @@ const TipModal: React.FC<TipModalProps> = ({
                 Recipient: {toAddress.slice(0, 6)}...{toAddress.slice(-4)}
               </Text>
             </View>
-            {phase !== "sent" && (
-              <View className="flex-row items-center justify-between">
-                <Text className="text-white/60 text-xs">Network</Text>
-                <ChainSelector
-                  selectedChainId={chainId}
-                  onChange={handleChainChange}
-                  variant="compact"
-                  disabled={isBusy || isSwitchingChain}
-                  title="Choose tip network"
-                />
-              </View>
+            {/* Network: reported, not chosen. Change it in Settings -> Assets. */}
+            {phase !== "sent" && !!chainId && (
+              <Text className="text-white/40 text-xs">
+                Paying with DHB on {CHAIN_NAMES[chainId] || `chain ${chainId}`}
+              </Text>
             )}
             {phase !== "sent" ? (
               <>
