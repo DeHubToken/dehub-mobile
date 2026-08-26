@@ -19,8 +19,10 @@
     },
     "updates": {
       "enabled": true,
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/734211bf-5261-4dce-9e61-2bfc51c339b9"
     },
+    "runtimeVersion": "1.17.0",
     "ios": {
       "supportsTablet": true,
       "jsEngine": "hermes",
