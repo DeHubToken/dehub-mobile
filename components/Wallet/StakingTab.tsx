@@ -69,6 +69,8 @@ const StakingTab: React.FC = () => {
   const [legacyStaked, setLegacyStaked] = useState<number>(0);
   /** When the legacy contract will let that position out (unix seconds, 0 = unknown). */
   const [legacyUnlockAt, setLegacyUnlockAt] = useState<number>(0);
+  /** The user has been shown the 12% early-unstake fee and tapped again anyway. */
+  const [earlyConfirmed, setEarlyConfirmed] = useState(false);
   const [unstakeQueued, setUnstakeQueued] = useState<number>(0);
   const [earned, setEarned] = useState<number>(0);
   const [loading, setLoading] = useState(true);
@@ -166,6 +168,12 @@ const StakingTab: React.FC = () => {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  // A fee someone accepted for one amount is not a fee they accepted for
+  // another, so any edit puts the confirmation back.
+  useEffect(() => {
+    setEarlyConfirmed(false);
+  }, [amount, mode]);
 
   const handleStake = async () => {
     const amt = parseFloat(amount);
@@ -275,10 +283,16 @@ const StakingTab: React.FC = () => {
       );
       return;
     }
+    // Early unstake is allowed and costs 12% — the contract returns 88% before
+    // the unlock date. Blocking it would deny something the contract supports,
+    // but letting it through on one tap would take the fee out of someone who
+    // never saw it mentioned. So: say the number, then let the next tap go.
     const nowSeconds = Math.floor(Date.now() / 1000);
-    if (legacyUnlockAt > nowSeconds) {
+    const isLocked = legacyUnlockAt > nowSeconds;
+    if (isLocked && !earlyConfirmed) {
+      setEarlyConfirmed(true);
       toastError(
-        `Locked until ${new Date(legacyUnlockAt * 1000).toLocaleDateString()}.`,
+        `Locked until ${new Date(legacyUnlockAt * 1000).toLocaleDateString()}. Unstaking now returns 88% — a 12% fee, about ${fmt(amt * 0.12)} DHB. Tap Unstake again to accept.`,
       );
       return;
     }
@@ -448,6 +462,12 @@ const StakingTab: React.FC = () => {
             : `Withdrawable: ${fmt(legacyStaked)} DHB on BNB Chain${
                 userStaked - legacyStaked > 0
                   ? ` · ${fmt(userStaked - legacyStaked)} in the Base pool`
+                  : ""
+              }${
+                legacyStaked > 0 && legacyUnlockAt > Math.floor(Date.now() / 1000)
+                  ? ` · locked until ${new Date(
+                      legacyUnlockAt * 1000,
+                    ).toLocaleDateString()}, 12% fee before then`
                   : ""
               }`}
         </Text>
