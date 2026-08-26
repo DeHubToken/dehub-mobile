@@ -40,7 +40,7 @@ import {
   type UnifiedFeedResponse,
   type FeedPostType,
 } from "../services/feed.unified.service";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import FeedCard from "../components/Home/FeedCard";
@@ -50,6 +50,9 @@ import FeedCardSkeleton from "../components/Feed/FeedCardSkeleton";
 import NewMembersRail from "../components/common/NewMembersRail";
 import type { FollowState } from "../components/Search/SearchAccountChip";
 import { useUser } from "../context/AuthContext";
+import { storage } from "../libs/storage";
+import { ScreenNames } from "../navigation/ScreenNames";
+import TrendingTopicsList from "../components/common/TrendingTopicsList";
 
 type TabKey = "all" | "accounts" | "posts" | "images" | "videos" | "voice" | "live";
 
@@ -136,6 +139,7 @@ const SearchScreen: React.FC = () => {
   // The app drawer's menu search hands off here when what was typed is not a
   // page — see AppDrawer's runFullSearch.
   const route = useRoute<{ key: string; name: string; params?: { q?: string } }>();
+  const navigation = useNavigation<any>();
   const routeParams = route.params;
   const authUser = useUser() as { address?: string } | null;
   const userAddress = authUser?.address;
@@ -314,6 +318,23 @@ const SearchScreen: React.FC = () => {
     executeSearch(q, activeTab, 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routeParams]);
+
+  /**
+   * Tapping a trending topic filters the home feed by that category.
+   *
+   * Writes the same key HomeScreen reads on mount rather than passing a param,
+   * because the two have to agree on one source of truth — a route param would
+   * be overwritten by the stored value the next time Home mounted.
+   */
+  const handleTopicPress = useCallback(
+    (category: string) => {
+      try {
+        storage.set("dehub:defaultCategory", category);
+      } catch {}
+      navigation.navigate(ScreenNames.Home as never);
+    },
+    [navigation],
+  );
 
   const handleSearch = useCallback(() => {
     if (!searchQuery.trim()) return;
@@ -677,6 +698,15 @@ const SearchScreen: React.FC = () => {
             find other people, and a welcome is worth less the longer it waits.
             Renders nothing when nobody joined recently. */}
         <NewMembersRail />
+        {/*
+          Trending topics, above trending posts on purpose: the topics are the
+          shorter, scannable answer to "what is happening", and the posts below
+          are the long one. Only on the "all" tab — the other tabs are somebody
+          asking for one format, and a category list is not an answer to that.
+        */}
+        {activeTab === "all" && (
+          <TrendingTopicsList onTopicPress={handleTopicPress} />
+        )}
         {trendingLoading ? (
           <View className="px-2 pt-2">
             <FeedCardSkeleton count={3} />

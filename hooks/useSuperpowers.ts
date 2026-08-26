@@ -22,6 +22,7 @@ import {
   cancelBoost,
   fetchBoostSlot,
   fetchFrontRow,
+  fetchTrendingTopic,
   joinCrewBoost,
   fetchSuperpowerStatus,
   fetchSuperpowerTiers,
@@ -101,6 +102,25 @@ export function useFrontRow() {
     refetchOnWindowFocus: false,
     // The rail renders perfectly well unsorted. It must never wait on this,
     // and must never break without it.
+    retry: false,
+  });
+}
+
+/**
+ * The category holding the trending slot, or null.
+ *
+ * Same cache window as the boost slot and the front row, and for the same
+ * reason: the server deals a fresh weighted draw on every call, so the window
+ * on this side IS the rotation.
+ */
+export function useTrendingTopic() {
+  return useQuery({
+    queryKey: ['superpowers', 'trending-topic'],
+    queryFn: fetchTrendingTopic,
+    staleTime: SLOT_ROTATION_MS,
+    gcTime: SLOT_ROTATION_MS,
+    refetchOnWindowFocus: false,
+    // The trending list renders perfectly well without it.
     retry: false,
   });
 }
