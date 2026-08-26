@@ -17,6 +17,7 @@ import {
 } from "../config/constants";
 import type { User } from "../context/AuthContext";
 import { streamInfoKeys } from "../config/constants";
+import { isHoldGated } from "./content-gate";
 
 export interface UserBalanceEntry {
   chainId: number;
@@ -138,7 +139,7 @@ const computeStreamAccessInfo = (
     };
   }
 
-  if (info?.isLockContent) {
+  if (info && isHoldGated(info.isLockContent, info.lockContentAmount)) {
     streamStatus.isFree = false;
 
     if (!userInfo?.balanceData?.length) {

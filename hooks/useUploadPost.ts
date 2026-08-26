@@ -173,9 +173,6 @@ export function useUploadPost() {
           return { valid: false, error: "Token Gated: enter a valid token contract address." };
         }
       }
-      if (m.subscribersEnabled && isSolanaChain(p.postChainId)) {
-        return { valid: false, error: "Subscribers-only is not available on Solana posts." };
-      }
     }
 
     return { valid: true };
@@ -236,21 +233,13 @@ export function useUploadPost() {
           if (contractAddress) info[streamInfoKeys.lockContentContractAddress] = contractAddress;
           info[streamInfoKeys.lockContentChainIds] = [lockChainId];
         }
-      } else if (m.subscribersEnabled && !solana) {
-        // Subscribers-only is a DHB lock with no minimum — the same shape web
-        // sends, and the same precedence: an explicit token gate wins.
-        const lockChainId =
-          postChainId && !isSolanaChain(postChainId) ? postChainId : evmChainId;
-        const dhb = supportedTokens.find(
-          (t) => t.chainId === lockChainId && t.symbol === "DHB",
-        );
-        if (dhb) {
-          info[streamInfoKeys.isLockContent] = true;
-          info[streamInfoKeys.lockContentTokenSymbol] = "DHB";
-          info[streamInfoKeys.lockContentContractAddress] = dhb.address;
-          info[streamInfoKeys.lockContentChainIds] = [lockChainId];
-        }
       }
+      // "Subscribers-only" used to sit here as a DHB lock with no minimum,
+      // copied from web because web sent that shape. Neither client had a
+      // subscriber field on the post model to gate on, so it wrote a hold gate
+      // against nothing: a "Hold 0 DHB" badge, signed-out readers locked out,
+      // and the body served in full by the API regardless. Token gating above
+      // is the working equivalent and it asks for an amount.
 
       return info;
     },
@@ -290,10 +279,6 @@ export function useUploadPost() {
 
       if (postingOnSolana && p.monetization.bountyEnabled) {
         return { valid: false, error: "Bounty is not available on Solana posts." };
-      }
-
-      if (postingOnSolana && p.monetization.subscribersEnabled) {
-        return { valid: false, error: "Subscribers-only is not available on Solana posts." };
       }
 
       // For bounty, verify the user has enough tokens

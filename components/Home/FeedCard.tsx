@@ -1,3 +1,4 @@
+import { isHoldGated } from "../../libs/content-gate";
 import React, { memo, useCallback, useRef, useState, useMemo, useEffect } from "react";
 import {
   View,
@@ -325,7 +326,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (!isOwnerPost || !isPayPerView || !tokenId) return;
     getPpvSalesCount(tokenId).then(r => setPpvSalesCount(r.salesCount)).catch(() => {});
   }, [isOwnerPost, isPayPerView, tokenId]);
-  const isLocked = streamInfo?.isLockContent;
+  const isLocked = isHoldGated(streamInfo?.isLockContent, streamInfo?.lockAmount ?? streamInfo?.lockContentAmount);
   const lockContentAmount = streamInfo?.lockAmount || streamInfo?.lockContentAmount || 0;
   const lockContentTokenSymbol = streamInfo?.lockContentTokenSymbol || "DHB";
   const isBounty = !!streamInfo?.isAddBounty;

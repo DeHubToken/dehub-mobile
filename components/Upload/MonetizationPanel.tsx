@@ -1,8 +1,8 @@
 /**
  * MonetizationPanel
  *
- * Slide-up panel for Subscribers, PPV, Bounty, and Token Gated settings —
- * the same four switches web shows in PostAccessToggles, in the same order.
+ * Slide-up panel for PPV, Bounty, and Token Gated settings —
+ * the same switches web shows in PostAccessToggles, in the same order.
  * Each option that needs values has a toggle + expandable inline form:
  * toggling on opens the form; confirming closes it and keeps the toggle on.
  */
@@ -47,8 +47,6 @@ export type MonetizationState = {
   bountyData: BountyData;
   tokenGatedEnabled: boolean;
   tokenGateData: TokenGateData;
-  /** DHB-holder gate with no minimum — web's "Subscribers" switch. EVM only. */
-  subscribersEnabled: boolean;
 };
 
 type MonetizationPanelProps = {
@@ -283,42 +281,16 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
     setExpandedSection(null);
   }, [state, onChange]);
 
-  const handleSubscribersToggle = useCallback(
-    (val: boolean) => {
-      onChange({ ...state, subscribersEnabled: val });
-    },
-    [state, onChange],
-  );
-
 
   return (
     // No divider or top margin: these rows are the tail of the composer's single
     // options list (Mint, Title, Category, Community, then these), the way web's
     // PostAccessToggles renders them. UploadScreen is the only render site.
     <View>
-      {/* Subscribers — a DHB gate with no minimum, so it needs no form. EVM
-          only: the lock is priced in DHB, which has no Solana mint. */}
-      {!isSolana && (
-        <View className="py-3">
-          <View className="flex-row items-center justify-between">
-            <View className="flex-row items-center">
-              <Icon name="Lock" size={18} color="#fff" />
-              <Text className="text-white text-sm ml-3">Subscribers</Text>
-            </View>
-            <CustomSwitch
-              value={state.subscribersEnabled}
-              onValueChange={handleSubscribersToggle}
-            />
-          </View>
-          {state.subscribersEnabled && (
-            <Text className="text-theme-neutrals-500 text-xs mt-1.5">
-              {state.tokenGatedEnabled
-                ? "Overridden by the token gate below."
-                : "Only DHB holders can open this post."}
-            </Text>
-          )}
-        </View>
-      )}
+      {/* A "Subscribers" row used to sit here — a DHB gate with no minimum.
+          Nothing on the post model records a subscriber gate, so it wrote a
+          hold gate against nothing: a "Hold 0 DHB" badge over a body the API
+          served in full. Token Gated below does the same job with a number. */}
 
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">

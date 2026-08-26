@@ -1,3 +1,4 @@
+import { isHoldGated } from "../../libs/content-gate";
 import React, { memo, useCallback } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -110,7 +111,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const isPayPerView = streamInfo?.isPayPerView;
   const payPerViewAmount = streamInfo?.payPerViewAmount;
   const payPerViewTokenSymbol = streamInfo?.payPerViewTokenSymbol;
-  const isLocked = streamInfo?.isLockContent;
+  const isLocked = isHoldGated(streamInfo?.isLockContent, streamInfo?.lockContentAmount);
   const lockContentAmount = streamInfo?.lockContentAmount;
   const lockContentTokenSymbol = streamInfo?.lockContentTokenSymbol;
   const isBounty = !!streamInfo?.isAddBounty;
