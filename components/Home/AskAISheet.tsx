@@ -1,3 +1,4 @@
+import { isHoldGated } from "../../libs/content-gate";
 import React, {
   memo,
   useCallback,
@@ -305,7 +306,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
     if (postContext.imageCount) parts.push(`Images: ${postContext.imageCount} photos`);
     if (postContext.isLive) parts.push("Status: Currently LIVE");
     if (postContext.isPayPerView) parts.push(`Pay-per-view: ${postContext.ppvAmount} ${postContext.ppvCurrency}`);
-    if (postContext.isLockContent) parts.push(`Lock content: Hold ${postContext.lockAmount} ${postContext.lockCurrency} to unlock`);
+    if (isHoldGated(postContext.isLockContent, postContext.lockAmount)) parts.push(`Lock content: Hold ${postContext.lockAmount} ${postContext.lockCurrency} to unlock`);
     if (postContext.isBounty) parts.push(`Bounty: ${postContext.bountyAmount} ${postContext.bountyCurrency} (Watch2Earn)`);
     if (postContext.imageUrl) parts.push(`Image/Thumbnail URL: ${postContext.imageUrl}`);
 
