@@ -2,6 +2,7 @@ import { useCallback, useMemo } from "react";
 import * as ImagePicker from "expo-image-picker";
 import { useUser, useProvider } from "../context/AuthContext";
 import { useWeb3Provider } from "../hooks/use-web3";
+import { useCreatorPlans } from "./useCreatorPlans";
 import { getFileName, guessMime } from "../libs/assets.util";
 import { extractHashtagCategories } from "../libs/strings.util";
 import { filteredStreamInfo, isValidDataForMinting, getTotalBountyAmount } from "../libs/validators.util";
@@ -100,6 +101,8 @@ const getActiveNetworkLabel = (chainId: number | null | undefined): string => {
 export function useUploadPost() {
   const user = useUser() as any;
   const { authMethod } = useProvider();
+  // Gating a post on subscribers means gating it on the creator’s own plans.
+  const { planIds: myPlanIds } = useCreatorPlans(user?.address);
   const tokenBalances = user?.tokenBalances;
   const { chainId } = useWeb3Provider();
 
@@ -331,8 +334,16 @@ export function useUploadPost() {
         name: getFileName(img.uri, "image.jpg"),
         mimeType: guessMime(img.uri, "image/jpeg"),
       }));
-
       const streamInfo = buildStreamInfo(p.monetization, p.postChainId);
+
+      // Subscribers-only is NOT part of streamInfo. It rides in the `plans`
+      // field — the creator’s own plan ids — and the feed pipeline opens the
+      // post for whoever holds an active subscription to one of them. The old
+      // switch wrote an amount-less DHB lock here instead, gating nothing.
+      const subscriberPlanIds =
+        p.monetization.subscribersEnabled && !isSolanaChain(p.postChainId)
+          ? myPlanIds
+          : undefined;
       const thumb = p.coverUri || p.thumbnailUri || null;
 
       const { cleanTitle, cleanDescription, categories: mergedCategories } = extractHashtagCategories(
@@ -351,6 +362,7 @@ export function useUploadPost() {
         audio,
         thumbnailUri: thumb,
         streamInfoJson: JSON.stringify(filteredStreamInfo(streamInfo)),
+        planIds: subscriberPlanIds,
         pollData: p.pollData,
         scheduledAt: p.scheduledAt?.toISOString(),
         contentRating: p.contentRating,
