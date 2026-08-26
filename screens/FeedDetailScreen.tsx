@@ -16,6 +16,7 @@ import type { MediaAttachment } from "../components/Comments/CommentMediaPreview
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../components/Comments/VoiceNoteRecorder";
 import type { VoiceNoteResult } from "../components/Comments/VoiceNoteRecorder";
 import GifPicker from "../components/DM/GifPicker";
+import EmojiSheet from "../components/Upload/EmojiSheet";
 import GlassTipSheet from "../components/Tip/GlassTipSheet";
 import Avatar from "../components/common/Avatar";
 import MentionSuggestions from "../components/common/MentionSuggestions";
@@ -76,6 +77,7 @@ export default function FeedDetailScreen() {
   const [mediaAttachment, setMediaAttachment] = useState<MediaAttachment | null>(null);
   const [mediaPosting, setMediaPosting] = useState(false);
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
+  const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
 
   // Context menu state
   const [contextComment, setContextComment] = useState<Comment | null>(null);
@@ -164,6 +166,20 @@ export default function FeedDetailScreen() {
 
   const handleCloseGifPicker = useCallback(() => {
     setGifPickerVisible(false);
+  }, []);
+
+  const handleOpenEmojiPicker = useCallback(() => {
+    setEmojiPickerVisible(true);
+  }, []);
+
+  // Emoji selected from picker — appended, not a replacement, so it plays
+  // nicely alongside whatever the user has already typed.
+  const handleEmojiSelected = useCallback((emoji: string) => {
+    setInputText((prev) => prev + emoji);
+  }, []);
+
+  const handleCloseEmojiPicker = useCallback(() => {
+    setEmojiPickerVisible(false);
   }, []);
 
   const handleRemoveMedia = useCallback(() => {
@@ -959,6 +975,15 @@ export default function FeedDetailScreen() {
                   <Text className="text-xs font-bold text-theme-neutrals-400">GIF</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
+                  onPress={handleOpenEmojiPicker}
+                  activeOpacity={0.7}
+                  accessibilityRole="button"
+                  accessibilityLabel="Add emoji"
+                  style={composerStyles.iconControl}
+                >
+                  <Ionicons name="happy-outline" size={20} color={theme.colors.mutedForeground} />
+                </TouchableOpacity>
+                <TouchableOpacity
                   onPress={() => {
                     Keyboard.dismiss();
                     recorder.startRecording();
@@ -981,6 +1006,12 @@ export default function FeedDetailScreen() {
         visible={gifPickerVisible}
         onClose={handleCloseGifPicker}
         onPick={handleGifPicked}
+      />
+
+      <EmojiSheet
+        visible={emojiPickerVisible}
+        onClose={handleCloseEmojiPicker}
+        onSelect={handleEmojiSelected}
       />
 
       {/* WhatsApp/IG-style context menu */}
