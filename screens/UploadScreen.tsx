@@ -271,7 +271,6 @@ export default function UploadScreen() {
     bountyData: { viewers: "", commenters: "", rewardPerPerson: "" },
     tokenGatedEnabled: false,
     tokenGateData: { minAmount: "" },
-    subscribersEnabled: false,
   });
   const [thumbnailUri, setThumbnailUri] = useState<string | null>(null);
   const [coverUri, setCoverUri] = useState<string | null>(null);
@@ -474,14 +473,14 @@ export default function UploadScreen() {
     return () => { cancelled = true; };
   }, [authUser?.address]);
 
-  // Bounty and subscribers-only are both DHB-denominated, so neither survives
-  // a switch to Solana. Clear them with the chain rather than letting the
-  // upload fail its pre-check on a switch the user already made.
+  // Bounty is DHB-denominated, so it does not survive a switch to Solana.
+  // Clear it with the chain rather than letting the upload fail its pre-check
+  // on a switch the user already made.
   useEffect(() => {
     if (!isSolanaChain(effectivePostChainId)) return;
     setMonetization((prev) =>
-      prev.bountyEnabled || prev.subscribersEnabled
-        ? { ...prev, bountyEnabled: false, subscribersEnabled: false }
+      prev.bountyEnabled
+        ? { ...prev, bountyEnabled: false }
         : prev,
     );
   }, [effectivePostChainId]);
