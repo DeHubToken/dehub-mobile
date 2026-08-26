@@ -8,5 +8,14 @@
     <true/>
     <key>EXUpdatesLaunchWaitMs</key>
     <integer>0</integer>
+    <!-- The two that were missing; without a URL the keys above are inert.
+         ios/ is committed, so prebuild never regenerates this and app.json
+         alone reaches nothing. Keep in step with app.json and
+         android/app/src/main/AndroidManifest.xml — see
+         __tests__/ota/updatesConfig.test.ts. -->
+    <key>EXUpdatesURL</key>
+    <string>https://u.expo.dev/734211bf-5261-4dce-9e61-2bfc51c339b9</string>
+    <key>EXUpdatesRuntimeVersion</key>
+    <string>1.17.0</string>
   </dict>
 </plist>
