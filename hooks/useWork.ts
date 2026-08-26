@@ -19,11 +19,15 @@ import {
   useQueryClient,
   keepPreviousData,
 } from "@tanstack/react-query";
+import { ethers } from "ethers";
 import { supabase } from "../services/supabase";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { useUser } from "../context/AuthContext";
 import { toastError, toastSuccess } from "../libs/toast";
 import { createLogger } from "../libs/logger";
+import { useERC20Contract, useWeb3Provider } from "./use-web3";
+import { writeContractAA } from "../libs/aa.write";
+import { ChainId, DHB_ADDRESSESS } from "../config/constants";
 
 const log = createLogger("useWork");
 
@@ -414,7 +418,9 @@ export function useAwardApplicant() {
     onSuccess: (_d, v) => {
       qc.invalidateQueries({ queryKey: ["work-apps", v.job_id] });
       qc.invalidateQueries({ queryKey: ["work-job", v.job_id] });
-      toastSuccess("Awarded — funds escrowed");
+      // Not "funds escrowed": with no contract deployed this awards the work and
+      // nothing else. Money moves when the submission is approved and paid.
+      toastSuccess("Awarded — they can start work");
     },
     onError: (e: any) => {
       log.error("Award failed:", e);
@@ -482,29 +488,142 @@ export function useSubmitProof() {
   });
 }
 
+/**
+ * Recompute a job's rollups from its submissions.
+ *
+ * Nothing in the database maintains `units_approved` or `released_amount` —
+ * only the two count columns have triggers — so both sat at zero while the
+ * screen printed "0/N slots" over genuinely approved work. Summing the children
+ * rather than incrementing makes this self-healing across two clients writing
+ * the same rows.
+ */
+async function syncJobTotals(jobId: string, addr: string) {
+  const { data } = await supabase
+    .from(TBL_SUBS)
+    .select("approval_status, payout_amount, payout_tx_hash")
+    .eq("job_id", jobId);
+  const rows = (data || []) as any[];
+
+  const unitsApproved = rows.filter(
+    (r) => r.approval_status === "approved" || r.approval_status === "paid",
+  ).length;
+  const released = rows
+    .filter((r) => !!r.payout_tx_hash)
+    .reduce((sum, r) => sum + Number(r.payout_amount || 0), 0);
+
+  // Best-effort: the money already moved, so a derived counter failing to write
+  // must not surface as a failed payment.
+  await withWalletHeader(
+    supabase
+      .from(TBL_JOBS)
+      .update({ units_approved: unitsApproved, released_amount: released })
+      .eq("id", jobId),
+    addr,
+  );
+}
+
+/**
+ * Pay a worker straight from the poster's wallet.
+ *
+ * Escrow needs `DEHUB_WORK_ADDRESS` deployed and it is not (see the header), so
+ * approval used to write a status column and move nothing — which is how ~500k
+ * DHB of accepted work ended up flagged paid with no transaction behind it.
+ *
+ * A payout does not need escrow: escrow protects the worker by locking funds up
+ * front, but a plain ERC-20 transfer at approval settles the same debt,
+ * on-chain and verifiable. Web does the identical thing in
+ * `payWorkerDirect` (src/lib/contracts/dehub-work.ts).
+ *
+ * Chain handling differs from web deliberately. Web calls `switchChain(BASE)`;
+ * here a chain switch is a full re-auth, so the poster pays on the chain they
+ * are already signed in for — the same rule the username and account markets
+ * follow.
+ */
+export const WORK_PAYABLE_CHAIN_IDS: number[] = [
+  ChainId.BASE_MAINNET,
+  ChainId.BSC_MAINNET,
+];
+
+function useWorkPayout() {
+  const { chainId } = useWeb3Provider();
+  const activeChainId = Number(chainId) || ChainId.BASE_MAINNET;
+  const canPayHere = WORK_PAYABLE_CHAIN_IDS.includes(activeChainId);
+  const tokenContract = useERC20Contract(
+    canPayHere ? DHB_ADDRESSESS[activeChainId] : undefined,
+  );
+
+  return async function pay(currency: WorkCurrency, to: string, amount: number): Promise<string> {
+    // Only DHB has an address map on this client. Failing loudly beats
+    // transferring the wrong token against a USDC bounty.
+    if (currency !== "DHB") {
+      throw new Error(`${currency} payouts aren't supported in the app yet — pay this one from the web app.`);
+    }
+    if (!canPayHere) {
+      throw new Error("Switch to Base or BNB Chain in Settings to pay a bounty.");
+    }
+    if (!tokenContract) throw new Error("Your wallet is not ready yet — try again in a moment.");
+    if (!(amount > 0)) throw new Error("Payout amount must be greater than zero");
+
+    const amountWei = ethers.utils.parseUnits(String(amount), 18);
+
+    // Fail before signing if the balance cannot cover it — an opaque on-chain
+    // revert reads to the worker as a refusal to pay.
+    try {
+      const signerAddr = await tokenContract.signer?.getAddress?.();
+      if (signerAddr && signerAddr.toLowerCase() === to.toLowerCase()) {
+        throw new Error("Cannot pay a bounty to your own wallet");
+      }
+      const bal = await tokenContract.balanceOf(signerAddr);
+      if (bal && bal.lt(amountWei)) {
+        throw new Error(`You need ${amount.toLocaleString("en-US")} DHB to pay this out.`);
+      }
+    } catch (err: any) {
+      const msg = String(err?.message || "");
+      if (msg.startsWith("You need") || msg.startsWith("Cannot pay")) throw err;
+      // An unreadable balance is advisory, not a blocker.
+    }
+
+    const res = await writeContractAA(tokenContract, "transfer", [to, amountWei], {
+      context: "bounty-payout",
+    });
+    const receipt = await res.wait(1);
+    return res?.hash || receipt?.transactionHash || receipt?.hash || "";
+  };
+}
+
+/**
+ * Approve a submission, and — unless the poster opts out — pay it in the same
+ * step. `pay: false` is for a poster settling elsewhere; it is a deliberate
+ * choice, not the default, because the default used to be the only behaviour
+ * and it left every worker unpaid behind a green tick.
+ */
 export function useApproveSubmission() {
   const wallet = useWallet();
   const qc = useQueryClient();
+  const payout = useWorkPayout();
   return useMutation({
     mutationFn: async (params: {
       submission_id: string;
       job_id: string;
       onchain_job_id?: number | null;
+      currency: WorkCurrency;
       worker_address: string;
       payout_amount: number;
       units?: number;
+      pay: boolean;
     }) => {
       if (!wallet) throw new Error("Not authenticated");
       const addr = wallet.toLowerCase();
 
-      // On-chain release skipped while the contract is undeployed (see header).
-      const txHash: string | null = null;
+      const txHash = params.pay
+        ? await payout(params.currency, params.worker_address, params.payout_amount)
+        : null;
 
       const { error } = await withWalletHeader(
         supabase
           .from(TBL_SUBS)
           .update({
-            approval_status: "approved",
+            approval_status: txHash ? "paid" : "approved",
             payout_amount: params.payout_amount,
             payout_tx_hash: txHash,
           })
@@ -512,15 +631,68 @@ export function useApproveSubmission() {
         addr,
       );
       if (error) throw error;
+      await syncJobTotals(params.job_id, addr);
+      return { paid: !!txHash };
     },
-    onSuccess: (_d, v) => {
+    onSuccess: (result, v) => {
       qc.invalidateQueries({ queryKey: ["work-subs", v.job_id] });
       qc.invalidateQueries({ queryKey: ["work-job", v.job_id] });
-      toastSuccess("Approved — funds released");
+      toastSuccess(result.paid ? "Approved and paid" : "Approved — not paid yet");
     },
     onError: (e: any) => {
       log.error("Approve failed:", e);
       toastError(e, "Failed to approve");
+    },
+  });
+}
+
+/**
+ * Pay a submission that was already approved.
+ *
+ * Approval and payment were one button that never moved money, so there is a
+ * backlog of rows sitting `approved` with a null `payout_tx_hash` and a worker
+ * waiting on them. Without a retroactive path those debts cannot be settled
+ * from the app at all.
+ */
+export function usePaySubmission() {
+  const wallet = useWallet();
+  const qc = useQueryClient();
+  const payout = useWorkPayout();
+  return useMutation({
+    mutationFn: async (params: {
+      submission_id: string;
+      job_id: string;
+      currency: WorkCurrency;
+      worker_address: string;
+      payout_amount: number;
+    }) => {
+      if (!wallet) throw new Error("Not authenticated");
+      const addr = wallet.toLowerCase();
+
+      const txHash = await payout(params.currency, params.worker_address, params.payout_amount);
+
+      const { error } = await withWalletHeader(
+        supabase
+          .from(TBL_SUBS)
+          .update({
+            approval_status: "paid",
+            payout_amount: params.payout_amount,
+            payout_tx_hash: txHash,
+          })
+          .eq("id", params.submission_id),
+        addr,
+      );
+      if (error) throw error;
+      await syncJobTotals(params.job_id, addr);
+    },
+    onSuccess: (_d, v) => {
+      qc.invalidateQueries({ queryKey: ["work-subs", v.job_id] });
+      qc.invalidateQueries({ queryKey: ["work-job", v.job_id] });
+      toastSuccess("Payment sent");
+    },
+    onError: (e: any) => {
+      log.error("Payout failed:", e);
+      toastError(e, "Payment failed");
     },
   });
 }
