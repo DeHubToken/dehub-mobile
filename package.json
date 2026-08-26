@@ -111,7 +111,6 @@
     "react-native-argon2": "^4.0.0",
     "react-native-dotenv": "^3.4.11",
     "react-native-element-dropdown": "^2.12.4",
-    "react-native-emoji-selector": "^0.2.0",
     "react-native-gesture-handler": "~2.28.0",
     "react-native-get-random-values": "~1.11.0",
     "react-native-image-crop-picker": "^0.51.0",
