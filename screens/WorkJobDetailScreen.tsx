@@ -35,6 +35,7 @@ import { openInApp } from "../libs/links.utils";
 import { toastError } from "../libs/toast";
 import { useUser } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
+import WorkUser from "../components/Work/WorkUser";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
 import {
@@ -46,6 +47,7 @@ import {
   useAwardApplicant,
   useSubmitProof,
   useApproveSubmission,
+  usePaySubmission,
   useRejectSubmission,
   useLeaveReview,
   useOpenDispute,
@@ -54,7 +56,6 @@ import {
   type WorkSubmission,
 } from "../hooks/useWork";
 
-const shortAddr = (a: string) => `${a.slice(0, 6)}…${a.slice(-4)}`;
 const num = (n: number, max = 4) =>
   (Number(n) || 0).toLocaleString(undefined, { maximumFractionDigits: max });
 
@@ -124,6 +125,7 @@ export default function WorkJobDetailScreen() {
   const awardMutation = useAwardApplicant();
   const submitMutation = useSubmitProof();
   const approveMutation = useApproveSubmission();
+  const payMutation = usePaySubmission();
   const rejectMutation = useRejectSubmission();
   const reviewMutation = useLeaveReview();
   const disputeMutation = useOpenDispute();
@@ -190,7 +192,11 @@ export default function WorkJobDetailScreen() {
       isCompleted &&
       (isPoster ||
         submissions.some(
-          (s) => s.worker_address.toLowerCase() === me && s.approval_status === "approved",
+          (s) =>
+            s.worker_address.toLowerCase() === me &&
+            // `paid` counts too — a worker who has actually been paid must not
+            // lose the right to review by virtue of the payment landing.
+            (s.approval_status === "approved" || s.approval_status === "paid"),
         ));
     return { isPoster, isAwarded, myApp, myReview, isCompleted, canReview };
   }, [job, me, applications, reviews, submissions]);
@@ -287,12 +293,10 @@ export default function WorkJobDetailScreen() {
               <Stat label={t("work.detail.slots")} value={`${job.units_approved}/${job.max_units}`} />
             </View>
 
-            <Pressable onPress={() => showUserProfile(job.poster_address)}>
-              <Text style={styles.postedBy}>
-                {t("work.detail.postedBy")} {""}
-                <Text style={styles.postedByLink}>{shortAddr(job.poster_address)}</Text>
-              </Text>
-            </Pressable>
+            <View style={styles.postedByRow}>
+              <Text style={styles.postedBy}>{t("work.detail.postedBy")}</Text>
+              <WorkUser address={job.poster_address} />
+            </View>
           </View>
 
           {/* Applications — contract jobs only */}
@@ -333,9 +337,7 @@ export default function WorkJobDetailScreen() {
                 applications.map((a) => (
                   <View key={a.id} style={styles.row}>
                     <View style={styles.rowHead}>
-                      <Pressable onPress={() => showUserProfile(a.applicant_address)}>
-                        <Text style={styles.rowAddr}>{shortAddr(a.applicant_address)}</Text>
-                      </Pressable>
+                      <WorkUser address={a.applicant_address} />
                       <View
                         style={[
                           styles.pill,
@@ -425,31 +427,47 @@ export default function WorkJobDetailScreen() {
                 <Text style={styles.dim}>{t("work.detail.noSubmissions")}</Text>
               ) : (
                 submissions.map((s) => {
-                  const approved = s.approval_status === "approved";
+                  // Approved is not paid. Only a payout_tx_hash proves money
+                  // moved — treating the two as one status is what showed a
+                  // green "Paid" over work nobody had been sent anything for.
+                  const paid = !!s.payout_tx_hash || s.approval_status === "paid";
+                  const awaitingPayment =
+                    s.approval_status === "approved" && !s.payout_tx_hash;
                   const rejected = s.approval_status === "rejected";
+                  const due =
+                    Number(s.payout_amount) ||
+                    (job.job_type === "contract" ? job.total_budget : job.price_per_unit);
                   return (
                     <View key={s.id} style={styles.row}>
                       <View style={styles.rowHead}>
-                        <Pressable onPress={() => showUserProfile(s.worker_address)}>
-                          <Text style={styles.rowAddr}>{shortAddr(s.worker_address)}</Text>
-                        </Pressable>
+                        {/* Address under the name: this is the wallet the
+                            transfer goes to, so the poster can check it. */}
+                        <WorkUser address={s.worker_address} showAddress={isPoster} />
                         <View
                           style={[
                             styles.pill,
-                            approved && { backgroundColor: "rgba(16,185,129,0.20)" },
+                            paid && { backgroundColor: "rgba(16,185,129,0.20)" },
+                            awaitingPayment && { backgroundColor: "rgba(251,191,36,0.20)" },
                             rejected && { backgroundColor: "rgba(239,68,68,0.20)" },
                           ]}
                         >
                           <Text
                             style={[
                               styles.pillText,
-                              approved && { color: "#6EE7B7" },
+                              paid && { color: "#6EE7B7" },
+                              awaitingPayment && { color: "#FCD34D" },
                               rejected && { color: "#FCA5A5" },
                             ]}
                           >
-                            {t(`work.status.${s.approval_status}`, {
-                              defaultValue: s.approval_status,
-                            })}
+                            {paid
+                              ? t("work.status.paid", { defaultValue: "paid" })
+                              : awaitingPayment
+                                ? t("work.status.awaitingPayment", {
+                                    defaultValue: "awaiting payment",
+                                  })
+                                : t(`work.status.${s.approval_status}`, {
+                                    defaultValue: s.approval_status,
+                                  })}
                           </Text>
                         </View>
                       </View>
@@ -463,7 +481,7 @@ export default function WorkJobDetailScreen() {
 
                       {!!s.proof_text && <Text style={styles.rowBody}>{s.proof_text}</Text>}
 
-                      {approved && s.payout_amount > 0 && (
+                      {paid && s.payout_amount > 0 && (
                         <Text style={styles.paidText}>
                           {t("work.detail.paid", {
                             amount: s.payout_amount,
@@ -472,29 +490,100 @@ export default function WorkJobDetailScreen() {
                         </Text>
                       )}
 
+                      {awaitingPayment && (
+                        <Text style={styles.awaitingText}>
+                          {isPoster
+                            ? t("work.detail.awaitingPaymentPoster", {
+                                amount: due,
+                                currency: job.currency,
+                                defaultValue: "Accepted, not paid — {{amount}} {{currency}} outstanding.",
+                              })
+                            : t("work.detail.awaitingPaymentWorker", {
+                                amount: due,
+                                currency: job.currency,
+                                defaultValue: "Accepted — {{amount}} {{currency}} has not been sent yet.",
+                              })}
+                        </Text>
+                      )}
+
                       {isPoster && s.approval_status === "pending" && (
-                        <View style={{ flexDirection: "row", gap: 8, marginTop: 10 }}>
+                        <View style={styles.subActions}>
                           <Pressable
+                            disabled={approveMutation.isPending || payMutation.isPending}
                             onPress={() =>
                               approveMutation.mutate({
                                 submission_id: s.id,
                                 job_id: job.id,
                                 onchain_job_id: job.onchain_job_id,
+                                currency: job.currency,
                                 worker_address: s.worker_address,
-                                payout_amount:
-                                  job.job_type === "contract"
-                                    ? job.total_budget
-                                    : job.price_per_unit,
+                                payout_amount: due,
+                                pay: true,
                               })
                             }
                             style={styles.approveBtn}
                           >
-                            <Icon name="Check" size={12} color="#6EE7B7" />
-                            <Text style={styles.approveText}>{t("work.detail.approveRelease")}</Text>
+                            <Icon name="Wallet" size={12} color="#6EE7B7" />
+                            <Text style={styles.approveText}>
+                              {t("work.detail.approveAndPay", {
+                                amount: due,
+                                currency: job.currency,
+                                defaultValue: "Approve & pay {{amount}} {{currency}}",
+                              })}
+                            </Text>
+                          </Pressable>
+                          <Pressable
+                            disabled={approveMutation.isPending || payMutation.isPending}
+                            onPress={() =>
+                              approveMutation.mutate({
+                                submission_id: s.id,
+                                job_id: job.id,
+                                onchain_job_id: job.onchain_job_id,
+                                currency: job.currency,
+                                worker_address: s.worker_address,
+                                payout_amount: due,
+                                pay: false,
+                              })
+                            }
+                            style={styles.approveOnlyBtn}
+                          >
+                            <Icon name="Check" size={12} color="#D4D4D8" />
+                            <Text style={styles.approveOnlyText}>
+                              {t("work.detail.approveOnly", { defaultValue: "Approve only" })}
+                            </Text>
                           </Pressable>
                           <Pressable onPress={() => promptReject(s)} style={styles.rejectBtn}>
                             <Icon name="X" size={12} color="#FCA5A5" />
                             <Text style={styles.rejectText}>{t("work.detail.reject")}</Text>
+                          </Pressable>
+                        </View>
+                      )}
+
+                      {/* Settle something already accepted — the only route by
+                          which the existing unpaid backlog can be cleared. */}
+                      {isPoster && awaitingPayment && (
+                        <View style={styles.subActions}>
+                          <Pressable
+                            disabled={payMutation.isPending}
+                            onPress={() =>
+                              payMutation.mutate({
+                                submission_id: s.id,
+                                job_id: job.id,
+                                currency: job.currency,
+                                worker_address: s.worker_address,
+                                payout_amount: due,
+                              })
+                            }
+                            style={styles.approveBtn}
+                          >
+                            <Icon name="Wallet" size={12} color="#6EE7B7" />
+                            <Text style={styles.approveText}>
+                              {t("work.detail.payNow", {
+                                amount: due,
+                                currency: job.currency,
+                                defaultValue: "Pay {{amount}} {{currency}}",
+                              })}
+                            </Text>
                           </Pressable>
                         </View>
                       )}
@@ -521,7 +610,10 @@ export default function WorkJobDetailScreen() {
                 <Pressable
                   onPress={() => {
                     const reviewee = isPoster
-                      ? submissions.find((s) => s.approval_status === "approved")?.worker_address ??
+                      ? submissions.find(
+                          (s) =>
+                            s.approval_status === "approved" || s.approval_status === "paid",
+                        )?.worker_address ??
                         job.awarded_worker_address
                       : job.poster_address;
                     if (!reviewee) {
@@ -552,9 +644,7 @@ export default function WorkJobDetailScreen() {
               reviews.map((r) => (
                 <View key={r.id} style={styles.row}>
                   <View style={styles.rowHead}>
-                    <Pressable onPress={() => showUserProfile(r.reviewer_address)}>
-                      <Text style={styles.rowAddr}>{shortAddr(r.reviewer_address)}</Text>
-                    </Pressable>
+                    <WorkUser address={r.reviewer_address} />
                     <Stars value={r.rating} size={13} />
                   </View>
                   {!!r.comment && <Text style={styles.rowBody}>{r.comment}</Text>}
@@ -715,8 +805,8 @@ const styles = StyleSheet.create({
   statLabel: { color: "#71717A", fontSize: 12, fontWeight: "600" },
   statValue: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "700", marginTop: 3 },
 
-  postedBy: { color: "#A1A1AA", fontSize: 11, marginTop: 12 },
-  postedByLink: { color: "#E4E4E7", textDecorationLine: "underline" },
+  postedBy: { color: "#A1A1AA", fontSize: 11 },
+  postedByRow: { flexDirection: "row", alignItems: "center", gap: 8, marginTop: 12 },
 
   section: { marginBottom: 18 },
   sectionTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "700", marginBottom: 10 },
@@ -750,6 +840,8 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
   },
   paidText: { color: "#6EE7B7", fontSize: 11, marginTop: 6 },
+  awaitingText: { color: "rgba(252,211,77,0.85)", fontSize: 11, marginTop: 6 },
+  subActions: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 10 },
 
   input: {
     backgroundColor: "rgba(255,255,255,0.05)",
@@ -793,6 +885,16 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(16,185,129,0.20)",
   },
   approveText: { color: "#6EE7B7", fontSize: 12, fontWeight: "700" },
+  approveOnlyBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+    paddingHorizontal: 11,
+    paddingVertical: 7,
+    borderRadius: 10,
+    backgroundColor: "rgba(255,255,255,0.10)",
+  },
+  approveOnlyText: { color: "#D4D4D8", fontSize: 12, fontWeight: "600" },
   rejectBtn: {
     flexDirection: "row",
     alignItems: "center",
