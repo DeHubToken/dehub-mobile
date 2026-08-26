@@ -43,6 +43,12 @@ export interface SerializedUploadPayload {
   audio: SerializedMedia | null;
   thumbnailUri: string | null;
   streamInfoJson: string;
+  /**
+   * Subscription plan ids that unlock this post. Empty means no subscriber
+   * gate — the server reads the array, so it must not carry ids the creator
+   * did not choose.
+   */
+  planIds?: string[];
   pollData?: SerializedPollData;
   scheduledAt?: string;
   /**
