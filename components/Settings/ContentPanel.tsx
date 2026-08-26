@@ -10,7 +10,6 @@
  * the toggles at least remember themselves.
  */
 import React from 'react';
-import { ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import {
   SettingsSection,
@@ -19,6 +18,7 @@ import {
   SettingsNote,
   Divider,
 } from './SettingsPrimitives';
+import { SettingsScrollView } from './SettingsAnchor';
 import { useAppPrefs, setAppPref } from '../../hooks/useAppPrefs';
 import { useMatureContent } from '../../hooks/useMatureContent';
 
@@ -31,8 +31,13 @@ const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility:
   const { showMatureContent, setShowMatureContent, saving: savingMature } = useMatureContent();
 
   return (
-    <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
-      <SettingsSection label={t('settings.postSettings')} icon="FileText" className="mt-4">
+    <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
+      <SettingsSection
+        label={t('settings.postSettings')}
+        icon="FileText"
+        className="mt-4"
+        anchor="post-settings"
+      >
         <SettingsLinkRow
           icon="Globe"
           label={t('settings.defaultPostVisibility')}
@@ -52,7 +57,7 @@ const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility:
         />
       </SettingsSection>
 
-      <SettingsSection label={t('settings.contentFiltering')} icon="Funnel">
+      <SettingsSection label={t('settings.contentFiltering')} icon="Funnel" anchor="content-filtering">
         {/* One real switch replaces three device-local ones that filtered
             nothing. "Filter explicit content" and "Content warnings" were this
             same setting worded twice, and are what this one does when it is
@@ -102,7 +107,7 @@ const ContentPanel: React.FC<{ onOpenPrivacy: () => void; defaultPostVisibility:
       </SettingsSection>
 
       <SettingsNote>{t('settings.contentFilteringNote')}</SettingsNote>
-    </ScrollView>
+    </SettingsScrollView>
   );
 };
 
