@@ -132,6 +132,14 @@ export interface SuperPowerLadder {
   powers: SuperPowerInfo[];
 }
 
+/** The category holding the trending slot, or null when nothing is running. */
+export interface TrendingTopic {
+  category: string;
+  bookingId: string;
+  tier: string;
+  endsAt: string;
+}
+
 /** The stage holding the front row, or null when nothing is running. */
 export interface FrontRow {
   stageId: string;
@@ -249,6 +257,21 @@ export async function fetchFrontRow(): Promise<FrontRow | null> {
     method: 'GET',
     isAuthRequired: false,
   });
+  return response.result ?? null;
+}
+
+/**
+ * Which category was paid onto the trending list right now.
+ *
+ * Public. Its own read rather than part of `/superpowers/slot` — that one
+ * deals a POST and this a category name, and the list it lands on is not in
+ * the DeHub API at all: it is computed from Supabase.
+ */
+export async function fetchTrendingTopic(): Promise<TrendingTopic | null> {
+  const response = await apiClient.fetch<{ result: TrendingTopic | null }>(
+    '/superpowers/trending-topic',
+    { method: 'GET', isAuthRequired: false },
+  );
   return response.result ?? null;
 }
 
