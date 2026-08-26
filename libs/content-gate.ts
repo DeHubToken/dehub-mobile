@@ -20,3 +20,33 @@ export function isHoldGated(
 ): boolean {
   return !!isLockContent && Number(lockContentAmount) > 0;
 }
+
+/** One of the creator's subscription plans, as the feed returns it. */
+export interface SubscriberPlan {
+  id: number;
+  title: string;
+  price: number;
+  alreadySubscribed?: boolean;
+}
+
+/**
+ * Subscriber gate resolution.
+ * ==========================
+ * A different question to the hold gate above, and not interchangeable with it:
+ * a hold gate asks "do you own N of this token", which any stranger satisfies by
+ * buying some. A subscriber gate asks "do you subscribe to THIS creator", which
+ * only they can grant.
+ *
+ * The backend has carried this all along — a post stores the plan ids that
+ * unlock it, and the feed joins the viewer's subscriptions to stamp
+ * `alreadySubscribed` on each. Both clients ignored it and faked a "Subscribers"
+ * switch with an amount-less DHB lock instead. No plans is not a gate, for the
+ * same reason a hold gate with no amount is not one.
+ */
+export function isSubscriberGated(
+  plans: SubscriberPlan[] | undefined | null,
+  canBypass: boolean,
+): boolean {
+  if (canBypass || !plans?.length) return false;
+  return !plans.some((p) => p.alreadySubscribed);
+}

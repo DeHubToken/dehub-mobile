@@ -145,7 +145,7 @@ function rebuildFormData(job: UploadJob): FormData {
   // composer already sends "{}" when nothing is set.
   fd.append("streamInfo", payload.streamInfoJson || "{}");
 
-  fd.append("plans", JSON.stringify([]));
+  fd.append("plans", JSON.stringify(payload.planIds || []));
   if (walletAddress) fd.append("address", walletAddress.toLowerCase());
 
   // Solana posts (#41): backend reads `minter` (base58, case-sensitive) to build

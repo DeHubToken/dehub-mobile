@@ -18,6 +18,8 @@ import GlassIndicator from "../ui/GlassIndicator";
 import CustomSwitch from "../ui/CustomSwitch";
 import { isSolanaChain, SOLANA_SPL_TOKENS } from "../../config/solana.constants";
 import { supportedTokens, ChainId } from "../../config/constants";
+import { useCreatorPlans } from "../../hooks/useCreatorPlans";
+import { useUser } from "../../context/AuthContext";
 
 
 export type PpvData = {
@@ -47,6 +49,11 @@ export type MonetizationState = {
   bountyData: BountyData;
   tokenGatedEnabled: boolean;
   tokenGateData: TokenGateData;
+  /**
+   * Gate the post behind the creator’s own subscription plans. Sent as plan
+   * ids in `plans`, never as a token lock — see useUploadPost.
+   */
+  subscribersEnabled: boolean;
 };
 
 type MonetizationPanelProps = {
@@ -137,6 +144,10 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
   postChainId,
 }) => {
   const isSolana = isSolanaChain(postChainId);
+  // The gate is the creator's own plans, so with none there is nothing to gate
+  // on and the row stays off — see the comment on the switch.
+  const user = useUser() as any;
+  const { hasPlans, isLoading: plansLoading } = useCreatorPlans(user?.address);
   const evmGateChainId = postChainId && !isSolana ? postChainId : ChainId.BASE_MAINNET;
   const evmLockTokens = React.useMemo(
     () => supportedTokens.filter((t) => t.chainId === evmGateChainId),
@@ -275,6 +286,13 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
     setExpandedSection(null);
   }, [state, onChange, tokenGateDraft, isSolana, gateUseCustom, evmLockTokens]);
 
+  const handleSubscribersToggle = useCallback(
+    (val: boolean) => {
+      onChange({ ...state, subscribersEnabled: val });
+    },
+    [state, onChange],
+  );
+
   const cancelTokenGate = useCallback(() => {
     if (!state.tokenGatedEnabled)
       onChange({ ...state, tokenGatedEnabled: false });
@@ -287,10 +305,42 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
     // options list (Mint, Title, Category, Community, then these), the way web's
     // PostAccessToggles renders them. UploadScreen is the only render site.
     <View>
-      {/* A "Subscribers" row used to sit here — a DHB gate with no minimum.
-          Nothing on the post model records a subscriber gate, so it wrote a
-          hold gate against nothing: a "Hold 0 DHB" badge over a body the API
-          served in full. Token Gated below does the same job with a number. */}
+      {/* Subscribers — EVM only.
+          Not token gating: this sends the creator's plan ids on the post, and
+          the feed opens it for whoever holds an active subscription to one.
+          Token Gated below asks a different question (own N of a token), which
+          any stranger can satisfy.
+
+          Off with no plans, deliberately. The switch used to write a DHB lock
+          with no amount when there was nothing real to write, which shipped
+          posts gated against nothing. No plans, no gate. */}
+      {!isSolana && (
+        <View className="py-3">
+          <View className="flex-row items-center justify-between">
+            <View className="flex-row items-center">
+              <Icon name="Star" size={18} color={hasPlans ? "#fff" : "rgba(255,255,255,0.4)"} />
+              <Text className={hasPlans ? "text-white text-sm ml-3" : "text-white/40 text-sm ml-3"}>
+                Subscribers
+              </Text>
+            </View>
+            <CustomSwitch
+              value={state.subscribersEnabled && hasPlans}
+              onValueChange={handleSubscribersToggle}
+              disabled={!hasPlans}
+            />
+          </View>
+          {!hasPlans && !plansLoading && (
+            <Text className="text-theme-neutrals-500 text-xs mt-1.5">
+              Create a subscription plan on your profile first.
+            </Text>
+          )}
+          {state.subscribersEnabled && hasPlans && (
+            <Text className="text-theme-neutrals-500 text-xs mt-1.5">
+              Only your subscribers can open this post.
+            </Text>
+          )}
+        </View>
+      )}
 
       <View className="flex-row items-center justify-between py-3">
         <View className="flex-row items-center">

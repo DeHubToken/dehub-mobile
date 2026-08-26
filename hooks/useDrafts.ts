@@ -91,6 +91,7 @@ export const emptyMonetization = (): MonetizationState => ({
   bountyEnabled: false,
   bountyData: { viewers: "", commenters: "", rewardPerPerson: "" },
   tokenGatedEnabled: false,
+  subscribersEnabled: false,
   tokenGateData: { minAmount: "" },
 });
 

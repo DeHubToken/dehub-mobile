@@ -350,6 +350,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const streamStatus = accessInfo?.streamStatus;
   const isServerLockedPPV = !!streamStatus?.isLockedWithPPV;
   const isActuallyLockedHoldings = !!streamStatus?.isLockedWithLockContent;
+  // Same server verdict, different question: subscribe to this creator.
+  const isActuallySubGated = !!streamStatus?.isLockedWithSubscription;
 
   // --- Interactive state ---
   const engagementKey = engagementKeyOf(item);
@@ -396,7 +398,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Local unlock overrides server PPV state after successful payment
   const isActuallyLockedPPV = isServerLockedPPV && !ppvUnlocked;
   const isActuallyComboLocked = isActuallyLockedPPV && isActuallyLockedHoldings;
-  const isActuallyGated = isActuallyLockedPPV || isActuallyLockedHoldings;
+  const isActuallyGated = isActuallyLockedPPV || isActuallyLockedHoldings || isActuallySubGated;
   // Held locally like the title and categories, so re-rating a post from its
   // own options menu takes effect without waiting for the feed to refetch.
   const [localContentRating, setLocalContentRating] = useState<string | undefined>(
@@ -460,6 +462,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   // --- Handlers ---
   const handleUserPress = useCallback(() => {
+    const id = username || minterAddress;
+    if (!id) return;
+    showUserProfile(id);
+  }, [username, minterAddress, showUserProfile]);
+
+  // A subscriber gate is opened by subscribing, so send them where the plans
+  // are sold rather than to the post they cannot read.
+  const handleSubscribePress = useCallback(() => {
     const id = username || minterAddress;
     if (!id) return;
     showUserProfile(id);
@@ -1004,6 +1014,32 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <Text className="text-white/70 text-xs">
               Unlock for {formatCompactNumber(payPerViewAmount)} {payPerViewTokenSymbol}
             </Text>
+          </View>
+        </Pressable>
+      );
+    }
+
+    // Subscriber-gated image: same blur, different ask. Tapping opens the
+    // creator profile, where the Subscriptions tab sells the plan for real.
+    if (isActuallySubGated) {
+      return (
+        <Pressable
+          onPress={handleSubscribePress}
+          className="mt-2 rounded-xl overflow-hidden"
+          style={{ height: IMAGE_WIDTH * 0.75 }}
+        >
+          <SmartImage
+            source={{ uri: galleryImages[0] }}
+            style={{ width: "100%", height: "100%" }}
+            recyclingKey={galleryImages[0]}
+            blurRadius={20}
+          />
+          <View className="absolute inset-0 bg-black/30 items-center justify-center">
+            <View className="w-14 h-14 rounded-2xl bg-black/50 items-center justify-center mb-2">
+              <Icon name="Star" size={24} color="#fff" />
+            </View>
+            <Text className="text-white text-sm font-semibold">Subscribers only</Text>
+            <Text className="text-white/70 text-xs mt-0.5">Subscribe to {username || "this creator"}</Text>
           </View>
         </Pressable>
       );

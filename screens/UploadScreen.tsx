@@ -270,6 +270,7 @@ export default function UploadScreen() {
     bountyEnabled: false,
     bountyData: { viewers: "", commenters: "", rewardPerPerson: "" },
     tokenGatedEnabled: false,
+    subscribersEnabled: false,
     tokenGateData: { minAmount: "" },
   });
   const [thumbnailUri, setThumbnailUri] = useState<string | null>(null);

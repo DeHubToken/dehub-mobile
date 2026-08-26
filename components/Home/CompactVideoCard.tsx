@@ -1,4 +1,4 @@
-import { isHoldGated } from "../../libs/content-gate";
+import { isHoldGated, isSubscriberGated } from "../../libs/content-gate";
 import React, { memo, useCallback } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -112,6 +112,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const payPerViewAmount = streamInfo?.payPerViewAmount;
   const payPerViewTokenSymbol = streamInfo?.payPerViewTokenSymbol;
   const isLocked = isHoldGated(streamInfo?.isLockContent, streamInfo?.lockContentAmount);
+  const isSubGated = isSubscriberGated((nft as any).plansDetails, (nft as any).isOwner === true);
   const lockContentAmount = streamInfo?.lockContentAmount;
   const lockContentTokenSymbol = streamInfo?.lockContentTokenSymbol;
   const isBounty = !!streamInfo?.isAddBounty;
@@ -252,7 +253,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
               {relativeTime}
             </Text>
           </View>
-          {(isLive || isPayPerView || isLocked || isBounty) && (
+          {(isLive || isPayPerView || isLocked || isBounty || isSubGated) && (
             <View className="flex-row flex-wrap items-center mt-1 gap-1">
               {isLive && (
                 <View className="bg-theme-neutrals-700 px-1.5 py-0.5 rounded">
@@ -279,6 +280,13 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
                 <View className="bg-theme-neutrals-700 px-1.5 py-0.5 rounded">
                   <Text className="text-theme-neutrals-200 text-[9px] font-bold">
                     LOCK {lockContentAmount} {lockContentTokenSymbol}
+                  </Text>
+                </View>
+              )}
+              {isSubGated && (
+                <View className="bg-theme-neutrals-700 px-1.5 py-0.5 rounded">
+                  <Text className="text-theme-neutrals-200 text-[9px] font-bold">
+                    SUBS ONLY
                   </Text>
                 </View>
               )}

@@ -17,7 +17,7 @@ import {
 } from "../config/constants";
 import type { User } from "../context/AuthContext";
 import { streamInfoKeys } from "../config/constants";
-import { isHoldGated } from "./content-gate";
+import { isHoldGated, isSubscriberGated } from "./content-gate";
 
 export interface UserBalanceEntry {
   chainId: number;
@@ -45,6 +45,8 @@ export interface StreamStatus {
   isFree: boolean;
   isLockedWithLockContent: boolean;
   isLockedWithPPV: boolean;
+  /** Gated on a subscription to the creator, not on holdings. */
+  isLockedWithSubscription: boolean;
   errMsg: string;
 }
 
@@ -124,6 +126,7 @@ const computeStreamAccessInfo = (
     isFree: true,
     isLockedWithLockContent: false,
     isLockedWithPPV: false,
+    isLockedWithSubscription: false,
     errMsg: "",
   };
   let lockTokenWithLockContent: SupportedToken | null = null;
@@ -198,8 +201,17 @@ const computeStreamAccessInfo = (
       ) || null;
   }
 
+  // The subscriber gate is decided entirely by the server: it stamps
+  // alreadySubscribed on each of the post's plans for this viewer, so unlike
+  // the holdings gate there is nothing local to weigh. Owners returned above.
+  if (isSubscriberGated((nftMetadata as any).plansDetails, false)) {
+    streamStatus.isFree = false;
+    streamStatus.isLockedWithSubscription = true;
+  }
+
   const isPlayable =
-    !streamStatus.isLockedWithLockContent && !streamStatus.isLockedWithPPV;
+    !streamStatus.isLockedWithLockContent && !streamStatus.isLockedWithPPV &&
+    !streamStatus.isLockedWithSubscription;
   const playableVideoUrl = isPlayable ? nftMetadata.videoUrl || null : null;
 
   return { streamStatus, lockTokenWithLockContent, ppvToken, playableVideoUrl };
