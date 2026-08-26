@@ -29,6 +29,7 @@ import {
 } from "../../services/nft.service";
 import { followUser, unfollowUser } from "../../services/user.service";
 import { blockUser, unblockUser } from "../../services/block.service";
+import { muteUser } from "../../services/mute.service";
 import { useUser, useAuthActions } from "../../context/AuthContext";
 import { toastSuccess, toastError } from "../../libs";
 import { WEBSITE_LINK } from "../../config";
@@ -116,6 +117,13 @@ export interface PostOptionsMenuProps {
   isBlocked?: boolean;
   /** Called after block/unblock to update parent state */
   onBlockChange?: (blocked: boolean) => void;
+  /**
+   * Called after a successful mute, so the caller can drop the post from its
+   * list. There is no `isMuted` counterpart and no unmute here: a mute is
+   * private and reversible from Settings, and fetching mute state per card
+   * would cost a request per post to render one menu row.
+   */
+  onMuteChange?: (muted: boolean) => void;
   /** Whether the viewer has bookmarked this post. Only read when `onToggleSave` is set. */
   isSaved?: boolean;
   /**
@@ -195,6 +203,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onTranslateImagePress,
   isBlocked: isBlockedProp = false,
   onBlockChange,
+  onMuteChange,
   isSaved = false,
   onToggleSave,
   hideReportContent = false,  hideEdit = false,}) => {
@@ -329,6 +338,29 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
       setTimeout(() => setShowBlockConfirm(true), 200);
     });
   }, [onClose, requireAuth]);
+
+  /**
+   * Muting takes no confirmation sheet, where blocking does.
+   *
+   * Blocking is bidirectional, cuts DMs and shows on their profile, so it is
+   * worth stopping to ask. A mute is one-way, private and reversible — nothing
+   * is severed and the other account never learns of it — so a confirmation
+   * step would be friction protecting against nothing.
+   */
+  const handleMute = useCallback(() => {
+    requireAuth?.(async () => {
+      if (!creatorIdentifier) return;
+      onClose();
+      try {
+        await muteUser(creatorIdentifier);
+        onMuteChange?.(true);
+        toastSuccess(t("postOptions.mutedUser", { name: creatorDisplayName }));
+      } catch (e) {
+        console.error("[PostOptionsMenu] mute error", e);
+        toastError(t("postOptions.muteFailed"));
+      }
+    });
+  }, [requireAuth, onClose, creatorIdentifier, creatorDisplayName, onMuteChange, t]);
 
   const handleConfirmBlock = useCallback(async () => {
     if (!creatorIdentifier) return;
@@ -541,6 +573,19 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
 
               {/* Separator */}
               <View className="mx-5 my-1 h-px bg-white/10" />
+
+              {/* Mute above Block, and in the neutral colour rather than the
+                  destructive red: it is the one most people actually want, and
+                  it severs nothing. Only shown when not already blocked —
+                  muting someone you have blocked would change nothing. */}
+              {!isBlockedProp && (
+                <OptionRow
+                  icon="volume-mute-outline"
+                  label={t("postOptions.muteUser", { name: creatorDisplayName })}
+                  sublabel={t("postOptions.muteDesc")}
+                  onPress={handleMute}
+                />
+              )}
 
               <OptionRow
                 icon={isBlockedProp ? "lock-open-outline" : "ban-outline"}
