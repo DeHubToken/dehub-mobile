@@ -21,6 +21,7 @@ import type { MediaAttachment } from "./CommentMediaPreview";
 import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "./VoiceNoteRecorder";
 import type { VoiceNoteResult } from "./VoiceNoteRecorder";
 import GifPicker from "../DM/GifPicker";
+import EmojiSheet from "../Upload/EmojiSheet";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import Avatar from "../common/Avatar";
 import MentionSuggestions from "../common/MentionSuggestions";
@@ -142,6 +143,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
   // GIF picker state
   const [gifPickerVisible, setGifPickerVisible] = useState(false);
+  // Emoji picker state
+  const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
 
   const userAddress = user?.address || user?.walletAddress || undefined;
   const userAvatar = getAvatarUrl(user?.avatarImageUrl || "");
@@ -436,6 +439,22 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       setGifPickerVisible(true);
     });
   }, [requireAuth]);
+
+  // Open emoji picker
+  const handleOpenEmojiPicker = useCallback(() => {
+    Keyboard.dismiss();
+    setEmojiPickerVisible(true);
+  }, []);
+
+  // Emoji selected from picker — appended, not a replacement, so it plays
+  // nicely alongside whatever the user has already typed.
+  const handleEmojiSelected = useCallback((emoji: string) => {
+    setInputText((prev) => prev + emoji);
+  }, []);
+
+  const handleCloseEmojiPicker = useCallback(() => {
+    setEmojiPickerVisible(false);
+  }, []);
 
   const handleStartRecording = useCallback(() => {
     Keyboard.dismiss();
@@ -1138,6 +1157,15 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   <Text style={{ color: "#8B8D90", fontSize: 12, fontWeight: "700" }}>GIF</Text>
                 </Pressable>
                 <Pressable
+                  onPress={handleOpenEmojiPicker}
+                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  accessibilityRole="button"
+                  accessibilityLabel="Add emoji"
+                  style={composerStyles.iconControl}
+                >
+                  <Icon name="Smile" size={20} color="#8B8D90" />
+                </Pressable>
+                <Pressable
                   onPress={handleStartRecording}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   accessibilityRole="button"
@@ -1156,6 +1184,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         visible={gifPickerVisible}
         onClose={handleCloseGifPicker}
         onPick={handleGifPicked}
+      />
+
+      <EmojiSheet
+        visible={emojiPickerVisible}
+        onClose={handleCloseEmojiPicker}
+        onSelect={handleEmojiSelected}
       />
 
       <CommentContextMenu
