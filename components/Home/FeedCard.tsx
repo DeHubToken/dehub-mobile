@@ -1367,6 +1367,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         onCashtagPress={(sym) => setActiveCashtag(sym)}
         fullContent={fullContent}
         showCategories={fullContent}
+        flagged={item.communityAlertStatus === "pending"}
       />
 
       {(item as any).isQuotePost && (

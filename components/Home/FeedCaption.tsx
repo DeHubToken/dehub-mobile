@@ -83,6 +83,8 @@ interface FeedCaptionProps {
   fullContent?: boolean;
   /** When true, shows category hashtags (default: true) */
   showCategories?: boolean;
+  /** Community Alert tripped on this post — border the link like a highlighter instead of plain blue text. */
+  flagged?: boolean;
 }
 
 // Measured "see more" verdicts, keyed on the caption content. The verdict
@@ -106,6 +108,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   maxLines = 2,
   fullContent = false,
   showCategories = true,
+  flagged = false,
 }) => {
   const [expanded, setExpanded] = useState(fullContent);
   const verdictKey = `${maxLines}|${description ?? ""}`;
@@ -161,7 +164,11 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
           return (
             <Text
               key={`${keyPrefix}-${idx}`}
-              className="text-blue-400"
+              className={
+                flagged
+                  ? "text-blue-400 border-2 border-red-500 rounded-md px-1"
+                  : "text-blue-400"
+              }
               onPress={() => handleOpenLink(seg.url)}
               suppressHighlighting
             >
@@ -195,7 +202,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
         }
         return <Text key={`${keyPrefix}-${idx}`}>{seg.value}</Text>;
       }),
-    [handleOpenLink, handleMentionPress, handleCashtagPress],
+    [handleOpenLink, handleMentionPress, handleCashtagPress, flagged],
   );
 
   // Build the caption text
