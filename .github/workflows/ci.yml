@@ -43,6 +43,13 @@ jobs:
         if: steps.node-modules-cache.outputs.cache-hit != 'true'
         run: npm ci --legacy-peer-deps
 
+      # A key added to en.json and nowhere else renders in English for every
+      # other language: fallbackLng swallows it, so nothing throws and nobody
+      # notices. orphan-baseline.json is the backlog being worked through — a
+      # key outside it is a feature that shipped English-only, and fails here.
+      - name: i18n coverage
+        run: npm run i18n:coverage
+
       - name: TypeScript check
         run: npx tsc --noEmit
 
