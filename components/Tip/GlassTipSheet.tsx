@@ -380,7 +380,20 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             [tokenId, amountBN, toAddress, tokenAddress],
             { context: "send" },
           );
-          const receipt = await res.wait?.(1);
+
+          // res.hash means the transaction was actually submitted — that's
+          // success. .wait() below only polls for the receipt, which some
+          // public RPC tiers (e.g. publicnode's free tier) reject as an
+          // "archive request"; that's an RPC availability problem, not
+          // evidence the tip failed, and reporting it as one after DHB
+          // already moved is what actually broke — the send succeeds, the
+          // user sees "failed", and persistTipRecord below never runs.
+          let receipt: any;
+          try {
+            receipt = await res.wait?.(1);
+          } catch (waitErr) {
+            console.warn("[Tip] Receipt wait failed (tip was still sent):", waitErr);
+          }
           setPhase("sent");
           setLastAmount(numericAmount);
 

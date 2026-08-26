@@ -51,6 +51,8 @@ export async function writeContractAA(
       await contract.callStatic[functionName](...args, ...preflightOverrides);
     }
   } catch (staticErr: any) {
+    // TEMP DEBUG (remove once Pimlico sponsorship issue is diagnosed)
+    console.error("[TipDebug] callStatic raw error:", staticErr?.message, staticErr?.error?.message, staticErr?.data?.message, staticErr);
     const friendly = parseTxError(staticErr, context);
     throw new Error(friendly);
   }
@@ -80,6 +82,8 @@ export async function writeContractAA(
     const wait = async (confirmations = 1) => resp.wait?.(confirmations);
     return { hash, wait };
   } catch (eoaErr: any) {
+    // TEMP DEBUG (remove once Pimlico sponsorship issue is diagnosed)
+    console.error("[TipDebug] send raw error:", eoaErr?.message, eoaErr?.error?.message, eoaErr?.data?.message, eoaErr);
     const friendly = parseTxError(eoaErr, context);
     throw new Error(friendly);
   }
