@@ -167,6 +167,14 @@ export default function TvRequestsScreen() {
 
       {!!active && (
         <GlassTipSheet
+          // Keyed on the request so a different one always gets a fresh sheet.
+          // `GlassTipSheet` seeds its amount from `lockedAmount` inside an
+          // effect that only runs when `visible` changes — swapping the request
+          // underneath a mounted sheet would leave the previous amount in the
+          // field while the card behind it showed the new one, and approving
+          // would then sign for the wrong figure. Unreachable today because the
+          // sheet covers the list, but this is a money path and one line.
+          key={active.requestId}
           visible
           onClose={() => setActive(null)}
           toAddress={String(active.payload.recipient ?? '')}
