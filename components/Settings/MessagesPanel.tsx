@@ -8,10 +8,11 @@
  * and the quick actions.
  */
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Icon from '../ui/Icon';
 import DMSettingsSection from './DMSettingsSection';
+import { SettingsAnchor, SettingsScrollView } from './SettingsAnchor';
 import {
   SettingsSection,
   SettingsLinkRow,
@@ -28,12 +29,19 @@ const MessagesPanel: React.FC<{ onOpenFreeAccessList: () => void }> = ({
   const { t } = useTranslation();
 
   return (
-    <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
-      <View className="mt-4 mx-4">
-        <DMSettingsSection />
-      </View>
+    <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
+      <SettingsAnchor id="dm-access">
+        <View className="mt-4 mx-4">
+          <DMSettingsSection />
+        </View>
+      </SettingsAnchor>
 
-      <SettingsSection label={t('settings.freeAccessList')} icon="Gift" note={t('settings.freeAccessListDesc')}>
+      <SettingsSection
+        label={t('settings.freeAccessList')}
+        icon="Gift"
+        note={t('settings.freeAccessListDesc')}
+        anchor="free-dm-access"
+      >
         <SettingsLinkRow
           icon="Gift"
           label={t('screens.freeDmAccessList')}
@@ -42,7 +50,7 @@ const MessagesPanel: React.FC<{ onOpenFreeAccessList: () => void }> = ({
         />
       </SettingsSection>
 
-      <SettingsSection label={t('settings.preferences')} icon="Settings">
+      <SettingsSection label={t('settings.preferences')} icon="Settings" anchor="message-preferences">
         <SettingsToggleRow
           icon="Bell"
           label={t('settings.messageNotifications')}
@@ -77,49 +85,53 @@ const MessagesPanel: React.FC<{ onOpenFreeAccessList: () => void }> = ({
       </SettingsSection>
 
       {/* Storage — same placeholder meter web renders. */}
-      <View className="mt-6 mx-4">
-        <SectionLabel label={t('settings.storage')} icon="HardDrive" />
-        <SectionCard>
-          <View className="px-4 py-4">
-            <View className="flex-row justify-between mb-2">
-              <Text className="text-white text-sm font-medium">{t('settings.storageUsed')}</Text>
-              <Text className="text-theme-neutrals-400 text-sm">{t('settings.storageAmount')}</Text>
+      <SettingsAnchor id="message-storage">
+        <View className="mt-6 mx-4">
+          <SectionLabel label={t('settings.storage')} icon="HardDrive" />
+          <SectionCard>
+            <View className="px-4 py-4">
+              <View className="flex-row justify-between mb-2">
+                <Text className="text-white text-sm font-medium">{t('settings.storageUsed')}</Text>
+                <Text className="text-theme-neutrals-400 text-sm">{t('settings.storageAmount')}</Text>
+              </View>
+              <View className="w-full h-2 bg-theme-neutrals-700 rounded-lg mb-3 overflow-hidden">
+                <View className="h-2 bg-white rounded-lg" style={{ width: '42%' }} />
+              </View>
+              <View className="flex-row justify-between">
+                <Text className="text-theme-neutrals-500 text-xs">{t('settings.messagesStorage')}</Text>
+                <Text className="text-theme-neutrals-500 text-xs">{t('settings.mediaStorage')}</Text>
+              </View>
+              <Text className="text-theme-neutrals-500 text-xs text-center mt-3">
+                {t('settings.upgradeStorage')}
+              </Text>
             </View>
-            <View className="w-full h-2 bg-theme-neutrals-700 rounded-lg mb-3 overflow-hidden">
-              <View className="h-2 bg-white rounded-lg" style={{ width: '42%' }} />
-            </View>
-            <View className="flex-row justify-between">
-              <Text className="text-theme-neutrals-500 text-xs">{t('settings.messagesStorage')}</Text>
-              <Text className="text-theme-neutrals-500 text-xs">{t('settings.mediaStorage')}</Text>
-            </View>
-            <Text className="text-theme-neutrals-500 text-xs text-center mt-3">
-              {t('settings.upgradeStorage')}
-            </Text>
-          </View>
-        </SectionCard>
-      </View>
+          </SectionCard>
+        </View>
+      </SettingsAnchor>
 
       {/* Quick actions */}
-      <View className="mt-6 mx-4">
-        <SectionLabel label={t('settings.quickActions')} icon="Zap" />
-        <View className="flex-row" style={{ gap: 12 }}>
-          {([
-            { icon: 'Archive', label: t('settings.archivedChats') },
-            { icon: 'Save', label: t('settings.exportChats') },
-          ] as const).map((action) => (
-            <TouchableOpacity
-              key={action.label}
-              onPress={() => toastInfo(t('settings.comingSoon'))}
-              activeOpacity={0.7}
-              className="flex-1 items-center py-4 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700"
-            >
-              <Icon name={action.icon} size={22} color="#9ca3af" />
-              <Text className="text-theme-neutrals-300 text-sm mt-2">{action.label}</Text>
-            </TouchableOpacity>
-          ))}
+      <SettingsAnchor id="quick-actions">
+        <View className="mt-6 mx-4">
+          <SectionLabel label={t('settings.quickActions')} icon="Zap" />
+          <View className="flex-row" style={{ gap: 12 }}>
+            {([
+              { icon: 'Archive', label: t('settings.archivedChats') },
+              { icon: 'Save', label: t('settings.exportChats') },
+            ] as const).map((action) => (
+              <TouchableOpacity
+                key={action.label}
+                onPress={() => toastInfo(t('settings.comingSoon'))}
+                activeOpacity={0.7}
+                className="flex-1 items-center py-4 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700"
+              >
+                <Icon name={action.icon} size={22} color="#9ca3af" />
+                <Text className="text-theme-neutrals-300 text-sm mt-2">{action.label}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </SettingsAnchor>
+    </SettingsScrollView>
   );
 };
 

@@ -10,6 +10,10 @@ import {
   Platform,
 } from 'react-native';
 import ScreenHeader from '../components/ScreenHeader';
+import {
+  SettingsAnchor,
+  SettingsScrollView,
+} from '../components/Settings/SettingsAnchor';
 import Icon, { type IconName } from '../components/ui/Icon';
 import CustomSwitch from '../components/ui/CustomSwitch';
 import { useUser, useAuthState } from '../context/AuthContext';
@@ -230,7 +234,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
           rightContent={saving ? <ActivityIndicator size="small" color={theme.colors.accent} /> : undefined}
         />
       )}
-      <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 32 }}>
+      <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 32 }}>
         {!pushPermissionGranted && (
           <TouchableOpacity
             onPress={openSystemSettings}
@@ -247,143 +251,151 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
           </TouchableOpacity>
         )}
 
-        <View className="mt-4 mx-4">
-          <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">{t('settings.masterControls')}</Text>
-          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
-            <View className="px-4 py-3.5 flex-row items-center justify-between">
-              <View className="flex-row items-center flex-1 pr-3">
-                <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                  <Icon name="Bell" size={18} color="#9ca3af" />
+        <SettingsAnchor id="master-controls">
+          <View className="mt-4 mx-4">
+            <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">{t('settings.masterControls')}</Text>
+            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
+              <View className="px-4 py-3.5 flex-row items-center justify-between">
+                <View className="flex-row items-center flex-1 pr-3">
+                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+                    <Icon name="Bell" size={18} color="#9ca3af" />
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-white text-sm font-medium">{t('settings.inAppNotificationsLabel')}</Text>
+                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.inAppNotificationsDesc')}</Text>
+                  </View>
                 </View>
-                <View className="flex-1">
-                  <Text className="text-white text-sm font-medium">{t('settings.inAppNotificationsLabel')}</Text>
-                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.inAppNotificationsDesc')}</Text>
-                </View>
+                <CustomSwitch value={prefs.inAppEnabled} onValueChange={(v) => updatePrefs({ inAppEnabled: v })} />
               </View>
-              <CustomSwitch value={prefs.inAppEnabled} onValueChange={(v) => updatePrefs({ inAppEnabled: v })} />
-            </View>
-            <Divider />
-            <View className="px-4 py-3.5 flex-row items-center justify-between">
-              <View className="flex-row items-center flex-1 pr-3">
-                <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                  <Icon name="Smartphone" size={18} color="#9ca3af" />
+              <Divider />
+              <View className="px-4 py-3.5 flex-row items-center justify-between">
+                <View className="flex-row items-center flex-1 pr-3">
+                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+                    <Icon name="Smartphone" size={18} color="#9ca3af" />
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-white text-sm font-medium">{t('settings.pushNotifications')}</Text>
+                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.pushNotificationsDeviceDesc')}</Text>
+                  </View>
                 </View>
-                <View className="flex-1">
-                  <Text className="text-white text-sm font-medium">{t('settings.pushNotifications')}</Text>
-                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.pushNotificationsDeviceDesc')}</Text>
-                </View>
+                <CustomSwitch
+                  value={prefs.pushEnabled}
+                  onValueChange={(v) => updatePrefs({ pushEnabled: v })}
+                  disabled={!pushPermissionGranted}
+                />
               </View>
-              <CustomSwitch
-                value={prefs.pushEnabled}
-                onValueChange={(v) => updatePrefs({ pushEnabled: v })}
-                disabled={!pushPermissionGranted}
-              />
             </View>
           </View>
-        </View>
+        </SettingsAnchor>
 
         {CATEGORIES.map(category => (
-          <View key={category.key} className="mt-6 mx-4">
-            <View className="flex-row items-center mb-2 ml-1">
-              <Icon name={category.icon} size={13} color="#9ca3af" />
-              <Text className="text-theme-neutrals-500 text-[11px] uppercase ml-1.5 tracking-widest font-semibold">{category.label}</Text>
+          <SettingsAnchor key={category.key} id={'notify-' + category.key}>
+            <View className="mt-6 mx-4">
+              <View className="flex-row items-center mb-2 ml-1">
+                <Icon name={category.icon} size={13} color="#9ca3af" />
+                <Text className="text-theme-neutrals-500 text-[11px] uppercase ml-1.5 tracking-widest font-semibold">{category.label}</Text>
+              </View>
+              <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
+                {typesByCategory[category.key]?.map((type, i) => (
+                  <React.Fragment key={type.key}>
+                    {i > 0 && <Divider />}
+                    <TypeRow
+                      config={type}
+                      inAppValue={prefs.inApp[type.key] ?? true}
+                      pushValue={prefs.push[type.key] ?? true}
+                      onInAppToggle={(v) => toggleInApp(type.key, v)}
+                      onPushToggle={(v) => togglePush(type.key, v)}
+                      inAppDisabled={!prefs.inAppEnabled}
+                      pushDisabled={!prefs.pushEnabled || !pushPermissionGranted}
+                    />
+                  </React.Fragment>
+                ))}
+              </View>
             </View>
-            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
-              {typesByCategory[category.key]?.map((type, i) => (
-                <React.Fragment key={type.key}>
-                  {i > 0 && <Divider />}
-                  <TypeRow
-                    config={type}
-                    inAppValue={prefs.inApp[type.key] ?? true}
-                    pushValue={prefs.push[type.key] ?? true}
-                    onInAppToggle={(v) => toggleInApp(type.key, v)}
-                    onPushToggle={(v) => togglePush(type.key, v)}
-                    inAppDisabled={!prefs.inAppEnabled}
-                    pushDisabled={!prefs.pushEnabled || !pushPermissionGranted}
-                  />
-                </React.Fragment>
-              ))}
-            </View>
-          </View>
+          </SettingsAnchor>
         ))}
 
-        <View className="mt-6 mx-4">
-          <View className="flex-row items-center mb-2 ml-1">
-            <Icon name="MessageSquare" size={13} color="#9ca3af" />
-            <Text className="text-theme-neutrals-500 text-[11px] uppercase ml-1.5 tracking-widest font-semibold">{t('settings.chatSection')}</Text>
-          </View>
-          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
-            <View className="px-4 py-3.5 flex-row items-center justify-between">
-              <View className="flex-row items-center flex-1 pr-3">
-                <View className="mr-3 w-8 h-8 rounded-lg bg-theme-neutrals-700/50 items-center justify-center">
-                  <Icon name="Bot" size={16} color="#9ca3af" />
-                </View>
-                <View className="flex-1">
-                  <Text className="text-white text-sm font-medium">{t('settings.buyBotAlerts')}</Text>
-                  <Text className="text-theme-neutrals-500 text-xs">{t('settings.buyBotAlertsDesc')}</Text>
-                </View>
-              </View>
-              <CustomSwitch value={buyBotAlerts} onValueChange={onToggleBuyBot} />
+        <SettingsAnchor id="chat">
+          <View className="mt-6 mx-4">
+            <View className="flex-row items-center mb-2 ml-1">
+              <Icon name="MessageSquare" size={13} color="#9ca3af" />
+              <Text className="text-theme-neutrals-500 text-[11px] uppercase ml-1.5 tracking-widest font-semibold">{t('settings.chatSection')}</Text>
             </View>
-          </View>
-        </View>
-
-        <View className="mt-6 mx-4">
-          <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">{t('settings.quietHours')}</Text>
-          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
-            <View className="px-4 py-3.5 flex-row items-center justify-between">
-              <View className="flex-row items-center flex-1 pr-3">
-                <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                  <Icon name="Moon" size={18} color="#9ca3af" />
-                </View>
-                <View className="flex-1">
-                  <Text className="text-white text-sm font-medium">{t('settings.enableQuietHours')}</Text>
-                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.quietHoursPauseDesc')}</Text>
-                </View>
-              </View>
-              <CustomSwitch
-                value={prefs.quietHours?.enabled ?? false}
-                onValueChange={(v) => updatePrefs({ quietHours: { ...prefs.quietHours, enabled: v } })}
-                disabled={!prefs.pushEnabled || !pushPermissionGranted}
-              />
-            </View>
-            {prefs.quietHours?.enabled && prefs.pushEnabled && (
-              <>
-                <Divider />
-                <View className="px-4 py-3">
-                  <View className="flex-row items-center justify-between">
-                    <View className="flex-1">
-                      <Text className="text-theme-neutrals-400 text-xs mb-1">{t('settings.quietHoursFrom')}</Text>
-                      <TouchableOpacity
-                        onPress={() => setHourPicker('start')}
-                        activeOpacity={0.7}
-                        className="bg-theme-neutrals-700 px-4 py-2.5 rounded-xl"
-                      >
-                        <Text className="text-white text-sm">{formatHour(prefs.quietHours.start)}</Text>
-                      </TouchableOpacity>
-                    </View>
-                    <View className="px-4">
-                      <Icon name="ArrowRight" size={16} color="#6b7280" />
-                    </View>
-                    <View className="flex-1">
-                      <Text className="text-theme-neutrals-400 text-xs mb-1">{t('settings.quietHoursTo')}</Text>
-                      <TouchableOpacity
-                        onPress={() => setHourPicker('end')}
-                        activeOpacity={0.7}
-                        className="bg-theme-neutrals-700 px-4 py-2.5 rounded-xl"
-                      >
-                        <Text className="text-white text-sm">{formatHour(prefs.quietHours.end)}</Text>
-                      </TouchableOpacity>
-                    </View>
+            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
+              <View className="px-4 py-3.5 flex-row items-center justify-between">
+                <View className="flex-row items-center flex-1 pr-3">
+                  <View className="mr-3 w-8 h-8 rounded-lg bg-theme-neutrals-700/50 items-center justify-center">
+                    <Icon name="Bot" size={16} color="#9ca3af" />
                   </View>
-                  <Text className="text-theme-neutrals-500 text-xs mt-2">
-                    {t('settings.quietHoursSilencedNote')}
-                  </Text>
+                  <View className="flex-1">
+                    <Text className="text-white text-sm font-medium">{t('settings.buyBotAlerts')}</Text>
+                    <Text className="text-theme-neutrals-500 text-xs">{t('settings.buyBotAlertsDesc')}</Text>
+                  </View>
                 </View>
-              </>
-            )}
+                <CustomSwitch value={buyBotAlerts} onValueChange={onToggleBuyBot} />
+              </View>
+            </View>
           </View>
-        </View>
+        </SettingsAnchor>
+
+        <SettingsAnchor id="quiet-hours">
+          <View className="mt-6 mx-4">
+            <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">{t('settings.quietHours')}</Text>
+            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
+              <View className="px-4 py-3.5 flex-row items-center justify-between">
+                <View className="flex-row items-center flex-1 pr-3">
+                  <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+                    <Icon name="Moon" size={18} color="#9ca3af" />
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-white text-sm font-medium">{t('settings.enableQuietHours')}</Text>
+                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t('settings.quietHoursPauseDesc')}</Text>
+                  </View>
+                </View>
+                <CustomSwitch
+                  value={prefs.quietHours?.enabled ?? false}
+                  onValueChange={(v) => updatePrefs({ quietHours: { ...prefs.quietHours, enabled: v } })}
+                  disabled={!prefs.pushEnabled || !pushPermissionGranted}
+                />
+              </View>
+              {prefs.quietHours?.enabled && prefs.pushEnabled && (
+                <>
+                  <Divider />
+                  <View className="px-4 py-3">
+                    <View className="flex-row items-center justify-between">
+                      <View className="flex-1">
+                        <Text className="text-theme-neutrals-400 text-xs mb-1">{t('settings.quietHoursFrom')}</Text>
+                        <TouchableOpacity
+                          onPress={() => setHourPicker('start')}
+                          activeOpacity={0.7}
+                          className="bg-theme-neutrals-700 px-4 py-2.5 rounded-xl"
+                        >
+                          <Text className="text-white text-sm">{formatHour(prefs.quietHours.start)}</Text>
+                        </TouchableOpacity>
+                      </View>
+                      <View className="px-4">
+                        <Icon name="ArrowRight" size={16} color="#6b7280" />
+                      </View>
+                      <View className="flex-1">
+                        <Text className="text-theme-neutrals-400 text-xs mb-1">{t('settings.quietHoursTo')}</Text>
+                        <TouchableOpacity
+                          onPress={() => setHourPicker('end')}
+                          activeOpacity={0.7}
+                          className="bg-theme-neutrals-700 px-4 py-2.5 rounded-xl"
+                        >
+                          <Text className="text-white text-sm">{formatHour(prefs.quietHours.end)}</Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                    <Text className="text-theme-neutrals-500 text-xs mt-2">
+                      {t('settings.quietHoursSilencedNote')}
+                    </Text>
+                  </View>
+                </>
+              )}
+            </View>
+          </View>
+        </SettingsAnchor>
 
         <View className="mt-6 mx-4 p-4 bg-theme-neutrals-800/50 rounded-xl flex-row items-start">
           <Icon name="Info" size={16} color="#6b7280" />
@@ -391,7 +403,7 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
             {t('settings.notifInfoNote')}
           </Text>
         </View>
-      </ScrollView>
+      </SettingsScrollView>
 
       {/* Quiet-hours bound picker — the From/To buttons were previously inert,
           so quiet hours could only ever run on the 22:00→08:00 default while
