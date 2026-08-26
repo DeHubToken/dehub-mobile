@@ -145,7 +145,14 @@ export interface UnifiedFeedItem {
   // Timestamps
   createdAt?: string;
   updatedAt?: string;
-  
+
+  // Moderation
+  /** 'pending' means enough badge-weighted scam/fraud reports landed to
+   *  border the link, ahead of any moderator review. Read directly —
+   *  there's no per-item mapping step in getUnifiedFeed to pre-derive a
+   *  boolean from it, same as isHidden. */
+  communityAlertStatus?: "none" | "pending" | "resolved" | string;
+
   // Allow additional fields
   [key: string]: any;
 }
