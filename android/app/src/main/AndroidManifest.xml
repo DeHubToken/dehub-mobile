@@ -40,6 +40,17 @@
     <meta-data android:name="expo.modules.updates.ENABLED" android:value="true"/>
     <meta-data android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH" android:value="ALWAYS"/>
     <meta-data android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS" android:value="0"/>
+    <!-- The two that were missing. Without a URL the three above are inert:
+         updates are "enabled" and checked on every launch, against nothing.
+         android/ is committed here, so `expo prebuild` never regenerates this
+         file and app.json alone reaches nothing — these must be edited by hand
+         and kept in step with app.json and ios/DeHub/Supporting/Expo.plist.
+         __tests__/ota/updatesConfig.test.ts asserts all three agree.
+         EXPO_RUNTIME_VERSION is a native-compatibility contract: bump it in all
+         three places whenever native code changes, or an OTA update will be
+         served to a binary that lacks the modules it expects. -->
+    <meta-data android:name="expo.modules.updates.EXPO_UPDATE_URL" android:value="https://u.expo.dev/734211bf-5261-4dce-9e61-2bfc51c339b9"/>
+    <meta-data android:name="expo.modules.updates.EXPO_RUNTIME_VERSION" android:value="1.17.0"/>
     <service android:name="expo.modules.video.playbackService.ExpoVideoPlaybackService" android:exported="false" android:foregroundServiceType="mediaPlayback">
       <intent-filter>
         <action android:name="androidx.media3.session.MediaSessionService"/>
