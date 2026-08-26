@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next';
 import Icon, { type IconName } from '../ui/Icon';
 import CustomSwitch from '../ui/CustomSwitch';
 import GlassModal from '../ui/GlassModal';
+import { SettingsAnchor } from './SettingsAnchor';
 import { toastInfo } from '../../libs';
 
 export const SectionLabel: React.FC<{ label: string; icon?: IconName }> = ({ label, icon }) => (
@@ -37,22 +38,33 @@ export const SectionCard: React.FC<{ children: React.ReactNode }> = ({ children 
 
 export const Divider = () => <View className="h-px bg-theme-neutrals-700 ml-16" />;
 
-/** Section wrapper: label + card, with the spacing web uses between blocks. */
+/**
+ * Section wrapper: label + card, with the spacing web uses between blocks.
+ *
+ * `anchor` opts the section into settings search — it becomes the thing a
+ * search hit scrolls to and flashes. It has to wrap the outermost view: the
+ * anchor reports its `y` with onLayout, which is only in scroll coordinates
+ * while it is a direct child of the panel's ScrollView.
+ */
 export const SettingsSection: React.FC<{
   label: string;
   icon?: IconName;
   note?: string;
   children: React.ReactNode;
   className?: string;
-}> = ({ label, icon, note, children, className }) => (
-  <View className={`mt-6 mx-4 ${className ?? ''}`}>
-    <SectionLabel label={label} icon={icon} />
-    <SectionCard>{children}</SectionCard>
-    {note ? (
-      <Text className="text-theme-neutrals-500 text-xs mt-2 mx-1">{note}</Text>
-    ) : null}
-  </View>
-);
+  anchor?: string;
+}> = ({ label, icon, note, children, className, anchor }) => {
+  const body = (
+    <View className={`mt-6 mx-4 ${className ?? ''}`}>
+      <SectionLabel label={label} icon={icon} />
+      <SectionCard>{children}</SectionCard>
+      {note ? (
+        <Text className="text-theme-neutrals-500 text-xs mt-2 mx-1">{note}</Text>
+      ) : null}
+    </View>
+  );
+  return anchor ? <SettingsAnchor id={anchor}>{body}</SettingsAnchor> : body;
+};
 
 type BaseRowProps = {
   icon: IconName;

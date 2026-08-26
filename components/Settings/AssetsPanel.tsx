@@ -10,13 +10,14 @@
  * wallet tab.
  */
 import React, { useCallback, useState } from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Icon from '../ui/Icon';
 import ChainSwitchModal from './ChainSwitchModal';
 import ExportPrivateKeyModal from './ExportPrivateKeyModal';
 import SwitchAccountModal from './SwitchAccountModal';
 import BadgeDelegationSection from './BadgeDelegationSection';
+import { SettingsScrollView } from './SettingsAnchor';
 import { SettingsSection, SettingsLinkRow, SettingsInfoRow, Divider } from './SettingsPrimitives';
 import { useUser, useProvider, useAuthActions } from '../../context/AuthContext';
 import { copyToClipboard, toastSuccess, toastError, truncateAddress } from '../../libs';
@@ -113,8 +114,8 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
   }, [resettingLink, signOut]);
 
   return (
-    <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
-      <SettingsSection label={t('settings.assets')} icon="Wallet" className="mt-4">
+    <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
+      <SettingsSection label={t('settings.assets')} icon="Wallet" className="mt-4" anchor="assets">
         <TouchableOpacity onPress={handleCopy} disabled={!address} activeOpacity={0.7}>
           <View className={`px-4 py-3.5 flex-row items-center ${address ? '' : 'opacity-40'}`}>
             <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
@@ -208,15 +209,15 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
           what DHB buys rather than off in Profile. */}
       <BadgeDelegationSection />
 
-      <SettingsSection label={t('settings.fractionsOwn')} icon="ChartPie">
+      <SettingsSection label={t('settings.fractionsOwn')} icon="ChartPie" anchor="fractions">
         <EmptyOwnership icon="ChartPie" label={t('settings.noFractions')} />
       </SettingsSection>
 
-      <SettingsSection label={t('settings.usernamesOwn')} icon="AtSign">
+      <SettingsSection label={t('settings.usernamesOwn')} icon="AtSign" anchor="owned-usernames">
         <EmptyOwnership icon="AtSign" label={t('settings.noUsernames')} />
       </SettingsSection>
 
-      <SettingsSection label={t('settings.offersMade')} icon="Handshake">
+      <SettingsSection label={t('settings.offersMade')} icon="Handshake" anchor="offers-made">
         <EmptyOwnership icon="Handshake" label={t('settings.noOffers')} />
       </SettingsSection>
 
@@ -233,7 +234,7 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
         onClose={() => setSwitchAccountVisible(false)}
         currentAddress={address}
       />
-    </ScrollView>
+    </SettingsScrollView>
   );
 };
 
