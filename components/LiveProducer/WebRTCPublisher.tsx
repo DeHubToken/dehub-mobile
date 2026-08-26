@@ -8,6 +8,7 @@ import React, {
 import { View, Platform, Text } from "react-native";
 import { mediaDevices, RTCPeerConnection, RTCView } from "react-native-webrtc";
 import { runWithPermissions, type PermissionKind } from "../../libs/permissions.util";
+import { whipEndpointFor } from "../../libs/live-ingest";
 
 // Types
 type Facing = "front" | "back";
@@ -15,6 +16,16 @@ type PublishStats = { bitrateKbps?: number; fps?: number };
 
 export interface WebRTCPublisherProps {
   streamKey: string;
+  /**
+   * Which ingest this broadcast lives on, and its public id.
+   *
+   * The self-hosted server addresses a stream by playbackId and takes the key
+   * as a credential, so the key alone is no longer enough to build the
+   * endpoint. Absent, this falls back to Livepeer, which is what every stream
+   * minted before the self-hosted path is.
+   */
+  playbackId?: string | null;
+  provider?: string | null;
   active: boolean;
   facing: Facing;
   micMuted: boolean;
@@ -48,23 +59,40 @@ function computeStreamURL(ms: any): string | null {
   return null;
 }
 
-// Resolve regional WHIP endpoint from streamKey
-async function resolveWhipEndpoint(streamKey: string): Promise<string> {
+/**
+ * Resolve the WHIP endpoint for a broadcast.
+ *
+ * The two ingests differ in more than a hostname. Livepeer names a broadcast
+ * by its SECRET stream key and answers with a redirect to a regional node, so
+ * it has to be probed. The self-hosted server names it by the PUBLIC
+ * playbackId and takes the key as a credential instead — a path every viewer
+ * can read is not a secret to publish against — and it has no regional layer
+ * to redirect to, so probing it is pointless.
+ */
+async function resolveWhipEndpoint(
+  streamKey: string,
+  stream: { playbackId?: string | null; provider?: string | null },
+): Promise<{ url: string; token?: string }> {
+  const selfHosted = whipEndpointFor({ ...stream, streamKey });
+  if (selfHosted) return selfHosted;
+
   const probe = `https://livepeer.studio/webrtc/${streamKey}`;
   try {
     const resp = await fetch(probe, { method: "HEAD" as any });
     const loc = resp.headers?.get?.("Location");
-    if (loc) return loc;
+    if (loc) return { url: loc };
     const url = (resp as any)?.url;
-    return url && url !== probe ? url : probe;
+    return { url: url && url !== probe ? url : probe };
   } catch {
-    return probe;
+    return { url: probe };
   }
 }
 
 // Component
 const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
   streamKey,
+  playbackId,
+  provider,
   active,
   facing,
   micMuted,
@@ -266,7 +294,10 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           return;
         }
         dbg('resolving WHIP endpoint', { gen: myGen });
-        const redirectUrl = await resolveWhipEndpoint(streamKey);
+        const { url: redirectUrl, token: whipToken } = await resolveWhipEndpoint(
+          streamKey,
+          { playbackId, provider },
+        );
   dbg('WHIP endpoint resolved', { gen: myGen, redirectUrl });
   if (myGen !== pcGenerationRef.current) { dbg('start(): stale before PC create', { gen: myGen, currentGen: pcGenerationRef.current }); return; }
         const iceServers = [
@@ -366,7 +397,10 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
         dbg('posting offer to WHIP', { gen: myGen });
         const resp = await fetch(redirectUrl, {
           method: "POST",
-          headers: { "content-type": "application/sdp" },
+          headers: {
+            "content-type": "application/sdp",
+            ...(whipToken ? { authorization: `Bearer ${whipToken}` } : {}),
+          },
           body: localDesc.sdp,
         });
         if (!resp.ok)

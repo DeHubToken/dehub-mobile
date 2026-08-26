@@ -47,6 +47,7 @@ import LiveViewerReactionsBar from "../LiveViewer/LiveViewerReactionsBar";
 import LiveViewerStatusOverlay from "../LiveViewer/LiveViewerStatusOverlay";
 import LiveEventBanner from "../LiveViewer/LiveEventBanner";
 import type { EventBannerData } from "../LiveViewer/LiveEventBanner";
+import { hlsUrlFor } from "../../libs/live-ingest";
 
 type LiveStreamPlayerProps = {
   // Minimal inputs; additional params may be forwarded from route
@@ -62,8 +63,14 @@ type LiveStreamPlayerProps = {
   createdAt?: string | number | Date;
 };
 
-const buildHlsFromPlayback = (playbackId?: string | null) =>
-  playbackId ? `https://livepeercdn.studio/hls/${playbackId}/index.m3u8` : null;
+// Resolved from the stream, not hardcoded: a broadcast may be on Livepeer or
+// on the self-hosted ingest, and the two put the playback id in completely
+// different places. Assuming Livepeer here is what would make every
+// self-hosted stream 404 on this app while working everywhere else.
+const buildHlsFromPlayback = (
+  playbackId?: string | null,
+  provider?: string | null,
+) => hlsUrlFor({ playbackId, provider });
 
 const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const {
@@ -248,9 +255,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const playbackId = streamEntity?.playbackId || playbackIdProp;
   const effectiveVideoUrl = useMemo(() => {
     if (!isPlayable) return null;
-    const liveUrl = buildHlsFromPlayback(playbackId);
+    const liveUrl = buildHlsFromPlayback(playbackId, streamEntity?.provider);
     return liveUrl || null;
-  }, [isPlayable, playbackId]);
+  }, [isPlayable, playbackId, streamEntity?.provider]);
 
   // Live chat activities and socket wiring
   type Activity = {
