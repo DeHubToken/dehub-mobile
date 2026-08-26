@@ -968,6 +968,8 @@ const LiveProducerScreen: React.FC = () => {
           ) : mountPublisher ? (
             <WebRTCPublisher
               streamKey={streamKey || streamKeyValue || ""}
+              playbackId={streamEntity?.playbackId}
+              provider={(streamEntity as any)?.provider}
               active={
                 (stage === "starting" || stage === "live") && !externalMode
               }
