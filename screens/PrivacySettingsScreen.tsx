@@ -9,6 +9,10 @@ import {
   FlatList,
 } from 'react-native';
 import ScreenHeader from '../components/ScreenHeader';
+import {
+  SettingsAnchor,
+  SettingsScrollView,
+} from '../components/Settings/SettingsAnchor';
 import Icon from '../components/ui/Icon';
 import CustomSwitch from '../components/ui/CustomSwitch';
 import GlassModal from '../components/ui/GlassModal';
@@ -333,126 +337,136 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
           rightContent={saving ? <ActivityIndicator size="small" color="#F4F4F5" /> : undefined}
         />
       )}
-      <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 32 }}>
+      <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 32 }}>
 
         {/* Account Visibility */}
-        <View className="mt-4 mx-4">
-          <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
-            {t('settings.accountVisibility')}
-          </Text>
-          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
-            <View className="px-4 py-3.5 flex-row items-center justify-between">
-              <View className="flex-row items-center flex-1 pr-3">
-                <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                  <Icon name="Lock" size={18} color="#9ca3af" />
-                </View>
-                <View className="flex-1">
-                  <Text className={`text-sm font-medium ${saving ? 'text-theme-neutrals-500' : 'text-white'}`}>
-                    {t('settings.privateAccount')}
-                  </Text>
-                  <Text className={`text-xs mt-0.5 ${saving ? 'text-theme-neutrals-600' : 'text-theme-neutrals-500'}`}>
-                    {t('settings.privateAccountOnlyFollowers')}
-                  </Text>
-                </View>
-              </View>
-              <CustomSwitch value={isPrivate} onValueChange={handleTogglePrivate} disabled={saving} />
-            </View>
-
-            {isPrivate && pendingCount > 0 && (
-              <>
-                <View className="h-px bg-theme-neutrals-700 ml-16" />
-                <TouchableOpacity
-                  onPress={handleOpenRequests}
-                  activeOpacity={0.7}
-                  className="px-4 py-3.5 flex-row items-center"
-                >
+        <SettingsAnchor id="account-visibility">
+          <View className="mt-4 mx-4">
+            <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
+              {t('settings.accountVisibility')}
+            </Text>
+            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
+              <View className="px-4 py-3.5 flex-row items-center justify-between">
+                <View className="flex-row items-center flex-1 pr-3">
                   <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                    <Icon name="UserPlus" size={18} color="#9ca3af" />
+                    <Icon name="Lock" size={18} color="#9ca3af" />
                   </View>
-                  <View className="flex-1 mr-2">
-                    <Text className="text-white text-sm font-medium">{t('settings.followRequests')}</Text>
-                    <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                      {pendingCount === 1
-                        ? t('settings.pendingRequestCountSingular', { count: pendingCount })
-                        : t('settings.pendingRequestCountPlural', { count: pendingCount })}
+                  <View className="flex-1">
+                    <Text className={`text-sm font-medium ${saving ? 'text-theme-neutrals-500' : 'text-white'}`}>
+                      {t('settings.privateAccount')}
+                    </Text>
+                    <Text className={`text-xs mt-0.5 ${saving ? 'text-theme-neutrals-600' : 'text-theme-neutrals-500'}`}>
+                      {t('settings.privateAccountOnlyFollowers')}
                     </Text>
                   </View>
-                  <Icon name="ChevronRight" size={18} color="#6b7280" />
-                </TouchableOpacity>
-              </>
-            )}
+                </View>
+                <CustomSwitch value={isPrivate} onValueChange={handleTogglePrivate} disabled={saving} />
+              </View>
+
+              {isPrivate && pendingCount > 0 && (
+                <>
+                  <View className="h-px bg-theme-neutrals-700 ml-16" />
+                  <TouchableOpacity
+                    onPress={handleOpenRequests}
+                    activeOpacity={0.7}
+                    className="px-4 py-3.5 flex-row items-center"
+                  >
+                    <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+                      <Icon name="UserPlus" size={18} color="#9ca3af" />
+                    </View>
+                    <View className="flex-1 mr-2">
+                      <Text className="text-white text-sm font-medium">{t('settings.followRequests')}</Text>
+                      <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                        {pendingCount === 1
+                          ? t('settings.pendingRequestCountSingular', { count: pendingCount })
+                          : t('settings.pendingRequestCountPlural', { count: pendingCount })}
+                      </Text>
+                    </View>
+                    <Icon name="ChevronRight" size={18} color="#6b7280" />
+                  </TouchableOpacity>
+                </>
+              )}
+            </View>
+            <Text className="text-theme-neutrals-500 text-xs mt-2 mx-1">
+              {t('settings.privateAccountNote')}
+            </Text>
           </View>
-          <Text className="text-theme-neutrals-500 text-xs mt-2 mx-1">
-            {t('settings.privateAccountNote')}
-          </Text>
-        </View>
+        </SettingsAnchor>
 
         {/* Post Visibility */}
-        <View className="mt-6 mx-4">
-          <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
-            {t('settings.postVisibility')}
-          </Text>
-          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
-            <TouchableOpacity
-              onPress={() => setShowPostVisModal(true)}
-              activeOpacity={0.7}
-              className="px-4 py-3.5 flex-row items-center"
-              disabled={saving}
-            >
-              <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                <Icon name="Eye" size={18} color="#9ca3af" />
-              </View>
-              <View className="flex-1 mr-2">
-                <Text className="text-white text-sm font-medium">{t('settings.defaultPostVisibility')}</Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                  {t('settings.newPostsDefaultDesc', { visibility: postVisLabel[defaultPostVisibility].toLowerCase() })}
-                </Text>
-              </View>
-              <View className="flex-row items-center">
-                <Text className="text-theme-neutrals-400 text-xs mr-2">{postVisLabel[defaultPostVisibility]}</Text>
-                <Icon name="ChevronRight" size={18} color="#6b7280" />
-              </View>
-            </TouchableOpacity>
+        <SettingsAnchor id="post-visibility">
+          <View className="mt-6 mx-4">
+            <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
+              {t('settings.postVisibility')}
+            </Text>
+            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
+              <TouchableOpacity
+                onPress={() => setShowPostVisModal(true)}
+                activeOpacity={0.7}
+                className="px-4 py-3.5 flex-row items-center"
+                disabled={saving}
+              >
+                <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+                  <Icon name="Eye" size={18} color="#9ca3af" />
+                </View>
+                <View className="flex-1 mr-2">
+                  <Text className="text-white text-sm font-medium">{t('settings.defaultPostVisibility')}</Text>
+                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                    {t('settings.newPostsDefaultDesc', { visibility: postVisLabel[defaultPostVisibility].toLowerCase() })}
+                  </Text>
+                </View>
+                <View className="flex-row items-center">
+                  <Text className="text-theme-neutrals-400 text-xs mr-2">{postVisLabel[defaultPostVisibility]}</Text>
+                  <Icon name="ChevronRight" size={18} color="#6b7280" />
+                </View>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
+        </SettingsAnchor>
 
         {/* Follower Visibility */}
-        <View className="mt-6 mx-4">
-          <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
-            {t('settings.followerVisibilitySection')}
-          </Text>
-          <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
-            <TouchableOpacity
-              onPress={() => setShowFollowerVisModal(true)}
-              activeOpacity={0.7}
-              className="px-4 py-3.5 flex-row items-center"
-              disabled={saving}
-            >
-              <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
-                <Icon name="EyeOff" size={18} color="#9ca3af" />
-              </View>
-              <View className="flex-1 mr-2">
-                <Text className="text-white text-sm font-medium">{t('settings.hideFollowersFollowing')}</Text>
-                <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-                  {followerVisibility === 'public' && t('settings.followerVisPublicDesc')}
-                  {followerVisibility === 'counts-only' && t('settings.followerVisCountsDesc')}
-                  {followerVisibility === 'hidden' && t('settings.followerVisHiddenDesc')}
-                </Text>
-              </View>
-              <View className="flex-row items-center">
-                <Text className="text-theme-neutrals-400 text-xs mr-2">{followerVisLabel[followerVisibility]}</Text>
-                <Icon name="ChevronRight" size={18} color="#6b7280" />
-              </View>
-            </TouchableOpacity>
+        <SettingsAnchor id="follower-visibility">
+          <View className="mt-6 mx-4">
+            <Text className="text-theme-neutrals-500 text-[11px] uppercase mb-2 ml-1 tracking-widest font-semibold">
+              {t('settings.followerVisibilitySection')}
+            </Text>
+            <View className="bg-theme-neutrals-800 rounded-xl overflow-hidden border border-theme-neutrals-700">
+              <TouchableOpacity
+                onPress={() => setShowFollowerVisModal(true)}
+                activeOpacity={0.7}
+                className="px-4 py-3.5 flex-row items-center"
+                disabled={saving}
+              >
+                <View className="mr-3 w-9 h-9 rounded-xl bg-theme-neutrals-700/50 items-center justify-center">
+                  <Icon name="EyeOff" size={18} color="#9ca3af" />
+                </View>
+                <View className="flex-1 mr-2">
+                  <Text className="text-white text-sm font-medium">{t('settings.hideFollowersFollowing')}</Text>
+                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                    {followerVisibility === 'public' && t('settings.followerVisPublicDesc')}
+                    {followerVisibility === 'counts-only' && t('settings.followerVisCountsDesc')}
+                    {followerVisibility === 'hidden' && t('settings.followerVisHiddenDesc')}
+                  </Text>
+                </View>
+                <View className="flex-row items-center">
+                  <Text className="text-theme-neutrals-400 text-xs mr-2">{followerVisLabel[followerVisibility]}</Text>
+                  <Icon name="ChevronRight" size={18} color="#6b7280" />
+                </View>
+              </TouchableOpacity>
+            </View>
+            <Text className="text-theme-neutrals-500 text-xs mt-2 mx-1">
+              {t('settings.followerVisibilityNote')}
+            </Text>
           </View>
-          <Text className="text-theme-neutrals-500 text-xs mt-2 mx-1">
-            {t('settings.followerVisibilityNote')}
-          </Text>
-        </View>
+        </SettingsAnchor>
 
         {/* Profile discoverability — both switches are `comingSoon` on web too
             (`PrivacySettings` → Profile Visibility). */}
-        <SettingsSection label={t('settings.profileVisibility')} icon="Globe">
+        <SettingsSection
+          label={t('settings.profileVisibility')}
+          icon="Globe"
+          anchor="profile-visibility"
+        >
           <SettingsToggleRow
             icon="Globe"
             label={t('settings.publicProfile')}
@@ -491,7 +505,11 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
 
         {/* Account security — web's `Account Security` block plus its
             Active Sessions section. */}
-        <SettingsSection label={t('settings.accountSecurity')} icon="ShieldCheck">
+        <SettingsSection
+          label={t('settings.accountSecurity')}
+          icon="ShieldCheck"
+          anchor="account-security"
+        >
           <SettingsLinkRow
             icon="Shield"
             label={t('settings.twoFactorAuth')}
@@ -534,9 +552,13 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
         </SettingsSection>
 
         {/* Your data — web's Extract Data row. */}
-        <DataPortabilitySection />
+        <SettingsAnchor id="your-data">
+          <DataPortabilitySection />
+        </SettingsAnchor>
 
-        <GeoBlockingSection />
+        <SettingsAnchor id="geo-blocking">
+          <GeoBlockingSection />
+        </SettingsAnchor>
 
         <View className="mt-6 mx-4 p-4 bg-theme-neutrals-800/50 rounded-xl flex-row items-start">
           <Icon name="Info" size={16} color="#6b7280" />
@@ -544,7 +566,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
             {t('settings.privacyHelpNote')}
           </Text>
         </View>
-      </ScrollView>
+      </SettingsScrollView>
 
       <BlockedAccountsModal
         visible={blockedModalVisible}

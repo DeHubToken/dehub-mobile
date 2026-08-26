@@ -13,10 +13,11 @@
  *    not a settings change.
  */
 import React, { useState } from 'react';
-import { View, Text, ScrollView, Alert } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Slider from '@react-native-community/slider';
 import LanguageSelectModal from './LanguageSelectModal';
+import { SettingsScrollView } from './SettingsAnchor';
 import {
   SettingsSection,
   SettingsLinkRow,
@@ -70,8 +71,8 @@ const AppearancePanel: React.FC = () => {
     SUPPORTED_LANGUAGES.find((l) => l.code === currentLang)?.nativeName ?? 'English';
 
   return (
-    <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
-      <SettingsSection label={t('settings.theme')} icon="Palette" className="mt-4">
+    <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
+      <SettingsSection label={t('settings.theme')} icon="Palette" className="mt-4" anchor="theme">
         <SettingsToggleRow
           icon="Lamp"
           label={t('settings.dimLights')}
@@ -105,7 +106,7 @@ const AppearancePanel: React.FC = () => {
         ) : null}
       </SettingsSection>
 
-      <SettingsSection label={t('settings.language')} icon="Globe">
+      <SettingsSection label={t('settings.language')} icon="Globe" anchor="language">
         <SettingsLinkRow
           icon="Globe"
           label={t('settings.language')}
@@ -118,7 +119,7 @@ const AppearancePanel: React.FC = () => {
         />
       </SettingsSection>
 
-      <SettingsSection label={t('settings.media')} icon="Play">
+      <SettingsSection label={t('settings.media')} icon="Play" anchor="media">
         <SettingsToggleRow
           icon="Play"
           label={t('settings.autoPlay')}
@@ -178,7 +179,7 @@ const AppearancePanel: React.FC = () => {
           setCurrentLang(i18nInstance.language);
         }}
       />
-    </ScrollView>
+    </SettingsScrollView>
   );
 };
 

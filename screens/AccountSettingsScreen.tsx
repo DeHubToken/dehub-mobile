@@ -14,7 +14,7 @@
  * Web additionally has `skills` and `characters`; neither library exists in
  * this app, so those tabs are not rendered rather than rendered empty.
  */
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   View,
@@ -61,6 +61,16 @@ import {
   SettingsInfoRow,
   Divider,
 } from "../components/Settings/SettingsPrimitives";
+import SettingsSearchBar from "../components/Settings/SettingsSearchBar";
+import {
+  SettingsAnchor,
+  SettingsScrollView,
+} from "../components/Settings/SettingsAnchor";
+import {
+  revealSetting,
+  resetSettingsReveal,
+  type SettingsSearchHit,
+} from "../libs/settings-search";
 
 const APP_VERSION = Constants.expoConfig?.version ?? "1.0.0";
 
@@ -104,6 +114,16 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
     ],
     [t]
   );
+
+  // A search hit lands on the setting, not just its tab: switch tab, then
+  // scroll its section into view and flash it. revealSetting waits for the
+  // section to lay out, so it copes with the panel mounting after this call.
+  const handleSearchSelect = useCallback((hit: SettingsSearchHit) => {
+    setActiveTab(hit.tab as TabKey);
+    revealSetting(hit.anchor);
+  }, []);
+
+  useEffect(() => () => resetSettingsReveal(), []);
 
   const handleSignOut = useCallback(async () => {
     if (signingOut) return;
@@ -158,6 +178,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   const headerBento = (
     <View className="px-4 pt-3">
       <View className="bg-theme-neutrals-800 rounded-2xl p-4 border border-theme-neutrals-700">
+        <SettingsSearchBar onSelect={handleSearchSelect} />
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -193,9 +214,18 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
   );
 
   const profilePanel = (
-    <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
-      {isSignedIn ? <ProfilesSection /> : null}
-      <SettingsSection label={t("settings.profileSettings")} icon="User" className="mt-4">
+    <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
+      {isSignedIn ? (
+        <SettingsAnchor id="profiles">
+          <ProfilesSection />
+        </SettingsAnchor>
+      ) : null}
+      <SettingsSection
+        label={t("settings.profileSettings")}
+        icon="User"
+        className="mt-4"
+        anchor="profile-settings"
+      >
         <View className="px-4 py-3.5 flex-row items-center">
           <Avatar
             uri={(() => {
@@ -234,9 +264,13 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
       {/* Under the profile rows, not the wallet ones: a .eth name is an alias
           on the profile, and every wallet it involves belongs to somebody
           proving ownership rather than to this account. */}
-      {isSignedIn ? <EnsHandleSection /> : null}
+      {isSignedIn ? (
+        <SettingsAnchor id="ens">
+          <EnsHandleSection />
+        </SettingsAnchor>
+      ) : null}
 
-      <SettingsSection label={t("settings.yourContent")} icon="Film">
+      <SettingsSection label={t("settings.yourContent")} icon="Film" anchor="your-content">
         <SettingsLinkRow
           icon="Video"
           label={t("settings.yourVideos")}
@@ -259,12 +293,17 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
       <Text className="text-center text-theme-neutrals-500 text-xs mt-6">
         DeHub v{APP_VERSION}
       </Text>
-    </ScrollView>
+    </SettingsScrollView>
   );
 
   const supportPanel = (
-    <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
-      <SettingsSection label={t("settings.support")} icon="LifeBuoy" className="mt-4">
+    <SettingsScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 40 }}>
+      <SettingsSection
+        label={t("settings.support")}
+        icon="LifeBuoy"
+        className="mt-4"
+        anchor="support"
+      >
         {/* Native-only: no web equivalent, so web deliberately omits it. */}
         <SettingsLinkRow
           icon="Star"
@@ -304,14 +343,14 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
         />
       </SettingsSection>
 
-      <SettingsSection label={t("settings.about")} icon="Info">
+      <SettingsSection label={t("settings.about")} icon="Info" anchor="about">
         <SettingsInfoRow
           icon="Smartphone"
           label={t("settings.appVersion")}
           right={<Text className="text-theme-neutrals-400 text-xs">v{APP_VERSION}</Text>}
         />
       </SettingsSection>
-    </ScrollView>
+    </SettingsScrollView>
   );
 
   return (
