@@ -981,7 +981,10 @@ export default function FeedDetailScreen() {
                   accessibilityLabel="Add emoji"
                   style={composerStyles.iconControl}
                 >
-                  <Ionicons name="happy-outline" size={20} color={theme.colors.mutedForeground} />
+                  {/* A text glyph, not an icon — same reasoning as GIF above: a
+                      thin line-art face reads smaller and washed-out next to a
+                      solid rectangle and a solid capsule in identical boxes. */}
+                  <Text style={{ fontSize: 18 }}>🙂</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {

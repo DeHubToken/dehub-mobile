@@ -1163,7 +1163,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   accessibilityLabel="Add emoji"
                   style={composerStyles.iconControl}
                 >
-                  <Icon name="Smile" size={20} color="#8B8D90" />
+                  {/* A text glyph, not an icon — same reasoning as GIF above: a
+                      thin line-art face reads smaller and washed-out next to a
+                      solid rectangle and a solid capsule in identical boxes. */}
+                  <Text style={{ fontSize: 18 }}>🙂</Text>
                 </Pressable>
                 <Pressable
                   onPress={handleStartRecording}
