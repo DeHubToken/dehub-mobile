@@ -17,25 +17,10 @@
  * automatically; do not hand-write the numbers.
  */
 import { BADGE_ORDER, getBadgeName } from "./misc";
+import { overrideTierNameFor } from "./badgeOverrides";
 
 /** Feed slots per day for a wallet with no staking badge. */
 export const BASELINE_FEED_POSTS_PER_DAY = 1;
-
-/**
- * Usernames web hands a top-tier allowance regardless of balance, copied from
- * `USERNAME_BADGE_OVERRIDES` in web's `src/lib/staking-badges.ts`.
- *
- * Mirrored here for the ALLOWANCE ONLY, not for which badge image renders —
- * mobile's `getBadgeName` has never carried these overrides and changing that
- * would silently restyle badges across the app. Without this the same account
- * gets 14 feed slots on web and 6 on mobile, which is exactly the disagreement
- * this module exists to prevent.
- */
-const USERNAME_ALLOWANCE_OVERRIDES: Record<string, string> = {
-  maldoteth: "Meglodon",
-  mal: "Meglodon",
-  aaron: "Meglodon",
-};
 
 export interface PostAllowanceInfo {
   /** Posts per day this wallet gets on the home feed. */
@@ -49,12 +34,11 @@ export function getPostAllowanceForBadge(
   badgeBalance: number | string | undefined | null,
   username?: string | null,
 ): PostAllowanceInfo {
-  let badge: string | undefined;
-
-  const clean = username ? username.replace("@", "").toLowerCase() : "";
-  if (clean && USERNAME_ALLOWANCE_OVERRIDES[clean]) {
-    badge = USERNAME_ALLOWANCE_OVERRIDES[clean];
-  } else if (badgeBalance !== undefined && badgeBalance !== null) {
+  // A granted badge wins outright here, as it always has — the allowance is
+  // what the grant is for. `libs/badgeOverrides.ts` owns the list; it is
+  // deliberately not what `getBadgeName` draws from.
+  let badge = overrideTierNameFor(username);
+  if (!badge && badgeBalance !== undefined && badgeBalance !== null) {
     badge = getBadgeName(badgeBalance);
   }
 

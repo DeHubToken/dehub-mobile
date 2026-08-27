@@ -102,3 +102,37 @@ describe("applyReactionDelta at weight", () => {
     expect(applyReactionDelta({ like: 2 }, "like", null, 14)).toEqual({ like: 0 });
   });
 });
+
+describe("a badge granted by name", () => {
+  it("weighs a granted account at the tier it names, with no balance behind it", () => {
+    expect(engagementWeight(null, undefined, "maldoteth")).toBe(
+      MAX_ENGAGEMENT_WEIGHT,
+    );
+    expect(engagementWeight(0, undefined, "@MalDoTeth")).toBe(
+      MAX_ENGAGEMENT_WEIGHT,
+    );
+  });
+
+  it("matches what the API will apply, so the count does not snap", () => {
+    // The bug this shipped for, in the other direction: the API grants
+    // Meglodon by name, so a guess of 6 off the Cobra balance behind it would
+    // be corrected upward a frame later.
+    expect(engagementWeight(296_435, undefined, "maldoteth")).toBe(
+      MAX_ENGAGEMENT_WEIGHT,
+    );
+  });
+
+  it("only ever promotes", () => {
+    expect(engagementWeight(50_000_000, undefined, "someoneelse")).toBe(
+      MAX_ENGAGEMENT_WEIGHT,
+    );
+  });
+
+  it("leaves everybody else on their balance", () => {
+    expect(engagementWeight(296_435, undefined, "someoneelse")).toBe(6);
+    expect(engagementWeight(296_435)).toBe(6);
+    expect(engagementWeight(null, undefined, "someoneelse")).toBe(
+      NO_BADGE_ENGAGEMENT_WEIGHT,
+    );
+  });
+});

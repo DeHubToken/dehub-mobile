@@ -15,6 +15,7 @@
  * the app losing accounts rather than as a tier rule.
  */
 import { BADGE_ORDER, getBadgeName } from "./misc";
+import { overrideTierNameFor } from "./badgeOverrides";
 
 /** Profiles a device with no staking badge may keep. */
 export const BASELINE_PROFILES = 2;
@@ -24,13 +25,6 @@ export const BASELINE_PROFILES = 2;
  * unlock. Nothing but a corrupted list should ever reach it.
  */
 export const MAX_PROFILES_CEILING = BASELINE_PROFILES + BADGE_ORDER.length;
-
-/** Usernames web grants a top-tier allowance regardless of balance. */
-const USERNAME_ALLOWANCE_OVERRIDES: Record<string, string> = {
-  maldoteth: "Meglodon",
-  mal: "Meglodon",
-  aaron: "Meglodon",
-};
 
 export interface ProfileAllowance {
   /** Profiles that may be saved on this device at once. */
@@ -62,10 +56,8 @@ function allowanceForIndex(index: number): ProfileAllowance {
 
 /** Tier index for one holder; -1 when they hold no badge. */
 function tierIndex(holder: BadgeHolder): number {
-  const clean = holder.username ? holder.username.replace("@", "").toLowerCase() : "";
-  const override = clean ? USERNAME_ALLOWANCE_OVERRIDES[clean] : undefined;
   const badge =
-    override ??
+    overrideTierNameFor(holder.username) ??
     (holder.badgeBalance !== undefined && holder.badgeBalance !== null
       ? getBadgeName(holder.badgeBalance)
       : undefined);

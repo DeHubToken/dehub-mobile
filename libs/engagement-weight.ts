@@ -19,6 +19,12 @@
  * actually applied; prefer that number where it can be read, because a cached
  * account row here can be a beat behind the one the API priced from.
  *
+ * **A badge granted by name counts too**, via `libs/badgeOverrides.ts`. The API
+ * applies those grants to reactions and views, so a guess made without them is
+ * wrong by up to thirteen and gets corrected a frame later. It is still only
+ * the weight — `getBadgeName` does not carry the grants and the badge image
+ * does not change.
+ *
  * Keep in step with `dehub-stream-backend/src/badge/engagement-weight.ts` and
  * `dehubweb/src/lib/engagement-weight.ts`.
  *
@@ -26,6 +32,7 @@
  */
 
 import { BADGE_ORDER, getBadgeName, type BadgeContext } from "./misc";
+import { overrideTierNameFor } from "./badgeOverrides";
 
 /** What an account with no badge contributes. Everybody counts at least once. */
 export const NO_BADGE_ENGAGEMENT_WEIGHT = 1;
@@ -52,16 +59,29 @@ export function engagementWeightForBadge(
 
 /**
  * Weight for a balance, resolved through the same ladder (and the same
- * grandfathering lock) that draws the badge.
+ * grandfathering lock) that draws the badge, plus any badge granted to
+ * `username` by name.
+ *
+ * The grant is a third argument rather than part of `context` because
+ * `context` is `getBadgeName`'s, and grants deliberately do not reach it —
+ * they change what an account's attention is worth, not which image it draws.
+ * Web's mirror of this takes them in the order `(balance, username, context)`;
+ * here `username` goes last so the existing two-argument callers are unchanged.
+ *
+ * `max`, so a grant only ever promotes.
  */
 export function engagementWeight(
   badgeBalance: number | string | null | undefined,
   context?: BadgeContext,
+  username?: string | null,
 ): number {
-  if (badgeBalance === null || badgeBalance === undefined) {
-    return NO_BADGE_ENGAGEMENT_WEIGHT;
-  }
-  return engagementWeightForBadge(getBadgeName(badgeBalance, context));
+  // Weighs 1 when nothing is granted, which is exactly the floor.
+  const granted = engagementWeightForBadge(overrideTierNameFor(username));
+  if (badgeBalance === null || badgeBalance === undefined) return granted;
+  return Math.max(
+    granted,
+    engagementWeightForBadge(getBadgeName(badgeBalance, context)),
+  );
 }
 
 /** A weight read off an API response, clamped into the ladder. */
