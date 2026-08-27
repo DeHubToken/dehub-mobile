@@ -504,6 +504,8 @@ export const ShareLinks = {
       ? `${SHARE_BASE}/stages/${stage.short_id}`
       : `${SHARE_BASE}/stage/${encodeURIComponent(stage.id)}`;
   },
+  /** Bounty detail — dehub.io/bounty/:jobNumber */
+  bounty: (jobNumber: string | number) => `${SHARE_BASE}/bounty/${encodeURIComponent(String(jobNumber))}`,
   /** Arcade grid — dehub.io/arcade */
   arcade: () => `${SHARE_BASE}/arcade`,
   /** One game — dehub.io/arcade/:slug */
