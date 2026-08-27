@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import {
   View,
   TextInput,
-  FlatList,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -41,8 +40,9 @@ import {
   type FeedPostType,
 } from "../services/feed.unified.service";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import ScreenHeader from "../components/ScreenHeader";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
+import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import FeedCard from "../components/Home/FeedCard";
 import SearchAccountCard from "../components/Search/SearchAccountCard";
 import SearchAccountChip from "../components/Search/SearchAccountChip";
@@ -133,9 +133,22 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
 const SearchScreen: React.FC = () => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  // The ScreenHeader is rendered above the KeyboardAvoidingView, so it counts
-  // as chrome on top of the root SafeAreaView's inset.
-  const keyboardOffset = useKeyboardOffset(SCREEN_HEADER_HEIGHT);
+  // The header floats over the KeyboardAvoidingView rather than sitting above
+  // it, so the view starts at the top of the screen and the only chrome above
+  // it is the inset the root SafeAreaView already spent.
+  const keyboardOffset = useKeyboardOffset(0);
+
+  // Same collapsing chrome the home feed and the grid feed run: the header is
+  // positioned over the content, slides out on a scroll down and comes back on
+  // a scroll up. `headerHeight` is measured from its own layout, so every
+  // scrollable below pads itself by exactly the space it covers.
+  const {
+    headerHeight,
+    headerAnimatedStyle,
+    onHeaderLayout,
+    scrollHandler,
+    showHeader,
+  } = useCollapsibleHeader();
   // The app drawer's menu search hands off here when what was typed is not a
   // page — see AppDrawer's runFullSearch.
   const route = useRoute<{ key: string; name: string; params?: { q?: string } }>();
@@ -338,23 +351,28 @@ const SearchScreen: React.FC = () => {
 
   const handleSearch = useCallback(() => {
     if (!searchQuery.trim()) return;
+    showHeader();
     executeSearch(searchQuery, activeTab, 1);
-  }, [searchQuery, activeTab, executeSearch]);
+  }, [searchQuery, activeTab, executeSearch, showHeader]);
 
   const handleSuggestionClick = useCallback(
     (term: string) => {
       setSearchQuery(term);
       setInputFocused(false);
       inputRef.current?.blur();
+      showHeader();
       executeSearch(term, activeTab, 1);
     },
-    [activeTab, executeSearch],
+    [activeTab, executeSearch, showHeader],
   );
 
   const handleTabChange = useCallback(
     (tab: TabKey) => {
       if (tab === activeTab) return;
       setActiveTab(tab);
+      // The new tab opens at the top of its own list, so the header belongs
+      // back on screen however the last one was left.
+      showHeader();
       // Animate glass pill
       const layout = tabLayouts.current[tab];
       if (layout) {
@@ -365,7 +383,7 @@ const SearchScreen: React.FC = () => {
         executeSearch(searchQuery, tab, 1);
       }
     },
-    [activeTab, hasSearched, searchQuery, executeSearch],
+    [activeTab, hasSearched, searchQuery, executeSearch, showHeader],
   );
 
   const handleTabLayout = useCallback(
@@ -406,6 +424,7 @@ const SearchScreen: React.FC = () => {
   }, [searchQuery, activeTab, executeSearch]);
 
   const clearSearch = useCallback(() => {
+    showHeader();
     setSearchQuery("");
     setAccounts([]);
     setContent([]);
@@ -415,7 +434,7 @@ const SearchScreen: React.FC = () => {
     setHasSearched(false);
     lastQuery.current = "";
     inputRef.current?.focus();
-  }, []);
+  }, [showHeader]);
 
   const handleReplaceSearchBox = useCallback((term: string) => {
     setSearchQuery(term);
@@ -540,7 +559,7 @@ const SearchScreen: React.FC = () => {
     // Loading
     if (loading) {
       return (
-        <View className="flex-1 items-center justify-center">
+        <View className="flex-1 items-center justify-center" style={{ paddingTop: headerHeight }}>
           <ActivityIndicator size="large" color="#fff" />
         </View>
       );
@@ -551,7 +570,10 @@ const SearchScreen: React.FC = () => {
       if (activeTab === "accounts") {
         if (accounts.length === 0) {
           return (
-            <View className="flex-1 items-center justify-center px-6">
+            <View
+              className="flex-1 items-center justify-center px-6"
+              style={{ paddingTop: headerHeight }}
+            >
               <Icon name="Users" size={48} color="#6B7280" />
               <Text className="text-theme-neutrals-300 font-semibold text-base mt-4">
                 No accounts found
@@ -564,18 +586,26 @@ const SearchScreen: React.FC = () => {
         }
 
         return (
-          <FlatList
+          <Animated.FlatList
             data={accounts}
             renderItem={renderAccountItem}
             keyExtractor={accountKeyExtractor}
             onEndReached={handleLoadMore}
             onEndReachedThreshold={0.5}
             ListFooterComponent={ListFooter}
+            onScroll={scrollHandler}
+            scrollEventThrottle={16}
+            scrollIndicatorInsets={{ top: headerHeight }}
             refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#fff" />
+              <RefreshControl
+                refreshing={refreshing}
+                onRefresh={handleRefresh}
+                tintColor="#fff"
+                progressViewOffset={headerHeight}
+              />
             }
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingHorizontal: 0, paddingTop: 8, paddingBottom: insets.bottom + 80 }}
+            contentContainerStyle={{ paddingHorizontal: 0, paddingTop: headerHeight + 8, paddingBottom: insets.bottom + 80 }}
           />
         );
       }
@@ -585,7 +615,10 @@ const SearchScreen: React.FC = () => {
 
       if (isEmpty) {
         return (
-          <View className="flex-1 items-center justify-center px-6">
+          <View
+            className="flex-1 items-center justify-center px-6"
+            style={{ paddingTop: headerHeight }}
+          >
             <Icon name="Search" size={48} color="#6B7280" />
             <Text className="text-theme-neutrals-300 font-semibold text-base mt-4">
               No results found
@@ -598,7 +631,7 @@ const SearchScreen: React.FC = () => {
       }
 
       return (
-        <FlatList
+        <Animated.FlatList
           data={content}
           renderItem={renderContentItem}
           keyExtractor={contentKeyExtractor}
@@ -615,11 +648,19 @@ const SearchScreen: React.FC = () => {
               </View>
             ) : null
           }
+          onScroll={scrollHandler}
+          scrollEventThrottle={16}
+          scrollIndicatorInsets={{ top: headerHeight }}
           refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#fff" />
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={handleRefresh}
+              tintColor="#fff"
+              progressViewOffset={headerHeight}
+            />
           }
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal: 0, paddingTop: 8, paddingBottom: insets.bottom + 80 }}
+          contentContainerStyle={{ paddingHorizontal: 0, paddingTop: headerHeight + 8, paddingBottom: insets.bottom + 80 }}
         />
       );
     }
@@ -631,7 +672,7 @@ const SearchScreen: React.FC = () => {
     // Focused + short query → recent searches
     if (inputFocused && q.length < SUGGEST_THRESHOLD && searchHistory.length > 0) {
       return (
-        <View className="px-4 pt-3">
+        <View className="px-4" style={{ paddingTop: headerHeight + 12 }}>
           <Text className="text-theme-neutrals-400 text-xs font-semibold mb-2 px-1">
             Recent Searches
           </Text>
@@ -661,7 +702,7 @@ const SearchScreen: React.FC = () => {
     // Focused + >=threshold → suggestions
     if (isTyping && suggestions.length > 0) {
       return (
-        <View className="px-4 pt-3">
+        <View className="px-4" style={{ paddingTop: headerHeight + 12 }}>
           <View className="rounded-xl overflow-hidden bg-theme-neutrals-800">
             {suggestions.map((item, index) => (
               <TouchableOpacity
@@ -693,7 +734,14 @@ const SearchScreen: React.FC = () => {
 
     // Not typing / not focused → new members, then trending
     return (
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 80 }}>
+      <Animated.ScrollView
+        style={{ flex: 1 }}
+        showsVerticalScrollIndicator={false}
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+        scrollIndicatorInsets={{ top: headerHeight }}
+        contentContainerStyle={{ paddingTop: headerHeight, paddingBottom: insets.bottom + 80 }}
+      >
         {/* Above trending on purpose: this is the screen people already open to
             find other people, and a welcome is worth less the longer it waits.
             Renders nothing when nobody joined recently. */}
@@ -732,116 +780,141 @@ const SearchScreen: React.FC = () => {
             </Text>
           </View>
         )}
-      </ScrollView>
+      </Animated.ScrollView>
     );
   };
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader title={t("nav.explore")} canGoBack={false} />
-
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={Platform.OS === "ios" ? keyboardOffset : 0}
       >
-        <View className="px-4 pb-2">
-          <View className="flex-row items-center bg-theme-neutrals-800 rounded-full px-3 py-2">
-            <Icon name="Search" size={18} color="#9CA3AF" />
-            <TextInput
-              ref={inputRef}
-              className="flex-1 text-white px-2 py-1"
-              placeholder="Search DeHub"
-              placeholderTextColor="#9CA3AF"
-              value={searchQuery}
-              onChangeText={setSearchQuery}
-              onSubmitEditing={handleSearch}
-              onFocus={() => setInputFocused(true)}
-              onBlur={() => setInputFocused(false)}
-              returnKeyType="search"
-              autoCapitalize="none"
-              autoCorrect={false}
-            />
-            {searchQuery.length > 0 && (
-              <TouchableOpacity
-                onPress={clearSearch}
-                accessibilityRole="button"
-                accessibilityLabel="Clear search"
-                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                className="w-6 h-6 rounded-full bg-theme-neutrals-700 items-center justify-center mr-2"
-              >
-                <Icon name="X" size={14} color="#E5E7EB" />
-              </TouchableOpacity>
-            )}
-            <TouchableOpacity
-              className="w-9 h-9 rounded-full bg-theme-neutrals-700 items-center justify-center"
-              onPress={handleSearch}
-              disabled={loading || !searchQuery.trim()}
-            >
-              {loading ? (
-                <ActivityIndicator size="small" color="#E5E7EB" />
-              ) : (
-                <Icon name="ArrowRight" size={18} color="#E5E7EB" />
-              )}
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View className="px-4 py-2">
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ position: "relative", gap: 8 }}
-          >
-            <Animated.View style={[styles.indicator, pillStyle]}>
-              <LinearGradient
-                colors={["rgba(255,255,255,0.20)", "rgba(255,255,255,0.10)", "rgba(255,255,255,0.05)"]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={[StyleSheet.absoluteFill, { borderRadius: TAB_RADIUS }]}
-              />
-              <View style={styles.indicatorHighlight} />
-            </Animated.View>
-
-            {(hasSearched ? TABS : EXPLORE_TABS).map((tab) => {
-              const isActive = activeTab === tab.key;
-              return (
-                <TouchableOpacity
-                  key={tab.key}
-                  onPress={() => handleTabChange(tab.key)}
-                  onLayout={(e) => {
-                    const { x, width } = e.nativeEvent.layout;
-                    handleTabLayout(tab.key, x, width);
-                  }}
-                  style={[styles.tabBtn, !isActive && styles.tabBtnInactive]}
-                  activeOpacity={0.8}
-                >
-                  <Icon
-                    name={tab.icon}
-                    size={14}
-                    color={isActive ? "#F9FBFF" : "#A1A1AA"}
-                  />
-                  <Text
-                    style={[
-                      styles.tabLabel,
-                      isActive && styles.tabLabelActive,
-                    ]}
-                  >
-                    {tab.label}
-                  </Text>
-                </TouchableOpacity>
-              );
-            })}
-          </ScrollView>
-        </View>
-
         {renderContent()}
       </KeyboardAvoidingView>
+
+      {/* Declared after the content on purpose: it is positioned over the
+          lists, and on Android sibling order decides what draws on top. */}
+      <Animated.View
+        style={[styles.header, headerAnimatedStyle]}
+        onLayout={onHeaderLayout}
+      >
+        <ScreenHeader title={t("nav.explore")} canGoBack={false} />
+
+        {/* Carries its own opaque background — the two rows below the
+            ScreenHeader have none of their own, and the feed now scrolls
+            underneath them rather than below them. */}
+        <View className="bg-theme-neutrals-900">
+          <View className="px-4 pb-2">
+            <View className="flex-row items-center bg-theme-neutrals-800 rounded-full px-3 py-2">
+              <Icon name="Search" size={18} color="#9CA3AF" />
+              <TextInput
+                ref={inputRef}
+                className="flex-1 text-white px-2 py-1"
+                placeholder="Search DeHub"
+                placeholderTextColor="#9CA3AF"
+                value={searchQuery}
+                onChangeText={setSearchQuery}
+                onSubmitEditing={handleSearch}
+                onFocus={() => {
+                  setInputFocused(true);
+                  // Nothing to type into if the header has slid away.
+                  showHeader();
+                }}
+                onBlur={() => setInputFocused(false)}
+                returnKeyType="search"
+                autoCapitalize="none"
+                autoCorrect={false}
+              />
+              {searchQuery.length > 0 && (
+                <TouchableOpacity
+                  onPress={clearSearch}
+                  accessibilityRole="button"
+                  accessibilityLabel="Clear search"
+                  hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                  className="w-6 h-6 rounded-full bg-theme-neutrals-700 items-center justify-center mr-2"
+                >
+                  <Icon name="X" size={14} color="#E5E7EB" />
+                </TouchableOpacity>
+              )}
+              <TouchableOpacity
+                className="w-9 h-9 rounded-full bg-theme-neutrals-700 items-center justify-center"
+                onPress={handleSearch}
+                disabled={loading || !searchQuery.trim()}
+              >
+                {loading ? (
+                  <ActivityIndicator size="small" color="#E5E7EB" />
+                ) : (
+                  <Icon name="ArrowRight" size={18} color="#E5E7EB" />
+                )}
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <View className="px-4 py-2">
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{ position: "relative", gap: 8 }}
+            >
+              <Animated.View style={[styles.indicator, pillStyle]}>
+                <LinearGradient
+                  colors={["rgba(255,255,255,0.20)", "rgba(255,255,255,0.10)", "rgba(255,255,255,0.05)"]}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={[StyleSheet.absoluteFill, { borderRadius: TAB_RADIUS }]}
+                />
+                <View style={styles.indicatorHighlight} />
+              </Animated.View>
+
+              {(hasSearched ? TABS : EXPLORE_TABS).map((tab) => {
+                const isActive = activeTab === tab.key;
+                return (
+                  <TouchableOpacity
+                    key={tab.key}
+                    onPress={() => handleTabChange(tab.key)}
+                    onLayout={(e) => {
+                      const { x, width } = e.nativeEvent.layout;
+                      handleTabLayout(tab.key, x, width);
+                    }}
+                    style={[styles.tabBtn, !isActive && styles.tabBtnInactive]}
+                    activeOpacity={0.8}
+                  >
+                    <Icon
+                      name={tab.icon}
+                      size={14}
+                      color={isActive ? "#F9FBFF" : "#A1A1AA"}
+                    />
+                    <Text
+                      style={[
+                        styles.tabLabel,
+                        isActive && styles.tabLabelActive,
+                      ]}
+                    >
+                      {tab.label}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </ScrollView>
+          </View>
+        </View>
+      </Animated.View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  // Over the content, not above it — so it can slide out without the lists
+  // below resizing on every frame of the animation.
+  header: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+  },
   indicator: {
     overflow: "hidden",
     borderRadius: TAB_RADIUS,
