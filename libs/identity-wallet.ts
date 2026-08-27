@@ -132,7 +132,14 @@ export type EvmWalletResolution =
   // Local device already has the key — either the fast-path map hit, or the
   // Supabase row had no password payload and turned out to match a key we
   // already hold locally (e.g. re-resolving right after a create/unlock).
-  | { status: "ready"; address: string; privateKey: string }
+  //
+  // `privateKey` is absent when the key was only CONFIRMED PRESENT rather than
+  // released. Releasing it costs a fingerprint/passcode prompt (see
+  // getPrivateKeyForAddress), and sign-in does not need one: the Supabase
+  // session exchange mints the DeHub token without any signature. Only the
+  // signature-login fallback needs the key, and it asks for it there — see
+  // releaseWalletKeyForSignIn.
+  | { status: "ready"; address: string; privateKey?: string | null }
   // Supabase already has a wallet for this identity, protected by a
   // password. The caller must prompt for it and call finishWalletUnlock —
   // creating a new wallet here would silently orphan the user's real one.
@@ -191,13 +198,15 @@ export async function resolveEvmWalletForIdentity(
   const map = await readMap(EVM_MAP_KEY);
   const cachedAddress = map[supabaseUserId]?.toLowerCase();
 
+  // Presence only — never a release. This used to call
+  // getPrivateKeyForAddress, which raises a device-owner (fingerprint/face/
+  // passcode) prompt, so simply arriving at the sign-in screen with a wallet
+  // on the device asked the user to authenticate before they had done
+  // anything. Logging in and authorising a signature are different questions;
+  // this one is answerable without the key.
   const tryReady = async (address: string): Promise<EvmWalletResolution | null> => {
     if (!(await hasPrivateKeyForAddress(address))) return null;
-    const pk = await getPrivateKeyForAddress(address, {
-      purpose: "Sign in to DeHub",
-    });
-    if (!pk) return null;
-    return { status: "ready", address, privateKey: pk };
+    return { status: "ready", address };
   };
 
   if (remote) {
@@ -254,6 +263,18 @@ export async function resolveEvmWalletForIdentity(
   }
 
   return { status: "needs-create-password" };
+}
+
+/**
+ * Release this device's key for `address`, prompting for the device owner.
+ *
+ * The one place sign-in is still allowed to cost a prompt: the signature
+ * login (`/mobile/auth`) genuinely cannot be produced without the key. It is
+ * reached only when the Supabase session exchange could not mint a token, so
+ * the ordinary login never gets here.
+ */
+export async function releaseWalletKeyForSignIn(address: string): Promise<string | null> {
+  return getPrivateKeyForAddress(address, { purpose: "Sign in to DeHub" });
 }
 
 /** Supabase-stored wallet address when resolution already knows one. */

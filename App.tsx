@@ -37,6 +37,7 @@ import {
 } from "@expo-google-fonts/exo";
 import { theme } from "./theme";
 import { AuthProvider, useAuthState, useUser } from "./context/AuthContext";
+import WalletUnlockHost from "./components/auth/WalletUnlockHost";
 import { WebSocketProvider } from "./context/WebSocketContext";
 import { DMProvider } from "./context/DMContext";
 import { UserProfileSheetProvider } from "./context/UserProfileSheetContext";
@@ -167,6 +168,11 @@ export default function App() {
                   </StoryViewerProvider>
                 </DMProvider>
               </WebSocketProvider>
+              {/* Signing in no longer requires an openable wallet, so the
+                  unlock has to be reachable from anywhere the app might sign
+                  — post, tip, mint, stake, export. Mounted beside the tree
+                  rather than inside a screen so it outlives navigation. */}
+              <WalletUnlockHost />
             </AuthProvider>
             {/* Outside AuthProvider: badges draw for signed-out viewers too,
                 and every one of them resolves against this scale. */}
