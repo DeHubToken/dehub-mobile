@@ -43,6 +43,7 @@ import {
 import { useRoute } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import FeedCard from "../components/Home/FeedCard";
+import { resolveViewCount } from "../libs/numbers.util";
 import SearchAccountCard from "../components/Search/SearchAccountCard";
 import SearchAccountChip from "../components/Search/SearchAccountChip";
 import FeedCardSkeleton from "../components/Feed/FeedCardSkeleton";
@@ -104,7 +105,10 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
   audioDuration: item.audioDuration,
   listens: item.listens,
   postType: (item.postType as UnifiedFeedItem["postType"]) ?? "video",
-  views: item.views ?? 0,
+  // Canonical summed count (views + anonViews + badgeViews), never the raw
+  // `views` half — reading that here made a search result report fewer views
+  // than the same post in the feed, and fewer than the web.
+  views: resolveViewCount(item),
   likes: item.totalVotes?.for ?? item.likes ?? 0,
   dislikes: item.totalVotes?.against ?? item.dislikes ?? 0,
   createdAt: item.createdAt,
