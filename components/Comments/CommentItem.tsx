@@ -87,6 +87,8 @@ interface CommentItemProps {
   highlighted?: boolean;
   repliesExpanded?: boolean;
   onToggleReplies?: () => void;
+  /** Replies in this thread that are hidden behind the toggle. */
+  hiddenReplyCount?: number;
   loadingReplies?: boolean;
   /** The post creator, for the Creator / Not-the-creator chips. */
   postCreator?: PostCreator | null;
@@ -109,6 +111,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   highlighted = false,
   repliesExpanded = false,
   onToggleReplies,
+  hiddenReplyCount = 0,
   loadingReplies = false,
   postCreator,
 }) => {
@@ -336,7 +339,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
 
   if (comment.notFound) {
     return (
-      <View style={{ paddingVertical: 12, paddingLeft: isReply ? 48 : 0 }}>
+      <View style={{ paddingVertical: 12, paddingLeft: 42 }}>
         <Text style={{ color: "#A6A9AC", fontSize: 13, fontStyle: "italic" }}>
           Comment not found
         </Text>
@@ -370,7 +373,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
         <Pressable onPress={handleUserPress}>
           <Avatar
             uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
-            size={isReply ? 28 : 32}
+            size={32}
             rounded={false}
             name={displayName}
           />
@@ -629,7 +632,9 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             )}
           </View>
 
-          {comment.replyIds && comment.replyIds.length > 0 && onToggleReplies && (
+          {/* The thread's own control, on the last reply that is on screen.
+              A collapsed thread shows one reply and hides the rest behind it. */}
+          {onToggleReplies && (hiddenReplyCount > 0 || repliesExpanded) && (
             <Pressable
               onPress={onToggleReplies}
               style={{
@@ -645,8 +650,8 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               <Text style={{ fontSize: 12, fontWeight: "600", color: "#A6A9AC" }}>
                 {repliesExpanded
                   ? "Hide replies"
-                  : `View ${comment.replyIds.length} ${
-                      comment.replyIds.length === 1 ? "reply" : "replies"
+                  : `Show ${hiddenReplyCount} more ${
+                      hiddenReplyCount === 1 ? "reply" : "replies"
                     }`}
               </Text>
             </Pressable>

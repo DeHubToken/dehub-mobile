@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { View, Text, FlatList, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform } from "react-native";
+import { View, Text, FlatList, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
@@ -37,11 +37,18 @@ import { ScreenNames } from "../navigation/ScreenNames";
 type ThreadedComment = Comment & { depth: number };
 
 // Threading is unbounded — the server accepts a reply to a reply at any depth.
-// Only the extra visual indent past the first tier is capped, so a long chain
-// doesn't walk off the right edge on a phone. CommentItem already insets any
-// reply by 48px, so depth 1 keeps the exact look it had before.
-const MAX_EXTRA_INDENT_LEVELS = 4;
-const INDENT_PX = 16;
+// Nesting is NOT drawn as indentation: every reply sits flush with its parent
+// and the thread line through the avatars carries the relationship, so a deep
+// chain costs no width.
+/** How many replies a thread shows before it needs a tap to open up. */
+const REPLIES_SHOWN_COLLAPSED = 1;
+
+// Rows are px-8, the avatar is 32 wide and CommentItem pads it 10 from the top,
+// so the line runs at x = 32 + 16 and the avatar's centre sits at y = 26.
+const threadLineStyles = StyleSheet.create({
+  above: { position: "absolute", left: 48, top: 0, height: 26, width: 1, backgroundColor: "rgba(255,255,255,0.2)" },
+  below: { position: "absolute", left: 48, top: 26, bottom: 0, width: 1, backgroundColor: "rgba(255,255,255,0.2)" },
+});
 
 export default function FeedDetailScreen() {
   const { t } = useTranslation();
@@ -72,6 +79,8 @@ export default function FeedDetailScreen() {
   const mentions = useMentions(inputText, setInputText);
   const [posting, setPosting] = useState(false);
   const [highlightedCommentId, setHighlightedCommentId] = useState<number | null>(null);
+  /** Root comment ids whose full reply thread the reader has opened. */
+  const [expandedThreads, setExpandedThreads] = useState<Set<string>>(() => new Set());
 
   // Media attachment state
   const [mediaAttachment, setMediaAttachment] = useState<MediaAttachment | null>(null);
@@ -347,8 +356,19 @@ export default function FeedDetailScreen() {
     setReplyTo(cm as ThreadedComment);
     setEditingComment(null);
     setInputText("");
+    // Open the thread you are replying into, so your own reply lands somewhere
+    // visible and you can read what you are answering. The root of any reply is
+    // the nearest depth-0 row above it.
+    const idx = comments.findIndex((c) => String(c.id) === String(cm.id));
+    for (let i = idx; i >= 0; i--) {
+      if (comments[i].depth === 0) {
+        const rootId = String(comments[i].id);
+        setExpandedThreads((prev) => new Set(prev).add(rootId));
+        break;
+      }
+    }
     requestAnimationFrame(() => inputRef.current?.focus());
-  }, []);
+  }, [comments]);
 
   /**
    * Place a freshly posted comment in the flat list. A reply goes directly under
@@ -532,21 +552,107 @@ export default function FeedDetailScreen() {
     flushCommentViewsRef.current();
   }, []);
 
+  /**
+   * The rows the list actually shows, plus what each one draws.
+   *
+   * A thread opens with one reply and hides the rest behind a control on the
+   * last reply shown, so a long back-and-forth cannot bury the next comment.
+   * The list is already in reading order with roots at depth 0, so the root of
+   * any reply is simply the last depth-0 row above it.
+   */
+  const { visibleComments, threadMeta } = useMemo(() => {
+    const rootOf = new Map<string, string>();
+    const totalPerRoot = new Map<string, number>();
+    let currentRoot = "";
+
+    comments.forEach((c) => {
+      const id = String(c.id);
+      if (c.depth === 0) {
+        currentRoot = id;
+        rootOf.set(id, id);
+        return;
+      }
+      rootOf.set(id, currentRoot);
+      totalPerRoot.set(currentRoot, (totalPerRoot.get(currentRoot) ?? 0) + 1);
+    });
+
+    const shownPerRoot = new Map<string, number>();
+    const visible = comments.filter((c) => {
+      if (c.depth === 0) return true;
+      const root = rootOf.get(String(c.id)) ?? "";
+      if (expandedThreads.has(root)) return true;
+      // Arriving from a notification means the reply itself is the destination.
+      if (highlightedCommentId != null && String(c.id) === String(highlightedCommentId)) return true;
+      const shown = shownPerRoot.get(root) ?? 0;
+      if (shown >= REPLIES_SHOWN_COLLAPSED) return false;
+      shownPerRoot.set(root, shown + 1);
+      return true;
+    });
+
+    type Meta = {
+      lineAbove: boolean;
+      lineBelow: boolean;
+      toggleRootId?: string;
+      toggleExpanded: boolean;
+      hiddenCount: number;
+    };
+    const meta = new Map<string, Meta>();
+
+    visible.forEach((c, i) => {
+      const id = String(c.id);
+      const root = rootOf.get(id) ?? id;
+      const next = visible[i + 1];
+      const nextIsSameThread = !!next && next.depth > 0 && (rootOf.get(String(next.id)) ?? "") === root;
+      const total = totalPerRoot.get(root) ?? 0;
+      const isExpanded = expandedThreads.has(root);
+      const hidden = isExpanded ? 0 : Math.max(0, total - REPLIES_SHOWN_COLLAPSED);
+      // The toggle belongs at the end of what is on screen, so it reads as the
+      // continuation of the thread rather than as a note on its first line.
+      const ownsToggle = !nextIsSameThread && total > 0 && (hidden > 0 || isExpanded);
+
+      meta.set(id, {
+        lineAbove: c.depth > 0,
+        // A row that owns the toggle renders it in its own body, so the line
+        // stops there rather than running past the row's bottom edge.
+        lineBelow: nextIsSameThread || (c.depth === 0 && total > 0),
+        toggleRootId: ownsToggle ? root : undefined,
+        toggleExpanded: isExpanded,
+        hiddenCount: hidden,
+      });
+    });
+
+    return { visibleComments: visible, threadMeta: meta };
+  }, [comments, expandedThreads, highlightedCommentId]);
+
+  const handleToggleThread = useCallback((rootId: string) => {
+    setExpandedThreads((prev) => {
+      const next = new Set(prev);
+      if (next.has(rootId)) next.delete(rootId);
+      else next.add(rootId);
+      return next;
+    });
+  }, []);
+
   const renderCommentItem = useCallback(
     ({ item: c }: { item: ThreadedComment }) => {
       const isReply = c.depth > 0;
       const isHighlighted = highlightedCommentId != null && String(c.id) === String(highlightedCommentId);
-      // Depth 1 keeps CommentItem's own 48px reply inset; deeper tiers stack a
-      // capped extra step so the chain stays readable without overflowing.
-      const extraIndent =
-        c.depth > 1 ? Math.min(c.depth - 1, MAX_EXTRA_INDENT_LEVELS) * INDENT_PX : 0;
+      const meta = threadMeta.get(String(c.id));
 
       return (
-        <View
-          className={`px-8${isReply ? " mx-4" : ""}`}
-          style={extraIndent > 0 ? { marginLeft: extraIndent } : undefined}
-        >
+        <View className="px-8" style={{ position: "relative" }}>
+          {/* Thread line — see the note by threadLineStyles. Each segment runs
+              to its own row's edge so neighbouring rows join into one line;
+              kept inside those bounds because Android clips a child that hangs
+              outside its parent. */}
+          {meta?.lineAbove && <View style={threadLineStyles.above} pointerEvents="none" />}
+          {meta?.lineBelow && <View style={threadLineStyles.below} pointerEvents="none" />}
           <CommentItem
+            repliesExpanded={!!meta?.toggleExpanded}
+            onToggleReplies={
+              meta?.toggleRootId != null ? () => handleToggleThread(meta.toggleRootId!) : undefined
+            }
+            hiddenReplyCount={meta?.hiddenCount ?? 0}
             comment={c}
             isReply={isReply}
             onUserPress={handleUserPress}
@@ -569,7 +675,7 @@ export default function FeedDetailScreen() {
         </View>
       );
     },
-    [handleReplyPress, handleUserPress, tipTotals, handleLikeComment, handleDislikeComment, handleCommentLongPress, tokenId, highlightedCommentId]
+    [handleReplyPress, handleUserPress, tipTotals, handleLikeComment, handleDislikeComment, handleCommentLongPress, tokenId, highlightedCommentId, threadMeta, handleToggleThread]
   );
 
   // Send media comment
@@ -822,7 +928,7 @@ export default function FeedDetailScreen() {
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <FlatList
-        data={comments}
+        data={visibleComments}
         keyExtractor={(c) => String(c.id)}
         ListHeaderComponent={renderHeader}
         ListEmptyComponent={!loading ? (
