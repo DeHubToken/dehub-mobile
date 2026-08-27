@@ -38,6 +38,12 @@ import PostsRoute from "../Profile/PostsRoute";
 import FeedRoute from "../Profile/FeedRoute";
 import ProfileTabBar, { type ProfileTabItem } from "../Profile/ProfileTabBar";
 import ProfileEmptyState from "../Profile/ProfileEmptyState";
+import ProfileContentToolbar from "../Profile/ProfileContentToolbar";
+import FeedFilterPanel from "../Home/FeedFilterPanel";
+import {
+  CONTENT_BACKED_TABS,
+  useProfileContentFilters,
+} from "../Profile/useProfileContentFilters";
 import { useProfileContentCounts } from "../Profile/useProfileContentCounts";
 import { getPlans, type SubscriptionPlan } from "../../services/subscription.service";
 
@@ -123,6 +129,13 @@ const UserProfileBottomContentTabs: React.FC<
   // Active content tab
   const [activeTab, setActiveTab] = useState<ContentTab>("home");
 
+  // Sort, search and filter over this creator's channel — the same hook the
+  // signed-in user's own profile uses, so the two surfaces stay identical.
+  // Keyed on address: one sheet instance is reused for every profile opened,
+  // so without that the last person's filters would carry over to the next.
+  const { toolbar, panel, contentQuery, homePostType } =
+    useProfileContentFilters(activeTab, address);
+
   const tabItems = useMemo<ProfileTabItem<ContentTab>[]>(() => {
     const withCounts = BASE_TAB_ITEMS.map((item) => ({
       ...item,
@@ -148,7 +161,8 @@ const UserProfileBottomContentTabs: React.FC<
   // Images tab state
   const [images, setImages] = useState<UnifiedFeedItem[]>([]);
   const [imagesLoading, setImagesLoading] = useState(false);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
+  /** Guards against a slow early request landing after a faster later one. */
+  const imagesRequestRef = useRef(0);
   // ProfileImageGrid requires a defined id per item (used as the React key);
   // UnifiedFeedItem's id is optional, so fall back to tokenId — always present
   // for real posts — rather than widening ProfileImageGrid's contract.
@@ -162,30 +176,33 @@ const UserProfileBottomContentTabs: React.FC<
   const [plansLoading, setPlansLoading] = useState(false);
   const [plansLoaded, setPlansLoaded] = useState(false);
 
-  // Fetch images when images tab is first visited
+  // Fetch images when the tab is visited, and again whenever the toolbar
+  // narrows the query. This used to run once behind an `imagesLoaded` flag,
+  // which would have made every filter a no-op here — the tab would keep
+  // showing the unfiltered page it happened to load first.
   useEffect(() => {
-    if (!imagesLoaded && activeTab === "images") {
-      setImagesLoading(true);
-      (async () => {
-        try {
-          const res = await getUnifiedFeed({
-            minter: address,
-            postType: "feed-images",
-            sortBy: "createdAt",
-            sortOrder: "desc",
-            status: "all",
-            page: 1,
-            limit: 30,
-          });
-          setImages(res.result || []);
-        } catch {}
-        finally {
-          setImagesLoading(false);
-          setImagesLoaded(true);
-        }
-      })();
-    }
-  }, [activeTab, imagesLoaded, address]);
+    if (activeTab !== "images") return;
+    const seq = ++imagesRequestRef.current;
+    setImagesLoading(true);
+    (async () => {
+      try {
+        const res = await getUnifiedFeed({
+          minter: address,
+          postType: "feed-images",
+          ...contentQuery,
+          status: "all",
+          page: 1,
+          limit: 30,
+        });
+        if (seq !== imagesRequestRef.current) return;
+        setImages(res.result || []);
+      } catch {
+        if (seq === imagesRequestRef.current) setImages([]);
+      } finally {
+        if (seq === imagesRequestRef.current) setImagesLoading(false);
+      }
+    })();
+  }, [activeTab, address, contentQuery]);
 
   // Fetch plans when subscribers tab is first visited
   useEffect(() => {
@@ -241,15 +258,16 @@ const UserProfileBottomContentTabs: React.FC<
       navigation.navigate(ScreenNames.ImageFeed as never, {
         initialIndex: index,
         initialItems: images,
+        // Carries the toolbar's query so the viewer's own paging matches the
+        // grid it was opened from, rather than paging the unfiltered channel.
         feedParams: {
           minter: address,
           postType: "feed-images",
-          sortBy: "createdAt",
-          sortOrder: "desc",
+          ...contentQuery,
         },
       } as never);
     },
-    [images, address, navigation, hideUserProfile, onClose],
+    [images, address, contentQuery, navigation, hideUserProfile, onClose],
   );
 
   // Measure profile header height to know when to show sticky bar
@@ -370,6 +388,22 @@ const UserProfileBottomContentTabs: React.FC<
     blockedYou,
   ]);
 
+  /**
+   * Sort / search / filter, on the tabs actually served by this creator's feed
+   * query. Fullscreen only: collapsed, the sheet is a fixed 360–560pt preview,
+   * and a 420pt filter panel inside it would be taller than the sheet. The
+   * state survives the collapse, so expanding again brings it back.
+   */
+  const ContentToolbar = useMemo(() => {
+    if (!isFullScreen || !CONTENT_BACKED_TABS.includes(activeTab)) return null;
+    return (
+      <>
+        <ProfileContentToolbar {...toolbar} />
+        <FeedFilterPanel {...panel} />
+      </>
+    );
+  }, [isFullScreen, activeTab, toolbar, panel]);
+
   // Simple white activity indicator for loading state (preserves header visibility)
   // Fullscreen list header: profile header + optional Edit Profile + tab bar inside FlatList
   const fullScreenListHeader = useMemo(() => {
@@ -378,9 +412,10 @@ const UserProfileBottomContentTabs: React.FC<
       <View onLayout={handleHeaderLayout}>
         {profileHeader}
         {TabBar}
+        {ContentToolbar}
       </View>
     );
-  }, [profileHeader, handleHeaderLayout, TabBar]);
+  }, [profileHeader, handleHeaderLayout, TabBar, ContentToolbar]);
 
   if (!address) return null;
 
@@ -419,6 +454,8 @@ const UserProfileBottomContentTabs: React.FC<
               scrollEnabled={scrollEnabled}
               listHeader={isFullScreen ? fullScreenListHeader : undefined}
               onBeforeNavigate={onClose}
+              postType={homePostType}
+              {...contentQuery}
             />
           </View>
         );
@@ -483,7 +520,7 @@ const UserProfileBottomContentTabs: React.FC<
         return (
           <View style={{ flex: 1, marginTop: mt }}>
             {isFullScreen && fullScreenListHeader}
-            <VideosRoute address={address} onBeforeNavigate={onClose} />
+            <VideosRoute address={address} onBeforeNavigate={onClose} {...contentQuery} />
           </View>
         );
       case "songs":
