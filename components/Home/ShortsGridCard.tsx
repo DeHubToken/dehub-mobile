@@ -218,7 +218,10 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
 const ShortsGridCard = memo(ShortsGridCardComponent, (prev, next) =>
   prev.item.tokenId === next.item.tokenId &&
   prev.item.likes === next.item.likes &&
-  prev.item.views === next.item.views &&
+  // Compare the same number the card renders. Comparing the raw `views` half
+  // meant a card whose totalViews moved (an anon or badge-weighted view) never
+  // re-rendered, so the grid held a stale count until something else changed.
+  resolveViewCount(prev.item) === resolveViewCount(next.item) &&
   prev.index === next.index &&
   prev.isVisible === next.isVisible,
 );
