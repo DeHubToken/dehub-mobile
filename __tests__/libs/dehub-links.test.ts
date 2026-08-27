@@ -282,5 +282,65 @@ describe('dehubLinkLabel', () => {
     expect(dehubLinkLabel('post')).toBe('post');
     expect(dehubLinkLabel('listing')).toBe('item');
     expect(dehubLinkLabel('communityInvite')).toBe('community invite');
+    expect(dehubLinkLabel('bounty')).toBe('bounty');
+  });
+});
+
+/**
+ * /bounty and legacy /work links.
+ *
+ * Bounty detail pages moved from /work/<uuid> to /bounty/<job_number>, but old
+ * links are still out in the wild and both shapes have to card. Bare /bounty
+ * and the /work app pages (board, post, history) are not entities and must
+ * stay plain links, the same way bare /stages does.
+ */
+describe('findDehubLinks /bounty and legacy /work', () => {
+  it('cards the canonical bounty link', () => {
+    const m = parseDehubLink('https://dehub.io/bounty/7');
+    expect(m).not.toBeNull();
+    expect(m!.kind).toBe('bounty');
+    expect(m!.bountyJobKey).toBe('7');
+  });
+
+  it('cards a bare bounty path, which can only be ours', () => {
+    const found = findDehubLinks('claim it: /bounty/7');
+    expect(found).toHaveLength(1);
+    expect(found[0].kind).toBe('bounty');
+    expect(found[0].bountyJobKey).toBe('7');
+  });
+
+  it('cards the legacy uuid detail link', () => {
+    const m = parseDehubLink('https://dehub.io/work/3fa85f64-5717-4562-b3fc-2c963f66afa6');
+    expect(m).not.toBeNull();
+    expect(m!.kind).toBe('bounty');
+    expect(m!.bountyJobKey).toBe('3fa85f64-5717-4562-b3fc-2c963f66afa6');
+  });
+
+  it('keeps the path as written for a legacy edit link', () => {
+    const m = parseDehubLink('https://dehub.io/work/3fa85f64-5717-4562-b3fc-2c963f66afa6/edit');
+    expect(m).not.toBeNull();
+    expect(m!.kind).toBe('bounty');
+    expect(m!.path).toBe('/work/3fa85f64-5717-4562-b3fc-2c963f66afa6/edit');
+  });
+
+  it('does not card the board or its app pages as entities', () => {
+    expect(parseDehubLink('https://dehub.io/work')).toBeNull();
+    expect(parseDehubLink('https://dehub.io/work/post')).toBeNull();
+    expect(parseDehubLink('https://dehub.io/work/history')).toBeNull();
+  });
+
+  it('does not read the bare board as a profile called "bounty"/"work"', () => {
+    expect(parseDehubLink('https://dehub.io/bounty')).toBeNull();
+    expect(parseDehubLink('https://dehub.io/work')).toBeNull();
+  });
+
+  it('rejects a non-numeric bounty id and a too-short work key', () => {
+    expect(parseDehubLink('https://dehub.io/bounty/abc')).toBeNull();
+    expect(parseDehubLink('https://dehub.io/work/123')).toBeNull();
+  });
+
+  it('does not card a foreign host through the bounty or work path', () => {
+    expect(parseDehubLink('https://evil.example/bounty/7')).toBeNull();
+    expect(parseDehubLink('https://evil.example/work/3fa85f64-5717-4562-b3fc-2c963f66afa6')).toBeNull();
   });
 });

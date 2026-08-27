@@ -30,6 +30,7 @@ import PostOptionsMenu from "../common/PostOptionsMenu";
 import ImageTranslationSheet from "../common/ImageTranslationSheet";
 import QuotedPostEmbed from "../common/QuotedPostEmbed";
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
+import LinkPreviewCard from "../common/LinkPreviewCard";
 import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
 import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
@@ -1415,8 +1416,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       )}
 
       {/* DeHub entity cards — stage, post, profile, community, invite, store,
-          item, event. Placed after the quote embed to match web's PostCard. */}
+          item, event, bounty. Placed after the quote embed to match web's PostCard. */}
       <DehubLinkCards links={dehubLinks} />
+
+      {/* OG-style preview for the first outside link, when the caption didn't
+          already earn one of the entity cards above. */}
+      <LinkPreviewCard text={captionText} />
 
       {/* Market cards — a contract address somebody pasted, or a $TICKER */}
       <AssetRefCards refs={assetRefs} />
