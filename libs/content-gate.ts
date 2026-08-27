@@ -21,12 +21,78 @@ export function isHoldGated(
   return !!isLockContent && Number(lockContentAmount) > 0;
 }
 
-/** One of the creator's subscription plans, as the feed returns it. */
+/** One chain a plan is sold on. The price and the on-chain state live here. */
+export interface SubscriberPlanChain {
+  chainId?: number;
+  token?: string;
+  price?: number;
+  isPublished?: boolean;
+  status?: boolean;
+}
+
+/**
+ * One of the creator's subscription plans, as the feed returns it.
+ *
+ * This shape was previously declared as `{ id, title, price }`, and the server
+ * sends none of those three: the label is `name`, the id is a string, and there
+ * is no top-level `price` at all — it sits on each chain entry. Web read
+ * `plan.price` off the back of this and rendered "Subscribe from 0 DHB".
+ * Resolve both through the helpers below, never by hand.
+ */
 export interface SubscriberPlan {
-  id: number;
-  title: string;
-  price: number;
+  id?: string | number;
+  _id?: string;
+  name?: string;
+  /** Never sent by the API; kept so older callers still type-check. */
+  title?: string;
+  price?: number;
+  duration?: number;
+  chains?: SubscriberPlanChain[];
+  isPublished?: boolean;
   alreadySubscribed?: boolean;
+}
+
+/**
+ * The chain a purchase should target — one the creator has actually published
+ * on, because buying an unpublished one reverts in the buyer's wallet.
+ */
+export function primarySubscriberPlanChain(
+  plan: SubscriberPlan,
+): SubscriberPlanChain | undefined {
+  const chains = plan.chains || [];
+  return chains.find((c) => c.isPublished) || chains[0];
+}
+
+/** Can anyone actually buy this plan right now? */
+export function isSubscriberPlanBuyable(plan: SubscriberPlan): boolean {
+  if (typeof plan.isPublished === "boolean") return plan.isPublished;
+  return (plan.chains || []).some((c) => c.isPublished);
+}
+
+/** Headline price, from whichever source the server gave us. */
+export function subscriberPlanPrice(
+  plan: SubscriberPlan | undefined | null,
+): number | undefined {
+  if (!plan) return undefined;
+  if (typeof plan.price === "number") return plan.price;
+  const price = primarySubscriberPlanChain(plan)?.price;
+  return typeof price === "number" ? price : undefined;
+}
+
+/**
+ * The cheapest plan a reader could actually buy to get in. Unbuyable plans are
+ * skipped because naming their price is an invitation to a disabled button.
+ */
+export function cheapestSubscriberPlan(
+  plans: SubscriberPlan[] | undefined | null,
+): SubscriberPlan | undefined {
+  const priced = (plans || [])
+    .filter(isSubscriberPlanBuyable)
+    .filter((p) => subscriberPlanPrice(p) !== undefined);
+  if (!priced.length) return undefined;
+  return priced.reduce((a, b) =>
+    (subscriberPlanPrice(b) as number) < (subscriberPlanPrice(a) as number) ? b : a,
+  );
 }
 
 /**
@@ -42,11 +108,18 @@ export interface SubscriberPlan {
  * `alreadySubscribed` on each. Both clients ignored it and faked a "Subscribers"
  * switch with an amount-less DHB lock instead. No plans is not a gate, for the
  * same reason a hold gate with no amount is not one.
+ *
+ * Neither is a set of plans nobody can buy. The composer attaches every plan
+ * the creator owns the moment the Subscribers switch is on, and it counted
+ * unpublished drafts as plans — so a post could be gated behind a plan whose
+ * Subscribe button is permanently disabled. That is not a gate, it is a post
+ * nobody will ever read, so it resolves to open here on the same principle.
  */
 export function isSubscriberGated(
   plans: SubscriberPlan[] | undefined | null,
   canBypass: boolean,
 ): boolean {
   if (canBypass || !plans?.length) return false;
-  return !plans.some((p) => p.alreadySubscribed);
+  if (plans.some((p) => p.alreadySubscribed)) return false;
+  return plans.some(isSubscriberPlanBuyable);
 }
