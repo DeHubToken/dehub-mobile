@@ -27,6 +27,7 @@ import { TERMS_OF_SERVICE_LINK, PRIVACY_POLICY_LINK } from "../../config/links";
 import { getPreferredChainId } from "../../libs/auth.utils";
 import { KeyboardAvoidingView } from "react-native";
 import { CommonActions } from "@react-navigation/native";
+import { AuthService } from "../../services";
 import { createLogger } from "../../libs/logger";
 import {
   sendEmailOtp,
@@ -193,7 +194,14 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   // Supabase identity on a future login without a wallet signature — see
   // provisionAndSignIn below.
   const completeLocalSignIn = useCallback(
-    async (evmAddress: string, privateKey: string, web3AuthMeta?: Record<string, any>) => {
+    async (evmAddress: string, privateKey: string, web3AuthMeta?: Record<string, any>,
+      /**
+       * Runs once the signing address and provider are resolved, immediately
+       * before the account is authenticated. The wallet-replacement path uses
+       * it to move the existing account onto this address first, so the
+       * sign-in that follows finds an account rather than creating one.
+       */
+      opts?: { beforeSignIn?: (address: string, chainId: number) => Promise<void> }) => {
       const preferred = await getPreferredChainId();
       const effectiveChainId = preferred ?? TARGET_CHAIN_ID;
 
@@ -225,6 +233,12 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
 
       setSigningProvider(localProvider);
       try {
+        // Runs here rather than in the caller: it needs the resolved
+        // `signInAddress` — the Safe where there is one, which is the address
+        // the backend keys the account by — and it needs the provider live to
+        // sign with. Both only exist inside this function. It must also run
+        // BEFORE signInWithWallet; see AuthService.rotateWallet for why.
+        await opts?.beforeSignIn?.(signInAddress, effectiveChainId);
         await signInWithWallet(signInAddress, effectiveChainId, privateKey, web3AuthMeta);
       } finally {
         clearSigningProvider();
@@ -268,7 +282,33 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       // Awaited so the Solana address cache is populated before sign-in
       // completes — see libs/provision-and-sign-in.ts for the race this avoids.
       await provisionSolanaAddressForWallet(address, privateKey).catch(() => {});
-      await completeLocalSignIn(address, privateKey, web3AuthMeta);
+      // Replacing a wallet nobody can open any more. Keep the account: move
+      // it onto the new address before the sign-in, so the sign-in finds it
+      // instead of minting a fresh, empty one under a generated username
+      // while the old account keeps the handle forever.
+      const replacing =
+        walletSetupRequest?.mode === "create" ? walletSetupRequest.replacing : undefined;
+      await completeLocalSignIn(address, privateKey, web3AuthMeta, {
+        beforeSignIn: replacing
+          ? async (signInAddress, chainId) => {
+              try {
+                await AuthService.rotateWallet(signInAddress, chainId);
+                log.info("walletSetup:rotate:ok", {
+                  from: `${replacing.address.slice(0, 6)}...${replacing.address.slice(-4)}`,
+                  to: `${signInAddress.slice(0, 6)}...${signInAddress.slice(-4)}`,
+                });
+              } catch (e: any) {
+                // Never block the sign-in on this. The replacement wallet is
+                // already saved and is now the only one this identity has, so
+                // refusing to continue would strand the user signed out with
+                // no way back. A backend that predates the endpoint lands
+                // here too, and its behaviour is what shipped before: a new
+                // account, which the reset screen warned about.
+                log.warn("walletSetup:rotate:failed-continuing-as-new-account", e);
+              }
+            }
+          : undefined,
+      });
       if (walletSetupRequest?.supabaseUserId) {
         await markProvisionedIdentity(walletSetupRequest.supabaseUserId);
       }

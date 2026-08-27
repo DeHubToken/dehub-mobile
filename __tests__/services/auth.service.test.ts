@@ -1,5 +1,7 @@
-import { AuthService } from '../../services/auth.service';
+import { AuthService, WalletNotLinkedError } from '../../services/auth.service';
 import { apiClient } from '../../libs/api.client';
+import { getOrCreateAuthSignature } from '../../libs/web3.auth.sign';
+import { getSupabaseAccessToken } from '../../services/auth/supabaseAuth.service';
 import * as SecureStore from 'expo-secure-store';
 
 jest.mock('../../libs/api.client', () => ({
@@ -9,8 +11,25 @@ jest.mock('../../libs/api.client', () => ({
   },
 }));
 
+jest.mock('../../libs/web3.auth.sign', () => ({
+  getOrCreateAuthSignature: jest.fn().mockResolvedValue({ sig: '0xsig', timestamp: 1 }),
+  buildAuthRequestPayload: jest.fn((address: string, meta: any) => ({
+    address,
+    sig: meta.sig,
+    timestamp: meta.timestamp,
+  })),
+}));
+
+jest.mock('../../services/auth/supabaseAuth.service', () => ({
+  getSupabaseAccessToken: jest.fn(),
+}));
+
+const NEW_ADDRESS = '0x4444444444444444444444444444444444444444';
+
 const mockApiPost = apiClient.post as jest.Mock;
 const mockApiGet = apiClient.get as jest.Mock;
+const mockGetOrCreateAuthSignature = getOrCreateAuthSignature as jest.Mock;
+const mockGetSupabaseAccessToken = getSupabaseAccessToken as jest.Mock;
 const mockStore = SecureStore as jest.Mocked<typeof SecureStore> & {
   __store: Record<string, string>;
   __clear: () => void;
@@ -138,6 +157,53 @@ describe('services/auth.service', () => {
     it('throws when API returns error', async () => {
       mockApiPost.mockResolvedValueOnce({ error: true, error_msg: 'Username taken' });
       await expect(AuthService.updateProfile({ username: 'taken' })).rejects.toThrow('Username taken');
+    });
+  });
+
+  describe('rotateWallet', () => {
+    it('refuses without a social session — there is no account to identify', async () => {
+      mockGetSupabaseAccessToken.mockResolvedValueOnce(null);
+      await expect(AuthService.rotateWallet(NEW_ADDRESS, 8453)).rejects.toBeInstanceOf(
+        WalletNotLinkedError,
+      );
+      expect(mockApiPost).not.toHaveBeenCalled();
+    });
+
+    it('sends the new address, its signature and the Supabase token', async () => {
+      mockGetSupabaseAccessToken.mockResolvedValueOnce('supabase-jwt');
+      mockApiPost.mockResolvedValueOnce({ status: true });
+
+      await AuthService.rotateWallet(NEW_ADDRESS, 8453);
+
+      const [endpoint, body, opts] = mockApiPost.mock.calls[0];
+      expect(endpoint).toBe('/auth/rotate-wallet');
+      expect(body.supabaseAccessToken).toBe('supabase-jwt');
+      expect(body.chainId).toBe(8453);
+      // The signature proves control of the DESTINATION. Without it a Supabase
+      // session alone could push the account onto somebody else's wallet.
+      expect(mockGetOrCreateAuthSignature).toHaveBeenCalledWith(NEW_ADDRESS, undefined, 8453);
+      // No DeHub token yet: the account has not moved when this is sent.
+      expect(opts).toEqual({ isAuthRequired: false });
+    });
+
+    it('reports an unlinked or ambiguous identity as recoverable', async () => {
+      // The caller falls back to signing in as a new account rather than
+      // stranding the user, so these must be distinguishable from a real fault.
+      for (const code of ['WALLET_NOT_LINKED', 'WALLET_LINK_AMBIGUOUS']) {
+        mockGetSupabaseAccessToken.mockResolvedValueOnce('supabase-jwt');
+        mockApiPost.mockRejectedValueOnce({ code });
+        await expect(AuthService.rotateWallet(NEW_ADDRESS, 8453)).rejects.toBeInstanceOf(
+          WalletNotLinkedError,
+        );
+      }
+    });
+
+    it('lets a real fault through untranslated', async () => {
+      mockGetSupabaseAccessToken.mockResolvedValueOnce('supabase-jwt');
+      mockApiPost.mockRejectedValueOnce({ code: 'ADDRESS_IN_USE', message: 'taken' });
+      await expect(AuthService.rotateWallet(NEW_ADDRESS, 8453)).rejects.toMatchObject({
+        code: 'ADDRESS_IN_USE',
+      });
     });
   });
 });
