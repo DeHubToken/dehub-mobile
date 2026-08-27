@@ -29,7 +29,8 @@ export type DehubLinkKind =
   | 'store'
   | 'listing'
   | 'event'
-  | 'stage';
+  | 'stage'
+  | 'bounty';
 
 export interface DehubLinkMatch {
   kind: DehubLinkKind;
@@ -47,6 +48,11 @@ export interface DehubLinkMatch {
   stageId?: string;
   /** Set when the link used the short form (/stages/7) instead of the uuid. */
   stageShortId?: string;
+  /**
+   * `/bounty/<job_number>` or the legacy `/work/<uuid>` — `useWorkJob` resolves
+   * either shape, so the raw key is carried through rather than split in two.
+   */
+  bountyJobKey?: string;
 }
 
 // ── Hosts ───────────────────────────────────────────────────────────────────
@@ -68,7 +74,7 @@ function isDehubHost(host: string): boolean {
  */
 const RESERVED_ROOT_SEGMENTS = new Set([
   'app', 'admin', 'affiliate', 'agents', 'arcade', 'assistant', 'auth', 'blog',
-  'bridge', 'communities', 'connect', 'creator', 'creators', 'delete-account',
+  'bounty', 'bridge', 'communities', 'connect', 'creator', 'creators', 'delete-account',
   'docs', 'dpay', 'editor', 'events', 'explore', 'features', 'governance',
   'guide', 'guides', 'jobs', 'launchpad', 'leaderboard', 'mcp', 'mobile-preview',
   'music', 'premium', 'pricing', 'prompt', 'r', 'radio', 'robots.txt', 'shorts',
@@ -81,8 +87,10 @@ const RESERVED_ROOT_SEGMENTS = new Set([
 const ABSOLUTE_URL_RE = /(?:https?:\/\/)?(?:[a-z0-9-]+\.)+[a-z]{2,}(?::\d+)?\/[^\s<>"'`]*/gi;
 // `stage` sits alongside the /app prefix rather than under it because web's
 // invite route is top-level — /stage/:id, not /app/stage/:id. The optional `s`
-// also admits the short share form, /stages/7.
-const BARE_PATH_RE = /\/(?:app|communities|stages?)\/[^\s<>"'`]*/gi;
+// also admits the short share form, /stages/7. `bounty` and `work` are the
+// same story for bounty detail pages — /bounty/7 is canonical, /work/<uuid>
+// is the pre-numbering form still out in the wild.
+const BARE_PATH_RE = /\/(?:app|communities|stages?|bounty|work)\/[^\s<>"'`]*/gi;
 const TRAILING_PUNCTUATION_RE = /[.,;:!?)\]}>"']+$/;
 
 function trimTrailingPunctuation(token: string): string {
@@ -203,6 +211,26 @@ export function parseDehubLink(input: string): DehubLinkMatch | null {
     return { ...base, kind: 'stage', stageShortId: scoped[1] };
   }
 
+  // ── /bounty/:jobNumber — the canonical bounty detail link ──
+  //
+  // Top-level, like /stage. Only the numeric shape: bare /bounty has no route
+  // of its own (a bounty is always addressed by number).
+  if (scoped[0] === 'bounty' && scoped[1]) {
+    if (!/^\d+$/.test(scoped[1])) return null;
+    return { ...base, kind: 'bounty', bountyJobKey: scoped[1] };
+  }
+
+  // ── /work/:uuid — the legacy bounty detail link, from before job numbers ──
+  //
+  // Bare /work (the board), /work/post and /work/history are app pages, not
+  // entities — like bare /stages, they stay plain links. Only the uuid detail
+  // shape cards, `/edit` tail and all, so the card still opens wherever the
+  // link pointed.
+  if (scoped[0] === 'work' && scoped[1] && scoped[1] !== 'post' && scoped[1] !== 'history') {
+    if (!/^[a-fA-F0-9-]{8,}$/.test(scoped[1])) return null;
+    return { ...base, kind: 'bounty', bountyJobKey: scoped[1] };
+  }
+
   // ── profile ──
   //
   // Host-qualified links only: a bare "/foo" in a sentence is far more likely
@@ -313,6 +341,7 @@ export function dehubLinkLabel(kind: DehubLinkKind): string {
     case 'listing': return 'item';
     case 'event': return 'event';
     case 'stage': return 'stage';
+    case 'bounty': return 'bounty';
     default: return 'link';
   }
 }
