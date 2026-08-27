@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useState, useRef } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useState, useRef } from "react";
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
   Keyboard,
   Platform,
   RefreshControl,
+  StyleSheet,
 } from "react-native";
 import Icon from "../ui/Icon";
 import { COMPOSER, composerStyles } from "./composerLayout";
@@ -76,6 +77,14 @@ interface CommentSectionProps {
 }
 
 const PAGE_SIZE = 50;
+/** How many replies a thread shows before it needs a tap to open up. */
+const REPLIES_SHOWN_COLLAPSED = 1;
+
+// Avatar column: 32px wide, so its centre — and the thread line — sits at 16.
+const threadLineStyles = StyleSheet.create({
+  above: { position: "absolute", left: 16, top: 0, height: 26, width: 1, backgroundColor: "rgba(255,255,255,0.2)" },
+  below: { position: "absolute", left: 16, top: 26, bottom: 0, width: 1, backgroundColor: "rgba(255,255,255,0.2)" },
+});
 
 const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   tokenId,
@@ -285,32 +294,14 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     const isExpanded = expandedCommentIds.has(commentId);
     
     if (isExpanded) {
-      // Collapse replies: remove all descendants of this comment
+      // Collapsing is a display change now — `visibleComments` hides everything
+      // past the first reply on its own. Dropping the rows here as well would
+      // throw away the replies that came inline with the first page, and they
+      // would not come back without a refetch.
       setExpandedCommentIds((prev) => {
         const next = new Set(prev);
         next.delete(commentId);
         return next;
-      });
-
-      setFlatComments((prev) => {
-        const parentIdx = prev.findIndex((c) => Number(c.id) === commentId);
-        if (parentIdx === -1) return prev;
-        const parentDepth = prev[parentIdx].depth;
-        
-        // Find how many items to remove
-        let removeCount = 0;
-        for (let i = parentIdx + 1; i < prev.length; i++) {
-          if (prev[i].depth > parentDepth) {
-            removeCount++;
-          } else {
-            break;
-          }
-        }
-        
-        if (removeCount === 0) return prev;
-        const nextList = [...prev];
-        nextList.splice(parentIdx + 1, removeCount);
-        return nextList;
       });
     } else {
       // Expand replies: fetch from server
@@ -494,6 +485,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       const rootParentId = replyingTo
         ? ((replyingTo as FlatComment).rootParentId ?? Number(replyingTo.id))
         : undefined;
+      // Your own reply has to land somewhere you can see it, so open the
+      // thread it belongs to.
+      if (rootParentId != null) {
+        setExpandedCommentIds((prev) => new Set(prev).add(rootParentId));
+      }
       const newDepth = replyingTo ? parentDepth + 1 : 0;
 
       // Build optimistic comment
@@ -639,6 +635,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           const rootParentId = replyingTo
             ? ((replyingTo as FlatComment).rootParentId ?? Number(replyingTo.id))
             : undefined;
+          if (rootParentId != null) {
+            setExpandedCommentIds((prev) => new Set(prev).add(rootParentId));
+          }
           const newDepth = replyingTo ? parentDepth + 1 : 0;
 
           const optimisticComment: FlatComment = {
@@ -880,12 +879,93 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     }
   }, [contextComment, contextMeta, loadComments]);
 
+  /**
+   * The rows the list actually shows, plus what each one draws.
+   *
+   * A thread opens with one reply. The rest are a tap away, on the last reply
+   * shown — a busy post used to put fifty rows of one back-and-forth between
+   * its first comment and its second, so the whole list read as one argument.
+   * Expanding is per root thread and sticks until the reader collapses it.
+   */
+  const { visibleComments, threadMeta } = useMemo(() => {
+    const shownPerRoot = new Map<number, number>();
+    const totalPerRoot = new Map<number, number>();
+
+    flatComments.forEach((c) => {
+      if (!c.isReply) return;
+      const root = Number(c.rootParentId);
+      totalPerRoot.set(root, (totalPerRoot.get(root) ?? 0) + 1);
+    });
+
+    const visible = flatComments.filter((c) => {
+      if (!c.isReply) return true;
+      const root = Number(c.rootParentId);
+      if (expandedCommentIds.has(root)) return true;
+      // Arriving from a notification means the reply itself is the destination.
+      if (highlightedId != null && Number(c.id) === highlightedId) return true;
+      const shown = shownPerRoot.get(root) ?? 0;
+      if (shown >= REPLIES_SHOWN_COLLAPSED) return false;
+      shownPerRoot.set(root, shown + 1);
+      return true;
+    });
+
+    type Meta = {
+      lineAbove: boolean;
+      lineBelow: boolean;
+      toggleRootId?: number;
+      toggleExpanded?: boolean;
+      hiddenCount: number;
+    };
+    const meta = new Map<number, Meta>();
+
+    visible.forEach((c, i) => {
+      const id = Number(c.id);
+      const root = c.isReply ? Number(c.rootParentId) : id;
+      const next = visible[i + 1];
+      const nextIsSameThread = !!next && next.isReply && Number(next.rootParentId) === root;
+      const isLastOfThread = !nextIsSameThread;
+      const total = totalPerRoot.get(root) ?? 0;
+      const shown = expandedCommentIds.has(root)
+        ? total
+        : Math.min(total, REPLIES_SHOWN_COLLAPSED);
+      const hidden = total - shown;
+      // The toggle belongs at the end of what is on screen, so it reads as the
+      // continuation of the thread rather than as a note on its first line.
+      const ownsToggle = isLastOfThread && total > 0 && (hidden > 0 || expandedCommentIds.has(root));
+
+      meta.set(id, {
+        lineAbove: c.isReply,
+        // The toggle sits inside this row's own body, so a row that owns it
+        // ends the line rather than carrying it past its bottom edge.
+        lineBelow: nextIsSameThread || (!c.isReply && total > 0),
+        toggleRootId: ownsToggle ? root : undefined,
+        toggleExpanded: expandedCommentIds.has(root),
+        hiddenCount: hidden,
+      });
+    });
+
+    return { visibleComments: visible, threadMeta: meta };
+  }, [flatComments, expandedCommentIds, highlightedId]);
+
   const renderComment = useCallback(({ item }: { item: FlatComment }) => {
     const isHighlighted = highlightedId != null && Number(item.id) === highlightedId;
-    const indent = item.depth > 0 ? item.depth * 20 : 0;
     const itemNumId = Number(item.id);
+    const meta = threadMeta.get(itemNumId);
     return (
-      <View style={indent > 0 ? { paddingLeft: indent } : undefined}>
+      <View style={{ position: "relative" }}>
+        {/* Thread line. Replies are not indented — they sit flush with their
+            parent and this line through the avatars carries the relationship,
+            so a deep chain costs no width. Each segment runs edge to edge of
+            its own row, so neighbouring rows join into one line; the avatar
+            paints over the middle, and the line reads as leaving its rim.
+            Kept inside the row's bounds on purpose: Android clips a child that
+            hangs outside its parent. */}
+        {meta?.lineAbove && (
+          <View style={threadLineStyles.above} pointerEvents="none" />
+        )}
+        {meta?.lineBelow && (
+          <View style={threadLineStyles.below} pointerEvents="none" />
+        )}
         <CommentItem
           comment={item}
           postCreator={postCreator}
@@ -902,13 +982,17 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           tokenId={tokenId}
           contentType={contentType}
           highlighted={isHighlighted}
-          repliesExpanded={expandedCommentIds.has(itemNumId)}
-          onToggleReplies={() => handleToggleReplies(itemNumId)}
-          loadingReplies={!!loadingRepliesMap[itemNumId]}
+          repliesExpanded={!!meta?.toggleExpanded}
+          onToggleReplies={
+            meta?.toggleRootId != null ? () => handleToggleReplies(meta.toggleRootId!) : undefined
+          }
+          hiddenReplyCount={meta?.hiddenCount ?? 0}
+          loadingReplies={meta?.toggleRootId != null && !!loadingRepliesMap[meta.toggleRootId]}
         />
       </View>
     );
   }, [
+    threadMeta,
     handleReply,
     tipTotals,
     handleLikeComment,
@@ -974,7 +1058,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         </View>
       ) : (
         <FlatList
-          data={flatComments}
+          data={visibleComments}
           renderItem={renderComment}
           keyExtractor={keyExtractor}
           contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: listBottomPadding }}
