@@ -33,6 +33,7 @@ import { formatCompactNumber } from '../../libs/numbers.util';
 import { dehubLinkLabel, type DehubLinkMatch } from '../../libs/dehub-links';
 import { useStages } from '../../context/StageContext';
 import StageRecordingPlayer from '../Stages/StageRecordingPlayer';
+import { useWorkJob, WORK_TYPE_LABEL } from '../../hooks/useWork';
 
 /** How many cards one message or caption may draw before the rest stay as text. */
 export const MAX_CARDS_PER_MESSAGE = 2;
@@ -394,6 +395,48 @@ const StageCardEmbed: React.FC<{
   );
 };
 
+const BOUNTY_STATUS_LABEL: Record<string, string> = {
+  draft: 'Draft',
+  open: 'Open',
+  in_progress: 'In progress',
+  completed: 'Completed',
+  disputed: 'Disputed',
+  cancelled: 'Cancelled',
+  expired: 'Expired',
+};
+
+const BountyCardEmbed: React.FC<{ jobKey: string; onOpen: () => void; fallback: React.ReactElement }> = ({
+  jobKey,
+  onOpen,
+  fallback,
+}) => {
+  const { data: job, isLoading, isError } = useWorkJob(jobKey);
+
+  if (isLoading) return <SkeletonCard />;
+  if (isError || !job) return fallback;
+
+  const budget = Number(job.total_budget) || 0;
+  const deadline = job.deadline ? new Date(job.deadline) : null;
+  const isClosed = job.status === 'completed' || job.status === 'cancelled' || job.status === 'expired';
+
+  return (
+    <RowCard
+      eyebrow={`${BOUNTY_STATUS_LABEL[job.status] ?? job.status} bounty · ${WORK_TYPE_LABEL[job.job_type] ?? job.job_type}`}
+      title={job.title}
+      subtitle={`${budget.toLocaleString(undefined, { maximumFractionDigits: 2 })} ${job.currency}`}
+      meta={
+        deadline
+          ? `Due ${deadline.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}`
+          : undefined
+      }
+      imageUri={job.cover_image_url}
+      fallbackIcon="Briefcase"
+      dimmed={isClosed}
+      onPress={onOpen}
+    />
+  );
+};
+
 const ProfileCardEmbed: React.FC<{ username: string; onOpen: () => void; fallback: React.ReactElement }> = ({
   username,
   onOpen,
@@ -514,6 +557,24 @@ export function useOpenDehubLink() {
           })();
           return;
         }
+        case 'bounty': {
+          // A /bounty/<n> link carries the job number, and /work/<uuid> carries
+          // the row id directly — either way, resolve to the row's own id
+          // before navigating, since WorkJobDetailScreen expects a resolved
+          // uuid, not a lookup key.
+          const key = link.bountyJobKey!;
+          void (async () => {
+            const column = /^\d+$/.test(key) ? 'job_number' : 'id';
+            const { data } = await supabase
+              .from('work_jobs')
+              .select('*')
+              .eq(column, column === 'job_number' ? Number(key) : key)
+              .maybeSingle();
+            if (!data) return;
+            navigation.navigate(ScreenNames.WorkJobDetail, { jobId: (data as any).id, job: data as any });
+          })();
+          return;
+        }
         default:
           return;
       }
@@ -586,6 +647,9 @@ const DehubLinkCardComponent: React.FC<DehubLinkCardProps> = ({
           fallback={fallback}
         />
       );
+      break;
+    case 'bounty':
+      card = <BountyCardEmbed jobKey={link.bountyJobKey!} onOpen={open} fallback={fallback} />;
       break;
     default:
       card = fallback;

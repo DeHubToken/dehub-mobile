@@ -56,6 +56,7 @@ import { useCommunityChat } from "../../hooks/useCommunityChat";
 import { getCommunityAbilities, isForever } from "../../libs/community-permissions";
 import type { Community, CommunityChatMessage, CommunityMember } from "../../types/community";
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
+import LinkPreviewCard from "../common/LinkPreviewCard";
 import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
 import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
@@ -205,6 +206,7 @@ const ChatRow: React.FC<{
         )}
 
         <DehubLinkCards links={dehubLinks} />
+        <LinkPreviewCard text={message.content} />
         <AssetRefCards refs={assetRefs} />
 
         {!!message.edited_at && (

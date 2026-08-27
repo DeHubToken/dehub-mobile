@@ -32,6 +32,7 @@ import type { Comment } from "../../services/nft.service";
 import type { CommentLayout } from "./CommentContextMenu";
 import { WEBSITE_LINK } from "../../config";
 import { DehubLinkCards, MAX_CARDS_PER_MESSAGE } from "../common/DehubLinkCard";
+import LinkPreviewCard from "../common/LinkPreviewCard";
 import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
 import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
@@ -467,6 +468,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
           ) : null}
 
           <DehubLinkCards links={dehubLinks} />
+          <LinkPreviewCard text={displayContent} />
           <AssetRefCards refs={assetRefs} />
 
           {showTranslate && (
