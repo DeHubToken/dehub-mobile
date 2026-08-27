@@ -294,7 +294,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   // --- Live stats ---
   const currentViewers = stream?.peakViewers || 0;
-  const liveViewCount = stream?.totalViews || item.views || 0;
+  const liveViewCount = stream?.totalViews || resolveViewCount(item);
   const liveLikes = stream?.likes || item.likes || 0;
 
   // --- Access info (for navigation) ---

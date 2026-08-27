@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { resolveViewCount } from "../../libs/numbers.util";
 import {
   View,
   Text,
@@ -106,7 +107,9 @@ const EarningsComparisonCard: React.FC = () => {
       const items = posts?.result ?? [];
       setTotalViews(
         items.reduce(
-          (sum: number, p: any) => sum + Number(p?.views ?? p?.view_count ?? 0),
+          // The canonical summed count, not the signed-in half — this card is
+          // a creator's own total and read low without anon and badge views.
+          (sum: number, p: any) => sum + resolveViewCount(p),
           0,
         ),
       );
