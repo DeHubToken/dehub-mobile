@@ -934,7 +934,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       const ownsToggle = isLastOfThread && total > 0 && (hidden > 0 || expandedCommentIds.has(root));
 
       meta.set(id, {
-        lineAbove: c.isReply,
+        lineAbove: !!c.isReply,
         // The toggle sits inside this row's own body, so a row that owns it
         // ends the line rather than carrying it past its bottom edge.
         lineBelow: nextIsSameThread || (!c.isReply && total > 0),
