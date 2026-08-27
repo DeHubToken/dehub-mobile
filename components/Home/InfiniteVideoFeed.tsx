@@ -558,8 +558,12 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     return first?.createdAt || first?.created_at || undefined;
   }, [data]);
 
+  // The poll also refreshes the counts on the cards already rendered, so it
+  // runs under every sort now — only the pill is held back to the chronological
+  // one.
   const { newPostCount, atCap: newPostsAtCap } = useNewPostsSignal({
-    enabled: active && isFocused && (params?.sortBy ?? "createdAt") === "createdAt",
+    enabled: active && isFocused,
+    chronological: (params?.sortBy ?? "createdAt") === "createdAt",
     params,
     newestCreatedAt: newestRenderedCreatedAt,
   });

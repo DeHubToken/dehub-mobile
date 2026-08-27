@@ -109,3 +109,29 @@ export const PERSIST_MAX_AGE = 24 * 60 * 60 * 1000;
 // Bump to invalidate every persisted cache after a breaking shape change
 // (e.g. feed item structure changes between app versions).
 export const PERSIST_BUSTER = "v1";
+
+/** When this JS context started. Anything fetched since is this session's own. */
+const SESSION_START = Date.now();
+
+/**
+ * Stamp restored entries stale. Call once, right after the persister finishes
+ * restoring (App.tsx passes it as PersistQueryClientProvider's onSuccess).
+ *
+ * Restored data is last-known, never current. A hydrated entry keeps its
+ * ORIGINAL `dataUpdatedAt`, and staleTime above is five minutes — so a cold
+ * start inside that window leaves react-query believing the restored feed is
+ * fresh and no refetch is issued at all. The feed then paints the like and view
+ * counts from whenever the app was last open, and (refetchOnWindowFocus being
+ * false) nothing corrects them. Same fix as dehubweb's query-persist.
+ *
+ * `dataUpdatedAt: 0` rather than `isInvalidated` alone, because prefetch paths
+ * compare timestamps against staleTime and never read the flag.
+ */
+export function markRestoredCacheStale(): void {
+  for (const query of queryClient.getQueryCache().getAll()) {
+    if (query.state.status !== "success") continue;
+    // Anything this session already fetched is genuinely fresh — leave it be.
+    if (query.state.dataUpdatedAt >= SESSION_START) continue;
+    query.setState({ ...query.state, dataUpdatedAt: 0, isInvalidated: true });
+  }
+}
