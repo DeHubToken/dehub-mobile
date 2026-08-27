@@ -87,6 +87,9 @@ export interface UserProfileHeaderProps {
   hasStories?: boolean;
   hasUnwatchedStories?: boolean;
   onStoryPress?: () => void;
+  /** The creator has published at least one subscription plan. */
+  hasPlans?: boolean;
+  onSubscribe?: () => void;
 }
 
 const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
@@ -126,6 +129,8 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   hasStories = false,
   hasUnwatchedStories = false,
   onStoryPress,
+  hasPlans = false,
+  onSubscribe,
 }) => {
   // Bios go through the shared hook rather than a private translateText call,
   // which is what gets them auto-translation, the persisted cache and — the
@@ -404,6 +409,27 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         </View>
 
         <MutualFollowers mutuals={mutuals || []} />
+
+        {/* Subscribe CTA — web parity. A creator who has published a plan sells
+            to anyone, so this does not wait on following; it jumps the sheet to
+            the Subs tab, where the plan cards do the selling. Full width rather
+            than beside Follow: two glass pills plus the avatar overflow on a
+            narrow phone. */}
+        {!isOwnProfile && !isBlocked && hasPlans && !!onSubscribe && (
+          <TouchableOpacity
+            onPress={onSubscribe}
+            activeOpacity={0.7}
+            style={[s.glassBtn, { marginTop: 12, paddingHorizontal: 0 }]}
+          >
+            <BlurView intensity={40} tint="dark" style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
+            <LinearGradient colors={GLASS_GRADIENT} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: BTN_RADIUS }]} />
+            <View style={[StyleSheet.absoluteFill, s.glassOverlay]} />
+            <View style={s.glassBtnContent}>
+              <Icon name="Star" size={14} color="#fff" />
+              <Text style={s.glassBtnLabel}>Subscribe Now</Text>
+            </View>
+          </TouchableOpacity>
+        )}
 
         {!hasUsername && (
           <View className="mt-3 bg-theme-neutrals-800/60 rounded-lg p-3">

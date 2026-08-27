@@ -66,6 +66,9 @@ interface UserProfileBottomContentTabsProps {
   isBlocked?: boolean;
   youBlocked?: boolean;
   blockedYou?: boolean;
+  /** One-shot tab request from the header (the Subscribe CTA). */
+  pendingTab?: string | null;
+  onPendingTabConsumed?: () => void;
 }
 
 const STICKY_BAR_HEIGHT = 68;
@@ -120,6 +123,8 @@ const UserProfileBottomContentTabs: React.FC<
   isBlocked = false,
   youBlocked = false,
   blockedYou = false,
+  pendingTab = null,
+  onPendingTabConsumed,
 }) => {
   const navigation = useNavigation<any>();
   const { hideUserProfile } = useUserProfileSheet();
@@ -128,6 +133,14 @@ const UserProfileBottomContentTabs: React.FC<
 
   // Active content tab
   const [activeTab, setActiveTab] = useState<ContentTab>("home");
+
+  // The header's Subscribe CTA lives one level up, so it asks for a tab rather
+  // than owning one. Cleared immediately so a second press still works.
+  useEffect(() => {
+    if (!pendingTab) return;
+    setActiveTab(pendingTab as ContentTab);
+    onPendingTabConsumed?.();
+  }, [pendingTab, onPendingTabConsumed]);
 
   // Sort, search and filter over this creator's channel — the same hook the
   // signed-in user's own profile uses, so the two surfaces stay identical.
