@@ -147,7 +147,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
   // The gate is the creator's own plans, so with none there is nothing to gate
   // on and the row stays off — see the comment on the switch.
   const user = useUser() as any;
-  const { hasPlans, isLoading: plansLoading } = useCreatorPlans(user?.address);
+  const { hasPlans, hasAnyPlan, isLoading: plansLoading } = useCreatorPlans(user?.address);
   const evmGateChainId = postChainId && !isSolana ? postChainId : ChainId.BASE_MAINNET;
   const evmLockTokens = React.useMemo(
     () => supportedTokens.filter((t) => t.chainId === evmGateChainId),
@@ -329,9 +329,15 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
               disabled={!hasPlans}
             />
           </View>
+          {/* Two different reasons the switch can be dead, and they need
+              different instructions: no plan at all, or a plan still sitting as
+              a draft. Telling someone who already has two to create one is how
+              a post ended up gated behind plans nobody could buy. */}
           {!hasPlans && !plansLoading && (
             <Text className="text-theme-neutrals-500 text-xs mt-1.5">
-              Create a subscription plan on your profile first.
+              {hasAnyPlan
+                ? "Publish your subscription plan on chain first."
+                : "Create a subscription plan on your profile first."}
             </Text>
           )}
           {state.subscribersEnabled && hasPlans && (

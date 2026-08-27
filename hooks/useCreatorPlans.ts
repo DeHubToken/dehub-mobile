@@ -8,6 +8,7 @@
  */
 import { useQuery } from "@tanstack/react-query";
 import { getPlans, type SubscriptionPlan } from "../services/subscription.service";
+import { isSubscriberPlanBuyable } from "../libs/content-gate";
 
 export function useCreatorPlans(creatorAddress?: string | null) {
   const address = creatorAddress?.toLowerCase();
@@ -23,10 +24,18 @@ export function useCreatorPlans(creatorAddress?: string | null) {
 
   const plans: SubscriptionPlan[] = query.data ?? [];
 
+  // A plan that is not on chain yet cannot be bought, so gating a post behind
+  // one produces a post nobody can ever open. Only published plans count.
+  const publishedPlans = plans.filter((p: any) => isSubscriberPlanBuyable(p));
+
   return {
     plans,
-    planIds: plans.map((p: any) => String(p.id ?? p._id)).filter(Boolean),
-    hasPlans: plans.length > 0,
+    publishedPlans,
+    planIds: publishedPlans.map((p: any) => String(p.id ?? p._id)).filter(Boolean),
+    /** Whether the creator has a plan a reader could actually buy. */
+    hasPlans: publishedPlans.length > 0,
+    /** Any plan at all, published or draft — for telling the two states apart. */
+    hasAnyPlan: plans.length > 0,
     isLoading: query.isLoading,
   };
 }
