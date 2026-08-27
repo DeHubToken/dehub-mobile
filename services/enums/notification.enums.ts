@@ -126,6 +126,11 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
     case NotificationType.FRACTION_OFFER_ACCEPTED:
     case NotificationType.FRACTION_PURCHASED:
       return { name: 'Store', color: '#22c55e' };
+    // Supabase-side bounty rows. Matched as strings because they are written by
+    // a database trigger and have no entry in NotificationType.
+    case 'work_application':
+    case 'work_submission':
+      return { name: 'Briefcase', color: '#D4D4D8' };
     default:
       return { name: 'Bell', color: '#9ca3af' };
   }
