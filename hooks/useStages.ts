@@ -224,6 +224,11 @@ export interface UseStagesReturn {
   guestListenSpace: (spaceId: string) => Promise<boolean>;
   leaveSpace: () => Promise<void>;
   endSpace: () => Promise<void>;
+  /**
+   * Take a stage you host off the air without being in it — the way out of a
+   * room whose host never managed to connect to it.
+   */
+  endStageById: (spaceId: string) => Promise<boolean>;
   toggleMute: () => void;
   raiseHand: () => Promise<void>;
   lowerHand: () => Promise<void>;
@@ -312,6 +317,36 @@ async function recountSpace(spaceId: string): Promise<void> {
   } catch (err) {
     // A headcount is not worth failing a join or a leave over.
     log.error("Failed to recount stage participants:", err);
+  }
+}
+
+/**
+ * Put a stage row back after a launch that never made it on air.
+ *
+ * The row is flipped to `live` BEFORE the host is connected, because the
+ * publisher-token gate reads it to decide who may speak. So this put-back is
+ * the only thing keeping a failed launch off the air — and when it misses, the
+ * room is stranded for good: it sits in the live list with a ghost seat in it,
+ * the in-room End button is unreachable (you cannot get into a room you could
+ * never connect to), and the auto-end trigger fires on a participant LEAVING,
+ * which this participant never did.
+ *
+ * Hence the retry, and the complaint when it still does not land.
+ */
+async function rollbackStageStatus(
+  spaceId: string,
+  status: "ended" | "scheduled",
+  wallet: string | null,
+): Promise<void> {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const { error } = await withWalletHeader(
+      supabase.from("audio_spaces").update({ status }).eq("id", spaceId) as never,
+      wallet,
+    );
+    if (!error) return;
+    if (attempt === 1) {
+      log.error("Stage left advertised as live after a failed launch:", { spaceId, status, error });
+    }
   }
 }
 
@@ -956,24 +991,32 @@ export function useStages(): UseStagesReturn {
       if (error) throw error;
       const space = data as AudioSpace;
 
-      // Add host as participant so they appear in the speakers list
-      await signed(
-        supabase.from("space_participants").insert({
-          space_id: space.id,
-          wallet_address: userAddress,
-          username: user?.username || null,
-          avatar: persistableAvatar(user?.avatarImageUrl),
-          role: "host",
-          is_muted: true,
-        }),
-      );
-
-      const success = await joinStageChannel(space, "host");
-      if (!success) {
-        await signed(
-          supabase.from("audio_spaces").update({ status: "ended" }).eq("id", space.id),
+      // Everything from here to being on air is inside the put-back's reach.
+      // The seat write used to sit above it, so a seat that failed to write
+      // threw with the row already advertised as live — and nothing ever ends
+      // a row in that state, because the auto-end trigger fires on a
+      // participant LEAVING and this participant never arrived.
+      try {
+        // Add host as participant so they appear in the speakers list. Not
+        // cosmetic: the publisher-token gate reads this row to decide the
+        // caller may speak.
+        const { error: seatError } = await signed(
+          supabase.from("space_participants").insert({
+            space_id: space.id,
+            wallet_address: userAddress,
+            username: user?.username || null,
+            avatar: persistableAvatar(user?.avatarImageUrl),
+            role: "host",
+            is_muted: true,
+          }),
         );
-        throw new Error("Failed to join Agora channel");
+        if (seatError) throw seatError;
+
+        const success = await joinStageChannel(space, "host");
+        if (!success) throw new Error("Failed to join Agora channel");
+      } catch (err) {
+        await rollbackStageStatus(space.id, "ended", userAddress);
+        throw err;
       }
 
       setCurrentSpace(space);
@@ -1069,25 +1112,26 @@ export function useStages(): UseStagesReturn {
       if (error) throw error;
       const space = data as AudioSpace;
 
-      await signed(
-        supabase.from("space_participants").insert({
-          space_id: space.id,
-          wallet_address: userAddress,
-          username: user?.username || null,
-          avatar: persistableAvatar(user?.avatarImageUrl),
-          role: "host",
-          is_muted: true,
-        }),
-      );
+      try {
+        const { error: seatError } = await signed(
+          supabase.from("space_participants").insert({
+            space_id: space.id,
+            wallet_address: userAddress,
+            username: user?.username || null,
+            avatar: persistableAvatar(user?.avatarImageUrl),
+            role: "host",
+            is_muted: true,
+          }),
+        );
+        if (seatError) throw seatError;
 
-      const success = await joinStageChannel(space, "host");
-      if (!success) {
+        const success = await joinStageChannel(space, "host");
+        if (!success) throw new Error("Failed to join Agora channel");
+      } catch (err) {
         // Back to scheduled, not ended — a failed start must not quietly
         // destroy an announcement people are already holding a link to.
-        await signed(
-          supabase.from("audio_spaces").update({ status: "scheduled" }).eq("id", space.id),
-        );
-        throw new Error("Failed to join Agora channel");
+        await rollbackStageStatus(space.id, "scheduled", userAddress);
+        throw err;
       }
 
       setCurrentSpace(space);
@@ -1385,6 +1429,55 @@ export function useStages(): UseStagesReturn {
     }
   }, [leaveSpace, uploadAndTranscribe, signed]);
 
+  /**
+   * Close a stage you host but are not standing in.
+   *
+   * `endSpace` above only fires for the room this device is currently in and
+   * holds `host` in — so the End button on your own card in the browse list did
+   * nothing at all for the case that needs it most: a launch that failed after
+   * the row went live, which can never be joined and so could never be ended.
+   *
+   * Clears the open seats too, because that is what the auto-end trigger keys
+   * off and what stops the wallet looking like it is still in a room.
+   */
+  const endStageById = useCallback(async (spaceId: string): Promise<boolean> => {
+    if (!userAddress) return false;
+    try {
+      const { data, error: readError } = await supabase
+        .from("audio_spaces")
+        .select("id, host_wallet_address, status")
+        .eq("id", spaceId)
+        .single();
+      if (readError || !data) throw readError || new Error("Stage not found");
+      if (!sameWallet(data.host_wallet_address, userAddress)) return false;
+
+      if (data.status !== "ended") {
+        const { error } = await signed(
+          supabase
+            .from("audio_spaces")
+            .update({ status: "ended", ended_at: new Date().toISOString() })
+            .eq("id", spaceId),
+        );
+        if (error) throw error;
+
+        await signed(
+          supabase
+            .from("space_participants")
+            .update({ left_at: new Date().toISOString() })
+            .eq("space_id", spaceId)
+            .is("left_at", null),
+        );
+      }
+
+      if (currentSpaceRef.current?.id === spaceId) await leaveSpace();
+      await refreshSpaces();
+      return true;
+    } catch (err) {
+      log.error("Failed to end stage from outside it:", err);
+      return false;
+    }
+  }, [userAddress, signed, leaveSpace, refreshSpaces]);
+
   const toggleMute = useCallback(() => {
     if (myRole === "listener") return;
     const next = !isMuted;
@@ -1597,6 +1690,7 @@ export function useStages(): UseStagesReturn {
     guestListenSpace,
     leaveSpace,
     endSpace,
+    endStageById,
     toggleMute,
     raiseHand,
     lowerHand,

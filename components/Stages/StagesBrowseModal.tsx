@@ -85,6 +85,7 @@ const StagesBrowseModal: React.FC = () => {
     closeModal,
     refreshSpaces,
     endSpace,
+    endStageById,
     startScheduledSpace,
     cancelScheduledSpace,
     deleteEndedSpace,
@@ -301,7 +302,12 @@ const StagesBrowseModal: React.FC = () => {
         key={item.id}
         style={[styles.liveCard, isMySpace && styles.liveCardMine]}
         onPress={() => {
-          if (isCurrentSpace || isMySpace) {
+          // Being the host is not the same as being connected. Opening the
+          // live view for a room this device has not joined showed an empty
+          // stage with no audio and no way forward — a host coming back after
+          // a restart, or one whose launch failed, has to go through the same
+          // rejoin as anyone else. joinSpace already restores the host role.
+          if (isCurrentSpace) {
             openModal("live");
           } else {
             joinSpace(item.id).then((ok) => {
@@ -361,7 +367,16 @@ const StagesBrowseModal: React.FC = () => {
           </View>
           {isMySpace && (
             <TouchableOpacity
-              onPress={endSpace}
+              // endSpace only fires for the room this device is standing in;
+              // from the list — which is where a stranded stage is looked at —
+              // it did nothing at all.
+              onPress={() => {
+                if (isCurrentSpace) {
+                  void endSpace();
+                } else {
+                  void endStageById(item.id);
+                }
+              }}
               style={styles.liveEndBtn}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               accessibilityRole="button"
