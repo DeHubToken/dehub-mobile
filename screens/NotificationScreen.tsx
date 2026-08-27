@@ -31,6 +31,13 @@ import {
   type NotificationItem,
   type NotificationCategory,
 } from "../services/user.service";
+import {
+  fetchCustomNotifications,
+  isCustomNotificationId,
+  markCustomNotificationRead,
+  type CustomNotificationItem,
+} from "../libs/custom-notifications";
+import { supabase } from "../services/supabase";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
@@ -72,7 +79,15 @@ const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
   comments: [NotificationType.COMMENT, NotificationType.COMMENT_REPLY, NotificationType.MENTION],
   reposts: [NotificationType.REPOST, NotificationType.QUOTE],
   subscriptions: [NotificationType.SUBSCRIPTION, NotificationType.PPV_PURCHASE],
-  tips: [NotificationType.TIP, NotificationType.BOUNTY_AVAILABLE, NotificationType.BOUNTY_CLAIMED],
+  // work_application / work_submission are Supabase-side rows with no entry in
+  // this enum — cast in rather than invented as enum members, so nothing else
+  // can start believing the API knows about them.
+  tips: [
+    NotificationType.TIP,
+    NotificationType.BOUNTY_AVAILABLE,
+    NotificationType.BOUNTY_CLAIMED,
+    ...(['work_application', 'work_submission'] as unknown as NotificationType[]),
+  ],
   payments: [NotificationType.FIAT_PAYMENT_COMPLETED],
   livestreams: [NotificationType.LIVESTREAM_START],
 };
@@ -86,7 +101,13 @@ const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
  * server-side and nothing emits it, so the Payments tab stays empty until
  * something does.
  */
-const CLIENT_ONLY_TYPES = new Set<string>([NotificationType.FIAT_PAYMENT_COMPLETED]);
+const CLIENT_ONLY_TYPES = new Set<string>([
+  NotificationType.FIAT_PAYMENT_COMPLETED,
+  // Supabase-side. Sending either to the API drops the whole filter and returns
+  // an unfiltered page, which is exactly the bug this set exists to prevent.
+  'work_application',
+  'work_submission',
+]);
 
 /** The subset of a tab's types the API can filter on, or undefined for no server filter. */
 function apiTypesForFilter(filter: NotificationTypeFilter): string[] | undefined {
@@ -257,7 +278,14 @@ const getMonoIconConfig = (type: NotificationType | string): { name: string; col
  */
 const isNotificationClickable = (notification: NotificationItem): boolean => {
   const type = notification.type as NotificationType;
-  
+
+  // Bounty rows carry job_number in customReferenceId, which is enough to open
+  // the bounty — the uuid the detail screen wants is looked up on tap.
+  const typeStr = notification.type as string;
+  if (typeStr === 'work_application' || typeStr === 'work_submission') {
+    return !!(notification as CustomNotificationItem).customReferenceId;
+  }
+
   // Non-clickable types (dislike doesn't generate notifications but just in case)
   if (NON_CLICKABLE_TYPES.has(type)) return false;
   
@@ -759,6 +787,10 @@ const NotificationScreen = () => {
   const { showUserProfile } = useUserProfileSheet();
   
   const walletAddress = user?.walletAddress || user?.address || null;
+  // Read from the fire-and-forget callbacks below, which are deliberately
+  // dependency-free so they stay stable across every render of the list.
+  const walletAddressRef = useRef<string | null>(walletAddress);
+  walletAddressRef.current = walletAddress;
 
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   /**
@@ -836,10 +868,42 @@ const NotificationScreen = () => {
    * Fire-and-forget mark as read
    */
   const markAsReadAsync = useCallback((notificationId: string) => {
-    markNotificationAsRead(notificationId).catch((e) => {
+    // Supabase-side rows are not in the DeHub API, so a PATCH there would 404
+    // and the row would come back unread on the next refresh. The `custom_`
+    // prefix is the only thing distinguishing them — see libs/custom-notifications.
+    const mark = isCustomNotificationId(notificationId)
+      ? markCustomNotificationRead(notificationId, walletAddressRef.current)
+      : markNotificationAsRead(notificationId);
+    mark.catch((e: unknown) => {
       console.warn('[NotificationScreen] markAsRead failed', e);
     });
   }, []);
+
+  /**
+   * Open a bounty from its job_number.
+   *
+   * WorkJobDetail is keyed on the row uuid, and the notification only carries
+   * the human-facing number, so one lookup stands between the two. On failure
+   * this falls back to the bounty list rather than leaving the tap inert.
+   */
+  const openBountyByNumber = useCallback(async (jobNumber: string | undefined) => {
+    if (!jobNumber) return;
+    try {
+      const { data } = await supabase
+        .from('work_jobs')
+        .select('id')
+        .eq('job_number', Number(jobNumber))
+        .maybeSingle();
+      const jobId = (data as { id?: string } | null)?.id;
+      if (jobId) {
+        navigation.navigate(ScreenNames.WorkJobDetail, { jobId });
+        return;
+      }
+    } catch (e) {
+      console.warn('[NotificationScreen] bounty lookup failed', e);
+    }
+    navigation.navigate(ScreenNames.Work);
+  }, [navigation]);
 
   /**
    * Handle notification press - navigate immediately, mark read in background
@@ -866,6 +930,14 @@ const NotificationScreen = () => {
 
     // Navigate based on notification type
     switch (type as string) {
+      // The row stores job_number (what web's canonical /bounty/<n> URL is
+      // keyed on); this screen's route wants the uuid, so it is resolved on tap
+      // rather than duplicated into the notification.
+      case 'work_application':
+      case 'work_submission':
+        openBountyByNumber((notification as CustomNotificationItem).customReferenceId);
+        break;
+
       case NotificationType.FOLLOWING:
       case NotificationType.SUBSCRIPTION:
       case NotificationType.FOLLOW_REQUEST_ACCEPTED:
@@ -947,6 +1019,7 @@ const NotificationScreen = () => {
     navigateToLivestream,
     navigateToDM,
     markAsReadAsync,
+    openBountyByNumber,
   ]);
 
   const pageRef = useRef(1);
@@ -1030,7 +1103,23 @@ const NotificationScreen = () => {
         });
         if (gen !== fetchGenRef.current) return;
 
-        const payload = res?.data?.result || res?.result || [];
+        const apiPayload = res?.data?.result || res?.result || [];
+        let payload = apiPayload;
+
+        // Supabase-side rows (bounty applications, store orders, community
+        // joins, stage alerts) are merged on refresh only. They are a single
+        // recent page, not a paginated source, so folding them in again on
+        // every "load more" would duplicate them down the list.
+        if (isRefresh) {
+          const custom = await fetchCustomNotifications(walletAddressRef.current);
+          if (gen !== fetchGenRef.current) return;
+          if (custom.length) {
+            payload = [...payload, ...custom].sort(
+              (a: NotificationItem, b: NotificationItem) =>
+                new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+            );
+          }
+        }
 
         if (isRefresh) {
           setNotifications(payload);
@@ -1039,7 +1128,9 @@ const NotificationScreen = () => {
           setNotifications((prev) => [...prev, ...payload]);
         }
 
-        setHasMore(payload.length >= 30);
+        // Measured on the API page alone. The merged Supabase rows are not
+        // paginated, so counting them here would claim another page exists.
+        setHasMore(apiPayload.length >= 30);
 
         if (isRefresh && !opts?.skipCounts) {
           // The tab badges and the app badge both need every type, so a
@@ -1050,7 +1141,12 @@ const NotificationScreen = () => {
           if (types) {
             const allRes: any = await getNotifications({ unreadOnly: false, page: 1, limit: 30 });
             if (gen !== fetchGenRef.current) return;
-            setCountsSource(allRes?.data?.result || allRes?.result || []);
+            const allPayload = allRes?.data?.result || allRes?.result || [];
+            // The badge has to count the Supabase rows too, or the Tips tab
+            // shows a bounty application it does not admit to having.
+            const custom = await fetchCustomNotifications(walletAddressRef.current);
+            if (gen !== fetchGenRef.current) return;
+            setCountsSource(custom.length ? [...allPayload, ...custom] : allPayload);
           } else {
             setCountsSource(payload);
           }
