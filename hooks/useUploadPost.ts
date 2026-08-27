@@ -340,8 +340,12 @@ export function useUploadPost() {
       // field — the creator’s own plan ids — and the feed pipeline opens the
       // post for whoever holds an active subscription to one of them. The old
       // switch wrote an amount-less DHB lock here instead, gating nothing.
+      // `myPlanIds` is published plans only. An unpublished plan cannot be
+      // bought, so gating on one ships a post nobody can ever open — which is
+      // exactly what happened when this counted drafts. Empty stays undefined
+      // rather than [] so a gate is never stored with nothing behind it.
       const subscriberPlanIds =
-        p.monetization.subscribersEnabled && !isSolanaChain(p.postChainId)
+        p.monetization.subscribersEnabled && !isSolanaChain(p.postChainId) && myPlanIds.length
           ? myPlanIds
           : undefined;
       const thumb = p.coverUri || p.thumbnailUri || null;
