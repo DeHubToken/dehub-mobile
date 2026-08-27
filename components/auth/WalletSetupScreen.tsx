@@ -397,6 +397,11 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
     const [showPw, setShowPw] = useState(false);
     const [busy, setBusy] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    // The biometric attempt reports separately from the restore form below it.
+    // Sharing one `error` put "no key on this device" underneath a recovery-
+    // phrase box and two password fields — several hundred pixels below the
+    // button that produced it, so pressing it looked like nothing happened.
+    const [biometricError, setBiometricError] = useState<string | null>(null);
     // Set between "wallet created with biometrics" and "user has confirmed
     // they wrote the phrase down". Sign-in is deliberately parked until then.
     const [recoveryPhrase, setRecoveryPhrase] = useState<string | null>(null);
@@ -428,6 +433,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       setPassword("");
       setConfirm("");
       setError(null);
+      setBiometricError(null);
       setLiveAssessment(null);
       setRestoreSecret("");
       // The hosts keep this component mounted for the whole session and only
@@ -617,12 +623,12 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
     const handleBiometricUnlockPress = useCallback(async () => {
       if (busy) return;
       setBusy(true);
-      setError(null);
+      setBiometricError(null);
       try {
         await onBiometricUnlock();
         reset();
       } catch (e: any) {
-        setError(e?.message || "Biometric unlock failed");
+        setBiometricError(e?.message || "Biometric unlock failed");
       } finally {
         setBusy(false);
       }
@@ -1175,8 +1181,8 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                   </Text>
                   <AuthErrorNotice
                     message={
-                      error
-                        ? `${error} If this keeps failing, use your wallet password below or "Import external wallet".`
+                      biometricError
+                        ? `${biometricError} If this keeps failing, use your wallet password below or "Import external wallet".`
                         : null
                     }
                     style={{ marginBottom: 12 }}
@@ -1217,11 +1223,20 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                       : ""}
                   </Text>
 
+                  {/* Reported right here rather than beside the restore form
+                      further down: pressing this button when the key is
+                      genuinely absent fails instantly, before any fingerprint
+                      prompt can appear, so the message is the only feedback
+                      there is. `loading` matters for the same reason — without
+                      it the button had no visible reaction at all. */}
+                  <AuthErrorNotice message={biometricError} style={{ marginBottom: 12 }} />
+
                   <AuthButton
                     icon="finger-print"
                     label="Try biometrics on this phone"
                     onPress={handleBiometricUnlockPress}
                     disabled={busy}
+                    loading={busy}
                     accessibilityHint="Use this if you set this wallet up on this phone and it should already have the key"
                   />
 

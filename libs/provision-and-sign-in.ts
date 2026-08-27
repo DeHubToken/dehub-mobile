@@ -15,6 +15,7 @@ import {
   resolveEvmWalletForIdentity,
   getKnownWalletAddress,
   forgetLocalWalletForIdentity,
+  releaseWalletKeyForSignIn,
   retryPendingResetCleanup,
   type EvmWalletResolution,
 } from "./identity-wallet";
@@ -41,7 +42,8 @@ export type ProvisionDeps = {
     accessToken: string,
     chainId: number,
     expectedAddress?: string,
-    supabaseUserId?: string
+    supabaseUserId?: string,
+    opts?: { allowLocked?: boolean }
   ) => Promise<SupabaseSessionExchangeResult>;
   completeLocalSignIn: (
     address: string,
@@ -107,14 +109,16 @@ async function trySessionExchange(
   chainId: number,
   expectedAddress: string | undefined,
   supabaseUserId: string,
-  deps: ProvisionDeps
+  deps: ProvisionDeps,
+  opts?: { allowLocked?: boolean }
 ): Promise<SupabaseSessionExchangeResult> {
   try {
     return await deps.signInWithSupabaseSession(
       accessToken,
       chainId,
       expectedAddress,
-      supabaseUserId
+      supabaseUserId,
+      opts
     );
   } catch (e) {
     log.warn("provision:session-exchange:unexpected-error", e);
@@ -189,14 +193,30 @@ async function provisionAndSignInInner(
   // eslint-disable-next-line no-console
   console.error("[provision] wallet-resolution", resolution.status);
 
-  // Cloud wallet needs a password/biometric unlock on this device — never
-  // call /web/auth/supabase first; it always returns the polluted web3AuthMeta
-  // link (shubham_new) instead of the user_wallets row (shubham_new2).
+  // Cloud wallet exists but cannot be opened on this device without a password
+  // or a biometric wrap key.
+  //
+  // This used to go straight to the unlock sheet, which made being able to
+  // OPEN the wallet a precondition for being SIGNED IN — so a wallet whose
+  // wrap key lives on a handset the user no longer has locked them out of the
+  // app entirely, while the same account signed into dehub.io normally (web
+  // has always completed login with the wallet locked; see AuthProvider's
+  // completeLoginWithoutUnlock). Nothing about minting a DeHub token needs the
+  // seed: the address is stored in the clear and the Supabase identity is the
+  // proof. So try that first and let the wallet stay shut.
+  //
+  // The reason the exchange was banned here still stands — /web/auth/supabase
+  // ignores user_wallets and hands back whatever web3AuthMeta link the backend
+  // holds, which for shubham_new was the wrong account. Passing the row's
+  // address as `expectedAddress` is what makes it safe: signInWithSupabaseSession
+  // refuses any session whose address disagrees, clears the half-made session
+  // and reports "not-linked", dropping us onto exactly the unlock sheet this
+  // branch used to show unconditionally.
   if (
     resolution.status === "needs-unlock" ||
     resolution.status === "needs-biometric-unlock"
   ) {
-    return routeToWalletUi(supabaseUserId, resolution, "not-linked", accessToken);
+    return signInLockedOrRouteToUi(supabaseUserId, resolution, chainId, accessToken, deps);
   }
 
   if (resolution.status === "needs-web-passkey-sync") {
@@ -213,7 +233,7 @@ async function provisionAndSignInInner(
       resolution.status === "needs-unlock" ||
       resolution.status === "needs-biometric-unlock"
     ) {
-      return routeToWalletUi(supabaseUserId, resolution, "not-linked", accessToken);
+      return signInLockedOrRouteToUi(supabaseUserId, resolution, chainId, accessToken, deps);
     }
   }
 
@@ -242,7 +262,7 @@ async function provisionAndSignInInner(
         resolution.status === "needs-unlock" ||
         resolution.status === "needs-biometric-unlock"
       ) {
-        return routeToWalletUi(supabaseUserId, resolution, "not-linked", accessToken);
+        return signInLockedOrRouteToUi(supabaseUserId, resolution, chainId, accessToken, deps);
       }
     } else if (failed) {
       resolution = { status: "wallet-lookup-failed" };
@@ -276,10 +296,10 @@ async function provisionAndSignInInner(
 
   let sessionOutcome: SupabaseSessionExchangeResult = "failed";
 
-  // Only use session exchange when there is no cloud wallet row to unlock, or
-  // when the lookup failed and the backend may still recognize web3AuthMeta.
-  // Never exchange when user_wallets names an address that needs unlock —
-  // /web/auth/supabase ignores user_wallets and returns the stale meta link.
+  // The unlock-needed statuses are handled above (signInLockedOrRouteToUi),
+  // which runs its own exchange pinned to the row's address. What is left here
+  // is: no cloud row at all, a failed lookup where the backend may still know
+  // this identity by web3AuthMeta, and "ready" — a key already on the device.
   const mayUseSessionExchange =
     resolution.status === "needs-create-password" ||
     resolution.status === "wallet-lookup-failed" ||
@@ -291,7 +311,11 @@ async function provisionAndSignInInner(
       chainId,
       knownAddress,
       supabaseUserId,
-      deps
+      deps,
+      // Even with a key sitting on this device, reading it costs a
+      // fingerprint prompt — and the exchange does not need it. Sign in
+      // against the identity and let the first signature ask.
+      { allowLocked: true }
     );
     if (sessionOutcome === "linked") {
       log.warn("provision:session-exchange:ok", {
@@ -335,6 +359,43 @@ async function provisionAndSignInInner(
   return routeToWalletUi(supabaseUserId, resolution, sessionOutcome, accessToken);
 }
 
+/**
+ * Finish sign-in for a cloud wallet this device cannot open, without opening
+ * it. Falls back to the unlock sheet — the old unconditional behaviour — when
+ * the backend will not mint a token from the Supabase identity alone.
+ */
+async function signInLockedOrRouteToUi(
+  supabaseUserId: string,
+  resolution: Extract<
+    EvmWalletResolution,
+    { status: "needs-unlock" | "needs-biometric-unlock" }
+  >,
+  chainId: number,
+  accessToken: string | null,
+  deps: ProvisionDeps
+): Promise<ProvisionOutcome> {
+  if (accessToken) {
+    const outcome = await trySessionExchange(
+      accessToken,
+      chainId,
+      resolution.address,
+      supabaseUserId,
+      deps,
+      { allowLocked: true }
+    );
+    if (outcome === "linked") {
+      log.warn("provision:session-exchange:ok-wallet-locked", {
+        address: `${resolution.address.slice(0, 6)}...${resolution.address.slice(-4)}`,
+        protection: resolution.status === "needs-biometric-unlock" ? "biometric" : "password",
+      });
+      await markSupabaseIdentitySignedIn(supabaseUserId);
+      return { kind: "signed-in" };
+    }
+    log.warn("provision:session-exchange:locked-attempt-refused", { outcome });
+  }
+  return routeToWalletUi(supabaseUserId, resolution, "not-linked", accessToken);
+}
+
 async function handleReadyResolution(
   supabaseUserId: string,
   resolution: Extract<EvmWalletResolution, { status: "ready" }>,
@@ -369,14 +430,28 @@ async function handleReadyResolution(
 
   if (supabaseRowMatchesLocal) {
     try {
+      // The signature login is the one path that genuinely cannot proceed
+      // without the key, so this is where the device-owner prompt belongs.
+      // resolveEvmWalletForIdentity deliberately no longer releases it: doing
+      // so up front meant every sign-in asked for a fingerprint, including the
+      // ones the session exchange went on to complete without any signature.
+      const privateKey =
+        resolution.privateKey ?? (await releaseWalletKeyForSignIn(resolution.address));
+      if (!privateKey) {
+        log.warn("provision:ready-key-not-released", {
+          address: `${localAddr.slice(0, 6)}...${localAddr.slice(-4)}`,
+        });
+        const reresolved = await resolveEvmWalletForIdentity(supabaseUserId);
+        return routeToWalletUi(supabaseUserId, reresolved, sessionOutcome, accessToken);
+      }
       const web3AuthMeta = await deps.getSupabaseAuthMeta();
       // Awaited so the Solana address cache is populated before sign-in
       // completes — a fire-and-forget call here raced posting/paying on
       // Solana right after sign-in, throwing "Solana wallet unavailable".
       await deps
-        .provisionSolanaAddressForWallet(resolution.address, resolution.privateKey)
+        .provisionSolanaAddressForWallet(resolution.address, privateKey)
         .catch(() => {});
-      await deps.completeLocalSignIn(resolution.address, resolution.privateKey, web3AuthMeta);
+      await deps.completeLocalSignIn(resolution.address, privateKey, web3AuthMeta);
       await markSupabaseIdentitySignedIn(supabaseUserId);
       return { kind: "signed-in" };
     } catch (e) {
