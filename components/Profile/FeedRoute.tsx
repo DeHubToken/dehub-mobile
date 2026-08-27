@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { View, type NativeSyntheticEvent, type NativeScrollEvent } from 'react-native';
 import InfiniteFeed, { type InfiniteFeedRenderItemInfo } from '../Feed/InfiniteFeed';
 import FeedCard from '../Home/FeedCard';
-import { getUnifiedFeed, type FeedSortBy, type UnifiedFeedItem } from '../../services/feed.unified.service';
+import { getUnifiedFeed, type FeedPostType, type FeedRange, type FeedSortBy, type UnifiedFeedItem } from '../../services/feed.unified.service';
 import type { GetNFTsResponse, GetNFTsResult } from '../../services/nft.service';
 import { useAuthState } from '../../context/AuthContext';
 import ProfileEmptyState from './ProfileEmptyState';
@@ -12,6 +12,12 @@ interface FeedRouteProps {
   sortBy?: FeedSortBy;
   sortOrder?: "asc" | "desc";
   search?: string;
+  category?: string;
+  range?: FeedRange;
+  postType?: FeedPostType;
+  isPPV?: boolean;
+  hasBounty?: boolean;
+  isLocked?: boolean;
   address?: string;
   /** Profile header rendered as the scrollable list header (banner, info, tabs). */
   listHeader?: React.ReactNode;
@@ -35,6 +41,12 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
   sortBy,
   sortOrder,
   search,
+  category,
+  range,
+  postType,
+  isPPV,
+  hasBounty,
+  isLocked,
 }) => {
   const { isSignedIn } = useAuthState();
 
@@ -46,6 +58,15 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
         sortBy: sortBy ?? 'createdAt',
         sortOrder: sortOrder ?? 'desc',
         search: search || undefined,
+        category: category || undefined,
+        range,
+        // Sent only for a type the deployed API already knows: an unrecognised
+        // postType is answered with an unfiltered feed rather than an error.
+        postType: postType && postType !== 'all' ? postType : undefined,
+        // Only ever true — `false` would exclude free posts rather than widen.
+        isPPV: isPPV || undefined,
+        hasBounty: hasBounty || undefined,
+        isLocked: isLocked || undefined,
         // 'all' resolves to minted+signed server-side; 'minted' alone hides
         // off-chain (mint-opt-out) posts from their own author's profile.
         status: 'all',
@@ -54,7 +75,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
       });
       return { result: res.result as unknown as GetNFTsResult[] };
     },
-    [address, sortBy, sortOrder, search],
+    [address, sortBy, sortOrder, search, category, range, postType, isPPV, hasBounty, isLocked],
   );
 
   // Stable identity: InfiniteFeed's own renderItem useCallback lists this in
@@ -77,7 +98,23 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
     <View className="flex-1">
       <InfiniteFeed
         insideNavigatorScreen={false}
-        cacheKey={["profile-feed-all", address ?? ""]}
+        // Everything fetchPage closes over has to be in here: InfiniteFeed
+        // reads fetchPage through a ref, so a key that omits the toolbar state
+        // keeps serving the first sort/search/filter the tab was ever opened
+        // with.
+        cacheKey={[
+          "profile-feed-all",
+          address ?? "",
+          sortBy ?? "createdAt",
+          sortOrder ?? "desc",
+          search ?? "",
+          category ?? "",
+          range ?? "",
+          postType ?? "all",
+          isPPV ? "ppv" : "",
+          hasBounty ? "bounty" : "",
+          isLocked ? "locked" : "",
+        ]}
         fetchPage={fetchPage}
         pageSize={20}
         isSignedIn={isSignedIn}

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { View, ScrollView, ActivityIndicator, Pressable, Text, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import Icon from "../ui/Icon";
 import ProfileImageGrid from "./ProfileImageGrid";
-import { getUnifiedFeed, type FeedSortBy, type UnifiedFeedItem } from "../../services/feed.unified.service";
+import { getUnifiedFeed, type FeedRange, type FeedSortBy, type UnifiedFeedItem } from "../../services/feed.unified.service";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import ProfileEmptyState from "./ProfileEmptyState";
@@ -12,12 +12,29 @@ interface ImagesRouteProps {
   sortBy?: FeedSortBy;
   sortOrder?: "asc" | "desc";
   search?: string;
+  category?: string;
+  range?: FeedRange;
+  isPPV?: boolean;
+  hasBounty?: boolean;
+  isLocked?: boolean;
   address?: string;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
   listHeader?: React.ReactElement | null;
 }
 
-const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll, listHeader, sortBy, sortOrder, search }) => {
+const ImagesRoute: React.FC<ImagesRouteProps> = ({
+  address,
+  onScroll,
+  listHeader,
+  sortBy,
+  sortOrder,
+  search,
+  category,
+  range,
+  isPPV,
+  hasBounty,
+  isLocked,
+}) => {
   const [images, setImages] = useState<UnifiedFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -35,6 +52,12 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll, listHeader
         sortBy: sortBy ?? "createdAt",
         sortOrder: sortOrder ?? "desc",
         search: search || undefined,
+        category: category || undefined,
+        range,
+        // Only ever true — `false` would exclude free posts rather than widen.
+        isPPV: isPPV || undefined,
+        hasBounty: hasBounty || undefined,
+        isLocked: isLocked || undefined,
         status: "all",
         page,
         limit: 21,
@@ -50,7 +73,7 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({ address, onScroll, listHeader
     } catch (e: any) {
       if (page === 1) setError(e?.message || "Failed to load");
     }
-  }, [address, sortBy, sortOrder, search]);
+  }, [address, sortBy, sortOrder, search, category, range, isPPV, hasBounty, isLocked]);
 
   const load = useCallback(() => {
     if (!address) return;
