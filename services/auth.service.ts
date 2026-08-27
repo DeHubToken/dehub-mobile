@@ -202,7 +202,12 @@ export const AuthService = {
    *                completeLocalSignIn authenticates with.
    */
   async rotateWallet(address: string, chainId: number): Promise<void> {
-    const { getSupabaseAccessToken } = await import("./auth/supabaseAuth.service");
+    // `require`, not `await import`: still lazy — which keeps the Supabase
+    // client off this module's eval path, the reason signInWithWallet defers
+    // it too — but jest cannot run a dynamic import callback without
+    // --experimental-vm-modules, so `import()` here is untestable.
+    const { getSupabaseAccessToken } =
+      require("./auth/supabaseAuth.service") as typeof import("./auth/supabaseAuth.service");
     const supabaseAccessToken = await getSupabaseAccessToken();
     if (!supabaseAccessToken) {
       throw new WalletNotLinkedError(
