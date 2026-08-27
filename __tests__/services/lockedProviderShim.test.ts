@@ -1,7 +1,7 @@
 import { createLockedEip1193, isSigningMethod } from "../../services/auth/lockedProviderShim";
 import { requestWalletUnlock, WalletLockedError } from "../../libs/wallet-lock";
 
-const send = jest.fn(async (_method: string, _params: any[]) => "0xrpc");
+const mockSend = jest.fn(async (_method: string, _params: any[]) => "0xrpc");
 
 jest.mock("../../libs/logger", () => ({
   createLogger: () => ({
@@ -26,7 +26,9 @@ jest.mock("../../libs/wallet-lock", () => {
 });
 
 jest.mock("../../services/ethers.service", () => ({
-  ethersService: { getProvider: () => ({ send }) },
+  // Named with the mock prefix jest requires for anything a jest.mock factory
+  // closes over — the factory is hoisted above the declaration.
+  ethersService: { getProvider: () => ({ send: mockSend }) },
 }));
 
 jest.mock("../../config/constants", () => ({ defaultChainId: 8453 }));
@@ -64,7 +66,7 @@ describe("lockedProviderShim", () => {
     await expect(
       shim.request({ method: "eth_getBalance", params: [ADDRESS, "latest"] }),
     ).resolves.toBe("0xrpc");
-    expect(send).toHaveBeenCalledWith("eth_getBalance", [ADDRESS, "latest"]);
+    expect(mockSend).toHaveBeenCalledWith("eth_getBalance", [ADDRESS, "latest"]);
     expect(askUnlock).not.toHaveBeenCalled();
   });
 
@@ -132,7 +134,7 @@ describe("lockedProviderShim", () => {
     // Once unlocked the shim is transparent — even reads go to the real
     // provider, so the session behaves exactly like one that never locked.
     expect(real.request).toHaveBeenCalledTimes(3);
-    expect(send).not.toHaveBeenCalled();
+    expect(mockSend).not.toHaveBeenCalled();
   });
 
   it("reports a dismissed sheet as a refusal, not a broken provider", async () => {
