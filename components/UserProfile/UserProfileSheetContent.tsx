@@ -18,6 +18,7 @@ import { getStoriesForWallet, type Story } from "../../services/stories.service"
 import { useWatchedStories } from "../../hooks/useWatchedStories";
 import { useStoryViewer } from "../../context/StoryViewerContext";
 import { useAuthState, useUser } from "../../context/AuthContext";
+import { useCreatorPlans } from "../../hooks/useCreatorPlans";
 
 const FallbackAvatar = require("../../assets/default-avatar.png");
 
@@ -151,6 +152,19 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     refreshProfileStories,
   ]);
 
+  // Plans drive the header Subscribe CTA. Reading them here (not inside the
+  // tabs, which only fetch on the Subs tab being opened) is what lets the
+  // button exist before anyone has gone looking for it.
+  const { hasPlans } = useCreatorPlans(
+    !isOwnProfile && profileData?.address ? profileData.address : undefined,
+  );
+
+  // The Subs tab lives inside UserProfileBottomContentTabs; the header lives
+  // here. One-shot request, cleared once the child has switched.
+  const [pendingTab, setPendingTab] = useState<string | null>(null);
+  const handleSubscribePress = useCallback(() => setPendingTab("subscribers"), []);
+  const handlePendingTabConsumed = useCallback(() => setPendingTab(null), []);
+
   const { mutuals } = useMutualFollowers({
     profileAddress: profileData?.address,
     enabled: !isOwnProfile && !!profileData?.address,
@@ -267,6 +281,8 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           hasStories={hasProfileStories}
           hasUnwatchedStories={hasUnwatchedProfileStories}
           onStoryPress={handleStoryPress}
+          hasPlans={hasPlans}
+          onSubscribe={handleSubscribePress}
         />
         {!!profileData.address && (
           <View className="px-3 mt-1">
@@ -337,6 +353,8 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     hasProfileStories,
     hasUnwatchedProfileStories,
     handleStoryPress,
+    hasPlans,
+    handleSubscribePress,
   ]);
 
   if (loading || !data) {
@@ -375,6 +393,8 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         isBlocked={isBlocked}
         youBlocked={youBlocked}
         blockedYou={blockedYou}
+        pendingTab={pendingTab}
+        onPendingTabConsumed={handlePendingTabConsumed}
       />
       {!isFullScreen && <View style={{ height: 40 }} />}
 
