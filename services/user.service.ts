@@ -167,6 +167,10 @@ export interface UserContentSearchParams {
   range?: string | number; // time or other range filter
   page?: number;         // pagination page
   unit?: number;         // page size (defaults to 40)
+  /** Monetisation lanes. Only ever sent as `true` — `false` would exclude free posts. */
+  isPPV?: boolean;
+  hasBounty?: boolean;
+  isLocked?: boolean;
 }
 
 /**
@@ -303,6 +307,9 @@ export async function getUserVideos(userOrAddress: User | string, params?: UserC
     range: params?.range,
     q: params?.q,
     page: params?.page,
+    isPPV: params?.isPPV,
+    hasBounty: params?.hasBounty,
+    isLocked: params?.isLocked,
   };
   return getNFTs(searchParams);
 }

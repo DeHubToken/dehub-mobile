@@ -10,6 +10,11 @@ interface VideosRouteProps {
   sortBy?: string;
   sortOrder?: "asc" | "desc";
   search?: string;
+  category?: string;
+  range?: string;
+  isPPV?: boolean;
+  hasBounty?: boolean;
+  isLocked?: boolean;
   address?: string;
   showCreator?: boolean;
   onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
@@ -17,7 +22,21 @@ interface VideosRouteProps {
   onBeforeNavigate?: () => void;
 }
 
-const VideosRoute: React.FC<VideosRouteProps> = ({ address, showCreator = true, onScroll, listHeader, onBeforeNavigate, sortBy, sortOrder, search }) => {
+const VideosRoute: React.FC<VideosRouteProps> = ({
+  address,
+  showCreator = true,
+  onScroll,
+  listHeader,
+  onBeforeNavigate,
+  sortBy,
+  sortOrder,
+  search,
+  category,
+  range,
+  isPPV,
+  hasBounty,
+  isLocked,
+}) => {
   return (
     <CompactVideoInfiniteList
       address={address || FALLBACK_ADDRESS}
@@ -30,6 +49,11 @@ const VideosRoute: React.FC<VideosRouteProps> = ({ address, showCreator = true, 
       sortBy={sortBy}
       sortOrder={sortOrder}
       search={search}
+      category={category}
+      range={range}
+      isPPV={isPPV}
+      hasBounty={hasBounty}
+      isLocked={isLocked}
     />
   );
 };

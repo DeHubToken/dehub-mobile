@@ -51,6 +51,22 @@ interface FeedFilterPanelProps {
   hidePostType?: boolean;
   /** Hide the "Content Access" filter section, for contexts where it's already fixed/redundant. */
   hideContentAccess?: boolean;
+  /**
+   * Hide the "Sort" section, for a surface that already carries its own sort
+   * control — the profile toolbar does, with an ascending option this row
+   * cannot express. `filters.sortBy` is then never read or written.
+   */
+  hideSort?: boolean;
+  /** Panel height. The default fits every section; a trimmed panel wants less. */
+  maxHeight?: number;
+  /**
+   * Let the panel scroll its own content. Turn this off when the panel sits
+   * inside another vertical scroller (the profile renders it in a list header):
+   * a nested ScrollView captures the drag and refuses to pass it on, so the
+   * list underneath stops scrolling wherever the panel covers it. With it off,
+   * `maxHeight` has to be tall enough for every row on show.
+   */
+  innerScrollEnabled?: boolean;
 }
 
 
@@ -228,6 +244,9 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   onResetFilters,
   hidePostType,
   hideContentAccess,
+  hideSort,
+  maxHeight = MAX_HEIGHT,
+  innerScrollEnabled = true,
 }) => {
   const { t } = useTranslation();
   const [categorySearch, setCategorySearch] = useState("");
@@ -278,7 +297,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   }, [visible, isVisible]);
 
   const animatedStyle = useAnimatedStyle(() => {
-    const targetHeight = isVisible.value ? MAX_HEIGHT : 0;
+    const targetHeight = isVisible.value ? maxHeight : 0;
     const targetOpacity = isVisible.value ? 1 : 0;
     return {
       height: withTiming(targetHeight, {
@@ -323,18 +342,21 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
     >
       <ScrollView
         showsVerticalScrollIndicator={false}
+        scrollEnabled={innerScrollEnabled}
         contentContainerStyle={panelStyles.content}
       >
-        <GlassFilterRow title={t("filters.sort").toUpperCase()}>
-          {SORT_OPTIONS.map((option) => (
-            <GlassPill
-              key={option.id}
-              label={option.label}
-              selected={filters.sortBy === option.id}
-              onPress={() => handleSortChange(option.id)}
-            />
-          ))}
-        </GlassFilterRow>
+        {!hideSort && (
+          <GlassFilterRow title={t("filters.sort").toUpperCase()}>
+            {SORT_OPTIONS.map((option) => (
+              <GlassPill
+                key={option.id}
+                label={option.label}
+                selected={filters.sortBy === option.id}
+                onPress={() => handleSortChange(option.id)}
+              />
+            ))}
+          </GlassFilterRow>
+        )}
 
         {categories.length > 0 && (
           <View style={sectionStyles.section}>
