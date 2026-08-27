@@ -12,6 +12,7 @@ import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client
 import {
   queryClient,
   queryCachePersister,
+  markRestoredCacheStale,
   PERSIST_MAX_AGE,
   PERSIST_BUSTER,
 } from "./config/queryClient";
@@ -157,6 +158,12 @@ export default function App() {
             maxAge: PERSIST_MAX_AGE,
             buster: PERSIST_BUSTER,
           }}
+          // Restored data paints instantly and is then revalidated. Without
+          // this it would not be: a hydrated entry keeps its original
+          // timestamp, so a cold start inside the 5-minute staleTime issues no
+          // refetch and the feed shows the counts from last time the app was
+          // open. See markRestoredCacheStale.
+          onSuccess={markRestoredCacheStale}
         >
         <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#000" }}>
           <SafeAreaProvider className="flex-1 select-none bg-theme-background">

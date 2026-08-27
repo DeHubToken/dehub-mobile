@@ -20,8 +20,9 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { AppState, type AppStateStatus } from "react-native";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getUnifiedFeed, type UnifiedFeedParams } from "../services/feed.unified.service";
+import { mergeLiveCounts, type RawFeedRow } from "../libs/liveCounts";
 
 /** Rows pulled per poll. Also the ceiling on the count the pill can show. */
 const HEAD_SIZE = 20;
@@ -30,8 +31,14 @@ const HEAD_SIZE = 20;
 const POLL_MS = 60_000;
 
 interface UseNewPostsSignalOptions {
-  /** Poll only when the feed is chronological and this tab is on screen. */
+  /** Poll only while this tab is on screen. */
   enabled: boolean;
+  /**
+   * Whether position in this list means time. The pill is suppressed when it
+   * does not — but the poll still runs, because refreshing the counts on the
+   * cards already rendered is worth doing under every sort.
+   */
+  chronological?: boolean;
   /** The same params the list is using, so the head matches the list. */
   params?: Partial<UnifiedFeedParams>;
   /** `createdAt` of the newest post currently rendered. */
@@ -58,10 +65,15 @@ function useAppIsActive(): boolean {
 
 export function useNewPostsSignal({
   enabled,
+  chronological = true,
   params,
   newestCreatedAt,
 }: UseNewPostsSignalOptions) {
   const appIsActive = useAppIsActive();
+  const queryClient = useQueryClient();
+  // `newestCreatedAt` doubles as "the list has rendered something": every feed
+  // row carries createdAt whatever the sort, so this also keeps the poll from
+  // competing with the first page.
   const polling = enabled && appIsActive && !!newestCreatedAt;
 
   const { data } = useQuery({
@@ -74,8 +86,17 @@ export function useNewPostsSignal({
     retry: 1,
   });
 
+  // The rows this poll already paid for carry current counts for the head of
+  // the feed — the cards the reader is most likely looking at. Folding them in
+  // is what makes views and likes move without a pull-to-refresh; the pill
+  // below is the same request's other job. See libs/liveCounts.
+  useEffect(() => {
+    const rows = data?.result as unknown as RawFeedRow[] | undefined;
+    if (rows?.length) mergeLiveCounts(queryClient, rows);
+  }, [data, queryClient]);
+
   return useMemo(() => {
-    const newest = newestCreatedAt ? Date.parse(newestCreatedAt) : NaN;
+    const newest = chronological && newestCreatedAt ? Date.parse(newestCreatedAt) : NaN;
     if (!data || Number.isNaN(newest)) return { newPostCount: 0, atCap: false };
 
     const newer = (data.result || []).filter((item: any) => {
@@ -89,7 +110,7 @@ export function useNewPostsSignal({
       // Every row came back newer, so there are likely more than were fetched.
       atCap: newer.length >= HEAD_SIZE,
     };
-  }, [data, newestCreatedAt]);
+  }, [data, newestCreatedAt, chronological]);
 }
 
 export default useNewPostsSignal;
