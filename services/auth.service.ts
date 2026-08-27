@@ -178,6 +178,56 @@ export const AuthService = {
   },
 
   /**
+   * Move this login's existing DeHub account onto `address`, a wallet that has
+   * just been created to replace one nobody can open any more.
+   *
+   * Accounts are keyed by wallet address, so without this a replacement wallet
+   * is a signup: generated username, no posts, no followers — and the old
+   * account keeps the handle forever, because availability is checked across
+   * every account. Losing a device-bound key cost people their identity rather
+   * than just their keys.
+   *
+   * ORDER MATTERS. This must be called BEFORE signing in with the new wallet.
+   * A signature login sends `web3AuthMeta`, and the backend's
+   * vetSupabaseIdentityLink makes that link exclusive by unsetting it on every
+   * other account — including the very account being rescued, after which
+   * there is nothing left to look it up by.
+   *
+   * Does not store the session it gets back. The caller signs in immediately
+   * afterwards and that mints its own; going through the normal path keeps one
+   * definition of "signed in" instead of two.
+   *
+   * @param address the address the account will be registered under — the Safe
+   *                smart account where there is one, matching what
+   *                completeLocalSignIn authenticates with.
+   */
+  async rotateWallet(address: string, chainId: number): Promise<void> {
+    const { getSupabaseAccessToken } = await import("./auth/supabaseAuth.service");
+    const supabaseAccessToken = await getSupabaseAccessToken();
+    if (!supabaseAccessToken) {
+      throw new WalletNotLinkedError(
+        "You are not signed in with a phone, email or Google account on this device.",
+      );
+    }
+
+    const sigMeta = await getOrCreateAuthSignature(address, undefined, chainId);
+    const authPayload = buildAuthRequestPayload(address, sigMeta);
+
+    try {
+      await apiClient.post(
+        "/auth/rotate-wallet",
+        { chainId, ...authPayload, supabaseAccessToken },
+        { isAuthRequired: false },
+      );
+    } catch (error: any) {
+      if (error?.code === "WALLET_NOT_LINKED" || error?.code === "WALLET_LINK_AMBIGUOUS") {
+        throw new WalletNotLinkedError(error?.message);
+      }
+      throw error;
+    }
+  },
+
+  /**
    * Check username availability (assumed endpoint /check-username?username=)
    * Adjust path if backend differs.
    */
