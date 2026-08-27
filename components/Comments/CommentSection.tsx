@@ -1178,7 +1178,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   flex: 1,
                   color: "#F9FBFF",
                   fontSize: 14,
-                  maxHeight: 80,
+                  // Seven lines of 14px text before it starts scrolling. The
+                  // Post control is a sibling, not an overlay, so the box is
+                  // free to grow into the row.
+                  maxHeight: 140,
                   paddingVertical: 0,
                   // Android multiline inputs default to top-aligned text regardless
                   // of the parent's alignment.

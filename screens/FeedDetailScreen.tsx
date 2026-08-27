@@ -1025,14 +1025,19 @@ export default function FeedDetailScreen() {
                 placeholderTextColor={theme.colors.mutedForeground}
                 className="flex-1 text-sm text-theme-neutrals-100"
                 style={{
-                  maxHeight: 80,
+                  // Seven lines of 14px text before it starts scrolling. The
+                  // send control is a sibling, not an overlay, so the box is
+                  // free to grow into the row.
+                  maxHeight: 140,
                   paddingVertical: 0,
                   // Android multiline inputs top-align regardless of the parent.
                   textAlignVertical: "center",
                 }}
                 multiline
-                returnKeyType="send"
-                onSubmitEditing={handleSend}
+                // No returnKeyType="send"/onSubmitEditing here on purpose: on a
+                // multiline field that turns the keyboard's return key into a
+                // post button, so a reply cannot be written across two lines.
+                // Send is the button beside the field, as on the other surface.
               />
             </View>
 
