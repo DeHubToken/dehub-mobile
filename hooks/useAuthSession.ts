@@ -27,6 +27,7 @@ import { getAppKitInstance } from "../config/reown.config";
 import { getSupabaseUserId } from "../services/auth/supabaseAuth.service";
 import { fetchWalletReliably } from "../libs/wallet-core/store";
 import { forgetLocalWalletForIdentity } from "../libs/identity-wallet";
+import { predictSafeAddress } from "../libs/wallet-core/predict-safe-address";
 import {
   currentProfileId,
   displacesAnotherAccount,
@@ -559,7 +560,18 @@ export function useAuthSession({
       supabaseAccessToken: string,
       chainId: number,
       expectedAddress?: string,
-      supabaseUserId?: string
+      supabaseUserId?: string,
+      /**
+       * `allowLocked` completes the session even when this device holds no
+       * private key for the resolved address — the "signed in, wallet locked"
+       * state web has always had. The wallet is opened later, by the locked
+       * provider shim, at the first operation that actually signs.
+       *
+       * Without it this call both REQUIRED a key and RELEASED it, so every
+       * sign-in cost a fingerprint prompt and anyone whose wrap key lived on
+       * another handset could not sign in at all.
+       */
+      opts?: { allowLocked?: boolean }
     ): Promise<SupabaseSessionExchangeResult> => {
       setIsLoading(true);
       try {
@@ -615,7 +627,25 @@ export function useAuthSession({
         }
 
         const expected = (expectedAddress || canonicalAddr)?.toLowerCase();
-        if (expected && linkedAddr !== expected) {
+        // The backend links whatever address was last SIGNED with — the Safe
+        // smart account for anyone on the gasless path — while user_wallets
+        // stores the owner EOA the seed derives to. Two strings, one person.
+        // Comparing them raw rejected every healthy smart-account session, so
+        // predict the Safe from the stored EOA and accept that too. Pure
+        // CREATE2 from the owner ADDRESS: no key, no unlock, no signature.
+        // Identical check, and identical ordering, to dehubweb's
+        // completeLoginWithoutUnlock — the two must not drift.
+        //
+        // It stays a prediction rather than a blanket accept because the
+        // stale-link case this guard exists for (shubham_new vs shubham_new2)
+        // predicts to a DIFFERENT address and must keep failing closed.
+        let matchedBy: "expected" | "predicted-safe" | null =
+          !expected || linkedAddr === expected ? "expected" : null;
+        if (!matchedBy && expected) {
+          const predicted = await predictSafeAddress(expected);
+          if (predicted && predicted === linkedAddr) matchedBy = "predicted-safe";
+        }
+        if (!matchedBy && expected) {
           log.warn("signInWithSupabaseSession:refusing-wrong-account", {
             backend: `${linkedAddr.slice(0, 6)}...${linkedAddr.slice(-4)}`,
             expected: `${expected.slice(0, 6)}...${expected.slice(-4)}`,
@@ -633,11 +663,21 @@ export function useAuthSession({
           }
           return "not-linked";
         }
+        if (matchedBy === "predicted-safe") {
+          log.info("signInWithSupabaseSession:matched-predicted-safe", {
+            backend: `${linkedAddr.slice(0, 6)}...${linkedAddr.slice(-4)}`,
+            ownerEoa: expected ? `${expected.slice(0, 6)}...${expected.slice(-4)}` : null,
+          });
+        }
 
-        const privateKey = await getPrivateKeyForAddress(address, {
-          purpose: "Sign in to DeHub",
-        });
-        if (!privateKey) {
+        // With allowLocked the key is not read AT ALL — not even to test for
+        // it. getPrivateKeyForAddress raises a device-owner prompt, and the
+        // whole point here is a login that does not. Whether a key exists is
+        // the locked shim's problem, at signing time.
+        const privateKey = opts?.allowLocked
+          ? null
+          : await getPrivateKeyForAddress(address, { purpose: "Sign in to DeHub" });
+        if (!privateKey && !opts?.allowLocked) {
           log.warn("signInWithSupabaseSession:refusing-session-without-local-signer", {
             address: `${address.slice(0, 6)}...${address.slice(-4)}`,
             cloudWallet: canonicalAddr
@@ -662,7 +702,13 @@ export function useAuthSession({
           log.warn("signInWithSupabaseSession:stageIncoming:error", e as any);
         }
 
-        const localProvider = createLocalEip1193ProviderForChain(privateKey, chainId);
+        // No key in hand means no provider to adopt here. applyWalletAuthResult
+        // falls through to forceReinitProvider, which asks LocalProviderAdapter
+        // — and that now hands back the locked shim rather than null, so the
+        // session comes up complete with reads working and signing deferred.
+        const localProvider = privateKey
+          ? createLocalEip1193ProviderForChain(privateKey, chainId)
+          : null;
         try {
           await setAuthMethod("local", address);
           try {

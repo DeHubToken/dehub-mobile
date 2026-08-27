@@ -7,6 +7,7 @@ import { getAuthUser, getAuthMethod, getPreferredChainId, setPreferredChainId } 
 import { ethers } from 'ethers';
 import { ethersService } from '../ethers.service';
 import { isChainAASupported, setupAAProvider } from '../../libs/wallet-core/smart-account';
+import { createLockedEip1193 } from './lockedProviderShim';
 import { createLogger } from '../../libs/logger';
 
 const log = createLogger('LocalProviderAdapter');
@@ -158,69 +159,117 @@ export class LocalProviderAdapter implements AuthAdapter {
       const user: any | null = await getAuthUser<any>();
       const activeAddr: string | undefined = user?.walletAddress || user?.address;
       if (activeAddr) {
-        const details = await getLocalAccountDetails(activeAddr);
-        if (details?.privateKey) {
-          // Prefer stored preferred chain id on boot if present
-          let targetChainId = LOCAL_CHAIN_ID_OVERRIDE || this.chainId || defaultChainId;
-          try {
-            const pref = await getPreferredChainId();
-            if (typeof pref === 'number' && !Number.isNaN(pref)) {
-              targetChainId = pref;
-            }
-          } catch {}
-
-          // A Safe smart account only exists on the chains AA is configured for.
-          // Building this identity anywhere else silently demotes it to its owner
-          // EOA -- a different address, and therefore a different backend account.
-          // A preference naming such a chain could outlive the failed switch that
-          // wrote it, so every launch rebuilt the wrong identity and every attempt
-          // to switch away failed the same way. Fall back to the default chain and
-          // forget the unusable preference instead.
-          if (!isChainAASupported(targetChainId) && isSmartAccountAddress(activeAddr, details.privateKey)) {
-            log.warn('preferred chain cannot host this smart account, falling back', {
-              preferred: targetChainId,
-              fallback: defaultChainId,
-            });
-            targetChainId = defaultChainId;
-            try { await setPreferredChainId(defaultChainId); } catch {}
-            LOCAL_CHAIN_ID_OVERRIDE = defaultChainId;
-          }
-
-          const built = await buildLocalEip1193FromPrivateKey(details.privateKey, targetChainId);
-          if (built) {
-            // Always keep the plain EOA signer/provider around -- getPrivateKey()/
-            // getChainId() below rely on it regardless of which shim gets returned,
-            // and "export private key" must always export the EOA owner key, never
-            // a smart-account address.
-            this.signer = built.signer;
-            this.provider = built.provider;
-            this.address = built.address;
-            this.chainId = built.chainId;
-
-            // Prefer the gasless Safe smart-account path (matches web's Pimlico setup).
-            // setupAAProvider never throws -- it returns null on any failure (unsupported
-            // chain, Pimlico outage, ...) so a sponsor-side problem falls back to the
-            // plain EOA shim below rather than blocking the write entirely.
-            let shimToUse: Eip1193Shim = built.shim;
-            try {
-              const aaProvider = await setupAAProvider(built.address, details.privateKey, targetChainId);
-              if (aaProvider) {
-                shimToUse = aaProvider as unknown as Eip1193Shim;
-              }
-            } catch (e) {
-              log.warn('AA provider unavailable, using plain EOA signer', e);
-            }
-
-            this.shim = shimToUse;
-            setSigningProvider(shimToUse as any);
-            return shimToUse as any;
-          }
-        }
+        // Deliberately does NOT build from the stored key here.
+        //
+        // Reading the key raises a device-owner (fingerprint/face/passcode)
+        // check, and this method runs on boot, on every provider health check
+        // and after every chain switch — so building eagerly meant the app
+        // asked people to authenticate just for launching it, which is the
+        // complaint this change exists to answer. The locked shim defers that
+        // to the first call that genuinely signs, and does the real build
+        // itself at that point via buildFromStoredKey.
+        //
+        // It also covers the case where there is no key on this device at all
+        // (a wallet unlockable only elsewhere). Returning null for that used
+        // to read as "session is broken" everywhere downstream — blank
+        // balances, failing health checks — and left nowhere to ask for the
+        // unlock at the one moment the user would understand it.
+        const lockedChainId = await this.resolveTargetChainId();
+        const locked = createLockedEip1193(activeAddr, lockedChainId, () =>
+          this.buildFromStoredKey(activeAddr),
+        );
+        log.info('serving locked provider, signing deferred', {
+          address: `${activeAddr.slice(0, 6)}...${activeAddr.slice(-4)}`,
+          chainId: lockedChainId,
+        });
+        this.address = activeAddr;
+        this.chainId = lockedChainId;
+        this.shim = locked;
+        // Deliberately NOT written to the signing registry: that override is
+        // preferred over everything above, so parking a locked shim there
+        // would survive the unlock and keep serving stale answers.
+        return locked as any;
       }
-    } catch {
-      // ignore and return null below
+    } catch (e) {
+      log.warn('getProvider failed', e);
     }
     return null;
+  }
+
+  /**
+   * Chain to build on: the stored preference when it is usable, otherwise the
+   * default. Split out of getProvider so the locked shim and the real one
+   * cannot disagree about which chain the session is on.
+   */
+  private async resolveTargetChainId(): Promise<number> {
+    let targetChainId = LOCAL_CHAIN_ID_OVERRIDE || this.chainId || defaultChainId;
+    try {
+      const pref = await getPreferredChainId();
+      if (typeof pref === 'number' && !Number.isNaN(pref)) {
+        targetChainId = pref;
+      }
+    } catch {}
+    return targetChainId;
+  }
+
+  /**
+   * Build the real signing provider from the key this device holds, or null
+   * when it holds none. Also the rebuild hook the locked shim calls once an
+   * unlock has put the key in place — so an unlocked session goes down exactly
+   * the same path a never-locked one does, AA provider and all.
+   */
+  private async buildFromStoredKey(activeAddr: string): Promise<Eip1193Shim | null> {
+    const details = await getLocalAccountDetails(activeAddr);
+    if (!details?.privateKey) return null;
+
+    let targetChainId = await this.resolveTargetChainId();
+
+    // A Safe smart account only exists on the chains AA is configured for.
+    // Building this identity anywhere else silently demotes it to its owner
+    // EOA -- a different address, and therefore a different backend account.
+    // A preference naming such a chain could outlive the failed switch that
+    // wrote it, so every launch rebuilt the wrong identity and every attempt
+    // to switch away failed the same way. Fall back to the default chain and
+    // forget the unusable preference instead.
+    if (!isChainAASupported(targetChainId) && isSmartAccountAddress(activeAddr, details.privateKey)) {
+      log.warn('preferred chain cannot host this smart account, falling back', {
+        preferred: targetChainId,
+        fallback: defaultChainId,
+      });
+      targetChainId = defaultChainId;
+      try { await setPreferredChainId(defaultChainId); } catch {}
+      LOCAL_CHAIN_ID_OVERRIDE = defaultChainId;
+    }
+
+    const built = await buildLocalEip1193FromPrivateKey(details.privateKey, targetChainId);
+    if (!built) return null;
+
+    // Always keep the plain EOA signer/provider around -- getPrivateKey()/
+    // getChainId() below rely on it regardless of which shim gets returned,
+    // and "export private key" must always export the EOA owner key, never
+    // a smart-account address.
+    this.signer = built.signer;
+    this.provider = built.provider;
+    this.address = built.address;
+    this.chainId = built.chainId;
+
+    // Prefer the gasless Safe smart-account path (matches web's Pimlico setup).
+    // setupAAProvider never throws -- it returns null on any failure (unsupported
+    // chain, Pimlico outage, ...) so a sponsor-side problem falls back to the
+    // plain EOA shim below rather than blocking the write entirely.
+    let shimToUse: Eip1193Shim = built.shim;
+    try {
+      const aaProvider = await setupAAProvider(built.address, details.privateKey, targetChainId);
+      if (aaProvider) {
+        shimToUse = aaProvider as unknown as Eip1193Shim;
+      }
+    } catch (e) {
+      log.warn('AA provider unavailable, using plain EOA signer', e);
+    }
+
+    this.shim = shimToUse;
+    setSigningProvider(shimToUse as any);
+    return shimToUse;
   }
 
   async getAccounts(): Promise<string[]> {
