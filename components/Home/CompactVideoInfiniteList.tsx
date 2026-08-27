@@ -36,6 +36,12 @@ interface CompactVideoInfiniteListProps {
   sortOrder?: "asc" | "desc";
   /** Free text, matched server-side against title and description. */
   search?: string;
+  /** Filter panel state, threaded from the profile toolbar. */
+  category?: string;
+  range?: string;
+  isPPV?: boolean;
+  hasBounty?: boolean;
+  isLocked?: boolean;
 }
 
 interface VideoItem extends GetNFTsResult {}
@@ -55,6 +61,11 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
   sortBy,
   sortOrder,
   search,
+  category,
+  range,
+  isPPV,
+  hasBounty,
+  isLocked,
   onBeforeNavigate,
 }) => {
   const [items, setItems] = useState<VideoItem[]>([]);
@@ -68,11 +79,22 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
     (addr: string, opts: { page: number; unit: number }) => {
       if (variant === "live") return getUserLiveVideos(addr, opts as any);
       if (variant === "liked") return getLikedNFTs(addr, opts as any);
-      // Ordering and search only apply to a creator's own videos; the live and
-      // liked lists have their own shape and their own ordering.
-      return getUserVideos(addr, { ...(opts as any), sortBy, sortOrder, q: search || undefined });
+      // Ordering, search and the filter panel only apply to a creator's own
+      // videos; the live and liked lists have their own shape and ordering.
+      return getUserVideos(addr, {
+        ...(opts as any),
+        sortBy,
+        sortOrder,
+        q: search || undefined,
+        category: category || undefined,
+        range: range || undefined,
+        // Only ever true — `false` would exclude free posts rather than widen.
+        isPPV: isPPV || undefined,
+        hasBounty: hasBounty || undefined,
+        isLocked: isLocked || undefined,
+      });
     },
-    [variant, sortBy, sortOrder, search]
+    [variant, sortBy, sortOrder, search, category, range, isPPV, hasBounty, isLocked]
   );
 
   const resolvedEnablePreview = enablePreview ?? variant !== "live";

@@ -24,6 +24,10 @@ export interface SearchParams {
   minter?: string;
   owner?: string;
   unit?: number; // page size
+  /** Monetisation lanes. Only ever sent as `true` — `false` would exclude free posts. */
+  isPPV?: boolean;
+  hasBounty?: boolean;
+  isLocked?: boolean;
 }
 export interface StreamInfo {
   isAddBounty?: boolean;
@@ -126,6 +130,9 @@ export async function getNFTs(params?: SearchParams): Promise<GetNFTsResponse> {
     postType: resolveFeedPostType(params?.postType),
     minter: params?.minter,
     owner: params?.owner,
+    isPPV: params?.isPPV,
+    hasBounty: params?.hasBounty,
+    isLocked: params?.isLocked,
   };
 
   const query = objectToGetParams(removeUndefined(baseParams));
