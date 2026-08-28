@@ -22,13 +22,13 @@ feature that no longer exists on either app.
 ├──────────────────────────────────────────────────────────┤
 │ services/ai.service.ts                                   │
 │   streamAIChat (SSE over XHR) · generate* · fal tools     │
-│   ai-credits (quote / balance / topup) · classification   │
-│ hooks/useAiCredits.ts        balance, quote, pay-as-you-go │
+│   ai-quote (job pricing) · classification                 │
+│ hooks/useAiPayment.ts        quote, pay for a job on chain │
 │ hooks/useAIConversation.ts   AsyncStorage + Supabase mirror│
 └───────────────┬──────────────────────────────────────────┘
                 ▼
     general-ai-chat · generate-image · generate-video
-    fal-ai-tools · ai-credits · generate-lyrics
+    fal-ai-tools · ai-quote · generate-lyrics
 ```
 
 The brain is the edge function, not this app — see the DeHub assistant
@@ -39,30 +39,30 @@ release.
 
 ## 2. Paying for a generation
 
-**Everything paid runs through the credit ledger.** `generate-image`,
-`generate-video` and `fal-ai-tools` all sit behind
-`_shared/ai-credit-guard.ts`, which:
+**Everything paid is paid in live DHB.** `generate-image`, `generate-video` and
+`fal-ai-tools` all sit behind `_shared/ai-payment-guard.ts`, which:
 
 1. requires a DeHub token in `x-dehub-token` — no header, 401;
 2. prices the job itself from `_shared/ai-pricing.ts`;
-3. debits the wallet's credit balance *before* calling the provider;
-4. refunds if the provider then fails.
+3. confirms on chain that the wallet transferred at least that much to the AI
+   treasury, using the hash the client sends as `txHash`;
+4. draws the price from that transfer, and puts it back if the provider fails.
 
-So the client's job is only to quote (`ai-credits` `action: 'quote'`), show the
-balance, and top up the shortfall when there isn't enough. `usePayAsYouGo`
-transfers exactly the shortfall to the AI treasury
-(`0xbf3039b0bb672b268e8384e30d81b1e6a8a43b2c`) and claims it as credit; the
-generation then debits it.
+So the client's job is to quote (`ai-quote`), show the wallet balance, sign one
+transfer for the price to the AI treasury
+(`0xbf3039b0bb672b268e8384e30d81b1e6a8a43b2c`), and pass the hash along with
+the generation request. There is no credit balance any more — a transfer is a
+receipt, spent down by the jobs that cite it.
 
 Things that are easy to get wrong here:
 
 - **Costs in `config/ai-models.constants.ts` are display only.** The server
   quote is the charge. The two are kept in step by hand.
-- **The top-up claim only sees Base and BNB.** A transfer on any other chain
-  cannot be credited, which is why `usePayAsYouGo` refuses instead of signing.
-- **A claim is valid for an hour.** `ai-credits` rejects older transfers,
-  because the AI treasury is the same address ads, PPV and the old
-  pay-per-image flow all paid into.
+- **The verifier only sees Base and BNB.** A transfer on any other chain cannot
+  be confirmed, which is why `useJobPayment` refuses instead of signing.
+- **A transfer is claimable for an hour.** Older ones are rejected, because the
+  AI treasury is the same address ads, PPV and the old pay-per-image flow all
+  paid into.
 - **`sourceImage` and `logoImage` must be `data:image/…;base64,…` URLs.**
   `generate-image` hands them straight to the provider and only accepts a logo
   that `startsWith('data:image/')`. Use `toImageDataUrl` /

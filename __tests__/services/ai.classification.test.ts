@@ -17,7 +17,7 @@ import {
   isVideoRequest,
   requiresLogoAsset,
   AIServiceError,
-  isInsufficientCredit,
+  isPaymentRequired,
   dehubAuthHeaders,
 } from '../../services/ai.service';
 import { setAuthToken, removeAuthToken } from '../../libs/auth.utils';
@@ -159,20 +159,20 @@ describe('services/ai.service — request classification', () => {
     });
   });
 
-  describe('isInsufficientCredit', () => {
-    it('recognises a 402 from the credit guard', () => {
-      expect(isInsufficientCredit(new AIServiceError('nope', 402))).toBe(true);
+  describe('isPaymentRequired', () => {
+    it('recognises a 402 from the payment guard', () => {
+      expect(isPaymentRequired(new AIServiceError('nope', 402))).toBe(true);
       expect(
-        isInsufficientCredit(new AIServiceError('nope', 400, 'INSUFFICIENT_CREDITS')),
+        isPaymentRequired(new AIServiceError('nope', 400, 'PAYMENT_EXHAUSTED')),
       ).toBe(true);
-      expect(isInsufficientCredit(new Error('Not enough DHB credit for this generation.'))).toBe(
-        true,
-      );
+      expect(
+        isPaymentRequired(new Error('This generation costs DHB. Pay for it and pass the transfer hash.')),
+      ).toBe(true);
     });
 
-    it('does not mistake other failures for a credit problem', () => {
-      expect(isInsufficientCredit(new AIServiceError('bad prompt', 400))).toBe(false);
-      expect(isInsufficientCredit(new Error('network down'))).toBe(false);
+    it('does not mistake other failures for a payment problem', () => {
+      expect(isPaymentRequired(new AIServiceError('bad prompt', 400))).toBe(false);
+      expect(isPaymentRequired(new Error('network down'))).toBe(false);
     });
   });
 

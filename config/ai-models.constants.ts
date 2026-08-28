@@ -17,7 +17,7 @@
 /* ── Pricing helpers (display only) ──────────────────────────────────────── */
 
 /**
- * Matches the gateway peg web uses in `use-ai-credits.ts`. Display only — used
+ * Matches the gateway peg web uses in `use-ai-quote.ts`. Display only — used
  * for the indicative per-model figures in a picker, never for a charge.
  */
 export const DHB_USD_PEG = 0.001;
@@ -31,7 +31,7 @@ export const withMarkup = (baseCostUsd: number): number => baseCostUsd * (1 + AI
 export const indicativeDhb = (baseCostUsd: number, quantity = 1): number =>
   Math.ceil((withMarkup(baseCostUsd) * quantity) / DHB_USD_PEG);
 
-/** Shared formatting so every credit surface reads the same as web's. */
+/** Shared formatting so every price reads the same as web's. */
 export function formatDhb(amount: number): string {
   if (amount >= 1_000_000) return `${(amount / 1_000_000).toFixed(2)}M`;
   if (amount >= 1_000) return `${(amount / 1_000).toFixed(1)}K`;
@@ -70,7 +70,7 @@ export interface ImageModel {
    * Whether the model can take an attached image as an edit reference.
    * Defaults to true. The ones set false have no edit endpoint at all, so
    * generate-image rejects the request — which, without this, only happened
-   * after the credit had already been spent.
+   * after the payment had already been taken.
    */
   supportsEdit?: boolean;
 }

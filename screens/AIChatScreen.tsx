@@ -9,8 +9,8 @@
  *
  * Chat streams token-by-token off `general-ai-chat` and names the tools the
  * agent runs while it works. Paid generations quote and charge server-side
- * through the credit ledger — see `hooks/useAiCredits.ts` for why that replaced
- * the on-chain transfer this screen used to make before every image.
+ * in live DHB: the wallet signs one transfer for the quoted price and the
+ * generate call verifies it on chain — see `hooks/useAiPayment.ts`.
  *
  * RULE (web's, and it applies here): all assistant text renders through
  * MarkdownText. `AssistantBubble` owns that.
@@ -448,6 +448,8 @@ function AIChatScreenInner() {
         headline?: string;
         bannerRenderer?: 'template' | 'scene';
         bannerFormat?: 'landscape' | 'square' | 'portrait';
+        /** Hash of the DHB transfer that paid for this job. Absent when free. */
+        txHash?: string;
       },
     ) => {
       setIsLoading(true);
@@ -465,6 +467,7 @@ function AIChatScreenInner() {
             headline: extras?.headline,
             bannerRenderer: extras?.bannerRenderer,
             bannerFormat: extras?.bannerFormat,
+            txHash: extras?.txHash,
           },
           walletAddress,
         );
@@ -605,7 +608,13 @@ function AIChatScreenInner() {
   );
 
   const doGenerateVideo = useCallback(
-    async (prompt: string, model: string, history: AIChatMessage[], sourceImage?: string) => {
+    async (
+      prompt: string,
+      model: string,
+      history: AIChatMessage[],
+      sourceImage: string | undefined,
+      txHash: string,
+    ) => {
       const videoModel = VIDEO_MODELS[model];
       setIsLoading(true);
       scrollToEnd();
@@ -618,6 +627,7 @@ function AIChatScreenInner() {
             sourceImage,
             duration: `${VIDEO_DURATION_SECONDS}s` as '5s',
             aspectRatio: '16:9',
+            txHash,
           },
           walletAddress,
         );
@@ -761,7 +771,7 @@ function AIChatScreenInner() {
       category: AiToolCategory,
       prompt: string,
       history: AIChatMessage[],
-      extras?: { sourceImage?: string; lyrics?: string },
+      extras?: { sourceImage?: string; lyrics?: string; txHash?: string },
     ) => {
       const toolModel = AI_TOOL_MODELS[toolId];
       setIsLoading(true);
@@ -775,6 +785,7 @@ function AIChatScreenInner() {
             ...(category === 'tts' ? { text: prompt } : {}),
             ...(extras?.lyrics ? { lyrics: extras.lyrics } : {}),
             ...(extras?.sourceImage ? { image_url: extras.sourceImage } : {}),
+            ...(extras?.txHash ? { txHash: extras.txHash } : {}),
           },
           walletAddress,
         );
@@ -1058,7 +1069,7 @@ function AIChatScreenInner() {
     (
       cfg: PosterConfig | null,
       model: string,
-      opts: { logoImage?: string; sourceImage?: string },
+      opts: { logoImage?: string; sourceImage?: string; txHash?: string },
     ) => {
       doGenerateImage(
         cfg ? buildDeHubBrandPrompt(cfg.finalPrompt) : pendingPrompt,
@@ -1067,6 +1078,7 @@ function AIChatScreenInner() {
         {
           sourceImage: opts.sourceImage,
           logoImage: opts.logoImage,
+          txHash: opts.txHash,
           ...(cfg
             ? {
                 headline: cfg.tagline.trim(),
@@ -1088,11 +1100,12 @@ function AIChatScreenInner() {
     [pendingPrompt, doGenerateImage, historyForGeneration],
   );
 
-  const handleImageConfirm = useCallback(() => {
+  const handleImageConfirm = useCallback((txHash: string) => {
     setImagePaywallVisible(false);
     startImageGeneration(pendingPosterConfig, imageModelOverride || settings.imageModel, {
       logoImage: pendingLogoImage,
       sourceImage: pendingSourceImage,
+      txHash,
     });
   }, [
     imageModelOverride,
@@ -1103,13 +1116,14 @@ function AIChatScreenInner() {
     startImageGeneration,
   ]);
 
-  const handleVideoConfirm = useCallback(() => {
+  const handleVideoConfirm = useCallback((txHash: string) => {
     setVideoPaywallVisible(false);
     doGenerateVideo(
       pendingPrompt,
       settings.videoModel,
       historyForGeneration(),
       pendingSourceImage,
+      txHash,
     );
     setPendingSourceImage(undefined);
   }, [
@@ -1120,11 +1134,12 @@ function AIChatScreenInner() {
     historyForGeneration,
   ]);
 
-  const handleToolConfirm = useCallback(() => {
+  const handleToolConfirm = useCallback((txHash: string) => {
     setToolPaywallVisible(false);
     doRunTool(selectedToolId, toolCategory, pendingPrompt, historyForGeneration(), {
       sourceImage: pendingSourceImage,
       lyrics: pendingToolLyrics,
+      txHash,
     });
     setPendingSourceImage(undefined);
     setPendingToolLyrics(undefined);
