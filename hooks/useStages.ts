@@ -21,6 +21,7 @@ import { createLogger } from "../libs/logger";
 import { persistableAvatar } from "../libs/misc";
 import env from "../config/env";
 import { getAuthToken } from "../libs/auth.utils";
+import { dehubAuthHeaders } from "../services/ai.service";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { useFrontRow } from './useSuperpowers';
 
@@ -736,6 +737,10 @@ export function useStages(): UseStagesReturn {
           headers: {
             apikey: env.SUPABASE_PUBLISHABLE_KEY,
             Authorization: `Bearer ${env.SUPABASE_PUBLISHABLE_KEY}`,
+            // Signed out this still answers, with the stock library. Signed in
+            // it also returns the caller's own cloned voices — without the
+            // token a host could not pick the voice they cloned for the stage.
+            ...(await dehubAuthHeaders(userAddress)),
           },
         },
       );
@@ -747,7 +752,7 @@ export function useStages(): UseStagesReturn {
     } finally {
       setIsTtsVoicesLoading(false);
     }
-  }, [ttsVoices.length, isTtsVoicesLoading]);
+  }, [ttsVoices.length, isTtsVoicesLoading, userAddress]);
 
   const generateTts = useCallback(async (text: string, voiceId: string) => {
     if (!text.trim() || !voiceId || isTtsGenerating) return;
@@ -761,6 +766,10 @@ export function useStages(): UseStagesReturn {
             "Content-Type": "application/json",
             apikey: env.SUPABASE_PUBLISHABLE_KEY,
             Authorization: `Bearer ${env.SUPABASE_PUBLISHABLE_KEY}`,
+            // elevenlabs-tts authenticates on the DeHub token, not on the
+            // Supabase key above it. Without this the call is a 401 and the
+            // stage hears nothing.
+            ...(await dehubAuthHeaders(userAddress)),
           },
           body: JSON.stringify({ text: text.trim(), voiceId }),
         },
@@ -788,7 +797,7 @@ export function useStages(): UseStagesReturn {
     } finally {
       setIsTtsGenerating(false);
     }
-  }, [isTtsGenerating]);
+  }, [isTtsGenerating, userAddress]);
 
   /**
    * Soundboard playback.
