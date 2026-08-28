@@ -6,19 +6,14 @@
  * list and quote kind, and the money logic underneath has to be identical
  * everywhere or one of them ends up charging differently from the others.
  *
- * What changed versus the sheet this replaces, which is the whole point of the
- * port:
+ * How it works:
  *
- *  - The price comes from the server (`ai-credits` `quote`), not from a local
- *    cost table times a hardcoded markup. The figure shown is the figure the
- *    generate call debits.
- *  - Confirming with enough credit signs nothing at all. There is no transfer,
- *    no gas, no wait.
- *  - Without enough credit it tops up exactly the shortfall, then generates.
- *    The old sheet transferred the full price to the treasury on every single
- *    generation and the generate call never saw it — so it was possible to pay
- *    and get a 401 back.
- *  - Holding neither credit nor DHB now says so and offers to buy, instead of
+ *  - The price comes from the server (`ai-quote`), not from a local cost table
+ *    times a hardcoded markup. The figure shown is the figure that is charged.
+ *  - Confirming signs one DHB transfer for that exact price and hands the hash
+ *    to the generate call, which verifies it on chain before it spends
+ *    anything with a provider. There is no credit balance in between.
+ *  - A wallet short of the price says so and offers to buy, instead of
  *    offering a payment that cannot succeed.
  */
 
@@ -45,7 +40,7 @@ import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-g
 import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon, { type IconName } from '../ui/Icon';
-import { useAiCredits, useJobQuote, usePayAsYouGo } from '../../hooks/useAiCredits';
+import { useJobQuote, useJobPayment } from '../../hooks/useAiPayment';
 import { formatDhb, indicativeDhb, withMarkup } from '../../config/ai-models.constants';
 import type { AiJobKind } from '../../services/ai.service';
 import { ScreenNames } from '../../navigation/ScreenNames';
@@ -83,7 +78,8 @@ export interface CreditPaywallSheetProps {
   confirmLabel?: string;
   isBusy?: boolean;
   onClose: () => void;
-  onConfirm: () => void;
+  /** Receives the hash of the transfer that paid for this run. */
+  onConfirm: (txHash: string) => void;
 }
 
 const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
@@ -127,26 +123,22 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
     visible,
   );
   // Gated on `visible`: all three paywall sheets stay mounted in the assistant
-  // tree, so ungated these would each poll a balance the moment the screen
-  // opened.
-  const { balanceDhb, isLoading: isBalanceLoading, refresh: refreshBalance } =
-    useAiCredits(visible);
+  // tree, so ungated these would each read a wallet balance the moment the
+  // screen opened.
   const {
     walletDhb,
     isLoading: isWalletLoading,
     unsupportedChain,
-    payAsYouGo,
-  } = usePayAsYouGo(visible);
+    payForJob,
+  } = useJobPayment(visible);
 
   const unitCostUsd = model ? withMarkup(model.baseCostUsd) : 0;
   const costUsd = unitCostUsd * quantity;
 
-  const hasEnoughBalance = priceDhb > 0 && balanceDhb >= priceDhb;
-  const shortfall = Math.max(0, priceDhb - balanceDhb);
-  // Three states, not two. Somebody holding neither credit nor DHB cannot
-  // pay-as-you-go either, so the honest answer is to send them to buy.
-  const canPayAsYouGo = !hasEnoughBalance && !unsupportedChain && walletDhb >= shortfall;
-  const needsTokens = !hasEnoughBalance && !canPayAsYouGo && !isWalletLoading;
+  // Offering a payment somebody cannot make would only fail at the signature,
+  // so a wallet short of the price is sent to buy instead.
+  const needsTokens =
+    !isWalletLoading && !unsupportedChain && priceDhb > 0 && walletDhb < priceDhb;
 
   /* ── Sheet animation ─────────────────────────────────────────────────── */
   const translateY = useSharedValue(SHEET_HEIGHT);
@@ -157,7 +149,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
     if (visible) {
       setIsFullyClosed(false);
       setModelListOpen(false);
-      // The balance refetches itself when `useAiCredits` is enabled by `visible`.
+      // The wallet balance refetches itself when `visible` enables the hook.
       translateY.value = withTiming(0, { duration: 250, easing: Easing.out(Easing.cubic) });
       backdropOpacity.value = withTiming(1, { duration: 200 });
     } else {
@@ -206,9 +198,8 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
       toastError(model.unavailableReason);
       return;
     }
-
-    if (hasEnoughBalance) {
-      onConfirm();
+    if (unsupportedChain) {
+      toastError(unsupportedChain);
       return;
     }
 
@@ -220,12 +211,11 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
 
     setIsPaying(true);
     try {
-      await payAsYouGo(shortfall);
-      await refreshBalance();
+      const txHash = await payForJob(priceDhb);
       toastSuccess('Payment confirmed — generating');
-      onConfirm();
+      onConfirm(txHash);
     } catch (err) {
-      log.error('pay-as-you-go failed:', err);
+      log.error('payment failed:', err);
       toastError(err instanceof Error ? err.message : 'Payment failed');
     } finally {
       setIsPaying(false);
@@ -233,20 +223,18 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   }, [
     priceDhb,
     model,
-    hasEnoughBalance,
+    unsupportedChain,
     needsTokens,
     onConfirm,
     onClose,
     navigation,
-    payAsYouGo,
-    shortfall,
-    refreshBalance,
+    payForJob,
   ]);
 
   if (isFullyClosed && !visible) return null;
 
   const confirmDisabled =
-    isQuoting || isBalanceLoading || isBusy || isPaying || priceDhb <= 0 || !model;
+    isQuoting || isWalletLoading || isBusy || isPaying || priceDhb <= 0 || !model;
 
   const buttonLabel = isPaying
     ? 'Paying…'
@@ -254,9 +242,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
       ? 'Generating…'
       : needsTokens
         ? 'Buy DHB'
-        : canPayAsYouGo
-          ? `Pay ${formatDhb(shortfall)} DHB & ${confirmLabel}`
-          : confirmLabel;
+        : `Pay ${formatDhb(priceDhb)} DHB & ${confirmLabel}`;
 
   return (
     <Modal
@@ -389,16 +375,16 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
               )}
             </View>
 
-            {/* Credit balance */}
+            {/* Wallet balance */}
             <View style={s.balanceRow}>
-              <Text style={s.lineLabel}>Your Credit</Text>
+              <Text style={s.lineLabel}>Your DHB</Text>
               <View style={s.balanceRight}>
                 <Image source={DEHUB_COIN} style={s.coinSmall} />
-                {isBalanceLoading ? (
+                {isWalletLoading ? (
                   <ActivityIndicator size="small" color="#A6A9AC" />
                 ) : (
-                  <Text style={[s.balanceAmount, !hasEnoughBalance && { color: '#EF4444' }]}>
-                    {formatDhb(balanceDhb)} DHB
+                  <Text style={[s.balanceAmount, needsTokens && { color: '#EF4444' }]}>
+                    {formatDhb(walletDhb)} DHB
                   </Text>
                 )}
               </View>
@@ -406,24 +392,16 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
 
             {!!footnote && <Text style={s.footnote}>{footnote}</Text>}
 
-            {canPayAsYouGo && !isQuoting && (
-              <Text style={s.footnote}>
-                No credit balance — you'll pay {formatDhb(shortfall)} DHB from your wallet for this
-                run. Buy credit in bulk to skip the signature and the gas.
-              </Text>
-            )}
-
-            {!!unsupportedChain && !hasEnoughBalance && !isQuoting && (
+            {!!unsupportedChain && !isQuoting && (
               <View style={s.warnBanner}>
                 <Text style={s.warnText}>{unsupportedChain}</Text>
               </View>
             )}
 
-            {needsTokens && !unsupportedChain && !isQuoting && !isBalanceLoading && (
+            {needsTokens && !unsupportedChain && !isQuoting && (
               <View style={s.warnBanner}>
                 <Text style={s.warnText}>
-                  This costs {formatDhb(priceDhb)} DHB and you have no credit and no DHB to pay
-                  with.
+                  This costs {formatDhb(priceDhb)} DHB and you hold {formatDhb(walletDhb)}.
                 </Text>
               </View>
             )}
