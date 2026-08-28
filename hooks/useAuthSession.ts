@@ -29,6 +29,12 @@ import { fetchWalletReliably } from "../libs/wallet-core/store";
 import { forgetLocalWalletForIdentity } from "../libs/identity-wallet";
 import { predictSafeAddress } from "../libs/wallet-core/predict-safe-address";
 import {
+  recordWalletDrift,
+  takeWalletDrift,
+  clearWalletDrift,
+  isIdentitysOwnWallet,
+} from "../libs/wallet-drift";
+import {
   currentProfileId,
   displacesAnotherAccount,
   stageIncomingIdentity,
@@ -223,6 +229,8 @@ export function useAuthSession({
   const signOut = useCallback(
     async (forgetProfile: boolean = true) => {
     setIsLoading(true);
+    // Belongs to the identity signing out — the next one must not inherit it.
+    clearWalletDrift();
     try {
       // Unregister push tokens before clearing auth
       try {
@@ -424,6 +432,62 @@ export function useAuthSession({
     ]
   );
 
+  /**
+   * Move this identity's account onto the wallet about to sign, when the
+   * exchange just found the account somewhere this device cannot sign for.
+   *
+   * Runs BEFORE AuthService.signInWithWallet, and that order is load-bearing:
+   * a signature login sends web3AuthMeta, and the backend makes that link
+   * exclusive by unsetting it on every other account — including the one being
+   * rescued, after which nothing can look it up.
+   *
+   * Only the identity's OWN wallet is allowed to be the destination — the EOA
+   * user_wallets names, or the Safe predicted from it. Anything else signing in
+   * is a different wallet the user reached deliberately (an imported key, an
+   * external wallet), and on this client that already means "switch accounts";
+   * turning it into "bring the account along" would be a surprise, not a fix.
+   *
+   * Never throws. A backend without the endpoint, a link pointing nowhere and
+   * an account that already moved all land in the same warn, and the sign-in
+   * continues to exactly today's behaviour.
+   */
+  const moveDriftedAccountToThisWallet = useCallback(
+    async (signInAddress: string, chainId: number) => {
+      const drift = takeWalletDrift();
+      if (!drift) return;
+
+      const signing = signInAddress.toLowerCase();
+      if (signing === drift.linked) return; // already where it belongs
+
+      const predicted =
+        signing === drift.ownerEoa ? null : await predictSafeAddress(drift.ownerEoa);
+      if (!isIdentitysOwnWallet(drift, signing, predicted)) {
+        log.info("walletDrift:not-this-identitys-wallet-skipping", {
+          signing: `${signing.slice(0, 6)}...${signing.slice(-4)}`,
+        });
+        return;
+      }
+
+      try {
+        await AuthService.rotateWallet(signInAddress, chainId);
+        log.warn("walletDrift:moved-account-onto-this-wallet", {
+          from: `${drift.linked.slice(0, 6)}...${drift.linked.slice(-4)}`,
+          to: `${signing.slice(0, 6)}...${signing.slice(-4)}`,
+        });
+      } catch (e: any) {
+        // WalletNotLinkedError is the ordinary answer when there is nothing to
+        // move; anything else means the sign-in that follows is about to make a
+        // duplicate account or be refused by the signup gate.
+        log.warn("walletDrift:move-failed-continuing", {
+          from: `${drift.linked.slice(0, 6)}...${drift.linked.slice(-4)}`,
+          to: `${signing.slice(0, 6)}...${signing.slice(-4)}`,
+          reason: e?.message || String(e),
+        });
+      }
+    },
+    [log]
+  );
+
   const signInWithWallet = useCallback(
     async (walletAddress: string, chainId: number, overridePrivateKey?: string, web3AuthMeta?: Record<string, any>) => {
       const mask = (addr?: string) =>
@@ -480,6 +544,10 @@ export function useAuthSession({
         let walletUser: any;
         let token: any;
         let needsUsername: boolean = false;
+        // Before the signature is spent: this reuses the cached auth signature
+        // rather than raising a second prompt, and it must precede the login
+        // that would unset the link it needs.
+        await moveDriftedAccountToThisWallet(walletAddress, chainId);
         try {
           const res = await AuthService.signInWithWallet(
             walletAddress,
@@ -514,6 +582,7 @@ export function useAuthSession({
       applyWalletAuthResult,
       getSigningProvider,
       log,
+      moveDriftedAccountToThisWallet,
       setAuthMethodState,
       setChainId,
       setIsLoading,
@@ -651,6 +720,17 @@ export function useAuthSession({
             expected: `${expected.slice(0, 6)}...${expected.slice(-4)}`,
             source: expectedAddress ? "caller" : "user_wallets",
           });
+          // Refusing is right — a stale link must never sign someone into
+          // another person's account. But the signature this falls back to
+          // registers as a new signup, so hand the drift to it: the account
+          // moves onto this device's wallet instead of being left behind.
+          if (walletUid) {
+            recordWalletDrift({
+              linked: linkedAddr,
+              ownerEoa: expected,
+              supabaseUserId: walletUid,
+            });
+          }
           try {
             await clearAuthData();
           } catch (e) {
