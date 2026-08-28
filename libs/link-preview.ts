@@ -61,21 +61,36 @@ export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | n
 // scanned out of the same text stops at the same character on both clients.
 // Built from code points rather than a literal escape sequence in the
 // character class, so the source file holds only plain ASCII.
+//
+// The scheme is optional, same as `chat-links.ts`'s own matcher: a bare
+// "dehub.io/work" is exactly as much a link as "https://dehub.io/work" is,
+// and chat-links.ts already linkifies it that way for tap-to-open. This one
+// used to require the scheme, so a caption or comment reading "check this
+// out: dehub.io/work" rendered as a clickable link but never got a preview
+// card — the text linkified fine, this just never saw it as a URL to fetch.
 const NON_ASCII_RANGE = String.fromCodePoint(0x80) + '-' + String.fromCodePoint(0xffff);
-const URL_REGEX = new RegExp('(https?:\\/\\/[^\\s<>' + NON_ASCII_RANGE + ']+)', 'g');
+const URL_REGEX = new RegExp(
+  '(?:https?:\\/\\/)?(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(?::\\d+)?\\/[^\\s<>' + NON_ASCII_RANGE + ']*',
+  'g',
+);
 
 /**
- * Every http(s) URL in a block of text, deduped, trailing sentence
- * punctuation stripped. Deliberately narrower than `chat-links.ts`'s
- * bare-domain matcher — that one drives tap-to-open linkification everywhere
- * in the app and has to catch a domain typed with no scheme; this one only
- * feeds the preview fetch.
+ * Every URL in a block of text, deduped, trailing sentence punctuation
+ * stripped, normalized to carry an explicit scheme so every caller downstream
+ * (the fetch, cache keys) can assume one is always present. Deliberately
+ * narrower than `chat-links.ts`'s bare-domain matcher — that one drives
+ * tap-to-open linkification everywhere in the app and matches a curated TLD
+ * list; this one only feeds the preview fetch and requires a path, so it
+ * skips a bare domain or something like "2.5x" or "report.pdf".
  */
 export function extractUrlsFromText(text: string): string[] {
   const matches = text.match(URL_REGEX);
   if (!matches) return [];
 
-  const cleaned = matches.map((url) => url.replace(/[.,;:!?)}\]]+$/, ''));
+  const cleaned = matches.map((url) => {
+    const trimmed = url.replace(/[.,;:!?)}\]]+$/, '');
+    return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+  });
 
   return [...new Set(cleaned)];
 }
