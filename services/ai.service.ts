@@ -9,8 +9,8 @@ const EDGE_BASE = env.SUPABASE_EDGE_BASE_URL;
 /**
  * Headers the paid AI functions authenticate against.
  *
- * `generate-image`, `generate-video`, `fal-ai-tools` and `ai-credits` all run
- * through `_shared/ai-credit-guard.ts`, which requires a DeHub token in
+ * `generate-image`, `generate-video` and `fal-ai-tools` all run
+ * through `_shared/ai-payment-guard.ts`, which requires a DeHub token in
  * `x-dehub-token` and answers 401 without one. Until this existed, mobile paid
  * DHB to the treasury from the paywall sheet and then got a 401 from the
  * generation itself — the money went and nothing came back.
@@ -164,7 +164,7 @@ export async function enhanceText(
 
   if (!res.ok || data?.error) {
     // The function returns a human-readable `error` for rate limits (429) and
-    // exhausted AI credits (402) — surface it rather than a generic failure.
+    // an unpaid job (402) — surface it rather than a generic failure.
     throw new Error(data?.error || `Failed to process text (${res.status})`);
   }
 
@@ -249,6 +249,8 @@ export interface AIImageRequest {
   /** 'template' forces the on-brand SM Template banner; 'scene' diffuses. */
   bannerRenderer?: 'template' | 'scene';
   bannerFormat?: 'landscape' | 'square' | 'portrait';
+  /** Hash of the DHB transfer that paid for this job. */
+  txHash?: string;
 }
 
 export interface AIImageResponse {
@@ -271,6 +273,8 @@ export interface AIVideoRequest {
   negativePrompt?: string;
   resolution?: string;
   seed?: number;
+  /** Hash of the DHB transfer that paid for this job. */
+  txHash?: string;
 }
 
 export interface AIVideoResponse {
@@ -292,7 +296,7 @@ export interface AIErrorResponse {
     | 'TIMEOUT'
     | 'INTERNAL_ERROR'
     | 'UNAUTHENTICATED';
-  /** What `_shared/ai-credit-guard.ts` calls it: 'INSUFFICIENT_CREDITS'. */
+  /** What `_shared/ai-payment-guard.ts` calls it: 'PAYMENT_REQUIRED'. */
   code?: string;
   /** Price of the refused job, returned alongside a 402. */
   priceDhb?: number;
@@ -331,7 +335,7 @@ async function edgeFetch<T>(
     throw new AIServiceError(
       err.error || `AI request failed (${res.status})`,
       res.status,
-      // The credit guard answers `code`, the older functions answer
+      // The payment guard answers `code`, the older functions answer
       // `errorCode`. Read both, or a 402 arrives as an unlabelled failure and
       // the retry loop hammers a charge that will never succeed.
       err.errorCode || err.code || inferErrorCode(res.status),
@@ -392,19 +396,29 @@ export class AIServiceError extends Error {
 }
 
 /**
- * True when a failed call was a credit problem rather than a broken request,
- * so callers can send the user to top up instead of showing a generic error.
- * Mirrors web's `isInsufficientCredit`.
+ * True when a call was refused over payment rather than a broken request, so
+ * callers can send the user back to the paywall instead of a generic error.
+ * Mirrors web's `isPaymentRequired`.
  */
-export function isInsufficientCredit(error: unknown): boolean {
+export function isPaymentRequired(error: unknown): boolean {
   if (error instanceof AIServiceError) {
     if (error.status === 402) return true;
-    if (error.errorCode === 'INSUFFICIENT_CREDITS' || error.errorCode === 'CREDITS_EXHAUSTED') {
+    if (
+      error.errorCode === 'PAYMENT_REQUIRED' ||
+      error.errorCode === 'PAYMENT_EXHAUSTED' ||
+      error.errorCode === 'PAYMENT_UNVERIFIED' ||
+      error.errorCode === 'CREDITS_EXHAUSTED'
+    ) {
       return true;
     }
   }
   const message = error instanceof Error ? error.message : String(error ?? '');
-  return message.includes('INSUFFICIENT_CREDITS') || message.includes('Not enough DHB credit');
+  return (
+    message.includes('PAYMENT_REQUIRED') ||
+    message.includes('PAYMENT_EXHAUSTED') ||
+    message.includes('PAYMENT_UNVERIFIED') ||
+    message.includes('costs DHB')
+  );
 }
 
 /**
@@ -486,6 +500,8 @@ export interface AiToolRequest {
   image_url?: string;
   /** Public URL of the audio for Whisper. */
   audio_url?: string;
+  /** Hash of the DHB transfer that paid for this run. */
+  txHash?: string;
 }
 
 export interface AiToolResponse {
@@ -524,7 +540,7 @@ export async function pollAiTool(
   );
 }
 
-/* ── AI credits ──────────────────────────────────────────────────────────── */
+/* ── Job pricing ─────────────────────────────────────────────────────────── */
 
 export type AiJobKind = 'image' | 'video' | 'model3d' | 'tool';
 
@@ -537,62 +553,24 @@ export interface AiQuoteRequest {
 }
 
 /**
- * What a job will cost, priced by the same code that debits the balance.
+ * What a job will cost, priced by the same code that takes the money.
  *
  * The client deliberately does not work this out: the figure a paywall shows
  * has to be the figure that gets charged, and only the server knows the
  * pricing table. `config/ai-models.constants.ts` keeps indicative numbers for
  * the picker rows and nothing else.
+ *
+ * No wallet is needed — the price of a model is not private.
  */
 export async function quoteAiJob(
   request: AiQuoteRequest,
-  walletAddress?: string | null,
 ): Promise<{ priceDhb: number; priceUsd: number }> {
   return paidEdgeFetch<{ priceDhb: number; priceUsd: number }>(
-    'ai-credits',
-    { action: 'quote', ...request },
-    walletAddress,
+    'ai-quote',
+    { ...request } as unknown as Record<string, unknown>,
   );
 }
 
-export async function getAiCreditBalance(
-  walletAddress?: string | null,
-): Promise<{ balanceDhb: number; balanceUsd: number }> {
-  return paidEdgeFetch<{ balanceDhb: number; balanceUsd: number }>(
-    'ai-credits',
-    { action: 'balance' },
-    walletAddress,
-  );
-}
-
-/**
- * Credit an on-chain DHB transfer to the AI treasury.
- *
- * The caller sends the DHB and passes the tx hash; the function verifies the
- * transfer independently, so replaying a hash is rejected and a hash belonging
- * to someone else credits them rather than you.
- */
-export async function claimAiCreditTopUp(
-  txHash: string,
-  walletAddress?: string | null,
-): Promise<{ creditedDhb?: number; balanceDhb: number }> {
-  return paidEdgeFetch<{ creditedDhb?: number; balanceDhb: number }>(
-    'ai-credits',
-    { action: 'topup', txHash },
-    walletAddress,
-  );
-}
-
-/** One-off starter allowance. Safe to call on every sign-in — it is idempotent. */
-export async function claimFreeAiCredits(
-  walletAddress?: string | null,
-): Promise<{ granted?: number; alreadyClaimed?: boolean; balanceDhb: number }> {
-  return paidEdgeFetch<{ granted?: number; alreadyClaimed?: boolean; balanceDhb: number }>(
-    'ai-credits',
-    { action: 'claim-free' },
-    walletAddress,
-  );
-}
 
 /* ── Streaming chat ──────────────────────────────────────────────────────── */
 
