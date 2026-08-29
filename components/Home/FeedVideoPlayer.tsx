@@ -43,6 +43,9 @@ interface FeedVideoPlayerProps {
    *  error state — in both cases videoUrl points at a file that was never
    *  actually uploaded, so mounting the player would just hang or error. */
   transcodingStatus?: "pending" | "on" | "done" | "failed";
+  /** Only the post's owner can reach Edit → Replace video file, so the
+   *  failed-state hint pointing there only makes sense for them. */
+  isOwner?: boolean;
   duration?: string;
   tokenId: string | number | undefined;
   isContentGated: boolean;
@@ -86,6 +89,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   thumbnail,
   videoUrl,
   transcodingStatus,
+  isOwner,
   duration,
   tokenId,
   isContentGated,
@@ -569,6 +573,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         <View style={styles.statusOverlay}>
           <Icon name="TriangleAlert" size={28} color="#fff" />
           <Text style={styles.statusText}>Failed to process video</Text>
+          {isOwner && (
+            <Text style={styles.statusHintText}>
+              Replace it with a standard MP4 via Edit in the ⋮ menu, top right of the post.
+            </Text>
+          )}
         </View>
       )}
 
@@ -712,6 +721,11 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 13,
     fontWeight: "500",
+    textAlign: "center",
+  },
+  statusHintText: {
+    color: "rgba(255,255,255,0.6)",
+    fontSize: 11,
     textAlign: "center",
   },
   playOverlay: {
