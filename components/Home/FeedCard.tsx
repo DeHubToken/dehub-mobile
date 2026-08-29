@@ -1171,6 +1171,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     <FeedVideoPlayer
       thumbnail={thumbnail}
       videoUrl={isActuallyGated ? undefined : (getVideoUrl(tokenId) || undefined)}
+      transcodingStatus={item.transcodingStatus}
       duration={duration}
       tokenId={tokenId}
       creator={minterAddress}
