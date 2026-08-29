@@ -90,6 +90,10 @@ export interface UnifiedFeedItem {
   // Type & Status
   postType: "video" | "feed-images" | "feed-simple" | "feed-audio" | "live" | "short";
   status?: string;
+  /** Async video processing state, written optimistically at post-creation
+   *  time and updated once the transcode job finishes. Absent on posts from
+   *  before this field existed — treat that the same as 'done'. */
+  transcodingStatus?: "pending" | "on" | "done" | "failed";
   category?: string[];
   
   // Metrics
