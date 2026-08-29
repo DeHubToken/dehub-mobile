@@ -8,6 +8,7 @@ import {
   AppState,
   AppStateStatus,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
 import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from "../../libs/video-preferences";
@@ -37,6 +38,11 @@ import { toastInfo } from "../../libs";
 interface FeedVideoPlayerProps {
   thumbnail: string;
   videoUrl: string | undefined;
+  /** Absent (older posts) or 'done' renders normally. 'pending'/'on' shows a
+   *  processing spinner instead of attempting playback; 'failed' shows an
+   *  error state — in both cases videoUrl points at a file that was never
+   *  actually uploaded, so mounting the player would just hang or error. */
+  transcodingStatus?: "pending" | "on" | "done" | "failed";
   duration?: string;
   tokenId: string | number | undefined;
   isContentGated: boolean;
@@ -79,6 +85,7 @@ const formatTime = (seconds: number) => {
 const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   thumbnail,
   videoUrl,
+  transcodingStatus,
   duration,
   tokenId,
   isContentGated,
@@ -135,7 +142,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       : null
   );
 
-  const canPlay = !isContentGated && !!videoUrl;
+  const isProcessing = transcodingStatus === "pending" || transcodingStatus === "on";
+  const isFailed = transcodingStatus === "failed";
+  const canPlay = !isContentGated && !!videoUrl && !isProcessing && !isFailed;
 
   // True once something has actually asked for media: the autoplay settle
   // timer, or a tap. Visibility alone used to attach the source, which created
@@ -549,6 +558,20 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         />
       )}
 
+      {isProcessing && (
+        <View style={styles.statusOverlay}>
+          <ActivityIndicator size="small" color="#fff" />
+          <Text style={styles.statusText}>Processing video…</Text>
+        </View>
+      )}
+
+      {isFailed && (
+        <View style={styles.statusOverlay}>
+          <Icon name="TriangleAlert" size={28} color="#fff" />
+          <Text style={styles.statusText}>Failed to process video</Text>
+        </View>
+      )}
+
       {isContentGated && renderGatedOverlay()}
 
       {isBounty && (
@@ -568,7 +591,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         </TouchableOpacity>
       )}
 
-      {!hideControls && !isContentGated && !isPlaying && (
+      {!hideControls && !isContentGated && !isPlaying && !isProcessing && !isFailed && (
         <Pressable onPress={handleVideoPress} style={styles.playOverlay}>
           <View style={styles.glassPlayButton}>
             <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
@@ -676,6 +699,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#27272a",
     alignItems: "center",
     justifyContent: "center",
+  },
+  statusOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+    gap: 8,
+    paddingHorizontal: 24,
+  },
+  statusText: {
+    color: "#fff",
+    fontSize: 13,
+    fontWeight: "500",
+    textAlign: "center",
   },
   playOverlay: {
     ...StyleSheet.absoluteFillObject,
