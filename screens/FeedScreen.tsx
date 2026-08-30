@@ -558,6 +558,7 @@ const FeedScreen = () => {
   const {
     onViewableItemsChanged: onFeedCardViewableItemsChanged,
     isItemVisible,
+    isItemAutoplayActive,
     visibilityExtraData,
   } = useFeedCardVisibility(feedKeyExtractor as (item: unknown, index: number) => string);
 
@@ -575,9 +576,13 @@ const FeedScreen = () => {
     ({ item, index }: ListRenderItemInfo<UnifiedFeedItem>) => (
       // Without isVisible, FeedCard defaults it to true and every windowed row
       // — twenty-plus at the old windowSize — attaches a native video player.
-      <FeedCard item={item} isVisible={isItemVisible(feedKeyExtractor(item), item)} />
+      <FeedCard
+        item={item}
+        isVisible={isItemVisible(feedKeyExtractor(item))}
+        isAutoplayActive={isItemAutoplayActive(feedKeyExtractor(item))}
+      />
     ),
-    [isItemVisible, feedKeyExtractor],
+    [isItemVisible, isItemAutoplayActive, feedKeyExtractor],
   );
 
   // ── Grid footer ───────────────────────────────────────────

@@ -127,6 +127,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
     viewabilityConfig,
     onViewableItemsChanged,
     isItemVisible,
+    isItemAutoplayActive,
     visibilityExtraData,
   } = useFeedCardVisibility(keyExtractor as (item: unknown, index: number) => string);
 
@@ -137,12 +138,13 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
           item={item as any}
           // Without this FeedCard falls back to isVisible=true and every one
           // of the eleven windowed rows attaches its own native player.
-          isVisible={isItemVisible(keyExtractor(item, index), item)}
+          isVisible={isItemVisible(keyExtractor(item, index))}
+          isAutoplayActive={isItemAutoplayActive(keyExtractor(item, index))}
           onCategorySelect={() => {}}
         />
       );
     },
-    [isItemVisible, keyExtractor]
+    [isItemVisible, isItemAutoplayActive, keyExtractor]
   );
 
   const ListFooter = useMemo(() => {

@@ -61,6 +61,11 @@ interface FeedVideoPlayerProps {
   bountyAmount: number;
   bountyCurrency: string;
   isVisible: boolean;
+  /** True only on the card the feed has handed autoplay to while scrolling.
+   *  Every other visible card still mounts, still shows its play button and
+   *  still starts on a tap — it just does not start on its own. Defaults to
+   *  true for callers with no notion of an active row. */
+  isAutoplayActive?: boolean;
   isSignedIn: boolean;
   onPress: () => void;
   onPPVPress?: () => void;
@@ -105,6 +110,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   bountyAmount,
   bountyCurrency,
   isVisible,
+  isAutoplayActive = true,
   isSignedIn,
   onPress,
   onPPVPress,
@@ -253,9 +259,14 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     return () => { clearHideTimer(); };
   }, [clearHideTimer]);
 
+  // Set by a tap, cleared by any stop. While it is true this card outranks
+  // the scroll position: autoplay moving to another row does not stop it.
+  const userStartedRef = useRef(false);
+
   const stopPlayback = useCallback(() => {
     try { playerRef.current?.pause(); } catch {}
     isPlayingRef.current = false;
+    userStartedRef.current = false;
     setIsPlaying(false);
     releaseFeedVideoFocus(stopPlayback);
     releaseAudioFocus(stopPlayback);
@@ -277,6 +288,35 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     setIsPlaying(true);
   }, [canPlay, stopPlayback]);
 
+  /**
+   * Honour a queued play intent once the source is actually playable.
+   *
+   * Normally the readyToPlay statusChange delivers this. But a card whose
+   * source never detached — it stayed on screen, or it left and came back
+   * inside one render pass — is ALREADY readyToPlay, so no status change ever
+   * fires and the intent sits there forever. That is the "and then even after
+   * scrolling it still won't play" half of the bug. Every path that sets the
+   * intent calls this straight after, and the effect below catches the race
+   * arriving from the other direction.
+   */
+  const flushPendingPlay = useCallback(() => {
+    if (!pendingPlayRef.current) return;
+    const p = playerRef.current;
+    if (!p) return;
+    let ready = false;
+    // Reading status on a released shared object throws, same as play() does.
+    try { ready = p.status === "readyToPlay"; } catch { return; }
+    if (!ready) return;
+    pendingPlayRef.current = false;
+    // Seed mute from the shared cache the same way the old direct path did.
+    try {
+      const m = getCachedMuted();
+      p.muted = m;
+      setIsMuted(m);
+    } catch {}
+    startPlayback();
+  }, [startPlayback]);
+
   useEffect(() => {
     if (!player) return;
     const subs: Array<{ remove: () => void }> = [];
@@ -295,18 +335,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           if (status === "readyToPlay") {
             setVideoReady(true);
             if (player.duration > 0) setVideoDuration(player.duration);
-            // The deferred source has arrived; honour the intent that attached
-            // it. Seed mute from the shared cache the same way the old direct
-            // path did.
-            if (pendingPlayRef.current) {
-              pendingPlayRef.current = false;
-              try {
-                const m = getCachedMuted();
-                player.muted = m;
-                setIsMuted(m);
-              } catch {}
-              startPlayback();
-            }
+            // The deferred source has arrived; honour the intent that
+            // attached it.
+            flushPendingPlay();
           }
         })
       );
@@ -327,7 +358,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       );
     } catch {}
     return () => { subs.forEach((s) => { try { s.remove(); } catch {} }); };
-  }, [player, startPlayback, maybeSkipSegment]);
+  }, [player, flushPendingPlay, maybeSkipSegment]);
+
+  // The other side of the same race: readiness landing before the intent, or a
+  // source that was already attached when the intent was queued.
+  useEffect(() => {
+    if (videoReady) flushPendingPlay();
+  }, [videoReady, sourceRequested, flushPendingPlay]);
 
   useEffect(() => {
     if (!canPlay || !isVisible) {
@@ -341,10 +378,14 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       setVideoReady(false);
       setFirstFrameRendered(false);
       setShowControls(false);
+      userStartedRef.current = false;
       clearHideTimer();
       return;
     }
     if (hasStartedAutoplay) return;
+    // Visible, but the scroll position gave autoplay to another card. This one
+    // stays mounted and tappable; it just does not start itself.
+    if (!isAutoplayActive) return;
     // Data Saver: skip autoplay entirely, same as web's VideoCard lite-mode
     // guard. The card stays tappable — this only suppresses *auto* playback.
     if (liteMode) return;
@@ -361,9 +402,33 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       setHasStartedAutoplay(true);
       setShowControls(false); // Controls hidden on autoplay
       setSourceRequested(true);
+      // The source may already be attached and ready — sourceRequested never
+      // went false — in which case nothing else will carry this intent.
+      flushPendingPlay();
     }, AUTOPLAY_DELAY);
     return () => { if (autoplayTimerRef.current) { clearTimeout(autoplayTimerRef.current); autoplayTimerRef.current = null; } };
-  }, [canPlay, isVisible, hasStartedAutoplay, liteMode, autoplayEnabled, stopPlayback, clearHideTimer]);
+  }, [canPlay, isVisible, isAutoplayActive, hasStartedAutoplay, liteMode, autoplayEnabled, flushPendingPlay, clearHideTimer]);
+
+  // Autoplay is exclusive: when the scroll hands it to another card, a card
+  // that started ITSELF gives up the screen and its native player. One the
+  // viewer deliberately tapped does not — their choice outranks where the list
+  // happens to sit, and that is what lets the second video on screen be played
+  // at all.
+  //
+  // Releasing the source here is what keeps the player count where it was
+  // before visibility and autoplay were split: at most the autoplay target
+  // plus whatever the viewer started by hand, rather than one per card the
+  // scroll has passed. Resetting hasStartedAutoplay is what lets the card
+  // autoplay again when the scroll comes back to it.
+  useEffect(() => {
+    if (isAutoplayActive || userStartedRef.current) return;
+    pendingPlayRef.current = false;
+    if (isPlayingRef.current) stopPlayback();
+    setSourceRequested(false);
+    setHasStartedAutoplay(false);
+    setVideoReady(false);
+    setFirstFrameRendered(false);
+  }, [isAutoplayActive, stopPlayback]);
 
   useEffect(() => {
     const h = (state: AppStateStatus) => {
@@ -387,21 +452,23 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       stopPlayback();
       setShowControls(true);
       clearHideTimer(); // Stay visible while paused
-    } else if (!sourceRequested) {
-      // First touch on a card that never autoplayed (Data Saver, autoplay off,
-      // or the tap beat the settle timer): attach the source and play as soon
-      // as it reaches readyToPlay. The buffering spinner covers the gap.
-      pendingPlayRef.current = true;
-      setHasStartedAutoplay(true);
-      setSourceRequested(true);
-      setShowControls(true);
-      startHideTimer();
-    } else {
-      startPlayback();
-      setShowControls(true);
-      startHideTimer(); // Auto-hide after 1.5s when playing
+      return;
     }
-  }, [canPlay, sourceRequested, onPress, stopPlayback, startPlayback, clearHideTimer, startHideTimer]);
+
+    // A deliberate tap, so this card keeps playing even when autoplay moves on.
+    userStartedRef.current = true;
+    // One path for both cases. On a card that never got a source (Data Saver,
+    // autoplay off, not the autoplay target, or the tap beat the settle timer)
+    // this attaches it and plays on readyToPlay, with the buffering spinner
+    // covering the gap. On one already loaded, flushPendingPlay starts it in
+    // this same tick.
+    pendingPlayRef.current = true;
+    setHasStartedAutoplay(true);
+    setSourceRequested(true);
+    flushPendingPlay();
+    setShowControls(true);
+    startHideTimer(); // Auto-hide after 1.5s when playing
+  }, [canPlay, onPress, stopPlayback, flushPendingPlay, clearHideTimer, startHideTimer]);
 
   const handleToggleMute = useCallback(() => {
     if (!playerRef.current) return;

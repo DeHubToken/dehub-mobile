@@ -177,6 +177,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
     viewabilityConfig,
     onViewableItemsChanged,
     isItemVisible,
+    isItemAutoplayActive,
     visibilityExtraData,
   } = useFeedCardVisibility();
 
@@ -204,13 +205,14 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
         <View className="px-4">
           <FeedCard
             item={item.item}
-            isVisible={isItemVisible(item.key, item.item)}
+            isVisible={isItemVisible(item.key)}
+            isAutoplayActive={isItemAutoplayActive(item.key)}
             onBeforeNavigate={onBeforeNavigate}
           />
         </View>
       );
     },
-    [isItemVisible, navigation, onBeforeNavigate],
+    [isItemVisible, isItemAutoplayActive, navigation, onBeforeNavigate],
   );
 
   if (loading) {

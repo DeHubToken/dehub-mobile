@@ -11,8 +11,19 @@ function getListItemKey(item: unknown): string | null {
 type KeyExtractor = (item: unknown, index: number) => string;
 
 /**
- * Tracks which FlatList rows are visible so FeedCard / FeedVideoPlayer only
- * attach a native player for the on-screen item (avoids OOM on profile lists).
+ * Tracks two separate things about a list's rows, which used to be one flag.
+ *
+ * - `isItemVisible` — the row is on screen. Decides whether FeedCard /
+ *   FeedVideoPlayer may hold a native player at all (avoids OOM on profile
+ *   lists, where the render window is a dozen rows deep).
+ * - `isItemAutoplayActive` — this is the single video row the scroll position
+ *   has handed autoplay to.
+ *
+ * They were the same value: `isItemVisible` returned `activeVideoKey === key`
+ * for video rows, so the second video on screen was told it was off screen. It
+ * could not attach a media source, so tapping it did nothing whatsoever and
+ * the feed looked stuck on whichever video started first. Only *autoplay* is
+ * exclusive; a tap may start any row the viewer can actually see.
  */
 export function useFeedCardVisibility(keyExtractor?: KeyExtractor) {
   const [visibleItemKeys, setVisibleItemKeys] = useState<Set<string>>(new Set());
@@ -63,23 +74,33 @@ export function useFeedCardVisibility(keyExtractor?: KeyExtractor) {
         return membershipChanged ? next : prev;
       });
 
-      const topItem = viewableItems
-        .filter((v) => v.isViewable && resolveKey(v.item, v.index))
+      // Autoplay belongs to the topmost row that can actually hold a video.
+      // Sorting over every viewable row handed it to whatever text or image
+      // post happened to sit above the video, and then no video autoplayed at
+      // all — the "sometimes it just doesn't start" half of the same bug.
+      const topVideo = viewableItems
+        .filter(
+          (v) =>
+            v.isViewable &&
+            isVideoItem(v.item as any) &&
+            resolveKey(v.item, v.index),
+        )
         .sort((a, b) => (a.index ?? 0) - (b.index ?? 0))[0];
       setActiveVideoKey(
-        topItem ? resolveKey(topItem.item, topItem.index) : null,
+        topVideo ? resolveKey(topVideo.item, topVideo.index) : null,
       );
     },
   ).current;
 
   const isItemVisible = useCallback(
-    (key: string, item?: unknown) => {
-      if (item && isVideoItem(item as any)) {
-        return activeVideoKey === key;
-      }
-      return visibleItemKeys.has(key);
-    },
-    [visibleItemKeys, activeVideoKey],
+    (key: string) => visibleItemKeys.has(key),
+    [visibleItemKeys],
+  );
+
+  /** The one video row allowed to start itself while the list is scrolled. */
+  const isItemAutoplayActive = useCallback(
+    (key: string) => activeVideoKey === key,
+    [activeVideoKey],
   );
 
   // Memoised: as a bare array literal this changed identity on every render of
@@ -94,6 +115,7 @@ export function useFeedCardVisibility(keyExtractor?: KeyExtractor) {
     viewabilityConfig,
     onViewableItemsChanged,
     isItemVisible,
+    isItemAutoplayActive,
     visibilityExtraData,
   };
 }
