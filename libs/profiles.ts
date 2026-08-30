@@ -302,6 +302,32 @@ export function adoptCurrentProfile(): Promise<void> {
 }
 
 /**
+ * Save whatever account is live right now, because a login is about to take
+ * the session keys away from it.
+ *
+ * The same write as `adoptCurrentProfile`, separated because the reason
+ * differs and the reason is the argument for it: an explicit Add profile tap
+ * adopts up front, but every OTHER way a session gets displaced — signing in
+ * as somebody else from the ordinary sheet, connecting a second wallet, which
+ * on this app signs you in AS that wallet — used to tear the outgoing account
+ * down with nothing left behind. That account was never signed out
+ * server-side; the phone had simply forgotten how to get back to it, which is
+ * what "logging into a second account logs me out of the first" actually was.
+ *
+ * Never throws. `ProfileLimitReachedError` is a real answer for an Add profile
+ * tap, which can still be stopped; here the displacement is already happening
+ * and refusing to record it would only make the loss quieter.
+ */
+export async function preserveOutgoingProfile(): Promise<boolean> {
+  try {
+    await snapshotSession(true);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
  * Merge refreshed session tokens into a profile's stored stash without
  * touching the live keys. Written for the moment a background refresh for one
  * account lands after another account took over the live keys: the rotated
@@ -329,7 +355,18 @@ export async function mergeTokensIntoStoredProfile(
  * the old one, and the single-slot signing provider must be rebuilt regardless.
  */
 export async function stageIncomingIdentity(): Promise<void> {
-  await snapshotCurrentSession();
+  // Preserve, not just snapshot. A snapshot only refreshes a row that is
+  // already in the registry, so an account that had never been through Add
+  // profile was taken apart here leaving nothing to switch back to — the
+  // displaced account really was gone. Saving it makes a second login
+  // additive, which is the whole promise of the profile list.
+  await preserveOutgoingProfile();
+  // Arm the same bookkeeping an explicit Add profile tap arms, unless one is
+  // already in flight: the completed login then adopts the INCOMING account
+  // too (see useAuthSession's tail), so the device ends up holding both
+  // however the second login started, and an abandoned attempt can put the
+  // displaced account back.
+  markDisplacedAccount(await currentProfileId());
   switchGuarded = true;
   try {
     for (const key of SESSION_KEYS) {
@@ -381,6 +418,21 @@ let addProfileAttemptFrom: string | null | undefined;
 export async function beginAddProfileAttempt(): Promise<void> {
   addProfileAttemptFrom = await currentProfileId();
   await adoptCurrentProfile();
+}
+
+/**
+ * Same bookkeeping, for a displacement nobody started from the Add profile
+ * button — connecting a second wallet, or signing in as someone else from the
+ * ordinary sheet. Both are "add a profile" as far as the device is concerned;
+ * only the entry point differs, and the entry point is not what should decide
+ * whether the previous account survives.
+ *
+ * Never overwrites an attempt already in flight — that one knows who it
+ * displaced first, and it is the one with UI waiting on it.
+ */
+export function markDisplacedAccount(prevId: string | null): void {
+  if (addProfileAttemptFrom !== undefined) return;
+  addProfileAttemptFrom = prevId;
 }
 
 export function addProfileAttemptActive(): boolean {
