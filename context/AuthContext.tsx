@@ -816,8 +816,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                     // (staging ran, or the exchange started writing), the
                     // previous account's snapshot goes back on disk, state
                     // rehydrates into it, and closing the sheet costs nothing.
-                    if (addProfileIntent) {
-                      setAddProfileIntent(false);
+                    //
+                    // Not gated on addProfileIntent any more: an ordinary
+                    // sign-in as somebody else displaces the live account just
+                    // as thoroughly, and abandoning it there used to leave the
+                    // phone signed in as nobody. The call itself no-ops when
+                    // nothing was displaced.
+                    setAddProfileIntent(false);
+                    {
                       restoreDisplacedProfileIfAny()
                         .then(async (restored) => {
                           if (restored) {

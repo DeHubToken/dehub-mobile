@@ -24,6 +24,8 @@ import {
   completeProfileSwitch,
   abortProfileSwitch,
   mergeTokensIntoStoredProfile,
+  preserveOutgoingProfile,
+  consumeAddProfileAttempt,
 } from '../../libs/profiles';
 import {
   setAuthToken,
@@ -72,6 +74,49 @@ describe('libs/profiles', () => {
   afterEach(async () => {
     // Un-stage any switch the test left behind.
     await abortProfileSwitch(null);
+    // …and any displacement marker, which is module-scoped and would otherwise
+    // leak into the next test.
+    consumeAddProfileAttempt();
+  });
+
+  describe('preserveOutgoingProfile', () => {
+    it('saves an account that was never explicitly added, so a second login cannot lose it', async () => {
+      await seedAccountA();
+      // Deliberately NOT adopted: an ordinary session that has never been
+      // through Add profile.
+      expect(await listProfiles()).toHaveLength(0);
+
+      expect(await preserveOutgoingProfile()).toBe(true);
+      await stageIncomingIdentity();
+
+      const saved = await getProfile('uid-a');
+      expect(saved?.session?.tokens['auth_token']).toBe('tok-a');
+      // Staging arms the displacement marker, which is what makes the
+      // completed login adopt the incoming account too.
+      expect(consumeAddProfileAttempt()).toBe('uid-a');
+    });
+
+    it('records the displacement even when the device is at its allowance', async () => {
+      await seedAccountA();
+      await adoptCurrentProfile();
+      await seedAccountB();
+      await adoptCurrentProfile();
+
+      // Two profiles is the no-badge allowance. A third displacement is
+      // refused, but refusing must never throw into a login that is already
+      // under way, and must never evict one of the saved accounts.
+      const keys = await AsyncStorage.getAllKeys();
+      const doomed = keys.filter((k) => k !== PROFILES_STORAGE_KEY && !k.startsWith('@local_wallet'));
+      if (doomed.length) await AsyncStorage.multiRemove(doomed);
+      mockStore.__clear();
+      await setAuthToken('tok-c');
+      await setAuthMethod('local', '0xcccccccccccccccccccccccccccccccccccccccc');
+
+      expect(await preserveOutgoingProfile()).toBe(false);
+      expect((await listProfiles()).map((p) => p.id).sort()).toEqual(
+        [`addr:${ADDR_B}`, 'uid-a'].sort(),
+      );
+    });
   });
 
   describe('snapshotCurrentSession', () => {
