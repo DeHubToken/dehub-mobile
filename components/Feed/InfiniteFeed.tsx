@@ -31,6 +31,7 @@ export type InfiniteFeedRenderItemInfo = {
   index: number;
   separators: any;
   isVisible?: boolean;
+  isAutoplayActive?: boolean;
 };
 
 export interface InfiniteFeedProps {
@@ -124,6 +125,7 @@ const InfiniteFeedBase: React.FC<
     viewabilityConfig: feedCardViewabilityConfig,
     onViewableItemsChanged: onFeedCardViewableItemsChanged,
     isItemVisible,
+    isItemAutoplayActive,
     visibilityExtraData,
   } = useFeedCardVisibility();
   const [refreshing, setRefreshing] = useState(false);
@@ -193,11 +195,12 @@ const InfiniteFeedBase: React.FC<
         separators: info.separators,
       };
       if (trackFeedCardVisibility) {
-        payload.isVisible = isItemVisible(info.item.__listKey, info.item);
+        payload.isVisible = isItemVisible(info.item.__listKey);
+        payload.isAutoplayActive = isItemAutoplayActive(info.item.__listKey);
       }
       return renderItem(payload as any);
     },
-    [renderItem, trackFeedCardVisibility, isItemVisible],
+    [renderItem, trackFeedCardVisibility, isItemVisible, isItemAutoplayActive],
   );
 
   // fetchPage and params are read through refs rather than closed over by the

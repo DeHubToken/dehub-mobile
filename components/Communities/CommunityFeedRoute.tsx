@@ -76,8 +76,12 @@ const CommunityFeedRoute: React.FC<Props> = ({
   // memberFilterReady early return — it is a hook, so it has to run on every
   // render of this component.
   const renderItem = useCallback(
-    ({ item, isVisible }: InfiniteFeedRenderItemInfo) => (
-      <FeedCard item={item as UnifiedFeedItem} isVisible={isVisible} />
+    ({ item, isVisible, isAutoplayActive }: InfiniteFeedRenderItemInfo) => (
+      <FeedCard
+        item={item as UnifiedFeedItem}
+        isVisible={isVisible}
+        isAutoplayActive={isAutoplayActive}
+      />
     ),
     [],
   );

@@ -77,6 +77,7 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
     viewabilityConfig,
     onViewableItemsChanged,
     isItemVisible,
+    isItemAutoplayActive,
     visibilityExtraData,
   } = useFeedCardVisibility(keyExtractor);
 
@@ -155,12 +156,13 @@ const UserRepostsListInner: React.ForwardRefRenderFunction<
             item={item as UnifiedFeedItem}
             onBeforeNavigate={onClose}
             showRepostLabel={!!item.isRepost}
-            isVisible={isItemVisible(rowKey, item)}
+            isVisible={isItemVisible(rowKey)}
+            isAutoplayActive={isItemAutoplayActive(rowKey)}
           />
         </View>
       );
     },
-    [contentPadding, onClose, keyExtractor, isItemVisible],
+    [contentPadding, onClose, keyExtractor, isItemVisible, isItemAutoplayActive],
   );
 
   if (loading && items.length === 0) {

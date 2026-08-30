@@ -236,11 +236,16 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       return changed_membership ? next : prev;
     });
 
-    // Only the topmost visible item should autoplay — pick lowest index viewable item
-    const topItem = viewableItems
-      .filter(v => v.isViewable && (v.item as FeedItem | undefined)?.__listKey)
+    // Only the topmost visible VIDEO row should autoplay. Without the type
+    // filter a text or image post above the video took the slot, and then no
+    // video autoplayed at all.
+    const topVideo = viewableItems
+      .filter(v =>
+        v.isViewable &&
+        !!(v.item as FeedItem | undefined)?.__listKey &&
+        isVideoItem(v.item as UnifiedFeedItem))
       .sort((a, b) => (a.index ?? 0) - (b.index ?? 0))[0];
-    setActiveVideoKey(topItem ? (topItem.item as FeedItem).__listKey : null);
+    setActiveVideoKey(topVideo ? (topVideo.item as FeedItem).__listKey : null);
 
     // No auth gate: signed-out viewers count too, and the view service routes
     // their views to the anonymous view backend.
@@ -597,7 +602,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         <FeedCard
           item={item}
           onCategorySelect={onCategorySelect}
-          isVisible={active && isFocused && (isVideoItem(item) ? item.__listKey === activeVideoKey : visibleItemKeys.has(item.__listKey))}
+          // On screen, so it may hold a player and answer a tap. Autoplay is
+          // the separate, exclusive flag below — conflating the two meant the
+          // second video on screen could not be started at all.
+          isVisible={active && isFocused && visibleItemKeys.has(item.__listKey)}
+          isAutoplayActive={active && isFocused && item.__listKey === activeVideoKey}
           enablePreview
         />
       );
