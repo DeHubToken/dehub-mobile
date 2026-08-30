@@ -1374,6 +1374,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             avatarUrl={avatar}
             displayName={displayName}
             username={username}
+            address={minterAddress}
             badgeImage={badgeImg}
             onUserPress={handleUserPress}
             onMenuPress={handleOpenOptions}

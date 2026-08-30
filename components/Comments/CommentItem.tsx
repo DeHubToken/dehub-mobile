@@ -11,6 +11,7 @@ import Icon from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
 import { useTranslation } from "../../hooks/useTranslation";
 import Avatar from "../common/Avatar";
+import NewMemberChip from "../common/NewMemberChip";
 import VoiceNotePlayer from "./VoiceNotePlayer";
 import { getAvatarUrl } from "../../libs";
 import { buildCdnPath } from "../../libs/misc";
@@ -434,6 +435,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 </Text>
               </View>
             )}
+            <NewMemberChip address={comment.address} />
             {/* The bot comments under a normal account, so without this it is
                 indistinguishable from a user who picked the handle. */}
             {isAssistantAddress(user?.address || comment.address) && (

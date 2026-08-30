@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
+import NewMemberChip from "../common/NewMemberChip";
 import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import { formatRelativeFromNow } from "../../libs/date.util";
 import type { DmConversation, DmMessage, DmUser } from "../../services/dm/dm.types";
@@ -177,6 +178,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
             {badgeImg && (
               <Image source={badgeImg} style={{ width: 14, height: 14 }} resizeMode="contain" />
             )}
+            <NewMemberChip address={other?.address} />
             {username && (
               <Text className="text-zinc-400 text-[12px]" numberOfLines={1}>
                 @{username}
