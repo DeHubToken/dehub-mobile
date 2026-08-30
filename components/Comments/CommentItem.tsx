@@ -348,9 +348,16 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     );
   }
 
+  // Tap the row to answer that comment.
+  //
+  // Reply was only ever the small speech-bubble icon in the action row, so
+  // readers answered in the main comment box instead and their answer posted
+  // as a new top-level comment — the thread came out as unconnected remarks.
+  // The row was already a Pressable for the long-press menu with onPress doing
+  // nothing, so the target costs nothing to add. Web does the same.
   return (
     <Pressable
-      onPress={() => {}}
+      onPress={handleReplyPress}
       onLongPress={handleLongPress}
       delayLongPress={300}
     >
