@@ -219,6 +219,30 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   const [showReportUser, setShowReportUser] = useState(false);
   const [showBlockConfirm, setShowBlockConfirm] = useState(false);
 
+  /**
+   * The sheet hides itself for a sub-modal instead of calling onClose().
+   *
+   * Every call site renders this component as `{showOptionsMenu && <PostOptionsMenu …>}`,
+   * so onClose() unmounts the whole subtree — and the sub-modals below live in
+   * that subtree. Closing the sheet first and then opening Edit meant setting
+   * state on a fiber that no longer existed, so Edit (and Delete, Report,
+   * Block) simply never appeared. Only the sheets the CALLER owns — Boost,
+   * Send to DM, Translate image — may close on the way out.
+   */
+  const [sheetHidden, setSheetHidden] = useState(false);
+
+  /** Hide the sheet, then open the sub-modal once its dismiss animation is done. */
+  const openSubModal = useCallback((open: () => void) => {
+    setSheetHidden(true);
+    setTimeout(open, 220);
+  }, []);
+
+  /** A sub-modal finished: unmount the menu for real. */
+  const closeAll = useCallback(() => {
+    setSheetHidden(false);
+    onClose();
+  }, [onClose]);
+
   // Loading states
   const [followLoading, setFollowLoading] = useState(false);
   const [visibilityLoading, setVisibilityLoading] = useState(false);
@@ -305,10 +329,8 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   }, [tokenId, onDeleteSuccess, onClose]);
 
   const handleOpenEdit = useCallback(() => {
-    onClose();
-    // Small delay so the menu modal closes before edit opens
-    setTimeout(() => setShowEdit(true), 200);
-  }, [onClose]);
+    openSubModal(() => setShowEdit(true));
+  }, [openSubModal]);
 
   const handleEditDone = useCallback(
     (data: { name?: string; description?: string; category?: string[] }) => {
@@ -319,25 +341,16 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   );
 
   const handleOpenReportContent = useCallback(() => {
-    requireAuth?.(() => {
-      onClose();
-      setTimeout(() => setShowReportContent(true), 200);
-    });
-  }, [onClose, requireAuth]);
+    requireAuth?.(() => openSubModal(() => setShowReportContent(true)));
+  }, [openSubModal, requireAuth]);
 
   const handleOpenReportUser = useCallback(() => {
-    requireAuth?.(() => {
-      onClose();
-      setTimeout(() => setShowReportUser(true), 200);
-    });
-  }, [onClose, requireAuth]);
+    requireAuth?.(() => openSubModal(() => setShowReportUser(true)));
+  }, [openSubModal, requireAuth]);
 
   const handleOpenBlock = useCallback(() => {
-    requireAuth?.(() => {
-      onClose();
-      setTimeout(() => setShowBlockConfirm(true), 200);
-    });
-  }, [onClose, requireAuth]);
+    requireAuth?.(() => openSubModal(() => setShowBlockConfirm(true)));
+  }, [openSubModal, requireAuth]);
 
   /**
    * Muting takes no confirmation sheet, where blocking does.
@@ -381,13 +394,13 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     } finally {
       setBlockLoading(false);
       setShowBlockConfirm(false);
+      closeAll();
     }
-  }, [creatorIdentifier, creatorDisplayName, isBlockedProp, onBlockChange]);
+  }, [creatorIdentifier, creatorDisplayName, isBlockedProp, onBlockChange, closeAll]);
 
   const handleOpenDelete = useCallback(() => {
-    onClose();
-    setTimeout(() => setShowDeleteConfirm(true), 200);
-  }, [onClose]);
+    openSubModal(() => setShowDeleteConfirm(true));
+  }, [openSubModal]);
 
   const handleShare = useCallback(async () => {
     if (tokenId == null) return;
@@ -417,7 +430,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     <>
       {/* Main options sheet */}
       <GlassModal
-        visible={visible}
+        visible={visible && !sheetHidden}
         onClose={onClose}
         presentation="bottom"
         maxHeight="70%"
@@ -620,13 +633,13 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         confirmKind="danger"
         loading={deleteLoading}
         onConfirm={handleDeleteConfirm}
-        onCancel={() => setShowDeleteConfirm(false)}
+        onCancel={() => { setShowDeleteConfirm(false); closeAll(); }}
       />
 
       {/* Edit modal */}
       <EditPostModal
         visible={showEdit}
-        onClose={() => setShowEdit(false)}
+        onClose={() => { setShowEdit(false); closeAll(); }}
         tokenId={tokenId}
         initialTitle={currentTitle}
         initialDescription={currentDescription}
@@ -640,7 +653,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
       {/* Report content modal */}
       <ReportModal
         visible={showReportContent}
-        onClose={() => setShowReportContent(false)}
+        onClose={() => { setShowReportContent(false); closeAll(); }}
         type="content"
         tokenId={tokenId}
       />
@@ -648,7 +661,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
       {/* Report user modal */}
       <ReportModal
         visible={showReportUser}
-        onClose={() => setShowReportUser(false)}
+        onClose={() => { setShowReportUser(false); closeAll(); }}
         type="user"
         userId={creatorIdentifier}
         userName={creatorDisplayName}
@@ -660,7 +673,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         mode={isBlockedProp ? "unblock" : "block"}
         targetLabel={creatorDisplayName}
         onConfirm={handleConfirmBlock}
-        onCancel={() => setShowBlockConfirm(false)}
+        onCancel={() => { setShowBlockConfirm(false); closeAll(); }}
         loading={blockLoading}
       />
 
