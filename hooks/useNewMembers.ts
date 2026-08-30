@@ -114,29 +114,51 @@ export function useNewMembers(limit = 20) {
   });
 }
 
-/** Is this one person new? Used by the profile chip. */
-export function useIsNewMember(address?: string | null) {
+const EMPTY_MEMBER_SET: Map<string, string> = new Map();
+
+/**
+ * Everyone inside the 30-day window, in one request. Twin of web's
+ * `useNewMemberSet` — a feed of twenty cards used to mean twenty per-address
+ * queries for data one query already covers; every chip below reads this same
+ * cached map instead.
+ *
+ * PostgREST caps a single response at 1000 rows; if a month ever onboards more
+ * than that, the oldest of them would stop showing the chip until then.
+ */
+export function useNewMemberSet(): { members: Map<string, string>; isLoading: boolean } {
   const query = useQuery({
-    queryKey: ["new-member", address?.toLowerCase()],
-    queryFn: async (): Promise<string | null> => {
+    queryKey: ["new-member-set"],
+    queryFn: async (): Promise<Map<string, string>> => {
       const { data, error } = await supabase
         .from("new_members")
-        .select("joined_at")
-        .eq("wallet_address", address!.toLowerCase())
-        .gte("joined_at", cutoffIso())
-        .maybeSingle();
+        .select("wallet_address, joined_at")
+        .gte("joined_at", cutoffIso());
 
       if (error) throw error;
-      return (data as { joined_at: string } | null)?.joined_at ?? null;
+      const map = new Map<string, string>();
+      for (const row of (data || []) as { wallet_address: string; joined_at: string }[]) {
+        map.set(row.wallet_address.toLowerCase(), row.joined_at);
+      }
+      return map;
     },
-    enabled: !!address,
     staleTime: 10 * 60 * 1000,
     gcTime: 30 * 60 * 1000,
-    // An unknown address is a normal answer here, not a fault worth retrying.
     retry: false,
   });
 
-  return { isNew: !!query.data, joinedAt: query.data ?? null };
+  return { members: query.data ?? EMPTY_MEMBER_SET, isLoading: query.isLoading };
+}
+
+/**
+ * Is this one person new? A local lookup in the shared window set, so the
+ * profile chip and every feed surface below read the same answer from the
+ * same request.
+ */
+export function useIsNewMember(address?: string | null) {
+  const { members, isLoading } = useNewMemberSet();
+  const key = address?.toLowerCase() ?? null;
+  const joinedAt = (key && members.get(key)) || null;
+  return { isNew: !!joinedAt, joinedAt, isLoading };
 }
 
 /**
@@ -180,7 +202,9 @@ export function useNewMemberSelf() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["new-member-self", address] });
       queryClient.invalidateQueries({ queryKey: ["new-members"] });
-      if (address) queryClient.invalidateQueries({ queryKey: ["new-member", address] });
+      // The set feeds every chip in the app — profile included — so flipping
+      // the switch has to drop it, or the old answer lingers for ten minutes.
+      queryClient.invalidateQueries({ queryKey: ["new-member-set"] });
     },
   });
 
@@ -230,6 +254,7 @@ export function useRegisterNewMember() {
         if ((data as { isNew?: boolean })?.isNew) {
           queryClient.invalidateQueries({ queryKey: ["new-members"] });
           queryClient.invalidateQueries({ queryKey: ["new-member-self", address] });
+          queryClient.invalidateQueries({ queryKey: ["new-member-set"] });
         }
       } catch (err) {
         // Never surfaced: a welcome rail missing one name is not worth an error

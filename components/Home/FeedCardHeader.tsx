@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { View, Text, Image, Pressable } from "react-native";
 import Avatar from "../common/Avatar";
+import NewMemberChip from "../common/NewMemberChip";
 import Icon from "../ui/Icon";
 
 const ICON_MUTED = "#6F7174";
@@ -9,6 +10,7 @@ export interface FeedCardHeaderProps {
   avatarUrl?: string;
   displayName: string;
   username?: string;
+  address?: string;
   badgeImage?: any;
   onUserPress?: () => void;
   avatarSize?: number;
@@ -21,6 +23,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
   avatarUrl,
   displayName,
   username,
+  address,
   badgeImage,
   onUserPress,
   avatarSize = 32,
@@ -59,6 +62,11 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             >
               <Image source={badgeImage} style={{ width: 10, height: 10 }} resizeMode="contain" />
             </Pressable>
+          )}
+          {address && (
+            <View style={{ marginLeft: 4 }}>
+              <NewMemberChip address={address} />
+            </View>
           )}
         </View>
         {username ? (

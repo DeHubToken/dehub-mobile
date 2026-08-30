@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
+import NewMemberChip from "../common/NewMemberChip";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import {
   getRepostUsers,
@@ -45,9 +46,15 @@ const RepostUserRow: React.FC<RepostUserRowProps> = memo(({ item, onPress }) => 
     >
       <Avatar uri={avatarUrl} size={40} rounded={false} name={displayName} />
       <View style={{ flex: 1, marginLeft: 12 }}>
-        <Text style={{ color: "#F9FBFF", fontWeight: "600", fontSize: 14 }} numberOfLines={1}>
-          {displayName}
-        </Text>
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+          <Text
+            style={{ color: "#F9FBFF", fontWeight: "600", fontSize: 14, flexShrink: 1 }}
+            numberOfLines={1}
+          >
+            {displayName}
+          </Text>
+          <NewMemberChip address={item.address} />
+        </View>
         {hasUsername && (
           <Text style={{ color: "#8B8D90", fontSize: 13, marginTop: 1 }} numberOfLines={1}>
             @{item.username}
