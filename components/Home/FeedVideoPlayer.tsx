@@ -9,6 +9,7 @@ import {
   AppStateStatus,
   TouchableOpacity,
   ActivityIndicator,
+  Dimensions,
 } from "react-native";
 import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
 import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from "../../libs/video-preferences";
@@ -35,6 +36,18 @@ import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
 import { useMediaAspect } from "../../hooks/useMediaAspect";
 import { SEGMENT_LABELS } from "../../services/video-segments.service";
 import { toastInfo } from "../../libs";
+
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
+
+/** Card content width — mirrors FeedCard, which lays this player out. */
+const CARD_WIDTH = SCREEN_WIDTH - 40;
+
+/**
+ * Tallest the media may get. A portrait clip stops growing here and narrows
+ * its own width instead, so a vertical video takes about a screen rather than
+ * scrolling for three.
+ */
+const MAX_MEDIA_HEIGHT = Math.round(Math.min(600, SCREEN_HEIGHT * 0.6));
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
@@ -594,7 +607,19 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   };
 
   return (
-    <View style={[styles.container, { aspectRatio: mediaAspect }]}>
+    <View
+      style={[
+        styles.container,
+        {
+          aspectRatio: mediaAspect,
+          // Fills the card when the clip is wide enough; a portrait clip caps
+          // at MAX_MEDIA_HEIGHT and shrinks its own width, hugged to the left.
+          width: Math.min(CARD_WIDTH, Math.round(MAX_MEDIA_HEIGHT * mediaAspect)),
+          maxWidth: "100%",
+          alignSelf: "flex-start",
+        },
+      ]}
+    >
       {thumbnail ? (
         // SmartImage (expo-image), not RN Image: RN's has no disk cache and no
         // recycling key, so every time FlatList reused this cell the full-width
