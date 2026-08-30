@@ -5,6 +5,21 @@
 
 export type TxContext = "approve" | "send" | string | undefined;
 
+/**
+ * True when the only thing wrong is that the wallet needs unlocking — the
+ * WalletLockedError lockedProviderShim throws when the unlock sheet closes
+ * without producing a key.
+ *
+ * Matches on the name AND on the message, because aa.write re-wraps errors in
+ * a plain `new Error(friendlyText)` on its way out, which drops the class.
+ */
+export function isWalletLockedError(err: any): boolean {
+  if (!err) return false;
+  if (err.name === "WalletLockedError") return true;
+  const message = typeof err === "string" ? err : String(err?.message ?? "");
+  return message.toLowerCase().includes("wallet is locked");
+}
+
 export function parseTxError(err: any, context: TxContext): string {
   if (!err)
     return context === "approve" ? "Approval failed" : "Transaction failed";
@@ -12,6 +27,16 @@ export function parseTxError(err: any, context: TxContext): string {
   const raw = err?.data?.message || err?.error?.message || err?.message || "";
   const msg = String(raw).toLowerCase();
 
+  // Wallet locked. Not a failure and not something the user did wrong: signing
+  // reached the unlock sheet (lockedProviderShim) and it did not produce a
+  // key — usually because the biometric prompt was dismissed. Worded as
+  // "Transaction failed" it read as if the payment had broken, which is what
+  // stopped people retrying. Keep the words "wallet is locked" in the message:
+  // aa.write re-wraps this string in a fresh Error, and that substring is all
+  // isWalletLockedError has left to recognise it by.
+  if (isWalletLockedError(err)) {
+    return "Your wallet is locked — unlock it to continue";
+  }
   // User rejection
   if (
     code === 4001 ||
