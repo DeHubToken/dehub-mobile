@@ -32,6 +32,7 @@ import { getCachedMuted, setMutedState } from "../../libs/videoMutedState";
 import { useDataSaver } from "../../hooks/useDataSaver";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
+import { useMediaAspect } from "../../hooks/useMediaAspect";
 import { SEGMENT_LABELS } from "../../services/video-segments.service";
 import { toastInfo } from "../../libs";
 
@@ -224,6 +225,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   );
 
   const [showControls, setShowControls] = useState(false);
+  // Real shape of the clip, so a portrait video is shown portrait instead of
+  // being cropped into a fixed 16:9 slot. Measured off the thumbnail, which is
+  // extracted from the video itself; 16:9 until that resolves.
+  const mediaAspect = useMediaAspect(thumbnail);
+
   const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Mirrors showControls for the timeUpdate listener (which is subscribed once
@@ -521,7 +527,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { aspectRatio: mediaAspect }]}>
       {thumbnail ? (
         // SmartImage (expo-image), not RN Image: RN's has no disk cache and no
         // recycling key, so every time FlatList reused this cell the full-width
@@ -533,7 +539,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         <SmartImage
           source={{ uri: thumbnail }}
           style={styles.thumbnail}
-          contentFit="cover"
+          contentFit="contain"
           recyclingKey={thumbnail}
           transition={0}
         />
@@ -547,7 +553,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         <VideoView
           ref={videoViewRef}
           player={player}
-          contentFit="cover"
+          contentFit="contain"
           nativeControls={false}
           // Android defaults to a SurfaceView, which renders in its own window
           // layer and can punch through / appear on top of other feed cards
