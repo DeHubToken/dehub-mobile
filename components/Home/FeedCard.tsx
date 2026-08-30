@@ -156,6 +156,9 @@ interface FeedCardProps {
   disablePress?: boolean;
   onCommentPress?: () => void;
   isVisible?: boolean;
+  /** True on the one card the list has handed autoplay to. A card that is
+   *  visible but not the autoplay target still plays when it is tapped. */
+  isAutoplayActive?: boolean;
   enablePreview?: boolean;
   /** Fires before any card-press navigation (e.g. to close a bottom sheet). */
   onBeforeNavigate?: () => void;
@@ -170,6 +173,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   disablePress = false,
   onCommentPress: onCommentPressProp,
   isVisible = true,
+  isAutoplayActive = true,
   enablePreview = true,
   onBeforeNavigate,
   showRepostLabel = false,
@@ -1189,6 +1193,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       bountyAmount={bountyAmount}
       bountyCurrency={bountyTokenSymbol}
       isVisible={isVisible}
+      isAutoplayActive={isAutoplayActive}
       isSignedIn={isSignedIn}
       onPress={handleCardPress}
       onPPVPress={handlePPVPress}

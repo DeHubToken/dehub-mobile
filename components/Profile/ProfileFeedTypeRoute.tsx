@@ -62,11 +62,12 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
   // its deps, so a fresh arrow per render invalidated it and re-rendered every
   // cell in the window on any re-render of this route.
   const renderItem = useCallback(
-    ({ item, isVisible }: InfiniteFeedRenderItemInfo) => (
+    ({ item, isVisible, isAutoplayActive }: InfiniteFeedRenderItemInfo) => (
       <View className={listHeader ? 'px-4' : undefined}>
         <FeedCard
           item={item as UnifiedFeedItem}
           isVisible={isVisible}
+          isAutoplayActive={isAutoplayActive}
           onBeforeNavigate={onBeforeNavigate}
         />
       </View>
