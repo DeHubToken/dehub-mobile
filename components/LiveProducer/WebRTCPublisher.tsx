@@ -447,17 +447,25 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
             body: localDesc.sdp,
           });
         } catch (e) {
-          // The WHIP POST itself died on the network while pointed straight
-          // at the ingest. Remember that, so the next mint on this phone
+          // The WHIP POST itself died on the network. That condemns any
+          // self-hosted attempt, relayed included — a relay this phone cannot
+          // reach is as dead as the ingest — so remember it and the next mint
           // prefers Livepeer over re-running the same optimistic probe into
-          // the same wall — a stuck creator's real behaviour is to retry.
-          if (directSelfHosted && isNetworkShapedError(e)) void markIngestUnreachable();
+          // the same wall; a stuck creator's real behaviour is to retry.
+          if (selfHosted && isNetworkShapedError(e)) void markIngestUnreachable();
           throw e;
         }
-        if (!resp.ok)
+        if (!resp.ok) {
+          // Our own publish gate answers 401 (bad key — the same credentials
+          // fail everywhere). Any other status on a self-hosted attempt came
+          // from a middlebox or edge answering in the server's place, and it
+          // repeats identically on every retry — remember it so the next
+          // mint on this phone prefers Livepeer.
+          if (selfHosted && resp.status !== 401) void markIngestUnreachable();
           throw new Error(
             `WHIP offer failed: ${resp.status} ${await resp.text()}`
           );
+        }
         if (myGen !== pcGenerationRef.current) { dbg('start(): stale or cancelled before applying answer', { gen: myGen, currentGen: pcGenerationRef.current }); return; }
         dbg('received WHIP answer', { gen: myGen });
         const answer = await resp.text();
