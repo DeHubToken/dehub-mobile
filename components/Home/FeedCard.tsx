@@ -36,6 +36,7 @@ import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCa
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import SmartImage from "../common/SmartImage";
 import { cdnImage } from "../../libs/cdnImage";
+import { liveThumbnailFor } from "../../libs/live-ingest";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import PPVSheet from "../PPV/PPVSheet";
 import BountyInfoSheet from "./BountyInfoSheet";
@@ -295,6 +296,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           ? itemThumb
           : `${env.CDN_BASE_URL}/${itemThumb}`;
         return cdnImage(abs, { width: IMAGE_WIDTH });
+      }
+      // Neither the post nor the stream carries a picture. Livepeer renders a
+      // poster for a running broadcast — the closest thing to a recent
+      // screenshot available without one. The self-hosted ingest renders none
+      // and an ended stream's poster 404s, so both fall through to whatever
+      // the post itself can offer.
+      const liveNow = String(stream?.status ?? (item as any).status ?? "").toLowerCase();
+      if (liveNow === "live" || liveNow === "paused") {
+        const poster = liveThumbnailFor(stream as any);
+        if (poster) return poster;
       }
       return resolveThumbnail(item as any, IMAGE_WIDTH);
     }
@@ -1211,8 +1222,18 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           recyclingKey={thumbnail}
         />
       ) : (
-        <View className="absolute inset-0 w-full h-full bg-zinc-800 items-center justify-center">
-          <Icon name="VideoOff" size={40} color="#666" />
+        /* Last resort: no cover, no provider poster, nothing on the post.
+           Says what it is rather than rendering as an empty grey slab — a
+           blank box reads as a broken image, which is exactly how this was
+           being reported. */
+        <View className="absolute inset-0 w-full h-full bg-zinc-900 items-center justify-center px-6">
+          <Icon name="Radio" size={32} color="#6F7174" />
+          <Text
+            numberOfLines={2}
+            style={{ color: "#8B8D90", fontSize: 12, marginTop: 8, textAlign: "center" }}
+          >
+            {title || (isCurrentlyLive ? "Live now" : "Stream")}
+          </Text>
         </View>
       )}
       {status && <StatusBadge status={status} />}
