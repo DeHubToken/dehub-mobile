@@ -15,6 +15,8 @@
  * they resolve the same streams for the same users.
  */
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export type LiveProvider = 'livepeer' | 'mediamtx';
 
 /**
@@ -100,4 +102,56 @@ export async function probeIngestReachable(timeoutMs = 4000): Promise<boolean> {
   } finally {
     clearTimeout(timer);
   }
+}
+
+/**
+ * Memory of the last direct connect that died on the network, because a
+ * passing probe is not proof. The DPI-throttled carriers the probe exists
+ * for intermittently let one small GET through while never carrying the
+ * WHIP POST — a phone there passes the probe, mints self-hosted, and dies
+ * seconds later, identically on every retry (observed three times in six
+ * minutes from one phone on 2026-08-31). So a network-shaped failure of a
+ * direct connect leaves a marker, the mint prefers Livepeer while one is
+ * fresh, and a later successful direct connect clears it. AsyncStorage so
+ * the marker survives the kill-and-retry loop a stuck creator actually
+ * performs; every touch is wrapped because storage can be unavailable. The
+ * web app mirrors this in `src/lib/live-ingest.ts`.
+ */
+const INGEST_FAILURE_KEY = 'dehub.ingest.unreachable-at';
+const INGEST_FAILURE_WINDOW_MS = 24 * 3600 * 1000;
+
+export async function markIngestUnreachable(): Promise<void> {
+  try {
+    await AsyncStorage.setItem(INGEST_FAILURE_KEY, String(Date.now()));
+  } catch {
+    /* storage unavailable — the mint just falls back to trusting the probe */
+  }
+}
+
+export async function clearIngestUnreachable(): Promise<void> {
+  try {
+    await AsyncStorage.removeItem(INGEST_FAILURE_KEY);
+  } catch {
+    /* nothing to clear where nothing could be written */
+  }
+}
+
+export async function hadRecentIngestFailure(): Promise<boolean> {
+  try {
+    const at = Number(await AsyncStorage.getItem(INGEST_FAILURE_KEY));
+    return Number.isFinite(at) && at > 0 && Date.now() - at < INGEST_FAILURE_WINDOW_MS;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * The failure shapes that mean the network ate the request — the fetch died
+ * without a response (React Native surfaces that as a TypeError) or aborted
+ * on a cap — as opposed to a bad status the server actually sent. Shared so
+ * the unreachable marker and any error copy key off the same definition.
+ */
+export function isNetworkShapedError(error: unknown): boolean {
+  const name = (error as { name?: string } | null)?.name;
+  return name === 'TimeoutError' || name === 'AbortError' || error instanceof TypeError;
 }
