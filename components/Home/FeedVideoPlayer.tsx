@@ -166,6 +166,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       : null
   );
 
+  // Re-arm on unmount so reopening this video counts as another view. The
+  // recorder guards a WATCH, not the post — see resetRecordedView.
+  useEffect(() => () => viewRecorderRef.current?.reset(), []);
+
   const isProcessing = transcodingStatus === "pending" || transcodingStatus === "on";
   const isFailed = transcodingStatus === "failed";
   const canPlay = !isContentGated && !!videoUrl && !isProcessing && !isFailed;

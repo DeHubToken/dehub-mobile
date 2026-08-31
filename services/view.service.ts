@@ -150,7 +150,12 @@ function keyFor(tokenId: TokenId): string {
 
 /**
  * Record a video view via GET /record-view/{tokenId} when eligibility is met.
- * - Only submits once per tokenId per app session (in-memory guard).
+ * - Once per WATCH, not once per post: the in-memory guard closes the current
+ *   watch so a progress tick storm submits once, and `resetRecordedView`
+ *   re-arms it for a replay or a reopen. The 24-hour cooldown deliberately does
+ *   NOT apply here — it made the second watch of a video invisible, which is
+ *   not how a video's view count works anywhere. The API's 30-second
+ *   per-viewer-per-post rate limit is the backstop.
  * - Threshold: 10% of duration OR 3 seconds, whichever is first.
  * - Signed-out viewers count too: their views go to the `anon-views` edge
  *   function, since the DeHub API rejects unauthenticated view calls.
@@ -160,11 +165,8 @@ function keyFor(tokenId: TokenId): string {
 export async function recordViewIfEligible(opts: RecordViewOptions): Promise<boolean> {
   const { tokenId, positionMs, durationMs } = opts;
 
-  await loadCooldowns();
-
   const id = keyFor(tokenId);
   if (recordedViews.has(id)) return false;
-  if (isOnCooldown(tokenId)) return false;
 
   const threshold = computeVideoViewThresholdMs(durationMs ?? undefined);
   // Allow a tiny epsilon to account for timing jitter
@@ -180,8 +182,9 @@ export async function recordViewIfEligible(opts: RecordViewOptions): Promise<boo
       const result = await recordAnonViews([id]);
       if (!result?.success) return false;
     }
+    // No setCooldown: that store is the FEED's 24-hour impression dedup, and a
+    // video that counts every watch must not write itself into it.
     recordedViews.add(id);
-    setCooldown(tokenId);
     return true;
   } catch (e) {
     console.error("[ViewService] recordView error", e);
@@ -201,6 +204,17 @@ export function resetRecordedViews(): void {
 }
 
 /**
+ * Re-arm one post so the next watch counts again.
+ *
+ * The guard above exists to stop a progress tick storm submitting the same
+ * watch twenty times, not to cap a video at one view per person. Clearing it
+ * between watches is what makes a replay a second view.
+ */
+export function resetRecordedView(tokenId: TokenId): void {
+  recordedViews.delete(keyFor(tokenId));
+}
+
+/**
  * Helper that returns a lightweight recorder to call from onProgress.
  * Usage:
  *   const rec = createViewRecorder({ tokenId, isSignedIn, account });
@@ -208,14 +222,32 @@ export function resetRecordedViews(): void {
  */
 export function createViewRecorder(base: Pick<RecordViewOptions, "tokenId" | "isSignedIn" | "account">) {
   let done = false;
+  let lastPositionMs = 0;
+
+  const reset = () => {
+    done = false;
+    lastPositionMs = 0;
+    resetRecordedView(base.tokenId);
+  };
+
   return {
     async onProgress(positionMs: number, durationMs?: number | null) {
+      // Playback has jumped back to the top after a real watch — a replay.
+      // Feed players are `loop = true`, so without this a looping video counts
+      // once and never again however long it runs.
+      if (done && positionMs < 1000 && lastPositionMs > VIDEO_MIN_WATCH_MS) {
+        reset();
+      }
+      lastPositionMs = positionMs;
+
       if (done) return false;
       const recorded = await recordViewIfEligible({ ...base, positionMs, durationMs });
       if (recorded) done = true;
       return recorded;
     },
     hasRecorded() { return done; },
+    /** Re-arm for the next watch. Call on unmount, or when the source changes. */
+    reset,
   };
 }
 
