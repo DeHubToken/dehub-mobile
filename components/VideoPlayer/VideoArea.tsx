@@ -190,6 +190,7 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   const status = accessInfo?.streamStatus || {};
   const isLockedWithLockContent = !!status?.isLockedWithLockContent;
   const isLockedWithPPV = !!status?.isLockedWithPPV;
+  const isLockedWithSubscription = !!status?.isLockedWithSubscription;
   const missingPlayable = isLockedOrPPV && !normalizedUrl;
 
   if (missingPlayable) {
@@ -297,6 +298,33 @@ const VideoArea: React.FC<VideoAreaProps> = ({
               onPPVSuccess?.();
             }}
           />
+        </View>
+      );
+    }
+    // Subscribers only. Unlike the two gates above there is nothing to pay
+    // here — only the creator can grant it — so this says who to subscribe to
+    // and sends them to the profile that sells the plans.
+    if (isLockedWithSubscription) {
+      return (
+        <View className="w-full aspect-video bg-black items-center justify-center px-6">
+          <Ionicons name="star" size={46} color="#8B8D90" />
+          <Text
+            className="text-theme-neutrals-200 mt-3 text-center text-sm leading-5"
+            numberOfLines={3}
+          >
+            Subscribers only
+          </Text>
+          {minterAddress ? (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate(ScreenNames.Profile, { address: minterAddress })
+              }
+              className="mt-4 bg-white/10 border border-white/20 rounded-xl px-5 py-2"
+              activeOpacity={0.85}
+            >
+              <Text className="text-white text-xs font-semibold">View plans</Text>
+            </TouchableOpacity>
+          ) : null}
         </View>
       );
     }
