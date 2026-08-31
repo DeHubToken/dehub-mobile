@@ -43,6 +43,31 @@ interface UseNewPostsSignalOptions {
   params?: Partial<UnifiedFeedParams>;
   /** `createdAt` of the newest post currently rendered. */
   newestCreatedAt?: string;
+  /**
+   * Ids the list already has. A timestamp alone cannot say "new": it says
+   * "above the top row", and the two stop meaning the same thing the moment
+   * the head and the list disagree about order, or the list's first page goes
+   * stale while this poll keeps running. Either way a row already on screen
+   * reads as new, tapping the pill fetches the same rows back, and the badge
+   * never clears — which is exactly how the web hook's phantom badge behaved
+   * before dehubweb#821. Something already here is not new, whatever its
+   * timestamp says.
+   */
+  knownIds?: ReadonlySet<string>;
+  /**
+   * Whether the list would actually render this row. The list drops rows the
+   * poll can still see — locally deleted posts, watched videos, live posts
+   * with no stream behind them — and counting one of those promises a post
+   * that a refresh can never surface. Web calls this count symmetry: any
+   * filter the list applies has to be applied here too.
+   */
+  isRenderable?: (row: any) => boolean;
+}
+
+/** The identity a feed row is known by, across both queries. */
+export function feedRowId(row: any): string | undefined {
+  const id = row?.tokenId ?? row?.id ?? row?.stream?.tokenId;
+  return id == null ? undefined : String(id);
 }
 
 /**
@@ -68,6 +93,8 @@ export function useNewPostsSignal({
   chronological = true,
   params,
   newestCreatedAt,
+  knownIds,
+  isRenderable,
 }: UseNewPostsSignalOptions) {
   const appIsActive = useAppIsActive();
   const queryClient = useQueryClient();
@@ -102,7 +129,11 @@ export function useNewPostsSignal({
     const newer = (data.result || []).filter((item: any) => {
       const raw = item?.createdAt || item?.created_at || item?.stream?.createdAt;
       const stamp = raw ? Date.parse(raw) : NaN;
-      return !Number.isNaN(stamp) && stamp > newest;
+      if (Number.isNaN(stamp) || stamp <= newest) return false;
+      const id = feedRowId(item);
+      if (id && knownIds?.has(id)) return false;
+      if (isRenderable && !isRenderable(item)) return false;
+      return true;
     });
 
     return {
@@ -110,7 +141,7 @@ export function useNewPostsSignal({
       // Every row came back newer, so there are likely more than were fetched.
       atCap: newer.length >= HEAD_SIZE,
     };
-  }, [data, newestCreatedAt, chronological]);
+  }, [data, newestCreatedAt, chronological, knownIds, isRenderable]);
 }
 
 export default useNewPostsSignal;

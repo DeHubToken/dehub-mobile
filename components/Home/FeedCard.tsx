@@ -350,9 +350,19 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const bountyTokenSymbol = streamInfo?.addBountyTokenSymbol || "DHB";
 
   // --- Stream status ---
-  const rawStatus: string | undefined = (item as any).status || stream?.status;
+  //
+  // Two different `status` fields collide on a live post. The item's is its
+  // MINT status ("signed"/"minted"), the stream's is the broadcast's
+  // ("LIVE"/"OFFLINE"/"SCHEDULED"). Reading the item's first meant a live post
+  // always answered "minted": no badge (StatusBadge knows no such status) and
+  // never live. The stream's own status wins wherever there is one.
+  //
+  // Case-folded before comparing, because the API answers in upper case while
+  // this check was written in lower — so `isCurrentlyLive` was false even for a
+  // stream that was running.
+  const rawStatus: string | undefined = stream?.status || (item as any).status;
   const status = rawStatus ? rawStatus.toUpperCase() : undefined;
-  const isCurrentlyLive = rawStatus === "live" || stream?.status === "live";
+  const isCurrentlyLive = status === "LIVE" || status === "PAUSED";
 
   // --- Live stats ---
   const currentViewers = stream?.peakViewers || 0;
