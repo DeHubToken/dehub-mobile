@@ -10,6 +10,9 @@ import { mediaDevices, RTCPeerConnection, RTCView } from "react-native-webrtc";
 import { runWithPermissions, type PermissionKind } from "../../libs/permissions.util";
 import {
   whipEndpointFor,
+  edgeWhipEndpointFor,
+  probeIngestReachable,
+  fetchTurnServers,
   markIngestUnreachable,
   clearIngestUnreachable,
   isNetworkShapedError,
@@ -299,19 +302,45 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           return;
         }
         dbg('resolving WHIP endpoint', { gen: myGen });
-        const { url: redirectUrl, token: whipToken } = await resolveWhipEndpoint(
+        // Self-hosted addresses a broadcast by its public playbackId and takes
+        // the key as a credential; null means Livepeer, the default every
+        // stream minted before the self-hosted path is.
+        const selfHosted = whipEndpointFor({ playbackId, provider, streamKey });
+        let { url: redirectUrl, token: whipToken } = await resolveWhipEndpoint(
           streamKey,
           { playbackId, provider },
         );
-        // Publishing straight at the self-hosted ingest — the one path whose
-        // network failure teaches the next mint something (see live-ingest.ts).
-        const directSelfHosted =
-          whipEndpointFor({ playbackId, provider, streamKey }) !== null;
-  dbg('WHIP endpoint resolved', { gen: myGen, redirectUrl });
-  if (myGen !== pcGenerationRef.current) { dbg('start(): stale before PC create', { gen: myGen, currentGen: pcGenerationRef.current }); return; }
+
+        // Decide direct vs relayed at connect time, mirroring the web
+        // (src/lib/live-ingest.ts + GoLiveBroadcaster.tsx). A reachable ingest
+        // answers the probe in well under a second; only the blocked case pays
+        // the cap, and it was going nowhere without this anyway. When the
+        // ingest is unreachable AND a TURN relay is deployed, signaling rides
+        // the api.dehub.io edge and the media rides the relay; with no relay
+        // the direct attempt proceeds and fails into the clear network-error
+        // path rather than silently.
+        let relayIce: RTCIceServer[] | undefined;
+        if (selfHosted && !(await probeIngestReachable())) {
+          const turn = await fetchTurnServers();
+          const edge = turn.length
+            ? edgeWhipEndpointFor({ playbackId, provider, streamKey })
+            : null;
+          if (edge) {
+            redirectUrl = edge.url;
+            whipToken = edge.token;
+            relayIce = turn;
+          }
+        }
+
+        // Direct self-hosted signaling, no relay in front of it — the one path
+        // whose network failure teaches the next mint something (live-ingest.ts).
+        const directSelfHosted = Boolean(selfHosted) && !relayIce;
+        dbg('WHIP endpoint resolved', { gen: myGen, redirectUrl, relayed: !!relayIce });
+        if (myGen !== pcGenerationRef.current) { dbg('start(): stale before PC create', { gen: myGen, currentGen: pcGenerationRef.current }); return; }
         const iceServers = [
           { urls: "stun:stun.l.google.com:19302" },
           { urls: "stun:stun1.l.google.com:19302" },
+          ...(relayIce ?? []),
         ];
         dbg('creating RTCPeerConnection', { gen: myGen, iceServers });
         const pc: any = new RTCPeerConnection({ iceServers });
