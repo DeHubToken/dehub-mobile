@@ -18,6 +18,18 @@ import {
   isNetworkShapedError,
 } from "../../libs/live-ingest";
 
+/**
+ * How long after a publish is accepted a dead connection still means the media
+ * never started, rather than a working broadcast that lost its network.
+ *
+ * ICE gives up within roughly fifteen seconds of the answer, so a failure
+ * inside this window is a route that cannot carry media at all; a failure
+ * after it is a live broadcast dropping, which must never be restarted
+ * underneath the creator. The web app uses the same window in
+ * `src/components/app/modals/GoLiveBroadcaster.tsx`.
+ */
+const MEDIA_FAILURE_WINDOW_MS = 20_000;
+
 // Types
 type Facing = "front" | "back";
 type PublishStats = { bitrateKbps?: number; fps?: number };
@@ -126,7 +138,15 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
   const negotiateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const startingRef = useRef(false);
   const disconnectTimerRef = useRef<NodeJS.Timeout | null>(null);
-  // No auto-retry: only a single connection attempt; on drop after grace -> escalate error
+  // Set once a direct self-hosted attempt has proven itself dead, so the
+  // restart below reaches for the edge instead of running the probe again —
+  // the probe is what said "reachable" in the first place.
+  const forceRelayRef = useRef(false);
+  // One media-leg recovery per mount, and it is the only thing that restarts a
+  // connection here: a drop after the grace period still escalates as an error
+  // rather than reconnecting on its own, and a loop of restarts would be worse
+  // than the error it replaced.
+  const mediaRetryUsedRef = useRef(false);
   // Track the camera facing we believe is currently active to avoid accidental flips
   const currentFacingRef = useRef<Facing>("front");
   // Stable callback refs to avoid effect restarts on prop function identity changes
@@ -278,13 +298,38 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
     startingRef.current = false;
   }, [dbg]);
 
-  // No auto-retry
-
   // Core: start peer connection and negotiate
   const startPeer = useCallback(() => {
     // Each start call gets a unique generation; only the latest is allowed to complete.
     const myGen = (pcGenerationRef.current = pcGenerationRef.current + 1);
     const run = async () => {
+      // Per attempt: the failure handler has to tell "media never started"
+      // from "media was flowing and stopped" for THIS connection, and a
+      // recovery starts a second one behind it.
+      let sawConnected = false;
+      let answeredAt = 0;
+
+      /**
+       * Put the broadcast back up over the edge and a TURN relay, leaving the
+       * camera and microphone exactly where they are — only the peer
+       * connection is rebuilt, so the creator sees "Connecting…" again rather
+       * than a restarted preview and a fresh permission prompt.
+       */
+      const restartOverRelay = async () => {
+        const turn = await fetchTurnServers();
+        if (!turn.length) {
+          // No relay deployed: the marker left above is all this attempt can
+          // give, and it is enough — the next mint goes to Livepeer.
+          dbg('media failed with no relay to fall back to');
+          onErrorRef.current?.(new Error("Peer failed"));
+          return;
+        }
+        dbg('media leg dead on the direct path; restarting over the relay');
+        forceRelayRef.current = true;
+        stopPeer();
+        startPeerRef.current();
+      };
+
       try {
         if (pcRef.current) { dbg('start(): pc already exists; skipping', { gen: myGen }); return; }
         if (startingRef.current) { dbg('start(): already starting; skipping', { gen: myGen }); return; }
@@ -319,8 +364,11 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
         // the api.dehub.io edge and the media rides the relay; with no relay
         // the direct attempt proceeds and fails into the clear network-error
         // path rather than silently.
+        // forceRelayRef outranks the probe: it is set only after a direct
+        // attempt on this phone actually died, which is better evidence than a
+        // probe that passes on the very networks the relay exists for.
         let relayIce: RTCIceServer[] | undefined;
-        if (selfHosted && !(await probeIngestReachable())) {
+        if (selfHosted && (forceRelayRef.current || !(await probeIngestReachable()))) {
           const turn = await fetchTurnServers();
           const edge = turn.length
             ? edgeWhipEndpointFor({ playbackId, provider, streamKey })
@@ -379,6 +427,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           // Ignore state changes from stale generations
           if (myGen !== pcGenerationRef.current) return;
           if (state === "connected") {
+            sawConnected = true;
             setConnected(true);
             setReconnecting(false);
             // A byte actually arrived over the direct path: whatever this
@@ -400,6 +449,29 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           if (state === "failed") {
             setConnected(false);
             setReconnecting(false);
+            // The server accepted the publish and the media never followed.
+            // Signaling and media do not travel together — the offer is an
+            // HTTPS POST, the media is UDP to a bare address or a relay — so
+            // an exchange can succeed in full on a network that then carries
+            // not one byte (observed 2026-08-31: a clean 201 and an applied
+            // answer, then connectionState failed with bytesSent 0). Nothing
+            // in the POST-failure paths above ever sees that, which is how
+            // this used to dead-end on an error with no marker and no retry.
+            // It condemns the route exactly as a refused POST does, so it
+            // leaves the same marker and earns the same one retry.
+            const mediaNeverStarted =
+              Boolean(selfHosted) &&
+              !sawConnected &&
+              answeredAt > 0 &&
+              Date.now() - answeredAt < MEDIA_FAILURE_WINDOW_MS;
+            if (mediaNeverStarted) {
+              void markIngestUnreachable();
+              if (directSelfHosted && !mediaRetryUsedRef.current) {
+                mediaRetryUsedRef.current = true;
+                void restartOverRelay();
+                return;
+              }
+            }
             onErrorRef.current?.(new Error("Peer failed"));
           }
           if (state === "disconnected") {
@@ -470,6 +542,10 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
         dbg('received WHIP answer', { gen: myGen });
         const answer = await resp.text();
         await pc.setRemoteDescription({ type: "answer", sdp: answer });
+        // The publish is accepted from here on, so anything that goes wrong
+        // next is the media leg. Stamped after the answer rather than before
+        // the POST so a slow exchange does not eat the window.
+        answeredAt = Date.now();
 
         if (negotiateTimeoutRef.current)
           clearTimeout(negotiateTimeoutRef.current);
