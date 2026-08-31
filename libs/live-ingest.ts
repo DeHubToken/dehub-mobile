@@ -69,3 +69,35 @@ export function whipEndpointFor(
     token: `dehub:${stream.streamKey ?? ''}`,
   };
 }
+
+/**
+ * Whether this device can reach the self-hosted ingest at all.
+ *
+ * The ingest is a bare droplet IP — the one DeHub host not behind Cloudflare,
+ * because WebRTC cannot ride the proxy — and some carriers null-route whole
+ * hosting ranges, so a phone there connects to everything except this. The
+ * failure is a silent packet drop, which fetch reports only by hanging, so
+ * the probe caps its own wait. Any HTTP response at all, error status
+ * included, proves the network path; only a network error or the timeout
+ * says it is closed.
+ *
+ * Asked before minting so the stream can be created on Livepeer instead of
+ * on a server this phone will never manage to send a byte to. The web app
+ * runs the same probe in `src/lib/live-ingest.ts`.
+ */
+export async function probeIngestReachable(timeoutMs = 4000): Promise<boolean> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    await fetch(`https://${MEDIAMTX_HOST}/`, {
+      method: 'GET',
+      cache: 'no-store',
+      signal: controller.signal,
+    });
+    return true;
+  } catch {
+    return false;
+  } finally {
+    clearTimeout(timer);
+  }
+}
