@@ -18,7 +18,7 @@ import {
   useWeb3Provider,
   useStreamCollectionContract,
 } from "../hooks/use-web3";
-import { minNft } from "../services/nft.service";
+import { minNft, deletePost } from "../services/nft.service";
 import { mintNftOnChain } from "../services/mint.service";
 import { getFileName, guessMime } from "../libs/assets.util";
 import { probeIngestReachable, hadRecentIngestFailure } from "../libs/live-ingest";
@@ -161,6 +161,10 @@ export function useUploadLive() {
 
   const upload = useCallback(
     async (p: LiveUploadPayload) => {
+      // Once the mint lands this identifies the post the launch created, so
+      // the catch below can discard it — a launch that dies after minting must
+      // not leave a dead live post in the feed.
+      let mintedTokenId: number | string | null = null;
       try {
         setIsUploading(true);
         setUploadStage("uploading");
@@ -190,6 +194,7 @@ export function useUploadLive() {
         }
 
         const createdTokenId = result?.createdTokenId;
+        if (createdTokenId != null) mintedTokenId = createdTokenId;
         const timestamp = result?.timestamp;
         const v = result?.v;
         const r = result?.r;
@@ -246,6 +251,12 @@ export function useUploadLive() {
                   tokenId: createdTokenId,
                   ingestUrl: stream.ingestUrl,
                   streamKey: stream.streamKey,
+                  // A producer left without ever airing should take its dead
+                  // post with it — but only for an immediate launch. A
+                  // scheduled stream legitimately exists before it starts.
+                  discardIfNeverLive: !(
+                    p.settings.scheduleEnabled && p.settings.scheduledDate
+                  ),
                 },
               },
             ],
@@ -253,6 +264,11 @@ export function useUploadLive() {
         );
       } catch (e: any) {
         console.error("[useUploadLive] upload error:", e);
+        // The mint may already have landed; without this the failed launch
+        // leaves a dead "live" post stranded at the head of the feed.
+        if (mintedTokenId != null) {
+          deletePost(mintedTokenId).catch(() => {});
+        }
         const inMintPhase = ["awaiting-wallet", "minting", "finalizing"].includes(uploadStage);
         const msg = inMintPhase
           ? parseTxError(e, "send")
