@@ -1,8 +1,13 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   liveProviderOf,
   hlsUrlFor,
   whipEndpointFor,
   probeIngestReachable,
+  markIngestUnreachable,
+  clearIngestUnreachable,
+  hadRecentIngestFailure,
+  isNetworkShapedError,
 } from "../../libs/live-ingest";
 
 /**
@@ -104,5 +109,59 @@ describe("probeIngestReachable", () => {
     const probe = probeIngestReachable(4000);
     jest.advanceTimersByTime(4001);
     await expect(probe).resolves.toBe(false);
+  });
+});
+
+/**
+ * A passing probe is one small GET, and the DPI-throttled carriers it exists
+ * for pass one intermittently while never carrying the WHIP POST — so the
+ * phone's own last direct connect must be able to outvote the probe. The
+ * marker's lifecycle (set on a network-shaped direct failure, cleared by a
+ * real direct connect, expired on its own) is the contract the mint relies on.
+ */
+describe("ingest failure memory", () => {
+  const KEY = "dehub.ingest.unreachable-at";
+
+  beforeEach(async () => {
+    await AsyncStorage.removeItem(KEY);
+  });
+
+  it("starts with nothing to report", async () => {
+    await expect(hadRecentIngestFailure()).resolves.toBe(false);
+  });
+
+  it("remembers a marked failure", async () => {
+    await markIngestUnreachable();
+    await expect(hadRecentIngestFailure()).resolves.toBe(true);
+  });
+
+  it("forgets once a successful direct connect clears it", async () => {
+    await markIngestUnreachable();
+    await clearIngestUnreachable();
+    await expect(hadRecentIngestFailure()).resolves.toBe(false);
+  });
+
+  it("expires on its own, so one bad network cannot exile a phone forever", async () => {
+    await AsyncStorage.setItem(KEY, String(Date.now() - 25 * 3600 * 1000));
+    await expect(hadRecentIngestFailure()).resolves.toBe(false);
+  });
+
+  it("treats garbage in the slot as no marker", async () => {
+    await AsyncStorage.setItem(KEY, "not-a-timestamp");
+    await expect(hadRecentIngestFailure()).resolves.toBe(false);
+  });
+});
+
+describe("isNetworkShapedError", () => {
+  it("recognises the shapes that mean the network ate the request", () => {
+    expect(isNetworkShapedError(new TypeError("Network request failed"))).toBe(true);
+    expect(isNetworkShapedError({ name: "AbortError" })).toBe(true);
+    expect(isNetworkShapedError({ name: "TimeoutError" })).toBe(true);
+  });
+
+  it("leaves real server answers and camera errors alone", () => {
+    expect(isNetworkShapedError(new Error("WHIP offer failed: 401"))).toBe(false);
+    expect(isNetworkShapedError({ name: "NotAllowedError" })).toBe(false);
+    expect(isNetworkShapedError(null)).toBe(false);
   });
 });
