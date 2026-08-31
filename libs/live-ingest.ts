@@ -146,6 +146,72 @@ export async function hadRecentIngestFailure(): Promise<boolean> {
 }
 
 /**
+ * Signaling relay for the networks the probe above fails on.
+ *
+ * Rides api.dehub.io — Cloudflare-proxied and already reachable from the exact
+ * phones whose direct WHIP never arrived (their API calls landed in the same
+ * minute). nginx forwards ONLY /live-edge/{playbackId}/(whip|whep) to
+ * MediaMTX's loopback signaling port; the media itself never passes through it,
+ * so fronting a few KB of SDP text with the proxy is fine where fronting video
+ * is not.
+ *
+ * Signaling alone moves nothing: a network that cannot reach the ingest for a
+ * POST usually cannot carry UDP media to it either. The relay path is only
+ * whole once fetchTurnServers() below returns a relay for the media leg. The
+ * web app mirrors this in `src/lib/live-ingest.ts`.
+ */
+const EDGE_SIGNALING_BASE = 'https://api.dehub.io/live-edge';
+
+export function edgeWhipEndpointFor(
+  stream: LiveStreamRef | null | undefined,
+): { url: string; token: string } | null {
+  if (liveProviderOf(stream) !== 'mediamtx') return null;
+  if (!stream?.playbackId) return null;
+  return {
+    url: `${EDGE_SIGNALING_BASE}/${stream.playbackId}/whip`,
+    token: `dehub:${stream.streamKey ?? ''}`,
+  };
+}
+
+/**
+ * TURN relay servers for the media leg, or [] when no relay is deployed.
+ *
+ * The API answers with coturn REST credentials (expiry-stamp username, HMAC
+ * credential, 6h TTL) and the relay URIs; an unconfigured backend answers an
+ * empty list and callers skip the relay path entirely. Cached for the session
+ * — the credential outlives any broadcast this launch will start, so asking
+ * once keeps this safe to call at every decision point. A network failure
+ * resets the cache and returns [] so the next caller retries; a lookup must
+ * never break the direct path. AbortController rather than
+ * AbortSignal.timeout, which Hermes does not ship (probeIngestReachable above
+ * makes the same choice).
+ */
+let turnServersPromise: Promise<RTCIceServer[]> | null = null;
+
+export function fetchTurnServers(): Promise<RTCIceServer[]> {
+  if (!turnServersPromise) {
+    turnServersPromise = (async () => {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 5000);
+      try {
+        const res = await fetch('https://api.dehub.io/api/live/turn-credentials', {
+          signal: controller.signal,
+        });
+        if (!res.ok) return [];
+        const body = (await res.json()) as { iceServers?: RTCIceServer[] };
+        return Array.isArray(body.iceServers) ? body.iceServers : [];
+      } catch {
+        turnServersPromise = null;
+        return [];
+      } finally {
+        clearTimeout(timer);
+      }
+    })();
+  }
+  return turnServersPromise;
+}
+
+/**
  * The failure shapes that mean the network ate the request — the fetch died
  * without a response (React Native surfaces that as a TypeError) or aborted
  * on a cap — as opposed to a bad status the server actually sent. Shared so
