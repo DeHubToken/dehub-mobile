@@ -62,7 +62,7 @@ describe("whipEndpointFor", () => {
     expect(
       whipEndpointFor({ provider: "mediamtx", playbackId: "abc", streamKey: "s3cret" })
     ).toEqual({
-      url: "https://live.dehub.io/abc/whip",
+      url: "https://live.dehub.io/abc/publish",
       token: "dehub:s3cret",
     });
   });
@@ -87,7 +87,7 @@ describe("edgeWhipEndpointFor", () => {
     expect(
       edgeWhipEndpointFor({ provider: "mediamtx", playbackId: "abc", streamKey: "s3cret" })
     ).toEqual({
-      url: "https://api.dehub.io/live-edge/abc/whip",
+      url: "https://api.dehub.io/live-edge/abc/publish",
       token: "dehub:s3cret",
     });
   });
