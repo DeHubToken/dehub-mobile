@@ -21,6 +21,7 @@ import {
 import { minNft } from "../services/nft.service";
 import { mintNftOnChain } from "../services/mint.service";
 import { getFileName, guessMime } from "../libs/assets.util";
+import { probeIngestReachable } from "../libs/live-ingest";
 import { filteredStreamInfo } from "../libs/validators.util";
 import { parseTxError } from "../libs/web3.util";
 import { toastError, toastSuccess } from "../libs/toast";
@@ -164,7 +165,16 @@ export function useUploadLive() {
         setIsUploading(true);
         setUploadStage("uploading");
 
+        // Some carriers cannot reach the self-hosted ingest at all (its bare
+        // droplet IP is the one DeHub host not behind Cloudflare). Ask now
+        // and tell the mint, so the stream is created on Livepeer instead of
+        // on a server this phone will never manage to send a byte to.
+        const ingestReachable = probeIngestReachable();
+
         const fd = buildFormData(p);
+        if (!(await ingestReachable)) {
+          fd.append("ingestPreference", "livepeer");
+        }
         const res = await minNft(fd as any);
 
         setUploadStage("processing");
