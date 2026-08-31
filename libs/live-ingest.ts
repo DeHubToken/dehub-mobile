@@ -50,6 +50,24 @@ export function hlsUrlFor(stream: LiveStreamRef | null | undefined): string | nu
 }
 
 /**
+ * Poster frame the provider renders for a running broadcast.
+ *
+ * Livepeer keeps one beside the HLS ladder and refreshes it as the stream
+ * goes; the self-hosted server renders nothing, so a mediamtx stream answers
+ * null and the caller has to fall back to whatever the post itself carries
+ * rather than pointing an <Image> at a 404.
+ *
+ * Only worth asking for while the stream is actually live — once it ends the
+ * URL 404s, so an ended stream must fall back too.
+ */
+export function liveThumbnailFor(stream: LiveStreamRef | null | undefined): string | null {
+  const playbackId = stream?.playbackId;
+  if (!playbackId) return null;
+  if (liveProviderOf(stream) === 'mediamtx') return null;
+  return `https://livepeercdn.studio/hls/${playbackId}/thumbnail.jpg`;
+}
+
+/**
  * WHIP publish endpoint, and the credential the self-hosted path needs.
  *
  * The two providers address a broadcast differently and it is not a detail:
