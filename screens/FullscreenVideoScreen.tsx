@@ -83,6 +83,10 @@ const FullscreenVideoScreen = () => {
       : null
   );
 
+  // Re-arm on unmount so reopening this video counts as another view. The
+  // recorder guards a WATCH, not the post — see resetRecordedView.
+  useEffect(() => () => viewRecorderRef.current?.reset(), []);
+
   const translateY = useSharedValue(0);
   const opacity = useSharedValue(1);
   const isDismissing = useRef(false);
