@@ -900,7 +900,16 @@ export default function UploadScreen() {
     thumbnailUri: liveThumbnailUri,
     coverUri: null,
     settings: liveSettings,
-  }), [titleText, bodyText, categories, liveThumbnailUri, liveSettings]);
+    // The same access switches a normal post carries — the composer shows one
+    // list of options and live is no longer the exception in it.
+    monetization,
+    shouldMint: effectiveShouldMint,
+    isMature,
+    postChainId: effectivePostChainId,
+  }), [
+    titleText, bodyText, categories, liveThumbnailUri, liveSettings,
+    monetization, effectiveShouldMint, isMature, effectivePostChainId,
+  ]);
 
   const handleGoLive = useCallback(() => {
     if (!canGoLive || activeIsUploading) return;
@@ -2329,7 +2338,7 @@ export default function UploadScreen() {
               {/* Mint sits in the list rather than in a card of its own, as
                   web's first PostAccessToggles row. Off by default, so a first
                   post needs no wallet at all. */}
-              {!isLiveMode && !isQuoteMode && (
+              {!isQuoteMode && (
                 <View className="flex-row items-center justify-between py-3">
                   <View className="flex-row items-center flex-1 mr-3">
                     <Icon name="Coins" size={18} color="#fff" />
@@ -2404,7 +2413,7 @@ export default function UploadScreen() {
               {/* Community — only for the ones this account belongs to, the
                   same condition web puts on its Community switch. Filing a
                   post means carrying the slug as a category. */}
-              {!isLiveMode && userCommunities.length > 0 && (
+              {userCommunities.length > 0 && (
                 <View className="py-3">
                   <View className="flex-row items-center justify-between">
                     <TouchableOpacity
@@ -2438,7 +2447,7 @@ export default function UploadScreen() {
                 </View>
               )}
 
-              {!isLiveMode && !isQuoteMode && (
+              {!isQuoteMode && (
                 <MonetizationPanel
                   state={monetization}
                   onChange={handleMonetizationChange}
@@ -2454,7 +2463,6 @@ export default function UploadScreen() {
                   creator reach on a post they believe is fine, so it sits past
                   the options they came to set rather than second, under the
                   thumb, where a stray tap goes unnoticed. */}
-              {!isLiveMode && (
                 <View className="flex-row items-center justify-between py-3">
                   <View className="flex-row items-center flex-1 mr-3">
                     <Icon name="EyeOff" size={18} color="#fff" />
@@ -2467,7 +2475,6 @@ export default function UploadScreen() {
                   </View>
                   <CustomSwitch value={isMature} onValueChange={setIsMature} />
                 </View>
-              )}
             </View>
           </View>
         </View>

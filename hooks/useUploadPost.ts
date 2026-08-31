@@ -7,14 +7,14 @@ import { getFileName, guessMime } from "../libs/assets.util";
 import { extractHashtagCategories } from "../libs/strings.util";
 import { filteredStreamInfo, isValidDataForMinting, getTotalBountyAmount } from "../libs/validators.util";
 import { toastError } from "../libs/toast";
+import { buildStreamInfo as buildStreamInfoShared, validateMonetization } from "../libs/monetization";
 import {
-  supportedTokens,
   defaultChainId as DEFAULT_CHAIN_ID,
   streamInfoKeys,
 } from "../config/constants";
 import { supportedNetworks } from "../config/web3.constants";
 import { isChainAASupported, hasAASetupFailed } from "../libs/wallet-core/smart-account";
-import { isSolanaChain, findSolanaToken } from "../config/solana.constants";
+import { isSolanaChain } from "../config/solana.constants";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
 import type { AttachedSound } from "./usePostSound";
 import {
@@ -81,12 +81,6 @@ export type UploadPayload = {
 };
 
 
-const parsePositiveNumber = (v: string): number | undefined => {
-  if (!v) return undefined;
-  const n = Number(v);
-  if (!Number.isFinite(n) || n <= 0) return undefined;
-  return n;
-};
 
 /**
  * Derive the network label for the active chain.
@@ -152,101 +146,24 @@ export function useUploadPost() {
     }
 
     // Monetization applies to every post type, as it does on web — a text or
-    // image post can be gated or sold just like a video.
-    {
-      const { monetization: m } = p;
-      if (m.ppvEnabled) {
-        const price = parsePositiveNumber(m.ppvData.price);
-        if (!price) return { valid: false, error: "PPV price must be a valid positive number." };
-      }
-      if (m.bountyEnabled) {
-        const viewers = parsePositiveNumber(m.bountyData.viewers);
-        const commenters = parsePositiveNumber(m.bountyData.commenters);
-        const reward = parsePositiveNumber(m.bountyData.rewardPerPerson);
-        if (!viewers) return { valid: false, error: "Bounty: viewers to reward must be a valid positive number." };
-        if (!commenters) return { valid: false, error: "Bounty: commenters to reward must be a valid positive number." };
-        if (!reward) return { valid: false, error: "Bounty: reward per person must be a valid positive number." };
-      }
-      if (m.tokenGatedEnabled) {
-        const min = parsePositiveNumber(m.tokenGateData.minAmount);
-        if (!min) return { valid: false, error: "Token Gated: minimum token amount must be a valid positive number." };
-        // Custom EVM token contract must be a valid address (#43)
-        const addr = m.tokenGateData.contractAddress?.trim();
-        if (addr && !isSolanaChain(p.postChainId) && !/^0x[0-9a-fA-F]{40}$/.test(addr)) {
-          return { valid: false, error: "Token Gated: enter a valid token contract address." };
-        }
-      }
-    }
+    // image post can be gated or sold just like a video, and so can a stream.
+    const monetizationError = validateMonetization(p.monetization, p.postChainId);
+    if (monetizationError) return { valid: false, error: monetizationError };
 
     return { valid: true };
   }, []);
 
+  // The chain an EVM payment settles on: the network the composer is pointed
+  // at, which only this hook can resolve.
+  const evmChainId = useMemo(() => {
+    const net = supportedNetworks.find((n: any) => (n.label || n.name) === activeNetworkLabel);
+    return net?.chainId ?? activeChainId;
+  }, [activeNetworkLabel, activeChainId]);
+
   const buildStreamInfo = useCallback(
-    (m: MonetizationState, postChainId?: number): Record<string, any> => {
-      const info: Record<string, any> = {};
-      const solana = isSolanaChain(postChainId);
-      const evmChainId = (() => {
-        const net = supportedNetworks.find((n: any) => (n.label || n.name) === activeNetworkLabel);
-        return net?.chainId ?? activeChainId;
-      })();
-
-      if (m.ppvEnabled) {
-        info[streamInfoKeys.isPayPerView] = true;
-        info[streamInfoKeys.payPerViewAmount] = parsePositiveNumber(m.ppvData.price);
-        if (solana) {
-          const sym = m.ppvData.tokenSymbol || "SOL";
-          const tok = findSolanaToken(sym);
-          info[streamInfoKeys.payPerViewTokenSymbol] = sym;
-          info[streamInfoKeys.payPerViewContractAddress] = tok?.address;
-          info[streamInfoKeys.payPerViewChainIds] = postChainId;
-        } else {
-          info[streamInfoKeys.payPerViewTokenSymbol] = "DHB";
-          info[streamInfoKeys.payPerViewChainIds] = evmChainId;
-        }
-      }
-
-      // Bounty is EVM-only (not supported on Solana posts).
-      if (m.bountyEnabled && !solana) {
-        info[streamInfoKeys.isAddBounty] = true;
-        info[streamInfoKeys.addBountyAmount] = parsePositiveNumber(m.bountyData.rewardPerPerson);
-        info[streamInfoKeys.addBountyFirstXViewers] = parsePositiveNumber(m.bountyData.viewers);
-        info[streamInfoKeys.addBountyFirstXComments] = parsePositiveNumber(m.bountyData.commenters);
-        info[streamInfoKeys.addBountyTokenSymbol] = "DHB";
-        info[streamInfoKeys.addBountyChainId] = evmChainId;
-      }
-
-      if (m.tokenGatedEnabled) {
-        info[streamInfoKeys.isLockContent] = true;
-        info[streamInfoKeys.lockContentAmount] = parsePositiveNumber(m.tokenGateData.minAmount);
-        if (solana) {
-          const sym = m.tokenGateData.tokenSymbol || "SOL";
-          const tok = findSolanaToken(sym);
-          info[streamInfoKeys.lockContentTokenSymbol] = sym;
-          info[streamInfoKeys.lockContentContractAddress] = tok?.address;
-          info[streamInfoKeys.lockContentChainIds] = [postChainId];
-        } else {
-          // Token-gate any token on Base / BNB / ETH (#43). Falls back to DHB.
-          const lockChainId =
-            postChainId && !isSolanaChain(postChainId) ? postChainId : evmChainId;
-          const sym = m.tokenGateData.tokenSymbol || "DHB";
-          const contractAddress =
-            m.tokenGateData.contractAddress ||
-            supportedTokens.find((t) => t.chainId === lockChainId && t.symbol === sym)?.address;
-          info[streamInfoKeys.lockContentTokenSymbol] = sym;
-          if (contractAddress) info[streamInfoKeys.lockContentContractAddress] = contractAddress;
-          info[streamInfoKeys.lockContentChainIds] = [lockChainId];
-        }
-      }
-      // "Subscribers-only" used to sit here as a DHB lock with no minimum,
-      // copied from web because web sent that shape. Neither client had a
-      // subscriber field on the post model to gate on, so it wrote a hold gate
-      // against nothing: a "Hold 0 DHB" badge, signed-out readers locked out,
-      // and the body served in full by the API regardless. Token gating above
-      // is the working equivalent and it asks for an amount.
-
-      return info;
-    },
-    [activeNetworkLabel, activeChainId],
+    (m: MonetizationState, postChainId?: number): Record<string, any> =>
+      buildStreamInfoShared(m, postChainId, evmChainId),
+    [evmChainId],
   );
 
   const preUploadCheck = useCallback(

@@ -118,6 +118,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         tokenId: streamEntity.tokenId,
         minter: streamEntity.address,
         streamInfo: streamEntity.streamInfo,
+        // Without these the creator's own stream reads as locked to them, and
+        // a PPV already paid for asks to be paid for again.
+        isOwner: (streamEntity as any).isOwner,
+        isUnlocked: (streamEntity as any).isUnlocked,
+        plansDetails: (streamEntity as any).plansDetails,
       } as any;
     }
     return undefined as any;
@@ -133,7 +138,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const isPlayable = useMemo(() => {
     const st = resolvedAccessInfo?.streamStatus;
     if (!st) return isFree;
-    return !st.isLockedWithLockContent && !st.isLockedWithPPV;
+    return (
+      !st.isLockedWithLockContent &&
+      !st.isLockedWithPPV &&
+      !st.isLockedWithSubscription
+    );
   }, [resolvedAccessInfo, isFree]);
 
   // Creator/channel state — seeded from streamEntity.account (no extra fetch needed)
@@ -1200,7 +1209,16 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             isTranscoding={false}
             isLockedOrPPV={!!isLockedOrPPV}
             lockedFetchLoading={streamLoading && isLockedOrPPV}
-            effectiveVideoUrl={effectiveVideoUrl}
+            /*
+             * A gated stream is handed no URL at all, which is what makes
+             * VideoArea render its unlock panel instead of the player.
+             *
+             * An uploaded video is gated by the backend withholding its URL;
+             * a live stream is served from a public playbackId, so the URL is
+             * always there and the gate has to be applied here. Without this a
+             * PPV stream played for everyone.
+             */
+            effectiveVideoUrl={isPlayable ? effectiveVideoUrl : undefined}
             accessInfo={resolvedAccessInfo}
             streamInfo={streamEntity?.streamInfo as any}
             minter={(streamEntity?.address as any) || (minterProp as any)}

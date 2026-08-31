@@ -23,6 +23,10 @@ import { mintNftOnChain } from "../services/mint.service";
 import { getFileName, guessMime } from "../libs/assets.util";
 import { probeIngestReachable, hadRecentIngestFailure } from "../libs/live-ingest";
 import { filteredStreamInfo } from "../libs/validators.util";
+import { buildStreamInfo, validateMonetization } from "../libs/monetization";
+import { useCreatorPlans } from "./useCreatorPlans";
+import { isSolanaChain } from "../config/solana.constants";
+import type { MonetizationState } from "../components/Upload/MonetizationPanel";
 import { parseTxError } from "../libs/web3.util";
 import { toastError, toastSuccess } from "../libs/toast";
 import { defaultChainId as DEFAULT_CHAIN_ID } from "../config/constants";
@@ -50,6 +54,18 @@ export type LiveUploadPayload = {
   thumbnailUri: string | null;
   coverUri: string | null;
   settings: LiveSettingsState;
+  /**
+   * The composer's access switches. A live post is minted through the same
+   * endpoint and stores the same `streamInfo`, so a stream can be sold per
+   * view, gated behind the creator's plans or behind a token holding.
+   */
+  monetization: MonetizationState;
+  /** Put the stream on chain. Off means it publishes with no wallet at all. */
+  shouldMint: boolean;
+  /** Adult or graphic — keeps the stream off the public feeds. */
+  isMature?: boolean;
+  /** The chain the post mints on, when the composer offers a choice. */
+  postChainId?: number;
 };
 
 
@@ -64,6 +80,9 @@ export function useUploadLive() {
   const [isUploading, setIsUploading] = useState(false);
 
   const activeChainId = useMemo(() => chainId || DEFAULT_CHAIN_ID, [chainId]);
+
+  /** Published plans only — an unpublished one gates a stream nobody can open. */
+  const { planIds: myPlanIds } = useCreatorPlans(user?.address);
 
   const validate = useCallback((p: LiveUploadPayload): LiveValidationResult => {
     const title = p.title.trim();
@@ -87,6 +106,10 @@ export function useUploadLive() {
       }
     }
 
+    // The access switches, checked by the same rules a normal post uses.
+    const monetizationError = validateMonetization(p.monetization, p.postChainId);
+    if (monetizationError) return { valid: false, error: monetizationError };
+
     return { valid: true };
   }, []);
 
@@ -94,7 +117,9 @@ export function useUploadLive() {
     (p: LiveUploadPayload): string => {
       const lines: string[] = [];
       lines.push(
-        "This livestream will be minted on-chain. Please make sure everything is correct before proceeding.",
+        p.shouldMint || p.monetization.bountyEnabled
+          ? "This livestream will be minted on-chain. Please make sure everything is correct before proceeding."
+          : "This livestream will be published off-chain — no wallet, no gas. Please make sure everything is correct before proceeding.",
       );
 
       if (p.settings.scheduleEnabled && p.settings.scheduledDate) {
@@ -134,9 +159,30 @@ export function useUploadLive() {
         fd.append("files", { uri: thumb, name: tName, type: tType } as any);
       }
 
-      // StreamInfo – livestream doesn't use monetization, just empty
-      fd.append("streamInfo", JSON.stringify(filteredStreamInfo({})));
-      fd.append("plans", JSON.stringify([]));
+      // The access switches, in the same shape a normal post writes.
+      const streamInfo = buildStreamInfo(p.monetization, p.postChainId, activeChainId);
+      fd.append("streamInfo", JSON.stringify(filteredStreamInfo(streamInfo)));
+
+      // Subscribers-only is NOT part of streamInfo. It rides in `plans` — the
+      // creator's own PUBLISHED plan ids — and the feed pipeline opens the post
+      // for whoever holds an active subscription to one of them. An unpublished
+      // plan cannot be bought, so gating on one ships a stream nobody can open.
+      const subscriberPlanIds =
+        p.monetization.subscribersEnabled && !isSolanaChain(p.postChainId) && myPlanIds.length
+          ? myPlanIds
+          : [];
+      fd.append("plans", JSON.stringify(subscriberPlanIds));
+
+      // A bounty locks DHB through the mint transaction, so it forces the
+      // stream on chain whatever the toggle says.
+      if (!p.shouldMint && !p.monetization.bountyEnabled) {
+        fd.append("mintOptOut", "true");
+      }
+
+      // Only sent when it is 'mature': the server treats an absent rating as
+      // safe and deliberately stores nothing for it.
+      if (p.isMature) fd.append("contentRating", "mature");
+
       if (addr) fd.append("address", addr);
 
       // Stream settings (chat, minTip, schedule)
@@ -156,7 +202,7 @@ export function useUploadLive() {
 
       return fd;
     },
-    [user?.walletAddress, user?.address, activeChainId],
+    [user?.walletAddress, user?.address, activeChainId, myPlanIds],
   );
 
   const upload = useCallback(
@@ -195,31 +241,47 @@ export function useUploadLive() {
 
         const createdTokenId = result?.createdTokenId;
         if (createdTokenId != null) mintedTokenId = createdTokenId;
-        const timestamp = result?.timestamp;
-        const v = result?.v;
-        const r = result?.r;
-        const s = result?.s;
 
-        if (createdTokenId == null || timestamp == null || v == null || !r || !s) {
-          throw new Error("Mint signature payload missing");
+        if (createdTokenId == null) {
+          throw new Error("Mint payload missing a token id");
         }
 
-        if (!streamCollectionContract) {
-          throw new Error("Wallet not ready to mint");
-        }
+        /*
+         * The on-chain mint, skipped wholesale when the creator turned minting
+         * off. The post is already published — the server serves status
+         * 'signed' everywhere — and the stream below is provisioned by the same
+         * call either way, so nothing about the broadcast waits on a
+         * transaction, a wallet or gas.
+         */
+        const mintingThisStream = p.shouldMint || p.monetization.bountyEnabled;
 
-        setUploadStage("awaiting-wallet");
-        const tx = await mintNftOnChain(
-          streamCollectionContract,
-          createdTokenId,
-          timestamp,
-          v,
-          r,
-          s,
-          result?.uri,
-        );
-        setUploadStage("minting");
-        await tx?.wait?.(1);
+        if (mintingThisStream) {
+          const timestamp = result?.timestamp;
+          const v = result?.v;
+          const r = result?.r;
+          const s = result?.s;
+
+          if (timestamp == null || v == null || !r || !s) {
+            throw new Error("Mint signature payload missing");
+          }
+
+          if (!streamCollectionContract) {
+            throw new Error("Wallet not ready to mint");
+          }
+
+          setUploadStage("awaiting-wallet");
+          const tx = await mintNftOnChain(
+            streamCollectionContract,
+            createdTokenId,
+            timestamp,
+            v,
+            r,
+            s,
+            result?.uri,
+          );
+          setUploadStage("minting");
+          await tx?.wait?.(1);
+        }
 
         // The combined endpoint returns the stream object alongside the mint signature
         setUploadStage("finalizing");
