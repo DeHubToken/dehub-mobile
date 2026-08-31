@@ -34,6 +34,7 @@ import { toastSuccess, toastError, toastInfo } from "../libs/toast";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { createViewCountUpdater, seedViewerStats } from "../libs/viewers.util";
 import { updateStreamSettings } from "../services/live.service";
+import { deletePost } from "../services/nft.service";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 
@@ -42,6 +43,12 @@ type RouteParams = {
   tokenId?: number;
   ingestUrl?: string;
   streamKey?: string;
+  /**
+   * Set by useUploadLive for an immediate (non-scheduled) launch: leaving the
+   * producer without ever airing discards the freshly minted post instead of
+   * stranding a dead live card in the feed.
+   */
+  discardIfNeverLive?: boolean;
 };
 
 const LiveProducerScreen: React.FC = () => {
@@ -51,8 +58,8 @@ const LiveProducerScreen: React.FC = () => {
   const { isSignedIn, needsUsername } = useAuthState();
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
-  const { streamId, tokenId, ingestUrl, streamKey } = (route.params ||
-    {}) as RouteParams;
+  const { streamId, tokenId, ingestUrl, streamKey, discardIfNeverLive } =
+    (route.params || {}) as RouteParams;
   const {
     on: socketOn,
     emitAuthed: socketEmitAuthed,
@@ -541,6 +548,40 @@ const LiveProducerScreen: React.FC = () => {
     dropped?: number;
   }>({});
 
+  // Whether this stream ever actually aired — stage reached 'live' from this
+  // device, or it was already LIVE on load (external encoder). An immediate
+  // launch that never did leaves a post advertising a stream nobody can ever
+  // watch, so every exit path discards it with the same soft delete the card
+  // menu runs. discardIfNeverLive comes from useUploadLive and is false for
+  // scheduled streams, which legitimately exist before they air.
+  const everLiveRef = useRef(false);
+  const discardedRef = useRef(false);
+  const discardDeadLaunch = () => {
+    if (!discardIfNeverLive || everLiveRef.current || discardedRef.current) return;
+    // Belt and braces: if the backend saw this stream air at all (an encoder
+    // pointed at the ingest out-of-band counts), the post stays.
+    const backendStatus = (
+      (streamEntity as any)?.status as string | undefined
+    )?.toLowerCase();
+    if (
+      backendStatus === "live" ||
+      backendStatus === "paused" ||
+      backendStatus === "ended"
+    )
+      return;
+    const tid = tokenId ?? (streamEntity as any)?.tokenId;
+    if (tid == null) return;
+    discardedRef.current = true;
+    console.log("[LiveProducer] discarding never-aired live post", tid);
+    deletePost(tid).catch(() => {});
+  };
+  // Read through a ref so the unmount cleanup (whose closure is frozen at
+  // mount) sees the current streamEntity/tokenId.
+  const discardDeadLaunchRef = useRef(discardDeadLaunch);
+  useEffect(() => {
+    discardDeadLaunchRef.current = discardDeadLaunch;
+  });
+
   const onStart = useCallback(() => {
     console.log("[LiveProducer] onStart invoked. Current stage:", stage);
     // Mark that this device started the stream
@@ -576,6 +617,7 @@ const LiveProducerScreen: React.FC = () => {
     end().catch(() => {});
     // Mark ended so the stage-transition effect doesn't also toast + goBack
     endedRef.current = true;
+    discardDeadLaunchRef.current();
     toastSuccess("Livestream ended");
     navigation.goBack();
   }, [end, navigation, stage, streamId, socketEmitAuthed]);
@@ -593,6 +635,7 @@ const LiveProducerScreen: React.FC = () => {
       endedRef.current = true;
       toastSuccess("Livestream ended");
     }
+    discardDeadLaunchRef.current();
     navigation.goBack();
   }, [navigation, stage, end, streamId, socketEmitAuthed]);
 
@@ -781,10 +824,12 @@ const LiveProducerScreen: React.FC = () => {
       prevStageRef.current = stage;
     }
     latestStageRef.current = stage;
+    if (stage === "live") everLiveRef.current = true;
     // On ended, notify and leave the screen automatically
     // Guard with endedRef so the toast only fires once (not also from onEnd)
     if (stage === "ended" && !endedRef.current) {
       endedRef.current = true;
+      discardDeadLaunchRef.current();
       toastSuccess("Livestream ended");
       navigation.goBack();
     }
@@ -861,6 +906,9 @@ const LiveProducerScreen: React.FC = () => {
           Promise.resolve(fn()).catch(() => {});
         }
       }
+      // Navigating away without ever airing follows the same rule as an
+      // explicit close: the post advertises a stream that never existed.
+      discardDeadLaunchRef.current();
     };
   }, [navigation]);
 
@@ -906,6 +954,9 @@ const LiveProducerScreen: React.FC = () => {
       // → must have been started externally (OBS/streaming software)
       if (!startedFromThisDeviceRef.current) {
         console.log("[LiveProducer] stream already LIVE on load — entering external monitoring mode");
+        // An externally started stream has aired by definition — it must
+        // never be treated as a dead launch on exit.
+        everLiveRef.current = true;
         const realStart = (streamEntity as any)?.startedAt
           ? new Date((streamEntity as any).startedAt).getTime()
           : Date.now();
