@@ -21,7 +21,7 @@ import {
 import { minNft } from "../services/nft.service";
 import { mintNftOnChain } from "../services/mint.service";
 import { getFileName, guessMime } from "../libs/assets.util";
-import { probeIngestReachable } from "../libs/live-ingest";
+import { probeIngestReachable, hadRecentIngestFailure } from "../libs/live-ingest";
 import { filteredStreamInfo } from "../libs/validators.util";
 import { parseTxError } from "../libs/web3.util";
 import { toastError, toastSuccess } from "../libs/toast";
@@ -169,10 +169,15 @@ export function useUploadLive() {
         // droplet IP is the one DeHub host not behind Cloudflare). Ask now
         // and tell the mint, so the stream is created on Livepeer instead of
         // on a server this phone will never manage to send a byte to.
+        // A passing probe is additionally outvoted by a fresh failure marker:
+        // DPI-throttled carriers let one small GET through intermittently
+        // while the WHIP POST never arrives, so this phone's own last direct
+        // connect is better evidence than a probe taken seconds before the
+        // same dead end.
         const ingestReachable = probeIngestReachable();
 
         const fd = buildFormData(p);
-        if (!(await ingestReachable)) {
+        if (!(await ingestReachable) || (await hadRecentIngestFailure())) {
           fd.append("ingestPreference", "livepeer");
         }
         const res = await minNft(fd as any);
