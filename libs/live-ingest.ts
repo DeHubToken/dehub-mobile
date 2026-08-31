@@ -111,7 +111,7 @@ export function whipEndpointFor(
  * on a server this phone will never manage to send a byte to. The web app
  * runs the same probe in `src/lib/live-ingest.ts`.
  */
-export async function probeIngestReachable(timeoutMs = 4000): Promise<boolean> {
+export async function probeIngestReachable(timeoutMs = 15_000): Promise<boolean> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
@@ -218,7 +218,7 @@ export function fetchTurnServers(): Promise<RTCIceServer[]> {
   if (!turnServersPromise) {
     turnServersPromise = (async () => {
       const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), 5000);
+      const timer = setTimeout(() => controller.abort(), 15_000);
       try {
         const res = await fetch('https://api.dehub.io/api/live/turn-credentials', {
           signal: controller.signal,
