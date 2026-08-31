@@ -8,7 +8,12 @@ import React, {
 import { View, Platform, Text } from "react-native";
 import { mediaDevices, RTCPeerConnection, RTCView } from "react-native-webrtc";
 import { runWithPermissions, type PermissionKind } from "../../libs/permissions.util";
-import { whipEndpointFor } from "../../libs/live-ingest";
+import {
+  whipEndpointFor,
+  markIngestUnreachable,
+  clearIngestUnreachable,
+  isNetworkShapedError,
+} from "../../libs/live-ingest";
 
 // Types
 type Facing = "front" | "back";
@@ -298,6 +303,10 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           streamKey,
           { playbackId, provider },
         );
+        // Publishing straight at the self-hosted ingest — the one path whose
+        // network failure teaches the next mint something (see live-ingest.ts).
+        const directSelfHosted =
+          whipEndpointFor({ playbackId, provider, streamKey }) !== null;
   dbg('WHIP endpoint resolved', { gen: myGen, redirectUrl });
   if (myGen !== pcGenerationRef.current) { dbg('start(): stale before PC create', { gen: myGen, currentGen: pcGenerationRef.current }); return; }
         const iceServers = [
@@ -343,6 +352,9 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           if (state === "connected") {
             setConnected(true);
             setReconnecting(false);
+            // A byte actually arrived over the direct path: whatever this
+            // phone remembered about the ingest being unreachable is stale.
+            if (directSelfHosted) void clearIngestUnreachable();
             // Clear any pending disconnect escalation if we recovered
             if (disconnectTimerRef.current) {
               clearTimeout(disconnectTimerRef.current);
@@ -395,14 +407,24 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
         });
         if (!localDesc?.sdp) throw new Error("Failed to gather ICE candidates");
         dbg('posting offer to WHIP', { gen: myGen });
-        const resp = await fetch(redirectUrl, {
-          method: "POST",
-          headers: {
-            "content-type": "application/sdp",
-            ...(whipToken ? { authorization: `Bearer ${whipToken}` } : {}),
-          },
-          body: localDesc.sdp,
-        });
+        let resp: Awaited<ReturnType<typeof fetch>>;
+        try {
+          resp = await fetch(redirectUrl, {
+            method: "POST",
+            headers: {
+              "content-type": "application/sdp",
+              ...(whipToken ? { authorization: `Bearer ${whipToken}` } : {}),
+            },
+            body: localDesc.sdp,
+          });
+        } catch (e) {
+          // The WHIP POST itself died on the network while pointed straight
+          // at the ingest. Remember that, so the next mint on this phone
+          // prefers Livepeer over re-running the same optimistic probe into
+          // the same wall — a stuck creator's real behaviour is to retry.
+          if (directSelfHosted && isNetworkShapedError(e)) void markIngestUnreachable();
+          throw e;
+        }
         if (!resp.ok)
           throw new Error(
             `WHIP offer failed: ${resp.status} ${await resp.text()}`
