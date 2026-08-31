@@ -25,7 +25,7 @@ import FeedCard from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
 import Icon from "../ui/Icon";
 import { useTranslation } from "react-i18next";
-import useNewPostsSignal from "../../hooks/useNewPostsSignal";
+import useNewPostsSignal, { feedRowId } from "../../hooks/useNewPostsSignal";
 import { useAuthState } from "../../context/AuthContext";
 import {
   getUnifiedFeed,
@@ -50,6 +50,7 @@ import { feedEvents } from "../../libs/eventBus";
 import { capFeedByAuthorAllowance } from "../../libs/postQuota";
 import { isPostDeletedSync, warmDeletedPosts } from "../../libs/deleted-posts-store";
 import { useWatchedVideoIds, filterWatched } from "../../hooks/useWatchedVideos";
+import { useLiveStreams } from "../../hooks/useLiveStreams";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import SuggestedAccountsSection from "./SuggestedAccountsSection";
 import { useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -340,10 +341,50 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // Videos already played, dropped only when the reader asked for that in
   // Settings. Kept as its own memo so the expensive flatMap above does not
   // re-run when the watch history refreshes.
-  const items = useMemo<FeedItem[]>(
+  const watchedFiltered = useMemo<FeedItem[]>(
     () => filterWatched(rawItems, watchedIds, hideWatched),
     [rawItems, watchedIds, hideWatched],
   );
+
+  // ── Live posts get their broadcast back ───────────────────────────────
+  //
+  // The feed serves live posts as bare tokens: a title, a creator, and nothing
+  // about the stream. So the card could not say whether it was running, had no
+  // frame to show, and navigated to the viewer with no stream id — a titled
+  // grey box that went nowhere. `/live` carries all of that in one small
+  // response; folding it onto `item.stream` is enough for the existing card to
+  // draw a poster, a LIVE badge and real viewer counts, and to open.
+  //
+  // A live token with NO stream row is one nobody can ever watch — a launch
+  // that minted the post and then failed, the strand backend#279 and #309
+  // stopped creating and a prod sweep cleaned up. Those are dropped rather
+  // than rendered, but only when the list is known complete: a failed or
+  // truncated fetch must not empty the Live tab, so a missing row then means
+  // "unknown", and unknown renders.
+  const liveStreams = useLiveStreams(active);
+
+  const items = useMemo<FeedItem[]>(() => {
+    // Nothing to fold in, and nothing proven about what is missing.
+    if (!liveStreams.complete && liveStreams.byToken.size === 0) return watchedFiltered;
+
+    const out: FeedItem[] = [];
+    for (const item of watchedFiltered) {
+      if ((item as any).postType !== "live") {
+        out.push(item);
+        continue;
+      }
+      const id = (item as any).tokenId ?? (item as any).id;
+      const streamRow = id == null ? undefined : liveStreams.byToken.get(String(id));
+      if (streamRow) {
+        // The post stays the source of truth for everything a post owns
+        // (text, counts, gating); the stream only answers for the broadcast.
+        out.push({ ...(item as any), stream: (item as any).stream ?? streamRow });
+      } else if (!liveStreams.complete) {
+        out.push(item);
+      }
+    }
+    return out;
+  }, [watchedFiltered, liveStreams]);
 
   // Tiered home-feed visibility, matching web's HomeFeed. Posting is unlimited,
   // profiles show everything, and followers keep seeing all of it — but the
@@ -566,11 +607,41 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // The poll also refreshes the counts on the cards already rendered, so it
   // runs under every sort now — only the pill is held back to the chronological
   // one.
+  // Everything the list already holds, at every depth. A post the reader has
+  // scrolled past is not new because a poll of the head happens to rank it
+  // above the top row.
+  const knownIds = useMemo(() => {
+    const ids = new Set<string>();
+    for (const page of data?.pages ?? []) {
+      for (const row of page.result || []) {
+        const id = feedRowId(row);
+        if (id) ids.add(id);
+      }
+    }
+    return ids;
+  }, [data]);
+
+  // The list's own filters, asked of a row the poll found. Counting a row the
+  // list would throw away promises a post that refreshing can never produce.
+  const isRenderable = useCallback(
+    (row: any) => {
+      const id = row?.tokenId ?? row?.id ?? row?.stream?.tokenId;
+      if (id != null && isPostDeletedSync(id)) return false;
+      if (row?.postType === "live" && liveStreams.complete) {
+        return id != null && liveStreams.byToken.has(String(id));
+      }
+      return true;
+    },
+    [liveStreams],
+  );
+
   const { newPostCount, atCap: newPostsAtCap } = useNewPostsSignal({
     enabled: active && isFocused,
     chronological: (params?.sortBy ?? "createdAt") === "createdAt",
     params,
     newestCreatedAt: newestRenderedCreatedAt,
+    knownIds,
+    isRenderable,
   });
 
   const showNewPosts = useCallback(() => {

@@ -93,6 +93,66 @@ describe('libs/token-refresh', () => {
       // Only one fetch call was made
       expect(mockFetch).toHaveBeenCalledTimes(1);
     });
+
+    it('aborts a refresh that never answers, instead of hanging forever', async () => {
+      await setRefreshToken('refresh-tok');
+      await setAuthToken('old-token');
+
+      // A socket the phone lost without closing: fetch settles only when the
+      // abort signal fires. Before the timeout, this pended forever and took
+      // every authenticated call in the app down with it.
+      let requestIssued: () => void;
+      const issued = new Promise<void>((resolve) => { requestIssued = resolve; });
+      mockFetch.mockImplementationOnce(
+        (_url: string, init: any) =>
+          new Promise((_resolve, reject) => {
+            requestIssued();
+            init?.signal?.addEventListener('abort', () => reject(new Error('Aborted')));
+          }),
+      );
+
+      jest.useFakeTimers();
+      const pending = tokenRefreshManager.attemptRefresh();
+      // The storage reads ahead of the request are promises, not timers, so
+      // they settle on their own — wait for the request itself before winding
+      // the clock, or the timeout being tested does not exist yet.
+      await issued;
+      jest.advanceTimersByTime(20_000);
+
+      await expect(pending).resolves.toBeNull();
+      jest.useRealTimers();
+      // A timeout is not proof the session is dead, so credentials survive it.
+      expect(await getRefreshToken()).toBe('refresh-tok');
+      expect(await getAuthToken()).toBe('old-token');
+    });
+
+    it('does not strand callers behind a refresh that died', async () => {
+      await setRefreshToken('refresh-tok');
+
+      // Never settles and never aborts — the flag is left up for good.
+      mockFetch.mockImplementationOnce(() => new Promise(() => {}));
+      void tokenRefreshManager.attemptRefresh();
+
+      const realNow = Date.now;
+      // Past the point where an in-flight refresh could still be honest.
+      Date.now = () => realNow() + 60_000;
+      try {
+        mockFetch.mockImplementationOnce(() =>
+          Promise.resolve({
+            ok: true,
+            json: () =>
+              Promise.resolve({
+                accessToken: 'recovered-token',
+                refreshToken: 'recovered-refresh',
+                expiresIn: 3600,
+              }),
+          }),
+        );
+        await expect(tokenRefreshManager.attemptRefresh()).resolves.toBe('recovered-token');
+      } finally {
+        Date.now = realNow;
+      }
+    });
   });
 
   describe('ensureFreshToken', () => {

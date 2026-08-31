@@ -49,7 +49,33 @@ type QueueEntry = {
 
 type TokenRefreshListener = () => void;
 
+/**
+ * Ceiling on a single refresh.
+ *
+ * React Native's `fetch` has no default timeout, and a phone drops sockets
+ * without closing them — a wifi-to-cellular handover, a sleeping radio, a
+ * captive portal. The request then never settles, and because this one
+ * promise gates every authenticated call in the app, neither does anything
+ * else: the feed stops updating and sign-in spins forever with no error to
+ * show for it, because nothing ever failed. Bounding the request is what
+ * turns that into an ordinary retryable failure.
+ *
+ * An abort has no `.status`, so the catch below treats it as "couldn't prove
+ * the session right now" and leaves stored credentials alone — a slow network
+ * must not sign anyone out.
+ */
+const REFRESH_TIMEOUT_MS = 20_000;
+
+/**
+ * How long the flag may stay up before it is assumed dead. Above the request
+ * ceiling with room for the storage reads either side of it, so a genuinely
+ * slow refresh is waited out rather than duplicated.
+ */
+const REFRESH_STUCK_AFTER_MS = REFRESH_TIMEOUT_MS + 15_000;
+
 let isRefreshing = false;
+/** When the in-flight refresh began, for the stuck check above. */
+let refreshStartedAt = 0;
 let failedQueue: QueueEntry[] = [];
 let onTokenRefreshedListeners: TokenRefreshListener[] = [];
 
@@ -94,17 +120,38 @@ async function callRefreshEndpoint(refreshToken: string): Promise<{
   expiresIn: number;
 }> {
   const url = `${API_BASE_URL}/auth/refresh`;
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'X-Client-Type': 'mobile',
-      'X-Platform': PLATFORM,
-      'X-App-Version': APP_VERSION,
-    },
-    body: JSON.stringify({ refreshToken }),
-  });
+  // AbortController is optional here only because the test environment and
+  // older runtimes may not provide one; where it exists the request is bounded,
+  // and where it does not this behaves exactly as it did before.
+  const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+  const timer = controller
+    ? setTimeout(() => controller.abort(), REFRESH_TIMEOUT_MS)
+    : null;
+
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-Client-Type': 'mobile',
+        'X-Platform': PLATFORM,
+        'X-App-Version': APP_VERSION,
+      },
+      body: JSON.stringify({ refreshToken }),
+      ...(controller ? { signal: controller.signal } : {}),
+    });
+  } catch (error) {
+    if (controller?.signal.aborted) {
+      // No `.status`: the session may well still be good, so the caller keeps
+      // the stored credentials and the next call tries again.
+      throw new Error(`Refresh timed out after ${REFRESH_TIMEOUT_MS}ms`);
+    }
+    throw error;
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
 
   if (!response.ok) {
     const data = await response.json().catch(() => ({}));
@@ -124,6 +171,17 @@ export const tokenRefreshManager = {
    * Returns the new access token on success, or null on failure (triggers full logout).
    */
   attemptRefresh(): Promise<string | null> {
+    // A flag that has been up longer than a refresh can possibly take belongs
+    // to one that died without settling — before the timeout above existed,
+    // that was permanent, and every caller after it queued behind a promise
+    // nobody would ever resolve. Waiters are released with a failure and this
+    // call starts a new attempt rather than joining the dead one.
+    if (isRefreshing && Date.now() - refreshStartedAt > REFRESH_STUCK_AFTER_MS) {
+      console.warn('[tokenRefresh] Previous refresh never settled; starting a new one');
+      isRefreshing = false;
+      processQueue(new Error('Refresh abandoned'), null);
+    }
+
     if (isRefreshing) {
       return new Promise<string | null>((resolve, reject) => {
         failedQueue.push({
@@ -134,6 +192,7 @@ export const tokenRefreshManager = {
     }
 
     isRefreshing = true;
+    refreshStartedAt = Date.now();
 
     // Captured before the request: the response lands an unknown time later —
     // long enough for a profile switch to replace the live keys. Writing the
@@ -212,6 +271,11 @@ export const tokenRefreshManager = {
         return null;
       } finally {
         isRefreshing = false;
+        // Both paths above drain the queue already. This is the backstop for
+        // the one that gets added later and forgets to: a waiter left here is
+        // a caller hanging forever, which is the failure this whole change is
+        // about.
+        if (failedQueue.length) processQueue(new Error('Refresh ended without a result'), null);
       }
     })();
   },

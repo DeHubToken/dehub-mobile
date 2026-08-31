@@ -72,8 +72,19 @@ export async function getLiveStream(streamId: string) {
   return apiClient.get<LiveStreamEntity | { result?: LiveStreamEntity }>(`/live/${encodeURIComponent(streamId)}`, { isAuthRequired: true });
 }
 
-export async function getLiveVideos() {
-  return apiClient.get<any>(`/live`, { isAuthRequired: false });
+/**
+ * Every stream the platform knows about — the list web's Live tab reads.
+ *
+ * `page` is accepted by the route and ignored by the controller (page 2 comes
+ * back identical to page 1), so `unit` is the only lever there is: ask for
+ * more than the platform has and the response is the complete set.
+ */
+export async function getLiveVideos(params?: { unit?: number; category?: string; sortMode?: string }) {
+  const query = Object.entries(params || {})
+    .filter(([, v]) => v !== undefined && v !== null && v !== "")
+    .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+    .join("&");
+  return apiClient.get<any>(`/live${query ? `?${query}` : ""}`, { isAuthRequired: false });
 }
 
 export async function getStreamKey(streamId: string) {
