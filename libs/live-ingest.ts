@@ -85,7 +85,13 @@ export function whipEndpointFor(
   if (liveProviderOf(stream) !== 'mediamtx') return null;
   if (!stream?.playbackId) return null;
   return {
-    url: `https://${MEDIAMTX_HOST}/${stream.playbackId}/whip`,
+    // `/publish`, not `/whip`: nginx serves the same WHIP endpoint under both
+    // names, and the client uses the one that on-device HTTPS filters do not
+    // forge 403s for — every field 403 hit a URL containing /whip with zero
+    // packets arriving anywhere server-side, while the same device's other
+    // POSTs to the same hosts landed. The web app made the same move in
+    // src/lib/live-ingest.ts.
+    url: `https://${MEDIAMTX_HOST}/${stream.playbackId}/publish`,
     token: `dehub:${stream.streamKey ?? ''}`,
   };
 }
@@ -186,7 +192,9 @@ export function edgeWhipEndpointFor(
   if (liveProviderOf(stream) !== 'mediamtx') return null;
   if (!stream?.playbackId) return null;
   return {
-    url: `${EDGE_SIGNALING_BASE}/${stream.playbackId}/whip`,
+    // Same "/publish" naming as the direct host — the /whip path token is
+    // what the on-device filters key on.
+    url: `${EDGE_SIGNALING_BASE}/${stream.playbackId}/publish`,
     token: `dehub:${stream.streamKey ?? ''}`,
   };
 }
