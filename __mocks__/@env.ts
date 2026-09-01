@@ -14,3 +14,4 @@ export const PIMLICO_API_KEY = 'test-pimlico-key';
 export const STRIPE_PUBLISHABLE_KEY = 'test-stripe-key';
 export const LEGACY_APP_ORIGIN = 'https://legacy.test.dehub.io';
 export const SUPABASE_EDGE_BASE_URL = 'https://edge.test.supabase.co';
+export const SUPABASE_URL = 'https://test.supabase.co';
