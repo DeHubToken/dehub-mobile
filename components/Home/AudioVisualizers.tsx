@@ -29,10 +29,11 @@
  *     about the element's own centre, push it out far enough that its inner end
  *     lands on the ring, then swing it round. No re-layout per frame.
  *
- * Colour rule, matching what mobile already did: hue 0 is white. The card's hue
- * slider starts there and the monochrome default is the house style — web's
- * analyser styles read 0 as red, which is a difference worth keeping rather
- * than importing.
+ * Colour rule: hue 0 is white, on both apps. The slider starts there and the
+ * monochrome default is the house style, so a card nobody has touched plays
+ * back in chrome. Web's analyser styles used to read 0 as red and have been
+ * brought onto this rule; the two are the same now, so do not reintroduce a
+ * per-platform default here.
  *
  * @module components/Home/AudioVisualizers
  */
@@ -410,6 +411,21 @@ const BarsVisualizer: React.FC<BandProps & { mode: "bars" | "mirror" }> = memo(
             mode={mode}
           />
         ))}
+        {/* Web fills its bars with a vertical gradient so they read bright at
+            the tip and fall away at the root. Eighty gradient views would be a
+            gradient per bar; one shade laid over the whole row buys the same
+            depth for one view. Bars fade downwards, Mirror fades away from the
+            centre line in both directions. */}
+        <LinearGradient
+          pointerEvents="none"
+          colors={
+            mode === "mirror"
+              ? ["rgba(0,0,0,0.5)", "rgba(0,0,0,0)", "rgba(0,0,0,0.5)"]
+              : ["rgba(0,0,0,0)", "rgba(0,0,0,0.55)"]
+          }
+          locations={mode === "mirror" ? [0, 0.5, 1] : [0.35, 1]}
+          style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0 }}
+        />
       </View>
     );
   },
@@ -417,7 +433,16 @@ const BarsVisualizer: React.FC<BandProps & { mode: "bars" | "mirror" }> = memo(
 
 /* ─── Wave — the oscilloscope trace ─────────────────────────────────────── */
 
-const WAVE_SEGMENTS = 76;
+/**
+ * More, and overlapping. At 76 segments the trace broke into a dotted line
+ * wherever it was steep: consecutive samples moved further apart vertically
+ * than a segment was tall, so the gaps showed. Smaller horizontal steps mean
+ * smaller vertical steps, and the negative margin laps each segment over its
+ * neighbour so a steep run still reads as one line.
+ */
+const WAVE_SEGMENTS = 96;
+const WAVE_THICKNESS = 4;
+const WAVE_OVERLAP = 1;
 
 interface WaveDotProps {
   clock: SharedValue<number>;
@@ -443,7 +468,16 @@ const WaveDot: React.FC<WaveDotProps> = memo(({ clock, drive, t, amp, color }) =
 
   return (
     <Animated.View
-      style={[{ flex: 1, height: 3, borderRadius: 1.5, backgroundColor: color }, style]}
+      style={[
+        {
+          flex: 1,
+          height: WAVE_THICKNESS,
+          borderRadius: WAVE_THICKNESS / 2,
+          marginHorizontal: -WAVE_OVERLAP,
+          backgroundColor: color,
+        },
+        style,
+      ]}
     />
   );
 });
@@ -461,7 +495,7 @@ const WaveVisualizer: React.FC<BandProps> = memo(
       return Array.from({ length: WAVE_SEGMENTS }, (_, i) => {
         const t = i / (WAVE_SEGMENTS - 1);
         const envelope = Math.pow(Math.sin(t * Math.PI), 0.55);
-        return { t, amp: (height / 2 - 3) * envelope * (0.62 + 0.38 * rand()) };
+        return { t, amp: (height / 2 - WAVE_THICKNESS) * envelope * (0.62 + 0.38 * rand()) };
       });
     }, [seed, height]);
 
