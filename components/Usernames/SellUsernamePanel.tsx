@@ -13,6 +13,7 @@
  *   you at the moment somebody pays. It is checked against the same rules the
  *   profile editor enforces, so a listing can never promise a swap that fails.
  */
+import { DhbCoin } from "../common/DhbCoin";
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -257,7 +258,7 @@ const SaleRow: React.FC<{ sale: UsernameSale; label: string }> = ({ sale, label 
       </Text>
       <Text style={styles.rowSub}>{label}</Text>
     </View>
-    <Text style={styles.rowPrice}>{sale.paidDhb.toLocaleString("en-US")} DHB</Text>
+    <Text style={styles.rowPrice}>{sale.paidDhb.toLocaleString("en-US")} <DhbCoin /></Text>
   </View>
 );
 
@@ -275,7 +276,7 @@ const HistoryRow: React.FC<{ listing: MyUsernameListing; soldLabel: string }> = 
         {listing.status === "cancelled" ? listing.cancelReason || "Withdrawn" : soldLabel}
       </Text>
     </View>
-    <Text style={styles.rowPriceMuted}>{listing.priceDhb.toLocaleString("en-US")} DHB</Text>
+    <Text style={styles.rowPriceMuted}>{listing.priceDhb.toLocaleString("en-US")} <DhbCoin /></Text>
   </View>
 );
 

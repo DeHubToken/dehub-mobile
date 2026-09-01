@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useEffect, useState } from "react";
 import {
   View,
@@ -253,7 +254,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
 
               <View style={styles.metaRow}>
                 <Text style={styles.balanceText}>
-                  Balance: {dhbBalance != null ? formatCompactNumber(Number(dhbBalance)) : "—"} DHB
+                  Balance: {dhbBalance != null ? formatCompactNumber(Number(dhbBalance)) : "—"} <DhbCoin />
                 </Text>
                 {exceedsBalance && (
                   <Text style={styles.errorSmall}>Insufficient</Text>

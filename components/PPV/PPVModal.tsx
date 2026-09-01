@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, {
   useCallback,
   useEffect,
@@ -570,7 +571,7 @@ const PPVModal: React.FC<PPVModalProps> = ({
                             editable={!isBusy}
                             className="flex-1 h-11 text-white text-base"
                           />
-                          <Text className="text-white/60 text-sm font-semibold">DHB</Text>
+                          <DhbCoin size={14} />
                         </View>
                       )}
                     </View>

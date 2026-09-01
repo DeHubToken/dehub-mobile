@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, {
   memo,
   useCallback,
@@ -537,7 +538,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
                         editable={!isBusy}
                         style={styles.tipInput}
                       />
-                      <Text style={styles.tipSuffix}>DHB</Text>
+                      <DhbCoin size={14} />
                     </View>
                   )}
                 </View>

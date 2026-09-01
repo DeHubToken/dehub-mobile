@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, { useCallback, useMemo, useState } from "react";
 import { View, Text, ScrollView, ActivityIndicator, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -124,7 +125,7 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
                 {a.signupMethod ? ` · ${a.signupMethod}` : ""}
               </Text>
               {typeof a.badgeBalance === "number" && (
-                <Text style={authText.caption}>{a.badgeBalance.toLocaleString()} DHB</Text>
+                <Text style={authText.caption}>{a.badgeBalance.toLocaleString()} <DhbCoin /></Text>
               )}
             </View>
           ))}
