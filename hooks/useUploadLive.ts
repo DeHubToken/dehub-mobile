@@ -10,7 +10,7 @@
  *   3. On-chain mint via streamCollectionContract.mint()
  *   4. Navigate to LiveProducer screen with stream data from step 2
  */
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useNavigation, CommonActions } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useUser, useProvider } from "../context/AuthContext";
@@ -27,21 +27,16 @@ import { buildStreamInfo, validateMonetization } from "../libs/monetization";
 import { useCreatorPlans } from "./useCreatorPlans";
 import { isSolanaChain } from "../config/solana.constants";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
-import { parseTxError } from "../libs/web3.util";
 import { toastError, toastSuccess } from "../libs/toast";
 import { attachShopListings } from "../libs/attach-shop-listings";
 import { defaultChainId as DEFAULT_CHAIN_ID } from "../config/constants";
 import type { LiveSettingsState } from "../components/Upload/LiveSettingsPanel";
+import {
+  liveUploadErrorMessage,
+  type LiveUploadStage,
+} from "../libs/live-upload-error";
 
-
-export type LiveUploadStage =
-  | "idle"
-  | "uploading"
-  | "processing"
-  | "awaiting-wallet"
-  | "minting"
-  | "finalizing"
-  | "done";
+export type { LiveUploadStage };
 
 export type LiveValidationResult = {
   valid: boolean;
@@ -90,6 +85,22 @@ export function useUploadLive() {
 
   const [uploadStage, setUploadStage] = useState<LiveUploadStage>("idle");
   const [isUploading, setIsUploading] = useState(false);
+
+  /**
+   * The stage as the RUNNING upload sees it.
+   *
+   * `upload` is a useCallback, so the copy of `uploadStage` it closes over is
+   * whatever the render that produced it held — "idle", every time, because
+   * that is the only state the button is pressable in. The setState calls made
+   * while it runs produce new callbacks; they never reach the one in flight. So
+   * the catch below, which decides between wallet copy and a raw error on the
+   * stage, always read "idle" and always chose raw.
+   */
+  const stageRef = useRef<LiveUploadStage>("idle");
+  const goToStage = useCallback((stage: LiveUploadStage) => {
+    stageRef.current = stage;
+    setUploadStage(stage);
+  }, []);
 
   const activeChainId = useMemo(() => chainId || DEFAULT_CHAIN_ID, [chainId]);
 
@@ -235,7 +246,7 @@ export function useUploadLive() {
       let mintedTokenId: number | string | null = null;
       try {
         setIsUploading(true);
-        setUploadStage("uploading");
+        goToStage("uploading");
 
         // Some carriers cannot reach the self-hosted ingest at all (its bare
         // droplet IP is the one DeHub host not behind Cloudflare). Ask now
@@ -254,7 +265,7 @@ export function useUploadLive() {
         }
         const res = await minNft(fd as any);
 
-        setUploadStage("processing");
+        goToStage("processing");
         const result: any = (res as any)?.data ?? res;
 
         if (result?.error) {
@@ -314,7 +325,7 @@ export function useUploadLive() {
             throw new Error("Wallet not ready to mint");
           }
 
-          setUploadStage("awaiting-wallet");
+          goToStage("awaiting-wallet");
           const tx = await mintNftOnChain(
             streamCollectionContract,
             createdTokenId,
@@ -324,19 +335,19 @@ export function useUploadLive() {
             s,
             result?.uri,
           );
-          setUploadStage("minting");
+          goToStage("minting");
           await tx?.wait?.(1);
         }
 
         // The combined endpoint returns the stream object alongside the mint signature
-        setUploadStage("finalizing");
+        goToStage("finalizing");
         const stream = result?.stream;
 
         if (!stream?._id) {
           throw new Error("Stream entity missing from mint response");
         }
 
-        setUploadStage("done");
+        goToStage("done");
         toastSuccess("Livestream created!", {
           description: p.settings.scheduleEnabled
             ? "Your scheduled livestream is set."
@@ -344,7 +355,7 @@ export function useUploadLive() {
         });
 
         setIsUploading(false);
-        setUploadStage("idle");
+        goToStage("idle");
 
         nav.dispatch(
           CommonActions.reset({
@@ -376,20 +387,16 @@ export function useUploadLive() {
         if (mintedTokenId != null) {
           deletePost(mintedTokenId).catch(() => {});
         }
-        const inMintPhase = ["awaiting-wallet", "minting", "finalizing"].includes(uploadStage);
-        const msg = inMintPhase
-          ? parseTxError(e, "send")
-          : (e?.message || "Livestream creation failed");
-        toastError(msg);
+        toastError(liveUploadErrorMessage(stageRef.current, e));
       } finally {
         setIsUploading(false);
-        setUploadStage("idle");
+        goToStage("idle");
       }
     },
     [
       buildFormData,
+      goToStage,
       streamCollectionContract,
-      uploadStage,
       nav,
     ],
   );
