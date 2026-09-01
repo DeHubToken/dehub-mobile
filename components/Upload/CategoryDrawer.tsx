@@ -10,7 +10,6 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import GlassModal from "../ui/GlassModal";
 
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
@@ -38,7 +37,6 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
   onRemove,
   type,
 }) => {
-  const insets = useSafeAreaInsets();
   const { height: screenHeight } = useWindowDimensions();
   const inputRef = useRef<TextInput>(null);
   const [query, setQuery] = useState("");
@@ -212,7 +210,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
             keyExtractor={keyExtractor}
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: insets.bottom + 16 }}
+            contentContainerStyle={{ paddingBottom: 16 }}
             ListEmptyComponent={
               !showCreate ? (
                 <View className="items-center py-8">
