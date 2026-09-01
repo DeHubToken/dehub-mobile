@@ -10,12 +10,14 @@ import { openInApp } from "../../libs/links.utils";
 import { hasValidTLD } from "../../libs/tlds";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { stripSoundtrackTag } from "../../libs/parseSoundtrack";
+import { openCategoryFeed } from "../../libs/openCategoryFeed";
 
 type Segment =
   | { type: "text"; value: string }
   | { type: "link"; value: string; url: string }
   | { type: "mention"; value: string; username: string }
-  | { type: "cashtag"; value: string; symbol: string };
+  | { type: "cashtag"; value: string; symbol: string }
+  | { type: "hashtag"; value: string; tag: string };
 
 const ensureUrl = (raw: string): string => {
   const trimmed = (raw || "").trim();
@@ -26,8 +28,10 @@ const ensureUrl = (raw: string): string => {
 
 const parseTextToSegments = (input: string): Segment[] => {
   if (!input) return [];
-  // Group 1: @mention, Group 2: URL, Group 3: $cashtag
-  const combinedRegex = /(@[\w.]+)|\b((?:https?:\/\/|www\.)[^\s]+)|(\$[a-zA-Z]{1,20})/g;
+  // Group 1: @mention, Group 2: URL, Group 3: $cashtag, Group 4: #hashtag.
+  // The hashtag pattern matches web's (TranslatableText) exactly, so the same
+  // caption produces the same set of tags on both platforms.
+  const combinedRegex = /(@[\w.]+)|\b((?:https?:\/\/|www\.)[^\s]+)|(\$[a-zA-Z]{1,20})|(#[a-zA-Z][a-zA-Z0-9_]*)/g;
   const matches = Array.from(input.matchAll(combinedRegex));
   if (matches.length === 0) return [{ type: "text", value: input }];
 
@@ -47,6 +51,10 @@ const parseTextToSegments = (input: string): Segment[] => {
     } else if (m[3]) {
       // $cashtag
       segments.push({ type: "cashtag", value: m[3], symbol: m[3].slice(1).toUpperCase() });
+      cursor = index + m[0].length;
+    } else if (m[4]) {
+      // #hashtag
+      segments.push({ type: "hashtag", value: m[4], tag: m[4].slice(1).toLowerCase() });
       cursor = index + m[0].length;
     } else {
       // URL
@@ -150,6 +158,14 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
     onCashtagPress?.(symbol);
   }, [onCashtagPress]);
 
+  // Not `onCategoryPress`: that is the filter panel's handler, which persists
+  // the pick as the default category for every launch afterwards. A tag tapped
+  // mid-caption is a look at one topic, and this component renders on screens
+  // that own no feed at all — so it always goes through the shared route.
+  const handleHashtagPress = useCallback((tag: string) => {
+    openCategoryFeed(tag);
+  }, []);
+
   // Strip soundtrack tag from description before display
   const cleanDescription = useMemo(() => stripSoundtrackTag(description), [description]);
 
@@ -200,9 +216,21 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
             </Text>
           );
         }
+        if (seg.type === "hashtag") {
+          return (
+            <Text
+              key={`${keyPrefix}-h-${idx}`}
+              className="font-bold text-theme-neutrals-100"
+              onPress={() => handleHashtagPress(seg.tag)}
+              suppressHighlighting
+            >
+              {seg.value}
+            </Text>
+          );
+        }
         return <Text key={`${keyPrefix}-${idx}`}>{seg.value}</Text>;
       }),
-    [handleOpenLink, handleMentionPress, handleCashtagPress, flagged],
+    [handleOpenLink, handleMentionPress, handleCashtagPress, handleHashtagPress, flagged],
   );
 
   // Build the caption text
