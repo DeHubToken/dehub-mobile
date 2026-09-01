@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   TouchableOpacity,
   View,
   Platform,
   StyleSheet,
-  UIManager,
   Animated,
+  Keyboard,
   KeyboardAvoidingView,
 } from "react-native";
-import { useSafeAreaInsets, SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
 
 export interface GlassModalProps {
@@ -32,6 +32,13 @@ export interface GlassModalProps {
  * A reusable modal with a blurred backdrop.
  * - Uses expo-blur directly (no dynamic require or UIManager checks).
  * - Falls back to a semi-transparent black background if blur fails.
+ *
+ * `presentation="bottom"` is a drawer, not a floating card: it spans the full
+ * width and is welded to the bottom edge of the screen, with only its top
+ * corners rounded and only a top hairline. The device's bottom inset is
+ * padding *inside* the panel rather than a gap beneath it — as a gap it left a
+ * strip of the dimmed feed showing under every sheet in the app, and the panel
+ * read as hovering rather than as a drawer.
  */
 const GlassModal: React.FC<GlassModalProps> = ({
   visible,
@@ -47,6 +54,24 @@ const GlassModal: React.FC<GlassModalProps> = ({
   dismissible = true,
 }) => {
   const insets = useSafeAreaInsets();
+  const isBottom = presentation === "bottom";
+
+  // While the keyboard is up, KeyboardAvoidingView already lifts the panel
+  // clear of it, and the bottom inset it would otherwise reserve is under the
+  // keyboard — keeping it just parks a dead strip between the sheet and the
+  // keys.
+  const [keyboardUp, setKeyboardUp] = useState(false);
+  useEffect(() => {
+    if (!isBottom) return;
+    const showEvent = Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";
+    const hideEvent = Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide";
+    const show = Keyboard.addListener(showEvent, () => setKeyboardUp(true));
+    const hide = Keyboard.addListener(hideEvent, () => setKeyboardUp(false));
+    return () => {
+      show.remove();
+      hide.remove();
+    };
+  }, [isBottom]);
 
   return (
     <Modal
@@ -56,8 +81,17 @@ const GlassModal: React.FC<GlassModalProps> = ({
       // Prevent Android back button from closing when not dismissible
       onRequestClose={dismissible ? onClose : () => {}}
       hardwareAccelerated
+      // Every other sheet in the app sets this; GlassModal was the one that
+      // did not, so on Android its window stopped short of the system bars and
+      // the dim never reached them. A bottom sheet then sat above the gesture
+      // bar AND paid the inset again as padding, which is the double gap that
+      // left a strip of the feed showing under it.
+      statusBarTranslucent
     >
-      <View style={[styles.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
+      {/* The insets are spent on the foreground, never on this container, so
+          the dim (and the blur) reach the status bar and the gesture bar
+          instead of stopping short of both. */}
+      <View style={styles.container}>
         {/* Default: non-blurred dim backdrop; no full-screen blur */}
         {backdropScope === "full" ? (
           <TouchableOpacity
@@ -87,34 +121,52 @@ const GlassModal: React.FC<GlassModalProps> = ({
           </TouchableOpacity>
         )}
 
-        {/* Keyboard handling lives here so every GlassModal sheet gets it:
-            Android is edge-to-edge (SDK 54), where the window no longer
-            resizes for the keyboard, so inputs in bottom sheets were covered. */}
-        <KeyboardAvoidingView
-          behavior="padding"
+        {/* The insets live on this layer, not on the KeyboardAvoidingView:
+            `behavior="padding"` composes its own paddingBottom over whatever
+            style it is handed, so a bottom inset set there is silently dropped.
+            A drawer wants none of it anyway — it owns the bottom edge. */}
+        <View
           style={[
-            styles.foregroundWrapper,
+            styles.foreground,
             {
-              justifyContent: presentation === "bottom" ? "flex-end" : "center",
+              paddingTop: insets.top,
+              paddingBottom: isBottom ? 0 : insets.bottom,
             },
           ]}
+          pointerEvents="box-none"
         >
-          {wrapPanel ? (
-            <View
-              style={[
-                styles.panel,
-                {
-                  maxHeight: maxHeight as any,
-                  borderRadius: presentation === "bottom" ? 20 : 16,
-                },
-              ]}
-            >
-              {children}
-            </View>
-          ) : (
-            children
-          )}
-        </KeyboardAvoidingView>
+          {/* Keyboard handling lives here so every GlassModal sheet gets it:
+              Android is edge-to-edge (SDK 54), where the window no longer
+              resizes for the keyboard, so inputs in bottom sheets were
+              covered. */}
+          <KeyboardAvoidingView
+            behavior="padding"
+            style={[
+              styles.foregroundWrapper,
+              {
+                justifyContent: isBottom ? "flex-end" : "center",
+                paddingHorizontal: isBottom ? 0 : 16,
+              },
+            ]}
+          >
+            {wrapPanel ? (
+              <View
+                style={[
+                  styles.panel,
+                  isBottom ? styles.panelDrawer : styles.panelCard,
+                  {
+                    maxHeight: maxHeight as any,
+                    paddingBottom: isBottom && !keyboardUp ? insets.bottom : 0,
+                  },
+                ]}
+              >
+                {children}
+              </View>
+            ) : (
+              children
+            )}
+          </KeyboardAvoidingView>
+        </View>
       </View>
     </Modal>
   );
@@ -124,10 +176,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  foreground: {
+    flex: 1,
+  },
   foregroundWrapper: {
     flex: 1,
     alignItems: "center",
-    paddingHorizontal: 16,
   },
   panel: {
     width: "100%",
@@ -135,8 +189,18 @@ const styles = StyleSheet.create({
     // Opaque: these panels sit over chat/video, and the old 68% fill let
     // content bleed through behind text.
     backgroundColor: "#0C0C0E",
-    borderWidth: 1,
     borderColor: "rgba(255,255,255,0.14)",
+  },
+  panelCard: {
+    borderRadius: 16,
+    borderWidth: 1,
+  },
+  // Welded to the bottom and both sides: the only edge that can show a border
+  // is the top one, and the only corners that can be round are the top two.
+  panelDrawer: {
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderTopWidth: 1,
   },
 });
 

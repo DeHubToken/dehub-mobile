@@ -16,7 +16,6 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import GlassModal from "../ui/GlassModal";
 import type { Community } from "../../types/community";
 
@@ -39,7 +38,6 @@ const CommunityDrawer: React.FC<CommunityDrawerProps> = ({
   onSelect,
   onClear,
 }) => {
-  const insets = useSafeAreaInsets();
   const { height: screenHeight } = useWindowDimensions();
 
   const drawerHeight = Math.round(screenHeight * 0.6);
@@ -123,7 +121,7 @@ const CommunityDrawer: React.FC<CommunityDrawerProps> = ({
           renderItem={renderItem}
           keyExtractor={keyExtractor}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: insets.bottom + 16 }}
+          contentContainerStyle={{ paddingBottom: 16 }}
           ListEmptyComponent={
             <View className="items-center px-8 py-10">
               <Text className="text-theme-neutrals-500 text-sm text-center">
