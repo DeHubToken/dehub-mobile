@@ -1,4 +1,16 @@
-const ENDPOINT = 'https://test.supabase.co/functions/v1/client-logs';
+import env from '../../config/env';
+
+/**
+ * Derived, not hardcoded.
+ *
+ * `__mocks__/@env.ts` looks like it decides this, but it does not:
+ * react-native-dotenv inlines `@env` imports at babel time, so jest's
+ * moduleNameMapper never gets a say and the mock's SUPABASE_URL never reaches
+ * the module under test. Pinning the mock's value here asserted a URL the app
+ * cannot produce — and with no `.env` present, as in CI, reading it threw
+ * before any test in this file could run.
+ */
+const ENDPOINT = `${env.SUPABASE_URL.replace(/\/+$/, '')}/functions/v1/client-logs`;
 
 function body(call: any) {
   return JSON.parse(call[1].body);
