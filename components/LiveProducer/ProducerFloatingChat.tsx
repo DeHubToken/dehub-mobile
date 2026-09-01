@@ -7,6 +7,8 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import MaskedView from "@react-native-masked-view/masked-view";
+import { LinearGradient } from "expo-linear-gradient";
 import { ArrowUpCircle, MessageCircleOff } from "lucide-react-native";
 import { StreamActivityType } from "../../services/enums/livestream.enum";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -82,6 +84,18 @@ const colorForUser = (key?: string): string => {
   }
   return USERNAME_PALETTE[hash % USERNAME_PALETTE.length];
 };
+
+/**
+ * Messages sit straight on the broadcast now — no bubble behind them — so
+ * every line carries its own shadow. Without it a white name over a bright
+ * frame is unreadable, and the fix cannot be a slab: the slab is the thing
+ * being removed.
+ */
+const onVideo = {
+  textShadowColor: "rgba(0,0,0,0.85)",
+  textShadowOffset: { width: 0, height: 1 },
+  textShadowRadius: 3,
+} as const;
 
 /** Visible message types (filter join/leave noise) */
 const VISIBLE_TYPES = new Set<string>([
@@ -172,7 +186,20 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
         </View>
       ) : null}
 
-      <View style={{ maxHeight: 200 }} pointerEvents="none">
+      {/* The list dissolves at its top edge rather than stopping dead. The
+          list is inverted, so "top" is the far end of the data — the mask is
+          still just a gradient over the viewport, opaque at the bottom. */}
+      <MaskedView
+        style={{ maxHeight: 200 }}
+        pointerEvents="none"
+        maskElement={
+          <LinearGradient
+            style={{ flex: 1 }}
+            colors={["transparent", "#000", "#000"]}
+            locations={[0, 0.35, 1]}
+          />
+        }
+      >
         <FlatList
           ref={listRef}
           data={dataReversed}
@@ -186,10 +213,10 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
           removeClippedSubviews
           keyboardShouldPersistTaps="handled"
         />
-      </View>
+      </MaskedView>
 
       <View
-        className="flex-row items-center mt-2 bg-theme-neutrals-800/90 rounded-full px-3 py-1.5 border border-theme-neutrals-600/40"
+        className="flex-row items-center mt-2 rounded-full px-3 py-1.5 border border-white/15 bg-black/40"
         style={{ marginBottom: inputLift }}
       >
         <TextInput
@@ -234,13 +261,13 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
     switch (item.status) {
       case StreamActivityType.MESSAGE: {
         return (
-          <View className="flex-row items-start mb-1.5 bg-theme-neutrals-800/80 rounded-xl px-2.5 py-1.5 self-start max-w-[85%]">
+          <View className="flex-row items-start mb-1.5 px-0.5 py-1 self-start max-w-[92%]">
             <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
               <Avatar uri={avatarUrl} size={18} name={displayName} />
             </TouchableOpacity>
             <Text
               className="text-[11px] font-bold mr-1.5"
-              style={{ color: colorForUser(displayName) }}
+              style={{ color: colorForUser(displayName), ...onVideo }}
               numberOfLines={1}
               onPress={handlePress}
             >
@@ -250,6 +277,7 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
               className={`text-white text-[11px] flex-1 flex-shrink ${
                 item.optimistic ? "opacity-60" : ""
               }`}
+              style={onVideo}
               numberOfLines={3}
             >
               {item.meta?.content}
@@ -279,7 +307,7 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
       case StreamActivityType.START:
         return (
           <View className="mb-1.5 self-start">
-            <Text className="text-white/40 text-[10px]">
+            <Text className="text-white/50 text-[10px]" style={onVideo}>
               🔴 Stream started
             </Text>
           </View>
@@ -287,7 +315,7 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
       case StreamActivityType.END:
         return (
           <View className="mb-1.5 self-start">
-            <Text className="text-white/40 text-[10px]">
+            <Text className="text-white/50 text-[10px]" style={onVideo}>
               ⏹️ Stream ended
             </Text>
           </View>
