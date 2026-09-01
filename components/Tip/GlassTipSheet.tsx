@@ -21,7 +21,6 @@ import {
   Dimensions,
   StyleSheet,
   Platform,
-  ActivityIndicator,
   Image,
   KeyboardAvoidingView,
 } from "react-native";
@@ -63,6 +62,7 @@ import { isSolanaChain } from "../../config/solana.constants";
 import { formatCompactNumber } from "../../libs";
 import { supabase } from "../../services/supabase";
 import { withWalletHeader } from "../../libs/supabase-wallet-client";
+import { ButtonLoader } from "../DeHubLoader";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -644,7 +644,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                         style={styles.sendBtn}
                       >
                         {isBusy ? (
-                          <ActivityIndicator color="#fff" size="small" />
+                          <ButtonLoader size={16} />
                         ) : phase === "error" ? (
                           <Icon name="CircleAlert" size={16} color="#fff" />
                         ) : null}
