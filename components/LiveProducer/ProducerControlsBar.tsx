@@ -31,10 +31,8 @@ interface Props {
  * gradient across the foot of the screen, which is what keeps white icons
  * readable over a bright frame without giving any of them a box of their own.
  *
- * Go Live and End keep their fill: they are the actions that must never be
- * missed, and colour is what tells them apart at a glance.
- */
-const circleBtn = 'w-12 h-12 rounded-full items-center justify-center';
+* Go Live and End keep a fill: they are the actions that must never be missed. * They are told apart by weight rather than by hue — Go Live is the one solid * white control on the frame, End is glass — because the design system keeps * colour off these surfaces, and the two never appear at the same time. */
+const circleBtn = 'w-12 h-12 rounded-xl items-center justify-center';
 const tap = 0.85;
 
 const ProducerControlsBar: React.FC<Props> = ({
@@ -83,7 +81,7 @@ const ProducerControlsBar: React.FC<Props> = ({
         >
           <MessageSquare color="white" size={22} />
           {!chatVisible && hasUnseenChats && (
-            <View className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-red-500 border border-black" />
+            <View className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-white border border-black" />
           )}
         </TouchableOpacity>
         <View className="flex-1" />
@@ -91,7 +89,7 @@ const ProducerControlsBar: React.FC<Props> = ({
           <TouchableOpacity
             onPress={onToggleExternal}
             activeOpacity={tap}
-            className={`mr-2 ${circleBtn} ${externalMode ? 'bg-indigo-600' : ''}`}
+            className={`mr-2 ${circleBtn} ${externalMode ? 'bg-white/20' : ''}`}
           >
             <Server color="white" size={20} />
             {!externalMode && (
@@ -105,7 +103,7 @@ const ProducerControlsBar: React.FC<Props> = ({
           <TouchableOpacity
             onPress={canEnd ? onEnd : undefined}
             activeOpacity={0.9}
-            className={`px-6 h-12 rounded-full items-center justify-center flex-row ${canEnd ? 'bg-red-600' : 'bg-red-800/70'}`}
+            className={`px-6 h-12 rounded-xl items-center justify-center flex-row border border-white/20 ${canEnd ? 'bg-zinc-900/60' : 'bg-zinc-900/40 opacity-60'}`}
           >
             <Radio color="white" size={20} className="mr-2" />
             <Text className="text-white font-semibold text-sm">{isEnding ? 'Ending…' : 'End'}</Text>
@@ -114,10 +112,10 @@ const ProducerControlsBar: React.FC<Props> = ({
             <TouchableOpacity
               onPress={!canStart ? undefined : onStart}
               activeOpacity={!canStart ? 1 : 0.9}
-              className={`px-6 h-12 rounded-full items-center justify-center flex-row ${!canStart ? 'bg-zinc-700/70' : externalMode ? 'bg-indigo-600' : 'bg-green-600'}`}
+              className={`px-6 h-12 rounded-xl items-center justify-center flex-row ${!canStart ? 'bg-white/20' : 'bg-white'}`}
             >
-              <Radio color="white" size={20} className="mr-2" />
-              <Text className="text-white font-semibold text-sm">{isStarting ? 'Setting Up…' : startDisabled ? 'Preparing…' : externalMode ? 'Start External' : 'Go Live'}</Text>
+              <Radio color={!canStart ? 'rgba(255,255,255,0.5)' : '#09090B'} size={20} className="mr-2" />
+              <Text className={`font-semibold text-sm ${!canStart ? 'text-white/50' : 'text-zinc-950'}`}>{isStarting ? 'Setting Up…' : startDisabled ? 'Preparing…' : externalMode ? 'Start External' : 'Go Live'}</Text>
             </TouchableOpacity>
         )}
       </View>
@@ -149,7 +147,7 @@ const ProducerControlsBar: React.FC<Props> = ({
           <TouchableOpacity
             onPress={onToggleChatEnabled}
             activeOpacity={tap}
-            className={`${circleBtn} mr-3 ${chatEnabled ? '' : 'bg-red-600/60'}`}
+            className={`${circleBtn} mr-3 ${chatEnabled ? '' : 'bg-white/20'}`}
           >
             {chatEnabled ? <MessageSquare color="white" size={18} /> : <MessageCircleOff color="white" size={18} />}
           </TouchableOpacity>
