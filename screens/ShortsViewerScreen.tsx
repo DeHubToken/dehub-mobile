@@ -45,7 +45,6 @@ import {
   Animated,
   GestureResponderEvent,
   ActivityIndicator,
-  Platform,
   StyleProp,
   ViewStyle,
 } from "react-native";
@@ -56,10 +55,19 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import { LinearGradient } from "expo-linear-gradient";
-import { BlurView } from "expo-blur";
 import { Image } from "expo-image";
 import Icon from "../components/ui/Icon";
 import type { IconName } from "../components/ui/Icon";
+import {
+  ChromeFill,
+  CHROME_GAP,
+  CHROME_HIT_SLOP,
+  CHROME_SIZE,
+  COUNT_COLOR,
+  EDGE,
+  ICON_COLOR,
+  TEXT_SHADOW,
+} from "../components/common/ViewerChrome";
 import { CommentBottomSheet } from "../components/Comments";
 import { useUser, useAuthActions } from "../context/AuthContext";
 import { useEngagementWeight } from "../hooks/useEngagementWeight";
@@ -118,52 +126,12 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 const PLAYBACK_RATES = [0.5, 1, 1.25, 1.5, 2] as const;
 const formatRate = (rate: number) => `${rate}x`;
 
-const ICON_COLOR = "#fff";
-// Web's `text-white/70` on every count under the action row.
-const COUNT_COLOR = "rgba(255,255,255,0.7)";
-
 /**
- * One margin for the whole frame.
- *
- * Web hangs every piece of chrome off a single 16px margin — `top-4 left-4`
- * on the back button, `top-4 right-4` on the playback group, `px-4` on the
- * caption and the action row — and closes the bottom with
- * `pb-[max(1rem,env(safe-area-inset-bottom))]`, i.e. 16 unless the device
- * needs more.
- *
- * Here it is a flat 16 on all four sides, with no `insets.*` added, because
- * `App.tsx` wraps the whole NavigationContainer in a full-edge `SafeAreaView`
- * (App.tsx:269) — this screen is an ordinary card inside that navigator, so
- * the notch and the home indicator are already paid for before it mounts.
- * `useSafeAreaInsets()` still reports the *full* device inset to descendants
- * of a SafeAreaView (only SafeAreaProvider narrows it), so the old
- * `insets.top + 10` / `insets.bottom + 10` spent it a second time at both
- * ends and left the two bars floating well clear of the edges.
+ * Frame margin, chrome button size and fill, icon and count colours, the text
+ * shadow and the ChromeFill glass all live in components/common/ViewerChrome
+ * now, shared with the live viewer so the two fullscreen surfaces cannot
+ * drift apart again. The reasoning behind each number is in that file.
  */
-const EDGE = 16;
-
-/** Web `gap-3` between the top-right buttons. */
-const CHROME_GAP = 12;
-/** Web `w-10 h-10` / `rounded-xl` on every top button. */
-const CHROME_SIZE = 40;
-const CHROME_RADIUS = 12;
-/** Web `bg-zinc-900/60 backdrop-blur-sm`, and nothing else — no hairline. */
-const CHROME_FILL = "rgba(24,24,27,0.6)";
-// Takes the 40pt buttons past the 44pt tap minimum. The horizontal half is
-// exactly CHROME_GAP / 2, so neighbours in the top-right group meet at the
-// midpoint of the gap instead of overlapping and stealing each other's taps.
-const CHROME_HIT_SLOP = { top: 6, bottom: 6, left: CHROME_GAP / 2, right: CHROME_GAP / 2 };
-
-/**
- * Web leans on `drop-shadow-lg` to keep white overlay text legible over an
- * arbitrary video frame. RN has no filter, so the same job is done with a
- * text shadow on the type and the bottom scrim behind it.
- */
-const TEXT_SHADOW = {
-  textShadowColor: "rgba(0,0,0,0.55)",
-  textShadowOffset: { width: 0, height: 1 },
-  textShadowRadius: 4,
-} as const;
 
 /**
  * Swipe down over the bottom stack to clear the chrome, then tap the middle
@@ -218,32 +186,6 @@ const RESTORE_ZONE_BOTTOM = 0.85;
  * carries to the next short, because the timer restarts with each one.
  */
 const AUTO_HIDE_MS = 3000;
-
-/**
- * The glass behind a top button, as an absolutely-positioned sibling rather
- * than a wrapper, so `pointerEvents="none"` lets taps on the button's own
- * padding still reach the video underneath.
- *
- * Only the top row uses it. Web puts `bg-zinc-900/60 backdrop-blur-sm` behind
- * its four playback controls and nothing at all behind the action row — the
- * icons there are bare, and the bottom scrim plus a text shadow does the
- * legibility work. The slab this viewer used to draw under the action row was
- * the single biggest thing making it read as a different app.
- *
- * The Android backdrop blur is deliberately absent. `dimezisBlurView`
- * re-snapshots the root view every frame and throws when a list mutates its
- * children mid-draw, so it is only safe on surfaces that mount and unmount
- * (see components/ui/LiquidGlass.tsx) — never on chrome pinned over a video
- * feed that is recycling cells. The 60% fill carries the contrast on its own.
- */
-const ChromeFill: React.FC = () => (
-  <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.chromeFill]}>
-    {Platform.OS === "ios" && (
-      <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
-    )}
-    <View style={[StyleSheet.absoluteFill, { backgroundColor: CHROME_FILL }]} />
-  </View>
-);
 
 interface ActionButtonProps {
   icon: IconName;
@@ -1700,10 +1642,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#000",
-  },
-  chromeFill: {
-    overflow: "hidden",
-    borderRadius: CHROME_RADIUS,
   },
   topGradient: {
     position: "absolute",

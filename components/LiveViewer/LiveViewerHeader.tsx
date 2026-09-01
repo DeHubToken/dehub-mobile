@@ -1,8 +1,25 @@
+/**
+ * The live viewer's top bar.
+ *
+ * Drawn from the same kit as the shorts viewer (components/common/ViewerChrome)
+ * rather than its own set of black/50 circles and hairline borders: a rounded
+ * card on the left, a 40pt chrome button per control on the right. A viewer
+ * opening a stream and a viewer opening a short now see one app.
+ */
 import React, { memo, useCallback, useMemo } from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
-import { X } from "lucide-react-native";
+import { View, Text, Pressable, Image, StyleSheet } from "react-native";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl, getBadgeUrlFor, resolveBadgeBalance } from "../../libs/misc";
+import Icon from "../ui/Icon";
+import {
+  ChromeFill,
+  CHROME_GAP,
+  CHROME_HIT_SLOP,
+  CHROME_RADIUS,
+  CHROME_SIZE,
+  EDGE,
+  TEXT_SHADOW,
+} from "../common/ViewerChrome";
+import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import { truncateAddress } from "../../libs/strings.util";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useNavigation } from "@react-navigation/native";
@@ -33,6 +50,8 @@ interface LiveViewerHeaderProps {
   isEnded: boolean;
   viewerCount: number;
   fallbackMinter?: string | number;
+  /** Opens the shared post options sheet — the same one every other post has. */
+  onOptionsPress?: () => void;
 }
 
 const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
@@ -48,6 +67,7 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
   isEnded,
   viewerCount,
   fallbackMinter,
+  onOptionsPress,
 }) => {
   const navigation = useNavigation<any>();
   const { showUserProfile } = useUserProfileSheet();
@@ -78,19 +98,11 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
     [creator?.followers]
   );
 
-  const stakedDHB = useMemo(() => {
-    if (!creator) return 0;
-    return resolveBadgeBalance(creator as any);
-  }, [creator]);
   const badgeImage = getBadgeUrlFor(creator as any);
 
   const isSelf = useMemo(() => {
     const v = (viewerAddress || "").toLowerCase();
-    const t = (
-      creator?.walletAddress ||
-      creator?.address ||
-      ""
-    ).toLowerCase();
+    const t = (creator?.walletAddress || creator?.address || "").toLowerCase();
     return !!v && !!t && v === t;
   }, [viewerAddress, creator]);
 
@@ -119,14 +131,11 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
     });
   }, [isSelf, requireAuth, isFollowing, onUnfollow, onFollow]);
 
-  const statusDotColor = isPaused
-    ? "#D4D4D8"
-    : isLive
-      ? "#ef4444"
-      : isEnded
-        ? "#6b7280"
-        : "#6b7280";
-
+  /**
+   * Monochrome, per the design system: the state is carried by the dot's
+   * opacity and the label, never by a hue. Paused and ended were previously
+   * two different greys that read as the same colour anyway.
+   */
   const statusLabel = isPaused
     ? "PAUSED"
     : isLive
@@ -135,101 +144,222 @@ const LiveViewerHeader: React.FC<LiveViewerHeaderProps> = ({
         ? "ENDED"
         : "OFFLINE";
 
+  const statusDim = !isLive || isPaused;
+
   return (
-    <View className="flex-row items-center justify-between px-4 pt-2 pb-2">
-      {/* Creator pill */}
-      <TouchableOpacity
-        activeOpacity={0.85}
+    <View style={styles.bar} pointerEvents="box-none">
+      {/* Creator card */}
+      <Pressable
         onPress={handleOpenProfile}
-        className="flex-row items-center bg-black/50 rounded-full pr-3 pl-1 py-1 border border-white/10"
-        style={{ maxWidth: "70%" }}
+        style={styles.creatorCard}
+        accessibilityRole="button"
+        accessibilityLabel={"Open profile of " + displayName}
       >
+        <ChromeFill />
         <Avatar
           uri={avatarUrl}
-          size={32}
+          size={36}
           onPress={handleOpenProfile}
-          borderWidth={2}
-          borderColor={isLive ? "#ef4444" : "#333"}
           name={displayName}
+          style={styles.avatar}
         />
-        <View className="ml-2 mr-2 flex-shrink">
-          <View className="flex-row items-center">
-            <Text
-              className="text-white text-xs font-bold"
-              numberOfLines={1}
-            >
+        <View style={styles.creatorText}>
+          <View style={styles.nameRow}>
+            <Text style={styles.name} numberOfLines={1}>
               {displayName}
             </Text>
             {badgeImage ? (
-              <Image source={badgeImage} className="w-3 h-3 ml-1" />
+              <Image source={badgeImage} style={styles.badge} />
             ) : null}
           </View>
-          <Text className="text-white/50 text-[10px]" numberOfLines={1}>
-            {formatCompactNumber(followerCount)} followers
-          </Text>
-        </View>
-
-        {/* LIVE badge */}
-        {(isLive || isPaused) && (
-          <View className="flex-row items-center bg-black/40 rounded-full px-2 py-0.5 mr-1">
-            <View
-              className="w-1.5 h-1.5 rounded-full mr-1"
-              style={{ backgroundColor: statusDotColor }}
-            />
-            <Text
-              className="text-[10px] font-bold"
-              style={{ color: statusDotColor }}
-            >
-              {statusLabel}
+          <View style={styles.metaRow}>
+            <View style={styles.statusChip}>
+              <View
+                style={[styles.statusDot, statusDim ? styles.statusDotDim : null]}
+              />
+              <Text style={styles.statusText}>{statusLabel}</Text>
+            </View>
+            <Text style={styles.meta} numberOfLines={1}>
+              {formatCompactNumber(Math.max(0, viewerCount))} watching
+              {" · "}
+              {formatCompactNumber(followerCount)} followers
             </Text>
           </View>
-        )}
-
-        {/* Viewer count */}
-        <View className="flex-row items-center bg-black/40 rounded-full px-2 py-0.5">
-          <Text className="text-white/70 text-[10px]">
-            👁 {formatCompactNumber(Math.max(0, viewerCount))}
-          </Text>
         </View>
-      </TouchableOpacity>
+      </Pressable>
 
-      <View className="flex-row items-center">
-        {/* Follow button */}
+      <View style={styles.controls}>
+        {/* Follow — the one filled control on the frame, as on the feed card. */}
         {!isSelf && !creatorLoading && creator && (
-          <TouchableOpacity
+          <Pressable
             onPress={handleFollowPress}
             disabled={followLoading}
-            activeOpacity={0.8}
-            className={`rounded-full px-3 py-1.5 mr-2 ${
-              isFollowing
-                ? "bg-white/10 border border-white/20"
-                : "bg-theme-accent"
-            } ${followLoading ? "opacity-60" : ""}`}
+            hitSlop={CHROME_HIT_SLOP}
+            style={[
+              styles.followButton,
+              isFollowing ? null : styles.followButtonSolid,
+              followLoading ? styles.pending : null,
+            ]}
+            accessibilityRole="button"
           >
+            {isFollowing ? <ChromeFill /> : null}
             <Text
-              className={`text-[11px] font-bold ${
-                isFollowing ? "text-white/70" : "text-theme-accent-foreground"
-              }`}
+              style={[
+                styles.followLabel,
+                isFollowing ? styles.followingLabel : styles.followLabelSolid,
+              ]}
             >
               {isFollowing ? "Following" : "Follow"}
             </Text>
-          </TouchableOpacity>
+          </Pressable>
         )}
 
-        {/* Close button */}
-        <TouchableOpacity
+        {/* Options — save, share, report, block and the owner actions. The
+            stream page was the only post surface in the app without it. */}
+        {onOptionsPress ? (
+          <Pressable
+            onPress={onOptionsPress}
+            hitSlop={CHROME_HIT_SLOP}
+            style={styles.chromeButton}
+            accessibilityRole="button"
+            accessibilityLabel="More options"
+          >
+            <ChromeFill />
+            <Icon name="Ellipsis" size={20} color="#fff" />
+          </Pressable>
+        ) : null}
+
+        <Pressable
           onPress={handleClose}
-          activeOpacity={0.7}
-          hitSlop={8}
-          className="w-8 h-8 rounded-full bg-black/50 items-center justify-center border border-white/10"
+          hitSlop={CHROME_HIT_SLOP}
+          style={styles.chromeButton}
           accessibilityRole="button"
           accessibilityLabel="Close"
         >
-          <X color="#fff" size={16} />
-        </TouchableOpacity>
+          <ChromeFill />
+          <Icon name="X" size={20} color="#fff" />
+        </Pressable>
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  bar: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    paddingHorizontal: EDGE,
+    paddingTop: EDGE,
+    paddingBottom: 10,
+    gap: CHROME_GAP,
+  },
+  /**
+   * Real padding on all four sides — the old pill had pl-1/py-1 around a 32pt
+   * avatar, which left the image touching the left edge and the text crowding
+   * the right.
+   */
+  creatorCard: {
+    flexShrink: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: CHROME_RADIUS,
+    padding: 8,
+    gap: 8,
+    overflow: "hidden",
+  },
+  /** Web draws avatars as rounded squares; Avatar's own 16% would give 6. */
+  avatar: {
+    borderRadius: 10,
+  },
+  creatorText: {
+    flexShrink: 1,
+  },
+  nameRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  name: {
+    color: "#fff",
+    fontSize: 13,
+    fontWeight: "600",
+    flexShrink: 1,
+    ...TEXT_SHADOW,
+  },
+  badge: {
+    width: 12,
+    height: 12,
+  },
+  metaRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+    marginTop: 2,
+  },
+  statusChip: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  statusDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: "#fff",
+  },
+  statusDotDim: {
+    backgroundColor: "rgba(255,255,255,0.4)",
+  },
+  statusText: {
+    color: "#fff",
+    fontSize: 10,
+    fontWeight: "700",
+    letterSpacing: 0.4,
+  },
+  meta: {
+    color: "rgba(255,255,255,0.7)",
+    fontSize: 11,
+    flexShrink: 1,
+    ...TEXT_SHADOW,
+  },
+  controls: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: CHROME_GAP,
+  },
+  chromeButton: {
+    width: CHROME_SIZE,
+    height: CHROME_SIZE,
+    borderRadius: CHROME_RADIUS,
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
+  },
+  followButton: {
+    height: CHROME_SIZE,
+    paddingHorizontal: 14,
+    borderRadius: CHROME_RADIUS,
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
+  },
+  followButtonSolid: {
+    backgroundColor: "#fff",
+  },
+  pending: {
+    opacity: 0.6,
+  },
+  followLabel: {
+    fontSize: 13,
+    fontWeight: "700",
+  },
+  followLabelSolid: {
+    color: "#09090B",
+  },
+  followingLabel: {
+    color: "rgba(255,255,255,0.85)",
+  },
+});
 
 export default memo(LiveViewerHeader);
