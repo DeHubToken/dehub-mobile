@@ -2394,5 +2394,20 @@
     "history": "History",
     "sold": "Dem don sell am",
     "bought": "Dem don buy am"
+  },
+  "videoLooks": {
+    "button": "Camera looks",
+    "title": "Look",
+    "hint": "E dey apply before your video comot for dis device — viewers go see exactly wetin you dey see here.",
+    "none": "Nothing",
+    "soft": "Soft",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Warm",
+    "cool": "Cool",
+    "vivid": "Vivid",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pixelate"
   }
 }

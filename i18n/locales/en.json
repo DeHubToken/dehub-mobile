@@ -2394,5 +2394,20 @@
   },
   "arcade": {
     "intro": "Games that run right here in the app. Nothing to install, nothing to buy — open source, and served from DeHub itself."
+  },
+  "videoLooks": {
+    "button": "Camera looks",
+    "title": "Look",
+    "hint": "Applied before your video leaves this device — viewers see exactly what you see here.",
+    "none": "Off",
+    "soft": "Soft",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Warm",
+    "cool": "Cool",
+    "vivid": "Vivid",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pixelate"
   }
 }

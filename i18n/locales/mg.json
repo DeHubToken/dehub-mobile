@@ -2492,5 +2492,20 @@
     "history": "Tantara",
     "sold": "Lafo",
     "bought": "Novidina"
+  },
+  "videoLooks": {
+    "button": "Endrik ny fakan-tsary",
+    "title": "Endrika",
+    "hint": "Ampiharina alohan ny hivoahan ny lahatsary amin ity fitaovana ity — mahita mitovy amin izay hitanao eto ny mpijery.",
+    "none": "Tsy misy",
+    "soft": "Malefaka",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Mafana",
+    "cool": "Mangatsiaka",
+    "vivid": "Mamiratra",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Piksely"
   }
 }

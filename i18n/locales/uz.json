@@ -2448,5 +2448,20 @@
     "history": "Tarix",
     "sold": "Sotildi",
     "bought": "Sotib olindi"
+  },
+  "videoLooks": {
+    "button": "Kamera koʻrinishlari",
+    "title": "Koʻrinish",
+    "hint": "Video ushbu qurilmadan chiqishidan oldin qoʻllanadi — tomoshabinlar aynan siz shu yerda koʻrayotgan narsani koʻradi.",
+    "none": "Yoʻq",
+    "soft": "Yumshoq",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Iliq",
+    "cool": "Sovuq",
+    "vivid": "Yorqin",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Piksel"
   }
 }

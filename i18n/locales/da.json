@@ -2397,5 +2397,20 @@
     "history": "Historik",
     "sold": "Solgt",
     "bought": "Købt"
+  },
+  "videoLooks": {
+    "button": "Kameralooks",
+    "title": "Look",
+    "hint": "Anvendes, før din video forlader denne enhed — seerne ser præcis det, du ser her.",
+    "none": "Ingen",
+    "soft": "Blød",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Varm",
+    "cool": "Kold",
+    "vivid": "Levende",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pixelér"
   }
 }

@@ -2651,5 +2651,20 @@
     "history": "Geschiedenis",
     "sold": "Verkocht",
     "bought": "Gekocht"
+  },
+  "videoLooks": {
+    "button": "Cameralooks",
+    "title": "Look",
+    "hint": "Wordt toegepast voordat je video dit apparaat verlaat — kijkers zien precies wat jij hier ziet.",
+    "none": "Geen",
+    "soft": "Zacht",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Warm",
+    "cool": "Koel",
+    "vivid": "Levendig",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pixelen"
   }
 }

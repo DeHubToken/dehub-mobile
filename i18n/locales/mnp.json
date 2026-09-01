@@ -2437,5 +2437,20 @@
     "history": "历史",
     "sold": "已经卖去",
     "bought": "已经买着"
+  },
+  "videoLooks": {
+    "button": "摄像头滤镜",
+    "title": "滤镜",
+    "hint": "在视频离开只台设备之前应用 — 观众看着个正是汝在只搭看着个画面。",
+    "none": "无",
+    "soft": "柔和",
+    "mono": "黑白",
+    "noir": "黑色电影",
+    "warm": "暖色",
+    "cool": "冷色",
+    "vivid": "鲜艳",
+    "vhs": "VHS",
+    "neon": "霓虹",
+    "pixelate": "像素化"
   }
 }

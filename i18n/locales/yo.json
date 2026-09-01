@@ -2394,5 +2394,20 @@
     "history": "Ìtàn",
     "sold": "Tí a ti tà",
     "bought": "Tí a ti rà"
+  },
+  "videoLooks": {
+    "button": "Àwọn ìrísí kámẹ́rà",
+    "title": "Ìrísí",
+    "hint": "A ń lò ó kí fídíò rẹ tó kúrò ní ẹ̀rọ yìí — àwọn olùwòran rí gan-an ohun tí o rí níbí.",
+    "none": "Kò sí",
+    "soft": "Rírọ̀",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Gbóná",
+    "cool": "Tútù",
+    "vivid": "Dídán",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Píksẹ̀lì"
   }
 }

@@ -2393,5 +2393,20 @@
     "history": "Akụkọ",
     "sold": "Erere",
     "bought": "Azụrụ"
+  },
+  "videoLooks": {
+    "button": "Ụdị igwefoto",
+    "title": "Ụdị",
+    "hint": "A na-etinye ya tupu vidiyo gị apụọ na ngwaọrụ a — ndị na-ekiri na-ahụ kpọmkwem ihe ị na-ahụ ebe a.",
+    "none": "Ọ dịghị",
+    "soft": "Dị nro",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Ọkụ",
+    "cool": "Oyi",
+    "vivid": "Nke na-egbuke",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Piksel"
   }
 }

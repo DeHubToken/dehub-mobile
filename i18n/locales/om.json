@@ -2443,5 +2443,20 @@
     "history": "Seenaa",
     "sold": "Gurgurameera",
     "bought": "Bitameera"
+  },
+  "videoLooks": {
+    "button": "Bifannoota kaameraa",
+    "title": "Bifa",
+    "hint": "Viidiyoon kee meeshaa kana keessaa osoo hin bahin dura hojiirra oola — ilaaltonni waan ati asitti argitu sirriitti argu.",
+    "none": "Homaa",
+    "soft": "Laafaa",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Ho aa",
+    "cool": "Qorraa",
+    "vivid": "Ifaa",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Piksel"
   }
 }

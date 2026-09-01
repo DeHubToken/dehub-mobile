@@ -2394,5 +2394,20 @@
     "history": "Geçmiş",
     "sold": "Satıldı",
     "bought": "Satın alındı"
+  },
+  "videoLooks": {
+    "button": "Kamera görünümleri",
+    "title": "Görünüm",
+    "hint": "Videonuz bu cihazdan çıkmadan önce uygulanır — izleyiciler tam olarak burada gördüğünüzü görür.",
+    "none": "Kapalı",
+    "soft": "Yumuşak",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Sıcak",
+    "cool": "Soğuk",
+    "vivid": "Canlı",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pikselli"
   }
 }

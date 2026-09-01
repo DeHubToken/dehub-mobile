@@ -2393,5 +2393,20 @@
     "history": "Historial",
     "sold": "Vendida",
     "bought": "Comprada"
+  },
+  "videoLooks": {
+    "button": "Estilos de cámara",
+    "title": "Estilo",
+    "hint": "Se aplica antes de que tu vídeo salga de este dispositivo: los espectadores ven exactamente lo que ves aquí.",
+    "none": "Ninguno",
+    "soft": "Suave",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Cálido",
+    "cool": "Frío",
+    "vivid": "Vivo",
+    "vhs": "VHS",
+    "neon": "Neón",
+    "pixelate": "Pixelado"
   }
 }
