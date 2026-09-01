@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
   Pressable,
   ScrollView,
+  Modal,
+  Dimensions,
   LayoutChangeEvent,
   PanResponder,
   GestureResponderEvent,
@@ -49,6 +51,9 @@ const PRELOAD_SETTLE_MS = 400;
 
 /** Horizontal travel before a drag over the artwork counts as a scrub. */
 const SCRUB_THRESHOLD_PX = 6;
+
+/** One height for every control, so the row reads as a row. */
+const CONTROL_SIZE = 32;
 
 type VisualizerStyle = "static" | "bars" | "wave" | "mirror";
 
@@ -251,16 +256,18 @@ interface StaticWaveformProps {
   position: SharedValue<number>;
   compact?: boolean;
   hue: number;
+  /** Overrides the band height so fullscreen renders the same waveform big. */
+  height?: number;
   onLayout?: (e: LayoutChangeEvent) => void;
   panHandlers?: Partial<GestureResponderHandlers>;
 }
 
 const StaticWaveform: React.FC<StaticWaveformProps> = memo(
-  ({ seed, position, compact, hue, onLayout, panHandlers }) => {
+  ({ seed, position, compact, hue, height, onLayout, panHandlers }) => {
     const count = compact ? COMPACT_BAR_COUNT : BAR_COUNT;
     const bw = compact ? COMPACT_BAR_WIDTH : BAR_WIDTH;
     const bg = compact ? COMPACT_BAR_GAP : BAR_GAP;
-    const wHeight = compact ? COMPACT_WAVEFORM_HEIGHT : WAVEFORM_HEIGHT;
+    const wHeight = height ?? (compact ? COMPACT_WAVEFORM_HEIGHT : WAVEFORM_HEIGHT);
     const bars = useMemo(() => generateBars(seed, count), [seed, count]);
 
     const playedColor = hue === 0 ? "rgba(255,255,255,0.85)" : `hsla(${hue}, 80%, 70%, 0.9)`;
@@ -389,16 +396,19 @@ interface AnimatedVisualizerProps {
   isPlaying: boolean;
   hue: number;
   mode: "bars" | "wave" | "mirror";
+  /** Overrides the band height so fullscreen renders the same bars big. */
+  height?: number;
   onLayout?: (e: LayoutChangeEvent) => void;
   panHandlers?: Partial<GestureResponderHandlers>;
 }
 
 const AnimatedVisualizer: React.FC<AnimatedVisualizerProps> = memo(
-  ({ seed, isPlaying, hue, mode, onLayout, panHandlers }) => {
+  ({ seed, isPlaying, hue, mode, height, onLayout, panHandlers }) => {
     const count = BAR_COUNT;
     const bw = BAR_WIDTH;
     const bg = BAR_GAP;
-    const maxH = mode === "mirror" ? WAVEFORM_HEIGHT / 2 - 2 : WAVEFORM_HEIGHT;
+    const wHeight = height ?? WAVEFORM_HEIGHT;
+    const maxH = mode === "mirror" ? wHeight / 2 - 2 : wHeight;
     const minH = 3;
     const bars = useMemo(() => generateBars(seed, count), [seed, count]);
 
@@ -409,7 +419,7 @@ const AnimatedVisualizer: React.FC<AnimatedVisualizerProps> = memo(
         style={{
           flexDirection: "row",
           alignItems: mode === "mirror" ? "center" : "flex-end",
-          height: WAVEFORM_HEIGHT,
+          height: wHeight,
           justifyContent: "center",
         }}
       >
@@ -552,6 +562,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const [listenCount, setListenCount] = useState(initialListens);
   const [hue, setHue] = useState(() => getCachedHue());
   const [vizStyle, setVizStyle] = useState<VisualizerStyle>("static");
+  const [volume, setVolume] = useState(1);
+  const [selfMuted, setSelfMuted] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const listenRecordedRef = useRef(false);
   const positionIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const isSeekingRef = useRef(false);
@@ -569,6 +582,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   totalDurationRef.current = totalDuration;
   const progressRef = useRef(0);
   progressRef.current = progress;
+  // Read at sound-creation time, so a level set before the track loaded is not
+  // lost the moment it does.
+  const volumeRef = useRef(1);
 
   const focusStopRef = useRef(() => {
     soundRef.current?.pauseAsync().catch(() => {});
@@ -643,6 +659,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           return;
         }
         soundRef.current = sound;
+        sound.setVolumeAsync(volumeRef.current).catch(() => {});
         preloadedRef.current = true;
 
         sound.setOnPlaybackStatusUpdate((status) => {
@@ -751,6 +768,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         { shouldPlay: true, progressUpdateIntervalMillis: 100 },
       );
       soundRef.current = sound;
+      sound.setVolumeAsync(volumeRef.current).catch(() => {});
       preloadedRef.current = true;
 
       sound.setOnPlaybackStatusUpdate((status) => {
@@ -868,6 +886,38 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     claimOnStart: false,
   });
 
+  /* Volume. expo-av carries no muted flag, so mute is volume 0 with the level
+     remembered — and un-muting a slider dragged to zero has to put a level
+     back, or the icon flips and the track stays silent. */
+  const isEffectivelyMuted = selfMuted || volume === 0;
+  volumeRef.current = isEffectivelyMuted ? 0 : volume;
+
+  const applyVolume = useCallback((level: number) => {
+    soundRef.current?.setVolumeAsync(clamp01(level)).catch(() => {});
+  }, []);
+
+  const handleVolumeChange = useCallback((level: number) => {
+    const next = clamp01(level);
+    setVolume(next);
+    if (next > 0) setSelfMuted(false);
+    applyVolume(next);
+  }, [applyVolume]);
+
+  const handleToggleMute = useCallback(() => {
+    if (!isEffectivelyMuted) {
+      setSelfMuted(true);
+      applyVolume(0);
+      return;
+    }
+    setSelfMuted(false);
+    const restored = volume === 0 ? 1 : volume;
+    if (volume === 0) setVolume(1);
+    applyVolume(restored);
+  }, [isEffectivelyMuted, volume, applyVolume]);
+
+  // The screen is 100% of the modal, and the controls under it need room.
+  const fullscreenWaveHeight = Math.round(Dimensions.get("window").height * 0.32);
+
   const handleHueChange = useCallback((h: number) => {
     setHue(h);
     setHueState(h);
@@ -917,13 +967,14 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     );
   }
 
-  const renderVisualizer = () => {
+  const renderVisualizer = (height?: number) => {
     if (vizStyle === "static") {
       return (
         <StaticWaveform
           seed={seed}
           position={position}
           hue={hue}
+          height={height}
           onLayout={artworkSurface.onLayout}
           panHandlers={artworkSurface.panHandlers}
         />
@@ -935,73 +986,143 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         isPlaying={isPlaying}
         hue={hue}
         mode={vizStyle}
+        height={height}
         onLayout={artworkSurface.onLayout}
         panHandlers={artworkSurface.panHandlers}
       />
     );
   };
 
+  /* Volume and fullscreen ride the top corners of the artwork, matching the
+     web card. Both are rendered by `renderBody`, so the fullscreen modal gets
+     them from the same code and the same state — the sound never reloads, it
+     is one `soundRef` either way. */
+  const renderTopChrome = () => (
+    <View className="flex-row items-center justify-between mb-2">
+      <View
+        className="flex-row items-center gap-1.5 rounded-xl bg-white/10 px-2"
+        style={{ height: CONTROL_SIZE, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
+      >
+        <TouchableOpacity
+          onPress={handleToggleMute}
+          activeOpacity={0.7}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 4 }}
+        >
+          <Icon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} size={14} color="rgba(255,255,255,0.85)" />
+        </TouchableOpacity>
+        <View style={{ width: 72, height: CONTROL_SIZE, justifyContent: "center" }}>
+          <Slider
+            style={{ width: "100%" }}
+            minimumValue={0}
+            maximumValue={1}
+            step={0.01}
+            value={isEffectivelyMuted ? 0 : volume}
+            onValueChange={handleVolumeChange}
+            minimumTrackTintColor="rgba(255,255,255,0.85)"
+            maximumTrackTintColor="rgba(255,255,255,0.25)"
+            thumbTintColor="#ffffff"
+          />
+        </View>
+      </View>
+
+      <TouchableOpacity
+        onPress={() => setIsFullscreen((v) => !v)}
+        activeOpacity={0.7}
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        className="rounded-xl bg-white/10 items-center justify-center"
+        style={{ width: CONTROL_SIZE, height: CONTROL_SIZE, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
+      >
+        <Icon name={isFullscreen ? "Minimize2" : "Maximize2"} size={15} color="#fff" />
+      </TouchableOpacity>
+    </View>
+  );
+
+  const renderBody = (visualizerHeight?: number) => (
+    <>
+      {renderTopChrome()}
+      {renderVisualizer(visualizerHeight)}
+
+      {/* Scrubber with elapsed / total, live in every style */}
+      <View className="flex-row items-center gap-2 mt-2">
+        <Text
+          className="text-white/60 text-[11px]"
+          style={{ fontVariant: ["tabular-nums"] }}
+        >
+          {fmtDuration(currentTime)}
+        </Text>
+        <View className="flex-1">
+          <SeekBar
+            position={position}
+            hue={hue}
+            onLayout={seekBarSurface.onLayout}
+            panHandlers={seekBarSurface.panHandlers}
+          />
+        </View>
+        <Text
+          className="text-white/40 text-[11px]"
+          style={{ fontVariant: ["tabular-nums"] }}
+        >
+          {fmtDuration(totalDuration)}
+        </Text>
+      </View>
+
+      {/* Play sits with the colour and animation pickers rather than alone in
+          the middle of the card, so every control for the track is in one
+          place along the bottom — and all three are CONTROL_SIZE tall, which
+          they were not: 36 against 32 against 24 read as three sizes on a
+          baseline. */}
+      <View className="flex-row items-center gap-2 mt-2">
+        <TouchableOpacity
+          onPress={handlePlayPause}
+          activeOpacity={0.7}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          className="rounded-xl bg-white/10 items-center justify-center"
+          style={{ width: CONTROL_SIZE, height: CONTROL_SIZE, borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
+        >
+          {isLoading ? (
+            <Icon name="Loader" size={16} color="#fff" />
+          ) : (
+            <Icon name={isPlaying ? "Pause" : "Play"} size={16} color="#fff" />
+          )}
+        </TouchableOpacity>
+
+        <HueSlider hue={hue} onHueChange={handleHueChange} />
+
+        <View className="flex-1">
+          <StylePicker style={vizStyle} onStyleChange={handleStyleChange} />
+        </View>
+      </View>
+
+      <View className="flex-row items-center justify-end gap-1 mt-2">
+        <Icon name="Headphones" size={11} color="rgba(255,255,255,0.35)" />
+        <Text className="text-white/35 text-[10px]">
+          {listenCount} {listenCount === 1 ? "listen" : "listens"}
+        </Text>
+      </View>
+    </>
+  );
+
   return (
     <View className="mt-3 rounded-xl overflow-hidden">
       <View className="p-4" style={{ backgroundColor: "rgba(0,0,0,0.65)" }}>
-        {renderVisualizer()}
-
-        {/* Scrubber with elapsed / total, live in every style */}
-        <View className="flex-row items-center gap-2 mt-2">
-          <Text
-            className="text-white/60 text-[11px]"
-            style={{ fontVariant: ["tabular-nums"] }}
-          >
-            {fmtDuration(currentTime)}
-          </Text>
-          <View className="flex-1">
-            <SeekBar
-              position={position}
-              hue={hue}
-              onLayout={seekBarSurface.onLayout}
-              panHandlers={seekBarSurface.panHandlers}
-            />
-          </View>
-          <Text
-            className="text-white/40 text-[11px]"
-            style={{ fontVariant: ["tabular-nums"] }}
-          >
-            {fmtDuration(totalDuration)}
-          </Text>
-        </View>
-
-        {/* Play sits with the colour and animation pickers rather than alone in
-            the middle of the card, so every control for the track is in one
-            place along the bottom. */}
-        <View className="flex-row items-center gap-2 mt-2">
-          <TouchableOpacity
-            onPress={handlePlayPause}
-            activeOpacity={0.7}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            className="w-9 h-9 rounded-xl bg-white/10 items-center justify-center"
-            style={{ borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
-          >
-            {isLoading ? (
-              <Icon name="Loader" size={17} color="#fff" />
-            ) : (
-              <Icon name={isPlaying ? "Pause" : "Play"} size={17} color="#fff" />
-            )}
-          </TouchableOpacity>
-
-          <HueSlider hue={hue} onHueChange={handleHueChange} />
-
-          <View className="flex-1">
-            <StylePicker style={vizStyle} onStyleChange={handleStyleChange} />
-          </View>
-        </View>
-
-        <View className="flex-row items-center justify-end gap-1 mt-2">
-          <Icon name="Headphones" size={11} color="rgba(255,255,255,0.35)" />
-          <Text className="text-white/35 text-[10px]">
-            {listenCount} {listenCount === 1 ? "listen" : "listens"}
-          </Text>
-        </View>
+        {renderBody()}
       </View>
+
+      {/* An RN <Modal>, mounted here rather than routed to: a
+          `transparentModal` screen leaves what is behind it visible but not
+          interactive, and this component must stay mounted or the sound
+          unloads mid-track. */}
+      <Modal
+        visible={isFullscreen}
+        animationType="fade"
+        supportedOrientations={["portrait", "landscape"]}
+        onRequestClose={() => setIsFullscreen(false)}
+        statusBarTranslucent
+      >
+        <View style={{ flex: 1, backgroundColor: "#000", justifyContent: "center", paddingHorizontal: 16 }}>
+          {renderBody(fullscreenWaveHeight)}
+        </View>
+      </Modal>
     </View>
   );
 };
