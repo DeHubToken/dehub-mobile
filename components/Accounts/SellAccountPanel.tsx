@@ -18,6 +18,7 @@
  * chain and delivery address, and Resume re-claims it until the account
  * demonstrably lives at the receiving wallet.
  */
+import { DhbCoin } from "../common/DhbCoin";
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -255,7 +256,7 @@ const SaleRow: React.FC<{ sale: AccountSale; label: string }> = ({ sale, label }
       </Text>
       <Text style={styles.rowSub}>{label}</Text>
     </View>
-    <Text style={styles.rowPrice}>{sale.paidDhb.toLocaleString("en-US")} DHB</Text>
+    <Text style={styles.rowPrice}>{sale.paidDhb.toLocaleString("en-US")} <DhbCoin /></Text>
   </View>
 );
 
@@ -273,7 +274,7 @@ const HistoryRow: React.FC<{ listing: MyAccountListing; soldLabel: string }> = (
         {listing.status === "cancelled" ? listing.cancelReason || "Withdrawn" : soldLabel}
       </Text>
     </View>
-    <Text style={styles.rowPriceMuted}>{listing.priceDhb.toLocaleString("en-US")} DHB</Text>
+    <Text style={styles.rowPriceMuted}>{listing.priceDhb.toLocaleString("en-US")} <DhbCoin /></Text>
   </View>
 );
 

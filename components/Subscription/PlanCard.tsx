@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, StyleSheet } from "react-native";
 import { BlurView } from "expo-blur";
@@ -238,7 +239,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
             <Text style={{ color: "#fff", fontWeight: "600" }}>{plan.name}</Text>{" "}
             for{" "}
             <Text style={{ color: "#D4D4D8", fontWeight: "600" }}>
-              {price ?? 0} DHB
+              {price ?? 0} <DhbCoin />
             </Text>{" "}
             / {formatDuration(plan.duration)}?
           </Text>

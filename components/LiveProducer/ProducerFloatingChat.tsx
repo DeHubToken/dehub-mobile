@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import {
   View,
@@ -270,7 +271,7 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
               {displayName}
             </Text>
             <Text className="text-white/70 text-[11px] ml-1">
-              tipped {item.meta?.amount} DHB
+              tipped {item.meta?.amount} <DhbCoin />
             </Text>
           </View>
         );

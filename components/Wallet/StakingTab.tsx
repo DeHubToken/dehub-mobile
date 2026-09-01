@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
@@ -398,7 +399,7 @@ const StakingTab: React.FC = () => {
         <View className="flex-row items-center justify-between bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-4 mb-4">
           <View>
             <Text className="text-emerald-400 font-semibold text-sm">Pending Rewards</Text>
-            <Text className="text-white text-lg font-bold mt-0.5">{fmt(earned)} DHB</Text>
+            <Text className="text-white text-lg font-bold mt-0.5">{fmt(earned)} <DhbCoin size={16} /></Text>
           </View>
           <View className="bg-white/5 border border-white/10 rounded-xl px-3 py-2">
             <Text className="text-white/50 text-[11px]">Claim on web app</Text>

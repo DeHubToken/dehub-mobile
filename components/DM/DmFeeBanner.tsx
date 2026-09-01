@@ -6,6 +6,7 @@
  * - Free access: green badge showing exemption
  * - Hidden when no fee or fee is 0
  */
+import { DhbCoin } from "../common/DhbCoin";
 import React, { memo } from "react";
 import { View, Text } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
@@ -35,7 +36,7 @@ const DmFeeBannerComponent: React.FC<DmFeeBannerProps> = ({
         <View className="flex-row items-center justify-center px-4 py-2 bg-white/10 border-b border-theme-neutrals-800/50">
           <Ionicons name="diamond" size={14} color="#F4F4F5" />
           <Text className="text-[12px] text-theme-neutrals-100 font-medium ml-1.5">
-            {dmFee.fee} DHB per message
+            {dmFee.fee} <DhbCoin /> per message
           </Text>
           {peerDisplayName ? (
             <Text className="text-[11px] text-theme-neutrals-500 ml-1">
@@ -52,7 +53,7 @@ const DmFeeBannerComponent: React.FC<DmFeeBannerProps> = ({
             Free access
           </Text>
           <Text className="text-[11px] text-theme-neutrals-500 ml-1">
-            · normally {dmFee.fee} DHB per message
+            · normally {dmFee.fee} <DhbCoin /> per message
           </Text>
         </View>
       )}

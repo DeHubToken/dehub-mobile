@@ -16,6 +16,7 @@
  * the live-checkout quote taken when the sheet opens.
  */
 
+import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useEffect, useState } from "react";
 import {
   View,
@@ -213,7 +214,7 @@ export function CheckoutSheet({
                 {quote ? (
                   <>
                     <Text className="text-white text-2xl font-bold">
-                      {money(quote.dhbAmount)} DHB
+                      {money(quote.dhbAmount)} <DhbCoin />
                     </Text>
                     <Text className="text-zinc-500 text-xs mt-0.5">
                       ${money(quote.priceUsd)} USD

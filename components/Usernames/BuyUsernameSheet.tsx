@@ -13,6 +13,7 @@
  * amount, which is the one thing web's Stores drawer had to be rewritten to
  * stop doing.
  */
+import { DhbCoin } from "../common/DhbCoin";
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, ActivityIndicator, Share } from "react-native";
 import { useTranslation } from "react-i18next";
@@ -128,7 +129,7 @@ const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed
             <Text style={styles.panelLabel}>{t("usernames.askingPrice")}</Text>
             <Text style={styles.price}>
               {priceDhb.toLocaleString("en-US")}
-              <Text style={styles.priceUnit}> DHB</Text>
+              <Text style={styles.priceUnit}> <DhbCoin size={14} /></Text>
             </Text>
             <Text style={styles.panelHint}>
               {t("usernames.priceHint", {

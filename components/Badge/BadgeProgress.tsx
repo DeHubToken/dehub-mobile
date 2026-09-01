@@ -15,6 +15,7 @@
  * Mirror of dehubweb's `components/app/BadgeProgress.tsx`.
  */
 
+import { DhbCoin } from "../common/DhbCoin";
 import React, { useMemo } from "react";
 import { View, Text, Image, ScrollView } from "react-native";
 import Animated, {
@@ -143,7 +144,7 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
             {standing.tier ?? "No badge yet"}
           </Text>
           <Text numberOfLines={1} className="text-xs text-white/50">
-            {formatDhb(standing.balance)} DHB
+            {formatDhb(standing.balance)} <DhbCoin />
             {price ? `  ·  ${formatUsd(standing.balance * price)}` : ""}
           </Text>
         </View>
@@ -248,7 +249,7 @@ export function BadgeProgress({ balance, lock, compact = false }: BadgeProgressP
       {standing.grandfathered && lock ? (
         <Text className="mt-1.5 text-[10px] leading-4 text-white/50">
           {standing.tier} is locked in. You keep it while you hold at least{" "}
-          {formatDhb(lock.requirement)} DHB — what it cost when you earned it —
+          {formatDhb(lock.requirement)} <DhbCoin /> — what it cost when you earned it —
           whatever the ladder does after.
         </Text>
       ) : null}

@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, { useEffect, useCallback, useMemo } from "react";
 import { View, Text, TextInput, TouchableOpacity, Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -444,7 +445,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
         <Text className="text-gray-300 text-[11px] ml-2">
           You’ll receive approximately{" "}
           <Text className="text-white font-semibold">
-            {approxReceive} DHB
+            {approxReceive} <DhbCoin />
           </Text>
         </Text>
       </View>

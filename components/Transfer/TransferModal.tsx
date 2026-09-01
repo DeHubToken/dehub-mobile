@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, {
   useCallback,
   useEffect,
@@ -311,7 +312,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
           />
           <View className="flex-row justify-between mt-2">
             <Text className="text-[11px] text-white/60">
-              Balance: {balance} DHB
+              Balance: {balance} <DhbCoin />
             </Text>
           </View>
           {insufficient && (
