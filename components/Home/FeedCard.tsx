@@ -57,6 +57,7 @@ import { parseSoundtrack } from "../../libs/parseSoundtrack";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useImageTranslation } from "../../hooks/useImageTranslation";
 import { resolveViewCount } from "../../libs/numbers.util";
+import { seedViewerStats } from "../../libs/viewers.util";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUser, useAuthActions, useAuthState } from "../../context/AuthContext";
 import { useEngagementWeight } from "../../hooks/useEngagementWeight";
@@ -250,10 +251,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const soundtrack = useMemo(() => parseSoundtrack(description), [description]);
   const hasSoundtrack = !!soundtrack;
   const commentCount = item.commentCount || (item as any).comments || stream?.commentCount || 0;
-  // Signed-out viewers are already folded into totalViews by the API — see
-  // resolveViewCount. peakViewers/stream.totalViews stay for live posts, which
-  // report an audience rather than a view count.
-  const views = resolveViewCount(item) || (item as any).peakViewers || stream?.totalViews || 0;
+  // The canonical count, for EVERY post type — the API already folds the
+  // signed-out and badge-weighted halves into totalViews and the web card
+  // renders exactly this number. The old `|| peakViewers || stream.totalViews`
+  // tail traded a real zero for a stream's audience figures, which measure
+  // something else entirely (see the live chips below).
+  const views = resolveViewCount(item);
   const totalTips = (item as any).totalTips || (item as any).tips || 0;
   const isAudioPost = contentType === "audio";
   const isLive = contentType === "live";
@@ -367,8 +370,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isCurrentlyLive = status === "LIVE" || status === "PAUSED";
 
   // --- Live stats ---
-  const currentViewers = stream?.peakViewers || 0;
-  const liveViewCount = stream?.totalViews || resolveViewCount(item);
+  // An audience, not a view count, and the two stream fields mean the opposite
+  // of what this card assumed: `peakViewers` IS the high-water mark, while the
+  // stream's own `totalViews` counts JOINS — one viewer whose connection drops
+  // and returns three times makes it 3. See libs/viewers.util. So the row was
+  // printing the peak under "watching now" and a reconnect tally under "Peak".
+  const { peakViewers: peakAudience } = seedViewerStats(stream);
   const liveLikes = stream?.likes || item.likes || 0;
 
   // --- Access info (for navigation) ---
@@ -1504,19 +1511,20 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             size={13}
             color="#6F7174"
           />
+          {/* One number for every post type, same as web: the icon says what
+              kind of post it is, the count is always the post's own views. An
+              audio post's listen tally lives inside the player, where it is
+              labelled; printed here it read as the view count and undercounted
+              by an order of magnitude. */}
           <Text style={{ fontSize: 11, color: "#8B8D90" }}>
-            {isAudioPost
-              ? formatCompactNumber(item.listens || 0)
-              : isLive
-                ? formatCompactNumber(currentViewers)
-                : formatCompactNumber(views)}
+            {formatCompactNumber(views)}
           </Text>
         </View>
-        {isLive && liveViewCount > 0 && (
+        {isLive && peakAudience > 0 && (
           <>
             <Text style={{ fontSize: 11, color: "#6F7174" }}>·</Text>
             <Text style={{ fontSize: 11, color: "#6F7174" }}>
-              Peak: {formatCompactNumber(liveViewCount)}
+              Peak: {formatCompactNumber(peakAudience)}
             </Text>
           </>
         )}
