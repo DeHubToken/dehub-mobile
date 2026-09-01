@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, { useCallback, useMemo, useState } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -166,13 +167,13 @@ const ProfileAssets = () => {
                   <View className="flex-row justify-between">
                     <Text className="text-[11px] text-white/80">Held</Text>
                     <Text className="text-[11px] text-white">
-                      {formatCompactNumber(row.wallet)} DHB
+                      {formatCompactNumber(row.wallet)} <DhbCoin />
                     </Text>
                   </View>
                   <View className="flex-row justify-between">
                     <Text className="text-[11px] text-white/80">Staked</Text>
                     <Text className="text-[11px] text-white">
-                      {formatCompactNumber(row.staked)} DHB
+                      {formatCompactNumber(row.staked)} <DhbCoin />
                     </Text>
                   </View>
                 </View>
@@ -180,7 +181,7 @@ const ProfileAssets = () => {
               <View className="flex-row justify-between border-t border-white/10 pt-1 mt-1">
                 <Text className="text-[11px] text-white font-semibold">Total</Text>
                 <Text className="text-[11px] text-white font-semibold">
-                  {formatCompactNumber(dhbPosition)} DHB
+                  {formatCompactNumber(dhbPosition)} <DhbCoin />
                 </Text>
               </View>
               <Text className="text-[10px] leading-4 text-white/50 mt-1">

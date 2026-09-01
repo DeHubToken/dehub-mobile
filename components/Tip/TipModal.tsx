@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, {
   useCallback,
   useState,
@@ -340,7 +341,7 @@ const TipModal: React.FC<TipModalProps> = ({
                   />
                   <View className="flex-row justify-between mt-2">
                     <Text className="text-[11px] text-white/60">
-                      Balance: {balance} DHB
+                      Balance: {balance} <DhbCoin />
                     </Text>
                     <Text
                       className={`text-[11px] ${
@@ -428,7 +429,7 @@ const TipModal: React.FC<TipModalProps> = ({
                   animateKey={phase}
                 />
                 <Text className="text-white text-base font-semibold">
-                  You sent {lastAmount} DHB
+                  You sent {lastAmount} <DhbCoin size={15} />
                 </Text>
                 <View className="flex-row gap-3">
                   <TouchableOpacity

@@ -17,6 +17,7 @@
  *    offering a payment that cannot succeed.
  */
 
+import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
@@ -327,7 +328,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
                       </View>
                       <View style={s.modelRowRight}>
                         <Text style={s.modelPrice}>${rowUsd.toFixed(2)}</Text>
-                        <Text style={s.modelDhb}>~{formatDhb(rowDhb)} DHB</Text>
+                        <Text style={s.modelDhb}>~{formatDhb(rowDhb)} <DhbCoin /></Text>
                       </View>
                     </TouchableOpacity>
                   );
@@ -368,7 +369,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
                       <Image source={DEHUB_COIN} style={s.coin} />
                       <Text style={s.payLabel}>Pay with DHB</Text>
                     </View>
-                    <Text style={s.payAmount}>{formatDhb(priceDhb)} DHB</Text>
+                    <Text style={s.payAmount}>{formatDhb(priceDhb)}</Text>
                   </View>
                   {!!quoteError && <Text style={s.warnText}>{quoteError}</Text>}
                 </>
@@ -384,7 +385,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
                   <ActivityIndicator size="small" color="#A6A9AC" />
                 ) : (
                   <Text style={[s.balanceAmount, needsTokens && { color: '#EF4444' }]}>
-                    {formatDhb(walletDhb)} DHB
+                    {formatDhb(walletDhb)}
                   </Text>
                 )}
               </View>
@@ -401,7 +402,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
             {needsTokens && !unsupportedChain && !isQuoting && (
               <View style={s.warnBanner}>
                 <Text style={s.warnText}>
-                  This costs {formatDhb(priceDhb)} DHB and you hold {formatDhb(walletDhb)}.
+                  This costs {formatDhb(priceDhb)} <DhbCoin /> and you hold {formatDhb(walletDhb)}.
                 </Text>
               </View>
             )}

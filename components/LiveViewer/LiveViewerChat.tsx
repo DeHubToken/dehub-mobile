@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import {
   View,
@@ -178,7 +179,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
               <Text onPress={handlePress}>
                 {displayName}
               </Text>{" "}
-              sent {amt.toLocaleString()} DHB
+              sent {amt.toLocaleString()} <DhbCoin />
             </Text>
             {a.meta?.message ? (
               <Text style={{ color: 'rgba(255,255,255,0.7)' }} className="text-[11px] mt-0.5">

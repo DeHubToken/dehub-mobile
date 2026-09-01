@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
@@ -215,7 +216,7 @@ const BridgeTab: React.FC = () => {
           ) : (
             <Text className="text-white text-lg font-bold">{formatDHB(baseBal)}</Text>
           )}
-          <Text className="text-white/60 text-xs mt-0.5">DHB</Text>
+          <DhbCoin size={12} style={{ marginTop: 2 }} />
         </View>
         <View className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4">
           <Text className="text-white/50 text-xs uppercase tracking-wider mb-1">
@@ -226,7 +227,7 @@ const BridgeTab: React.FC = () => {
           ) : (
             <Text className="text-white text-lg font-bold">{formatDHB(bnbBal)}</Text>
           )}
-          <Text className="text-white/60 text-xs mt-0.5">DHB</Text>
+          <DhbCoin size={12} style={{ marginTop: 2 }} />
         </View>
       </View>
 
@@ -269,7 +270,7 @@ const BridgeTab: React.FC = () => {
         {/* Available balance */}
         <Text className="text-white/60 text-xs mb-3">
           Available:{" "}
-          <Text className="text-white/70 font-medium">{sourceBalF} DHB</Text> on{" "}
+          <Text className="text-white/70 font-medium">{sourceBalF} <DhbCoin /></Text> on{" "}
           {sourceChain}
         </Text>
 
