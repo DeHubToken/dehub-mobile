@@ -57,7 +57,7 @@ const DpayInfoCards: React.FC<Props> = ({ transfersTotal, supplyAmount }) => {
         {typeof supplyAmount === "number" ? (
           supplyAmount === 0 ? (
             <Text className="text-zinc-300 text-sm">
-              DHB : <Text className="text-[#EF4444]">No Supply</Text>
+              DHB : <Text className="text-[#F4F4F5]">No Supply</Text>
             </Text>
           ) : (
             <Text className="text-theme-accent text-2xl font-bold">

@@ -112,7 +112,7 @@ const BlockedAccountsModal: React.FC<BlockedAccountsModalProps> = ({ visible, on
           hitSlop={{ top: 8, bottom: 8 }}
           className="bg-theme-neutrals-800 border border-theme-neutrals-700 px-3 py-1.5 rounded-full"
         >
-          <Text className="text-red-400 text-xs font-semibold">{t('settings.unblock')}</Text>
+          <Text className="text-white/80 text-xs font-semibold">{t('settings.unblock')}</Text>
         </TouchableOpacity>
       </View>
     );

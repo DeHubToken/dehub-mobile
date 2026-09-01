@@ -294,19 +294,19 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         )}
         <View className="px-5 mt-2">
           {!isOwnProfile && youBlocked && (
-            <View className="mt-3 bg-red-900/30 border border-red-800/50 rounded-xl px-4 py-3 flex-row items-center">
-              <Ionicons name="ban-outline" size={18} color="#EF4444" />
+            <View className="mt-3 bg-white/15 border border-white/20 rounded-xl px-4 py-3 flex-row items-center">
+              <Ionicons name="ban-outline" size={18} color="#F4F4F5" />
               <View className="flex-1 ml-3">
-                <Text className="text-red-400 text-sm font-medium">You blocked this user</Text>
-                <Text className="text-red-400/70 text-xs mt-0.5">Their content is hidden from your feeds.</Text>
+                <Text className="text-white/80 text-sm font-medium">You blocked this user</Text>
+                <Text className="text-white/80 text-xs mt-0.5">Their content is hidden from your feeds.</Text>
               </View>
               <TouchableOpacity
                 onPress={onUnblock}
                 disabled={blockLoading}
                 activeOpacity={0.8}
-                className="bg-red-800/50 px-3 py-1.5 rounded-full"
+                className="bg-white/20 px-3 py-1.5 rounded-full"
               >
-                <Text className="text-red-300 text-xs font-semibold">
+                <Text className="text-white/80 text-xs font-semibold">
                   {blockLoading ? "..." : "Unblock"}
                 </Text>
               </TouchableOpacity>
@@ -529,11 +529,11 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
               <Ionicons
                 name={youBlocked ? "lock-open-outline" : "ban-outline"}
                 size={18}
-                color="#EF4444"
+                color="#F4F4F5"
               />
             </View>
             <View className="flex-1">
-              <Text style={{ color: "#EF4444" }} className="text-[15px] font-medium">
+              <Text style={{ color: "#F4F4F5" }} className="text-[15px] font-medium">
                 {youBlocked
                   ? `Unblock ${profileData?.displayName || "user"}`
                   : `Block ${profileData?.displayName || "user"}`}
@@ -595,7 +595,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
             </TouchableOpacity>
             <TouchableOpacity
               onPress={handleConfirmRemoveFollower}
-              className="flex-1 bg-red-500/90 py-3 rounded-xl items-center"
+              className="flex-1 bg-white/15 border border-white/25 py-3 rounded-xl items-center"
               activeOpacity={0.7}
             >
               <Text className="text-white font-semibold">Remove</Text>

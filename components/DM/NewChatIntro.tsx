@@ -92,14 +92,14 @@ const NewChatIntroComponent: React.FC<NewChatIntroProps> = ({
         {policy.dmEnabled ? (
           <InfoRow
             icon="chatbubble-ellipses-outline"
-            iconColor="#22C55E"
+            iconColor="#F4F4F5"
             text="DMs are open"
             subtext="You can send messages"
           />
         ) : (
           <InfoRow
             icon="chatbubble-ellipses-outline"
-            iconColor="#EF4444"
+            iconColor="#F4F4F5"
             text="DMs are closed"
             subtext={policy.dmDisabledReason || "This user is not accepting messages"}
           />
@@ -111,7 +111,7 @@ const NewChatIntroComponent: React.FC<NewChatIntroProps> = ({
             {policy.hasFreeAccess ? (
               <InfoRow
                 icon="shield-checkmark"
-                iconColor="#22C55E"
+                iconColor="#F4F4F5"
                 text="Free access granted"
                 subtext={`Normally ${policy.perMessageFee} DHB per message`}
               />
@@ -130,7 +130,7 @@ const NewChatIntroComponent: React.FC<NewChatIntroProps> = ({
         {policy.isBlocked && (
           <InfoRow
             icon="ban-outline"
-            iconColor="#EF4444"
+            iconColor="#F4F4F5"
             text="You've blocked this user"
             subtext="Unblock to send messages"
           />
@@ -142,7 +142,7 @@ const NewChatIntroComponent: React.FC<NewChatIntroProps> = ({
           policy.perMessageFee <= 0 && (
             <InfoRow
               icon="checkmark-circle-outline"
-              iconColor="#22C55E"
+              iconColor="#F4F4F5"
               text="Free to message"
               subtext="No fees required"
             />

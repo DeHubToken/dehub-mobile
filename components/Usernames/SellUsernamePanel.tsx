@@ -190,7 +190,7 @@ const SellUsernamePanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
           </View>
 
           <View style={styles.warning}>
-            <Icon name="TriangleAlert" size={15} color="#FBBF24" />
+            <Icon name="TriangleAlert" size={15} color="#D4D4D8" />
             <Text style={styles.warningText}>{t("usernames.saleFinal")}</Text>
           </View>
 
@@ -213,7 +213,7 @@ const SellUsernamePanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
                 accessibilityRole="button"
                 accessibilityLabel={t("usernames.withdrawListing")}
               >
-                <Icon name="Trash2" size={17} color="#FCA5A5" />
+                <Icon name="Trash2" size={17} color="#F4F4F5" />
               </Pressable>
             )}
           </View>
@@ -330,11 +330,11 @@ const styles = StyleSheet.create({
     gap: 9,
     padding: 11,
     borderRadius: 12,
-    backgroundColor: "rgba(251,191,36,0.10)",
+    backgroundColor: "rgba(255,255,255,0.10)",
     borderWidth: 1,
-    borderColor: "rgba(251,191,36,0.30)",
+    borderColor: "rgba(255,255,255,0.30)",
   },
-  warningText: { flex: 1, color: "#FDE68A", fontSize: 11.5, lineHeight: 17 },
+  warningText: { flex: 1, color: "#D4D4D8", fontSize: 11.5, lineHeight: 17 },
 
   actions: { flexDirection: "row", alignItems: "center", gap: 10 },
   grow: { flex: 1 },
@@ -365,11 +365,11 @@ const styles = StyleSheet.create({
   staleNotice: {
     padding: 12,
     borderRadius: 12,
-    backgroundColor: "rgba(251,191,36,0.10)",
+    backgroundColor: "rgba(255,255,255,0.10)",
     borderWidth: 1,
-    borderColor: "rgba(251,191,36,0.30)",
+    borderColor: "rgba(255,255,255,0.30)",
   },
-  staleText: { color: "#FDE68A", fontSize: 11.5, lineHeight: 17 },
+  staleText: { color: "#D4D4D8", fontSize: 11.5, lineHeight: 17 },
 
   historyBlock: { gap: 8 },
   historyTitle: { color: "#FFFFFF", fontSize: 14, fontWeight: "700", marginTop: 4 },

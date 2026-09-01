@@ -121,9 +121,9 @@ const SessionCard = React.memo<{
               <View className="px-3 py-2 rounded-xl overflow-hidden" style={GLASS_SHADOW}>
                 <GlassIndicator borderRadius={12} />
                 {isRevoking ? (
-                  <ActivityIndicator size="small" color="#ef4444" />
+                  <ActivityIndicator size="small" color="#F4F4F5" />
                 ) : (
-                  <Icon name="LogOut" size={16} color="#ef4444" />
+                  <Icon name="LogOut" size={16} color="#F4F4F5" />
                 )}
               </View>
             </TouchableOpacity>
@@ -261,11 +261,11 @@ export default function ActiveSessionsScreen() {
         <View className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-xl px-4 py-3.5 flex-row items-center justify-center">
           <GlassIndicator borderRadius={16} />
           {revokingAll ? (
-            <ActivityIndicator size="small" color="#ef4444" />
+            <ActivityIndicator size="small" color="#F4F4F5" />
           ) : (
             <>
-              <Icon name="LogOut" size={16} color="#ef4444" />
-              <Text className="text-red-400 font-semibold text-sm ml-2">
+              <Icon name="LogOut" size={16} color="#F4F4F5" />
+              <Text className="text-white/80 font-semibold text-sm ml-2">
                 Log out all other devices
               </Text>
             </>

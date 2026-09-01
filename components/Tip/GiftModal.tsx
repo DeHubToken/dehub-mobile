@@ -92,7 +92,7 @@ export const giftTiers = [
     min: 200000,
     name: "Spartans Army",
     icon: ShieldPlus,
-    color: "text-red-700",
+    color: "text-white/80",
     description: "Spartans Army run on Screen",
   },
   {
@@ -127,7 +127,7 @@ export const giftTiers = [
     min: 1000,
     name: "Love Heart",
     icon: Heart,
-    color: "text-red-500",
+    color: "text-white/80",
     description: "Love Heart Emoji Pop up on screen.",
   },
 ] as const;
@@ -449,24 +449,24 @@ const GiftModal: React.FC<GiftModalProps> = ({
                 </Text>
                 <Text
                   className={`text-[11px] ${
-                    overLimit ? "text-red-400" : "text-white/40"
+                    overLimit ? "text-white/80" : "text-white/40"
                   }`}
                 >
                   Max: {limitTip}
                 </Text>
               </View>
               {insufficient && (
-                <Text className="text-xs text-red-400 mt-1">
+                <Text className="text-xs text-white/80 mt-1">
                   Insufficient balance
                 </Text>
               )}
               {isSelf && (
-                <Text className="text-xs text-red-400 mt-1">
+                <Text className="text-xs text-white/80 mt-1">
                   You can't tip yourself
                 </Text>
               )}
               {giftError && (
-                <Text className="text-xs text-red-400 mt-1">{giftError}</Text>
+                <Text className="text-xs text-white/80 mt-1">{giftError}</Text>
               )}
               {numericAmount > 0 && numericAmount < minTip && (
                 <Text className="text-xs text-yellow-400 mt-1">

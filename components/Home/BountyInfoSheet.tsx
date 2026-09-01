@@ -291,7 +291,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
     if (claimed) {
       return (
         <View style={styles.claimedBadge}>
-          <Icon name="CircleCheck" size={12} color="#22c55e" />
+          <Icon name="CircleCheck" size={12} color="#F4F4F5" />
           <Text style={styles.claimedText}>Claimed</Text>
         </View>
       );
@@ -389,7 +389,7 @@ const BountyInfoSheetComponent: React.FC<BountyInfoSheetProps> = ({
       </View>
       <View style={styles.detailRow}>
         <Text style={styles.detailLabel}>Amount</Text>
-        <Text style={[styles.detailValue, { color: "#22c55e" }]}>
+        <Text style={[styles.detailValue, { color: "#F4F4F5" }]}>
           {formatCompactNumber(bountyAmount)} {bountyTokenSymbol}
         </Text>
       </View>
@@ -608,13 +608,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 4,
-    backgroundColor: "rgba(34,197,94,0.15)",
+    backgroundColor: "rgba(255,255,255,0.15)",
     borderRadius: 8,
     paddingHorizontal: 10,
     paddingVertical: 6,
   },
   claimedText: {
-    color: "#22c55e",
+    color: "#F4F4F5",
     fontSize: 11,
     fontWeight: "600",
   },
@@ -655,7 +655,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   errorText: {
-    color: "#EF4444",
+    color: "#F4F4F5",
     fontSize: 12,
     marginBottom: 8,
   },
@@ -737,7 +737,7 @@ const styles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: 36,
-    backgroundColor: "#22c55e",
+    backgroundColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -755,7 +755,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 6,
-    backgroundColor: "rgba(34,197,94,0.15)",
+    backgroundColor: "rgba(255,255,255,0.15)",
     borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 10,
@@ -766,7 +766,7 @@ const styles = StyleSheet.create({
     height: 22,
   },
   successAmount: {
-    color: "#22c55e",
+    color: "#F4F4F5",
     fontSize: 20,
     fontWeight: "700",
   },

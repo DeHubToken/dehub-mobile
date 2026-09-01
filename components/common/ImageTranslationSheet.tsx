@@ -87,10 +87,10 @@ const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, e
               {/* Error */}
               {!!error && !isLoading && (
                 <View style={{ alignItems: "center", paddingVertical: 32, gap: 8 }}>
-                  <View style={{ width: 48, height: 48, borderRadius: 12, backgroundColor: "rgba(239,68,68,0.2)", alignItems: "center", justifyContent: "center" }}>
-                    <Ionicons name="alert-circle-outline" size={24} color="#EF4444" />
+                  <View style={{ width: 48, height: 48, borderRadius: 12, backgroundColor: "rgba(255,255,255,0.2)", alignItems: "center", justifyContent: "center" }}>
+                    <Ionicons name="alert-circle-outline" size={24} color="#F4F4F5" />
                   </View>
-                  <Text style={{ color: "#EF4444", fontSize: 14, textAlign: "center" }}>{error}</Text>
+                  <Text style={{ color: "#F4F4F5", fontSize: 14, textAlign: "center" }}>{error}</Text>
                 </View>
               )}
 

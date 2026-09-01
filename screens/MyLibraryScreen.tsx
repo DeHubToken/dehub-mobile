@@ -109,7 +109,7 @@ const MyLibraryScreen: React.FC = () => {
         rightContent={
           activeTab === "watched" ? (
             <Pressable onPress={handleClearHistory} hitSlop={8} style={{ padding: 4 }}>
-              <Icon name="Trash2" size={20} color="#ef4444" />
+              <Icon name="Trash2" size={20} color="#F4F4F5" />
             </Pressable>
           ) : undefined
         }

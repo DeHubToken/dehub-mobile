@@ -61,9 +61,9 @@ const num = (n: number, max = 4) =>
 
 /** Matches web's status pill colours. */
 const STATUS_STYLE: Record<string, { bg: string; fg: string }> = {
-  open: { bg: "rgba(16,185,129,0.20)", fg: "#6EE7B7" },
-  disputed: { bg: "rgba(239,68,68,0.20)", fg: "#FCA5A5" },
-  completed: { bg: "rgba(16,185,129,0.20)", fg: "#6EE7B7" },
+  open: { bg: "rgba(255,255,255,0.20)", fg: "#D4D4D8" },
+  disputed: { bg: "rgba(255,255,255,0.20)", fg: "#F4F4F5" },
+  completed: { bg: "rgba(255,255,255,0.20)", fg: "#D4D4D8" },
 };
 const statusStyle = (s: WorkJobStatus) =>
   STATUS_STYLE[s] ?? { bg: "rgba(255,255,255,0.10)", fg: "#A1A1AA" };
@@ -341,11 +341,11 @@ export default function WorkJobDetailScreen() {
                       <View
                         style={[
                           styles.pill,
-                          a.status === "awarded" && { backgroundColor: "rgba(16,185,129,0.20)" },
+                          a.status === "awarded" && { backgroundColor: "rgba(255,255,255,0.20)" },
                         ]}
                       >
                         <Text
-                          style={[styles.pillText, a.status === "awarded" && { color: "#6EE7B7" }]}
+                          style={[styles.pillText, a.status === "awarded" && { color: "#D4D4D8" }]}
                         >
                           {t(`work.status.${a.status}`, { defaultValue: a.status })}
                         </Text>
@@ -446,17 +446,17 @@ export default function WorkJobDetailScreen() {
                         <View
                           style={[
                             styles.pill,
-                            paid && { backgroundColor: "rgba(16,185,129,0.20)" },
-                            awaitingPayment && { backgroundColor: "rgba(251,191,36,0.20)" },
-                            rejected && { backgroundColor: "rgba(239,68,68,0.20)" },
+                            paid && { backgroundColor: "rgba(255,255,255,0.20)" },
+                            awaitingPayment && { backgroundColor: "rgba(255,255,255,0.20)" },
+                            rejected && { backgroundColor: "rgba(255,255,255,0.20)" },
                           ]}
                         >
                           <Text
                             style={[
                               styles.pillText,
-                              paid && { color: "#6EE7B7" },
-                              awaitingPayment && { color: "#FCD34D" },
-                              rejected && { color: "#FCA5A5" },
+                              paid && { color: "#D4D4D8" },
+                              awaitingPayment && { color: "#D4D4D8" },
+                              rejected && { color: "#F4F4F5" },
                             ]}
                           >
                             {paid
@@ -523,7 +523,7 @@ export default function WorkJobDetailScreen() {
                             }
                             style={styles.approveBtn}
                           >
-                            <Icon name="Wallet" size={12} color="#6EE7B7" />
+                            <Icon name="Wallet" size={12} color="#D4D4D8" />
                             <Text style={styles.approveText}>
                               {t("work.detail.approveAndPay", {
                                 amount: due,
@@ -553,7 +553,7 @@ export default function WorkJobDetailScreen() {
                             </Text>
                           </Pressable>
                           <Pressable onPress={() => promptReject(s)} style={styles.rejectBtn}>
-                            <Icon name="X" size={12} color="#FCA5A5" />
+                            <Icon name="X" size={12} color="#F4F4F5" />
                             <Text style={styles.rejectText}>{t("work.detail.reject")}</Text>
                           </Pressable>
                         </View>
@@ -576,7 +576,7 @@ export default function WorkJobDetailScreen() {
                             }
                             style={styles.approveBtn}
                           >
-                            <Icon name="Wallet" size={12} color="#6EE7B7" />
+                            <Icon name="Wallet" size={12} color="#D4D4D8" />
                             <Text style={styles.approveText}>
                               {t("work.detail.payNow", {
                                 amount: due,
@@ -664,7 +664,7 @@ export default function WorkJobDetailScreen() {
               job.status !== "completed" &&
               job.status !== "disputed" && (
                 <Pressable onPress={() => setShowDispute((s) => !s)} style={styles.disputeBtn}>
-                  <Icon name="TriangleAlert" size={13} color="#FCA5A5" />
+                  <Icon name="TriangleAlert" size={13} color="#F4F4F5" />
                   <Text style={styles.disputeBtnText}>{t("work.detail.openDispute")}</Text>
                 </Pressable>
               )}
@@ -839,8 +839,8 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textTransform: "capitalize",
   },
-  paidText: { color: "#6EE7B7", fontSize: 11, marginTop: 6 },
-  awaitingText: { color: "rgba(252,211,77,0.85)", fontSize: 11, marginTop: 6 },
+  paidText: { color: "#D4D4D8", fontSize: 11, marginTop: 6 },
+  awaitingText: { color: "rgba(255,255,255,0.85)", fontSize: 11, marginTop: 6 },
   subActions: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 10 },
 
   input: {
@@ -882,9 +882,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 11,
     paddingVertical: 7,
     borderRadius: 10,
-    backgroundColor: "rgba(16,185,129,0.20)",
+    backgroundColor: "rgba(255,255,255,0.20)",
   },
-  approveText: { color: "#6EE7B7", fontSize: 12, fontWeight: "700" },
+  approveText: { color: "#D4D4D8", fontSize: 12, fontWeight: "700" },
   approveOnlyBtn: {
     flexDirection: "row",
     alignItems: "center",
@@ -902,9 +902,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 11,
     paddingVertical: 7,
     borderRadius: 10,
-    backgroundColor: "rgba(239,68,68,0.20)",
+    backgroundColor: "rgba(255,255,255,0.20)",
   },
-  rejectText: { color: "#FCA5A5", fontSize: 12, fontWeight: "700" },
+  rejectText: { color: "#F4F4F5", fontSize: 12, fontWeight: "700" },
 
   actions: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 6 },
   disputeBtn: {
@@ -914,25 +914,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderRadius: 14,
-    backgroundColor: "rgba(239,68,68,0.20)",
+    backgroundColor: "rgba(255,255,255,0.20)",
   },
-  disputeBtnText: { color: "#FECACA", fontSize: 13.5, fontWeight: "600" },
+  disputeBtnText: { color: "#D4D4D8", fontSize: 13.5, fontWeight: "600" },
   disputeBox: {
     marginTop: 14,
     padding: 14,
     borderRadius: 14,
-    backgroundColor: "rgba(239,68,68,0.05)",
+    backgroundColor: "rgba(255,255,255,0.05)",
     borderWidth: 1,
-    borderColor: "rgba(239,68,68,0.20)",
+    borderColor: "rgba(255,255,255,0.20)",
     gap: 10,
   },
   disputeSubmit: {
     borderRadius: 12,
-    backgroundColor: "rgba(239,68,68,0.30)",
+    backgroundColor: "rgba(255,255,255,0.30)",
     paddingVertical: 11,
     alignItems: "center",
   },
-  disputeSubmitText: { color: "#FEE2E2", fontSize: 13.5, fontWeight: "700" },
+  disputeSubmitText: { color: "#D4D4D8", fontSize: 13.5, fontWeight: "700" },
 
   dim: { color: "#71717A", fontSize: 13 },
 
@@ -961,9 +961,9 @@ const styles = StyleSheet.create({
   secondaryBtnText: { color: "#E4E4E7", fontSize: 13.5, fontWeight: "600" },
   rejectConfirm: {
     borderRadius: 12,
-    backgroundColor: "rgba(239,68,68,0.30)",
+    backgroundColor: "rgba(255,255,255,0.30)",
     paddingVertical: 11,
     alignItems: "center",
   },
-  rejectConfirmText: { color: "#FEE2E2", fontSize: 13.5, fontWeight: "700" },
+  rejectConfirmText: { color: "#D4D4D8", fontSize: 13.5, fontWeight: "700" },
 });

@@ -510,9 +510,9 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
           </View>
         ) : status === "failed" ? (
           <View className="flex-1 items-center justify-center py-20 gap-4">
-            <Icon name="RefreshCw" size={32} color="#EF4444" />
+            <Icon name="RefreshCw" size={32} color="#F4F4F5" />
             <Text className="text-theme-neutrals-400 text-sm">Transcription failed</Text>
-            {transcript?.error && <Text className="text-red-400 text-xs px-6 text-center">{transcript.error}</Text>}
+            {transcript?.error && <Text className="text-white/80 text-xs px-6 text-center">{transcript.error}</Text>}
             <TouchableOpacity
               onPress={() => handleTranscribe(false, true)}
               disabled={isRequestingTranscribe}
@@ -626,7 +626,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
               </View>
             )}
             {language !== "original" && translation?.status === "failed" && (
-              <Text className="text-xs text-red-400 mb-2 ml-1">Translation failed. Try another language.</Text>
+              <Text className="text-xs text-white/80 mb-2 ml-1">Translation failed. Try another language.</Text>
             )}
 
             {/* Transcript scrollable segments list */}

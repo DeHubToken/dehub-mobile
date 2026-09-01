@@ -99,7 +99,7 @@ const Field = ({
   <View style={{ gap: 6 }}>
     <Text style={styles.fieldLabel}>
       {label}
-      {required && <Text style={{ color: "#EF4444" }}> *</Text>}
+      {required && <Text style={{ color: "#F4F4F5" }}> *</Text>}
     </Text>
     <TextInput
       value={value}
@@ -334,7 +334,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.20)",
   },
-  openBadgeText: { color: "#22C55E", fontSize: 10, fontWeight: "600" },
+  openBadgeText: { color: "#F4F4F5", fontSize: 10, fontWeight: "600" },
   tagsRow: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 18 },
   tag: {
     flexDirection: "row",

@@ -539,7 +539,7 @@ const LiveChatScreen: React.FC = () => {
     () => (
       <View className="flex-row items-center gap-3">
         <View className="flex-row items-center gap-1.5">
-          <View className="w-2 h-2 rounded-full bg-green-500" />
+          <View className="w-2 h-2 rounded-full bg-white" />
           <Text className="text-white/50 text-xs">{onlineCount}</Text>
         </View>
         <TouchableOpacity onPress={handleInfoPress} activeOpacity={0.6} hitSlop={8}>
@@ -616,10 +616,10 @@ const LiveChatScreen: React.FC = () => {
       )}
 
       {isBanned && (
-        <View className="bg-red-500/10 border-b border-red-500/20 px-4 py-2.5">
+        <View className="bg-white/10 border-b border-white/20 px-4 py-2.5">
           <View className="flex-row items-center gap-2">
-            <Icon name="Ban" size={16} color="#EF4444" />
-            <Text className="text-red-400 text-sm">You are banned from this chat</Text>
+            <Icon name="Ban" size={16} color="#F4F4F5" />
+            <Text className="text-white/80 text-sm">You are banned from this chat</Text>
           </View>
         </View>
       )}

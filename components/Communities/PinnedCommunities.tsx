@@ -238,7 +238,7 @@ function PinPickerModal({
                       {item.name}
                     </Text>
                     {isPinned ? (
-                      <Icon name="X" size={18} color="#EF4444" />
+                      <Icon name="X" size={18} color="#F4F4F5" />
                     ) : canAdd ? (
                       <Icon name="Plus" size={18} color="#71717a" />
                     ) : null}

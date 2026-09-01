@@ -220,13 +220,13 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.4)",
   },
   ctrlInactive: {
-    backgroundColor: "rgba(239,68,68,0.4)",
+    backgroundColor: "rgba(255,255,255,0.4)",
   },
   endBtn: {
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: "#EF4444",
+    backgroundColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
     justifyContent: "center",
   },

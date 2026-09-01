@@ -81,7 +81,7 @@ function PriceChart({ candles, positive }: { candles: OhlcvCandle[]; positive: b
     points.map((p) => `L${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ") +
     ` L${points[points.length - 1].x.toFixed(1)},${H} Z`;
 
-  const color = positive ? "#22C55E" : "#EF4444";
+  const color = positive ? "#F4F4F5" : "#8B8D90";
   const gradId = positive ? "grad-up" : "grad-dn";
 
   return (
@@ -180,7 +180,7 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
 
   const change24h = pair?.priceChange?.h24;
   const isPositive = change24h != null && change24h >= 0;
-  const changeColor = change24h == null ? "#6F7174" : isPositive ? "#22C55E" : "#EF4444";
+  const changeColor = change24h == null ? "#6F7174" : isPositive ? "#F4F4F5" : "#8B8D90";
 
   return (
     <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={closeSheet}>
@@ -226,7 +226,7 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
               <View style={styles.priceRow}>
                 <Text style={styles.price}>{formatPrice(pair.priceUsd)}</Text>
                 {change24h != null && (
-                  <View style={[styles.changeBadge, { backgroundColor: isPositive ? "rgba(16,185,129,0.12)" : "rgba(239,68,68,0.12)" }]}>
+                  <View style={[styles.changeBadge, { backgroundColor: isPositive ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.12)" }]}>
                     <Icon name={isPositive ? "TrendingUp" : "TrendingDown"} size={13} color={changeColor} />
                     <Text style={[styles.changeText, { color: changeColor }]}>
                       {isPositive ? "+" : ""}{change24h.toFixed(2)}% 24h

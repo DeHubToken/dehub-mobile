@@ -34,7 +34,7 @@ const STATUS_CONFIG: Record<
   processing: { label: "Processing…", color: "#fff", icon: "Loader" },
   minting: { label: "Minting…", color: "#fff", icon: "Coins" },
   done: { label: "Posted", color: "#fff", icon: "CircleCheck" },
-  failed: { label: "Failed", color: "#EF4444", icon: "CircleAlert" },
+  failed: { label: "Failed", color: "#F4F4F5", icon: "CircleAlert" },
 };
 
 const JobItem = memo<{ job: UploadJob }>(({ job }) => {
@@ -87,7 +87,7 @@ const JobItem = memo<{ job: UploadJob }>(({ job }) => {
             </Text>
           </View>
           {job.error && (
-            <Text className="text-red-400/80 text-[11px] mt-0.5" numberOfLines={2}>
+            <Text className="text-white/80 text-[11px] mt-0.5" numberOfLines={2}>
               {job.error}
               {retriesExhausted ? " (no retries left)" : ""}
             </Text>

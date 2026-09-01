@@ -13,7 +13,7 @@ const CallMiniPlayer: React.FC = () => {
     <View style={styles.container}>
       <View style={styles.info}>
         <View style={styles.iconWrap}>
-          <Icon name="Phone" size={14} color="#22C55E" />
+          <Icon name="Phone" size={14} color="#F4F4F5" />
         </View>
         <Text style={styles.duration}>{callDuration}</Text>
       </View>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     borderRadius: 14,
-    backgroundColor: "rgba(34,197,94,0.15)",
+    backgroundColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 12,
-    backgroundColor: "#EF4444",
+    backgroundColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
     justifyContent: "center",
   },

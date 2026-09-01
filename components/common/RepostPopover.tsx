@@ -121,8 +121,8 @@ const RepostPopover: React.FC<RepostPopoverProps> = ({
                     activeOpacity={0.7}
                     className="flex-row items-center gap-2.5 px-4 py-3"
                   >
-                    <Icon name={isReposted ? "X" : "Repeat2"} size={20} color={isReposted ? "#EF4444" : "#fff"} />
-                    <Text className={`text-[15px] font-medium ${isReposted ? "text-red-400" : "text-white"}`}>
+                    <Icon name={isReposted ? "X" : "Repeat2"} size={20} color={isReposted ? "#F4F4F5" : "#fff"} />
+                    <Text className={`text-[15px] font-medium ${isReposted ? "text-white/80" : "text-white"}`}>
                       {isReposted ? "Undo Repost" : "Repost"}
                     </Text>
                   </TouchableOpacity>

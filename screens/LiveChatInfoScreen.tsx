@@ -419,7 +419,7 @@ const LiveChatInfoScreen: React.FC = () => {
               icon="ban-outline"
               title={t("screens.bannedUsers")}
               count={room?.bannedUsers?.length || 0}
-              iconColor="#EF4444"
+              iconColor="#F4F4F5"
             />
             <View className="mx-4 bg-white/5 rounded-xl overflow-hidden mb-8">
               {profilesLoading && bannedProfiles.length === 0 ? (

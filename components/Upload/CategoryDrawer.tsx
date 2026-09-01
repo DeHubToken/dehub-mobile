@@ -133,7 +133,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
             <View className="flex-row items-center">
               <Text
                 className={`text-xs mr-3 ${
-                  atMax ? "text-red-500" : "text-theme-neutrals-400"
+                  atMax ? "text-white/80" : "text-theme-neutrals-400"
                 }`}
               >
                 {categories.length}/{max}
