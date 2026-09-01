@@ -33,7 +33,7 @@ interface ProducerBottomBarProps {
   startDisabled?: boolean;
 }
 
-const CIRCLE = "w-12 h-12 rounded-full items-center justify-center";
+const CIRCLE = "w-12 h-12 rounded-xl items-center justify-center";
 
 const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
   stage,
@@ -72,7 +72,7 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
         <TouchableOpacity
           onPress={onFlipCamera}
           activeOpacity={0.8}
-          className={`${CIRCLE} bg-black/40 border border-white/10`}
+          className={`${CIRCLE} bg-zinc-900/60`}
           accessibilityRole="button"
           accessibilityLabel="Flip camera"
         >
@@ -82,8 +82,8 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
         <TouchableOpacity
           onPress={onToggleMic}
           activeOpacity={0.8}
-          className={`${CIRCLE} border border-white/10 ${
-            micMuted ? "bg-red-600/40" : "bg-black/40"
+          className={`${CIRCLE} ${
+            micMuted ? "bg-white/20" : "bg-zinc-900/60"
           }`}
           accessibilityRole="button"
           accessibilityLabel={micMuted ? "Unmute microphone" : "Mute microphone"}
@@ -99,8 +99,8 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
         <TouchableOpacity
           onPress={onToggleCamera}
           activeOpacity={0.8}
-          className={`${CIRCLE} border border-white/10 ${
-            cameraOff ? "bg-red-600/40" : "bg-black/40"
+          className={`${CIRCLE} ${
+            cameraOff ? "bg-white/20" : "bg-zinc-900/60"
           }`}
           accessibilityRole="button"
           accessibilityLabel={cameraOff ? "Turn camera on" : "Turn camera off"}
@@ -118,8 +118,8 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
           <TouchableOpacity
             onPress={onToggleExternal}
             activeOpacity={0.8}
-            className={`${CIRCLE} border border-white/10 ${
-              externalMode ? "bg-indigo-600" : "bg-black/40"
+            className={`${CIRCLE} ${
+              externalMode ? "bg-white/20" : "bg-zinc-900/60"
             }`}
             accessibilityRole="button"
             accessibilityLabel="External streaming mode"
@@ -135,8 +135,8 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
         <TouchableOpacity
           onPress={handleEnd}
           activeOpacity={0.9}
-          className={`self-center flex-row items-center px-8 h-12 rounded-full ${
-            canEnd ? "bg-red-600" : "bg-red-800/70"
+          className={`self-center flex-row items-center px-8 h-12 rounded-xl ${
+            canEnd ? "bg-zinc-900/60 border border-white/20" : "bg-zinc-900/40 border border-white/10 opacity-60"
           }`}
         >
           <Radio color="#fff" size={18} />
@@ -148,18 +148,14 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
         <TouchableOpacity
           onPress={handleStart}
           activeOpacity={canStart ? 0.9 : 1}
-          className={`self-center flex-row items-center px-8 h-12 rounded-full ${
-            !canStart
-              ? "bg-zinc-700/70"
-              : externalMode
-              ? "bg-indigo-600"
-              : "bg-theme-accent"
+          className={`self-center flex-row items-center px-8 h-12 rounded-xl ${
+            canStart ? "bg-white" : "bg-white/20"
           }`}
         >
-          <Radio color={canStart && !externalMode ? "#09090B" : "#fff"} size={18} />
+          <Radio color={canStart ? "#09090B" : "rgba(255,255,255,0.5)"} size={18} />
           <Text
             className={`font-bold text-sm ml-2 ${
-              canStart && !externalMode ? "text-theme-accent-foreground" : "text-white"
+              canStart ? "text-zinc-950" : "text-white/50"
             }`}
           >
             {isStarting

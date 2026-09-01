@@ -50,7 +50,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   const progressBarContent = (
     <View
       className={`h-1.5 w-full rounded-full overflow-hidden ${
-        liveMode ? 'bg-red-500/40' : 'bg-white/20'
+        liveMode ? 'bg-white/30' : 'bg-white/20'
       }`}
     >
       {!liveMode && (
@@ -71,7 +71,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
 
       {/* Live Indicator */}
       {liveMode && (
-        <View className="h-full w-full bg-red-500 rounded-full" />
+        <View className="h-full w-full bg-white rounded-full" />
       )}
     </View>
   );
@@ -86,7 +86,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
         >
           {liveMode ? (
             <View className="flex-row items-center">
-              <View className="w-2 h-2 rounded-full bg-red-500 mr-1.5" />
+              <View className="w-2 h-2 rounded-full bg-white mr-1.5" />
               <Text className="text-white text-xs font-semibold">LIVE</Text>
             </View>
           ) : (

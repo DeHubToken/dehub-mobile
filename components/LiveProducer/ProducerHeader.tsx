@@ -126,11 +126,12 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
     ? "READY"
     : "";
 
-  const dotColor = isLive
-    ? "#ef4444"
-    : isStarting || isEnding
-    ? "#D4D4D8"
-    : "#6b7280";
+  /**
+   * Monochrome, like the viewer's own status chip: live is a solid white dot
+   * that pulses, every other state is the same dot dimmed. The design system
+   * keeps hue off these surfaces entirely.
+   */
+  const dotColor = isLive ? "#fff" : "rgba(255,255,255,0.4)";
 
   return (
     <View
@@ -143,7 +144,7 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
           onPress={handlePressClose}
           activeOpacity={0.8}
           hitSlop={8}
-          className="w-8 h-8 rounded-full items-center justify-center bg-black/40"
+          className="w-10 h-10 rounded-xl items-center justify-center bg-zinc-900/60"
           accessibilityRole="button"
           accessibilityLabel="Close"
         >
@@ -151,7 +152,7 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
         </TouchableOpacity>
 
         {statusLabel ? (
-          <View className="flex-row items-center ml-3 bg-black/50 rounded-full px-3 py-1.5">
+          <View className="flex-row items-center ml-3 bg-zinc-900/60 rounded-xl px-3 py-1.5">
             <Animated.View
               style={[
                 {
@@ -188,17 +189,17 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
 
         <View className="flex-row items-center gap-2">
           {cameraOff ? (
-            <VideoOff color="#F97066" size={14} />
+            <VideoOff color="rgba(255,255,255,0.45)" size={14} />
           ) : (
-            <Video color="#32D583" size={14} />
+            <Video color="#fff" size={14} />
           )}
           {micMuted ? (
-            <MicOff color="#F97066" size={14} />
+            <MicOff color="rgba(255,255,255,0.45)" size={14} />
           ) : (
-            <Mic color="#32D583" size={14} />
+            <Mic color="#fff" size={14} />
           )}
           {isLive ? (
-            <View className="flex-row items-center ml-1 bg-black/40 rounded-full px-2.5 py-1">
+            <View className="flex-row items-center ml-1 bg-zinc-900/60 rounded-xl px-2.5 py-1">
               <Eye color="#A6A9AC" size={12} />
               <Text className="text-white/80 text-[11px] ml-1 font-medium">
                 {viewers}
@@ -222,11 +223,11 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
           ) : null}
           {bitrateKbps > 0 ? (
             <View className="flex-row items-center gap-0.5">
-              <Zap color={starved ? "#FCD34D" : "#D4D4D8"} size={10} />
+              <Zap color={starved ? "#fff" : "#D4D4D8"} size={10} />
               <Text
                 className={
                   starved
-                    ? "text-amber-300 text-[10px]"
+                    ? "text-white text-[10px]"
                     : "text-white/40 text-[10px]"
                 }
               >
@@ -241,7 +242,7 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
           good one looks like. This is the sentence that number is worth. */}
       {isLive && starved ? (
         <View className="flex-row items-start mt-1.5 ml-12 mr-3 gap-1.5 rounded-lg bg-amber-500/10 px-2.5 py-1.5">
-          <SignalLow color="#FCD34D" size={12} />
+          <SignalLow color="#fff" size={12} />
           <Text className="flex-1 text-amber-200 text-[10px] leading-[14px]">
             Your upload has dropped — viewers are seeing a frozen picture even
             though your preview looks fine. Moving closer to the router or

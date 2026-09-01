@@ -130,7 +130,7 @@ export default function ProducerShopButton({ tokenId, visible = true }: Props) {
       <TouchableOpacity
         onPress={() => setOpen(true)}
         activeOpacity={0.85}
-        className="flex-row items-center rounded-full bg-black/60 border border-white/15 px-3 py-2"
+        className="flex-row items-center rounded-xl bg-zinc-900/60 px-3 py-2"
       >
         <ShoppingBag size={14} color="#ffffff" />
         {products.length > 0 ? (
@@ -148,7 +148,7 @@ export default function ProducerShopButton({ tokenId, visible = true }: Props) {
               <View className="flex-row items-center">
                 <TouchableOpacity
                   onPress={() => setAdding((v) => !v)}
-                  className="bg-white/10 rounded-full px-3 py-1.5 mr-3"
+                  className="bg-white/10 rounded-lg px-3 py-1.5 mr-3"
                 >
                   <Text className="text-white text-xs font-semibold">
                     {adding ? "Done" : "Add"}
