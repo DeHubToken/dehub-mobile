@@ -34,9 +34,9 @@ const ChainSwitchModal: React.FC<ChainSwitchModalProps> = ({ visible, onClose })
         <Text className="text-white font-semibold text-lg">{t("settings.activeChain")}</Text>
         <Text className="text-theme-neutrals-400 text-xs mt-1">{t("settings.activeChainDesc")}</Text>
 
-        <View className="bg-theme-yellow-500/10 border border-theme-yellow-500/30 rounded-xl p-3 mt-4 flex-row items-start">
+        <View className="bg-white/10 border border-white/20 rounded-xl p-3 mt-4 flex-row items-start">
           <Icon name="Wrench" size={16} color="#D4D4D8" />
-          <Text className="text-theme-yellow-300 text-[12px] ml-2 flex-1">
+          <Text className="text-white/80 text-[12px] ml-2 flex-1">
             {t("settings.chainSwitchUnavailable")}
           </Text>
         </View>

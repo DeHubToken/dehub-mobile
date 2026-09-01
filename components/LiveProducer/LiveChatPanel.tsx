@@ -438,9 +438,9 @@ const ChatRow: React.FC<{ a: ChatActivity; colorForUser: (k?: string) => string 
     case StreamActivityType.TIP:
       return <SystemLine text={`${a.meta?.username || shortAddr(a.address)} tipped ${a.meta?.amount} DHB`} icon="💰" />;
     case StreamActivityType.START:
-      return <SystemLine text={`Stream has started`} icon="🔴" />;
+      return <SystemLine text={`Stream has started`} />;
     case StreamActivityType.END:
-      return <SystemLine text={`Stream has ended`} icon="⏹️" />;
+      return <SystemLine text={`Stream has ended`} />;
     default:
       return null;
   }

@@ -1194,7 +1194,7 @@ const LiveProducerScreen: React.FC = () => {
                 >
                   <View className="bg-indigo-600/70 rounded-xl px-4 py-2.5 items-center border border-indigo-400/20">
                     <Text className="text-white font-semibold text-xs">
-                      {"📅 Scheduled Stream"}
+                      {"Scheduled Stream"}
                     </Text>
                     {scheduledForDate ? (
                       <Text className="text-white/80 text-[10px] mt-0.5">

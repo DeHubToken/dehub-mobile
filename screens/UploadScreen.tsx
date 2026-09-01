@@ -1902,7 +1902,7 @@ export default function UploadScreen() {
               <Text
                 className={`text-xs ${
                   bodyText.length >= DESCRIPTION_MAX
-                    ? "text-theme-red-500"
+                    ? "text-white/80"
                     : "text-theme-neutrals-500"
                 }`}
               >
