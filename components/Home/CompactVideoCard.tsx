@@ -97,14 +97,11 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
     (nft as any).stream?.likes ||
     (nft as any).likes ||
     0;
-  // Signed-out viewers are already folded into totalViews by the API — see
-  // resolveViewCount. peakViewers/stream.totalViews stay for live posts, which
-  // report an audience rather than a view count.
-  const views =
-    resolveViewCount(nft) ||
-    (nft as any).peakViewers ||
-    (nft as any).stream?.totalViews ||
-    0;
+  // Signed-out and badge-weighted viewers are already folded into totalViews by
+  // the API — see resolveViewCount. A live post's stream fields are an audience
+  // figure, not a view count, so they are not a fallback for one: peakViewers
+  // is a high-water mark and the stream's totalViews counts reconnects.
+  const views = resolveViewCount(nft);
   const commentCount = (nft as any).commentCount ?? 0;
   const createdAt =
     nft.createdAt || (nft as any).stream?.createdAt || new Date().toISOString();
