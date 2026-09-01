@@ -687,14 +687,15 @@ const styles = StyleSheet.create({
     height: 18,
     paddingHorizontal: 3,
     borderRadius: 9,
-    backgroundColor: "#EF4444",
+    // White-on-black, like every other count badge in the app — see HomeHeader.
+    backgroundColor: "#FAFAFA",
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
     borderColor: "rgba(0, 0, 0, 0.35)",
   },
   badgeText: {
-    color: "#FFFFFF",
+    color: "#09090B",
     fontSize: 11,
     fontWeight: "800",
     lineHeight: 13,

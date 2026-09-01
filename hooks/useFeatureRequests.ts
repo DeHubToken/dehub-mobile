@@ -92,10 +92,10 @@ export const STATUS_COLORS: Record<FeatureStatus, string> = {
   open: "#A1A1AA",
   under_review: "#D4D4D8",
   planned: "#D4D4D8",
-  in_progress: "#A78BFA",
-  completed: "#34D399",
-  shipped: "#34D399",
-  declined: "#F87171",
+  in_progress: "#D4D4D8",
+  completed: "#F4F4F5",
+  shipped: "#F4F4F5",
+  declined: "#8B8D90",
 };
 
 const PAGE_SIZE = 15;
