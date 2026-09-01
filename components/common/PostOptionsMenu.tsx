@@ -21,6 +21,7 @@ import GlassModal from "../ui/GlassModal";
 import ConfirmModal from "./ConfirmModal";
 import ConfirmBlockModal from "./ConfirmBlockModal";
 import EditPostModal from "./EditPostModal";
+import type { ShopLink } from "../../services/nft.service";
 import ReportModal from "./ReportModal";
 import {
   editPost,
@@ -76,6 +77,8 @@ export interface PostOptionsMenuProps {
   currentCategories?: string[];
   /** Current state of the creator's comments toggle for this post. */
   currentCommentsDisabled?: boolean;
+  /** The Shop board already on the post, so the edit sheet opens on it. */
+  currentShopLinks?: ShopLink[];
   /** Absent means safe — the API stores nothing for the default. */
   currentContentRating?: string;
   /** Called after a successful follow/unfollow to update parent state */
@@ -83,7 +86,7 @@ export interface PostOptionsMenuProps {
   /** Called after visibility toggle to update parent state */
   onVisibilityChange?: (isHidden: boolean) => void;
   /** Called after edit success to update parent state */
-  onEditSuccess?: (data: { name?: string; description?: string; category?: string[] }) => void;
+  onEditSuccess?: (data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; shopLinks?: ShopLink[] }) => void;
   /** Called after delete success */
   onDeleteSuccess?: () => void;
   /** Called when user taps Send to DM */
@@ -191,6 +194,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   currentDescription,
   currentCategories,
   currentCommentsDisabled,
+  currentShopLinks,
   currentContentRating,
   onFollowChange,
   onVisibilityChange,
@@ -333,7 +337,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   }, [openSubModal]);
 
   const handleEditDone = useCallback(
-    (data: { name?: string; description?: string; category?: string[] }) => {
+    (data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; shopLinks?: ShopLink[] }) => {
       setShowEdit(false);
       onEditSuccess?.(data);
     },
@@ -645,6 +649,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         initialDescription={currentDescription}
         initialCategories={currentCategories}
         initialCommentsDisabled={currentCommentsDisabled}
+        initialShopLinks={currentShopLinks}
         initialContentRating={currentContentRating}
         canReplaceVideo={canReplaceVideo}
         onSuccess={handleEditDone}

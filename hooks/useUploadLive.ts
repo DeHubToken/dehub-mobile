@@ -18,7 +18,7 @@ import {
   useWeb3Provider,
   useStreamCollectionContract,
 } from "../hooks/use-web3";
-import { minNft, deletePost } from "../services/nft.service";
+import { minNft, deletePost, type ShopLink } from "../services/nft.service";
 import { mintNftOnChain } from "../services/mint.service";
 import { getFileName, guessMime } from "../libs/assets.util";
 import { probeIngestReachable, hadRecentIngestFailure } from "../libs/live-ingest";
@@ -64,6 +64,12 @@ export type LiveUploadPayload = {
   shouldMint: boolean;
   /** Adult or graphic — keeps the stream off the public feeds. */
   isMature?: boolean;
+  /**
+   * The Shop board — affiliate and shop links behind the Shop button on the
+   * player. Sent with the mint so the stream is already carrying its links
+   * when it goes on air.
+   */
+  shopLinks?: ShopLink[];
   /** The chain the post mints on, when the composer offers a choice. */
   postChainId?: number;
 };
@@ -182,6 +188,10 @@ export function useUploadLive() {
       // Only sent when it is 'mature': the server treats an absent rating as
       // safe and deliberately stores nothing for it.
       if (p.isMature) fd.append("contentRating", "mature");
+
+      // The Shop board, sent with the mint. A PATCH afterwards would leave the
+      // first viewers looking at a Shop button with nothing behind it.
+      if (p.shopLinks?.length) fd.append("shopLinks", JSON.stringify(p.shopLinks));
 
       if (addr) fd.append("address", addr);
 

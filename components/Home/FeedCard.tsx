@@ -19,6 +19,8 @@ import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useNavigation } from "@react-navigation/native";
 import { FeedCardHeader } from "./FeedCardHeader";
 import FeedActionBar from "./FeedActionBar";
+import ShopLinkBoard from "../common/ShopLinkBoard";
+import type { ShopLink } from "../../services/nft.service";
 import { FeedCaption } from "./FeedCaption";
 import MatureContentGate, { useMatureGate } from "./MatureContentGate";
 import AudioPostPlayer from "./AudioPostPlayer";
@@ -430,6 +432,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [localContentRating, setLocalContentRating] = useState<string | undefined>(
     (item as any).contentRating,
   );
+  // Same pattern for the Shop board, so adding or clearing links from the
+  // options menu shows on this card immediately.
+  const [localShopLinks, setLocalShopLinks] = useState<ShopLink[] | undefined>(undefined);
   // Independent of the monetisation gates above: a post can be both mature and
   // pay-per-view, and the creator's own post is warned about too — the warning
   // is for whoever is holding the phone.
@@ -867,7 +872,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     setIsHidden(hidden);
   }, []);
 
-  const handleEditSuccess = useCallback((data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string }) => {
+  const handleEditSuccess = useCallback((data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; shopLinks?: ShopLink[] }) => {
     if (data.name !== undefined) setLocalTitle(data.name);
     if (data.description !== undefined) setLocalDescription(data.description);
     if (data.category !== undefined) setLocalCategories(data.category);
@@ -875,6 +880,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     // creator would still see an input on a post they just closed.
     if (data.commentsDisabled !== undefined) setLocalCommentsDisabled(data.commentsDisabled);
     if (data.contentRating !== undefined) setLocalContentRating(data.contentRating);
+    // Same reason: the Shop button has to appear, change count or disappear on
+    // the card that is already on screen.
+    if (data.shopLinks !== undefined) setLocalShopLinks(data.shopLinks);
   }, []);
 
   const handleDeleteSuccess = useCallback(() => {
@@ -1472,6 +1480,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         <PollCard tokenId={Number(tokenId)} pollOwnerAddress={minterAddress} />
       )}
 
+      {/* The creator's Shop board — affiliate links, opened in a sheet. The
+          live card links through to the player, which draws its own overlay
+          button, so a second one here would be the same board twice. */}
+      {!isLive && <ShopLinkBoard links={localShopLinks ?? (item as any).shopLinks} />}
+
       <View className="flex-row items-center gap-2 pt-1.5">
         <Text style={{ fontSize: 11, color: "#8B8D90" }}>
           {formatShortTimeAgo(createdAt)}
@@ -1648,6 +1661,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentDescription={localDescription}
           currentCategories={localCategories}
           currentCommentsDisabled={localCommentsDisabled}
+          currentShopLinks={localShopLinks ?? (item as any).shopLinks}
           currentContentRating={localContentRating}
           hideReportContent={isLive}
           hideEdit={isLive}
