@@ -9,6 +9,7 @@ import FullScreenLoader from "../FullScreenLoader";
 import SocialLoginIcons from "./SocialLoginIcons";
 import EmailCodeEntry from "./EmailCodeEntry";
 import ImportWallet from "./ImportWallet";
+import SignInSavedProfiles from "./SignInSavedProfiles";
 import WalletSetupScreen, {
   type WalletSetupRequest,
   type CreateProtection,
@@ -555,6 +556,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
             </Text>
           </View>
           <AuthErrorNotice message={inlineError} style={{ marginBottom: 16 }} />
+          {authStep === "main" ? (
+            <SignInSavedProfiles disabled={isBusy} />
+          ) : null}
           {authStep === "main" ? (
             <SocialLoginIcons
               onGoogle={handleGoogleLogin}
