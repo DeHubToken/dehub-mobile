@@ -79,7 +79,7 @@ const GiftModal: React.FC<GiftModalProps> = ({ visible, onClose, onSend, balance
                 <TouchableOpacity
                   disabled={quantity <= 1}
                   onPress={() => setQuantity(q => Math.max(1, q - 1))}
-                  className="w-9 h-9 rounded-full bg-white/10 items-center justify-center mr-2"
+                  className="w-9 h-9 rounded-xl bg-white/10 items-center justify-center mr-2"
                 >
                   <Text className="text-white text-lg">-</Text>
                 </TouchableOpacity>
@@ -88,7 +88,7 @@ const GiftModal: React.FC<GiftModalProps> = ({ visible, onClose, onSend, balance
                 </View>
                 <TouchableOpacity
                   onPress={() => setQuantity(q => Math.min(999, q + 1))}
-                  className="w-9 h-9 rounded-full bg-white/10 items-center justify-center ml-2"
+                  className="w-9 h-9 rounded-xl bg-white/10 items-center justify-center ml-2"
                 >
                   <Text className="text-white text-lg">+</Text>
                 </TouchableOpacity>

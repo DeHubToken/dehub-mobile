@@ -70,7 +70,7 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
               <TouchableOpacity
                 onPress={onClose}
                 hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-                className="absolute top-2 right-2 p-1 rounded-full bg-white/10"
+                className="absolute top-2 right-2 p-1 rounded-lg bg-white/10"
                 accessibilityRole="button"
                 accessibilityLabel="Close"
               >
@@ -99,7 +99,7 @@ const StreamDetailsTooltip: React.FC<StreamDetailsTooltipProps> = ({
                     {streamKeyLoading ? (
                       <Text className="text-white/40 text-[11px]">Loading…</Text>
                     ) : streamKeyError ? (
-                      <Text className="text-red-400 text-[11px]" numberOfLines={1}>{truncate(streamKeyError, 32)}</Text>
+                      <Text className="text-white/70 text-[11px]" numberOfLines={1}>{truncate(streamKeyError, 32)}</Text>
                     ) : streamKeyValue ? (
                       <TouchableOpacity
                         onPress={onCopy('key', streamKeyValue)}

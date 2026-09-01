@@ -48,7 +48,7 @@ const CenterControls: React.FC<CenterControlsProps> = ({
         {!hideSeekButtons && (
           <TouchableOpacity
             onPress={handleSeekBack}
-            className="bg-black/60 rounded-full p-3.5 mx-4 items-center justify-center"
+            className="bg-zinc-900/60 rounded-2xl p-3.5 mx-4 items-center justify-center"
             activeOpacity={0.7}
             accessibilityLabel={`Rewind ${PLAYER_CONSTANTS.SEEK_BACKWARD_SECONDS} seconds`}
             accessibilityRole="button"
@@ -64,7 +64,7 @@ const CenterControls: React.FC<CenterControlsProps> = ({
         {/* Play/Pause Button */}
         <TouchableOpacity
           onPress={handleTogglePlay}
-          className="bg-black/70 rounded-full p-5 mx-2 items-center justify-center"
+          className="bg-zinc-900/60 rounded-2xl p-5 mx-2 items-center justify-center"
           activeOpacity={0.7}
           accessibilityLabel={isPlaying ? 'Pause' : 'Play'}
           accessibilityRole="button"
@@ -88,7 +88,7 @@ const CenterControls: React.FC<CenterControlsProps> = ({
         {!hideSeekButtons && (
           <TouchableOpacity
             onPress={handleSeekForward}
-            className="bg-black/60 rounded-full p-3.5 mx-4 items-center justify-center"
+            className="bg-zinc-900/60 rounded-2xl p-3.5 mx-4 items-center justify-center"
             activeOpacity={0.7}
             accessibilityLabel={`Skip forward ${PLAYER_CONSTANTS.SEEK_FORWARD_SECONDS} seconds`}
             accessibilityRole="button"

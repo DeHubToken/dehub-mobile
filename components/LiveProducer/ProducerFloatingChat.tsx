@@ -171,12 +171,12 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
             onPress={onToggleChatEnabled}
             activeOpacity={0.8}
             disabled={settingsUpdating}
-            className={`flex-row items-center px-2.5 py-1 rounded-full ${
-              chatEnabled ? "bg-theme-neutrals-800/60" : "bg-red-600/40"
+            className={`flex-row items-center px-2.5 py-1 rounded-lg ${
+              chatEnabled ? "bg-zinc-900/60" : "bg-white/20"
             }`}
           >
             <MessageCircleOff
-              color={chatEnabled ? "#32D583" : "#F97066"}
+              color={chatEnabled ? "#fff" : "rgba(255,255,255,0.5)"}
               size={12}
             />
             <Text className="text-white/70 text-[10px] ml-1 font-medium">
@@ -216,7 +216,7 @@ const ProducerFloatingChat: React.FC<ProducerFloatingChatProps> = ({
       </MaskedView>
 
       <View
-        className="flex-row items-center mt-2 rounded-full px-3 py-1.5 border border-white/15 bg-black/40"
+        className="flex-row items-center mt-2 rounded-lg px-3 py-1.5 bg-zinc-900/60"
         style={{ marginBottom: inputLift }}
       >
         <TextInput

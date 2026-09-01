@@ -174,24 +174,24 @@ const LiveChatPanel: React.FC<Props> = ({
     );
   }, [message, canSend, socketEmit, streamId, user, addActivity, onEphemeral]);
 
-  // Deterministic color per username/address for vibrant name labels
-  // Deterministic color per username/address for vibrant name labels
+  // Deterministic shade per username/address — the monochrome neutrals ramp,
+  // the same one the viewer's chat uses (LiveViewerChat.USERNAME_PALETTE).
   const usernamePalette = useMemo(
     () => [
-      '#f87171', // red-400
-      '#D4D4D8', // amber-500
-      '#10b981', // emerald-500
-      '#F4F4F5', // blue-500
-      '#D4D4D8', // violet-500
-      '#D4D4D8', // pink-500
-      '#D4D4D8', // cyan-400
-      '#84cc16', // lime-500
-      '#D4D4D8', // orange-500
-      '#D4D4D8', // purple-500
-      '#D4D4D8', // cyan-500
-      '#ef4444', // red-500
-      '#D4D4D8', // teal-500
-      '#D4D4D8', // sky-500
+      '#F9FBFF', // neutrals-100
+      '#D4D4D8', // neutrals ramp
+      '#DDE0E3', // neutrals-200
+      '#F4F4F5', // neutrals ramp
+      '#D4D4D8', // neutrals ramp
+      '#D4D4D8', // neutrals ramp
+      '#D4D4D8', // neutrals ramp
+      '#C2C4C7', // neutrals-300
+      '#D4D4D8', // neutrals ramp
+      '#D4D4D8', // neutrals ramp
+      '#D4D4D8', // neutrals ramp
+      '#F4F4F5', // zinc-100
+      '#D4D4D8', // neutrals ramp
+      '#D4D4D8', // neutrals ramp
     ],
     []
   );
@@ -260,7 +260,7 @@ const LiveChatPanel: React.FC<Props> = ({
       >
         <Text className="text-white font-semibold text-[12px] tracking-wide">LIVE CHAT</Text>
         {mode === 'panel' && (
-          <TouchableOpacity onPress={onClose} className="px-2 py-1 rounded-full bg-white/10" activeOpacity={0.7}>
+          <TouchableOpacity onPress={onClose} className="px-2 py-1 rounded-lg bg-white/10" activeOpacity={0.7}>
             <X color="white" size={14} />
           </TouchableOpacity>
         )}
