@@ -94,22 +94,22 @@ const ProducerStatusBar: React.FC<Props> = ({
         )}
 
         <View className="flex-row items-center gap-2 ml-2">
-          {cameraOff ? <VideoOff color="#f87171" size={13} /> : <Video color="#a3e635" size={13} />}
-          {micMuted ? <MicOff color="#f87171" size={13} /> : <Mic color="#a3e635" size={13} />}
+          {cameraOff ? <VideoOff color="rgba(255,255,255,0.5)" size={13} /> : <Video color="#fff" size={13} />}
+          {micMuted ? <MicOff color="rgba(255,255,255,0.5)" size={13} /> : <Mic color="#fff" size={13} />}
         </View>
       </View>
 
       {isLive && (
         <View className="flex-row items-center mt-1.5 ml-9 gap-3">
           <View className="flex-row items-center gap-1">
-            <Eye color="#94a3b8" size={11} />
+            <Eye color="rgba(255,255,255,0.6)" size={11} />
             <Text className="text-white/70 text-[11px]">{viewers}</Text>
           </View>
           {peakViewers > 0 && (
             <Text className="text-white/40 text-[11px]">Peak {peakViewers}</Text>
           )}
           <View className="flex-row items-center gap-1">
-            <Heart color="#f87171" size={11} />
+            <Heart color="#fff" size={11} />
             <Text className="text-white/70 text-[11px]">{likes}</Text>
           </View>
           {typeof bitrateKbps === 'number' && bitrateKbps > 0 && (
