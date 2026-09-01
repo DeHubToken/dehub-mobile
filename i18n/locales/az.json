@@ -2393,5 +2393,20 @@
     "history": "Tarixçə",
     "sold": "Satılıb",
     "bought": "Alınıb"
+  },
+  "videoLooks": {
+    "button": "Kamera görünüşləri",
+    "title": "Görünüş",
+    "hint": "Videonuz bu cihazdan çıxmazdan əvvəl tətbiq olunur — izləyicilər tam olaraq burada gördüyünüzü görür.",
+    "none": "Yoxdur",
+    "soft": "Yumşaq",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "İsti",
+    "cool": "Soyuq",
+    "vivid": "Canlı",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Piksel"
   }
 }

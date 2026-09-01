@@ -2407,5 +2407,20 @@
     "history": "Istoric",
     "sold": "Vândut",
     "bought": "Cumpărat"
+  },
+  "videoLooks": {
+    "button": "Aspecte ale camerei",
+    "title": "Aspect",
+    "hint": "Se aplică înainte ca videoclipul să părăsească acest dispozitiv — spectatorii văd exact ce vezi tu aici.",
+    "none": "Niciunul",
+    "soft": "Blând",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Cald",
+    "cool": "Rece",
+    "vivid": "Viu",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pixelare"
   }
 }

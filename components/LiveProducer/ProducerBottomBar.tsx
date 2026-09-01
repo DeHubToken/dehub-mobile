@@ -1,5 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import { useTranslation } from "react-i18next";
 import {
   Radio,
   Video,
@@ -8,6 +9,7 @@ import {
   MicOff,
   RefreshCw,
   Server,
+  Palette,
 } from "lucide-react-native";
 
 type Stage =
@@ -31,6 +33,9 @@ interface ProducerBottomBarProps {
   externalMode: boolean;
   onToggleExternal: () => void;
   startDisabled?: boolean;
+  /** Absent on a build with no native looks — the button is then not rendered. */
+  onOpenLooks?: () => void;
+  looksActive?: boolean;
 }
 
 const CIRCLE = "w-12 h-12 rounded-xl items-center justify-center";
@@ -47,7 +52,10 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
   externalMode,
   onToggleExternal,
   startDisabled,
+  onOpenLooks,
+  looksActive,
 }) => {
+  const { t } = useTranslation();
   const isLive = stage === "live";
   const isStarting = stage === "starting";
   const isEnding = stage === "ending";
@@ -112,6 +120,23 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
             <Video color="#fff" size={20} />
           )}
         </TouchableOpacity>
+
+        {/* Camera looks. Filled while one is on, like mic and camera: it is a
+            state the creator has put the picture in, not a control at rest. */}
+        {onOpenLooks ? (
+          <TouchableOpacity
+            onPress={onOpenLooks}
+            activeOpacity={0.8}
+            className={`${CIRCLE} ${
+              looksActive ? "bg-white/20" : "bg-zinc-900/60"
+            }`}
+            accessibilityRole="button"
+            accessibilityLabel={t("videoLooks.button")}
+            accessibilityState={{ selected: !!looksActive }}
+          >
+            <Palette color="#fff" size={20} />
+          </TouchableOpacity>
+        ) : null}
 
         {/* External mode toggle (only pre-stream) */}
         {!hideExternalToggle ? (

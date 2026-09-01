@@ -2393,5 +2393,20 @@
     "history": "Historial",
     "sold": "Venut",
     "bought": "Comprat"
+  },
+  "videoLooks": {
+    "button": "Aspectes de la càmera",
+    "title": "Aspecte",
+    "hint": "S aplica abans que el vídeo surti d aquest dispositiu: els espectadors veuen exactament el que veus aquí.",
+    "none": "Cap",
+    "soft": "Suau",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Càlid",
+    "cool": "Fred",
+    "vivid": "Viu",
+    "vhs": "VHS",
+    "neon": "Neó",
+    "pixelate": "Pixelat"
   }
 }

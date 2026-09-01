@@ -2578,5 +2578,20 @@
     "history": "Kasaysayan",
     "sold": "Nabenta",
     "bought": "Nabili"
+  },
+  "videoLooks": {
+    "button": "Mga look ng camera",
+    "title": "Look",
+    "hint": "Nailalapat bago umalis ang video mo sa device na ito — eksaktong nakikita ng manonood ang nakikita mo rito.",
+    "none": "Wala",
+    "soft": "Malambot",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Mainit",
+    "cool": "Malamig",
+    "vivid": "Matingkad",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pixelate"
   }
 }

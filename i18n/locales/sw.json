@@ -2394,5 +2394,20 @@
     "history": "Historia",
     "sold": "Zilizouzwa",
     "bought": "Zilizonunuliwa"
+  },
+  "videoLooks": {
+    "button": "Mionekano ya kamera",
+    "title": "Mwonekano",
+    "hint": "Hutumika kabla video yako haijaondoka kwenye kifaa hiki — watazamaji huona hasa unachokiona hapa.",
+    "none": "Hakuna",
+    "soft": "Laini",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Joto",
+    "cool": "Baridi",
+    "vivid": "Angavu",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pikseli"
   }
 }

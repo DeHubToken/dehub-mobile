@@ -2393,5 +2393,20 @@
     "history": "Riwayat",
     "sold": "Wis payu",
     "bought": "Wis dituku"
+  },
+  "videoLooks": {
+    "button": "Tampilan kamera",
+    "title": "Tampilan",
+    "hint": "Ditrapake sadurunge video metu saka piranti iki — sing nonton ndeleng persis kaya sing sampeyan deleng ing kene.",
+    "none": "Ora ana",
+    "soft": "Alus",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Anget",
+    "cool": "Adhem",
+    "vivid": "Cerah",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Piksel"
   }
 }

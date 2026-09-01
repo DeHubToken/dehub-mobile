@@ -2393,5 +2393,20 @@
     "history": "Taryh",
     "sold": "Satyldy",
     "bought": "Satyn alyndy"
+  },
+  "videoLooks": {
+    "button": "Kamera görnüşleri",
+    "title": "Görnüş",
+    "hint": "Wideoňyz bu enjamdan çykmazdan öň ulanylýar — tomaşaçylar edil şu ýerde görýän zadyňyzy görýärler.",
+    "none": "Ýok",
+    "soft": "Ýumşak",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Ýyly",
+    "cool": "Sowuk",
+    "vivid": "Janly",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Piksel"
   }
 }

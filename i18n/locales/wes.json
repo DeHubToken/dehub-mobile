@@ -2393,5 +2393,20 @@
     "history": "History",
     "sold": "Dem don sell-am",
     "bought": "Dem don buy-am"
+  },
+  "videoLooks": {
+    "button": "Camera looks",
+    "title": "Look",
+    "hint": "E di apply bifo yua video komot fo dis divais — pipul dem go si exactly weti yu di si hia.",
+    "none": "Notin",
+    "soft": "Soft",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Warm",
+    "cool": "Cool",
+    "vivid": "Vivid",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pixelate"
   }
 }

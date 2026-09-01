@@ -2393,5 +2393,20 @@
     "history": "Ajalugu",
     "sold": "Müüdud",
     "bought": "Ostetud"
+  },
+  "videoLooks": {
+    "button": "Kaamera stiilid",
+    "title": "Stiil",
+    "hint": "Rakendatakse enne, kui video sellest seadmest lahkub — vaatajad näevad täpselt seda, mida sina siin näed.",
+    "none": "Puudub",
+    "soft": "Pehme",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Soe",
+    "cool": "Külm",
+    "vivid": "Erk",
+    "vhs": "VHS",
+    "neon": "Neoon",
+    "pixelate": "Pikselda"
   }
 }

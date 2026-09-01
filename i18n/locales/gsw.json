@@ -2423,5 +2423,20 @@
     "history": "Verlauf",
     "sold": "Verchauft",
     "bought": "Gchauft"
+  },
+  "videoLooks": {
+    "button": "Kamera-Looks",
+    "title": "Look",
+    "hint": "Wird aagwendet, bevor dis Video das Grät verlaat — Zueschauer gsehnd genau das, wo du da gsehsch.",
+    "none": "Kei",
+    "soft": "Weich",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Warm",
+    "cool": "Chüel",
+    "vivid": "Chräftig",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pixelig"
   }
 }

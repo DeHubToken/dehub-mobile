@@ -2393,5 +2393,20 @@
     "history": "Istorija",
     "sold": "Parduota",
     "bought": "Nupirkta"
+  },
+  "videoLooks": {
+    "button": "Kameros stiliai",
+    "title": "Stilius",
+    "hint": "Pritaikoma prieš vaizdo įrašui paliekant šį įrenginį — žiūrovai mato būtent tai, ką matote jūs.",
+    "none": "Nėra",
+    "soft": "Švelnus",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Šiltas",
+    "cool": "Šaltas",
+    "vivid": "Ryškus",
+    "vhs": "VHS",
+    "neon": "Neonas",
+    "pixelate": "Pikseliai"
   }
 }

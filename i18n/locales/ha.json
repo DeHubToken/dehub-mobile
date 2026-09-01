@@ -2393,5 +2393,20 @@
     "history": "Tarihi",
     "sold": "An sayar",
     "bought": "An siya"
+  },
+  "videoLooks": {
+    "button": "Kamannin kamara",
+    "title": "Kamanni",
+    "hint": "Ana amfani da shi kafin bidiyon ka ya bar wannan na ura — masu kallo suna ganin daidai abin da kake gani a nan.",
+    "none": "Babu",
+    "soft": "Mai laushi",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Dumi",
+    "cool": "Sanyi",
+    "vivid": "Haske",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pixel"
   }
 }

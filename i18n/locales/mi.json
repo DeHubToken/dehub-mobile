@@ -2393,5 +2393,20 @@
     "history": "Hītori",
     "sold": "Kua hokona",
     "bought": "Kua hokona mai"
+  },
+  "videoLooks": {
+    "button": "Ngā āhua kāmera",
+    "title": "Āhua",
+    "hint": "Ka whakamahia i mua i te wehenga o tō ataata i tēnei pūrere — ka kite ngā kaimātakitaki i te mea tonu e kite nei koe.",
+    "none": "Kāore",
+    "soft": "Ngāwari",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Mahana",
+    "cool": "Makariri",
+    "vivid": "Kanapa",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pika"
   }
 }

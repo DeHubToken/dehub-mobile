@@ -2393,5 +2393,20 @@
     "history": "歷史",
     "sold": "已賣出",
     "bought": "已買入"
+  },
+  "videoLooks": {
+    "button": "鏡頭效果",
+    "title": "效果",
+    "hint": "喺條片離開呢部裝置之前套用 — 觀眾睇到嘅同你喺度睇到嘅一模一樣。",
+    "none": "冇",
+    "soft": "柔和",
+    "mono": "黑白",
+    "noir": "黑色電影",
+    "warm": "暖色",
+    "cool": "冷色",
+    "vivid": "鮮艷",
+    "vhs": "VHS",
+    "neon": "霓虹",
+    "pixelate": "像素化"
   }
 }

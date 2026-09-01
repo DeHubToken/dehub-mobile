@@ -2393,5 +2393,20 @@
     "history": "Historia",
     "sold": "Myyty",
     "bought": "Ostettu"
+  },
+  "videoLooks": {
+    "button": "Kameratyylit",
+    "title": "Tyyli",
+    "hint": "Käytetään ennen kuin video lähtee tästä laitteesta — katsojat näkevät täsmälleen sen, minkä sinä näet tässä.",
+    "none": "Ei mitään",
+    "soft": "Pehmeä",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Lämmin",
+    "cool": "Viileä",
+    "vivid": "Kirkas",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pikselöi"
   }
 }

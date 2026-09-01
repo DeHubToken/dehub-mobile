@@ -2393,5 +2393,20 @@
     "history": "Riwayat",
     "sold": "Terjual",
     "bought": "Dibeli"
+  },
+  "videoLooks": {
+    "button": "Gaya kamera",
+    "title": "Gaya",
+    "hint": "Diterapkan sebelum video keluar dari perangkat ini — penonton melihat persis seperti yang Anda lihat di sini.",
+    "none": "Tidak ada",
+    "soft": "Lembut",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Hangat",
+    "cool": "Dingin",
+    "vivid": "Cerah",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Piksel"
   }
 }

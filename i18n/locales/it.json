@@ -2393,5 +2393,20 @@
     "history": "Cronologia",
     "sold": "Venduto",
     "bought": "Comprato"
+  },
+  "videoLooks": {
+    "button": "Effetti fotocamera",
+    "title": "Effetto",
+    "hint": "Applicato prima che il video lasci questo dispositivo — gli spettatori vedono esattamente ciò che vedi tu.",
+    "none": "Nessuno",
+    "soft": "Morbido",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Caldo",
+    "cool": "Freddo",
+    "vivid": "Vivido",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pixelato"
   }
 }

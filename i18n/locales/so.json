@@ -2393,5 +2393,20 @@
     "history": "Taariikh",
     "sold": "La iibiyay",
     "bought": "La iibsaday"
+  },
+  "videoLooks": {
+    "button": "Muuqaallada kaamirada",
+    "title": "Muuqaal",
+    "hint": "Waxaa la adeegsadaa ka hor inta uusan fiidiyowgaagu ka bixin qalabkan — daawadayaashu waxay arkaan si sax ah waxaad halkan ku aragto.",
+    "none": "Midna",
+    "soft": "Jilicsan",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Diiran",
+    "cool": "Qabow",
+    "vivid": "Dhalaalaya",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Piksel"
   }
 }

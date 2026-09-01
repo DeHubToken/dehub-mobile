@@ -2424,5 +2424,20 @@
     "history": "Ñawpa ruwaykuna",
     "sold": "Qatusqa",
     "bought": "Rantisqa"
+  },
+  "videoLooks": {
+    "button": "Kamara rikchaykuna",
+    "title": "Rikchay",
+    "hint": "Videoyki kay antamanta lloqsinanpaq ñawpaqta churakun — qhawaqkunaqa kaypi qhawasqaykitapuni qhawanku.",
+    "none": "Manam",
+    "soft": "Llampu",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Qoñi",
+    "cool": "Chiri",
+    "vivid": "Llipipiq",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Piksil"
   }
 }

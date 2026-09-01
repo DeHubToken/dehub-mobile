@@ -2424,5 +2424,20 @@
     "history": "Umlando",
     "sold": "Kuthengisiwe",
     "bought": "Kuthengiwe"
+  },
+  "videoLooks": {
+    "button": "Ukubukeka kwekhamera",
+    "title": "Ukubukeka",
+    "hint": "Kusetshenziswa ngaphambi kokuba ividiyo yakho ishiye le divayisi — ababukeli babona ncamashi lokho okubonayo lapha.",
+    "none": "Lutho",
+    "soft": "Thambile",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Fudumele",
+    "cool": "Bandayo",
+    "vivid": "Gqamile",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Iphikseli"
   }
 }

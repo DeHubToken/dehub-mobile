@@ -2393,5 +2393,20 @@
     "history": "Dîrok",
     "sold": "Firotî",
     "bought": "Kirî"
+  },
+  "videoLooks": {
+    "button": "Dîmenên kamerayê",
+    "title": "Dîmen",
+    "hint": "Berî ku vîdyoya te ji vê amûrê derkeve tê sepandin — temaşevan tam wê yekê dibînin ku tu li vir dibînî.",
+    "none": "Tune",
+    "soft": "Nerm",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Germ",
+    "cool": "Sar",
+    "vivid": "Zindî",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Piksel"
   }
 }
