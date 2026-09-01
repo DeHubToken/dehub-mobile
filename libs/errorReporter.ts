@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Constants from "expo-constants";
 import * as Device from "expo-device";
 import { AppState, Platform } from "react-native";
-import { SUPABASE_URL } from "@env";
+import env from "../config/env";
 
 /**
  * Ships error logs off the device.
@@ -22,7 +22,13 @@ import { SUPABASE_URL } from "@env";
  */
 
 // The function runs with verify_jwt = false, so no key is needed to post to it.
-const ENDPOINT = `${(SUPABASE_URL || "https://aigxuutjaqsywioxjefr.supabase.co").replace(/\/+$/, "")}/functions/v1/client-logs`;
+//
+// Read through config/env rather than straight from `@env`, which is what every
+// other consumer in the app does. react-native-dotenv INLINES `@env` imports at
+// babel time from a `.env` that does not exist in CI, so the binding resolved
+// to nothing there and this line threw a ReferenceError before a single test in
+// the file could run. config/env already carries the fallback.
+const ENDPOINT = `${env.SUPABASE_URL.replace(/\/+$/, "")}/functions/v1/client-logs`;
 
 // The edge function takes at most 50 rows per request and caps metadata at
 // 4000 characters; there is no point queueing past what it will accept.
