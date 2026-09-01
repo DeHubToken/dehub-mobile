@@ -2393,5 +2393,20 @@
     "history": "Tariku",
     "sold": "A feerela",
     "bought": "A sanna"
+  },
+  "videoLooks": {
+    "button": "Kamera cogoya",
+    "title": "Cogoya",
+    "hint": "A bɛ kɛ sani i ka video ka bɔ nin minɛn na — filɛlikɛlaw bɛ fɛn kelen ye i bɛ min ye yan.",
+    "none": "Foyi",
+    "soft": "Nɔgɔman",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Kalaman",
+    "cool": "Sumaman",
+    "vivid": "Yeelenman",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Piksɛli"
   }
 }

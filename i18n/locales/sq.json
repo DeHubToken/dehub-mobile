@@ -2393,5 +2393,20 @@
     "history": "Historiku",
     "sold": "Shitur",
     "bought": "Blerë"
+  },
+  "videoLooks": {
+    "button": "Pamjet e kamerës",
+    "title": "Pamja",
+    "hint": "Zbatohet para se videoja të largohet nga kjo pajisje — shikuesit shohin saktësisht atë që sheh ti këtu.",
+    "none": "Asnjë",
+    "soft": "I butë",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "I ngrohtë",
+    "cool": "I ftohtë",
+    "vivid": "I gjallë",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pikselizim"
   }
 }

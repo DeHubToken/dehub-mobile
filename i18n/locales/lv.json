@@ -2393,5 +2393,20 @@
     "history": "Vēsture",
     "sold": "Pārdots",
     "bought": "Nopirkts"
+  },
+  "videoLooks": {
+    "button": "Kameras izskati",
+    "title": "Izskats",
+    "hint": "Tiek lietots, pirms video pamet šo ierīci — skatītāji redz tieši to, ko redzat jūs.",
+    "none": "Nav",
+    "soft": "Maigs",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Silts",
+    "cool": "Vēss",
+    "vivid": "Spilgts",
+    "vhs": "VHS",
+    "neon": "Neons",
+    "pixelate": "Pikseļi"
   }
 }

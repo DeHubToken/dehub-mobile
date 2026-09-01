@@ -2393,5 +2393,20 @@
     "history": "Povijest",
     "sold": "Prodano",
     "bought": "Kupljeno"
+  },
+  "videoLooks": {
+    "button": "Izgledi kamere",
+    "title": "Izgled",
+    "hint": "Primjenjuje se prije nego što videozapis napusti ovaj uređaj — gledatelji vide točno ono što vidite vi.",
+    "none": "Nijedan",
+    "soft": "Mekano",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Toplo",
+    "cool": "Hladno",
+    "vivid": "Živo",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pikselizacija"
   }
 }

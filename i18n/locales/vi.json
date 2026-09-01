@@ -2481,5 +2481,20 @@
     "history": "Lịch sử",
     "sold": "Đã bán",
     "bought": "Đã mua"
+  },
+  "videoLooks": {
+    "button": "Kiểu camera",
+    "title": "Kiểu",
+    "hint": "Được áp dụng trước khi video rời khỏi thiết bị này — người xem thấy đúng những gì bạn thấy ở đây.",
+    "none": "Không có",
+    "soft": "Mềm",
+    "mono": "Đơn sắc",
+    "noir": "Noir",
+    "warm": "Ấm",
+    "cool": "Lạnh",
+    "vivid": "Rực rỡ",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Điểm ảnh"
   }
 }

@@ -2564,5 +2564,20 @@
     "history": "História",
     "sold": "Predané",
     "bought": "Kúpené"
+  },
+  "videoLooks": {
+    "button": "Vzhľady kamery",
+    "title": "Vzhľad",
+    "hint": "Použije sa skôr, než video opustí toto zariadenie — diváci vidia presne to, čo vidíte vy.",
+    "none": "Žiadny",
+    "soft": "Jemný",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Teplý",
+    "cool": "Studený",
+    "vivid": "Živý",
+    "vhs": "VHS",
+    "neon": "Neón",
+    "pixelate": "Pixelizácia"
   }
 }

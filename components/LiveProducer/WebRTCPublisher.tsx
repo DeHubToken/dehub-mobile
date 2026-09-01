@@ -17,6 +17,7 @@ import {
   clearIngestUnreachable,
   isNetworkShapedError,
 } from "../../libs/live-ingest";
+import type { VideoLookId } from "./videoLooks";
 
 /**
  * How long after a publish is accepted a dead connection still means the media
@@ -50,6 +51,14 @@ export interface WebRTCPublisherProps {
   facing: Facing;
   micMuted: boolean;
   cameraOff: boolean;
+  /**
+   * The camera look to apply, or 'none'.
+   *
+   * Applied to the CAPTURE track rather than the sender: the native processor
+   * sits in front of the encoder, so the local preview shows the look as well —
+   * the creator sees what viewers see, without a second composite.
+   */
+  videoLook?: VideoLookId;
   onConnected?: () => void;
   onError?: (e: any) => void;
   onStats?: (s: PublishStats) => void;
@@ -117,6 +126,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
   facing,
   micMuted,
   cameraOff,
+  videoLook = "none",
   onConnected,
   onError,
   onStats,
@@ -159,6 +169,16 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
 
   const [localURL, setLocalURL] = useState<string | null>(null);
   const [localReady, setLocalReady] = useState(false);
+  /*
+   * Bumped whenever the capture track is replaced outright.
+   *
+   * A camera look lives on the track, not on the session, so a flip that has to
+   * fall back to a fresh getUserMedia drops it — and the creator would see
+   * their look vanish for no reason they could act on. The in-place
+   * `_switchCamera` path keeps the same track and needs none of this; this
+   * exists for the fallback.
+   */
+  const [videoTrackEpoch, setVideoTrackEpoch] = useState(0);
   const [connected, setConnected] = useState(false);
   const [reconnecting, setReconnecting] = useState(false);
   const acquiringRef = useRef(false);
@@ -651,6 +671,32 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
     }
   }, [cameraOff, localReady]);
 
+  /*
+   * Apply the camera look.
+   *
+   * Always the LOCAL capture track, never the sender's: react-native-webrtc
+   * hangs the processor off the camera's VideoSource, so a sender track would
+   * be ignored outright. An empty array is how a look is removed — there is no
+   * "off" processor, only an empty chain.
+   *
+   * Names that no processor is registered under are logged and dropped
+   * natively, so an iOS build (where none are registered yet) publishes a plain
+   * picture rather than failing.
+   */
+  useEffect(() => {
+    if (!localReady) return;
+    const s: any = streamRef.current;
+    const track: any = s?.getVideoTracks?.()[0];
+    if (!track || typeof track._setVideoEffects !== "function") return;
+    try {
+      track._setVideoEffects(videoLook && videoLook !== "none" ? [videoLook] : []);
+      dbg("videoLook applied", { videoLook });
+    } catch (e) {
+      // Never fatal: the broadcast is worth more than the filter.
+      dbg("videoLook could not be applied", e);
+    }
+  }, [videoLook, localReady, videoTrackEpoch]);
+
   // Flip camera: only when facing prop changes and preview is ready
   useEffect(() => {
     let cancelled = false;
@@ -718,6 +764,8 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
         } catch {}
         // We explicitly requested the new facing
         currentFacingRef.current = facing;
+        // A brand new track carries no look; the effect below re-applies it.
+        setVideoTrackEpoch((e) => e + 1);
 
         setTimeout(() => {
           if (cancelled) return;

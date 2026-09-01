@@ -15,6 +15,11 @@ import { useLive } from "../hooks/use-live";
 import { useWebSocket } from "../context/WebSocketContext";
 import { useCameraPermissions } from "expo-camera";
 import WebRTCPublisher from "../components/LiveProducer/WebRTCPublisher";
+import VideoLookSheet from "../components/LiveProducer/VideoLookSheet";
+import {
+  videoLooksSupported,
+  type VideoLookId,
+} from "../components/LiveProducer/videoLooks";
 import ExternalStreamingOverlay from "../components/LiveProducer/ExternalStreamingOverlay";
 import TipAnimationsOverlay from "../components/LiveProducer/TipAnimationsOverlay";
 import ReactionOverlay from "../components/LiveProducer/ReactionOverlay";
@@ -88,6 +93,8 @@ const LiveProducerScreen: React.FC = () => {
   const [cameraOff, setCameraOff] = useState(false);
   const [externalMode, setExternalMode] = useState(false);
   const [cameraFacing, setCameraFacing] = useState<"front" | "back">("front");
+  const [videoLook, setVideoLook] = useState<VideoLookId>("none");
+  const [looksOpen, setLooksOpen] = useState(false);
   const [permission, requestPermission] = useCameraPermissions();
   const {
     streamEntity,
@@ -1072,6 +1079,7 @@ const LiveProducerScreen: React.FC = () => {
               facing={cameraFacing}
               micMuted={micMuted}
               cameraOff={cameraOff}
+              videoLook={videoLook}
               onStats={handlePublishStats}
               onConnected={handlePublisherConnected}
               onError={handlePublisherError}
@@ -1292,6 +1300,12 @@ const LiveProducerScreen: React.FC = () => {
                       startDisabled={
                         !streamKeyValue || !streamEntity?.livepeerId
                       }
+                      {...(videoLooksSupported && !externalMode
+                        ? {
+                            onOpenLooks: () => setLooksOpen(true),
+                            looksActive: videoLook !== "none",
+                          }
+                        : null)}
                     />
                   </View>
                 ) : null}
@@ -1383,6 +1397,17 @@ const LiveProducerScreen: React.FC = () => {
             </View>
           </View>
         </GlassModal>
+
+        {/* Camera looks. Rendered last so it sits over the preview, and only
+            where native processors exist to back it. */}
+        {videoLooksSupported ? (
+          <VideoLookSheet
+            visible={looksOpen}
+            active={videoLook}
+            onSelect={setVideoLook}
+            onClose={() => setLooksOpen(false)}
+          />
+        ) : null}
       </View>
     </Pressable>
   );

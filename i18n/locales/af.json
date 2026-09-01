@@ -2518,5 +2518,20 @@
     "history": "Geskiedenis",
     "sold": "Verkoop",
     "bought": "Gekoop"
+  },
+  "videoLooks": {
+    "button": "Kameravoorkomste",
+    "title": "Voorkoms",
+    "hint": "Word toegepas voordat jou video hierdie toestel verlaat — kykers sien presies wat jy hier sien.",
+    "none": "Geen",
+    "soft": "Sag",
+    "mono": "Mono",
+    "noir": "Noir",
+    "warm": "Warm",
+    "cool": "Koel",
+    "vivid": "Helder",
+    "vhs": "VHS",
+    "neon": "Neon",
+    "pixelate": "Pixeleer"
   }
 }
