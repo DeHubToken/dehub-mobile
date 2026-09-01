@@ -24,6 +24,7 @@ import { useUser } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { toastError, toastSuccess } from "../../libs/toast";
+import { ButtonLoader } from "../DeHubLoader";
 
 const MAX_PINS = 3;
 
@@ -237,7 +238,11 @@ function PinPickerModal({
                     <Text style={styles.pickerName} numberOfLines={1}>
                       {item.name}
                     </Text>
-                    {isPinned ? (
+                    {busyId === item.id ? (
+                      /* Pinning is a write plus a refetch — the row that was
+                         tapped carries the mark so the press is not lost. */
+                      <ButtonLoader size={18} />
+                    ) : isPinned ? (
                       <Icon name="X" size={18} color="#F4F4F5" />
                     ) : canAdd ? (
                       <Icon name="Plus" size={18} color="#71717a" />
