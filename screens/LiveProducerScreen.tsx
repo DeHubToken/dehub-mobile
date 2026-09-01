@@ -51,6 +51,19 @@ type RouteParams = {
   discardIfNeverLive?: boolean;
 };
 
+/*
+ * When the outgoing picture counts as starved.
+ *
+ * Under about five frames a second a viewer is watching a slideshow, not a
+ * stream; under ~150 kbit/s the encoder has abandoned the picture to protect
+ * the voice, which is what WebRTC gives up first. Deliberately far below
+ * "not great" — this is for a broadcast that is failing, not a soft one.
+ */
+const STARVED_FPS = 5;
+const STARVED_KBPS = 150;
+/** Consecutive bad samples before it is called (2s each — see WebRTCPublisher). */
+const STARVED_SAMPLES = 2;
+
 const LiveProducerScreen: React.FC = () => {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
@@ -846,6 +859,38 @@ const LiveProducerScreen: React.FC = () => {
     }
   }, [permission?.granted]);
 
+  /*
+   * Whether viewers are getting a picture at all.
+   *
+   * The preview on this screen is the CAMERA, not the broadcast, so it stays
+   * perfect while the encoder starves — and a host has no way to tell the two
+   * apart. A web broadcast on 2026-09-01 published 74 frames in 77 seconds at
+   * ~37 kbit/s: its one viewer watched a frozen frame, left after seventeen
+   * seconds, and the console showed a healthy stream the whole time. The kbps
+   * readout was already here; what it lacked was anything saying that number
+   * is bad.
+   *
+   * Two consecutive samples before it is called (2s each) — a keyframe request
+   * or a camera flip dips briefly, and a warning that blinks on every hiccup
+   * is one a host learns to ignore. A camera the host switched off sends
+   * nothing and is not a fault.
+   */
+  const [starved, setStarved] = useState(false);
+  const badStatsRef = useRef(0);
+  useEffect(() => {
+    if (stage !== "live" || cameraOff) {
+      badStatsRef.current = 0;
+      setStarved(false);
+      return;
+    }
+    const { fps, bitrateKbps } = publishStats;
+    if (typeof bitrateKbps !== "number") return;
+    const bad =
+      bitrateKbps < STARVED_KBPS || (typeof fps === "number" && fps < STARVED_FPS);
+    badStatsRef.current = bad ? badStatsRef.current + 1 : 0;
+    setStarved(badStatsRef.current >= STARVED_SAMPLES);
+  }, [publishStats, stage, cameraOff]);
+
   // Debug: publish stats changes (bitrate/fps/dropped)
   const lastStatsRef = useRef(publishStats);
   useEffect(() => {
@@ -1116,6 +1161,7 @@ const LiveProducerScreen: React.FC = () => {
                     0
                   }
                   bitrateKbps={publishStats.bitrateKbps || 0}
+                  starved={starved}
                   micMuted={micMuted}
                   cameraOff={cameraOff}
                   startingHint={
