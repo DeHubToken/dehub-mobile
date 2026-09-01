@@ -9,12 +9,12 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  ActivityIndicator,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, { FadeIn, FadeOut, SlideInUp, SlideOutDown } from "react-native-reanimated";
 import Icon from "../ui/Icon";
 import { useCreatePoll } from "../../hooks/usePolls";
+import { ButtonLoader } from "../DeHubLoader";
 
 interface CreatePollSheetProps {
   visible: boolean;
@@ -130,7 +130,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
               }`}
             >
               {loading ? (
-                <ActivityIndicator size="small" color="#F4F4F5" />
+                <ButtonLoader size={16} />
               ) : (
                 <Text
                   className={`text-sm font-medium ${

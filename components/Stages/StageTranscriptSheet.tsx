@@ -20,6 +20,8 @@ import GlassModal from "../ui/GlassModal";
 import StageRecordingPlayer from "./StageRecordingPlayer";
 import { seekStageRecordingToTime, useStagePlayback } from "../../libs/stage-playback";
 import type { AudioSpace, StageTranscript, Segment, Chapter, SpeakerMapEntry, SpeakerOverride } from "../../hooks/useStages";
+import { ButtonLoader } from "../DeHubLoader";
+import { usePendingAction } from "../../hooks/usePendingAction";
 
 interface Props {
   space: AudioSpace | null;
@@ -442,6 +444,10 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
     }
   };
 
+  // The rename row stays open until the write lands, so without a mark the
+  // Save button looks inert for the whole round trip.
+  const { pending: isSavingRename, run: runSaveRename } = usePendingAction(saveRename);
+
   const openRenamePrompt = (speakerId: string) => {
     setRenamingSpeaker(speakerId);
     setRenameText(overrides[speakerId]?.username || "");
@@ -744,9 +750,11 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                   <Text className="text-white text-xs font-semibold">Cancel</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={saveRename}
-                  className="px-4 py-2 rounded-xl bg-purple-600"
+                  onPress={() => void runSaveRename()}
+                  disabled={isSavingRename}
+                  className="px-4 py-2 rounded-xl bg-purple-600 flex-row items-center gap-1.5"
                 >
+                  {isSavingRename && <ButtonLoader size={14} />}
                   <Text className="text-white text-xs font-semibold">Save</Text>
                 </TouchableOpacity>
               </View>
