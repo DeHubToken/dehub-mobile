@@ -13,6 +13,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { VideoView, useVideoPlayer, VideoPlayer } from 'expo-video';
+import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { Ionicons } from '@expo/vector-icons';
 import { getProgressRatio } from './utils';
 
@@ -51,6 +52,7 @@ const MiniPlayerOverlay: React.FC<MiniPlayerOverlayProps> = ({
   const player: VideoPlayer = useVideoPlayer(sourceUrl ?? null, (p) => {
     p.loop = loop;
     p.muted = isMuted;
+    p.bufferOptions = FEED_BUFFER_OPTIONS;
     if (isPlaying) {
       p.play();
     } else {

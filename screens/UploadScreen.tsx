@@ -23,6 +23,7 @@ import * as ImagePicker from "expo-image-picker";
 import * as DocumentPicker from "expo-document-picker";
 import { Audio, InterruptionModeIOS, InterruptionModeAndroid } from "expo-av";
 import { useVideoPlayer, VideoView } from "expo-video";
+import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import { useEvent } from "expo";
 import * as FileSystem from "expo-file-system/legacy";
 import * as VideoThumbnails from "expo-video-thumbnails";
@@ -576,6 +577,7 @@ export default function UploadScreen() {
   const player = useVideoPlayer(pickedVideo?.uri ?? null, (p) => {
     p.loop = true;
     p.muted = true;
+    p.bufferOptions = FEED_BUFFER_OPTIONS;
   });
 
   const { isPlaying } = useEvent(player, "playingChange", {

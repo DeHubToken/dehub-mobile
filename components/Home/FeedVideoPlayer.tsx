@@ -12,6 +12,7 @@ import {
   Dimensions,
 } from "react-native";
 import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
+import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from "../../libs/video-preferences";
 import SmartImage from "../common/SmartImage";
 import { BlurView } from "expo-blur";
@@ -194,6 +195,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     // A rate pinned to this creator applies from the first frame; everyone
     // else plays at whatever rate was last used generally.
     p.playbackRate = getPlaybackRateFor(creator);
+    p.bufferOptions = FEED_BUFFER_OPTIONS;
   });
 
   useEffect(() => {
