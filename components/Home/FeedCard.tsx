@@ -40,6 +40,7 @@ import SmartImage from "../common/SmartImage";
 import LiveFeedPreview from "../common/LiveFeedPreview";
 import { cdnImage } from "../../libs/cdnImage";
 import { hlsUrlFor, liveThumbnailFor } from "../../libs/live-ingest";
+import { extractReplayUrl, replayDurationSec } from "../../libs/live-replay";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import PPVSheet from "../PPV/PPVSheet";
 import BountyInfoSheet from "./BountyInfoSheet";
@@ -331,7 +332,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }, [item, stream, isLive, isVideo, isShort, tokenId]);
 
   const hasThumb = typeof thumbnail === "string" && thumbnail.trim().length > 0;
-  const duration = (item as any).videoDuration ? secondsToHMMSS((item as any).videoDuration) : undefined;
+  const liveDurationSec = isLive ? replayDurationSec(stream) : undefined;
+  const durationSeconds = (item as any).videoDuration || liveDurationSec;
+  const duration = durationSeconds ? secondsToHMMSS(durationSeconds) : undefined;
 
   // --- Monetization badges ---
   const isPayPerView = streamInfo?.isPayPerView;
@@ -377,6 +380,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     () => (isLive ? hlsUrlFor(stream as any) : null),
     [isLive, stream],
   );
+
+  // A finished stream leaves a plain mp4 replay on the CDN once its capture
+  // reports ready, and the HLS ladder above is dead the moment ingest stops.
+  // So a past live plays its replay in the card where a running one plays its
+  // stream — otherwise every ended stream is a poster with nothing behind it.
+  const replayUrl = useMemo(
+    () => (isLive ? extractReplayUrl(stream) : undefined),
+    [isLive, stream],
+  );
+  const livePlayableUrl = isCurrentlyLive ? livePreviewUrl : replayUrl || null;
 
   // --- Live stats ---
   // An audience, not a view count, and the two stream fields mean the opposite
@@ -1251,12 +1264,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const renderLiveThumbnail = () => (
     <Pressable onPress={handleCardPress} className="relative w-full h-48 bg-zinc-800 rounded-xl overflow-hidden mt-2">
-      {isCurrentlyLive && livePreviewUrl && !isActuallyGated ? (
-        /* On air: play the stream in the card. The feed used to show a poster
-           (often none at all, since the self-hosted ingest renders none) and
-           the stream only appeared after opening the post. */
+      {livePlayableUrl && !isActuallyGated ? (
+        /* On air: play the stream in the card; once it has ended, its replay.
+           The feed used to show a poster (often none at all, since the
+           self-hosted ingest renders none) and the stream only appeared after
+           opening the post. */
         <LiveFeedPreview
-          url={livePreviewUrl}
+          url={livePlayableUrl}
           thumbnail={hasThumb ? thumbnail : undefined}
           active={isVisible && isAutoplayActive}
         />
