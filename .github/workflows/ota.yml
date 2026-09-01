@@ -1,0 +1,118 @@
+name: OTA Update
+
+# Publishes the JS bundle to EAS Update after CI goes green on main, so a
+# JS-only fix reaches installed apps without a 200 MB APK and a manual release.
+#
+# The pieces this depends on were put in place by #269 and are inert without a
+# publish: `updates.url` points at u.expo.dev, `runtimeVersion` is the literal
+# "1.17.0" in app.json and in both native projects, every build profile has a
+# channel, and the app checks on every launch. Until this workflow existed the
+# update server had never been given anything to serve.
+#
+# Two limits worth keeping in mind before relying on it:
+#
+#   - An update only reaches binaries built at the SAME runtimeVersion. Bump it
+#     and every installed app stops receiving updates until a new build ships.
+#     That is the safety contract, not a bug — it is what stops a bundle
+#     reaching a binary without the native module it calls.
+#   - Native changes cannot ride an update. Anything under android/ or ios/, a
+#     new native dependency, a manifest attribute — all of it needs a build. The
+#     summary step below flags when a published commit touched those paths.
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: EAS update branch to publish to
+        default: production
+        required: false
+
+concurrency:
+  # Not cancel-in-progress: a half-run publish is worse than a queued one.
+  group: ota-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish JS bundle
+    # workflow_run fires on failure too, and a bundle that did not typecheck
+    # would reach every installed app.
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      # Read through env so the steps below can test for it — the secrets
+      # context is not available in an `if:` directly.
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+    steps:
+      - name: Say why nothing was published
+        if: env.EXPO_TOKEN == ''
+        run: |
+          {
+            echo "### OTA skipped"
+            echo
+            echo "No \`EXPO_TOKEN\` secret is set, so there is nothing to publish with."
+            echo "Create a token at <https://expo.dev/settings/access-tokens> on the"
+            echo "\`dehubapp\` account and add it under **Settings → Secrets and variables"
+            echo "→ Actions**. Nothing else needs to change."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/checkout@v4
+        if: env.EXPO_TOKEN != ''
+        with:
+          # The commit CI actually verified — workflow_run otherwise checks out
+          # whatever the default branch points at now, which may have moved on.
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          # Two commits so the native-change check below has something to diff
+          # against. main is squash-merged, so HEAD~1 is the previous PR.
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        if: env.EXPO_TOKEN != ''
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        if: env.EXPO_TOKEN != ''
+        run: npm ci --legacy-peer-deps
+
+      - uses: expo/expo-github-action@v8
+        if: env.EXPO_TOKEN != ''
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Publish the JS bundle
+        if: env.EXPO_TOKEN != ''
+        env:
+          UPDATE_BRANCH: ${{ github.event.inputs.branch || 'production' }}
+        run: |
+          # Read the subject out of git rather than interpolating it into the
+          # command, so a commit message cannot become shell.
+          MESSAGE="$(git log -1 --pretty=%s)"
+          eas update --branch "$UPDATE_BRANCH" --message "$MESSAGE" --non-interactive
+
+      - name: Flag native changes an update cannot carry
+        if: env.EXPO_TOKEN != ''
+        run: |
+          NATIVE="$(git diff --name-only HEAD~1..HEAD -- android ios app.json package.json || true)"
+          {
+            echo "### OTA published"
+            echo
+            echo "Branch: \`${{ github.event.inputs.branch || 'production' }}\`"
+            echo "Commit: \`$(git log -1 --pretty='%h %s')\`"
+            if [ -n "$NATIVE" ]; then
+              echo
+              echo "**This commit also touched native config.** An update carries JS only,"
+              echo "so the following need a build before they reach anyone:"
+              echo
+              echo '```'
+              echo "$NATIVE"
+              echo '```'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
