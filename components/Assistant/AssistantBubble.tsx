@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { VideoView, useVideoPlayer } from 'expo-video';
+import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import GlassIndicator from '../ui/GlassIndicator';
 import MarkdownText from '../ui/MarkdownText';
 import Icon from '../ui/Icon';
@@ -84,6 +85,7 @@ const GeneratedVideo: React.FC<{
   const player = useVideoPlayer(url, (p) => {
     p.loop = true;
     p.muted = true;
+    p.bufferOptions = FEED_BUFFER_OPTIONS;
     p.play();
   });
 

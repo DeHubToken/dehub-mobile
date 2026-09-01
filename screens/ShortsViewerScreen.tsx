@@ -54,6 +54,7 @@ import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { VideoView, useVideoPlayer } from "expo-video";
+import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import { LinearGradient } from "expo-linear-gradient";
 import { BlurView } from "expo-blur";
 import { Image } from "expo-image";
@@ -463,6 +464,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, isActive, itemHeight, isMu
   const player = useVideoPlayer(videoUrl || null, (p) => {
     p.loop = true;
     p.muted = mutedRef.current;
+    p.bufferOptions = FEED_BUFFER_OPTIONS;
   });
 
   useEffect(() => {

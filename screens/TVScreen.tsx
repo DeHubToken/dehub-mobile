@@ -29,6 +29,7 @@ import {
 } from "react-native";
 import { Image } from "expo-image";
 import { VideoView, useVideoPlayer, type VideoPlayer } from "expo-video";
+import { FULLSCREEN_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
 import Icon from "../components/ui/Icon";
@@ -67,6 +68,7 @@ const ChannelPlayer: React.FC<{ channel: TVChannel | null; onClose: () => void }
 
   const player: VideoPlayer = useVideoPlayer(channel?.streamUrl ?? null, (p) => {
     p.loop = false;
+    p.bufferOptions = FULLSCREEN_BUFFER_OPTIONS;
     p.play();
   });
 

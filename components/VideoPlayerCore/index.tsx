@@ -29,6 +29,7 @@ import {
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
 import { VideoView, useVideoPlayer, VideoPlayer } from 'expo-video';
+import { FULLSCREEN_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from '../../libs/video-preferences';
 import { useAppPrefs } from '../../hooks/useAppPrefs';
 import { useVideoSegments, segmentAt } from '../../hooks/useVideoSegments';
@@ -201,6 +202,7 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     // it should move the sound to the lock screen, not end it.
     p.staysActiveInBackground = true;
     p.showNowPlayingNotification = true;
+    p.bufferOptions = FULLSCREEN_BUFFER_OPTIONS;
     if (autoplay && sourceUrl) {
       p.play();
     }
