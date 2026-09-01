@@ -731,7 +731,7 @@ function AIChatScreenInner() {
               ? `📝 **Transcription:**\n\n${res.text}`
               : res.audioUrl || res.imageUrl
                 ? ''
-                : `✅ ${toolModel?.name || 'Tool'} completed successfully.`,
+                : `${toolModel?.name || 'Tool'} completed successfully.`,
             ...(res.audioUrl ? { audioUrl: res.audioUrl } : {}),
             ...(res.imageUrl ? { imageUrl: res.imageUrl } : {}),
           });
@@ -807,7 +807,7 @@ function AIChatScreenInner() {
                 ? `📝 **Transcription:**\n\n${res.text}`
                 : res.audioUrl || res.imageUrl
                   ? ''
-                  : `✅ ${toolModel?.name || 'Tool'} completed.`,
+                  : `${toolModel?.name || 'Tool'} completed.`,
               ...(res.audioUrl ? { audioUrl: res.audioUrl } : {}),
               ...(res.imageUrl ? { imageUrl: res.imageUrl } : {}),
             },

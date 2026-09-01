@@ -48,7 +48,7 @@ const LANGUAGES = [
 const PRIVACY_OPTIONS = [
   { label: "👁️ Public", value: "public" },
   { label: "👥 Members", value: "members" },
-  { label: "🔒 Private", value: "private" },
+  { label: "Private", value: "private" },
 ];
 
 const SPEAKER_COLORS = [

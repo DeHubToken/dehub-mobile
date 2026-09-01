@@ -19,11 +19,11 @@ export default function NoInternetScreen({ onRetry }: NoInternetScreenProps) {
             size={64}
             color={colors.neutrals[600]}
           />
-          <View className="absolute -top-1 -right-1 bg-theme-red-500 rounded-full p-1">
+          <View className="absolute -top-1 -right-1 bg-white rounded-full p-1">
             <Ionicons 
               name="close" 
               size={16} 
-              color="white" 
+              color="#09090B" 
             />
           </View>
         </View>
@@ -38,7 +38,7 @@ export default function NoInternetScreen({ onRetry }: NoInternetScreenProps) {
 
         <View className="bg-theme-neutrals-800 rounded-lg p-4 mb-8 w-full max-w-sm">
           <View className="flex-row items-center justify-center">
-            <View className="w-3 h-3 bg-theme-red-500 rounded-full mr-3" />
+            <View className="w-3 h-3 bg-white rounded-full mr-3" />
             <Text className="text-theme-neutrals-200 text-sm">
               Offline - No network connection
             </Text>
