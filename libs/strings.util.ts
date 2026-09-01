@@ -52,34 +52,30 @@ export function formatBytes(bytes: number): string {
 const HASHTAG_RE = /#([A-Za-z][A-Za-z0-9_]{0,49})/g;
 
 /**
- * Mirrors the web app's hashtag handling: extracts #tags from title + description,
- * strips them from the display text, title-cases them, and merges into categories.
- * Hashtags are saved server-side as categories and never shown in feeds.
+ * Mirrors the web app's hashtag handling: reads #tags out of the title and
+ * description, title-cases them, and merges them into the post's categories.
+ *
+ * It does not touch the text. Both apps used to strip the tags out and tidy up
+ * the whitespace they left behind, which made a tag the author typed
+ * indistinguishable from one picked in the category selector — both ended up
+ * as invisible metadata, and the tags somebody had deliberately written
+ * disappeared from their own post. Where a tag appears is the author's
+ * decision: a picked category stays out of sight, a typed one stays where it
+ * was put, and FeedCaption renders it as a link.
  */
-export function extractHashtagCategories(
+export function mergeHashtagCategories(
   title: string,
   description: string,
   baseCategories: string[],
-): { cleanTitle: string; cleanDescription: string; categories: string[] } {
+): string[] {
   const toTitleCaseTag = (tag: string) =>
     tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase();
 
   const titleTags = Array.from(title.matchAll(HASHTAG_RE)).map((m) => toTitleCaseTag(m[1]));
   const descTags = Array.from(description.matchAll(HASHTAG_RE)).map((m) => toTitleCaseTag(m[1]));
 
-  const cleanTitle =
-    title.replace(HASHTAG_RE, '').replace(/[^\S\n]{2,}/g, ' ').replace(/\n{3,}/g, '\n\n').trim() ||
-    title;
-  const cleanDescription = description
-    .replace(HASHTAG_RE, '')
-    .replace(/[^\S\n]{2,}/g, ' ')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
-
-  const categories = [...new Set([...baseCategories, ...titleTags, ...descTags])];
-
-  return { cleanTitle, cleanDescription, categories };
+  return [...new Set([...baseCategories, ...titleTags, ...descTags])];
 }
 
-export const StringsUtil = { truncateAddress, isBlank, truncate, toTitleCase, miniAddress, formatBytes, extractHashtagCategories };
+export const StringsUtil = { truncateAddress, isBlank, truncate, toTitleCase, miniAddress, formatBytes, mergeHashtagCategories };
 export default StringsUtil;
