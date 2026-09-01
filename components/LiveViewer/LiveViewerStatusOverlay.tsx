@@ -1,5 +1,13 @@
-import React, { memo, useEffect, useMemo } from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+/**
+ * The paused / ended / scheduled / offline / loading card over a stream.
+ *
+ * Same chrome as the rest of the viewer: one glass card, a lucide icon rather
+ * than an emoji glyph, and no hue. The emoji headings (a TV set for "Stream
+ * Ended", a calendar for "Upcoming") were the loudest thing on the screen and
+ * appear nowhere else in the app.
+ */
+import React, { memo, useMemo } from "react";
+import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -8,6 +16,9 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 import { formatDistance } from "date-fns";
+import Icon from "../ui/Icon";
+import type { IconName } from "../ui/Icon";
+import { ChromeFill, TEXT_SHADOW } from "../common/ViewerChrome";
 
 interface LiveViewerStatusOverlayProps {
   status: "paused" | "ended" | "scheduled" | "offline" | "loading" | null;
@@ -17,7 +28,7 @@ interface LiveViewerStatusOverlayProps {
   startedAtDate: Date | null;
 }
 
-const PulseDot: React.FC<{ color: string }> = memo(({ color }) => {
+const PulseDot: React.FC = memo(() => {
   const opacity = useSharedValue(1);
 
   React.useEffect(() => {
@@ -28,25 +39,26 @@ const PulseDot: React.FC<{ color: string }> = memo(({ color }) => {
     );
   }, [opacity]);
 
-  const style = useAnimatedStyle(() => ({
-    opacity: opacity.value,
-  }));
+  const style = useAnimatedStyle(() => ({ opacity: opacity.value }));
 
-  return (
-    <Animated.View
-      style={[
-        {
-          width: 10,
-          height: 10,
-          borderRadius: 5,
-          backgroundColor: color,
-          marginRight: 8,
-        },
-        style,
-      ]}
-    />
-  );
+  return <Animated.View style={[styles.pulseDot, style]} />;
 });
+
+/** One card shape for every state, so the four never drift apart. */
+const StatusCard: React.FC<{
+  icon?: IconName;
+  title: string;
+  children?: React.ReactNode;
+}> = ({ icon, title, children }) => (
+  <View style={styles.card}>
+    <ChromeFill radius={16} />
+    {icon ? (
+      <Icon name={icon} size={22} color="rgba(255,255,255,0.8)" strokeWidth={1.8} />
+    ) : null}
+    <Text style={styles.title}>{title}</Text>
+    {children}
+  </View>
+);
 
 const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
   status,
@@ -63,16 +75,18 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
     const m = Math.floor((totalSeconds % 3600) / 60);
     const s = totalSeconds % 60;
     const pad = (n: number) => n.toString().padStart(2, "0");
-    return h > 0 ? `${pad(h)}:${pad(m)}:${pad(s)}` : `${pad(m)}:${pad(s)}`;
+    return h > 0
+      ? pad(h) + ":" + pad(m) + ":" + pad(s)
+      : pad(m) + ":" + pad(s);
   }, [endedAtDate, startedAtDate]);
 
   if (!status) return null;
 
   if (status === "loading") {
     return (
-      <View className="absolute inset-0 items-center justify-center bg-black/80">
+      <View style={[StyleSheet.absoluteFill, styles.centre, styles.loadingWash]}>
         <ActivityIndicator size="large" color="#fff" />
-        <Text className="text-white/60 text-sm mt-3">Loading stream...</Text>
+        <Text style={styles.loadingText}>Loading stream...</Text>
       </View>
     );
   }
@@ -81,28 +95,22 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
     const mins = Math.floor(graceCountdown / 60);
     const secs = graceCountdown % 60;
     return (
-      <View
-        className="absolute inset-0 items-center justify-center"
-        pointerEvents="none"
-      >
-        <View className="bg-black/70 rounded-xl px-8 py-6 items-center border border-white/10 mx-10">
-          <View className="flex-row items-center mb-3">
-            <PulseDot color="#D4D4D8" />
-            <Text className="text-yellow-400 text-base font-bold">
-              Stream Paused
-            </Text>
+      <View style={[StyleSheet.absoluteFill, styles.centre]} pointerEvents="none">
+        <View style={styles.card}>
+          <ChromeFill radius={16} />
+          <View style={styles.pausedHeading}>
+            <PulseDot />
+            <Text style={styles.title}>Stream Paused</Text>
           </View>
-          <Text className="text-white/60 text-xs text-center mb-4">
+          <Text style={styles.body}>
             {"The streamer's connection dropped.\nWaiting for them to reconnect..."}
           </Text>
           {graceCountdown > 0 && (
-            <View className="items-center">
-              <Text className="text-white font-bold text-4xl tracking-wider">
-                {mins}:{String(secs).padStart(2, "0")}
+            <View style={styles.centre}>
+              <Text style={styles.countdown}>
+                {mins + ":" + String(secs).padStart(2, "0")}
               </Text>
-              <Text className="text-white/40 text-[10px] mt-2">
-                Auto-ending if not resumed
-              </Text>
+              <Text style={styles.caption}>Auto-ending if not resumed</Text>
             </View>
           )}
         </View>
@@ -112,75 +120,115 @@ const LiveViewerStatusOverlay: React.FC<LiveViewerStatusOverlayProps> = ({
 
   if (status === "ended") {
     return (
-      <View
-        className="absolute inset-0 items-center justify-center"
-        pointerEvents="none"
-      >
-        <View className="bg-black/70 rounded-xl px-8 py-6 items-center border border-white/10 mx-10">
-          <Text className="text-3xl mb-3">📺</Text>
-          <Text className="text-white text-lg font-bold mb-1">
-            Stream Ended
-          </Text>
-          {durationText && (
-            <Text className="text-white/50 text-xs">
-              Duration: {durationText}
+      <View style={[StyleSheet.absoluteFill, styles.centre]} pointerEvents="none">
+        <StatusCard icon="Radio" title="Stream Ended">
+          {durationText ? (
+            <Text style={styles.body}>Duration {durationText}</Text>
+          ) : null}
+          {endedAtDate ? (
+            <Text style={styles.caption}>
+              {"Ended " +
+                formatDistance(endedAtDate, new Date(), { addSuffix: true })}
             </Text>
-          )}
-          {endedAtDate && (
-            <Text className="text-white/40 text-[11px] mt-1">
-              Ended{" "}
-              {formatDistance(endedAtDate, new Date(), { addSuffix: true })}
-            </Text>
-          )}
-        </View>
+          ) : null}
+        </StatusCard>
       </View>
     );
   }
 
   if (status === "scheduled") {
     return (
-      <View
-        className="absolute inset-0 items-center justify-center"
-        pointerEvents="none"
-      >
-        <View className="bg-black/70 rounded-xl px-8 py-6 items-center border border-white/10 mx-10">
-          <Text className="text-3xl mb-3">📅</Text>
-          <Text className="text-white text-lg font-bold mb-1">
-            Upcoming Stream
-          </Text>
-          {scheduledForDate && (
-            <Text className="text-white/50 text-sm">
-              Starts{" "}
-              {formatDistance(scheduledForDate, new Date(), {
-                addSuffix: true,
-              })}
+      <View style={[StyleSheet.absoluteFill, styles.centre]} pointerEvents="none">
+        <StatusCard icon="CalendarClock" title="Upcoming Stream">
+          {scheduledForDate ? (
+            <Text style={styles.body}>
+              {"Starts " +
+                formatDistance(scheduledForDate, new Date(), {
+                  addSuffix: true,
+                })}
             </Text>
-          )}
-        </View>
+          ) : null}
+        </StatusCard>
       </View>
     );
   }
 
   if (status === "offline") {
     return (
-      <View
-        className="absolute inset-0 items-center justify-center"
-        pointerEvents="none"
-      >
-        <View className="bg-black/70 rounded-xl px-8 py-6 items-center border border-white/10 mx-10">
-          <Text className="text-3xl mb-3">📡</Text>
-          <Text className="text-white text-lg font-bold mb-1">
-            Stream Offline
-          </Text>
-          <Text className="text-white/40 text-xs text-center">
+      <View style={[StyleSheet.absoluteFill, styles.centre]} pointerEvents="none">
+        <StatusCard icon="WifiOff" title="Stream Offline">
+          <Text style={styles.body}>
             {"The streamer hasn't started broadcasting yet"}
           </Text>
-        </View>
+        </StatusCard>
       </View>
     );
   }
 
   return null;
 };
+
+const styles = StyleSheet.create({
+  centre: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  loadingWash: {
+    backgroundColor: "rgba(0,0,0,0.8)",
+  },
+  loadingText: {
+    color: "rgba(255,255,255,0.6)",
+    fontSize: 13,
+    marginTop: 12,
+  },
+  /**
+   * Radius 16 rather than the 12 on a chrome button: the card is an order of
+   * magnitude larger, and a 12 on a box this size reads as a square.
+   */
+  card: {
+    borderRadius: 16,
+    paddingHorizontal: 28,
+    paddingVertical: 22,
+    marginHorizontal: 40,
+    alignItems: "center",
+    gap: 6,
+    overflow: "hidden",
+  },
+  pausedHeading: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  pulseDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "#fff",
+  },
+  title: {
+    color: "#fff",
+    fontSize: 17,
+    fontWeight: "700",
+    ...TEXT_SHADOW,
+  },
+  body: {
+    color: "rgba(255,255,255,0.7)",
+    fontSize: 13,
+    textAlign: "center",
+    lineHeight: 18,
+  },
+  caption: {
+    color: "rgba(255,255,255,0.45)",
+    fontSize: 11,
+    textAlign: "center",
+  },
+  countdown: {
+    color: "#fff",
+    fontSize: 32,
+    fontWeight: "700",
+    letterSpacing: 1,
+    marginTop: 8,
+  },
+});
 
 export default memo(LiveViewerStatusOverlay);

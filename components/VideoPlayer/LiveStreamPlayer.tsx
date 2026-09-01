@@ -49,6 +49,7 @@ import LiveViewerStatusOverlay from "../LiveViewer/LiveViewerStatusOverlay";
 import LiveEventBanner from "../LiveViewer/LiveEventBanner";
 import type { EventBannerData } from "../LiveViewer/LiveEventBanner";
 import { hlsUrlFor } from "../../libs/live-ingest";
+import PostOptionsMenu from "../common/PostOptionsMenu";
 
 type LiveStreamPlayerProps = {
   // Minimal inputs; additional params may be forwarded from route
@@ -1159,6 +1160,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   }, [streamId, tokenId]);
 
   // Gift modal state
+  const [showOptionsMenu, setShowOptionsMenu] = useState(false);
   const [giftOpen, setGiftOpen] = useState(false);
   const handleGiftPress = useCallback(() => {
     if (!isLiveEffective || !isSignedIn) return;
@@ -1267,6 +1269,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
               isEnded={isEndedEffective}
               viewerCount={liveViewers}
               fallbackMinter={minterProp}
+              onOptionsPress={() => setShowOptionsMenu(true)}
             />
 
             {/* Stream title - below header */}
@@ -1351,6 +1354,44 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
           startedAtDate={startedAtDate}
         />
       </View>
+
+      {/* Options sheet — the same one the feed card and the shorts viewer
+          open. A stream is a post, and this was the only post surface in the
+          app with no way to save, share, report, block or (for the owner of an
+          ended stream) delete it. Mounted here rather than inside the header
+          for the usual reason: the header is memoised chrome, and the sheet
+          owns modals of its own. */}
+      {showOptionsMenu && (
+        <PostOptionsMenu
+          visible={showOptionsMenu}
+          onClose={() => setShowOptionsMenu(false)}
+          tokenId={(streamEntity?.tokenId as any) || (tokenId as any)}
+          isOwner={ownerStatus === "owner" || (streamEntity as any)?.isOwner === true}
+          isHidden={!!(streamEntity as any)?.isHidden}
+          creatorDisplayName={
+            (creator?.displayName || creator?.username || "") as string
+          }
+          creatorIdentifier={
+            (creator?.walletAddress ||
+              creator?.address ||
+              creator?.username ||
+              minterProp ||
+              "") as string
+          }
+          isFollowing={isFollowing}
+          currentTitle={resolvedTitle || ""}
+          currentDescription={(streamEntity?.description as string) || ""}
+          // A stream's title and description are edited from the producer
+          // screen, and the report-content flow is for uploaded media — the
+          // same two the feed card hides on a live post.
+          hideEdit
+          hideReportContent={isLiveEffective}
+          onFollowChange={(following) => setIsFollowing(following)}
+          onDeleteSuccess={() => {
+            if (navigation.canGoBack()) navigation.goBack();
+          }}
+        />
+      )}
 
       {/* Gift Modal */}
       <GiftModal

@@ -169,12 +169,12 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
     case StreamActivityType.TIP: {
       const amt = a.meta?.amount || 0;
       return (
-        <View className="mb-1.5 bg-theme-yellow-500/20 border border-theme-yellow-400/30 rounded-xl px-2.5 py-2 self-start max-w-[85%] flex-row items-start">
+        <View className="mb-1.5 bg-white/10 border border-white/20 rounded-xl px-2.5 py-2 self-start max-w-[85%] flex-row items-start">
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
             <Avatar uri={avatarUrl} size={20} name={displayName} />
           </TouchableOpacity>
           <View className="flex-1 flex-shrink">
-            <Text className="text-theme-yellow-300 text-[12px] font-semibold">
+            <Text className="text-white text-[12px] font-semibold">
               🎁{" "}
               <Text onPress={handlePress}>
                 {displayName}
@@ -194,8 +194,8 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
     case StreamActivityType.START:
       return (
         <View className="mb-1 self-start">
-          <Text className="text-red-400 text-[11px] font-semibold">
-            🔴 Stream has started
+          <Text className="text-white/70 text-[11px] font-semibold">
+            Stream has started
           </Text>
         </View>
       );
@@ -204,7 +204,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress }) => {
       return (
         <View className="mb-1 self-start">
           <Text className="text-white/50 text-[11px]">
-            ⏹ Stream has ended
+            Stream has ended
           </Text>
         </View>
       );
@@ -304,7 +304,7 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
           data={reversed}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
-          className="px-3"
+          className="px-4"
           contentContainerStyle={{ paddingTop: 8, paddingBottom: 4 }}
           initialNumToRender={15}
           maxToRenderPerBatch={20}
@@ -317,10 +317,10 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
 
       {/* Input bar */}
       <View
-        className="flex-row items-center px-3 pb-2 pt-1"
+        className="flex-row items-center px-4 pb-2 pt-1"
         style={{ marginBottom: inputBottomOffset }}
       >
-        <View className="flex-1 flex-row items-center bg-black/60 rounded-full px-4 border border-white/20 mr-2" style={{ height: 40 }}>
+        <View className="flex-1 flex-row items-center bg-zinc-900/60 rounded-xl px-4 mr-3" style={{ height: 40 }}>
           <TextInput
             value={message}
             onChangeText={setMessage}
@@ -353,7 +353,7 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({
           <TouchableOpacity
             onPress={onGiftPress}
             activeOpacity={0.7}
-            className="w-10 h-10 rounded-full bg-theme-neutrals-800/90 border border-theme-neutrals-600/40 items-center justify-center"
+            className="w-10 h-10 rounded-xl bg-zinc-900/60 items-center justify-center"
           >
             <Gift color="#D4D4D8" size={18} />
           </TouchableOpacity>
