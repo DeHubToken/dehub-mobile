@@ -32,6 +32,13 @@ import "./config/reown.config";
 import { registerRootComponent } from "expo";
 
 import App from "./App";
+import { installGlobalErrorHandler } from "./libs/errorReporter";
+
+// Catches uncaught JS errors and ships them to client_error_logs, and uploads
+// whatever the last run died holding. Here rather than in an App effect: it has
+// to be in place before the first render, since a fault while the tree is
+// mounting is exactly the one nobody can otherwise see.
+installGlobalErrorHandler();
 
 // registerRootComponent calls AppRegistry.registerComponent('main', () => App);
 // It also ensures that whether you load the app in Expo Go or in a native build,

@@ -22,6 +22,7 @@ import {
   getAuthMethod,
 } from "../libs/auth.utils";
 import { createLogger } from "../libs/logger";
+import { setLogUserAddress } from "../libs/errorReporter";
 import { getSigningProvider, clearSigningProvider } from "../libs/provider.registry";
 import { useProviderLifecycle, type EIP1193Provider, type ProviderStatus } from "../hooks/useProviderLifecycle";
 import { useBalances } from "../hooks/useBalances";
@@ -379,6 +380,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     })();
     return () => { mounted = false; };
   }, [user?.address, user?.walletAddress, user?.username]);
+
+  // Tag error rows with whoever hit them. Without it every crash in
+  // client_error_logs is anonymous and cannot be tied back to a report.
+  useEffect(() => {
+    setLogUserAddress(user?.walletAddress || user?.address || null);
+  }, [user?.address, user?.walletAddress]);
 
   // Load preferred chain id on mount
   useEffect(() => {

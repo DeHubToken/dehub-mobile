@@ -136,6 +136,13 @@ jest.mock('expo-constants', () => ({
   expoConfig: { version: '1.0.0-test' },
 }));
 
+// Read by libs/errorReporter for the device context on an error row.
+jest.mock('expo-device', () => ({
+  modelName: 'Test Device',
+  osVersion: '14.0',
+  totalMemory: 4 * 1024 * 1024 * 1024,
+}));
+
 jest.mock('@react-native-community/netinfo', () => ({
   addEventListener: jest.fn(() => jest.fn()),
   fetch: jest.fn().mockResolvedValue({ isConnected: true, isInternetReachable: true }),

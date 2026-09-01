@@ -44,17 +44,20 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    logger.error('Uncaught error in component tree', {
-      error: error.message,
-      stack: error.stack,
-      componentStack: errorInfo.componentStack,
+    // The Error itself, not a flattened copy of it: the reporter reads the
+    // stack off an Error into its own column, where a stringified one would
+    // sit in metadata and be truncated with everything else.
+    logger.error('Uncaught error in component tree', error, {
+      componentStack: errorInfo.componentStack?.slice(0, 1500),
     });
 
     this.setState({ errorInfo });
     this.props.onError?.(error, errorInfo);
 
-    // TODO: Send to crash reporting service (Sentry, Crashlytics, etc.)
-    // crashReporter.recordError(error, { componentStack: errorInfo.componentStack });
+    // logger.error above ships this to client_error_logs via libs/errorReporter,
+    // so a render crash on a tester's phone is readable. Native crashes (an
+    // OutOfMemoryError, an ExoPlayer fault) still need Crashlytics — the JS
+    // thread never hears about those.
   }
 
   handleRetry = (): void => {
