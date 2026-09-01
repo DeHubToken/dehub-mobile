@@ -69,6 +69,9 @@ import { usePostSound } from "../hooks/usePostSound";
 import { buildSoundtrackTag } from "../libs/parseSoundtrack";
 import SoundPickerSheet from "../components/Post/SoundPickerSheet";
 import ScheduleSheet from "../components/Upload/ScheduleSheet";
+import ShopLinksSheet from "../components/Upload/ShopLinksSheet";
+import { useShopLinkAllowance } from "../hooks/useShopLinks";
+import type { ShopLink } from "../services/nft.service";
 import { useDrafts, emptyMonetization } from "../hooks/useDrafts";
 import type { Draft } from "../hooks/useDrafts";
 import GlassModal from "../components/ui/GlassModal";
@@ -365,6 +368,16 @@ export default function UploadScreen() {
    * declaration something you forget rather than something you make.
    */
   const [isMature, setIsMature] = useState(false);
+
+  /**
+   * The creator's Shop board — affiliate and shop links for this post.
+   *
+   * Empty is the toggle being off; there is no separate boolean, because a
+   * board with no links in it and no board are the same post.
+   */
+  const [shopLinks, setShopLinks] = useState<ShopLink[]>([]);
+  const [shopSheetVisible, setShopSheetVisible] = useState(false);
+  const shopAllowance = useShopLinkAllowance();
 
   // Bounty locks tokens through the mint transaction, so it cannot ride on a
   // post that never goes on-chain.
@@ -840,8 +853,9 @@ export default function UploadScreen() {
       solanaAddress: solanaAddress ?? undefined,
       shouldMint,
       contentRating: isMature ? ("mature" as const) : undefined,
+      shopLinks: shopLinks.length ? shopLinks : undefined,
     };
-  }, [bodyText, titleText, showTitle, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature]);
+  }, [bodyText, titleText, showTitle, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, shopLinks]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -905,10 +919,13 @@ export default function UploadScreen() {
     monetization,
     shouldMint: effectiveShouldMint,
     isMature,
+    // On the mint, so the Shop button has something behind it for the people
+    // who arrive in the first seconds of the stream.
+    shopLinks: shopLinks.length ? shopLinks : undefined,
     postChainId: effectivePostChainId,
   }), [
     titleText, bodyText, categories, liveThumbnailUri, liveSettings,
-    monetization, effectiveShouldMint, isMature, effectivePostChainId,
+    monetization, effectiveShouldMint, isMature, shopLinks, effectivePostChainId,
   ]);
 
   const handleGoLive = useCallback(() => {
@@ -2455,6 +2472,37 @@ export default function UploadScreen() {
                 />
               )}
 
+              {/* Shop — the creator's affiliate / shop link board. Tapping the
+                  row anywhere opens the editor, including when it is already
+                  on, so "add another link" is one tap rather than off-then-on. */}
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() => setShopSheetVisible(true)}
+                  className="flex-row items-center justify-between py-3"
+                >
+                  <View className="flex-row items-center flex-1 mr-3">
+                    <Icon name="ShoppingBag" size={18} color="#fff" />
+                    <Text className="text-white text-sm ml-3">Shop</Text>
+                    {shopLinks.length ? (
+                      <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
+                        ({shopLinks.length} of {shopAllowance.allowance} link
+                        {shopAllowance.allowance === 1 ? "" : "s"})
+                      </Text>
+                    ) : null}
+                  </View>
+                  <CustomSwitch
+                    value={shopLinks.length > 0}
+                    /* Turning it on opens the editor rather than writing an
+                       empty board — a switch that goes green and does nothing
+                       reads as a bug. Off clears the links; there is no flag to
+                       park them behind, and a post carrying invisible links is
+                       worse than retyping three URLs. */
+                    onValueChange={(next: boolean) =>
+                      next ? setShopSheetVisible(true) : setShopLinks([])
+                    }
+                  />
+                </TouchableOpacity>
+
               {/* Mature content — the creator's own declaration. Marking it
                   keeps the post off the public feeds; it still reaches
                   followers, the profile and anyone with the link.
@@ -2830,6 +2878,15 @@ export default function UploadScreen() {
         onSchedule={(date) => {
           setScheduledDate(date);
         }}
+      />
+
+      <ShopLinksSheet
+        visible={shopSheetVisible}
+        onClose={() => setShopSheetVisible(false)}
+        links={shopLinks}
+        onSave={setShopLinks}
+        allowance={shopAllowance.allowance}
+        tier={shopAllowance.tier}
       />
 
       <GlassModal

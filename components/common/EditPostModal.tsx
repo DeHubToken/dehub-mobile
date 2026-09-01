@@ -19,7 +19,9 @@ import AccentButtonGradient from "../ui/AccentButtonGradient";
 import MentionSuggestions from "../common/MentionSuggestions";
 import CategoryDrawer from "../Upload/CategoryDrawer";
 import * as ImagePicker from "expo-image-picker";
-import { editPost, getCategoriesCached, replaceVideoFile } from "../../services/nft.service";
+import { editPost, getCategoriesCached, replaceVideoFile, type ShopLink } from "../../services/nft.service";
+import ShopLinksSheet from "../Upload/ShopLinksSheet";
+import { useShopLinkAllowance } from "../../hooks/useShopLinks";
 import { toastSuccess, toastError } from "../../libs";
 import { useKeyboard } from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
@@ -32,6 +34,8 @@ interface EditPostModalProps {
   initialDescription?: string;
   initialCategories?: string[];
   initialCommentsDisabled?: boolean;
+  /** The Shop board already on the post. Empty means the toggle is off. */
+  initialShopLinks?: ShopLink[];
   /** Absent means safe — the API stores nothing for the default. */
   initialContentRating?: string;
   /** Offer the "replace the file" row — creator, video post, not live. */
@@ -42,6 +46,7 @@ interface EditPostModalProps {
     category?: string[];
     commentsDisabled?: boolean;
     contentRating?: string;
+    shopLinks?: ShopLink[];
   }) => void;
 }
 
@@ -53,12 +58,16 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   initialDescription = "",
   initialCategories = [],
   initialCommentsDisabled = false,
+  initialShopLinks,
   initialContentRating,
   canReplaceVideo = false,
   onSuccess,
 }) => {
   const [commentsDisabled, setCommentsDisabled] = useState(initialCommentsDisabled);
   const [isMature, setIsMature] = useState(initialContentRating === "mature");
+  const [shopLinks, setShopLinks] = useState<ShopLink[]>(initialShopLinks ?? []);
+  const [shopSheetVisible, setShopSheetVisible] = useState(false);
+  const shopAllowance = useShopLinkAllowance();
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
   const titleMentions = useMentions(title, setTitle);
@@ -214,6 +223,12 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         payload.contentRating = nextRating;
       }
 
+      // Sent whole, including `[]` — that is the only way to clear a board,
+      // and the server treats an empty array as exactly that.
+      if (JSON.stringify(shopLinks) !== JSON.stringify(initialShopLinks ?? [])) {
+        payload.shopLinks = shopLinks;
+      }
+
       if (Object.keys(payload).length === 0) {
         onClose();
         return;
@@ -227,6 +242,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         category: payload.category,
         commentsDisabled: payload.commentsDisabled,
         contentRating: payload.contentRating,
+        shopLinks: payload.shopLinks,
       });
       onClose();
     } catch (e: any) {
@@ -242,10 +258,12 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     selectedCategories,
     commentsDisabled,
     isMature,
+    shopLinks,
     initialTitle,
     initialDescription,
     initialCategories,
     initialCommentsDisabled,
+    initialShopLinks,
     initialContentRating,
     onSuccess,
     onClose,
@@ -256,6 +274,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     description.trim() !== initialDescription ||
     commentsDisabled !== initialCommentsDisabled ||
     (isMature ? "mature" : "safe") !== (initialContentRating ?? "safe") ||
+    JSON.stringify(shopLinks) !== JSON.stringify(initialShopLinks ?? []) ||
     JSON.stringify(selectedCategories.sort()) !==
       JSON.stringify([...(initialCategories || [])].sort());
 
@@ -390,6 +409,27 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
               </TouchableOpacity>
             )}
           </View>
+
+          {/* Shop board. Affiliate links a creator forgot to add at upload —
+              the composer offers the same editor. */}
+          <TouchableOpacity
+            onPress={() => setShopSheetVisible(true)}
+            activeOpacity={0.7}
+            className="flex-row items-center justify-between mt-4 p-3 rounded-xl bg-white/[0.03] border border-white/10"
+          >
+            <View className="flex-1 mr-3">
+              <Text className="text-white text-sm font-semibold">
+                {shopLinks.length
+                  ? `${shopLinks.length} shop link${shopLinks.length === 1 ? "" : "s"}`
+                  : "Add shop links"}
+              </Text>
+              <Text className="text-theme-neutrals-400 text-xs mt-0.5">
+                Affiliate links viewers open from the Shop button. You can add{" "}
+                {shopAllowance.allowance}.
+              </Text>
+            </View>
+            <Ionicons name="bag-outline" size={18} color="#6F7174" />
+          </TouchableOpacity>
 
           {/* Comments toggle. Mirrors web's EditPostModal so the same post
               reads the same on both clients. */}
@@ -535,6 +575,15 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
           </View>
         </View>
       </ScrollView>
+
+      <ShopLinksSheet
+        visible={shopSheetVisible}
+        onClose={() => setShopSheetVisible(false)}
+        links={shopLinks}
+        onSave={setShopLinks}
+        allowance={shopAllowance.allowance}
+        tier={shopAllowance.tier}
+      />
     </GlassModal>
   );
 };
