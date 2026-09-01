@@ -302,51 +302,6 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
 
   const isCallMsg = message.msgType === "msg" && /^[📞📹📵]/.test(message.content || "");
 
-  if (isCallMsg) {
-    return (
-      <View className="items-center py-2 px-4">
-        <View className="flex-row items-center bg-theme-neutrals-800/60 rounded-full px-3 py-1.5 gap-1.5">
-          <Text className="text-[13px]">📞</Text>
-          <Text className="text-theme-neutrals-300 text-[12px] font-medium">
-            {message.content}
-          </Text>
-        </View>
-        <Text className="text-theme-neutrals-400 text-[11px] mt-1">
-          {formatTime(message.createdAt)}
-        </Text>
-      </View>
-    );
-  }
-
-  if (isTipMsg) {
-    const amountLabel = message.tipAmount
-      ? `${Number(message.tipAmount).toLocaleString()} ${message.tipSymbol || "DHB"}`
-      : "DHB";
-    const isPending = message.paymentStatus === "pending";
-    const label = isMine
-      ? `You tipped ${amountLabel}`
-      : `Tipped you ${amountLabel}`;
-
-    return (
-      <View className="items-center py-2 px-4">
-        <View className="flex-row items-center bg-theme-neutrals-800/60 rounded-full px-3 py-1.5 gap-1.5">
-          <Text className="text-[13px]">💎</Text>
-          <Text className="text-theme-neutrals-300 text-[12px] font-medium">
-            {label}
-          </Text>
-          {isPending && (
-            <ActivityIndicator size={10} color="#A6A9AC" style={{ marginLeft: 2 }} />
-          )}
-        </View>
-        {isPending && (
-          <Text className="text-theme-neutrals-500 text-[11px] mt-1">
-            Confirming on-chain…
-          </Text>
-        )}
-      </View>
-    );
-  }
-
   const REPLY_THRESHOLD = 60;
   const translateX = useSharedValue(0);
 
@@ -593,6 +548,58 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         ? bubbleBg + " overflow-hidden"  // full bubble bg for payment badge area
         : (isMine ? "rounded-xl rounded-br-sm overflow-hidden" : "rounded-xl rounded-bl-sm overflow-hidden"))
     : bubbleBg;
+
+  // These two returns sit below every hook above deliberately.
+  //
+  // They used to sit at the top, which left this component calling three
+  // hooks for a call or tip notice and a dozen for an ordinary message. A
+  // bubble that changed kind in place — `isCallMsg` is a regex over
+  // `message.content` — would flip branch under the same key and take the
+  // thread down with "rendered fewer hooks than expected". Keep them here.
+  if (isCallMsg) {
+    return (
+      <View className="items-center py-2 px-4">
+        <View className="flex-row items-center bg-theme-neutrals-800/60 rounded-full px-3 py-1.5 gap-1.5">
+          <Text className="text-[13px]">📞</Text>
+          <Text className="text-theme-neutrals-300 text-[12px] font-medium">
+            {message.content}
+          </Text>
+        </View>
+        <Text className="text-theme-neutrals-400 text-[11px] mt-1">
+          {formatTime(message.createdAt)}
+        </Text>
+      </View>
+    );
+  }
+
+  if (isTipMsg) {
+    const amountLabel = message.tipAmount
+      ? `${Number(message.tipAmount).toLocaleString()} ${message.tipSymbol || "DHB"}`
+      : "DHB";
+    const isPending = message.paymentStatus === "pending";
+    const label = isMine
+      ? `You tipped ${amountLabel}`
+      : `Tipped you ${amountLabel}`;
+
+    return (
+      <View className="items-center py-2 px-4">
+        <View className="flex-row items-center bg-theme-neutrals-800/60 rounded-full px-3 py-1.5 gap-1.5">
+          <Text className="text-[13px]">💎</Text>
+          <Text className="text-theme-neutrals-300 text-[12px] font-medium">
+            {label}
+          </Text>
+          {isPending && (
+            <ActivityIndicator size={10} color="#A6A9AC" style={{ marginLeft: 2 }} />
+          )}
+        </View>
+        {isPending && (
+          <Text className="text-theme-neutrals-500 text-[11px] mt-1">
+            Confirming on-chain…
+          </Text>
+        )}
+      </View>
+    );
+  }
 
   return (
     <View>
