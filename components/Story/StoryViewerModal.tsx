@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { VideoView, useVideoPlayer } from "expo-video";
+import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { Image } from "expo-image";
 import Icon from "../ui/Icon";
 import { getAvatarUrl } from "../../libs";
@@ -40,6 +41,7 @@ const StorySlide: React.FC<StorySlideProps> = ({ story, isActive, onEnd, onProgr
   const player = useVideoPlayer(story.video_url || null, (p) => {
     p.loop = false;
     p.muted = false;
+    p.bufferOptions = FEED_BUFFER_OPTIONS;
   });
 
   useEffect(() => {

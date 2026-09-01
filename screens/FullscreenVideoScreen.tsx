@@ -13,6 +13,7 @@ import {
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { VideoView, useVideoPlayer } from "expo-video";
+import { FULLSCREEN_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import {
   configureForBackgroundPlayback,
   releaseBackgroundPlayback,
@@ -134,6 +135,7 @@ const FullscreenVideoScreen = () => {
     // other half. iOS only surfaces it while the session is doNotMix or auto,
     // which is what the effect above sets.
     p.showNowPlayingNotification = true;
+    p.bufferOptions = FULLSCREEN_BUFFER_OPTIONS;
   });
 
   useEffect(() => {

@@ -3,6 +3,7 @@ import { Modal, View, TouchableOpacity, Text, AppState } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { VideoView, useVideoPlayer, type VideoPlayer } from 'expo-video';
+import { FULLSCREEN_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import * as ScreenOrientation from 'expo-screen-orientation';
 import Slider from '@react-native-community/slider';
 
@@ -25,6 +26,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
     p.loop = true;
     p.muted = false;
     p.timeUpdateEventInterval = 0.5; // ensure frequent progress updates
+    p.bufferOptions = FULLSCREEN_BUFFER_OPTIONS;
     // do not auto-play here; wait for sourceLoad
   });
 

@@ -2,6 +2,7 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "
 import { View, Text, Pressable, Dimensions, StyleSheet } from "react-native";
 import { Image } from "expo-image";
 import { VideoView, useVideoPlayer } from "expo-video";
+import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import Icon from "../ui/Icon";
 import { getShortsThumbnailUrl, getVideoUrl, getAvatarUrl, formatCompactNumber, buildCdnPath } from "../../libs";
 import { cdnImage } from "../../libs/cdnImage";
@@ -92,6 +93,7 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
   const player = useVideoPlayer(isVisible && previewUrl ? previewUrl : null, (p) => {
     p.loop = true;
     p.muted = true;
+    p.bufferOptions = FEED_BUFFER_OPTIONS;
   });
 
   useEffect(() => {

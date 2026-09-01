@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { View, Pressable } from "react-native";
 import { VideoView, useVideoPlayer, VideoPlayer } from "expo-video";
+import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { useNavigation } from "@react-navigation/native";
 import {
   registerActivePreview,
@@ -52,6 +53,7 @@ export default function VideoPreview({
       p.muted = true;
       p.playbackRate = 2.5;
       p.timeUpdateEventInterval = 0.3;
+      p.bufferOptions = FEED_BUFFER_OPTIONS;
     }
   );
 
