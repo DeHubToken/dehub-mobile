@@ -423,11 +423,11 @@ const InfiniteFeedBase: React.FC<
         initialNumToRender={4}
         maxToRenderPerBatch={4}
         windowSize={7}
-        // Was disabled on Android — the platform that actually OOMs here —
-        // because visibility tracking was dead and every row held a player.
-        // With trackFeedCardVisibility on by default that pressure is gone, and
-        // this now matches the Home feeds, which clip on both platforms.
-        removeClippedSubviews
+        // No removeClippedSubviews, for the same reason as InfiniteVideoFeed:
+        // clipping detaches off-screen children, and that is the exact array
+        // Android walks to pick the maintainVisibleContentPosition anchor. The
+        // two together make the anchor a different row on every frame of a
+        // fling, which is what threw the viewport when a page landed mid-scroll.
         updateCellsBatchingPeriod={80}
         contentContainerStyle={
           contentContainerStyle || { paddingBottom: 80 }

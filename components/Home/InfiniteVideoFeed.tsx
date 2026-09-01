@@ -819,7 +819,18 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
         initialNumToRender={3}
         maxToRenderPerBatch={3}
         windowSize={5}
-        removeClippedSubviews
+        // Deliberately NOT removeClippedSubviews. It and
+        // maintainVisibleContentPosition cannot both be on: Android picks the
+        // MVCP anchor by walking the content view's ATTACHED children
+        // (getChildAt(i) from minIndexForVisible), and clipping is defined as
+        // detaching the children that are off-screen. Once the feed is
+        // scrolled at all, index 1 stops meaning "the row after the header"
+        // and starts meaning "whatever survived the last clipping pass",
+        // which changes every frame of a fling. The correction MVCP applies
+        // on the next mount is then measured against a different row than the
+        // one it measured before, so appending a page mid-fling walks the
+        // viewport backwards instead of holding it. Virtualisation still
+        // unmounts distant rows; only the native detach-in-place trick goes.
         updateCellsBatchingPeriod={80}
         contentContainerStyle={
           contentContainerStyle || {
