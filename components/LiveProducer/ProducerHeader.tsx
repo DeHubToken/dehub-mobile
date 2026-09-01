@@ -13,6 +13,7 @@ import {
   Eye,
   Mic,
   MicOff,
+  SignalLow,
   Video,
   VideoOff,
   Zap,
@@ -34,6 +35,12 @@ interface ProducerHeaderProps {
   peakViewers: number;
   likes: number;
   bitrateKbps: number;
+  /**
+   * The outgoing picture has collapsed — viewers are on a frozen frame while
+   * the preview beside this stays perfect. See LiveProducerScreen for how it
+   * is decided.
+   */
+  starved?: boolean;
   micMuted: boolean;
   cameraOff: boolean;
   startingHint?: string;
@@ -62,6 +69,7 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
   peakViewers,
   likes,
   bitrateKbps,
+  starved,
   micMuted,
   cameraOff,
   startingHint,
@@ -214,12 +222,31 @@ const ProducerHeader: React.FC<ProducerHeaderProps> = ({
           ) : null}
           {bitrateKbps > 0 ? (
             <View className="flex-row items-center gap-0.5">
-              <Zap color="#D4D4D8" size={10} />
-              <Text className="text-white/40 text-[10px]">
+              <Zap color={starved ? "#FCD34D" : "#D4D4D8"} size={10} />
+              <Text
+                className={
+                  starved
+                    ? "text-amber-300 text-[10px]"
+                    : "text-white/40 text-[10px]"
+                }
+              >
                 {bitrateKbps} kbps
               </Text>
             </View>
           ) : null}
+        </View>
+      ) : null}
+
+      {/* The kbps figure above is only meaningful to someone who knows what a
+          good one looks like. This is the sentence that number is worth. */}
+      {isLive && starved ? (
+        <View className="flex-row items-start mt-1.5 ml-12 mr-3 gap-1.5 rounded-lg bg-amber-500/10 px-2.5 py-1.5">
+          <SignalLow color="#FCD34D" size={12} />
+          <Text className="flex-1 text-amber-200 text-[10px] leading-[14px]">
+            Your upload has dropped — viewers are seeing a frozen picture even
+            though your preview looks fine. Moving closer to the router or
+            switching networks will help.
+          </Text>
         </View>
       ) : null}
     </View>

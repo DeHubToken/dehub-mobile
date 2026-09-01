@@ -4,10 +4,27 @@ export type ViewerStats = {
 };
 
 // Extract initial viewer stats from a stream entity with safe fallbacks.
-// Backend fields: peakViewers = current concurrent viewers, totalViews = all-time peak.
+//
+// The field names mean the opposite of what this used to assume. On the
+// backend `peakViewers` IS the high-water mark and `totalViews` counts JOINS —
+// so a single viewer whose connection drops and returns three times makes
+// totalViews 3 while only one person was ever there (seen in production on
+// 2026-09-01). Seeding "live" from peakViewers therefore opened the producer
+// console on a number that could only climb, and "Peak" on a reconnect tally.
+//
+// `viewerCount` is the real concurrent figure, straight off the presence
+// gateway's own counter. The old fields stay as a fallback for an API that
+// predates it, where the seed is at least in the right order of magnitude
+// until the first socket update replaces it.
 export function seedViewerStats(entity: any | null | undefined): ViewerStats {
-  const live = typeof (entity as any)?.peakViewers === 'number' ? (entity as any).peakViewers as number : 0;
-  const peak = typeof (entity as any)?.totalViews === 'number' ? (entity as any).totalViews as number : 0;
+  const e = entity as any;
+  const live =
+    typeof e?.viewerCount === 'number'
+      ? (e.viewerCount as number)
+      : typeof e?.peakViewers === 'number'
+        ? (e.peakViewers as number)
+        : 0;
+  const peak = typeof e?.peakViewers === 'number' ? (e.peakViewers as number) : 0;
   return { liveViewers: live || 0, peakViewers: Math.max(peak, live) };
 }
 
