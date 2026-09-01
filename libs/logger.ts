@@ -25,6 +25,14 @@ export function createLogger(scope?: string) {
       // Always show errors
       // eslint-disable-next-line no-console
       console.error(formatPrefix(scope, level), ...args);
+      // ...and ship them, which nothing did before: a console line on a
+      // tester's phone is not readable by anyone. Required lazily so the
+      // reporter's own imports stay out of this module's init, which runs
+      // before almost everything else (config/env imports it).
+      try {
+        // eslint-disable-next-line
+        require("./errorReporter").reportError(scope, args);
+      } catch {}
       return;
     }
     if (!isDebug) return;
