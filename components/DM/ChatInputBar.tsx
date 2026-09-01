@@ -514,11 +514,11 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           <Animated.View
             entering={SlideInDown.duration(200)}
             exiting={FadeOut.duration(100)}
-            className="flex-row items-center px-4 py-2 bg-theme-neutrals-800/50 border-l-2 border-theme-yellow-500 mx-3 mt-2 rounded-lg"
+            className="flex-row items-center px-4 py-2 bg-theme-neutrals-800/50 border-l-2 border-white/20 mx-3 mt-2 rounded-lg"
           >
             <Icon name="Pencil" size={14} color="#D4D4D8" />
             <View className="flex-1 ml-2">
-              <Text className="text-[11px] text-theme-yellow-500 font-medium">
+              <Text className="text-[11px] text-white/80 font-medium">
                 Editing message
               </Text>
               <Text
