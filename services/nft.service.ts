@@ -952,6 +952,66 @@ export async function mintExistingPost(tokenId: number): Promise<MintNftResponse
   return (raw as any)?.result ?? raw;
 }
 
+/**
+ * One row of a post's Shop board.
+ *
+ * Affiliate links are allowed and expected here — that is what the board is
+ * for. The server refuses anything that is not http(s), plus known-bad and
+ * DeHub-lookalike hosts, so a label is safe to render as a tappable row.
+ */
+export interface ShopLink {
+  label: string;
+  url: string;
+}
+
+export interface ShopLinkAllowance {
+  /** How many links this account may publish, badge tier included. */
+  allowance: number;
+  /** What everybody gets before any badge. */
+  base: number;
+  /** The top of the ladder, for "3 of 4" style copy. */
+  max: number;
+  /** The tier the allowance was sized by, or null for no badge. */
+  tier: string | null;
+}
+
+/** What a badgeless creator gets, and the fallback when the ask fails. */
+export const SHOP_LINK_BASE_ALLOWANCE = 3;
+
+/**
+ * How many Shop links the signed-in creator may publish.
+ * GET /api/shop-links/allowance
+ *
+ * Asked rather than derived. The client's own badge resolution deliberately
+ * over-reports a tier so a badge does not vanish mid-stake, and the ladder
+ * scales with the DHB price — computing it here would offer a slot the mint is
+ * about to refuse.
+ *
+ * Degrades to the base three rather than throwing: a failed lookup must not
+ * cost somebody the links everybody gets.
+ */
+export async function getShopLinkAllowance(): Promise<ShopLinkAllowance> {
+  const fallback: ShopLinkAllowance = {
+    allowance: SHOP_LINK_BASE_ALLOWANCE,
+    base: SHOP_LINK_BASE_ALLOWANCE,
+    max: SHOP_LINK_BASE_ALLOWANCE,
+    tier: null,
+  };
+  try {
+    const res = await apiClient.get<any>(`/shop-links/allowance`, { isAuthRequired: true });
+    const body = (res as any)?.data ?? res;
+    if (!body || typeof body.allowance !== 'number') return fallback;
+    return {
+      allowance: Math.max(SHOP_LINK_BASE_ALLOWANCE, body.allowance),
+      base: typeof body.base === 'number' ? body.base : SHOP_LINK_BASE_ALLOWANCE,
+      max: typeof body.max === 'number' ? body.max : body.allowance,
+      tier: typeof body.tier === 'string' ? body.tier : null,
+    };
+  } catch {
+    return fallback;
+  }
+}
+
 export interface EditPostInput {
   name?: string;
   description?: string;
@@ -965,11 +1025,19 @@ export interface EditPostInput {
    * it back. Refused with 403 once a moderator has rated the post.
    */
   contentRating?: 'safe' | 'mature';
+  /**
+   * Replace the Shop board. `[]` clears it, which is how the toggle is turned
+   * off after publishing.
+   *
+   * Re-sized against what the editor holds now: somebody who unstaked keeps
+   * the board already on the post but cannot save a longer one.
+   */
+  shopLinks?: ShopLink[];
 }
 
 export interface EditPostResponse {
   result: boolean;
-  data?: { tokenId: number; name?: string; description?: string; category?: string[]; contentRating?: string };
+  data?: { tokenId: number; name?: string; description?: string; category?: string[]; contentRating?: string; shopLinks?: ShopLink[] };
 }
 
 /**

@@ -1679,6 +1679,7 @@ const ShortsViewerScreen = () => {
           currentTitle={activeItem.name || activeItem.title || ""}
           currentDescription={activeItem.description || ""}
           currentCategories={activeItem.category || []}
+          currentShopLinks={(activeItem as any).shopLinks}
           isSaved={activeEngagement.isSaved}
           onToggleSave={handleToggleSave}
           onFollowChange={handleFollowChange}

@@ -4,6 +4,7 @@ import { useUser, useProvider } from "../context/AuthContext";
 import { useWeb3Provider } from "../hooks/use-web3";
 import { useCreatorPlans } from "./useCreatorPlans";
 import { getFileName, guessMime } from "../libs/assets.util";
+import type { ShopLink } from "../services/nft.service";
 import { extractHashtagCategories } from "../libs/strings.util";
 import { filteredStreamInfo, isValidDataForMinting, getTotalBountyAmount } from "../libs/validators.util";
 import { toastError } from "../libs/toast";
@@ -78,6 +79,12 @@ export type UploadPayload = {
    * turned mature content on in their own settings. Omitted means safe.
    */
   contentRating?: 'mature';
+  /**
+   * The Shop board — affiliate and shop links shown behind the Shop button.
+   * The server re-checks the count against the creator's badge tier, so this
+   * is a request rather than a guarantee.
+   */
+  shopLinks?: ShopLink[];
 };
 
 
@@ -287,6 +294,7 @@ export function useUploadPost() {
         pollData: p.pollData,
         scheduledAt: p.scheduledAt?.toISOString(),
         contentRating: p.contentRating,
+        shopLinks: p.shopLinks,
       };
 
       const isBounty = p.monetization.bountyEnabled;

@@ -174,6 +174,12 @@ function rebuildFormData(job: UploadJob): FormData {
     fd.append("contentRating", "mature");
   }
 
+  // The Shop board. Only sent when there is one — an empty array is a valid
+  // "clear it" instruction on a post that has nothing to clear.
+  if (payload.shopLinks?.length) {
+    fd.append("shopLinks", JSON.stringify(payload.shopLinks));
+  }
+
   return fd;
 }
 

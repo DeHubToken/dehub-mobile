@@ -56,6 +56,11 @@ export interface SerializedUploadPayload {
    * safe, which is also what a job persisted by an older build reads as.
    */
   contentRating?: "mature";
+  /**
+   * The Shop board. Absent on a job persisted by an older build, which reads
+   * as "no board" — the same thing it means on a post that never had one.
+   */
+  shopLinks?: { label: string; url: string }[];
 }
 
 export interface MintParams {
