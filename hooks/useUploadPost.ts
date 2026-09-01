@@ -5,7 +5,7 @@ import { useWeb3Provider } from "../hooks/use-web3";
 import { useCreatorPlans } from "./useCreatorPlans";
 import { getFileName, guessMime } from "../libs/assets.util";
 import type { ShopLink } from "../services/nft.service";
-import { extractHashtagCategories } from "../libs/strings.util";
+import { mergeHashtagCategories } from "../libs/strings.util";
 import { filteredStreamInfo, isValidDataForMinting, getTotalBountyAmount } from "../libs/validators.util";
 import { toastError } from "../libs/toast";
 import { buildStreamInfo as buildStreamInfoShared, validateMonetization } from "../libs/monetization";
@@ -279,15 +279,11 @@ export function useUploadPost() {
           : undefined;
       const thumb = p.coverUri || p.thumbnailUri || null;
 
-      const { cleanTitle, cleanDescription, categories: mergedCategories } = extractHashtagCategories(
-        p.bodyText,
-        p.description,
-        p.categories,
-      );
+      const mergedCategories = mergeHashtagCategories(p.bodyText, p.description, p.categories);
 
       const serialized: SerializedUploadPayload = {
-        bodyText: cleanTitle,
-        description: cleanDescription,
+        bodyText: p.bodyText,
+        description: p.description,
         categories: mergedCategories,
         postType,
         images,
@@ -390,8 +386,9 @@ export function useUploadPost() {
       const thumb = p.coverUri || p.thumbnailUri || null;
       const addr = (user?.walletAddress || user?.address || "").toLowerCase();
 
-      const { cleanTitle: quoteTitle, cleanDescription: quoteDesc, categories: quoteCategories } =
-        extractHashtagCategories(p.bodyText, p.description, p.categories);
+      const quoteTitle = p.bodyText;
+      const quoteDesc = p.description;
+      const quoteCategories = mergeHashtagCategories(quoteTitle, quoteDesc, p.categories);
 
       const job: UploadJob = {
         id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
