@@ -1127,11 +1127,16 @@ const LiveProducerScreen: React.FC = () => {
             pointerEvents="none"
           />
 
-          {/* Bottom gradient */}
+          {/* Bottom gradient — now the only thing holding the chat up. The
+              messages lost their per-line bubbles, so this shade is what makes
+              them readable over a bright frame: it starts higher and ramps
+              through a mid stop so the top of the message column is already
+              sitting on something. */}
           <LinearGradient
-            colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.8)"]}
+            colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.45)", "rgba(0,0,0,0.85)"]}
+            locations={[0, 0.5, 1]}
             style={{
-              height: 340,
+              height: 420,
               position: "absolute",
               bottom: 0,
               left: 0,
