@@ -77,16 +77,16 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
 } => {
   switch (type) {
     case NotificationType.LIKE:
-      return { name: 'Heart', color: '#ef4444' };
+      return { name: 'Heart', color: '#F4F4F5' };
     case NotificationType.DISLIKE:
-      return { name: 'HeartOff', color: '#6b7280' };
+      return { name: 'HeartOff', color: '#8B8D90' };
     case NotificationType.COMMENT:
     case NotificationType.COMMENT_REPLY:
       return { name: 'MessageSquareText', color: '#F4F4F5' };
     case NotificationType.COMMENT_LIKE:
-      return { name: 'Heart', color: '#f472b6' };
+      return { name: 'Heart', color: '#F4F4F5' };
     case NotificationType.REPOST:
-      return { name: 'Repeat2', color: '#22c55e' };
+      return { name: 'Repeat2', color: '#F4F4F5' };
     case NotificationType.QUOTE:
       return { name: 'Quote', color: '#D4D4D8' };
     case NotificationType.FOLLOWING:
@@ -94,11 +94,11 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
     case NotificationType.FOLLOW_REQUEST:
       return { name: 'UserPlus', color: '#D4D4D8' };
     case NotificationType.FOLLOW_REQUEST_ACCEPTED:
-      return { name: 'UserCheck', color: '#22c55e' };
+      return { name: 'UserCheck', color: '#F4F4F5' };
     case NotificationType.MENTION:
       return { name: 'AtSign', color: '#D4D4D8' };
     case NotificationType.TIP:
-      return { name: 'Gem', color: '#22c55e' };
+      return { name: 'Gem', color: '#F4F4F5' };
     case NotificationType.SUBSCRIPTION:
       return { name: 'CircleCheck', color: '#D4D4D8' };
     case NotificationType.PPV_PURCHASE:
@@ -109,7 +109,7 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
     case NotificationType.VIDEO_MILESTONE:
       return { name: 'Trophy', color: '#D4D4D8' };
     case NotificationType.LIVESTREAM_START:
-      return { name: 'Radio', color: '#ef4444' };
+      return { name: 'Radio', color: '#F4F4F5' };
     case NotificationType.NEW_MESSAGE:
       return { name: 'Mail', color: '#F4F4F5' };
     case NotificationType.VIDEO_REMOVAL:
@@ -117,15 +117,15 @@ export const getNotificationIconConfig = (type: NotificationType | string): {
     case NotificationType.ACCOUNT_WARNING:
       return { name: 'AlertTriangle', color: '#D4D4D8' };
     case NotificationType.SYSTEM:
-      return { name: 'Info', color: '#6b7280' };
+      return { name: 'Info', color: '#8B8D90' };
     case NotificationType.FIAT_PAYMENT_COMPLETED:
-      return { name: 'CreditCard', color: '#22c55e' };
+      return { name: 'CreditCard', color: '#F4F4F5' };
     case NotificationType.FRACTION_OFFER:
     case NotificationType.FRACTION_OFFER_REJECTED:
       return { name: 'Store', color: '#D4D4D8' };
     case NotificationType.FRACTION_OFFER_ACCEPTED:
     case NotificationType.FRACTION_PURCHASED:
-      return { name: 'Store', color: '#22c55e' };
+      return { name: 'Store', color: '#F4F4F5' };
     // Supabase-side bounty rows. Matched as strings because they are written by
     // a database trigger and have no entry in NotificationType.
     case 'work_application':
