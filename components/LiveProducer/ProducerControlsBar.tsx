@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { MessageSquare, Gift, Radio, Video, VideoOff, Mic, MicOff, Repeat2, Server, MessageCircleOff } from 'lucide-react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { MessageSquare, Radio, Video, VideoOff, Mic, MicOff, Repeat2, Server, MessageCircleOff } from 'lucide-react-native';
 
 interface Props {
   stage: 'idle' | 'creating' | 'ready' | 'starting' | 'live' | 'ending' | 'ended';
@@ -21,6 +22,18 @@ interface Props {
   onToggleChatEnabled?: () => void;
 }
 
+/**
+ * The secondary controls float on the picture with nothing behind them.
+ *
+ * They used to each carry a `bg-black/40 border border-white/10` pill, which
+ * over a moving camera reads as a row of boxes sitting on the shot rather than
+ * controls belonging to it. Legibility comes from the scrim below instead — one
+ * gradient across the foot of the screen, which is what keeps white icons
+ * readable over a bright frame without giving any of them a box of their own.
+ *
+ * Go Live and End keep their fill: they are the actions that must never be
+ * missed, and colour is what tells them apart at a glance.
+ */
 const circleBtn = 'w-12 h-12 rounded-full items-center justify-center';
 const tap = 0.85;
 
@@ -52,31 +65,33 @@ const ProducerControlsBar: React.FC<Props> = ({
   const hideExternalToggle = isStarting || isLive || isEnding || stage === 'ended';
 
   return (
-    <View className="absolute bottom-0 left-0 right-0 p-4 pb-6">
+    <View className="absolute bottom-0 left-0 right-0">
+      {/* The scrim that replaces every button's pill. Transparent at the top so
+          it never reads as a bar, opaque enough at the foot to hold white icons
+          against a bright frame. pointerEvents none — it must not eat taps. */}
+      <LinearGradient
+        colors={['transparent', 'rgba(0,0,0,0.55)']}
+        style={{ position: 'absolute', left: 0, right: 0, bottom: 0, top: -32 }}
+        pointerEvents="none"
+      />
+      <View className="p-4 pb-6">
       <View className="flex-row items-center mb-3">
         <TouchableOpacity
           onPress={onToggleChat}
           activeOpacity={tap}
-          className={`mr-2 ${circleBtn} bg-black/40 border border-white/10 relative ${chatVisible ? 'bg-white/20' : ''}`}
+          className={`mr-2 ${circleBtn} relative ${chatVisible ? 'bg-white/20' : ''}`}
         >
           <MessageSquare color="white" size={22} />
           {!chatVisible && hasUnseenChats && (
             <View className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-red-500 border border-black" />
           )}
         </TouchableOpacity>
-        {/* <TouchableOpacity
-          onPress={onOpenGifts}
-          activeOpacity={tap}
-          className={`mr-2 ${circleBtn} bg-black/40 border border-white/10`}
-        >
-          <Gift color="white" size={22} />
-        </TouchableOpacity> */}
         <View className="flex-1" />
         {!hideExternalToggle && (
           <TouchableOpacity
             onPress={onToggleExternal}
             activeOpacity={tap}
-            className={`mr-2 ${circleBtn} border border-white/10 ${externalMode ? 'bg-indigo-600' : 'bg-black/40'}`}
+            className={`mr-2 ${circleBtn} ${externalMode ? 'bg-indigo-600' : ''}`}
           >
             <Server color="white" size={20} />
             {!externalMode && (
@@ -110,34 +125,37 @@ const ProducerControlsBar: React.FC<Props> = ({
         <TouchableOpacity
           onPress={onFlipCamera}
           activeOpacity={tap}
-          className={`${circleBtn} bg-black/40 border border-white/10 mr-3`}
+          className={`${circleBtn} mr-3`}
         >
           <Repeat2 color="white" size={20} />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={onToggleMic}
           activeOpacity={tap}
-          className={`${circleBtn} bg-black/40 border border-white/10 mr-3`}
+          className={`${circleBtn} mr-3`}
         >
           {micMuted ? <MicOff color="white" size={20} /> : <Mic color="white" size={20} />}
         </TouchableOpacity>
         <TouchableOpacity
           onPress={onToggleCamera}
           activeOpacity={tap}
-          className={`${circleBtn} bg-black/40 border border-white/10 mr-3`}
+          className={`${circleBtn} mr-3`}
         >
           {cameraOff ? <VideoOff color="white" size={20} /> : <Video color="white" size={20} />}
         </TouchableOpacity>
         {isLive && onToggleChatEnabled && (
+          /* Chat-off keeps a fill: it is a state the host has put the room in,
+             not a control at rest, and it has to read as switched off. */
           <TouchableOpacity
             onPress={onToggleChatEnabled}
             activeOpacity={tap}
-            className={`${circleBtn} border border-white/10 mr-3 ${chatEnabled ? 'bg-black/40' : 'bg-red-600/60'}`}
+            className={`${circleBtn} mr-3 ${chatEnabled ? '' : 'bg-red-600/60'}`}
           >
             {chatEnabled ? <MessageSquare color="white" size={18} /> : <MessageCircleOff color="white" size={18} />}
           </TouchableOpacity>
         )}
         <View className="flex-1" />
+      </View>
       </View>
     </View>
   );
