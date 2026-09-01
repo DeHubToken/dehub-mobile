@@ -86,7 +86,7 @@ export interface PostOptionsMenuProps {
   /** Called after visibility toggle to update parent state */
   onVisibilityChange?: (isHidden: boolean) => void;
   /** Called after edit success to update parent state */
-  onEditSuccess?: (data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; shopLinks?: ShopLink[] }) => void;
+  onEditSuccess?: (data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; shopLinks?: ShopLink[]; shopListingCount?: number }) => void;
   /** Called after delete success */
   onDeleteSuccess?: () => void;
   /** Called when user taps Send to DM */
@@ -337,7 +337,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   }, [openSubModal]);
 
   const handleEditDone = useCallback(
-    (data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; shopLinks?: ShopLink[] }) => {
+    (data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; shopLinks?: ShopLink[]; shopListingCount?: number }) => {
       setShowEdit(false);
       onEditSuccess?.(data);
     },

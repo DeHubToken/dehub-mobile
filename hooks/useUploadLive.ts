@@ -29,6 +29,7 @@ import { isSolanaChain } from "../config/solana.constants";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
 import { parseTxError } from "../libs/web3.util";
 import { toastError, toastSuccess } from "../libs/toast";
+import { attachShopListings } from "../libs/attach-shop-listings";
 import { defaultChainId as DEFAULT_CHAIN_ID } from "../config/constants";
 import type { LiveSettingsState } from "../components/Upload/LiveSettingsPanel";
 
@@ -70,6 +71,11 @@ export type LiveUploadPayload = {
    * when it goes on air.
    */
   shopLinks?: ShopLink[];
+  /**
+   * The creator's own store listings for the board, by id. Attached in Supabase
+   * once the mint returns a tokenId — there is nothing to attach to before.
+   */
+  shopListingIds?: string[];
   /** The chain the post mints on, when the composer offers a choice. */
   postChainId?: number;
 };
@@ -193,6 +199,12 @@ export function useUploadLive() {
       // first viewers looking at a Shop button with nothing behind it.
       if (p.shopLinks?.length) fd.append("shopLinks", JSON.stringify(p.shopLinks));
 
+      // What we are about to attach in Supabase. A render hint for the feed
+      // cards only — the listings need the tokenId this request returns.
+      if (p.shopListingIds?.length) {
+        fd.append("shopListingCount", String(p.shopListingIds.length));
+      }
+
       if (addr) fd.append("address", addr);
 
       // Stream settings (chat, minTip, schedule)
@@ -254,6 +266,29 @@ export function useUploadLive() {
 
         if (createdTokenId == null) {
           throw new Error("Mint payload missing a token id");
+        }
+
+        /**
+         * Put the picked store listings on the stream, now that it has a
+         * tokenId. Not awaited: going live must not wait on Supabase, and the
+         * board resolves whatever landed when a viewer opens it. A failure is
+         * reported rather than swallowed — the host can add them from the shop
+         * panel beside the player.
+         */
+        if (p.shopListingIds?.length) {
+          void attachShopListings(
+            createdTokenId,
+            p.shopListingIds,
+            user?.walletAddress || user?.address || null,
+          ).then(
+            ({ failed }) => {
+              if (failed > 0) {
+                toastError(
+                  `${failed} shop ${failed === 1 ? "item" : "items"} could not be attached — add them from the shop panel.`,
+                );
+              }
+            },
+          );
         }
 
         /*

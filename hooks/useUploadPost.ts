@@ -85,6 +85,11 @@ export type UploadPayload = {
    * is a request rather than a guarantee.
    */
   shopLinks?: ShopLink[];
+  /**
+   * The creator's own store listings for the board, by id. Attached in Supabase
+   * after the mint returns a tokenId — there is nothing to attach to before.
+   */
+  shopListingIds?: string[];
 };
 
 
@@ -295,6 +300,7 @@ export function useUploadPost() {
         scheduledAt: p.scheduledAt?.toISOString(),
         contentRating: p.contentRating,
         shopLinks: p.shopLinks,
+        shopListingIds: p.shopListingIds,
       };
 
       const isBounty = p.monetization.bountyEnabled;
