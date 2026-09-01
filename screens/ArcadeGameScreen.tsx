@@ -407,7 +407,7 @@ const styles = StyleSheet.create({
   bootPct: { color: "#71717A", fontSize: 12, fontVariant: ["tabular-nums"] },
   bootHide: { color: "#71717A", fontSize: 11, textDecorationLine: "underline" },
   bootFault: {
-    color: "#FBBF24",
+    color: "#D4D4D8",
     fontSize: 11,
     lineHeight: 16,
     textAlign: "center",
@@ -422,7 +422,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
   },
   panelKicker: {
-    color: "#FBBF24",
+    color: "#D4D4D8",
     fontSize: 11,
     fontWeight: "600",
     letterSpacing: 2,

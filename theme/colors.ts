@@ -14,10 +14,10 @@ export const colors = {
   muted: '#2F2F2F',
   mutedForeground: '#AAAAAA',
 
-  destructive: '#EF4444',
+  destructive: '#F4F4F5',
   destructiveForeground: '#FFFFFF',
 
-  success: '#22C55E',
+  success: '#F4F4F5',
 
   /** Mirrors tailwind's theme.neutrals scale for StyleSheet/props usage. */
   neutrals: {

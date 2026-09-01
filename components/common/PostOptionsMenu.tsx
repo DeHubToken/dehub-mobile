@@ -608,7 +608,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                 icon={isBlockedProp ? "lock-open-outline" : "ban-outline"}
                 label={isBlockedProp ? t("postOptions.unblockUser", { name: creatorDisplayName }) : t("postOptions.blockUser", { name: creatorDisplayName })}
                 sublabel={isBlockedProp ? t("postOptions.unblockDesc") : t("postOptions.blockDesc")}
-                color="#EF4444"
+                color="#F4F4F5"
                 onPress={handleOpenBlock}
               />
             </>
@@ -620,7 +620,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               icon="trash-outline"
               label={t("postOptions.deletePost")}
               sublabel={t("postOptions.deletePostDesc")}
-              color="#EF4444"
+              color="#F4F4F5"
               onPress={handleOpenDelete}
             />
           )}

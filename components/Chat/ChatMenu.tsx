@@ -95,7 +95,7 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
                   icon={peerHasFreeAccess ? "CircleMinus" : "ShieldCheck"}
                   label={peerHasFreeAccess ? "Remove free access" : "Grant free access"}
                   onPress={() => { onClose(); onToggleFreeAccess(); }}
-                  iconColor={peerHasFreeAccess ? "#FCA5A5" : "#22C55E"}
+                  iconColor={peerHasFreeAccess ? "#F4F4F5" : "#8B8D90"}
                 />
                 <View className="h-[1px] bg-theme-neutrals-700/60" />
               </>
@@ -116,8 +116,8 @@ const ChatMenu: React.FC<ChatMenuProps> = ({
               icon={isBlocked ? "CircleMinus" : "Ban"}
               label={isBlocked ? "Unblock user" : "Block user"}
               onPress={isBlocked ? (onUnblockUser || onClose) : onBlockUser}
-              color={isBlocked ? "text-theme-neutrals-200" : "text-red-300"}
-              iconColor={isBlocked ? "#D4D4D8" : "#FCA5A5"}
+              color={isBlocked ? "text-theme-neutrals-200" : "text-white/80"}
+              iconColor={isBlocked ? "#D4D4D8" : "#F4F4F5"}
             />
           </ScrollView>
         </Pressable>

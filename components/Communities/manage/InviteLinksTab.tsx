@@ -185,7 +185,7 @@ const InviteRow: React.FC<InviteRowProps> = ({ invite, busy, onCopy, onShare, on
               <ActivityIndicator size="small" color="#fff" />
             ) : (
               <>
-                <Icon name="Trash2" size={14} color="#EF4444" />
+                <Icon name="Trash2" size={14} color="#F4F4F5" />
                 <Text style={[styles.secondaryBtnText, styles.destructiveText]}>
                   {t("communities.manage.revoke", { defaultValue: "Revoke" })}
                 </Text>
@@ -487,8 +487,8 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.1)",
   },
   chipText: { color: "#a1a1aa", fontSize: 11 },
-  chipMuted: { backgroundColor: "rgba(239,68,68,0.12)", borderColor: "rgba(239,68,68,0.25)" },
-  chipMutedText: { color: "#EF4444" },
+  chipMuted: { backgroundColor: "rgba(255,255,255,0.12)", borderColor: "rgba(255,255,255,0.25)" },
+  chipMutedText: { color: "#F4F4F5" },
   primaryBtn: {
     marginTop: 16,
     backgroundColor: "#fff",
@@ -511,7 +511,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.1)",
   },
   secondaryBtnText: { color: "#fff", fontSize: 12, fontWeight: "600" },
-  destructiveText: { color: "#EF4444" },
+  destructiveText: { color: "#F4F4F5" },
   btnDisabled: { opacity: 0.6 },
   showMoreBtn: {
     marginTop: 4,

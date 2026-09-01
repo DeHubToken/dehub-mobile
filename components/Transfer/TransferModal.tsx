@@ -268,7 +268,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
             </Text>
           </View>
           {selected && (
-            <Ionicons name="checkmark-circle" size={16} color="#22c55e" />
+            <Ionicons name="checkmark-circle" size={16} color="#F4F4F5" />
           )}
         </TouchableOpacity>
       );
@@ -316,7 +316,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
             </Text>
           </View>
           {insufficient && (
-            <Text className="text-xs text-red-400 mt-1">
+            <Text className="text-xs text-white/80 mt-1">
               Insufficient balance
             </Text>
           )}
@@ -324,12 +324,12 @@ const TransferModal: React.FC<TransferModalProps> = ({
             String(
               (recipient.walletAddress || (recipient as any).address) as string
             ).toLowerCase() === String(account).toLowerCase() && (
-              <Text className="text-xs text-red-400 mt-1">
+              <Text className="text-xs text-white/80 mt-1">
                 You can't transfer to yourself
               </Text>
             )}
           {!!error && (
-            <Text className="text-xs text-red-400 mt-1">{error}</Text>
+            <Text className="text-xs text-white/80 mt-1">{error}</Text>
           )}
         </View>
         <View className="relative z-10">
@@ -425,7 +425,7 @@ const TransferModal: React.FC<TransferModalProps> = ({
                       )}
                     </Text>
                   </View>
-                  <Ionicons name="checkmark-circle" size={16} color="#22c55e" />
+                  <Ionicons name="checkmark-circle" size={16} color="#F4F4F5" />
                 </View>
               </View>
             )}

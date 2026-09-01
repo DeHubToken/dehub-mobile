@@ -72,11 +72,11 @@ const TOPUP_PRESETS = [25, 100, 500];
 const OBJECTIVES = ["awareness", "traffic", "engagement"] as const;
 
 const STATUS_COLOR: Record<string, string> = {
-  active: "#22C55E",
+  active: "#F4F4F5",
   paused: "#D4D4D8",
   pending_review: "#D4D4D8",
   draft: "#A1A1AA",
-  rejected: "#EF4444",
+  rejected: "#F4F4F5",
   completed: "#D4D4D8",
   archived: "#71717A",
 };
@@ -124,7 +124,7 @@ const PerfChart: React.FC<{ series: { day: string; impressions: number; clicks: 
     <Svg width="100%" height={H} viewBox={`0 0 ${W} ${H}`}>
       <SvgLine x1={PAD} y1={H - PAD} x2={W - PAD} y2={H - PAD} stroke="#3f3f46" strokeWidth="1" />
       <Polyline points={build(series.map((s) => s.impressions))} fill="none" stroke="#F4F4F5" strokeWidth="2" />
-      <Polyline points={build(series.map((s) => s.clicks))} fill="none" stroke="#22c55e" strokeWidth="2" />
+      <Polyline points={build(series.map((s) => s.clicks))} fill="none" stroke="#F4F4F5" strokeWidth="2" />
     </Svg>
   );
 };
@@ -514,7 +514,7 @@ export default function AdsScreen() {
                     <Text style={styles.legendText}>{t("ads.impressions")}</Text>
                   </View>
                   <View style={styles.legendItem}>
-                    <View style={[styles.legendDot, { backgroundColor: "#22c55e" }]} />
+                    <View style={[styles.legendDot, { backgroundColor: "rgba(255,255,255,0.15)" }]} />
                     <Text style={styles.legendText}>{t("ads.clicks")}</Text>
                   </View>
                 </View>

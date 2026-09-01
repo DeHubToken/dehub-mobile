@@ -239,8 +239,8 @@ export function MembersTab({ community, membership }: MembersTabProps) {
                   </View>
                   {isMuted(member) && (
                     <View style={[styles.chip, styles.chipWarning]}>
-                      <Icon name="VolumeX" size={11} color="#FDB022" />
-                      <Text style={[styles.chipText, { color: "#FDB022" }]}>
+                      <Icon name="VolumeX" size={11} color="#D4D4D8" />
+                      <Text style={[styles.chipText, { color: "#D4D4D8" }]}>
                         {t("communities.manage.muted", { defaultValue: "Muted" })}
                       </Text>
                     </View>
@@ -361,7 +361,7 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth,
   },
   chipNeutral: { backgroundColor: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.1)" },
-  chipWarning: { backgroundColor: "rgba(251,191,36,0.12)", borderColor: "rgba(251,191,36,0.3)" },
+  chipWarning: { backgroundColor: "rgba(255,255,255,0.12)", borderColor: "rgba(255,255,255,0.3)" },
   chipText: { fontSize: 11, fontWeight: "600" },
   approveBtn: {
     backgroundColor: "#fff",

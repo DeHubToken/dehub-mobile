@@ -367,7 +367,7 @@ const s = StyleSheet.create({
     fontWeight: '700',
   },
   clearText: {
-    color: '#EF4444',
+    color: '#F4F4F5',
     fontSize: 13,
     fontWeight: '500',
   },

@@ -95,15 +95,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 6,
     borderRadius: 14,
-    backgroundColor: "rgba(239,68,68,0.2)",
+    backgroundColor: "rgba(255,255,255,0.2)",
   },
   leaveText: {
-    color: "#EF4444",
+    color: "#F4F4F5",
     fontSize: 12,
     fontWeight: "600",
   },
   endBtn: {
-    backgroundColor: "#ef4444",
+    backgroundColor: "rgba(255,255,255,0.15)",
   },
   endText: {
     color: "#fff",

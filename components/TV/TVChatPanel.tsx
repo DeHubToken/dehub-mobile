@@ -162,7 +162,7 @@ const ChatRow: React.FC<{
                 accessibilityRole="button"
                 accessibilityLabel="Delete"
               >
-                <Icon name="Trash2" size={14} color="#EF4444" />
+                <Icon name="Trash2" size={14} color="#F4F4F5" />
               </Pressable>
             )}
           </View>

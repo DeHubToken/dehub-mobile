@@ -45,7 +45,7 @@ const PaymentBadgeComponent: React.FC<PaymentBadgeProps> = ({
 
   // Pick icon & color
   const iconColor = failed
-    ? "#EF4444"
+    ? "#F4F4F5"
     : isPending
     ? "#D4D4D8"
     : isConfirmed
@@ -57,15 +57,15 @@ const PaymentBadgeComponent: React.FC<PaymentBadgeProps> = ({
       className={`flex-row items-center gap-1 px-2.5 py-1 rounded-lg mt-1 ${
         failed
           ? isMine
-            ? "bg-red-500/15"
-            : "bg-red-500/10"
+            ? "bg-white/10"
+            : "bg-white/10"
           : isMine
           ? "bg-white/10"
           : "bg-theme-neutrals-700/60"
       }`}
     >
       {failed ? (
-        <Ionicons name="alert-circle" size={11} color="#EF4444" />
+        <Ionicons name="alert-circle" size={11} color="#F4F4F5" />
       ) : isPending ? (
         <ActivityIndicator size={10} color="#D4D4D8" />
       ) : (
@@ -74,7 +74,7 @@ const PaymentBadgeComponent: React.FC<PaymentBadgeProps> = ({
       <Text
         className={`text-[11px] font-medium ${
           failed
-            ? "text-red-400"
+            ? "text-white/80"
             : isPending
             ? isMine
               ? "text-theme-neutrals-200/80"

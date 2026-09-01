@@ -824,8 +824,8 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                 )}
                 {isUploadFailed && (
                   <View className="absolute inset-0 items-center justify-center bg-black/50">
-                    <Icon name="CircleAlert" size={28} color="#EF4444" />
-                    <Text className="text-[11px] text-red-400 mt-1 font-medium">
+                    <Icon name="CircleAlert" size={28} color="#F4F4F5" />
+                    <Text className="text-[11px] text-white/80 mt-1 font-medium">
                       Failed to send
                     </Text>
                   </View>

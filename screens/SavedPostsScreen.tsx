@@ -262,8 +262,8 @@ const SavedPostsScreen: React.FC = () => {
                 }}
                 style={[styles.menuItem, { borderBottomWidth: 0 }]}
               >
-                <Icon name="Trash2" size={18} color="#EF4444" />
-                <Text style={[styles.menuItemText, { color: "#EF4444" }]}>Delete Collection</Text>
+                <Icon name="Trash2" size={18} color="#F4F4F5" />
+                <Text style={[styles.menuItemText, { color: "#F4F4F5" }]}>Delete Collection</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -440,8 +440,8 @@ const SavedPostsScreen: React.FC = () => {
               }}
               style={[styles.menuItem, { borderBottomWidth: 0 }]}
             >
-              <Icon name="Trash2" size={18} color="#EF4444" />
-              <Text style={[styles.menuItemText, { color: "#EF4444" }]}>Delete Collection</Text>
+              <Icon name="Trash2" size={18} color="#F4F4F5" />
+              <Text style={[styles.menuItemText, { color: "#F4F4F5" }]}>Delete Collection</Text>
             </TouchableOpacity>
 
             <TouchableOpacity

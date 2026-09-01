@@ -156,7 +156,7 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
             </Text>
             {isLocal ? (
               <>
-                <Text className="text-red-400 text-sm mb-2">
+                <Text className="text-white/80 text-sm mb-2">
                   {t("settings.exportPkWarning")}
                 </Text>
                 <View className="bg-theme-neutrals-800 border border-theme-neutrals-700 rounded-lg p-3 mb-3">
@@ -184,7 +184,7 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
                   className="border border-theme-neutrals-700 rounded-md px-3 py-2 text-white bg-theme-neutrals-800"
                 />
                 {error ? (
-                  <Text className="text-red-500 text-xs mt-2">{error}</Text>
+                  <Text className="text-white/80 text-xs mt-2">{error}</Text>
                 ) : null}
                 <View className="flex-row justify-end mt-4">
                   <TouchableOpacity
@@ -224,7 +224,7 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
                   </Text>
                 </View>
                 {error ? (
-                  <Text className="text-red-500 text-xs mt-2">{error}</Text>
+                  <Text className="text-white/80 text-xs mt-2">{error}</Text>
                 ) : null}
                 <View className="flex-row justify-end mt-2">
                   <TouchableOpacity
@@ -276,7 +276,7 @@ const ExportPrivateKeyModal: React.FC<ExportPrivateKeyModalProps> = ({
                 <Icon
                   name={copied ? "Check" : "Copy"}
                   size={18}
-                  color={copied ? "#22C55E" : "#e5e7eb"}
+                  color={copied ? "#F4F4F5" : "#e5e7eb"}
                 />
               </TouchableOpacity>
             </View>

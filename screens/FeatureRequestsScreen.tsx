@@ -134,10 +134,10 @@ const STATUS_I18N: Record<string, string> = {
  * web's STATUS_BADGE_STYLES.
  */
 const STATUS_BADGE: Partial<Record<FeatureStatus, { fg: string; bg: string; bd: string }>> = {
-  under_review: { fg: "#FCD34D", bg: "rgba(251,191,36,0.15)", bd: "rgba(252,211,77,0.25)" },
-  planned: { fg: "#93C5FD", bg: "rgba(96,165,250,0.15)", bd: "rgba(147,197,253,0.25)" },
-  in_progress: { fg: "#C4B5FD", bg: "rgba(167,139,250,0.15)", bd: "rgba(196,181,253,0.25)" },
-  declined: { fg: "#FCA5A5", bg: "rgba(248,113,113,0.15)", bd: "rgba(252,165,165,0.25)" },
+  under_review: { fg: "#D4D4D8", bg: "rgba(255,255,255,0.15)", bd: "rgba(255,255,255,0.25)" },
+  planned: { fg: "#D4D4D8", bg: "rgba(255,255,255,0.15)", bd: "rgba(255,255,255,0.25)" },
+  in_progress: { fg: "#D4D4D8", bg: "rgba(255,255,255,0.15)", bd: "rgba(255,255,255,0.25)" },
+  declined: { fg: "#F4F4F5", bg: "rgba(255,255,255,0.15)", bd: "rgba(255,255,255,0.25)" },
 };
 
 function timeAgo(iso: string, t: TFunction): string {

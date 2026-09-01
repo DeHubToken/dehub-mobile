@@ -196,7 +196,7 @@ const DpayCheckoutStatus: React.FC<Props> = ({
       {isSuccess ? (
         <View className="items-center">
           <Animated.View style={{ transform: [{ scale }] }}>
-            <Ionicons name="checkmark-circle" size={66} color="#22c55e" />
+            <Ionicons name="checkmark-circle" size={66} color="#F4F4F5" />
           </Animated.View>
           <Text className="text-white text-xl font-semibold mt-3">Success</Text>
           <Text className="text-gray-300 text-sm mt-1 text-center">

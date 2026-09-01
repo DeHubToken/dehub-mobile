@@ -6,7 +6,9 @@ export interface PasswordStrengthMeterProps {
   assessment: PasswordAssessment | null;
 }
 
-const BAR_COLORS = ["#EF4444", "#F97316", "#EAB308", "#84CC16", "#22C55E"];
+// Weak to strong as a brightness ramp — the meter used to run red→green,
+// which the design system keeps off every surface.
+const BAR_COLORS = ["#52525B", "#71717A", "#A1A1AA", "#D4D4D8", "#FAFAFA"];
 
 const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = memo(({ assessment }) => {
   if (!assessment) return null;
@@ -23,7 +25,7 @@ const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = memo(({ asse
               flex: 1,
               height: 4,
               borderRadius: 2,
-              backgroundColor: i <= score - 1 || (score === 0 && i === 0) ? color : "#374151",
+              backgroundColor: i <= score - 1 || (score === 0 && i === 0) ? color : "rgba(255,255,255,0.12)",
             }}
           />
         ))}
@@ -32,7 +34,7 @@ const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = memo(({ asse
         {label}
       </Text>
       {breached === true && (
-        <Text className="text-red-400 text-xs mt-1">
+        <Text className="text-white/80 text-xs mt-1">
           This password has appeared in a data breach — choose a different one
         </Text>
       )}

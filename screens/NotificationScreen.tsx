@@ -268,8 +268,8 @@ const MONO_ICON_COLORS = new Set(['#F4F4F5', '#D4D4D8']);
 
 const getMonoIconConfig = (type: NotificationType | string): { name: string; color: string } => {
   const cfg = getNotificationIconConfig(type);
-  if (WARNING_TYPES.has(type as string)) return { ...cfg, color: '#EF4444' };
-  if (MONEY_RECEIVED_TYPES.has(type as string)) return { ...cfg, color: '#22C55E' };
+  if (WARNING_TYPES.has(type as string)) return { ...cfg, color: '#F4F4F5' };
+  if (MONEY_RECEIVED_TYPES.has(type as string)) return { ...cfg, color: '#F4F4F5' };
   return MONO_ICON_COLORS.has(cfg.color) ? cfg : { ...cfg, color: '#D4D4D8' };
 };
 
@@ -616,8 +616,8 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
             item.type === NotificationType.BOUNTY_CLAIMED ||
             item.type === NotificationType.PPV_PURCHASE) && item.amount && (
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
-              <View style={{ backgroundColor: 'rgba(34, 197, 94, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
-                <Text style={{ color: '#22C55E', fontSize: 12, fontWeight: '600' }}>
+              <View style={{ backgroundColor: 'rgba(255,255,255,0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
+                <Text style={{ color: '#F4F4F5', fontSize: 12, fontWeight: '600' }}>
                   +{item.amount} {item.currency || 'DHB'}
                 </Text>
               </View>

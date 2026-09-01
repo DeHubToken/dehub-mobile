@@ -254,7 +254,7 @@ export default function SuperPowersScreen() {
                     <Icon
                       name="Clock"
                       size={14}
-                      color={booking.live ? "#4ADE80" : "#71717A"}
+                      color={booking.live ? "#F4F4F5" : "#71717A"}
                     />
                     {/* A Golden Hour acts on the whole account, so it has no
                         post id to show. */}
@@ -311,7 +311,7 @@ export default function SuperPowersScreen() {
                   <Icon
                     name={unlocked ? "Check" : "Lock"}
                     size={13}
-                    color={unlocked ? "#4ADE80" : "#52525B"}
+                    color={unlocked ? "#F4F4F5" : "#52525B"}
                   />
                 </View>
                 <Text style={styles.powerSummary}>{power.summary}</Text>

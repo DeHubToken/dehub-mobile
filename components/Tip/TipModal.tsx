@@ -345,7 +345,7 @@ const TipModal: React.FC<TipModalProps> = ({
                     </Text>
                     <Text
                       className={`text-[11px] ${
-                        overLimit ? "text-red-400" : "text-white/40"
+                        overLimit ? "text-white/80" : "text-white/40"
                       }`}
                     >
                       Max: {limitTip}
@@ -360,17 +360,17 @@ const TipModal: React.FC<TipModalProps> = ({
                     </Text>
                   </View> */}
                   {insufficient && (
-                    <Text className="text-xs text-red-400 mt-1">
+                    <Text className="text-xs text-white/80 mt-1">
                       Insufficient balance
                     </Text>
                   )}
                   {isSelf && (
-                    <Text className="text-xs text-red-400 mt-1">
+                    <Text className="text-xs text-white/80 mt-1">
                       You can't tip yourself
                     </Text>
                   )}
                   {tipError && (
-                    <Text className="text-xs text-red-400 mt-1">
+                    <Text className="text-xs text-white/80 mt-1">
                       {tipError}
                     </Text>
                   )}

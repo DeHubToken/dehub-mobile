@@ -16,7 +16,7 @@ type PrimaryButtonProps = {
  * 12pt radius, 14pt medium white label, white-glass gradient
  * (white/20 -> white/10 -> white/5) inside a white/30 hairline.
  *
- * Was a blue->green gradient (#D4D4D8 -> #22C55E) with a near-black label at
+ * Was a blue->green gradient (#D4D4D8 -> #F4F4F5) with a near-black label at
  * 44/20/16 - a coloured fill the web design system forbids
  * (dehubweb/src/index.css:14-15,22 mandates black/white/zinc, no coloured
  * accents), which made every CTA in the app read off-brand.

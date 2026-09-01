@@ -486,11 +486,11 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             </View>
             <View
               className={`w-11 h-6 rounded-full justify-center ${
-                commentsDisabled ? "bg-neutral-700" : "bg-green-500"
+                commentsDisabled ? "bg-neutral-700" : "bg-white"
               }`}
             >
               <View
-                className={`w-5 h-5 rounded-full bg-white ${
+                className={`w-5 h-5 rounded-full ${commentsDisabled ? "bg-white " : "bg-zinc-950 "}${
                   commentsDisabled ? "ml-0.5" : "ml-[22px]"
                 }`}
               />

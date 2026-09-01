@@ -22,7 +22,7 @@ export const toastTheme = {
     color: theme.colors.cardForeground,
   },
   warning: {
-    backgroundColor: '#D97706', // amber-ish
+    backgroundColor: 'rgba(255,255,255,0.15)', // amber-ish
     color: theme.colors.foreground,
   },
 };

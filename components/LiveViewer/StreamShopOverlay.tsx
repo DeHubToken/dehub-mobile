@@ -221,7 +221,7 @@ export function CheckoutSheet({
                     </Text>
                   </>
                 ) : quoteError ? (
-                  <Text className="text-red-400 text-sm">{quoteError}</Text>
+                  <Text className="text-white/80 text-sm">{quoteError}</Text>
                 ) : (
                   <View className="flex-row items-center">
                     <ActivityIndicator size="small" color="#a1a1aa" />

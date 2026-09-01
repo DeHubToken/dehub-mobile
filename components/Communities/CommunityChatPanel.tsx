@@ -771,8 +771,8 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
 
                 {sheetCanDelete && (
                   <Pressable style={styles.sheetRow} onPress={() => confirmDelete(sheetFor)}>
-                    <Icon name="Trash2" size={16} color="#EF4444" />
-                    <Text style={[styles.sheetRowText, { color: "#EF4444" }]}>
+                    <Icon name="Trash2" size={16} color="#F4F4F5" />
+                    <Text style={[styles.sheetRowText, { color: "#F4F4F5" }]}>
                       {t("common.delete", { defaultValue: "Delete" })}
                     </Text>
                   </Pressable>

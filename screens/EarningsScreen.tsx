@@ -44,7 +44,7 @@ const TIME_FILTERS: { key: TimeFilter; label: string }[] = [
 ];
 
 const SOURCE_COLORS = {
-  tips: "#22C55E",
+  tips: "#F4F4F5",
   ppv: "#D4D4D8",
 };
 
@@ -286,7 +286,7 @@ const EarningsScreen: React.FC = () => {
           {/* Stats row */}
           <View style={styles.statsRow}>
             <View style={styles.statBox}>
-              <Icon name="Gem" size={18} color="#22C55E" />
+              <Icon name="Gem" size={18} color="#F4F4F5" />
               <Text style={styles.statNum}>{filteredTips.length}</Text>
               <Text style={styles.statLabel}>Tips received</Text>
             </View>
@@ -309,7 +309,7 @@ const EarningsScreen: React.FC = () => {
                   <View
                     style={[
                       styles.txIcon,
-                      { backgroundColor: tx.type === "tip" ? "rgba(34,197,94,0.12)" : "rgba(255,255,255,0.12)" },
+                      { backgroundColor: tx.type === "tip" ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.12)" },
                     ]}
                   >
                     <Icon

@@ -620,8 +620,8 @@ const FollowListScreen: React.FC = () => {
                   {tab.label}
                 </Text>
                 {tab.key === "requests" && requestsCount > 0 && (
-                  <View className="bg-red-500 rounded-full min-w-[18px] h-[18px] items-center justify-center px-1">
-                    <Text className="text-white text-[10px] font-bold">
+                  <View className="bg-white rounded-full min-w-[18px] h-[18px] items-center justify-center px-1">
+                    <Text className="text-zinc-950 text-[10px] font-bold">
                       {requestsCount > 99 ? "99+" : requestsCount}
                     </Text>
                   </View>
@@ -824,7 +824,7 @@ const FollowListScreen: React.FC = () => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={handleConfirmRemoveFollower}
-              className="flex-1 bg-red-500/90 py-3 rounded-xl items-center"
+              className="flex-1 bg-white/15 border border-white/25 py-3 rounded-xl items-center"
               activeOpacity={0.7}
             >
               <Text className="text-white font-semibold">Remove</Text>

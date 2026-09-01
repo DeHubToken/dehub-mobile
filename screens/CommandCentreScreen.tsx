@@ -195,7 +195,7 @@ const EngagementChart: React.FC<{ data?: AnalyticsResponse }> = ({ data }) => {
         );
       })}
       {!!likesPts && (
-        <Polyline points={likesPts} fill="none" stroke="#22c55e" strokeWidth="2" strokeLinejoin="round" />
+        <Polyline points={likesPts} fill="none" stroke="#F4F4F5" strokeWidth="2" strokeLinejoin="round" />
       )}
       {!!followersPts && (
         <Polyline points={followersPts} fill="none" stroke="#F4F4F5" strokeWidth="2" strokeLinejoin="round" />
@@ -221,7 +221,7 @@ const ActivityRow: React.FC<{ item: ActivityItem }> = ({ item }) => {
   return (
     <View style={styles.activityRow}>
       <View style={styles.activityIcon}>
-        <Icon name={meta?.icon ?? "Circle"} size={14} color={positive ? "#22C55E" : "#EF4444"} />
+        <Icon name={meta?.icon ?? "Circle"} size={14} color={positive ? "#F4F4F5" : "#8B8D90"} />
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text style={styles.activityLabel}>
@@ -229,7 +229,7 @@ const ActivityRow: React.FC<{ item: ActivityItem }> = ({ item }) => {
         </Text>
         <Text style={styles.activityTime}>{timeAgo(item.createdAt, t)}</Text>
       </View>
-      <Text style={[styles.activityAmount, { color: positive ? "#22C55E" : "#EF4444" }]}>
+      <Text style={[styles.activityAmount, { color: positive ? "#F4F4F5" : "#8B8D90" }]}>
         {positive ? "+" : ""}
         {fmt(item.amount)} {item.currency}
       </Text>
@@ -407,7 +407,7 @@ export default function CommandCentreScreen() {
               <EngagementChart data={analytics.data} />
               <View style={styles.legend}>
                 <View style={styles.legendItem}>
-                  <View style={[styles.legendDot, { backgroundColor: "#22c55e" }]} />
+                  <View style={[styles.legendDot, { backgroundColor: "rgba(255,255,255,0.15)" }]} />
                   <Text style={styles.legendText}>{t("commandCentre.likes")}</Text>
                 </View>
                 <View style={styles.legendItem}>
@@ -527,7 +527,7 @@ const styles = StyleSheet.create({
   balanceBig: { color: "#FFFFFF", fontSize: 32, fontWeight: "800", marginTop: 6 },
   balanceUnit: { color: "#71717A", fontSize: 15, fontWeight: "700" },
 
-  incomeTotal: { color: "#22C55E", fontSize: 13, fontWeight: "700", marginTop: 2 },
+  incomeTotal: { color: "#F4F4F5", fontSize: 13, fontWeight: "700", marginTop: 2 },
 
   rangeRow: { flexDirection: "row", gap: 6, marginTop: 10 },
   rangeChip: {

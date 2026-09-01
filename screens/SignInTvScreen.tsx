@@ -132,7 +132,7 @@ export default function SignInTvScreen() {
             )}
 
             {notFound && !busy && (
-              <Text className="text-red-400 text-sm mt-4 text-center">
+              <Text className="text-white/80 text-sm mt-4 text-center">
                 No television is waiting on that code. It may have expired — ask the TV
                 for a new one.
               </Text>
@@ -199,7 +199,7 @@ export default function SignInTvScreen() {
 
         {phase === 'done' && (
           <View className="items-center py-16">
-            <Icon name="CircleCheck" size={44} color="#22C55E" />
+            <Icon name="CircleCheck" size={44} color="#F4F4F5" />
             <Text className="text-white text-lg font-bold mt-4">Your TV is signed in</Text>
             <Text className="text-theme-neutrals-500 text-sm mt-2 text-center px-8">
               It should be showing your account already. Sign it out any time from

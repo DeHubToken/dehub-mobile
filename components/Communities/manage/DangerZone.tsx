@@ -140,7 +140,7 @@ export function DangerZone({ community, membership, onClose }: DangerZoneProps) 
     >
       <View style={styles.dangerCard}>
         <View className="flex-row items-center gap-2">
-          <Icon name="Shield" size={16} color="#EF4444" />
+          <Icon name="Shield" size={16} color="#F4F4F5" />
           <Text className="text-white text-sm font-medium">
             {t("communities.manage.danger.transferHeading", {
               defaultValue: "Transfer ownership",
@@ -208,7 +208,7 @@ export function DangerZone({ community, membership, onClose }: DangerZoneProps) 
                     disabled={busy || deleting}
                   >
                     {busy ? (
-                      <ActivityIndicator size="small" color="#EF4444" />
+                      <ActivityIndicator size="small" color="#F4F4F5" />
                     ) : (
                       <Text style={styles.transferBtnText}>
                         {t("communities.manage.danger.transferAction", {
@@ -237,7 +237,7 @@ export function DangerZone({ community, membership, onClose }: DangerZoneProps) 
 
       <View style={styles.dangerCard}>
         <View className="flex-row items-center gap-2">
-          <Icon name="TriangleAlert" size={16} color="#EF4444" />
+          <Icon name="TriangleAlert" size={16} color="#F4F4F5" />
           <Text className="text-white text-sm font-medium">
             {t("communities.manage.danger.deleteHeading", { defaultValue: "Delete community" })}
           </Text>
@@ -255,10 +255,10 @@ export function DangerZone({ community, membership, onClose }: DangerZoneProps) 
           disabled={deleting}
         >
           {deleting ? (
-            <ActivityIndicator size="small" color="#EF4444" />
+            <ActivityIndicator size="small" color="#F4F4F5" />
           ) : (
             <>
-              <Icon name="Trash2" size={16} color="#EF4444" />
+              <Icon name="Trash2" size={16} color="#F4F4F5" />
               <Text style={styles.deleteBtnText}>
                 {t("communities.manage.danger.deleteAction", {
                   defaultValue: "Delete this community",
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
   dangerCard: {
     borderRadius: 12,
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "rgba(239,68,68,0.2)",
+    borderColor: "rgba(255,255,255,0.2)",
     backgroundColor: "rgba(255,255,255,0.04)",
     padding: 14,
   },
@@ -297,13 +297,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 10,
-    backgroundColor: "rgba(239,68,68,0.12)",
+    backgroundColor: "rgba(255,255,255,0.12)",
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "rgba(239,68,68,0.2)",
+    borderColor: "rgba(255,255,255,0.2)",
     minWidth: 96,
     alignItems: "center",
   },
-  transferBtnText: { color: "#EF4444", fontSize: 12, fontWeight: "600" },
+  transferBtnText: { color: "#F4F4F5", fontSize: 12, fontWeight: "600" },
   showMoreBtn: {
     marginTop: 12,
     paddingVertical: 10,
@@ -322,9 +322,9 @@ const styles = StyleSheet.create({
     marginTop: 14,
     paddingVertical: 12,
     borderRadius: 12,
-    backgroundColor: "rgba(239,68,68,0.12)",
+    backgroundColor: "rgba(255,255,255,0.12)",
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "rgba(239,68,68,0.2)",
+    borderColor: "rgba(255,255,255,0.2)",
   },
-  deleteBtnText: { color: "#EF4444", fontSize: 14, fontWeight: "700" },
+  deleteBtnText: { color: "#F4F4F5", fontSize: 14, fontWeight: "700" },
 });

@@ -320,7 +320,7 @@ const OverlayComponent: React.FC<VoiceNoteRecordingOverlayProps> = ({
     >
       <Animated.View
         style={pulseStyle}
-        className="w-2.5 h-2.5 rounded-full bg-red-500 mr-2"
+        className="w-2.5 h-2.5 rounded-full bg-white mr-2"
       />
       <Text
         className="text-white text-sm mr-3"
@@ -338,7 +338,7 @@ const OverlayComponent: React.FC<VoiceNoteRecordingOverlayProps> = ({
         accessibilityLabel="Cancel recording"
         className="ml-3 w-10 h-10 rounded-full bg-theme-neutrals-700 items-center justify-center"
       >
-        <Ionicons name="trash-outline" size={20} color="#EF4444" />
+        <Ionicons name="trash-outline" size={20} color="#F4F4F5" />
       </TouchableOpacity>
 
       <TouchableOpacity

@@ -352,14 +352,14 @@ const SwitchAccountModal: React.FC<SwitchAccountModalProps> = ({
         </View>
 
         <View className="rounded-xl border border-amber-400/30 bg-amber-400/10 p-3 mt-4 flex-row items-start" style={{ gap: 8 }}>
-          <Ionicons name="warning-outline" size={18} color="#fbbf24" />
+          <Ionicons name="warning-outline" size={18} color="#D4D4D8" />
           <Text className="text-amber-200 text-xs flex-1">
             Make sure you've backed up the private key of your CURRENT wallet first (Settings →
             Export Private Key) — this device will stop offering it once you switch.
           </Text>
         </View>
 
-        {error && <Text className="text-red-400 text-xs mt-3">{error}</Text>}
+        {error && <Text className="text-white/80 text-xs mt-3">{error}</Text>}
 
         <TouchableOpacity
           onPress={handleSubmit}
