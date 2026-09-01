@@ -121,6 +121,27 @@ export const styleBandHeight = (style: VisualizerStyle): number => {
 
 const TAU = Math.PI * 2;
 
+/**
+ * The complement of web's `CHROME_RAMP`, as a black overlay: where the ramp is
+ * bright this is clear, where the ramp dips this is opaque. Laid over a
+ * near-white bar it reproduces the same brushed-metal banding — the same
+ * positions, the same near-black step at the halfway mark that reads as a
+ * reflected horizon. Keep the two in step or Default stops matching across the
+ * apps.
+ */
+const CHROME_SHADE = {
+  colors: [
+    "rgba(0,0,0,0.14)",
+    "rgba(0,0,0,0)",
+    "rgba(0,0,0,0.24)",
+    "rgba(0,0,0,0.60)",
+    "rgba(0,0,0,0.16)",
+    "rgba(0,0,0,0)",
+    "rgba(0,0,0,0.26)",
+  ] as [string, string, ...string[]],
+  locations: [0, 0.2, 0.44, 0.5, 0.57, 0.76, 1] as [number, number, ...number[]],
+};
+
 /** hue 0 → white. See the colour rule at the top of the file. */
 const tint = (hue: number, lightness: number, alpha: number) =>
   hue === 0
@@ -258,20 +279,25 @@ interface StaticWaveformProps {
   hue: number;
   /** Overrides the band height so fullscreen renders the same waveform big. */
   height?: number;
+  /** Lights the playhead glint. Off in the compact strip, which has no room. */
+  isPlaying?: boolean;
   onLayout?: (e: LayoutChangeEvent) => void;
   panHandlers?: Partial<GestureResponderHandlers>;
 }
 
+/** Width of the glint band, as a fraction of the waveform. */
+const GLINT_FRACTION = 0.09;
+
 export const StaticWaveform: React.FC<StaticWaveformProps> = memo(
-  ({ seed, position, compact, hue, height, onLayout, panHandlers }) => {
+  ({ seed, position, compact, hue, height, isPlaying = false, onLayout, panHandlers }) => {
     const count = compact ? COMPACT_BAR_COUNT : BAR_COUNT;
     const bw = compact ? COMPACT_BAR_WIDTH : BAR_WIDTH;
     const bg = compact ? COMPACT_BAR_GAP : BAR_GAP;
     const wHeight = height ?? (compact ? COMPACT_WAVEFORM_HEIGHT : WAVEFORM_HEIGHT);
     const bars = useMemo(() => generateBars(seed, count), [seed, count]);
 
-    const playedColor = hue === 0 ? "rgba(255,255,255,0.85)" : `hsla(${hue}, 80%, 70%, 0.9)`;
-    const unplayedColor = "rgba(255,255,255,0.15)";
+    const playedColor = hue === 0 ? "rgba(255,255,255,0.95)" : `hsla(${hue}, 78%, 72%, 0.95)`;
+    const unplayedColor = "rgba(255,255,255,0.22)";
 
     const playedLayerStyle = useAnimatedStyle(() => ({
       position: "absolute",
@@ -282,6 +308,25 @@ export const StaticWaveform: React.FC<StaticWaveformProps> = memo(
       overflow: "hidden",
     }));
 
+    /* The playhead glint. Web blooms the waveform out of the needle off the
+       live spectrum; there is no analyser here, so what travels is the light
+       rather than the shape — a specular band riding the playhead, breathing
+       on a clock. It is the one thing that made the web version stop reading
+       as a progress bar, and it costs two views. */
+    const clock = useClock(isPlaying, 1600);
+    const drive = useDrive(isPlaying);
+    const glintStyle = useAnimatedStyle(() => {
+      const breath = 0.5 + 0.5 * Math.sin(clock.value * TAU * 2);
+      return {
+        left: `${position.value * 100}%`,
+        opacity: (0.45 + 0.55 * breath) * drive.value,
+      };
+    });
+    const lineStyle = useAnimatedStyle(() => ({
+      left: `${position.value * 100}%`,
+      opacity: 0.25 + 0.55 * drive.value,
+    }));
+
     return (
       <View onLayout={onLayout} {...(panHandlers || {})} style={{ height: wHeight }}>
         {/* Unplayed layer — static, never re-renders during seek */}
@@ -290,6 +335,58 @@ export const StaticWaveform: React.FC<StaticWaveformProps> = memo(
         <Animated.View style={playedLayerStyle}>
           <WaveformBars bars={bars} wHeight={wHeight} bw={bw} bg={bg} count={count} color={playedColor} />
         </Animated.View>
+        {/* The chrome, as shadow rather than light.
+            Web fills the bars with a bright metal ramp clipped to their shape.
+            There is no clip here, so a bright overlay would wash the gaps
+            between bars as much as the bars themselves. Inverting it fixes
+            that for free: the bars are laid down near-white and this darkens
+            them back down into the ramp, and the gaps — already black — do not
+            care that they were darkened twice. Stops are CHROME_SHADE, the
+            complement of web's CHROME_RAMP, including the hard step just past
+            the middle that is the whole reason it reads as metal. */}
+        <LinearGradient
+          pointerEvents="none"
+          colors={CHROME_SHADE.colors}
+          locations={CHROME_SHADE.locations}
+          style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0 }}
+        />
+
+        {/* Glint, then the hairline, both above the chrome shade so the shade
+            cannot dim the very thing it is meant to be reflecting. */}
+        <Animated.View
+          pointerEvents="none"
+          style={[
+            {
+              position: "absolute",
+              top: 0,
+              bottom: 0,
+              width: `${GLINT_FRACTION * 100}%`,
+              marginLeft: `${(-GLINT_FRACTION / 2) * 100}%`,
+            },
+            glintStyle,
+          ]}
+        >
+          <LinearGradient
+            colors={["rgba(255,255,255,0)", tint(hue, 88, 0.5), "rgba(255,255,255,0)"]}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
+            style={{ flex: 1 }}
+          />
+        </Animated.View>
+        <Animated.View
+          pointerEvents="none"
+          style={[
+            {
+              position: "absolute",
+              top: wHeight * 0.08,
+              height: wHeight * 0.84,
+              width: 1,
+              marginLeft: -0.5,
+              backgroundColor: tint(hue, 92, 0.9),
+            },
+            lineStyle,
+          ]}
+        />
       </View>
     );
   },
@@ -1424,6 +1521,7 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = memo((props) => {
           position={position}
           hue={hue}
           height={height}
+          isPlaying={isPlaying}
           onLayout={onLayout}
           panHandlers={panHandlers}
         />
