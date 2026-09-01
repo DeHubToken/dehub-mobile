@@ -49,6 +49,7 @@ import LiveViewerStatusOverlay from "../LiveViewer/LiveViewerStatusOverlay";
 import LiveEventBanner from "../LiveViewer/LiveEventBanner";
 import type { EventBannerData } from "../LiveViewer/LiveEventBanner";
 import { hlsUrlFor } from "../../libs/live-ingest";
+import { extractReplayUrl } from "../../libs/live-replay";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 
 type LiveStreamPlayerProps = {
@@ -262,14 +263,6 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     return h > 0 ? `${pad(h)}:${pad(m)}:${pad(s)}` : `${pad(m)}:${pad(s)}`;
   }, [endedAtDate, startedAtDate]);
 
-  // Effective playback URL (live HLS if playbackId provided), only when playable
-  const playbackId = streamEntity?.playbackId || playbackIdProp;
-  const effectiveVideoUrl = useMemo(() => {
-    if (!isPlayable) return null;
-    const liveUrl = buildHlsFromPlayback(playbackId, streamEntity?.provider);
-    return liveUrl || null;
-  }, [isPlayable, playbackId, streamEntity?.provider]);
-
   // Live chat activities and socket wiring
   type Activity = {
     id?: string;
@@ -445,6 +438,25 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const isLiveEffective =
     socketStatus === "LIVE" || isPausedEffective || (isLiveStatus && socketStatus !== "ENDED");
   const isEndedEffective = socketStatus === "ENDED" || isEndedStatus;
+  // Effective playback URL, only when playable.
+  //
+  // The HLS ladder is dead the moment ingest stops, so an ended stream played
+  // nothing at all here. Once its capture reports ready the broadcast exists
+  // as a plain mp4 on the CDN, and that is what a viewer arriving late should
+  // get — a recording, with a scrubber, rather than a black screen.
+  const playbackId = streamEntity?.playbackId || playbackIdProp;
+  const replayUrl = useMemo(
+    () => extractReplayUrl(streamEntity) || null,
+    [streamEntity],
+  );
+  const isPlayingReplay = !isLiveEffective && !!replayUrl;
+  const effectiveVideoUrl = useMemo(() => {
+    if (!isPlayable) return null;
+    if (isPlayingReplay) return replayUrl;
+    const liveUrl = buildHlsFromPlayback(playbackId, streamEntity?.provider);
+    return liveUrl || null;
+  }, [isPlayable, isPlayingReplay, replayUrl, playbackId, streamEntity?.provider]);
+
   const isScheduledEffective =
     !isLiveEffective && !isEndedEffective && isScheduledStatus;
   // Offline when not live, not ended, and not scheduled
@@ -1197,11 +1209,13 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const overlayStatus = useMemo(() => {
     if (streamLoading && !streamEntity) return "loading" as const;
     if (isPausedEffective && isLiveEffective) return "paused" as const;
-    if (isEndedEffective) return "ended" as const;
+    // A replay covers the ended card: the stream is over, but there is a
+    // recording playing underneath and an overlay would sit on top of it.
+    if (isEndedEffective) return isPlayingReplay ? null : ("ended" as const);
     if (isScheduledEffective) return "scheduled" as const;
     if (isOfflineEffective) return "offline" as const;
     return null;
-  }, [streamLoading, streamEntity, isPausedEffective, isLiveEffective, isEndedEffective, isScheduledEffective, isOfflineEffective]);
+  }, [streamLoading, streamEntity, isPausedEffective, isLiveEffective, isEndedEffective, isPlayingReplay, isScheduledEffective, isOfflineEffective]);
 
   return (
     <View className="flex-1 bg-black">
@@ -1227,7 +1241,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             minter={(streamEntity?.address as any) || (minterProp as any)}
             tokenId={(streamEntity?.tokenId as any) || (tokenId as any)}
             onProgress={() => {}}
-            isLive={true}
+            /* A replay is a finished file: it gets a scrubber, a live stream does not. */
+            isLive={!isPlayingReplay}
             fullscreen
             hideTopControls
           />
