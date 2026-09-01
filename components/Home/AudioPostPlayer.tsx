@@ -1,5 +1,16 @@
 import React, { memo, useCallback, useEffect, useRef, useState, useMemo } from "react";
-import { View, Text, TouchableOpacity, Pressable, LayoutChangeEvent, PanResponder } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Pressable,
+  ScrollView,
+  LayoutChangeEvent,
+  PanResponder,
+  GestureResponderEvent,
+  PanResponderGestureState,
+  GestureResponderHandlers,
+} from "react-native";
 import Slider from "@react-native-community/slider";
 import { getCachedHue, setHueState } from "../../libs/audioHueState";
 import Animated, {
@@ -11,6 +22,7 @@ import Animated, {
   withDelay,
   Easing,
   cancelAnimation,
+  SharedValue,
 } from "react-native-reanimated";
 import { Audio, InterruptionModeIOS, InterruptionModeAndroid } from "expo-av";
 import { LinearGradient } from "expo-linear-gradient";
@@ -35,6 +47,9 @@ const COMPACT_WAVEFORM_HEIGHT = 28;
 // before it is treated as scrolled-to rather than scrolled-past.
 const PRELOAD_SETTLE_MS = 400;
 
+/** Horizontal travel before a drag over the artwork counts as a scrub. */
+const SCRUB_THRESHOLD_PX = 6;
+
 type VisualizerStyle = "static" | "bars" | "wave" | "mirror";
 
 const VISUALIZER_STYLES: { value: VisualizerStyle; label: string }[] = [
@@ -45,10 +60,13 @@ const VISUALIZER_STYLES: { value: VisualizerStyle; label: string }[] = [
 ];
 
 const fmtDuration = (seconds: number): string => {
+  if (!Number.isFinite(seconds) || seconds <= 0) return "0:00";
   const m = Math.floor(seconds / 60);
   const s = Math.floor(seconds % 60);
   return `${m}:${s.toString().padStart(2, "0")}`;
 };
+
+const clamp01 = (n: number) => (Number.isFinite(n) ? Math.max(0, Math.min(1, n)) : 0);
 
 /* ─── Seeded PRNG (mulberry32) ──────────────────────────────── */
 const seedRandom = (str: string) => {
@@ -75,6 +93,76 @@ const generateBars = (seed: string, count: number): number[] => {
     bars.push(envelope * noise);
   }
   return bars;
+};
+
+/* ─── Seek gestures ──────────────────────────────────────────────────────
+   Two kinds of surface want to scrub, and they must not behave the same way.
+
+   The slim bar under the artwork is a deliberate target, so it claims the
+   touch immediately: tap to jump, drag to scrub.
+
+   The artwork itself is 60px of the card, sitting in a vertically scrolling
+   feed. It used to claim every touch that started on it, which meant a finger
+   landing on an audio post could not scroll the feed at all — so it now only
+   takes over once a gesture is clearly sideways, and a vertical flick passes
+   straight through to the list. */
+interface SeekSurfaceArgs {
+  position: SharedValue<number>;
+  onScrubStart: () => void;
+  onScrub: (ratio: number) => void;
+  onCommit: (ratio: number) => void;
+  onCancel: () => void;
+  claimOnStart: boolean;
+  enabled?: boolean;
+}
+
+const useSeekSurface = ({
+  position,
+  onScrubStart,
+  onScrub,
+  onCommit,
+  onCancel,
+  claimOnStart,
+  enabled = true,
+}: SeekSurfaceArgs) => {
+  const widthRef = useRef(1);
+
+  const onLayout = useCallback((e: LayoutChangeEvent) => {
+    widthRef.current = e.nativeEvent.layout.width || 1;
+  }, []);
+
+  const panResponder = useMemo(
+    () =>
+      PanResponder.create({
+        onStartShouldSetPanResponder: () => enabled && claimOnStart,
+        onMoveShouldSetPanResponder: (_e: GestureResponderEvent, gs: PanResponderGestureState) => {
+          if (!enabled) return false;
+          if (claimOnStart) return true;
+          return Math.abs(gs.dx) > SCRUB_THRESHOLD_PX && Math.abs(gs.dx) > Math.abs(gs.dy);
+        },
+        onPanResponderGrant: (e) => {
+          onScrubStart();
+          const p = clamp01(e.nativeEvent.locationX / widthRef.current);
+          position.value = p;
+          onScrub(p);
+        },
+        onPanResponderMove: (e) => {
+          const p = clamp01(e.nativeEvent.locationX / widthRef.current);
+          position.value = p; // UI thread, no React re-render per pixel
+          onScrub(p);
+        },
+        onPanResponderRelease: (e) => {
+          const p = clamp01(e.nativeEvent.locationX / widthRef.current);
+          position.value = p;
+          onCommit(p);
+        },
+        onPanResponderTerminate: onCancel,
+        onPanResponderTerminationRequest: () => true,
+      }),
+    [enabled, claimOnStart, position, onScrubStart, onScrub, onCommit, onCancel],
+  );
+
+  return { onLayout, panHandlers: enabled ? panResponder.panHandlers : {} };
 };
 
 /* ─── Static waveform (plain Views, no worklets) ────────────── */
@@ -107,36 +195,68 @@ const WaveformBars: React.FC<WaveformBarsProps> = memo(
   ),
 );
 
-/* ─── ProgressBar — Smooth animated progress bar ──────────────── */
-const ProgressBar: React.FC<{ progress: number; hue: number }> = memo(({ progress, hue }) => {
-  const animatedProgress = useSharedValue(progress * 100);
+/* ─── SeekBar — the scrubber, live in every visualizer style ────
+   The old build painted a 3px progress line that could only be watched: there
+   was no way to move through a track at all, and the animated styles did not
+   even show where you were. */
+interface SeekBarProps {
+  position: SharedValue<number>;
+  hue: number;
+  onLayout: (e: LayoutChangeEvent) => void;
+  panHandlers: Partial<GestureResponderHandlers>;
+}
 
-  useEffect(() => {
-    animatedProgress.value = withTiming(Math.min(100, progress * 100), {
-      duration: 50,
-      easing: Easing.linear,
-    });
-  }, [progress]);
+const SeekBar: React.FC<SeekBarProps> = memo(({ position, hue, onLayout, panHandlers }) => {
+  const accent = hue === 0 ? "rgba(255,255,255,0.9)" : `hsla(${hue}, 85%, 65%, 0.95)`;
 
-  const animatedStyle = useAnimatedStyle(() => ({
-    width: `${animatedProgress.value}%`,
-    backgroundColor: hue === 0 ? "rgba(255,255,255,0.6)" : `hsla(${hue}, 80%, 65%, 0.8)`,
+  const fillStyle = useAnimatedStyle(() => ({
+    width: `${position.value * 100}%`,
+    backgroundColor: accent,
+  }));
+  const knobStyle = useAnimatedStyle(() => ({
+    left: `${position.value * 100}%`,
   }));
 
-  return <Animated.View className="h-full rounded-full" style={animatedStyle} />;
+  return (
+    <View
+      onLayout={onLayout}
+      {...panHandlers}
+      style={{ height: 18, justifyContent: "center" }}
+      hitSlop={{ top: 6, bottom: 6, left: 0, right: 0 }}
+    >
+      <View className="h-[3px] bg-white/20 rounded-full overflow-hidden">
+        <Animated.View style={[{ height: 3, borderRadius: 2 }, fillStyle]} />
+      </View>
+      <Animated.View
+        pointerEvents="none"
+        style={[
+          {
+            position: "absolute",
+            top: 3.5, // centres the 11px knob over the 3px track in an 18px row
+            width: 11,
+            height: 11,
+            marginLeft: -5.5,
+            borderRadius: 6,
+            backgroundColor: "#fff",
+          },
+          knobStyle,
+        ]}
+      />
+    </View>
+  );
 });
 
 interface StaticWaveformProps {
   seed: string;
-  progress: number;
+  position: SharedValue<number>;
   compact?: boolean;
   hue: number;
-  onSeek?: (position: number) => void;
-  onSeekPreview?: (position: number) => void;
+  onLayout?: (e: LayoutChangeEvent) => void;
+  panHandlers?: Partial<GestureResponderHandlers>;
 }
 
 const StaticWaveform: React.FC<StaticWaveformProps> = memo(
-  ({ seed, progress, compact, hue, onSeek, onSeekPreview }) => {
+  ({ seed, position, compact, hue, onLayout, panHandlers }) => {
     const count = compact ? COMPACT_BAR_COUNT : BAR_COUNT;
     const bw = compact ? COMPACT_BAR_WIDTH : BAR_WIDTH;
     const bg = compact ? COMPACT_BAR_GAP : BAR_GAP;
@@ -146,71 +266,15 @@ const StaticWaveform: React.FC<StaticWaveformProps> = memo(
     const playedColor = hue === 0 ? "rgba(255,255,255,0.85)" : `hsla(${hue}, 80%, 70%, 0.9)`;
     const unplayedColor = "rgba(255,255,255,0.15)";
 
-    const layoutW = useRef(1);
-    const isDraggingRef = useRef(false);
-    const displayClipPct = useSharedValue(progress * 100);
-
-    // Only sync with progress prop when not dragging
-    useEffect(() => {
-      if (!isDraggingRef.current) {
-        displayClipPct.value = withTiming(Math.min(100, progress * 100), {
-          duration: 100,
-          easing: Easing.linear,
-        });
-      }
-    }, [progress]);
-
     const playedLayerStyle = useAnimatedStyle(() => ({
       position: "absolute",
       left: 0, top: 0, bottom: 0,
-      width: `${displayClipPct.value}%`,
+      width: `${position.value * 100}%`,
       overflow: "hidden",
     }));
 
-    const handleLayout = useCallback((e: LayoutChangeEvent) => {
-      layoutW.current = e.nativeEvent.layout.width;
-    }, []);
-
-    const clampPos = useCallback(
-      (x: number) => Math.max(0, Math.min(1, x / layoutW.current)),
-      [],
-    );
-
-    const panResponder = useMemo(
-      () =>
-        PanResponder.create({
-          onStartShouldSetPanResponder: () => !!onSeek,
-          onMoveShouldSetPanResponder: () => !!onSeek,
-          onPanResponderGrant: (e) => {
-            isDraggingRef.current = true;
-            const pos = clampPos(e.nativeEvent.locationX);
-            displayClipPct.value = pos * 100;
-            onSeekPreview?.(pos); // signals parent to pause interval
-          },
-          onPanResponderMove: (e) => {
-            const pos = clampPos(e.nativeEvent.locationX);
-            displayClipPct.value = pos * 100; // direct UI-thread update, zero React re-renders
-            onSeekPreview?.(pos);
-          },
-          onPanResponderRelease: (e) => {
-            const pos = clampPos(e.nativeEvent.locationX);
-            displayClipPct.value = pos * 100;
-            onSeek?.(pos);
-            setTimeout(() => { isDraggingRef.current = false; }, 700);
-          },
-          onPanResponderTerminate: () => {
-            isDraggingRef.current = false;
-          },
-        }),
-      [onSeek, onSeekPreview, clampPos, displayClipPct],
-    );
-
     return (
-      <View
-        onLayout={handleLayout}
-        {...(onSeek ? panResponder.panHandlers : {})}
-        style={{ height: wHeight }}
-      >
+      <View onLayout={onLayout} {...(panHandlers || {})} style={{ height: wHeight }}>
         {/* Unplayed layer — static, never re-renders during seek */}
         <WaveformBars
           bars={bars} wHeight={wHeight} bw={bw} bg={bg}
@@ -325,10 +389,12 @@ interface AnimatedVisualizerProps {
   isPlaying: boolean;
   hue: number;
   mode: "bars" | "wave" | "mirror";
+  onLayout?: (e: LayoutChangeEvent) => void;
+  panHandlers?: Partial<GestureResponderHandlers>;
 }
 
 const AnimatedVisualizer: React.FC<AnimatedVisualizerProps> = memo(
-  ({ seed, isPlaying, hue, mode }) => {
+  ({ seed, isPlaying, hue, mode, onLayout, panHandlers }) => {
     const count = BAR_COUNT;
     const bw = BAR_WIDTH;
     const bg = BAR_GAP;
@@ -338,6 +404,8 @@ const AnimatedVisualizer: React.FC<AnimatedVisualizerProps> = memo(
 
     return (
       <View
+        onLayout={onLayout}
+        {...(panHandlers || {})}
         style={{
           flexDirection: "row",
           alignItems: mode === "mirror" ? "center" : "flex-end",
@@ -372,16 +440,22 @@ interface StylePickerProps {
 }
 
 const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onStyleChange }) => (
-  <View style={{ flexDirection: "row", gap: 4 }}>
+  <ScrollView
+    horizontal
+    showsHorizontalScrollIndicator={false}
+    keyboardShouldPersistTaps="handled"
+    contentContainerStyle={{ flexDirection: "row", gap: 4, alignItems: "center" }}
+  >
     {VISUALIZER_STYLES.map((s) => {
       const isActive = activeStyle === s.value;
       return (
         <Pressable
           key={s.value}
           onPress={() => onStyleChange(s.value)}
+          hitSlop={{ top: 6, bottom: 6, left: 2, right: 2 }}
           style={{
             paddingHorizontal: 10,
-            paddingVertical: 4,
+            paddingVertical: 5,
             borderRadius: 8,
             backgroundColor: isActive ? "rgba(255,255,255,0.12)" : "transparent",
             borderWidth: isActive ? 1 : 0,
@@ -400,7 +474,7 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
         </Pressable>
       );
     })}
-  </View>
+  </ScrollView>
 ));
 
 /* ─── Color Hue Slider ──────────────────────────────────────── */
@@ -421,7 +495,7 @@ const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange }) => {
     : `hsl(${localHue}, 80%, 65%)`;
 
   return (
-    <View style={{ height: 32, justifyContent: "center" }}>
+    <View style={{ height: 32, width: 104, justifyContent: "center" }}>
       <LinearGradient
         colors={["#ff0000","#ffff00","#00ff00","#00ffff","#0000ff","#ff00ff","#ff0000"]}
         start={{ x: 0, y: 0 }}
@@ -430,8 +504,8 @@ const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange }) => {
           position: "absolute",
           left: 10,
           right: 10,
-          height: 12,
-          borderRadius: 6,
+          height: 10,
+          borderRadius: 5,
         }}
       />
       <Slider
@@ -484,6 +558,17 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const lastSeekTimeRef = useRef(0);
   const isFocused = useIsFocused();
   const preloadedRef = useRef(false);
+  // A seek asked for before the track finished loading. Applied once it does,
+  // instead of being dropped on the floor as it used to be.
+  const pendingSeekRef = useRef<number | null>(null);
+  // The displayed playhead, 0–1. Shared so a drag moves the waveform and the
+  // scrubber on the UI thread without a React render per pixel.
+  const position = useSharedValue(0);
+  const isDraggingRef = useRef(false);
+  const totalDurationRef = useRef(duration);
+  totalDurationRef.current = totalDuration;
+  const progressRef = useRef(0);
+  progressRef.current = progress;
 
   const focusStopRef = useRef(() => {
     soundRef.current?.pauseAsync().catch(() => {});
@@ -492,6 +577,10 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     releaseAudioFocus(focusStopRef.current);
   });
 
+  useEffect(() => {
+    if (isDraggingRef.current) return;
+    position.value = withTiming(clamp01(progress), { duration: 100, easing: Easing.linear });
+  }, [progress, position]);
 
   const startPositionTracking = useCallback(() => {
     if (positionIntervalRef.current) return;
@@ -520,6 +609,19 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       clearInterval(positionIntervalRef.current);
       positionIntervalRef.current = null;
     }
+  }, []);
+
+  /** Apply a seek that was asked for before the sound existed. */
+  const applyPendingSeek = useCallback(async (sound: Audio.Sound) => {
+    const pending = pendingSeekRef.current;
+    if (pending === null) return;
+    pendingSeekRef.current = null;
+    try {
+      const status = await sound.getStatusAsync();
+      if (status.isLoaded && status.durationMillis) {
+        await sound.setPositionAsync(pending * status.durationMillis);
+      }
+    } catch {}
   }, []);
 
   useEffect(() => {
@@ -557,12 +659,13 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         if (status.isLoaded && status.durationMillis) {
           setTotalDuration(status.durationMillis / 1000);
         }
+        await applyPendingSeek(sound);
       } catch (e) {
         // Preload failed — will load on play tap
       }
     }, PRELOAD_SETTLE_MS);
     return () => { cancelled = true; clearTimeout(settleTimer); };
-  }, [isVisible, isFocused, audioUrl, stopPositionTracking]);
+  }, [isVisible, isFocused, audioUrl, stopPositionTracking, applyPendingSeek]);
 
   useEffect(() => {
     if ((!isVisible || !isFocused) && isPlaying && soundRef.current) {
@@ -623,6 +726,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       if (soundRef.current) {
         const status = await soundRef.current.getStatusAsync();
         if (status.isLoaded) {
+          await applyPendingSeek(soundRef.current);
           if (status.didJustFinish || status.positionMillis >= (status.durationMillis || 0)) {
             await soundRef.current.setPositionAsync(0);
             listenRecordedRef.current = false;
@@ -659,6 +763,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         }
       });
 
+      await applyPendingSeek(sound);
+
       setIsPlaying(true);
       setIsLoading(false);
       startPositionTracking();
@@ -674,39 +780,93 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       setIsLoading(false);
       releaseAudioFocus(focusStopRef.current);
     }
-  }, [isPlaying, audioUrl, tokenId, isSignedIn, startPositionTracking, stopPositionTracking]);
+  }, [isPlaying, audioUrl, tokenId, isSignedIn, startPositionTracking, stopPositionTracking, applyPendingSeek]);
 
-  const handleSeekPreview = useCallback((_position: number) => {
-    // Only block the polling interval — waveform clip updates on the UI thread directly
+  /* ─── Seeking ─────────────────────────────────────────────── */
+
+  const handleScrubStart = useCallback(() => {
+    isDraggingRef.current = true;
     isSeekingRef.current = true;
   }, []);
 
+  // One React update per displayed second while dragging, not one per frame:
+  // the waveform and scrubber follow the finger off the shared value.
+  const lastLabelSecRef = useRef(-1);
+  const handleScrub = useCallback((ratio: number) => {
+    const secs = Math.floor(ratio * totalDurationRef.current);
+    if (secs === lastLabelSecRef.current) return;
+    lastLabelSecRef.current = secs;
+    setCurrentTime(secs);
+  }, []);
+
   const handleSeek = useCallback(
-    async (position: number) => {
+    async (ratio: number) => {
+      const clamped = clamp01(ratio);
       isSeekingRef.current = true;
       lastSeekTimeRef.current = Date.now();
-      setProgress(position);
-      setCurrentTime(position * totalDuration);
+      setProgress(clamped);
+      setCurrentTime(clamped * totalDurationRef.current);
       const sound = soundRef.current;
       if (!sound) {
+        // Nothing loaded yet — remember it and apply on load rather than
+        // silently dropping the gesture.
+        pendingSeekRef.current = clamped;
         isSeekingRef.current = false;
+        isDraggingRef.current = false;
         return;
       }
       try {
         const status = await sound.getStatusAsync();
         if (status.isLoaded && status.durationMillis) {
-          const seekMs = position * status.durationMillis;
+          const seekMs = clamped * status.durationMillis;
           await sound.setPositionAsync(seekMs);
           setCurrentTime(seekMs / 1000);
         }
       } catch {}
-      // Release seeking flag slightly after command resolves
+      // Release seeking flags slightly after the command resolves
       setTimeout(() => {
         isSeekingRef.current = false;
+        isDraggingRef.current = false;
       }, 100);
     },
-    [totalDuration],
+    [],
   );
+
+  // Reads progress through a ref rather than closing over it: every one of
+  // these callbacks feeds a PanResponder built in a useMemo, and one that
+  // changed identity ten times a second would rebuild the responder mid-drag.
+  const handleScrubCancel = useCallback(() => {
+    isDraggingRef.current = false;
+    isSeekingRef.current = false;
+    position.value = withTiming(clamp01(progressRef.current), { duration: 120, easing: Easing.linear });
+  }, [position]);
+
+  const seekBarSurface = useSeekSurface({
+    position,
+    onScrubStart: handleScrubStart,
+    onScrub: handleScrub,
+    onCommit: handleSeek,
+    onCancel: handleScrubCancel,
+    claimOnStart: true,
+  });
+
+  const artworkSurface = useSeekSurface({
+    position,
+    onScrubStart: handleScrubStart,
+    onScrub: handleScrub,
+    onCommit: handleSeek,
+    onCancel: handleScrubCancel,
+    claimOnStart: false,
+  });
+
+  const compactSurface = useSeekSurface({
+    position,
+    onScrubStart: handleScrubStart,
+    onScrub: handleScrub,
+    onCommit: handleSeek,
+    onCancel: handleScrubCancel,
+    claimOnStart: false,
+  });
 
   const handleHueChange = useCallback((h: number) => {
     setHue(h);
@@ -724,6 +884,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
             <TouchableOpacity
               onPress={handlePlayPause}
               activeOpacity={0.7}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               className="w-8 h-8 rounded-full bg-white/10 items-center justify-center"
             >
               {isLoading ? (
@@ -734,7 +895,14 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
             </TouchableOpacity>
 
             <View className="flex-1">
-              <StaticWaveform seed={seed} progress={progress} compact hue={hue} />
+              <StaticWaveform
+                seed={seed}
+                position={position}
+                compact
+                hue={hue}
+                onLayout={compactSurface.onLayout}
+                panHandlers={compactSurface.panHandlers}
+              />
             </View>
 
             <Text
@@ -754,10 +922,10 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       return (
         <StaticWaveform
           seed={seed}
-          progress={progress}
+          position={position}
           hue={hue}
-          onSeek={handleSeek}
-          onSeekPreview={handleSeekPreview}
+          onLayout={artworkSurface.onLayout}
+          panHandlers={artworkSurface.panHandlers}
         />
       );
     }
@@ -767,6 +935,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         isPlaying={isPlaying}
         hue={hue}
         mode={vizStyle}
+        onLayout={artworkSurface.onLayout}
+        panHandlers={artworkSurface.panHandlers}
       />
     );
   };
@@ -776,52 +946,60 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       <View className="p-4" style={{ backgroundColor: "rgba(0,0,0,0.65)" }}>
         {renderVisualizer()}
 
-        <View className="h-[3px] bg-white/10 rounded-full overflow-hidden mt-3">
-          <ProgressBar progress={progress} hue={hue} />
-        </View>
-
-        <View className="flex-row items-center justify-between mt-3">
+        {/* Scrubber with elapsed / total, live in every style */}
+        <View className="flex-row items-center gap-2 mt-2">
           <Text
-            className="text-white/50 text-xs"
+            className="text-white/60 text-[11px]"
             style={{ fontVariant: ["tabular-nums"] }}
           >
             {fmtDuration(currentTime)}
           </Text>
-
-          <TouchableOpacity
-            onPress={handlePlayPause}
-            activeOpacity={0.7}
-            className="w-11 h-11 rounded-xl bg-white/10 items-center justify-center"
-            style={{ borderWidth: 1, borderColor: "rgba(255,255,255,0.08)" }}
-          >
-            {isLoading ? (
-              <Icon name="Loader" size={20} color="#fff" />
-            ) : (
-              <Icon name={isPlaying ? "Pause" : "Play"} size={20} color="#fff" />
-            )}
-          </TouchableOpacity>
-
+          <View className="flex-1">
+            <SeekBar
+              position={position}
+              hue={hue}
+              onLayout={seekBarSurface.onLayout}
+              panHandlers={seekBarSurface.panHandlers}
+            />
+          </View>
           <Text
-            className="text-white/50 text-xs"
+            className="text-white/40 text-[11px]"
             style={{ fontVariant: ["tabular-nums"] }}
           >
             {fmtDuration(totalDuration)}
           </Text>
         </View>
 
-        <View className="flex-row items-center justify-between mt-3">
-          <StylePicker style={vizStyle} onStyleChange={handleStyleChange} />
+        {/* Play sits with the colour and animation pickers rather than alone in
+            the middle of the card, so every control for the track is in one
+            place along the bottom. */}
+        <View className="flex-row items-center gap-2 mt-2">
+          <TouchableOpacity
+            onPress={handlePlayPause}
+            activeOpacity={0.7}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            className="w-9 h-9 rounded-xl bg-white/10 items-center justify-center"
+            style={{ borderWidth: 1, borderColor: "rgba(255,255,255,0.12)" }}
+          >
+            {isLoading ? (
+              <Icon name="Loader" size={17} color="#fff" />
+            ) : (
+              <Icon name={isPlaying ? "Pause" : "Play"} size={17} color="#fff" />
+            )}
+          </TouchableOpacity>
 
-          <View className="flex-row items-center gap-1">
-            <Icon name="Headphones" size={11} color="rgba(255,255,255,0.35)" />
-            <Text className="text-white/35 text-[10px]">
-              {listenCount} {listenCount === 1 ? "listen" : "listens"}
-            </Text>
+          <HueSlider hue={hue} onHueChange={handleHueChange} />
+
+          <View className="flex-1">
+            <StylePicker style={vizStyle} onStyleChange={handleStyleChange} />
           </View>
         </View>
 
-        <View className="mt-2.5">
-          <HueSlider hue={hue} onHueChange={handleHueChange} />
+        <View className="flex-row items-center justify-end gap-1 mt-2">
+          <Icon name="Headphones" size={11} color="rgba(255,255,255,0.35)" />
+          <Text className="text-white/35 text-[10px]">
+            {listenCount} {listenCount === 1 ? "listen" : "listens"}
+          </Text>
         </View>
       </View>
     </View>
