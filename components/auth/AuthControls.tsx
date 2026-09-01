@@ -70,7 +70,7 @@ export const authColors = {
   subtle: "#8B8D90",
   placeholder: "#8B8D90",
   hairline: "rgba(255,255,255,0.14)",
-  danger: "#F87171",
+  danger: "#F4F4F5",
 } as const;
 
 export const AUTH_DISABLED_OPACITY = 0.45;
@@ -82,7 +82,7 @@ const VARIANT_FOREGROUND: Record<AuthButtonVariant, string> = {
   secondary: authColors.label,
   ghost: authColors.label,
   glass: authColors.label,
-  // Tinted red on a red wash rather than white on solid #F87171, which lands
+  // Tinted red on a red wash rather than white on solid #F4F4F5, which lands
   // at ~2.5:1. Same red language as AuthErrorNotice, so "this is the one that
   // cannot be undone" reads without a second look.
   danger: authColors.danger,
@@ -162,9 +162,9 @@ export const AuthButton: React.FC<AuthButtonProps> = memo(
           },
           variant === "glass" && styles.buttonGlass,
           variant === "danger" && {
-            backgroundColor: "rgba(248,113,113,0.12)",
+            backgroundColor: "rgba(255,255,255,0.12)",
             borderWidth: 1,
-            borderColor: "rgba(248,113,113,0.40)",
+            borderColor: "rgba(255,255,255,0.40)",
           },
           isDisabled && { opacity: AUTH_DISABLED_OPACITY },
           style,
@@ -477,8 +477,8 @@ const styles = StyleSheet.create({
     gap: 8,
     borderRadius: AUTH_RADIUS,
     borderWidth: 1,
-    borderColor: "rgba(248,113,113,0.35)",
-    backgroundColor: "rgba(248,113,113,0.10)",
+    borderColor: "rgba(255,255,255,0.35)",
+    backgroundColor: "rgba(255,255,255,0.10)",
     paddingHorizontal: 14,
     paddingVertical: 12,
   },

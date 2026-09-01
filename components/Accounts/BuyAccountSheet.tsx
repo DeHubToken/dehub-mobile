@@ -224,7 +224,7 @@ const BuyAccountSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed,
               {usingSelf ? (
                 <>
                   <View style={styles.deliverRow}>
-                    <Icon name="Check" size={14} color="#34D399" />
+                    <Icon name="Check" size={14} color="#F4F4F5" />
                     <Text style={styles.deliverOkText}>{t("accounts.deliverToSelf")}</Text>
                   </View>
                   <Pressable onPress={() => setDeliverToSelf(false)} hitSlop={6}>
@@ -251,7 +251,7 @@ const BuyAccountSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed,
                     </View>
                   ) : check ? (
                     <View style={styles.deliverRow}>
-                      <Icon name={check.ok ? "Check" : "X"} size={14} color={check.ok ? "#34D399" : "#F87171"} />
+                      <Icon name={check.ok ? "Check" : "X"} size={14} color={check.ok ? "#F4F4F5" : "#8B8D90"} />
                       <Text style={check.ok ? styles.deliverOkText : styles.deliverBadText}>
                         {check.ok ? t("accounts.walletOk") : check.problem}
                       </Text>
@@ -271,7 +271,7 @@ const BuyAccountSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed,
               the chain the buyer is already on rather than offering a picker. */}
           {isAuthed && (
             <View style={styles.networkRow}>
-              <Icon name={canPayHere ? "Check" : "TriangleAlert"} size={14} color={canPayHere ? "#34D399" : "#FBBF24"} />
+              <Icon name={canPayHere ? "Check" : "TriangleAlert"} size={14} color={canPayHere ? "#F4F4F5" : "#D4D4D8"} />
               <Text style={canPayHere ? styles.networkText : styles.networkWarn}>
                 {canPayHere
                   ? t("accounts.payingOn", { chain: CHAIN_NAMES[activeChainId] || `chain ${activeChainId}` })
@@ -358,15 +358,15 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.10)",
   },
   deliverRow: { flexDirection: "row", alignItems: "flex-start", gap: 7 },
-  deliverOkText: { flex: 1, color: "#D1FAE5", fontSize: 12, lineHeight: 17 },
-  deliverBadText: { flex: 1, color: "#FCA5A5", fontSize: 12, lineHeight: 17 },
+  deliverOkText: { flex: 1, color: "#D4D4D8", fontSize: 12, lineHeight: 17 },
+  deliverBadText: { flex: 1, color: "#F4F4F5", fontSize: 12, lineHeight: 17 },
   deliverSwitch: { color: "#A1A1AA", fontSize: 12, textDecorationLine: "underline" },
 
   networkRow: { flexDirection: "row", alignItems: "center", gap: 7 },
   networkText: { color: "#A1A1AA", fontSize: 12, flex: 1 },
-  networkWarn: { color: "#FDE68A", fontSize: 12, flex: 1 },
+  networkWarn: { color: "#D4D4D8", fontSize: 12, flex: 1 },
 
-  error: { color: "#FCA5A5", fontSize: 12.5, lineHeight: 18 },
+  error: { color: "#F4F4F5", fontSize: 12.5, lineHeight: 18 },
   ownNote: { color: "#A1A1AA", fontSize: 12.5, lineHeight: 18 },
 
   actions: { flexDirection: "row", alignItems: "center", gap: 10 },

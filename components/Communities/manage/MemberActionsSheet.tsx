@@ -305,7 +305,7 @@ export function MemberActionsSheet({
                 <ActionRow
                   icon="Ban"
                   label={t("communities.manage.ban", { defaultValue: "Ban" })}
-                  color="#EF4444"
+                  color="#F4F4F5"
                   disabled={rowBusy}
                   onPress={() => openRestriction("ban")}
                 />
@@ -317,7 +317,7 @@ export function MemberActionsSheet({
                 label={t("communities.manage.deleteAllMessages", {
                   defaultValue: "Delete all messages",
                 })}
-                color="#EF4444"
+                color="#F4F4F5"
                 busy={acting === "purge"}
                 disabled={rowBusy && acting !== "purge"}
                 onPress={confirmPurge}
@@ -330,7 +330,7 @@ export function MemberActionsSheet({
                 label={t("communities.manage.removeFromCommunity", {
                   defaultValue: "Remove from community",
                 })}
-                color="#EF4444"
+                color="#F4F4F5"
                 busy={acting === "kick"}
                 disabled={rowBusy && acting !== "kick"}
                 onPress={confirmKick}
@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: "rgba(255,255,255,0.08)",
   },
-  restriction: { color: "#FDB022", fontSize: 12, marginTop: 6 },
+  restriction: { color: "#D4D4D8", fontSize: 12, marginTop: 6 },
   rowIcon: { width: 20, alignItems: "center", justifyContent: "center" },
   rowLabel: { fontSize: 14, fontWeight: "500" },
 });

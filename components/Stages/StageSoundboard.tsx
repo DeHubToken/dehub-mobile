@@ -212,13 +212,13 @@ const StageSoundboard: React.FC = () => {
               paddingHorizontal: 8,
               paddingVertical: 4,
               borderRadius: 10,
-              backgroundColor: "rgba(239,68,68,0.2)",
+              backgroundColor: "rgba(255,255,255,0.2)",
             }}
             accessibilityRole="button"
             accessibilityLabel="Stop sound"
           >
-            <Icon name="Square" size={11} color="#F87171" />
-            <Text style={{ color: "#F87171", fontSize: 11, fontWeight: "600" }}>Stop</Text>
+            <Icon name="Square" size={11} color="#F4F4F5" />
+            <Text style={{ color: "#F4F4F5", fontSize: 11, fontWeight: "600" }}>Stop</Text>
           </TouchableOpacity>
         )}
       </View>

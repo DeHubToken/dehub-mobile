@@ -182,7 +182,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
               key={`${keyPrefix}-${idx}`}
               className={
                 flagged
-                  ? "text-blue-400 border-2 border-red-500 rounded-md px-1"
+                  ? "text-blue-400 border-2 border-white/20 rounded-md px-1"
                   : "text-blue-400"
               }
               onPress={() => handleOpenLink(seg.url)}

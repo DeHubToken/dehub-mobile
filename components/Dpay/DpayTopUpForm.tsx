@@ -412,7 +412,7 @@ const DpayTopUpForm: React.FC<DpayTopUpFormProps> = ({
           />
         </View>
         {amountValidationError ? (
-          <Text className="text-red-400 text-[11px] mt-1">
+          <Text className="text-white/80 text-[11px] mt-1">
             {amountValidationError}
           </Text>
         ) : null}

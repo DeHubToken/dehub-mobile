@@ -451,13 +451,13 @@ const EditProfileScreen = () => {
                   username.trim().length > 0 &&
                   username.trim() !== initial.username.trim() &&
                   usernameAvailable === true && (
-                    <Text className="text-[10px] text-green-400">Username is available</Text>
+                    <Text className="text-[10px] text-white/80">Username is available</Text>
                   )}
                 {!checkingUsername &&
                   username.trim().length > 0 &&
                   username.trim() !== initial.username.trim() &&
                   usernameAvailable === false && (
-                    <Text className="text-[10px] text-red-400">
+                    <Text className="text-[10px] text-white/80">
                       {isReservedUsername(username) ? "This username is reserved" : "Username taken"}
                     </Text>
                   )}
@@ -480,7 +480,7 @@ const EditProfileScreen = () => {
                 style={{ textAlignVertical: "top" }}
               />
               <View className="flex-row justify-end mt-1">
-                <Text className={`text-[10px] ${aboutMe.length >= BIO_MAX ? "text-red-400" : "text-neutral-400"}`}>
+                <Text className={`text-[10px] ${aboutMe.length >= BIO_MAX ? "text-white/80" : "text-neutral-400"}`}>
                   {aboutMe.length}/{BIO_MAX}
                 </Text>
               </View>
@@ -495,12 +495,12 @@ const EditProfileScreen = () => {
                     <View key={field.key}>
                       <View
                         className={`flex-row items-center bg-theme-neutrals-900 rounded-xl border ${
-                          hasError ? "border-red-500" : "border-theme-neutrals-700"
+                          hasError ? "border-white/20" : "border-theme-neutrals-700"
                         } overflow-hidden`}
                       >
                         <View className="pl-3.5 pr-2.5 py-3">
                           <SvgXml
-                            xml={field.svg.replace(/currentColor/g, hasError ? "#ef4444" : "#9ca3af")}
+                            xml={field.svg.replace(/currentColor/g, hasError ? "#F4F4F5" : "#9ca3af")}
                             width={18}
                             height={18}
                           />
@@ -518,7 +518,7 @@ const EditProfileScreen = () => {
                         />
                       </View>
                       {hasError && (
-                        <Text className="text-[10px] text-red-400 mt-1 ml-1">
+                        <Text className="text-[10px] text-white/80 mt-1 ml-1">
                           {socialErrors[field.key]}
                         </Text>
                       )}

@@ -159,7 +159,7 @@ const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed
               the chain the buyer is already on rather than offering a picker. */}
           {isAuthed && (
             <View style={styles.networkRow}>
-              <Icon name={canPayHere ? "Check" : "TriangleAlert"} size={14} color={canPayHere ? "#34D399" : "#FBBF24"} />
+              <Icon name={canPayHere ? "Check" : "TriangleAlert"} size={14} color={canPayHere ? "#F4F4F5" : "#D4D4D8"} />
               <Text style={canPayHere ? styles.networkText : styles.networkWarn}>
                 {canPayHere
                   ? t("usernames.payingOn", { chain: CHAIN_NAMES[activeChainId] || `chain ${activeChainId}` })
@@ -240,9 +240,9 @@ const styles = StyleSheet.create({
 
   networkRow: { flexDirection: "row", alignItems: "center", gap: 7 },
   networkText: { color: "#A1A1AA", fontSize: 12, flex: 1 },
-  networkWarn: { color: "#FDE68A", fontSize: 12, flex: 1 },
+  networkWarn: { color: "#D4D4D8", fontSize: 12, flex: 1 },
 
-  error: { color: "#FCA5A5", fontSize: 12.5, lineHeight: 18 },
+  error: { color: "#F4F4F5", fontSize: 12.5, lineHeight: 18 },
   ownNote: { color: "#A1A1AA", fontSize: 12.5, lineHeight: 18 },
 
   actions: { flexDirection: "row", alignItems: "center", gap: 10 },

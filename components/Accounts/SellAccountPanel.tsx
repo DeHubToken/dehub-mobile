@@ -192,7 +192,7 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
           </View>
 
           <View style={styles.warning}>
-            <Icon name="TriangleAlert" size={15} color="#FBBF24" />
+            <Icon name="TriangleAlert" size={15} color="#D4D4D8" />
             <Text style={styles.warningText}>{t("accounts.saleFinal")}</Text>
           </View>
 
@@ -220,7 +220,7 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
                 accessibilityRole="button"
                 accessibilityLabel={t("accounts.withdrawListing")}
               >
-                <Icon name="Trash2" size={17} color="#FCA5A5" />
+                <Icon name="Trash2" size={17} color="#F4F4F5" />
               </Pressable>
             )}
           </View>
@@ -288,13 +288,13 @@ const styles = StyleSheet.create({
   resumeCard: {
     borderRadius: 14,
     padding: 14,
-    backgroundColor: "rgba(251,191,36,0.10)",
+    backgroundColor: "rgba(255,255,255,0.10)",
     borderWidth: 1,
-    borderColor: "rgba(251,191,36,0.30)",
+    borderColor: "rgba(255,255,255,0.30)",
     gap: 10,
   },
-  resumeTitle: { color: "#FDE68A", fontSize: 14, fontWeight: "700" },
-  resumeText: { color: "#FDE68A", fontSize: 11.5, lineHeight: 17 },
+  resumeTitle: { color: "#D4D4D8", fontSize: 14, fontWeight: "700" },
+  resumeText: { color: "#D4D4D8", fontSize: 11.5, lineHeight: 17 },
 
   form: {
     borderRadius: 14,
@@ -328,11 +328,11 @@ const styles = StyleSheet.create({
     gap: 9,
     padding: 11,
     borderRadius: 12,
-    backgroundColor: "rgba(251,191,36,0.10)",
+    backgroundColor: "rgba(255,255,255,0.10)",
     borderWidth: 1,
-    borderColor: "rgba(251,191,36,0.30)",
+    borderColor: "rgba(255,255,255,0.30)",
   },
-  warningText: { flex: 1, color: "#FDE68A", fontSize: 11.5, lineHeight: 17 },
+  warningText: { flex: 1, color: "#D4D4D8", fontSize: 11.5, lineHeight: 17 },
 
   keepRow: { flexDirection: "row", alignItems: "flex-start", gap: 7 },
   keepText: { flex: 1, color: "#71717A", fontSize: 11, lineHeight: 16 },

@@ -419,7 +419,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   errorSmall: {
-    color: "#EF4444",
+    color: "#F4F4F5",
     fontSize: 11,
   },
   buttonRow: {

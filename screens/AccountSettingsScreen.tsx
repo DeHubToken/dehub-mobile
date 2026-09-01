@@ -365,15 +365,15 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
             disabled={signingOut}
             activeOpacity={0.7}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            className="flex-row items-center px-2.5 py-1.5 rounded-lg bg-red-500/10 border border-red-500/20"
+            className="flex-row items-center px-2.5 py-1.5 rounded-lg bg-white/10 border border-white/20"
             style={{ gap: 6 }}
           >
             {signingOut ? (
-              <ActivityIndicator size="small" color="#ef4444" />
+              <ActivityIndicator size="small" color="#F4F4F5" />
             ) : (
               <>
-                <Icon name="LogOut" size={15} color="#ef4444" />
-                <Text className="text-red-400 text-xs font-semibold">
+                <Icon name="LogOut" size={15} color="#F4F4F5" />
+                <Text className="text-white/80 text-xs font-semibold">
                   {t("settings.logOut")}
                 </Text>
               </>
@@ -467,13 +467,13 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation }) => {
                       onPress={() => handleRevokeAccess(address)}
                       disabled={busy}
                       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                      className="bg-red-500/20 border border-red-500/30 px-3 py-1.5 rounded-lg"
+                      className="bg-white/15 border border-white/20 px-3 py-1.5 rounded-lg"
                       activeOpacity={0.7}
                     >
                       {busy ? (
-                        <ActivityIndicator size="small" color="#ef4444" />
+                        <ActivityIndicator size="small" color="#F4F4F5" />
                       ) : (
-                        <Text className="text-red-400 text-xs font-semibold">
+                        <Text className="text-white/80 text-xs font-semibold">
                           {t("screens.revoke")}
                         </Text>
                       )}

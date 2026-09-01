@@ -205,7 +205,7 @@ export function RulesTab({ community, membership }: RulesTabProps) {
                     accessibilityRole="button"
                     accessibilityLabel="Delete rule"
                   >
-                    <Icon name="Trash2" size={16} color={canEdit ? "#EF4444" : "#3f3f46"} />
+                    <Icon name="Trash2" size={16} color={canEdit ? "#F4F4F5" : "#3f3f46"} />
                   </TouchableOpacity>
                 </View>
               </View>

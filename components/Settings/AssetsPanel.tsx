@@ -160,10 +160,10 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
           description={gasSponsored ? t('settings.gasSponsoredDesc') : t('settings.gasImportedDesc')}
           right={
             <View
-              className={`px-2.5 py-1 rounded-full ${gasSponsored ? 'bg-emerald-500/20' : 'bg-theme-neutrals-700/40'}`}
+              className={`px-2.5 py-1 rounded-full ${gasSponsored ? 'bg-white/15' : 'bg-theme-neutrals-700/40'}`}
             >
               <Text
-                className={`text-[10px] font-semibold ${gasSponsored ? 'text-emerald-400' : 'text-theme-neutrals-400'}`}
+                className={`text-[10px] font-semibold ${gasSponsored ? 'text-white/80' : 'text-theme-neutrals-400'}`}
               >
                 {gasSponsored ? t('settings.gasActive') : t('settings.gasOff')}
               </Text>

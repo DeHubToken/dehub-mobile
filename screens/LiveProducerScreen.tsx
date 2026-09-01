@@ -1373,7 +1373,7 @@ const LiveProducerScreen: React.FC = () => {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={handleConfirmEnd}
-                className="px-5 h-10 rounded-full items-center justify-center bg-red-600"
+                className="px-5 h-10 rounded-xl items-center justify-center bg-white/15 border border-white/25"
                 activeOpacity={0.9}
               >
                 <Text className="text-white text-xs font-semibold">

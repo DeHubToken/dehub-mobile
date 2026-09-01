@@ -43,7 +43,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           className="mr-2"
         >
-          <Ionicons name="trash-outline" size={20} color="#EF4444" />
+          <Ionicons name="trash-outline" size={20} color="#F4F4F5" />
         </TouchableOpacity>
 
         <View className="flex-1">

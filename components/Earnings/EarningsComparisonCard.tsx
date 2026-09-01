@@ -227,7 +227,7 @@ const EarningsComparisonCard: React.FC = () => {
                       <Text
                         style={[
                           styles.earnDelta,
-                          { color: r.delta >= 0 ? "#22C55E" : "#EF4444" },
+                          { color: r.delta >= 0 ? "#F4F4F5" : "#8B8D90" },
                         ]}
                       >
                         {r.delta >= 0 ? "+" : "−"}

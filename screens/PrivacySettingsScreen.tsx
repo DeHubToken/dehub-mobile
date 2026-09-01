@@ -620,13 +620,13 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
             <TouchableOpacity
               onPress={handleRejectAllAndGoPublic}
               disabled={publicModalBusy}
-              className="bg-red-500/20 py-3 rounded-xl items-center border border-red-500/30"
+              className="bg-white/15 py-3 rounded-xl items-center border border-white/20"
               activeOpacity={0.85}
             >
               {publicModalBusy ? (
-                <ActivityIndicator color="#ef4444" size="small" />
+                <ActivityIndicator color="#F4F4F5" size="small" />
               ) : (
-                <Text className="text-red-400 font-semibold text-sm">
+                <Text className="text-white/80 font-semibold text-sm">
                   {t('settings.declineAllGoPublic')}
                 </Text>
               )}

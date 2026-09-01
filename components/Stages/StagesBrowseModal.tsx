@@ -615,16 +615,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 8,
-    backgroundColor: "rgba(239,68,68,0.2)",
+    backgroundColor: "rgba(255,255,255,0.2)",
   },
   liveDot: {
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: "#EF4444",
+    backgroundColor: "#FAFAFA",
   },
   liveChipText: {
-    color: "#F87171",
+    color: "#F4F4F5",
     fontSize: 11,
     fontWeight: "600",
     letterSpacing: 0.3,
@@ -642,7 +642,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 10,
-    backgroundColor: "#EF4444",
+    backgroundColor: "rgba(255,255,255,0.15)",
   },
   liveEndText: {
     color: "#FFFFFF",

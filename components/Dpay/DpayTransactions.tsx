@@ -29,8 +29,8 @@ type Tx = {
 
 const StatusPill: React.FC<{ label: string; intent: "green" | "red" | "grey" | "white" }> = ({ label, intent }) => {
   const cls =
-    intent === "green" ? "bg-green-600 text-white" :
-    intent === "red" ? "bg-red-600 text-white" :
+    intent === "green" ? "bg-white/15 text-white" :
+    intent === "red" ? "bg-white/15 text-white" :
     intent === "grey" ? "bg-gray-600 text-white" :
     "bg-white text-black";
   return (

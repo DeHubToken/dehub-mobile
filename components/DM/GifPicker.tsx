@@ -146,7 +146,7 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
               <ActivityIndicator size="small" color="#F4F4F5" />
             </View>
           ) : error ? (
-            <Text className="text-red-400 px-2 py-4">{error}</Text>
+            <Text className="text-white/80 px-2 py-4">{error}</Text>
           ) : (
             <FlatList
               data={items}

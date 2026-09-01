@@ -49,7 +49,7 @@ const IncomingCallModal: React.FC = () => {
             accessibilityRole="button"
             accessibilityLabel="Accept call"
           >
-            <Icon name="Phone" size={24} color="#FFFFFF" />
+            <Icon name="Phone" size={24} color="#09090B" />
           </TouchableOpacity>
         </View>
       </View>
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: "#EF4444",
+    backgroundColor: "rgba(255,255,255,0.15)",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -109,7 +109,9 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: "#22C55E",
+    // Accept is the solid control, decline the glass one — the pair used to be
+    // green and red, which the design system keeps off every surface.
+    backgroundColor: "#FAFAFA",
     alignItems: "center",
     justifyContent: "center",
   },

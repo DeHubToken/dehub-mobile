@@ -345,7 +345,7 @@ export function EnsHandleSection() {
             </View>
 
             {previewError ? (
-              <Text className="text-red-400 text-xs mt-2">{previewError}</Text>
+              <Text className="text-white/80 text-xs mt-2">{previewError}</Text>
             ) : null}
 
             {preview && !challenge ? (
