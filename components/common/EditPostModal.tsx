@@ -3,7 +3,7 @@
  *
  * Uses GlassModal with center presentation and category chips.
  */
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import {
   View,
   Text,
@@ -20,7 +20,8 @@ import MentionSuggestions from "../common/MentionSuggestions";
 import CategoryDrawer from "../Upload/CategoryDrawer";
 import * as ImagePicker from "expo-image-picker";
 import { editPost, getCategoriesCached, replaceVideoFile, type ShopLink } from "../../services/nft.service";
-import ShopLinksSheet from "../Upload/ShopLinksSheet";
+import ShopSheet, { type ShopBoardDraft } from "../Upload/ShopSheet";
+import { useStreamProducts, useStreamProductActions } from "../../hooks/useStreamShopping";
 import { useShopLinkAllowance } from "../../hooks/useShopLinks";
 import { toastSuccess, toastError } from "../../libs";
 import { useKeyboard } from "../../hooks/useKeyboard";
@@ -47,6 +48,7 @@ interface EditPostModalProps {
     commentsDisabled?: boolean;
     contentRating?: string;
     shopLinks?: ShopLink[];
+    shopListingCount?: number;
   }) => void;
 }
 
@@ -68,6 +70,18 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const [shopLinks, setShopLinks] = useState<ShopLink[]>(initialShopLinks ?? []);
   const [shopSheetVisible, setShopSheetVisible] = useState(false);
   const shopAllowance = useShopLinkAllowance();
+  /**
+   * The post exists here, so its listings are read and written directly rather
+   * than deferred the way the composer has to defer them. Only fetched while
+   * the modal is open — every card can mount this.
+   */
+  const { products: attachedListings } = useStreamProducts(tokenId, visible);
+  const { attach, detach } = useStreamProductActions(tokenId);
+  const attachedIds = useMemo(() => attachedListings.map((p) => p.listing_id), [attachedListings]);
+  const [pickedIds, setPickedIds] = useState<string[] | null>(null);
+  // Null until the attached rows land, so an opening modal cannot momentarily
+  // read as "the creator deselected everything" and detach a live rail.
+  const listingIds = pickedIds ?? attachedIds;
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
   const titleMentions = useMentions(title, setTitle);
@@ -229,10 +243,24 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         payload.shopLinks = shopLinks;
       }
 
+      // Listings are Supabase rows written by the stream-products function, not
+      // fields on the post — so they are reconciled separately, and only the
+      // count goes on the token for the cards to read.
+      const toAttach = listingIds.filter((id) => !attachedIds.includes(id));
+      const toDetach = attachedIds.filter((id) => !listingIds.includes(id));
+      if (toAttach.length || toDetach.length) {
+        payload.shopListingCount = listingIds.length;
+      }
+
       if (Object.keys(payload).length === 0) {
         onClose();
         return;
       }
+
+      // Before the post update, so a failure to reconcile the rail is a visible
+      // error rather than a count on the token that nothing backs.
+      for (const id of toDetach) await detach.mutateAsync(id);
+      for (const id of toAttach) await attach.mutateAsync({ listingId: id });
 
       await editPost(tokenId, payload);
       toastSuccess("Post updated");
@@ -243,6 +271,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         commentsDisabled: payload.commentsDisabled,
         contentRating: payload.contentRating,
         shopLinks: payload.shopLinks,
+        shopListingCount: payload.shopListingCount as number | undefined,
       });
       onClose();
     } catch (e: any) {
@@ -259,6 +288,10 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     commentsDisabled,
     isMature,
     shopLinks,
+    listingIds,
+    attachedIds,
+    attach,
+    detach,
     initialTitle,
     initialDescription,
     initialCategories,
@@ -275,6 +308,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     commentsDisabled !== initialCommentsDisabled ||
     (isMature ? "mature" : "safe") !== (initialContentRating ?? "safe") ||
     JSON.stringify(shopLinks) !== JSON.stringify(initialShopLinks ?? []) ||
+    JSON.stringify([...listingIds].sort()) !== JSON.stringify([...attachedIds].sort()) ||
     JSON.stringify(selectedCategories.sort()) !==
       JSON.stringify([...(initialCategories || [])].sort());
 
@@ -419,12 +453,12 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
           >
             <View className="flex-1 mr-3">
               <Text className="text-white text-sm font-semibold">
-                {shopLinks.length
-                  ? `${shopLinks.length} shop link${shopLinks.length === 1 ? "" : "s"}`
-                  : "Add shop links"}
+                {shopLinks.length + listingIds.length
+                  ? `${shopLinks.length + listingIds.length} on the Shop board`
+                  : "Add to the Shop board"}
               </Text>
               <Text className="text-theme-neutrals-400 text-xs mt-0.5">
-                Affiliate links viewers open from the Shop button. You can add{" "}
+                Your shop listings and affiliate links, opened from the Shop button. You can add{" "}
                 {shopAllowance.allowance}.
               </Text>
             </View>
@@ -576,11 +610,14 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         </View>
       </ScrollView>
 
-      <ShopLinksSheet
+      <ShopSheet
         visible={shopSheetVisible}
         onClose={() => setShopSheetVisible(false)}
-        links={shopLinks}
-        onSave={setShopLinks}
+        value={{ links: shopLinks, listingIds }}
+        onSave={(next: ShopBoardDraft) => {
+          setShopLinks(next.links);
+          setPickedIds(next.listingIds);
+        }}
         allowance={shopAllowance.allowance}
         tier={shopAllowance.tier}
       />

@@ -107,12 +107,40 @@ export function effectivePrice(product: StreamProduct): number {
 }
 
 /**
+ * Attach one listing to a post, outside React.
+ *
+ * The composer needs this after a mint returns a tokenId, which is not a
+ * render — so it is a plain function over the same `callFn` the hooks use,
+ * rather than a second copy of the request shape that could drift from them.
+ */
+export function attachStreamProduct(
+  tokenId: string,
+  listingId: string,
+  wallet: string | null,
+): Promise<unknown> {
+  return callFn(
+    "stream-products",
+    { action: "attach", tokenId, listingId, livePrice: null },
+    wallet,
+  );
+}
+
+/**
  * Products attached to a stream, kept live over Supabase realtime.
  *
  * Realtime carries the raw row and not the joined listing, so a change
  * refetches instead of patching — the rail holds at most 20 rows.
+ *
+ * `enabled` exists because the Shop board on an ordinary feed card must not pay
+ * for this. A feed is many cards, and an always-on call here is a Supabase
+ * query and a realtime channel each, to answer a question the post's
+ * `shopListingCount` already answers off the feed payload. The board passes its
+ * open state, so both start on the tap that opens it.
  */
-export function useStreamProducts(tokenId: string | number | null | undefined) {
+export function useStreamProducts(
+  tokenId: string | number | null | undefined,
+  enabled: boolean = true,
+) {
   const queryClient = useQueryClient();
   const key = tokenId == null ? null : String(tokenId);
   // The overlay and the sheet both call this for the same stream. Two channels
@@ -136,12 +164,12 @@ export function useStreamProducts(tokenId: string | number | null | undefined) {
       if (error) throw error;
       return (data || []) as unknown as StreamProduct[];
     },
-    enabled: !!key,
+    enabled: !!key && enabled,
     staleTime: 30_000,
   });
 
   useEffect(() => {
-    if (!key) return;
+    if (!key || !enabled) return;
     const channel = supabase
       .channel(`stream-products-${key}-${channelId.current}`)
       .on(
@@ -158,7 +186,7 @@ export function useStreamProducts(tokenId: string | number | null | undefined) {
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [key, queryClient]);
+  }, [key, enabled, queryClient]);
 
   const products = query.data || [];
   // A rail that offers something unbuyable is worse than a shorter rail.

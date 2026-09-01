@@ -23,7 +23,7 @@ import ReactionOverlay from "../LiveProducer/ReactionOverlay";
 import TipAnimationsOverlay from "../LiveProducer/TipAnimationsOverlay";
 import GiftModal from "../Tip/GiftModal";
 import StreamShopOverlay from "../LiveViewer/StreamShopOverlay";
-import ShopLinkBoard from "../common/ShopLinkBoard";
+import ShopBoard from "../common/ShopBoard";
 import { useTipAnimations } from "../../hooks/useTipAnimations";
 import { useReactions } from "../../hooks/useReactions";
 import type { ReactionType } from "../LiveProducer/ReactionOverlay";
@@ -1300,7 +1300,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                   together would put "buy here" and "buy somewhere else" behind
                   one tap. `applyLiveAccess` flattens the token's board onto the
                   stream row, so it arrives with the stream. */}
-              <ShopLinkBoard links={(streamEntity as any)?.shopLinks} />
+              <ShopBoard
+                tokenId={(streamEntity?.tokenId as any) || (tokenId as any)}
+                links={(streamEntity as any)?.shopLinks}
+                listingCount={(streamEntity as any)?.shopListingCount}
+              />
 
               {/* TikTok-style join/gift banners */}
               <LiveEventBanner joinEvent={joinEvent} giftEvent={giftEvent} />

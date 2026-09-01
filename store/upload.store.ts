@@ -61,6 +61,11 @@ export interface SerializedUploadPayload {
    * as "no board" — the same thing it means on a post that never had one.
    */
   shopLinks?: { label: string; url: string }[];
+  /**
+   * Store listing ids to attach once the mint returns a tokenId. Persisted with
+   * the job so a board survives a queue that resumes after the app was killed.
+   */
+  shopListingIds?: string[];
 }
 
 export interface MintParams {

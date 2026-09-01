@@ -14,6 +14,7 @@ import { getMintFee } from "../services/nft.service";
 import { broadcastSolanaMint } from "../services/solana.service";
 import { supportedTokens } from "../config/constants";
 import { toastError, toastSuccess } from "../libs/toast";
+import { attachShopListings } from "../libs/attach-shop-listings";
 import { parseTxError } from "../libs/web3.util";
 import { feedEvents } from "../libs/eventBus";
 import type { MintNftResponse } from "../services/nft.service";
@@ -180,6 +181,12 @@ function rebuildFormData(job: UploadJob): FormData {
     fd.append("shopLinks", JSON.stringify(payload.shopLinks));
   }
 
+  // What we are about to attach in Supabase. A render hint for the feed cards
+  // only — the listings themselves need the tokenId this request returns.
+  if (payload.shopListingIds?.length) {
+    fd.append("shopListingCount", String(payload.shopListingIds.length));
+  }
+
   return fd;
 }
 
@@ -296,6 +303,29 @@ async function processJob(job: UploadJob): Promise<void> {
         uploadActions.updateStage(job.id, "processing", mintParams);
       }
     } // end of the on-chain signature handling
+
+    /**
+     * Put the picked store listings on the post, now that it has a tokenId.
+     *
+     * Here rather than in any one branch above: every branch has just settled
+     * `mintParams`, and the post exists in all of them. Not awaited into the
+     * failure path — the post is published by now, and a Supabase hiccup must
+     * not fail an upload the creator can fix from the post's options menu.
+     *
+     * Skipped for a duplicate, whose original send already attached them.
+     */
+    const listingIds = job.payload.shopListingIds;
+    if (listingIds?.length && !result?.duplicate) {
+      void attachShopListings(mintParams.createdTokenId, listingIds, job.walletAddress ?? null).then(
+        ({ failed }) => {
+          if (failed > 0) {
+            toastError(
+              `Your post is up, but ${failed} shop ${failed === 1 ? "item" : "items"} could not be attached. Add them from the post menu.`,
+            );
+          }
+        },
+      );
+    }
   }
 
   // Final abort check before minting — once we call the contract there's no undo

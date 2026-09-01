@@ -102,7 +102,12 @@ function PriceText({ product, className }: { product: StreamProduct; className?:
 }
 
 /** Quote → pay → confirm, in a sheet. */
-function CheckoutSheet({
+/**
+ * The buy sheet. Exported so the Shop board can reuse it — the quote, the
+ * transfer and the confirm are all one path, and a second copy of it is how
+ * two surfaces end up disagreeing about what somebody was charged.
+ */
+export function CheckoutSheet({
   tokenId,
   product,
   visible,

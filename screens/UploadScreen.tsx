@@ -69,7 +69,7 @@ import { usePostSound } from "../hooks/usePostSound";
 import { buildSoundtrackTag } from "../libs/parseSoundtrack";
 import SoundPickerSheet from "../components/Post/SoundPickerSheet";
 import ScheduleSheet from "../components/Upload/ScheduleSheet";
-import ShopLinksSheet from "../components/Upload/ShopLinksSheet";
+import ShopSheet, { type ShopBoardDraft } from "../components/Upload/ShopSheet";
 import { useShopLinkAllowance } from "../hooks/useShopLinks";
 import type { ShopLink } from "../services/nft.service";
 import { useDrafts, emptyMonetization } from "../hooks/useDrafts";
@@ -376,8 +376,17 @@ export default function UploadScreen() {
    * board with no links in it and no board are the same post.
    */
   const [shopLinks, setShopLinks] = useState<ShopLink[]>([]);
+  /**
+   * The creator's own store listings picked for the board, by id.
+   *
+   * Held as ids because they are attached in Supabase after the mint returns a
+   * tokenId — there is nothing to attach to before then, so the composer only
+   * carries the choice.
+   */
+  const [shopListingIds, setShopListingIds] = useState<string[]>([]);
   const [shopSheetVisible, setShopSheetVisible] = useState(false);
   const shopAllowance = useShopLinkAllowance();
+  const shopRows = shopLinks.length + shopListingIds.length;
 
   // Bounty locks tokens through the mint transaction, so it cannot ride on a
   // post that never goes on-chain.
@@ -854,8 +863,9 @@ export default function UploadScreen() {
       shouldMint,
       contentRating: isMature ? ("mature" as const) : undefined,
       shopLinks: shopLinks.length ? shopLinks : undefined,
+      shopListingIds,
     };
-  }, [bodyText, titleText, showTitle, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, shopLinks]);
+  }, [bodyText, titleText, showTitle, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, shopLinks, shopListingIds]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -920,12 +930,14 @@ export default function UploadScreen() {
     shouldMint: effectiveShouldMint,
     isMature,
     // On the mint, so the Shop button has something behind it for the people
-    // who arrive in the first seconds of the stream.
+    // who arrive in the first seconds of the stream. The listings attach once
+    // the mint hands back a tokenId — see useUploadLive.
     shopLinks: shopLinks.length ? shopLinks : undefined,
+    shopListingIds,
     postChainId: effectivePostChainId,
   }), [
     titleText, bodyText, categories, liveThumbnailUri, liveSettings,
-    monetization, effectiveShouldMint, isMature, shopLinks, effectivePostChainId,
+    monetization, effectiveShouldMint, isMature, shopLinks, shopListingIds, effectivePostChainId,
   ]);
 
   const handleGoLive = useCallback(() => {
@@ -2483,23 +2495,27 @@ export default function UploadScreen() {
                   <View className="flex-row items-center flex-1 mr-3">
                     <Icon name="ShoppingBag" size={18} color="#fff" />
                     <Text className="text-white text-sm ml-3">Shop</Text>
-                    {shopLinks.length ? (
+                    {shopRows ? (
                       <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1" numberOfLines={1}>
-                        ({shopLinks.length} of {shopAllowance.allowance} link
-                        {shopAllowance.allowance === 1 ? "" : "s"})
+                        ({shopRows} of {shopAllowance.allowance})
                       </Text>
                     ) : null}
                   </View>
                   <CustomSwitch
-                    value={shopLinks.length > 0}
+                    value={shopRows > 0}
                     /* Turning it on opens the editor rather than writing an
                        empty board — a switch that goes green and does nothing
-                       reads as a bug. Off clears the links; there is no flag to
-                       park them behind, and a post carrying invisible links is
-                       worse than retyping three URLs. */
-                    onValueChange={(next: boolean) =>
-                      next ? setShopSheetVisible(true) : setShopLinks([])
-                    }
+                       reads as a bug. Off clears the board; there is no flag to
+                       park it behind, and a post carrying an invisible board is
+                       worse than picking three things again. */
+                    onValueChange={(next: boolean) => {
+                      if (next) {
+                        setShopSheetVisible(true);
+                        return;
+                      }
+                      setShopLinks([]);
+                      setShopListingIds([]);
+                    }}
                   />
                 </TouchableOpacity>
 
@@ -2880,11 +2896,14 @@ export default function UploadScreen() {
         }}
       />
 
-      <ShopLinksSheet
+      <ShopSheet
         visible={shopSheetVisible}
         onClose={() => setShopSheetVisible(false)}
-        links={shopLinks}
-        onSave={setShopLinks}
+        value={{ links: shopLinks, listingIds: shopListingIds }}
+        onSave={(next: ShopBoardDraft) => {
+          setShopLinks(next.links);
+          setShopListingIds(next.listingIds);
+        }}
         allowance={shopAllowance.allowance}
         tier={shopAllowance.tier}
       />

@@ -19,7 +19,7 @@ import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useNavigation } from "@react-navigation/native";
 import { FeedCardHeader } from "./FeedCardHeader";
 import FeedActionBar from "./FeedActionBar";
-import ShopLinkBoard from "../common/ShopLinkBoard";
+import ShopBoard from "../common/ShopBoard";
 import type { ShopLink } from "../../services/nft.service";
 import { FeedCaption } from "./FeedCaption";
 import MatureContentGate, { useMatureGate } from "./MatureContentGate";
@@ -435,6 +435,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Same pattern for the Shop board, so adding or clearing links from the
   // options menu shows on this card immediately.
   const [localShopLinks, setLocalShopLinks] = useState<ShopLink[] | undefined>(undefined);
+  const [localShopListingCount, setLocalShopListingCount] = useState<number | undefined>(undefined);
   // Independent of the monetisation gates above: a post can be both mature and
   // pay-per-view, and the creator's own post is warned about too — the warning
   // is for whoever is holding the phone.
@@ -872,7 +873,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     setIsHidden(hidden);
   }, []);
 
-  const handleEditSuccess = useCallback((data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; shopLinks?: ShopLink[] }) => {
+  const handleEditSuccess = useCallback((data: { name?: string; description?: string; category?: string[]; commentsDisabled?: boolean; contentRating?: string; shopLinks?: ShopLink[]; shopListingCount?: number }) => {
     if (data.name !== undefined) setLocalTitle(data.name);
     if (data.description !== undefined) setLocalDescription(data.description);
     if (data.category !== undefined) setLocalCategories(data.category);
@@ -883,6 +884,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     // Same reason: the Shop button has to appear, change count or disappear on
     // the card that is already on screen.
     if (data.shopLinks !== undefined) setLocalShopLinks(data.shopLinks);
+    if (data.shopListingCount !== undefined) setLocalShopListingCount(data.shopListingCount);
   }, []);
 
   const handleDeleteSuccess = useCallback(() => {
@@ -1483,7 +1485,13 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       {/* The creator's Shop board — affiliate links, opened in a sheet. The
           live card links through to the player, which draws its own overlay
           button, so a second one here would be the same board twice. */}
-      {!isLive && <ShopLinkBoard links={localShopLinks ?? (item as any).shopLinks} />}
+      {!isLive && (
+        <ShopBoard
+          tokenId={tokenId}
+          links={localShopLinks ?? (item as any).shopLinks}
+          listingCount={localShopListingCount ?? (item as any).shopListingCount}
+        />
+      )}
 
       <View className="flex-row items-center gap-2 pt-1.5">
         <Text style={{ fontSize: 11, color: "#8B8D90" }}>
