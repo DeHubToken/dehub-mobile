@@ -290,12 +290,11 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
       }
       case StreamActivityType.TIP: {
         return (
-          <View className="flex-row items-center mb-1.5 bg-theme-yellow-500/20 rounded-xl px-2.5 py-1.5 self-start max-w-[85%] border border-theme-yellow-400/30">
+          <View className="flex-row items-center mb-1.5 bg-white/10 rounded-xl px-2.5 py-1.5 self-start max-w-[85%] border border-white/20">
             <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5">
               <Avatar uri={avatarUrl} size={18} name={displayName} />
             </TouchableOpacity>
-            <Text className="text-[11px] mr-1">💰</Text>
-            <Text className="text-theme-yellow-300 text-[11px] font-semibold" onPress={handlePress}>
+            <Text className="text-white text-[11px] font-semibold" onPress={handlePress}>
               {displayName}
             </Text>
             <Text className="text-white/70 text-[11px] ml-1">
@@ -308,7 +307,7 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
         return (
           <View className="mb-1.5 self-start">
             <Text className="text-white/50 text-[10px]" style={onVideo}>
-              🔴 Stream started
+              Stream started
             </Text>
           </View>
         );
@@ -316,7 +315,7 @@ const ChatBubble: React.FC<{ item: ProducerChatActivity; onUserPress: (id: strin
         return (
           <View className="mb-1.5 self-start">
             <Text className="text-white/50 text-[10px]" style={onVideo}>
-              ⏹️ Stream ended
+              Stream ended
             </Text>
           </View>
         );

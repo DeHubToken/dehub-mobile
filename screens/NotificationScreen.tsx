@@ -629,7 +629,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
             <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
               <View style={{ backgroundColor: 'rgba(255,255,255, 0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12 }}>
                 <Text style={{ color: '#D4D4D8', fontSize: 12, fontWeight: '600' }}>
-                  💰 Claim your bounty
+                  Claim your bounty
                 </Text>
               </View>
             </View>

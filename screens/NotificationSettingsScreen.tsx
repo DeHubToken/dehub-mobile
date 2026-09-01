@@ -238,14 +238,14 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
         {!pushPermissionGranted && (
           <TouchableOpacity
             onPress={openSystemSettings}
-            className="mx-4 mt-4 p-4 bg-theme-yellow-500/10 border border-theme-yellow-500/30 rounded-xl flex-row items-center"
+            className="mx-4 mt-4 p-4 bg-white/10 border border-white/20 rounded-xl flex-row items-center"
           >
-            <View className="w-10 h-10 rounded-xl bg-theme-yellow-500/20 items-center justify-center mr-3">
+            <View className="w-10 h-10 rounded-xl bg-white/15 items-center justify-center mr-3">
               <Icon name="BellOff" size={20} color="#D4D4D8" />
             </View>
             <View className="flex-1">
-              <Text className="text-theme-yellow-400 text-sm font-semibold">{t('settings.pushNotificationsDisabled')}</Text>
-              <Text className="text-theme-yellow-300 text-xs mt-0.5">{t('settings.tapEnableSystemSettings')}</Text>
+              <Text className="text-white/80 text-sm font-semibold">{t('settings.pushNotificationsDisabled')}</Text>
+              <Text className="text-white/80 text-xs mt-0.5">{t('settings.tapEnableSystemSettings')}</Text>
             </View>
             <Icon name="ChevronRight" size={18} color="#D4D4D8" />
           </TouchableOpacity>
