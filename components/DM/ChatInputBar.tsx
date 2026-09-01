@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, {
   memo,
   useCallback,
@@ -542,7 +543,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           >
             <Icon name="Gem" size={12} color="#D4D4D8" />
             <Text className="text-[11px] text-amber-400 font-medium ml-1">
-              Tip: {tipAmount} DHB
+              Tip: {tipAmount} <DhbCoin />
             </Text>
             <TouchableOpacity
               onPress={onClearTip}
@@ -805,7 +806,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
                   <>
                     <Icon name="Send" size={14} color={insufficientBalance || tipBelowFee ? "#666" : "#fff"} />
                     <Text className={`text-[11px] font-semibold ml-1 ${insufficientBalance || tipBelowFee ? "text-theme-neutrals-500" : "text-white"}`}>
-                      {totalCost} DHB
+                      {totalCost} <DhbCoin />
                     </Text>
                   </>
                 )}

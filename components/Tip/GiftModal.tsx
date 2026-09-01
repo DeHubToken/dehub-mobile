@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, {
   useCallback,
   useMemo,
@@ -414,7 +415,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
                             {item.name}
                           </Text>
                           <Text className="text-white/60 text-[10px]">
-                            {item.min.toLocaleString()} DHB
+                            {item.min.toLocaleString()} <DhbCoin />
                           </Text>
                         </View>
                       </View>
@@ -444,7 +445,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
               </View>
               <View className="flex-row justify-between mt-2">
                 <Text className="text-[11px] text-white/60">
-                  Balance: {balance} DHB
+                  Balance: {balance} <DhbCoin />
                 </Text>
                 <Text
                   className={`text-[11px] ${
@@ -469,7 +470,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
               )}
               {numericAmount > 0 && numericAmount < minTip && (
                 <Text className="text-xs text-yellow-400 mt-1">
-                  Minimum gift is {minTip} DHB
+                  Minimum gift is {minTip} <DhbCoin />
                 </Text>
               )}
             </View>
@@ -523,7 +524,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
               animateKey={phase}
             />
             <Text className="text-white text-base font-semibold">
-              You gifted {lastAmount} DHB
+              You gifted {lastAmount} <DhbCoin size={15} />
             </Text>
             <View className="flex-row gap-3">
               <AccentButtonGradient>

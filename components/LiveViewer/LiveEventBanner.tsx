@@ -1,3 +1,4 @@
+import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useEffect, useRef } from "react";
 import { View, Text } from "react-native";
 import Animated, {
@@ -97,7 +98,7 @@ const GiftBannerRow: React.FC<{
         {event.displayName}
       </Text>
       <Text style={{ color: 'rgba(255,255,255,0.6)' }} className="text-[11px] ml-1">
-        sent {event.amount.toLocaleString()} DHB
+        sent {event.amount.toLocaleString()} <DhbCoin />
       </Text>
     </Animated.View>
   );

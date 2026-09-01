@@ -5,6 +5,7 @@
  * Follows the same design language as MonetizationPanel with toggle rows
  * and expandable inline forms.
  */
+import { DhbCoin } from "../common/DhbCoin";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -284,7 +285,7 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
           <Text className="text-white text-sm ml-3">Min Tip</Text>
         </View>
         <Text className="text-theme-neutrals-400 text-sm">
-          {state.minTip || "1000"} DHB
+          {state.minTip || "1000"} <DhbCoin />
         </Text>
       </TouchableOpacity>
       <ExpandableSection
