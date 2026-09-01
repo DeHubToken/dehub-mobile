@@ -1,8 +1,18 @@
+/**
+ * The live viewer's action row.
+ *
+ * Bare icons over the bottom scrim, on 44pt cells — the same row the shorts
+ * viewer draws (ShortsViewerScreen's actionBar) and the same one the feed card
+ * draws under a post. It used to be a strip of black/40 circles with hairline
+ * borders and a red like pill, which is a control style that exists nowhere
+ * else in the app.
+ */
 import React, { memo, useCallback, useRef } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { Heart, Share2 } from "lucide-react-native";
+import { View, Text, Pressable, StyleSheet } from "react-native";
+import Icon from "../ui/Icon";
 import type { ReactionType } from "../LiveProducer/ReactionOverlay";
 import { formatCompactNumber } from "../../libs/numbers.util";
+import { COUNT_COLOR, EDGE, ICON_COLOR, TEXT_SHADOW } from "../common/ViewerChrome";
 
 const REACTION_OPTIONS: { type: ReactionType; emoji: string }[] = [
   { type: "HEART", emoji: "❤️" },
@@ -37,60 +47,101 @@ const LiveViewerReactionsBar: React.FC<LiveViewerReactionsBarProps> = ({
 }) => {
   const lastTapRef = useRef(0);
 
-  const handleReact = useCallback((type: ReactionType) => {
-    const now = Date.now();
-    if (now - lastTapRef.current < COOLDOWN_MS) return;
-    lastTapRef.current = now;
-    onReact(type);
-  }, [onReact]);
+  const handleReact = useCallback(
+    (type: ReactionType) => {
+      const now = Date.now();
+      if (now - lastTapRef.current < COOLDOWN_MS) return;
+      lastTapRef.current = now;
+      onReact(type);
+    },
+    [onReact]
+  );
 
   return (
-    <View className="flex-row items-center justify-center px-2 py-1">
-      {/* Reaction emojis */}
+    <View style={styles.bar}>
       {isLive &&
         REACTION_OPTIONS.map((opt) => (
-          <TouchableOpacity
+          <Pressable
             key={opt.type}
             onPress={() => handleReact(opt.type)}
             disabled={disabled}
-            activeOpacity={0.6}
-            className={`mx-1 w-9 h-9 rounded-full items-center justify-center bg-black/40 border border-white/10 ${disabled ? "opacity-30" : ""}`}
+            accessibilityRole="button"
+            accessibilityLabel={"React " + opt.type.toLowerCase()}
+            style={[styles.cell, disabled ? styles.disabled : null]}
           >
-            <Text style={{ fontSize: 16 }}>{opt.emoji}</Text>
-          </TouchableOpacity>
+            <Text style={styles.glyph}>{opt.emoji}</Text>
+          </Pressable>
         ))}
 
-      {/* Like button */}
-      <TouchableOpacity
+      <Pressable
         onPress={onLike}
         disabled={likePending || !isLive}
-        activeOpacity={0.6}
-        className={`mx-1 flex-row items-center rounded-full px-3 h-9 ${
-          isLiked ? "bg-red-500/30 border border-red-500/40" : "bg-black/40 border border-white/10"
-        } ${likePending ? "opacity-50" : ""}`}
+        accessibilityRole="button"
+        accessibilityLabel={isLiked ? "Unlike" : "Like"}
+        style={[styles.cell, likePending ? styles.disabled : null]}
       >
-        <Heart
-          color={isLiked ? "#ef4444" : "#fff"}
-          fill={isLiked ? "#ef4444" : "transparent"}
-          size={14}
+        {/* Filled white when liked, as the shorts action row does — the design
+            system reserves hue for nothing on these surfaces. */}
+        <Icon
+          name="Heart"
+          size={20}
+          color={ICON_COLOR}
+          strokeWidth={1.8}
+          fill={isLiked ? ICON_COLOR : "none"}
         />
         {likeCount > 0 && (
-          <Text className="text-white text-[11px] ml-1 font-semibold">
+          <Text style={styles.count} numberOfLines={1}>
             {formatCompactNumber(likeCount)}
           </Text>
         )}
-      </TouchableOpacity>
+      </Pressable>
 
-      {/* Share button */}
-      <TouchableOpacity
+      <Pressable
         onPress={onShare}
-        activeOpacity={0.6}
-        className="mx-1 w-9 h-9 rounded-full items-center justify-center bg-black/40 border border-white/10"
+        accessibilityRole="button"
+        accessibilityLabel="Share"
+        style={styles.cell}
       >
-        <Share2 color="#fff" size={14} />
-      </TouchableOpacity>
+        <Icon name="Share2" size={20} color={ICON_COLOR} strokeWidth={1.8} />
+      </Pressable>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  bar: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: EDGE,
+    paddingTop: 4,
+  },
+  /**
+   * Equal share of the row, with the 44pt floor the shorts bar uses: these are
+   * the most-thumbed controls on the screen, and the old 36pt circles were
+   * under both the iOS 44 and the Android 48 minimum.
+   */
+  cell: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 4,
+    minHeight: 44,
+  },
+  disabled: {
+    opacity: 0.35,
+  },
+  glyph: {
+    fontSize: 20,
+    lineHeight: 26,
+    textAlign: "center",
+  },
+  count: {
+    color: COUNT_COLOR,
+    fontSize: 12,
+    fontWeight: "500",
+    ...TEXT_SHADOW,
+  },
+});
 
 export default memo(LiveViewerReactionsBar);
