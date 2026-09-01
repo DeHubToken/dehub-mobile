@@ -9,7 +9,7 @@ type Props = {
 
 const Pill: React.FC<{ text: string; extra?: string }> = memo(({ text, extra }) => {
   return (
-    <View className="px-4 py-2 rounded-full bg-black/50 border border-white/20">
+    <View className="px-4 py-2 rounded-xl bg-zinc-900/60">
       <Text className="text-white font-semibold text-xs">{text}{extra ? ` • ${extra}` : ""}</Text>
     </View>
   );
@@ -43,7 +43,7 @@ const GoldenScreenEffect: React.FC<{ item: TipAnimationItem; seconds: number }> 
         <Text className="text-theme-yellow-300 text-base">🪙🪙🪙</Text>
       </View>
       <View className="absolute bottom-10 inset-x-0 items-center">
-        <Text className="text-red-400 text-sm">🚨 Sirens 🚨</Text>
+        <Text className="text-white/80 text-sm">🚨 Sirens 🚨</Text>
       </View>
     </Animated.View>
   );

@@ -151,7 +151,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
         <View className="absolute left-4 z-50" style={{ top: insets.top + 8 }}>
           <TouchableOpacity
             onPress={handleClose}
-            className="bg-black/60 p-2 rounded-full"
+            className="bg-zinc-900/60 p-2.5 rounded-xl"
             accessibilityLabel="Close video"
             activeOpacity={0.8}
           >
@@ -197,7 +197,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
               <View className="w-10" />
               <TouchableOpacity
                 onPress={handlePlayPause}
-                className="self-center bg-white/15 p-3 rounded-full"
+                className="self-center bg-white/15 p-3 rounded-2xl"
                 activeOpacity={0.9}
                 accessibilityLabel={isPlaying ? 'Pause' : 'Play'}
               >
@@ -205,7 +205,7 @@ const FullScreenVideoPlayer: React.FC<FullScreenVideoPlayerProps> = ({ visible, 
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={handleRotate}
-                className="self-center bg-white/15 p-2 rounded-full"
+                className="self-center bg-white/15 p-2.5 rounded-xl"
                 activeOpacity={0.9}
                 accessibilityLabel="Rotate"
               >

@@ -24,7 +24,7 @@ const ExternalStreamingOverlay: React.FC<ExternalStreamingOverlayProps> = ({
     <View className="px-6 w-full items-center">
       {isLive ? (
         <View className="flex-row items-center gap-2 mb-3">
-          <View className="w-2.5 h-2.5 rounded-full bg-red-500" />
+          <View className="w-2.5 h-2.5 rounded-full bg-white" />
           <Text className="text-white font-bold text-sm tracking-wider">STREAMING FROM EXTERNAL DEVICE</Text>
         </View>
       ) : (
@@ -71,7 +71,7 @@ const ExternalStreamingOverlay: React.FC<ExternalStreamingOverlayProps> = ({
       {!isLive && (
         <TouchableOpacity
           onPress={onExitExternal}
-          className="mt-5 self-center px-5 h-10 rounded-full bg-white/10 items-center justify-center"
+          className="mt-5 self-center px-5 h-10 rounded-xl bg-white/10 items-center justify-center"
           activeOpacity={0.85}
         >
           <Text className="text-white/80 text-xs font-semibold">Use In-App Camera Instead</Text>

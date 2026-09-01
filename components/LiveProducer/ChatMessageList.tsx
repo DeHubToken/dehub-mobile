@@ -42,7 +42,7 @@ const ChatMessageList: React.FC<Props> = ({ messages, onPressUser, onLongPressMe
         <Text
           className={[
             'text-[12px] font-semibold mr-1',
-            item.isOwner ? 'text-red-400' : item.isModerator ? 'text-emerald-400' : 'text-blue-300',
+            item.isOwner ? 'text-white' : item.isModerator ? 'text-white/80' : 'text-white/60',
           ].join(' ')}
         >
           {item.user}

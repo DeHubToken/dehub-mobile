@@ -55,7 +55,8 @@ const ProducerStatusBar: React.FC<Props> = ({
   const isEnding = stage === 'ending';
   const isReady = stage === 'ready';
 
-  const dotColor = isLive ? '#ef4444' : isStarting || isEnding ? '#D4D4D8' : '#6b7280';
+  // Monochrome, like the viewer's status chip: solid white when live, dimmed otherwise.
+  const dotColor = isLive ? '#fff' : isStarting || isEnding ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.35)';
   const statusLabel = isLive ? 'LIVE' : isStarting ? 'SETTING UP' : isEnding ? 'ENDING' : isReady ? 'READY' : '—';
 
   const handlePressClose = () => {
@@ -75,7 +76,7 @@ const ProducerStatusBar: React.FC<Props> = ({
         <TouchableOpacity
           onPress={handlePressClose}
           activeOpacity={0.8}
-          className="w-7 h-7 rounded-full items-center justify-center bg-white/5 mr-2"
+          className="w-7 h-7 rounded-lg items-center justify-center bg-white/10 mr-2"
         >
           <ChevronDown color="#fff" size={18} />
         </TouchableOpacity>

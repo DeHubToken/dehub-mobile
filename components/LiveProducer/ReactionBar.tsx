@@ -35,7 +35,7 @@ const ReactionBar: React.FC<ReactionBarProps> = ({ onReact, disabled }) => {
           onPress={() => handlePress(opt.type)}
           disabled={disabled}
           activeOpacity={0.7}
-          className={`mx-2 w-10 h-10 rounded-full items-center justify-center bg-white/10 border border-white/10 ${disabled ? 'opacity-40' : ''}`}
+          className={`mx-2 w-10 h-10 rounded-xl items-center justify-center bg-white/10 ${disabled ? 'opacity-40' : ''}`}
         >
           <Text style={{ fontSize: 18 }}>{opt.emoji}</Text>
         </TouchableOpacity>

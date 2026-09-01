@@ -800,7 +800,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           className="absolute inset-0 items-center justify-center"
           pointerEvents="none"
         >
-          <View className="bg-black/60 px-4 py-2 rounded-full border border-white/10">
+          <View className="bg-zinc-900/60 px-4 py-2 rounded-xl">
             <Text className="text-white text-xs font-semibold">
               Preparing camera…
             </Text>
@@ -813,7 +813,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           className="absolute inset-0 items-center justify-center"
           pointerEvents="none"
         >
-          <View className="bg-black/60 px-4 py-2 rounded-full border border-white/10">
+          <View className="bg-zinc-900/60 px-4 py-2 rounded-xl">
             <Text className="text-white text-xs font-semibold">
               Camera off
             </Text>
@@ -826,7 +826,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           className="absolute inset-0 items-center justify-center"
           pointerEvents="none"
         >
-          <View className="bg-black/60 px-4 py-2 rounded-full border border-white/10">
+          <View className="bg-zinc-900/60 px-4 py-2 rounded-xl">
             <Text className="text-white text-xs font-semibold">
               {reconnecting ? 'Reconnecting…' : 'Connecting…'}
             </Text>

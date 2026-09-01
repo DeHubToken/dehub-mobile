@@ -57,7 +57,7 @@ const TopControls: React.FC<TopControlsProps> = ({
       <View className="flex-row items-center flex-1">
         <TouchableOpacity
           onPress={handleClose}
-          className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
+          className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
           activeOpacity={0.7}
           accessibilityLabel="Close video"
           accessibilityRole="button"
@@ -83,7 +83,7 @@ const TopControls: React.FC<TopControlsProps> = ({
         {onToggleSpeed && (
           <TouchableOpacity
             onPress={onToggleSpeed}
-            className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
+            className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
             activeOpacity={0.7}
             accessibilityLabel="Playback speed"
             accessibilityRole="button"
@@ -96,7 +96,7 @@ const TopControls: React.FC<TopControlsProps> = ({
         {onToggleLoop && (
           <TouchableOpacity
             onPress={onToggleLoop}
-            className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
+            className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
             activeOpacity={0.7}
             accessibilityLabel="Toggle loop"
             accessibilityRole="button"
@@ -110,7 +110,7 @@ const TopControls: React.FC<TopControlsProps> = ({
         {onPiP && (
           <TouchableOpacity
             onPress={onPiP}
-            className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
+            className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
             activeOpacity={0.7}
             accessibilityLabel="Picture in picture"
             accessibilityRole="button"
@@ -122,7 +122,7 @@ const TopControls: React.FC<TopControlsProps> = ({
 
         <TouchableOpacity
           onPress={handleMute}
-          className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
+          className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
           activeOpacity={0.7}
           accessibilityLabel={isMuted ? 'Unmute' : 'Mute'}
           accessibilityRole="button"
@@ -139,7 +139,7 @@ const TopControls: React.FC<TopControlsProps> = ({
         {onRotateToPortrait && (
           <TouchableOpacity
             onPress={onRotateToPortrait}
-            className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
+            className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
             activeOpacity={0.7}
             accessibilityLabel="Rotate orientation"
             accessibilityRole="button"
@@ -151,7 +151,7 @@ const TopControls: React.FC<TopControlsProps> = ({
 
         <TouchableOpacity
           onPress={handleFullscreen}
-          className="bg-black/60 rounded-full w-9 h-9 items-center justify-center"
+          className="bg-zinc-900/60 rounded-xl w-10 h-10 items-center justify-center"
           activeOpacity={0.7}
           accessibilityLabel={fullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
           accessibilityRole="button"

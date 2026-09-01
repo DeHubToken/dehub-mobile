@@ -25,7 +25,7 @@ const ChatSidePanel: React.FC<ChatSidePanelProps> = ({ messages, input, onChange
         <>
           <ChatMessageList messages={messages} />
           <View className="px-2 pb-2">
-            <View className="flex-row items-center bg-white/10 rounded-full px-3">
+            <View className="flex-row items-center bg-white/10 rounded-xl px-3">
               <TextInput
                 value={input}
                 onChangeText={onChangeInput}
@@ -36,7 +36,7 @@ const ChatSidePanel: React.FC<ChatSidePanelProps> = ({ messages, input, onChange
                 maxLength={240}
               />
               <TouchableOpacity onPress={onSend} className="pl-2 py-2" disabled={!input.trim()}>
-                <Text className={[ 'text-[12px] font-semibold', input.trim() ? 'text-emerald-400' : 'text-white/30' ].join(' ')}>
+                <Text className={[ 'text-[12px] font-semibold', input.trim() ? 'text-white' : 'text-white/30' ].join(' ')}>
                   Send
                 </Text>
               </TouchableOpacity>
