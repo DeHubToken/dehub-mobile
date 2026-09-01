@@ -37,8 +37,9 @@ import { findDehubLinks, stripDehubLinkMatches } from "../../libs/dehub-links";
 import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCard";
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import SmartImage from "../common/SmartImage";
+import LiveFeedPreview from "../common/LiveFeedPreview";
 import { cdnImage } from "../../libs/cdnImage";
-import { liveThumbnailFor } from "../../libs/live-ingest";
+import { hlsUrlFor, liveThumbnailFor } from "../../libs/live-ingest";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import PPVSheet from "../PPV/PPVSheet";
 import BountyInfoSheet from "./BountyInfoSheet";
@@ -368,6 +369,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const rawStatus: string | undefined = stream?.status || (item as any).status;
   const status = rawStatus ? rawStatus.toUpperCase() : undefined;
   const isCurrentlyLive = status === "LIVE" || status === "PAUSED";
+
+  // HLS ladder for the in-card preview. Derived from the playbackId the same
+  // way the post page does it — `playbackUrl` off the API is usually absent
+  // for a self-hosted stream.
+  const livePreviewUrl = useMemo(
+    () => (isLive ? hlsUrlFor(stream as any) : null),
+    [isLive, stream],
+  );
 
   // --- Live stats ---
   // An audience, not a view count, and the two stream fields mean the opposite
@@ -1242,7 +1251,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const renderLiveThumbnail = () => (
     <Pressable onPress={handleCardPress} className="relative w-full h-48 bg-zinc-800 rounded-xl overflow-hidden mt-2">
-      {hasThumb ? (
+      {isCurrentlyLive && livePreviewUrl && !isActuallyGated ? (
+        /* On air: play the stream in the card. The feed used to show a poster
+           (often none at all, since the self-hosted ingest renders none) and
+           the stream only appeared after opening the post. */
+        <LiveFeedPreview
+          url={livePreviewUrl}
+          thumbnail={hasThumb ? thumbnail : undefined}
+          active={isVisible && isAutoplayActive}
+        />
+      ) : hasThumb ? (
         <SmartImage
           source={{ uri: thumbnail }}
           className="absolute inset-0 w-full h-full"
