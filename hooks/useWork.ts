@@ -25,6 +25,7 @@ import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { useUser } from "../context/AuthContext";
 import { toastError, toastSuccess } from "../libs/toast";
 import { createLogger } from "../libs/logger";
+import { persistPayout } from "../libs/payout-record";
 import { useERC20Contract, useWeb3Provider } from "./use-web3";
 import { writeContractAA } from "../libs/aa.write";
 import { ChainId, DHB_ADDRESSESS } from "../config/constants";
@@ -638,18 +639,23 @@ export function useApproveSubmission() {
         ? await payout(params.currency, params.worker_address, params.payout_amount)
         : null;
 
-      const { error } = await withWalletHeader(
-        supabase
-          .from(TBL_SUBS)
-          .update({
-            approval_status: txHash ? "paid" : "approved",
-            payout_amount: params.payout_amount,
-            payout_tx_hash: txHash,
-          })
-          .eq("id", params.submission_id),
-        addr,
+      // The money is gone by now. A write that will not land must not report
+      // itself as a failed payment — see libs/payout-record.
+      await persistPayout(
+        () =>
+          withWalletHeader(
+            supabase
+              .from(TBL_SUBS)
+              .update({
+                approval_status: txHash ? "paid" : "approved",
+                payout_amount: params.payout_amount,
+                payout_tx_hash: txHash,
+              })
+              .eq("id", params.submission_id),
+            addr,
+          ),
+        txHash,
       );
-      if (error) throw error;
       await syncJobTotals(params.job_id, addr);
       return { paid: !!txHash };
     },
@@ -690,18 +696,21 @@ export function usePaySubmission() {
 
       const txHash = await payout(params.currency, params.worker_address, params.payout_amount);
 
-      const { error } = await withWalletHeader(
-        supabase
-          .from(TBL_SUBS)
-          .update({
-            approval_status: "paid",
-            payout_amount: params.payout_amount,
-            payout_tx_hash: txHash,
-          })
-          .eq("id", params.submission_id),
-        addr,
+      await persistPayout(
+        () =>
+          withWalletHeader(
+            supabase
+              .from(TBL_SUBS)
+              .update({
+                approval_status: "paid",
+                payout_amount: params.payout_amount,
+                payout_tx_hash: txHash,
+              })
+              .eq("id", params.submission_id),
+            addr,
+          ),
+        txHash,
       );
-      if (error) throw error;
       await syncJobTotals(params.job_id, addr);
     },
     onSuccess: (_d, v) => {
